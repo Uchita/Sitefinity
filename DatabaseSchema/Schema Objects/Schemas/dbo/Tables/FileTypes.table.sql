@@ -1,0 +1,7 @@
+﻿CREATE TABLE FileTypes
+(
+   FileTypeID			INT IDENTITY(1,1) PRIMARY KEY,
+   FileTypeName			VARCHAR(255) NOT NULL,
+   FileTypeExtension	VARCHAR(255) NOT NULL
+)
+GO

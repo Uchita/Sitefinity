@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Resumes/Cover Letter";
+}
+@model JXTPortal.Domain.ViewModel.MemberModel.MemberFilesModel
+
+<h1>Resumes/Cover Letter</h1>
+<h2>Resume</h2>
+<ul data-role="listview" data-inset="true"  class="FormFields savedJobsList">
+        @foreach (var resume in Model.Resumes)
+    { 
+        <li><a target="_blank" href="@Url.Action("Download", new RouteValueDictionary(new { MemberFileID = resume.MemberFileId }))">@resume.MemberFileName</a></li>
+    }
+    @if (Model.Resumes.Count == 0)
+    { 
+        <li>No Resumes available</li>
+    }
+</ul>
+<h2>Cover Letter</h2>
+<ul data-role="listview" data-inset="true" class="FormFields savedJobsList">
+         @foreach (var coverletter in Model.CoverLetters)
+    { 
+        <li><a target="_blank" href="@Url.Action("Download", new RouteValueDictionary(new { MemberFileID = coverletter.MemberFileId }))">@coverletter.MemberFileName</a></li>
+    }
+    @if (Model.CoverLetters.Count == 0)
+    { 
+        <li>No cover letter available</li>
+    }
+</ul>

@@ -1,0 +1,170 @@
+﻿@{
+	ViewBag.Title="Welcome";
+    Layout = JXTPortal.Mobile.Website.ViewEngine.WhitelabelViewEngine.Resolve("~/Views/Shared/Whitelabel/160/_HomeLayout.cshtml");
+}
+<img src="http://images.jxt.net.au/mobile/Content/whitelabel/@JXTPortal.Entities.SessionData.Site.SiteId/Images/jobsearch-title.jpg" width="284" height="203" />
+<div class="home_search">
+<script type="text/javascript">
+    $(function () {
+        //$(document).bind('pageinit', function() {
+        // Salary
+        $('#SalaryTypeId').change(function () {
+
+            var selectedSalaryTypeId = "";
+
+            $("#SalaryTypeId option:selected").each(function () {
+                selectedSalaryTypeId += $(this).val();
+            });
+
+
+            $.getJSON('@Url.Action("GetSalaryRangeFrom")', { salaryTypeId: selectedSalaryTypeId, SalaryValueSet: '0;0' }, function (SalaryFroms) {
+                var SalaryFromId = $('#SalaryFromId');
+                SalaryFromId.empty();
+
+                jQuery.each(SalaryFroms, function (index, SalaryFrom) {
+                    SalaryFromId.append(
+                        $('<option/>')
+                            .attr('value', SalaryFrom.Id)
+                            .text(SalaryFrom.SalaryDisplay)
+                    );
+                });
+
+                SalaryFromId.selectmenu('refresh', true);
+            });
+
+            $.getJSON('@Url.Action("GetSalaryRangeTo")', { salaryTypeId: selectedSalaryTypeId, SalaryValueSet: '0;0' }, function (SalaryTos) {
+                var SalaryToId = $('#SalaryToId');
+                SalaryToId.empty();
+
+                jQuery.each(SalaryTos, function (index, SalaryTo) {
+                    SalaryToId.append(
+                        $('<option/>')
+                            .attr('value', SalaryTo.Id)
+                            .text(SalaryTo.SalaryDisplay)
+                    );
+                });
+
+                SalaryToId.selectmenu('refresh', true);
+            });
+
+        });
+
+        $('#SalaryFromId').change(function () {
+            var selectedSalaryTypeId = "";
+
+            $("#SalaryTypeId option:selected").each(function () {
+                selectedSalaryTypeId = $(this).val();
+            });
+
+            var selectedSalaryFromId = "0;0";
+
+            $("#SalaryFromId option:selected").each(function () {
+                selectedSalaryFromId = $(this).val();
+            });
+
+            $.getJSON('@Url.Action("GetSalaryRangeTo")', { salaryTypeId: selectedSalaryTypeId, SalaryValueSet: selectedSalaryFromId }, function (SalaryTos) {
+                var SalaryToId = $('#SalaryToId');
+                SalaryToId.empty();
+
+                jQuery.each(SalaryTos, function (index, SalaryTo) {
+                    SalaryToId.append(
+                            $('<option/>')
+                                .attr('value', SalaryTo.Id)
+                                .text(SalaryTo.SalaryDisplay)
+                        );
+                });
+
+                SalaryToId.selectmenu('refresh', true);
+            });
+        });
+
+        // Location
+        $('#LocationId').change(function () {
+            var selectedlocation = $(this).val();
+            $.getJSON('@Url.Action("Areas")', { locationId: selectedlocation }, function (Areas) {
+                var areasSelect = $('#AreaId');
+                areasSelect.empty();
+
+                areasSelect.append(
+                        $('<option/>')
+                            .attr('value', 0)
+                            .text("All Areas")
+                            .attr("selected", "selected")
+                    );
+
+                jQuery.each(Areas, function (index, Area) {
+                    areasSelect.append(
+                        $('<option/>')
+                            .attr('value', Area.Id)
+                            .text(Area.Name)
+                    );
+                });
+
+                areasSelect.selectmenu('refresh', true);
+            });
+        });
+
+        $('#ProfessionId').change(function () {
+            var selectedProfession = $(this).val();
+            $.getJSON('@Url.Action("Roles")', { professionId: selectedProfession }, function (Roles) {
+                var rolesSelect = $('#RoleId');
+                rolesSelect.empty();
+
+                rolesSelect.append(
+                        $('<option/>')
+                            .attr('value', 0)
+                            .text("All Roles")
+                            .attr("selected", "selected")
+                    );
+
+                jQuery.each(Roles, function (index, Role) {
+                    rolesSelect.append(
+                        $('<option/>')
+                            .attr('value', Role.Id)
+                            .text(Role.Name)
+                    );
+                });
+
+                rolesSelect.selectmenu('refresh', true);
+            });
+        });
+    });
+</script>
+@using (Html.BeginForm("Result", "Job"))
+{
+    <ul data-role="listview" data-inset="true" class="FormFields">
+                <li>
+            <label>
+                Keyword</label>
+            <input type="text" id="keyword" name="keyword" placeholder="Keyword" />
+        </li>
+        <li>
+            <label>
+                Profession</label>
+            <select id="ProfessionId" name="ProfessionId">
+                <option value="0" selected>All Profession</option>
+                @foreach (var item in Model.Professions)
+                {   
+                    <option value="@item.Key">@item.Value</option>    
+                }
+            </select>
+        </li>
+                <li>
+            <label>
+                Location</label>
+            <select id="LocationId" name="LocationId">
+                <option value="0" selected>All Location</option>
+                @foreach (var item in Model.Locations)
+                {   
+                    <option value="@item.Key">@item.Value</option>    
+                }
+            </select>
+        </li>
+            </ul>
+    <input type="submit" id="job_search_submit" value="Search" class="home-search" />
+
+																		    <a href="/Job/ViewAll" class="viewall">View all jobs</a>
+}
+<div class="clear"><!-- --></div>
+</div>
+<div class="nav"><a href="/Account/JobAlert"><img src="http://images.jxt.net.au/mobile/Content/whitelabel/@JXTPortal.Entities.SessionData.Site.SiteId/Images/btn-jobalert.jpg" width="284" height="133" /></a><div class="clear"><!-- --></div></div>

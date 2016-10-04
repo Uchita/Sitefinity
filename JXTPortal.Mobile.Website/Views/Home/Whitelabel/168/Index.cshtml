@@ -1,0 +1,162 @@
+﻿<img src="http://images.jxt.net.au/mobile/Content/whitelabel/168/Images/bg-search.jpg" width="280" height="78" />
+
+
+<div class="home_search">
+<script type="text/javascript">
+    $(function () {
+        //$(document).bind('pageinit', function() {
+        // Salary
+        $('#SalaryTypeId').change(function () {
+
+            var selectedSalaryTypeId = "";
+
+            $("#SalaryTypeId option:selected").each(function () {
+                selectedSalaryTypeId += $(this).val();
+            });
+
+
+            $.getJSON('@Url.Action("GetSalaryRangeFrom")', { salaryTypeId: selectedSalaryTypeId, SalaryValueSet: '0;0' }, function (SalaryFroms) {
+                var SalaryFromId = $('#SalaryFromId');
+                SalaryFromId.empty();
+
+                jQuery.each(SalaryFroms, function (index, SalaryFrom) {
+                    SalaryFromId.append(
+                        $('<option/>')
+                            .attr('value', SalaryFrom.Id)
+                            .text(SalaryFrom.SalaryDisplay)
+                    );
+                });
+
+                SalaryFromId.selectmenu('refresh', true);
+            });
+
+            $.getJSON('@Url.Action("GetSalaryRangeTo")', { salaryTypeId: selectedSalaryTypeId, SalaryValueSet: '0;0' }, function (SalaryTos) {
+                var SalaryToId = $('#SalaryToId');
+                SalaryToId.empty();
+
+                jQuery.each(SalaryTos, function (index, SalaryTo) {
+                    SalaryToId.append(
+                        $('<option/>')
+                            .attr('value', SalaryTo.Id)
+                            .text(SalaryTo.SalaryDisplay)
+                    );
+                });
+
+                SalaryToId.selectmenu('refresh', true);
+            });
+
+        });
+
+        $('#SalaryFromId').change(function () {
+            var selectedSalaryTypeId = "";
+
+            $("#SalaryTypeId option:selected").each(function () {
+                selectedSalaryTypeId = $(this).val();
+            });
+
+            var selectedSalaryFromId = "0;0";
+
+            $("#SalaryFromId option:selected").each(function () {
+                selectedSalaryFromId = $(this).val();
+            });
+
+            $.getJSON('@Url.Action("GetSalaryRangeTo")', { salaryTypeId: selectedSalaryTypeId, SalaryValueSet: selectedSalaryFromId }, function (SalaryTos) {
+                var SalaryToId = $('#SalaryToId');
+                SalaryToId.empty();
+
+                jQuery.each(SalaryTos, function (index, SalaryTo) {
+                    SalaryToId.append(
+                            $('<option/>')
+                                .attr('value', SalaryTo.Id)
+                                .text(SalaryTo.SalaryDisplay)
+                        );
+                });
+
+                SalaryToId.selectmenu('refresh', true);
+            });
+        });
+
+        // Location
+        $('#LocationId').change(function () {
+            var selectedlocation = $(this).val();
+            $.getJSON('@Url.Action("Areas")', { locationId: selectedlocation }, function (Areas) {
+                var areasSelect = $('#AreaId');
+                areasSelect.empty();
+
+                areasSelect.append(
+                        $('<option/>')
+                            .attr('value', 0)
+                            .text("All Areas")
+                            .attr("selected", "selected")
+                    );
+
+                jQuery.each(Areas, function (index, Area) {
+                    areasSelect.append(
+                        $('<option/>')
+                            .attr('value', Area.Id)
+                            .text(Area.Name)
+                    );
+                });
+
+                areasSelect.selectmenu('refresh', true);
+            });
+        });
+
+        $('#ProfessionId').change(function () {
+            var selectedProfession = $(this).val();
+            $.getJSON('@Url.Action("Roles")', { professionId: selectedProfession }, function (Roles) {
+                var rolesSelect = $('#RoleId');
+                rolesSelect.empty();
+
+                rolesSelect.append(
+                        $('<option/>')
+                            .attr('value', 0)
+                            .text("All Roles")
+                            .attr("selected", "selected")
+                    );
+
+                jQuery.each(Roles, function (index, Role) {
+                    rolesSelect.append(
+                        $('<option/>')
+                            .attr('value', Role.Id)
+                            .text(Role.Name)
+                    );
+                });
+
+                rolesSelect.selectmenu('refresh', true);
+            });
+        });
+    });
+</script>
+@using (Html.BeginForm("Result", "Job"))
+{
+    <ul data-role="listview" data-inset="true" id="RegistrationFields">
+                <li>
+                        <input type="text" id="keyword" name="keyword" />
+        </li>
+        <li>
+                        <div class="styled-select"><select id="ProfessionId" name="ProfessionId">
+                <option value="0" selected>All Profession</option>
+                @foreach (var item in Model.Professions)
+                {   
+                    <option value="@item.Key">@item.Value</option>    
+                }
+            </select></div>
+        </li>
+                <li>
+            <div class="styled-select"><select id="LocationId" name="LocationId">
+                <option value="0" selected>All Location</option>
+                @foreach (var item in Model.Locations)
+                {   
+                    <option value="@item.Key">@item.Value</option>    
+                }
+            </select></div>
+        </li>
+                  </ul>
+																		    <input type="submit" id="job_search_submit" class="h_job_search_submit" value="Search" /><a href="/Job/ViewAll" class="viewall">View all jobs</a><div class="clear"><!-- --></div>
+}
+</div>
+
+
+</div>
+<div id="ban"><div class="wrap"><img src="http://images.jxt.net.au/mobile/Content/whitelabel/168/Images/ban1.jpg" width="320" height="230" /><div class="clear"><!-- --></div></div>

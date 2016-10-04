@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+
+	<siteMapNode url="" title="Whitelabel Admin"  description="">
+		<siteMapNode url="~/admin/default.aspx" title="Home"  description="Home" />
+    <siteMapNode url="" title="Knowledge Base"  description="">
+      <siteMapNode  url="~/admin/knowledgebasebrowse.aspx" title="Browse Knowledge Base"  description="" />
+    </siteMapNode>
+		<siteMapNode url="" title="Global"  description="Global">
+			<siteMapNode url="~/admin/adminusers.aspx" title="Admin Users"  description="" />
+            <siteMapNode url="~/admin/sendtestemail.aspx" title="Send Test Email"  description="" />
+		</siteMapNode>
+
+		<siteMapNode url="" title="Site Global"  description="">
+			<siteMapNode url="~/admin/globalsettingsedit.aspx" title="Site Global Settings"  description="" />
+			<siteMapNode url="~/admin/jobtemplates.aspx" title="Site Job Templates"  description="" />
+			<siteMapNode url="~/admin/siteemailtemplates.aspx" title="Site Email Templates"  description="" />
+			<siteMapNode url="~/admin/widgetcontainers.aspx" title="Add/Edit Search Widgets"  description="" />
+			<siteMapNode url="~/admin/enquiries.aspx" title="Enquiries"  description="" />
+			<siteMapNode url="~/admin/filemanager.aspx" title="File/Image Upload"  description="" />
+      <siteMapNode url="~/admin/termsandconditions.aspx" title="Terms &amp; Conditions"  description="" />
+      <siteMapNode url="~/admin/adminloginpageedit.aspx" title="Admin Login Page"  description="" />
+    </siteMapNode>
+
+		<siteMapNode url="" title="Job Settings and Parameters"  description="">
+			<siteMapNode url="~/admin/sitelocationarea.aspx" title="Site Locations"  description="" />
+			<siteMapNode url="~/admin/siteprofession.aspx" title="Site Profession / Roles"  description="" />
+      <siteMapNode url="~/admin/sitebusinesstype.aspx" title="Advertiser Business Type"  description="" />
+			<siteMapNode url="~/admin/sitesalarytype.aspx" title="Site Salary Types"  description="" />
+			
+			<siteMapNode url="~/admin/siteworktype.aspx" title="Site Work Types"  description="" />
+
+      <!--<siteMapNode url="~/admin/memberprofilemanageablefields.aspx" title="Site Manageable Fields"  description="" />-->
+      <siteMapNode url="~/admin/multilingualsitecountry.aspx" title="Multilingual Site Country"  description="" />
+      <siteMapNode url="~/admin/multilingualsitelocation.aspx" title="Multilingual Site Location"  description="" />
+      <siteMapNode url="~/admin/multilingualsitearea.aspx" title="Multilingual Site Area"  description="" />
+      <siteMapNode url="~/admin/sitecustomcountrylocationareaimport.aspx" title="Custom Country Location Area Import"  description="" />
+    </siteMapNode>
+
+    <siteMapNode title="Dynamic Pages"  description="" >
+      <siteMapNode url="~/admin/dynamicpages.aspx" title="Published Pages"  description="" />
+      <siteMapNode url="~/admin/dynamicpagerev.aspx" title="Draft/Pending Revisions"  description="" />
+    </siteMapNode>
+
+    <siteMapNode url="~/admin/customwidget.aspx" title="Custom Widget"  description="" />
+
+    <siteMapNode url="~/admin/campaignlist.aspx" title="Campaigns"  description=""></siteMapNode>
+    
+		<siteMapNode url="" title="Advertisers"  description="">
+			<siteMapNode url="~/admin/advertisers.aspx" title="Advertisers"  description="" />
+			<siteMapNode url="~/admin/advertiserusers.aspx" title="Advertiser Users"  description="" />
+      <siteMapNode url="~/admin/consultants.aspx" title="Consultants"  description="" />
+
+		</siteMapNode>
+
+    <siteMapNode url="" title="Candidates / Members"  description="">
+      <siteMapNode url="~/admin/members.aspx" title="Members"  description="" />
+      <siteMapNode url="~/admin/memberwizard.aspx" title="Member Profile Wizard"  description="" />
+      <!--<siteMapNode url="~/admin/memberstatus.aspx" title="Member Current Status"  description="" />
+      <siteMapNode url="~/admin/membermemberships.aspx" title="Memberships"  description="" />-->
+      
+    </siteMapNode>
+
+		<siteMapNode url="" title="News Categories"  description="">
+			<siteMapNode url="~/admin/newscategories.aspx" title="News Categories"  description="" />
+      <siteMapNode url="~/admin/sitenewsindustry.aspx" title="News Industry"  description="" />
+      <siteMapNode url="~/admin/sitenewstype.aspx" title="News Type"  description="" />
+			<siteMapNode url="~/admin/news.aspx" title="News"  description="" />
+		</siteMapNode>
+
+		<siteMapNode url="" title="Reports"  description="">
+			<siteMapNode url="~/admin/reports/alljobstatistics.aspx" title="All Jobs Statistics"  description="" />
+			<siteMapNode url="~/admin/reports/membercount.aspx" title="Member Count"  description="" />
+			<siteMapNode url="~/admin/reports/alladvertisers.aspx" title="All Advertisers"  description="" />
+			<siteMapNode url="~/admin/reports/advertisercount.aspx" title="Advertiser Count"  description="" />
+			<siteMapNode url="~/admin/reports/advertisersnotpostedsince.aspx" title="Advertisers Not Posted Since"  description="" />
+			<siteMapNode url="~/admin/reports/advertisertypestatistics.aspx" title="Advertiser Type Statistics"  description="" />
+      <siteMapNode url="~/admin/reports/advertiseractivity.aspx" title="Advertiser Activity"  description="" />
+			<siteMapNode url="~/admin/reports/jobapplicationandviewsdetail.aspx" title="Job Application And Views Detail"  description="" />
+      <siteMapNode url="~/admin/Invoice.aspx" title="Invoice Report"  description="" />
+      <siteMapNode url="~/admin/reports/jobalerts.aspx" title="Job Alerts"  description="" />
+		</siteMapNode>
+    <siteMapNode  url="~/admin/webservicelog.aspx" title="Web Service Log"  description="" />
+
+	</siteMapNode>
+</siteMap>

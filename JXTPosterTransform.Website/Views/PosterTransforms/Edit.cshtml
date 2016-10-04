@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using JXTPosterTransform.Library.Common
+@model JXTPosterTransform.Website.Models.PTDisplayModel
+<h1>
+    Poster Transform Edit</h1>
+@Html.Raw(ViewBag.Message)
+<div class="col-xs-12">
+    <form action="/postertransforms/edit/@Model.PosterTransformId" method="post">
+    <div class="form-group col-xs-12">
+        <label>
+            PT ID</label>
+        @Model.PosterTransformId
+        <input type="hidden" name="PosterTransformId" value="@Model.PosterTransformId" />
+    </div>
+    <div class="form-group col-xs-12">
+        <label>
+            PT Name</label>
+        <input type="text" class="form-control" name="PosterTransformName" value="@Model.PosterTransformName" />
+        @Html.ValidationMessageFor(c => c.PosterTransformName)
+    </div>
+    <div class="form-group col-xs-12">
+        <label>
+            PT Description</label>
+        <textarea rows="5"class="form-control" name="PosterTransformDescription">@Model.PosterTransformDescription</textarea>
+        @Html.ValidationMessageFor(c => c.PosterTransformDescription)
+    </div>
+    <div class="form-group col-xs-6 hide">
+        <label>
+            Valid</label>
+        <select class="form-control" name="Valid">
+            @foreach (PTCommonEnums.PosterTransform.Valid v in Enum.GetValues(typeof(PTCommonEnums.PosterTransform.Valid)))
+            {
+                <option value="@v" @(new MvcHtmlString(v == Model.Valid ? @"selected=""selected""" : string.Empty)) >@v</option>
+            }
+        </select>
+        @Html.ValidationMessageFor(c => c.Valid)
+    </div>
+    <div class="form-group col-xs-12">
+        <label>
+            Poster Transform XSL</label>
+        <textarea rows="35" class="form-control" name="PosterTransformXSL">@Model.PosterTransformXSL</textarea>
+        @Html.ValidationMessageFor(c => c.PosterTransformXSL)
+    </div>
+    <div class="form-group hide">
+        <label>
+            TestXML</label>
+        <textarea class="form-control" name="TestXML">@Model.TestXML</textarea>
+        @Html.ValidationMessageFor(c => c.TestXML)
+    </div>
+    <div class="form-group col-xs-12">
+        <label>
+            Last Modified Date</label>
+        @String.Format("{0:dd-MMM-yyyy HH:mm:ss}", Model.LastModifiedDate)
+    </div>
+    <div class="form-group hide">
+        <label>
+            Last Modified By</label>
+        @Model.LastModifiedBy
+    </div>
+    <div class="form-group col-xs-12">
+        <label>
+            Created Date</label>
+        @String.Format("{0:dd-MMM-yyyy HH:mm:ss}", Model.CreatedDate)
+    </div>
+    <div class="form-group col-xs-12">
+        <button type="submit" class="btn btn-primary">
+            Save</button></div>
+    </form>
+</div>
+<div class="clearfix"></div>
+
+@section scripts
+{
+    <link href="/Scripts/highlight/styles/tomorrow.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/highlight/highlight.pack.js" type="text/javascript"></script>
+}

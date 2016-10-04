@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ucSystemDynamicPage.ascx.cs" Inherits="JXTPortal.Website.usercontrols.common.ucSystemDynamicPage" %>
+<asp:Literal ID="ltlSystemPage" runat="server"></asp:Literal>

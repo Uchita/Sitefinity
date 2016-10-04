@@ -1,0 +1,33 @@
+.site-logo {
+	position:absolute;
+	left:0px;
+	width:auto;
+	clear:both;
+}	
+.social-links {
+    clear: both;
+    padding-top: 10px;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 0;
+}
+.social-links img{ height: 30px;}
+.push-nav-div {
+    clear: both;
+    height: 54px;
+    margin: 0;
+    padding-top: 10px;
+    position: relative;
+}
+.align-center{text-align:center;}
+.align-right{ text-align:right;}
+.align-left{ text-align:left;}
+.top-gap{ padding-top: 10px;}
+
+#back-button {margin-top: 8px;}
+
+h1, h2, h3, h4, h5{ color: #444;}
+p{ color: #555;}
+ul li{ color: #555;}
+.ui-btn-inner { font-size: 12px;}

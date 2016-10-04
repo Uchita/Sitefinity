@@ -1,0 +1,17 @@
+﻿@{ViewBag.Title = "Saved Jobs";}
+@model JXTPortal.Domain.ViewModel.SavedJobModels
+@using (Html.BeginForm())
+{
+<h1>@ViewBag.Title</h1>
+   <ul data-role="listview" data-inset="true" class="FormFields savedJobsList">
+        @foreach (var job in Model.SavedJobs)
+        { 
+            <li data-role="fieldcontain"><a href="@Url.Action("Detail", "Job", new RouteValueDictionary(new { id = job.JobID }))">@job.JobName
+                &nbsp;Last Saved: @job.LastModified</a></li>
+        }
+								@if (Model.SavedJobs.Count == 0)
+    { 
+        <li>No Saved Jobs available</li>
+    }
+    </ul>
+}

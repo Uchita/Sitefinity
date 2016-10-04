@@ -1,0 +1,65 @@
+﻿@model IEnumerable<JXTPosterTransform.Website.Models.ClientSetupDisplayModel>
+@{
+    ViewBag.Title = "Active";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <h1 class="page-header">
+        Active Client Setup Listing</h1>
+</div>
+<table class="table table-striped table-bordered table-hover dataTable no-footer">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.setupID)
+        </th>
+        <th>
+            Setup
+        </th>
+        <th>
+            Client
+        </th>
+        <th>
+            PosterTransform
+        </th>
+        <th>
+            Setup Type
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.timeslot)
+        </th>
+        <th>
+            Actions
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.setupID)
+            </td>
+            <td>
+                <a href="/clientsetup/edit/@item.setupID">@Html.DisplayFor(modelItem => item.setupName)</a>
+            </td>
+            <td>
+                <a href="/client/edit/@item.clientID">@Html.DisplayFor(modelItem => item.clientName)</a>
+            </td>
+            <td>
+                <a href="/postertransforms/edit/@item.posterTransformID">@Html.DisplayFor(modelItem => item.posterTransformName)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.setupTypeText)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.timeslot)
+            </td>
+            <td>
+                <a href="/clientsetup/edit/@item.setupID">Edit</a>
+                <a href="/mappings/countrylocarea/@item.clientID">CLA</a> 
+                <a href="/mappings/professionrole/@item.clientID">PR</a>
+                <a href="/mappings/worktype/@item.clientID">WT</a>
+                <a href="/mappings/jobtemplate/@item.clientID/@item.setupID">JT</a>
+                <a href="/mappings/templatelogo/@item.clientID/@item.setupID">JTL</a>
+            </td>
+        </tr>
+    }
+</table>

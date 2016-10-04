@@ -1,0 +1,17 @@
+﻿@*model JXTPortal.Mobile.Website.Models.LoginModel*@
+@using JXTPortal.Entities;
+@{ViewBag.Title = "My Account";}
+
+
+<h1>@ViewBag.Title</h1>
+<p>
+    Logged in as <strong>@SessionData.Member.Username</strong>.
+</p>
+
+<ul data-role="listview" data-inset="true">
+    <li class="MyAccountOption1">@Html.ActionLink("Saved Jobs", "SavedJobs")</li>
+    <li class="MyAccountOption2">@Html.ActionLink("Resumes/Cover Letter", "Documents")</li>
+    <li class="MyAccountOption3">@Html.ActionLink("Change password", "ChangePassword")</li>
+	<li class="MyAccountOption4">@Html.ActionLink("My Alerts", "MyAlerts")</li>
+    <li class="MyAccountOption5">@Html.ActionLink("Log off", "LogOff")</li>
+</ul>

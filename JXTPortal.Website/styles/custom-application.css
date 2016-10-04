@@ -1,0 +1,198 @@
+﻿body.dragging, body.dragging * {
+	cursor: move !important;
+}
+.dragged {
+	position: absolute;
+	opacity: 0.5;
+	z-index: 2000;
+}
+ol.example li.placeholder {
+	position: relative;
+	/** More li styles **/
+}
+ol.example li.placeholder:before {
+	position: absolute;
+	/** Define arrowhead **/
+}
+#customApplicationContent {
+	margin-left: 0;
+	margin-right: 0
+}
+#customApplicationHolder {
+	clear: both;
+	display: block;
+	font-size: 13px;
+	margin-bottom: 3em;
+	padding-right: 0;
+	padding-left: 0;
+	padding-top: 3em;
+}
+#customApplicationHolder .form-horizontal .control-label{
+}
+#customApplicationHolder .form-group .controls {
+}
+#memberProfileLinks{
+	margin-top: 1.5em;
+}
+#memberProfileLinks .btn.btn-default {
+	background-color: #F2F2F2;
+	color: #333;
+}
+#memberProfileLinks, 
+#memberProfileLinks ul, 
+#memberProfileLinks li {
+	background-image: none;
+	list-style-type: none;
+	margin-left: 0;
+	padding-left: 0;
+}
+#memberProfileLinks li {
+	display: block;
+	background: #FFF;
+	background-image: none;
+}
+#memberProfileLinks a {
+	display: block;
+	position: relative;
+	right: 0;
+	left: 0;
+	text-decoration: none;
+}
+
+#customApplication {
+	background-color: #FFF;
+	border-radius: 15px;
+	clear: both;
+	color: #333;
+	padding: 1em;
+	margin-bottom: 3em;
+}
+#customApplication label.error {
+	border-radius: 5px;
+	color: #b94a48;
+	background-color: #eed3d7;
+	font-weight: normal;
+	padding: 5px 10px;
+	margin-top: 5px;
+}
+#customApplication .wizard-steps {
+	position: relative;
+	margin: 15px auto;
+}
+#customApplication .wizard-steps:not(.nav-pills) {
+	display: none;
+}
+#customApplication .wizard-steps:before {
+	border-top: 1px solid #999;
+	height: 1px;
+	left: 0px;
+	top: 25px;
+	position: absolute;
+	width: 100%;
+}
+#customApplication .wizard-steps li a {
+	color: #666;
+	font-size: 85%;
+	padding: 10px;
+	text-align: center;
+}
+#customApplication .wizard-steps li a .step {
+	background-color: #f2f2f2;
+	border-radius: 15px;
+	border: 1px #bababa solid;
+	display: block;
+	height: 30px;
+	text-align: center;
+	margin: 0 auto 10px;
+	padding-top: 5px;
+	width: 30px;
+}
+#customApplication .tab-content>.active, 
+#customApplication .pill-content>.active {
+	border-top: 1px solid #f2f2f2;
+	border-bottom: 1px solid #f2f2f2;
+}
+#customApplication .tab-content>.tab-pane, 
+#customApplication .pill-content>.pill-pane {
+	padding: 10px 20px;
+}
+#customApplication .nav-tabs > li, 
+#customApplication .nav-pills > li,
+#customApplication .nav-pills>li+li {
+	float: none;
+	background-image: none;
+	list-style-image: none;
+}
+#customApplication .nav-pills>li.active>a, 
+#customApplication .nav-pills>li.active>a:hover, 
+#customApplication .nav-pills>li.active>a:focus {
+	background-color: transparent;
+	color: #333;
+	font-weight: bold;
+}
+#customApplication .experience-date #ddlExperienceStartMonth,
+#customApplication .experience-date #ddlExperienceStart,
+#customApplication .experience-date #ddlExperienceEndMonth,
+#customApplication .experience-date #ddlExperienceEnd {
+	display: inline-block;
+	width: 49%;
+}
+#customApplication .experience-date #ddlExperienceStartMonth,
+#customApplication .experience-date #ddlExperienceEndMonth {
+	margin-right: 1%;
+}
+#customApplication .qualification-current {
+	margin-bottom: 1em;
+}
+#customApplication .pager li>a, 
+#customApplication .pager li>span {
+	border-radius: 5px;
+	margin-left: 0.5em;
+}
+#customApplication .multiselect-group .btn-group,
+#customApplication button.multiselect.dropdown-toggle {
+	text-align: left;
+	width: 100%;
+} 
+#customApplication button.multiselect.dropdown-toggle .caret {
+	float: right;
+	margin-top: 0.5em;
+	margin-right: -5px;
+}
+#customApplication button .fa:before,
+#customApplication a .fa:before {
+	padding-right: 5px;
+}
+#customApplication .btn-success .fa:before,
+#customApplication .btn-danger .fa:before {
+	color: #FFF;
+}
+#customApplication .btn-success,
+#customApplication .btn-danger {
+	color: #FFF;
+	margin-left: 5px;
+}
+#customApplication .add-another,
+#customQuestions .add-another {
+	margin: 10px 0 20px;
+}
+
+.application-complete .question {
+	font-weight: bold;
+	clear: left;
+}
+.application-complete > div {
+	margin-bottom: 1em;
+}
+
+
+@media screen and (max-width: 767px){
+
+	#customApplication {padding: 10px;}
+	#customApplication .wizard-steps.nav-justified > li {
+		display: table-cell;
+		width: 1%;
+	} 
+	#customApplication .wizard-steps li a { padding: 10px 3px;}
+	#customApplication .wizard-steps li a .step-name {display: none;}
+}

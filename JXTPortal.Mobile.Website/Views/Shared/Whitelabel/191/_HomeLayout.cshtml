@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Resourceful Recruitment</title>
+<meta name="viewport" content="width=device-width" />
+
+<script src="http://images.jxt.net.au/mobile/Scripts/jquery-1.7.2.min.js"></script>
+<script src="http://images.jxt.net.au/mobile/Scripts/knockout-2.0.0.js"></script>
+<script src="http://images.jxt.net.au/mobile/Content/Javascripts/main/core-functions.js"></script>
+
+<link rel="stylesheet" type="text/css" href="http://images.jxt.net.au/mobile/Content/Whitelabel/191/Styles/styles.css">
+
+<link href="http://images.jxt.net.au/resourceful/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://images.jxt.net.au/mobile/Content/Whitelabel/191/images/apple-touch-icon-114x114-precomposed.png" />
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://images.jxt.net.au/mobile/Content/Whitelabel/191/images/apple-touch-icon-72x72-precomposed.png" />
+<link rel="apple-touch-icon-precomposed" href="http://images.jxt.net.au/mobile/Content/Whitelabel/191/images/apple-touch-icon-57x57-precomposed.png" />
+<link rel="apple-touch-icon" href="http://images.jxt.net.au/mobile/Content/Whitelabel/191/images/apple-touch-icon.png" />
+@RenderSection("Javascript", false)
+</head>
+
+<body>
+
+
+
+
+
+<header>
+<div id="registerLogin">
+<ul>
+<li><a class="personIcon" href='/Account/Register'>Register</a></li>
+<li>|</li>
+<li>@if (JXTPortal.Entities.SessionData.Member != null) {
+			<span><a class="lockIcon" href="/Account/Index">Hi, @JXTPortal.Entities.SessionData.Member.Username</a></span>
+		}
+		else
+		{
+			<a class="lockIcon" href="/account/login">Login</a>
+		}</li>
+</ul>
+</div>
+<div id="mainNav">
+<ul>
+<li><a href="/page/?id=about">ABOUT US</a></li>
+<li><a href="/Job/Viewall">JOBS</a></li>
+<li><a href="/page/?id=services">SERVICES</a></li>
+<li><a href="/page/?id=contact">CONTACT US</a></li>
+</ul>
+</div>
+</header>
+
+<div id="headerImages">
+<div class="header-logo"> <a href="/"><img src="http://images.jxt.net.au/mobile/Content/whitelabel/191/Images/logo.png" alt="Site Logo"></a> </div>
+<div id="mainImage"> </div>
+</div>
+<div id="topMenu">
+<div id="mining"> <a href="/page/?id=mining">MINING</a> </div>
+<div id="oilGas"> <a href="/page/?id=oilgas">OIL & GAS</a> </div>
+<div id="infrastructure"> <a href="/page/?id=infrastructure">INFRASTRUCTURE</a> </div>
+</div>
+            
+                @RenderBody()
+           
+		   
+<footer>
+<div id="footerWrap">
+<div id="RRLogo"><a href="/"><img src="http://images.jxt.net.au/mobile/Content/whitelabel/191/Images/RRLogo.png" /></a></div>
+<ul>
+<li><a href="http://www.linkedin.com/company/2710785" target="_blank"><img src="http://images.jxt.net.au/mobile/Content/whitelabel/191/Images/linkedInIcon.png"></a></li>
+<li><a href="https://www.facebook.com/pages/Resourceful-Recruitment/277821305657812" target="_blank"><img src="http://images.jxt.net.au/mobile/Content/whitelabel/191/Images/facebookIcon.png"></a></li>
+<li><a href="http://twitter.com/resourcefulr" target="_blank"><img src="http://images.jxt.net.au/mobile/Content/whitelabel/191/Images/twitterIcon.png"></a></li>
+</ul>
+<div id="clear"> </div>
+</div>
+</footer>
+
+<div id="belowFooter">
+<ul>
+<li><a href="/page/?id=terms">Terms & Conditions</a> </li>
+<li>- </li>
+<li><a href="http://resourcefulrecruitment.com.au/default.aspx?fullsite=1">Visit Full Website</a> </li>
+</ul>
+</div>
+
+</body>
+</html>
+

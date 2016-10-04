@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[DynamicPageFiles]
+(
+	DynamicPageFileID INT PRIMARY KEY IDENTITY(1,1),
+	SiteID INT NOT NULL REFERENCES Sites(SiteID),
+	PageName VARCHAR(255) NOT NULL,
+	FileID INT NOT NULL REFERENCES Files(FileID)
+)

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?><JobPostRequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.servicestack.net/types"><UserName xmlns="http://schemas.datacontract.org/2004/07/JXTPlatform.DTO.Base">greythorn-au</UserName><Password xmlns="http://schemas.datacontract.org/2004/07/JXTPlatform.DTO.Base">Password123</Password><AdvertiserId xmlns="http://schemas.datacontract.org/2004/07/JXTPlatform.DTO.Base">188</AdvertiserId><ArchiveMissingJobs xmlns="http://schemas.datacontract.org/2004/07/JXTPlatform.DTO.Base">true</ArchiveMissingJobs><Listings><JobListing><JobAdType>Normal</JobAdType><ReferenceNo>28777-1</ReferenceNo><JobTitle>Leading Hand Carpenter</JobTitle><JobUrl /><ShortDescription>Competitive Rates and Opportunity for Career Progression!</ShortDescription><Bulletpoints><BulletPoint1>A</BulletPoint1><BulletPoint2>B</BulletPoint2><BulletPoint3>C</BulletPoint3></Bulletpoints><JobFullDescription>&lt;ul&gt;
+	&lt;li&gt;&lt;span style='color:rgb(0, 0, 128)'&gt;&lt;strong&gt;Competitive Salary&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style='color:rgb(0, 0, 128)'&gt;&lt;strong&gt;Friendly working team environment&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style='color:rgb(0, 0, 128)'&gt;&lt;strong&gt;Opportunity for career progression&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;span style='color:rgb(0, 0, 128)'&gt;Stellar Recruitment are looking for ambitious, capable and energetic people with a good dose of common sense to join our team. We work hard to be the best, we give it our all and we take pride in what we do.&lt;br /&gt;
+&lt;br /&gt;
+We are actively seeking a &lt;strong&gt;Leading Hand Carpenter&lt;/strong&gt; to join with our client to commence work on a new commercial project, with an immediate start. It is essential that applicants for this role have previous experience in the commercial sector, and a proven record of quality workmanship behind them.&lt;br /&gt;
+&lt;br /&gt;
+&lt;strong&gt;To be successful in this role you will have:&lt;/strong&gt;&lt;br /&gt;
+- 5+ years industry experience&lt;br /&gt;
+- Proven ability to manage a team onsite&lt;br /&gt;
+- To be confident reading &amp;amp; working from technical specifications &amp;amp; construction plans&lt;br /&gt;
+- Hold a current Site Safe Certificate&lt;br /&gt;
+- A clean full drivers licence (minimum of class 1)&lt;br /&gt;
+- Your own reliable transport in order to get yourself to and from site&lt;br /&gt;
+- Excellent communication and interpersonal skills&lt;br /&gt;
+- Able to provide your own hand and power tools&lt;br /&gt;
+&lt;br /&gt;
+Ideally we are looking for a highly health and safety aware, positive and hardworking attitude. We are prepared to wait for the right person for this role.&lt;br /&gt;
+&lt;br /&gt;
+To apply for this role or for further information please contact &lt;strong&gt;Nicky&lt;/strong&gt; at Stellar Workforce.&lt;br /&gt;
+&lt;br /&gt;
+&lt;strong&gt;Nicky Sutherland&lt;br /&gt;
+DDI: 03 974 2440&lt;br /&gt;
+Cell phone: 021 224 1496&lt;br /&gt;
+Email: Nicky.s@stellarworkforce.co.nz&lt;/strong&gt;&lt;/span&gt;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+</JobFullDescription><ContactDetails /><CompanyName /><ConsultantID /><PublicTransport /><ResidentsOnly>true</ResidentsOnly><IsQualificationsRecognised>false</IsQualificationsRecognised><ShowLocationDetails>true</ShowLocationDetails><JobTemplateID>3575</JobTemplateID><AdvertiserJobTemplateLogoID /><Categories><Category><Classification>21</Classification><SubClassification>296</SubClassification></Category></Categories><ListingClassification><WorkType>2</WorkType><Sector>0</Sector><StreetAddress /><Tags>0</Tags><Country>2</Country><Location>18</Location><Area>99</Area></ListingClassification><Salary><SalaryType>NA</SalaryType><Min>0</Min><Max>0</Max><AdditionalText /><ShowSalaryDetails>true</ShowSalaryDetails></Salary><ApplicationMethod><JobApplicationType>URL</JobApplicationType><ApplicationUrl>http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1248071&amp;src=WE</ApplicationUrl><ApplicationEmail>nicky.s@stellarworkforce.co.nz</ApplicationEmail></ApplicationMethod><Referral><HasReferralFee>false</HasReferralFee><Amount>0</Amount><ReferralUrl /></Referral></JobListing></Listings></JobPostRequest>

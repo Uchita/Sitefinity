@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Grace Recruitment</title>
+        <meta name="viewport" content="width=device-width" />
+        <link rel="shortcut icon" href="http://www.images.jxt.net.au/grace-recruitment/images/favicon.ico" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://images.jxt.net.au/mobile/Content/Whitelabel/@JXTPortal.Entities.SessionData.Site.SiteId/images/apple-icon114.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://images.jxt.net.au/mobile/Content/Whitelabel/@JXTPortal.Entities.SessionData.Site.SiteId/images/apple-icon72.png" />
+		<link rel="apple-touch-icon-precomposed" href="http://images.jxt.net.au/mobile/Content/Whitelabel/@JXTPortal.Entities.SessionData.Site.SiteId/images/apple-icon57.png" />
+		<link rel="apple-touch-icon" href="http://images.jxt.net.au/mobile/Content/Whitelabel/@JXTPortal.Entities.SessionData.Site.SiteId/images/apple-icon57.png" />	
+		
+		<link rel="stylesheet" type="text/css" href="http://images.jxt.net.au/mobile/Content/Whitelabel/@JXTPortal.Entities.SessionData.Site.SiteId/Styles/style.css"> 
+
+        <script src="http://images.jxt.net.au/mobile/Scripts/jquery-1.7.2.min.js"></script>
+        <script src="http://images.jxt.net.au/mobile/Scripts/knockout-2.0.0.js"></script>
+		<script src="http://images.jxt.net.au/mobile/Content/Javascripts/main/core-functions.js"></script>
+        @RenderSection("Javascript", false) 
+    </head>
+	
+<body>
+	<div class="wrapper">
+		<header>	
+        	<div class="inner-header">
+            	 <div class="header-logo">
+            	<a href="/"><img src="http://images.jxt.net.au/mobile/Content/Whitelabel/182/images/grace-logo.png" width="228" height="129" alt="Grace Recruitment Logo" /></a>                  
+        		</div>   
+                
+                 <div class="top-login">
+            	@if (JXTPortal.Entities.SessionData.Member != null) {
+	                       <a class="top-button btn-navbar-icon" href="~/account/">
+								<span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+						    </a>
+                    		
+	                    }
+	                    else
+	                    {
+	                        <a href="~/account/login"><img src="http://images.jxt.net.au/mobile/Content/Whitelabel/182/images/btn-login.png" height="18" width="18"></a>
+	                    }                     
+            
+            
+            </div> 
+            
+            </div><!-- end of inner-headerr -->
+            
+                    
+           
+            
+            
+            
+            
+       </header>	                        
+               
+
+			
+		<section>	
+        	<div class="content-wrap body-content inner-content">
+			    @RenderBody()
+			</div>
+            
+		        	     
+                    
+                    
+            <ul class="footer-nav-links">
+            	<li><a href="/page/?id=Services"><img src="http://images.jxt.net.au/mobile/Content/Whitelabel/182/images/our-services.png" height="27" width="195"></a></li>				
+                <li>@if (JXTPortal.Entities.SessionData.Member != null) {
+					<a href="/Account/MyAlerts"><img src="http://images.jxt.net.au/mobile/Content/Whitelabel/182/images/job-alert.png" height="27" width="196"> </a>
+				}
+				else {
+					<a href="#" onClick="javascript: alert('You must login first to create job alert');"><img src="http://images.jxt.net.au/mobile/Content/Whitelabel/182/images/job-alert.png" height="27" width="196"> </a>
+				}
+				</li>
+                <li><a href="/account/Register"><img src="http://images.jxt.net.au/mobile/Content/Whitelabel/182/images/register.png" width="192" height="27"></a></li>
+                <li><a href="/page/?id=Contact"><img src="http://images.jxt.net.au/mobile/Content/Whitelabel/182/images/get-in-touch.png" height="26" width="192"></a></li>
+            </ul>
+		</section>
+				
+		<footer>
+		
+		    	<div class="mobi-footer">
+					<div class="mobi-footer-content">
+                    
+                    <div class="social-wrap">
+                    	<a href="http://www.facebook.com/pages/Grace-Recruitment/519926891366123" target="_blank" id="facabook"></a>
+                    	<a href="http://www.linkedin.com/company/grace-recruitment" id="linkedIn" target="_blank"></a>
+                    	<a href="https://twitter.com/GoTeamGrace" id="twitter" target="_blank"></a>
+                        <a href="http://gracerecruit.com.au/?mob=1" id="fullSite">View Full Website</a>
+                    </div>                    
+					 
+				     		
+				     </div>	
+				</div><!-- end of mobi-footer -->            	
+		</footer>
+	</div>
+    </body>
+</html>

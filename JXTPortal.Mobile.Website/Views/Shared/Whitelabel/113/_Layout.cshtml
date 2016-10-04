@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title</title>
+        <meta name="viewport" content="width=device-width" />
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+	<link rel="stylesheet" type="text/css" src="http://images.jxt.net.au/mobile/Content/Whitelabel/@JXTPortal.Entities.SessionData.Site.SiteId/Styles/styles.css">
+        <script src="http://images.jxt.net.au/mobile/Scripts/jquery-1.7.2.min.js"></script>
+        <script src="http://images.jxt.net.au/mobile/Scripts/knockout-2.0.0.js"></script>
+        @RenderSection("Javascript", false)
+    </head>
+    <body>
+        <div class="page">
+            <div class="header">
+                @RenderSection("Header", false)
+                @if (JXTPortal.Entities.SessionData.Member == null)
+                {
+                    @Html.ActionLink("Register", "Register", "Account")
+                    @Html.ActionLink("Log in", "Login", "Account")
+                }
+                else
+                { 
+                    @Html.ActionLink("Log out", "LogOff", "Account")
+                    @Html.ActionLink("Saved Jobs", "SavedJobs", "Account")
+                }
+            </div>
+            <div class="content">
+                @RenderBody()
+            </div>
+            <div class="footer">
+                <a href="#">Contact us</a>
+                <a href="#">Send Feedback</a>
+                <a href="#">About Us</a>
+            </div>
+        </div>
+    </body>
+</html>

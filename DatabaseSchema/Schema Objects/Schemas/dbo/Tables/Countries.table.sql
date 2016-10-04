@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[Countries]
+(
+	CountryID INT IDENTITY(1,1) PRIMARY KEY,
+	CountryName NVARCHAR(255) NOT NULL,
+	Abbr NVARCHAR(100) NOT NULL,
+	Valid BIT NOT NULL DEFAULT(1)
+)

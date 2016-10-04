@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<MappingsXMLModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <JobTemplateMaps />
+  <JobTemplateLogoMaps />
+  <WorkTypeMaps>
+    <WorkTypeMap>
+      <MapToWorkTypeID>2</MapToWorkTypeID>
+      <ClientWorkTypeID>1</ClientWorkTypeID>
+    </WorkTypeMap>
+    <WorkTypeMap>
+      <MapToWorkTypeID>2</MapToWorkTypeID>
+      <ClientWorkTypeID>12</ClientWorkTypeID>
+    </WorkTypeMap>
+    <WorkTypeMap>
+      <MapToWorkTypeID>4</MapToWorkTypeID>
+      <ClientWorkTypeID>13</ClientWorkTypeID>
+    </WorkTypeMap>
+  </WorkTypeMaps>
+  <CLAMaps>
+    <CLAMap>
+      <MapToAreaID>27</MapToAreaID>
+      <ClientCountryID>1</ClientCountryID>
+      <ClientLocationID>2</ClientLocationID>
+      <ClientAreaID>3</ClientAreaID>
+    </CLAMap>
+    <CLAMap>
+      <MapToAreaID>17</MapToAreaID>
+      <ClientCountryID>13</ClientCountryID>
+      <ClientLocationID>23</ClientLocationID>
+      <ClientAreaID>33</ClientAreaID>
+    </CLAMap>
+    <CLAMap>
+      <MapToAreaID>156</MapToAreaID>
+      <ClientCountryID>1</ClientCountryID>
+      <ClientLocationID>2</ClientLocationID>
+      <ClientAreaID>3</ClientAreaID>
+    </CLAMap>
+  </CLAMaps>
+  <ProfRoleMaps>
+    <ProfessionRoleMap>
+      <MapToRoleID>302</MapToRoleID>
+      <ClientProfessionID>1</ClientProfessionID>
+      <ClientRoleID>2</ClientRoleID>
+    </ProfessionRoleMap>
+    <ProfessionRoleMap>
+      <MapToRoleID>298</MapToRoleID>
+      <ClientProfessionID>13</ClientProfessionID>
+      <ClientRoleID>24</ClientRoleID>
+    </ProfessionRoleMap>
+    <ProfessionRoleMap>
+      <MapToRoleID>404</MapToRoleID>
+      <ClientProfessionID>13</ClientProfessionID>
+      <ClientRoleID>24</ClientRoleID>
+    </ProfessionRoleMap>
+  </ProfRoleMaps>
+</MappingsXMLModel>

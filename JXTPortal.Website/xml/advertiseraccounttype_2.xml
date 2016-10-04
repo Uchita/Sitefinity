@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<items>
+    <item>
+        <id>1</id>
+        <name>汉字 Account</name>
+    </item>
+    <item>
+        <id>2</id>
+        <name>漢字 Credit Card</name>
+    </item>
+    <item>
+        <id>3</id>
+        <name>漢字 Paypal</name>
+    </item>
+</items>

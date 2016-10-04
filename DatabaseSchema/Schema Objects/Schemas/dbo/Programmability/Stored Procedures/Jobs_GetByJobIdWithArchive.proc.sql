@@ -1,0 +1,175 @@
+﻿CREATE PROCEDURE dbo.Jobs_GetByJobIdWithArchive
+(  
+ @JobId int     
+)  
+AS  
+  
+If NOT EXISTS(SELECT 1 FROM Jobs(NOLOCK) Where [JobID] = @JobId)
+ Begin  
+    SELECT  
+     [JobID],  
+     [SiteID],  
+     [WorkTypeID],  
+     [SalaryID],  
+     [JobName],  
+     [Description],  
+     [FullDescription],  
+     [WebServiceProcessed],  
+     [ApplicationEmailAddress],  
+     [RefNo],  
+     [Visible],  
+     [DatePosted],  
+     [ExpiryDate],  
+     [Expired],  
+     [JobItemPrice],  
+     [Billed],  
+     [LastModified],  
+     [ShowSalaryDetails],  
+     [SalaryText],  
+     [AdvertiserID],  
+     [LastModifiedByAdvertiserUserId],  
+     [LastModifiedByAdminUserId],  
+     [JobItemTypeID],  
+     [ApplicationMethod],  
+     [ApplicationURL],  
+     [UploadMethod],  
+     [Tags],  
+     [JobTemplateID],  
+     [SearchField],
+     [AdvertiserJobTemplateLogoID],  
+     [CompanyName],  
+     [HashValue],  
+     [RequireLogonForExternalApplications],  
+     [ShowLocationDetails],  
+     [PublicTransport],  
+     [Address],  
+     [ContactDetails],  
+     [JobContactPhone],  
+     [JobContactName],  
+     [QualificationsRecognised],  
+     [ResidentOnly],  
+     [DocumentLink],  
+     [BulletPoint1],  
+     [BulletPoint2],  
+     [BulletPoint3],  
+     [HotJob],  
+     [JobFriendlyName]  
+    FROM  
+     [dbo].[JobArchive] (NOLOCK)  
+    WHERE  
+     [JobID] = @JobId  
+    SELECT @@ROWCOUNT
+ END  
+ ELSE
+	BEGIN
+
+	   SELECT  
+		 [JobID],  
+		 [SiteID],  
+		 [WorkTypeID],  
+		 [SalaryID],  
+		 [JobName],  
+		 [Description],  
+		 [FullDescription],  
+		 [WebServiceProcessed],  
+		 [ApplicationEmailAddress],  
+		 [RefNo],  
+		 [Visible],  
+		 [DatePosted],  
+		 [ExpiryDate],  
+		 [Expired],  
+		 [JobItemPrice],  
+		 [Billed],  
+		 [LastModified],  
+		 [ShowSalaryDetails],  
+		 [SalaryText],  
+		 [AdvertiserID],  
+		 [LastModifiedByAdvertiserUserId],  
+		 [LastModifiedByAdminUserId],  
+		 [JobItemTypeID],  
+		 [ApplicationMethod],  
+		 [ApplicationURL],  
+		 [UploadMethod],  
+		 [Tags],  
+		 [JobTemplateID],  
+		 [SearchField],  
+		 [AdvertiserJobTemplateLogoID],  
+		 [CompanyName],  
+		 [HashValue],  
+		 [RequireLogonForExternalApplications],  
+		 [ShowLocationDetails],  
+		 [PublicTransport],  
+		 [Address],  
+		 [ContactDetails],  
+		 [JobContactPhone],  
+		 [JobContactName],  
+		 [QualificationsRecognised],  
+		 [ResidentOnly],  
+		 [DocumentLink],  
+		 [BulletPoint1],  
+		 [BulletPoint2],  
+		 [BulletPoint3],  
+		 [HotJob],  
+		 [JobFriendlyName]  
+		FROM  
+		 [dbo].[Jobs] (NOLOCK)  
+		WHERE  
+		 [JobID] = @JobId  
+	
+END
+
+IF USER_NAME() IS NULL
+BEGIN
+  SELECT  
+     Jobs.[JobID],  
+     Jobs.[SiteID],  
+     Jobs.[WorkTypeID],  
+     Jobs.[SalaryID],  
+     Jobs.[JobName],  
+     Jobs.[Description],  
+     Jobs.[FullDescription],  
+     Jobs.[WebServiceProcessed],  
+     Jobs.[ApplicationEmailAddress],  
+     Jobs.[RefNo],  
+     Jobs.[Visible],  
+     Jobs.[DatePosted],  
+     Jobs.[ExpiryDate],  
+     Jobs.[Expired],  
+     Jobs.[JobItemPrice],  
+     Jobs.[Billed],  
+     Jobs.[LastModified],  
+     Jobs.[ShowSalaryDetails],  
+     Jobs.[SalaryText],  
+     Jobs.[AdvertiserID],  
+     Jobs.[LastModifiedByAdvertiserUserId],  
+     Jobs.[LastModifiedByAdminUserId],  
+     Jobs.[JobItemTypeID],  
+     Jobs.[ApplicationMethod],  
+     Jobs.[ApplicationURL],  
+     Jobs.[UploadMethod],  
+     Jobs.[Tags],  
+     Jobs.[JobTemplateID],  
+     Jobs.[SearchField],   
+     Jobs.[AdvertiserJobTemplateLogoID],  
+     Jobs.[CompanyName],  
+     Jobs.[HashValue],  
+     Jobs.[RequireLogonForExternalApplications],  
+     Jobs.[ShowLocationDetails],  
+     Jobs.[PublicTransport],  
+     Jobs.[Address],  
+     Jobs.[ContactDetails],  
+     Jobs.[JobContactPhone],  
+     Jobs.[JobContactName],  
+     Jobs.[QualificationsRecognised],  
+     Jobs.[ResidentOnly],  
+     Jobs.[DocumentLink],  
+     Jobs.[BulletPoint1],  
+     Jobs.[BulletPoint2],  
+     Jobs.[BulletPoint3],  
+     Jobs.[HotJob],  
+     Jobs.[JobFriendlyName]      
+	FROM [dbo].[Jobs] (NOLOCK) WHERE 1=0
+END
+
+GO     
+  

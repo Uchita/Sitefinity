@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebServiceLogView.aspx.cs" Inherits="JXTPortal.Website.Admin.WebServiceLogView" %>

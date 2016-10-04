@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "My Alerts";
+}
+@model JXTPortal.Domain.ViewModel.JobModel.JobAlert
+
+<h1>My Alerts</h1>
+
+<ul data-role="listview" data-inset="true" class="FormFields savedJobsList">
+        @foreach (var alert in Model.JobAlerts)
+    { 
+        <li><a href="@Url.Action("JobAlert", new RouteValueDictionary(new { ID = alert.JobAlertId}))">@alert.JobAlertName</a></li>
+    }
+    @if (Model.JobAlerts.Count == 0)
+    { 
+        <li>No alert available</li>
+    }
+</ul>
+<a href="@Url.Action("JobAlert")" class="site-btns">Create Job Alert</a>

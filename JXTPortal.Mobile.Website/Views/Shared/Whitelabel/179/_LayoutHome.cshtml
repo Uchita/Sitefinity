@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>ChoiceOne @ViewBag.Title</title>
+        <meta name="viewport" content="width=device-width" />
+        <link href="http://images.jxt.net.au/choiceone/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://images.jxt.net.au/mobile/Content/Whitelabel/179/images/apple-icon114.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://images.jxt.net.au/mobile/Content/Whitelabel/179/images/apple-icon72.png" />
+		<link rel="apple-touch-icon-precomposed" href="http://images.jxt.net.au/mobile/Content/Whitelabel/179/images/apple-icon57.png" />
+		<link rel="apple-touch-icon" href="http://images.jxt.net.au/mobile/Content/Whitelabel/179/images/apple-icon57.png" />	
+		
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Kreon:400" />
+		<link rel="stylesheet" type="text/css" href="http://images.jxt.net.au/mobile/Content/Whitelabel/@JXTPortal.Entities.SessionData.Site.SiteId/Styles/style.css">
+        <script src="http://images.jxt.net.au/mobile/Scripts/jquery-1.7.2.min.js"></script>
+        <script src="http://images.jxt.net.au/mobile/Scripts/knockout-2.0.0.js"></script>
+		<script src="http://images.jxt.net.au/mobile/Content/Javascripts/main/core-functions.js"></script>
+		<script src="http://images.jxt.net.au/mobile/Content/Whitelabel/179/Scripts/choiceOne.js"></script>
+        @RenderSection("Javascript", false)
+    </head>
+	
+    <body>
+	
+	<div class="wrapper">
+		<header>	
+        	<nav class="top-fixed-nav"> 
+            	<div class="left-col">
+                     @if (JXTPortal.Entities.SessionData.Member != null) {
+	                        <button class="top-button btn-navbar-icon" type="button" id="jsmenu">
+						    	<span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+							</button> 
+                    		<span>Welcome @JXTPortal.Entities.SessionData.Member.Username</span>
+	                    }
+	                     
+                </div>
+                <div class="right-col">
+                	 
+                </div>   	
+    
+                <div class="collapse jsmenuCollapse">
+                    <ul>
+                        <li><a href="/Account/SavedJobs">My Saved Jobs</a></li>
+                        <li><a href="/Account/MyAlerts">My Alerts</a></li>
+                        <li><a href="/Account/Documents">My Resumes/Cover Letter</a></li>
+                        <li><a href="/Account/ChangePassword">Change Password</a></li>
+                        <li><a href="/Account/LogOff">Log off</a></li>
+                    </ul>
+                </div><!-- end of jsmenuCollapse --> 
+
+	              
+            </nav>	
+       </header>	                        
+        <div class="header-logo">
+            <a href="/"><img src="http://images.jxt.net.au/mobile/Content/Whitelabel/@JXTPortal.Entities.SessionData.Site.SiteId/Images/logo.png" alt="ChoiceOne Logo" /></a>                  
+        </div>
+		<nav class="main">
+        			<ul class="header-nav-links">
+        		    	<li><a class="item1" href="/">Home</a></li>
+        		        <li><a class="item2" href="http://www.choiceone.com.au/member/createjobalert.aspx" target="_blank">Job Alerts</a></li>
+        		        <li><a class="item3" href="/page/?id=Timesheet">Timesheets</a></li>
+        		        <li><a class="item4" href="/Account/Login">Login</a></li>
+        		    </ul>
+        		</nav><!-- end of nav.main -->
+		                
+
+			
+		<section>	
+        	<div class="content-wrap body-content inner-content">
+		        	@RenderBody()                      
+                    
+                    
+            </div>
+		</section>
+				
+		<footer>
+			<div id="viewFull">	
+				<a href="http://www.choiceone.com.au/"><img src="http://images.jxt.net.au/mobile/Content/Whitelabel/@JXTPortal.Entities.SessionData.Site.SiteId/Images/viewFull.png" />	</a>
+			</div>
+            <div class="content-wrap footer-content">
+        		<div class="clear-all">
+        			<a href="tel:+61892153888"><img src="http://images.jxt.net.au/mobile/Content/Whitelabel/@JXTPortal.Entities.SessionData.Site.SiteId/Images/phoneNumber.png" /></a>
+        			<a href="http://www.facebook.com/choiceoneAU" target="_blank"><img src="http://images.jxt.net.au/mobile/Content/Whitelabel/@JXTPortal.Entities.SessionData.Site.SiteId/Images/facebookMiniLogo.png" alt="facebook"></a>
+        			<a href="https://twitter.com/ChoiceOneAU" target="_blank"><img src="http://images.jxt.net.au/mobile/Content/Whitelabel/@JXTPortal.Entities.SessionData.Site.SiteId/Images/twitterMiniLogo.png" alt="twitter"></a>
+        			<a href="http://www.linkedin.com/company/99917?trk=tyah" target="_blank"><img src="http://images.jxt.net.au/mobile/Content/Whitelabel/@JXTPortal.Entities.SessionData.Site.SiteId/Images/linkedinMiniLogo.png" alt="Linked In"></a><br />
+        			<a class="last" href="/page/?id=Contact"><img src="http://images.jxt.net.au/mobile/Content/Whitelabel/@JXTPortal.Entities.SessionData.Site.SiteId/Images/contactUs.png" /></a><br />
+        			<p>© Choice One Recruitment 2012<br>
+        			  <a href="http://www.jxt.com.au" target="_blank">Powered by JXT</a></p>            
+        		</div>
+            </div><!-- end of footer.content-wrap -->
+		</footer>
+	</div>
+    </body>
+</html>

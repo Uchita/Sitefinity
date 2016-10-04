@@ -1,0 +1,13 @@
+﻿@{
+    int clientID = ViewBag.MappingTargetID;
+    string URLlower = Request.Url.ToString().ToLower();
+}
+
+<ul class="nav nav-tabs">
+    <li class="col-xs-3 @(URLlower.Contains("countrylocarea") ? "selected" : string.Empty)"><a href="/mappings/countrylocarea/@clientID">Country/Location/Area</a></li>
+    <li class="col-xs-2 @(URLlower.Contains("professionrole") ? "selected" : string.Empty)"><a href="/mappings/professionrole/@clientID">Profession/Roles</a></li>
+    <li class="col-xs-2 @(URLlower.Contains("worktype") ? "selected" : string.Empty)"><a href="/mappings/worktype/@clientID">Work Types</a></li>
+@*    <li class="col-xs-2 @(URLlower.Contains("jobtemplate") ? "selected" : string.Empty)"><a href="/mappings/jobtemplate/@clientID">Job Templates</a></li>
+    <li class="col-xs-3 @(URLlower.Contains("templatelogo") ? "selected" : string.Empty)"><a href="/mappings/templatelogo/@clientID">Job Template Logos</a></li>
+*@</ul>
+<div class="clearfix"></div>

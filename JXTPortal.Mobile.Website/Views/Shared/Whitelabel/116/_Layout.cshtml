@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Puresource Recruitment</title>
+        <meta name="viewport" content="width=device-width" />
+        <link rel="shortcut icon" href="http://images.jxt.net.au/puresource/images/favicon.ico" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://images.jxt.net.au/mobile/Content/Whitelabel/@JXTPortal.Entities.SessionData.Site.SiteId/images/apple-icon114.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://images.jxt.net.au/mobile/Content/Whitelabel/@JXTPortal.Entities.SessionData.Site.SiteId/images/apple-icon72.png" />
+		<link rel="apple-touch-icon-precomposed" href="http://images.jxt.net.au/mobile/Content/Whitelabel/@JXTPortal.Entities.SessionData.Site.SiteId/images/apple-icon57.png" />
+		<link rel="apple-touch-icon" href="http://images.jxt.net.au/mobile/Content/Whitelabel/@JXTPortal.Entities.SessionData.Site.SiteId/images/apple-icon57.png" />	
+		
+		<link href="http://fonts.googleapis.com/css?family=Oswald" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="http://images.jxt.net.au/mobile/Content/Whitelabel/@JXTPortal.Entities.SessionData.Site.SiteId/Styles/style.css"> 
+		
+        <script src="http://images.jxt.net.au/mobile/Scripts/jquery-1.7.2.min.js"></script>
+        <script src="http://images.jxt.net.au/mobile/Scripts/knockout-2.0.0.js"></script>
+		<script src="http://images.jxt.net.au/mobile/Content/Javascripts/main/core-functions.js"></script>
+        @RenderSection("Javascript", false) 
+    </head>
+	
+    <body>
+	
+	<div class="wrapper">
+		<header>	
+		<div class="header-logo">
+            <a href="/"><img src="http://images.jxt.net.au/mobile/Content/Whitelabel/116/images/logo.png"></a>                  
+        </div>
+        	<nav class="top-fixed-nav"> 
+            	
+                     @if (JXTPortal.Entities.SessionData.Member != null) {
+	                        <button class="top-button btn-navbar-icon" type="button" id="jsmenu">
+						    	<span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+							</button> 
+	                    }
+	                    else
+	                    {
+	                        <a href="~/account/login" class="top-button">Login</a>
+	                    }     
+    
+        
+    
+                <div class="collapse jsmenuCollapse">
+                    <ul>
+                        <li><a href="/Account/SavedJobs">My Saved Jobs</a></li>
+                        <li><a href="/Account/MyAlerts">My Alerts</a></li>
+                        <li><a href="/Account/Documents">My Resumes/Cover Letter</a></li>
+                        <li><a href="/Account/ChangePassword">Change Password</a></li>
+                        <li><a href="/Account/LogOff">Log off</a></li>
+                    </ul>
+                </div><!-- end of jsmenuCollapse --> 
+
+	              
+            </nav>
+			
+       </header>	                        
+        
+		                
+
+			
+		<section>	
+        	<div class="content-wrap body-content">
+		        	@RenderBody()                      
+                    
+             
+			 <ul class="social_links">
+     <li><a href="https://www.facebook.com/puresourcerecruitment" target="_blank"><img src="http://images.jxt.net.au/puresource/mobile/images/ico_f.png" alt="Facebook" height="42" width="42"></a></li>
+     <li><a href="https://twitter.com/#!/PureSourceREC" target="_blank"><img src="http://images.jxt.net.au/puresource/mobile/images/ico_t.png" alt="Twitter" height="42" width="42"></a></li>
+     <li><a href="http://www.linkedin.com/company/769163" target="_blank"><img src="http://images.jxt.net.au/puresource/mobile/images/ico_in.png" alt="Linkedin" height="42" width="42"></a></li>
+     <li><a href="http://www.youtube.com/user/PureSourceRec" target="_blank"><img src="http://images.jxt.net.au/puresource/mobile/images/ico_yt.png" alt="YouTube" height="42" width="42"></a></li>
+     <div class="clearer"><!-- --></div>
+</ul>       
+            </div>
+		</section>
+		
+		
+		
+		
+
+
+
+
+				
+		<footer>
+		
+		    	<div class="mobi-footer">
+					<div class="copy">
+<h2>07 3846 7730</h2>
+<p><a href="http://puresource.com.au/default.aspx?fullsite=1" target="_blank"><strong>View full site</strong></a><br>
+<a href="http://jxt.com.au" target="_blank">Powered by JXT Consulting</a></p>
+</div>
+				</div><!-- end of mobi-footer -->            	
+		</footer>
+	</div>
+    </body>
+</html>

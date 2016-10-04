@@ -1,0 +1,164 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<h2>@ViewBag.Message</h2>
+<p>
+    Welcome to @JXTPortal.Entities.SessionData.Site.SiteName
+</p>
+
+
+@section Javascript
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.getJSON('@Url.Action("Professions", "Job")', function (Professions) {
+                var ProfessionId = $('#ProfessionId');
+            
+                ProfessionId.append(
+                        $('<option/>')
+                            .attr('value', 0)
+                            .text("All Professions")
+                            .attr("selected", "selected")
+                        );
+            
+                var RoleID = $('#RoleId');
+                RoleID.append(
+                        $('<option/>')
+                            .attr('value', 0)
+                            .text("All Roles")
+                            .attr("selected", "selected")
+                        );
+
+                jQuery.each(Professions, function (index, Profession) {
+                    ProfessionId.append(
+                        $('<option/>')
+                            .attr('value', Profession.Id)
+                            .text(Profession.Name)
+                    );
+                });
+
+                //Set the default profession in here
+                $('#ProfessionId').val("19");
+                //Trigger the on change method so the roles will be populated
+                $('#ProfessionId').change();
+            });
+
+            
+            $('#ProfessionId').change(function () {
+                var selectedProfession = $(this).val();
+                $.getJSON('@Url.Action("Roles", "Job")', { professionId: selectedProfession }, function (Roles) {
+                    var rolesSelect = $('#RoleId');
+                    rolesSelect.empty();
+
+                    rolesSelect.append(
+                        $('<option/>')
+                            .attr('value', 0)
+                            .text("All Roles")
+                            .attr("selected", "selected")
+                    );
+
+                    jQuery.each(Roles, function (index, Role) {
+                        rolesSelect.append(
+                        $('<option/>')
+                            .attr('value', Role.Id)
+                            .text(Role.Name)
+                        );
+                    });
+
+                });
+            });
+           
+            
+            //Location
+            $.getJSON('@Url.Action("Locations", "Job")', function (Locations) {
+                var LocationId = $('#LocationId');
+
+                jQuery.each(Locations, function (index, Location) {
+                    LocationId.append(
+                        $('<option/>')
+                            .attr('value', Location.Id)
+                            .text(Location.Name)
+                    );
+                });
+            });
+
+            // Area
+            $('#LocationId').change(function () {
+                var selectedlocation = $(this).val();
+                $.getJSON('@Url.Action("Areas", "Job")', { locationId: selectedlocation }, function (Areas) {
+                    var areasSelect = $('#AreaId');
+                    areasSelect.empty();
+
+                    if (selectedlocation == "0") {
+                        areasSelect.append(
+                        $('<option/>')
+                            .attr('value', 0)
+                            .text("All Areas")
+                            .attr("selected", "selected")
+                        );
+                    }
+
+                    jQuery.each(Areas, function (index, Area) {
+                        areasSelect.append(
+                        $('<option/>')
+                            .attr('value', Area.Id)
+                            .text(Area.Name)
+                        );
+                    });
+                });
+            });
+
+            //WorkTypes
+            $.getJSON('@Url.Action("Worktypes", "Job")', function (Worktypes) {
+                var WorkTypeId = $('#WorkTypeId');
+
+                jQuery.each(Worktypes, function (index, Worktype) {
+                    WorkTypeId.append(
+                        $('<option/>')
+                            .attr('value', Worktype.Id)
+                            .text(Worktype.Name)
+                    );
+                });
+            });
+
+        });
+    </script>
+}
+@using (Html.BeginForm("Result", "Job"))
+{
+    <ul>
+        <li>IMR Search<li>
+            <label>
+                Keyword</label>
+            <input type="text" id="keyword" name="keyword" />
+        </li>
+        <li>
+            <select id="ProfessionId" name="ProfessionId">
+            </select>
+        </li>
+        <li>
+            <select id="RoleId" name="RoleId">
+            </select>
+        </li>
+        <li>
+            <select id="LocationId" name="LocationId">
+                <option value="0" selected>All Location</option>
+            </select>
+        </li>
+        <li>
+            <select id="AreaId" name="AreaId">
+                <option value="0" selected>All Area</option>
+            </select>
+        </li>
+        <li>
+            <select id="WorkTypeId" name="WorkTypeId">
+                <option value="0" selected>All Worktype</option>
+            </select>
+        </li>
+        <li>
+            <input type="submit" id="job_search_submit" value="Search" />
+        </li>
+    </ul>
+}

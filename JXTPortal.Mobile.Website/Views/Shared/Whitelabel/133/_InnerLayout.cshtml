@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title</title>
+        <meta name="viewport" content="width=device-width" />
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+	<link rel="stylesheet" type="text/css" href="http://images.jxt.net.au/mobile/Content/Whitelabel/@JXTPortal.Entities.SessionData.Site.SiteId/Styles/styles.css">
+        <script src="http://images.jxt.net.au/mobile/Scripts/jquery-1.7.2.min.js"></script>
+        <script src="http://images.jxt.net.au/mobile/Scripts/knockout-2.0.0.js"></script>
+        @RenderSection("Javascript", false)
+    </head>
+	
+    <body>
+	
+        <div class="page">
+		
+		<div id="wrapper">
+		
+            <div id="header">
+                <div class="logo"><a href="/"><img src="http://images.jxt.net.au/mobile/Content/whitelabel/@JXTPortal.Entities.SessionData.Site.SiteId/Images/imr-logo.png" width="295" height="64" alt="IMR Logo" /></a></div>
+            </div>
+			<!--End of header-->
+			
+			
+			<div id="main-content-inner">
+            
+                @RenderBody()
+           
+		   
+			</div>
+			<!--End of main-content-->
+			
+			
+<div id="footer">
+
+<a href=""><img src="http://images.jxt.net.au/mobile/Content/whitelabel/@JXTPortal.Entities.SessionData.Site.SiteId/Images/facebook.png" alt="facebook" /></a>
+<a href=""><img src="http://images.jxt.net.au/mobile/Content/whitelabel/@JXTPortal.Entities.SessionData.Site.SiteId/Images/twitter.png" alt="twitter" /></a>
+<a href=""><img src="http://images.jxt.net.au/mobile/Content/whitelabel/@JXTPortal.Entities.SessionData.Site.SiteId/Images/linked-in.png" alt="Linked In" /></a>
+<a href=""><img src="http://images.jxt.net.au/mobile/Content/whitelabel/@JXTPortal.Entities.SessionData.Site.SiteId/Images/google.png" alt="Google +" /></a>
+
+<p>©International Medical Recruitment 2012<br />
+  Powered by JXT</p>
+</div>
+<!--End of footer-->
+
+        </div>
+		<!--End of wrapper-->
+		
+		</div>
+		<!--End of page-->
+		
+		
+    </body>
+</html>
+
+

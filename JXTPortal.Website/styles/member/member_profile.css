@@ -1,0 +1,1851 @@
+/* COMMON STYLES SECTION ----- starts-----------*/
+#content-container{
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+#gt-middle-block, #gt-wrapper, #gt-footer, #gt-header, #gt-wrapper #content-container{
+    max-width: 100%!important;
+}
+#content .content-holder{
+    max-width: 100%;
+}
+
+#CV-content {
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 20px;
+    padding: 0!important;
+}
+#CV-content-holder {
+    clear: both;
+    display: block;
+    font-size: 13px;
+    padding-bottom: 5em;
+    padding-right: 0;
+    padding-left: 0;
+    padding-top: 3em;
+}
+#memberProfileLinks{
+    background: transparent;
+    position: absolute;
+    right: 15px;
+    top: 2em;
+}
+#memberProfileLinks .btn.btn-default {
+    background-color: #F2F2F2;
+    color: #333;
+}
+#memberProfileLinks, 
+#memberProfileLinks ul, 
+#memberProfileLinks li {
+    background-image: none;
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+#memberProfileLinks ul{
+    min-width: 270px;
+    right: 0;
+    left: auto;
+}
+#memberProfileLinks li {
+    display: block;
+    background: #FFF;
+    background-image: none;
+    margin: 0;
+    padding: 3px 0;
+}
+#memberProfileLinks a {
+    display: block;
+    position: relative;
+    right: 0;
+    left: 0;
+    text-decoration: none;
+    white-space: nowrap;
+}
+#memberProfileLinks a:hover{
+    background-color: #ccc;
+    color: #000;
+}
+
+#memberProfileLinks {position:static; z-index:100;}
+
+/* end of old cv builder default styles */
+
+#content-container.newDash #content{
+    width: 100%!important;
+    padding-left: 15px!important;
+    padding-right: 15px!important;
+}
+
+#CV-content h1,
+#CV-content h2,
+#CV-content h3,
+#CV-content h4,
+#CV-content h5,
+#CV-content h6 {
+    color: #333;
+    margin-top: 0px;
+    line-height: 1.1;
+    text-align: left;
+    text-transform: none;
+
+}
+.red-top #content-container #content h1{
+    margin: 0;
+}
+h1:after, h1:before, h2:after, h2:before{
+    display: none;
+}
+#CV-content p{
+    padding-bottom: 0;
+    margin-bottom: 10px;
+    text-align: left;
+}
+h2 span, h3 span { display: inline-block;}
+#lb-personaldetailsMailingadd {
+    margin-top: 10px;
+}
+
+#ucmemberedit-multilingual-firstname,
+#ucmemberedit-multilingual-lastname,
+#divMultilingualName {
+    display: block;
+}
+
+
+#content-container #content {max-width: none; width: 100%!important; padding: 0;}
+
+#content input[type=text],
+#content input[type=password],
+#content textarea,
+#content select { height:auto; min-height:21px; padding: 6px 12px; background: none; border: 1px solid #ccc; text-indent: 0!important; }
+
+#content #memberProfileLinks a,
+#content #advertiserDropdownLinks a {
+    line-height: 26px;
+    padding: 5px 10px;
+}
+
+#content #memberProfileLinks a:hover,
+#content #advertiserDropdownLinks a:hover {
+    color: #333;
+}
+
+#content #memberProfileLinks a i,
+#content #advertiserDropdownLinks a i {
+    font-size: 26px;
+    margin-right: 10px;
+    float: left;
+}
+
+#CV-content textarea {
+    resize: none;
+}
+
+#CV-content .section_status {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #333;
+    line-height: 32px;
+    text-align: center;
+    margin-left: 5px;
+    color: #fff;
+}
+
+.section-title,
+.form-title {
+    font-size: 26px;
+    margin-bottom:0;
+}
+
+button.multiselect {
+    border: 1px solid #cccccc;
+}
+
+.form-required {
+    padding: 0 0.2em 0 0.2em;
+}
+
+.error-field {
+    border-color: #ff0000 !important;
+}
+
+.highlight {
+    color: #333;
+    font-weight:bold;
+}
+.missing{
+    color: #ccc;
+    opacity: 0.6;
+}
+
+.profile-dropdown-text {
+    padding-right: 10px;
+    margin-right: 10px;
+    line-height: 28px;
+    display: inline-block;
+    border-right: 1px solid #333;
+}
+
+#CV-content .form-section {
+    background: #fff;
+    color: #333;
+    margin-top: 1.5em;
+    margin-bottom: 60px;
+    padding: 0em 0em;
+    position: relative;
+    -webkit-box-shadow: 0px 10px 30px 3px rgba(204, 204, 204, .6);
+    -moz-box-shadow: 0px 10px 30px 3px rgba(204, 204, 204, .6);
+    box-shadow: 0px 10px 30px 3px rgba(204, 204, 204, .6);
+}
+
+#CV-content .form-header-group {
+    padding-top: 30px;
+}
+
+#CV-content .form-section.full-width .section-content {
+    /*  padding: 0 1em;*/
+}
+#CV-content .form-line{
+    padding: 0;
+}
+#CV-content .form-all input,
+#CV-content .form-all select {
+    background: transparent;
+    outline: none;
+}
+
+.certificate-url { max-width: 280px; white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+display: inline-block;
+    float: left;
+    clear: right;}
+
+#CV-content  label,
+.form-line label {
+    display: block;
+    font-size: small;
+    font-weight: bold;
+    line-height: 1.5;
+    color: #333;
+    margin-bottom: 2px;
+    position: static;
+    white-space: nowrap;
+}
+#CV-content .form-line .form-required{
+    top: 0;
+}
+#CV-content input[type="radio"]{
+    margin: 2px 5px 3px 2px;
+    height: auto;
+    width: auto;
+    position: static;
+}
+
+#CV-content .form-all {width:100%; max-width:100%; padding:0px; margin-bottom: 0; box-sizing: border-box;}
+#CV-content .row { max-width:none; width:auto; margin-right:-15px; margin-left:-15px;}
+#CV-content .row .row { margin:0 -15px;}
+#CV-content .profile-edit .row, #CV-content .personaldetailsForm-wrap .row .row, #mailingaddress-form .row { margin-bottom: 10px; }
+
+
+#CV-content .form-input{
+    display: block;
+    float: none;
+    max-width: 100%;
+    width: auto;
+}   
+
+#CV-content .spt-to {
+    padding-top: 25px;
+    display: inline-block;
+}
+#CV-content .textareaField{
+    display: block;
+}
+#CV-content label.radio-inline {
+    display: inline-block;
+    margin-left: 0;
+    margin-right: 20px;
+    padding: 0;
+}
+#CV-content .radio-inline input{
+    width: auto!important;
+}
+
+#DateOfBirth .form-sub-label {
+    display: none;
+}
+
+#DateOfBirth .custom-select{
+    display: block;
+}
+#DateOfBirth select {
+    -webkit-appearance: listbox;
+    -moz-appearance: listbox;
+    appearance: listbox;
+    width: 100%!important;
+}
+
+.form-section .btn-group {
+    margin-bottom: 10px;
+    width: 100%;
+}
+.form-section .btn-radio-group{
+    height: 35px;
+    line-height: 35px;
+    margin-top: 3px;
+}
+.btn-group label{
+    display: inline-block;
+}
+.multiselect .caret {
+    position: absolute;
+    top: 50%;
+    right: 25px;
+    border: none;
+    margin-top: -13px;
+    line-height: 1.4;
+    color: #333;
+}
+.multiselect .caret:before{
+    content: '\f107';
+    font-family: fontawesome;
+    font-size: 18px;
+}
+
+.open>.dropdown-menu {
+    width: 100%;
+}
+
+.dropdown-menu {
+    min-width: 240px;
+}
+.multiselect-container.dropdown-menu{
+    max-height: 200px;
+    overflow: auto;
+}
+.multiselect-container.dropdown-menu li{
+    margin-bottom: 1px;
+}
+#CV-content .multiselect-container.dropdown-menu>li>a,
+#CV-content .multiselect-container li label{
+    white-space: normal;
+    line-height: 1;
+    padding-top: 3px;
+    text-decoration: none;
+}
+.multiselect-container.dropdown-menu>li>a:hover{
+    background: #ccc;
+}
+.multiselect-container.dropdown-menu>.active>a, .multiselect-container.dropdown-menu>.active>a:hover, .multiselect-container.dropdown-menu>.active>a:focus{
+    background: #aaa;
+}
+.multiselect-container.dropdown-menu input{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.multiselect-container li label {
+    margin: 2px 0;
+}
+
+#CV-content .btn-radio-group input[type="radio"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 1px solid #d8d8d8;
+    height: 35px;
+    width: 100px;
+    float: none;
+    margin: 0px 10px 0 0;
+    background: #eee;
+    display: inline-block;
+    cursor: pointer;
+    opacity:0;
+}
+
+#CV-content .btn-radio-group input:checked + label {
+    background-color: #ccc;
+    border-color: #999;
+}
+
+#CV-content .btn-radio-group input + label {
+    position: relative;
+    left: -13px;
+    /*including radio button margin and border*/
+    width: 100px;
+    /*same as radio button*/
+    margin-left: -100px;
+    border: 1px solid #d8d8d8;
+    top: 1px;
+    line-height: inherit!important;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    vertical-align: top;
+}
+
+#CV-content .btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle) {
+    border-radius: 0;
+    margin-right: 1.5em;
+}
+
+#CV-content .btn-group>.btn:last-child:not(:first-child),
+#CV-content .btn-group>.dropdown-toggle:not(:first-child) {
+    border-radius: 0;
+}
+
+.form-section img {
+    width: 100%;
+    height: auto;
+}
+
+option[value="0"] {
+    display: none;
+}
+
+.no-btn:hover {
+    background-color: #ff931e;
+}
+
+#deleteConfirm.modal {
+    background: rgba(0,0,0,0.3);
+}
+
+
+/* Modal dialog box */
+.modal-backdrop {
+    z-index: 1000!important;
+}
+.modal-open #sb-site{
+    z-index: 2000;
+}
+.modal.fade, .modal.in{
+    left: auto;
+    margin:0;
+    width: 100%;
+}
+.modal .modal-dialog{
+    width: 400px;
+    max-width: 400px;
+}
+.modal-dialog .modal-header {
+    border: none;
+}
+.modal-dialog .modal-header .close{
+    width: 15px;
+    height: 15px;
+    margin-top: -8px;
+}
+.modal-dialog .modal-body{
+    background: #fff;
+    color: #333;
+}
+.modal-dialog .modal-footer{
+    text-align: center;
+    margin-top: 0;
+}
+
+.delete-confirm {
+    text-transform: uppercase;
+}
+
+.vertical-alignment-helper {
+    display: table;
+    height: 100%;
+    width: 100%;
+}
+
+.vertical-align-center {
+    /* To center vertically */
+    display: table-cell;
+    vertical-align: middle;
+    left:auto;
+}
+
+.modal-content {
+    /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+    width: inherit;
+    height: inherit;
+    /* To center horizontally */
+    margin: 0 auto;
+}
+
+#CV-content .row .form-section {
+    margin-bottom: 40px;
+}
+
+.section-header h2 .fa {
+    margin-right: 10px;
+    width: 25px;
+}
+
+.form-title {
+    margin-bottom: 20px;
+}
+
+.btn{
+    text-decoration: none;
+}
+.btn.btn-sm{
+    font-size: 12px;
+    padding: 5px 15px;
+    width: auto;
+    min-width: 40px;
+    line-height: 1.5;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.btn .fa {
+    margin-right: 4px;
+    line-height:inherit;
+}
+
+.section-footer .btn .fa {
+    margin: 0 4px;
+}
+.editable-section .btn-sm.btn-edit{
+    padding: 6px 7px;
+}
+.editable-section .btn-sm.btn-edit .fa {
+    margin-left: 0;
+    opacity: 1;
+}
+
+header.section-header{
+    padding: 25px 0 15px 15px;
+    background: transparent;
+    width: auto;
+    float: none;
+}
+.profile-edit .section-header {
+    background: none;
+    padding-top: 10px;
+}
+.section-header:after,
+.has-edit-icon:after {
+    content: '';
+    clear: both;
+    display: block;
+}
+
+.profile-edit {
+    position: relative;
+    z-index: 10;
+}
+.profile-edit.in { display:block; overflow: visible;}
+.close-btn {
+    font-size: 22px;
+    text-decoration: none;
+}
+#personalDetailsform .close-btn{
+    right: 15px;
+}
+
+.basicprofile-closebtn {
+    text-align: right;
+}
+
+.add-btn-holder {
+    margin-right: 65px;
+}
+#attach-container .section-content
+{
+    margin-left:30px;
+    margin-right:30px;
+}
+#attach-container .add-btn-holder {
+    margin-right: 30px;
+}
+
+.section-header .add-btn,
+.fa-edit,
+.fa-trash,
+.edit-list .fa-download,
+.editable-section .btn-sm.btn-edit {
+    opacity: 0;
+}
+
+.form-section:hover .add-btn,
+.editable-section:hover .fa-edit,
+.editable-section:hover .fa-trash,
+.edit-list li:hover .fa,
+.editable-section:hover .btn-sm.btn-edit {
+    opacity: 1;
+}
+
+.oneline-input-holder {
+    float: left;
+}
+
+.oneline-input-holder label {
+    margin-bottom: 0;
+    margin-right: 20px;
+}
+
+.oneline-input-holder input.form-control {
+    margin-left: 5px;
+}
+
+.has-edit-icon {
+    position: relative;
+}
+
+.has-edit-icon * {
+    float: left;
+}
+.has-edit-icon h4
+{
+    max-width:85%;
+    max-width: calc( 100% - 65px );
+    word-break:break-word;
+}
+
+.section-body-header address {
+    margin-bottom: 0;
+}
+
+.section-body-header {
+    margin-bottom: 20px;
+}
+
+.section-content {
+    margin: 0 65px;
+    padding: 20px 0;
+    border-top: 1px solid #ccc;
+}
+
+.no-border {
+    border: none !important;
+}
+
+.section-content.edit-mode {
+    background-color: #E8E8E8;
+    border-bottom: none;
+    position: relative;
+}
+
+
+.full-width .section-content.edit-mode,  #attach-container .section-content.edit-mode {
+    margin: 0;
+    padding: 20px 65px;
+}
+.section-content:first-of-type {
+    border: none !important;
+    padding-top:10px;
+}
+
+.form-control[disabled],
+.form-control[readonly],
+fieldset[disabled] .form-control {
+    opacity: .6;
+}
+
+.edit-mode .editable-section {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+#CV-content .edit-mode .form-control, #CV-content .personalDetails-form .form-control{
+    background: none;
+    border: 1px solid #ccc;
+    text-align: left;
+    height: auto;
+    padding: 6px 10px;
+    text-indent: 0;
+    line-height: inherit;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: none;
+}
+#CV-content .custom-select select.form-control {
+    position: relative;
+    z-index: 10;    
+    margin-bottom: 0;
+    padding-right: 30px;
+    -webkit-appearance: none;
+   -moz-appearance:    none;
+   appearance:         none; 
+}
+
+.new-block-holder {
+    padding: 0;
+    border-bottom: none;
+}
+
+.edit-mode.new-block-holder {
+    padding: 20px 0;
+}
+
+.date-field {
+    color: #999;
+    margin-bottom: 10px;
+}
+
+.note {
+    color: #777;
+}
+
+.section-footer {
+    background: #d8d8d8;
+    text-align: center;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    width: auto;
+}
+.section-footer .add-btn{
+    display: block;
+    border: none;
+    background: none;
+    color: #666;
+}
+
+.add-btn .fa {line-height:inherit;}
+.group-controls .form-control {
+    width: auto;
+    display: inline;
+    width: 45%;
+    margin-right: 10px;
+}
+#CV-content input[type="checkbox"], 
+#CV-content input[type="radio"] {
+    min-width: 20px;
+    min-height: 20px;
+}
+
+#CV-content .form-control.btn-checkbox {
+    -webkit-appearance: none;
+    appearance: none;
+    background: none;
+    border: 1px solid #ccc;
+    display: inline-block;
+    height: 34px;
+    width: 34px;
+    min-width: 34px;
+    max-width: 34px;
+    min-height: 34px;
+    line-height: 34px;
+    font-size: 15px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    float: none!important;
+}
+#CV-content .col-sm-1 .form-control.btn-checkbox{
+    margin: 0 auto;
+    display: block;
+}
+
+#CV-content .form-input label .form-control {
+    margin-bottom: 0;
+    margin-right: 5px;
+    display: inline-block;
+    width: auto;
+    height: auto;
+}
+
+.form-control.btn-checkbox:before {
+    content: "\f096";
+    font-family: Fontawesome;
+    opacity: 0;
+}
+
+.form-control.btn-checkbox:checked:before {
+    content: "\f00c";
+    opacity: 1;
+}
+
+.custom-select {
+    position: relative;
+    display: block;
+    border: none;
+}
+
+#CV-content .custom-select span{
+    display: inline;
+}
+#CV-content .custom-select select {
+    position: relative;
+    z-index: 10;
+    width: 100%!important;
+    padding: 6px 10px;
+    text-indent: 0;
+    color: #333;
+    margin-bottom: 0;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+}
+
+/* For IE gt 9 :: remove the arrow dropdown */
+.custom-select select::-ms-expand{
+    display: none;
+}
+.custom-select:after {
+    position: absolute;
+    top: 50%;
+    margin-top: -12px;
+    right: 11px;
+    font-family: Fontawesome;
+    content: '\f107';
+    font-size: 18px;
+    line-height: 1.4;
+    z-index: 0;
+    color: #333;
+}
+#CV-content .custom-select:before, .multiselect-group .custom-select:after, .multiselect-group.custom-select:after,
+#CV-content .custom-select .custom-select:after{ 
+    display: none;
+}
+
+.group-controls .custom-select {
+    display: inline;
+    border: none;
+}
+
+.group-controls .custom-select:after {
+    top: 0px;
+    right: 21px;
+    margin-top: 0;
+}
+.group-controls .custom-select select{
+    max-width: 44%;
+}
+textarea.form-control {
+    padding: 12px;
+}
+
+.button-container {
+    margin: 20px 0;
+}
+
+.body-field p:last-child {
+    margin-bottom: 0;
+}
+
+.inline-field {
+    display: inline-block;
+    padding-right: 25px;
+}
+
+.inline-field .fa {
+    margin-right: 5px;
+}
+
+.req,
+.error-message,
+.error-message-2 {
+    color: red;
+}
+
+.error-message {
+    position: absolute;
+    top: 0;
+    right: 15px;
+    font-size: 12px;
+}
+
+.error-message-2 {
+    position: relative;
+    font-size: 12px;
+    line-height: 1.3;
+    display: block;
+    padding-top: 4px;
+}
+
+
+
+/* COMMON STYLES SECTION ----- ends-----------*/
+
+
+/* BASIC DETAILS SECTION ----- starts-----------*/
+
+#section-1 .section-content.edit-mode {
+    border: none;
+    background:none;
+}
+
+#CV-content #section-1 {
+    padding: 2em 0em;
+}
+
+#section-1 h3{
+    font-size: 24px;
+    text-transform: none;
+    margin-bottom: 10px;
+}
+#section-1 h4{
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+#section-1 h5 { 
+    padding-bottom: 0;
+    text-transform: none;
+}
+.perc-outer {
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+#candidate-name 
+{
+    max-width:90%;
+    max-width: calc(100% - 45px);
+}
+.perc-inner {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.profile-upload-btn {
+    margin-top: 10px;
+    opacity: 0;
+    visibility: hidden;
+}
+.profile-data.editable-section .fa-edit{
+    line-height: 1.4;
+}
+
+.oneline-input-holder .upon-request-submit-btn {
+    opacity: 0;
+    width: 0;
+    margin-top: 1px;
+    margin-right: 10px;
+    visibility: hidden;
+}
+
+.profile-status-wrap {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: #fff;
+    position: relative;
+    -webkit-box-shadow: inset 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: inset 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+}
+
+.profile-status {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 0px;
+    background: #ccc;
+    z-index:0;
+}
+
+.perc {
+    width: 100%;
+    margin-top: 37%;
+    display: block;
+    position: relative;
+    z-index: 100;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-left:4px;
+}
+.info_graphic {
+    position: relative;
+    max-width: 400px;
+    margin: 0px auto;
+}
+
+.profile_status_info_wrap {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    border-top-left-radius: 70px;
+    border-bottom-left-radius: 70px;
+    overflow: hidden;
+}
+
+.profile_status_info {
+    z-index: 1;
+    position: absolute;
+    bottom: 0px;
+    border-bottom: 1px solid #333;
+    text-align: right;
+    width: 90%;
+}
+.profile_status_info.info-btm .pro_level{
+    position:absolute;
+    top:0;
+    right:0;
+}
+
+.noProfileImage {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin: 0px auto;
+    max-width: 244px;
+    max-height: 244px;
+}
+
+.profileImageHolder .btnUploadImage {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    right: 0;
+    border-radius: 0;
+    display: none;
+}
+.btnUploadImage .fb-button-fake{
+    display: none;
+}
+
+.profileImageHolder {
+    
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.profileImageHolder:hover .btnUploadImage {
+    display: block;
+}
+
+.btnUploadImage:before {
+    content: '\f067';
+    font: 17px/1 Fontawesome;
+    margin-right: 5px;
+    position: relative;
+    top: 2px;
+}
+
+.btn-file {
+    overflow: hidden;
+}
+
+.btn-file>input[type="file"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    opacity: 0;
+    transform: translate(-300px, 0) scale(4);
+    font-size: 23px;
+    direction: ltr;
+    cursor: pointer;
+}
+
+#wrapper #CV-content .form-control, #CV-content select[multiple] option { height:auto; background: none!important; color: #333; font-size: inherit; }
+
+.question_wrap input[type="checkbox"] { -webkit-appearance:checkbox; -moz-appearance:checkbox; appearance:checkbox; }
+
+.tagsinput {text-align: left;}
+
+
+/* BASIC DETAILS SECTION ----- ends------------*/
+
+
+/* Quick links */
+
+#quick-links-wrap {
+    opacity: 0;
+    height: 0px;
+}
+.btn-primary.quick-links {
+    max-width: none;
+}
+
+#CV-content .quick-links {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 20px;
+    margin-top: 0;
+    padding: 6px 12px;
+    height: 35px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+#CV-content .quick-links:after{
+    content: '';
+    clear: both;
+    display: table;
+}
+.quick-links span.fa{
+    position: relative;
+    top: 1px;
+}
+.ellipsis-text{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 95%;
+    float: left;
+}
+
+.viewmore_btn {
+    display: block;
+    text-align: center;
+    padding: 20px 0px;
+    text-transform: uppercase;
+    background: #eee;
+    clear: both;
+    position: relative;
+}
+
+.viewmore_btn:hover {
+    background: #ccc;
+}
+
+.less-btn {
+    display: none;
+}
+
+.small {
+    overflow: hidden;
+}
+
+.viewless .more-btn {
+    display: none;
+}
+
+.viewless .less-btn {
+    display: block;
+    text-align: center;
+}
+
+
+/* Summary section-----------starts------------- */
+
+#section-2 .add-btn-holder {
+    margin-right: 0px;
+}
+#section-2 .add-btn-holder .close-btn{
+    right: 15px;
+}
+
+#section-2 .section-content {
+    border: none;
+    height: 100%;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+#section-2 .section-content.edit-mode{
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+#section-2 .section-content .editable-section {
+    height: 100%
+}
+
+#section-2 .form-all {
+    height: 100%;
+}
+
+.summary {
+    margin-top: 20px;
+    height: 350px;
+    width: 100%;
+    max-width: 100%;
+    overflow: auto;
+}
+.summary, .jspContainer, .jspPane{
+    min-width: 100%;
+}
+.jspContainer, .jspPane, .jspPane p{
+    max-width: 100%;
+}
+.jspPane p {
+    word-wrap: break-word;
+    padding-right: 8px;
+}
+#CV-content #ctl00_ContentPlaceHolder1_ecSummary textarea.form-control{
+    height: 300px;
+}
+
+/* Summary section-----------ends------------- */
+
+
+/* Personal detail section */
+
+#section-2 {
+    overflow: hidden;
+}
+#section-2 .section-content{
+    padding-top: 20px;
+}
+#personalDetailsform {
+-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#personalDetailsSlider {
+    position: relative;
+    margin-top: 20px;
+    background: none;
+    height: 350px;
+}
+
+#personalDetailsSlider .carousel-inner {
+    padding-bottom: 40px;
+}
+#personalDetailsSlider.carousel .item{
+    height: auto;
+}
+#personalDetailsSlider .carousel-indicators {
+    position: absolute;
+    z-index: 1000;
+    top: auto;
+    bottom: 10px;
+    left: 0;
+    right: auto;
+    width: 100%;
+    margin: 0;
+}
+
+#personalDetailsSlider .carousel-indicators li {
+    display: inline-block;
+    border: 1px solid #333;
+    padding: 0;
+    margin: 0;
+    float: none;
+}
+
+#personalDetailsSlider .carousel-indicators .active {
+    background-color: #333;
+    width: 10px;
+    height: 10px;
+}
+
+#section-3 .editable-section {
+    border: none;
+    margin: 0 30px;
+    padding: 20px 0;
+}
+
+.personal-detail-content {
+    display: block;
+    margin-bottom: 10px;
+    line-height: 1;
+}
+
+.slider-nav {
+    display: none;
+}
+
+.address-detail span {
+    margin-right: 10px;
+}
+
+#CV-content #personalDetailsform {
+    margin: 0px 0px 40px 0px;
+    padding: 30px 65px 20px;
+    background-color: #E8E8E8;
+    border-bottom: none;
+    position: relative;
+}
+#lb-personaldetailsMailingadd{
+    font-weight: bold;
+    color: #333;
+}
+.mailing-add-link {
+    display: block;
+    background: #ccc;
+    margin-bottom: 20px;
+    text-align: center;
+    padding: 10px;
+    color: #333;
+    text-decoration: none;
+}
+.mailing-add-link:hover, .mailing-add-link:focus {
+    background: #bbb;
+    color: #000;
+    text-decoration: none;
+}
+
+
+
+.caret_symbol {
+    display: inline-block;
+    font-family: FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.caret_symbol:before {
+    content: "\f0d8";
+}
+
+.collapsed .caret_symbol:before {
+    content: "\f0d7";
+}
+#attach-container .section-title { min-height:2.1em; }
+
+/* Question list */
+
+.question-title {
+    font-size: 24px;
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-weight: 400;
+    margin-top: 0;
+    color: #333;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.question_wrap {
+    margin-bottom: 20px;
+}
+
+/* Self Editable sections */
+
+/* Role Preference page */
+
+.self-editable .section-content{
+    margin-left: 0;
+    margin-right: 0;
+}
+.self-editable .section-content-inner{
+    margin-left: 65px;
+    margin-right: 65px;
+}
+.self-editable .section-content.edit-mode{
+    padding-left: 0;
+    padding-right: 0;
+}
+.self-editable .close-btn{
+    right: 65px;
+    top: 20px;
+}
+
+.overlayEdit {
+    /*position: absolute;
+    top: 0;
+    left: 0;*/
+    width: 100%;
+    background-color: #fff;
+    height: 100%;
+    display: none;
+}
+
+.fa, .fa:hover, .fa:focus{
+    text-decoration: none;
+    outline: none;
+}
+a.fa, .section-footer .add-btn, .viewmore_btn, .tagsinput .tag a{
+    color: #666;
+}
+a.fa:hover, a.fa:focus, .section-footer .add-btn:hover, .viewmore_btn:hover, .tagsinput .tag a:hover{
+    color: #333;
+}
+.fa.fa-edit,
+.fa.fa-trash {
+    font-size: 22px;
+    margin-left: 12px;
+    position: relative;
+    /* top:6px; */
+}
+.fa.fa-edit:hover,
+.fa.fa-trash:hover{
+    text-decoration: none;
+}
+
+.fa-0 {
+    top: 0;
+}
+
+.fa-1 {
+    top: -1px;
+}
+
+.fa-6 {
+    top: 6px;
+}
+
+.form-icon {
+    margin-right: 10px;
+}
+
+
+/* Skills autocomplete plugin styling */
+
+.ui-widget-content {
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+}
+
+.qa-section {
+    border-bottom: none;
+}
+
+.qa-section dd {
+    margin-left: 0;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.qa-section dd:last-of-type {
+    border: none;
+}
+
+#sec-Languages .section-content {
+    border-bottom: none;
+}
+
+#sec-Languages .section-content [class*="col-"] {
+    padding: 0 4px;
+}
+
+#sec-Languages .section-content [class*="col-"]:nth-child(4n+1) {
+   clear:both;
+}
+
+
+.cancelable-block {
+    background-color: #d8d8d8;
+    line-height: 1;
+    padding: 13px 22px;
+    position: relative;
+    margin-bottom:10px;
+}
+
+#sec-Languages .cancelable-block p {
+    margin-bottom: 5px;
+    margin-top:0px;
+}
+
+.cancelable-block .close-btn {
+    top: 9px;
+    right: 10px;
+}
+
+.col-sm-6 .section-content {
+    margin: 0 12%;
+    border-bottom: none;
+}
+
+.edit-list {
+    padding: 0;
+    list-style: none;
+}
+
+#CV-content ul.edit-list li {
+    background: none;
+    border-bottom: 1px solid #d8d8d8;
+    font-size: 21px;
+    padding: 10px 0;
+    overflow: hidden;
+}
+.edit-list li .btn-group{
+    margin-bottom: 0;
+}
+
+#CV-content .edit-list li:last-of-type {
+    border: none;
+}
+
+.text-nowrap {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+    max-width: 80%;
+    float: left;
+    line-height: 1.1;
+}
+
+.edit-list .btn-group {
+    margin-left: 10px;
+    width: auto;
+}
+
+.edit-list .fa-edit,
+.edit-list .fa-trash,
+.edit-list .fa-download {
+    margin-left: 5px;
+}
+
+.edit-list .fa-edit {
+    top: 1px;
+}
+
+.edit-list .fa-trash {
+    top: 0;
+}
+
+.attach-editform-container {
+    clear: both;
+}
+
+.custom-fileUpload {
+    position: relative;
+    margin-top: 5px;
+}
+
+#CV-content .custom-fileUpload label {
+    display: inline-block;
+    padding-top: 0px;
+    position: relative;
+}
+
+.custom-fileUpload label:hover .upload-lbl {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+    cursor: pointer;
+}
+
+.upload-lbl {
+    display: inline-block;
+    width: 150px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.upload-lbl:before {
+    content: '\f093';
+    font: 18px/1 Fontawesome;
+    margin-right: 10px;
+}
+
+.custom-fileUpload input {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    cursor: pointer;
+    max-width: 100%;
+}
+
+.filename-holder {
+    font-weight: bold;
+    padding-left: 5px;
+}
+
+.or-separator {
+    text-align: center;
+    position: relative;
+    margin: 10px 0;
+}
+
+.or-separator:before {
+    content: '';
+    height: 1px;
+    background-color: #ccc;
+    display: block;
+    position: absolute;
+    top: 10px;
+    width: 100%;
+}
+
+.or-separator span {
+    background-color: #e8e8e8;
+    z-index: 1;
+    position: relative;
+    padding: 0 5px;
+}
+
+
+/*tags input */
+
+.tagsinput {
+    padding: 10px 0;
+}
+
+.tagsinput .tag {
+    display: inline-block;
+    padding: 9px 18px;
+    margin: 0 5px 8px 0;
+    background: #d8d8d8;
+    font-weight: 600;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    max-width:100%;
+    white-space:normal;
+}
+
+.tagsinput .tag span {
+    position: relative;
+    /* top: -2px; */
+}
+
+.tagsinput .tag a {
+    margin-left: 12px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.tag a:after {
+    content: "\f00d";
+    font: 22px/1 Fontawesome;
+    font-size:inherit;
+}
+
+.empty-case_field
+{
+	padding:20px 0;
+	text-transform:uppercase;
+	color:#999;
+	font-size:16px;
+}
+.qa-section .empty-case_field
+{
+	font-size:14px;
+	padding:0px;
+}
+.empty-case_field.text-center
+{
+	text-align:center!important;
+}
+
+@media screen and (max-width: 991px) {
+    #content-container > .row{
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    h2.form-title {
+        font-size: 20px;
+    }
+    .form-section h3 {
+        font-size: 18px;
+    }
+    .edit-list li {
+        font-size: 14px;
+    }
+    .add-btn,
+    .upon-request-submit-btn {
+        font-size: 10px;
+    }
+    .text-nowrap {
+        max-width: 60%;
+    }
+    .form-control.uponrequest-btn {
+        height: 24px;
+        width: 24px;
+        line-height: 1;
+    }
+    #basicProfile {
+        padding-left: 15px;
+        padding-right: 15px;
+        margin: 0px 0px 20px 0px;
+    }
+    #basicProfile .overlayEdit {
+        background: transparent;
+    }
+    .section-header .add-btn,
+    .fa-edit,
+    .fa-trash,
+    .edit-list .fa-download,
+    .editable-section .btn-sm.btn-edit {
+        opacity: 1;
+    }
+    .btnUploadImage {
+        display: block !important;
+        border-color: transparent;
+        background-color: #333;
+        color: #fff;
+    }
+    .profile-upload-btn {
+        background-color: #333;
+        color: #fff;
+        border: none;
+    }
+    #ctl00_ContentPlaceHolder1_UpdatePanel3{
+        clear: both;
+    }
+    .info_graphic{
+        max-width: 280px;
+        margin:0;
+    }
+    
+    .section-content,
+    .self-editable .section-content-inner{
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+    .full-width .section-content.edit-mode, #attach-container .section-content.edit-mode,
+    #CV-content #personalDetailsform{
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    .self-editable .section-content.edit-mode{
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .self-editable .close-btn{
+        right: 30px;
+    }
+    .add-btn-holder{
+        margin-right: 30px;
+    }
+    span.error-message {
+        position: relative;
+        left: 0;
+        top: 0px;
+        right: auto;
+    }
+    
+    #section-2 .add-btn-holder {
+        margin-right: 0px;
+        text-align: right;
+        display: block;
+    }
+    /*  .add-btn-holder { display:none;} */
+    .close-btn {
+        position: absolute;
+        right: 0px;
+        top: 0px;
+    }
+    .basicprofile-closebtn .close-btn {
+        position: relative;
+    }
+    #sec-Languages .section-content [class*="col-"]:nth-child(3n+1) {
+       clear:none;
+    }
+    #sec-Languages .section-content [class*="col-"]:nth-child(2n+1) {
+       clear:both;
+    }
+    #CV-content ul.edit-list li{
+        font-size: 18px;
+    }
+    .fa-edit, .fa-trash{
+        font-size: 18px;
+    }
+    .group-controls .form-control{
+        width: 44%;
+    }
+    #attach-container .section-title
+    {
+        min-height:1em;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #memberProfileLinks {
+        display: block;
+        position: relative;
+        top: 0;
+    }
+    .CV-Builder-title {
+        clear: both;
+        display: block;
+    }
+    #candidate-name h3 {
+        font-size: 18px;
+    }
+    .section-title,
+    .form-title {
+        font-size: 20px;
+    }
+    #current-status {
+        margin-bottom: 20px;
+        display: inline-block;
+    }
+    .section_status {
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        font-size: 12px;
+    }
+    header.section-header [class*="col-sm"] {
+        width: calc(100% - 140px);
+        float: left;
+    }
+    .section-header h2 .fa{
+        width: 18px;
+    }
+    
+    #CV-content .col-sm-1 .form-control.btn-checkbox{
+        margin-left: 0;
+    }
+}
+@media screen and (max-width: 480px) {
+    header.section-header [class*="col-sm"]{
+        width: auto;
+    }
+    .section-header .add-btn{
+        display: none;
+    }
+    #DateOfBirth .col-xs-4{
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    
+}
+
+@media screen and (max-width: 1199px) and (min-width: 992px) {
+    .noProfileImage {
+        width: 200px;
+        height: 200px;
+    }
+    .text-nowrap {
+        max-width: 75%;
+        font-size: 18px;
+    }
+    
+    #sec-Languages .section-content [class*="col-"]:nth-child(4n+1) {
+       clear:none;
+    }
+    #sec-Languages .section-content [class*="col-"]:nth-child(3n+1) {
+       clear:both;
+    }
+}
+
+@media screen and (max-width: 991px) and (min-width: 768px) {
+    .noProfileImage {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .quick-links span.fa {
+        color: inherit;
+        opacity: 0;
+       /*  -webkit-transition: all 0.3s ease-in-out;
+       -moz-transition: all 0.3s ease-in-out;
+       -o-transition: all 0.3s ease-in-out;
+       -ms-transition: all 0.3s ease-in-out;
+       transition: all 0.3s ease-in-out; */
+    }
+    .quick-links:hover span.fa {
+        opacity: 1;
+    }
+    .close-btn {
+        position: absolute;
+        right: 0px;
+        top: 0px;
+    }
+    .basicprofile-closebtn .close-btn {
+        position: relative;
+    }
+    #basicProfile {
+        padding: 0px;
+        margin: 0px;
+        border: none;
+    }
+    .basicprofile-closebtn {
+        float: right;
+    }
+}
+
+.section-content:last-child {
+    border: none !important;
+}

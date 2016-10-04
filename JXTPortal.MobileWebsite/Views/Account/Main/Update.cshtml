@@ -1,0 +1,38 @@
+@model JXTPortal.Domain.ViewModel.MemberModel.ChangePasswordModel
+
+@{
+    ViewBag.Title = "Update your details";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>Use the form below to update your details.</h2>
+</hgroup>
+
+<p class="message-info">
+   
+</p>
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true, "Password change was unsuccessful. Please correct the errors and try again.")
+
+    <fieldset>
+        <legend>Update Details</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.OldPassword)
+                @Html.PasswordFor(m => m.OldPassword)
+                @Html.ValidationMessageFor(m => m.OldPassword)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.NewPassword)
+                @Html.PasswordFor(m => m.NewPassword)
+                @Html.ValidationMessageFor(m => m.NewPassword)
+            </li>
+        </ol>
+        <input type="submit" value="Change password" />
+    </fieldset>
+}

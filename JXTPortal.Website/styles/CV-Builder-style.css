@@ -1,0 +1,102 @@
+#CV-Builder {
+	background-color: #FFF;
+	border-radius: 15px;
+	padding: 1em;
+}
+#CV-Builder label.error {
+	border-radius: 5px;
+	color: #b94a48;
+	background-color: #eed3d7;
+	font-weight: normal;
+	padding: 5px 10px;
+	margin-top: 5px;
+}
+#CV-Builder .wizard-steps {
+	position: relative;
+	margin: 15px auto;
+}
+#CV-Builder .wizard-steps:before {
+	border-top: 1px solid #999;
+	height: 1px;
+	left: 0px;
+	top: 25px;
+	position: absolute;
+	width: 100%;
+}
+#CV-Builder .wizard-steps li a {
+	color: #666;
+	font-size: 85%;
+	padding: 10px;
+	text-align: center;
+}
+#CV-Builder .wizard-steps li a .step {
+	background-color: #f2f2f2;
+	border-radius: 15px;
+	border: 1px #bababa solid;
+	display: block;
+	height: 30px;
+	margin: 0 auto 10px;
+	padding-top: 5px;
+	width: 30px;
+}
+#CV-Builder .tab-content>.active, 
+#CV-Builder .pill-content>.active {
+	border-top: 1px solid #f2f2f2;
+	border-bottom: 1px solid #f2f2f2;
+}
+#CV-Builder .tab-content>.tab-pane, 
+#CV-Builder .pill-content>.pill-pane {
+	padding: 10px 20px;
+}
+#CV-Builder .nav-pills>li.active>a, 
+#CV-Builder .nav-pills>li.active>a:hover, 
+#CV-Builder .nav-pills>li.active>a:focus {
+	background-color: transparent;
+	color: #333;
+	font-weight: bold;
+}
+#CV-Builder .fileupload .thumbnail {
+	height: auto !important;
+	min-height: 150px;
+	min-width: 200px;
+	width: 100% !important;
+}
+#CV-Builder #skill-tags_tagsinput {
+	height: auto !important;
+	min-height: 20em;
+	width: 100% !important;
+}
+#CV-Builder div.tagsinput input {
+    width: 200px !important;
+}
+#CV-Builder #skill-tags_tagsinput .tag {
+    clear: both;
+    display: block;
+    width:98%;
+}
+#CV-Builder .pager li>a, 
+#CV-Builder .pager li>span {
+	border-radius: 5px;
+}
+#CV-Builder .multiselect-group .btn-group,
+#CV-Builder button.multiselect.dropdown-toggle {
+	text-align: left;
+	width: 100%;
+} 
+#CV-Builder button.multiselect.dropdown-toggle .caret {
+	float: right;
+	margin-top: 0.5em;
+	margin-right: -5px;
+}
+
+
+@media screen and (max-width: 767px){
+
+	#CV-Builder {padding: 10px;}
+	#CV-Builder .wizard-steps.nav-justified > li {
+		display: table-cell;
+		width: 1%;
+	} 
+	#CV-Builder .wizard-steps li a { padding: 10px 5px;}
+	#CV-Builder .wizard-steps li a .step-name {display: none;}
+}

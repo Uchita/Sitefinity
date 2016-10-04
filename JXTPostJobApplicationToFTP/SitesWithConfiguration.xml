@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sites>
+  <site>
+    <SiteId>65</SiteId>
+    <host>ftp://10.0.20.88/</host>
+    <username>JXT01-Admin</username>
+    <password>Bu4rdmG</password>
+    <sftp>0</sftp>
+    <port>21</port>
+    <LastJobApplicationId></LastJobApplicationId>
+    <LastExceptionApplicationID></LastExceptionApplicationID>
+    <ExceptionID></ExceptionID>
+  </site>
+  
+  <site>
+    <SiteId>1</SiteId>
+    <host>ftp://10.0.20.88/</host>
+    <username>JXT01-Admin</username>
+    <password>Bu4rdmG</password>
+    <sftp>0</sftp>
+    <port>21</port>
+    <LastJobApplicationId></LastJobApplicationId>
+    <LastExceptionApplicationID></LastExceptionApplicationID>
+    <ExceptionID></ExceptionID>
+  </site>
+  
+  <!--<site>
+    <SiteId>65</SiteId>
+    <host>ksftptst.emeraldfield.com</host>
+    <username>jxttst</username>
+    <password>rZ3eA6QJHvzR</password>
+    <sftp>1</sftp>
+    <port>22</port>
+    <LastJobApplicationId></LastJobApplicationId>
+    <LastExceptionApplicationID></LastExceptionApplicationID>
+    <ExceptionID></ExceptionID>
+  </site>-->
+  <!--<site>
+    <SiteId>55</SiteId>
+    <host>ftp://asdfasdfas.com</host>
+    <username>asdfaghh</username>
+    <password>pass3</password>
+    <LastJobApplicationId></LastJobApplicationId>
+  </site>-->
+</sites>
+

@@ -1,0 +1,486 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{47FE3BE8-3E46-47CA-8494-473755867DD0}</ProjectGuid>
+    <ProjectType>Local</ProjectType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <OutputType>Library</OutputType>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>JXTPortal.Web</AssemblyName>
+    <AssemblyOriginatorKeyFile>..\JXTPortal.snk</AssemblyOriginatorKeyFile>
+    <SignAssembly>false</SignAssembly>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <RootNamespace>JXTPortal.Web</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>JXTPortal.Web.xml</DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>JXTPortal.Web.xml</DocumentationFile>
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'GenerateDebug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>JXTPortal.Web.xml</DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JXTPortal\JXTPortal.csproj">
+      <Project>{794327CE-DC0A-4381-89EE-4C00AFB08D5A}</Project>
+      <Name>JXTPortal</Name>
+    </ProjectReference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Drawing" />
+    <ProjectReference Include="..\JXTPortal.Entities\JXTPortal.Entities.csproj">
+      <Name>JXTPortal.Entities</Name>
+      <Project>{20E43088-4618-4F4A-B8AD-FC31B50D94CD}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\JXTPortal.Data\JXTPortal.Data.csproj">
+      <Name>JXTPortal.Data</Name>
+      <Project>{041C1BBE-0BFB-4D45-8125-9AB0BBC09A92}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <!-- Custom code folder: C:\Developments\GeneratedOutput\JXTPortal.Web\App_Code -->
+  <ItemGroup>
+    <Compile Include="App_Code\**\*.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <!-- Include any user files -->
+  <ItemGroup>
+    <Compile Include="**\*.user.*" Exclude="**\*.csproj.user;**\.svn\**">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataSourceControls\AdvertiserJobPricingDataSource.cs" />
+    <Compile Include="DataSourceControls\AreaDataSource.cs" />
+    <Compile Include="DataSourceControls\AvailableStatusDataSource.cs" />
+    <Compile Include="DataSourceControls\CountriesDataSource.cs" />
+    <Compile Include="DataSourceControls\CustomWidgetCssSelectorDataSource.cs" />
+    <Compile Include="DataSourceControls\CustomWidgetDataSource.cs" />
+    <Compile Include="DataSourceControls\DefaultResourcesDataSource.cs" />
+    <Compile Include="DataSourceControls\DynamicPageFilesDataSource.cs" />
+    <Compile Include="DataSourceControls\DynamicpagesCustomWidgetDataSource.cs" />
+    <Compile Include="DataSourceControls\EducationsDataSource.cs" />
+    <Compile Include="DataSourceControls\EmailTemplatesDataSource.cs" />
+    <Compile Include="DataSourceControls\ExceptionTableDataSource.cs" />
+    <Compile Include="DataSourceControls\InvoiceDataSource.cs" />
+    <Compile Include="DataSourceControls\JobAlertsDataSource.cs" />
+    <Compile Include="DataSourceControls\JobAreaDataSource.cs" />
+    <Compile Include="DataSourceControls\JobItemsTypeDataSource.cs" />
+    <Compile Include="DataSourceControls\JobRolesDataSource.cs" />
+    <Compile Include="DataSourceControls\JobsArchiveDataSource.cs" />
+    <Compile Include="DataSourceControls\JobsDataSource.cs" />
+    <Compile Include="DataSourceControls\JobTemplatesDataSource.cs" />
+    <Compile Include="DataSourceControls\LocationDataSource.cs" />
+    <Compile Include="DataSourceControls\MemberMembershipsDataSource.cs" />
+    <Compile Include="DataSourceControls\MemberPositionsDataSource.cs" />
+    <Compile Include="DataSourceControls\MemberQualificationDataSource.cs" />
+    <Compile Include="DataSourceControls\MemberStatusDataSource.cs" />
+    <Compile Include="DataSourceControls\MemberWizardDataSource.cs" />
+    <Compile Include="DataSourceControls\ProfessionDataSource.cs" />
+    <Compile Include="DataSourceControls\RolesDataSource.cs" />
+    <Compile Include="DataSourceControls\SalaryTypeDataSource.cs" />
+    <Compile Include="DataSourceControls\SiteAdvertiserFilterDataSource.cs" />
+    <Compile Include="DataSourceControls\SiteAreaDataSource.cs" />
+    <Compile Include="DataSourceControls\SiteCountriesDataSource.cs" />
+    <Compile Include="DataSourceControls\SiteLocationDataSource.cs" />
+    <Compile Include="DataSourceControls\SiteProfessionDataSource.cs" />
+    <Compile Include="DataSourceControls\SiteResourcesDataSource.cs" />
+    <Compile Include="DataSourceControls\SiteRolesDataSource.cs" />
+    <Compile Include="DataSourceControls\SiteSalaryTypeDataSource.cs" />
+    <Compile Include="DataSourceControls\SiteWorkTypeDataSource.cs" />
+    <Compile Include="DataSourceControls\Views\ViewJobsArchiveDataSource.cs" />
+    <Compile Include="DataSourceControls\Views\ViewJobsDataSource.cs" />
+    <Compile Include="DataSourceControls\Views\ViewJobSearchDataSource.cs" />
+    <Compile Include="DataSourceControls\Views\ViewSiteAdvertisersDataSource.cs" />
+    <Compile Include="DataSourceControls\WebServiceLogDataSource.cs" />
+    <Compile Include="DataSourceControls\WidgetContainersDataSource.cs" />
+    <Compile Include="DataSourceControls\WorkTypeDataSource.cs" />
+    <Compile Include="Data\BaseDataSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\BaseDataSourceDesigner.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\CustomDataSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\CustomDataSourceDesigner.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\CustomParameter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\DataParameter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\EntityDataSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\EntityDataSourceFilter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\EntityRelationship.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\EntityRelationshipMember.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\EntityTransactionModule.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\ILinkedDataSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\ManyToManyListRelationship.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\ManyToManyViewRelationship.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\OneToManyGridRelationship.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\OneToOneViewRelationship.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\ProviderDataSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\ProviderDataSourceDesigner.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\ReadOnlyDataSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\ReadOnlyDataSourceDesigner.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\SqlParameter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataSourceControls\AdminRolesDataSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\RepeaterControls\AdminRolesRepeater.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataSourceControls\AdminUsersDataSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\RepeaterControls\AdminUsersRepeater.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataSourceControls\AdvertiserAccountStatusDataSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\RepeaterControls\AdvertiserAccountStatusRepeater.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataSourceControls\AdvertiserAccountTypeDataSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\RepeaterControls\AdvertiserAccountTypeRepeater.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataSourceControls\AdvertiserBusinessTypeDataSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\RepeaterControls\AdvertiserBusinessTypeRepeater.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataSourceControls\AdvertisersDataSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\RepeaterControls\AdvertisersRepeater.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataSourceControls\AdvertiserUsersDataSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\RepeaterControls\AdvertiserUsersRepeater.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataSourceControls\DynamicPagesDataSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\RepeaterControls\AreaRepeater.cs" />
+    <Compile Include="UI\RepeaterControls\AvailableStatusRepeater.cs" />
+    <Compile Include="UI\RepeaterControls\CountriesRepeater.cs" />
+    <Compile Include="UI\RepeaterControls\DefaultResourcesRepeater.cs" />
+    <Compile Include="UI\RepeaterControls\DynamicPageFilesRepeater.cs" />
+    <Compile Include="UI\RepeaterControls\DynamicPagesRepeater.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataSourceControls\DynamicPageWebPartTemplatesDataSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\RepeaterControls\DynamicPageWebPartTemplatesRepeater.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataSourceControls\DynamicPageWebPartTemplatesLinkDataSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\RepeaterControls\DynamicPageWebPartTemplatesLinkRepeater.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataSourceControls\EmailFormatsDataSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\RepeaterControls\EducationsRepeater.cs" />
+    <Compile Include="UI\RepeaterControls\EmailFormatsRepeater.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataSourceControls\EnquiriesDataSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\RepeaterControls\EmailTemplatesRepeater.cs" />
+    <Compile Include="UI\RepeaterControls\EnquiriesRepeater.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataSourceControls\FilesDataSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\RepeaterControls\ExceptionTableRepeater.cs" />
+    <Compile Include="UI\RepeaterControls\FilesRepeater.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataSourceControls\FileTypesDataSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\RepeaterControls\FileTypesRepeater.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataSourceControls\FoldersDataSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\RepeaterControls\FoldersRepeater.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataSourceControls\GlobalSettingsDataSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\RepeaterControls\GlobalSettingsRepeater.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataSourceControls\LanguagesDataSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\RepeaterControls\JobAlertsRepeater.cs" />
+    <Compile Include="UI\RepeaterControls\JobAreaRepeater.cs" />
+    <Compile Include="UI\RepeaterControls\JobItemsTypeRepeater.cs" />
+    <Compile Include="UI\RepeaterControls\JobRolesRepeater.cs" />
+    <Compile Include="UI\RepeaterControls\JobTemplatesRepeater.cs" />
+    <Compile Include="UI\RepeaterControls\LanguagesRepeater.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataSourceControls\MemberFilesDataSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\RepeaterControls\LocationRepeater.cs" />
+    <Compile Include="UI\RepeaterControls\MemberFilesRepeater.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataSourceControls\MemberFileTypesDataSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\RepeaterControls\MemberFileTypesRepeater.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataSourceControls\MembersDataSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\RepeaterControls\MemberMembershipsRepeater.cs" />
+    <Compile Include="UI\RepeaterControls\MemberPositionsRepeater.cs" />
+    <Compile Include="UI\RepeaterControls\MemberQualificationRepeater.cs" />
+    <Compile Include="UI\RepeaterControls\MembersRepeater.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataSourceControls\NewsDataSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\RepeaterControls\MemberStatusRepeater.cs" />
+    <Compile Include="UI\RepeaterControls\MemberWizardRepeater.cs" />
+    <Compile Include="UI\RepeaterControls\NewsRepeater.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataSourceControls\NewsCategoriesDataSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\RepeaterControls\NewsCategoriesRepeater.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataSourceControls\SitesDataSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\RepeaterControls\ProfessionRepeater.cs" />
+    <Compile Include="UI\RepeaterControls\RolesRepeater.cs" />
+    <Compile Include="UI\RepeaterControls\SalaryTypeRepeater.cs" />
+    <Compile Include="UI\RepeaterControls\SiteAdvertiserFilterRepeater.cs" />
+    <Compile Include="UI\RepeaterControls\SiteAreaRepeater.cs" />
+    <Compile Include="UI\RepeaterControls\SiteCountriesRepeater.cs" />
+    <Compile Include="UI\RepeaterControls\SiteLocationRepeater.cs" />
+    <Compile Include="UI\RepeaterControls\SiteProfessionRepeater.cs" />
+    <Compile Include="UI\RepeaterControls\SiteResourcesRepeater.cs" />
+    <Compile Include="UI\RepeaterControls\SiteRolesRepeater.cs" />
+    <Compile Include="UI\RepeaterControls\SiteSalaryTypeRepeater.cs" />
+    <Compile Include="UI\RepeaterControls\SitesRepeater.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataSourceControls\SiteWebPartsDataSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\RepeaterControls\SiteWebPartsRepeater.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataSourceControls\SiteWebPartTypesDataSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\RepeaterControls\SiteWebPartTypesRepeater.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\FormUtil.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\FormUtilBase.generated.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>FormUtil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\MultiBindableTemplate.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\MultiFormView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\EntityGridView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\EntityDropDownList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\BoundRadioButtonField.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\BoundEntityDropDownField.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\GridViewSearchPanel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\GridViewSearchPanelState.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\EntityLabel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\HyperlinkField.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\RepeaterControls\SiteWorkTypeRepeater.cs" />
+    <Compile Include="UI\RepeaterControls\Views\ViewSiteAdvertisersRepeater.cs" />
+    <Compile Include="UI\RepeaterControls\WidgetContainersRepeater.cs" />
+    <Compile Include="UI\RepeaterControls\WorkTypeRepeater.cs" />
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Code\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSHARP.Targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

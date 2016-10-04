@@ -1,0 +1,853 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Jobs advertiser="33 Talent Pty Ltd" account="17132" username="33tal" password="33tal30^6!4@" jid="10127" source="cvzoay5pxknulkyqekwsuhlai4">
+  <Fields>
+    <Field jid="15365" type="List" name="Job Category">
+      <Values>
+        <Value jid="636088" name="Digital" id="527">
+          <Field jid="15366" type="List" name="Sub-Category">
+            <Values>
+              <Value jid="636736" name="Account Manager" id="4265" />
+              <Value jid="636737" name="Advertising - Creative Services" id="4266" />
+              <Value jid="636738" name="Advertising Specialist" id="4267" />
+              <Value jid="636739" name="Analytics" id="5371" />
+              <Value jid="636740" name="Creative" id="4268" />
+              <Value jid="636741" name="Digital Media" id="4269" />
+              <Value jid="636742" name="Digital Sales" id="4270" />
+              <Value jid="636743" name="eCommerce" id="4271" />
+              <Value jid="636744" name="Journalism/Copywriter" id="4272" />
+              <Value jid="636745" name="Mobile" id="4273" />
+              <Value jid="636746" name="Publishing" id="4274" />
+              <Value jid="636747" name="Social Media" id="4275" />
+              <Value jid="636748" name="Technology" id="5377" />
+            </Values>
+          </Field>
+        </Value>
+        <Value jid="636090" name="HR &amp; Recruitment" id="529">
+          <Field jid="15366" type="List" name="Sub-Category">
+            <Values>
+              <Value jid="817884" name="Executive Search Consultant" id="4303" />
+              <Value jid="817885" name="Industrial Relations Specialist" id="4304" />
+              <Value jid="817886" name="Internal Recruiter" id="4305" />
+              <Value jid="817887" name="HR - Assistant/Administrator" id="4306" />
+              <Value jid="817888" name="HR - Coordinator" id="4307" />
+              <Value jid="817889" name="HR - Officer/Adviser" id="4308" />
+              <Value jid="817890" name="HR - Consultant" id="4309" />
+              <Value jid="817891" name="General HR" id="4310" />
+              <Value jid="817892" name="Management" id="4311" />
+              <Value jid="817893" name="HR Director &amp; Senior Mgmnt" id="4312" />
+              <Value jid="817894" name="HRIS" id="4313" />
+              <Value jid="817895" name="Payroll Officer" id="4314" />
+              <Value jid="817896" name="Other" id="4315" />
+              <Value jid="817897" name="OD - Organizational Development" id="4316" />
+              <Value jid="817898" name="Recruitment" id="4317" />
+              <Value jid="817899" name="Resourcer" id="4318" />
+              <Value jid="817900" name="Researcher" id="4319" />
+              <Value jid="817901" name="Recruitment - Account Manager" id="4320" />
+              <Value jid="817902" name="Recruitment - Manager" id="4321" />
+              <Value jid="817903" name="Recruitment - Support/Other" id="4322" />
+              <Value jid="817904" name="Recruitment Consultant" id="4323" />
+              <Value jid="817905" name="Recruitment Centre Manager" id="4324" />
+              <Value jid="817906" name="Recruitment Team Leader" id="4325" />
+              <Value jid="817907" name="Renumeration &amp; Benefits Specialist" id="4326" />
+              <Value jid="817908" name="Senior Internal Recruiter" id="4327" />
+              <Value jid="817909" name="Senior Recruitment Consultant" id="4328" />
+              <Value jid="817910" name="State/Country Manager" id="4329" />
+              <Value jid="817911" name="Team Leader" id="4330" />
+              <Value jid="817912" name="Trainee Consultant" id="4331" />
+              <Value jid="817913" name="Training/Learning &amp; Development" id="4332" />
+            </Values>
+          </Field>
+        </Value>
+        <Value jid="636091" name="Big Data" id="526">
+          <Field jid="15366" type="List" name="Sub-Category">
+            <Values>
+              <Value jid="636732" name="Data Science" id="4261" />
+              <Value jid="636733" name="Technologist" id="4262" />
+              <Value jid="636734" name="Visualisation" id="4263" />
+              <Value jid="636735" name="Data Scientist" id="4264" />
+            </Values>
+          </Field>
+        </Value>
+        <Value jid="636092" name="Communications" id="528">
+          <Field jid="15366" type="List" name="Sub-Category">
+            <Values>
+              <Value jid="636749" name="Brand Manager" id="4276" />
+              <Value jid="636750" name="Category Manager" id="4277" />
+              <Value jid="636751" name="Corporate Communications" id="4278" />
+              <Value jid="636752" name="CSR" id="4279" />
+              <Value jid="636753" name="Database Analyst/Specialist" id="4280" />
+              <Value jid="636754" name="Direct Marketer" id="4281" />
+              <Value jid="636755" name="E-Marketing" id="4282" />
+              <Value jid="636756" name="Event/Conference Management" id="4283" />
+              <Value jid="636757" name="Event/Conference Producer" id="4284" />
+              <Value jid="636758" name="IR - Investor Relations" id="4285" />
+              <Value jid="636759" name="Marketing Communications" id="4286" />
+              <Value jid="636760" name="Marketing Consultant" id="4287" />
+              <Value jid="636761" name="Marketing Director" id="4288" />
+              <Value jid="636762" name="Marketing Executive" id="4289" />
+              <Value jid="636763" name="Marketing Manager" id="4290" />
+              <Value jid="636764" name="Marketing Research" id="4291" />
+              <Value jid="636765" name="Marketing/PR/Events - Others" id="4292" />
+              <Value jid="636766" name="PR - Account Director" id="4293" />
+              <Value jid="636767" name="PR - Account Executive" id="4294" />
+              <Value jid="636768" name="PR - Account Manager" id="4295" />
+              <Value jid="636769" name="PR - Media Advisor" id="4296" />
+              <Value jid="636770" name="PR - Practice Director" id="4297" />
+              <Value jid="636771" name="PR - Press Officer" id="4298" />
+              <Value jid="636772" name="PR Manager" id="4299" />
+              <Value jid="636773" name="Product Development/Management" id="4300" />
+              <Value jid="636774" name="Promotions" id="4301" />
+              <Value jid="636775" name="Trade Marketing" id="4302" />
+            </Values>
+          </Field>
+        </Value>
+        <Value jid="636731" name="Other" id="530">
+          <Field jid="15366" type="List" name="Sub-Category">
+            <Values>
+              <Value jid="636776" name="Accounting/Finance" id="4333" />
+              <Value jid="636777" name="Admin/Office Support/Secretarial" id="4334" />
+              <Value jid="636778" name="HR/Recruitment" id="4335" />
+              <Value jid="636779" name="Legal" id="4336" />
+              <Value jid="636780" name="Sales/Account Management" id="4337" />
+              <Value jid="636781" name="Technical" id="4338" />
+            </Values>
+          </Field>
+        </Value>
+      </Values>
+    </Field>
+    <Field jid="15368" type="List" name="Work Type">
+      <Values>
+        <Value jid="636196" name="Part Time" id="1" />
+        <Value jid="636197" name="Full Time" id="2" />
+        <Value jid="636198" name="Casual" id="3" />
+        <Value jid="636199" name="Contract" id="4" />
+        <Value jid="636200" name="Temporary" id="12" />
+      </Values>
+    </Field>
+    <Field jid="15405" type="List" name="Country">
+      <Values>
+        <Value jid="636163" name="Australia" id="1">
+          <Field jid="15410" type="List" name="Location">
+            <Values>
+              <Value jid="636785" name="Sydney" id="1" />
+              <Value jid="636786" name="NSW - Other" id="25" />
+              <Value jid="636787" name="Melbourne" id="2" />
+              <Value jid="636788" name="VIC Other" id="11" />
+              <Value jid="636789" name="Brisbane" id="3" />
+              <Value jid="636790" name="Gold Coast" id="4" />
+              <Value jid="636791" name="QLD Other" id="12" />
+              <Value jid="636792" name="Perth" id="5" />
+              <Value jid="636793" name="WA Other" id="13" />
+              <Value jid="636794" name="Adelaide" id="6" />
+              <Value jid="636795" name="SA Other" id="14" />
+              <Value jid="636796" name="Hobart" id="7" />
+              <Value jid="636797" name="TAS Other" id="15" />
+              <Value jid="636798" name="ACT" id="16" />
+              <Value jid="636799" name="Northern Territory" id="8" />
+            </Values>
+          </Field>
+        </Value>
+        <Value jid="636164" name="Singapore" id="14">
+          <Field jid="15410" type="List" name="Location">
+            <Values>
+              <Value jid="636800" name="Singapore" id="30" />
+            </Values>
+          </Field>
+        </Value>
+        <Value jid="636782" name="Hong Kong" id="4">
+          <Field jid="15410" type="List" name="Location">
+            <Values>
+              <Value jid="636801" name="Hong Kong" id="20" />
+            </Values>
+          </Field>
+        </Value>
+        <Value jid="636783" name="China" id="3">
+          <Field jid="15410" type="List" name="Location">
+            <Values>
+              <Value jid="636802" name="Beijing" id="143" />
+              <Value jid="636803" name="Shanghai" id="144" />
+              <Value jid="636804" name="Rest of China" id="146" />
+            </Values>
+          </Field>
+        </Value>
+        <Value jid="636809" name="Europe" id="19">
+          <Field jid="15410" type="List" name="Location">
+            <Values>
+              <Value jid="636810" name="London" id="171" />
+              <Value jid="636811" name="Rest of Europe" id="172" />
+              <Value jid="913687" name="Switzerland" id="174" />
+            </Values>
+          </Field>
+        </Value>
+        <Value jid="811786" name="New Zealand" id="2">
+          <Field jid="15410" type="List" name="Location">
+            <Values>
+              <Value jid="811787" name="Auckland" id="39" />
+            </Values>
+          </Field>
+        </Value>
+        <Value jid="819547" name="Malaysia" id="157">
+          <Field jid="15410" type="List" name="Location">
+            <Values>
+              <Value jid="819548" name="Malaysia" id="36" />
+            </Values>
+          </Field>
+        </Value>
+        <Value jid="1023420" name="Other" id="265">
+          <Field jid="15410" type="List" name="Location">
+            <Values>
+              <Value jid="1023421" name="Other APAC" id="451" />
+            </Values>
+          </Field>
+        </Value>
+      </Values>
+    </Field>
+    <Field jid="16810" type="List" name="Area">
+      <Values>
+        <Value jid="816792" name="Wellington" id="98" />
+        <Value jid="816793" name="Waitakere &amp; West Auckland" id="168" />
+        <Value jid="816794" name="Waiheke Island" id="169" />
+        <Value jid="816795" name="Shanghai" id="584" />
+        <Value jid="816796" name="Rodney &amp; North Shore" id="167" />
+        <Value jid="816797" name="Rest of NZ" id="100" />
+        <Value jid="816798" name="Rest of Europe" id="614" />
+        <Value jid="816799" name="Papakura &amp; Franklin" id="166" />
+        <Value jid="816800" name="Manukau &amp; East Auckland" id="165" />
+        <Value jid="816801" name="London" id="613" />
+        <Value jid="816802" name="Christchurch" id="99" />
+        <Value jid="816803" name="Beijing" id="583" />
+        <Value jid="816804" name="Auckland Central" id="164" />
+        <Value jid="816805" name="All TAS" id="89" />
+        <Value jid="816806" name="All Sydney" id="1" />
+        <Value jid="816807" name="All Singapore" id="150" />
+        <Value jid="816808" name="All Rest of China" id="588" />
+        <Value jid="816809" name="All Regional WA" id="70" />
+        <Value jid="816810" name="All Regional Victoria" id="47" />
+        <Value jid="816811" name="All Regional South Australia" id="79" />
+        <Value jid="816812" name="All Regional Queensland" id="58" />
+        <Value jid="816813" name="All Regional NSW" id="146" />
+        <Value jid="816814" name="All Perth" id="21" />
+        <Value jid="816815" name="All Northern Territory" id="29" />
+        <Value jid="816816" name="All New Zealand" id="139" />
+        <Value jid="816817" name="All Melbourne" id="8" />
+        <Value jid="816818" name="All Hong Kong" id="141" />
+        <Value jid="816819" name="All Hobart" id="28" />
+        <Value jid="816820" name="All Gold Coast" id="20" />
+        <Value jid="816821" name="All Brisbane" id="14" />
+        <Value jid="816822" name="All Auckland" id="163" />
+        <Value jid="816823" name="All Adelaide" id="27" />
+        <Value jid="816824" name="All ACT" id="93" />
+        <Value jid="819549" name="All Malaysia" id="161" />
+        <Value jid="1028759" name="APAC" id="1585" />
+      </Values>
+    </Field>
+  </Fields>
+  <Job jid="2293601" reference="2240926" datePosted="2016-03-02" dateUpdated="2016-03-02T02:40:11Z">
+    <Title>Account Manager</Title>
+    <Summary>Account Manager required by award winning global company who are pioneers in the mobile Ad/Tech space.</Summary>
+    <Description><![CDATA[<strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong>The Company</strong><br> They are global company who are pioneers in the mobile space, offering intelligent location data to define and target digital audiences.&nbsp; This rapidly growing company are working with cutting edge technologies and have a unique offering in the Australian market.<strong><br> </strong><br> For this role based in Sydney, they're looking for someone to provide full account management support for their Sales Managers from win to campaign close. You'll be working closely with Sales, Creative and Ad Ops, taking ownership of client communication relating to end-to-end campaign management to ensure seamless campaign process set up and delivery. We're looking for a bright, highly organised Account Manager who is passionate about current mobile advertising trends and genuinely enjoys a client-facing role.<br> <br> <br> <strong>The Role</strong><br> <ul> <li>Will see you manage the day-to-day client relationship (media/digital agencies, brands direct)</li> <li>Will see you oversee campaign set up and delivery</li> <li>Will see you manage all internal and external meetings, approvals, traffic coordination etc. to maintain the campaign schedule.</li> <li>Will see you oversee the creative process (if applicable) by understanding the client's creative requirements and developing a brief for the creative team.</li> <li>Will see you assist internal stakeholders with creative, media optimisation and resolving mid-campaign issues.</li> <li>Will see you manage reporting and provide campaign insights to clients.</li> </ul> <br> <strong>&amp; You...&nbsp;</strong><br> <ul> <li>Will have strong PowerPoint and Excel skills.</li> <li>Will have 2+ years' experience in the media industry (agency experience a plus)</li> <li>Will be a confident personality, someone who learns quickly and can read your audience.</li> <li>Will have excellent time management skills and the ability to collaborate with various stakeholders across the business</li> <li>Will have a natural passion for media and an entrepreneurial spirit - someone who is ready to roll up their sleeves when needed.</li> <li>Will have strong communication and presentation skills.</li> <li>Will ideally have Zoho CRM experience</li> </ul> <br> <br> <br> <strong>33 Talent</strong><br> <em>33 Talent specialises in Big Data, Digital and Communications recruitment and talent management across Europe and the APAC region. Our clients include Lenovo, AMEX, SingTel, The Body Shop, Amobee, SAP, WPP Group, McCann Worldgroup, IPG and&nbsp;numerous other corporate, agency and network clients.&nbsp;&nbsp; Please get in touch or feel free to make referrals to&nbsp;hello@33talent.com&nbsp; We'd love to hear from you!&nbsp;<br> </em><br> <em>33 Talent Pty Ltd</em><br> <em>Recruiter: Bronwen Kaspers - bronwen@33talent.com<br> </em><em></em><em></em><em> </em>]]></Description>
+    <SearchTitle>Account Manager</SearchTitle>
+    <Classifications>
+      <Classification jid="15365" name="Job Category" vid="636088" id="527">Digital</Classification>
+      <Classification jid="15366" name="Sub-Category" vid="636736" id="4265">Account Manager</Classification>
+      <Classification jid="15405" name="Country" vid="636163" id="1">Australia</Classification>
+      <Classification jid="15410" name="Location" vid="636785" id="1">Sydney</Classification>
+      <Classification jid="16810" name="Area" vid="816806" id="1">All Sydney</Classification>
+      <Classification jid="15368" name="Work Type" vid="636197" id="2">Full Time</Classification>
+    </Classifications>
+    <Fields />
+    <Apply>
+      <EmailTo>bronwen@33talent.com</EmailTo>
+      <Url>https://apply.jobadder.com/au1/2076/2293601/cvzoay5pxknulkyqekwsuhlai4</Url>
+    </Apply>
+  </Job>
+  <Job jid="2293659" reference="2241111" datePosted="2016-03-02" dateUpdated="2016-03-02T03:26:33Z">
+    <Title>Sales Manager</Title>
+    <Summary>Sales Manager required with existing media agency relationships to join global mobile ad tech co. in Sydney.</Summary>
+    <Description><![CDATA[<strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong>&nbsp;<br> Sales Manager required by for an award winning global Ad and Technology company. This global company are pioneers in the mobile space, offering intelligent location data to define and target digital audiences.&nbsp;<br> This rapidly growing company are working with cutting technologies and have a unique offering in the Australian market.<br> &nbsp;<br> &nbsp;<br> <strong>The Role...</strong>&nbsp;<br> &nbsp;<br> We are looking for an experienced Sales Manager with a strong background in mobile/digital sales to become part of this growing, dynamic and hugely innovative company.&nbsp;<br> &bull; Will see you leveraging existing media agency relationships to build a pipeline of opportunity across the product set<br> &bull; Will see you demonstrate an in-depth understanding of the current mobile market and where to leverage huge global spends to drive sales.<br> &bull; Will see you forging new and lasting client relationships across media agencies and mobile specialists.&nbsp;<br> &bull; Will see working with some of the nicest most genuine people in the business<br> &nbsp;<br> <strong>You...</strong><br> &bull; Will have a strong background in sales within the digital or mobile advertising space&nbsp;<br> &bull; Will have a good level of understanding about mobile advertising and will understand how mobile is traded<br> &bull; Will be a focused, tenacious and practical personal with a commercial flair<br> &bull; Will have a have a good contact list and hold existing relationships with the major media agency groups and also mobile specialists<br> &bull; Will have a strong understanding of the needs and requirements of digital media buyers.<br> &bull; Will have excellent social and networking skills<br> &bull; Will have a strong passion for mobile and technology<br> <br> <br> <strong>33 Talent</strong><br> <em>33 Talent specialises in Big Data, Digital and Communications recruitment and talent management across Europe and the APAC region. Our clients include Lenovo, AMEX, SingTel, The Body Shop, Amobee, SAP, WPP Group, McCann Worldgroup, IPG and&nbsp;numerous other corporate, agency and network clients.&nbsp;&nbsp; Please get in touch or feel free to make referrals to&nbsp;hello@33talent.com&nbsp; We'd love to hear from you!&nbsp;<br> </em><br> <em>33 Talent Pty Ltd</em><br> <em>Recruiter: Bronwen Kaspers - bronwen@33talent.com<br> </em><em> </em>]]></Description>
+    <SearchTitle>Sales Manager</SearchTitle>
+    <Classifications>
+      <Classification jid="15365" name="Job Category" vid="636088" id="527">Digital</Classification>
+      <Classification jid="15366" name="Sub-Category" vid="636742" id="4270">Digital Sales</Classification>
+      <Classification jid="15405" name="Country" vid="636163" id="1">Australia</Classification>
+      <Classification jid="15410" name="Location" vid="636785" id="1">Sydney</Classification>
+      <Classification jid="16810" name="Area" vid="816806" id="1">All Sydney</Classification>
+      <Classification jid="15368" name="Work Type" vid="636197" id="2">Full Time</Classification>
+    </Classifications>
+    <Fields />
+    <Apply>
+      <EmailTo>bronwen@33talent.com</EmailTo>
+      <Url>https://apply.jobadder.com/au1/2076/2293659/cvzoay5pxknulkyqekwsuhlai4</Url>
+    </Apply>
+  </Job>
+  <Job jid="2294259" reference="2237163" datePosted="2016-03-02" dateUpdated="2016-03-02T08:31:27Z">
+    <Title>PR Manager</Title>
+    <Summary>Business and tech savvy PR Manager to lead the company's communication strategies across multiple markets.</Summary>
+    <Description><![CDATA[<strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong>The Company</strong><strong><br> </strong>With offices in Australia, the UK and Canada, our Client - a&nbsp;innovative, technology game changer, is looking for&nbsp;a business and tech savvy PR Manager to lead the company's communication strategies across multiple markets.&nbsp;<br> <br> <strong>The Role</strong><strong><br> </strong>Working alongside the company CMO, this newly created role as PR Manager will be responsible for driving all public relations activities across the business. From developing media relations strategies and directing the social media team, to managing events, crunching research, carving industry profiles for senior leaders and getting under the skin of stakeholders, you will drive creative and compelling messages to market.&nbsp;<br> &nbsp;<br> <strong>&amp; You...&nbsp;</strong><br> With 5+ years experience in-house or agency PR experience you are an ambitious Consultant, with a keen eye for detail,&nbsp;capability&nbsp;to think outside the&nbsp;box and can share clear examples of your solution driven and problem solving skills. You bring local experience and first class media contacts across the technology and business landscape, thrive on building newsworthy content and have the confidence to manage multiple stakeholders and provide senior counsel to the business.<br> <br> &nbsp;<br> Only consultants with relevant industry experience will be contacted. &nbsp;<br> <br> &nbsp;<strong>33 Talent</strong><br> <em>33 Talent specialises in Big Data, Digital and Communications recruitment and talent management&nbsp;across Europe and the APAC region. &nbsp;Our clients include Lenovo, AMEX, SingTel, The Body Shop, Amobee, SAP, WPP Group, McCann Worldgroup, IPG and&nbsp;numerous other corporate, agency and network clients.&nbsp;&nbsp; Please get in touch or feel free to make referrals to&nbsp;hello@33talent.com&nbsp; We'd love to hear from you!&nbsp;<br> </em><br> <em>33 Talent Pty Ltd</em><br> <em>Recruiter: Sally Thompson - sally@33talent.com<br> </em>]]></Description>
+    <SearchTitle>PR Manager</SearchTitle>
+    <Classifications>
+      <Classification jid="15365" name="Job Category" vid="636092" id="528">Communications</Classification>
+      <Classification jid="15366" name="Sub-Category" vid="636772" id="4299">PR Manager</Classification>
+      <Classification jid="15405" name="Country" vid="636163" id="1">Australia</Classification>
+      <Classification jid="15410" name="Location" vid="636785" id="1">Sydney</Classification>
+      <Classification jid="16810" name="Area" vid="816806" id="1">All Sydney</Classification>
+      <Classification jid="15368" name="Work Type" vid="636197" id="2">Full Time</Classification>
+    </Classifications>
+    <Fields />
+    <Apply>
+      <EmailTo>careers@33talent.com</EmailTo>
+      <Url>https://apply.jobadder.com/au1/2076/2294259/cvzoay5pxknulkyqekwsuhlai4</Url>
+    </Apply>
+  </Job>
+  <Job jid="2295009" reference="2219421" datePosted="2016-03-03" dateUpdated="2016-03-03T04:42:36Z">
+    <Title>DevOps Engineer/ System Administration - Eyeota</Title>
+    <Summary>Eyeota is looking for an experienced System Administrator to join their team in Singapore and help take their products to the next level</Summary>
+    <Description><![CDATA[<strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong>The Company: Eyeota</strong><br> Eyeota is looking for an experienced System Administrator to join their team in Singapore and help take their products to the next level. You will be working with a small team of highly empowered, experienced developers who are building a high-performance, highly scaled global platform.<br> <br> Ideal candidates for the System Administrator position have extensive experience with DevOps, "Big Data" analytics platforms, handling Linux machines and bare metal. They must have the desire to &#65532;make life easier for themselves and all their users. You should enjoy working with a driven team of technical and business people and are able to thrive and succeed in a dynamic, fast-paced and international environment. Do you live in the shell and use your mouse only to generate entropy?<br> <br> <strong>The Role</strong><br> &bull; Deploy and maintain clusters at our global customer-base<br> &bull; Automate deployment, maintenance and monitoring tasks<br> &bull; Help us make informed decisions on hardware, OS and application choices<br> &bull; Support software engineers with tooling and systems to make their lives friction-less<br> <br> <strong>&amp; You...&nbsp;</strong><br> &bull; Substantial experience in deploying and operating physical and virtualized multi-node clusters in an enterprise environment<br> &bull; Experience with deploying Big Data platforms such as Hadoop, Storm, Spark, etc<br> &bull; Familiarity with bare-metal and cloud provisioning and automation tools such as Ansible,<br> &bull; Puppet, Foreman<br> &bull; Able to communicate clearly in English, writing and speaking with our multinational team<br> &bull; &#65532;Database administration and tuning skills<br> &bull; Experience with AWS or other cloud providers<br> &bull; Experience with cloud or cluster management tools such as Opennebula, Mesos, etc<br> &bull; Knowledge of virtualisation technologies such as KVM, Xen, LXC<br> &bull; &#65532;Experience with Continuous Integration or Continuous Delivery<br> &bull; Sufficient programming expertise to set up custom dashboards using tools like Graphite<br> <br> Interested candidates please write to Rina Lee rina@33talent.com<br> <br> <strong>33 Talent</strong><br> <em>33 Talent specialises in Big Data, Digital and Communications recruitment and talent management&nbsp;across Europe and the APAC region. &nbsp;Our clients include Lenovo, AMEX, SingTel, The Body Shop, Amobee, SAP, WPP Group, McCann Worldgroup, IPG and&nbsp;numerous other corporate, agency and network clients.&nbsp;&nbsp; Please get in touch or feel free to make referrals to&nbsp;hello@33talent.com&nbsp; We'd love to hear from you!&nbsp;<br> </em><br> <em>33 Talent Singapore Private Limited</em><br> <em>EA License Number 13C6298<br> </em><em>EA Personnel:&nbsp;Rina Lee Zia Zia -&nbsp;R1104286</em><em></em><em></em><em></em><em></em><em></em><em><br> </em>]]></Description>
+    <SearchTitle>System Administration</SearchTitle>
+    <Classifications>
+      <Classification jid="15365" name="Job Category" vid="636088" id="527">Digital</Classification>
+      <Classification jid="15366" name="Sub-Category" vid="636748" id="5377">Technology</Classification>
+      <Classification jid="15405" name="Country" vid="636164" id="14">Singapore</Classification>
+      <Classification jid="15410" name="Location" vid="636800" id="30">Singapore</Classification>
+      <Classification jid="16810" name="Area" vid="816807" id="150">All Singapore</Classification>
+      <Classification jid="15368" name="Work Type" vid="636197" id="2">Full Time</Classification>
+    </Classifications>
+    <Fields />
+    <Apply>
+      <EmailTo>rina@33talent.com</EmailTo>
+      <Url>https://apply.jobadder.com/au1/2076/2295009/cvzoay5pxknulkyqekwsuhlai4</Url>
+    </Apply>
+  </Job>
+  <Job jid="2295662" reference="2242297" datePosted="2016-03-04" dateUpdated="2016-03-03T16:21:51Z">
+    <Title>Client Success Manager - Affiliate Marketing</Title>
+    <Summary>Want to join a market leading tech' company in Affiliate Marketing? Fantastic Client Success Manager opportunity.</Summary>
+    <Description><![CDATA[<strong></strong><strong></strong><strong></strong><strong>The Company</strong><br> An international&nbsp;business that's setting industry leading standards for performance and service within Affiliate Marketing. They work with some of the world's best known brands, as well as expert niche players, using cutting edge technology in real time campaign management, insight,&nbsp;and optimisation. Just a small selection of their partners and clients include: Spotify, Expedia, Adidas, Emirates and Sandtander.&nbsp;<br> This is a fantastic opportunity to work alongside a team of talented and motivated specialists, in a fast moving and rewarding environment.<br> <br> <strong>The Role</strong><br> As a&nbsp;Client Success Manager you will work with a portfolio of advertisers and publishers&nbsp;ensuring they're getting the best from the platform in order to&nbsp;achieve their goals. You'll use your strong communication skills from the outset of a partnership&nbsp;to position solutions and services that complement and enhance client strategies, and then ultimately ensure successful outcomes for both your clients and for partners. &nbsp;Your responsibilities will include:<br> <ul> <li>Working with clients to define targets and strategies</li> <li>Project Managing the on-boarding of new clients, and the integration of new publishers</li> <li>Providing direction and leadership, whilst also rolling up your sleeves and getting directly involved</li> <li>Building and strengthening relationships with key contacts through regular visits and meetings</li> <li>Identifying opportunities to up-sell and convert accounts to start-performers</li> <li>Reviewing and optimising campaign performance</li> <li>Preparing and presenting report data and account reviews</li> <li>Managing and negotiating client renewals and retention</li> </ul> <strong>&amp; You...&nbsp;</strong><br> We'd like you to:<br> <ul> <li>Have a passion for, and professional experience in, Affiliate Marketing&nbsp;</li> <li>Be highly client focussed, able to understand and respond to customer requirements</li> <li>Have an entrepreneurial approach, always seeking out new opportunities</li> <li>Demonstrate great networking and relationship building skills</li> <li>Be a creative solutions person, able to overcome obstacles and objections</li> <li>Have great presentation and negotiation skills</li> </ul> If this sounds like you we'd love to hear from you!<br> <strong>33 Talent</strong><br> <em>33 Talent specialises in Big Data, Digital and Communications recruitment and talent management&nbsp;across Europe and the APAC region. Our clients include Lenovo, AMEX, SingTel, The Body Shop, Amobee, SAP, WPP Group, McCann Worldgroup, IPG and&nbsp;numerous other corporate, agency and network clients.&nbsp;&nbsp; Please get in touch or feel free to make referrals to&nbsp;hello@33talent.com&nbsp; We'd love to hear from you!&nbsp;</em><br> <br> <em>33 Talent&nbsp;</em><br> <em>Recruiter: David Willis - david@33talent.com</em>]]></Description>
+    <SearchTitle>Client Success Manager - Affiliate Marketing</SearchTitle>
+    <Classifications>
+      <Classification jid="15365" name="Job Category" vid="636088" id="527">Digital</Classification>
+      <Classification jid="15366" name="Sub-Category" vid="636743" id="4271">eCommerce</Classification>
+      <Classification jid="15405" name="Country" vid="636809" id="19">Europe</Classification>
+      <Classification jid="15410" name="Location" vid="636810" id="171">London</Classification>
+      <Classification jid="16810" name="Area" vid="816801" id="613">London</Classification>
+      <Classification jid="15368" name="Work Type" vid="636197" id="2">Full Time</Classification>
+    </Classifications>
+    <Fields />
+    <Apply>
+      <EmailTo>david@33talent.com</EmailTo>
+      <Url>https://apply.jobadder.com/au1/2076/2295662/cvzoay5pxknulkyqekwsuhlai4</Url>
+    </Apply>
+  </Job>
+  <Job jid="2298100" reference="2231348" datePosted="2016-03-07" dateUpdated="2016-03-07T01:58:15Z">
+    <Title>Programmatic Trader/Campaign Manager</Title>
+    <Summary>Programmatic digital agency is seeking a talented Campaign Manager/Programmatic Trader with ad ops experience to join their growing Melbourne team.</Summary>
+    <Description><![CDATA[<strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong>The Company</strong><br> They are a specialist programmatically-led digital agency covering Display, Mobile, Rich Media, Video, Social, Search and Lead Generation and are looking for a Programmatic Trader/Campaign Manager to join their growing team in Melbourne. You'll be mentored by some of the best in the business and will be offered 4 weeks comprehensive training in Sydney.<strong></strong><br> <br> <br> <strong>The Role</strong><br> As a Programmatic Trader, you'll be setting up campaigns, monitoring performance, and optimising across display, social, video and mobile channels, according to client objectives. This role reports into the Trading Director. A solid understanding of online sales metrics and excellent analytics skills are required. You will work closely with the Client Services team in delivering to weekly and monthly campaign performance goals.<br> <br> <br> <strong>&amp; You Will Ideally Have ...&nbsp;</strong><br> &bull; 1+ years hands on programmatic optimisation experience at a trading desk, ad exchange, DSP or SSP<br> &bull; 3+ years in the industry either in a planning/ops/campaign management role<br> &bull; An excellent understanding of online buying and selling processes, and knowledge of advertising technologies including Ad Serving, Rich Media, RTB, Ad Exchanges, DSP's, SSP's and DMP's<br> &bull; A good understanding of the Trading and Programmatic landscape, in Australia<br> &bull; Experience in Display, Video, Social and Mobile advertising<br> &bull; Experience using ad-servers<br> &bull; Outstanding analytics skills, with expert level MS Excel knowledge, including extensive experience with pivot tables, building dashboards and the ability to create summaries on presented data <br> &bull; Effective time management skills, including the ability to prioritise and meet multiple deadlines<br> &bull; Diligent work ethic. Must be self-motivated and able to take the initiative<br> &bull; Experience using Salesforce, Google Analytics, Google Tag Manager and DoubleClick<br> &bull; Bachelor's degree in quantitative discipline such as Engineering, Econometric, Statistics, Physics etc.<br> <br> <br> <br> <br> <strong>33 Talent</strong><br> <em>33 Talent specialises in Big Data, Digital and Communications recruitment and talent management across Europe and the APAC region. Our clients include Lenovo, AMEX, SingTel, The Body Shop, Amobee, SAP, WPP Group, McCann Worldgroup, IPG and&nbsp;numerous other corporate, agency and network clients.&nbsp;&nbsp; Please get in touch or feel free to make referrals to&nbsp;hello@33talent.com&nbsp; We'd love to hear from you!&nbsp;<br> </em><br> <em>33 Talent Pty Ltd</em><br> <em>Recruiter: Bronwen Kaspers - bronwen@33talent.com<br> </em><em></em><em></em><em> </em>]]></Description>
+    <SearchTitle>Programmatic Trader/Campaign Manager/Ad Ops</SearchTitle>
+    <Classifications>
+      <Classification jid="15365" name="Job Category" vid="636088" id="527">Digital</Classification>
+      <Classification jid="15366" name="Sub-Category" vid="636741" id="4269">Digital Media</Classification>
+      <Classification jid="15405" name="Country" vid="636163" id="1">Australia</Classification>
+      <Classification jid="15410" name="Location" vid="636787" id="2">Melbourne</Classification>
+      <Classification jid="16810" name="Area" vid="816817" id="8">All Melbourne</Classification>
+      <Classification jid="15368" name="Work Type" vid="636197" id="2">Full Time</Classification>
+    </Classifications>
+    <Fields />
+    <Apply>
+      <EmailTo>bronwen@33talent.com</EmailTo>
+      <Url>https://apply.jobadder.com/au1/2076/2298100/cvzoay5pxknulkyqekwsuhlai4</Url>
+    </Apply>
+  </Job>
+  <Job jid="2300252" reference="2219728" datePosted="2016-03-08" dateUpdated="2016-03-08T05:33:49Z">
+    <Title>Publisher Development Manager</Title>
+    <Summary>Be part of an up-and-coming start-up that specializes in Mobile Performance Marketing!</Summary>
+    <Description><![CDATA[Our client is in the exciting mobile apps realm and is one of the leaders in&nbsp;Mobile Performance Marketing.<br> <strong><br> The Role..</strong><br> You are responsible for acquiring and maintaining partnerships with app publishers. You will support publisher development strategy and will be integral in forging new publisher relationships.&nbsp;<br> <br> &bull; Recruit/Onboard new publishing partners, agencies, and direct clients. Integrate with their systems, launch campaigns, and analyze performance. <br> &bull; Daily affiliate management including ongoing development and deployment of fresh marketing creatives, affiliate communications such as e-Newsletters and blog posts, offers, affiliate payments, and dispute resolution. <br> &bull; Monitor affiliate activity, analysis performance, identify areas of improvement, and recommend ways to increase affiliate partner generated revenues. <br> &bull; Oversee the development and distribution of marketing tools and sales creative to affiliates. <br> &bull; Establish channels of communication to ensure all affiliates and joint venture partners have access to marketing tools, and to develop custom marketing material as required. <br> &bull; Initiate new campaign ideas, incentives, and bonus offers. <br> &bull; Work on strategic partnerships to help the product scale further. <br> &bull; Actively look out for new opportunities in the space and incorporate the same into our products. <br> &nbsp;&nbsp;<br> <strong> &amp; You..</strong><br> &bull; Minimum of 3 years experience in hands on affiliate/publisher management <br> &bull; Strong passion for new forms of brand and product advertising. <br> &bull; Must possess strong knowledge of the affiliate marketing industry, including <br> &nbsp;its customs, culture, and controversies.<br> &bull; Must be able to document strong understanding of both legal/ethical and illegitimate/unethical affiliate marketing practices, including thorough knowledge of how spyware, adware, and parasite ware can be detected and prevented. <br> &bull; Must be fluent and skilled in the internet marketing sales process, including email marketing, search engine optimization, per-per-click advertising, blog/forum marketing. <br> &bull; Be a good negotiator with an understanding of internet &nbsp;dynamics (CPA, CPC, CPM, CPV,CPL). <br> &bull; Excellent communication skills, both written and verbal. <br> &bull; Strong interpersonal skills: Upbeat, friendly and professional.<br> &bull; Excellent time management skills and organizational skills. <br> &bull; Proficiency in Microsoft Office programs and office-related IT tools.<br> &bull; Willingness to learn new things even though you never done them before. <br> &bull; Familiarity with the ins and outs of a startup environment. <br> &nbsp;&nbsp;<br> Location: Based in Singapore<br> &nbsp;&nbsp;<br> To apply: please use the application buttons below, or e-mail your CV in Words format to kay@33talent.com.<br> &nbsp;&nbsp;<br> <em>33 Talent Singapore Private Limited</em><br> <em>EA License Number 13C6298</em><br> <em>EA Personnel: Kay Lee Meng Qi - R1546136&nbsp;</em><br> &nbsp;&nbsp;<br> <em><strong>33 Talent</strong></em><br> <em>33 Talent specialises in Big Data, Digital and Communications recruitment and talent management across Europe and the APAC region. &nbsp;Our clients include Lenovo, AMEX, SingTel, The Body Shop, Amobee, SAP, WPP Group, McCann Worldgroup, IPG and numerous other corporate, agency and network clients.&nbsp;</em><br> <em><br> Please get in touch or feel free to make referrals to hello@33talent.com &nbsp;We'd love to hear from you!</em>]]></Description>
+    <SearchTitle>Publisher acquisition, app publisher management, affiliate management</SearchTitle>
+    <Classifications>
+      <Classification jid="15365" name="Job Category" vid="636088" id="527">Digital</Classification>
+      <Classification jid="15366" name="Sub-Category" vid="636745" id="4273">Mobile</Classification>
+      <Classification jid="15405" name="Country" vid="636164" id="14">Singapore</Classification>
+      <Classification jid="15410" name="Location" vid="636800" id="30">Singapore</Classification>
+      <Classification jid="16810" name="Area" vid="816807" id="150">All Singapore</Classification>
+      <Classification jid="15368" name="Work Type" vid="636197" id="2">Full Time</Classification>
+    </Classifications>
+    <Fields />
+    <Apply>
+      <EmailTo>kay@33talent.com</EmailTo>
+      <Url>https://apply.jobadder.com/au1/2076/2300252/cvzoay5pxknulkyqekwsuhlai4</Url>
+    </Apply>
+  </Job>
+  <Job jid="2302660" reference="2216447" datePosted="2016-03-10" dateUpdated="2016-03-10T00:45:59Z">
+    <Title>Search Engine Optimization Manager</Title>
+    <Summary>Calling SEO experts - are you up for a challenge to digitally up the game for a major brand in Singapore?</Summary>
+    <Description><![CDATA[Our client is a successful homegrown brand within the telco space that is looking to transform their digital presence.&nbsp;<br> &nbsp;<br> <strong>The Role..</strong><br> <ul> <li>As the internal SEO champion and expert, you are responsible for devising long-term strategies and roadmaps to support content marketing strategy with brand priorities in mind.</li> <li>Working with both internal teams and agency, you will recommend strategies that drive SEO growth.</li> <li>You will also produce &amp; manage keyword research, technical, content, link and social audits - analysis and&nbsp;documentation.</li> <li>Guide and partake in offsite activity,&nbsp;report findings of comprehensive website audits and competitive search&nbsp;analysis.</li> <li>With a finger on the pulse, you understand what influences organic search crawling, indexing and keyword&nbsp;ranking to increase relevance across all popular search engines&nbsp;</li> <li>Last but not least, measurement and reporting of all organic traffic and sales across all properties and page&nbsp;types.</li> </ul> <strong> &nbsp;&nbsp;</strong><strong>&amp; You..</strong><br> <ul> <li>More than 5 years of experience in managing end-to-end SEO, content marketing strategies with different internal stakeholders.</li> <li>Holds a Bachelor's Degree in Business, Communications, Journalism, English, eCommerce and&nbsp;related field or equivalent experience.</li> <li>Hands-on knowledge of the technologies and processes involved in running SEO campaigns&nbsp;(including HTML/CSS/HTTP/JavaScript).</li> <li>Demonstrates understanding in how SEM and SEO ties in together</li> <li>Proficient in Google Analytics, Adobe Analytics, Google Webmaster Tools, SEO Moz&nbsp;and other key industry tools.</li> <li>Good understanding of web development and design on how it affects search engine&nbsp;algorithms.</li> </ul> Location: Based in Singapore<br> &nbsp;&nbsp;<br> To apply: please use the application buttons below, or e-mail your CV in Words format to kay@33talent.com.<br> &nbsp;&nbsp;<br> <em>33 Talent Singapore Private Limited</em><br> <em>EA License Number 13C6298</em><br> <em>EA Personnel: Kay Lee Meng Qi - R1546136&nbsp;</em><br> &nbsp;&nbsp;<br> <em><strong>33 Talent</strong></em><br> <em>33 Talent specialises in Big Data, Digital and Communications recruitment and talent management across Europe and the APAC region. &nbsp;Our clients include Lenovo, AMEX, SingTel, The Body Shop, Amobee, SAP, WPP Group, McCann Worldgroup, IPG and numerous other corporate, agency and network clients.&nbsp;</em><br> <em><br> Please get in touch or feel free to make referrals to hello@33talent.com &nbsp;We'd love to hear from you!</em>]]></Description>
+    <SearchTitle>Search Engine Optimization, SEO</SearchTitle>
+    <Classifications>
+      <Classification jid="15365" name="Job Category" vid="636088" id="527">Digital</Classification>
+      <Classification jid="15366" name="Sub-Category" vid="636741" id="4269">Digital Media</Classification>
+      <Classification jid="15405" name="Country" vid="636164" id="14">Singapore</Classification>
+      <Classification jid="15410" name="Location" vid="636800" id="30">Singapore</Classification>
+      <Classification jid="16810" name="Area" vid="816807" id="150">All Singapore</Classification>
+      <Classification jid="15368" name="Work Type" vid="636197" id="2">Full Time</Classification>
+    </Classifications>
+    <Fields />
+    <Apply>
+      <EmailTo>kay@33talent.com</EmailTo>
+      <Url>https://apply.jobadder.com/au1/2076/2302660/cvzoay5pxknulkyqekwsuhlai4</Url>
+    </Apply>
+  </Job>
+  <Job jid="2306974" reference="2242298" datePosted="2016-03-15" dateUpdated="2016-03-14T18:34:22Z">
+    <Title>Partnerships &amp; Alliances Director - Affiliate Marketing</Title>
+    <Summary>Want to drive Partnerships and Alliances for an international business setting the standard for performance and service within Affiliate Marketing?</Summary>
+    <Description><![CDATA[<strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong>The Company</strong><br> A fast moving international&nbsp;business that's setting industry leading standards for performance and service within Affiliate Marketing. They work with some of the world's best known brands, as well as expert niche players, using cutting edge technology in real time campaign management, insight,&nbsp;and optimisation. Just a small selection of their partners and clients include: Spotify, Expedia, Adidas, Emirates and Sandtander.&nbsp;<br> This is a fantastic opportunity to work alongside a team of talented and motivated specialists, in a fast moving and rewarding environment.<br> <br> <strong>The Role<br> </strong>As the Partnerships &amp; Alliances Director you will work closely with all partners, both client and supply side, to identify opportunities for all parties to achieve better outcomes / results / revenue, and then actually make things happen.&nbsp;The role has some similarities with Head of Publisher Services / Publisher Development remits, but takes a much more entrepreneurial stance.<br> <br> You'll use your strong communication skills from the outset of a partnership&nbsp;to identify opportunities to collaborate with partners and clients, developing new strategies, and then ultimately ensure successful outcomes for all sides. Your responsibilities will include:<br> <ul> <li>Manage &amp; develop relationships with key publisher partners</li> <li>Identifying new partners within core verticals (finance/travel/telco/retail)</li> <li>Delivering business plans for each premium partner</li> <li>Work closely with client delivery &amp; business development team to ensure fast and large revenue growth for each client</li> <li>Generate new business referrals from premium partners&nbsp;</li> <li>Formulate relevant proposals, presentations and partner case studies to be used in new business pitches</li> </ul> The role has some similarities with Head of Publisher Services / Publisher Development remits, but offers an opportunity to do so much more.&nbsp;It's the first role of it's kind in this company, and it's expected that, once you've set the template for success in this role, you build your own new a team around you.<br> <br> <strong>&amp; You...&nbsp;</strong><br> We'd like you to:<br> <ul> <li>Have a passion for, and 5+ years professional experience in, Affiliate Marketing&nbsp;</li> <li>Demonstrate strong commercial acumen</li> <li>Have an entrepreneurial approach, always seeking out and delivering on new opportunities</li> <li>Demonstrate great networking and relationship building skills</li> <li>Be a creative solutions person, able to overcome obstacles and objections</li> <li>Have great presentation and negotiation skills</li> </ul> If this sounds like you we'd love to hear from you!<br> <br> <strong>33 Talent</strong><br> <em>33 Talent specialises in Big Data, Digital and Communications recruitment and talent management&nbsp;across Europe and the APAC region. Our clients include Lenovo, AMEX, SingTel, The Body Shop, Amobee, SAP, WPP Group, McCann Worldgroup, IPG and&nbsp;numerous other corporate, agency and network clients.&nbsp;&nbsp; Please get in touch or feel free to make referrals to&nbsp;hello@33talent.com&nbsp; We'd love to hear from you!&nbsp;</em>]]></Description>
+    <SearchTitle>Partnerships &amp; Alliances Director</SearchTitle>
+    <Classifications>
+      <Classification jid="15365" name="Job Category" vid="636088" id="527">Digital</Classification>
+      <Classification jid="15366" name="Sub-Category" vid="636741" id="4269">Digital Media</Classification>
+      <Classification jid="15405" name="Country" vid="636809" id="19">Europe</Classification>
+      <Classification jid="15410" name="Location" vid="636810" id="171">London</Classification>
+      <Classification jid="16810" name="Area" vid="816801" id="613">London</Classification>
+      <Classification jid="15368" name="Work Type" vid="636197" id="2">Full Time</Classification>
+    </Classifications>
+    <Fields />
+    <Apply>
+      <EmailTo>david@33talent.com</EmailTo>
+      <Url>https://apply.jobadder.com/au1/2076/2306974/cvzoay5pxknulkyqekwsuhlai4</Url>
+    </Apply>
+  </Job>
+  <Job jid="2308470" reference="2240400" datePosted="2016-03-15" dateUpdated="2016-03-15T09:53:46Z">
+    <Title>Account Manager - Strategic Communications</Title>
+    <Summary>Management consultancy meets communications. Focus on bigger communications picture with some of the worlds biggest household brands</Summary>
+    <Description><![CDATA[<strong></strong><strong></strong><strong></strong><strong>The Company</strong><br> A strategic communications firm who shape the reputation of their clients businesses and help them achieve their business goals. Through senior counsel and high profile campaigns, this firm have helped shape the reputation of some of the worlds biggest brands.&nbsp;<br> <br> <strong>The Role<br> </strong>Your role will see you carrying out the duties of a Communications Account Manager such as new business pitching, developing and implementing strategies,&nbsp;media relations and&nbsp;mentoring juniors. &nbsp;You will work&nbsp;closely with your team in a flat&nbsp;structure&nbsp;of highly talented and inspirational communications&nbsp;professionals&nbsp;across Europe and Middle East.&nbsp;<br> <br> <strong>&amp; You...&nbsp;</strong><br> You will need to be a strategic thinker with the confidence to build relationships with the senior leadership and external communications teams.&nbsp;<br> You will have worked on regional and/or global strategies and must have a solid foundation of PR and communications skills including writing, media relations, event management and new business.&nbsp;<br> <br> <strong>33 Talent</strong><br> <em>33 Talent specialises in Big Data, Digital and Communications recruitment and talent management&nbsp;across Europe and the APAC region. &nbsp;Our clients include Lenovo, AMEX, SingTel, The Body Shop, Amobee, SAP, WPP Group, McCann Worldgroup, IPG and&nbsp;numerous other corporate, agency and network clients.&nbsp;&nbsp; Please get in touch or feel free to make referrals to&nbsp;hello@33talent.com&nbsp; We'd love to hear from you!&nbsp;<br> </em><br> <em>33 Talent Singapore Private Limited</em><br> <em>EA License Number 13C6298<br> </em><em>EA Personnel: Katie-Jo Green -&nbsp;R1441403<br> </em><em></em><em></em>]]></Description>
+    <SearchTitle>Consumer, Corporate, Communications, strategy, Comms</SearchTitle>
+    <Classifications>
+      <Classification jid="15365" name="Job Category" vid="636092" id="528">Communications</Classification>
+      <Classification jid="15366" name="Sub-Category" vid="636768" id="4295">PR - Account Manager</Classification>
+      <Classification jid="15405" name="Country" vid="636164" id="14">Singapore</Classification>
+      <Classification jid="15410" name="Location" vid="636800" id="30">Singapore</Classification>
+      <Classification jid="16810" name="Area" vid="816807" id="150">All Singapore</Classification>
+      <Classification jid="15368" name="Work Type" vid="636197" id="2">Full Time</Classification>
+    </Classifications>
+    <Fields />
+    <Apply>
+      <EmailTo>kj@33talent.com</EmailTo>
+      <Url>https://apply.jobadder.com/au1/2076/2308470/cvzoay5pxknulkyqekwsuhlai4</Url>
+    </Apply>
+  </Job>
+  <Job jid="2308495" reference="2231128" datePosted="2016-03-15" dateUpdated="2016-03-15T12:30:48Z">
+    <Title>PR Agency: GM, Greater China</Title>
+    <Summary>An int'l PR agency seeks a General Manager to oversee Greater China offices</Summary>
+    <Description><![CDATA[<strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong>The Company</strong><br> This consultancy has an international PR and integrated marketing communications network. They are known for strong knowledge in B2B / Technology and&nbsp;boosts a high-energy environment, collaborative and creative culture.<br> <br> <strong>The Role</strong><br> Reporting to the MD, the General Manager, Greater China, is required to oversee the Beijing, Shanghai and Hong Kong office.<br> <br> From serving as a strategic advisor and quality controller, to acting as a mentor to senior teams, you will play a key role in managing client relationships and programs, and generating new business through championing the agency to key internal and external stakeholders.<br> <br> <strong>&amp; You...&nbsp;</strong><br> <ul> <li>10+ years of PR agency experience</li> <li>Strong knowledge in Enterprise / B2B Technology</li> <li>Excellent media relations in China, and interest in social media</li> <li>Track record in meeting revenue targets</li> <li>Experience in team management, and business development</li> <li>Collaborative, Creative, Entrepreneurial personality</li> </ul> <strong>Based in Shanghai or Beijing</strong><br> <br> <strong>33 Talent</strong><br> <em>33 Talent specialises in Big Data, Digital and Communications recruitment and talent management&nbsp;across Europe and the APAC region. Our clients include Lenovo, AMEX, SingTel, The Body Shop, Amobee, SAP, WPP Group, McCann Worldgroup, IPG and&nbsp;numerous other corporate, agency and network clients. Please get in touch or feel free to make referrals to hello@33talent.com&nbsp; We'd love to hear from you!&nbsp;<br> </em><br> <em>33 Talent Singapore Private Limited</em><br> <em>EA License Number 13C6298<br> </em><em>EA Personnel: Amanda Rendell - R1550865</em>]]></Description>
+    <SearchTitle>Comms, PR, General Manager, tech, China</SearchTitle>
+    <Classifications>
+      <Classification jid="15365" name="Job Category" vid="636092" id="528">Communications</Classification>
+      <Classification jid="15366" name="Sub-Category" vid="636770" id="4297">PR - Practice Director</Classification>
+      <Classification jid="15405" name="Country" vid="636783" id="3">China</Classification>
+      <Classification jid="15410" name="Location" vid="636803" id="144">Shanghai</Classification>
+      <Classification jid="16810" name="Area" vid="816795" id="584">Shanghai</Classification>
+      <Classification jid="15368" name="Work Type" vid="636197" id="2">Full Time</Classification>
+    </Classifications>
+    <Fields />
+    <Apply>
+      <EmailTo>amanda@33talent.com</EmailTo>
+      <Url>https://apply.jobadder.com/au1/2076/2308495/cvzoay5pxknulkyqekwsuhlai4</Url>
+    </Apply>
+  </Job>
+  <Job jid="2308499" reference="2209948" datePosted="2016-03-15" dateUpdated="2016-03-28T13:01:02Z">
+    <Title>PR Agency: MD China</Title>
+    <Summary>Global PR agency seeking leader to grow their presence in China</Summary>
+    <Description><![CDATA[<strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong>The Company</strong><br> Global PR Communications Agency with an office in Beijing looking to grow their presence in the China market.<br> <br> <strong>The Role</strong><br> As the MD China, reporting to the Regional President, Asia Pacific, you will identify and develop new business opportunities and lead teams to successfully pitch and win business across healthcare, technology and corporate comm sectors. You will also establish and maintain a relationship with their partner agency&nbsp;to maximise their role in-line with the growth strategy.<br> <br> You will personally manage client relationships through a hands on management style, leading strategic client meetings with senior personnel, creating and delivering persuasive presentations and providing senior level counsel.<br> <br> <strong>&amp; You...&nbsp;</strong><br> You will have 15+ years of experience in managing PR teams, with proven leadership and local P&amp;L experience within a communications agency. As part of the growth strategy, you will have experience working with both Chinese and international MNCs looking to expand in Greater China.<br> <br> Based in Beijing.<br> <br> <strong>33 Talent</strong><br> <em>33 Talent specialises in Big Data, Digital and Communications recruitment and talent management&nbsp;across Europe and the APAC region. Our clients include Lenovo, AMEX, SingTel, The Body Shop, Amobee, SAP, WPP Group, McCann Worldgroup, IPG and&nbsp;numerous other corporate, agency and network clients. Please get in touch or feel free to make referrals to hello@33talent.com&nbsp; We'd love to hear from you!&nbsp;<br> </em><br> <em>33 Talent Singapore Private Limited</em><br> <em>EA License Number 13C6298<br> </em><em>EA Personnel: Amanda Rendell - R1550865</em>]]></Description>
+    <SearchTitle>MD, Senior Director, CEO, Vice President Communications, PR</SearchTitle>
+    <Classifications>
+      <Classification jid="15365" name="Job Category" vid="636092" id="528">Communications</Classification>
+      <Classification jid="15366" name="Sub-Category" vid="636770" id="4297">PR - Practice Director</Classification>
+      <Classification jid="15405" name="Country" vid="636783" id="3">China</Classification>
+      <Classification jid="15410" name="Location" vid="636802" id="143">Beijing</Classification>
+      <Classification jid="16810" name="Area" vid="816808" id="588">All Rest of China</Classification>
+      <Classification jid="15368" name="Work Type" vid="636197" id="2">Full Time</Classification>
+    </Classifications>
+    <Fields />
+    <Apply>
+      <EmailTo>amanda@33talent.com</EmailTo>
+      <Url>https://apply.jobadder.com/au1/2076/2308499/cvzoay5pxknulkyqekwsuhlai4</Url>
+    </Apply>
+  </Job>
+  <Job jid="2309775" reference="2218919" datePosted="2016-03-16" dateUpdated="2016-03-16T07:08:26Z">
+    <Title>Research Manager - Corporate Communications</Title>
+    <Summary>This global PR/Communications network seeks a Research Manager for their Beijing office</Summary>
+    <Description><![CDATA[<strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong>The Company</strong><br> This communications consultancy focuses on high level corporate and financial communications, strategic comms, reputation management, mergers and acquisitions, and public affairs work. &nbsp;They have offices globally and are growing their APAC presence.<br> <br> <strong>The Role</strong><br> As the Research Manager you will provide critical market analysis and insight to internal teams as they work with clients. You will work across the full breadth of the agency's service offering, from corporate transactions and investor relations to corporate reputation and public affairs.<br> <br> Research and insights form the basis of strategy meaning you will be a critical part of the team. You will be joining a small but growing team, keeping industry sector teams informed of changes with their space, tracking trends and supporting colleagues in providing research for new business pitches.<br> <br> <strong>&amp; You...&nbsp;</strong><br> You will have over 6 years relevant experience in research and analysis, preferably in the field of corporate comms, journalism, advertising or research. You will be inquisitive and curious about current affairs in China, and have a deep understanding and interest in the business, political and social landscape in China. Being able to present complex findings in a clear and succinct way is crucial to your success.<br> <br> <strong>Beijing based.</strong><br> <br> <strong>33 Talent</strong><br> <em>33 Talent specialises in Big Data, Digital and Communications recruitment and talent management&nbsp;across Europe and the APAC region. Our clients include Lenovo, AMEX, SingTel, The Body Shop, Amobee, SAP, WPP Group, McCann Worldgroup, IPG and&nbsp;numerous other corporate, agency and network clients. Please get in touch or feel free to make referrals to hello@33talent.com&nbsp; We'd love to hear from you!&nbsp;<br> </em><br> <em>33 Talent Singapore Private Limited</em><br> <em>EA License Number 13C6298<br> </em><em>EA Personnel: Amanda Rendell - R1550865</em>]]></Description>
+    <SearchTitle>Research, Analysis, Communications, Comms, PR</SearchTitle>
+    <Classifications>
+      <Classification jid="15365" name="Job Category" vid="636092" id="528">Communications</Classification>
+      <Classification jid="15366" name="Sub-Category" vid="636751" id="4278">Corporate Communications</Classification>
+      <Classification jid="15405" name="Country" vid="636783" id="3">China</Classification>
+      <Classification jid="15410" name="Location" vid="636802" id="143">Beijing</Classification>
+      <Classification jid="16810" name="Area" vid="816803" id="583">Beijing</Classification>
+      <Classification jid="15368" name="Work Type" vid="636197" id="2">Full Time</Classification>
+    </Classifications>
+    <Fields />
+    <Apply>
+      <EmailTo>amanda@33talent.com</EmailTo>
+      <Url>https://apply.jobadder.com/au1/2076/2309775/cvzoay5pxknulkyqekwsuhlai4</Url>
+    </Apply>
+  </Job>
+  <Job jid="2309871" reference="2232390" datePosted="2016-03-16" dateUpdated="2016-03-16T09:38:49Z">
+    <Title>Junior Consultant - Financial Communications</Title>
+    <Summary>A global PR agency are looking for a Consultant to join their dynamic Finance focussed agency</Summary>
+    <Description><![CDATA[<strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong>The Company</strong><br> A global PR agency with an office in Singapore work closely with the Hong Kong and Beijing offices. This Dynamic business who are primarily finance focussed work strategically to enable businesses to achieve their business goals.&nbsp;<br> <br> <strong>The Role</strong><br> Aside from supporting the senior team and day to day account handling and execution with direction from senior team, your resposnibilties will include,&nbsp;News monitoring &amp; press summaries.<br> You will research for current clients and new business opportunities; assists with the preparation of materials such as presentations, press releases, key messages, Q&amp;As, biographies, press kits and&nbsp;Provide general logistical support<br> <br> <strong>&amp; You...&nbsp;<br> </strong>This PR agency are looking for 1 or more years of PR experience, either in house or agency. &nbsp;You must have a strong academic record, a strong understanding of&nbsp;business environment and current affairs and have excellent&nbsp;written and oral communication skills.<br> It i essential that you have strong relationship skills and to command the confidence of others both internally and externally.<br> Financial literacy and/or knowledge of capital markets and financial industry is advantageous.<br> <br> <strong>33 Talent</strong><br> <em>33 Talent specialises in Big Data, Digital and Communications recruitment and talent management&nbsp;across the APAC region. &nbsp;Our clients include Lenovo, AMEX, SingTel, The Body Shop, Amobee, SAP, WPP Group, McCann Worldgroup, IPG and&nbsp;numerous other corporate, agency and network clients.&nbsp;&nbsp; Please get in touch or feel free to make referrals to&nbsp;hello@33talent.com&nbsp; We'd love to hear from you!&nbsp;<br> </em><br> <em>33 Talent Singapore Private Limited</em><br> <em>EA License Number 13C6298<br> </em><em>EA Personnel: Katie-Jo Green -&nbsp;R1441403</em><br> <em><br> </em><em> </em><em></em><em></em>]]></Description>
+    <SearchTitle>PR, Public relations, Comms, Communications, Finance</SearchTitle>
+    <Classifications>
+      <Classification jid="15365" name="Job Category" vid="636092" id="528">Communications</Classification>
+      <Classification jid="15366" name="Sub-Category" vid="636767" id="4294">PR - Account Executive</Classification>
+      <Classification jid="15405" name="Country" vid="636164" id="14">Singapore</Classification>
+      <Classification jid="15410" name="Location" vid="636800" id="30">Singapore</Classification>
+      <Classification jid="16810" name="Area" vid="816807" id="150">All Singapore</Classification>
+      <Classification jid="15368" name="Work Type" vid="636197" id="2">Full Time</Classification>
+    </Classifications>
+    <Fields />
+    <Apply>
+      <EmailTo>kj@33talent.com</EmailTo>
+      <Url>https://apply.jobadder.com/au1/2076/2309871/cvzoay5pxknulkyqekwsuhlai4</Url>
+    </Apply>
+  </Job>
+  <Job jid="2309895" reference="2249940" datePosted="2016-03-16" dateUpdated="2016-03-16T10:16:43Z">
+    <Title>Freelance Writer - Insurance Industry</Title>
+    <Summary>Up and coming Insurance company require an experienced writer to review and rewrite online and offline content ahead of their launch in June.</Summary>
+    <Description><![CDATA[<strong></strong><strong></strong><strong></strong><strong>The Company</strong><br> An online insurance company who are already established in the region are planning their Singapore launch in June this year.&nbsp;<br> <br> <strong>The Role</strong><br> Ahead the Singapore launch you will be required to review and rewrite product contracts, website content, customer communications, customer portal and social media content. This role will see you reporting to the CMO, working closely with the Head of Sales and Marketing and the legal team to ensure that all of the content is within the guidelines as well as being easily digestible for the customers.&nbsp;<br> <br> <strong>&amp; You...&nbsp;</strong><br> To be successful in this role you will require 5 years or more writing experience, ideally in a heavily regulated, b2b environment. &nbsp;You will an assertive self-starter with the confidence to communicate clearly and effectively to internal teams.&nbsp;<br> <br> <strong>This is a temporary position for 3 months with an immediate start. &nbsp;</strong><br> <br> <strong>33 Talent</strong><br> <em>33 Talent specialises in Big Data, Digital and Communications recruitment and talent management&nbsp;across Europe and the APAC region. &nbsp;Our clients include Lenovo, AMEX, SingTel, The Body Shop, Amobee, SAP, WPP Group, McCann Worldgroup, IPG and&nbsp;numerous other corporate, agency and network clients.&nbsp;&nbsp; Please get in touch or feel free to make referrals to&nbsp;hello@33talent.com&nbsp; We'd love to hear from you!&nbsp;<br> </em><br> <em>33 Talent Singapore Private Limited</em><br> <em>EA License Number 13C6298<br> </em><em>EA Personnel: Katie-Jo Green -&nbsp;R1441403<br> </em><em></em><em></em>]]></Description>
+    <SearchTitle>Writer, Copywriter, insurance, b2b, social media</SearchTitle>
+    <Classifications>
+      <Classification jid="15365" name="Job Category" vid="636092" id="528">Communications</Classification>
+      <Classification jid="15366" name="Sub-Category" vid="636768" id="4295">PR - Account Manager</Classification>
+      <Classification jid="15405" name="Country" vid="636164" id="14">Singapore</Classification>
+      <Classification jid="15410" name="Location" vid="636800" id="30">Singapore</Classification>
+      <Classification jid="16810" name="Area" vid="816807" id="150">All Singapore</Classification>
+      <Classification jid="15368" name="Work Type" vid="636197" id="2">Full Time</Classification>
+    </Classifications>
+    <Fields />
+    <Apply>
+      <EmailTo>kj@33talent.com</EmailTo>
+      <Url>https://apply.jobadder.com/au1/2076/2309895/cvzoay5pxknulkyqekwsuhlai4</Url>
+    </Apply>
+  </Job>
+  <Job jid="2310579" reference="2250333" datePosted="2016-03-17" dateUpdated="2016-03-17T02:15:15Z">
+    <Title>Education Evangelist (Technology &amp; Digital)</Title>
+    <Summary>Our client is the world's leading visual browser and one of the largest growing start-ups and is looking for an Education Evangelist to take our produ</Summary>
+    <Description><![CDATA[<strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong>The Company</strong><br> Our client is the world's leading visual browser and one of the largest growing start-ups and is looking for an Education Evangelist to take our product into market and make it into a progressive interactive learning environment for all generations.<br> <br> <br> <strong>The Role</strong><br> The purpose of the role is to help teachers, students, employees and publishers from all walks of life develop digital content to complement physical materials by connecting them through our client's product. Our client currently partners with educational bodies, school, individuals, blue-chip corporations, non-profit organizations, private institutions and many more.<br> <br> - Working with the Account Management/ Strategist team on developing digital content that for learning and educational purposes<br> - Create the educational strategy and grow the education business for the company in the Asia region<br> - Build relationship with relevant parties in the educational sector to see how the product can benefit the overall education and learning experience<br> - Know the ins and outs of education and learning, and evangelize the product as a learning tool, bridging technology and education<br> <br> &nbsp;<br> <strong>&amp; You...&nbsp;</strong><br> - 5-8 years experience working in the education sector<br> - Strong understanding and passion for learning and education<br> - Strong network within the education sector&nbsp;<br> - Commercial acumen is a must<br> - Experience within tech, learning, e-learning would be a plus<br> <br> <br> <strong>33 Talent</strong><br> <em>33 Talent specialises in Big Data, Digital and Communications recruitment and talent management&nbsp;across Europe and the APAC region. &nbsp;Our clients include Lenovo, AMEX, SingTel, The Body Shop, Amobee, SAP, WPP Group, McCann Worldgroup, IPG and&nbsp;numerous other corporate, agency and network clients.&nbsp;&nbsp; Please get in touch or feel free to make referrals to&nbsp;hello@33talent.com&nbsp; We'd love to hear from you!&nbsp;<br> </em><br> <em>33 Talent Singapore Private Limited</em><br> <em>EA License Number 13C6298<br> </em><em>EA Personnel:&nbsp;Rina Lee Zia Zia -&nbsp;R1104286</em><em></em><em></em><em></em><em></em><em><br> </em>]]></Description>
+    <SearchTitle>Education Evangelist (Technology &amp; Digital)</SearchTitle>
+    <Classifications>
+      <Classification jid="15365" name="Job Category" vid="636088" id="527">Digital</Classification>
+      <Classification jid="15366" name="Sub-Category" vid="636748" id="5377">Technology</Classification>
+      <Classification jid="15405" name="Country" vid="636164" id="14">Singapore</Classification>
+      <Classification jid="15410" name="Location" vid="636800" id="30">Singapore</Classification>
+      <Classification jid="16810" name="Area" vid="816807" id="150">All Singapore</Classification>
+      <Classification jid="15368" name="Work Type" vid="636197" id="2">Full Time</Classification>
+    </Classifications>
+    <Fields />
+    <Apply>
+      <EmailTo>rina@33talent.com</EmailTo>
+      <Url>https://apply.jobadder.com/au1/2076/2310579/cvzoay5pxknulkyqekwsuhlai4</Url>
+    </Apply>
+  </Job>
+  <Job jid="2311910" reference="2180954" datePosted="2016-03-18" dateUpdated="2016-03-18T03:18:27Z">
+    <Title>PR Account Manager - Beauty</Title>
+    <Summary>Global PR agency require a strong AM to manage a world famous brand in beauty and skincare.</Summary>
+    <Description><![CDATA[<strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong>The Company...<br> </strong><br> One of the most successful PR agencies in the world require an established Account Manager to join their consumer team in their Asia hub - Singapore.&nbsp;<br> <br> <strong>The Role...<br> </strong><br> This role will be responsible for one high profile client and responsibilities will include. . &nbsp;.<br> <ul> <li>Client Servicing</li> <li>Media Relations</li> <li>Product Capability and Development</li> <li>Writing and Editing</li> <li>Planning, Organisation and Research</li> <li>Business Development</li> <li>Financial Planning and Management</li> <li>People Development</li> <li>Leadership</li> </ul> <strong>&amp; You...&nbsp;</strong><br> To be successful in this role you will have experience working on regional or global; strategic integrated PR campaigns. &nbsp;Ideally your experience will be in beauty but applications are open to consumer FMCG/customer orientated experience. &nbsp;<br> You will have extensive experience managing clients and external relationships such as influencers. &nbsp;It is essential that you hold strong writing skills<br> <br> If you are interested in hearing more about the role, click APPLY or email me on kj@33talent.com.&nbsp;<br> <br> <strong>33 Talent</strong><br> <em>33 Talent specialises in Big Data, Digital and Communications recruitment and talent management&nbsp;across Europe and the APAC region. &nbsp;Our clients include Lenovo, AMEX, SingTel, The Body Shop, Amobee, SAP, WPP Group, McCann Worldgroup, IPG and&nbsp;numerous other corporate, agency and network clients.&nbsp;&nbsp; Please get in touch or feel free to make referrals to&nbsp;hello@33talent.com&nbsp; We'd love to hear from you!&nbsp;<br> </em><br> <em>33 Talent Singapore Private Limited</em><br> <em>EA License Number 13C6298<br> </em><em>EA Personnel: Katie-Jo Green -&nbsp;R1441403<br> </em><em> </em><em> </em><em></em><em></em>]]></Description>
+    <SearchTitle>Beauty, Skincare, PR, Comms, Communications, Public Relations, Consumer, FMCG</SearchTitle>
+    <Classifications>
+      <Classification jid="15365" name="Job Category" vid="636092" id="528">Communications</Classification>
+      <Classification jid="15366" name="Sub-Category" vid="636768" id="4295">PR - Account Manager</Classification>
+      <Classification jid="15405" name="Country" vid="636164" id="14">Singapore</Classification>
+      <Classification jid="15410" name="Location" vid="636800" id="30">Singapore</Classification>
+      <Classification jid="16810" name="Area" vid="816807" id="150">All Singapore</Classification>
+      <Classification jid="15368" name="Work Type" vid="636197" id="2">Full Time</Classification>
+    </Classifications>
+    <Fields />
+    <Apply>
+      <EmailTo>kj@33talent.com</EmailTo>
+      <Url>https://apply.jobadder.com/au1/2076/2311910/cvzoay5pxknulkyqekwsuhlai4</Url>
+    </Apply>
+  </Job>
+  <Job jid="2314507" reference="2216061" datePosted="2016-03-21" dateUpdated="2016-03-21T08:31:42Z">
+    <Title>Senior Sales Executive, Mobile Advertising Platform</Title>
+    <Summary>Do you live and breathe mobile? Here is an exciting chance to join a Mobile Performance Marketing start-up!</Summary>
+    <Description><![CDATA[<br> Our client is in the exciting mobile apps realm and is one of the leaders in&nbsp;Mobile Performance Marketing.<br> <strong><br> The Role..</strong><br> Reporting directly to the Head of Singapore, you are to penetrate Singapore as a new market for the company. You will be responsible for:<br> &nbsp;&nbsp;<br> &bull; Leading local mobile advertising business<br> &bull; Following up partnerships with local telecom operators and handset manufacturers<br> &bull; Increasing revenues<br> &bull; Monitoring sales reports and following up invoices and payments<br> &bull; Working with the local team to reach its objectives<br> &bull; Reporting to global and regional HQs<br> &nbsp;&nbsp;<br> <strong> &amp; You..</strong><br> &bull; 4-5 years of experience withproven sales track record in online/ecommerce business<br> &bull; Have strong negotiation &amp; communication skills; know how to convey ideas and convince people<br> &bull; An organized person,you have a sharp sense for details and can handle different projects at the same time<br> &bull; Passionate about your business, you take initiative to develop it<br> &bull; Established contacts within advertising/media agencies and/or with local or global brands<br> <br> Location: Based in Singapore<br> &nbsp;&nbsp;<br> To apply: please use the application buttons below, or e-mail your CV in Words format to kay@33talent.com.<br> &nbsp;&nbsp;<br> <em>33 Talent Singapore Private Limited</em><br> <em>EA License Number 13C6298</em><br> <em>EA Personnel: Kay Lee Meng Qi - R1546136&nbsp;</em><br> &nbsp;&nbsp;<br> <em><strong>33 Talent</strong></em><br> <em>33 Talent specialises in Big Data, Digital and Communications recruitment and talent management across Europe and the APAC region. &nbsp;Our clients include Lenovo, AMEX, SingTel, The Body Shop, Amobee, SAP, WPP Group, McCann Worldgroup, IPG and numerous other corporate, agency and network clients.&nbsp;</em><br> <em><br> Please get in touch or feel free to make referrals to hello@33talent.com &nbsp;We'd love to hear from you!</em>]]></Description>
+    <SearchTitle>Mobile advertising platform, sales, mobile ad network, mobile apps sales</SearchTitle>
+    <Classifications>
+      <Classification jid="15365" name="Job Category" vid="636088" id="527">Digital</Classification>
+      <Classification jid="15366" name="Sub-Category" vid="636742" id="4270">Digital Sales</Classification>
+      <Classification jid="15405" name="Country" vid="636164" id="14">Singapore</Classification>
+      <Classification jid="15410" name="Location" vid="636800" id="30">Singapore</Classification>
+      <Classification jid="16810" name="Area" vid="816807" id="150">All Singapore</Classification>
+      <Classification jid="15368" name="Work Type" vid="636197" id="2">Full Time</Classification>
+    </Classifications>
+    <Fields />
+    <Apply>
+      <EmailTo>kay@33talent.com</EmailTo>
+      <Url>https://apply.jobadder.com/au1/2076/2314507/cvzoay5pxknulkyqekwsuhlai4</Url>
+    </Apply>
+  </Job>
+  <Job jid="2316040" reference="2183531" datePosted="2016-03-22" dateUpdated="2016-03-22T11:57:58Z">
+    <Title>PR Manager - Contiki</Title>
+    <Summary>We are looking for an experienced PR Manager with a love for the youth and travel space to join Contiki.</Summary>
+    <Description><![CDATA[&nbsp;<strong>We are Contiki...</strong><br> <br> Contiki have been the original and the best in youth travel since 62', with over 50 years of experience helping young travellers have the time of their lives. At Contiki, it's about creating epic travel stories, lifelong friendships and making every moment count. We celebrate fun, people, and diversity with a touch of craziness.<br> <br> Every team member and Contiki traveller has written a chapter, and you can too... be part of our story.<br> &nbsp;&nbsp;<br> <strong>The Role..</strong>.<br> &nbsp;&nbsp;<br> As the PR Manager you will define and drive innovative PR strategies for the Contiki and Busabout brands. As a key member of the Marketing team, you will work alongside the senior leadership team to build brand awareness nationally and position the business as leaders in the youth space. Your thinking will translate across multiple platforms with a strong focus on social and digital strategy.&nbsp; Your contacts in the media and influencer space will be well regarded.<br> &nbsp;&nbsp;<br> You will have the confidence to manage and build key stakeholder relationships to identify PR opportunities that align with strategic goals. You are a self-starter and creative thinker. You love contributing to campaign planning, driving media events and famils and are always looking to nurture new and existing relationships with media and influencers to achieve business goals.&nbsp;<br> &nbsp;&nbsp;<br> <strong>... And You</strong><br> <br> <ul> <li>5+ years olid experience in a PR / Communications role, either an agency or in-house environment. Travel and / or youth brand experience advantageous</li> <li>Are driven and ambitious, a real people person and a self-starter looking to achieve stand out results&nbsp;</li> <li>Can build relationships with key stakeholders and foster those relationships to drive the face of the brand</li> <li>Possess excellent written capabilities to develop media materials, Q&amp;As, fact sheets, feature pitches, one on one media / stakeholder briefing documents&nbsp;</li> <li>Take a calm and considered approach to dealing with media enquiries, crisis and issue communications&nbsp;</li> <li>Love event management and planning, driving media / influencer famils and spearheading sponsorship projects to support PR activity&nbsp;</li> <li>Will source, develop and nurture relationships with &nbsp;consumer media, lifestyle and youth bloggers, social influencers, tourist boards and brand ambassadors&nbsp;</li> <li>Have the experience to work alongside the Social Media Manager to drive online presence across Facebook, Twitter, Pinterest, YouTube and Instagram</li> <li>Are committed to chasing new technology and trends in the PR and Social space</li> </ul> If you have the energy and&nbsp;enthusiasm&nbsp;to talk to this role, please contact Sally&nbsp;Thompson at 33 Talent on&nbsp;sally@33talent.com.&nbsp;<br> <br> &nbsp;<br> Only applicants with relevant experience will be contacted.]]></Description>
+    <SearchTitle>PR Manager - Contiki</SearchTitle>
+    <Classifications>
+      <Classification jid="15365" name="Job Category" vid="636092" id="528">Communications</Classification>
+      <Classification jid="15366" name="Sub-Category" vid="636772" id="4299">PR Manager</Classification>
+      <Classification jid="15405" name="Country" vid="636163" id="1">Australia</Classification>
+      <Classification jid="15410" name="Location" vid="636785" id="1">Sydney</Classification>
+      <Classification jid="16810" name="Area" vid="816806" id="1">All Sydney</Classification>
+      <Classification jid="15368" name="Work Type" vid="636197" id="2">Full Time</Classification>
+    </Classifications>
+    <Fields />
+    <Apply>
+      <EmailTo>careers@33talent.com</EmailTo>
+      <Url>https://apply.jobadder.com/au1/2076/2316040/cvzoay5pxknulkyqekwsuhlai4</Url>
+    </Apply>
+  </Job>
+  <Job jid="2319579" reference="2002255" datePosted="2016-03-28" dateUpdated="2016-03-28T01:04:28Z">
+    <Title>Backend Developer (Mobile) - Eyeota</Title>
+    <Summary>Eyeota, a specialist audience data platform, are looking for an experience Senior Backend Developer to join their core tech team in Singapore.</Summary>
+    <Description><![CDATA[<strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong>The Company: Eyeota</strong><br> Eyeota (a specialist audience data platform) are looking for an experienced Senior Backend Developer to join their core tech team in Singapore.&nbsp;<br> <strong><br> The Role</strong><br> As the senior backend developer, you will be working in close collaboration with a team of highly empowered, experienced developers who are building a high-performance, highly scaled global platform. <br> <br> In this role, you will conceive, build, and operate highly distributed systems deployed around the planet as well as employ cutting-edge technologies and techniques in a rapidly evolving domain. You will also thrive on a progressive, environment which relies on communication and initiative rather than process to deliver at a high velocity.<br> <br> <strong>&amp; You...&nbsp;</strong><br> &bull; Bachelor's degree in computer science or equivalent<br> &bull; Have experience deploying/tuning relational databases for scale or performance <br> &bull; Have solid experience in&nbsp;delivery of high-performance low-latency and/or very large distributed data systems<br> &bull; Delivered at least two systems involving messaging and/or event-driven architectures<br> &bull; Solid experience in the Ad Tech industry, especially in mobile environment<br> &bull; Experience designing and implementing server side API's for mobile applications including any of cross-device identity management <br> &bull; Be familiar with nuances of architecting server-side applications for common mobile platforms (IOS, Android, Win8, etc...)<br> &bull; Experience with data acceleration/optimization technologies<br> &bull; Excellent core "Vanilla" Java/JVM knowledge<br> &bull; Experience with the Clojure language<br> &bull; Strong handle on concurrency challenges and design solutions<br> &bull; Exposure to Apache Cassandra, Hadoop, or other NoSQL databases<br> &bull; Involvement in an open-source community <br> &bull; Experience with Git source control and Agile or Lean development techniques<br> <br> <strong>33 Talent</strong><br> <em>33 Talent specialises in Big Data, Digital and Communications recruitment and talent management&nbsp;across the APAC region. &nbsp;Our clients include Lenovo, AMEX, SingTel, The Body Shop, Amobee, SAP, WPP Group, McCann Worldgroup, IPG and&nbsp;numerous other corporate, agency and network clients.&nbsp;&nbsp; Please get in touch or feel free to make referrals to&nbsp;hello@33talent.com&nbsp; We'd love to hear from you!&nbsp;<br> </em><br> <em>33 Talent Singapore Private Limited<br> EA License Number 13C6298<br> EA Personnel: Kay Lee Meng Qi - R1546136&nbsp;</em><em></em><em></em><em></em><em></em><em></em>]]></Description>
+    <SearchTitle>Backend Developer, Core Java, J2SE, Clojure, Scala, NoSQL, Java Developer</SearchTitle>
+    <Classifications>
+      <Classification jid="15365" name="Job Category" vid="636088" id="527">Digital</Classification>
+      <Classification jid="15366" name="Sub-Category" vid="636748" id="5377">Technology</Classification>
+      <Classification jid="15405" name="Country" vid="636164" id="14">Singapore</Classification>
+      <Classification jid="15410" name="Location" vid="636800" id="30">Singapore</Classification>
+      <Classification jid="16810" name="Area" vid="816807" id="150">All Singapore</Classification>
+      <Classification jid="15368" name="Work Type" vid="636197" id="2">Full Time</Classification>
+    </Classifications>
+    <Fields />
+    <Apply>
+      <EmailTo>kay@33talent.com</EmailTo>
+      <Url>https://apply.jobadder.com/au1/2076/2319579/cvzoay5pxknulkyqekwsuhlai4</Url>
+    </Apply>
+  </Job>
+  <Job jid="2319647" reference="2251509" datePosted="2016-03-28" dateUpdated="2016-03-28T04:01:06Z">
+    <Title>Marketing Manager, APAC/SEA</Title>
+    <Summary>A leading visual discovery company is looking for a Marketing Manager to join their up and coming regional APAC hub in Singapore.</Summary>
+    <Description><![CDATA[<p style="margin:0;"><strong>The Company</strong></p> <p style="margin:0;">Our client is the world's leading visual discovery company and is looking for a Marketing Manager to join their up and coming regional APAC hub in Singapore.<br> <br> </p> <p style="margin:0;"><strong>The Role</strong></p> <p style="margin:0;">Working with the global marketing and regional teams, you are to create and implement APAC focused marketing activities to enhance the company&rsquo;s visibility in the region aiming at target clients within provided budget. &nbsp;Also, implement marketing efforts that help to evolve strategic relationships with global brand &amp; agency partners.</p> <p style="margin:0;">&nbsp;</p> <p style="margin:0;">You will also be responsible for supporting the commercial team in Singapore and helping them to develop the market by executing both B2C and B2B marketing activities in the region.</p> <p style="margin:0;">&nbsp;</p> <p style="margin:0;">In the beginning, there will be an emphasis on developing and implementing B2B marketing strategies and activities targeting advertising agencies and brands.</p> <p style="margin:0;">&nbsp;</p> <p style="margin:0;">Develop the infrastructure and groundwork for the execution of a B2C strategy across the South East Asian markets with the objective of increasing awareness, driving downloads and creating mass habitual behavior.</p> <p style="margin:0;">&nbsp;</p> <p style="margin:0;">Coordinating with the global strategy &amp; collaborating with regional teams, you will deliver B2C campaigns designed to drive usage &amp; adoption of the client&rsquo;s product.</p> <p style="margin:0;">&nbsp;</p> <p style="margin:0;">A key part of the role is to influence overall positioning of the company&rsquo;s product and the support the implementation of new products by evaluating consumer research, market conditions &amp; competitor data.</p> <p style="margin:0;">&nbsp;</p> <p style="margin:0;">You will also manage the end-to-end submission process for relevant awards in the marketing/innovative space.</p> <p style="margin:0;">&nbsp;</p> <p style="margin:0;"><strong>&amp; You...</strong></p> <ul> <li>Hold a Bachelor&rsquo;s degree in Marketing or Business or communications-related subject, or equivalent</li> <li>Ideally, have more than 4 years of marketing experience with exposure to online-platform, marketing technology or advertising sector. Creative or Digital Agency background would be advantageous.</li> <li>Possesses strong project management &amp; organizational skills.</li> <li>Public relations, Social Media, Community Management or event management experience is a plus.</li> <li>You are passionate about what you do, a creative thinker and takes ownership of projects and their results; also possess an entrepreneurial spirit and understand how a start-up environment works</li> </ul> <p style="margin:0;">&nbsp;</p> <p style="margin:0;"><strong>33 Talent</strong></p> <p style="margin:0;"><em>33 Talent specialises in Big Data, Digital and Communications recruitment and talent management across Europe and the APAC region.&nbsp; Our clients include Lenovo, AMEX, SingTel, The Body Shop, Amobee, SAP, WPP Group, McCann Worldgroup, IPG and numerous other corporate, agency and network clients.&nbsp;&nbsp; Please get in touch or feel free to make referrals to hello@33talent.com&nbsp; We'd love to hear from you!</em></p> <p style="margin:0;">&nbsp;</p> <p style="margin:0;"><em>33 Talent Singapore Private Limited</em></p> <p style="margin:0;"><em>EA License Number 13C6298</em></p> <p style="margin:0;"><em>EA Personnel: Kay Lee Meng Qi - R1546136</em></p>]]></Description>
+    <SearchTitle>Marketing, technology, start-up, SEA, APAC</SearchTitle>
+    <Classifications>
+      <Classification jid="15365" name="Job Category" vid="636092" id="528">Communications</Classification>
+      <Classification jid="15366" name="Sub-Category" vid="636763" id="4290">Marketing Manager</Classification>
+      <Classification jid="15405" name="Country" vid="636164" id="14">Singapore</Classification>
+      <Classification jid="15410" name="Location" vid="636800" id="30">Singapore</Classification>
+      <Classification jid="16810" name="Area" vid="816807" id="150">All Singapore</Classification>
+      <Classification jid="15368" name="Work Type" vid="636197" id="2">Full Time</Classification>
+    </Classifications>
+    <Fields />
+    <Apply>
+      <EmailTo>kay@33talent.com</EmailTo>
+      <Url>https://apply.jobadder.com/au1/2076/2319647/cvzoay5pxknulkyqekwsuhlai4</Url>
+    </Apply>
+  </Job>
+  <Job jid="2319683" reference="2252705" datePosted="2016-03-29" dateUpdated="2016-03-28T13:21:11Z">
+    <Title>Sustainability Projects and Communications Senior Executive</Title>
+    <Summary>This CSR &amp; Comms Exec will manage sustainability in the APAC region for a well known teach hardware brand</Summary>
+    <Description><![CDATA[<strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong>The Company</strong><br> This global company is a well know brand HQ'd from Asia, with a sizeable operating business in APAC. &nbsp;They provide hardware products in the technology sector that are used by every office.<br> <br> <strong>The Role</strong><br> The role will be run from the APAC office, which is centred from Singapore. &nbsp;Covering 13 different operating businesses in the region, the Sustainability Projects &amp; Comms Senior Exec will be given individual projects while supporting regional corporate sustainability to accelerate sustainability integration into the core business and strengthen the culture of CSR among employees.<br> <br> The role will report to the Head of Corporate Sustainability, Asia Pacific.<br> <br> 1 year contract full time<br> <br> <strong>&amp; You...&nbsp;</strong><br> You will have roughly 3-5 years work experience, with at least 2 as a specialist in CSR and/or sustainability. Key skills required are:<br> <ul> <li>Sustainability reporting experience</li> <li>Understanding of United Nations Sustainable Development Goals, GRI, various sustainability reporting standards</li> <li>Community investment project management and impact measurements</li> <li>Corporate communications and stakeholder engagement experience</li> <li>if they have experience with environmental initiatives, it will be a plus</li> </ul> <span style="text-decoration:underline"></span>Based in Singapore<br> <br> <strong>33 Talent</strong><br> <em>33 Talent specialises in Big Data, Digital and Communications recruitment and talent management&nbsp;across Europe and the APAC region. Our clients include Lenovo, AMEX, SingTel, The Body Shop, Amobee, SAP, WPP Group, McCann Worldgroup, IPG and&nbsp;numerous other corporate, agency and network clients. Please get in touch or feel free to make referrals to hello@33talent.com&nbsp; We'd love to hear from you!&nbsp;<br> </em><br> <em>33 Talent Singapore Private Limited</em><br> <em>EA License Number 13C6298<br> </em><em>EA Personnel: Amanda Rendell - R1550865</em>]]></Description>
+    <SearchTitle>CSR, sustainability, project management, Comms</SearchTitle>
+    <Classifications>
+      <Classification jid="15365" name="Job Category" vid="636092" id="528">Communications</Classification>
+      <Classification jid="15366" name="Sub-Category" vid="636752" id="4279">CSR</Classification>
+      <Classification jid="15405" name="Country" vid="636164" id="14">Singapore</Classification>
+      <Classification jid="15410" name="Location" vid="636800" id="30">Singapore</Classification>
+      <Classification jid="16810" name="Area" vid="816807" id="150">All Singapore</Classification>
+      <Classification jid="15368" name="Work Type" vid="636199" id="4">Contract</Classification>
+    </Classifications>
+    <Fields />
+    <Apply>
+      <EmailTo>amanda@33talent.com</EmailTo>
+      <Url>https://apply.jobadder.com/au1/2076/2319683/cvzoay5pxknulkyqekwsuhlai4</Url>
+    </Apply>
+  </Job>
+  <Job jid="2319726" reference="2213115" datePosted="2016-03-28" dateUpdated="2016-03-28T12:53:59Z">
+    <Title>Communications Account Director - Beijing</Title>
+    <Summary>Global Business Advisory Communications Agency seeks an Account Director for their Beijing office</Summary>
+    <Description><![CDATA[<strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong>The Company</strong><br> This business advisory communications consultancy focuses on high level corporate and financial communications, strategic comms, reputation management, mergers and acquisitions, and public affairs work. &nbsp;They have offices globally and are growing their APAC presence.<br> <br> <strong>The Role</strong><br> The role would suit somebody who is used to operating in a relatively flat structure, enjoys high level client relations, and working with a team that come from all areas of corporate life, not just communications.<br> <br> This person will be joining as an Account Director working as an advisor across multiple clients,&nbsp;with mentors covering different projects and an office Director that you'll report to.<br> <br> <strong>&amp; You...&nbsp;</strong><br> As an Account Director you will have 4-5 years experience in both business advisory and communications, with integrated experience in the digital space. Liaising with both local and international clients is required.<br> <br> The soft skills you'll display are an intellectual curiosity in business and all aspects of communicating for success. &nbsp;<br> <br> <strong>Beijing&nbsp;</strong>based<br> <br> <br> <strong>33 Talent</strong><br> <em>33 Talent specialises in Big Data, Digital and Communications recruitment and talent management&nbsp;across Europe and the APAC region. Our clients include Lenovo, AMEX, SingTel, The Body Shop, Amobee, SAP, WPP Group, McCann Worldgroup, IPG and&nbsp;numerous other corporate, agency and network clients. Please get in touch or feel free to make referrals to hello@33talent.com&nbsp; We'd love to hear from you!&nbsp;<br> </em><br> <em>33 Talent Singapore Private Limited</em><br> <em>EA License Number 13C6298<br> </em><em>EA Personnel: Amanda Rendell - R1550865</em>]]></Description>
+    <SearchTitle>Account Director, Communications, Comms, PR</SearchTitle>
+    <Classifications>
+      <Classification jid="15365" name="Job Category" vid="636092" id="528">Communications</Classification>
+      <Classification jid="15366" name="Sub-Category" vid="636766" id="4293">PR - Account Director</Classification>
+      <Classification jid="15405" name="Country" vid="636783" id="3">China</Classification>
+      <Classification jid="15410" name="Location" vid="636802" id="143">Beijing</Classification>
+      <Classification jid="16810" name="Area" vid="816803" id="583">Beijing</Classification>
+      <Classification jid="15368" name="Work Type" vid="636197" id="2">Full Time</Classification>
+    </Classifications>
+    <Fields />
+    <Apply>
+      <EmailTo>amanda@33talent.com</EmailTo>
+      <Url>https://apply.jobadder.com/au1/2076/2319726/cvzoay5pxknulkyqekwsuhlai4</Url>
+    </Apply>
+  </Job>
+  <Job jid="2319727" reference="2213163" datePosted="2016-03-28" dateUpdated="2016-03-28T12:55:01Z">
+    <Title>Communications Account Director - Shanghai</Title>
+    <Summary>Global Business Advisory Communications Agency seeks an Account Director for their Shanghai office</Summary>
+    <Description><![CDATA[<strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong>The Company</strong><br> This business advisory communications consultancy focuses on high level corporate and financial communications, strategic comms, reputation management, mergers and acquisitions, and public affairs work. &nbsp;They have offices globally and are growing their APAC presence.<br> <br> <strong>The Role</strong><br> The role would suit somebody with a PR/Communications Agency background who is used to operating in a relatively flat structure, enjoys high level client relations, and working with a team that come from all areas of corporate life, not just communications.<br> <br> This person will be joining as an Account Director working as an advisor across multiple clients,&nbsp;with mentors covering different projects and an office Director that you'll report to.<br> <br> <strong>&amp; You...&nbsp;</strong><br> As an Account Director you will have 4-5 years experience in both business advisory and communications, with integrated experience in the digital space. Liaising with both local and international clients is required.<br> <br> The soft skills you'll display are an intellectual curiosity in business and all aspects of communicating for success. &nbsp;<br> <br> <strong>Shanghai&nbsp;</strong>based<br> <br> <strong>33 Talent</strong><br> <em>33 Talent specialises in Big Data, Digital and Communications recruitment and talent management&nbsp;across Europe and the APAC region. Our clients include Lenovo, AMEX, SingTel, The Body Shop, Amobee, SAP, WPP Group, McCann Worldgroup, IPG and&nbsp;numerous other corporate, agency and network clients. Please get in touch or feel free to make referrals to hello@33talent.com&nbsp; We'd love to hear from you!&nbsp;<br> </em><br> <em>33 Talent Singapore Private Limited</em><br> <em>EA License Number 13C6298<br> </em><em>EA Personnel: Amanda Rendell - R1550865</em>]]></Description>
+    <SearchTitle>Account Director, Communications, Comms, PR</SearchTitle>
+    <Classifications>
+      <Classification jid="15365" name="Job Category" vid="636092" id="528">Communications</Classification>
+      <Classification jid="15366" name="Sub-Category" vid="636766" id="4293">PR - Account Director</Classification>
+      <Classification jid="15405" name="Country" vid="636783" id="3">China</Classification>
+      <Classification jid="15410" name="Location" vid="636803" id="144">Shanghai</Classification>
+      <Classification jid="16810" name="Area" vid="816795" id="584">Shanghai</Classification>
+      <Classification jid="15368" name="Work Type" vid="636197" id="2">Full Time</Classification>
+    </Classifications>
+    <Fields />
+    <Apply>
+      <EmailTo>amanda@33talent.com</EmailTo>
+      <Url>https://apply.jobadder.com/au1/2076/2319727/cvzoay5pxknulkyqekwsuhlai4</Url>
+    </Apply>
+  </Job>
+  <Job jid="2319728" reference="2213109" datePosted="2016-03-28" dateUpdated="2016-03-28T12:56:18Z">
+    <Title>Communications Associate - Beijing</Title>
+    <Summary>Global Business Advisory Communications Agency seeks an Associate for their Beijing office</Summary>
+    <Description><![CDATA[<strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong>The Company</strong><br> This business advisory communications consultancy focuses on high level corporate and financial communications, strategic comms, reputation management, mergers and acquisitions, and public affairs work. &nbsp;They have offices globally and are growing their APAC presence.<br> <br> <strong>The Role</strong><br> The role would suit somebody who is used to operating in a relatively flat structure, enjoys high level client relations, and working with a team that come from all areas of corporate life, not just communications.<br> <br> This person will be joining as an Associate working as an advisor and media relations &nbsp;professional across multiple clients,&nbsp;with mentors covering different projects and an office Director that you'll report to.<br> <br> <strong>&amp; You...&nbsp;</strong><br> As an Associate you will have 7+ years local experience in both business advisory and communications. You will have an established international and local media network with proven media handling capabilities. Liaising with both local and international clients and journalists is required.&nbsp;Journalism background welcome.<br> <br> The soft skills you'll display are an intellectual curiosity in business and all aspects of communicating for success.&nbsp;<br> <br> <strong>Beijing&nbsp;</strong>based<br> <br> <strong>33 Talent</strong><br> <em>33 Talent specialises in Big Data, Digital and Communications recruitment and talent management&nbsp;across Europe and the APAC region. Our clients include Lenovo, AMEX, SingTel, The Body Shop, Amobee, SAP, WPP Group, McCann Worldgroup, IPG and&nbsp;numerous other corporate, agency and network clients. Please get in touch or feel free to make referrals to hello@33talent.com&nbsp; We'd love to hear from you!&nbsp;<br> </em><br> <em>33 Talent Singapore Private Limited</em><br> <em>EA License Number 13C6298<br> </em><em>EA Personnel: Amanda Rendell - R1550865</em>]]></Description>
+    <SearchTitle>Associate, Communications, Comms, PR</SearchTitle>
+    <Classifications>
+      <Classification jid="15365" name="Job Category" vid="636092" id="528">Communications</Classification>
+      <Classification jid="15366" name="Sub-Category" vid="636769" id="4296">PR - Media Advisor</Classification>
+      <Classification jid="15405" name="Country" vid="636783" id="3">China</Classification>
+      <Classification jid="15410" name="Location" vid="636802" id="143">Beijing</Classification>
+      <Classification jid="16810" name="Area" vid="816803" id="583">Beijing</Classification>
+      <Classification jid="15368" name="Work Type" vid="636197" id="2">Full Time</Classification>
+    </Classifications>
+    <Fields />
+    <Apply>
+      <EmailTo>amanda@33talent.com</EmailTo>
+      <Url>https://apply.jobadder.com/au1/2076/2319728/cvzoay5pxknulkyqekwsuhlai4</Url>
+    </Apply>
+  </Job>
+  <Job jid="2319730" reference="2213158" datePosted="2016-03-28" dateUpdated="2016-03-28T12:57:47Z">
+    <Title>Communications Associate - Shanghai</Title>
+    <Summary>Global Business Advisory Communications Agency seeks an Associate for their Shanghai office</Summary>
+    <Description><![CDATA[<strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong>The Company</strong><br> This business advisory communications consultancy focuses on high level corporate and financial communications, strategic comms, reputation management, mergers and acquisitions, and public affairs work. &nbsp;They have offices globally and are growing their APAC presence.<br> <br> <strong>The Role</strong><br> The role would suit somebody who is used to operating in a relatively flat structure, enjoys high level client relations, and working with a team that come from all areas of corporate life, not just communications.<br> <br> This person will be joining as an Associate, using their established local network and experience in social media as an advisor covering different projects, with an office Director that you'll report to.<br> <br> <strong>&amp; You...&nbsp;</strong><br> As an Associate you will have 5-8 years experience in both business advisory and communications. You will have proven integrated experience in the digital space, particularly social media.&nbsp;<br> <br> The soft skills you'll display are an intellectual curiosity in business and all aspects of communicating for success. &nbsp;<br> <br> <strong>Shanghai&nbsp;</strong>based<br> <br> <strong>33 Talent</strong><br> <em>33 Talent specialises in Big Data, Digital and Communications recruitment and talent management&nbsp;across Europe and the APAC region. Our clients include Lenovo, AMEX, SingTel, The Body Shop, Amobee, SAP, WPP Group, McCann Worldgroup, IPG and&nbsp;numerous other corporate, agency and network clients. Please get in touch or feel free to make referrals to hello@33talent.com&nbsp; We'd love to hear from you!&nbsp;<br> </em><br> <em>33 Talent Singapore Private Limited</em><br> <em>EA License Number 13C6298<br> </em><em>EA Personnel: Amanda Rendell - R1550865</em>]]></Description>
+    <SearchTitle>Associate, Communications, Comms, PR</SearchTitle>
+    <Classifications>
+      <Classification jid="15365" name="Job Category" vid="636092" id="528">Communications</Classification>
+      <Classification jid="15366" name="Sub-Category" vid="636772" id="4299">PR Manager</Classification>
+      <Classification jid="15405" name="Country" vid="636783" id="3">China</Classification>
+      <Classification jid="15410" name="Location" vid="636803" id="144">Shanghai</Classification>
+      <Classification jid="16810" name="Area" vid="816795" id="584">Shanghai</Classification>
+      <Classification jid="15368" name="Work Type" vid="636197" id="2">Full Time</Classification>
+    </Classifications>
+    <Fields />
+    <Apply>
+      <EmailTo>amanda@33talent.com</EmailTo>
+      <Url>https://apply.jobadder.com/au1/2076/2319730/cvzoay5pxknulkyqekwsuhlai4</Url>
+    </Apply>
+  </Job>
+  <Job jid="2319731" reference="2213154" datePosted="2016-03-28" dateUpdated="2016-03-28T12:58:31Z">
+    <Title>Agency Director, Communications - Shanghai</Title>
+    <Summary>Global Business Advisory Communications Agency seeks a Director for their Shanghai office</Summary>
+    <Description><![CDATA[<strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong>The Company</strong><br> This business advisory communications consultancy focuses on high level corporate and financial communications, strategic comms, reputation management, mergers and acquisitions, and public affairs work. &nbsp;They have offices globally and are growing their APAC presence.<br> <br> <strong>The Role</strong><br> The role would suit somebody who is used to operating in a relatively flat structure, enjoys high level client relations, and working with a team that come from all areas of corporate life, not just communications.<br> <br> This person will be joining as a Director, working closely with the partners you will be a key part of the senior team providing expert counsel,&nbsp;leading multiple teams and clients across corporate comms, public affairs and investor relations.&nbsp;<br> <br> <strong>&amp; You...&nbsp;</strong><br> As a Communications Director you will have 10+ years experience in both business advisory and communications in a leadership position. You will have in-depth knowledge of the Chinese corporate relations and media environment, have&nbsp;integrated experience, particularly in digital and/or sustainability and an established network in Shanghai.&nbsp;<br> <br> The soft skills you'll display are an intellectual curiosity in business and all aspects of communicating for success. &nbsp;<br> <br> <strong>Shanghai&nbsp;</strong>based<br> <br> <strong>33 Talent</strong><br> <em>33 Talent specialises in Big Data, Digital and Communications recruitment and talent management&nbsp;across Europe and the APAC region. Our clients include Lenovo, AMEX, SingTel, The Body Shop, Amobee, SAP, WPP Group, McCann Worldgroup, IPG and&nbsp;numerous other corporate, agency and network clients. Please get in touch or feel free to make referrals to hello@33talent.com&nbsp; We'd love to hear from you!&nbsp;<br> </em><br> <em>33 Talent Singapore Private Limited</em><br> <em>EA License Number 13C6298<br> </em><em>EA Personnel: Amanda Rendell - R1550865</em>]]></Description>
+    <SearchTitle>Practice Director, Communications, Comms, PR</SearchTitle>
+    <Classifications>
+      <Classification jid="15365" name="Job Category" vid="636092" id="528">Communications</Classification>
+      <Classification jid="15366" name="Sub-Category" vid="636770" id="4297">PR - Practice Director</Classification>
+      <Classification jid="15405" name="Country" vid="636783" id="3">China</Classification>
+      <Classification jid="15410" name="Location" vid="636803" id="144">Shanghai</Classification>
+      <Classification jid="16810" name="Area" vid="816795" id="584">Shanghai</Classification>
+      <Classification jid="15368" name="Work Type" vid="636197" id="2">Full Time</Classification>
+    </Classifications>
+    <Fields />
+    <Apply>
+      <EmailTo>amanda@33talent.com</EmailTo>
+      <Url>https://apply.jobadder.com/au1/2076/2319731/cvzoay5pxknulkyqekwsuhlai4</Url>
+    </Apply>
+  </Job>
+  <Job jid="2319732" reference="2213118" datePosted="2016-03-28" dateUpdated="2016-03-28T12:59:19Z">
+    <Title>Communications Account Executive - Beijing</Title>
+    <Summary>Global Business Advisory Communications Agency seeks an Account Executive for their Beijing office</Summary>
+    <Description><![CDATA[<strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong>The Company</strong><br> This business advisory communications consultancy focuses on high level corporate and financial communications, strategic comms, reputation management, mergers and acquisitions, and public affairs work. &nbsp;They have offices globally and are growing their APAC presence.<br> <br> <strong>The Role</strong><br> The role would suit somebody who is used to operating in a relatively flat structure, enjoys high level client relations, and working with a team that come from all areas of corporate life, not just communications.<br> <br> This person will be joining as an Account Executive working as an advisor and media relations professional across multiple clients,&nbsp;with mentors covering different projects and an office Director that you'll report to.<br> <br> <strong>&amp; You...&nbsp;</strong><br> As an Account Executive you will have 3-4 years local communications agency experience. You will have proven campaign implementation and advisory skills, communicating with both local and international clients and colleagues.&nbsp;<br> <br> The soft skills you'll display are an intellectual curiosity in business and all aspects of communicating for success.&nbsp;<br> <br> <strong>Beijing&nbsp;</strong>based<br> <br> <strong>33 Talent</strong><br> <em>33 Talent specialises in Big Data, Digital and Communications recruitment and talent management&nbsp;across Europe and the APAC region. Our clients include Lenovo, AMEX, SingTel, The Body Shop, Amobee, SAP, WPP Group, McCann Worldgroup, IPG and&nbsp;numerous other corporate, agency and network clients. Please get in touch or feel free to make referrals to hello@33talent.com&nbsp; We'd love to hear from you!&nbsp;<br> </em><br> <em>33 Talent Singapore Private Limited</em><br> <em>EA License Number 13C6298<br> </em><em>EA Personnel: Amanda Rendell - R1550865</em>]]></Description>
+    <SearchTitle>Account Executive, Communications, Comms, PR</SearchTitle>
+    <Classifications>
+      <Classification jid="15365" name="Job Category" vid="636092" id="528">Communications</Classification>
+      <Classification jid="15366" name="Sub-Category" vid="636767" id="4294">PR - Account Executive</Classification>
+      <Classification jid="15405" name="Country" vid="636783" id="3">China</Classification>
+      <Classification jid="15410" name="Location" vid="636802" id="143">Beijing</Classification>
+      <Classification jid="16810" name="Area" vid="816803" id="583">Beijing</Classification>
+      <Classification jid="15368" name="Work Type" vid="636197" id="2">Full Time</Classification>
+    </Classifications>
+    <Fields />
+    <Apply>
+      <EmailTo>amanda@33talent.com</EmailTo>
+      <Url>https://apply.jobadder.com/au1/2076/2319732/cvzoay5pxknulkyqekwsuhlai4</Url>
+    </Apply>
+  </Job>
+  <Job jid="2319733" reference="2215474" datePosted="2016-03-29" dateUpdated="2016-03-28T13:02:01Z">
+    <Title>Agency Director, Communications - Beijing</Title>
+    <Summary>Global Business Advisory Communications Agency seeks a Director for their Beijing office</Summary>
+    <Description><![CDATA[<strong></strong><strong></strong><strong>The Company</strong><br> This business advisory communications consultancy focuses on high level corporate and financial communications, strategic comms, reputation management, mergers and acquisitions, and public affairs work. &nbsp;They have offices globally and are growing their APAC presence.<br> <br> <strong>The Role</strong><br> The role would suit somebody who is used to operating in a relatively flat structure, enjoys high level client relations, and working with a team that come from all areas of corporate life, not just communications.<br> <br> This person will be joining as a Director, working closely with the partners you will be a key part of the senior team providing expert counsel,&nbsp;leading multiple teams and clients across corporate comms, public affairs and investor relations.&nbsp;<br> <br> <strong>&amp; You...&nbsp;</strong><br> As a Communications Agency Director you will have 10+ years experience in both business advisory and communications in a leadership position. You will have in-depth knowledge of the Chinese corporate relations and media environment and be passionate about expanding your skills and experience beyond your specialism.<br> <br> The soft skills you'll display are an intellectual curiosity in business and all aspects of communicating for success. &nbsp;<br> <br> <strong>Beijing&nbsp;</strong>based<br> <br> <strong>33 Talent</strong><br> <em>33 Talent specialises in Big Data, Digital and Communications recruitment and talent management&nbsp;across Europe and the APAC region. Our clients include Lenovo, AMEX, SingTel, The Body Shop, Amobee, SAP, WPP Group, McCann Worldgroup, IPG and&nbsp;numerous other corporate, agency and network clients. Please get in touch or feel free to make referrals to hello@33talent.com&nbsp; We'd love to hear from you!&nbsp;<br> </em><br> <em>33 Talent Singapore Private Limited</em><br> <em>EA License Number 13C6298<br> </em><em>EA Personnel: Amanda Rendell - R1550865</em>]]></Description>
+    <SearchTitle>Practice Director, Communications, Comms, PR, business advisory</SearchTitle>
+    <Classifications>
+      <Classification jid="15365" name="Job Category" vid="636092" id="528">Communications</Classification>
+      <Classification jid="15366" name="Sub-Category" vid="636770" id="4297">PR - Practice Director</Classification>
+      <Classification jid="15405" name="Country" vid="636783" id="3">China</Classification>
+      <Classification jid="15410" name="Location" vid="636802" id="143">Beijing</Classification>
+      <Classification jid="16810" name="Area" vid="816803" id="583">Beijing</Classification>
+      <Classification jid="15368" name="Work Type" vid="636197" id="2">Full Time</Classification>
+    </Classifications>
+    <Fields />
+    <Apply>
+      <EmailTo>amanda@33talent.com</EmailTo>
+      <Url>https://apply.jobadder.com/au1/2076/2319733/cvzoay5pxknulkyqekwsuhlai4</Url>
+    </Apply>
+  </Job>
+  <Job jid="2319734" reference="2217007" datePosted="2016-03-29" dateUpdated="2016-03-28T13:03:42Z">
+    <Title>Senior Consultant - Content Creation Agency</Title>
+    <Summary>Full service content creation agency based in Seoul looking for Senior Consultant</Summary>
+    <Description><![CDATA[<strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong>The Company</strong><br> Full service content creation agency based in Seoul since 2005 who develop innovative and professional content for Korean firms doing business internationally.&nbsp;<br> &nbsp;<br> <strong>The Role</strong><br> The role would suit someone who loves to develop and manage content strategies, helping Korean companies to create distinctive content that conveys their message thoughtfully and with imagination.<br> <br> As the Senior Consultant you will be the key contact for agency clients, overseeing and managing the development of professional content creative. Specifically you will be covering everything from liaising with third party suppliers, both locally and internationally, to planning and coordinating their corporate comms collaterals, marketing materials, social media campaigns, video productions and event management.<br> <br> <strong>&amp; You...&nbsp;</strong><br> As the Senior Consultant, you will have a minimum of 2 years agency experience within PR/Comms, advertising &amp; digital or marketing areas. You will have a strong understanding of how to manage client projects and have superior&nbsp;client relations and account management skills.<br> <br> You do not have to be a designer or art director, but&nbsp;an understanding of visual communications and design, and the production process for print materials and video will be critical to working their clients.<br> <br> Experience managing overseas events is preferred<br> <strong>Based in Seoul, South Korea</strong><br> <br> <strong>33 Talent</strong><br> <em>33 Talent specialises in Big Data, Digital and Communications recruitment and talent management&nbsp;across Europe and the APAC region. Our clients include Lenovo, AMEX, SingTel, The Body Shop, Amobee, SAP, WPP Group, McCann Worldgroup, IPG and&nbsp;numerous other corporate, agency and network clients. Please get in touch or feel free to make referrals to hello@33talent.com&nbsp; We'd love to hear from you!&nbsp;<br> </em><br> <em>33 Talent Singapore Private Limited</em><br> <em>EA License Number 13C6298<br> </em><em>EA Personnel: Amanda Rendell - R1550865</em>]]></Description>
+    <SearchTitle>Marketing, Comms, PR, Content Strategy, Events</SearchTitle>
+    <Classifications>
+      <Classification jid="15365" name="Job Category" vid="636092" id="528">Communications</Classification>
+      <Classification jid="15366" name="Sub-Category" vid="636765" id="4292">Marketing/PR/Events - Others</Classification>
+      <Classification jid="15405" name="Country" vid="1023420" id="265">Other</Classification>
+      <Classification jid="15410" name="Location" vid="1023421" id="451">Other APAC</Classification>
+      <Classification jid="16810" name="Area" vid="1028759" id="1585">APAC</Classification>
+      <Classification jid="15368" name="Work Type" vid="636197" id="2">Full Time</Classification>
+    </Classifications>
+    <Fields />
+    <Apply>
+      <EmailTo>amanda@33talent.com</EmailTo>
+      <Url>https://apply.jobadder.com/au1/2076/2319734/cvzoay5pxknulkyqekwsuhlai4</Url>
+    </Apply>
+  </Job>
+  <Job jid="2319737" reference="2252681" datePosted="2016-03-29" dateUpdated="2016-03-28T13:51:35Z">
+    <Title>Executive Director for Humanitarian NGO</Title>
+    <Summary>Humanitarian NGO looking for an Executive Director to provide leadership and oversee the running of the organisation</Summary>
+    <Description><![CDATA[<strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong>The Company</strong><br> A humanitarian NGO working for the well-being and justice empowerment for migrant workers and trafficked victims in Singapore.<br> <br> <strong>The Role</strong><br> The Executive Director (ED) is a critical member of the staff and provides the leadership for the organisation, working closely with the founder and the Board. <br> <br> The ED ensures the organisation stays true to its mission, delivers against its stated priorities and oversees all operating aspects. The ED will assist with the vision and strategic planning, supervise all programmes and services, manage full-time and volunteer staff, drive revenue through fundraising and donor management, oversee partnerships and community outreach, as well as comms and PR.<br> <br> <strong>&amp; You...&nbsp;</strong><br> You will have 10+ years experience in managing an organisation and/or department. Key skills required are:<br> <ul> <li>strategic planning for programmes and services</li> <li>experience coaching and developing staff, providing guidance&nbsp;</li> <li>Ability to work with senior people in business, government, development agencies and other partner organisations</li> <li>strong communications and presentation skills</li> <li>flexible with ability to work in a less structured environment</li> <li>has a can-do spirit, is a problem solver, patient and has perseverance&nbsp;</li> </ul> Based in Singapore&nbsp;<br> <br> <strong>33 Talent</strong><br> <em>33 Talent specialises in Big Data, Digital and Communications recruitment and talent management&nbsp;across Europe and the APAC region. Our clients include Lenovo, AMEX, SingTel, The Body Shop, Amobee, SAP, WPP Group, McCann Worldgroup, IPG and&nbsp;numerous other corporate, agency and network clients. Please get in touch or feel free to make referrals to hello@33talent.com&nbsp; We'd love to hear from you!&nbsp;<br> </em><br> <em>33 Talent Singapore Private Limited</em><br> <em>EA License Number 13C6298<br> </em><em>EA Personnel: Amanda Rendell - R1550865</em>]]></Description>
+    <SearchTitle>Manager, Community Relations, CSR</SearchTitle>
+    <Classifications>
+      <Classification jid="15365" name="Job Category" vid="636092" id="528">Communications</Classification>
+      <Classification jid="15366" name="Sub-Category" vid="636752" id="4279">CSR</Classification>
+      <Classification jid="15405" name="Country" vid="636164" id="14">Singapore</Classification>
+      <Classification jid="15410" name="Location" vid="636800" id="30">Singapore</Classification>
+      <Classification jid="16810" name="Area" vid="816807" id="150">All Singapore</Classification>
+      <Classification jid="15368" name="Work Type" vid="636197" id="2">Full Time</Classification>
+    </Classifications>
+    <Fields />
+    <Apply>
+      <EmailTo>amanda@33talent.com</EmailTo>
+      <Url>https://apply.jobadder.com/au1/2076/2319737/cvzoay5pxknulkyqekwsuhlai4</Url>
+    </Apply>
+  </Job>
+  <Job jid="2321533" reference="2249005" datePosted="2016-03-30" dateUpdated="2016-03-29T23:46:16Z">
+    <Title>Account Manager - Digital/Programmatic</Title>
+    <Summary>Mid-level Digital Account Manager required for fast growing agency based in Sydney. 3 years media buying/planning or account management exp. needed.</Summary>
+    <Description><![CDATA[<strong></strong><strong></strong><strong></strong><strong></strong><strong>The Company . . .</strong><br> Fast-growing digital agency in Sydney are looking for a talented Digital Account Manager with around 3 years' experience. They provide a diverse range of services to clients - online strategic advertising, media planning/buying, and audience platform management (programmatic buying).<br> &nbsp;<br> <strong>The Role . . .</strong><br> &bull; Work closely with clients on their campaigns using primarily automatic media planning and buying strategies, focusing on&nbsp;<span style="text-decoration:underline">not</span>&nbsp;making things over complicated. Simple is sometimes best left as it should be.<br> &bull; Reporting to the Head of Strategy, you'll be project managing campaigns, mapping out project timelines and providing valuable audience insights and real online metrics that demonstrate real value to clients.<br> &bull; Strategy development and project scoping.<br> &bull; Assisting with sales pitches and client presentations<br> &bull; Providing the highest levels of client service and making recommendations to ensure the best outcomes.<br> &nbsp;<br> <strong>And you . . .</strong><br> &bull; Previous client facing experience (3 years+) managing client relationships, accounts and strategy.<br> &bull; A strong problem solver with demonstrated technical experience in either Campaign Management, Media Buying/Planning or Ad Ops.<br> &bull; A quick learner who can quickly gain an indepth knowledge of the client's needs.<br> &bull; Strong understanding of current ad-technologies that facilitate programmatic media buying<br> &bull; Advanced knowledge of Excel, PowerPoint and ideally ad industry measurement tools - Roy Morgan, ComScore, Google etc.<br> <br> <br> <br> <strong>33 Talent</strong><br> <em>33 Talent specialises in Big Data, Digital and Communications recruitment and talent management across Europe and the APAC region. Our clients include Lenovo, AMEX, SingTel, The Body Shop, Amobee, SAP, WPP Group, McCann Worldgroup, IPG and&nbsp;numerous other corporate, agency and network clients.&nbsp;&nbsp; Please get in touch or feel free to make referrals to&nbsp;hello@33talent.com&nbsp; We'd love to hear from you!&nbsp;<br> </em><br> <em>33 Talent Pty Ltd</em><br> <em>Recruiter: Bronwen Kaspers - bronwen@33talent.com<br> </em><em> </em>]]></Description>
+    <SearchTitle>Account Manager - Digital/Programmatic</SearchTitle>
+    <Classifications>
+      <Classification jid="15365" name="Job Category" vid="636088" id="527">Digital</Classification>
+      <Classification jid="15366" name="Sub-Category" vid="636736" id="4265">Account Manager</Classification>
+      <Classification jid="15405" name="Country" vid="636163" id="1">Australia</Classification>
+      <Classification jid="15410" name="Location" vid="636785" id="1">Sydney</Classification>
+      <Classification jid="16810" name="Area" vid="816806" id="1">All Sydney</Classification>
+      <Classification jid="15368" name="Work Type" vid="636197" id="2">Full Time</Classification>
+    </Classifications>
+    <Fields />
+    <Apply>
+      <EmailTo>bronwen@33talent.com</EmailTo>
+      <Url>https://apply.jobadder.com/au1/2076/2321533/cvzoay5pxknulkyqekwsuhlai4</Url>
+    </Apply>
+  </Job>
+</Jobs>

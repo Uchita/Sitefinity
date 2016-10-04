@@ -1,0 +1,9 @@
+﻿@{
+    ViewBag.Title = "";
+}
+@model JXTPortal.Domain.ViewModel.PageModel
+
+@if (!string.IsNullOrEmpty(Model.FileLocation))
+{
+    @Html.Raw(Model.Content);
+}

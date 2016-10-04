@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[JobArea]
+(
+	JobAreaID INT IDENTITY(1,1) NOT NULL Primary Key, 
+	JobID INT NULL REFERENCES Jobs(JobID),
+	JobArchiveID INT NULL REFERENCES JobsArchive(JobID),
+	AreaID INT NOT NULL REFERENCES Area(AreaID)
+)

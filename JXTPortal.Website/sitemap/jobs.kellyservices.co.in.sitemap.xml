@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc><![CDATA[http://www.jobs.kellyservices.co.in/sitemap.aspx]]></loc>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc><![CDATA[http://www.jobs.kellyservices.co.in/page/homepage/]]></loc>
+    <priority>1</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc><![CDATA[http://www.jobs.kellyservices.co.in/page/news/]]></loc>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc><![CDATA[http://www.jobs.kellyservices.co.in/page/terms-and-conditions/]]></loc>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc><![CDATA[http://www.jobs.kellyservices.co.in/page/privacy-policy/]]></loc>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc><![CDATA[http://www.jobs.kellyservices.co.in/page/browse-by-location/]]></loc>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+</urlset>

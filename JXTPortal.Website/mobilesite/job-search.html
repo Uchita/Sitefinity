@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="jquerymobile.css">
+<link rel="stylesheet" href="jxtadditions.css">
+<script src="jquery-1.6.4.min.js"></script>
+<script src="jquery.mobile-1.0.min.js"></script>
+
+</head>
+<body>
+
+<div data-role="page">
+ <div data-role="header" data-position="fixed" data-theme="b">
+		  <div class="ui-grid-b">
+					<div class="ui-block-a align-left"><a href="#" data-rel="back" data-direction="reverse" data-icon="back" data-role="button" data-inline="true" id="back-button">Back</a></div>
+					<div class="ui-block-b"><a href="index.html" data-direction="reverse"><img src="NEW-JXT-LOGO.png" width="100" height="42" alt="JXT Logo"></a></div>		
+     <div class="ui-block-c align-right top-gap"><a href="index.html" data-role="button" data-icon="home" data-iconpos="notext">Home</a></div>				
+			</div><!-- /grid-a -->
+			<div data-role="navbar">
+						<ul>
+							<li><a href="about-us.html">About Us</a></li>
+			   	<li><a href="contact.html">Contact Us</a></li>
+			    <li><a href="login.html">Login</a></li>
+						</ul>
+			</div> <!-- end of footer navbar -->	
+
+		</div><!-- end header -->
+  
+<div data-role="content">
+<p>Search for all the latest Jobs using the following widget</p>
+<hr />
+
+<form id="form_tw14" action="job-results.html" class="ui-body-c">
+
+<div data-role="fieldcontain">
+<label for="inp_tw17">Enter Keyword</label>
+<input type="text" name="Keyword" id="inp_tw17" value="Enter Keyword"/>
+</div>
+
+<div data-role="fieldcontain">
+<label for="sel_tw18">Classification</label>
+<select name="Classification" id="sel_tw18" data-native-menu="false">
+<option value="Classification 1">Classification 1</option><option value="Classification 2">Classification 2</option><option value="Classification 3">Classification 3</option></select>
+</div>
+
+<div data-role="fieldcontain">
+<label for="sel_tw19">Sub-Classification</label>
+<select name="Sub-Classification" id="sel_tw19" data-native-menu="false">
+<option value="Sub-Classification 1">Sub-Classification 1</option><option value="Sub-Classification 2">Sub-Classification 2</option><option value="Sub-Classification 3">Sub-Classification 3</option></select>
+</div>
+
+<div data-role="fieldcontain">
+<label for="sel_tw20">Location</label>
+<select name="Location" id="sel_tw20" data-native-menu="false">
+<option value="Location 1">Location 1</option><option value="Location 2">Location 2</option><option value="Location 3">Location 3</option></select>
+</div>
+
+<div data-role="fieldcontain">
+<label for="sel_tw21">Worktype</label>
+<select name="Worktype" id="sel_tw21" data-native-menu="false">
+<option value="Worktype 1">Worktype 1</option><option value="Worktype 2">Worktype 2</option><option value=" Worktype 3"> Worktype 3</option></select>
+</div>
+
+<button data-inline="true" data-icon="search">Search</button>
+</form>
+
+</div>
+
+
+<div data-role="footer" data-position="inline" data-theme="b">	
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#" data-role="button">Feedback</a></li>
+				<li><a href="#" data-role="button">Terms</a></li>
+				<li><a href="register.html" data-role="button">Register</a></li>
+		 </ul>
+   <div class="align-center top-gap">
+	   <img src="images/facebook.jpg" alt="Facebook" >
+         <img src="images/twitter.jpg" alt="Twitter">
+         <img src="images/linked-in.jpg" alt="Linked In" >
+	   </div>
+		 <p class="align-center">&copy; 2012 JXT</p>
+		</div>	
+</div> <!-- end of footer -->
+
+</div> <!-- end of Home -->
+
+
+</body>
+</html>

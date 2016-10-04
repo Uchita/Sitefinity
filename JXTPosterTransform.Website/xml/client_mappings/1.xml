@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<MappingsXMLModel xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <JobTemplateMaps />
+  <JobTemplateLogoMaps />
+  <WorkTypeMaps>
+    <WorkTypeMap>
+      <MapToWorkTypeID>2</MapToWorkTypeID>
+      <ClientWorkTypeID>FullTime</ClientWorkTypeID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </WorkTypeMap>
+    <WorkTypeMap>
+      <MapToWorkTypeID>-1</MapToWorkTypeID>
+      <isDefaultSetting>true</isDefaultSetting>
+    </WorkTypeMap>
+  </WorkTypeMaps>
+  <CLAMaps>
+    <CLAMap>
+      <MapToCountryID>2</MapToCountryID>
+      <MapToLocationID>18</MapToLocationID>
+      <MapToAreaID>99</MapToAreaID>
+      <ClientLocationID>Canterbury</ClientLocationID>
+      <ClientAreaID>Christchurch</ClientAreaID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>0</MapToCountryID>
+      <MapToLocationID>0</MapToLocationID>
+      <MapToAreaID>-1</MapToAreaID>
+      <isDefaultSetting>true</isDefaultSetting>
+    </CLAMap>
+  </CLAMaps>
+  <ProfRoleMaps />
+  <SalaryTypeMaps />
+</MappingsXMLModel>

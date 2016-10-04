@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<items>
+  <item>
+    <label>Are you Aboriginal or Torres Strait Islander?</label>
+    <sequence>1</sequence>
+    <maxlength>0</maxlength>
+    <required>false</required>
+    <type>
+      <name>Radio</name>
+      <listitems>
+        <listitem>
+          <id>blnAboriginal1</id>
+          <text>Yes</text>
+          <name>blnAboriginal</name>
+          <checked>false</checked>
+        </listitem>
+        <listitem>
+          <id>blnAboriginal2</id>
+          <text>No</text>
+          <name>blnAboriginal</name>
+          <checked>false</checked>
+        </listitem>
+      </listitems>
+    </type>
+    <placeholder />
+  </item>
+  <item>
+    <label>Are you from a culturally or linguistically diverse background?</label>
+    <sequence>2</sequence>
+    <maxlength>0</maxlength>
+    <required>false</required>
+    <type>
+      <name>Radio</name>
+      <listitems>
+        <listitem>
+          <id>blnDiverseBackground1</id>
+          <text>Yes</text>
+          <name>blnDiverseBackground</name>
+          <checked>false</checked>
+        </listitem>
+        <listitem>
+          <id>blnDiverseBackground2</id>
+          <text>No</text>
+          <name>blnDiverseBackground</name>
+          <checked>false</checked>
+        </listitem>
+      </listitems>
+    </type>
+    <placeholder />
+  </item>
+  <item>
+    <label>Do you currently live in a rural or regional location in Australia?</label>
+    <sequence>3</sequence>
+    <maxlength>0</maxlength>
+    <required>false</required>
+    <type>
+      <name>Radio</name>
+      <listitems>
+        <listitem>
+          <id>blnRuralRegional1</id>
+          <text>Yes</text>
+          <name>blnRuralRegional</name>
+          <checked>false</checked>
+        </listitem>
+        <listitem>
+          <id>blnRuralRegional2</id>
+          <text>No</text>
+          <name>blnRuralRegional</name>
+          <checked>false</checked>
+        </listitem>
+      </listitems>
+    </type>
+    <placeholder />
+  </item>
+  <item>
+    <label>Do you have a disability?</label>
+    <sequence>4</sequence>
+    <maxlength>0</maxlength>
+    <required>false</required>
+    <type>
+      <name>Radio</name>
+      <listitems>
+        <listitem>
+          <id>blnDisability1</id>
+          <text>Yes</text>
+          <name>blnDisability</name>
+          <checked>false</checked>
+        </listitem>
+        <listitem>
+          <id>blnDisability2</id>
+          <text>No</text>
+          <name>blnDisability</name>
+          <checked>false</checked>
+        </listitem>
+      </listitems>
+    </type>
+    <placeholder />
+  </item>
+  <!--<item>
+    <label>For which course are you applying for a scholarship?</label>
+    <sequence>5</sequence>
+    <maxlength>0</maxlength>
+    <required>false</required>
+    <type>
+      <name>Radio</name>
+      <listitems>
+        <listitem>
+          <id>blnScholarship1Q1</id>
+          <text>Company Directors Course</text>
+          <name>blnScholarship1Q</name>
+          <checked>false</checked>
+        </listitem>
+        <listitem>
+          <id>blnScholarship1Q2</id>
+          <text>Mastering the Boardroom</text>
+          <name>blnScholarship1Q</name>
+          <checked>false</checked>
+        </listitem>
+      </listitems>
+    </type>
+    <placeholder />
+  </item>-->
+  <item>
+    <label>Have you attended any of the following courses with the Australian Institute of Company Directors?</label>
+    <sequence>6</sequence>
+    <maxlength>0</maxlength>
+    <required>false</required>
+    <type>
+      <name>Checkbox</name>
+      <listitems>
+        <listitem>
+          <id>chkScholarship2Q1</id>
+          <text>Foundations of Directorship</text>
+          <name>chkScholarship2Q1</name>
+          <checked>false</checked>
+        </listitem>
+        <listitem>
+          <id>chkScholarship2Q2</id>
+          <text>Company Directors Course</text>
+          <name>chkScholarship2Q2</name>
+          <checked>false</checked>
+        </listitem>
+        <listitem>
+          <id>chkScholarship2Q3</id>
+          <text>International Company Directors Course</text>
+          <name>chkScholarship2Q3</name>
+          <checked>false</checked>
+        </listitem>
+      </listitems>
+    </type>
+    <placeholder />
+  </item>
+  <item>
+    <label>Are you currently a member of the Australian Institute of Company Directors?</label>
+    <sequence>7</sequence>
+    <maxlength>0</maxlength>
+    <required>true</required>
+    <type>
+      <name>Radio</name>
+      <listitems>
+        <listitem>
+          <id>blnScholarship3Q1</id>
+          <text>Yes</text>
+          <name>blnScholarship3Q</name>
+          <checked>false</checked>
+        </listitem>
+        <listitem>
+          <id>blnScholarship3Q2</id>
+          <text>No</text>
+          <name>blnScholarship3Q</name>
+          <checked>false</checked>
+        </listitem>
+      </listitems>
+    </type>
+    <placeholder />
+  </item>
+  <item>
+    <label>Please rate your level of financial literacy</label>
+    <sequence>8</sequence>
+    <maxlength>0</maxlength>
+    <required>true</required>
+    <type>
+      <name>Radio</name>
+      <listitems>
+        <listitem>
+          <id>blnScholarship4Q1</id>
+          <text>Minimal - require expert advice to read and evaluate financial reports</text>
+          <name>blnScholarship4Q</name>
+          <checked>false</checked>
+        </listitem>
+        <listitem>
+          <id>blnScholarship4Q2</id>
+          <text>Basic - familiar with basic financial statements but require some expert advice to fully evaluate</text>
+          <name>blnScholarship4Q</name>
+          <checked>false</checked>
+        </listitem>
+        <listitem>
+          <id>blnScholarship4Q3</id>
+          <text>Intermediate - can competently read and evaluate financial documents</text>
+          <name>blnScholarship4Q</name>
+          <checked>false</checked>
+        </listitem>
+        <listitem>
+          <id>blnScholarship4Q4</id>
+          <text>Highly literate - highly competent and qualified to prepare and evaluate financial documents</text>
+          <name>blnScholarship4Q</name>
+          <checked>false</checked>
+        </listitem>
+      </listitems>
+    </type>
+    <placeholder />
+  </item>
+  <item>
+    <label>Your awards, achievements, community or social involvement</label>
+    <sequence>9</sequence>
+    <maxlength></maxlength>
+    <required>false</required>
+    <type>
+      <name>TextBox</name>
+      <listitems>
+        <listitem>
+          <id>txtScholarshipAdditional1</id>
+          <text />
+          <name>scholarAdd1</name>
+          <value />
+          <checked>false</checked>
+        </listitem>
+      </listitems>
+    </type>
+    <placeholder />
+    <rows>10</rows>
+  </item>
+  <item>
+    <label>Briefly outline why you have applied for this scholarship and how you hope to benefit from attending?</label>
+    <sequence>10</sequence>
+    <maxlength></maxlength>
+    <required>true</required>
+    <type>
+      <name>TextBox</name>
+      <listitems>
+        <listitem>
+          <id>txtScholarshipAdditional2</id>
+          <text />
+          <name>scholarAdd2</name>
+          <value />
+          <checked>false</checked>
+        </listitem>
+      </listitems>
+    </type>
+    <placeholder />
+    <rows>10</rows>
+  </item>
+</items>

@@ -1,0 +1,222 @@
+@model JXTPortal.Domain.ViewModel.Jobs.JobSearchModel
+@{
+    ViewBag.Title = "Home Page";
+}
+@section featured {
+    <script type="text/javascript">
+        $(function () {
+
+            // Salary
+            $('#SalaryTypeId').change(function () {
+                alert("Test");
+                var selectedSalaryTypeId = "";
+
+                $("#SalaryTypeId option:selected").each(function () {
+                    selectedSalaryTypeId += $(this).val();
+                });
+
+
+                $.getJSON('@Url.Action("GetSalaryRangeFrom")', { salaryTypeId: selectedSalaryTypeId, SalaryValueSet: '0;0' }, function (SalaryFroms) {
+                    var SalaryFromId = $('#SalaryFromId');
+                    SalaryFromId.empty();
+
+                    jQuery.each(SalaryFroms, function (index, SalaryFrom) {
+                        SalaryFromId.append(
+                        $('<option/>')
+                            .attr('value', SalaryFrom.Id)
+                            .text(SalaryFrom.SalaryDisplay)
+                    );
+                    });
+                });
+
+                $.getJSON('@Url.Action("GetSalaryRangeTo")', { salaryTypeId: selectedSalaryTypeId, SalaryValueSet: '0;0' }, function (SalaryTos) {
+                    var SalaryToId = $('#SalaryToId');
+                    SalaryToId.empty();
+
+                    jQuery.each(SalaryTos, function (index, SalaryTo) {
+                        SalaryToId.append(
+                        $('<option/>')
+                            .attr('value', SalaryTo.Id)
+                            .text(SalaryTo.SalaryDisplay)
+                    );
+                    });
+                });
+
+            });
+
+            $('#SalaryFromId').change(function () {
+                var selectedSalaryTypeId = "";
+
+                $("#SalaryTypeId option:selected").each(function () {
+                    selectedSalaryTypeId = $(this).val();
+                });
+
+                var selectedSalaryFromId = "0;0";
+
+                $("#SalaryFromId option:selected").each(function () {
+                    selectedSalaryFromId = $(this).val();
+                });
+
+                $.getJSON('@Url.Action("GetSalaryRangeTo")', { salaryTypeId: selectedSalaryTypeId, SalaryValueSet: selectedSalaryFromId }, function (SalaryTos) {
+                    var SalaryToId = $('#SalaryToId');
+                    SalaryToId.empty();
+
+                    jQuery.each(SalaryTos, function (index, SalaryTo) {
+                        SalaryToId.append(
+                            $('<option/>')
+                                .attr('value', SalaryTo.Id)
+                                .text(SalaryTo.SalaryDisplay)
+                        );
+                    });
+                });
+            });
+
+            // Location
+            $('#LocationId').change(function () {
+                var selectedlocation = $(this).val();
+                $.getJSON('@Url.Action("Areas")', { locationId: selectedlocation }, function (Areas) {
+                    var areasSelect = $('#AreaId');
+                    areasSelect.empty();
+
+                    areasSelect.append(
+                        $('<option/>')
+                            .attr('value', 0)
+                            .text("- All Areas -")
+                    );
+
+                    jQuery.each(Areas, function (index, Area) {
+                        areasSelect.append(
+                        $('<option/>')
+                            .attr('value', Area.Id)
+                            .text(Area.Name)
+                    );
+                    });
+                });
+            });
+
+            $('#ProfessionId').change(function () {
+                var selectedProfession = $(this).val();
+                $.getJSON('@Url.Action("Roles")', { professionId: selectedProfession }, function (Roles) {
+                    var rolesSelect = $('#RoleId');
+                    rolesSelect.empty();
+
+                    rolesSelect.append(
+                        $('<option/>')
+                            .attr('value', 0)
+                            .text("- All Roles -")
+                    );
+
+                    jQuery.each(Roles, function (index, Role) {
+                        rolesSelect.append(
+                        $('<option/>')
+                            .attr('value', Role.Id)
+                            .text(Role.Name)
+                    );
+                    });
+                });
+            });
+        });
+
+
+
+
+
+    </script>
+    <section class="featured">
+    <div class="content-wrapper">
+        <hgroup class="title">
+            <h1>@ViewBag.Title.</h1>
+            <h2>@ViewBag.Message</h2>
+        </hgroup>
+        @using (Html.BeginForm("Search", "Job"))
+        {
+          
+        <ul data-role="listview" data-inset="true">
+            <li data-role="list-divider">Navigation</li>
+            <li>@Html.ActionLink("About", "About", "Home")</li>
+            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+        </ul>
+        <fieldset>
+        <legend>Registration Form</legend>
+        <ol>
+            <li>
+                <label>Keyword</label>
+                <input type="text" id="keyword" name="keyword" />
+            </li>
+            <li>
+                <label>Profession</label>
+                <select id="ProfessionId" name="ProfessionId">
+                   <option value="0">-All Profession-</option>  
+                        @foreach (var item in Model.Professions)
+                        {   
+                            <option value="@item.Key">@item.Value</option>    
+                        }
+                </select>
+            </li>
+            <li>
+                 <label>Role</label>
+                 <select id="RoleId" name="RoleId" multiple="multiple">
+                     <option value="0">-All Role-</option>
+                 </select>
+            </li>
+            <li>
+               <label>Location</label>
+               <select id="LocationId" name="LocationId">
+                <option value="0">-All Location-</option>   
+                    @foreach (var item in Model.Locations)
+                    {   
+                        <option value="@item.Key">@item.Value</option>    
+                    }
+               </select>
+            </li>
+            <li>
+               <label>Area</label>
+               <select id="AreaId" name="AreaId" multiple="multiple">
+                 <option value="0">-All Area-</option>
+               </select>
+            </li>
+            <li>
+               <label>Worktype</label>
+               <select id="WorkTypeId" name="WorkTypeId">
+                  <option value="0">-All Worktype-</option>   
+                  @foreach (var item in Model.WorkTypes)
+                  {   
+                    <option value="@item.Key">@item.Value</option>    
+                  }
+               </select>
+            </li>            
+            <li>
+               <label>Salary Type</label>
+               <select id="SalaryTypeId" name="SalaryTypeId">
+                  @foreach (var item in Model.SalaryTypes)
+                  {   
+                    <option value="@item.Key">@item.Value</option>    
+                  }
+               </select>
+            </li>
+            <li>
+                <label>Salary</label>
+                <select id="SalaryFromId" name="SalaryFromId">  
+                   @foreach (var item in Model.SalaryFrom)
+                   {   
+                     <option value="@item.Key">@item.Value</option>    
+                   }
+                </select>
+
+                to 
+
+                <select id="SalaryToId" name="SalaryToId">  
+                   @foreach (var item in Model.SalaryTo)
+                   {   
+                     <option value="@item.Key">@item.Value</option>    
+                   }
+                </select>
+            </li>  
+        </ol>
+        <input type="submit" id="job_search_submit" value="Search" />
+        </fieldset> 
+       
+        }
+    </div>
+</section>
+}

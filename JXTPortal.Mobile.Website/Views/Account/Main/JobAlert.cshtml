@@ -1,0 +1,172 @@
+﻿@{
+    ViewBag.Title = "Job Alert";
+}
+@model JXTPortal.Domain.ViewModel.JobModel.JobAlertDetail
+<script type="text/javascript">
+    function Validate()
+    {
+        var valid = true;
+
+        if ($("#JobAlertName").val().trim() == "")
+        {
+            valid = false;
+            alert("Please fill job alert name");
+        }
+
+        return valid;
+    }
+
+    $(function () {
+        // Location
+        
+        $('#LocationId').change(function () {
+            var selectedlocation = $(this).val();
+            $.getJSON('@Url.Action("Areas","Job")', { locationId: selectedlocation }, function (Areas) {
+                var areasSelect = $('#AreaIds');
+                areasSelect.empty();
+
+                if (selectedlocation == 0)
+                {
+                    areasSelect.append(
+                            $('<option/>')
+                                .attr('value', 0)
+                                .text("All Areas")
+                                .attr("selected", "selected")
+                        );
+                }
+
+                jQuery.each(Areas, function (index, Area) {
+                    areasSelect.append(
+                        $('<option/>')
+                            .attr('value', Area.Id)
+                            .text(Area.Name)
+                    );
+                });
+
+                //areasSelect.selectmenu('refresh', true);
+            });
+        });
+
+        $('#ProfessionId').change(function () {
+            var selectedProfession = $(this).val();
+            $.getJSON('@Url.Action("Roles", "Job")', { professionId: selectedProfession }, function (Roles) {
+                var rolesSelect = $('#SearchRoleIds');
+                rolesSelect.empty();
+
+                rolesSelect.append(
+                        $('<option/>')
+                            .attr('value', 0)
+                            .text("All Roles")
+                            .attr("selected", "selected")
+                    );
+                
+                jQuery.each(Roles, function (index, Role) {
+                    rolesSelect.append(
+                        $('<option/>')
+                            .attr('value', Role.Id)
+                            .text(Role.Name)
+                    );
+                });
+
+            });
+        });
+
+        if (@Model.LocationId > 0)
+        {
+             $('#LocationId').val('@Model.LocationId').change();
+             
+             @if (Model.AreaIds != null && Model.AreaIds.Trim().Length > 0)
+             {
+                if (Model.AreaIds.Contains(","))
+                {
+                    foreach (var area in Model.AreaIds.Split(','))
+                    {
+                        @: $('#AreaIds').val('@area');
+                    }
+                }
+                else
+                {
+                   @: $('#AreaIds').val('@Model.AreaIds');
+                }
+            }
+        }
+      
+        
+        if (@Model.ProfessionId > 0)
+        {
+              $('#ProfessionId').val('@Model.ProfessionId').change();
+
+                @if (Model.SearchRoleIds != null && Model.SearchRoleIds.Trim().Length > 0)
+                {
+                    if (Model.SearchRoleIds.Contains(","))
+                    {
+                        foreach (var role in Model.SearchRoleIds.Split(','))
+                        {
+                            @: $('#SearchRoleIds').val('@role');
+                        }
+                    }
+                    else
+                    {
+                        @: $('#SearchRoleIds').val('@Model.SearchRoleIds');
+                    }
+                }
+        }
+     
+      
+
+    });
+</script>
+@using (Html.BeginForm("JobAlertSave", "Account"))
+{
+    <h1>Job Alert</h1>
+	<h2>@Model.JobAlertName</h2>
+    <ul class="FormFields">
+    <li><label>Job Alert Name</label><span class="inputFieldsWrap">
+    	<input type="text" name="JobAlertName" id="JobAlertName" value="@Model.JobAlertName" />
+    </span></li>
+    <li><label>Keyword</label><span class="inputFieldsWrap">
+    	<input type="text" name="SearchKeywords" id="SearchKeywords" value="@Model.SearchKeywords" />
+    </span></li>
+    <input type="hidden" name="JobAlertId" id="JobAlertId" value="@Model.JobAlertId" />
+    <li><label>
+                    Profession</label>
+                <span class="inputFieldsWrap">
+                	<select id="ProfessionId" name="ProfessionId">
+                	    <option value="0" selected>All Professions</option>
+                	    @foreach (var item in Model.Professions)
+                	    {   
+                	        <option value="@item.Key">@item.Value</option>    
+                	    }
+                	</select>
+                </span></li>
+
+                <li><label for="SearchRoleIds" class="select">
+                    Role</label>
+               <span class="inputFieldsWrap">
+					<select id="SearchRoleIds" name="SearchRoleIds" data-native-menu="false" multiple="multiple" size="4">
+                	    <option value="0" selected>All Roles</option>
+                	</select></span></li>
+
+                <li><label>
+                    Location</label>
+                <span class="inputFieldsWrap">
+                	<select id="LocationId" name="LocationId">
+                	    <option value="0" selected>All Locations</option>
+                	    @foreach (var item in Model.Locations)
+                	    {   
+                	        <option value="@item.Key">@item.Value</option>    
+                	    }
+                	</select>
+                </span></li>
+
+                <li><label>
+                    Area</label>
+               <span class="inputFieldsWrap">
+                	<select id="AreaIds" name="AreaIds" multiple="multiple" data-native-menu="false">
+                	    <option value="0" selected>All Areas</option>
+                	</select>
+                </span></li>
+</ul>
+    
+                <input type="submit" class="btn-submit" value="Submit" onclick="return Validate();"/>
+}

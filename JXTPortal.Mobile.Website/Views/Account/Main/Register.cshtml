@@ -1,0 +1,85 @@
+@model JXTPortal.Domain.ViewModel.MemberModel.RegistrationModel
+@{
+    ViewBag.Title = "Register";
+}
+<script type="text/javascript">
+
+    function RegisterViewModel() {
+        var self = this;
+        self.Errors = ko.observableArray([]);
+        self.Success = ko.observable(false);
+        self.Register = function () {
+            var data = { UserName: $("#UserName").val(),
+                         Password: $("#Password").val(),
+                         ConfirmPassword: $("#ConfirmPassword").val(),
+                         Email: $("#Email").val(),
+                         ConfirmEmail: $("#ConfirmEmail").val()
+                        };
+
+            $.getJSON('@Url.Action("JsonRegister")', data, function (Result) {
+                                                                self.Success(Result.success);
+                                                                self.Errors(Result.errors);
+                                                            });
+        }
+    }
+$(document).ready(function () {
+                            ko.applyBindings(new RegisterViewModel());
+                        });
+    
+</script>
+<h1>Register with us</h1>
+<div id="RegistrationMessage" data-bind="visible: Success()">
+Thank you for registering. 
+    @if (Request.QueryString["ReturnUrl"] != null)
+    {
+        @: Please click <a href="@Request.QueryString["returnUrl"]">here</a> to go back.
+    }
+    else
+    {
+        @: Please click <a href="/">here</a> to go back
+    }
+</div>
+<div  data-bind="visible: !Success()">
+	<ul data-role="listview" data-inset="true" id="RegistrationFields" class="FormFields" name="RegistrationFields">
+	    <li data-role="fieldcontain">
+	        <label>
+	            Username</label>
+	        <span class="inputFieldsWrap">
+	        	<input type="text" name="UserName" id="UserName" />
+	        </span>
+	    </li>
+	    <li data-role="fieldcontain">
+	        <label>
+	            Password</label>
+	        <span class="inputFieldsWrap">
+	        	<input type="password" name="Password" id="Password" />
+	        </span>
+	    </li>
+	    <li data-role="fieldcontain">
+	        <label>
+	            Confirm Password</label>
+	       <span class="inputFieldsWrap">
+	        	<input type="password" name="ConfirmPassword" id="ConfirmPassword" />
+	        </span>
+	    </li>
+	    <li data-role="fieldcontain">
+	        <label>
+	            Email</label>
+	        <span class="inputFieldsWrap">
+	        	<input type="text" name="Email" id="Email" />
+	        </span>
+	    </li>
+	    <li data-role="fieldcontain">
+	        <label>
+	            Confirm Email</label>
+	        <span class="inputFieldsWrap">
+	        	<input type="text" name="ConfirmEmail" id="ConfirmEmail" />
+	        </span>
+	    </li>
+	</ul>
+	<div id="ErrorLists" class="validation-summary-errors" data-bind="foreach: Errors">
+	    <span data-bind="text: Error"></span>
+	    <br />
+	</div>
+	<input type="button" value="Register" data-bind="click: Register" class="btn-submit" />
+</div>

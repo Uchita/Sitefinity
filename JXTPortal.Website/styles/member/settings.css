@@ -1,0 +1,122 @@
+﻿#memberProfileLinks{
+    background: transparent;
+    position: absolute;
+    right: 15px;
+    top: 2em;
+}
+#memberProfileLinks .btn.btn-default {
+    background-color: #F2F2F2;
+    color: #333;
+}
+#memberProfileLinks, 
+#memberProfileLinks ul, 
+#memberProfileLinks li {
+    background-image: none;
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+#memberProfileLinks ul{
+    min-width: 270px;
+    left: auto;
+    right: 0
+}
+#memberProfileLinks li {
+    display: block;
+    background: #FFF;
+    background-image: none;
+    margin: 0;
+    padding: 3px 0;
+}
+#memberProfileLinks a {
+    display: block;
+    position: relative;
+    right: 0;
+    left: 0;
+    text-decoration: none;
+    white-space: nowrap;
+}
+ 
+#memberProfileLinks a:hover{
+    background-color: #ccc;
+    color: #000;
+}
+
+#memberProfileLinks {
+    position:static; 
+    z-index:100;
+}
+#gt-middle-block, #gt-wrapper, #gt-footer, #gt-header, #gt-wrapper #content-container{
+    max-width: 100%!important;
+}
+.btn.btn-sm, .mini-new-buttons.btn-sm, .btn-sm.btn-primary {
+    font-size: 12px;
+    padding: 5px 15px;
+    width: auto;
+    min-width: 40px;
+    line-height: 1.5;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.btn-radio-group{
+    margin-bottom: 10px;
+}
+.btn-radio-group input[type="radio"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 1px solid #d8d8d8;
+    height: 35px;
+    width: 100px;
+    float: none;
+    margin: 0px 10px 0 0;
+    background: #eee;
+    display: inline-block;
+    cursor: pointer;
+    opacity:0;
+}
+
+.btn-radio-group input:checked + label {
+    background-color: #ccc;
+    border-color: #999;
+}
+
+.btn-radio-group input + label {
+    position: relative;
+    left: -13px;
+    /*including radio button margin and border*/
+    width: 100px;
+    /*same as radio button*/
+    margin-left: -100px;
+    border: 1px solid #d8d8d8;
+    top: 0px;
+    height: 35px;
+    line-height: 35px!important;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    vertical-align: top;
+}
+
+.btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle){
+    border-radius: 0;
+    margin-right: 1.5em;
+}
+.btn-group>.btn:last-child:not(:first-child), .btn-group>.dropdown-toggle:not(:first-child){
+    border-radius: 0;
+}
+
+#content .form-line{
+    clear: none;
+    width: initial;
+}
+#content .form-input{
+    display: block;
+    width: auto;
+    float: none;
+}
+
+@media screen and (max-width: 767px){
+    .form-header-group{
+        clear: both;
+    }
+}

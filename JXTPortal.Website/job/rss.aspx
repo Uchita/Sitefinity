@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="rss.aspx.cs" Inherits="JXTPortal.Website.job.rss" %><asp:Literal ID="ltlRSS" runat="server" />

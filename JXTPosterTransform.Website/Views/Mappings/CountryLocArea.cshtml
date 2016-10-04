@@ -1,0 +1,385 @@
+﻿@{
+    ViewBag.Title = "CountryLocArea";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    CLAMap defaultSetting = Model.Mappings.Where(c => c.isDefaultSetting).FirstOrDefault();
+    
+}
+@using JXTPosterTransform.Library.Models
+@model CLAMappingModel
+@{
+    Html.RenderPartial("~/Views/Mappings/_MappingsNavigation.cshtml");
+}
+<div class="">
+    <h1 class="page-header">
+        Country Location Area</h1>
+    <div class="pull-right">
+        <span class="pull-right btn btn-success fileinput-button">
+            <!-- The file input field used as target for the file upload widget -->
+            <input id="fileupload" type="file" name="files[]" />
+        </span>
+        <div class="clearfix">
+        </div>
+        <p>
+            <i>Accepts xls &amp; xlsx only. First 3 columns will be imported.</i></p>
+    </div>
+    <div class="clearfix">
+    </div>
+    @Html.Raw(TempData["Message"])
+    @Html.Raw(ViewBag.Message)
+    <div id="jsMessage">
+    </div>
+</div>
+<form method="post" accept="@Request.Url" onsubmit="return ValidateMappingSelection(this);">
+<table id="dataTable" class="col-xs-12 table table-striped table-bordered table-hover dataTable no-footer">
+    <thead>
+        <tr>
+            <th>
+                From Country Value
+            </th>
+            <th>
+                From Location Value
+            </th>
+            <th>
+                From Area Value
+            </th>
+            <th>
+                JXT Country/Location/Area <a href="javascript:void(0)" class="pull-right" onclick="SortByCLA()">
+                        <i class="fa fa-sort-alpha-asc"></i></a>
+            </th>
+            <th>
+                JXT Country/Location/Area ID
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{int counter = 0;}
+        @if (Model.Mappings == null || Model.Mappings.Count() == 0)
+        {
+            <tr class="dataRow">
+                <td>
+                    <input type="text" class="form-control" name="submit[0].ClientCountryID" value=""
+                        placeholder="Client mapping country" />
+                </td>
+                <td>
+                    <input type="text" class="form-control" name="submit[0].ClientLocationID" value=""
+                        placeholder="Client mapping location" />
+                </td>
+                <td>
+                    <input type="text" class="form-control" name="submit[0].ClientAreaID" value="" placeholder="Client mapping area" />
+                </td>
+                @* === Country Location Area === *@
+                <td>
+                    <select class="countryDropDown form-control mappingSelect" name="submit[0].MapToAreaID"
+                        onchange="UpdateIDFromDropDown(this, '.idDisplay1'); LocationOnChange(this); MappingSelectOnChange(this);">
+                        <option data-countryid="0" data-locationid="0" value="-1">Please Select...</option>
+                        @if (Model.availableCLA != null)
+                        {
+                            foreach (CLAItem country in Model.availableCLA)
+                            {
+                            <optgroup label="@country.description">
+                                @foreach (CLAItem location in country.childs)
+                                {                                                    
+                                    <optgroup label="&nbsp;&nbsp;&nbsp;&nbsp;@location.description">
+                                        @foreach (CLAItem area in location.childs)
+                                        {                                                    
+                                            <option data-countryid="@(country.id)" data-locationid="@(location.id)" value="@area.id">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;@area.description</option>
+                                        }
+                                    </optgroup>
+                                }
+                            </optgroup>
+                            }
+                        }
+                    </select>
+                    <input class="mapCountryInput" type="hidden" name="submit[@(counter)].MapToCountryID" value="0"/>
+                    <input class="mapLocationInput" type="hidden" name="submit[@(counter)].MapToLocationID" value="0" />
+                </td>
+                <td class="idDisplay1">
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger" onclick="ClearDataRow(this);">
+                        Clear</button>
+                </td>
+            </tr>
+                        counter++;
+        }
+        else
+        {
+            foreach (CLAMap m in Model.Mappings.Where(c => !c.isDefaultSetting))
+            {
+                //CLAItem selectedCountry, selectedLocation, selectedArea;
+
+                //selectedCountry = Model.availableCLA.Where(c => c.id == m.MapToCountryID).FirstOrDefault();
+                //selectedLocation = selectedCountry.childs.Where(c => c.id == m.MapToLocationID).FirstOrDefault();
+                //selectedArea = selectedLocation.childs.Where(c => c.id == m.MapToAreaID).FirstOrDefault();
+                        
+            <tr class="dataRow">
+                <td>
+                    <input type="text" class="form-control" name="submit[@(counter)].ClientCountryID" value="@m.ClientCountryID" placeholder="Client mapping country" />
+                    @Html.ValidationMessage("submit[" + counter + "].ClientCountryID")
+                </td>
+                <td>
+                    <input type="text" class="form-control" name="submit[@(counter)].ClientLocationID" value="@m.ClientLocationID" placeholder="Client mapping location"/>
+                </td>
+                <td>
+                    <input type="text" class="form-control" name="submit[@(counter)].ClientAreaID" value="@m.ClientAreaID" placeholder="Client mapping area"/>
+                </td>
+                @* === Country Location Area === *@
+                <td>
+                    <select class="countryDropDown form-control mappingSelect" name="submit[@(counter)].MapToAreaID" onchange="UpdateIDFromDropDown(this, '.idDisplay1'); LocationOnChange(this); MappingSelectOnChange(this);">
+                        <option data-countryid="0" data-locationid="0" value="-1">Please Select...</option>
+                        @if (Model.availableCLA != null)
+                        {
+                            foreach (CLAItem country in Model.availableCLA)
+                            {
+                            <optgroup label="@country.description">
+                                @foreach (CLAItem location in country.childs)
+                                {                                                    
+                                    <optgroup label="&nbsp;&nbsp;&nbsp;&nbsp;@location.description">
+                                        @foreach (CLAItem area in location.childs)
+                                        {                                                    
+                                            <option data-countryid="@(country.id)" data-locationid="@(location.id)" value="@(area.id)" @(new MvcHtmlString(m.MapToAreaID == area.id ? @"selected=""selected""" : string.Empty))>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;@area.description</option>
+                                        }
+                                    </optgroup>
+                                }
+                            </optgroup>
+                            }
+                        }
+                    </select>
+                    <input class="mapCountryInput" type="hidden" name="submit[@(counter)].MapToCountryID" value="@m.MapToCountryID"/>
+                    <input class="mapLocationInput" type="hidden" name="submit[@(counter)].MapToLocationID" value="@m.MapToLocationID" />
+                </td>
+                <td class="idDisplay1">
+                    @m.MapToCountryID / @m.MapToLocationID / @m.MapToAreaID
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger" onclick="ClearDataRow(this);">
+                        Clear</button>
+                </td>
+                @* === Location === *@ @*                <td>
+                        <select class="locationDropDown" name="submit[@(counter)].MapToLocationID" onchange="UpdateIDFromDropDown(this, '.idDisplay2'); LocationOnChange(this, '.areaDropDown');">
+                            @foreach (CLAItem w in selectedCountry.childs)
+                            {
+                                <option value="@w.id" @(new MvcHtmlString(m.MapToLocationID == w.id ? @"selected=""selected""" : string.Empty))>@w.description</option>
+                            }
+                        </select>
+                    </td>
+                    <td class="idDisplay2">
+                        @m.MapToLocationID
+                    </td>*@ @* === Area === *@ @*                <td>
+                        <select class="areaDropDown" name="submit[@(counter)].MapToAreaID" onchange="UpdateIDFromDropDown(this, '.idDisplay3')">
+                            @foreach (CLAItem w in selectedLocation.childs)
+                            {
+                                <option value="@w.id" @(new MvcHtmlString(m.MapToAreaID == w.id ? @"selected=""selected""" : string.Empty))>@w.description</option>
+                            }
+                        </select>
+                    </td>
+                    <td class="idDisplay3">
+                        @m.MapToAreaID
+                    </td>
+    *@
+            </tr>
+                        counter++;
+            }
+        }
+        @*<tr class="dataRow defaultRow">
+            <td colspan="3" class="text-right">
+                Default Mapping
+            </td>
+            <td>
+                <input type="hidden" name="submit[@(counter)].isDefaultSetting" value="true" />
+                <select class="countryDropDown form-control" name="submit[@(counter)].MapToAreaID" onchange="UpdateIDFromDropDown(this, '.idDisplay1'); LocationOnChange(this);">
+                    <option data-countryid="0" data-locationid="0" value="-1">Please Select...</option>
+                    @if (Model.availableCLA != null)
+                    {
+                        foreach (CLAItem country in Model.availableCLA)
+                        {
+                        <optgroup label="@country.description">
+                            @foreach (CLAItem location in country.childs)
+                            {                                                    
+                                <optgroup label="&nbsp;&nbsp;&nbsp;&nbsp;@location.description">
+                                    @foreach (CLAItem area in location.childs)
+                                    {                                                    
+                                        <option data-countryid="@(country.id)" data-locationid="@(location.id)" value="@(area.id)" @(new MvcHtmlString(defaultSetting != null && defaultSetting.MapToAreaID == area.id ? @"selected=""selected""" : string.Empty))>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;@area.description</option>
+                                    }
+                                </optgroup>
+                            }
+                        </optgroup>
+                        }
+                    }
+                </select>
+                <input class="mapCountryInput" type="hidden" name="submit[@(counter)].MapToCountryID" value="@(defaultSetting != null ? defaultSetting.MapToCountryID : 0)"/>
+                <input class="mapLocationInput" type="hidden" name="submit[@(counter)].MapToLocationID" value="@(defaultSetting != null ? defaultSetting.MapToLocationID : 0)" />
+            </td>
+            <td class="idDisplay1">
+                @(defaultSetting == null ? "-" : (defaultSetting.MapToCountryID.ToString() + " / " + defaultSetting.MapToLocationID.ToString() + " / " + defaultSetting.MapToAreaID.ToString()))
+            </td>
+            @{
+                counter++;
+            }
+        </tr>*@
+        <tr>
+            <td colspan="6" class="text-right">
+                <a href="javascript:void(0)" class="btn btn-default" onclick="AddNewTypeRow('#dataTable', rowCounter)">
+                    + Add Row</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<button type="submit" class="btn btn-primary">
+    Submit Mappings</button>
+</form>
+@section Scripts
+{
+    <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+    <script type="text/javascript" src="/scripts/FileUploader/js/vendor/jquery.ui.widget.js"></script>
+    <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+    <script type="text/javascript" src="/scripts/FileUploader/js/jquery.iframe-transport.js"></script>
+    <!-- The basic File Upload plugin -->
+    <script type="text/javascript" src="/scripts/FileUploader/js/jquery.fileupload.js"></script>
+    <script src="/Scripts/main.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var rowCounter = @(counter);
+
+        //var cla_ref = JSON.parse('@(new MvcHtmlString(ViewBag.CLAJsonData))');        
+    </script>
+    <script type="text/javascript">
+
+        //        function CountryOnChange(caller) {
+
+        //            var selectedCountryID = $(caller).val();
+        //            var locationElement = $(caller).closest(".dataRow").find(".locationDropDown");
+
+        //            //update selection in location dd
+        //            var countryCLARef = FindCLAItem(cla_ref, selectedCountryID);
+
+        //            LoadCLAItemsToDropDown(countryCLARef.childs, locationElement);
+
+        //            $(locationElement).change();
+
+        //        }
+
+        function LocationOnChange(caller) {
+
+            var selectedAreaOption = $(caller).find('option:selected');
+
+            $(caller).siblings(".mapCountryInput").val($(selectedAreaOption).data("countryid"));
+            $(caller).siblings(".mapLocationInput").val($(selectedAreaOption).data("locationid"));
+
+        }
+
+        //        function FindCLAItem(claItemList, targetVal) {
+
+        //            var returnVal = null;
+
+        //            $.each(claItemList, function (idx, val) {
+
+        //                if (val.id == targetVal) {
+        //                    returnVal = val;
+        //                    return;
+        //                }
+        //            });
+
+        //            return returnVal;
+        //        }
+
+        //        function LoadCLAItemsToDropDown(claItemList, targetDDL) {
+
+        //            //clear all options
+        //            $(targetDDL).empty();
+
+        //            $.each(claItemList, function (idx, val) {
+
+        //                var newOption = "<option value='" + val.id + "'>" + val.description + "</option>";
+
+        //                $(targetDDL).append(newOption);
+
+        //            });
+        //        }
+
+
+        function SortByCLA() {
+            var dataStore = new Array();
+            for (var i = 0; i < rowCounter; i++) {
+                var newDataRow = {
+                    clientCountryID: $("input[name='submit[" + i + "].ClientCountryID']").val(),
+                    clientLocationID: $("input[name='submit[" + i + "].ClientLocationID']").val(),
+                    clientAreaID: $("input[name='submit[" + i + "].ClientAreaID']").val(),
+                    mapAreaID: $("select[name='submit[" + i + "].MapToAreaID']").val(),
+                    mapAreaName: $("select[name='submit[" + i + "].MapToAreaID'] option:selected").text().trim(),
+                    mapLocationID: $("select[name='submit[" + i + "].MapToAreaID'] option:selected").data("locationid"),
+                    mapLocationName: $("select[name='submit[" + i + "].MapToAreaID'] option:selected").parent("optgroup").attr("label"),
+                    mapCountryID: $("select[name='submit[" + i + "].MapToAreaID'] option:selected").data("countryid"),
+                    mapCountryName: $("select[name='submit[" + i + "].MapToAreaID'] option:selected").parent("optgroup").parent("optgroup").attr("label")
+                };
+                dataStore.push(newDataRow);
+            }
+
+            dataStore.sort(
+            function (a, b) {
+
+                var aStr = a.mapCountryName + " " + a.mapLocationName + " " + a.mapAreaName;
+                var bStr = b.mapCountryName + " " + b.mapLocationName + " " + b.mapAreaName;
+
+                return aStr.localeCompare(bStr);
+            });
+
+            for (var i = 0; i < rowCounter; i++) {
+                var thisDataRow = dataStore[i];
+
+                $("input[name='submit[" + i + "].ClientCountryID']").val(thisDataRow.clientCountryID);
+                $("input[name='submit[" + i + "].ClientLocationID']").val(thisDataRow.clientLocationID);
+                $("input[name='submit[" + i + "].ClientAreaID']").val(thisDataRow.clientAreaID);
+                $("select[name='submit[" + i + "].MapToAreaID']").val(thisDataRow.mapAreaID).change();
+            }
+        }
+
+        $(function () {
+            'use strict';
+            // Change this to the location of your server-side upload handler:
+            var url = '/mappings/exceluploadprocessor';
+
+            $('#fileupload').fileupload({
+                url: url,
+                dataType: 'json',
+                sequentialUploads: true,
+                done: function (e, data) {
+                    var responseData = data.jqXHR.responseJSON;
+
+                    if (responseData.Success) {
+
+                        $.each(responseData.rowData, function (idx, data) {
+
+                            var thisRowCounter = rowCounter;
+                            AddNewTypeRow('#dataTable', rowCounter);
+
+                            //modify the data
+                            $("input[name='submit[" + thisRowCounter + "].ClientCountryID']").val(data.str1);
+                            $("input[name='submit[" + thisRowCounter + "].ClientLocationID']").val(data.str2);
+                            $("input[name='submit[" + thisRowCounter + "].ClientAreaID']").val(data.str3);
+
+                            $("select[name='submit[" + thisRowCounter + "].MapToAreaID']").val("-1").change();
+
+                        });
+
+                    }
+                    else {
+
+                        var msg = $("<div></div>").addClass("alert alert-warning").html(responseData.Message);
+
+                        $("#jsMessage").html(msg);
+
+                    }
+
+                }
+            });
+        });
+
+    </script>
+}

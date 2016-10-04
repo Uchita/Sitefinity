@@ -1,0 +1,62 @@
+----------------------------------------
+Exceptions Error: 100 : Timestamp: 12/04/2011 4:51:59 AM
+Message: <Exception handlingInstanceId="a0e23687-c783-4fd9-8956-d0a5dcec7bea">
+  <Description>An exception of type 'System.Data.SqlClient.SqlException' occurred and was caught.</Description>
+  <DateTime>2011-04-12 14:51:59Z</DateTime>
+  <ExceptionType>System.Data.SqlClient.SqlException, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ExceptionType>
+  <Message>The INSERT statement conflicted with the FOREIGN KEY constraint "FK__Advertise__LastM__7CC477D0". The conflict occurred in database "JXTPortal_Live_New", table "dbo.AdminUsers", column 'AdminUserID'.
+The statement has been terminated.</Message>
+  <Source>.Net SqlClient Data Provider</Source>
+  <HelpLink />
+  <Property name="Errors">System.Data.SqlClient.SqlErrorCollection</Property>
+  <Property name="Class">16</Property>
+  <Property name="LineNumber">60</Property>
+  <Property name="Number">547</Property>
+  <Property name="Procedure">AdvertiserUsers_Insert</Property>
+  <Property name="Server">JXT-WS01</Property>
+  <Property name="State">0</Property>
+  <Property name="ErrorCode">-2146232060</Property>
+  <Property name="Data">System.Collections.ListDictionaryInternal</Property>
+  <Property name="TargetSite">Void OnError(System.Data.SqlClient.SqlException, Boolean)</Property>
+  <StackTrace>   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj)
+   at System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, DbAsyncResult result)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(DbAsyncResult result, String methodName, Boolean sendToPipe)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at Microsoft.Practices.EnterpriseLibrary.Data.Database.DoExecuteNonQuery(DbCommand command)
+   at Microsoft.Practices.EnterpriseLibrary.Data.Database.ExecuteNonQuery(DbCommand command)
+   at JXTPortal.Data.Utility.ExecuteNonQuery(Database database, DbCommand dbCommand) in C:\Developments\JXTPortal\JXTPortal.Data\Utility.cs:line 409
+   at JXTPortal.Data.SqlClient.SqlAdvertiserUsersProviderBase.Insert(TransactionManager transactionManager, AdvertiserUsers entity) in C:\Developments\JXTPortal\JXTPortal.Data.SqlClient\SqlAdvertiserUsersProviderBase.generated.cs:line 1263
+   at JXTPortal.AdvertiserUsersServiceBase.Insert(AdvertiserUsers entity) in C:\Developments\JXTPortal\JXTPortal\AdvertiserUsersServiceBase.generated.cs:line 1109</StackTrace>
+  <additionalInfo>
+    <info name="MachineName" value="NAVMAN" />
+    <info name="TimeStamp" value="12/04/2011 4:51:59 AM" />
+    <info name="FullName" value="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <info name="AppDomainName" value="/LM/W3SVC/1/ROOT-41-129470568978488769" />
+    <info name="ThreadIdentity" value="" />
+    <info name="WindowsIdentity" value="NAVMAN\ASPNET" />
+  </additionalInfo>
+</Exception>
+Category: Exceptions
+Priority: 0
+EventId: 100
+Severity: Error
+Title:JXTPortal Exception Handling
+Machine: NAVMAN
+App Domain: /LM/W3SVC/1/ROOT-41-129470568978488769
+ProcessId: 5656
+Process Name: c:\WINDOWS\Microsoft.NET\Framework\v2.0.50727\aspnet_wp.exe
+Thread Name: 
+Win32 ThreadId:8148
+Extended Properties: HelpLink.ProdName - Microsoft SQL Server
+HelpLink.ProdVer - 09.00.1399
+HelpLink.EvtSrc - MSSQLServer
+HelpLink.EvtID - 547
+HelpLink.BaseHelpUrl - http://go.microsoft.com/fwlink
+HelpLink.LinkId - 20476
+
+----------------------------------------

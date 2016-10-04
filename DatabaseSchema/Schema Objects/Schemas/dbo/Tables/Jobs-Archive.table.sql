@@ -1,0 +1,50 @@
+﻿CREATE TABLE [dbo].[JobsArchive]
+(
+	JobID INT PRIMARY KEY NOT NULL,
+	SiteID INT NOT NULL REFERENCES Sites(SiteID),
+	WorkTypeID INT NOT NULL REFERENCES WorkType(WorkTypeID),
+	SalaryID INT NOT NULL REFERENCES Salary(SalaryID),
+	JobName NVARCHAR(510) NOT NULL,
+	Description NVARCHAR(2000) NOT NULL,
+	FullDescription NVARCHAR(MAX) NOT NULL,
+	WebServiceProcessed BIT NOT NULL DEFAULT(0),
+	ApplicationEmailAddress VARCHAR(255) NOT NULL,
+	RefNo VARCHAR(255),
+	Visible BIT NOT NULL,
+	[DatePosted] SMALLDATETIME NOT NULL,
+	[ExpiryDate] SMALLDATETIME NOT NULL,
+	[Expired] [bit] NULL DEFAULT (0),
+	[JobItemPrice] [money] NULL,
+	[Billed] [bit] NOT NULL DEFAULT ((1)),
+	LastModified DATETIME NOT NULL DEFAULT(GETDATE()),
+	[ShowSalaryDetails] BIT NOT NULL DEFAULT(1),
+	[SalaryText] [varchar](500)  NULL,
+	[AdvertiserID] [int] NULL REFERENCES Advertisers(AdvertiserID),
+	[LastModifiedByAdvertiserUserId] [int] REFERENCES AdvertiserUsers(AdvertiserUserId) NULL, -- so we know who created the job
+	[LastModifiedByAdminUserId] [int] REFERENCES AdminUsers(AdminUserID),
+	[JobItemTypeID] [int] REFERENCES JobItemsType(JobItemTypeID), -- Premium, Normal etc - We need a table like Email templates
+	[ApplicationMethod] [int] NULL,	-- Enum may be
+	[ApplicationURL] [varchar](8000)  NULL,
+	[UploadMethod] [int] NULL,	-- Enum may be
+	[Tags] [text]  NULL,
+	[JobTemplateID] [int] NULL REFERENCES JobTemplates(JobTemplateID),		-- Create JobTemplate table per Site - structure same as email templates 
+	[SearchField] NVARCHAR(MAX) NULL,
+	[AdvertiserJobTemplateLogoID] [int] NULL,
+	[CompanyName] [varchar](255)  NULL,
+	[HashValue] [varbinary](max) NULL,
+	[RequireLogonForExternalApplications] [bit] NOT NULL DEFAULT ((1)),
+	[ShowLocationDetails] [bit] NULL,
+	[PublicTransport] NVARCHAR(500)  NULL,
+	[Address] [varchar](255)  NULL,
+	ContactDetails NVARCHAR(510) NOT NULL,
+	[JobContactPhone] [varchar](50)  NULL,
+	[JobContactName] [varchar](255)  NULL,
+	[QualificationsRecognised] [bit] NOT NULL DEFAULT ((0)),
+	[ResidentOnly] BIT NOT NULL DEFAULT(0),
+	[DocumentLink] [varchar](255)  NULL,
+	[BulletPoint1] [nvarchar](160)  NULL DEFAULT (''),
+	[BulletPoint2] [nvarchar](160)  NULL DEFAULT (''),
+	[BulletPoint3] [nvarchar](160)  NULL DEFAULT (''),
+	[HotJob] [bit] NOT NULL DEFAULT ((0)),
+	JobFriendlyName	VARCHAR(512)
+)

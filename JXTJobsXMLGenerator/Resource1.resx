@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="JobSOAP" xml:space="preserve">
+    <value>&lt;JobListing&gt;
+          &lt;JobAdType&gt;Normal&lt;/JobAdType&gt;
+          &lt;ReferenceNo&gt;{0}&lt;/ReferenceNo&gt;
+          &lt;JobTitle&gt;Engineers with experience in the Gas industry&lt;/JobTitle&gt;
+          &lt;JobUrl&gt;{9}&lt;/JobUrl&gt;
+          &lt;ShortDescription&gt;We are looking to establish relationships with Engineers within the Gas industry for opportunities in 2014&lt;/ShortDescription&gt;
+	  &lt;Bulletpoints&gt;            
+            &lt;BulletPoint1&gt;Bullet point 1&lt;/BulletPoint1&gt;
+            &lt;BulletPoint2&gt;Bullet point 2&lt;/BulletPoint2&gt;
+            &lt;BulletPoint3&gt;Bullet point 3&lt;/BulletPoint3&gt;
+          &lt;/Bulletpoints&gt;
+	  &lt;JobFullDescription&gt;&amp;lt;p&amp;gt;&amp;lt;span style="font-family: arial;"&amp;gt;Cadden Crowe is a professional search and selection recruitment consultancy that was formed in Sydney in January 1996 and has been built upon the recognition that every client has unique challenges, circumstances and specific needs. Since 1996, Cadden Crowe has grown to have offices in Brisbane, Melbourne and Perth and has established formal alliances in Papua New Guinea, Indonesia and New Caledonia.&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span style="font-family: arial;"&amp;gt;Due to market demand we are looking to establish relationships with Engineers within the gas industry. We have a strong portfolio of clients both owner operators and EPCM, who require experienced professionals for their production and projects.&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt; &amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span style="font-family: arial;"&amp;gt;Key professions targeted:&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt; &amp;lt;/p&amp;gt;&amp;lt;ul&amp;gt;&amp;lt;li&amp;gt;&amp;lt;span style="font-family: arial;"&amp;gt;Mechanical Engineers&amp;lt;/span&amp;gt;&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;&amp;lt;span style="font-family: arial;"&amp;gt;E &amp;amp; I Engineers&amp;lt;/span&amp;gt;&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;&amp;lt;span style="font-family: arial;"&amp;gt;Project Engineer&amp;lt;/span&amp;gt;&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;&amp;lt;span style="font-family: arial;"&amp;gt;Safety Manager&amp;lt;/span&amp;gt;&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;&amp;lt;span style="font-family: arial;"&amp;gt;Project Controls Engineer&amp;lt;/span&amp;gt;&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;&amp;lt;span style="font-family: arial;"&amp;gt;Planning and Scheduling Engineer&amp;lt;/span&amp;gt;&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;&amp;lt;span style="font-family: arial;"&amp;gt;Environmental Manager&amp;lt;/span&amp;gt;&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;&amp;lt;span style="font-family: arial;"&amp;gt;Maintenance Manager&amp;lt;/span&amp;gt;&amp;lt;/li&amp;gt;&amp;lt;/ul&amp;gt;&amp;lt;p&amp;gt; &amp;lt;span style="font-family: arial;"&amp;gt;For further information please contact Julie Baker on 03 8506 2804 quoting 200018452 or apply online. Resumes must be in Word format&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&lt;/JobFullDescription&gt;
+          &lt;ContactDetails&gt;Contact Details&lt;/ContactDetails&gt;
+          &lt;CompanyName&gt;Company Name&lt;/CompanyName&gt;
+          &lt;ConsultantID&gt;{10}&lt;/ConsultantID&gt;
+          &lt;PublicTransport&gt;Public transport&lt;/PublicTransport&gt;
+          &lt;ResidentsOnly&gt;false&lt;/ResidentsOnly&gt;
+          &lt;IsQualificationsRecognised&gt;false&lt;/IsQualificationsRecognised&gt;
+          &lt;ShowLocationDetails&gt;false&lt;/ShowLocationDetails&gt;
+          &lt;JobTemplateID&gt;42&lt;/JobTemplateID&gt;
+          &lt;AdvertiserJobTemplateLogoID&gt;{11}&lt;/AdvertiserJobTemplateLogoID&gt;
+	  &lt;Categories&gt;
+            {1}
+          &lt;/Categories&gt;
+          &lt;ListingClassification&gt;
+            &lt;WorkType&gt;{2}&lt;/WorkType&gt;
+            &lt;Sector&gt;1&lt;/Sector&gt;
+            &lt;StreetAddress&gt;Street Address&lt;/StreetAddress&gt;
+            &lt;Tags&gt;tag1, tag2, tag3, tag4&lt;/Tags&gt;
+            &lt;Country&gt;{3}&lt;/Country&gt;
+            &lt;Location&gt;{4}&lt;/Location&gt;
+            &lt;Area&gt;{5}&lt;/Area&gt;                        
+          &lt;/ListingClassification&gt;
+          &lt;Salary&gt;
+            &lt;SalaryType&gt;{6}&lt;/SalaryType&gt;
+            &lt;Min&gt;{7}&lt;/Min&gt;
+            &lt;Max&gt;{8}&lt;/Max&gt;
+            &lt;AdditionalText&gt;Salary Additional text&lt;/AdditionalText&gt;
+            &lt;ShowSalaryDetails&gt;false&lt;/ShowSalaryDetails&gt;
+          &lt;/Salary&gt;
+          &lt;ApplicationMethod&gt;
+            &lt;JobApplicationType&gt;Default&lt;/JobApplicationType&gt;
+            &lt;ApplicationUrl&gt;http://appres.caddencrowe.com.au/ApplicationFormNewGeneral.asp?WebJobPostingsID=2304&amp;amp;iframe=y&amp;amp;ihf=y&lt;/ApplicationUrl&gt;
+            &lt;ApplicationEmail&gt;application@email.com&lt;/ApplicationEmail&gt;
+          &lt;/ApplicationMethod&gt;
+          &lt;Referral&gt;
+            &lt;HasReferralFee&gt;false&lt;/HasReferralFee&gt;            
+            &lt;Amount&gt;250&lt;/Amount&gt;
+            &lt;ReferralUrl&gt;http://www.referralurl.com.au&lt;/ReferralUrl&gt;
+          &lt;/Referral&gt;
+        &lt;/JobListing&gt;</value>
+  </data>
+  <data name="JobXML" xml:space="preserve">
+    <value>&lt;JobListing&gt;
+         &lt;JobAdType&gt;Normal&lt;/JobAdType&gt;
+         &lt;ReferenceNo&gt;{0}&lt;/ReferenceNo&gt;
+	 &lt;JobTitle&gt;&lt;![CDATA[{10}]]&gt;&lt;/JobTitle&gt;
+	 &lt;JobUrl&gt;{9}&lt;/JobUrl&gt;
+         &lt;ShortDescription&gt;&lt;![CDATA[We are looking to establish relationships with Engineers within the Gas industry for opportunities in 2014]]&gt;&lt;/ShortDescription&gt;
+      &lt;Bulletpoints&gt;
+        &lt;BulletPoint1&gt;String&lt;/BulletPoint1&gt;
+        &lt;BulletPoint2&gt;String&lt;/BulletPoint2&gt;
+        &lt;BulletPoint3&gt;String&lt;/BulletPoint3&gt;
+      &lt;/Bulletpoints&gt;
+         &lt;JobFullDescription&gt;&lt;![CDATA[&lt;p&gt;&lt;span style="font-family: arial;"&gt;Cadden Crowe is a professional search and selection recruitment consultancy that was formed in Sydney in January 1996 and has been built upon the recognition that every client has unique challenges, circumstances and specific needs. Since 1996, Cadden Crowe has grown to have offices in Brisbane, Melbourne and Perth and has established formal alliances in Papua New Guinea, Indonesia and New Caledonia.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style="font-family: arial;"&gt;Due to market demand we are looking to establish relationships with Engineers within the gas industry. We have a strong portfolio of clients both owner operators and EPCM, who require experienced professionals for their production and projects.&lt;/span&gt;&lt;/p&gt;&lt;p&gt; &lt;/p&gt;&lt;p&gt;&lt;span style="font-family: arial;"&gt;Key professions targeted:&lt;/span&gt;&lt;/p&gt;&lt;p&gt; &lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;span style="font-family: arial;"&gt;Mechanical Engineers&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style="font-family: arial;"&gt;E &amp; I Engineers&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style="font-family: arial;"&gt;Project Engineer&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style="font-family: arial;"&gt;Safety Manager&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style="font-family: arial;"&gt;Project Controls Engineer&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style="font-family: arial;"&gt;Planning and Scheduling Engineer&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style="font-family: arial;"&gt;Environmental Manager&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style="font-family: arial;"&gt;Maintenance Manager&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt; &lt;span style="font-family: arial;"&gt;For further information please contact Julie Baker on 03 8506 2804 quoting 200018452 or apply online. Resumes must be in Word format&lt;/span&gt;&lt;/p&gt;]]&gt;&lt;/JobFullDescription&gt;
+	 &lt;ContactDetails&gt;&lt;![CDATA[Contact Details]]&gt;&lt;/ContactDetails&gt;
+	 &lt;CompanyName&gt;&lt;![CDATA[Company Name]]&gt;&lt;/CompanyName&gt;
+         &lt;ConsultantID&gt;{11}&lt;/ConsultantID&gt;
+	 &lt;PublicTransport&gt;&lt;![CDATA[Public transport]]&gt;&lt;/PublicTransport&gt;
+	 &lt;ResidentsOnly&gt;false&lt;/ResidentsOnly&gt;
+	 &lt;IsQualificationsRecognised&gt;false&lt;/IsQualificationsRecognised&gt;
+	 &lt;ShowLocationDetails&gt;false&lt;/ShowLocationDetails&gt;        
+         &lt;JobTemplateID&gt;42&lt;/JobTemplateID&gt;
+         &lt;AdvertiserJobTemplateLogoID&gt;{12}&lt;/AdvertiserJobTemplateLogoID&gt;
+    	 &lt;Categories&gt;
+            {1}
+         &lt;/Categories&gt;
+	 &lt;ListingClassification&gt;
+            &lt;WorkType&gt;{2}&lt;/WorkType&gt;
+            &lt;Sector&gt;1&lt;/Sector&gt;
+            &lt;StreetAddress&gt;&lt;![CDATA[Street Address]]&gt;&lt;/StreetAddress&gt;
+            &lt;Tags&gt;&lt;![CDATA[tag1, tag2, tag3, tag4]]&gt;&lt;/Tags&gt;
+            &lt;Country&gt;{3}&lt;/Country&gt;
+            &lt;Location&gt;{4}&lt;/Location&gt;
+            &lt;Area&gt;{5}&lt;/Area&gt;
+         &lt;/ListingClassification&gt;
+         &lt;Salary&gt;
+            &lt;SalaryType&gt;{6}&lt;/SalaryType&gt;
+            &lt;Min&gt;{7}&lt;/Min&gt;
+            &lt;Max&gt;{8}&lt;/Max&gt;
+            &lt;AdditionalText&gt;&lt;![CDATA[Salary Additional text]]&gt;&lt;/AdditionalText&gt;
+            &lt;ShowSalaryDetails&gt;false&lt;/ShowSalaryDetails&gt;
+         &lt;/Salary&gt;
+         &lt;ApplicationMethod&gt;
+            &lt;JobApplicationType&gt;Default&lt;/JobApplicationType&gt;
+            &lt;ApplicationUrl&gt;http://appres.caddencrowe.com.au/ApplicationFormNewGeneral.asp?WebJobPostingsID=2304&amp;amp;iframe=y&amp;amp;ihf=y&lt;/ApplicationUrl&gt;
+            &lt;ApplicationEmail&gt;application@email.com&lt;/ApplicationEmail&gt;
+         &lt;/ApplicationMethod&gt;         
+         &lt;Referral&gt;
+            &lt;HasReferralFee&gt;false&lt;/HasReferralFee&gt;
+            &lt;Amount&gt;250&lt;/Amount&gt;
+            &lt;ReferralUrl&gt;http://www.referralurl.com.au&lt;/ReferralUrl&gt;
+         &lt;/Referral&gt;		          
+&lt;/JobListing&gt;</value>
+  </data>
+</root>

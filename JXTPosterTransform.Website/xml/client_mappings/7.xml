@@ -1,0 +1,269 @@
+<?xml version="1.0"?>
+<MappingsXMLModel xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <JobTemplateMaps />
+  <JobTemplateLogoMaps />
+  <WorkTypeMaps>
+    <WorkTypeMap>
+      <MapToWorkTypeID>3</MapToWorkTypeID>
+      <ClientWorkTypeID>Casual</ClientWorkTypeID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </WorkTypeMap>
+    <WorkTypeMap>
+      <MapToWorkTypeID>2</MapToWorkTypeID>
+      <ClientWorkTypeID>Full time</ClientWorkTypeID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </WorkTypeMap>
+    <WorkTypeMap>
+      <MapToWorkTypeID>4</MapToWorkTypeID>
+      <ClientWorkTypeID>Full Time Fixed Term</ClientWorkTypeID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </WorkTypeMap>
+    <WorkTypeMap>
+      <MapToWorkTypeID>1</MapToWorkTypeID>
+      <ClientWorkTypeID>Part time</ClientWorkTypeID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </WorkTypeMap>
+    <WorkTypeMap>
+      <MapToWorkTypeID>4</MapToWorkTypeID>
+      <ClientWorkTypeID>Part-Time Fixed Term</ClientWorkTypeID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </WorkTypeMap>
+  </WorkTypeMaps>
+  <CLAMaps>
+    <CLAMap>
+      <MapToCountryID>1</MapToCountryID>
+      <MapToLocationID>1</MapToLocationID>
+      <MapToAreaID>1</MapToAreaID>
+      <ClientLocationID>Sydney</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>1</MapToCountryID>
+      <MapToLocationID>10</MapToLocationID>
+      <MapToAreaID>31</MapToAreaID>
+      <ClientLocationID>NSW - Other</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>1</MapToCountryID>
+      <MapToLocationID>2</MapToLocationID>
+      <MapToAreaID>8</MapToAreaID>
+      <ClientLocationID>Melbourne</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>1</MapToCountryID>
+      <MapToLocationID>11</MapToLocationID>
+      <MapToAreaID>47</MapToAreaID>
+      <ClientLocationID>VIC - Other</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>1</MapToCountryID>
+      <MapToLocationID>3</MapToLocationID>
+      <MapToAreaID>14</MapToAreaID>
+      <ClientLocationID>Brisbane</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>1</MapToCountryID>
+      <MapToLocationID>12</MapToLocationID>
+      <MapToAreaID>58</MapToAreaID>
+      <ClientLocationID>QLD - Other</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>1</MapToCountryID>
+      <MapToLocationID>6</MapToLocationID>
+      <MapToAreaID>27</MapToAreaID>
+      <ClientLocationID>Adelaide</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>1</MapToCountryID>
+      <MapToLocationID>14</MapToLocationID>
+      <MapToAreaID>79</MapToAreaID>
+      <ClientLocationID>SA - Other</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>1</MapToCountryID>
+      <MapToLocationID>7</MapToLocationID>
+      <MapToAreaID>28</MapToAreaID>
+      <ClientLocationID>Hobart</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>1</MapToCountryID>
+      <MapToLocationID>15</MapToLocationID>
+      <MapToAreaID>89</MapToAreaID>
+      <ClientLocationID>TAS - Other</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>1</MapToCountryID>
+      <MapToLocationID>5</MapToLocationID>
+      <MapToAreaID>21</MapToAreaID>
+      <ClientLocationID>Perth</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>1</MapToCountryID>
+      <MapToLocationID>13</MapToLocationID>
+      <MapToAreaID>70</MapToAreaID>
+      <ClientLocationID>WA - Other</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>1</MapToCountryID>
+      <MapToLocationID>17</MapToLocationID>
+      <MapToAreaID>94</MapToAreaID>
+      <ClientLocationID>NT</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>1</MapToCountryID>
+      <MapToLocationID>10</MapToLocationID>
+      <MapToAreaID>40</MapToAreaID>
+      <ClientLocationID>ACT</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>2</MapToCountryID>
+      <MapToLocationID>40</MapToLocationID>
+      <MapToAreaID>170</MapToAreaID>
+      <ClientLocationID>New Zealand - North Island</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>2</MapToCountryID>
+      <MapToLocationID>53</MapToLocationID>
+      <MapToAreaID>219</MapToAreaID>
+      <ClientLocationID>New Zealand - South Island</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+  </CLAMaps>
+  <ProfRoleMaps>
+    <ProfessionRoleMap>
+      <MapToProfessionID>7</MapToProfessionID>
+      <MapToRoleID>77</MapToRoleID>
+      <ClientProfessionID>Apprenticeships/Traineeships/Graduates</ClientProfessionID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </ProfessionRoleMap>
+    <ProfessionRoleMap>
+      <MapToProfessionID>26</MapToProfessionID>
+      <MapToRoleID>421</MapToRoleID>
+      <ClientProfessionID>Operations/Project Management</ClientProfessionID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </ProfessionRoleMap>
+    <ProfessionRoleMap>
+      <MapToProfessionID>40</MapToProfessionID>
+      <MapToRoleID>604</MapToRoleID>
+      <ClientProfessionID>Sales/Business Development</ClientProfessionID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </ProfessionRoleMap>
+    <ProfessionRoleMap>
+      <MapToProfessionID>4</MapToProfessionID>
+      <MapToRoleID>26</MapToRoleID>
+      <ClientProfessionID>Administration/Call Centre</ClientProfessionID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </ProfessionRoleMap>
+    <ProfessionRoleMap>
+      <MapToProfessionID>3</MapToProfessionID>
+      <MapToRoleID>22</MapToRoleID>
+      <ClientProfessionID>Finance/Accounting</ClientProfessionID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </ProfessionRoleMap>
+    <ProfessionRoleMap>
+      <MapToProfessionID>25</MapToProfessionID>
+      <MapToRoleID>397</MapToRoleID>
+      <ClientProfessionID>Human Resources</ClientProfessionID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </ProfessionRoleMap>
+    <ProfessionRoleMap>
+      <MapToProfessionID>25</MapToProfessionID>
+      <MapToRoleID>398</MapToRoleID>
+      <ClientProfessionID>OH&amp;S/Quality</ClientProfessionID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </ProfessionRoleMap>
+    <ProfessionRoleMap>
+      <MapToProfessionID>26</MapToProfessionID>
+      <MapToRoleID>419</MapToRoleID>
+      <ClientProfessionID>Information Technology</ClientProfessionID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </ProfessionRoleMap>
+    <ProfessionRoleMap>
+      <MapToProfessionID>31</MapToProfessionID>
+      <MapToRoleID>506</MapToRoleID>
+      <ClientProfessionID>Marketing</ClientProfessionID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </ProfessionRoleMap>
+    <ProfessionRoleMap>
+      <MapToProfessionID>14</MapToProfessionID>
+      <MapToRoleID>153</MapToRoleID>
+      <ClientProfessionID>Draftsperson/Estimator</ClientProfessionID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </ProfessionRoleMap>
+    <ProfessionRoleMap>
+      <MapToProfessionID>20</MapToProfessionID>
+      <MapToRoleID>289</MapToRoleID>
+      <ClientProfessionID>Senior Management</ClientProfessionID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </ProfessionRoleMap>
+    <ProfessionRoleMap>
+      <MapToProfessionID>50</MapToProfessionID>
+      <MapToRoleID>701</MapToRoleID>
+      <ClientProfessionID>Trades Qualified</ClientProfessionID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </ProfessionRoleMap>
+    <ProfessionRoleMap>
+      <MapToProfessionID>50</MapToProfessionID>
+      <MapToRoleID>701</MapToRoleID>
+      <ClientProfessionID>Trades Unqualified</ClientProfessionID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </ProfessionRoleMap>
+    <ProfessionRoleMap>
+      <MapToProfessionID>14</MapToProfessionID>
+      <MapToRoleID>160</MapToRoleID>
+      <ClientProfessionID>Facility Management</ClientProfessionID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </ProfessionRoleMap>
+    <ProfessionRoleMap>
+      <MapToProfessionID>15</MapToProfessionID>
+      <MapToRoleID>171</MapToRoleID>
+      <ClientProfessionID>FM Consulting</ClientProfessionID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </ProfessionRoleMap>
+    <ProfessionRoleMap>
+      <MapToProfessionID>20</MapToProfessionID>
+      <MapToRoleID>292</MapToRoleID>
+      <ClientProfessionID>Branch Management</ClientProfessionID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </ProfessionRoleMap>
+    <ProfessionRoleMap>
+      <MapToProfessionID>3</MapToProfessionID>
+      <MapToRoleID>23</MapToRoleID>
+      <ClientProfessionID>Payroll</ClientProfessionID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </ProfessionRoleMap>
+    <ProfessionRoleMap>
+      <MapToProfessionID>3</MapToProfessionID>
+      <MapToRoleID>18</MapToRoleID>
+      <ClientProfessionID>Credit</ClientProfessionID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </ProfessionRoleMap>
+    <ProfessionRoleMap>
+      <MapToProfessionID>25</MapToProfessionID>
+      <MapToRoleID>400</MapToRoleID>
+      <ClientProfessionID>Recruitment Consulting</ClientProfessionID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </ProfessionRoleMap>
+    <ProfessionRoleMap>
+      <MapToProfessionID>19</MapToProfessionID>
+      <MapToRoleID>266</MapToRoleID>
+      <ClientProfessionID>Engineering/Construction</ClientProfessionID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </ProfessionRoleMap>
+  </ProfRoleMaps>
+  <SalaryTypeMaps />
+</MappingsXMLModel>

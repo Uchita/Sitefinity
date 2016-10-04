@@ -1,0 +1,54 @@
+.vs-context-menu1, .vs-context-menu2, .vs-context-menu3 {
+    display:none;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    position: absolute;
+    background: #EEEEEE;
+    border: 1px solid #333;
+    width:auto;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    font-size: 13px;
+}
+
+.vs-context-menu1 ul, .vs-context-menu2 ul, .vs-context-menu3 ul{
+       list-style: none;
+        padding: 0;
+        margin: 0;
+}
+
+.vs-context-menu1 li, .vs-context-menu2 li, .vs-context-menu3 li{
+    margin: 0px;
+    padding: 3px;
+}
+.vs-context-menu1 ul a, .vs-context-menu2 ul a, .vs-context-menu3 ul a{
+		display: block;
+		padding: 1px 5px;
+		padding-left: 28px;
+		text-decoration: none;
+		color: #000;
+		background-repeat: no-repeat;
+}
+
+.vs-context-menu1 ul li a:hover, .vs-context-menu1 ul li a:focus, .vs-context-menu2 ul li a:hover, .vs-context-menu2 ul li a:focus, .vs-context-menu3 ul li a:hover, .vs-context-menu3 ul li a:focus {
+color: #FFFFFF;
+background-color: #999;
+}
+
+.seprator{
+    border-bottom: 1px solid  #DDDDDD;
+}
+
+
+.vs-context-menu1 li.open-folder A, .vs-context-menu2 li.open-folder A, .vs-context-menu3 li.open-folder A { background-image: url(../images/open-folder.png); }
+
+.vs-context-menu1 li.edit A, .vs-context-menu2 li.edit A, .vs-context-menu3 li.edit A { background-image: url(../images/edit.png); }
+.vs-context-menu1 li.preview A, .vs-context-menu2 li.preview A, .vs-context-menu3 li.preview A { background-image: url(../images/preview.png); }
+.vs-context-menu1 li.download A, .vs-context-menu2 li.download A, .vs-context-menu3 li.download A { background-image: url(../images/download.png); }
+.vs-context-menu1 li.delete A, .vs-context-menu2 li.delete A, .vs-context-menu3 li.delete A { background-image: url(../images/delete.png); }
+
+
+
+
+

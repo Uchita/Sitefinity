@@ -1,0 +1,57 @@
+/* Default Container Styles */
+
+#wrapper {
+	width: 980px !important;
+	margin: 0 auto;
+	padding: 0;
+}
+
+
+#header {
+	clear: both;
+	width: 980px;
+	height: 330px;
+	margin: 0 auto;
+	padding: 0px;
+	background: url(images/img06.jpg) no-repeat left top;
+}
+
+#dynamic-container  {
+	width: 940px !important;
+	margin: 0 auto;
+	padding: 0px 0px 0px 0px;
+}
+
+#side-left {
+	float: left;
+	width: 280px !important;
+	margin: 0px;
+	padding: 0px 0px 0px 0px;
+	color: #787878;
+}
+
+#side-right {
+    float: right;
+    width: 200px;
+}
+
+#content {
+	float: right;
+	width: 700px !important;
+}
+
+.content-holder {
+width:97% !important;
+}
+
+
+
+
+#footer {
+	height: 50px;
+	margin: 0 auto;
+	padding: 0px 0 15px 0;
+	background: #ECECEC;
+	border-top: 1px solid #DEDEDE;
+	font-family: Arial, Helvetica, sans-serif;
+}

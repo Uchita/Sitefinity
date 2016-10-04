@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[Profession]
+(
+	ProfessionID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	ProfessionName VARCHAR(255) NOT NULL,
+	Valid BIT NOT NULL DEFAULT(1),
+	MetaTitle				VARCHAR(255) NOT NULL,
+	MetaKeywords			VARCHAR(255) NOT NULL,
+	MetaDescription			VARCHAR(512) NOT NULL
+)

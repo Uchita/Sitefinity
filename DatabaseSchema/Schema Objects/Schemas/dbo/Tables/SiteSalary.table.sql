@@ -1,0 +1,11 @@
+﻿CREATE TABLE [dbo].[SiteSalary]
+(
+	SiteSalaryID INT IDENTITY(1,1) PRIMARY KEY,
+	SiteID INT REFERENCES Sites(SiteID) NOT NULL,
+	SalaryID INT NOT NULL REFERENCES Salary(SalaryID),
+	SiteSalaryName NVARCHAR(510) NOT NULL,
+	SalaryUpperBand VARCHAR(255) NOT NULL,
+	SalaryLowerBand VARCHAR(255) NOT NULL,
+	Sequence INT NOT NULL DEFAULT(0),
+	Valid BIT NOT NULL DEFAULT(1)
+)

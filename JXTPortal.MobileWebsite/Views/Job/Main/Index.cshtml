@@ -1,0 +1,35 @@
+﻿@model JXTPortal.Domain.ViewModel.JobModel.JobDetail
+
+@{
+    ViewBag.Title = "Index";
+}
+@using System.Web
+
+@section featured {
+    <script type="text/javascript">
+        function ApplyNow(jobid)
+        {
+             $.getJSON('@Url.Action("SaveJob")', { jobid: jobid }, function (successful,message) {
+                if (successful)
+                {
+                    $('#ApplyNow').hide();
+                }
+
+                $('#message').css('display', '').text(message);
+             });
+        }
+    </script>
+}
+<h2>@Model.JobName </h2>
+<h3>@Model.SiteProfessionName</h3>
+@Model.SiteLocationName
+<div>
+<label id="message" style="display:none;"></label>
+@Html.Raw(Model.FullDescription)
+@if (!Model.IsJobSaved)
+{ 
+    <input type="button" name="ApplyNow" id="ApplyNow" value="Apply Now" onclick="ApplyNow('@Model.JobID')" />
+}
+</div>
+
+   

@@ -1,0 +1,645 @@
+<?xml version="1.0"?>
+<MappingsXMLModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <JobTemplateMaps />
+  <JobTemplateLogoMaps />
+  <WorkTypeMaps>
+    <WorkTypeMap>
+      <MapToWorkTypeID>2</MapToWorkTypeID>
+      <ClientWorkTypeID>Full Time</ClientWorkTypeID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </WorkTypeMap>
+    <WorkTypeMap>
+      <MapToWorkTypeID>2</MapToWorkTypeID>
+      <ClientWorkTypeID>Permanent</ClientWorkTypeID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </WorkTypeMap>
+  </WorkTypeMaps>
+  <CLAMaps>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>453</MapToLocationID>
+      <MapToAreaID>1635</MapToAreaID>
+      <ClientLocationID>Cambodia - Phnom Penh</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>451</MapToLocationID>
+      <MapToAreaID>1585</MapToAreaID>
+      <ClientLocationID>China - Beijing</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>451</MapToLocationID>
+      <MapToAreaID>1585</MapToAreaID>
+      <ClientLocationID>China - Others</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>451</MapToLocationID>
+      <MapToAreaID>1585</MapToAreaID>
+      <ClientLocationID>China - Shanghai</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>451</MapToLocationID>
+      <MapToAreaID>1585</MapToAreaID>
+      <ClientLocationID>China - Shenzhen</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>451</MapToLocationID>
+      <MapToAreaID>1585</MapToAreaID>
+      <ClientLocationID>China - Tianjin</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>452</MapToLocationID>
+      <MapToAreaID>1610</MapToAreaID>
+      <ClientLocationID>Hong Kong - Hong Kong Side</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>452</MapToLocationID>
+      <MapToAreaID>1610</MapToAreaID>
+      <ClientLocationID>Hong Kong - Kowloon Side</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>452</MapToLocationID>
+      <MapToAreaID>1610</MapToAreaID>
+      <ClientLocationID>Hong Kong - New Territories</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>452</MapToLocationID>
+      <MapToAreaID>1610</MapToAreaID>
+      <ClientLocationID>Hong Kong - Others</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>454</MapToLocationID>
+      <MapToAreaID>1684</MapToAreaID>
+      <ClientLocationID>India - Bangalore</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>454</MapToLocationID>
+      <MapToAreaID>1684</MapToAreaID>
+      <ClientLocationID>India - Chennai</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>454</MapToLocationID>
+      <MapToAreaID>1684</MapToAreaID>
+      <ClientLocationID>India - Delhi</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>454</MapToLocationID>
+      <MapToAreaID>1684</MapToAreaID>
+      <ClientLocationID>India - Gurgaon/Gurugram</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>454</MapToLocationID>
+      <MapToAreaID>1684</MapToAreaID>
+      <ClientLocationID>India - Haryana</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>454</MapToLocationID>
+      <MapToAreaID>1684</MapToAreaID>
+      <ClientLocationID>India - Mumbai</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>454</MapToLocationID>
+      <MapToAreaID>1684</MapToAreaID>
+      <ClientLocationID>India - Noida</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>454</MapToLocationID>
+      <MapToAreaID>1684</MapToAreaID>
+      <ClientLocationID>India - Others</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>454</MapToLocationID>
+      <MapToAreaID>1684</MapToAreaID>
+      <ClientLocationID>India - Pune </ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>454</MapToLocationID>
+      <MapToAreaID>1684</MapToAreaID>
+      <ClientLocationID>India - Rajasthan</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>455</MapToLocationID>
+      <MapToAreaID>1685</MapToAreaID>
+      <ClientLocationID>Indonesia - Bali</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>455</MapToLocationID>
+      <MapToAreaID>1685</MapToAreaID>
+      <ClientLocationID>Indonesia - Bandung</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>455</MapToLocationID>
+      <MapToAreaID>1685</MapToAreaID>
+      <ClientLocationID>Indonesia - Jakarta</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>455</MapToLocationID>
+      <MapToAreaID>1685</MapToAreaID>
+      <ClientLocationID>Indonesia - Others</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>455</MapToLocationID>
+      <MapToAreaID>1685</MapToAreaID>
+      <ClientLocationID>Indonesia - Surabaya</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>456</MapToLocationID>
+      <MapToAreaID>1710</MapToAreaID>
+      <ClientLocationID>Japan - Fukuoka</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>456</MapToLocationID>
+      <MapToAreaID>1710</MapToAreaID>
+      <ClientLocationID>Japan - Nagoya</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>456</MapToLocationID>
+      <MapToAreaID>1710</MapToAreaID>
+      <ClientLocationID>Japan - Osaka</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>456</MapToLocationID>
+      <MapToAreaID>1710</MapToAreaID>
+      <ClientLocationID>Japan - Others</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>456</MapToLocationID>
+      <MapToAreaID>1710</MapToAreaID>
+      <ClientLocationID>Japan - Tokyo</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>457</MapToLocationID>
+      <MapToAreaID>1735</MapToAreaID>
+      <ClientLocationID>Korea - All</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>458</MapToLocationID>
+      <MapToAreaID>1760</MapToAreaID>
+      <ClientLocationID>Laos - Vientiane</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>459</MapToLocationID>
+      <MapToAreaID>1785</MapToAreaID>
+      <ClientLocationID>Malaysia - Johor Baru</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>459</MapToLocationID>
+      <MapToAreaID>1785</MapToAreaID>
+      <ClientLocationID>Malaysia - Kuala Lumpur</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>459</MapToLocationID>
+      <MapToAreaID>1785</MapToAreaID>
+      <ClientLocationID>Malaysia - Others</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>459</MapToLocationID>
+      <MapToAreaID>1785</MapToAreaID>
+      <ClientLocationID>Malaysia - Penang</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>459</MapToLocationID>
+      <MapToAreaID>1785</MapToAreaID>
+      <ClientLocationID>Malaysia - Senai</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>460</MapToLocationID>
+      <MapToAreaID>1810</MapToAreaID>
+      <ClientLocationID>Myanmar - Yangon</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>467</MapToLocationID>
+      <MapToAreaID>2335</MapToAreaID>
+      <ClientLocationID>Others - All</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>461</MapToLocationID>
+      <MapToAreaID>2035</MapToAreaID>
+      <ClientLocationID>Philippines - ARMM Region Autonomous Region in Muslim Mindanao</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>461</MapToLocationID>
+      <MapToAreaID>2035</MapToAreaID>
+      <ClientLocationID>Philippines - CAR Region Cordillera Administrative Region</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>461</MapToLocationID>
+      <MapToAreaID>2035</MapToAreaID>
+      <ClientLocationID>Philippines - NCR National Capital Region</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>461</MapToLocationID>
+      <MapToAreaID>2035</MapToAreaID>
+      <ClientLocationID>Philippines - Others</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>461</MapToLocationID>
+      <MapToAreaID>2035</MapToAreaID>
+      <ClientLocationID>Philippines - Region I Ilocos</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>461</MapToLocationID>
+      <MapToAreaID>2035</MapToAreaID>
+      <ClientLocationID>Philippines - Region III Central Luzon</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>461</MapToLocationID>
+      <MapToAreaID>2035</MapToAreaID>
+      <ClientLocationID>Philippines - Region IV-A CALABARZON</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>461</MapToLocationID>
+      <MapToAreaID>2035</MapToAreaID>
+      <ClientLocationID>Philippines - Region IV-B MIMAROPA</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>461</MapToLocationID>
+      <MapToAreaID>2035</MapToAreaID>
+      <ClientLocationID>Philippines - Region IX Zamboanga Peninsula</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>461</MapToLocationID>
+      <MapToAreaID>2035</MapToAreaID>
+      <ClientLocationID>Philippines - Region V Bicol</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>461</MapToLocationID>
+      <MapToAreaID>2035</MapToAreaID>
+      <ClientLocationID>Philippines - Region VI Western Visayas</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>461</MapToLocationID>
+      <MapToAreaID>2035</MapToAreaID>
+      <ClientLocationID>Philippines - Region VII Central Visayas</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>461</MapToLocationID>
+      <MapToAreaID>2035</MapToAreaID>
+      <ClientLocationID>Philippines - Region VIII Eastern Visayas</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>461</MapToLocationID>
+      <MapToAreaID>2035</MapToAreaID>
+      <ClientLocationID>Philippines - Region X Northern Mindanao</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>461</MapToLocationID>
+      <MapToAreaID>2035</MapToAreaID>
+      <ClientLocationID>Philippines - Region XI Davao</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>461</MapToLocationID>
+      <MapToAreaID>2035</MapToAreaID>
+      <ClientLocationID>Philippines - Region XII SOCCSKSARGEN</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>461</MapToLocationID>
+      <MapToAreaID>2035</MapToAreaID>
+      <ClientLocationID>Philippines - Region XIII CARAGA</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>462</MapToLocationID>
+      <MapToAreaID>2085</MapToAreaID>
+      <ClientLocationID>Qatar - All</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>463</MapToLocationID>
+      <MapToAreaID>2135</MapToAreaID>
+      <ClientLocationID>Singapore - All</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>463</MapToLocationID>
+      <MapToAreaID>2135</MapToAreaID>
+      <ClientLocationID>Singapore - City</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>463</MapToLocationID>
+      <MapToAreaID>2135</MapToAreaID>
+      <ClientLocationID>Singapore - East</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>463</MapToLocationID>
+      <MapToAreaID>2135</MapToAreaID>
+      <ClientLocationID>Singapore - North</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>463</MapToLocationID>
+      <MapToAreaID>2135</MapToAreaID>
+      <ClientLocationID>Singapore - Others</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>463</MapToLocationID>
+      <MapToAreaID>2135</MapToAreaID>
+      <ClientLocationID>Singapore - West</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>464</MapToLocationID>
+      <MapToAreaID>2185</MapToAreaID>
+      <ClientLocationID>Taiwan - All</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>465</MapToLocationID>
+      <MapToAreaID>2235</MapToAreaID>
+      <ClientLocationID>Thailand - Ayuthaya</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>465</MapToLocationID>
+      <MapToAreaID>2235</MapToAreaID>
+      <ClientLocationID>Thailand - Bangkok</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>465</MapToLocationID>
+      <MapToAreaID>2235</MapToAreaID>
+      <ClientLocationID>Thailand - Chachoengsao</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>465</MapToLocationID>
+      <MapToAreaID>2235</MapToAreaID>
+      <ClientLocationID>Thailand - Chonburi</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>465</MapToLocationID>
+      <MapToAreaID>2235</MapToAreaID>
+      <ClientLocationID>Thailand - Others</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>465</MapToLocationID>
+      <MapToAreaID>2235</MapToAreaID>
+      <ClientLocationID>Thailand - Pathumthani</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>465</MapToLocationID>
+      <MapToAreaID>2235</MapToAreaID>
+      <ClientLocationID>Thailand - Rayong</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>465</MapToLocationID>
+      <MapToAreaID>2235</MapToAreaID>
+      <ClientLocationID>Thailand - Samutprakarn</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>466</MapToLocationID>
+      <MapToAreaID>2285</MapToAreaID>
+      <ClientLocationID>Vietnam - Da Nang</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>466</MapToLocationID>
+      <MapToAreaID>2285</MapToAreaID>
+      <ClientLocationID>Vietnam - Hanoi</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>466</MapToLocationID>
+      <MapToAreaID>2285</MapToAreaID>
+      <ClientLocationID>Vietnam - Ho Chi Minh City</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>265</MapToCountryID>
+      <MapToLocationID>466</MapToLocationID>
+      <MapToAreaID>2285</MapToAreaID>
+      <ClientLocationID>Vietnam - Others</ClientLocationID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+  </CLAMaps>
+  <ProfRoleMaps>
+    <ProfessionRoleMap>
+      <MapToProfessionID>3</MapToProfessionID>
+      <MapToRoleID>1</MapToRoleID>
+      <ClientProfessionID>Business Operations</ClientProfessionID>
+      <ClientRoleID>Shipping/Sales Coordinator</ClientRoleID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </ProfessionRoleMap>
+    <ProfessionRoleMap>
+      <MapToProfessionID>3</MapToProfessionID>
+      <MapToRoleID>1</MapToRoleID>
+      <ClientProfessionID>Conglomerates</ClientProfessionID>
+      <ClientRoleID>All of Conglomerates</ClientRoleID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </ProfessionRoleMap>
+    <ProfessionRoleMap>
+      <MapToProfessionID>3</MapToProfessionID>
+      <MapToRoleID>1</MapToRoleID>
+      <ClientProfessionID>Consumer Goods</ClientProfessionID>
+      <ClientRoleID>All of Consumer Goods</ClientRoleID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </ProfessionRoleMap>
+    <ProfessionRoleMap>
+      <MapToProfessionID>3</MapToProfessionID>
+      <MapToRoleID>1</MapToRoleID>
+      <ClientProfessionID>Energy</ClientProfessionID>
+      <ClientRoleID>All of Energy</ClientRoleID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </ProfessionRoleMap>
+    <ProfessionRoleMap>
+      <MapToProfessionID>3</MapToProfessionID>
+      <MapToRoleID>1</MapToRoleID>
+      <ClientProfessionID>Financial Services</ClientProfessionID>
+      <ClientRoleID>All of Financial Services</ClientRoleID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </ProfessionRoleMap>
+    <ProfessionRoleMap>
+      <MapToProfessionID>3</MapToProfessionID>
+      <MapToRoleID>1</MapToRoleID>
+      <ClientProfessionID>Import/Export</ClientProfessionID>
+      <ClientRoleID>All of Import/Export</ClientRoleID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </ProfessionRoleMap>
+    <ProfessionRoleMap>
+      <MapToProfessionID>3</MapToProfessionID>
+      <MapToRoleID>1</MapToRoleID>
+      <ClientProfessionID>Life Sciences &amp; Healthcare</ClientProfessionID>
+      <ClientRoleID>All of Life Sciences &amp; Healthcare</ClientRoleID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </ProfessionRoleMap>
+    <ProfessionRoleMap>
+      <MapToProfessionID>3</MapToProfessionID>
+      <MapToRoleID>1</MapToRoleID>
+      <ClientProfessionID>Manufacturing/Engineering/Industrial</ClientProfessionID>
+      <ClientRoleID>All of Manufacturing/Engineering/Industrial</ClientRoleID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </ProfessionRoleMap>
+    <ProfessionRoleMap>
+      <MapToProfessionID>3</MapToProfessionID>
+      <MapToRoleID>1</MapToRoleID>
+      <ClientProfessionID>None</ClientProfessionID>
+      <ClientRoleID>None</ClientRoleID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </ProfessionRoleMap>
+    <ProfessionRoleMap>
+      <MapToProfessionID>3</MapToProfessionID>
+      <MapToRoleID>1</MapToRoleID>
+      <ClientProfessionID>Services</ClientProfessionID>
+      <ClientRoleID>All of Services</ClientRoleID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </ProfessionRoleMap>
+    <ProfessionRoleMap>
+      <MapToProfessionID>3</MapToProfessionID>
+      <MapToRoleID>1</MapToRoleID>
+      <ClientProfessionID>Technology/Online</ClientProfessionID>
+      <ClientRoleID>All of Technology/Online</ClientRoleID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </ProfessionRoleMap>
+    <ProfessionRoleMap>
+      <MapToProfessionID>3</MapToProfessionID>
+      <MapToRoleID>1</MapToRoleID>
+      <ClientProfessionID>Manufacturing &amp; Engineering</ClientProfessionID>
+      <ClientRoleID>Electrical</ClientRoleID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </ProfessionRoleMap>
+    <ProfessionRoleMap>
+      <MapToProfessionID>3</MapToProfessionID>
+      <MapToRoleID>1</MapToRoleID>
+      <ClientProfessionID>Executive</ClientProfessionID>
+      <ClientRoleID>COO</ClientRoleID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </ProfessionRoleMap>
+  </ProfRoleMaps>
+  <SalaryTypeMaps />
+</MappingsXMLModel>

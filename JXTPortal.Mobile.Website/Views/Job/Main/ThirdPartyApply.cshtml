@@ -1,0 +1,126 @@
+﻿@{
+    ViewBag.Title = "Third Party Apply";
+}
+
+<script type="text/javascript">
+    function SaveJob() { 
+        $.getJSON('@Url.Action("SaveJobJSON")', 
+                    { jobid : @Model.JobID }, 
+                        function (Result) {
+                            if (Result.success)
+                            {
+                                $("#btnSave").attr("disabled", "disabled");
+                                $("#Message").text("Your job has been successfully saved");
+                            }
+                            else
+                            {
+                                $("#Message").text(Result.message);
+                            }
+                        }).error(function(error) {
+                                    alert("You need to login first");
+                                    //TODO: REDIRECT to the login page with source of current page URL
+                                  });
+    }
+
+    function SendEmail() {
+        if ($("#txtName").val() != "" &&  $("#txtEmail").val() != "")
+        {
+             $.getJSON('@Url.Action("SendMemberJobEmail")', 
+                        { jobName: "@Model.JobName", yourName: $("#txtName").val(), yourEmail: $("#txtEmail").val(),
+                                                jobid: @Model.JobID, siteid: @Model.SiteID}, 
+                            function (Result) {
+                                if (Result.success)
+                                {
+                                    $("#Message").text("Your job has been sent to your email");
+                                }
+                                else
+                                {
+                                    $("#Message").text(Result.errors);
+                                }
+                            }).error(function(error) {
+                                         $("#Message").text(error);
+                                        //TODO: REDIRECT to the login page with source of current page URL
+                                      });
+        }
+
+         if ($("#txtName").val() == "")
+         {
+            alert("Name is required!");
+         } 
+         
+         if  ($("#txtEmail").val() == "")
+         {
+            alert("email is required!");
+         }
+    }
+</script>
+
+@model JXTPortal.Domain.ViewModel.JobModel.JobDetail
+@using JXTPortal.Entities
+<h1>Please Select your Preferred Option</h1>
+
+
+@if ((PortalEnums.Jobs.ApplicationMethod)Model.ApplicationMethod == PortalEnums.Jobs.ApplicationMethod.URL)
+{ 
+<p style="font-size:larger;" class="ApplyOption1"><input type="radio" name="lang_anz" value="0"><strong>Email this job</strong><br><small>Email this job to yourself to apply later or send to a friend.</small></p>
+    <div id="div_name0" style="display:none;">
+	<fieldset class="ui-grid-b">
+        <ul class="FormFields">
+		<li><label for="txtName">Name</label>
+            <span class="inputFieldsWrap"><input type="text" id="txtName" name="txtName"/></span></li>
+        <li><label for="txtEmail">Email</label>
+            <span class="inputFieldsWrap"><input type="text" id="txtEmail" name="txtEmail"/></span></li>
+        <li><button id="btnSend" name="btnSend" class="btn-submit" onclick="javascript:SendEmail();">Send</button></li>
+        </ul>
+    </fieldset>
+        <b><div id="Message"></div></b>
+	</div>
+ 
+    if (!Model.IsJobApplied)
+    {
+<p style="font-size:larger;" class="ApplyOption2"><input type="radio" name="lang_anz" value="1"><strong>Save this job</strong><br><small>Save this job to your account & apply later.</small></p>
+	<div id="div_name1" style="display:none;">
+	<fieldset class="ui-grid-b">
+		<ul class="FormFields">
+		<li><button id="btnSave" name="btnSave" class="btn-submit" onclick="SaveJob();">Save Job</button></li>
+		</ul>
+	</fieldset>
+	</div>
+    }
+<p style="font-size: larger;" class="ApplyOption3"><input type="radio" name="lang_anz" value="2"><strong>Continue to Application</strong><br><small>Opens in new browser and may require you to upload documents.</small></p>
+    <div id="div_name2" style="display:none;">
+	<fieldset class="ui-grid-b">
+        <ul class="FormFields">
+        <li><button id="btnContinueApply" name="btnContinueApply" class="btn-submit" onclick="window.open('@Model.ApplicationURL');">Apply Now</button></li>
+        </ul>
+    </fieldset>
+	</div>
+	
+    <fieldset class="ui-grid-b">
+     <div class="ui-block-a"><button type="button" onclick="window.history.back()">Back</button></div>
+	</fieldset>
+}
+
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(":radio:eq(0)").click(function () {
+            $("#div_name0").show(0);
+            $("#div_name1").hide(0);
+            $("#div_name2").hide(0);
+        });
+        $(":radio:eq(1)").click(function () {
+            $("#div_name0").hide(0);
+            $("#div_name1").show(0);
+            $("#div_name2").hide(0);
+        });
+        $(":radio:eq(2)").click(function () {
+            $("#div_name0").hide(0);
+            $("#div_name1").hide(0);
+            $("#div_name2").show(0);
+        });
+    });
+</script>

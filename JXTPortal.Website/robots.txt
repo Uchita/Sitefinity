@@ -1,0 +1,150 @@
+# robots.txt 06/05/2016
+
+# Yahoo! will not spider
+User-agent: Slurp
+Crawl-delay: 20
+Disallow: /admin/
+Disallow: /Admin/
+Disallow: /bin
+Disallow: /ckeditor
+Disallow: /usercontrols
+Disallow: /member/
+Disallow: */emailfriend/
+Disallow: */widgetsearch.aspx
+Disallow: /advertiser/
+Disallow: /*errorpage.aspx?
+Disallow: /404.aspx
+Disallow: /salarysurvey/themes
+Disallow: /blog/wp-includes
+Disallow: /ScriptResource.axd?d=  
+Disallow: /GetWhiteLabelFile.aspx?whiteLabelFileID=
+Allow: /scripts
+Allow: /Css
+Allow: /css
+Allow: /js
+Allow: /member/createjobalert.aspx
+Allow: /member/register.aspx
+
+# Bing will not spider
+User-agent: msnbot/2.0b
+Crawl-Delay: 100
+Disallow: /admin/
+Disallow: /Admin/
+Disallow: /bin
+Disallow: /ckeditor
+Disallow: /usercontrols
+Disallow: /member/
+Disallow: */emailfriend/
+Disallow: */widgetsearch.aspx
+Disallow: /advertiser/
+Disallow: /*errorpage.aspx?
+Disallow: /404.aspx
+Disallow: /salarysurvey/themes
+Disallow: /blog/wp-includes
+Disallow: /ScriptResource.axd?d=  
+Disallow: /GetWhiteLabelFile.aspx?whiteLabelFileID=
+Allow: /scripts
+Allow: /Css
+Allow: /css
+Allow: /js
+Allow: /member/createjobalert.aspx
+Allow: /member/register.aspx
+
+# Google will not spider
+User-agent: Googlebot
+Disallow: /admin/
+Disallow: /Admin/
+Disallow: /bin
+Disallow: /ckeditor
+Disallow: /usercontrols
+Disallow: /member/
+Disallow: */emailfriend/
+Disallow: */widgetsearch.aspx
+Disallow: /advertiser/
+Disallow: /*errorpage.aspx?
+Disallow: /404.aspx
+Disallow: /salarysurvey/themes
+Disallow: /blog/wp-includes
+Disallow: /ScriptResource.axd?d=  
+Disallow: /GetWhiteLabelFile.aspx?whiteLabelFileID=
+Allow: /scripts
+Allow: /Css
+Allow: /css
+Allow: /js
+Allow: /member/createjobalert.aspx
+Allow: /member/register.aspx
+
+# Sensis will not spider
+User-agent: Sensis Web Crawler 
+Disallow: /admin/
+Disallow: /Admin/
+Disallow: /bin
+Disallow: /ckeditor
+Disallow: /usercontrols
+Disallow: /member/
+Disallow: */emailfriend/
+Disallow: */widgetsearch.aspx
+Disallow: /advertiser/
+Disallow: /*errorpage.aspx?
+Disallow: /404.aspx
+Disallow: /salarysurvey/themes
+Disallow: /blog/wp-includes
+Disallow: /ScriptResource.axd?d=  
+Disallow: /GetWhiteLabelFile.aspx?whiteLabelFileID=
+Allow: /scripts
+Allow: /Css
+Allow: /css
+Allow: /js
+Allow: /member/createjobalert.aspx
+Allow: /member/register.aspx
+
+# Sensis.com.au will not spider
+User-agent: Sensis.com.au Web Crawler 
+Disallow: /admin/
+Disallow: /Admin/
+Disallow: /bin
+Disallow: /ckeditor
+Disallow: /usercontrols
+Disallow: /member/
+Disallow: */emailfriend/
+Disallow: */widgetsearch.aspx
+Disallow: /advertiser/
+Disallow: /*errorpage.aspx?
+Disallow: /404.aspx
+Disallow: /salarysurvey/themes
+Disallow: /blog/wp-includes
+Disallow: /ScriptResource.axd?d=  
+Disallow: /GetWhiteLabelFile.aspx?whiteLabelFileID=
+Allow: /scripts
+Allow: /Css
+Allow: /css
+Allow: /js
+Allow: /member/createjobalert.aspx
+Allow: /member/register.aspx
+
+# All other agents will not spider
+User-agent: *
+Disallow: /admin/
+Disallow: /Admin/
+Disallow: /bin
+Disallow: /ckeditor
+Disallow: /usercontrols
+Disallow: /member/
+Disallow: */emailfriend/
+Disallow: */widgetsearch.aspx
+Disallow: /advertiser/
+Disallow: /*errorpage.aspx?
+Disallow: /404.aspx
+Disallow: /salarysurvey/themes
+Disallow: /blog/wp-includes
+Disallow: /ScriptResource.axd?d=  
+Disallow: /GetWhiteLabelFile.aspx?whiteLabelFileID=
+Allow: /scripts
+Allow: /Css
+Allow: /css
+Allow: /js
+Allow: /member/createjobalert.aspx
+Allow: /member/register.aspx
+
+user-agent: sitebot
+disallow: /

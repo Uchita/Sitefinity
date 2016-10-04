@@ -1,0 +1,1302 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<AdminPages>
+  <AdminPage>
+
+    <PageName>CampaignList.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>CampaignEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>SendTestEmail.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>PendingJobs.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>AdminUsers.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>AdminUsersEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>AdvertiserAccountStatus.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>AdvertiserAccountStatusEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>AdvertiserAccountType.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>AdvertiserAccountTypeEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>AdvertiserBusinessType.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>AdvertiserBusinessTypeEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>NewsType.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>NewsTypeEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>NewsIndustry.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>NewsIndustryEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>SiteNewsType.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>SiteNewsIndustry.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>SiteNewsTypeEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>SiteNewsIndustryEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>AdvertiserJobTemplateLogo.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>Advertisers.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>AdvertisersEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>AdvertiserJobPricing.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>AdvertiserCredits.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>AdvertiserUsers.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>AdvertiserUsersEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>Area.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>AreaEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>AvailableStatus.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>AvailableStatusEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>Countries.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>CountriesEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>CustomWidget.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>CustomWidgetEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>CustomWidgetCSS.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>Default.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>DefaultResources.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>DefaultResourcesEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>DynamicPageFiles.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>DynamicPageFilesEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>DynamicPages.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>DynamicPageRev.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>DynamicPageContentUpdate.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>DynamicPageSearch.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>DynamicPagesEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>DynamicPageWebPartTemplates.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>DynamicPageWebPartTemplatesEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>Educations.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>EducationsEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>EmailFormats.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>EmailTemplates.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>EmailTemplatesEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>Enquiries.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>EnquiriesEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>Exceptions.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>ExceptionView.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>Files.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>FilesEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>FileManager.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>FileTypes.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>FileTypesEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>FileManager.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>Folders.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>GetAdminLogo.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>GlobalSettings.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>GlobalSettingsEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>Integrations.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>AdminLoginPageEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>JobAlerts.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>JobAlertsEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>JobArea.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>JobAreaEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>JobBoardSettings.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>JobItemsType.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>JobItemsTypeEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>JobRoles.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>JobRolesEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>Jobs.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>JobsArchive.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>JobsArchiveEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>JobsEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>JobStatistics.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>JobTemplates.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>JobTemplatesEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>KnowledgeBase.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>KnowledgeBaseEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>KnowledgeBaseCategories.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>KnowledgeBaseCategoryEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>KnowledgeBaseView.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>KnowledgeBaseBrowse.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>Languages.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+    
+    <PageName>Languages.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>Location.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>LocationEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>login.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>MemberFiles.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>MemberFilesEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>MemberFileTypes.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>MemberFileTypesEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>Members.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>MembersEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>MemberMemberships.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+    <PageName>MemberMembershipsEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+    <PageName>MemberStatus.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+    <PageName>MemberStatusEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+    <PageName>MemberWizard.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>MultiLingualArea.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>MultiLingualCountry.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>MultiLingualLocation.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>MultiLingualSiteArea.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>MultiLingualSiteCountry.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>MultiLingualSiteLocation.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>MultiLingualProfession.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>MultiLingualRoles.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>MultiLingualSalary.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>MultiLingualWorkType.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>MultiLingualAvailableStatus.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>MultiLingualEducations.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>MultiLingualAdvertiserAccountType.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>MultiLingualAdvertiserBusinessType.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>News.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>NewsCategories.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>NewsCategoriesEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>NewsEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>PaymentPortal.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>Profession.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>ProfessionEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>Roles.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>RolesEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>Salary.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>SalaryEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>SalaryType.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>SalaryTypeEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>SiteAdvertisersFilter.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>SiteAreaEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>SiteAvailableStatus.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>SiteCopy.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>SiteCountries.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>SiteCountriesEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>SiteEducations.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>SiteBusinessType.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>SiteEmailTemplates.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>SiteEmailTemplatesEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>SiteLocationArea.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>SiteLocationEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>SiteProfession.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>SiteProfessionEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>SiteProfessionRoleImport.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>SiteCustomCountryLocationAreaImport.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>SiteResources.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>SiteResourcesEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>SiteRolesEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>Sites.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>SiteSalary.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>SiteSalaryType.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>SitesEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>SiteWebParts.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>SiteWebPartsEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>SiteWebPartTypes.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>SiteWebPartTypesEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>SiteWorkType.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>memberprofilemanageablefields.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>customquestions.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>    
+    
+    <PageName>WidgetContainers.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>WidgetContainersEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>WorkType.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>WorkTypeEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>JobsByAdvertiser.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>DynamicPageWebPartTemplatesLinkEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>AdvertiserCount.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>AdvertisersNotPostedSince.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>AdvertiserTypeStatistics.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>AllAdvertisers.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>AllJobStatistics.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>JobAlerts.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>JobApplicationAndViewsDetail.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+    <PageName>JobApplicationDetail.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>MemberCount.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>CopySystemPage.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>WebServiceLog.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>WebServiceLogDetail.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+
+    <PageName>GetWebServiceLog.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>Invoice.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>InvoiceDetail.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>AdvertiserActivity.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>Redirect301.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>TermsAndConditions.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>Consultants.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>ConsultantsEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>DynamicPageRevisions.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>SiteSummaryEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>SiteSummary.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>CustomQuestions.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>CustomQuestionsEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>AdvertisersMapping.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>IntegrationMappingsEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>Industry.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>IndustryEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+  </AdminPage>
+  <ContentEditorPage>
+
+    <!-- Global -->
+    <PageName>adminusers.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>adminusersedit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>sendtestemail.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <!-- Site Global -->
+    <PageName>globalsettingsedit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>jobtemplates.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>jobtemplatesedit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>siteemailtemplates.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>siteemailtemplatesedit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>widgetcontainers.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>widgetcontainersedit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>enquiries.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>enquiriesedit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <!--Job Settings and Parameters -->
+    <PageName>sitelocationarea.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>sitelocationedit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>siteareaedit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>siteprofession.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>siteprofessionedit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>siterolesedit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>siteprofessionroleimport.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>SiteCustomCountryLocationAreaImport.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>sitesalarytype.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>siteworktype.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>siteeducations.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>siteavailablestatus.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>memberprofilemanageablefields.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>customquestions.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    
+    <!-- Dynamic Pages -->
+    <PageName>dynamicpages.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>DynamicPageRev.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>dynamicpagesedit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+
+    <!-- Custom Widget -->
+    <PageName>customwidget.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>customwidgetedit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+
+    <!-- Campaigns -->
+    <PageName>campaignlist.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>campaignedit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <!-- Advertisers -->
+    <PageName>advertisers.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>AdvertisersEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>advertiserjobtemplatelogo.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>jobsbyadvertiser.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>jobsedit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>advertiserjobpricing.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>advertiserUsers.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>advertiserUsersEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <!-- Candidates / Members -->
+    <PageName>members.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>memberwizard.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>MembersEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>memberstatus.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>memberstatusedit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>membermemberships.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>membermembershipsedit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <!-- News Categorys -->
+    <PageName>newscategories.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>NewsCategoriesEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>news.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>NewsEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>NewsCategoriesEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>NewsCategoriesEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>SiteNewsType.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>SiteNewsTypeEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>SiteNewsIndustryEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+
+    <PageName>SiteNewsIndustry.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <!-- Reports -->
+    <PageName>alljobstatistics.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>membercount.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>alladvertisers.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>advertisercount.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>advertisersnotpostedsince.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>advertisertypestatistics.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>jobapplicationandviewsdetail.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>jobalerts.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <!-- Web Service Log -->
+    <PageName>WebServiceLog.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>webservicelogview.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <PageName>CampaignList.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>CampaignEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>SendTestEmail.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>AdminUsers.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>AdminUsersEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>CustomWidget.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>CustomWidgetEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <!--<PageName>SitesEdit.aspx</PageName>
+        <AdminRoleID>2</AdminRoleID>-->
+
+    <PageName>GlobalSettings.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>GlobalSettingsEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>Languages.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>SiteAdvertisersFilter.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>SiteResources.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>SiteResourcesEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>JobTemplates.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>JobTemplatesEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>SiteEmailTemplates.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>SiteEmailTemplatesEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>WidgetContainers.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>WidgetContainersEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>Enquiries.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>EnquiriesEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>FileManager.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>DynamicPagesEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>DynamicPages.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>DynamicPageSearch.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>Advertisers.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>AdvertisersEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>AdvertiserUsers.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>AdvertiserUsersEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>JobsEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>GetFile.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>SiteLocationArea.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>Members.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>MembersEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>MemberFiles.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>MemberFilesEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+
+    <PageName>MemberMemberships.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>MemberMembershipsEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>MemberStatus.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>MemberStatusEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>Files.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>FilesEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>FileTypes.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>FileTypesEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>Folders.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>FoldersEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>News.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>NewsEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>NewsCategories.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>NewsCategoriesEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>PaymentPortal.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>AdvertiserJobTemplateLogo.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>SiteProfession.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>SiteProfessionRoleImport.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>SiteSalaryType.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>SiteSalary.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>SiteWorkType.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>SiteEducations.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>SiteBusinessType.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>SiteAvailableStatus.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>DynamicPageWebPartTemplates.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>SiteWebParts.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>DynamicPageWebPartTemplatesLinkEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>JobsByAdvertiser.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>AdvertiserCount.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>AdvertisersNotPostedSince.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>AdvertiserTypeStatistics.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>AllAdvertisers.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>AllJobStatistics.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>JobAlerts.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>JobApplicationAndViewsDetail.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>JobApplicationDetail.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>MemberCount.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>SiteAreaEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>SiteCountries.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>SiteCountriesEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>SiteLocationArea.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>SiteLocationEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>SiteProfession.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>SiteProfessionEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>SiteRolesEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>SiteSalaryType.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>SiteSalary.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>SiteWorkType.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>SiteEducations.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>SiteBusinessType.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>SiteAvailableStatus.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>WebServiceLog.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>WebServiceLogDetail.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>GetWebServiceLog.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>AdvertiserJobPricing.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>AdvertiserCredits.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>PendingJobs.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>Invoice.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>InvoiceDetail.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>TermsAndConditions.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>AdvertiserActivity.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+
+    <PageName>Consultants.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>ConsultantsEdit.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>DynamicPageRevisions.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>SiteSummary.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>KnowledgeBaseView.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>KnowledgeBaseBrowse.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+  </ContentEditorPage>
+  <DeveloperPage>
+    <PageName>default.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>globalsettingsseo.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>jobboardsettings.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>jobtemplates.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>siteemailtemplates.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>widgetcontainers.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>enquiries.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>copysystempage.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>dynamicpagecontentupdate.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+
+    <PageName>sitecountries.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>sitelocationarea.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>siteprofession.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>sitesalarytype.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+
+    <PageName>siteworktype.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>siteeducations.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>siteavailablestatus.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>dynamicpagewebparttemplates.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>sitewebparts.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>dynamicpagewebparttemplateslinkedit.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+
+
+    <PageName>dynamicpages.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>customwidget.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>customwidgetcss.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+
+    <PageName>advertisers.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>advertiserusers.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+
+    <PageName>Consultants.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+
+    <PageName>ConsultantsEdit.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    
+    <PageName>members.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>memberwizard.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>memberstatus.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>membermemberships.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>memberprofilemanageablefields.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>customquestions.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+
+    <PageName>filemanager.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>newscategories.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>news.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>SiteNewsType.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>SiteNewsTypeEdit.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+
+    <PageName>SiteNewsIndustryEdit.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+
+    <PageName>SiteNewsIndustry.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+
+    <PageName>JobTemplatesEdit.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>siteemailtemplatesedit.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>WidgetContainersEdit.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>DynamicPageWebPartTemplatesEdit.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>SiteWebPartsEdit.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>DynamicPagesEdit.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>DynamicPageSearch.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>CustomWidgetEdit.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>advertisersedit.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>AdvertiserUsersEdit.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>advertiserjobtemplatelogo.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>jobsbyadvertiser.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>advertiserjobpricing.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>jobsedit.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>MembersEdit.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>MemberStatusEdit.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>MemberMembershipsEdit.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>NewsCategoriesEdit.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>NewsEdit.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>SiteCountriesEdit.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>SiteLocationEdit.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>SiteAreaEdit.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>SiteProfessionEdit.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>SiteRolesEdit.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+
+
+    <PageName>alljobstatistics.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>membercount.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>alladvertisers.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>advertisercount.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>advertisersnotpostedsince.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>advertisertypestatistics.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>jobapplicationandviewsdetail.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>Invoice.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>jobalerts.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>DynamicPageRevisions.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+    <PageName>SiteSummary.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+  </DeveloperPage>
+  <ContributorPage>
+    <PageName>default.aspx</PageName>
+    <AdminRoleID>6</AdminRoleID>
+    <PageName>dynamicpages.aspx</PageName>
+    <AdminRoleID>6</AdminRoleID>
+    <PageName>dynamicpagesedit.aspx</PageName>
+    <AdminRoleID>6</AdminRoleID>
+    <PageName>consultants.aspx</PageName>
+    <AdminRoleID>6</AdminRoleID>
+    <PageName>consultantsedit.aspx</PageName>
+    <AdminRoleID>6</AdminRoleID>
+    <PageName>filemanager.aspx</PageName>
+    <AdminRoleID>6</AdminRoleID>
+    <PageName>news.aspx</PageName>
+    <AdminRoleID>6</AdminRoleID>
+    <PageName>newscategories.aspx</PageName>
+    <AdminRoleID>6</AdminRoleID>
+    <PageName>newsedit.aspx</PageName>
+    <AdminRoleID>6</AdminRoleID>
+    <PageName>newscategoriesedit.aspx</PageName>
+    <AdminRoleID>6</AdminRoleID>
+    <PageName>DynamicPageRevisions.aspx</PageName>
+    <AdminRoleID>6</AdminRoleID>
+    <PageName>DynamicPageRev.aspx</PageName>
+    <AdminRoleID>6</AdminRoleID>
+    <PageName>SiteSummary.aspx</PageName>
+    <AdminRoleID>6</AdminRoleID>
+    <PageName>SiteNewsType.aspx</PageName>
+    <AdminRoleID>6</AdminRoleID>
+    <PageName>SiteNewsTypeEdit.aspx</PageName>
+    <AdminRoleID>6</AdminRoleID>
+
+    <PageName>SiteNewsIndustryEdit.aspx</PageName>
+    <AdminRoleID>6</AdminRoleID>
+
+    <PageName>SiteNewsIndustry.aspx</PageName>
+    <AdminRoleID>6</AdminRoleID>
+
+  </ContributorPage>
+</AdminPages>

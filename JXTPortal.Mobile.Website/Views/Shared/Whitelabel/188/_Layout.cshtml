@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Beacham addis @ViewBag.Title</title>
+        <meta name="viewport" content="width=device-width" />
+        <link href="http://images.jxt.net.au/mobile/Content/Whitelabel/188/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://images.jxt.net.au/mobile/Content/Whitelabel/188/images/apple-icon114.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://images.jxt.net.au/mobile/Content/Whitelabel/188/images/apple-icon72.png" />
+		<link rel="apple-touch-icon-precomposed" href="http://images.jxt.net.au/mobile/Content/Whitelabel/188/images/apple-icon57.png" />
+		<link rel="apple-touch-icon" href="http://images.jxt.net.au/mobile/Content/Whitelabel/188/images/apple-icon57.png" />	
+		
+		<link rel="stylesheet" type="text/css" href="http://images.jxt.net.au/mobile/Content/Whitelabel/@JXTPortal.Entities.SessionData.Site.SiteId/Styles/style.css">
+        <script src="http://images.jxt.net.au/mobile/Scripts/jquery-1.7.2.min.js"></script>
+        <script src="http://images.jxt.net.au/mobile/Scripts/knockout-2.0.0.js"></script>
+		<script src="http://images.jxt.net.au/mobile/Content/Javascripts/main/core-functions.js"></script>
+        @RenderSection("Javascript", false)
+    </head>
+	
+    <body>
+	
+	<div class="wrapper">
+		<header>	
+        	<nav class="top-fixed-nav"> 
+            	<div class="left-col">
+                     @if (JXTPortal.Entities.SessionData.Member != null) {
+	                        <button class="top-button btn-navbar-icon" type="button" id="jsmenu">
+						    	<span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+							</button> 
+                    		<span>Welcome @JXTPortal.Entities.SessionData.Member.Username</span>
+	                    }
+	                    else
+	                    {
+	                        <a href="~/account/login" class="top-button">Login</a>
+	                    }        
+                </div>
+                <div class="right-col">
+                	 <a href="/" class="flt-right"><img src="http://images.jxt.net.au/mobile/Content/images/icon-home-grey.png" alt="Home"></a>
+                </div>   	
+    
+                <div class="collapse jsmenuCollapse">
+                    <ul>
+                        <li><a href="/Account/SavedJobs">My Saved Jobs</a></li>
+                        <li><a href="/Account/MyAlerts">My Alerts</a></li>
+                        <li><a href="/Account/Documents">My Resumes/Cover Letter</a></li>
+                        <li><a href="/Account/ChangePassword">Change Password</a></li>
+                        <li><a href="/Account/LogOff">Log off</a></li>
+                    </ul>
+                </div><!-- end of jsmenuCollapse --> 
+
+	              
+            </nav>	
+		<div class="header-logo">
+			<a href="/"><img src="http://images.jxt.net.au/mobile/Content/Whitelabel/188/images/logo.png" alt="Beacham addis logo"></a>                  
+		</div>
+	</header>	                        
+       
+           
+
+			
+		<section>	
+        	<div class="transluscentWrap">
+        		<div class="content-wrap body-content inner-content">
+        		    	@RenderBody()                      
+        		        
+        		        
+        		</div>
+        	</div>
+		</section>
+				
+		<div id="socialMedia">		
+			<div id="socialMediaWrap">
+			<ul>
+					<li><a href="http://www.linkedin.com/company/beachamaddis"  target="_blank"><img src="http://images.jxt.net.au/mobile/Content/Whitelabel/188/images/linkedInMini.png"></a></li>
+					<li><a href="http://www.facebook.com/BeachamAddisa" target="_blank"><img src="http://images.jxt.net.au/mobile/Content/Whitelabel/188/images/facebookMini.png"></a></li>
+					<li><a href="https://twitter.com/beachamaddis"  target="_blank"><img src="http://images.jxt.net.au/mobile/Content/Whitelabel/188/images/twitterMini.png"></a></li>
+			</ul>
+			</div>
+		</div>
+	
+		<footer>
+			<div id="footerWrap">
+				<ul class="firstMenu">
+					<a href="/"><img src="http://images.jxt.net.au/mobile/Content/Whitelabel/188/images/footerLogo.png" /></a>
+					<li><a href="/page/?id=terms">Terms</a></li>
+					<li>|</li>					
+					<li><a href="http://www.beachamaddis.com/?mob=1">Full Website</a></li>
+				</ul>
+				<div class="clear-all"></div>
+				&copy; Beacham Addis 2012 - <a href="http://www.jxt.com.au" target="_blank">Powered by JXT</a>
+		</footer>
+	</div>
+    </body>
+</html>

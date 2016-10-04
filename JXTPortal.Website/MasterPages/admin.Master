@@ -1,0 +1,233 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="admin.master.cs" Inherits="JXTPortal.Website.MasterPages.admin" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head id="Head1" runat="server">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="content-language" content="en" />
+    <meta name="robots" content="noindex,nofollow" />
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="/admin/css/reset.css" />
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="/admin/css/main.css" />
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="/admin/css/2col.css"
+        title="2col" />
+    <link rel="alternate stylesheet" media="screen,projection" type="text/css" href="/admin/css/1col.css"
+        title="1col" />
+    <!--[if lte IE 6]><link rel="stylesheet" media="screen,projection" type="text/css" href="/admin/css/main-ie6.css" /><![endif]-->
+    <!-- MSIE6 -->
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="/admin/css/style.css" />
+    <link type="text/css" href="~/styles/CalendarControl.css" rel="stylesheet" />
+
+    <asp:Literal ID="ltCompatible" runat="server" />
+    <script type="text/javascript" src="/admin/js/jquery.js"></script>
+    <title>JXT Platform</title>
+    
+    <!-- Admin not cached -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <%--<ajaxToolkit:ToolkitScriptManager ID="toolkitScriptManager" runat="server" CombineScripts="true" ScriptMode="Release" ></ajaxToolkit:ToolkitScriptManager>--%>
+    <asp:HiddenField ID="hfIsJobBoard" runat="server" />
+    <div id="main">
+        <div id="tray" class="box">
+            <p class="f-left box">
+                <span class="f-left" id="switcher"><a href="#" rel="1col" class="styleswitch ico-col1"
+                    title="Display one column">
+                    <img src="/admin/images/design/switcher-1col.gif" alt="1 Column" /></a> <a href="#"
+                        rel="2col" class="styleswitch ico-col2" title="Display two columns">
+                        <img src="/admin/images/design/switcher-2col.gif" alt="2 Columns" /></a>
+                </span>Site: <strong>
+                    <asp:Literal ID="ltlTitle" runat="server" /></strong>
+            </p>
+            <p class="f-right">
+                User: <strong>
+                    <asp:Literal ID="ltlUser" runat="server" /></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <strong>
+                    <asp:LinkButton ID="lnkLogout" runat="server" OnClick="lnkLogout_Click" Visible="false"
+                        ValidationGroup="adminLogOut">Logout</asp:LinkButton></strong></p>
+        </div>
+        <hr class="noscreen" />
+        <div id="menu" class="box">
+            <ul class="box f-right">
+                <li>
+                    <asp:HyperLink ID="hypSite" runat="server"></asp:HyperLink></li>
+            </ul>
+            <ul class="box">
+                <li><a href="/Admin/DynamicPageRevisions.aspx"><span>Create New Page</span></a></li>
+                <li><a href="/Admin/AdminUsersEdit.aspx"><span>Create New User</span></a></li>
+                <li><a href="/Admin/FileManager.aspx"><span>Upload Image</span></a></li>
+                <li><a href="/Admin/NewsEdit.aspx"><span>Create News Article</span></a></li>
+                <li><a href="/Admin/Members.aspx"><span>View Job Seekers</span></a></li>
+                <li><a href="/Admin/Advertisers.aspx"><span>View Advertisers</span></a></li>
+                <li><a href="/Admin/AdvertiserUsers.aspx"><span>View Advertiser Users</span></a></li>
+            </ul>
+        </div>
+        <hr class="noscreen" />
+        <div id="cols" class="box">
+            <div id="aside" class="box">
+                <div class="padding box">
+                    <p id="logo">
+                        <a href="/">
+                            <asp:Image ID="imgAdminLogo" runat="server" /></a></p>
+                </div>
+                <ul id="navlist">
+                    <asp:Repeater ID="Repeater1" DataSourceID="SiteMapDataSource1" EnableViewState="false"
+                        runat="server" OnItemDataBound="Repeater1_ItemDataBound">
+                        <ItemTemplate>
+                            <li><a href='<%#GetUrl(Eval("url")) %>'>
+                                <%#Eval("Title") %></a>
+                                <asp:Repeater ID="Repeater2" DataSource='<%#Eval("ChildNodes")%>' Visible='<%#Eval("HasChildNodes")%>'
+                                    runat="server" OnItemDataBound="Repeater2_ItemDataBound">
+                                    <HeaderTemplate>
+                                        <ul>
+                                    </HeaderTemplate>
+                                    <ItemTemplate>
+                                        <li><a href='<%#Eval("url") %>'>
+                                            <%#Eval("Title") %></a></li>
+                                    </ItemTemplate>
+                                    <FooterTemplate>
+                                        </ul></FooterTemplate>
+                                </asp:Repeater>
+                            </li>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </ul>
+            </div>
+            <hr class="noscreen" />
+            <div id="content" class="box">
+                <h1>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+                    </asp:ContentPlaceHolder>
+                </h1>
+                <asp:SiteMapPath runat="server" ID="SiteMapPath1" CssClass="adminBreadCrumbs">
+                </asp:SiteMapPath>
+                <%--<asp:UpdatePanel ID="updatePanel" runat="server">
+                    <ContentTemplate>--%>
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+                <%--</ContentTemplate>
+                </asp:UpdatePanel>--%>
+                <asp:SiteMapDataSource ID="SiteMapDataSource1" ShowStartingNode="false" runat="server" />
+            </div>
+        </div>
+        <hr class="noscreen" />
+        <div id="footer" class="box">
+            <p class="f-right">
+                &copy; <%=DateTime.Now.Year %> <a href="http://www.jxt.com.au" title="JXT Global">JXT Global</a>,
+                All Rights Reserved &reg; (<%= HostName %>)</p>
+        </div>
+    </div>
+    </form>
+    <script type="text/javascript" language="javascript" src="/scripts/jquery.hoveraccordion.min.js"></script>
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+
+            $('#navlist ul').hide();
+
+            var lis = $('#navlist li ul li a');
+            var i;
+            for (i = 0; i < lis.length; i++) {
+                if (lis[i].href.toLowerCase().indexOf(location.pathname.toLowerCase()) > 0) {
+                    $('#navlist li ul li a[href$=\'' + lis[i].getAttribute("href") + '\']').parent().parent().slideDown('normal');
+                    break;
+                }
+            }
+
+            $('#navlist li a').click(function () {
+                var checkElement = $(this).next();
+                if ((checkElement.is('ul')) && (checkElement.is(':visible'))) {
+                    return false;
+                }
+                if ((checkElement.is('ul')) && (!checkElement.is(':visible'))) {
+                    $('#navlist ul:visible').slideUp('normal');
+                    checkElement.slideDown('normal');
+                    return false;
+                }
+            });
+        });
+
+    </script>
+    <script type="text/javascript" language="javascript" src="/admin/scripts/JXTAdminScript.js"></script>
+    <script type="text/javascript" language="javascript" src="/scripts/CalendarControl.js"></script>
+    <asp:Panel ID="pnlAdminStyling" runat="server" Visible="false">
+        <style type="text/css">
+            #menu
+            {
+                background: url("/admin/images/design/red-admin-strip.gif") 0 0 repeat-x !important;
+                background-color: #0085CC;
+            }
+            #menu ul li a
+            {
+                background: url("/admin/images/design/menu-left-red.gif") no-repeat scroll 0 0 transparent;
+            }
+            #menu ul li a span
+            {
+                background: url("/admin/images/design/menu-right-red.gif") no-repeat scroll 100% 0 transparent;
+            }
+            #menu ul li a:hover, #menu ul li#menu-active a
+            {
+                background: url("/admin/images/design/menu-left-red.gif") 0 -35px no-repeat;
+            }
+            #menu ul li a:hover span, #menu ul li#menu-active a span
+            {
+                background: url("/admin/images/design/menu-right-red.gif") 100% -35px no-repeat;
+            }
+        </style>
+    </asp:Panel>
+    <asp:Panel ID="pnlDeveloperStyling" runat="server" Visible="false">
+        <style type="text/css">
+            #menu
+            {
+                background: url("/admin/images/design/dev-admin-strip.gif") 0 0 repeat-x !important;
+                background-color: #0085CC;
+            }
+            #menu ul li a
+            {
+                background: url("/admin/images/design/menu-left-dev.gif") no-repeat scroll 0 0 transparent;
+            }
+            #menu ul li a span
+            {
+                background: url("/admin/images/design/menu-right-dev.gif") no-repeat scroll 100% 0 transparent;
+            }
+            #menu ul li a:hover, #menu ul li#menu-active a
+            {
+                background: url("/admin/images/design/menu-left-dev.gif") 0 -35px no-repeat;
+            }
+            #menu ul li a:hover span, #menu ul li#menu-active a span
+            {
+                background: url("/admin/images/design/menu-right-dev.gif") 100% -35px no-repeat;
+            }
+        </style>
+    </asp:Panel>
+    <asp:Panel ID="pnlContributerStyling" runat="server" Visible="false">
+        <style type="text/css">
+            #menu
+            {
+                background: url("/admin/images/design/menu-yellow-contributer.gif") 0 0 repeat-x !important;
+                background-color: #0085CC;
+            }
+            #menu ul li a
+            {
+                background: url("/admin/images/design/menu-left-dev.gif") no-repeat scroll 0 0 transparent;
+            }
+            #menu ul li a span
+            {
+                background: url("/admin/images/design/menu-right-dev.gif") no-repeat scroll 100% 0 transparent;
+            }
+            #menu ul li a:hover, #menu ul li#menu-active a
+            {
+                background: url("/admin/images/design/menu-left-dev.gif") 0 -35px no-repeat;
+            }
+            #menu ul li a:hover span, #menu ul li#menu-active a span
+            {
+                background: url("/admin/images/design/menu-right-dev.gif") 100% -35px no-repeat;
+            }
+        </style>
+    </asp:Panel>
+</body>
+</html>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0"?>
+<items>
+    <item>
+        <id>1</id>
+        <name>汉字 Bachelor</name>
+    </item>
+    <item>
+        <id>4</id>
+        <name>漢字 Postgraduate</name>
+    </item>
+    <item>
+        <id>6</id>
+        <name>漢字 Advance Diploma</name>
+    </item>
+</items>

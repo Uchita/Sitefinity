@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc><![CDATA[http://www.b2.jxt.com.au/member/login.aspx]]></loc>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc><![CDATA[http://www.b2.jxt.com.au/member/createjobalert.aspx]]></loc>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc><![CDATA[http://www.b2.jxt.com.au/page/candidates/submit-resume/]]></loc>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc><![CDATA[http://www.b2.jxt.com.au/page/candidates/refer-a-friend/]]></loc>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc><![CDATA[http://www.b2.jxt.com.au/advancedsearch.aspx]]></loc>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc><![CDATA[http://www.b2.jxt.com.au/page/candidates/candidate-services/]]></loc>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+</urlset>

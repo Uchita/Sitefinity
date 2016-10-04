@@ -1,0 +1,152 @@
+﻿@{
+    ViewBag.Title = "Apply Job";
+}
+<script type="text/javascript">
+    function ApplyViewModel() {
+        var self = this;
+        self.Errors = ko.observableArray([]);
+        self.Success = ko.observable(false);
+        self.Apply = function () {
+            var data = { JobId: $("#JobId").val(),
+                FirstName: $("#FirstName").val(),
+                Surname: $("#Surname").val(),
+                Email: $("#Email").val(),
+                ContactNo: $("#ContactNo").val(),
+                ResumeID: $("#ResumeID").val(),
+                CoverLetterID: $("#CoverLetterID").val(),
+                CoverLetterSelection: $("input[name=CoverLetterSelection]:radio:checked").val(),
+                CoverLetter: $("#CoverLetter").val(),
+                ResumeSelection: $("#ResumeSelection").val()
+            };
+
+            $.getJSON('@Url.Action("JsonApply")', data, function (Result) {
+                self.Success(Result.success);
+                self.Errors(Result.errors);
+            });
+        }
+    }
+
+    $(document).ready(function () {
+        ko.applyBindings(new ApplyViewModel());
+
+        $("#CoverLetterID").attr("disabled", true);
+        $("#CoverLetter").attr("readonly", false);
+
+        $("input[name=CoverLetterSelection]").change(function () {
+            var selection = $(this).val();
+
+            if (selection == 1) {
+                $("#CoverLetterID").attr("disabled", false);
+                $("#CoverLetter").attr("readonly", true);
+            }
+            else if (selection == 2) {
+                $("#CoverLetterID").attr("disabled", true);
+                $("#CoverLetter").attr("readonly", true);
+            }
+            else if (selection == 3) {
+                $("#CoverLetterID").attr("disabled", true);
+                $("#CoverLetter").attr("readonly", false);
+            }
+        });
+    });
+</script>
+@using JXTPortal.Entities;
+@model JXTPortal.Domain.ViewModel.MemberModel.ApplyJobModel
+
+<h1>
+    Apply Job</h1>
+@if (!Model.IsValidJob)
+{ 
+    <div>
+        Invalid Job</div>
+}
+@if (SessionData.Member == null)
+{ 
+    <div>
+        Please @Html.ActionLink("register", "Register", "Account", new { returnUrl = "/Job/Apply/" + Model.JobId }, "") or @Html.ActionLink("login", "Login", "Account", new { returnUrl = "/Job/Apply/" + Model.JobId }, "") in order to apply job from your mobile</div>
+}
+else if (Model.IsApplied)
+{ 
+    <div>You have applied for this job</div>
+}
+
+@if (SessionData.Member != null && Model.IsValidJob && !Model.IsApplied)
+{
+    <div id="RegistrationMessage" data-bind="visible: Success()">
+    Thank you for applying for the job
+    </div>
+      
+    <input type="hidden" id="JobId" name="JobId" value="@Model.JobId" />
+    <input type="hidden" name="ResumeSelection" id="ResumeSelection" value="1" />
+    <div id="ApplyJobPanel" name="ApplyJobPanel" data-bind="visible: !Success()">
+    <ul class="FormFields">
+        <li>
+            <label>
+                First Name *</label>
+            <span class="inputFieldsWrap">
+            	<input type="text" id="FirstName" name="FirstName" value="@Model.FirstName.Trim()" />
+            </span>
+        </li>
+        <li>
+            <label>
+                Surname *</label>
+            <span class="inputFieldsWrap">
+            	<input type="text" id="Surname" name="Surname" value="@Model.Surname.Trim()" />
+            </span>
+        </li>
+        <li>
+            <label>
+                Email *</label>
+            <span class="inputFieldsWrap">
+            	<input type="text" id="Email" name="Email" value="@Model.Email.Trim()" />
+            </span>
+        </li>
+        <li>
+            <label>
+                Contact No *</label>
+            <span class="inputFieldsWrap">
+            	<input type="text" id="ContactNo" name="ContactNo" value="@Model.ContactNo.Trim()" />
+            </span>
+        </li>
+        <li>
+            <label>
+                Resume</label>
+            <span class="inputFieldsWrap">
+            	<select id="ResumeID" name="ResumeID">
+            	    <option value="0">Please select resume</option>
+            	    @foreach (var resume in Model.Resumes)
+                 {
+            	        <OPTION value="@resume.MemberFileId">@resume.MemberFileName</option>
+                 }
+            	</select>
+            </span>
+        </li>
+        <li>
+            <div class="cover-letter"><input type="radio" name="CoverLetterSelection" value="1" class="btn-radio" />Uploaded Cover Letter</div>
+            <span class="inputFieldsWrap">
+            	<select id="CoverLetterID" name="CoverLetterID">
+            	    <option value="0">Please select cover letter</option>
+                    @foreach (var coverletter in Model.CoverLetters)
+                     {
+            	            <OPTION value="@coverletter.MemberFileId">@coverletter.MemberFileName</option>
+                     }
+            	</select>
+            </span>
+        </li>
+        <!--li>
+            <input type="radio" name="CoverLetterSelection" value="2" class="btn-radio" />No Cover Letter<br />
+        </li-->
+         <li>
+            <div class="cover-letter"><input type="radio" name="CoverLetterSelection" value="3" class="btn-radio" checked/>Cover Letter</div>
+            <span class="inputFieldsWrap">
+            	<textarea name="CoverLetter" id="CoverLetter" cols="20" rows="10"></textarea>
+            </span>
+        </li>
+    </ul>
+	<div id="ErrorLists" data-bind="foreach: Errors"  class="errorMessage">
+        <span data-bind="text: Error"></span>
+        <br />
+    </div>
+    <input type="submit" value="Apply" data-bind="click: Apply" class="btn-submit" />
+    </div>
+}

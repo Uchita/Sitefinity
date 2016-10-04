@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<users>
+  <user>
+    <id>1023</id>
+    <pages>
+      <page>forums/gm-safety-forum-east</page>
+    </pages>
+  </user>
+  <user>
+    <id>1058</id>
+    <pages>
+      <page>forums/gm-safety-forum-west</page>
+    </pages>
+  </user>
+  <user>
+    <id>1065</id>
+    <pages>
+      <page>forums/gm-workers-compensation-forum</page>
+    </pages>
+  </user>
+  <user>
+    <id>1087</id>
+    <pages>
+      <page>forums/senior-executive-safety-forum</page>
+    </pages>
+  </user>
+  <user>
+    <id>1400</id>
+    <pages>
+      <page>forums/workplace-wellbeing-think-tank/workplace-wellbeing-think-tank-secure-member-portal/</page>
+    </pages>
+  </user>
+</users>

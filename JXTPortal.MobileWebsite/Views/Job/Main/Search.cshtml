@@ -1,0 +1,80 @@
+﻿@using JXTPortal.Domain.ViewModel.Jobs;
+@model JobSearchResultModel
+@{
+    ViewBag.Title = "Search Result";
+}
+
+@section featured {
+    <script type="text/javascript">
+        function LoadSearch() {
+            var pageno = parseInt($('#PageNo').val()) + 1;
+            var keyword = $('#keyword').val();
+            var worktypeid = $('#worktypeid').val();
+            var professionid = $('#professionid').val();
+            var roleid = $('#roleid').val();
+            var locationid = $('#locationid').val();
+            var areaid = $('#areaid').val();
+
+
+            var salarytypeid = $('#salarytypeid').val();
+            var salaryfromid = $('#salaryfromid').val();
+            var salarytoid = $('#salarytoid').val();
+
+            $.getJSON('@Url.Action("Search")', {  keyword: keyword,
+                                                  worktypeid: worktypeid,
+                                                  professionid: professionid,
+                                                  roleid: roleid,
+                                                  locationid: locationid,
+                                                  areaid: areaid,
+                                                  salarytypeid: salarytypeid,
+                                                  salaryfromid: salaryfromid,
+                                                  salarytoid: salarytoid,
+                                                  pageno: pageno
+                                                 }, 
+                                                 function (SearchResult) {
+                                                    var jobrepeater = $('#jobrepeater');
+                                                    var items = [];
+                                                    $.each(SearchResult, function(i, item) 
+                                                    {
+                                                        items.push('<li><a href=/Job/Index/' + item.JobId + '>' + item.JobName + '</a> &nbsp;Description:' + item.Description + '&nbsp;' + item.SiteProfessionName + ' &nbsp;' + item.LocationName + '</li>');
+                                                    });
+                                                    if (items.length == 0)
+                                                        $('#lnkShowMore').hide();
+                                                    
+                                                     $('#jobrepeater').append(items.join('') );
+                                                     $("#PageNo").val(pageno)
+                                                  });
+        }
+    
+    </script>
+    <section class="featured">
+        <div class="content-wrapper">
+            <input type="hidden" id="keyword" name="keyword" value="@Model.JobSearchModel.Keyword" />
+            <input type="hidden" id="worktypeid" name="worktypeid" value="@Model.JobSearchModel.WorkTypeId" />
+            <input type="hidden" id="professionid" name="professionid" value="@Model.JobSearchModel.ProfessionId" />
+            <input type="hidden" id="roleid" name="roleid" value="@Model.JobSearchModel.RoleId" />
+            <input type="hidden" id="locationid" name="locationid" value="@Model.JobSearchModel.LocationId" />
+            <input type="hidden" id="areaid" name="areaid" value="@Model.JobSearchModel.AreaId" />
+
+            <input type="hidden" id="salarytypeid" name="salarytypeid" value="@Model.JobSearchModel.SalaryTypeId" />
+            <input type="hidden" id="salaryfromid" name="salaryfromid" value="@Model.JobSearchModel.SalaryFromId" />
+            <input type="hidden" id="salarytoid" name="salarytoid" value="@Model.JobSearchModel.SalaryToId" />
+            <fieldset>
+                <ol id="jobrepeater" name="jobrepeater">
+                    @foreach (var result in Model.JobSearchResults)
+                    { 
+                        <li>
+                            <a href='@Url.Action("Index", "Job", new { id = result.JobId })'>@result.JobName</a> &nbsp; 
+                                Description: @result.Description &nbsp; @result.SiteProfessionName &nbsp; @result.LocationName&nbsp;@result.RefNo
+                        </li>
+                    }
+                </ol>
+            </fieldset>
+            @if (Model.JobSearchResults.Count > 0)
+            { 
+                <a href="javascript:LoadSearch();" id="lnkShowMore" name="lnkShowMore">Show More Results</a>
+            }
+            <input type="hidden" name="PageNo" id="PageNo" value="1"/>
+        </div> 
+    </section>
+}

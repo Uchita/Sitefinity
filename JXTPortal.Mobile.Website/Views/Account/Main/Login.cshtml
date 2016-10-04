@@ -1,0 +1,44 @@
+@model JXTPortal.Domain.ViewModel.MemberModel.LoginModel
+@{
+    ViewBag.Title = "Log in";
+
+    string retUrl = "";
+
+    if (Request.QueryString["ReturnUrl"] != null)
+    {
+        retUrl = Request.QueryString["ReturnUrl"];
+    }
+    else if (ViewContext.HttpContext.Request.UrlReferrer != null)
+    {
+        retUrl = ViewContext.HttpContext.Request.UrlReferrer.PathAndQuery;
+    } 
+
+}
+<h1>@ViewBag.Title</h1>
+<p>
+    Please enter your user name and password. @Html.ActionLink("Register", "Register")
+    if you don't have an account.
+</p>
+<script src="http://images.jxt.net.au/mobile/Scripts/jquery.validate.min.js"></script>
+<script src="http://images.jxt.net.au/mobile/Scripts/jquery.validate.unobtrusive.min.js"></script>
+@using (Html.BeginForm((string)ViewBag.FormAction, "Account", new { returnUrl = retUrl }))
+{  
+    <ul data-role="listview" data-inset="true" class="FormFields">
+        <li data-role="fieldcontain">
+            <label>
+                Username</label>
+            <span class="inputFieldsWrap">
+                <input type="text" id="UserName" name="UserName" value="@(Model != null && Model.UserName != null ? Model.UserName : "")"/></span>
+        </li>
+        <li data-role="fieldcontain">
+            <label>
+                Password</label>
+            <span class="inputFieldsWrap">
+                <input type="password" id="Password" name="Password" />
+            </span></li>
+    </ul>
+    @Html.ValidationSummary() 
+    <input type="submit" value="Log in" class="btn-submit" />
+}
+<div class="link-ForgetPW">
+    <a href="/Account/Forgetpassword">Forgotten your password?</a></div>

@@ -1,0 +1,523 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0C2CEAC1-F495-4D2C-9AC3-B5C7FEFF08D4}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JXTPortal.Mobile.Website</RootNamespace>
+    <AssemblyName>JXTPortal.Mobile.Website</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>References\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah">
+      <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlToOpenXml, Version=1.5.0.0, Culture=neutral, PublicKeyToken=6ad79d83e2b60e63, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>References\HtmlToOpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching.Cryptography, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Microsoft.Practices.EnterpriseLibrary.Caching.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging.Database, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Microsoft.Practices.EnterpriseLibrary.Logging.Database.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Security, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Microsoft.Practices.EnterpriseLibrary.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Security.Cryptography, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Microsoft.Practices.EnterpriseLibrary.Security.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ObjectBuilder2, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Microsoft.Practices.ObjectBuilder2.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Json, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\System.Json.4.0.20126.16343\lib\net40\System.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\System.Net.Http.2.0.20126.16343\lib\net40\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\System.Net.Http.Formatting.4.0.20126.16343\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\System.Net.Http.2.0.20126.16343\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\AspNetWebPages.Core.2.0.20126.16343\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\AspNetWebApi.Core.4.0.20126.16343\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Common, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\System.Web.Http.Common.4.0.20126.16343\lib\net40\System.Web.Http.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\AspNetWebApi.4.0.20126.16343\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\AspNetMvc.4.0.20126.16343\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.Web.Optimization.1.0.0-beta\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Providers">
+      <HintPath>..\packages\System.Web.Providers.Core.1.0\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\AspNetRazor.Core.2.0.20126.16343\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\AspNetWebPages.Core.2.0.20126.16343\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\AspNetWebPages.Core.2.0.20126.16343\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\AspNetWebPages.Core.2.0.20126.16343\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ElmahController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Job\JobController.cs" />
+    <Compile Include="Controllers\PageController.cs" />
+    <Compile Include="Custom\Attributes\CustomAuthorizeAttribute.cs" />
+    <Compile Include="Custom\Extensions.cs" />
+    <Compile Include="Custom\ViewEngine\WhitelabelViewEngine.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Readme\Elmah.txt" />
+    <Content Include="Content\Images\ajax-loader.png" />
+    <Content Include="Content\Images\applywithlinkedin.PNG" />
+    <Content Include="Content\Images\icons-18-black.png" />
+    <Content Include="Content\Images\icons-18-white.png" />
+    <Content Include="Content\Images\icons-36-black.png" />
+    <Content Include="Content\Images\icons-36-white.png" />
+    <Content Include="Content\Javascripts\Main\JobAlert.js" />
+    <Content Include="Content\Javascripts\Whitelabel\65\Core\jquery-1.7.2.min.js" />
+    <Content Include="Content\Javascripts\Whitelabel\65\Core\knockout-2.0.0.js" />
+    <Content Include="Content\jquery.mobile-1.0.css" />
+    <Content Include="Content\jquery.mobile-1.0.min.css" />
+    <Content Include="Content\jquery.mobile.structure-1.0.css" />
+    <Content Include="Content\jquery.mobile.structure-1.0.min.css" />
+    <Content Include="Content\Pages\Whitelabel\1\about-us.htm" />
+    <Content Include="Content\Pages\Whitelabel\65\about-us.htm" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="References\DocumentFormat.OpenXml.dll" />
+    <Content Include="References\DocumentFormat.OpenXml.xml" />
+    <Content Include="References\evohtmltopdf.dll" />
+    <Content Include="References\HtmlToOpenXml.dll" />
+    <Content Include="References\HtmlToOpenXml.pdb" />
+    <Content Include="References\HtmlToOpenXml.XML" />
+    <Content Include="robots.txt" />
+    <Content Include="Scripts\jquery-1.7.2-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.7.2.js" />
+    <Content Include="Scripts\jquery-1.7.2.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.11.js" />
+    <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
+    <Content Include="Scripts\jquery.mobile-1.0.js" />
+    <Content Include="Scripts\jquery.mobile-1.0.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\knockout-2.0.0.debug.js" />
+    <Content Include="Scripts\knockout-2.0.0.js" />
+    <Content Include="Scripts\modernizr-2.0.6-development-only.js" />
+    <Content Include="Views\Shared\Whitelabel\113\Pages\mypage.htm" />
+    <Content Include="Views\Shared\Whitelabel\116\Pages\About.html" />
+    <Content Include="Views\Shared\Whitelabel\116\Pages\Candidates.html" />
+    <Content Include="Views\Shared\Whitelabel\116\Pages\Clients.html" />
+    <Content Include="Views\Shared\Whitelabel\116\Pages\Contact.html" />
+    <Content Include="Views\Shared\Whitelabel\116\Pages\Resources.html" />
+    <Content Include="Views\Shared\Whitelabel\117\Pages\about.html" />
+    <Content Include="Views\Shared\Whitelabel\117\Pages\contact.html" />
+    <Content Include="Views\Shared\Whitelabel\132\Pages\About.html" />
+    <Content Include="Views\Shared\Whitelabel\132\Pages\Contact.html" />
+    <Content Include="Views\Shared\Whitelabel\132\Pages\terms.html" />
+    <Content Include="Views\Shared\Whitelabel\133\Pages\australia.html" />
+    <Content Include="Views\Shared\Whitelabel\133\Pages\contact.html" />
+    <Content Include="Views\Shared\Whitelabel\133\Pages\faq.html" />
+    <Content Include="Views\Shared\Whitelabel\133\Pages\mypage.htm" />
+    <Content Include="Views\Shared\Whitelabel\133\Pages\newzealand.html" />
+    <Content Include="Views\Shared\Whitelabel\160\Pages\about.html" />
+    <Content Include="Views\Shared\Whitelabel\160\Pages\contact.html" />
+    <Content Include="Views\Shared\Whitelabel\160\Pages\terms.html" />
+    <Content Include="Views\Shared\Whitelabel\166\Pages\about.html" />
+    <Content Include="Views\Shared\Whitelabel\166\Pages\contact.html" />
+    <Content Include="Views\Shared\Whitelabel\166\Pages\employers.html" />
+    <Content Include="Views\Shared\Whitelabel\166\Pages\markets.html" />
+    <Content Include="Views\Shared\Whitelabel\166\Pages\talents.html" />
+    <Content Include="Views\Shared\Whitelabel\168\Pages\contact.html" />
+    <Content Include="Views\Shared\Whitelabel\168\Pages\wilson-rice.html" />
+    <Content Include="Views\Shared\Whitelabel\174\Pages\about.html" />
+    <Content Include="Views\Shared\Whitelabel\174\Pages\contact.html" />
+    <Content Include="Views\Shared\Whitelabel\174\Pages\terms.html" />
+    <Content Include="Views\Shared\Whitelabel\179\Pages\contact.html" />
+    <Content Include="Views\Shared\Whitelabel\179\Pages\timesheet.html" />
+    <Content Include="Views\Shared\Whitelabel\182\Pages\Contact.html" />
+    <Content Include="Views\Shared\Whitelabel\182\Pages\Services.html" />
+    <Content Include="Views\Shared\Whitelabel\182\Pages\Terms.html" />
+    <Content Include="Views\Shared\Whitelabel\188\Pages\about.html" />
+    <Content Include="Views\Shared\Whitelabel\188\Pages\contact.html" />
+    <Content Include="Views\Shared\Whitelabel\188\Pages\terms.html" />
+    <Content Include="Views\Shared\Whitelabel\191\Pages\about.html" />
+    <Content Include="Views\Shared\Whitelabel\191\Pages\contact.html" />
+    <Content Include="Views\Shared\Whitelabel\191\Pages\infrastructure.html" />
+    <Content Include="Views\Shared\Whitelabel\191\Pages\mining.html" />
+    <Content Include="Views\Shared\Whitelabel\191\Pages\oilgas.html" />
+    <Content Include="Views\Shared\Whitelabel\191\Pages\services.html" />
+    <Content Include="Views\Shared\Whitelabel\191\Pages\terms.html" />
+    <Content Include="Views\Shared\Whitelabel\196\Pages\Contact.html" />
+    <Content Include="Views\Shared\Whitelabel\65\Pages\mypage.htm" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\Whitelabel\65\" />
+    <Folder Include="Content\Javascripts\Whitelabel\1\" />
+    <Folder Include="Views\Account\Whitelabel\" />
+    <Folder Include="Views\Home\Whitelabel\148\" />
+    <Folder Include="Views\Job\Whitelabel\" />
+    <Folder Include="Views\Page\Whitelabel\" />
+    <Folder Include="Views\Shared\Whitelabel\148\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JXTPortal.Common\JXTPortal.Common.csproj">
+      <Project>{E41704D8-FFB8-462F-8FF9-DF315D39251A}</Project>
+      <Name>JXTPortal.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JXTPortal.Data.SqlClient\JXTPortal.Data.SqlClient.csproj">
+      <Project>{8996A7B4-57D3-440B-A545-A701844B8C4A}</Project>
+      <Name>JXTPortal.Data.SqlClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JXTPortal.Data\JXTPortal.Data.csproj">
+      <Project>{041C1BBE-0BFB-4D45-8125-9AB0BBC09A92}</Project>
+      <Name>JXTPortal.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JXTPortal.Domain\JXTPortal.Domain.csproj">
+      <Project>{CB8D0BA0-DE95-4EC0-A108-31DEDE258317}</Project>
+      <Name>JXTPortal.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JXTPortal.Entities\JXTPortal.Entities.csproj">
+      <Project>{20E43088-4618-4F4A-B8AD-FC31B50D94CD}</Project>
+      <Name>JXTPortal.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JXTPortal\JXTPortal.csproj">
+      <Project>{794327CE-DC0A-4381-89EE-4C00AFB08D5A}</Project>
+      <Name>JXTPortal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SocialMedia\SocialMedia.csproj">
+      <Project>{C1E3E75C-7C54-4546-A1FC-B70ED7A2C4F8}</Project>
+      <Name>SocialMedia</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.live.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Main\About.cshtml" />
+    <Content Include="Views\Home\Main\Contact.cshtml" />
+    <Content Include="Views\Home\Main\Index.cshtml" />
+    <Content Include="Views\Home\Whitelabel\116\Index.cshtml" />
+    <Content Include="Views\Home\Whitelabel\117\Index.cshtml" />
+    <Content Include="Views\Home\Whitelabel\132\Index.cshtml" />
+    <Content Include="Views\Home\Whitelabel\133\About.cshtml" />
+    <Content Include="Views\Home\Whitelabel\133\Contact.cshtml" />
+    <Content Include="Views\Home\Whitelabel\133\Index.cshtml" />
+    <Content Include="Views\Home\Whitelabel\160\About.cshtml" />
+    <Content Include="Views\Home\Whitelabel\160\Contact.cshtml" />
+    <Content Include="Views\Home\Whitelabel\160\Index.cshtml" />
+    <Content Include="Views\Home\Whitelabel\166\Index.cshtml" />
+    <Content Include="Views\Home\Whitelabel\168\Index.cshtml" />
+    <Content Include="Views\Home\Whitelabel\174\Index.cshtml" />
+    <Content Include="Views\Home\Whitelabel\179\Index.cshtml" />
+    <Content Include="Views\Home\Whitelabel\182\Index.cshtml" />
+    <Content Include="Views\Home\Whitelabel\188\Index.cshtml" />
+    <Content Include="Views\Home\Whitelabel\191\Index.cshtml" />
+    <Content Include="Views\Home\Whitelabel\196\Index.cshtml" />
+    <Content Include="Views\Home\Whitelabel\65\About.cshtml" />
+    <Content Include="Views\Home\Whitelabel\65\Contact.cshtml" />
+    <Content Include="Views\Home\Whitelabel\65\Index.cshtml" />
+    <Content Include="Views\Job\Main\Apply.cshtml" />
+    <Content Include="Views\Job\Main\ApplySuccess.cshtml" />
+    <Content Include="Views\Job\Main\Detail.cshtml" />
+    <Content Include="Views\Job\Main\Result.cshtml" />
+    <Content Include="Views\Job\Main\Search.cshtml" />
+    <Content Include="Views\Page\Main\Index.cshtml" />
+    <Content Include="Views\Shared\Main\Error.cshtml" />
+    <Content Include="Views\Shared\Main\_Layout.cshtml" />
+    <Content Include="Views\Shared\Main\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\113\Error.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\113\_Layout.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\113\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\116\Error.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\116\_Layout.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\116\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\117\Error.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\117\_Layout.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\117\_LayoutHome.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\117\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\132\Error.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\132\_Layout.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\132\_LayoutHome.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\132\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\133\Error.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\133\_HomeLayout.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\133\_InnerLayout.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\133\_Layout.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\133\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\160\Error.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\160\_HomeLayout.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\160\_Layout.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\160\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\166\Error.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\166\_HomeLayout.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\166\_Layout.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\166\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\168\Error.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\168\_Layout.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\168\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\174\Error.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\174\_HomeLayout.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\174\_Layout.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\174\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\179\Error.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\179\_Layout.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\179\_LayoutHome.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\179\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\182\Error.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\182\_Layout.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\182\_LayoutHome.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\182\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\188\Error.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\188\_Layout.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\188\_LayoutHome.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\188\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\191\Error.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\191\_HomeLayout.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\191\_Layout.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\191\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\196\Error.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\196\_Layout.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\196\_LayoutHome.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\196\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\49\Error.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\49\_Layout.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\49\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\65\Error.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\65\_Layout.cshtml" />
+    <Content Include="Views\Shared\Whitelabel\65\_LoginPartial.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\Main\ChangePassword.cshtml" />
+    <Content Include="Views\Account\Main\ChangePasswordSuccess.cshtml" />
+    <Content Include="Views\Account\Main\Documents.cshtml" />
+    <Content Include="Views\Account\Main\Download.cshtml" />
+    <Content Include="Views\Account\Main\Index.cshtml" />
+    <Content Include="Views\Account\Main\JobAlert.cshtml" />
+    <Content Include="Views\Account\Main\JobAlertSave.cshtml" />
+    <Content Include="Views\Account\Main\Login.cshtml" />
+    <Content Include="Views\Account\Main\MyAlerts.cshtml" />
+    <Content Include="Views\Account\Main\Register.cshtml" />
+    <Content Include="Views\Account\Main\SavedJobs.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Job\Main\ThirdPartyApply.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\Main\ForgetPassword.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\Main\ForgetPasswordSuccess.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="References\evointernal.dat" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>56800</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+</Project>

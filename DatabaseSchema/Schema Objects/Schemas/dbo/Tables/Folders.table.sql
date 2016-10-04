@@ -1,0 +1,9 @@
+﻿CREATE TABLE Folders
+(
+   FolderID			INT IDENTITY(1,1) PRIMARY KEY,
+   ParentFolderID	INT DEFAULT(0) NOT NULL,
+   SiteID			INT NOT NULL,
+   FolderName		NVARCHAR(255) NOT NULL, 
+   SourceID			INT NULL
+)
+GO

@@ -1,0 +1,130 @@
+﻿@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    bool isCreate = Model.clientID == 0;
+    
+}
+@using JXTPosterTransform.Website.Models
+@using JXTPosterTransform.Library.Common
+@model ClientDisplayModel
+<div class="row">
+    <h1 class="page-header">
+        @(isCreate ? "Create" : "Edit")
+        Client</h1>
+</div>
+<form action="/client/edit/@Model.clientID" method="post">
+<div class="col-xs-12">
+    @Html.Raw(ViewBag.Message)
+    @if (!isCreate)
+    {
+        <div class="form-group col-xs-6">
+            <label class="control-label">
+                Client ID</label>
+            <div>
+                @Model.clientID
+                <input type="hidden" name="clientID" value="@Model.clientID" />
+            </div>
+        </div>
+        <div class="form-group col-xs-6">
+            <label class="control-label">
+                Mappings</label>
+            <div>
+                @if (Model.hasClientSetups)
+                {
+                    <a href="/mappings/countrylocarea/@Model.clientID">CLA</a> 
+                    <a href="/mappings/professionrole/@Model.clientID">PR</a> 
+                    <a href="/mappings/worktype/@Model.clientID">WT</a>
+                }
+                else
+                {
+                    <i>At least 1 setup is required (<a href="/client/edit/@Model.clientID">Create Setup</a></i>
+                }
+            </div>
+        </div>
+    }
+</div>
+<div class="col-xs-6">
+    <div class="form-group @(new MvcHtmlString(ViewData.ModelState.HasModelStateError("name") ? "has-error" : string.Empty))">
+        <label class="control-label">
+            Name</label>
+        <input type="text" class="form-control" name="name" value="@Model.name" />
+        @Html.ValidationMessageFor(c => c.name)
+    </div>
+    <div class="form-group">
+        <label class="control-label">
+            Description</label>
+        <input type="text" class="form-control" name="description" value="@Model.description" />
+    </div>
+    <div class="form-group">
+        <label class="control-label">
+            Status</label>
+        <select class="form-control" name="valid">
+            @foreach (PTCommonEnums.Client.Valid v in Enum.GetValues(typeof(PTCommonEnums.Client.Valid)))
+            {
+                <option value="@v" @(v == Model.valid ? @"selected=""selected""" : string.Empty) >@v</option>
+            }
+        </select>
+        @Html.ValidationMessageFor(c => c.valid)
+    </div>
+</div>
+<div class="col-xs-6">
+    <div class="form-group @(new MvcHtmlString(ViewData.ModelState.HasModelStateError("siteID") ? "has-error" : string.Empty))">
+        <label class="control-label">
+            Site</label>
+        <input type="text" class="form-control" name="siteID" value="@Model.siteID" />
+        @Html.ValidationMessageFor(c => c.siteID)
+    </div>
+    <div class="form-group">
+        <label class="control-label">
+            Website URL</label>
+        <input type="text" class="form-control" name="webURL" value="@Model.webURL" />
+        @Html.ValidationMessageFor(c => c.webURL)
+    </div>
+</div>
+<div class="clearfix">
+</div>
+@if (!isCreate)
+{
+    <div class="col-xs-6">
+        <div class="form-group">
+            <label class="control-label">
+                Created Date</label>
+            @(string.Format("{0:dd-MMM-yyyy}", Model.createdDate))
+        </div>
+        <div class="form-group">
+            <label class="control-label">
+                Last Modified</label>
+            @if (Model.lastModifiedDate != null)
+            {
+                @(string.Format("{0:dd-MMM-yyyy}", Model.lastModifiedDate))
+            }
+            else
+            {
+                <span>No information available</span>
+            }
+        </div>
+        @*        <div class="form-group">
+            <label class="control-label">
+                Last Modified By</label>
+            @if (Model.lastModifiedBy != null)
+            {
+                @Model.lastModifiedBy
+            }
+            else
+            {
+                <span>No information available</span>
+            }
+        </div>
+*@
+    </div>
+    <div class="clearfix">
+    </div>
+}
+<div class="col-xs-6">
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">
+            @(Model.clientID == 0 ? "Create" : "Update")</button>
+    </div>
+</div>
+</form>

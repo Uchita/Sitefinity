@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ucLanguageLiteral.ascx.cs" Inherits="JXTPortal.Website.usercontrols.common.ucLanguageLiteral" %>
+<asp:Literal ID="ltlLanguageField" runat="server" />

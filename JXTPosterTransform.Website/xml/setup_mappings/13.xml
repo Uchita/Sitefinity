@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<MappingsXMLModel xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <JobTemplateMaps>
+    <JobTemplateMap>
+      <MapToJobTemplateID>859</MapToJobTemplateID>
+      <ClientJobTemplateID>3575</ClientJobTemplateID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </JobTemplateMap>
+  </JobTemplateMaps>
+  <JobTemplateLogoMaps />
+  <WorkTypeMaps />
+  <CLAMaps />
+  <ProfRoleMaps />
+  <SalaryTypeMaps />
+</MappingsXMLModel>

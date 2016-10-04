@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[SalaryType]
+(
+	SalaryTypeID INT IDENTITY(1,1) PRIMARY KEY,
+	SalaryTypeName VARCHAR(255) NOT NULL,
+	Valid BIT NOT NULL DEFAULT(1)
+)

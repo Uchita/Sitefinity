@@ -1,0 +1,333 @@
+/* 
+Replace the below elements
+
+Heading Font Family
+font-family: 'Alike', serif;
+
+Body Font Family
+font-family: 'Open Sans', sans serif;
+
+Theme color (Header, Button, Link)
+#201061
+
+ */
+
+
+
+ /*  TABLE OF CONTENTS
+------------------------------
+1. Global Styles
+2. Header Styles
+3. CV Builder Wizard Styles
+4. CV Profile Complete Styles
+5. System Base Styles
+6. Forms Styles
+7. Footer Styles
+8. Add-on Styling 
+9. Responsive Media Queries 
+------------------------------  */
+
+
+
+
+
+
+/* Global Styles
+-------------------------------------------------- */
+
+/* 1.1 Text */
+a {	
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+	color: #201061;
+}
+a:hover { 
+	text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Alike', serif;
+	padding-bottom: 0.5em;
+}
+h1 { color: #201061;}
+h2, h3 { color: #201061;}
+h4, h5, h6 { color: #333333;}
+
+
+/* 1.2 Containers */
+
+html,
+body {
+}
+#wrapper {
+	background-color: #F2F2F2;
+}
+#dynamic-container,
+#content-container,
+#job-dynamic-container {
+	padding-bottom: 5em;
+}
+#dynamic-side-left-container,
+#side-left {
+}
+
+
+
+
+
+
+
+/* 2. Header Styles
+-------------------------------------------------- */
+
+/* 2.1 Top Header */
+#header {
+	background-color: #FFF;
+}
+.top-header {
+	background: #f0f0f0;
+}
+.login {
+	line-height: 3em;
+	margin: 0;
+	padding: 0;
+}
+.login li {
+	display: inline-block;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	width: 45%;
+}
+.login a{
+	color: #64B6B1;
+	font-size: 0.85em;
+	text-decoration: none;
+	width: 100%;
+}
+.social {
+	float: right;
+	margin: 0;
+	margin-right: 1em;
+	padding: 0;
+	width: auto;
+}
+.social li {
+	float: left;
+	height: 3em;
+	line-height: 3em;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	width: 3em;
+}
+.social li a i {
+	color: #FFF;
+	font-size: 1.35em;
+}
+.twitter {background-color: #191919;}
+.linkedin {background-color: #00aed6;}
+.facebook {background-color: #64B6B1;}
+
+
+
+/* 2.2 Menu level */
+.logo {
+	display: block;
+	padding: 1em 0;
+	margin: 0;
+}
+.navbar ul:not(.navbar-nav) {
+	display: none;
+}
+.navbar-collapse {
+	padding: 0px;
+}
+.navbar {
+    background-color: transparent;
+    border-radius: 0;
+    border: 0px;
+	border-collapse: collapse;
+    margin-bottom: 0;
+    min-height: 40px;
+    padding-top: 3em;
+    padding-right: 2em;
+}
+.navbar-nav { float: 	right;}
+.navbar ul,
+.navbar li {
+	list-style-type: none;
+}
+.navbar-nav li:not(:last-child) {
+	border-right: #64B6B1 1px solid;
+}
+.navbar .navbar-nav > li > a {
+    color: #64B6B1;
+	font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    padding: 0 1em 2em;
+}
+.navbar .navbar-brand {
+	font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    text-indent: 0.25em;
+}
+.dropdown-menu {
+	background-color: #FFF;
+}
+.navbar .navbar-nav > li > .dropdown-menu > li {
+	border: 0px;
+	width: 100%;
+}
+.navbar .navbar-nav > li > .dropdown-menu > li > a {
+	font-size: 0.9em;
+	padding: 0.5em 1em;
+	text-transform: capitalize;
+	min-width:160px;
+	word-wrap:break-word;
+	width:100%;
+}
+.dropdown > a .caret {
+	border-top-color: #191919;
+	border-bottom-color: #191919;
+	margin-left: 4px;
+}
+.navbar .navbar-nav > li > a.topnav-active, 
+.navbar .navbar-nav > li > a.topnav-active:hover, 
+.navbar .navbar-nav > li > a.topnav-active:focus,
+.navbar .navbar-nav > .active > a, 
+.navbar .navbar-nav > .active > a:hover, 
+.navbar .navbar-nav > .active > a:focus,
+.nav > li > a:hover, 
+.nav > li > a:focus {
+	background-color: #f0f0f0;
+}
+
+
+
+
+/* 3. CV Builder Wizard Styles
+-------------------------------------------------- */
+
+
+
+
+
+
+/* 4. CV Profile Complete Styles
+-------------------------------------------------- */
+
+
+
+
+
+
+
+/* 5. System Basic Styles
+-------------------------------------------------- */
+
+#content {
+}
+.content-holder {
+}
+
+
+
+
+
+
+/* 6. Forms Styles
+-------------------------------------------------- */
+
+select, textarea, 
+input[type="text"], input[type="password"], 
+input[type="datetime"], input[type="datetime-local"], 
+input[type="date"], input[type="month"], input[type="time"], input[type="week"], 
+input[type="number"], input[type="email"], 
+input[type="url"], input[type="search"], 
+input[type="tel"], input[type="color"], input[type="submit"] {
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	-o-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	border: 1px solid #cccccc;
+}
+input[type="submit"]{
+}
+input[type="text"], 
+input[type="password"],
+input[type="email"] {
+}
+input[type="image"] {
+}
+select {
+}
+
+
+
+
+
+
+/* 7. Footer Styles
+-------------------------------------------------- */
+
+#footer {
+	background-color: #999;
+}
+
+
+
+
+
+
+
+/* 8. Add-on Styling 
+-------------------------------------------------- */
+
+.drop-shadow {
+	-webkit-box-shadow: 0px 5px 5px rgba(50, 50, 50, 0.25);
+	-moz-box-shadow: 0px 5px 5px rgba(50, 50, 50, 0.25);
+	-o-box-shadow: 0px 5px 5px rgba(50, 50, 50, 0.25);
+	box-shadow: 0px 5px 5px rgba(50, 50, 50, 0.25);
+}
+.inner-shadow {	   
+	-webkit-box-shadow: inset 0px 5px 5px 0px rgba(50, 50, 50, 0.25);
+   -moz-box-shadow: inset 0px 5px 5px 0px rgba(50, 50, 50, 0.25);
+   -o-box-shadow: inset 0px 5px 5px 0px rgba(50, 50, 50, 0.25);
+   box-shadow: inset 0px 5px 5px 0px rgba(50, 50, 50, 0.25);
+}
+.center {
+	margin: 0 auto;
+	text-align: center;
+}
+
+
+
+
+
+/* 9. Responsive Media Queries 
+-------------------------------------------------- */
+
+/* Extra small devices (phones, up to 767px) */
+@media (max-width: 767px) {
+
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991px) {
+
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
+}

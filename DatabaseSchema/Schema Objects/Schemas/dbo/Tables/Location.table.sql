@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[Location]
+(
+	LocationID INT IDENTITY(1,1) PRIMARY KEY,
+	LocationName NVARCHAR(510) NOT NULL,
+	CountryID INT NOT NULL REFERENCES Countries(CountryID),
+	Valid BIT NOT NULL DEFAULT(1)
+)

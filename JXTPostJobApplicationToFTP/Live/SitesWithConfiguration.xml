@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sites>
+  <!--Kelly Singapore-->
+  <site>
+    <SiteId>346</SiteId>
+    <host>ksftptst.emeraldfield.com</host>
+    <username>jxttst</username>
+    <password>rZ3eA6QJHvzR</password>
+    <sftp>1</sftp>
+    <port>22</port>
+    <LastJobApplicationId>51935</LastJobApplicationId>
+    <LastExceptionApplicationID>45529</LastExceptionApplicationID>
+    <ExceptionID>235742</ExceptionID>
+  </site>
+
+  <!--Kelly Malaysia-->
+  <site>
+    <SiteId>384</SiteId>
+    <host>ksftptst.emeraldfield.com</host>
+    <username>jxttst</username>
+    <password>rZ3eA6QJHvzR</password>
+    <sftp>1</sftp>
+    <port>22</port>
+    <LastJobApplicationId></LastJobApplicationId>
+    <LastExceptionApplicationID></LastExceptionApplicationID>
+    <ExceptionID></ExceptionID>
+  </site>
+</sites>

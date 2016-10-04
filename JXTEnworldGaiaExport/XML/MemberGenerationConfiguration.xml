@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sites>
+  <!--Kelly Singapore-->
+  <site>
+    <SiteId>458</SiteId>
+    <ReferringSiteIds> 593 458 594 </ReferringSiteIds>
+
+    <host>113.192.21.100</host>
+    <username>enworld</username>
+    <password>GwOxB5nQQl9e</password>
+    <sftp>1</sftp>
+    <port>22</port>
+
+    <MemberGenerationLastExecuted>2015-10-01</MemberGenerationLastExecuted>
+    <LastJobApplicationId>51935</LastJobApplicationId>
+    <LastExceptionApplicationID>45529</LastExceptionApplicationID>
+    <ExceptionID>235742</ExceptionID>
+  </site>
+
+</sites>

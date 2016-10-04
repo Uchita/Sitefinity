@@ -1,0 +1,4242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ButtonAdvertiserUsers" xml:space="preserve">
+    <value>Nieuwe toevoegen</value>
+    <comment>Add New</comment>
+  </data>
+  <data name="ButtonApplyFilter" xml:space="preserve">
+    <value>Filter toepassen</value>
+    <comment>Apply Filter</comment>
+  </data>
+  <data name="ButtonBack" xml:space="preserve">
+    <value>Terug</value>
+    <comment>Back</comment>
+  </data>
+  <data name="ButtonCancel" xml:space="preserve">
+    <value>Annuleren</value>
+    <comment>Cancel</comment>
+  </data>
+  <data name="ButtonContinue" xml:space="preserve">
+    <value>Verdergaan</value>
+    <comment>Continue</comment>
+  </data>
+  <data name="ButtonCreateJobAlert" xml:space="preserve">
+    <value>Vacaturemelding aanmaken</value>
+    <comment>Create Job Alert</comment>
+  </data>
+  <data name="ButtonInsert" xml:space="preserve">
+    <value>Invoegen</value>
+    <comment>Insert</comment>
+  </data>
+  <data name="ButtonNewSearch" xml:space="preserve">
+    <value>Nieuwe zoekopdracht</value>
+    <comment>New Search</comment>
+  </data>
+  <data name="ButtonNoCoverLetter" xml:space="preserve">
+    <value>Geen begeleidende brief</value>
+    <comment>No Cover Letter</comment>
+  </data>
+  <data name="ButtonNoResume" xml:space="preserve">
+    <value>Geen cv</value>
+    <comment>No Resume</comment>
+  </data>
+  <data name="ButtonRegister" xml:space="preserve">
+    <value>Registreren</value>
+    <comment>Register</comment>
+  </data>
+  <data name="ButtonRenewJob" xml:space="preserve">
+    <value>Vacature verversen</value>
+    <comment>Renew Job</comment>
+  </data>
+  <data name="ButtonReset" xml:space="preserve">
+    <value>Resetten</value>
+    <comment>Reset</comment>
+  </data>
+  <data name="ButtonRSSFeed" xml:space="preserve">
+    <value>RSS-feed</value>
+    <comment>RSS Feed</comment>
+  </data>
+  <data name="ButtonSave" xml:space="preserve">
+    <value>Opslaan</value>
+    <comment>Save</comment>
+  </data>
+  <data name="ButtonSaveSelected" xml:space="preserve">
+    <value>Geselecteerde items opslaan</value>
+    <comment>Save Selected</comment>
+  </data>
+  <data name="ButtonSearch" xml:space="preserve">
+    <value>Zoeken</value>
+    <comment>Search</comment>
+  </data>
+  <data name="ButtonSelect" xml:space="preserve">
+    <value>Selecteren</value>
+    <comment>Select</comment>
+  </data>
+  <data name="ButtonSend" xml:space="preserve">
+    <value>Verzenden</value>
+    <comment>Send</comment>
+  </data>
+  <data name="ButtonSubmit" xml:space="preserve">
+    <value>Indienen</value>
+    <comment>Button - Submit</comment>
+  </data>
+  <data name="ButtonUpdate" xml:space="preserve">
+    <value>Bijwerken</value>
+    <comment>Update</comment>
+  </data>
+  <data name="ButtonUploadCoverLetterNow" xml:space="preserve">
+    <value>Upload een begeleidende brief van mijn computer</value>
+    <comment>Upload a cover letter from my computer</comment>
+  </data>
+  <data name="ButtonUploadResumeNow" xml:space="preserve">
+    <value>Upload een cv van mijn computer</value>
+    <comment>Upload a resume from my computer</comment>
+  </data>
+  <data name="ButtonUseMyProfile" xml:space="preserve">
+    <value>Gebruik mijn profiel</value>
+    <comment>Use my profile</comment>
+  </data>
+  <data name="ButtonWriteOneNow" xml:space="preserve">
+    <value>Ik ga er nu een schrijven</value>
+    <comment>I'll write one now</comment>
+  </data>
+  <data name="cbAuditCommittee" xml:space="preserve">
+    <value>Auditcomité</value>
+    <comment>Audit Committee</comment>
+  </data>
+  <data name="cbNominationsCommittee" xml:space="preserve">
+    <value>Nominatiecomité</value>
+    <comment>Nominations Committee</comment>
+  </data>
+  <data name="cbOHSCommittee" xml:space="preserve">
+    <value>Arbocomité</value>
+    <comment>OH&amp;S Committee</comment>
+  </data>
+  <data name="cbOther" xml:space="preserve">
+    <value>Anders</value>
+    <comment>Other</comment>
+  </data>
+  <data name="cbRemunerationCommittee" xml:space="preserve">
+    <value>Comité vergoedingen</value>
+    <comment>Remuneration Committee</comment>
+  </data>
+  <data name="cbRiskCommittee" xml:space="preserve">
+    <value>Risicocomité</value>
+    <comment>Risk Committee</comment>
+  </data>
+  <data name="ConfirmDeleteJob" xml:space="preserve">
+    <value>Weet u zeker dat u deze conceptadvertentie permanent wilt verwijderen?</value>
+    <comment>Are you sure you wish to permanently delete this draft ad?</comment>
+  </data>
+  <data name="ConfirmExpireJob" xml:space="preserve">
+    <value>Weet u zeker dat u deze vacature wilt laten verlopen?</value>
+    <comment>Are you sure you wish to expire this job?</comment>
+  </data>
+  <data name="DDLAscending" xml:space="preserve">
+    <value>Oplopend</value>
+    <comment>Ascending</comment>
+  </data>
+  <data name="DDLDatePosted" xml:space="preserve">
+    <value>Plaatsingsdatum</value>
+    <comment>Date Posted</comment>
+  </data>
+  <data name="DDLDaysTillExpiry" xml:space="preserve">
+    <value>Aantal dagen voordat vacature vervalt</value>
+    <comment>Days Till Expiry</comment>
+  </data>
+  <data name="DDLDescending" xml:space="preserve">
+    <value>Aflopend</value>
+    <comment>Descending</comment>
+  </data>
+  <data name="DDLJobTitle" xml:space="preserve">
+    <value>Functie</value>
+    <comment>Job Title</comment>
+  </data>
+  <data name="DDLNumberOfApplications" xml:space="preserve">
+    <value>Aantal sollicitaties</value>
+    <comment>Number of Applications</comment>
+  </data>
+  <data name="DDLNumberOfViews" xml:space="preserve">
+    <value>Aantal maal bekeken</value>
+    <comment>Number of Views</comment>
+  </data>
+  <data name="DDLOneDay" xml:space="preserve">
+    <value>1 dag</value>
+    <comment>1 Day</comment>
+  </data>
+  <data name="DDLOneMonth" xml:space="preserve">
+    <value>1 maand</value>
+    <comment>1 Month</comment>
+  </data>
+  <data name="DDLOneWeek" xml:space="preserve">
+    <value>1 week</value>
+    <comment>1 Week</comment>
+  </data>
+  <data name="DDLRefNo" xml:space="preserve">
+    <value>Ref.nr.</value>
+    <comment>Ref No</comment>
+  </data>
+  <data name="DDLSixMonths" xml:space="preserve">
+    <value>6 maanden</value>
+    <comment>6 Months</comment>
+  </data>
+  <data name="DDLThreeMonths" xml:space="preserve">
+    <value>3 maanden</value>
+    <comment>3 Months</comment>
+  </data>
+  <data name="ErrorAcceptTermCondition" xml:space="preserve">
+    <value>Accepteer de algemene voorwaarden</value>
+    <comment>Please accept Terms and Conditions</comment>
+  </data>
+  <data name="ErrorBulletPointSize" xml:space="preserve">
+    <value>Bulletpointafmeting mag niet groter zijn dan 160 tekens</value>
+    <comment>Bullet Point size cannot exceed 160 characters</comment>
+  </data>
+  <data name="ErrorConfirmPasswordNotMatch" xml:space="preserve">
+    <value>Wachtwoord komt niet overeen</value>
+    <comment>Confirm password doesn't not match</comment>
+  </data>
+  <data name="ErrorCoverLetterEmpty" xml:space="preserve">
+    <value>Begeleidende brief mag niet leeg zijn.</value>
+    <comment>Cover Letter cannot be empty.</comment>
+  </data>
+  <data name="ErrorEmptyContent" xml:space="preserve">
+    <value>Inhoud mag niet leeg zijn.</value>
+    <comment>Content must not be empty</comment>
+  </data>
+  <data name="ErrorEnsureDocumentSelected" xml:space="preserve">
+    <value>Zorg ervoor dat u een document hebt geselecteerd om te uploaden.</value>
+    <comment>Please ensure you have selected a document to upload</comment>
+  </data>
+  <data name="ErrorEnterDetailAgain" xml:space="preserve">
+    <value>We kunnen helaas uw gegevens niet ophalen. Controleer uw invoer en probeer het nog eens.</value>
+    <comment>Sorry, we were unable to retrieve your details. Please check the details you entered and try again.</comment>
+  </data>
+  <data name="ErrorEnterEmailUsername" xml:space="preserve">
+    <value>Vul gebruikersnaam of e-mailadres in</value>
+    <comment>Please fill in username or email address</comment>
+  </data>
+  <data name="ErrorEnterKeyword" xml:space="preserve">
+    <value>Selecteer de zoekcriteria.</value>
+    <comment>Please select the criteria to search.</comment>
+  </data>
+  <data name="ErrorFileExist" xml:space="preserve">
+    <value>Bestand bestaat al. Selecteer een ander bestand of wijzig de bestandsnaam</value>
+    <comment>File already exists, please select another file or change the file name</comment>
+  </data>
+  <data name="ErrorFileExtension" xml:space="preserve">
+    <value>Type bestandsextensie is niet geaccepteerd</value>
+    <comment>File type extension is not accepted</comment>
+  </data>
+  <data name="ErrorImageExceed" xml:space="preserve">
+    <value>De geüploade afbeelding overschrijdt de maximale limiet van 1 MB.</value>
+    <comment>The uploaded image exceeds the maximum 1Mb limit.</comment>
+  </data>
+  <data name="ErrorImageExtension" xml:space="preserve">
+    <value>De geüploade afbeeldingsextensie '</value>
+    <comment>The uploaded image extension '</comment>
+  </data>
+  <data name="ErrorImageInvalidSize" xml:space="preserve">
+    <value>De geüploade afbeelding heeft een ongeldige grootte. Controleer de afbeelding en probeer het opnieuw.</value>
+    <comment>The uploaded image has an invalid size. Please check the image and try again.</comment>
+  </data>
+  <data name="ErrorImageNoExtension" xml:space="preserve">
+    <value>De geüploade afbeelding heeft geen extensie</value>
+    <comment>The uploaded image has no extension</comment>
+  </data>
+  <data name="ErrorIncorrectCurrentPassword" xml:space="preserve">
+    <value>Onjuist huidig wachtwoord</value>
+    <comment>Incorrect current password</comment>
+  </data>
+  <data name="ErrorInvalidFileType" xml:space="preserve">
+    <value>Ongeldig bestandstype</value>
+    <comment>Invalid File Type</comment>
+  </data>
+  <data name="ErrorKeywordSize" xml:space="preserve">
+    <value>Trefwoordafmeting mag niet groter zijn dan 100 tekens</value>
+    <comment>Keyword size cannot exceed 1000 characters</comment>
+  </data>
+  <data name="ErrorNoAdvertiserFound" xml:space="preserve">
+    <value>Er is geen adverteerdergebruiker gevonden</value>
+    <comment>No Advertiser User is found</comment>
+  </data>
+  <data name="ErrorNoMemberFound" xml:space="preserve">
+    <value>Er is geen lid gevonden</value>
+    <comment>No Member is Found</comment>
+  </data>
+  <data name="ErrorNotAccepted" xml:space="preserve">
+    <value>' wordt niet geaccepteerd</value>
+    <comment>' is not acceptable</comment>
+  </data>
+  <data name="ErrorPhoneSize" xml:space="preserve">
+    <value>Telefoon mag niet groter zijn dan 40 tekens</value>
+    <comment>Phone cannot exceed 40 characters</comment>
+  </data>
+  <data name="ErrorRequired" xml:space="preserve">
+    <value>Vereist</value>
+    <comment>Required</comment>
+  </data>
+  <data name="ErrorUsernameExist" xml:space="preserve">
+    <value>Gebruikersnaam bestaat al</value>
+    <comment>User Name already exists</comment>
+  </data>
+  <data name="LabeAddLanguage" xml:space="preserve">
+    <value>Voeg taal toe</value>
+    <comment>Add Language</comment>
+  </data>
+  <data name="LabelAcceptTermCondition" xml:space="preserve">
+    <value>Ik accepteer de algemene voorwaarden</value>
+    <comment>I Accept the Terms and Conditions</comment>
+  </data>
+  <data name="LabelAccessDenied" xml:space="preserve">
+    <value>Toegang geweigerd. Ongeldige inloggegevens.</value>
+    <comment>Access Denied. Invalid Credentials.</comment>
+  </data>
+  <data name="LabelAccount" xml:space="preserve">
+    <value>Account</value>
+    <comment>Account</comment>
+  </data>
+  <data name="LabelAccountLocked" xml:space="preserve">
+    <value>De ingevoerde inloggegevens zijn ongeldig. Account is tijdelijk geblokkeerd. Probeer het opnieuw over "60 min" of neem contact op met uw systeembeheerder.</value>
+    <comment>The supplied credentials are invalid. Account has been temporarily locked. Please try again in “60 mins” or contact your system administrator.</comment>
+  </data>
+  <data name="LabelAccountNumber" xml:space="preserve">
+    <value>Accountnr.</value>
+    <comment>Account Number</comment>
+  </data>
+  <data name="LabelAccountsPayableEmail" xml:space="preserve">
+    <value>E-mailadres crediteurenadm.</value>
+    <comment>Accounts Payable Email</comment>
+  </data>
+  <data name="LabelAccountType" xml:space="preserve">
+    <value>Type account</value>
+    <comment>Account Type</comment>
+  </data>
+  <data name="LabelAction" xml:space="preserve">
+    <value>Actie</value>
+    <comment>Action</comment>
+  </data>
+  <data name="LabelActions" xml:space="preserve">
+    <value>Acties</value>
+    <comment>Actions</comment>
+  </data>
+  <data name="LabelAdd" xml:space="preserve">
+    <value>Toevoegen</value>
+    <comment>Add</comment>
+  </data>
+  <data name="LabelAddAnEntry" xml:space="preserve">
+    <value>Vermelding toevoegen</value>
+    <comment>Add An Entry</comment>
+  </data>
+  <data name="LabelAddAnotherDirectorship" xml:space="preserve">
+    <value>Ervaring toevoegen</value>
+    <comment>Add Another Experience</comment>
+  </data>
+  <data name="LabelAddAnotherExperience" xml:space="preserve">
+    <value>Ervaring toevoegen</value>
+    <comment>Add Another Experience</comment>
+  </data>
+  <data name="LabelAddAnotherQualification" xml:space="preserve">
+    <value>Opleiding toevoegen</value>
+    <comment>Add Another Qualification</comment>
+  </data>
+  <data name="LabelAddCertificateMembership" xml:space="preserve">
+    <value>Certificaat &amp;amp; Lidmaatschap toevoegen</value>
+    <comment>Add Certificate &amp;amp; Membership</comment>
+  </data>
+  <data name="LabelAddDirectorship" xml:space="preserve">
+    <value>Directeurschap toevoegen</value>
+    <comment>Add Directorship</comment>
+  </data>
+  <data name="LabelAdditionalDocuments" xml:space="preserve">
+    <value>Aanvullende documentatie</value>
+    <comment>Additional Documents</comment>
+  </data>
+  <data name="LabelAdditionalRolesAndResponsibilities" xml:space="preserve">
+    <value>Aanvullende rollen en verantwoordelijkheden</value>
+    <comment>Additional Roles and responsibilities</comment>
+  </data>
+  <data name="LabelAddLicense" xml:space="preserve">
+    <value>Licentie toevoegen</value>
+    <comment>Add License</comment>
+  </data>
+  <data name="LabelAddMailingAddress" xml:space="preserve">
+    <value>Postadres toevoegen</value>
+    <comment>Add Mailing Address</comment>
+  </data>
+  <data name="LabelAddReference" xml:space="preserve">
+    <value>referentie toevoegen</value>
+    <comment>Add Reference</comment>
+  </data>
+  <data name="LabelAddress" xml:space="preserve">
+    <value>Adres</value>
+    <comment>Address</comment>
+  </data>
+  <data name="LabelAddSkill" xml:space="preserve">
+    <value>Vaardigheid toevoegen</value>
+    <comment>Add Skill</comment>
+  </data>
+  <data name="LabelAddSkillAlreadyExist" xml:space="preserve">
+    <value>Vaardigheid bestaat al</value>
+    <comment>Skill already exists</comment>
+  </data>
+  <data name="LabelAddYourSkill" xml:space="preserve">
+    <value>Voeg uw vaardigheid toe</value>
+    <comment>Add Your Skill</comment>
+  </data>
+  <data name="LabelAdvanced" xml:space="preserve">
+    <value>Geavanceerd</value>
+    <comment>Advanced</comment>
+  </data>
+  <data name="LabelAdvertiser" xml:space="preserve">
+    <value>Adverteerder</value>
+    <comment>Advertiser</comment>
+  </data>
+  <data name="LabelAdvertiserEditSuccess" xml:space="preserve">
+    <value>Accountgegevens zijn met succes ingediend.</value>
+    <comment>Account details have been submitted successfully.</comment>
+  </data>
+  <data name="LabelAdvertiserInvalid" xml:space="preserve">
+    <value>&lt;h2&gt;Geachte adverteerder,&lt;/h2&gt;
+&lt;p&gt;Uw account is reeds bij ons gevalideerd. U kunt toegang verkrijgen tot uw account via de &lt;a href="/advertiser/login.aspx"&gt;inlogpagina&lt;/a&gt;.&lt;/p&gt;</value>
+    <comment>Advertiser validation failed.</comment>
+  </data>
+  <data name="LabelAdvertiserJobTemplateLogo" xml:space="preserve">
+    <value>Vacaturesjabloon logo adverteerder</value>
+    <comment>Advertiser Job Template Logo</comment>
+  </data>
+  <data name="LabelAdvertiserJobTemplateLogoID" xml:space="preserve">
+    <value>Sjabloon logo ID</value>
+    <comment>Template Logo ID</comment>
+  </data>
+  <data name="LabelAdvertiserJobTemplateLogoName" xml:space="preserve">
+    <value>Naam afbeelding/logo</value>
+    <comment>Name of Image/Logo</comment>
+  </data>
+  <data name="LabelAdvertiserJobTemplateLogoSelectDoc" xml:space="preserve">
+    <value>Bestand uploaden</value>
+    <comment>Upload file</comment>
+  </data>
+  <data name="LabelAdvertiserUser" xml:space="preserve">
+    <value>Adverteerdergebruiker</value>
+    <comment>Advertiser User</comment>
+  </data>
+  <data name="LabelAdvertiserValidated" xml:space="preserve">
+    <value>U bent met succes gevalideerd.</value>
+    <comment>You have been validated successfully.</comment>
+  </data>
+  <data name="LabelAdvertiserValidation" xml:space="preserve">
+    <value>Validatieverzoek mislukt</value>
+    <comment>Validation Request Failure</comment>
+  </data>
+  <data name="LabelAdvisor" xml:space="preserve">
+    <value>Adviseur</value>
+    <comment>Advisor</comment>
+  </data>
+  <data name="LabelAllApplicationsSendEmail" xml:space="preserve">
+    <value>Alle sollicitaties op de vacature worden naar dit e-mailadres gestuurd</value>
+    <comment>All applications for job will be sent to this email address</comment>
+  </data>
+  <data name="LabelAllArea" xml:space="preserve">
+    <value>- Alle regio's -</value>
+    <comment>- All Areas -</comment>
+  </data>
+  <data name="LabelAllAreas" xml:space="preserve">
+    <value>- Alle regio's -</value>
+    <comment>-All Areas-</comment>
+  </data>
+  <data name="LabelAllAvailability" xml:space="preserve">
+    <value>- Alle beschikbaarheid -</value>
+    <comment>- All Availability -</comment>
+  </data>
+  <data name="LabelAllClassification" xml:space="preserve">
+    <value>- Alle classificaties -</value>
+    <comment>- All Classification -</comment>
+  </data>
+  <data name="LabelAllClassifications" xml:space="preserve">
+    <value>- Alle classificaties -</value>
+    <comment>- All Classifications -</comment>
+  </data>
+  <data name="LabelAllCountries" xml:space="preserve">
+    <value>- Alle landen -</value>
+    <comment>-All Countries-</comment>
+  </data>
+  <data name="LabelAllCountry" xml:space="preserve">
+    <value>- Alle landen -</value>
+    <comment>- All Countries -</comment>
+  </data>
+  <data name="LabelAllLocation" xml:space="preserve">
+    <value>- Alle locaties -</value>
+    <comment>- All Locations -</comment>
+  </data>
+  <data name="LabelAllLocations" xml:space="preserve">
+    <value>- Alle locaties -</value>
+    <comment>-All Locations-</comment>
+  </data>
+  <data name="LabelAllSalary" xml:space="preserve">
+    <value>- Alle salarissen -</value>
+    <comment>- All Salary -</comment>
+  </data>
+  <data name="LabelAllSalaryType" xml:space="preserve">
+    <value>- Alle salaristypes -</value>
+    <comment>- All Salary Type -</comment>
+  </data>
+  <data name="LabelAllSubClassifications" xml:space="preserve">
+    <value>- Alle sub-classificaties -</value>
+    <comment>- All Sub Classifications -</comment>
+  </data>
+  <data name="LabelAllWorkTypes" xml:space="preserve">
+    <value>- Alle soorten werk -</value>
+    <comment>- All Worktypes -</comment>
+  </data>
+  <data name="LabelAlreadyRegistered" xml:space="preserve">
+    <value>Al geregistreerd</value>
+    <comment>Already registered</comment>
+  </data>
+  <data name="LabelAMEX" xml:space="preserve">
+    <value>Amex</value>
+    <comment>Amex</comment>
+  </data>
+  <data name="LabelAmount" xml:space="preserve">
+    <value>Bedrag</value>
+    <comment>Amount</comment>
+  </data>
+  <data name="LabelAnnualSalary" xml:space="preserve">
+    <value>Jaarsalaris</value>
+    <comment>Annual Salary</comment>
+  </data>
+  <data name="LabelApplicantGrade" xml:space="preserve">
+    <value>Leerjaar sollicitant</value>
+    <comment>Applicant Grade</comment>
+  </data>
+  <data name="LabelApplicationDate" xml:space="preserve">
+    <value>Datum sollicitatie</value>
+    <comment>Application Date</comment>
+  </data>
+  <data name="LabelApplicationEmail" xml:space="preserve">
+    <value>Sollicitatiemail</value>
+    <comment>Application email</comment>
+  </data>
+  <data name="LabelApplicationEmailAddress" xml:space="preserve">
+    <value>E-mailadres sollicitatie</value>
+    <comment>Application Email Address</comment>
+  </data>
+  <data name="LabelApplicationManager" xml:space="preserve">
+    <value>Sollicitatiemanager</value>
+    <comment>Application Manager</comment>
+  </data>
+  <data name="LabelApplicationMethod" xml:space="preserve">
+    <value>Sollicitatiemethode</value>
+    <comment>Application Method</comment>
+  </data>
+  <data name="LabelApplications" xml:space="preserve">
+    <value>Sollicitaties</value>
+    <comment>Applications</comment>
+  </data>
+  <data name="LabelApplicationStatus" xml:space="preserve">
+    <value>Status sollicitatie</value>
+    <comment>Application Status</comment>
+  </data>
+  <data name="LabelApplicationURL" xml:space="preserve">
+    <value>URL sollicitatie</value>
+    <comment>Application URL</comment>
+  </data>
+  <data name="LabelApplied" xml:space="preserve">
+    <value>Gesolliciteerd</value>
+    <comment>Applied</comment>
+  </data>
+  <data name="LabelApply" xml:space="preserve">
+    <value>Solliciteren</value>
+    <comment>Apply</comment>
+  </data>
+  <data name="LabelApplyFor" xml:space="preserve">
+    <value>Solliciteren op</value>
+    <comment>Apply For</comment>
+  </data>
+  <data name="LabelApplyForPosition" xml:space="preserve">
+    <value>Solliciteer naar functie</value>
+    <comment>Apply for position</comment>
+  </data>
+  <data name="LabelApplyWith" xml:space="preserve">
+    <value>Solliciteer met</value>
+    <comment>Apply with</comment>
+  </data>
+  <data name="LabelApr" xml:space="preserve">
+    <value>April</value>
+    <comment>April</comment>
+  </data>
+  <data name="LabelArchivedJobs" xml:space="preserve">
+    <value>Gearchiveerde vacatures</value>
+    <comment>Archived Jobs</comment>
+  </data>
+  <data name="LabelArea" xml:space="preserve">
+    <value>Regio</value>
+    <comment>Area</comment>
+  </data>
+  <data name="LabelAreaIDs" xml:space="preserve">
+    <value>Regio IDs</value>
+    <comment>Area IDs</comment>
+  </data>
+  <data name="LabelAreaRequired" xml:space="preserve">
+    <value>Regio is vereist</value>
+    <comment>Area is required</comment>
+  </data>
+  <data name="LabelAssignedJobTo" xml:space="preserve">
+    <value>Ken vacature toe aan</value>
+    <comment>Assign Job To</comment>
+  </data>
+  <data name="LabelAssociatesDegree" xml:space="preserve">
+    <value>Associate Degree</value>
+    <comment>Associate Degree</comment>
+  </data>
+  <data name="LabelAttachCoverLetter" xml:space="preserve">
+    <value>Begeleidende brief bijvoegen</value>
+    <comment>Attach Cover Letter</comment>
+  </data>
+  <data name="LabelAttachResume" xml:space="preserve">
+    <value>CV bijvoegen</value>
+    <comment>Attach Resume</comment>
+  </data>
+  <data name="LabelAttemptFailed" xml:space="preserve">
+    <value>De ingevoerde inloggegevens zijn ongeldig. Account zal gedurende 60 minuteren worden geblokkeerd na {0} meer mislukte inlogpoging(en).</value>
+    <comment>The supplied credentials are invalid. Account will be locked for 60 minutes after {0} more failed login attempt/s.</comment>
+  </data>
+  <data name="LabelAug" xml:space="preserve">
+    <value>Augustus</value>
+    <comment>August</comment>
+  </data>
+  <data name="LabelAuthor" xml:space="preserve">
+    <value>Auteur</value>
+    <comment>Author</comment>
+  </data>
+  <data name="LabelAuthority" xml:space="preserve">
+    <value>Autoriteit</value>
+    <comment>Authority</comment>
+  </data>
+  <data name="LabelAvailabilityDate" xml:space="preserve">
+    <value>Datum beschikbaarheid</value>
+    <comment>Availability Date</comment>
+  </data>
+  <data name="LabelAvailabilityDateFrom" xml:space="preserve">
+    <value>Datum beschikbaarheid vanaf</value>
+    <comment>Availability Date From</comment>
+  </data>
+  <data name="LabelAvailableFrom" xml:space="preserve">
+    <value>Beschikbaar vanaf</value>
+    <comment>Available From</comment>
+  </data>
+  <data name="LabelAvailableStatus" xml:space="preserve">
+    <value>Status beschikbaarheid</value>
+    <comment>Availability Status</comment>
+  </data>
+  <data name="LabelAZ" xml:space="preserve">
+    <value>A - Z</value>
+    <comment>A - Z</comment>
+  </data>
+  <data name="LabelBachelorsDegree" xml:space="preserve">
+    <value>Bachelor Degree</value>
+    <comment>Bachelor Degree</comment>
+  </data>
+  <data name="LabelBackToJob" xml:space="preserve">
+    <value>Terug naar vacature</value>
+    <comment>Back to Job</comment>
+  </data>
+  <data name="LabelBeginner" xml:space="preserve">
+    <value>Beginner</value>
+    <comment>Beginner</comment>
+  </data>
+  <data name="LabelBelow" xml:space="preserve">
+    <value>hieronder</value>
+    <comment>below</comment>
+  </data>
+  <data name="LabelBelowListSavedJobs" xml:space="preserve">
+    <value>Hieronder is een lijst van uw opgeslagen vacatures</value>
+    <comment>Below is a list of your saved jobs</comment>
+  </data>
+  <data name="LabelBilled" xml:space="preserve">
+    <value>In rekening gebracht</value>
+    <comment>Billed</comment>
+  </data>
+  <data name="LabelBreadcrumbs" xml:space="preserve">
+    <value>Uw pad</value>
+    <comment>Your Path</comment>
+  </data>
+  <data name="LabelBrowse" xml:space="preserve">
+    <value>Browsen</value>
+    <comment>Browse</comment>
+  </data>
+  <data name="LabelBtnFinish" xml:space="preserve">
+    <value>Afsluiten</value>
+    <comment>Finish</comment>
+  </data>
+  <data name="LabelBtnPrevious" xml:space="preserve">
+    <value>Vorige</value>
+    <comment>Previous</comment>
+  </data>
+  <data name="LabelBtnSaveContinue" xml:space="preserve">
+    <value>Opslaan &amp;amp; Verdergaan</value>
+    <comment>Save &amp; Continue</comment>
+  </data>
+  <data name="LabelBulletPoint1" xml:space="preserve">
+    <value>Bulletpoint 1</value>
+    <comment>Bullet Point  1</comment>
+  </data>
+  <data name="LabelBulletPoint2" xml:space="preserve">
+    <value>Bulletpoint 2</value>
+    <comment>Bullet Point  2</comment>
+  </data>
+  <data name="LabelBulletPoint3" xml:space="preserve">
+    <value>Bulletpoint 3</value>
+    <comment>Bullet Point  3</comment>
+  </data>
+  <data name="LabelBusinessName" xml:space="preserve">
+    <value>Bedrijfsnaam</value>
+    <comment>Business Name</comment>
+  </data>
+  <data name="LabelBusinessNumber" xml:space="preserve">
+    <value>Bedrijfsnummer</value>
+    <comment>Business Number</comment>
+  </data>
+  <data name="LabelBusinessType" xml:space="preserve">
+    <value>Bedrijfstype</value>
+    <comment>Business Type</comment>
+  </data>
+  <data name="LabelBusinessTypeRequired" xml:space="preserve">
+    <value>Bedrijfstype is vereist</value>
+    <comment>Business Type is required</comment>
+  </data>
+  <data name="LabelCancel" xml:space="preserve">
+    <value>Annuleren</value>
+    <comment>Cancel</comment>
+  </data>
+  <data name="LabelCandidate" xml:space="preserve">
+    <value>Kandidaat</value>
+    <comment>Candidate</comment>
+  </data>
+  <data name="LabelCandidatesRight" xml:space="preserve">
+    <value>Kandidaten dienen recht op arbeid te hebben in dit land</value>
+    <comment>Candidates must have the right to work in this country</comment>
+  </data>
+  <data name="LabelCaptcha" xml:space="preserve">
+    <value>Captcha</value>
+    <comment>Captcha</comment>
+  </data>
+  <data name="LabelCaptchaRequired" xml:space="preserve">
+    <value>Vul de captcha in</value>
+    <comment>Please complete the captcha</comment>
+  </data>
+  <data name="LabelCartEmpty" xml:space="preserve">
+    <value>U hebt momenteel geen producten geselecteerd voor de kassa</value>
+    <comment>You currently have no products selected to checkout</comment>
+  </data>
+  <data name="LabelCategories" xml:space="preserve">
+    <value>Categorieën</value>
+    <comment>Categories</comment>
+  </data>
+  <data name="LabelCertAndMembership" xml:space="preserve">
+    <value>Certificaten &amp;amp; Lidmaatschappen</value>
+    <comment>Certs &amp;amp; Memberships</comment>
+  </data>
+  <data name="LabelCertificateDoesNotExpire" xml:space="preserve">
+    <value>Certificaat/Lidmaatschap vervalt niet</value>
+    <comment>Certificate/Membership Does Not Expire</comment>
+  </data>
+  <data name="LabelCertificateMembershipNumber" xml:space="preserve">
+    <value>Certificaat/Lidmaatschapnr.</value>
+    <comment>Certificate/Membership No.</comment>
+  </data>
+  <data name="LabelCertificationsAndMemberships" xml:space="preserve">
+    <value>Certificaties &amp;amp; Lidmaatschappen</value>
+    <comment>Certifications &amp;amp; Memberships</comment>
+  </data>
+  <data name="LabelCertificationURL" xml:space="preserve">
+    <value>Certificatie URL</value>
+    <comment>Certification URL</comment>
+  </data>
+  <data name="LabelChairmanOfABoard" xml:space="preserve">
+    <value>Voorzitter van een raad van bestuur</value>
+    <comment>Chairman of a board</comment>
+  </data>
+  <data name="LabelChange" xml:space="preserve">
+    <value>Wijzigen</value>
+    <comment>Change</comment>
+  </data>
+  <data name="LabelChangeEmailContactAdmin" xml:space="preserve">
+    <value>Neem voor wijzigen e-mailadres contact op met beheerder</value>
+    <comment>To change email address, please contact administrator</comment>
+  </data>
+  <data name="LabelChangePwd" xml:space="preserve">
+    <value>Wachtwoord wijzigen</value>
+    <comment>Change Password</comment>
+  </data>
+  <data name="LabelCheckOut" xml:space="preserve">
+    <value>Kassa</value>
+    <comment>Check out</comment>
+  </data>
+  <data name="LabelChooseCover" xml:space="preserve">
+    <value>Kies een begeleidende brief</value>
+    <comment>Please choose a cover letter</comment>
+  </data>
+  <data name="LabelChooseOne" xml:space="preserve">
+    <value>Kies er een</value>
+    <comment>Choose One</comment>
+  </data>
+  <data name="LabelChooseResume" xml:space="preserve">
+    <value>Kies een cv</value>
+    <comment>Please choose a resume</comment>
+  </data>
+  <data name="LabelCityTown" xml:space="preserve">
+    <value>Stad/gemeente</value>
+    <comment>City / Town</comment>
+  </data>
+  <data name="LabelClassification" xml:space="preserve">
+    <value>Classificatie</value>
+    <comment>Classification</comment>
+  </data>
+  <data name="LabelClassificationAndSubClassification" xml:space="preserve">
+    <value>Classificatie / sub-classificatie</value>
+    <comment>Classification / Sub Classification</comment>
+  </data>
+  <data name="LabelClassifications" xml:space="preserve">
+    <value>Classificaties</value>
+    <comment>Classifications</comment>
+  </data>
+  <data name="LabelClassificationSubClassification" xml:space="preserve">
+    <value>Classificatie / sub-classificatie</value>
+    <comment>Classification / SubClassification</comment>
+  </data>
+  <data name="LabelClear" xml:space="preserve">
+    <value>Wissen</value>
+    <comment>Clear</comment>
+  </data>
+  <data name="LabelClick" xml:space="preserve">
+    <value>Klik</value>
+    <comment>Click</comment>
+  </data>
+  <data name="LabelClickHere" xml:space="preserve">
+    <value>Klik hier</value>
+    <comment>click here</comment>
+  </data>
+  <data name="LabelClickToGenerate" xml:space="preserve">
+    <value>klik om het volgende te genereren…</value>
+    <comment>click to generate ...</comment>
+  </data>
+  <data name="LabelCloseMyAccount" xml:space="preserve">
+    <value>Sluit mijn account</value>
+    <comment>Close My Account</comment>
+  </data>
+  <data name="LabelColleague" xml:space="preserve">
+    <value>Colleaga</value>
+    <comment>Colleague</comment>
+  </data>
+  <data name="LabelComments" xml:space="preserve">
+    <value>Opmerkingen</value>
+    <comment>Comments</comment>
+  </data>
+  <data name="LabelCompany" xml:space="preserve">
+    <value>Bedrijf</value>
+    <comment>Company</comment>
+  </data>
+  <data name="LabelCompanyDetails" xml:space="preserve">
+    <value>Bedrijfsgegevens</value>
+    <comment>Company Details</comment>
+  </data>
+  <data name="LabelCompanyLogo" xml:space="preserve">
+    <value>Bedrijfslogo</value>
+    <comment>Company logo</comment>
+  </data>
+  <data name="LabelCompanyName" xml:space="preserve">
+    <value>Bedrijfsnaam</value>
+    <comment>Company Name</comment>
+  </data>
+  <data name="LabelCompanyNameRequired" xml:space="preserve">
+    <value>Bedrijfsnaam is vereist</value>
+    <comment>Company Name is required</comment>
+  </data>
+  <data name="LabelCompanyProfile" xml:space="preserve">
+    <value>Bedrijfsprofiel</value>
+    <comment>Company Profile</comment>
+  </data>
+  <data name="LabelCompanySecretary" xml:space="preserve">
+    <value>Bedrijfssecretariaat</value>
+    <comment>Company Secretary</comment>
+  </data>
+  <data name="LabelCompletedApplication" xml:space="preserve">
+    <value>Voltooide sollicitatie</value>
+    <comment>Completed Application</comment>
+  </data>
+  <data name="labelCompleteOrder" xml:space="preserve">
+    <value>Voltooi bestelling</value>
+    <comment>Complete Order</comment>
+  </data>
+  <data name="LabelConfirmDeleteRecord" xml:space="preserve">
+    <value>Weet u zeker dat u dit dossier wilt verwijderen?</value>
+    <comment>Are you sure you want to delete this record?</comment>
+  </data>
+  <data name="LabelConfirmEmail" xml:space="preserve">
+    <value>E-mailadres bevestigen</value>
+    <comment>Confirm Email</comment>
+  </data>
+  <data name="LabelConfirmEmailNotMatch" xml:space="preserve">
+    <value>E-mailadressen komen niet overeen</value>
+    <comment>Confirm email not match</comment>
+  </data>
+  <data name="LabelConfirmEmailPage" xml:space="preserve">
+    <value>E-mail bevestigen</value>
+    <comment>Confirm email</comment>
+  </data>
+  <data name="LabelConfirmEmailRequired" xml:space="preserve">
+    <value>E-mailbevestiging is vereist</value>
+    <comment>Confirm email is required</comment>
+  </data>
+  <data name="LabelConfirmNewPassword" xml:space="preserve">
+    <value>Nieuw wachtwoord bevestigen</value>
+    <comment>Confirm New Password</comment>
+  </data>
+  <data name="LabelConfirmPassword" xml:space="preserve">
+    <value>Wachtwoord bevestigen</value>
+    <comment>Confirm password</comment>
+  </data>
+  <data name="LabelConfirmRepost" xml:space="preserve">
+    <value>U staat op het punt de geselecteerde vacatures opnieuw te plaatsen. Bevestig of u opnieuw wilt plaatsen</value>
+    <comment>You are about to repost selected jobs(s), please confirm you want to repost</comment>
+  </data>
+  <data name="LabelConfirmResetPassword" xml:space="preserve">
+    <value>Bevestig gereset wachtwoord</value>
+    <comment>Confirm Reset Password</comment>
+  </data>
+  <data name="LabelContactDetails" xml:space="preserve">
+    <value>Contactgegevens</value>
+    <comment>Contact Details</comment>
+  </data>
+  <data name="LabelContactEmail" xml:space="preserve">
+    <value>E-mail</value>
+    <comment>Email</comment>
+  </data>
+  <data name="LabelContactInformation" xml:space="preserve">
+    <value>Contactinformatie</value>
+    <comment>Contact Information</comment>
+  </data>
+  <data name="LabelContactNumber" xml:space="preserve">
+    <value>Contactnummer</value>
+    <comment>Contact Number</comment>
+  </data>
+  <data name="LabelContent" xml:space="preserve">
+    <value>Inhoud</value>
+    <comment>Content</comment>
+  </data>
+  <data name="LabelContinue" xml:space="preserve">
+    <value>Verdergaan</value>
+    <comment>Continue</comment>
+  </data>
+  <data name="LabelContinueApplication" xml:space="preserve">
+    <value>Verdergaan met de sollicitatie</value>
+    <comment>Continue Application</comment>
+  </data>
+  <data name="LabelCopyJob" xml:space="preserve">
+    <value>Kopiëren</value>
+    <comment>Copy</comment>
+  </data>
+  <data name="LabelCopyJobConfirm" xml:space="preserve">
+    <value>Weet u zeker dat u deze vacature wilt kopiëren?</value>
+    <comment>Are you sure you want to copy this job?</comment>
+  </data>
+  <data name="LabelCountry" xml:space="preserve">
+    <value>Land</value>
+    <comment>Country</comment>
+  </data>
+  <data name="LabelCountryLocationArea" xml:space="preserve">
+    <value>Land / Locatie / Regio</value>
+    <comment>Country / Location / Area</comment>
+  </data>
+  <data name="LabelCountryMandatory" xml:space="preserve">
+    <value>Land is verplicht.</value>
+    <comment>Country is Mandatory</comment>
+  </data>
+  <data name="LabelCountryRequired" xml:space="preserve">
+    <value>Land is vereist</value>
+    <comment>Country is required</comment>
+  </data>
+  <data name="LabelCoverLetter" xml:space="preserve">
+    <value>Begeleidende brief</value>
+    <comment>Cover Letter</comment>
+  </data>
+  <data name="LabelCoverLetterWriteYourOwn" xml:space="preserve">
+    <value>Of schrijf uw eigen</value>
+    <comment>Or Write Your Own</comment>
+  </data>
+  <data name="LabelCreateAlertCheckBoxes" xml:space="preserve">
+    <value>Aanvinkvakjes</value>
+    <comment>Checkboxes</comment>
+  </data>
+  <data name="LabelCreateAsAlert" xml:space="preserve">
+    <value>Als melding aanmaken</value>
+    <comment>Create as alert</comment>
+  </data>
+  <data name="LabelCreated" xml:space="preserve">
+    <value>Aangemaakt</value>
+    <comment>Created</comment>
+  </data>
+  <data name="LabelCreateFavouriteSearch" xml:space="preserve">
+    <value>Favoriete zoekopdracht aanmaken</value>
+    <comment>Create Favourite Search</comment>
+  </data>
+  <data name="LabelCreateJob" xml:space="preserve">
+    <value>Vacature aanmaken</value>
+    <comment>Create Job</comment>
+  </data>
+  <data name="LabelCreateJobAlert" xml:space="preserve">
+    <value>Vacaturemelding aanmaken</value>
+    <comment>Create Job Alert</comment>
+  </data>
+  <data name="LabelCreateJobAlertNameIsMissing" xml:space="preserve">
+    <value>Naam voor vacaturemelding aanmaken niet aanwezig</value>
+    <comment>Create Job Alert Name is missing</comment>
+  </data>
+  <data name="LabelCreditCard" xml:space="preserve">
+    <value>Creditcard</value>
+    <comment>Credit Card</comment>
+  </data>
+  <data name="LabelCreditCardName" xml:space="preserve">
+    <value>Naam op kaart</value>
+    <comment>Name on Card</comment>
+  </data>
+  <data name="LabelCreditCardNumber" xml:space="preserve">
+    <value>Kaartnummer</value>
+    <comment>Card Number</comment>
+  </data>
+  <data name="LabelCreditCardPayment" xml:space="preserve">
+    <value>Betaling per creditcard</value>
+    <comment>Payment by Credit Card</comment>
+  </data>
+  <data name="LabelCSC" xml:space="preserve">
+    <value>CSC-code</value>
+    <comment>CSC Code</comment>
+  </data>
+  <data name="LabelCurrencyBaseText" xml:space="preserve">
+    <value>Valuta is gebaseerd in</value>
+    <comment>Currency is based in</comment>
+  </data>
+  <data name="LabelCurrent" xml:space="preserve">
+    <value>Huidig</value>
+    <comment>Current</comment>
+  </data>
+  <data name="LabelCurrentJobs" xml:space="preserve">
+    <value>Huidige vacatures</value>
+    <comment>Current Jobs</comment>
+  </data>
+  <data name="LabelCurrentJobStatistics" xml:space="preserve">
+    <value>Huidige vacaturestatistieken</value>
+    <comment>Current Job Statistics</comment>
+  </data>
+  <data name="LabelCurrentLogin" xml:space="preserve">
+    <value>U bent momenteel ingelogd als</value>
+    <comment>Currently Login as</comment>
+  </data>
+  <data name="LabelCurrentPassword" xml:space="preserve">
+    <value>Huidig wachtwoord</value>
+    <comment>Current Password</comment>
+  </data>
+  <data name="LabelCurrentStatus" xml:space="preserve">
+    <value>Huidige status</value>
+    <comment>Current Status</comment>
+  </data>
+  <data name="LabelCustomCoverLetter" xml:space="preserve">
+    <value>Aangepaste begeleidende brief</value>
+    <comment>Custom Cover Letter</comment>
+  </data>
+  <data name="LabelCVBuilder" xml:space="preserve">
+    <value>Cv-opsteller</value>
+    <comment>CV Builder</comment>
+  </data>
+  <data name="LabelCVV" xml:space="preserve">
+    <value>CVV</value>
+    <comment>CVV</comment>
+  </data>
+  <data name="LabelDashboard" xml:space="preserve">
+    <value>Dashboard</value>
+    <comment>Dashboard</comment>
+  </data>
+  <data name="LabelDateDisplayDD" xml:space="preserve">
+    <value>DD</value>
+    <comment>DD</comment>
+  </data>
+  <data name="LabelDateDisplayMM" xml:space="preserve">
+    <value>MM</value>
+    <comment>MM</comment>
+  </data>
+  <data name="LabelDateDisplayYYYY" xml:space="preserve">
+    <value>JJJJ</value>
+    <comment>YYYY</comment>
+  </data>
+  <data name="LabelDateEntered" xml:space="preserve">
+    <value>Datum invoer</value>
+    <comment>Date Entered</comment>
+  </data>
+  <data name="LabelDateModified" xml:space="preserve">
+    <value>Datum gewijzigd</value>
+    <comment>Date modified</comment>
+  </data>
+  <data name="LabelDateOfBirth" xml:space="preserve">
+    <value>Geboortedatum</value>
+    <comment>Date of birth</comment>
+  </data>
+  <data name="LabelDatePosted" xml:space="preserve">
+    <value>Datum plaatsing</value>
+    <comment>Date Posted</comment>
+  </data>
+  <data name="LabelDatePublished" xml:space="preserve">
+    <value>Datum gepubliceerd</value>
+    <comment>Date published</comment>
+  </data>
+  <data name="LabelDay" xml:space="preserve">
+    <value>Dag</value>
+    <comment>Day</comment>
+  </data>
+  <data name="LabelDaysPosted" xml:space="preserve">
+    <value>Dagen geplaatst</value>
+    <comment>Days Posted</comment>
+  </data>
+  <data name="LabelDaysTillExpiry" xml:space="preserve">
+    <value>Dagen tot vervaldatum</value>
+    <comment>Days Till Expiry</comment>
+  </data>
+  <data name="LabelDec" xml:space="preserve">
+    <value>December</value>
+    <comment>December</comment>
+  </data>
+  <data name="LabelDecimalOnly" xml:space="preserve">
+    <value>Accepteert alleen decimalen</value>
+    <comment>Accepts decimals only</comment>
+  </data>
+  <data name="LabelDeclinedJobs" xml:space="preserve">
+    <value>Afgewezen vacatures</value>
+    <comment>Declined Jobs</comment>
+  </data>
+  <data name="LabelDefault" xml:space="preserve">
+    <value>Standaard</value>
+    <comment>Default</comment>
+  </data>
+  <data name="LabelDelete" xml:space="preserve">
+    <value>Verwijderen</value>
+    <comment>Delete</comment>
+  </data>
+  <data name="LabelDescription" xml:space="preserve">
+    <value>Omschrijving</value>
+    <comment>Description</comment>
+  </data>
+  <data name="LabelDescriptionHere" xml:space="preserve">
+    <value>Omschrijving hier...</value>
+    <comment>Description Here...</comment>
+  </data>
+  <data name="LabelDesiredLocation" xml:space="preserve">
+    <value>Gewenste stad</value>
+    <comment>Desired City</comment>
+  </data>
+  <data name="LabelDesiredPay" xml:space="preserve">
+    <value>Gewenst salaris</value>
+    <comment>Desired Pay</comment>
+  </data>
+  <data name="LabelDesiredRegion" xml:space="preserve">
+    <value>Gewenste regio</value>
+    <comment>Desired Region</comment>
+  </data>
+  <data name="LabelDetails" xml:space="preserve">
+    <value>Details</value>
+    <comment>Details</comment>
+  </data>
+  <data name="LabelDiploma" xml:space="preserve">
+    <value>Diploma</value>
+    <comment>Diploma</comment>
+  </data>
+  <data name="LabelDirectorship" xml:space="preserve">
+    <value>Directeurschap  </value>
+    <comment>Directorship</comment>
+  </data>
+  <data name="LabelDirectReport" xml:space="preserve">
+    <value>Direct rapport</value>
+    <comment>Direct Report</comment>
+  </data>
+  <data name="LabelDisplaySalary" xml:space="preserve">
+    <value>Salaris tonen</value>
+    <comment>Display salary</comment>
+  </data>
+  <data name="LabelDocRestriction" xml:space="preserve">
+    <value>Alleen doc, docx, txt, pdf</value>
+    <comment>doc, docx, txt, pdf only</comment>
+  </data>
+  <data name="LabelDoctorOfMedicine" xml:space="preserve">
+    <value>Doctor in de Geneeskunde</value>
+    <comment>Doctor of Medicine</comment>
+  </data>
+  <data name="LabelDoctorOfPhilosophy" xml:space="preserve">
+    <value>Doctor in de Filosofie</value>
+    <comment>Doctor of Philosophy</comment>
+  </data>
+  <data name="LabelDocumentLink" xml:space="preserve">
+    <value>Link naar document</value>
+    <comment>Document Link</comment>
+  </data>
+  <data name="LabelDocumentName" xml:space="preserve">
+    <value>Naam document</value>
+    <comment>Document Name</comment>
+  </data>
+  <data name="LabelDocumentTitle" xml:space="preserve">
+    <value>Titel document</value>
+    <comment>Document Title</comment>
+  </data>
+  <data name="LabelDownload" xml:space="preserve">
+    <value>Downloaden</value>
+    <comment>Download</comment>
+  </data>
+  <data name="LabelDownloadApplicantsInExcel" xml:space="preserve">
+    <value>Download sollicitanten in Excel</value>
+    <comment>Download Applicants in Excel</comment>
+  </data>
+  <data name="LabelDownloadSelectedApplicants" xml:space="preserve">
+    <value>Download geselecteerde sollicitanten</value>
+    <comment>Download Selected Applicants</comment>
+  </data>
+  <data name="LabelDr" xml:space="preserve">
+    <value>Dr.</value>
+    <comment>Dr</comment>
+  </data>
+  <data name="LabelDraftDate" xml:space="preserve">
+    <value>Datum concept</value>
+    <comment>Draft Date</comment>
+  </data>
+  <data name="LabelDraftJobs" xml:space="preserve">
+    <value>Conceptvacatures</value>
+    <comment>Draft Jobs</comment>
+  </data>
+  <data name="LabelDuration" xml:space="preserve">
+    <value>Duur</value>
+    <comment>Duration</comment>
+  </data>
+  <data name="LabelEdit" xml:space="preserve">
+    <value>Bewerken</value>
+    <comment>Edit</comment>
+  </data>
+  <data name="LabelEditARolePreference" xml:space="preserve">
+    <value>Bewerk een rol voorkeuren</value>
+    <comment>Role Preferences</comment>
+  </data>
+  <data name="LabelEditCertificationsMembershipName" xml:space="preserve">
+    <value>Certificaat/Lidmaatschap naam</value>
+    <comment>Certificate / Membership Name</comment>
+  </data>
+  <data name="LabelEditCV" xml:space="preserve">
+    <value>cv bewerken</value>
+    <comment>Edit CV</comment>
+  </data>
+  <data name="LabelEditDetails" xml:space="preserve">
+    <value>Gegevens bewerken</value>
+    <comment>Edit Details</comment>
+  </data>
+  <data name="LabelEditEntry" xml:space="preserve">
+    <value>Invoer bewerken</value>
+    <comment>Edit Entry</comment>
+  </data>
+  <data name="LabelEditFavouriteSearch" xml:space="preserve">
+    <value>Favoriete zoekopdracht bewerken</value>
+    <comment>Edit Favourite Search</comment>
+  </data>
+  <data name="LabelEditJobAlert" xml:space="preserve">
+    <value>Vacaturemelding bewerken</value>
+    <comment>Edit Job Alert</comment>
+  </data>
+  <data name="LabelEditJobApplication" xml:space="preserve">
+    <value>Sollicitatie bewerken</value>
+    <comment>Edit Job Application</comment>
+  </data>
+  <data name="LabelEditProfile" xml:space="preserve">
+    <value>Profiel bewerken</value>
+    <comment>Edit Profile</comment>
+  </data>
+  <data name="LabelEducation" xml:space="preserve">
+    <value>Opleiding</value>
+    <comment>Education</comment>
+  </data>
+  <data name="LabelEGAccountingJobInSydney" xml:space="preserve">
+    <value>b.v. Boekhoudkundig werk zoeken in Sydney</value>
+    <comment>e.g. Accounting job search in Sydney</comment>
+  </data>
+  <data name="LabelElementaryProficiency" xml:space="preserve">
+    <value>Basisvaardigheid</value>
+    <comment>Elementary proficiency</comment>
+  </data>
+  <data name="LabelEligibleToWorkIn" xml:space="preserve">
+    <value>Komt in aanmerking om te werken in</value>
+    <comment>Eligible to work in</comment>
+  </data>
+  <data name="LabelEmail" xml:space="preserve">
+    <value>E-mailadres</value>
+    <comment>Email</comment>
+  </data>
+  <data name="LabelEmailAddress" xml:space="preserve">
+    <value>E-mailadres</value>
+    <comment>EmailAddress</comment>
+  </data>
+  <data name="LabelEmailAddressExist" xml:space="preserve">
+    <value>E-mailadres bestaat al, &lt;a href="/member/forgetpassword.aspx"&gt;klik hier&lt;/a&gt; om wachtwoord op te halen</value>
+    <comment>Email Address already exists, &lt;a href="/member/forgetpassword.aspx"&gt;click here&lt;/a&gt; to retrieve password</comment>
+  </data>
+  <data name="LabelEmailAddressRequired" xml:space="preserve">
+    <value>E-mailadres is vereist</value>
+    <comment>Email Address is required</comment>
+  </data>
+  <data name="LabelEmailAlreadyExist" xml:space="preserve">
+    <value>E-mailadres bestaat al. Ga door naar &lt;a href="/member/login.aspx"&gt;login&lt;/a&gt;.</value>
+    <comment>Email already exists. Please proceed to &lt;a href="/member/login.aspx"&gt;login&lt;/a&gt;</comment>
+  </data>
+  <data name="LabelEmailExist" xml:space="preserve">
+    <value>E-mailadres bestaat al</value>
+    <comment>Email already exists</comment>
+  </data>
+  <data name="LabelEmailFormat" xml:space="preserve">
+    <value>Formaat e-mail</value>
+    <comment>Email Format</comment>
+  </data>
+  <data name="LabelEmailFriend" xml:space="preserve">
+    <value>E-mail vriend</value>
+    <comment>Email Friend</comment>
+  </data>
+  <data name="LabelEmailFriendSuccess" xml:space="preserve">
+    <value>De link is naar de opgegeven e-mailadressen verstuurd. Selecteer hieronder de knop Terug om naar de informatie over de rol terug te keren.</value>
+    <comment>The link has been sent to the email addresses provided. Select the Back button below to return to the role details.</comment>
+  </data>
+  <data name="LabelEmailInvalid" xml:space="preserve">
+    <value>E-mailadres in ongeldig</value>
+    <comment>Email is invalid.</comment>
+  </data>
+  <data name="LabelEmailJobToAFriend" xml:space="preserve">
+    <value>Klik hier om deze vacature naar een vriend te mailen</value>
+    <comment>Click here to email this job to a friend</comment>
+  </data>
+  <data name="LabelEmailMandatory" xml:space="preserve">
+    <value>E-mailadres is verplicht</value>
+    <comment>Email is mandatory</comment>
+  </data>
+  <data name="LabelEmailMe" xml:space="preserve">
+    <value>E-mail mij</value>
+    <comment>Email Me</comment>
+  </data>
+  <data name="LabelEmailMeSelectedApplicants" xml:space="preserve">
+    <value>E-mail mij geselecteerde sollicitant</value>
+    <comment>Email Me Selected Applicant</comment>
+  </data>
+  <data name="LabelEmailRequired" xml:space="preserve">
+    <value>E-mailadres is vereist</value>
+    <comment>Email is required</comment>
+  </data>
+  <data name="LabelEmailSuccess" xml:space="preserve">
+    <value>Vacature {0} is naar uw e-mailadres verstuurd</value>
+    <comment>Email sent successfully</comment>
+  </data>
+  <data name="LabelEmalAddressNotMatch" xml:space="preserve">
+    <value>E-mailadres komt niet overeen</value>
+    <comment>Email Address does not match</comment>
+  </data>
+  <data name="LabelEnable" xml:space="preserve">
+    <value>Inschakelen</value>
+    <comment>Enable</comment>
+  </data>
+  <data name="LabelEnd" xml:space="preserve">
+    <value>Eind</value>
+    <comment>End</comment>
+  </data>
+  <data name="LabelEndDate" xml:space="preserve">
+    <value>Einddatum</value>
+    <comment>End Date</comment>
+  </data>
+  <data name="LabelEndDateError" xml:space="preserve">
+    <value>Begindatum mag niet later dan huidige datum of later dan einddatum zijn</value>
+    <comment>Start Date cannot be later than current date or later than End Date</comment>
+  </data>
+  <data name="LabelEnterCommaSeparated" xml:space="preserve">
+    <value>Zet komma's "," tussen invoer</value>
+    <comment>Please enter comma seperated ","</comment>
+  </data>
+  <data name="LabelEnterEmail" xml:space="preserve">
+    <value>E-mailadres</value>
+    <comment>Email</comment>
+  </data>
+  <data name="LabelEnterFirstName" xml:space="preserve">
+    <value>Voer uw voornaam in</value>
+    <comment>Enter your first name</comment>
+  </data>
+  <data name="LabelEnterKeywords" xml:space="preserve">
+    <value>Trefwoorden</value>
+    <comment>Enter Keywords</comment>
+  </data>
+  <data name="LabelEnterLanguage" xml:space="preserve">
+    <value>Voer taal in...</value>
+    <comment>Enter Language...</comment>
+  </data>
+  <data name="LabelEnterLastName" xml:space="preserve">
+    <value>Voer uw achternaam in</value>
+    <comment>Enter your last name</comment>
+  </data>
+  <data name="LabelEnterPassword" xml:space="preserve">
+    <value>Wachtwoord</value>
+    <comment>Password</comment>
+  </data>
+  <data name="LabelEnterPhoneNumber" xml:space="preserve">
+    <value>Voer telefoonnummer in</value>
+    <comment>Enter phone number</comment>
+  </data>
+  <data name="LabelEnterPromoCode" xml:space="preserve">
+    <value>Voer actiecode in</value>
+    <comment>Enter promo code</comment>
+  </data>
+  <data name="LabelErrorDuplicateRole" xml:space="preserve">
+    <value>Kan geen gedupliceerde rollen selecteren</value>
+    <comment>Cannot select duplicated Roles</comment>
+  </data>
+  <data name="LabelErrorFileExtension1MB" xml:space="preserve">
+    <value>Upload uw afbeelding als jpg, gif of png. Maximale bestandsgrootte is 1 MB en maximale breedte is 300 px.</value>
+    <comment>Please upload your image as jpg, gif or png format. Maximum file size of 1MB and maximum width of 300px.</comment>
+  </data>
+  <data name="LabelExpectedSalary" xml:space="preserve">
+    <value>Verwacht salaris</value>
+    <comment>Desired Pay / Expected Salary</comment>
+  </data>
+  <data name="LabelExperienceEnd" xml:space="preserve">
+    <value>Einde ervaring</value>
+    <comment>Experience End</comment>
+  </data>
+  <data name="LabelExperienceStart" xml:space="preserve">
+    <value>Begin ervaring</value>
+    <comment>Experience Start</comment>
+  </data>
+  <data name="LabelExpert" xml:space="preserve">
+    <value>Expert</value>
+    <comment>Expert</comment>
+  </data>
+  <data name="LabelExpire" xml:space="preserve">
+    <value>Verlopen</value>
+    <comment>Expire</comment>
+  </data>
+  <data name="LabelExpired" xml:space="preserve">
+    <value>Verlopen</value>
+    <comment>Expired</comment>
+  </data>
+  <data name="LabelExpiry" xml:space="preserve">
+    <value>Verlopen</value>
+    <comment>Expiry</comment>
+  </data>
+  <data name="LabelExpiryDate" xml:space="preserve">
+    <value>Vervaldatum</value>
+    <comment>Expiry Date</comment>
+  </data>
+  <data name="LabelExpiryMonth" xml:space="preserve">
+    <value>Vervalmaand</value>
+    <comment>Expiry Month</comment>
+  </data>
+  <data name="LabelExpiryYear" xml:space="preserve">
+    <value>Vervaljaar</value>
+    <comment>Expiry Year</comment>
+  </data>
+  <data name="LabelExternalJobApplication" xml:space="preserve">
+    <value>Externe sollicitatie</value>
+    <comment>External Job Application</comment>
+  </data>
+  <data name="LabelFailedToCreatedYouJobAlert" xml:space="preserve">
+    <value>Aanmaken van uw melding is mislukt</value>
+    <comment>Failed to created your alert</comment>
+  </data>
+  <data name="LabelFailedToSavedYourSearch" xml:space="preserve">
+    <value>Opslaan van uw zoekopdracht is mislukt</value>
+    <comment>Failed to saved your search</comment>
+  </data>
+  <data name="LabelFailedToSendEmail" xml:space="preserve">
+    <value>Versturen e-mail is mislukt</value>
+    <comment>Failed to send email</comment>
+  </data>
+  <data name="LabelFavouriteSearchCreateSuccess" xml:space="preserve">
+    <value>Aanmaken favoriete zoekopdracht is gelukt</value>
+    <comment>Favourite Search created successfully</comment>
+  </data>
+  <data name="LabelFavouriteSearches" xml:space="preserve">
+    <value>Favoriete zoekopdrachten</value>
+    <comment>Favourite Searches</comment>
+  </data>
+  <data name="LabelFavouriteSearchNameIsMissing" xml:space="preserve">
+    <value>Naam favoriete zoekopdracht niet aanwezig</value>
+    <comment>Favourite Search Name is missing</comment>
+  </data>
+  <data name="LabelFavouriteSearchSaveSuccess" xml:space="preserve">
+    <value>Opslaan favoriete zoekopdracht is gelukt</value>
+    <comment>Favourite Search saved successfully</comment>
+  </data>
+  <data name="LabelFavouriteThisSearch" xml:space="preserve">
+    <value>Maak deze zoekopdracht favoriet</value>
+    <comment>Favourite this search</comment>
+  </data>
+  <data name="LabelFax" xml:space="preserve">
+    <value>Fax</value>
+    <comment>Fax</comment>
+  </data>
+  <data name="LabelFeb" xml:space="preserve">
+    <value>Februari</value>
+    <comment>February</comment>
+  </data>
+  <data name="LabelFemale" xml:space="preserve">
+    <value>Vrouwelijk</value>
+    <comment>Female</comment>
+  </data>
+  <data name="LabelFiledUnder" xml:space="preserve">
+    <value>Gearchiveerd onder</value>
+    <comment>Filed under</comment>
+  </data>
+  <data name="LabelFileName" xml:space="preserve">
+    <value>Bestandsnaam</value>
+    <comment>File Name</comment>
+  </data>
+  <data name="LabelFileType" xml:space="preserve">
+    <value>Bestandstype</value>
+    <comment>File Type</comment>
+  </data>
+  <data name="LabelFileUpload" xml:space="preserve">
+    <value>Uploaden bestand</value>
+    <comment>File Upload</comment>
+  </data>
+  <data name="LabelFinish" xml:space="preserve">
+    <value>Beëindigen</value>
+    <comment>Finish</comment>
+  </data>
+  <data name="LabelFirstName" xml:space="preserve">
+    <value>Voornaam</value>
+    <comment>First name</comment>
+  </data>
+  <data name="LabelFirstNameLocalLanguage" xml:space="preserve">
+    <value>Voornaam (plaatselijke taal)</value>
+    <comment>First Name (Local language)</comment>
+  </data>
+  <data name="LabelFirstNameMandatory" xml:space="preserve">
+    <value>Voornaam is verplicht</value>
+    <comment>First name is mandatory.</comment>
+  </data>
+  <data name="LabelFirstnameRequired" xml:space="preserve">
+    <value>Voornaam is vereist</value>
+    <comment>First name is required</comment>
+  </data>
+  <data name="LabelForgetPassword" xml:space="preserve">
+    <value>Wachtwoord ophalen</value>
+    <comment>Retrieve Password</comment>
+  </data>
+  <data name="LabelForgotPassword" xml:space="preserve">
+    <value>Wachtwoord vergeten</value>
+    <comment>Forgot password</comment>
+  </data>
+  <data name="LabelForgottenPassword" xml:space="preserve">
+    <value>Vergeten wachtwoord</value>
+    <comment>Forgotten Password</comment>
+  </data>
+  <data name="LabelFormerEmployer" xml:space="preserve">
+    <value>Voormalige werkgever</value>
+    <comment>Former Employer</comment>
+  </data>
+  <data name="LabelFrom" xml:space="preserve">
+    <value>Vanaf</value>
+    <comment>From</comment>
+  </data>
+  <data name="LabelFromDate" xml:space="preserve">
+    <value>Datum vanaf</value>
+    <comment>From Date</comment>
+  </data>
+  <data name="LabelFromSalary" xml:space="preserve">
+    <value>Voer salaris in vanaf</value>
+    <comment>Enter From Salary</comment>
+  </data>
+  <data name="LabelFromTo" xml:space="preserve">
+    <value>Vanaf/tot</value>
+    <comment>From/To</comment>
+  </data>
+  <data name="LabelFullDescription" xml:space="preserve">
+    <value>Volledige beschrijving</value>
+    <comment>Full Description</comment>
+  </data>
+  <data name="LabelFullName" xml:space="preserve">
+    <value>Volledige naam</value>
+    <comment>Full name</comment>
+  </data>
+  <data name="LabelFullPermissionRequired" xml:space="preserve">
+    <value>Volledige toestemming is vereist</value>
+    <comment>Full permission is required</comment>
+  </data>
+  <data name="LabelFullProfessionalProficiency" xml:space="preserve">
+    <value>Volledige beroepsvaardigheid</value>
+    <comment>Full Professional proficiency</comment>
+  </data>
+  <data name="LabelFullRegistration" xml:space="preserve">
+    <value>Volledige registratie</value>
+    <comment>Full Registration</comment>
+  </data>
+  <data name="LabelGender" xml:space="preserve">
+    <value>Geslacht</value>
+    <comment>Gender</comment>
+  </data>
+  <data name="LabelGenerate" xml:space="preserve">
+    <value>Genereren</value>
+    <comment>Generate</comment>
+  </data>
+  <data name="LabelGoBackToSearchResults" xml:space="preserve">
+    <value>ga terug naar uw zoekresultaten.</value>
+    <comment>to go back to your search results.</comment>
+  </data>
+  <data name="LabelGST" xml:space="preserve">
+    <value>BTW</value>
+    <comment>GST</comment>
+  </data>
+  <data name="LabelHaventReceivedWelcomeEmail" xml:space="preserve">
+    <value>Geen welkomstmail ontvangen? Stuur hieronder opnieuw</value>
+    <comment>Haven't received welcome email? Resend below</comment>
+  </data>
+  <data name="LabelHeadline" xml:space="preserve">
+    <value>Kop</value>
+    <comment>Headline</comment>
+  </data>
+  <data name="LabelHere" xml:space="preserve">
+    <value>Hier</value>
+    <comment>Here</comment>
+  </data>
+  <data name="LabelHi" xml:space="preserve">
+    <value>Hoi</value>
+    <comment>Hi</comment>
+  </data>
+  <data name="LabelHistoricalJobStatistics" xml:space="preserve">
+    <value>Historische vacaturestatistieken</value>
+    <comment>Historical Job Statistics</comment>
+  </data>
+  <data name="LabelHotJob" xml:space="preserve">
+    <value>Populaire vacature</value>
+    <comment>Hot Job</comment>
+  </data>
+  <data name="LabelHourlySalary" xml:space="preserve">
+    <value>Salaris per uur</value>
+    <comment>Hourly Salary</comment>
+  </data>
+  <data name="LabelHowDoesMyFileCompare" xml:space="preserve">
+    <value>Met wat is mijn profiel te vergelijken?</value>
+    <comment>How does my profile compare?</comment>
+  </data>
+  <data name="LabelHowDoesMyProfileCompare" xml:space="preserve">
+    <value>Met wat is mijn profiel te vergelijken?</value>
+    <comment>How does my profile compare?</comment>
+  </data>
+  <data name="LabelHTML" xml:space="preserve">
+    <value>HTML</value>
+    <comment>HTML</comment>
+  </data>
+  <data name="LabelIndirectReport" xml:space="preserve">
+    <value>Indirect rapport</value>
+    <comment>Indirect Report</comment>
+  </data>
+  <data name="LabelIndustries" xml:space="preserve">
+    <value>Branches</value>
+    <comment>Industries</comment>
+  </data>
+  <data name="LabelInstitutionName" xml:space="preserve">
+    <value>Naam instituut</value>
+    <comment>Institution Name</comment>
+  </data>
+  <data name="LabelInterestedInThisJob" xml:space="preserve">
+    <value>Interesse in deze vacature?</value>
+    <comment>Interested in this job?</comment>
+  </data>
+  <data name="LabelInterestedInThisJob1" xml:space="preserve">
+    <value>Interesse in deze vacature?</value>
+    <comment>Interested in this job?</comment>
+  </data>
+  <data name="LabelIntermediate" xml:space="preserve">
+    <value>Tussenliggend</value>
+    <comment>Intermediate</comment>
+  </data>
+  <data name="LabelInterview" xml:space="preserve">
+    <value>Sollicitatiegesprek</value>
+    <comment>Interview</comment>
+  </data>
+  <data name="LabelInvalidDate" xml:space="preserve">
+    <value>Ongeldige datum</value>
+    <comment>Invalid Date</comment>
+  </data>
+  <data name="LabelInvalidDateRange" xml:space="preserve">
+    <value>Datum ligt buiten bereik.</value>
+    <comment>Date out of range.</comment>
+  </data>
+  <data name="LabelInvalidImage" xml:space="preserve">
+    <value>Ongeldig bestandstype. GIF, JPG en JPEG zijn de enige geldige  afbeeldingstypes die zijn toegestaan voor upload.</value>
+    <comment>Invalid file type. GIF, JPG and JPEG are the only valid images types allowed for upload.</comment>
+  </data>
+  <data name="LabelInvalidJobAlert" xml:space="preserve">
+    <value>Ongeldige vacaturemelding</value>
+    <comment>Invalid Job Alert</comment>
+  </data>
+  <data name="LabelInvalidURL" xml:space="preserve">
+    <value>Ongeldige URL</value>
+    <comment>Invalid URL</comment>
+  </data>
+  <data name="LabelIssueDate" xml:space="preserve">
+    <value>datum van uitgifte</value>
+    <comment>Issue Date</comment>
+  </data>
+  <data name="LabelItem" xml:space="preserve">
+    <value>Artikel</value>
+    <comment>Item</comment>
+  </data>
+  <data name="LabelJan" xml:space="preserve">
+    <value>Januari</value>
+    <comment>January</comment>
+  </data>
+  <data name="LabelJobAdOptions" xml:space="preserve">
+    <value>Personeelsadvertentie optie</value>
+    <comment>Job Advertisement Option</comment>
+  </data>
+  <data name="LabelJobAdvertisementOption" xml:space="preserve">
+    <value>Personeelsadvertentie optie</value>
+    <comment>Job Advertisement Option</comment>
+  </data>
+  <data name="LabelJobAlert" xml:space="preserve">
+    <value>Vacaturemelding</value>
+    <comment>Job Alert</comment>
+  </data>
+  <data name="LabelJobAlertCreateSuccess" xml:space="preserve">
+    <value>Er is een vacaturemelding aangemaakt</value>
+    <comment>A Job Alert has been created.</comment>
+  </data>
+  <data name="LabelJobAlertCriteria" xml:space="preserve">
+    <value>Criteria voor melding</value>
+    <comment>Job Alert Criteria</comment>
+  </data>
+  <data name="LabelJobAlertDetail" xml:space="preserve">
+    <value>Details melding</value>
+    <comment>Job Alert Detail</comment>
+  </data>
+  <data name="LabelJobAlertEditGUIDFailed" xml:space="preserve">
+    <value>Helaas is de link die u net probeerde verlopen.&lt;br /&gt;&lt;br /&gt;Het kan zijn omdat u eerder hebt geprobeerd deze link te bereiken, of uw beveiligingstoken is verlopen.&lt;br /&gt;&lt;br /&gt;Als u uw vacaturemeldingen wilt bekijken, meld u zich dan &lt;a href='/member/login.aspx'&gt;hier&lt;/a&gt;  aan.</value>
+    <comment>Job Alert Edit GUID Failed</comment>
+  </data>
+  <data name="LabelJobAlertName" xml:space="preserve">
+    <value>Naam vacaturemelding</value>
+    <comment>Job Alert Name</comment>
+  </data>
+  <data name="LabelJobAlertNo" xml:space="preserve">
+    <value>Nee, stuur mij geen dagelijkse vacaturemelding</value>
+    <comment>No, do not send me a Daily Job Alert</comment>
+  </data>
+  <data name="LabelJobAlertSaveSuccess" xml:space="preserve">
+    <value>Vacaturemelding met succes opgeslagen</value>
+    <comment>Job Alert saved successfully</comment>
+  </data>
+  <data name="LabelJobAlertUnsubscribeGUIDFailed" xml:space="preserve">
+    <value>Geachte gebruiker&lt;br /&gt;&lt;br /&gt;Het ziet ernaar uit dat u deze link eerder hebt gebruikt om u af te melden van uw vacaturemeldingen. Deze link kan slechts eenmaal worden gebruikt.</value>
+    <comment>Job Alert Unsubscribe GUID Failed</comment>
+  </data>
+  <data name="LabelJobAlertViewGUIDFailed" xml:space="preserve">
+    <value>Geachte gebruiker&lt;br /&gt;&lt;br /&gt;Het ziet ernaar uit dat u deze link eerder hebt gebruikt om uw vacaturemeldingen te bekijken. Deze link kan slechts eenmaal worden gebruikt.</value>
+    <comment>Job Alert View GUID Failed</comment>
+  </data>
+  <data name="LabelJobAlertYes" xml:space="preserve">
+    <value>Ja, stuur mij een dagelijkse vacaturemelding</value>
+    <comment>Yes, send me a Daily Job Alert</comment>
+  </data>
+  <data name="LabelJobApplication" xml:space="preserve">
+    <value>Sollicitatie</value>
+    <comment>Job Application</comment>
+  </data>
+  <data name="LabelJobApplicationDetail" xml:space="preserve">
+    <value>Sollicitatiedetail</value>
+    <comment>Job Application Detail</comment>
+  </data>
+  <data name="LabelJobApplicationDetails" xml:space="preserve">
+    <value>Sollicitatiedetails</value>
+    <comment>Job Application Details</comment>
+  </data>
+  <data name="LabelJobApplicationNote" xml:space="preserve">
+    <value>Sollicitatie opmerking</value>
+    <comment>Job Application Note</comment>
+  </data>
+  <data name="LabelJobApplied" xml:space="preserve">
+    <value>U hebt op deze vacature gesolliciteerd op</value>
+    <comment>You applied for this job on</comment>
+  </data>
+  <data name="LabelJobApplyFailed" xml:space="preserve">
+    <value>Indienen sollicitatie mislukt. Probeer het nog eens.</value>
+    <comment>Failed to submit job application. Please try again.</comment>
+  </data>
+  <data name="LabelJobAssignnedTo" xml:space="preserve">
+    <value>Vacature is toegekend op gebruikersnaam</value>
+    <comment>Job is assigend to username</comment>
+  </data>
+  <data name="LabelJobClassification" xml:space="preserve">
+    <value>Vacature classificatie</value>
+    <comment>Job Classification</comment>
+  </data>
+  <data name="LabelJobClassificationDetail" xml:space="preserve">
+    <value>Classificatiedetail vacature</value>
+    <comment>Job Classification Detail</comment>
+  </data>
+  <data name="LabelJobContactDetails" xml:space="preserve">
+    <value>Contactgegevens vacature</value>
+    <comment>Job Contact Details</comment>
+  </data>
+  <data name="LabelJobDescription" xml:space="preserve">
+    <value>Functieomschrijving</value>
+    <comment>Job Description</comment>
+  </data>
+  <data name="LabelJobExpired" xml:space="preserve">
+    <value>Vacature verlopen</value>
+    <comment>Job Expired</comment>
+  </data>
+  <data name="LabelJobExpiryNotification" xml:space="preserve">
+    <value>Kennisgeving verlopen vacature</value>
+    <comment>Job Expiry Notification</comment>
+  </data>
+  <data name="LabelJobFriendlyName" xml:space="preserve">
+    <value>Gebruiksvriendelijke naam vacature</value>
+    <comment>Job Friendly Name</comment>
+  </data>
+  <data name="LabelJobHaveApplied" xml:space="preserve">
+    <value>U hebt mogelijk op deze vacature gesolliciteerd op</value>
+    <comment>You might have applied for this job on</comment>
+  </data>
+  <data name="LabelJobID" xml:space="preserve">
+    <value>Vacature-ID</value>
+    <comment>Job ID</comment>
+  </data>
+  <data name="LabelJobIsArchived" xml:space="preserve">
+    <value>Deze vacature is gearchiveerd</value>
+    <comment>This job is archived</comment>
+  </data>
+  <data name="LabelJobIsExpired" xml:space="preserve">
+    <value>Deze vacature is verlopen</value>
+    <comment>This job is expired</comment>
+  </data>
+  <data name="LabelJobItem" xml:space="preserve">
+    <value>Vacature-item</value>
+    <comment>Job Item</comment>
+  </data>
+  <data name="LabelJobItemPrice" xml:space="preserve">
+    <value>Prijs vacature-item</value>
+    <comment>Job Item Price</comment>
+  </data>
+  <data name="LabelJobItemType" xml:space="preserve">
+    <value>Type vacature-item</value>
+    <comment>Job Item Type</comment>
+  </data>
+  <data name="LabelJobLocation" xml:space="preserve">
+    <value>Locatie vacature</value>
+    <comment>Job Location</comment>
+  </data>
+  <data name="LabelJobName" xml:space="preserve">
+    <value>Functienaam</value>
+    <comment>Job Name</comment>
+  </data>
+  <data name="LabelJobPreview" xml:space="preserve">
+    <value>Voorbeeldweergave vacature</value>
+    <comment>Job Preview</comment>
+  </data>
+  <data name="LabelJobSalaryDetail" xml:space="preserve">
+    <value>Salarisdetail vacature</value>
+    <comment>Job Salary Detail</comment>
+  </data>
+  <data name="LabelJobSaved" xml:space="preserve">
+    <value>Vacature opgeslagen</value>
+    <comment>Job Saved</comment>
+  </data>
+  <data name="LabelJobSeeker" xml:space="preserve">
+    <value>Werkzoekende</value>
+    <comment>Job Seeker</comment>
+  </data>
+  <data name="LabelJobSeekers" xml:space="preserve">
+    <value>Werkzoekenden</value>
+    <comment>job seeker(s)</comment>
+  </data>
+  <data name="LabelJobsExpiringIn24hrs" xml:space="preserve">
+    <value>Vacatures die binnen 24 uur verlopen</value>
+    <comment>Jobs Expiring in 24 hrs</comment>
+  </data>
+  <data name="LabelJobStartDate" xml:space="preserve">
+    <value>Begindatum werk</value>
+    <comment>Job Start Date</comment>
+  </data>
+  <data name="LabelJobTemplate" xml:space="preserve">
+    <value>Vacaturesjabloon</value>
+    <comment>Job Template</comment>
+  </data>
+  <data name="LabelJobTemplateLogo" xml:space="preserve">
+    <value>Vacaturesjabloon logo</value>
+    <comment>Job Template Logo</comment>
+  </data>
+  <data name="LabelJobTemplateSettings" xml:space="preserve">
+    <value>Vacaturesjabloon instellingen</value>
+    <comment>Job Template Settings</comment>
+  </data>
+  <data name="LabelJobTitle" xml:space="preserve">
+    <value>Functietitel</value>
+    <comment>JobTitle</comment>
+  </data>
+  <data name="LabelJobTitleIsExpired" xml:space="preserve">
+    <value>De vacature "{0}" is nu verlopen</value>
+    <comment>The job Title is now Expired</comment>
+  </data>
+  <data name="LabelJobWorktype" xml:space="preserve">
+    <value>Vacature werktype</value>
+    <comment>Job Worktype</comment>
+  </data>
+  <data name="LabelJul" xml:space="preserve">
+    <value>Juli</value>
+    <comment>July</comment>
+  </data>
+  <data name="LabelJun" xml:space="preserve">
+    <value>Juni</value>
+    <comment>June</comment>
+  </data>
+  <data name="LabelJurisDoctor" xml:space="preserve">
+    <value>Doctor in de Rechten</value>
+    <comment>Juris Doctor</comment>
+  </data>
+  <data name="LabelJustApply" xml:space="preserve">
+    <value>Nu solliciteren</value>
+    <comment>Apply now</comment>
+  </data>
+  <data name="LabelJustApplyPage" xml:space="preserve">
+    <value>Solliciteer gewoon</value>
+    <comment>Just Apply</comment>
+  </data>
+  <data name="LabelKeyword" xml:space="preserve">
+    <value>Trefwoord</value>
+    <comment>Keyword</comment>
+  </data>
+  <data name="LabelKeywords" xml:space="preserve">
+    <value>Trefwoorden</value>
+    <comment>Keywords</comment>
+  </data>
+  <data name="LabelLandLine" xml:space="preserve">
+    <value>Vaste lijn</value>
+    <comment>Land line</comment>
+  </data>
+  <data name="LabelLanguage" xml:space="preserve">
+    <value>Taal</value>
+    <comment>Language</comment>
+  </data>
+  <data name="LabelLanguages" xml:space="preserve">
+    <value>Talen</value>
+    <comment>Languages</comment>
+  </data>
+  <data name="LabelLastModified" xml:space="preserve">
+    <value>Laatst aangepast</value>
+    <comment>Last Modified</comment>
+  </data>
+  <data name="LabelLastModifiedByAdminUser" xml:space="preserve">
+    <value>Laatst aangepast door beherende gebruiker</value>
+    <comment>Last modified by Admin User</comment>
+  </data>
+  <data name="LabelLastModifiedByAdvertiserUser" xml:space="preserve">
+    <value>Laatst aangepast door adverteerdergebruiker</value>
+    <comment>Last Modified By Advertiser User</comment>
+  </data>
+  <data name="LabelLastName" xml:space="preserve">
+    <value>Achternaam</value>
+    <comment>Last name</comment>
+  </data>
+  <data name="LabelLastNameLocalLanguage" xml:space="preserve">
+    <value>Achternaam (plaatselijke taal)</value>
+    <comment>Last Name (Local language)</comment>
+  </data>
+  <data name="LabelLastViewedDate" xml:space="preserve">
+    <value>Datum laatst bekeken</value>
+    <comment>Last Viewed Date</comment>
+  </data>
+  <data name="LabelLatest" xml:space="preserve">
+    <value>Laatste</value>
+    <comment>Latest</comment>
+  </data>
+  <data name="LabelLicenseName" xml:space="preserve">
+    <value>Licentienaam</value>
+    <comment>License Name</comment>
+  </data>
+  <data name="LabelLicenses" xml:space="preserve">
+    <value>Licenties</value>
+    <comment>Licenses</comment>
+  </data>
+  <data name="LabelLicenseType" xml:space="preserve">
+    <value>Licentietype</value>
+    <comment>License Type</comment>
+  </data>
+  <data name="LabelLimitedWorkProficiency" xml:space="preserve">
+    <value>Beperkte werkvaardigheden</value>
+    <comment>Limited working proficiency</comment>
+  </data>
+  <data name="LabelLiveJobs" xml:space="preserve">
+    <value>Live vacatures</value>
+    <comment>Live Jobs</comment>
+  </data>
+  <data name="LabelLocalLanguage" xml:space="preserve">
+    <value>Plaatselijke taal</value>
+    <comment>Local Language</comment>
+  </data>
+  <data name="LabelLocalName" xml:space="preserve">
+    <value>Naam (plaatselijke taal)</value>
+    <comment>Name (Local language)</comment>
+  </data>
+  <data name="LabelLocation" xml:space="preserve">
+    <value>Locatie</value>
+    <comment>Location</comment>
+  </data>
+  <data name="LabelLocationAndArea" xml:space="preserve">
+    <value>Locatie / Regio</value>
+    <comment>Location / Area</comment>
+  </data>
+  <data name="LabelLocationArea" xml:space="preserve">
+    <value>Locatie / Regio</value>
+    <comment>Location / Area</comment>
+  </data>
+  <data name="LabelLocationDetails" xml:space="preserve">
+    <value>Locatiegegevens</value>
+    <comment>Location details</comment>
+  </data>
+  <data name="LabelLocationPreferences" xml:space="preserve">
+    <value>Locatievoorkeuren</value>
+    <comment>Location Preferences</comment>
+  </data>
+  <data name="LabelLocationRequired" xml:space="preserve">
+    <value>Locatie is vereist</value>
+    <comment>Location required</comment>
+  </data>
+  <data name="LabelLocationUpdated" xml:space="preserve">
+    <value>Locatie/bijgewerkt</value>
+    <comment>Location/Updated</comment>
+  </data>
+  <data name="LabelLogin" xml:space="preserve">
+    <value>Login</value>
+    <comment>Login</comment>
+  </data>
+  <data name="LabelLoginDetails" xml:space="preserve">
+    <value>Logingegevens</value>
+    <comment>Login Details</comment>
+  </data>
+  <data name="LabelLoginWithSocialMedia" xml:space="preserve">
+    <value>Login via sociale media</value>
+    <comment>Login with Social Media</comment>
+  </data>
+  <data name="LabelLogoImage" xml:space="preserve">
+    <value>Afbeelding logo</value>
+    <comment>Logo Image</comment>
+  </data>
+  <data name="LabelLogout" xml:space="preserve">
+    <value>Uitloggen</value>
+    <comment>Log out</comment>
+  </data>
+  <data name="labellPasswordRequired" xml:space="preserve">
+    <value>Wachtwoord is vereist</value>
+    <comment>Password is required</comment>
+  </data>
+  <data name="LabelMailingAddress" xml:space="preserve">
+    <value>Postadres</value>
+    <comment>Mailing Address</comment>
+  </data>
+  <data name="LabelMailingCountry" xml:space="preserve">
+    <value>Land</value>
+    <comment>Mailing Country</comment>
+  </data>
+  <data name="LabelMailingPostcode" xml:space="preserve">
+    <value>Postcode</value>
+    <comment>Mailing Postcode</comment>
+  </data>
+  <data name="LabelMailingState" xml:space="preserve">
+    <value>Staat</value>
+    <comment>Mailing State</comment>
+  </data>
+  <data name="LabelMailingSuburb" xml:space="preserve">
+    <value>Plaats</value>
+    <comment>Mailing Suburb</comment>
+  </data>
+  <data name="LabelMainAlert" xml:space="preserve">
+    <value>Belangrijkste melding?</value>
+    <comment>Main Alert?</comment>
+  </data>
+  <data name="LabelMakePayment" xml:space="preserve">
+    <value>Betalen</value>
+    <comment>Make Payment</comment>
+  </data>
+  <data name="LabelMale" xml:space="preserve">
+    <value>Mannelijk</value>
+    <comment>Male</comment>
+  </data>
+  <data name="LabelManager" xml:space="preserve">
+    <value>Manager</value>
+    <comment>Manager</comment>
+  </data>
+  <data name="LabelMandatoryField" xml:space="preserve">
+    <value>Verplichte velden</value>
+    <comment>Mandatory Fields</comment>
+  </data>
+  <data name="LabelMar" xml:space="preserve">
+    <value>Maart</value>
+    <comment>March</comment>
+  </data>
+  <data name="LabelMastercard" xml:space="preserve">
+    <value>Mastercard</value>
+    <comment>Mastercard</comment>
+  </data>
+  <data name="LabelMastersDegree" xml:space="preserve">
+    <value>Meestergraad</value>
+    <comment>Master Degree</comment>
+  </data>
+  <data name="LabelMastersOfBusinessAdministration" xml:space="preserve">
+    <value>Master of Business Administration</value>
+    <comment>Master of Business Administration</comment>
+  </data>
+  <data name="LabelMax" xml:space="preserve">
+    <value>Max</value>
+    <comment>Max</comment>
+  </data>
+  <data name="LabelMaximum" xml:space="preserve">
+    <value>Maximaal</value>
+    <comment>Maximum</comment>
+  </data>
+  <data name="LabelMaxSize" xml:space="preserve">
+    <value>max grootte</value>
+    <comment>max size</comment>
+  </data>
+  <data name="LabelMaxWidth" xml:space="preserve">
+    <value>max breedte</value>
+    <comment>Max width</comment>
+  </data>
+  <data name="LabelMay" xml:space="preserve">
+    <value>Mei</value>
+    <comment>May</comment>
+  </data>
+  <data name="LabelMemberDetail" xml:space="preserve">
+    <value>Ledengegevens</value>
+    <comment>Member Details</comment>
+  </data>
+  <data name="LabelMemberEditSuccess" xml:space="preserve">
+    <value>Accountprofielgegevens met succes bijgewerkt</value>
+    <comment>Account profile details updated successfully</comment>
+  </data>
+  <data name="LabelMemberFiles" xml:space="preserve">
+    <value>Ledenbestanden</value>
+    <comment>Member Files</comment>
+  </data>
+  <data name="LabelMemberFileWelcome" xml:space="preserve">
+    <value>Welkom op de pagina ledenbestanden.</value>
+    <comment>Welcome to the Member Files Page.</comment>
+  </data>
+  <data name="LabelMemberFullRegister" xml:space="preserve">
+    <value>Volledige registratie - klik om uit te breiden</value>
+    <comment>Full Registration - Click to expand</comment>
+  </data>
+  <data name="LabelMemberInvalid" xml:space="preserve">
+    <value>Ledenvalidatie mislukt.</value>
+    <comment>Member validation failed.</comment>
+  </data>
+  <data name="LabelMemberOfBoardCommittee" xml:space="preserve">
+    <value>Lid van raad van bestuur</value>
+    <comment>Member of board Committee</comment>
+  </data>
+  <data name="LabelMemberValidated" xml:space="preserve">
+    <value>Account is gevalideerd
+&lt;br /&gt;&lt;br /&gt;
+Uw account is reeds gevalideerd. Ga door naar &lt;a href="/member/login.aspx"&gt;login&lt;/a&gt;.</value>
+    <comment>Account has been validated
+&lt;br /&gt;&lt;br /&gt;
+Your account has already been validated. Please proceed to &lt;a href="/member/login.aspx"&gt;login&lt;/a&gt;.</comment>
+  </data>
+  <data name="LabelMemberValidation" xml:space="preserve">
+    <value>Ledenvalidatie</value>
+    <comment>Member Validation</comment>
+  </data>
+  <data name="LabelMentor" xml:space="preserve">
+    <value>Mentor</value>
+    <comment>Mentor</comment>
+  </data>
+  <data name="LabelMessageForYourFriend" xml:space="preserve">
+    <value>Bericht voor uw vriend</value>
+    <comment>Message For Your Friend</comment>
+  </data>
+  <data name="LabelMin" xml:space="preserve">
+    <value>Min</value>
+    <comment>Min</comment>
+  </data>
+  <data name="LabelMinimum" xml:space="preserve">
+    <value>Minimum</value>
+    <comment>Minimum</comment>
+  </data>
+  <data name="LabelMiss" xml:space="preserve">
+    <value>Mevrouw</value>
+    <comment>Miss</comment>
+  </data>
+  <data name="LabelMissingInformation" xml:space="preserve">
+    <value>Missende informatie</value>
+    <comment>Missing Information</comment>
+  </data>
+  <data name="LabelMonth" xml:space="preserve">
+    <value>Maand</value>
+    <comment>Month</comment>
+  </data>
+  <data name="LabelMonths" xml:space="preserve">
+    <value>maanden</value>
+    <comment>Months</comment>
+  </data>
+  <data name="LabelMoreInfoOnAcc" xml:space="preserve">
+    <value>Voor meer informatie over accounttypes</value>
+    <comment>For more information on account types</comment>
+  </data>
+  <data name="LabelMr" xml:space="preserve">
+    <value>Dhr.</value>
+    <comment>Mr</comment>
+  </data>
+  <data name="LabelMrs" xml:space="preserve">
+    <value>Mw.</value>
+    <comment>Mrs</comment>
+  </data>
+  <data name="LabelMs" xml:space="preserve">
+    <value>Mw.</value>
+    <comment>Ms</comment>
+  </data>
+  <data name="LabelMyAccount" xml:space="preserve">
+    <value>Mijn account</value>
+    <comment>My Account</comment>
+  </data>
+  <data name="LabelMyAccountProfile" xml:space="preserve">
+    <value>Mijn accountprofiel</value>
+    <comment>My Account Profile</comment>
+  </data>
+  <data name="LabelMyApplicationTracker" xml:space="preserve">
+    <value>Mijn sollicitatievolger</value>
+    <comment>My Application Tracker</comment>
+  </data>
+  <data name="LabelMyBroadcast" xml:space="preserve">
+    <value>Mijn uitzending</value>
+    <comment>My Broadcast</comment>
+  </data>
+  <data name="LabelMyCVProfile" xml:space="preserve">
+    <value>Mijn cv-profiel</value>
+    <comment>My CV Profile</comment>
+  </data>
+  <data name="LabelMyDetails" xml:space="preserve">
+    <value>Mijn gegevens</value>
+    <comment>My Details</comment>
+  </data>
+  <data name="LabelMyDocuments" xml:space="preserve">
+    <value>Mijn documenten</value>
+    <comment>My Documents</comment>
+  </data>
+  <data name="LabelMyFavouriteSearches" xml:space="preserve">
+    <value>Mijn favoriete zoekopdrachten</value>
+    <comment>My favourite search(es)</comment>
+  </data>
+  <data name="LabelMyHome" xml:space="preserve">
+    <value>Mijn startpagina</value>
+    <comment>My Home</comment>
+  </data>
+  <data name="LabelMyJobAlerts" xml:space="preserve">
+    <value>Vacaturemeldingen</value>
+    <comment>My Job Alerts</comment>
+  </data>
+  <data name="LabelMyJobAlert_s" xml:space="preserve">
+    <value>Mijn vacaturemeldingen</value>
+    <comment>My job alert(s)</comment>
+  </data>
+  <data name="LabelMyJobTools" xml:space="preserve">
+    <value>Mijn vacaturetools</value>
+    <comment>My Job Tools</comment>
+  </data>
+  <data name="LabelMyPassword" xml:space="preserve">
+    <value>Wachtwoord wijzigen</value>
+    <comment>My Password</comment>
+  </data>
+  <data name="LabelMyPersonalDetails" xml:space="preserve">
+    <value>Mijn persoonlijke gegevens</value>
+    <comment>My Personal Details</comment>
+  </data>
+  <data name="LabelMyResumeCoverLetter" xml:space="preserve">
+    <value>Mijn cv / begeleidende brief</value>
+    <comment>My Resume / Cover Letter</comment>
+  </data>
+  <data name="LabelMySavedJobs" xml:space="preserve">
+    <value>Opgeslagen vacatures</value>
+    <comment>My Saved Jobs</comment>
+  </data>
+  <data name="LabelMySearchCriteria" xml:space="preserve">
+    <value>Mijn zoekcriteria</value>
+    <comment>My Search Criteria</comment>
+  </data>
+  <data name="LabelNA" xml:space="preserve">
+    <value>n.v.t.</value>
+    <comment>N/A</comment>
+  </data>
+  <data name="LabelName" xml:space="preserve">
+    <value>Naam</value>
+    <comment>Name</comment>
+  </data>
+  <data name="LabelNameFeedMandatory" xml:space="preserve">
+    <value>Naam van de feed is verplicht.</value>
+    <comment>Name of the alert is mandatory.</comment>
+  </data>
+  <data name="LabelNameOfAlertRequired" xml:space="preserve">
+    <value>Naam van melding is vereist</value>
+    <comment>Name of alert is required</comment>
+  </data>
+  <data name="LabelNameOfFeed" xml:space="preserve">
+    <value>Naam van melding</value>
+    <comment>Name of Alert</comment>
+  </data>
+  <data name="LabelNativeOrBilingualProficiency" xml:space="preserve">
+    <value>Moedertaal of tweetalige vaardigheden</value>
+    <comment>Native or bilingual proficiency</comment>
+  </data>
+  <data name="LabelNearestTransport" xml:space="preserve">
+    <value>Dichtstbijzijnde openbaar vervoer</value>
+    <comment>Nearest Transport</comment>
+  </data>
+  <data name="LabelNeedLogin" xml:space="preserve">
+    <value>U dient in te loggen</value>
+    <comment>You need to login</comment>
+  </data>
+  <data name="LabelNetTotal" xml:space="preserve">
+    <value>Netto totaal</value>
+    <comment>Net total</comment>
+  </data>
+  <data name="LabelNew" xml:space="preserve">
+    <value>Nieuw</value>
+    <comment>New</comment>
+  </data>
+  <data name="LabelNewPassword" xml:space="preserve">
+    <value>Nieuw wachtwoord</value>
+    <comment>New Password</comment>
+  </data>
+  <data name="LabelNews" xml:space="preserve">
+    <value>Nieuws</value>
+    <comment>News</comment>
+  </data>
+  <data name="LabelNewsHome" xml:space="preserve">
+    <value>Nieuws Home</value>
+    <comment>News Home</comment>
+  </data>
+  <data name="LabelNewsletter" xml:space="preserve">
+    <value>Nieuwsbrief</value>
+    <comment>Newsletter</comment>
+  </data>
+  <data name="LabelNext" xml:space="preserve">
+    <value>Volgende</value>
+    <comment>Next</comment>
+  </data>
+  <data name="LabelNo" xml:space="preserve">
+    <value>Nee</value>
+    <comment>No</comment>
+  </data>
+  <data name="LabelNoAdditionalDocuments" xml:space="preserve">
+    <value>U hebt momenteel geen aanvullend(e) document(en)</value>
+    <comment>You currently do not have Additional Document</comment>
+  </data>
+  <data name="LabelNoCoverLetter" xml:space="preserve">
+    <value>U hebt momenteel geen begeleidende brief</value>
+    <comment>You currently do not have Cover Letter</comment>
+  </data>
+  <data name="LabelNoData" xml:space="preserve">
+    <value>Geen gegevens gevonden</value>
+    <comment>No Data Found</comment>
+  </data>
+  <data name="LabelNoDraftJobs" xml:space="preserve">
+    <value>U hebt nog geen conceptvacature.</value>
+    <comment>You haven't got any draft job yet.</comment>
+  </data>
+  <data name="LabelNoFileChosen" xml:space="preserve">
+    <value>Geen bestand gekozen...</value>
+    <comment>No File Choosen...</comment>
+  </data>
+  <data name="LabelNoJobAlerts" xml:space="preserve">
+    <value>U hebt momenteel geen vacaturemeldingen.</value>
+    <comment>You currently don't have any Job alerts.</comment>
+  </data>
+  <data name="LabelNoJobCredit" xml:space="preserve">
+    <value>Geen vacaturetegoed</value>
+    <comment>No job credit</comment>
+  </data>
+  <data name="LabelNoJobSelected" xml:space="preserve">
+    <value>Er zijn geen vacatures geselecteerd. Selecteer een vacature om door te gaan</value>
+    <comment>No Jobs have been selected, please select a job to proceed</comment>
+  </data>
+  <data name="LabelNoJobTracked" xml:space="preserve">
+    <value>U hebt nog niet gesolliciteerd.</value>
+    <comment>You haven't applied for any jobs yet.</comment>
+  </data>
+  <data name="LabelNone" xml:space="preserve">
+    <value>Geen</value>
+    <comment>None</comment>
+  </data>
+  <data name="LabelNoResultFound" xml:space="preserve">
+    <value>Geen resultaten gevonden</value>
+    <comment>No results found</comment>
+  </data>
+  <data name="LabelNoResume" xml:space="preserve">
+    <value>U hebt momenteel geen cv</value>
+    <comment>You currently do not have Resume</comment>
+  </data>
+  <data name="LabelNoSavedJob" xml:space="preserve">
+    <value>U hebt momenteel geen opgeslagen vacatures.</value>
+    <comment>You currently do not have any saved jobs.</comment>
+  </data>
+  <data name="LabelNote" xml:space="preserve">
+    <value>Opmerking</value>
+    <comment>Note</comment>
+  </data>
+  <data name="LabelNotRegisteredQuickly" xml:space="preserve">
+    <value>Niet geregistreerd? Geen probleem! Snel</value>
+    <comment>Not registered? No problem! Quickly</comment>
+  </data>
+  <data name="LabelNotSeeking" xml:space="preserve">
+    <value>Op dit moment niet op zoek</value>
+    <comment>Not Currently Seeking</comment>
+  </data>
+  <data name="LabelNov" xml:space="preserve">
+    <value>November</value>
+    <comment>November</comment>
+  </data>
+  <data name="LabelNumber" xml:space="preserve">
+    <value>Aantal</value>
+    <comment>Number</comment>
+  </data>
+  <data name="LabelNumberOfEmployees" xml:space="preserve">
+    <value>Aantal medewerkers</value>
+    <comment>Number of employees</comment>
+  </data>
+  <data name="LabelOct" xml:space="preserve">
+    <value>Oktober</value>
+    <comment>October</comment>
+  </data>
+  <data name="LabelOldest" xml:space="preserve">
+    <value>Oudste</value>
+    <comment>Oldest</comment>
+  </data>
+  <data name="LabelOngoingAccount" xml:space="preserve">
+    <value>Doorlopende account</value>
+    <comment>Ongoing account</comment>
+  </data>
+  <data name="LabelOnHold" xml:space="preserve">
+    <value>In de wacht</value>
+    <comment>On Hold</comment>
+  </data>
+  <data name="LabelOopsNoJobCredit" xml:space="preserve">
+    <value>Oeps! U hebt geen vacaturetegoed. Om een vacature te kunnen plaatsen moet u eerst
+                    hieronder tegoed kopen.</value>
+    <comment>Oops! Seems you don't have job credits. In order to post a job, you must first
+                    purchase credits below.</comment>
+  </data>
+  <data name="LabelOptional" xml:space="preserve">
+    <value>optioneel</value>
+    <comment>optional</comment>
+  </data>
+  <data name="LabelOptionUploadCreateCover" xml:space="preserve">
+    <value>Selecteer een van de volgende mogelijkheden om uw begeleidende brief te uploaden, of maak uw eigen aan.</value>
+    <comment>Select one of the following options to upload your cover letter or create your own.</comment>
+  </data>
+  <data name="LabelOptionUploadResume" xml:space="preserve">
+    <value>Selecteer een van de volgende mogelijkheden om uw cv te uploaden.</value>
+    <comment>Select one of the following options to upload your resume.</comment>
+  </data>
+  <data name="LabelOr" xml:space="preserve">
+    <value>OF</value>
+    <comment>OR</comment>
+  </data>
+  <data name="LabelOrderNumber" xml:space="preserve">
+    <value>Bestellingsnummer</value>
+    <comment>Order number</comment>
+  </data>
+  <data name="LabelOrganisationName" xml:space="preserve">
+    <value>Organisatienaam</value>
+    <comment>Organisation Name</comment>
+  </data>
+  <data name="LabelOrganisationWebsite" xml:space="preserve">
+    <value>Website organisatie</value>
+    <comment>Organisation Website</comment>
+  </data>
+  <data name="LabelOrWriteOneNow" xml:space="preserve">
+    <value>Of schrijf er een</value>
+    <comment>Or Write One</comment>
+  </data>
+  <data name="LabelOther" xml:space="preserve">
+    <value>Anders</value>
+    <comment>Other</comment>
+  </data>
+  <data name="LabelOtherQualification" xml:space="preserve">
+    <value>Andere kwalificatie</value>
+    <comment>Other Qualification</comment>
+  </data>
+  <data name="LabelOthers" xml:space="preserve">
+    <value>Andere</value>
+    <comment>Others</comment>
+  </data>
+  <data name="LabelPackageContains" xml:space="preserve">
+    <value>Bevat</value>
+    <comment>Contains</comment>
+  </data>
+  <data name="LabelPackageDetails" xml:space="preserve">
+    <value>Details salarispakket</value>
+    <comment>Package details</comment>
+  </data>
+  <data name="LabelPage" xml:space="preserve">
+    <value>Pagina</value>
+    <comment>Page</comment>
+  </data>
+  <data name="LabelPages" xml:space="preserve">
+    <value>pagina('s)</value>
+    <comment>page(s)</comment>
+  </data>
+  <data name="LabelPassportNumber" xml:space="preserve">
+    <value>Paspoortnummer</value>
+    <comment>Passport Number</comment>
+  </data>
+  <data name="LabelPassword" xml:space="preserve">
+    <value>Wachtwoord</value>
+    <comment>Password</comment>
+  </data>
+  <data name="LabelPasswordNotMatch" xml:space="preserve">
+    <value>Het wachtwoord en het bevestigingswachtwoord komen niet overeen</value>
+    <comment>The password and confirmation password do not match</comment>
+  </data>
+  <data name="LabelPasswordPrompt" xml:space="preserve">
+    <value>Wachtwoord dient 8 of meer tekens te bevatten, 1 kleine letter, 1 hoofdletter en 1 cijfer.</value>
+    <comment>Password must contain 8 characters or more, 1 lowercase letter, 1 uppercase letter and 1 number.</comment>
+  </data>
+  <data name="LabelPayByCreditCard" xml:space="preserve">
+    <value>Betaal per creditcard</value>
+    <comment>Pay by credit card</comment>
+  </data>
+  <data name="LabelPaymentConfirmationDescription" xml:space="preserve">
+    <value>Uw account is nu bijgewerkt met het relevante vacaturetegoed.  &lt;span style='display:none'&gt;Deze kosten worden op uw creditcardoverzicht weergegeven als betaling aan "{0}".&lt;/span&gt;</value>
+    <comment>Your account has now been updated with the relevant job credits. &lt;span style='display:none'&gt;This charge will appear on your credit card statement as payment to "{0}".&lt;/span&gt;</comment>
+  </data>
+  <data name="LabelPaymentMethod" xml:space="preserve">
+    <value>Betaalwijze</value>
+    <comment>Payment Method</comment>
+  </data>
+  <data name="LabelPaypal" xml:space="preserve">
+    <value>PayPal</value>
+    <comment>Paypal</comment>
+  </data>
+  <data name="LabelPendingJobs" xml:space="preserve">
+    <value>Vacatures in behandeling</value>
+    <comment>Pending Jobs</comment>
+  </data>
+  <data name="LabelPersonalDetails" xml:space="preserve">
+    <value>Persoonlijke gegevens</value>
+    <comment>Personal Details</comment>
+  </data>
+  <data name="LabelPhone" xml:space="preserve">
+    <value>Telefoonnr.</value>
+    <comment>Phone</comment>
+  </data>
+  <data name="LabelPhoneHome" xml:space="preserve">
+    <value>Telefoonnr. huis</value>
+    <comment>Phone (H) or Home Phone number</comment>
+  </data>
+  <data name="LabelPhoneMobile" xml:space="preserve">
+    <value>Mobiel</value>
+    <comment>Mobile or Mobile Phone Number</comment>
+  </data>
+  <data name="LabelPhoneRequired" xml:space="preserve">
+    <value>Telefoonnr. Is vereist</value>
+    <comment>Phone is required</comment>
+  </data>
+  <data name="LabelPhoneWork" xml:space="preserve">
+    <value>Telefoonnr. werk</value>
+    <comment>Phone (W) or Office Phone Number</comment>
+  </data>
+  <data name="LabelPhoto" xml:space="preserve">
+    <value>Foto</value>
+    <comment>Photo</comment>
+  </data>
+  <data name="LabelPleaseAnswer" xml:space="preserve">
+    <value>Beantwoord...</value>
+    <comment>Please answer...</comment>
+  </data>
+  <data name="LabelPleaseChoose" xml:space="preserve">
+    <value>Kies…</value>
+    <comment>Please Choose ...</comment>
+  </data>
+  <data name="LabelPleaseContactSupport" xml:space="preserve">
+    <value>Neem contact op met ons ondersteuningsteam via de contactpagina of via onze website voor probleemoplossing.</value>
+    <comment>Please contact our support team via the contact page of our website to resolve your issues.</comment>
+  </data>
+  <data name="LabelPleaseLogin" xml:space="preserve">
+    <value>Login</value>
+    <comment>Please Login</comment>
+  </data>
+  <data name="LabelPleaseSeeThe" xml:space="preserve">
+    <value>Bekijk de</value>
+    <comment>Please see the</comment>
+  </data>
+  <data name="LabelPleaseSelect" xml:space="preserve">
+    <value>Kies  </value>
+    <comment>Please Select</comment>
+  </data>
+  <data name="LabelPleaseSelectDoc" xml:space="preserve">
+    <value>Selecteer document om te uploaden</value>
+    <comment>Please Select Document to Upload.</comment>
+  </data>
+  <data name="LabelPleaseSelectSalaryType" xml:space="preserve">
+    <value>Selecteer salaristype</value>
+    <comment>Please select salary type</comment>
+  </data>
+  <data name="LabelPleaseSelectYourPackage" xml:space="preserve">
+    <value>Selecteer uw salarispakket</value>
+    <comment>Please select your package</comment>
+  </data>
+  <data name="LabelPleaseSelectYourProduct" xml:space="preserve">
+    <value>Selecteer product voor aankoop</value>
+    <comment>Select Product To Purchase</comment>
+  </data>
+  <data name="LabelPleaseTickBoxToSubscribe" xml:space="preserve">
+    <value>Vink vakje aan om u aan te melden</value>
+    <comment>Please tick box to subscribe</comment>
+  </data>
+  <data name="LabelPositions" xml:space="preserve">
+    <value>functie(s)</value>
+    <comment>position(s)</comment>
+  </data>
+  <data name="LabelPostAJob" xml:space="preserve">
+    <value>Plaats een vacature</value>
+    <comment>Post a job</comment>
+  </data>
+  <data name="LabelPostalAddress1" xml:space="preserve">
+    <value>Postadres 1</value>
+    <comment>Postal Address 1</comment>
+  </data>
+  <data name="LabelPostalAddress2" xml:space="preserve">
+    <value>Postadres 2</value>
+    <comment>Postal Address 2</comment>
+  </data>
+  <data name="LabelPostcode" xml:space="preserve">
+    <value>Postcode</value>
+    <comment>Postcode</comment>
+  </data>
+  <data name="LabelPosted" xml:space="preserve">
+    <value>Geplaatst</value>
+    <comment>Posted</comment>
+  </data>
+  <data name="LabelPostGraduateDegree" xml:space="preserve">
+    <value>Postgraduate</value>
+    <comment>Postgraduate</comment>
+  </data>
+  <data name="LabelPostType" xml:space="preserve">
+    <value>Bericht soort</value>
+    <comment>Post type</comment>
+  </data>
+  <data name="LabelPreferredArea" xml:space="preserve">
+    <value>Regio van voorkeur</value>
+    <comment>Preferred Area</comment>
+  </data>
+  <data name="LabelPreferredClassification" xml:space="preserve">
+    <value>Classificatie van voorkeur</value>
+    <comment>Preferred Classification</comment>
+  </data>
+  <data name="LabelPreferredEmailLanguage" xml:space="preserve">
+    <value>Taal van voorkeur voor e-mails</value>
+    <comment>Preferred email language</comment>
+  </data>
+  <data name="LabelPreferredEmployment" xml:space="preserve">
+    <value>Dienstverband van voorkeur</value>
+    <comment>Preferred Employment</comment>
+  </data>
+  <data name="LabelPreferredLine" xml:space="preserve">
+    <value>Gewenste lijn</value>
+    <comment>Preferred Line</comment>
+  </data>
+  <data name="LabelPreferredLocation" xml:space="preserve">
+    <value>Locatie van voorkeur</value>
+    <comment>Preferred Location</comment>
+  </data>
+  <data name="LabelPreferredSubClassification" xml:space="preserve">
+    <value>Sub-classificatie van voorkeur</value>
+    <comment>Preferred Sub Classification</comment>
+  </data>
+  <data name="LabelPresent" xml:space="preserve">
+    <value>Huidige</value>
+    <comment>Present</comment>
+  </data>
+  <data name="LabelPrevious" xml:space="preserve">
+    <value>Vorige</value>
+    <comment>Prev</comment>
+  </data>
+  <data name="LabelPrice" xml:space="preserve">
+    <value>Prijs</value>
+    <comment>Price</comment>
+  </data>
+  <data name="LabelPriceRange" xml:space="preserve">
+    <value>Prijsniveau dient tussen 1 en 9999 te liggen</value>
+    <comment>Price Range must be between 1 - 9999</comment>
+  </data>
+  <data name="LabelPrimaryEmail" xml:space="preserve">
+    <value>Hoofd e-mailadres</value>
+    <comment>Primary Email</comment>
+  </data>
+  <data name="LabelProduct" xml:space="preserve">
+    <value>Producten</value>
+    <comment>Products</comment>
+  </data>
+  <data name="LabelProductCostNA" xml:space="preserve">
+    <value>Productkosten n.v.t.</value>
+    <comment>LabelProductCostNA</comment>
+  </data>
+  <data name="LabelProductDetails" xml:space="preserve">
+    <value>Productgegevens</value>
+    <comment>Product details</comment>
+  </data>
+  <data name="LabelProductType" xml:space="preserve">
+    <value>Producttype</value>
+    <comment>Product type</comment>
+  </data>
+  <data name="LabelProfession" xml:space="preserve">
+    <value>Beroep / rol</value>
+    <comment>Profession / Role</comment>
+  </data>
+  <data name="LabelProfessionalWorkingProficiency" xml:space="preserve">
+    <value>Professionele werkervaring</value>
+    <comment>Professional working proficiency</comment>
+  </data>
+  <data name="LabelProfessionRole" xml:space="preserve">
+    <value>Beroep / rol</value>
+    <comment>Profession / Role</comment>
+  </data>
+  <data name="LabelProfessionRoleDetails" xml:space="preserve">
+    <value>Beroep / roldetails</value>
+    <comment>Profession/Role Details</comment>
+  </data>
+  <data name="LabelProfessions" xml:space="preserve">
+    <value>Beroep</value>
+    <comment>Profession</comment>
+  </data>
+  <data name="LabelProfessor" xml:space="preserve">
+    <value>Professor</value>
+    <comment>Professor</comment>
+  </data>
+  <data name="LabelProficiency" xml:space="preserve">
+    <value>Bekwaamheid</value>
+    <comment>Proficiency</comment>
+  </data>
+  <data name="LabelProfile" xml:space="preserve">
+    <value>Profiel</value>
+    <comment>Profile</comment>
+  </data>
+  <data name="LabelProfileDownloadPDF" xml:space="preserve">
+    <value>Download als pdf</value>
+    <comment>Download as PDF</comment>
+  </data>
+  <data name="LabelProfileProgressLastUpdated" xml:space="preserve">
+    <value>Laatst bijgewerkt</value>
+    <comment>Last Updated</comment>
+  </data>
+  <data name="LabelProfileProgressText1" xml:space="preserve">
+    <value>Uw profiel</value>
+    <comment>Your profile</comment>
+  </data>
+  <data name="LabelProfileProgressText2" xml:space="preserve">
+    <value>voltooid</value>
+    <comment>complete</comment>
+  </data>
+  <data name="LabelPromoCodeTitle" xml:space="preserve">
+    <value>Actiecode</value>
+    <comment>Promotion Code</comment>
+  </data>
+  <data name="LabelPublicProfile" xml:space="preserve">
+    <value>Openbaar profiel</value>
+    <comment>Public Profile</comment>
+  </data>
+  <data name="LabelPublicTransport" xml:space="preserve">
+    <value>Openbaar vervoer</value>
+    <comment>Public Transport</comment>
+  </data>
+  <data name="LabelPurchaseDetails" xml:space="preserve">
+    <value>Aankoopgegevens</value>
+    <comment>Purchase details</comment>
+  </data>
+  <data name="LabelPurchaseTotal" xml:space="preserve">
+    <value>Totale kosten product</value>
+    <comment>Product Total Cost</comment>
+  </data>
+  <data name="LabelPwdChanged" xml:space="preserve">
+    <value>Uw wachtwoord is met succes gewijzigd.</value>
+    <comment>Your password has been changed successfully.</comment>
+  </data>
+  <data name="LabelQualification" xml:space="preserve">
+    <value>Kwalificatie</value>
+    <comment>Qualification</comment>
+  </data>
+  <data name="LabelQualificationLevel" xml:space="preserve">
+    <value>Kwalificatieniveau</value>
+    <comment>Qualification Level</comment>
+  </data>
+  <data name="LabelQualificationName" xml:space="preserve">
+    <value>kwalificatienaam</value>
+    <comment>Qualification Name</comment>
+  </data>
+  <data name="LabelQualificationsRecognised" xml:space="preserve">
+    <value>Kwalificaties erkend</value>
+    <comment>Qualifications Recognised</comment>
+  </data>
+  <data name="LabelQuantity" xml:space="preserve">
+    <value>Hoeveelheid</value>
+    <comment>Quantity</comment>
+  </data>
+  <data name="LabelQuestion" xml:space="preserve">
+    <value>Vraag</value>
+    <comment>Question</comment>
+  </data>
+  <data name="LabelQuickRepostJob" xml:space="preserve">
+    <value>Snel opnieuw plaatsen</value>
+    <comment>Quick Repost</comment>
+  </data>
+  <data name="LabelReadFullStory" xml:space="preserve">
+    <value>Lees volledige verhaal</value>
+    <comment>Read full story</comment>
+  </data>
+  <data name="LabelReadMore" xml:space="preserve">
+    <value>Lees verder</value>
+    <comment>Read more</comment>
+  </data>
+  <data name="LabelReceiveJobAlert" xml:space="preserve">
+    <value>Vacaturemelding ontvangen</value>
+    <comment>Receive Job Alert</comment>
+  </data>
+  <data name="LabelReceiveNewsletter" xml:space="preserve">
+    <value>Nieuwsbrief ontvangen</value>
+    <comment>Receive Newsletter</comment>
+  </data>
+  <data name="LabelReferenceNumber" xml:space="preserve">
+    <value>Referentienummer</value>
+    <comment>Reference Number</comment>
+  </data>
+  <data name="LabelReferences" xml:space="preserve">
+    <value>Referenties</value>
+    <comment>References</comment>
+  </data>
+  <data name="LabelReferralDomain" xml:space="preserve">
+    <value>Domeinnaam doorverwijzing</value>
+    <comment>Referral Domain</comment>
+  </data>
+  <data name="LabelRefine" xml:space="preserve">
+    <value>Verfijnen</value>
+    <comment>Refine</comment>
+  </data>
+  <data name="LabelRefineResult" xml:space="preserve">
+    <value>Resultaat verfijnen</value>
+    <comment>Refine results</comment>
+  </data>
+  <data name="LabelRefineResults" xml:space="preserve">
+    <value>Resultaten verfijnen</value>
+    <comment>Refine Your Results</comment>
+  </data>
+  <data name="LabelRefNo" xml:space="preserve">
+    <value>Refnr.</value>
+    <comment>Ref. No</comment>
+  </data>
+  <data name="LabelRefresh" xml:space="preserve">
+    <value>Vernieuwen</value>
+    <comment>Refresh</comment>
+  </data>
+  <data name="LabelRegister" xml:space="preserve">
+    <value>Registreren</value>
+    <comment>Register</comment>
+  </data>
+  <data name="LabelRegisterAndApply" xml:space="preserve">
+    <value>Registreer en solliciteer</value>
+    <comment>register and apply</comment>
+  </data>
+  <data name="LabelRegisteringAgree" xml:space="preserve">
+    <value>Door te registreren, gaat u akkoord met onze</value>
+    <comment>By registering, you agree to our</comment>
+  </data>
+  <data name="LabelRegisterLogin" xml:space="preserve">
+    <value>Registreren / inloggen</value>
+    <comment>Register / Login</comment>
+  </data>
+  <data name="LabelRegisterToday" xml:space="preserve">
+    <value>Niet geregistreerd? Registreer u vandaag!</value>
+    <comment>Not registered? Register today!</comment>
+  </data>
+  <data name="LabelRegisterYourDetails" xml:space="preserve">
+    <value>Registreer uw gegevens</value>
+    <comment>Register your details</comment>
+  </data>
+  <data name="LabelReInvalidImage" xml:space="preserve">
+    <value>De geüploade afbeelding heeft een ongeldig afbeeldingsformaat. Controleer dat de afbeelding een GIF, JPG of JPEG is en probeer het opnieuw.</value>
+    <comment>The image uploaded is not a valid image format. Please check that the file is either a GIF, JPG or JPEG and try again.</comment>
+  </data>
+  <data name="LabelRejected" xml:space="preserve">
+    <value>Afgewezen</value>
+    <comment>Rejected</comment>
+  </data>
+  <data name="LabelRelatedArticles" xml:space="preserve">
+    <value>Gerelateerde artikelen</value>
+    <comment>Related Articles</comment>
+  </data>
+  <data name="LabelRelationship" xml:space="preserve">
+    <value>Relatie</value>
+    <comment>Relationship</comment>
+  </data>
+  <data name="LabelRemaining" xml:space="preserve">
+    <value>Resterend aantal dagen</value>
+    <comment>Remaining days</comment>
+  </data>
+  <data name="LabelRememberMe" xml:space="preserve">
+    <value>Onthoud&amp;nbsp;mij</value>
+    <comment>Remember&amp;nbsp;me</comment>
+  </data>
+  <data name="LabelRemove" xml:space="preserve">
+    <value>Verwijderen</value>
+    <comment>Remove</comment>
+  </data>
+  <data name="LabelRemovelogo" xml:space="preserve">
+    <value>Logo verwijderen</value>
+    <comment>Remove Logo</comment>
+  </data>
+  <data name="LabelRepostCompleted" xml:space="preserve">
+    <value>U hebt de geselecteerde vacature(s) hernieuwd. U kunt deze nu in huidige vacatures bekijken</value>
+    <comment>You have reposted selected job(s), you can view this job now in current jobs</comment>
+  </data>
+  <data name="LabelRepostJob" xml:space="preserve">
+    <value>Opnieuw plaatsen</value>
+    <comment>Repost</comment>
+  </data>
+  <data name="LabelRepostJobConfirm" xml:space="preserve">
+    <value>Weet u zeker dat u deze vacature opnieuw wilt plaatsen?</value>
+    <comment>Are you sure you want to repost this job?</comment>
+  </data>
+  <data name="LabelRequestAlertEmail" xml:space="preserve">
+    <value>Ik wil graag e-mailmeldingen krijgen voor nieuwe vacatures die in mijn zoekcriteria passen.</value>
+    <comment>I would like to receive email alerts for new jobs matching my search criteria.</comment>
+  </data>
+  <data name="LabelRequiredField" xml:space="preserve">
+    <value>Geeft een verplicht veld aan</value>
+    <comment>Indicates a required field</comment>
+  </data>
+  <data name="LabelRequiredField1" xml:space="preserve">
+    <value>Verplicht veld</value>
+    <comment>Required Field</comment>
+  </data>
+  <data name="LabelRequiredFieldsNeeded" xml:space="preserve">
+    <value>U hebt niet alle verplichte informatievelden ingevuld.</value>
+    <comment>You have not completed all the required information fields.</comment>
+  </data>
+  <data name="LabelRequireLogon" xml:space="preserve">
+    <value>Logon vereist</value>
+    <comment>Require Logon</comment>
+  </data>
+  <data name="LabelRequireLogonForExternalApplications" xml:space="preserve">
+    <value>Logon voor externe sollicitaties vereist</value>
+    <comment>Require Logon For External Applications</comment>
+  </data>
+  <data name="LabelResendEmail" xml:space="preserve">
+    <value>E-mail opnieuw versturen</value>
+    <comment>Resend Email</comment>
+  </data>
+  <data name="LabelResetFailed" xml:space="preserve">
+    <value>Resetten mislukt</value>
+    <comment>Reset Failed</comment>
+  </data>
+  <data name="LabelResetGUIDFailed" xml:space="preserve">
+    <value>Geachte gebruiker&lt;br /&gt;&lt;br /&gt;Het ziet ernaar uit dat u deze link eerder hebt geprobeerd om uw wachtwoord te resetten. Deze link kan slechts eenmaal worden gebruikt.&lt;br /&gt;&lt;br /&gt;Als u niet op deze link hebt geklikt, klik dan &lt;a href="./ForgetPassword.aspx"&gt;hier&lt;/a&gt; om weer een nieuwe link voor het resetten van uw wachtwoord per e-mail opgestuurd te krijgen.</value>
+    <comment>Reset GUID Failed</comment>
+  </data>
+  <data name="LabelResetPasswordInfo" xml:space="preserve">
+    <value>Voer uw gebruikersnaam of e-mailadres hieronder in en selecteer de knop Resetten. U ontvangt dan een e-mail  met een link om uw wachtwoord te resetten.</value>
+    <comment>Enter your username or email address below and select the Reset button.  You will then receive an email with a link allowing you to reset your password.</comment>
+  </data>
+  <data name="LabelResidency" xml:space="preserve">
+    <value>Verblijf</value>
+    <comment>Residency</comment>
+  </data>
+  <data name="LabelResidentOnly" xml:space="preserve">
+    <value>Slechts ingezetene</value>
+    <comment>Resident Only</comment>
+  </data>
+  <data name="LabelResponsibilitiesAndAchievements" xml:space="preserve">
+    <value>Verantwoordelijkheden en zaken verwezenlijkt</value>
+    <comment>Responsibilities and Achievements</comment>
+  </data>
+  <data name="LabelResults" xml:space="preserve">
+    <value>Uitslagen</value>
+    <comment>results</comment>
+  </data>
+  <data name="LabelResume" xml:space="preserve">
+    <value>cv</value>
+    <comment>Resume</comment>
+  </data>
+  <data name="LabelRetypePassword" xml:space="preserve">
+    <value>Voer wachtwoord opnieuw in</value>
+    <comment>Retype Password</comment>
+  </data>
+  <data name="LabelRole" xml:space="preserve">
+    <value>Rol</value>
+    <comment>Role</comment>
+  </data>
+  <data name="LabelRolePreferences" xml:space="preserve">
+    <value>Gewenste rol</value>
+    <comment>Role Preferences</comment>
+  </data>
+  <data name="LabelRSSFeed" xml:space="preserve">
+    <value>RSS Feed</value>
+    <comment>RSS Feed</comment>
+  </data>
+  <data name="LabelSalary" xml:space="preserve">
+    <value>Jaarlijks</value>
+    <comment>Salary</comment>
+  </data>
+  <data name="LabelSalaryAnnual" xml:space="preserve">
+    <value>Jaarsalaris</value>
+    <comment>Annual Salary</comment>
+  </data>
+  <data name="LabelSalaryAnnually" xml:space="preserve">
+    <value>Jaarlijks</value>
+    <comment>Annually</comment>
+  </data>
+  <data name="LabelSalaryDetails" xml:space="preserve">
+    <value>Salarisdetails</value>
+    <comment>Salary details</comment>
+  </data>
+  <data name="LabelSalaryFrom" xml:space="preserve">
+    <value>Vanaf</value>
+    <comment>Salary From</comment>
+  </data>
+  <data name="LabelSalaryHourly" xml:space="preserve">
+    <value>Op uurbasis</value>
+    <comment>Hourly Salary</comment>
+  </data>
+  <data name="LabelSalaryRange" xml:space="preserve">
+    <value>Salarisschaal</value>
+    <comment>Salary Range</comment>
+  </data>
+  <data name="LabelSalaryRangeError" xml:space="preserve">
+    <value>Salarisschaal ongeldig</value>
+    <comment>Salary range invalid</comment>
+  </data>
+  <data name="LabelSalaryRequirements" xml:space="preserve">
+    <value>Salarisvereisten</value>
+    <comment>Salary Requirements</comment>
+  </data>
+  <data name="LabelSalaryText" xml:space="preserve">
+    <value>Salaristekst</value>
+    <comment>Salary Text</comment>
+  </data>
+  <data name="LabelSalaryTo" xml:space="preserve">
+    <value>tot</value>
+    <comment>Salary To</comment>
+  </data>
+  <data name="LabelSalaryType" xml:space="preserve">
+    <value>Type</value>
+    <comment>Salary Type</comment>
+  </data>
+  <data name="LabelSalaryTypeID" xml:space="preserve">
+    <value>ID Salaristype</value>
+    <comment>Salary Type ID</comment>
+  </data>
+  <data name="LabelSameAsAbove" xml:space="preserve">
+    <value>Zelfde als hierboven</value>
+    <comment>Same as above</comment>
+  </data>
+  <data name="LabelSave" xml:space="preserve">
+    <value>Opslaan</value>
+    <comment>Save</comment>
+  </data>
+  <data name="LabelSaveAndContinue" xml:space="preserve">
+    <value>Opslaan en verdergaan</value>
+    <comment>Save &amp; Continue</comment>
+  </data>
+  <data name="LabelSaveAsDraft" xml:space="preserve">
+    <value>Als concept opslaan</value>
+    <comment>Save As Draft</comment>
+  </data>
+  <data name="LabelSavedDate" xml:space="preserve">
+    <value>Datum opgeslagen</value>
+    <comment>Saved Date</comment>
+  </data>
+  <data name="LabelSaveJob" xml:space="preserve">
+    <value>Vacature opslaan</value>
+    <comment>Save Job</comment>
+  </data>
+  <data name="LabelSearchCriteria" xml:space="preserve">
+    <value>Zoekcriteria</value>
+    <comment>Search Criteria</comment>
+  </data>
+  <data name="LabelSearchCriteriaWelcome" xml:space="preserve">
+    <value>Selecteer hieronder de criteria die u het best vertegenwoordigen, voor maximale blootstelling in zoekresultaten voor potentiële werkgevers</value>
+    <comment>For maximum exposure for search results from potential employers, please select from the below criteria’s that  represent you best</comment>
+  </data>
+  <data name="LabelSearchDetails" xml:space="preserve">
+    <value>Zoekgegevens</value>
+    <comment>Search Details</comment>
+  </data>
+  <data name="LabelSearchedAllJobs" xml:space="preserve">
+    <value>Alle vacatures doorzocht</value>
+    <comment>Searched all jobs</comment>
+  </data>
+  <data name="LabelSearchFieldExtension" xml:space="preserve">
+    <value>In veldextensies zoeken</value>
+    <comment>Search Field Extension</comment>
+  </data>
+  <data name="LabelSearchKeyword" xml:space="preserve">
+    <value>Op trefwoord zoeken</value>
+    <comment>Search Keyword</comment>
+  </data>
+  <data name="LabelSearchResult" xml:space="preserve">
+    <value>Uw zoekopdracht resulteerde in:</value>
+    <comment>Your search resulted in:</comment>
+  </data>
+  <data name="LabelSearchRoleIDs" xml:space="preserve">
+    <value>Op rol-ID zoeken</value>
+    <comment>Search Role IDs</comment>
+  </data>
+  <data name="LabelSearchTheSite" xml:space="preserve">
+    <value>De site doorzoeken</value>
+    <comment>Search the site</comment>
+  </data>
+  <data name="LabelSecondaryEmail" xml:space="preserve">
+    <value>Secondair e-mailadres</value>
+    <comment>Secondary Email</comment>
+  </data>
+  <data name="LabelSecondarySchool" xml:space="preserve">
+    <value>Middelbare school</value>
+    <comment>Secondary School</comment>
+  </data>
+  <data name="LabelSeeking" xml:space="preserve">
+    <value>Op dit moment op zoek</value>
+    <comment>Currently Seeking</comment>
+  </data>
+  <data name="LabelSeekingStatus" xml:space="preserve">
+    <value>Zoekstatus</value>
+    <comment>Seeking Status</comment>
+  </data>
+  <data name="LabelSelect" xml:space="preserve">
+    <value>Selecteren</value>
+    <comment>Select</comment>
+  </data>
+  <data name="LabelSelectACompany" xml:space="preserve">
+    <value>- Selecteer een bedrijf -</value>
+    <comment>- Select a Company -</comment>
+  </data>
+  <data name="LabelSelectAnApplicationToEmail" xml:space="preserve">
+    <value>Selecteer een sollictatie om te e-mailen</value>
+    <comment>Please select an application to email</comment>
+  </data>
+  <data name="LabelSelectAvailableStatus" xml:space="preserve">
+    <value>- Selecteer beschikbaarheidsstatus -</value>
+    <comment>-Select Available Status-</comment>
+  </data>
+  <data name="LabelSelectBusinessType" xml:space="preserve">
+    <value> - Selecteer bedrijfstype</value>
+    <comment>-Select Business Type-</comment>
+  </data>
+  <data name="LabelSelectClassificationFirst" xml:space="preserve">
+    <value>- Selecteer eerst een classificatie -</value>
+    <comment>- Select a Classification First -</comment>
+  </data>
+  <data name="LabelSelectCountry" xml:space="preserve">
+    <value>- Selecteer een land -</value>
+    <comment>- Select Country -</comment>
+  </data>
+  <data name="LabelSelectCountryFirst" xml:space="preserve">
+    <value>- Selecteer eerst een land -</value>
+    <comment>-Select a Country First-</comment>
+  </data>
+  <data name="LabelSelectDocument" xml:space="preserve">
+    <value>Selecteer document</value>
+    <comment>Select Document</comment>
+  </data>
+  <data name="LabelSelectEducation" xml:space="preserve">
+    <value>- Selecteer opleiding -</value>
+    <comment>-Select Education-</comment>
+  </data>
+  <data name="LabelSelectExistingCover" xml:space="preserve">
+    <value>- Selecteer bestaande begeleidende brief -</value>
+    <comment>Select Existing Cover Letter</comment>
+  </data>
+  <data name="LabelSelectExistingResume" xml:space="preserve">
+    <value>- Selecteer bestaand cv -</value>
+    <comment>Select Existing Resume</comment>
+  </data>
+  <data name="LabelSelectGrade" xml:space="preserve">
+    <value>- Selecteer leerjaar -</value>
+    <comment>- Select Grade -</comment>
+  </data>
+  <data name="LabelSelectJobTemplate" xml:space="preserve">
+    <value>- Selecteer vacaturesjabloon -</value>
+    <comment>Select Job Template</comment>
+  </data>
+  <data name="LabelSelectLanguage" xml:space="preserve">
+    <value>- Selecteer taal -</value>
+    <comment>Select Language</comment>
+  </data>
+  <data name="LabelSelectLeastOneValue" xml:space="preserve">
+    <value>Selecteer ten minste een waarde.</value>
+    <comment>Select at least one value.</comment>
+  </data>
+  <data name="LabelSelectLocationFirst" xml:space="preserve">
+    <value>- Selecteer eerst een locatie -</value>
+    <comment>- Select a Location First -</comment>
+  </data>
+  <data name="LabelSelectOneApplicationToEmail" xml:space="preserve">
+    <value>Selecteer ten minste een sollicitatie om te downloaden</value>
+    <comment>Please select at least one application to download</comment>
+  </data>
+  <data name="LabelSelectSalary" xml:space="preserve">
+    <value>- Selecteer salaris -</value>
+    <comment>-Select Salary-</comment>
+  </data>
+  <data name="LabelSelectUserLogin" xml:space="preserve">
+    <value>Selecteer type login</value>
+    <comment>Select Login Type</comment>
+  </data>
+  <data name="LabelSelectUserRegister" xml:space="preserve">
+    <value>Selecteer type gebruiker</value>
+    <comment>Select User Type</comment>
+  </data>
+  <data name="LabelSendaJobAlertNow" xml:space="preserve">
+    <value>Verstuur nu een vacaturemelding</value>
+    <comment>Send a Job Alert now</comment>
+  </data>
+  <data name="LabelSendEmailAlerts" xml:space="preserve">
+    <value>E-mailmeldingen versturen</value>
+    <comment>Send Email Alerts</comment>
+  </data>
+  <data name="LabelSentApplicantEmail" xml:space="preserve">
+    <value>E-mail met sollicitatie naar adverteerder verstuurd</value>
+    <comment>Sent the application email to the advertiser</comment>
+  </data>
+  <data name="LabelSep" xml:space="preserve">
+    <value>September</value>
+    <comment>September</comment>
+  </data>
+  <data name="LabelSeperateSkillComma" xml:space="preserve">
+    <value>Zet een komma (,) tussen elke vaardigheid.</value>
+    <comment>Please separate each skill with a Comma (,).</comment>
+  </data>
+  <data name="LabelSettings" xml:space="preserve">
+    <value>Instellingen</value>
+    <comment>Settings</comment>
+  </data>
+  <data name="LabelShare" xml:space="preserve">
+    <value>Delen:</value>
+    <comment>Share:</comment>
+  </data>
+  <data name="LabelShareOnGooglePlus" xml:space="preserve">
+    <value>Op Google+ delen</value>
+    <comment>Share this on Google+</comment>
+  </data>
+  <data name="LabelShortBio" xml:space="preserve">
+    <value>Korte bio</value>
+    <comment>Short Bio</comment>
+  </data>
+  <data name="LabelShortDescription" xml:space="preserve">
+    <value>Korte omschrijving</value>
+    <comment>Short Description</comment>
+  </data>
+  <data name="LabelShortList" xml:space="preserve">
+    <value>Korte lijst</value>
+    <comment>Short List</comment>
+  </data>
+  <data name="LabelShowing" xml:space="preserve">
+    <value>Resultaat</value>
+    <comment>Showing</comment>
+  </data>
+  <data name="LabelShowLocationDetail" xml:space="preserve">
+    <value>Locatiedetail tonen</value>
+    <comment>Show Location Detail</comment>
+  </data>
+  <data name="LabelShowSalaryDetail" xml:space="preserve">
+    <value>Salarisdetails tonen</value>
+    <comment>Show Salary Details</comment>
+  </data>
+  <data name="LabelShowSalaryRange" xml:space="preserve">
+    <value>Salarisbereik tonen</value>
+    <comment>Show Salary Range</comment>
+  </data>
+  <data name="LabelSimilarJobs" xml:space="preserve">
+    <value>Vacature</value>
+    <comment>Similar Jobs</comment>
+  </data>
+  <data name="LabelSite" xml:space="preserve">
+    <value>Site</value>
+    <comment>Site</comment>
+  </data>
+  <data name="LabelSiteLocationName" xml:space="preserve">
+    <value>Naam sitelocatie</value>
+    <comment>Site Location Name</comment>
+  </data>
+  <data name="LabelSiteProfessionName" xml:space="preserve">
+    <value>Naam siteberoep</value>
+    <comment>Site Profession Name</comment>
+  </data>
+  <data name="LabelSkills" xml:space="preserve">
+    <value>Bvaardigheden</value>
+    <comment>Skills</comment>
+  </data>
+  <data name="LabelSocialMedia" xml:space="preserve">
+    <value>Sociale media</value>
+    <comment>Social Media</comment>
+  </data>
+  <data name="LabelSortBy" xml:space="preserve">
+    <value>Sorteren op</value>
+    <comment>Sort By</comment>
+  </data>
+  <data name="LabelSortByAlphabeticalAZ" xml:space="preserve">
+    <value>Sorteren - Alfabetisch A-Z</value>
+    <comment>Sort by – Alphabetical A-Z</comment>
+  </data>
+  <data name="LabelSortByAlphabeticalZA" xml:space="preserve">
+    <value>Sorteren - Alfabetisch Z-A</value>
+    <comment>Sort by – Alphabetical Z-A</comment>
+  </data>
+  <data name="LabelSortByOldestPosts" xml:space="preserve">
+    <value>Sorteren - Oudste plaatsingen</value>
+    <comment>Sort by – Oldest Posts</comment>
+  </data>
+  <data name="LabelSortByRecentPosts" xml:space="preserve">
+    <value>Sorteren - Recentste plaatsingen</value>
+    <comment>Sort by – Recent Posts</comment>
+  </data>
+  <data name="LabelSortBySalaryHighLow" xml:space="preserve">
+    <value>Sorteren - Salaris hoog tot laag</value>
+    <comment>Sort by – Salary high to low</comment>
+  </data>
+  <data name="LabelSortBySalaryLowHigh" xml:space="preserve">
+    <value>Sorteren - Salaris laag tot hoog</value>
+    <comment>Sort by – Salary low to high</comment>
+  </data>
+  <data name="LabelSortsby" xml:space="preserve">
+    <value>Sorteren op</value>
+    <comment>Sort by</comment>
+  </data>
+  <data name="LabelStart" xml:space="preserve">
+    <value>Start</value>
+    <comment>Start</comment>
+  </data>
+  <data name="LabelStartDate" xml:space="preserve">
+    <value>Begindatum</value>
+    <comment>Start Date</comment>
+  </data>
+  <data name="LabelState" xml:space="preserve">
+    <value>Staat</value>
+    <comment>State</comment>
+  </data>
+  <data name="LabelStateResideIn" xml:space="preserve">
+    <value>Staat waarin in woon</value>
+    <comment>State I reside in</comment>
+  </data>
+  <data name="LabelStatistics" xml:space="preserve">
+    <value>Statistieken</value>
+    <comment>Statistics</comment>
+  </data>
+  <data name="LabelStatus" xml:space="preserve">
+    <value>Status</value>
+    <comment>Status</comment>
+  </data>
+  <data name="LabelStillHavingIssue" xml:space="preserve">
+    <value>Nog steeds problemen</value>
+    <comment>Still having issues</comment>
+  </data>
+  <data name="LabelStreetAddress" xml:space="preserve">
+    <value>Straatadres</value>
+    <comment>Street Address</comment>
+  </data>
+  <data name="LabelStreetAddress1" xml:space="preserve">
+    <value>Straat regel 1</value>
+    <comment>Street Address 1</comment>
+  </data>
+  <data name="LabelStreetAddress2" xml:space="preserve">
+    <value>Straat regel 2</value>
+    <comment>Street Address 2</comment>
+  </data>
+  <data name="LabelSubAccountCreated" xml:space="preserve">
+    <value>Het nieuwe sub-account is aangemaakt. Een e-mail is verzonden om het nieuwe sub-account te verifiëren.</value>
+    <comment>The new sub-account has been created. An email has been sent to verify the new sub-account.</comment>
+  </data>
+  <data name="LabelSubAccounts" xml:space="preserve">
+    <value>Sub-accounts</value>
+    <comment>Sub Accounts</comment>
+  </data>
+  <data name="LabelSubClassification" xml:space="preserve">
+    <value>Sub-classificatie</value>
+    <comment>Sub Classification</comment>
+  </data>
+  <data name="LabelSubmitStreetAddress" xml:space="preserve">
+    <value>Dien straatadres in om kaart en zoeken op radius in te schakelen</value>
+    <comment>Please submit street address to enable map and radius searching</comment>
+  </data>
+  <data name="LabelSubscribeToJobAlert" xml:space="preserve">
+    <value>Aanmelden voor vacaturemeldingen</value>
+    <comment>Subscribe to Job alert</comment>
+  </data>
+  <data name="LabelSubscribeToNewsLetter" xml:space="preserve">
+    <value>Ik wil me graag aanmelden voor de nieuwsbrief</value>
+    <comment>I would like to subscribe to the newsletter</comment>
+  </data>
+  <data name="LabelSubtotal" xml:space="preserve">
+    <value>Subtotaal</value>
+    <comment>Subtotal</comment>
+  </data>
+  <data name="LabelSuburb" xml:space="preserve">
+    <value>Plaats</value>
+    <comment>Suburb</comment>
+  </data>
+  <data name="LabelSuccessfullyCreatedYouJobAlert" xml:space="preserve">
+    <value>U hebt met succes een melding aangemaakt.</value>
+    <comment>You have successfully created an alert.</comment>
+  </data>
+  <data name="LabelSuccessfullySavedYourSearch" xml:space="preserve">
+    <value>U hebt met succes uw zoekopdracht opgeslagen.</value>
+    <comment>You have successfully saved your search.</comment>
+  </data>
+  <data name="LabelSummary" xml:space="preserve">
+    <value>Overzicht</value>
+    <comment>Summary</comment>
+  </data>
+  <data name="LabelSupervisor" xml:space="preserve">
+    <value>Chef</value>
+    <comment>Supervisor</comment>
+  </data>
+  <data name="LabelSurameMandatory" xml:space="preserve">
+    <value>Achternaam is verplicht</value>
+    <comment>Last name is mandatory</comment>
+  </data>
+  <data name="LabelSurname" xml:space="preserve">
+    <value>Achternaam</value>
+    <comment>Last name</comment>
+  </data>
+  <data name="LabelSurnameRequired" xml:space="preserve">
+    <value>Achternaam is vereist</value>
+    <comment>Last name is required</comment>
+  </data>
+  <data name="LabelTags" xml:space="preserve">
+    <value>Tags (door komma gescheiden)</value>
+    <comment>Tags</comment>
+  </data>
+  <data name="LabelTeacher" xml:space="preserve">
+    <value>Leraar</value>
+    <comment>Teacher</comment>
+  </data>
+  <data name="LabelTel" xml:space="preserve">
+    <value>Telefoonnummer</value>
+    <comment>Tel</comment>
+  </data>
+  <data name="LabelTelephone" xml:space="preserve">
+    <value>Telefoon</value>
+    <comment>Telephone</comment>
+  </data>
+  <data name="LabelTelephoneRequired" xml:space="preserve">
+    <value>Telefoonnummer is vereist</value>
+    <comment>Telephone number is required</comment>
+  </data>
+  <data name="LabelTempLocked" xml:space="preserve">
+    <value>Uw account is tijdelijk geblokkeerd. Probeer het nog eens over "{0} minuten" of neem contact op met uw systeembeheerder.</value>
+    <comment>Your account is temporarily locked. Please try again in “{0} mins” or contact your system administrator.</comment>
+  </data>
+  <data name="LabelTempted" xml:space="preserve">
+    <value>Geneigd</value>
+    <comment>Tempted</comment>
+  </data>
+  <data name="LabelTermsAndConditions" xml:space="preserve">
+    <value>algemene voorwaarden</value>
+    <comment>terms and conditions</comment>
+  </data>
+  <data name="LabelTertiaryEducation" xml:space="preserve">
+    <value>Tertiar onderwijs</value>
+    <comment>Tertiary Education</comment>
+  </data>
+  <data name="LabelText" xml:space="preserve">
+    <value>Tekst</value>
+    <comment>text</comment>
+  </data>
+  <data name="LabelThisFieldIsRequired" xml:space="preserve">
+    <value>Dit veld is verplicht.</value>
+    <comment>This field is required.</comment>
+  </data>
+  <data name="LabelTitle" xml:space="preserve">
+    <value>Titel</value>
+    <comment>Title</comment>
+  </data>
+  <data name="LabelTitleRequired" xml:space="preserve">
+    <value>Documenttitel vereist</value>
+    <comment>Document Title required</comment>
+  </data>
+  <data name="LabelTitleSizeError" xml:space="preserve">
+    <value>Documenttitel mag niet meer dan 500 tekens bevatten</value>
+    <comment>Document Title size cannot exceed 500 characters</comment>
+  </data>
+  <data name="LabelTo" xml:space="preserve">
+    <value>tot</value>
+    <comment>to</comment>
+  </data>
+  <data name="LabelToDate" xml:space="preserve">
+    <value>Datum tot aan</value>
+    <comment>To Date</comment>
+  </data>
+  <data name="LabelToSalary" xml:space="preserve">
+    <value>Voer maximale salaris in</value>
+    <comment>Enter To Salary</comment>
+  </data>
+  <data name="LabelTotal" xml:space="preserve">
+    <value>Totaal</value>
+    <comment>Total</comment>
+  </data>
+  <data name="LabelTotalAmount" xml:space="preserve">
+    <value>Totale hoeveelheid</value>
+    <comment>Total Amount</comment>
+  </data>
+  <data name="LabelTotalEmployees" xml:space="preserve">
+    <value>Aantal medewerkers</value>
+    <comment>No. of  Employees / Total Employees</comment>
+  </data>
+  <data name="LabelType" xml:space="preserve">
+    <value>Type</value>
+    <comment>Type</comment>
+  </data>
+  <data name="LabelTypeOfDirectorship" xml:space="preserve">
+    <value>Type directeurschap</value>
+    <comment>Type of Directorship</comment>
+  </data>
+  <data name="LabelUnsubscribeNews" xml:space="preserve">
+    <value>Afmelden nieuws</value>
+    <comment>Unsubscribe News</comment>
+  </data>
+  <data name="LabelUpdate" xml:space="preserve">
+    <value>Bijwerken</value>
+    <comment>Update</comment>
+  </data>
+  <data name="LabelUpdateMyDetails" xml:space="preserve">
+    <value>Mijn details bijwerken</value>
+    <comment>Update My Details</comment>
+  </data>
+  <data name="LabelUpdateProfile" xml:space="preserve">
+    <value>Profiel bijwerken</value>
+    <comment>Update Profile</comment>
+  </data>
+  <data name="LabelUploadACoverLetter" xml:space="preserve">
+    <value>Upload een begeleidende brief</value>
+    <comment>Upload a cover letter</comment>
+  </data>
+  <data name="LabelUploadAResume" xml:space="preserve">
+    <value>Upload een cv</value>
+    <comment>Upload a resume</comment>
+  </data>
+  <data name="LabelUploadCoverDesc" xml:space="preserve">
+    <value>Upload uw bestand als Microsoft Wordbestand (.doc of .docx), Microsoft Excelbestand (.xls of .xlsx), Adobe Acrobatbestand (.pdf) of tekstbestand (.txt of .rtf)</value>
+    <comment>Please upload your file as Microsoft Word (.doc or .docx), Microsoft Excel (.xls or .xlsx), Adobe Acrobat (.pdf) or text file (.txt or .rtf)</comment>
+  </data>
+  <data name="LabelUploadCoverLetter" xml:space="preserve">
+    <value>Upload begeleidende brief</value>
+    <comment>Upload Cover letter</comment>
+  </data>
+  <data name="LabelUploadDocument" xml:space="preserve">
+    <value>Upload documenten</value>
+    <comment>Upload Documents</comment>
+  </data>
+  <data name="LabelUploadFile" xml:space="preserve">
+    <value>Upload bestand</value>
+    <comment>Upload file</comment>
+  </data>
+  <data name="LabelUploadMethod" xml:space="preserve">
+    <value>Upload methode</value>
+    <comment>Upload Method</comment>
+  </data>
+  <data name="LabelUploadNewLogo" xml:space="preserve">
+    <value>Upload nieuw logo</value>
+    <comment>Upload New Logo</comment>
+  </data>
+  <data name="LabelUploadProfileImage" xml:space="preserve">
+    <value>Upload profielafbeelding</value>
+    <comment>Upload Profile Image</comment>
+  </data>
+  <data name="LabelUploadProfileImageDesc" xml:space="preserve">
+    <value>Upload uw afbeelding als jpg, gif of png, met maximale bestandsgrootte van 500 KB.</value>
+    <comment>Image Upload Description</comment>
+  </data>
+  <data name="LabelUploadProfileImageInvalid" xml:space="preserve">
+    <value>Upload een geldig bestandstype.</value>
+    <comment>Please upload a valid file type.</comment>
+  </data>
+  <data name="LabelUploadProfileImageInvalidFileSize" xml:space="preserve">
+    <value>Upload een bestand  met maximale bestandsgrootte van 500 KB.</value>
+    <comment>Please upload a file with a maximum of 500KB.</comment>
+  </data>
+  <data name="LabelUploadResume" xml:space="preserve">
+    <value>Upload cv</value>
+    <comment>Upload Resume</comment>
+  </data>
+  <data name="LabelUponRequest" xml:space="preserve">
+    <value>Op verzoek</value>
+    <comment>Upon Request</comment>
+  </data>
+  <data name="LabelURL" xml:space="preserve">
+    <value>URL</value>
+    <comment>URL</comment>
+  </data>
+  <data name="LabelURLLinkOut" xml:space="preserve">
+    <value>URL - Link uit</value>
+    <comment>URL - Link out</comment>
+  </data>
+  <data name="LabelUseExistingCoverLetterFile" xml:space="preserve">
+    <value>Bestaand bestand voor begeleidende brief gebruiken</value>
+    <comment>Use existing cover letter file</comment>
+  </data>
+  <data name="LabelUseExistingResumeFile" xml:space="preserve">
+    <value>Bestaand bestand voor cv gebruiken</value>
+    <comment>Use existing resume file</comment>
+  </data>
+  <data name="LabelUseMyProfile" xml:space="preserve">
+    <value>Mijn profiel gebruiken</value>
+    <comment>Use my profile</comment>
+  </data>
+  <data name="LabelUsername" xml:space="preserve">
+    <value>Gebruikersnaam</value>
+    <comment>Username</comment>
+  </data>
+  <data name="LabelUsernameExists" xml:space="preserve">
+    <value>Gebruikersnaam bestaat al. Log in.</value>
+    <comment>Username already exists, please login.</comment>
+  </data>
+  <data name="LabelUsernameRequired" xml:space="preserve">
+    <value>Gebruikersnaam is vereist</value>
+    <comment>Username is required</comment>
+  </data>
+  <data name="LabelValidate" xml:space="preserve">
+    <value>Valideren</value>
+    <comment>Validate</comment>
+  </data>
+  <data name="LabelValidated" xml:space="preserve">
+    <value>Gevalideerd</value>
+    <comment>Validated</comment>
+  </data>
+  <data name="LabelValidEmailRequired" xml:space="preserve">
+    <value>Geldig e-mailadres is vereist</value>
+    <comment>Valid email address is required</comment>
+  </data>
+  <data name="LabelVersion" xml:space="preserve">
+    <value>Versie</value>
+    <comment>Version</comment>
+  </data>
+  <data name="LabelViaEmail" xml:space="preserve">
+    <value>via e-mail</value>
+    <comment>via Email</comment>
+  </data>
+  <data name="LabelVideoURL" xml:space="preserve">
+    <value>Video URL</value>
+    <comment>Video URL</comment>
+  </data>
+  <data name="LabelView" xml:space="preserve">
+    <value>Bekijken</value>
+    <comment>View</comment>
+  </data>
+  <data name="LabelViewCart" xml:space="preserve">
+    <value>Producten om aan te kopen</value>
+    <comment>Products To Purchase</comment>
+  </data>
+  <data name="LabelViewed" xml:space="preserve">
+    <value>Bekeken</value>
+    <comment>Viewed</comment>
+  </data>
+  <data name="LabelViewLess" xml:space="preserve">
+    <value>Minder bekijken</value>
+    <comment>View less</comment>
+  </data>
+  <data name="LabelViewMore" xml:space="preserve">
+    <value>Meer…</value>
+    <comment>View More...</comment>
+  </data>
+  <data name="LabelViewPage" xml:space="preserve">
+    <value>Pagina bekijken</value>
+    <comment>View Page</comment>
+  </data>
+  <data name="LabelViewProfile" xml:space="preserve">
+    <value>Profiel bekijken</value>
+    <comment>View Profile</comment>
+  </data>
+  <data name="LabelViews" xml:space="preserve">
+    <value>Aantal maal bekeken</value>
+    <comment>Views</comment>
+  </data>
+  <data name="LabelVisa" xml:space="preserve">
+    <value>Visum</value>
+    <comment>Visa</comment>
+  </data>
+  <data name="LabelVisible" xml:space="preserve">
+    <value>Zichtbaar</value>
+    <comment>Visible</comment>
+  </data>
+  <data name="LabelWarningBlankURL" xml:space="preserve">
+    <value>Sollicitatie-URL kan niet blanco zijn als URL is geselecteerd</value>
+    <comment>Application URL cannot be Blank when URL is selected</comment>
+  </data>
+  <data name="LabelWebAddress" xml:space="preserve">
+    <value>Webadres</value>
+    <comment>Web Address</comment>
+  </data>
+  <data name="LabelWebservice" xml:space="preserve">
+    <value>Webdienst</value>
+    <comment>Webservice</comment>
+  </data>
+  <data name="LabelWebsite" xml:space="preserve">
+    <value>Website</value>
+    <comment>Website</comment>
+  </data>
+  <data name="LabelWelcome" xml:space="preserve">
+    <value>Welkom</value>
+    <comment>Welcome</comment>
+  </data>
+  <data name="LabelWelcomeBack" xml:space="preserve">
+    <value>Welkom terug</value>
+    <comment>Welcome back</comment>
+  </data>
+  <data name="LabelWelcomeBroadcast" xml:space="preserve">
+    <value>Welkom bij Ledenuitzending</value>
+    <comment>Welcome to Member Broadcast</comment>
+  </data>
+  <data name="LabelWelcomeMemberEditDetail" xml:space="preserve">
+    <value>Welkom op de pagina voor het bijwerken van ledengegevens.</value>
+    <comment>Welcome to the Member details update page.</comment>
+  </data>
+  <data name="LabelWelcomeMemberEditPassword" xml:space="preserve">
+    <value>Welkom op de pagina voor het wijzigen van wachtwoord voor leden. Voer uw huidige wachtwoord en nieuwe wachtwoord in op het onderstaande formulier.</value>
+    <comment>Welcome to the Member change password page. Please enter your current password and new password in the form below.</comment>
+  </data>
+  <data name="LabelWillingToRelocate" xml:space="preserve">
+    <value>Bereid om te verhuizen</value>
+    <comment>Willing To Relocate</comment>
+  </data>
+  <data name="LabelWorkExperience" xml:space="preserve">
+    <value>Werkervaring</value>
+    <comment>Work Experience</comment>
+  </data>
+  <data name="LabelWorkType" xml:space="preserve">
+    <value>Type werk</value>
+    <comment>Work Type</comment>
+  </data>
+  <data name="LabelWorkTypeIDs" xml:space="preserve">
+    <value>Type werk ID's</value>
+    <comment>Work Type IDs</comment>
+  </data>
+  <data name="LabelWriteCoverLetter" xml:space="preserve">
+    <value>Schrijf uw eigen begeleidende brief hier</value>
+    <comment>Write your own Cover Letter here</comment>
+  </data>
+  <data name="LabelWriteOwnCoverLetter" xml:space="preserve">
+    <value>Schrijf mijn eigen begeleidende brief hier</value>
+    <comment>Write my own cover letter</comment>
+  </data>
+  <data name="LabelYear" xml:space="preserve">
+    <value>Jaar</value>
+    <comment>Year</comment>
+  </data>
+  <data name="LabelYears" xml:space="preserve">
+    <value>Jaren</value>
+    <comment>Years</comment>
+  </data>
+  <data name="LabelYes" xml:space="preserve">
+    <value>Ja</value>
+    <comment>Yes</comment>
+  </data>
+  <data name="LabelYouhavenologo" xml:space="preserve">
+    <value>U hebt momenteel geen logo.</value>
+    <comment>You currently have no logo.</comment>
+  </data>
+  <data name="LabelYouMadeAPayment" xml:space="preserve">
+    <value>Uw bestelling is afgerond</value>
+    <comment>Your order is complete</comment>
+  </data>
+  <data name="LabelYourEmail" xml:space="preserve">
+    <value>Uw e-mailadres</value>
+    <comment>Your Email</comment>
+  </data>
+  <data name="LabelYourFriendEmail" xml:space="preserve">
+    <value>Het e-mailadres van uw vriend</value>
+    <comment>Your Friend's Email</comment>
+  </data>
+  <data name="LabelYourFriendName" xml:space="preserve">
+    <value>De naam van uw vriend</value>
+    <comment>Your Friend's Name</comment>
+  </data>
+  <data name="LabelYourName" xml:space="preserve">
+    <value>Uw naam</value>
+    <comment>Your Name</comment>
+  </data>
+  <data name="LabelYourOrder" xml:space="preserve">
+    <value>Uw bestelling</value>
+    <comment>Your order</comment>
+  </data>
+  <data name="LabelYourSkillSets" xml:space="preserve">
+    <value>Uw vaardigheden</value>
+    <comment>Your Skill Sets</comment>
+  </data>
+  <data name="LabelZA" xml:space="preserve">
+    <value>Z - A</value>
+    <comment>Z - A</comment>
+  </data>
+  <data name="LabrlAvailableDayFrom" xml:space="preserve">
+    <value>datum beschikbaarheid vanaf</value>
+    <comment>Availability Date From</comment>
+  </data>
+  <data name="lblPostedByAdvertiserUser" xml:space="preserve">
+    <value>Geplaatst door</value>
+    <comment>Posted By</comment>
+  </data>
+  <data name="LinkBacktoNewsIndex" xml:space="preserve">
+    <value>Terug naar nieuwsindex</value>
+    <comment>Back to News Index</comment>
+  </data>
+  <data name="LinkButtonAccountDetails" xml:space="preserve">
+    <value>Accountgegevens</value>
+    <comment>Account Details</comment>
+  </data>
+  <data name="LinkButtonAddNote" xml:space="preserve">
+    <value>Opmerkingen toevoegen</value>
+    <comment>Add notes</comment>
+  </data>
+  <data name="LinkButtonAddTag" xml:space="preserve">
+    <value>Tags toevoegen</value>
+    <comment>Add tags</comment>
+  </data>
+  <data name="LinkButtonApplyNow" xml:space="preserve">
+    <value>Nu solliciteren</value>
+    <comment>Apply now</comment>
+  </data>
+  <data name="LinkButtonArchivedJobAds" xml:space="preserve">
+    <value>Gearchiveerde vacatures</value>
+    <comment>Archived Job Ads</comment>
+  </data>
+  <data name="LinkButtonBackToResult" xml:space="preserve">
+    <value>Terug naar resultaten</value>
+    <comment>Back to results</comment>
+  </data>
+  <data name="LinkButtonBuyJobCredits" xml:space="preserve">
+    <value>Vacaturetegoed kopen</value>
+    <comment>Buy job credits</comment>
+  </data>
+  <data name="LinkButtonCart" xml:space="preserve">
+    <value>Winkelmandje</value>
+    <comment>Cart</comment>
+  </data>
+  <data name="LinkButtonChangeTemplateLogo" xml:space="preserve">
+    <value>Artwork vacaturesjabloon</value>
+    <comment>Job template artwork</comment>
+  </data>
+  <data name="LinkButtonCreateNewJobAd" xml:space="preserve">
+    <value>Nieuwe vacature aanmaken</value>
+    <comment>Create a New Job Advertisement</comment>
+  </data>
+  <data name="LinkButtonCurrentJobAds" xml:space="preserve">
+    <value>Huidige vacatures</value>
+    <comment>Current Job Ads</comment>
+  </data>
+  <data name="LinkButtonDeclinedJobAds" xml:space="preserve">
+    <value>Afgewezen vacatures</value>
+    <comment>Declined Job Ads</comment>
+  </data>
+  <data name="LinkButtonDelete" xml:space="preserve">
+    <value>Verwijderen</value>
+    <comment>Delete</comment>
+  </data>
+  <data name="LinkButtonDownload" xml:space="preserve">
+    <value>Downloaden</value>
+    <comment>Download</comment>
+  </data>
+  <data name="LinkButtonDraftJobAds" xml:space="preserve">
+    <value>Conceptvacatures</value>
+    <comment>Draft Job Ads</comment>
+  </data>
+  <data name="LinkButtonEdit" xml:space="preserve">
+    <value>Bewerken</value>
+    <comment>Edit</comment>
+  </data>
+  <data name="LinkButtonEmailJob" xml:space="preserve">
+    <value>Deze vacature e-mailen</value>
+    <comment>Email this Job</comment>
+  </data>
+  <data name="LinkButtonJobLinkedIn" xml:space="preserve">
+    <value>Deze vacature op LinkedIn delen</value>
+    <comment>Share this Job on LinkedIn</comment>
+  </data>
+  <data name="LinkButtonJobReports" xml:space="preserve">
+    <value>Vacatureverslagen</value>
+    <comment>Job Reports</comment>
+  </data>
+  <data name="LinkButtonJobRSS" xml:space="preserve">
+    <value>Aanmelden voor RSS feed</value>
+    <comment>Subscribe to RSS Feed</comment>
+  </data>
+  <data name="LinkButtonJobShareFacebook" xml:space="preserve">
+    <value>Deze vacature op Facebook delen</value>
+    <comment>Share this Job on Facebook</comment>
+  </data>
+  <data name="LinkButtonJobShareTwitter" xml:space="preserve">
+    <value>Deze vacature tweeten</value>
+    <comment>Tweet this Job</comment>
+  </data>
+  <data name="LinkButtonJobTracker" xml:space="preserve">
+    <value>Vacaturevolger</value>
+    <comment>Job Tracker</comment>
+  </data>
+  <data name="LinkButtonManageJobs" xml:space="preserve">
+    <value>Vacatures beheren</value>
+    <comment>Manage Jobs</comment>
+  </data>
+  <data name="LinkButtonPendingJobAds" xml:space="preserve">
+    <value>Vacatures in behandeling</value>
+    <comment>Pending Job Ads</comment>
+  </data>
+  <data name="LinkButtonPeopleSearch" xml:space="preserve">
+    <value>Mensen zoeken</value>
+    <comment>People search</comment>
+  </data>
+  <data name="LinkButtonPrintJob" xml:space="preserve">
+    <value>Deze vacature printen</value>
+    <comment>Print this Job</comment>
+  </data>
+  <data name="LinkButtonReports" xml:space="preserve">
+    <value>Verslagen</value>
+    <comment>Reports</comment>
+  </data>
+  <data name="LinkButtonSavedJobs" xml:space="preserve">
+    <value>Deze vacature opslaan</value>
+    <comment>Save this Job</comment>
+  </data>
+  <data name="LinkButtonSaveJob" xml:space="preserve">
+    <value>vacature opslaan</value>
+    <comment>save job</comment>
+  </data>
+  <data name="LinkButtonSendEmail" xml:space="preserve">
+    <value>e-mail versturen</value>
+    <comment>send email</comment>
+  </data>
+  <data name="LinkButtonStatistics" xml:space="preserve">
+    <value>Statistieken</value>
+    <comment>Statistics</comment>
+  </data>
+  <data name="LinkButtonSubAccounts" xml:space="preserve">
+    <value>Sub-accounts</value>
+    <comment>Sub accounts</comment>
+  </data>
+  <data name="LinkButtonView" xml:space="preserve">
+    <value>Bekijken</value>
+    <comment>View</comment>
+  </data>
+  <data name="LinkButtonViewChangeLogo" xml:space="preserve">
+    <value>Logo adverteerder</value>
+    <comment>Advertiser logo</comment>
+  </data>
+  <data name="LinkButtonViewChangeTemplateLogo" xml:space="preserve">
+    <value>Vacaturesjabloon artwork/logo</value>
+    <comment>Job template artwork/logo</comment>
+  </data>
+  <data name="LinkButtonViewJobs" xml:space="preserve">
+    <value>Vacatures bekijken</value>
+    <comment>View Jobs</comment>
+  </data>
+  <data name="PlaceHolderSalaryAnnualFrom" xml:space="preserve">
+    <value>Voer jaarsalaris in vanaf</value>
+    <comment>Enter annual salary from</comment>
+  </data>
+  <data name="PlaceHolderSalaryAnnualTo" xml:space="preserve">
+    <value>Voer jaarsalaris in tot</value>
+    <comment>Enter annual salary to</comment>
+  </data>
+  <data name="PlaceHolderSalaryHourlyFrom" xml:space="preserve">
+    <value>Voer uurloon in vanaf</value>
+    <comment>Enter hourly rate from</comment>
+  </data>
+  <data name="PlaceHolderSalaryHourlyTo" xml:space="preserve">
+    <value>Voer uurloon in tot</value>
+    <comment>Enter hourly rate to</comment>
+  </data>
+  <data name="sLabelCandidateSearch" xml:space="preserve">
+    <value>Kandidaten zoeken - Selecteer relevante criteria voor uw locatie en regio</value>
+    <comment>Candidate Search - Please select relevant criteria for your location and area</comment>
+  </data>
+  <data name="sLabelPublicProfile" xml:space="preserve">
+    <value>s openbaar profiel</value>
+    <comment>'s Public Profile</comment>
+  </data>
+  <data name="LabelSMS" xml:space="preserve">
+    <value>SMS</value>
+    <comment>SMS</comment>
+  </data>
+  <data name="LabelAdvertiserFullRegister" xml:space="preserve">
+    <value>Advertiser Full Register</value>
+    <comment>Advertiser Full Register</comment>
+  </data>
+  <data name="LabelIndustry" xml:space="preserve">
+    <value>Industry</value>
+    <comment>Industry</comment>
+  </data>
+  <data name="LabelNominatedCompanyEmailAddress" xml:space="preserve">
+    <value>Nominated Company Email Address</value>
+    <comment>Nominated Company Email Address</comment>
+  </data>
+  <data name="LabelNominatedCompanyFirstName" xml:space="preserve">
+    <value>Nominated Company First Name</value>
+    <comment>Nominated Company First Name</comment>
+  </data>
+  <data name="LabelNominatedCompanyLastName" xml:space="preserve">
+    <value>Nominated Company Last Name</value>
+    <comment>Nominated Company Last Name</comment>
+  </data>
+  <data name="LabelNominatedCompanyPhone" xml:space="preserve">
+    <value>Nominated Company Phone</value>
+    <comment>Nominated Company Phone</comment>
+  </data>
+  <data name="LabelNominatedCompanyRole" xml:space="preserve">
+    <value>Nominated Company Role</value>
+    <comment>Nominated Company Role</comment>
+  </data>
+  <data name="LabelPreferredContactMethod" xml:space="preserve">
+    <value>Preferred Contact Method</value>
+    <comment>Preferred Contact Method</comment>
+  </data>
+  <data name="LabelVideoLink" xml:space="preserve">
+    <value>Video Link</value>
+    <comment>Video Link</comment>
+  </data>
+  <data name="LabelSectionIncomplete" xml:space="preserve">
+    <value>Section Incomplete</value>
+    <comment>Section Incomplete</comment>
+  </data>
+  <data name="LabelCityState" xml:space="preserve">
+    <value>City / State</value>
+    <comment>City / State</comment>
+  </data>
+  <data name="LabelAnnualRange" xml:space="preserve">
+    <value>Annual Range</value>
+    <comment>Annual Range</comment>
+  </data>
+  <data name="LabelAvailableDateFrom" xml:space="preserve">
+    <value>Availability Date From</value>
+    <comment>Availability Date From</comment>
+  </data>
+  <data name="LabelCandidates" xml:space="preserve">
+    <value>Candidates</value>
+    <comment>Candidates</comment>
+  </data>
+  <data name="LabelFilterResults" xml:space="preserve">
+    <value>Filter Results</value>
+    <comment>Filter Results</comment>
+  </data>
+  <data name="LabelHourlyRange" xml:space="preserve">
+    <value>Hourly Range</value>
+    <comment>Hourly Range</comment>
+  </data>
+  <data name="LabelYourSearchReturned" xml:space="preserve">
+    <value>Your Search Returned</value>
+    <comment>Your Search Returned</comment>
+  </data>
+  <data name="LabelAlphabeticalAscending" xml:space="preserve">
+    <value>Alphabetical Ascending</value>
+    <comment>Alphabetical Ascending</comment>
+  </data>
+  <data name="LabelAlphabeticalDescending" xml:space="preserve">
+    <value>Alphabetical Descending</value>
+    <comment>Alphabetical Descending</comment>
+  </data>
+  <data name="LabelAvailableDate" xml:space="preserve">
+    <value>Available Date</value>
+    <comment>Available Date</comment>
+  </data>
+  <data name="LabelPeopleSearch" xml:space="preserve">
+    <value>People Search</value>
+  </data>
+  <data name="LabelRecentCandidate" xml:space="preserve">
+    <value>Recent Candidate</value>
+    <comment>Recent Candidate</comment>
+  </data>
+  <data name="LabelCity" xml:space="preserve">
+    <value>City</value>
+    <comment>City</comment>
+  </data>
+  <data name="LabelRegion" xml:space="preserve">
+    <value>Region</value>
+    <comment>Region</comment>
+  </data>
+  <data name="LabelRoles" xml:space="preserve">
+    <value>Roles</value>
+    <comment>Roles</comment>
+  </data>
+  <data name="LabelReset" xml:space="preserve">
+    <value>Reset</value>
+    <comment>Reset</comment>
+  </data>
+  <data name="LabelSearch" xml:space="preserve">
+    <value>Search</value>
+    <comment>Search</comment>
+  </data>
+  <data name="LabelSalaryTypeFull" xml:space="preserve">
+    <value>Salary Type</value>
+    <comment>Salary Type</comment>
+  </data>
+  <data name="LabelWhatAreYouUpTo" xml:space="preserve">
+    <value>What are you up to?</value>
+    <comment>What are you up to?</comment>
+  </data>
+  <data name="LabelProfileDetails" xml:space="preserve">
+    <value>Profile Details</value>
+    <comment>Profile Details</comment>
+  </data>
+  <data name="LabelRegistration" xml:space="preserve">
+    <value>Registration</value>
+    <comment>Registration</comment>
+  </data>
+  <data name="LabelValidation" xml:space="preserve">
+    <value>Validation</value>
+    <comment>Validation</comment>
+  </data>
+  <data name="LabelRequiredProfileSectionsHeading" xml:space="preserve">
+    <value>Required Profile Sections left to complete?</value>
+    <comment>Required Profile Sections left to complete?</comment>
+  </data>
+  <data name="LabelNotYetSubmitted" xml:space="preserve">
+    <value>Not yet submitted</value>
+    <comment>Not yet submitted</comment>
+  </data>
+  <data name="LabelProfileStatus" xml:space="preserve">
+    <value>Profile Status</value>
+    <comment>Profile Status</comment>
+  </data>
+  <data name="LabelProfileStatusSubmittedDateFormat" xml:space="preserve">
+    <value>Submitted {0}</value>
+    <comment>Submitted {0}</comment>
+  </data>
+  <data name="LabelGraduated" xml:space="preserve">
+    <value>Graduated</value>
+    <comment>Graduated</comment>
+  </data>
+  <data name="LabelGraduatedCredits" xml:space="preserve">
+    <value>Graduated Credits</value>
+    <comment>Graduated Credits</comment>
+  </data>
+  <data name="LabelProfileMinEntries" xml:space="preserve">
+    <value>Minimum {0} entries is required</value>
+    <comment>Minimum {0} entries is required</comment>
+  </data>
+  <data name="ValidationPhoneNumbers" xml:space="preserve">
+    <value>Accepts only numbers, spaces, '+', '(' and ')'</value>
+    <comment>Accepts only numbers, spaces, '+', '(' and ')'</comment>
+  </data>
+</root>

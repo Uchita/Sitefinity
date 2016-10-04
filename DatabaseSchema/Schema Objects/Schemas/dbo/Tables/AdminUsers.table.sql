@@ -1,0 +1,12 @@
+﻿CREATE TABLE AdminUsers
+(
+   AdminUserID		INT IDENTITY(1,1) PRIMARY KEY,
+   AdminRoleID	INT NOT NULL,
+   SiteID		INT NOT NULL,
+   UserName		VARCHAR(255) NOT NULL,
+   UserPassword VARCHAR(255) NOT NULL,
+   FirstName	NVARCHAR(500) NOT NULL,
+   Surname		NVARCHAR(500) NOT NULL,
+   Email		VARCHAR(255) NOT NULL
+)
+GO

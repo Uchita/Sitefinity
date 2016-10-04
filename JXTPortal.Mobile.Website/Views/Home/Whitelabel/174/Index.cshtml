@@ -1,0 +1,171 @@
+﻿@{
+	ViewBag.Title="Welcome";
+    Layout = JXTPortal.Mobile.Website.ViewEngine.WhitelabelViewEngine.Resolve("~/Views/Shared/Whitelabel/174/_HomeLayout.cshtml");
+}
+<section>
+<div id="jobSearch">
+<script type="text/javascript">
+    $(function () {
+        //$(document).bind('pageinit', function() {
+        // Salary
+        $('#SalaryTypeId').change(function () {
+
+            var selectedSalaryTypeId = "";
+
+            $("#SalaryTypeId option:selected").each(function () {
+                selectedSalaryTypeId += $(this).val();
+            });
+
+
+            $.getJSON('@Url.Action("GetSalaryRangeFrom")', { salaryTypeId: selectedSalaryTypeId, SalaryValueSet: '0;0' }, function (SalaryFroms) {
+                var SalaryFromId = $('#SalaryFromId');
+                SalaryFromId.empty();
+
+                jQuery.each(SalaryFroms, function (index, SalaryFrom) {
+                    SalaryFromId.append(
+                        $('<option/>')
+                            .attr('value', SalaryFrom.Id)
+                            .text(SalaryFrom.SalaryDisplay)
+                    );
+                });
+
+                SalaryFromId.selectmenu('refresh', true);
+            });
+
+            $.getJSON('@Url.Action("GetSalaryRangeTo")', { salaryTypeId: selectedSalaryTypeId, SalaryValueSet: '0;0' }, function (SalaryTos) {
+                var SalaryToId = $('#SalaryToId');
+                SalaryToId.empty();
+
+                jQuery.each(SalaryTos, function (index, SalaryTo) {
+                    SalaryToId.append(
+                        $('<option/>')
+                            .attr('value', SalaryTo.Id)
+                            .text(SalaryTo.SalaryDisplay)
+                    );
+                });
+
+                SalaryToId.selectmenu('refresh', true);
+            });
+
+        });
+
+        $('#SalaryFromId').change(function () {
+            var selectedSalaryTypeId = "";
+
+            $("#SalaryTypeId option:selected").each(function () {
+                selectedSalaryTypeId = $(this).val();
+            });
+
+            var selectedSalaryFromId = "0;0";
+
+            $("#SalaryFromId option:selected").each(function () {
+                selectedSalaryFromId = $(this).val();
+            });
+
+            $.getJSON('@Url.Action("GetSalaryRangeTo")', { salaryTypeId: selectedSalaryTypeId, SalaryValueSet: selectedSalaryFromId }, function (SalaryTos) {
+                var SalaryToId = $('#SalaryToId');
+                SalaryToId.empty();
+
+                jQuery.each(SalaryTos, function (index, SalaryTo) {
+                    SalaryToId.append(
+                            $('<option/>')
+                                .attr('value', SalaryTo.Id)
+                                .text(SalaryTo.SalaryDisplay)
+                        );
+                });
+
+                SalaryToId.selectmenu('refresh', true);
+            });
+        });
+
+        // Location
+        $('#LocationId').change(function () {
+            var selectedlocation = $(this).val();
+            $.getJSON('@Url.Action("Areas")', { locationId: selectedlocation }, function (Areas) {
+                var areasSelect = $('#AreaId');
+                areasSelect.empty();
+
+                areasSelect.append(
+                        $('<option/>')
+                            .attr('value', 0)
+                            .text("All Areas")
+                            .attr("selected", "selected")
+                    );
+
+                jQuery.each(Areas, function (index, Area) {
+                    areasSelect.append(
+                        $('<option/>')
+                            .attr('value', Area.Id)
+                            .text(Area.Name)
+                    );
+                });
+
+                areasSelect.selectmenu('refresh', true);
+            });
+        });
+
+        $('#ProfessionId').change(function () {
+            var selectedProfession = $(this).val();
+            $.getJSON('@Url.Action("Roles")', { professionId: selectedProfession }, function (Roles) {
+                var rolesSelect = $('#RoleId');
+                rolesSelect.empty();
+
+                rolesSelect.append(
+                        $('<option/>')
+                            .attr('value', 0)
+                            .text("All Roles")
+                            .attr("selected", "selected")
+                    );
+
+                jQuery.each(Roles, function (index, Role) {
+                    rolesSelect.append(
+                        $('<option/>')
+                            .attr('value', Role.Id)
+                            .text(Role.Name)
+                    );
+                });
+
+                rolesSelect.selectmenu('refresh', true);
+            });
+        });
+    });
+</script>
+@using (Html.BeginForm("Result", "Job"))
+{
+    <ul data-role="listview" data-inset="true" id="HomeSearchFields">
+                <li>
+                        <span><input type="text" placeholder="Keywords" name="keyword" id="keyword"></span>
+        </li>
+        <li>
+                        <span><select id="ProfessionId" name="ProfessionId">
+                <option value="0" selected>All Classifications</option>
+                @foreach (var item in Model.Professions)
+                {   
+                    <option value="@item.Key">@item.Value</option>    
+                }
+            </select></span>
+        </li>
+                <li>
+            <span><select id="LocationId" name="LocationId">
+                <option value="0" selected>All Locations</option>
+                @foreach (var item in Model.Locations)
+                {   
+                    <option value="@item.Key">@item.Value</option>    
+                }
+            </select></span>
+        </li>
+                  </ul>
+																		    <input type="submit" id="home_job_search_submit" value="GO" /><div id="viewAllJobs"> <a href="/Job/Viewall">View All Jobs</a> </div><div class="clear"><!-- --></div>
+}
+<div class="clear"><!-- --></div>
+</div>
+<div id="topMenu">
+<div id="jobAlert">
+@if (JXTPortal.Entities.SessionData.Member != null) {
+				<a class="item2" href="/Account/MyAlerts">Job Alerts</a> }
+else{<a class="item2" href="#" onClick="javascript: alert('You must login first to create job alert');">Job Alerts</a>}
+</div>
+<div id="register"> <a href="/Account/Register">REGISTER</a> </div>
+</div>
+</div>
+</section>

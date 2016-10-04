@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<MappingsXMLModel xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <JobTemplateMaps />
+  <JobTemplateLogoMaps />
+  <WorkTypeMaps />
+  <CLAMaps>
+    <CLAMap>
+      <MapToCountryID>1</MapToCountryID>
+      <MapToLocationID>1</MapToLocationID>
+      <MapToAreaID>1</MapToAreaID>
+      <ClientCountryID>Row 1</ClientCountryID>
+      <ClientLocationID>Row 11</ClientLocationID>
+      <ClientAreaID>Row 111</ClientAreaID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>1</MapToCountryID>
+      <MapToLocationID>1</MapToLocationID>
+      <MapToAreaID>1</MapToAreaID>
+      <ClientCountryID>Row 2</ClientCountryID>
+      <ClientLocationID>Row 22</ClientLocationID>
+      <ClientAreaID>Row 222</ClientAreaID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+    <CLAMap>
+      <MapToCountryID>1</MapToCountryID>
+      <MapToLocationID>3</MapToLocationID>
+      <MapToAreaID>14</MapToAreaID>
+      <ClientCountryID>Row 3</ClientCountryID>
+      <ClientLocationID>Row 33</ClientLocationID>
+      <ClientAreaID>Row 333</ClientAreaID>
+      <isDefaultSetting>false</isDefaultSetting>
+    </CLAMap>
+  </CLAMaps>
+  <ProfRoleMaps />
+  <SalaryTypeMaps />
+</MappingsXMLModel>

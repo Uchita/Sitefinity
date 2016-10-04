@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+
+  <siteMapNode url="" title="Admin"  description="">
+    <siteMapNode url="~/admin/default.aspx" title="Home"  description="" />
+    
+    <siteMapNode title="Dynamic Pages"  description="" >
+      <siteMapNode url="~/admin/dynamicpages.aspx" title="Published Pages"  description="" />
+      <siteMapNode url="~/admin/dynamicpagerev.aspx" title="Draft/Pending Revisions"  description="" />
+    </siteMapNode>
+
+
+    <siteMapNode url="" title="Advertisers"  description="">
+      <siteMapNode url="~/admin/consultants.aspx" title="Consultants"  description="" />
+    </siteMapNode>
+
+    <siteMapNode url="" title="File Management"  description="">
+      <siteMapNode url="~/admin/filemanager.aspx" title="File Manager"  description="" />
+    </siteMapNode>
+    
+    <siteMapNode url="" title="News Categories"  description="">
+      <siteMapNode url="~/admin/newscategories.aspx" title="News Categories"  description="" />
+      <siteMapNode url="~/admin/sitenewsindustry.aspx" title="News Industry"  description="" />
+      <siteMapNode url="~/admin/sitenewstype.aspx" title="News Type"  description="" />
+      <siteMapNode url="~/admin/news.aspx" title="News"  description="" />
+    </siteMapNode>
+  </siteMapNode>
+
+</siteMap>

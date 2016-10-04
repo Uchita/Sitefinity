@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<MappingsXMLModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <JobTemplateMaps>
+    <JobTemplateMap>
+      <MapToJobTemplateID>139</MapToJobTemplateID>
+      <ClientJobTemplateID>1</ClientJobTemplateID>
+    </JobTemplateMap>
+    <JobTemplateMap>
+      <MapToJobTemplateID>139</MapToJobTemplateID>
+      <ClientJobTemplateID>12</ClientJobTemplateID>
+    </JobTemplateMap>
+  </JobTemplateMaps>
+  <JobTemplateLogoMaps>
+    <JobTemplateLogoMap>
+      <MapToJobTemplateLogoID>999</MapToJobTemplateLogoID>
+      <ClientJobTemplateLogoID>123145</ClientJobTemplateLogoID>
+    </JobTemplateLogoMap>
+  </JobTemplateLogoMaps>
+  <WorkTypeMaps />
+  <CLAMaps />
+  <ProfRoleMaps />
+</MappingsXMLModel>

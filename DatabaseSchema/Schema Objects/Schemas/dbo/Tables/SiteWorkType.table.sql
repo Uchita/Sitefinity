@@ -1,0 +1,10 @@
+﻿CREATE TABLE [dbo].[SiteWorkType]
+(
+	SiteWorkTypeID INT IDENTITY(1,1) PRIMARY KEY,
+	SiteID INT NOT NULL REFERENCES Sites(SiteID),
+	WorkTypeID INT NOT NULL REFERENCES WorkType(WorkTypeID),
+	SiteWorkTypeName NVARCHAR(510) NOT NULL,
+	Sequence INT NOT NULL DEFAULT(0),
+	Valid BIT NOT NULL DEFAULT(1),
+	SiteWorkTypeFriendlyUrl VARCHAR(255) NULL
+)

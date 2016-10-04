@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="jquerymobile.css">
+<link rel="stylesheet" href="jxtadditions.css">
+<script src="jquery-1.6.4.min.js"></script>
+<script src="jquery.mobile-1.0.min.js"></script>
+
+</head>
+<body>
+
+<div data-role="page">
+
+ <div data-role="header" data-position="fixed" data-theme="b">
+		  <div class="ui-grid-b">
+					<div class="ui-block-a align-left"><a href="#" data-rel="back" data-direction="reverse" data-icon="back" data-role="button" data-inline="true" id="back-button">Back</a></div>
+					<div class="ui-block-b"><a href="index.html" data-direction="reverse"><img src="NEW-JXT-LOGO.png" width="100" height="42" alt="JXT Logo"></a></div>		
+     <div class="ui-block-c align-right top-gap"><a href="index.html" data-role="button" data-icon="home" data-iconpos="notext">Home</a></div>				
+			</div><!-- /grid-a -->
+			<div data-role="navbar">
+						<ul>
+							<li><a href="about-us.html">About Us</a></li>
+			   	<li><a href="contact.html">Contact Us</a></li>
+			    <li><a href="login.html">Login</a></li>
+						</ul>
+			</div> <!-- end of footer navbar -->	
+
+		</div><!-- end header -->
+
+		<div data-role="content">
+		
+					<h2>To save jobs, please Register</h2>
+					<form action="job-seeker-home.html">
+						<div data-role="fieldcontain" class="ui-hide-label">
+							<label for="email">Email:</label>
+							<input type="text" name="email" id="email" value="" placeholder="Email"/>
+						</div>		
+      
+      <div data-role="fieldcontain" class="ui-hide-label">
+							<label for="password">Password:</label>
+							<input type="text" name="password" id="password" value="" placeholder="Password"/>
+						</div>		
+      <div data-role="fieldcontain">
+				    <fieldset data-role="controlgroup">
+					   <input type="checkbox" name="checkbox-1" id="checkbox-1" class="custom" />
+					   <label for="checkbox-1">Remember Me</label>
+				    </fieldset>
+						</div>
+      <button data-inline="true" data-icon="arrow-r" data-iconpos="right">Register</button>
+      
+     </form>	
+     <p class="align-center">
+     Already Registered? <br/>
+     <a href="register.html" data-role="button" data-inline="true">Login</a>
+     </p>
+		
+		</div> <!--  end of content -->
+
+
+<div data-role="footer" data-position="inline" data-theme="b">	
+		<div data-role="navbar">
+		<ul>
+				<li><a href="#" data-role="button">Feedback</a></li>
+				<li><a href="#" data-role="button">Terms</a></li>
+				<li><a href="register.html" data-role="button">Register</a></li>
+		 </ul>
+   <div class="align-center top-gap">
+	   <img src="images/facebook.jpg" alt="Facebook" >
+         <img src="images/twitter.jpg" alt="Twitter">
+         <img src="images/linked-in.jpg" alt="Linked In" >
+	   </div>
+		 <p class="align-center">&copy; 2012 JXT</p>
+		</div>	
+</div> <!-- end of footer -->
+
+</div> <!-- end of Home -->
+
+
+</body>
+</html>

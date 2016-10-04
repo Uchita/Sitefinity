@@ -1,0 +1,52 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Job.master.cs" Inherits="JXTPortal.Website.MasterPages.Job" %>
+<%@ Register src="~/usercontrols/common/ucCommonHeader.ascx" tagname="ucCommonHeader" tagprefix="uc1" %>
+<asp:literal id="ltlDocType" runat="server" />
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <asp:Literal ID="litContentType" runat="server" />
+    <%--<meta http-equiv="X-UA-Compatible" content="IE=7" />--%>
+    <%--<link href="/styles/main.css" rel="stylesheet" type="text/css" />--%>
+    
+    <link rel="stylesheet" type="text/css" href="//images.jxt.net.au/COMMON/css/GlobalStyle.css" />
+    <link rel="stylesheet" href="/fonts/font-awesome/font-awesome.min.css" />
+
+    <asp:Literal ID="ltJquery" runat="server" />
+    <script type="text/javascript" src="//images.jxt.net.au/COMMON/js/jxtscript.js"></script>
+    <script>
+        window.onerror = function () { $("#loading-screen, .loader, #jxt-loading-screen").hide(); }
+    </script>
+
+    <uc1:ucCommonHeader ID="ucCommonHeader1" runat="server" />
+
+    <asp:Literal ID="ltlMetaContent" runat="server" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <asp:Literal ID="ltlCSSAndScripts" runat="server" />
+    <asp:Literal ID="ltGoogleWebMaster" runat="server" />
+    <script>
+        $(function () {
+            $("#jxt-loading-screen").hide();
+        });
+    </script>
+</head>
+<body>
+    <asp:Literal ID="ltGoogleTagManager" runat="server" />
+    <div id="jxt-loading-screen" style="position: absolute; left: 0; right: 0; top: 0; bottom: 0; z-index: 999999; background: #fff;"></div>
+    <form id="form1" runat="server">
+    <div id="wrapper" class="clearfix">
+        <asp:Literal ID="ltlAboveHeader" runat="server" />
+        <JXTControl:ucHeader ID="ucHeader1" runat="server" />
+        <div id="job-dynamic-container">
+            <div id="job-side-column">
+                <JXTControl:MemberAdvertiserNavigation ID="MemberAdvertiserNavigation1" runat="server" />
+                <asp:Literal ID="ltlRightNavigation" runat="server" />
+            </div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" />            
+        </div>
+        <JXTControl:ucFooter ID="ucFooter1" runat="server" />
+        <asp:Literal ID="ltlBelowFooter" runat="server" />
+        <asp:Literal ID="ltGoogleAnalytics" runat="server" />
+    </div>
+    </form>
+</body>
+</html>

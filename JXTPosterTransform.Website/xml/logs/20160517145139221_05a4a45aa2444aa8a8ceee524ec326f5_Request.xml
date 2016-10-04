@@ -1,0 +1,998 @@
+<?xml version="1.0" encoding="utf-8"?><JobPostRequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.servicestack.net/types"><UserName xmlns="http://schemas.datacontract.org/2004/07/JXTPlatform.DTO.Base">Stellar</UserName><Password xmlns="http://schemas.datacontract.org/2004/07/JXTPlatform.DTO.Base">Stellar@123</Password><AdvertiserId xmlns="http://schemas.datacontract.org/2004/07/JXTPlatform.DTO.Base">9546</AdvertiserId><ArchiveMissingJobs xmlns="http://schemas.datacontract.org/2004/07/JXTPlatform.DTO.Base">false</ArchiveMissingJobs><Listings><JobListing><JobAdType>Normal</JobAdType><ReferenceNo>27299</ReferenceNo><JobTitle>Digger Operator</JobTitle><JobUrl /><ShortDescription>Digger Operator required for immediate start!</ShortDescription><Bulletpoints><BulletPoint1>North Shore Location- No more city traffic!</BulletPoint1><BulletPoint2>Competitive rates for pay $$$</BulletPoint2><BulletPoint3>Grow your career in Civil Construction</BulletPoint3></Bulletpoints><JobFullDescription>&lt;p&gt;&lt;br /&gt;
+&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;&lt;span style="background-color:rgb(248, 248, 248)"&gt;Excavator/Digger Operator&lt;/span&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;span style="background-color:rgb(248, 248, 248)"&gt;&amp;bull; Great Pay Rates! &lt;/span&gt;&lt;br /&gt;
+&lt;span style="background-color:rgb(248, 248, 248)"&gt;&amp;bull; Great company &lt;/span&gt;&lt;br /&gt;
+&lt;span style="background-color:rgb(248, 248, 248)"&gt;&amp;bull; Good gear&lt;/span&gt;&lt;/strong&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;span style="background-color:rgb(248, 248, 248)"&gt;Stellar Recruitment is your number one choice for finding the best job opportunities in the civil construction market. We are specialists in civil infrastructure, construction and mining, and recruit for opportunities in NZ, Australia and even further abroad.&lt;/span&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;span style="background-color:rgb(248, 248, 248)"&gt;We are seeking a skilled, reliable Operator, who has experience operating excavators.&lt;/span&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;span style="background-color:rgb(248, 248, 248)"&gt;This role is not for the faint hearted, it is a physically demanding role that will give you the opportunity to further develop your career in the Civil construction industry. Not only will you be operating multiple machines but you will also be assisting on the ground as and when required.&lt;/span&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;span style="background-color:rgb(248, 248, 248)"&gt;Typically building Retaining Walls on large scale Civil works projects, our ideal candidate will have experience in the following:&lt;/span&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;strong&gt;&lt;span style="background-color:rgb(248, 248, 248)"&gt;&amp;bull; Drilling with Pendulum type drill rigs&lt;/span&gt;&lt;br /&gt;
+&lt;span style="background-color:rgb(248, 248, 248)"&gt;&amp;bull; Excavating of footings&lt;/span&gt;&lt;br /&gt;
+&lt;span style="background-color:rgb(248, 248, 248)"&gt;&amp;bull; Bulk Backfilling&lt;/span&gt;&lt;br /&gt;
+&lt;span style="background-color:rgb(248, 248, 248)"&gt;&amp;bull; Compaction knowledge&lt;/span&gt;&lt;br /&gt;
+&lt;span style="background-color:rgb(248, 248, 248)"&gt;&amp;bull; Machine Maintenance abilities&lt;/span&gt;&lt;/strong&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;span style="background-color:rgb(248, 248, 248)"&gt;In order to be considered for this role you must have:&lt;/span&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;strong&gt;&lt;span style="background-color:rgb(248, 248, 248)"&gt;&amp;bull; Current Class 2 driver&amp;rsquo;s license&lt;/span&gt;&lt;br /&gt;
+&lt;span style="background-color:rgb(248, 248, 248)"&gt;&amp;bull; Wheels Tracks and Rollers endorsed&lt;/span&gt;&lt;br /&gt;
+&lt;span style="background-color:rgb(248, 248, 248)"&gt;&amp;bull; Excellent verbal communication skills&lt;/span&gt;&lt;br /&gt;
+&lt;span style="background-color:rgb(248, 248, 248)"&gt;&amp;bull; Carry out regular maintenance of plant&lt;/span&gt;&lt;br /&gt;
+&lt;span style="background-color:rgb(248, 248, 248)"&gt;&amp;bull; Team Player&lt;/span&gt;&lt;br /&gt;
+&lt;span style="background-color:rgb(248, 248, 248)"&gt;&amp;bull; Reliable &amp;amp; punctual&lt;/span&gt;&lt;/strong&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;span style="background-color:rgb(248, 248, 248)"&gt;What&amp;rsquo;s in it for you:&lt;/span&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;strong&gt;&lt;span style="background-color:rgb(248, 248, 248)"&gt;&amp;bull; Competitive rates of pay&lt;/span&gt;&lt;br /&gt;
+&lt;span style="background-color:rgb(248, 248, 248)"&gt;&amp;bull; Optional Vehicle, phone &amp;amp; fuel neg&lt;/span&gt;&lt;br /&gt;
+&lt;span style="background-color:rgb(248, 248, 248)"&gt;&amp;bull; Training opportunities&lt;/span&gt;&lt;/strong&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;span style="background-color:rgb(248, 248, 248)"&gt;If this sounds like you, apply online today!!&lt;/span&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;span style="background-color:rgb(248, 248, 248)"&gt;For more information on the role including duties, hours and rates of pay, contact Fern on&amp;nbsp;09 969 1028&amp;nbsp;or email your CV to fern.d@stellarrecruitment.co.nz&lt;/span&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;span style="background-color:rgb(248, 248, 248)"&gt;Applicants for this position should have NZ residency or a valid NZ work visa.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</JobFullDescription><ContactDetails /><CompanyName /><ConsultantID /><PublicTransport /><ResidentsOnly>true</ResidentsOnly><IsQualificationsRecognised>false</IsQualificationsRecognised><ShowLocationDetails>true</ShowLocationDetails><JobTemplateID>3575</JobTemplateID><AdvertiserJobTemplateLogoID /><Categories><Category><Classification>14</Classification><SubClassification>160</SubClassification></Category></Categories><ListingClassification><WorkType>2</WorkType><Sector>0</Sector><StreetAddress /><Tags>0</Tags><Country>2</Country><Location>39</Location><Area>167</Area></ListingClassification><Salary><SalaryType>Hourly</SalaryType><Min>25</Min><Max>34.99</Max><AdditionalText /><ShowSalaryDetails>true</ShowSalaryDetails></Salary><ApplicationMethod><JobApplicationType>URL</JobApplicationType><ApplicationUrl>http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1152735&amp;src=WE</ApplicationUrl><ApplicationEmail>Fern.d@stellarrecruitment.co.nz</ApplicationEmail></ApplicationMethod><Referral><HasReferralFee>false</HasReferralFee><Amount>0</Amount><ReferralUrl /></Referral></JobListing><JobListing><JobAdType>Normal</JobAdType><ReferenceNo>DL27466</ReferenceNo><JobTitle>Grader operator</JobTitle><JobUrl /><ShortDescription>Grader Operator- great opportunity to join a awesome team!</ShortDescription><Bulletpoints><BulletPoint1 /><BulletPoint2 /><BulletPoint3 /></Bulletpoints><JobFullDescription>&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Grader operator &lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;The Company&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Our Auckland based company has a huge workload on over the foreseeable future and they are looking for a final trim grader operator to join their outstanding team on a permanent basis.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;What we&amp;rsquo;re looking for:&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Ideally a minimum of 10 years in the industry on a grader.&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Strong attention to detail with a focus on quality workmanship&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Good problem solving skills&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Able to work with minimal supervision and as part of a crew&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Willing to learn and have a strong work ethic&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Be physically fit&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Be a genuine&lt;strong&gt; team player&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;We seek applicants with a positive attitude towards maintaining a safe working environment and motivated to helping our client achieve &lt;strong&gt;Zero Harm.&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Supervisory Level:&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&amp;bull; 10 years&lt;strong&gt; final trim &lt;/strong&gt;Grader experience&lt;br /&gt;
+&amp;bull; Proven ability to lead a crew and run jobs&lt;br /&gt;
+&amp;bull; GPS experience a bonus but not essential&lt;br /&gt;
+&amp;bull; Ability to operate other various machinery Eg: Digger, Bully (again not essential)&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;If this sounds like you and you would like to apply for this role or for more information please &lt;strong&gt;contact&amp;nbsp;Fern at Stellar Workforce on 09 969 1028 or email your CV to &lt;a href="mailto:fern.d@stellarworkforce.co.nz"&gt;fern.d@stellarworkforce.co.nz&lt;/a&gt;&lt;/strong&gt;&lt;/span&gt;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;</JobFullDescription><ContactDetails /><CompanyName /><ConsultantID /><PublicTransport /><ResidentsOnly>true</ResidentsOnly><IsQualificationsRecognised>false</IsQualificationsRecognised><ShowLocationDetails>true</ShowLocationDetails><JobTemplateID>3575</JobTemplateID><AdvertiserJobTemplateLogoID /><Categories><Category><Classification>14</Classification><SubClassification>160</SubClassification></Category></Categories><ListingClassification><WorkType>2</WorkType><Sector>0</Sector><StreetAddress /><Tags>0</Tags><Country>2</Country><Location>39</Location><Area>165</Area></ListingClassification><Salary><SalaryType>Hourly</SalaryType><Min>30</Min><Max>39.99</Max><AdditionalText /><ShowSalaryDetails>true</ShowSalaryDetails></Salary><ApplicationMethod><JobApplicationType>URL</JobApplicationType><ApplicationUrl>http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1160807&amp;src=WE</ApplicationUrl><ApplicationEmail>fern.d@stellarworkforce.co.nz</ApplicationEmail></ApplicationMethod><Referral><HasReferralFee>false</HasReferralFee><Amount>0</Amount><ReferralUrl /></Referral></JobListing><JobListing><JobAdType>Normal</JobAdType><ReferenceNo>27193</ReferenceNo><JobTitle>Excavator Operator</JobTitle><JobUrl /><ShortDescription>Experienced Digger Operators needed for immediate start!</ShortDescription><Bulletpoints><BulletPoint1 /><BulletPoint2 /><BulletPoint3 /></Bulletpoints><JobFullDescription>&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Stellar Recruitment is your number one choice for finding the best job opportunities in the civil construction market in 2016.&lt;br /&gt;
+&lt;br /&gt;
+Our clients want us to find the best excavator operators we can! With drainage projects increasing, we want to hear from skilled excavator operators with drainage experience.&amp;nbsp;&lt;br /&gt;
+&lt;br /&gt;
+If you can say yes to the following then we want to hear from you.&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Class 1, WTR, with Class 2 advantageous&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Pipe installation and/or pipe renewal projects&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Deep drainage experience up to 6m&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Digging inside trench shields with and without spotter assistance&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Digging around services in and above the ground&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Able to dig to height and levels&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Final trim experience advantageous&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Trenching and backfilling&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Experience on machines up to 20 tonne&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Ability to assist with ground works&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;span style="color:rgb(0, 112, 192)"&gt;If your skills and experience are described in the above, then Stellar want to hear from you.&lt;br /&gt;
+&lt;br /&gt;
+You will also have:&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;The right to work in New Zealand&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;A&amp;nbsp;good level of physical fitness&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Demonstrate sound Health and Safety practices&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;For further information about this role or to discuss other positions on offer, please contact Fern Dickinson on 09 969 1028 or email fern.d@stellarworkforce.co.nz&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Applicants for this position should have NZ residency or a valid NZ work visa.&lt;/span&gt;&lt;/p&gt;</JobFullDescription><ContactDetails /><CompanyName /><ConsultantID /><PublicTransport /><ResidentsOnly>true</ResidentsOnly><IsQualificationsRecognised>false</IsQualificationsRecognised><ShowLocationDetails>true</ShowLocationDetails><JobTemplateID>3575</JobTemplateID><AdvertiserJobTemplateLogoID /><Categories><Category><Classification>14</Classification><SubClassification>160</SubClassification></Category></Categories><ListingClassification><WorkType>2</WorkType><Sector>0</Sector><StreetAddress /><Tags>0</Tags><Country>2</Country><Location>39</Location><Area>167</Area></ListingClassification><Salary><SalaryType>Hourly</SalaryType><Min>20</Min><Max>29.99</Max><AdditionalText /><ShowSalaryDetails>true</ShowSalaryDetails></Salary><ApplicationMethod><JobApplicationType>URL</JobApplicationType><ApplicationUrl>http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1148693&amp;src=WE</ApplicationUrl><ApplicationEmail>Fern.d@stellarrecruitment.co.nz</ApplicationEmail></ApplicationMethod><Referral><HasReferralFee>false</HasReferralFee><Amount>0</Amount><ReferralUrl /></Referral></JobListing><JobListing><JobAdType>Normal</JobAdType><ReferenceNo>28281</ReferenceNo><JobTitle>Senior Structural Engineer</JobTitle><JobUrl /><ShortDescription>Senior Structural Engineer with or working towards **CPENG with a minimum of 6+ years’ experience and have strong proficiency with ETABS, SpaceGASS</ShortDescription><Bulletpoints><BulletPoint1 /><BulletPoint2 /><BulletPoint3 /></Bulletpoints><JobFullDescription>&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Senior Structural Design Engineers, are you on track with your 5 year plan?&lt;br /&gt;
+The dreaded 5 year plan, your ideological path to success over the next 5 years but is your current company going to help you achieve this? Whether it&amp;rsquo;s career path, team culture, progression and of course money, all of these factor in to your success, and your enjoyment of the role, but do you have what you want?&lt;br /&gt;
+&lt;br /&gt;
+Stellar has partnered with an emerging consultancy who have one goal in mind&amp;hellip;***GROWTH. With strong fundamentals and family ideals within the company who value and implement your input, this is a real opportunity for a Senior Structural Engineer with or working towards **CPENG with a minimum of 6+ years&amp;rsquo; experience and have strong proficiency with ETABS, SpaceGASS.&lt;br /&gt;
+&lt;br /&gt;
+Your responsibilities will be to manage structural design of projects varying in size from medium to large, have strong ability and confidence liaising with varying professionals from: Clients, Contractors to Architects, as well as advising during design and construction stage on various projects.&lt;br /&gt;
+&lt;br /&gt;
+What this company will offer you:&lt;br /&gt;
+&amp;bull; Clear supported career progression&lt;br /&gt;
+&amp;bull; Exciting projects&lt;br /&gt;
+&amp;bull; Sense of value and appreciation&lt;br /&gt;
+&amp;bull; No corporate politics&lt;br /&gt;
+&lt;br /&gt;
+What we require from you:&lt;br /&gt;
+&lt;br /&gt;
+&amp;bull; CPENG or working towards your Chartership&lt;br /&gt;
+&amp;bull; New Zealand Experiance&lt;br /&gt;
+&amp;bull; 6+ years Structural Design Experience&lt;br /&gt;
+&amp;bull; Client facing skills&lt;br /&gt;
+&amp;bull; Strong proficiency with ETABS and SpaceGass.&lt;br /&gt;
+&amp;bull; Desire to grow your career&lt;br /&gt;
+&lt;br /&gt;
+So if your plan needs help, maybe you feel undervalued, tired of the corporate world, or just fancy a change I am here to help. If your skills match above please apply directly with your CV to adam.t@stellarrecruitment.co.nz I must implore that before you apply you must have all documentation to work in New Zealand, and that New Zealand experience is preferred. Take that 1st step today and get in touch, and let&amp;rsquo;s discuss your next move.&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+Thank you for your time.&lt;br /&gt;
+&lt;br /&gt;
+Adam Towler&lt;br /&gt;
+Engineering &amp;amp; Design Specialist&lt;br /&gt;
+P +64 9 969 1029&lt;br /&gt;
+SK917023A&lt;/span&gt;&lt;/p&gt;</JobFullDescription><ContactDetails /><CompanyName /><ConsultantID /><PublicTransport /><ResidentsOnly>true</ResidentsOnly><IsQualificationsRecognised>false</IsQualificationsRecognised><ShowLocationDetails>true</ShowLocationDetails><JobTemplateID>3575</JobTemplateID><AdvertiserJobTemplateLogoID /><Categories><Category><Classification>19</Classification><SubClassification>249</SubClassification></Category></Categories><ListingClassification><WorkType>2</WorkType><Sector>0</Sector><StreetAddress /><Tags>0</Tags><Country>2</Country><Location>18</Location><Area>97</Area></ListingClassification><Salary><SalaryType>Annual</SalaryType><Min>100000</Min><Max>149999</Max><AdditionalText /><ShowSalaryDetails>true</ShowSalaryDetails></Salary><ApplicationMethod><JobApplicationType>URL</JobApplicationType><ApplicationUrl>http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1215077&amp;src=WE</ApplicationUrl><ApplicationEmail>adam.t@stellarrecruitment.co.nz</ApplicationEmail></ApplicationMethod><Referral><HasReferralFee>false</HasReferralFee><Amount>0</Amount><ReferralUrl /></Referral></JobListing><JobListing><JobAdType>Normal</JobAdType><ReferenceNo>28281_1</ReferenceNo><JobTitle>Senior Structural Engineer</JobTitle><JobUrl /><ShortDescription>Senior Structural Engineer with or working towards **CPENG with a minimum of 6+ years’ experience and have strong proficiency with ETABS, SpaceGASS</ShortDescription><Bulletpoints><BulletPoint1 /><BulletPoint2 /><BulletPoint3 /></Bulletpoints><JobFullDescription>&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Senior Structural Design Engineers, are you on track with your 5 year plan?&lt;br /&gt;
+The dreaded 5 year plan, your ideological path to success over the next 5 years but is your current company going to help you achieve this? Whether it&amp;rsquo;s career path, team culture, progression and of course money, all of these factor in to your success, and your enjoyment of the role, but do you have what you want?&lt;br /&gt;
+&lt;br /&gt;
+Stellar has partnered with an emerging consultancy who have one goal in mind&amp;hellip;***GROWTH. With strong fundamentals and family ideals within the company who value and implement your input, this is a real opportunity for a Senior Structural Engineer with or working towards **CPENG with a minimum of 6+ years&amp;rsquo; experience and have strong proficiency with ETABS, SpaceGASS.&lt;br /&gt;
+&lt;br /&gt;
+Your responsibilities will be to manage structural design of projects varying in size from medium to large, have strong ability and confidence liaising with varying professionals from: Clients, Contractors to Architects, as well as advising during design and construction stage on various projects.&lt;br /&gt;
+&lt;br /&gt;
+What this company will offer you:&lt;br /&gt;
+&amp;bull; Clear supported career progression&lt;br /&gt;
+&amp;bull; Exciting projects&lt;br /&gt;
+&amp;bull; Sense of value and appreciation&lt;br /&gt;
+&amp;bull; No corporate politics&lt;br /&gt;
+&lt;br /&gt;
+What we require from you:&lt;br /&gt;
+&lt;br /&gt;
+&amp;bull; CPENG or working towards your Chartership&lt;br /&gt;
+&amp;bull; New Zealand Experiance&lt;br /&gt;
+&amp;bull; 6+ years Structural Design Experience&lt;br /&gt;
+&amp;bull; Client facing skills&lt;br /&gt;
+&amp;bull; Strong proficiency with ETABS and SpaceGass.&lt;br /&gt;
+&amp;bull; Desire to grow your career&lt;br /&gt;
+&lt;br /&gt;
+So if your plan needs help, maybe you feel undervalued, tired of the corporate world, or just fancy a change I am here to help. If your skills match above please apply directly with your CV to adam.t@stellarrecruitment.co.nz I must implore that before you apply you must have all documentation to work in New Zealand, and that New Zealand experience is preferred. Take that 1st step today and get in touch, and let&amp;rsquo;s discuss your next move.&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+Thank you for your time.&lt;br /&gt;
+&lt;br /&gt;
+Adam Towler&lt;br /&gt;
+Engineering &amp;amp; Design Specialist&lt;br /&gt;
+P +64 9 969 1029&lt;br /&gt;
+SK917023A&lt;/span&gt;&lt;/p&gt;</JobFullDescription><ContactDetails /><CompanyName /><ConsultantID /><PublicTransport /><ResidentsOnly>true</ResidentsOnly><IsQualificationsRecognised>false</IsQualificationsRecognised><ShowLocationDetails>true</ShowLocationDetails><JobTemplateID>3575</JobTemplateID><AdvertiserJobTemplateLogoID /><Categories><Category><Classification>19</Classification><SubClassification>249</SubClassification></Category></Categories><ListingClassification><WorkType>2</WorkType><Sector>0</Sector><StreetAddress /><Tags>0</Tags><Country>2</Country><Location>47</Location><Area>197</Area></ListingClassification><Salary><SalaryType>Annual</SalaryType><Min>100000</Min><Max>149999</Max><AdditionalText /><ShowSalaryDetails>true</ShowSalaryDetails></Salary><ApplicationMethod><JobApplicationType>URL</JobApplicationType><ApplicationUrl>http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1215077&amp;src=WE</ApplicationUrl><ApplicationEmail>adam.t@stellarrecruitment.co.nz</ApplicationEmail></ApplicationMethod><Referral><HasReferralFee>false</HasReferralFee><Amount>0</Amount><ReferralUrl /></Referral></JobListing><JobListing><JobAdType>Normal</JobAdType><ReferenceNo>28281_2</ReferenceNo><JobTitle>Senior Structural Engineer</JobTitle><JobUrl /><ShortDescription>Senior Structural Engineer with or working towards **CPENG with a minimum of 6+ years’ experience and have strong proficiency with ETABS, SpaceGASS</ShortDescription><Bulletpoints><BulletPoint1 /><BulletPoint2 /><BulletPoint3 /></Bulletpoints><JobFullDescription>&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Senior Structural Design Engineers, are you on track with your 5 year plan?&lt;br /&gt;
+The dreaded 5 year plan, your ideological path to success over the next 5 years but is your current company going to help you achieve this? Whether it&amp;rsquo;s career path, team culture, progression and of course money, all of these factor in to your success, and your enjoyment of the role, but do you have what you want?&lt;br /&gt;
+&lt;br /&gt;
+Stellar has partnered with an emerging consultancy who have one goal in mind&amp;hellip;***GROWTH. With strong fundamentals and family ideals within the company who value and implement your input, this is a real opportunity for a Senior Structural Engineer with or working towards **CPENG with a minimum of 6+ years&amp;rsquo; experience and have strong proficiency with ETABS, SpaceGASS.&lt;br /&gt;
+&lt;br /&gt;
+Your responsibilities will be to manage structural design of projects varying in size from medium to large, have strong ability and confidence liaising with varying professionals from: Clients, Contractors to Architects, as well as advising during design and construction stage on various projects.&lt;br /&gt;
+&lt;br /&gt;
+What this company will offer you:&lt;br /&gt;
+&amp;bull; Clear supported career progression&lt;br /&gt;
+&amp;bull; Exciting projects&lt;br /&gt;
+&amp;bull; Sense of value and appreciation&lt;br /&gt;
+&amp;bull; No corporate politics&lt;br /&gt;
+&lt;br /&gt;
+What we require from you:&lt;br /&gt;
+&lt;br /&gt;
+&amp;bull; CPENG or working towards your Chartership&lt;br /&gt;
+&amp;bull; New Zealand Experiance&lt;br /&gt;
+&amp;bull; 6+ years Structural Design Experience&lt;br /&gt;
+&amp;bull; Client facing skills&lt;br /&gt;
+&amp;bull; Strong proficiency with ETABS and SpaceGass.&lt;br /&gt;
+&amp;bull; Desire to grow your career&lt;br /&gt;
+&lt;br /&gt;
+So if your plan needs help, maybe you feel undervalued, tired of the corporate world, or just fancy a change I am here to help. If your skills match above please apply directly with your CV to adam.t@stellarrecruitment.co.nz I must implore that before you apply you must have all documentation to work in New Zealand, and that New Zealand experience is preferred. Take that 1st step today and get in touch, and let&amp;rsquo;s discuss your next move.&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+Thank you for your time.&lt;br /&gt;
+&lt;br /&gt;
+Adam Towler&lt;br /&gt;
+Engineering &amp;amp; Design Specialist&lt;br /&gt;
+P +64 9 969 1029&lt;br /&gt;
+SK917023A&lt;/span&gt;&lt;/p&gt;</JobFullDescription><ContactDetails /><CompanyName /><ConsultantID /><PublicTransport /><ResidentsOnly>true</ResidentsOnly><IsQualificationsRecognised>false</IsQualificationsRecognised><ShowLocationDetails>true</ShowLocationDetails><JobTemplateID>3575</JobTemplateID><AdvertiserJobTemplateLogoID /><Categories><Category><Classification>19</Classification><SubClassification>249</SubClassification></Category></Categories><ListingClassification><WorkType>2</WorkType><Sector>0</Sector><StreetAddress /><Tags>0</Tags><Country>2</Country><Location>41</Location><Area>174</Area></ListingClassification><Salary><SalaryType>Annual</SalaryType><Min>100000</Min><Max>149999</Max><AdditionalText /><ShowSalaryDetails>true</ShowSalaryDetails></Salary><ApplicationMethod><JobApplicationType>URL</JobApplicationType><ApplicationUrl>http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1215077&amp;src=WE</ApplicationUrl><ApplicationEmail>adam.t@stellarrecruitment.co.nz</ApplicationEmail></ApplicationMethod><Referral><HasReferralFee>false</HasReferralFee><Amount>0</Amount><ReferralUrl /></Referral></JobListing><JobListing><JobAdType>Normal</JobAdType><ReferenceNo>28280</ReferenceNo><JobTitle>Principal Engineer/Engineering Manager</JobTitle><JobUrl /><ShortDescription>leader to oversee the Engineering Division preferably with a combined Civil/Structural background, but is open to candidates with specialty in either</ShortDescription><Bulletpoints><BulletPoint1 /><BulletPoint2 /><BulletPoint3 /></Bulletpoints><JobFullDescription>&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Principal Engineer/Engineering Manager, where is your next challenge coming from?&lt;br /&gt;
+&lt;br /&gt;
+Stellar has partnered with an emerging consultancy who have one goal in mind&amp;hellip;***GROWTH. With strong fundamentals and family ideals within the company who believe it is time to really spread their wings and have a leader at forefront driving success.&lt;br /&gt;
+&lt;br /&gt;
+With growth plans in the pipeline and projects won my client is looking for the ideal ***leader, to oversee the Engineering Division preferably with a combined Civil/Structural background, but is open to candidates with specialty in either.&lt;br /&gt;
+&lt;br /&gt;
+What this company will offer you:&lt;br /&gt;
+&amp;bull; Clear supported career progression&lt;br /&gt;
+&amp;bull; Family run business, no corporate politics&lt;br /&gt;
+&amp;bull; Exciting projects&lt;br /&gt;
+&amp;bull; Guided support&lt;br /&gt;
+&amp;bull; Autonomous working environment&lt;br /&gt;
+&lt;br /&gt;
+What we require from you:&lt;br /&gt;
+&amp;bull; CPENG&lt;br /&gt;
+&amp;bull; New Zealand Experience&lt;br /&gt;
+&amp;bull; 9+ years&amp;rsquo; experience covering both/ either Civil and Structural&lt;br /&gt;
+&amp;bull; Leadership skills&lt;br /&gt;
+&amp;bull; Team management&lt;br /&gt;
+&lt;br /&gt;
+So if a new challenge is what you need, a chance to work Autonomously, fresh faces around you, and join a growing company, please look no further. If you match the above skills please reply directly with your CV to adam.t@stellarrecruitment.co.nz I must implore that before you apply you must have all documentation to work in New Zealand, and that New Zealand experience is preferred. Make that change today, the growth plan starts with you.&lt;br /&gt;
+&lt;br /&gt;
+*** Referral Bonus subject to terms.&lt;br /&gt;
+&lt;br /&gt;
+Thank you for your time.&lt;br /&gt;
+&lt;br /&gt;
+Adam Towler&lt;br /&gt;
+Engineering &amp;amp; Design Specialist&lt;br /&gt;
+P +64 9 969 1029&lt;/span&gt;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;</JobFullDescription><ContactDetails /><CompanyName /><ConsultantID /><PublicTransport /><ResidentsOnly>true</ResidentsOnly><IsQualificationsRecognised>false</IsQualificationsRecognised><ShowLocationDetails>true</ShowLocationDetails><JobTemplateID>3575</JobTemplateID><AdvertiserJobTemplateLogoID /><Categories><Category><Classification>19</Classification><SubClassification>249</SubClassification></Category></Categories><ListingClassification><WorkType>2</WorkType><Sector>0</Sector><StreetAddress /><Tags>0</Tags><Country>2</Country><Location>18</Location><Area>97</Area></ListingClassification><Salary><SalaryType>Annual</SalaryType><Min>120000</Min><Max>199999</Max><AdditionalText /><ShowSalaryDetails>true</ShowSalaryDetails></Salary><ApplicationMethod><JobApplicationType>URL</JobApplicationType><ApplicationUrl>http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1215067&amp;src=WE</ApplicationUrl><ApplicationEmail>adam.t@stellarrecruitment.co.nz</ApplicationEmail></ApplicationMethod><Referral><HasReferralFee>false</HasReferralFee><Amount>0</Amount><ReferralUrl /></Referral></JobListing><JobListing><JobAdType>Normal</JobAdType><ReferenceNo>28280_1</ReferenceNo><JobTitle>Principal Engineer/Engineering Manager</JobTitle><JobUrl /><ShortDescription>leader to oversee the Engineering Division preferably with a combined Civil/Structural background, but is open to candidates with specialty in either</ShortDescription><Bulletpoints><BulletPoint1 /><BulletPoint2 /><BulletPoint3 /></Bulletpoints><JobFullDescription>&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Principal Engineer/Engineering Manager, where is your next challenge coming from?&lt;br /&gt;
+&lt;br /&gt;
+Stellar has partnered with an emerging consultancy who have one goal in mind&amp;hellip;***GROWTH. With strong fundamentals and family ideals within the company who believe it is time to really spread their wings and have a leader at forefront driving success.&lt;br /&gt;
+&lt;br /&gt;
+With growth plans in the pipeline and projects won my client is looking for the ideal ***leader, to oversee the Engineering Division preferably with a combined Civil/Structural background, but is open to candidates with specialty in either.&lt;br /&gt;
+&lt;br /&gt;
+What this company will offer you:&lt;br /&gt;
+&amp;bull; Clear supported career progression&lt;br /&gt;
+&amp;bull; Family run business, no corporate politics&lt;br /&gt;
+&amp;bull; Exciting projects&lt;br /&gt;
+&amp;bull; Guided support&lt;br /&gt;
+&amp;bull; Autonomous working environment&lt;br /&gt;
+&lt;br /&gt;
+What we require from you:&lt;br /&gt;
+&amp;bull; CPENG&lt;br /&gt;
+&amp;bull; New Zealand Experience&lt;br /&gt;
+&amp;bull; 9+ years&amp;rsquo; experience covering both/ either Civil and Structural&lt;br /&gt;
+&amp;bull; Leadership skills&lt;br /&gt;
+&amp;bull; Team management&lt;br /&gt;
+&lt;br /&gt;
+So if a new challenge is what you need, a chance to work Autonomously, fresh faces around you, and join a growing company, please look no further. If you match the above skills please reply directly with your CV to adam.t@stellarrecruitment.co.nz I must implore that before you apply you must have all documentation to work in New Zealand, and that New Zealand experience is preferred. Make that change today, the growth plan starts with you.&lt;br /&gt;
+&lt;br /&gt;
+*** Referral Bonus subject to terms.&lt;br /&gt;
+&lt;br /&gt;
+Thank you for your time.&lt;br /&gt;
+&lt;br /&gt;
+Adam Towler&lt;br /&gt;
+Engineering &amp;amp; Design Specialist&lt;br /&gt;
+P +64 9 969 1029&lt;/span&gt;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;</JobFullDescription><ContactDetails /><CompanyName /><ConsultantID /><PublicTransport /><ResidentsOnly>true</ResidentsOnly><IsQualificationsRecognised>false</IsQualificationsRecognised><ShowLocationDetails>true</ShowLocationDetails><JobTemplateID>3575</JobTemplateID><AdvertiserJobTemplateLogoID /><Categories><Category><Classification>19</Classification><SubClassification>249</SubClassification></Category></Categories><ListingClassification><WorkType>2</WorkType><Sector>0</Sector><StreetAddress /><Tags>0</Tags><Country>2</Country><Location>47</Location><Area>197</Area></ListingClassification><Salary><SalaryType>Annual</SalaryType><Min>120000</Min><Max>199999</Max><AdditionalText /><ShowSalaryDetails>true</ShowSalaryDetails></Salary><ApplicationMethod><JobApplicationType>URL</JobApplicationType><ApplicationUrl>http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1215067&amp;src=WE</ApplicationUrl><ApplicationEmail>adam.t@stellarrecruitment.co.nz</ApplicationEmail></ApplicationMethod><Referral><HasReferralFee>false</HasReferralFee><Amount>0</Amount><ReferralUrl /></Referral></JobListing><JobListing><JobAdType>Normal</JobAdType><ReferenceNo>GM28224_2</ReferenceNo><JobTitle>Excavator Operator</JobTitle><JobUrl /><ShortDescription>Seeking experienced excavator operators for an even time roster, minimum 6 month contract. Coal mine located near Blackwater.</ShortDescription><Bulletpoints><BulletPoint1>5/5 Roster 12 hr Shifts</BulletPoint1><BulletPoint2>BIBO</BulletPoint2><BulletPoint3>Mine located near Blackwater</BulletPoint3></Bulletpoints><JobFullDescription>&lt;ul&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;BIBO&amp;nbsp;Even time 5/5&amp;nbsp;roster &lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Immediate Start&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Mine located near Blackwater&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Camps and meals provided&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;The team at &lt;strong&gt;Stellar Workforce &lt;/strong&gt;would like to hear from experienced coal mining&amp;nbsp; &lt;strong&gt;Excavator&lt;strong&gt;&amp;nbsp;&lt;/strong&gt;Operators&amp;nbsp;&lt;/strong&gt;who hold RII&amp;rsquo;s for the following machinery:&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Liebherr 994 and 996 &lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;To be considered for this role you must display a strong and stable work background with 3+ years recent mining experience, in addition to a safety first attitude. Ideal applicants will be available to commence immediately.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Successful applicants must be able to supply:&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Current CBM &amp;ndash; Section 4&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Standard 11 &lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Current Drivers Licence&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Supporting RIIs&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;u&gt;&lt;em&gt;Please note these are not trainee positions and candidates will only be contacted if they meet the above criteria.&lt;/em&gt;&lt;/u&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;To apply for these positions please click on the &lt;strong&gt;APPLY&lt;/strong&gt; link below.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Alternatively, for a confidential discussion please email your resume quoting reference number &lt;strong&gt;GM28224&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Consultant: &lt;strong&gt;Georgia Mackie&lt;/strong&gt;&lt;br /&gt;
+Email: &lt;strong&gt;Georgia.m@stellarworkforce.com.au&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;</JobFullDescription><ContactDetails /><CompanyName /><ConsultantID /><PublicTransport /><ResidentsOnly>true</ResidentsOnly><IsQualificationsRecognised>false</IsQualificationsRecognised><ShowLocationDetails>true</ShowLocationDetails><JobTemplateID>3575</JobTemplateID><AdvertiserJobTemplateLogoID /><Categories><Category><Classification>ResourcesEnergy</Classification><SubClassification>MiningOperations</SubClassification></Category></Categories><ListingClassification><WorkType>4</WorkType><Sector>0</Sector><StreetAddress /><Tags>0</Tags><Country /><Location>RockhamptonCapricornCoast</Location><Area /></ListingClassification><Salary><SalaryType>Hourly</SalaryType><Min>50</Min><Max>59.99</Max><AdditionalText>Competitive rates </AdditionalText><ShowSalaryDetails>true</ShowSalaryDetails></Salary><ApplicationMethod><JobApplicationType>URL</JobApplicationType><ApplicationUrl>http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1211175&amp;src=WE</ApplicationUrl><ApplicationEmail>georgia.m@stellarworkforce.com.au</ApplicationEmail></ApplicationMethod><Referral><HasReferralFee>false</HasReferralFee><Amount>0</Amount><ReferralUrl /></Referral></JobListing><JobListing><JobAdType>Normal</JobAdType><ReferenceNo>SA28302</ReferenceNo><JobTitle>Services Supervisor (Building)</JobTitle><JobUrl /><ShortDescription>TIER 1 Builder / Terrific Major Building Development / Coordinate Services Installation Subbies / Job Security / CIRCA $130-140K + Super / Start ASAP!</ShortDescription><Bulletpoints><BulletPoint1 /><BulletPoint2 /><BulletPoint3 /></Bulletpoints><JobFullDescription>&lt;ul&gt;
+	&lt;li&gt;&lt;strong&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Tier 1 Commercial Builder, High Performance Team&lt;/span&gt;&lt;/strong&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Major Perth Metro Commercial Project, START ASAP!&lt;/span&gt;&lt;/strong&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Superb Salary Package (CIRCA $140K + super)&lt;/span&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Our client is a Tier 1 commercial building company in Perth that has a current requirement for a&lt;strong&gt; Services Supervisor &lt;/strong&gt;to join their highly professional site construction team. This role will specifically involve coordination and management of services subcontractors on site during construction of a large multi-level commercial building development.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;This is a superb position that will provide long term job security on a major project. This building project is valued in excess of $100m and therefore we are seeking an experienced &lt;strong&gt;Services Supervisor &lt;/strong&gt;who has recently coordinated all building services installations on similar commercial building projects in Perth for prominent Tier 1 or 2 builders.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;As &lt;strong&gt;Services Supervisor &lt;/strong&gt;you will be responsible for interpreting services design drawings and specifications, then coordinating and monitoring services subcontractors during installation of; Hydraulics, Electrical, Mechanical, Fire, ICT, Lifts,&amp;nbsp;Acoustic, Lagging and Anti-vibration. It is essential that you are technically savvy on services installation and highly adept in programming these works on large scale commercial construction developments in order to drive the performance of subcontractors and meet key deadlines and deliverables. Your experience may have been gained on projects such as major hospitals, high rise buildings such as commercial office towers, hotels or similar building projects.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;To be considered for this role you will ideally have the following qualifications, skills and experience:&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;5+ years stable experience as a &lt;strong&gt;Services Supervisor &lt;/strong&gt;in the commercial building sector with Tier 1&amp;amp;2 building companies in Perth&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Recent experience on commercial building developments ($100m+) in Western Australia as a &lt;strong&gt;Services Supervisor&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Recent experience coordinating and supervising subcontractors on installation of services on high rise projects including; Hydraulics, Electrical, Mechanical, Fire, ICT, Lifts installation, Acoustic, Lagging and Anti-vibration&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Excellent ability to read and interpret services designs and specifications in conjunction with Arch documentation&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Strong construction programming skills and ability to look ahead to plan for upcoming workload&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Great communication skills with ability to contribute confidently during site meetings&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Ability to coordinate and drive services trades to push program and achieve deliverables&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Currently based in Perth with existing rights to live and work in Australia&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;As the successful &lt;strong&gt;Services Supervisor &lt;/strong&gt;you will be offered a superb Perth based salary &lt;strong&gt;CIRCA $130-140K (+ super)&lt;/strong&gt; which will be reflective of your skills and previous relevant experience.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;To apply for this position please click on the&lt;strong&gt; APPLY &lt;/strong&gt;link below. Alternatively, for a confidential appraisal of the current market please contact or email your resume quoting reference number &lt;strong&gt;SA28302.&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Consultant: Scott Alexander&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Phone: 08 9422 2702&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Email: &lt;/span&gt;&lt;/strong&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;a href="mailto:scott@stellarrecruitment.com.au"&gt;scott@stellarrecruitment.com.au&lt;/a&gt; &lt;/span&gt;&lt;/p&gt;</JobFullDescription><ContactDetails /><CompanyName /><ConsultantID /><PublicTransport /><ResidentsOnly>true</ResidentsOnly><IsQualificationsRecognised>false</IsQualificationsRecognised><ShowLocationDetails>true</ShowLocationDetails><JobTemplateID>3575</JobTemplateID><AdvertiserJobTemplateLogoID /><Categories><Category><Classification>4</Classification><SubClassification>33</SubClassification></Category></Categories><ListingClassification><WorkType>2</WorkType><Sector>0</Sector><StreetAddress /><Tags>0</Tags><Country>1</Country><Location>5</Location><Area>22</Area></ListingClassification><Salary><SalaryType>Annual</SalaryType><Min>120000</Min><Max>149999</Max><AdditionalText>CIRCA $130-140K + Super</AdditionalText><ShowSalaryDetails>true</ShowSalaryDetails></Salary><ApplicationMethod><JobApplicationType>URL</JobApplicationType><ApplicationUrl>http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1215956&amp;src=WE</ApplicationUrl><ApplicationEmail>scott@stellarrecruitment.com.au</ApplicationEmail></ApplicationMethod><Referral><HasReferralFee>false</HasReferralFee><Amount>0</Amount><ReferralUrl /></Referral></JobListing><JobListing><JobAdType>Normal</JobAdType><ReferenceNo>JB27738_9</ReferenceNo><JobTitle>Drainage Foreman</JobTitle><JobUrl /><ShortDescription>Christchurch / $90k - $100k / Full Private Use Vehicle / Award Winning Contractor / Career Progression into Management Positions /</ShortDescription><Bulletpoints><BulletPoint1>Christchurch - $90,000 - $100,000 + Private Use Company Vehicle</BulletPoint1><BulletPoint2>Progression into Management Positions</BulletPoint2><BulletPoint3>Well Established &amp; Reputable Christchurch Civil Contractor</BulletPoint3></Bulletpoints><JobFullDescription>&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;&lt;strong&gt;&amp;bull; $90k - $100k + Full&amp;nbsp;Private Use Company Vehicle + Phone&lt;br /&gt;
+&amp;bull; Leading Drainage &amp;amp; Civil Contractor&lt;br /&gt;
+&amp;bull; Career Progression Into Management Positions&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;This company is an award winning civil contractor in Christchurch who specialise in drainage, sheet piling, de-watering, pump stations, pipe bursting, retaining walls,&amp;nbsp;subdivision construction and large manhole installation projects.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Having recently won several high profile projects&amp;nbsp;on top of their existing&amp;nbsp;portfolio of work, they now require a hands on&amp;nbsp;&lt;strong&gt;Drainage Foreman&lt;/strong&gt;&amp;nbsp;who can&amp;nbsp;drive production on site and deliver projects successfully. In this role reporting to the General Manager, you will oversee a drainage crew of&amp;nbsp;4 -&amp;nbsp;5 staff and have full autonomy of the drainage team&amp;#39;s day to day performance on site.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;&lt;strong&gt;Some of your day to day tasks may include:&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;&amp;bull; Set-out of site, and co-ordination of crew&lt;br /&gt;
+&amp;bull; Being hands on when required, lay pipe and operate machinery&lt;br /&gt;
+&amp;bull; Revision of designs / plans, liaise with engineers and project managers&lt;br /&gt;
+&amp;bull; Management of health and safety, on-site training, and quality control&lt;br /&gt;
+&amp;bull; Key decision-making and on-the-fly coordination&lt;br /&gt;
+&amp;bull; Communication with&amp;nbsp;the&amp;nbsp;Project Manager&amp;nbsp;to ensure smooth day-to-day running of the operation&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;&lt;strong&gt;Ideally for this role you&amp;nbsp;will have:&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;&amp;bull; Proven experience in horizontal civil construction&lt;br /&gt;
+&amp;bull; Relevant drainage tickets (Registered / Certified Drainlayer)&lt;br /&gt;
+&amp;bull; Exposure to a wide range of commercial drainage and broader civil&amp;nbsp;projects &lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;In return, you will be working for a reputable, long-standing contracting firm that is well established within the Canterbury region, with an attractive forward workload. Their emphasis upon developing their staff, means that they are looking for someone who is ready to commit to their organisation and further develop their skills.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;This role would be an ideal stepping stone for someone who is&amp;nbsp;looking to take the next step in their career&amp;nbsp;into a Site Supervisor or Project Management level&amp;nbsp;position.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;To apply for this position please click on the &amp;#39;Apply to this job&amp;#39; link below.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Alternatively, for a confidential appraisal of the current market, please contact&amp;nbsp;&lt;strong&gt;Jordan Buchanan&amp;nbsp;&lt;/strong&gt;or email your CV quoting reference number &lt;strong&gt;JB19803.&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;&lt;strong&gt;Consultant: Jordan Buchanan&lt;br /&gt;
+Phone: 03 353 5683&amp;nbsp;or 021 224 2814&lt;br /&gt;
+Email: jordan&lt;/strong&gt;&lt;span style="color:rgb(0, 0, 255)"&gt;&lt;strong&gt;@stellarrecruitment.co.nz &amp;nbsp;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(230, 2, 120); font-family:helvetica,sans-serif; font-size:13.5pt"&gt;&lt;strong&gt;SK91353A&lt;/strong&gt;&lt;/span&gt;&lt;span style="font-family:helvetica,sans-serif; font-size:13.5pt"&gt; &lt;/span&gt;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;</JobFullDescription><ContactDetails /><CompanyName /><ConsultantID /><PublicTransport /><ResidentsOnly>true</ResidentsOnly><IsQualificationsRecognised>false</IsQualificationsRecognised><ShowLocationDetails>true</ShowLocationDetails><JobTemplateID>3575</JobTemplateID><AdvertiserJobTemplateLogoID /><Categories><Category><Classification>4</Classification><SubClassification>33</SubClassification></Category></Categories><ListingClassification><WorkType>2</WorkType><Sector>0</Sector><StreetAddress /><Tags>0</Tags><Country>2</Country><Location>18</Location><Area>99</Area></ListingClassification><Salary><SalaryType>Annual</SalaryType><Min>80000</Min><Max>119999</Max><AdditionalText>$90,000 - $100,000</AdditionalText><ShowSalaryDetails>true</ShowSalaryDetails></Salary><ApplicationMethod><JobApplicationType>URL</JobApplicationType><ApplicationUrl>http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1175314&amp;src=WE</ApplicationUrl><ApplicationEmail>jordan@stellarrecruitment.co.nz</ApplicationEmail></ApplicationMethod><Referral><HasReferralFee>false</HasReferralFee><Amount>0</Amount><ReferralUrl /></Referral></JobListing><JobListing><JobAdType>Normal</JobAdType><ReferenceNo>JB27738_10</ReferenceNo><JobTitle>Civil Foreman</JobTitle><JobUrl /><ShortDescription>Christchurch / $90k - $100k / Full Private Use Vehicle / Award Winning Contractor / Career Progression into Management Positions /</ShortDescription><Bulletpoints><BulletPoint1>Christchurch - $90,000 - $100,000 + Private Use Company Vehicle</BulletPoint1><BulletPoint2>Progression into Management Positions</BulletPoint2><BulletPoint3>Well Established &amp; Reputable Christchurch Civil Contractor</BulletPoint3></Bulletpoints><JobFullDescription>&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;&lt;strong&gt;&amp;bull; $90k - $100k + Full&amp;nbsp;Private Use Company Vehicle + Phone&lt;br /&gt;
+&amp;bull; Leading Drainage &amp;amp; Civil Contractor&lt;br /&gt;
+&amp;bull; Career Progression Into Management Positions&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;This company is an award winning civil contractor in Christchurch who specialise in drainage, sheet piling, de-watering, pump stations, pipe bursting, retaining walls,&amp;nbsp;subdivision construction and large manhole installation projects.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Having recently won several high profile projects&amp;nbsp;on top of their existing&amp;nbsp;portfolio of work, they now require a hands on&amp;nbsp;&lt;strong&gt;Drainage Foreman&lt;/strong&gt;&amp;nbsp;who can&amp;nbsp;drive production on site and deliver projects successfully. In this role reporting to the General Manager, you will oversee a drainage crew of&amp;nbsp;4 -&amp;nbsp;5 staff and have full autonomy of the drainage team&amp;#39;s day to day performance on site.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;&lt;strong&gt;Some of your day to day tasks may include:&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;&amp;bull; Set-out of site, and co-ordination of crew&lt;br /&gt;
+&amp;bull; Being hands on when required, lay pipe and operate machinery&lt;br /&gt;
+&amp;bull; Revision of designs / plans, liaise with engineers and project managers&lt;br /&gt;
+&amp;bull; Management of health and safety, on-site training, and quality control&lt;br /&gt;
+&amp;bull; Key decision-making and on-the-fly coordination&lt;br /&gt;
+&amp;bull; Communication with&amp;nbsp;the&amp;nbsp;Project Manager&amp;nbsp;to ensure smooth day-to-day running of the operation&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;&lt;strong&gt;Ideally for this role you&amp;nbsp;will have:&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;&amp;bull; Proven experience in horizontal civil construction&lt;br /&gt;
+&amp;bull; Relevant drainage tickets (Registered / Certified Drainlayer)&lt;br /&gt;
+&amp;bull; Exposure to a wide range of commercial drainage and broader civil&amp;nbsp;projects &lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;In return, you will be working for a reputable, long-standing contracting firm that is well established within the Canterbury region, with an attractive forward workload. Their emphasis upon developing their staff, means that they are looking for someone who is ready to commit to their organisation and further develop their skills.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;This role would be an ideal stepping stone for someone who is&amp;nbsp;looking to take the next step in their career&amp;nbsp;into a Site Supervisor or Project Management level&amp;nbsp;position.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;To apply for this position please click on the &amp;#39;Apply to this job&amp;#39; link below.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Alternatively, for a confidential appraisal of the current market, please contact&amp;nbsp;&lt;strong&gt;Jordan Buchanan&amp;nbsp;&lt;/strong&gt;or email your CV quoting reference number &lt;strong&gt;JB19803.&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;&lt;strong&gt;Consultant: Jordan Buchanan&lt;br /&gt;
+Phone: 03 353 5683&amp;nbsp;or 021 224 2814&lt;br /&gt;
+Email: jordan&lt;/strong&gt;&lt;span style="color:rgb(0, 0, 255)"&gt;&lt;strong&gt;@stellarrecruitment.co.nz &amp;nbsp;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(230, 2, 120); font-family:helvetica,sans-serif; font-size:13.5pt"&gt;&lt;strong&gt;SK91353A&lt;/strong&gt;&lt;/span&gt;&lt;span style="font-family:helvetica,sans-serif; font-size:13.5pt"&gt; &lt;/span&gt;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;</JobFullDescription><ContactDetails /><CompanyName /><ConsultantID /><PublicTransport /><ResidentsOnly>true</ResidentsOnly><IsQualificationsRecognised>false</IsQualificationsRecognised><ShowLocationDetails>true</ShowLocationDetails><JobTemplateID>3575</JobTemplateID><AdvertiserJobTemplateLogoID /><Categories><Category><Classification>4</Classification><SubClassification>33</SubClassification></Category></Categories><ListingClassification><WorkType>2</WorkType><Sector>0</Sector><StreetAddress /><Tags>0</Tags><Country>2</Country><Location>18</Location><Area>99</Area></ListingClassification><Salary><SalaryType>Annual</SalaryType><Min>80000</Min><Max>119999</Max><AdditionalText>$90,000 - $100,000</AdditionalText><ShowSalaryDetails>true</ShowSalaryDetails></Salary><ApplicationMethod><JobApplicationType>URL</JobApplicationType><ApplicationUrl>http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1175314&amp;src=WE</ApplicationUrl><ApplicationEmail>jordan@stellarrecruitment.co.nz</ApplicationEmail></ApplicationMethod><Referral><HasReferralFee>false</HasReferralFee><Amount>0</Amount><ReferralUrl /></Referral></JobListing><JobListing><JobAdType>Normal</JobAdType><ReferenceNo>JB27738_11</ReferenceNo><JobTitle>Drainlayer</JobTitle><JobUrl /><ShortDescription>Christchurch / $90k - $100k / Full Private Use Vehicle / Award Winning Contractor / Career Progression into Management Positions /</ShortDescription><Bulletpoints><BulletPoint1>Christchurch - $90,000 - $100,000 + Private Use Company Vehicle</BulletPoint1><BulletPoint2>Progression into Management Positions</BulletPoint2><BulletPoint3>Well Established &amp; Reputable Christchurch Civil Contractor</BulletPoint3></Bulletpoints><JobFullDescription>&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;&lt;strong&gt;&amp;bull; $90k - $100k + Full&amp;nbsp;Private Use Company Vehicle + Phone&lt;br /&gt;
+&amp;bull; Leading Drainage &amp;amp; Civil Contractor&lt;br /&gt;
+&amp;bull; Career Progression Into Management Positions&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;This company is an award winning civil contractor in Christchurch who specialise in drainage, sheet piling, de-watering, pump stations, pipe bursting, retaining walls,&amp;nbsp;subdivision construction and large manhole installation projects.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Having recently won several high profile projects&amp;nbsp;on top of their existing&amp;nbsp;portfolio of work, they now require a hands on&amp;nbsp;&lt;strong&gt;Drainage Foreman&lt;/strong&gt;&amp;nbsp;who can&amp;nbsp;drive production on site and deliver projects successfully. In this role reporting to the General Manager, you will oversee a drainage crew of&amp;nbsp;4 -&amp;nbsp;5 staff and have full autonomy of the drainage team&amp;#39;s day to day performance on site.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;&lt;strong&gt;Some of your day to day tasks may include:&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;&amp;bull; Set-out of site, and co-ordination of crew&lt;br /&gt;
+&amp;bull; Being hands on when required, lay pipe and operate machinery&lt;br /&gt;
+&amp;bull; Revision of designs / plans, liaise with engineers and project managers&lt;br /&gt;
+&amp;bull; Management of health and safety, on-site training, and quality control&lt;br /&gt;
+&amp;bull; Key decision-making and on-the-fly coordination&lt;br /&gt;
+&amp;bull; Communication with&amp;nbsp;the&amp;nbsp;Project Manager&amp;nbsp;to ensure smooth day-to-day running of the operation&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;&lt;strong&gt;Ideally for this role you&amp;nbsp;will have:&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;&amp;bull; Proven experience in horizontal civil construction&lt;br /&gt;
+&amp;bull; Relevant drainage tickets (Registered / Certified Drainlayer)&lt;br /&gt;
+&amp;bull; Exposure to a wide range of commercial drainage and broader civil&amp;nbsp;projects &lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;In return, you will be working for a reputable, long-standing contracting firm that is well established within the Canterbury region, with an attractive forward workload. Their emphasis upon developing their staff, means that they are looking for someone who is ready to commit to their organisation and further develop their skills.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;This role would be an ideal stepping stone for someone who is&amp;nbsp;looking to take the next step in their career&amp;nbsp;into a Site Supervisor or Project Management level&amp;nbsp;position.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;To apply for this position please click on the &amp;#39;Apply to this job&amp;#39; link below.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Alternatively, for a confidential appraisal of the current market, please contact&amp;nbsp;&lt;strong&gt;Jordan Buchanan&amp;nbsp;&lt;/strong&gt;or email your CV quoting reference number &lt;strong&gt;JB19803.&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;&lt;strong&gt;Consultant: Jordan Buchanan&lt;br /&gt;
+Phone: 03 353 5683&amp;nbsp;or 021 224 2814&lt;br /&gt;
+Email: jordan&lt;/strong&gt;&lt;span style="color:rgb(0, 0, 255)"&gt;&lt;strong&gt;@stellarrecruitment.co.nz &amp;nbsp;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(230, 2, 120); font-family:helvetica,sans-serif; font-size:13.5pt"&gt;&lt;strong&gt;SK91353A&lt;/strong&gt;&lt;/span&gt;&lt;span style="font-family:helvetica,sans-serif; font-size:13.5pt"&gt; &lt;/span&gt;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;</JobFullDescription><ContactDetails /><CompanyName /><ConsultantID /><PublicTransport /><ResidentsOnly>true</ResidentsOnly><IsQualificationsRecognised>false</IsQualificationsRecognised><ShowLocationDetails>true</ShowLocationDetails><JobTemplateID>3575</JobTemplateID><AdvertiserJobTemplateLogoID /><Categories><Category><Classification>4</Classification><SubClassification>33</SubClassification></Category></Categories><ListingClassification><WorkType>2</WorkType><Sector>0</Sector><StreetAddress /><Tags>0</Tags><Country>2</Country><Location>50</Location><Area>209</Area></ListingClassification><Salary><SalaryType>Annual</SalaryType><Min>80000</Min><Max>119999</Max><AdditionalText>$90,000 - $100,000</AdditionalText><ShowSalaryDetails>true</ShowSalaryDetails></Salary><ApplicationMethod><JobApplicationType>URL</JobApplicationType><ApplicationUrl>http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1175314&amp;src=WE</ApplicationUrl><ApplicationEmail>jordan@stellarrecruitment.co.nz</ApplicationEmail></ApplicationMethod><Referral><HasReferralFee>false</HasReferralFee><Amount>0</Amount><ReferralUrl /></Referral></JobListing><JobListing><JobAdType>Normal</JobAdType><ReferenceNo>TC28311</ReferenceNo><JobTitle>Civil Designer</JobTitle><JobUrl /><ShortDescription>Exceptional career development opportunities, set your targets on management and be rewarded on the way.</ShortDescription><Bulletpoints><BulletPoint1 /><BulletPoint2 /><BulletPoint3 /></Bulletpoints><JobFullDescription>&lt;ul&gt;
+	&lt;li&gt;&lt;strong&gt;Reputable international engineering consultancy&lt;/strong&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;An exceptional design team backed by a commendable reputation&lt;/strong&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;Strong portfolio of projects in multiple industries&lt;/strong&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;Desirable Sydney location&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Stellar Recruitment is seeking a talented &lt;strong&gt;Civil Designer&lt;/strong&gt; for a dynamic Engineering Consultancy who continue to develop primarily in the Land Development and Urban Development sectors.&lt;br /&gt;
+&lt;br /&gt;
+To be successful in this role, you must have the following attributes:&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;Strong experience in the Land and Urban Development and industry (3-10yrs)&lt;/li&gt;
+	&lt;li&gt;Experience primarily using 12D, AutoCAD, desirably PC-Drain&lt;/li&gt;
+	&lt;li&gt;Knowledge of Australian design standards and applicable legislation&lt;/li&gt;
+	&lt;li&gt;Ability to structure time and manage workload across internal divisions&lt;/li&gt;
+	&lt;li&gt;Ability to communicate at all levels including client liaison&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In return for your experience, you will receive:&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;Culture that thrives on passion, innovation and career development&lt;/li&gt;
+	&lt;li&gt;Competitive remuneration package&lt;/li&gt;
+	&lt;li&gt;Proactive mentor environment with a career development path (industry leading program)&lt;/li&gt;
+	&lt;li&gt;A strong order book of work ensuring long-term retention&lt;/li&gt;
+	&lt;li&gt;Integral member of a high performance team&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If you are passionate about civil design, aspiring to make a difference and want to be an integral part of a leading corporate consultancy, I urge you to apply by hitting the link below.&lt;br /&gt;
+&lt;br /&gt;
+&lt;em&gt;Please note that experience in the Australian consulting environment is essential!&lt;/em&gt;&lt;br /&gt;
+&lt;br /&gt;
+Alternatively, for a confidential appraisal of the current market please contact or email your resume quoting reference number &lt;strong&gt;TC28311&lt;br /&gt;
+&lt;br /&gt;
+Consultant: Trent Clulow&lt;br /&gt;
+Phone: (07) 3009 9626&lt;br /&gt;
+Email: trent@stellarrecruitment.com.au&lt;/strong&gt;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;</JobFullDescription><ContactDetails /><CompanyName /><ConsultantID /><PublicTransport /><ResidentsOnly>true</ResidentsOnly><IsQualificationsRecognised>false</IsQualificationsRecognised><ShowLocationDetails>true</ShowLocationDetails><JobTemplateID>3575</JobTemplateID><AdvertiserJobTemplateLogoID /><Categories><Category><Classification>14</Classification><SubClassification>161</SubClassification></Category></Categories><ListingClassification><WorkType>2</WorkType><Sector>0</Sector><StreetAddress /><Tags>0</Tags><Country>1</Country><Location>1</Location><Area>3</Area></ListingClassification><Salary><SalaryType>Annual</SalaryType><Min>80000</Min><Max>99999</Max><AdditionalText /><ShowSalaryDetails>true</ShowSalaryDetails></Salary><ApplicationMethod><JobApplicationType>URL</JobApplicationType><ApplicationUrl>http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1216703&amp;src=WE</ApplicationUrl><ApplicationEmail>trent@stellarrecruitment.com.au</ApplicationEmail></ApplicationMethod><Referral><HasReferralFee>false</HasReferralFee><Amount>0</Amount><ReferralUrl /></Referral></JobListing><JobListing><JobAdType>Normal</JobAdType><ReferenceNo>GM27531/2</ReferenceNo><JobTitle>Multi-Skilled Operator</JobTitle><JobUrl /><ShortDescription>Seeking experienced Multi-Skilled operators for an even time roster. Located in the Central Bowen Basin, with an immediate start.</ShortDescription><Bulletpoints><BulletPoint1>Camp and Meals Provided</BulletPoint1><BulletPoint2>Competitive Rates + Immediate Start</BulletPoint2><BulletPoint3>BIBO Mackay+ 7/7 Roster</BulletPoint3></Bulletpoints><JobFullDescription>&lt;ul&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;BIBO Mackay + 7/7 Roster&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Competitive Rates + Immediate Start&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Camp and Meals provided&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;The team at Stellar Workforce would like to hear from experienced Coal &lt;strong&gt;CAT Multi-Skilled Operator &lt;/strong&gt;who hold RII&amp;rsquo;s for the following machinery:&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;CAT 789, 793, 797&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;CAT D10, D11&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;To be considered for this role you must display a strong and stable work background with 3+ years recent mining experience, in addition to a safety first attitude. Ideal applicants will be available to commence immediately.&lt;br /&gt;
+&lt;br /&gt;
+Successful applicants must be able to supply:&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Current CBM &amp;ndash; Section 4&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Standard 11 / BMA Induction&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Current Drivers Licence&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Supporting RIIs&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;em&gt;Please note these are not trainee positions and candidates will only be contacted if they meet the above criteria.&lt;/em&gt;&lt;br /&gt;
+&lt;br /&gt;
+To apply for these positions please click on the &lt;strong&gt;APPLY&lt;/strong&gt; link below.&lt;br /&gt;
+Alternatively, for a confidential discussion please email your resume quoting reference number &lt;strong&gt;GM27531&lt;/strong&gt;&lt;br /&gt;
+&lt;br /&gt;
+Consultant:&lt;strong&gt; Georgia Mackie&lt;/strong&gt;&lt;br /&gt;
+Email:&lt;strong&gt;Georgia.m@stellarworkforce.com.au&lt;/strong&gt;&lt;/span&gt;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;</JobFullDescription><ContactDetails /><CompanyName /><ConsultantID /><PublicTransport /><ResidentsOnly>true</ResidentsOnly><IsQualificationsRecognised>false</IsQualificationsRecognised><ShowLocationDetails>true</ShowLocationDetails><JobTemplateID>3575</JobTemplateID><AdvertiserJobTemplateLogoID /><Categories><Category><Classification>ResourcesEnergy</Classification><SubClassification>MiningOperations</SubClassification></Category></Categories><ListingClassification><WorkType>4</WorkType><Sector>0</Sector><StreetAddress /><Tags>0</Tags><Country /><Location>MackayCoalfields</Location><Area /></ListingClassification><Salary><SalaryType>Hourly</SalaryType><Min>40</Min><Max>49.99</Max><AdditionalText /><ShowSalaryDetails>true</ShowSalaryDetails></Salary><ApplicationMethod><JobApplicationType>URL</JobApplicationType><ApplicationUrl>http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1163875&amp;src=WE</ApplicationUrl><ApplicationEmail>georgia.m@stellarrecruitment.com.au</ApplicationEmail></ApplicationMethod><Referral><HasReferralFee>false</HasReferralFee><Amount>0</Amount><ReferralUrl /></Referral></JobListing><JobListing><JobAdType>Normal</JobAdType><ReferenceNo>GM27531/3</ReferenceNo><JobTitle>Multi-Skilled Operator</JobTitle><JobUrl /><ShortDescription>Seeking experienced Multi-Skilled operators for an even time roster. Located in the Central Bowen Basin, with an immediate start.</ShortDescription><Bulletpoints><BulletPoint1>Camp and Meals Provided</BulletPoint1><BulletPoint2>Competitive Rates + Immediate Start</BulletPoint2><BulletPoint3>BIBO Mackay+ 7/7 Roster</BulletPoint3></Bulletpoints><JobFullDescription>&lt;ul&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;BIBO Mackay + 7/7 Roster&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Competitive Rates + Immediate Start&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Camp and Meals provided&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;The team at Stellar Workforce would like to hear from experienced Coal &lt;strong&gt;CAT Multi-Skilled Operator &lt;/strong&gt;who hold RII&amp;rsquo;s for the following machinery:&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;CAT 789, 793, 797&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;CAT D10, D11&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;To be considered for this role you must display a strong and stable work background with 3+ years recent mining experience, in addition to a safety first attitude. Ideal applicants will be available to commence immediately.&lt;br /&gt;
+&lt;br /&gt;
+Successful applicants must be able to supply:&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Current CBM &amp;ndash; Section 4&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Standard 11 / BMA Induction&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Current Drivers Licence&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Supporting RIIs&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;em&gt;Please note these are not trainee positions and candidates will only be contacted if they meet the above criteria.&lt;/em&gt;&lt;br /&gt;
+&lt;br /&gt;
+To apply for these positions please click on the &lt;strong&gt;APPLY&lt;/strong&gt; link below.&lt;br /&gt;
+Alternatively, for a confidential discussion please email your resume quoting reference number &lt;strong&gt;GM27531&lt;/strong&gt;&lt;br /&gt;
+&lt;br /&gt;
+Consultant:&lt;strong&gt; Georgia Mackie&lt;/strong&gt;&lt;br /&gt;
+Email:&lt;strong&gt;Georgia.m@stellarworkforce.com.au&lt;/strong&gt;&lt;/span&gt;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;</JobFullDescription><ContactDetails /><CompanyName /><ConsultantID /><PublicTransport /><ResidentsOnly>true</ResidentsOnly><IsQualificationsRecognised>false</IsQualificationsRecognised><ShowLocationDetails>true</ShowLocationDetails><JobTemplateID>3575</JobTemplateID><AdvertiserJobTemplateLogoID /><Categories><Category><Classification>ResourcesEnergy</Classification><SubClassification>MiningOperations</SubClassification></Category></Categories><ListingClassification><WorkType>4</WorkType><Sector>0</Sector><StreetAddress /><Tags>0</Tags><Country /><Location>TownsvilleNorthernQLD</Location><Area /></ListingClassification><Salary><SalaryType>Hourly</SalaryType><Min>40</Min><Max>49.99</Max><AdditionalText /><ShowSalaryDetails>true</ShowSalaryDetails></Salary><ApplicationMethod><JobApplicationType>URL</JobApplicationType><ApplicationUrl>http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1163875&amp;src=WE</ApplicationUrl><ApplicationEmail>georgia.m@stellarrecruitment.com.au</ApplicationEmail></ApplicationMethod><Referral><HasReferralFee>false</HasReferralFee><Amount>0</Amount><ReferralUrl /></Referral></JobListing><JobListing><JobAdType>Normal</JobAdType><ReferenceNo>KS28319</ReferenceNo><JobTitle>Contracts Administrator</JobTitle><JobUrl /><ShortDescription>experienced and qualified contracts administrator</ShortDescription><Bulletpoints><BulletPoint1>Diverse Commercial Building Projects for projects over $30Mil</BulletPoint1><BulletPoint2>Respected Brisbane based Builder, Proud History of Success</BulletPoint2><BulletPoint3>Exciting Career Prospects, Great salary + super</BulletPoint3></Bulletpoints><JobFullDescription>&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Our client is a highly successful Brisbane based building company that has had a great opportunity come available for a career driven &lt;strong&gt;Contract Administrator &lt;/strong&gt;to join their fast paced Brisbane team. This builder has strong local presence, a young vibrant culture, and a terrific history of successfully completing a broad range of commercial building projects around the $30Million plus range.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;span style="color:rgb(0, 112, 192)"&gt;As &lt;strong&gt;Contract Administrator &lt;/strong&gt;within this business you will work within a successful and vibrant team environment and undertake commercial and cost management duties for projects of various nature in the commercial building space. As a guide your projects will likely include schools, aged care, health care, defence, industrial, office buildings and mixed use developments. This company prides itself on hiring people to develop a long term career rather than gathering a new team per project.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;span style="color:rgb(0, 112, 192)"&gt;You will be a &amp;ldquo;self-sufficient&amp;rdquo; &lt;strong&gt;Contract Administrator &lt;/strong&gt;with a thorough understanding of pre and post award contracts administration tasks, coupled with great attention to detail. Within your role you will review tender documentation, prepare subcontractor documents, manage subcontractor packages and payments, variations and progress claims, prepare financial cost forecasts, monitor cash flow, budgeting, and prepare progress reports.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Ideally you will have the following qualifications and background as the successful applicant:&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Tertiary qualifications in Quantity Surveying or Construction Management &amp;amp; Economics&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;3-5 years stable experience as a Contract Administrator for commercial builders&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Proficient using construction specific software&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Great interpersonal skills, team oriented approach and good work ethic&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Currently based in Brisbane with existing rights to live and work in Australia&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;An appealing remuneration package + super will be offered to attract the ideal Contract Administrator. If you are seeking an exciting career move get in touch today!&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;To apply for this position please click on the APPLY link below. Alternatively, for a confidential appraisal of the current market please contact or email your resume quoting reference number &lt;strong&gt;KS28319&lt;/strong&gt;.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Consultant: Kate Szczurowski&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Phone: 07 3009 9630&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Email:&lt;/strong&gt; kate.s@stellarrecruitment.com.au&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;</JobFullDescription><ContactDetails /><CompanyName /><ConsultantID /><PublicTransport /><ResidentsOnly>true</ResidentsOnly><IsQualificationsRecognised>false</IsQualificationsRecognised><ShowLocationDetails>true</ShowLocationDetails><JobTemplateID>3575</JobTemplateID><AdvertiserJobTemplateLogoID /><Categories><Category><Classification>14</Classification><SubClassification>150</SubClassification></Category></Categories><ListingClassification><WorkType>2</WorkType><Sector>0</Sector><StreetAddress /><Tags>0</Tags><Country>1</Country><Location>3</Location><Area>15</Area></ListingClassification><Salary><SalaryType>Annual</SalaryType><Min>80000</Min><Max>119999</Max><AdditionalText /><ShowSalaryDetails>true</ShowSalaryDetails></Salary><ApplicationMethod><JobApplicationType>URL</JobApplicationType><ApplicationUrl>http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1218073&amp;src=WE</ApplicationUrl><ApplicationEmail>kate.s@stellarrecruitment.com.au</ApplicationEmail></ApplicationMethod><Referral><HasReferralFee>false</HasReferralFee><Amount>0</Amount><ReferralUrl /></Referral></JobListing><JobListing><JobAdType>Normal</JobAdType><ReferenceNo>JG Snr QS 3</ReferenceNo><JobTitle>Quantity Surveyor - Senior</JobTitle><JobUrl /><ShortDescription>Exciting opportunity to work for a local contractor who are one of the top performers in the market with a pipeline of work that speaks for itself</ShortDescription><Bulletpoints><BulletPoint1 /><BulletPoint2 /><BulletPoint3 /></Bulletpoints><JobFullDescription>&lt;p&gt;&lt;strong&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Relocate to Christchurch, New Zealand &lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;strong&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Christchurch based long term position&lt;/span&gt;&lt;/strong&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Senior position and responsibilities&lt;/span&gt;&lt;/strong&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Professional team that works together&lt;/span&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;span style="color:rgb(0, 0, 128)"&gt;If you are a Senior Quantity Surveyor looking for an opportunity to work with colleagues that are respected, knowledgeable and professional in their areas of specialism within the construction sector, and to have the opportunity to work with a company with a clear vision and head office based in Christchurch, then this is a position that you need to be aware of.&lt;br /&gt;
+&lt;br /&gt;
+This is an autonomous role, with support and guidance from Senior Management when desired, where you will be responsible for your own portfolio of work in multimillion dollar commercial construction and public sector. You will have an opportunity to build and select your own team of Quantity Surveyors reporting into you, while you assist in the big picture winning and signing contracts on top of a very healthy pipeline of works already won and ready for you to take over.&lt;br /&gt;
+&lt;br /&gt;
+Software, systems, and tools are already in place that you require to do your job successfully. You will work alongside a professional and experienced Project Manager becoming part of a close knit, non-corporate yet very qualified team, with a family feel.&lt;br /&gt;
+&lt;br /&gt;
+&lt;strong&gt;Your responsibilities will include:&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Senior Liaison with all related design consultants and construction sub-contractors&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Detailed pricing and scheduling of quantities&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Evaluation, selection and negotiation of sub-contract tenders&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Cost/budget management&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Leadership and work allocation to Quantity Surveyor&amp;rsquo;s&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Estimation&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;span style="color:rgb(0, 0, 128)"&gt;&lt;strong&gt;To be considered for this position you will have:&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;A relevant qualification&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Must be based in Christchurch, nearby or thinking of relocation&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;10 years + experience in Quantity Surveying&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Working on projects $20M +&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;This is a genuine are rare opportunity due to growth. We are seeking long term skilled applicants with a passion for their field of work and commitment to Canterbury.&lt;br /&gt;
+&lt;br /&gt;
+Please contact James today on 03 353 5688 to learn more about this company and position, or express your interest by clicking on the APPLY link below. Your application will be treated in the strictest confidence.&lt;br /&gt;
+&lt;br /&gt;
+Consultant: James Gillanders&lt;br /&gt;
+Phone: 03 353 5688&lt;br /&gt;
+Email: james.g@stellarrecruitment.co.nz&lt;/span&gt;&lt;/p&gt;</JobFullDescription><ContactDetails /><CompanyName /><ConsultantID /><PublicTransport /><ResidentsOnly>true</ResidentsOnly><IsQualificationsRecognised>false</IsQualificationsRecognised><ShowLocationDetails>true</ShowLocationDetails><JobTemplateID>3575</JobTemplateID><AdvertiserJobTemplateLogoID /><Categories><Category><Classification>14</Classification><SubClassification>154</SubClassification></Category></Categories><ListingClassification><WorkType>2</WorkType><Sector>0</Sector><StreetAddress /><Tags>0</Tags><Country>2</Country><Location>18</Location><Area>99</Area></ListingClassification><Salary><SalaryType>Annual</SalaryType><Min>120000</Min><Max>149999</Max><AdditionalText /><ShowSalaryDetails>true</ShowSalaryDetails></Salary><ApplicationMethod><JobApplicationType>URL</JobApplicationType><ApplicationUrl>http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1213854&amp;src=WE</ApplicationUrl><ApplicationEmail>james.g@stellarrecruitment.co.nz</ApplicationEmail></ApplicationMethod><Referral><HasReferralFee>false</HasReferralFee><Amount>0</Amount><ReferralUrl /></Referral></JobListing><JobListing><JobAdType>Normal</JobAdType><ReferenceNo>JG Snr QS 11</ReferenceNo><JobTitle>Quantity Surveyor - Senior</JobTitle><JobUrl /><ShortDescription>Exciting opportunity to work for a local contractor who are one of the top performers in the market with a pipeline of work that speaks for itself</ShortDescription><Bulletpoints><BulletPoint1 /><BulletPoint2 /><BulletPoint3 /></Bulletpoints><JobFullDescription>&lt;p&gt;&lt;strong&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Relocate to Christchurch, New Zealand &lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;strong&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Christchurch based long term position&lt;/span&gt;&lt;/strong&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Senior position and responsibilities&lt;/span&gt;&lt;/strong&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Professional team that works together&lt;/span&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;span style="color:rgb(0, 0, 128)"&gt;If you are a Senior Quantity Surveyor looking for an opportunity to work with colleagues that are respected, knowledgeable and professional in their areas of specialism within the construction sector, and to have the opportunity to work with a company with a clear vision and head office based in Christchurch, then this is a position that you need to be aware of.&lt;br /&gt;
+&lt;br /&gt;
+This is an autonomous role, with support and guidance from Senior Management when desired, where you will be responsible for your own portfolio of work in multimillion dollar commercial construction and public sector. You will have an opportunity to build and select your own team of Quantity Surveyors reporting into you, while you assist in the big picture winning and signing contracts on top of a very healthy pipeline of works already won and ready for you to take over.&lt;br /&gt;
+&lt;br /&gt;
+Software, systems, and tools are already in place that you require to do your job successfully. You will work alongside a professional and experienced Project Manager becoming part of a close knit, non-corporate yet very qualified team, with a family feel.&lt;br /&gt;
+&lt;br /&gt;
+&lt;strong&gt;Your responsibilities will include:&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Senior Liaison with all related design consultants and construction sub-contractors&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Detailed pricing and scheduling of quantities&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Evaluation, selection and negotiation of sub-contract tenders&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Cost/budget management&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Leadership and work allocation to Quantity Surveyor&amp;rsquo;s&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Estimation&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;span style="color:rgb(0, 0, 128)"&gt;&lt;strong&gt;To be considered for this position you will have:&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;A relevant qualification&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Must be based in Christchurch, nearby or thinking of relocation&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;10 years + experience in Quantity Surveying&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Working on projects $20M +&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;This is a genuine are rare opportunity due to growth. We are seeking long term skilled applicants with a passion for their field of work and commitment to Canterbury.&lt;br /&gt;
+&lt;br /&gt;
+Please contact James today on 03 353 5688 to learn more about this company and position, or express your interest by clicking on the APPLY link below. Your application will be treated in the strictest confidence.&lt;br /&gt;
+&lt;br /&gt;
+Consultant: James Gillanders&lt;br /&gt;
+Phone: 03 353 5688&lt;br /&gt;
+Email: james.g@stellarrecruitment.co.nz&lt;/span&gt;&lt;/p&gt;</JobFullDescription><ContactDetails /><CompanyName /><ConsultantID /><PublicTransport /><ResidentsOnly>true</ResidentsOnly><IsQualificationsRecognised>false</IsQualificationsRecognised><ShowLocationDetails>true</ShowLocationDetails><JobTemplateID>3575</JobTemplateID><AdvertiserJobTemplateLogoID /><Categories><Category><Classification>14</Classification><SubClassification>165</SubClassification></Category></Categories><ListingClassification><WorkType>2</WorkType><Sector>0</Sector><StreetAddress /><Tags>0</Tags><Country>2</Country><Location>18</Location><Area>99</Area></ListingClassification><Salary><SalaryType>Annual</SalaryType><Min>120000</Min><Max>149999</Max><AdditionalText /><ShowSalaryDetails>true</ShowSalaryDetails></Salary><ApplicationMethod><JobApplicationType>URL</JobApplicationType><ApplicationUrl>http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1213854&amp;src=WE</ApplicationUrl><ApplicationEmail>james.g@stellarrecruitment.co.nz</ApplicationEmail></ApplicationMethod><Referral><HasReferralFee>false</HasReferralFee><Amount>0</Amount><ReferralUrl /></Referral></JobListing><JobListing><JobAdType>Normal</JobAdType><ReferenceNo>QS JG </ReferenceNo><JobTitle>Quantity Surveyor - Senior</JobTitle><JobUrl /><ShortDescription>Relocate to Christchurch, New Zealand</ShortDescription><Bulletpoints><BulletPoint1 /><BulletPoint2 /><BulletPoint3 /></Bulletpoints><JobFullDescription>&lt;p&gt;&lt;strong&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Relocate to Christchurch, New Zealand &lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;strong&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Christchurch based long term position&lt;/span&gt;&lt;/strong&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Senior position and responsibilities&lt;/span&gt;&lt;/strong&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Professional team that works together&lt;/span&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;span style="color:rgb(0, 0, 128)"&gt;If you are a Senior Quantity Surveyor looking for an opportunity to work with colleagues that are respected, knowledgeable and professional in their areas of specialism within the construction sector, and to have the opportunity to work with a company with a clear vision and head office based in Christchurch, then this is a position that you need to be aware of.&lt;br /&gt;
+&lt;br /&gt;
+This is an autonomous role, with support and guidance from Senior Management when desired, where you will be responsible for your own portfolio of work in multimillion dollar commercial construction and public sector. You will have an opportunity to build and select your own team of Quantity Surveyors reporting into you, while you assist in the big picture winning and signing contracts on top of a very healthy pipeline of works already won and ready for you to take over.&lt;br /&gt;
+&lt;br /&gt;
+Software, systems, and tools are already in place that you require to do your job successfully. You will work alongside a professional and experienced Project Manager becoming part of a close knit, non-corporate yet very qualified team, with a family feel.&lt;br /&gt;
+&lt;br /&gt;
+&lt;strong&gt;Your responsibilities will include:&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Senior Liaison with all related design consultants and construction sub-contractors&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Detailed pricing and scheduling of quantities&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Evaluation, selection and negotiation of sub-contract tenders&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Cost/budget management&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Leadership and work allocation to Quantity Surveyor&amp;rsquo;s&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Estimation&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;span style="color:rgb(0, 0, 128)"&gt;&lt;strong&gt;To be considered for this position you will have:&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;A relevant qualification&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Must be based in Christchurch, nearby or thinking of relocation&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;10 years + experience in Quantity Surveying&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Working on projects $20M +&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;This is a genuine are rare opportunity due to growth. We are seeking long term skilled applicants with a passion for their field of work and commitment to Canterbury.&lt;br /&gt;
+&lt;br /&gt;
+Please contact James today on 03 353 5688 to learn more about this company and position, or express your interest by clicking on the APPLY link below. Your application will be treated in the strictest confidence.&lt;br /&gt;
+&lt;br /&gt;
+Consultant: James Gillanders&lt;br /&gt;
+Phone: 03 353 5688&lt;br /&gt;
+Email: james.g@stellarrecruitment.co.nz&lt;/span&gt;&lt;/p&gt;</JobFullDescription><ContactDetails /><CompanyName /><ConsultantID /><PublicTransport /><ResidentsOnly>true</ResidentsOnly><IsQualificationsRecognised>false</IsQualificationsRecognised><ShowLocationDetails>true</ShowLocationDetails><JobTemplateID>3575</JobTemplateID><AdvertiserJobTemplateLogoID /><Categories><Category><Classification>14</Classification><SubClassification>165</SubClassification></Category></Categories><ListingClassification><WorkType>2</WorkType><Sector>0</Sector><StreetAddress /><Tags>0</Tags><Country>1</Country><Location>2</Location><Area>9</Area></ListingClassification><Salary><SalaryType>Annual</SalaryType><Min>120000</Min><Max>149999</Max><AdditionalText /><ShowSalaryDetails>true</ShowSalaryDetails></Salary><ApplicationMethod><JobApplicationType>URL</JobApplicationType><ApplicationUrl>http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1213854&amp;src=WE</ApplicationUrl><ApplicationEmail>james.g@stellarrecruitment.co.nz</ApplicationEmail></ApplicationMethod><Referral><HasReferralFee>false</HasReferralFee><Amount>0</Amount><ReferralUrl /></Referral></JobListing><JobListing><JobAdType>Normal</JobAdType><ReferenceNo>GM28224/4</ReferenceNo><JobTitle>Excavator Operator</JobTitle><JobUrl /><ShortDescription>Seeking experienced excavator operators for an even time roster, minimum 6 month contract. Coal mine located near Blackwater.</ShortDescription><Bulletpoints><BulletPoint1>5/5 Roster 12 hr Shifts</BulletPoint1><BulletPoint2>BIBO</BulletPoint2><BulletPoint3>Mine located near Blackwater</BulletPoint3></Bulletpoints><JobFullDescription>&lt;ul&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;BIBO&amp;nbsp;Even time 5/5&amp;nbsp;roster &lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Immediate Start&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Mine located near Blackwater&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Camps and meals provided&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;The team at &lt;strong&gt;Stellar Workforce &lt;/strong&gt;would like to hear from experienced coal mining&amp;nbsp; &lt;strong&gt;Excavator&lt;strong&gt;&amp;nbsp;&lt;/strong&gt;Operators&amp;nbsp;&lt;/strong&gt;who hold RII&amp;rsquo;s for the following machinery:&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Liebherr 994 and 996 &lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;To be considered for this role you must display a strong and stable work background with 3+ years recent mining experience, in addition to a safety first attitude. Ideal applicants will be available to commence immediately.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Successful applicants must be able to supply:&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Current CBM &amp;ndash; Section 4&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Standard 11 &lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Current Drivers Licence&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Supporting RIIs&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;u&gt;&lt;em&gt;Please note these are not trainee positions and candidates will only be contacted if they meet the above criteria.&lt;/em&gt;&lt;/u&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;To apply for these positions please click on the &lt;strong&gt;APPLY&lt;/strong&gt; link below.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Alternatively, for a confidential discussion please email your resume quoting reference number &lt;strong&gt;GM28224&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Consultant: &lt;strong&gt;Georgia Mackie&lt;/strong&gt;&lt;br /&gt;
+Email: &lt;strong&gt;Georgia.m@stellarworkforce.com.au&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;</JobFullDescription><ContactDetails /><CompanyName /><ConsultantID /><PublicTransport /><ResidentsOnly>true</ResidentsOnly><IsQualificationsRecognised>false</IsQualificationsRecognised><ShowLocationDetails>true</ShowLocationDetails><JobTemplateID>3575</JobTemplateID><AdvertiserJobTemplateLogoID /><Categories><Category><Classification>ResourcesEnergy</Classification><SubClassification>MiningOperations</SubClassification></Category></Categories><ListingClassification><WorkType>4</WorkType><Sector>0</Sector><StreetAddress /><Tags>0</Tags><Country /><Location>MackayCoalfields</Location><Area /></ListingClassification><Salary><SalaryType>Hourly</SalaryType><Min>50</Min><Max>59.99</Max><AdditionalText>Competitive rates </AdditionalText><ShowSalaryDetails>true</ShowSalaryDetails></Salary><ApplicationMethod><JobApplicationType>URL</JobApplicationType><ApplicationUrl>http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1211175&amp;src=WE</ApplicationUrl><ApplicationEmail>georgia.m@stellarworkforce.com.au</ApplicationEmail></ApplicationMethod><Referral><HasReferralFee>false</HasReferralFee><Amount>0</Amount><ReferralUrl /></Referral></JobListing><JobListing><JobAdType>Normal</JobAdType><ReferenceNo>JM25213_11</ReferenceNo><JobTitle>Architect - Revit</JobTitle><JobUrl /><ShortDescription>Take the next step in your career with a compnay renowned for producing Award-Winning work! Call Jolene Marks (09) 9691023</ShortDescription><Bulletpoints><BulletPoint1 /><BulletPoint2 /><BulletPoint3 /></Bulletpoints><JobFullDescription>&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Established Company&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Career Advancement&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Excellent team environment&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Stellar Recruitment has partnered with a prestigious Architecture firm to source a talented Intermediate Architect who is competent in &lt;strong&gt;Revit&lt;/strong&gt;. In this role, you will play an integral part of a team who are working on a range of &lt;strong&gt;mid -&amp;nbsp;large scale commerical&amp;nbsp;projects&lt;/strong&gt;. Renowned for their &lt;strong&gt;Award-Winning Architecture&lt;/strong&gt;,&amp;nbsp; you will enjoy being part of a high performing culture with opportunity for progression and career advancement. &lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;To be successful in this role you must have the following attributes:&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;4+ years&amp;rsquo; post grad experience&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Proficient with&lt;strong&gt; Revit&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Current up to date &lt;strong&gt;knowledge of the NZ build code&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Ability to work independently and within a team&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Experience in mid-large scale projects&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;In return for your experience and expertise, you will receive:&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;An &lt;strong&gt;industry leading company&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Culture that thrives on passion, innovation and career development&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;Competitive remuneration &lt;/strong&gt;package with additional benefits&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;A &lt;strong&gt;genuine career path&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;The opportunity to Build &lt;strong&gt;long term relationships &lt;/strong&gt;within the sector&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;So if you are passionate about advancing your career, aspiring to make a difference and want to be an integral part of a&amp;nbsp;leading Architecture firm, I urge you to apply by hitting the link below.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;span style="color:rgb(0, 112, 192)"&gt;Please note that you must be eligible to work in New Zealand without restriction&lt;br /&gt;
+&lt;br /&gt;
+Alternatively, for a confidential appraisal of the current market please contact or email your resume quoting reference number &lt;strong&gt;JM25213&lt;/strong&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;strong&gt;Consultant: Jolene Marks&lt;br /&gt;
+Phone: +64 9 969 1023&lt;br /&gt;
+Email: jolene.m@stellarrecruitment.co.nz&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;SK91953A&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;</JobFullDescription><ContactDetails /><CompanyName /><ConsultantID /><PublicTransport /><ResidentsOnly>true</ResidentsOnly><IsQualificationsRecognised>false</IsQualificationsRecognised><ShowLocationDetails>true</ShowLocationDetails><JobTemplateID>3575</JobTemplateID><AdvertiserJobTemplateLogoID /><Categories><Category><Classification>14</Classification><SubClassification>149</SubClassification></Category></Categories><ListingClassification><WorkType>2</WorkType><Sector>0</Sector><StreetAddress /><Tags>0</Tags><Country>2</Country><Location>18</Location><Area>97</Area></ListingClassification><Salary><SalaryType>Annual</SalaryType><Min>70000</Min><Max>99999</Max><AdditionalText /><ShowSalaryDetails>true</ShowSalaryDetails></Salary><ApplicationMethod><JobApplicationType>URL</JobApplicationType><ApplicationUrl>http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1054992&amp;src=WE</ApplicationUrl><ApplicationEmail>jolene.m@stellarrecruitment.co.nz</ApplicationEmail></ApplicationMethod><Referral><HasReferralFee>false</HasReferralFee><Amount>0</Amount><ReferralUrl /></Referral></JobListing><JobListing><JobAdType>Normal</JobAdType><ReferenceNo>CHMFW022016</ReferenceNo><JobTitle>Fitter/Welder/Engineer</JobTitle><JobUrl /><ShortDescription>Christchurch workshop based role</ShortDescription><Bulletpoints><BulletPoint1 /><BulletPoint2 /><BulletPoint3 /></Bulletpoints><JobFullDescription>&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&amp;bull; &lt;strong&gt;Are you an experienced welder / fabricator?&lt;br /&gt;
+&amp;bull; Do you have experience with truck and bus or mobile plant repairs?&lt;br /&gt;
+&amp;bull; Are you flexible and able to start immediately?&lt;br /&gt;
+&amp;bull; Do you have you welding tickets?&lt;/strong&gt;&lt;br /&gt;
+&lt;br /&gt;
+If you can say yes to all of the points above, our clients are looking for experienced &lt;strong&gt;welders/fitters/fabricators &lt;/strong&gt;for their Christchurch workshop. In this role you will be hands on welding/repairing a range of truck and trailer, or mobile equipment such as excavators, dozers, loaders rollers and other plant equipment. You will also have the opportunity to continue to develop your technical skills and experience, and will be rewarded with an extremely competitive hourly rate above market standard. In these positions you will be hard working and prepared to put in the hard yards when required of you. You will be committed to safe work practices and be passionate about your industry.&lt;br /&gt;
+&lt;br /&gt;
+To be successful in this role you will have:&lt;br /&gt;
+&amp;bull; Proven experience in a similar role within the heavy transport or mobile equipment industry&lt;br /&gt;
+&amp;bull; Appropriate welding licences and/or an ability to renew these&lt;br /&gt;
+&amp;bull; Excellent communication and interpersonal skills&lt;br /&gt;
+&amp;bull; Reliable and hard working with a &amp;ldquo;can do&amp;rdquo; attitude&lt;br /&gt;
+&amp;bull; Be flexible with hours and available immediately&lt;br /&gt;
+&amp;bull; Experience with alloy welding and/or auto CAD would be very advantageous&lt;br /&gt;
+&lt;br /&gt;
+To apply, or if you&amp;rsquo;d like to know more, such as location info, pay rates, work conditions and facilities, the gear you&amp;rsquo;ll be working on, or for info on other opportunities that we have throughout New Zealand, contact our specialist maintenance recruiter today.&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;strong&gt;Charlotte Heystek&lt;br /&gt;
+03 353 5687&lt;/strong&gt;&lt;/span&gt;&lt;br /&gt;
+&lt;strong&gt;&lt;span style="color:rgb(0, 0, 255)"&gt;charlotte.h@stellarworkforce.co.nz&lt;/span&gt;&lt;/strong&gt;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;</JobFullDescription><ContactDetails /><CompanyName /><ConsultantID /><PublicTransport /><ResidentsOnly>true</ResidentsOnly><IsQualificationsRecognised>false</IsQualificationsRecognised><ShowLocationDetails>true</ShowLocationDetails><JobTemplateID>3575</JobTemplateID><AdvertiserJobTemplateLogoID /><Categories><Category><Classification>50</Classification><SubClassification>688</SubClassification></Category></Categories><ListingClassification><WorkType>2</WorkType><Sector>0</Sector><StreetAddress /><Tags>0</Tags><Country>2</Country><Location>18</Location><Area>99</Area></ListingClassification><Salary><SalaryType>Hourly</SalaryType><Min>25</Min><Max>34.99</Max><AdditionalText /><ShowSalaryDetails>true</ShowSalaryDetails></Salary><ApplicationMethod><JobApplicationType>URL</JobApplicationType><ApplicationUrl>http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1052725&amp;src=WE</ApplicationUrl><ApplicationEmail>charlotte.h@stellarworkforce.co.nz</ApplicationEmail></ApplicationMethod><Referral><HasReferralFee>false</HasReferralFee><Amount>0</Amount><ReferralUrl /></Referral></JobListing><JobListing><JobAdType>Normal</JobAdType><ReferenceNo>RS28024B</ReferenceNo><JobTitle>Process Worker/Machine Operator - Night/Arvo Shift</JobTitle><JobUrl /><ShortDescription>Process Worker/Machine Operator required for an immediate start - Night/Afternoon Shift - 4 Day Week! $25 - $28 p/h</ShortDescription><Bulletpoints><BulletPoint1 /><BulletPoint2 /><BulletPoint3 /></Bulletpoints><JobFullDescription>&lt;p&gt;Our client is currently seeking&amp;nbsp;a hard working individual with a background in machine operation and/or&amp;nbsp;process work for their south of the river manufacturing plant. The position will be for either afternoon or night shift, however all training will be done initially during the days until fully trained.&lt;br /&gt;
+&lt;br /&gt;
+&lt;u&gt;Responsibilities / Skills:&lt;/u&gt;&lt;br /&gt;
+&lt;br /&gt;
+- Packing and storing of plastic boxes&lt;br /&gt;
+&lt;br /&gt;
+- Background or knowledge of injection mould or extrusion machines (preferred)&lt;br /&gt;
+&lt;br /&gt;
+- Troubleshooting and general maintenance for machine breakdowns&lt;br /&gt;
+&lt;br /&gt;
+- Forklift operation&lt;/p&gt;
+
+&lt;p&gt;- Boiler Attendant Ticket (preferred)&lt;br /&gt;
+&lt;br /&gt;
+- Operation and supervision of process machines&lt;br /&gt;
+&lt;br /&gt;
+- Loading and unloading trucks&lt;br /&gt;
+&lt;br /&gt;
+- Available for shift work&lt;br /&gt;
+&lt;br /&gt;
+This role represents a fantastic career opportunity with a clear and direct path into a Supervisor/Team Leader role.&lt;br /&gt;
+&lt;br /&gt;
+Email your application today!!&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;</JobFullDescription><ContactDetails /><CompanyName /><ConsultantID /><PublicTransport /><ResidentsOnly>true</ResidentsOnly><IsQualificationsRecognised>false</IsQualificationsRecognised><ShowLocationDetails>true</ShowLocationDetails><JobTemplateID>3575</JobTemplateID><AdvertiserJobTemplateLogoID /><Categories><Category><Classification>ProcurementManufacturingTransport</Classification><SubClassification>MachineOperators</SubClassification></Category></Categories><ListingClassification><WorkType>2</WorkType><Sector>0</Sector><StreetAddress /><Tags>0</Tags><Country>1</Country><Location>5</Location><Area>24</Area></ListingClassification><Salary><SalaryType>Hourly</SalaryType><Min>25</Min><Max>29.99</Max><AdditionalText>$25p/h - $28.75 p/h</AdditionalText><ShowSalaryDetails>true</ShowSalaryDetails></Salary><ApplicationMethod><JobApplicationType>URL</JobApplicationType><ApplicationUrl>http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1196079&amp;src=WE</ApplicationUrl><ApplicationEmail>Richard.s@Stellarrecruitment.com.au</ApplicationEmail></ApplicationMethod><Referral><HasReferralFee>false</HasReferralFee><Amount>0</Amount><ReferralUrl /></Referral></JobListing><JobListing><JobAdType>Normal</JobAdType><ReferenceNo>LE_28391_1</ReferenceNo><JobTitle>Customer Support Representative</JobTitle><JobUrl /><ShortDescription>Customer Support Representative - Gunnedah - Long Term Opportunity</ShortDescription><Bulletpoints><BulletPoint1 /><BulletPoint2 /><BulletPoint3 /></Bulletpoints><JobFullDescription>&lt;ul&gt;
+	&lt;li&gt;&lt;strong&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;World Leading OEM Dealership&lt;/span&gt;&lt;/strong&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Diverse Role with High Performance Culture&lt;/span&gt;&lt;/strong&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Long Term Secure Position&lt;/span&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Gunnedah&amp;nbsp;based &lt;strong&gt;Customer Support Representative&lt;/strong&gt; required for this world leading OEM. Do you have an earthmoving/automotive dealership background with strong customer service sales?&lt;br /&gt;
+&lt;br /&gt;
+Our client is a major OEM dealership to the mining &amp;amp; construction industries worldwide. Due to further growth and continued sales within Australia, there is a current requirement for a competent Customer Support Sales Representative to service the Gunnedah branch, NSW.&lt;br /&gt;
+&lt;br /&gt;
+&lt;strong&gt;Successful candidates will be required to have the following experience:&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Previous experience working for a major OEM either Earthmoving or Automotive&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;A mechanical aptitude or parts interpreting background (highly desirable)&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Strong communication and face to face customer service experience&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Computer Literate&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Forklift License (Desirable)&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;&lt;strong&gt;The key responsibilities within this role will be:&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;To maximise business turnover and provide strong customer service to our client&amp;#39;s diverse range of clients.&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Coordinate parts sales and offer customer support whilst liaising with the clients to enhance close working relationships.&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Meet company KPI&amp;rsquo;s to help increase company machine sales, and various other after sales offerings.&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Support the company profile to work in an environment that promotes continuous improvement.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;This impressive organisation boasts a strong company culture that provides an enjoyable and supportive environment to progress your career. You will also be supported by an experienced team allowing you to develop your technical skills within an expanding OEM group!&lt;br /&gt;
+&lt;br /&gt;
+To apply for this position please click on the APPLY link below.&lt;br /&gt;
+Alternatively, for a confidential appraisal of the current market please contact or email your resume quoting reference number &lt;strong&gt;LE28391&lt;/strong&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;strong&gt;Consultant: Lucas Eyers&lt;br /&gt;
+Email:&lt;/strong&gt; lucas@stellarrecruitment.com.au&lt;/span&gt;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;</JobFullDescription><ContactDetails /><CompanyName /><ConsultantID /><PublicTransport /><ResidentsOnly>true</ResidentsOnly><IsQualificationsRecognised>false</IsQualificationsRecognised><ShowLocationDetails>true</ShowLocationDetails><JobTemplateID>3575</JobTemplateID><AdvertiserJobTemplateLogoID /><Categories><Category><Classification>50</Classification><SubClassification>684</SubClassification></Category></Categories><ListingClassification><WorkType>2</WorkType><Sector>0</Sector><StreetAddress /><Tags>0</Tags><Country /><Location>FarWestNorthCentralNSW</Location><Area /></ListingClassification><Salary><SalaryType>Hourly</SalaryType><Min>25</Min><Max>34.99</Max><AdditionalText /><ShowSalaryDetails>true</ShowSalaryDetails></Salary><ApplicationMethod><JobApplicationType>URL</JobApplicationType><ApplicationUrl>http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1221453&amp;src=WE</ApplicationUrl><ApplicationEmail>Lucas@stellarrecruitment.com.au</ApplicationEmail></ApplicationMethod><Referral><HasReferralFee>false</HasReferralFee><Amount>0</Amount><ReferralUrl /></Referral></JobListing><JobListing><JobAdType>Normal</JobAdType><ReferenceNo>LN27588-2</ReferenceNo><JobTitle>Calling all Plumbers</JobTitle><JobUrl /><ShortDescription>Calling all Plumbers - Christchurch Region</ShortDescription><Bulletpoints><BulletPoint1 /><BulletPoint2 /><BulletPoint3 /></Bulletpoints><JobFullDescription>&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;&lt;strong&gt;Calling all Plumbers!&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Right now we are actively seeking &lt;strong&gt;Trade Qualified Plumbers&lt;/strong&gt;, who are confident in all aspects of plumbing, to take on a variety of major commercial and domestic projects within the general vicinity of Christchurch.&lt;br /&gt;
+&lt;br /&gt;
+Scope of work includes; Commercial Maintenance, New installs, Renovations, Upgrades maintenance from new housing, to light commercial work.&lt;br /&gt;
+&lt;br /&gt;
+All applicants for this role will need;&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;At least 5 years industry experience&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;A minimum of 2 years&amp;rsquo; experience in NZ&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Trade Qualification (either in NZ or overseas) &amp;ndash; to be a certifying plumber would be advantageous&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;To be currently registered/licensed with the Plumbers, Drainlayers and Gasfitters Board of NZ.&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Have a solid understanding of the current New Zealand Plumbing Regulations, health and safety (HSE/OSH).&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;A clean full drivers licence (minimum of class 1,),&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Your own reliable transport&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Christchurch based, or be willing to relocate&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;To have a high standard or workmanship,&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;To be reliable and able to work unsupervised and&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;At least two referees that attest to your honesty, work ethic and drive.&lt;/span&gt;&lt;br /&gt;
+	&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Working as part of team is also important due to the critical timeframes involved in these projects.&lt;br /&gt;
+&lt;br /&gt;
+Ideally you will be able to provide your own hand and power tools and a site safe card would benefit your application.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Stellar are looking for ambitious, capable and energetic people with a good dose of common sense to join our team. We work hard to be the best, we give it our all and we take pride in what we do. We know we&amp;#39;re only as good as our people, and we&amp;#39;ve been successfully growing over the past 7 years, partnering with skilled tradesmen and large organisations, because of it.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;We offer the opportunity for career progression, the potential for permanent employment and work in a supportive environment. With Stellar Recruitment, you are more than just a number &amp;ndash; we will work with you to ensure that the role you accept is the right fit for you &amp;ndash; not just another job.&lt;br /&gt;
+&lt;br /&gt;
+We are aware that wages don&amp;rsquo;t work for everyone, so also offer a contracting option with all invoices paid weekly &amp;ndash; Whatever works for you!&lt;br /&gt;
+&lt;br /&gt;
+Applicants should be aware that both our, and our clients Health and Safety Standards are very high and we reserve the right to conduct a drug test pre-employment as well as random alcohol and drug testing throughout employment.&lt;br /&gt;
+&lt;br /&gt;
+If you would like to apply for this role or for more information please contact &lt;strong&gt;Leah at Stellar Workforce&lt;/strong&gt; on&lt;strong&gt; 03 3535681 &lt;/strong&gt;today.&lt;/span&gt;&lt;br /&gt;
+&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;</JobFullDescription><ContactDetails /><CompanyName /><ConsultantID /><PublicTransport /><ResidentsOnly>true</ResidentsOnly><IsQualificationsRecognised>false</IsQualificationsRecognised><ShowLocationDetails>true</ShowLocationDetails><JobTemplateID>3575</JobTemplateID><AdvertiserJobTemplateLogoID /><Categories><Category><Classification>50</Classification><SubClassification>704</SubClassification></Category></Categories><ListingClassification><WorkType>2</WorkType><Sector>0</Sector><StreetAddress /><Tags>0</Tags><Country>2</Country><Location>18</Location><Area>99</Area></ListingClassification><Salary><SalaryType>Hourly</SalaryType><Min>25</Min><Max>34.99</Max><AdditionalText /><ShowSalaryDetails>true</ShowSalaryDetails></Salary><ApplicationMethod><JobApplicationType>URL</JobApplicationType><ApplicationUrl>http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1167427&amp;src=WE</ApplicationUrl><ApplicationEmail>leah.n@stellarworkforce.co.nz</ApplicationEmail></ApplicationMethod><Referral><HasReferralFee>false</HasReferralFee><Amount>0</Amount><ReferralUrl /></Referral></JobListing><JobListing><JobAdType>Normal</JobAdType><ReferenceNo>LN27223-4</ReferenceNo><JobTitle>Trade Certified Carpenter</JobTitle><JobUrl /><ShortDescription>Trade Certified Carpenter</ShortDescription><Bulletpoints><BulletPoint1 /><BulletPoint2 /><BulletPoint3 /></Bulletpoints><JobFullDescription>&lt;p&gt;&lt;strong&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Calling all Carpenters!&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Right now we are urgently seeking &lt;strong&gt;experienced builders &lt;/strong&gt;for a variety of work.&amp;nbsp; Whether you are a trade qualified carpenter or have put the time in on the tools we have work for you.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Work includes;&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Small to large commercial projects&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Residential new builds&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Joinery and Cabinetry&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;All applicants for these roles will need;&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;At least 4 years industry experience in the area you would like to work in&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;A clean full drivers licence (minimum of class 1),&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Your own reliable transport in order to get yourself to and from site&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;To be confident reading &amp;amp; working from construction plans &amp;amp; drawings&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Ideally you will be able to provide your own hand and power tools and a site safe card would benefit your application.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Stellar Recruitment are looking for ambitious, capable and energetic people with a good dose of common sense to join our team.&amp;nbsp; We work hard to be the best, we give it our all and we take pride in what we do.&amp;nbsp; We know we&amp;#39;re only as good as our people, and we been successfully growing over the past 7 years, partnering with skilled tradesmen and large organisations, because of it.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;We offer the opportunity for career progression, the potential for permanent employment and work in a supportive environment.&amp;nbsp; With Stellar Recruitment, you are more than just a number &amp;ndash; we will work with you to ensure that the role you accept is the right fit for you &amp;ndash; not just another job.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;We are aware that wages don&amp;rsquo;t work for everyone, so also offer a contracting option with all invoices paid weekly &amp;ndash; Whatever works for you!&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Applicants should be aware that both our, and our clients Health and Safety Standards are very high and we reserve the right to conduct a drug test pre-employment as well as random alcohol and drug testing throughout employment.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;If you would like to apply for this role or for more information please contact Leah at Stellar Workforce on &lt;strong&gt;03 3535681&lt;/strong&gt;&lt;strong&gt; &lt;/strong&gt;today.&lt;/span&gt;&lt;/p&gt;</JobFullDescription><ContactDetails /><CompanyName /><ConsultantID /><PublicTransport /><ResidentsOnly>true</ResidentsOnly><IsQualificationsRecognised>false</IsQualificationsRecognised><ShowLocationDetails>true</ShowLocationDetails><JobTemplateID>3575</JobTemplateID><AdvertiserJobTemplateLogoID /><Categories><Category><Classification>50</Classification><SubClassification>691</SubClassification></Category></Categories><ListingClassification><WorkType>4</WorkType><Sector>0</Sector><StreetAddress /><Tags>0</Tags><Country>2</Country><Location>18</Location><Area>99</Area></ListingClassification><Salary><SalaryType>Hourly</SalaryType><Min>25</Min><Max>34.99</Max><AdditionalText /><ShowSalaryDetails>true</ShowSalaryDetails></Salary><ApplicationMethod><JobApplicationType>URL</JobApplicationType><ApplicationUrl>http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1150501&amp;src=WE</ApplicationUrl><ApplicationEmail>leah.n@stellarworkforce.co.nz</ApplicationEmail></ApplicationMethod><Referral><HasReferralFee>false</HasReferralFee><Amount>0</Amount><ReferralUrl /></Referral></JobListing><JobListing><JobAdType>Normal</JobAdType><ReferenceNo>LN27223-5</ReferenceNo><JobTitle>Trade Certified Carpenter</JobTitle><JobUrl /><ShortDescription>Trade Certified Carpenter</ShortDescription><Bulletpoints><BulletPoint1 /><BulletPoint2 /><BulletPoint3 /></Bulletpoints><JobFullDescription>&lt;p&gt;&lt;strong&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Calling all Carpenters!&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Right now we are urgently seeking &lt;strong&gt;experienced builders &lt;/strong&gt;for a variety of work.&amp;nbsp; Whether you are a trade qualified carpenter or have put the time in on the tools we have work for you.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Work includes;&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Small to large commercial projects&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Residential new builds&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Joinery and Cabinetry&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;All applicants for these roles will need;&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;At least 4 years industry experience in the area you would like to work in&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;A clean full drivers licence (minimum of class 1),&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Your own reliable transport in order to get yourself to and from site&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;To be confident reading &amp;amp; working from construction plans &amp;amp; drawings&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Ideally you will be able to provide your own hand and power tools and a site safe card would benefit your application.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Stellar Recruitment are looking for ambitious, capable and energetic people with a good dose of common sense to join our team.&amp;nbsp; We work hard to be the best, we give it our all and we take pride in what we do.&amp;nbsp; We know we&amp;#39;re only as good as our people, and we been successfully growing over the past 7 years, partnering with skilled tradesmen and large organisations, because of it.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;We offer the opportunity for career progression, the potential for permanent employment and work in a supportive environment.&amp;nbsp; With Stellar Recruitment, you are more than just a number &amp;ndash; we will work with you to ensure that the role you accept is the right fit for you &amp;ndash; not just another job.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;We are aware that wages don&amp;rsquo;t work for everyone, so also offer a contracting option with all invoices paid weekly &amp;ndash; Whatever works for you!&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;Applicants should be aware that both our, and our clients Health and Safety Standards are very high and we reserve the right to conduct a drug test pre-employment as well as random alcohol and drug testing throughout employment.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 0, 128)"&gt;If you would like to apply for this role or for more information please contact Leah at Stellar Workforce on &lt;strong&gt;03 3535681&lt;/strong&gt;&lt;strong&gt; &lt;/strong&gt;today.&lt;/span&gt;&lt;/p&gt;</JobFullDescription><ContactDetails /><CompanyName /><ConsultantID /><PublicTransport /><ResidentsOnly>true</ResidentsOnly><IsQualificationsRecognised>false</IsQualificationsRecognised><ShowLocationDetails>true</ShowLocationDetails><JobTemplateID>3575</JobTemplateID><AdvertiserJobTemplateLogoID /><Categories><Category><Classification>50</Classification><SubClassification>691</SubClassification></Category></Categories><ListingClassification><WorkType>4</WorkType><Sector>0</Sector><StreetAddress /><Tags>0</Tags><Country /><Location>Queenstown</Location><Area>QueenstownWanaka</Area></ListingClassification><Salary><SalaryType>Hourly</SalaryType><Min>25</Min><Max>34.99</Max><AdditionalText /><ShowSalaryDetails>true</ShowSalaryDetails></Salary><ApplicationMethod><JobApplicationType>URL</JobApplicationType><ApplicationUrl>http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1150501&amp;src=WE</ApplicationUrl><ApplicationEmail>leah.n@stellarworkforce.co.nz</ApplicationEmail></ApplicationMethod><Referral><HasReferralFee>false</HasReferralFee><Amount>0</Amount><ReferralUrl /></Referral></JobListing><JobListing><JobAdType>Normal</JobAdType><ReferenceNo>28345</ReferenceNo><JobTitle>Intermediate - Senior Civil Engineer land and site</JobTitle><JobUrl /><ShortDescription>Intermediate to Senior Civil Engineer for Emerging Consultancy with focus on sub divisions</ShortDescription><Bulletpoints><BulletPoint1 /><BulletPoint2 /><BulletPoint3 /></Bulletpoints><JobFullDescription>&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;3 months into 2016 Civil Engineers stick or twist?&lt;/span&gt;&lt;br /&gt;
+&lt;span style="color:rgb(0, 112, 192)"&gt;Somehow we have blinked and we are now 3 months into 2016, the year has started quickly and in all accounts is looking to be exciting, busy and very prosperous, or is it? Incidentally what is the view like in your office? If you&amp;rsquo;re reading this at work I can only assume it&amp;rsquo;s pretty bleak.&lt;/span&gt;&lt;br /&gt;
+&lt;span style="color:rgb(0, 112, 192)"&gt;Stellar have been busy forging and strengthening relationships and really delving and uncovering the goals or our clients and are very happy to be supporting this emerging client in growing on its existing high performance and healthy work life balance.&lt;br /&gt;
+With Long established rock solid reputation and growing success built around its existing team, growth is now the word and this company is looking to bring the right staff in to the fold. With openings for intermediate to Senior Engineers, career plans are waiting for the right candidate who feels they want to pursue and develop their career further in to the management field. Every avenue is covered from soft skill training to freedom to express yourself. If you have an eye on the future there can only be one course of action, get in touch today.&lt;br /&gt;
+&lt;br /&gt;
+What you will need&lt;br /&gt;
+&amp;bull; 5+years design experience&lt;br /&gt;
+&amp;bull; New Zealand Experience&lt;br /&gt;
+&amp;bull; Strong Sub division experience&lt;br /&gt;
+&amp;bull; Ability to liaise with clients&lt;br /&gt;
+&amp;bull; Ambition to grow and develop&lt;br /&gt;
+&lt;br /&gt;
+What this company will give you&lt;br /&gt;
+&amp;bull; Great company culture&lt;br /&gt;
+&amp;bull; Guided career path&lt;br /&gt;
+&amp;bull; Annual Bonus&lt;br /&gt;
+&amp;bull; Flexible structured hours&lt;br /&gt;
+*********************************************************************&lt;br /&gt;
+I must implore you that New Zealand experience is essential and I cannot consider anyone without recent New Zealand experience.&lt;br /&gt;
+**********************************************************************&lt;br /&gt;
+So if you&amp;rsquo;re tired of flicking through social media every 10 minutes, watching the kettle boil is not making the day run any faster, then I think it is really time to venture out further. At stellar we really believe in partnership and strong relationships and that only comes from listening, and finding out what you want. The best way to see your dreams come true is to voice them, if you match the above criteria then please email adam.t@stellarrecruitment.co.nz or call 09 9691029 and lets change the years forecast together. Your cards may have been dealt but that doesn&amp;rsquo;t mean this will be your hand for life, the dealer is now looking at you, It&amp;rsquo;s your turn what will it be? Stick or twist?&lt;/span&gt;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="color:rgb(0, 112, 192)"&gt;Adam Towler&lt;br /&gt;
+Engineering &amp;amp; Design Specialist&lt;br /&gt;
+P +64 9 969 1029&lt;br /&gt;
+E- adam.t@stellarrecruitment.co.nz&lt;br /&gt;
+SK917023A&lt;/span&gt;&lt;br /&gt;
+&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;</JobFullDescription><ContactDetails /><CompanyName /><ConsultantID /><PublicTransport /><ResidentsOnly>true</ResidentsOnly><IsQualificationsRecognised>false</IsQualificationsRecognised><ShowLocationDetails>true</ShowLocationDetails><JobTemplateID>3575</JobTemplateID><AdvertiserJobTemplateLogoID /><Categories><Category><Classification>19</Classification><SubClassification>249</SubClassification></Category></Categories><ListingClassification><WorkType>2</WorkType><Sector>0</Sector><StreetAddress /><Tags>0</Tags><Country>2</Country><Location>39</Location><Area>167</Area></ListingClassification><Salary><SalaryType>Annual</SalaryType><Min>80000</Min><Max>119999</Max><AdditionalText /><ShowSalaryDetails>true</ShowSalaryDetails></Salary><ApplicationMethod><JobApplicationType>URL</JobApplicationType><ApplicationUrl>http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1219617&amp;src=WE</ApplicationUrl><ApplicationEmail>adam.t@stellarrecruitment.co.nz</ApplicationEmail></ApplicationMethod><Referral><HasReferralFee>false</HasReferralFee><Amount>0</Amount><ReferralUrl /></Referral></JobListing></Listings></JobPostRequest>

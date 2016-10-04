@@ -1,0 +1,4242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ButtonAdvertiserUsers" xml:space="preserve">
+    <value>เพิ่มใหม่</value>
+    <comment>Add New</comment>
+  </data>
+  <data name="ButtonApplyFilter" xml:space="preserve">
+    <value>ใช้ตัวกรอง</value>
+    <comment>Apply Filter</comment>
+  </data>
+  <data name="ButtonBack" xml:space="preserve">
+    <value>กลับ</value>
+    <comment>Back</comment>
+  </data>
+  <data name="ButtonCancel" xml:space="preserve">
+    <value>ยกเลิก</value>
+    <comment>Cancel</comment>
+  </data>
+  <data name="ButtonContinue" xml:space="preserve">
+    <value>ดำเนินการต่อ</value>
+    <comment>Continue</comment>
+  </data>
+  <data name="ButtonCreateJobAlert" xml:space="preserve">
+    <value>สร้างการเตือนเกี่ยวกับงาน</value>
+    <comment>Create Job Alert</comment>
+  </data>
+  <data name="ButtonInsert" xml:space="preserve">
+    <value>แทรก</value>
+    <comment>Insert</comment>
+  </data>
+  <data name="ButtonNewSearch" xml:space="preserve">
+    <value>การค้นหาใหม่</value>
+    <comment>New Search</comment>
+  </data>
+  <data name="ButtonNoCoverLetter" xml:space="preserve">
+    <value>ไม่มีจดหมายสมัครงาน</value>
+    <comment>No Cover Letter</comment>
+  </data>
+  <data name="ButtonNoResume" xml:space="preserve">
+    <value>ไม่มีเรซูเม่</value>
+    <comment>No Resume</comment>
+  </data>
+  <data name="ButtonRegister" xml:space="preserve">
+    <value>ลงทะเบียน</value>
+    <comment>Register</comment>
+  </data>
+  <data name="ButtonRenewJob" xml:space="preserve">
+    <value>เริ่มงานใหม่</value>
+    <comment>Renew Job</comment>
+  </data>
+  <data name="ButtonReset" xml:space="preserve">
+    <value>ตั้งค่าใหม่</value>
+    <comment>Reset</comment>
+  </data>
+  <data name="ButtonRSSFeed" xml:space="preserve">
+    <value>ฟีด RSS</value>
+    <comment>RSS Feed</comment>
+  </data>
+  <data name="ButtonSave" xml:space="preserve">
+    <value>บันทึก</value>
+    <comment>Save</comment>
+  </data>
+  <data name="ButtonSaveSelected" xml:space="preserve">
+    <value>บันทึกรายการที่เลือก</value>
+    <comment>Save Selected</comment>
+  </data>
+  <data name="ButtonSearch" xml:space="preserve">
+    <value>ค้นหา</value>
+    <comment>Search</comment>
+  </data>
+  <data name="ButtonSelect" xml:space="preserve">
+    <value>เลือก</value>
+    <comment>Select</comment>
+  </data>
+  <data name="ButtonSend" xml:space="preserve">
+    <value>ส่ง</value>
+    <comment>Send</comment>
+  </data>
+  <data name="ButtonSubmit" xml:space="preserve">
+    <value>เสนอ</value>
+    <comment>Button - Submit</comment>
+  </data>
+  <data name="ButtonUpdate" xml:space="preserve">
+    <value>อัปเดต</value>
+    <comment>Update</comment>
+  </data>
+  <data name="ButtonUploadCoverLetterNow" xml:space="preserve">
+    <value>อัปโหลดจดหมายสมัครงานจากคอมพิวเตอร์ของฉัน</value>
+    <comment>Upload a cover letter from my computer</comment>
+  </data>
+  <data name="ButtonUploadResumeNow" xml:space="preserve">
+    <value>อัปโหลดเรซูเม่จากคอมพิวเตอร์ของฉัน</value>
+    <comment>Upload a resume from my computer</comment>
+  </data>
+  <data name="ButtonUseMyProfile" xml:space="preserve">
+    <value>ใช้โปรไฟล์ของฉัน</value>
+    <comment>Use my profile</comment>
+  </data>
+  <data name="ButtonWriteOneNow" xml:space="preserve">
+    <value>ฉันจะเขียนหนึ่งรายการตอนนี้</value>
+    <comment>I'll write one now</comment>
+  </data>
+  <data name="cbAuditCommittee" xml:space="preserve">
+    <value>คณะกรรมการตรวจสอบ</value>
+    <comment>Audit Committee</comment>
+  </data>
+  <data name="cbNominationsCommittee" xml:space="preserve">
+    <value>คณะกรรมการสรรหา</value>
+    <comment>Nominations Committee</comment>
+  </data>
+  <data name="cbOHSCommittee" xml:space="preserve">
+    <value>คณะกรรมการความปลอดภัย อาชีวอนามัย และสภาพแวดล้อมในการทำงาน</value>
+    <comment>OH&amp;S Committee</comment>
+  </data>
+  <data name="cbOther" xml:space="preserve">
+    <value>อื่น ๆ</value>
+    <comment>Other</comment>
+  </data>
+  <data name="cbRemunerationCommittee" xml:space="preserve">
+    <value>คณะกรรมการพิจารณาค่าตอบแทน</value>
+    <comment>Remuneration Committee</comment>
+  </data>
+  <data name="cbRiskCommittee" xml:space="preserve">
+    <value>คณะกรรมการบริหารความเสี่ยง</value>
+    <comment>Risk Committee</comment>
+  </data>
+  <data name="ConfirmDeleteJob" xml:space="preserve">
+    <value>คุณแน่ใจไหมที่จะลบร่างโฆษณานี้ออกไปอย่างถาวร?</value>
+    <comment>Are you sure you wish to permanently delete this draft ad?</comment>
+  </data>
+  <data name="ConfirmExpireJob" xml:space="preserve">
+    <value>คุณแน่ใจไหมที่จะยกเลิกงานนี้?</value>
+    <comment>Are you sure you wish to expire this job?</comment>
+  </data>
+  <data name="DDLAscending" xml:space="preserve">
+    <value>จากน้อยไปหามาก</value>
+    <comment>Ascending</comment>
+  </data>
+  <data name="DDLDatePosted" xml:space="preserve">
+    <value>วันที่โพสต์</value>
+    <comment>Date Posted</comment>
+  </data>
+  <data name="DDLDaysTillExpiry" xml:space="preserve">
+    <value>วันที่จนถึงวันหมดอายุ</value>
+    <comment>Days Till Expiry</comment>
+  </data>
+  <data name="DDLDescending" xml:space="preserve">
+    <value>จากมากไปหาน้อย</value>
+    <comment>Descending</comment>
+  </data>
+  <data name="DDLJobTitle" xml:space="preserve">
+    <value>ชื่องาน</value>
+    <comment>Job Title</comment>
+  </data>
+  <data name="DDLNumberOfApplications" xml:space="preserve">
+    <value>จำนวนใบสมัคร</value>
+    <comment>Number of Applications</comment>
+  </data>
+  <data name="DDLNumberOfViews" xml:space="preserve">
+    <value>จำนวนที่ดู</value>
+    <comment>Number of Views</comment>
+  </data>
+  <data name="DDLOneDay" xml:space="preserve">
+    <value>1 วัน</value>
+    <comment>1 Day</comment>
+  </data>
+  <data name="DDLOneMonth" xml:space="preserve">
+    <value>1 เดือน</value>
+    <comment>1 Month</comment>
+  </data>
+  <data name="DDLOneWeek" xml:space="preserve">
+    <value>1 อาทิตย์</value>
+    <comment>1 Week</comment>
+  </data>
+  <data name="DDLRefNo" xml:space="preserve">
+    <value>หมายเลขอ้างอิง</value>
+    <comment>Ref No</comment>
+  </data>
+  <data name="DDLSixMonths" xml:space="preserve">
+    <value>6 เดือน</value>
+    <comment>6 Months</comment>
+  </data>
+  <data name="DDLThreeMonths" xml:space="preserve">
+    <value>3 เดือน</value>
+    <comment>3 Months</comment>
+  </data>
+  <data name="ErrorAcceptTermCondition" xml:space="preserve">
+    <value>โปรดยอมรับข้อตกลงและเงื่อนไข</value>
+    <comment>Please accept Terms and Conditions</comment>
+  </data>
+  <data name="ErrorBulletPointSize" xml:space="preserve">
+    <value>ขนาดของสัญลักษณ์นำหัวข้อ (bullet point) จะต้องไม่เกิน 60 อักขระ</value>
+    <comment>Bullet Point size cannot exceed 160 characters</comment>
+  </data>
+  <data name="ErrorConfirmPasswordNotMatch" xml:space="preserve">
+    <value>การยืนยันรหัสผ่านไม่ตรงกัน</value>
+    <comment>Confirm password doesn't not match</comment>
+  </data>
+  <data name="ErrorCoverLetterEmpty" xml:space="preserve">
+    <value>ช่องจดหมายสมัครงานปล่อยว่างไว้ไม่ได้</value>
+    <comment>Cover Letter cannot be empty.</comment>
+  </data>
+  <data name="ErrorEmptyContent" xml:space="preserve">
+    <value>เนื้อหาปล่อยว่างไว้ไม่ได้</value>
+    <comment>Content must not be empty</comment>
+  </data>
+  <data name="ErrorEnsureDocumentSelected" xml:space="preserve">
+    <value>โปรดตรวจสอบให้มั่นใจว่าคุณได้เลือกเอกสารเพื่ออัปโหลด</value>
+    <comment>Please ensure you have selected a document to upload</comment>
+  </data>
+  <data name="ErrorEnterDetailAgain" xml:space="preserve">
+    <value>ขออภัย เราไม่สามารถกู้คืนรายละเอียดของคุณได้ โปรดตรวจสอบรายละเอียดที่คุณใส่แล้วลองใหม่อีกครั้ง</value>
+    <comment>Sorry, we were unable to retrieve your details. Please check the details you entered and try again.</comment>
+  </data>
+  <data name="ErrorEnterEmailUsername" xml:space="preserve">
+    <value>โปรดกรอกชื่อผู้ใช้หรือที่อยู่อีเมล</value>
+    <comment>Please fill in username or email address</comment>
+  </data>
+  <data name="ErrorEnterKeyword" xml:space="preserve">
+    <value>โปรดเลือกเกณฑ์การค้นหา</value>
+    <comment>Please select the criteria to search.</comment>
+  </data>
+  <data name="ErrorFileExist" xml:space="preserve">
+    <value>มีไฟล์อยู่แล้ว โปรดเลือกไฟล์อื่น หรือเปลี่ยนชื่อไฟล์</value>
+    <comment>File already exists, please select another file or change the file name</comment>
+  </data>
+  <data name="ErrorFileExtension" xml:space="preserve">
+    <value>ไม่รับชนิดของนามสกุลไฟล์</value>
+    <comment>File type extension is not accepted</comment>
+  </data>
+  <data name="ErrorImageExceed" xml:space="preserve">
+    <value>รูปที่อัปโหลดมีขนาดเกินขีดจำกัดสูงสุด 1Mb</value>
+    <comment>The uploaded image exceeds the maximum 1Mb limit.</comment>
+  </data>
+  <data name="ErrorImageExtension" xml:space="preserve">
+    <value>นามสกุลของไฟล์รูปที่อัปโหลด</value>
+    <comment>The uploaded image extension '</comment>
+  </data>
+  <data name="ErrorImageInvalidSize" xml:space="preserve">
+    <value>ภาพที่อัปโหลดมีขนาดไม่ถูกต้อง โปรดตรวจสอบรูปแล้วลองใหม่อีกครั้ง</value>
+    <comment>The uploaded image has an invalid size. Please check the image and try again.</comment>
+  </data>
+  <data name="ErrorImageNoExtension" xml:space="preserve">
+    <value>รูปที่อัปโหลดไม่มีนามสกุลไฟล์</value>
+    <comment>The uploaded image has no extension</comment>
+  </data>
+  <data name="ErrorIncorrectCurrentPassword" xml:space="preserve">
+    <value>รหัสผ่านปัจจุบันไม่ถูกต้อง</value>
+    <comment>Incorrect current password</comment>
+  </data>
+  <data name="ErrorInvalidFileType" xml:space="preserve">
+    <value>ชนิดไฟล์ไม่ถูกต้อง</value>
+    <comment>Invalid File Type</comment>
+  </data>
+  <data name="ErrorKeywordSize" xml:space="preserve">
+    <value>ขนาดของคำหลักจะต้องไม่เกิน 100 อักขระ</value>
+    <comment>Keyword size cannot exceed 1000 characters</comment>
+  </data>
+  <data name="ErrorNoAdvertiserFound" xml:space="preserve">
+    <value>ไม่พบผู้ใช้ที่เป็นผู้โฆษณา (Advertiser User)</value>
+    <comment>No Advertiser User is found</comment>
+  </data>
+  <data name="ErrorNoMemberFound" xml:space="preserve">
+    <value>ไม่พบสมาชิก</value>
+    <comment>No Member is Found</comment>
+  </data>
+  <data name="ErrorNotAccepted" xml:space="preserve">
+    <value>ไม่อาจยอมรับได้</value>
+    <comment>' is not acceptable</comment>
+  </data>
+  <data name="ErrorPhoneSize" xml:space="preserve">
+    <value>โทรศัพท์จะต้องไม่เกิน 40 อักขระ</value>
+    <comment>Phone cannot exceed 40 characters</comment>
+  </data>
+  <data name="ErrorRequired" xml:space="preserve">
+    <value>กำหนดให้ต้องมี</value>
+    <comment>Required</comment>
+  </data>
+  <data name="ErrorUsernameExist" xml:space="preserve">
+    <value>มีชื่อผู้ใช้อยู่แล้ว</value>
+    <comment>User Name already exists</comment>
+  </data>
+  <data name="LabeAddLanguage" xml:space="preserve">
+    <value>Add Language</value>
+    <comment>Add Language</comment>
+  </data>
+  <data name="LabelAcceptTermCondition" xml:space="preserve">
+    <value>ข้าพเจ้ายอมรับข้อตกลงและเงื่อนไข</value>
+    <comment>I Accept the Terms and Conditions</comment>
+  </data>
+  <data name="LabelAccessDenied" xml:space="preserve">
+    <value>ปฏิเสธการเข้าถึง ใบรับรองไม่ถูกต้อง</value>
+    <comment>Access Denied. Invalid Credentials.</comment>
+  </data>
+  <data name="LabelAccount" xml:space="preserve">
+    <value>บัญชี</value>
+    <comment>Account</comment>
+  </data>
+  <data name="LabelAccountLocked" xml:space="preserve">
+    <value>ใบรับรองที่จัดหาให้ไม่ถูกต้อง บัญชีถูกล็อกชั่วคราว โปรดลองใหม่อีกครั้งในอีก "60 นาที" หรือ ติดต่อผู้ดูแลระบบของคุณ</value>
+    <comment>The supplied credentials are invalid. Account has been temporarily locked. Please try again in “60 mins” or contact your system administrator.</comment>
+  </data>
+  <data name="LabelAccountNumber" xml:space="preserve">
+    <value>หมายเลขบัญชี</value>
+    <comment>Account Number</comment>
+  </data>
+  <data name="LabelAccountsPayableEmail" xml:space="preserve">
+    <value>อีเมลบัญชีที่สามารถชำระเงินได้</value>
+    <comment>Accounts Payable Email</comment>
+  </data>
+  <data name="LabelAccountType" xml:space="preserve">
+    <value>ประเภทบัญชี</value>
+    <comment>Account Type</comment>
+  </data>
+  <data name="LabelAction" xml:space="preserve">
+    <value>ดำเนินการ</value>
+    <comment>Action</comment>
+  </data>
+  <data name="LabelActions" xml:space="preserve">
+    <value>การดำเนินการ</value>
+    <comment>Actions</comment>
+  </data>
+  <data name="LabelAdd" xml:space="preserve">
+    <value>Add</value>
+    <comment>Add</comment>
+  </data>
+  <data name="LabelAddAnEntry" xml:space="preserve">
+    <value>Add An Entry</value>
+    <comment>Add An Entry</comment>
+  </data>
+  <data name="LabelAddAnotherDirectorship" xml:space="preserve">
+    <value>ใส่ประสบการณ์</value>
+    <comment>Add Another Experience</comment>
+  </data>
+  <data name="LabelAddAnotherExperience" xml:space="preserve">
+    <value>ใส่ประสบการณ์</value>
+    <comment>Add Another Experience</comment>
+  </data>
+  <data name="LabelAddAnotherQualification" xml:space="preserve">
+    <value>ใส่คุณสมบัติ</value>
+    <comment>Add Another Qualification</comment>
+  </data>
+  <data name="LabelAddCertificateMembership" xml:space="preserve">
+    <value>Add Certificate &amp;amp; Membership</value>
+    <comment>Add Certificate &amp;amp; Membership</comment>
+  </data>
+  <data name="LabelAddDirectorship" xml:space="preserve">
+    <value>Add Directorship</value>
+    <comment>Add Directorship</comment>
+  </data>
+  <data name="LabelAdditionalDocuments" xml:space="preserve">
+    <value>เอกสารเพิ่มเติม</value>
+    <comment>Additional Documents</comment>
+  </data>
+  <data name="LabelAdditionalRolesAndResponsibilities" xml:space="preserve">
+    <value>หน้าที่และความรับผิดชอบเพิ่มเติม</value>
+    <comment>Additional Roles and responsibilities</comment>
+  </data>
+  <data name="LabelAddLicense" xml:space="preserve">
+    <value>Add License</value>
+    <comment>Add License</comment>
+  </data>
+  <data name="LabelAddMailingAddress" xml:space="preserve">
+    <value>ใส่ที่อยู่สำหรับส่งจดหมาย</value>
+    <comment>Add Mailing Address</comment>
+  </data>
+  <data name="LabelAddReference" xml:space="preserve">
+    <value>Add Reference</value>
+    <comment>Add Reference</comment>
+  </data>
+  <data name="LabelAddress" xml:space="preserve">
+    <value>ที่อยู่</value>
+    <comment>Address</comment>
+  </data>
+  <data name="LabelAddSkill" xml:space="preserve">
+    <value>Add Skill</value>
+    <comment>Add Skill</comment>
+  </data>
+  <data name="LabelAddSkillAlreadyExist" xml:space="preserve">
+    <value>Skill already exists</value>
+    <comment>Skill already exists</comment>
+  </data>
+  <data name="LabelAddYourSkill" xml:space="preserve">
+    <value>Add Your Skill</value>
+    <comment>Add Your Skill</comment>
+  </data>
+  <data name="LabelAdvanced" xml:space="preserve">
+    <value>Advanced</value>
+    <comment>Advanced</comment>
+  </data>
+  <data name="LabelAdvertiser" xml:space="preserve">
+    <value>ผู้โฆษณา</value>
+    <comment>Advertiser</comment>
+  </data>
+  <data name="LabelAdvertiserEditSuccess" xml:space="preserve">
+    <value>ส่งรายละเอียดบัญชีเรียบร้อยแล้ว</value>
+    <comment>Account details have been submitted successfully.</comment>
+  </data>
+  <data name="LabelAdvertiserInvalid" xml:space="preserve">
+    <value>&lt;h2&gt;เรียนผู้โฆษณา&lt;/h2&gt; 
+&lt;p&gt;มีการตรวจสอบยืนยันบัญชีของคุณกับเราเรียบร้อยแล้ว คุณสามารถเข้าถึงบัญชีของคุณได้ผ่านทาง &lt;a href="/advertiser/login.aspx"&gt;หน้าล็อกอิน&lt;/a&gt;&lt;/p&gt;</value>
+    <comment>Advertiser validation failed.</comment>
+  </data>
+  <data name="LabelAdvertiserJobTemplateLogo" xml:space="preserve">
+    <value>เทมเพลตโลโก้งานของผู้โฆษณา</value>
+    <comment>Advertiser Job Template Logo</comment>
+  </data>
+  <data name="LabelAdvertiserJobTemplateLogoID" xml:space="preserve">
+    <value>ID ของเทมเพลตโลโก้</value>
+    <comment>Template Logo ID</comment>
+  </data>
+  <data name="LabelAdvertiserJobTemplateLogoName" xml:space="preserve">
+    <value>ชื่อรูป/ โลโก้</value>
+    <comment>Name of Image/Logo</comment>
+  </data>
+  <data name="LabelAdvertiserJobTemplateLogoSelectDoc" xml:space="preserve">
+    <value>อัปโหลดไฟล์</value>
+    <comment>Upload file</comment>
+  </data>
+  <data name="LabelAdvertiserUser" xml:space="preserve">
+    <value>ผู้ใช้ที่เป็นผู้โฆษณา (Advertiser User)</value>
+    <comment>Advertiser User</comment>
+  </data>
+  <data name="LabelAdvertiserValidated" xml:space="preserve">
+    <value>คุณได้รับการตรวจสอบยืนยันเรียบร้อยแล้ว</value>
+    <comment>You have been validated successfully.</comment>
+  </data>
+  <data name="LabelAdvertiserValidation" xml:space="preserve">
+    <value>คำขอสำหรับการตรวจสอบยืนยันล้มเหลว</value>
+    <comment>Validation Request Failure</comment>
+  </data>
+  <data name="LabelAdvisor" xml:space="preserve">
+    <value>Advisor</value>
+    <comment>Advisor</comment>
+  </data>
+  <data name="LabelAllApplicationsSendEmail" xml:space="preserve">
+    <value>All applications for job will be sent to this email address</value>
+    <comment>All applications for job will be sent to this email address</comment>
+  </data>
+  <data name="LabelAllArea" xml:space="preserve">
+    <value>- ทุกพื้นที่ -</value>
+    <comment>- All Areas -</comment>
+  </data>
+  <data name="LabelAllAreas" xml:space="preserve">
+    <value>- ทุกพื้นที่ -</value>
+    <comment>-All Areas-</comment>
+  </data>
+  <data name="LabelAllAvailability" xml:space="preserve">
+    <value>- ทุกรายการที่มีอยู่ -</value>
+    <comment>- All Availability -</comment>
+  </data>
+  <data name="LabelAllClassification" xml:space="preserve">
+    <value>- ทุกหมวดหมู่ -</value>
+    <comment>- All Classification -</comment>
+  </data>
+  <data name="LabelAllClassifications" xml:space="preserve">
+    <value>- ทุกหมวดหมู่ -</value>
+    <comment>- All Classifications -</comment>
+  </data>
+  <data name="LabelAllCountries" xml:space="preserve">
+    <value>- ทุกประเทศ-</value>
+    <comment>-All Countries-</comment>
+  </data>
+  <data name="LabelAllCountry" xml:space="preserve">
+    <value>- ทุกประเทศ-</value>
+    <comment>- All Countries -</comment>
+  </data>
+  <data name="LabelAllLocation" xml:space="preserve">
+    <value>- สถานที่ทั้งหมด-</value>
+    <comment>- All Locations -</comment>
+  </data>
+  <data name="LabelAllLocations" xml:space="preserve">
+    <value>- สถานที่ทั้งหมด-</value>
+    <comment>-All Locations-</comment>
+  </data>
+  <data name="LabelAllSalary" xml:space="preserve">
+    <value>- ระดับเงินเดือนทั้งหมด-</value>
+    <comment>- All Salary -</comment>
+  </data>
+  <data name="LabelAllSalaryType" xml:space="preserve">
+    <value>- ทุกประเภทเงินเดือน-</value>
+    <comment>- All Salary Type -</comment>
+  </data>
+  <data name="LabelAllSubClassifications" xml:space="preserve">
+    <value>- หมวดย่อยทั้งหมด-</value>
+    <comment>- All Sub Classifications -</comment>
+  </data>
+  <data name="LabelAllWorkTypes" xml:space="preserve">
+    <value>- งานทุกประเภท-</value>
+    <comment>- All Worktypes -</comment>
+  </data>
+  <data name="LabelAlreadyRegistered" xml:space="preserve">
+    <value>- ลงทะเบียนแล้ว-</value>
+    <comment>Already registered</comment>
+  </data>
+  <data name="LabelAMEX" xml:space="preserve">
+    <value>Amex</value>
+    <comment>Amex</comment>
+  </data>
+  <data name="LabelAmount" xml:space="preserve">
+    <value>จำนวนเงิน</value>
+    <comment>Amount</comment>
+  </data>
+  <data name="LabelAnnualSalary" xml:space="preserve">
+    <value>รายได้ต่อปี</value>
+    <comment>Annual Salary</comment>
+  </data>
+  <data name="LabelApplicantGrade" xml:space="preserve">
+    <value>เกรดของผู้สมัคร</value>
+    <comment>Applicant Grade</comment>
+  </data>
+  <data name="LabelApplicationDate" xml:space="preserve">
+    <value>วันที่สมัคร</value>
+    <comment>Application Date</comment>
+  </data>
+  <data name="LabelApplicationEmail" xml:space="preserve">
+    <value>อีเมลสมัครงาน</value>
+    <comment>Application email</comment>
+  </data>
+  <data name="LabelApplicationEmailAddress" xml:space="preserve">
+    <value>ที่อยู่อีเมลสมัครงาน</value>
+    <comment>Application Email Address</comment>
+  </data>
+  <data name="LabelApplicationManager" xml:space="preserve">
+    <value>ผู้จัดการการสมัครงาน</value>
+    <comment>Application Manager</comment>
+  </data>
+  <data name="LabelApplicationMethod" xml:space="preserve">
+    <value>วิธีการสมัคร</value>
+    <comment>Application Method</comment>
+  </data>
+  <data name="LabelApplications" xml:space="preserve">
+    <value>ใบสมัครงาน</value>
+    <comment>Applications</comment>
+  </data>
+  <data name="LabelApplicationStatus" xml:space="preserve">
+    <value>สถานะการสมัคร</value>
+    <comment>Application Status</comment>
+  </data>
+  <data name="LabelApplicationURL" xml:space="preserve">
+    <value>URL ของใบสมัคร</value>
+    <comment>Application URL</comment>
+  </data>
+  <data name="LabelApplied" xml:space="preserve">
+    <value>สมัครแล้ว</value>
+    <comment>Applied</comment>
+  </data>
+  <data name="LabelApply" xml:space="preserve">
+    <value>สมัคร</value>
+    <comment>Apply</comment>
+  </data>
+  <data name="LabelApplyFor" xml:space="preserve">
+    <value />
+    <comment>Apply For</comment>
+  </data>
+  <data name="LabelApplyForPosition" xml:space="preserve">
+    <value>สมัครในตำแหน่ง</value>
+    <comment>Apply for position</comment>
+  </data>
+  <data name="LabelApplyWith" xml:space="preserve">
+    <value>สมัครด้วย</value>
+    <comment>Apply with</comment>
+  </data>
+  <data name="LabelApr" xml:space="preserve">
+    <value>April</value>
+    <comment>April</comment>
+  </data>
+  <data name="LabelArchivedJobs" xml:space="preserve">
+    <value>งานที่เก็บไว้</value>
+    <comment>Archived Jobs</comment>
+  </data>
+  <data name="LabelArea" xml:space="preserve">
+    <value>พื้นที่</value>
+    <comment>Area</comment>
+  </data>
+  <data name="LabelAreaIDs" xml:space="preserve">
+    <value>ID ของพื้นที่</value>
+    <comment>Area IDs</comment>
+  </data>
+  <data name="LabelAreaRequired" xml:space="preserve">
+    <value>กำหนดให้ต้องมีพื้นที่</value>
+    <comment>Area is required</comment>
+  </data>
+  <data name="LabelAssignedJobTo" xml:space="preserve">
+    <value>มอบงานให้กับ</value>
+    <comment>Assign Job To</comment>
+  </data>
+  <data name="LabelAssociatesDegree" xml:space="preserve">
+    <value>Associate Degree</value>
+    <comment>Associate Degree</comment>
+  </data>
+  <data name="LabelAttachCoverLetter" xml:space="preserve">
+    <value>Attach Cover Letter</value>
+    <comment>Attach Cover Letter</comment>
+  </data>
+  <data name="LabelAttachResume" xml:space="preserve">
+    <value>Attach Resume</value>
+    <comment>Attach Resume</comment>
+  </data>
+  <data name="LabelAttemptFailed" xml:space="preserve">
+    <value>ใบรับรองที่ให้ไม่ถูกต้อง จะทำการล็อกบัญชีเป็นเวลา 60 นาที หลังจากล้มเหลวในการล็อกอินอีก {0} ครั้ง</value>
+    <comment>The supplied credentials are invalid. Account will be locked for 60 minutes after {0} more failed login attempt/s.</comment>
+  </data>
+  <data name="LabelAug" xml:space="preserve">
+    <value>August</value>
+    <comment>August</comment>
+  </data>
+  <data name="LabelAuthor" xml:space="preserve">
+    <value>Author</value>
+    <comment>Author</comment>
+  </data>
+  <data name="LabelAuthority" xml:space="preserve">
+    <value>Authority</value>
+    <comment>Authority</comment>
+  </data>
+  <data name="LabelAvailabilityDate" xml:space="preserve">
+    <value>วันที่ที่พร้อมทำงาน</value>
+    <comment>Availability Date</comment>
+  </data>
+  <data name="LabelAvailabilityDateFrom" xml:space="preserve">
+    <value>Availability Date From</value>
+    <comment>Availability Date From</comment>
+  </data>
+  <data name="LabelAvailableFrom" xml:space="preserve">
+    <value>Available From</value>
+    <comment>Available From</comment>
+  </data>
+  <data name="LabelAvailableStatus" xml:space="preserve">
+    <value>สถานะที่พร้อมทำงาน</value>
+    <comment>Availability Status</comment>
+  </data>
+  <data name="LabelAZ" xml:space="preserve">
+    <value>A - Z</value>
+    <comment>A - Z</comment>
+  </data>
+  <data name="LabelBachelorsDegree" xml:space="preserve">
+    <value>Bachelor Degree</value>
+    <comment>Bachelor Degree</comment>
+  </data>
+  <data name="LabelBackToJob" xml:space="preserve">
+    <value>กลับไปยังงาน</value>
+    <comment>Back to Job</comment>
+  </data>
+  <data name="LabelBeginner" xml:space="preserve">
+    <value>Beginner</value>
+    <comment>Beginner</comment>
+  </data>
+  <data name="LabelBelow" xml:space="preserve">
+    <value>ด้านล่าง</value>
+    <comment>below</comment>
+  </data>
+  <data name="LabelBelowListSavedJobs" xml:space="preserve">
+    <value>ด้านล่างคือรายการงานที่คุณได้บันทึกไว้</value>
+    <comment>Below is a list of your saved jobs</comment>
+  </data>
+  <data name="LabelBilled" xml:space="preserve">
+    <value>แจ้งหนี้</value>
+    <comment>Billed</comment>
+  </data>
+  <data name="LabelBreadcrumbs" xml:space="preserve">
+    <value>เส้นทางของคุณ</value>
+    <comment>Your Path</comment>
+  </data>
+  <data name="LabelBrowse" xml:space="preserve">
+    <value>เบราว์</value>
+    <comment>Browse</comment>
+  </data>
+  <data name="LabelBtnFinish" xml:space="preserve">
+    <value>เสร็จสิ้น</value>
+    <comment>Finish</comment>
+  </data>
+  <data name="LabelBtnPrevious" xml:space="preserve">
+    <value>ก่อนหน้า</value>
+    <comment>Previous</comment>
+  </data>
+  <data name="LabelBtnSaveContinue" xml:space="preserve">
+    <value>บันทึก &amp;amp; ดำเนินการต่อ</value>
+    <comment>Save &amp; Continue</comment>
+  </data>
+  <data name="LabelBulletPoint1" xml:space="preserve">
+    <value>สัญลักษณ์นำหัวข้อ (bullet point)  1</value>
+    <comment>Bullet Point  1</comment>
+  </data>
+  <data name="LabelBulletPoint2" xml:space="preserve">
+    <value>สัญลักษณ์นำหัวข้อ (bullet point)  2</value>
+    <comment>Bullet Point  2</comment>
+  </data>
+  <data name="LabelBulletPoint3" xml:space="preserve">
+    <value>สัญลักษณ์นำหัวข้อ (bullet point)  3</value>
+    <comment>Bullet Point  3</comment>
+  </data>
+  <data name="LabelBusinessName" xml:space="preserve">
+    <value>ชื่อธุรกิจ</value>
+    <comment>Business Name</comment>
+  </data>
+  <data name="LabelBusinessNumber" xml:space="preserve">
+    <value>ชื่อธุรกิจ</value>
+    <comment>Business Number</comment>
+  </data>
+  <data name="LabelBusinessType" xml:space="preserve">
+    <value>ประเภทธุรกิจ</value>
+    <comment>Business Type</comment>
+  </data>
+  <data name="LabelBusinessTypeRequired" xml:space="preserve">
+    <value>จำเป็นต้องมีประเภทธุรกิจ</value>
+    <comment>Business Type is required</comment>
+  </data>
+  <data name="LabelCancel" xml:space="preserve">
+    <value>ยกเลิก</value>
+    <comment>Cancel</comment>
+  </data>
+  <data name="LabelCandidate" xml:space="preserve">
+    <value>ผู้สมัคร</value>
+    <comment>Candidate</comment>
+  </data>
+  <data name="LabelCandidatesRight" xml:space="preserve">
+    <value>ผู้สมัครจะต้องมีสิทธิ์ทำงานในประเทศนี้</value>
+    <comment>Candidates must have the right to work in this country</comment>
+  </data>
+  <data name="LabelCaptcha" xml:space="preserve">
+    <value>แคปช่า</value>
+    <comment>Captcha</comment>
+  </data>
+  <data name="LabelCaptchaRequired" xml:space="preserve">
+    <value>Please complete the captcha</value>
+    <comment>Please complete the captcha</comment>
+  </data>
+  <data name="LabelCartEmpty" xml:space="preserve">
+    <value>ปัจจุบันคุณไม่มีสินค้าที่เลือกเพื่อตรวจสอบ</value>
+    <comment>You currently have no products selected to checkout</comment>
+  </data>
+  <data name="LabelCategories" xml:space="preserve">
+    <value>Categories</value>
+    <comment>Categories</comment>
+  </data>
+  <data name="LabelCertAndMembership" xml:space="preserve">
+    <value>Certs &amp;amp; Memberships</value>
+    <comment>Certs &amp;amp; Memberships</comment>
+  </data>
+  <data name="LabelCertificateDoesNotExpire" xml:space="preserve">
+    <value>Certificate/Membership Does Not Expire</value>
+    <comment>Certificate/Membership Does Not Expire</comment>
+  </data>
+  <data name="LabelCertificateMembershipNumber" xml:space="preserve">
+    <value>Certificate/Membership No.</value>
+    <comment>Certificate/Membership No.</comment>
+  </data>
+  <data name="LabelCertificationsAndMemberships" xml:space="preserve">
+    <value>Certifications &amp;amp; Memberships</value>
+    <comment>Certifications &amp;amp; Memberships</comment>
+  </data>
+  <data name="LabelCertificationURL" xml:space="preserve">
+    <value>Certification URL</value>
+    <comment>Certification URL</comment>
+  </data>
+  <data name="LabelChairmanOfABoard" xml:space="preserve">
+    <value>ประธานกรรมการ</value>
+    <comment>Chairman of a board</comment>
+  </data>
+  <data name="LabelChange" xml:space="preserve">
+    <value>เปลี่ยน</value>
+    <comment>Change</comment>
+  </data>
+  <data name="LabelChangeEmailContactAdmin" xml:space="preserve">
+    <value>โปรดติดต่อผู้ดูแลระบบสำหรับการเปลี่ยนที่อยู่อีเมล</value>
+    <comment>To change email address, please contact administrator</comment>
+  </data>
+  <data name="LabelChangePwd" xml:space="preserve">
+    <value>เปลี่ยนรหัสผ่าน</value>
+    <comment>Change Password</comment>
+  </data>
+  <data name="LabelCheckOut" xml:space="preserve">
+    <value>ตรวจสอบ</value>
+    <comment>Check out</comment>
+  </data>
+  <data name="LabelChooseCover" xml:space="preserve">
+    <value>โปรดเลือกจดหมายสมัครงาน</value>
+    <comment>Please choose a cover letter</comment>
+  </data>
+  <data name="LabelChooseOne" xml:space="preserve">
+    <value>Choose One</value>
+    <comment>Choose One</comment>
+  </data>
+  <data name="LabelChooseResume" xml:space="preserve">
+    <value>โปรดเลือกเรซูเม่</value>
+    <comment>Please choose a resume</comment>
+  </data>
+  <data name="LabelCityTown" xml:space="preserve">
+    <value>City / Town</value>
+    <comment>City / Town</comment>
+  </data>
+  <data name="LabelClassification" xml:space="preserve">
+    <value>การจัดหมวดหมู่</value>
+    <comment>Classification</comment>
+  </data>
+  <data name="LabelClassificationAndSubClassification" xml:space="preserve">
+    <value>การจัดหมวดหมู่/ หมวดย่อย</value>
+    <comment>Classification / Sub Classification</comment>
+  </data>
+  <data name="LabelClassifications" xml:space="preserve">
+    <value>การจัดหมวดหมู่</value>
+    <comment>Classifications</comment>
+  </data>
+  <data name="LabelClassificationSubClassification" xml:space="preserve">
+    <value>การจัดหมวดหมู่/ หมวดย่อย</value>
+    <comment>Classification / SubClassification</comment>
+  </data>
+  <data name="LabelClear" xml:space="preserve">
+    <value>ล้าง</value>
+    <comment>Clear</comment>
+  </data>
+  <data name="LabelClick" xml:space="preserve">
+    <value>คลิก</value>
+    <comment>Click</comment>
+  </data>
+  <data name="LabelClickHere" xml:space="preserve">
+    <value>คลิกที่นี่</value>
+    <comment>click here</comment>
+  </data>
+  <data name="LabelClickToGenerate" xml:space="preserve">
+    <value>click to generate ...</value>
+    <comment>click to generate ...</comment>
+  </data>
+  <data name="LabelCloseMyAccount" xml:space="preserve">
+    <value>ปิดบัญชีของฉัน</value>
+    <comment>Close My Account</comment>
+  </data>
+  <data name="LabelColleague" xml:space="preserve">
+    <value>Colleague</value>
+    <comment>Colleague</comment>
+  </data>
+  <data name="LabelComments" xml:space="preserve">
+    <value>Comments</value>
+    <comment>Comments</comment>
+  </data>
+  <data name="LabelCompany" xml:space="preserve">
+    <value>บริษัท</value>
+    <comment>Company</comment>
+  </data>
+  <data name="LabelCompanyDetails" xml:space="preserve">
+    <value>รายละเอียดบริษัท</value>
+    <comment>Company Details</comment>
+  </data>
+  <data name="LabelCompanyLogo" xml:space="preserve">
+    <value>โลโก้บริษัท</value>
+    <comment>Company logo</comment>
+  </data>
+  <data name="LabelCompanyName" xml:space="preserve">
+    <value>ชื่อบริษัท</value>
+    <comment>Company Name</comment>
+  </data>
+  <data name="LabelCompanyNameRequired" xml:space="preserve">
+    <value>จำเป็นต้องมีชื่อบริษัท</value>
+    <comment>Company Name is required</comment>
+  </data>
+  <data name="LabelCompanyProfile" xml:space="preserve">
+    <value>โปรไฟล์บริษัท</value>
+    <comment>Company Profile</comment>
+  </data>
+  <data name="LabelCompanySecretary" xml:space="preserve">
+    <value>เลขานุการบริษัท</value>
+    <comment>Company Secretary</comment>
+  </data>
+  <data name="LabelCompletedApplication" xml:space="preserve">
+    <value>การสมัครเสร็จสมบูรณ์</value>
+    <comment>Completed Application</comment>
+  </data>
+  <data name="labelCompleteOrder" xml:space="preserve">
+    <value>คำสั่งเสร็จสมบูรณ์</value>
+    <comment>Complete Order</comment>
+  </data>
+  <data name="LabelConfirmDeleteRecord" xml:space="preserve">
+    <value>คุณแน่ใจไหมที่จะลบบันทึกข้อมูลนี้?</value>
+    <comment>Are you sure you want to delete this record?</comment>
+  </data>
+  <data name="LabelConfirmEmail" xml:space="preserve">
+    <value>ยืนยันที่อยู่อีเมล</value>
+    <comment>Confirm Email</comment>
+  </data>
+  <data name="LabelConfirmEmailNotMatch" xml:space="preserve">
+    <value>การยืนยันอีเมลไม่ตรงกัน</value>
+    <comment>Confirm email not match</comment>
+  </data>
+  <data name="LabelConfirmEmailPage" xml:space="preserve">
+    <value>ยืนยันอีเมล</value>
+    <comment>Confirm email</comment>
+  </data>
+  <data name="LabelConfirmEmailRequired" xml:space="preserve">
+    <value>จำเป็นต้องยืนยันอีเมล</value>
+    <comment>Confirm email is required</comment>
+  </data>
+  <data name="LabelConfirmNewPassword" xml:space="preserve">
+    <value>ยืนยันรหัสผ่านใหม่</value>
+    <comment>Confirm New Password</comment>
+  </data>
+  <data name="LabelConfirmPassword" xml:space="preserve">
+    <value>ยืนยันรหัสผ่าน</value>
+    <comment>Confirm password</comment>
+  </data>
+  <data name="LabelConfirmRepost" xml:space="preserve">
+    <value>คุณกำลังจะโพสต์งานที่เลือกใหม่อีกครั้ง โปรดยืนยันว่าคุณต้องการโพสต์ซ้ำ</value>
+    <comment>You are about to repost selected jobs(s), please confirm you want to repost</comment>
+  </data>
+  <data name="LabelConfirmResetPassword" xml:space="preserve">
+    <value>ยืนยันการตั้งค่ารหัสผ่านใหม่</value>
+    <comment>Confirm Reset Password</comment>
+  </data>
+  <data name="LabelContactDetails" xml:space="preserve">
+    <value>รายละเอียดการติดต่อ</value>
+    <comment>Contact Details</comment>
+  </data>
+  <data name="LabelContactEmail" xml:space="preserve">
+    <value>อีเมล</value>
+    <comment>Email</comment>
+  </data>
+  <data name="LabelContactInformation" xml:space="preserve">
+    <value>ข้อมูลการติดต่อ</value>
+    <comment>Contact Information</comment>
+  </data>
+  <data name="LabelContactNumber" xml:space="preserve">
+    <value>หมายเลขติดต่อ</value>
+    <comment>Contact Number</comment>
+  </data>
+  <data name="LabelContent" xml:space="preserve">
+    <value>เนื้อหา</value>
+    <comment>Content</comment>
+  </data>
+  <data name="LabelContinue" xml:space="preserve">
+    <value>ดำเนินการต่อ</value>
+    <comment>Continue</comment>
+  </data>
+  <data name="LabelContinueApplication" xml:space="preserve">
+    <value>ดำเนินการสมัครต่อไป</value>
+    <comment>Continue Application</comment>
+  </data>
+  <data name="LabelCopyJob" xml:space="preserve">
+    <value>คัดลอก</value>
+    <comment>Copy</comment>
+  </data>
+  <data name="LabelCopyJobConfirm" xml:space="preserve">
+    <value>คุณแน่ใจไหมที่จะคัดลอกงานนี้?</value>
+    <comment>Are you sure you want to copy this job?</comment>
+  </data>
+  <data name="LabelCountry" xml:space="preserve">
+    <value>ประเทศ</value>
+    <comment>Country</comment>
+  </data>
+  <data name="LabelCountryLocationArea" xml:space="preserve">
+    <value>ประเทศ/ สถานที่/ พื้นที่</value>
+    <comment>Country / Location / Area</comment>
+  </data>
+  <data name="LabelCountryMandatory" xml:space="preserve">
+    <value>ข้อมูลประเทศเป็นข้อบังคับให้ต้องมี</value>
+    <comment>Country is Mandatory</comment>
+  </data>
+  <data name="LabelCountryRequired" xml:space="preserve">
+    <value>ต้องมีข้อมูลประเทศ</value>
+    <comment>Country is required</comment>
+  </data>
+  <data name="LabelCoverLetter" xml:space="preserve">
+    <value>จดหมายสมัครงาน</value>
+    <comment>Cover Letter</comment>
+  </data>
+  <data name="LabelCoverLetterWriteYourOwn" xml:space="preserve">
+    <value>Or Write Your Own</value>
+    <comment>Or Write Your Own</comment>
+  </data>
+  <data name="LabelCreateAlertCheckBoxes" xml:space="preserve">
+    <value>ช่องทำเครื่องหมาย</value>
+    <comment>Checkboxes</comment>
+  </data>
+  <data name="LabelCreateAsAlert" xml:space="preserve">
+    <value>สร้างเป็นการเตือน</value>
+    <comment>Create as alert</comment>
+  </data>
+  <data name="LabelCreated" xml:space="preserve">
+    <value>สร้างแล้ว</value>
+    <comment>Created</comment>
+  </data>
+  <data name="LabelCreateFavouriteSearch" xml:space="preserve">
+    <value>สร้างการค้นหารายการโปรด</value>
+    <comment>Create Favourite Search</comment>
+  </data>
+  <data name="LabelCreateJob" xml:space="preserve">
+    <value>สร้างงาน</value>
+    <comment>Create Job</comment>
+  </data>
+  <data name="LabelCreateJobAlert" xml:space="preserve">
+    <value>สร้างการเตือนเกี่ยวกับงาน</value>
+    <comment>Create Job Alert</comment>
+  </data>
+  <data name="LabelCreateJobAlertNameIsMissing" xml:space="preserve">
+    <value>ไม่มีชื่อของการสร้างการเตือนเกี่ยวกับงาน</value>
+    <comment>Create Job Alert Name is missing</comment>
+  </data>
+  <data name="LabelCreditCard" xml:space="preserve">
+    <value>สร้างบัตร</value>
+    <comment>Credit Card</comment>
+  </data>
+  <data name="LabelCreditCardName" xml:space="preserve">
+    <value>ชื่อบนบัตร</value>
+    <comment>Name on Card</comment>
+  </data>
+  <data name="LabelCreditCardNumber" xml:space="preserve">
+    <value>หมายเลขบัตร</value>
+    <comment>Card Number</comment>
+  </data>
+  <data name="LabelCreditCardPayment" xml:space="preserve">
+    <value>การชำระเงินด้วยบัตรเครดิต</value>
+    <comment>Payment by Credit Card</comment>
+  </data>
+  <data name="LabelCSC" xml:space="preserve">
+    <value>รหัส CSC</value>
+    <comment>CSC Code</comment>
+  </data>
+  <data name="LabelCurrencyBaseText" xml:space="preserve">
+    <value>สกุลเงินเป็นค่าเงินพื้นฐานในสกุลเงิน</value>
+    <comment>Currency is based in</comment>
+  </data>
+  <data name="LabelCurrent" xml:space="preserve">
+    <value>ปัจจุบัน</value>
+    <comment>Current</comment>
+  </data>
+  <data name="LabelCurrentJobs" xml:space="preserve">
+    <value>งานในปัจจุบัน</value>
+    <comment>Current Jobs</comment>
+  </data>
+  <data name="LabelCurrentJobStatistics" xml:space="preserve">
+    <value>สถิติของงานในปัจจุบัน</value>
+    <comment>Current Job Statistics</comment>
+  </data>
+  <data name="LabelCurrentLogin" xml:space="preserve">
+    <value>ปัจจุบันคุณล็อกอินในฐานะ</value>
+    <comment>Currently Login as</comment>
+  </data>
+  <data name="LabelCurrentPassword" xml:space="preserve">
+    <value>รหัสผ่านปัจจุบัน</value>
+    <comment>Current Password</comment>
+  </data>
+  <data name="LabelCurrentStatus" xml:space="preserve">
+    <value>สถานะในปัจจุบัน</value>
+    <comment>Current Status</comment>
+  </data>
+  <data name="LabelCustomCoverLetter" xml:space="preserve">
+    <value>Custom Cover Letter</value>
+    <comment>Custom Cover Letter</comment>
+  </data>
+  <data name="LabelCVBuilder" xml:space="preserve">
+    <value>ผู้สร้าง CV</value>
+    <comment>CV Builder</comment>
+  </data>
+  <data name="LabelCVV" xml:space="preserve">
+    <value>CVV</value>
+    <comment>CVV</comment>
+  </data>
+  <data name="LabelDashboard" xml:space="preserve">
+    <value>แดชบอร์ด</value>
+    <comment>Dashboard</comment>
+  </data>
+  <data name="LabelDateDisplayDD" xml:space="preserve">
+    <value>DD</value>
+    <comment>DD</comment>
+  </data>
+  <data name="LabelDateDisplayMM" xml:space="preserve">
+    <value>MM</value>
+    <comment>MM</comment>
+  </data>
+  <data name="LabelDateDisplayYYYY" xml:space="preserve">
+    <value>YYYY</value>
+    <comment>YYYY</comment>
+  </data>
+  <data name="LabelDateEntered" xml:space="preserve">
+    <value>วันที่เข้าร่วม</value>
+    <comment>Date Entered</comment>
+  </data>
+  <data name="LabelDateModified" xml:space="preserve">
+    <value>Date modified</value>
+    <comment>Date modified</comment>
+  </data>
+  <data name="LabelDateOfBirth" xml:space="preserve">
+    <value>วันเกิด</value>
+    <comment>Date of birth</comment>
+  </data>
+  <data name="LabelDatePosted" xml:space="preserve">
+    <value>วันที่โพสต์</value>
+    <comment>Date Posted</comment>
+  </data>
+  <data name="LabelDatePublished" xml:space="preserve">
+    <value>Date published</value>
+    <comment>Date published</comment>
+  </data>
+  <data name="LabelDay" xml:space="preserve">
+    <value>วัน</value>
+    <comment>Day</comment>
+  </data>
+  <data name="LabelDaysPosted" xml:space="preserve">
+    <value>วันที่โพสต์</value>
+    <comment>Days Posted</comment>
+  </data>
+  <data name="LabelDaysTillExpiry" xml:space="preserve">
+    <value>วันที่จนถึงวันหมดอายุ</value>
+    <comment>Days Till Expiry</comment>
+  </data>
+  <data name="LabelDec" xml:space="preserve">
+    <value>December</value>
+    <comment>December</comment>
+  </data>
+  <data name="LabelDecimalOnly" xml:space="preserve">
+    <value>Accepts decimals only</value>
+    <comment>Accepts decimals only</comment>
+  </data>
+  <data name="LabelDeclinedJobs" xml:space="preserve">
+    <value>งานที่ปฏิเสธ</value>
+    <comment>Declined Jobs</comment>
+  </data>
+  <data name="LabelDefault" xml:space="preserve">
+    <value>ค่าเริ่มต้น</value>
+    <comment>Default</comment>
+  </data>
+  <data name="LabelDelete" xml:space="preserve">
+    <value>ลบ</value>
+    <comment>Delete</comment>
+  </data>
+  <data name="LabelDescription" xml:space="preserve">
+    <value>Description</value>
+    <comment>Description</comment>
+  </data>
+  <data name="LabelDescriptionHere" xml:space="preserve">
+    <value>Description Here...</value>
+    <comment>Description Here...</comment>
+  </data>
+  <data name="LabelDesiredLocation" xml:space="preserve">
+    <value>Desired City</value>
+    <comment>Desired City</comment>
+  </data>
+  <data name="LabelDesiredPay" xml:space="preserve">
+    <value>ค่าตอบแทนที่ต้องการ</value>
+    <comment>Desired Pay</comment>
+  </data>
+  <data name="LabelDesiredRegion" xml:space="preserve">
+    <value>Desired Region</value>
+    <comment>Desired Region</comment>
+  </data>
+  <data name="LabelDetails" xml:space="preserve">
+    <value>รายละเอียด</value>
+    <comment>Details</comment>
+  </data>
+  <data name="LabelDiploma" xml:space="preserve">
+    <value>Diploma</value>
+    <comment>Diploma</comment>
+  </data>
+  <data name="LabelDirectorship" xml:space="preserve">
+    <value>Directorship</value>
+    <comment>Directorship</comment>
+  </data>
+  <data name="LabelDirectReport" xml:space="preserve">
+    <value>Direct Report</value>
+    <comment>Direct Report</comment>
+  </data>
+  <data name="LabelDisplaySalary" xml:space="preserve">
+    <value>Display salary</value>
+    <comment>LabelDisplaySalary</comment>
+  </data>
+  <data name="LabelDocRestriction" xml:space="preserve">
+    <value>doc, docx, txt, pdf เท่านั้น</value>
+    <comment>doc, docx, txt, pdf only</comment>
+  </data>
+  <data name="LabelDoctorOfMedicine" xml:space="preserve">
+    <value>Doctor of Medicine</value>
+    <comment>Doctor of Medicine</comment>
+  </data>
+  <data name="LabelDoctorOfPhilosophy" xml:space="preserve">
+    <value>Doctor of Philosophy</value>
+    <comment>Doctor of Philosophy</comment>
+  </data>
+  <data name="LabelDocumentLink" xml:space="preserve">
+    <value>ลิงก์เอกสาร</value>
+    <comment>Document Link</comment>
+  </data>
+  <data name="LabelDocumentName" xml:space="preserve">
+    <value>ชื่อเอกสาร</value>
+    <comment>Document Name</comment>
+  </data>
+  <data name="LabelDocumentTitle" xml:space="preserve">
+    <value>ชื่อเรียกเอกสาร</value>
+    <comment>Document Title</comment>
+  </data>
+  <data name="LabelDownload" xml:space="preserve">
+    <value>ดาวน์โหลด</value>
+    <comment>Download</comment>
+  </data>
+  <data name="LabelDownloadApplicantsInExcel" xml:space="preserve">
+    <value>ดาวน์โหลดผู้สมัครเป็นไฟล์ Excel</value>
+    <comment>Download Applicants in Excel</comment>
+  </data>
+  <data name="LabelDownloadSelectedApplicants" xml:space="preserve">
+    <value>ดาวน์โหลดผู้สมัครที่เลือก</value>
+    <comment>Download Selected Applicants</comment>
+  </data>
+  <data name="LabelDr" xml:space="preserve">
+    <value>ด็อกเตอร์</value>
+    <comment>Dr</comment>
+  </data>
+  <data name="LabelDraftDate" xml:space="preserve">
+    <value>วันที่ร่าง</value>
+    <comment>Draft Date</comment>
+  </data>
+  <data name="LabelDraftJobs" xml:space="preserve">
+    <value>งานที่ร่าง</value>
+    <comment>Draft Jobs</comment>
+  </data>
+  <data name="LabelDuration" xml:space="preserve">
+    <value>ระยะเวลา</value>
+    <comment>Duration</comment>
+  </data>
+  <data name="LabelEdit" xml:space="preserve">
+    <value>แก้ไข</value>
+    <comment>Edit</comment>
+  </data>
+  <data name="LabelEditARolePreference" xml:space="preserve">
+    <value>Edit A Role Preferences</value>
+    <comment>Role Preferences</comment>
+  </data>
+  <data name="LabelEditCertificationsMembershipName" xml:space="preserve">
+    <value>Certificate / Membership Name</value>
+    <comment>Certificate / Membership Name</comment>
+  </data>
+  <data name="LabelEditCV" xml:space="preserve">
+    <value>แก้ไข CV</value>
+    <comment>Edit CV</comment>
+  </data>
+  <data name="LabelEditDetails" xml:space="preserve">
+    <value>Edit Details</value>
+    <comment>Edit Details</comment>
+  </data>
+  <data name="LabelEditEntry" xml:space="preserve">
+    <value>Edit Entry</value>
+    <comment>Edit Entry</comment>
+  </data>
+  <data name="LabelEditFavouriteSearch" xml:space="preserve">
+    <value>แก้ไขการค้นหารายการโปรด</value>
+    <comment>Edit Favourite Search</comment>
+  </data>
+  <data name="LabelEditJobAlert" xml:space="preserve">
+    <value>แก้ไขการเตือนเกี่ยวกับงาน</value>
+    <comment>Edit Job Alert</comment>
+  </data>
+  <data name="LabelEditJobApplication" xml:space="preserve">
+    <value>แก้ไขใบสมัครงาน</value>
+    <comment>Edit Job Application</comment>
+  </data>
+  <data name="LabelEditProfile" xml:space="preserve">
+    <value>Edit Profile</value>
+    <comment>Edit Profile</comment>
+  </data>
+  <data name="LabelEducation" xml:space="preserve">
+    <value>การศึกษา</value>
+    <comment>Education</comment>
+  </data>
+  <data name="LabelEGAccountingJobInSydney" xml:space="preserve">
+    <value>เช่น ค้นหางานด้านการบัญชีในซิดนีย์</value>
+    <comment>e.g. Accounting job search in Sydney</comment>
+  </data>
+  <data name="LabelElementaryProficiency" xml:space="preserve">
+    <value>Elementary proficiency</value>
+    <comment>Elementary proficiency</comment>
+  </data>
+  <data name="LabelEligibleToWorkIn" xml:space="preserve">
+    <value>Eligible to work in</value>
+    <comment>Eligible to work in</comment>
+  </data>
+  <data name="LabelEmail" xml:space="preserve">
+    <value>ที่อยู่อีเมล</value>
+    <comment>Email</comment>
+  </data>
+  <data name="LabelEmailAddress" xml:space="preserve">
+    <value>ที่อยู่อีเมล</value>
+    <comment>EmailAddress</comment>
+  </data>
+  <data name="LabelEmailAddressExist" xml:space="preserve">
+    <value>มีที่อยู่อีเมลอยู่แล้ว &lt;a href="/member/forgetpassword.aspx"&gt;คลิกที่นี่&lt;/a&gt; เพื่อกู้คืนรหัสผ่าน</value>
+    <comment>Email Address already exists, &lt;a href="/member/forgetpassword.aspx"&gt;click here&lt;/a&gt; to retrieve password</comment>
+  </data>
+  <data name="LabelEmailAddressRequired" xml:space="preserve">
+    <value>จำเป็นต้องมีที่อยู่อีเมล</value>
+    <comment>Email Address is required</comment>
+  </data>
+  <data name="LabelEmailAlreadyExist" xml:space="preserve">
+    <value>มีอีเมลอยู่แล้ว โปรดดำเนินการต่อเพื่อ &lt;a href="/member/login.aspx"&gt;ล็อกอิน&lt;/a&gt;</value>
+    <comment>Email already exists. Please proceed to &lt;a href="~/member/login.aspx"&gt;login&lt;/a&gt;</comment>
+  </data>
+  <data name="LabelEmailExist" xml:space="preserve">
+    <value>มีอีเมลอยู่แล้ว</value>
+    <comment>Email already exists</comment>
+  </data>
+  <data name="LabelEmailFormat" xml:space="preserve">
+    <value>รูปแบบอีเมล</value>
+    <comment>Email Format</comment>
+  </data>
+  <data name="LabelEmailFriend" xml:space="preserve">
+    <value>ส่งอีเมลถึงเพื่อน</value>
+    <comment>Email Friend</comment>
+  </data>
+  <data name="LabelEmailFriendSuccess" xml:space="preserve">
+    <value>ได้ส่งลิงก์ไปยังที่อยู่อีเมลที่ได้จัดให้แล้ว เลือกปุ่มกลับด้านล่างเพื่อกลับไปยังรายละเอียดหน้าที่</value>
+    <comment>The link has been sent to the email addresses provided. Select the Back button below to return to the role details.</comment>
+  </data>
+  <data name="LabelEmailInvalid" xml:space="preserve">
+    <value>อีเมลไม่ถูกต้อง</value>
+    <comment>Email is invalid.</comment>
+  </data>
+  <data name="LabelEmailJobToAFriend" xml:space="preserve">
+    <value>คลิกที่นี่เพื่อส่งอีเมลงานนี้ให้กับเพื่อน</value>
+    <comment>Click here to email this job to a friend</comment>
+  </data>
+  <data name="LabelEmailMandatory" xml:space="preserve">
+    <value>บังคับให้ต้องมีอีเมล</value>
+    <comment>Email is mandatory</comment>
+  </data>
+  <data name="LabelEmailMe" xml:space="preserve">
+    <value>ส่งอีเมลถึงฉัน</value>
+    <comment>Email Me</comment>
+  </data>
+  <data name="LabelEmailMeSelectedApplicants" xml:space="preserve">
+    <value>ส่งผู้สมัครที่เลือกให้ฉันทางอีเมล</value>
+    <comment>Email Me Selected Applicant</comment>
+  </data>
+  <data name="LabelEmailRequired" xml:space="preserve">
+    <value>จำเป็นต้องมีอีเมล</value>
+    <comment>Email is required</comment>
+  </data>
+  <data name="LabelEmailSuccess" xml:space="preserve">
+    <value>ส่งงาน {0} ไปยังอีเมลของคุณแล้ว</value>
+    <comment>Email sent successfully</comment>
+  </data>
+  <data name="LabelEmalAddressNotMatch" xml:space="preserve">
+    <value>ที่อยู่อีเมลไม่ตรงกัน</value>
+    <comment>Email Address does not match</comment>
+  </data>
+  <data name="LabelEnable" xml:space="preserve">
+    <value>Enable</value>
+    <comment>Enable</comment>
+  </data>
+  <data name="LabelEnd" xml:space="preserve">
+    <value>จบ</value>
+    <comment>End</comment>
+  </data>
+  <data name="LabelEndDate" xml:space="preserve">
+    <value>วันที่สิ้นสุด</value>
+    <comment>End Date</comment>
+  </data>
+  <data name="LabelEndDateError" xml:space="preserve">
+    <value>วันที่เริ่มต้นจะต้องไม่ช้ากว่าวันที่ในปัจจุบันหรือวันที่สิ้นสุด</value>
+    <comment>Start Date cannot be later than current date or later than End Date</comment>
+  </data>
+  <data name="LabelEnterCommaSeparated" xml:space="preserve">
+    <value>Please enter comma seperated ","</value>
+    <comment>Please enter comma seperated ","</comment>
+  </data>
+  <data name="LabelEnterEmail" xml:space="preserve">
+    <value>อีเมล</value>
+    <comment>Email</comment>
+  </data>
+  <data name="LabelEnterFirstName" xml:space="preserve">
+    <value>ใส่ชื่อจริงของคุณ</value>
+    <comment>Enter your first name</comment>
+  </data>
+  <data name="LabelEnterKeywords" xml:space="preserve">
+    <value>คำหลัก</value>
+    <comment>Enter Keywords</comment>
+  </data>
+  <data name="LabelEnterLanguage" xml:space="preserve">
+    <value>Enter Language...</value>
+    <comment>Enter Language...</comment>
+  </data>
+  <data name="LabelEnterLastName" xml:space="preserve">
+    <value>ใส่นามสกุลของคุณ</value>
+    <comment>Enter your last name</comment>
+  </data>
+  <data name="LabelEnterPassword" xml:space="preserve">
+    <value>รหัสผ่าน</value>
+    <comment>Password</comment>
+  </data>
+  <data name="LabelEnterPhoneNumber" xml:space="preserve">
+    <value>ใส่หมายเลขโทรศัพท์</value>
+    <comment>Enter phone number</comment>
+  </data>
+  <data name="LabelEnterPromoCode" xml:space="preserve">
+    <value>ใส่รหัสโปรโม</value>
+    <comment>Enter promo code</comment>
+  </data>
+  <data name="LabelErrorDuplicateRole" xml:space="preserve">
+    <value>ไม่สามารถเลือกหน้าที่ที่ซ้ำกันได้</value>
+    <comment>Cannot select duplicated Roles</comment>
+  </data>
+  <data name="LabelErrorFileExtension1MB" xml:space="preserve">
+    <value>โปรดอัปโหลดรูปของคุณเป็นไฟล์รูปแบบ jpg, gif หรือ png  ขนาดไฟล์สูงสุด 1 MB และความกว้างสูงสุด 300 px</value>
+    <comment>Please upload your image as jpg, gif or png format. Maximum file size of 1MB and maximum width of 300px.</comment>
+  </data>
+  <data name="LabelExpectedSalary" xml:space="preserve">
+    <value>เงินเดือนที่คาดหวัง</value>
+    <comment>Desired Pay / Expected Salary</comment>
+  </data>
+  <data name="LabelExperienceEnd" xml:space="preserve">
+    <value>ประสบการณ์สิ้นสุด</value>
+    <comment>Experience End</comment>
+  </data>
+  <data name="LabelExperienceStart" xml:space="preserve">
+    <value>ประสบการณ์เริ่มต้น</value>
+    <comment>Experience Start</comment>
+  </data>
+  <data name="LabelExpert" xml:space="preserve">
+    <value>Expert</value>
+    <comment>Expert</comment>
+  </data>
+  <data name="LabelExpire" xml:space="preserve">
+    <value>หมดอายุ</value>
+    <comment>Expire</comment>
+  </data>
+  <data name="LabelExpired" xml:space="preserve">
+    <value>หมดอายุแล้ว</value>
+    <comment>Expired</comment>
+  </data>
+  <data name="LabelExpiry" xml:space="preserve">
+    <value>การยุติ</value>
+    <comment>Expiry</comment>
+  </data>
+  <data name="LabelExpiryDate" xml:space="preserve">
+    <value>วันที่หมดอายุ</value>
+    <comment>Expiry Date</comment>
+  </data>
+  <data name="LabelExpiryMonth" xml:space="preserve">
+    <value>เดือนที่หมดอายุ</value>
+    <comment>Expiry Month</comment>
+  </data>
+  <data name="LabelExpiryYear" xml:space="preserve">
+    <value>ปีที่หมดอายุ</value>
+    <comment>Expiry Year</comment>
+  </data>
+  <data name="LabelExternalJobApplication" xml:space="preserve">
+    <value>การสมัครงานภายนอก</value>
+    <comment>External Job Application</comment>
+  </data>
+  <data name="LabelFailedToCreatedYouJobAlert" xml:space="preserve">
+    <value>ไม่สามารถสร้างการเตือนเกี่ยวกับงานของคุณได้</value>
+    <comment>Failed to created your alert</comment>
+  </data>
+  <data name="LabelFailedToSavedYourSearch" xml:space="preserve">
+    <value>ไม่สามารถบันทึกการค้นหาของคุณได้</value>
+    <comment>Failed to saved your search</comment>
+  </data>
+  <data name="LabelFailedToSendEmail" xml:space="preserve">
+    <value>ไม่สามารถส่งอีเมลได้</value>
+    <comment>Failed to send email</comment>
+  </data>
+  <data name="LabelFavouriteSearchCreateSuccess" xml:space="preserve">
+    <value>สร้างการค้นหารายการโปรดเสร็จเรียบร้อยแล้ว</value>
+    <comment>Favourite Search created successfully</comment>
+  </data>
+  <data name="LabelFavouriteSearches" xml:space="preserve">
+    <value>การค้นหารายการโปรด</value>
+    <comment>Favourite Searches</comment>
+  </data>
+  <data name="LabelFavouriteSearchNameIsMissing" xml:space="preserve">
+    <value>ไม่มีชื่อของการค้นหารายการโปรด</value>
+    <comment>Favourite Search Name is missing</comment>
+  </data>
+  <data name="LabelFavouriteSearchSaveSuccess" xml:space="preserve">
+    <value>บันทึกการค้นหารายการโปรดเสร็จเรียบร้อยแล้ว</value>
+    <comment>Favourite Search saved successfully</comment>
+  </data>
+  <data name="LabelFavouriteThisSearch" xml:space="preserve">
+    <value>ถูกใจการค้นหานี้</value>
+    <comment>Favourite this search</comment>
+  </data>
+  <data name="LabelFax" xml:space="preserve">
+    <value>แฟกซ์</value>
+    <comment>Fax</comment>
+  </data>
+  <data name="LabelFeb" xml:space="preserve">
+    <value>February</value>
+    <comment>February</comment>
+  </data>
+  <data name="LabelFemale" xml:space="preserve">
+    <value>เพศหญิง</value>
+    <comment>Female</comment>
+  </data>
+  <data name="LabelFiledUnder" xml:space="preserve">
+    <value>Filed under</value>
+    <comment>Filed under</comment>
+  </data>
+  <data name="LabelFileName" xml:space="preserve">
+    <value>ชื่อไฟล์</value>
+    <comment>File Name</comment>
+  </data>
+  <data name="LabelFileType" xml:space="preserve">
+    <value>ชนิดไฟล์</value>
+    <comment>File Type</comment>
+  </data>
+  <data name="LabelFileUpload" xml:space="preserve">
+    <value>อัปโหลดไฟล์</value>
+    <comment>File Upload</comment>
+  </data>
+  <data name="LabelFinish" xml:space="preserve">
+    <value>เสร็จสิ้น</value>
+    <comment>Finish</comment>
+  </data>
+  <data name="LabelFirstName" xml:space="preserve">
+    <value>ชื่อจริง</value>
+    <comment>First name</comment>
+  </data>
+  <data name="LabelFirstNameLocalLanguage" xml:space="preserve">
+    <value>First Name (Local language)</value>
+    <comment>First Name (Local language)</comment>
+  </data>
+  <data name="LabelFirstNameMandatory" xml:space="preserve">
+    <value>บังคับให้ต้องมีชื่อจริง</value>
+    <comment>First name is mandatory.</comment>
+  </data>
+  <data name="LabelFirstnameRequired" xml:space="preserve">
+    <value>จำเป็นต้องมีชื่อจริง</value>
+    <comment>First name is required</comment>
+  </data>
+  <data name="LabelForgetPassword" xml:space="preserve">
+    <value>กู้คืนรหัสผ่าน</value>
+    <comment>Retrieve Password</comment>
+  </data>
+  <data name="LabelForgotPassword" xml:space="preserve">
+    <value>ลืมรหัสผ่าน</value>
+    <comment>Forgot password</comment>
+  </data>
+  <data name="LabelForgottenPassword" xml:space="preserve">
+    <value>ลืมรหัสผ่าน</value>
+    <comment>Forgotten Password</comment>
+  </data>
+  <data name="LabelFormerEmployer" xml:space="preserve">
+    <value>Former Employer</value>
+    <comment>Former Employer</comment>
+  </data>
+  <data name="LabelFrom" xml:space="preserve">
+    <value>จาก</value>
+    <comment>From</comment>
+  </data>
+  <data name="LabelFromDate" xml:space="preserve">
+    <value>จากวันที่</value>
+    <comment>From Date</comment>
+  </data>
+  <data name="LabelFromSalary" xml:space="preserve">
+    <value>Enter From Salary</value>
+    <comment>Enter From Salary</comment>
+  </data>
+  <data name="LabelFromTo" xml:space="preserve">
+    <value>From/To</value>
+    <comment>From/To</comment>
+  </data>
+  <data name="LabelFullDescription" xml:space="preserve">
+    <value>คำอธิบายแบบครบสมบูรณ์</value>
+    <comment>Full Description</comment>
+  </data>
+  <data name="LabelFullName" xml:space="preserve">
+    <value>Full name</value>
+    <comment>Full name</comment>
+  </data>
+  <data name="LabelFullPermissionRequired" xml:space="preserve">
+    <value>จำเป็นต้องได้รับการอนุญาตโดยสมบูรณ์</value>
+    <comment>Full permission is required</comment>
+  </data>
+  <data name="LabelFullProfessionalProficiency" xml:space="preserve">
+    <value>Full Professional proficiency</value>
+    <comment>Full Professional proficiency</comment>
+  </data>
+  <data name="LabelFullRegistration" xml:space="preserve">
+    <value>การลงทะเบียนครบถ้วน</value>
+    <comment>Full Registration</comment>
+  </data>
+  <data name="LabelGender" xml:space="preserve">
+    <value>เพศ</value>
+    <comment>Gender</comment>
+  </data>
+  <data name="LabelGenerate" xml:space="preserve">
+    <value>สร้าง</value>
+    <comment>Generate</comment>
+  </data>
+  <data name="LabelGoBackToSearchResults" xml:space="preserve">
+    <value>เพื่อกลับไปยังผลการค้นหาของคุณ</value>
+    <comment>to go back to your search results.</comment>
+  </data>
+  <data name="LabelGST" xml:space="preserve">
+    <value>GST</value>
+    <comment>GST</comment>
+  </data>
+  <data name="LabelHaventReceivedWelcomeEmail" xml:space="preserve">
+    <value>ยังไม่ได้รับอีเมลต้อนรับ? ส่งใหม่ด้านล่าง</value>
+    <comment>Haven't received welcome email? Resend below</comment>
+  </data>
+  <data name="LabelHeadline" xml:space="preserve">
+    <value>หัวเรื่อง</value>
+    <comment>Headline</comment>
+  </data>
+  <data name="LabelHere" xml:space="preserve">
+    <value>ที่นี่</value>
+    <comment>Here</comment>
+  </data>
+  <data name="LabelHi" xml:space="preserve">
+    <value>Hi</value>
+    <comment>Hi</comment>
+  </data>
+  <data name="LabelHistoricalJobStatistics" xml:space="preserve">
+    <value>ประวัติสถิติงาน</value>
+    <comment>Historical Job Statistics</comment>
+  </data>
+  <data name="LabelHotJob" xml:space="preserve">
+    <value>งานยอดนิยม</value>
+    <comment>Hot Job</comment>
+  </data>
+  <data name="LabelHourlySalary" xml:space="preserve">
+    <value>ค่าตอบแทนรายชั่วโมง</value>
+    <comment>Hourly Salary</comment>
+  </data>
+  <data name="LabelHowDoesMyFileCompare" xml:space="preserve">
+    <value>How does my profile compare?</value>
+    <comment>How does my profile compare?</comment>
+  </data>
+  <data name="LabelHowDoesMyProfileCompare" xml:space="preserve">
+    <value>How does my profile compare?</value>
+    <comment>How does my profile compare?</comment>
+  </data>
+  <data name="LabelHTML" xml:space="preserve">
+    <value>HTML</value>
+    <comment>HTML</comment>
+  </data>
+  <data name="LabelIndirectReport" xml:space="preserve">
+    <value>Indirect Report</value>
+    <comment>Indirect Report</comment>
+  </data>
+  <data name="LabelIndustries" xml:space="preserve">
+    <value>Industries</value>
+    <comment>Industries</comment>
+  </data>
+  <data name="LabelInstitutionName" xml:space="preserve">
+    <value>ชื่อสถาบัน</value>
+    <comment>Institution Name</comment>
+  </data>
+  <data name="LabelInterestedInThisJob" xml:space="preserve">
+    <value>สนใจงานนี้?</value>
+    <comment>Interested in this job?</comment>
+  </data>
+  <data name="LabelInterestedInThisJob1" xml:space="preserve">
+    <value>สนใจงานนี้?</value>
+    <comment>Interested in this job?</comment>
+  </data>
+  <data name="LabelIntermediate" xml:space="preserve">
+    <value>Intermediate</value>
+    <comment>Intermediate</comment>
+  </data>
+  <data name="LabelInterview" xml:space="preserve">
+    <value>สัมภาษณ์</value>
+    <comment>Interview</comment>
+  </data>
+  <data name="LabelInvalidDate" xml:space="preserve">
+    <value>วันที่ไม่ถูกต้อง</value>
+    <comment>Invalid Date</comment>
+  </data>
+  <data name="LabelInvalidDateRange" xml:space="preserve">
+    <value>วันที่อยู่นอกขอบเขต</value>
+    <comment>Date out of range.</comment>
+  </data>
+  <data name="LabelInvalidImage" xml:space="preserve">
+    <value>ชนิดไฟล์ไม่ถูกต้อง รูปประเภทที่มีนามสกุลไฟล์เป็น  GIF, JPG และ JPEG เท่านั้นที่อนุญาตให้อัปโหลดได้</value>
+    <comment>Invalid file type. GIF, JPG and JPEG are the only valid images types allowed for upload.</comment>
+  </data>
+  <data name="LabelInvalidJobAlert" xml:space="preserve">
+    <value>การเตือนเกี่ยวกับงานไม่ถูกต้อง</value>
+    <comment>Invalid Job Alert</comment>
+  </data>
+  <data name="LabelInvalidURL" xml:space="preserve">
+    <value>URL ไม่ถูกต้อง</value>
+    <comment>Invalid URL</comment>
+  </data>
+  <data name="LabelIssueDate" xml:space="preserve">
+    <value>Issue Date</value>
+    <comment>Issue Date</comment>
+  </data>
+  <data name="LabelItem" xml:space="preserve">
+    <value>รายการ</value>
+    <comment>Item</comment>
+  </data>
+  <data name="LabelJan" xml:space="preserve">
+    <value>January</value>
+    <comment>January</comment>
+  </data>
+  <data name="LabelJobAdOptions" xml:space="preserve">
+    <value>ตัวเลือกการโฆษณางาน</value>
+    <comment>Job Advertisement Option</comment>
+  </data>
+  <data name="LabelJobAdvertisementOption" xml:space="preserve">
+    <value>Job Advertisement Option</value>
+    <comment>Job Advertisement Option</comment>
+  </data>
+  <data name="LabelJobAlert" xml:space="preserve">
+    <value>การเตือนเกี่ยวกับงาน</value>
+    <comment>Job Alert</comment>
+  </data>
+  <data name="LabelJobAlertCreateSuccess" xml:space="preserve">
+    <value>สร้างการเตือนเกี่ยวกับงานแล้ว</value>
+    <comment>A Job Alert has been created.</comment>
+  </data>
+  <data name="LabelJobAlertCriteria" xml:space="preserve">
+    <value>เกณฑ์การเตือน</value>
+    <comment>Job Alert Criteria</comment>
+  </data>
+  <data name="LabelJobAlertDetail" xml:space="preserve">
+    <value>รายละเอียดการเตือน</value>
+    <comment>Job Alert Detail</comment>
+  </data>
+  <data name="LabelJobAlertEditGUIDFailed" xml:space="preserve">
+    <value>ขออภัย แต่ลิงก์ที่คุณได้พยายามเข้าถึงหมดอายุแล้ว&lt;br /&gt;&lt;br /&gt;นี่อาจจะเป็นเพราะคุณได้พยายามเข้าถึงลิงก์นี้แล้วหรือโทเคนระบบรักษาความปลอดภัยของคุณหมดอายุ&lt;br /&gt;&lt;br /&gt;หากคุณต้องการดูการเตือนเกี่ยวกับงานของคุณ โปรดเข้าระบบ &lt;a href='/member/login.aspx'&gt;ที่นี่&lt;/a&gt;</value>
+    <comment>Job Alert Edit GUID Failed</comment>
+  </data>
+  <data name="LabelJobAlertName" xml:space="preserve">
+    <value>ชื่อการเตือนเกี่ยวกับงาน</value>
+    <comment>Job Alert Name</comment>
+  </data>
+  <data name="LabelJobAlertNo" xml:space="preserve">
+    <value>ไม่ ห้ามส่งการเตือนเกี่ยวกับงานประจำวันมาให้ฉัน</value>
+    <comment>No, do not send me a Daily Job Alert</comment>
+  </data>
+  <data name="LabelJobAlertSaveSuccess" xml:space="preserve">
+    <value>บันทึกการเตือนเกี่ยวกับงานเสร็จเรียบร้อยแล้ว</value>
+    <comment>Job Alert saved successfully</comment>
+  </data>
+  <data name="LabelJobAlertUnsubscribeGUIDFailed" xml:space="preserve">
+    <value>เรียนผู้ใช้&lt;br /&gt;&lt;br /&gt;ดูเหมือนคุณได้พยายามใช้ลิงก์นี้แล้วเพื่อยกเลิกการเป็นสมาชิกบอกรับการเตือนเกี่ยวกับงานของคุณ สามารถใช้ลิงก์นี้ได้เพียงครั้งเดียวเท่านั้น</value>
+    <comment>Job Alert Unsubscribe GUID Failed</comment>
+  </data>
+  <data name="LabelJobAlertViewGUIDFailed" xml:space="preserve">
+    <value>เรียนผู้ใช้&lt;br /&gt;&lt;br /&gt;ดูเหมือนคุณได้พยายามใช้ลิงก์นี้แล้วเพื่อดูการเตือนเกี่ยวกับงานของคุณ สามารถใช้ลิงก์นี้ได้เพียงครั้งเดียวเท่านั้น</value>
+    <comment>Job Alert View GUID Failed</comment>
+  </data>
+  <data name="LabelJobAlertYes" xml:space="preserve">
+    <value>ใช่ ส่งการเตือนเกี่ยวกับงานประจำวันมาให้ฉัน</value>
+    <comment>Yes, send me a Daily Job Alert</comment>
+  </data>
+  <data name="LabelJobApplication" xml:space="preserve">
+    <value>ใบสมัครงาน</value>
+    <comment>Job Application</comment>
+  </data>
+  <data name="LabelJobApplicationDetail" xml:space="preserve">
+    <value>รายละเอียดใบสมัครงาน</value>
+    <comment>Job Application Detail</comment>
+  </data>
+  <data name="LabelJobApplicationDetails" xml:space="preserve">
+    <value>Job Application Details</value>
+    <comment>Job Application Details</comment>
+  </data>
+  <data name="LabelJobApplicationNote" xml:space="preserve">
+    <value>โน้ตเกี่ยวกับใบสมัครงาน</value>
+    <comment>Job Application Note</comment>
+  </data>
+  <data name="LabelJobApplied" xml:space="preserve">
+    <value>คุณสมัครงานนี้เมื่อ</value>
+    <comment>You applied for this job on</comment>
+  </data>
+  <data name="LabelJobApplyFailed" xml:space="preserve">
+    <value>ไม่สามารถส่งใบสมัครงานได้ โปรดลองใหม่อีกครั้ง</value>
+    <comment>Failed to submit job application. Please try again.</comment>
+  </data>
+  <data name="LabelJobAssignnedTo" xml:space="preserve">
+    <value>มีการมอบงานให้กับ ชื่อผู้ใช้</value>
+    <comment>Job is assigend to username</comment>
+  </data>
+  <data name="LabelJobClassification" xml:space="preserve">
+    <value>Job Classification</value>
+    <comment>Job Classification</comment>
+  </data>
+  <data name="LabelJobClassificationDetail" xml:space="preserve">
+    <value>รายละเอียดการจัดหมวดหมู่งาน</value>
+    <comment>Job Classification Detail</comment>
+  </data>
+  <data name="LabelJobContactDetails" xml:space="preserve">
+    <value>รายละเอียดการติดต่อเกี่ยวกับงาน</value>
+    <comment>Job Contact Details</comment>
+  </data>
+  <data name="LabelJobDescription" xml:space="preserve">
+    <value>คำอธิบายเกี่ยวกับงาน</value>
+    <comment>Job Description</comment>
+  </data>
+  <data name="LabelJobExpired" xml:space="preserve">
+    <value>งานหมดอายุแล้ว</value>
+    <comment>Job Expired</comment>
+  </data>
+  <data name="LabelJobExpiryNotification" xml:space="preserve">
+    <value>การแจ้งเตือนเกี่ยวกับการหมดอายุของงาน</value>
+    <comment>Job Expiry Notification</comment>
+  </data>
+  <data name="LabelJobFriendlyName" xml:space="preserve">
+    <value>ชื่องานที่เป็นมิตร</value>
+    <comment>Job Friendly Name</comment>
+  </data>
+  <data name="LabelJobHaveApplied" xml:space="preserve">
+    <value>คุณอาจสมัครงานนี้แล้วเมื่อ</value>
+    <comment>You might have applied for this job on</comment>
+  </data>
+  <data name="LabelJobID" xml:space="preserve">
+    <value>ID งาน</value>
+    <comment>Job ID</comment>
+  </data>
+  <data name="LabelJobIsArchived" xml:space="preserve">
+    <value>งานนี้สัมฤทธิ์ผลแล้ว</value>
+    <comment>This job is archived</comment>
+  </data>
+  <data name="LabelJobIsExpired" xml:space="preserve">
+    <value>งานนี้หมดอายุแล้ว</value>
+    <comment>This job is expired</comment>
+  </data>
+  <data name="LabelJobItem" xml:space="preserve">
+    <value>รายการงาน</value>
+    <comment>Job Item</comment>
+  </data>
+  <data name="LabelJobItemPrice" xml:space="preserve">
+    <value>ราคาของรายการงาน</value>
+    <comment>Job Item Price</comment>
+  </data>
+  <data name="LabelJobItemType" xml:space="preserve">
+    <value>ชนิดรายการงาน</value>
+    <comment>Job Item Type</comment>
+  </data>
+  <data name="LabelJobLocation" xml:space="preserve">
+    <value>สถานที่ตั้งของงาน</value>
+    <comment>Job Location</comment>
+  </data>
+  <data name="LabelJobName" xml:space="preserve">
+    <value>ชื่องาน</value>
+    <comment>Job Name</comment>
+  </data>
+  <data name="LabelJobPreview" xml:space="preserve">
+    <value>ตัวอย่างงาน</value>
+    <comment>Job Preview</comment>
+  </data>
+  <data name="LabelJobSalaryDetail" xml:space="preserve">
+    <value>รายละเอียดเงินเดือนของงาน</value>
+    <comment>Job Salary Detail</comment>
+  </data>
+  <data name="LabelJobSaved" xml:space="preserve">
+    <value>งานที่บันทึกไว้</value>
+    <comment>Job Saved</comment>
+  </data>
+  <data name="LabelJobSeeker" xml:space="preserve">
+    <value>ผู้มองหางาน</value>
+    <comment>Job Seeker</comment>
+  </data>
+  <data name="LabelJobSeekers" xml:space="preserve">
+    <value>ผู้มองหางาน</value>
+    <comment>job seeker(s)</comment>
+  </data>
+  <data name="LabelJobsExpiringIn24hrs" xml:space="preserve">
+    <value>งานกำลังจะหมดอายุใน 24 ชม.</value>
+    <comment>Jobs Expiring in 24 hrs</comment>
+  </data>
+  <data name="LabelJobStartDate" xml:space="preserve">
+    <value>วันที่เริ่มงาน</value>
+    <comment>Job Start Date</comment>
+  </data>
+  <data name="LabelJobTemplate" xml:space="preserve">
+    <value>เทมเพลตงาน</value>
+    <comment>Job Template</comment>
+  </data>
+  <data name="LabelJobTemplateLogo" xml:space="preserve">
+    <value>เทมเพลตโลโก้งาน</value>
+    <comment>Job Template Logo</comment>
+  </data>
+  <data name="LabelJobTemplateSettings" xml:space="preserve">
+    <value>Job Template Settings</value>
+    <comment>Job Template Settings</comment>
+  </data>
+  <data name="LabelJobTitle" xml:space="preserve">
+    <value>ชื่องาน</value>
+    <comment>JobTitle</comment>
+  </data>
+  <data name="LabelJobTitleIsExpired" xml:space="preserve">
+    <value>ตอนนี้งาน  "{0}" หมดอายุแล้ว</value>
+    <comment>The job Title is now Expired</comment>
+  </data>
+  <data name="LabelJobWorktype" xml:space="preserve">
+    <value>Job Worktype</value>
+    <comment>Job Worktype</comment>
+  </data>
+  <data name="LabelJul" xml:space="preserve">
+    <value>July</value>
+    <comment>July</comment>
+  </data>
+  <data name="LabelJun" xml:space="preserve">
+    <value>June</value>
+    <comment>June</comment>
+  </data>
+  <data name="LabelJurisDoctor" xml:space="preserve">
+    <value>Juris Doctor</value>
+    <comment>Juris Doctor</comment>
+  </data>
+  <data name="LabelJustApply" xml:space="preserve">
+    <value>สมัครตอนนี้</value>
+    <comment>Apply now</comment>
+  </data>
+  <data name="LabelJustApplyPage" xml:space="preserve">
+    <value>เพิ่งจะสมัคร</value>
+    <comment>Just Apply</comment>
+  </data>
+  <data name="LabelKeyword" xml:space="preserve">
+    <value>คำหลัก</value>
+    <comment>Keyword</comment>
+  </data>
+  <data name="LabelKeywords" xml:space="preserve">
+    <value>Keywords</value>
+    <comment>Keywords</comment>
+  </data>
+  <data name="LabelLandLine" xml:space="preserve">
+    <value>โทรศัพท์บ้าน</value>
+    <comment>Land line</comment>
+  </data>
+  <data name="LabelLanguage" xml:space="preserve">
+    <value>ภาษา</value>
+    <comment>Language</comment>
+  </data>
+  <data name="LabelLanguages" xml:space="preserve">
+    <value>Languages</value>
+    <comment>Languages</comment>
+  </data>
+  <data name="LabelLastModified" xml:space="preserve">
+    <value>แก้ไขล่าสุด</value>
+    <comment>Last Modified</comment>
+  </data>
+  <data name="LabelLastModifiedByAdminUser" xml:space="preserve">
+    <value>แก้ไขล่าสุดโดยผู้ใช้ที่ดูแลระบบ</value>
+    <comment>Last modified by Admin User</comment>
+  </data>
+  <data name="LabelLastModifiedByAdvertiserUser" xml:space="preserve">
+    <value>แก้ไขล่าสุดโดยผู้ใช้ที่เป็นผู้โฆษณา</value>
+    <comment>Last Modified By Advertiser User</comment>
+  </data>
+  <data name="LabelLastName" xml:space="preserve">
+    <value>นามสกุล</value>
+    <comment>Last name</comment>
+  </data>
+  <data name="LabelLastNameLocalLanguage" xml:space="preserve">
+    <value>Last Name (Local language)</value>
+    <comment>Last Name (Local language)</comment>
+  </data>
+  <data name="LabelLastViewedDate" xml:space="preserve">
+    <value>วันที่ดูครั้งล่าสุด</value>
+    <comment>Last Viewed Date</comment>
+  </data>
+  <data name="LabelLatest" xml:space="preserve">
+    <value>Latest</value>
+    <comment>Latest</comment>
+  </data>
+  <data name="LabelLicenseName" xml:space="preserve">
+    <value>License Name</value>
+    <comment>License Name</comment>
+  </data>
+  <data name="LabelLicenses" xml:space="preserve">
+    <value>Licenses</value>
+    <comment>Licenses</comment>
+  </data>
+  <data name="LabelLicenseType" xml:space="preserve">
+    <value>License Type</value>
+    <comment>License Type</comment>
+  </data>
+  <data name="LabelLimitedWorkProficiency" xml:space="preserve">
+    <value>Limited working proficiency</value>
+    <comment>Limited working proficiency</comment>
+  </data>
+  <data name="LabelLiveJobs" xml:space="preserve">
+    <value>งานที่ยังเปิดรับสมัคร</value>
+    <comment>Live Jobs</comment>
+  </data>
+  <data name="LabelLocalLanguage" xml:space="preserve">
+    <value>Local Language</value>
+    <comment>Local Language</comment>
+  </data>
+  <data name="LabelLocalName" xml:space="preserve">
+    <value>Name (Local language)</value>
+    <comment>Name (Local language)</comment>
+  </data>
+  <data name="LabelLocation" xml:space="preserve">
+    <value>สถานที่ตั้ง</value>
+    <comment>Location</comment>
+  </data>
+  <data name="LabelLocationAndArea" xml:space="preserve">
+    <value>Location / Area</value>
+    <comment>Location / Area</comment>
+  </data>
+  <data name="LabelLocationArea" xml:space="preserve">
+    <value>สถานที่ตั้ง / พื้นที่</value>
+    <comment>Location / Area</comment>
+  </data>
+  <data name="LabelLocationDetails" xml:space="preserve">
+    <value>Location details</value>
+    <comment>Location details</comment>
+  </data>
+  <data name="LabelLocationPreferences" xml:space="preserve">
+    <value>สถานที่ตั้งที่ต้องการ</value>
+    <comment>Location Preferences</comment>
+  </data>
+  <data name="LabelLocationRequired" xml:space="preserve">
+    <value>จำเป็นต้องมีสถานที่ตั้ง</value>
+    <comment>Location required</comment>
+  </data>
+  <data name="LabelLocationUpdated" xml:space="preserve">
+    <value>สถานที่ตั้ง / อัปเดต</value>
+    <comment>Location/Updated</comment>
+  </data>
+  <data name="LabelLogin" xml:space="preserve">
+    <value>ล็อกอิน</value>
+    <comment>Login</comment>
+  </data>
+  <data name="LabelLoginDetails" xml:space="preserve">
+    <value>รายละเอียดของล็อกอิน</value>
+    <comment>Login Details</comment>
+  </data>
+  <data name="LabelLoginWithSocialMedia" xml:space="preserve">
+    <value>ล็อกอินด้วยสื่อออนไลน์</value>
+    <comment>Login with Social Media</comment>
+  </data>
+  <data name="LabelLogoImage" xml:space="preserve">
+    <value>ภาพโลโก้</value>
+    <comment>Logo Image</comment>
+  </data>
+  <data name="LabelLogout" xml:space="preserve">
+    <value>ออกจากระบบ</value>
+    <comment>Log out</comment>
+  </data>
+  <data name="labellPasswordRequired" xml:space="preserve">
+    <value>จำเป็นต้องมีรหัสผ่าน</value>
+    <comment>Password is required</comment>
+  </data>
+  <data name="LabelMailingAddress" xml:space="preserve">
+    <value>ที่อยู่สำหรับส่งจดหมาย</value>
+    <comment>Mailing Address</comment>
+  </data>
+  <data name="LabelMailingCountry" xml:space="preserve">
+    <value>ประเทศที่ให้ส่งจดหมาย</value>
+    <comment>Mailing Country</comment>
+  </data>
+  <data name="LabelMailingPostcode" xml:space="preserve">
+    <value>รหัสไปรษณีย์ที่ให้ส่งจดหมาย</value>
+    <comment>Mailing Postcode</comment>
+  </data>
+  <data name="LabelMailingState" xml:space="preserve">
+    <value>รัฐที่ให้ส่งจดหมาย</value>
+    <comment>Mailing State</comment>
+  </data>
+  <data name="LabelMailingSuburb" xml:space="preserve">
+    <value>ชานเมืองที่ให้ส่งจดหมาย</value>
+    <comment>Mailing Suburb</comment>
+  </data>
+  <data name="LabelMainAlert" xml:space="preserve">
+    <value>การเตือนหลัก?</value>
+    <comment>Main Alert?</comment>
+  </data>
+  <data name="LabelMakePayment" xml:space="preserve">
+    <value>ทำการชำระเงิน</value>
+    <comment>Make Payment</comment>
+  </data>
+  <data name="LabelMale" xml:space="preserve">
+    <value>เพศชาย</value>
+    <comment>Male</comment>
+  </data>
+  <data name="LabelManager" xml:space="preserve">
+    <value>Manager</value>
+    <comment>Manager</comment>
+  </data>
+  <data name="LabelMandatoryField" xml:space="preserve">
+    <value>ช่องข้อมูลที่บังคับ</value>
+    <comment>Mandatory Fields</comment>
+  </data>
+  <data name="LabelMar" xml:space="preserve">
+    <value>March</value>
+    <comment>March</comment>
+  </data>
+  <data name="LabelMastercard" xml:space="preserve">
+    <value>Mastercard</value>
+    <comment>Mastercard</comment>
+  </data>
+  <data name="LabelMastersDegree" xml:space="preserve">
+    <value>Master Degree</value>
+    <comment>Master Degree</comment>
+  </data>
+  <data name="LabelMastersOfBusinessAdministration" xml:space="preserve">
+    <value>Master of Business Administration</value>
+    <comment>Master of Business Administration</comment>
+  </data>
+  <data name="LabelMax" xml:space="preserve">
+    <value>Max</value>
+    <comment>Max</comment>
+  </data>
+  <data name="LabelMaximum" xml:space="preserve">
+    <value>Maximum</value>
+    <comment>Maximum</comment>
+  </data>
+  <data name="LabelMaxSize" xml:space="preserve">
+    <value>ขนาดสูงสุด</value>
+    <comment>max size</comment>
+  </data>
+  <data name="LabelMaxWidth" xml:space="preserve">
+    <value>ความกว้างสูงสุด</value>
+    <comment>Max width</comment>
+  </data>
+  <data name="LabelMay" xml:space="preserve">
+    <value>May</value>
+    <comment>May</comment>
+  </data>
+  <data name="LabelMemberDetail" xml:space="preserve">
+    <value>รายละเอียดสมาชิก</value>
+    <comment>Member Details</comment>
+  </data>
+  <data name="LabelMemberEditSuccess" xml:space="preserve">
+    <value>อัปเดตโปรไฟล์บัญชีเสร็จเรียบร้อยแล้ว</value>
+    <comment>Account profile details updated successfully</comment>
+  </data>
+  <data name="LabelMemberFiles" xml:space="preserve">
+    <value>ไฟล์สมาชิก</value>
+    <comment>Member Files</comment>
+  </data>
+  <data name="LabelMemberFileWelcome" xml:space="preserve">
+    <value>ขอต้อนรับสู่หน้าไฟล์สมาชิก</value>
+    <comment>Welcome to the Member Files Page.</comment>
+  </data>
+  <data name="LabelMemberFullRegister" xml:space="preserve">
+    <value>การลงทะเบียนแบบครบถ้วน - คลิกเพื่อขยาย</value>
+    <comment>Full Registration - Click to expand</comment>
+  </data>
+  <data name="LabelMemberInvalid" xml:space="preserve">
+    <value>การยืนยันสมาชิกล้มเหลว</value>
+    <comment>Member validation failed.</comment>
+  </data>
+  <data name="LabelMemberOfBoardCommittee" xml:space="preserve">
+    <value>สมาชิกคณะกรรมการ</value>
+    <comment>Member of board Committee</comment>
+  </data>
+  <data name="LabelMemberValidated" xml:space="preserve">
+    <value>มีการยืนยันบัญชีแล้ว
+&lt;br /&gt;&lt;br /&gt; 
+มีการยืนยันบัญชีของคุณแล้ว โปรดดำเนินการต่อไปเพื่อ &lt;a href="/member/login.aspx"&gt;ล็อกอิน&lt;/a&gt;</value>
+    <comment>Account has been validated
+&lt;br /&gt;&lt;br /&gt;
+Your account has already been validated. Please proceed to &lt;a href=/member/login.aspx"&gt;login&lt;/a&gt;."</comment>
+  </data>
+  <data name="LabelMemberValidation" xml:space="preserve">
+    <value>การยืนยันสมาชิก</value>
+    <comment>Member Validation</comment>
+  </data>
+  <data name="LabelMentor" xml:space="preserve">
+    <value>Mentor</value>
+    <comment>Mentor</comment>
+  </data>
+  <data name="LabelMessageForYourFriend" xml:space="preserve">
+    <value>ข้อความสำหรับเพื่อนของคุณ</value>
+    <comment>Message For Your Friend</comment>
+  </data>
+  <data name="LabelMin" xml:space="preserve">
+    <value>Min</value>
+    <comment>Min</comment>
+  </data>
+  <data name="LabelMinimum" xml:space="preserve">
+    <value>Minimum</value>
+    <comment>Minimum</comment>
+  </data>
+  <data name="LabelMiss" xml:space="preserve">
+    <value>นางสาว</value>
+    <comment>Miss</comment>
+  </data>
+  <data name="LabelMissingInformation" xml:space="preserve">
+    <value>ข้อมูลที่หายไป</value>
+    <comment>Missing Information</comment>
+  </data>
+  <data name="LabelMonth" xml:space="preserve">
+    <value>เดือน</value>
+    <comment>Month</comment>
+  </data>
+  <data name="LabelMonths" xml:space="preserve">
+    <value>Months</value>
+    <comment>Months</comment>
+  </data>
+  <data name="LabelMoreInfoOnAcc" xml:space="preserve">
+    <value>สำหรับข้อมูลเกี่ยวปับประเภทบัญชีเพิ่มเติม</value>
+    <comment>For more information on account types</comment>
+  </data>
+  <data name="LabelMr" xml:space="preserve">
+    <value>นาย</value>
+    <comment>Mr</comment>
+  </data>
+  <data name="LabelMrs" xml:space="preserve">
+    <value>นาง</value>
+    <comment>Mrs</comment>
+  </data>
+  <data name="LabelMs" xml:space="preserve">
+    <value>นางสาว</value>
+    <comment>Ms</comment>
+  </data>
+  <data name="LabelMyAccount" xml:space="preserve">
+    <value>บัญชีของฉัน</value>
+    <comment>My Account</comment>
+  </data>
+  <data name="LabelMyAccountProfile" xml:space="preserve">
+    <value>โปรไฟล์บัญชีของฉัน</value>
+    <comment>My Account Profile</comment>
+  </data>
+  <data name="LabelMyApplicationTracker" xml:space="preserve">
+    <value>ตัวติดตามใบสมัคร</value>
+    <comment>My Application Tracker</comment>
+  </data>
+  <data name="LabelMyBroadcast" xml:space="preserve">
+    <value>การเผยแพร่ของฉัน</value>
+    <comment>My Broadcast</comment>
+  </data>
+  <data name="LabelMyCVProfile" xml:space="preserve">
+    <value>โปรไฟล์ CV ของฉัน</value>
+    <comment>My CV Profile</comment>
+  </data>
+  <data name="LabelMyDetails" xml:space="preserve">
+    <value>รายละเอียดของฉัน</value>
+    <comment>My Details</comment>
+  </data>
+  <data name="LabelMyDocuments" xml:space="preserve">
+    <value>เอกสารของฉัน</value>
+    <comment>My Documents</comment>
+  </data>
+  <data name="LabelMyFavouriteSearches" xml:space="preserve">
+    <value>การค้นหารายการโปรดของฉัน</value>
+    <comment>My favourite search(es)</comment>
+  </data>
+  <data name="LabelMyHome" xml:space="preserve">
+    <value>หน้าหลักของฉัน</value>
+    <comment>My Home</comment>
+  </data>
+  <data name="LabelMyJobAlerts" xml:space="preserve">
+    <value>การเตือนเกี่ยวกับงาน</value>
+    <comment>My Job Alerts</comment>
+  </data>
+  <data name="LabelMyJobAlert_s" xml:space="preserve">
+    <value>การเตือนเกี่ยวกับงานของฉัน</value>
+    <comment>My job alert(s)</comment>
+  </data>
+  <data name="LabelMyJobTools" xml:space="preserve">
+    <value>เครื่องมือเกี่ยวกับงานของฉัน</value>
+    <comment>My Job Tools</comment>
+  </data>
+  <data name="LabelMyPassword" xml:space="preserve">
+    <value>เปลี่ยนรหัสผ่าน</value>
+    <comment>My Password</comment>
+  </data>
+  <data name="LabelMyPersonalDetails" xml:space="preserve">
+    <value>My Personal Details</value>
+    <comment>My Personal Details</comment>
+  </data>
+  <data name="LabelMyResumeCoverLetter" xml:space="preserve">
+    <value>เรซูเม่ / จดหมายสมัครงานของฉัน</value>
+    <comment>My Resume / Cover Letter</comment>
+  </data>
+  <data name="LabelMySavedJobs" xml:space="preserve">
+    <value>งานที่บันทึกไว้</value>
+    <comment>My Saved Jobs</comment>
+  </data>
+  <data name="LabelMySearchCriteria" xml:space="preserve">
+    <value>เกณฑ์การค้นหาของฉัน</value>
+    <comment>My Search Criteria</comment>
+  </data>
+  <data name="LabelNA" xml:space="preserve">
+    <value>ไม่มี</value>
+    <comment>N/A</comment>
+  </data>
+  <data name="LabelName" xml:space="preserve">
+    <value>ชื่อ</value>
+    <comment>Name</comment>
+  </data>
+  <data name="LabelNameFeedMandatory" xml:space="preserve">
+    <value>บังคับให้ต้องมีชื่อของการให้ข้อมูล</value>
+    <comment>Name of the alert is mandatory.</comment>
+  </data>
+  <data name="LabelNameOfAlertRequired" xml:space="preserve">
+    <value>จำเป็นต้องมีชื่อการเตือน</value>
+    <comment>Name of alert is required</comment>
+  </data>
+  <data name="LabelNameOfFeed" xml:space="preserve">
+    <value>ชื่อการเตือน</value>
+    <comment>Name of Alert</comment>
+  </data>
+  <data name="LabelNativeOrBilingualProficiency" xml:space="preserve">
+    <value>Native or bilingual proficiency</value>
+    <comment>Native or bilingual proficiency</comment>
+  </data>
+  <data name="LabelNearestTransport" xml:space="preserve">
+    <value>การขนส่งที่ใกล้ที่สุด</value>
+    <comment>Nearest Transport</comment>
+  </data>
+  <data name="LabelNeedLogin" xml:space="preserve">
+    <value>คุณต้องล็อกอิน</value>
+    <comment>You need to login</comment>
+  </data>
+  <data name="LabelNetTotal" xml:space="preserve">
+    <value>สุทธิโดยรวม</value>
+    <comment>Net total</comment>
+  </data>
+  <data name="LabelNew" xml:space="preserve">
+    <value>ใหม่</value>
+    <comment>New</comment>
+  </data>
+  <data name="LabelNewPassword" xml:space="preserve">
+    <value>รหัสผ่านใหม่</value>
+    <comment>New Password</comment>
+  </data>
+  <data name="LabelNews" xml:space="preserve">
+    <value>ข่าวสาร</value>
+    <comment>News</comment>
+  </data>
+  <data name="LabelNewsHome" xml:space="preserve">
+    <value>News Home</value>
+    <comment>News Home</comment>
+  </data>
+  <data name="LabelNewsletter" xml:space="preserve">
+    <value>จดหมายข่าว</value>
+    <comment>Newsletter</comment>
+  </data>
+  <data name="LabelNext" xml:space="preserve">
+    <value>ถัดไป</value>
+    <comment>Next</comment>
+  </data>
+  <data name="LabelNo" xml:space="preserve">
+    <value>ไม่</value>
+    <comment>No</comment>
+  </data>
+  <data name="LabelNoAdditionalDocuments" xml:space="preserve">
+    <value>ปัจจุบันคุณไม่มีเอกสารเพิ่มเติม</value>
+    <comment>You currently do not have Additional Document</comment>
+  </data>
+  <data name="LabelNoCoverLetter" xml:space="preserve">
+    <value>ปัจจุบันคุณไม่มีจดหมายสมัครงาน</value>
+    <comment>You currently do not have Cover Letter</comment>
+  </data>
+  <data name="LabelNoData" xml:space="preserve">
+    <value>ไม่พบข้อมูล</value>
+    <comment>No Data Found</comment>
+  </data>
+  <data name="LabelNoDraftJobs" xml:space="preserve">
+    <value>คุณยังไม่มีงานฉบับร่างใด ๆ</value>
+    <comment>You haven't got any draft job yet.</comment>
+  </data>
+  <data name="LabelNoFileChosen" xml:space="preserve">
+    <value>No File Choosen...</value>
+    <comment>No File Choosen...</comment>
+  </data>
+  <data name="LabelNoJobAlerts" xml:space="preserve">
+    <value>ปัจจุบันคุณไม่มีการเตือนเกี่ยวกับงานใด ๆ</value>
+    <comment>You currently don't have any Job alerts.</comment>
+  </data>
+  <data name="LabelNoJobCredit" xml:space="preserve">
+    <value>ไม่มีเครดิตงาน</value>
+    <comment>No job credit</comment>
+  </data>
+  <data name="LabelNoJobSelected" xml:space="preserve">
+    <value>ไม่มีงานที่เลือกไว้ โปรดเลือกงานเพื่อดำเนินการต่อไป</value>
+    <comment>No Jobs have been selected, please select a job to proceed</comment>
+  </data>
+  <data name="LabelNoJobTracked" xml:space="preserve">
+    <value>คุณยังไม่ได้สมัครงานใด ๆ</value>
+    <comment>You haven't applied for any jobs yet.</comment>
+  </data>
+  <data name="LabelNone" xml:space="preserve">
+    <value>ไม่มี</value>
+    <comment>None</comment>
+  </data>
+  <data name="LabelNoResultFound" xml:space="preserve">
+    <value>ไม่พบผลลัพธ์</value>
+    <comment>No results found</comment>
+  </data>
+  <data name="LabelNoResume" xml:space="preserve">
+    <value>ปัจจุบันคุณไม่มีเรซูเม่</value>
+    <comment>You currently do not have Resume</comment>
+  </data>
+  <data name="LabelNoSavedJob" xml:space="preserve">
+    <value>ปัจจุบันคุณไม่มีงานที่บันทึกไว้ใด ๆ</value>
+    <comment>You currently do not have any saved jobs.</comment>
+  </data>
+  <data name="LabelNote" xml:space="preserve">
+    <value>หมายเหตุ</value>
+    <comment>Note</comment>
+  </data>
+  <data name="LabelNotRegisteredQuickly" xml:space="preserve">
+    <value>ไม่ได้ลงทะเบียน? ไม่มีปัญหา! โดยเร็ว</value>
+    <comment>Not registered? No problem! Quickly</comment>
+  </data>
+  <data name="LabelNotSeeking" xml:space="preserve">
+    <value>Not Currently Seeking</value>
+    <comment>Not Currently Seeking</comment>
+  </data>
+  <data name="LabelNov" xml:space="preserve">
+    <value>November</value>
+    <comment>November</comment>
+  </data>
+  <data name="LabelNumber" xml:space="preserve">
+    <value>หมายเลข</value>
+    <comment>Number</comment>
+  </data>
+  <data name="LabelNumberOfEmployees" xml:space="preserve">
+    <value>จำนวนพนักงาน</value>
+    <comment>Number of employees</comment>
+  </data>
+  <data name="LabelOct" xml:space="preserve">
+    <value>October</value>
+    <comment>October</comment>
+  </data>
+  <data name="LabelOldest" xml:space="preserve">
+    <value>Oldest</value>
+    <comment>Oldest</comment>
+  </data>
+  <data name="LabelOngoingAccount" xml:space="preserve">
+    <value>บัญชีต่อเนื่อง</value>
+    <comment>Ongoing account</comment>
+  </data>
+  <data name="LabelOnHold" xml:space="preserve">
+    <value>ระงับชั่วคราว</value>
+    <comment>On Hold</comment>
+  </data>
+  <data name="LabelOopsNoJobCredit" xml:space="preserve">
+    <value>แย่ล่ะ! ดูเหมือนคุณไม่มีเครดิตงาน ในการโพสต์งาน ขั้นแรกคุณจะต้องซื้อเครดิตข้างล่างก่อน</value>
+    <comment>Oops! Seems you don't have job credits. In order to post a job, you must first
+                    purchase credits below.</comment>
+  </data>
+  <data name="LabelOptional" xml:space="preserve">
+    <value>optional</value>
+    <comment>optional</comment>
+  </data>
+  <data name="LabelOptionUploadCreateCover" xml:space="preserve">
+    <value>เลือกตัวเลือกต่อไปนี้เพื่ออัปโหลดจดหมายสมัครงานของคุณหรือสร้างจดหมายของคุณเอง</value>
+    <comment>Select one of the following options to upload your cover letter or create your own.</comment>
+  </data>
+  <data name="LabelOptionUploadResume" xml:space="preserve">
+    <value>เลือกตัวเลือกต่อไปนี้เพื่ออัปโหลดเรซูเม่ของคุณ</value>
+    <comment>Select one of the following options to upload your resume.</comment>
+  </data>
+  <data name="LabelOr" xml:space="preserve">
+    <value>หรือ</value>
+    <comment>OR</comment>
+  </data>
+  <data name="LabelOrderNumber" xml:space="preserve">
+    <value>หมายเลขลำดับ</value>
+    <comment>Order number</comment>
+  </data>
+  <data name="LabelOrganisationName" xml:space="preserve">
+    <value>Organisation Name</value>
+    <comment>Organisation Name</comment>
+  </data>
+  <data name="LabelOrganisationWebsite" xml:space="preserve">
+    <value>เว็บไซต์องค์กร</value>
+    <comment>Organisation Website</comment>
+  </data>
+  <data name="LabelOrWriteOneNow" xml:space="preserve">
+    <value>หรือเขียนเอง</value>
+    <comment>Or Write One</comment>
+  </data>
+  <data name="LabelOther" xml:space="preserve">
+    <value>อื่น ๆ</value>
+    <comment>Other</comment>
+  </data>
+  <data name="LabelOtherQualification" xml:space="preserve">
+    <value>Other Qualification</value>
+    <comment>Other Qualification</comment>
+  </data>
+  <data name="LabelOthers" xml:space="preserve">
+    <value>อื่น ๆ</value>
+    <comment>Others</comment>
+  </data>
+  <data name="LabelPackageContains" xml:space="preserve">
+    <value>ประกอบด้วย</value>
+    <comment>Contains</comment>
+  </data>
+  <data name="LabelPackageDetails" xml:space="preserve">
+    <value>รายละเอียดแพ็กเกจ</value>
+    <comment>Package details</comment>
+  </data>
+  <data name="LabelPage" xml:space="preserve">
+    <value>หน้า</value>
+    <comment>Page</comment>
+  </data>
+  <data name="LabelPages" xml:space="preserve">
+    <value>หน้า</value>
+    <comment>page(s)</comment>
+  </data>
+  <data name="LabelPassportNumber" xml:space="preserve">
+    <value>หมายเลขหนังสือเดินทาง</value>
+    <comment>Passport Number</comment>
+  </data>
+  <data name="LabelPassword" xml:space="preserve">
+    <value>รหัสผ่าน</value>
+    <comment>Password</comment>
+  </data>
+  <data name="LabelPasswordNotMatch" xml:space="preserve">
+    <value>รหัสผ่านและการยืนยันรหัสผ่านไม่ตรงกัน</value>
+    <comment>The password and confirmation password do not match</comment>
+  </data>
+  <data name="LabelPasswordPrompt" xml:space="preserve">
+    <value>รหัสผ่านจะต้องมี 8 อักขระขึ้นไป อักษรพิมพ์เล็ก 1 ตัว อักษรพิมพ์ใหญ่ 1 ตัวและตัวเลข 1 ตัว</value>
+    <comment>Password must contain 8 characters or more, 1 lowercase letter, 1 uppercase letter and 1 number.</comment>
+  </data>
+  <data name="LabelPayByCreditCard" xml:space="preserve">
+    <value>ชำระเงินด้วยบัตรเครดิต</value>
+    <comment>Pay by credit card</comment>
+  </data>
+  <data name="LabelPaymentConfirmationDescription" xml:space="preserve">
+    <value>มีการอัปเดตบัญชีของคุณด้วยเครดิตงานที่สัมพันธ์กัน &lt;span style='display:none'&gt;การเรียกเก็บเงินนี้จะปรากฏบนรายงานบัตรเครดิตของคุณในชื่อของการชำระเงินให้กับ "{0}"&lt;/span&gt;</value>
+    <comment>Your account has now been updated with the relevant job credits. &lt;span style='display:none'&gt;This charge will appear on your credit card statement as payment to "{0}".&lt;/span&gt;</comment>
+  </data>
+  <data name="LabelPaymentMethod" xml:space="preserve">
+    <value>วิธีการชำระเงิน</value>
+    <comment>Payment Method</comment>
+  </data>
+  <data name="LabelPaypal" xml:space="preserve">
+    <value>PayPal</value>
+    <comment>Paypal</comment>
+  </data>
+  <data name="LabelPendingJobs" xml:space="preserve">
+    <value>งานที่รอดำเนินการ</value>
+    <comment>Pending Jobs</comment>
+  </data>
+  <data name="LabelPersonalDetails" xml:space="preserve">
+    <value>Personal Details</value>
+    <comment>Personal Details</comment>
+  </data>
+  <data name="LabelPhone" xml:space="preserve">
+    <value>โทรศัพท์</value>
+    <comment>Phone</comment>
+  </data>
+  <data name="LabelPhoneHome" xml:space="preserve">
+    <value>โทรศัพท์ (บ้าน)</value>
+    <comment>Phone (H) or Home Phone number</comment>
+  </data>
+  <data name="LabelPhoneMobile" xml:space="preserve">
+    <value>มือถือ</value>
+    <comment>Mobile or Mobile Phone Number</comment>
+  </data>
+  <data name="LabelPhoneRequired" xml:space="preserve">
+    <value>จำเป็นต้องมีเบอร์โทรศัพท์</value>
+    <comment>Phone is required</comment>
+  </data>
+  <data name="LabelPhoneWork" xml:space="preserve">
+    <value>โทรศัพท์ (ที่ทำงาน)</value>
+    <comment>Phone (W) or Office Phone Number</comment>
+  </data>
+  <data name="LabelPhoto" xml:space="preserve">
+    <value>รูป</value>
+    <comment>Photo</comment>
+  </data>
+  <data name="LabelPleaseAnswer" xml:space="preserve">
+    <value>Please answer...</value>
+    <comment>Please answer...</comment>
+  </data>
+  <data name="LabelPleaseChoose" xml:space="preserve">
+    <value>โปรดเลือก...</value>
+    <comment>Please Choose ...</comment>
+  </data>
+  <data name="LabelPleaseContactSupport" xml:space="preserve">
+    <value>โปรดติดต่อทีมงานให้บริการลูกค้าของเราผ่านทางหน้าการติดต่อบนเว็บไซต์ของเราเพื่อแก้ปัญหาของคุณ</value>
+    <comment>Please contact our support team via the contact page of our website to resolve your issues.</comment>
+  </data>
+  <data name="LabelPleaseLogin" xml:space="preserve">
+    <value>โปรดล็อกอิน</value>
+    <comment>Please Login</comment>
+  </data>
+  <data name="LabelPleaseSeeThe" xml:space="preserve">
+    <value>โปรดดู</value>
+    <comment>Please see the</comment>
+  </data>
+  <data name="LabelPleaseSelect" xml:space="preserve">
+    <value>Please Select</value>
+    <comment>Please Select</comment>
+  </data>
+  <data name="LabelPleaseSelectDoc" xml:space="preserve">
+    <value>โปรดเลือกเอกสารเพื่ออัปโหลด</value>
+    <comment>Please Select Document to Upload.</comment>
+  </data>
+  <data name="LabelPleaseSelectSalaryType" xml:space="preserve">
+    <value>โปรดเลือกชนิดเงินเดือน</value>
+    <comment>Please select salary type</comment>
+  </data>
+  <data name="LabelPleaseSelectYourPackage" xml:space="preserve">
+    <value>โปรดเลือกแพ็กเกจของคุณ</value>
+    <comment>Please select your package</comment>
+  </data>
+  <data name="LabelPleaseSelectYourProduct" xml:space="preserve">
+    <value>เลือกสินค้าเพื่อซื้อ</value>
+    <comment>Select Product To Purchase</comment>
+  </data>
+  <data name="LabelPleaseTickBoxToSubscribe" xml:space="preserve">
+    <value>โปรดทำเครื่องหมายในช่องเพื่อสมัครสมาชิก</value>
+    <comment>Please tick box to subscribe</comment>
+  </data>
+  <data name="LabelPositions" xml:space="preserve">
+    <value>ตำแหน่งงาน</value>
+    <comment>position(s)</comment>
+  </data>
+  <data name="LabelPostAJob" xml:space="preserve">
+    <value>โพสต์งาน</value>
+    <comment>Post a job</comment>
+  </data>
+  <data name="LabelPostalAddress1" xml:space="preserve">
+    <value>ที่อยู่ทางไปรษณีย์ 1</value>
+    <comment>Postal Address 1</comment>
+  </data>
+  <data name="LabelPostalAddress2" xml:space="preserve">
+    <value>ที่อยู่ทางไปรษณีย์ 2</value>
+    <comment>Postal Address 2</comment>
+  </data>
+  <data name="LabelPostcode" xml:space="preserve">
+    <value>รหัสไปรษณีย์</value>
+    <comment>Postcode</comment>
+  </data>
+  <data name="LabelPosted" xml:space="preserve">
+    <value>โพสต์แล้ว</value>
+    <comment>Posted</comment>
+  </data>
+  <data name="LabelPostGraduateDegree" xml:space="preserve">
+    <value>Postgraduate</value>
+    <comment>Postgraduate</comment>
+  </data>
+  <data name="LabelPostType" xml:space="preserve">
+    <value>Post type</value>
+    <comment>Post type</comment>
+  </data>
+  <data name="LabelPreferredArea" xml:space="preserve">
+    <value>พื้นที่ที่ต้องการ</value>
+    <comment>Preferred Area</comment>
+  </data>
+  <data name="LabelPreferredClassification" xml:space="preserve">
+    <value>หมวดหมู่ที่ต้องการ</value>
+    <comment>Preferred Classification</comment>
+  </data>
+  <data name="LabelPreferredEmailLanguage" xml:space="preserve">
+    <value>Preferred email language</value>
+    <comment>Preferred email language</comment>
+  </data>
+  <data name="LabelPreferredEmployment" xml:space="preserve">
+    <value>การจ้างงานที่ต้องการ</value>
+    <comment>Preferred Employment</comment>
+  </data>
+  <data name="LabelPreferredLine" xml:space="preserve">
+    <value>Preferred Line</value>
+    <comment>Preferred Line</comment>
+  </data>
+  <data name="LabelPreferredLocation" xml:space="preserve">
+    <value>สถานที่ตั้งที่ต้องการ</value>
+    <comment>Preferred Location</comment>
+  </data>
+  <data name="LabelPreferredSubClassification" xml:space="preserve">
+    <value>หมวดย่อยที่ต้องการ</value>
+    <comment>Preferred Sub Classification</comment>
+  </data>
+  <data name="LabelPresent" xml:space="preserve">
+    <value>Present</value>
+    <comment>Present</comment>
+  </data>
+  <data name="LabelPrevious" xml:space="preserve">
+    <value>ก่อนหน้า</value>
+    <comment>Prev</comment>
+  </data>
+  <data name="LabelPrice" xml:space="preserve">
+    <value>ราคา</value>
+    <comment>Price</comment>
+  </data>
+  <data name="LabelPriceRange" xml:space="preserve">
+    <value>ช่วงราคาจะต้องอยู่ระหว่าง 1 -9999</value>
+    <comment>Price Range must be between 1 - 9999</comment>
+  </data>
+  <data name="LabelPrimaryEmail" xml:space="preserve">
+    <value>Primary Email</value>
+    <comment>Primary Email</comment>
+  </data>
+  <data name="LabelProduct" xml:space="preserve">
+    <value>สินค้า</value>
+    <comment>Products</comment>
+  </data>
+  <data name="LabelProductCostNA" xml:space="preserve">
+    <value>LabelProductCostNA</value>
+    <comment>LabelProductCostNA</comment>
+  </data>
+  <data name="LabelProductDetails" xml:space="preserve">
+    <value>รายละเอียดสินค้า</value>
+    <comment>Product details</comment>
+  </data>
+  <data name="LabelProductType" xml:space="preserve">
+    <value>ประเภทสินค้า</value>
+    <comment>Product type</comment>
+  </data>
+  <data name="LabelProfession" xml:space="preserve">
+    <value>การงาน / หน้าที่</value>
+    <comment>Profession / Role</comment>
+  </data>
+  <data name="LabelProfessionalWorkingProficiency" xml:space="preserve">
+    <value>Professional working proficiency</value>
+    <comment>Professional working proficiency</comment>
+  </data>
+  <data name="LabelProfessionRole" xml:space="preserve">
+    <value>Profession / Role</value>
+    <comment>Profession / Role</comment>
+  </data>
+  <data name="LabelProfessionRoleDetails" xml:space="preserve">
+    <value>Profession/Role Details</value>
+    <comment>Profession/Role Details</comment>
+  </data>
+  <data name="LabelProfessions" xml:space="preserve">
+    <value>การงาน</value>
+    <comment>Profession</comment>
+  </data>
+  <data name="LabelProfessor" xml:space="preserve">
+    <value>ศาสตราจารย์</value>
+    <comment>Professor</comment>
+  </data>
+  <data name="LabelProficiency" xml:space="preserve">
+    <value>Proficiency</value>
+    <comment>Proficiency</comment>
+  </data>
+  <data name="LabelProfile" xml:space="preserve">
+    <value>โปรไฟล์</value>
+    <comment>Profile</comment>
+  </data>
+  <data name="LabelProfileDownloadPDF" xml:space="preserve">
+    <value>ดาวน์โหลดเป็นไฟล์ PDF</value>
+    <comment>Download as PDF</comment>
+  </data>
+  <data name="LabelProfileProgressLastUpdated" xml:space="preserve">
+    <value>อัปเดตล่าสุด</value>
+    <comment>Last Updated</comment>
+  </data>
+  <data name="LabelProfileProgressText1" xml:space="preserve">
+    <value>โปรไฟล์ของคุณ</value>
+    <comment>Your profile</comment>
+  </data>
+  <data name="LabelProfileProgressText2" xml:space="preserve">
+    <value>เสร็จสมบูรณ์</value>
+    <comment>complete</comment>
+  </data>
+  <data name="LabelPromoCodeTitle" xml:space="preserve">
+    <value>รหัสโปรโมชั่น</value>
+    <comment>Promotion Code</comment>
+  </data>
+  <data name="LabelPublicProfile" xml:space="preserve">
+    <value>โปรไฟล์สาธารณะ</value>
+    <comment>Public Profile</comment>
+  </data>
+  <data name="LabelPublicTransport" xml:space="preserve">
+    <value>การขนส่งสาธารณะ</value>
+    <comment>Public Transport</comment>
+  </data>
+  <data name="LabelPurchaseDetails" xml:space="preserve">
+    <value>รายละเอียดการสั่งซื้อ</value>
+    <comment>Purchase details</comment>
+  </data>
+  <data name="LabelPurchaseTotal" xml:space="preserve">
+    <value>ค่าใช้จ่ายเกี่ยวกับสินค้าโดยรวม</value>
+    <comment>Product Total Cost</comment>
+  </data>
+  <data name="LabelPwdChanged" xml:space="preserve">
+    <value>เปลี่ยนรหัสผ่านของคุณเสร็จเรียบร้อยแล้ว</value>
+    <comment>Your password has been changed successfully.</comment>
+  </data>
+  <data name="LabelQualification" xml:space="preserve">
+    <value>คุณสมบัติ</value>
+    <comment>Qualification</comment>
+  </data>
+  <data name="LabelQualificationLevel" xml:space="preserve">
+    <value>Qualification Level</value>
+    <comment>Qualification Level</comment>
+  </data>
+  <data name="LabelQualificationName" xml:space="preserve">
+    <value>Qualification Name</value>
+    <comment>Qualification Name</comment>
+  </data>
+  <data name="LabelQualificationsRecognised" xml:space="preserve">
+    <value>คุณสมบัติที่ยอมรับ</value>
+    <comment>Qualifications Recognised</comment>
+  </data>
+  <data name="LabelQuantity" xml:space="preserve">
+    <value>ปริมาณ</value>
+    <comment>Quantity</comment>
+  </data>
+  <data name="LabelQuestion" xml:space="preserve">
+    <value>Question</value>
+    <comment>Question</comment>
+  </data>
+  <data name="LabelQuickRepostJob" xml:space="preserve">
+    <value>โพสต์ซ้ำด่วน</value>
+    <comment>Quick Repost</comment>
+  </data>
+  <data name="LabelReadFullStory" xml:space="preserve">
+    <value>อ่านเรื่องราวทั้งหมด</value>
+    <comment>Read full story</comment>
+  </data>
+  <data name="LabelReadMore" xml:space="preserve">
+    <value>Read more</value>
+    <comment>Read more</comment>
+  </data>
+  <data name="LabelReceiveJobAlert" xml:space="preserve">
+    <value>รับการเตือนเกี่ยวกับงาน</value>
+    <comment>Receive Job Alert</comment>
+  </data>
+  <data name="LabelReceiveNewsletter" xml:space="preserve">
+    <value>รับจดหมายข่าว</value>
+    <comment>Receive Newsletter</comment>
+  </data>
+  <data name="LabelReferenceNumber" xml:space="preserve">
+    <value>หมายเลขอ้างอิง</value>
+    <comment>Reference Number</comment>
+  </data>
+  <data name="LabelReferences" xml:space="preserve">
+    <value>References</value>
+    <comment>References</comment>
+  </data>
+  <data name="LabelReferralDomain" xml:space="preserve">
+    <value>โดเมนอ้างอิง</value>
+    <comment>Referral Domain</comment>
+  </data>
+  <data name="LabelRefine" xml:space="preserve">
+    <value>Refine</value>
+    <comment>Refine</comment>
+  </data>
+  <data name="LabelRefineResult" xml:space="preserve">
+    <value>Refine results</value>
+    <comment>Refine results</comment>
+  </data>
+  <data name="LabelRefineResults" xml:space="preserve">
+    <value>กรองผลลัพธ์ของคุณใหม่</value>
+    <comment>Refine Your Results</comment>
+  </data>
+  <data name="LabelRefNo" xml:space="preserve">
+    <value>หมายเลขอ้างอิง</value>
+    <comment>Ref. No</comment>
+  </data>
+  <data name="LabelRefresh" xml:space="preserve">
+    <value>รีเฟรช</value>
+    <comment>Refresh</comment>
+  </data>
+  <data name="LabelRegister" xml:space="preserve">
+    <value>ลงทะเบียน</value>
+    <comment>Register</comment>
+  </data>
+  <data name="LabelRegisterAndApply" xml:space="preserve">
+    <value>ลงทะเบียนแล้วสมัคร</value>
+    <comment>register and apply</comment>
+  </data>
+  <data name="LabelRegisteringAgree" xml:space="preserve">
+    <value>โดยการลงทะเบียนคุณยอมรับ</value>
+    <comment>By registering, you agree to our</comment>
+  </data>
+  <data name="LabelRegisterLogin" xml:space="preserve">
+    <value>ลงทะเบียน / ล็อกอิน</value>
+    <comment>Register / Login</comment>
+  </data>
+  <data name="LabelRegisterToday" xml:space="preserve">
+    <value>ยังไม่ได้ลงทะเบียน? ลงทะเบียนวันนี้!</value>
+    <comment>Not registered? Register today!</comment>
+  </data>
+  <data name="LabelRegisterYourDetails" xml:space="preserve">
+    <value>ลงทะเบียนรายละเอียดของคุณ</value>
+    <comment>Register your details</comment>
+  </data>
+  <data name="LabelReInvalidImage" xml:space="preserve">
+    <value>รูปที่อัปโหลดไม่ใช่รูปที่มีรูปแบบที่ถูกต้อง โปรดตรวจสอบว่าไฟล์เป็นไฟล์ GIF, JPG หรือ JPEG หรือไม่แล้วลองใหม่</value>
+    <comment>The image uploaded is not a valid image format. Please check that the file is either a GIF, JPG or JPEG and try again.</comment>
+  </data>
+  <data name="LabelRejected" xml:space="preserve">
+    <value>ถูกปฏิเสธ</value>
+    <comment>Rejected</comment>
+  </data>
+  <data name="LabelRelatedArticles" xml:space="preserve">
+    <value>Related Articles</value>
+    <comment>Related Articles</comment>
+  </data>
+  <data name="LabelRelationship" xml:space="preserve">
+    <value>Relationship</value>
+    <comment>Relationship</comment>
+  </data>
+  <data name="LabelRemaining" xml:space="preserve">
+    <value>วันที่ยังเหลือ</value>
+    <comment>Remaining days</comment>
+  </data>
+  <data name="LabelRememberMe" xml:space="preserve">
+    <value>จำ&amp;nbsp;ฉันไว้</value>
+    <comment>Remember&amp;nbsp;me</comment>
+  </data>
+  <data name="LabelRemove" xml:space="preserve">
+    <value>ลบออกไป</value>
+    <comment>Remove</comment>
+  </data>
+  <data name="LabelRemovelogo" xml:space="preserve">
+    <value>ลบโลโก้ออกไป</value>
+    <comment>Remove Logo</comment>
+  </data>
+  <data name="LabelRepostCompleted" xml:space="preserve">
+    <value>คุณได้ต่ออายุงานที่เลือก ตอนนี้คุณสามารถดูงานนี้ได้ในงานปัจจุบัน</value>
+    <comment>You have reposted selected job(s), you can view this job now in current jobs</comment>
+  </data>
+  <data name="LabelRepostJob" xml:space="preserve">
+    <value>โพสต์ใหม่</value>
+    <comment>Repost</comment>
+  </data>
+  <data name="LabelRepostJobConfirm" xml:space="preserve">
+    <value>คุณแน่ใจไหมที่จะโพสต์งานนี้ใหม่?</value>
+    <comment>Are you sure you want to repost this job?</comment>
+  </data>
+  <data name="LabelRequestAlertEmail" xml:space="preserve">
+    <value>ฉันต้องการรับอีเมลแจ้งเตือนเกี่ยวกับงานใหม่ที่ตรงกับเกณฑ์การค้นหาของฉัน</value>
+    <comment>I would like to receive email alerts for new jobs matching my search criteria.</comment>
+  </data>
+  <data name="LabelRequiredField" xml:space="preserve">
+    <value>ระบุช่องข้อมูลที่จำเป็นต้องใส่ข้อมูล</value>
+    <comment>Indicates a required field</comment>
+  </data>
+  <data name="LabelRequiredField1" xml:space="preserve">
+    <value>ช่องข้อมูลที่จำเป็นต้องใส่</value>
+    <comment>Required Field</comment>
+  </data>
+  <data name="LabelRequiredFieldsNeeded" xml:space="preserve">
+    <value>คุณไม่ได้กรอกข้อมูลที่กำหนดให้ต้องใส่ทั้งหมด</value>
+    <comment>You have not completed all the required information fields.</comment>
+  </data>
+  <data name="LabelRequireLogon" xml:space="preserve">
+    <value>จำเป็นต้องเข้าระบบ</value>
+    <comment>Require Logon</comment>
+  </data>
+  <data name="LabelRequireLogonForExternalApplications" xml:space="preserve">
+    <value>กำหนดให้ต้องเข้าระบบสำหรับการสมัครจากภายนอก</value>
+    <comment>Require Logon For External Applications</comment>
+  </data>
+  <data name="LabelResendEmail" xml:space="preserve">
+    <value>ส่งอีเมลใหม่</value>
+    <comment>Resend Email</comment>
+  </data>
+  <data name="LabelResetFailed" xml:space="preserve">
+    <value>ไม่สามารถตั้งค่าใหม่ได้</value>
+    <comment>Reset Failed</comment>
+  </data>
+  <data name="LabelResetGUIDFailed" xml:space="preserve">
+    <value>เรียนผู้ใช้&lt;br /&gt;&lt;br /&gt;ดูเหมือนคุณได้พยายามใช้ลิงก์นี้เพื่อตั้งรหัสผ่านของคุณใหม่แล้ว สามารถใช้ลิงก์นี้ได้เพียงครั้งเดียวเท่านั้น
+&lt;br /&gt;&lt;br /&gt;หากคุณไม่ได้คลิกที่ลิงก์ โปรดคลิก &lt;a href="./ForgetPassword.aspx"&gt;ที่นี่&lt;/a&gt; เพื่อให้ส่งลิงก์สำหรับตั้งรหัสผ่านใหม่ถึงคุณทางอีเมลอีกครั้ง</value>
+    <comment>Reset GUID Failed</comment>
+  </data>
+  <data name="LabelResetPasswordInfo" xml:space="preserve">
+    <value>ใส่ชื่อผู้ใช้หรือที่อยู่อีเมลของคุณด้านล่างแล้วเลือกปุ่ม ตั้งค่าใหม่ จากนั้นคุณจะได้รับอีเมลที่มีลิงก์ที่จะอนุญาตให้คุณตั้งรหัสผ่านของคุณใหม่ได้</value>
+    <comment>Enter your username or email address below and select the Reset button.  You will then receive an email with a link allowing you to reset your password.</comment>
+  </data>
+  <data name="LabelResidency" xml:space="preserve">
+    <value>การพำนักอาศัย</value>
+    <comment>Residency</comment>
+  </data>
+  <data name="LabelResidentOnly" xml:space="preserve">
+    <value>ผู้พำนักเท่านั้น</value>
+    <comment>Resident Only</comment>
+  </data>
+  <data name="LabelResponsibilitiesAndAchievements" xml:space="preserve">
+    <value>ความรับผิดชอบและความสำเร็จ</value>
+    <comment>Responsibilities and Achievements</comment>
+  </data>
+  <data name="LabelResults" xml:space="preserve">
+    <value>results</value>
+    <comment>results</comment>
+  </data>
+  <data name="LabelResume" xml:space="preserve">
+    <value>เรซูเม่</value>
+    <comment>Resume</comment>
+  </data>
+  <data name="LabelRetypePassword" xml:space="preserve">
+    <value>พิมพ์รหัสผ่านใหม่</value>
+    <comment>Retype Password</comment>
+  </data>
+  <data name="LabelRole" xml:space="preserve">
+    <value>หน้าที่</value>
+    <comment>Role</comment>
+  </data>
+  <data name="LabelRolePreferences" xml:space="preserve">
+    <value>Role Preferences</value>
+    <comment>Role Preferences</comment>
+  </data>
+  <data name="LabelRSSFeed" xml:space="preserve">
+    <value>RSS Feed</value>
+    <comment>RSS Feed</comment>
+  </data>
+  <data name="LabelSalary" xml:space="preserve">
+    <value>เงินเดือน</value>
+    <comment>Salary</comment>
+  </data>
+  <data name="LabelSalaryAnnual" xml:space="preserve">
+    <value>รายปี</value>
+    <comment>Annual Salary</comment>
+  </data>
+  <data name="LabelSalaryAnnually" xml:space="preserve">
+    <value>ประจำปี</value>
+    <comment>Annually</comment>
+  </data>
+  <data name="LabelSalaryDetails" xml:space="preserve">
+    <value>Salary details</value>
+    <comment>Salary details</comment>
+  </data>
+  <data name="LabelSalaryFrom" xml:space="preserve">
+    <value>จาก</value>
+    <comment>Salary From</comment>
+  </data>
+  <data name="LabelSalaryHourly" xml:space="preserve">
+    <value>รายชั่วโมง</value>
+    <comment>Hourly Salary</comment>
+  </data>
+  <data name="LabelSalaryRange" xml:space="preserve">
+    <value>Salary Range</value>
+    <comment>Salary Range</comment>
+  </data>
+  <data name="LabelSalaryRangeError" xml:space="preserve">
+    <value>Salary range invalid</value>
+    <comment>Salary range invalid</comment>
+  </data>
+  <data name="LabelSalaryRequirements" xml:space="preserve">
+    <value>Salary Requirements</value>
+    <comment>Salary Requirements</comment>
+  </data>
+  <data name="LabelSalaryText" xml:space="preserve">
+    <value>ข้อความเกี่ยวกับเงินเดือน</value>
+    <comment>Salary Text</comment>
+  </data>
+  <data name="LabelSalaryTo" xml:space="preserve">
+    <value>ถึง</value>
+    <comment>Salary To</comment>
+  </data>
+  <data name="LabelSalaryType" xml:space="preserve">
+    <value>ประเภท</value>
+    <comment>Salary Type</comment>
+  </data>
+  <data name="LabelSalaryTypeID" xml:space="preserve">
+    <value>ID ประเภทเงินเดือน</value>
+    <comment>Salary Type ID</comment>
+  </data>
+  <data name="LabelSameAsAbove" xml:space="preserve">
+    <value>Same as above</value>
+    <comment>Same as above</comment>
+  </data>
+  <data name="LabelSave" xml:space="preserve">
+    <value>บันทึก</value>
+    <comment>Save</comment>
+  </data>
+  <data name="LabelSaveAndContinue" xml:space="preserve">
+    <value>บันทึก &amp; ดำเนินการต่อ</value>
+    <comment>Save &amp; Continue</comment>
+  </data>
+  <data name="LabelSaveAsDraft" xml:space="preserve">
+    <value>บันทึกเป็นฉบับร่าง</value>
+    <comment>Save As Draft</comment>
+  </data>
+  <data name="LabelSavedDate" xml:space="preserve">
+    <value>วันที่บันทึก</value>
+    <comment>Saved Date</comment>
+  </data>
+  <data name="LabelSaveJob" xml:space="preserve">
+    <value>Save Job</value>
+    <comment>Save Job</comment>
+  </data>
+  <data name="LabelSearchCriteria" xml:space="preserve">
+    <value>เกณฑ์การค้นหา</value>
+    <comment>Search Criteria</comment>
+  </data>
+  <data name="LabelSearchCriteriaWelcome" xml:space="preserve">
+    <value>โปรดเลือกจากเกณฑ์ด้านล่างที่จะแสดงผลให้คุณได้ดีที่สุดสำหรับการแสดงผลการค้นหาจากนายจ้างที่อาจเป็นได้</value>
+    <comment>For maximum exposure for search results from potential employers, please select from the below criteria’s that  represent you best</comment>
+  </data>
+  <data name="LabelSearchDetails" xml:space="preserve">
+    <value>รายละเอียดการค้นหา</value>
+    <comment>Search Details</comment>
+  </data>
+  <data name="LabelSearchedAllJobs" xml:space="preserve">
+    <value>การค้นหางานทั้งหมด</value>
+    <comment>Searched all jobs</comment>
+  </data>
+  <data name="LabelSearchFieldExtension" xml:space="preserve">
+    <value>การค้นหาในช่องข้อมูลเสริม</value>
+    <comment>Search Field Extension</comment>
+  </data>
+  <data name="LabelSearchKeyword" xml:space="preserve">
+    <value>คำหลักสำหรับค้นหา</value>
+    <comment>Search Keyword</comment>
+  </data>
+  <data name="LabelSearchResult" xml:space="preserve">
+    <value>ผลการค้นหาของคุณใน:</value>
+    <comment>Your search resulted in:</comment>
+  </data>
+  <data name="LabelSearchRoleIDs" xml:space="preserve">
+    <value>ค้นหา ID หน้าที่</value>
+    <comment>Search Role IDs</comment>
+  </data>
+  <data name="LabelSearchTheSite" xml:space="preserve">
+    <value>ค้นหาเว็บไซต์</value>
+    <comment>Search the site</comment>
+  </data>
+  <data name="LabelSecondaryEmail" xml:space="preserve">
+    <value>Secondary Email</value>
+    <comment>Secondary Email</comment>
+  </data>
+  <data name="LabelSecondarySchool" xml:space="preserve">
+    <value>Secondary School</value>
+    <comment>Secondary School</comment>
+  </data>
+  <data name="LabelSeeking" xml:space="preserve">
+    <value>Currently Seeking</value>
+    <comment>Currently Seeking</comment>
+  </data>
+  <data name="LabelSeekingStatus" xml:space="preserve">
+    <value>Seeking Status</value>
+    <comment>Seeking Status</comment>
+  </data>
+  <data name="LabelSelect" xml:space="preserve">
+    <value>เลือก</value>
+    <comment>Select</comment>
+  </data>
+  <data name="LabelSelectACompany" xml:space="preserve">
+    <value>- เลือกบริษัท-</value>
+    <comment>- Select a Company -</comment>
+  </data>
+  <data name="LabelSelectAnApplicationToEmail" xml:space="preserve">
+    <value>โปรดเลือกการสมัครงานไปยังอีเมล</value>
+    <comment>Please select an application to email</comment>
+  </data>
+  <data name="LabelSelectAvailableStatus" xml:space="preserve">
+    <value>- เลือกสถานะที่มี-</value>
+    <comment>-Select Available Status-</comment>
+  </data>
+  <data name="LabelSelectBusinessType" xml:space="preserve">
+    <value>- เลือกประเภทธุรกิจ-</value>
+    <comment>-Select Business Type-</comment>
+  </data>
+  <data name="LabelSelectClassificationFirst" xml:space="preserve">
+    <value>- เลือกหมวดหมู่ก่อน-</value>
+    <comment>- Select a Classification First -</comment>
+  </data>
+  <data name="LabelSelectCountry" xml:space="preserve">
+    <value>- เลือกประเทศ-</value>
+    <comment>- Select Country -</comment>
+  </data>
+  <data name="LabelSelectCountryFirst" xml:space="preserve">
+    <value>- เลือกประเทศก่อน-</value>
+    <comment>-Select a Country First-</comment>
+  </data>
+  <data name="LabelSelectDocument" xml:space="preserve">
+    <value>เลือกเอกสาร</value>
+    <comment>Select Document</comment>
+  </data>
+  <data name="LabelSelectEducation" xml:space="preserve">
+    <value>-เลือกการศึกษา-</value>
+    <comment>-Select Education-</comment>
+  </data>
+  <data name="LabelSelectExistingCover" xml:space="preserve">
+    <value>เลือกจดหมายสมัครงานที่มีอยู่</value>
+    <comment>Select Existing Cover Letter</comment>
+  </data>
+  <data name="LabelSelectExistingResume" xml:space="preserve">
+    <value>เลือกเรซูเม่ที่มีอยู่</value>
+    <comment>Select Existing Resume</comment>
+  </data>
+  <data name="LabelSelectGrade" xml:space="preserve">
+    <value>- เลือกเกรด-</value>
+    <comment>- Select Grade -</comment>
+  </data>
+  <data name="LabelSelectJobTemplate" xml:space="preserve">
+    <value>Select Job Template</value>
+    <comment>Select Job Template</comment>
+  </data>
+  <data name="LabelSelectLanguage" xml:space="preserve">
+    <value>Select Language</value>
+    <comment>Select Language</comment>
+  </data>
+  <data name="LabelSelectLeastOneValue" xml:space="preserve">
+    <value>เลือกอย่างน้อยหนึ่งค่า</value>
+    <comment>Select at least one value.</comment>
+  </data>
+  <data name="LabelSelectLocationFirst" xml:space="preserve">
+    <value>-เลือกสถานที่ตั้งก่อน-</value>
+    <comment>- Select a Location First -</comment>
+  </data>
+  <data name="LabelSelectOneApplicationToEmail" xml:space="preserve">
+    <value>โปรดเลือกใบสมัครงานอย่างน้อยหนึ่งรายการเพื่อดาวน์โหลด</value>
+    <comment>Please select at least one application to download</comment>
+  </data>
+  <data name="LabelSelectSalary" xml:space="preserve">
+    <value>- เลือกเงินเดือน-</value>
+    <comment>-Select Salary-</comment>
+  </data>
+  <data name="LabelSelectUserLogin" xml:space="preserve">
+    <value>-เลือกประเภทการล็อกอิน-</value>
+    <comment>Select Login Type</comment>
+  </data>
+  <data name="LabelSelectUserRegister" xml:space="preserve">
+    <value>เลือกประเภทผู้ใช้</value>
+    <comment>Select User Type</comment>
+  </data>
+  <data name="LabelSendaJobAlertNow" xml:space="preserve">
+    <value>ส่งการเตือนเกี่ยวกับงานตอนนี้</value>
+    <comment>Send a Job Alert now</comment>
+  </data>
+  <data name="LabelSendEmailAlerts" xml:space="preserve">
+    <value>ส่งการเตือนทางอีเมล</value>
+    <comment>Send Email Alerts</comment>
+  </data>
+  <data name="LabelSentApplicantEmail" xml:space="preserve">
+    <value>ส่งอีเมลการสมัครงานไปยังผู้โฆษณาแล้ว</value>
+    <comment>Sent the application email to the advertiser</comment>
+  </data>
+  <data name="LabelSep" xml:space="preserve">
+    <value>September</value>
+    <comment>September</comment>
+  </data>
+  <data name="LabelSeperateSkillComma" xml:space="preserve">
+    <value>โปรดแยกทักษะแต่ละรายการด้วยเครื่องหมาคอมม่า (,)</value>
+    <comment>Please separate each skill with a Comma (,).</comment>
+  </data>
+  <data name="LabelSettings" xml:space="preserve">
+    <value>Settings</value>
+    <comment>Settings</comment>
+  </data>
+  <data name="LabelShare" xml:space="preserve">
+    <value>แชร์:</value>
+    <comment>Share:</comment>
+  </data>
+  <data name="LabelShareOnGooglePlus" xml:space="preserve">
+    <value>แชร์รายการนี้บน Google+</value>
+    <comment>Share this on Google+</comment>
+  </data>
+  <data name="LabelShortBio" xml:space="preserve">
+    <value>ประวัติส่วนตัวโดยย่อ</value>
+    <comment>Short Bio</comment>
+  </data>
+  <data name="LabelShortDescription" xml:space="preserve">
+    <value>คำอธิบายโดยย่อ</value>
+    <comment>Short Description</comment>
+  </data>
+  <data name="LabelShortList" xml:space="preserve">
+    <value>รายการสั้น ๆ</value>
+    <comment>Short List</comment>
+  </data>
+  <data name="LabelShowing" xml:space="preserve">
+    <value>Showing</value>
+    <comment>Showing</comment>
+  </data>
+  <data name="LabelShowLocationDetail" xml:space="preserve">
+    <value>แสดงรายละเอียดสถานที่ตั้ง</value>
+    <comment>Show Location Detail</comment>
+  </data>
+  <data name="LabelShowSalaryDetail" xml:space="preserve">
+    <value>แสดงรายละเอียดเงินเดือน</value>
+    <comment>Show Salary Details</comment>
+  </data>
+  <data name="LabelShowSalaryRange" xml:space="preserve">
+    <value>แสดงช่วงเงินเดือน</value>
+    <comment>Show Salary Range</comment>
+  </data>
+  <data name="LabelSimilarJobs" xml:space="preserve">
+    <value>Similar Jobs</value>
+    <comment>Similar Jobs</comment>
+  </data>
+  <data name="LabelSite" xml:space="preserve">
+    <value>เว็บไซต์</value>
+    <comment>Site</comment>
+  </data>
+  <data name="LabelSiteLocationName" xml:space="preserve">
+    <value>เว็บไซต์ชื่อสถานที่ตั้ง</value>
+    <comment>Site Location Name</comment>
+  </data>
+  <data name="LabelSiteProfessionName" xml:space="preserve">
+    <value>เว็บไซต์ชื่อการงาน</value>
+    <comment>Site Profession Name</comment>
+  </data>
+  <data name="LabelSkills" xml:space="preserve">
+    <value>Skills</value>
+    <comment>Skills</comment>
+  </data>
+  <data name="LabelSocialMedia" xml:space="preserve">
+    <value>สื่อออนไลน์</value>
+    <comment>Social Media</comment>
+  </data>
+  <data name="LabelSortBy" xml:space="preserve">
+    <value>จัดประเภทโดย</value>
+    <comment>Sort By</comment>
+  </data>
+  <data name="LabelSortByAlphabeticalAZ" xml:space="preserve">
+    <value>จัดประเภทโดย - ตามลำดับตัวอักษร A-Z</value>
+    <comment>Sort by – Alphabetical A-Z</comment>
+  </data>
+  <data name="LabelSortByAlphabeticalZA" xml:space="preserve">
+    <value>จัดประเภทโดย - ตามลำดับตัวอักษร Z-A</value>
+    <comment>Sort by – Alphabetical Z-A</comment>
+  </data>
+  <data name="LabelSortByOldestPosts" xml:space="preserve">
+    <value>จัดประเภทโดย - โพสต์เก่าที่สุด</value>
+    <comment>Sort by – Oldest Posts</comment>
+  </data>
+  <data name="LabelSortByRecentPosts" xml:space="preserve">
+    <value>จัดประเภทโดย - โพสต์เมื่อไม่นานมานี้</value>
+    <comment>Sort by – Recent Posts</comment>
+  </data>
+  <data name="LabelSortBySalaryHighLow" xml:space="preserve">
+    <value>จัดประเภทโดย -เงินเดือนสูงไปถึงต่ำ</value>
+    <comment>Sort by – Salary high to low</comment>
+  </data>
+  <data name="LabelSortBySalaryLowHigh" xml:space="preserve">
+    <value>จัดประเภทโดย - เงินเดือนต่ำไปสูง</value>
+    <comment>Sort by – Salary low to high</comment>
+  </data>
+  <data name="LabelSortsby" xml:space="preserve">
+    <value>Sort by</value>
+    <comment>Sort by</comment>
+  </data>
+  <data name="LabelStart" xml:space="preserve">
+    <value>เริ่ม</value>
+    <comment>Start</comment>
+  </data>
+  <data name="LabelStartDate" xml:space="preserve">
+    <value>วันที่เริ่ม</value>
+    <comment>Start Date</comment>
+  </data>
+  <data name="LabelState" xml:space="preserve">
+    <value>รัฐ</value>
+    <comment>State</comment>
+  </data>
+  <data name="LabelStateResideIn" xml:space="preserve">
+    <value>รัฐที่ข้าพเจ้าพำนักอาศัยอยู่</value>
+    <comment>State I reside in</comment>
+  </data>
+  <data name="LabelStatistics" xml:space="preserve">
+    <value>สถิติ</value>
+    <comment>Statistics</comment>
+  </data>
+  <data name="LabelStatus" xml:space="preserve">
+    <value>สถานะ</value>
+    <comment>Status</comment>
+  </data>
+  <data name="LabelStillHavingIssue" xml:space="preserve">
+    <value>ยังคงมีปัญหาอยู่</value>
+    <comment>Still having issues</comment>
+  </data>
+  <data name="LabelStreetAddress" xml:space="preserve">
+    <value>Street Address</value>
+    <comment>Street Address</comment>
+  </data>
+  <data name="LabelStreetAddress1" xml:space="preserve">
+    <value>ที่อยู่บรรทัดที่ 1</value>
+    <comment>Street Address 1</comment>
+  </data>
+  <data name="LabelStreetAddress2" xml:space="preserve">
+    <value>ที่อยู่บรรทัดที่ 2</value>
+    <comment>Street Address 2</comment>
+  </data>
+  <data name="LabelSubAccountCreated" xml:space="preserve">
+    <value>มีการสร้างบัญชีย่อยใหม่แล้ว มีการส่งอีเมลเพื่อยืนยันความถูกต้องของบัญชีย่อยใหม่แล้ว</value>
+    <comment>The new sub-account has been created. An email has been sent to verify the new sub-account.</comment>
+  </data>
+  <data name="LabelSubAccounts" xml:space="preserve">
+    <value>บัญชีย่อย</value>
+    <comment>Sub Accounts</comment>
+  </data>
+  <data name="LabelSubClassification" xml:space="preserve">
+    <value>หมวดย่อย</value>
+    <comment>Sub Classification</comment>
+  </data>
+  <data name="LabelSubmitStreetAddress" xml:space="preserve">
+    <value>Please submit street address to enable map and radius searching</value>
+    <comment>Please submit street address to enable map and radius searching</comment>
+  </data>
+  <data name="LabelSubscribeToJobAlert" xml:space="preserve">
+    <value>สมัครรับการเตือนเกี่ยวกับงาน</value>
+    <comment>Subscribe to Job alert</comment>
+  </data>
+  <data name="LabelSubscribeToNewsLetter" xml:space="preserve">
+    <value>ข้าพเจ้าต้องการสมัครรับจดหมายข่าว</value>
+    <comment>I would like to subscribe to the newsletter</comment>
+  </data>
+  <data name="LabelSubtotal" xml:space="preserve">
+    <value>ยอดรวมส่วนหนึ่ง</value>
+    <comment>Subtotal</comment>
+  </data>
+  <data name="LabelSuburb" xml:space="preserve">
+    <value>ชานเมือง</value>
+    <comment>Suburb</comment>
+  </data>
+  <data name="LabelSuccessfullyCreatedYouJobAlert" xml:space="preserve">
+    <value>คุณได้สร้างการเตือนเสร็จเรียบร้อยแล้ว</value>
+    <comment>You have successfully created an alert.</comment>
+  </data>
+  <data name="LabelSuccessfullySavedYourSearch" xml:space="preserve">
+    <value>คุณบันทึกการค้นหาของคุณเรียบร้อยแล้ว</value>
+    <comment>You have successfully saved your search.</comment>
+  </data>
+  <data name="LabelSummary" xml:space="preserve">
+    <value>โดยสรุป</value>
+    <comment>Summary</comment>
+  </data>
+  <data name="LabelSupervisor" xml:space="preserve">
+    <value>Supervisor</value>
+    <comment>Supervisor</comment>
+  </data>
+  <data name="LabelSurameMandatory" xml:space="preserve">
+    <value>บังคับให้ต้องมีนามสกุล</value>
+    <comment>Last name is mandatory</comment>
+  </data>
+  <data name="LabelSurname" xml:space="preserve">
+    <value>นามสกุล</value>
+    <comment>Last name</comment>
+  </data>
+  <data name="LabelSurnameRequired" xml:space="preserve">
+    <value>จำเป็นต้องมีนามสกุล</value>
+    <comment>Last name is required</comment>
+  </data>
+  <data name="LabelTags" xml:space="preserve">
+    <value>แท็ก (แยกด้วยคอมม่า)</value>
+    <comment>Tags</comment>
+  </data>
+  <data name="LabelTeacher" xml:space="preserve">
+    <value>Teacher</value>
+    <comment>Teacher</comment>
+  </data>
+  <data name="LabelTel" xml:space="preserve">
+    <value>หมายเลขโทรศัพท์</value>
+    <comment>Tel</comment>
+  </data>
+  <data name="LabelTelephone" xml:space="preserve">
+    <value>โทรศัพท์</value>
+    <comment>Telephone</comment>
+  </data>
+  <data name="LabelTelephoneRequired" xml:space="preserve">
+    <value>จำเป็นต้องมีหมายเลขโทรศัพท์</value>
+    <comment>Telephone number is required</comment>
+  </data>
+  <data name="LabelTempLocked" xml:space="preserve">
+    <value>บัญชีของคุณถูกล็อกชั่วคราว โปรดลองใหม่อีกครั้งในอีก  “{0} นาที” หรือติดต่อผู้ดูแลระบบของคุณ</value>
+    <comment>Your account is temporarily locked. Please try again in “{0} mins” or contact your system administrator.</comment>
+  </data>
+  <data name="LabelTempted" xml:space="preserve">
+    <value>Possibly seeking</value>
+    <comment>Tempted</comment>
+  </data>
+  <data name="LabelTermsAndConditions" xml:space="preserve">
+    <value>ข้อตกลงและเงื่อนไข</value>
+    <comment>terms and conditions</comment>
+  </data>
+  <data name="LabelTertiaryEducation" xml:space="preserve">
+    <value>Tertiary Education</value>
+    <comment>Tertiary Education</comment>
+  </data>
+  <data name="LabelText" xml:space="preserve">
+    <value>ข้อความ</value>
+    <comment>text</comment>
+  </data>
+  <data name="LabelThisFieldIsRequired" xml:space="preserve">
+    <value>จำเป็นต้องใส่ข้อมูลในช่องข้อมูลนี้</value>
+    <comment>This field is required.</comment>
+  </data>
+  <data name="LabelTitle" xml:space="preserve">
+    <value>ชื่อเรื่อง</value>
+    <comment>Title</comment>
+  </data>
+  <data name="LabelTitleRequired" xml:space="preserve">
+    <value>จำเป็นต้องมีชื่อเอกสาร</value>
+    <comment>Document Title required</comment>
+  </data>
+  <data name="LabelTitleSizeError" xml:space="preserve">
+    <value>ขนาดชื่อเอกสารจะต้องไม่เกิน 500 อักขระ</value>
+    <comment>Document Title size cannot exceed 500 characters</comment>
+  </data>
+  <data name="LabelTo" xml:space="preserve">
+    <value>ถึง</value>
+    <comment>to</comment>
+  </data>
+  <data name="LabelToDate" xml:space="preserve">
+    <value>ถึงวันที่</value>
+    <comment>To Date</comment>
+  </data>
+  <data name="LabelToSalary" xml:space="preserve">
+    <value>Enter To Salary</value>
+    <comment>Enter To Salary</comment>
+  </data>
+  <data name="LabelTotal" xml:space="preserve">
+    <value>โดยรวม</value>
+    <comment>Total</comment>
+  </data>
+  <data name="LabelTotalAmount" xml:space="preserve">
+    <value>จำนวนโดยรวม</value>
+    <comment>Total Amount</comment>
+  </data>
+  <data name="LabelTotalEmployees" xml:space="preserve">
+    <value>จำนวนพนักงาน</value>
+    <comment>No. of  Employees / Total Employees</comment>
+  </data>
+  <data name="LabelType" xml:space="preserve">
+    <value>Type</value>
+    <comment>Type</comment>
+  </data>
+  <data name="LabelTypeOfDirectorship" xml:space="preserve">
+    <value>ประเภทของตำแหน่งผู้อำนวยการ</value>
+    <comment>Type of Directorship</comment>
+  </data>
+  <data name="LabelUnsubscribeNews" xml:space="preserve">
+    <value>เลิกรับข่าวสาร</value>
+    <comment>Unsubscribe News</comment>
+  </data>
+  <data name="LabelUpdate" xml:space="preserve">
+    <value>Update</value>
+    <comment>Update</comment>
+  </data>
+  <data name="LabelUpdateMyDetails" xml:space="preserve">
+    <value>อัปเดตรายละเอียดของฉัน</value>
+    <comment>Update My Details</comment>
+  </data>
+  <data name="LabelUpdateProfile" xml:space="preserve">
+    <value>อัปเดตโปรไฟล์</value>
+    <comment>Update Profile</comment>
+  </data>
+  <data name="LabelUploadACoverLetter" xml:space="preserve">
+    <value>อัปโหลดจดหมายสมัครงาน</value>
+    <comment>Upload a cover letter</comment>
+  </data>
+  <data name="LabelUploadAResume" xml:space="preserve">
+    <value>อัปโหลดเรซูเม่</value>
+    <comment>Upload a resume</comment>
+  </data>
+  <data name="LabelUploadCoverDesc" xml:space="preserve">
+    <value>โปรดอัปโหลดไฟล์ของคุณเป็นไฟล์ Microsoft Word (.doc หรือ .docx), Microsoft Excel (.xls หรือ .xlsx), Adobe Acrobat (.pdf) หรือไฟล์ text  (.txt หรือ .rtf)</value>
+    <comment>Please upload your file as Microsoft Word (.doc or .docx), Microsoft Excel (.xls or .xlsx), Adobe Acrobat (.pdf) or text file (.txt or .rtf)</comment>
+  </data>
+  <data name="LabelUploadCoverLetter" xml:space="preserve">
+    <value>อัปโหลดจดหมายสมัครงาน</value>
+    <comment>Upload Cover letter</comment>
+  </data>
+  <data name="LabelUploadDocument" xml:space="preserve">
+    <value>อัปโหลดเอกสาร</value>
+    <comment>Upload Documents</comment>
+  </data>
+  <data name="LabelUploadFile" xml:space="preserve">
+    <value>Upload file</value>
+    <comment>Upload file</comment>
+  </data>
+  <data name="LabelUploadMethod" xml:space="preserve">
+    <value>วิธีการอัปโหลด</value>
+    <comment>Upload Method</comment>
+  </data>
+  <data name="LabelUploadNewLogo" xml:space="preserve">
+    <value>Upload New Logo</value>
+    <comment>Upload New Logo</comment>
+  </data>
+  <data name="LabelUploadProfileImage" xml:space="preserve">
+    <value>อัปโหลดรูปโปรไฟล์</value>
+    <comment>Upload Profile Image</comment>
+  </data>
+  <data name="LabelUploadProfileImageDesc" xml:space="preserve">
+    <value>โปรดอัปโหลดรูปของคุณเป็นไฟล์รูปแบบ jpg, gif หรือ png  ขนาดไฟล์สูงสุด 500KB</value>
+    <comment>Image Upload Description</comment>
+  </data>
+  <data name="LabelUploadProfileImageInvalid" xml:space="preserve">
+    <value>โปรดอัปโหลดชนิดไฟล์ที่ใช้ได้</value>
+    <comment>Please upload a valid file type.</comment>
+  </data>
+  <data name="LabelUploadProfileImageInvalidFileSize" xml:space="preserve">
+    <value>โปรดอัปโหลดไฟล์ที่มีขนาดสูงสูด 500KB</value>
+    <comment>Please upload a file with a maximum of 500KB.</comment>
+  </data>
+  <data name="LabelUploadResume" xml:space="preserve">
+    <value>อัปโหลดเรซูเม่</value>
+    <comment>Upload Resume</comment>
+  </data>
+  <data name="LabelUponRequest" xml:space="preserve">
+    <value>Upon Request</value>
+    <comment>Upon Request</comment>
+  </data>
+  <data name="LabelURL" xml:space="preserve">
+    <value>URL</value>
+    <comment>URL</comment>
+  </data>
+  <data name="LabelURLLinkOut" xml:space="preserve">
+    <value>URL- ลิงก์ภายนอก</value>
+    <comment>URL - Link out</comment>
+  </data>
+  <data name="LabelUseExistingCoverLetterFile" xml:space="preserve">
+    <value>ใช้ไฟล์จดหมายสมัครงานที่มีอยู่</value>
+    <comment>Use existing cover letter file</comment>
+  </data>
+  <data name="LabelUseExistingResumeFile" xml:space="preserve">
+    <value>ใช้ไฟล์เรซูเม่ที่มีอยู่</value>
+    <comment>Use existing resume file</comment>
+  </data>
+  <data name="LabelUseMyProfile" xml:space="preserve">
+    <value>ใช้โปรไฟล์ของฉัน</value>
+    <comment>Use my profile</comment>
+  </data>
+  <data name="LabelUsername" xml:space="preserve">
+    <value>ชื่อผู้ใช้</value>
+    <comment>Username</comment>
+  </data>
+  <data name="LabelUsernameExists" xml:space="preserve">
+    <value>มีชื่อผู้ใช้อยู่แล้ว โปรดล็อกอิน</value>
+    <comment>Username already exists, please login.</comment>
+  </data>
+  <data name="LabelUsernameRequired" xml:space="preserve">
+    <value>จำเป็นต้องมีชื่อผู้ใช้</value>
+    <comment>Username is required</comment>
+  </data>
+  <data name="LabelValidate" xml:space="preserve">
+    <value>ยืนยันความถูกต้อง</value>
+    <comment>Validate</comment>
+  </data>
+  <data name="LabelValidated" xml:space="preserve">
+    <value>ยืนยันความถูกต้องแล้ว</value>
+    <comment>Validated</comment>
+  </data>
+  <data name="LabelValidEmailRequired" xml:space="preserve">
+    <value>จำเป็นต้องมีการยืนยันความถูกต้องของที่อยู่อีเมล</value>
+    <comment>Valid email address is required</comment>
+  </data>
+  <data name="LabelVersion" xml:space="preserve">
+    <value>Version</value>
+    <comment>Version</comment>
+  </data>
+  <data name="LabelViaEmail" xml:space="preserve">
+    <value>ผ่านทางอีเมล</value>
+    <comment>via Email</comment>
+  </data>
+  <data name="LabelVideoURL" xml:space="preserve">
+    <value>Video URL</value>
+    <comment>Video URL</comment>
+  </data>
+  <data name="LabelView" xml:space="preserve">
+    <value>ดู</value>
+    <comment>View</comment>
+  </data>
+  <data name="LabelViewCart" xml:space="preserve">
+    <value>สินค้าสำหรับสั่งซื้อ</value>
+    <comment>Products To Purchase</comment>
+  </data>
+  <data name="LabelViewed" xml:space="preserve">
+    <value>ดูแล้ว</value>
+    <comment>Viewed</comment>
+  </data>
+  <data name="LabelViewLess" xml:space="preserve">
+    <value>View less</value>
+    <comment>View less</comment>
+  </data>
+  <data name="LabelViewMore" xml:space="preserve">
+    <value>ดูเพิ่มเติม...</value>
+    <comment>View More...</comment>
+  </data>
+  <data name="LabelViewPage" xml:space="preserve">
+    <value>ดูหน้า</value>
+    <comment>View Page</comment>
+  </data>
+  <data name="LabelViewProfile" xml:space="preserve">
+    <value>ดูโปรไฟล์</value>
+    <comment>View Profile</comment>
+  </data>
+  <data name="LabelViews" xml:space="preserve">
+    <value>ดู</value>
+    <comment>Views</comment>
+  </data>
+  <data name="LabelVisa" xml:space="preserve">
+    <value>วีซ่า</value>
+    <comment>Visa</comment>
+  </data>
+  <data name="LabelVisible" xml:space="preserve">
+    <value>มองเห็นได้</value>
+    <comment>Visible</comment>
+  </data>
+  <data name="LabelWarningBlankURL" xml:space="preserve">
+    <value>เมื่อเลือก URL ช่อง URL ของใบสมัครจะไม่สามารถปล่อยว่างไว้ได้</value>
+    <comment>Application URL cannot be Blank when URL is selected</comment>
+  </data>
+  <data name="LabelWebAddress" xml:space="preserve">
+    <value>ที่อยู่เว็บ</value>
+    <comment>Web Address</comment>
+  </data>
+  <data name="LabelWebservice" xml:space="preserve">
+    <value>เว็บเซอร์วิซ</value>
+    <comment>Webservice</comment>
+  </data>
+  <data name="LabelWebsite" xml:space="preserve">
+    <value>เว็บไซต์</value>
+    <comment>Website</comment>
+  </data>
+  <data name="LabelWelcome" xml:space="preserve">
+    <value>ยินดีต้อนรับ</value>
+    <comment>Welcome</comment>
+  </data>
+  <data name="LabelWelcomeBack" xml:space="preserve">
+    <value>ขอต้อนรับกลับสู่</value>
+    <comment>Welcome back</comment>
+  </data>
+  <data name="LabelWelcomeBroadcast" xml:space="preserve">
+    <value>ขอต้อนรับกลับสู่สมาชิกเผยแพร่ข่าว (Member Broadcast)</value>
+    <comment>Welcome to Member Broadcast</comment>
+  </data>
+  <data name="LabelWelcomeMemberEditDetail" xml:space="preserve">
+    <value>ขอต้อนรับสู่หน้าอัปเดตรายละเอียดสมาชิก</value>
+    <comment>Welcome to the Member details update page.</comment>
+  </data>
+  <data name="LabelWelcomeMemberEditPassword" xml:space="preserve">
+    <value>ขอต้อนรับสู่หน้าเปลี่ยนรหัสผ่านของสมาชิก โปรดใส่รหัสผ่านปัจจุบันและรหัสผ่านใหม่ของคุณในแบบฟอร์มด้านล่าง</value>
+    <comment>Welcome to the Member change password page. Please enter your current password and new password in the form below.</comment>
+  </data>
+  <data name="LabelWillingToRelocate" xml:space="preserve">
+    <value>ยินดีย้ายที่อยู่ใหม่</value>
+    <comment>Willing To Relocate</comment>
+  </data>
+  <data name="LabelWorkExperience" xml:space="preserve">
+    <value>Work Experience</value>
+    <comment>Work Experience</comment>
+  </data>
+  <data name="LabelWorkType" xml:space="preserve">
+    <value>ประเภทงาน</value>
+    <comment>Work Type</comment>
+  </data>
+  <data name="LabelWorkTypeIDs" xml:space="preserve">
+    <value>ID ประเภทงาน</value>
+    <comment>Work Type IDs</comment>
+  </data>
+  <data name="LabelWriteCoverLetter" xml:space="preserve">
+    <value>เขียนจดหมายสมัครงานของคุณเองที่นี่</value>
+    <comment>Write your own Cover Letter here</comment>
+  </data>
+  <data name="LabelWriteOwnCoverLetter" xml:space="preserve">
+    <value>เขียนจดหมายสมัครงานของฉันเอง</value>
+    <comment>Write my own cover letter</comment>
+  </data>
+  <data name="LabelYear" xml:space="preserve">
+    <value>ปี</value>
+    <comment>Year</comment>
+  </data>
+  <data name="LabelYears" xml:space="preserve">
+    <value>Years</value>
+    <comment>Years</comment>
+  </data>
+  <data name="LabelYes" xml:space="preserve">
+    <value>ใช่</value>
+    <comment>Yes</comment>
+  </data>
+  <data name="LabelYouhavenologo" xml:space="preserve">
+    <value>ปัจจุบันคุณไม่มีโลโก้</value>
+    <comment>You currently have no logo.</comment>
+  </data>
+  <data name="LabelYouMadeAPayment" xml:space="preserve">
+    <value>คำสั่งซื้อของคุณเสร็จสมบูรณ์</value>
+    <comment>Your order is complete</comment>
+  </data>
+  <data name="LabelYourEmail" xml:space="preserve">
+    <value>อีเมลของคุณ</value>
+    <comment>Your Email</comment>
+  </data>
+  <data name="LabelYourFriendEmail" xml:space="preserve">
+    <value>อีเมลของเพื่อนของคุณ</value>
+    <comment>Your Friend's Email</comment>
+  </data>
+  <data name="LabelYourFriendName" xml:space="preserve">
+    <value>อีเมลของเพื่อนของคุณ</value>
+    <comment>Your Friend's Name</comment>
+  </data>
+  <data name="LabelYourName" xml:space="preserve">
+    <value>ชื่อของคุณ</value>
+    <comment>Your Name</comment>
+  </data>
+  <data name="LabelYourOrder" xml:space="preserve">
+    <value>คำสั่งซื้อของคุณ</value>
+    <comment>Your order</comment>
+  </data>
+  <data name="LabelYourSkillSets" xml:space="preserve">
+    <value>Your Skill Sets</value>
+    <comment>Your Skill Sets</comment>
+  </data>
+  <data name="LabelZA" xml:space="preserve">
+    <value>Z - A</value>
+    <comment>Z - A</comment>
+  </data>
+  <data name="LabrlAvailableDayFrom" xml:space="preserve">
+    <value>Availability Date From</value>
+    <comment>Availability Date From</comment>
+  </data>
+  <data name="lblPostedByAdvertiserUser" xml:space="preserve">
+    <value>โพสต์โดย</value>
+    <comment>Posted By</comment>
+  </data>
+  <data name="LinkBacktoNewsIndex" xml:space="preserve">
+    <value>กลับไปยังดัชนีข่าว</value>
+    <comment>Back to News Index</comment>
+  </data>
+  <data name="LinkButtonAccountDetails" xml:space="preserve">
+    <value>รายละเอียดบัญชี</value>
+    <comment>Account Details</comment>
+  </data>
+  <data name="LinkButtonAddNote" xml:space="preserve">
+    <value>ใส่โน้ต</value>
+    <comment>Add notes</comment>
+  </data>
+  <data name="LinkButtonAddTag" xml:space="preserve">
+    <value>ใส่แท็ก</value>
+    <comment>Add tags</comment>
+  </data>
+  <data name="LinkButtonApplyNow" xml:space="preserve">
+    <value>สมัครตอนนี้</value>
+    <comment>Apply now</comment>
+  </data>
+  <data name="LinkButtonArchivedJobAds" xml:space="preserve">
+    <value>โฆษณางานที่สัมฤทธิ์ผล</value>
+    <comment>Archived Job Ads</comment>
+  </data>
+  <data name="LinkButtonBackToResult" xml:space="preserve">
+    <value>กลับไปยังผลลัพธ์</value>
+    <comment>Back to results</comment>
+  </data>
+  <data name="LinkButtonBuyJobCredits" xml:space="preserve">
+    <value>ซื้อเครดิตงาน</value>
+    <comment>Buy job credits</comment>
+  </data>
+  <data name="LinkButtonCart" xml:space="preserve">
+    <value>ตะกร้าสินค้า</value>
+    <comment>Cart</comment>
+  </data>
+  <data name="LinkButtonChangeTemplateLogo" xml:space="preserve">
+    <value>เทมเพลตอาร์ตเวิร์กของงาน</value>
+    <comment>Job template artwork</comment>
+  </data>
+  <data name="LinkButtonCreateNewJobAd" xml:space="preserve">
+    <value>สร้างโฆษณางานใหม่</value>
+    <comment>Create a New Job Advertisement</comment>
+  </data>
+  <data name="LinkButtonCurrentJobAds" xml:space="preserve">
+    <value>โฆษณางานในปัจจุบัน</value>
+    <comment>Current Job Ads</comment>
+  </data>
+  <data name="LinkButtonDeclinedJobAds" xml:space="preserve">
+    <value>โฆษณางานที่ถูกปฏิเสธ</value>
+    <comment>Declined Job Ads</comment>
+  </data>
+  <data name="LinkButtonDelete" xml:space="preserve">
+    <value>ลบ</value>
+    <comment>Delete</comment>
+  </data>
+  <data name="LinkButtonDownload" xml:space="preserve">
+    <value>ดาวน์โหลด</value>
+    <comment>Download</comment>
+  </data>
+  <data name="LinkButtonDraftJobAds" xml:space="preserve">
+    <value>ร่างโฆษณางาน</value>
+    <comment>Draft Job Ads</comment>
+  </data>
+  <data name="LinkButtonEdit" xml:space="preserve">
+    <value>แก้ไข</value>
+    <comment>Edit</comment>
+  </data>
+  <data name="LinkButtonEmailJob" xml:space="preserve">
+    <value>อีเมลงานนี้</value>
+    <comment>Email this Job</comment>
+  </data>
+  <data name="LinkButtonJobLinkedIn" xml:space="preserve">
+    <value>แชร์งานนี้บน LinkedIn</value>
+    <comment>Share this Job on LinkedIn</comment>
+  </data>
+  <data name="LinkButtonJobReports" xml:space="preserve">
+    <value>รายงานเกี่ยวกับงาน</value>
+    <comment>Job Reports</comment>
+  </data>
+  <data name="LinkButtonJobRSS" xml:space="preserve">
+    <value>สมัครเป็นสมาชิกรับฟีด RSS</value>
+    <comment>Subscribe to RSS Feed</comment>
+  </data>
+  <data name="LinkButtonJobShareFacebook" xml:space="preserve">
+    <value>แชร์งานนี้บน Facebook</value>
+    <comment>Share this Job on Facebook</comment>
+  </data>
+  <data name="LinkButtonJobShareTwitter" xml:space="preserve">
+    <value>ทวีตงานนี้</value>
+    <comment>Tweet this Job</comment>
+  </data>
+  <data name="LinkButtonJobTracker" xml:space="preserve">
+    <value>ผู้ติดตามงาน</value>
+    <comment>Job Tracker</comment>
+  </data>
+  <data name="LinkButtonManageJobs" xml:space="preserve">
+    <value>การจัดการงาน</value>
+    <comment>Manage Jobs</comment>
+  </data>
+  <data name="LinkButtonPendingJobAds" xml:space="preserve">
+    <value>โฆษณางานที่รอดำเนินการ</value>
+    <comment>Pending Job Ads</comment>
+  </data>
+  <data name="LinkButtonPeopleSearch" xml:space="preserve">
+    <value>คนที่ค้นหา</value>
+    <comment>People search</comment>
+  </data>
+  <data name="LinkButtonPrintJob" xml:space="preserve">
+    <value>สั่งพิมพ์งานนี้</value>
+    <comment>Print this Job</comment>
+  </data>
+  <data name="LinkButtonReports" xml:space="preserve">
+    <value>รายงาน</value>
+    <comment>Reports</comment>
+  </data>
+  <data name="LinkButtonSavedJobs" xml:space="preserve">
+    <value>บันทึกงานนี้</value>
+    <comment>Save this Job</comment>
+  </data>
+  <data name="LinkButtonSaveJob" xml:space="preserve">
+    <value>บันทึกงาน</value>
+    <comment>save job</comment>
+  </data>
+  <data name="LinkButtonSendEmail" xml:space="preserve">
+    <value>ส่งอีเมล</value>
+    <comment>send email</comment>
+  </data>
+  <data name="LinkButtonStatistics" xml:space="preserve">
+    <value>สถิติ</value>
+    <comment>Statistics</comment>
+  </data>
+  <data name="LinkButtonSubAccounts" xml:space="preserve">
+    <value>บัญชีย่อย</value>
+    <comment>Sub accounts</comment>
+  </data>
+  <data name="LinkButtonView" xml:space="preserve">
+    <value>ดู</value>
+    <comment>View</comment>
+  </data>
+  <data name="LinkButtonViewChangeLogo" xml:space="preserve">
+    <value>โลโก้ของผู้โฆษณา</value>
+    <comment>Advertiser logo</comment>
+  </data>
+  <data name="LinkButtonViewChangeTemplateLogo" xml:space="preserve">
+    <value>เทมเพลตอาร์ตเวิร์ก / โลโก้ของงาน</value>
+    <comment>Job template artwork/logo</comment>
+  </data>
+  <data name="LinkButtonViewJobs" xml:space="preserve">
+    <value>ดูงาน</value>
+    <comment>View Jobs</comment>
+  </data>
+  <data name="PlaceHolderSalaryAnnualFrom" xml:space="preserve">
+    <value>ใส่ค่าตอบแทนรายปีจาก</value>
+    <comment>Enter annual salary from</comment>
+  </data>
+  <data name="PlaceHolderSalaryAnnualTo" xml:space="preserve">
+    <value>ใส่ค่าตอบแทนรายปีถึง</value>
+    <comment>Enter annual salary to</comment>
+  </data>
+  <data name="PlaceHolderSalaryHourlyFrom" xml:space="preserve">
+    <value>ใส่อัตราค่าจ้างรายชั่วโมงจาก</value>
+    <comment>Enter hourly rate from</comment>
+  </data>
+  <data name="PlaceHolderSalaryHourlyTo" xml:space="preserve">
+    <value>ใส่อัตราค่าจ้างรายชั่วโมงถึง</value>
+    <comment>Enter hourly rate to</comment>
+  </data>
+  <data name="sLabelCandidateSearch" xml:space="preserve">
+    <value>การค้นหาผู้สมัคร - โปรดเลือกเกณฑ์ที่สัมพันธ์กับสถานที่ตั้งและพื้นที่ของคุณ</value>
+    <comment>Candidate Search - Please select relevant criteria for your location and area</comment>
+  </data>
+  <data name="sLabelPublicProfile" xml:space="preserve">
+    <value>โปรไฟล์สาธารณะของ</value>
+    <comment>'s Public Profile</comment>
+  </data>
+  <data name="LabelSMS" xml:space="preserve">
+    <value>SMS</value>
+    <comment>SMS</comment>
+  </data>
+  <data name="LabelAdvertiserFullRegister" xml:space="preserve">
+    <value>Advertiser Full Register</value>
+    <comment>Advertiser Full Register</comment>
+  </data>
+  <data name="LabelIndustry" xml:space="preserve">
+    <value>Industry</value>
+    <comment>Industry</comment>
+  </data>
+  <data name="LabelNominatedCompanyEmailAddress" xml:space="preserve">
+    <value>Nominated Company Email Address</value>
+    <comment>Nominated Company Email Address</comment>
+  </data>
+  <data name="LabelNominatedCompanyFirstName" xml:space="preserve">
+    <value>Nominated Company First Name</value>
+    <comment>Nominated Company First Name</comment>
+  </data>
+  <data name="LabelNominatedCompanyLastName" xml:space="preserve">
+    <value>Nominated Company Last Name</value>
+    <comment>Nominated Company Last Name</comment>
+  </data>
+  <data name="LabelNominatedCompanyPhone" xml:space="preserve">
+    <value>Nominated Company Phone</value>
+    <comment>Nominated Company Phone</comment>
+  </data>
+  <data name="LabelNominatedCompanyRole" xml:space="preserve">
+    <value>Nominated Company Role</value>
+    <comment>Nominated Company Role</comment>
+  </data>
+  <data name="LabelPreferredContactMethod" xml:space="preserve">
+    <value>Preferred Contact Method</value>
+    <comment>Preferred Contact Method</comment>
+  </data>
+  <data name="LabelVideoLink" xml:space="preserve">
+    <value>Video Link</value>
+    <comment>Video Link</comment>
+  </data>
+  <data name="LabelSectionIncomplete" xml:space="preserve">
+    <value>Section Incomplete</value>
+    <comment>Section Incomplete</comment>
+  </data>
+  <data name="LabelCityState" xml:space="preserve">
+    <value>City / State</value>
+    <comment>City / State</comment>
+  </data>
+  <data name="LabelAnnualRange" xml:space="preserve">
+    <value>Annual Range</value>
+    <comment>Annual Range</comment>
+  </data>
+  <data name="LabelAvailableDateFrom" xml:space="preserve">
+    <value>Availability Date From</value>
+    <comment>Availability Date From</comment>
+  </data>
+  <data name="LabelCandidates" xml:space="preserve">
+    <value>Candidates</value>
+    <comment>Candidates</comment>
+  </data>
+  <data name="LabelFilterResults" xml:space="preserve">
+    <value>Filter Results</value>
+    <comment>Filter Results</comment>
+  </data>
+  <data name="LabelHourlyRange" xml:space="preserve">
+    <value>Hourly Range</value>
+    <comment>Hourly Range</comment>
+  </data>
+  <data name="LabelYourSearchReturned" xml:space="preserve">
+    <value>Your Search Returned</value>
+    <comment>Your Search Returned</comment>
+  </data>
+  <data name="LabelAlphabeticalAscending" xml:space="preserve">
+    <value>Alphabetical Ascending</value>
+    <comment>Alphabetical Ascending</comment>
+  </data>
+  <data name="LabelAlphabeticalDescending" xml:space="preserve">
+    <value>Alphabetical Descending</value>
+    <comment>Alphabetical Descending</comment>
+  </data>
+  <data name="LabelAvailableDate" xml:space="preserve">
+    <value>Available Date</value>
+    <comment>Available Date</comment>
+  </data>
+  <data name="LabelPeopleSearch" xml:space="preserve">
+    <value>People Search</value>
+  </data>
+  <data name="LabelRecentCandidate" xml:space="preserve">
+    <value>Recent Candidate</value>
+    <comment>Recent Candidate</comment>
+  </data>
+  <data name="LabelCity" xml:space="preserve">
+    <value>City</value>
+    <comment>City</comment>
+  </data>
+  <data name="LabelRegion" xml:space="preserve">
+    <value>Region</value>
+    <comment>Region</comment>
+  </data>
+  <data name="LabelRoles" xml:space="preserve">
+    <value>Roles</value>
+    <comment>Roles</comment>
+  </data>
+  <data name="LabelReset" xml:space="preserve">
+    <value>Reset</value>
+    <comment>Reset</comment>
+  </data>
+  <data name="LabelSearch" xml:space="preserve">
+    <value>Search</value>
+    <comment>Search</comment>
+  </data>
+  <data name="LabelSalaryTypeFull" xml:space="preserve">
+    <value>Salary Type</value>
+    <comment>Salary Type</comment>
+  </data>
+  <data name="LabelWhatAreYouUpTo" xml:space="preserve">
+    <value>What are you up to?</value>
+    <comment>What are you up to?</comment>
+  </data>
+  <data name="LabelProfileDetails" xml:space="preserve">
+    <value>Profile Details</value>
+    <comment>Profile Details</comment>
+  </data>
+  <data name="LabelRegistration" xml:space="preserve">
+    <value>Registration</value>
+    <comment>Registration</comment>
+  </data>
+  <data name="LabelValidation" xml:space="preserve">
+    <value>Validation</value>
+    <comment>Validation</comment>
+  </data>
+  <data name="LabelRequiredProfileSectionsHeading" xml:space="preserve">
+    <value>Required Profile Sections left to complete?</value>
+    <comment>Required Profile Sections left to complete?</comment>
+  </data>
+  <data name="LabelNotYetSubmitted" xml:space="preserve">
+    <value>Not yet submitted</value>
+    <comment>Not yet submitted</comment>
+  </data>
+  <data name="LabelProfileStatus" xml:space="preserve">
+    <value>Profile Status</value>
+    <comment>Profile Status</comment>
+  </data>
+  <data name="LabelProfileStatusSubmittedDateFormat" xml:space="preserve">
+    <value>Submitted {0}</value>
+    <comment>Submitted {0}</comment>
+  </data>
+  <data name="LabelGraduated" xml:space="preserve">
+    <value>Graduated</value>
+    <comment>Graduated</comment>
+  </data>
+  <data name="LabelGraduatedCredits" xml:space="preserve">
+    <value>Graduated Credits</value>
+    <comment>Graduated Credits</comment>
+  </data>
+  <data name="LabelProfileMinEntries" xml:space="preserve">
+    <value>Minimum {0} entries is required</value>
+    <comment>Minimum {0} entries is required</comment>
+  </data>
+  <data name="ValidationPhoneNumbers" xml:space="preserve">
+    <value>Accepts only numbers, spaces, '+', '(' and ')'</value>
+    <comment>Accepts only numbers, spaces, '+', '(' and ')'</comment>
+  </data>
+</root>

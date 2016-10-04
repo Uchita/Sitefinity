@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sites>
+    <site>
+        <SiteId>246</SiteId>
+        <host>ftp://10.0.20.88/</host>
+        <username>JXT01-Admin</username>
+        <password>Bu4rdmG</password>
+        <sftp>0</sftp>
+        <port>21</port>
+        <LastModifiedDate></LastModifiedDate>
+        <LastExceptionApplicationID></LastExceptionApplicationID>
+        <ExceptionID></ExceptionID>
+    </site>
+
+    <site>
+        <SiteId>346</SiteId>
+        <host>ftp://10.0.20.88/</host>
+        <username>JXT01-Admin</username>
+        <password>Bu4rdmG</password>
+        <sftp>0</sftp>
+        <port>21</port>
+        <LastModifiedDate></LastModifiedDate>
+        <LastExceptionApplicationID></LastExceptionApplicationID>
+        <ExceptionID></ExceptionID>
+    </site>
+    <site>
+        <SiteId>368</SiteId>
+        <host>ftp://10.0.20.88/</host>
+        <username>JXT01-Admin</username>
+        <password>Bu4rdmG</password>
+        <sftp>0</sftp>
+        <port>21</port>
+        <LastModifiedDate></LastModifiedDate>
+        <LastExceptionApplicationID></LastExceptionApplicationID>
+        <ExceptionID></ExceptionID>
+    </site>
+    <site>
+        <SiteId>384</SiteId>
+        <host>ftp://10.0.20.88/</host>
+        <username>JXT01-Admin</username>
+        <password>Bu4rdmG</password>
+        <sftp>0</sftp>
+        <port>21</port>
+        <LastModifiedDate></LastModifiedDate>
+        <LastExceptionApplicationID></LastExceptionApplicationID>
+        <ExceptionID></ExceptionID>
+    </site>
+</sites>

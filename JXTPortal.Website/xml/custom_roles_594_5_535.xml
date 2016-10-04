@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<items>
+  <item>
+    <id>4407</id>
+    <name>Account Manager 1</name>
+  </item>
+  <item>
+    <id>4408</id>
+    <name>Travel Industry Manager 2</name>
+  </item>
+  <item>
+    <id>4409</id>
+    <name>Agency Sales Manager</name>
+  </item>
+  <item>
+    <id>4410</id>
+    <name>Marketing Manager</name>
+  </item>
+  <item>
+    <id>4411</id>
+    <name>BDM</name>
+  </item>
+  <item>
+    <id>4412</id>
+    <name>Director Sales &amp; Marketing</name>
+  </item>
+  <item>
+    <id>4413</id>
+    <name>Operations</name>
+  </item>
+  <item>
+    <id>4414</id>
+    <name>Fleet Controller</name>
+  </item>
+  <item>
+    <id>4415</id>
+    <name>General Management/Executive</name>
+  </item>
+  <item>
+    <id>4416</id>
+    <name>HR &amp; Finance</name>
+  </item>
+  <item>
+    <id>4417</id>
+    <name>Other</name>
+  </item>
+</items>

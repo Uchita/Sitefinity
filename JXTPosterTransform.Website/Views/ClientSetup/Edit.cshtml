@@ -1,0 +1,402 @@
+﻿@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    bool isCreate = Model.setupID == null;
+}
+@using JXTPosterTransform.Website.Models
+@using JXTPosterTransform.Library.Common
+@using System.Web.Script.Serialization
+@using System.Text
+@using System.ComponentModel
+@using System.Reflection
+@model ClientSetupDisplayModel
+<div>
+    <h1 class="page-header">
+        @(isCreate ? "Create" : "Edit")
+        Client Setup</h1>
+</div>
+<div class="col-xs-12">
+    @Html.Raw(ViewBag.Message)
+    <form action="@Request.RawUrl" method="post">
+    @if (!isCreate)
+    {
+        <div class="form-group col-xs-6">
+            <label class="control-label">
+                Client Setup ID</label>
+            @Model.setupID
+            <input type="hidden" name="setupID" value="@Model.setupID" />
+        </div>
+        <div class="form-group col-xs-6">
+            <label class="control-label">
+                Mappings</label>
+            <div>
+                <a href="/mappings/countrylocarea/@Model.clientID">CLA</a> 
+                <a href="/mappings/professionrole/@Model.clientID">PR</a> 
+                <a href="/mappings/worktype/@Model.clientID">WT</a>
+                <a href="/mappings/jobtemplate/@Model.clientID/@Model.setupID">JT</a> 
+                <a href="/mappings/templatelogo/@Model.clientID/@Model.setupID">JTL</a>
+            </div>
+        </div>
+    }
+    <div class="form-group">
+        <label class="control-label">
+            Client</label>
+        @Model.clientName ( ID: @Model.clientID )
+    </div>
+    <div class="form-group @(new MvcHtmlString(ViewData.ModelState.HasModelStateError("name") ? "has-error" : string.Empty))">
+        <label class="control-label">
+            Setup Name</label>
+        <input type="text" class="form-control" name="setupName" value="@Model.setupName" />
+        @Html.ValidationMessageFor(c => c.setupName)
+    </div>
+    <div class="form-group">
+        <label class="control-label">
+            Description</label>
+        <textarea class="form-control" name="setupDescription">@Model.setupDescription</textarea>
+        @Html.ValidationMessageFor(c => c.setupDescription)
+    </div>
+    <div class="col-md-12">
+        <h3>
+            Advertiser Settings</h3>
+        <div class="form-group col-md-2">
+            <label class="control-label">
+                Advertiser ID</label>
+            <input type="text" class="form-control" name="advertiserID" value="@Model.advertiserID" />
+            @Html.ValidationMessageFor(c => c.advertiserID)
+        </div>
+        <div class="form-group col-md-4">
+            <label class="control-label">
+                Username</label>
+            <input type="text" class="form-control" name="advertiserUsername" value="@Model.advertiserUsername" />
+            @Html.ValidationMessageFor(c => c.advertiserUsername)
+        </div>
+        <div class="form-group col-md-4">
+            <label class="control-label">
+                Password</label>
+            <input type="text" class="form-control" name="advertiserPassword" value="@Model.advertiserPassword" placeholder="@(!string.IsNullOrEmpty(Model.advertiserPassword) ? "******" : string.Empty)" />
+            @Html.ValidationMessageFor(c => c.advertiserPassword)
+        </div>
+        <div class="form-group col-md-2">
+            <label class="control-label">
+                Archive Missing Jobs</label>
+            <select class="form-control" name="ArchiveMissingJobs">
+                <option value="false" @(new MvcHtmlString(Model.ArchiveMissingJobs == false ? @"selected=""selected""" : string.Empty))>
+                    No</option>
+                <option value="true" @(new MvcHtmlString(Model.ArchiveMissingJobs == true ? @"selected=""selected""" : string.Empty))>
+                    Yes</option>
+            </select>
+        </div>
+        <div class="clearfix">
+        </div>
+    </div>
+    <div class="col-md-12">
+        <h3>
+            Setup Settings</h3>
+        <div class="form-group col-md-6">
+            <label class="control-label">
+                Type</label>
+            <select id="setupType" class="form-control" name="setupType" onchange="setupTypeOnChange()">
+                @foreach (PTCommonEnums.ClientSetup.ClientSetupType v in Enum.GetValues(typeof(PTCommonEnums.ClientSetup.ClientSetupType)))
+                {                    
+                    <option value="@v" @(v == Model.setupType ? @"selected=""selected""" : string.Empty) >@JXTPosterTransform.Website.Logics.FrontEndHelper.GetEnumDescription(v)</option>
+                }
+            </select>
+            @Html.ValidationMessageFor(c => c.setupType)
+        </div>
+        <div class="form-group col-md-6">
+            <label class="control-label">
+                Poster Transform</label>
+            <select name="posterTransformID" class="form-control">
+                @foreach (PosterTransformModel pt in Model.available_PT)
+                {
+                    <option value="@pt.PTID" @(new MvcHtmlString(Model.posterTransformID.HasValue && Model.posterTransformID == pt.PTID ? @"selected=""selected""" : string.Empty))>@pt.PTName</option>
+                }
+            </select>
+            @Html.ValidationMessageFor(c => c.available_PT)
+        </div>
+        <div class="clearfix">
+        </div>
+        <div class="form-group col-md-6">
+            <label class="control-label">
+                Status</label>
+            <select class="form-control" name="validStatus">
+                @foreach (PTCommonEnums.ClientSetup.Valid v in Enum.GetValues(typeof(PTCommonEnums.ClientSetup.Valid)))
+                {
+                    <option value="@v" @(v == Model.validStatus ? @"selected=""selected""" : string.Empty)>@FrontEndHelper.GetEnumDescription(v)</option>
+                }
+            </select>
+            @Html.ValidationMessageFor(c => c.validStatus)
+        </div>
+        <div class="form-group col-md-6">
+            <label class="control-label">
+                Timeslot</label>
+            <select class="form-control" name="timeslot">
+                <option value="30" @(new MvcHtmlString(Model.timeslot == 30 ? @"selected=""selected""" : string.Empty))>
+                    30 mins</option>
+                <option value="60" @(new MvcHtmlString(Model.timeslot == 60 ? @"selected=""selected""" : string.Empty))>
+                    1 hour</option>
+                <option value="120" @(new MvcHtmlString(Model.timeslot == 120 ? @"selected=""selected""" : string.Empty))>
+                    2 hours</option>
+                <option value="180" @(new MvcHtmlString(Model.timeslot == 180 ? @"selected=""selected""" : string.Empty))>
+                    3 hours</option>
+                <option value="240" @(new MvcHtmlString(Model.timeslot == 240 ? @"selected=""selected""" : string.Empty))>
+                    4 hours</option>
+                <option value="300" @(new MvcHtmlString(Model.timeslot == 300 ? @"selected=""selected""" : string.Empty))>
+                    5 hours</option>
+                <option value="360" @(new MvcHtmlString(Model.timeslot == 360 ? @"selected=""selected""" : string.Empty))>
+                    6 hours</option>
+                <option value="720" @(new MvcHtmlString(Model.timeslot == 720 ? @"selected=""selected""" : string.Empty))>
+                    12 hours</option>
+                <option value="1440" @(new MvcHtmlString(Model.timeslot == 1440 ? @"selected=""selected""" : string.Empty))>
+                    24 hours</option>
+            </select>
+        </div>
+        <div class="clearfix">
+        </div>
+        <div class="form-group">
+            <div class="typeForm hide" id="type@(PTCommonEnums.ClientSetup.ClientSetupType.PullXmlFromUrl)">
+                <h3>
+                    Pull XML From URL</h3>
+                <div class="form-group col-md-6">
+                    <label class="control-label">
+                        URL Target</label>
+                    <input type="text" id="PullXmlFromUrl.URL" class="form-control" name="PullXmlFromUrl.URL"
+                        textmode="SingleLine" autocomplete="off" value="@Model.PullXmlFromUrl.URL" />
+                </div>
+            </div>
+            <div class="typeForm hide" id="type@(PTCommonEnums.ClientSetup.ClientSetupType.PullXmlFromUrlWithAuth)">
+                <h3>
+                    Pull XML From URL With Auth</h3>
+                <div class="form-group col-md-6">
+                    <label class="control-label">
+                        Full file name</label>
+                    <input type="text" id="PullXmlFromUrlWithAuth.Filename" class="form-control" name="PullXmlFromUrlWithAuth.Filename"
+                        textmode="SingleLine" autocomplete="off" value="@Model.PullXmlFromUrlWithAuth.Filename"/>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="control-label">
+                        File starts with</label>
+                    <input type="text" id="PullXmlFromUrlWithAuth.FileStartsWith" class="form-control"
+                        name="PullXmlFromUrlWithAuth.FileStartsWith" textmode="SingleLine" autocomplete="off" value="@Model.PullXmlFromUrlWithAuth.FileStartsWith"/>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="control-label">
+                        Host</label>
+                    <input type="text" id="PullXmlFromUrlWithAuth.Host" class="form-control" name="PullXmlFromUrlWithAuth.Host"
+                        textmode="SingleLine" autocomplete="off" value="@Model.PullXmlFromUrlWithAuth.Host"/>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="control-label">
+                        Username</label>
+                    <input type="text" id="PullXmlFromUrlWithAuth.Username" class="form-control" name="PullXmlFromUrlWithAuth.Username"
+                        textmode="SingleLine" autocomplete="off" value="@Model.PullXmlFromUrlWithAuth.Username"/>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="control-label">
+                        Password</label>
+                    <input type="text" id="PullXmlFromUrlWithAuth.Password" class="form-control" name="PullXmlFromUrlWithAuth.Password"
+                        textmode="SingleLine" autocomplete="off" value="@Model.PullXmlFromUrlWithAuth.Password" placeholder="@(!string.IsNullOrEmpty(Model.PullXmlFromUrlWithAuth.Password) ? "******" : string.Empty)"  />
+                </div>
+            </div>
+            <div class="typeForm hide" id="type@(PTCommonEnums.ClientSetup.ClientSetupType.PullXmlFromFTP)">
+                <h3>
+                    Pull XML From FTP</h3>
+                <div class="form-group col-md-4">
+                    <label class="control-label">
+                        FTP Host</label>
+                    <input type="text" id="PullXmlFromFTP.Host" class="form-control" name="PullXmlFromFTP.Host"
+                        textmode="SingleLine" autocomplete="off" value="@Model.PullXmlFromFTP.Host"/>
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="control-label">
+                        FTP Username</label>
+                    <input type="text" id="PullXmlFromFTP.Username" class="form-control" name="PullXmlFromFTP.Username"
+                        textmode="SingleLine" autocomplete="off" value="@Model.PullXmlFromFTP.Username"/>
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="control-label">
+                        FTP Password</label>
+                    <input type="text" id="PullXmlFromFTP.Password" class="form-control" name="PullXmlFromFTP.Password"
+                        textmode="SingleLine" autocomplete="off" value="@Model.PullXmlFromFTP.Password" placeholder="@(!string.IsNullOrEmpty(Model.PullXmlFromFTP.Password) ? "******" : string.Empty)"/>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="control-label">
+                        Remote Path</label>
+                    <input type="text" id="PullXmlFromFTP.RemotePath" class="form-control" name="PullXmlFromFTP.RemotePath"
+                        textmode="SingleLine" autocomplete="off" value="@Model.PullXmlFromFTP.RemotePath"/>
+                </div>
+                <div class="clearfix">
+                </div>
+                <div class="form-group col-md-5">
+                    <label class="control-label">
+                        Full file name</label>
+                    <input type="text" id="PullXmlFromFTP.Filename" class="form-control" name="PullXmlFromFTP.Filename"
+                        textmode="SingleLine" autocomplete="off" value="@Model.PullXmlFromFTP.Filename"/>
+                </div>
+                <div class="form-group col-md-2 text-center">
+                    <label class="control-label">
+                    </label>
+                    <br />
+                    <strong>OR</strong>
+                </div>
+                <div class="form-group col-md-5">
+                    <label class="control-label">
+                        File starts with</label>
+                    <input type="text" id="PullXmlFromFTP.FileStartsWith" class="form-control" name="PullXmlFromFTP.FileStartsWith"
+                        textmode="SingleLine" autocomplete="off" value="@Model.PullXmlFromFTP.FileStartsWith"/>
+                </div>
+            </div>
+            <div class="typeForm hide" id="type@(PTCommonEnums.ClientSetup.ClientSetupType.PullXmlFromSFTP)">
+                <h3>
+                    Pull XML From URL SFTP</h3>
+                <div class="form-group col-md-4">
+                    <label class="control-label">
+                        FTP Host</label>
+                    <input type="text" id="PullXmlFromSFTP.Host" class="form-control" name="PullXmlFromSFTP.Host"
+                        textmode="SingleLine" autocomplete="off" value="@Model.PullXmlFromSFTP.Host" />
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="control-label">
+                        FTP Username</label>
+                    <input type="text" id="PullXmlFromSFTP.Username" class="form-control" name="PullXmlFromSFTP.Username"
+                        textmode="SingleLine" autocomplete="off" value="@Model.PullXmlFromSFTP.Username" />
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="control-label">
+                        FTP Password</label>
+                    <input type="text" id="PullXmlFromSFTP.Password" class="form-control" name="PullXmlFromSFTP.Password"
+                        textmode="SingleLine" autocomplete="off" value="@Model.PullXmlFromSFTP.Password"  placeholder="@(!string.IsNullOrEmpty(Model.PullXmlFromSFTP.Password) ? "******" : string.Empty)"/>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="control-label">
+                        Remote Path</label>
+                    <input type="text" id="PullXmlFromSFTP.RemotePath" class="form-control" name="PullXmlFromSFTP.RemotePath"
+                        textmode="SingleLine" autocomplete="off" value="@Model.PullXmlFromSFTP.RemotePath"/>
+                </div>
+                <div class="clearfix">
+                </div>
+                <div class="form-group col-md-5">
+                    <label class="control-label">
+                        Full file name</label>
+                    <input type="text" id="PullXmlFromSFTP.Filename" class="form-control" name="PullXmlFromSFTP.Filename"
+                        textmode="SingleLine" autocomplete="off" value="@Model.PullXmlFromSFTP.Filename"/>
+                </div>
+                <div class="form-group col-md-2 text-center">
+                    <label class="control-label">
+                    </label>
+                    <br />
+                    <strong>OR</strong>
+                </div>
+                <div class="form-group col-md-5">
+                    <label class="control-label">
+                        File starts with</label>
+                    <input type="text" id="PullXmlFromSFTP.FileStartsWith" class="form-control" name="PullXmlFromSFTP.FileStartsWith"
+                        textmode="SingleLine" autocomplete="off" value="@Model.PullXmlFromSFTP.FileStartsWith" />
+                </div>
+            </div>
+
+            <div class="typeForm hide" id="type@(PTCommonEnums.ClientSetup.ClientSetupType.PullXmlFromRGF)">
+                <h3>
+                    Pull XML From Salesforce (RGF)</h3>
+                
+                <div class="form-group col-md-6">
+                    <label class="control-label">
+                        Job Board Name</label>
+                    <input type="text" id="PullXmlRGF.JobBoardName" class="form-control" name="PullXmlRGF.JobBoardName"
+                        textmode="SingleLine" autocomplete="off" value="@Model.PullXmlRGF.JobBoardName"/>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="control-label">
+                        Host URL</label>
+                    <input type="text" id="PullXmlRGF.Host" class="form-control" name="PullXmlRGF.Host"
+                        textmode="SingleLine" autocomplete="off" value="@Model.PullXmlRGF.Host"/>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="control-label">
+                        Salesforce Token Request URL</label>
+                    <input type="text" id="PullXmlRGF.SFTokenReqURL" class="form-control" name="PullXmlRGF.SFTokenReqURL"
+                        textmode="SingleLine" autocomplete="off" value="@Model.PullXmlRGF.SFTokenReqURL" placeholder=""  />
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="control-label">
+                        Timestamp (in seconds) for Next request <a href="http://www.unixtimestamp.com/index.php" target="_blank">(click for converter)</a></label>
+                    <input type="text" id="PullXmlRGF.Timestamp" class="form-control" name="PullXmlRGF.Timestamp"
+                        textmode="SingleLine" autocomplete="off" value="@Model.PullXmlRGF.Timestamp" placeholder=""  />
+                </div>
+                <div class="form-group col-md-12">
+                    <label class="control-label">
+                        Application URL (with replaceable tags named from model eg. {JobNumber})</label>
+                    <input type="text" id="PullXmlRGF.ApplicationURL" class="form-control" name="PullXmlRGF.ApplicationURL"
+                        textmode="SingleLine" autocomplete="off" value="@Model.PullXmlRGF.ApplicationURL" placeholder=""  />
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="control-label">
+                        SF ClientID</label>
+                    <input type="text" id="PullXmlRGF.SFClientID" class="form-control" name="PullXmlRGF.SFClientID"
+                        textmode="SingleLine" autocomplete="off" value="@Model.PullXmlRGF.SFClientID"/>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="control-label">
+                        SF Client Secret</label>
+                    <input type="text" id="PullXmlRGF.SFClientSecret" class="form-control" name="PullXmlRGF.SFClientSecret"
+                        textmode="SingleLine" autocomplete="off" value="@Model.PullXmlRGF.SFClientSecret" placeholder=""  />
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="control-label">
+                        SF Username</label>
+                    <input type="text" id="PullXmlRGF.Username" class="form-control" name="PullXmlRGF.Username"
+                        textmode="SingleLine" autocomplete="off" value="@Model.PullXmlRGF.Username"/>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="control-label">
+                        SF Password</label>
+                    <input type="text" id="PullXmlRGF.Password" class="form-control" name="PullXmlRGF.Password"
+                        textmode="SingleLine" autocomplete="off" value="@Model.PullXmlRGF.Password" placeholder="@(!string.IsNullOrEmpty(Model.PullXmlRGF.Password) ? "******" : string.Empty)"  />
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="control-label">
+                        Strip Job Title <small>'[Text1] Text2 || Text3' will become 'Text2'</small></label>
+                    <input type="checkbox" id="PullXmlRGF.StripJobTitle" class="form-control" name="PullXmlRGF.StripJobTitle" @(new MvcHtmlString(Model.PullXmlRGF.StripJobTitle ? @"checked=""checked""" : string.Empty)) value="true"/>
+                </div>
+            </div>
+
+        </div>
+        <div class="clearfix">
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <div class="form-group text-center">
+            <button type="submit" class="btn btn-primary">
+                @(isCreate ? "Create" : "Update")</button>
+        </div>
+    </div>
+    <div class="clearfix">
+    </div>
+    </form>
+</div>
+<div class="clearfix">
+</div>
+@section scripts
+{
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+            //init
+            setupTypeOnChange();
+        });
+
+        function setupTypeOnChange() {
+
+            $(".typeForm").addClass("hide");
+
+            var selectedTypeID = $("#setupType").val();
+
+            $("#type" + selectedTypeID).removeClass("hide");
+
+        }
+
+
+    
+    </script>
+}

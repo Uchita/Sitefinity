@@ -1,0 +1,4190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ButtonAdvertiserUsers" xml:space="preserve">
+    <value>Agregar nuevo</value>
+    <comment>Add New</comment>
+  </data>
+  <data name="ButtonApplyFilter" xml:space="preserve">
+    <value>Aplicar filtro</value>
+    <comment>Apply Filter</comment>
+  </data>
+  <data name="ButtonBack" xml:space="preserve">
+    <value>Atrás</value>
+    <comment>Back</comment>
+  </data>
+  <data name="ButtonCancel" xml:space="preserve">
+    <value>Cancelar</value>
+    <comment>Cancel</comment>
+  </data>
+  <data name="ButtonContinue" xml:space="preserve">
+    <value>Continuar</value>
+    <comment>Continue</comment>
+  </data>
+  <data name="ButtonCreateJobAlert" xml:space="preserve">
+    <value>Crear una alerta de trabajo</value>
+    <comment>Create Job Alert</comment>
+  </data>
+  <data name="ButtonInsert" xml:space="preserve">
+    <value>Insertar</value>
+    <comment>Insert</comment>
+  </data>
+  <data name="ButtonNewSearch" xml:space="preserve">
+    <value>Nueva búsqueda</value>
+    <comment>New Search</comment>
+  </data>
+  <data name="ButtonNoCoverLetter" xml:space="preserve">
+    <value>Sin carta de presentación </value>
+    <comment>No Cover Letter</comment>
+  </data>
+  <data name="ButtonNoResume" xml:space="preserve">
+    <value>No reanudar</value>
+    <comment>No Resume</comment>
+  </data>
+  <data name="ButtonRegister" xml:space="preserve">
+    <value>Registro</value>
+    <comment>Register</comment>
+  </data>
+  <data name="ButtonRenewJob" xml:space="preserve">
+    <value>Restablecer Trabajo</value>
+    <comment>Renew Job</comment>
+  </data>
+  <data name="ButtonReset" xml:space="preserve">
+    <value>Reiniciar</value>
+    <comment>Reset</comment>
+  </data>
+  <data name="ButtonRSSFeed" xml:space="preserve">
+    <value>Feed RSS </value>
+    <comment>RSS Feed</comment>
+  </data>
+  <data name="ButtonSave" xml:space="preserve">
+    <value>Guardar</value>
+    <comment>Save</comment>
+  </data>
+  <data name="ButtonSaveSelected" xml:space="preserve">
+    <value>Guardar selección</value>
+    <comment>Save Selected</comment>
+  </data>
+  <data name="ButtonSearch" xml:space="preserve">
+    <value>Buscar</value>
+    <comment>Search</comment>
+  </data>
+  <data name="ButtonSelect" xml:space="preserve">
+    <value>Seleccionar</value>
+    <comment>Select</comment>
+  </data>
+  <data name="ButtonSend" xml:space="preserve">
+    <value>Enviar</value>
+    <comment>Send</comment>
+  </data>
+  <data name="ButtonSubmit" xml:space="preserve">
+    <value>Botón Publicar</value>
+    <comment>Button - Submit</comment>
+  </data>
+  <data name="ButtonUpdate" xml:space="preserve">
+    <value>Actualizar</value>
+    <comment>Update</comment>
+  </data>
+  <data name="ButtonUploadCoverLetterNow" xml:space="preserve">
+    <value>Sube una carta de presentación desde mi computadora</value>
+    <comment>Upload a cover letter from my computer</comment>
+  </data>
+  <data name="ButtonUploadResumeNow" xml:space="preserve">
+    <value>Sube un curriculum desde mi computadora</value>
+    <comment>Upload a resume from my computer</comment>
+  </data>
+  <data name="ButtonUseMyProfile" xml:space="preserve">
+    <value>Utilizar mi perfil</value>
+    <comment>Use my profile</comment>
+  </data>
+  <data name="ButtonWriteOneNow" xml:space="preserve">
+    <value>Voy a escribir uno ahora</value>
+    <comment>I'll write one now</comment>
+  </data>
+  <data name="cbAuditCommittee" xml:space="preserve">
+    <value>Comité de Auditoría</value>
+    <comment>Audit Committee</comment>
+  </data>
+  <data name="cbNominationsCommittee" xml:space="preserve">
+    <value>Comité de nominaciones</value>
+    <comment>Nominations Committee</comment>
+  </data>
+  <data name="cbOHSCommittee" xml:space="preserve">
+    <value>Comité de SST</value>
+    <comment>OH&amp;S Committee</comment>
+  </data>
+  <data name="cbOther" xml:space="preserve">
+    <value>Otro</value>
+    <comment>Other</comment>
+  </data>
+  <data name="cbRemunerationCommittee" xml:space="preserve">
+    <value>Comité de remuneración</value>
+    <comment>Remuneration Committee</comment>
+  </data>
+  <data name="cbRiskCommittee" xml:space="preserve">
+    <value>Comité de Riesgos</value>
+    <comment>Risk Committee</comment>
+  </data>
+  <data name="ConfirmDeleteJob" xml:space="preserve">
+    <value>¿Está seguro que desea eliminar este anuncio de proyecto?</value>
+    <comment>Are you sure you wish to permanently delete this draft ad?</comment>
+  </data>
+  <data name="ConfirmExpireJob" xml:space="preserve">
+    <value>¿Está seguro de que desea concluir este trabajo?</value>
+    <comment>Are you sure you wish to expire this job?</comment>
+  </data>
+  <data name="DDLAscending" xml:space="preserve">
+    <value>Ascendente</value>
+    <comment>Ascending</comment>
+  </data>
+  <data name="DDLDatePosted" xml:space="preserve">
+    <value>Fecha de publicación</value>
+    <comment>Date Posted</comment>
+  </data>
+  <data name="DDLDaysTillExpiry" xml:space="preserve">
+    <value>Días hasta el vencimiento</value>
+    <comment>Days Till Expiry</comment>
+  </data>
+  <data name="DDLDescending" xml:space="preserve">
+    <value>Descendente</value>
+    <comment>Descending</comment>
+  </data>
+  <data name="DDLJobTitle" xml:space="preserve">
+    <value>Cargo</value>
+    <comment>Job Title</comment>
+  </data>
+  <data name="DDLNumberOfApplications" xml:space="preserve">
+    <value>Número de Aplicaciones</value>
+    <comment>Number of Applications</comment>
+  </data>
+  <data name="DDLNumberOfViews" xml:space="preserve">
+    <value>Número de visitas</value>
+    <comment>Number of Views</comment>
+  </data>
+  <data name="DDLOneDay" xml:space="preserve">
+    <value>1 día</value>
+    <comment>1 Day</comment>
+  </data>
+  <data name="DDLOneMonth" xml:space="preserve">
+    <value>1 mes</value>
+    <comment>1 Month</comment>
+  </data>
+  <data name="DDLOneWeek" xml:space="preserve">
+    <value>1 semana</value>
+    <comment>1 Week</comment>
+  </data>
+  <data name="DDLRefNo" xml:space="preserve">
+    <value>Número de referencia</value>
+    <comment>Ref No</comment>
+  </data>
+  <data name="DDLSixMonths" xml:space="preserve">
+    <value>6 meses</value>
+    <comment>6 Months</comment>
+  </data>
+  <data name="DDLThreeMonths" xml:space="preserve">
+    <value>3 meses</value>
+    <comment>3 Months</comment>
+  </data>
+  <data name="ErrorAcceptTermCondition" xml:space="preserve">
+    <value>Por favor, acepte los Términos y Condiciones</value>
+    <comment>Please accept Terms and Conditions</comment>
+  </data>
+  <data name="ErrorBulletPointSize" xml:space="preserve">
+    <value>el tamaño del concepto fundamental no puede exceder de 160 caracteres</value>
+    <comment>Bullet Point size cannot exceed 160 characters</comment>
+  </data>
+  <data name="ErrorConfirmPasswordNotMatch" xml:space="preserve">
+    <value>Confirmar contraseña, no coincide</value>
+    <comment>Confirm password doesn't not match</comment>
+  </data>
+  <data name="ErrorCoverLetterEmpty" xml:space="preserve">
+    <value>La carta de presentación no puede estar vacía.</value>
+    <comment>Cover Letter cannot be empty.</comment>
+  </data>
+  <data name="ErrorEmptyContent" xml:space="preserve">
+    <value>El contenido no debe estar vacío</value>
+    <comment>Content must not be empty</comment>
+  </data>
+  <data name="ErrorEnsureDocumentSelected" xml:space="preserve">
+    <value>Por favor asegúrese de que ha seleccionado un documento para cargar</value>
+    <comment>Please ensure you have selected a document to upload</comment>
+  </data>
+  <data name="ErrorEnterDetailAgain" xml:space="preserve">
+    <value>Lo sentimos, no hemos podido recuperar sus datos. Por favor, compruebe los datos que ha introducido y vuelva a intentarlo.</value>
+    <comment>Sorry, we were unable to retrieve your details. Please check the details you entered and try again.</comment>
+  </data>
+  <data name="ErrorEnterEmailUsername" xml:space="preserve">
+    <value>Por favor, rellene nombre de usuario o dirección de correo electrónico</value>
+    <comment>Please fill in username or email address</comment>
+  </data>
+  <data name="ErrorEnterKeyword" xml:space="preserve">
+    <value>Por favor seleccione el criterio de búsqueda.</value>
+    <comment>Please select the criteria to search.</comment>
+  </data>
+  <data name="ErrorFileExist" xml:space="preserve">
+    <value>El archivo ya existe, por favor seleccione otro archivo o cambie el nombre del archivo</value>
+    <comment>File already exists, please select another file or change the file name</comment>
+  </data>
+  <data name="ErrorFileExtension" xml:space="preserve">
+    <value>La extensión del tipo de archivo no es aceptado</value>
+    <comment>File type extension is not accepted</comment>
+  </data>
+  <data name="ErrorImageExceed" xml:space="preserve">
+    <value>La imagen cargada supera el límite máximo de 1Mb.</value>
+    <comment>The uploaded image exceeds the maximum 1Mb limit.</comment>
+  </data>
+  <data name="ErrorImageExtension" xml:space="preserve">
+    <value>La extensión de la imagen cargada '</value>
+    <comment>The uploaded image extension '</comment>
+  </data>
+  <data name="ErrorImageInvalidSize" xml:space="preserve">
+    <value>La imagen cargada tiene un tamaño no válido. Por favor, compruebe la imagen y vuelve a intentarlo.</value>
+    <comment>The uploaded image has an invalid size. Please check the image and try again.</comment>
+  </data>
+  <data name="ErrorImageNoExtension" xml:space="preserve">
+    <value>La imagen cargada no tiene extensión</value>
+    <comment>The uploaded image has no extension</comment>
+  </data>
+  <data name="ErrorIncorrectCurrentPassword" xml:space="preserve">
+    <value>Contraseña actual incorrecta</value>
+    <comment>Incorrect current password</comment>
+  </data>
+  <data name="ErrorInvalidFileType" xml:space="preserve">
+    <value>Tipo de archivo inválido</value>
+    <comment>Invalid File Type</comment>
+  </data>
+  <data name="ErrorKeywordSize" xml:space="preserve">
+    <value>Tamaño de la palabra clave no puede superar los 1000 caracteres</value>
+    <comment>Keyword size cannot exceed 1000 characters</comment>
+  </data>
+  <data name="ErrorNoAdvertiserFound" xml:space="preserve">
+    <value>No se encuentra ningún usuario anunciante</value>
+    <comment>No Advertiser User is found</comment>
+  </data>
+  <data name="ErrorNoMemberFound" xml:space="preserve">
+    <value>Ningún miembro es encontrado</value>
+    <comment>No Member is Found</comment>
+  </data>
+  <data name="ErrorNotAccepted" xml:space="preserve">
+    <value>No es aceptable</value>
+    <comment>' is not acceptable</comment>
+  </data>
+  <data name="ErrorPhoneSize" xml:space="preserve">
+    <value>El teléfono no puede superar los 40 caracteres</value>
+    <comment>Phone cannot exceed 40 characters</comment>
+  </data>
+  <data name="ErrorRequired" xml:space="preserve">
+    <value>Requerido</value>
+    <comment>Required</comment>
+  </data>
+  <data name="ErrorUsernameExist" xml:space="preserve">
+    <value>Nombre de usuario ya existe</value>
+    <comment>User Name already exists</comment>
+  </data>
+  <data name="LabeAddLanguage" xml:space="preserve">
+    <value>Agregar idioma</value>
+    <comment>Add Language</comment>
+  </data>
+  <data name="LabelAcceptTermCondition" xml:space="preserve">
+    <value>Acepto los términos y condiciones</value>
+    <comment>I Accept the Terms and Conditions</comment>
+  </data>
+  <data name="LabelAccessDenied" xml:space="preserve">
+    <value>Acceso denegado. Credenciales no válidas.</value>
+    <comment>Access Denied. Invalid Credentials.</comment>
+  </data>
+  <data name="LabelAccount" xml:space="preserve">
+    <value>Cuenta</value>
+    <comment>Account</comment>
+  </data>
+  <data name="LabelAccountLocked" xml:space="preserve">
+    <value>Las credenciales suministradas no son válidas. La cuenta ha sido bloqueada temporalmente. Por favor, inténtelo de nuevo en "60 minutos" o póngase en contacto con el administrador de su sistema.</value>
+    <comment>The supplied credentials are invalid. Account has been temporarily locked. Please try again in “60 mins” or contact your system administrator.</comment>
+  </data>
+  <data name="LabelAccountNumber" xml:space="preserve">
+    <value>Número de cuenta</value>
+    <comment>Account Number</comment>
+  </data>
+  <data name="LabelAccountsPayableEmail" xml:space="preserve">
+    <value>Cuentas por pagar de correo electrónico</value>
+    <comment>Accounts Payable Email</comment>
+  </data>
+  <data name="LabelAccountType" xml:space="preserve">
+    <value>Tipo de cuenta</value>
+    <comment>Account Type</comment>
+  </data>
+  <data name="LabelAction" xml:space="preserve">
+    <value>Acción</value>
+    <comment>Action</comment>
+  </data>
+  <data name="LabelActions" xml:space="preserve">
+    <value>Acciones</value>
+    <comment>Actions</comment>
+  </data>
+  <data name="LabelAdd" xml:space="preserve">
+    <value>Añadir</value>
+    <comment>Add</comment>
+  </data>
+  <data name="LabelAddAnEntry" xml:space="preserve">
+    <value>Añadir una entrada</value>
+    <comment>Add An Entry</comment>
+  </data>
+  <data name="LabelAddAnotherDirectorship" xml:space="preserve">
+    <value>Añadir otra experiencia</value>
+    <comment>Add Another Experience</comment>
+  </data>
+  <data name="LabelAddAnotherExperience" xml:space="preserve">
+    <value>Añadir otra experiencia</value>
+    <comment>Add Another Experience</comment>
+  </data>
+  <data name="LabelAddAnotherQualification" xml:space="preserve">
+    <value>Añadir otra calificación</value>
+    <comment>Add Another Qualification</comment>
+  </data>
+  <data name="LabelAddCertificateMembership" xml:space="preserve">
+    <value>Agregar certificado &amp; amp; Afiliación</value>
+    <comment>Add Certificate &amp;amp; Membership</comment>
+  </data>
+  <data name="LabelAddDirectorship" xml:space="preserve">
+    <value>Añadir Directiva</value>
+    <comment>Add Directorship</comment>
+  </data>
+  <data name="LabelAdditionalDocuments" xml:space="preserve">
+    <value>Documentos adicionales</value>
+    <comment>Additional Documents</comment>
+  </data>
+  <data name="LabelAdditionalRolesAndResponsibilities" xml:space="preserve">
+    <value>Los roles y responsabilidades adicionales</value>
+    <comment>Additional Roles and responsibilities</comment>
+  </data>
+  <data name="LabelAddLicense" xml:space="preserve">
+    <value>Agregar licencia</value>
+    <comment>Add License</comment>
+  </data>
+  <data name="LabelAddMailingAddress" xml:space="preserve">
+    <value>Agregar Dirección de Correo</value>
+    <comment>Add Mailing Address</comment>
+  </data>
+  <data name="LabelAddReference" xml:space="preserve">
+    <value>Agregar referencia</value>
+    <comment>Add Reference</comment>
+  </data>
+  <data name="LabelAddress" xml:space="preserve">
+    <value>Dirección</value>
+    <comment>Address</comment>
+  </data>
+  <data name="LabelAddSkill" xml:space="preserve">
+    <value>Añadir Habilidad</value>
+    <comment>Add Skill</comment>
+  </data>
+  <data name="LabelAddSkillAlreadyExist" xml:space="preserve">
+    <value>Habilidad ya existe</value>
+    <comment>Skill already exists</comment>
+  </data>
+  <data name="LabelAddYourSkill" xml:space="preserve">
+    <value>Añadir su habilidad</value>
+    <comment>Add Your Skill</comment>
+  </data>
+  <data name="LabelAdvanced" xml:space="preserve">
+    <value>Avanzado</value>
+    <comment>Advanced</comment>
+  </data>
+  <data name="LabelAdvertiser" xml:space="preserve">
+    <value>Anunciante</value>
+    <comment>Advertiser</comment>
+  </data>
+  <data name="LabelAdvertiserEditSuccess" xml:space="preserve">
+    <value>Detalles de la cuenta se han enviado correctamente.</value>
+    <comment>Account details have been submitted successfully.</comment>
+  </data>
+  <data name="LabelAdvertiserInvalid" xml:space="preserve">
+    <value>Falló validación del anunciante  </value>
+    <comment>Advertiser validation failed.</comment>
+  </data>
+  <data name="LabelAdvertiserJobTemplateLogo" xml:space="preserve">
+    <value>Logotipo de plantillas del cargo anunciante</value>
+    <comment>Advertiser Job Template Logo</comment>
+  </data>
+  <data name="LabelAdvertiserJobTemplateLogoID" xml:space="preserve">
+    <value>Logotipo de plantilla de identificación</value>
+    <comment>Template Logo ID</comment>
+  </data>
+  <data name="LabelAdvertiserJobTemplateLogoName" xml:space="preserve">
+    <value>Nombre de la imagen / logotipo</value>
+    <comment>Name of Image/Logo</comment>
+  </data>
+  <data name="LabelAdvertiserJobTemplateLogoSelectDoc" xml:space="preserve">
+    <value>Subir archivo</value>
+    <comment>Upload file</comment>
+  </data>
+  <data name="LabelAdvertiserUser" xml:space="preserve">
+    <value>Usuario anunciante</value>
+    <comment>Advertiser User</comment>
+  </data>
+  <data name="LabelAdvertiserValidated" xml:space="preserve">
+    <value>Usted ha sido validado satisfactoriamente</value>
+    <comment>You have been validated successfully.</comment>
+  </data>
+  <data name="LabelAdvertiserValidation" xml:space="preserve">
+    <value>La solicitud de validación ha fallado </value>
+    <comment>Validation Request Failure</comment>
+  </data>
+  <data name="LabelAdvisor" xml:space="preserve">
+    <value>Asesor</value>
+    <comment>Advisor</comment>
+  </data>
+  <data name="LabelAllApplicationsSendEmail" xml:space="preserve">
+    <value>Todas las solicitudes de trabajo se enviarán a esta dirección de correo electrónico</value>
+    <comment>All applications for job will be sent to this email address</comment>
+  </data>
+  <data name="LabelAllArea" xml:space="preserve">
+    <value>- Todas las áreas -</value>
+    <comment>- All Areas -</comment>
+  </data>
+  <data name="LabelAllAreas" xml:space="preserve">
+    <value>-Todas las áreas-</value>
+    <comment>-All Areas-</comment>
+  </data>
+  <data name="LabelAllAvailability" xml:space="preserve">
+    <value>´-Disponibilidad total-</value>
+    <comment>- All Availability -</comment>
+  </data>
+  <data name="LabelAllClassification" xml:space="preserve">
+    <value>´-Clasificación total-</value>
+    <comment>- All Classification -</comment>
+  </data>
+  <data name="LabelAllClassifications" xml:space="preserve">
+    <value>- Todas las clasificaciones -</value>
+    <comment>- All Classifications -</comment>
+  </data>
+  <data name="LabelAllCountries" xml:space="preserve">
+    <value>-Todos los países-</value>
+    <comment>-All Countries-</comment>
+  </data>
+  <data name="LabelAllCountry" xml:space="preserve">
+    <value>- Todos los países -</value>
+    <comment>- All Countries -</comment>
+  </data>
+  <data name="LabelAllLocation" xml:space="preserve">
+    <value>- Todas las localizaciones -</value>
+    <comment>- All Locations -</comment>
+  </data>
+  <data name="LabelAllLocations" xml:space="preserve">
+    <value>-Todas las localizaciones-</value>
+    <comment>-All Locations-</comment>
+  </data>
+  <data name="LabelAllSalary" xml:space="preserve">
+    <value>- Todo el sueldo -</value>
+    <comment>- All Salary -</comment>
+  </data>
+  <data name="LabelAllSalaryType" xml:space="preserve">
+    <value>´- Todo Tipo de sueldo -</value>
+    <comment>- All Salary Type -</comment>
+  </data>
+  <data name="LabelAllSubClassifications" xml:space="preserve">
+    <value>´- Todas las subclasificaciones -</value>
+    <comment>- All Sub Classifications -</comment>
+  </data>
+  <data name="LabelAllWorkTypes" xml:space="preserve">
+    <value>´- Todos los tipos de trabajo -</value>
+    <comment>- All Worktypes -</comment>
+  </data>
+  <data name="LabelAlreadyRegistered" xml:space="preserve">
+    <value>Ya registrado</value>
+    <comment>Already registered</comment>
+  </data>
+  <data name="LabelAMEX" xml:space="preserve">
+    <value>Amex</value>
+    <comment>Amex</comment>
+  </data>
+  <data name="LabelAmount" xml:space="preserve">
+    <value>Cantidad</value>
+    <comment>Amount</comment>
+  </data>
+  <data name="LabelAnnualSalary" xml:space="preserve">
+    <value>Sueldo anual</value>
+    <comment>Annual Salary</comment>
+  </data>
+  <data name="LabelApplicantGrade" xml:space="preserve">
+    <value>Grado del solicitante </value>
+    <comment>Applicant Grade</comment>
+  </data>
+  <data name="LabelApplicationDate" xml:space="preserve">
+    <value>Fecha de aplicación</value>
+    <comment>Application Date</comment>
+  </data>
+  <data name="LabelApplicationEmail" xml:space="preserve">
+    <value>Aplicación de correo electrónico</value>
+    <comment>Application email</comment>
+  </data>
+  <data name="LabelApplicationEmailAddress" xml:space="preserve">
+    <value>Aplicación Dirección de correo electrónico</value>
+    <comment>Application Email Address</comment>
+  </data>
+  <data name="LabelApplicationManager" xml:space="preserve">
+    <value>Gestor de aplicaciones</value>
+    <comment>Application Manager</comment>
+  </data>
+  <data name="LabelApplicationMethod" xml:space="preserve">
+    <value>Método de aplicación</value>
+    <comment>Application Method</comment>
+  </data>
+  <data name="LabelApplications" xml:space="preserve">
+    <value>Aplicaciones</value>
+    <comment>Applications</comment>
+  </data>
+  <data name="LabelApplicationStatus" xml:space="preserve">
+    <value>Estado de la aplicación</value>
+    <comment>Application Status</comment>
+  </data>
+  <data name="LabelApplicationURL" xml:space="preserve">
+    <value>URL de la aplicación</value>
+    <comment>Application URL</comment>
+  </data>
+  <data name="LabelApplied" xml:space="preserve">
+    <value>Aplicado</value>
+    <comment>Applied</comment>
+  </data>
+  <data name="LabelApply" xml:space="preserve">
+    <value>Aplicar</value>
+    <comment>Apply</comment>
+  </data>
+  <data name="LabelApplyFor" xml:space="preserve">
+    <value>Aplicar para</value>
+    <comment>Apply For</comment>
+  </data>
+  <data name="LabelApplyForPosition" xml:space="preserve">
+    <value>Aplicar para la posición de</value>
+    <comment>Apply for position</comment>
+  </data>
+  <data name="LabelApplyWith" xml:space="preserve">
+    <value>Aplicar con</value>
+    <comment>Apply with</comment>
+  </data>
+  <data name="LabelApr" xml:space="preserve">
+    <value>abril</value>
+    <comment>April</comment>
+  </data>
+  <data name="LabelArchivedJobs" xml:space="preserve">
+    <value>Trabajos archivados</value>
+    <comment>Archived Jobs</comment>
+  </data>
+  <data name="LabelArea" xml:space="preserve">
+    <value>Área</value>
+    <comment>Area</comment>
+  </data>
+  <data name="LabelAreaIDs" xml:space="preserve">
+    <value>Área de identificadores</value>
+    <comment>Area IDs</comment>
+  </data>
+  <data name="LabelAreaRequired" xml:space="preserve">
+    <value>Se requiere Área</value>
+    <comment>Area is required</comment>
+  </data>
+  <data name="LabelAssignedJobTo" xml:space="preserve">
+    <value>Asignar trabajo a</value>
+    <comment>Assign Job To</comment>
+  </data>
+  <data name="LabelAssociatesDegree" xml:space="preserve">
+    <value>Grado asociado</value>
+    <comment>Associate Degree</comment>
+  </data>
+  <data name="LabelAttachCoverLetter" xml:space="preserve">
+    <value>Adjuntar carta de presentación</value>
+    <comment>Attach Cover Letter</comment>
+  </data>
+  <data name="LabelAttachResume" xml:space="preserve">
+    <value>Adjuntar curriculum </value>
+    <comment>Attach Resume</comment>
+  </data>
+  <data name="LabelAttemptFailed" xml:space="preserve">
+    <value>Las credenciales suministradas son inválidas. Su cuenta será bloqueada durante 60 minutos después de {0} o más fallidos intento de inicio de sesión / es.</value>
+    <comment>The supplied credentials are invalid. Account will be locked for 60 minutes after {0} more failed login attempt/s.</comment>
+  </data>
+  <data name="LabelAug" xml:space="preserve">
+    <value>agosto</value>
+    <comment>August</comment>
+  </data>
+  <data name="LabelAuthor" xml:space="preserve">
+    <value>Autor</value>
+    <comment>Author</comment>
+  </data>
+  <data name="LabelAuthority" xml:space="preserve">
+    <value>Autoridad</value>
+    <comment>Authority</comment>
+  </data>
+  <data name="LabelAvailabilityDate" xml:space="preserve">
+    <value>Fecha disponible</value>
+    <comment>Availability Date</comment>
+  </data>
+  <data name="LabelAvailabilityDateFrom" xml:space="preserve">
+    <value>Fecha de disponibilidad para</value>
+    <comment>Availability Date From</comment>
+  </data>
+  <data name="LabelAvailableFrom" xml:space="preserve">
+    <value>Disponible para</value>
+    <comment>Available From</comment>
+  </data>
+  <data name="LabelAvailableStatus" xml:space="preserve">
+    <value>Estado de Disponibilidad</value>
+    <comment>Availability Status</comment>
+  </data>
+  <data name="LabelAZ" xml:space="preserve">
+    <value>A - Z</value>
+    <comment>A - Z</comment>
+  </data>
+  <data name="LabelBachelorsDegree" xml:space="preserve">
+    <value>Grado de bachiller</value>
+    <comment>Bachelor Degree</comment>
+  </data>
+  <data name="LabelBackToJob" xml:space="preserve">
+    <value>Volver al Trabajo</value>
+    <comment>Back to Job</comment>
+  </data>
+  <data name="LabelBeginner" xml:space="preserve">
+    <value>Principiante</value>
+    <comment>Beginner</comment>
+  </data>
+  <data name="LabelBelow" xml:space="preserve">
+    <value>abajo</value>
+    <comment>below</comment>
+  </data>
+  <data name="LabelBelowListSavedJobs" xml:space="preserve">
+    <value>A continuación se muestra una lista de sus trabajos guardados</value>
+    <comment>Below is a list of your saved jobs</comment>
+  </data>
+  <data name="LabelBilled" xml:space="preserve">
+    <value>Facturado</value>
+    <comment>Billed</comment>
+  </data>
+  <data name="LabelBreadcrumbs" xml:space="preserve">
+    <value>Su ruta</value>
+    <comment>Your Path</comment>
+  </data>
+  <data name="LabelBrowse" xml:space="preserve">
+    <value>Búsqueda</value>
+    <comment>Browse</comment>
+  </data>
+  <data name="LabelBtnFinish" xml:space="preserve">
+    <value>Terminar</value>
+    <comment>Finish</comment>
+  </data>
+  <data name="LabelBtnPrevious" xml:space="preserve">
+    <value>Anterior</value>
+    <comment>Previous</comment>
+  </data>
+  <data name="LabelBtnSaveContinue" xml:space="preserve">
+    <value>Guardar y continuar</value>
+    <comment>Save &amp; Continue</comment>
+  </data>
+  <data name="LabelBulletPoint1" xml:space="preserve">
+    <value>Concepto fundamental 1</value>
+    <comment>Bullet Point  1</comment>
+  </data>
+  <data name="LabelBulletPoint2" xml:space="preserve">
+    <value>Concepto fundamental 2</value>
+    <comment>Bullet Point  2</comment>
+  </data>
+  <data name="LabelBulletPoint3" xml:space="preserve">
+    <value>Concepto fundamental 3</value>
+    <comment>Bullet Point  3</comment>
+  </data>
+  <data name="LabelBusinessName" xml:space="preserve">
+    <value>Nombre del Negocio</value>
+    <comment>Business Name</comment>
+  </data>
+  <data name="LabelBusinessNumber" xml:space="preserve">
+    <value>Número de negocios</value>
+    <comment>Business Number</comment>
+  </data>
+  <data name="LabelBusinessType" xml:space="preserve">
+    <value>Tipo de negocio</value>
+    <comment>Business Type</comment>
+  </data>
+  <data name="LabelBusinessTypeRequired" xml:space="preserve">
+    <value>Se requiere tipo de negocios</value>
+    <comment>Business Type is required</comment>
+  </data>
+  <data name="LabelCancel" xml:space="preserve">
+    <value>Cancelar</value>
+    <comment>Cancel</comment>
+  </data>
+  <data name="LabelCandidate" xml:space="preserve">
+    <value>Candidato</value>
+    <comment>Candidate</comment>
+  </data>
+  <data name="LabelCandidatesRight" xml:space="preserve">
+    <value>Los candidatos deben tener el derecho a trabajar en este país</value>
+    <comment>Candidates must have the right to work in this country</comment>
+  </data>
+  <data name="LabelCaptcha" xml:space="preserve">
+    <value>Verificación de imagen</value>
+    <comment>Captcha</comment>
+  </data>
+  <data name="LabelCaptchaRequired" xml:space="preserve">
+    <value>Por favor complete la verificación de imagen</value>
+    <comment>Please complete the captcha</comment>
+  </data>
+  <data name="LabelCartEmpty" xml:space="preserve">
+    <value>Actualmente no tiene productos seleccionados para chequear</value>
+    <comment>You currently have no products selected to checkout</comment>
+  </data>
+  <data name="LabelCategories" xml:space="preserve">
+    <value>Categorías</value>
+    <comment>Categories</comment>
+  </data>
+  <data name="LabelCertAndMembership" xml:space="preserve">
+    <value>Certificados &amp; amp; membresías</value>
+    <comment>Certs &amp;amp; Memberships</comment>
+  </data>
+  <data name="LabelCertificateDoesNotExpire" xml:space="preserve">
+    <value>Certificado / Membresía sin vencimiento</value>
+    <comment>Certificate/Membership Does Not Expire</comment>
+  </data>
+  <data name="LabelCertificateMembershipNumber" xml:space="preserve">
+    <value>Nº de Certificado / Membresía </value>
+    <comment>Certificate/Membership No.</comment>
+  </data>
+  <data name="LabelCertificationsAndMemberships" xml:space="preserve">
+    <value>Certificaciones &amp; amp; membresías</value>
+    <comment>Certifications &amp;amp; Memberships</comment>
+  </data>
+  <data name="LabelCertificationURL" xml:space="preserve">
+    <value>URL certificación</value>
+    <comment>Certification URL</comment>
+  </data>
+  <data name="LabelChairmanOfABoard" xml:space="preserve">
+    <value>Presidente del directorio</value>
+    <comment>Chairman of a board</comment>
+  </data>
+  <data name="LabelChange" xml:space="preserve">
+    <value>Cambio</value>
+    <comment>Change</comment>
+  </data>
+  <data name="LabelChangeEmailContactAdmin" xml:space="preserve">
+    <value>Para cambiar la dirección de correo electrónico, por favor, póngase en contacto con el administrador</value>
+    <comment>To change email address, please contact administrator</comment>
+  </data>
+  <data name="LabelChangePwd" xml:space="preserve">
+    <value>Cambia la contraseña</value>
+    <comment>Change Password</comment>
+  </data>
+  <data name="LabelCheckOut" xml:space="preserve">
+    <value>Revisa</value>
+    <comment>Check out</comment>
+  </data>
+  <data name="LabelChooseCover" xml:space="preserve">
+    <value>Por favor elige una carta de presentación</value>
+    <comment>Please choose a cover letter</comment>
+  </data>
+  <data name="LabelChooseOne" xml:space="preserve">
+    <value>Elige uno</value>
+    <comment>Choose One</comment>
+  </data>
+  <data name="LabelChooseResume" xml:space="preserve">
+    <value>Por favor, seleccione un curriculum</value>
+    <comment>Please choose a resume</comment>
+  </data>
+  <data name="LabelCityTown" xml:space="preserve">
+    <value>Ciudad / Pueblo</value>
+    <comment>City / Town</comment>
+  </data>
+  <data name="LabelClassification" xml:space="preserve">
+    <value>Clasificación</value>
+    <comment>Classification</comment>
+  </data>
+  <data name="LabelClassificationAndSubClassification" xml:space="preserve">
+    <value>Clasificación  / Subclasificación </value>
+    <comment>Classification / Sub Classification</comment>
+  </data>
+  <data name="LabelClassifications" xml:space="preserve">
+    <value>Clasificaciones</value>
+    <comment>Classifications</comment>
+  </data>
+  <data name="LabelClassificationSubClassification" xml:space="preserve">
+    <value>Clasificación / subclasificación</value>
+    <comment>Classification / SubClassification</comment>
+  </data>
+  <data name="LabelClear" xml:space="preserve">
+    <value>Claro</value>
+    <comment>Clear</comment>
+  </data>
+  <data name="LabelClick" xml:space="preserve">
+    <value>Hacer clic</value>
+    <comment>Click</comment>
+  </data>
+  <data name="LabelClickHere" xml:space="preserve">
+    <value>haga clic aquí</value>
+    <comment>click here</comment>
+  </data>
+  <data name="LabelClickToGenerate" xml:space="preserve">
+    <value>clic para generar ...</value>
+    <comment>click to generate ...</comment>
+  </data>
+  <data name="LabelCloseMyAccount" xml:space="preserve">
+    <value>Cerrar mi cuenta</value>
+    <comment>Close My Account</comment>
+  </data>
+  <data name="LabelColleague" xml:space="preserve">
+    <value>Colega</value>
+    <comment>Colleague</comment>
+  </data>
+  <data name="LabelComments" xml:space="preserve">
+    <value>Comentarios</value>
+    <comment>Comments</comment>
+  </data>
+  <data name="LabelCompany" xml:space="preserve">
+    <value>Empresa</value>
+    <comment>Company</comment>
+  </data>
+  <data name="LabelCompanyDetails" xml:space="preserve">
+    <value>Detalles de la empresa</value>
+    <comment>Company Details</comment>
+  </data>
+  <data name="LabelCompanyLogo" xml:space="preserve">
+    <value>Logo de la empresa</value>
+    <comment>Company logo</comment>
+  </data>
+  <data name="LabelCompanyName" xml:space="preserve">
+    <value>Nombre de la empresa</value>
+    <comment>Company Name</comment>
+  </data>
+  <data name="LabelCompanyNameRequired" xml:space="preserve">
+    <value>Se requiere Nombre de la empresa</value>
+    <comment>Company Name is required</comment>
+  </data>
+  <data name="LabelCompanyProfile" xml:space="preserve">
+    <value>Perfil de la empresa</value>
+    <comment>Company Profile</comment>
+  </data>
+  <data name="LabelCompanySecretary" xml:space="preserve">
+    <value>Secretario de la empresa</value>
+    <comment>Company Secretary</comment>
+  </data>
+  <data name="LabelCompletedApplication" xml:space="preserve">
+    <value>Solicitud completada</value>
+    <comment>Completed Application</comment>
+  </data>
+  <data name="labelCompleteOrder" xml:space="preserve">
+    <value>Orden completa</value>
+    <comment>Complete Order</comment>
+  </data>
+  <data name="LabelConfirmDeleteRecord" xml:space="preserve">
+    <value>¿Está seguro de que desea eliminar este registro?</value>
+    <comment>Are you sure you want to delete this record?</comment>
+  </data>
+  <data name="LabelConfirmEmail" xml:space="preserve">
+    <value>Confirmar correo electrónico</value>
+    <comment>Confirm Email</comment>
+  </data>
+  <data name="LabelConfirmEmailNotMatch" xml:space="preserve">
+    <value>Confirma el correo electrónico, no coincide</value>
+    <comment>Confirm email not match</comment>
+  </data>
+  <data name="LabelConfirmEmailPage" xml:space="preserve">
+    <value>Confirmar correo electrónico</value>
+    <comment>Confirm email</comment>
+  </data>
+  <data name="LabelConfirmEmailRequired" xml:space="preserve">
+    <value>Se requiere confirmar correo electrónico</value>
+    <comment>Confirm email is required</comment>
+  </data>
+  <data name="LabelConfirmNewPassword" xml:space="preserve">
+    <value>Confirmar nueva contraseña</value>
+    <comment>Confirm New Password</comment>
+  </data>
+  <data name="LabelConfirmPassword" xml:space="preserve">
+    <value>Confirmar contraseña</value>
+    <comment>Confirm password</comment>
+  </data>
+  <data name="LabelConfirmRepost" xml:space="preserve">
+    <value>Usted está a punto de volver a publicar trabajos seleccionados (s), por favor confirmar que desea reenviar</value>
+    <comment>You are about to repost selected jobs(s), please confirm you want to repost</comment>
+  </data>
+  <data name="LabelConfirmResetPassword" xml:space="preserve">
+    <value>Confirmar restablecer contraseña</value>
+    <comment>Confirm Reset Password</comment>
+  </data>
+  <data name="LabelContactDetails" xml:space="preserve">
+    <value>Detalles de contacto</value>
+    <comment>Contact Details</comment>
+  </data>
+  <data name="LabelContactEmail" xml:space="preserve">
+    <value>Email</value>
+    <comment>Email</comment>
+  </data>
+  <data name="LabelContactInformation" xml:space="preserve">
+    <value>Información del contacto</value>
+    <comment>Contact Information</comment>
+  </data>
+  <data name="LabelContactNumber" xml:space="preserve">
+    <value>Número de contacto</value>
+    <comment>Contact Number</comment>
+  </data>
+  <data name="LabelContent" xml:space="preserve">
+    <value>Contenido</value>
+    <comment>Content</comment>
+  </data>
+  <data name="LabelContinue" xml:space="preserve">
+    <value>Continuar</value>
+    <comment>Continue</comment>
+  </data>
+  <data name="LabelContinueApplication" xml:space="preserve">
+    <value>Continuar aplicación</value>
+    <comment>Continue Application</comment>
+  </data>
+  <data name="LabelCopyJob" xml:space="preserve">
+    <value>Copia</value>
+    <comment>Copy</comment>
+  </data>
+  <data name="LabelCopyJobConfirm" xml:space="preserve">
+    <value>¿Está seguro de que desea copiar este trabajo?</value>
+    <comment>Are you sure you want to copy this job?</comment>
+  </data>
+  <data name="LabelCountry" xml:space="preserve">
+    <value>País</value>
+    <comment>Country</comment>
+  </data>
+  <data name="LabelCountryLocationArea" xml:space="preserve">
+    <value>País / Ubicación / Área</value>
+    <comment>Country / Location / Area</comment>
+  </data>
+  <data name="LabelCountryMandatory" xml:space="preserve">
+    <value>País es obligatorio</value>
+    <comment>Country is Mandatory</comment>
+  </data>
+  <data name="LabelCountryRequired" xml:space="preserve">
+    <value>Se requiere País</value>
+    <comment>Country is required</comment>
+  </data>
+  <data name="LabelCoverLetter" xml:space="preserve">
+    <value>Carta de presentación</value>
+    <comment>Cover Letter</comment>
+  </data>
+  <data name="LabelCoverLetterWriteYourOwn" xml:space="preserve">
+    <value>O escriba su propia</value>
+    <comment>Or Write Your Own</comment>
+  </data>
+  <data name="LabelCreateAlertCheckBoxes" xml:space="preserve">
+    <value>Casillas de verificación</value>
+    <comment>Checkboxes</comment>
+  </data>
+  <data name="LabelCreateAsAlert" xml:space="preserve">
+    <value>Crear como alerta</value>
+    <comment>Create as alert</comment>
+  </data>
+  <data name="LabelCreated" xml:space="preserve">
+    <value>Creado</value>
+    <comment>Created</comment>
+  </data>
+  <data name="LabelCreateFavouriteSearch" xml:space="preserve">
+    <value>Crear búsqueda favorita</value>
+    <comment>Create Favourite Search</comment>
+  </data>
+  <data name="LabelCreateJob" xml:space="preserve">
+    <value>Crear trabajo</value>
+    <comment>Create Job</comment>
+  </data>
+  <data name="LabelCreateJobAlert" xml:space="preserve">
+    <value>Crear una alerta de trabajo</value>
+    <comment>Create Job Alert</comment>
+  </data>
+  <data name="LabelCreateJobAlertNameIsMissing" xml:space="preserve">
+    <value>Falta crear el nombre de una alerta de trabajo</value>
+    <comment>Create Job Alert Name is missing</comment>
+  </data>
+  <data name="LabelCreditCard" xml:space="preserve">
+    <value>Tarjeta de crédito</value>
+    <comment>Credit Card</comment>
+  </data>
+  <data name="LabelCreditCardName" xml:space="preserve">
+    <value>Nombre en la tarjeta</value>
+    <comment>Name on Card</comment>
+  </data>
+  <data name="LabelCreditCardNumber" xml:space="preserve">
+    <value>Número de tarjeta</value>
+    <comment>Card Number</comment>
+  </data>
+  <data name="LabelCreditCardPayment" xml:space="preserve">
+    <value>Pago con tarjeta de crédito</value>
+    <comment>Payment by Credit Card</comment>
+  </data>
+  <data name="LabelCSC" xml:space="preserve">
+    <value>Código CSC</value>
+    <comment>CSC Code</comment>
+  </data>
+  <data name="LabelCurrencyBaseText" xml:space="preserve">
+    <value>La moneda se basa en</value>
+    <comment>Currency is based in</comment>
+  </data>
+  <data name="LabelCurrent" xml:space="preserve">
+    <value>Actual</value>
+    <comment>Current</comment>
+  </data>
+  <data name="LabelCurrentJobs" xml:space="preserve">
+    <value>Trabajos actuales</value>
+    <comment>Current Jobs</comment>
+  </data>
+  <data name="LabelCurrentJobStatistics" xml:space="preserve">
+    <value>Estadísticas de trabajo actual</value>
+    <comment>Current Job Statistics</comment>
+  </data>
+  <data name="LabelCurrentLogin" xml:space="preserve">
+    <value>Actualmente entrar como</value>
+    <comment>Currently Login as</comment>
+  </data>
+  <data name="LabelCurrentPassword" xml:space="preserve">
+    <value>Contraseña actual</value>
+    <comment>Current Password</comment>
+  </data>
+  <data name="LabelCurrentStatus" xml:space="preserve">
+    <value>Estado actual</value>
+    <comment>Current Status</comment>
+  </data>
+  <data name="LabelCustomCoverLetter" xml:space="preserve">
+    <value>Carta de presentación personalizada</value>
+    <comment>Custom Cover Letter</comment>
+  </data>
+  <data name="LabelCVBuilder" xml:space="preserve">
+    <value>Generador de CV</value>
+    <comment>CV Builder</comment>
+  </data>
+  <data name="LabelCVV" xml:space="preserve">
+    <value>CVV</value>
+    <comment>CVV</comment>
+  </data>
+  <data name="LabelDashboard" xml:space="preserve">
+    <value>Registro</value>
+    <comment>Dashboard</comment>
+  </data>
+  <data name="LabelDateDisplayDD" xml:space="preserve">
+    <value>DD</value>
+    <comment>DD</comment>
+  </data>
+  <data name="LabelDateDisplayMM" xml:space="preserve">
+    <value>MM</value>
+    <comment>MM</comment>
+  </data>
+  <data name="LabelDateDisplayYYYY" xml:space="preserve">
+    <value>AAAA</value>
+    <comment>YYYY</comment>
+  </data>
+  <data name="LabelDateEntered" xml:space="preserve">
+    <value>Fecha ingresada</value>
+    <comment>Date Entered</comment>
+  </data>
+  <data name="LabelDateModified" xml:space="preserve">
+    <value>Fecha modificada</value>
+    <comment>Date modified</comment>
+  </data>
+  <data name="LabelDateOfBirth" xml:space="preserve">
+    <value>Fecha de nacimiento</value>
+    <comment>Date of birth</comment>
+  </data>
+  <data name="LabelDatePosted" xml:space="preserve">
+    <value>Fecha de publicación</value>
+    <comment>Date Posted</comment>
+  </data>
+  <data name="LabelDatePublished" xml:space="preserve">
+    <value>Fecha de publicación</value>
+    <comment>Date published</comment>
+  </data>
+  <data name="LabelDay" xml:space="preserve">
+    <value>Día</value>
+    <comment>Day</comment>
+  </data>
+  <data name="LabelDaysPosted" xml:space="preserve">
+    <value>Días publicados</value>
+    <comment>Days Posted</comment>
+  </data>
+  <data name="LabelDaysTillExpiry" xml:space="preserve">
+    <value>Días hasta el vencimiento</value>
+    <comment>Days Till Expiry</comment>
+  </data>
+  <data name="LabelDec" xml:space="preserve">
+    <value>diciembre</value>
+    <comment>December</comment>
+  </data>
+  <data name="LabelDecimalOnly" xml:space="preserve">
+    <value>Sólo acepta decimales</value>
+    <comment>Accepts decimals only</comment>
+  </data>
+  <data name="LabelDeclinedJobs" xml:space="preserve">
+    <value>Trabajo disminuido</value>
+    <comment>Declined Jobs</comment>
+  </data>
+  <data name="LabelDefault" xml:space="preserve">
+    <value>Defecto</value>
+    <comment>Default</comment>
+  </data>
+  <data name="LabelDelete" xml:space="preserve">
+    <value>Borrar</value>
+    <comment>Delete</comment>
+  </data>
+  <data name="LabelDescription" xml:space="preserve">
+    <value>Descripción</value>
+    <comment>Description</comment>
+  </data>
+  <data name="LabelDescriptionHere" xml:space="preserve">
+    <value>Descripción Aquí ...</value>
+    <comment>Description Here...</comment>
+  </data>
+  <data name="LabelDesiredLocation" xml:space="preserve">
+    <value>Ciudad deseada</value>
+    <comment>Desired City</comment>
+  </data>
+  <data name="LabelDesiredPay" xml:space="preserve">
+    <value>Pago deseado</value>
+    <comment>Desired Pay</comment>
+  </data>
+  <data name="LabelDesiredRegion" xml:space="preserve">
+    <value>Región deseada</value>
+    <comment>Desired Region</comment>
+  </data>
+  <data name="LabelDetails" xml:space="preserve">
+    <value>Detalles</value>
+    <comment>Details</comment>
+  </data>
+  <data name="LabelDiploma" xml:space="preserve">
+    <value>Diploma</value>
+    <comment>Diploma</comment>
+  </data>
+  <data name="LabelDirectorship" xml:space="preserve">
+    <value>Cargo de directiva</value>
+    <comment>Directorship</comment>
+  </data>
+  <data name="LabelDirectReport" xml:space="preserve">
+    <value>Reporte directo</value>
+    <comment>Direct Report</comment>
+  </data>
+  <data name="LabelDisplaySalary" xml:space="preserve">
+    <value>Visualización de sueldo</value>
+    <comment>Display salary</comment>
+  </data>
+  <data name="LabelDocRestriction" xml:space="preserve">
+    <value>Sólo doc, docx, txt, pdf</value>
+    <comment>doc, docx, txt, pdf only</comment>
+  </data>
+  <data name="LabelDoctorOfMedicine" xml:space="preserve">
+    <value>Doctor de medicina</value>
+    <comment>Doctor of Medicine</comment>
+  </data>
+  <data name="LabelDoctorOfPhilosophy" xml:space="preserve">
+    <value>Doctor en Filosofía</value>
+    <comment>Doctor of Philosophy</comment>
+  </data>
+  <data name="LabelDocumentLink" xml:space="preserve">
+    <value>Enlace del documento</value>
+    <comment>Document Link</comment>
+  </data>
+  <data name="LabelDocumentName" xml:space="preserve">
+    <value>Nombre del documento</value>
+    <comment>Document Name</comment>
+  </data>
+  <data name="LabelDocumentTitle" xml:space="preserve">
+    <value>Título del documento</value>
+    <comment>Document Title</comment>
+  </data>
+  <data name="LabelDownload" xml:space="preserve">
+    <value>Descargar</value>
+    <comment>Download</comment>
+  </data>
+  <data name="LabelDownloadApplicantsInExcel" xml:space="preserve">
+    <value>Descargar solicitantes  en Excel</value>
+    <comment>Download Applicants in Excel</comment>
+  </data>
+  <data name="LabelDownloadSelectedApplicants" xml:space="preserve">
+    <value>Descargar solicitantes seleccionados</value>
+    <comment>Download Selected Applicants</comment>
+  </data>
+  <data name="LabelDr" xml:space="preserve">
+    <value>Dr.</value>
+    <comment>Dr</comment>
+  </data>
+  <data name="LabelDraftDate" xml:space="preserve">
+    <value>Fecha de proyecto</value>
+    <comment>Draft Date</comment>
+  </data>
+  <data name="LabelDraftJobs" xml:space="preserve">
+    <value>Trabajos de proyecto</value>
+    <comment>Draft Jobs</comment>
+  </data>
+  <data name="LabelDuration" xml:space="preserve">
+    <value>Duración</value>
+    <comment>Duration</comment>
+  </data>
+  <data name="LabelEdit" xml:space="preserve">
+    <value>Editar</value>
+    <comment>Edit</comment>
+  </data>
+  <data name="LabelEditARolePreference" xml:space="preserve">
+    <value>Preferencias de rol</value>
+    <comment>Role Preferences</comment>
+  </data>
+  <data name="LabelEditCertificationsMembershipName" xml:space="preserve">
+    <value>Nombre del Certificado / Membresía</value>
+    <comment>Certificate / Membership Name</comment>
+  </data>
+  <data name="LabelEditCV" xml:space="preserve">
+    <value>Editar CV</value>
+    <comment>Edit CV</comment>
+  </data>
+  <data name="LabelEditDetails" xml:space="preserve">
+    <value>Editar detalles</value>
+    <comment>Edit Details</comment>
+  </data>
+  <data name="LabelEditEntry" xml:space="preserve">
+    <value>Editar entrada</value>
+    <comment>Edit Entry</comment>
+  </data>
+  <data name="LabelEditFavouriteSearch" xml:space="preserve">
+    <value>Editar buscador favorito</value>
+    <comment>Edit Favourite Search</comment>
+  </data>
+  <data name="LabelEditJobAlert" xml:space="preserve">
+    <value>Editar alerta de trabajo</value>
+    <comment>Edit Job Alert</comment>
+  </data>
+  <data name="LabelEditJobApplication" xml:space="preserve">
+    <value>Aplicación de edición de trabajo</value>
+    <comment>Edit Job Application</comment>
+  </data>
+  <data name="LabelEditProfile" xml:space="preserve">
+    <value>Editar perfil</value>
+    <comment>Edit Profile</comment>
+  </data>
+  <data name="LabelEducation" xml:space="preserve">
+    <value>Educación</value>
+    <comment>Education</comment>
+  </data>
+  <data name="LabelEGAccountingJobInSydney" xml:space="preserve">
+    <value>p.ej. Buscador de trabajo de contabilidad en Sydney</value>
+    <comment>e.g. Accounting job search in Sydney</comment>
+  </data>
+  <data name="LabelElementaryProficiency" xml:space="preserve">
+    <value>Competencia básica</value>
+    <comment>Elementary proficiency</comment>
+  </data>
+  <data name="LabelEligibleToWorkIn" xml:space="preserve">
+    <value>Elegibles para trabajar en</value>
+    <comment>Eligible to work in</comment>
+  </data>
+  <data name="LabelEmail" xml:space="preserve">
+    <value>Email</value>
+    <comment>Email</comment>
+  </data>
+  <data name="LabelEmailAddress" xml:space="preserve">
+    <value>Dirección de correo electrónico</value>
+    <comment>EmailAddress</comment>
+  </data>
+  <data name="LabelEmailAddressExist" xml:space="preserve">
+    <value>Dirección de correo electrónico ya existe, &lt;a href="/member/forgetpassword.aspx"&gt; clic aquí &lt;/a&gt; para recuperar la contraseña</value>
+    <comment>Email Address already exists, &lt;a href="/member/forgetpassword.aspx"&gt;click here&lt;/a&gt; to retrieve password</comment>
+  </data>
+  <data name="LabelEmailAddressRequired" xml:space="preserve">
+    <value>Se requiere Dirección de correo electrónico</value>
+    <comment>Email Address is required</comment>
+  </data>
+  <data name="LabelEmailAlreadyExist" xml:space="preserve">
+    <value>El Email ya existe. Por favor proceda a &lt;a href="~/member/login.aspx"&gt; iniciar sesión &lt;/a&gt;</value>
+    <comment>Email already exists. Please proceed to &lt;a href="~/member/login.aspx"&gt;login&lt;/a&gt;</comment>
+  </data>
+  <data name="LabelEmailExist" xml:space="preserve">
+    <value>Email ya existe</value>
+    <comment>Email already exists</comment>
+  </data>
+  <data name="LabelEmailFormat" xml:space="preserve">
+    <value>Formato de Correo Electrónico</value>
+    <comment>Email Format</comment>
+  </data>
+  <data name="LabelEmailFriend" xml:space="preserve">
+    <value>Enviar a un amigo</value>
+    <comment>Email Friend</comment>
+  </data>
+  <data name="LabelEmailFriendSuccess" xml:space="preserve">
+    <value>El enlace ha sido enviado a las direcciones de correo electrónico proporcionadas. Seleccione el botón Volver a continuación para regresar a los detalles de roles.</value>
+    <comment>The link has been sent to the email addresses provided. Select the Back button below to return to the role details.</comment>
+  </data>
+  <data name="LabelEmailInvalid" xml:space="preserve">
+    <value>El correo electrónico es inválido.</value>
+    <comment>Email is invalid.</comment>
+  </data>
+  <data name="LabelEmailJobToAFriend" xml:space="preserve">
+    <value>Haga clic aquí para enviar este trabajo a un amigo</value>
+    <comment>Click here to email this job to a friend</comment>
+  </data>
+  <data name="LabelEmailMandatory" xml:space="preserve">
+    <value>El correo electrónico es obligatorio</value>
+    <comment>Email is mandatory</comment>
+  </data>
+  <data name="LabelEmailMe" xml:space="preserve">
+    <value>Envíeme un correo electrónico</value>
+    <comment>Email Me</comment>
+  </data>
+  <data name="LabelEmailMeSelectedApplicants" xml:space="preserve">
+    <value>Envíeme un correo electrónico de los solicitantes seleccionados</value>
+    <comment>Email Me Selected Applicant</comment>
+  </data>
+  <data name="LabelEmailRequired" xml:space="preserve">
+    <value>Correo electrónico es requerido</value>
+    <comment>Email is required</comment>
+  </data>
+  <data name="LabelEmailSuccess" xml:space="preserve">
+    <value>Email enviado satisfactoriamente</value>
+    <comment>Email sent successfully</comment>
+  </data>
+  <data name="LabelEmalAddressNotMatch" xml:space="preserve">
+    <value>La dirección de Email no coincide</value>
+    <comment>Email Address does not match</comment>
+  </data>
+  <data name="LabelEnable" xml:space="preserve">
+    <value>Habilitar</value>
+    <comment>Enable</comment>
+  </data>
+  <data name="LabelEnd" xml:space="preserve">
+    <value>Fin</value>
+    <comment>End</comment>
+  </data>
+  <data name="LabelEndDate" xml:space="preserve">
+    <value>Fecha final</value>
+    <comment>End Date</comment>
+  </data>
+  <data name="LabelEndDateError" xml:space="preserve">
+    <value>Fecha de inicio no puede ser posterior a la fecha actual o más tarde de la fecha de finalización</value>
+    <comment>Start Date cannot be later than current date or later than End Date</comment>
+  </data>
+  <data name="LabelEnterCommaSeparated" xml:space="preserve">
+    <value>Por favor, introduzca una coma separada ","</value>
+    <comment>Please enter comma seperated ","</comment>
+  </data>
+  <data name="LabelEnterEmail" xml:space="preserve">
+    <value>Correo electrónico</value>
+    <comment>Email</comment>
+  </data>
+  <data name="LabelEnterFirstName" xml:space="preserve">
+    <value>Ponga su primer nombre</value>
+    <comment>Enter your first name</comment>
+  </data>
+  <data name="LabelEnterKeywords" xml:space="preserve">
+    <value>Ingrese palabras claves</value>
+    <comment>Enter Keywords</comment>
+  </data>
+  <data name="LabelEnterLanguage" xml:space="preserve">
+    <value>Introduzca idioma ...</value>
+    <comment>Enter Language...</comment>
+  </data>
+  <data name="LabelEnterLastName" xml:space="preserve">
+    <value>Ingrese su apellido</value>
+    <comment>Enter your last name</comment>
+  </data>
+  <data name="LabelEnterPassword" xml:space="preserve">
+    <value>Contraseña</value>
+    <comment>Password</comment>
+  </data>
+  <data name="LabelEnterPhoneNumber" xml:space="preserve">
+    <value>Ingresa número telefónico</value>
+    <comment>Enter phone number</comment>
+  </data>
+  <data name="LabelEnterPromoCode" xml:space="preserve">
+    <value>Introduzca el código de promoción</value>
+    <comment>Enter promo code</comment>
+  </data>
+  <data name="LabelErrorDuplicateRole" xml:space="preserve">
+    <value>No se puede seleccionar roles duplicados</value>
+    <comment>Cannot select duplicated Roles</comment>
+  </data>
+  <data name="LabelErrorFileExtension1MB" xml:space="preserve">
+    <value>Por favor, cargar la imagen en formato jpg, gif o png. Tamaño máximo del archivo de 1 MB y el ancho máximo de 300px.</value>
+    <comment>Please upload your image as jpg, gif or png format. Maximum file size of 1MB and maximum width of 300px.</comment>
+  </data>
+  <data name="LabelExpectedSalary" xml:space="preserve">
+    <value>Pago deseada / Sueldo esperado</value>
+    <comment>Desired Pay / Expected Salary</comment>
+  </data>
+  <data name="LabelExperienceEnd" xml:space="preserve">
+    <value>Experiencia finalizada</value>
+    <comment>Experience End</comment>
+  </data>
+  <data name="LabelExperienceStart" xml:space="preserve">
+    <value>Experiencia iniciada</value>
+    <comment>Experience Start</comment>
+  </data>
+  <data name="LabelExpert" xml:space="preserve">
+    <value>Experto</value>
+    <comment>Expert</comment>
+  </data>
+  <data name="LabelExpire" xml:space="preserve">
+    <value>Vence</value>
+    <comment>Expire</comment>
+  </data>
+  <data name="LabelExpired" xml:space="preserve">
+    <value>Vencido</value>
+    <comment>Expired</comment>
+  </data>
+  <data name="LabelExpiry" xml:space="preserve">
+    <value>Vencimiento</value>
+    <comment>Expiry</comment>
+  </data>
+  <data name="LabelExpiryDate" xml:space="preserve">
+    <value>Fecha de vencimiento</value>
+    <comment>Expiry Date</comment>
+  </data>
+  <data name="LabelExpiryMonth" xml:space="preserve">
+    <value>Mes de vencimiento</value>
+    <comment>Expiry Month</comment>
+  </data>
+  <data name="LabelExpiryYear" xml:space="preserve">
+    <value>Año de vencimiento</value>
+    <comment>Expiry Year</comment>
+  </data>
+  <data name="LabelExternalJobApplication" xml:space="preserve">
+    <value>Aplicación de trabajo externo</value>
+    <comment>External Job Application</comment>
+  </data>
+  <data name="LabelFailedToCreatedYouJobAlert" xml:space="preserve">
+    <value>No se ha podido crear su alerta</value>
+    <comment>Failed to created your alert</comment>
+  </data>
+  <data name="LabelFailedToSavedYourSearch" xml:space="preserve">
+    <value>No se ha podido guardar su búsqueda</value>
+    <comment>Failed to saved your search</comment>
+  </data>
+  <data name="LabelFailedToSendEmail" xml:space="preserve">
+    <value>No se ha podido enviar correo electrónico</value>
+    <comment>Failed to send email</comment>
+  </data>
+  <data name="LabelFavouriteSearchCreateSuccess" xml:space="preserve">
+    <value>Búsqueda favorita creada satisfactoriamente</value>
+    <comment>Favourite Search created successfully</comment>
+  </data>
+  <data name="LabelFavouriteSearches" xml:space="preserve">
+    <value>Búsquedas favoritas</value>
+    <comment>Favourite Searches</comment>
+  </data>
+  <data name="LabelFavouriteSearchNameIsMissing" xml:space="preserve">
+    <value>Nombre incorrecto de la búsqueda favorita</value>
+    <comment>Favourite Search Name is missing</comment>
+  </data>
+  <data name="LabelFavouriteSearchSaveSuccess" xml:space="preserve">
+    <value>Búsqueda favorita guardada satisfactoriamente</value>
+    <comment>Favourite Search saved successfully</comment>
+  </data>
+  <data name="LabelFavouriteThisSearch" xml:space="preserve">
+    <value>Favorita esta búsqueda</value>
+    <comment>Favourite this search</comment>
+  </data>
+  <data name="LabelFax" xml:space="preserve">
+    <value>Fax</value>
+    <comment>Fax</comment>
+  </data>
+  <data name="LabelFeb" xml:space="preserve">
+    <value>febrero</value>
+    <comment>February</comment>
+  </data>
+  <data name="LabelFemale" xml:space="preserve">
+    <value>Mujer</value>
+    <comment>Female</comment>
+  </data>
+  <data name="LabelFiledUnder" xml:space="preserve">
+    <value>Archivado </value>
+    <comment>Filed under</comment>
+  </data>
+  <data name="LabelFileName" xml:space="preserve">
+    <value>Nombre del archivo</value>
+    <comment>File Name</comment>
+  </data>
+  <data name="LabelFileType" xml:space="preserve">
+    <value>Tipo de archivo</value>
+    <comment>File Type</comment>
+  </data>
+  <data name="LabelFileUpload" xml:space="preserve">
+    <value>Subir archivo</value>
+    <comment>File Upload</comment>
+  </data>
+  <data name="LabelFinish" xml:space="preserve">
+    <value>Terminar</value>
+    <comment>Finish</comment>
+  </data>
+  <data name="LabelFirstName" xml:space="preserve">
+    <value>Nombre </value>
+    <comment>First name</comment>
+  </data>
+  <data name="LabelFirstNameLocalLanguage" xml:space="preserve">
+    <value>Nombre (lengua local)</value>
+    <comment>First Name (Local language)</comment>
+  </data>
+  <data name="LabelFirstNameMandatory" xml:space="preserve">
+    <value>Nombre es obligatorio.</value>
+    <comment>First name is mandatory.</comment>
+  </data>
+  <data name="LabelFirstnameRequired" xml:space="preserve">
+    <value>Se requiere el primer nombre</value>
+    <comment>First name is required</comment>
+  </data>
+  <data name="LabelForgetPassword" xml:space="preserve">
+    <value>Recuperar Contraseña</value>
+    <comment>Retrieve Password</comment>
+  </data>
+  <data name="LabelForgotPassword" xml:space="preserve">
+    <value>Se te olvidó tu contraseña</value>
+    <comment>Forgot password</comment>
+  </data>
+  <data name="LabelForgottenPassword" xml:space="preserve">
+    <value>Contraseña olvidada</value>
+    <comment>Forgotten Password</comment>
+  </data>
+  <data name="LabelFormerEmployer" xml:space="preserve">
+    <value>Ex empleador</value>
+    <comment>Former Employer</comment>
+  </data>
+  <data name="LabelFrom" xml:space="preserve">
+    <value>De</value>
+    <comment>From</comment>
+  </data>
+  <data name="LabelFromDate" xml:space="preserve">
+    <value>Partir de la fecha</value>
+    <comment>From Date</comment>
+  </data>
+  <data name="LabelFromSalary" xml:space="preserve">
+    <value>Introduzca Del Sueldo</value>
+    <comment>Enter From Salary</comment>
+  </data>
+  <data name="LabelFromTo" xml:space="preserve">
+    <value>De / A</value>
+    <comment>From/To</comment>
+  </data>
+  <data name="LabelFullDescription" xml:space="preserve">
+    <value>Descripción completa</value>
+    <comment>Full Description</comment>
+  </data>
+  <data name="LabelFullName" xml:space="preserve">
+    <value>Nombre completo</value>
+    <comment>Full name</comment>
+  </data>
+  <data name="LabelFullPermissionRequired" xml:space="preserve">
+    <value>Se requiere permiso completo</value>
+    <comment>Full permission is required</comment>
+  </data>
+  <data name="LabelFullProfessionalProficiency" xml:space="preserve">
+    <value>Competencia profesional completa</value>
+    <comment>Full Professional proficiency</comment>
+  </data>
+  <data name="LabelFullRegistration" xml:space="preserve">
+    <value>Inscripción completa</value>
+    <comment>Full Registration</comment>
+  </data>
+  <data name="LabelGender" xml:space="preserve">
+    <value>Género</value>
+    <comment>Gender</comment>
+  </data>
+  <data name="LabelGenerate" xml:space="preserve">
+    <value>Generar</value>
+    <comment>Generate</comment>
+  </data>
+  <data name="LabelGoBackToSearchResults" xml:space="preserve">
+    <value>Volver a resultados de búsqueda.</value>
+    <comment>to go back to your search results.</comment>
+  </data>
+  <data name="LabelGST" xml:space="preserve">
+    <value>GST</value>
+    <comment>GST</comment>
+  </data>
+  <data name="LabelHaventReceivedWelcomeEmail" xml:space="preserve">
+    <value>¿No han recibido correo electrónico de bienvenida? Renviar más adelante</value>
+    <comment>Haven't received welcome email? Resend below</comment>
+  </data>
+  <data name="LabelHeadline" xml:space="preserve">
+    <value>Titular</value>
+    <comment>Headline</comment>
+  </data>
+  <data name="LabelHere" xml:space="preserve">
+    <value>Aquí</value>
+    <comment>Here</comment>
+  </data>
+  <data name="LabelHi" xml:space="preserve">
+    <value>Hola</value>
+    <comment>Hi</comment>
+  </data>
+  <data name="LabelHistoricalJobStatistics" xml:space="preserve">
+    <value>Estadísticas históricas del trabajo</value>
+    <comment>Historical Job Statistics</comment>
+  </data>
+  <data name="LabelHotJob" xml:space="preserve">
+    <value>Trabajo en caliente</value>
+    <comment>Hot Job</comment>
+  </data>
+  <data name="LabelHourlySalary" xml:space="preserve">
+    <value>Sueldo por hora</value>
+    <comment>Hourly Salary</comment>
+  </data>
+  <data name="LabelHowDoesMyFileCompare" xml:space="preserve">
+    <value>¿Cómo se compara mi perfil?</value>
+    <comment>How does my profile compare?</comment>
+  </data>
+  <data name="LabelHowDoesMyProfileCompare" xml:space="preserve">
+    <value>¿Cómo se compara mi perfil?</value>
+    <comment>How does my profile compare?</comment>
+  </data>
+  <data name="LabelHTML" xml:space="preserve">
+    <value>HTML</value>
+    <comment>HTML</comment>
+  </data>
+  <data name="LabelIndirectReport" xml:space="preserve">
+    <value>Informe indirecto</value>
+    <comment>Indirect Report</comment>
+  </data>
+  <data name="LabelIndustries" xml:space="preserve">
+    <value>Industrias</value>
+    <comment>Industries</comment>
+  </data>
+  <data name="LabelInstitutionName" xml:space="preserve">
+    <value>Nombre de la Institución</value>
+    <comment>Institution Name</comment>
+  </data>
+  <data name="LabelInterestedInThisJob" xml:space="preserve">
+    <value>¿Interesado en este trabajo?</value>
+    <comment>Interested in this job?</comment>
+  </data>
+  <data name="LabelInterestedInThisJob1" xml:space="preserve">
+    <value>¿Interesado en este trabajo?</value>
+    <comment>Interested in this job?</comment>
+  </data>
+  <data name="LabelIntermediate" xml:space="preserve">
+    <value>Intermediario</value>
+    <comment>Intermediate</comment>
+  </data>
+  <data name="LabelInterview" xml:space="preserve">
+    <value>Entrevista</value>
+    <comment>Interview</comment>
+  </data>
+  <data name="LabelInvalidDate" xml:space="preserve">
+    <value>Fecha invalida</value>
+    <comment>Invalid Date</comment>
+  </data>
+  <data name="LabelInvalidDateRange" xml:space="preserve">
+    <value>Fecha fuera de rango.</value>
+    <comment>Date out of range.</comment>
+  </data>
+  <data name="LabelInvalidImage" xml:space="preserve">
+    <value>Tipo de archivo inválido. GIF, JPG y JPEG son los únicos tipos válidos de imágenes permitidos para cargar.</value>
+    <comment>Invalid file type. GIF, JPG and JPEG are the only valid images types allowed for upload.</comment>
+  </data>
+  <data name="LabelInvalidJobAlert" xml:space="preserve">
+    <value>Alerta de trabajo inválido</value>
+    <comment>Invalid Job Alert</comment>
+  </data>
+  <data name="LabelInvalidURL" xml:space="preserve">
+    <value>URL invalida</value>
+    <comment>Invalid URL</comment>
+  </data>
+  <data name="LabelIssueDate" xml:space="preserve">
+    <value>Fecha de asunto</value>
+    <comment>Issue Date</comment>
+  </data>
+  <data name="LabelItem" xml:space="preserve">
+    <value>Opción</value>
+    <comment>Item</comment>
+  </data>
+  <data name="LabelJan" xml:space="preserve">
+    <value>enero</value>
+    <comment>January</comment>
+  </data>
+  <data name="LabelJobAdOptions" xml:space="preserve">
+    <value>Anuncio de opción de trabajo</value>
+    <comment>Job Advertisement Option</comment>
+  </data>
+  <data name="LabelJobAdvertisementOption" xml:space="preserve">
+    <value>Anuncio de opción de trabajo</value>
+    <comment>Job Advertisement Option</comment>
+  </data>
+  <data name="LabelJobAlert" xml:space="preserve">
+    <value>Alerta de Trabajo</value>
+    <comment>Job Alert</comment>
+  </data>
+  <data name="LabelJobAlertCreateSuccess" xml:space="preserve">
+    <value>Una Alerta de trabajo ha sido creada.</value>
+    <comment>A Job Alert has been created.</comment>
+  </data>
+  <data name="LabelJobAlertCriteria" xml:space="preserve">
+    <value>Criterios de alerta de trabajo</value>
+    <comment>Job Alert Criteria</comment>
+  </data>
+  <data name="LabelJobAlertDetail" xml:space="preserve">
+    <value>Detalles de alerta de trabajo</value>
+    <comment>Job Alert Detail</comment>
+  </data>
+  <data name="LabelJobAlertEditGUIDFailed" xml:space="preserve">
+    <value>Falla de alerta de edición de trabajo GUID </value>
+    <comment>Job Alert Edit GUID Failed</comment>
+  </data>
+  <data name="LabelJobAlertName" xml:space="preserve">
+    <value>Nombre de alerta de trabajo</value>
+    <comment>Job Alert Name</comment>
+  </data>
+  <data name="LabelJobAlertNo" xml:space="preserve">
+    <value>No, no me envíe una alerta de trabajo diario</value>
+    <comment>No, do not send me a Daily Job Alert</comment>
+  </data>
+  <data name="LabelJobAlertSaveSuccess" xml:space="preserve">
+    <value>Alerta del trabajo guardado satisfactoriamente</value>
+    <comment>Job Alert saved successfully</comment>
+  </data>
+  <data name="LabelJobAlertUnsubscribeGUIDFailed" xml:space="preserve">
+    <value>Cancelar la suscripción Alerta de trabajo, Error GUID </value>
+    <comment>Job Alert Unsubscribe GUID Failed</comment>
+  </data>
+  <data name="LabelJobAlertViewGUIDFailed" xml:space="preserve">
+    <value>Visualizar Alerta de trabajo, Error GUID </value>
+    <comment>Job Alert View GUID Failed</comment>
+  </data>
+  <data name="LabelJobAlertYes" xml:space="preserve">
+    <value>Sí, envíame una alerta de trabajo diario</value>
+    <comment>Yes, send me a Daily Job Alert</comment>
+  </data>
+  <data name="LabelJobApplication" xml:space="preserve">
+    <value>Aplicación de trabajo</value>
+    <comment>Job Application</comment>
+  </data>
+  <data name="LabelJobApplicationDetail" xml:space="preserve">
+    <value>Detalle de la aplicación de trabajo</value>
+    <comment>Job Application Detail</comment>
+  </data>
+  <data name="LabelJobApplicationDetails" xml:space="preserve">
+    <value>Detalles de la aplicación de trabajo</value>
+    <comment>Job Application Details</comment>
+  </data>
+  <data name="LabelJobApplicationNote" xml:space="preserve">
+    <value>Nota de la aplicación de Trabajo </value>
+    <comment>Job Application Note</comment>
+  </data>
+  <data name="LabelJobApplied" xml:space="preserve">
+    <value>Usted solicitó este trabajo en</value>
+    <comment>You applied for this job on</comment>
+  </data>
+  <data name="LabelJobApplyFailed" xml:space="preserve">
+    <value>Error al enviar la solicitud de trabajo. Por favor, inténtelo de nuevo.</value>
+    <comment>Failed to submit job application. Please try again.</comment>
+  </data>
+  <data name="LabelJobAssignnedTo" xml:space="preserve">
+    <value>El trabajo es asignado al nombre de usuario</value>
+    <comment>Job is assigend to username</comment>
+  </data>
+  <data name="LabelJobClassification" xml:space="preserve">
+    <value>Clasificación de Trabajo</value>
+    <comment>Job Classification</comment>
+  </data>
+  <data name="LabelJobClassificationDetail" xml:space="preserve">
+    <value>Detalle de clasificación de trabajo </value>
+    <comment>Job Classification Detail</comment>
+  </data>
+  <data name="LabelJobContactDetails" xml:space="preserve">
+    <value>Detalles del Contacto de trabajo</value>
+    <comment>Job Contact Details</comment>
+  </data>
+  <data name="LabelJobDescription" xml:space="preserve">
+    <value>Descripción del trabajo</value>
+    <comment>Job Description</comment>
+  </data>
+  <data name="LabelJobExpired" xml:space="preserve">
+    <value>Trabajo vencido</value>
+    <comment>Job Expired</comment>
+  </data>
+  <data name="LabelJobExpiryNotification" xml:space="preserve">
+    <value>Notificación del vencimiento del trabajo</value>
+    <comment>Job Expiry Notification</comment>
+  </data>
+  <data name="LabelJobFriendlyName" xml:space="preserve">
+    <value>Nombre descriptivo del trabajo</value>
+    <comment>Job Friendly Name</comment>
+  </data>
+  <data name="LabelJobHaveApplied" xml:space="preserve">
+    <value>Debería haber aplicado para este trabajo en</value>
+    <comment>You might have applied for this job on</comment>
+  </data>
+  <data name="LabelJobID" xml:space="preserve">
+    <value>Identificación del trabajo</value>
+    <comment>Job ID</comment>
+  </data>
+  <data name="LabelJobIsArchived" xml:space="preserve">
+    <value>Este trabajo está archivado</value>
+    <comment>This job is archived</comment>
+  </data>
+  <data name="LabelJobIsExpired" xml:space="preserve">
+    <value>Este trabajo ha vencido</value>
+    <comment>This job is expired</comment>
+  </data>
+  <data name="LabelJobItem" xml:space="preserve">
+    <value>Opción Trabajo</value>
+    <comment>Job Item</comment>
+  </data>
+  <data name="LabelJobItemPrice" xml:space="preserve">
+    <value>Opción Precio trabajo </value>
+    <comment>Job Item Price</comment>
+  </data>
+  <data name="LabelJobItemType" xml:space="preserve">
+    <value>Opción Tipo de trabajo</value>
+    <comment>Job Item Type</comment>
+  </data>
+  <data name="LabelJobLocation" xml:space="preserve">
+    <value>Localización del trabajo</value>
+    <comment>Job Location</comment>
+  </data>
+  <data name="LabelJobName" xml:space="preserve">
+    <value>Nombre del trabajo</value>
+    <comment>Job Name</comment>
+  </data>
+  <data name="LabelJobPreview" xml:space="preserve">
+    <value>Vista previa de trabajo</value>
+    <comment>Job Preview</comment>
+  </data>
+  <data name="LabelJobSalaryDetail" xml:space="preserve">
+    <value>Detalle del sueldo del trabajo</value>
+    <comment>Job Salary Detail</comment>
+  </data>
+  <data name="LabelJobSaved" xml:space="preserve">
+    <value>Trabajo guardado</value>
+    <comment>Job Saved</comment>
+  </data>
+  <data name="LabelJobSeeker" xml:space="preserve">
+    <value>Buscador de trabajo</value>
+    <comment>Job Seeker</comment>
+  </data>
+  <data name="LabelJobSeekers" xml:space="preserve">
+    <value>Buscadores de trabajo</value>
+    <comment>job seeker(s)</comment>
+  </data>
+  <data name="LabelJobsExpiringIn24hrs" xml:space="preserve">
+    <value>Trabajos vencen en 24 horas</value>
+    <comment>Jobs Expiring in 24 hrs</comment>
+  </data>
+  <data name="LabelJobStartDate" xml:space="preserve">
+    <value>Fecha de Inicio de trabajo</value>
+    <comment>Job Start Date</comment>
+  </data>
+  <data name="LabelJobTemplate" xml:space="preserve">
+    <value>Plantilla de trabajo</value>
+    <comment>Job Template</comment>
+  </data>
+  <data name="LabelJobTemplateLogo" xml:space="preserve">
+    <value>Logotipo de plantilla del Trabajo</value>
+    <comment>Job Template Logo</comment>
+  </data>
+  <data name="LabelJobTemplateSettings" xml:space="preserve">
+    <value>Configuración de la plantilla del trabajo</value>
+    <comment>Job Template Settings</comment>
+  </data>
+  <data name="LabelJobTitle" xml:space="preserve">
+    <value>Título profesional</value>
+    <comment>JobTitle</comment>
+  </data>
+  <data name="LabelJobTitleIsExpired" xml:space="preserve">
+    <value>El título del trabajo ha vencido</value>
+    <comment>The job Title is now Expired</comment>
+  </data>
+  <data name="LabelJobWorktype" xml:space="preserve">
+    <value>Tipo de trabajo</value>
+    <comment>Job Worktype</comment>
+  </data>
+  <data name="LabelJul" xml:space="preserve">
+    <value>julio</value>
+    <comment>July</comment>
+  </data>
+  <data name="LabelJun" xml:space="preserve">
+    <value>junio</value>
+    <comment>June</comment>
+  </data>
+  <data name="LabelJurisDoctor" xml:space="preserve">
+    <value>Doctor en leyes</value>
+    <comment>Juris Doctor</comment>
+  </data>
+  <data name="LabelJustApply" xml:space="preserve">
+    <value>Aplica ya</value>
+    <comment>Apply now</comment>
+  </data>
+  <data name="LabelJustApplyPage" xml:space="preserve">
+    <value>Basta con aplicar</value>
+    <comment>Just Apply</comment>
+  </data>
+  <data name="LabelKeyword" xml:space="preserve">
+    <value>Palabra clave</value>
+    <comment>Keyword</comment>
+  </data>
+  <data name="LabelKeywords" xml:space="preserve">
+    <value>Palabras clave</value>
+    <comment>Keywords</comment>
+  </data>
+  <data name="LabelLandLine" xml:space="preserve">
+    <value>Línea fija</value>
+    <comment>Land line</comment>
+  </data>
+  <data name="LabelLanguage" xml:space="preserve">
+    <value>Idioma</value>
+    <comment>Language</comment>
+  </data>
+  <data name="LabelLanguages" xml:space="preserve">
+    <value>idiomas</value>
+    <comment>Languages</comment>
+  </data>
+  <data name="LabelLastModified" xml:space="preserve">
+    <value>Última modificación</value>
+    <comment>Last Modified</comment>
+  </data>
+  <data name="LabelLastModifiedByAdminUser" xml:space="preserve">
+    <value>Modificada por última vez por el usuario de administración</value>
+    <comment>Last modified by Admin User</comment>
+  </data>
+  <data name="LabelLastModifiedByAdvertiserUser" xml:space="preserve">
+    <value>Última modificación por Usuario anunciante</value>
+    <comment>Last Modified By Advertiser User</comment>
+  </data>
+  <data name="LabelLastName" xml:space="preserve">
+    <value>Apellido</value>
+    <comment>Last name</comment>
+  </data>
+  <data name="LabelLastNameLocalLanguage" xml:space="preserve">
+    <value>Apellido (idioma local)</value>
+    <comment>Last Name (Local language)</comment>
+  </data>
+  <data name="LabelLastViewedDate" xml:space="preserve">
+    <value>Última fecha visualizada</value>
+    <comment>Last Viewed Date</comment>
+  </data>
+  <data name="LabelLatest" xml:space="preserve">
+    <value>Último</value>
+    <comment>Latest</comment>
+  </data>
+  <data name="LabelLicenseName" xml:space="preserve">
+    <value>Nombre de licencia</value>
+    <comment>License Name</comment>
+  </data>
+  <data name="LabelLicenses" xml:space="preserve">
+    <value>Licencias</value>
+    <comment>Licenses</comment>
+  </data>
+  <data name="LabelLicenseType" xml:space="preserve">
+    <value>Tipo de licencia</value>
+    <comment>License Type</comment>
+  </data>
+  <data name="LabelLimitedWorkProficiency" xml:space="preserve">
+    <value>Límite de competencias en funcionamiento</value>
+    <comment>Limited working proficiency</comment>
+  </data>
+  <data name="LabelLiveJobs" xml:space="preserve">
+    <value>Trabajos en directo</value>
+    <comment>Live Jobs</comment>
+  </data>
+  <data name="LabelLocalLanguage" xml:space="preserve">
+    <value>Lenguaje local</value>
+    <comment>Local Language</comment>
+  </data>
+  <data name="LabelLocalName" xml:space="preserve">
+    <value>Nombre (lengua local)</value>
+    <comment>Name (Local language)</comment>
+  </data>
+  <data name="LabelLocation" xml:space="preserve">
+    <value>Ubicación</value>
+    <comment>Location</comment>
+  </data>
+  <data name="LabelLocationAndArea" xml:space="preserve">
+    <value>Ubicación / Área</value>
+    <comment>Location / Area</comment>
+  </data>
+  <data name="LabelLocationArea" xml:space="preserve">
+    <value>Ubicación / Área</value>
+    <comment>Location / Area</comment>
+  </data>
+  <data name="LabelLocationDetails" xml:space="preserve">
+    <value>Detalles de ubicación</value>
+    <comment>Location details</comment>
+  </data>
+  <data name="LabelLocationPreferences" xml:space="preserve">
+    <value>Preferencias de ubicación</value>
+    <comment>Location Preferences</comment>
+  </data>
+  <data name="LabelLocationRequired" xml:space="preserve">
+    <value>Ubicación requerida</value>
+    <comment>Location required</comment>
+  </data>
+  <data name="LabelLocationUpdated" xml:space="preserve">
+    <value>Ubicación / Actualización</value>
+    <comment>Location/Updated</comment>
+  </data>
+  <data name="LabelLogin" xml:space="preserve">
+    <value>Iniciar sesión</value>
+    <comment>Login</comment>
+  </data>
+  <data name="LabelLoginDetails" xml:space="preserve">
+    <value>Detalles de inicio de sesión</value>
+    <comment>Login Details</comment>
+  </data>
+  <data name="LabelLoginWithSocialMedia" xml:space="preserve">
+    <value>Iniciar sesión con los medios sociales</value>
+    <comment>Login with Social Media</comment>
+  </data>
+  <data name="LabelLogoImage" xml:space="preserve">
+    <value>Logotipo</value>
+    <comment>Logo Image</comment>
+  </data>
+  <data name="LabelLogout" xml:space="preserve">
+    <value>Cerrar sesión</value>
+    <comment>Log out</comment>
+  </data>
+  <data name="labellPasswordRequired" xml:space="preserve">
+    <value>se requiere contraseña</value>
+    <comment>Password is required</comment>
+  </data>
+  <data name="LabelMailingAddress" xml:space="preserve">
+    <value>Dirección de envío</value>
+    <comment>Mailing Address</comment>
+  </data>
+  <data name="LabelMailingCountry" xml:space="preserve">
+    <value>País de envío</value>
+    <comment>Mailing Country</comment>
+  </data>
+  <data name="LabelMailingPostcode" xml:space="preserve">
+    <value>Código postal de envío</value>
+    <comment>Mailing Postcode</comment>
+  </data>
+  <data name="LabelMailingState" xml:space="preserve">
+    <value>Estado de envío</value>
+    <comment>Mailing State</comment>
+  </data>
+  <data name="LabelMailingSuburb" xml:space="preserve">
+    <value>Suburbio de envío</value>
+    <comment>Mailing Suburb</comment>
+  </data>
+  <data name="LabelMainAlert" xml:space="preserve">
+    <value>¿Alerta principal?</value>
+    <comment>Main Alert?</comment>
+  </data>
+  <data name="LabelMakePayment" xml:space="preserve">
+    <value>Hacer el pago</value>
+    <comment>Make Payment</comment>
+  </data>
+  <data name="LabelMale" xml:space="preserve">
+    <value>Masculino</value>
+    <comment>Male</comment>
+  </data>
+  <data name="LabelManager" xml:space="preserve">
+    <value>Gerente</value>
+    <comment>Manager</comment>
+  </data>
+  <data name="LabelMandatoryField" xml:space="preserve">
+    <value>Campos obligatorios</value>
+    <comment>Mandatory Fields</comment>
+  </data>
+  <data name="LabelMar" xml:space="preserve">
+    <value>marzo</value>
+    <comment>March</comment>
+  </data>
+  <data name="LabelMastercard" xml:space="preserve">
+    <value>Tarjeta MasterCard</value>
+    <comment>Mastercard</comment>
+  </data>
+  <data name="LabelMastersDegree" xml:space="preserve">
+    <value>Maestría</value>
+    <comment>Master Degree</comment>
+  </data>
+  <data name="LabelMastersOfBusinessAdministration" xml:space="preserve">
+    <value>Máster en Administración de Empresas</value>
+    <comment>Master of Business Administration</comment>
+  </data>
+  <data name="LabelMax" xml:space="preserve">
+    <value>Máximo</value>
+    <comment>Max</comment>
+  </data>
+  <data name="LabelMaximum" xml:space="preserve">
+    <value>Máximo</value>
+    <comment>Maximum</comment>
+  </data>
+  <data name="LabelMaxSize" xml:space="preserve">
+    <value>tamaño máximo</value>
+    <comment>max size</comment>
+  </data>
+  <data name="LabelMaxWidth" xml:space="preserve">
+    <value>anchura máxima</value>
+    <comment>Max width</comment>
+  </data>
+  <data name="LabelMay" xml:space="preserve">
+    <value>mayo</value>
+    <comment>May</comment>
+  </data>
+  <data name="LabelMemberDetail" xml:space="preserve">
+    <value>Detalles de miembro</value>
+    <comment>Member Details</comment>
+  </data>
+  <data name="LabelMemberEditSuccess" xml:space="preserve">
+    <value>Detalles del perfil de la cuenta actualizado satisfactoriamente</value>
+    <comment>Account profile details updated successfully</comment>
+  </data>
+  <data name="LabelMemberFiles" xml:space="preserve">
+    <value>Archivos de usuarios</value>
+    <comment>Member Files</comment>
+  </data>
+  <data name="LabelMemberFileWelcome" xml:space="preserve">
+    <value>Bienvenido a la página de los archivos de usuarios.</value>
+    <comment>Welcome to the Member Files Page.</comment>
+  </data>
+  <data name="LabelMemberFullRegister" xml:space="preserve">
+    <value>Registro completo - Haga clic para ampliar</value>
+    <comment>Full Registration - Click to expand</comment>
+  </data>
+  <data name="LabelMemberInvalid" xml:space="preserve">
+    <value>Validación miembros fallida.</value>
+    <comment>Member validation failed.</comment>
+  </data>
+  <data name="LabelMemberOfBoardCommittee" xml:space="preserve">
+    <value>Miembro del comité del directorio</value>
+    <comment>Member of board Committee</comment>
+  </data>
+  <data name="LabelMemberValidated" xml:space="preserve">
+    <value>La cuenta ha sido validada &lt;br /&gt; &lt;br /&gt; Su cuenta ya ha sido validado. Por favor proceda a &lt;a href=/member/login.aspx"&gt; acceder &lt;/a&gt;. " </value>
+    <comment>Account has been validated
+&lt;br /&gt;&lt;br /&gt;
+Your account has already been validated. Please proceed to &lt;a href=/member/login.aspx"&gt;login&lt;/a&gt;."</comment>
+  </data>
+  <data name="LabelMemberValidation" xml:space="preserve">
+    <value>Validación de usuario</value>
+    <comment>Member Validation</comment>
+  </data>
+  <data name="LabelMentor" xml:space="preserve">
+    <value>Mentor</value>
+    <comment>Mentor</comment>
+  </data>
+  <data name="LabelMessageForYourFriend" xml:space="preserve">
+    <value>Mensaje para su amigo</value>
+    <comment>Message For Your Friend</comment>
+  </data>
+  <data name="LabelMin" xml:space="preserve">
+    <value>Mínimo</value>
+    <comment>Min</comment>
+  </data>
+  <data name="LabelMinimum" xml:space="preserve">
+    <value>Mínimo</value>
+    <comment>Minimum</comment>
+  </data>
+  <data name="LabelMiss" xml:space="preserve">
+    <value>Perder</value>
+    <comment>Miss</comment>
+  </data>
+  <data name="LabelMissingInformation" xml:space="preserve">
+    <value>Falta información de etiqueta</value>
+    <comment>Miss</comment>
+  </data>
+  <data name="LabelMonth" xml:space="preserve">
+    <value>Mes</value>
+    <comment>Month</comment>
+  </data>
+  <data name="LabelMonths" xml:space="preserve">
+    <value>Meses</value>
+    <comment>Months</comment>
+  </data>
+  <data name="LabelMoreInfoOnAcc" xml:space="preserve">
+    <value>Para obtener más información sobre los tipos de cuentas</value>
+    <comment>For more information on account types</comment>
+  </data>
+  <data name="LabelMr" xml:space="preserve">
+    <value>Señor</value>
+    <comment>Mr</comment>
+  </data>
+  <data name="LabelMrs" xml:space="preserve">
+    <value>Señora</value>
+    <comment>Mrs</comment>
+  </data>
+  <data name="LabelMs" xml:space="preserve">
+    <value>Sra.</value>
+    <comment>Ms</comment>
+  </data>
+  <data name="LabelMyAccount" xml:space="preserve">
+    <value>Mi cuenta</value>
+    <comment>My Account</comment>
+  </data>
+  <data name="LabelMyAccountProfile" xml:space="preserve">
+    <value>Mi perfil de cuenta</value>
+    <comment>My Account Profile</comment>
+  </data>
+  <data name="LabelMyApplicationTracker" xml:space="preserve">
+    <value>Mi Rastreador de Aplicación</value>
+    <comment>My Application Tracker</comment>
+  </data>
+  <data name="LabelMyBroadcast" xml:space="preserve">
+    <value>Mi programa</value>
+    <comment>My Broadcast</comment>
+  </data>
+  <data name="LabelMyCVProfile" xml:space="preserve">
+    <value>Mi Perfil CV </value>
+    <comment>My CV Profile</comment>
+  </data>
+  <data name="LabelMyDetails" xml:space="preserve">
+    <value>Mis detalles</value>
+    <comment>My Details</comment>
+  </data>
+  <data name="LabelMyDocuments" xml:space="preserve">
+    <value>Mis documentos</value>
+    <comment>My Documents</comment>
+  </data>
+  <data name="LabelMyFavouriteSearches" xml:space="preserve">
+    <value>Mi búsqueda favorita(s)</value>
+    <comment>My favourite search(es)</comment>
+  </data>
+  <data name="LabelMyHome" xml:space="preserve">
+    <value>Mi hogar</value>
+    <comment>My Home</comment>
+  </data>
+  <data name="LabelMyJobAlerts" xml:space="preserve">
+    <value>Mis Alertas de Trabajo</value>
+    <comment>My Job Alerts</comment>
+  </data>
+  <data name="LabelMyJobAlert_s" xml:space="preserve">
+    <value>Mi alerta(s) de trabajo</value>
+    <comment>My job alert(s)</comment>
+  </data>
+  <data name="LabelMyJobTools" xml:space="preserve">
+    <value>Mis Herramientas de trabajo</value>
+    <comment>My Job Tools</comment>
+  </data>
+  <data name="LabelMyPassword" xml:space="preserve">
+    <value>Mi contraseña</value>
+    <comment>My Password</comment>
+  </data>
+  <data name="LabelMyPersonalDetails" xml:space="preserve">
+    <value>Mis datos personales</value>
+    <comment>My Personal Details</comment>
+  </data>
+  <data name="LabelMyResumeCoverLetter" xml:space="preserve">
+    <value>Mi CV / Carta de presentación</value>
+    <comment>My Resume / Cover Letter</comment>
+  </data>
+  <data name="LabelMySavedJobs" xml:space="preserve">
+    <value>Mis trabajos guardadas</value>
+    <comment>My Saved Jobs</comment>
+  </data>
+  <data name="LabelMySearchCriteria" xml:space="preserve">
+    <value>Mis criterios de búsqueda</value>
+    <comment>My Search Criteria</comment>
+  </data>
+  <data name="LabelNA" xml:space="preserve">
+    <value>N/A</value>
+    <comment>N/A</comment>
+  </data>
+  <data name="LabelName" xml:space="preserve">
+    <value>Nombre</value>
+    <comment>Name</comment>
+  </data>
+  <data name="LabelNameFeedMandatory" xml:space="preserve">
+    <value>Nombre de la fuente es obligatoria.</value>
+    <comment>Name of the alert is mandatory.</comment>
+  </data>
+  <data name="LabelNameOfAlertRequired" xml:space="preserve">
+    <value>Se requiere el nombre de alerta</value>
+    <comment>Name of alert is required</comment>
+  </data>
+  <data name="LabelNameOfFeed" xml:space="preserve">
+    <value>Nombre de alerta</value>
+    <comment>Name of Alert</comment>
+  </data>
+  <data name="LabelNativeOrBilingualProficiency" xml:space="preserve">
+    <value>Competencia bilingüe o nativa</value>
+    <comment>Native or bilingual proficiency</comment>
+  </data>
+  <data name="LabelNearestTransport" xml:space="preserve">
+    <value>Transporte más cercano</value>
+    <comment>Nearest Transport</comment>
+  </data>
+  <data name="LabelNeedLogin" xml:space="preserve">
+    <value>Necesitas iniciar sesión</value>
+    <comment>You need to login</comment>
+  </data>
+  <data name="LabelNetTotal" xml:space="preserve">
+    <value>Total neto</value>
+    <comment>Net total</comment>
+  </data>
+  <data name="LabelNew" xml:space="preserve">
+    <value>Nuevo</value>
+    <comment>New</comment>
+  </data>
+  <data name="LabelNewPassword" xml:space="preserve">
+    <value>Nueva contraseña</value>
+    <comment>New Password</comment>
+  </data>
+  <data name="LabelNews" xml:space="preserve">
+    <value>Noticias</value>
+    <comment>News</comment>
+  </data>
+  <data name="LabelNewsHome" xml:space="preserve">
+    <value>Inicio de Noticias</value>
+    <comment>News Home</comment>
+  </data>
+  <data name="LabelNewsletter" xml:space="preserve">
+    <value>Hoja informativa</value>
+    <comment>Newsletter</comment>
+  </data>
+  <data name="LabelNext" xml:space="preserve">
+    <value>Siguiente</value>
+    <comment>Next</comment>
+  </data>
+  <data name="LabelNo" xml:space="preserve">
+    <value>No</value>
+    <comment>No</comment>
+  </data>
+  <data name="LabelNoAdditionalDocuments" xml:space="preserve">
+    <value>Actualmente, no tiene documento adicional</value>
+    <comment>You currently do not have Additional Document</comment>
+  </data>
+  <data name="LabelNoCoverLetter" xml:space="preserve">
+    <value>Actualmente, no tiene carta de presentación</value>
+    <comment>You currently do not have Cover Letter</comment>
+  </data>
+  <data name="LabelNoData" xml:space="preserve">
+    <value>Datos no encontrados</value>
+    <comment>No Data Found</comment>
+  </data>
+  <data name="LabelNoDraftJobs" xml:space="preserve">
+    <value>No tienes ningún proyecto de trabajo todavía.</value>
+    <comment>You haven't got any draft job yet.</comment>
+  </data>
+  <data name="LabelNoFileChosen" xml:space="preserve">
+    <value>Archivo no seleccionado ...</value>
+    <comment>No File Choosen...</comment>
+  </data>
+  <data name="LabelNoJobAlerts" xml:space="preserve">
+    <value>Actualmente, no tiene ninguna alerta de trabajo.</value>
+    <comment>You currently don't have any Job alerts.</comment>
+  </data>
+  <data name="LabelNoJobCredit" xml:space="preserve">
+    <value>Ningún crédito trabajo</value>
+    <comment>No job credit</comment>
+  </data>
+  <data name="LabelNoJobSelected" xml:space="preserve">
+    <value>ningún trabajos han sido seleccionados, por favor, seleccione un trabajo para proceder</value>
+    <comment>No Jobs have been selected, please select a job to proceed</comment>
+  </data>
+  <data name="LabelNoJobTracked" xml:space="preserve">
+    <value>No ha solicitado ofertas de trabajos.</value>
+    <comment>You haven't applied for any jobs yet.</comment>
+  </data>
+  <data name="LabelNone" xml:space="preserve">
+    <value>Ninguna</value>
+    <comment>None</comment>
+  </data>
+  <data name="LabelNoResultFound" xml:space="preserve">
+    <value>No se han encontrado resultados</value>
+    <comment>No results found</comment>
+  </data>
+  <data name="LabelNoResume" xml:space="preserve">
+    <value>Actualmente, no tiene curriculum</value>
+    <comment>You currently do not have Resume</comment>
+  </data>
+  <data name="LabelNoSavedJob" xml:space="preserve">
+    <value>Actualmente, no tiene ningún trabajo guardado.</value>
+    <comment>You currently do not have any saved jobs.</comment>
+  </data>
+  <data name="LabelNote" xml:space="preserve">
+    <value>Nota</value>
+    <comment>Note</comment>
+  </data>
+  <data name="LabelNotRegisteredQuickly" xml:space="preserve">
+    <value>¿Sin registro? ¡No hay problema! Rápido</value>
+    <comment>Not registered? No problem! Quickly</comment>
+  </data>
+  <data name="LabelNotSeeking" xml:space="preserve">
+    <value>Actualmente sin búsqueda</value>
+    <comment>Not Currently Seeking</comment>
+  </data>
+  <data name="LabelNov" xml:space="preserve">
+    <value>noviembre</value>
+    <comment>November</comment>
+  </data>
+  <data name="LabelNumber" xml:space="preserve">
+    <value>Número</value>
+    <comment>Number</comment>
+  </data>
+  <data name="LabelNumberOfEmployees" xml:space="preserve">
+    <value>Número de empleados</value>
+    <comment>Number of employees</comment>
+  </data>
+  <data name="LabelOct" xml:space="preserve">
+    <value>octubre</value>
+    <comment>October</comment>
+  </data>
+  <data name="LabelOldest" xml:space="preserve">
+    <value>Más antiguo</value>
+    <comment>Oldest</comment>
+  </data>
+  <data name="LabelOngoingAccount" xml:space="preserve">
+    <value>cuenta en curso</value>
+    <comment>Ongoing account</comment>
+  </data>
+  <data name="LabelOnHold" xml:space="preserve">
+    <value>En espera</value>
+    <comment>On Hold</comment>
+  </data>
+  <data name="LabelOopsNoJobCredit" xml:space="preserve">
+    <value>¡Vaya! Parece que no tienes créditos de trabajo. Con el fin de publicar un trabajo, primero debe     comprar créditos de abajo.</value>
+    <comment>Oops! Seems you don't have job credits. In order to post a job, you must first
+                    purchase credits below.</comment>
+  </data>
+  <data name="LabelOptional" xml:space="preserve">
+    <value>Opcional</value>
+    <comment>optional</comment>
+  </data>
+  <data name="LabelOptionUploadCreateCover" xml:space="preserve">
+    <value>Seleccione una de las siguientes opciones para cargar su carta de presentación o crear la suya.</value>
+    <comment>Select one of the following options to upload your cover letter or create your own.</comment>
+  </data>
+  <data name="LabelOptionUploadResume" xml:space="preserve">
+    <value>Seleccione una de las siguientes opciones para cargar su curriculum.</value>
+    <comment>Select one of the following options to upload your resume.</comment>
+  </data>
+  <data name="LabelOr" xml:space="preserve">
+    <value>O</value>
+    <comment>OR</comment>
+  </data>
+  <data name="LabelOrderNumber" xml:space="preserve">
+    <value>Número de orden</value>
+    <comment>Order number</comment>
+  </data>
+  <data name="LabelOrganisationName" xml:space="preserve">
+    <value>Nombre de la organización</value>
+    <comment>Organisation Name</comment>
+  </data>
+  <data name="LabelOrganisationWebsite" xml:space="preserve">
+    <value>Organización del sitio Web</value>
+    <comment>Organisation Website</comment>
+  </data>
+  <data name="LabelOrWriteOneNow" xml:space="preserve">
+    <value>O escribir una</value>
+    <comment>Or Write One</comment>
+  </data>
+  <data name="LabelOther" xml:space="preserve">
+    <value>Otro</value>
+    <comment>Other</comment>
+  </data>
+  <data name="LabelOtherQualification" xml:space="preserve">
+    <value>Otra certificación</value>
+    <comment>Other Qualification</comment>
+  </data>
+  <data name="LabelOthers" xml:space="preserve">
+    <value>Otros</value>
+    <comment>Others</comment>
+  </data>
+  <data name="LabelPackageContains" xml:space="preserve">
+    <value>Contiene</value>
+    <comment>Contains</comment>
+  </data>
+  <data name="LabelPackageDetails" xml:space="preserve">
+    <value>Detalles del paquete</value>
+    <comment>Package details</comment>
+  </data>
+  <data name="LabelPage" xml:space="preserve">
+    <value>Página</value>
+    <comment>Page</comment>
+  </data>
+  <data name="LabelPages" xml:space="preserve">
+    <value>página(s)</value>
+    <comment>page(s)</comment>
+  </data>
+  <data name="LabelPassportNumber" xml:space="preserve">
+    <value>Número de pasaporte</value>
+    <comment>Passport Number</comment>
+  </data>
+  <data name="LabelPassword" xml:space="preserve">
+    <value>Contraseña</value>
+    <comment>Password</comment>
+  </data>
+  <data name="LabelPasswordNotMatch" xml:space="preserve">
+    <value>La contraseña y la confirmación de contraseña no coinciden</value>
+    <comment>The password and confirmation password do not match</comment>
+  </data>
+  <data name="LabelPasswordPrompt" xml:space="preserve">
+    <value>La contraseña debe contener 8 caracteres o más, 1 letra minúscula, 1 letra mayúscula y 1 numérica.</value>
+    <comment>Password must contain 8 characters or more, 1 lowercase letter, 1 uppercase letter and 1 number.</comment>
+  </data>
+  <data name="LabelPayByCreditCard" xml:space="preserve">
+    <value>Pagar con tarjeta de crédito</value>
+    <comment>Pay by credit card</comment>
+  </data>
+  <data name="LabelPaymentConfirmationDescription" xml:space="preserve">
+    <value>Su cuenta ha sido actualizada con los créditos de trabajo pertinentes. &lt;Span style = "display: none"&gt;. Este cargo aparecerá en su estado de cuenta de tarjeta de crédito como medio de pago a "{0}" &lt;/ span&gt;</value>
+    <comment>Your account has now been updated with the relevant job credits. &lt;span style='display:none'&gt;This charge will appear on your credit card statement as payment to "{0}".&lt;/span&gt;</comment>
+  </data>
+  <data name="LabelPaymentMethod" xml:space="preserve">
+    <value>Método de pago</value>
+    <comment>Payment Method</comment>
+  </data>
+  <data name="LabelPaypal" xml:space="preserve">
+    <value>Paypal</value>
+    <comment>Paypal</comment>
+  </data>
+  <data name="LabelPendingJobs" xml:space="preserve">
+    <value>Trabajos pendiente</value>
+    <comment>Pending Jobs</comment>
+  </data>
+  <data name="LabelPersonalDetails" xml:space="preserve">
+    <value>Detalles personales</value>
+    <comment>Personal Details</comment>
+  </data>
+  <data name="LabelPhone" xml:space="preserve">
+    <value>Teléfono</value>
+    <comment>Phone</comment>
+  </data>
+  <data name="LabelPhoneHome" xml:space="preserve">
+    <value>Teléfono (H) o Número de teléfono de casa</value>
+    <comment>Phone (H) or Home Phone number</comment>
+  </data>
+  <data name="LabelPhoneMobile" xml:space="preserve">
+    <value>Número de teléfono móvil o celular</value>
+    <comment>Mobile or Mobile Phone Number</comment>
+  </data>
+  <data name="LabelPhoneRequired" xml:space="preserve">
+    <value>El teléfono es requerido</value>
+    <comment>Phone is required</comment>
+  </data>
+  <data name="LabelPhoneWork" xml:space="preserve">
+    <value>Teléfono (W) o número de teléfono de oficina</value>
+    <comment>Phone (W) or Office Phone Number</comment>
+  </data>
+  <data name="LabelPhoto" xml:space="preserve">
+    <value>Foto</value>
+    <comment>Photo</comment>
+  </data>
+  <data name="LabelPleaseAnswer" xml:space="preserve">
+    <value>Por favor conteste...</value>
+    <comment>Please answer...</comment>
+  </data>
+  <data name="LabelPleaseChoose" xml:space="preserve">
+    <value>Por favor elija ...</value>
+    <comment>Please Choose ...</comment>
+  </data>
+  <data name="LabelPleaseContactSupport" xml:space="preserve">
+    <value>Por favor, póngase en contacto con nuestro equipo de soporte a través de la página de contacto de nuestra página web para resolver sus problemas.</value>
+    <comment>Please contact our support team via the contact page of our website to resolve your issues.</comment>
+  </data>
+  <data name="LabelPleaseLogin" xml:space="preserve">
+    <value>Por favor Iniciar sesión</value>
+    <comment>Please Login</comment>
+  </data>
+  <data name="LabelPleaseSeeThe" xml:space="preserve">
+    <value>Por favor, vea el</value>
+    <comment>Please see the</comment>
+  </data>
+  <data name="LabelPleaseSelect" xml:space="preserve">
+    <value>Por favor seleccione</value>
+    <comment>Please Select</comment>
+  </data>
+  <data name="LabelPleaseSelectDoc" xml:space="preserve">
+    <value>Por favor, seleccione el documento que desea cargar.</value>
+    <comment>Please Select Document to Upload.</comment>
+  </data>
+  <data name="LabelPleaseSelectSalaryType" xml:space="preserve">
+    <value>Por favor, seleccione el tipo de sueldo</value>
+    <comment>Please select salary type</comment>
+  </data>
+  <data name="LabelPleaseSelectYourPackage" xml:space="preserve">
+    <value>Por favor seleccione su paquete</value>
+    <comment>Please select your package</comment>
+  </data>
+  <data name="LabelPleaseSelectYourProduct" xml:space="preserve">
+    <value>Seleccionar producto para comprar</value>
+    <comment>Select Product To Purchase</comment>
+  </data>
+  <data name="LabelPleaseTickBoxToSubscribe" xml:space="preserve">
+    <value>Por favor marque la casilla para suscribirse</value>
+    <comment>Please tick box to subscribe</comment>
+  </data>
+  <data name="LabelPositions" xml:space="preserve">
+    <value>Posición(es)</value>
+    <comment>position(s)</comment>
+  </data>
+  <data name="LabelPostAJob" xml:space="preserve">
+    <value>Anunciar un trabajo</value>
+    <comment>Post a job</comment>
+  </data>
+  <data name="LabelPostalAddress1" xml:space="preserve">
+    <value>Dirección postal 1</value>
+    <comment>Postal Address 1</comment>
+  </data>
+  <data name="LabelPostalAddress2" xml:space="preserve">
+    <value>Dirección postal 2</value>
+    <comment>Postal Address 2</comment>
+  </data>
+  <data name="LabelPostcode" xml:space="preserve">
+    <value>Código postal</value>
+    <comment>Postcode</comment>
+  </data>
+  <data name="LabelPosted" xml:space="preserve">
+    <value>Publicado</value>
+    <comment>Posted</comment>
+  </data>
+  <data name="LabelPostGraduateDegree" xml:space="preserve">
+    <value>Postgrado</value>
+    <comment>Postgraduate</comment>
+  </data>
+  <data name="LabelPostType" xml:space="preserve">
+    <value>Tipo de mensaje</value>
+    <comment>Post type</comment>
+  </data>
+  <data name="LabelPreferredArea" xml:space="preserve">
+    <value>Área preferida</value>
+    <comment>Preferred Area</comment>
+  </data>
+  <data name="LabelPreferredClassification" xml:space="preserve">
+    <value>Clasificación preferida</value>
+    <comment>Preferred Classification</comment>
+  </data>
+  <data name="LabelPreferredEmailLanguage" xml:space="preserve">
+    <value>Idioma preferido de correo electrónico</value>
+    <comment>Preferred email language</comment>
+  </data>
+  <data name="LabelPreferredEmployment" xml:space="preserve">
+    <value>Trabajo preferido</value>
+    <comment>Preferred Employment</comment>
+  </data>
+  <data name="LabelPreferredLine" xml:space="preserve">
+    <value>Línea preferida</value>
+    <comment>Preferred Line</comment>
+  </data>
+  <data name="LabelPreferredLocation" xml:space="preserve">
+    <value>Ubicación preferida</value>
+    <comment>Preferred Location</comment>
+  </data>
+  <data name="LabelPreferredSubClassification" xml:space="preserve">
+    <value>Subclasificación preferida</value>
+    <comment>Preferred Sub Classification</comment>
+  </data>
+  <data name="LabelPresent" xml:space="preserve">
+    <value>Presente</value>
+    <comment>Present</comment>
+  </data>
+  <data name="LabelPrevious" xml:space="preserve">
+    <value>Anterior</value>
+    <comment>Prev</comment>
+  </data>
+  <data name="LabelPrice" xml:space="preserve">
+    <value>Precio</value>
+    <comment>Price</comment>
+  </data>
+  <data name="LabelPriceRange" xml:space="preserve">
+    <value>Rango de precios debe ser entre 1 - 9999</value>
+    <comment>Price Range must be between 1 - 9999</comment>
+  </data>
+  <data name="LabelPrimaryEmail" xml:space="preserve">
+    <value>Correo electrónico principal</value>
+    <comment>Primary Email</comment>
+  </data>
+  <data name="LabelProduct" xml:space="preserve">
+    <value>Productos</value>
+    <comment>Products</comment>
+  </data>
+  <data name="LabelProductCostNA" xml:space="preserve">
+    <value>LabelProductCostNA</value>
+    <comment>LabelProductCostNA</comment>
+  </data>
+  <data name="LabelProductDetails" xml:space="preserve">
+    <value>Detalles del producto</value>
+    <comment>Product details</comment>
+  </data>
+  <data name="LabelProductType" xml:space="preserve">
+    <value>Tipo de producto</value>
+    <comment>Product type</comment>
+  </data>
+  <data name="LabelProfession" xml:space="preserve">
+    <value>Profesión / Rol</value>
+    <comment>Profession / Role</comment>
+  </data>
+  <data name="LabelProfessionalWorkingProficiency" xml:space="preserve">
+    <value>Competencia básica profesional</value>
+    <comment>Professional working proficiency</comment>
+  </data>
+  <data name="LabelProfessionRole" xml:space="preserve">
+    <value>Profesión / Rol</value>
+    <comment>Profession / Role</comment>
+  </data>
+  <data name="LabelProfessionRoleDetails" xml:space="preserve">
+    <value>Detalles de Profesión / rol</value>
+    <comment>Profession/Role Details</comment>
+  </data>
+  <data name="LabelProfessions" xml:space="preserve">
+    <value>Profesión</value>
+    <comment>Profession</comment>
+  </data>
+  <data name="LabelProfessor" xml:space="preserve">
+    <value>Profesor</value>
+    <comment>Professor</comment>
+  </data>
+  <data name="LabelProficiency" xml:space="preserve">
+    <value>Competencia</value>
+    <comment>Proficiency</comment>
+  </data>
+  <data name="LabelProfile" xml:space="preserve">
+    <value>Perfil</value>
+    <comment>Profile</comment>
+  </data>
+  <data name="LabelProfileDownloadPDF" xml:space="preserve">
+    <value>Descargar como PDF</value>
+    <comment>Download as PDF</comment>
+  </data>
+  <data name="LabelProfileProgressLastUpdated" xml:space="preserve">
+    <value>Última actualización</value>
+    <comment>Last Updated</comment>
+  </data>
+  <data name="LabelProfileProgressText1" xml:space="preserve">
+    <value>Tu perfil</value>
+    <comment>Your profile</comment>
+  </data>
+  <data name="LabelProfileProgressText2" xml:space="preserve">
+    <value>completar</value>
+    <comment>complete</comment>
+  </data>
+  <data name="LabelPromoCodeTitle" xml:space="preserve">
+    <value>Código de promoción</value>
+    <comment>Promotion Code</comment>
+  </data>
+  <data name="LabelPublicProfile" xml:space="preserve">
+    <value>Perfil público</value>
+    <comment>Public Profile</comment>
+  </data>
+  <data name="LabelPublicTransport" xml:space="preserve">
+    <value>Transporte público</value>
+    <comment>Public Transport</comment>
+  </data>
+  <data name="LabelPurchaseDetails" xml:space="preserve">
+    <value>Detalles de la compra</value>
+    <comment>Purchase details</comment>
+  </data>
+  <data name="LabelPurchaseTotal" xml:space="preserve">
+    <value>Costo total del producto</value>
+    <comment>Product Total Cost</comment>
+  </data>
+  <data name="LabelPwdChanged" xml:space="preserve">
+    <value>Tu contraseña ha sido cambiada exitosamente.</value>
+    <comment>Your password has been changed successfully.</comment>
+  </data>
+  <data name="LabelQualification" xml:space="preserve">
+    <value>Calificación</value>
+    <comment>Qualification</comment>
+  </data>
+  <data name="LabelQualificationLevel" xml:space="preserve">
+    <value>Nivel de calificación</value>
+    <comment>Qualification Level</comment>
+  </data>
+  <data name="LabelQualificationName" xml:space="preserve">
+    <value> Nombre de Calificación</value>
+    <comment>Qualification Name</comment>
+  </data>
+  <data name="LabelQualificationsRecognised" xml:space="preserve">
+    <value>Calificaciones reconocidas</value>
+    <comment>Qualifications Recognised</comment>
+  </data>
+  <data name="LabelQuantity" xml:space="preserve">
+    <value>Cantidad</value>
+    <comment>Quantity</comment>
+  </data>
+  <data name="LabelQuestion" xml:space="preserve">
+    <value>Pregunta</value>
+    <comment>Question</comment>
+  </data>
+  <data name="LabelQuickRepostJob" xml:space="preserve">
+    <value>Reenvío rápido</value>
+    <comment>Quick Repost</comment>
+  </data>
+  <data name="LabelReadFullStory" xml:space="preserve">
+    <value>Lea la nota completa</value>
+    <comment>Read full story</comment>
+  </data>
+  <data name="LabelReadMore" xml:space="preserve">
+    <value>Lea mas</value>
+    <comment>Read more</comment>
+  </data>
+  <data name="LabelReceiveJobAlert" xml:space="preserve">
+    <value>Recibir Alerta de trabajo</value>
+    <comment>Receive Job Alert</comment>
+  </data>
+  <data name="LabelReceiveNewsletter" xml:space="preserve">
+    <value>Recibir boletín</value>
+    <comment>Receive Newsletter</comment>
+  </data>
+  <data name="LabelReferenceNumber" xml:space="preserve">
+    <value>Número de referencia</value>
+    <comment>Reference Number</comment>
+  </data>
+  <data name="LabelReferences" xml:space="preserve">
+    <value>Referencias</value>
+    <comment>References</comment>
+  </data>
+  <data name="LabelReferralDomain" xml:space="preserve">
+    <value>Dominio de referencia</value>
+    <comment>Referral Domain</comment>
+  </data>
+  <data name="LabelRefine" xml:space="preserve">
+    <value>Refinar</value>
+    <comment>Refine</comment>
+  </data>
+  <data name="LabelRefineResult" xml:space="preserve">
+    <value>Refinar los resultados</value>
+    <comment>Refine results</comment>
+  </data>
+  <data name="LabelRefineResults" xml:space="preserve">
+    <value>Refinar sus resultados</value>
+    <comment>Refine Your Results</comment>
+  </data>
+  <data name="LabelRefNo" xml:space="preserve">
+    <value>Número de referencia</value>
+    <comment>Ref. No</comment>
+  </data>
+  <data name="LabelRefresh" xml:space="preserve">
+    <value>Refrescar</value>
+    <comment>Refresh</comment>
+  </data>
+  <data name="LabelRegister" xml:space="preserve">
+    <value>Registro</value>
+    <comment>Register</comment>
+  </data>
+  <data name="LabelRegisterAndApply" xml:space="preserve">
+    <value>registrarse y aplicar</value>
+    <comment>register and apply</comment>
+  </data>
+  <data name="LabelRegisteringAgree" xml:space="preserve">
+    <value>Al registrarse, usted está de acuerdo con nuestra</value>
+    <comment>By registering, you agree to our</comment>
+  </data>
+  <data name="LabelRegisterLogin" xml:space="preserve">
+    <value>Registro / Inicio de sesión</value>
+    <comment>Register / Login</comment>
+  </data>
+  <data name="LabelRegisterToday" xml:space="preserve">
+    <value>¿No está registrado? ¡Regístrese hoy!</value>
+    <comment>Not registered? Register today!</comment>
+  </data>
+  <data name="LabelRegisterYourDetails" xml:space="preserve">
+    <value>Registrar sus datos</value>
+    <comment>Register your details</comment>
+  </data>
+  <data name="LabelReInvalidImage" xml:space="preserve">
+    <value>La imagen cargada no es un formato de imagen válido. Por favor, compruebe que el archivo es un archivo GIF, JPG o JPEG y vuelve a intentarlo.</value>
+    <comment>The image uploaded is not a valid image format. Please check that the file is either a GIF, JPG or JPEG and try again.</comment>
+  </data>
+  <data name="LabelRejected" xml:space="preserve">
+    <value>Rechazado</value>
+    <comment>Rejected</comment>
+  </data>
+  <data name="LabelRelatedArticles" xml:space="preserve">
+    <value>Artículos relacionados</value>
+    <comment>Related Articles</comment>
+  </data>
+  <data name="LabelRelationship" xml:space="preserve">
+    <value>Relación</value>
+    <comment>Relationship</comment>
+  </data>
+  <data name="LabelRemaining" xml:space="preserve">
+    <value>Días restantes</value>
+    <comment>Remaining days</comment>
+  </data>
+  <data name="LabelRememberMe" xml:space="preserve">
+    <value>Recuerdese de &amp; nbsp; mi</value>
+    <comment>Remember&amp;nbsp;me</comment>
+  </data>
+  <data name="LabelRemove" xml:space="preserve">
+    <value>Retirar</value>
+    <comment>Remove</comment>
+  </data>
+  <data name="LabelRemovelogo" xml:space="preserve">
+    <value>Retirar Logo</value>
+    <comment>Remove Logo</comment>
+  </data>
+  <data name="LabelRepostCompleted" xml:space="preserve">
+    <value>Ha reenviado su trabajo (s) seleccionado, ahora puede ver el trabajo en puestos de trabajo actuales</value>
+    <comment>You have reposted selected job(s), you can view this job now in current jobs</comment>
+  </data>
+  <data name="LabelRepostJob" xml:space="preserve">
+    <value>Reenviar </value>
+    <comment>Repost</comment>
+  </data>
+  <data name="LabelRepostJobConfirm" xml:space="preserve">
+    <value>¿Seguro que desea reenviar este trabajo?</value>
+    <comment>Are you sure you want to repost this job?</comment>
+  </data>
+  <data name="LabelRequestAlertEmail" xml:space="preserve">
+    <value>Me gustaría recibir alertas de correo electrónico de nuevos trabajos que coincidan con mis criterios de búsqueda.</value>
+    <comment>I would like to receive email alerts for new jobs matching my search criteria.</comment>
+  </data>
+  <data name="LabelRequiredField" xml:space="preserve">
+    <value>Indica un campo obligatorio</value>
+    <comment>Indicates a required field</comment>
+  </data>
+  <data name="LabelRequiredField1" xml:space="preserve">
+    <value>Campo obligatorio</value>
+    <comment>Required Field</comment>
+  </data>
+  <data name="LabelRequiredFieldsNeeded" xml:space="preserve">
+    <value>No ha completado todos los campos de información obligatorios.</value>
+    <comment>You have not completed all the required information fields.</comment>
+  </data>
+  <data name="LabelRequireLogon" xml:space="preserve">
+    <value>Requiere inicio de sesión</value>
+    <comment>Require Logon</comment>
+  </data>
+  <data name="LabelRequireLogonForExternalApplications" xml:space="preserve">
+    <value>Requiere inicio de sesión para aplicaciones externas</value>
+    <comment>Require Logon For External Applications</comment>
+  </data>
+  <data name="LabelResendEmail" xml:space="preserve">
+    <value>Reenviar email</value>
+    <comment>Resend Email</comment>
+  </data>
+  <data name="LabelResetFailed" xml:space="preserve">
+    <value>Error de reinicio</value>
+    <comment>Reset Failed</comment>
+  </data>
+  <data name="LabelResetGUIDFailed" xml:space="preserve">
+    <value>No se ha podido restablecer GUID</value>
+    <comment>Reset GUID Failed</comment>
+  </data>
+  <data name="LabelResetPasswordInfo" xml:space="preserve">
+    <value>Introduzca su nombre de usuario o dirección de correo electrónico a continuación y seleccione el botón de reinicio. A continuación, recibirá un correo electrónico con un enlace que le permitirá restablecer su contraseña.</value>
+    <comment>Enter your username or email address below and select the Reset button.  You will then receive an email with a link allowing you to reset your password.</comment>
+  </data>
+  <data name="LabelResidency" xml:space="preserve">
+    <value>Residencia</value>
+    <comment>Residency</comment>
+  </data>
+  <data name="LabelResidentOnly" xml:space="preserve">
+    <value>Sólo residente</value>
+    <comment>Resident Only</comment>
+  </data>
+  <data name="LabelResponsibilitiesAndAchievements" xml:space="preserve">
+    <value>Responsabilidades y Logros</value>
+    <comment>Responsibilities and Achievements</comment>
+  </data>
+  <data name="LabelResults" xml:space="preserve">
+    <value>resultados</value>
+    <comment>results</comment>
+  </data>
+  <data name="LabelResume" xml:space="preserve">
+    <value>Currículum</value>
+    <comment>Resume</comment>
+  </data>
+  <data name="LabelRetypePassword" xml:space="preserve">
+    <value>Vuelva a escribir la contraseña</value>
+    <comment>Retype Password</comment>
+  </data>
+  <data name="LabelRole" xml:space="preserve">
+    <value>Rol</value>
+    <comment>Role</comment>
+  </data>
+  <data name="LabelRolePreferences" xml:space="preserve">
+    <value>Preferencias de rol</value>
+    <comment>Role Preferences</comment>
+  </data>
+  <data name="LabelRSSFeed" xml:space="preserve">
+    <value>RSS Feed</value>
+    <comment>RSS Feed</comment>
+  </data>
+  <data name="LabelSalary" xml:space="preserve">
+    <value>Sueldo</value>
+    <comment>Salary</comment>
+  </data>
+  <data name="LabelSalaryAnnual" xml:space="preserve">
+    <value>Sueldo anual</value>
+    <comment>Annual Salary</comment>
+  </data>
+  <data name="LabelSalaryAnnually" xml:space="preserve">
+    <value>Anualmente</value>
+    <comment>Annually</comment>
+  </data>
+  <data name="LabelSalaryDetails" xml:space="preserve">
+    <value>Detalles del sueldo</value>
+    <comment>Salary details</comment>
+  </data>
+  <data name="LabelSalaryFrom" xml:space="preserve">
+    <value>Sueldo de</value>
+    <comment>Salary From</comment>
+  </data>
+  <data name="LabelSalaryHourly" xml:space="preserve">
+    <value>Sueldo por hora</value>
+    <comment>Hourly Salary</comment>
+  </data>
+  <data name="LabelSalaryRange" xml:space="preserve">
+    <value>Rango salarial</value>
+    <comment>Salary Range</comment>
+  </data>
+  <data name="LabelSalaryRangeError" xml:space="preserve">
+    <value>Rango de sueldo no válido</value>
+    <comment>Salary range invalid</comment>
+  </data>
+  <data name="LabelSalaryRequirements" xml:space="preserve">
+    <value>Requisitos de sueldo</value>
+    <comment>Salary Requirements</comment>
+  </data>
+  <data name="LabelSalaryText" xml:space="preserve">
+    <value>Mensaje de sueldo</value>
+    <comment>Salary Text</comment>
+  </data>
+  <data name="LabelSalaryTo" xml:space="preserve">
+    <value>Sueldo para</value>
+    <comment>Salary To</comment>
+  </data>
+  <data name="LabelSalaryType" xml:space="preserve">
+    <value>Tipo de sueldo</value>
+    <comment>Salary Type</comment>
+  </data>
+  <data name="LabelSalaryTypeID" xml:space="preserve">
+    <value>Tipo de identificación de sueldo</value>
+    <comment>Salary Type ID</comment>
+  </data>
+  <data name="LabelSameAsAbove" xml:space="preserve">
+    <value>Lo mismo que arriba</value>
+    <comment>Same as above</comment>
+  </data>
+  <data name="LabelSave" xml:space="preserve">
+    <value>Guardar</value>
+    <comment>Save</comment>
+  </data>
+  <data name="LabelSaveAndContinue" xml:space="preserve">
+    <value>Guardar y continuar</value>
+    <comment>Save &amp; Continue</comment>
+  </data>
+  <data name="LabelSaveAsDraft" xml:space="preserve">
+    <value>Guardar como borrador</value>
+    <comment>Save As Draft</comment>
+  </data>
+  <data name="LabelSavedDate" xml:space="preserve">
+    <value>Fecha guardado</value>
+    <comment>Saved Date</comment>
+  </data>
+  <data name="LabelSaveJob" xml:space="preserve">
+    <value>Guardar Trabajo</value>
+    <comment>Save Job</comment>
+  </data>
+  <data name="LabelSearchCriteria" xml:space="preserve">
+    <value>Criterio de búsqueda</value>
+    <comment>Search Criteria</comment>
+  </data>
+  <data name="LabelSearchCriteriaWelcome" xml:space="preserve">
+    <value>Para la exposición máxima de resultados de la búsqueda de trabajadores potenciales, por favor seleccione a continuación los criterios que lo representan mejor</value>
+    <comment>For maximum exposure for search results from potential employers, please select from the below criteria’s that  represent you best</comment>
+  </data>
+  <data name="LabelSearchDetails" xml:space="preserve">
+    <value>Detalles de búsqueda</value>
+    <comment>Search Details</comment>
+  </data>
+  <data name="LabelSearchedAllJobs" xml:space="preserve">
+    <value>Todos los trabajos han sido buscados</value>
+    <comment>Searched all jobs</comment>
+  </data>
+  <data name="LabelSearchFieldExtension" xml:space="preserve">
+    <value>Buscar Campo de extensión </value>
+    <comment>Search Field Extension</comment>
+  </data>
+  <data name="LabelSearchKeyword" xml:space="preserve">
+    <value>Buscar la palabra clave</value>
+    <comment>Search Keyword</comment>
+  </data>
+  <data name="LabelSearchResult" xml:space="preserve">
+    <value>Su búsqueda dio como resultado:</value>
+    <comment>Your search resulted in:</comment>
+  </data>
+  <data name="LabelSearchRoleIDs" xml:space="preserve">
+    <value>Buscar identificación de roles</value>
+    <comment>Search Role IDs</comment>
+  </data>
+  <data name="LabelSearchTheSite" xml:space="preserve">
+    <value>Buscar el sitio</value>
+    <comment>Search the site</comment>
+  </data>
+  <data name="LabelSecondaryEmail" xml:space="preserve">
+    <value>Email secundario</value>
+    <comment>Secondary Email</comment>
+  </data>
+  <data name="LabelSecondarySchool" xml:space="preserve">
+    <value>Escuela secundaria</value>
+    <comment>Secondary School</comment>
+  </data>
+  <data name="LabelSeeking" xml:space="preserve">
+    <value>Actualmente Buscando</value>
+    <comment>Currently Seeking</comment>
+  </data>
+  <data name="LabelSeekingStatus" xml:space="preserve">
+    <value>Buscando estatus</value>
+    <comment>Seeking Status</comment>
+  </data>
+  <data name="LabelSelect" xml:space="preserve">
+    <value>Seleccionar</value>
+    <comment>Select</comment>
+  </data>
+  <data name="LabelSelectACompany" xml:space="preserve">
+    <value>- Seleccione una empresa -</value>
+    <comment>- Select a Company -</comment>
+  </data>
+  <data name="LabelSelectAnApplicationToEmail" xml:space="preserve">
+    <value>Por favor, seleccione una aplicación de correo electrónico</value>
+    <comment>Please select an application to email</comment>
+  </data>
+  <data name="LabelSelectAvailableStatus" xml:space="preserve">
+    <value>´-Seleccione estatus Disponible -</value>
+    <comment>-Select Available Status-</comment>
+  </data>
+  <data name="LabelSelectBusinessType" xml:space="preserve">
+    <value>´-Seleccionar Tipo de negocios-</value>
+    <comment>-Select Business Type-</comment>
+  </data>
+  <data name="LabelSelectClassificationFirst" xml:space="preserve">
+    <value>´- Seleccionar primero una clasificación -</value>
+    <comment>- Select a Classification First -</comment>
+  </data>
+  <data name="LabelSelectCountry" xml:space="preserve">
+    <value>- Seleccionar país -</value>
+    <comment>- Select Country -</comment>
+  </data>
+  <data name="LabelSelectCountryFirst" xml:space="preserve">
+    <value>´-Seleccionar primero un  país-</value>
+    <comment>-Select a Country First-</comment>
+  </data>
+  <data name="LabelSelectDocument" xml:space="preserve">
+    <value>Seleccionar documento</value>
+    <comment>Select Document</comment>
+  </data>
+  <data name="LabelSelectEducation" xml:space="preserve">
+    <value>-Seleccione Educación-</value>
+    <comment>-Select Education-</comment>
+  </data>
+  <data name="LabelSelectExistingCover" xml:space="preserve">
+    <value>Seleccione la presentación existente</value>
+    <comment>Select Existing Cover Letter</comment>
+  </data>
+  <data name="LabelSelectExistingResume" xml:space="preserve">
+    <value>Seleccionar currículum existente</value>
+    <comment>Select Existing Resume</comment>
+  </data>
+  <data name="LabelSelectGrade" xml:space="preserve">
+    <value>- Seleccionar Grado -</value>
+    <comment>- Select Grade -</comment>
+  </data>
+  <data name="LabelSelectJobTemplate" xml:space="preserve">
+    <value>Seleccionar plantilla de trabajo</value>
+    <comment>Select Job Template</comment>
+  </data>
+  <data name="LabelSelectLanguage" xml:space="preserve">
+    <value>Seleccione el idioma</value>
+    <comment>Select Language</comment>
+  </data>
+  <data name="LabelSelectLeastOneValue" xml:space="preserve">
+    <value>Seleccione al menos un valor.</value>
+    <comment>Select at least one value.</comment>
+  </data>
+  <data name="LabelSelectLocationFirst" xml:space="preserve">
+    <value>´- Seleccione primero una ubicación  -</value>
+    <comment>- Select a Location First -</comment>
+  </data>
+  <data name="LabelSelectOneApplicationToEmail" xml:space="preserve">
+    <value>Por favor, seleccione al menos una aplicación para descargar</value>
+    <comment>Please select at least one application to download</comment>
+  </data>
+  <data name="LabelSelectSalary" xml:space="preserve">
+    <value>´-Seleccione sueldo</value>
+    <comment>-Select Salary-</comment>
+  </data>
+  <data name="LabelSelectUserLogin" xml:space="preserve">
+    <value>Seleccionar tipo de inicio de sesión</value>
+    <comment>Select Login Type</comment>
+  </data>
+  <data name="LabelSelectUserRegister" xml:space="preserve">
+    <value>Seleccione tipo de usuario</value>
+    <comment>Select User Type</comment>
+  </data>
+  <data name="LabelSendaJobAlertNow" xml:space="preserve">
+    <value>Enviar una Alerta de trabajo ahora</value>
+    <comment>Send a Job Alert now</comment>
+  </data>
+  <data name="LabelSendEmailAlerts" xml:space="preserve">
+    <value>Enviar alertas por correo electrónico</value>
+    <comment>Send Email Alerts</comment>
+  </data>
+  <data name="LabelSentApplicantEmail" xml:space="preserve">
+    <value>Enviar el correo electrónico de aplicación al anunciante</value>
+    <comment>Sent the application email to the advertiser</comment>
+  </data>
+  <data name="LabelSep" xml:space="preserve">
+    <value>septiembre</value>
+    <comment>September</comment>
+  </data>
+  <data name="LabelSeperateSkillComma" xml:space="preserve">
+    <value>Por favor, separe cada habilidad con una coma (,).</value>
+    <comment>Please separate each skill with a Comma (,).</comment>
+  </data>
+  <data name="LabelSettings" xml:space="preserve">
+    <value>Ajustes</value>
+    <comment>Settings</comment>
+  </data>
+  <data name="LabelShare" xml:space="preserve">
+    <value>Compartir:</value>
+    <comment>Share:</comment>
+  </data>
+  <data name="LabelShareOnGooglePlus" xml:space="preserve">
+    <value>Comparte esta página en Google+</value>
+    <comment>Share this on Google+</comment>
+  </data>
+  <data name="LabelShortBio" xml:space="preserve">
+    <value>Biografía corta</value>
+    <comment>Short Bio</comment>
+  </data>
+  <data name="LabelShortDescription" xml:space="preserve">
+    <value>Descripción breve</value>
+    <comment>Short Description</comment>
+  </data>
+  <data name="LabelShortList" xml:space="preserve">
+    <value>Lista corta</value>
+    <comment>Short List</comment>
+  </data>
+  <data name="LabelShowing" xml:space="preserve">
+    <value>Demostración</value>
+    <comment>Showing</comment>
+  </data>
+  <data name="LabelShowLocationDetail" xml:space="preserve">
+    <value>Mostrar Detalle de ubicación </value>
+    <comment>Show Location Detail</comment>
+  </data>
+  <data name="LabelShowSalaryDetail" xml:space="preserve">
+    <value>Mostrar detalles de Sueldo</value>
+    <comment>Show Salary Details</comment>
+  </data>
+  <data name="LabelShowSalaryRange" xml:space="preserve">
+    <value>Mostrar rango de sueldo</value>
+    <comment>Show Salary Range</comment>
+  </data>
+  <data name="LabelSimilarJobs" xml:space="preserve">
+    <value>Trabajos similares</value>
+    <comment>Similar Jobs</comment>
+  </data>
+  <data name="LabelSite" xml:space="preserve">
+    <value>Sitio</value>
+    <comment>Site</comment>
+  </data>
+  <data name="LabelSiteLocationName" xml:space="preserve">
+    <value>Nombre del sitio de Localización</value>
+    <comment>Site Location Name</comment>
+  </data>
+  <data name="LabelSiteProfessionName" xml:space="preserve">
+    <value>Nombre del sitio de Profesión</value>
+    <comment>Site Profession Name</comment>
+  </data>
+  <data name="LabelSkills" xml:space="preserve">
+    <value>Habilidades</value>
+    <comment>Skills</comment>
+  </data>
+  <data name="LabelSocialMedia" xml:space="preserve">
+    <value>Medios de comunicación social</value>
+    <comment>Social Media</comment>
+  </data>
+  <data name="LabelSortBy" xml:space="preserve">
+    <value>Ordenar por</value>
+    <comment>Sort By</comment>
+  </data>
+  <data name="LabelSortByAlphabeticalAZ" xml:space="preserve">
+    <value>Ordenar por - alfabético A-Z</value>
+    <comment>Sort by – Alphabetical A-Z</comment>
+  </data>
+  <data name="LabelSortByAlphabeticalZA" xml:space="preserve">
+    <value>Ordenar por - alfabético Z-A</value>
+    <comment>Sort by – Alphabetical Z-A</comment>
+  </data>
+  <data name="LabelSortByOldestPosts" xml:space="preserve">
+    <value>Ordenar por - Publicaciones antiguas</value>
+    <comment>Sort by – Oldest Posts</comment>
+  </data>
+  <data name="LabelSortByRecentPosts" xml:space="preserve">
+    <value>Ordenar por - Publicaciones recientes</value>
+    <comment>Sort by – Recent Posts</comment>
+  </data>
+  <data name="LabelSortBySalaryHighLow" xml:space="preserve">
+    <value>Ordenar por - Sueldo de mayor a menor</value>
+    <comment>Sort by – Salary high to low</comment>
+  </data>
+  <data name="LabelSortBySalaryLowHigh" xml:space="preserve">
+    <value>Ordenar por - Sueldo menor a mayor</value>
+    <comment>Sort by – Salary low to high</comment>
+  </data>
+  <data name="LabelSortsby" xml:space="preserve">
+    <value>Ordenar por</value>
+    <comment>Sort by</comment>
+  </data>
+  <data name="LabelStart" xml:space="preserve">
+    <value>Comienzo</value>
+    <comment>Start</comment>
+  </data>
+  <data name="LabelStartDate" xml:space="preserve">
+    <value>Fecha de inicio</value>
+    <comment>Start Date</comment>
+  </data>
+  <data name="LabelState" xml:space="preserve">
+    <value>Estado</value>
+    <comment>State</comment>
+  </data>
+  <data name="LabelStateResideIn" xml:space="preserve">
+    <value>Estado en el que resido</value>
+    <comment>State I reside in</comment>
+  </data>
+  <data name="LabelStatistics" xml:space="preserve">
+    <value>Estadística</value>
+    <comment>Statistics</comment>
+  </data>
+  <data name="LabelStatus" xml:space="preserve">
+    <value>Estado</value>
+    <comment>Status</comment>
+  </data>
+  <data name="LabelStillHavingIssue" xml:space="preserve">
+    <value>¿Todavía tiene problemas?</value>
+    <comment>Still having issues</comment>
+  </data>
+  <data name="LabelStreetAddress" xml:space="preserve">
+    <value>Dirección Calle</value>
+    <comment>Street Address</comment>
+  </data>
+  <data name="LabelStreetAddress1" xml:space="preserve">
+    <value>Dirección Calle 1</value>
+    <comment>Street Address 1</comment>
+  </data>
+  <data name="LabelStreetAddress2" xml:space="preserve">
+    <value>Dirección Calle 2</value>
+    <comment>Street Address 2</comment>
+  </data>
+  <data name="LabelSubAccountCreated" xml:space="preserve">
+    <value>La nueva sub-cuenta ha sido creada. Un correo electrónico ha sido enviado para verificar la nueva subcuenta.</value>
+    <comment>The new sub-account has been created. An email has been sent to verify the new sub-account.</comment>
+  </data>
+  <data name="LabelSubAccounts" xml:space="preserve">
+    <value>Subcuentas</value>
+    <comment>Sub Accounts</comment>
+  </data>
+  <data name="LabelSubClassification" xml:space="preserve">
+    <value>Subclasificación</value>
+    <comment>Sub Classification</comment>
+  </data>
+  <data name="LabelSubmitStreetAddress" xml:space="preserve">
+    <value>Por favor, envíe dirección de la calle para activar el mapa y radio de búsqueda</value>
+    <comment>Please submit street address to enable map and radius searching</comment>
+  </data>
+  <data name="LabelSubscribeToJobAlert" xml:space="preserve">
+    <value>Suscribirse a las alertas de trabajo</value>
+    <comment>Subscribe to Job alert</comment>
+  </data>
+  <data name="LabelSubscribeToNewsLetter" xml:space="preserve">
+    <value>Me gustaría suscribirme al boletín</value>
+    <comment>I would like to subscribe to the newsletter</comment>
+  </data>
+  <data name="LabelSubtotal" xml:space="preserve">
+    <value>Subtotal</value>
+    <comment>Subtotal</comment>
+  </data>
+  <data name="LabelSuburb" xml:space="preserve">
+    <value>Suburbio</value>
+    <comment>Suburb</comment>
+  </data>
+  <data name="LabelSuccessfullyCreatedYouJobAlert" xml:space="preserve">
+    <value>Ha creado una alerta satisfactoriamente.</value>
+    <comment>You have successfully created an alert.</comment>
+  </data>
+  <data name="LabelSuccessfullySavedYourSearch" xml:space="preserve">
+    <value>Ha guardado satisfactoriamente su búsqueda.</value>
+    <comment>You have successfully saved your search.</comment>
+  </data>
+  <data name="LabelSummary" xml:space="preserve">
+    <value>Resumen</value>
+    <comment>Summary</comment>
+  </data>
+  <data name="LabelSupervisor" xml:space="preserve">
+    <value>Supervisor</value>
+    <comment>Supervisor</comment>
+  </data>
+  <data name="LabelSurameMandatory" xml:space="preserve">
+    <value>El apellido es obligatorio</value>
+    <comment>Last name is mandatory</comment>
+  </data>
+  <data name="LabelSurname" xml:space="preserve">
+    <value>Apellido</value>
+    <comment>Last name</comment>
+  </data>
+  <data name="LabelSurnameRequired" xml:space="preserve">
+    <value>Se requiere el apellido</value>
+    <comment>Last name is required</comment>
+  </data>
+  <data name="LabelTags" xml:space="preserve">
+    <value>Etiquetas</value>
+    <comment>Tags</comment>
+  </data>
+  <data name="LabelTeacher" xml:space="preserve">
+    <value>Profesor</value>
+    <comment>Teacher</comment>
+  </data>
+  <data name="LabelTel" xml:space="preserve">
+    <value>Telf</value>
+    <comment>Tel</comment>
+  </data>
+  <data name="LabelTelephone" xml:space="preserve">
+    <value>Teléfono</value>
+    <comment>Telephone</comment>
+  </data>
+  <data name="LabelTelephoneRequired" xml:space="preserve">
+    <value>Se requiere el número de teléfono</value>
+    <comment>Telephone number is required</comment>
+  </data>
+  <data name="LabelTempLocked" xml:space="preserve">
+    <value>Su cuenta está bloqueada temporalmente. Por favor, inténtelo de nuevo en "{0} minutos" o póngase en contacto con el administrador del sistema.</value>
+    <comment>Your account is temporarily locked. Please try again in “{0} mins” or contact your system administrator.</comment>
+  </data>
+  <data name="LabelTempted" xml:space="preserve">
+    <value>Tentado</value>
+    <comment>Tempted</comment>
+  </data>
+  <data name="LabelTermsAndConditions" xml:space="preserve">
+    <value>términos y condiciones</value>
+    <comment>terms and conditions</comment>
+  </data>
+  <data name="LabelTertiaryEducation" xml:space="preserve">
+    <value>Educación superior</value>
+    <comment>Tertiary Education</comment>
+  </data>
+  <data name="LabelText" xml:space="preserve">
+    <value>texto</value>
+    <comment>text</comment>
+  </data>
+  <data name="LabelThisFieldIsRequired" xml:space="preserve">
+    <value>Este campo es requerido.</value>
+    <comment>This field is required.</comment>
+  </data>
+  <data name="LabelTitle" xml:space="preserve">
+    <value>Título</value>
+    <comment>Title</comment>
+  </data>
+  <data name="LabelTitleRequired" xml:space="preserve">
+    <value>Título del documento requerido</value>
+    <comment>Document Title required</comment>
+  </data>
+  <data name="LabelTitleSizeError" xml:space="preserve">
+    <value>Tamaño del título del documento no puede exceder de 500 caracteres</value>
+    <comment>Document Title size cannot exceed 500 characters</comment>
+  </data>
+  <data name="LabelTo" xml:space="preserve">
+    <value>a</value>
+    <comment>to</comment>
+  </data>
+  <data name="LabelToDate" xml:space="preserve">
+    <value>Hasta la fecha</value>
+    <comment>To Date</comment>
+  </data>
+  <data name="LabelToSalary" xml:space="preserve">
+    <value>Introduzca para el sueldo</value>
+    <comment>Enter To Salary</comment>
+  </data>
+  <data name="LabelTotal" xml:space="preserve">
+    <value>Total</value>
+    <comment>Total</comment>
+  </data>
+  <data name="LabelTotalAmount" xml:space="preserve">
+    <value>Cantidad total</value>
+    <comment>Total Amount</comment>
+  </data>
+  <data name="LabelTotalEmployees" xml:space="preserve">
+    <value>Número de trabajadores / Empleados totales</value>
+    <comment>No. of  Employees / Total Employees</comment>
+  </data>
+  <data name="LabelType" xml:space="preserve">
+    <value>Tipo</value>
+    <comment>Type</comment>
+  </data>
+  <data name="LabelTypeOfDirectorship" xml:space="preserve">
+    <value>Tipo de directivo</value>
+    <comment>Type of Directorship</comment>
+  </data>
+  <data name="LabelUnsubscribeNews" xml:space="preserve">
+    <value>Cancelar suscripción de Noticias</value>
+    <comment>Unsubscribe News</comment>
+  </data>
+  <data name="LabelUpdate" xml:space="preserve">
+    <value>Actualizar</value>
+    <comment>Update</comment>
+  </data>
+  <data name="LabelUpdateMyDetails" xml:space="preserve">
+    <value>Actualizar mis datos</value>
+    <comment>Update My Details</comment>
+  </data>
+  <data name="LabelUpdateProfile" xml:space="preserve">
+    <value>Actualización del perfil</value>
+    <comment>Update Profile</comment>
+  </data>
+  <data name="LabelUploadACoverLetter" xml:space="preserve">
+    <value>Sube una carta de presentación</value>
+    <comment>Upload a cover letter</comment>
+  </data>
+  <data name="LabelUploadAResume" xml:space="preserve">
+    <value>Sube un curriculum</value>
+    <comment>Upload a resume</comment>
+  </data>
+  <data name="LabelUploadCoverDesc" xml:space="preserve">
+    <value>Por favor, sube el archivo como Microsoft Word (.doc o .docx), Microsoft Excel (.xls o .xlsx), Adobe Acrobat (.pdf) o un archivo de texto (.txt o .rtf)</value>
+    <comment>Please upload your file as Microsoft Word (.doc or .docx), Microsoft Excel (.xls or .xlsx), Adobe Acrobat (.pdf) or text file (.txt or .rtf)</comment>
+  </data>
+  <data name="LabelUploadCoverLetter" xml:space="preserve">
+    <value>Subir presentación</value>
+    <comment>Upload Cover letter</comment>
+  </data>
+  <data name="LabelUploadDocument" xml:space="preserve">
+    <value>Subir documentos</value>
+    <comment>Upload Documents</comment>
+  </data>
+  <data name="LabelUploadFile" xml:space="preserve">
+    <value>Subir archivo</value>
+    <comment>Upload file</comment>
+  </data>
+  <data name="LabelUploadMethod" xml:space="preserve">
+    <value>Método de carga</value>
+    <comment>Upload Method</comment>
+  </data>
+  <data name="LabelUploadNewLogo" xml:space="preserve">
+    <value>Sube nuevo logotipo</value>
+    <comment>Upload New Logo</comment>
+  </data>
+  <data name="LabelUploadProfileImage" xml:space="preserve">
+    <value>Sube Imagen del perfil</value>
+    <comment>Upload Profile Image</comment>
+  </data>
+  <data name="LabelUploadProfileImageDesc" xml:space="preserve">
+    <value>Subir descripción de la imagen </value>
+    <comment>Image Upload Description</comment>
+  </data>
+  <data name="LabelUploadProfileImageInvalid" xml:space="preserve">
+    <value>Por favor, sube un tipo de archivo válido.</value>
+    <comment>Please upload a valid file type.</comment>
+  </data>
+  <data name="LabelUploadProfileImageInvalidFileSize" xml:space="preserve">
+    <value>Por favor, sube un archivo con un máximo de 500 KB.</value>
+    <comment>Please upload a file with a maximum of 500KB.</comment>
+  </data>
+  <data name="LabelUploadResume" xml:space="preserve">
+    <value>Subir curriculum</value>
+    <comment>Upload Resume</comment>
+  </data>
+  <data name="LabelUponRequest" xml:space="preserve">
+    <value>Previa solicitud</value>
+    <comment>Upon Request</comment>
+  </data>
+  <data name="LabelURL" xml:space="preserve">
+    <value>URL</value>
+    <comment>URL</comment>
+  </data>
+  <data name="LabelURLLinkOut" xml:space="preserve">
+    <value>URL - Fuera de Enlace </value>
+    <comment>URL - Link out</comment>
+  </data>
+  <data name="LabelUseExistingCoverLetterFile" xml:space="preserve">
+    <value>Usar archivo de presentación  existente</value>
+    <comment>Use existing cover letter file</comment>
+  </data>
+  <data name="LabelUseExistingResumeFile" xml:space="preserve">
+    <value>Usar archivo de curriculum existente</value>
+    <comment>Use existing resume file</comment>
+  </data>
+  <data name="LabelUseMyProfile" xml:space="preserve">
+    <value>Utilizar mi perfil</value>
+    <comment>Use my profile</comment>
+  </data>
+  <data name="LabelUsername" xml:space="preserve">
+    <value>Nombre de usuario</value>
+    <comment>Username</comment>
+  </data>
+  <data name="LabelUsernameExists" xml:space="preserve">
+    <value>Nombre de usuario ya existe, por favor inicie sesión.</value>
+    <comment>Username already exists, please login.</comment>
+  </data>
+  <data name="LabelUsernameRequired" xml:space="preserve">
+    <value>Se requiere nombre de usuario</value>
+    <comment>Username is required</comment>
+  </data>
+  <data name="LabelValidate" xml:space="preserve">
+    <value>Validar</value>
+    <comment>Validate</comment>
+  </data>
+  <data name="LabelValidated" xml:space="preserve">
+    <value>validado</value>
+    <comment>Validated</comment>
+  </data>
+  <data name="LabelValidEmailRequired" xml:space="preserve">
+    <value>Se requiere una dirección de correo electrónico valido</value>
+    <comment>Valid email address is required</comment>
+  </data>
+  <data name="LabelVersion" xml:space="preserve">
+    <value>Versión</value>
+    <comment>Version</comment>
+  </data>
+  <data name="LabelViaEmail" xml:space="preserve">
+    <value>vía correo electrónico</value>
+    <comment>via Email</comment>
+  </data>
+  <data name="LabelVideoURL" xml:space="preserve">
+    <value>URL del vídeo</value>
+    <comment>Video URL</comment>
+  </data>
+  <data name="LabelView" xml:space="preserve">
+    <value>Visualizar</value>
+    <comment>View</comment>
+  </data>
+  <data name="LabelViewCart" xml:space="preserve">
+    <value>Productos para comprar</value>
+    <comment>Products To Purchase</comment>
+  </data>
+  <data name="LabelViewed" xml:space="preserve">
+    <value>Visualizado</value>
+    <comment>Viewed</comment>
+  </data>
+  <data name="LabelViewLess" xml:space="preserve">
+    <value>Visualizar menos</value>
+    <comment>View less</comment>
+  </data>
+  <data name="LabelViewMore" xml:space="preserve">
+    <value>Visualizar más...</value>
+    <comment>View More...</comment>
+  </data>
+  <data name="LabelViewPage" xml:space="preserve">
+    <value>Visualizar pagina</value>
+    <comment>View Page</comment>
+  </data>
+  <data name="LabelViewProfile" xml:space="preserve">
+    <value>Visualizar perfil</value>
+    <comment>View Profile</comment>
+  </data>
+  <data name="LabelViews" xml:space="preserve">
+    <value>Puntos de vista</value>
+    <comment>Views</comment>
+  </data>
+  <data name="LabelVisa" xml:space="preserve">
+    <value>Visa</value>
+    <comment>Visa</comment>
+  </data>
+  <data name="LabelVisible" xml:space="preserve">
+    <value>Visible</value>
+    <comment>Visible</comment>
+  </data>
+  <data name="LabelWarningBlankURL" xml:space="preserve">
+    <value>URL de la aplicación no puede estar en blanco cuando se selecciona la URL</value>
+    <comment>Application URL cannot be Blank when URL is selected</comment>
+  </data>
+  <data name="LabelWebAddress" xml:space="preserve">
+    <value>Dirección web</value>
+    <comment>Web Address</comment>
+  </data>
+  <data name="LabelWebservice" xml:space="preserve">
+    <value>Servicio web</value>
+    <comment>Webservice</comment>
+  </data>
+  <data name="LabelWebsite" xml:space="preserve">
+    <value>Sitio web</value>
+    <comment>Website</comment>
+  </data>
+  <data name="LabelWelcome" xml:space="preserve">
+    <value>Bienvenido</value>
+    <comment>Welcome</comment>
+  </data>
+  <data name="LabelWelcomeBack" xml:space="preserve">
+    <value>Dar una bienvenida</value>
+    <comment>Welcome back</comment>
+  </data>
+  <data name="LabelWelcomeBroadcast" xml:space="preserve">
+    <value>Bienvenido usuario delprograma</value>
+    <comment>Welcome to Member Broadcast</comment>
+  </data>
+  <data name="LabelWelcomeMemberEditDetail" xml:space="preserve">
+    <value>Bienvenido a la página de actualización de detalles del usuario.</value>
+    <comment>Welcome to the Member details update page.</comment>
+  </data>
+  <data name="LabelWelcomeMemberEditPassword" xml:space="preserve">
+    <value>Bienvenido a la página de cambio de contraseña de usuario. Por favor, introduzca su contraseña actual y la nueva contraseña en el siguiente formulario.</value>
+    <comment>Welcome to the Member change password page. Please enter your current password and new password in the form below.</comment>
+  </data>
+  <data name="LabelWillingToRelocate" xml:space="preserve">
+    <value>Disponibilidad de cambio</value>
+    <comment>Willing To Relocate</comment>
+  </data>
+  <data name="LabelWorkExperience" xml:space="preserve">
+    <value>Experiencia laboral</value>
+    <comment>Work Experience</comment>
+  </data>
+  <data name="LabelWorkType" xml:space="preserve">
+    <value>Tipo de trabajo</value>
+    <comment>Work Type</comment>
+  </data>
+  <data name="LabelWorkTypeIDs" xml:space="preserve">
+    <value>Identificación del tipo de trabajo</value>
+    <comment>Work Type IDs</comment>
+  </data>
+  <data name="LabelWriteCoverLetter" xml:space="preserve">
+    <value>Escribir su propia presentación aquí</value>
+    <comment>Write your own Cover Letter here</comment>
+  </data>
+  <data name="LabelWriteOwnCoverLetter" xml:space="preserve">
+    <value>Escribir mi propia presentación</value>
+    <comment>Write my own cover letter</comment>
+  </data>
+  <data name="LabelYear" xml:space="preserve">
+    <value>Año</value>
+    <comment>Year</comment>
+  </data>
+  <data name="LabelYears" xml:space="preserve">
+    <value>Años</value>
+    <comment>Years</comment>
+  </data>
+  <data name="LabelYes" xml:space="preserve">
+    <value>Sí</value>
+    <comment>Yes</comment>
+  </data>
+  <data name="LabelYouhavenologo" xml:space="preserve">
+    <value>Actualmente no tienes ningún logotipo.</value>
+    <comment>You currently have no logo.</comment>
+  </data>
+  <data name="LabelYouMadeAPayment" xml:space="preserve">
+    <value>Su pedido ha sido completado</value>
+    <comment>Your order is complete</comment>
+  </data>
+  <data name="LabelYourEmail" xml:space="preserve">
+    <value>Su correo electrónico</value>
+    <comment>Your Email</comment>
+  </data>
+  <data name="LabelYourFriendEmail" xml:space="preserve">
+    <value>El correo electrónico de sus amigos</value>
+    <comment>Your Friend's Email</comment>
+  </data>
+  <data name="LabelYourFriendName" xml:space="preserve">
+    <value>El nombre de su amigo</value>
+    <comment>Your Friend's Name</comment>
+  </data>
+  <data name="LabelYourName" xml:space="preserve">
+    <value>Su nombre</value>
+    <comment>Your Name</comment>
+  </data>
+  <data name="LabelYourOrder" xml:space="preserve">
+    <value>Su pedido</value>
+    <comment>Your order</comment>
+  </data>
+  <data name="LabelYourSkillSets" xml:space="preserve">
+    <value>Su conjunto de habilidades</value>
+    <comment>Your Skill Sets</comment>
+  </data>
+  <data name="LabelZA" xml:space="preserve">
+    <value>Z - A</value>
+    <comment>Z - A</comment>
+  </data>
+  <data name="LabrlAvailableDayFrom" xml:space="preserve">
+    <value>Fecha de disponibilidad de</value>
+    <comment>Availability Date From</comment>
+  </data>
+  <data name="lblPostedByAdvertiserUser" xml:space="preserve">
+    <value>Publicado por</value>
+    <comment>Posted By</comment>
+  </data>
+  <data name="LinkBacktoNewsIndex" xml:space="preserve">
+    <value>Volver al índice de noticias</value>
+    <comment>Back to News Index</comment>
+  </data>
+  <data name="LinkButtonAccountDetails" xml:space="preserve">
+    <value>Detalles de la cuenta</value>
+    <comment>Account Details</comment>
+  </data>
+  <data name="LinkButtonAddNote" xml:space="preserve">
+    <value>Añadir notas</value>
+    <comment>Add notes</comment>
+  </data>
+  <data name="LinkButtonAddTag" xml:space="preserve">
+    <value>Agregar etiquetas</value>
+    <comment>Add tags</comment>
+  </data>
+  <data name="LinkButtonApplyNow" xml:space="preserve">
+    <value>Aplica ya</value>
+    <comment>Apply now</comment>
+  </data>
+  <data name="LinkButtonArchivedJobAds" xml:space="preserve">
+    <value>Anuncios de trabajo Archivados</value>
+    <comment>Archived Job Ads</comment>
+  </data>
+  <data name="LinkButtonBackToResult" xml:space="preserve">
+    <value>Volver a los resultados</value>
+    <comment>Back to results</comment>
+  </data>
+  <data name="LinkButtonBuyJobCredits" xml:space="preserve">
+    <value>Comprar créditos de trabajo</value>
+    <comment>Buy job credits</comment>
+  </data>
+  <data name="LinkButtonCart" xml:space="preserve">
+    <value>Carta</value>
+    <comment>Cart</comment>
+  </data>
+  <data name="LinkButtonChangeTemplateLogo" xml:space="preserve">
+    <value>Plantilla de arte de trabajo</value>
+    <comment>Job template artwork</comment>
+  </data>
+  <data name="LinkButtonCreateNewJobAd" xml:space="preserve">
+    <value>Crear un nuevo anuncio de trabajo </value>
+    <comment>Create a New Job Advertisement</comment>
+  </data>
+  <data name="LinkButtonCurrentJobAds" xml:space="preserve">
+    <value>Anuncios de trabajo actuales</value>
+    <comment>Current Job Ads</comment>
+  </data>
+  <data name="LinkButtonDeclinedJobAds" xml:space="preserve">
+    <value>Anuncios de trabajo declinado</value>
+    <comment>Declined Job Ads</comment>
+  </data>
+  <data name="LinkButtonDelete" xml:space="preserve">
+    <value>Borrar</value>
+    <comment>Delete</comment>
+  </data>
+  <data name="LinkButtonDownload" xml:space="preserve">
+    <value>Descargar</value>
+    <comment>Download</comment>
+  </data>
+  <data name="LinkButtonDraftJobAds" xml:space="preserve">
+    <value>Anuncios de proyecto de trabajo </value>
+    <comment>Draft Job Ads</comment>
+  </data>
+  <data name="LinkButtonEdit" xml:space="preserve">
+    <value>Editar</value>
+    <comment>Edit</comment>
+  </data>
+  <data name="LinkButtonEmailJob" xml:space="preserve">
+    <value>Enviar por email este trabajo</value>
+    <comment>Email this Job</comment>
+  </data>
+  <data name="LinkButtonJobLinkedIn" xml:space="preserve">
+    <value>Compartir este trabajo en LinkedIn</value>
+    <comment>Share this Job on LinkedIn</comment>
+  </data>
+  <data name="LinkButtonJobReports" xml:space="preserve">
+    <value>Informes de trabajo</value>
+    <comment>Job Reports</comment>
+  </data>
+  <data name="LinkButtonJobRSS" xml:space="preserve">
+    <value>Suscribirse a RSS Feed</value>
+    <comment>Subscribe to RSS Feed</comment>
+  </data>
+  <data name="LinkButtonJobShareFacebook" xml:space="preserve">
+    <value>Compartir este trabajo en Facebook</value>
+    <comment>Share this Job on Facebook</comment>
+  </data>
+  <data name="LinkButtonJobShareTwitter" xml:space="preserve">
+    <value>Twittear este trabajo</value>
+    <comment>Tweet this Job</comment>
+  </data>
+  <data name="LinkButtonJobTracker" xml:space="preserve">
+    <value>Rastreador de trabajo</value>
+    <comment>Job Tracker</comment>
+  </data>
+  <data name="LinkButtonManageJobs" xml:space="preserve">
+    <value>Administrar trabajos</value>
+    <comment>Manage Jobs</comment>
+  </data>
+  <data name="LinkButtonPendingJobAds" xml:space="preserve">
+    <value>Anuncios pendientes de trabajo</value>
+    <comment>Pending Job Ads</comment>
+  </data>
+  <data name="LinkButtonPeopleSearch" xml:space="preserve">
+    <value>Búsqueda de personas</value>
+    <comment>People search</comment>
+  </data>
+  <data name="LinkButtonPrintJob" xml:space="preserve">
+    <value>Imprimir este trabajo</value>
+    <comment>Print this Job</comment>
+  </data>
+  <data name="LinkButtonReports" xml:space="preserve">
+    <value>Informes</value>
+    <comment>Reports</comment>
+  </data>
+  <data name="LinkButtonSavedJobs" xml:space="preserve">
+    <value>Guardar este trabajo</value>
+    <comment>Save this Job</comment>
+  </data>
+  <data name="LinkButtonSaveJob" xml:space="preserve">
+    <value>guardar trabajo</value>
+    <comment>save job</comment>
+  </data>
+  <data name="LinkButtonSendEmail" xml:space="preserve">
+    <value>enviar correo electrónico</value>
+    <comment>send email</comment>
+  </data>
+  <data name="LinkButtonStatistics" xml:space="preserve">
+    <value>Estadística</value>
+    <comment>Statistics</comment>
+  </data>
+  <data name="LinkButtonSubAccounts" xml:space="preserve">
+    <value>subcuentas</value>
+    <comment>Sub accounts</comment>
+  </data>
+  <data name="LinkButtonView" xml:space="preserve">
+    <value>Visualizar</value>
+    <comment>View</comment>
+  </data>
+  <data name="LinkButtonViewChangeLogo" xml:space="preserve">
+    <value>logo anunciante</value>
+    <comment>Advertiser logo</comment>
+  </data>
+  <data name="LinkButtonViewChangeTemplateLogo" xml:space="preserve">
+    <value>Plantilla de arte de trabajo / logotipo</value>
+    <comment>Job template artwork/logo</comment>
+  </data>
+  <data name="LinkButtonViewJobs" xml:space="preserve">
+    <value>Visualizar trabajos</value>
+    <comment>View Jobs</comment>
+  </data>
+  <data name="PlaceHolderSalaryAnnualFrom" xml:space="preserve">
+    <value>Introduzca sueldo anual de</value>
+    <comment>Enter annual salary from</comment>
+  </data>
+  <data name="PlaceHolderSalaryAnnualTo" xml:space="preserve">
+    <value>Introduzca sueldo anual para</value>
+    <comment>Enter annual salary to</comment>
+  </data>
+  <data name="PlaceHolderSalaryHourlyFrom" xml:space="preserve">
+    <value>Introduzca tarifa por hora de</value>
+    <comment>Enter hourly rate from</comment>
+  </data>
+  <data name="PlaceHolderSalaryHourlyTo" xml:space="preserve">
+    <value>Introduzca tarifa por hora para</value>
+    <comment>Enter hourly rate to</comment>
+  </data>
+  <data name="sLabelCandidateSearch" xml:space="preserve">
+    <value>Búsqueda de aspirantes - seleccionar los criterios pertinentes para su ubicación y el área</value>
+    <comment>Candidate Search - Please select relevant criteria for your location and area</comment>
+  </data>
+  <data name="sLabelPublicProfile" xml:space="preserve">
+    <value>Perfil Público</value>
+    <comment>'s Public Profile</comment>
+  </data>
+  <data name="LabelAnnualRange" xml:space="preserve">
+    <value>Annual Range</value>
+    <comment>Annual Range</comment>
+  </data>
+  <data name="LabelAvailableDateFrom" xml:space="preserve">
+    <value>Availability Date From</value>
+    <comment>Availability Date From</comment>
+  </data>
+  <data name="LabelCandidates" xml:space="preserve">
+    <value>Candidates</value>
+    <comment>Candidates</comment>
+  </data>
+  <data name="LabelFilterResults" xml:space="preserve">
+    <value>Filter Results</value>
+    <comment>Filter Results</comment>
+  </data>
+  <data name="LabelHourlyRange" xml:space="preserve">
+    <value>Hourly Range</value>
+    <comment>Hourly Range</comment>
+  </data>
+  <data name="LabelYourSearchReturned" xml:space="preserve">
+    <value>Your Search Returned</value>
+    <comment>Your Search Returned</comment>
+  </data>
+  <data name="LabelAlphabeticalAscending" xml:space="preserve">
+    <value>Alphabetical Ascending</value>
+    <comment>Alphabetical Ascending</comment>
+  </data>
+  <data name="LabelAlphabeticalDescending" xml:space="preserve">
+    <value>Alphabetical Descending</value>
+    <comment>Alphabetical Descending</comment>
+  </data>
+  <data name="LabelAvailableDate" xml:space="preserve">
+    <value>Available Date</value>
+    <comment>Available Date</comment>
+  </data>
+  <data name="LabelPeopleSearch" xml:space="preserve">
+    <value>People Search</value>
+  </data>
+  <data name="LabelRecentCandidate" xml:space="preserve">
+    <value>Recent Candidate</value>
+    <comment>Recent Candidate</comment>
+  </data>
+  <data name="LabelCity" xml:space="preserve">
+    <value>City</value>
+    <comment>City</comment>
+  </data>
+  <data name="LabelRegion" xml:space="preserve">
+    <value>Region</value>
+    <comment>Region</comment>
+  </data>
+  <data name="LabelRoles" xml:space="preserve">
+    <value>Roles</value>
+    <comment>Roles</comment>
+  </data>
+  <data name="LabelReset" xml:space="preserve">
+    <value>Reset</value>
+    <comment>Reset</comment>
+  </data>
+  <data name="LabelSearch" xml:space="preserve">
+    <value>Search</value>
+    <comment>Search</comment>
+  </data>
+  <data name="LabelSalaryTypeFull" xml:space="preserve">
+    <value>Salary Type</value>
+    <comment>Salary Type</comment>
+  </data>
+  <data name="LabelWhatAreYouUpTo" xml:space="preserve">
+    <value>What are you up to?</value>
+    <comment>What are you up to?</comment>
+  </data>
+  <data name="LabelProfileDetails" xml:space="preserve">
+    <value>Profile Details</value>
+    <comment>Profile Details</comment>
+  </data>
+  <data name="LabelRegistration" xml:space="preserve">
+    <value>Registration</value>
+    <comment>Registration</comment>
+  </data>
+  <data name="LabelValidation" xml:space="preserve">
+    <value>Validation</value>
+    <comment>Validation</comment>
+  </data>
+  <data name="LabelRequiredProfileSectionsHeading" xml:space="preserve">
+    <value>Required Profile Sections left to complete?</value>
+    <comment>Required Profile Sections left to complete?</comment>
+  </data>
+  <data name="LabelNotYetSubmitted" xml:space="preserve">
+    <value>Not yet submitted</value>
+    <comment>Not yet submitted</comment>
+  </data>
+  <data name="LabelProfileStatus" xml:space="preserve">
+    <value>Profile Status</value>
+    <comment>Profile Status</comment>
+  </data>
+  <data name="LabelProfileStatusSubmittedDateFormat" xml:space="preserve">
+    <value>Submitted {0}</value>
+    <comment>Submitted {0}</comment>
+  </data>
+  <data name="LabelGraduated" xml:space="preserve">
+    <value>Graduated</value>
+    <comment>Graduated</comment>
+  </data>
+  <data name="LabelGraduatedCredits" xml:space="preserve">
+    <value>Graduated Credits</value>
+    <comment>Graduated Credits</comment>
+  </data>
+  <data name="LabelProfileMinEntries" xml:space="preserve">
+    <value>Minimum {0} entries is required</value>
+    <comment>Minimum {0} entries is required</comment>
+  </data>
+  <data name="ValidationPhoneNumbers" xml:space="preserve">
+    <value>Accepts only numbers, spaces, '+', '(' and ')'</value>
+    <comment>Accepts only numbers, spaces, '+', '(' and ')'</comment>
+  </data>
+</root>

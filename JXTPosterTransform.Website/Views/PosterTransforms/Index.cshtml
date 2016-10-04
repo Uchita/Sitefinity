@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using JXTPosterTransform.Website.Models
+@model List<PTDisplayModel>
+<h2>
+    PosterTransforms</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                PTID
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Created Date
+            </th>
+            <th>
+                Last Modified
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (PTDisplayModel m in Model)
+        {
+            <tr>
+                <td>@m.PosterTransformId
+                </td>
+                <td>@m.PosterTransformName</td>
+                <td>@m.CreatedDate.ToLongDateString()</td>
+                <td>@(m.LastModifiedDate.HasValue ? m.LastModifiedDate.Value.ToLongDateString() : string.Empty)</td>
+                <td><a href="/postertransforms/edit/@m.PosterTransformId">Edit</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

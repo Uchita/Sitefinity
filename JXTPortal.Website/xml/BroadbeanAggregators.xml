@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<aggregators>
+  <aggregator>
+    <id>7155</id>
+    <domain>careerjet.com.au</domain>
+  </aggregator>
+  <aggregator>
+    <id>7154</id>
+    <domain>simplyhired.com.au</domain>
+  </aggregator>
+  <aggregator>
+    <id>7153</id>
+    <domain>adzuna.com.au</domain>
+  </aggregator>
+  <aggregator>
+    <id>7152</id>
+    <domain>jobseeker.com.au</domain>
+  </aggregator>
+  <aggregator>
+    <id>7152</id>
+    <domain>jobseekerau</domain>
+  </aggregator>
+  <aggregator>
+    <id>7156</id>
+    <domain>au.jobrapido.com</domain>
+  </aggregator>
+  <aggregator>
+    <id>7151</id>
+    <domain>au.indeed.com</domain>
+  </aggregator>
+</aggregators>

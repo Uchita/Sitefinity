@@ -1,0 +1,1981 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<data>
+
+  <registercountrys>
+    <registercountry>679|Australia</registercountry>
+    <registercountry>707|Thailand</registercountry>
+    <!--<registercountry>758|Korea</registercountry>
+    <registercountry>759|Singapore</registercountry>-->
+    
+    <registercountry>281|Australia</registercountry>
+  </registercountrys>
+
+
+
+  <genders>
+    <gender>Male</gender>
+    <gender>Female</gender>
+  </genders>
+  <employmenttypes>
+    <employmenttype>Permanent</employmenttype>
+    <employmenttype>Contract</employmenttype>
+    <employmenttype>Temporary</employmenttype>
+  </employmenttypes>
+  <countries>
+    <country>
+      <name>Andorra</name>
+      <states />
+    </country>
+    <country>
+      <name>United Arab Emirates</name>
+      <states />
+    </country>
+    <country>
+      <name>Afghanistan</name>
+      <states />
+    </country>
+    <country>
+      <name>Antigua and Barbuda</name>
+      <states />
+    </country>
+    <country>
+      <name>Anguilla</name>
+      <states />
+    </country>
+    <country>
+      <name>Albania</name>
+      <states />
+    </country>
+    <country>
+      <name>Armenia</name>
+      <states />
+    </country>
+    <country>
+      <name>Angola</name>
+      <states />
+    </country>
+    <country>
+      <name>Antarctica</name>
+      <states />
+    </country>
+    <country>
+      <name>Argentina</name>
+      <states />
+    </country>
+    <country>
+      <name>Austria</name>
+      <states />
+    </country>
+    <country>
+      <name>Australia</name>
+      <states>
+        <state>Australian Capital Territory</state>
+        <state>New South Wales</state>
+        <state>Northern Territory</state>
+        <state>Queensland</state>
+        <state>South Australia</state>
+        <state>Tasmania</state>
+        <state>Victoria</state>
+        <state>Western Australia</state>
+      </states>
+    </country>
+    <country>
+      <name>Aruba</name>
+      <states />
+    </country>
+    <country>
+      <name>Aland Islands</name>
+      <states />
+    </country>
+    <country>
+      <name>Azerbaijan</name>
+      <states />
+    </country>
+    <country>
+      <name>Bosnia and Herzegovina</name>
+      <states />
+    </country>
+    <country>
+      <name>Barbados</name>
+      <states />
+    </country>
+    <country>
+      <name>Bangladesh</name>
+      <states />
+    </country>
+    <country>
+      <name>Belgium</name>
+      <states />
+    </country>
+    <country>
+      <name>Burkina Faso</name>
+      <states />
+    </country>
+    <country>
+      <name>Bulgaria</name>
+      <states />
+    </country>
+    <country>
+      <name>Bahrain</name>
+      <states />
+    </country>
+    <country>
+      <name>Burundi</name>
+      <states />
+    </country>
+    <country>
+      <name>Benin</name>
+      <states />
+    </country>
+    <country>
+      <name>Saint Barthélemy</name>
+      <states />
+    </country>
+    <country>
+      <name>Bermuda</name>
+      <states />
+    </country>
+    <country>
+      <name>Brunei Darussalam</name>
+      <states />
+    </country>
+    <country>
+      <name>Bolivia, Plurinational State of</name>
+      <states />
+    </country>
+    <country>
+      <name>Bonaire, Sint Eustatius and Saba</name>
+      <states />
+    </country>
+    <country>
+      <name>Brazil</name>
+      <states>
+        <state>Acre</state>
+        <state>Alagoas</state>
+        <state>Amazonas</state>
+        <state>Amapá</state>
+        <state>Bahia</state>
+        <state>Ceará</state>
+        <state>Distrito Federal</state>
+        <state>Espírito Santo</state>
+        <state>Goiás</state>
+        <state>Maranhão</state>
+        <state>Minas Gerais</state>
+        <state>Mato Grosso do Sul</state>
+        <state>Mato Grosso</state>
+        <state>Pará</state>
+        <state>Paraíba</state>
+        <state>Pernambuco</state>
+        <state>Piauí</state>
+        <state>Paraná</state>
+        <state>Rio de Janeiro</state>
+        <state>Rio Grande do Norte</state>
+        <state>Rondônia</state>
+        <state>Roraima</state>
+        <state>Rio Grande do Sul</state>
+        <state>Santa Catarina</state>
+        <state>Sergipe</state>
+        <state>São Paulo</state>
+        <state>Tocantins</state>
+      </states>
+    </country>
+    <country>
+      <name>Bahamas</name>
+      <states />
+    </country>
+    <country>
+      <name>Bhutan</name>
+      <states />
+    </country>
+    <country>
+      <name>Bouvet Island</name>
+      <states />
+    </country>
+    <country>
+      <name>Botswana</name>
+      <states />
+    </country>
+    <country>
+      <name>Belarus</name>
+      <states />
+    </country>
+    <country>
+      <name>Belize</name>
+      <states />
+    </country>
+    <country>
+      <name>Canada</name>
+      <states>
+        <state>Alberta</state>
+        <state>British Columbia</state>
+        <state>Manitoba</state>
+        <state>New Brunswick</state>
+        <state>Newfoundland and Labrador</state>
+        <state>Nova Scotia</state>
+        <state>Northwest Territories</state>
+        <state>Nunavut</state>
+        <state>Ontario</state>
+        <state>Prince Edward Island</state>
+        <state>Quebec</state>
+        <state>Saskatchewan</state>
+        <state>Yukon Territories</state>
+      </states>
+    </country>
+    <country>
+      <name>Cocos (Keeling) Islands</name>
+      <states />
+    </country>
+    <country>
+      <name>Congo, the Democratic Republic of the</name>
+      <states />
+    </country>
+    <country>
+      <name>Central African Republic</name>
+      <states />
+    </country>
+    <country>
+      <name>Congo</name>
+      <states />
+    </country>
+    <country>
+      <name>Switzerland</name>
+      <states />
+    </country>
+    <country>
+      <name>Cote d'Ivoire</name>
+      <states />
+    </country>
+    <country>
+      <name>Cook Islands</name>
+      <states />
+    </country>
+    <country>
+      <name>Chile</name>
+      <states />
+    </country>
+    <country>
+      <name>Cameroon</name>
+      <states />
+    </country>
+    <country>
+      <name>China</name>
+      <states>
+        <state>Beijing</state>
+        <state>Tianjin</state>
+        <state>Hebei</state>
+        <state>Shanxi</state>
+        <state>Nei Mongol</state>
+        <state>Liaoning</state>
+        <state>Jilin</state>
+        <state>Heilongjiang</state>
+        <state>Shanghai</state>
+        <state>Jiangsu</state>
+        <state>Zhejiang</state>
+        <state>Anhui</state>
+        <state>Fujian</state>
+        <state>Jiangxi</state>
+        <state>Shandong</state>
+        <state>Henan</state>
+        <state>Hubei</state>
+        <state>Hunan</state>
+        <state>Guangdong</state>
+        <state>Guangxi</state>
+        <state>Hainan</state>
+        <state>Chongqing</state>
+        <state>Sichuan</state>
+        <state>Guizhou</state>
+        <state>Yunnan</state>
+        <state>Xizang</state>
+        <state>Shaanxi</state>
+        <state>Gansu</state>
+        <state>Qinghai</state>
+        <state>Ningxia</state>
+        <state>Xinjiang</state>
+        <state>Taiwan</state>
+        <state>Hong Kong</state>
+        <state>Macao</state>
+      </states>
+    </country>
+    <country>
+      <name>Colombia</name>
+      <states />
+    </country>
+    <country>
+      <name>Costa Rica</name>
+      <states />
+    </country>
+    <country>
+      <name>Cuba</name>
+      <states />
+    </country>
+    <country>
+      <name>Cape Verde</name>
+      <states />
+    </country>
+    <country>
+      <name>Curaçao</name>
+      <states />
+    </country>
+    <country>
+      <name>Christmas Island</name>
+      <states />
+    </country>
+    <country>
+      <name>Cyprus</name>
+      <states />
+    </country>
+    <country>
+      <name>Czech Republic</name>
+      <states />
+    </country>
+    <country>
+      <name>Germany</name>
+      <states />
+    </country>
+    <country>
+      <name>Djibouti</name>
+      <states />
+    </country>
+    <country>
+      <name>Denmark</name>
+      <states />
+    </country>
+    <country>
+      <name>Dominica</name>
+      <states />
+    </country>
+    <country>
+      <name>Dominican Republic</name>
+      <states />
+    </country>
+    <country>
+      <name>Algeria</name>
+      <states />
+    </country>
+    <country>
+      <name>Ecuador</name>
+      <states />
+    </country>
+    <country>
+      <name>Estonia</name>
+      <states />
+    </country>
+    <country>
+      <name>Egypt</name>
+      <states />
+    </country>
+    <country>
+      <name>Western Sahara</name>
+      <states />
+    </country>
+    <country>
+      <name>Eritrea</name>
+      <states />
+    </country>
+    <country>
+      <name>Spain</name>
+      <states />
+    </country>
+    <country>
+      <name>Ethiopia</name>
+      <states />
+    </country>
+    <country>
+      <name>Finland</name>
+      <states />
+    </country>
+    <country>
+      <name>Fiji</name>
+      <states />
+    </country>
+    <country>
+      <name>Falkland Islands (Malvinas)</name>
+      <states />
+    </country>
+    <country>
+      <name>Faroe Islands</name>
+      <states />
+    </country>
+    <country>
+      <name>France</name>
+      <states />
+    </country>
+    <country>
+      <name>Gabon</name>
+      <states />
+    </country>
+    <country>
+      <name>United Kingdom</name>
+      <states />
+    </country>
+    <country>
+      <name>Grenada</name>
+      <states />
+    </country>
+    <country>
+      <name>Georgia</name>
+      <states />
+    </country>
+    <country>
+      <name>French Guiana</name>
+      <states />
+    </country>
+    <country>
+      <name>Guernsey</name>
+      <states />
+    </country>
+    <country>
+      <name>Ghana</name>
+      <states />
+    </country>
+    <country>
+      <name>Gibraltar</name>
+      <states />
+    </country>
+    <country>
+      <name>Greenland</name>
+      <states />
+    </country>
+    <country>
+      <name>Gambia</name>
+      <states />
+    </country>
+    <country>
+      <name>Guinea</name>
+      <states />
+    </country>
+    <country>
+      <name>Guadeloupe</name>
+      <states />
+    </country>
+    <country>
+      <name>Equatorial Guinea</name>
+      <states />
+    </country>
+    <country>
+      <name>Greece</name>
+      <states />
+    </country>
+    <country>
+      <name>South Georgia and the South Sandwich Islands</name>
+      <states />
+    </country>
+    <country>
+      <name>Guatemala</name>
+      <states />
+    </country>
+    <country>
+      <name>Guinea-Bissau</name>
+      <states />
+    </country>
+    <country>
+      <name>Guyana</name>
+      <states />
+    </country>
+    <country>
+      <name>Heard Island and McDonald Islands</name>
+      <states />
+    </country>
+    <country>
+      <name>Honduras</name>
+      <states />
+    </country>
+    <country>
+      <name>Croatia</name>
+      <states />
+    </country>
+    <country>
+      <name>Haiti</name>
+      <states />
+    </country>
+    <country>
+      <name>Hungary</name>
+      <states />
+    </country>
+    <country>
+      <name>Indonesia</name>
+      <states />
+    </country>
+    <country>
+      <name>Ireland</name>
+      <states>
+        <state>Clare</state>
+        <state>Cavan</state>
+        <state>Cork</state>
+        <state>Carlow</state>
+        <state>Dublin</state>
+        <state>Donegal</state>
+        <state>Galway</state>
+        <state>Kildare</state>
+        <state>Kilkenny</state>
+        <state>Kerry</state>
+        <state>Longford</state>
+        <state>Louth</state>
+        <state>Limerick</state>
+        <state>Leitrim</state>
+        <state>Laois</state>
+        <state>Meath</state>
+        <state>Monaghan</state>
+        <state>Mayo</state>
+        <state>Offaly</state>
+        <state>Roscommon</state>
+        <state>Sligo</state>
+        <state>Tipperary</state>
+        <state>Waterford</state>
+        <state>Westmeath</state>
+        <state>Wicklow</state>
+        <state>Wexford</state>
+      </states>
+
+    </country>
+    <country>
+      <name>Israel</name>
+      <states />
+    </country>
+    <country>
+      <name>Isle of Man</name>
+      <states />
+    </country>
+    <country>
+      <name>India</name>
+      <states>
+        <state>Andaman and Nicobar Islands</state>
+        <state>Andhra Pradesh</state>
+        <state>Arunachal Pradesh</state>
+        <state>Assam</state>
+        <state>Bihar</state>
+        <state>Chandigarh</state>
+        <state>Chhattisgarh</state>
+        <state>Daman and Diu</state>
+        <state>Delhi</state>
+        <state>Dadra and Nagar Haveli</state>
+        <state>Goa</state>
+        <state>Gujarat</state>
+        <state>Himachal Pradesh</state>
+        <state>Haryana</state>
+        <state>Jharkhand</state>
+        <state>Jammu and Kashmir</state>
+        <state>Karnataka</state>
+        <state>Kerala</state>
+        <state>Lakshadweep</state>
+        <state>Maharashtra</state>
+        <state>Meghalaya</state>
+        <state>Manipur</state>
+        <state>Madhya Pradesh</state>
+        <state>Mizoram</state>
+        <state>Nagaland</state>
+        <state>Odisha</state>
+        <state>Punjab</state>
+        <state>Puducherry</state>
+        <state>Rajasthan</state>
+        <state>Sikkim</state>
+        <state>Tamil Nadu</state>
+        <state>Tripura</state>
+        <state>Uttar Pradesh</state>
+        <state>Uttarakhand</state>
+        <state>West Bengal</state>
+      </states>
+
+    </country>
+    <country>
+      <name>British Indian Ocean Territory</name>
+      <states />
+    </country>
+    <country>
+      <name>Iraq</name>
+      <states />
+    </country>
+    <country>
+      <name>Iran, Islamic Republic of</name>
+      <states />
+    </country>
+    <country>
+      <name>Iceland</name>
+      <states />
+    </country>
+    <country>
+      <name>Italy</name>
+      <states>
+        <state>Agrigento</state>
+        <state>Alessandria</state>
+        <state>Ancona</state>
+        <state>Aosta</state>
+        <state>Ascoli Piceno</state>
+        <state>L'Aquila</state>
+        <state>Arezzo</state>
+        <state>Asti</state>
+        <state>Avellino</state>
+        <state>Bari</state>
+        <state>Bergamo</state>
+        <state>Biella</state>
+        <state>Belluno</state>
+        <state>Benevento</state>
+        <state>Bologna</state>
+        <state>Brindisi</state>
+        <state>Brescia</state>
+        <state>Barletta-Andria-Trani</state>
+        <state>Bolzano</state>
+        <state>Cagliari</state>
+        <state>Campobasso</state>
+        <state>Caserta</state>
+        <state>Chieti</state>
+        <state>Carbonia-Iglesias</state>
+        <state>Caltanissetta</state>
+        <state>Cuneo</state>
+        <state>Como</state>
+        <state>Cremona</state>
+        <state>Cosenza</state>
+        <state>Catania</state>
+        <state>Catanzaro</state>
+        <state>Enna</state>
+        <state>Forlì-Cesena</state>
+        <state>Ferrara</state>
+        <state>Foggia</state>
+        <state>Florence</state>
+        <state>Fermo</state>
+        <state>Frosinone</state>
+        <state>Genoa</state>
+        <state>Gorizia</state>
+        <state>Grosseto</state>
+        <state>Imperia</state>
+        <state>Isernia</state>
+        <state>Crotone</state>
+        <state>Lecco</state>
+        <state>Lecce</state>
+        <state>Livorno</state>
+        <state>Lodi</state>
+        <state>Latina</state>
+        <state>Lucca</state>
+        <state>Monza and Brianza</state>
+        <state>Macerata</state>
+        <state>Messina</state>
+        <state>Milan</state>
+        <state>Mantua</state>
+        <state>Modena</state>
+        <state>Massa and Carrara</state>
+        <state>Matera</state>
+        <state>Naples</state>
+        <state>Novara</state>
+        <state>Nuoro</state>
+        <state>Ogliastra</state>
+        <state>Oristano</state>
+        <state>Olbia-Tempio</state>
+        <state>Palermo</state>
+        <state>Piacenza</state>
+        <state>Padua</state>
+        <state>Pescara</state>
+        <state>Perugia</state>
+        <state>Pisa</state>
+        <state>Pordenone</state>
+        <state>Prato</state>
+        <state>Parma</state>
+        <state>Pistoia</state>
+        <state>Pesaro and Urbino</state>
+        <state>Pavia</state>
+        <state>Potenza</state>
+        <state>Ravenna</state>
+        <state>Reggio Calabria</state>
+        <state>Reggio Emilia</state>
+        <state>Ragusa</state>
+        <state>Rieti</state>
+        <state>Rome</state>
+        <state>Rimini</state>
+        <state>Rovigo</state>
+        <state>Salerno</state>
+        <state>Siena</state>
+        <state>Sondrio</state>
+        <state>La Spezia</state>
+        <state>Syracuse</state>
+        <state>Sassari</state>
+        <state>Savona</state>
+        <state>Taranto</state>
+        <state>Teramo</state>
+        <state>Trento</state>
+        <state>Turin</state>
+        <state>Trapani</state>
+        <state>Terni</state>
+        <state>Trieste</state>
+        <state>Treviso</state>
+        <state>Udine</state>
+        <state>Varese</state>
+        <state>Verbano-Cusio-Ossola</state>
+        <state>Vercelli</state>
+        <state>Venice</state>
+        <state>Vicenza</state>
+        <state>Verona</state>
+        <state>Medio Campidano</state>
+        <state>Viterbo</state>
+        <state>Vibo Valentia</state>
+      </states>
+
+    </country>
+    <country>
+      <name>Jersey</name>
+      <states />
+    </country>
+    <country>
+      <name>Jamaica</name>
+      <states />
+    </country>
+    <country>
+      <name>Jordan</name>
+      <states />
+    </country>
+    <country>
+      <name>Japan</name>
+      <states>
+        <state>Aichi</state>
+        <state>Akita</state>
+        <state>Aomori</state>
+        <state>Chiba</state>
+        <state>Ehime</state>
+        <state>Fukui</state>
+        <state>Fukuoka</state>
+        <state>Fukushima</state>
+        <state>Gifu</state>
+        <state>Gunma</state>
+        <state>Hiroshima</state>
+        <state>Hokkaido</state>
+        <state>Hyogo</state>
+        <state>Ibaraki</state>
+        <state>Ishikawa</state>
+        <state>Iwate</state>
+        <state>Kagawa</state>
+        <state>Kagoshima</state>
+        <state>Kanagawa</state>
+        <state>Kochi</state>
+        <state>Kumamoto</state>
+        <state>Kyoto</state>
+        <state>Mie</state>
+        <state>Miyagi</state>
+        <state>Miyazaki</state>
+        <state>Nagano</state>
+        <state>Nagasaki</state>
+        <state>Nara</state>
+        <state>Niigata</state>
+        <state>Oita</state>
+        <state>Okayama</state>
+        <state>Okinawa</state>
+        <state>Osaka</state>
+        <state>Saga</state>
+        <state>Saitama</state>
+        <state>Shiga</state>
+        <state>Shimane</state>
+        <state>Shizuoka</state>
+        <state>Tochigi</state>
+        <state>Tokushima</state>
+        <state>Tokyo</state>
+        <state>Tottori</state>
+        <state>Toyama</state>
+        <state>Wakayama</state>
+        <state>Yamagata</state>
+        <state>Yamaguchi</state>
+        <state>Yamanashi</state>
+      </states>
+
+    </country>
+    <country>
+      <name>Kenya</name>
+      <states />
+    </country>
+    <country>
+      <name>Kyrgyzstan</name>
+      <states />
+    </country>
+    <country>
+      <name>Cambodia</name>
+      <states />
+    </country>
+    <country>
+      <name>Kiribati</name>
+      <states />
+    </country>
+    <country>
+      <name>Comoros</name>
+      <states />
+    </country>
+    <country>
+      <name>Saint Kitts and Nevis</name>
+      <states />
+    </country>
+    <country>
+      <name>Korea, Democratic People's Republic of</name>
+      <states />
+    </country>
+    <country>
+      <name>Korea, Republic of</name>
+      <states>
+        <state>Seoul Teugbyeolsi [ Seoul-T’ŭkpyŏlshi]</state>
+        <state>Busan Gwang'yeogsi [Pusan-Kwangyŏkshi]</state>
+        <state>Daegu Gwang'yeogsi [Taegu-Kwangyŏkshi)</state>
+        <state>Incheon Gwang'yeogsi [Inchŏn-Kwangyŏkshi]</state>
+        <state>Gwangju Gwang'yeogsi [Kwangju-Kwangyŏkshi]</state>
+        <state>Daejeon Gwang'yeogsi [Taejŏn-Kwangyŏkshi]</state>
+        <state>Ulsan Gwang'yeogsi [Ulsan-Kwangyŏkshi]</state>
+        <state>Gyeonggido [Kyŏnggi-do]</state>
+        <state>Gang'weondo [Kang-won-do]</state>
+        <state>Chungcheongbugdo [Ch'ungch'ŏngbuk-do]</state>
+        <state>Chungcheongnamdo [Ch'ungch'ŏngnam-do]</state>
+        <state>Jeonrabugdo [Chŏllabuk-do)</state>
+        <state>Jeonranamdo [Chŏllanam-do]</state>
+        <state>Gyeongsangbugdo [Kyŏngsangbuk-do]</state>
+        <state>Gyeongsangnamdo [Kyŏngsangnam-do]</state>
+        <state>Jejudo [Cheju-do]</state>
+      </states>
+    </country>
+    <country>
+      <name>Kuwait</name>
+      <states />
+    </country>
+    <country>
+      <name>Cayman Islands</name>
+      <states />
+    </country>
+    <country>
+      <name>Kazakhstan</name>
+      <states />
+    </country>
+    <country>
+      <name>Lao People's Democratic Republic</name>
+      <states />
+    </country>
+    <country>
+      <name>Lebanon</name>
+      <states />
+    </country>
+    <country>
+      <name>Saint Lucia</name>
+      <states />
+    </country>
+    <country>
+      <name>Liechtenstein</name>
+      <states />
+    </country>
+    <country>
+      <name>Sri Lanka</name>
+      <states />
+    </country>
+    <country>
+      <name>Liberia</name>
+      <states />
+    </country>
+    <country>
+      <name>Lesotho</name>
+      <states />
+    </country>
+    <country>
+      <name>Lithuania</name>
+      <states />
+    </country>
+    <country>
+      <name>Luxembourg</name>
+      <states />
+    </country>
+    <country>
+      <name>Latvia</name>
+      <states />
+    </country>
+    <country>
+      <name>Libya</name>
+      <states />
+    </country>
+    <country>
+      <name>Morocco</name>
+      <states />
+    </country>
+    <country>
+      <name>Monaco</name>
+      <states />
+    </country>
+    <country>
+      <name>Moldova, Republic of</name>
+      <states />
+    </country>
+    <country>
+      <name>Montenegro</name>
+      <states />
+    </country>
+    <country>
+      <name>Saint Martin (French part)</name>
+      <states />
+    </country>
+    <country>
+      <name>Madagascar</name>
+      <states />
+    </country>
+    <country>
+      <name>Macedonia, the former Yugoslav Republic of</name>
+      <states />
+    </country>
+    <country>
+      <name>Mali</name>
+      <states />
+    </country>
+    <country>
+      <name>Myanmar</name>
+      <states />
+    </country>
+    <country>
+      <name>Mongolia</name>
+      <states />
+    </country>
+    <country>
+      <name>Macao</name>
+      <states />
+    </country>
+    <country>
+      <name>Martinique</name>
+      <states />
+    </country>
+    <country>
+      <name>Mauritania</name>
+      <states />
+    </country>
+    <country>
+      <name>Montserrat</name>
+      <states />
+    </country>
+    <country>
+      <name>Malta</name>
+      <states />
+    </country>
+    <country>
+      <name>Mauritius</name>
+      <states />
+    </country>
+    <country>
+      <name>Maldives</name>
+      <states />
+    </country>
+    <country>
+      <name>Malawi</name>
+      <states />
+    </country>
+    <country>
+      <name>Mexico</name>
+      <states>
+        <state>Aguascalientes</state>
+        <state>Baja California</state>
+        <state>Baja California Sur</state>
+        <state>Chihuahua</state>
+        <state>Colima</state>
+        <state>Campeche</state>
+        <state>Coahuila</state>
+        <state>Chiapas</state>
+        <state>Federal District</state>
+        <state>Durango</state>
+        <state>Guerrero</state>
+        <state>Guanajuato</state>
+        <state>Hidalgo</state>
+        <state>Jalisco</state>
+        <state>Mexico State</state>
+        <state>Michoacán</state>
+        <state>Morelos</state>
+        <state>Nayarit</state>
+        <state>Nuevo León</state>
+        <state>Oaxaca</state>
+        <state>Puebla</state>
+        <state>Querétaro</state>
+        <state>Quintana Roo</state>
+        <state>Sinaloa</state>
+        <state>San Luis Potosí</state>
+        <state>Sonora</state>
+        <state>Tabasco</state>
+        <state>Tlaxcala</state>
+        <state>Tamaulipas</state>
+        <state>Veracruz</state>
+        <state>Yucatán</state>
+        <state>Zacatecas</state>
+      </states>
+    </country>
+    <country>
+      <name>Malaysia</name>
+      <states />
+    </country>
+    <country>
+      <name>Mozambique</name>
+      <states />
+    </country>
+    <country>
+      <name>Namibia</name>
+      <states />
+    </country>
+    <country>
+      <name>New Caledonia</name>
+      <states />
+    </country>
+    <country>
+      <name>Niger</name>
+      <states />
+    </country>
+    <country>
+      <name>Norfolk Island</name>
+      <states />
+    </country>
+    <country>
+      <name>Nigeria</name>
+      <states />
+    </country>
+    <country>
+      <name>Nicaragua</name>
+      <states />
+    </country>
+    <country>
+      <name>Netherlands</name>
+      <states />
+    </country>
+    <country>
+      <name>Norway</name>
+      <states />
+    </country>
+    <country>
+      <name>Nepal</name>
+      <states />
+    </country>
+    <country>
+      <name>Nauru</name>
+      <states />
+    </country>
+    <country>
+      <name>Niue</name>
+      <states />
+    </country>
+    <country>
+      <name>New Zealand</name>
+      <states />
+    </country>
+    <country>
+      <name>Oman</name>
+      <states />
+    </country>
+    <country>
+      <name>Panama</name>
+      <states />
+    </country>
+    <country>
+      <name>Peru</name>
+      <states />
+    </country>
+    <country>
+      <name>French Polynesia</name>
+      <states />
+    </country>
+    <country>
+      <name>Papua New Guinea</name>
+      <states />
+    </country>
+    <country>
+      <name>Philippines</name>
+      <states />
+    </country>
+    <country>
+      <name>Pakistan</name>
+      <states />
+    </country>
+    <country>
+      <name>Poland</name>
+      <states />
+    </country>
+    <country>
+      <name>Saint Pierre and Miquelon</name>
+      <states />
+    </country>
+    <country>
+      <name>Pitcairn</name>
+      <states />
+    </country>
+    <country>
+      <name>Palestine</name>
+      <states />
+    </country>
+    <country>
+      <name>Portugal</name>
+      <states />
+    </country>
+    <country>
+      <name>Paraguay</name>
+      <states />
+    </country>
+    <country>
+      <name>Qatar</name>
+      <states />
+    </country>
+    <country>
+      <name>Reunion</name>
+      <states />
+    </country>
+    <country>
+      <name>Romania</name>
+      <states />
+    </country>
+    <country>
+      <name>Serbia</name>
+      <states />
+    </country>
+    <country>
+      <name>Russian Federation</name>
+      <states />
+    </country>
+    <country>
+      <name>Rwanda</name>
+      <states />
+    </country>
+    <country>
+      <name>Saudi Arabia</name>
+      <states />
+    </country>
+    <country>
+      <name>Solomon Islands</name>
+      <states />
+    </country>
+    <country>
+      <name>Seychelles</name>
+      <states />
+    </country>
+    <country>
+      <name>Sudan</name>
+      <states />
+    </country>
+    <country>
+      <name>Sweden</name>
+      <states />
+    </country>
+    <country>
+      <name>Singapore</name>
+      <states>
+        <state>Singapore</state>
+      </states>
+    </country>
+    <country>
+      <name>Saint Helena, Ascension and Tristan da Cunha</name>
+      <states />
+    </country>
+    <country>
+      <name>Slovenia</name>
+      <states />
+    </country>
+    <country>
+      <name>Svalbard and Jan Mayen</name>
+      <states />
+    </country>
+    <country>
+      <name>Slovakia</name>
+      <states />
+    </country>
+    <country>
+      <name>Sierra Leone</name>
+      <states />
+    </country>
+    <country>
+      <name>San Marino</name>
+      <states />
+    </country>
+    <country>
+      <name>Senegal</name>
+      <states />
+    </country>
+    <country>
+      <name>Somalia</name>
+      <states />
+    </country>
+    <country>
+      <name>Suriname</name>
+      <states />
+    </country>
+    <country>
+      <name>South Sudan</name>
+      <states />
+    </country>
+    <country>
+      <name>Sao Tome and Principe</name>
+      <states />
+    </country>
+    <country>
+      <name>El Salvador</name>
+      <states />
+    </country>
+    <country>
+      <name>Sint Maarten (Dutch part)</name>
+      <states />
+    </country>
+    <country>
+      <name>Syrian Arab Republic</name>
+      <states />
+    </country>
+    <country>
+      <name>Swaziland</name>
+      <states />
+    </country>
+    <country>
+      <name>Turks and Caicos Islands</name>
+      <states />
+    </country>
+    <country>
+      <name>Chad</name>
+      <states />
+    </country>
+    <country>
+      <name>French Southern Territories</name>
+      <states />
+    </country>
+    <country>
+      <name>Togo</name>
+      <states />
+    </country>
+    <country>
+      <name>Thailand</name>
+      <states>
+        <state>Krung Thep Maha Nakhon [Bangkok]</state>
+        <state>Samut Prakan</state>
+        <state>Nonthaburi</state>
+        <state>Pathum Thani</state>
+        <state>Phra Nakhon Si Ayutthaya</state>
+        <state>Ang Thong</state>
+        <state>Lop Buri</state>
+        <state>Sing Buri</state>
+        <state>Chai Nat</state>
+        <state>Saraburi</state>
+        <state>Chon Buri</state>
+        <state>Rayong</state>
+        <state>Chanthaburi</state>
+        <state>Trat</state>
+        <state>Chachoengsao</state>
+        <state>Prachin Buri</state>
+        <state>Nakhon Nayok</state>
+        <state>Sa Kaeo</state>
+        <state>Nakhon Ratchasima</state>
+        <state>Buri Ram</state>
+        <state>Surin</state>
+        <state>Si Sa Ket</state>
+        <state>Ubon Ratchathani</state>
+        <state>Yasothon</state>
+        <state>Chaiyaphum</state>
+        <state>Amnat Charoen</state>
+        <state>Nong Bua Lam Phu</state>
+        <state>Khon Kaen</state>
+        <state>Udon Thani</state>
+        <state>Loei</state>
+        <state>Nong Khai</state>
+        <state>Maha Sarakham</state>
+        <state>Roi Et</state>
+        <state>Kalasin</state>
+        <state>Sakon Nakhon</state>
+        <state>Nakhon Phanom</state>
+        <state>Mukdahan</state>
+        <state>Chiang Mai</state>
+        <state>Lamphun</state>
+        <state>Lampang</state>
+        <state>Uttaradit</state>
+        <state>Phrae</state>
+        <state>Nan</state>
+        <state>Phayao</state>
+        <state>Chiang Rai</state>
+        <state>Mae Hong Son</state>
+        <state>Nakhon Sawan</state>
+        <state>Uthai Thani</state>
+        <state>Kamphaeng Phet</state>
+        <state>Tak</state>
+        <state>Sukhothai</state>
+        <state>Phitsanulok</state>
+        <state>Phichit</state>
+        <state>Phetchabun</state>
+        <state>Ratchaburi</state>
+        <state>Kanchanaburi</state>
+        <state>Suphan Buri</state>
+        <state>Nakhon Pathom</state>
+        <state>Samut Sakhon</state>
+        <state>Samut Songkhram</state>
+        <state>Phetchaburi</state>
+        <state>Prachuap Khiri Khan</state>
+        <state>Nakhon Si Thammarat</state>
+        <state>Krabi</state>
+        <state>Phangnga</state>
+        <state>Phuket</state>
+        <state>Surat Thani</state>
+        <state>Ranong</state>
+        <state>Chumphon</state>
+        <state>Songkhla</state>
+        <state>Satun</state>
+        <state>Trang</state>
+        <state>Phatthalung</state>
+        <state>Pattani</state>
+        <state>Yala</state>
+        <state>Narathiwat</state>
+        <state>Phatthaya</state>
+      </states>
+
+    </country>
+    <country>
+      <name>Tajikistan</name>
+      <states />
+    </country>
+    <country>
+      <name>Tokelau</name>
+      <states />
+    </country>
+    <country>
+      <name>Timor-Leste</name>
+      <states />
+    </country>
+    <country>
+      <name>Turkmenistan</name>
+      <states />
+    </country>
+    <country>
+      <name>Tunisia</name>
+      <states />
+    </country>
+    <country>
+      <name>Tonga</name>
+      <states />
+    </country>
+    <country>
+      <name>Turkey</name>
+      <states />
+    </country>
+    <country>
+      <name>Trinidad and Tobago</name>
+      <states />
+    </country>
+    <country>
+      <name>Tuvalu</name>
+      <states />
+    </country>
+    <country>
+      <name>Taiwan</name>
+      <states />
+    </country>
+    <country>
+      <name>Tanzania, United Republic of</name>
+      <states />
+    </country>
+    <country>
+      <name>Ukraine</name>
+      <states />
+    </country>
+    <country>
+      <name>Uganda</name>
+      <states />
+    </country>
+    <country>
+      <name>United States</name>
+      <states>
+        <state>Armed Forces Americas</state>
+        <state>Armed Forces Europe</state>
+        <state>Alaska</state>
+        <state>Alabama</state>
+        <state>Armed Forces Pacific</state>
+        <state>Arkansas</state>
+        <state>American Samoa</state>
+        <state>Arizona</state>
+        <state>California</state>
+        <state>Colorado</state>
+        <state>Connecticut</state>
+        <state>District of Columbia</state>
+        <state>Delaware</state>
+        <state>Florida</state>
+        <state>Federated Micronesia</state>
+        <state>Georgia</state>
+        <state>Guam</state>
+        <state>Hawaii</state>
+        <state>Iowa</state>
+        <state>Idaho</state>
+        <state>Illinois</state>
+        <state>Indiana</state>
+        <state>Kansas</state>
+        <state>Kentucky</state>
+        <state>Louisiana</state>
+        <state>Massachusetts</state>
+        <state>Maryland</state>
+        <state>Maine</state>
+        <state>Marshall Islands</state>
+        <state>Michigan</state>
+        <state>Minnesota</state>
+        <state>Missouri</state>
+        <state>Northern Mariana Islands</state>
+        <state>Mississippi</state>
+        <state>Montana</state>
+        <state>North Carolina</state>
+        <state>North Dakota</state>
+        <state>Nebraska</state>
+        <state>New Hampshire</state>
+        <state>New Jersey</state>
+        <state>New Mexico</state>
+        <state>Nevada</state>
+        <state>New York</state>
+        <state>Ohio</state>
+        <state>Oklahoma</state>
+        <state>Oregon</state>
+        <state>Pennsylvania</state>
+        <state>Puerto Rico</state>
+        <state>Palau</state>
+        <state>Rhode Island</state>
+        <state>South Carolina</state>
+        <state>South Dakota</state>
+        <state>Tennessee</state>
+        <state>Texas</state>
+        <state>United States Minor Outlying Islands</state>
+        <state>Utah</state>
+        <state>Virginia</state>
+        <state>US Virgin Islands</state>
+        <state>Vermont</state>
+        <state>Washington</state>
+        <state>Wisconsin</state>
+        <state>West Virginia</state>
+        <state>Wyoming</state>
+      </states>
+    </country>
+    <country>
+      <name>Uruguay</name>
+      <states />
+    </country>
+    <country>
+      <name>Uzbekistan</name>
+      <states />
+    </country>
+    <country>
+      <name>Holy See (Vatican City State)</name>
+      <states />
+    </country>
+    <country>
+      <name>Saint Vincent and the Grenadines</name>
+      <states />
+    </country>
+    <country>
+      <name>Venezuela, Bolivarian Republic of</name>
+      <states />
+    </country>
+    <country>
+      <name>Virgin Islands, British</name>
+      <states />
+    </country>
+    <country>
+      <name>Viet Nam</name>
+      <states>
+        <state>Lai Châu</state>
+        <state>Lào Cai</state>
+        <state>Hà Giang</state>
+        <state>Cao Bằng</state>
+        <state>Sơn La</state>
+        <state>Yên Bái</state>
+        <state>Tuyên Quang</state>
+        <state>Lạng Sơn</state>
+        <state>Quảng Ninh</state>
+        <state>Hòa Bình</state>
+        <state>Ninh Bình</state>
+        <state>Thái Bình</state>
+        <state>Thanh Hóa</state>
+        <state>Nghệ An</state>
+        <state>Hà Tĩnh</state>
+        <state>Quảng Bình</state>
+        <state>Quảng Trị</state>
+        <state>Thừa Thiên–Huế</state>
+        <state>Quảng Nam</state>
+        <state>Kon Tum</state>
+        <state>Quảng Ngãi</state>
+        <state>Gia Lai</state>
+        <state>Bình Định</state>
+        <state>Phú Yên</state>
+        <state>Đắk Lắk</state>
+        <state>Khánh Hòa</state>
+        <state>Lâm Đồng</state>
+        <state>Ninh Thuận</state>
+        <state>Tây Ninh</state>
+        <state>Đồng Nai</state>
+        <state>Bình Thuận</state>
+        <state>Long An</state>
+        <state>Bà Rịa–Vũng Tàu</state>
+        <state>An Giang</state>
+        <state>Đồng Tháp</state>
+        <state>Tiền Giang</state>
+        <state>Kiến Giang</state>
+        <state>Vĩnh Long</state>
+        <state>Bến Tre</state>
+        <state>Trà Vinh</state>
+        <state>Sóc Trăng</state>
+        <state>Bắc Kạn</state>
+        <state>Bắc Giang</state>
+        <state>Bạc Liêu</state>
+        <state>Bắc Ninh</state>
+        <state>Bình Dương</state>
+        <state>Bình Phước</state>
+        <state>Cà Mau</state>
+        <state>Hải Dương</state>
+        <state>Hà Nam</state>
+        <state>Hưng Yên</state>
+        <state>Nam Định</state>
+        <state>Phú Thọ</state>
+        <state>Thái Nguyên</state>
+        <state>Vĩnh Phúc</state>
+        <state>Điện Biên</state>
+        <state>Đắk Nông</state>
+        <state>Hậu Giang</state>
+        <state>Can Tho</state>
+        <state>Da Nang</state>
+      </states>
+
+    </country>
+    <country>
+      <name>Vanuatu</name>
+      <states />
+    </country>
+    <country>
+      <name>Wallis and Futuna</name>
+      <states />
+    </country>
+    <country>
+      <name>Samoa</name>
+      <states />
+    </country>
+    <country>
+      <name>Yemen</name>
+      <states />
+    </country>
+    <country>
+      <name>Mayotte</name>
+      <states />
+    </country>
+    <country>
+      <name>South Africa</name>
+      <states />
+    </country>
+    <country>
+      <name>Zambia</name>
+      <states />
+    </country>
+    <country>
+      <name>Zimbabwe</name>
+      <states />
+    </country>
+
+  </countries>
+  <industries>
+    <industry><![CDATA[Advertising/MR/PR/Events]]></industry>
+    <industry><![CDATA[Automobile/Auto Ancillaries]]></industry>
+    <industry><![CDATA[Aviation/Airline]]></industry>
+    <industry><![CDATA[Banking/Financial Services]]></industry>
+    <industry><![CDATA[BPO/Call Center]]></industry>
+    <industry><![CDATA[Chemical/Plastic/Rubber/Glass Jobs]]></industry>
+    <industry><![CDATA[Consumer Durables/Electronics]]></industry>
+    <industry><![CDATA[Education/Training]]></industry>
+    <industry><![CDATA[Engineering/Construction]]></industry>
+    <industry><![CDATA[Export-Import/Trading]]></industry>
+    <industry><![CDATA[FMCG/F&amp;B]]></industry>
+    <industry><![CDATA[Hotel/Restaurant]]></industry>
+    <industry><![CDATA[Insurance]]></industry>
+    <industry><![CDATA[IT-Hardware/Networking]]></industry>
+    <industry><![CDATA[IT-Software]]></industry>
+    <industry><![CDATA[KPO/Analytics]]></industry>
+    <industry><![CDATA[Logistics/Courier/Transportation]]></industry>
+    <industry><![CDATA[Management Consulting/Strategy Jobs]]></industry>
+    <industry><![CDATA[Manufacturing]]></industry>
+    <industry><![CDATA[Media/Entertainment]]></industry>
+    <industry><![CDATA[Medical/Healthcare]]></industry>
+    <industry><![CDATA[Oil &amp; Gas/Petroleum]]></industry>
+    <industry><![CDATA[Pharma/Biotech]]></industry>
+    <industry><![CDATA[Real Estate]]></industry>
+    <industry><![CDATA[Recruitment Services]]></industry>
+    <industry><![CDATA[Retail]]></industry>
+    <industry><![CDATA[elecom/ISP]]></industry>
+    <industry><![CDATA[Textile/Garments/Fashion]]></industry>
+    <industry><![CDATA[Travel/Tourism]]></industry>
+
+  </industries>
+  <jobcategories>
+    <jobcategory>
+      <name><![CDATA[Accounting & Finance]]></name>
+      <jobfunctions>
+        <jobfunction><![CDATA[Audit]]></jobfunction>
+        <jobfunction><![CDATA[Bus. / Corp. Planning]]></jobfunction>
+        <jobfunction><![CDATA[CFO / Financial Controller]]></jobfunction>
+        <jobfunction><![CDATA[Financial Planning & Analysis (Manager)]]></jobfunction>
+        <jobfunction><![CDATA[Financial Planning & Analysis (Staff)]]></jobfunction>
+        <jobfunction><![CDATA[General Accounting (Manager)]]></jobfunction>
+        <jobfunction><![CDATA[General Accounting (Staff)]]></jobfunction>
+        <jobfunction><![CDATA[Taxation]]></jobfunction>
+        <jobfunction><![CDATA[Treasury / Credit / Risk]]></jobfunction>
+      </jobfunctions>
+    </jobcategory>
+
+    <jobcategory>
+      <name><![CDATA[Automotive / Automotive Parts]]></name>
+      <jobfunctions>
+        <jobfunction><![CDATA[Application Engineer / Sales Engineer]]></jobfunction>
+        <jobfunction><![CDATA[Marketing]]></jobfunction>
+        <jobfunction><![CDATA[Program Manager / Project Manager]]></jobfunction>
+        <jobfunction><![CDATA[Quality Engineer / Production Engineer]]></jobfunction>
+        <jobfunction><![CDATA[Sales / Account Sales]]></jobfunction>
+      </jobfunctions>
+    </jobcategory>
+
+    <jobcategory>
+      <name><![CDATA[Banking & Finance]]></name>
+      <jobfunctions>
+        <jobfunction><![CDATA[Back Office / Operations]]></jobfunction>
+        <jobfunction><![CDATA[Compliance]]></jobfunction>
+        <jobfunction><![CDATA[Credit / Market Risk]]></jobfunction>
+        <jobfunction><![CDATA[Front Office]]></jobfunction>
+        <jobfunction><![CDATA[Insurance]]></jobfunction>
+        <jobfunction><![CDATA[Internal Audit]]></jobfunction>
+        <jobfunction><![CDATA[Middle Office / Product Control]]></jobfunction>
+        <jobfunction><![CDATA[Real Estate / NPL]]></jobfunction>
+      </jobfunctions>
+    </jobcategory>
+
+    <jobcategory>
+      <name><![CDATA[Chemical / Material]]></name>
+      <jobfunctions>
+        <jobfunction><![CDATA[Application Engineer/Tech Svc Engineer]]></jobfunction>
+        <jobfunction><![CDATA[Marketing]]></jobfunction>
+        <jobfunction><![CDATA[Quality Engineer / Process Engineer]]></jobfunction>
+        <jobfunction><![CDATA[Research & Development]]></jobfunction>
+        <jobfunction><![CDATA[Sales]]></jobfunction>
+      </jobfunctions>
+    </jobcategory>
+
+    <jobcategory>
+      <name><![CDATA[Engineering]]></name>
+      <jobfunctions>
+        <jobfunction><![CDATA[Automation]]></jobfunction>
+        <jobfunction><![CDATA[Building Services]]></jobfunction>
+        <jobfunction><![CDATA[Civil / Structural]]></jobfunction>
+        <jobfunction><![CDATA[Construction]]></jobfunction>
+        <jobfunction><![CDATA[Electrical / Electronic]]></jobfunction>
+        <jobfunction><![CDATA[Environmental]]></jobfunction>
+        <jobfunction><![CDATA[Geotechnical]]></jobfunction>
+        <jobfunction><![CDATA[Management]]></jobfunction>
+        <jobfunction><![CDATA[Materials Handling]]></jobfunction>
+        <jobfunction><![CDATA[Oil and Gas]]></jobfunction>
+        <jobfunction><![CDATA[Project Management]]></jobfunction>
+        <jobfunction><![CDATA[Rail]]></jobfunction>
+        <jobfunction><![CDATA[Systems]]></jobfunction>
+      </jobfunctions>
+    </jobcategory>
+
+    <jobcategory>
+      <name><![CDATA[Executive Management]]></name>
+      <jobfunctions>
+        <jobfunction><![CDATA[CFO]]></jobfunction>
+        <jobfunction><![CDATA[COO]]></jobfunction>
+        <jobfunction><![CDATA[CTO / CIO]]></jobfunction>
+        <jobfunction><![CDATA[Corporate Planning]]></jobfunction>
+        <jobfunction><![CDATA[Country Head]]></jobfunction>
+        <jobfunction><![CDATA[HR Director]]></jobfunction>
+        <jobfunction><![CDATA[Managing Director]]></jobfunction>
+        <jobfunction><![CDATA[President / CEO]]></jobfunction>
+      </jobfunctions>
+    </jobcategory>
+
+    <jobcategory>
+      <name><![CDATA[HR, GA and Facilities]]></name>
+      <jobfunctions>
+        <jobfunction><![CDATA[Call Center Operations]]></jobfunction>
+        <jobfunction><![CDATA[Compensation & Benefit]]></jobfunction>
+        <jobfunction><![CDATA[Employee Dev / Training]]></jobfunction>
+        <jobfunction><![CDATA[Employee Relations]]></jobfunction>
+        <jobfunction><![CDATA[Executive Assistant / PA]]></jobfunction>
+        <jobfunction><![CDATA[Facilities]]></jobfunction>
+        <jobfunction><![CDATA[General Affairs]]></jobfunction>
+        <jobfunction><![CDATA[HR Director]]></jobfunction>
+        <jobfunction><![CDATA[HR Generalist]]></jobfunction>
+        <jobfunction><![CDATA[HR Information System]]></jobfunction>
+        <jobfunction><![CDATA[HR Manager]]></jobfunction>
+        <jobfunction><![CDATA[HR Specialist]]></jobfunction>
+        <jobfunction><![CDATA[Office Manager]]></jobfunction>
+        <jobfunction><![CDATA[Payroll / Social Insurance]]></jobfunction>
+        <jobfunction><![CDATA[Recruiting]]></jobfunction>
+        <jobfunction><![CDATA[Translator / Interpreter]]></jobfunction>
+      </jobfunctions>
+    </jobcategory>
+
+    <jobcategory>
+      <name><![CDATA[IT & Telecoms]]></name>
+      <jobfunctions>
+        <jobfunction><![CDATA[Business Analysis]]></jobfunction>
+        <jobfunction><![CDATA[Consulting]]></jobfunction>
+        <jobfunction><![CDATA[Database Engineering / DBA]]></jobfunction>
+        <jobfunction><![CDATA[Desktop / Application Support]]></jobfunction>
+        <jobfunction><![CDATA[Development / Programming / SE]]></jobfunction>
+        <jobfunction><![CDATA[IT Management / CIO]]></jobfunction>
+        <jobfunction><![CDATA[Marketing]]></jobfunction>
+        <jobfunction><![CDATA[Network Engineering]]></jobfunction>
+        <jobfunction><![CDATA[Presales]]></jobfunction>
+        <jobfunction><![CDATA[Project Management]]></jobfunction>
+        <jobfunction><![CDATA[Sales]]></jobfunction>
+        <jobfunction><![CDATA[Semiconductor / Embedded Device]]></jobfunction>
+        <jobfunction><![CDATA[System Administration (Windows / UNIX)]]></jobfunction>
+        <jobfunction><![CDATA[Technical / Customer Support]]></jobfunction>
+      </jobfunctions>
+    </jobcategory>
+
+    <jobcategory>
+      <name><![CDATA[Industrial Equipment / Plant / Parts]]></name>
+      <jobfunctions>
+        <jobfunction><![CDATA[Application Engineer]]></jobfunction>
+        <jobfunction><![CDATA[Engineering]]></jobfunction>
+        <jobfunction><![CDATA[Field Service Engineer]]></jobfunction>
+        <jobfunction><![CDATA[Management]]></jobfunction>
+        <jobfunction><![CDATA[Marketing]]></jobfunction>
+        <jobfunction><![CDATA[Operations]]></jobfunction>
+        <jobfunction><![CDATA[Project Manager]]></jobfunction>
+        <jobfunction><![CDATA[Quality Engineer / Production Engineer]]></jobfunction>
+        <jobfunction><![CDATA[Sales / Sales Engineer]]></jobfunction>
+      </jobfunctions>
+    </jobcategory>
+
+    <jobcategory>
+      <name><![CDATA[Legal]]></name>
+      <jobfunctions>
+        <jobfunction><![CDATA[Legal Affairs / Compliance]]></jobfunction>
+        <jobfunction><![CDATA[Patent / Intellectual Property]]></jobfunction>
+        <jobfunction><![CDATA[Shareholders Meeting / IR]]></jobfunction>
+      </jobfunctions>
+    </jobcategory>
+
+    <jobcategory>
+      <name><![CDATA[Medical Device / Diagnostics / Analytical]]></name>
+      <jobfunctions>
+        <jobfunction><![CDATA[Application Specialist]]></jobfunction>
+        <jobfunction><![CDATA[Clinical Trial / GCP / CRA]]></jobfunction>
+        <jobfunction><![CDATA[Field Service / Technical Support]]></jobfunction>
+        <jobfunction><![CDATA[Marketing / Business Development]]></jobfunction>
+        <jobfunction><![CDATA[Medical Affairs]]></jobfunction>
+        <jobfunction><![CDATA[Medical Doctors]]></jobfunction>
+        <jobfunction><![CDATA[Medical Education]]></jobfunction>
+        <jobfunction><![CDATA[PMS / Safety Management]]></jobfunction>
+        <jobfunction><![CDATA[Quality Assurance]]></jobfunction>
+        <jobfunction><![CDATA[Regulatory Affairs]]></jobfunction>
+        <jobfunction><![CDATA[Research & Development]]></jobfunction>
+        <jobfunction><![CDATA[Sales / Sales Management]]></jobfunction>
+        <jobfunction><![CDATA[Sales Training / SFE]]></jobfunction>
+      </jobfunctions>
+    </jobcategory>
+
+    <jobcategory>
+      <name><![CDATA[Pharmaceutical / CRO / Reagents / Personal Care]]></name>
+      <jobfunctions>
+        <jobfunction><![CDATA[Business Development / Licensing]]></jobfunction>
+        <jobfunction><![CDATA[CRA / CRC]]></jobfunction>
+        <jobfunction><![CDATA[Clinical Project Manager]]></jobfunction>
+        <jobfunction><![CDATA[GCP Audit]]></jobfunction>
+        <jobfunction><![CDATA[MR / Sales Management]]></jobfunction>
+        <jobfunction><![CDATA[Marketing]]></jobfunction>
+        <jobfunction><![CDATA[Medical Affairs]]></jobfunction>
+        <jobfunction><![CDATA[Medical Doctors]]></jobfunction>
+        <jobfunction><![CDATA[PMS / Data Management]]></jobfunction>
+        <jobfunction><![CDATA[Quality Assurance]]></jobfunction>
+        <jobfunction><![CDATA[Regulatory Affairs]]></jobfunction>
+        <jobfunction><![CDATA[Research & Development]]></jobfunction>
+        <jobfunction><![CDATA[Sales Training / SFE]]></jobfunction>
+      </jobfunctions>
+    </jobcategory>
+
+    <jobcategory>
+      <name><![CDATA[Real Estate & Insurance]]></name>
+      <jobfunctions>
+        <jobfunction><![CDATA[Accounting]]></jobfunction>
+        <jobfunction><![CDATA[Acquisitions]]></jobfunction>
+        <jobfunction><![CDATA[Appraisal]]></jobfunction>
+        <jobfunction><![CDATA[Asset Management]]></jobfunction>
+        <jobfunction><![CDATA[Audit]]></jobfunction>
+        <jobfunction><![CDATA[Construction & Development]]></jobfunction>
+        <jobfunction><![CDATA[FP&A]]></jobfunction>
+        <jobfunction><![CDATA[Portfolio Management]]></jobfunction>
+        <jobfunction><![CDATA[Project  Management]]></jobfunction>
+        <jobfunction><![CDATA[Property Management]]></jobfunction>
+        <jobfunction><![CDATA[Real Estate Structured Finance]]></jobfunction>
+        <jobfunction><![CDATA[Tax]]></jobfunction>
+      </jobfunctions>
+    </jobcategory>
+
+    <jobcategory>
+      <name><![CDATA[Sales & Marketing]]></name>
+      <jobfunctions>
+        <jobfunction><![CDATA[Account Management]]></jobfunction>
+        <jobfunction><![CDATA[Advertising]]></jobfunction>
+        <jobfunction><![CDATA[Brand / Product Manager]]></jobfunction>
+        <jobfunction><![CDATA[Business Development]]></jobfunction>
+        <jobfunction><![CDATA[Campaign Marketing]]></jobfunction>
+        <jobfunction><![CDATA[Channel Marketing]]></jobfunction>
+        <jobfunction><![CDATA[Consultant]]></jobfunction>
+        <jobfunction><![CDATA[Corporate Communications / PR]]></jobfunction>
+        <jobfunction><![CDATA[Direct Marketing]]></jobfunction>
+        <jobfunction><![CDATA[Event Manager]]></jobfunction>
+        <jobfunction><![CDATA[Market Research]]></jobfunction>
+        <jobfunction><![CDATA[Marketing Manager / Director]]></jobfunction>
+        <jobfunction><![CDATA[Medical Device/Diagnostics/Analytical]]></jobfunction>
+        <jobfunction><![CDATA[Online Marketing]]></jobfunction>
+        <jobfunction><![CDATA[Other]]></jobfunction>
+        <jobfunction><![CDATA[Pharmaceutical/CRO/Reagents/Person Care]]></jobfunction>
+        <jobfunction><![CDATA[Product Manager]]></jobfunction>
+        <jobfunction><![CDATA[Sales Management]]></jobfunction>
+        <jobfunction><![CDATA[Sales Representative]]></jobfunction>
+        <jobfunction><![CDATA[Sales Support]]></jobfunction>
+        <jobfunction><![CDATA[Strategic Alliance Management]]></jobfunction>
+        <jobfunction><![CDATA[Strategic Planning]]></jobfunction>
+        <jobfunction><![CDATA[Trade Marketing]]></jobfunction>
+      </jobfunctions>
+    </jobcategory>
+
+    <jobcategory>
+      <name><![CDATA[Semiconductor / Embedded Device]]></name>
+      <jobfunctions>
+        <jobfunction><![CDATA[Design Engineer / Programmer]]></jobfunction>
+        <jobfunction><![CDATA[Field Application Engineering]]></jobfunction>
+        <jobfunction><![CDATA[Quality Assurance / Quality Management]]></jobfunction>
+        <jobfunction><![CDATA[Sales / Marketing]]></jobfunction>
+      </jobfunctions>
+    </jobcategory>
+
+    <jobcategory>
+      <name><![CDATA[Supply Chain Management]]></name>
+      <jobfunctions>
+        <jobfunction><![CDATA[Buyer / Merchandising]]></jobfunction>
+        <jobfunction><![CDATA[Customer Service]]></jobfunction>
+        <jobfunction><![CDATA[Demand / Supply Planning]]></jobfunction>
+        <jobfunction><![CDATA[Direct/Indirect Purchasing, Procurement]]></jobfunction>
+        <jobfunction><![CDATA[Distribution]]></jobfunction>
+        <jobfunction><![CDATA[Factory / Plant Management]]></jobfunction>
+        <jobfunction><![CDATA[Import / Export]]></jobfunction>
+        <jobfunction><![CDATA[Inventory Planning / Inventory Control]]></jobfunction>
+        <jobfunction><![CDATA[Logistics]]></jobfunction>
+        <jobfunction><![CDATA[OH&S / EH&S]]></jobfunction>
+        <jobfunction><![CDATA[Order Management]]></jobfunction>
+        <jobfunction><![CDATA[Production Control/Production Planning]]></jobfunction>
+        <jobfunction><![CDATA[Quality Control/Quality Assurance/SQE]]></jobfunction>
+        <jobfunction><![CDATA[SCM Consulting]]></jobfunction>
+        <jobfunction><![CDATA[Supply Chain Management]]></jobfunction>
+        <jobfunction><![CDATA[Warehouse Management]]></jobfunction>
+      </jobfunctions>
+    </jobcategory>
+
+  </jobcategories>
+  <salaryperiods>
+    <salaryperiod>Annual</salaryperiod>
+    <salaryperiod>Monthly</salaryperiod>
+    <salaryperiod>Weekly</salaryperiod>
+    <salaryperiod>Daily</salaryperiod>
+    <salaryperiod>Hourly</salaryperiod>
+  </salaryperiods>
+  <languages>
+    <language>English</language>
+    <language>Korean</language>
+    <language>Japanese</language>
+    <language>Thai</language>
+    <language>Vietnamese</language>
+    <language>Other</language>
+  </languages>
+  <languagelevels>
+    <languagelevel>Basic</languagelevel>
+    <languagelevel>Intermediate</languagelevel>
+    <languagelevel>Business</languagelevel>
+    <languagelevel>Advanced</languagelevel>
+    <languagelevel>Fluent</languagelevel>
+    <languagelevel>Native</languagelevel>
+  </languagelevels>
+  <desiredcountries>
+    <desiredcountry>
+      <name>Japan</name>
+      <locations>
+        <location>Tokyo</location>
+        <location>Kanagawa</location>
+        <location>Kanto: Other Areas</location>
+        <location>Osaka</location>
+        <location>Nagoya</location>
+        <location>Kansai: Other Areas</location>
+        <location>Japan: Other Areas</location>
+      </locations>
+    </desiredcountry>
+    <desiredcountry>
+      <name>Australia</name>
+      <locations>
+        <location>Sydney</location>
+        <location>Melbourne</location>
+        <location>Brisbane</location>
+        <location>Gold Coast</location>
+        <location>Perth</location>
+        <location>Adelaide</location>
+        <location>Hobart</location>
+        <location>Darwin</location>
+        <location>Canberra</location>
+        <location>NSW</location>
+        <location>VIC</location>
+        <location>QLD</location>
+        <location>WA</location>
+        <location>SA</location>
+        <location>TAS</location>
+        <location>ACT</location>
+        <location>NT</location>
+      </locations>
+    </desiredcountry>
+    <desiredcountry>
+      <name>India</name>
+      <locations>
+        <location>Delhi</location>
+        <location>Gurgaon</location>
+        <location>NOIDA</location>
+        <location>Chandigarh</location>
+        <location>Lucknow</location>
+        <location>North India : Other Areas</location>
+        <location>Hyderabad</location>
+        <location>Bangalore</location>
+        <location>Coimbatore</location>
+        <location>Chennai</location>
+        <location>South India : Other Areas</location>
+        <location>Kolkata</location>
+        <location>Bhubaneswar</location>
+        <location>Patna</location>
+        <location>East India : Other Areas</location>
+        <location>Mumbai</location>
+        <location>Pune</location>
+        <location>Ahmedabad</location>
+        <location>Jaipur</location>
+        <location>West India : Other Areas</location>
+        <location>Indore</location>
+        <location>Central India : Other Areas</location>
+        <location>India: Other Areas</location>
+      </locations>
+    </desiredcountry>
+    <desiredcountry>
+      <name>Korea</name>
+      <locations>
+        <location>Seoul</location>
+        <location>Korea: Other Areas</location>
+      </locations>
+    </desiredcountry>
+
+    <desiredcountry>
+      <name>New Zealand</name>
+      <locations>
+      </locations>
+    </desiredcountry>
+    <desiredcountry>
+      <name>Singapore</name>
+      <locations>
+      </locations>
+    </desiredcountry>
+    <desiredcountry>
+      <name>Thailand</name>
+      <locations>
+        <location>Bangkok</location>
+        <location>Samut Prakan</location>
+        <location>Chon Buri</location>
+        <location>Nakhon Phanom</location>
+        <location>Rayong</location>
+      </locations>
+    </desiredcountry>
+    <desiredcountry>
+      <name>Vietnam</name>
+      <locations>
+        <location>Ha Noi</location>
+        <location>Ho Chi Minh</location>
+        <location>Vietnam: Other Areas</location>
+      </locations>
+    </desiredcountry>
+    <desiredcountry>
+      <name>Overseas: Other Areas</name>
+      <locations>
+      </locations>
+    </desiredcountry>
+  </desiredcountries>
+</data>

@@ -1,0 +1,13 @@
+﻿CREATE TABLE Files
+(
+   FileID INT IDENTITY(1,1) PRIMARY KEY,
+   SiteID INT NOT NULL,
+   FolderID INT NOT NULL,
+   FileName NVARCHAR(500) NOT NULL,
+   FileSystemName NVARCHAR(500) NOT NULL,
+   FileTypeID INT NOT NULL,
+   LastModified DATETIME NOT NULL DEFAULT(GETDATE()),
+   LastModifiedBy INT NOT NULL,
+   SourceID INT NULL
+)
+GO

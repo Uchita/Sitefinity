@@ -1,0 +1,104 @@
+﻿@{
+    ViewBag.Title = "Job Detail";
+	
+}
+@model JXTPortal.Domain.ViewModel.JobModel.JobDetail
+@using JXTPortal.Entities
+<script type="text/javascript">
+    function SaveJob() { 
+        $.getJSON('@Url.Action("SaveJobJSON")', 
+                    { jobid : @Model.JobID }, 
+                        function (Result) {
+                            if (Result.success)
+                            {
+                                $("#btnSave").attr("disabled", "disabled");
+                                $("#Message").text("Your job has been successfully saved");
+                            }
+                            else
+                            {
+                                $("#Message").text(Result.message);
+                            }
+                        }).error(function(error) {
+                                    alert("You need to login first");
+                                    //TODO: REDIRECT to the login page with source of current page URL
+                                  });
+    }
+
+</script>
+@using (Html.BeginForm("Apply", "Job", new { id = Model.JobID }, FormMethod.Post))
+{
+
+    <div id="job-template">
+        <span class="DatePosted">Listed @Model.DatePosted</span>
+        <h1>@Model.JobName</h1>
+        @if (Model.ShowLocationDetails)
+        {
+            <h2>@Model.SiteLocationName<span class="JD_siteAreaName">, @Model.SiteAreaName</span></h2>
+        }
+        
+        <span class="job-description">
+            @if (!string.IsNullOrWhiteSpace(Model.BulletPoint1) || !string.IsNullOrWhiteSpace(Model.BulletPoint2) || !string.IsNullOrWhiteSpace(Model.BulletPoint3))
+            {
+                <ul>
+                    @(!string.IsNullOrWhiteSpace(Model.BulletPoint1) ? Html.Raw(string.Format("<li>{0}</li>", Model.BulletPoint1)) : Html.Raw(""))
+                    @(!string.IsNullOrWhiteSpace(Model.BulletPoint2) ? Html.Raw(string.Format("<li>{0}</li>", Model.BulletPoint2)) : Html.Raw(""))
+                    @(!string.IsNullOrWhiteSpace(Model.BulletPoint3) ? Html.Raw(string.Format("<li>{0}</li>", Model.BulletPoint3)) : Html.Raw(""))
+                </ul>
+            }
+            else
+            {
+                <p>@Model.Description</p>
+            }
+        </span>
+
+        @Html.Raw(Model.FullDescription)
+        <ul class="jobRefDetails">
+            <li class="JD_reference">Reference @Model.RefNo</li>
+            <li class="JD_contact">Contact @Model.ContactDetails @Model.JobContactName @Model.JobContactPhone</li>
+        </ul>
+    </div>	
+    <!-- End oof job template -->
+	
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+        <a class="addthis_button_preferred_1"></a><a class="addthis_button_preferred_2">
+        </a><a class="addthis_button_preferred_3"></a><a class="addthis_button_preferred_4">
+        </a><a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style">
+        </a>
+    </div>
+	
+    <br />	
+
+	
+    <script type="text/javascript">        var addthis_config = { "data_track_addressbar": true };</script>
+    <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4fb4b89a166fe980"></script>
+    <!-- AddThis Button END -->
+    <div id="Message" class="errorMessage"></div>
+            if (!String.IsNullOrEmpty(Model.LinkedInAPI) && !String.IsNullOrEmpty(Model.LinkedInAPI) && Model.IsJobApplied == false)
+            {
+            <div id="divApplyWithLinkedIn">
+                <a href="@Url.Action("Apply", "Job", new { id = Model.JobID, btnApply = "LinkedIn" })">
+                    <img src="@Url.Content("~/Content/Images/applywithlinkedin.PNG")" />
+                </a>
+            </div>
+            }
+    <fieldset class="ui-grid-b">
+        <div class="ui-block-a">
+            <button type="button" onclick="window.history.back()">Back</button>
+        </div>
+        <div class="ui-block-b">
+            <button id="btnSave"  name="btnSave" type="button" data-theme="c" @(Model.IsJobSaved ? "class=disabled disabled=disabled" : "") onclick="SaveJob();">Save</button>
+        </div>
+        <div class="ui-block-c">
+            @if ((PortalEnums.Jobs.ApplicationMethod)Model.ApplicationMethod == PortalEnums.Jobs.ApplicationMethod.Default)
+            {    
+                <button id="btnApply" name="btnApply" type="submit" data-theme="b" @(Model.IsJobApplied ? "class=disabled disabled=disabled" : "")>Apply</button>
+            }
+            @if ((PortalEnums.Jobs.ApplicationMethod)Model.ApplicationMethod == PortalEnums.Jobs.ApplicationMethod.URL)
+            {
+                //location.href('Job/ThirdPartyApply/@Model.JobID')
+                <button id="btnApply" name="btnApply" type="button" data-theme="b" @(Model.IsJobApplied ? "class=disabled disabled=disabled" : "") onclick="location.href='@Url.Action("ThirdPartyApply", "Job", new RouteValueDictionary(new { id = Model.JobID }))';">Apply</button>
+            }
+        </div>
+    </fieldset>
+}

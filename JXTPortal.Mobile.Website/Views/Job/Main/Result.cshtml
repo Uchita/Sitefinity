@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "Result";
+
+}
+@model JXTPortal.Domain.ViewModel.JobModel.Result
+
+<style>
+ul#JobRepeater ul#job-bullets {
+margin: 10px 0 0 25px;
+padding:10px 0;
+list-style:outside;
+clear:both;
+}
+
+ul#JobRepeater ul#job-bullets li {
+list-style: outside;
+margin: 0;
+padding: 0;
+border: none;
+background: none !important;
+}
+
+ul#JobRepeater li:hover ul#job-bullets li {
+border:none;
+background-color:transparent;
+}
+
+</style>
+
+<script type="text/javascript">
+    var initialData = @(new MvcHtmlString(Model.ToJson()));
+    
+     function JobResultViewModel()
+    {
+        var self = this;
+        self.Jobs = ko.observableArray(initialData.JobSearchResults);
+        self.Search = ko.observable(initialData.JobSearchModel);
+        self.Pageno = ko.observable(initialData.PageNo);
+        self.TotalPage = ko.observable(initialData.TotalPage);
+        self.TotalRecord = initialData.TotalRecord;
+        self.ShowNextButton = ko.computed(function(){
+                                            return self.Pageno() < (self.TotalPage() - 1);
+                                            });
+        self.LoadNextPage = function() {
+                               $.getJSON('@Url.Action("ResultJson")', {  Keyword: (self.Search().Keyword == null) ? "" : self.Search().Keyword,
+                                                                      ProfessionId: self.Search().ProfessionId,
+                                                                      RoleIds: (self.Search().RoleId == null) ? 0 : self.Search().RoleId,
+                                                                      SalaryTypeId: self.Search().SalaryTypeId,
+                                                                      SalaryFromId: self.Search().SalaryFromId,
+                                                                      SalaryToId: self.Search().SalaryToId,
+                                                                      LocationId: self.Search().LocationId,
+                                                                      AreaIds: (self.Search().AreaId == null || self.Search().AreaId.length == 0) ? 0 : self.Search().AreaId,
+                                                                      WorkTypeId: self.Search().WorkTypeId,
+                                                                      Pageno: self.Pageno() + 1
+                                                                   }, function (SearchResult) {
+                                                                            $.each(SearchResult, function(i, item) 
+                                                                            {
+                                                                                self.Jobs.push(item);
+                                                                            });
+
+                                                                            self.Pageno(self.Pageno() + 1);
+                                                                     });
+                                        }
+        
+    }
+
+        $(document).ready(function () {
+                                ko.applyBindings(new JobResultViewModel());
+                                });
+</script>
+<h1>Your search resulted in: <span data-bind="text: TotalRecord"></span> position(s)</h1>
+<ul name="JobRepeater" id="JobRepeater" data-role="listview" data-bind="foreach: Jobs">
+    <li>		
+        <a data-bind="attr: { href: UrlAction, title: JobName },text: JobName" class="jobDetailsTitle"></a>
+        <a data-bind="attr: { href: UrlAction, title: JobName },text: LocationName" class="jobDetailsLocation"></a> 
+        <a data-bind="attr: { href: UrlAction, title: JobName },text: AreaName" class="jobDetailsArea"></a>
+        <a data-bind="attr: { href: UrlAction, title: JobName },text: WorkTypeName" class="jobDetailsWorkType"></a>
+
+        <!-- ko if: BulletPoint1 || BulletPoint2 || BulletPoint3 -->
+        <ul id="job-bullets">
+            <!-- ko if: BulletPoint1 -->
+            <li data-bind="attr: { href: UrlAction, title: JobName },text: BulletPoint1"></li>
+            <!-- /ko -->
+            <!-- ko if: BulletPoint2 -->
+            <li data-bind="attr: { href: UrlAction, title: JobName },text: BulletPoint2"></li>
+            <!-- /ko -->
+            <!-- ko if: BulletPoint3 -->
+            <li data-bind="attr: { href: UrlAction, title: JobName },text: BulletPoint3"></li>
+            <!-- /ko -->
+        </ul>
+        <!-- /ko -->
+        <!-- ko if: (!BulletPoint1 && !BulletPoint2 && !BulletPoint3) -->
+        <a data-bind="attr: { href: UrlAction, title: JobName },text: Description" class="jobDetailsDescription"></a>
+        <!-- /ko -->
+        <a data-bind="attr: { href: UrlAction, title: JobName },text: DatePostedDisplay" class="jobDetailsDatePostedDisplay"></a>
+    </li>
+</ul>
+<div data-bind="visible: ShowNextButton">
+    <input type="button" id="btn_load_next" class="btn-submit" value="Load More" data-bind="click: LoadNextPage"/>
+</div>
+<input type="button" id="btn_new_search" class="btn-submit btn-submit2" value="New Search" onclick="window.location='/Job/Search'"/>

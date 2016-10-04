@@ -1,0 +1,461 @@
+﻿
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{794327CE-DC0A-4381-89EE-4C00AFB08D5A}</ProjectGuid>
+    <ProjectType>Local</ProjectType>
+	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <OutputType>Library</OutputType>
+    <ApplicationIcon>
+	</ApplicationIcon>
+    <AssemblyKeyContainerName>
+	</AssemblyKeyContainerName>
+    <AssemblyName>JXTPortal</AssemblyName>
+    <AssemblyOriginatorKeyFile>..\JXTPortal.snk</AssemblyOriginatorKeyFile>
+	<SignAssembly>false</SignAssembly>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <RootNamespace>JXTPortal.</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject></StartupObject>
+    <FileUpgradeFlags></FileUpgradeFlags>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>JXTPortal.xml</DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>JXTPortal.xml</DocumentationFile>
+	 <DebugType>pdbonly</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'GenerateDebug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>JXTPortal.xml</DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System"/>
+	<Reference Include="System.Core">
+		<RequiredTargetFramework>3.5</RequiredTargetFramework>
+	</Reference>
+    <Reference Include="System.Web"/>
+    <Reference Include="System.Data"/>
+    <Reference Include="System.Design"/>
+    <Reference Include="System.Xml"/>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Drawing" />
+	<Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>    
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching.Cryptography, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Microsoft.Practices.EnterpriseLibrary.Caching.Cryptography.dll</HintPath>
+    </Reference>
+	<Reference Include="Microsoft.Practices.ObjectBuilder2, Version=2.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Microsoft.Practices.ObjectBuilder2.dll</HintPath>
+    </Reference>
+	<Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+		<SpecificVersion>False</SpecificVersion>
+		<HintPath>..\References\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+	</Reference>
+	<Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging.Database, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+		<SpecificVersion>False</SpecificVersion>
+		<HintPath>..\References\Microsoft.Practices.EnterpriseLibrary.Logging.Database.dll</HintPath>
+	</Reference>
+	<Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+		<SpecificVersion>False</SpecificVersion>
+		<HintPath>..\References\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll</HintPath>
+	</Reference>
+	<Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+		<SpecificVersion>False</SpecificVersion>
+		<HintPath>..\References\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll</HintPath>
+	</Reference>	
+	<Reference Include="Microsoft.Practices.EnterpriseLibrary.Security, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+		<SpecificVersion>False</SpecificVersion>
+		<HintPath>..\References\Microsoft.Practices.EnterpriseLibrary.Security.dll</HintPath>
+	</Reference>	
+	<Reference Include="Microsoft.Practices.EnterpriseLibrary.Security.Cryptography, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+		<SpecificVersion>False</SpecificVersion>
+		<HintPath>..\References\Microsoft.Practices.EnterpriseLibrary.Security.Cryptography.dll</HintPath>
+	</Reference>
+     
+	<ProjectReference Include="..\JXTPortal.Entities\JXTPortal.Entities.csproj">
+      <Name>JXTPortal.Entities</Name>
+      <Project>{20E43088-4618-4F4A-B8AD-FC31B50D94CD}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+	
+	
+    <ProjectReference Include="..\JXTPortal.Data\JXTPortal.Data.csproj">
+        <Name>JXTPortal.Data</Name>
+        <Project>{041C1BBE-0BFB-4D45-8125-9AB0BBC09A92}</Project>
+        <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"</Package>
+    </ProjectReference>
+	
+	
+    
+    	
+	
+	
+	
+	</ItemGroup>
+	
+		
+	<!-- Custom code folder: C:\Developments\GeneratedOutput\JXTPortal.\App_Code -->
+	<ItemGroup>	
+		<Folder Include="App_Code\" />
+        <Compile Include="App_Code\**\*.cs">
+          <SubType>Code</SubType>
+        </Compile>		
+	</ItemGroup>
+
+	<!-- Include any user files -->
+	<ItemGroup>	
+		<Compile Include="**\*.user.*" Exclude="**\*.csproj.user;**\.svn\**" >
+          <SubType>Code</SubType>
+        </Compile>		
+	</ItemGroup>
+	
+	<ItemGroup>
+		<Compile Include="AdminRolesService.cs">
+		  <SubType>Code</SubType>
+		</Compile>
+		<Compile Include="AdminRolesServiceBase.generated.cs">
+		  <DependentUpon>AdminRolesService.cs</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>	
+		<Compile Include="AdminUsersService.cs">
+		  <SubType>Code</SubType>
+		</Compile>
+		<Compile Include="AdminUsersServiceBase.generated.cs">
+		  <DependentUpon>AdminUsersService.cs</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>	
+		<Compile Include="AdvertiserAccountStatusService.cs">
+		  <SubType>Code</SubType>
+		</Compile>
+		<Compile Include="AdvertiserAccountStatusServiceBase.generated.cs">
+		  <DependentUpon>AdvertiserAccountStatusService.cs</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>	
+		<Compile Include="AdvertiserAccountTypeService.cs">
+		  <SubType>Code</SubType>
+		</Compile>
+		<Compile Include="AdvertiserAccountTypeServiceBase.generated.cs">
+		  <DependentUpon>AdvertiserAccountTypeService.cs</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>	
+		<Compile Include="AdvertiserBusinessTypeService.cs">
+		  <SubType>Code</SubType>
+		</Compile>
+		<Compile Include="AdvertiserBusinessTypeServiceBase.generated.cs">
+		  <DependentUpon>AdvertiserBusinessTypeService.cs</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>	
+		<Compile Include="AdvertisersService.cs">
+		  <SubType>Code</SubType>
+		</Compile>
+		<Compile Include="AdvertisersServiceBase.generated.cs">
+		  <DependentUpon>AdvertisersService.cs</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>	
+		<Compile Include="AdvertiserUsersService.cs">
+		  <SubType>Code</SubType>
+		</Compile>
+		<Compile Include="AdvertiserUsersServiceBase.generated.cs">
+		  <DependentUpon>AdvertiserUsersService.cs</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>	
+		<Compile Include="DynamicPagesService.cs">
+		  <SubType>Code</SubType>
+		</Compile>
+		<Compile Include="DynamicPagesServiceBase.generated.cs">
+		  <DependentUpon>DynamicPagesService.cs</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>	
+		<Compile Include="DynamicPageShellService.cs">
+		  <SubType>Code</SubType>
+		</Compile>
+		<Compile Include="DynamicPageShellServiceBase.generated.cs">
+		  <DependentUpon>DynamicPageShellService.cs</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>	
+		<Compile Include="DynamicPagesLinkCategoriesService.cs">
+		  <SubType>Code</SubType>
+		</Compile>
+		<Compile Include="DynamicPagesLinkCategoriesServiceBase.generated.cs">
+		  <DependentUpon>DynamicPagesLinkCategoriesService.cs</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>	
+		<Compile Include="DynamicPageTemplatesService.cs">
+		  <SubType>Code</SubType>
+		</Compile>
+		<Compile Include="DynamicPageTemplatesServiceBase.generated.cs">
+		  <DependentUpon>DynamicPageTemplatesService.cs</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>	
+		<Compile Include="DynamicPageWebPartTemplatesService.cs">
+		  <SubType>Code</SubType>
+		</Compile>
+		<Compile Include="DynamicPageWebPartTemplatesServiceBase.generated.cs">
+		  <DependentUpon>DynamicPageWebPartTemplatesService.cs</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>	
+		<Compile Include="DynamicPageWebPartTemplatesLinkService.cs">
+		  <SubType>Code</SubType>
+		</Compile>
+		<Compile Include="DynamicPageWebPartTemplatesLinkServiceBase.generated.cs">
+		  <DependentUpon>DynamicPageWebPartTemplatesLinkService.cs</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>	
+		<Compile Include="EmailFormatsService.cs">
+		  <SubType>Code</SubType>
+		</Compile>
+		<Compile Include="EmailFormatsServiceBase.generated.cs">
+		  <DependentUpon>EmailFormatsService.cs</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>	
+		<Compile Include="EnquiriesService.cs">
+		  <SubType>Code</SubType>
+		</Compile>
+		<Compile Include="EnquiriesServiceBase.generated.cs">
+		  <DependentUpon>EnquiriesService.cs</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>	
+		<Compile Include="FilesService.cs">
+		  <SubType>Code</SubType>
+		</Compile>
+		<Compile Include="FilesServiceBase.generated.cs">
+		  <DependentUpon>FilesService.cs</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>	
+		<Compile Include="FileTypesService.cs">
+		  <SubType>Code</SubType>
+		</Compile>
+		<Compile Include="FileTypesServiceBase.generated.cs">
+		  <DependentUpon>FileTypesService.cs</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>	
+		<Compile Include="FoldersService.cs">
+		  <SubType>Code</SubType>
+		</Compile>
+		<Compile Include="FoldersServiceBase.generated.cs">
+		  <DependentUpon>FoldersService.cs</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>	
+		<Compile Include="GlobalSettingsService.cs">
+		  <SubType>Code</SubType>
+		</Compile>
+		<Compile Include="GlobalSettingsServiceBase.generated.cs">
+		  <DependentUpon>GlobalSettingsService.cs</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>	
+		<Compile Include="LanguagesService.cs">
+		  <SubType>Code</SubType>
+		</Compile>
+		<Compile Include="LanguagesServiceBase.generated.cs">
+		  <DependentUpon>LanguagesService.cs</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>	
+		<Compile Include="MemberFilesService.cs">
+		  <SubType>Code</SubType>
+		</Compile>
+		<Compile Include="MemberFilesServiceBase.generated.cs">
+		  <DependentUpon>MemberFilesService.cs</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>	
+		<Compile Include="MemberFileTypesService.cs">
+		  <SubType>Code</SubType>
+		</Compile>
+		<Compile Include="MemberFileTypesServiceBase.generated.cs">
+		  <DependentUpon>MemberFileTypesService.cs</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>	
+		<Compile Include="MembersService.cs">
+		  <SubType>Code</SubType>
+		</Compile>
+		<Compile Include="MembersServiceBase.generated.cs">
+		  <DependentUpon>MembersService.cs</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>	
+		<Compile Include="NewsService.cs">
+		  <SubType>Code</SubType>
+		</Compile>
+		<Compile Include="NewsServiceBase.generated.cs">
+		  <DependentUpon>NewsService.cs</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>	
+		<Compile Include="NewsCategoriesService.cs">
+		  <SubType>Code</SubType>
+		</Compile>
+		<Compile Include="NewsCategoriesServiceBase.generated.cs">
+		  <DependentUpon>NewsCategoriesService.cs</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>	
+		<Compile Include="SitesService.cs">
+		  <SubType>Code</SubType>
+		</Compile>
+		<Compile Include="SitesServiceBase.generated.cs">
+		  <DependentUpon>SitesService.cs</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>	
+		<Compile Include="SiteWebPartsService.cs">
+		  <SubType>Code</SubType>
+		</Compile>
+		<Compile Include="SiteWebPartsServiceBase.generated.cs">
+		  <DependentUpon>SiteWebPartsService.cs</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>	
+		<Compile Include="SiteWebPartTypesService.cs">
+		  <SubType>Code</SubType>
+		</Compile>
+		<Compile Include="SiteWebPartTypesServiceBase.generated.cs">
+		  <DependentUpon>SiteWebPartTypesService.cs</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>	
+		<Compile Include="..\AssemblyInfo.cs">
+		  <SubType>Code</SubType>
+		</Compile>
+			
+		<!-- 
+			<Compile Include="Processors\**\*.cs">
+			   <SubType>Code</SubType>
+			</Compile>		
+		 -->
+			<Compile Include="Processors\GenericProcessorResult.cs">
+			  <SubType>Code</SubType>
+			</Compile>		
+			<Compile Include="Processors\IProcessor.cs">
+			  <SubType>Code</SubType>
+			</Compile>		
+			<Compile Include="Processors\IProcessorResult.cs">
+			  <SubType>Code</SubType>
+			</Compile>		
+			<Compile Include="Processors\ProcessorBase.cs">
+			  <SubType>Code</SubType>
+			</Compile>		
+			
+			<Compile Include="SecurityContext.cs">
+			  <SubType>Code</SubType>
+			</Compile>	
+			<Compile Include="SecurityContextBase.generated.cs">
+			  <DependentUpon>SecurityContext.cs</DependentUpon>
+			  <SubType>Code</SubType>
+			</Compile>	
+			<Compile Include="ContextView.cs">
+			  <SubType>Code</SubType>
+			</Compile>		
+			<Compile Include="DomainUtil.cs">
+			  <SubType>Code</SubType>
+			</Compile>
+			<Compile Include="IConnectionScope.cs">
+			  <SubType>Code</SubType>
+			</Compile>
+			<Compile Include="ConnectionScope.cs">
+			  <SubType>Code</SubType>
+			</Compile>
+			<Compile Include="ConnectionScopeBase.cs">
+			  <SubType>Code</SubType>
+			</Compile>
+			<Compile Include="ServiceResult.cs">
+			  <SubType>Code</SubType>
+			</Compile>
+			<Compile Include="ServiceBase.cs">
+			  <SubType>Code</SubType>
+			</Compile>
+			<Compile Include="ServiceBaseCore.generated.cs">
+			  <SubType>Code</SubType>
+			  <DependentUpon>ServiceBase.cs</DependentUpon>
+			</Compile>
+			<Compile Include="IComponentService.cs">
+			  <SubType>Code</SubType>
+			</Compile>		
+			<Compile Include="Views\ServiceViewBase.cs">
+			  <SubType>Code</SubType>
+			</Compile>
+			<Compile Include="Views\ServiceViewBaseCore.generated.cs">
+			  <SubType>Code</SubType>
+			  <DependentUpon>ServiceViewBase.cs</DependentUpon>
+			</Compile>
+
+		
+		
+
+		
+		
+		
+		
+		 <AppDesigner Include="Properties\" />
+	</ItemGroup>
+	
+	
+	
+	
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSHARP.Targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+	<PostBuildEvent>
+	</PostBuildEvent>
+  </PropertyGroup>
+
+</Project>

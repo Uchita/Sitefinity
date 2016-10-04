@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Lawson Delaney @ViewBag.Title</title>
+        <meta name="viewport" content="width=device-width" />
+        <link href="http://images.jxt.net.au/lawsondelaney/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://images.jxt.net.au/mobile/Content/Whitelabel/117/images/apple-icon114.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://images.jxt.net.au/mobile/Content/Whitelabel/117/images/apple-icon114.png" />
+		<link rel="apple-touch-icon-precomposed" href="http://images.jxt.net.au/mobile/Content/Whitelabel/117/images/apple-icon114.png" />
+		<link rel="apple-touch-icon" href="<path to apple-icon57.png>" />	
+		
+		<link rel="stylesheet" type="text/css" href="http://images.jxt.net.au/mobile/Content/Whitelabel/@JXTPortal.Entities.SessionData.Site.SiteId/Styles/styles.css">
+        <script src="http://images.jxt.net.au/mobile/Scripts/jquery-1.7.2.min.js"></script>
+        <script src="http://images.jxt.net.au/mobile/Scripts/knockout-2.0.0.js"></script>
+		<script src="http://images.jxt.net.au/mobile/Content/Javascripts/main/core-functions.js"></script>
+        @RenderSection("Javascript", false)
+    </head>
+	
+    <body>
+	
+	<div class="wrapper">
+		<header>	
+        	<nav class="top-fixed-nav"> 
+            	<div class="left-col">
+                     <a href="/" class="top-button flt-left">Home</a>      
+                </div>
+                <div class="right-col">
+				@if (JXTPortal.Entities.SessionData.Member != null) {
+				    	<span>Welcome @JXTPortal.Entities.SessionData.Member.Username</span>
+	                        <button class="top-button btn-navbar-icon" type="button" id="jsmenu">
+						    	<span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+							</button>                     		
+	                    }
+	                    else
+	                    {
+	                        <a href="~/account/login" class="top-button">Login</a>
+	                    }   
+                	 
+                </div>   	
+    
+                <div class="collapse jsmenuCollapse">
+                    <ul>
+                        <li><a href="/Account/SavedJobs">My Saved Jobs</a></li>
+                        <li><a href="/Account/MyAlerts">My Alerts</a></li>
+                        <li><a href="/Account/Documents">My Resumes/Cover Letter</a></li>
+                        <li><a href="/Account/ChangePassword">Change Password</a></li>
+                        <li><a href="/Account/LogOff">Log off</a></li>
+                    </ul>
+                </div><!-- end of jsmenuCollapse --> 
+
+	              
+            </nav>	
+       </header>	                        
+        <div class="header-logo">
+            <a href="/"><img src="http://images.jxt.net.au/mobile/Content/Whitelabel/@JXTPortal.Entities.SessionData.Site.SiteId/Images/logo.png" alt="Lawson Delaney Logo" /></a>                  
+        </div>
+		                
+
+			
+		<section>	
+        	<div class="content-wrap body-content inner-content">
+		        	@RenderBody()                      
+                    
+                    
+            </div>
+		</section>
+				
+		<footer>
+			<div id="viewFullWebsite">
+				<a href="http://lawsondelaney.com.au/">View Full Website</a>
+			</div>
+		</footer>
+	</div>
+    </body>
+</html>
+
+

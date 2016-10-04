@@ -1,0 +1,218 @@
+﻿@using JXTPosterTransform.Website.Models
+@using JXTPosterTransform.Library.Common
+@model List<ClientSetupLogDisplayModel>
+@{
+    ViewBag.Title = "Listing";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+    int requestClientID, requestSetupID;
+    int.TryParse(Request["clientID"], out requestClientID);
+    int.TryParse(Request["setupID"], out requestSetupID);
+}
+<div class="row">
+    <h1 class="page-header">
+        Log Listing</h1>
+</div>
+<div>
+    <h4>
+        Filter By</h4>
+    <form id="filterForm" class="form-inline" method="get" action="/logs/listing">
+    <div class="form-group">
+        <label>
+            Client</label>
+        <select class="form-control" name="clientID" onchange="FilterFormSubmit();">
+            <option value="null">Not Selected</option>
+            @foreach (ClientDisplayModel c in ViewBag.ClientListing)
+            {
+                <option value="@c.clientID" @(new MvcHtmlString(requestClientID != 0 && requestClientID == c.clientID ? @"selected=""selected""" : string.Empty))>@c.name</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label>
+            Setup</label>
+        <select class="form-control" name="setupID" onchange="FilterFormSubmit();">
+            <option value="null">Not Selected</option>
+            @if (ViewBag.ClientSetupListing != null)
+            {
+                foreach (ClientSetupDisplayModel c in ViewBag.ClientSetupListing)
+                {
+                <option value="@c.setupID" @(new MvcHtmlString(requestSetupID != 0 && requestSetupID == c.setupID ? @"selected=""selected""" : string.Empty))>@c.setupName</option>
+                }
+            }
+        </select>
+    </div>
+    </form>
+</div>
+<table class="table table-striped table-bordered table-hover dataTable no-footer">
+    <tr>
+        <th class="text-center">
+            Log Id
+        </th>
+        <th>
+            Client
+        </th>
+        <th>
+            Client Setup
+        </th>
+        <th>
+            PosterTransform
+        </th>
+        @*        <th>
+            RawData
+        </th>
+        <th>
+            RequestData
+        </th>
+        <th>
+            ResponseData
+        </th>*@
+        <th>
+            CreatedDate
+        </th>
+        <th>
+            FinishedDate
+        </th>
+        <th class="text-center">
+            Status
+        </th>
+        <th>
+        </th>
+    </tr>
+    @foreach (ClientSetupLogDisplayModel item in Model)
+    {
+        <tr>
+            <td class="text-center">@Html.DisplayFor(modelItem => item.ClientSetupLogId)
+            </td>
+            <td>
+                <a href="/client/edit/@item.ClientId">@Html.DisplayFor(modelItem => item.ClientName)</a>
+            </td>
+            <td>
+                <a href="/clientsetup/edit/@item.ClientSetupId">@Html.DisplayFor(modelItem => item.ClientSetupName)</a>
+            </td>
+            <td>
+                <a href="/postertransforms/edit/@item.PosterTransformId">@Html.DisplayFor(modelItem => item.PosterTransformName)</a>
+            </td>
+            @*        <td>
+            @Html.DisplayFor(modelItem => item.RawData)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RequestData)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ResponseData)
+        </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FinishedDate)
+            </td>
+            <td class="text-center">
+                @((PTCommonEnums.LogStatus)item.Failed)
+            </td>
+            <td class="text-center">
+                @Html.ActionLink("View", "viewdetails", new { id = item.ClientSetupLogId })
+                | <a href="/xml/logs/@item.RawDataFileName" target="_blank">Raw</a> | <a href="/xml/logs/@item.RequestDataFileName" target="_blank">
+                    Request</a> | <a href="/xml/logs/@item.ResponseDataFileName" target="_blank">Response</a>
+            </td>
+        </tr>
+    }
+</table>
+<div class="widget-foot">
+    <div class="pagination pull-right">
+        <ul>
+            @{
+                Pager pager = ViewBag.Pager;
+
+                string preparedeURL = Request.Url.AbsolutePath + "?";
+
+                if( Request.QueryString.Count > 0 )
+                {
+                    bool hasQuery = false;
+                    List<string> keyValues = new List<string>();
+                    foreach (String key in Request.QueryString.AllKeys)
+                    {
+                        if( key.ToLower() != "page" )
+                        {
+                            keyValues.Add(key + "=" + Request.QueryString[key]);
+                            hasQuery = true;
+                        }
+                    }
+
+                    preparedeURL += String.Join("&", keyValues);
+
+                    if (hasQuery)
+                    {
+                        preparedeURL += "&";
+                    }                    
+                }
+                                               
+                
+                if (pager.HasPreviousPage)
+                {
+                <li @(new MvcHtmlString(pager.CurrentPageIndex == pager.FirstPageIndex ? @"class='active'" : string.Empty))>
+                <a href="@(preparedeURL)page=@(pager.FirstPageIndex.ToString())">&lt;&lt;</a>
+                </li>
+                <li @(new MvcHtmlString(pager.CurrentPageIndex == pager.PreviousPageIndex ? @"class='active'" : string.Empty))>
+                <a href="@(preparedeURL)page=@(pager.PreviousPageIndex.ToString())">&lt;</a>
+                </li>
+                }
+
+                foreach (int page in ViewBag.Pager)
+                {
+                <li @(new MvcHtmlString(pager.CurrentPageIndex == page ? @"class='active'" : string.Empty))>
+                    <a href="@(preparedeURL)page=@(page.ToString())">@page.ToString()</a> </li>
+                
+                }
+
+                if (pager.HasNextPage)
+                {
+                <li @(new MvcHtmlString(pager.CurrentPageIndex == pager.NextPageIndex ? @"class='active'" : string.Empty))>
+                <a href="@(preparedeURL)page=@(pager.NextPageIndex.ToString())">&gt;</a>
+                
+                </li>
+                <li @(new MvcHtmlString(pager.CurrentPageIndex == pager.LastPageIndex ? @"class='active'" : string.Empty))>
+                <a href="@(preparedeURL)page=@(pager.LastPageIndex.ToString())">&gt;&gt;</a>
+                </li>
+                }
+            }
+        </ul>
+    </div>
+    <div class="clearfix">
+    </div>
+</div>
+@section Scripts
+{
+    <script type="text/javascript">
+        var lastSetupID;
+        var lastClientID;
+
+        $(document).ready(function () {
+            lastSetupID = $("select[name=setupID]").val();
+            lastClientID = $("select[name=clientID]").val();
+        });
+
+        function FilterFormSubmit() {
+
+            var clientID = $("select[name=clientID]").val();
+            var setupID = $("select[name=setupID]").val();
+
+            if (clientID == "null") {
+                $("select[name=setupID]").val("null");
+            }
+            else if (clientID != lastClientID) {
+                $("select[name=setupID]").val("null");
+            }
+
+
+            lastSetupID = setupID;
+            lastClientID = clientID;
+
+            $("#filterForm").submit();
+
+        }
+
+    </script>
+}

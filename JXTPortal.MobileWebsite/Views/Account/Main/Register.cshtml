@@ -1,0 +1,71 @@
+@model JXTPortal.Domain.ViewModel.MemberModel.RegistrationModel
+@{
+    ViewBag.Title = "Register";
+}
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>Use the form below to create a new account.</h2>
+</hgroup>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script>
+    function RegisterAjax() {
+
+        $.getJSON('@Url.Action("JsonRegister")', { UserName: $("#UserName").val(),
+            Password: $("#Password").val(),
+            ConfirmPassword: $("#ConfirmPassword").val(),
+            Email: $("#Email").val(),
+            ConfirmEmail: $("#ConfirmEmail").val()
+        }, function (RegisterResult) {
+            if (RegisterResult.success) {
+                $('#FieldRegistration').hide();
+                $('#ErrorMessage').text('');
+                $('#RegistrationMessage').css('display', '');
+            }
+            else {
+                $('#ErrorMessage').css('display', '').text(RegisterResult.errors);
+            }
+        });
+    }
+</script>
+<div id="ErrorMessage">
+    @Html.ValidationSummary()
+</div>
+<div id="RegistrationMessage" style="display:none;">
+    Thank you for registering
+</div>
+@using (Html.BeginForm("Register", "Account"))
+{
+    <fieldset id="FieldRegistration">
+        <legend>Registration Form</legend>
+        <ol>
+            <li>
+                <label>
+                    Username</label>
+                <input type="text" id="UserName" name="UserName" value="@Model.UserName" />
+            </li>
+            <li>
+                <label>
+                    Password</label>
+                <input type="password" id="Password" name="Password" value="@Model.Password"/>
+            </li>
+            <li>
+                <label>
+                    Confirm Password</label>
+                <input type="password" id="ConfirmPassword" name="ConfirmPassword" value="@Model.ConfirmPassword"/>
+            </li>
+            <li>
+                <label>
+                    Email</label>
+                <input type="text" id="Email" name="Email" value="@Model.Email"/>
+            </li>
+            <li>
+                <label>
+                    Confirm Email</label>
+                <input type="text" id="ConfirmEmail" name="ConfirmEmail" value="@Model.ConfirmEmail"/>
+            </li>
+        </ol>
+        <input type="submit" value="Register" />
+        <input type="button" value="Register via AJAX"  onclick="RegisterAjax();" />
+    </fieldset>
+}

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?><JobPostRequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.servicestack.net/types"><UserName xmlns="http://schemas.datacontract.org/2004/07/JXTPlatform.DTO.Base">Stellar</UserName><Password xmlns="http://schemas.datacontract.org/2004/07/JXTPlatform.DTO.Base">Stellar@123</Password><AdvertiserId xmlns="http://schemas.datacontract.org/2004/07/JXTPlatform.DTO.Base">9546</AdvertiserId><ArchiveMissingJobs xmlns="http://schemas.datacontract.org/2004/07/JXTPlatform.DTO.Base">true</ArchiveMissingJobs><Listings><JobListing><JobAdType>Normal</JobAdType><ReferenceNo>27299</ReferenceNo><JobTitle>Digger Operator</JobTitle><JobUrl /><ShortDescription>Digger Operator required for immediate start!</ShortDescription><Bulletpoints><BulletPoint1>North Shore Location- No more city traffic!</BulletPoint1><BulletPoint2>Competitive rates for pay $$$</BulletPoint2><BulletPoint3>Grow your career in Civil Construction</BulletPoint3></Bulletpoints><JobFullDescription>&lt;p&gt;&lt;br /&gt;
+&lt;span style='color:rgb(0, 112, 192)'&gt;&lt;strong&gt;&lt;span style='background-color:rgb(248, 248, 248)'&gt;Excavator/Digger Operator&lt;/span&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;span style='background-color:rgb(248, 248, 248)'&gt;&amp;bull; Great Pay Rates! &lt;/span&gt;&lt;br /&gt;
+&lt;span style='background-color:rgb(248, 248, 248)'&gt;&amp;bull; Great company &lt;/span&gt;&lt;br /&gt;
+&lt;span style='background-color:rgb(248, 248, 248)'&gt;&amp;bull; Good gear&lt;/span&gt;&lt;/strong&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;span style='background-color:rgb(248, 248, 248)'&gt;Stellar Recruitment is your number one choice for finding the best job opportunities in the civil construction market. We are specialists in civil infrastructure, construction and mining, and recruit for opportunities in NZ, Australia and even further abroad.&lt;/span&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;span style='background-color:rgb(248, 248, 248)'&gt;We are seeking a skilled, reliable Operator, who has experience operating excavators.&lt;/span&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;span style='background-color:rgb(248, 248, 248)'&gt;This role is not for the faint hearted, it is a physically demanding role that will give you the opportunity to further develop your career in the Civil construction industry. Not only will you be operating multiple machines but you will also be assisting on the ground as and when required.&lt;/span&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;span style='background-color:rgb(248, 248, 248)'&gt;Typically building Retaining Walls on large scale Civil works projects, our ideal candidate will have experience in the following:&lt;/span&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;strong&gt;&lt;span style='background-color:rgb(248, 248, 248)'&gt;&amp;bull; Drilling with Pendulum type drill rigs&lt;/span&gt;&lt;br /&gt;
+&lt;span style='background-color:rgb(248, 248, 248)'&gt;&amp;bull; Excavating of footings&lt;/span&gt;&lt;br /&gt;
+&lt;span style='background-color:rgb(248, 248, 248)'&gt;&amp;bull; Bulk Backfilling&lt;/span&gt;&lt;br /&gt;
+&lt;span style='background-color:rgb(248, 248, 248)'&gt;&amp;bull; Compaction knowledge&lt;/span&gt;&lt;br /&gt;
+&lt;span style='background-color:rgb(248, 248, 248)'&gt;&amp;bull; Machine Maintenance abilities&lt;/span&gt;&lt;/strong&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;span style='background-color:rgb(248, 248, 248)'&gt;In order to be considered for this role you must have:&lt;/span&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;strong&gt;&lt;span style='background-color:rgb(248, 248, 248)'&gt;&amp;bull; Current Class 2 driver&amp;rsquo;s license&lt;/span&gt;&lt;br /&gt;
+&lt;span style='background-color:rgb(248, 248, 248)'&gt;&amp;bull; Wheels Tracks and Rollers endorsed&lt;/span&gt;&lt;br /&gt;
+&lt;span style='background-color:rgb(248, 248, 248)'&gt;&amp;bull; Excellent verbal communication skills&lt;/span&gt;&lt;br /&gt;
+&lt;span style='background-color:rgb(248, 248, 248)'&gt;&amp;bull; Carry out regular maintenance of plant&lt;/span&gt;&lt;br /&gt;
+&lt;span style='background-color:rgb(248, 248, 248)'&gt;&amp;bull; Team Player&lt;/span&gt;&lt;br /&gt;
+&lt;span style='background-color:rgb(248, 248, 248)'&gt;&amp;bull; Reliable &amp;amp; punctual&lt;/span&gt;&lt;/strong&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;span style='background-color:rgb(248, 248, 248)'&gt;What&amp;rsquo;s in it for you:&lt;/span&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;strong&gt;&lt;span style='background-color:rgb(248, 248, 248)'&gt;&amp;bull; Competitive rates of pay&lt;/span&gt;&lt;br /&gt;
+&lt;span style='background-color:rgb(248, 248, 248)'&gt;&amp;bull; Optional Vehicle, phone &amp;amp; fuel neg&lt;/span&gt;&lt;br /&gt;
+&lt;span style='background-color:rgb(248, 248, 248)'&gt;&amp;bull; Training opportunities&lt;/span&gt;&lt;/strong&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;span style='background-color:rgb(248, 248, 248)'&gt;If this sounds like you, apply online today!!&lt;/span&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;span style='background-color:rgb(248, 248, 248)'&gt;For more information on the role including duties, hours and rates of pay, contact Fern on&amp;nbsp;09 969 1028&amp;nbsp;or email your CV to fern.d@stellarrecruitment.co.nz&lt;/span&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;span style='background-color:rgb(248, 248, 248)'&gt;Applicants for this position should have NZ residency or a valid NZ work visa.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+</JobFullDescription><ContactDetails /><CompanyName /><ConsultantID /><PublicTransport /><ResidentsOnly>true</ResidentsOnly><IsQualificationsRecognised>false</IsQualificationsRecognised><ShowLocationDetails>true</ShowLocationDetails><JobTemplateID>3575</JobTemplateID><AdvertiserJobTemplateLogoID /><Categories><Category><Classification>14</Classification><SubClassification>160</SubClassification></Category></Categories><ListingClassification><WorkType>2</WorkType><Sector>0</Sector><StreetAddress /><Tags>0</Tags><Country>2</Country><Location>39</Location><Area>167</Area></ListingClassification><Salary><SalaryType>Hourly</SalaryType><Min>25</Min><Max>34.99</Max><AdditionalText /><ShowSalaryDetails>true</ShowSalaryDetails></Salary><ApplicationMethod><JobApplicationType>URL</JobApplicationType><ApplicationUrl>http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1152735&amp;src=WE</ApplicationUrl><ApplicationEmail>Fern.d@stellarrecruitment.co.nz</ApplicationEmail></ApplicationMethod><Referral><HasReferralFee>false</HasReferralFee><Amount>0</Amount><ReferralUrl /></Referral></JobListing><JobListing><JobAdType>Normal</JobAdType><ReferenceNo>DL27466</ReferenceNo><JobTitle>Grader operator </JobTitle><JobUrl /><ShortDescription>Grader Operator- great opportunity to join a awesome team! </ShortDescription><Bulletpoints><BulletPoint1 /><BulletPoint2 /><BulletPoint3 /></Bulletpoints><JobFullDescription>&lt;p&gt;&lt;span style='color:rgb(0, 112, 192)'&gt;&lt;strong&gt;Grader operator &lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;span style='color:rgb(0, 112, 192)'&gt;&lt;strong&gt;The Company&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style='color:rgb(0, 112, 192)'&gt;Our Auckland based company has a huge workload on over the foreseeable future and they are looking for a final trim grader operator to join their outstanding team on a permanent basis.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style='color:rgb(0, 112, 192)'&gt;&lt;strong&gt;What we&amp;rsquo;re looking for:&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style='color:rgb(0, 112, 192)'&gt;Ideally a minimum of 10 years in the industry on a grader.&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style='color:rgb(0, 112, 192)'&gt;Strong attention to detail with a focus on quality workmanship&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style='color:rgb(0, 112, 192)'&gt;Good problem solving skills&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style='color:rgb(0, 112, 192)'&gt;Able to work with minimal supervision and as part of a crew&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style='color:rgb(0, 112, 192)'&gt;Willing to learn and have a strong work ethic&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style='color:rgb(0, 112, 192)'&gt;Be physically fit&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style='color:rgb(0, 112, 192)'&gt;Be a genuine&lt;strong&gt; team player&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style='color:rgb(0, 112, 192)'&gt;We seek applicants with a positive attitude towards maintaining a safe working environment and motivated to helping our client achieve &lt;strong&gt;Zero Harm.&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style='color:rgb(0, 112, 192)'&gt;Supervisory Level:&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style='color:rgb(0, 112, 192)'&gt;&amp;bull; 10 years&lt;strong&gt; final trim &lt;/strong&gt;Grader experience&lt;br /&gt;
+&amp;bull; Proven ability to lead a crew and run jobs&lt;br /&gt;
+&amp;bull; GPS experience a bonus but not essential&lt;br /&gt;
+&amp;bull; Ability to operate other various machinery Eg: Digger, Bully (again not essential)&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style='color:rgb(0, 112, 192)'&gt;If this sounds like you and you would like to apply for this role or for more information please &lt;strong&gt;contact&amp;nbsp;Fern at Stellar Workforce on 09 969 1028 or email your CV to &lt;a href='mailto:fern.d@stellarworkforce.co.nz'&gt;fern.d@stellarworkforce.co.nz&lt;/a&gt;&lt;/strong&gt;&lt;/span&gt;&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+</JobFullDescription><ContactDetails /><CompanyName /><ConsultantID /><PublicTransport /><ResidentsOnly>true</ResidentsOnly><IsQualificationsRecognised>false</IsQualificationsRecognised><ShowLocationDetails>true</ShowLocationDetails><JobTemplateID>3575</JobTemplateID><AdvertiserJobTemplateLogoID /><Categories><Category><Classification>14</Classification><SubClassification>160</SubClassification></Category></Categories><ListingClassification><WorkType>2</WorkType><Sector>0</Sector><StreetAddress /><Tags>0</Tags><Country>2</Country><Location>39</Location><Area>165</Area></ListingClassification><Salary><SalaryType>Hourly</SalaryType><Min>30</Min><Max>39.99</Max><AdditionalText /><ShowSalaryDetails>true</ShowSalaryDetails></Salary><ApplicationMethod><JobApplicationType>URL</JobApplicationType><ApplicationUrl>http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1160807&amp;src=WE</ApplicationUrl><ApplicationEmail>fern.d@stellarworkforce.co.nz</ApplicationEmail></ApplicationMethod><Referral><HasReferralFee>false</HasReferralFee><Amount>0</Amount><ReferralUrl /></Referral></JobListing><JobListing><JobAdType>Normal</JobAdType><ReferenceNo>27193</ReferenceNo><JobTitle>Excavator Operator</JobTitle><JobUrl /><ShortDescription>Experienced Digger Operators needed for immediate start!</ShortDescription><Bulletpoints><BulletPoint1 /><BulletPoint2 /><BulletPoint3 /></Bulletpoints><JobFullDescription>&lt;p&gt;&lt;span style='color:rgb(0, 112, 192)'&gt;Stellar Recruitment is your number one choice for finding the best job opportunities in the civil construction market in 2016.&lt;br /&gt;
+&lt;br /&gt;
+Our clients want us to find the best excavator operators we can! With drainage projects increasing, we want to hear from skilled excavator operators with drainage experience.&amp;nbsp;&lt;br /&gt;
+&lt;br /&gt;
+If you can say yes to the following then we want to hear from you.&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style='color:rgb(0, 112, 192)'&gt;&lt;strong&gt;Class 1, WTR, with Class 2 advantageous&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style='color:rgb(0, 112, 192)'&gt;&lt;strong&gt;Pipe installation and/or pipe renewal projects&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style='color:rgb(0, 112, 192)'&gt;&lt;strong&gt;Deep drainage experience up to 6m&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style='color:rgb(0, 112, 192)'&gt;&lt;strong&gt;Digging inside trench shields with and without spotter assistance&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style='color:rgb(0, 112, 192)'&gt;&lt;strong&gt;Digging around services in and above the ground&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style='color:rgb(0, 112, 192)'&gt;&lt;strong&gt;Able to dig to height and levels&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style='color:rgb(0, 112, 192)'&gt;&lt;strong&gt;Final trim experience advantageous&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style='color:rgb(0, 112, 192)'&gt;&lt;strong&gt;Trenching and backfilling&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style='color:rgb(0, 112, 192)'&gt;&lt;strong&gt;Experience on machines up to 20 tonne&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style='color:rgb(0, 112, 192)'&gt;&lt;strong&gt;Ability to assist with ground works&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;span style='color:rgb(0, 112, 192)'&gt;If your skills and experience are described in the above, then Stellar want to hear from you.&lt;br /&gt;
+&lt;br /&gt;
+You will also have:&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;span style='color:rgb(0, 112, 192)'&gt;&lt;strong&gt;The right to work in New Zealand&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style='color:rgb(0, 112, 192)'&gt;&lt;strong&gt;A&amp;nbsp;good level of physical fitness&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style='color:rgb(0, 112, 192)'&gt;&lt;strong&gt;Demonstrate sound Health and Safety practices&lt;/strong&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style='color:rgb(0, 112, 192)'&gt;For further information about this role or to discuss other positions on offer, please contact Fern Dickinson on 09 969 1028 or email fern.d@stellarworkforce.co.nz&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style='color:rgb(0, 112, 192)'&gt;Applicants for this position should have NZ residency or a valid NZ work visa.&lt;/span&gt;&lt;/p&gt;
+</JobFullDescription><ContactDetails /><CompanyName /><ConsultantID /><PublicTransport /><ResidentsOnly>true</ResidentsOnly><IsQualificationsRecognised>false</IsQualificationsRecognised><ShowLocationDetails>true</ShowLocationDetails><JobTemplateID>3575</JobTemplateID><AdvertiserJobTemplateLogoID /><Categories><Category><Classification>14</Classification><SubClassification>160</SubClassification></Category></Categories><ListingClassification><WorkType>2</WorkType><Sector>0</Sector><StreetAddress /><Tags>0</Tags><Country>2</Country><Location>39</Location><Area>167</Area></ListingClassification><Salary><SalaryType>Hourly</SalaryType><Min>20</Min><Max>29.99</Max><AdditionalText /><ShowSalaryDetails>true</ShowSalaryDetails></Salary><ApplicationMethod><JobApplicationType>URL</JobApplicationType><ApplicationUrl>http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1148693&amp;src=WE</ApplicationUrl><ApplicationEmail>Fern.d@stellarrecruitment.co.nz</ApplicationEmail></ApplicationMethod><Referral><HasReferralFee>false</HasReferralFee><Amount>0</Amount><ReferralUrl /></Referral></JobListing></Listings></JobPostRequest>

@@ -1,0 +1,766 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{20E43088-4618-4F4A-B8AD-FC31B50D94CD}</ProjectGuid>
+    <ProjectType>Local</ProjectType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <OutputType>Library</OutputType>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>JXTPortal.Entities</AssemblyName>
+    <AssemblyOriginatorKeyFile>..\JXTPortal.snk</AssemblyOriginatorKeyFile>
+    <SignAssembly>false</SignAssembly>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <RootNamespace>JXTPortal.Entities</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>JXTPortal.Entities.xml</DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>JXTPortal.Entities.xml</DocumentationFile>
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'GenerateDebug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>JXTPortal.Entities.xml</DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching.Cryptography, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Microsoft.Practices.EnterpriseLibrary.Caching.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ObjectBuilder2, Version=2.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Microsoft.Practices.ObjectBuilder2.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <!-- Custom code folder: C:\Developments\GeneratedOutput\JXTPortal.Entities\App_Code -->
+  <!-- Include any user files -->
+  <ItemGroup>
+    <Compile Include="**\*.user.*" Exclude="**\*.csproj.user;**\.svn\**">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdminRoles.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AdminRolesBase.generated.cs">
+      <DependentUpon>AdminRoles.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AdvertiserJobPricing.cs" />
+    <Compile Include="AdvertiserJobPricingBase.generated.cs" />
+    <Compile Include="AdvertiserJobTemplateLogo.cs" />
+    <Compile Include="AdvertiserJobTemplateLogoBase.generated.cs" />
+    <Compile Include="App_Code\WebServiceSearch.cs" />
+    <Compile Include="Consultants.cs" />
+    <Compile Include="ConsultantsBase.generated.cs" />
+    <Compile Include="Currencies.cs" />
+    <Compile Include="CurrenciesBase.generated.cs" />
+    <Compile Include="CustomPayment.cs" />
+    <Compile Include="CustomPaymentBase.generated.cs" />
+    <Compile Include="CustomWidget.cs" />
+    <Compile Include="CustomWidgetBase.generated.cs" />
+    <Compile Include="CustomWidgetCssSelector.cs" />
+    <Compile Include="CustomWidgetCssSelectorBase.generated.cs" />
+    <Compile Include="Custom\ApplicationData.cs" />
+    <Compile Include="App_Code\JobSearch.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Area.cs" />
+    <Compile Include="AreaBase.generated.cs" />
+    <Compile Include="AvailableStatus.cs" />
+    <Compile Include="AvailableStatusBase.generated.cs" />
+    <Compile Include="Countries.cs" />
+    <Compile Include="CountriesBase.generated.cs" />
+    <Compile Include="Custom\IntegrationsAttribute.cs" />
+    <Compile Include="Custom\PortalConstants.cs" />
+    <Compile Include="Custom\SessionAdminUser.cs" />
+    <Compile Include="Custom\SessionAdvertiserUser.cs" />
+    <Compile Include="Custom\SessionMember.cs" />
+    <Compile Include="Custom\SessionSite.cs" />
+    <Compile Include="DefaultResources.cs" />
+    <Compile Include="DefaultResourcesBase.generated.cs" />
+    <Compile Include="DynamicContent.cs" />
+    <Compile Include="DynamicContentBase.generated.cs" />
+    <Compile Include="DynamicPageFiles.cs" />
+    <Compile Include="DynamicPageFilesBase.generated.cs" />
+    <Compile Include="DynamicPageRevisions.cs" />
+    <Compile Include="DynamicPageRevisionsBase.generated.cs" />
+    <Compile Include="DynamicpagesCustomWidget.cs" />
+    <Compile Include="DynamicpagesCustomWidgetBase.generated.cs" />
+    <Compile Include="Educations.cs" />
+    <Compile Include="EducationsBase.generated.cs" />
+    <Compile Include="EmailTemplates.cs" />
+    <Compile Include="EmailTemplatesBase.generated.cs" />
+    <Compile Include="ExceptionTable.cs" />
+    <Compile Include="ExceptionTableBase.generated.cs" />
+    <Compile Include="GlobalArea.cs" />
+    <Compile Include="GlobalAreaBase.generated.cs" />
+    <Compile Include="GlobalLocation.cs" />
+    <Compile Include="GlobalLocationBase.generated.cs" />
+    <Compile Include="IAdminRoles.cs">
+      <DependentUpon>AdminRoles.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AdminUsers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AdminUsersBase.generated.cs">
+      <DependentUpon>AdminUsers.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IAdminUsers.cs">
+      <DependentUpon>AdminUsers.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AdvertiserAccountStatus.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AdvertiserAccountStatusBase.generated.cs">
+      <DependentUpon>AdvertiserAccountStatus.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IAdvertiserAccountStatus.cs">
+      <DependentUpon>AdvertiserAccountStatus.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AdvertiserAccountType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AdvertiserAccountTypeBase.generated.cs">
+      <DependentUpon>AdvertiserAccountType.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IAdvertiserAccountType.cs">
+      <DependentUpon>AdvertiserAccountType.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AdvertiserBusinessType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AdvertiserBusinessTypeBase.generated.cs">
+      <DependentUpon>AdvertiserBusinessType.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IAdvertiserBusinessType.cs">
+      <DependentUpon>AdvertiserBusinessType.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Advertisers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AdvertisersBase.generated.cs">
+      <DependentUpon>Advertisers.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IAdvertiserJobPricing.cs" />
+    <Compile Include="IAdvertiserJobTemplateLogo.cs" />
+    <Compile Include="IAdvertisers.cs">
+      <DependentUpon>Advertisers.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AdvertiserUsers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AdvertiserUsersBase.generated.cs">
+      <DependentUpon>AdvertiserUsers.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IAdvertiserUsers.cs">
+      <DependentUpon>AdvertiserUsers.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DynamicPages.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DynamicPagesBase.generated.cs">
+      <DependentUpon>DynamicPages.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IArea.cs" />
+    <Compile Include="IAvailableStatus.cs" />
+    <Compile Include="IConsultants.cs" />
+    <Compile Include="ICountries.cs" />
+    <Compile Include="ICurrencies.cs" />
+    <Compile Include="ICustomPayment.cs" />
+    <Compile Include="ICustomWidget.cs" />
+    <Compile Include="ICustomWidgetCssSelector.cs" />
+    <Compile Include="IDefaultResources.cs" />
+    <Compile Include="IDynamicContent.cs" />
+    <Compile Include="IDynamicPageFiles.cs" />
+    <Compile Include="IDynamicPageRevisions.cs" />
+    <Compile Include="IDynamicPages.cs">
+      <DependentUpon>DynamicPages.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DynamicPageWebPartTemplates.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DynamicPageWebPartTemplatesBase.generated.cs">
+      <DependentUpon>DynamicPageWebPartTemplates.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IDynamicpagesCustomWidget.cs" />
+    <Compile Include="IDynamicPageWebPartTemplates.cs">
+      <DependentUpon>DynamicPageWebPartTemplates.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DynamicPageWebPartTemplatesLink.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DynamicPageWebPartTemplatesLinkBase.generated.cs">
+      <DependentUpon>DynamicPageWebPartTemplatesLink.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IDynamicPageWebPartTemplatesLink.cs">
+      <DependentUpon>DynamicPageWebPartTemplatesLink.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EmailFormats.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EmailFormatsBase.generated.cs">
+      <DependentUpon>EmailFormats.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IEducations.cs" />
+    <Compile Include="IEmailFormats.cs">
+      <DependentUpon>EmailFormats.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Enquiries.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EnquiriesBase.generated.cs">
+      <DependentUpon>Enquiries.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IEmailTemplates.cs" />
+    <Compile Include="IEnquiries.cs">
+      <DependentUpon>Enquiries.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Files.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FilesBase.generated.cs">
+      <DependentUpon>Files.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IExceptionTable.cs" />
+    <Compile Include="IFiles.cs">
+      <DependentUpon>Files.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileTypes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileTypesBase.generated.cs">
+      <DependentUpon>FileTypes.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IFileTypes.cs">
+      <DependentUpon>FileTypes.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Folders.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FoldersBase.generated.cs">
+      <DependentUpon>Folders.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IFolders.cs">
+      <DependentUpon>Folders.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GlobalSettings.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GlobalSettingsBase.generated.cs">
+      <DependentUpon>GlobalSettings.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IGlobalArea.cs" />
+    <Compile Include="IGlobalLocation.cs" />
+    <Compile Include="IGlobalSettings.cs">
+      <DependentUpon>GlobalSettings.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IIndustry.cs" />
+    <Compile Include="IIntegrationMappings.cs" />
+    <Compile Include="IIntegrations.cs" />
+    <Compile Include="IInvoice.cs" />
+    <Compile Include="IInvoiceItem.cs" />
+    <Compile Include="IInvoiceOrder.cs" />
+    <Compile Include="IJobAlerts.cs" />
+    <Compile Include="IJobApplication.cs" />
+    <Compile Include="IJobApplicationNotes.cs" />
+    <Compile Include="IJobApplicationType.cs" />
+    <Compile Include="IJobArea.cs" />
+    <Compile Include="IJobCustomQuestionnaire.cs" />
+    <Compile Include="IJobCustomXml.cs" />
+    <Compile Include="IJobItemsType.cs" />
+    <Compile Include="IJobRoles.cs" />
+    <Compile Include="IJobs.cs" />
+    <Compile Include="IJobsArchive.cs" />
+    <Compile Include="IJobsSaved.cs" />
+    <Compile Include="IJobTemplates.cs" />
+    <Compile Include="IJobViews.cs" />
+    <Compile Include="ILocation.cs" />
+    <Compile Include="IMemberCertificateMemberships.cs" />
+    <Compile Include="IMemberLanguages.cs" />
+    <Compile Include="IMemberLicenses.cs" />
+    <Compile Include="IMemberMemberships.cs" />
+    <Compile Include="IMemberPositions.cs" />
+    <Compile Include="IMemberQualification.cs" />
+    <Compile Include="IMemberReferences.cs" />
+    <Compile Include="IMemberStatus.cs" />
+    <Compile Include="IMemberWizard.cs" />
+    <Compile Include="Industry.cs" />
+    <Compile Include="IndustryBase.generated.cs" />
+    <Compile Include="INewsIndustry.cs" />
+    <Compile Include="INewsType.cs" />
+    <Compile Include="IntegrationMappings.cs" />
+    <Compile Include="IntegrationMappingsBase.generated.cs" />
+    <Compile Include="Integrations.cs" />
+    <Compile Include="IntegrationsBase.generated.cs" />
+    <Compile Include="Invoice.cs" />
+    <Compile Include="InvoiceBase.generated.cs" />
+    <Compile Include="InvoiceItem.cs" />
+    <Compile Include="InvoiceItemBase.generated.cs" />
+    <Compile Include="InvoiceOrder.cs" />
+    <Compile Include="InvoiceOrderBase.generated.cs" />
+    <Compile Include="IProfession.cs" />
+    <Compile Include="IRelatedDynamicPages.cs" />
+    <Compile Include="IRoles.cs" />
+    <Compile Include="ISalary.cs" />
+    <Compile Include="ISalaryType.cs" />
+    <Compile Include="ISiteAdvertiserFilter.cs" />
+    <Compile Include="ISiteArea.cs" />
+    <Compile Include="ISiteCountries.cs" />
+    <Compile Include="ISiteCurrencies.cs" />
+    <Compile Include="ISiteCustomMapping.cs" />
+    <Compile Include="ISiteLanguages.cs" />
+    <Compile Include="ISiteLocation.cs" />
+    <Compile Include="ISiteMappings.cs" />
+    <Compile Include="ISiteProfession.cs" />
+    <Compile Include="ISiteResources.cs" />
+    <Compile Include="ISiteResourcesXml.cs" />
+    <Compile Include="ISiteRoles.cs" />
+    <Compile Include="ISiteSalaryType.cs" />
+    <Compile Include="ISiteSummary.cs" />
+    <Compile Include="ISiteWorkType.cs" />
+    <Compile Include="IWebServiceLog.cs" />
+    <Compile Include="IWidgetContainers.cs" />
+    <Compile Include="IWorkType.cs" />
+    <Compile Include="JobAlerts.cs" />
+    <Compile Include="JobAlertsBase.generated.cs" />
+    <Compile Include="JobApplication.cs" />
+    <Compile Include="JobApplicationBase.generated.cs" />
+    <Compile Include="JobApplicationNotes.cs" />
+    <Compile Include="JobApplicationNotesBase.generated.cs" />
+    <Compile Include="JobApplicationType.cs" />
+    <Compile Include="JobApplicationTypeBase.generated.cs" />
+    <Compile Include="JobArea.cs" />
+    <Compile Include="JobAreaBase.generated.cs" />
+    <Compile Include="JobCustomQuestionnaire.cs" />
+    <Compile Include="JobCustomQuestionnaireBase.generated.cs" />
+    <Compile Include="JobCustomXml.cs" />
+    <Compile Include="JobCustomXmlBase.generated.cs" />
+    <Compile Include="JobItemsType.cs" />
+    <Compile Include="JobItemsTypeBase.generated.cs" />
+    <Compile Include="JobRoles.cs" />
+    <Compile Include="JobRolesBase.generated.cs" />
+    <Compile Include="Jobs.cs" />
+    <Compile Include="JobsArchive.cs" />
+    <Compile Include="JobsArchiveBase.generated.cs" />
+    <Compile Include="JobsBase.generated.cs" />
+    <Compile Include="JobsSaved.cs" />
+    <Compile Include="JobsSavedBase.generated.cs" />
+    <Compile Include="JobTemplates.cs" />
+    <Compile Include="JobTemplatesBase.generated.cs" />
+    <Compile Include="JobViews.cs" />
+    <Compile Include="JobViewsBase.generated.cs" />
+    <Compile Include="Languages.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LanguagesBase.generated.cs">
+      <DependentUpon>Languages.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ILanguages.cs">
+      <DependentUpon>Languages.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Location.cs" />
+    <Compile Include="LocationBase.generated.cs" />
+    <Compile Include="MemberCertificateMemberships.cs" />
+    <Compile Include="MemberCertificateMembershipsBase.generated.cs" />
+    <Compile Include="MemberFiles.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MemberFilesBase.generated.cs">
+      <DependentUpon>MemberFiles.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IMemberFiles.cs">
+      <DependentUpon>MemberFiles.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MemberFileTypes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MemberFileTypesBase.generated.cs">
+      <DependentUpon>MemberFileTypes.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IMemberFileTypes.cs">
+      <DependentUpon>MemberFileTypes.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MemberLanguages.cs" />
+    <Compile Include="MemberLanguagesBase.generated.cs" />
+    <Compile Include="MemberLicenses.cs" />
+    <Compile Include="MemberLicensesBase.generated.cs" />
+    <Compile Include="MemberMemberships.cs" />
+    <Compile Include="MemberMembershipsBase.generated.cs" />
+    <Compile Include="MemberPositions.cs" />
+    <Compile Include="MemberPositionsBase.generated.cs" />
+    <Compile Include="MemberQualification.cs" />
+    <Compile Include="MemberQualificationBase.generated.cs" />
+    <Compile Include="MemberReferences.cs" />
+    <Compile Include="MemberReferencesBase.generated.cs" />
+    <Compile Include="Members.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MembersBase.generated.cs">
+      <DependentUpon>Members.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IMembers.cs">
+      <DependentUpon>Members.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MemberStatus.cs" />
+    <Compile Include="MemberStatusBase.generated.cs" />
+    <Compile Include="MemberWizard.cs" />
+    <Compile Include="MemberWizardBase.generated.cs" />
+    <Compile Include="Models\IntegrationsModels.cs" />
+    <Compile Include="News.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NewsBase.generated.cs">
+      <DependentUpon>News.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="INews.cs">
+      <DependentUpon>News.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NewsCategories.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NewsCategoriesBase.generated.cs">
+      <DependentUpon>NewsCategories.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="INewsCategories.cs">
+      <DependentUpon>NewsCategories.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Custom\PortalEnums.cs" />
+    <Compile Include="NewsIndustry.cs" />
+    <Compile Include="NewsIndustryBase.generated.cs" />
+    <Compile Include="NewsType.cs" />
+    <Compile Include="NewsTypeBase.generated.cs" />
+    <Compile Include="Profession.cs" />
+    <Compile Include="ProfessionBase.generated.cs" />
+    <Compile Include="RelatedDynamicPages.cs" />
+    <Compile Include="RelatedDynamicPagesBase.generated.cs" />
+    <Compile Include="Roles.cs" />
+    <Compile Include="RolesBase.generated.cs" />
+    <Compile Include="Salary.cs" />
+    <Compile Include="SalaryBase.generated.cs" />
+    <Compile Include="SalaryType.cs" />
+    <Compile Include="SalaryTypeBase.generated.cs" />
+    <Compile Include="Custom\SessionData.cs" />
+    <Compile Include="SiteAdvertiserFilter.cs" />
+    <Compile Include="SiteAdvertiserFilterBase.generated.cs" />
+    <Compile Include="SiteArea.cs" />
+    <Compile Include="SiteAreaBase.generated.cs" />
+    <Compile Include="SiteCountries.cs" />
+    <Compile Include="SiteCountriesBase.generated.cs" />
+    <Compile Include="SiteCurrencies.cs" />
+    <Compile Include="SiteCurrenciesBase.generated.cs" />
+    <Compile Include="SiteCustomMapping.cs" />
+    <Compile Include="SiteCustomMappingBase.generated.cs" />
+    <Compile Include="SiteLanguages.cs" />
+    <Compile Include="SiteLanguagesBase.generated.cs" />
+    <Compile Include="SiteLocation.cs" />
+    <Compile Include="SiteLocationBase.generated.cs" />
+    <Compile Include="SiteMappings.cs" />
+    <Compile Include="SiteMappingsBase.generated.cs" />
+    <Compile Include="SiteProfession.cs" />
+    <Compile Include="SiteProfessionBase.generated.cs" />
+    <Compile Include="SiteResources.cs" />
+    <Compile Include="SiteResourcesBase.generated.cs" />
+    <Compile Include="SiteResourcesXml.cs" />
+    <Compile Include="SiteResourcesXmlBase.generated.cs" />
+    <Compile Include="SiteRoles.cs" />
+    <Compile Include="SiteRolesBase.generated.cs" />
+    <Compile Include="Sites.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SiteSalaryType.cs" />
+    <Compile Include="SiteSalaryTypeBase.generated.cs" />
+    <Compile Include="SitesBase.generated.cs">
+      <DependentUpon>Sites.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ISites.cs">
+      <DependentUpon>Sites.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SiteSummary.cs" />
+    <Compile Include="SiteSummaryBase.generated.cs" />
+    <Compile Include="SiteWebParts.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SiteWebPartsBase.generated.cs">
+      <DependentUpon>SiteWebParts.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ISiteWebParts.cs">
+      <DependentUpon>SiteWebParts.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SiteWebPartTypes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SiteWebPartTypesBase.generated.cs">
+      <DependentUpon>SiteWebPartTypes.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ISiteWebPartTypes.cs">
+      <DependentUpon>SiteWebPartTypes.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="..\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IEntity.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IEntityId.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IEntityKey.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EntityBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EntityBaseCore.generated.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>EntityBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityKeyBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EntityKeyBaseCore.generated.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>EntityKeyBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SiteWorkType.cs" />
+    <Compile Include="SiteWorkTypeBase.generated.cs" />
+    <Compile Include="TList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Views\ViewJobs.cs" />
+    <Compile Include="Views\ViewJobsArchive.cs" />
+    <Compile Include="Views\ViewJobsArchiveBase.generated.cs" />
+    <Compile Include="Views\ViewJobsBase.generated.cs" />
+    <Compile Include="Views\ViewJobSearch.cs" />
+    <Compile Include="Views\ViewJobSearchBase.generated.cs" />
+    <Compile Include="Views\ViewSalary.cs" />
+    <Compile Include="Views\ViewSalaryBase.generated.cs" />
+    <Compile Include="Views\ViewSiteAdvertisers.cs" />
+    <Compile Include="Views\ViewSiteAdvertisersBase.generated.cs" />
+    <Compile Include="Views\ViewSiteAreaLocationCountry.cs" />
+    <Compile Include="Views\ViewSiteAreaLocationCountryBase.generated.cs" />
+    <Compile Include="Views\VList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EntityFilter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EntityPropertyComparer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EntityHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EntityUtil.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IEntityFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EntityFactoryBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EntityFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EntityLocator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EntityManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IEntityCacheItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EntityCache.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GenericTypeConverter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Validation\BrokenRule.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Validation\BrokenRulesList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Validation\CommonRules.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Validation\ValidationRuleArgs.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Validation\ValidationRuleHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Validation\ValidationRuleInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Validation\ValidationRules.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WebServiceLog.cs" />
+    <Compile Include="WebServiceLogBase.generated.cs" />
+    <Compile Include="WidgetContainers.cs" />
+    <Compile Include="WidgetContainersBase.generated.cs" />
+    <Compile Include="WorkType.cs" />
+    <Compile Include="WorkTypeBase.generated.cs" />
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSHARP.Targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

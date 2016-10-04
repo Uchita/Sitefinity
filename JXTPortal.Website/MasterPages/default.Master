@@ -1,0 +1,42 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="default.master.cs" Inherits="JXTPortal.Website.MasterPages._default" %>
+<%@ Register src="~/usercontrols/common/ucCommonHeader.ascx" tagname="ucCommonHeader" tagprefix="uc1" %>
+<%@ Register TagPrefix="url" Namespace="Intelligencia.UrlRewriter" Assembly="Intelligencia.UrlRewriter" %>
+<asp:Literal ID="ltlDocType" runat="server" />
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <asp:Literal ID="litContentType" runat="server" />    
+    <%--<meta http-equiv="X-UA-Compatible" content="IE=7" />--%>
+    <%--<!-- Naveen (King) - Remove main.css this for Neil (also called Sugar Dadddyyy) -->
+    <link href="/styles/main.css" rel="stylesheet" type="text/css" />--%>
+    
+    <link rel="stylesheet" type="text/css" href="//images.jxt.net.au/COMMON/css/GlobalStyle.css" />
+    <link rel="stylesheet" href="/fonts/font-awesome/font-awesome.min.css" />
+
+    <uc1:ucCommonHeader ID="ucCommonHeader1" runat="server" />
+
+    <asp:Literal ID="ltJquery" runat="server" />
+    <script type="text/javascript" src="//images.jxt.net.au/COMMON/js/jxtscript.js"></script>
+    <script>
+        window.onerror = function () { $("#loading-screen, .loader, #jxt-loading-screen").hide(); }
+    </script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server" />
+    <asp:Literal ID="ltGoogleWebMaster" runat="server" />    
+    <script>
+        $(function () {
+            $("#jxt-loading-screen").hide();
+        });
+    </script>
+</head>
+<body itemscope itemtype="http://schema.org/WebPage">
+<asp:Literal ID="ltGoogleTagManager" runat="server" />
+<div id="jxt-loading-screen" style="position: absolute; left: 0; right: 0; top: 0; bottom: 0; z-index: 999999; background: #fff;"></div>
+<url:form id="form1" runat="server">   
+    <div id="wrapper" class="clearfix">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" /> 
+        <asp:Literal ID="ltlLoggedIn" runat="server" />    
+    </div>
+    <asp:Literal ID="ltGoogleAnalytics" runat="server" />
+</url:form>
+</body>
+</html>

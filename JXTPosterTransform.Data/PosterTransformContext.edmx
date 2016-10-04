@@ -1,0 +1,467 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PosterTransformModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="PosterTransformModelStoreContainer">
+          <EntitySet Name="Client" EntityType="PosterTransformModel.Store.Client" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ClientSetup" EntityType="PosterTransformModel.Store.ClientSetup" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ClientSetupLogs" EntityType="PosterTransformModel.Store.ClientSetupLogs" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PosterTransform" EntityType="PosterTransformModel.Store.PosterTransform" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_ClientSetup_PosterTransform" Association="PosterTransformModel.Store.FK_ClientSetup_PosterTransform">
+            <End Role="PosterTransform" EntitySet="PosterTransform" />
+            <End Role="ClientSetup" EntitySet="ClientSetup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientSetupLogs_Client" Association="PosterTransformModel.Store.FK_ClientSetupLogs_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="ClientSetupLogs" EntitySet="ClientSetupLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientSetupLogs_ClientSetup" Association="PosterTransformModel.Store.FK_ClientSetupLogs_ClientSetup">
+            <End Role="ClientSetup" EntitySet="ClientSetup" />
+            <End Role="ClientSetupLogs" EntitySet="ClientSetupLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientSetupLogs_PosterTransform" Association="PosterTransformModel.Store.FK_ClientSetupLogs_PosterTransform">
+            <End Role="PosterTransform" EntitySet="PosterTransform" />
+            <End Role="ClientSetupLogs" EntitySet="ClientSetupLogs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ClientId" />
+          </Key>
+          <Property Name="ClientId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ClientName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="ClientDescription" Type="varchar" MaxLength="2000" />
+          <Property Name="SiteId" Type="int" />
+          <Property Name="Valid" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+          <Property Name="LastModifiedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="ClientSetup">
+          <Key>
+            <PropertyRef Name="ClientSetupId" />
+          </Key>
+          <Property Name="ClientSetupId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ClientSetupName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="ClientSetupDescription" Type="varchar" MaxLength="2000" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
+          <Property Name="PosterTransformId" Type="int" />
+          <Property Name="ClientSetupType" Type="int" Nullable="false" />
+          <Property Name="ClientSetupTypeCredentials" Type="varchar" MaxLength="2000" />
+          <Property Name="TimeSlot" Type="int" Nullable="false" />
+          <Property Name="AdvertiserId" Type="int" />
+          <Property Name="AdvertiserUsername" Type="varchar" MaxLength="100" />
+          <Property Name="AdvertiserPassword" Type="varchar" MaxLength="100" />
+          <Property Name="Valid" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+          <Property Name="LastModifiedBy" Type="int" />
+          <Property Name="ArchiveMissingJobs" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClientSetupLogs">
+          <Key>
+            <PropertyRef Name="ClientSetupLogId" />
+          </Key>
+          <Property Name="ClientSetupLogId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
+          <Property Name="ClientSetupId" Type="int" Nullable="false" />
+          <Property Name="PosterTransformId" Type="int" Nullable="false" />
+          <Property Name="RawData" Type="varchar" MaxLength="100" />
+          <Property Name="RequestData" Type="varchar" MaxLength="100" />
+          <Property Name="ResponseData" Type="varchar" MaxLength="100" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="FinishedDate" Type="datetime" />
+          <Property Name="Failed" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PosterTransform">
+          <Key>
+            <PropertyRef Name="PosterTransformId" />
+          </Key>
+          <Property Name="PosterTransformId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PosterTransformName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="PosterTransformDescription" Type="varchar" MaxLength="2000" />
+          <Property Name="Valid" Type="int" Nullable="false" />
+          <Property Name="PosterTransformXSL" Type="nvarchar(max)" />
+          <Property Name="TestXML" Type="nvarchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+          <Property Name="LastModifiedBy" Type="int" />
+        </EntityType>
+        <Association Name="FK_ClientSetup_PosterTransform">
+          <End Role="PosterTransform" Type="PosterTransformModel.Store.PosterTransform" Multiplicity="0..1" />
+          <End Role="ClientSetup" Type="PosterTransformModel.Store.ClientSetup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PosterTransform">
+              <PropertyRef Name="PosterTransformId" />
+            </Principal>
+            <Dependent Role="ClientSetup">
+              <PropertyRef Name="PosterTransformId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientSetupLogs_Client">
+          <End Role="Client" Type="PosterTransformModel.Store.Client" Multiplicity="1" />
+          <End Role="ClientSetupLogs" Type="PosterTransformModel.Store.ClientSetupLogs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ClientId" />
+            </Principal>
+            <Dependent Role="ClientSetupLogs">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientSetupLogs_ClientSetup">
+          <End Role="ClientSetup" Type="PosterTransformModel.Store.ClientSetup" Multiplicity="1" />
+          <End Role="ClientSetupLogs" Type="PosterTransformModel.Store.ClientSetupLogs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientSetup">
+              <PropertyRef Name="ClientSetupId" />
+            </Principal>
+            <Dependent Role="ClientSetupLogs">
+              <PropertyRef Name="ClientSetupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientSetupLogs_PosterTransform">
+          <End Role="PosterTransform" Type="PosterTransformModel.Store.PosterTransform" Multiplicity="1" />
+          <End Role="ClientSetupLogs" Type="PosterTransformModel.Store.ClientSetupLogs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PosterTransform">
+              <PropertyRef Name="PosterTransformId" />
+            </Principal>
+            <Dependent Role="ClientSetupLogs">
+              <PropertyRef Name="PosterTransformId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="GetAllClientSetupsToRun" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PosterTransformModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="PosterTransformEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clients" EntityType="PosterTransformModel.Client" />
+          <EntitySet Name="ClientSetups" EntityType="PosterTransformModel.ClientSetup" />
+          <EntitySet Name="ClientSetupLogs" EntityType="PosterTransformModel.ClientSetupLog" />
+          <EntitySet Name="PosterTransforms" EntityType="PosterTransformModel.PosterTransform" />
+          <AssociationSet Name="FK_ClientSetupLogs_Client" Association="PosterTransformModel.FK_ClientSetupLogs_Client">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="ClientSetupLogs" EntitySet="ClientSetupLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientSetup_PosterTransform" Association="PosterTransformModel.FK_ClientSetup_PosterTransform">
+            <End Role="PosterTransform" EntitySet="PosterTransforms" />
+            <End Role="ClientSetup" EntitySet="ClientSetups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientSetupLogs_ClientSetup" Association="PosterTransformModel.FK_ClientSetupLogs_ClientSetup">
+            <End Role="ClientSetup" EntitySet="ClientSetups" />
+            <End Role="ClientSetupLogs" EntitySet="ClientSetupLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientSetupLogs_PosterTransform" Association="PosterTransformModel.FK_ClientSetupLogs_PosterTransform">
+            <End Role="PosterTransform" EntitySet="PosterTransforms" />
+            <End Role="ClientSetupLogs" EntitySet="ClientSetupLogs" />
+          </AssociationSet>
+          <FunctionImport Name="GetAllClientSetupsToRun" ReturnType="Collection(PosterTransformModel.GetAllClientSetupsToRun_Result)" />
+          <AssociationSet Name="ClientClientSetup" Association="PosterTransformModel.ClientClientSetup">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="ClientSetup" EntitySet="ClientSetups" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ClientId" />
+          </Key>
+          <Property Name="ClientId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="ClientDescription" Type="String" MaxLength="2000" Unicode="false" FixedLength="false" />
+          <Property Name="SiteId" Type="Int32" />
+          <Property Name="Valid" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="DateTime" />
+          <Property Name="LastModifiedBy" Type="Int32" />
+          <NavigationProperty Name="ClientSetupLogs" Relationship="PosterTransformModel.FK_ClientSetupLogs_Client" FromRole="Client" ToRole="ClientSetupLogs" />
+          <NavigationProperty Name="ClientSetups" Relationship="PosterTransformModel.ClientClientSetup" FromRole="Client" ToRole="ClientSetup" />
+        </EntityType>
+        <EntityType Name="ClientSetup">
+          <Key>
+            <PropertyRef Name="ClientSetupId" />
+          </Key>
+          <Property Name="ClientSetupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientSetupName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="ClientSetupDescription" Type="String" MaxLength="2000" Unicode="false" FixedLength="false" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <Property Name="PosterTransformId" Type="Int32" />
+          <Property Name="ClientSetupType" Type="Int32" Nullable="false" />
+          <Property Name="ClientSetupTypeCredentials" Type="String" MaxLength="2000" Unicode="false" FixedLength="false" />
+          <Property Name="TimeSlot" Type="Int32" Nullable="false" />
+          <Property Name="AdvertiserId" Type="Int32" />
+          <Property Name="AdvertiserUsername" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="AdvertiserPassword" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Valid" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="DateTime" />
+          <Property Name="LastModifiedBy" Type="Int32" />
+          <NavigationProperty Name="PosterTransform" Relationship="PosterTransformModel.FK_ClientSetup_PosterTransform" FromRole="ClientSetup" ToRole="PosterTransform" />
+          <NavigationProperty Name="ClientSetupLogs" Relationship="PosterTransformModel.FK_ClientSetupLogs_ClientSetup" FromRole="ClientSetup" ToRole="ClientSetupLogs" />
+          <NavigationProperty Name="Client" Relationship="PosterTransformModel.ClientClientSetup" FromRole="ClientSetup" ToRole="Client" />
+          <Property Type="Boolean" Name="ArchiveMissingJobs" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClientSetupLog">
+          <Key>
+            <PropertyRef Name="ClientSetupLogId" />
+          </Key>
+          <Property Name="ClientSetupLogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <Property Name="ClientSetupId" Type="Int32" Nullable="false" />
+          <Property Name="PosterTransformId" Type="Int32" Nullable="false" />
+          <Property Name="RawData" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="RequestData" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="ResponseData" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="FinishedDate" Type="DateTime" />
+          <NavigationProperty Name="Client" Relationship="PosterTransformModel.FK_ClientSetupLogs_Client" FromRole="ClientSetupLogs" ToRole="Client" />
+          <NavigationProperty Name="ClientSetup" Relationship="PosterTransformModel.FK_ClientSetupLogs_ClientSetup" FromRole="ClientSetupLogs" ToRole="ClientSetup" />
+          <NavigationProperty Name="PosterTransform" Relationship="PosterTransformModel.FK_ClientSetupLogs_PosterTransform" FromRole="ClientSetupLogs" ToRole="PosterTransform" />
+          <Property Type="Int32" Name="Failed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PosterTransform">
+          <Key>
+            <PropertyRef Name="PosterTransformId" />
+          </Key>
+          <Property Name="PosterTransformId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PosterTransformName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="PosterTransformDescription" Type="String" MaxLength="2000" Unicode="false" FixedLength="false" />
+          <Property Name="Valid" Type="Int32" Nullable="false" />
+          <Property Name="PosterTransformXSL" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="TestXML" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="DateTime" />
+          <Property Name="LastModifiedBy" Type="Int32" />
+          <NavigationProperty Name="ClientSetups" Relationship="PosterTransformModel.FK_ClientSetup_PosterTransform" FromRole="PosterTransform" ToRole="ClientSetup" />
+          <NavigationProperty Name="ClientSetupLogs" Relationship="PosterTransformModel.FK_ClientSetupLogs_PosterTransform" FromRole="PosterTransform" ToRole="ClientSetupLogs" />
+        </EntityType>
+        <Association Name="FK_ClientSetupLogs_Client">
+          <End Role="Client" Type="PosterTransformModel.Client" Multiplicity="1" />
+          <End Role="ClientSetupLogs" Type="PosterTransformModel.ClientSetupLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ClientId" />
+            </Principal>
+            <Dependent Role="ClientSetupLogs">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientSetup_PosterTransform">
+          <End Role="PosterTransform" Type="PosterTransformModel.PosterTransform" Multiplicity="0..1" />
+          <End Role="ClientSetup" Type="PosterTransformModel.ClientSetup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PosterTransform">
+              <PropertyRef Name="PosterTransformId" />
+            </Principal>
+            <Dependent Role="ClientSetup">
+              <PropertyRef Name="PosterTransformId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientSetupLogs_ClientSetup">
+          <End Role="ClientSetup" Type="PosterTransformModel.ClientSetup" Multiplicity="1" />
+          <End Role="ClientSetupLogs" Type="PosterTransformModel.ClientSetupLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientSetup">
+              <PropertyRef Name="ClientSetupId" />
+            </Principal>
+            <Dependent Role="ClientSetupLogs">
+              <PropertyRef Name="ClientSetupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientSetupLogs_PosterTransform">
+          <End Role="PosterTransform" Type="PosterTransformModel.PosterTransform" Multiplicity="1" />
+          <End Role="ClientSetupLogs" Type="PosterTransformModel.ClientSetupLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PosterTransform">
+              <PropertyRef Name="PosterTransformId" />
+            </Principal>
+            <Dependent Role="ClientSetupLogs">
+              <PropertyRef Name="PosterTransformId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="GetAllClientSetupsToRun_Result">
+          <Property Type="String" Name="ClientName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ClientSetupName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="ClientSetupType" Nullable="false" />
+          <Property Type="String" Name="ClientSetupTypeCredentials" Nullable="true" MaxLength="2000" />
+          <Property Type="Int32" Name="TimeSlot" Nullable="false" />
+          <Property Type="Int32" Name="AdvertiserId" Nullable="true" />
+          <Property Type="String" Name="AdvertiserUsername" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="AdvertiserPassword" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="PosterTransformId" Nullable="true" />
+          <Property Type="String" Name="PosterTransformXSL" Nullable="true" />
+          <Property Type="Boolean" Name="ArchiveMissingJobs" Nullable="false" />
+          <Property Type="DateTime" Name="LastRunDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="NextRunDateTime" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="ClientId" Nullable="false" />
+          <Property Type="Int32" Name="ClientSetupId" Nullable="false" />
+        </ComplexType>
+        <Association Name="ClientClientSetup">
+          <End Type="PosterTransformModel.Client" Role="Client" Multiplicity="1" />
+          <End Type="PosterTransformModel.ClientSetup" Role="ClientSetup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ClientId" />
+            </Principal>
+            <Dependent Role="ClientSetup">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PosterTransformModelStoreContainer" CdmEntityContainer="PosterTransformEntities">
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="PosterTransformModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="ClientDescription" ColumnName="ClientDescription" />
+                <ScalarProperty Name="SiteId" ColumnName="SiteId" />
+                <ScalarProperty Name="Valid" ColumnName="Valid" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClientSetups">
+            <EntityTypeMapping TypeName="PosterTransformModel.ClientSetup">
+              <MappingFragment StoreEntitySet="ClientSetup">
+                <ScalarProperty Name="ArchiveMissingJobs" ColumnName="ArchiveMissingJobs" />
+                <ScalarProperty Name="ClientSetupId" ColumnName="ClientSetupId" />
+                <ScalarProperty Name="ClientSetupName" ColumnName="ClientSetupName" />
+                <ScalarProperty Name="ClientSetupDescription" ColumnName="ClientSetupDescription" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="PosterTransformId" ColumnName="PosterTransformId" />
+                <ScalarProperty Name="ClientSetupType" ColumnName="ClientSetupType" />
+                <ScalarProperty Name="ClientSetupTypeCredentials" ColumnName="ClientSetupTypeCredentials" />
+                <ScalarProperty Name="TimeSlot" ColumnName="TimeSlot" />
+                <ScalarProperty Name="AdvertiserId" ColumnName="AdvertiserId" />
+                <ScalarProperty Name="AdvertiserUsername" ColumnName="AdvertiserUsername" />
+                <ScalarProperty Name="AdvertiserPassword" ColumnName="AdvertiserPassword" />
+                <ScalarProperty Name="Valid" ColumnName="Valid" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClientSetupLogs">
+            <EntityTypeMapping TypeName="PosterTransformModel.ClientSetupLog">
+              <MappingFragment StoreEntitySet="ClientSetupLogs">
+                <ScalarProperty Name="Failed" ColumnName="Failed" />
+                <ScalarProperty Name="ClientSetupLogId" ColumnName="ClientSetupLogId" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="ClientSetupId" ColumnName="ClientSetupId" />
+                <ScalarProperty Name="PosterTransformId" ColumnName="PosterTransformId" />
+                <ScalarProperty Name="RawData" ColumnName="RawData" />
+                <ScalarProperty Name="RequestData" ColumnName="RequestData" />
+                <ScalarProperty Name="ResponseData" ColumnName="ResponseData" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="FinishedDate" ColumnName="FinishedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PosterTransforms">
+            <EntityTypeMapping TypeName="PosterTransformModel.PosterTransform">
+              <MappingFragment StoreEntitySet="PosterTransform">
+                <ScalarProperty Name="PosterTransformId" ColumnName="PosterTransformId" />
+                <ScalarProperty Name="PosterTransformName" ColumnName="PosterTransformName" />
+                <ScalarProperty Name="PosterTransformDescription" ColumnName="PosterTransformDescription" />
+                <ScalarProperty Name="Valid" ColumnName="Valid" />
+                <ScalarProperty Name="PosterTransformXSL" ColumnName="PosterTransformXSL" />
+                <ScalarProperty Name="TestXML" ColumnName="TestXML" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetAllClientSetupsToRun" FunctionName="PosterTransformModel.Store.GetAllClientSetupsToRun">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PosterTransformModel.GetAllClientSetupsToRun_Result">
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="ClientSetupName" ColumnName="ClientSetupName" />
+                <ScalarProperty Name="ClientSetupType" ColumnName="ClientSetupType" />
+                <ScalarProperty Name="ClientSetupTypeCredentials" ColumnName="ClientSetupTypeCredentials" />
+                <ScalarProperty Name="TimeSlot" ColumnName="TimeSlot" />
+                <ScalarProperty Name="AdvertiserId" ColumnName="AdvertiserId" />
+                <ScalarProperty Name="AdvertiserUsername" ColumnName="AdvertiserUsername" />
+                <ScalarProperty Name="AdvertiserPassword" ColumnName="AdvertiserPassword" />
+                <ScalarProperty Name="PosterTransformId" ColumnName="PosterTransformId" />
+                <ScalarProperty Name="PosterTransformXSL" ColumnName="PosterTransformXSL" />
+                <ScalarProperty Name="ArchiveMissingJobs" ColumnName="ArchiveMissingJobs" />
+                <ScalarProperty Name="LastRunDate" ColumnName="LastRunDate" />
+                <ScalarProperty Name="NextRunDateTime" ColumnName="NextRunDateTime" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="ClientSetupId" ColumnName="ClientSetupId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="PosterTransformContext">
+        <EntityTypeShape EntityType="PosterTransformModel.Client" Width="1.5" PointX="5.25" PointY="6.75" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="PosterTransformModel.ClientSetup" Width="1.5" PointX="2.25" PointY="6.625" Height="4.480205078125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PosterTransformModel.ClientSetupLog" Width="1.5" PointX="5.25" PointY="1.5" Height="3.3263964843749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="PosterTransformModel.PosterTransform" Width="1.5" PointX="0.75" PointY="1.5" Height="3.1340950520833335" IsExpanded="true" />
+        <AssociationConnector Association="PosterTransformModel.FK_ClientSetupLogs_Client" ManuallyRouted="false">
+          <ConnectorPoint PointX="6" PointY="6.75" />
+          <ConnectorPoint PointX="6" PointY="5.0186979166666656" />
+        </AssociationConnector>
+        <AssociationConnector Association="PosterTransformModel.FK_ClientSetup_PosterTransform" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.46875" PointY="4.6340950520833335" />
+          <ConnectorPoint PointX="1.46875" PointY="8.8651025390625" />
+          <ConnectorPoint PointX="2.25" PointY="8.8651025390625" />
+        </AssociationConnector>
+        <AssociationConnector Association="PosterTransformModel.FK_ClientSetupLogs_ClientSetup" ManuallyRouted="false">
+          <ConnectorPoint PointX="3.03125" PointY="6.625" />
+          <ConnectorPoint PointX="3.03125" PointY="3.8091486328125006" />
+          <ConnectorPoint PointX="5.25" PointY="3.8091486328125006" />
+        </AssociationConnector>
+        <AssociationConnector Association="PosterTransformModel.FK_ClientSetupLogs_PosterTransform" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="2.5370943489583335" />
+          <ConnectorPoint PointX="5.25" PointY="2.5370943489583335" />
+        </AssociationConnector>
+        <AssociationConnector Association="PosterTransformModel.ClientClientSetup">
+          <ConnectorPoint PointX="5.25" PointY="8.2208968098958337" />
+          <ConnectorPoint PointX="3.75" PointY="8.2208968098958337" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

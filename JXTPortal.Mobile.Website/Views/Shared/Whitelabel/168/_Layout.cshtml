@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Wilson Rice</title>
+        <meta name="viewport" content="width=device-width" />
+        
+	<link rel="stylesheet" type="text/css" href="http://images.jxt.net.au/mobile/Content/Whitelabel/@JXTPortal.Entities.SessionData.Site.SiteId/Styles/styles.css">
+        <script src="http://images.jxt.net.au/mobile/Scripts/jquery-1.7.2.min.js"></script>
+        <script src="http://images.jxt.net.au/mobile/Scripts/knockout-2.0.0.js"></script>
+        <script src="http://images.jxt.net.au/mobile/Content/Javascripts/main/core-functions.js"></script>
+
+	<link href="http://images.jxt.net.au/wilsonrice/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://images.jxt.net.au/mobile/Content/Whitelabel/168/images/apple-touch-icon-114x114-precomposed.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://images.jxt.net.au/mobile/Content/Whitelabel/168/images/apple-touch-icon-72x72-precomposed.png" />
+	<link rel="apple-touch-icon-precomposed" href="http://images.jxt.net.au/mobile/Content/Whitelabel/168/images/apple-touch-icon-57x57-precomposed.png" />
+	<link rel="apple-touch-icon" href="http://images.jxt.net.au/mobile/Content/Whitelabel/168/images/apple-touch-icon.png" />	
+
+        @RenderSection("Javascript", false)
+    </head>
+	
+    <body>
+<nav class="top-fixed-nav"> 
+            	<div class="left-col">
+                     @if (JXTPortal.Entities.SessionData.Member != null) {
+	                        <button class="top-button btn-navbar-icon" type="button" id="jsmenu">
+						    	<span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+							</button> 
+                    		<span>Welcome @JXTPortal.Entities.SessionData.Member.Username</span>
+	                    }
+	                    else
+	                    {
+	                        <a href="~/account/login" class="top-button">Login</a>
+	                    }        
+                </div>
+                <div class="right-col">
+                	 <a href="/" class="flt-right"><img src="http://images.jxt.net.au/mobile/Content/Whitelabel/168/images/icon-home-grey.png" alt="Home"></a>
+                </div>   	
+    
+                <div class="collapse jsmenuCollapse">
+                    <ul>
+                        <li><a href="/Account/SavedJobs">My Saved Jobs</a></li>
+                        <li><a href="/Account/MyAlerts">My Alerts</a></li>
+                        <li><a href="/Account/Documents">My Resumes/Cover Letter</a></li>
+                        <li><a href="/Account/ChangePassword">Change Password</a></li>
+                        <li><a href="/Account/LogOff">Log off</a></li>
+                    </ul>
+                </div><!-- end of jsmenuCollapse --> 
+
+	              
+            </nav>	
+            <header>
+		
+                <div class="wrap"><a href="/" class="logo"><img src="http://images.jxt.net.au/mobile/Content/whitelabel/168/Images/logo.gif" width="320" height="105" /></a><a href="/page/?id=wilson-rice" class="btn_top">Wilson rice</a><a href="/page/?id=contact" class="btn_top">Contact us</a><div class="clear"><!-- --></div></div></header>
+			<!--End of header-->
+			
+			
+			<div id="wrapper">
+<div class="content">
+            
+                @RenderBody()
+           
+		   
+			</div>
+
+
+
+<footer><div class="wrap">
+<ul id="social">
+<li><a href="https://www.facebook.com/pages/Wilson-Rice/368166086587991" class="social1" target="_blank">LinkedIn</a></li>
+<li><a href="http://www.rcsa.com.au/imis15/RCSAweb/" class="social2" target="_blank">Facebook</a></li>
+<div class="clear"><!-- --></div>
+</ul>
+<p><a href="http://www.wilsonrice.com.au/default.aspx?fullsite=1">Full Website</a></p>
+<div class="clear"><!-- --></div>
+</div>
+</footer>
+		
+		
+    </body>
+</html>
+
+

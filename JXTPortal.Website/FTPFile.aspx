@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="FTPFile.aspx.cs" Inherits="JXTPortal.Website.FTPFile" %>

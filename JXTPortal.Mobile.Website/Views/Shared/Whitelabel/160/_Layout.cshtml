@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title</title>
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" type="text/css" href="http://images.jxt.net.au/mobile/Content/Whitelabel/@JXTPortal.Entities.SessionData.Site.SiteId/Styles/styles.css">
+        <script src="http://images.jxt.net.au/mobile/Scripts/jquery-1.7.2.min.js"></script>
+        <script src="http://images.jxt.net.au/mobile/Scripts/knockout-2.0.0.js"></script>
+								<script src="http://images.jxt.net.au/mobile/Content/Javascripts/main/core-functions.js"></script>
+								
+								<link href="http://images.jxt.net.au/aviationlabour/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+								<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://images.jxt.net.au/mobile/Content/Whitelabel/160/images/apple-touch-icon-114x114-precomposed.png" />
+								<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://images.jxt.net.au/mobile/Content/Whitelabel/160/images/apple-touch-icon-72x72-precomposed.png" />
+								<link rel="apple-touch-icon-precomposed" href="http://images.jxt.net.au/mobile/Content/Whitelabel/160/images/apple-touch-icon-57x57-precomposed.png" />
+								<link rel="apple-touch-icon" href="http://images.jxt.net.au/mobile/Content/Whitelabel/160/images/apple-touch-icon.png" />	
+        @RenderSection("Javascript", false)
+    </head>
+	
+    <body>
+	
+		
+            <header><div class="wrap"><a href="/"><img src="http://images.jxt.net.au/mobile/Content/whitelabel/@JXTPortal.Entities.SessionData.Site.SiteId/Images/logo.jpg" width="320" height="110" /></a></div></header>
+												
+
+
+<div id="wrapper">
+<nav class="top-fixed-nav"> 
+            	<div class="left-col">
+                     @if (JXTPortal.Entities.SessionData.Member != null) {
+	                        <button class="top-button btn-navbar-icon" type="button" id="jsmenu">
+						    	<span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+							</button> 
+                    		<span>Welcome @JXTPortal.Entities.SessionData.Member.Username</span>
+	                    }
+	                    else
+	                    {
+	                        <a href="~/account/login" class="top-button">Login</a>
+	                    }        
+                </div>
+                <div class="right-col">
+                	 <a href="/" class="flt-right"><img src="http://images.jxt.net.au/mobile/Content/Whitelabel/160/images/icon-home-grey.png" alt="Home"></a>
+                </div>   	
+    
+                <div class="collapse jsmenuCollapse">
+                    <ul>
+                        <li><a href="/Account/SavedJobs">My Saved Jobs</a></li>
+                        <li><a href="/Account/MyAlerts">My Alerts</a></li>
+                        <li><a href="/Account/Documents">My Resumes/Cover Letter</a></li>
+                        <li><a href="/Account/ChangePassword">Change Password</a></li>
+                        <li><a href="/Account/LogOff">Log off</a></li>
+                    </ul>
+                </div><!-- end of jsmenuCollapse --> 
+
+	              
+            </nav>	
+<div class="content">
+
+            
+                @RenderBody()
+           
+		   
+					<div class="nav">
+<a href="/page/?id=about"><img src="http://images.jxt.net.au/mobile/Content/whitelabel/@JXTPortal.Entities.SessionData.Site.SiteId/Images/btn-whatwedo.jpg" width="142" height="30" /></a><a href="/page/?id=contact"><img src="http://images.jxt.net.au/mobile/Content/whitelabel/@JXTPortal.Entities.SessionData.Site.SiteId/Images/btn-contact.jpg" width="142" height="30" /></a><div class="clear"><!-- --></div>
+
+</div>
+					</div>
+			
+</div>
+</div>
+
+
+<footer><div class="wrap">
+<ul id="social">
+<li><a href="http://www.linkedin.com/company/557231?trk=tyah" class="social1" target="_blank">LinkedIn</a></li>
+<li><a href="https://www.facebook.com/aviationlabour" class="social2" target="_blank">Facebook</a></li>
+<li><a href="http://www.twitter.com/AviationLabour" class="social3" target="_blank">Twitter</a></li>
+<div class="clear"><!-- --></div>
+</ul>
+<p><a href="/page/?id=terms">Terms</a> <span>|</span> <a href="http://www.aviationlabour.com/default.aspx?fullsite=1">Full Website</a></p>
+<div class="clear"><!-- --></div>
+</div>
+</footer>
+		
+		
+    </body>
+</html>
+
+

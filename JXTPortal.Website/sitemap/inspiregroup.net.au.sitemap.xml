@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.google.com/schemas/sitemap/0.9">
+  <url>
+    <loc><![CDATA[http://www.inspiregroup.net.au/default.aspx]]></loc>
+    <priority>1</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc><![CDATA[http://www.inspiregroup.net.au/page/contact-us/]]></loc>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+</urlset>

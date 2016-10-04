@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sites>
+    <site>
+        <SiteId>281</SiteId>
+      <host>remote-contracts.wetafx.co.nz</host>
+      <FolderPath>//incoming//</FolderPath>
+      <username>jxt</username>
+      <password>fush1234</password>
+      <sftp>1</sftp>
+      <port>22</port>
+      <LastModifiedDate>1/1/2016</LastModifiedDate>
+      <ExceptionID></ExceptionID>
+    
+  </site>
+
+  
+</sites>

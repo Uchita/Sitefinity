@@ -5,6 +5,7 @@ using System.Text;
 using System.Net;
 using JXTPortal.Entities.Models;
 using System.Web.Script.Serialization;
+using Newtonsoft.Json;
 
 namespace JXTPortal.Client.Invenias
 {
@@ -113,6 +114,40 @@ namespace JXTPortal.Client.Invenias
             return null;
         }
 
+        public List<InveniasAssignmentValue> AssignmentsGet()
+        {
+            string targetURL = "https://publicapi.invenias.com/v1/Assignments";
+
+            string assignments = HttpGet(targetURL, true);
+
+            if (!string.IsNullOrEmpty(assignments))
+            {
+                JavaScriptSerializer ser = new JavaScriptSerializer();
+                InveniasAssignmentsRoot token = (InveniasAssignmentsRoot)ser.Deserialize(assignments, typeof(InveniasAssignmentsRoot));
+
+                return token.value;
+            }
+            return null;
+        }
+
+        public object AdvertisementAssignmentGet(string advertisementID)
+        {
+            string targetURL = "https://publicapi.invenias.com/v1/Advertisements(" + advertisementID + ")/Assignment";
+
+            string advertisements = HttpGet(targetURL, true);
+
+            if (!string.IsNullOrEmpty(advertisements))
+            {
+                throw new NotImplementedException();
+                JavaScriptSerializer ser = new JavaScriptSerializer();
+                InveniasAdvertisementsRoot token = (InveniasAdvertisementsRoot)ser.Deserialize(advertisements, typeof(InveniasAdvertisementsRoot));
+
+                return token.value;
+            }
+            return null;
+
+        }
+
         public bool AdvertisementCreate(InveniasAdvertisementsValue ad)
         {
             JavaScriptSerializer ser = new JavaScriptSerializer();
@@ -123,15 +158,32 @@ namespace JXTPortal.Client.Invenias
             return true;
         }
 
+        public bool AssignmentCreate(InveniasAssignmentValue ad)
+        {
+            JsonSerializer ser2 = new JsonSerializer { NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore };
+            string adJson = JsonConvert.SerializeObject(ad, Newtonsoft.Json.Formatting.None, new JsonSerializerSettings { NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore });
 
+            HttpPost("https://publicapi.invenias.com/v1/Assignments", adJson, true);
 
+            return true;
+        }
+
+        public bool LocationCreate(InveniasLocationValue loc)
+        {
+            JsonSerializer ser2 = new JsonSerializer { NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore };
+            string adJson = JsonConvert.SerializeObject(loc, Newtonsoft.Json.Formatting.None, new JsonSerializerSettings { NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore });
+
+            HttpPost("https://publicapi.invenias.com/v1/Locations", adJson, true);
+
+            return true;
+        }
 
         #region HTTP call methods
 
         public string HttpPost(string URI, string Parameters, bool AuthHeader)
         {
             System.Net.WebRequest req = System.Net.WebRequest.Create(URI);
-            req.ContentType = "text/plain";
+            req.ContentType = "application/json";
             req.Method = "POST";
 
             if (AuthHeader)

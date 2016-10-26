@@ -138,7 +138,7 @@
     <comment>Continue</comment>
   </data>
   <data name="ButtonCreateJobAlert" xml:space="preserve">
-    <value>Tạo thông báo công việc</value>
+    <value>Tạo Cảnh báo Công việc</value>
     <comment>Create Job Alert</comment>
   </data>
   <data name="ButtonInsert" xml:space="preserve">
@@ -150,11 +150,11 @@
     <comment>New Search</comment>
   </data>
   <data name="ButtonNoCoverLetter" xml:space="preserve">
-    <value>Không có thư ứng tuyển</value>
+    <value>Không có Thư Xin Việc</value>
     <comment>No Cover Letter</comment>
   </data>
   <data name="ButtonNoResume" xml:space="preserve">
-    <value>Không có hồ sơ ứng tuyển</value>
+    <value>Không có Hồ sơ Xin Việc</value>
     <comment>No Resume</comment>
   </data>
   <data name="ButtonRegister" xml:space="preserve">
@@ -178,7 +178,7 @@
     <comment>Save</comment>
   </data>
   <data name="ButtonSaveSelected" xml:space="preserve">
-    <value>Lưu lại mục đã chọn</value>
+    <value>Lưu lại Mục Đã Chọn</value>
     <comment>Save Selected</comment>
   </data>
   <data name="ButtonSearch" xml:space="preserve">
@@ -202,11 +202,11 @@
     <comment>Update</comment>
   </data>
   <data name="ButtonUploadCoverLetterNow" xml:space="preserve">
-    <value>Tải lên thư ứng tuyển từ máy tính của tôi</value>
+    <value>Tải lên một thư xin việc từ máy tính của tôi</value>
     <comment>Upload a cover letter from my computer</comment>
   </data>
   <data name="ButtonUploadResumeNow" xml:space="preserve">
-    <value>Tải lên hồ sơ ứng tuyển từ máy tính của tôi</value>
+    <value>Tải lên một hồ sơ xin việc từ máy tính của tôi</value>
     <comment>Upload a resume from my computer</comment>
   </data>
   <data name="ButtonUseMyProfile" xml:space="preserve">
@@ -214,7 +214,7 @@
     <comment>Use my profile</comment>
   </data>
   <data name="ButtonWriteOneNow" xml:space="preserve">
-    <value>Tôi sẽ viết bây giờ</value>
+    <value>Tôi sẽ tự viết bây giờ</value>
     <comment>I'll write one now</comment>
   </data>
   <data name="cbAuditCommittee" xml:space="preserve">
@@ -246,7 +246,7 @@
     <comment>Are you sure you wish to permanently delete this draft ad?</comment>
   </data>
   <data name="ConfirmExpireJob" xml:space="preserve">
-    <value>Bạn có chắc bạn muốn xóa vĩnh viễn bài quảng cáo tuyển dụng này?</value>
+    <value>Bạn có chắc bạn muốn xóa vĩnh viễn bài quảng cáo nháp này?</value>
     <comment>Are you sure you wish to expire this job?</comment>
   </data>
   <data name="DDLAscending" xml:space="preserve">
@@ -270,11 +270,11 @@
     <comment>Job Title</comment>
   </data>
   <data name="DDLNumberOfApplications" xml:space="preserve">
-    <value>Số lượt ứng tuyển</value>
+    <value>Số Ứng tuyển</value>
     <comment>Number of Applications</comment>
   </data>
   <data name="DDLNumberOfViews" xml:space="preserve">
-    <value>Số lượt xem</value>
+    <value>Số Lượt xem</value>
     <comment>Number of Views</comment>
   </data>
   <data name="DDLOneDay" xml:space="preserve">
@@ -306,7 +306,7 @@
     <comment>Please accept Terms and Conditions</comment>
   </data>
   <data name="ErrorBulletPointSize" xml:space="preserve">
-    <value>Kích thước không thể vượt quá 160 ký tự</value>
+    <value>Kích thước Điểm Nhấn không thể vượt quá 160 ký tự</value>
     <comment>Bullet Point size cannot exceed 160 characters</comment>
   </data>
   <data name="ErrorConfirmPasswordNotMatch" xml:space="preserve">
@@ -314,7 +314,7 @@
     <comment>Confirm password doesn't not match</comment>
   </data>
   <data name="ErrorCoverLetterEmpty" xml:space="preserve">
-    <value>Thư ứng tuyển không thể được để trống</value>
+    <value>Thư Xin Việc không thể được để trống.</value>
     <comment>Cover Letter cannot be empty.</comment>
   </data>
   <data name="ErrorEmptyContent" xml:space="preserve">
@@ -342,7 +342,7 @@
     <comment>File already exists, please select another file or change the file name</comment>
   </data>
   <data name="ErrorFileExtension" xml:space="preserve">
-    <value>Định dạng tập tin không được chấp nhận</value>
+    <value>Kiểu đuôi tập tin không được chấp nhận</value>
     <comment>File type extension is not accepted</comment>
   </data>
   <data name="ErrorImageExceed" xml:space="preserve">
@@ -350,7 +350,7 @@
     <comment>The uploaded image exceeds the maximum 1Mb limit.</comment>
   </data>
   <data name="ErrorImageExtension" xml:space="preserve">
-    <value>Định dạng ảnh tải lên</value>
+    <value>Đuôi ảnh tải lên '</value>
     <comment>The uploaded image extension '</comment>
   </data>
   <data name="ErrorImageInvalidSize" xml:space="preserve">
@@ -358,7 +358,7 @@
     <comment>The uploaded image has an invalid size. Please check the image and try again.</comment>
   </data>
   <data name="ErrorImageNoExtension" xml:space="preserve">
-    <value>Ảnh tải lên không có định dạng</value>
+    <value>Ảnh tải lên không có đuôi</value>
     <comment>The uploaded image has no extension</comment>
   </data>
   <data name="ErrorIncorrectCurrentPassword" xml:space="preserve">
@@ -366,7 +366,7 @@
     <comment>Incorrect current password</comment>
   </data>
   <data name="ErrorInvalidFileType" xml:space="preserve">
-    <value>Kiểu tập tin không hợp lệ</value>
+    <value>Kiểu Tập tin không hợp lệ</value>
     <comment>Invalid File Type</comment>
   </data>
   <data name="ErrorKeywordSize" xml:space="preserve">
@@ -386,7 +386,7 @@
     <comment>' is not acceptable</comment>
   </data>
   <data name="ErrorPhoneSize" xml:space="preserve">
-    <value>Số điện thoại không thể vượt quá 40 ký tự</value>
+    <value>Điện thoại không thể vượt quá 40 ký tự</value>
     <comment>Phone cannot exceed 40 characters</comment>
   </data>
   <data name="ErrorRequired" xml:space="preserve">
@@ -398,11 +398,11 @@
     <comment>User Name already exists</comment>
   </data>
   <data name="LabeAddLanguage" xml:space="preserve">
-    <value>Thêm ngôn ngữ</value>
+    <value>Thêm Ngôn ngữ</value>
     <comment>Add Language</comment>
   </data>
   <data name="LabelAcceptTermCondition" xml:space="preserve">
-    <value>Tôi đồng ý với các Điều khoản và Điều kiện</value>
+    <value>Tôi Đồng ý với các Điều khoản và Điều kiện</value>
     <comment>I Accept the Terms and Conditions</comment>
   </data>
   <data name="LabelAccessDenied" xml:space="preserve">
@@ -418,7 +418,7 @@
     <comment>The supplied credentials are invalid. Account has been temporarily locked. Please try again in “60 mins” or contact your system administrator.</comment>
   </data>
   <data name="LabelAccountNumber" xml:space="preserve">
-    <value>Số tài khoản</value>
+    <value>Số Tài khoản</value>
     <comment>Account Number</comment>
   </data>
   <data name="LabelAccountsPayableEmail" xml:space="preserve">
@@ -426,7 +426,7 @@
     <comment>Accounts Payable Email</comment>
   </data>
   <data name="LabelAccountType" xml:space="preserve">
-    <value>Dạng tài khoản</value>
+    <value>Kiểu Tài khoản</value>
     <comment>Account Type</comment>
   </data>
   <data name="LabelAction" xml:space="preserve">
@@ -458,7 +458,7 @@
     <comment>Add Another Qualification</comment>
   </data>
   <data name="LabelAddCertificateMembership" xml:space="preserve">
-    <value>Thêm Chứng chỉ; Tư cách thành viên</value>
+    <value>Thêm Chứng chỉ &amp;amp; Tư cách Thành viên</value>
     <comment>Add Certificate &amp;amp; Membership</comment>
   </data>
   <data name="LabelAddDirectorship" xml:space="preserve">
@@ -513,13 +513,9 @@
     <value>Chi tiết tài khoản đã được gửi đi thành công.</value>
     <comment>Account details have been submitted successfully.</comment>
   </data>
-  <data name="LabelAdvertiserFullRegister" xml:space="preserve">
-    <value>Đăng ký quảng cáo</value>
-    <comment>Advertiser Full Register</comment>
-  </data>
   <data name="LabelAdvertiserInvalid" xml:space="preserve">
-    <value>&lt;h2&gt;Dear quảng cáo,&lt;/h2&gt;_x000D_
-_x000D_
+    <value>&lt;h2&gt;Dear quảng cáo,&lt;/h2&gt;
+
 &lt;p&gt;Tài khoản của bạn đã được xác nhận với chúng tôi. Bạn có thể truy cập tài khoản của bạn thông qua các trang đăng nhập &lt;a href="/advertiser/login.aspx"&gt;trang đăng nhập&lt;/a&gt;.&lt;/p&gt;</value>
     <comment>Advertiser validation failed.</comment>
   </data>
@@ -540,7 +536,7 @@ _x000D_
     <comment>Upload file</comment>
   </data>
   <data name="LabelAdvertiserUser" xml:space="preserve">
-    <value>Người dùng là Nhà quảng cáo</value>
+    <value>Người dùng Nhà Quảng cáo</value>
     <comment>Advertiser User</comment>
   </data>
   <data name="LabelAdvertiserValidated" xml:space="preserve">
@@ -604,36 +600,24 @@ _x000D_
     <comment>- All Salary Type -</comment>
   </data>
   <data name="LabelAllSubClassifications" xml:space="preserve">
-    <value>Tất cả phân loại nhánh</value>
+    <value>- Tất cả Phân loại Con -</value>
     <comment>- All Sub Classifications -</comment>
   </data>
   <data name="LabelAllWorkTypes" xml:space="preserve">
     <value>- Tất cả Kiểu Công việc -</value>
     <comment>- All Worktypes -</comment>
   </data>
-  <data name="LabelAlphabeticalAscending" xml:space="preserve">
-    <value>Thứ tự A-Z tăng dần</value>
-    <comment>Alphabetical Ascending</comment>
-  </data>
-  <data name="LabelAlphabeticalDescending" xml:space="preserve">
-    <value>Thứ tự Z-A giảm dần</value>
-    <comment>Alphabetical Descending</comment>
-  </data>
   <data name="LabelAlreadyRegistered" xml:space="preserve">
     <value>Đã đăng ký</value>
     <comment>Already registered</comment>
   </data>
   <data name="LabelAMEX" xml:space="preserve">
-    <value>Please check the English version for meaning. If it's right, use English word for Vnmese</value>
+    <value>Amex</value>
     <comment>Amex</comment>
   </data>
   <data name="LabelAmount" xml:space="preserve">
     <value>Số tiền</value>
     <comment>Amount</comment>
-  </data>
-  <data name="LabelAnnualRange" xml:space="preserve">
-    <value>Annual Range</value>
-    <comment>Annual Range</comment>
   </data>
   <data name="LabelAnnualSalary" xml:space="preserve">
     <value>Lương Năm</value>
@@ -700,7 +684,7 @@ _x000D_
     <comment>April</comment>
   </data>
   <data name="LabelArchivedJobs" xml:space="preserve">
-    <value>Công việc được lưu trữ</value>
+    <value>Công việc được lưu kho</value>
     <comment>Archived Jobs</comment>
   </data>
   <data name="LabelArea" xml:space="preserve">
@@ -748,27 +732,19 @@ _x000D_
     <comment>Authority</comment>
   </data>
   <data name="LabelAvailabilityDate" xml:space="preserve">
-    <value>Ngày sẵn sàng</value>
+    <value>Ngày Sẵn có</value>
     <comment>Availability Date</comment>
   </data>
   <data name="LabelAvailabilityDateFrom" xml:space="preserve">
-    <value>Ngày sẵn sàng từ</value>
-    <comment>Availability Date From</comment>
-  </data>
-  <data name="LabelAvailableDate" xml:space="preserve">
-    <value>Ngày sẵn sàng</value>
-    <comment>Available Date</comment>
-  </data>
-  <data name="LabelAvailableDateFrom" xml:space="preserve">
-    <value>Ngày sẵn sàng từ</value>
+    <value>Ngày Sẵn có Từ</value>
     <comment>Availability Date From</comment>
   </data>
   <data name="LabelAvailableFrom" xml:space="preserve">
-    <value>Sẵn sàng từ</value>
+    <value>Sẵn có Từ</value>
     <comment>Available From</comment>
   </data>
   <data name="LabelAvailableStatus" xml:space="preserve">
-    <value>Tình trạng sẵn sàng</value>
+    <value>Tình trạng Sẵn có</value>
     <comment>Availability Status</comment>
   </data>
   <data name="LabelAZ" xml:space="preserve">
@@ -855,10 +831,6 @@ _x000D_
     <value>Ứng viên</value>
     <comment>Candidate</comment>
   </data>
-  <data name="LabelCandidates" xml:space="preserve">
-    <value>Ứng viên</value>
-    <comment>Candidates</comment>
-  </data>
   <data name="LabelCandidatesRight" xml:space="preserve">
     <value>Ứng viên phải có quyền làm việc tại quốc gia này</value>
     <comment>Candidates must have the right to work in this country</comment>
@@ -880,7 +852,7 @@ _x000D_
     <comment>Categories</comment>
   </data>
   <data name="LabelCertAndMembership" xml:space="preserve">
-    <value>Chứng chỉ; Thành viên</value>
+    <value>Chứng chỉ &amp;amp; Tư cách Thành viên</value>
     <comment>Certs &amp;amp; Memberships</comment>
   </data>
   <data name="LabelCertificateDoesNotExpire" xml:space="preserve">
@@ -892,7 +864,7 @@ _x000D_
     <comment>Certificate/Membership No.</comment>
   </data>
   <data name="LabelCertificationsAndMemberships" xml:space="preserve">
-    <value>Chứng chỉ; Thành viên</value>
+    <value>Chứng chỉ &amp;amp; Tư cách Thành viên</value>
     <comment>Certifications &amp;amp; Memberships</comment>
   </data>
   <data name="LabelCertificationURL" xml:space="preserve">
@@ -931,14 +903,6 @@ _x000D_
     <value>Bạn vui lòng chọn một hồ sơ xin việc</value>
     <comment>Please choose a resume</comment>
   </data>
-  <data name="LabelCity" xml:space="preserve">
-    <value>Thành phố</value>
-    <comment>City</comment>
-  </data>
-  <data name="LabelCityState" xml:space="preserve">
-    <value>Thành phố/ Bang</value>
-    <comment>City / State</comment>
-  </data>
   <data name="LabelCityTown" xml:space="preserve">
     <value>Thành phố / Thị trấn</value>
     <comment>City / Town</comment>
@@ -948,7 +912,7 @@ _x000D_
     <comment>Classification</comment>
   </data>
   <data name="LabelClassificationAndSubClassification" xml:space="preserve">
-    <value>Phân loại/ Phân loại nhánh</value>
+    <value>Phân loại / Phân loại con</value>
     <comment>Classification / Sub Classification</comment>
   </data>
   <data name="LabelClassifications" xml:space="preserve">
@@ -956,7 +920,7 @@ _x000D_
     <comment>Classifications</comment>
   </data>
   <data name="LabelClassificationSubClassification" xml:space="preserve">
-    <value>Phân loại/ Phân loại nhánh</value>
+    <value>Phân loại / Phân loại con</value>
     <comment>Classification / SubClassification</comment>
   </data>
   <data name="LabelClear" xml:space="preserve">
@@ -1088,7 +1052,7 @@ _x000D_
     <comment>Continue Application</comment>
   </data>
   <data name="LabelCopyJob" xml:space="preserve">
-    <value>Sao chép</value>
+    <value>Chép</value>
     <comment>Copy</comment>
   </data>
   <data name="LabelCopyJobConfirm" xml:space="preserve">
@@ -1112,7 +1076,7 @@ _x000D_
     <comment>Country is required</comment>
   </data>
   <data name="LabelCoverLetter" xml:space="preserve">
-    <value>Thư ứng tuyển</value>
+    <value>Thư Xin Việc</value>
     <comment>Cover Letter</comment>
   </data>
   <data name="LabelCoverLetterWriteYourOwn" xml:space="preserve">
@@ -1124,7 +1088,7 @@ _x000D_
     <comment>Checkboxes</comment>
   </data>
   <data name="LabelCreateAsAlert" xml:space="preserve">
-    <value>Tạo thông báo</value>
+    <value>Tạo cảnh báo</value>
     <comment>Create as alert</comment>
   </data>
   <data name="LabelCreated" xml:space="preserve">
@@ -1140,11 +1104,11 @@ _x000D_
     <comment>Create Job</comment>
   </data>
   <data name="LabelCreateJobAlert" xml:space="preserve">
-    <value>Tạo thông báo công việc</value>
+    <value>Tạo Cảnh báo Công việc</value>
     <comment>Create Job Alert</comment>
   </data>
   <data name="LabelCreateJobAlertNameIsMissing" xml:space="preserve">
-    <value>Tạo thông báo công việc bị thiếu</value>
+    <value>Tạo Cảnh báo Công việc - Thiếu Tên</value>
     <comment>Create Job Alert Name is missing</comment>
   </data>
   <data name="LabelCreditCard" xml:space="preserve">
@@ -1196,7 +1160,7 @@ _x000D_
     <comment>Current Status</comment>
   </data>
   <data name="LabelCustomCoverLetter" xml:space="preserve">
-    <value>Thư ứng tuyển tùy chỉnh</value>
+    <value>Thư Xin Việc Tùy chỉnh</value>
     <comment>Custom Cover Letter</comment>
   </data>
   <data name="LabelCVBuilder" xml:space="preserve">
@@ -1396,7 +1360,7 @@ _x000D_
     <comment>Edit Favourite Search</comment>
   </data>
   <data name="LabelEditJobAlert" xml:space="preserve">
-    <value>Sửa Thông báo công việc</value>
+    <value>Sửa Cảnh báo Công việc</value>
     <comment>Edit Job Alert</comment>
   </data>
   <data name="LabelEditJobApplication" xml:space="preserve">
@@ -1412,7 +1376,7 @@ _x000D_
     <comment>Education</comment>
   </data>
   <data name="LabelEGAccountingJobInSydney" xml:space="preserve">
-    <value>Ví dụ: Tìm kiếm công việc Kế toán ở Sydney</value>
+    <value>ví dụ tìm kiếm công việc Kế toán ở Sydney</value>
     <comment>e.g. Accounting job search in Sydney</comment>
   </data>
   <data name="LabelElementaryProficiency" xml:space="preserve">
@@ -1452,7 +1416,7 @@ _x000D_
     <comment>Email Format</comment>
   </data>
   <data name="LabelEmailFriend" xml:space="preserve">
-    <value>Gửi Email cho bạn bè</value>
+    <value>Email bạn bè</value>
     <comment>Email Friend</comment>
   </data>
   <data name="LabelEmailFriendSuccess" xml:space="preserve">
@@ -1552,7 +1516,7 @@ _x000D_
     <comment>Please upload your image as jpg, gif or png format. Maximum file size of 1MB and maximum width of 300px.</comment>
   </data>
   <data name="LabelExpectedSalary" xml:space="preserve">
-    <value>Mức lương kỳ vọng/ Thù lao mong muốn</value>
+    <value>Lương Kỳ vọng / Tiền Công Mong muốn</value>
     <comment>Desired Pay / Expected Salary</comment>
   </data>
   <data name="LabelExperienceEnd" xml:space="preserve">
@@ -1596,7 +1560,7 @@ _x000D_
     <comment>External Job Application</comment>
   </data>
   <data name="LabelFailedToCreatedYouJobAlert" xml:space="preserve">
-    <value>Không thể tạo thông báo cho bạn</value>
+    <value>Không thể tạo cảnh báo của bạn</value>
     <comment>Failed to created your alert</comment>
   </data>
   <data name="LabelFailedToSavedYourSearch" xml:space="preserve">
@@ -1655,10 +1619,6 @@ _x000D_
     <value>Tải lên tập tin</value>
     <comment>File Upload</comment>
   </data>
-  <data name="LabelFilterResults" xml:space="preserve">
-    <value>Kết quả đã lọc</value>
-    <comment>Filter Results</comment>
-  </data>
   <data name="LabelFinish" xml:space="preserve">
     <value>Hoàn thiện</value>
     <comment>Finish</comment>
@@ -1692,7 +1652,7 @@ _x000D_
     <comment>Forgotten Password</comment>
   </data>
   <data name="LabelFormerEmployer" xml:space="preserve">
-    <value>Nhà tuyển dụng trước</value>
+    <value>Chủ Lao động Trước</value>
     <comment>Former Employer</comment>
   </data>
   <data name="LabelFrom" xml:space="preserve">
@@ -1743,14 +1703,6 @@ _x000D_
     <value>để quay lại kết quả tìm kiếm của bạn.</value>
     <comment>to go back to your search results.</comment>
   </data>
-  <data name="LabelGraduated" xml:space="preserve">
-    <value>Đã tốt nghiệp</value>
-    <comment>Graduated</comment>
-  </data>
-  <data name="LabelGraduatedCredits" xml:space="preserve">
-    <value>Học phần đã tốt nghiệp</value>
-    <comment>Graduated Credits</comment>
-  </data>
   <data name="LabelGST" xml:space="preserve">
     <value>GST</value>
     <comment>GST</comment>
@@ -1779,12 +1731,8 @@ _x000D_
     <value>Việc "Hot"</value>
     <comment>Hot Job</comment>
   </data>
-  <data name="LabelHourlyRange" xml:space="preserve">
-    <value>Xếp hạng theo giờ</value>
-    <comment>Hourly Range</comment>
-  </data>
   <data name="LabelHourlySalary" xml:space="preserve">
-    <value>Mức lương theo giờ</value>
+    <value>Lương Giờ</value>
     <comment>Hourly Salary</comment>
   </data>
   <data name="LabelHowDoesMyFileCompare" xml:space="preserve">
@@ -1806,10 +1754,6 @@ _x000D_
   <data name="LabelIndustries" xml:space="preserve">
     <value>Ngành</value>
     <comment>Industries</comment>
-  </data>
-  <data name="LabelIndustry" xml:space="preserve">
-    <value>Ngành</value>
-    <comment>Industry</comment>
   </data>
   <data name="LabelInstitutionName" xml:space="preserve">
     <value>Tên Cơ quan</value>
@@ -1860,7 +1804,7 @@ _x000D_
     <comment>Item</comment>
   </data>
   <data name="LabelJan" xml:space="preserve">
-    <value>Tháng Một</value>
+    <value>Tháng một</value>
     <comment>January</comment>
   </data>
   <data name="LabelJobAdOptions" xml:space="preserve">
@@ -1872,47 +1816,47 @@ _x000D_
     <comment>Job Advertisement Option</comment>
   </data>
   <data name="LabelJobAlert" xml:space="preserve">
-    <value>Thông báo công việc</value>
+    <value>Cảnh báo Công việc</value>
     <comment>Job Alert</comment>
   </data>
   <data name="LabelJobAlertCreateSuccess" xml:space="preserve">
-    <value>Một Thông báo công việc đã được chọn</value>
+    <value>Một Cảnh báo Công việc đã được tạo.</value>
     <comment>A Job Alert has been created.</comment>
   </data>
   <data name="LabelJobAlertCriteria" xml:space="preserve">
-    <value>Tiêu chí Thông báo công việc</value>
+    <value>Tiêu chí Cảnh báo Công việc</value>
     <comment>Job Alert Criteria</comment>
   </data>
   <data name="LabelJobAlertDetail" xml:space="preserve">
-    <value>Chi tiết Thông báo công việc</value>
+    <value>Chi tiết Cảnh báo Công việc</value>
     <comment>Job Alert Detail</comment>
   </data>
   <data name="LabelJobAlertEditGUIDFailed" xml:space="preserve">
-    <value>GUID Sửa Thông báo Công việc đã Thất bại</value>
+    <value>GUID Sửa Cảnh báo Công việc đã Thất bại</value>
     <comment>Job Alert Edit GUID Failed</comment>
   </data>
   <data name="LabelJobAlertName" xml:space="preserve">
-    <value>Tên Thông báo công việc</value>
+    <value>Tên Cảnh báo Công việc</value>
     <comment>Job Alert Name</comment>
   </data>
   <data name="LabelJobAlertNo" xml:space="preserve">
-    <value>Không, đừng gửi tôi Thông báo Công việc hàng ngày</value>
+    <value>Không, đừng gửi tôi Cảnh báo Công việc hàng Ngày</value>
     <comment>No, do not send me a Daily Job Alert</comment>
   </data>
   <data name="LabelJobAlertSaveSuccess" xml:space="preserve">
-    <value>Thông báo Công việc đã được lưu thành công</value>
+    <value>Cảnh báo Công việc đã được lưu thành công</value>
     <comment>Job Alert saved successfully</comment>
   </data>
   <data name="LabelJobAlertUnsubscribeGUIDFailed" xml:space="preserve">
-    <value>GUID Hủy Đăng ký Thông báo Công việc đã thất bại</value>
+    <value>GUID Hủy Đăng ký Cảnh báo Công việc đã Thất bại</value>
     <comment>Job Alert Unsubscribe GUID Failed</comment>
   </data>
   <data name="LabelJobAlertViewGUIDFailed" xml:space="preserve">
-    <value>GUID Xem Thông báo Công việc đã thất bại</value>
+    <value>GUID Xem Cảnh báo Công việc đã Thất bại</value>
     <comment>Job Alert View GUID Failed</comment>
   </data>
   <data name="LabelJobAlertYes" xml:space="preserve">
-    <value>Có, gửi tôi Thông báo Công việc hàng ngày</value>
+    <value>Có, gửi tôi Cảnh báo Công việc hàng Ngày</value>
     <comment>Yes, send me a Daily Job Alert</comment>
   </data>
   <data name="LabelJobApplication" xml:space="preserve">
@@ -1968,7 +1912,7 @@ _x000D_
     <comment>Job Expiry Notification</comment>
   </data>
   <data name="LabelJobFriendlyName" xml:space="preserve">
-    <value>Tên công việc dễ nhớ</value>
+    <value>Tên Dễ nghe cho Công việc</value>
     <comment>Job Friendly Name</comment>
   </data>
   <data name="LabelJobHaveApplied" xml:space="preserve">
@@ -2052,19 +1996,19 @@ _x000D_
     <comment>JobTitle</comment>
   </data>
   <data name="LabelJobTitleIsExpired" xml:space="preserve">
-    <value>{0}Chức danh Công việc đã Hết hạn</value>
+    <value>"{0}"Chức danh Công việc đã Hết hạn</value>
     <comment>The job Title is now Expired</comment>
   </data>
   <data name="LabelJobWorktype" xml:space="preserve">
-    <value>Loại hình Công việc</value>
+    <value>Kiểu Công việc</value>
     <comment>Job Worktype</comment>
   </data>
   <data name="LabelJul" xml:space="preserve">
-    <value>Tháng Bảy</value>
+    <value>Tháng 7</value>
     <comment>July</comment>
   </data>
   <data name="LabelJun" xml:space="preserve">
-    <value>Tháng Sáu</value>
+    <value>Tháng sáu</value>
     <comment>June</comment>
   </data>
   <data name="LabelJurisDoctor" xml:space="preserve">
@@ -2248,7 +2192,7 @@ _x000D_
     <comment>Mandatory Fields</comment>
   </data>
   <data name="LabelMar" xml:space="preserve">
-    <value>Tháng Ba</value>
+    <value>Tháng ba</value>
     <comment>March</comment>
   </data>
   <data name="LabelMastercard" xml:space="preserve">
@@ -2280,7 +2224,7 @@ _x000D_
     <comment>Max width</comment>
   </data>
   <data name="LabelMay" xml:space="preserve">
-    <value>Tháng Năm</value>
+    <value>Tháng năm</value>
     <comment>May</comment>
   </data>
   <data name="LabelMemberDetail" xml:space="preserve">
@@ -2312,12 +2256,12 @@ _x000D_
     <comment>Member of board Committee</comment>
   </data>
   <data name="LabelMemberValidated" xml:space="preserve">
-    <value>Tài khoản đã được xác thực_x000D_
-&lt;br /&gt;&lt;br /&gt;_x000D_
+    <value>Tài khoản đã được xác thực
+&lt;br /&gt;&lt;br /&gt;
 Tài khoản của bạn đã được xác thực. Bạn vui lòng &lt;a href="/member/login.aspx"&gt;đăng nhập&lt;/a&gt;.</value>
-    <comment>Account has been validated_x000D_
-&lt;br /&gt;&lt;br /&gt;_x000D_
-Your account has already been validated. Please proceed to &lt;a href=/member/login.aspx&gt;login&lt;/a&gt;."</comment>
+    <comment>Account has been validated
+&lt;br /&gt;&lt;br /&gt;
+Your account has already been validated. Please proceed to &lt;a href=/member/login.aspx"&gt;login&lt;/a&gt;.</comment>
   </data>
   <data name="LabelMemberValidation" xml:space="preserve">
     <value>Xác thực Thành viên</value>
@@ -2380,7 +2324,7 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <comment>My Account Profile</comment>
   </data>
   <data name="LabelMyApplicationTracker" xml:space="preserve">
-    <value>Bộ theo dõi Ứng tuyển của tôi</value>
+    <value>Bộ Theo dõi Đơn của Tôi</value>
     <comment>My Application Tracker</comment>
   </data>
   <data name="LabelMyBroadcast" xml:space="preserve">
@@ -2408,11 +2352,11 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <comment>My Home</comment>
   </data>
   <data name="LabelMyJobAlerts" xml:space="preserve">
-    <value>Thông báo Công việc của tôi</value>
+    <value>Cảnh báo Công việc của Tôi</value>
     <comment>My Job Alerts</comment>
   </data>
   <data name="LabelMyJobAlert_s" xml:space="preserve">
-    <value>Thông báo Công việc của tôi</value>
+    <value>Cảnh báo công việc của tôi</value>
     <comment>My job alert(s)</comment>
   </data>
   <data name="LabelMyJobTools" xml:space="preserve">
@@ -2508,7 +2452,7 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <comment>You currently do not have Additional Document</comment>
   </data>
   <data name="LabelNoCoverLetter" xml:space="preserve">
-    <value>Bạn hiện không có Thư ứng tuyển</value>
+    <value>Bạn hiện không có Thư Xin Việc</value>
     <comment>You currently do not have Cover Letter</comment>
   </data>
   <data name="LabelNoData" xml:space="preserve">
@@ -2524,7 +2468,7 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <comment>No File Choosen...</comment>
   </data>
   <data name="LabelNoJobAlerts" xml:space="preserve">
-    <value>Bạn hiện không có Thông báo Công việc nào</value>
+    <value>Bạn hiện không có cảnh báo Công việc nào.</value>
     <comment>You currently don't have any Job alerts.</comment>
   </data>
   <data name="LabelNoJobCredit" xml:space="preserve">
@@ -2539,26 +2483,6 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <value>Bạn chưa đăng ký công việc nào.</value>
     <comment>You haven't applied for any jobs yet.</comment>
   </data>
-  <data name="LabelNominatedCompanyEmailAddress" xml:space="preserve">
-    <value>Địa chỉ Email Công ty đề xuất</value>
-    <comment>Nominated Company Email Address</comment>
-  </data>
-  <data name="LabelNominatedCompanyFirstName" xml:space="preserve">
-    <value>Tên Công ty đề xuất</value>
-    <comment>Nominated Company First Name</comment>
-  </data>
-  <data name="LabelNominatedCompanyLastName" xml:space="preserve">
-    <value>Tên Công ty đề xuất</value>
-    <comment>Nominated Company Last Name</comment>
-  </data>
-  <data name="LabelNominatedCompanyPhone" xml:space="preserve">
-    <value>Số điện thoại công ty đề xuất</value>
-    <comment>Nominated Company Phone</comment>
-  </data>
-  <data name="LabelNominatedCompanyRole" xml:space="preserve">
-    <value>Vai trò công ty đề xuất</value>
-    <comment>Nominated Company Role</comment>
-  </data>
   <data name="LabelNone" xml:space="preserve">
     <value>Không có</value>
     <comment>None</comment>
@@ -2568,7 +2492,7 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <comment>No results found</comment>
   </data>
   <data name="LabelNoResume" xml:space="preserve">
-    <value>Bạn hiện không có Hồ sơ ứng tuyển</value>
+    <value>Bạn hiện không có Hồ sơ Xin Việc</value>
     <comment>You currently do not have Resume</comment>
   </data>
   <data name="LabelNoSavedJob" xml:space="preserve">
@@ -2587,12 +2511,8 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <value>Hiện đang không tìm kiếm</value>
     <comment>Not Currently Seeking</comment>
   </data>
-  <data name="LabelNotYetSubmitted" xml:space="preserve">
-    <value>Chưa gửi</value>
-    <comment>Not yet submitted</comment>
-  </data>
   <data name="LabelNov" xml:space="preserve">
-    <value>Tháng Mười Một</value>
+    <value>Tháng mười một</value>
     <comment>November</comment>
   </data>
   <data name="LabelNumber" xml:space="preserve">
@@ -2604,7 +2524,7 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <comment>Number of employees</comment>
   </data>
   <data name="LabelOct" xml:space="preserve">
-    <value>Tháng Mười</value>
+    <value>Tháng mười</value>
     <comment>October</comment>
   </data>
   <data name="LabelOldest" xml:space="preserve">
@@ -2620,9 +2540,9 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <comment>On Hold</comment>
   </data>
   <data name="LabelOopsNoJobCredit" xml:space="preserve">
-    <value>Oái! Có vẻ như bạn không có đủ tín dụng công việc. Để đăng tải một công việc, đầu tiên bạn phải_x000D_
+    <value>Oái! Có vẻ như bạn không có đủ tín dụng công việc. Để đăng tải một công việc, đầu tiên bạn phải
                     mua tín dụng dưới đây.</value>
-    <comment>Oops! Seems you don't have job credits. In order to post a job, you must first_x000D_
+    <comment>Oops! Seems you don't have job credits. In order to post a job, you must first
                     purchase credits below.</comment>
   </data>
   <data name="LabelOptional" xml:space="preserve">
@@ -2721,10 +2641,6 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <value>Công việc đang chờ duyệt</value>
     <comment>Pending Jobs</comment>
   </data>
-  <data name="LabelPeopleSearch" xml:space="preserve">
-    <value>Tìm kiếm Con người</value>
-    <comment>People Search</comment>
-  </data>
   <data name="LabelPersonalDetails" xml:space="preserve">
     <value>Chi tiết Cá nhân</value>
     <comment>Personal Details</comment>
@@ -2822,7 +2738,7 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <comment>Posted</comment>
   </data>
   <data name="LabelPostGraduateDegree" xml:space="preserve">
-    <value>Sau Đại học</value>
+    <value>Hậu đại học</value>
     <comment>Postgraduate</comment>
   </data>
   <data name="LabelPostType" xml:space="preserve">
@@ -2836,10 +2752,6 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
   <data name="LabelPreferredClassification" xml:space="preserve">
     <value>Phân loại Ưu tiên</value>
     <comment>Preferred Classification</comment>
-  </data>
-  <data name="LabelPreferredContactMethod" xml:space="preserve">
-    <value>Cách thức Liên lạc ưu tiên</value>
-    <comment>Preferred Contact Method</comment>
   </data>
   <data name="LabelPreferredEmailLanguage" xml:space="preserve">
     <value>Ngôn ngữ ưu tiên để trao đổi qua email</value>
@@ -2858,7 +2770,7 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <comment>Preferred Location</comment>
   </data>
   <data name="LabelPreferredSubClassification" xml:space="preserve">
-    <value>Phân loại Nhánh ưu tiên</value>
+    <value>Phân loại Con Ưu tiên</value>
     <comment>Preferred Sub Classification</comment>
   </data>
   <data name="LabelPresent" xml:space="preserve">
@@ -2929,17 +2841,9 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <value>Hồ sơ</value>
     <comment>Profile</comment>
   </data>
-  <data name="LabelProfileDetails" xml:space="preserve">
-    <value>Profile Details</value>
-    <comment>Profile Details</comment>
-  </data>
   <data name="LabelProfileDownloadPDF" xml:space="preserve">
     <value>Tải xuống dưới dạng PDF</value>
     <comment>Download as PDF</comment>
-  </data>
-  <data name="LabelProfileMinEntries" xml:space="preserve">
-    <value>Minimum {0} entries is required</value>
-    <comment>Minimum {0} entries is required</comment>
   </data>
   <data name="LabelProfileProgressLastUpdated" xml:space="preserve">
     <value>Lần Cập nhật Cuối</value>
@@ -2952,14 +2856,6 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
   <data name="LabelProfileProgressText2" xml:space="preserve">
     <value>hoàn thành</value>
     <comment>complete</comment>
-  </data>
-  <data name="LabelProfileStatus" xml:space="preserve">
-    <value>Profile Status</value>
-    <comment>Profile Status</comment>
-  </data>
-  <data name="LabelProfileStatusSubmittedDateFormat" xml:space="preserve">
-    <value>Submitted {0}</value>
-    <comment>Submitted {0}</comment>
   </data>
   <data name="LabelPromoCodeTitle" xml:space="preserve">
     <value>Mã Ưu đãi</value>
@@ -3029,10 +2925,6 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <value>Nhận Thư định kỳ</value>
     <comment>Receive Newsletter</comment>
   </data>
-  <data name="LabelRecentCandidate" xml:space="preserve">
-    <value>Ứng viên gần đây</value>
-    <comment>Recent Candidate</comment>
-  </data>
   <data name="LabelReferenceNumber" xml:space="preserve">
     <value>Số Tham chiếu</value>
     <comment>Reference Number</comment>
@@ -3065,10 +2957,6 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <value>Làm mới</value>
     <comment>Refresh</comment>
   </data>
-  <data name="LabelRegion" xml:space="preserve">
-    <value>Region</value>
-    <comment>Region</comment>
-  </data>
   <data name="LabelRegister" xml:space="preserve">
     <value>Đăng ký</value>
     <comment>Register</comment>
@@ -3093,10 +2981,6 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <value>Đăng ký chi tiết của bạn</value>
     <comment>Register your details</comment>
   </data>
-  <data name="LabelRegistration" xml:space="preserve">
-    <value>Đăng ký</value>
-    <comment>Registration</comment>
-  </data>
   <data name="LabelReInvalidImage" xml:space="preserve">
     <value>Ảnh tải lên không phải định dạng ảnh hợp lệ. Vui lòng kiểm tra rằng tập tin là GIF, JPG hoặc JPEG và thử lại.</value>
     <comment>The image uploaded is not a valid image format. Please check that the file is either a GIF, JPG or JPEG and try again.</comment>
@@ -3106,7 +2990,7 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <comment>Rejected</comment>
   </data>
   <data name="LabelRelatedArticles" xml:space="preserve">
-    <value>Các bài đăng liên quan</value>
+    <value>Các Bài Liên quan</value>
     <comment>Related Articles</comment>
   </data>
   <data name="LabelRelationship" xml:space="preserve">
@@ -3142,7 +3026,7 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <comment>Are you sure you want to repost this job?</comment>
   </data>
   <data name="LabelRequestAlertEmail" xml:space="preserve">
-    <value>Tôi muốn nhận thông báo qua email cho các công việc khớp với tiêu chí tìm kiếm của mình.</value>
+    <value>Tôi muốn nhận cảnh báo qua email cho các công việc khớp với tiêu chí tìm kiếm của mình.</value>
     <comment>I would like to receive email alerts for new jobs matching my search criteria.</comment>
   </data>
   <data name="LabelRequiredField" xml:space="preserve">
@@ -3157,10 +3041,6 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <value>Bạn chưa hoàn thành tất cả các trường thông tin bắt buộc.</value>
     <comment>You have not completed all the required information fields.</comment>
   </data>
-  <data name="LabelRequiredProfileSectionsHeading" xml:space="preserve">
-    <value>Hoàn thành Hồ sơ bắt buộc?</value>
-    <comment>Required Profile Sections left to complete?</comment>
-  </data>
   <data name="LabelRequireLogon" xml:space="preserve">
     <value>Yêu cầu Đăng nhập</value>
     <comment>Require Logon</comment>
@@ -3172,10 +3052,6 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
   <data name="LabelResendEmail" xml:space="preserve">
     <value>Gửi lại Email</value>
     <comment>Resend Email</comment>
-  </data>
-  <data name="LabelReset" xml:space="preserve">
-    <value>Reset</value>
-    <comment>Reset</comment>
   </data>
   <data name="LabelResetFailed" xml:space="preserve">
     <value>Đặt lại Thất bại</value>
@@ -3220,10 +3096,6 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
   <data name="LabelRolePreferences" xml:space="preserve">
     <value>Sở thích về Vai trò</value>
     <comment>Role Preferences</comment>
-  </data>
-  <data name="LabelRoles" xml:space="preserve">
-    <value>Vai trò</value>
-    <comment>Roles</comment>
   </data>
   <data name="LabelRSSFeed" xml:space="preserve">
     <value>Tin RSS</value>
@@ -3277,10 +3149,6 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <value>Kiểu lương</value>
     <comment>Salary Type</comment>
   </data>
-  <data name="LabelSalaryTypeFull" xml:space="preserve">
-    <value>Salary Type</value>
-    <comment>Salary Type</comment>
-  </data>
   <data name="LabelSalaryTypeID" xml:space="preserve">
     <value>ID Kiểu lương</value>
     <comment>Salary Type ID</comment>
@@ -3308,10 +3176,6 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
   <data name="LabelSaveJob" xml:space="preserve">
     <value>Lưu lại Công việc</value>
     <comment>Save Job</comment>
-  </data>
-  <data name="LabelSearch" xml:space="preserve">
-    <value>Tìm kiếm</value>
-    <comment>Search</comment>
   </data>
   <data name="LabelSearchCriteria" xml:space="preserve">
     <value>Tiêu chí Tìm kiếm</value>
@@ -3356,10 +3220,6 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
   <data name="LabelSecondarySchool" xml:space="preserve">
     <value>Trường Trung học</value>
     <comment>Secondary School</comment>
-  </data>
-  <data name="LabelSectionIncomplete" xml:space="preserve">
-    <value>Phần chưa hoàn thành</value>
-    <comment>Section Incomplete</comment>
   </data>
   <data name="LabelSeeking" xml:space="preserve">
     <value>Hiện đang tìm kiếm</value>
@@ -3454,11 +3314,11 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <comment>Select User Type</comment>
   </data>
   <data name="LabelSendaJobAlertNow" xml:space="preserve">
-    <value>Gửi một Thông báo Công việc ngay</value>
+    <value>Gửi một Cảnh báo Công việc ngay</value>
     <comment>Send a Job Alert now</comment>
   </data>
   <data name="LabelSendEmailAlerts" xml:space="preserve">
-    <value>Gửi Email thông báo</value>
+    <value>Gửi Cảnh báo Email</value>
     <comment>Send Email Alerts</comment>
   </data>
   <data name="LabelSentApplicantEmail" xml:space="preserve">
@@ -3466,7 +3326,7 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <comment>Sent the application email to the advertiser</comment>
   </data>
   <data name="LabelSep" xml:space="preserve">
-    <value>Tháng Chín</value>
+    <value>Tháng chín</value>
     <comment>September</comment>
   </data>
   <data name="LabelSeperateSkillComma" xml:space="preserve">
@@ -3474,7 +3334,7 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <comment>Please separate each skill with a Comma (,).</comment>
   </data>
   <data name="LabelSettings" xml:space="preserve">
-    <value>Cài đặt</value>
+    <value>Cấu hình</value>
     <comment>Settings</comment>
   </data>
   <data name="LabelShare" xml:space="preserve">
@@ -3532,10 +3392,6 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
   <data name="LabelSkills" xml:space="preserve">
     <value>Kỹ năng</value>
     <comment>Skills</comment>
-  </data>
-  <data name="LabelSMS" xml:space="preserve">
-    <value>SMS</value>
-    <comment>SMS</comment>
   </data>
   <data name="LabelSocialMedia" xml:space="preserve">
     <value>Mạng Xã hội</value>
@@ -3622,7 +3478,7 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <comment>Sub Accounts</comment>
   </data>
   <data name="LabelSubClassification" xml:space="preserve">
-    <value>Phân loại Nhánh</value>
+    <value>Phân loại Con</value>
     <comment>Sub Classification</comment>
   </data>
   <data name="LabelSubmitStreetAddress" xml:space="preserve">
@@ -3630,7 +3486,7 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <comment>Please submit street address to enable map and radius searching</comment>
   </data>
   <data name="LabelSubscribeToJobAlert" xml:space="preserve">
-    <value>Đăng ký Thông báo Công việc</value>
+    <value>Đăng ký Cảnh báo Công việc</value>
     <comment>Subscribe to Job alert</comment>
   </data>
   <data name="LabelSubscribeToNewsLetter" xml:space="preserve">
@@ -3790,7 +3646,7 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <comment>Please upload your file as Microsoft Word (.doc or .docx), Microsoft Excel (.xls or .xlsx), Adobe Acrobat (.pdf) or text file (.txt or .rtf)</comment>
   </data>
   <data name="LabelUploadCoverLetter" xml:space="preserve">
-    <value>Tải lên một Thư ứng tuyển</value>
+    <value>Tải lên một Thư xin việc</value>
     <comment>Upload Cover letter</comment>
   </data>
   <data name="LabelUploadDocument" xml:space="preserve">
@@ -3873,10 +3729,6 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <value>Đã xác thực</value>
     <comment>Validated</comment>
   </data>
-  <data name="LabelValidation" xml:space="preserve">
-    <value>Xác thực</value>
-    <comment>Validation</comment>
-  </data>
   <data name="LabelValidEmailRequired" xml:space="preserve">
     <value>Yêu cầu địa chỉ email hợp lệ</value>
     <comment>Valid email address is required</comment>
@@ -3888,10 +3740,6 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
   <data name="LabelViaEmail" xml:space="preserve">
     <value>qua Email</value>
     <comment>via Email</comment>
-  </data>
-  <data name="LabelVideoLink" xml:space="preserve">
-    <value>Video Link</value>
-    <comment>Video Link</comment>
   </data>
   <data name="LabelVideoURL" xml:space="preserve">
     <value>URL Video</value>
@@ -3973,10 +3821,6 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <value>Chào mừng bạn đến với trang thay đổi mật khẩu của Thành viên. Vui lòng nhập mật khẩu hiện tại của bạn và mật khẩu mới vào biểu mẫu dưới đây.</value>
     <comment>Welcome to the Member change password page. Please enter your current password and new password in the form below.</comment>
   </data>
-  <data name="LabelWhatAreYouUpTo" xml:space="preserve">
-    <value>Bạn đang định làm gì?</value>
-    <comment>What are you up to?</comment>
-  </data>
   <data name="LabelWillingToRelocate" xml:space="preserve">
     <value>Sẵn sàng Di chuyển</value>
     <comment>Willing To Relocate</comment>
@@ -4040,10 +3884,6 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
   <data name="LabelYourOrder" xml:space="preserve">
     <value>Đơn hàng của bạn</value>
     <comment>Your order</comment>
-  </data>
-  <data name="LabelYourSearchReturned" xml:space="preserve">
-    <value>Your Search Returned</value>
-    <comment>Your Search Returned</comment>
   </data>
   <data name="LabelYourSkillSets" xml:space="preserve">
     <value>Bộ Kỹ năng của Bạn</value>
@@ -4234,11 +4074,149 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <comment>Candidate Search - Please select relevant criteria for your location and area</comment>
   </data>
   <data name="sLabelPublicProfile" xml:space="preserve">
-    <value>Hồ sơ Công khai của</value>
+    <value>- Hồ sơ Công khai</value>
     <comment>'s Public Profile</comment>
   </data>
+  <data name="LabelSMS" xml:space="preserve">
+    <value>SMS</value>
+    <comment>SMS</comment>
+  </data>
+  <data name="LabelAdvertiserFullRegister" xml:space="preserve">
+    <value>Advertiser Full Register</value>
+    <comment>Advertiser Full Register</comment>
+  </data>
+  <data name="LabelIndustry" xml:space="preserve">
+    <value>Industry</value>
+    <comment>Industry</comment>
+  </data>
+  <data name="LabelNominatedCompanyEmailAddress" xml:space="preserve">
+    <value>Nominated Company Email Address</value>
+    <comment>Nominated Company Email Address</comment>
+  </data>
+  <data name="LabelAddResumeFile" xml:space="preserve">
+    <value>Add Resume File</value>
+    <comment>Add Resume File</comment>
+  <data name="LabelBtnSaveNext" xml:space="preserve">
+    <value>Save &amp;amp; Next</value>
+    <comment>Save &amp;amp; Next</comment>
+  <data name="LabelCurrentCompanyName" xml:space="preserve">
+    <value>Current company name</value>
+    <comment>Current company name</comment>
+  <data name="LabelNominatedCompanyRole" xml:space="preserve">
+    <value>Nominated Company Role</value>
+    <comment>Nominated Company Role</comment>
+  </data>
+  <data name="LabelCurrentJobTitle" xml:space="preserve">
+    <value>Current job title</value>
+    <comment>Current job title</comment>
+  <data name="LabelDesiredPosition" xml:space="preserve">
+    <value>Desired Position</value>
+    <comment>Desired Position</comment>
+  <data name="LabelEmploymentType" xml:space="preserve">
+    <value>Employment Type</value>
+    <comment>Employment Type</comment>
+  <data name="LabelEmploymentTypes" xml:space="preserve">
+    <value>Employment Types</value>
+    <comment>Employment Types</comment>
+  <data name="LabelAnnualRange" xml:space="preserve">
+    <value>Annual Range</value>
+    <comment>Annual Range</comment>
+  </data>
+  <data name="LabelFileTitle" xml:space="preserve">
+    <value>File Title</value>
+    <comment>File Title</comment>
+  <data name="LabelFixedSalary" xml:space="preserve">
+    <value>Fixed Salary</value>
+    <comment>Fixed Salary</comment>
+  <data name="LabelIncentiveSalary" xml:space="preserve">
+    <value>Incentive Salary</value>
+    <comment>Incentive Salary</comment>
+  <data name="LabelJobCategory" xml:space="preserve">
+    <value>Job Category</value>
+    <comment>Job Category</comment>
+  <data name="LabelJobFunction" xml:space="preserve">
+    <value>Job Function</value>
+    <comment>Job Function</comment>
+  <data name="LabelAlphabeticalAscending" xml:space="preserve">
+    <value>Alphabetical Ascending</value>
+    <comment>Alphabetical Ascending</comment>
+  </data>
+  <data name="LabelAlphabeticalDescending" xml:space="preserve">
+    <value>Alphabetical Descending</value>
+    <comment>Alphabetical Descending</comment>
+  </data>
+  <data name="LabelNativeLanguage" xml:space="preserve">
+    <value>Native Language</value>
+    <comment>Native Language</comment>
+  <data name="LabelPhoneHomeFull" xml:space="preserve">
+    <value>Home Phone</value>
+  </data>
+  <data name="LabelRecentCandidate" xml:space="preserve">
+    <value>Recent Candidate</value>
+    <comment>Recent Candidate</comment>
+  </data>
+  <data name="LabelCity" xml:space="preserve">
+    <value>City</value>
+    <comment>Home Phone</comment>
+  <data name="LabelPhoneMobileFull" xml:space="preserve">
+    <value>Mobile Phone</value>
+    <comment>Mobile Phone</comment>
+  <data name="LabelPrimaryDesiredCountry" xml:space="preserve">
+    <value>Primary Desired Country</value>
+    <comment>Primary Desired Country</comment>
+  <data name="LabelPrimaryDesiredIndustry" xml:space="preserve">
+    <value>Primary Desired Industry</value>
+    <comment>Primary Desired Industry</comment>
+  <data name="LabelPrimaryDesiredJobCategory" xml:space="preserve">
+    <value>Search</value>
+    <comment>Search</comment>
+  </data>
+  <data name="LabelSalaryTypeFull" xml:space="preserve">
+    <value>Primary Desired Job Category</value>
+    <comment>Primary Desired Job Category</comment>
+  <data name="LabelPrimaryDesiredJobFunction" xml:space="preserve">
+    <value>Primary Desired Job Function</value>
+    <comment>Primary Desired Job Function</comment>
+  <data name="LabelPrimaryDesiredLocation" xml:space="preserve">
+    <value>Primary Desired Location</value>
+    <comment>Primary Desired Location</comment>
+  <data name="LabelResumeUpload" xml:space="preserve">
+    <value>Resume Upload</value>
+    <comment>Resume Upload</comment>
+  <data name="LabelSalaryPeriod" xml:space="preserve">
+    <value>Salary Period</value>
+    <comment>Salary Period</comment>
+  <data name="LabelSecondaryDesiredCountries" xml:space="preserve">
+    <value>Secondary Desired Countries</value>
+    <comment>Secondary Desired Countries</comment>
+  <data name="LabelSecondaryLanguage" xml:space="preserve">
+    <value>Secondary Language</value>
+    <comment>Secondary Language</comment>
+  <data name="LabelSecondaryLanguageLevel" xml:space="preserve">
+    <value>Secondary Language Level</value>
+    <comment>Secondary Language Level</comment>
+  <data name="LabelUploadedDate" xml:space="preserve">
+    <value>Uploaded Date</value>
+    <comment>Uploaded Date</comment>
+  <data name="LabelUploadResumeUpto" xml:space="preserve">
+    <value>* You may upload upto 3 resumes</value>
+    <comment>* You may upload upto 3 resumes</comment>
+  <data name="LabelZipCode" xml:space="preserve">
+    <value>Zip Code</value>
+    <comment>Zip Code</comment>
+  <data name="LabelProfileMinEntries" xml:space="preserve">
+    <value>Minimum entries required - {0}</value>
+    <comment>Minimum entries required - {0}</comment>
+  </data>
   <data name="ValidationPhoneNumbers" xml:space="preserve">
-    <value>Chỉ chấp nhận Số, Khoảng trắng, "+", "(" và ")"</value>
+    <value>Accepts only numbers, spaces, '+', '(' and ')'</value>
     <comment>Accepts only numbers, spaces, '+', '(' and ')'</comment>
+  </data>
+  <data name="LabelZipCodePlaceholder" xml:space="preserve">
+    <value>Zip/Postcode</value>
+    <comment>Zip/Postcode</comment>
+  <data name="LabelPremiumJobsNote" xml:space="preserve">
+    <value>Please note: Premium jobs will be displayed at the top of the specified classification when searched.</value>
+    <comment>Please note: Premium jobs will be displayed at the top of the specified classification when searched.</comment>
   </data>
 </root>

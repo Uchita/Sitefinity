@@ -58,6 +58,15 @@ namespace JXTPortal.Website.member.enworld {
         protected global::JXTPortal.Website.usercontrols.navigation.ucMemberAccountNavigation ucMemberAccountNavigation1;
         
         /// <summary>
+        /// UcLanguageLiteral1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral1;
+        
+        /// <summary>
         /// ddlGender control.
         /// </summary>
         /// <remarks>
@@ -65,6 +74,15 @@ namespace JXTPortal.Website.member.enworld {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlGender;
+        
+        /// <summary>
+        /// UcLanguageLiteral2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral2;
         
         /// <summary>
         /// tbDOB control.
@@ -76,6 +94,15 @@ namespace JXTPortal.Website.member.enworld {
         protected global::System.Web.UI.WebControls.TextBox tbDOB;
         
         /// <summary>
+        /// UcLanguageLiteral3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral3;
+        
+        /// <summary>
         /// tbMobilePhone control.
         /// </summary>
         /// <remarks>
@@ -83,6 +110,15 @@ namespace JXTPortal.Website.member.enworld {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbMobilePhone;
+        
+        /// <summary>
+        /// UcLanguageLiteral4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral4;
         
         /// <summary>
         /// tbHomePhone control.
@@ -94,6 +130,15 @@ namespace JXTPortal.Website.member.enworld {
         protected global::System.Web.UI.WebControls.TextBox tbHomePhone;
         
         /// <summary>
+        /// UcLanguageLiteral5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral5;
+        
+        /// <summary>
         /// ddlCountry control.
         /// </summary>
         /// <remarks>
@@ -101,6 +146,15 @@ namespace JXTPortal.Website.member.enworld {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCountry;
+        
+        /// <summary>
+        /// UcLanguageLiteral6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral6;
         
         /// <summary>
         /// tbSecondEmail control.
@@ -112,6 +166,15 @@ namespace JXTPortal.Website.member.enworld {
         protected global::System.Web.UI.WebControls.TextBox tbSecondEmail;
         
         /// <summary>
+        /// UcLanguageLiteral7 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral7;
+        
+        /// <summary>
         /// tbAddress1 control.
         /// </summary>
         /// <remarks>
@@ -119,6 +182,15 @@ namespace JXTPortal.Website.member.enworld {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbAddress1;
+        
+        /// <summary>
+        /// UcLanguageLiteral8 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral8;
         
         /// <summary>
         /// tbCity control.
@@ -130,6 +202,15 @@ namespace JXTPortal.Website.member.enworld {
         protected global::System.Web.UI.WebControls.TextBox tbCity;
         
         /// <summary>
+        /// UcLanguageLiteral9 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral9;
+        
+        /// <summary>
         /// ddlState control.
         /// </summary>
         /// <remarks>
@@ -137,6 +218,15 @@ namespace JXTPortal.Website.member.enworld {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlState;
+        
+        /// <summary>
+        /// UcLanguageLiteral10 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral10;
         
         /// <summary>
         /// tbZip control.
@@ -148,6 +238,15 @@ namespace JXTPortal.Website.member.enworld {
         protected global::System.Web.UI.WebControls.TextBox tbZip;
         
         /// <summary>
+        /// UcLanguageLiteral101 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral101;
+        
+        /// <summary>
         /// ddlNativeLanguage control.
         /// </summary>
         /// <remarks>
@@ -155,6 +254,15 @@ namespace JXTPortal.Website.member.enworld {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlNativeLanguage;
+        
+        /// <summary>
+        /// UcLanguageLiteral102 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral102;
         
         /// <summary>
         /// ddlSecondaryLanguage control.
@@ -166,6 +274,15 @@ namespace JXTPortal.Website.member.enworld {
         protected global::System.Web.UI.WebControls.DropDownList ddlSecondaryLanguage;
         
         /// <summary>
+        /// UcLanguageLiteral103 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral103;
+        
+        /// <summary>
         /// ddlSecondaryLanguageLevel control.
         /// </summary>
         /// <remarks>
@@ -173,6 +290,24 @@ namespace JXTPortal.Website.member.enworld {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlSecondaryLanguageLevel;
+        
+        /// <summary>
+        /// UcLanguageLiteral11 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral11;
+        
+        /// <summary>
+        /// UcLanguageLiteral12 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral12;
         
         /// <summary>
         /// tbCurrentCompany control.
@@ -184,6 +319,15 @@ namespace JXTPortal.Website.member.enworld {
         protected global::System.Web.UI.WebControls.TextBox tbCurrentCompany;
         
         /// <summary>
+        /// UcLanguageLiteral13 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral13;
+        
+        /// <summary>
         /// tbCurrentJobTitle control.
         /// </summary>
         /// <remarks>
@@ -191,6 +335,15 @@ namespace JXTPortal.Website.member.enworld {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbCurrentJobTitle;
+        
+        /// <summary>
+        /// UcLanguageLiteral131 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral131;
         
         /// <summary>
         /// ddlIndustry control.
@@ -202,6 +355,15 @@ namespace JXTPortal.Website.member.enworld {
         protected global::System.Web.UI.WebControls.DropDownList ddlIndustry;
         
         /// <summary>
+        /// UcLanguageLiteral132 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral132;
+        
+        /// <summary>
         /// ddlJobCategory control.
         /// </summary>
         /// <remarks>
@@ -209,6 +371,15 @@ namespace JXTPortal.Website.member.enworld {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlJobCategory;
+        
+        /// <summary>
+        /// UcLanguageLiteral14 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral14;
         
         /// <summary>
         /// ddlJobFunctions control.
@@ -220,6 +391,15 @@ namespace JXTPortal.Website.member.enworld {
         protected global::System.Web.UI.WebControls.ListBox ddlJobFunctions;
         
         /// <summary>
+        /// UcLanguageLiteral15 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral15;
+        
+        /// <summary>
         /// ddlEmploymentType control.
         /// </summary>
         /// <remarks>
@@ -227,6 +407,15 @@ namespace JXTPortal.Website.member.enworld {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlEmploymentType;
+        
+        /// <summary>
+        /// UcLanguageLiteral16 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral16;
         
         /// <summary>
         /// ddlSalaryPeriod control.
@@ -238,6 +427,15 @@ namespace JXTPortal.Website.member.enworld {
         protected global::System.Web.UI.WebControls.DropDownList ddlSalaryPeriod;
         
         /// <summary>
+        /// UcLanguageLiteral17 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral17;
+        
+        /// <summary>
         /// tbFixedSalary control.
         /// </summary>
         /// <remarks>
@@ -245,6 +443,15 @@ namespace JXTPortal.Website.member.enworld {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbFixedSalary;
+        
+        /// <summary>
+        /// UcLanguageLiteral18 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral18;
         
         /// <summary>
         /// tbIncentiveSalary control.
@@ -256,6 +463,24 @@ namespace JXTPortal.Website.member.enworld {
         protected global::System.Web.UI.WebControls.TextBox tbIncentiveSalary;
         
         /// <summary>
+        /// UcLanguageLiteral19 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral19;
+        
+        /// <summary>
+        /// UcLanguageLiteral20 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral20;
+        
+        /// <summary>
         /// plUploadFileTable control.
         /// </summary>
         /// <remarks>
@@ -263,6 +488,42 @@ namespace JXTPortal.Website.member.enworld {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder plUploadFileTable;
+        
+        /// <summary>
+        /// UcLanguageLiteral21 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral21;
+        
+        /// <summary>
+        /// UcLanguageLiteral22 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral22;
+        
+        /// <summary>
+        /// UcLanguageLiteral23 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral23;
+        
+        /// <summary>
+        /// UcLanguageLiteral24 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral24;
         
         /// <summary>
         /// rptResume control.
@@ -274,6 +535,15 @@ namespace JXTPortal.Website.member.enworld {
         protected global::System.Web.UI.WebControls.Repeater rptResume;
         
         /// <summary>
+        /// UcLanguageLiteral243 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral243;
+        
+        /// <summary>
         /// phFileUpload control.
         /// </summary>
         /// <remarks>
@@ -281,6 +551,15 @@ namespace JXTPortal.Website.member.enworld {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder phFileUpload;
+        
+        /// <summary>
+        /// UcLanguageLiteral244 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral244;
         
         /// <summary>
         /// fileUploadTitle control.
@@ -319,6 +598,15 @@ namespace JXTPortal.Website.member.enworld {
         protected global::System.Web.UI.WebControls.Button btnUpload;
         
         /// <summary>
+        /// UcLanguageLiteral25 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral25;
+        
+        /// <summary>
         /// upCountry control.
         /// </summary>
         /// <remarks>
@@ -326,6 +614,15 @@ namespace JXTPortal.Website.member.enworld {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel upCountry;
+        
+        /// <summary>
+        /// UcLanguageLiteral26 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral26;
         
         /// <summary>
         /// ddlPrimDesiredCountry control.
@@ -337,6 +634,15 @@ namespace JXTPortal.Website.member.enworld {
         protected global::System.Web.UI.WebControls.DropDownList ddlPrimDesiredCountry;
         
         /// <summary>
+        /// UcLanguageLiteral27 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral27;
+        
+        /// <summary>
         /// ddlPrimDesiredLocation control.
         /// </summary>
         /// <remarks>
@@ -344,6 +650,15 @@ namespace JXTPortal.Website.member.enworld {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListBox ddlPrimDesiredLocation;
+        
+        /// <summary>
+        /// UcLanguageLiteral28 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral28;
         
         /// <summary>
         /// ddlSecondDesiredCountry control.
@@ -355,6 +670,15 @@ namespace JXTPortal.Website.member.enworld {
         protected global::System.Web.UI.WebControls.ListBox ddlSecondDesiredCountry;
         
         /// <summary>
+        /// UcLanguageLiteral29 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral29;
+        
+        /// <summary>
         /// ddlPrimDesiredIndustry control.
         /// </summary>
         /// <remarks>
@@ -362,6 +686,15 @@ namespace JXTPortal.Website.member.enworld {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlPrimDesiredIndustry;
+        
+        /// <summary>
+        /// UcLanguageLiteral30 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral30;
         
         /// <summary>
         /// ddlPrimDesiredJobCategory control.
@@ -373,6 +706,15 @@ namespace JXTPortal.Website.member.enworld {
         protected global::System.Web.UI.WebControls.DropDownList ddlPrimDesiredJobCategory;
         
         /// <summary>
+        /// UcLanguageLiteral31 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral31;
+        
+        /// <summary>
         /// ddlPrmDesiredJobFunction control.
         /// </summary>
         /// <remarks>
@@ -382,6 +724,15 @@ namespace JXTPortal.Website.member.enworld {
         protected global::System.Web.UI.WebControls.ListBox ddlPrmDesiredJobFunction;
         
         /// <summary>
+        /// UcLanguageLiteral32 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral32;
+        
+        /// <summary>
         /// ddlDesiredEmployType control.
         /// </summary>
         /// <remarks>
@@ -389,5 +740,14 @@ namespace JXTPortal.Website.member.enworld {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListBox ddlDesiredEmployType;
+        
+        /// <summary>
+        /// UcLanguageLiteral33 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral33;
     }
 }

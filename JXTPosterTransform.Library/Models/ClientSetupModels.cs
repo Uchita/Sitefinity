@@ -11,6 +11,13 @@ namespace JXTPosterTransform.Library.Models
     public class ClientSetupModels
     {
 
+        [Description("Pull JSON From URL")]
+        public class PullJsonFromUrl
+        {
+            [Description("URL Target")]
+            public string URL { get; set; }
+        }
+
         [Description("Pull XML From URL")]
         public class PullXmlFromUrl
         {
@@ -89,6 +96,17 @@ namespace JXTPosterTransform.Library.Models
             public long? Timestamp { get; set; }
             public bool StripJobTitle { get; set; }
 
+        }
+
+        [Description("Pull From Invenias")]
+        public class PullFromInvenias
+        {
+            [Description("Client ID")]
+            public string ClientID { get; set; }
+            [Description("Username")]
+            public string Username { get; set; }
+            [Description("Password")]
+            public string Password { get; set; }
         }
 
     }

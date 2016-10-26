@@ -543,14 +543,14 @@ namespace JXTPortal.Website
                             {
                                 //redirect to the same URL with the language specifier removed if there is any (which is the same as the site's default lang)
                                 //otherwise let it through and load the page
-                                if (RequestURLHasLanguageSpecifier())
+                                if (RequestRawURLHasLanguageSpecifier())
                                 {
-                                    string nonLangTargetedURL = Request.Url.GetLeftPart(UriPartial.Scheme) + Request.Url.Host + ReconstructURLForLanguageRoutes();
+                                    string nonLangTargetedURL = Request.Url.GetLeftPart(UriPartial.Scheme) + Request.Url.Host + ReconstructURLForLanguageRawURL();
 
                                     #if DEBUG
-                                    nonLangTargetedURL = Request.Url.GetLeftPart(UriPartial.Scheme) + Request.Url.Authority + ReconstructURLForLanguageRoutes();
+                                    nonLangTargetedURL = Request.Url.GetLeftPart(UriPartial.Scheme) + Request.Url.Authority + ReconstructURLForLanguageRawURL();
                                     #endif
-                                    Response.Redirect(nonLangTargetedURL, true);
+                                    Response.Redirect(nonLangTargetedURL, false);
                                 }
                                 else
                                 {
@@ -562,26 +562,30 @@ namespace JXTPortal.Website
                                         // for dynamic page using customurl
                                         if (Request.Params["customurl"] == "1")
                                         {
-                                            Response.Redirect("~/" + Request.Params["code"], true);
+                                            Response.Redirect("~/" + Request.Params["code"], false);
                                         }
                                         else
                                         {
                                             // page without customurl
 
-                                            Response.Redirect("~/page/" + Request.Params["code"], true);
+                                            Response.Redirect("~/page/" + Request.Params["code"], false);
                                         }
                                     }
                                     else
                                     {
-                                        Response.Redirect(Request.Url.ToString(), true);
+                                        Response.Redirect(Request.RawUrl, false);
                                     }
                                 }
+
+                                //Jumps directly to the ASP.NET end request call
+                                HttpContext.Current.ApplicationInstance.CompleteRequest();
                             }
                         }
                         else
                         {
-                            Response.Redirect("/404.aspx", true);
-
+                            Response.Redirect("/404.aspx", false);
+                            //Jumps directly to the ASP.NET end request call
+                            HttpContext.Current.ApplicationInstance.CompleteRequest();
                             //redirect to the same URL with the language specifier removed if there is any (which is the same as the site's default lang)
                             //otherwise let it through and load the page
                             //if (RequestURLHasLanguageSpecifier())
@@ -608,7 +612,9 @@ namespace JXTPortal.Website
 #if DEBUG
                                 langTargetedURL = Request.Url.GetLeftPart(UriPartial.Scheme) + Request.Url.Authority + "/" + CommonFunction.GetEnumDescriptionWithoutGetResourceValue(targetURLLang) + Request.RawUrl;
 #endif
-                                Response.Redirect(langTargetedURL, true);
+                                Response.Redirect(langTargetedURL, false);
+                                //Jumps directly to the ASP.NET end request call
+                                HttpContext.Current.ApplicationInstance.CompleteRequest();
                             }
                         }
                     }
@@ -641,6 +647,23 @@ namespace JXTPortal.Website
             return hasLanguageSpecifier;
         }
 
+        private bool RequestRawURLHasLanguageSpecifier()
+        {
+            bool hasLanguageSpecifier = false;
+            foreach (PortalEnums.Languages.URLLanguage lang in Enum.GetValues(typeof(PortalEnums.Languages.URLLanguage)))
+            {
+                //cater for _ like en_us
+                string thisLang = CommonFunction.GetEnumDescriptionWithoutGetResourceValue(lang);
+
+                if (Request.RawUrl.Split(new string[] { "/" }, StringSplitOptions.RemoveEmptyEntries).Select(c => c.ToUpper()).Contains(thisLang.ToUpper()))
+                {
+                    hasLanguageSpecifier = true;
+                    break;
+                }
+            }
+            return hasLanguageSpecifier;
+        }
+
         private void UserLanguageSessionSet(int languageID)
         {
             Entities.Languages lang = new LanguagesService().GetByLanguageId(languageID);
@@ -660,6 +683,17 @@ namespace JXTPortal.Website
             string newRoute = "/" + String.Join("", newRoutesList);
             return newRoute;
         }
+
+        private string ReconstructURLForLanguageRawURL()
+        {
+            //reconstruct the destination request
+            List<string> newRoutesList = Request.RawUrl.Split(new string[] { "/" }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            newRoutesList.RemoveAt(0); //remove "EN/"
+
+            string newRoute = "/" + String.Join("/", newRoutesList);
+            return newRoute;
+        }
+
         #endregion
 
         private void HandleAjax(HttpContext context)

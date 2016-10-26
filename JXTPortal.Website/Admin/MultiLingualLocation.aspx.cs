@@ -154,7 +154,7 @@ namespace JXTPortal.Website.Admin
 
         private void WriteLocationXML()
         {
-            string url = string.Format(xmlprefix, Server.MapPath(ConfigurationManager.AppSettings["XMLFilesPath"]), ddlLanguage.SelectedValue,
+            string url = string.Format(xmlprefix, ConfigurationManager.AppSettings["XMLFilesPath"], ddlLanguage.SelectedValue,
                                             PortalConstants.XMLTranslationFiles.XML_LOCATION_FILENAME, ddlCountry.SelectedValue);
             XmlTextWriter writer = new XmlTextWriter(url, null);
             writer.Formatting = Formatting.Indented;

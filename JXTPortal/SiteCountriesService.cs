@@ -49,7 +49,7 @@ namespace JXTPortal
         {
             string xmlprefix = "{0}{2}_{3}_{1}.xml";
             string url = string.Format(xmlprefix,
-                                        System.Web.HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["XMLFilesPath"]),
+                                        ConfigurationManager.AppSettings["XMLFilesPath"],
                                         languageid,
                                         PortalConstants.XMLTranslationFiles.XML_SITECOUNTRY_FILENAME,
                                         SessionData.Site.SiteId);

@@ -3,6 +3,9 @@ using System;
 using System.Data;
 using System.Configuration;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
@@ -12,6 +15,8 @@ using System.Web.UI.HtmlControls;
 using JXTPortal.Web.UI;
 using JXTPortal.Entities;
 using JXTPortal;
+
+using System.Web.Script.Serialization;
 #endregion
 
 public partial class SitesEdit : System.Web.UI.Page
@@ -58,7 +63,7 @@ public partial class SitesEdit : System.Web.UI.Page
             {
                 _SiteId = Convert.ToInt32(Request.QueryString["SiteId"]);
             }
-            
+
             return _SiteId;
         }
     }
@@ -103,7 +108,7 @@ public partial class SitesEdit : System.Web.UI.Page
         JXTPortal.Entities.Sites site = new JXTPortal.Entities.Sites();
 
         ltlMessage.Text = string.Empty;
-             
+
         try
         {
             // If Edit
@@ -114,15 +119,15 @@ public partial class SitesEdit : System.Web.UI.Page
 
             site.SiteName = txtSiteName.Text;
             site.SiteDescription = txtSiteDescription.Text;
-            site.SiteUrl = txtSiteURL.Text.ToLower().Replace("http://", string.Empty).Replace("www.",string.Empty);
+            site.SiteUrl = txtSiteURL.Text.ToLower().Replace("http://", string.Empty).Replace("www.", string.Empty);
             site.MobileUrl = txtSiteURL.Text.ToLower().Replace("http://", string.Empty).Replace("www.", string.Empty);
-            
+
             site.Live = chkLive.Checked;
             if ((flAdminSiteLogo.PostedFile != null) && flAdminSiteLogo.PostedFile.ContentLength > 0)
             {
                 site.SiteAdminLogo = this.getArray(this.flAdminSiteLogo.PostedFile);
             }
-                        
+
             if (SiteId > 0)
             {
                 // Update Record
@@ -132,7 +137,7 @@ public partial class SitesEdit : System.Web.UI.Page
             {
                 // Insert Record
                 SitesService.InsertDefault(Convert.ToInt32(ConfigurationManager.AppSettings["MasterSiteID"]), PortalConstants.DEFAULT_LANGUAGE_ID, site);
-                
+
                 //It's already wrapped on the command above in the stored proc
                 //Add Default GlobalSetting for new added site
                 //TODO : Remove AddDefaultGlobalSettings function
@@ -237,6 +242,87 @@ public partial class SitesEdit : System.Web.UI.Page
         f.InputStream.Read(b, 0, f.ContentLength);
 
         return b;
+    }
+
+    protected void btnExportAsJSON_Click(object sender, EventArgs e)
+    {
+        byte[] file = new byte[0];
+        int CampaignSequenceNumber = -99999;
+
+        SiteLanguagesService sls = new SiteLanguagesService();
+        TList<SiteLanguages> lsl = sls.GetBySiteId(SiteId);
+        GlobalSettings gs = GlobalSettingsService.GetBySiteId(SiteId).FirstOrDefault();
+        JXTPortal.Entities.Sites s = SitesService.GetBySiteId(SiteId);
+
+        if (lsl.Count > 0)
+        {
+            int languageid = lsl[0].LanguageId;
+
+            DynamicPagesService dps = new DynamicPagesService();
+            TList<JXTPortal.Entities.DynamicPages> ldp = dps.GetHierarchy(s.SiteId, languageid, 0, null, true, false);
+
+            SitemapContainer sitemap = new SitemapContainer();
+            sitemap.site.siteid = s.SiteId;
+            sitemap.site.sitename = s.SiteName;
+            sitemap.site.siteurl = s.SiteUrl;
+
+            string strDynamicUrl = string.Empty;
+            foreach (JXTPortal.Entities.DynamicPages dp in ldp)
+            {
+                if (dp.ParentDynamicPageId == 0 && dp.Sequence == CampaignSequenceNumber)
+                { }
+                else
+                {
+                    // Only if checked to display on Sitemap.
+                    if (dp.OnSiteMap)
+                    {
+                        strDynamicUrl = dps.GetDynamicPageFullUrl(s.SiteUrl, dp, gs.WwwRedirect, gs.EnableSsl).ToLower();
+
+                        DynamicPageContainer dpc = new DynamicPageContainer();
+                        dpc.loc = strDynamicUrl;
+                        dpc.priority = (dp.PageName != null && dp.PageName.ToLower().Equals("homepage") ? "1" : "0.7");
+                        dpc.changefreq = "weekly";
+
+                        sitemap.urls.Add(dpc);
+
+                    }
+                }
+            }
+
+            var json = new JavaScriptSerializer().Serialize(sitemap);
+            file = Encoding.Unicode.GetBytes(json.ToString());
+            Response.AddHeader("content-disposition", @"attachment;filename=""sitemap_" + s.SiteId.ToString() + @".json""");
+
+            Response.OutputStream.Write(file, 0, file.Length);
+            Response.ContentType = "application/json";
+            Response.End();
+        }
+    }
+
+    internal class SitemapContainer
+    {
+        public SiteContainer site;
+        public List<DynamicPageContainer> urls;
+
+        public SitemapContainer()
+        {
+            site = new SiteContainer();
+            urls = new List<DynamicPageContainer>();
+        }
+    }
+
+    internal class SiteContainer
+    {
+        public int siteid { get; set; }
+        public string sitename { get; set; }
+        public string siteurl { get; set; }
+    }
+
+    internal class DynamicPageContainer
+    {
+        public string loc;
+        public string priority;
+        public string changefreq;
     }
 }
 

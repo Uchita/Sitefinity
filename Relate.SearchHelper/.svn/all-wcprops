@@ -1,0 +1,33 @@
+K 26
+svn:wc:ra_dav:activity-url
+V 25
+/svn/JobXSource/!svn/act/
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/JobXSource/!svn/ver/103/trunk/Source/PresentationServices/Relate.SearchHelper
+END
+AssemblyInfo.vb
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/JobXSource/!svn/ver/4/trunk/Source/PresentationServices/Relate.SearchHelper/AssemblyInfo.vb
+END
+Relate.SearchHelper.vbproj
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/JobXSource/!svn/ver/4/trunk/Source/PresentationServices/Relate.SearchHelper/Relate.SearchHelper.vbproj
+END
+4_1b AssemblyInfo.vb
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/JobXSource/!svn/ver/4/trunk/Source/PresentationServices/Relate.SearchHelper/4_1b%20AssemblyInfo.vb
+END
+SearchHelper.vb
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/JobXSource/!svn/ver/217/trunk/Source/PresentationServices/Relate.SearchHelper/SearchHelper.vb
+END

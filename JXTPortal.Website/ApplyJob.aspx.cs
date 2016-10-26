@@ -1170,6 +1170,14 @@ namespace JXTPortal.Website
                         member.MobilePhone = CommonService.EncodeString(tbPhone.Text.Trim());
                         member.EmailFormat = 1;
                         member.CountryId = 1;
+                        TList<GlobalSettings> service = GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId);
+                        if (service.Count > 0)
+                        {
+                            if (service[0].DefaultCountryId.HasValue)
+                            {
+                                member.CountryId = service[0].DefaultCountryId.Value;
+                            }
+                        }
                         member.SiteId = SessionData.Site.MasterSiteId;
                         member.ValidateGuid = Guid.NewGuid();
                         member.Password = CommonService.EncryptMD5(newpassword);

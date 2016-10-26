@@ -30,11 +30,9 @@
             <label class="control-label">
                 Mappings</label>
             <div>
-                <a href="/mappings/countrylocarea/@Model.clientID">CLA</a> 
-                <a href="/mappings/professionrole/@Model.clientID">PR</a> 
-                <a href="/mappings/worktype/@Model.clientID">WT</a>
-                <a href="/mappings/jobtemplate/@Model.clientID/@Model.setupID">JT</a> 
-                <a href="/mappings/templatelogo/@Model.clientID/@Model.setupID">JTL</a>
+                <a href="/mappings/countrylocarea/@Model.clientID">CLA</a> <a href="/mappings/professionrole/@Model.clientID">
+                    PR</a> <a href="/mappings/worktype/@Model.clientID">WT</a> <a href="/mappings/jobtemplate/@Model.clientID/@Model.setupID">
+                        JT</a> <a href="/mappings/templatelogo/@Model.clientID/@Model.setupID">JTL</a>
             </div>
         </div>
     }
@@ -294,11 +292,9 @@
                         textmode="SingleLine" autocomplete="off" value="@Model.PullXmlFromSFTP.FileStartsWith" />
                 </div>
             </div>
-
             <div class="typeForm hide" id="type@(PTCommonEnums.ClientSetup.ClientSetupType.PullXmlFromRGF)">
                 <h3>
                     Pull XML From Salesforce (RGF)</h3>
-                
                 <div class="form-group col-md-6">
                     <label class="control-label">
                         Job Board Name</label>
@@ -319,7 +315,8 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label class="control-label">
-                        Timestamp (in seconds) for Next request <a href="http://www.unixtimestamp.com/index.php" target="_blank">(click for converter)</a></label>
+                        Timestamp (in seconds) for Next request <a href="http://www.unixtimestamp.com/index.php"
+                            target="_blank">(click for converter)</a></label>
                     <input type="text" id="PullXmlRGF.Timestamp" class="form-control" name="PullXmlRGF.Timestamp"
                         textmode="SingleLine" autocomplete="off" value="@Model.PullXmlRGF.Timestamp" placeholder=""  />
                 </div>
@@ -359,9 +356,40 @@
                     <input type="checkbox" id="PullXmlRGF.StripJobTitle" class="form-control" name="PullXmlRGF.StripJobTitle" @(new MvcHtmlString(Model.PullXmlRGF.StripJobTitle ? @"checked=""checked""" : string.Empty)) value="true"/>
                 </div>
             </div>
-
-        </div>
-        <div class="clearfix">
+            <div class="typeForm hide" id="type@(PTCommonEnums.ClientSetup.ClientSetupType.PullFromInvenias)">
+                <h3>
+                    Pull From Invenias</h3>
+                <div class="form-group col-md-4">
+                    <label class="control-label">
+                        Client ID</label>
+                    <input type="text" id="PullFromInvenias.ClientID" class="form-control" name="PullFromInvenias.ClientID"
+                        textmode="SingleLine" autocomplete="off" value="@Model.PullFromInvenias.ClientID" />
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="control-label">
+                        Username</label>
+                    <input type="text" id="PullFromInvenias.Username" class="form-control" name="PullFromInvenias.Username"
+                        textmode="SingleLine" autocomplete="off" value="@Model.PullFromInvenias.Username" />
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="control-label">
+                        Password</label>
+                    <input type="text" id="PullFromInvenias.Password" class="form-control" name="PullFromInvenias.Password"
+                        textmode="SingleLine" autocomplete="off" value="@Model.PullFromInvenias.Password" />
+                </div>
+            </div>
+            <div class="typeForm hide" id="type@(PTCommonEnums.ClientSetup.ClientSetupType.PullJsonFromUrl)">
+                <h3>
+                    Pull Json From URL</h3>
+                <div class="form-group col-md-6">
+                    <label class="control-label">
+                        URL Target</label>
+                    <input type="text" id="PullJsonFromUrl.URL" class="form-control" name="PullJsonFromUrl.URL"
+                        textmode="SingleLine" autocomplete="off" value="@Model.PullJsonFromUrl.URL" />
+                </div>
+            </div>
+            <div class="clearfix">
+            </div>
         </div>
     </div>
     <div class="col-xs-12">

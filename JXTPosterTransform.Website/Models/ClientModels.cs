@@ -59,11 +59,13 @@ namespace JXTPosterTransform.Website.Models
         public PTCommonEnums.ClientSetup.Valid validStatus { get; set; }
 
 
+        public ClientSetupModels.PullJsonFromUrl PullJsonFromUrl { get; set; }
         public ClientSetupModels.PullXmlFromFTP PullXmlFromFTP { get; set; }
         public ClientSetupModels.PullXmlFromSFTP PullXmlFromSFTP { get; set; }
         public ClientSetupModels.PullXmlFromUrl PullXmlFromUrl { get; set; }
         public ClientSetupModels.PullXmlFromUrlWithAuth PullXmlFromUrlWithAuth { get; set; }
         public ClientSetupModels.PullXmlFromSalesforceRGF PullXmlRGF { get; set; }
+        public ClientSetupModels.PullFromInvenias PullFromInvenias { get; set; }
 
         public ClientSetupDisplayModel()
         {
@@ -72,6 +74,8 @@ namespace JXTPosterTransform.Website.Models
             PullXmlFromSFTP = new ClientSetupModels.PullXmlFromSFTP();
             PullXmlFromUrlWithAuth = new ClientSetupModels.PullXmlFromUrlWithAuth();
             PullXmlRGF = new ClientSetupModels.PullXmlFromSalesforceRGF();
+            PullFromInvenias = new ClientSetupModels.PullFromInvenias();
+            PullJsonFromUrl = new ClientSetupModels.PullJsonFromUrl();
         }
 
 

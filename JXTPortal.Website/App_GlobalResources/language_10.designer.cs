@@ -952,7 +952,8 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;h2&gt; Cher annonceur, &lt;/h2&gt;        ///&lt;p&gt;Nous avons déjà validé votre compte. Vous pouvez y accéder via la &lt;a href=&quot;/advertiser/login.aspx&apos;&apos;&gt;page de connexion&lt;/a&gt;.&lt;/p&gt;.
+        ///   Looks up a localized string similar to &lt;h2&gt; Cher annonceur, &lt;/h2&gt;
+        ///&lt;p&gt;Nous avons déjà validé votre compte. Vous pouvez y accéder via la &lt;a href=&quot;/advertiser/login.aspx&apos;&apos;&gt;page de connexion&lt;/a&gt;.&lt;/p&gt;.
         /// </summary>
         internal static string LabelAdvertiserInvalid {
             get {
@@ -3769,6 +3770,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to High School.
+        /// </summary>
+        internal static string LabelHighSchool {
+            get {
+                return ResourceManager.GetString("LabelHighSchool", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Statistiques d&apos;emploi historiques.
         /// </summary>
         internal static string LabelHistoricalJobStatistics {
@@ -4984,7 +4994,9 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Le compte a été validé        ///&lt;br /&gt;&lt;br /&gt;        /// Votre compte a été validé avec succès. Veuillez continuer pour &lt;a href=&quot;/member/login.aspx&apos;&apos;&gt;vous connecter&lt;/a&gt;.
+        ///   Looks up a localized string similar to Le compte a été validé
+        ///&lt;br /&gt;&lt;br /&gt;
+        /// Votre compte a été validé avec succès. Veuillez continuer pour &lt;a href=&quot;/member/login.aspx&apos;&apos;&gt;vous connecter&lt;/a&gt;.
         /// </summary>
         internal static string LabelMemberValidated {
             get {
@@ -5668,7 +5680,8 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Oups ! Il semble que vous n&apos;avez aucun crédit d&apos;emploi. Pour poster un emploi, vous devez d&apos;abord        /// acheter des crédits ci-dessous..
+        ///   Looks up a localized string similar to Oups ! Il semble que vous n&apos;avez aucun crédit d&apos;emploi. Pour poster un emploi, vous devez d&apos;abord
+        /// acheter des crédits ci-dessous..
         /// </summary>
         internal static string LabelOopsNoJobCredit {
             get {
@@ -6208,6 +6221,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please note: Premium jobs will be displayed at the top of the specified classification when searched..
+        /// </summary>
+        internal static string LabelPremiumJobsNote {
+            get {
+                return ResourceManager.GetString("LabelPremiumJobsNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Présent.
         /// </summary>
         internal static string LabelPresent {
@@ -6379,7 +6401,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Minimum {0} entries is required.
+        ///   Looks up a localized string similar to Minimum entries required - {0}.
         /// </summary>
         internal static string LabelProfileMinEntries {
             get {
@@ -9300,6 +9322,15 @@ namespace Resources {
         internal static string sLabelPublicProfile {
             get {
                 return ResourceManager.GetString("sLabelPublicProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string String1 {
+            get {
+                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
         

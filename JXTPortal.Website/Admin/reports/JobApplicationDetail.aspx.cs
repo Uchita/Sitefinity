@@ -22,7 +22,7 @@ namespace JXTPortal.Website.Admin.reports
                 {
                     string dt = Request.QueryString["date"]; // "20141104";
                     DateTime applicationDate = DateTime.ParseExact(dt,
-                                                            "yyyyMMdd",
+                                                            SessionData.Site.DateFormat,
                                                             System.Globalization.CultureInfo.InvariantCulture,
                                                             System.Globalization.DateTimeStyles.None);
 

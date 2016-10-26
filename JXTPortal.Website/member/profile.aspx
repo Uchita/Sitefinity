@@ -19,7 +19,6 @@
     <script type="text/javascript" src="/scripts/member/jquery.jscrollpane.js"></script>
     <script src='/scripts/member/jquery-ui.js'></script>
     <script src='/scripts/member/profile-builder.js'></script>
-
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="endOfHead" runat="server">
     <link rel="stylesheet" href="/styles/member/member_profile.css" />
@@ -146,11 +145,11 @@
                                                 <p class="highlight">
                                                     <asp:Literal ID="ltHeadline" runat="server" Text="ltHeadline" /></p>
                                             </div>
-                                            <div class="row">
+                                            <div id="profileRow1" class="row">
                                                 <asp:Literal ID="ltCurrentSeeking" runat="server" />
                                                 <asp:Literal ID="ltAvailableDayFrom" runat="server" />
                                             </div>
-                                            <div class="row">
+                                            <div id="profileRow2" class="row">
                                                 <asp:Literal ID="ltlLastModifiedDate" runat="server" />                                                
                                             </div>
                                         </div>
@@ -281,6 +280,11 @@
                                                             <asp:TextBox ID="memberavailableDate" runat="server" placeholder="Availability Date"
                                                                 ClientIDMode="Static" CssClass="form-control" />
                                                         </div>
+                                                    <asp:PlaceHolder ID="phProfileAvailDateError" runat="server" Visible="false"><span
+                                                        class="error-message-2">
+                                                        <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral180" runat="server" SetLanguageCode="LabelInvalidDate" />
+                                                    </span></asp:PlaceHolder>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -320,7 +324,7 @@
                                     </div>
                                 </div>
                                 <span id="profileSubmittedDate">
-                                    <asp:Literal runat="server" ID="ltProfileSubmittedDate"></asp:Literal>
+                                    <asp:Literal runat="server" ID="ltProfileSubmittedDate" Visible="false"></asp:Literal>
                                 </span>
                                 </ContentTemplate>
                             </asp:UpdatePanel>
@@ -332,7 +336,7 @@
                         <ContentTemplate>
                             <asp:PlaceHolder ID="phIncompletedSectionHeading" runat="server">
                                 <div class="col-xs-12">
-                                    <h3 class="section-title">
+                                    <h3 class="section-title" id="incompleteSectionHeading">
                                         <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral26" runat="server" SetLanguageCode="LabelSectionIncomplete" />
                                     </h3>
                                 </div>
@@ -510,12 +514,12 @@
                                                 <!-- Wrapper for slides -->
                                                 <div class="carousel-inner" role="listbox">
                                                     <div class="item active">
-                                                        <span class="highlight"><JXTControl:ucLanguageLiteral ID="UcLanguageLiteral37" runat="server" SetLanguageCode="LabelEmailAddress" /></span>
+                                                        <span class="highlight primary-email-heading"><JXTControl:ucLanguageLiteral ID="UcLanguageLiteral37" runat="server" SetLanguageCode="LabelEmailAddress" /></span>
                                                         <span class="personal-detail-content primary-email"><asp:Literal ID="ltEmail" runat="server" Text="ltEmail" /></span> 
                                                         <asp:Literal ID="ltDateOfBirth" runat="server"  />
                                                         <asp:Literal ID="ltGender" runat="server" />
 
-                                                        <span class="highlight"><JXTControl:ucLanguageLiteral ID="UcLanguageLiteral40" runat="server" SetLanguageCode="LabelAddress" /></span>
+                                                        <span class="highlight address-heading"><JXTControl:ucLanguageLiteral ID="UcLanguageLiteral40" runat="server" SetLanguageCode="LabelAddress" /></span>
                                                         <span class="personal-detail-content address-detail">
                                                             <asp:Literal ID="ltAddress1" runat="server" />
                                                             <asp:Literal ID="ltAddress2" runat="server" />
@@ -535,7 +539,7 @@
                                                         <span class="highlight">
                                                             <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral45" runat="server" SetLanguageCode="LabelMailingAddress" />
                                                         </span>
-                                                        <span class="personal-detail-content address-detail">
+                                                        <span class="personal-detail-content mailing-address-detail">
                                                             <asp:Literal ID="ltMailingAddress1" runat="server" />
                                                             <asp:Literal ID="ltMailingAddress2" runat="server"  />
                                                             <asp:Literal ID="ltMailingCity" runat="server" />
@@ -560,7 +564,7 @@
                             </div>
                             <div class="personalDetails-form form-all collapse" id="personalDetailsform" runat="server"
                                 clientidmode="Static">
-                                <div class="row">
+                                <div id="personal-item-1" class="row">
                                     <div class="col-sm-7 col-xs-10  has-edit-icon">
                                         <h3 class="section-title">
                                             <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral46" runat="server" SetLanguageCode="LabelPersonalDetails" />
@@ -574,7 +578,7 @@
                                 </div>
                                 <div class="personaldetailsForm-wrap">
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div id="personal-item-2" class="col-md-6">
                                             <asp:Label ID="lbDetailsPrimaryEmail" runat="server" AssociatedControlID="tbDetailsPrimaryEmail">
                                                 <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral47" runat="server" SetLanguageCode="LabelPrimaryEmail" />
                                                 :</asp:Label>
@@ -583,7 +587,7 @@
                                                     ReadOnly="false" disabled="disabled" />
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div id="personal-item-3" class="col-md-6">
                                             <asp:Label ID="lbDetailsSecondaryEmail" runat="server" AssociatedControlID="tbDetailsSecondaryEmail">
                                                 <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral48" runat="server" SetLanguageCode="LabelSecondaryEmail" />
                                                 :</asp:Label>
@@ -598,7 +602,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div id="personal-item-4" class="col-md-6">
                                             <asp:Label AssociatedControlID="rbDetailsMale" ID="lbGender" runat="server">
                                                 <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral49" runat="server" SetLanguageCode="LabelGender" />
                                                 :</asp:Label>
@@ -617,13 +621,13 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div id="personal-item-5" class="col-md-6">
                                             <asp:Label ID="lbDetailsDay" runat="server" AssociatedControlID="ddlDetailsDay">
                                                 <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral50" runat="server" SetLanguageCode="LabelDateOfBirth" />
                                                 :</asp:Label>
                                             <div class="form-input">
                                                 <div id="DateOfBirth" class="row">
-                                                    <div class="col-xs-4">
+                                                    <div id="DateOfBirthDayWrapper" class="col-xs-4">
                                                         <span class="custom-select">
                                                             <asp:DropDownList ID="ddlDetailsDay" runat="server" CssClass="form-dropdown">
                                                                 <asp:ListItem Selected="True" Value="0" disabled="disabled">ddlDetailsDay</asp:ListItem>
@@ -633,7 +637,7 @@
                                                             <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral51" runat="server" SetLanguageCode="LabelDay" />
                                                             :</asp:Label>
                                                     </div>
-                                                    <div class="col-xs-4">
+                                                    <div id="DateOfBirthMonthWrapper" class="col-xs-4">
                                                         <span class="custom-select">
                                                             <asp:DropDownList ID="ddlDetailsMonth" runat="server" CssClass="form-dropdown">
                                                                 <asp:ListItem Selected="True" Value="0" disabled="disabled">ddlDetailsMonth</asp:ListItem>
@@ -643,7 +647,7 @@
                                                             <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral52" runat="server" SetLanguageCode="LabelMonth" />
                                                             :</asp:Label>
                                                     </div>
-                                                    <div class="col-xs-4">
+                                                    <div id="DateOfBirthYearWrapper" class="col-xs-4">
                                                         <span class="custom-select">
                                                             <asp:DropDownList ID="ddlDetailsYear" runat="server" CssClass="form-dropdown">
                                                                 <asp:ListItem Selected="True" Value="0" disabled="disabled">ddlDetailsYear</asp:ListItem>
@@ -661,7 +665,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div id="personal-item-6"  class="col-md-6">
                                             <div class="row">
                                                 <div class="col-sm-8 col-xs-6">
                                                     <asp:Label ID="lbDetailsHomePhone" runat="server" AssociatedControlID="tbDetailsHomePhone">
@@ -687,7 +691,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div id="personal-item-7" class="col-md-6">
                                             <div class="row">
                                                 <div class="col-sm-8 col-xs-6">
                                                     <asp:Label ID="lbDetailsMobilePhone" runat="server" runat="server" AssociatedControlID="tbDetailsMobilePhone">
@@ -715,7 +719,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div id="personal-item-8" class="col-md-6">
                                             <asp:Label ID="lbDetailsAddress1" runat="server" AssociatedControlID="tbDetailsAddress1">
                                                 <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral58" runat="server" SetLanguageCode="LabelAddress" />
                                                 1:</asp:Label>
@@ -723,7 +727,7 @@
                                                 <asp:TextBox ID="tbDetailsAddress1" runat="server" CssClass="form-control" />
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div id="personal-item-9" class="col-md-6">
                                             <asp:Label ID="lbDetailsAddress2" runat="server" AssociatedControlID="tbDetailsAddress2">
                                                 <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral59" runat="server" SetLanguageCode="LabelAddress" />
                                                 2:</asp:Label>
@@ -735,7 +739,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="row">
-                                                <div class="col-md-6">
+                                                <div id="personal-item-10" class="col-md-6">
                                                     <asp:Label ID="lbDetailsSuburb" runat="server" AssociatedControlID="tbDetailsSuburb">
                                                         <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral60" runat="server" SetLanguageCode="LabelCityTown" />
                                                         :</asp:Label>
@@ -743,7 +747,7 @@
                                                         <asp:TextBox ID="tbDetailsSuburb" runat="server" CssClass="form-control" />
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div id="personal-item-11" class="col-md-6">
                                                     <asp:Label ID="lbDetailsState" runat="server" AssociatedControlID="tbDetailsState">
                                                         <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral62" runat="server" SetLanguageCode="LabelState" />
                                                         :</asp:Label>
@@ -755,7 +759,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="row">
-                                                <div class="col-md-6">
+                                                <div id="personal-item-12" class="col-md-6">
                                                     <asp:Label ID="lbDetailsPostcode" runat="server" AssociatedControlID="tbDetailsPostcode">
                                                         <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral63" runat="server" SetLanguageCode="LabelPostcode" />
                                                         :</asp:Label>
@@ -763,7 +767,7 @@
                                                         <asp:TextBox ID="tbDetailsPostcode" runat="server" CssClass="form-control" />
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div id="personal-item-13" class="col-md-6">
                                                     <asp:Label ID="lbDetailsCountry" runat="server" AssociatedControlID="ddlDetailsCountry">
                                                         <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral64" runat="server" SetLanguageCode="LabelCountry" />
                                                         :</asp:Label>
@@ -779,7 +783,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div id="personal-item-14" class="col-md-6">
                                             <asp:Label ID="lbDetailsVideoURL" runat="server" AssociatedControlID="tbDetailsVideoURL">
                                                 <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral265" runat="server" SetLanguageCode="LabelVideoURL" />
                                                 :</asp:Label>
@@ -787,7 +791,7 @@
                                                 <asp:TextBox ID="tbDetailsVideoURL" runat="server" CssClass="form-control" />
                                             </div>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div id="personal-item-15" class="col-md-3">
                                             <asp:Label ID="lbDetailsPassportNumber" runat="server" AssociatedControlID="tbDetailsPassportNumber">
                                                 <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral65" runat="server" SetLanguageCode="LabelPassportNumber" />
                                                 :</asp:Label>
@@ -815,7 +819,7 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div id="personal-item-16" class="col-md-6">
                                                 <asp:Label ID="lbDetailsMailingAddress1" runat="server" AssociatedControlID="tbDetailsMailingAddress1">
                                                     <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral69" runat="server" SetLanguageCode="LabelAddress" />
                                                     1:</asp:Label>
@@ -824,7 +828,7 @@
                                                         placeholder="tbDetailsMailingAddress1" />
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                            <div id="personal-item-17" class="col-md-6">
                                                 <asp:Label ID="lbDetailsMailingAddress2" runat="server" AssociatedControlID="tbDetailsMailingAddress2">
                                                     <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral70" runat="server" SetLanguageCode="LabelAddress" />
                                                     2:</asp:Label>
@@ -837,7 +841,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="row">
-                                                    <div class="col-md-6">
+                                                    <div id="personal-item-18"class="col-md-6">
                                                         <asp:Label ID="lbDetailsMailingSuburb" runat="server" AssociatedControlID="tbDetailsMailingSuburb">
                                                             <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral71" runat="server" SetLanguageCode="LabelCityTown" />
                                                             :</asp:Label>
@@ -845,7 +849,7 @@
                                                             <asp:TextBox ID="tbDetailsMailingSuburb" runat="server" CssClass="form-control" placeholder="tbDetailsMailingSuburb" />
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div id="personal-item-19" class="col-md-6">
                                                         <asp:Label ID="lbDetailsMailingState" runat="server" AssociatedControlID="tbDetailsMailingState">
                                                             <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral73" runat="server" SetLanguageCode="LabelState" />
                                                             :</asp:Label>
@@ -857,7 +861,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="row">
-                                                    <div class="col-md-6">
+                                                    <div id="personal-item-20" class="col-md-6">
                                                         <asp:Label ID="lbDetailsMailingPostcode" runat="server" AssociatedControlID="tbDetailsMailingPostcode">
                                                             <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral74" runat="server" SetLanguageCode="LabelPostcode" />
                                                             :</asp:Label>
@@ -866,7 +870,7 @@
                                                                 placeholder="tbDetailsMailingPostcode" />
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div id="personal-item-21" class="col-md-6">
                                                         <asp:Label ID="lbDetailsMailingCountry" runat="server" AssociatedControlID="ddlDetailsMailingCountry">
                                                             <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral75" runat="server" SetLanguageCode="LabelCountry" />
                                                             :</asp:Label>
@@ -3387,10 +3391,14 @@
                                                     <div class="col-sm-6 col-xs-12">
                                                         <asp:label id="Label100" runat="server" AssociatedControlID="tbReferencesPhone">
                                                             <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral234" runat="server" SetLanguageCode="LabelPhone" />
-                                                            :</asp:label>
+                                                            <span class="form-required">*</span>:</asp:label>
                                                         <div class="form-input">
                                                             <asp:TextBox ID="tbReferencesPhone" runat="server" CssClass="form-control" placeholder="tbReferencesPhone" maxlength="100"/>
                                                         </div>
+                                                        <asp:PlaceHolder ID="phReferencesPhoneError" runat="server" Visible="false"><span
+                                                            class="error-message">
+                                                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral198" runat="server" SetLanguageCode="LabelRequiredField1" />
+                                                        </span></asp:PlaceHolder>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -3408,10 +3416,14 @@
                                                     <div class="col-sm-6 col-xs-12">
                                                         <asp:label id="Label109" runat="server" AssociatedControlID="tbReferencesEmail">
                                                             <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral61" runat="server" SetLanguageCode="LabelEmail" />
-                                                            :</asp:label>
+                                                            <span class="form-required">*</span>:</asp:label>
                                                         <div class="form-input">
                                                             <asp:TextBox ID="tbReferencesEmail" runat="server" CssClass="form-control" placeholder="tbReferencesEmail" maxlength="100"/>
                                                         </div>
+                                                    <asp:PlaceHolder ID="phReferencesEmailRequiredError" runat="server" Visible="false"><span
+                                                        class="error-message">
+                                                        <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral184" runat="server" SetLanguageCode="LabelRequiredField1" />
+                                                    </span></asp:PlaceHolder>
                                                         <asp:PlaceHolder ID="phReferencesEmailError" runat="server" Visible="false"><span
                                                             class="error-message">
                                                             <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral77" runat="server" SetLanguageCode="LabelEmailInvalid" />
@@ -3489,10 +3501,14 @@
                                             <div class="col-sm-6 col-xs-12">
                                                 <asp:label id="Label105" runat="server" AssociatedControlID="tbReferencesAddPhone">
                                                     <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral234" runat="server" SetLanguageCode="LabelPhone" />
-                                                    :</asp:label>
+                                                    <span class="form-required">*</span>:</asp:label>
                                                 <div class="form-input">
                                                     <asp:TextBox ID="tbReferencesAddPhone" runat="server" CssClass="form-control" placeholder="tbReferencesAddPhone" maxlength="100"/>
                                                 </div>
+                                                <asp:PlaceHolder ID="phReferencesAddPhoneError" runat="server" Visible="false"><span
+                                                    class="error-message">
+                                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral185" runat="server" SetLanguageCode="LabelRequiredField1" />
+                                                </span></asp:PlaceHolder>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -3514,10 +3530,14 @@
                                             <div class="col-sm-6 col-xs-12">
                                                 <asp:label id="Label110" runat="server" AssociatedControlID="tbReferencesAddEmail">
                                                     <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral72" runat="server" SetLanguageCode="LabelEmail" />
-                                                    :</asp:label>
+                                                    <span class="form-required">*</span>:</asp:label>
                                                 <div class="form-input">
                                                     <asp:TextBox ID="tbReferencesAddEmail" runat="server" CssClass="form-control" placeholder="tbReferencesAddEmail" maxlength="100"/>
                                                 </div>
+                                                <asp:PlaceHolder ID="phReferencesAddEmailRequiredError" runat="server" Visible="false"><span
+                                                    class="error-message">
+                                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral183" runat="server" SetLanguageCode="LabelRequiredField1" />
+                                                </span></asp:PlaceHolder>
                                                 <asp:PlaceHolder ID="phReferencesAddEmailError" runat="server" Visible="false"><span
                                                     class="error-message">
                                                     <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral105" runat="server" SetLanguageCode="LabelEmailInvalid" />

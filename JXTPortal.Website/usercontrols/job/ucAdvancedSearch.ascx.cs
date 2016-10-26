@@ -310,12 +310,15 @@ namespace JXTPortal.Website.usercontrols.job
                 List<Entities.SiteSalaryType> salaryTypeList = SiteSalaryTypeService.Get_ValidListBySiteID(SessionData.Site.SiteId);
                 int count = 0;
                 strSelectHtml.AppendFormat("<div id='divSalaryType" + IsDynamicWidget + "'><select class='form-dropdown' id=\"{0}\">", "salaryID" + IsDynamicWidget);
+
+                strSelectHtml.AppendFormat("<option value=\"\">{0}</option>", CommonFunction.GetResourceValue("LabelPleaseChoose"));
+
                 foreach (Entities.SiteSalaryType salaryType in salaryTypeList)
                 {
                     if (salaryType.SalaryTypeId != (int)PortalEnums.Search.SalaryType.NA)
                     {
 
-                        strSelectHtml.AppendFormat("<option value=\"{0}\" {2}>{1}</option>", salaryType.SalaryTypeId, salaryType.SalaryTypeName, (count == 0) ? "selected" : "");
+                        strSelectHtml.AppendFormat("<option value=\"{0}\" {2}>{1}</option>", salaryType.SalaryTypeId, salaryType.SalaryTypeName, "");
                         count++;
                     }
                 }

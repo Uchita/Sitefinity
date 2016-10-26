@@ -10,6 +10,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Xml;
+using JXTPortal.Common;
 using JXTPortal.Web.UI;
 using JXTPortal.Entities;
 #endregion
@@ -199,19 +200,19 @@ namespace JXTPortal.Website.Admin
                                                                     <MetaDescription>{13}</MetaDescription>
                                                                 </Language>"
                                                             , lang.LanguageId
-                                                            , tbTitle.Text
-                                                            , tbName.Text
-                                                            , tbLastName.Text
-                                                            , tbPositionTitle.Text
-                                                            , tbLocation.Text
-                                                            , tbOfficeLocation.Text
-                                                            , tbCategories.Text
-                                                            , tbShortDescription.Text
-                                                            , tbFullDescription.Text
-                                                            , tbTestimonial.Text
-                                                            , tbMetaTitle.Text
-                                                            , tbMetaKeyword.Text
-                                                            , tbMetaDescription.Text);
+                                                            , Utils.XmlEncode(tbTitle.Text)
+                                                            , Utils.XmlEncode(tbName.Text)
+                                                            , Utils.XmlEncode(tbLastName.Text)
+                                                            , Utils.XmlEncode(tbPositionTitle.Text)
+                                                            , Utils.XmlEncode(tbLocation.Text)
+                                                            , Utils.XmlEncode(tbOfficeLocation.Text)
+                                                            , Utils.XmlEncode(tbCategories.Text)
+                                                            , Utils.XmlEncode(tbShortDescription.Text)
+                                                            , Utils.XmlEncode(tbFullDescription.Text)
+                                                            , Utils.XmlEncode(tbTestimonial.Text)
+                                                            , Utils.XmlEncode(tbMetaTitle.Text)
+                                                            , Utils.XmlEncode(tbMetaKeyword.Text)
+                                                            , Utils.XmlEncode(tbMetaDescription.Text));
 
 
                         }
@@ -230,19 +231,19 @@ namespace JXTPortal.Website.Admin
                     {
                         if (langnode.ChildNodes[0].InnerXml == langid.ToString())
                         {
-                            txtMultiTitle.Text = langnode["Title"].InnerXml;
-                            txtMultiFirstName.Text = langnode["FirstName"].InnerXml;
-                            txtMultiLastName.Text = langnode["LastName"].InnerXml;
-                            txtMultiPositionTitle.Text = langnode["PositionTitle"].InnerXml;
-                            txtMultiLocation.Text = langnode["Location"].InnerXml;
-                            txtMultiOfficeLocation.Text = langnode["OfficeLocation"].InnerXml;
-                            txtMultiCategories.Text = langnode["Categories"].InnerXml;
-                            txtMultiShortDescription.Text = langnode["ShortDescription"].InnerXml;
-                            txtMultiFullDescription.Text = langnode["FullDescription"].InnerXml;
-                            txtMultiTestimonial.Text = langnode["Testimonial"].InnerXml;
-                            txtMultiMetaTitle.Text = langnode["MetaTitle"].InnerXml;
-                            txtMultiMetaKeyword.Text = langnode["MetaKeyword"].InnerXml;
-                            txtMultiMetaDescription.Text = langnode["MetaDescription"].InnerXml;
+                            txtMultiTitle.Text =  Server.HtmlDecode(langnode["Title"].InnerXml);
+                            txtMultiFirstName.Text = HttpUtility.HtmlDecode(langnode["FirstName"].InnerXml);
+                            txtMultiLastName.Text = HttpUtility.HtmlDecode(langnode["LastName"].InnerXml);
+                            txtMultiPositionTitle.Text = HttpUtility.HtmlDecode(langnode["PositionTitle"].InnerXml);
+                            txtMultiLocation.Text = HttpUtility.HtmlDecode(langnode["Location"].InnerXml);
+                            txtMultiOfficeLocation.Text = HttpUtility.HtmlDecode(langnode["OfficeLocation"].InnerXml);
+                            txtMultiCategories.Text = HttpUtility.HtmlDecode(langnode["Categories"].InnerXml);
+                            txtMultiShortDescription.Text = HttpUtility.HtmlDecode(langnode["ShortDescription"].InnerXml);
+                            txtMultiFullDescription.Text = HttpUtility.HtmlDecode(langnode["FullDescription"].InnerXml);
+                            txtMultiTestimonial.Text = HttpUtility.HtmlDecode(langnode["Testimonial"].InnerXml);
+                            txtMultiMetaTitle.Text = HttpUtility.HtmlDecode(langnode["MetaTitle"].InnerXml);
+                            txtMultiMetaKeyword.Text = HttpUtility.HtmlDecode(langnode["MetaKeyword"].InnerXml);
+                            txtMultiMetaDescription.Text = HttpUtility.HtmlDecode(langnode["MetaDescription"].InnerXml);
 
                         }
                     }
@@ -292,19 +293,19 @@ namespace JXTPortal.Website.Admin
                                                                     <MetaDescription>{13}</MetaDescription>
                                                                 </Language>"
                                                                 , lang.LanguageId
-                                                                , txtMultiTitle.Text
-                                                                ,txtMultiFirstName.Text
-                                                                ,txtMultiLastName.Text
-                                                                ,txtMultiPositionTitle.Text
-                                                                ,txtMultiLocation.Text
-                                                                ,txtMultiOfficeLocation.Text
-                                                                ,txtMultiCategories.Text
-                                                                ,txtMultiShortDescription.Text
-                                                                ,txtMultiFullDescription.Text
-                                                                ,txtMultiTestimonial.Text
-                                                                ,txtMultiMetaTitle.Text
-                                                                ,txtMultiMetaKeyword.Text
-                                                                ,txtMultiMetaDescription.Text);
+                                                                ,Utils.HtmlEncode(tbTitle.Text)
+                                                                ,Utils.HtmlEncode(tbName.Text)
+                                                                ,Utils.HtmlEncode(tbLastName.Text)
+                                                                ,Utils.HtmlEncode(tbPositionTitle.Text)
+                                                                ,Utils.HtmlEncode(tbLocation.Text)
+                                                                ,Utils.HtmlEncode(tbOfficeLocation.Text)
+                                                                ,Utils.HtmlEncode(tbCategories.Text)
+                                                                ,Utils.HtmlEncode(tbShortDescription.Text)
+                                                                ,Utils.HtmlEncode(tbFullDescription.Text)
+                                                                ,Utils.HtmlEncode(tbTestimonial.Text)
+                                                                ,Utils.HtmlEncode(tbMetaTitle.Text)
+                                                                ,Utils.HtmlEncode(tbMetaKeyword.Text)
+                                                                , Utils.HtmlEncode(tbMetaDescription.Text));
                             }
 
                             consultantxml += "</Languages>";
@@ -511,19 +512,19 @@ namespace JXTPortal.Website.Admin
                             {
                                 if (langnode.ChildNodes[0].InnerXml == e.CommandArgument.ToString())
                                 {
-                                    txtMultiTitle.Text = langnode["Title"].InnerXml;
-                                    txtMultiFirstName.Text = langnode["FirstName"].InnerXml;
-                                    txtMultiLastName.Text = langnode["LastName"].InnerXml;
-                                    txtMultiPositionTitle.Text = langnode["PositionTitle"].InnerXml;
-                                    txtMultiLocation.Text = langnode["Location"].InnerXml;
-                                    txtMultiOfficeLocation.Text = langnode["OfficeLocation"].InnerXml;
-                                    txtMultiCategories.Text = langnode["Categories"].InnerXml;
-                                    txtMultiShortDescription.Text = langnode["ShortDescription"].InnerXml;
-                                    txtMultiFullDescription.Text = langnode["FullDescription"].InnerXml;
-                                    txtMultiTestimonial.Text = langnode["Testimonial"].InnerXml;
-                                    txtMultiMetaTitle.Text = langnode["MetaTitle"].InnerXml;
-                                    txtMultiMetaKeyword.Text = langnode["MetaKeyword"].InnerXml;
-                                    txtMultiMetaDescription.Text = langnode["MetaDescription"].InnerXml;
+                                    txtMultiTitle.Text = Server.HtmlDecode(langnode["Title"].InnerXml);
+                                    txtMultiFirstName.Text = HttpUtility.HtmlDecode(langnode["FirstName"].InnerXml);
+                                    txtMultiLastName.Text = HttpUtility.HtmlDecode(langnode["LastName"].InnerXml);
+                                    txtMultiPositionTitle.Text = HttpUtility.HtmlDecode(langnode["PositionTitle"].InnerXml);
+                                    txtMultiLocation.Text = HttpUtility.HtmlDecode(langnode["Location"].InnerXml);
+                                    txtMultiOfficeLocation.Text = HttpUtility.HtmlDecode(langnode["OfficeLocation"].InnerXml);
+                                    txtMultiCategories.Text = HttpUtility.HtmlDecode(langnode["Categories"].InnerXml);
+                                    txtMultiShortDescription.Text = HttpUtility.HtmlDecode(langnode["ShortDescription"].InnerXml);
+                                    txtMultiFullDescription.Text = HttpUtility.HtmlDecode(langnode["FullDescription"].InnerXml);
+                                    txtMultiTestimonial.Text = HttpUtility.HtmlDecode(langnode["Testimonial"].InnerXml);
+                                    txtMultiMetaTitle.Text = HttpUtility.HtmlDecode(langnode["MetaTitle"].InnerXml);
+                                    txtMultiMetaKeyword.Text = HttpUtility.HtmlDecode(langnode["MetaKeyword"].InnerXml);
+                                    txtMultiMetaDescription.Text = HttpUtility.HtmlDecode(langnode["MetaDescription"].InnerXml);
                                 }
                             }
                         }
@@ -577,21 +578,21 @@ namespace JXTPortal.Website.Admin
                     {
                         if (langnode.ChildNodes[0].InnerXml == langid.ToString())
                         {
-                            langnode["Title"].InnerXml = txtMultiTitle.Text;
-                            langnode["FirstName"].InnerXml = txtMultiFirstName.Text;
-                            langnode["LastName"].InnerXml = txtMultiLastName.Text;
-                            langnode["PositionTitle"].InnerXml = txtMultiPositionTitle.Text;
-                            langnode["Location"].InnerXml = txtMultiLocation.Text;
-                            langnode["OfficeLocation"].InnerXml = txtMultiOfficeLocation.Text;
-                            langnode["Categories"].InnerXml = txtMultiCategories.Text;
-                            langnode["ShortDescription"].InnerXml = txtMultiShortDescription.Text;
-                            langnode["FullDescription"].InnerXml = txtMultiFullDescription.Text;
-                            langnode["Testimonial"].InnerXml = txtMultiTestimonial.Text;
-                            langnode["MetaTitle"].InnerXml = txtMultiMetaTitle.Text;
-                            langnode["MetaKeyword"].InnerXml = txtMultiMetaKeyword.Text;
-                            langnode["MetaDescription"].InnerXml = txtMultiMetaDescription.Text;
+                            langnode["Title"].InnerText =  txtMultiTitle.Text;
+                            langnode["FirstName"].InnerText = txtMultiFirstName.Text;
+                            langnode["LastName"].InnerText = txtMultiLastName.Text;
+                            langnode["PositionTitle"].InnerText = txtMultiPositionTitle.Text;
+                            langnode["Location"].InnerText = txtMultiLocation.Text;
+                            langnode["OfficeLocation"].InnerText = txtMultiOfficeLocation.Text;
+                            langnode["Categories"].InnerText = txtMultiCategories.Text;
+                            langnode["ShortDescription"].InnerText = txtMultiShortDescription.Text;
+                            langnode["FullDescription"].InnerText = txtMultiFullDescription.Text;
+                            langnode["Testimonial"].InnerText = txtMultiTestimonial.Text;
+                            langnode["MetaTitle"].InnerText = txtMultiMetaTitle.Text;
+                            langnode["MetaKeyword"].InnerText = txtMultiMetaKeyword.Text;
+                            langnode["MetaDescription"].InnerText = txtMultiMetaDescription.Text;
 
-                            consultant.ConsultantsXml = langxml.InnerXml.Replace("&rsquo;", "'");
+                            consultant.ConsultantsXml = langxml.InnerXml;
 
                             ConsultantsService.Update(consultant);
 

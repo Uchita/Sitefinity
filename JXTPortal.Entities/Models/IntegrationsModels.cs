@@ -23,6 +23,7 @@ namespace JXTPortal.Entities.Models
             public Salesforce Salesforce { get; set; }
             public Bullhorn Bullhorn { get; set; }
             public BullhornOnBoardingSSO BullhornOnBoardingSSO { get; set; }
+            public Invenias Invenias { get; set; }
         }
 
         [Description("Facebook Settings")]
@@ -208,6 +209,25 @@ namespace JXTPortal.Entities.Models
             public bool Valid { get; set; }
         }
 
+
+        [Description("Invenias Settings")]
+        public class Invenias
+        {
+            [Description("Invenias ClientID")]
+            public string ClientID { get; set; }
+            [Description("Invenias Username")]
+            public string Username { get; set; }
+            [Description("Invenias Password")]
+            public string Password { get; set; }
+            [Description("Invenias REST Token")]
+            [ReadOnly(true)]
+            public string RESTAuthToken { get; set; }
+            [Description("Invenias REST Refresh Token")]
+            [ReadOnly(true)]
+            public string RESTAuthRefreshToken { get; set; }
+            [Description("Enable")]
+            public bool Valid { get; set; }
+        }
 
     }
 

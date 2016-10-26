@@ -47,7 +47,7 @@ namespace JXTPortal
         public List<WorkType> GetTranslatedWorkTypes(int languageID)
         {
             string url = string.Format(xmlprefix,
-                                        System.Web.HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["XMLFilesPath"]),
+                                        ConfigurationManager.AppSettings["XMLFilesPath"],
                                         languageID,
                                         PortalConstants.XMLTranslationFiles.XML_WORKTYPE_FILENAME);
             return XMLLanguageService.Translate(GetAll().ToList(), "WorkTypeId", "WorkTypeName", url);
@@ -56,7 +56,7 @@ namespace JXTPortal
         public WorkType GetTranslatedWorkType(int workTypeID, int languageID)
         {
             string url = string.Format(xmlprefix,
-                                      System.Web.HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["XMLFilesPath"]),
+                                      ConfigurationManager.AppSettings["XMLFilesPath"],
                                       languageID,
                                       PortalConstants.XMLTranslationFiles.XML_WORKTYPE_FILENAME);
             return XMLLanguageService.Translate(GetByWorkTypeId(workTypeID), "WorkTypeId", "WorkTypeName", url);
@@ -66,7 +66,7 @@ namespace JXTPortal
         public string GetTranslatedStringWorkType(int workTypeID, int languageID)
         {
             string url = string.Format(xmlprefix,
-                                          System.Web.HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["XMLFilesPath"]),
+                                          ConfigurationManager.AppSettings["XMLFilesPath"],
                                           languageID,
                                           PortalConstants.XMLTranslationFiles.XML_WORKTYPE_FILENAME);
             return XMLLanguageService.TranslateString(workTypeID, "WorkTypeId", "WorkTypeName", url);

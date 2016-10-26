@@ -220,6 +220,7 @@ $(document).ready( function(){
 	/* Quick links view more btn*/
 	if($("#ctl00_ContentPlaceHolder1_upNavigation").length && $(".quick-links").length){
 		var wrap_height = 1 * $(".quick-links").outerHeight() + 1 * $(".quick-links").css("marginBottom").replace('px', '');
+		wrap_height+= 22;
 		var autoHeight = $("#ctl00_ContentPlaceHolder1_upNavigation").css('height', 'auto').height(); //get auto height
         //only if no. is greater than 4, add height
 		if( $(".quick-links").length > 4 ){

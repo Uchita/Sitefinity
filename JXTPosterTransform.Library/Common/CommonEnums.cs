@@ -50,6 +50,10 @@ namespace JXTPosterTransform.Library.Common
                 PullXmlFromSFTP = 3,
                 [Description("Pull XML from Salesforce (RGF)")]
                 PullXmlFromRGF = 4,
+                [Description("Pull From Invenias")]
+                PullFromInvenias = 5,
+                [Description("Pull Json from URL")]
+                PullJsonFromUrl = 6
             }
 
             public enum Valid : int

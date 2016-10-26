@@ -377,7 +377,7 @@ namespace JXTPortal.Website.members
             // Set Summary
             if (memberWizard.SummaryPoints >= 0 && string.IsNullOrWhiteSpace(member.ShortBio))
             {
-                statusWidgetHtml.Append(@"<span class=""jxt_profile-sec-icon""><a href=""/member/profile.aspx#section-2"" class=""fa fa-file-text-o"" title=""Summary""></a></span>");
+                statusWidgetHtml.Append(@"<span id=""shortbioIcon"" class=""jxt_profile-sec-icon""><a href=""/member/profile.aspx#section-2"" class=""fa fa-file-text-o"" title=""Summary""></a></span>");
             }
 
             // Set Work Experience
@@ -386,7 +386,7 @@ namespace JXTPortal.Website.members
                 using (TList<Entities.MemberPositions> memberpositions = MemberPositionsService.GetByMemberId(SessionData.Member.MemberId))
                 {
                     if (memberpositions.Count == 0)
-                        statusWidgetHtml.Append(@"<span class=""jxt_profile-sec-icon""><a href=""/member/profile.aspx#section-4"" class=""fa fa-briefcase"" title=""Experience""></a></span>");
+                        statusWidgetHtml.Append(@"<span id=""positionIcon"" class=""jxt_profile-sec-icon""><a href=""/member/profile.aspx#section-4"" class=""fa fa-briefcase"" title=""Experience""></a></span>");
                 }
             }
 
@@ -396,14 +396,14 @@ namespace JXTPortal.Website.members
                 using (TList<Entities.MemberQualification> membereducations = MemberQualificationService.GetByMemberId(SessionData.Member.MemberId))
                 {
                     if (membereducations.Count == 0)
-                        statusWidgetHtml.Append(@"<span class=""jxt_profile-sec-icon""><a href=""/member/profile.aspx#section-5"" class=""fa fa-pencil"" title=""Education""></a></span>");
+                        statusWidgetHtml.Append(@"<span id=""qualificationIcon"" class=""jxt_profile-sec-icon""><a href=""/member/profile.aspx#section-5"" class=""fa fa-pencil"" title=""Education""></a></span>");
                 }
             }
 
             // Set Skills
             if (memberWizard.SkillsPoints >= 0 && string.IsNullOrEmpty(member.Skills))
             {
-                statusWidgetHtml.Append(@"<span class=""jxt_profile-sec-icon""><a href=""/member/profile.aspx#section-Skills"" class=""fa fa-trophy"" title=""Skills""></a></span>");
+                statusWidgetHtml.Append(@"<span id=""skillsIcon"" class=""jxt_profile-sec-icon""><a href=""/member/profile.aspx#section-Skills"" class=""fa fa-trophy"" title=""Skills""></a></span>");
             }
 
             // Set Certifications & Memberships
@@ -412,7 +412,7 @@ namespace JXTPortal.Website.members
                 using (TList<Entities.MemberCertificateMemberships> membercertificates = MemberCertificateMembershipsService.GetByMemberId(SessionData.Member.MemberId))
                 {
                     if (membercertificates.Count == 0)
-                        statusWidgetHtml.Append(@"<span class=""jxt_profile-sec-icon""><a href=""/member/profile.aspx#section-7"" class=""fa fa-user"" title=""Certifications & Memberships""></a></span>");
+                        statusWidgetHtml.Append(@"<span id=""certIcon"" class=""jxt_profile-sec-icon""><a href=""/member/profile.aspx#section-7"" class=""fa fa-user"" title=""Certifications & Memberships""></a></span>");
                 }
             }
 
@@ -422,7 +422,7 @@ namespace JXTPortal.Website.members
                 using (TList<Entities.MemberLicenses> memberlicenses = MemberLicensesService.GetByMemberId(SessionData.Member.MemberId))
                 {
                     if (memberlicenses.Count == 0)
-                        statusWidgetHtml.Append(@"<span class=""jxt_profile-sec-icon""><a href=""/member/profile.aspx#section-8"" class=""fa fa-user"" title=""Licenses""></a></span>");
+                        statusWidgetHtml.Append(@"<span id=""licenseIcon"" class=""jxt_profile-sec-icon""><a href=""/member/profile.aspx#section-8"" class=""fa fa-user"" title=""Licenses""></a></span>");
                 }
             }
 
@@ -430,7 +430,7 @@ namespace JXTPortal.Website.members
             if (memberWizard.RolePreferencesPoints >= 0)
             {
                 if (member.LocationId == null || member.PreferredCategoryId == null || member.PreferredSubCategoryId == null || member.PreferredSalaryId == null)
-                    statusWidgetHtml.Append(@"<span class=""jxt_profile-sec-icon""><a href=""/member/profile.aspx#section-9"" class=""fa fa-heart-o"" title=""Roles""></a></span>");
+                    statusWidgetHtml.Append(@"<span id=""rolePrefIcon"" class=""jxt_profile-sec-icon""><a href=""/member/profile.aspx#section-9"" class=""fa fa-heart-o"" title=""Roles""></a></span>");
             }
 
             // Set Attach Resume
@@ -441,7 +441,7 @@ namespace JXTPortal.Website.members
                     resumes.Filter = "DocumentTypeId = 2";
 
                     if (resumes.Count == 0)
-                        statusWidgetHtml.Append(@"<span class=""jxt_profile-sec-icon""><a href=""/member/profile.aspx#section-AttachResume"" class=""fa fa-file-text-o"" title=""Attach Resume""></a></span>");
+                        statusWidgetHtml.Append(@"<span id=""resumeIcon"" class=""jxt_profile-sec-icon""><a href=""/member/profile.aspx#section-AttachResume"" class=""fa fa-file-text-o"" title=""Attach Resume""></a></span>");
                 }
             }
             // Set Attach Coverletter
@@ -452,7 +452,7 @@ namespace JXTPortal.Website.members
                     coverletters.Filter = "DocumentTypeId = 1";
 
                     if (coverletters.Count == 0)
-                        statusWidgetHtml.Append(@"<span class=""jxt_profile-sec-icon""><a href=""/member/profile.aspx#section-AttachCoverletter"" class=""fa fa-file-text-o"" title=""Attach Cover Letter""></a></span>");
+                        statusWidgetHtml.Append(@"<span id=""coverLetterIcon"" class=""jxt_profile-sec-icon""><a href=""/member/profile.aspx#section-AttachCoverletter"" class=""fa fa-file-text-o"" title=""Attach Cover Letter""></a></span>");
                 }
             }
 
@@ -462,7 +462,7 @@ namespace JXTPortal.Website.members
                 using (TList<Entities.MemberLanguages> memberlanguages = MemberLanguagesService.GetByMemberId(member.MemberId))
                 {
                     if (memberlanguages.Count == 0)
-                        statusWidgetHtml.Append(@"<span class=""jxt_profile-sec-icon""><a href=""/member/profile.aspx#sec-Languages"" class=""fa fa-commenting-o"" title=""Languages""></a></span>");
+                        statusWidgetHtml.Append(@"<span id=""langIcon"" class=""jxt_profile-sec-icon""><a href=""/member/profile.aspx#sec-Languages"" class=""fa fa-commenting-o"" title=""Languages""></a></span>");
                 }
             }
 
@@ -472,7 +472,7 @@ namespace JXTPortal.Website.members
                 using (TList<Entities.MemberReferences> memberreferences = MemberReferencesService.GetByMemberId(member.MemberId))
                 {
                     if (memberreferences.Count == 0)
-                        statusWidgetHtml.Append(@"<span class=""jxt_profile-sec-icon""><a href=""/member/profile.aspx#section-13"" class=""fa fa-commenting-o"" title=""References""></a></span>");
+                        statusWidgetHtml.Append(@"<span id=""referenceIcon"" class=""jxt_profile-sec-icon""><a href=""/member/profile.aspx#section-13"" class=""fa fa-commenting-o"" title=""References""></a></span>");
                 }
             }
 
@@ -480,7 +480,7 @@ namespace JXTPortal.Website.members
             if (memberWizard.CustomQuestionPoints >= 0)
             {
                 if (string.IsNullOrEmpty(memberWizard.CustomQuestionsXml))
-                    statusWidgetHtml.Append(@"<span class=""jxt_profile-sec-icon""><a href=""/member/profile.aspx#section-14"" class=""fa fa-user"" title=""Custom Question""></a></span>");
+                    statusWidgetHtml.Append(@"<span id=""customQuestionIcon"" class=""jxt_profile-sec-icon""><a href=""/member/profile.aspx#section-14"" class=""fa fa-user"" title=""Custom Question""></a></span>");
             }
 
             // Set Directorship
@@ -491,7 +491,7 @@ namespace JXTPortal.Website.members
                     memberpositions.Filter = "isDirectorship = true";
 
                     if (memberpositions.Count == 0)
-                        statusWidgetHtml.Append(@"<span class=""jxt_profile-sec-icon""><a href=""/member/profile.aspx#section-15"" class=""fa fa-user"" title=""Directorships""></a></span>");
+                        statusWidgetHtml.Append(@"<span id=""directorshipIcon"" class=""jxt_profile-sec-icon""><a href=""/member/profile.aspx#section-15"" class=""fa fa-user"" title=""Directorships""></a></span>");
                 }
             }
 

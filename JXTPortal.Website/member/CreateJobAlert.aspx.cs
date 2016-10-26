@@ -92,6 +92,17 @@ namespace JXTPortal.Website.members
             }
         }
 
+        private GlobalSettingsService _globalSettingsService;
+        private GlobalSettingsService GlobalSettingsService
+        {
+            get
+            {
+                if (_globalSettingsService == null)
+                    _globalSettingsService = new GlobalSettingsService();
+                return _globalSettingsService;
+            }
+        }
+
         #endregion
 
         protected void Page_Init(object sender, EventArgs e)
@@ -374,6 +385,16 @@ namespace JXTPortal.Website.members
                         objMembers.EmailFormat = (int)PortalEnums.Email.EmailFormat.HTML;
                         objMembers.Username = CommonService.EncodeString(tbEmail.Text);
                         objMembers.CountryId = 1;
+
+                        TList<GlobalSettings> service = GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId);
+                        if (service.Count > 0)
+                        {
+                            if (service[0].DefaultCountryId.HasValue)
+                            {
+                                objMembers.CountryId = service[0].DefaultCountryId.Value;
+                            }
+                        }
+
                         objMembers.ValidateGuid = Guid.NewGuid();
                         objMembers.ReferringSiteId = SessionData.Site.SiteId;
                         objMembers.SearchField = String.Format("{0} {1}",
@@ -387,7 +408,7 @@ namespace JXTPortal.Website.members
 
                         //Send member registration alert email to admin
                         if (!string.IsNullOrEmpty(SessionData.Site.MemberRegistrationNotificationEmail))
-                            MailService.SendMemberRegistrationToSiteAdmin(objMembers, null, SessionData.Site.MemberRegistrationNotificationEmail);
+                            MailService.SendMemberRegistrationToSiteAdmin(objMembers, string.Empty , string.Empty, null, SessionData.Site.MemberRegistrationNotificationEmail);
 
                         jobAlert.MemberId = objMembers.MemberId;
                         jobAlert.EmailFormat = (int)PortalEnums.Email.EmailFormat.HTML;

@@ -768,7 +768,16 @@ namespace JXTPortal.Website.members
                         objMembers.EmailFormat = (int)PortalEnums.Email.EmailFormat.HTML;
                         objMembers.Username = tbEmail.Text;
                         objMembers.CountryId = 1;
-                        
+
+                        TList<GlobalSettings> service = GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId);
+                        if (service.Count > 0)
+                        {
+                            if (service[0].DefaultCountryId.HasValue)
+                            {
+                                objMembers.CountryId = service[0].DefaultCountryId.Value;
+                            }
+                        }
+
                         objMembers.ValidateGuid = Guid.NewGuid();
                         objMembers.SearchField = String.Format("{0} {1}",
                                                    objMembers.FirstName,

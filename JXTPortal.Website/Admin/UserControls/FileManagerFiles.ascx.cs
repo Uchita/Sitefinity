@@ -712,10 +712,23 @@ namespace JXTPortal.Website.Admin.UserControls
 
                     hfFileURL.Value = string.Format("http://{0}{1}{2}/{3}", SiteUrl, uri.AbsolutePath, hfCurrentPath.Value, entry.Name);
                 }
+
                 // ltlModified
                 if (entry.Name != "..." && !entry.IsDirectory)
                 {
-                    ltlModified.Text = string.Format("{0} {1}", entry.CreateTime.ToString("MMM dd"), entry.CreateTime.ToLongTimeString());
+                    string errormessage = string.Empty;
+                    FtpClient ftpclient = new FtpClient();
+                    ftpclient.Host = FTPHostUrl;
+                    ftpclient.Username = username;
+                    ftpclient.Password = password;
+                    ftpclient.ChangeDirectory(hfCurrentPath.Value, out errormessage);
+
+                    DateTime? lastmodified = ftpclient.GetDateTimestamp(btnFileLink.CommandArgument, out errormessage);
+
+                    if (lastmodified.HasValue)
+                    {
+                        ltlModified.Text = string.Format("{0} {1}", lastmodified.Value.ToString(SessionData.Site.DateFormat), lastmodified.Value.ToLongTimeString());
+                    }
                 }
                 hfIsFolder.Value = entry.IsDirectory.ToString();
 

@@ -29,6 +29,8 @@ namespace JXTPortal.Website.Admin.UserControls
     {
         #region Declaration
 
+        public string MapKey = null;
+
         private int _jobID;
         private int _advertiserid = 0;
         private int _pending = 0;
@@ -636,6 +638,7 @@ namespace JXTPortal.Website.Admin.UserControls
 
             if (!Page.IsPostBack)
             {
+                LoadGoogleMapJS();
                 LoadJobType();
                 LoadApplicationMethod();
                 LoadWorkType();
@@ -679,6 +682,21 @@ namespace JXTPortal.Website.Admin.UserControls
                 JXTPortal.Entities.SiteLanguages sitelang = e.Item.DataItem as JXTPortal.Entities.SiteLanguages;
                 ucJobFieldsMultiLingual.LanguageID = sitelang.LanguageId.ToString();
                 ucJobFieldsMultiLingual.LanguageText = sitelang.SiteLanguageName.ToString();
+            }
+        }
+
+        private void LoadGoogleMapJS()
+        {
+            AdminIntegrations.Integrations integrations = IntegrationsService.AdminIntegrationsForSiteGet(SessionData.Site.SiteId);
+
+            if (integrations != null && integrations.GoogleMap != null)
+            {
+                //only assign anything to the geocode and address status if there is a server key in the integrations of the site
+                if (!string.IsNullOrWhiteSpace(integrations.GoogleMap.ServerKey) && integrations.GoogleMap.Valid)
+                {
+                    //set key for ascx use
+                    MapKey = integrations.GoogleMap.ServerKey;
+                }
             }
         }
 
@@ -1946,7 +1964,6 @@ namespace JXTPortal.Website.Admin.UserControls
 
             if (integrations != null && integrations.GoogleMap != null)
             {
-
                 //only assign anything to the geocode and address status if there is a server key in the integrations of the site
                 if (!string.IsNullOrWhiteSpace(integrations.GoogleMap.ServerKey) && integrations.GoogleMap.Valid)
                 {

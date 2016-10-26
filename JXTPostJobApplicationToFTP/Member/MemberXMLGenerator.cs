@@ -119,7 +119,7 @@ namespace JXTPostJobApplicationToFTP
                         }
                     }
 
-                    DataRow[] drValidatedMembers = dtMembers.Select("Validate=1");
+                    DataRow[] drValidatedMembers = dtMembers.Select("Validated=1");
 
                     Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Number of Members: " + drValidatedMembers.Count().ToString());
 

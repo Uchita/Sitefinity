@@ -15,7 +15,7 @@
     <script type="text/javascript" src="/admin/js/jquery.js"></script>
     <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="/scripts/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
-    <script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=false&v=3.exp&signed_in=true&libraries=places"></script>
+    <asp:Literal runat="server" ID="ltGoogleMapJSHeader"></asp:Literal>
 </head>
 <body id="topper">
     <input type="text" id="tempInput" style="opacity: 0;" />

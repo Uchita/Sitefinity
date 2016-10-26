@@ -109,6 +109,8 @@
                     <div class="form-buttons-wrapper">
                         <asp:Button ID="btnEditSave" runat="server" Text="Update" OnClick="btnEditSave_Click"
                             CssClass="form-submit-button" />
+                       <asp:Button ID="btnExportAsJSON" runat="server" Text="Export as JSON"
+                            CssClass="form-submit-button" onclick="btnExportAsJSON_Click" />
                         <asp:Button ID="btnReturn" runat="server" Text="Return" OnClick="btnReturn_Click"
                             CssClass="form-submit-button" CausesValidation="false" />
                     </div>

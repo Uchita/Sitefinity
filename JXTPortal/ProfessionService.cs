@@ -82,7 +82,7 @@ namespace JXTPortal
                 string xmlprefix = "{0}{2}_{3}_{1}.xml";
 
                 string url = string.Format(xmlprefix,
-                                        System.Web.HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["XMLFilesPath"]),
+                                        ConfigurationManager.AppSettings["XMLFilesPath"],
                                         Convert.ToInt32(languageid),
                                         PortalConstants.XMLTranslationFiles.XML_CUSTOMPROFESSION_FILENAME, SessionData.Site.SiteId);
 
@@ -92,7 +92,7 @@ namespace JXTPortal
             {
                 string xmlprefix = "{0}{2}_{1}.xml";
                 string url = string.Format(xmlprefix,
-                                        System.Web.HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["XMLFilesPath"]),
+                                        ConfigurationManager.AppSettings["XMLFilesPath"],
                                         languageid,
                                         PortalConstants.XMLTranslationFiles.XML_PROFESSION_FILENAME);
 

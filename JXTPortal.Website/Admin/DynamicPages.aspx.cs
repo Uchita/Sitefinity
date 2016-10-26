@@ -97,7 +97,7 @@ $(function() {
             string strPageLink = string.Empty;
 
             // Order by Sequence
-            DynamicPagesList.Sort("Sequence");
+            DynamicPagesList.Sort("Sequence, PageTitle");
 
             using (TList<JXTPortal.Entities.DynamicPages> DynamicPagesList_1 = DynamicPagesList)
             {

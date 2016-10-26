@@ -806,7 +806,7 @@ namespace JXTPortal.Website.Admin
                 Repeater rptProfession = ri.FindControl("rptProfession") as Repeater;
 
                 string url = string.Format(xmlprefix,
-                                        System.Web.HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["XMLFilesPath"]),
+                                        ConfigurationManager.AppSettings["XMLFilesPath"],
                                         Convert.ToInt32(hfLanguageID.Value),
                                         PortalConstants.XMLTranslationFiles.XML_CUSTOMPROFESSION_FILENAME, SessionData.Site.SiteId);
                 XmlTextWriter writer = new XmlTextWriter(url, null);
@@ -845,7 +845,7 @@ namespace JXTPortal.Website.Admin
             Repeater rptRoles = ri.FindControl("rptRoles") as Repeater;
 
             string url = string.Format(xmlprefix,
-                                    System.Web.HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["XMLFilesPath"]),
+                                    ConfigurationManager.AppSettings["XMLFilesPath"],
                                      Convert.ToInt32(hfLanguageID.Value),
                                     PortalConstants.XMLTranslationFiles.XML_CUSTOMROLE_FILENAME, professionID, SessionData.Site.SiteId);
 

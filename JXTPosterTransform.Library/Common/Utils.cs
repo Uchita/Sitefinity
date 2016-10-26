@@ -100,6 +100,12 @@ namespace JXTPosterTransform.Library.Common
             return objTextStream.ReadToEnd();
         }
 
+        public static string GetJsonFromUrl(string strURL)
+        {
+            //same as XML method anyway
+            return GetXMLFromUrl(strURL);
+        }
+
         public static string GetXMLFromFileSystem(string strXML)
         {
             XDocument xDocument = XDocument.Load(XmlReader.Create(strXML));

@@ -117,7 +117,7 @@ namespace JXTPortal.Website.Admin
                     }
                 }
 
-                string url = string.Format(xmlprefix, Server.MapPath(ConfigurationManager.AppSettings["XMLFilesPath"]), ddlLanguage.SelectedValue,
+                string url = string.Format(xmlprefix, ConfigurationManager.AppSettings["XMLFilesPath"], ddlLanguage.SelectedValue,
                                             PortalConstants.XMLTranslationFiles.XML_EDUCATIONS_FILENAME);
 
                 if (File.Exists(url))
@@ -148,7 +148,7 @@ namespace JXTPortal.Website.Admin
 
         private void WriteEducationsXML()
         {
-            string url = string.Format(xmlprefix, Server.MapPath(ConfigurationManager.AppSettings["XMLFilesPath"]), ddlLanguage.SelectedValue,
+            string url = string.Format(xmlprefix, ConfigurationManager.AppSettings["XMLFilesPath"], ddlLanguage.SelectedValue,
                                             PortalConstants.XMLTranslationFiles.XML_EDUCATIONS_FILENAME);
             XmlTextWriter writer = new XmlTextWriter(url, null);
             writer.Formatting = Formatting.Indented;

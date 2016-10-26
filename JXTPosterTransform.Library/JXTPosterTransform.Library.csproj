@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -51,12 +55,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="APIs\Invenias\InveniasModels.cs" />
+    <Compile Include="APIs\Invenias\InveniasRESTAPI.cs" />
     <Compile Include="Common\CommonEnums.cs" />
     <Compile Include="Common\ResponseClass.cs" />
     <Compile Include="Common\SFTPClient.cs" />
     <Compile Include="Common\FTPClient.cs" />
     <Compile Include="Common\Utils.cs" />
     <Compile Include="Methods\Client\PullJsonFromRGF.cs" />
+    <Compile Include="Methods\PullJsonFromURL.cs" />
+    <Compile Include="Methods\PullFromInvenias.cs" />
     <Compile Include="Methods\PullXMLFromSFTP.cs" />
     <Compile Include="Methods\PullXMLFromFTP.cs" />
     <Compile Include="Methods\PullXMLFromURL.cs" />

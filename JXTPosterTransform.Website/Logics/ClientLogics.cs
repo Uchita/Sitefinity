@@ -272,6 +272,12 @@ namespace JXTPosterTransform.Website.Logics
                         case PTCommonEnums.ClientSetup.ClientSetupType.PullXmlFromRGF:
                             thisSetupDetails.PullXmlRGF = jss.Deserialize<ClientSetupModels.PullXmlFromSalesforceRGF>(setup.ClientSetupTypeCredentials);
                             break;
+                        case PTCommonEnums.ClientSetup.ClientSetupType.PullFromInvenias:
+                            thisSetupDetails.PullFromInvenias = jss.Deserialize<ClientSetupModels.PullFromInvenias>(setup.ClientSetupTypeCredentials);
+                            break;
+                        case PTCommonEnums.ClientSetup.ClientSetupType.PullJsonFromUrl:
+                            thisSetupDetails.PullJsonFromUrl = jss.Deserialize<ClientSetupModels.PullJsonFromUrl>(setup.ClientSetupTypeCredentials);
+                            break;
                         default:
                             break;
                     }
@@ -308,6 +314,12 @@ namespace JXTPosterTransform.Website.Logics
                     break;
                 case PTCommonEnums.ClientSetup.ClientSetupType.PullXmlFromRGF:
                     setupTypeCredentials = jss.Serialize(setupDetails.PullXmlRGF);
+                    break;
+                case PTCommonEnums.ClientSetup.ClientSetupType.PullFromInvenias:
+                    setupTypeCredentials = jss.Serialize(setupDetails.PullFromInvenias);
+                    break;
+                case PTCommonEnums.ClientSetup.ClientSetupType.PullJsonFromUrl:
+                    setupTypeCredentials = jss.Serialize(setupDetails.PullJsonFromUrl);
                     break;
                 default:
                     break;

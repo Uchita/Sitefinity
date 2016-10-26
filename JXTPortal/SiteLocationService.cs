@@ -52,7 +52,7 @@ namespace JXTPortal
         public List<SiteLocation> GetTranslatedLocationsByCountryID(int countryID, int languageID)
         {
             string url = string.Format(xmlprefix,
-                                        System.Web.HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["XMLFilesPath"]),
+                                        ConfigurationManager.AppSettings["XMLFilesPath"],
                                         languageID,
                                         PortalConstants.XMLTranslationFiles.XML_SITELOCATION_FILENAME, countryID, SessionData.Site.SiteId);
             
@@ -76,7 +76,7 @@ namespace JXTPortal
                 loc = siteloc[0];
 
                 string url = string.Format(xmlprefix,
-                                          System.Web.HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["XMLFilesPath"]),
+                                          ConfigurationManager.AppSettings["XMLFilesPath"],
                                           languageID,
                                           PortalConstants.XMLTranslationFiles.XML_SITELOCATION_FILENAME, CountryID, SessionData.Site.SiteId);
                 return XMLLanguageService.Translate(loc, "LocationId", "SiteLocationName", url);

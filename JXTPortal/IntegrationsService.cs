@@ -117,6 +117,11 @@ namespace JXTPortal
                         bhsso.Valid = thisIntegration.Valid;
                         returnModel.BullhornOnBoardingSSO = bhsso;
                         break;
+                    case PortalEnums.SocialMedia.SocialMediaType.Invenias:
+                        AdminIntegrations.Invenias invenias = ser.Deserialize(jsonToDeser, typeof(AdminIntegrations.Invenias)) as AdminIntegrations.Invenias;
+                        invenias.Valid = thisIntegration.Valid;
+                        returnModel.Invenias = invenias;
+                        break;
                     default:
                         break;
                 }
@@ -171,6 +176,29 @@ namespace JXTPortal
             return true;
         }
 
+        public bool InveniasTokenUpdate(int siteID, string accessToken, string refreshToken)
+        {
+            Entities.Integrations InveniasIntegration = GetBySiteId(siteID).Where(c => c.IntegrationType == (int)PortalEnums.SocialMedia.SocialMediaType.Invenias).FirstOrDefault();
+
+            if (InveniasIntegration == null)
+                return false;
+
+            string jsonToDeser = InveniasIntegration.JsonText;
+            JavaScriptSerializer ser = new JavaScriptSerializer();
+            AdminIntegrations.Invenias inv = ser.Deserialize(jsonToDeser, typeof(AdminIntegrations.Invenias)) as AdminIntegrations.Invenias;
+
+            inv.RESTAuthToken = accessToken;
+            if( refreshToken != null ) 
+                inv.RESTAuthRefreshToken = refreshToken;
+
+            string newInv = ser.Serialize(inv);
+
+            InveniasIntegration.JsonText = newInv;
+
+            base.Update(InveniasIntegration);
+
+            return true;
+        }
 
 	}//End Class
 

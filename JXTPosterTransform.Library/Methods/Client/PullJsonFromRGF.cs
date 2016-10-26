@@ -167,16 +167,23 @@ namespace JXTPosterTransform.Library.Methods.Client
                         }
                         #endregion
 
-                        #region Short Description
+                        #region Long/Short Description Override
 
-                        strContent = string.Empty;
-                        strContent = Common.Utils.StripHTML(d.jobAdvertisement);
-                        if (strContent.Length > trimLength)
+                        if (string.IsNullOrEmpty(d.jobAdvertisement))
                         {
-                            strContent = strContent.Substring(0, trimLength - 3) + "...";
+                            d.jobAdvertisement = "Please click on Apply to find out more details from our consultant.";
+                            d.shortDescription = "Please click on Apply to find out more the details from our consultant.";
                         }
-                        d.shortDescription = strContent; // New tag
-
+                        else
+                        {
+                            strContent = string.Empty;
+                            strContent = Common.Utils.StripHTML(d.jobAdvertisement);
+                            if (strContent.Length > trimLength)
+                            {
+                                strContent = strContent.Substring(0, trimLength - 3) + "...";
+                            }
+                            d.shortDescription = strContent; // New tag
+                        }
                         #endregion
 
                         #region Job Title

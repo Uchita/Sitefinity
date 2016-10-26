@@ -352,9 +352,9 @@
 
         function FileAlreadyExists() {
             var found = false;
-            $('#file-browser2 .droppable .span4 a').each(function () {
 
-                if ($('#ctl00_ContentPlaceHolder1_fileUpload').val().match("\\" + $(this).html() + "$")) {
+            $('#file-browser2 .droppable .span4 a').each(function () {
+                if ($('#ctl00_ContentPlaceHolder1_fileUpload').val().endsWith("\\" + $(this).html())) {
                     $.blockUI.defaults.blockMsgClass = 'blockUI-loading';
                     $.blockUI({
                         onOverlayClick: $.unblockUI,

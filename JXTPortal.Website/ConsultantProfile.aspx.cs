@@ -52,6 +52,8 @@ namespace JXTPortal.Website
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Form.Action = Request.RawUrl;
+
             if (!string.IsNullOrWhiteSpace(ConsultantName))
             {
                 int count = 0;
@@ -90,19 +92,19 @@ namespace JXTPortal.Website
                         {
                             if (langnode.ChildNodes[0].InnerXml == SessionData.Language.LanguageId.ToString())
                             {
-                                MultiTitle = langnode["Title"].InnerXml;
-                                MultiFirstName = langnode["FirstName"].InnerXml;
-                                MultiLastName = langnode["LastName"].InnerXml;
-                                MultiPositionTitle = langnode["PositionTitle"].InnerXml;
-                                MultiLocation = langnode["Location"].InnerXml;
-                                MultiOfficeLocation = langnode["OfficeLocation"].InnerXml;
-                                MultiCategories = langnode["Categories"].InnerXml;
-                                MultiShortDescription = langnode["ShortDescription"].InnerXml;
-                                MultiFullDescription = langnode["FullDescription"].InnerXml;
-                                MultiTestimonial = langnode["Testimonial"].InnerXml;
-                                MultiMetaTitle = langnode["MetaTitle"].InnerXml;
-                                MultiMetaKeyword = langnode["MetaKeyword"].InnerXml;
-                                MultiMetaDescription = langnode["MetaDescription"].InnerXml;
+                                MultiTitle = langnode["Title"].InnerText;
+                                MultiFirstName = langnode["FirstName"].InnerText;
+                                MultiLastName = langnode["LastName"].InnerText;
+                                MultiPositionTitle = langnode["PositionTitle"].InnerText;
+                                MultiLocation = langnode["Location"].InnerText;
+                                MultiOfficeLocation = langnode["OfficeLocation"].InnerText;
+                                MultiCategories = langnode["Categories"].InnerText;
+                                MultiShortDescription = langnode["ShortDescription"].InnerText;
+                                MultiFullDescription = langnode["FullDescription"].InnerText;
+                                MultiTestimonial = langnode["Testimonial"].InnerText;
+                                MultiMetaTitle = langnode["MetaTitle"].InnerText;
+                                MultiMetaKeyword = langnode["MetaKeyword"].InnerText;
+                                MultiMetaDescription = langnode["MetaDescription"].InnerText;
 
                                 break;
                             }

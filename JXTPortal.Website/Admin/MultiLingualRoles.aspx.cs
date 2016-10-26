@@ -166,7 +166,7 @@ namespace JXTPortal.Website.Admin
                 string xmlprefix = "{0}{2}_{4}_{1}_{3}.xml";
 
                 url = string.Format(xmlprefix,
-                                    System.Web.HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["XMLFilesPath"]),
+                                    ConfigurationManager.AppSettings["XMLFilesPath"],
                                      Convert.ToInt32(ddlLanguage.SelectedValue),
                                     PortalConstants.XMLTranslationFiles.XML_CUSTOMROLE_FILENAME, Convert.ToInt32(ddlProfession.SelectedValue), SessionData.Site.SiteId);
             }
@@ -174,7 +174,7 @@ namespace JXTPortal.Website.Admin
             {
                 string xmlprefix = "{0}{2}_{1}_{3}.xml";
 
-               url = string.Format(xmlprefix, Server.MapPath(ConfigurationManager.AppSettings["XMLFilesPath"]), ddlLanguage.SelectedValue,
+               url = string.Format(xmlprefix, ConfigurationManager.AppSettings["XMLFilesPath"], ddlLanguage.SelectedValue,
                                             PortalConstants.XMLTranslationFiles.XML_ROLE_FILENAME, Convert.ToInt32(ddlProfession.SelectedValue));
             }
 

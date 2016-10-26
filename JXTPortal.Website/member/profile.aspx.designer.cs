@@ -526,6 +526,24 @@ namespace JXTPortal.Website.member {
         protected global::System.Web.UI.WebControls.TextBox memberavailableDate;
         
         /// <summary>
+        /// phProfileAvailDateError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phProfileAvailDateError;
+        
+        /// <summary>
+        /// UcLanguageLiteral180 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral180;
+        
+        /// <summary>
         /// lbProfileSave control.
         /// </summary>
         /// <remarks>
@@ -6511,6 +6529,24 @@ namespace JXTPortal.Website.member {
         protected global::System.Web.UI.WebControls.TextBox tbReferencesAddPhone;
         
         /// <summary>
+        /// phReferencesAddPhoneError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phReferencesAddPhoneError;
+        
+        /// <summary>
+        /// UcLanguageLiteral185 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral185;
+        
+        /// <summary>
         /// Label106 control.
         /// </summary>
         /// <remarks>
@@ -6581,6 +6617,24 @@ namespace JXTPortal.Website.member {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbReferencesAddEmail;
+        
+        /// <summary>
+        /// phReferencesAddEmailRequiredError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phReferencesAddEmailRequiredError;
+        
+        /// <summary>
+        /// UcLanguageLiteral183 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral183;
         
         /// <summary>
         /// phReferencesAddEmailError control.

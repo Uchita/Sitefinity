@@ -114,7 +114,7 @@ namespace JXTPortal.Website.Admin
                     }
                 }
 
-                string url = string.Format(xmlprefix, Server.MapPath(ConfigurationManager.AppSettings["XMLFilesPath"]), ddlLanguage.SelectedValue,
+                string url = string.Format(xmlprefix, ConfigurationManager.AppSettings["XMLFilesPath"], ddlLanguage.SelectedValue,
                                             PortalConstants.XMLTranslationFiles.XML_ADVERTISERBUSINESSTYPE_FILENAME);
 
                 if (File.Exists(url))
@@ -145,7 +145,7 @@ namespace JXTPortal.Website.Admin
 
         private void WriteBusinessTypeXML()
         {
-            string url = string.Format(xmlprefix, Server.MapPath(ConfigurationManager.AppSettings["XMLFilesPath"]), ddlLanguage.SelectedValue,
+            string url = string.Format(xmlprefix, ConfigurationManager.AppSettings["XMLFilesPath"], ddlLanguage.SelectedValue,
                                             PortalConstants.XMLTranslationFiles.XML_ADVERTISERBUSINESSTYPE_FILENAME);
 
             XmlTextWriter writer = new XmlTextWriter(url, null);

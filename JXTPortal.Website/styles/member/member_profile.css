@@ -158,7 +158,7 @@ h2 span, h3 span { display: inline-block;}
 
 .section-title,
 .form-title {
-    font-size: 26px;
+    font-size: 25px;
     margin-bottom:0;
 }
 
@@ -236,6 +236,9 @@ display: inline-block;
     margin-bottom: 2px;
     position: static;
     white-space: nowrap;
+}
+#CV-content .question_wrap label{
+    white-space: normal;
 }
 #CV-content .form-line .form-required{
     top: 0;
@@ -483,6 +486,18 @@ option[value="0"] {
     margin-right: 10px;
     width: 25px;
 }
+.headingInfo{
+    font-size: 18px;
+    opacity: 0.9;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    border: none;
+    background: none;
+}
+
+.section-header h2 .headingInfo{
+    margin-right: 0;
+}
 
 .form-title {
     margin-bottom: 20px;
@@ -598,6 +613,10 @@ header.section-header{
 .has-edit-icon * {
     float: left;
 }
+.has-edit-icon .fa-info-circle{
+    float: none;
+}
+
 .has-edit-icon h4
 {
     max-width:85%;
@@ -958,9 +977,12 @@ textarea.form-control {
 .info_graphic {
     position: relative;
     max-width: 400px;
-    margin: 0px auto;
+    margin: 0px auto 10px;
 }
-
+/* on release of this feature, this need to be displayed */
+#profileSubmittedDate{
+    display: none;
+}
 .profile_status_info_wrap {
     width: 100%;
     height: 100%;
@@ -1055,6 +1077,10 @@ textarea.form-control {
 
 
 /* Quick links */
+#ctl00_ContentPlaceHolder1_upNavigation .section-title{
+    margin-bottom: 10px;
+}
+
 
 #quick-links-wrap {
     opacity: 0;
@@ -1180,7 +1206,7 @@ textarea.form-control {
 /* Personal detail section */
 
 #section-2 {
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 #section-2 .section-content{
     padding-top: 20px;

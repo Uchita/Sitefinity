@@ -425,12 +425,22 @@ ExceptionID: {4}",
                 LastModifiedDate = (string)c.Element("LastModifiedDate")            // Job application id used for getting the last modified date
             });
 
+            
             foreach (SitesXML sitexml in siteXMLList)
             {
                 try
                 {
                     int siteID = sitexml.SiteId;
                     DateTime lastRun = (string.IsNullOrEmpty(sitexml.LastModifiedDate) ? new DateTime(2012, 1, 1) : Convert.ToDateTime(sitexml.LastModifiedDate));
+
+                    string dateformat = "dd/MM/yyyy";
+                    using (TList<GlobalSettings> gslist = new GlobalSettingsService().GetBySiteId(siteID))
+                    {
+                        if (gslist.Count > 0)
+                        {
+                            dateformat = gslist[0].GlobalDateFormat;
+                        }
+                    }
                     
                     //load references
                     SiteSettingReferences siteRefs = SiteSettingReferencesGet(siteID);
@@ -472,8 +482,11 @@ ExceptionID: {4}",
                         DataRow[] thisMemberLanguages = dtMemberLanguages.Select("MemberID=" + thisMemberID);
                         DataRow[] thisMemberReferences = dtMemberReferences.Select("MemberID=" + thisMemberID);
 
+                        int? memberPoints = 0;
+                        MemberWizardService.CustomGetMemberPoints(siteID, thisMemberID, ref memberPoints);
+
                         //TODO: Assign to model
-                        MemberXMLModel thisMemberXML = new MemberXMLModel(siteRefs, drMember, thisMemberFiles, thisMemberDirectorships, thisMemberExperiences, thisMemberEducations, thisMemberCerts, thisMemberLicenses, thisMemberRolePreference, thisMemberLanguages, thisMemberReferences);
+                        MemberXMLModel thisMemberXML = new MemberXMLModel(siteRefs, drMember, thisMemberFiles, thisMemberDirectorships, thisMemberExperiences, thisMemberEducations, thisMemberCerts, thisMemberLicenses, thisMemberRolePreference, thisMemberLanguages, thisMemberReferences, memberPoints, dateformat);
 
                         //TODO: Get File Contents to Base64
                         SetFileContentsForMemberXML(siteID, thisMemberXML);
@@ -795,6 +808,7 @@ ExceptionID: {4}",
                                         }
                                     }
 
+                                    question.MemberID = memberID;
                                     question.Type = questionnode["Type"].InnerXml;
                                     question.Sequence = Convert.ToInt32(questionnode["Sequence"].InnerXml);
                                     question.Mandatory = Convert.ToBoolean(questionnode["Mandatory"].InnerXml);

@@ -765,7 +765,7 @@ namespace JXTPortal.Website.Admin
                 Repeater rptLocation = riLanguage.FindControl("rptLocation") as Repeater;
                 Repeater rptArea = riLanguage.FindControl("rptArea") as Repeater;
 
-                string url = string.Format(xmlprefix, Server.MapPath(ConfigurationManager.AppSettings["XMLFilesPath"]), hfLanguageID.Value,
+                string url = string.Format(xmlprefix, ConfigurationManager.AppSettings["XMLFilesPath"], hfLanguageID.Value,
                                                 PortalConstants.XMLTranslationFiles.XML_SITECOUNTRY_FILENAME, SessionData.Site.SiteId);
                 XmlTextWriter writer = new XmlTextWriter(url, null);
                 writer.Formatting = Formatting.Indented;
@@ -806,7 +806,7 @@ namespace JXTPortal.Website.Admin
                 {
                     HiddenField hfCountryId = countryitem.FindControl("hfCountryId") as HiddenField;
 
-                    string url = string.Format(xmlprefix, Server.MapPath(ConfigurationManager.AppSettings["XMLFilesPath"]), hfLanguageID.Value,
+                    string url = string.Format(xmlprefix, ConfigurationManager.AppSettings["XMLFilesPath"], hfLanguageID.Value,
                                                 PortalConstants.XMLTranslationFiles.XML_SITELOCATION_FILENAME, hfCountryId.Value, SessionData.Site.SiteId);
 
                     XmlTextWriter writer = new XmlTextWriter(url, null);
@@ -857,7 +857,7 @@ namespace JXTPortal.Website.Admin
                     HiddenField hfLocationId = location.FindControl("hfLocationId") as HiddenField;
 
                     string url = string.Format(xmlprefix,
-                                        System.Web.HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["XMLFilesPath"]),
+                                        ConfigurationManager.AppSettings["XMLFilesPath"],
                                         hfLanguageID.Value,
                                         PortalConstants.XMLTranslationFiles.XML_SITEAREA_FILENAME, hfLocationId.Value, SessionData.Site.SiteId);
 

@@ -17,6 +17,7 @@ using JXTPortal.Entities;
 using JXTPortal.Website.Admin.UserControls;
 using JXTPortal.Website;
 using System.Collections.Generic;
+using SectionIO;
 #endregion
 
 using System.Linq;
@@ -2134,6 +2135,18 @@ namespace JXTPortal.Website.Admin
                         }
                     }
 
+                    if (rptDynamicPages.Items.Count > 0)
+                    {
+                        RepeaterItem ri = rptDynamicPages.Items[0];
+                        DynamicPageRevisionsFields dprf = (DynamicPageRevisionsFields)ri.FindControl("ucDynamicPage");
+
+                        if (dprf.DynamicPageID > 0)
+                        {
+                            SectionIO_API sectionio = new SectionIO_API(1295, 2227, SectionIO_API.Environment.Production);
+                            sectionio.API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, "req.url == " + Request.Url.Scheme + "://" + Request.Url.Host + DynamicPagesService.GetDynamicPageUrl(DynamicPagesService.GetByDynamicPageId(dprf.DynamicPageID)));
+                        }
+                    }
+
                     if (valid)
                     {
                         if (pageRevision.Status == (int)PortalEnums.DynamicPage.Status.Published)
@@ -2246,6 +2259,8 @@ namespace JXTPortal.Website.Admin
                                     }
                                 }
                             }
+
+                            
 
                             SendNotificationEmails(fromPageStatus, targetStatus, pageRevision, lastModifiedUserIDForTheCurrentPage);
 

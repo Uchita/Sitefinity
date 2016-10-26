@@ -7,12 +7,12 @@
     <meta name="robots" content="nofollow" />
     <link rel="stylesheet" href="//images.jxt.net.au/COMMON/newdash/lib/bootstrap.min.css" />
     <%--<link rel="stylesheet" href="//images.jxt.net.au/COMMON/newdash/newDash.css" />--%>
+    <link href="/styles/owl.carousel.css" rel="stylesheet" type="text/css" />
+    <script src="/scripts/owl.carousel.js" type="text/javascript"></script>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="endOfHead" runat="server">
     <link rel="stylesheet" href="/styles/member/dashboard.css" />
-    <link rel="stylesheet" href="http://owlgraphic.com/owlcarousel/owl-carousel/owl.carousel.css">
-    <script src='http://owlgraphic.com/owlcarousel/owl-carousel/owl.carousel.js'></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 

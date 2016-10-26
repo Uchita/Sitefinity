@@ -4182,11 +4182,19 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <comment>Graduated Credits</comment>
   </data>
   <data name="LabelProfileMinEntries" xml:space="preserve">
-    <value>Minimum {0} entries is required</value>
-    <comment>Minimum {0} entries is required</comment>
+    <value>Minimum entries required - {0}</value>
+    <comment>Minimum entries required - {0}</comment>
   </data>
   <data name="ValidationPhoneNumbers" xml:space="preserve">
     <value>Accepts only numbers, spaces, '+', '(' and ')'</value>
     <comment>Accepts only numbers, spaces, '+', '(' and ')'</comment>
+  </data>
+  <data name="LabelHighSchool" xml:space="preserve">
+    <value>High School</value>
+    <comment>High School</comment>
+  </data>
+  <data name="LabelPremiumJobsNote" xml:space="preserve">
+    <value>Please note: Premium jobs will be displayed at the top of the specified classification when searched.</value>
+    <comment>Please note: Premium jobs will be displayed at the top of the specified classification when searched.</comment>
   </data>
 </root>

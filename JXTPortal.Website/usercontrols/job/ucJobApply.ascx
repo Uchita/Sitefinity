@@ -215,9 +215,20 @@
 </div>
 <%
     if ((MapLat != null && MapLng != null) || JobAddress != "")
-    {    
+    {
+        if (string.IsNullOrEmpty(MapKey))
+        {
 %>
 <script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=false&v=3.exp&signed_in=true&libraries=places"></script>
+<%
+        }
+        else
+        {
+%>
+<script type="text/javascript" src="//maps.google.com/maps/api/js?key=<%=MapKey %>&sensor=false&v=3.exp&signed_in=true&libraries=places"></script>
+<%
+        }
+%>
 <script type="text/javascript">
             var map;
 

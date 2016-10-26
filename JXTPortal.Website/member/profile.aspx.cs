@@ -467,7 +467,7 @@ namespace JXTPortal.Website.member
             ddlProfileCurrentStatus.DataTextField = "Key";
             ddlProfileCurrentStatus.DataSource = CurrentStatusList;
             ddlProfileCurrentStatus.DataBind();
-            ddlProfileCurrentStatus.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelPleaseSelect"), ""));
+            ddlProfileCurrentStatus.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelPleaseSelect"), "-1"));
 
             ddlEducationAddQualificationLevel.Items.Clear();
             ddlEducationAddQualificationLevel.DataValueField = "Value";
@@ -536,48 +536,56 @@ namespace JXTPortal.Website.member
             ddlExperienceAddStartMonth.DataTextField = "text";
             ddlExperienceAddStartMonth.DataSource = MonthList;
             ddlExperienceAddStartMonth.DataBind();
+            ddlExperienceAddStartMonth.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelDateDisplayMM"), "0"));
 
             ddlExperienceAddStartYear.Items.Clear();
             ddlExperienceAddStartYear.DataValueField = "value";
             ddlExperienceAddStartYear.DataTextField = "text";
             ddlExperienceAddStartYear.DataSource = YearList;
             ddlExperienceAddStartYear.DataBind();
+            ddlExperienceAddStartYear.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelDateDisplayYYYY"), "0"));
 
             ddlExperienceAddEndMonth.Items.Clear();
             ddlExperienceAddEndMonth.DataValueField = "value";
             ddlExperienceAddEndMonth.DataTextField = "text";
             ddlExperienceAddEndMonth.DataSource = MonthList;
             ddlExperienceAddEndMonth.DataBind();
+            ddlExperienceAddEndMonth.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelDateDisplayMM"), "0"));
 
             ddlExperienceAddEndYear.Items.Clear();
             ddlExperienceAddEndYear.DataValueField = "value";
             ddlExperienceAddEndYear.DataTextField = "text";
             ddlExperienceAddEndYear.DataSource = YearList;
             ddlExperienceAddEndYear.DataBind();
+            ddlExperienceAddEndYear.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelDateDisplayYYYY"), "0"));
 
             ddlDirectorshipAddStartMonth.Items.Clear();
             ddlDirectorshipAddStartMonth.DataValueField = "value";
             ddlDirectorshipAddStartMonth.DataTextField = "text";
             ddlDirectorshipAddStartMonth.DataSource = MonthList;
             ddlDirectorshipAddStartMonth.DataBind();
+            ddlDirectorshipAddStartMonth.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelDateDisplayMM"), "0"));
 
             ddlDirectorshipAddStartYear.Items.Clear();
             ddlDirectorshipAddStartYear.DataValueField = "value";
             ddlDirectorshipAddStartYear.DataTextField = "text";
             ddlDirectorshipAddStartYear.DataSource = YearList;
             ddlDirectorshipAddStartYear.DataBind();
+            ddlDirectorshipAddStartYear.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelDateDisplayYYYY"), "0"));
 
             ddlDirectorshipAddEndMonth.Items.Clear();
             ddlDirectorshipAddEndMonth.DataValueField = "value";
             ddlDirectorshipAddEndMonth.DataTextField = "text";
             ddlDirectorshipAddEndMonth.DataSource = MonthList;
             ddlDirectorshipAddEndMonth.DataBind();
+            ddlDirectorshipAddEndMonth.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelDateDisplayMM"), "0"));
 
             ddlDirectorshipAddEndYear.Items.Clear();
             ddlDirectorshipAddEndYear.DataValueField = "value";
             ddlDirectorshipAddEndYear.DataTextField = "text";
             ddlDirectorshipAddEndYear.DataSource = YearList;
             ddlDirectorshipAddEndYear.DataBind();
+            ddlDirectorshipAddEndYear.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelDateDisplayYYYY"), "0"));
 
             ddlEducationAddCountry.Items.Clear();
             ddlEducationAddCountry.DataValueField = "CountryID";
@@ -591,75 +599,87 @@ namespace JXTPortal.Website.member
             ddlEducationAddStartMonth.DataTextField = "text";
             ddlEducationAddStartMonth.DataSource = MonthList;
             ddlEducationAddStartMonth.DataBind();
+            ddlEducationAddStartMonth.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelDateDisplayMM"), "0"));
 
             ddlEducationAddStartYear.Items.Clear();
             ddlEducationAddStartYear.DataValueField = "value";
             ddlEducationAddStartYear.DataTextField = "text";
             ddlEducationAddStartYear.DataSource = YearList;
             ddlEducationAddStartYear.DataBind();
+            ddlEducationAddStartYear.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelDateDisplayYYYY"), "0"));
 
             ddlEducationAddEndMonth.Items.Clear();
             ddlEducationAddEndMonth.DataValueField = "value";
             ddlEducationAddEndMonth.DataTextField = "text";
             ddlEducationAddEndMonth.DataSource = MonthList;
             ddlEducationAddEndMonth.DataBind();
+            ddlEducationAddEndMonth.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelDateDisplayMM"), "0"));
 
             ddlEducationAddEndYear.Items.Clear();
             ddlEducationAddEndYear.DataValueField = "value";
             ddlEducationAddEndYear.DataTextField = "text";
             ddlEducationAddEndYear.DataSource = FutureYearList;
-            ddlEducationAddEndYear.SelectedValue = DateTime.Now.Year.ToString();
+            //ddlEducationAddEndYear.SelectedValue = DateTime.Now.Year.ToString();
             ddlEducationAddEndYear.DataBind();
+            ddlEducationAddEndYear.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelDateDisplayYYYY"), "0"));
 
             ddlCertificateAddStartMonth.Items.Clear();
             ddlCertificateAddStartMonth.DataValueField = "value";
             ddlCertificateAddStartMonth.DataTextField = "text";
             ddlCertificateAddStartMonth.DataSource = MonthList;
             ddlCertificateAddStartMonth.DataBind();
+            ddlCertificateAddStartMonth.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelDateDisplayMM"), "0"));
 
             ddlCertificateAddStartYear.Items.Clear();
             ddlCertificateAddStartYear.DataValueField = "value";
             ddlCertificateAddStartYear.DataTextField = "text";
             ddlCertificateAddStartYear.DataSource = YearList;
             ddlCertificateAddStartYear.DataBind();
+            ddlCertificateAddStartYear.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelDateDisplayYYYY"), "0"));
 
             ddlCertificateAddEndMonth.Items.Clear();
             ddlCertificateAddEndMonth.DataValueField = "value";
             ddlCertificateAddEndMonth.DataTextField = "text";
             ddlCertificateAddEndMonth.DataSource = MonthList;
             ddlCertificateAddEndMonth.DataBind();
+            ddlCertificateAddEndMonth.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelDateDisplayMM"), "0"));
 
             ddlCertificateAddEndYear.Items.Clear();
             ddlCertificateAddEndYear.DataValueField = "value";
             ddlCertificateAddEndYear.DataTextField = "text";
             ddlCertificateAddEndYear.DataSource = FutureYearList;
             ddlCertificateAddEndYear.DataBind();
+            ddlCertificateAddEndYear.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelDateDisplayYYYY"), "0"));
 
             ddlLicenseAddIssueMonth.Items.Clear();
             ddlLicenseAddIssueMonth.DataValueField = "value";
             ddlLicenseAddIssueMonth.DataTextField = "text";
             ddlLicenseAddIssueMonth.DataSource = MonthList;
             ddlLicenseAddIssueMonth.DataBind();
+            ddlLicenseAddIssueMonth.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelDateDisplayMM"), "0"));
 
             ddlLicenseAddIssueYear.Items.Clear();
             ddlLicenseAddIssueYear.DataValueField = "value";
             ddlLicenseAddIssueYear.DataTextField = "text";
             ddlLicenseAddIssueYear.DataSource = YearList;
             ddlLicenseAddIssueYear.DataBind();
-            ddlLicenseAddIssueYear.SelectedValue = DateTime.Now.Year.ToString();
+            //ddlLicenseAddIssueYear.SelectedValue = DateTime.Now.Year.ToString();
+            ddlLicenseAddIssueYear.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelDateDisplayYYYY"), "0"));
 
             ddlLicenseAddExpiryMonth.Items.Clear();
             ddlLicenseAddExpiryMonth.DataValueField = "value";
             ddlLicenseAddExpiryMonth.DataTextField = "text";
             ddlLicenseAddExpiryMonth.DataSource = MonthList;
             ddlLicenseAddExpiryMonth.DataBind();
+            ddlLicenseAddExpiryMonth.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelDateDisplayMM"), "0"));
 
             ddlLicenseAddExpiryYear.Items.Clear();
             ddlLicenseAddExpiryYear.DataValueField = "value";
             ddlLicenseAddExpiryYear.DataTextField = "text";
             ddlLicenseAddExpiryYear.DataSource = FutureYearList;
             ddlLicenseAddExpiryYear.DataBind();
-            ddlLicenseAddExpiryYear.SelectedValue = DateTime.Now.Year.ToString();
+            //ddlLicenseAddExpiryYear.SelectedValue = DateTime.Now.Year.ToString();
+            ddlLicenseAddExpiryYear.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelDateDisplayYYYY"), "0"));
 
             ddlLicenseAddCountry.Items.Clear();
             ddlLicenseAddCountry.DataValueField = "CountryID";
@@ -707,7 +727,10 @@ namespace JXTPortal.Website.member
             if (MinEducationEntry > 0)
                 ltEducationMin.Text = String.Format(CommonFunction.GetResourceValue("LabelProfileMinEntries"), MinEducationEntry);
             if (MinReferenceEntry > 0)
+            {
                 ltReferencesMin.Text = String.Format(CommonFunction.GetResourceValue("LabelProfileMinEntries"), MinReferenceEntry);
+                phUponRequest.Visible = false;
+            }
 
             Entities.Members member = null;
             using (member = MembersService.GetByMemberId(SessionData.Member.MemberId))
@@ -783,7 +806,7 @@ namespace JXTPortal.Website.member
                     tbProfileHeadline.Text = member.PreferredJobTitle;
                     tbProfileFirstNameLocalLanguage.Text = member.MultiLingualFirstName;
                     tbProfileLastNameLocalLanguage.Text = member.MultiLingualSurame;
-                    ddlProfileCurrentStatus.SelectedValue = (member.AvailabilityId.HasValue) ? member.AvailabilityId.Value.ToString() : "1";
+                    ddlProfileCurrentStatus.SelectedValue = (member.AvailabilityId.HasValue) ? member.AvailabilityId.Value.ToString() : "-1";
                     memberavailableDate.Text = (member.AvailabilityFromDate.HasValue) ? member.AvailabilityFromDate.Value.ToString(SessionData.Site.DateFormat) : string.Empty;
 
                     //set profile submitted date
@@ -948,7 +971,7 @@ namespace JXTPortal.Website.member
                     member.MultiLingualSurame = tbProfileLastNameLocalLanguage.Text;
                     member.AvailabilityId = (string.IsNullOrEmpty(ddlProfileCurrentStatus.SelectedValue)) ? (int?)null : Convert.ToInt32(ddlProfileCurrentStatus.SelectedValue);
                     if (!string.IsNullOrWhiteSpace(memberavailableDate.Text))
-                        member.AvailabilityFromDate = DateTime.Parse(memberavailableDate.Text);
+                        member.AvailabilityFromDate = DateTime.ParseExact(memberavailableDate.Text, SessionData.Site.DateFormat, null);
                     else
                         member.AvailabilityFromDate = null;
 
@@ -1026,6 +1049,7 @@ namespace JXTPortal.Website.member
             phProfileLastNameError.Visible = false;
             phProfileTitleError.Visible = false;
             phProfileHeadlineError.Visible = false;
+            phProfileAvailDateError.Visible = false;
 
             if (string.IsNullOrWhiteSpace(tbProfileFirstName.Text))
             {
@@ -1060,6 +1084,21 @@ namespace JXTPortal.Website.member
                 }
             }
 
+            if (!string.IsNullOrEmpty(memberavailableDate.Text))
+            {
+                try
+                {
+                    DateTime dunCare = DateTime.ParseExact(memberavailableDate.Text, SessionData.Site.DateFormat, null);
+                }
+                catch
+                {
+                    //error date
+                    hasError = true;
+                    phProfileAvailDateError.Visible = true;
+                    controltofocus = memberavailableDate.ClientID;
+                }
+            }
+
             if (hasError)
             {
                 StandardResetJS();
@@ -1068,7 +1107,7 @@ namespace JXTPortal.Website.member
             if( $(""#memberavailableDate"").length ){
 	             $(""#memberavailableDate"").datepicker({ 
 	 	            minDate: new Date(1916, 1 - 1, 1),
-	 	            dateFormat: """ + SessionData.Site.DateFormat.ToLower().Replace("yyyyy", "yy") + @""", 
+	 	            dateFormat: """ + SessionData.Site.DateFormat.ToLower().Replace("yyyy", "yy") + @""", 
 	             });
 	            }", true);
 
@@ -1085,7 +1124,7 @@ namespace JXTPortal.Website.member
             if( $(""#memberavailableDate"").length ){
 	             $(""#memberavailableDate"").datepicker({ 
 	 	            minDate: new Date(1916, 1 - 1, 1),
-	 	             dateFormat: """ + SessionData.Site.DateFormat.ToLower().Replace("yyyyy", "yy") + @""",
+	 	             dateFormat: """ + SessionData.Site.DateFormat.ToLower().Replace("yyyy", "yy") + @""",
 	             });
 	            }", true);
 
@@ -1275,20 +1314,20 @@ namespace JXTPortal.Website.member
 
             //DOB
             if (member.DateOfBirth.HasValue)
-                ltDateOfBirth.Text = string.Format("<span class='highlight'>{0}</span><span class='personal-detail-content dob'>{1}</span>", CommonFunction.GetResourceValue("LabelDateOfBirth"), member.DateOfBirth.Value.ToString(SessionData.Site.DateFormat));
+                ltDateOfBirth.Text = string.Format("<span class='highlight dob-heading'>{0}</span><span class='personal-detail-content dob'>{1}</span>", CommonFunction.GetResourceValue("LabelDateOfBirth"), member.DateOfBirth.Value.ToString(SessionData.Site.DateFormat));
             else
-                ltDateOfBirth.Text = string.Format("<span class='highlight'>{0}</span><span class='personal-detail-content dob missing'>{1}</span>", CommonFunction.GetResourceValue("LabelDateOfBirth"), CommonFunction.GetResourceValue("LabelMissingInformation"));
+                ltDateOfBirth.Text = string.Format("<span class='highlight dob-heading'>{0}</span><span class='personal-detail-content dob missing'>{1}</span>", CommonFunction.GetResourceValue("LabelDateOfBirth"), CommonFunction.GetResourceValue("LabelMissingInformation"));
 
             //gender
             if (string.IsNullOrWhiteSpace(member.Gender))
             {
-                ltGender.Text = string.Format("<span class='highlight'>{0}</span><span class='personal-detail-content gender-detail missing'>{1}</span>", CommonFunction.GetResourceValue("LabelGender"), CommonFunction.GetResourceValue("LabelMissingInformation"));
+                ltGender.Text = string.Format("<span class='highlight gender-heading'>{0}</span><span class='personal-detail-content gender-detail missing'>{1}</span>", CommonFunction.GetResourceValue("LabelGender"), CommonFunction.GetResourceValue("LabelMissingInformation"));
             }
             else
             {
                 string genderDisplay = member.Gender == "M" ? CommonFunction.GetResourceValue("LabelMale") : CommonFunction.GetResourceValue("LabelFemale");
 
-                ltGender.Text = string.Format("<span class='highlight'>{0}</span><span class='personal-detail-content gender-detail'>{1}</span>", CommonFunction.GetResourceValue("LabelGender"), genderDisplay);
+                ltGender.Text = string.Format("<span class='highlight gender-heading'>{0}</span><span class='personal-detail-content gender-detail'>{1}</span>", CommonFunction.GetResourceValue("LabelGender"), genderDisplay);
             }
 
             //address
@@ -1327,33 +1366,33 @@ namespace JXTPortal.Website.member
 
             //second email
             if (string.IsNullOrWhiteSpace(member.SecondaryEmail))
-                ltSecondaryEmail.Text = string.Format("<span class='highlight'>{0}</span><span class='personal-detail-content secondary-email missing'>{1}</span>", CommonFunction.GetResourceValue("LabelSecondaryEmail"), CommonFunction.GetResourceValue("LabelMissingInformation"));
+                ltSecondaryEmail.Text = string.Format("<span class='highlight secondary-email-heading'>{0}</span><span class='personal-detail-content secondary-email missing'>{1}</span>", CommonFunction.GetResourceValue("LabelSecondaryEmail"), CommonFunction.GetResourceValue("LabelMissingInformation"));
             else
-                ltSecondaryEmail.Text = string.Format("<span class='highlight'>{0}</span><span class='personal-detail-content secondary-email'>{1}</span>",
+                ltSecondaryEmail.Text = string.Format("<span class='highlight secondary-email-heading'>{0}</span><span class='personal-detail-content secondary-email'>{1}</span>",
                                                         CommonFunction.GetResourceValue("LabelSecondaryEmail"), HttpUtility.HtmlEncode(member.SecondaryEmail));
 
             //homephone
             if (string.IsNullOrWhiteSpace(member.HomePhone))
-                ltPhoneNumber.Text = string.Format("<span class='highlight'>{0}</span><span class='personal-detail-content ph_home_numb missing'>{1}</span>",
+                ltPhoneNumber.Text = string.Format("<span class='highlight ph_home_numb-heading'>{0}</span><span class='personal-detail-content ph_home_numb missing'>{1}</span>",
                                                         CommonFunction.GetResourceValue("LabelPhoneHome"), CommonFunction.GetResourceValue("LabelMissingInformation"));
             else
-                ltPhoneNumber.Text = string.Format("<span class='highlight'>{0}</span><span class='personal-detail-content ph_home_numb'>{1}</span>",
+                ltPhoneNumber.Text = string.Format("<span class='highlight ph_home_numb-heading'>{0}</span><span class='personal-detail-content ph_home_numb'>{1}</span>",
                                                         CommonFunction.GetResourceValue("LabelPhoneHome"), HttpUtility.HtmlEncode(member.HomePhone));
 
             //mobile
             if (string.IsNullOrWhiteSpace(member.MobilePhone))
-                ltMobileNumber.Text = string.Format("<span class='highlight'>{0}</span><span class='personal-detail-content ph_mobile_numb missing'>{1}</span>",
+                ltMobileNumber.Text = string.Format("<span class='highlight ph_mobile_numb-heading'>{0}</span><span class='personal-detail-content ph_mobile_numb missing'>{1}</span>",
                                                         CommonFunction.GetResourceValue("LabelPhoneMobile"), CommonFunction.GetResourceValue("LabelMissingInformation"));
             else
-                ltMobileNumber.Text = string.Format("<span class='highlight'>{0}</span><span class='personal-detail-content ph_mobile_numb'>{1}</span>",
+                ltMobileNumber.Text = string.Format("<span class='highlight ph_mobile_numb-heading'>{0}</span><span class='personal-detail-content ph_mobile_numb'>{1}</span>",
                                         CommonFunction.GetResourceValue("LabelPhoneMobile"), HttpUtility.HtmlEncode(member.MobilePhone));
 
             //passport number
             if (string.IsNullOrWhiteSpace(member.PassportNo))
-                ltPassportNumber.Text = string.Format("<span class='highlight'>{0}</span><span class='personal-detail-content ph_passport_numb missing'>{1}</span>",
+                ltPassportNumber.Text = string.Format("<span class='highlight ph_passport_numb-heading'>{0}</span><span class='personal-detail-content ph_passport_numb missing'>{1}</span>",
                                                         CommonFunction.GetResourceValue("LabelPassportNumber"), CommonFunction.GetResourceValue("LabelMissingInformation"));
             else
-                ltPassportNumber.Text = string.Format("<span class='highlight'>{0}</span><span class='personal-detail-content ph_passport_numb'>{1}</span>",
+                ltPassportNumber.Text = string.Format("<span class='highlight ph_passport_numb-heading'>{0}</span><span class='personal-detail-content ph_passport_numb'>{1}</span>",
                                         CommonFunction.GetResourceValue("LabelPassportNumber"), HttpUtility.HtmlEncode(member.PassportNo));
 
             //mailing address
@@ -1395,19 +1434,19 @@ namespace JXTPortal.Website.member
             //preferred line
             if (member.PreferredLine == 0)
             {
-                ltLineSelected.Text = string.Format("<span class='highlight'>{0}</span><span class='personal-detail-content missing'><span class='preferred-line'>{1}</span></span>",
+                ltLineSelected.Text = string.Format("<span class='highlight line-heading'>{0}</span><span class='personal-detail-content missing'><span class='preferred-line'>{1}</span></span>",
                                                     CommonFunction.GetResourceValue("LabelPreferredLine"), CommonFunction.GetResourceValue("LabelMissingInformation"));
             }
             else
             {
                 if (member.PreferredLine == 1)
                 {
-                    ltLineSelected.Text = string.Format("<span class='highlight'>{0}</span><span class='personal-detail-content'><span class='preferred-line'>{1}</span></span>",
+                    ltLineSelected.Text = string.Format("<span class='highlight line-heading'>{0}</span><span class='personal-detail-content'><span class='preferred-line'>{1}</span></span>",
                                                         CommonFunction.GetResourceValue("LabelPreferredLine"), HttpUtility.HtmlEncode(CommonFunction.GetResourceValue("LabelPhoneHome")));
                 }
                 else if (member.PreferredLine == 2)
                 {
-                    ltLineSelected.Text = string.Format("<span class='highlight'>{0}</span><span class='personal-detail-content'><span class='preferred-line'>{1}</span></span>",
+                    ltLineSelected.Text = string.Format("<span class='highlight line-heading'>{0}</span><span class='personal-detail-content'><span class='preferred-line'>{1}</span></span>",
                                                         CommonFunction.GetResourceValue("LabelPreferredLine"), HttpUtility.HtmlEncode(CommonFunction.GetResourceValue("LabelPhoneMobile")));
                 }
             }
@@ -2970,7 +3009,8 @@ namespace JXTPortal.Website.member
                 }
             }
 
-            if (DateTime.Now < new DateTime(Convert.ToInt32(ddlExperienceAddStartYear.SelectedValue), Convert.ToInt32(ddlExperienceAddStartMonth.SelectedValue), 1))
+            if ((ddlExperienceAddStartYear.SelectedValue == "0" || ddlExperienceAddStartMonth.SelectedValue == "0" )
+                || DateTime.Now < new DateTime(Convert.ToInt32(ddlExperienceAddStartYear.SelectedValue), Convert.ToInt32(ddlExperienceAddStartMonth.SelectedValue), 1))
             {
                 hasError = true;
                 phExperienceAddEndError.Visible = true;
@@ -2984,7 +3024,8 @@ namespace JXTPortal.Website.member
             // Date Error Checking
             if (!cbExperienceAddCurrent.Checked)
             {
-                if ((Convert.ToInt32(ddlExperienceAddStartYear.SelectedValue) > Convert.ToInt32(ddlExperienceAddEndYear.SelectedValue))
+                if ( ddlExperienceAddEndYear.SelectedValue == "0" || ddlExperienceAddEndMonth.SelectedValue == "0" 
+                    || (Convert.ToInt32(ddlExperienceAddStartYear.SelectedValue) > Convert.ToInt32(ddlExperienceAddEndYear.SelectedValue))
                     || ((Convert.ToInt32(ddlExperienceAddEndYear.SelectedValue) == Convert.ToInt32(ddlExperienceAddStartYear.SelectedValue) && (Convert.ToInt32(ddlExperienceAddEndMonth.SelectedValue) < Convert.ToInt32(ddlExperienceAddStartMonth.SelectedValue)))))
                 {
                     phExperienceAddEndError.Visible = true;
@@ -3198,29 +3239,58 @@ namespace JXTPortal.Website.member
                     }
                 }
 
-                if (DateTime.Now < new DateTime(Convert.ToInt32(ddlEducationStartYear.SelectedValue), Convert.ToInt32(ddlEducationStartMonth.SelectedValue), 1))
+                bool hasStartDate = false;
+                DateTime? thisStartDate = null;
+                if (ddlEducationStartYear.SelectedValue != "0" && ddlEducationStartMonth.SelectedValue != "0")
                 {
-                    hasError = true;
-                    phEducationEndError.Visible = true;
-
-                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    hasStartDate = true;
+                    thisStartDate = new DateTime(Convert.ToInt32(ddlEducationStartYear.SelectedValue), Convert.ToInt32(ddlEducationStartMonth.SelectedValue), 1);
+                    if (DateTime.Now < thisStartDate)
                     {
-                        controltofocus = ddlEducationStartMonth.ClientID;
-                    }
-                }
-
-                // Date Error Checking
-                if (!cbEducationCurrent.Checked)
-                {
-                    if ((Convert.ToInt32(ddlEducationStartYear.SelectedValue) > Convert.ToInt32(ddlEducationEndYear.SelectedValue))
-                        || ((Convert.ToInt32(ddlEducationEndYear.SelectedValue) == Convert.ToInt32(ddlEducationStartYear.SelectedValue) && (Convert.ToInt32(ddlEducationEndMonth.SelectedValue) < Convert.ToInt32(ddlEducationStartMonth.SelectedValue)))))
-                    {
-                        phEducationEndError.Visible = true;
                         hasError = true;
+                        phEducationEndError.Visible = true;
 
                         if (string.IsNullOrWhiteSpace(controltofocus))
                         {
                             controltofocus = ddlEducationStartMonth.ClientID;
+                        }
+                    }
+                }
+
+                bool hasEndDate = false;
+                if (ddlEducationEndYear.SelectedValue != "0" && ddlEducationEndMonth.SelectedValue != "0")
+                {
+                    hasEndDate = true;
+                    if (thisStartDate != null)
+                    {
+                        if (thisStartDate > new DateTime(Convert.ToInt32(ddlEducationEndYear.SelectedValue), Convert.ToInt32(ddlEducationEndMonth.SelectedValue), 1))
+                        {
+                            hasError = true;
+                            phEducationEndError.Visible = true;
+
+                            if (string.IsNullOrWhiteSpace(controltofocus))
+                            {
+                                controltofocus = ddlEducationStartMonth.ClientID;
+                            }
+                        }
+                    }
+                }
+
+                // Date Error Checking
+                if (!hasError && hasStartDate && hasEndDate)
+                {
+                    if (!cbEducationCurrent.Checked)
+                    {
+                        if ((Convert.ToInt32(ddlEducationStartYear.SelectedValue) > Convert.ToInt32(ddlEducationEndYear.SelectedValue))
+                            || ((Convert.ToInt32(ddlEducationEndYear.SelectedValue) == Convert.ToInt32(ddlEducationStartYear.SelectedValue) && (Convert.ToInt32(ddlEducationEndMonth.SelectedValue) < Convert.ToInt32(ddlEducationStartMonth.SelectedValue)))))
+                        {
+                            phEducationEndError.Visible = true;
+                            hasError = true;
+
+                            if (string.IsNullOrWhiteSpace(controltofocus))
+                            {
+                                controltofocus = ddlEducationStartMonth.ClientID;
+                            }
                         }
                     }
                 }
@@ -3256,10 +3326,27 @@ namespace JXTPortal.Website.member
                         education.QualificationLevelId = Convert.ToInt32(ddlEducationQualificationLevel.SelectedValue);
                         education.Degree = tbEducationQualificationName.Text;
                         education.QualificationLevelOther = tbEducationOtherQualification.Text;
-                        education.StartMonth = Convert.ToInt32(ddlEducationStartMonth.SelectedValue);
-                        education.StartYear = Convert.ToInt32(ddlEducationStartYear.SelectedValue);
-                        education.EndMonth = Convert.ToInt32(ddlEducationEndMonth.SelectedValue);
-                        education.EndYear = Convert.ToInt32(ddlEducationEndYear.SelectedValue);
+                        if (hasStartDate)
+                        {
+                            education.StartMonth = Convert.ToInt32(ddlEducationStartMonth.SelectedValue);
+                            education.StartYear = Convert.ToInt32(ddlEducationStartYear.SelectedValue);
+                        }
+                        else
+                        {
+                            education.StartMonth = null;
+                            education.StartYear = null;
+                        }
+
+                        if (hasEndDate)
+                        {
+                            education.EndMonth = Convert.ToInt32(ddlEducationEndMonth.SelectedValue);
+                            education.EndYear = Convert.ToInt32(ddlEducationEndYear.SelectedValue);
+                        }
+                        else
+                        {
+                            education.EndMonth = null;
+                            education.EndYear = null;
+                        }
 
                         education.Present = cbEducationCurrent.Checked;
 
@@ -3472,31 +3559,35 @@ namespace JXTPortal.Website.member
                 ddlEducationStartMonth.DataTextField = "text";
                 ddlEducationStartMonth.DataSource = MonthList;
                 ddlEducationStartMonth.DataBind();
+                ddlEducationStartMonth.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelDateDisplayMM"), "0"));
 
                 ddlEducationStartYear.Items.Clear();
                 ddlEducationStartYear.DataValueField = "value";
                 ddlEducationStartYear.DataTextField = "text";
                 ddlEducationStartYear.DataSource = YearList;
                 ddlEducationStartYear.DataBind();
+                ddlEducationStartYear.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelDateDisplayYYYY"), "0"));
 
                 ddlEducationEndMonth.Items.Clear();
                 ddlEducationEndMonth.DataValueField = "value";
                 ddlEducationEndMonth.DataTextField = "text";
                 ddlEducationEndMonth.DataSource = MonthList;
                 ddlEducationEndMonth.DataBind();
+                ddlEducationEndMonth.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelDateDisplayMM"), "0"));
 
                 ddlEducationEndYear.Items.Clear();
                 ddlEducationEndYear.DataValueField = "value";
                 ddlEducationEndYear.DataTextField = "text";
                 ddlEducationEndYear.DataSource = FutureYearList;
                 ddlEducationEndYear.DataBind();
+                ddlEducationEndYear.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelDateDisplayYYYY"), "0"));
 
                 ddlEducationCountry.Items.Clear();
                 ddlEducationCountry.DataValueField = "CountryID";
                 ddlEducationCountry.DataTextField = "CountryName";
                 ddlEducationCountry.DataSource = CountryList;
                 ddlEducationCountry.DataBind();
-                ddlEducationCountry.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelPleaseSelect"), ""));
+                ddlEducationCountry.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelPleaseSelect"), "0"));
 
                 ddlEducationQualificationLevel.Items.Clear();
                 ddlEducationQualificationLevel.DataValueField = "Value";
@@ -3630,9 +3721,19 @@ namespace JXTPortal.Website.member
                     ddlEducationStartYear.SelectedValue = education.StartYear.Value.ToString();
                 }
 
+                if (education.StartMonth.HasValue)
+                {
+                    ddlEducationStartMonth.SelectedValue = education.StartMonth.Value.ToString();
+                }
+
                 if (education.EndYear.HasValue)
                 {
                     ddlEducationEndYear.SelectedValue = education.EndYear.Value.ToString();
+                }
+
+                if (education.EndMonth.HasValue)
+                {
+                    ddlEducationEndMonth.SelectedValue = education.EndMonth.Value.ToString();
                 }
 
                 if (education.Present.HasValue)
@@ -3704,29 +3805,58 @@ namespace JXTPortal.Website.member
                 }
             }
 
-            if (DateTime.Now < new DateTime(Convert.ToInt32(ddlEducationAddStartYear.SelectedValue), Convert.ToInt32(ddlEducationAddStartMonth.SelectedValue), 1))
+            bool hasStartDate = false;
+            DateTime? thisStartDate = null;
+            if (ddlEducationAddStartYear.SelectedValue != "0" && ddlEducationAddStartMonth.SelectedValue != "0")
             {
-                hasError = true;
-                phEducationAddEndError.Visible = true;
-
-                if (string.IsNullOrWhiteSpace(controltofocus))
+                hasStartDate = true;
+                thisStartDate = new DateTime(Convert.ToInt32(ddlEducationAddStartYear.SelectedValue), Convert.ToInt32(ddlEducationAddStartMonth.SelectedValue), 1);
+                if (DateTime.Now < thisStartDate)
                 {
-                    controltofocus = ddlEducationAddStartMonth.ClientID;
-                }
-            }
-
-            // Date Error Checking
-            if (!cbEducationAddCurrent.Checked)
-            {
-                if ((Convert.ToInt32(ddlEducationAddStartYear.SelectedValue) > Convert.ToInt32(ddlEducationAddEndYear.SelectedValue))
-                    || ((Convert.ToInt32(ddlEducationAddEndYear.SelectedValue) == Convert.ToInt32(ddlEducationAddStartYear.SelectedValue) && (Convert.ToInt32(ddlEducationAddEndMonth.SelectedValue) < Convert.ToInt32(ddlEducationAddStartMonth.SelectedValue)))))
-                {
-                    phEducationAddEndError.Visible = true;
                     hasError = true;
+                    phEducationAddEndError.Visible = true;
 
                     if (string.IsNullOrWhiteSpace(controltofocus))
                     {
                         controltofocus = ddlEducationAddStartMonth.ClientID;
+                    }
+                }
+            }
+
+            bool hasEndDate = false;
+            if (ddlEducationAddEndYear.SelectedValue != "0" && ddlEducationAddEndMonth.SelectedValue != "0")
+            {
+                hasEndDate = true;
+                if (thisStartDate != null)
+                {
+                    if (thisStartDate > new DateTime(Convert.ToInt32(ddlEducationAddEndYear.SelectedValue), Convert.ToInt32(ddlEducationAddEndMonth.SelectedValue), 1))
+                    {
+                        hasError = true;
+                        phEducationAddEndError.Visible = true;
+
+                        if (string.IsNullOrWhiteSpace(controltofocus))
+                        {
+                            controltofocus = ddlEducationAddStartMonth.ClientID;
+                        }
+                    }
+                }
+            }
+
+            // Date Error Checking
+            if (!hasError && hasStartDate && hasEndDate)
+            {
+                if (!cbEducationAddCurrent.Checked)
+                {
+                    if ((Convert.ToInt32(ddlEducationAddStartYear.SelectedValue) > Convert.ToInt32(ddlEducationAddEndYear.SelectedValue))
+                        || ((Convert.ToInt32(ddlEducationAddEndYear.SelectedValue) == Convert.ToInt32(ddlEducationAddStartYear.SelectedValue) && (Convert.ToInt32(ddlEducationAddEndMonth.SelectedValue) < Convert.ToInt32(ddlEducationAddStartMonth.SelectedValue)))))
+                    {
+                        phEducationAddEndError.Visible = true;
+                        hasError = true;
+
+                        if (string.IsNullOrWhiteSpace(controltofocus))
+                        {
+                            controltofocus = ddlEducationAddStartMonth.ClientID;
+                        }
                     }
                 }
             }
@@ -3752,10 +3882,26 @@ namespace JXTPortal.Website.member
             education.QualificationLevelId = Convert.ToInt32(ddlEducationAddQualificationLevel.SelectedValue);
             education.Degree = tbEducationAddQualificationName.Text;
             education.QualificationLevelOther = tbEducationAddOtherQualification.Text;
-            education.StartMonth = Convert.ToInt32(ddlEducationAddStartMonth.SelectedValue);
-            education.StartYear = Convert.ToInt32(ddlEducationAddStartYear.SelectedValue);
-            education.EndMonth = Convert.ToInt32(ddlEducationAddEndMonth.SelectedValue);
-            education.EndYear = Convert.ToInt32(ddlEducationAddEndYear.SelectedValue);
+            if (hasStartDate)
+            {
+                education.StartMonth = Convert.ToInt32(ddlEducationAddStartMonth.SelectedValue);
+                education.StartYear = Convert.ToInt32(ddlEducationAddStartYear.SelectedValue);
+            }
+            else
+            {
+                education.StartMonth = null;
+                education.StartYear = null;
+            }
+            if (hasEndDate)
+            {
+                education.EndMonth = Convert.ToInt32(ddlEducationAddEndMonth.SelectedValue);
+                education.EndYear = Convert.ToInt32(ddlEducationAddEndYear.SelectedValue);
+            }
+            else
+            {
+                education.EndMonth = null;
+                education.EndYear = null;
+            }
             education.Present = cbEducationAddCurrent.Checked;
             if (cbEducationAddCurrent.Checked)
             {
@@ -4104,29 +4250,90 @@ namespace JXTPortal.Website.member
                     }
                 }
 
-                if (DateTime.Now < new DateTime(Convert.ToInt32(ddlCertificateStartYear.SelectedValue), Convert.ToInt32(ddlCertificateStartMonth.SelectedValue), 1))
+                bool hasAddDate = false;
+                DateTime? thisIssueDateTime = null;
+                if (ddlCertificateStartYear.SelectedValue != "0" && ddlCertificateStartMonth.SelectedValue != "0")
                 {
-                    hasError = true;
-                    phCertificateError.Visible = true;
-
-                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    hasAddDate = true;
+                    DateTime thisDateTime1;
+                    try
                     {
-                        controltofocus = ddlCertificateStartMonth.ClientID;
+                        thisIssueDateTime = new DateTime(Convert.ToInt32(ddlCertificateStartYear.SelectedValue), Convert.ToInt32(ddlCertificateStartMonth.SelectedValue), 1);
+                        if (DateTime.Now < thisIssueDateTime)
+                        {
+                            hasError = true;
+                            phCertificateError.Visible = true;
+
+                            if (string.IsNullOrWhiteSpace(controltofocus))
+                            {
+                                controltofocus = ddlCertificateStartMonth.ClientID;
+                            }
+                        }
+                    }
+                    catch
+                    {
+                        hasError = true;
+                        phCertificateError.Visible = true;
+
+                        if (string.IsNullOrWhiteSpace(controltofocus))
+                        {
+                            controltofocus = ddlCertificateStartMonth.ClientID;
+                        }
+                    }
+                }
+
+                bool hasExpiryDate = false;
+                if (ddlCertificateEndYear.SelectedValue != "0" && ddlCertificateEndMonth.SelectedValue != "0")
+                {
+                    hasExpiryDate = true;
+                    DateTime thisExpiryTime;
+                    try
+                    {
+                        thisExpiryTime = new DateTime(Convert.ToInt32(ddlCertificateEndYear.SelectedValue), Convert.ToInt32(ddlCertificateEndMonth.SelectedValue), 1);
+
+                        if (thisIssueDateTime != null)
+                        {
+                            if (thisIssueDateTime > thisExpiryTime)
+                            {
+                                hasError = true;
+                                phCertificateError.Visible = true;
+
+                                if (string.IsNullOrWhiteSpace(controltofocus))
+                                {
+                                    controltofocus = ddlCertificateEndMonth.ClientID;
+                                }
+                            }
+                        }
+
+                    }
+                    catch
+                    {
+                        hasError = true;
+                        phCertificateError.Visible = true;
+
+                        if (string.IsNullOrWhiteSpace(controltofocus))
+                        {
+                            controltofocus = ddlCertificateEndMonth.ClientID;
+                        }
                     }
                 }
 
                 // Date Error Checking
                 if (!cbCertificateDoesNotExpire.Checked)
                 {
-                    if ((Convert.ToInt32(ddlCertificateStartYear.SelectedValue) > Convert.ToInt32(ddlCertificateEndYear.SelectedValue))
-                        || ((Convert.ToInt32(ddlCertificateEndYear.SelectedValue) == Convert.ToInt32(ddlCertificateStartYear.SelectedValue) && (Convert.ToInt32(ddlCertificateEndMonth.SelectedValue) < Convert.ToInt32(ddlCertificateStartMonth.SelectedValue)))))
+                    if (!hasError && hasExpiryDate && hasAddDate)
                     {
-                        phCertificateError.Visible = true;
-                        hasError = true;
 
-                        if (string.IsNullOrWhiteSpace(controltofocus))
+                        if ((Convert.ToInt32(ddlCertificateStartYear.SelectedValue) > Convert.ToInt32(ddlCertificateEndYear.SelectedValue))
+                            || ((Convert.ToInt32(ddlCertificateEndYear.SelectedValue) == Convert.ToInt32(ddlCertificateStartYear.SelectedValue) && (Convert.ToInt32(ddlCertificateEndMonth.SelectedValue) < Convert.ToInt32(ddlCertificateStartMonth.SelectedValue)))))
                         {
-                            controltofocus = ddlCertificateStartMonth.ClientID;
+                            phCertificateError.Visible = true;
+                            hasError = true;
+
+                            if (string.IsNullOrWhiteSpace(controltofocus))
+                            {
+                                controltofocus = ddlCertificateStartMonth.ClientID;
+                            }
                         }
                     }
                 }
@@ -4158,10 +4365,27 @@ namespace JXTPortal.Website.member
                         certificate.LicenseNumber = tbCertificateMembershipNumber.Text;
                         certificate.CertificationUrl = tbCertificateURL.Text;
 
-                        certificate.StartMonth = Convert.ToInt32(ddlCertificateStartMonth.SelectedValue);
-                        certificate.StartYear = Convert.ToInt32(ddlCertificateStartYear.SelectedValue);
-                        certificate.EndMonth = Convert.ToInt32(ddlCertificateEndMonth.SelectedValue);
-                        certificate.EndYear = Convert.ToInt32(ddlCertificateEndYear.SelectedValue);
+
+                        if (hasAddDate)
+                        {
+                            certificate.StartMonth = Convert.ToInt32(ddlCertificateStartMonth.SelectedValue);
+                            certificate.StartYear = Convert.ToInt32(ddlCertificateStartYear.SelectedValue);
+                        }
+                        else
+                        {
+                            certificate.StartMonth = null;
+                            certificate.StartYear = null;
+                        }
+                        if (hasExpiryDate)
+                        {
+                            certificate.EndMonth = Convert.ToInt32(ddlCertificateEndMonth.SelectedValue);
+                            certificate.EndYear = Convert.ToInt32(ddlCertificateEndYear.SelectedValue);
+                        }
+                        else
+                        {
+                            certificate.EndMonth = null;
+                            certificate.EndYear = null;
+                        }
 
                         if (cbCertificateDoesNotExpire.Checked)
                         {
@@ -4184,28 +4408,33 @@ namespace JXTPortal.Website.member
 
                         if (certificate.StartMonth.HasValue && certificate.StartYear.HasValue && certificate.EndMonth.HasValue && certificate.EndYear.HasValue)
                         {
-                            foreach (ListItem month in ddlCertificateStartMonth.Items)
+                            if (certificate.StartMonth.Value != 0 && certificate.StartYear.Value != 0 && certificate.EndMonth.Value != 0 && certificate.EndYear.Value != 0)
                             {
-                                if (month.Value == certificate.StartMonth.ToString())
+                                foreach (ListItem month in ddlCertificateStartMonth.Items)
                                 {
-                                    startmonth = CommonFunction.GetResourceValue(month.Text);
-                                    break;
+                                    if (month.Value == certificate.StartMonth.ToString())
+                                    {
+                                        startmonth = CommonFunction.GetResourceValue(month.Text);
+                                        break;
+                                    }
                                 }
-                            }
 
-                            certificatedate = startmonth + " " + certificate.StartYear.ToString();
+                                certificatedate = startmonth + " " + certificate.StartYear.ToString();
 
 
-                            foreach (ListItem month in ddlCertificateEndMonth.Items)
-                            {
-                                if (month.Value == certificate.EndMonth.ToString())
+                                foreach (ListItem month in ddlCertificateEndMonth.Items)
                                 {
-                                    endmonth = CommonFunction.GetResourceValue(month.Text);
-                                    break;
+                                    if (month.Value == certificate.EndMonth.ToString())
+                                    {
+                                        endmonth = CommonFunction.GetResourceValue(month.Text);
+                                        break;
+                                    }
                                 }
-                            }
 
-                            certificatedate += " - " + endmonth + " " + certificate.EndYear.ToString();
+                                certificatedate += " - " + endmonth + " " + certificate.EndYear.ToString();
+                            }
+                            else
+                                certificatedate = string.Empty;
                         }
                         else
                         {
@@ -4310,24 +4539,28 @@ namespace JXTPortal.Website.member
                 ddlCertificateStartMonth.DataTextField = "text";
                 ddlCertificateStartMonth.DataSource = MonthList;
                 ddlCertificateStartMonth.DataBind();
+                ddlCertificateStartMonth.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelDateDisplayMM"), "0"));
 
                 ddlCertificateStartYear.Items.Clear();
                 ddlCertificateStartYear.DataValueField = "value";
                 ddlCertificateStartYear.DataTextField = "text";
                 ddlCertificateStartYear.DataSource = YearList;
                 ddlCertificateStartYear.DataBind();
+                ddlCertificateStartYear.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelDateDisplayYYYY"), "0"));
 
                 ddlCertificateEndMonth.Items.Clear();
                 ddlCertificateEndMonth.DataValueField = "value";
                 ddlCertificateEndMonth.DataTextField = "text";
                 ddlCertificateEndMonth.DataSource = MonthList;
                 ddlCertificateEndMonth.DataBind();
+                ddlCertificateEndMonth.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelDateDisplayMM"), "0"));
 
                 ddlCertificateEndYear.Items.Clear();
                 ddlCertificateEndYear.DataValueField = "value";
                 ddlCertificateEndYear.DataTextField = "text";
                 ddlCertificateEndYear.DataSource = FutureYearList;
                 ddlCertificateEndYear.DataBind();
+                ddlCertificateEndYear.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelDateDisplayYYYY"), "0"));
 
                 string certificatedate = string.Empty;
                 string certificateurlno = string.Empty;
@@ -4482,29 +4715,90 @@ namespace JXTPortal.Website.member
                 }
             }
 
-            if (DateTime.Now < new DateTime(Convert.ToInt32(ddlCertificateAddStartYear.SelectedValue), Convert.ToInt32(ddlCertificateAddStartMonth.SelectedValue), 1))
-            {
-                hasError = true;
-                phCertificateAddError.Visible = true;
 
-                if (string.IsNullOrWhiteSpace(controltofocus))
+            bool hasAddDate = false;
+            DateTime? thisIssueDateTime = null;
+            if (ddlCertificateAddStartYear.SelectedValue != "0" && ddlCertificateAddStartMonth.SelectedValue != "0")
+            {
+                hasAddDate = true;
+                DateTime thisDateTime1;
+                try
                 {
-                    controltofocus = ddlCertificateAddStartMonth.ClientID;
+                    thisIssueDateTime = new DateTime(Convert.ToInt32(ddlCertificateAddStartYear.SelectedValue), Convert.ToInt32(ddlCertificateAddStartMonth.SelectedValue), 1);
+                    if (DateTime.Now < thisIssueDateTime)
+                    {
+                        hasError = true;
+                        phCertificateAddError.Visible = true;
+
+                        if (string.IsNullOrWhiteSpace(controltofocus))
+                        {
+                            controltofocus = ddlCertificateAddStartMonth.ClientID;
+                        }
+                    }
+                }
+                catch
+                {
+                    hasError = true;
+                    phCertificateAddError.Visible = true;
+
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = ddlCertificateAddStartMonth.ClientID;
+                    }
+                }
+            }
+
+            bool hasExpiryDate = false;
+            if (ddlCertificateAddEndYear.SelectedValue != "0" && ddlCertificateAddEndMonth.SelectedValue != "0")
+            {
+                hasExpiryDate = true;
+                DateTime thisExpiryTime;
+                try
+                {
+                    thisExpiryTime = new DateTime(Convert.ToInt32(ddlCertificateAddEndYear.SelectedValue), Convert.ToInt32(ddlCertificateAddEndMonth.SelectedValue), 1);
+
+                    if (thisIssueDateTime != null)
+                    {
+                        if (thisIssueDateTime > thisExpiryTime)
+                        {
+                            hasError = true;
+                            phCertificateAddError.Visible = true;
+
+                            if (string.IsNullOrWhiteSpace(controltofocus))
+                            {
+                                controltofocus = ddlCertificateAddEndMonth.ClientID;
+                            }
+                        }
+                    }
+
+                }
+                catch
+                {
+                    hasError = true;
+                    phCertificateAddError.Visible = true;
+
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = ddlCertificateAddEndMonth.ClientID;
+                    }
                 }
             }
 
             // Date Error Checking
             if (!cbCertificateAddDoesNotExpire.Checked)
             {
-                if ((Convert.ToInt32(ddlCertificateAddStartYear.SelectedValue) > Convert.ToInt32(ddlCertificateAddEndYear.SelectedValue))
-                    || ((Convert.ToInt32(ddlCertificateAddEndYear.SelectedValue) == Convert.ToInt32(ddlCertificateAddStartYear.SelectedValue) && (Convert.ToInt32(ddlCertificateAddEndMonth.SelectedValue) < Convert.ToInt32(ddlCertificateAddStartMonth.SelectedValue)))))
+                if (!hasError && hasExpiryDate && hasAddDate)
                 {
-                    phCertificateAddError.Visible = true;
-                    hasError = true;
-
-                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    if ((Convert.ToInt32(ddlCertificateAddStartYear.SelectedValue) > Convert.ToInt32(ddlCertificateAddEndYear.SelectedValue))
+                        || ((Convert.ToInt32(ddlCertificateAddEndYear.SelectedValue) == Convert.ToInt32(ddlCertificateAddStartYear.SelectedValue) && (Convert.ToInt32(ddlCertificateAddEndMonth.SelectedValue) < Convert.ToInt32(ddlCertificateAddStartMonth.SelectedValue)))))
                     {
-                        controltofocus = ddlCertificateAddStartMonth.ClientID;
+                        phCertificateAddError.Visible = true;
+                        hasError = true;
+
+                        if (string.IsNullOrWhiteSpace(controltofocus))
+                        {
+                            controltofocus = ddlCertificateAddStartMonth.ClientID;
+                        }
                     }
                 }
             }
@@ -4527,10 +4821,26 @@ namespace JXTPortal.Website.member
             certificate.LicenseNumber = tbCertificateAddMembershipNumber.Text;
             certificate.CertificationUrl = tbCertificateAddURL.Text;
 
-            certificate.StartMonth = Convert.ToInt32(ddlCertificateAddStartMonth.SelectedValue);
-            certificate.StartYear = Convert.ToInt32(ddlCertificateAddStartYear.SelectedValue);
-            certificate.EndMonth = Convert.ToInt32(ddlCertificateAddEndMonth.SelectedValue);
-            certificate.EndYear = Convert.ToInt32(ddlCertificateAddEndYear.SelectedValue);
+            if (hasAddDate)
+            {
+                certificate.StartMonth = Convert.ToInt32(ddlCertificateAddStartMonth.SelectedValue);
+                certificate.StartYear = Convert.ToInt32(ddlCertificateAddStartYear.SelectedValue);
+            }
+            else
+            {
+                certificate.StartMonth = null;
+                certificate.StartYear = null;
+            }
+            if (hasExpiryDate)
+            {
+                certificate.EndMonth = Convert.ToInt32(ddlCertificateAddEndMonth.SelectedValue);
+                certificate.EndYear = Convert.ToInt32(ddlCertificateAddEndYear.SelectedValue);
+            }
+            else
+            {
+                certificate.EndMonth = null;
+                certificate.EndYear = null;
+            }
 
             if (cbCertificateAddDoesNotExpire.Checked)
             {
@@ -4673,31 +4983,92 @@ namespace JXTPortal.Website.member
                     }
                 }
 
-                if (DateTime.Now < new DateTime(Convert.ToInt32(ddlLicenseIssueYear.SelectedValue), Convert.ToInt32(ddlLicenseIssueMonth.SelectedValue), 1))
-                {
-                    hasError = true;
-                    phLicenseError.Visible = true;
 
-                    if (string.IsNullOrWhiteSpace(controltofocus))
+                bool hasAddDate = false;
+                DateTime? thisIssueDateTime = null;
+                if (ddlLicenseIssueYear.SelectedValue != "0" && ddlLicenseIssueMonth.SelectedValue != "0")
+                {
+                    hasAddDate = true;
+                    try
                     {
-                        controltofocus = ddlLicenseIssueMonth.ClientID;
+                        thisIssueDateTime = new DateTime(Convert.ToInt32(ddlLicenseIssueYear.SelectedValue), Convert.ToInt32(ddlLicenseIssueMonth.SelectedValue), 1);
+                        if (DateTime.Now < thisIssueDateTime)
+                        {
+                            hasError = true;
+                            phLicenseError.Visible = true;
+
+                            if (string.IsNullOrWhiteSpace(controltofocus))
+                            {
+                                controltofocus = ddlLicenseIssueMonth.ClientID;
+                            }
+                        }
+                    }
+                    catch
+                    {
+                        hasError = true;
+                        phLicenseError.Visible = true;
+
+                        if (string.IsNullOrWhiteSpace(controltofocus))
+                        {
+                            controltofocus = ddlLicenseIssueMonth.ClientID;
+                        }
                     }
                 }
 
-                // Date Error Checking
-
-                if ((Convert.ToInt32(ddlLicenseIssueYear.SelectedValue) > Convert.ToInt32(ddlLicenseExpiryYear.SelectedValue))
-                    || ((Convert.ToInt32(ddlLicenseExpiryYear.SelectedValue) == Convert.ToInt32(ddlLicenseIssueYear.SelectedValue) && (Convert.ToInt32(ddlLicenseExpiryMonth.SelectedValue) < Convert.ToInt32(ddlLicenseIssueMonth.SelectedValue)))))
+                bool hasExpiryDate = false;
+                if (ddlLicenseExpiryYear.SelectedValue != "0" && ddlLicenseExpiryMonth.SelectedValue != "0")
                 {
-                    phLicenseError.Visible = true;
-                    hasError = true;
-
-                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    hasExpiryDate = true;
+                    DateTime thisExpiryTime;
+                    try
                     {
-                        controltofocus = ddlLicenseIssueMonth.ClientID;
+                        thisExpiryTime = new DateTime(Convert.ToInt32(ddlLicenseExpiryYear.SelectedValue), Convert.ToInt32(ddlLicenseExpiryMonth.SelectedValue), 1);
+
+                        if (thisIssueDateTime != null)
+                        {
+                            if (thisIssueDateTime > thisExpiryTime)
+                            {
+                                hasError = true;
+                                phLicenseError.Visible = true;
+
+                                if (string.IsNullOrWhiteSpace(controltofocus))
+                                {
+                                    controltofocus = ddlLicenseExpiryMonth.ClientID;
+                                }
+                            }
+                        }
+                    }
+                    catch
+                    {
+                        hasError = true;
+                        phLicenseError.Visible = true;
+
+                        if (string.IsNullOrWhiteSpace(controltofocus))
+                        {
+                            controltofocus = ddlLicenseIssueMonth.ClientID;
+                        }
                     }
                 }
 
+                // Date Error Checking only if none of the above failed
+                if (!hasError && hasExpiryDate && hasAddDate)
+                {
+                    if (!string.IsNullOrEmpty(ddlLicenseIssueYear.SelectedValue) || !string.IsNullOrEmpty(ddlLicenseIssueMonth.SelectedValue)
+                        || !string.IsNullOrEmpty(ddlLicenseExpiryYear.SelectedValue) || !string.IsNullOrEmpty(ddlLicenseExpiryMonth.SelectedValue))
+                    {
+                        if ((Convert.ToInt32(ddlLicenseIssueYear.SelectedValue) > Convert.ToInt32(ddlLicenseExpiryYear.SelectedValue))
+                            || ((Convert.ToInt32(ddlLicenseExpiryYear.SelectedValue) == Convert.ToInt32(ddlLicenseIssueYear.SelectedValue) && (Convert.ToInt32(ddlLicenseExpiryMonth.SelectedValue) < Convert.ToInt32(ddlLicenseIssueMonth.SelectedValue)))))
+                        {
+                            phLicenseError.Visible = true;
+                            hasError = true;
+
+                            if (string.IsNullOrWhiteSpace(controltofocus))
+                            {
+                                controltofocus = ddlLicenseIssueMonth.ClientID;
+                            }
+                        }
+                    }
+                }
 
                 if (hasError)
                 {
@@ -4726,8 +5097,15 @@ namespace JXTPortal.Website.member
                         license.LicenseType = tbLicenseType.Text;
                         license.CountryId = Convert.ToInt32(ddlLicenseCountry.SelectedValue);
                         license.State = tbLicenseState.Text;
-                        license.IssueDate = new DateTime(Convert.ToInt32(ddlLicenseIssueYear.SelectedValue), Convert.ToInt32(ddlLicenseIssueMonth.SelectedValue), 1);
-                        license.ExpiryDate = new DateTime(Convert.ToInt32(ddlLicenseExpiryYear.SelectedValue), Convert.ToInt32(ddlLicenseExpiryMonth.SelectedValue), 1);
+
+                        if (hasAddDate)
+                            license.IssueDate = new DateTime(Convert.ToInt32(ddlLicenseIssueYear.SelectedValue), Convert.ToInt32(ddlLicenseIssueMonth.SelectedValue), 1);
+                        else
+                            license.IssueDate = null;
+                        if (hasExpiryDate)
+                            license.ExpiryDate = new DateTime(Convert.ToInt32(ddlLicenseExpiryYear.SelectedValue), Convert.ToInt32(ddlLicenseExpiryMonth.SelectedValue), 1);
+                        else
+                            license.ExpiryDate = null;
 
                         MemberLicensesService.Update(license);
                         UpdateMemberLastModified();
@@ -4876,24 +5254,28 @@ namespace JXTPortal.Website.member
                 ddlLicenseIssueMonth.DataTextField = "text";
                 ddlLicenseIssueMonth.DataSource = MonthList;
                 ddlLicenseIssueMonth.DataBind();
+                ddlLicenseIssueMonth.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelDateDisplayMM"), "0"));
 
                 ddlLicenseIssueYear.Items.Clear();
                 ddlLicenseIssueYear.DataValueField = "value";
                 ddlLicenseIssueYear.DataTextField = "text";
                 ddlLicenseIssueYear.DataSource = YearList;
                 ddlLicenseIssueYear.DataBind();
+                ddlLicenseIssueYear.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelDateDisplayYYYY"), "0"));
 
                 ddlLicenseExpiryMonth.Items.Clear();
                 ddlLicenseExpiryMonth.DataValueField = "value";
                 ddlLicenseExpiryMonth.DataTextField = "text";
                 ddlLicenseExpiryMonth.DataSource = MonthList;
                 ddlLicenseExpiryMonth.DataBind();
+                ddlLicenseExpiryMonth.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelDateDisplayMM"), "0"));
 
                 ddlLicenseExpiryYear.Items.Clear();
                 ddlLicenseExpiryYear.DataValueField = "value";
                 ddlLicenseExpiryYear.DataTextField = "text";
                 ddlLicenseExpiryYear.DataSource = FutureYearList;
                 ddlLicenseExpiryYear.DataBind();
+                ddlLicenseExpiryYear.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelDateDisplayYYYY"), "0"));
 
                 ddlLicenseCountry.Items.Clear();
                 ddlLicenseCountry.DataValueField = "CountryID";
@@ -5027,31 +5409,89 @@ namespace JXTPortal.Website.member
                 }
             }
 
-            if (DateTime.Now < new DateTime(Convert.ToInt32(ddlLicenseAddIssueYear.SelectedValue), Convert.ToInt32(ddlLicenseAddIssueMonth.SelectedValue), 1))
+            bool hasAddDate = false;
+            DateTime? thisIssueDateTime = null;
+            if (ddlLicenseAddIssueYear.SelectedValue != "0" && ddlLicenseAddIssueMonth.SelectedValue != "0")
             {
-                hasError = true;
-                phLicenseAddError.Visible = true;
-
-                if (string.IsNullOrWhiteSpace(controltofocus))
+                hasAddDate = true;
+                DateTime thisDateTime1;
+                try
                 {
-                    controltofocus = ddlLicenseAddIssueMonth.ClientID;
+                    thisIssueDateTime = new DateTime(Convert.ToInt32(ddlLicenseAddIssueYear.SelectedValue), Convert.ToInt32(ddlLicenseAddIssueMonth.SelectedValue), 1);
+                    if (DateTime.Now < thisIssueDateTime)
+                    {
+                        hasError = true;
+                        phLicenseAddError.Visible = true;
+
+                        if (string.IsNullOrWhiteSpace(controltofocus))
+                        {
+                            controltofocus = ddlLicenseAddIssueMonth.ClientID;
+                        }
+                    }
+                }
+                catch
+                {
+                    hasError = true;
+                    phLicenseAddError.Visible = true;
+
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = ddlLicenseAddIssueMonth.ClientID;
+                    }
                 }
             }
 
-            // Date Error Checking
-
-            if ((Convert.ToInt32(ddlLicenseAddIssueYear.SelectedValue) > Convert.ToInt32(ddlLicenseAddExpiryYear.SelectedValue))
-                || ((Convert.ToInt32(ddlLicenseAddExpiryYear.SelectedValue) == Convert.ToInt32(ddlLicenseAddIssueYear.SelectedValue) && (Convert.ToInt32(ddlLicenseAddExpiryMonth.SelectedValue) < Convert.ToInt32(ddlLicenseAddIssueMonth.SelectedValue)))))
+            bool hasExpiryDate = false;
+            if (ddlLicenseAddExpiryYear.SelectedValue != "0" && ddlLicenseAddExpiryMonth.SelectedValue != "0")
             {
-                phLicenseAddError.Visible = true;
-                hasError = true;
-
-                if (string.IsNullOrWhiteSpace(controltofocus))
+                hasExpiryDate = true;
+                DateTime thisExpiryTime;
+                try
                 {
-                    controltofocus = ddlLicenseAddIssueMonth.ClientID;
+                    thisExpiryTime = new DateTime(Convert.ToInt32(ddlLicenseAddExpiryYear.SelectedValue), Convert.ToInt32(ddlLicenseAddExpiryMonth.SelectedValue), 1);
+
+                    if (thisIssueDateTime != null)
+                    {
+                        if (thisIssueDateTime > thisExpiryTime)
+                        {
+                            hasError = true;
+                            phLicenseAddError.Visible = true;
+
+                            if (string.IsNullOrWhiteSpace(controltofocus))
+                            {
+                                controltofocus = ddlLicenseAddExpiryMonth.ClientID;
+                            }
+                        }
+                    }
+
+                }
+                catch
+                {
+                    hasError = true;
+                    phLicenseAddError.Visible = true;
+
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = ddlLicenseAddIssueMonth.ClientID;
+                    }
                 }
             }
 
+            // Date Error Checking only if none of the above failed
+            if (!hasError && hasExpiryDate && hasAddDate)
+            {
+                if ((Convert.ToInt32(ddlLicenseAddIssueYear.SelectedValue) > Convert.ToInt32(ddlLicenseAddExpiryYear.SelectedValue))
+                    || ((Convert.ToInt32(ddlLicenseAddExpiryYear.SelectedValue) == Convert.ToInt32(ddlLicenseAddIssueYear.SelectedValue) && (Convert.ToInt32(ddlLicenseAddExpiryMonth.SelectedValue) < Convert.ToInt32(ddlLicenseAddIssueMonth.SelectedValue)))))
+                {
+                    phLicenseAddError.Visible = true;
+                    hasError = true;
+
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = ddlLicenseAddIssueMonth.ClientID;
+                    }
+                }
+            }
 
             if (hasError)
             {
@@ -5071,8 +5511,14 @@ namespace JXTPortal.Website.member
             license.LicenseType = tbLicenseAddType.Text;
             license.CountryId = Convert.ToInt32(ddlLicenseAddCountry.SelectedValue);
             license.State = tbLicenseAddState.Text;
-            license.IssueDate = new DateTime(Convert.ToInt32(ddlLicenseAddIssueYear.SelectedValue), Convert.ToInt32(ddlLicenseAddIssueMonth.SelectedValue), 1);
-            license.ExpiryDate = new DateTime(Convert.ToInt32(ddlLicenseAddExpiryYear.SelectedValue), Convert.ToInt32(ddlLicenseAddExpiryMonth.SelectedValue), 1);
+            if (hasAddDate)
+                license.IssueDate = new DateTime(Convert.ToInt32(ddlLicenseAddIssueYear.SelectedValue), Convert.ToInt32(ddlLicenseAddIssueMonth.SelectedValue), 1);
+            else
+                license.IssueDate = null;
+            if (hasExpiryDate)
+                license.ExpiryDate = new DateTime(Convert.ToInt32(ddlLicenseAddExpiryYear.SelectedValue), Convert.ToInt32(ddlLicenseAddExpiryMonth.SelectedValue), 1);
+            else
+                license.ExpiryDate = null;
             license.MemberId = SessionData.Member.MemberId;
 
             MemberLicensesService.Insert(license);
@@ -6358,7 +6804,7 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
 
                 phNavReferences.Visible = (references.Count == 0);
                 phTickReferences.Visible = (references.Count > 0);
-                phUponRequest.Visible = (references.Count == 0);
+                phUponRequest.Visible = (MinReferenceEntry == 0 && references.Count == 0);
                 refUponRequest.Checked = (references.Count == 0);
                 phAddEntryTextReferences.Visible = (references.Count == 0);
             }
@@ -6371,7 +6817,7 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
                 rptReferences.DataSource = memberreferences;
                 rptReferences.DataBind();
 
-                phUponRequest.Visible = (memberreferences.Count == 0);
+                phUponRequest.Visible = (MinReferenceEntry == 0 && memberreferences.Count == 0);
                 refUponRequest.Checked = (memberreferences.Count == 0) ? (member.ReferenceUponRequest.HasValue) ? member.ReferenceUponRequest.Value : true : false;
 
                 phNavReferences.Visible = (memberreferences.Count < MinReferenceEntry);
@@ -6428,8 +6874,12 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
             Literal ltReferenceEmail = e.Item.FindControl("ltReferenceEmail") as Literal;
 
             PlaceHolder phReferencesPhone = e.Item.FindControl("phReferencesPhone") as PlaceHolder;
+            PlaceHolder phReferencesPhoneError = e.Item.FindControl("phReferencesPhoneError") as PlaceHolder;
+
             PlaceHolder phReferencesNameError = e.Item.FindControl("phReferencesNameError") as PlaceHolder;
             PlaceHolder phReferencesCompany = e.Item.FindControl("phReferencesCompanyError") as PlaceHolder;
+
+            PlaceHolder phReferencesEmailRequiredError = e.Item.FindControl("phReferencesEmailRequiredError") as PlaceHolder;
             PlaceHolder phReferencesEmailError = e.Item.FindControl("phReferencesEmailError") as PlaceHolder;
 
             TextBox tbReferencesName = e.Item.FindControl("tbReferencesName") as TextBox;
@@ -6450,10 +6900,24 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
                 bool hasError = false;
                 string controltofocus = string.Empty;
 
+                phReferencesPhoneError.Visible = false;
                 phReferencesNameError.Visible = false;
                 phReferencesJobTitleError.Visible = false;
                 phReferencesCompany.Visible = false;
                 phReferencesEmailError.Visible = false;
+                phReferencesEmailRequiredError.Visible = false;
+
+                if (string.IsNullOrWhiteSpace(tbReferencesPhone.Text))
+                {
+                    hasError = true;
+                    phReferencesPhoneError.Visible = true;
+
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = tbReferencesPhone.ClientID;
+                    }
+                }
+
 
                 if (string.IsNullOrWhiteSpace(tbReferencesName.Text))
                 {
@@ -6477,7 +6941,17 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
                     }
                 }
 
-                if (!string.IsNullOrWhiteSpace(tbReferencesEmail.Text))
+                if (string.IsNullOrWhiteSpace(tbReferencesEmail.Text))
+                {
+                    hasError = true;
+                    phReferencesEmailRequiredError.Visible = true;
+
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = tbReferencesEmail.ClientID;
+                    }
+                }
+                else
                 {
                     if (Utils.VerifyEmail(tbReferencesEmail.Text) == false)
                     {
@@ -6572,7 +7046,7 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
                     phTickReferences.Visible = (references.Count > 0);
                     phAddEntryTextReferences.Visible = (references.Count == 0);
 
-                    phUponRequest.Visible = (references.Count == 0);
+                    phUponRequest.Visible = (MinReferenceEntry == 0 && references.Count == 0);
                     refUponRequest.Checked = (references.Count == 0);
                 }
             }
@@ -6697,10 +7171,23 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
             string controltofocus = string.Empty;
 
             phReferencesAddNameError.Visible = false;
+            phReferencesAddPhoneError.Visible = false;
             phRelationshipError.Visible = false;
             phReferencesAddJobTitleError.Visible = false;
             phReferencesAddCompany.Visible = false;
             phReferencesAddEmailError.Visible = false;
+            phReferencesAddEmailRequiredError.Visible = false;
+
+            if (string.IsNullOrWhiteSpace(tbReferencesAddPhone.Text))
+            {
+                hasError = true;
+                phReferencesAddPhoneError.Visible = true;
+
+                if (string.IsNullOrWhiteSpace(controltofocus))
+                {
+                    controltofocus = tbReferencesAddPhone.ClientID;
+                }
+            }
 
             if (string.IsNullOrWhiteSpace(tbReferencesAddName.Text))
             {
@@ -6746,7 +7233,17 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
                 }
             }
 
-            if (!string.IsNullOrEmpty(tbReferencesAddEmail.Text))
+            if (string.IsNullOrEmpty(tbReferencesAddEmail.Text))
+            {
+                hasError = true;
+                phReferencesAddEmailRequiredError.Visible = true;
+
+                if (string.IsNullOrWhiteSpace(controltofocus))
+                {
+                    controltofocus = tbReferencesAddEmail.ClientID;
+                }
+            }
+            else
             {
                 if (Utils.VerifyEmail(tbReferencesAddEmail.Text) == false)
                 {
@@ -6894,7 +7391,7 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
 
                                                 foreach (XmlNode itemnode in paramsnode.SelectNodes("Item"))
                                                 {
-                                                    question.Parameters.Add(HttpUtility.HtmlDecode(itemnode.InnerXml));
+                                                    question.Parameters.Add(HttpUtility.HtmlDecode(itemnode.InnerXml.Trim(new char[] { '"' })));
                                                 }
                                             }
                                         }
@@ -7486,7 +7983,7 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
             }
             FutureYearList = new List<ListItem>();
             year = 0;
-            for (int i = 2050; i > 2000; i--)
+            for (int i = 2050; i > 1950; i--)
             {
                 year = i;
                 FutureYearList.Add(new ListItem(year.ToString(), year.ToString()));
@@ -7528,7 +8025,7 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
 
                             string jsArray = "[ " + string.Join(", ", split) + "]";
 
-                            String scriptText = @"var availableSkills = " + jsArray + @"; $( ""#ctl00_ContentPlaceHolder1_tbSkillsAddSkill"" ).autocomplete({ source: availableSkills });";
+                            String scriptText = @"var availableSkills = " + jsArray + @"; $( ""#tbSkillsAddSkill"" ).autocomplete({ source: availableSkills });";
                             ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), "SkillsAutocomplete", scriptText, true);
                         }
                     }
@@ -8117,6 +8614,11 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
     });
 
     SalaryTypeChanged();
+
+    //call custom function if any
+    if (typeof CustomFunction == 'function') { 
+      CustomFunction('member/profile.aspx'); 
+    }
 
 ", true);
         }

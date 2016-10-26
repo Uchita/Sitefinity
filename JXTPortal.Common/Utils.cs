@@ -78,6 +78,13 @@ namespace JXTPortal.Common
                 return HttpUtility.HtmlEncode(val);
         }
 
+        public static string XmlEncode(string val)
+        {
+            val = val.Replace("\"", "&quot;").Replace("&", "&amp;").Replace("'", "&apos;").Replace("<", "&lt;").Replace(">", "&gt;");
+
+            return val;
+        }
+
         public static string GetHostName()
         {
             return System.Net.Dns.GetHostName();

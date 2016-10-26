@@ -16,6 +16,8 @@ using System.Net;
 using System.Xml;
 using System.Configuration;
 using System.Runtime.Serialization.Formatters.Binary;
+using JXTPosterTransform.Library.Methods;
+using JXTPosterTransform.Library.APIs.Invenias;
 
 namespace JXTPosterTransform.Library.Services
 {
@@ -24,6 +26,7 @@ namespace JXTPosterTransform.Library.Services
         private PosterTransformEntities _context = new PosterTransformEntities();
         JavaScriptSerializer jss = new JavaScriptSerializer();
 
+        bool enableShortDescriptionPullFromFullDescription = false;
 
         public void DoTransformationWithMappings(int setupId)
         {
@@ -67,27 +70,40 @@ namespace JXTPosterTransform.Library.Services
                                 {
                                     ClientSetupModels.PullXmlFromFTP FTP = jss.Deserialize<ClientSetupModels.PullXmlFromFTP>(thisSetupItem.ClientSetupTypeCredentials);
                                     response = Methods.PullXMLFromFTP.ProcessXML(FTP, fileName);
-
                                     break;
                                 }
                             case ((int)PTCommonEnums.ClientSetup.ClientSetupType.PullXmlFromSFTP):
                                 {
                                     ClientSetupModels.PullXmlFromSFTP SFTP = jss.Deserialize<ClientSetupModels.PullXmlFromSFTP>(thisSetupItem.ClientSetupTypeCredentials);
                                     response = Methods.PullXMLFromSFTP.ProcessXML(SFTP, fileName);
-
                                     break;
                                 }
                             case ((int)PTCommonEnums.ClientSetup.ClientSetupType.PullXmlFromUrl):
                                 {
                                     ClientSetupModels.PullXmlFromUrl URL = jss.Deserialize<ClientSetupModels.PullXmlFromUrl>(thisSetupItem.ClientSetupTypeCredentials);
                                     response = Methods.PullXMLFromURL.ProcessXML(URL.URL, fileName);
-
                                     break;
                                 }
                             case ((int)PTCommonEnums.ClientSetup.ClientSetupType.PullXmlFromUrlWithAuth):
                                 {
                                     ClientSetupModels.PullXmlFromUrlWithAuth XmlAuth = jss.Deserialize<ClientSetupModels.PullXmlFromUrlWithAuth>(thisSetupItem.ClientSetupTypeCredentials);
                                     response = Methods.PullXMLWithWebAuthentication.ProcessXML(XmlAuth, fileName);
+                                    break;
+                                }
+                            case ((int)PTCommonEnums.ClientSetup.ClientSetupType.PullFromInvenias):
+                                {
+                                    ClientSetupModels.PullFromInvenias invAuth = jss.Deserialize<ClientSetupModels.PullFromInvenias>(thisSetupItem.ClientSetupTypeCredentials);
+                                    PullFromInvenias inveniaLogic = new PullFromInvenias(invAuth);
+                                    List<InveniasAdvertisementsValue> advertisements = inveniaLogic.AdvertisementsGet();
+                                    response = inveniaLogic.ProcessInveniaModelToXML(advertisements, fileName);
+                                    break;
+                                }
+                            case ((int)PTCommonEnums.ClientSetup.ClientSetupType.PullJsonFromUrl):
+                                {
+                                    //only enabled for this for now incase it breaks any other things
+                                    enableShortDescriptionPullFromFullDescription = true;
+                                    ClientSetupModels.PullJsonFromUrl jsonAuth = jss.Deserialize<ClientSetupModels.PullJsonFromUrl>(thisSetupItem.ClientSetupTypeCredentials);
+                                    response = Methods.PullJsonFromURL.ProcessJsonToXML(jsonAuth.URL, fileName);
                                     break;
                                 }
                             case ((int)PTCommonEnums.ClientSetup.ClientSetupType.PullXmlFromRGF):
@@ -109,13 +125,14 @@ namespace JXTPosterTransform.Library.Services
                                         bool blnPostSuccess = true;
                                         for (count = 0; count < rgfData.jobBoards.jobboardlisting.upserted.Count(); )
                                         {
+                                            string thisFileName = fileName + "-" + fileCount;
                                             JXTPosterTransform.Library.Methods.Client.PullJsonFromRGF.RGFJobBoardDataRoot currentQueue = DeepClone<JXTPosterTransform.Library.Methods.Client.PullJsonFromRGF.RGFJobBoardDataRoot>(rgfData);
                                             currentQueue.jobBoards.jobboardlisting.upserted = currentQueue.jobBoards.jobboardlisting.upserted.Skip(count).Take(200).ToList();
 
-                                            response = rgfLogic.ProcessRGFModelToXML(currentQueue, fileName + "-" + fileCount);
+                                            response = rgfLogic.ProcessRGFModelToXML(currentQueue, thisFileName);
 
                                             // Get the Credentials AND Pull the XML     AND     Post to JXT platform Webservice                            
-                                            bool blnThisPostSuccess = PostTransformationWithMappings(thisSetupItem, response.ResponseXML, fileName, dtStartTime);
+                                            bool blnThisPostSuccess = PostTransformationWithMappings(thisSetupItem, response.ResponseXML, thisFileName, dtStartTime);
 
                                             if (!blnThisPostSuccess)
                                                 blnPostSuccess = false;
@@ -452,6 +469,23 @@ Email: Nicky.s@stellarworkforce.co.nz</strong></span><br />
                         jobListings.UserName = clientSetup.AdvertiserUsername;
                         jobListings.Password = clientSetup.AdvertiserPassword;
                         jobListings.ArchiveMissingJobs = clientSetup.ArchiveMissingJobs;
+
+                        if (enableShortDescriptionPullFromFullDescription)
+                        {
+                            int trimLength = 1000; //shortDescription max length is 1000
+                            foreach (JobListing job in jobListings.Listings.Where(c=> string.IsNullOrEmpty(c.ShortDescription) ))
+                            {
+                                if (!string.IsNullOrEmpty(job.JobFullDescription))
+                                {
+                                    string strContent = Common.Utils.StripHTML(job.JobFullDescription);
+                                    if (strContent.Length > trimLength)
+                                    {
+                                        strContent = strContent.Substring(0, trimLength - 3) + "...";
+                                    }
+                                    job.ShortDescription = strContent;
+                                }
+                            }
+                        }
 
                         // Mappings
                         MappingsLogic MappingsLogic = new MappingsLogic();

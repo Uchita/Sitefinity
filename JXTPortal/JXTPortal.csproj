@@ -234,6 +234,8 @@
     <Compile Include="Client\Bullhorn\pesta_oauth\Rfc3986.cs" />
     <Compile Include="Client\Bullhorn\pesta_oauth\RSA_SHA1.cs" />
     <Compile Include="Client\Bullhorn\pesta_oauth\SimpleOAuthValidator.cs" />
+    <Compile Include="Client\Invenias\InveniasModels.cs" />
+    <Compile Include="Client\Invenias\InveniasRESTAPI.cs" />
     <Compile Include="Client\Salesforce\SalesfoceModels.cs" />
     <Compile Include="Client\Salesforce\SalesforceIntegration.cs" />
     <Compile Include="Client\Salesforce\SalesforceMemberSync.cs" />
@@ -623,6 +625,7 @@
     <Compile Include="WorkTypeServiceBase.generated.cs" />
     <AppDesigner Include="Properties\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSHARP.Targets" />
   <PropertyGroup>
     <PreBuildEvent>

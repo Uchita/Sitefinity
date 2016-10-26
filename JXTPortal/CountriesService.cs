@@ -45,7 +45,7 @@ namespace JXTPortal
         {
             string xmlprefix = "{0}{2}_{1}.xml";
             string url = string.Format(xmlprefix,
-                                        System.Web.HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["XMLFilesPath"]),
+                                        ConfigurationManager.AppSettings["XMLFilesPath"],
                                         languageID,
                                         PortalConstants.XMLTranslationFiles.XML_COUNTRY_FILENAME);
             return XMLLanguageService.Translate(GetAll().ToList(), "CountryId", "CountryName", url);
@@ -57,7 +57,7 @@ namespace JXTPortal
 
             string xmlprefix = "{0}{2}_{1}.xml";
             string url = string.Format(xmlprefix,
-                                        System.Web.HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["XMLFilesPath"]),
+                                        ConfigurationManager.AppSettings["XMLFilesPath"],
                                         languageID,
                                         PortalConstants.XMLTranslationFiles.XML_COUNTRY_FILENAME);
             return XMLLanguageService.Translate(country, "CountryId", "CountryName", url);

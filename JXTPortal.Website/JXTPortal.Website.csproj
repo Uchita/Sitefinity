@@ -122,6 +122,10 @@
       <Project>{08EACA40-0B2C-4FB3-87CB-4F5880D289B5}</Project>
       <Name>PaymentGateway</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SectionIO\SectionIO.csproj">
+      <Project>{634574E7-DA42-4681-A185-EB54E1B47872}</Project>
+      <Name>SectionIO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SocialMedia\SocialMedia.csproj">
       <Project>{C1E3E75C-7C54-4546-A1FC-B70ED7A2C4F8}</Project>
       <Name>SocialMedia</Name>
@@ -1390,6 +1394,7 @@
     <Content Include="member\ConfirmDelete.aspx" />
     <Content Include="scripts\lib\jQuery-plugin-progressbar.js" />
     <Content Include="scripts\member\people-search.js" />
+    <Content Include="scripts\owl.carousel.js" />
     <Content Include="styles\images\ui-icons_444444_256x240.png" />
     <Content Include="styles\images\ui-icons_555555_256x240.png" />
     <Content Include="styles\images\ui-icons_777620_256x240.png" />
@@ -1439,6 +1444,7 @@
     <Content Include="styles\invoice.css" />
     <Content Include="styles\lib\footable.core.css" />
     <Content Include="styles\member\settings.css" />
+    <Content Include="styles\owl.carousel.css" />
     <Content Include="styles\report.css" />
     <Content Include="styles\strength.css" />
     <Content Include="usercontrols\advertiser\ucJobsSuspended.ascx" />
@@ -4639,7 +4645,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>52516</DevelopmentServerPort>
+          <DevelopmentServerPort>49188</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:49188/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

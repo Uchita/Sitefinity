@@ -106,6 +106,7 @@ namespace JXTPortal.Website.Admin
 
             sb.Append(GenerateHTML(typeof(AdminIntegrations.BullhornOnBoardingSSO), siteIntegrations.Where(i => i.IntegrationType == (int)PortalEnums.SocialMedia.SocialMediaType.BullhornOnBoardingSSO).FirstOrDefault()));
 
+            sb.Append(GenerateHTML(typeof(AdminIntegrations.Invenias), siteIntegrations.Where(i => i.IntegrationType == (int)PortalEnums.SocialMedia.SocialMediaType.Invenias).FirstOrDefault()));
 
             //Check for Bullhorns integrations
             //List<Entities.Integrations> bullhorn_integrations = siteIntegrations.Where(i => i.IntegrationType == (int)PortalEnums.SocialMedia.SocialMediaType.BullHorn).ToList();
@@ -216,7 +217,8 @@ namespace JXTPortal.Website.Admin
                 GoogleDrive = (AdminIntegrations.GoogleDrive)ProcessSubmittedSettingsForType(typeof(AdminIntegrations.GoogleDrive)),
                 Salesforce = (AdminIntegrations.Salesforce)ProcessSubmittedSettingsForType(typeof(AdminIntegrations.Salesforce)),
                 Bullhorn = (AdminIntegrations.Bullhorn)ProcessSubmittedSettingsForType(typeof(AdminIntegrations.Bullhorn)),
-                BullhornOnBoardingSSO = (AdminIntegrations.BullhornOnBoardingSSO)ProcessSubmittedSettingsForType(typeof(AdminIntegrations.BullhornOnBoardingSSO))
+                BullhornOnBoardingSSO = (AdminIntegrations.BullhornOnBoardingSSO)ProcessSubmittedSettingsForType(typeof(AdminIntegrations.BullhornOnBoardingSSO)),
+                Invenias = (AdminIntegrations.Invenias)ProcessSubmittedSettingsForType(typeof(AdminIntegrations.Invenias)),
             };
 
             return model;
@@ -359,7 +361,10 @@ namespace JXTPortal.Website.Admin
                     string dataValue = string.Empty;
                     if (existingIntegrationData != null && existingIntegrationData.Keys.Contains(pInfo.Name))
                     {
-                        dataValue = existingIntegrationData[pInfo.Name].ToString();
+                        if (existingIntegrationData[pInfo.Name] == null)
+                            dataValue = string.Empty;
+                        else
+                            dataValue = existingIntegrationData[pInfo.Name].ToString();
                     }
                     sb.Append(@"<input type=""text"" ID=""" + tbID + @""" name=""" + tbID + @""" TextMode=""SingleLine"" style=""width:500px"" value=""" + dataValue + @""" autocomplete=""off"" " + readonlyText + "/>");
 

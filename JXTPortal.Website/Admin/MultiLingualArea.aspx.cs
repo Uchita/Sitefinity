@@ -193,7 +193,7 @@ namespace JXTPortal.Website.Admin
 
         private void WriteAreaXML()
         {
-            string url = string.Format(xmlprefix, Server.MapPath(ConfigurationManager.AppSettings["XMLFilesPath"]), ddlLanguage.SelectedValue,
+            string url = string.Format(xmlprefix, ConfigurationManager.AppSettings["XMLFilesPath"], ddlLanguage.SelectedValue,
                                             PortalConstants.XMLTranslationFiles.XML_AREA_FILENAME, ddlLocation.SelectedValue);
             XmlTextWriter writer = new XmlTextWriter(url, null);
             writer.Formatting = Formatting.Indented;

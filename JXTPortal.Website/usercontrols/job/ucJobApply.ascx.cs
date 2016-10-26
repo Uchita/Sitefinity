@@ -20,6 +20,7 @@ namespace JXTPortal.Website.usercontrols.job
 
         public double? MapLat = null;
         public double? MapLng = null;
+        public string MapKey = null;
         public string JobAddress = string.Empty;
 
 
@@ -704,7 +705,8 @@ namespace JXTPortal.Website.usercontrols.job
                         //assign variables for ascx use
                         MapLat = lat;
                         MapLng = lng;
-                        
+                        MapKey = integrations.GoogleMap.ServerKey;
+
                         phJobMapLocation.Visible = true;
                     }
                 }

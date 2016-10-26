@@ -49,7 +49,7 @@ namespace JXTPortal
         public List<SalaryType> GetTranslatedSalaryTypes(int languageID)
         {
             string url = string.Format(xmlprefix,
-                                        System.Web.HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["XMLFilesPath"]),
+                                        ConfigurationManager.AppSettings["XMLFilesPath"],
                                         languageID,
                                         PortalConstants.XMLTranslationFiles.XML_SALARY_FILENAME);
             return XMLLanguageService.Translate(GetAll().ToList(), "SalaryTypeId", "SalaryTypeName", url);
@@ -59,7 +59,7 @@ namespace JXTPortal
         {
             SalaryType salarytype = GetBySalaryTypeId(salaryTypeID);
             string url = string.Format(xmlprefix,
-                                      System.Web.HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["XMLFilesPath"]),
+                                      ConfigurationManager.AppSettings["XMLFilesPath"],
                                       languageID,
                                       PortalConstants.XMLTranslationFiles.XML_SALARY_FILENAME);
             return XMLLanguageService.Translate(salarytype, "SalaryTypeId", "SalaryTypeName", url);
@@ -71,7 +71,7 @@ namespace JXTPortal
             SalaryType salarytype = GetBySalaryTypeId(salaryTypeID);
 
             string url = string.Format(xmlprefix,
-                                          System.Web.HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["XMLFilesPath"]),
+                                          ConfigurationManager.AppSettings["XMLFilesPath"],
                                           languageID,
                                           PortalConstants.XMLTranslationFiles.XML_SALARY_FILENAME);
             return XMLLanguageService.TranslateString(salarytype.SalaryTypeId, "SalaryTypeId", "SalaryTypeName", url);

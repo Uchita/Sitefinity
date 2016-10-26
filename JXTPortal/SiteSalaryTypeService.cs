@@ -52,7 +52,7 @@ namespace JXTPortal
 
             string xmlprefix = "{0}{2}_{1}.xml";
             string url = string.Format(xmlprefix,
-                                        System.Web.HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["XMLFilesPath"]),
+                                        ConfigurationManager.AppSettings["XMLFilesPath"],
                                         SessionData.Language.LanguageId,
                                         PortalConstants.XMLTranslationFiles.XML_SALARY_FILENAME);
             return XMLLanguageService.Translate(siteSalaryType.Where(s => s.Valid == true).OrderBy(x => x.Sequence).ToList(), "SalaryTypeId", "SalaryTypeName", url);
@@ -67,7 +67,7 @@ namespace JXTPortal
 
             string xmlprefix = "{0}{2}_{1}.xml";
             string url = string.Format(xmlprefix,
-                                        System.Web.HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["XMLFilesPath"]),
+                                        ConfigurationManager.AppSettings["XMLFilesPath"],
                                         SessionData.Language.LanguageId,
                                         PortalConstants.XMLTranslationFiles.XML_SALARY_FILENAME);
             return XMLLanguageService.Translate(siteSalaryType[0], "SalaryTypeId", "SalaryTypeName", url);

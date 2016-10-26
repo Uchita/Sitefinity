@@ -106,7 +106,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tạo Cảnh báo Công việc.
+        ///   Looks up a localized string similar to Tạo thông báo công việc.
         /// </summary>
         internal static string ButtonCreateJobAlert {
             get {
@@ -133,7 +133,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Không có Thư Xin Việc.
+        ///   Looks up a localized string similar to Không có thư ứng tuyển.
         /// </summary>
         internal static string ButtonNoCoverLetter {
             get {
@@ -142,7 +142,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Không có Hồ sơ Xin Việc.
+        ///   Looks up a localized string similar to Không có hồ sơ ứng tuyển.
         /// </summary>
         internal static string ButtonNoResume {
             get {
@@ -196,7 +196,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lưu lại Mục Đã Chọn.
+        ///   Looks up a localized string similar to Lưu lại mục đã chọn.
         /// </summary>
         internal static string ButtonSaveSelected {
             get {
@@ -250,7 +250,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tải lên một thư xin việc từ máy tính của tôi.
+        ///   Looks up a localized string similar to Tải lên thư ứng tuyển từ máy tính của tôi.
         /// </summary>
         internal static string ButtonUploadCoverLetterNow {
             get {
@@ -259,7 +259,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tải lên một hồ sơ xin việc từ máy tính của tôi.
+        ///   Looks up a localized string similar to Tải lên hồ sơ ứng tuyển từ máy tính của tôi.
         /// </summary>
         internal static string ButtonUploadResumeNow {
             get {
@@ -277,7 +277,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tôi sẽ tự viết bây giờ.
+        ///   Looks up a localized string similar to Tôi sẽ viết bây giờ.
         /// </summary>
         internal static string ButtonWriteOneNow {
             get {
@@ -349,7 +349,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bạn có chắc bạn muốn xóa vĩnh viễn bài quảng cáo nháp này?.
+        ///   Looks up a localized string similar to Bạn có chắc bạn muốn xóa vĩnh viễn bài quảng cáo tuyển dụng này?.
         /// </summary>
         internal static string ConfirmExpireJob {
             get {
@@ -403,7 +403,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Số Ứng tuyển.
+        ///   Looks up a localized string similar to Số lượt ứng tuyển.
         /// </summary>
         internal static string DDLNumberOfApplications {
             get {
@@ -412,7 +412,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Số Lượt xem.
+        ///   Looks up a localized string similar to Số lượt xem.
         /// </summary>
         internal static string DDLNumberOfViews {
             get {
@@ -484,7 +484,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kích thước Điểm Nhấn không thể vượt quá 160 ký tự.
+        ///   Looks up a localized string similar to Kích thước không thể vượt quá 160 ký tự.
         /// </summary>
         internal static string ErrorBulletPointSize {
             get {
@@ -502,7 +502,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Thư Xin Việc không thể được để trống..
+        ///   Looks up a localized string similar to Thư ứng tuyển không thể được để trống.
         /// </summary>
         internal static string ErrorCoverLetterEmpty {
             get {
@@ -565,7 +565,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kiểu đuôi tập tin không được chấp nhận.
+        ///   Looks up a localized string similar to Định dạng tập tin không được chấp nhận.
         /// </summary>
         internal static string ErrorFileExtension {
             get {
@@ -583,7 +583,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Đuôi ảnh tải lên &apos;.
+        ///   Looks up a localized string similar to Định dạng ảnh tải lên.
         /// </summary>
         internal static string ErrorImageExtension {
             get {
@@ -601,7 +601,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ảnh tải lên không có đuôi.
+        ///   Looks up a localized string similar to Ảnh tải lên không có định dạng.
         /// </summary>
         internal static string ErrorImageNoExtension {
             get {
@@ -619,7 +619,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kiểu Tập tin không hợp lệ.
+        ///   Looks up a localized string similar to Kiểu tập tin không hợp lệ.
         /// </summary>
         internal static string ErrorInvalidFileType {
             get {
@@ -664,7 +664,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Điện thoại không thể vượt quá 40 ký tự.
+        ///   Looks up a localized string similar to Số điện thoại không thể vượt quá 40 ký tự.
         /// </summary>
         internal static string ErrorPhoneSize {
             get {
@@ -691,7 +691,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Thêm Ngôn ngữ.
+        ///   Looks up a localized string similar to Thêm ngôn ngữ.
         /// </summary>
         internal static string LabeAddLanguage {
             get {
@@ -700,7 +700,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tôi Đồng ý với các Điều khoản và Điều kiện.
+        ///   Looks up a localized string similar to Tôi đồng ý với các Điều khoản và Điều kiện.
         /// </summary>
         internal static string LabelAcceptTermCondition {
             get {
@@ -736,7 +736,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Số Tài khoản.
+        ///   Looks up a localized string similar to Số tài khoản.
         /// </summary>
         internal static string LabelAccountNumber {
             get {
@@ -754,7 +754,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kiểu Tài khoản.
+        ///   Looks up a localized string similar to Dạng tài khoản.
         /// </summary>
         internal static string LabelAccountType {
             get {
@@ -826,7 +826,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Thêm Chứng chỉ &amp;amp; Tư cách Thành viên.
+        ///   Looks up a localized string similar to Thêm Chứng chỉ; Tư cách thành viên.
         /// </summary>
         internal static string LabelAddCertificateMembership {
             get {
@@ -952,7 +952,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Advertiser Full Register.
+        ///   Looks up a localized string similar to Đăng ký quảng cáo.
         /// </summary>
         internal static string LabelAdvertiserFullRegister {
             get {
@@ -961,8 +961,8 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;h2&gt;Dear quảng cáo,&lt;/h2&gt;
-        ///
+        ///   Looks up a localized string similar to &lt;h2&gt;Dear quảng cáo,&lt;/h2&gt;_x000D_
+        ///_x000D_
         ///&lt;p&gt;Tài khoản của bạn đã được xác nhận với chúng tôi. Bạn có thể truy cập tài khoản của bạn thông qua các trang đăng nhập &lt;a href=&quot;/advertiser/login.aspx&quot;&gt;trang đăng nhập&lt;/a&gt;.&lt;/p&gt;.
         /// </summary>
         internal static string LabelAdvertiserInvalid {
@@ -1008,7 +1008,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Người dùng Nhà Quảng cáo.
+        ///   Looks up a localized string similar to Người dùng là Nhà quảng cáo.
         /// </summary>
         internal static string LabelAdvertiserUser {
             get {
@@ -1152,7 +1152,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - Tất cả Phân loại Con -.
+        ///   Looks up a localized string similar to Tất cả phân loại nhánh.
         /// </summary>
         internal static string LabelAllSubClassifications {
             get {
@@ -1170,7 +1170,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Alphabetical Ascending.
+        ///   Looks up a localized string similar to Thứ tự A-Z tăng dần.
         /// </summary>
         internal static string LabelAlphabeticalAscending {
             get {
@@ -1179,7 +1179,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Alphabetical Descending.
+        ///   Looks up a localized string similar to Thứ tự Z-A giảm dần.
         /// </summary>
         internal static string LabelAlphabeticalDescending {
             get {
@@ -1197,7 +1197,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Amex.
+        ///   Looks up a localized string similar to Please check the English version for meaning. If it&apos;s right, use English word for Vnmese.
         /// </summary>
         internal static string LabelAMEX {
             get {
@@ -1368,7 +1368,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Công việc được lưu kho.
+        ///   Looks up a localized string similar to Công việc được lưu trữ.
         /// </summary>
         internal static string LabelArchivedJobs {
             get {
@@ -1476,7 +1476,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ngày Sẵn có.
+        ///   Looks up a localized string similar to Ngày sẵn sàng.
         /// </summary>
         internal static string LabelAvailabilityDate {
             get {
@@ -1485,7 +1485,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ngày Sẵn có Từ.
+        ///   Looks up a localized string similar to Ngày sẵn sàng từ.
         /// </summary>
         internal static string LabelAvailabilityDateFrom {
             get {
@@ -1494,7 +1494,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Available Date.
+        ///   Looks up a localized string similar to Ngày sẵn sàng.
         /// </summary>
         internal static string LabelAvailableDate {
             get {
@@ -1503,7 +1503,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Availability Date From.
+        ///   Looks up a localized string similar to Ngày sẵn sàng từ.
         /// </summary>
         internal static string LabelAvailableDateFrom {
             get {
@@ -1512,7 +1512,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sẵn có Từ.
+        ///   Looks up a localized string similar to Sẵn sàng từ.
         /// </summary>
         internal static string LabelAvailableFrom {
             get {
@@ -1521,7 +1521,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tình trạng Sẵn có.
+        ///   Looks up a localized string similar to Tình trạng sẵn sàng.
         /// </summary>
         internal static string LabelAvailableStatus {
             get {
@@ -1719,7 +1719,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Candidates.
+        ///   Looks up a localized string similar to Ứng viên.
         /// </summary>
         internal static string LabelCandidates {
             get {
@@ -1773,7 +1773,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Chứng chỉ &amp;amp; Tư cách Thành viên.
+        ///   Looks up a localized string similar to Chứng chỉ; Thành viên.
         /// </summary>
         internal static string LabelCertAndMembership {
             get {
@@ -1800,7 +1800,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Chứng chỉ &amp;amp; Tư cách Thành viên.
+        ///   Looks up a localized string similar to Chứng chỉ; Thành viên.
         /// </summary>
         internal static string LabelCertificationsAndMemberships {
             get {
@@ -1890,7 +1890,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to City.
+        ///   Looks up a localized string similar to Thành phố.
         /// </summary>
         internal static string LabelCity {
             get {
@@ -1899,7 +1899,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to City / State.
+        ///   Looks up a localized string similar to Thành phố/ Bang.
         /// </summary>
         internal static string LabelCityState {
             get {
@@ -1926,7 +1926,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Phân loại / Phân loại con.
+        ///   Looks up a localized string similar to Phân loại/ Phân loại nhánh.
         /// </summary>
         internal static string LabelClassificationAndSubClassification {
             get {
@@ -1944,7 +1944,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Phân loại / Phân loại con.
+        ///   Looks up a localized string similar to Phân loại/ Phân loại nhánh.
         /// </summary>
         internal static string LabelClassificationSubClassification {
             get {
@@ -2241,7 +2241,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Chép.
+        ///   Looks up a localized string similar to Sao chép.
         /// </summary>
         internal static string LabelCopyJob {
             get {
@@ -2295,7 +2295,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Thư Xin Việc.
+        ///   Looks up a localized string similar to Thư ứng tuyển.
         /// </summary>
         internal static string LabelCoverLetter {
             get {
@@ -2322,7 +2322,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tạo cảnh báo.
+        ///   Looks up a localized string similar to Tạo thông báo.
         /// </summary>
         internal static string LabelCreateAsAlert {
             get {
@@ -2358,7 +2358,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tạo Cảnh báo Công việc.
+        ///   Looks up a localized string similar to Tạo thông báo công việc.
         /// </summary>
         internal static string LabelCreateJobAlert {
             get {
@@ -2367,7 +2367,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tạo Cảnh báo Công việc - Thiếu Tên.
+        ///   Looks up a localized string similar to Tạo thông báo công việc bị thiếu.
         /// </summary>
         internal static string LabelCreateJobAlertNameIsMissing {
             get {
@@ -2484,7 +2484,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Thư Xin Việc Tùy chỉnh.
+        ///   Looks up a localized string similar to Thư ứng tuyển tùy chỉnh.
         /// </summary>
         internal static string LabelCustomCoverLetter {
             get {
@@ -2934,7 +2934,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sửa Cảnh báo Công việc.
+        ///   Looks up a localized string similar to Sửa Thông báo công việc.
         /// </summary>
         internal static string LabelEditJobAlert {
             get {
@@ -2970,7 +2970,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ví dụ tìm kiếm công việc Kế toán ở Sydney.
+        ///   Looks up a localized string similar to Ví dụ: Tìm kiếm công việc Kế toán ở Sydney.
         /// </summary>
         internal static string LabelEGAccountingJobInSydney {
             get {
@@ -3060,7 +3060,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email bạn bè.
+        ///   Looks up a localized string similar to Gửi Email cho bạn bè.
         /// </summary>
         internal static string LabelEmailFriend {
             get {
@@ -3285,7 +3285,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lương Kỳ vọng / Tiền Công Mong muốn.
+        ///   Looks up a localized string similar to Mức lương kỳ vọng/ Thù lao mong muốn.
         /// </summary>
         internal static string LabelExpectedSalary {
             get {
@@ -3384,7 +3384,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Không thể tạo cảnh báo của bạn.
+        ///   Looks up a localized string similar to Không thể tạo thông báo cho bạn.
         /// </summary>
         internal static string LabelFailedToCreatedYouJobAlert {
             get {
@@ -3519,7 +3519,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Filter Results.
+        ///   Looks up a localized string similar to Kết quả đã lọc.
         /// </summary>
         internal static string LabelFilterResults {
             get {
@@ -3600,7 +3600,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Chủ Lao động Trước.
+        ///   Looks up a localized string similar to Nhà tuyển dụng trước.
         /// </summary>
         internal static string LabelFormerEmployer {
             get {
@@ -3717,7 +3717,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Graduated.
+        ///   Looks up a localized string similar to Đã tốt nghiệp.
         /// </summary>
         internal static string LabelGraduated {
             get {
@@ -3726,7 +3726,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Graduated Credits.
+        ///   Looks up a localized string similar to Học phần đã tốt nghiệp.
         /// </summary>
         internal static string LabelGraduatedCredits {
             get {
@@ -3798,7 +3798,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hourly Range.
+        ///   Looks up a localized string similar to Xếp hạng theo giờ.
         /// </summary>
         internal static string LabelHourlyRange {
             get {
@@ -3807,7 +3807,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lương Giờ.
+        ///   Looks up a localized string similar to Mức lương theo giờ.
         /// </summary>
         internal static string LabelHourlySalary {
             get {
@@ -3861,7 +3861,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Industry.
+        ///   Looks up a localized string similar to Ngành.
         /// </summary>
         internal static string LabelIndustry {
             get {
@@ -3978,7 +3978,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tháng một.
+        ///   Looks up a localized string similar to Tháng Một.
         /// </summary>
         internal static string LabelJan {
             get {
@@ -4005,7 +4005,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cảnh báo Công việc.
+        ///   Looks up a localized string similar to Thông báo công việc.
         /// </summary>
         internal static string LabelJobAlert {
             get {
@@ -4014,7 +4014,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Một Cảnh báo Công việc đã được tạo..
+        ///   Looks up a localized string similar to Một Thông báo công việc đã được chọn.
         /// </summary>
         internal static string LabelJobAlertCreateSuccess {
             get {
@@ -4023,7 +4023,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tiêu chí Cảnh báo Công việc.
+        ///   Looks up a localized string similar to Tiêu chí Thông báo công việc.
         /// </summary>
         internal static string LabelJobAlertCriteria {
             get {
@@ -4032,7 +4032,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Chi tiết Cảnh báo Công việc.
+        ///   Looks up a localized string similar to Chi tiết Thông báo công việc.
         /// </summary>
         internal static string LabelJobAlertDetail {
             get {
@@ -4041,7 +4041,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to GUID Sửa Cảnh báo Công việc đã Thất bại.
+        ///   Looks up a localized string similar to GUID Sửa Thông báo Công việc đã Thất bại.
         /// </summary>
         internal static string LabelJobAlertEditGUIDFailed {
             get {
@@ -4050,7 +4050,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tên Cảnh báo Công việc.
+        ///   Looks up a localized string similar to Tên Thông báo công việc.
         /// </summary>
         internal static string LabelJobAlertName {
             get {
@@ -4059,7 +4059,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Không, đừng gửi tôi Cảnh báo Công việc hàng Ngày.
+        ///   Looks up a localized string similar to Không, đừng gửi tôi Thông báo Công việc hàng ngày.
         /// </summary>
         internal static string LabelJobAlertNo {
             get {
@@ -4068,7 +4068,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cảnh báo Công việc đã được lưu thành công.
+        ///   Looks up a localized string similar to Thông báo Công việc đã được lưu thành công.
         /// </summary>
         internal static string LabelJobAlertSaveSuccess {
             get {
@@ -4077,7 +4077,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to GUID Hủy Đăng ký Cảnh báo Công việc đã Thất bại.
+        ///   Looks up a localized string similar to GUID Hủy Đăng ký Thông báo Công việc đã thất bại.
         /// </summary>
         internal static string LabelJobAlertUnsubscribeGUIDFailed {
             get {
@@ -4086,7 +4086,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to GUID Xem Cảnh báo Công việc đã Thất bại.
+        ///   Looks up a localized string similar to GUID Xem Thông báo Công việc đã thất bại.
         /// </summary>
         internal static string LabelJobAlertViewGUIDFailed {
             get {
@@ -4095,7 +4095,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Có, gửi tôi Cảnh báo Công việc hàng Ngày.
+        ///   Looks up a localized string similar to Có, gửi tôi Thông báo Công việc hàng ngày.
         /// </summary>
         internal static string LabelJobAlertYes {
             get {
@@ -4221,7 +4221,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tên Dễ nghe cho Công việc.
+        ///   Looks up a localized string similar to Tên công việc dễ nhớ.
         /// </summary>
         internal static string LabelJobFriendlyName {
             get {
@@ -4410,7 +4410,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;{0}&quot;Chức danh Công việc đã Hết hạn.
+        ///   Looks up a localized string similar to {0}Chức danh Công việc đã Hết hạn.
         /// </summary>
         internal static string LabelJobTitleIsExpired {
             get {
@@ -4419,7 +4419,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kiểu Công việc.
+        ///   Looks up a localized string similar to Loại hình Công việc.
         /// </summary>
         internal static string LabelJobWorktype {
             get {
@@ -4428,7 +4428,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tháng 7.
+        ///   Looks up a localized string similar to Tháng Bảy.
         /// </summary>
         internal static string LabelJul {
             get {
@@ -4437,7 +4437,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tháng sáu.
+        ///   Looks up a localized string similar to Tháng Sáu.
         /// </summary>
         internal static string LabelJun {
             get {
@@ -4851,7 +4851,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tháng ba.
+        ///   Looks up a localized string similar to Tháng Ba.
         /// </summary>
         internal static string LabelMar {
             get {
@@ -4923,7 +4923,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tháng năm.
+        ///   Looks up a localized string similar to Tháng Năm.
         /// </summary>
         internal static string LabelMay {
             get {
@@ -4995,8 +4995,8 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tài khoản đã được xác thực
-        ///&lt;br /&gt;&lt;br /&gt;
+        ///   Looks up a localized string similar to Tài khoản đã được xác thực_x000D_
+        ///&lt;br /&gt;&lt;br /&gt;_x000D_
         ///Tài khoản của bạn đã được xác thực. Bạn vui lòng &lt;a href=&quot;/member/login.aspx&quot;&gt;đăng nhập&lt;/a&gt;..
         /// </summary>
         internal static string LabelMemberValidated {
@@ -5141,7 +5141,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bộ Theo dõi Đơn của Tôi.
+        ///   Looks up a localized string similar to Bộ theo dõi Ứng tuyển của tôi.
         /// </summary>
         internal static string LabelMyApplicationTracker {
             get {
@@ -5204,7 +5204,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cảnh báo Công việc của Tôi.
+        ///   Looks up a localized string similar to Thông báo Công việc của tôi.
         /// </summary>
         internal static string LabelMyJobAlerts {
             get {
@@ -5213,7 +5213,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cảnh báo công việc của tôi.
+        ///   Looks up a localized string similar to Thông báo Công việc của tôi.
         /// </summary>
         internal static string LabelMyJobAlert_s {
             get {
@@ -5429,7 +5429,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bạn hiện không có Thư Xin Việc.
+        ///   Looks up a localized string similar to Bạn hiện không có Thư ứng tuyển.
         /// </summary>
         internal static string LabelNoCoverLetter {
             get {
@@ -5465,7 +5465,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bạn hiện không có cảnh báo Công việc nào..
+        ///   Looks up a localized string similar to Bạn hiện không có Thông báo Công việc nào.
         /// </summary>
         internal static string LabelNoJobAlerts {
             get {
@@ -5501,7 +5501,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nominated Company Email Address.
+        ///   Looks up a localized string similar to Địa chỉ Email Công ty đề xuất.
         /// </summary>
         internal static string LabelNominatedCompanyEmailAddress {
             get {
@@ -5510,7 +5510,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nominated Company First Name.
+        ///   Looks up a localized string similar to Tên Công ty đề xuất.
         /// </summary>
         internal static string LabelNominatedCompanyFirstName {
             get {
@@ -5519,7 +5519,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nominated Company Last Name.
+        ///   Looks up a localized string similar to Tên Công ty đề xuất.
         /// </summary>
         internal static string LabelNominatedCompanyLastName {
             get {
@@ -5528,7 +5528,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nominated Company Phone.
+        ///   Looks up a localized string similar to Số điện thoại công ty đề xuất.
         /// </summary>
         internal static string LabelNominatedCompanyPhone {
             get {
@@ -5537,7 +5537,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nominated Company Role.
+        ///   Looks up a localized string similar to Vai trò công ty đề xuất.
         /// </summary>
         internal static string LabelNominatedCompanyRole {
             get {
@@ -5564,7 +5564,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bạn hiện không có Hồ sơ Xin Việc.
+        ///   Looks up a localized string similar to Bạn hiện không có Hồ sơ ứng tuyển.
         /// </summary>
         internal static string LabelNoResume {
             get {
@@ -5609,7 +5609,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Not yet submitted.
+        ///   Looks up a localized string similar to Chưa gửi.
         /// </summary>
         internal static string LabelNotYetSubmitted {
             get {
@@ -5618,7 +5618,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tháng mười một.
+        ///   Looks up a localized string similar to Tháng Mười Một.
         /// </summary>
         internal static string LabelNov {
             get {
@@ -5645,7 +5645,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tháng mười.
+        ///   Looks up a localized string similar to Tháng Mười.
         /// </summary>
         internal static string LabelOct {
             get {
@@ -5681,7 +5681,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Oái! Có vẻ như bạn không có đủ tín dụng công việc. Để đăng tải một công việc, đầu tiên bạn phải
+        ///   Looks up a localized string similar to Oái! Có vẻ như bạn không có đủ tín dụng công việc. Để đăng tải một công việc, đầu tiên bạn phải_x000D_
         ///                    mua tín dụng dưới đây..
         /// </summary>
         internal static string LabelOopsNoJobCredit {
@@ -5907,7 +5907,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to People Search.
+        ///   Looks up a localized string similar to Tìm kiếm Con người.
         /// </summary>
         internal static string LabelPeopleSearch {
             get {
@@ -6132,7 +6132,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hậu đại học.
+        ///   Looks up a localized string similar to Sau Đại học.
         /// </summary>
         internal static string LabelPostGraduateDegree {
             get {
@@ -6168,7 +6168,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Preferred Contact Method.
+        ///   Looks up a localized string similar to Cách thức Liên lạc ưu tiên.
         /// </summary>
         internal static string LabelPreferredContactMethod {
             get {
@@ -6213,7 +6213,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Phân loại Con Ưu tiên.
+        ///   Looks up a localized string similar to Phân loại Nhánh ưu tiên.
         /// </summary>
         internal static string LabelPreferredSubClassification {
             get {
@@ -6600,7 +6600,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Recent Candidate.
+        ///   Looks up a localized string similar to Ứng viên gần đây.
         /// </summary>
         internal static string LabelRecentCandidate {
             get {
@@ -6744,7 +6744,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Registration.
+        ///   Looks up a localized string similar to Đăng ký.
         /// </summary>
         internal static string LabelRegistration {
             get {
@@ -6771,7 +6771,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Các Bài Liên quan.
+        ///   Looks up a localized string similar to Các bài đăng liên quan.
         /// </summary>
         internal static string LabelRelatedArticles {
             get {
@@ -6852,7 +6852,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tôi muốn nhận cảnh báo qua email cho các công việc khớp với tiêu chí tìm kiếm của mình..
+        ///   Looks up a localized string similar to Tôi muốn nhận thông báo qua email cho các công việc khớp với tiêu chí tìm kiếm của mình..
         /// </summary>
         internal static string LabelRequestAlertEmail {
             get {
@@ -6888,7 +6888,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Required Profile Sections left to complete?.
+        ///   Looks up a localized string similar to Hoàn thành Hồ sơ bắt buộc?.
         /// </summary>
         internal static string LabelRequiredProfileSectionsHeading {
             get {
@@ -7032,7 +7032,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Roles.
+        ///   Looks up a localized string similar to Vai trò.
         /// </summary>
         internal static string LabelRoles {
             get {
@@ -7230,7 +7230,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search.
+        ///   Looks up a localized string similar to Tìm kiếm.
         /// </summary>
         internal static string LabelSearch {
             get {
@@ -7338,7 +7338,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Section Incomplete.
+        ///   Looks up a localized string similar to Phần chưa hoàn thành.
         /// </summary>
         internal static string LabelSectionIncomplete {
             get {
@@ -7554,7 +7554,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gửi một Cảnh báo Công việc ngay.
+        ///   Looks up a localized string similar to Gửi một Thông báo Công việc ngay.
         /// </summary>
         internal static string LabelSendaJobAlertNow {
             get {
@@ -7563,7 +7563,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gửi Cảnh báo Email.
+        ///   Looks up a localized string similar to Gửi Email thông báo.
         /// </summary>
         internal static string LabelSendEmailAlerts {
             get {
@@ -7581,7 +7581,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tháng chín.
+        ///   Looks up a localized string similar to Tháng Chín.
         /// </summary>
         internal static string LabelSep {
             get {
@@ -7599,7 +7599,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cấu hình.
+        ///   Looks up a localized string similar to Cài đặt.
         /// </summary>
         internal static string LabelSettings {
             get {
@@ -7932,7 +7932,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Phân loại Con.
+        ///   Looks up a localized string similar to Phân loại Nhánh.
         /// </summary>
         internal static string LabelSubClassification {
             get {
@@ -7950,7 +7950,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Đăng ký Cảnh báo Công việc.
+        ///   Looks up a localized string similar to Đăng ký Thông báo Công việc.
         /// </summary>
         internal static string LabelSubscribeToJobAlert {
             get {
@@ -8310,7 +8310,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tải lên một Thư xin việc.
+        ///   Looks up a localized string similar to Tải lên một Thư ứng tuyển.
         /// </summary>
         internal static string LabelUploadCoverLetter {
             get {
@@ -8499,7 +8499,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Validation.
+        ///   Looks up a localized string similar to Xác thực.
         /// </summary>
         internal static string LabelValidation {
             get {
@@ -8724,7 +8724,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to What are you up to?.
+        ///   Looks up a localized string similar to Bạn đang định làm gì?.
         /// </summary>
         internal static string LabelWhatAreYouUpTo {
             get {
@@ -9309,7 +9309,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - Hồ sơ Công khai.
+        ///   Looks up a localized string similar to Hồ sơ Công khai của.
         /// </summary>
         internal static string sLabelPublicProfile {
             get {
@@ -9318,7 +9318,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Accepts only numbers, spaces, &apos;+&apos;, &apos;(&apos; and &apos;)&apos;.
+        ///   Looks up a localized string similar to Chỉ chấp nhận Số, Khoảng trắng, &quot;+&quot;, &quot;(&quot; và &quot;)&quot;.
         /// </summary>
         internal static string ValidationPhoneNumbers {
             get {

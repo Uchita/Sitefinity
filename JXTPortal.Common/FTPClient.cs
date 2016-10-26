@@ -525,6 +525,29 @@ namespace JXTPortal.Common
             return request;
         }
 
+        public DateTime? GetDateTimestamp(string filename, out string errormessage)
+        {
+            errormessage = string.Empty;
+
+            try
+            {
+                FtpWebRequest request = GetRequest(filename);
+                request.Method = WebRequestMethods.Ftp.GetDateTimestamp;
+                FtpWebResponse response = (FtpWebResponse)request.GetResponse();
+                DateTime lastmodified = response.LastModified;
+
+                response.Close();
+
+                return lastmodified;
+            }
+            catch (Exception ex)
+            {
+                errormessage = ex.Message;
+            }
+
+            return (DateTime?)null;
+        }
+
         delegate FtpDirectoryEntry ParseLine(string lines);
 
         // Converts a directory listing to a list of FtpDirectoryEntrys

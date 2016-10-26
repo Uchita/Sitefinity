@@ -37,6 +37,17 @@ namespace JXTPortal.Website
             }
         }
 
+        private GlobalSettingsService _globalSettingsService;
+        private GlobalSettingsService GlobalSettingsService
+        {
+            get
+            {
+                if (_globalSettingsService == null)
+                    _globalSettingsService = new GlobalSettingsService();
+                return _globalSettingsService;
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Request.InputStream != null && Request.InputStream.Length > 0)
@@ -109,6 +120,16 @@ namespace JXTPortal.Website
                 member.RequiredPasswordChange = true;
                 member.EmailFormat = 1;
                 member.CountryId = 1;
+
+                TList<GlobalSettings> service = GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId);
+                if (service.Count > 0)
+                {
+                    if (service[0].DefaultCountryId.HasValue)
+                    {
+                        member.CountryId = service[0].DefaultCountryId.Value;
+                    }
+                }
+
                 member.SiteId = SessionData.Site.SiteId;
                 member.ValidateGuid = Guid.NewGuid();
                 member.Password = CommonService.EncryptMD5(newpassword);

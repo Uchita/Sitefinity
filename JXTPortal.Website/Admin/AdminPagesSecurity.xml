@@ -1141,6 +1141,8 @@
 
     <PageName>dynamicpages.aspx</PageName>
     <AdminRoleID>5</AdminRoleID>
+    <PageName>DynamicPageRev.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
     <PageName>customwidget.aspx</PageName>
     <AdminRoleID>5</AdminRoleID>
     <PageName>customwidgetcss.aspx</PageName>

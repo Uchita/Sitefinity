@@ -3760,6 +3760,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to High School.
+        /// </summary>
+        internal static string LabelHighSchool {
+            get {
+                return ResourceManager.GetString("LabelHighSchool", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Estadísticas del histórico de empleos.
         /// </summary>
         internal static string LabelHistoricalJobStatistics {
@@ -6129,6 +6138,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please note: Premium jobs will be displayed at the top of the specified classification when searched..
+        /// </summary>
+        internal static string LabelPremiumJobsNote {
+            get {
+                return ResourceManager.GetString("LabelPremiumJobsNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Presentar.
         /// </summary>
         internal static string LabelPresent {
@@ -6300,7 +6318,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Minimum {0} entries is required.
+        ///   Looks up a localized string similar to Minimum entries required - {0}.
         /// </summary>
         internal static string LabelProfileMinEntries {
             get {
@@ -9194,6 +9212,15 @@ namespace Resources {
         internal static string sLabelPublicProfile {
             get {
                 return ResourceManager.GetString("sLabelPublicProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string String1 {
+            get {
+                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
         

@@ -30,7 +30,7 @@ namespace JXTPostDataToFTP.Models
         { }
 
         public MemberXMLModel(SiteSettingReferences referenceData, DataRow drProfile, DataRow[] drFiles, DataRow[] drDirectorships, DataRow[] drWorkExperiences,
-                                DataRow[] drEducations, DataRow[] drCertifications, DataRow[] drLicenses, DataRow[] drRolePreferences, DataRow[] drLanguages, DataRow[] drReferences)
+                                DataRow[] drEducations, DataRow[] drCertifications, DataRow[] drLicenses, DataRow[] drRolePreferences, DataRow[] drLanguages, DataRow[] drReferences, int? completedpercentage, string dateformat)
         {
 
             #region Profile
@@ -62,11 +62,11 @@ namespace JXTPostDataToFTP.Models
                 Subscribed = drProfile["Subscribed"].ToString(),
                 MonthlyUpdate = drProfile["MonthlyUpdate"].ToString(),
                 ReferringMemberID = drProfile["ReferringMemberID"].ToString(),
-                LastModifiedDate = drProfile["LastModifiedDate"].ToString(),
+                LastModifiedDate = !string.IsNullOrEmpty(drProfile["LastModifiedDate"].ToString()) ? ((DateTime)drProfile["LastModifiedDate"]).ToString(dateformat).Trim() : string.Empty,
                 Valid = drProfile["Valid"].ToString(),
                 EmailFormat = drProfile["EmailFormat"].ToString(),
                 LastLogon = drProfile["LastLogon"].ToString(),
-                DateOfBirth = drProfile["DateOfBirth"].ToString(),
+                DateOfBirth = !string.IsNullOrEmpty(drProfile["DateOfBirth"].ToString()) ? ((DateTime)drProfile["DateOfBirth"]).ToString(dateformat).Trim() : string.Empty,
                 Gender = drProfile["Gender"].ToString(),
                 Tags = drProfile["Tags"].ToString(),
                 Validated = drProfile["Validated"].ToString(),
@@ -74,7 +74,7 @@ namespace JXTPostDataToFTP.Models
                 MemberURLExtension = drProfile["MemberURLExtension"].ToString(),
                 WebsiteURL = drProfile["WebsiteURL"].ToString(),
                 AvailabilityID = drProfile["AvailabilityID"].ToString(),
-                AvailabilityFromDate = drProfile["AvailabilityFromDate"].ToString(),
+                AvailabilityFromDate = !string.IsNullOrEmpty(drProfile["AvailabilityFromDate"].ToString()) ? ((DateTime)drProfile["AvailabilityFromDate"]).ToString(dateformat).Trim() : string.Empty,
                 MySpaceHeading = drProfile["MySpaceHeading"].ToString(),
                 MySpaceContent = drProfile["MySpaceContent"].ToString(),
                 URLReferrer = drProfile["URLReferrer"].ToString(),
@@ -94,7 +94,7 @@ namespace JXTPostDataToFTP.Models
                 ProfileType = drProfile["ProfileType"].ToString(),
                 EducationID = drProfile["EducationID"].ToString(),
                 SearchField = drProfile["SearchField"].ToString(),
-                RegisteredDate = drProfile["RegisteredDate"].ToString(),
+                RegisteredDate = !string.IsNullOrEmpty(drProfile["RegisteredDate"].ToString()) ? ((DateTime)drProfile["RegisteredDate"]).ToString(dateformat).Trim() : string.Empty,
                 States = drProfile["States"].ToString(),
                 Suburb = drProfile["Suburb"].ToString(),
                 PostCode = drProfile["PostCode"].ToString(),
@@ -113,9 +113,9 @@ namespace JXTPostDataToFTP.Models
                 MailingPostCode = drProfile["MailingPostCode"].ToString(),
                 MailingCountryID = drProfile["MailingCountryID"].ToString(),
                 LoginAttempts = drProfile["LoginAttempts"].ToString(),
-                LastAttemptDate = drProfile["LastAttemptDate"].ToString(),
+                LastAttemptDate = !string.IsNullOrEmpty(drProfile["LastAttemptDate"].ToString()) ? ((DateTime)drProfile["LastAttemptDate"]).ToString(dateformat).Trim() : string.Empty,
                 Status = drProfile["Status"].ToString(),
-                LastTermsAndConditionsDate = drProfile["LastTermsAndConditionsDate"].ToString(),
+                LastTermsAndConditionsDate = !string.IsNullOrEmpty(drProfile["LastTermsAndConditionsDate"].ToString()) ? ((DateTime)drProfile["LastTermsAndConditionsDate"]).ToString(dateformat).Trim() : string.Empty,
                 DefaultLanguageId = drProfile["DefaultLanguageId"].ToString(),
                 ReferringSiteID = drProfile["ReferringSiteID"].ToString(),
                 MultiLingualFirstName = drProfile["MultiLingualFirstName"].ToString(),
@@ -126,9 +126,11 @@ namespace JXTPostDataToFTP.Models
                 ReferenceUponRequest = drProfile["ReferenceUponRequest"].ToString(),
                 PreferredLine = drProfile["PreferredLine"].ToString(),
                 VideoURL = drProfile["VideoURL"].ToString(),
+                CompletedPercentage = (completedpercentage.HasValue) ? completedpercentage.Value.ToString() : string.Empty,
                 ProfileDataXML = drProfile["ProfileDataXML"].ToString(),
                 Abbr = drProfile["Abbr"].ToString(),
                 MemberFilesCount = drProfile["MemberFilesCount"].ToString()
+
             };
             #endregion
 
@@ -137,7 +139,7 @@ namespace JXTPostDataToFTP.Models
             List<MemberFile> memberFiles = new List<MemberFile>();
 
             Files = new List<MemberFile>();
-            
+
             foreach (DataRow thisDR in drFiles)
             {
                 MemberFile thisFile = new MemberFile
@@ -148,7 +150,7 @@ namespace JXTPostDataToFTP.Models
                     MemberFileName = thisDR["MemberFileName"].ToString(),
                     MemberFileSearchExtension = thisDR["MemberFileSearchExtension"].ToString(),
                     MemberFileTitle = thisDR["MemberFileTitle"].ToString(),
-                    LastModifiedDate = thisDR["LastModifiedDate"].ToString()
+                    LastModifiedDate = !string.IsNullOrEmpty(thisDR["LastModifiedDate"].ToString()) ? ((DateTime)thisDR["LastModifiedDate"]).ToString(dateformat).Trim() : string.Empty
                 };
                 memberFiles.Add(thisFile);
             }
@@ -353,7 +355,7 @@ namespace JXTPostDataToFTP.Models
                     MemberID = thisDR["MemberID"].ToString(),
                     Langauges = thisDR["Langauges"].ToString(),
                     Profieciency = thisDR["Profieciency"].ToString(),
-                    LastModifiedDate = thisDR["LastModifiedDate"].ToString()
+                    LastModifiedDate = !string.IsNullOrEmpty(thisDR["LastModifiedDate"].ToString()) ? ((DateTime)thisDR["LastModifiedDate"]).ToString(dateformat).Trim() : string.Empty
                 };
                 Languages.Add(thisLanguage);
             }
@@ -375,7 +377,7 @@ namespace JXTPostDataToFTP.Models
                     Company = thisDR["Company"].ToString(),
                     Phone = thisDR["Phone"].ToString(),
                     Relationship = thisDR["Relationship"].ToString(),
-                    LastModifiedDate = thisDR["LastModifiedDate"].ToString()
+                    LastModifiedDate = !string.IsNullOrEmpty(thisDR["LastModifiedDate"].ToString()) ? ((DateTime)thisDR["LastModifiedDate"]).ToString(dateformat).Trim() : string.Empty
                 };
                 References.Add(thisRef);
             }
@@ -457,7 +459,6 @@ namespace JXTPostDataToFTP.Models
             public string MultiLingualSurame { get; set; }
             public string EmailAddress { get; set; }
             public string SecondaryEmail { get; set; }
-
             [XmlIgnore]
             public string Company { get; set; }
             [XmlIgnore]
@@ -484,7 +485,6 @@ namespace JXTPostDataToFTP.Models
             [XmlIgnore]
             public string MailingCountryID { get; set; }
             public string MailingCountryName { get { return string.IsNullOrEmpty(MailingCountryID) ? null : StaticSiteReference.GetCountryReference(int.Parse(MailingCountryID)); } set { } }
-
             [XmlIgnore]
             public string LocationID { get; set; }
             [XmlIgnore]
@@ -494,8 +494,9 @@ namespace JXTPostDataToFTP.Models
             public string AreaID { get; set; }
             [XmlIgnore]
             public string AreaName
-            { 
-                get {
+            {
+                get
+                {
                     //csv value
                     List<string> areaIDs = AreaID.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).ToList();
 
@@ -586,10 +587,11 @@ namespace JXTPostDataToFTP.Models
             public string WebsiteURL { get; set; }
             [XmlIgnore]
             public string AvailabilityID { get; set; }
-            public string SeekingStatus {    
-                get 
-                { 
-                    if( string.IsNullOrEmpty(AvailabilityID) )
+            public string SeekingStatus
+            {
+                get
+                {
+                    if (string.IsNullOrEmpty(AvailabilityID))
                         return null;
 
                     JXTPortal.Entities.PortalEnums.Members.CurrentlySeeking thisStatus;
@@ -645,7 +647,7 @@ namespace JXTPostDataToFTP.Models
 
             private string _ProfilePicture; //TODO: SiteURl app settings
             public string ProfilePicture { get { return !string.IsNullOrEmpty(_ProfilePicture) ? (StaticSiteReference.GetSiteURL() + ConfigurationManager.AppSettings["MemberUploadPicturePaths"] + _ProfilePicture) : null; } set { _ProfilePicture = value; } }
-            
+
             public string ShortBio { get; set; }
             [XmlIgnore]
             public string WorkTypeID { get; set; }
@@ -670,7 +672,7 @@ namespace JXTPostDataToFTP.Models
             }
 
             [XmlIgnore]
-            public string Memberships { get; set; } 
+            public string Memberships { get; set; }
             [XmlIgnore]
             public string MemberStatusID { get; set; }
             [XmlIgnore]
@@ -712,7 +714,7 @@ namespace JXTPostDataToFTP.Models
             public string EligibleToWorkIn { get; set; }
             public string ReferenceUponRequest { get; set; }
             [XmlIgnore]
-            public string PreferredLine { get; set; } 
+            public string PreferredLine { get; set; }
             public string PreferredLineName
             {
                 get
@@ -722,14 +724,15 @@ namespace JXTPostDataToFTP.Models
 
                     if (PreferredLine == "1")
                         return "Home Phone";
-                    else if( PreferredLine == "2" )
+                    else if (PreferredLine == "2")
                         return "Mobile Phone";
 
                     return null;
-               }
+                }
                 set { }
             }
             public string VideoURL { get; set; }
+            public string CompletedPercentage { get; set; }
             [XmlIgnore]
             public string ProfileDataXML { get; set; }
             [XmlIgnore]
@@ -761,7 +764,7 @@ namespace JXTPostDataToFTP.Models
                 }
                 set { }
             }
-            
+
             public string MemberFileName { get; set; }
             [XmlIgnore]
             public string MemberFileSearchExtension { get; set; }
@@ -802,7 +805,7 @@ namespace JXTPostDataToFTP.Models
             public string CountryName { get { return string.IsNullOrEmpty(CountryID) ? null : StaticSiteReference.GetCountryReference(int.Parse(CountryID)); } set { } }
         }
 
-        public class MemberWorkExperience 
+        public class MemberWorkExperience
         {
             public string MemberPositionId { get; set; }
             public string MemberID { get; set; }
@@ -836,7 +839,7 @@ namespace JXTPostDataToFTP.Models
             public string CountryName { get { return string.IsNullOrEmpty(CountryID) ? null : StaticSiteReference.GetCountryReference(int.Parse(CountryID)); } set { } }
         }
 
-        public class MemberEducations 
+        public class MemberEducations
         {
             public string MemberQualificationId { get; set; }
             public string MemberID { get; set; }
@@ -883,7 +886,7 @@ namespace JXTPostDataToFTP.Models
             public string EndMonth { get; set; }
         }
 
-        public class MemberCertificate 
+        public class MemberCertificate
         {
             public string MemberCertificateMembershipID { get; set; }
             public string MemberID { get; set; }
@@ -901,7 +904,7 @@ namespace JXTPostDataToFTP.Models
 
         }
 
-        public class MemberLicense 
+        public class MemberLicense
         {
 
             public string MemberLicenseID { get; set; }
@@ -921,7 +924,7 @@ namespace JXTPostDataToFTP.Models
 
         }
 
-        public class MemberRolePreferences 
+        public class MemberRolePreferences
         {
             public string MemberID { get; set; }
             [XmlIgnore]
@@ -949,7 +952,7 @@ namespace JXTPostDataToFTP.Models
             public string EligibleToWorkInValue { get; set; }
         }
 
-        public class MemberLanguage 
+        public class MemberLanguage
         {
             public string MemberLanguageID { get; set; }
             public string MemberID { get; set; }
@@ -978,7 +981,7 @@ namespace JXTPostDataToFTP.Models
             public string LastModifiedDate { get; set; }
         }
 
-        public class MemberReference 
+        public class MemberReference
         {
             public string MemberReferenceID { get; set; }
             public string MemberID { get; set; }
@@ -1009,10 +1012,11 @@ namespace JXTPostDataToFTP.Models
             public string LastModifiedDate { get; set; }
         }
 
-        public class MemberCustomQuestion 
+        public class MemberCustomQuestion
         {
             public int Id { get; set; }
             public string Title { get; set; }
+            public int MemberID { get; set; }
             [XmlIgnore]
             public string Type { get; set; }
             [XmlIgnore]
@@ -1025,8 +1029,10 @@ namespace JXTPostDataToFTP.Models
             public int Status { get; set; }
             [XmlIgnore]
             public string _Answers { get; set; }
-            public string Answers { 
-                get {
+            public string Answers
+            {
+                get
+                {
 
                     if (string.IsNullOrEmpty(_Answers))
                         return null;
@@ -1052,9 +1058,9 @@ namespace JXTPostDataToFTP.Models
                             return _Answers;
                     }
 
-                    return null;                
-                } 
-                set { } 
+                    return null;
+                }
+                set { }
             }
             [XmlIgnore]
             public string TempAnswer { get; set; }
@@ -1065,7 +1071,7 @@ namespace JXTPostDataToFTP.Models
     }
 
 
-    
+
 
 
     public class ReferenceItem

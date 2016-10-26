@@ -13,7 +13,22 @@
 <%--<small>* Listing not showing on map? Find out why - <a href="#" target="_blank">click
     here</a></small>
 --%>
+
+<%
+        if (string.IsNullOrEmpty(MapKey))
+        {
+%>
 <script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=false&v=3.exp&signed_in=true&libraries=places,geometry"></script>
+<%
+        }
+        else
+        {
+%>
+<script type="text/javascript" src="//maps.google.com/maps/api/js?key=<%=MapKey %>&sensor=false&v=3.exp&signed_in=true&libraries=places,geometry"></script>
+<%
+        }
+%>
+
 <script src="/scripts/googlemaps_markerclusterer.js" type="text/javascript"></script>
 <script type="text/javascript">
     var map;

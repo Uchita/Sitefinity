@@ -1401,7 +1401,7 @@ namespace JXTPortal.Website
                             if (!string.IsNullOrEmpty(SessionData.Site.MemberRegistrationNotificationEmail))
                             {
                                 //Send confirmation email to new member and site's admin
-                                MailService.SendMemberRegistrationToSiteAdmin(member, null, SessionData.Site.MemberRegistrationNotificationEmail);
+                                MailService.SendMemberRegistrationToSiteAdmin(member, string.Empty, string.Empty, null, SessionData.Site.MemberRegistrationNotificationEmail);
                             }
 
                             //Send confirmation email to new member

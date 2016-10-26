@@ -401,7 +401,7 @@ namespace JXTPortal
             }
         }
 
-        public static void SendMemberRegistrationToSiteAdmin(JXTPortal.Entities.Members member, List<HttpPostedFile> files, string strTo)
+        public static void SendMemberRegistrationToSiteAdmin(JXTPortal.Entities.Members member, string classification, string subclassification, List<HttpPostedFile> files, string strTo)
         {
             int languageid = (member.DefaultLanguageId.HasValue) ? member.DefaultLanguageId.Value : SessionData.Site.DefaultEmailLanguageId;
             JXTPortal.Entities.EmailTemplates emailtemplate = GetEmailTemplate("CANDREGNOTIFICATION", languageid);
@@ -417,7 +417,11 @@ namespace JXTPortal
                 colemailfields["MEMBERUSERNAME"] = member.Username;
                 colemailfields["MEMBEREMAILADDRESS"] = member.EmailAddress;
                 colemailfields["SiteID"] = SessionData.Site.SiteId.ToString();
-                colemailfields["SiteEmailAddress"] = Convert.ToString(strTo.Split(new char[] { ';' })[0]); ;
+                colemailfields["SiteEmailAddress"] = Convert.ToString(strTo.Split(new char[] { ';' })[0]);
+                colemailfields["Classifcation"] = classification;
+                colemailfields["Subclassifcation"] = subclassification;
+                colemailfields["PhoneNumber"] = member.HomePhone;
+                colemailfields["Address"] = member.Address1;
 
                 message.Bcc = emailtemplate.EmailAddressBcc;
                 message.Format = (Format)member.EmailFormat;

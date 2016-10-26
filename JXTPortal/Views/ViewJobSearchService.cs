@@ -116,14 +116,15 @@ namespace JXTPortal
 
                         if (RefineTypeID == (int)PortalEnums.Search.Redefine.Area)
                         {
-                            AreaService areaService = new AreaService();
-                            TranslatedLabel = areaService.GetTranslatedStringArea(RefineID, lid);
+                            AreaService aService = new AreaService();
+                            SiteAreaService areaService = new SiteAreaService();
+                            TranslatedLabel = areaService.GetTranslatedArea(RefineID, aService.GetByAreaId(RefineID).LocationId, SessionData.Site.SiteId).SiteAreaName;
                             areaService = null;
                         }
                         else if (RefineTypeID == (int)PortalEnums.Search.Redefine.Classification)
                         {
-                            ProfessionService professionService = new ProfessionService();
-                            TranslatedLabel = professionService.GetTranslatedStringProfession(RefineID, lid, SessionData.Site.UseCustomProfessionRole);
+                            SiteProfessionService professionService = new SiteProfessionService();
+                            TranslatedLabel = professionService.GetTranslatedProfessionById(RefineID, true, SessionData.Site.UseCustomProfessionRole).SiteProfessionName;
                             professionService = null;
                         }
                         else if (RefineTypeID == (int)PortalEnums.Search.Redefine.Company)
@@ -132,14 +133,18 @@ namespace JXTPortal
                         }
                         else if (RefineTypeID == (int)PortalEnums.Search.Redefine.Location)
                         {
-                            LocationService locationService = new LocationService();
-                            TranslatedLabel = locationService.GetTranslatedStringLocation(RefineID, lid);
+                            LocationService lService = new LocationService();
+                            SiteLocationService locationService = new SiteLocationService();
+
+                            TranslatedLabel = locationService.GetTranslatedLocation(RefineID, lService.GetByLocationId(RefineID).CountryId, lid).SiteLocationName;
                             locationService = null;
+                            lService = null;
                         }
                         else if (RefineTypeID == (int)PortalEnums.Search.Redefine.SubClassification)
                         {
-                            RolesService rolesService = new RolesService();
-                            TranslatedLabel = rolesService.GetTranslatedStringRole(RefineID, lid, SessionData.Site.UseCustomProfessionRole);
+                            RolesService rService = new RolesService();
+                            SiteRolesService rolesService = new SiteRolesService();
+                            TranslatedLabel = rolesService.GetTranslatedRolesById(RefineID, rService.GetByRoleId(RefineID).ProfessionId, SessionData.Site.UseCustomProfessionRole).SiteRoleName;
                             rolesService = null;
                         }
                         else if (RefineTypeID == (int)PortalEnums.Search.Redefine.WorkType)

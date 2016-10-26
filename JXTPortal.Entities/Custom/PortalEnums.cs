@@ -287,7 +287,9 @@ namespace JXTPortal.Entities
                 [Description("LabelDoctorOfPhilosophy")]
                 DoctorOfPhilosophy = 11,
                 [Description("LabelOther")]
-                Other = 12
+                Other = 12,
+                [Description("LabelHighSchool")]
+                HighSchool = 13
             }
 
             public enum LanguagesProfieciency 
@@ -685,7 +687,8 @@ namespace JXTPortal.Entities
                 Salesforce = 9,
                 GoogleMap = 10,
                 Bullhorn = 11,
-                BullhornOnBoardingSSO = 12
+                BullhornOnBoardingSSO = 12,
+                Invenias = 13
             }
 
             public enum OAuthCallbackAction

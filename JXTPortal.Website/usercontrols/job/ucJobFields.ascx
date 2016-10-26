@@ -78,8 +78,6 @@
                         <asp:PlaceHolder ID="phInfo" runat="server" Visible="false">
                             <p class="help-block premiumNotice">
                                 <JXTControl:ucLanguageLiteral ID="ltPremiumJobsNote" runat="server" SetLanguageCode="LabelPremiumJobsNote" />
-                                <!-- Please note: Premium jobs will be displayed at the top of the specified classification
-                                when searched. -->
                             </p>
                         </asp:PlaceHolder>
                     </li>
@@ -672,7 +670,21 @@
         </div>
     </div>
 </div>
+<%
+        if (string.IsNullOrEmpty(MapKey))
+        {
+%>
 <script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=false&v=3.exp&signed_in=true&libraries=places"></script>
+<%
+        }
+        else
+        {
+%>
+<script type="text/javascript" src="//maps.google.com/maps/api/js?key=<%=MapKey %>&sensor=false&v=3.exp&signed_in=true&libraries=places"></script>
+<%
+        }
+%>
+
 <script type='text/javascript'>
 
     //Google Map Variable
@@ -937,8 +949,8 @@
         if ($('#ddlSalary').val() == 3) {
             $('#chkShowSalaryRange').prop('checked', false);
             $('#chkShowSalaryRange').prop('disabled', true);
-            $('#txtSalaryText').val('');
-            $('#txtSalaryText').prop('disabled', true);
+            // $('#txtSalaryText').val('');
+            // $('#txtSalaryText').prop('disabled', true);
             $('#chkShowSalaryDetails').prop('checked', false);
             $('#chkShowSalaryDetails').prop('disabled', true);
 
@@ -946,7 +958,7 @@
         }
         else {
             $('#chkShowSalaryRange').prop('disabled', false);
-            $('#txtSalaryText').prop('disabled', false);
+            // $('#txtSalaryText').prop('disabled', false);
             $('#chkShowSalaryDetails').prop('disabled', false);
         }
 

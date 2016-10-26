@@ -55,6 +55,7 @@ namespace JXTPostJobApplicationToFTP
                         {
                             SiteId = (int)c.Element("SiteId"),
                             host = (string)c.Element("host"),
+                            folderPath = (string)c.Element("FolderPath"),
                             username = (string)c.Element("username"),
                             password = (string)c.Element("password"),
                             sftp = (bool)c.Element("sftp"),
@@ -83,6 +84,14 @@ namespace JXTPostJobApplicationToFTP
 
                 jobApplicationService = new JobApplicationService();
 
+                string dateformat = "dd/MM/yyyy";
+                using (TList<GlobalSettings> gslist = new GlobalSettingsService().GetBySiteId(siteXML.SiteId))
+                {
+                    if (gslist.Count > 0)
+                    {
+                        dateformat = gslist[0].GlobalDateFormat;
+                    }
+                }
 
                 if (!string.IsNullOrWhiteSpace(siteXML.LastJobApplicationId))
                     jobApplicationDS = jobApplicationService.CustomGetNewJobApplications(siteXML.SiteId, int.Parse(siteXML.LastJobApplicationId), null);
@@ -171,7 +180,7 @@ namespace JXTPostJobApplicationToFTP
 </application>
 ",
     drApplication["JobApplicationID"].ToString(),
-    drApplication["ApplicationDate"].ToString(),
+    ((DateTime)drApplication["ApplicationDate"]).ToString(dateformat),
     drApplication["FirstName"] != null ? drApplication["FirstName"].ToString() : string.Empty,
     drApplication["Surname"] != null ? drApplication["Surname"].ToString() : string.Empty,
     drApplication["EmailAddress"] != null ? drApplication["EmailAddress"].ToString() : string.Empty,
@@ -323,7 +332,7 @@ namespace JXTPostJobApplicationToFTP
 
 
                         // Upload a file
-                        sftp.Put(fileNames.fromFilename, fileNames.toFilename);
+                        sftp.Put(fileNames.fromFilename, (siteXML.folderPath != null ? siteXML.folderPath : string.Empty) + fileNames.toFilename);
 
                         Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Finished Uploading: " + fileNames.toFilename);
                     }
@@ -366,7 +375,7 @@ namespace JXTPostJobApplicationToFTP
             string test = string.Empty;
 
             XDocument xmlFile = XDocument.Load(ConfigurationManager.AppSettings["SitesXML"]);
-            var query = from c in xmlFile.Elements(test).Elements(test)
+            var query = from c in xmlFile.Elements("sites").Elements("site")
                         select c;
             foreach (XElement site in query)
             {
@@ -470,6 +479,7 @@ ExceptionID: {5}",
         public string password;
         public bool sftp;
         public int port;
+        public string folderPath;
         public string LastJobApplicationId;
 
     }

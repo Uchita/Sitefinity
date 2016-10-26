@@ -658,6 +658,21 @@ namespace JXTPortal.Website.job
 
                 if (recordGetSuccess)
                 {
+                    //Load GoogleMap JS
+                    #region Google Map Setup
+                    AdminIntegrations.Integrations integrations = IntegrationsService.AdminIntegrationsForSiteGet(SessionData.Site.SiteId);
+
+                    if (integrations != null && integrations.GoogleMap != null)
+                    {
+                        //only assign anything to the geocode and address status if there is a server key in the integrations of the site
+                        if (!string.IsNullOrWhiteSpace(integrations.GoogleMap.ServerKey) && integrations.GoogleMap.Valid)
+                        {
+                            //set js
+                            ltGoogleMapJSHeader.Text = @"<script type=""text/javascript"" src=""//maps.google.com/maps/api/js?key=" + integrations.GoogleMap.ServerKey + @"&sensor=false&v=3.exp&signed_in=true&libraries=places""></script>";
+                        }
+                    }
+                    #endregion
+
                     // Conditions
                     //=================================
                     //2a. If found on JXT - 

@@ -47,7 +47,7 @@ namespace JXTPortal
         public List<Area> GetTranslatedAreas(int locationID, int languageID)
         {
             string url = string.Format(xmlprefix,
-                                        System.Web.HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["XMLFilesPath"]),
+                                        ConfigurationManager.AppSettings["XMLFilesPath"],
                                         languageID,
                                         PortalConstants.XMLTranslationFiles.XML_AREA_FILENAME, locationID);
             return XMLLanguageService.Translate(GetByLocationId(locationID).ToList(), "AreaId", "AreaName", url);
@@ -58,7 +58,7 @@ namespace JXTPortal
             Area area = GetByAreaId(areaID);
 
             string url = string.Format(xmlprefix,
-                                      System.Web.HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["XMLFilesPath"]),
+                                      ConfigurationManager.AppSettings["XMLFilesPath"],
                                       languageID,
                                       PortalConstants.XMLTranslationFiles.XML_AREA_FILENAME, area.LocationId);
             return XMLLanguageService.Translate(area, "AreaId", "AreaName", url);
@@ -69,7 +69,7 @@ namespace JXTPortal
         {
             Area area = GetByAreaId(areaID);
             string url = string.Format(xmlprefix,
-                                          System.Web.HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["XMLFilesPath"]),
+                                          ConfigurationManager.AppSettings["XMLFilesPath"],
                                           languageID,
                                           PortalConstants.XMLTranslationFiles.XML_AREA_FILENAME, area.LocationId);
             return XMLLanguageService.TranslateString(areaID, "AreaId", "AreaName", url);

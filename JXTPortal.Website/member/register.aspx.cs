@@ -212,6 +212,8 @@ namespace JXTPortal.Website.members
 
         private void LoadRoles()
         {
+            ddlSubClassification.Items.Clear();
+
             if (ddlClassification.SelectedValue != null && int.Parse(ddlClassification.SelectedValue) > 0)
             {
                 SiteRolesService SiteRolesService = new JXTPortal.SiteRolesService();
@@ -475,7 +477,7 @@ namespace JXTPortal.Website.members
                     if (!string.IsNullOrEmpty(SessionData.Site.MemberRegistrationNotificationEmail))
                     {
                         //Send confirmation email to new member and site's admin
-                        MailService.SendMemberRegistrationToSiteAdmin(objMembers, filesposted, SessionData.Site.MemberRegistrationNotificationEmail);
+                        MailService.SendMemberRegistrationToSiteAdmin(objMembers, ((ddlClassification.SelectedValue == "0") ? string.Empty : ddlClassification.SelectedItem.Text), ((ddlSubClassification.SelectedValue == "0") ? string.Empty : ddlSubClassification.SelectedItem.Text), filesposted, SessionData.Site.MemberRegistrationNotificationEmail);
                     }
 
                     //Send confirmation email to new member

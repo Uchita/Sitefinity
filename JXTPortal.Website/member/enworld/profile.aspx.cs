@@ -190,7 +190,22 @@ namespace JXTPortal.Website.member.enworld
             Tab2Setup();
             Tab3Setup();
 
+            SetupPlaceholders();
+
             PopulateDataToForm();
+        }
+
+        private void SetupPlaceholders()
+        {
+            tbMobilePhone.Attributes.Add("placeholder", CommonFunction.GetResourceValue("LabelPhoneMobileFull"));
+            tbHomePhone.Attributes.Add("placeholder", CommonFunction.GetResourceValue("LabelPhoneHomeFull"));
+            tbSecondEmail.Attributes.Add("placeholder", CommonFunction.GetResourceValue("LabelSecondaryEmail"));
+            tbAddress1.Attributes.Add("placeholder", CommonFunction.GetResourceValue("LabelAddress"));
+            tbCity.Attributes.Add("placeholder", CommonFunction.GetResourceValue("LabelCity"));
+            tbCurrentCompany.Attributes.Add("placeholder", CommonFunction.GetResourceValue("LabelCurrentCompanyName"));
+            tbCurrentJobTitle.Attributes.Add("placeholder", CommonFunction.GetResourceValue("LabelCurrentJobTitle"));
+            tbFixedSalary.Attributes.Add("placeholder", CommonFunction.GetResourceValue("LabelFixedSalary"));
+            tbIncentiveSalary.Attributes.Add("placeholder", CommonFunction.GetResourceValue("LabelIncentiveSalary"));
         }
 
         private void PopulateDataToForm()
@@ -324,7 +339,7 @@ namespace JXTPortal.Website.member.enworld
 
             //Primary Desired Job Category / Function
             ddlPrimDesiredJobCategory.SelectedValue = thisContact.Desired_Job_Category__c;
-            
+
             List<string> desiredJobFuncDDValues = XMLPullMultiValue("jobcategory", thisContact.Desired_Job_Category__c);
 
             var desiredJobFuncSelectableValues = (from m in desiredJobFuncDDValues select new { text = m, value = m }).ToList();
@@ -1084,7 +1099,7 @@ namespace JXTPortal.Website.member.enworld
                     {
                         Current_Company__c = company,
                         Current_Position__c = jobtitle,
-                        Industry__c = industry == "--None--" ? null :industry,
+                        Industry__c = industry == "--None--" ? null : industry,
                         Job_Category__c = jobcategory == "--None--" ? null : jobcategory,
                         Job_Functions__c = jobfunctions == null ? null : String.Join(";", jobfunctions),
                         Employment_Type__c = employmenttype,

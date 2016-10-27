@@ -30,7 +30,7 @@ namespace JXTPortal.Client.Invenias
         public string refresh_token { get; set; }
     }
 
-
+    #region Advertisement
     public class InveniasAdvertisementsValue
     {
         public string ApplicationsEmail { get; set; }
@@ -92,5 +92,96 @@ namespace JXTPortal.Client.Invenias
     {
         public List<InveniasAdvertisementsValue> value { get; set; }
     }
+    #endregion
+
+    #region Assignment
+
+    public class InveniasAssignmentValue
+    {
+        public string AssignmentBriefFieldId { get; set; }
+        public string AssignmentNumber { get; set; }
+        public string AssignmentValue { get; set; }
+        public string AssignmentValueCurrency { get; set; }
+        public string AssignmentValueManualMode { get; set; }
+        public string AverageMargin { get; set; }
+        public string AverageMarginCurrency { get; set; }
+        public string AverageMarginPeriod { get; set; }
+        public string Benefits { get; set; }
+        public string BillablePackage { get; set; }
+        public string BillablePackageCurrency { get; set; }
+        public string BillingCurrency { get; set; }
+        public string BodyFieldId { get; set; }
+        public bool CandidateExpensesPaid { get; set; }
+        public string CandidateNoticePeriod { get; set; }
+        public string ClientNoticePeriod { get; set; }
+        public string CreatorId { get; set; }
+        public string DateCreated { get; set; }
+        public string DateModified { get; set; }
+        public string Duration { get; set; }
+        public string EngagementType { get; set; }
+        public string ExternalAssignmentBriefFieldId { get; set; }
+        public string ExternalId1 { get; set; }
+        public string ExternalId2 { get; set; }
+        public string ExternalId3 { get; set; }
+        public string ExternalRef { get; set; }
+        public string FeePercentage { get; set; }
+        public string FeeType { get; set; }
+        public string ForecastDate { get; set; }
+        public string Id { get; set; }
+        public string InternalComments { get; set; }
+        public string InternalRef { get; set; }
+        public bool IsContract { get; set; }
+        public bool IsContractSessionBased { get; set; }
+        public bool IsNonExec { get; set; }
+        public bool IsPermanent { get; set; }
+        public string ModifierId { get; set; }
+        public string Name { get; set; }
+        public string NumberOfSessions { get; set; }
+        public string OwnerId { get; set; }
+        public string PaymentTerms { get; set; }
+        public string PositionsCount { get; set; }
+        public string PurchaseOrder { get; set; }
+        public string Status { get; set; }
+        public string TotalFee { get; set; }
+        public string TotalFeeCurrency { get; set; }
+        public string Weighting { get; set; }
+    }
+
+    public class InveniasAssignmentsRoot
+    {
+        public List<InveniasAssignmentValue> value { get; set; }
+    }
+
+    #endregion
+
+    #region Loactions
+
+    public class InveniasLocationValue
+    {
+        public string BusinessCity { get; set; }
+        public string BusinessCountry { get; set; }
+        public string BusinessFax { get; set; }
+        public string BusinessPhone { get; set; }
+        public string BusinessPostalCode { get; set; }
+        public string BusinessState { get; set; }
+        public string BusinessStreet { get; set; }
+        public string CreatorId { get; set; }
+        public string DateCreated { get; set; }
+        public string DateModified { get; set; }
+        public string Email1Address { get; set; }
+        public string ExternalId1 { get; set; }
+        public string ExternalId2 { get; set; }
+        public string ExternalId3 { get; set; }
+        public string Id { get; set; }
+        public string ModifierId { get; set; }
+        public string Name { get; set; }
+    }
+
+    public class InveniasLocationRoot
+    {
+        public List<InveniasLocationValue> value { get; set; }
+    }
+
+    #endregion
 
 }

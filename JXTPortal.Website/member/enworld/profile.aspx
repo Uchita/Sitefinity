@@ -40,7 +40,7 @@
             var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
 
             $('#tbDOB').datepicker({
-            format: 'dd-mm-yyyy',
+                format: 'dd-mm-yyyy',
                 onRender: function (date) {
                     return date.valueOf() > now.valueOf() ? 'disabled' : '';
                 }
@@ -98,7 +98,7 @@
             }
 
 
-            
+
 
         }
 
@@ -251,8 +251,14 @@
         {
             width: 100%;
         }
-        input::-webkit-calendar-picker-indicator{ display: none; }
-        input[type="date"]::-webkit-input-placeholder{ visibility: hidden !important; }
+        input::-webkit-calendar-picker-indicator
+        {
+            display: none;
+        }
+        input[type="date"]::-webkit-input-placeholder
+        {
+            visibility: hidden !important;
+        }
         /* end dashboard-tabs */</style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -286,30 +292,35 @@
                                     <div class="row form-group">
                                         <div class="col-sm-6 form-group-element">
                                             <label>
-                                                Gender</label>
+                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral1" runat="server" SetLanguageCode="LabelGender" />
+                                            </label>
                                             <asp:DropDownList ID="ddlGender" ClientIDMode="Static" runat="server" CssClass="form-control">
                                             </asp:DropDownList>
                                         </div>
                                         <div class="col-sm-6 form-group-element">
                                             <label>
-                                                Date Of Birth</label>
+                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral2" runat="server" SetLanguageCode="LabelDateOfBirth" />
+                                            </label>
                                             <asp:TextBox ID="tbDOB" ClientIDMode="Static" runat="server" CssClass="form-control"></asp:TextBox>
                                         </div>
                                         <div class="col-sm-6 form-group-element">
                                             <label>
-                                                Mobile Phone</label>
+                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral3" runat="server" SetLanguageCode="LabelPhoneMobileFull" />
+                                            </label>
                                             <asp:TextBox ID="tbMobilePhone" ClientIDMode="Static" runat="server" CssClass="form-control"
                                                 placeholder="Mobile phone"></asp:TextBox>
                                         </div>
                                         <div class="col-sm-6 form-group-element">
                                             <label>
-                                                Home Phone</label>
+                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral4" runat="server" SetLanguageCode="LabelPhoneHomeFull" />
+                                            </label>
                                             <asp:TextBox ID="tbHomePhone" ClientIDMode="Static" runat="server" CssClass="form-control"
                                                 placeholder="Home phone"></asp:TextBox>
                                         </div>
                                         <div class="col-sm-6 form-group-element">
                                             <label>
-                                                Country<span class="form-required">*</span></label>
+                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral5" runat="server" SetLanguageCode="LabelCountry" />
+                                                <span class="form-required">*</span></label>
                                             <asp:DropDownList ID="ddlCountry" ClientIDMode="Static" runat="server" CssClass="form-control"
                                                 onchange="DataDropdownChanged(this, $('#ddlState'), countryData, '- Please Select A Country -', false, false);">
                                             </asp:DropDownList>
@@ -318,37 +329,39 @@
                                         </div>
                                         <div class="col-sm-6 form-group-element">
                                             <label>
-                                                Secondary Email</label>
+                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral6" runat="server" SetLanguageCode="LabelSecondaryEmail" />
+                                            </label>
                                             <asp:TextBox ID="tbSecondEmail" ClientIDMode="Static" runat="server" CssClass="form-control"
                                                 placeholder="Secondary email" type="email"></asp:TextBox>
                                         </div>
                                         <div class="col-sm-6 form-group-element">
                                             <label>
-                                                Address</label>
+                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral7" runat="server" SetLanguageCode="LabelAddress" />
+                                            </label>
                                             <asp:TextBox ID="tbAddress1" ClientIDMode="Static" runat="server" CssClass="form-control"
                                                 placeholder="Address"></asp:TextBox>
                                         </div>
                                         <div class="col-sm-6 form-group-element">
                                             <label>
-                                                City</label>
+                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral8" runat="server" SetLanguageCode="LabelCity" /></label>
                                             <asp:TextBox ID="tbCity" ClientIDMode="Static" runat="server" CssClass="form-control"
                                                 placeholder="City"></asp:TextBox>
                                         </div>
                                         <div class="col-sm-6 form-group-element">
                                             <label>
-                                                State</label>
+                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral9" runat="server" SetLanguageCode="LabelState" /></label>
                                             <asp:DropDownList ID="ddlState" ClientIDMode="Static" runat="server" CssClass="form-control">
                                             </asp:DropDownList>
                                         </div>
                                         <div class="col-sm-6 form-group-element">
                                             <label>
-                                                Zip Code</label>
+                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral10" runat="server" SetLanguageCode="LabelZipCode" /></label>
                                             <asp:TextBox ID="tbZip" ClientIDMode="Static" runat="server" CssClass="form-control"
                                                 placeholder="Zip/Postcode"></asp:TextBox>
                                         </div>
                                         <div class="col-sm-6 form-group-element">
                                             <label>
-                                                Native Language<span class="form-required">*</span></label>
+                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral101" runat="server" SetLanguageCode="LabelNativeLanguage" /><span class="form-required">*</span></label>
                                             <asp:DropDownList ID="ddlNativeLanguage" ClientIDMode="Static" runat="server" CssClass="form-control">
                                             </asp:DropDownList>
                                             <div id="ddlNativeLanguageMsg" class="errormsg">
@@ -356,14 +369,14 @@
                                         </div>
                                         <div class="col-sm-6 form-group-element">
                                             <label>
-                                                Secondary Language</label>
+                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral102" runat="server" SetLanguageCode="LabelSecondaryLanguage" /></label>
                                             <asp:DropDownList ID="ddlSecondaryLanguage" ClientIDMode="Static" runat="server"
                                                 CssClass="form-control">
                                             </asp:DropDownList>
                                         </div>
                                         <div class="col-sm-6 form-group-element">
                                             <label>
-                                                Secondary Language Level</label>
+                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral103" runat="server" SetLanguageCode="LabelSecondaryLanguageLevel" /></label>
                                             <asp:DropDownList ID="ddlSecondaryLanguageLevel" ClientIDMode="Static" runat="server"
                                                 CssClass="form-control">
                                             </asp:DropDownList>
@@ -375,7 +388,7 @@
                                     </div>
                                     <div class="col-xs-12">
                                         <button type="button" class="btn btn-primary" onclick="Tab1Save(this, $('#tab1Loader'));">
-                                            Save &amp; Next</button>&nbsp;<span id="tab1Loader" class="hide"><i class="fa fa-spinner fa-spin"></i></span>
+                                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral11" runat="server" SetLanguageCode="LabelBtnSaveNext" /></button>&nbsp;<span id="tab1Loader" class="hide"><i class="fa fa-spinner fa-spin"></i></span>
                                     </div>
                                 </div>
                             </div>
@@ -386,7 +399,7 @@
                                         <div class="row form-group">
                                             <div class="col-sm-6 form-group-element">
                                                 <label>
-                                                    Company<span class="form-required">*</span></label>
+                                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral12" runat="server" SetLanguageCode="LabelCompany" /><span class="form-required">*</span></label>
                                                 <asp:TextBox ID="tbCurrentCompany" ClientIDMode="Static" runat="server" CssClass="form-control"
                                                     placeholder="Current company name"></asp:TextBox>
                                                 <div id="tbCurrentCompanyMsg" class="errormsg">
@@ -394,7 +407,7 @@
                                             </div>
                                             <div class="col-sm-6 form-group-element">
                                                 <label>
-                                                    Job Title<span class="form-required">*</span></label>
+                                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral13" runat="server" SetLanguageCode="LabelJobTitle" /><span class="form-required">*</span></label>
                                                 <asp:TextBox ID="tbCurrentJobTitle" ClientIDMode="Static" runat="server" CssClass="form-control"
                                                     placeholder="Current job title"></asp:TextBox>
                                                 <div id="tbCurrentJobTitleMsg" class="errormsg">
@@ -402,7 +415,7 @@
                                             </div>
                                             <div class="col-sm-6 form-group-element">
                                                 <label>
-                                                    Industry<span class="form-required">*</span></label>
+                                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral131" runat="server" SetLanguageCode="LabelIndustry" /><span class="form-required">*</span></label>
                                                 <asp:DropDownList ID="ddlIndustry" ClientIDMode="Static" runat="server" CssClass="form-control">
                                                 </asp:DropDownList>
                                                 <div id="ddlIndustryMsg" class="errormsg">
@@ -412,7 +425,7 @@
                                         <div class="row form-group">
                                             <div class="col-sm-6 form-group-element">
                                                 <label>
-                                                    Job Category<span class="form-required">*</span></label>
+                                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral132" runat="server" SetLanguageCode="LabelJobCategory" /><span class="form-required">*</span></label>
                                                 <asp:DropDownList ID="ddlJobCategory" ClientIDMode="Static" runat="server" CssClass="form-control"
                                                     onchange="DataDropdownChanged(this, $('#ddlJobFunctions'), jobFuncData, '- Please select a Job Category -', true, true);">
                                                 </asp:DropDownList>
@@ -421,7 +434,7 @@
                                             </div>
                                             <div class="col-sm-6 form-group-element">
                                                 <label>
-                                                    Job Functions<span class="form-required">*</span></label>
+                                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral14" runat="server" SetLanguageCode="LabelJobFunction" /><span class="form-required">*</span></label>
                                                 <div class="multiselect-drpdn">
                                                     <asp:ListBox ID="ddlJobFunctions" ClientIDMode="Static" runat="server" CssClass="multiselect form-control"
                                                         SelectionMode="Multiple"></asp:ListBox>
@@ -433,7 +446,7 @@
                                         <div class="row form-group">
                                             <div class="col-sm-6 form-group-element">
                                                 <label>
-                                                    Employment Type</label>
+                                                     <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral15" runat="server" SetLanguageCode="LabelEmploymentType" /></label>
                                                 <asp:DropDownList ID="ddlEmploymentType" ClientIDMode="Static" runat="server" CssClass="form-control">
                                                 </asp:DropDownList>
                                                 <div id="ddlEmploymentTypeMsg" class="errormsg">
@@ -441,13 +454,13 @@
                                             </div>
                                             <div class="col-sm-6 form-group-element">
                                                 <label>
-                                                    Salary Period</label>
+                                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral16" runat="server" SetLanguageCode="LabelSalaryPeriod" /></label>
                                                 <asp:DropDownList ID="ddlSalaryPeriod" ClientIDMode="Static" runat="server" CssClass="form-control">
                                                 </asp:DropDownList>
                                             </div>
                                             <div class="col-sm-6 form-group-element">
                                                 <label>
-                                                    Fixed Salary</label>
+                                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral17" runat="server" SetLanguageCode="LabelFixedSalary" /></label>
                                                 <asp:TextBox ID="tbFixedSalary" ClientIDMode="Static" runat="server" CssClass="form-control"
                                                     placeholder="Fixed salary"></asp:TextBox>
                                                 <div id="tbFixedSalaryMsg" class="errormsg">
@@ -455,7 +468,7 @@
                                             </div>
                                             <div class="col-sm-6 form-group-element">
                                                 <label>
-                                                    Incentive Salary</label>
+                                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral18" runat="server" SetLanguageCode="LabelIncentiveSalary" /></label>
                                                 <asp:TextBox ID="tbIncentiveSalary" ClientIDMode="Static" runat="server" CssClass="form-control"
                                                     placeholder="Incentive salary"></asp:TextBox>
                                                 <div id="tbIncentiveSalaryMsg" class="errormsg">
@@ -469,7 +482,7 @@
                                     </div>
                                     <div class="col-xs-12">
                                         <button type="button" class="btn btn-primary" onclick="Tab2Save(this, $('#tab2Loader'));">
-                                            Save &amp; Next</button>&nbsp;<span id="tab2Loader" class="hide"><i class="fa fa-spinner fa-spin"></i></span>
+                                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral19" runat="server" SetLanguageCode="LabelBtnSaveNext" /></button>&nbsp;<span id="tab2Loader" class="hide"><i class="fa fa-spinner fa-spin"></i></span>
                                     </div>
                                     <div class="clearfix">
                                     </div>
@@ -479,23 +492,23 @@
                                 <div>
                                     <div class="form-group">
                                         <h4>
-                                            Resume Upload</h4>
+                                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral20" runat="server" SetLanguageCode="LabelResumeUpload" /></h4>
                                         <asp:PlaceHolder ID="plUploadFileTable" runat="server" Visible="false">
                                             <div class="table">
                                                 <table width="100%">
                                                     <thead>
                                                         <tr>
                                                             <th>
-                                                                File Title
+                                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral21" runat="server" SetLanguageCode="LabelFileTitle" />
                                                             </th>
                                                             <th>
-                                                                File Name
+                                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral22" runat="server" SetLanguageCode="LabelFileName" />
                                                             </th>
                                                             <th>
-                                                                Uploaded Date
+                                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral23" runat="server" SetLanguageCode="LabelUploadedDate" />
                                                             </th>
                                                             <th>
-                                                                Actions
+                                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral24" runat="server" SetLanguageCode="LabelActions" />
                                                             </th>
                                                         </tr>
                                                     </thead>
@@ -517,9 +530,9 @@
                                                                     </td>
                                                                     <td>
                                                                         <a href="/download.aspx?type=mf&id=<%#Eval("MemberFileId") %>" class="btn btn-info btn-xs">
-                                                                            Download </a>
+                                                                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral241" runat="server" SetLanguageCode="LabelDownload" /> </a>
                                                                         <asp:LinkButton ID="lbRemove" runat="server" CssClass="btn btn-danger btn-xs" CommandName="Delete">
-                                                        Remove
+                                                        <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral242" runat="server" SetLanguageCode="LabelRemove" />
                                                                         </asp:LinkButton>
                                                                     </td>
                                                                 </tr>
@@ -528,14 +541,14 @@
                                                     </tbody>
                                                 </table>
                                                 <div class="form-group">
-                                                    * You may upload upto 3 resumes
+                                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral243" runat="server" SetLanguageCode="LabelUploadResumeUpto" />
                                                 </div>
                                         </asp:PlaceHolder>
                                         <asp:PlaceHolder ID="phFileUpload" runat="server">
                                             <div class="form-group row">
                                                 <div class="col-md-6 form-group-element">
                                                     <label>
-                                                        Add Resume File</label>
+                                                        <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral244" runat="server" SetLanguageCode="LabelAddResumeFile" /></label>
                                                     <asp:TextBox ID="fileUploadTitle" CssClass="form-control" runat="server" placeholder="Enter File Title"></asp:TextBox>
                                                     <div class="errormsg">
                                                         <asp:Literal ID="FileUploadMessage" runat="server"></asp:Literal>
@@ -558,14 +571,14 @@
                                 </div>
                                 <div class="form-group">
                                     <h4>
-                                        Desired Position</h4>
+                                        <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral25" runat="server" SetLanguageCode="LabelDesiredPosition" /></h4>
                                 </div>
                                 <asp:UpdatePanel ID="upCountry" runat="server">
                                     <ContentTemplate>
                                         <div class="row form-group">
                                             <div class="col-sm-6 form-group-element">
                                                 <label>
-                                                    Primary Desired Country<span class="form-required">*</span></label>
+                                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral26" runat="server" SetLanguageCode="LabelPrimaryDesiredCountry" /><span class="form-required">*</span></label>
                                                 <asp:DropDownList ID="ddlPrimDesiredCountry" runat="server" CssClass="form-control"
                                                     AutoPostBack="true" OnSelectedIndexChanged="ddlPrimDesiredCountry_SelectedIndexChanged">
                                                 </asp:DropDownList>
@@ -574,7 +587,7 @@
                                             </div>
                                             <div class="col-sm-6 form-group-element">
                                                 <label>
-                                                    Primary Desired Location<span class="form-required">*</span></label>
+                                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral27" runat="server" SetLanguageCode="LabelPrimaryDesiredLocation" /><span class="form-required">*</span></label>
                                                 <div class="multiselect-drpdn">
                                                     <asp:ListBox ID="ddlPrimDesiredLocation" ClientIDMode="Static" runat="server" CssClass="form-control"
                                                         SelectionMode="Multiple"></asp:ListBox>
@@ -586,17 +599,15 @@
                                         <div class="row form-group">
                                             <div class="col-sm-6 form-group-element">
                                                 <label>
-                                                    Secondary Desired Countries</label>
+                                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral28" runat="server" SetLanguageCode="LabelSecondaryDesiredCountries" /></label>
                                                 <div class="multiselect-drpdn">
                                                     <asp:ListBox ID="ddlSecondDesiredCountry" ClientIDMode="Static" runat="server" CssClass="multiselect form-control"
                                                         SelectionMode="Multiple"></asp:ListBox>
                                                 </div>
                                             </div>
-
-
                                             <div class="col-sm-6 form-group-element">
                                                 <label>
-                                                    Primary Desired Industry<span class="form-required">*</span></label>
+                                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral29" runat="server" SetLanguageCode="LabelPrimaryDesiredIndustry" /><span class="form-required">*</span></label>
                                                 <asp:DropDownList ID="ddlPrimDesiredIndustry" ClientIDMode="Static" runat="server"
                                                     CssClass="form-control">
                                                 </asp:DropDownList>
@@ -607,7 +618,7 @@
                                         <div class="row form-group">
                                             <div class="col-sm-6 form-group-element">
                                                 <label>
-                                                    Primary Desired Job Category<span class="form-required">*</span></label>
+                                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral30" runat="server" SetLanguageCode="LabelPrimaryDesiredJobCategory" /><span class="form-required">*</span></label>
                                                 <asp:DropDownList ID="ddlPrimDesiredJobCategory" runat="server" CssClass="form-control"
                                                     AutoPostBack="true" OnSelectedIndexChanged="ddlPrimDesiredJobCategory_SelectedIndexChanged">
                                                 </asp:DropDownList>
@@ -616,7 +627,7 @@
                                             </div>
                                             <div class="col-sm-6 form-group-element">
                                                 <label>
-                                                    Primary Desired Job Function<span class="form-required">*</span></label>
+                                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral31" runat="server" SetLanguageCode="LabelPrimaryDesiredJobFunction" /><span class="form-required">*</span></label>
                                                 <div class="multiselect-drpdn">
                                                     <asp:ListBox ID="ddlPrmDesiredJobFunction" ClientIDMode="Static" runat="server" CssClass="form-control"
                                                         SelectionMode="Multiple"></asp:ListBox>
@@ -626,7 +637,7 @@
                                             </div>
                                             <div class="col-sm-6 form-group-element">
                                                 <label>
-                                                    Employment Types<span class="form-required">*</span></label>
+                                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral32" runat="server" SetLanguageCode="LabelEmploymentTypes" /><span class="form-required">*</span></label>
                                                 <div class="multiselect-drpdn">
                                                     <asp:ListBox ID="ddlDesiredEmployType" ClientIDMode="Static" runat="server" CssClass="multiselect form-control"
                                                         SelectionMode="Multiple"></asp:ListBox>
@@ -640,7 +651,7 @@
                                             </div>
                                             <div class="col-xs-12">
                                                 <button type="button" class="btn btn-primary" onclick="Tab3Save(this, $('#tab3Loader'));">
-                                                    Save</button>&nbsp;<span id="tab3Loader" class="hide"><i class="fa fa-spinner fa-spin"></i></span>
+                                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral33" runat="server" SetLanguageCode="LabelSave" /></button>&nbsp;<span id="tab3Loader" class="hide"><i class="fa fa-spinner fa-spin"></i></span>
                                             </div>
                                         </div>
                                     </ContentTemplate>

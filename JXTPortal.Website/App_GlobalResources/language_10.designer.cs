@@ -898,6 +898,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Resume File.
+        /// </summary>
+        internal static string LabelAddResumeFile {
+            get {
+                return ResourceManager.GetString("LabelAddResumeFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ajouter une compétence.
         /// </summary>
         internal static string LabelAddSkill {
@@ -1624,6 +1633,15 @@ namespace Resources {
         internal static string LabelBtnSaveContinue {
             get {
                 return ResourceManager.GetString("LabelBtnSaveContinue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save &amp;amp; Next.
+        /// </summary>
+        internal static string LabelBtnSaveNext {
+            get {
+                return ResourceManager.GetString("LabelBtnSaveNext", resourceCulture);
             }
         }
         
@@ -2429,6 +2447,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Current company name.
+        /// </summary>
+        internal static string LabelCurrentCompanyName {
+            get {
+                return ResourceManager.GetString("LabelCurrentCompanyName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Emplois actuels.
         /// </summary>
         internal static string LabelCurrentJobs {
@@ -2443,6 +2470,15 @@ namespace Resources {
         internal static string LabelCurrentJobStatistics {
             get {
                 return ResourceManager.GetString("LabelCurrentJobStatistics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current job title.
+        /// </summary>
+        internal static string LabelCurrentJobTitle {
+            get {
+                return ResourceManager.GetString("LabelCurrentJobTitle", resourceCulture);
             }
         }
         
@@ -2686,6 +2722,15 @@ namespace Resources {
         internal static string LabelDesiredPay {
             get {
                 return ResourceManager.GetString("LabelDesiredPay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Desired Position.
+        /// </summary>
+        internal static string LabelDesiredPosition {
+            get {
+                return ResourceManager.GetString("LabelDesiredPosition", resourceCulture);
             }
         }
         
@@ -3140,6 +3185,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Employment Type.
+        /// </summary>
+        internal static string LabelEmploymentType {
+            get {
+                return ResourceManager.GetString("LabelEmploymentType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employment Types.
+        /// </summary>
+        internal static string LabelEmploymentTypes {
+            get {
+                return ResourceManager.GetString("LabelEmploymentTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Autoriser.
         /// </summary>
         internal static string LabelEnable {
@@ -3491,6 +3554,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File Title.
+        /// </summary>
+        internal static string LabelFileTitle {
+            get {
+                return ResourceManager.GetString("LabelFileTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Type de fichier.
         /// </summary>
         internal static string LabelFileType {
@@ -3559,6 +3631,15 @@ namespace Resources {
         internal static string LabelFirstnameRequired {
             get {
                 return ResourceManager.GetString("LabelFirstnameRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fixed Salary.
+        /// </summary>
+        internal static string LabelFixedSalary {
+            get {
+                return ResourceManager.GetString("LabelFixedSalary", resourceCulture);
             }
         }
         
@@ -3838,6 +3919,15 @@ namespace Resources {
         internal static string LabelHTML {
             get {
                 return ResourceManager.GetString("LabelHTML", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incentive Salary.
+        /// </summary>
+        internal static string LabelIncentiveSalary {
+            get {
+                return ResourceManager.GetString("LabelIncentiveSalary", resourceCulture);
             }
         }
         
@@ -4166,6 +4256,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Job Category.
+        /// </summary>
+        internal static string LabelJobCategory {
+            get {
+                return ResourceManager.GetString("LabelJobCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Classification du poste.
         /// </summary>
         internal static string LabelJobClassification {
@@ -4225,6 +4324,15 @@ namespace Resources {
         internal static string LabelJobFriendlyName {
             get {
                 return ResourceManager.GetString("LabelJobFriendlyName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Job Function.
+        /// </summary>
+        internal static string LabelJobFunction {
+            get {
+                return ResourceManager.GetString("LabelJobFunction", resourceCulture);
             }
         }
         
@@ -5320,6 +5428,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Native Language.
+        /// </summary>
+        internal static string LabelNativeLanguage {
+            get {
+                return ResourceManager.GetString("LabelNativeLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Compétences en langue maternelle ou en deuxième langue.
         /// </summary>
         internal static string LabelNativeOrBilingualProficiency {
@@ -5942,11 +6059,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Home Phone.
+        /// </summary>
+        internal static string LabelPhoneHomeFull {
+            get {
+                return ResourceManager.GetString("LabelPhoneHomeFull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Portable.
         /// </summary>
         internal static string LabelPhoneMobile {
             get {
                 return ResourceManager.GetString("LabelPhoneMobile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mobile Phone.
+        /// </summary>
+        internal static string LabelPhoneMobileFull {
+            get {
+                return ResourceManager.GetString("LabelPhoneMobileFull", resourceCulture);
             }
         }
         
@@ -6262,6 +6397,51 @@ namespace Resources {
         internal static string LabelPriceRange {
             get {
                 return ResourceManager.GetString("LabelPriceRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Primary Desired Country.
+        /// </summary>
+        internal static string LabelPrimaryDesiredCountry {
+            get {
+                return ResourceManager.GetString("LabelPrimaryDesiredCountry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Primary Desired Industry.
+        /// </summary>
+        internal static string LabelPrimaryDesiredIndustry {
+            get {
+                return ResourceManager.GetString("LabelPrimaryDesiredIndustry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Primary Desired Job Category.
+        /// </summary>
+        internal static string LabelPrimaryDesiredJobCategory {
+            get {
+                return ResourceManager.GetString("LabelPrimaryDesiredJobCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Primary Desired Job Function.
+        /// </summary>
+        internal static string LabelPrimaryDesiredJobFunction {
+            get {
+                return ResourceManager.GetString("LabelPrimaryDesiredJobFunction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Primary Desired Location.
+        /// </summary>
+        internal static string LabelPrimaryDesiredLocation {
+            get {
+                return ResourceManager.GetString("LabelPrimaryDesiredLocation", resourceCulture);
             }
         }
         
@@ -7013,6 +7193,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Resume Upload.
+        /// </summary>
+        internal static string LabelResumeUpload {
+            get {
+                return ResourceManager.GetString("LabelResumeUpload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Retaper le mot de passe.
         /// </summary>
         internal static string LabelRetypePassword {
@@ -7108,6 +7297,15 @@ namespace Resources {
         internal static string LabelSalaryHourly {
             get {
                 return ResourceManager.GetString("LabelSalaryHourly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Salary Period.
+        /// </summary>
+        internal static string LabelSalaryPeriod {
+            get {
+                return ResourceManager.GetString("LabelSalaryPeriod", resourceCulture);
             }
         }
         
@@ -7328,11 +7526,38 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Secondary Desired Countries.
+        /// </summary>
+        internal static string LabelSecondaryDesiredCountries {
+            get {
+                return ResourceManager.GetString("LabelSecondaryDesiredCountries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to E-mail secondaire.
         /// </summary>
         internal static string LabelSecondaryEmail {
             get {
                 return ResourceManager.GetString("LabelSecondaryEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secondary Language.
+        /// </summary>
+        internal static string LabelSecondaryLanguage {
+            get {
+                return ResourceManager.GetString("LabelSecondaryLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secondary Language Level.
+        /// </summary>
+        internal static string LabelSecondaryLanguageLevel {
+            get {
+                return ResourceManager.GetString("LabelSecondaryLanguageLevel", resourceCulture);
             }
         }
         
@@ -8336,6 +8561,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Uploaded Date.
+        /// </summary>
+        internal static string LabelUploadedDate {
+            get {
+                return ResourceManager.GetString("LabelUploadedDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Télécharger un fichier.
         /// </summary>
         internal static string LabelUploadFile {
@@ -8404,6 +8638,15 @@ namespace Resources {
         internal static string LabelUploadResume {
             get {
                 return ResourceManager.GetString("LabelUploadResume", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to * You may upload upto 3 resumes.
+        /// </summary>
+        internal static string LabelUploadResumeUpto {
+            get {
+                return ResourceManager.GetString("LabelUploadResumeUpto", resourceCulture);
             }
         }
         
@@ -8908,6 +9151,24 @@ namespace Resources {
         internal static string LabelZA {
             get {
                 return ResourceManager.GetString("LabelZA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zip Code.
+        /// </summary>
+        internal static string LabelZipCode {
+            get {
+                return ResourceManager.GetString("LabelZipCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zip/Postcode.
+        /// </summary>
+        internal static string LabelZipCodePlaceholder {
+            get {
+                return ResourceManager.GetString("LabelZipCodePlaceholder", resourceCulture);
             }
         }
         

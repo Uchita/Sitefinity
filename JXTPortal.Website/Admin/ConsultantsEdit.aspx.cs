@@ -268,50 +268,6 @@ namespace JXTPortal.Website.Admin
                 {
                     string consultantxml = string.Empty;
 
-                    using (TList<SiteLanguages> SiteLanguages = SiteLanguagesService.GetBySiteId(SessionData.Site.SiteId))
-                    {
-                        if (SiteLanguages.Count > 1)
-                        {
-                            consultantxml = "<Languages>";
-
-                            foreach (SiteLanguages lang in SiteLanguages)
-                            {
-                                consultantxml += string.Format(@"<Language>
-                                                                    <id>{0}</id>
-                                                                    <Title>{1}</Title>
-                                                                    <FirstName>{2}</FirstName>
-                                                                    <LastName>{3}</LastName>
-                                                                    <PositionTitle>{4}</PositionTitle>
-                                                                    <Location>{5}</Location>
-                                                                    <OfficeLocation>{6}</OfficeLocation>
-                                                                    <Categories>{7}</Categories>
-                                                                    <ShortDescription>{8}</ShortDescription>
-                                                                    <FullDescription>{9}</FullDescription>
-                                                                    <Testimonial>{10}</Testimonial>
-                                                                    <MetaTitle>{11}</MetaTitle>
-                                                                    <MetaKeyword>{12}</MetaKeyword>
-                                                                    <MetaDescription>{13}</MetaDescription>
-                                                                </Language>"
-                                                                , lang.LanguageId
-                                                                ,Utils.HtmlEncode(tbTitle.Text)
-                                                                ,Utils.HtmlEncode(tbName.Text)
-                                                                ,Utils.HtmlEncode(tbLastName.Text)
-                                                                ,Utils.HtmlEncode(tbPositionTitle.Text)
-                                                                ,Utils.HtmlEncode(tbLocation.Text)
-                                                                ,Utils.HtmlEncode(tbOfficeLocation.Text)
-                                                                ,Utils.HtmlEncode(tbCategories.Text)
-                                                                ,Utils.HtmlEncode(tbShortDescription.Text)
-                                                                ,Utils.HtmlEncode(tbFullDescription.Text)
-                                                                ,Utils.HtmlEncode(tbTestimonial.Text)
-                                                                ,Utils.HtmlEncode(tbMetaTitle.Text)
-                                                                ,Utils.HtmlEncode(tbMetaKeyword.Text)
-                                                                , Utils.HtmlEncode(tbMetaDescription.Text));
-                            }
-
-                            consultantxml += "</Languages>";
-                        }
-                    }
-
                     if (ConsultantId > 0)
                     {
                         consultant = ConsultantsService.GetByConsultantId(consultantId);
@@ -371,6 +327,85 @@ namespace JXTPortal.Website.Admin
                     consultant.LastModifiedBy = SessionData.AdminUser.AdminUserId;
                     consultant.LastModified = DateTime.Now;
                     consultant.Sequence = (string.IsNullOrWhiteSpace(tbSequence.Text)) ? 0 : Convert.ToInt32(tbSequence.Text);
+
+                    using (TList<SiteLanguages> SiteLanguages = SiteLanguagesService.GetBySiteId(SessionData.Site.SiteId))
+                    {
+                        if (SiteLanguages.Count > 1)
+                        {
+                            if (string.IsNullOrEmpty(consultant.ConsultantsXml))
+                            {
+                                consultantxml = "<Languages>";
+
+                                foreach (SiteLanguages lang in SiteLanguages)
+                                {
+                                    consultantxml += string.Format(@"<Language>
+                                                                    <id>{0}</id>
+                                                                    <Title>{1}</Title>
+                                                                    <FirstName>{2}</FirstName>
+                                                                    <LastName>{3}</LastName>
+                                                                    <PositionTitle>{4}</PositionTitle>
+                                                                    <Location>{5}</Location>
+                                                                    <OfficeLocation>{6}</OfficeLocation>
+                                                                    <Categories>{7}</Categories>
+                                                                    <ShortDescription>{8}</ShortDescription>
+                                                                    <FullDescription>{9}</FullDescription>
+                                                                    <Testimonial>{10}</Testimonial>
+                                                                    <MetaTitle>{11}</MetaTitle>
+                                                                    <MetaKeyword>{12}</MetaKeyword>
+                                                                    <MetaDescription>{13}</MetaDescription>
+                                                                </Language>"
+                                                                    , lang.LanguageId
+                                                                    , Utils.HtmlEncode(tbTitle.Text)
+                                                                    , Utils.HtmlEncode(tbName.Text)
+                                                                    , Utils.HtmlEncode(tbLastName.Text)
+                                                                    , Utils.HtmlEncode(tbPositionTitle.Text)
+                                                                    , Utils.HtmlEncode(tbLocation.Text)
+                                                                    , Utils.HtmlEncode(tbOfficeLocation.Text)
+                                                                    , Utils.HtmlEncode(tbCategories.Text)
+                                                                    , Utils.HtmlEncode(tbShortDescription.Text)
+                                                                    , Utils.HtmlEncode(tbFullDescription.Text)
+                                                                    , Utils.HtmlEncode(tbTestimonial.Text)
+                                                                    , Utils.HtmlEncode(tbMetaTitle.Text)
+                                                                    , Utils.HtmlEncode(tbMetaKeyword.Text)
+                                                                    , Utils.HtmlEncode(tbMetaDescription.Text));
+                                }
+
+                                consultantxml += "</Languages>";
+                            }
+                            else
+                            {
+                                XmlDocument langxml = new XmlDocument();
+                                langxml.LoadXml(consultant.ConsultantsXml);
+
+                                XmlNodeList langlist = langxml.GetElementsByTagName("Language");
+                                foreach (XmlNode langnode in langlist)
+                                {
+                                    if (langnode.ChildNodes[0].InnerXml == SessionData.Language.LanguageId.ToString())
+                                    {
+                                        langnode["Title"].InnerText = txtMultiTitle.Text;
+                                        langnode["FirstName"].InnerText = txtMultiFirstName.Text;
+                                        langnode["LastName"].InnerText = txtMultiLastName.Text;
+                                        langnode["PositionTitle"].InnerText = txtMultiPositionTitle.Text;
+                                        langnode["Location"].InnerText = txtMultiLocation.Text;
+                                        langnode["OfficeLocation"].InnerText = txtMultiOfficeLocation.Text;
+                                        langnode["Categories"].InnerText = txtMultiCategories.Text;
+                                        langnode["ShortDescription"].InnerText = txtMultiShortDescription.Text;
+                                        langnode["FullDescription"].InnerText = txtMultiFullDescription.Text;
+                                        langnode["Testimonial"].InnerText = txtMultiTestimonial.Text;
+                                        langnode["MetaTitle"].InnerText = txtMultiMetaTitle.Text;
+                                        langnode["MetaKeyword"].InnerText = txtMultiMetaKeyword.Text;
+                                        langnode["MetaDescription"].InnerText = txtMultiMetaDescription.Text;
+
+                                        consultant.ConsultantsXml = langxml.InnerXml;
+
+                                        return;
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+
                     consultant.ConsultantsXml = consultantxml;
 
                     if (ConsultantId > 0)

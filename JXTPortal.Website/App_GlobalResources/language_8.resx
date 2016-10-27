@@ -4096,12 +4096,15 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
   <data name="LabelAddResumeFile" xml:space="preserve">
     <value>Add Resume File</value>
     <comment>Add Resume File</comment>
+  </data>
   <data name="LabelBtnSaveNext" xml:space="preserve">
     <value>Save &amp;amp; Next</value>
     <comment>Save &amp;amp; Next</comment>
+  </data>
   <data name="LabelCurrentCompanyName" xml:space="preserve">
     <value>Current company name</value>
     <comment>Current company name</comment>
+  </data>
   <data name="LabelNominatedCompanyRole" xml:space="preserve">
     <value>Nominated Company Role</value>
     <comment>Nominated Company Role</comment>
@@ -4109,15 +4112,19 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
   <data name="LabelCurrentJobTitle" xml:space="preserve">
     <value>Current job title</value>
     <comment>Current job title</comment>
+  </data>
   <data name="LabelDesiredPosition" xml:space="preserve">
     <value>Desired Position</value>
     <comment>Desired Position</comment>
+  </data>
   <data name="LabelEmploymentType" xml:space="preserve">
     <value>Employment Type</value>
     <comment>Employment Type</comment>
+  </data>
   <data name="LabelEmploymentTypes" xml:space="preserve">
     <value>Employment Types</value>
     <comment>Employment Types</comment>
+  </data>
   <data name="LabelAnnualRange" xml:space="preserve">
     <value>Annual Range</value>
     <comment>Annual Range</comment>
@@ -4125,18 +4132,23 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
   <data name="LabelFileTitle" xml:space="preserve">
     <value>File Title</value>
     <comment>File Title</comment>
+  </data>
   <data name="LabelFixedSalary" xml:space="preserve">
     <value>Fixed Salary</value>
     <comment>Fixed Salary</comment>
+  </data>
   <data name="LabelIncentiveSalary" xml:space="preserve">
     <value>Incentive Salary</value>
     <comment>Incentive Salary</comment>
+  </data>
   <data name="LabelJobCategory" xml:space="preserve">
     <value>Job Category</value>
     <comment>Job Category</comment>
+  </data>
   <data name="LabelJobFunction" xml:space="preserve">
     <value>Job Function</value>
     <comment>Job Function</comment>
+  </data>
   <data name="LabelAlphabeticalAscending" xml:space="preserve">
     <value>Alphabetical Ascending</value>
     <comment>Alphabetical Ascending</comment>
@@ -4148,6 +4160,7 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
   <data name="LabelNativeLanguage" xml:space="preserve">
     <value>Native Language</value>
     <comment>Native Language</comment>
+  </data>
   <data name="LabelPhoneHomeFull" xml:space="preserve">
     <value>Home Phone</value>
   </data>
@@ -4158,15 +4171,19 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
   <data name="LabelCity" xml:space="preserve">
     <value>City</value>
     <comment>Home Phone</comment>
+  </data>
   <data name="LabelPhoneMobileFull" xml:space="preserve">
     <value>Mobile Phone</value>
     <comment>Mobile Phone</comment>
+  </data>
   <data name="LabelPrimaryDesiredCountry" xml:space="preserve">
     <value>Primary Desired Country</value>
     <comment>Primary Desired Country</comment>
+  </data>
   <data name="LabelPrimaryDesiredIndustry" xml:space="preserve">
     <value>Primary Desired Industry</value>
     <comment>Primary Desired Industry</comment>
+  </data>
   <data name="LabelPrimaryDesiredJobCategory" xml:space="preserve">
     <value>Search</value>
     <comment>Search</comment>
@@ -4174,36 +4191,47 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
   <data name="LabelSalaryTypeFull" xml:space="preserve">
     <value>Primary Desired Job Category</value>
     <comment>Primary Desired Job Category</comment>
+  </data>
   <data name="LabelPrimaryDesiredJobFunction" xml:space="preserve">
     <value>Primary Desired Job Function</value>
     <comment>Primary Desired Job Function</comment>
+  </data>
   <data name="LabelPrimaryDesiredLocation" xml:space="preserve">
     <value>Primary Desired Location</value>
     <comment>Primary Desired Location</comment>
+  </data>
   <data name="LabelResumeUpload" xml:space="preserve">
     <value>Resume Upload</value>
     <comment>Resume Upload</comment>
+  </data>
   <data name="LabelSalaryPeriod" xml:space="preserve">
     <value>Salary Period</value>
     <comment>Salary Period</comment>
+  </data>
   <data name="LabelSecondaryDesiredCountries" xml:space="preserve">
     <value>Secondary Desired Countries</value>
     <comment>Secondary Desired Countries</comment>
+  </data>
   <data name="LabelSecondaryLanguage" xml:space="preserve">
     <value>Secondary Language</value>
     <comment>Secondary Language</comment>
+  </data>
   <data name="LabelSecondaryLanguageLevel" xml:space="preserve">
     <value>Secondary Language Level</value>
     <comment>Secondary Language Level</comment>
+  </data>
   <data name="LabelUploadedDate" xml:space="preserve">
     <value>Uploaded Date</value>
     <comment>Uploaded Date</comment>
+  </data>
   <data name="LabelUploadResumeUpto" xml:space="preserve">
     <value>* You may upload upto 3 resumes</value>
     <comment>* You may upload upto 3 resumes</comment>
+  </data>
   <data name="LabelZipCode" xml:space="preserve">
     <value>Zip Code</value>
     <comment>Zip Code</comment>
+  </data>
   <data name="LabelProfileMinEntries" xml:space="preserve">
     <value>Minimum entries required - {0}</value>
     <comment>Minimum entries required - {0}</comment>
@@ -4215,6 +4243,7 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
   <data name="LabelZipCodePlaceholder" xml:space="preserve">
     <value>Zip/Postcode</value>
     <comment>Zip/Postcode</comment>
+  </data>
   <data name="LabelPremiumJobsNote" xml:space="preserve">
     <value>Please note: Premium jobs will be displayed at the top of the specified classification when searched.</value>
     <comment>Please note: Premium jobs will be displayed at the top of the specified classification when searched.</comment>

@@ -8,7 +8,7 @@
     <ProjectGuid>{F728C4BD-8EEB-476D-AC0B-D4BCFA98F975}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EmailSender</RootNamespace>
+    <RootNamespace>JXTPortal.EmailSender</RootNamespace>
     <AssemblyName>EmailSender</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

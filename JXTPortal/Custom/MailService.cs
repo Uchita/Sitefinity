@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
-using EmailSender;
+using JXTPortal.EmailSender;
 using System.Configuration;
 using System.IO;
 using System.Web;

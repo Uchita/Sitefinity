@@ -184,4 +184,122 @@ namespace JXTPortal.Client.Invenias
 
     #endregion
 
+    #region Interim Rates
+    public class InveniaInterimRatesValue
+    {
+        public double BillAmountFrom { get; set; }
+        public double BillAmountTo { get; set; }
+        public string BillCurrency { get; set; }
+        public string CreatorId { get; set; }
+        public string DateCreated { get; set; }
+        public string DateModified { get; set; }
+        public string Id { get; set; }
+        public string InterimRateFieldId { get; set; }
+        public string MarginAmount { get; set; }
+        public string MarginCurrency { get; set; }
+        public string MarginPercentage { get; set; }
+        public string ModifierId { get; set; }
+        public string Notes { get; set; }
+        public string OrderIndex { get; set; }
+        public double PayAmountFrom { get; set; }
+        public double PayAmountTo { get; set; }
+        public string PayCurrency { get; set; }
+        public string Period { get; set; }
+    }
+
+    public class InveniaInterimRatesRoot
+    {
+        public List<InveniaInterimRatesValue> value { get; set; }
+    }
+    #endregion
+
+    #region Non-Exec Package
+    public class InveniaNonExecPackageValue
+    {
+        public double AmountFrom { get; set; }
+        public double AmountTo { get; set; }
+        public string CreatorId { get; set; }
+        public string Currency { get; set; }
+        public string DateCreated { get; set; }
+        public string DateModified { get; set; }
+        public string Id { get; set; }
+        public string ModifierId { get; set; }
+        public string NonExecPackageFieldId { get; set; }
+        public string Notes { get; set; }
+        public string OrderIndex { get; set; }
+        public string Period { get; set; }
+    }
+
+    public class InveniaNonExecPackageRoot
+    {
+        public List<InveniaNonExecPackageValue> value { get; set; }
+    }
+    #endregion
+
+    #region Permanent Packages
+    public class InveniaPermanentPackageValue
+    {
+        public double AmountFrom { get; set; }
+        public double AmountTo { get; set; }
+        public string CreatorId { get; set; }
+        public string Currency { get; set; }
+        public string DateCreated { get; set; }
+        public string DateModified { get; set; }
+        public string Id { get; set; }
+        public string ModifierId { get; set; }
+        public string Notes { get; set; }
+        public string OrderIndex { get; set; }
+        public string Period { get; set; }
+        public string PermanentPackageFieldId { get; set; }
+    }
+
+    public class InveniaPermanentPackageValueRoot
+    {
+        public List<InveniaPermanentPackageValue> value { get; set; }
+    }
+
+    #endregion
+
+    #region Category List Entry
+
+    public class InveniaCategoryListEntryValue
+    {
+        public string CategoryListId { get; set; }
+        public string CreatorId { get; set; }
+        public string DateCreated { get; set; }
+        public string DateModified { get; set; }
+        public string Id { get; set; }
+        public string ModifierId { get; set; }
+        public string Name { get; set; }
+        public string ParentEntryId { get; set; }
+    }
+
+    public class InveniaCategoryListEntryRoot
+    {
+        public List<InveniaCategoryListEntryValue> value { get; set; }
+    }
+
+    #endregion
+
+    #region Category List
+
+    public class InveniaCategoryListValue
+    {
+        public string CreatorId { get; set; }
+        public string DateCreated { get; set; }
+        public string DateModified { get; set; }
+        public string Id { get; set; }
+        public string ModifierId { get; set; }
+        public string Name { get; set; }
+        public string OrderIndex { get; set; }
+        public string ShowDataColumns { get; set; }
+    }
+
+    public class InveniaCategoryListRoot
+    {
+        public List<InveniaCategoryListValue> value { get; set; }
+    }
+
+    #endregion
+
 }

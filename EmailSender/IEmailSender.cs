@@ -1,6 +1,6 @@
 using System;
 
-namespace EmailSender
+namespace JXTPortal.EmailSender
 {
     /// <summary>
     /// Abstracts an approach to send e-mails

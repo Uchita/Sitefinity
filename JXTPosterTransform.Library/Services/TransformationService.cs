@@ -94,8 +94,8 @@ namespace JXTPosterTransform.Library.Services
                                 {
                                     ClientSetupModels.PullFromInvenias invAuth = jss.Deserialize<ClientSetupModels.PullFromInvenias>(thisSetupItem.ClientSetupTypeCredentials);
                                     PullFromInvenias inveniaLogic = new PullFromInvenias(invAuth);
-                                    List<InveniasAdvertisementsValue> advertisements = inveniaLogic.AdvertisementsGet();
-                                    response = inveniaLogic.ProcessInveniaModelToXML(advertisements, fileName);
+                                    List<InveniasPTModel> ptModel = inveniaLogic.PosterTransformModelsGet();
+                                    response = inveniaLogic.ProcessInveniaModelToXML(ptModel, fileName);
                                     break;
                                 }
                             case ((int)PTCommonEnums.ClientSetup.ClientSetupType.PullJsonFromUrl):

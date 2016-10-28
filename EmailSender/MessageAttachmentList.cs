@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace EmailSender
+namespace JXTPortal.EmailSender
 {
     public class MessageAttachmentList : List<MessageAttachment> {
     }

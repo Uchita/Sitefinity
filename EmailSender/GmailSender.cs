@@ -4,7 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Text;
 
-namespace EmailSender {
+namespace JXTPortal.EmailSender
+{
     /// <summary>
     /// See http://stackoverflow.com/questions/704636/sending-email-through-gmail-smtp-server-with-c
     /// </summary>

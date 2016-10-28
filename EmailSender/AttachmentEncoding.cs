@@ -1,4 +1,4 @@
-namespace EmailSender
+namespace JXTPortal.EmailSender
 {
     public enum AttachmentEncoding {
         Base64,

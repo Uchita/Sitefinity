@@ -1,7 +1,7 @@
 
 using System;
 
-namespace EmailSender
+namespace JXTPortal.EmailSender
 {
     public class MockSender : IRichMessageEmailSender {
         

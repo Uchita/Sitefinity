@@ -57,6 +57,11 @@ namespace JXTPortal.Website.Admin
         {
             get
             {
+                if (!string.IsNullOrWhiteSpace(hfConsultantId.Value))
+                {
+                    consultantId = Convert.ToInt32(hfConsultantId.Value);
+                }
+
                 if ((Request.QueryString["ConsultantId"] != null))
                 {
                     if (int.TryParse((Request.QueryString["ConsultantId"].Trim()), out consultantId))
@@ -93,6 +98,8 @@ namespace JXTPortal.Website.Admin
                 {
                     if (consultant != null && consultant.SiteId == SessionData.Site.SiteId)
                     {
+                        hfConsultantId.Value = ConsultantId.ToString();
+
                         tbTitle.Text = consultant.Title;
                         tbName.Text = consultant.FirstName;
                         tbLastName.Text = consultant.LastName;
@@ -371,6 +378,9 @@ namespace JXTPortal.Website.Admin
                                 }
 
                                 consultantxml += "</Languages>";
+
+
+                                consultant.ConsultantsXml = consultantxml;
                             }
                             else
                             {
@@ -380,33 +390,29 @@ namespace JXTPortal.Website.Admin
                                 XmlNodeList langlist = langxml.GetElementsByTagName("Language");
                                 foreach (XmlNode langnode in langlist)
                                 {
-                                    if (langnode.ChildNodes[0].InnerXml == SessionData.Language.LanguageId.ToString())
+                                    if (langnode.ChildNodes[0].InnerXml == SessionData.Site.DefaultLanguageId.ToString())
                                     {
-                                        langnode["Title"].InnerText = txtMultiTitle.Text;
-                                        langnode["FirstName"].InnerText = txtMultiFirstName.Text;
-                                        langnode["LastName"].InnerText = txtMultiLastName.Text;
-                                        langnode["PositionTitle"].InnerText = txtMultiPositionTitle.Text;
-                                        langnode["Location"].InnerText = txtMultiLocation.Text;
-                                        langnode["OfficeLocation"].InnerText = txtMultiOfficeLocation.Text;
-                                        langnode["Categories"].InnerText = txtMultiCategories.Text;
-                                        langnode["ShortDescription"].InnerText = txtMultiShortDescription.Text;
-                                        langnode["FullDescription"].InnerText = txtMultiFullDescription.Text;
-                                        langnode["Testimonial"].InnerText = txtMultiTestimonial.Text;
-                                        langnode["MetaTitle"].InnerText = txtMultiMetaTitle.Text;
-                                        langnode["MetaKeyword"].InnerText = txtMultiMetaKeyword.Text;
-                                        langnode["MetaDescription"].InnerText = txtMultiMetaDescription.Text;
+                                        langnode["Title"].InnerText = tbTitle.Text;
+                                        langnode["FirstName"].InnerText = tbName.Text;
+                                        langnode["LastName"].InnerText = tbLastName.Text;
+                                        langnode["PositionTitle"].InnerText = tbPositionTitle.Text;
+                                        langnode["Location"].InnerText = tbLocation.Text;
+                                        langnode["OfficeLocation"].InnerText = tbOfficeLocation.Text;
+                                        langnode["Categories"].InnerText = tbCategories.Text;
+                                        langnode["ShortDescription"].InnerText = tbShortDescription.Text;
+                                        langnode["FullDescription"].InnerText = tbFullDescription.Text;
+                                        langnode["Testimonial"].InnerText = tbTestimonial.Text;
+                                        langnode["MetaTitle"].InnerText = tbMetaTitle.Text;
+                                        langnode["MetaKeyword"].InnerText = tbMetaKeyword.Text;
+                                        langnode["MetaDescription"].InnerText = tbMetaDescription.Text;
 
                                         consultant.ConsultantsXml = langxml.InnerXml;
-
-                                        return;
                                     }
                                 }
                             }
 
                         }
                     }
-
-                    consultant.ConsultantsXml = consultantxml;
 
                     if (ConsultantId > 0)
                     {

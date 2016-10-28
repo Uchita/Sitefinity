@@ -12,7 +12,7 @@ using JXTPortal.Entities;
 using JXTPortal;
 using System.Text;
 using System.Configuration;
-using EmailSender;
+using JXTPortal.EmailSender;
 using System.Security.AccessControl;
 using System.Security.Principal;
 using System.Security.Cryptography;

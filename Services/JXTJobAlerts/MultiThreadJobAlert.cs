@@ -7,7 +7,7 @@ using JXTPortal.Entities;
 using JXTPortal;
 using JXTPortal.Common;
 using System.Configuration;
-using EmailSender;
+using JXTPortal.EmailSender;
 using System.Collections.Specialized;
 using System.Web;
 using System.Net.Mail;

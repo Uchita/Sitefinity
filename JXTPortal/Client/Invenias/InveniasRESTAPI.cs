@@ -114,6 +114,26 @@ namespace JXTPortal.Client.Invenias
             return null;
         }
 
+        public bool AdvertisementCreate(InveniasAdvertisementsValue ad)
+        {
+            JsonSerializer ser2 = new JsonSerializer { NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore };
+            string adJson = JsonConvert.SerializeObject(ad, Newtonsoft.Json.Formatting.None, new JsonSerializerSettings { NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore });
+
+            HttpPost("https://publicapi.invenias.com/v1/Advertisements", adJson, true);
+
+            return true;
+        }
+
+        public bool AdvertisementPatch(string id, InveniasAdvertisementsValue newValues)
+        {
+            JsonSerializer ser2 = new JsonSerializer { NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore };
+            string adJson = JsonConvert.SerializeObject(newValues, Newtonsoft.Json.Formatting.None, new JsonSerializerSettings { NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore });
+
+            HttpPatch("https://publicapi.invenias.com/v1/Advertisements(" + id + ")", adJson, true);
+
+            return true;
+        }
+
         public List<InveniasAssignmentValue> AssignmentsGet()
         {
             string targetURL = "https://publicapi.invenias.com/v1/Assignments";
@@ -148,15 +168,7 @@ namespace JXTPortal.Client.Invenias
 
         }
 
-        public bool AdvertisementCreate(InveniasAdvertisementsValue ad)
-        {
-            JavaScriptSerializer ser = new JavaScriptSerializer();
-            string adJson = ser.Serialize(ad);
 
-            HttpPost("https://publicapi.invenias.com/v1/Advertisements", adJson, true);
-
-            return true;
-        }
 
         public bool AssignmentCreate(InveniasAssignmentValue ad)
         {
@@ -178,13 +190,167 @@ namespace JXTPortal.Client.Invenias
             return true;
         }
 
+        public object LocationsGet()
+        {
+            string targetURL = "https://publicapi.invenias.com/v1/Locations";
+
+            string locations = HttpGet(targetURL, true);
+
+            if (!string.IsNullOrEmpty(locations))
+            {
+                JavaScriptSerializer ser = new JavaScriptSerializer();
+                InveniasLocationRoot token = (InveniasLocationRoot)ser.Deserialize(locations, typeof(InveniasLocationRoot));
+
+                return token.value;
+            }
+            return null;
+
+        }
+
+        public bool InterimRateCreate(InveniaInterimRatesValue rate)
+        {
+            JsonSerializer ser2 = new JsonSerializer { NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore };
+            string rateJson = JsonConvert.SerializeObject(rate, Newtonsoft.Json.Formatting.None, new JsonSerializerSettings { NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore });
+
+            HttpPost("https://publicapi.invenias.com/v1/InterimRates", rateJson, true);
+
+            return true;
+        }
+
+        public object InterimRatesGet()
+        {
+            string targetURL = "https://publicapi.invenias.com/v1/InterimRates";
+
+            string locations = HttpGet(targetURL, true);
+
+            if (!string.IsNullOrEmpty(locations))
+            {
+                JavaScriptSerializer ser = new JavaScriptSerializer();
+                InveniaInterimRatesRoot token = (InveniaInterimRatesRoot)ser.Deserialize(locations, typeof(InveniaInterimRatesRoot));
+
+                return token.value;
+            }
+            return null;
+        }
+
+        public object CurrencyGet()
+        {
+            string targetURL = "https://publicapi.invenias.com/v1/Currencies";
+
+            string locations = HttpGet(targetURL, true);
+
+            if (!string.IsNullOrEmpty(locations))
+            {
+                //JavaScriptSerializer ser = new JavaScriptSerializer();
+                //InveniaInterimRatesRoot token = (InveniaInterimRatesRoot)ser.Deserialize(locations, typeof(InveniaInterimRatesRoot));
+
+                //return token.value;
+            }
+            return null;
+        }
+
+        
+        public bool NonExecPackageCreate(InveniaNonExecPackageValue rate)
+        {
+            JsonSerializer ser2 = new JsonSerializer { NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore };
+            string rateJson = JsonConvert.SerializeObject(rate, Newtonsoft.Json.Formatting.None, new JsonSerializerSettings { NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore });
+
+            HttpPost("https://publicapi.invenias.com/v1/NonExecPackages", rateJson, true);
+
+            return true;
+        }
+
+        public bool PermanentPackageCreate(InveniaPermanentPackageValue rate)
+        {
+            JsonSerializer ser2 = new JsonSerializer { NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore };
+            string rateJson = JsonConvert.SerializeObject(rate, Newtonsoft.Json.Formatting.None, new JsonSerializerSettings { NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore });
+
+            HttpPost("https://publicapi.invenias.com/v1/PermanentPackages", rateJson, true);
+
+            return true;
+        }
+
+        public bool CategoryListEntryCreate(InveniaCategoryListEntryValue entry)
+        {
+            JsonSerializer ser2 = new JsonSerializer { NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore };
+            string rateJson = JsonConvert.SerializeObject(entry, Newtonsoft.Json.Formatting.None, new JsonSerializerSettings { NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore });
+
+            HttpPost("https://publicapi.invenias.com/v1/CategoryListEntries", rateJson, true);
+
+            return true;
+        }
+
+        public bool CategoryListCreate(InveniaCategoryListValue entry)
+        {
+            JsonSerializer ser2 = new JsonSerializer { NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore };
+            string rateJson = JsonConvert.SerializeObject(entry, Newtonsoft.Json.Formatting.None, new JsonSerializerSettings { NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore });
+
+            HttpPost("https://publicapi.invenias.com/v1/CategoryLists", rateJson, true);
+
+            return true;
+        }
+
+
+        public bool RelationCreate(string entity1Name, string entity1ID, string entity2Name, string entity2Ref)
+        {
+            string request = string.Format("https://publicapi.invenias.com/v1/{0}({1})/{2}/$ref", entity1Name, entity1ID, entity2Name, entity2Ref);
+
+            string data = @"{""@odata.id"":""https://publicapi.invenias.com/v1/" + entity2Name + "s(" + entity2Ref + @")""}";
+
+            HttpPost(request, data, true);
+
+            return true;
+        }
+
         #region HTTP call methods
 
-        public string HttpPost(string URI, string Parameters, bool AuthHeader)
+        private string HttpPost(string URI, string Parameters, bool AuthHeader)
         {
             System.Net.WebRequest req = System.Net.WebRequest.Create(URI);
             req.ContentType = "application/json";
             req.Method = "POST";
+
+            if (AuthHeader)
+                req.Headers.Add("Authorization", "Bearer " + _settings.RESTAuthToken);
+
+            // Add parameters to post
+            byte[] data = System.Text.Encoding.ASCII.GetBytes(Parameters);
+            req.ContentLength = data.Length;
+            System.IO.Stream os = req.GetRequestStream();
+            os.Write(data, 0, data.Length);
+            os.Close();
+
+            // Do the post and get the response.
+            System.Net.WebResponse response = null;
+
+            try
+            {
+                response = req.GetResponse();
+            }
+            catch (WebException ex)
+            {
+                string msg = "";
+
+                if (ex.Status == WebExceptionStatus.ProtocolError)
+                {
+                    //throw ex;
+                    response = ex.Response;
+                    msg = new System.IO.StreamReader(response.GetResponseStream()).ReadToEnd().Trim();
+                }
+            }
+
+            if (response == null) return null;
+
+            System.IO.StreamReader sr = new System.IO.StreamReader(response.GetResponseStream());
+
+            return sr.ReadToEnd().Trim();
+        }
+
+        public string HttpPatch(string URI, string Parameters, bool AuthHeader)
+        {
+            System.Net.WebRequest req = System.Net.WebRequest.Create(URI);
+            req.ContentType = "application/json";
+            req.Method = "PATCH";
 
             if (AuthHeader)
                 req.Headers.Add("Authorization", "Bearer " + _settings.RESTAuthToken);

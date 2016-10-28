@@ -7,7 +7,7 @@ using System.Data;
 using System.IO;
 using Tamir.SharpSsh;
 using System.Configuration;
-using EmailSender;
+using JXTPortal.EmailSender;
 using System.Net.Configuration;
 using JXTPortal;
 using System.Net.Mail;

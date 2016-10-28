@@ -11,7 +11,7 @@ using JXTPortal;
 using System.Data;
 using System.IO;
 using System.Net;
-using EmailSender;
+using JXTPortal.EmailSender;
 using System.Net.Mail;
 using System.Net.Configuration;
 using Tamir.SharpSsh;

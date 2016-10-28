@@ -5,7 +5,7 @@ using System.Collections.Specialized;
 using System.Net.Mail;
 using System.Text;
 
-namespace EmailSender
+namespace JXTPortal.EmailSender
 {
     /// <summary>
     /// Abstracts an e-mail message

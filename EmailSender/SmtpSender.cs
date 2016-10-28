@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Net;
 using System.Net.Mail;
 
-namespace EmailSender
+namespace JXTPortal.EmailSender
 {
     /// <summary>
     /// Uses Smtp to send emails.

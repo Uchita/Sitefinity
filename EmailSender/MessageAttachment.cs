@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-namespace EmailSender
+namespace JXTPortal.EmailSender
 {
     /// <summary>
     /// Represents a file attachment

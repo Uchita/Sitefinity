@@ -24,7 +24,7 @@ namespace JXTMoveImageToFTP
             //3: Build Dependencies
             using (var scope = container.BeginLifetimeScope())
             {
-                var ftpclient = scope.Resolve<Client>();
+                Client ftpclient = scope.Resolve<Client>();
 
                 ftpclient.ProcessSites();
             }

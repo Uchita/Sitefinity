@@ -13,11 +13,9 @@ namespace JXTPortal.Data.Dapper.Entities.Core
         public string SiteURL { get; set; }
         public string SiteDescription { get; set; }
         public byte[] SiteAdminLogo { get; set; }
-        public DateTime LastModified { get; set; }
-        public int? LastModifiedBy { get; set; }
         public bool? Live { get; set; }
         public bool MobileEnabled { get; set; }
-        public bool MobileUrl { get; set; }
+        public string MobileUrl { get; set; }
         public string SiteAdminLogoURL { get; set; }
     }
 }

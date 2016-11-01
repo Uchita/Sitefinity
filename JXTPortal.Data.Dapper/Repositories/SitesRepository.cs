@@ -26,7 +26,7 @@ namespace JXTPortal.Data.Dapper.Repositories
             _connectionStringName = connectionStringName;
         }
 
-        #region IBaseEntityOperation<KnowledgeBaseRepository> Members
+        #region IBaseEntityOperation<SitesRepository> Members
 
         public int Insert(SitesEntity entity)
         {

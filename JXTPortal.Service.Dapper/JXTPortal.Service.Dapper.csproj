@@ -48,6 +48,7 @@
     <Compile Include="KnowledgeBaseCategoryService.cs" />
     <Compile Include="KnowledgeBaseService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SitesService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JXTPortal.Data.Dapper\JXTPortal.Data.Dapper.csproj">

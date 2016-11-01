@@ -19,12 +19,12 @@ namespace JXTMoveImageToFTP
             ContainerBuilder builder = new ContainerBuilder();
        
             //2: Build Container
-            IContainer container = builder.Build();
+            IContainer container = IoCHelper.CreateContainer();
 
             //3: Build Dependencies
             using (var scope = container.BeginLifetimeScope())
             {
-                Client ftpclient = scope.Resolve<Client>();
+                var ftpclient = scope.Resolve<Client>();
 
                 ftpclient.ProcessSites();
             }

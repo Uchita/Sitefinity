@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Codes\IoCHelper.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -68,7 +69,12 @@
       <Project>{32EEE44E-E778-4F22-BDFF-7787D2F97E70}</Project>
       <Name>JXTPortal.Data.Dapper</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JXTPortal.Service.Dapper\JXTPortal.Service.Dapper.csproj">
+      <Project>{F93FE82B-6B51-440B-86C9-55F6BA9CF038}</Project>
+      <Name>JXTPortal.Service.Dapper</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

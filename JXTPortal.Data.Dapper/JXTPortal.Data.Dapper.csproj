@@ -49,12 +49,14 @@
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\KnowledgeBase\KnowledgeBaseCategoryEntity.cs" />
     <Compile Include="Entities\KnowledgeBase\KnowledgeBaseEntity.cs" />
+    <Compile Include="Entities\Core\SitesEntity.cs" />
     <Compile Include="Factories\IConnectionFactory.cs" />
     <Compile Include="Factories\SqlServerConnectionFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IBaseEntityOperation.cs" />
     <Compile Include="Repositories\KnowledgeBaseCategoryRepository.cs" />
     <Compile Include="Repositories\KnowledgeBaseRepository.cs" />
+    <Compile Include="Repositories\SitesRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

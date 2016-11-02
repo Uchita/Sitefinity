@@ -401,11 +401,11 @@ namespace JXTPortal.Website.members
             }
 
             // Set Skills
-            string[] split = member.Skills.Split(new string[] { "||" }, StringSplitOptions.RemoveEmptyEntries);
-            bool hasSkills = !string.IsNullOrEmpty(member.Skills) && split.Count() > 0;
-            if (memberWizard.SkillsPoints >= 0 && !hasSkills)
+            if (memberWizard.SkillsPoints >= 0)
             {
-                statusWidgetHtml.Append(@"<span id=""skillsIcon"" class=""jxt_profile-sec-icon""><a href=""/member/profile.aspx#section-Skills"" class=""fa fa-trophy"" title=""" + memberWizard.SkillsTitle + @"""></a></span>");
+                bool hasSkills = !string.IsNullOrEmpty(member.Skills) && member.Skills.Split(new string[] { "||" }, StringSplitOptions.RemoveEmptyEntries).Count() > 0;
+                if( !hasSkills )
+                    statusWidgetHtml.Append(@"<span id=""skillsIcon"" class=""jxt_profile-sec-icon""><a href=""/member/profile.aspx#section-Skills"" class=""fa fa-trophy"" title=""" + memberWizard.SkillsTitle + @"""></a></span>");
             }
 
             // Set Certifications & Memberships

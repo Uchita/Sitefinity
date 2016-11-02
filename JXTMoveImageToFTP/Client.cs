@@ -18,8 +18,11 @@ namespace JXTMoveImageToFTP
         ISitesRepository sitesRepository { get; set; }
         IAdvertisersRepository advertisersRepository { get; set; }
         IJobTemplatesRepository jobtemplatesRepository { get; set; }
+        IAdvertiserJobTemplateLogoRepository advertiserjobtemplatelogoRepository { get; set; }
+        IMemberFilesRepository memberfilesRepository { get; set; }
+        IConsultantsRepository consultantsRepository { get; set; }
 
-        public Client(ISitesRepository sRepository, IAdvertisersRepository advRepository, IJobTemplatesRepository jtRepository)
+        public Client(ISitesRepository sRepository, IAdvertisersRepository advRepository, IJobTemplatesRepository jtRepository, IAdvertiserJobTemplateLogoRepository ajtlRepository, IMemberFilesRepository mfRepository, IConsultantsRepository cRepository)
         {
             Console.WriteLine("{0} Setting up FTP...", DateTime.Now);
             ftpClient = new FtpClient();
@@ -30,6 +33,9 @@ namespace JXTMoveImageToFTP
             sitesRepository = sRepository;
             advertisersRepository = advRepository;
             jobtemplatesRepository = jtRepository;
+            advertiserjobtemplatelogoRepository = ajtlRepository;
+            memberfilesRepository = mfRepository;
+            consultantsRepository = cRepository;
         }
 
         public void ProcessAdvertisers()

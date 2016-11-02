@@ -23,6 +23,8 @@ namespace JXTMoveImageToFTP
             builder.Register(c => new SitesRepository(c.Resolve<IConnectionFactory>(), DEFAULT_CONNECTIONSTRING_KEY)).As<ISitesRepository>();
 
             builder.Register(c => new SitesService(c.Resolve<ISitesRepository>())).As<ISitesService>();
+            builder.Register(c => new AdvertisersService(c.Resolve<IAdvertisersRepository>())).As<IAdvertisersService>();
+            builder.Register(c => new JobTemplatesService(c.Resolve<IJobTemplatesRepository>())).As<IJobTemplatesService>();
 
 
             // Register for FTP Client class

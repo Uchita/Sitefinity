@@ -45,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdvertisersService.cs" />
+    <Compile Include="JobTemplatesService.cs" />
     <Compile Include="KnowledgeBaseCategoryService.cs" />
     <Compile Include="KnowledgeBaseService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

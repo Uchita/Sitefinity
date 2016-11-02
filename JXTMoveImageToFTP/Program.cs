@@ -27,6 +27,7 @@ namespace JXTMoveImageToFTP
                 Client ftpclient = scope.Resolve<Client>();
 
                 ftpclient.ProcessSites();
+                ftpclient.ProcessAdvertisers();
             }
         }
 

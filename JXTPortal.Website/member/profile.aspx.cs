@@ -5924,6 +5924,12 @@ $('#" + ddlRolePreferenceJobSubClassification.ClientID + @"').multiselect({
             numberDisplayed: 2,
             buttonClass: 'form-control'
             });
+
+                //call custom function if any
+                if (typeof CustomFunction == 'function') { 
+                  CustomFunction('member/profile.aspx'); 
+                }
+
             });
             </script>
             ", false);
@@ -5955,6 +5961,11 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect({
 
 $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').val(['" + hfRolePreferenceEligibleWorkIn.Value.Replace(",", "','") + @"']);
 $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh');
+
+                //call custom function if any
+                if (typeof CustomFunction == 'function') { 
+                  CustomFunction('member/profile.aspx'); 
+                }
 
             });
 

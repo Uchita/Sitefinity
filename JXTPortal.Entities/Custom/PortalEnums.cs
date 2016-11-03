@@ -5,6 +5,7 @@ using System.Text;
 using System.ComponentModel;
 using System.Reflection;
 using System.Collections.ObjectModel;
+using JXTPortal.Entities.Custom;
 
 
 namespace JXTPortal.Entities
@@ -265,31 +266,61 @@ namespace JXTPortal.Entities
             public enum QualificationLevel
             {
                 [Description("LabelSecondarySchool")]
+                [SequenceAttribute(10)]
                 SecondarySchool = 1,
+
                 [Description("LabelTertiaryEducation")]
+                [SequenceAttribute(20)]
                 TertiaryEducation = 2,
+
+                [SequenceAttribute(15)]
                 [Description("LabelDiploma")]
                 Diploma = 3,
+
+                [SequenceAttribute(25)]
                 [Description("LabelAssociatesDegree")]
                 AssociatesDegree = 4,
+
+                [SequenceAttribute(30)]
                 [Description("LabelBachelorsDegree")]
                 BachelorsDegree = 5,
+
+                [SequenceAttribute(40)]
                 [Description("LabelMastersDegree")]
                 MastersDegree = 6,
+
+                [SequenceAttribute(42)]
                 [Description("LabelPostGraduateDegree")]
                 PostGraduateDegree = 7,
+
+                [SequenceAttribute(41)]
                 [Description("LabelMastersOfBusinessAdministration")]
                 MastersOfBusinessAdministration = 8,
+
+                [SequenceAttribute(50)]
                 [Description("LabelJurisDoctor")]
                 JurisDoctor = 9,
+
+                [SequenceAttribute(60)]
                 [Description("LabelDoctorOfMedicine")]
                 DoctorOfMedicine = 10,
+
+                [SequenceAttribute(61)]
                 [Description("LabelDoctorOfPhilosophy")]
                 DoctorOfPhilosophy = 11,
+
+                [SequenceAttribute(70)]
                 [Description("LabelOther")]
                 Other = 12,
+
+                [SequenceAttribute(10)]
                 [Description("LabelHighSchool")]
-                HighSchool = 13
+                HighSchool = 13,
+
+                [SequenceAttribute(50)]
+                [Description("LabelDoctorate")]
+                Doctorate = 14
+                
             }
 
             public enum LanguagesProfieciency 

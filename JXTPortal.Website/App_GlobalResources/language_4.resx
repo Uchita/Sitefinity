@@ -4259,4 +4259,8 @@ Your account has already been validated, you are not required to do this again.<
     <value>labelMyProfile</value>
     <comment>labelMyProfile</comment>
   </data>
+  <data name="LabelDoctorate" xml:space="preserve">
+    <value>博士</value>
+    <comment>Doctorate</comment>
+  </data>
 </root>

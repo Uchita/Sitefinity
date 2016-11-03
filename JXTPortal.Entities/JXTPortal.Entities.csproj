@@ -170,6 +170,7 @@
     <Compile Include="CountriesBase.generated.cs" />
     <Compile Include="Custom\IntegrationsAttribute.cs" />
     <Compile Include="Custom\PortalConstants.cs" />
+    <Compile Include="Custom\SequenceAttribute.cs" />
     <Compile Include="Custom\SessionAdminUser.cs" />
     <Compile Include="Custom\SessionAdvertiserUser.cs" />
     <Compile Include="Custom\SessionMember.cs" />

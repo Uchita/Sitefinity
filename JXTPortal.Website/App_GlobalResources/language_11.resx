@@ -4313,4 +4313,16 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <value>Zip/Postcode</value>
     <comment>Zip/Postcode</comment>
   </data>
+  <data name="labelBasicInformation" xml:space="preserve">
+    <value>Basic Information</value>
+    <comment>Basic Information</comment>
+  </data>
+  <data name="labelCurrentRole" xml:space="preserve">
+    <value>Current Role</value>
+    <comment>Current Role</comment>
+  </data>
+  <data name="labelMyProfile" xml:space="preserve">
+    <value>labelMyProfile</value>
+    <comment>labelMyProfile</comment>
+  </data>
 </root>

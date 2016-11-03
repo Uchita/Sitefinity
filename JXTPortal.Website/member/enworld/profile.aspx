@@ -273,16 +273,16 @@
                 <div class="content-holder container">
                     <uc1:ucMemberAccountNavigation ID="ucMemberAccountNavigation1" runat="server" />
                     <h2>
-                        My Profile</h2>
+                        <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral37" runat="server" SetLanguageCode="labelMyProfile" /></h2>
                     <div class="dashboard-tabs">
                         <!-- Nav tabs -->
                         <ul id="profileNavTabs" class="nav nav-pills nav-justified" role="tablist">
                             <li class="active"><a aria-controls="name-location" data-toggle="tab" href="#name-location"
-                                role="tab" onclick="$('#tab3Message2').remove();">Basic Information</a> </li>
+                                role="tab" onclick="$('#tab3Message2').remove();"><JXTControl:ucLanguageLiteral ID="UcLanguageLiteral36" runat="server" SetLanguageCode="labelBasicInformation" /></a> </li>
                             <li><a aria-controls="work-history" data-toggle="tab" href="#work-history" role="tab"
-                                onclick="$('#tab3Message2').remove();">Current Role</a> </li>
+                                onclick="$('#tab3Message2').remove();"><JXTControl:ucLanguageLiteral ID="UcLanguageLiteral35" runat="server" SetLanguageCode="labelCurrentRole" /></a> </li>
                             <li><a id="aDesiredPosition" aria-controls="desired-position" data-toggle="tab" href="#desired-position"
-                                role="tab" onclick="$('#tab3Message2').remove();">Desired Position</a> </li>
+                                role="tab" onclick="$('#tab3Message2').remove();"><JXTControl:ucLanguageLiteral ID="UcLanguageLiteral34" runat="server" SetLanguageCode="LabelDesiredPosition" /></a> </li>
                         </ul>
                         <!-- Tab panes -->
                         <div class="tab-content">

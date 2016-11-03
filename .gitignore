@@ -266,10 +266,8 @@ __pycache__/
 
 # Cake - Uncomment if you are using it
 # tools/
-
-# Specifics
-*/JXTPortal.Data.SqlClient/JXTPortal.Data.SqlClient.xml
-*/JXTPortal.Data/JXTPortal.Data.xml
-*/JXTPortal.Entities/JXTPortal.Entites.xml
-*/JXTPortal.Web/JXTPortal.Web.xml
-*/JXTPortal/JXTPortal.xml
+JXTPortal.Data.SqlClient/JXTPortal.Data.SqlClient.xml
+JXTPortal.Data/JXTPortal.Data.xml
+JXTPortal.Entities/JXTPortal.Entities.xml
+JXTPortal.Web/JXTPortal.Web.xml
+JXTPortal/JXTPortal.xml

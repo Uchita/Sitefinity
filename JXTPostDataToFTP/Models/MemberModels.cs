@@ -684,7 +684,7 @@ namespace JXTPostDataToFTP.Models
             public string LastAttemptDate { get; set; }
             [XmlIgnore]
             public string Status { get; set; }
-            [XmlIgnore]
+            
             public string LastTermsAndConditionsDate { get; set; }
             [XmlIgnore]
             public string DefaultLanguageId { get; set; }

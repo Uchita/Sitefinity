@@ -81,6 +81,20 @@ namespace JXTPortal.Website
             }
         }
 
+        protected void Page_LoadComplete(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), "Page Unload Script", @"
+            <script type='text/javascript'>
+            $(document).ready(function() {
+                //call custom function if any
+                if (typeof CustomFunction == 'function') { 
+                  CustomFunction('advancedsearch.aspx'); 
+                }
+            });
+            </script>
+            ", false);
+        }
+
         #endregion
 
         #region Methods

@@ -199,6 +199,20 @@ namespace JXTPortal.Website.members
             SetFormValues();
         }
 
+        protected void Page_LoadComplete(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), "Page Unload Script", @"
+            <script type='text/javascript'>
+            $(document).ready(function() {
+                //call custom function if any
+                if (typeof CustomFunction == 'function') { 
+                  CustomFunction('member/createjobalert.aspx'); 
+                }
+            });
+            </script>
+            ", false);
+        }
+
         protected void LoadJobAlert()
         {
 
@@ -525,6 +539,7 @@ namespace JXTPortal.Website.members
                 txtNameOfTheFeed.Focus();
             }
         }
+
 
     }
 }

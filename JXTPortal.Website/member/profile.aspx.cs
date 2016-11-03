@@ -3118,7 +3118,7 @@ namespace JXTPortal.Website.member
 
         private void LoadMemberQualificationLevel()
         {
-            QualificationLevelList = CommonFunction.GetEnumFormattedNames<PortalEnums.Members.QualificationLevel>();
+            QualificationLevelList = CommonFunction.GetEnumFormattedNames<PortalEnums.Members.QualificationLevel>(true);
         }
 
         private int SetEducation()

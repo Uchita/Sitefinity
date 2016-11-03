@@ -4323,4 +4323,8 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <value>labelMyProfile</value>
     <comment>labelMyProfile</comment>
   </data>
+  <data name="LabelDoctorate" xml:space="preserve">
+    <value>Doctorum</value>
+    <comment>Doctorate</comment>
+  </data>
 </root>

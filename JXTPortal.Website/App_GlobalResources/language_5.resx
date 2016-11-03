@@ -4354,4 +4354,8 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <value>Zip/Postcode</value>
     <comment>Zip/Postcode</comment>
   </data>
+  <data name="LabelDoctorate" xml:space="preserve">
+    <value>박사호</value>
+    <comment>Doctorate</comment>
+  </data>
 </root>

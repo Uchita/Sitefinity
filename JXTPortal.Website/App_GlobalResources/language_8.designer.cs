@@ -2790,6 +2790,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to sĩ.
+        /// </summary>
+        internal static string LabelDoctorate {
+            get {
+                return ResourceManager.GetString("LabelDoctorate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bác sĩ Y khoa.
         /// </summary>
         internal static string LabelDoctorOfMedicine {

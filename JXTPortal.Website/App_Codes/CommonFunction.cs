@@ -15,6 +15,7 @@ using System.Reflection;
 using System.Collections;
 using System.ComponentModel;
 using System.Globalization;
+using JXTPortal.Entities.Custom;
 
 namespace JXTPortal.Website
 {
@@ -372,8 +373,12 @@ namespace JXTPortal.Website
         }
 
 
-
         public static Dictionary<string, int> GetEnumFormattedNames<TEnum>()
+        {
+            return GetEnumFormattedNames<TEnum>(false);
+        }
+
+        public static Dictionary<string, int> GetEnumFormattedNames<TEnum>(bool orderBySequenceAttribute)
         {
             var enumType = typeof(TEnum);
             if (enumType == typeof(Enum))
@@ -386,12 +391,21 @@ namespace JXTPortal.Website
             var list = Enum.GetValues(enumType).OfType<TEnum>().ToList<TEnum>();
             var listNames = Enum.GetNames(enumType);
 
-            Dictionary<string, int> dicFormattedValues = new Dictionary<string, int>();
-
+            //get all details including sequence
+            List<Tuple<string, int, int>> tEnumValues = new List<Tuple<string, int, int>>();
             for (int i = 0; i < list.Count; i++)
             {
+                FieldInfo fi = list[i].GetType().GetField(list[i].ToString());
+                SequenceAttribute sa = (SequenceAttribute)Attribute.GetCustomAttribute(fi, typeof(SequenceAttribute));
 
-                dicFormattedValues.Add(GetEnumDescription(list[i] as Enum), (int)Enum.Parse(enumType, listNames[i]));
+                tEnumValues.Add(new Tuple<string,int,int>(GetEnumDescription(list[i] as Enum), (int)Enum.Parse(enumType, listNames[i]), sa == null ? 0 : sa.SequenceNumber));
+            }
+
+            //place it back to varieable
+            Dictionary<string, int> dicFormattedValues = new Dictionary<string, int>();
+            foreach(Tuple<string,int,int> enumDetail in tEnumValues.OrderBy(c => c.Item3).ToList())
+            {
+                dicFormattedValues.Add(enumDetail.Item1, enumDetail.Item2);
             }
 
             /*

@@ -1907,7 +1907,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to City.
+        ///   Looks up a localized string similar to 시/구.
         /// </summary>
         internal static string LabelCity {
             get {
@@ -1916,7 +1916,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to City / State.
+        ///   Looks up a localized string similar to 시/구.
         /// </summary>
         internal static string LabelCityState {
             get {
@@ -2807,6 +2807,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 박사호.
+        /// </summary>
+        internal static string LabelDoctorate {
+            get {
+                return ResourceManager.GetString("LabelDoctorate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 의학 박사.
         /// </summary>
         internal static string LabelDoctorOfMedicine {
@@ -3608,7 +3617,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 이름.
+        ///   Looks up a localized string similar to 영문이름.
         /// </summary>
         internal static string LabelFirstName {
             get {
@@ -3617,7 +3626,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 이름 (현지 언어).
+        ///   Looks up a localized string similar to 이름(현지어).
         /// </summary>
         internal static string LabelFirstNameLocalLanguage {
             get {
@@ -3923,7 +3932,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Incentive Salary.
+        ///   Looks up a localized string similar to 상여금.
         /// </summary>
         internal static string LabelIncentiveSalary {
             get {
@@ -4652,7 +4661,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 성.
+        ///   Looks up a localized string similar to 영문성.
         /// </summary>
         internal static string LabelLastName {
             get {
@@ -4661,7 +4670,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 성 (현지 언어).
+        ///   Looks up a localized string similar to 성(현지어).
         /// </summary>
         internal static string LabelLastNameLocalLanguage {
             get {

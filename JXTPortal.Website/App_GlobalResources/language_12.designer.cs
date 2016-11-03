@@ -1555,6 +1555,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Basic Information.
+        /// </summary>
+        internal static string labelBasicInformation {
+            get {
+                return ResourceManager.GetString("labelBasicInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Principiante.
         /// </summary>
         internal static string LabelBeginner {
@@ -2491,6 +2500,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Current Role.
+        /// </summary>
+        internal static string labelCurrentRole {
+            get {
+                return ResourceManager.GetString("labelCurrentRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Estado actual.
         /// </summary>
         internal static string LabelCurrentStatus {
@@ -2784,6 +2802,15 @@ namespace Resources {
         internal static string LabelDocRestriction {
             get {
                 return ResourceManager.GetString("LabelDocRestriction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Doctorado.
+        /// </summary>
+        internal static string LabelDoctorate {
+            get {
+                return ResourceManager.GetString("LabelDoctorate", resourceCulture);
             }
         }
         
@@ -5324,6 +5351,15 @@ namespace Resources {
         internal static string LabelMyPersonalDetails {
             get {
                 return ResourceManager.GetString("LabelMyPersonalDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to labelMyProfile.
+        /// </summary>
+        internal static string labelMyProfile {
+            get {
+                return ResourceManager.GetString("labelMyProfile", resourceCulture);
             }
         }
         

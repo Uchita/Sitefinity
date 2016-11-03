@@ -898,7 +898,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add Resume File.
+        ///   Looks up a localized string similar to Thêm Hồ sơ ứng viên/ Thêm Resume.
         /// </summary>
         internal static string LabelAddResumeFile {
             get {
@@ -1548,6 +1548,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Thông tin cơ bản.
+        /// </summary>
+        internal static string labelBasicInformation {
+            get {
+                return ResourceManager.GetString("labelBasicInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mới bắt đầu.
         /// </summary>
         internal static string LabelBeginner {
@@ -1629,7 +1638,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Save &amp;amp; Next.
+        ///   Looks up a localized string similar to Lưu lại và tiếp tục.
         /// </summary>
         internal static string LabelBtnSaveNext {
             get {
@@ -1881,7 +1890,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to City.
+        ///   Looks up a localized string similar to Thành phố.
         /// </summary>
         internal static string LabelCity {
             get {
@@ -2421,7 +2430,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Current company name.
+        ///   Looks up a localized string similar to Công ty.
         /// </summary>
         internal static string LabelCurrentCompanyName {
             get {
@@ -2448,7 +2457,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Current job title.
+        ///   Looks up a localized string similar to Chức danh.
         /// </summary>
         internal static string LabelCurrentJobTitle {
             get {
@@ -2471,6 +2480,15 @@ namespace Resources {
         internal static string LabelCurrentPassword {
             get {
                 return ResourceManager.GetString("LabelCurrentPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Công việc hiện tại.
+        /// </summary>
+        internal static string labelCurrentRole {
+            get {
+                return ResourceManager.GetString("labelCurrentRole", resourceCulture);
             }
         }
         
@@ -2700,7 +2718,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Desired Position.
+        ///   Looks up a localized string similar to Vị trí mong muốn.
         /// </summary>
         internal static string LabelDesiredPosition {
             get {
@@ -2768,6 +2786,15 @@ namespace Resources {
         internal static string LabelDocRestriction {
             get {
                 return ResourceManager.GetString("LabelDocRestriction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to sĩ.
+        /// </summary>
+        internal static string LabelDoctorate {
+            get {
+                return ResourceManager.GetString("LabelDoctorate", resourceCulture);
             }
         }
         
@@ -3159,7 +3186,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Employment Type.
+        ///   Looks up a localized string similar to Hình thức làm việc.
         /// </summary>
         internal static string LabelEmploymentType {
             get {
@@ -3168,7 +3195,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Employment Types.
+        ///   Looks up a localized string similar to Hình thức làm việc.
         /// </summary>
         internal static string LabelEmploymentTypes {
             get {
@@ -3528,7 +3555,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File Title.
+        ///   Looks up a localized string similar to Tên file.
         /// </summary>
         internal static string LabelFileTitle {
             get {
@@ -3600,7 +3627,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fixed Salary.
+        ///   Looks up a localized string similar to Lương cố định.
         /// </summary>
         internal static string LabelFixedSalary {
             get {
@@ -3852,7 +3879,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Incentive Salary.
+        ///   Looks up a localized string similar to Phúc lợi.
         /// </summary>
         internal static string LabelIncentiveSalary {
             get {
@@ -3879,7 +3906,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Industry.
+        ///   Looks up a localized string similar to Lĩnh vực.
         /// </summary>
         internal static string LabelIndustry {
             get {
@@ -4185,7 +4212,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job Category.
+        ///   Looks up a localized string similar to Nhóm ngành.
         /// </summary>
         internal static string LabelJobCategory {
             get {
@@ -4257,7 +4284,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job Function.
+        ///   Looks up a localized string similar to Chức năng.
         /// </summary>
         internal static string LabelJobFunction {
             get {
@@ -5285,6 +5312,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to labelMyProfile.
+        /// </summary>
+        internal static string labelMyProfile {
+            get {
+                return ResourceManager.GetString("labelMyProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hồ sơ Xin Việc / Thư Xin Việc của Tôi.
         /// </summary>
         internal static string LabelMyResumeCoverLetter {
@@ -5357,7 +5393,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Native Language.
+        ///   Looks up a localized string similar to Ngôn ngữ.
         /// </summary>
         internal static string LabelNativeLanguage {
             get {
@@ -5943,7 +5979,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Home Phone.
+        ///   Looks up a localized string similar to Điện thoại nhà riêng.
         /// </summary>
         internal static string LabelPhoneHomeFull {
             get {
@@ -5961,7 +5997,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mobile Phone.
+        ///   Looks up a localized string similar to Điện thoại.
         /// </summary>
         internal static string LabelPhoneMobileFull {
             get {
@@ -6276,7 +6312,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Primary Desired Country.
+        ///   Looks up a localized string similar to Nơi làm việc ưu tiên.
         /// </summary>
         internal static string LabelPrimaryDesiredCountry {
             get {
@@ -6285,7 +6321,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Primary Desired Industry.
+        ///   Looks up a localized string similar to Lĩnh vực.
         /// </summary>
         internal static string LabelPrimaryDesiredIndustry {
             get {
@@ -6303,7 +6339,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Primary Desired Job Function.
+        ///   Looks up a localized string similar to Chức năng.
         /// </summary>
         internal static string LabelPrimaryDesiredJobFunction {
             get {
@@ -6312,7 +6348,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Primary Desired Location.
+        ///   Looks up a localized string similar to Địa điểm.
         /// </summary>
         internal static string LabelPrimaryDesiredLocation {
             get {
@@ -7005,7 +7041,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Resume Upload.
+        ///   Looks up a localized string similar to Tải lên Hồ sơ ứng viên/ Tải lên Resume.
         /// </summary>
         internal static string LabelResumeUpload {
             get {
@@ -7104,7 +7140,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Salary Period.
+        ///   Looks up a localized string similar to Kỳ lương.
         /// </summary>
         internal static string LabelSalaryPeriod {
             get {
@@ -7167,7 +7203,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Primary Desired Job Category.
+        ///   Looks up a localized string similar to Nhóm ngành.
         /// </summary>
         internal static string LabelSalaryTypeFull {
             get {
@@ -7320,7 +7356,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Secondary Desired Countries.
+        ///   Looks up a localized string similar to Nơi làm việc ưu tiên thứ 2.
         /// </summary>
         internal static string LabelSecondaryDesiredCountries {
             get {
@@ -7338,7 +7374,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Secondary Language.
+        ///   Looks up a localized string similar to Ngoại ngữ.
         /// </summary>
         internal static string LabelSecondaryLanguage {
             get {
@@ -7347,7 +7383,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Secondary Language Level.
+        ///   Looks up a localized string similar to Trình độ ngoại ngữ.
         /// </summary>
         internal static string LabelSecondaryLanguageLevel {
             get {
@@ -8346,7 +8382,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Uploaded Date.
+        ///   Looks up a localized string similar to Ngày tải lên.
         /// </summary>
         internal static string LabelUploadedDate {
             get {
@@ -8427,7 +8463,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to * You may upload upto 3 resumes.
+        ///   Looks up a localized string similar to Bạn có thể tải lên tối đa 3 file.
         /// </summary>
         internal static string LabelUploadResumeUpto {
             get {
@@ -8904,7 +8940,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zip Code.
+        ///   Looks up a localized string similar to Mã ZIP.
         /// </summary>
         internal static string LabelZipCode {
             get {
@@ -8913,7 +8949,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zip/Postcode.
+        ///   Looks up a localized string similar to Mã ZIP.
         /// </summary>
         internal static string LabelZipCodePlaceholder {
             get {

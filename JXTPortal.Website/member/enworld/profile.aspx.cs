@@ -190,12 +190,12 @@ namespace JXTPortal.Website.member.enworld
             Tab2Setup();
             Tab3Setup();
 
-            SetupPlaceholders();
+            SetupPlaceholdersAndLangRelated();
 
             PopulateDataToForm();
         }
 
-        private void SetupPlaceholders()
+        private void SetupPlaceholdersAndLangRelated()
         {
             tbMobilePhone.Attributes.Add("placeholder", CommonFunction.GetResourceValue("LabelPhoneMobileFull"));
             tbHomePhone.Attributes.Add("placeholder", CommonFunction.GetResourceValue("LabelPhoneHomeFull"));
@@ -206,6 +206,11 @@ namespace JXTPortal.Website.member.enworld
             tbCurrentJobTitle.Attributes.Add("placeholder", CommonFunction.GetResourceValue("LabelCurrentJobTitle"));
             tbFixedSalary.Attributes.Add("placeholder", CommonFunction.GetResourceValue("LabelFixedSalary"));
             tbIncentiveSalary.Attributes.Add("placeholder", CommonFunction.GetResourceValue("LabelIncentiveSalary"));
+            fileUploadTitle.Attributes.Add("placeholder", CommonFunction.GetResourceValue("LabelFileTitle"));
+            tbZip.Attributes.Add("placeholder", CommonFunction.GetResourceValue("LabelZipCodePlaceholder"));
+
+
+            btnUpload.Text = CommonFunction.GetResourceValue("LabelUploadFile");
         }
 
         private void PopulateDataToForm()

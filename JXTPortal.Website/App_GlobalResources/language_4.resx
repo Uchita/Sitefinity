@@ -4085,7 +4085,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Advertiser Full Register</comment>
   </data>
   <data name="LabelIndustry" xml:space="preserve">
-    <value>Industry</value>
+    <value>業種</value>
     <comment>Industry</comment>
   </data>
   <data name="LabelNominatedCompanyEmailAddress" xml:space="preserve">
@@ -4093,61 +4093,61 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Nominated Company Email Address</comment>
   </data>
   <data name="LabelAddResumeFile" xml:space="preserve">
-    <value>Add Resume File</value>
+    <value>レジュメを追加</value>
     <comment>Add Resume File</comment>
-    </data>
+  </data>
   <data name="LabelBtnSaveNext" xml:space="preserve">
-    <value>Save &amp;amp; Next</value>
+    <value>保存 &amp;amp; 次へ</value>
     <comment>Save &amp;amp; Next</comment>
-    </data>
+  </data>
   <data name="LabelCurrentCompanyName" xml:space="preserve">
-    <value>Current company name</value>
+    <value>会社名</value>
     <comment>Current company name</comment>
-    </data>
+  </data>
   <data name="LabelNominatedCompanyRole" xml:space="preserve">
     <value>Nominated Company Role</value>
     <comment>Nominated Company Role</comment>
   </data>
   <data name="LabelCurrentJobTitle" xml:space="preserve">
-    <value>Current job title</value>
+    <value>役職</value>
     <comment>Current job title</comment>
-    </data>
+  </data>
   <data name="LabelDesiredPosition" xml:space="preserve">
-    <value>Desired Position</value>
+    <value>希望職種</value>
     <comment>Desired Position</comment>
-    </data>
+  </data>
   <data name="LabelEmploymentType" xml:space="preserve">
-    <value>Employment Type</value>
+    <value>雇用形態</value>
     <comment>Employment Type</comment>
-    </data>
+  </data>
   <data name="LabelEmploymentTypes" xml:space="preserve">
-    <value>Employment Types</value>
+    <value>雇用形態</value>
     <comment>Employment Types</comment>
-    </data>
+  </data>
   <data name="LabelAnnualRange" xml:space="preserve">
     <value>Annual Range</value>
     <comment>Annual Range</comment>
   </data>
   <data name="LabelFileTitle" xml:space="preserve">
-    <value>File Title</value>
+    <value>ファイル名</value>
     <comment>File Title</comment>
-    </data>
+  </data>
   <data name="LabelFixedSalary" xml:space="preserve">
-    <value>Fixed Salary</value>
+    <value>基本給</value>
     <comment>Fixed Salary</comment>
-    </data>
+  </data>
   <data name="LabelIncentiveSalary" xml:space="preserve">
-    <value>Incentive Salary</value>
+    <value>賞与</value>
     <comment>Incentive Salary</comment>
-    </data>
+  </data>
   <data name="LabelJobCategory" xml:space="preserve">
-    <value>Job Category</value>
+    <value>職種カテゴリー</value>
     <comment>Job Category</comment>
-    </data>
+  </data>
   <data name="LabelJobFunction" xml:space="preserve">
-    <value>Job Function</value>
+    <value>職種</value>
     <comment>Job Function</comment>
-    </data>
+  </data>
   <data name="LabelAlphabeticalAscending" xml:space="preserve">
     <value>Alphabetical Ascending</value>
     <comment>Alphabetical Ascending</comment>
@@ -4157,80 +4157,80 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Alphabetical Descending</comment>
   </data>
   <data name="LabelNativeLanguage" xml:space="preserve">
-    <value>Native Language</value>
+    <value>母国語</value>
     <comment>Native Language</comment>
-    </data>
+  </data>
   <data name="LabelPhoneHomeFull" xml:space="preserve">
-    <value>Home Phone</value>
+    <value>電話番号（自宅）</value>
   </data>
   <data name="LabelRecentCandidate" xml:space="preserve">
     <value>Recent Candidate</value>
     <comment>Recent Candidate</comment>
   </data>
   <data name="LabelCity" xml:space="preserve">
-    <value>City</value>
+    <value>市</value>
     <comment>Home Phone</comment>
-    </data>
+  </data>
   <data name="LabelPhoneMobileFull" xml:space="preserve">
-    <value>Mobile Phone</value>
+    <value>電話番号（携帯）</value>
     <comment>Mobile Phone</comment>
-    </data>
+  </data>
   <data name="LabelPrimaryDesiredCountry" xml:space="preserve">
-    <value>Primary Desired Country</value>
+    <value>希望勤務国</value>
     <comment>Primary Desired Country</comment>
-    </data>
+  </data>
   <data name="LabelPrimaryDesiredIndustry" xml:space="preserve">
-    <value>Primary Desired Industry</value>
+    <value>希望業種</value>
     <comment>Primary Desired Industry</comment>
-    </data>
+  </data>
   <data name="LabelPrimaryDesiredJobCategory" xml:space="preserve">
     <value>Search</value>
     <comment>Search</comment>
   </data>
   <data name="LabelSalaryTypeFull" xml:space="preserve">
-    <value>Primary Desired Job Category</value>
+    <value>希望職種カテゴリー</value>
     <comment>Primary Desired Job Category</comment>
-    </data>
+  </data>
   <data name="LabelPrimaryDesiredJobFunction" xml:space="preserve">
-    <value>Primary Desired Job Function</value>
+    <value>希望職種</value>
     <comment>Primary Desired Job Function</comment>
-    </data>
+  </data>
   <data name="LabelPrimaryDesiredLocation" xml:space="preserve">
-    <value>Primary Desired Location</value>
+    <value>希望勤務地</value>
     <comment>Primary Desired Location</comment>
-    </data>
+  </data>
   <data name="LabelResumeUpload" xml:space="preserve">
-    <value>Resume Upload</value>
+    <value>レジュメアップロード</value>
     <comment>Resume Upload</comment>
-    </data>
+  </data>
   <data name="LabelSalaryPeriod" xml:space="preserve">
-    <value>Salary Period</value>
+    <value>給与体系</value>
     <comment>Salary Period</comment>
-    </data>
+  </data>
   <data name="LabelSecondaryDesiredCountries" xml:space="preserve">
-    <value>Secondary Desired Countries</value>
+    <value>第二希望勤務国</value>
     <comment>Secondary Desired Countries</comment>
-    </data>
+  </data>
   <data name="LabelSecondaryLanguage" xml:space="preserve">
-    <value>Secondary Language</value>
+    <value>第二言語</value>
     <comment>Secondary Language</comment>
-    </data>
+  </data>
   <data name="LabelSecondaryLanguageLevel" xml:space="preserve">
-    <value>Secondary Language Level</value>
+    <value>第二言語のレベル</value>
     <comment>Secondary Language Level</comment>
-    </data>
+  </data>
   <data name="LabelUploadedDate" xml:space="preserve">
-    <value>Uploaded Date</value>
+    <value>更新日</value>
     <comment>Uploaded Date</comment>
-    </data>
+  </data>
   <data name="LabelUploadResumeUpto" xml:space="preserve">
-    <value>* You may upload upto 3 resumes</value>
+    <value>最大3つまでファイルをアップロードできます</value>
     <comment>* You may upload upto 3 resumes</comment>
-    </data>
+  </data>
   <data name="LabelZipCode" xml:space="preserve">
-    <value>Zip Code</value>
+    <value>郵便番号</value>
     <comment>Zip Code</comment>
-    </data>
+  </data>
   <data name="LabelProfileMinEntries" xml:space="preserve">
     <value>Minimum entries required - {0}</value>
     <comment>Minimum entries required - {0}</comment>
@@ -4240,11 +4240,27 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Accepts only numbers, spaces, '+', '(' and ')'</comment>
   </data>
   <data name="LabelZipCodePlaceholder" xml:space="preserve">
-    <value>Zip/Postcode</value>
+    <value>郵便番号</value>
     <comment>Zip/Postcode</comment>
-    </data>
+  </data>
   <data name="LabelPremiumJobsNote" xml:space="preserve">
     <value>Please note: Premium jobs will be displayed at the top of the specified classification when searched.</value>
     <comment>Please note: Premium jobs will be displayed at the top of the specified classification when searched.</comment>
+  </data>
+  <data name="labelBasicInformation" xml:space="preserve">
+    <value>基本情報</value>
+    <comment>Basic Information</comment>
+  </data>
+  <data name="labelCurrentRole" xml:space="preserve">
+    <value>現在の職務内容</value>
+    <comment>Current Role</comment>
+  </data>
+  <data name="labelMyProfile" xml:space="preserve">
+    <value>labelMyProfile</value>
+    <comment>labelMyProfile</comment>
+  </data>
+  <data name="LabelDoctorate" xml:space="preserve">
+    <value>博士</value>
+    <comment>Doctorate</comment>
   </data>
 </root>

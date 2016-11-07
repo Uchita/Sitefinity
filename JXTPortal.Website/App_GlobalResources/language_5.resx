@@ -931,7 +931,7 @@
     <comment>Please choose a resume</comment>
   </data>
   <data name="LabelCity" xml:space="preserve">
-    <value>도시</value>
+    <value>시/구</value>
     <comment>City</comment>
   </data>
   <data name="LabelCityState" xml:space="preserve">

@@ -68,4 +68,4 @@ using System.Security.Permissions;
 [assembly: AssemblyKeyName("")]
 
 //ensure Log4Net monitors the config file to allow log config changes
-//[assembly: log4net.Config.XmlConfigurator(Watch = true)]
+[assembly: log4net.Config.XmlConfigurator(Watch = true)]

@@ -934,7 +934,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 詳細.
+        ///   Looks up a localized string similar to 完成度.
         /// </summary>
         internal static string LabelAdvanced {
             get {
@@ -1556,7 +1556,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 初心者.
+        ///   Looks up a localized string similar to 完成度.
         /// </summary>
         internal static string LabelBeginner {
             get {
@@ -3365,7 +3365,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 専門家.
+        ///   Looks up a localized string similar to 完成度.
         /// </summary>
         internal static string LabelExpert {
             get {
@@ -3851,7 +3851,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 私のプロフィールはどのように比較するのですか？.
+        ///   Looks up a localized string similar to プロフィール完成度.
         /// </summary>
         internal static string LabelHowDoesMyFileCompare {
             get {
@@ -3941,7 +3941,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 仲介者.
+        ///   Looks up a localized string similar to 完成度.
         /// </summary>
         internal static string LabelIntermediate {
             get {
@@ -6473,6 +6473,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 情報入力.
+        /// </summary>
+        internal static string LabelProfileDetails {
+            get {
+                return ResourceManager.GetString("LabelProfileDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to PDFとしてダウンロード.
         /// </summary>
         internal static string LabelProfileDownloadPDF {
@@ -6806,6 +6815,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 登録.
+        /// </summary>
+        internal static string LabelRegistration {
+            get {
+                return ResourceManager.GetString("LabelRegistration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to この画像のフォーマットはご使用になれません。GIF、JPG、 JPEGのフォーマットであることを確認してから、再度行って下さい。.
         /// </summary>
         internal static string LabelReInvalidImage {
@@ -6937,6 +6955,15 @@ namespace Resources {
         internal static string LabelRequiredFieldsNeeded {
             get {
                 return ResourceManager.GetString("LabelRequiredFieldsNeeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 登録情報.
+        /// </summary>
+        internal static string LabelRequiredProfileSectionsHeading {
+            get {
+                return ResourceManager.GetString("LabelRequiredProfileSectionsHeading", resourceCulture);
             }
         }
         
@@ -7617,7 +7644,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 電子メール警告を送信.
+        ///   Looks up a localized string similar to アラート.
         /// </summary>
         internal static string LabelSendEmailAlerts {
             get {
@@ -8571,6 +8598,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 認証.
+        /// </summary>
+        internal static string LabelValidation {
+            get {
+                return ResourceManager.GetString("LabelValidation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to メールアドレスの確認が必要です.
         /// </summary>
         internal static string LabelValidEmailRequired {
@@ -8774,6 +8810,15 @@ namespace Resources {
         internal static string LabelWelcomeMemberEditPassword {
             get {
                 return ResourceManager.GetString("LabelWelcomeMemberEditPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ステータス.
+        /// </summary>
+        internal static string LabelWhatAreYouUpTo {
+            get {
+                return ResourceManager.GetString("LabelWhatAreYouUpTo", resourceCulture);
             }
         }
         

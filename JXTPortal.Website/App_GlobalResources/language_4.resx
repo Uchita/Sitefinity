@@ -502,7 +502,7 @@
     <comment>Add Your Skill</comment>
   </data>
   <data name="LabelAdvanced" xml:space="preserve">
-    <value>完成度</value>
+    <value>詳細</value>
     <comment>Advanced</comment>
   </data>
   <data name="LabelAdvertiser" xml:space="preserve">
@@ -759,7 +759,7 @@
     <comment>Back to Job</comment>
   </data>
   <data name="LabelBeginner" xml:space="preserve">
-    <value>完成度</value>
+    <value>初心者</value>
     <comment>Beginner</comment>
   </data>
   <data name="LabelBelow" xml:space="preserve">
@@ -1527,7 +1527,7 @@
     <comment>Experience Start</comment>
   </data>
   <data name="LabelExpert" xml:space="preserve">
-    <value>完成度</value>
+    <value>専門家</value>
     <comment>Expert</comment>
   </data>
   <data name="LabelExpire" xml:space="preserve">
@@ -1735,7 +1735,7 @@
     <comment>Hourly Salary</comment>
   </data>
   <data name="LabelHowDoesMyFileCompare" xml:space="preserve">
-    <value>プロフィール完成度</value>
+    <value>私のプロフィールはどのように比較するのですか？</value>
     <comment>How does my profile compare?</comment>
   </data>
   <data name="LabelHowDoesMyProfileCompare" xml:space="preserve">
@@ -1767,7 +1767,7 @@
     <comment>Interested in this job?</comment>
   </data>
   <data name="LabelIntermediate" xml:space="preserve">
-    <value>完成度</value>
+    <value>仲介者</value>
     <comment>Intermediate</comment>
   </data>
   <data name="LabelInterview" xml:space="preserve">
@@ -3317,7 +3317,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Send a Job Alert now</comment>
   </data>
   <data name="LabelSendEmailAlerts" xml:space="preserve">
-    <value>アラート</value>
+    <value>電子メール警告を送信</value>
     <comment>Send Email Alerts</comment>
   </data>
   <data name="LabelSentApplicantEmail" xml:space="preserve">
@@ -4262,25 +4262,5 @@ Your account has already been validated, you are not required to do this again.<
   <data name="LabelDoctorate" xml:space="preserve">
     <value>博士</value>
     <comment>Doctorate</comment>
-  </data>
-  <data name="LabelProfileDetails" xml:space="preserve">
-    <value>情報入力</value>
-    <comment>Profile Details</comment>
-  </data>
-  <data name="LabelRegistration" xml:space="preserve">
-    <value>登録</value>
-    <comment>Registration</comment>
-  </data>
-  <data name="LabelRequiredProfileSectionsHeading" xml:space="preserve">
-    <value>登録情報</value>
-    <comment>Required Profile Sections left to complete?</comment>
-  </data>
-  <data name="LabelValidation" xml:space="preserve">
-    <value>認証</value>
-    <comment>Validation</comment>
-  </data>
-  <data name="LabelWhatAreYouUpTo" xml:space="preserve">
-    <value>ステータス</value>
-    <comment>What are you up to?</comment>
   </data>
 </root>

@@ -1367,7 +1367,7 @@ namespace JXTPortal.Website.Admin.UserControls
 
             if (aid > 0)
             {
-                using (TList<JXTPortal.Entities.JobTemplates> jobtemplates = JobTemplatesService.GetAdvertiserJobTemplates(SessionData.Site.SiteId, aid))
+                using (DataSet jobtemplates = JobTemplatesService.GetAdvertiserJobTemplates(SessionData.Site.SiteId, aid))
                 {
                     ddlJobTemplateID.DataSource = jobtemplates;
                     ddlJobTemplateID.DataBind();

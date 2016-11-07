@@ -228,15 +228,15 @@ namespace JXTPortal.Web.Data
 				// M:M
 				// Custom
 				
-				case JobTemplatesSelectMethod.Get_List:
-					results = JobTemplatesProvider.Get_List(StartIndex, PageSize);
-					break;
+                //case JobTemplatesSelectMethod.Get_List:
+                //    results = JobTemplatesProvider.Get_List(StartIndex, PageSize);
+                //    break;
 				
-				case JobTemplatesSelectMethod.GetAdvertiserJobTemplates:
-					sp382_SiteId = (System.Int32?) EntityUtil.ChangeType(values["SiteId"], typeof(System.Int32?));
-					sp382_AdvertiserId = (System.Int32?) EntityUtil.ChangeType(values["AdvertiserId"], typeof(System.Int32?));
-					results = JobTemplatesProvider.GetAdvertiserJobTemplates(sp382_SiteId, sp382_AdvertiserId, StartIndex, PageSize);
-					break;
+                //case JobTemplatesSelectMethod.GetAdvertiserJobTemplates:
+                //    sp382_SiteId = (System.Int32?) EntityUtil.ChangeType(values["SiteId"], typeof(System.Int32?));
+                //    sp382_AdvertiserId = (System.Int32?) EntityUtil.ChangeType(values["AdvertiserId"], typeof(System.Int32?));
+                //    results = JobTemplatesProvider.GetAdvertiserJobTemplates(sp382_SiteId, sp382_AdvertiserId, StartIndex, PageSize);
+                //    break;
 				
 				default:
 					break;

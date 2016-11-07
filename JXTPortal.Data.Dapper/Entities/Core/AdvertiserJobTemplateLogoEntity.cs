@@ -12,6 +12,6 @@ namespace JXTPortal.Data.Dapper.Entities.Core
         public int AdvertiserID { get; set; }
         public string JobLogoName { get; set; }
         public byte[] JobTemplateLogo { get; set; }
-        public string JobTemplateLogoURL { get; set; }
+        public string JobTemplateLogoUrl { get; set; }
     }
 }

@@ -271,9 +271,9 @@ namespace JXTPortal.Website.members
                 }
 
                 MemberFilesService memberFileService = new MemberFilesService();
-                Entities.MemberFiles memberFile = memberFileService.GetByMemberIdMemberFileName(memberID, ss);
+                DataSet memberFile = memberFileService.GetByMemberIdMemberFileName(memberID, ss);
 
-                if (memberFile != null)
+                if (memberFile != null && memberFile.Tables[0].Rows.Count > 0)
                 {
                     return true;
                 }

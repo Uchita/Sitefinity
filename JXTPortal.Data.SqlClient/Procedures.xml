@@ -11645,7 +11645,8 @@ tModifiedDate is not null)
 					[LastModifiedBy],
 					[Live],
 					[MobileEnabled],
-					[MobileUrl]
+					[MobileUrl],
+					[SiteAdminLogoUrl]
 				FROM
 					[dbo].[Sites]
 					
@@ -11709,7 +11710,7 @@ tModifiedDate is not null)
 				EXEC sp_executesql @SQL
 
 				-- Return paged results
-				SELECT O.[SiteID], O.[SiteName], O.[SiteURL], O.[SiteDescription], O.[SiteAdminLogo], O.[LastModified], O.[LastModifiedBy], O.[Live], O.[MobileEnabled], O.[MobileUrl]
+				SELECT O.[SiteID], O.[SiteName], O.[SiteURL], O.[SiteDescription], O.[SiteAdminLogo], O.[LastModified], O.[LastModifiedBy], O.[Live], O.[MobileEnabled], O.[MobileUrl], O.[SiteAdminLogoUrl]
 				FROM
 				    [dbo].[Sites] O,
 				    #PageIndex PageIndex
@@ -11752,6 +11753,7 @@ tModifiedDate is not null)
 				<parameter name="@Live" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault=""/>
 				<parameter name="@MobileEnabled" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault=""/>
 				<parameter name="@MobileUrl" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault=""/>
+				<parameter name="@SiteAdminLogoUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault=""/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -11766,6 +11768,7 @@ tModifiedDate is not null)
 					,[Live]
 					,[MobileEnabled]
 					,[MobileUrl]
+					,[SiteAdminLogoUrl]
 					)
 				VALUES
 					(
@@ -11778,6 +11781,7 @@ tModifiedDate is not null)
 					,@Live
 					,@MobileEnabled
 					,@MobileUrl
+					,@SiteAdminLogoUrl
 					)
 				
 				-- Get the identity value
@@ -11806,6 +11810,7 @@ tModifiedDate is not null)
 				<parameter name="@Live" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault=""/>
 				<parameter name="@MobileEnabled" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault=""/>
 				<parameter name="@MobileUrl" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault=""/>
+				<parameter name="@SiteAdminLogoUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault=""/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -11823,6 +11828,7 @@ tModifiedDate is not null)
 					,[Live] = @Live
 					,[MobileEnabled] = @MobileEnabled
 					,[MobileUrl] = @MobileUrl
+					,[SiteAdminLogoUrl] = @SiteAdminLogoUrl
 				WHERE
 [SiteID] = @SiteId 
 				
@@ -11872,7 +11878,8 @@ tModifiedDate is not null)
 					[LastModifiedBy],
 					[Live],
 					[MobileEnabled],
-					[MobileUrl]
+					[MobileUrl],
+					[SiteAdminLogoUrl]
 				FROM
 					[dbo].[Sites]
 				WHERE
@@ -11905,7 +11912,8 @@ tModifiedDate is not null)
 					[LastModifiedBy],
 					[Live],
 					[MobileEnabled],
-					[MobileUrl]
+					[MobileUrl],
+					[SiteAdminLogoUrl]
 				FROM
 					[dbo].[Sites]
 				WHERE
@@ -11938,7 +11946,8 @@ tModifiedDate is not null)
 					[LastModifiedBy],
 					[Live],
 					[MobileEnabled],
-					[MobileUrl]
+					[MobileUrl],
+					[SiteAdminLogoUrl]
 				FROM
 					[dbo].[Sites]
 				WHERE
@@ -11969,6 +11978,7 @@ tModifiedDate is not null)
 				<parameter name="@Live" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 				<parameter name="@MobileEnabled" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 				<parameter name="@MobileUrl" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
+				<parameter name="@SiteAdminLogoUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -11985,6 +11995,7 @@ tModifiedDate is not null)
 	, [Live]
 	, [MobileEnabled]
 	, [MobileUrl]
+	, [SiteAdminLogoUrl]
     FROM
 	[dbo].[Sites]
     WHERE 
@@ -11997,6 +12008,7 @@ tModifiedDate is not null)
 	AND ([Live] = @Live OR @Live IS NULL)
 	AND ([MobileEnabled] = @MobileEnabled OR @MobileEnabled IS NULL)
 	AND ([MobileUrl] = @MobileUrl OR @MobileUrl IS NULL)
+	AND ([SiteAdminLogoUrl] = @SiteAdminLogoUrl OR @SiteAdminLogoUrl IS NULL)
 						
   END
   ELSE
@@ -12012,6 +12024,7 @@ tModifiedDate is not null)
 	, [Live]
 	, [MobileEnabled]
 	, [MobileUrl]
+	, [SiteAdminLogoUrl]
     FROM
 	[dbo].[Sites]
     WHERE 
@@ -12024,6 +12037,7 @@ tModifiedDate is not null)
 	OR ([Live] = @Live AND @Live is not null)
 	OR ([MobileEnabled] = @MobileEnabled AND @MobileEnabled is not null)
 	OR ([MobileUrl] = @MobileUrl AND @MobileUrl is not null)
+	OR ([SiteAdminLogoUrl] = @SiteAdminLogoUrl AND @SiteAdminLogoUrl is not null)
 	SELECT @@ROWCOUNT			
   END
 				]]></body>
@@ -12058,7 +12072,7 @@ tModifiedDate is not null)
 				ORDER BY {1}
 				
 				-- Return paged results
-				SELECT O.[SiteID], O.[SiteName], O.[SiteURL], O.[SiteDescription], O.[SiteAdminLogo], O.[LastModified], O.[LastModifiedBy], O.[Live], O.[MobileEnabled], O.[MobileUrl]
+				SELECT O.[SiteID], O.[SiteName], O.[SiteURL], O.[SiteDescription], O.[SiteAdminLogo], O.[LastModified], O.[LastModifiedBy], O.[Live], O.[MobileEnabled], O.[MobileUrl], O.[SiteAdminLogoUrl]
 				FROM
 				    [dbo].[Sites] O,
 				    #PageIndex PageIndex
@@ -12079,7 +12093,8 @@ tModifiedDate is not null)
 		
 				
 		<procedure owner="dbo" name="Sites_Create"  skip="true">
-			<comment><![CDATA[]]></comment>
+			<comment><![CDATA[
+]]></comment>
 			<parameters>
 				<parameter name="@SourceSiteID" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@LanguageID" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
@@ -12127,6 +12142,7 @@ e of Error
 				<parameter name="@Live" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 				<parameter name="@MobileEnabled" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 				<parameter name="@MobileUrl" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
+				<parameter name="@SiteAdminLogoUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -12134,6 +12150,7 @@ tModifiedBy
 					,@Live
 					,@MobileEnabled
 					,@MobileUrl
+					,@SiteAdminLogoUrl
 					)
 				
 				-- Get the identity value
@@ -12166,7 +12183,8 @@ tModifiedBy
 tModifiedBy],
 					[Live],
 					[MobileEnabled],
-					[MobileUrl]
+					[MobileUrl],
+					[SiteAdminLogoUrl]
 				FROM
 					[dbo].[Sites]
 				WHERE
@@ -12198,7 +12216,8 @@ tModifiedBy],
 tModifiedBy],
 					[Live],
 					[MobileEnabled],
-					[MobileUrl]
+					[MobileUrl],
+					[SiteAdminLogoUrl]
 				FROM
 					[dbo].[Sites]
 					
@@ -12229,7 +12248,8 @@ tModifiedBy],
 tModifiedBy],
 					[Live],
 					[MobileEnabled],
-					[MobileUrl]
+					[MobileUrl],
+					[SiteAdminLogoUrl]
 				FROM
 					[dbo].[Sites]
 				WHERE
@@ -12251,14 +12271,14 @@ tModifiedBy],
 			<body><![CDATA[
 				
 SELECT    
- Sites.SiteID, Sites.SiteName, Sites.SiteURL, Sites.SiteDescription, Sites.SiteAdminLogo, GlobalSettings.DefaultLanguageID, Live, 
+ Sites.SiteID, Sites.SiteName, Sites.SiteUrl, Sites.SiteDescription, Sites.SiteAdminLogo, Sites.SiteAdminLogoUrl, GlobalSettings.DefaultLanguageID, Live, 
 	MobileEnabled, MobileUrl    
 FROM     
  Sites INNER JOIN GlobalSettings     
   ON Sites.SiteID = GlobalSettings.SiteID    
 WHERE       
  (Sites.[SiteID] = @SiteId OR @SiteId IS null)      
- AND (Sites.[SiteURL] = @SiteUrl OR isNULL(@SiteUrl, '') = '')      
+ AND (Sites.[SiteUrl] = @SiteUrl OR isNULL(@SiteUrl, '') = '')      
     
 SELECT @@ROWCOUNT
 
@@ -12288,6 +12308,7 @@ SELECT @@ROWCOUNT
 				<parameter name="@Live" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 				<parameter name="@MobileEnabled" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 				<parameter name="@MobileUrl" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
+				<parameter name="@SiteAdminLogoUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -12295,6 +12316,7 @@ tModifiedBy
 					,[Live] = @Live
 					,[MobileEnabled] = @MobileEnabled
 					,[MobileUrl] = @MobileUrl
+					,[SiteAdminLogoUrl] = @SiteAdminLogoUrl
 				WHERE
 [SiteID] = @SiteId 
 				
@@ -12305,7 +12327,8 @@ tModifiedBy
 					</procedure>
 				
 		<procedure owner="dbo" name="Sites_Remove"  skip="true">
-			<comment><![CDATA[]]></comment>
+			<comment><![CDATA[
+]]></comment>
 			<parameters>
 				<parameter name="@SiteId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 			</parameters>
@@ -12322,11 +12345,12 @@ END
 					</procedure>
 				
 		<procedure owner="dbo" name="Sites_GetPaging"  skip="true">
-			<comment><![CDATA[]]></comment>
+			<comment><![CDATA[
+]]></comment>
 			<parameters>
 				<parameter name="@SiteID" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@SiteName" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
-				<parameter name="@SiteURL" type="varchar" direction="Input" size="500" precision="0" scale="0" param="(500)" nulldefault="null"/>
+				<parameter name="@SiteUrl" type="varchar" direction="Input" size="500" precision="0" scale="0" param="(500)" nulldefault="null"/>
 				<parameter name="@pageSize" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@pageNumber" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 			</parameters>
@@ -12368,6 +12392,7 @@ END
 				<parameter name="@Live" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 				<parameter name="@MobileEnabled" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 				<parameter name="@MobileUrl" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
+				<parameter name="@SiteAdminLogoUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -12375,6 +12400,7 @@ tModifiedBy is not null)
 	OR ([Live] = @Live AND @Live is not null)
 	OR ([MobileEnabled] = @MobileEnabled AND @MobileEnabled is not null)
 	OR ([MobileUrl] = @MobileUrl AND @MobileUrl is not null)
+	OR ([SiteAdminLogoUrl] = @SiteAdminLogoUrl AND @SiteAdminLogoUrl is not null)
 	SELECT @@ROWCOUNT			
   END
 				
@@ -12384,7 +12410,8 @@ tModifiedBy is not null)
 					</procedure>
 				
 		<procedure owner="dbo" name="Sites_Copy"  skip="true">
-			<comment><![CDATA[]]></comment>
+			<comment><![CDATA[
+]]></comment>
 			<parameters>
 				<parameter name="@SiteID" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@SiteName" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
@@ -22622,18 +22649,7 @@ TotalRowCount'
 			</parameters>
 			<body><![CDATA[
 				
-tTermsAndConditionsDate],
-					[DefaultLanguageId],
-					[ReferringSiteID],
-					[MultiLingualFirstName],
-					[MultiLingualSurame],
-					[SecondaryEmail],
-					[CandidateData],
-					[EligibleToWorkIn],
-					[ReferenceUponRequest],
-					[PreferredLine],
-					[VideoURL],
-					[ProfileDataXML]
+tProfileSubmittedDate]
 				FROM
 					[dbo].[Members]
 				WHERE
@@ -22664,18 +22680,7 @@ tTermsAndConditionsDate],
 			</parameters>
 			<body><![CDATA[
 				
-tTermsAndConditionsDate],
-					[DefaultLanguageId],
-					[ReferringSiteID],
-					[MultiLingualFirstName],
-					[MultiLingualSurame],
-					[SecondaryEmail],
-					[CandidateData],
-					[EligibleToWorkIn],
-					[ReferenceUponRequest],
-					[PreferredLine],
-					[VideoURL],
-					[ProfileDataXML]
+tProfileSubmittedDate]
 				FROM
 					[dbo].[Members]
 				WHERE
@@ -22795,21 +22800,11 @@ tTermsAndConditionsDate],
 				<parameter name="@PreferredLine" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@VideoUrl" type="varchar" direction="Input" size="500" precision="0" scale="0" param="(500)" nulldefault="null"/>
 				<parameter name="@ProfileDataXml" type="nvarchar" direction="Input" size="-1" precision="0" scale="0" param="(MAX)" nulldefault="null"/>
+				<parameter name="@LastProfileSubmittedDate" type="datetime" direction="Input" size="8" precision="23" scale="3" param="" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
-tTermsAndConditionsDate is not null)
-	OR ([DefaultLanguageId] = @DefaultLanguageId AND @DefaultLanguageId is not null)
-	OR ([ReferringSiteID] = @ReferringSiteId AND @ReferringSiteId is not null)
-	OR ([MultiLingualFirstName] = @MultiLingualFirstName AND @MultiLingualFirstName is not null)
-	OR ([MultiLingualSurame] = @MultiLingualSurame AND @MultiLingualSurame is not null)
-	OR ([SecondaryEmail] = @SecondaryEmail AND @SecondaryEmail is not null)
-	OR ([CandidateData] = @CandidateData AND @CandidateData is not null)
-	OR ([EligibleToWorkIn] = @EligibleToWorkIn AND @EligibleToWorkIn is not null)
-	OR ([ReferenceUponRequest] = @ReferenceUponRequest AND @ReferenceUponRequest is not null)
-	OR ([PreferredLine] = @PreferredLine AND @PreferredLine is not null)
-	OR ([VideoURL] = @VideoUrl AND @VideoUrl is not null)
-	OR ([ProfileDataXML] = @ProfileDataXml AND @ProfileDataXml is not null)
+tProfileSubmittedDate is not null)
 	SELECT @@ROWCOUNT			
   END
 				
@@ -22923,21 +22918,11 @@ tTermsAndConditionsDate is not null)
 				<parameter name="@PreferredLine" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@VideoUrl" type="varchar" direction="Input" size="500" precision="0" scale="0" param="(500)" nulldefault="null"/>
 				<parameter name="@ProfileDataXml" type="nvarchar" direction="Input" size="-1" precision="0" scale="0" param="(MAX)" nulldefault="null"/>
+				<parameter name="@LastProfileSubmittedDate" type="datetime" direction="Input" size="8" precision="23" scale="3" param="" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
-tTermsAndConditionsDate
-					,[DefaultLanguageId] = @DefaultLanguageId
-					,[ReferringSiteID] = @ReferringSiteId
-					,[MultiLingualFirstName] = @MultiLingualFirstName
-					,[MultiLingualSurame] = @MultiLingualSurame
-					,[SecondaryEmail] = @SecondaryEmail
-					,[CandidateData] = @CandidateData
-					,[EligibleToWorkIn] = @EligibleToWorkIn
-					,[ReferenceUponRequest] = @ReferenceUponRequest
-					,[PreferredLine] = @PreferredLine
-					,[VideoURL] = @VideoUrl
-					,[ProfileDataXML] = @ProfileDataXml
+tProfileSubmittedDate
 				WHERE
 [MemberID] = @MemberId 
 				
@@ -22965,18 +22950,7 @@ tTermsAndConditionsDate
 			</parameters>
 			<body><![CDATA[
 				
-tTermsAndConditionsDate],
-					[DefaultLanguageId],
-					[ReferringSiteID],
-					[MultiLingualFirstName],
-					[MultiLingualSurame],
-					[SecondaryEmail],
-					[CandidateData],
-					[EligibleToWorkIn],
-					[ReferenceUponRequest],
-					[PreferredLine],
-					[VideoURL],
-					[ProfileDataXML]
+tProfileSubmittedDate]
 				FROM
 					[dbo].[Members]
 				WHERE
@@ -23007,18 +22981,7 @@ tTermsAndConditionsDate],
 			</parameters>
 			<body><![CDATA[
 				
-tTermsAndConditionsDate],
-					[DefaultLanguageId],
-					[ReferringSiteID],
-					[MultiLingualFirstName],
-					[MultiLingualSurame],
-					[SecondaryEmail],
-					[CandidateData],
-					[EligibleToWorkIn],
-					[ReferenceUponRequest],
-					[PreferredLine],
-					[VideoURL],
-					[ProfileDataXML]
+tProfileSubmittedDate]
 				FROM
 					[dbo].[Members]
 				WHERE
@@ -23168,21 +23131,11 @@ END
 				<parameter name="@PreferredLine" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@VideoUrl" type="varchar" direction="Input" size="500" precision="0" scale="0" param="(500)" nulldefault="null"/>
 				<parameter name="@ProfileDataXml" type="nvarchar" direction="Input" size="-1" precision="0" scale="0" param="(MAX)" nulldefault="null"/>
+				<parameter name="@LastProfileSubmittedDate" type="datetime" direction="Input" size="8" precision="23" scale="3" param="" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
-tTermsAndConditionsDate
-					,@DefaultLanguageId
-					,@ReferringSiteId
-					,@MultiLingualFirstName
-					,@MultiLingualSurame
-					,@SecondaryEmail
-					,@CandidateData
-					,@EligibleToWorkIn
-					,@ReferenceUponRequest
-					,@PreferredLine
-					,@VideoUrl
-					,@ProfileDataXml
+tProfileSubmittedDate
 					)
 				
 				-- Get the identity value
@@ -23212,18 +23165,7 @@ tTermsAndConditionsDate
 			</parameters>
 			<body><![CDATA[
 				
-tTermsAndConditionsDate],
-					[DefaultLanguageId],
-					[ReferringSiteID],
-					[MultiLingualFirstName],
-					[MultiLingualSurame],
-					[SecondaryEmail],
-					[CandidateData],
-					[EligibleToWorkIn],
-					[ReferenceUponRequest],
-					[PreferredLine],
-					[VideoURL],
-					[ProfileDataXML]
+tProfileSubmittedDate]
 				FROM
 					[dbo].[Members]
 				WHERE
@@ -23320,18 +23262,7 @@ END
 			</parameters>
 			<body><![CDATA[
 				
-tTermsAndConditionsDate],
-					[DefaultLanguageId],
-					[ReferringSiteID],
-					[MultiLingualFirstName],
-					[MultiLingualSurame],
-					[SecondaryEmail],
-					[CandidateData],
-					[EligibleToWorkIn],
-					[ReferenceUponRequest],
-					[PreferredLine],
-					[VideoURL],
-					[ProfileDataXML]
+tProfileSubmittedDate]
 				FROM
 					[dbo].[Members]
 					
@@ -23387,18 +23318,7 @@ END
 			</parameters>
 			<body><![CDATA[
 				
-tTermsAndConditionsDate],
-					[DefaultLanguageId],
-					[ReferringSiteID],
-					[MultiLingualFirstName],
-					[MultiLingualSurame],
-					[SecondaryEmail],
-					[CandidateData],
-					[EligibleToWorkIn],
-					[ReferenceUponRequest],
-					[PreferredLine],
-					[VideoURL],
-					[ProfileDataXML]
+tProfileSubmittedDate]
 				FROM
 					[dbo].[Members]
 				WHERE
@@ -23429,18 +23349,7 @@ tTermsAndConditionsDate],
 			</parameters>
 			<body><![CDATA[
 				
-tTermsAndConditionsDate],
-					[DefaultLanguageId],
-					[ReferringSiteID],
-					[MultiLingualFirstName],
-					[MultiLingualSurame],
-					[SecondaryEmail],
-					[CandidateData],
-					[EligibleToWorkIn],
-					[ReferenceUponRequest],
-					[PreferredLine],
-					[VideoURL],
-					[ProfileDataXML]
+tProfileSubmittedDate]
 				FROM
 					[dbo].[Members]
 				WHERE
@@ -23538,17 +23447,17 @@ END
 					</procedure>
 				
 		<procedure owner="dbo" name="Members_CustomGetNewValidProfiles"  skip="true">
-			<comment><![CDATA[  
-]]></comment>
+			<comment><![CDATA[]]></comment>
 			<parameters>
 				<parameter name="@SiteID" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@LastModifiedDate" type="datetime" direction="Input" size="8" precision="23" scale="3" param="" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
-tModifiedDate            
-               
+tModifiedDate              
+                 
 END 
+
 			]]></body>
 					</procedure>
 				
@@ -24688,6 +24597,10 @@ END
 				<parameter name="@DirectorshipPoints" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@WizardLanguageXml" type="nvarchar" direction="Input" size="-1" precision="0" scale="0" param="(MAX)" nulldefault="null"/>
 				<parameter name="@CustomQuestionsXml" type="nvarchar" direction="Input" size="-1" precision="0" scale="0" param="(MAX)" nulldefault="null"/>
+				<parameter name="@MinExperiencesEntry" type="smallint" direction="Input" size="2" precision="5" scale="0" param="" nulldefault="null"/>
+				<parameter name="@MinReferencesEntry" type="smallint" direction="Input" size="2" precision="5" scale="0" param="" nulldefault="null"/>
+				<parameter name="@MinEducationsEntry" type="smallint" direction="Input" size="2" precision="5" scale="0" param="" nulldefault="null"/>
+				<parameter name="@QualificationNames" type="nvarchar" direction="Input" size="-1" precision="0" scale="0" param="(MAX)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -24720,6 +24633,10 @@ tModified
 					,@DirectorshipPoints
 					,@WizardLanguageXml
 					,@CustomQuestionsXml
+					,@MinExperiencesEntry
+					,@MinReferencesEntry
+					,@MinEducationsEntry
+					,@QualificationNames
 					)
 				
 				-- Get the identity value
@@ -24777,7 +24694,11 @@ tModified],
 					[SkillsPoints],
 					[DirectorshipPoints],
 					[WizardLanguageXML],
-					[CustomQuestionsXML]
+					[CustomQuestionsXML],
+					[MinExperiencesEntry],
+					[MinReferencesEntry],
+					[MinEducationsEntry],
+					[QualificationNames]
 				FROM
 					[dbo].[MemberWizard]
 				WHERE
@@ -24835,7 +24756,11 @@ tModified],
 					[SkillsPoints],
 					[DirectorshipPoints],
 					[WizardLanguageXML],
-					[CustomQuestionsXML]
+					[CustomQuestionsXML],
+					[MinExperiencesEntry],
+					[MinReferencesEntry],
+					[MinEducationsEntry],
+					[QualificationNames]
 				FROM
 					[dbo].[MemberWizard]
 					
@@ -24926,7 +24851,11 @@ tModified],
 					[SkillsPoints],
 					[DirectorshipPoints],
 					[WizardLanguageXML],
-					[CustomQuestionsXML]
+					[CustomQuestionsXML],
+					[MinExperiencesEntry],
+					[MinReferencesEntry],
+					[MinEducationsEntry],
+					[QualificationNames]
 				FROM
 					[dbo].[MemberWizard]
 				WHERE
@@ -25000,6 +24929,10 @@ tModified],
 				<parameter name="@DirectorshipPoints" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@WizardLanguageXml" type="nvarchar" direction="Input" size="-1" precision="0" scale="0" param="(MAX)" nulldefault="null"/>
 				<parameter name="@CustomQuestionsXml" type="nvarchar" direction="Input" size="-1" precision="0" scale="0" param="(MAX)" nulldefault="null"/>
+				<parameter name="@MinExperiencesEntry" type="smallint" direction="Input" size="2" precision="5" scale="0" param="" nulldefault="null"/>
+				<parameter name="@MinReferencesEntry" type="smallint" direction="Input" size="2" precision="5" scale="0" param="" nulldefault="null"/>
+				<parameter name="@MinEducationsEntry" type="smallint" direction="Input" size="2" precision="5" scale="0" param="" nulldefault="null"/>
+				<parameter name="@QualificationNames" type="nvarchar" direction="Input" size="-1" precision="0" scale="0" param="(MAX)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -25032,6 +24965,10 @@ tModified
 					,[DirectorshipPoints] = @DirectorshipPoints
 					,[WizardLanguageXML] = @WizardLanguageXml
 					,[CustomQuestionsXML] = @CustomQuestionsXml
+					,[MinExperiencesEntry] = @MinExperiencesEntry
+					,[MinReferencesEntry] = @MinReferencesEntry
+					,[MinEducationsEntry] = @MinEducationsEntry
+					,[QualificationNames] = @QualificationNames
 				WHERE
 [MemberWizardID] = @MemberWizardId 
 				
@@ -25125,6 +25062,10 @@ END
 				<parameter name="@DirectorshipPoints" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@WizardLanguageXml" type="nvarchar" direction="Input" size="-1" precision="0" scale="0" param="(MAX)" nulldefault="null"/>
 				<parameter name="@CustomQuestionsXml" type="nvarchar" direction="Input" size="-1" precision="0" scale="0" param="(MAX)" nulldefault="null"/>
+				<parameter name="@MinExperiencesEntry" type="smallint" direction="Input" size="2" precision="5" scale="0" param="" nulldefault="null"/>
+				<parameter name="@MinReferencesEntry" type="smallint" direction="Input" size="2" precision="5" scale="0" param="" nulldefault="null"/>
+				<parameter name="@MinEducationsEntry" type="smallint" direction="Input" size="2" precision="5" scale="0" param="" nulldefault="null"/>
+				<parameter name="@QualificationNames" type="nvarchar" direction="Input" size="-1" precision="0" scale="0" param="(MAX)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -25157,6 +25098,10 @@ tModified is not null)
 	OR ([DirectorshipPoints] = @DirectorshipPoints AND @DirectorshipPoints is not null)
 	OR ([WizardLanguageXML] = @WizardLanguageXml AND @WizardLanguageXml is not null)
 	OR ([CustomQuestionsXML] = @CustomQuestionsXml AND @CustomQuestionsXml is not null)
+	OR ([MinExperiencesEntry] = @MinExperiencesEntry AND @MinExperiencesEntry is not null)
+	OR ([MinReferencesEntry] = @MinReferencesEntry AND @MinReferencesEntry is not null)
+	OR ([MinEducationsEntry] = @MinEducationsEntry AND @MinEducationsEntry is not null)
+	OR ([QualificationNames] = @QualificationNames AND @QualificationNames is not null)
 	SELECT @@ROWCOUNT			
   END
 				
@@ -27834,6 +27779,7 @@ tModified],
 				<parameter name="@IsDirectorship" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 				<parameter name="@City" type="nvarchar" direction="Input" size="100" precision="0" scale="0" param="(100)" nulldefault="null"/>
 				<parameter name="@CountryId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
+				<parameter name="@State" type="nvarchar" direction="Input" size="100" precision="0" scale="0" param="(100)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -27858,6 +27804,7 @@ INSERT INTO [dbo].[MemberPositions]
 					,[IsDirectorship]
 					,[City]
 					,[CountryID]
+					,[State]
 					)
 				VALUES
 					(
@@ -27880,6 +27827,7 @@ INSERT INTO [dbo].[MemberPositions]
 					,@IsDirectorship
 					,@City
 					,@CountryId
+					,@State
 					)
 				
 				-- Get the identity value
@@ -27931,7 +27879,8 @@ SET ANSI_NULLS OFF
 					[AdditionalRolesAndResponsibilities],
 					[IsDirectorship],
 					[City],
-					[CountryID]
+					[CountryID],
+					[State]
 				FROM
 					[dbo].[MemberPositions]
 				WHERE
@@ -27981,7 +27930,8 @@ SELECT
 					[AdditionalRolesAndResponsibilities],
 					[IsDirectorship],
 					[City],
-					[CountryID]
+					[CountryID],
+					[State]
 				FROM
 					[dbo].[MemberPositions]
 					
@@ -28064,7 +28014,8 @@ SELECT
 					[AdditionalRolesAndResponsibilities],
 					[IsDirectorship],
 					[City],
-					[CountryID]
+					[CountryID],
+					[State]
 				FROM
 					[dbo].[MemberPositions]
 				WHERE
@@ -28111,6 +28062,7 @@ SELECT
 				<parameter name="@IsDirectorship" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 				<parameter name="@City" type="nvarchar" direction="Input" size="100" precision="0" scale="0" param="(100)" nulldefault="null"/>
 				<parameter name="@CountryId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
+				<parameter name="@State" type="nvarchar" direction="Input" size="100" precision="0" scale="0" param="(100)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -28137,6 +28089,7 @@ IF ISNULL(@SearchUsingOR, 0) <> 1
 	, [IsDirectorship]
 	, [City]
 	, [CountryID]
+	, [State]
     FROM
 	[dbo].[MemberPositions]
     WHERE 
@@ -28160,6 +28113,7 @@ IF ISNULL(@SearchUsingOR, 0) <> 1
 	AND ([IsDirectorship] = @IsDirectorship OR @IsDirectorship IS NULL)
 	AND ([City] = @City OR @City IS NULL)
 	AND ([CountryID] = @CountryId OR @CountryId IS NULL)
+	AND ([State] = @State OR @State IS NULL)
 						
   END
   ELSE
@@ -28185,6 +28139,7 @@ IF ISNULL(@SearchUsingOR, 0) <> 1
 	, [IsDirectorship]
 	, [City]
 	, [CountryID]
+	, [State]
     FROM
 	[dbo].[MemberPositions]
     WHERE 
@@ -28208,6 +28163,7 @@ IF ISNULL(@SearchUsingOR, 0) <> 1
 	OR ([IsDirectorship] = @IsDirectorship AND @IsDirectorship is not null)
 	OR ([City] = @City AND @City is not null)
 	OR ([CountryID] = @CountryId AND @CountryId is not null)
+	OR ([State] = @State AND @State is not null)
 	SELECT @@ROWCOUNT			
   END
 				
@@ -28276,6 +28232,7 @@ DELETE FROM [dbo].[MemberPositions] WITH (ROWLOCK)
 				<parameter name="@IsDirectorship" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 				<parameter name="@City" type="nvarchar" direction="Input" size="100" precision="0" scale="0" param="(100)" nulldefault="null"/>
 				<parameter name="@CountryId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
+				<parameter name="@State" type="nvarchar" direction="Input" size="100" precision="0" scale="0" param="(100)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -28302,6 +28259,7 @@ DELETE FROM [dbo].[MemberPositions] WITH (ROWLOCK)
 					,[IsDirectorship] = @IsDirectorship
 					,[City] = @City
 					,[CountryID] = @CountryId
+					,[State] = @State
 				WHERE
 [MemberPositionId] = @MemberPositionId 
 				
@@ -29623,6 +29581,8 @@ tModifiedBy
 				<parameter name="@Present" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 				<parameter name="@StartMonth" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@EndMonth" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
+				<parameter name="@Graduated" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
+				<parameter name="@NonGraduatedCredits" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -29645,6 +29605,8 @@ INSERT INTO [dbo].[MemberQualification]
 					,[Present]
 					,[StartMonth]
 					,[EndMonth]
+					,[Graduated]
+					,[NonGraduatedCredits]
 					)
 				VALUES
 					(
@@ -29665,6 +29627,8 @@ INSERT INTO [dbo].[MemberQualification]
 					,@Present
 					,@StartMonth
 					,@EndMonth
+					,@Graduated
+					,@NonGraduatedCredits
 					)
 				
 				-- Get the identity value
@@ -29712,7 +29676,9 @@ SELECT
 					[Major],
 					[Present],
 					[StartMonth],
-					[EndMonth]
+					[EndMonth],
+					[Graduated],
+					[NonGraduatedCredits]
 				FROM
 					[dbo].[MemberQualification]
 				WHERE
@@ -29762,7 +29728,9 @@ SET ANSI_NULLS OFF
 					[Major],
 					[Present],
 					[StartMonth],
-					[EndMonth]
+					[EndMonth],
+					[Graduated],
+					[NonGraduatedCredits]
 				FROM
 					[dbo].[MemberQualification]
 				WHERE
@@ -29810,7 +29778,9 @@ SELECT
 					[Major],
 					[Present],
 					[StartMonth],
-					[EndMonth]
+					[EndMonth],
+					[Graduated],
+					[NonGraduatedCredits]
 				FROM
 					[dbo].[MemberQualification]
 					
@@ -29888,6 +29858,8 @@ TotalRowCount'
 				<parameter name="@Present" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 				<parameter name="@StartMonth" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@EndMonth" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
+				<parameter name="@Graduated" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
+				<parameter name="@NonGraduatedCredits" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -29912,6 +29884,8 @@ IF ISNULL(@SearchUsingOR, 0) <> 1
 	, [Present]
 	, [StartMonth]
 	, [EndMonth]
+	, [Graduated]
+	, [NonGraduatedCredits]
     FROM
 	[dbo].[MemberQualification]
     WHERE 
@@ -29933,6 +29907,8 @@ IF ISNULL(@SearchUsingOR, 0) <> 1
 	AND ([Present] = @Present OR @Present IS NULL)
 	AND ([StartMonth] = @StartMonth OR @StartMonth IS NULL)
 	AND ([EndMonth] = @EndMonth OR @EndMonth IS NULL)
+	AND ([Graduated] = @Graduated OR @Graduated IS NULL)
+	AND ([NonGraduatedCredits] = @NonGraduatedCredits OR @NonGraduatedCredits IS NULL)
 						
   END
   ELSE
@@ -29956,6 +29932,8 @@ IF ISNULL(@SearchUsingOR, 0) <> 1
 	, [Present]
 	, [StartMonth]
 	, [EndMonth]
+	, [Graduated]
+	, [NonGraduatedCredits]
     FROM
 	[dbo].[MemberQualification]
     WHERE 
@@ -29977,6 +29955,8 @@ IF ISNULL(@SearchUsingOR, 0) <> 1
 	OR ([Present] = @Present AND @Present is not null)
 	OR ([StartMonth] = @StartMonth AND @StartMonth is not null)
 	OR ([EndMonth] = @EndMonth AND @EndMonth is not null)
+	OR ([Graduated] = @Graduated AND @Graduated is not null)
+	OR ([NonGraduatedCredits] = @NonGraduatedCredits AND @NonGraduatedCredits is not null)
 	SELECT @@ROWCOUNT			
   END
 				
@@ -30043,6 +30023,8 @@ DELETE FROM [dbo].[MemberQualification] WITH (ROWLOCK)
 				<parameter name="@Present" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 				<parameter name="@StartMonth" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@EndMonth" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
+				<parameter name="@Graduated" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
+				<parameter name="@NonGraduatedCredits" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -30067,6 +30049,8 @@ DELETE FROM [dbo].[MemberQualification] WITH (ROWLOCK)
 					,[Present] = @Present
 					,[StartMonth] = @StartMonth
 					,[EndMonth] = @EndMonth
+					,[Graduated] = @Graduated
+					,[NonGraduatedCredits] = @NonGraduatedCredits
 				WHERE
 [MemberQualificationId] = @MemberQualificationId 
 				
@@ -31042,10 +31026,12 @@ IF ISNULL(@SearchUsingOR, 0) <> 1
 				<parameter name="@Phone" type="nvarchar" direction="Input" size="100" precision="0" scale="0" param="(100)" nulldefault="null"/>
 				<parameter name="@Relationship" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@LastModifiedDate" type="datetime" direction="Input" size="8" precision="23" scale="3" param="" nulldefault="null"/>
+				<parameter name="@ReferenceEmail" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
 tModifiedDate
+					,@ReferenceEmail
 					)
 				
 				-- Get the identity value
@@ -31075,7 +31061,8 @@ tModifiedDate
 			</parameters>
 			<body><![CDATA[
 				
-tModifiedDate]
+tModifiedDate],
+					[ReferenceEmail]
 				FROM
 					[dbo].[MemberReferences]
 				WHERE
@@ -31105,7 +31092,8 @@ tModifiedDate]
 			</parameters>
 			<body><![CDATA[
 				
-tModifiedDate]
+tModifiedDate],
+					[ReferenceEmail]
 				FROM
 					[dbo].[MemberReferences]
 					
@@ -31168,7 +31156,8 @@ TotalRowCount'
 			</parameters>
 			<body><![CDATA[
 				
-tModifiedDate]
+tModifiedDate],
+					[ReferenceEmail]
 				FROM
 					[dbo].[MemberReferences]
 				WHERE
@@ -31203,10 +31192,12 @@ tModifiedDate]
 				<parameter name="@Phone" type="nvarchar" direction="Input" size="100" precision="0" scale="0" param="(100)" nulldefault="null"/>
 				<parameter name="@Relationship" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@LastModifiedDate" type="datetime" direction="Input" size="8" precision="23" scale="3" param="" nulldefault="null"/>
+				<parameter name="@ReferenceEmail" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
 tModifiedDate is not null)
+	OR ([ReferenceEmail] = @ReferenceEmail AND @ReferenceEmail is not null)
 	SELECT @@ROWCOUNT			
   END
 				
@@ -31263,10 +31254,12 @@ DELETE FROM [dbo].[MemberReferences] WITH (ROWLOCK)
 				<parameter name="@Phone" type="nvarchar" direction="Input" size="100" precision="0" scale="0" param="(100)" nulldefault="null"/>
 				<parameter name="@Relationship" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@LastModifiedDate" type="datetime" direction="Input" size="8" precision="23" scale="3" param="" nulldefault="null"/>
+				<parameter name="@ReferenceEmail" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
 tModifiedDate
+					,[ReferenceEmail] = @ReferenceEmail
 				WHERE
 [MemberReferenceID] = @MemberReferenceId 
 				
@@ -43522,7 +43515,7 @@ terSiteId
 				<parameter name="@SiteCountryId" type="int" direction="Output" size="4" precision="10" scale="0" param="" nulldefault=""/>
 				<parameter name="@SiteId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
 				<parameter name="@CountryId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
-				<parameter name="@SiteCountryName" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault=""/>
+				<parameter name="@SiteCountryName" type="nvarchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault=""/>
 				<parameter name="@SiteCountryFriendlyUrl" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault=""/>
 				<parameter name="@Currency" type="nvarchar" direction="Input" size="5" precision="0" scale="0" param="(5)" nulldefault=""/>
 				<parameter name="@Sequence" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
@@ -43567,7 +43560,7 @@ terSiteId
 				<parameter name="@SiteCountryId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
 				<parameter name="@SiteId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
 				<parameter name="@CountryId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
-				<parameter name="@SiteCountryName" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault=""/>
+				<parameter name="@SiteCountryName" type="nvarchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault=""/>
 				<parameter name="@SiteCountryFriendlyUrl" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault=""/>
 				<parameter name="@Currency" type="nvarchar" direction="Input" size="5" precision="0" scale="0" param="(5)" nulldefault=""/>
 				<parameter name="@Sequence" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
@@ -43749,7 +43742,7 @@ terSiteId
 				<parameter name="@SiteCountryId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@SiteId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@CountryId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
-				<parameter name="@SiteCountryName" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
+				<parameter name="@SiteCountryName" type="nvarchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@SiteCountryFriendlyUrl" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@Currency" type="nvarchar" direction="Input" size="5" precision="0" scale="0" param="(5)" nulldefault="null"/>
 				<parameter name="@Sequence" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
@@ -43868,7 +43861,7 @@ terSiteId
 				<parameter name="@SiteCountryId" type="int" direction="InputOutput" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@SiteId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@CountryId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
-				<parameter name="@SiteCountryName" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
+				<parameter name="@SiteCountryName" type="nvarchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@SiteCountryFriendlyUrl" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@Currency" type="nvarchar" direction="Input" size="5" precision="0" scale="0" param="(5)" nulldefault="null"/>
 				<parameter name="@Sequence" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
@@ -44161,7 +44154,7 @@ SET ANSI_NULLS OFF
 				<parameter name="@SiteCountryId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@SiteId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@CountryId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
-				<parameter name="@SiteCountryName" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
+				<parameter name="@SiteCountryName" type="nvarchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@SiteCountryFriendlyUrl" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@Currency" type="nvarchar" direction="Input" size="5" precision="0" scale="0" param="(5)" nulldefault="null"/>
 				<parameter name="@Sequence" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
@@ -44296,7 +44289,7 @@ TotalRowCount'
 				<parameter name="@SiteCountryId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@SiteId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@CountryId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
-				<parameter name="@SiteCountryName" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
+				<parameter name="@SiteCountryName" type="nvarchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@SiteCountryFriendlyUrl" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@Currency" type="nvarchar" direction="Input" size="5" precision="0" scale="0" param="(5)" nulldefault="null"/>
 				<parameter name="@Sequence" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
@@ -47233,7 +47226,8 @@ END
 					[AdvertiserJobTemplateLogoID],
 					[AdvertiserID],
 					[JobLogoName],
-					[JobTemplateLogo]
+					[JobTemplateLogo],
+					[JobTemplateLogoUrl]
 				FROM
 					[dbo].[AdvertiserJobTemplateLogo]
 					
@@ -47297,7 +47291,7 @@ END
 				EXEC sp_executesql @SQL
 
 				-- Return paged results
-				SELECT O.[AdvertiserJobTemplateLogoID], O.[AdvertiserID], O.[JobLogoName], O.[JobTemplateLogo]
+				SELECT O.[AdvertiserJobTemplateLogoID], O.[AdvertiserID], O.[JobLogoName], O.[JobTemplateLogo], O.[JobTemplateLogoUrl]
 				FROM
 				    [dbo].[AdvertiserJobTemplateLogo] O,
 				    #PageIndex PageIndex
@@ -47334,6 +47328,7 @@ END
 				<parameter name="@AdvertiserId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
 				<parameter name="@JobLogoName" type="nvarchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault=""/>
 				<parameter name="@JobTemplateLogo" type="image" direction="Input" size="16" precision="0" scale="0" param="" nulldefault=""/>
+				<parameter name="@JobTemplateLogoUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault=""/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -47342,12 +47337,14 @@ END
 					[AdvertiserID]
 					,[JobLogoName]
 					,[JobTemplateLogo]
+					,[JobTemplateLogoUrl]
 					)
 				VALUES
 					(
 					@AdvertiserId
 					,@JobLogoName
 					,@JobTemplateLogo
+					,@JobTemplateLogoUrl
 					)
 				
 				-- Get the identity value
@@ -47370,6 +47367,7 @@ END
 				<parameter name="@AdvertiserId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
 				<parameter name="@JobLogoName" type="nvarchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault=""/>
 				<parameter name="@JobTemplateLogo" type="image" direction="Input" size="16" precision="0" scale="0" param="" nulldefault=""/>
+				<parameter name="@JobTemplateLogoUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault=""/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -47381,6 +47379,7 @@ END
 					[AdvertiserID] = @AdvertiserId
 					,[JobLogoName] = @JobLogoName
 					,[JobTemplateLogo] = @JobTemplateLogo
+					,[JobTemplateLogoUrl] = @JobTemplateLogoUrl
 				WHERE
 [AdvertiserJobTemplateLogoID] = @AdvertiserJobTemplateLogoId 
 				
@@ -47424,7 +47423,8 @@ END
 					[AdvertiserJobTemplateLogoID],
 					[AdvertiserID],
 					[JobLogoName],
-					[JobTemplateLogo]
+					[JobTemplateLogo],
+					[JobTemplateLogoUrl]
 				FROM
 					[dbo].[AdvertiserJobTemplateLogo]
 				WHERE
@@ -47451,7 +47451,8 @@ END
 					[AdvertiserJobTemplateLogoID],
 					[AdvertiserID],
 					[JobLogoName],
-					[JobTemplateLogo]
+					[JobTemplateLogo],
+					[JobTemplateLogoUrl]
 				FROM
 					[dbo].[AdvertiserJobTemplateLogo]
 				WHERE
@@ -47476,6 +47477,7 @@ END
 				<parameter name="@AdvertiserId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@JobLogoName" type="nvarchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@JobTemplateLogo" type="image" direction="Input" size="16" precision="0" scale="0" param="" nulldefault="null"/>
+				<parameter name="@JobTemplateLogoUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -47486,12 +47488,14 @@ END
 	, [AdvertiserID]
 	, [JobLogoName]
 	, [JobTemplateLogo]
+	, [JobTemplateLogoUrl]
     FROM
 	[dbo].[AdvertiserJobTemplateLogo]
     WHERE 
 	 ([AdvertiserJobTemplateLogoID] = @AdvertiserJobTemplateLogoId OR @AdvertiserJobTemplateLogoId IS NULL)
 	AND ([AdvertiserID] = @AdvertiserId OR @AdvertiserId IS NULL)
 	AND ([JobLogoName] = @JobLogoName OR @JobLogoName IS NULL)
+	AND ([JobTemplateLogoUrl] = @JobTemplateLogoUrl OR @JobTemplateLogoUrl IS NULL)
 						
   END
   ELSE
@@ -47501,12 +47505,14 @@ END
 	, [AdvertiserID]
 	, [JobLogoName]
 	, [JobTemplateLogo]
+	, [JobTemplateLogoUrl]
     FROM
 	[dbo].[AdvertiserJobTemplateLogo]
     WHERE 
 	 ([AdvertiserJobTemplateLogoID] = @AdvertiserJobTemplateLogoId AND @AdvertiserJobTemplateLogoId is not null)
 	OR ([AdvertiserID] = @AdvertiserId AND @AdvertiserId is not null)
 	OR ([JobLogoName] = @JobLogoName AND @JobLogoName is not null)
+	OR ([JobTemplateLogoUrl] = @JobTemplateLogoUrl AND @JobTemplateLogoUrl is not null)
 	SELECT @@ROWCOUNT			
   END
 				]]></body>
@@ -47541,7 +47547,7 @@ END
 				ORDER BY {1}
 				
 				-- Return paged results
-				SELECT O.[AdvertiserJobTemplateLogoID], O.[AdvertiserID], O.[JobLogoName], O.[JobTemplateLogo]
+				SELECT O.[AdvertiserJobTemplateLogoID], O.[AdvertiserID], O.[JobLogoName], O.[JobTemplateLogo], O.[JobTemplateLogoUrl]
 				FROM
 				    [dbo].[AdvertiserJobTemplateLogo] O,
 				    #PageIndex PageIndex
@@ -47578,6 +47584,7 @@ END
 				<parameter name="@AdvertiserId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@JobLogoName" type="nvarchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@JobTemplateLogo" type="image" direction="Input" size="16" precision="0" scale="0" param="" nulldefault="null"/>
+				<parameter name="@JobTemplateLogoUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -47586,12 +47593,14 @@ INSERT INTO [dbo].[AdvertiserJobTemplateLogo]
 					[AdvertiserID]
 					,[JobLogoName]
 					,[JobTemplateLogo]
+					,[JobTemplateLogoUrl]
 					)
 				VALUES
 					(
 					@AdvertiserId
 					,@JobLogoName
 					,@JobTemplateLogo
+					,@JobTemplateLogoUrl
 					)
 				
 				-- Get the identity value
@@ -47624,7 +47633,8 @@ SELECT
 					[AdvertiserJobTemplateLogoID],
 					[AdvertiserID],
 					[JobLogoName],
-					[JobTemplateLogo]
+					[JobTemplateLogo],
+					[JobTemplateLogoUrl]
 				FROM
 					[dbo].[AdvertiserJobTemplateLogo]
 					
@@ -47671,7 +47681,7 @@ TotalRowCount'
 					</procedure>
 				
 		<procedure owner="dbo" name="AdvertiserJobTemplateLogo_GetPagingByAdvertiserId"  skip="true">
-			<comment><![CDATA[ 
+			<comment><![CDATA[
 ]]></comment>
 			<parameters>
 				<parameter name="@AdvertiserId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
@@ -47688,8 +47698,7 @@ TotalCount
  AND    GetPagingByAdvertiserId.RowNumber <= @PageEnd      
  ORDER BY GetPagingByAdvertiserId.RowNumber
 
-END 
-  
+END
 
 			]]></body>
 					</procedure>
@@ -47717,7 +47726,8 @@ SET ANSI_NULLS OFF
 					[AdvertiserJobTemplateLogoID],
 					[AdvertiserID],
 					[JobLogoName],
-					[JobTemplateLogo]
+					[JobTemplateLogo],
+					[JobTemplateLogoUrl]
 				FROM
 					[dbo].[AdvertiserJobTemplateLogo]
 				WHERE
@@ -47752,7 +47762,8 @@ SELECT
 					[AdvertiserJobTemplateLogoID],
 					[AdvertiserID],
 					[JobLogoName],
-					[JobTemplateLogo]
+					[JobTemplateLogo],
+					[JobTemplateLogoUrl]
 				FROM
 					[dbo].[AdvertiserJobTemplateLogo]
 				WHERE
@@ -47783,6 +47794,7 @@ SELECT
 				<parameter name="@AdvertiserId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@JobLogoName" type="nvarchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@JobTemplateLogo" type="image" direction="Input" size="16" precision="0" scale="0" param="" nulldefault="null"/>
+				<parameter name="@JobTemplateLogoUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -47793,12 +47805,14 @@ IF ISNULL(@SearchUsingOR, 0) <> 1
 	, [AdvertiserID]
 	, [JobLogoName]
 	, [JobTemplateLogo]
+	, [JobTemplateLogoUrl]
     FROM
 	[dbo].[AdvertiserJobTemplateLogo]
     WHERE 
 	 ([AdvertiserJobTemplateLogoID] = @AdvertiserJobTemplateLogoId OR @AdvertiserJobTemplateLogoId IS NULL)
 	AND ([AdvertiserID] = @AdvertiserId OR @AdvertiserId IS NULL)
 	AND ([JobLogoName] = @JobLogoName OR @JobLogoName IS NULL)
+	AND ([JobTemplateLogoUrl] = @JobTemplateLogoUrl OR @JobTemplateLogoUrl IS NULL)
 						
   END
   ELSE
@@ -47808,12 +47822,14 @@ IF ISNULL(@SearchUsingOR, 0) <> 1
 	, [AdvertiserID]
 	, [JobLogoName]
 	, [JobTemplateLogo]
+	, [JobTemplateLogoUrl]
     FROM
 	[dbo].[AdvertiserJobTemplateLogo]
     WHERE 
 	 ([AdvertiserJobTemplateLogoID] = @AdvertiserJobTemplateLogoId AND @AdvertiserJobTemplateLogoId is not null)
 	OR ([AdvertiserID] = @AdvertiserId AND @AdvertiserId is not null)
 	OR ([JobLogoName] = @JobLogoName AND @JobLogoName is not null)
+	OR ([JobTemplateLogoUrl] = @JobTemplateLogoUrl AND @JobTemplateLogoUrl is not null)
 	SELECT @@ROWCOUNT			
   END
 				
@@ -47866,6 +47882,7 @@ DELETE FROM [dbo].[AdvertiserJobTemplateLogo] WITH (ROWLOCK)
 				<parameter name="@AdvertiserId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@JobLogoName" type="nvarchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@JobTemplateLogo" type="image" direction="Input" size="16" precision="0" scale="0" param="" nulldefault="null"/>
+				<parameter name="@JobTemplateLogoUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -47876,6 +47893,7 @@ DELETE FROM [dbo].[AdvertiserJobTemplateLogo] WITH (ROWLOCK)
 					[AdvertiserID] = @AdvertiserId
 					,[JobLogoName] = @JobLogoName
 					,[JobTemplateLogo] = @JobTemplateLogo
+					,[JobTemplateLogoUrl] = @JobTemplateLogoUrl
 				WHERE
 [AdvertiserJobTemplateLogoID] = @AdvertiserJobTemplateLogoId 
 				
@@ -48534,7 +48552,8 @@ DELETE FROM [dbo].[SiteMappings] WITH (ROWLOCK)
 					[MemberFileContent],
 					[MemberFileTitle],
 					[LastModifiedDate],
-					[DocumentTypeID]
+					[DocumentTypeID],
+					[MemberFileUrl]
 				FROM
 					[dbo].[MemberFiles]
 					
@@ -48598,7 +48617,7 @@ DELETE FROM [dbo].[SiteMappings] WITH (ROWLOCK)
 				EXEC sp_executesql @SQL
 
 				-- Return paged results
-				SELECT O.[MemberFileID], O.[MemberID], O.[MemberFileTypeID], O.[MemberFileName], O.[MemberFileSearchExtension], O.[MemberFileContent], O.[MemberFileTitle], O.[LastModifiedDate], O.[DocumentTypeID]
+				SELECT O.[MemberFileID], O.[MemberID], O.[MemberFileTypeID], O.[MemberFileName], O.[MemberFileSearchExtension], O.[MemberFileContent], O.[MemberFileTitle], O.[LastModifiedDate], O.[DocumentTypeID], O.[MemberFileUrl]
 				FROM
 				    [dbo].[MemberFiles] O,
 				    #PageIndex PageIndex
@@ -48640,6 +48659,7 @@ DELETE FROM [dbo].[SiteMappings] WITH (ROWLOCK)
 				<parameter name="@MemberFileTitle" type="nvarchar" direction="Input" size="500" precision="0" scale="0" param="(500)" nulldefault=""/>
 				<parameter name="@LastModifiedDate" type="datetime" direction="Input" size="8" precision="23" scale="3" param="" nulldefault=""/>
 				<parameter name="@DocumentTypeId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
+				<parameter name="@MemberFileUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault=""/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -48653,6 +48673,7 @@ DELETE FROM [dbo].[SiteMappings] WITH (ROWLOCK)
 					,[MemberFileTitle]
 					,[LastModifiedDate]
 					,[DocumentTypeID]
+					,[MemberFileUrl]
 					)
 				VALUES
 					(
@@ -48664,6 +48685,7 @@ DELETE FROM [dbo].[SiteMappings] WITH (ROWLOCK)
 					,@MemberFileTitle
 					,@LastModifiedDate
 					,@DocumentTypeId
+					,@MemberFileUrl
 					)
 				
 				-- Get the identity value
@@ -48691,6 +48713,7 @@ DELETE FROM [dbo].[SiteMappings] WITH (ROWLOCK)
 				<parameter name="@MemberFileTitle" type="nvarchar" direction="Input" size="500" precision="0" scale="0" param="(500)" nulldefault=""/>
 				<parameter name="@LastModifiedDate" type="datetime" direction="Input" size="8" precision="23" scale="3" param="" nulldefault=""/>
 				<parameter name="@DocumentTypeId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
+				<parameter name="@MemberFileUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault=""/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -48707,6 +48730,7 @@ DELETE FROM [dbo].[SiteMappings] WITH (ROWLOCK)
 					,[MemberFileTitle] = @MemberFileTitle
 					,[LastModifiedDate] = @LastModifiedDate
 					,[DocumentTypeID] = @DocumentTypeId
+					,[MemberFileUrl] = @MemberFileUrl
 				WHERE
 [MemberFileID] = @MemberFileId 
 				
@@ -48755,7 +48779,8 @@ DELETE FROM [dbo].[SiteMappings] WITH (ROWLOCK)
 					[MemberFileContent],
 					[MemberFileTitle],
 					[LastModifiedDate],
-					[DocumentTypeID]
+					[DocumentTypeID],
+					[MemberFileUrl]
 				FROM
 					[dbo].[MemberFiles]
 				WHERE
@@ -48789,7 +48814,8 @@ DELETE FROM [dbo].[SiteMappings] WITH (ROWLOCK)
 					[MemberFileContent],
 					[MemberFileTitle],
 					[LastModifiedDate],
-					[DocumentTypeID]
+					[DocumentTypeID],
+					[MemberFileUrl]
 				FROM
 					[dbo].[MemberFiles]
 				WHERE
@@ -48821,7 +48847,8 @@ DELETE FROM [dbo].[SiteMappings] WITH (ROWLOCK)
 					[MemberFileContent],
 					[MemberFileTitle],
 					[LastModifiedDate],
-					[DocumentTypeID]
+					[DocumentTypeID],
+					[MemberFileUrl]
 				FROM
 					[dbo].[MemberFiles]
 				WHERE
@@ -48851,6 +48878,7 @@ DELETE FROM [dbo].[SiteMappings] WITH (ROWLOCK)
 				<parameter name="@MemberFileTitle" type="nvarchar" direction="Input" size="500" precision="0" scale="0" param="(500)" nulldefault="null"/>
 				<parameter name="@LastModifiedDate" type="datetime" direction="Input" size="8" precision="23" scale="3" param="" nulldefault="null"/>
 				<parameter name="@DocumentTypeId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
+				<parameter name="@MemberFileUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -48866,6 +48894,7 @@ DELETE FROM [dbo].[SiteMappings] WITH (ROWLOCK)
 	, [MemberFileTitle]
 	, [LastModifiedDate]
 	, [DocumentTypeID]
+	, [MemberFileUrl]
     FROM
 	[dbo].[MemberFiles]
     WHERE 
@@ -48877,6 +48906,7 @@ DELETE FROM [dbo].[SiteMappings] WITH (ROWLOCK)
 	AND ([MemberFileTitle] = @MemberFileTitle OR @MemberFileTitle IS NULL)
 	AND ([LastModifiedDate] = @LastModifiedDate OR @LastModifiedDate IS NULL)
 	AND ([DocumentTypeID] = @DocumentTypeId OR @DocumentTypeId IS NULL)
+	AND ([MemberFileUrl] = @MemberFileUrl OR @MemberFileUrl IS NULL)
 						
   END
   ELSE
@@ -48891,6 +48921,7 @@ DELETE FROM [dbo].[SiteMappings] WITH (ROWLOCK)
 	, [MemberFileTitle]
 	, [LastModifiedDate]
 	, [DocumentTypeID]
+	, [MemberFileUrl]
     FROM
 	[dbo].[MemberFiles]
     WHERE 
@@ -48902,6 +48933,7 @@ DELETE FROM [dbo].[SiteMappings] WITH (ROWLOCK)
 	OR ([MemberFileTitle] = @MemberFileTitle AND @MemberFileTitle is not null)
 	OR ([LastModifiedDate] = @LastModifiedDate AND @LastModifiedDate is not null)
 	OR ([DocumentTypeID] = @DocumentTypeId AND @DocumentTypeId is not null)
+	OR ([MemberFileUrl] = @MemberFileUrl AND @MemberFileUrl is not null)
 	SELECT @@ROWCOUNT			
   END
 				]]></body>
@@ -48936,7 +48968,7 @@ DELETE FROM [dbo].[SiteMappings] WITH (ROWLOCK)
 				ORDER BY {1}
 				
 				-- Return paged results
-				SELECT O.[MemberFileID], O.[MemberID], O.[MemberFileTypeID], O.[MemberFileName], O.[MemberFileSearchExtension], O.[MemberFileContent], O.[MemberFileTitle], O.[LastModifiedDate], O.[DocumentTypeID]
+				SELECT O.[MemberFileID], O.[MemberID], O.[MemberFileTypeID], O.[MemberFileName], O.[MemberFileSearchExtension], O.[MemberFileContent], O.[MemberFileTitle], O.[LastModifiedDate], O.[DocumentTypeID], O.[MemberFileUrl]
 				FROM
 				    [dbo].[MemberFiles] O,
 				    #PageIndex PageIndex
@@ -48974,7 +49006,8 @@ DELETE FROM [dbo].[SiteMappings] WITH (ROWLOCK)
 			<body><![CDATA[
 				
 tModifiedDate],
-					[DocumentTypeID]
+					[DocumentTypeID],
+					[MemberFileUrl]
 				FROM
 					[dbo].[MemberFiles]
 				WHERE
@@ -49009,11 +49042,13 @@ tModifiedDate],
 				<parameter name="@MemberFileTitle" type="nvarchar" direction="Input" size="500" precision="0" scale="0" param="(500)" nulldefault="null"/>
 				<parameter name="@LastModifiedDate" type="datetime" direction="Input" size="8" precision="23" scale="3" param="" nulldefault="null"/>
 				<parameter name="@DocumentTypeId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
+				<parameter name="@MemberFileUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
 tModifiedDate
 					,@DocumentTypeId
+					,@MemberFileUrl
 					)
 				
 				-- Get the identity value
@@ -49044,7 +49079,8 @@ tModifiedDate
 			<body><![CDATA[
 				
 tModifiedDate],
-					[DocumentTypeID]
+					[DocumentTypeID],
+					[MemberFileUrl]
 				FROM
 					[dbo].[MemberFiles]
 				WHERE
@@ -49075,7 +49111,8 @@ tModifiedDate],
 			<body><![CDATA[
 				
 tModifiedDate],
-					[DocumentTypeID]
+					[DocumentTypeID],
+					[MemberFileUrl]
 				FROM
 					[dbo].[MemberFiles]
 					
@@ -49143,11 +49180,13 @@ TotalRowCount'
 				<parameter name="@MemberFileTitle" type="nvarchar" direction="Input" size="500" precision="0" scale="0" param="(500)" nulldefault="null"/>
 				<parameter name="@LastModifiedDate" type="datetime" direction="Input" size="8" precision="23" scale="3" param="" nulldefault="null"/>
 				<parameter name="@DocumentTypeId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
+				<parameter name="@MemberFileUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
 tModifiedDate
 					,[DocumentTypeID] = @DocumentTypeId
+					,[MemberFileUrl] = @MemberFileUrl
 				WHERE
 [MemberFileID] = @MemberFileId 
 				
@@ -49180,11 +49219,13 @@ tModifiedDate
 				<parameter name="@MemberFileTitle" type="nvarchar" direction="Input" size="500" precision="0" scale="0" param="(500)" nulldefault="null"/>
 				<parameter name="@LastModifiedDate" type="datetime" direction="Input" size="8" precision="23" scale="3" param="" nulldefault="null"/>
 				<parameter name="@DocumentTypeId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
+				<parameter name="@MemberFileUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
 tModifiedDate is not null)
 	OR ([DocumentTypeID] = @DocumentTypeId AND @DocumentTypeId is not null)
+	OR ([MemberFileUrl] = @MemberFileUrl AND @MemberFileUrl is not null)
 	SELECT @@ROWCOUNT			
   END
 				
@@ -49238,23 +49279,13 @@ TotalCount
  AND    GetPagingByMemberId.RowNumber <= @PageEnd      
  ORDER BY GetPagingByMemberId.RowNumber
 
-END 
-  
+END
 
 			]]></body>
 					</procedure>
 				
 		<procedure owner="dbo" name="MemberFiles_GetByMemberIdMemberFileName"  skip="true">
 			<comment><![CDATA[
-/*
-----------------------------------------------------------------------------------------------------
-
--- Created By:  ()
--- Purpose: Select records from the MemberFiles table through an index
-----------------------------------------------------------------------------------------------------
-*/
-
-
 ]]></comment>
 			<parameters>
 				<parameter name="@MemberId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
@@ -49263,16 +49294,14 @@ END
 			<body><![CDATA[
 				
 tModifiedDate],
-					[DocumentTypeID]
+					[DocumentTypeID],
+					[MemberFileUrl]
 				FROM
 					[dbo].[MemberFiles] (NOLOCK)
 				WHERE
 					[MemberID] = @MemberId
 					AND [MemberFileName] = @MemberFileName
 				SELECT @@ROWCOUNT
-					
-			
-
 
 			]]></body>
 					</procedure>
@@ -49295,7 +49324,8 @@ tModifiedDate],
 			<body><![CDATA[
 				
 tModifiedDate],
-					[DocumentTypeID]
+					[DocumentTypeID],
+					[MemberFileUrl]
 				FROM
 					[dbo].[MemberFiles]
 				WHERE
@@ -58143,7 +58173,8 @@ ter],
 					[LastModified],
 					[Sequence],
 					[LastName],
-					[ConsultantsXML]
+					[ConsultantsXML],
+					[ConsultantImageUrl]
 				FROM
 					[dbo].[Consultants]
 					
@@ -58207,7 +58238,7 @@ ter],
 				EXEC sp_executesql @SQL
 
 				-- Return paged results
-				SELECT O.[ConsultantID], O.[SiteID], O.[LanguageID], O.[Title], O.[FirstName], O.[Email], O.[Phone], O.[Mobile], O.[PositionTitle], O.[OfficeLocation], O.[Categories], O.[Location], O.[FriendlyURL], O.[ShortDescription], O.[Testimonial], O.[FullDescription], O.[ConsultantData], O.[LinkedInURL], O.[TwitterURL], O.[FacebookURL], O.[GoogleURL], O.[Link], O.[WechatURL], O.[FeaturedTeamMember], O.[ImageURL], O.[VideoURL], O.[BlogRSS], O.[NewsRSS], O.[JobRSS], O.[TestimonialsRSS], O.[Valid], O.[MetaTitle], O.[MetaDescription], O.[MetaKeywords], O.[LastModifiedBy], O.[LastModified], O.[Sequence], O.[LastName], O.[ConsultantsXML]
+				SELECT O.[ConsultantID], O.[SiteID], O.[LanguageID], O.[Title], O.[FirstName], O.[Email], O.[Phone], O.[Mobile], O.[PositionTitle], O.[OfficeLocation], O.[Categories], O.[Location], O.[FriendlyURL], O.[ShortDescription], O.[Testimonial], O.[FullDescription], O.[ConsultantData], O.[LinkedInURL], O.[TwitterURL], O.[FacebookURL], O.[GoogleURL], O.[Link], O.[WechatURL], O.[FeaturedTeamMember], O.[ImageURL], O.[VideoURL], O.[BlogRSS], O.[NewsRSS], O.[JobRSS], O.[TestimonialsRSS], O.[Valid], O.[MetaTitle], O.[MetaDescription], O.[MetaKeywords], O.[LastModifiedBy], O.[LastModified], O.[Sequence], O.[LastName], O.[ConsultantsXML], O.[ConsultantImageUrl]
 				FROM
 				    [dbo].[Consultants] O,
 				    #PageIndex PageIndex
@@ -58279,6 +58310,7 @@ ter],
 				<parameter name="@Sequence" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
 				<parameter name="@LastName" type="nvarchar" direction="Input" size="512" precision="0" scale="0" param="(512)" nulldefault=""/>
 				<parameter name="@ConsultantsXml" type="nvarchar" direction="Input" size="-1" precision="0" scale="0" param="(MAX)" nulldefault=""/>
+				<parameter name="@ConsultantImageUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault=""/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -58322,6 +58354,7 @@ ter],
 					,[Sequence]
 					,[LastName]
 					,[ConsultantsXML]
+					,[ConsultantImageUrl]
 					)
 				VALUES
 					(
@@ -58363,6 +58396,7 @@ ter],
 					,@Sequence
 					,@LastName
 					,@ConsultantsXml
+					,@ConsultantImageUrl
 					)
 				
 				-- Get the identity value
@@ -58420,6 +58454,7 @@ ter],
 				<parameter name="@Sequence" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
 				<parameter name="@LastName" type="nvarchar" direction="Input" size="512" precision="0" scale="0" param="(512)" nulldefault=""/>
 				<parameter name="@ConsultantsXml" type="nvarchar" direction="Input" size="-1" precision="0" scale="0" param="(MAX)" nulldefault=""/>
+				<parameter name="@ConsultantImageUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault=""/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -58466,6 +58501,7 @@ ter],
 					,[Sequence] = @Sequence
 					,[LastName] = @LastName
 					,[ConsultantsXML] = @ConsultantsXml
+					,[ConsultantImageUrl] = @ConsultantImageUrl
 				WHERE
 [ConsultantID] = @ConsultantId 
 				
@@ -58544,7 +58580,8 @@ ter],
 					[LastModified],
 					[Sequence],
 					[LastName],
-					[ConsultantsXML]
+					[ConsultantsXML],
+					[ConsultantImageUrl]
 				FROM
 					[dbo].[Consultants]
 				WHERE
@@ -58606,7 +58643,8 @@ ter],
 					[LastModified],
 					[Sequence],
 					[LastName],
-					[ConsultantsXML]
+					[ConsultantsXML],
+					[ConsultantImageUrl]
 				FROM
 					[dbo].[Consultants]
 				WHERE
@@ -58666,6 +58704,7 @@ ter],
 				<parameter name="@Sequence" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@LastName" type="nvarchar" direction="Input" size="512" precision="0" scale="0" param="(512)" nulldefault="null"/>
 				<parameter name="@ConsultantsXml" type="nvarchar" direction="Input" size="-1" precision="0" scale="0" param="(MAX)" nulldefault="null"/>
+				<parameter name="@ConsultantImageUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -58711,6 +58750,7 @@ ter],
 	, [Sequence]
 	, [LastName]
 	, [ConsultantsXML]
+	, [ConsultantImageUrl]
     FROM
 	[dbo].[Consultants]
     WHERE 
@@ -58752,6 +58792,7 @@ ter],
 	AND ([Sequence] = @Sequence OR @Sequence IS NULL)
 	AND ([LastName] = @LastName OR @LastName IS NULL)
 	AND ([ConsultantsXML] = @ConsultantsXml OR @ConsultantsXml IS NULL)
+	AND ([ConsultantImageUrl] = @ConsultantImageUrl OR @ConsultantImageUrl IS NULL)
 						
   END
   ELSE
@@ -58796,6 +58837,7 @@ ter],
 	, [Sequence]
 	, [LastName]
 	, [ConsultantsXML]
+	, [ConsultantImageUrl]
     FROM
 	[dbo].[Consultants]
     WHERE 
@@ -58837,6 +58879,7 @@ ter],
 	OR ([Sequence] = @Sequence AND @Sequence is not null)
 	OR ([LastName] = @LastName AND @LastName is not null)
 	OR ([ConsultantsXML] = @ConsultantsXml AND @ConsultantsXml is not null)
+	OR ([ConsultantImageUrl] = @ConsultantImageUrl AND @ConsultantImageUrl is not null)
 	SELECT @@ROWCOUNT			
   END
 				]]></body>
@@ -58871,7 +58914,7 @@ ter],
 				ORDER BY {1}
 				
 				-- Return paged results
-				SELECT O.[ConsultantID], O.[SiteID], O.[LanguageID], O.[Title], O.[FirstName], O.[Email], O.[Phone], O.[Mobile], O.[PositionTitle], O.[OfficeLocation], O.[Categories], O.[Location], O.[FriendlyURL], O.[ShortDescription], O.[Testimonial], O.[FullDescription], O.[ConsultantData], O.[LinkedInURL], O.[TwitterURL], O.[FacebookURL], O.[GoogleURL], O.[Link], O.[WechatURL], O.[FeaturedTeamMember], O.[ImageURL], O.[VideoURL], O.[BlogRSS], O.[NewsRSS], O.[JobRSS], O.[TestimonialsRSS], O.[Valid], O.[MetaTitle], O.[MetaDescription], O.[MetaKeywords], O.[LastModifiedBy], O.[LastModified], O.[Sequence], O.[LastName], O.[ConsultantsXML]
+				SELECT O.[ConsultantID], O.[SiteID], O.[LanguageID], O.[Title], O.[FirstName], O.[Email], O.[Phone], O.[Mobile], O.[PositionTitle], O.[OfficeLocation], O.[Categories], O.[Location], O.[FriendlyURL], O.[ShortDescription], O.[Testimonial], O.[FullDescription], O.[ConsultantData], O.[LinkedInURL], O.[TwitterURL], O.[FacebookURL], O.[GoogleURL], O.[Link], O.[WechatURL], O.[FeaturedTeamMember], O.[ImageURL], O.[VideoURL], O.[BlogRSS], O.[NewsRSS], O.[JobRSS], O.[TestimonialsRSS], O.[Valid], O.[MetaTitle], O.[MetaDescription], O.[MetaKeywords], O.[LastModifiedBy], O.[LastModified], O.[Sequence], O.[LastName], O.[ConsultantsXML], O.[ConsultantImageUrl]
 				FROM
 				    [dbo].[Consultants] O,
 				    #PageIndex PageIndex
@@ -58943,11 +58986,13 @@ ter],
 				<parameter name="@Sequence" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@LastName" type="nvarchar" direction="Input" size="512" precision="0" scale="0" param="(512)" nulldefault="null"/>
 				<parameter name="@ConsultantsXml" type="nvarchar" direction="Input" size="-1" precision="0" scale="0" param="(MAX)" nulldefault="null"/>
+				<parameter name="@ConsultantImageUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
 tName
 					,@ConsultantsXml
+					,@ConsultantImageUrl
 					)
 				
 				-- Get the identity value
@@ -58978,7 +59023,8 @@ tName
 			<body><![CDATA[
 				
 tName],
-					[ConsultantsXML]
+					[ConsultantsXML],
+					[ConsultantImageUrl]
 				FROM
 					[dbo].[Consultants]
 				WHERE
@@ -59009,7 +59055,8 @@ tName],
 			<body><![CDATA[
 				
 tName],
-					[ConsultantsXML]
+					[ConsultantsXML],
+					[ConsultantImageUrl]
 				FROM
 					[dbo].[Consultants]
 					
@@ -59073,7 +59120,8 @@ TotalRowCount'
 			<body><![CDATA[
 				
 tName],
-					[ConsultantsXML]
+					[ConsultantsXML],
+					[ConsultantImageUrl]
 				FROM
 					[dbo].[Consultants]
 				WHERE
@@ -59139,11 +59187,13 @@ tName],
 				<parameter name="@Sequence" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@LastName" type="nvarchar" direction="Input" size="512" precision="0" scale="0" param="(512)" nulldefault="null"/>
 				<parameter name="@ConsultantsXml" type="nvarchar" direction="Input" size="-1" precision="0" scale="0" param="(MAX)" nulldefault="null"/>
+				<parameter name="@ConsultantImageUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
 tName is not null)
 	OR ([ConsultantsXML] = @ConsultantsXml AND @ConsultantsXml is not null)
+	OR ([ConsultantImageUrl] = @ConsultantImageUrl AND @ConsultantImageUrl is not null)
 	SELECT @@ROWCOUNT			
   END
 				
@@ -59231,11 +59281,13 @@ DELETE FROM [dbo].[Consultants] WITH (ROWLOCK)
 				<parameter name="@Sequence" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@LastName" type="nvarchar" direction="Input" size="512" precision="0" scale="0" param="(512)" nulldefault="null"/>
 				<parameter name="@ConsultantsXml" type="nvarchar" direction="Input" size="-1" precision="0" scale="0" param="(MAX)" nulldefault="null"/>
+				<parameter name="@ConsultantImageUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
 tName
 					,[ConsultantsXML] = @ConsultantsXml
+					,[ConsultantImageUrl] = @ConsultantImageUrl
 				WHERE
 [ConsultantID] = @ConsultantId 
 				
@@ -65393,7 +65445,8 @@ tModifiedBy
 					[NominatedCompanyLastName],
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
-					[PreferredContactMethod]
+					[PreferredContactMethod],
+					[AdvertiserLogoUrl]
 				FROM
 					[dbo].[Advertisers]
 					
@@ -65457,7 +65510,7 @@ tModifiedBy
 				EXEC sp_executesql @SQL
 
 				-- Return paged results
-				SELECT O.[AdvertiserID], O.[SiteID], O.[AdvertiserAccountTypeID], O.[AdvertiserBusinessTypeID], O.[AdvertiserAccountStatusID], O.[CompanyName], O.[BusinessNumber], O.[StreetAddress1], O.[StreetAddress2], O.[LastModified], O.[LastModifiedBy], O.[PostalAddress1], O.[PostalAddress2], O.[WebAddress], O.[NoOfEmployees], O.[FirstApprovedDate], O.[Profile], O.[CharityNumber], O.[SearchField], O.[FreeTrialStartDate], O.[FreeTrialEndDate], O.[AccountsPayableEmail], O.[RequireLogonForExternalApplication], O.[AdvertiserLogo], O.[LinkedInLogo], O.[LinkedInCompanyId], O.[LinkedInEmail], O.[RegisterDate], O.[ExternalAdvertiserID], O.[VideoLink], O.[Industry], O.[NominatedCompanyRole], O.[NominatedCompanyFirstName], O.[NominatedCompanyLastName], O.[NominatedCompanyEmailAddress], O.[NominatedCompanyPhone], O.[PreferredContactMethod]
+				SELECT O.[AdvertiserID], O.[SiteID], O.[AdvertiserAccountTypeID], O.[AdvertiserBusinessTypeID], O.[AdvertiserAccountStatusID], O.[CompanyName], O.[BusinessNumber], O.[StreetAddress1], O.[StreetAddress2], O.[LastModified], O.[LastModifiedBy], O.[PostalAddress1], O.[PostalAddress2], O.[WebAddress], O.[NoOfEmployees], O.[FirstApprovedDate], O.[Profile], O.[CharityNumber], O.[SearchField], O.[FreeTrialStartDate], O.[FreeTrialEndDate], O.[AccountsPayableEmail], O.[RequireLogonForExternalApplication], O.[AdvertiserLogo], O.[LinkedInLogo], O.[LinkedInCompanyId], O.[LinkedInEmail], O.[RegisterDate], O.[ExternalAdvertiserID], O.[VideoLink], O.[Industry], O.[NominatedCompanyRole], O.[NominatedCompanyFirstName], O.[NominatedCompanyLastName], O.[NominatedCompanyEmailAddress], O.[NominatedCompanyPhone], O.[PreferredContactMethod], O.[AdvertiserLogoUrl]
 				FROM
 				    [dbo].[Advertisers] O,
 				    #PageIndex PageIndex
@@ -65527,6 +65580,7 @@ tModifiedBy
 				<parameter name="@NominatedCompanyEmailAddress" type="nvarchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault=""/>
 				<parameter name="@NominatedCompanyPhone" type="varchar" direction="Input" size="40" precision="0" scale="0" param="(40)" nulldefault=""/>
 				<parameter name="@PreferredContactMethod" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
+				<parameter name="@AdvertiserLogoUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault=""/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -65568,6 +65622,7 @@ tModifiedBy
 					,[NominatedCompanyEmailAddress]
 					,[NominatedCompanyPhone]
 					,[PreferredContactMethod]
+					,[AdvertiserLogoUrl]
 					)
 				VALUES
 					(
@@ -65607,6 +65662,7 @@ tModifiedBy
 					,@NominatedCompanyEmailAddress
 					,@NominatedCompanyPhone
 					,@PreferredContactMethod
+					,@AdvertiserLogoUrl
 					)
 				
 				-- Get the identity value
@@ -65662,6 +65718,7 @@ tModifiedBy
 				<parameter name="@NominatedCompanyEmailAddress" type="nvarchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault=""/>
 				<parameter name="@NominatedCompanyPhone" type="varchar" direction="Input" size="40" precision="0" scale="0" param="(40)" nulldefault=""/>
 				<parameter name="@PreferredContactMethod" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
+				<parameter name="@AdvertiserLogoUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault=""/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -65706,6 +65763,7 @@ tModifiedBy
 					,[NominatedCompanyEmailAddress] = @NominatedCompanyEmailAddress
 					,[NominatedCompanyPhone] = @NominatedCompanyPhone
 					,[PreferredContactMethod] = @PreferredContactMethod
+					,[AdvertiserLogoUrl] = @AdvertiserLogoUrl
 				WHERE
 [AdvertiserID] = @AdvertiserId 
 				
@@ -65782,7 +65840,8 @@ tModifiedBy
 					[NominatedCompanyLastName],
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
-					[PreferredContactMethod]
+					[PreferredContactMethod],
+					[AdvertiserLogoUrl]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -65844,7 +65903,8 @@ tModifiedBy
 					[NominatedCompanyLastName],
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
-					[PreferredContactMethod]
+					[PreferredContactMethod],
+					[AdvertiserLogoUrl]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -65906,7 +65966,8 @@ tModifiedBy
 					[NominatedCompanyLastName],
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
-					[PreferredContactMethod]
+					[PreferredContactMethod],
+					[AdvertiserLogoUrl]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -65968,7 +66029,8 @@ tModifiedBy
 					[NominatedCompanyLastName],
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
-					[PreferredContactMethod]
+					[PreferredContactMethod],
+					[AdvertiserLogoUrl]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -66030,7 +66092,8 @@ tModifiedBy
 					[NominatedCompanyLastName],
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
-					[PreferredContactMethod]
+					[PreferredContactMethod],
+					[AdvertiserLogoUrl]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -66090,7 +66153,8 @@ tModifiedBy
 					[NominatedCompanyLastName],
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
-					[PreferredContactMethod]
+					[PreferredContactMethod],
+					[AdvertiserLogoUrl]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -66150,6 +66214,7 @@ SELECT dbo.[Advertisers].[AdvertiserID]
        ,dbo.[Advertisers].[NominatedCompanyEmailAddress]
        ,dbo.[Advertisers].[NominatedCompanyPhone]
        ,dbo.[Advertisers].[PreferredContactMethod]
+       ,dbo.[Advertisers].[AdvertiserLogoUrl]
   FROM dbo.[Advertisers]
  WHERE EXISTS (SELECT 1
                  FROM dbo.[AdvertiserJobPricing] 
@@ -66207,6 +66272,7 @@ SELECT dbo.[Advertisers].[AdvertiserID]
 				<parameter name="@NominatedCompanyEmailAddress" type="nvarchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@NominatedCompanyPhone" type="varchar" direction="Input" size="40" precision="0" scale="0" param="(40)" nulldefault="null"/>
 				<parameter name="@PreferredContactMethod" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
+				<parameter name="@AdvertiserLogoUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -66250,6 +66316,7 @@ SELECT dbo.[Advertisers].[AdvertiserID]
 	, [NominatedCompanyEmailAddress]
 	, [NominatedCompanyPhone]
 	, [PreferredContactMethod]
+	, [AdvertiserLogoUrl]
     FROM
 	[dbo].[Advertisers]
     WHERE 
@@ -66288,6 +66355,7 @@ SELECT dbo.[Advertisers].[AdvertiserID]
 	AND ([NominatedCompanyEmailAddress] = @NominatedCompanyEmailAddress OR @NominatedCompanyEmailAddress IS NULL)
 	AND ([NominatedCompanyPhone] = @NominatedCompanyPhone OR @NominatedCompanyPhone IS NULL)
 	AND ([PreferredContactMethod] = @PreferredContactMethod OR @PreferredContactMethod IS NULL)
+	AND ([AdvertiserLogoUrl] = @AdvertiserLogoUrl OR @AdvertiserLogoUrl IS NULL)
 						
   END
   ELSE
@@ -66330,6 +66398,7 @@ SELECT dbo.[Advertisers].[AdvertiserID]
 	, [NominatedCompanyEmailAddress]
 	, [NominatedCompanyPhone]
 	, [PreferredContactMethod]
+	, [AdvertiserLogoUrl]
     FROM
 	[dbo].[Advertisers]
     WHERE 
@@ -66368,6 +66437,7 @@ SELECT dbo.[Advertisers].[AdvertiserID]
 	OR ([NominatedCompanyEmailAddress] = @NominatedCompanyEmailAddress AND @NominatedCompanyEmailAddress is not null)
 	OR ([NominatedCompanyPhone] = @NominatedCompanyPhone AND @NominatedCompanyPhone is not null)
 	OR ([PreferredContactMethod] = @PreferredContactMethod AND @PreferredContactMethod is not null)
+	OR ([AdvertiserLogoUrl] = @AdvertiserLogoUrl AND @AdvertiserLogoUrl is not null)
 	SELECT @@ROWCOUNT			
   END
 				]]></body>
@@ -66402,7 +66472,7 @@ SELECT dbo.[Advertisers].[AdvertiserID]
 				ORDER BY {1}
 				
 				-- Return paged results
-				SELECT O.[AdvertiserID], O.[SiteID], O.[AdvertiserAccountTypeID], O.[AdvertiserBusinessTypeID], O.[AdvertiserAccountStatusID], O.[CompanyName], O.[BusinessNumber], O.[StreetAddress1], O.[StreetAddress2], O.[LastModified], O.[LastModifiedBy], O.[PostalAddress1], O.[PostalAddress2], O.[WebAddress], O.[NoOfEmployees], O.[FirstApprovedDate], O.[Profile], O.[CharityNumber], O.[SearchField], O.[FreeTrialStartDate], O.[FreeTrialEndDate], O.[AccountsPayableEmail], O.[RequireLogonForExternalApplication], O.[AdvertiserLogo], O.[LinkedInLogo], O.[LinkedInCompanyId], O.[LinkedInEmail], O.[RegisterDate], O.[ExternalAdvertiserID], O.[VideoLink], O.[Industry], O.[NominatedCompanyRole], O.[NominatedCompanyFirstName], O.[NominatedCompanyLastName], O.[NominatedCompanyEmailAddress], O.[NominatedCompanyPhone], O.[PreferredContactMethod]
+				SELECT O.[AdvertiserID], O.[SiteID], O.[AdvertiserAccountTypeID], O.[AdvertiserBusinessTypeID], O.[AdvertiserAccountStatusID], O.[CompanyName], O.[BusinessNumber], O.[StreetAddress1], O.[StreetAddress2], O.[LastModified], O.[LastModifiedBy], O.[PostalAddress1], O.[PostalAddress2], O.[WebAddress], O.[NoOfEmployees], O.[FirstApprovedDate], O.[Profile], O.[CharityNumber], O.[SearchField], O.[FreeTrialStartDate], O.[FreeTrialEndDate], O.[AccountsPayableEmail], O.[RequireLogonForExternalApplication], O.[AdvertiserLogo], O.[LinkedInLogo], O.[LinkedInCompanyId], O.[LinkedInEmail], O.[RegisterDate], O.[ExternalAdvertiserID], O.[VideoLink], O.[Industry], O.[NominatedCompanyRole], O.[NominatedCompanyFirstName], O.[NominatedCompanyLastName], O.[NominatedCompanyEmailAddress], O.[NominatedCompanyPhone], O.[PreferredContactMethod], O.[AdvertiserLogoUrl]
 				FROM
 				    [dbo].[Advertisers] O,
 				    #PageIndex PageIndex
@@ -66454,11 +66524,12 @@ tModifiedBy,
 		LinkedInLogo,
 		LinkedInCompanyId,
 		LinkedInEmail,
-		RegisterDate
+		RegisterDate,
+		AdvertiserLogoUrl
    FROM Advertisers  (NOLOCK) WHERE 1=0               
   END                 
     
-END       
+END
 
 			]]></body>
 					</procedure>
@@ -66484,6 +66555,7 @@ tName]
        ,dbo.[Advertisers].[NominatedCompanyEmailAddress]
        ,dbo.[Advertisers].[NominatedCompanyPhone]
        ,dbo.[Advertisers].[PreferredContactMethod]
+       ,dbo.[Advertisers].[AdvertiserLogoUrl]
   FROM dbo.[Advertisers]
  WHERE EXISTS (SELECT 1
                  FROM dbo.[AdvertiserJobPricing] 
@@ -66548,6 +66620,7 @@ tName]
 				<parameter name="@NominatedCompanyEmailAddress" type="nvarchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@NominatedCompanyPhone" type="varchar" direction="Input" size="40" precision="0" scale="0" param="(40)" nulldefault="null"/>
 				<parameter name="@PreferredContactMethod" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
+				<parameter name="@AdvertiserLogoUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -66555,6 +66628,7 @@ tName is not null)
 	OR ([NominatedCompanyEmailAddress] = @NominatedCompanyEmailAddress AND @NominatedCompanyEmailAddress is not null)
 	OR ([NominatedCompanyPhone] = @NominatedCompanyPhone AND @NominatedCompanyPhone is not null)
 	OR ([PreferredContactMethod] = @PreferredContactMethod AND @PreferredContactMethod is not null)
+	OR ([AdvertiserLogoUrl] = @AdvertiserLogoUrl AND @AdvertiserLogoUrl is not null)
 	SELECT @@ROWCOUNT			
   END
 				
@@ -66613,6 +66687,7 @@ tName is not null)
 				<parameter name="@NominatedCompanyEmailAddress" type="nvarchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@NominatedCompanyPhone" type="varchar" direction="Input" size="40" precision="0" scale="0" param="(40)" nulldefault="null"/>
 				<parameter name="@PreferredContactMethod" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
+				<parameter name="@AdvertiserLogoUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -66620,6 +66695,7 @@ tName
 					,[NominatedCompanyEmailAddress] = @NominatedCompanyEmailAddress
 					,[NominatedCompanyPhone] = @NominatedCompanyPhone
 					,[PreferredContactMethod] = @PreferredContactMethod
+					,[AdvertiserLogoUrl] = @AdvertiserLogoUrl
 				WHERE
 [AdvertiserID] = @AdvertiserId 
 				
@@ -66630,7 +66706,8 @@ tName
 					</procedure>
 				
 		<procedure owner="dbo" name="Advertisers_GetAdvertisersNotPostedSince"  skip="true">
-			<comment><![CDATA[]]></comment>
+			<comment><![CDATA[
+]]></comment>
 			<parameters>
 				<parameter name="@SiteID" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@DaysSinceLastPost" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
@@ -66656,7 +66733,8 @@ END
 					</procedure>
 				
 		<procedure owner="dbo" name="Advertisers_GetAdvertiserTypeStatistics"  skip="true">
-			<comment><![CDATA[]]></comment>
+			<comment><![CDATA[
+]]></comment>
 			<parameters>
 				<parameter name="@SiteID" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 			</parameters>
@@ -66671,7 +66749,8 @@ END
 					</procedure>
 				
 		<procedure owner="dbo" name="Advertisers_AdminGetPaged"  skip="true">
-			<comment><![CDATA[]]></comment>
+			<comment><![CDATA[
+]]></comment>
 			<parameters>
 				<parameter name="@AdvertiserID" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@SiteID" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
@@ -66715,7 +66794,8 @@ END
 tName],
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
-					[PreferredContactMethod]
+					[PreferredContactMethod],
+					[AdvertiserLogoUrl]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -66841,6 +66921,7 @@ DELETE FROM [dbo].[Advertisers] WITH (ROWLOCK)
 				<parameter name="@NominatedCompanyEmailAddress" type="nvarchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@NominatedCompanyPhone" type="varchar" direction="Input" size="40" precision="0" scale="0" param="(40)" nulldefault="null"/>
 				<parameter name="@PreferredContactMethod" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
+				<parameter name="@AdvertiserLogoUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -66848,6 +66929,7 @@ tName
 					,@NominatedCompanyEmailAddress
 					,@NominatedCompanyPhone
 					,@PreferredContactMethod
+					,@AdvertiserLogoUrl
 					)
 				
 				-- Get the identity value
@@ -66884,14 +66966,14 @@ IF USER_NAME() IS NULL
 BEGIN  
 	SELECT AdvertiserId FROM Advertisers (NOLOCK) WHERE 1 = 0 
 END
-END 
-
+END
 
 			]]></body>
 					</procedure>
 				
 		<procedure owner="dbo" name="Advertisers_GetAllAdvertisers"  skip="true">
-			<comment><![CDATA[]]></comment>
+			<comment><![CDATA[
+]]></comment>
 			<parameters>
 				<parameter name="@SiteID" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 			</parameters>
@@ -66911,8 +66993,7 @@ END
 					</procedure>
 				
 		<procedure owner="dbo" name="Advertisers_GetAllJobStatistics"  skip="true">
-			<comment><![CDATA[/* Start of Job Application Draft update */
-
+			<comment><![CDATA[
 ]]></comment>
 			<parameters>
 				<parameter name="@SiteID" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
@@ -66947,7 +67028,8 @@ END
 tName],
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
-					[PreferredContactMethod]
+					[PreferredContactMethod],
+					[AdvertiserLogoUrl]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -66988,7 +67070,9 @@ tModifiedBy
 					</procedure>
 				
 		<procedure owner="dbo" name="Advertisers_GetAdvertiserCount"  skip="true">
-			<comment><![CDATA[]]></comment>
+			<comment><![CDATA[
+
+]]></comment>
 			<parameters>
 				<parameter name="@SiteID" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 			</parameters>
@@ -67003,7 +67087,7 @@ END
 					</procedure>
 				
 		<procedure owner="dbo" name="Advertisers_CustomGetExpiringJobAdvertiser"  skip="true">
-			<comment><![CDATA[--New     
+			<comment><![CDATA[ 
 ]]></comment>
 			<parameters>
 				<parameter name="@SiteID" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
@@ -67049,7 +67133,8 @@ GROUP BY JobID) jr
 tName],
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
-					[PreferredContactMethod]
+					[PreferredContactMethod],
+					[AdvertiserLogoUrl]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -67083,7 +67168,8 @@ tName],
 tName],
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
-					[PreferredContactMethod]
+					[PreferredContactMethod],
+					[AdvertiserLogoUrl]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -67117,7 +67203,8 @@ tName],
 tName],
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
-					[PreferredContactMethod]
+					[PreferredContactMethod],
+					[AdvertiserLogoUrl]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -67150,7 +67237,8 @@ tName],
 tName],
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
-					[PreferredContactMethod]
+					[PreferredContactMethod],
+					[AdvertiserLogoUrl]
 				FROM
 					[dbo].[Advertisers]
 					
@@ -73269,7 +73357,8 @@ tModifiedDate
 					[LastModifiedBy],
 					[LastModified],
 					[JobTemplateLogo],
-					[AdvertiserID]
+					[AdvertiserID],
+					[JobTemplateLogoUrl]
 				FROM
 					[dbo].[JobTemplates]
 					
@@ -73333,7 +73422,7 @@ tModifiedDate
 				EXEC sp_executesql @SQL
 
 				-- Return paged results
-				SELECT O.[JobTemplateID], O.[SiteID], O.[JobTemplateDescription], O.[JobTemplateHTML], O.[GlobalTemplate], O.[LastModifiedBy], O.[LastModified], O.[JobTemplateLogo], O.[AdvertiserID]
+				SELECT O.[JobTemplateID], O.[SiteID], O.[JobTemplateDescription], O.[JobTemplateHTML], O.[GlobalTemplate], O.[LastModifiedBy], O.[LastModified], O.[JobTemplateLogo], O.[AdvertiserID], O.[JobTemplateLogoUrl]
 				FROM
 				    [dbo].[JobTemplates] O,
 				    #PageIndex PageIndex
@@ -73375,6 +73464,7 @@ tModifiedDate
 				<parameter name="@LastModified" type="datetime" direction="Input" size="8" precision="23" scale="3" param="" nulldefault=""/>
 				<parameter name="@JobTemplateLogo" type="image" direction="Input" size="16" precision="0" scale="0" param="" nulldefault=""/>
 				<parameter name="@AdvertiserId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
+				<parameter name="@JobTemplateLogoUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault=""/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -73388,6 +73478,7 @@ tModifiedDate
 					,[LastModified]
 					,[JobTemplateLogo]
 					,[AdvertiserID]
+					,[JobTemplateLogoUrl]
 					)
 				VALUES
 					(
@@ -73399,6 +73490,7 @@ tModifiedDate
 					,@LastModified
 					,@JobTemplateLogo
 					,@AdvertiserId
+					,@JobTemplateLogoUrl
 					)
 				
 				-- Get the identity value
@@ -73426,6 +73518,7 @@ tModifiedDate
 				<parameter name="@LastModified" type="datetime" direction="Input" size="8" precision="23" scale="3" param="" nulldefault=""/>
 				<parameter name="@JobTemplateLogo" type="image" direction="Input" size="16" precision="0" scale="0" param="" nulldefault=""/>
 				<parameter name="@AdvertiserId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
+				<parameter name="@JobTemplateLogoUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault=""/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -73442,6 +73535,7 @@ tModifiedDate
 					,[LastModified] = @LastModified
 					,[JobTemplateLogo] = @JobTemplateLogo
 					,[AdvertiserID] = @AdvertiserId
+					,[JobTemplateLogoUrl] = @JobTemplateLogoUrl
 				WHERE
 [JobTemplateID] = @JobTemplateId 
 				
@@ -73490,7 +73584,8 @@ tModifiedDate
 					[LastModifiedBy],
 					[LastModified],
 					[JobTemplateLogo],
-					[AdvertiserID]
+					[AdvertiserID],
+					[JobTemplateLogoUrl]
 				FROM
 					[dbo].[JobTemplates]
 				WHERE
@@ -73524,7 +73619,8 @@ tModifiedDate
 					[LastModifiedBy],
 					[LastModified],
 					[JobTemplateLogo],
-					[AdvertiserID]
+					[AdvertiserID],
+					[JobTemplateLogoUrl]
 				FROM
 					[dbo].[JobTemplates]
 				WHERE
@@ -73558,7 +73654,8 @@ tModifiedDate
 					[LastModifiedBy],
 					[LastModified],
 					[JobTemplateLogo],
-					[AdvertiserID]
+					[AdvertiserID],
+					[JobTemplateLogoUrl]
 				FROM
 					[dbo].[JobTemplates]
 				WHERE
@@ -73590,7 +73687,8 @@ tModifiedDate
 					[LastModifiedBy],
 					[LastModified],
 					[JobTemplateLogo],
-					[AdvertiserID]
+					[AdvertiserID],
+					[JobTemplateLogoUrl]
 				FROM
 					[dbo].[JobTemplates]
 				WHERE
@@ -73620,6 +73718,7 @@ tModifiedDate
 				<parameter name="@LastModified" type="datetime" direction="Input" size="8" precision="23" scale="3" param="" nulldefault="null"/>
 				<parameter name="@JobTemplateLogo" type="image" direction="Input" size="16" precision="0" scale="0" param="" nulldefault="null"/>
 				<parameter name="@AdvertiserId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
+				<parameter name="@JobTemplateLogoUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -73635,6 +73734,7 @@ tModifiedDate
 	, [LastModified]
 	, [JobTemplateLogo]
 	, [AdvertiserID]
+	, [JobTemplateLogoUrl]
     FROM
 	[dbo].[JobTemplates]
     WHERE 
@@ -73645,6 +73745,7 @@ tModifiedDate
 	AND ([LastModifiedBy] = @LastModifiedBy OR @LastModifiedBy IS NULL)
 	AND ([LastModified] = @LastModified OR @LastModified IS NULL)
 	AND ([AdvertiserID] = @AdvertiserId OR @AdvertiserId IS NULL)
+	AND ([JobTemplateLogoUrl] = @JobTemplateLogoUrl OR @JobTemplateLogoUrl IS NULL)
 						
   END
   ELSE
@@ -73659,6 +73760,7 @@ tModifiedDate
 	, [LastModified]
 	, [JobTemplateLogo]
 	, [AdvertiserID]
+	, [JobTemplateLogoUrl]
     FROM
 	[dbo].[JobTemplates]
     WHERE 
@@ -73669,6 +73771,7 @@ tModifiedDate
 	OR ([LastModifiedBy] = @LastModifiedBy AND @LastModifiedBy is not null)
 	OR ([LastModified] = @LastModified AND @LastModified is not null)
 	OR ([AdvertiserID] = @AdvertiserId AND @AdvertiserId is not null)
+	OR ([JobTemplateLogoUrl] = @JobTemplateLogoUrl AND @JobTemplateLogoUrl is not null)
 	SELECT @@ROWCOUNT			
   END
 				]]></body>
@@ -73703,7 +73806,7 @@ tModifiedDate
 				ORDER BY {1}
 				
 				-- Return paged results
-				SELECT O.[JobTemplateID], O.[SiteID], O.[JobTemplateDescription], O.[JobTemplateHTML], O.[GlobalTemplate], O.[LastModifiedBy], O.[LastModified], O.[JobTemplateLogo], O.[AdvertiserID]
+				SELECT O.[JobTemplateID], O.[SiteID], O.[JobTemplateDescription], O.[JobTemplateHTML], O.[GlobalTemplate], O.[LastModifiedBy], O.[LastModified], O.[JobTemplateLogo], O.[AdvertiserID], O.[JobTemplateLogoUrl]
 				FROM
 				    [dbo].[JobTemplates] O,
 				    #PageIndex PageIndex
@@ -73745,12 +73848,14 @@ tModifiedDate
 				<parameter name="@LastModified" type="datetime" direction="Input" size="8" precision="23" scale="3" param="" nulldefault="null"/>
 				<parameter name="@JobTemplateLogo" type="image" direction="Input" size="16" precision="0" scale="0" param="" nulldefault="null"/>
 				<parameter name="@AdvertiserId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
+				<parameter name="@JobTemplateLogoUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
 tModified
 					,@JobTemplateLogo
 					,@AdvertiserId
+					,@JobTemplateLogoUrl
 					)
 				
 				-- Get the identity value
@@ -73782,7 +73887,8 @@ tModified
 				
 tModified],
 					[JobTemplateLogo],
-					[AdvertiserID]
+					[AdvertiserID],
+					[JobTemplateLogoUrl]
 				FROM
 					[dbo].[JobTemplates]
 				WHERE
@@ -73814,7 +73920,8 @@ tModified],
 				
 tModified],
 					[JobTemplateLogo],
-					[AdvertiserID]
+					[AdvertiserID],
+					[JobTemplateLogoUrl]
 				FROM
 					[dbo].[JobTemplates]
 					
@@ -73879,7 +73986,8 @@ TotalRowCount'
 				
 tModified],
 					[JobTemplateLogo],
-					[AdvertiserID]
+					[AdvertiserID],
+					[JobTemplateLogoUrl]
 				FROM
 					[dbo].[JobTemplates]
 				WHERE
@@ -73911,7 +74019,8 @@ tModified],
 				
 tModified],
 					[JobTemplateLogo],
-					[AdvertiserID]
+					[AdvertiserID],
+					[JobTemplateLogoUrl]
 				FROM
 					[dbo].[JobTemplates]
 				WHERE
@@ -73936,10 +74045,12 @@ tModified],
 				
 tModified],  
   [JobTemplateLogo],  
-  [AdvertiserID]  
+  [AdvertiserID],
+  [JobTemplateLogoUrl]  
  FROM @JobTemplates  
   
- SELECT @@ROWCOUNT 
+ SELECT @@ROWCOUNT
+
 			]]></body>
 					</procedure>
 				
@@ -73965,12 +74076,14 @@ tModified],
 				<parameter name="@LastModified" type="datetime" direction="Input" size="8" precision="23" scale="3" param="" nulldefault="null"/>
 				<parameter name="@JobTemplateLogo" type="image" direction="Input" size="16" precision="0" scale="0" param="" nulldefault="null"/>
 				<parameter name="@AdvertiserId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
+				<parameter name="@JobTemplateLogoUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
 tModified
 					,[JobTemplateLogo] = @JobTemplateLogo
 					,[AdvertiserID] = @AdvertiserId
+					,[JobTemplateLogoUrl] = @JobTemplateLogoUrl
 				WHERE
 [JobTemplateID] = @JobTemplateId 
 				
@@ -74003,11 +74116,13 @@ tModified
 				<parameter name="@LastModified" type="datetime" direction="Input" size="8" precision="23" scale="3" param="" nulldefault="null"/>
 				<parameter name="@JobTemplateLogo" type="image" direction="Input" size="16" precision="0" scale="0" param="" nulldefault="null"/>
 				<parameter name="@AdvertiserId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
+				<parameter name="@JobTemplateLogoUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
 tModified is not null)
 	OR ([AdvertiserID] = @AdvertiserId AND @AdvertiserId is not null)
+	OR ([JobTemplateLogoUrl] = @JobTemplateLogoUrl AND @JobTemplateLogoUrl is not null)
 	SELECT @@ROWCOUNT			
   END
 				
@@ -78825,7 +78940,9 @@ END CATCH
   WHERE               
    WebServiceLogId = @WebServiceLogId              
               
-              
+            
+-- Finally runs the site job count
+exec [dbo].[Jobs_CustomUpdateSiteJobCount] @SiteID
               
 END 
 
@@ -91712,8 +91829,7 @@ END
 		
 				
 		<procedure owner="dbo" name="JobApplication_GetByAdvertiserIdJobId"  skip="true">
-			<comment><![CDATA[
-]]></comment>
+			<comment><![CDATA[]]></comment>
 			<parameters>
 				<parameter name="@AdvertiserId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@JobId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
@@ -91722,14 +91838,13 @@ END
 			</parameters>
 			<body><![CDATA[
 				
-TotalCount                
-     FROM PageIndex                
-     WHERE RowIndex >= @PageStart                      
-     AND RowIndex <= @PageEnd                      
-     ORDER BY RowIndex                 
-                   
-    END 
-    
+TotalCount                  
+     FROM PageIndex                  
+     WHERE RowIndex >= @PageStart                        
+     AND RowIndex <= @PageEnd                        
+     ORDER BY RowIndex                   
+                     
+    END  
     
 
 			]]></body>
@@ -92086,7 +92201,8 @@ DELETE FROM [dbo].[JobApplication] WITH (ROWLOCK)
 					</procedure>
 				
 		<procedure owner="dbo" name="JobApplication_GetByAdvertiserIdJobArchiveId"  skip="true">
-			<comment><![CDATA[]]></comment>
+			<comment><![CDATA[
+]]></comment>
 			<parameters>
 				<parameter name="@AdvertiserId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@JobArchiveId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
@@ -92095,13 +92211,13 @@ DELETE FROM [dbo].[JobApplication] WITH (ROWLOCK)
 			</parameters>
 			<body><![CDATA[
 				
-TotalCount          
-     FROM PageIndex          
-     WHERE RowIndex >= @PageStart                
-     AND RowIndex <= @PageEnd                
-     ORDER BY RowIndex           
-             
-    END
+TotalCount            
+     FROM PageIndex            
+     WHERE RowIndex >= @PageStart                  
+     AND RowIndex <= @PageEnd                  
+     ORDER BY RowIndex             
+               
+    END  
 
 			]]></body>
 					</procedure>
@@ -95709,7 +95825,7 @@ DELETE FROM [dbo].[JobApplicationType] WITH (ROWLOCK)
                         [LastModifiedByAdminUserId],
                         [JobItemTypeID],
                         [ApplicationMethod],
-                        [ApplicationURL],
+                        [ApplicationUrl],
                         [UploadMethod],
                         [Tags],
                         [JobTemplateID],
@@ -95739,6 +95855,7 @@ DELETE FROM [dbo].[JobApplicationType] WITH (ROWLOCK)
                         [Profile],
                         [RequireLogonForExternalApplication],
                         [AdvertiserLogo],
+                        [AdvertiserLogoUrl],
                         [SiteWorkTypeName],
                         [CurrencySymbol],
                         [SalaryUpperBand],
@@ -95866,7 +95983,7 @@ DELETE FROM [dbo].[JobApplicationType] WITH (ROWLOCK)
                         [LastModifiedByAdminUserId],
                         [JobItemTypeID],
                         [ApplicationMethod],
-                        [ApplicationURL],
+                        [ApplicationUrl],
                         [UploadMethod],
                         [Tags],
                         [JobTemplateID],
@@ -95896,6 +96013,7 @@ DELETE FROM [dbo].[JobApplicationType] WITH (ROWLOCK)
                         [Profile],
                         [RequireLogonForExternalApplication],
                         [AdvertiserLogo],
+                        [AdvertiserLogoUrl],
                         [SiteWorkTypeName],
                         [CurrencySymbol],
                         [SalaryUpperBand],

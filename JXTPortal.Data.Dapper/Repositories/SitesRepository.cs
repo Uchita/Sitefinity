@@ -33,8 +33,8 @@ namespace JXTPortal.Data.Dapper.Repositories
             using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
             {
                 var sbQuery = new StringBuilder();
-                sbQuery.Append("INSERT INTO dbo.Sites (SiteName, SiteURL, SiteDescription, SiteAdminLogo, LastModified, LastModifiedBy, Live, MobileEnabled, MobileUrl, SiteAdminLogoURL)");
-                sbQuery.Append(" VALUES(@SiteName, @SiteURL, @SiteDescription, @SiteAdminLogo, @LastModified, @LastModifiedBy, @Live, @MobileEnabled, @MobileUrl, @SiteAdminLogoURL)");
+                sbQuery.Append("INSERT INTO dbo.Sites (SiteName, SiteUrl, SiteDescription, SiteAdminLogo, LastModified, LastModifiedBy, Live, MobileEnabled, MobileUrl, SiteAdminLogoUrl)");
+                sbQuery.Append(" VALUES(@SiteName, @SiteUrl, @SiteDescription, @SiteAdminLogo, @LastModified, @LastModifiedBy, @Live, @MobileEnabled, @MobileUrl, @SiteAdminLogoUrl)");
                 sbQuery.Append("SELECT CAST(SCOPE_IDENTITY() as int)");
                 var Id = dbConnection.Query<int>(sbQuery.ToString(), entity).Single();
                 return Id;
@@ -46,7 +46,7 @@ namespace JXTPortal.Data.Dapper.Repositories
             using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
             {
                 dbConnection.Open();
-                var query = "UPDATE dbo.Sites SET SiteName = @SiteName, SiteURL = @SiteURL, SiteDescription = @SiteDescription, SiteAdminLogo = @SiteAdminLogo, LastModified = @LastModified, LastModifiedBy = @LastModifiedBy, Live = @Live, MobileEnabled = @MobileEnabled, MobileUrl = @MobileUrl, SiteAdminLogoURL = @SiteAdminLogoURL WHERE SiteID = @SiteID";
+                var query = "UPDATE dbo.Sites SET SiteName = @SiteName, SiteUrl = @SiteUrl, SiteDescription = @SiteDescription, SiteAdminLogo = @SiteAdminLogo, LastModified = @LastModified, LastModifiedBy = @LastModifiedBy, Live = @Live, MobileEnabled = @MobileEnabled, MobileUrl = @MobileUrl, SiteAdminLogoUrl = @SiteAdminLogoUrl WHERE SiteID = @SiteID";
                 dbConnection.Execute(query, entity);
             }
         }
@@ -66,7 +66,7 @@ namespace JXTPortal.Data.Dapper.Repositories
             using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
             {
                 dbConnection.Open();
-                var query = "SELECT SiteID, SiteName, SiteURL, SiteDescription, SiteAdminLogo, LastModified, LastModifiedBy, Live, MobileEnabled, MobileUrl, SiteAdminLogoURL FROM dbo.Sites WHERE SiteID = @SiteID";
+                var query = "SELECT SiteID, SiteName, SiteUrl, SiteDescription, SiteAdminLogo, LastModified, LastModifiedBy, Live, MobileEnabled, MobileUrl, SiteAdminLogoUrl FROM dbo.Sites WHERE SiteID = @SiteID";
                 var entity = dbConnection.Query<SitesEntity>(query, new { SiteID = id }).SingleOrDefault();
                 return entity;
             }
@@ -77,7 +77,7 @@ namespace JXTPortal.Data.Dapper.Repositories
             using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
             {
                 dbConnection.Open();
-                var query = "SELECT SiteID, SiteName, SiteURL, SiteDescription, SiteAdminLogo, LastModified, LastModifiedBy, Live, MobileEnabled, MobileUrl, SiteAdminLogoURL FROM dbo.Sites";
+                var query = "SELECT SiteID, SiteName, SiteUrl, SiteDescription, SiteAdminLogo, LastModified, LastModifiedBy, Live, MobileEnabled, MobileUrl, SiteAdminLogoUrl FROM dbo.Sites";
                 var entities = dbConnection.Query<SitesEntity>(query).ToList();
                 return entities;
             }

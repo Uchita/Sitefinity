@@ -42,6 +42,6 @@ namespace JXTPortal.Data.Dapper.Entities.Core
         public string NominatedCompanyEmailAddress { get; set; }
         public string NominatedCompanyPhone { get; set; }
         public int? PreferredContactMethod { get; set; }
-        public string AdvertiserLogoURL { get; set; }
+        public string AdvertiserLogoUrl { get; set; }
     }
 }

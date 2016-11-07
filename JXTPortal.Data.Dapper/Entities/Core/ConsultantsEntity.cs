@@ -45,6 +45,6 @@ namespace JXTPortal.Data.Dapper.Entities.Core
         public int Sequence {get; set;}
         public string LastName { get; set; }
         public string ConsultantsXML { get; set; }
-        public string ConsultantImageURL { get; set; }
+        public string ConsultantImageUrl { get; set; }
     }
 }

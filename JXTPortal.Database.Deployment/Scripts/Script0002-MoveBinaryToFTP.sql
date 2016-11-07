@@ -598,9 +598,4 @@ FROM [dbo].[Jobs] Jobs (NOLOCK)
  ON [SiteProfession].ProfessionID = [Roles].ProfessionID          
  AND SiteProfession.SiteID = Jobs.SiteID
 
-
-
-
 GO
-
-

@@ -198,6 +198,11 @@ namespace JXTPortal.Entities
 		/// PreferredContactMethod : 
 		/// </summary>
 		System.Int32?  PreferredContactMethod  { get; set; }
+		
+		/// <summary>
+		/// AdvertiserLogoUrl : 
+		/// </summary>
+		System.String  AdvertiserLogoUrl  { get; set; }
 			
 		/// <summary>
 		/// Creates a new object that is a copy of the current instance.

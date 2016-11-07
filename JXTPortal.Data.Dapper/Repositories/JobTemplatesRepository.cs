@@ -33,8 +33,8 @@ namespace JXTPortal.Data.Dapper.Repositories
             using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
             {
                 var sbQuery = new StringBuilder();
-                sbQuery.Append("INSERT INTO dbo.JobTemplates (SiteID, JobTemplateDescription, JobTemplateHTML, GlobalTemplate, LastModifiedBy, LastModified, JobTemplateLogo, AdvertiserID, JobTemplateLogoURL)");
-                sbQuery.Append(" VALUES(@SiteID, @JobTemplateDescription, @JobTemplateHTML, @GlobalTemplate, @LastModifiedBy, @LastModified, @JobTemplateLogo, @AdvertiserID, @JobTemplateLogoURL)");
+                sbQuery.Append("INSERT INTO dbo.JobTemplates (SiteID, JobTemplateDescription, JobTemplateHTML, GlobalTemplate, LastModifiedBy, LastModified, JobTemplateLogo, AdvertiserID, JobTemplateLogoUrl)");
+                sbQuery.Append(" VALUES(@SiteID, @JobTemplateDescription, @JobTemplateHTML, @GlobalTemplate, @LastModifiedBy, @LastModified, @JobTemplateLogo, @AdvertiserID, @JobTemplateLogoUrl)");
                 sbQuery.Append("SELECT CAST(SCOPE_IDENTITY() as int)");
                 var Id = dbConnection.Query<int>(sbQuery.ToString(), entity).Single();
                 return Id;
@@ -46,7 +46,7 @@ namespace JXTPortal.Data.Dapper.Repositories
             using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
             {
                 dbConnection.Open();
-                var query = "UPDATE dbo.JobTemplates SET SiteID = @SiteID, JobTemplateDescription = @JobTemplateDescription, JobTemplateHTML = @JobTemplateHTML, GlobalTemplate = @GlobalTemplate, LastModifiedBy = @LastModifiedBy, LastModified = @LastModified, JobTemplateLogo= @JobTemplateLogo, AdvertiserID = @AdvertiserID, JobTemplateLogoURL = @JobTemplateLogoURL WHERE JobTemplateID = @JobTemplateID";
+                var query = "UPDATE dbo.JobTemplates SET SiteID = @SiteID, JobTemplateDescription = @JobTemplateDescription, JobTemplateHTML = @JobTemplateHTML, GlobalTemplate = @GlobalTemplate, LastModifiedBy = @LastModifiedBy, LastModified = @LastModified, JobTemplateLogo= @JobTemplateLogo, AdvertiserID = @AdvertiserID, JobTemplateLogoUrl = @JobTemplateLogoUrl WHERE JobTemplateID = @JobTemplateID";
                 dbConnection.Execute(query, entity);
             }
         }
@@ -66,7 +66,7 @@ namespace JXTPortal.Data.Dapper.Repositories
             using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
             {
                 dbConnection.Open();
-                var query = "SELECT JobTemplateID, SiteID, JobTemplateDescription, JobTemplateHTML, GlobalTemplate, LastModifiedBy, LastModified, JobTemplateLogo, AdvertiserID, JobTemplateLogoURL FROM dbo.JobTemplates WHERE JobTemplateID = @JobTemplateID";
+                var query = "SELECT JobTemplateID, SiteID, JobTemplateDescription, JobTemplateHTML, GlobalTemplate, LastModifiedBy, LastModified, JobTemplateLogo, AdvertiserID, JobTemplateLogoUrl FROM dbo.JobTemplates WHERE JobTemplateID = @JobTemplateID";
                 var entity = dbConnection.Query<JobTemplatesEntity>(query, new { SiteID = id }).SingleOrDefault();
                 return entity;
             }
@@ -77,7 +77,7 @@ namespace JXTPortal.Data.Dapper.Repositories
             using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
             {
                 dbConnection.Open();
-                var query = "SELECT JobTemplateID, SiteID, JobTemplateDescription, JobTemplateHTML, GlobalTemplate, LastModifiedBy, LastModified, JobTemplateLogo, AdvertiserID, JobTemplateLogoURL FROM dbo.JobTemplates";
+                var query = "SELECT JobTemplateID, SiteID, JobTemplateDescription, JobTemplateHTML, GlobalTemplate, LastModifiedBy, LastModified, JobTemplateLogo, AdvertiserID, JobTemplateLogoUrl FROM dbo.JobTemplates";
                 var entities = dbConnection.Query<JobTemplatesEntity>(query).ToList();
                 return entities;
             }

@@ -33,8 +33,8 @@ namespace JXTPortal.Data.Dapper.Repositories
             using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
             {
                 var sbQuery = new StringBuilder();
-                sbQuery.Append("INSERT INTO dbo.AdvertiserJobTemplateLogo (AdvertiserID, JobLogoName, JobTemplateLogo, JobTemplateLogoURL)");
-                sbQuery.Append(" VALUES(@AdvertiserJobTemplateLogoID, @AdvertiserID, @JobLogoName, @JobTemplateLogo, @JobTemplateLogoURL)");
+                sbQuery.Append("INSERT INTO dbo.AdvertiserJobTemplateLogo (AdvertiserID, JobLogoName, JobTemplateLogo, JobTemplateLogoUrl)");
+                sbQuery.Append(" VALUES(@AdvertiserJobTemplateLogoID, @AdvertiserID, @JobLogoName, @JobTemplateLogo, @JobTemplateLogoUrl)");
                 sbQuery.Append("SELECT CAST(SCOPE_IDENTITY() as int)");
                 var Id = dbConnection.Query<int>(sbQuery.ToString(), entity).Single();
                 return Id;
@@ -46,7 +46,7 @@ namespace JXTPortal.Data.Dapper.Repositories
             using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
             {
                 dbConnection.Open();
-                var query = "UPDATE dbo.AdvertiserJobTemplateLogo SET AdvertiserID = @AdvertiserID, JobLogoName = @JobLogoName, JobTemplateLogo = @JobTemplateLogo, JobTemplateLogoURL = @JobTemplateLogoURL WHERE AdvertiserJobTemplateLogoID = @AdvertiserJobTemplateLogoID";
+                var query = "UPDATE dbo.AdvertiserJobTemplateLogo SET AdvertiserID = @AdvertiserID, JobLogoName = @JobLogoName, JobTemplateLogo = @JobTemplateLogo, JobTemplateLogoUrl = @JobTemplateLogoUrl WHERE AdvertiserJobTemplateLogoID = @AdvertiserJobTemplateLogoID";
                 dbConnection.Execute(query, entity);
             }
         }
@@ -66,7 +66,7 @@ namespace JXTPortal.Data.Dapper.Repositories
             using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
             {
                 dbConnection.Open();
-                var query = "SELECT AdvertiserJobTemplateLogoID, AdvertiserID, JobLogoName, JobTemplateLogo, JobTemplateLogoURL FROM dbo.AdvertiserJobTemplateLogo WHERE AdvertiserJobTemplateLogoID = @AdvertiserJobTemplateLogoID";
+                var query = "SELECT AdvertiserJobTemplateLogoID, AdvertiserID, JobLogoName, JobTemplateLogo, JobTemplateLogoUrl FROM dbo.AdvertiserJobTemplateLogo WHERE AdvertiserJobTemplateLogoID = @AdvertiserJobTemplateLogoID";
                 var entity = dbConnection.Query<AdvertiserJobTemplateLogoEntity>(query, new { AdvertiserJobTemplateLogoID = id }).SingleOrDefault();
                 return entity;
             }
@@ -77,7 +77,7 @@ namespace JXTPortal.Data.Dapper.Repositories
             using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
             {
                 dbConnection.Open();
-                var query = "SELECT AdvertiserJobTemplateLogoID, AdvertiserID, JobLogoName, JobTemplateLogo, JobTemplateLogoURL FROM dbo.AdvertiserJobTemplateLogo FROM dbo.JobTemplates";
+                var query = "SELECT AdvertiserJobTemplateLogoID, AdvertiserID, JobLogoName, JobTemplateLogo, JobTemplateLogoUrl FROM dbo.AdvertiserJobTemplateLogo FROM dbo.JobTemplates";
                 var entities = dbConnection.Query<AdvertiserJobTemplateLogoEntity>(query).ToList();
                 return entities;
             }

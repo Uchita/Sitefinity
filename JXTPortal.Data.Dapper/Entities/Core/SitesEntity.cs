@@ -16,6 +16,6 @@ namespace JXTPortal.Data.Dapper.Entities.Core
         public bool? Live { get; set; }
         public bool MobileEnabled { get; set; }
         public string MobileUrl { get; set; }
-        public string SiteAdminLogoURL { get; set; }
+        public string SiteAdminLogoUrl { get; set; }
     }
 }

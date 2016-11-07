@@ -98,7 +98,7 @@ namespace JXTMoveImageToFTP
                             {
                                 // No Error, Site Logo and URL
 
-                                site.SiteAdminLogoURL = string.Format("Sites_{0}.{1}", site.SiteID, extension);
+                                site.SiteAdminLogoUrl = string.Format("Sites_{0}.{1}", site.SiteID, extension);
                                 // site.SiteAdminLogo = null;
 
                                 sitesRepository.Update(site);
@@ -178,7 +178,7 @@ namespace JXTMoveImageToFTP
                             {
                                 // No Error, Site Logo and URL
 
-                                site.SiteAdminLogoURL = string.Format("Sites_{0}.{1}", site.SiteID, extension);
+                                site.SiteAdminLogoUrl = string.Format("Sites_{0}.{1}", site.SiteID, extension);
                                 // site.SiteAdminLogo = null;
 
                                 sitesRepository.Update(site);

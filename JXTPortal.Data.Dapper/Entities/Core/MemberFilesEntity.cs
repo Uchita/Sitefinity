@@ -17,6 +17,6 @@ namespace JXTPortal.Data.Dapper.Entities.Core
         public string MemberFileTitle { get; set; }
         public DateTime LastModifiedDate { get; set; }
         public int DocumentTypeID { get; set; }
-        public string MemberFileURL { get; set; }
+        public string MemberFileUrl { get; set; }
     }
 }

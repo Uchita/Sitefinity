@@ -33,8 +33,8 @@ namespace JXTPortal.Data.Dapper.Repositories
             using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
             {
                 var sbQuery = new StringBuilder();
-                sbQuery.Append("INSERT INTO dbo.MemberFiles (MemberID, MemberFileTypeID, MemberFileName, MemberFileSearchExtension, MemberFileContent, MemberFileTitle, LastModifiedDate, DocumentTypeID, MemberFileURL)");
-                sbQuery.Append(" VALUES(@MemberID, @MemberFileTypeID, @MemberFileName, @MemberFileSearchExtension, @MemberFileContent, @MemberFileTitle, @LastModifiedDate, @DocumentTypeID, @MemberFileURL)");
+                sbQuery.Append("INSERT INTO dbo.MemberFiles (MemberID, MemberFileTypeID, MemberFileName, MemberFileSearchExtension, MemberFileContent, MemberFileTitle, LastModifiedDate, DocumentTypeID, MemberFileUrl)");
+                sbQuery.Append(" VALUES(@MemberID, @MemberFileTypeID, @MemberFileName, @MemberFileSearchExtension, @MemberFileContent, @MemberFileTitle, @LastModifiedDate, @DocumentTypeID, @MemberFileUrl)");
                 sbQuery.Append("SELECT CAST(SCOPE_IDENTITY() as int)");
                 var Id = dbConnection.Query<int>(sbQuery.ToString(), entity).Single();
                 return Id;
@@ -46,7 +46,7 @@ namespace JXTPortal.Data.Dapper.Repositories
             using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
             {
                 dbConnection.Open();
-                var query = "UPDATE dbo.MemberFiles SET MemberID = @MemberID, MemberFileTypeID = @MemberFileTypeID, MemberFileName = @MemberFileName, MemberFileSearchExtension = @MemberFileSearchExtension, MemberFileContent = @MemberFileContent, MemberFileTitle = @MemberFileTitle, LastModifiedDate = @LastModifiedDate, DocumentTypeID = @DocumentTypeID, MemberFileURL = @MemberFileURL WHERE MemberFileID = @MemberFileID";
+                var query = "UPDATE dbo.MemberFiles SET MemberID = @MemberID, MemberFileTypeID = @MemberFileTypeID, MemberFileName = @MemberFileName, MemberFileSearchExtension = @MemberFileSearchExtension, MemberFileContent = @MemberFileContent, MemberFileTitle = @MemberFileTitle, LastModifiedDate = @LastModifiedDate, DocumentTypeID = @DocumentTypeID, MemberFileUrl = @MemberFileUrl WHERE MemberFileID = @MemberFileID";
                 dbConnection.Execute(query, entity);
             }
         }
@@ -66,7 +66,7 @@ namespace JXTPortal.Data.Dapper.Repositories
             using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
             {
                 dbConnection.Open();
-                var query = "SELECT MemberFileID, MemberID, MemberFileTypeID, MemberFileName, MemberFileSearchExtension, MemberFileContent, MemberFileTitle, LastModifiedDate, DocumentTypeID, MemberFileURL FROM dbo.MemberFiles WHERE MemberFileID = @MemberFileID";
+                var query = "SELECT MemberFileID, MemberID, MemberFileTypeID, MemberFileName, MemberFileSearchExtension, MemberFileContent, MemberFileTitle, LastModifiedDate, DocumentTypeID, MemberFileUrl FROM dbo.MemberFiles WHERE MemberFileID = @MemberFileID";
                 var entity = dbConnection.Query<MemberFilesEntity>(query, new { MemberFileID = id }).SingleOrDefault();
                 return entity;
             }
@@ -77,7 +77,7 @@ namespace JXTPortal.Data.Dapper.Repositories
             using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
             {
                 dbConnection.Open();
-                var query = "SELECT MemberFileID, MemberID, MemberFileTypeID, MemberFileName, MemberFileSearchExtension, MemberFileContent, MemberFileTitle, LastModifiedDate, DocumentTypeID, MemberFileURL FROM dbo.MemberFiles";
+                var query = "SELECT MemberFileID, MemberID, MemberFileTypeID, MemberFileName, MemberFileSearchExtension, MemberFileContent, MemberFileTitle, LastModifiedDate, DocumentTypeID, MemberFileUrl FROM dbo.MemberFiles";
                 var entities = dbConnection.Query<MemberFilesEntity>(query).ToList();
                 return entities;
             }

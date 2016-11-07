@@ -935,7 +935,7 @@
     <comment>City</comment>
   </data>
   <data name="LabelCityState" xml:space="preserve">
-    <value>시/구</value>
+    <value>시/도</value>
     <comment>City / State</comment>
   </data>
   <data name="LabelCityTown" xml:space="preserve">
@@ -4357,7 +4357,7 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
   <data name="LabelDoctorate" xml:space="preserve">
     <value>박사호</value>
     <comment>Doctorate</comment>
-   </data>
+  </data>
   <data name="labelBasicInformation" xml:space="preserve">
     <value>기본 정보</value>
     <comment>Basic Information</comment>

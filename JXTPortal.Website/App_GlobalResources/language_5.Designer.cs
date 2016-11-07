@@ -1916,7 +1916,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 도시.
+        ///   Looks up a localized string similar to 시/구.
         /// </summary>
         internal static string LabelCity {
             get {
@@ -1925,7 +1925,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 시/구.
+        ///   Looks up a localized string similar to 시/도.
         /// </summary>
         internal static string LabelCityState {
             get {

@@ -935,7 +935,7 @@
     <comment>City</comment>
   </data>
   <data name="LabelCityState" xml:space="preserve">
-    <value>시/구</value>
+    <value>시/도</value>
     <comment>City / State</comment>
   </data>
   <data name="LabelCityTown" xml:space="preserve">
@@ -1807,7 +1807,7 @@
     <comment>Industries</comment>
   </data>
   <data name="LabelIndustry" xml:space="preserve">
-    <value>Industry</value>
+    <value>사업분야</value>
     <comment>Industry</comment>
   </data>
   <data name="LabelInstitutionName" xml:space="preserve">
@@ -4239,39 +4239,39 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <comment>Accepts only numbers, spaces, '+', '(' and ')'</comment>
   </data>
   <data name="LabelAddResumeFile" xml:space="preserve">
-    <value>Add Resume File</value>
+    <value>이력서 첨부</value>
     <comment>Add Resume File</comment>
   </data>
   <data name="LabelBtnSaveNext" xml:space="preserve">
-    <value>Save &amp;amp; Next</value>
+    <value>내용 저장</value>
     <comment>Save &amp;amp; Next</comment>
   </data>
   <data name="LabelCurrentCompanyName" xml:space="preserve">
-    <value>Current company name</value>
+    <value>회사</value>
     <comment>Current company name</comment>
   </data>
   <data name="LabelCurrentJobTitle" xml:space="preserve">
-    <value>Current job title</value>
+    <value>직책</value>
     <comment>Current job title</comment>
   </data>
   <data name="LabelDesiredPosition" xml:space="preserve">
-    <value>Desired Position</value>
+    <value>희망 직종</value>
     <comment>Desired Position</comment>
   </data>
   <data name="LabelEmploymentType" xml:space="preserve">
-    <value>Employment Type</value>
+    <value>고용 유형</value>
     <comment>Employment Type</comment>
   </data>
   <data name="LabelEmploymentTypes" xml:space="preserve">
-    <value>Employment Types</value>
+    <value>고용 유형</value>
     <comment>Employment Types</comment>
   </data>
   <data name="LabelFileTitle" xml:space="preserve">
-    <value>File Title</value>
+    <value>파일제목</value>
     <comment>File Title</comment>
   </data>
   <data name="LabelFixedSalary" xml:space="preserve">
-    <value>Fixed Salary</value>
+    <value>고정급</value>
     <comment>Fixed Salary</comment>
   </data>
   <data name="LabelIncentiveSalary" xml:space="preserve">
@@ -4279,83 +4279,95 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <comment>Incentive Salary</comment>
   </data>
   <data name="LabelJobCategory" xml:space="preserve">
-    <value>Job Category</value>
+    <value>직업 분류</value>
     <comment>Job Category</comment>
   </data>
   <data name="LabelJobFunction" xml:space="preserve">
-    <value>Job Function</value>
+    <value>직업 기능</value>
     <comment>Job Function</comment>
   </data>
   <data name="LabelNativeLanguage" xml:space="preserve">
-    <value>Native Language</value>
+    <value>모국어</value>
     <comment>Native Language</comment>
   </data>
   <data name="LabelPhoneHomeFull" xml:space="preserve">
-    <value>Home Phone</value>
+    <value>자택</value>
     <comment>Home Phone</comment>
   </data>
   <data name="LabelPhoneMobileFull" xml:space="preserve">
-    <value>Mobile Phone</value>
+    <value>핸드폰</value>
     <comment>Mobile Phone</comment>
   </data>
   <data name="LabelPrimaryDesiredCountry" xml:space="preserve">
-    <value>Primary Desired Country</value>
+    <value>1순위 희망 국가</value>
     <comment>Primary Desired Country</comment>
   </data>
   <data name="LabelPrimaryDesiredIndustry" xml:space="preserve">
-    <value>Primary Desired Industry</value>
+    <value>사업분야</value>
     <comment>Primary Desired Industry</comment>
   </data>
   <data name="LabelPrimaryDesiredJobCategory" xml:space="preserve">
-    <value>Primary Desired Job Category</value>
+    <value>직업 분류</value>
     <comment>Primary Desired Job Category</comment>
   </data>
   <data name="LabelPrimaryDesiredJobFunction" xml:space="preserve">
-    <value>Primary Desired Job Function</value>
+    <value>직업 기능</value>
     <comment>Primary Desired Job Function</comment>
   </data>
   <data name="LabelPrimaryDesiredLocation" xml:space="preserve">
-    <value>Primary Desired Location</value>
+    <value>1순위 희망 지역</value>
     <comment>Primary Desired Location</comment>
   </data>
   <data name="LabelResumeUpload" xml:space="preserve">
-    <value>Resume Upload</value>
+    <value>이력서 업로드</value>
     <comment>Resume Upload</comment>
   </data>
   <data name="LabelSalaryPeriod" xml:space="preserve">
-    <value>Salary Period</value>
+    <value>급여 기간</value>
     <comment>Salary Period</comment>
   </data>
   <data name="LabelSecondaryDesiredCountries" xml:space="preserve">
-    <value>Secondary Desired Countries</value>
+    <value>2순위 희망 국가</value>
     <comment>Secondary Desired Countries</comment>
   </data>
   <data name="LabelSecondaryLanguage" xml:space="preserve">
-    <value>Secondary Language</value>
+    <value>외국어</value>
     <comment>Secondary Language</comment>
   </data>
   <data name="LabelSecondaryLanguageLevel" xml:space="preserve">
-    <value>Secondary Language Level</value>
+    <value>외국어 수준</value>
     <comment>Secondary Language Level</comment>
   </data>
   <data name="LabelUploadedDate" xml:space="preserve">
-    <value>Uploaded Date</value>
+    <value>업로드 날짜</value>
     <comment>Uploaded Date</comment>
   </data>
   <data name="LabelUploadResumeUpto" xml:space="preserve">
-    <value>* You may upload upto 3 resumes</value>
+    <value>이력서는 최대 3개까지 업로드하실수 있습니다.</value>
     <comment>* You may upload upto 3 resumes</comment>
   </data>
   <data name="LabelZipCode" xml:space="preserve">
-    <value>Zip Code</value>
+    <value>우편번호</value>
     <comment>Zip Code</comment>
   </data>
   <data name="LabelZipCodePlaceholder" xml:space="preserve">
-    <value>Zip/Postcode</value>
+    <value>우편번호</value>
     <comment>Zip/Postcode</comment>
   </data>
   <data name="LabelDoctorate" xml:space="preserve">
     <value>박사호</value>
     <comment>Doctorate</comment>
+  </data>
+  <data name="labelBasicInformation" xml:space="preserve">
+    <value>기본 정보</value>
+    <comment>Basic Information</comment>
+  </data>
+  <data name="labelCurrentRole" xml:space="preserve">
+    <value>현재 직무 사항</value>
+    <comment>Current Role</comment>
+  </data>
+  <data name="labelMyProfile" xml:space="preserve">
+    <value>labelMyProfile</value>
+    <comment>labelMyProfile</comment>
   </data>
 </root>

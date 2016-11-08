@@ -3155,7 +3155,7 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <comment>You have not completed all the required information fields.</comment>
   </data>
   <data name="LabelRequiredProfileSectionsHeading" xml:space="preserve">
-    <value>Required Profile Sections left to complete?</value>
+    <value>등록 정보</value>
     <comment>Required Profile Sections left to complete?</comment>
   </data>
   <data name="LabelRequireLogon" xml:space="preserve">
@@ -3871,7 +3871,7 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <comment>Validated</comment>
   </data>
   <data name="LabelValidation" xml:space="preserve">
-    <value>Validation</value>
+    <value>인증</value>
     <comment>Validation</comment>
   </data>
   <data name="LabelValidEmailRequired" xml:space="preserve">
@@ -3971,7 +3971,7 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <comment>Welcome to the Member change password page. Please enter your current password and new password in the form below.</comment>
   </data>
   <data name="LabelWhatAreYouUpTo" xml:space="preserve">
-    <value>What are you up to?</value>
+    <value>스테이터스</value>
     <comment>What are you up to?</comment>
   </data>
   <data name="LabelWillingToRelocate" xml:space="preserve">

@@ -7102,7 +7102,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Required Profile Sections left to complete?.
+        ///   Looks up a localized string similar to 등록 정보.
         /// </summary>
         internal static string LabelRequiredProfileSectionsHeading {
             get {
@@ -8776,7 +8776,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Validation.
+        ///   Looks up a localized string similar to 인증.
         /// </summary>
         internal static string LabelValidation {
             get {
@@ -9001,7 +9001,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to What are you up to?.
+        ///   Looks up a localized string similar to 스테이터스.
         /// </summary>
         internal static string LabelWhatAreYouUpTo {
             get {

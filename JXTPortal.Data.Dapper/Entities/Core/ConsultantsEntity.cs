@@ -32,7 +32,7 @@ namespace JXTPortal.Data.Dapper.Entities.Core
         public string Link { get; set; }
         public string WechatURL { get; set; }
         public int FeaturedTeamMember {get; set;}
-        public string ImageURL { get; set; }
+        public byte[] ImageURL { get; set; }
         public string VideoURL { get; set; }
         public string BlogRSS { get; set; }
         public string NewsRSS { get; set; }

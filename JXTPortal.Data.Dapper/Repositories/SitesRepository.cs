@@ -66,7 +66,7 @@ namespace JXTPortal.Data.Dapper.Repositories
             using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
             {
                 dbConnection.Open();
-                var query = "SELECT SiteID, SiteName, SiteUrl, SiteDescription, SiteAdminLogo, LastModified, LastModifiedBy, Live, MobileEnabled, MobileUrl, SiteAdminLogoUrl FROM dbo.Sites WHERE SiteID = @SiteID";
+                var query = "SELECT SiteID, SiteName, SiteUrl, SiteDescription, SiteAdminLogo, LastModified, LastModifiedBy, Live, MobileEnabled, MobileUrl, SiteAdminLogoUrl FROM dbo.Sites NOLOCK WHERE SiteID = @SiteID";
                 var entity = dbConnection.Query<SitesEntity>(query, new { SiteID = id }).SingleOrDefault();
                 return entity;
             }
@@ -77,7 +77,7 @@ namespace JXTPortal.Data.Dapper.Repositories
             using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
             {
                 dbConnection.Open();
-                var query = "SELECT SiteID, SiteName, SiteUrl, SiteDescription, SiteAdminLogo, LastModified, LastModifiedBy, Live, MobileEnabled, MobileUrl, SiteAdminLogoUrl FROM dbo.Sites";
+                var query = "SELECT SiteID, SiteName, SiteUrl, SiteDescription, SiteAdminLogo, LastModified, LastModifiedBy, Live, MobileEnabled, MobileUrl, SiteAdminLogoUrl FROM dbo.Sites NOLOCK";
                 var entities = dbConnection.Query<SitesEntity>(query).ToList();
                 return entities;
             }

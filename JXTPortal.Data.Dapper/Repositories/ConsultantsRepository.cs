@@ -66,7 +66,7 @@ namespace JXTPortal.Data.Dapper.Repositories
             using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
             {
                 dbConnection.Open();
-                var query = "SELECT ConsultantID, SiteID, LanguageID, Title, FirstName, Email, Phone, Mobile, PositionTitle, OfficeLocation, Categories, Location, FriendlyUrl, ShortDescription, Testimonial, FullDescription, ConsultantData, LinkedInUrl, TwitterUrl, FacebookUrl, GoogleUrl, Link, WechatUrl, FeaturedTeamMember, ImageUrl, VideoUrl, BlogRSS, NewsRSS, JobRSS, TestimonialsRSS, Valid, MetaTitle, MetaDescription, MetaKeywords, LastModifiedBy, LastModified, Sequence, LastName, ConsultantsXML, ConsultantImageUrl FROM dbo.Consultants WHERE ConsultantID = @ConsultantID";
+                var query = "SELECT ConsultantID, SiteID, LanguageID, Title, FirstName, Email, Phone, Mobile, PositionTitle, OfficeLocation, Categories, Location, FriendlyUrl, ShortDescription, Testimonial, FullDescription, ConsultantData, LinkedInUrl, TwitterUrl, FacebookUrl, GoogleUrl, Link, WechatUrl, FeaturedTeamMember, ImageUrl, VideoUrl, BlogRSS, NewsRSS, JobRSS, TestimonialsRSS, Valid, MetaTitle, MetaDescription, MetaKeywords, LastModifiedBy, LastModified, Sequence, LastName, ConsultantsXML, ConsultantImageUrl FROM dbo.Consultants NOLOCK WHERE ConsultantID = @ConsultantID";
                 var entity = dbConnection.Query<ConsultantsEntity>(query, new { ConsultantID = id }).SingleOrDefault();
                 return entity;
             }
@@ -77,7 +77,7 @@ namespace JXTPortal.Data.Dapper.Repositories
             using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
             {
                 dbConnection.Open();
-                var query = "SELECT ConsultantID, SiteID, LanguageID, Title, FirstName, Email, Phone, Mobile, PositionTitle, OfficeLocation, Categories, Location, FriendlyUrl, ShortDescription, Testimonial, FullDescription, ConsultantData, LinkedInUrl, TwitterUrl, FacebookUrl, GoogleUrl, Link, WechatUrl, FeaturedTeamMember, ImageUrl, VideoUrl, BlogRSS, NewsRSS, JobRSS, TestimonialsRSS, Valid, MetaTitle, MetaDescription, MetaKeywords, LastModifiedBy, LastModified, Sequence, LastName, ConsultantsXML, ConsultantImageUrl FROM dbo.Consultants";
+                var query = "SELECT ConsultantID, SiteID, LanguageID, Title, FirstName, Email, Phone, Mobile, PositionTitle, OfficeLocation, Categories, Location, FriendlyUrl, ShortDescription, Testimonial, FullDescription, ConsultantData, LinkedInUrl, TwitterUrl, FacebookUrl, GoogleUrl, Link, WechatUrl, FeaturedTeamMember, ImageUrl, VideoUrl, BlogRSS, NewsRSS, JobRSS, TestimonialsRSS, Valid, MetaTitle, MetaDescription, MetaKeywords, LastModifiedBy, LastModified, Sequence, LastName, ConsultantsXML, ConsultantImageUrl FROM dbo.Consultants NOLOCK";
                 var entities = dbConnection.Query<ConsultantsEntity>(query).ToList();
                 return entities;
             }

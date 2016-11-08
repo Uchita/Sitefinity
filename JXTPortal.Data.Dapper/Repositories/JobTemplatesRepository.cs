@@ -66,7 +66,7 @@ namespace JXTPortal.Data.Dapper.Repositories
             using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
             {
                 dbConnection.Open();
-                var query = "SELECT JobTemplateID, SiteID, JobTemplateDescription, JobTemplateHTML, GlobalTemplate, LastModifiedBy, LastModified, JobTemplateLogo, AdvertiserID, JobTemplateLogoUrl FROM dbo.JobTemplates WHERE JobTemplateID = @JobTemplateID";
+                var query = "SELECT JobTemplateID, SiteID, JobTemplateDescription, JobTemplateHTML, GlobalTemplate, LastModifiedBy, LastModified, JobTemplateLogo, AdvertiserID, JobTemplateLogoUrl FROM dbo.JobTemplates NOLOCK WHERE JobTemplateID = @JobTemplateID";
                 var entity = dbConnection.Query<JobTemplatesEntity>(query, new { SiteID = id }).SingleOrDefault();
                 return entity;
             }
@@ -77,7 +77,7 @@ namespace JXTPortal.Data.Dapper.Repositories
             using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
             {
                 dbConnection.Open();
-                var query = "SELECT JobTemplateID, SiteID, JobTemplateDescription, JobTemplateHTML, GlobalTemplate, LastModifiedBy, LastModified, JobTemplateLogo, AdvertiserID, JobTemplateLogoUrl FROM dbo.JobTemplates";
+                var query = "SELECT JobTemplateID, SiteID, JobTemplateDescription, JobTemplateHTML, GlobalTemplate, LastModifiedBy, LastModified, JobTemplateLogo, AdvertiserID, JobTemplateLogoUrl FROM dbo.JobTemplates NOLOCK";
                 var entities = dbConnection.Query<JobTemplatesEntity>(query).ToList();
                 return entities;
             }

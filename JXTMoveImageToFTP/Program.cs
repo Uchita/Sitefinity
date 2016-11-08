@@ -28,6 +28,10 @@ namespace JXTMoveImageToFTP
 
                 ftpclient.ProcessSites();
                 ftpclient.ProcessAdvertisers();
+                ftpclient.ProcessAdvertiserJobTemplateLogo();
+                ftpclient.ProcessConsultants();
+                ftpclient.ProcessJobTemplates();
+                ftpclient.ProcessMemberFiles();
             }
         }
 

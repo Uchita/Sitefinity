@@ -66,7 +66,7 @@ namespace JXTPortal.Data.Dapper.Repositories
             using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
             {
                 dbConnection.Open();
-                var query = "SELECT AdvertiserJobTemplateLogoID, AdvertiserID, JobLogoName, JobTemplateLogo, JobTemplateLogoUrl FROM dbo.AdvertiserJobTemplateLogo WHERE AdvertiserJobTemplateLogoID = @AdvertiserJobTemplateLogoID";
+                var query = "SELECT AdvertiserJobTemplateLogoID, AdvertiserID, JobLogoName, JobTemplateLogo, JobTemplateLogoUrl FROM dbo.AdvertiserJobTemplateLogo NOLOCK WHERE AdvertiserJobTemplateLogoID = @AdvertiserJobTemplateLogoID";
                 var entity = dbConnection.Query<AdvertiserJobTemplateLogoEntity>(query, new { AdvertiserJobTemplateLogoID = id }).SingleOrDefault();
                 return entity;
             }
@@ -77,7 +77,7 @@ namespace JXTPortal.Data.Dapper.Repositories
             using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
             {
                 dbConnection.Open();
-                var query = "SELECT AdvertiserJobTemplateLogoID, AdvertiserID, JobLogoName, JobTemplateLogo, JobTemplateLogoUrl FROM dbo.AdvertiserJobTemplateLogo FROM dbo.JobTemplates";
+                var query = "SELECT AdvertiserJobTemplateLogoID, AdvertiserID, JobLogoName, JobTemplateLogo, JobTemplateLogoUrl FROM dbo.AdvertiserJobTemplateLogo NOLOCK";
                 var entities = dbConnection.Query<AdvertiserJobTemplateLogoEntity>(query).ToList();
                 return entities;
             }

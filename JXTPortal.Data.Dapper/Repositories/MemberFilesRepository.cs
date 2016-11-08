@@ -66,7 +66,7 @@ namespace JXTPortal.Data.Dapper.Repositories
             using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
             {
                 dbConnection.Open();
-                var query = "SELECT MemberFileID, MemberID, MemberFileTypeID, MemberFileName, MemberFileSearchExtension, MemberFileContent, MemberFileTitle, LastModifiedDate, DocumentTypeID, MemberFileUrl FROM dbo.MemberFiles WHERE MemberFileID = @MemberFileID";
+                var query = "SELECT MemberFileID, MemberID, MemberFileTypeID, MemberFileName, MemberFileSearchExtension, MemberFileContent, MemberFileTitle, LastModifiedDate, DocumentTypeID, MemberFileUrl FROM dbo.MemberFiles NOLOCK WHERE MemberFileID = @MemberFileID";
                 var entity = dbConnection.Query<MemberFilesEntity>(query, new { MemberFileID = id }).SingleOrDefault();
                 return entity;
             }
@@ -77,7 +77,7 @@ namespace JXTPortal.Data.Dapper.Repositories
             using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
             {
                 dbConnection.Open();
-                var query = "SELECT MemberFileID, MemberID, MemberFileTypeID, MemberFileName, MemberFileSearchExtension, MemberFileContent, MemberFileTitle, LastModifiedDate, DocumentTypeID, MemberFileUrl FROM dbo.MemberFiles";
+                var query = "SELECT MemberFileID, MemberID, MemberFileTypeID, MemberFileName, MemberFileSearchExtension, MemberFileContent, MemberFileTitle, LastModifiedDate, DocumentTypeID, MemberFileUrl FROM dbo.MemberFiles NOLOCK";
                 var entities = dbConnection.Query<MemberFilesEntity>(query).ToList();
                 return entities;
             }

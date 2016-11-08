@@ -1915,9 +1915,6 @@ namespace JXTPortal.Website
             //Get Integration Details
             AdminIntegrations.Integrations integrations = IntegrationsService.AdminIntegrationsForSiteGet(SessionData.Site.SiteId);
 
-            //Facebook login button
-            phApplyWithFacebook.Visible = false;
-
             if (integrations.Indeed != null && !string.IsNullOrWhiteSpace(integrations.Indeed.APIToken) && !string.IsNullOrWhiteSpace(integrations.Indeed.APISecret) && integrations.Indeed.Valid)
             {
                 phApplyWithIndeed.Visible = true;

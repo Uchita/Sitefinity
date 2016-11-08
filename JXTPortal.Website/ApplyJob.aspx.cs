@@ -769,7 +769,7 @@ namespace JXTPortal.Website
                                 }
                             }
 
-                            if (phApplyWithFacebook.Visible == false && phApplyWithLinkedIn.Visible == false && phApplyWithIndeed.Visible == false && phApplyWithSeek.Visible == false)
+                            if (phApplyWithLinkedIn.Visible == false && phApplyWithIndeed.Visible == false && phApplyWithSeek.Visible == false)
                             {
                                 phApplyWith.Visible = false;
                             }

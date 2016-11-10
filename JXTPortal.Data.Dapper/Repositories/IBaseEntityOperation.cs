@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using JXTPortal.Data.Dapper.Factories;
+using System.Data;
+using Dapper;
+using JXTPortal.Data.Dapper.Entities.KnowledgeBase;
 using JXTPortal.Data.Dapper.Entities;
 
 namespace JXTPortal.Data.Dapper.Repositories

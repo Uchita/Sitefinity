@@ -54,6 +54,7 @@
     <Compile Include="Factories\IConnectionFactory.cs" />
     <Compile Include="Factories\SqlServerConnectionFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\BaseEnitityOperation.cs" />
     <Compile Include="Repositories\IBaseEntityOperation.cs" />
     <Compile Include="Repositories\KnowledgeBaseCategoryRepository.cs" />
     <Compile Include="Repositories\KnowledgeBaseRepository.cs" />

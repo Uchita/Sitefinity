@@ -43,5 +43,10 @@ namespace JXTPortal.Service.Dapper
         {
             return memberfilesRepository.SelectAll();
         }
+
+        public List<MemberFilesEntity> SelectAllNonBinary()
+        {
+            return memberfilesRepository.SelectAllNonBinary();
+        }
     }
 }

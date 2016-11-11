@@ -115,7 +115,6 @@ namespace JXTMoveImageToFTP
                             }
                         }
                     }
-
                 }
                 else
                 {
@@ -390,7 +389,93 @@ namespace JXTMoveImageToFTP
 
         public void ProcessMemberFiles()
         {
+            Console.WriteLine("{0} Start moving Member Files Binary Data to FTP...", DateTime.Now);
 
+            string errormsg = string.Empty;
+            string path = string.Format("/{0}/{1}", ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"]);
+            // Check if directory exists
+            if (!ftpClient.DirectoryExists(path, out errormsg))
+            {
+                // Create Directory
+                ftpClient.CreateDirectory(path, out errormsg);
+            }
+
+            if (string.IsNullOrWhiteSpace(errormsg))
+            {
+                // Change to the Sites Directory to make sure the directory exists.
+                ftpClient.ChangeDirectory(path, out errormsg);
+
+                if (string.IsNullOrWhiteSpace(errormsg))
+                {
+                    List<MemberFilesEntity> memberfileslist = memberfilesRepository.SelectAllNonBinary();
+                    //iterate each site
+                    foreach (MemberFilesEntity memberfileentity in memberfileslist)
+                    {
+                        MemberFilesEntity memberfile = memberfilesRepository.Select(memberfileentity.MemberFileID);
+
+                        string memberpath = string.Format("/{0}/{1}/{2}", ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], memberfile.MemberID);
+                        // Check if directory exists
+                        if (!ftpClient.DirectoryExists(memberpath, out errormsg))
+                        {
+                            // Create Directory
+                            ftpClient.CreateDirectory(memberpath, out errormsg);
+                        }
+
+                        if (string.IsNullOrWhiteSpace(errormsg))
+                        {
+                            // Change to the Sites Directory to make sure the directory exists.
+                            ftpClient.ChangeDirectory(path, out errormsg);
+
+                            if (string.IsNullOrWhiteSpace(errormsg))
+                            {
+                                if (memberfile.MemberFileContent != null && memberfile.MemberFileContent.Length > 0 && string.IsNullOrEmpty(memberfile.MemberFileUrl))
+                                {
+                                    Console.WriteLine("{0} Start uploading Member Files for MemberFileID: {1} MemberFileName: {2} ...", DateTime.Now, memberfile.MemberFileID, memberfile.MemberFileName);
+
+                                    MemoryStream ms = new MemoryStream(memberfile.MemberFileContent);
+
+                                    string extension = Path.GetExtension(memberfile.MemberFileName);
+
+                                    string newpath = string.Format("{0}{1}/{2}/{3}/MemberFiles_{4}{5}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], memberfile.MemberID, memberfile.MemberFileID, extension);
+
+                                    // Upload to FTP
+
+                                    Console.WriteLine("{0} Uploading file to {1}", DateTime.Now, newpath);
+
+                                    ftpClient.UploadFileFromStream(ms, newpath, out errormsg);
+
+                                    if (string.IsNullOrWhiteSpace(errormsg))
+                                    {
+                                        memberfile.MemberFileUrl = string.Format("MemberFiles_{0}{1}", memberfile.MemberFileID, extension);
+
+                                        memberfilesRepository.Update(memberfile);
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("{0} Upload Error: {1}", DateTime.Now, errormsg);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("{0} Change Directory Error: {1}", DateTime.Now, errormsg);
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("{0} Create Directory Error: {1}", DateTime.Now, errormsg);
+                        }
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("{0} Change Directory Error: {1}", DateTime.Now, errormsg);
+                }
+            }
+            else
+            {
+                Console.WriteLine("{0} Create Directory Error: {1}", DateTime.Now, errormsg);
+            }
         }
     }
 }

@@ -84,7 +84,7 @@ namespace JXTPortal
             sessionSite.SiteName = dsSite.Tables[0].Rows[0]["SiteName"].ToString();
             sessionSite.SiteDescription = dsSite.Tables[0].Rows[0]["SiteDescription"].ToString();
             sessionSite.SiteUrl = dsSite.Tables[0].Rows[0]["SiteUrl"].ToString();
-            sessionSite.HasAdminLogo = (dsSite.Tables[0].Rows[0]["SiteAdminLogo"] != null);
+            sessionSite.HasAdminLogo = (dsSite.Tables[0].Rows[0]["SiteAdminLogo"] != null || string.IsNullOrWhiteSpace(dsSite.Tables[0].Rows[0]["SiteAdminLogoUrl"].ToString()) == false);
             sessionSite.IsLive = Convert.ToBoolean(dsSite.Tables[0].Rows[0]["Live"]);
             if (dsSite.Tables[0].Rows[0]["DefaultLanguageId"] != null)
                 sessionSite.DefaultLanguageId = int.Parse(dsSite.Tables[0].Rows[0]["DefaultLanguageId"].ToString());
@@ -370,7 +370,7 @@ namespace JXTPortal
                 sessionSite.SiteName = site.SiteName;
                 sessionSite.SiteDescription = site.SiteDescription;
                 sessionSite.SiteUrl = site.SiteUrl;
-                sessionSite.HasAdminLogo = (site.SiteAdminLogo != null);
+                sessionSite.HasAdminLogo = (site.SiteAdminLogo != null || string.IsNullOrWhiteSpace(site.SiteAdminLogoUrl) == false);
                 sessionSite.IsLive = site.Live.HasValue ? site.Live.Value : false;
 
 

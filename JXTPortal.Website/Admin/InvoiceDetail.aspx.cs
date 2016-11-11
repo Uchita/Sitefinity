@@ -32,6 +32,21 @@ public partial class InvoiceDetail : System.Web.UI.Page
         }
     }
 
+
+    private SitesService _sitesService = null;
+
+    private SitesService SitesService
+    {
+        get
+        {
+            if (_sitesService == null)
+            {
+                _sitesService = new SitesService();
+            }
+            return _sitesService;
+        }
+    }
+
     private InvoiceOrderService _invoiceOrderService = null;
 
     private InvoiceOrderService InvoiceOrderService
@@ -183,8 +198,21 @@ public partial class InvoiceDetail : System.Web.UI.Page
                             {
                                 if (adv != null && adv.SiteId == SessionData.Site.SiteId)
                                 {
+                                    using (JXTPortal.Entities.Sites site = SitesService.GetBySiteId(SessionData.Site.SiteId))
+                                    {
+                                        if (!string.IsNullOrWhiteSpace(site.SiteAdminLogoUrl))
+                                        {
+                                            ltAdvertiserLogoUrl.Text = string.Format("<img src='http://jxt1.com.jxt1.com/media/{0}/{1}' alt='{2}' />", ConfigurationManager.AppSettings["SitesFolder"], site.SiteAdminLogoUrl, SessionData.Site.SiteName.Replace("'", ""));
+                                        }
+                                        else
+                                        {
+                                            if (site.SiteAdminLogo != null)
+                                            {
+                                                ltAdvertiserLogoUrl.Text = string.Format("<img src='http://jxt1.com.jxt1.com/admin/getadminlogo.aspx?siteid={0}' alt='{1}' />", SessionData.Site.SiteId, SessionData.Site.SiteName.Replace("'", ""));
+                                            }
+                                        }
 
-                                    ltAdvertiserLogoUrl.Text = string.Format("<img src='http://jxt1.com.jxt1.com/admin/getadminlogo.aspx?siteid={0}' alt='{1}' />", SessionData.Site.SiteId, SessionData.Site.SiteName.Replace("'", ""));
+                                    }
                                     
                                     ltClientName.Text = adv.CompanyName;
                                     ltClientAddress.Text = string.Format("{0} {1}", adv.StreetAddress1, adv.StreetAddress2);

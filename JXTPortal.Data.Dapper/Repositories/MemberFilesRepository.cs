@@ -12,6 +12,7 @@ namespace JXTPortal.Data.Dapper.Repositories
 {
     public interface IMemberFilesRepository : IBaseEntityOperation<MemberFilesEntity>
     {
+        List<MemberFilesEntity> SelectAllNonBinary();
     }
 
     public class MemberFilesRepository : IMemberFilesRepository
@@ -78,6 +79,17 @@ namespace JXTPortal.Data.Dapper.Repositories
             {
                 dbConnection.Open();
                 var query = "SELECT MemberFileID, MemberID, MemberFileTypeID, MemberFileName, MemberFileSearchExtension, MemberFileContent, MemberFileTitle, LastModifiedDate, DocumentTypeID, MemberFileUrl FROM dbo.MemberFiles NOLOCK";
+                var entities = dbConnection.Query<MemberFilesEntity>(query).ToList();
+                return entities;
+            }
+        }
+
+        public List<MemberFilesEntity> SelectAllNonBinary()
+        {
+            using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
+            {
+                dbConnection.Open();
+                var query = "SELECT MemberFileID, MemberID, MemberFileTypeID, MemberFileName, MemberFileSearchExtension, NULL, MemberFileTitle, LastModifiedDate, DocumentTypeID, MemberFileUrl FROM dbo.MemberFiles NOLOCK";
                 var entities = dbConnection.Query<MemberFilesEntity>(query).ToList();
                 return entities;
             }

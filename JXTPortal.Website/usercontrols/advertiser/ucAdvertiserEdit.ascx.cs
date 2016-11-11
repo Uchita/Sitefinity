@@ -11,6 +11,7 @@ using System.IO;
 using JXTPortal.Website;
 using System.Xml;
 using JXTPortal.Client.Bullhorn;
+using System.Configuration;
 
 namespace JXTPortal.Website.usercontrols.advertiser
 {
@@ -280,9 +281,17 @@ namespace JXTPortal.Website.usercontrols.advertiser
                             ddlLanguage.SelectedValue = advu.DefaultLanguageId.Value.ToString();
                         }
 
-                        if (adv.AdvertiserLogo != null)
+
+                        if (adv.AdvertiserLogo != null || string.IsNullOrWhiteSpace(adv.AdvertiserLogoUrl) == false)
                         {
-                            imgLogo.ImageUrl = Page.ResolveUrl("~/getfile.aspx") + "?advertiserid=" + Convert.ToString(advu.AdvertiserId);
+                            if (!string.IsNullOrWhiteSpace(adv.AdvertiserLogoUrl))
+                            {
+                                imgLogo.ImageUrl = string.Format(@"/media/{0}/{1}", ConfigurationManager.AppSettings["AdvertisersFolder"], adv.AdvertiserLogoUrl);
+                            }
+                            else
+                            {
+                                imgLogo.ImageUrl = Page.ResolveUrl("~/getfile.aspx") + "?advertiserid=" + Convert.ToString(advu.AdvertiserId);
+                            }
                             lblNoLogo.Visible = false;
                             lblRemoveLogo.Visible = true;
                             chkRemoveLogo.Visible = true;

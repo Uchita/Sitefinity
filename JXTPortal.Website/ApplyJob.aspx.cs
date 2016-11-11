@@ -183,6 +183,22 @@ namespace JXTPortal.Website
 
                 return _siteprofessionService;
             }
+
+        }
+
+        private SitesService _sitesService;
+        private SitesService SitesService
+        {
+            get
+            {
+                if (_sitesService == null)
+                {
+                    _sitesService = new SitesService();
+                }
+
+                return _sitesService;
+            }
+
         }
 
         protected int JobID
@@ -1311,10 +1327,24 @@ namespace JXTPortal.Website
 
                                 if (useFTP)
                                 {
-                                    ftpclient.Host = ftpclpath;
+                                    ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
                                     ftpclient.Username = ftpusername;
                                     ftpclient.Password = ftppassword;
-                                    ftpclient.UploadFileFromStream(new MemoryStream(coverletter.MemberFileContent), ftpclpath + jobapp.MemberCoverLetterFile, out errormessage);
+
+                                    if (!string.IsNullOrWhiteSpace(coverletter.MemberFileUrl))
+                                    {
+                                        string filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], coverletter.MemberId, coverletter.MemberFileUrl);
+                                        Stream ms = null;
+                                        ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
+                                        if (string.IsNullOrWhiteSpace(errormessage))
+                                        {
+                                            ftpclient.UploadFileFromStream(((MemoryStream) ms), ftpclpath + jobapp.MemberCoverLetterFile, out errormessage);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        ftpclient.UploadFileFromStream(new MemoryStream(coverletter.MemberFileContent), ftpclpath + jobapp.MemberCoverLetterFile, out errormessage);
+                                    }
                                 }
                                 else
                                 {
@@ -1412,10 +1442,24 @@ namespace JXTPortal.Website
                                     jobapp.MemberResumeFile = string.Format("{0}_Resume_{1}", jobappid, r.Replace(resume.MemberFileName, "_"));
                                     if (useFTP)
                                     {
-                                        ftpclient.Host = ftpresumepath;
+                                        ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
                                         ftpclient.Username = ftpusername;
                                         ftpclient.Password = ftppassword;
-                                        ftpclient.UploadFileFromStream(new MemoryStream(resume.MemberFileContent), ftpresumepath + jobapp.MemberResumeFile, out errormessage);
+
+                                        if (!string.IsNullOrWhiteSpace(resume.MemberFileUrl))
+                                        {
+                                            string filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], resume.MemberId, resume.MemberFileUrl);
+                                            Stream ms = null;
+                                            ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
+                                            if (string.IsNullOrWhiteSpace(errormessage))
+                                            {
+                                                ftpclient.UploadFileFromStream(((MemoryStream)ms), ftpresumepath + jobapp.MemberResumeFile, out errormessage);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            ftpclient.UploadFileFromStream(new MemoryStream(resume.MemberFileContent), ftpresumepath + jobapp.MemberResumeFile, out errormessage);
+                                        }
                                     }
                                     else
                                     {
@@ -1522,7 +1566,19 @@ namespace JXTPortal.Website
                                     if (hfSeekResumeURL.Value == "SeekJson")
                                     {
                                         filename = "Seek.docx";
-                                        string strUrl = Page.ResolveUrl("~/GetAdminLogo.aspx?SiteID=" + SessionData.Site.MasterSiteId.ToString());
+                                        string strUrl = string.Empty;
+
+                                        using (Entities.Sites site = SitesService.GetBySiteId(SessionData.Site.MasterSiteId))
+                                        {
+                                            if (!string.IsNullOrWhiteSpace(site.SiteAdminLogoUrl))
+                                            {
+                                                strUrl = string.Format("/media/{0}/{1}", ConfigurationManager.AppSettings["SitesFolder"], site.SiteAdminLogoUrl);
+                                            }
+                                            else
+                                            {
+                                                strUrl = Page.ResolveUrl("~/GetAdminLogo.aspx?SiteID=" + SessionData.Site.MasterSiteId.ToString());
+                                            }
+                                        }
                                         result = _oauth.oAuth2GetProfileHTML(ViewState["SeekJson"].ToString(), strUrl);
 
                                         using (WordprocessingDocument package = WordprocessingDocument.Create(stream, WordprocessingDocumentType.Document))

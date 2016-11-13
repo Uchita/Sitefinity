@@ -2099,7 +2099,7 @@ namespace JXTPortal.Website.member
                                     string filepath = string.Format("{0}{1}/{2}/{3}/MemberFiles_{4}{5}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], SessionData.Member.MemberId, mf.MemberFileId, mf.MemberFileSearchExtension);
                                     string errormessage = string.Empty;
 
-                                    ftpclient.UploadFileFromStream((MemoryStream)fuCoverletter.PostedFile.InputStream, filepath, out errormessage);
+                                    ftpclient.UploadFileFromStream(fuCoverletter.PostedFile.InputStream, filepath, out errormessage);
                                     mf.MemberFileUrl = string.Format("MemberFiles_{0}{1}", mf.MemberFileId, extension);
                                 }
 
@@ -2168,7 +2168,7 @@ namespace JXTPortal.Website.member
                                         string filepath = string.Format("{0}{1}/{2}/{3}/MemberFiles_{4}{5}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], SessionData.Member.MemberId, mf.MemberFileId, extension);
                                         string errormessage = string.Empty;
 
-                                        ftpclient.UploadFileFromStream((MemoryStream)fuCoverletter.PostedFile.InputStream, filepath, out errormessage);
+                                        ftpclient.UploadFileFromStream(fuCoverletter.PostedFile.InputStream, filepath, out errormessage);
                                     }
                                     else
                                     {
@@ -2262,7 +2262,7 @@ namespace JXTPortal.Website.member
                                     string filepath = string.Format("{0}{1}/{2}/{3}/MemberFiles_{4}{5}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], SessionData.Member.MemberId, mf.MemberFileId, extension);
                                     string errormessage = string.Empty;
 
-                                    ftpclient.UploadFileFromStream((MemoryStream)fuResume.PostedFile.InputStream, filepath, out errormessage);
+                                    ftpclient.UploadFileFromStream(fuResume.PostedFile.InputStream, filepath, out errormessage);
                                     mf.MemberFileUrl = string.Format("MemberFiles_{0}{1}", mf.MemberFileId, extension);
                                 }
 
@@ -2282,13 +2282,17 @@ namespace JXTPortal.Website.member
 
                                     string extension = string.Empty;
 
-                                    extension = Path.GetExtension(fuCoverletter.PostedFile.FileName);
+                                    extension = Path.GetExtension(fuResume.PostedFile.FileName);
                                     string filepath = string.Format("{0}{1}/{2}/{3}/MemberFiles_{4}{5}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], SessionData.Member.MemberId, mf.MemberFileId, extension);
                                     string errormessage = string.Empty;
 
-                                    ftpclient.UploadFileFromStream((MemoryStream)fuCoverletter.PostedFile.InputStream, filepath, out errormessage);
+                                    ftpclient.UploadFileFromStream(fuResume.PostedFile.InputStream, filepath, out errormessage);
                                     mf.MemberFileUrl = string.Format("MemberFiles_{0}{1}", mf.MemberFileId, extension);
-                                    LoadCV();
+
+                                    if (MemberFilesService.Update(mf))
+                                    {
+                                        LoadCV();
+                                    }
                                 }
                             }
                         }

@@ -81,7 +81,7 @@ namespace JXTPortal.Website
                                         string filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], memberFile.MemberId, memberFile.MemberFileUrl);
                                         Stream ms = null;
                                         ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
-
+                                        ms.Position = 0;
                                         if (string.IsNullOrEmpty(errormessage))
                                         {
                                             this.Response.BinaryWrite(((MemoryStream)ms).ToArray());

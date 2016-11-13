@@ -98,11 +98,11 @@ namespace JXTPostJobApplicationToFTP
 
                     // Get the default country from the Site Global settings
                     string strSiteDefaultCountryCode = string.Empty;
-                    
+
                     // Get the Site URL 
                     SitesService sitesService = new SitesService();
                     string strDomainName = sitesService.GetBySiteId(sitexml.SiteId).SiteUrl;
-                                        
+
                     using (TList<GlobalSettings> gslist = GlobalSettingsService.GetBySiteId(sitexml.SiteId))
                     {
                         if (gslist.Count > 0)
@@ -130,7 +130,7 @@ namespace JXTPostJobApplicationToFTP
                         membercoverletterxml = new StringBuilder();
                         memberresumexml = new StringBuilder();
                         currentMember = drMember;
-                        
+
                         // Get the member XML
                         memberxml.AppendFormat(@"
 <member>
@@ -202,7 +202,30 @@ namespace JXTPostJobApplicationToFTP
                                     if (memberfile != null)
                                     {
                                         string savepath = ConfigurationManager.AppSettings["CoverletterFolder"] + filename;
-                                        File.WriteAllBytes(savepath, memberfile.MemberFileContent);
+                                        byte[] memberfilecontent = null;
+
+                                        if (!string.IsNullOrWhiteSpace(drMemberFile["MemberFileContent"].ToString()))
+                                        {
+                                            string errormessage = string.Empty;
+
+                                            FtpClient ftpclient = new FtpClient();
+                                            ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
+                                            ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                                            ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+
+                                            string filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], memberfile.MemberId, memberfile.MemberFileUrl);
+                                            Stream ms = null;
+                                            ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
+                                            ms.Position = 0;
+
+                                            memberfilecontent = ((MemoryStream)ms).ToArray();
+                                        }
+                                        else
+                                        {
+                                            memberfilecontent = memberfile.MemberFileContent;
+                                        }
+                                        
+                                        File.WriteAllBytes(savepath, memberfilecontent);
 
                                         fileslist.Add(new FileNames(drMember["MemberID"].ToString(), savepath, filename));
                                     }
@@ -217,7 +240,30 @@ namespace JXTPostJobApplicationToFTP
                                     if (memberfile != null)
                                     {
                                         string savepath = ConfigurationManager.AppSettings["ResumeFolder"] + filename;
-                                        File.WriteAllBytes(savepath, memberfile.MemberFileContent);
+                                        byte[] memberfilecontent = null;
+
+                                        if (!string.IsNullOrWhiteSpace(memberfile.MemberFileUrl))
+                                        {
+                                            string errormessage = string.Empty;
+
+                                            FtpClient ftpclient = new FtpClient();
+                                            ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
+                                            ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                                            ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+
+                                            string filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], memberfile.MemberId, memberfile.MemberFileUrl);
+                                            Stream ms = null;
+                                            ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
+                                            ms.Position = 0;
+
+                                            memberfilecontent= ((MemoryStream)ms).ToArray();
+                                        }
+                                        else
+                                        {
+                                            memberfilecontent = memberfile.MemberFileContent;
+                                        }
+
+                                        File.WriteAllBytes(savepath, memberfilecontent);
 
                                         fileslist.Add(new FileNames(drMember["MemberID"].ToString(), savepath, filename));
                                     }
@@ -256,7 +302,7 @@ namespace JXTPostJobApplicationToFTP
                         else
                         {
                             Console.WriteLine("No resume for Member - ", drMember["MemberID"]);
-                            fileslist.RemoveAll(s => s.Id == drMember["MemberID"].ToString()); 
+                            fileslist.RemoveAll(s => s.Id == drMember["MemberID"].ToString());
                         }
 
                     }
@@ -264,7 +310,7 @@ namespace JXTPostJobApplicationToFTP
                     string errormsg = string.Empty;
                     if (sitexml.sftp)
                     {
-                       blnFileUploaded =  UploadTempFilesToSFTP(sitexml, fileslist, out errormsg);
+                        blnFileUploaded = UploadTempFilesToSFTP(sitexml, fileslist, out errormsg);
                     }
                     else
                     {

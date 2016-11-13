@@ -316,6 +316,7 @@ namespace JXTPortal.Website.advertiser
             ftpclient.DownloadFileToClient(FTPFolderLocation + dataPDF.CommandArgument, ref downloadedfile, out errormessage);
             if (string.IsNullOrEmpty(errormessage) && downloadedfile.Length > 0)
             {
+                downloadedfile.Position = 0;
                 Response.ContentType = "application/octet-stream";
                 Response.AppendHeader("Content-Disposition", "attachment;filename=" + dataPDF.CommandArgument);
                 Response.BinaryWrite(((MemoryStream)downloadedfile).ToArray());

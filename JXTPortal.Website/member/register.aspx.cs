@@ -8,6 +8,7 @@ using JXTPortal.Entities;
 using JXTPortal.Common;
 using System.Configuration;
 using JXTPortal.Client.Salesforce;
+using System.IO;
 
 namespace JXTPortal.Website.members
 {
@@ -260,7 +261,7 @@ namespace JXTPortal.Website.members
                                 objMemberFiles.MemberFileName = System.IO.Path.GetFileName(docInput.PostedFile.FileName).Trim().Replace(c.ToString(), "");
                             }
                             objMemberFiles.MemberFileSearchExtension = System.IO.Path.GetExtension(docInput.PostedFile.FileName).Trim();
-                            objMemberFiles.MemberFileContent = this.getArray(this.docInput.PostedFile);
+                            
                             objMemberFiles.MemberFileTitle = objMemberFiles.MemberFileName;
                             objMemberFiles.MemberId = memberID;
                             objMemberFiles.MemberFileTypeId = memberFileTypeID;
@@ -268,6 +269,23 @@ namespace JXTPortal.Website.members
 
                             MemberFilesService mfs = new MemberFilesService();
                             mfs.Insert(objMemberFiles);
+
+
+                            FtpClient ftpclient = new FtpClient();
+                            ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
+                            ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                            ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+
+                            string extension = string.Empty;
+
+                            extension = Path.GetExtension(docInput.PostedFile.FileName);
+                            string filepath = string.Format("{0}{1}/{2}/{3}/MemberFiles_{4}{5}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], SessionData.Member.MemberId, objMemberFiles.MemberFileId, extension);
+                            string errormessage = string.Empty;
+
+                            ftpclient.UploadFileFromStream(docInput.PostedFile.InputStream, filepath, out errormessage);
+                            objMemberFiles.MemberFileUrl = string.Format("MemberFiles_{0}{1}", objMemberFiles.MemberFileId, extension);
+
+                            mfs.Update(objMemberFiles);
 
                             hasUploadedFile = true;
                         }
@@ -296,7 +314,6 @@ namespace JXTPortal.Website.members
                                 objMemberFiles.MemberFileName = System.IO.Path.GetFileName(fuCoverLetter.PostedFile.FileName).Trim().Replace(c.ToString(), "");
                             }
                             objMemberFiles.MemberFileSearchExtension = System.IO.Path.GetExtension(fuCoverLetter.PostedFile.FileName).Trim();
-                            objMemberFiles.MemberFileContent = this.getArray(this.fuCoverLetter.PostedFile);
                             objMemberFiles.MemberFileTitle = objMemberFiles.MemberFileName;
                             objMemberFiles.MemberId = memberID;
                             objMemberFiles.MemberFileTypeId = memberFileTypeID;
@@ -304,6 +321,23 @@ namespace JXTPortal.Website.members
 
                             MemberFilesService mfs = new MemberFilesService();
                             mfs.Insert(objMemberFiles);
+
+
+                            FtpClient ftpclient = new FtpClient();
+                            ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
+                            ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                            ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+
+                            string extension = string.Empty;
+
+                            extension = Path.GetExtension(fuCoverLetter.PostedFile.FileName);
+                            string filepath = string.Format("{0}{1}/{2}/{3}/MemberFiles_{4}{5}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], SessionData.Member.MemberId, objMemberFiles.MemberFileId, extension);
+                            string errormessage = string.Empty;
+
+                            ftpclient.UploadFileFromStream(fuCoverLetter.PostedFile.InputStream, filepath, out errormessage);
+                            objMemberFiles.MemberFileUrl = string.Format("MemberFiles_{0}{1}", objMemberFiles.MemberFileId, extension);
+
+                            mfs.Update(objMemberFiles);
 
                             hasUploadedFile = true;
                         }

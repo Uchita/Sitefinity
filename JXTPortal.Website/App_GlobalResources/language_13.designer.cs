@@ -5362,7 +5362,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to labelMyProfile.
+        ///   Looks up a localized string similar to My Profile.
         /// </summary>
         internal static string labelMyProfile {
             get {

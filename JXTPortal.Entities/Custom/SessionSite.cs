@@ -50,5 +50,15 @@ namespace JXTPortal.Entities
         public int MasterSiteId { get; set; }
 
         public string DateFormat { get; set; }
+
+        //Mapping of Language -> Custom ResourceFileName
+        public Dictionary<PortalEnums.Languages.Language, string> ResourceFileNameMappings { get; set; }
+        public string ResourceFileNameMappingGet(int langID)
+        {
+            PortalEnums.Languages.Language lang = (PortalEnums.Languages.Language)langID;
+            return ResourceFileNameMappings.Keys.Contains(lang) ? ResourceFileNameMappings[lang] : null;
+        }
+
+
     }
 }

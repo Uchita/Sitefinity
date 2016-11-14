@@ -15,6 +15,7 @@ using System.Net;
 using Autofac.Integration.Web;
 using JXTPortal.Website.App_Codes;
 using Autofac;
+using JXTPortal.Custom;
 
 namespace JXTPortal.Website
 {
@@ -35,6 +36,8 @@ namespace JXTPortal.Website
         protected void Application_Start(object sender, EventArgs e)
         {
             _containerProvider = new ContainerProvider(IoCHelper.CreateContainer());
+
+            SessionService.InnerService = ContainerProvider.ApplicationContainer.Resolve<ISessionService>();
 
             //Add 3072 (TLS1.2) for this application
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | (SecurityProtocolType)3072;

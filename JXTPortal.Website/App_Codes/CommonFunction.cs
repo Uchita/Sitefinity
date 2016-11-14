@@ -142,15 +142,35 @@ namespace JXTPortal.Website
 
             if (SessionData.Language != null)
             {
-                String language = "language_" + SessionData.Language.LanguageId.ToString();
+                object ResourceFileObj = null;
 
-                try
+                //try get from specified resource file
+                string customResourceFileName = SessionData.Site.ResourceFileNameMappingGet(SessionData.Language.LanguageId);
+                if (!string.IsNullOrEmpty(customResourceFileName))
                 {
-                    strGlobalResource = (String)HttpContext.GetGlobalResourceObject(language, field);
+                    //this won't throw exception as I am not casting the object to anything
+                    ResourceFileObj = HttpContext.GetGlobalResourceObject(customResourceFileName, field);
                 }
-                catch
+
+                //try get default resource file
+                if(ResourceFileObj == null)
                 {
-                    strGlobalResource = "Could not find global resource.";
+                    String language = "language_" + SessionData.Language.LanguageId.ToString();
+
+                    //same here no exception catched needed
+                    ResourceFileObj = HttpContext.GetGlobalResourceObject(language, field);
+                }
+
+                if (ResourceFileObj != null)
+                {
+                    try
+                    {
+                        strGlobalResource = (String)ResourceFileObj;
+                    }
+                    catch
+                    {
+                        //strGlobalResource = "Could not find global resource.";
+                    }
                 }
 
                 if (String.IsNullOrEmpty(strGlobalResource))

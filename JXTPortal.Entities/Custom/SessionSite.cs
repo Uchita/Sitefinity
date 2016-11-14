@@ -52,13 +52,17 @@ namespace JXTPortal.Entities
         public string DateFormat { get; set; }
 
         //Mapping of Language -> Custom ResourceFileName
-        public Dictionary<PortalEnums.Languages.Language, string> ResourceFileNameMappings { get; set; }
+        public Dictionary<PortalEnums.Languages.Language, string> ResourceFileNameMappings { get; private set; }
         public string ResourceFileNameMappingGet(int langID)
         {
             PortalEnums.Languages.Language lang = (PortalEnums.Languages.Language)langID;
             return ResourceFileNameMappings.Keys.Contains(lang) ? ResourceFileNameMappings[lang] : null;
         }
 
+        public SessionSite()
+        {
+            ResourceFileNameMappings = new Dictionary<PortalEnums.Languages.Language, string>();
+        }
 
     }
 }

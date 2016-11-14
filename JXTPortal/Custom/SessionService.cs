@@ -102,7 +102,6 @@ namespace JXTPortal
                 sessionSite.DefaultLanguageId = PortalConstants.DEFAULT_LANGUAGE_ID;
 
             //find site language resource mappings
-            sessionSite.ResourceFileNameMappings = new Dictionary<PortalEnums.Languages.Language, string>();
             SiteLanguages siteLanguages = _siteLanguageService.GetBySiteID(thisSiteID);
             foreach (SiteLanguageDetails langDetails in siteLanguages.Languages)
             {
@@ -395,7 +394,6 @@ namespace JXTPortal
                     sessionSite.DefaultLanguageId = PortalConstants.DEFAULT_LANGUAGE_ID;
 
                 //find site language resource mappings
-                sessionSite.ResourceFileNameMappings = new Dictionary<PortalEnums.Languages.Language, string>();
                 SiteLanguages siteLanguages = _siteLanguageService.GetBySiteID(site.SiteId);
                 foreach (SiteLanguageDetails langDetails in siteLanguages.Languages)
                 {

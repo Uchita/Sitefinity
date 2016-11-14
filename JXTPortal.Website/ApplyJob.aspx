@@ -213,14 +213,6 @@
                         </script>
                     </div></div>
                     </asp:PlaceHolder>
-                    <asp:PlaceHolder ID="phApplyWithFacebook" runat="server" Visible="false">
-                    <div class="col-sm-3"><div class="thumbnail">
-                        <asp:ImageButton ID="ibApplyWithFacebook" runat="server" 
-                            alt="Apply with facebook" cssclass="img-responsive" 
-                            ImageUrl="//images.jxt.net.au/COMMON/images/apply/applyFacebook2.svg" 
-                            onclick="ibApplyWithFacebook_Click" />
-                    <%--<img src="//images.jxt.net.au/COMMON/images/apply/applyFacebook2.png" alt="Apply with facebook" class="img-responsive">--%></div></div>
-                    </asp:PlaceHolder>
                     <asp:PlaceHolder ID="phApplyWithLinkedIn" runat="server" Visible="false">
                     <div class="col-sm-3"><div class="thumbnail">
                         <asp:ImageButton ID="ibApplyWithLinkedIn" runat="server" ImageUrl="//images.jxt.net.au/COMMON/images/apply/applyLinkedIn2.svg" alt="Apply with Linkedin"

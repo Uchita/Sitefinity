@@ -6,12 +6,19 @@ using PayPal.PayPalAPIInterfaceService.Model;
 using PayPal.PayPalAPIInterfaceService;
 using JXTPortal.Entities;
 using JXTPortal;
+using log4net;
 
 namespace PaymentGateway.Paypal
 {
     // https://devtools-paypal.com/guide/pay_creditcard/dotnet?interactive=ON&env=sandbox
     public class PaypalDirectPayment
     {
+        ILog logger;
+        public PaypalDirectPayment()
+        {
+            logger = LogManager.GetLogger(typeof(PaypalDirectPayment));
+        }
+
         public bool DoDirectPayment(bool isLive, string username, string password, string signature, string currencycode, List<CartItem> cartitems, bool currencyRounding, decimal taxrate, string siteurl, string sitename, string cardholdername, string creditcardno, int expirymonth, int expiryyear, string cvv, string cardtype, out string responseCode, out string errorMessage, out string banktransactionid)
         {
             Dictionary<string, string> sdkConfig = new Dictionary<string, string>();
@@ -176,9 +183,7 @@ namespace PaymentGateway.Paypal
             }
             catch (Exception ex)
             {
-                errorMessage = ex.Message;
-                ExceptionTableService serviceException = new ExceptionTableService();
-                serviceException.LogException(ex.GetBaseException());
+                logger.Error(ex.GetBaseException());
             }
 
             return false;

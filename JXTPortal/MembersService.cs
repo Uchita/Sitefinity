@@ -16,6 +16,7 @@ using Microsoft.Practices.EnterpriseLibrary.Logging;
 using System.Collections.Generic;
 using System.Web.Script.Serialization;
 using JXTPortal.Custom;
+using log4net;
 
 #endregion
 
@@ -31,6 +32,8 @@ namespace JXTPortal
     public partial class MembersService : JXTPortal.MembersServiceBase
     {
         private ISessionService _sessionService;
+        private ILog _logger;
+
         #region Constructors
         /// <summary>
         /// Initializes a new instance of the MembersService class.
@@ -38,7 +41,7 @@ namespace JXTPortal
         public MembersService()
             : base()
         {
-            
+            _logger = LogManager.GetLogger(typeof(MembersService));
         }
         #endregion Constructors
 
@@ -332,9 +335,7 @@ namespace JXTPortal
             }
             catch (Exception ex)
             {
-                // Todo - Save to exception
-                ExceptionTableService exceptionTableService = new ExceptionTableService();
-                exceptionTableService.LogException(ex);
+                _logger.Error(ex);
 
                 blnValid = false;
                 errormsg = ex.Message;

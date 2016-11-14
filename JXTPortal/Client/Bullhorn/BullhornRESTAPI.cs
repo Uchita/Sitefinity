@@ -10,11 +10,13 @@ using System.IO;
 using System.Xml.Serialization;
 using System.Web;
 using JXTPortal.Entities;
+using log4net;
 
 namespace JXTPortal.Client.Bullhorn
 {
     public class BullhornRESTAPI
     {
+        ILog _logger;
         #region JXT Services
         private IntegrationsService _integrationsService;
         private IntegrationsService IntegrationsService
@@ -97,6 +99,7 @@ bullhorn.rest.baseUrl="https://rest9.bullhornstaffing.com/rest-services"
 
         public BullhornRESTAPI(int siteId)
         {
+            _logger = LogManager.GetLogger(typeof(BullhornRESTAPI));
             BullhornRESTAPI_INIT(siteId);
         }
 
@@ -1174,8 +1177,6 @@ bullhorn.rest.baseUrl="https://rest9.bullhornstaffing.com/rest-services"
 
             List<BullhornRESTModels.OperationStack> stacks = new List<BullhornRESTModels.OperationStack>();
 
-            ExceptionTableService exceptionTableService = new ExceptionTableService();
-
             // Only if Bullhorn is enabled on the site and Candidate Sync is enabled.
             if (BullhornSettings != null && BullhornSettings.Valid && BullhornSettings.EnableCandidateSync)
             {
@@ -1314,9 +1315,10 @@ bullhorn.rest.baseUrl="https://rest9.bullhornstaffing.com/rest-services"
                             }
                             catch (Exception ex)
                             {
-                                //TODO: log exception
-                                int exID = exceptionTableService.LogException(ex, String.Join("<br/>", stacks.Select(c => c.Operation + " => " + c.Status + (!string.IsNullOrEmpty(c.Data) ? "<br/>&nbsp;&nbsp;&nbsp;&nbsp;" + c.Data : string.Empty)).ToList()));
-
+                                //log exception
+                                string message = String.Join("<br/>", stacks.Select(c => c.Operation + " => " + c.Status + (!string.IsNullOrEmpty(c.Data) ? "<br/>&nbsp;&nbsp;&nbsp;&nbsp;" + c.Data : string.Empty)).ToList());
+                                _logger.Error(message, ex);
+                                
                                 //let it go through to the Simple creation instead of parsing the Resume section
                             }
                         }
@@ -1391,14 +1393,16 @@ bullhorn.rest.baseUrl="https://rest9.bullhornstaffing.com/rest-services"
                 }
                 catch (Exception ex)
                 {
-                    int exID = exceptionTableService.LogException(ex, String.Join("<br/>", stacks.Select(c => c.Operation + " => " + c.Status + (!string.IsNullOrEmpty(c.Data) ? "<br/>&nbsp;&nbsp;&nbsp;&nbsp;" + c.Data : string.Empty)).ToList()));
+                   string message = String.Join("<br/>", stacks.Select(c => c.Operation + " => " + c.Status + (!string.IsNullOrEmpty(c.Data) ? "<br/>&nbsp;&nbsp;&nbsp;&nbsp;" + c.Data : string.Empty)).ToList());
+                   _logger.Error(message, ex);
 
-                    throw new Exception("Failed to create candidate via Bullhorn API - Exception ID: " + exID);
+                    throw new Exception("Failed to create candidate via Bullhorn API - EntityID: " + member.EntityId);
                 }
                 if (stacks != null && stacks.Count > 0)
                 {
                     //TODO: log exception
-                    int execID = exceptionTableService.LogException(new Exception(), String.Join("<br/>", stacks.Select(c => c.Operation + " => " + c.Status + (!string.IsNullOrEmpty(c.Data) ? "<br/>&nbsp;&nbsp;&nbsp;&nbsp;" + c.Data : string.Empty)).ToList()));
+                    string message = String.Join("<br/>", stacks.Select(c => c.Operation + " => " + c.Status + (!string.IsNullOrEmpty(c.Data) ? "<br/>&nbsp;&nbsp;&nbsp;&nbsp;" + c.Data : string.Empty)).ToList());
+                    _logger.Error(message);
                 }
 
             }
@@ -1450,11 +1454,11 @@ bullhorn.rest.baseUrl="https://rest9.bullhornstaffing.com/rest-services"
             }
             catch (Exception ex)
             {
-                //TODO: log exception
-                ExceptionTableService exceptionTableService = new ExceptionTableService();
-                int exID = exceptionTableService.LogException(ex, String.Join("<br/>", stacks.Select(c => c.Operation + " => " + c.Status + (!string.IsNullOrEmpty(c.Data) ? "<br/>&nbsp;&nbsp;&nbsp;&nbsp;" + c.Data : string.Empty)).ToList()));
+                //log exception
+                string message = String.Join("<br/>", stacks.Select(c => c.Operation + " => " + c.Status + (!string.IsNullOrEmpty(c.Data) ? "<br/>&nbsp;&nbsp;&nbsp;&nbsp;" + c.Data : string.Empty)).ToList());
+                _logger.Error(message, ex);
 
-                throw new Exception("Failed to process candidate file via Bullhorn API - Exception ID: " + exID);
+                throw new Exception("Failed to process candidate file via Bullhorn API - candidateId: " + parsedProfile.candidate.id);
             }
         }
 
@@ -1658,10 +1662,9 @@ bullhorn.rest.baseUrl="https://rest9.bullhornstaffing.com/rest-services"
             catch (Exception ex)
             {
                 //TODO: log exception
-                ExceptionTableService exceptionTableService = new ExceptionTableService();
-                int exID = exceptionTableService.LogException(ex);
+                _logger.Error(ex);
 
-                throw new Exception("Failed to retreive meta data via Bullhorn API - Exception ID: " + exID);
+                throw new Exception("Failed to retreive meta data via Bullhorn API - Site ID: " + siteID);
             }
         }
 
@@ -1909,10 +1912,9 @@ bullhorn.rest.baseUrl="https://rest9.bullhornstaffing.com/rest-services"
             }
             catch (Exception ex)
             {
-                ExceptionTableService exceptionTableService = new ExceptionTableService();
-                int exID = exceptionTableService.LogException(ex, String.Join("<br/>", stacks.Select(c => c.Operation + " => " + c.Status + (!string.IsNullOrEmpty(c.Data) ? "<br/>&nbsp;&nbsp;&nbsp;&nbsp;" + c.Data : string.Empty)).ToList()));
-
-                throw new Exception("Failed to sync advertiser via Bullhorn API - Exception ID: " + exID);
+                string message = String.Join("<br/>", stacks.Select(c => c.Operation + " => " + c.Status + (!string.IsNullOrEmpty(c.Data) ? "<br/>&nbsp;&nbsp;&nbsp;&nbsp;" + c.Data : string.Empty)).ToList());
+                _logger.Error(message, ex);
+                throw new Exception("Failed to sync advertiser via Bullhorn API - EntityID: " + advertiser.EntityId);
             }
 
             return false;
@@ -2214,10 +2216,10 @@ bullhorn.rest.baseUrl="https://rest9.bullhornstaffing.com/rest-services"
             }
             catch (Exception ex)
             {
-                ExceptionTableService exceptionTableService = new ExceptionTableService();
-                int exID = exceptionTableService.LogException(ex, String.Join("<br/>", stacks.Select(c => c.Operation + " => " + c.Status + (!string.IsNullOrEmpty(c.Data) ? "<br/>&nbsp;&nbsp;&nbsp;&nbsp;" + c.Data : string.Empty)).ToList()));
+                string message = String.Join("<br/>", stacks.Select(c => c.Operation + " => " + c.Status + (!string.IsNullOrEmpty(c.Data) ? "<br/>&nbsp;&nbsp;&nbsp;&nbsp;" + c.Data : string.Empty)).ToList());
+                _logger.Error(message);
 
-                throw new Exception("Failed to sync advertiser user via Bullhorn API - Exception ID: " + exID);
+                throw new Exception("Failed to sync advertiser user via Bullhorn API - Entity ID: " + advertiser.EntityId);
             }
         }
 

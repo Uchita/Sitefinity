@@ -11,11 +11,19 @@ using PayPal.Payments.Common.Utility;
 using PayPal.Payments.Common;
 using JXTPortal.Entities;
 using JXTPortal;
+using log4net;
 
 namespace PaymentGateway.Paypal
 {
     public class PayflowPaymentGateway
     {
+        ILog logger;
+
+        public PayflowPaymentGateway()
+        {
+            logger = LogManager.GetLogger(typeof(PayflowPaymentGateway));
+        }
+
         public bool DoPayment(string user, string vendor, string partner, string password, string creditcardnumber, string cardholdername, int month, int year, string cvv, string currencycode, List<CartItem> cartitems, bool currencyRounding, decimal taxrate, string siteurl, string sitename, out string responseCode, out string errorMessage)
         {
             errorMessage = string.Empty;
@@ -281,9 +289,7 @@ namespace PaymentGateway.Paypal
             }
             catch (Exception ex)
             {
-                errorMessage = ex.Message;
-                ExceptionTableService serviceException = new ExceptionTableService();
-                serviceException.LogException(ex.GetBaseException());
+                logger.Error(ex.GetBaseException());
             }
 
             return false;

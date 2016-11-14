@@ -769,7 +769,7 @@ namespace JXTPortal.Website
                                 }
                             }
 
-                            if (phApplyWithFacebook.Visible == false && phApplyWithLinkedIn.Visible == false && phApplyWithIndeed.Visible == false && phApplyWithSeek.Visible == false)
+                            if (phApplyWithLinkedIn.Visible == false && phApplyWithIndeed.Visible == false && phApplyWithSeek.Visible == false)
                             {
                                 phApplyWith.Visible = false;
                             }
@@ -1914,12 +1914,6 @@ namespace JXTPortal.Website
         {
             //Get Integration Details
             AdminIntegrations.Integrations integrations = IntegrationsService.AdminIntegrationsForSiteGet(SessionData.Site.SiteId);
-
-            //Facebook login button
-            if (integrations.Facebook != null && !string.IsNullOrWhiteSpace(integrations.Facebook.ApplicationID) && !string.IsNullOrWhiteSpace(integrations.Facebook.ApplicationSecret) && integrations.Facebook.Valid)
-            {
-                phApplyWithFacebook.Visible = true;
-            }
 
             if (integrations.Indeed != null && !string.IsNullOrWhiteSpace(integrations.Indeed.APIToken) && !string.IsNullOrWhiteSpace(integrations.Indeed.APISecret) && integrations.Indeed.Valid)
             {

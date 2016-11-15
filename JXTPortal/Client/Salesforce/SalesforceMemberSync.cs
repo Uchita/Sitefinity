@@ -12,11 +12,14 @@ using System.Configuration;
 using JXTPortal.Entities.Models;
 using System.Xml;
 using System.Text.RegularExpressions;
+using log4net;
 
 namespace JXTPortal.Client.Salesforce
 {
     public class SalesforceMemberSync : IDisposable
     {
+        private ILog _logger;
+
         private IntegrationsService _integrationsService;
         private IntegrationsService IntegrationsService
         {
@@ -113,6 +116,7 @@ namespace JXTPortal.Client.Salesforce
 
         public SalesforceMemberSync() : this(SessionData.Site.SiteId)
         {
+            _logger = LogManager.GetLogger(typeof(SalesforceMemberSync));
             //Add 3072 (TLS1.2) for this application
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | (SecurityProtocolType)3072;
         }
@@ -1128,8 +1132,7 @@ namespace JXTPortal.Client.Salesforce
             catch (Exception ex)
             {
                 // Save to exception
-                ExceptionTableService exceptionTableService = new ExceptionTableService();
-                exceptionTableService.LogException(ex);
+                _logger.Error(ex);
 
                 blnValid = false;
                 errormsg = ex.Message;

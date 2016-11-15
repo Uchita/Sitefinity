@@ -265,24 +265,6 @@ namespace JXTPortal.Website {
         protected global::System.Web.UI.WebControls.PlaceHolder phApplyWithIndeed;
         
         /// <summary>
-        /// phApplyWithFacebook control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder phApplyWithFacebook;
-        
-        /// <summary>
-        /// ibApplyWithFacebook control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ibApplyWithFacebook;
-        
-        /// <summary>
         /// phApplyWithLinkedIn control.
         /// </summary>
         /// <remarks>

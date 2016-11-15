@@ -175,7 +175,19 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\References\Intelligencia.UrlRewriter.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net-loggly, Version=7.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net-loggly.7.2.1\lib\net40\log4net-loggly.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -2746,6 +2758,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>language_13.resx</DependentUpon>
     </Compile>
+    <Compile Include="App_GlobalResources\language_English_Test_Sample.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>language_English_Test_Sample.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_GlobalResources\language_3.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -4628,6 +4645,13 @@
     <Content Include="App_GlobalResources\language_13.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>language_13.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\language_English_Test_Sample.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>language_English_Test_Sample.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>

@@ -358,6 +358,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to - All Areas -.
+        /// </summary>
+        internal static string DDLAllAreas {
+            get {
+                return ResourceManager.GetString("DDLAllAreas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Xếp tăng dần.
         /// </summary>
         internal static string DDLAscending {
@@ -403,6 +412,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to - Not Specified -.
+        /// </summary>
+        internal static string DDLNotSpecified {
+            get {
+                return ResourceManager.GetString("DDLNotSpecified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Số lượt ứng tuyển.
         /// </summary>
         internal static string DDLNumberOfApplications {
@@ -444,6 +462,60 @@ namespace Resources {
         internal static string DDLOneWeek {
             get {
                 return ResourceManager.GetString("DDLOneWeek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to - Please Select -.
+        /// </summary>
+        internal static string DDLPleaseSelect {
+            get {
+                return ResourceManager.GetString("DDLPleaseSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to - Please select a Country -.
+        /// </summary>
+        internal static string DDLPleaseSelectCountry {
+            get {
+                return ResourceManager.GetString("DDLPleaseSelectCountry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to - Please select an Industry -.
+        /// </summary>
+        internal static string DDLPleaseSelectIndustry {
+            get {
+                return ResourceManager.GetString("DDLPleaseSelectIndustry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to - Please select a Job Category -.
+        /// </summary>
+        internal static string DDLPleaseSelectJobCategory {
+            get {
+                return ResourceManager.GetString("DDLPleaseSelectJobCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to - Please select a Primary Desired Country -.
+        /// </summary>
+        internal static string DDLPleaseSelectPrimaryDesiredCountry {
+            get {
+                return ResourceManager.GetString("DDLPleaseSelectPrimaryDesiredCountry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to - Please select a Primary Desired Job Category -.
+        /// </summary>
+        internal static string DDLPleaseSelectPrimaryDesiredJobCategory {
+            get {
+                return ResourceManager.GetString("DDLPleaseSelectPrimaryDesiredJobCategory", resourceCulture);
             }
         }
         
@@ -3968,7 +4040,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ngành.
+        ///   Looks up a localized string similar to Lĩnh vực.
         /// </summary>
         internal static string LabelIndustries {
             get {
@@ -3977,7 +4049,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ngành.
+        ///   Looks up a localized string similar to Lĩnh vực.
         /// </summary>
         internal static string LabelIndustry {
             get {
@@ -4535,7 +4607,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Chức danh Công việc.
+        ///   Looks up a localized string similar to Chức danh.
         /// </summary>
         internal static string LabelJobTitle {
             get {

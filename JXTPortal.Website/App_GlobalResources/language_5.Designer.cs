@@ -358,6 +358,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to - 선택하시기 바랍니다 -.
+        /// </summary>
+        internal static string DDLAllAreas {
+            get {
+                return ResourceManager.GetString("DDLAllAreas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 오름차순.
         /// </summary>
         internal static string DDLAscending {
@@ -403,6 +412,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to - 선택하시기 바랍니다 -.
+        /// </summary>
+        internal static string DDLNotSpecified {
+            get {
+                return ResourceManager.GetString("DDLNotSpecified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 지원자 수.
         /// </summary>
         internal static string DDLNumberOfApplications {
@@ -444,6 +462,60 @@ namespace Resources {
         internal static string DDLOneWeek {
             get {
                 return ResourceManager.GetString("DDLOneWeek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to - 선택하시기 바랍니다 -.
+        /// </summary>
+        internal static string DDLPleaseSelect {
+            get {
+                return ResourceManager.GetString("DDLPleaseSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to - 선택하시기 바랍니다 -.
+        /// </summary>
+        internal static string DDLPleaseSelectCountry {
+            get {
+                return ResourceManager.GetString("DDLPleaseSelectCountry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to - 선택하시기 바랍니다 -.
+        /// </summary>
+        internal static string DDLPleaseSelectIndustry {
+            get {
+                return ResourceManager.GetString("DDLPleaseSelectIndustry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to - 선택하시기 바랍니다 -.
+        /// </summary>
+        internal static string DDLPleaseSelectJobCategory {
+            get {
+                return ResourceManager.GetString("DDLPleaseSelectJobCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to - 선택하시기 바랍니다 -.
+        /// </summary>
+        internal static string DDLPleaseSelectPrimaryDesiredCountry {
+            get {
+                return ResourceManager.GetString("DDLPleaseSelectPrimaryDesiredCountry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to - 선택하시기 바랍니다 -.
+        /// </summary>
+        internal static string DDLPleaseSelectPrimaryDesiredJobCategory {
+            get {
+                return ResourceManager.GetString("DDLPleaseSelectPrimaryDesiredJobCategory", resourceCulture);
             }
         }
         
@@ -1916,7 +1988,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to City.
+        ///   Looks up a localized string similar to 시/구.
         /// </summary>
         internal static string LabelCity {
             get {
@@ -1925,7 +1997,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to City / State.
+        ///   Looks up a localized string similar to 시/구.
         /// </summary>
         internal static string LabelCityState {
             get {
@@ -2042,7 +2114,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 기업.
+        ///   Looks up a localized string similar to 회사.
         /// </summary>
         internal static string LabelCompany {
             get {
@@ -3068,7 +3140,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 이메일 주소.
+        ///   Looks up a localized string similar to 이메일.
         /// </summary>
         internal static string LabelEmail {
             get {
@@ -3077,7 +3149,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 이메일 주소.
+        ///   Looks up a localized string similar to 이메일.
         /// </summary>
         internal static string LabelEmailAddress {
             get {
@@ -3635,7 +3707,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 이름.
+        ///   Looks up a localized string similar to 영문이름.
         /// </summary>
         internal static string LabelFirstName {
             get {
@@ -3644,7 +3716,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 이름 (현지 언어).
+        ///   Looks up a localized string similar to 이름(현지어).
         /// </summary>
         internal static string LabelFirstNameLocalLanguage {
             get {
@@ -3968,7 +4040,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 산업.
+        ///   Looks up a localized string similar to 사업분야.
         /// </summary>
         internal static string LabelIndustries {
             get {
@@ -3977,7 +4049,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Industry.
+        ///   Looks up a localized string similar to 사업분야.
         /// </summary>
         internal static string LabelIndustry {
             get {
@@ -4679,7 +4751,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 성.
+        ///   Looks up a localized string similar to 영문성.
         /// </summary>
         internal static string LabelLastName {
             get {
@@ -4688,7 +4760,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 성 (현지 언어).
+        ///   Looks up a localized string similar to 성(현지어).
         /// </summary>
         internal static string LabelLastNameLocalLanguage {
             get {
@@ -6436,7 +6508,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 希望勤務国.
+        ///   Looks up a localized string similar to 1순위 희망 국가.
         /// </summary>
         internal static string LabelPrimaryDesiredCountry {
             get {
@@ -6472,7 +6544,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 希望勤務地.
+        ///   Looks up a localized string similar to 1순위 희망 지역.
         /// </summary>
         internal static string LabelPrimaryDesiredLocation {
             get {
@@ -7111,7 +7183,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Required Profile Sections left to complete?.
+        ///   Looks up a localized string similar to 등록 정보.
         /// </summary>
         internal static string LabelRequiredProfileSectionsHeading {
             get {
@@ -8785,7 +8857,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Validation.
+        ///   Looks up a localized string similar to 인증.
         /// </summary>
         internal static string LabelValidation {
             get {
@@ -9010,7 +9082,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to What are you up to?.
+        ///   Looks up a localized string similar to 스테이터스.
         /// </summary>
         internal static string LabelWhatAreYouUpTo {
             get {

@@ -943,11 +943,11 @@
     <comment>Please choose a resume</comment>
   </data>
   <data name="LabelCity" xml:space="preserve">
-    <value>City</value>
+    <value>시/구</value>
     <comment>City</comment>
   </data>
   <data name="LabelCityState" xml:space="preserve">
-    <value>City / State</value>
+    <value>시/구</value>
     <comment>City / State</comment>
   </data>
   <data name="LabelCityTown" xml:space="preserve">
@@ -999,7 +999,7 @@
     <comment>Comments</comment>
   </data>
   <data name="LabelCompany" xml:space="preserve">
-    <value>기업</value>
+    <value>회사</value>
     <comment>Company</comment>
   </data>
   <data name="LabelCompanyDetails" xml:space="preserve">
@@ -1455,11 +1455,11 @@
     <comment>Eligible to work in</comment>
   </data>
   <data name="LabelEmail" xml:space="preserve">
-    <value>이메일 주소</value>
+    <value>이메일</value>
     <comment>Email</comment>
   </data>
   <data name="LabelEmailAddress" xml:space="preserve">
-    <value>이메일 주소</value>
+    <value>이메일</value>
     <comment>EmailAddress</comment>
   </data>
   <data name="LabelEmailAddressExist" xml:space="preserve">
@@ -1707,11 +1707,11 @@
     <comment>Finish</comment>
   </data>
   <data name="LabelFirstName" xml:space="preserve">
-    <value>이름</value>
+    <value>영문이름</value>
     <comment>First name</comment>
   </data>
   <data name="LabelFirstNameLocalLanguage" xml:space="preserve">
-    <value>이름 (현지 언어)</value>
+    <value>이름(현지어)</value>
     <comment>First Name (Local language)</comment>
   </data>
   <data name="LabelFirstNameMandatory" xml:space="preserve">
@@ -1855,11 +1855,11 @@
     <comment>Indirect Report</comment>
   </data>
   <data name="LabelIndustries" xml:space="preserve">
-    <value>산업</value>
+    <value>사업분야</value>
     <comment>Industries</comment>
   </data>
   <data name="LabelIndustry" xml:space="preserve">
-    <value>Industry</value>
+    <value>사업분야</value>
     <comment>Industry</comment>
   </data>
   <data name="LabelInstitutionName" xml:space="preserve">
@@ -2171,11 +2171,11 @@
     <comment>Last Modified By Advertiser User</comment>
   </data>
   <data name="LabelLastName" xml:space="preserve">
-    <value>성</value>
+    <value>영문성</value>
     <comment>Last name</comment>
   </data>
   <data name="LabelLastNameLocalLanguage" xml:space="preserve">
-    <value>성 (현지 언어)</value>
+    <value>성(현지어)</value>
     <comment>Last Name (Local language)</comment>
   </data>
   <data name="LabelLastViewedDate" xml:space="preserve">
@@ -2949,7 +2949,7 @@
     <comment>Price Range must be between 1 - 9999</comment>
   </data>
   <data name="LabelPrimaryDesiredCountry" xml:space="preserve">
-    <value>希望勤務国</value>
+    <value>1순위 희망 국가</value>
     <comment>Primary Desired Country</comment>
   </data>
   <data name="LabelPrimaryDesiredIndustry" xml:space="preserve">
@@ -2965,7 +2965,7 @@
     <comment>Primary Desired Job Function</comment>
   </data>
   <data name="LabelPrimaryDesiredLocation" xml:space="preserve">
-    <value>希望勤務地</value>
+    <value>1순위 희망 지역</value>
     <comment>Primary Desired Location</comment>
   </data>
   <data name="LabelPrimaryEmail" xml:space="preserve">
@@ -3249,7 +3249,7 @@
     <comment>You have not completed all the required information fields.</comment>
   </data>
   <data name="LabelRequiredProfileSectionsHeading" xml:space="preserve">
-    <value>Required Profile Sections left to complete?</value>
+    <value>등록 정보</value>
     <comment>Required Profile Sections left to complete?</comment>
   </data>
   <data name="LabelRequireLogon" xml:space="preserve">
@@ -3993,7 +3993,7 @@
     <comment>Validated</comment>
   </data>
   <data name="LabelValidation" xml:space="preserve">
-    <value>Validation</value>
+    <value>인증</value>
     <comment>Validation</comment>
   </data>
   <data name="LabelValidEmailRequired" xml:space="preserve">
@@ -4093,7 +4093,7 @@
     <comment>Welcome to the Member change password page. Please enter your current password and new password in the form below.</comment>
   </data>
   <data name="LabelWhatAreYouUpTo" xml:space="preserve">
-    <value>What are you up to?</value>
+    <value>스테이터스</value>
     <comment>What are you up to?</comment>
   </data>
   <data name="LabelWillingToRelocate" xml:space="preserve">
@@ -4371,5 +4371,37 @@
   <data name="LabelPremiumJobsNote" xml:space="preserve">
     <value>Please note: Premium jobs will be displayed at the top of the specified classification when searched.</value>
     <comment>Please note: Premium jobs will be displayed at the top of the specified classification when searched.</comment>
+  </data>
+  <data name="DDLAllAreas" xml:space="preserve">
+    <value>- 선택하시기 바랍니다 -</value>
+    <comment>- All Areas -</comment>
+  </data>
+  <data name="DDLNotSpecified" xml:space="preserve">
+    <value>- 선택하시기 바랍니다 -</value>
+    <comment>- Not Specified -</comment>
+  </data>
+  <data name="DDLPleaseSelect" xml:space="preserve">
+    <value>- 선택하시기 바랍니다 -</value>
+    <comment>- Please Select -</comment>
+  </data>
+  <data name="DDLPleaseSelectCountry" xml:space="preserve">
+    <value>- 선택하시기 바랍니다 -</value>
+    <comment>- Please select a Country -</comment>
+  </data>
+  <data name="DDLPleaseSelectIndustry" xml:space="preserve">
+    <value>- 선택하시기 바랍니다 -</value>
+    <comment>- Please select an Industry -</comment>
+  </data>
+  <data name="DDLPleaseSelectJobCategory" xml:space="preserve">
+    <value>- 선택하시기 바랍니다 -</value>
+    <comment>- Please select a Job Category -</comment>
+  </data>
+  <data name="DDLPleaseSelectPrimaryDesiredCountry" xml:space="preserve">
+    <value>- 선택하시기 바랍니다 -</value>
+    <comment>- Please select a Primary Desired Country -</comment>
+  </data>
+  <data name="DDLPleaseSelectPrimaryDesiredJobCategory" xml:space="preserve">
+    <value>- 선택하시기 바랍니다 -</value>
+    <comment>- Please select a Primary Desired Job Category -</comment>
   </data>
 </root>

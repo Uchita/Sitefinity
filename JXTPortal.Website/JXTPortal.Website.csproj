@@ -2758,6 +2758,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>language_13.resx</DependentUpon>
     </Compile>
+    <Compile Include="App_GlobalResources\language_English_Test_Sample.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>language_English_Test_Sample.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_GlobalResources\language_3.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2792,11 +2797,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>language_9.resx</DependentUpon>
-    </Compile>
-    <Compile Include="App_GlobalResources\language_English_Test_Sample.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>language_English_Test_Sample.resx</DependentUpon>
     </Compile>
     <Compile Include="CompanySearch.aspx.cs">
       <DependentUpon>CompanySearch.aspx</DependentUpon>
@@ -4652,6 +4652,7 @@
     <Content Include="App_GlobalResources\language_English_Test_Sample.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>language_English_Test_Sample.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSHARP.Targets" />

@@ -22,14 +22,14 @@ namespace Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Web.Application.StronglyTypedResourceProxyBuilder", "10.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class language_11 {
+    internal class language_English_Test_Sample {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal language_11() {
+        internal language_English_Test_Sample() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resources.language_11", global::System.Reflection.Assembly.Load("App_GlobalResources"));
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resources.language_English_Test_Sample", global::System.Reflection.Assembly.Load("App_GlobalResources"));
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Neu hinzufügen.
+        ///   Looks up a localized string similar to Add New.
         /// </summary>
         internal static string ButtonAdvertiserUsers {
             get {
@@ -70,7 +70,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Filter anwenden.
+        ///   Looks up a localized string similar to Apply Filter.
         /// </summary>
         internal static string ButtonApplyFilter {
             get {
@@ -79,7 +79,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zurück.
+        ///   Looks up a localized string similar to Back.
         /// </summary>
         internal static string ButtonBack {
             get {
@@ -88,7 +88,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Abbrechen.
+        ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string ButtonCancel {
             get {
@@ -97,7 +97,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Weiter.
+        ///   Looks up a localized string similar to Continue.
         /// </summary>
         internal static string ButtonContinue {
             get {
@@ -106,7 +106,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Jobs-E-Mail.
+        ///   Looks up a localized string similar to Create Job Alert.
         /// </summary>
         internal static string ButtonCreateJobAlert {
             get {
@@ -115,7 +115,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Einfügen.
+        ///   Looks up a localized string similar to Insert.
         /// </summary>
         internal static string ButtonInsert {
             get {
@@ -124,7 +124,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Neue Suche.
+        ///   Looks up a localized string similar to New Search.
         /// </summary>
         internal static string ButtonNewSearch {
             get {
@@ -133,7 +133,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kein Anschreiben .
+        ///   Looks up a localized string similar to No Cover Letter.
         /// </summary>
         internal static string ButtonNoCoverLetter {
             get {
@@ -142,7 +142,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kein Lebenslauf.
+        ///   Looks up a localized string similar to No Resume.
         /// </summary>
         internal static string ButtonNoResume {
             get {
@@ -151,7 +151,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Registrieren.
+        ///   Looks up a localized string similar to Register.
         /// </summary>
         internal static string ButtonRegister {
             get {
@@ -160,7 +160,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job erneuern.
+        ///   Looks up a localized string similar to Renew Job.
         /// </summary>
         internal static string ButtonRenewJob {
             get {
@@ -169,7 +169,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zurücksetzen.
+        ///   Looks up a localized string similar to Reset.
         /// </summary>
         internal static string ButtonReset {
             get {
@@ -178,7 +178,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to RSS-Feed.
+        ///   Looks up a localized string similar to RSS Feed.
         /// </summary>
         internal static string ButtonRSSFeed {
             get {
@@ -187,7 +187,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Speichern.
+        ///   Looks up a localized string similar to Save.
         /// </summary>
         internal static string ButtonSave {
             get {
@@ -196,7 +196,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Auswahl speichern.
+        ///   Looks up a localized string similar to Save Selected.
         /// </summary>
         internal static string ButtonSaveSelected {
             get {
@@ -205,7 +205,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Suche.
+        ///   Looks up a localized string similar to Search.
         /// </summary>
         internal static string ButtonSearch {
             get {
@@ -214,7 +214,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Auswählen.
+        ///   Looks up a localized string similar to Select.
         /// </summary>
         internal static string ButtonSelect {
             get {
@@ -223,7 +223,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Senden.
+        ///   Looks up a localized string similar to Send.
         /// </summary>
         internal static string ButtonSend {
             get {
@@ -232,7 +232,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Button - Senden.
+        ///   Looks up a localized string similar to Submit.
         /// </summary>
         internal static string ButtonSubmit {
             get {
@@ -241,7 +241,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Aktualisieren.
+        ///   Looks up a localized string similar to Update.
         /// </summary>
         internal static string ButtonUpdate {
             get {
@@ -250,7 +250,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Anschreiben von meinem Computer hochladen.
+        ///   Looks up a localized string similar to Upload a cover letter from my computer.
         /// </summary>
         internal static string ButtonUploadCoverLetterNow {
             get {
@@ -259,7 +259,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lebenslauf von meinem Computer hochladen.
+        ///   Looks up a localized string similar to Upload a resume from my computer.
         /// </summary>
         internal static string ButtonUploadResumeNow {
             get {
@@ -268,7 +268,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mein Profil verwenden.
+        ///   Looks up a localized string similar to Use my profile.
         /// </summary>
         internal static string ButtonUseMyProfile {
             get {
@@ -277,7 +277,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Jetzt schreiben.
+        ///   Looks up a localized string similar to I&apos;ll write one now.
         /// </summary>
         internal static string ButtonWriteOneNow {
             get {
@@ -286,7 +286,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Prüfungsausschuss .
+        ///   Looks up a localized string similar to Audit Committee.
         /// </summary>
         internal static string cbAuditCommittee {
             get {
@@ -295,7 +295,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nominierungsausschuss.
+        ///   Looks up a localized string similar to Nominations Committee.
         /// </summary>
         internal static string cbNominationsCommittee {
             get {
@@ -304,7 +304,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OH&amp;S-Ausschuss.
+        ///   Looks up a localized string similar to OH&amp;S Committee.
         /// </summary>
         internal static string cbOHSCommittee {
             get {
@@ -313,7 +313,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Andere.
+        ///   Looks up a localized string similar to Other.
         /// </summary>
         internal static string cbOther {
             get {
@@ -322,7 +322,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vergütungsausschuss.
+        ///   Looks up a localized string similar to Remuneration Committee.
         /// </summary>
         internal static string cbRemunerationCommittee {
             get {
@@ -331,7 +331,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Risikoausschuss.
+        ///   Looks up a localized string similar to Risk Committee.
         /// </summary>
         internal static string cbRiskCommittee {
             get {
@@ -340,7 +340,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sind Sie sicher, dass Sie diesen Werbungsentwurf dauerhaft löschen möchten?.
+        ///   Looks up a localized string similar to Are you sure you wish to permanently delete this draft ad?.
         /// </summary>
         internal static string ConfirmDeleteJob {
             get {
@@ -349,7 +349,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sind Sie sicher, dass dieser Job ablaufen soll?.
+        ///   Looks up a localized string similar to Are you sure you wish to expire this job?.
         /// </summary>
         internal static string ConfirmExpireJob {
             get {
@@ -358,7 +358,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Aufsteigend.
+        ///   Looks up a localized string similar to Ascending.
         /// </summary>
         internal static string DDLAscending {
             get {
@@ -367,7 +367,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gepostet am.
+        ///   Looks up a localized string similar to Date Posted.
         /// </summary>
         internal static string DDLDatePosted {
             get {
@@ -376,7 +376,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tage bis Ablauf.
+        ///   Looks up a localized string similar to Days Till Expiry.
         /// </summary>
         internal static string DDLDaysTillExpiry {
             get {
@@ -385,7 +385,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Absteigend.
+        ///   Looks up a localized string similar to Descending.
         /// </summary>
         internal static string DDLDescending {
             get {
@@ -394,7 +394,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-Titel.
+        ///   Looks up a localized string similar to Job Title.
         /// </summary>
         internal static string DDLJobTitle {
             get {
@@ -403,7 +403,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Anzahl Bewerbungen.
+        ///   Looks up a localized string similar to Number of Applications.
         /// </summary>
         internal static string DDLNumberOfApplications {
             get {
@@ -412,7 +412,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Anzahl Ansichten.
+        ///   Looks up a localized string similar to Number of Views.
         /// </summary>
         internal static string DDLNumberOfViews {
             get {
@@ -421,7 +421,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1 Tag.
+        ///   Looks up a localized string similar to 1 Day.
         /// </summary>
         internal static string DDLOneDay {
             get {
@@ -430,7 +430,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1 Monat.
+        ///   Looks up a localized string similar to 1 Month.
         /// </summary>
         internal static string DDLOneMonth {
             get {
@@ -439,7 +439,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1 Woche.
+        ///   Looks up a localized string similar to 1 Week.
         /// </summary>
         internal static string DDLOneWeek {
             get {
@@ -448,7 +448,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ref.-Nr..
+        ///   Looks up a localized string similar to Ref No.
         /// </summary>
         internal static string DDLRefNo {
             get {
@@ -457,7 +457,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 6 Monate.
+        ///   Looks up a localized string similar to 6 Months.
         /// </summary>
         internal static string DDLSixMonths {
             get {
@@ -466,7 +466,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 3 Monate.
+        ///   Looks up a localized string similar to 3 Months.
         /// </summary>
         internal static string DDLThreeMonths {
             get {
@@ -475,7 +475,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bitte akzeptieren Sie die AGB.
+        ///   Looks up a localized string similar to Please accept Terms and Conditions.
         /// </summary>
         internal static string ErrorAcceptTermCondition {
             get {
@@ -484,7 +484,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Länge des Gliederungspunktes kann 160 Zeichen nicht überschreiten.
+        ///   Looks up a localized string similar to Bullet Point size cannot exceed 160 characters.
         /// </summary>
         internal static string ErrorBulletPointSize {
             get {
@@ -493,7 +493,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Passwortbestätigung stimmt nicht überein.
+        ///   Looks up a localized string similar to Confirm password doesn&apos;t not match.
         /// </summary>
         internal static string ErrorConfirmPasswordNotMatch {
             get {
@@ -502,7 +502,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Anschreiben darf nicht leer sein..
+        ///   Looks up a localized string similar to Cover Letter cannot be empty..
         /// </summary>
         internal static string ErrorCoverLetterEmpty {
             get {
@@ -511,7 +511,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Inhalt darf nicht leer sein.
+        ///   Looks up a localized string similar to Content must not be empty.
         /// </summary>
         internal static string ErrorEmptyContent {
             get {
@@ -520,7 +520,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bitte stellen Sie sicher, dass Sie ein Dokument zum Hochladen ausgewählt haben.
+        ///   Looks up a localized string similar to Please ensure you have selected a document to upload.
         /// </summary>
         internal static string ErrorEnsureDocumentSelected {
             get {
@@ -529,7 +529,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Leider konnten wir Ihre Details nicht abrufen. Bitte überprüfen Sie die eingegebenen Details und versuchen Sie es erneut..
+        ///   Looks up a localized string similar to Sorry, we were unable to retrieve your details. Please check the details you entered and try again..
         /// </summary>
         internal static string ErrorEnterDetailAgain {
             get {
@@ -538,7 +538,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bitte geben Sie den Benutzernamen oder die E-Mail-Adresse ein.
+        ///   Looks up a localized string similar to Please fill in username or email address.
         /// </summary>
         internal static string ErrorEnterEmailUsername {
             get {
@@ -547,7 +547,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bitte wählen Sie Suchkriterien aus..
+        ///   Looks up a localized string similar to Please select the criteria to search..
         /// </summary>
         internal static string ErrorEnterKeyword {
             get {
@@ -556,7 +556,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Datei existiert bereits. Bitte wählen Sie eine andere Datei aus oder ändern Sie den Dateinamen.
+        ///   Looks up a localized string similar to File already exists, please select another file or change the file name.
         /// </summary>
         internal static string ErrorFileExist {
             get {
@@ -565,7 +565,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dateityp-Erweiterung wird nicht akzeptiert.
+        ///   Looks up a localized string similar to File type extension is not accepted.
         /// </summary>
         internal static string ErrorFileExtension {
             get {
@@ -574,7 +574,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Das hochgeladene Bild überschreitet das max. Limit von 1 MB. .
+        ///   Looks up a localized string similar to The uploaded image exceeds the maximum 1Mb limit..
         /// </summary>
         internal static string ErrorImageExceed {
             get {
@@ -583,7 +583,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Die hochgeladene Bilderweiterung &apos;.
+        ///   Looks up a localized string similar to The uploaded image extension &apos;.
         /// </summary>
         internal static string ErrorImageExtension {
             get {
@@ -592,7 +592,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Die Größe des hochgeladenen Bildes ist ungültig. Bitte überprüfen Sie das Bild und versuchen Sie es erneut. .
+        ///   Looks up a localized string similar to The uploaded image has an invalid size. Please check the image and try again..
         /// </summary>
         internal static string ErrorImageInvalidSize {
             get {
@@ -601,7 +601,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Das hochgeladene Bild hat keine Erweiterung.
+        ///   Looks up a localized string similar to The uploaded image has no extension.
         /// </summary>
         internal static string ErrorImageNoExtension {
             get {
@@ -610,7 +610,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Falsches aktuelles Passwort.
+        ///   Looks up a localized string similar to Incorrect current password.
         /// </summary>
         internal static string ErrorIncorrectCurrentPassword {
             get {
@@ -619,7 +619,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ungültiger Dateityp.
+        ///   Looks up a localized string similar to Invalid File Type.
         /// </summary>
         internal static string ErrorInvalidFileType {
             get {
@@ -628,7 +628,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Stichwortgröße darf nicht größer als 1000 Zeichen sein.
+        ///   Looks up a localized string similar to Keyword size cannot exceed 100 characters.
         /// </summary>
         internal static string ErrorKeywordSize {
             get {
@@ -637,7 +637,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Keine Inserentenbenutzer gefunden.
+        ///   Looks up a localized string similar to No Advertiser User is found.
         /// </summary>
         internal static string ErrorNoAdvertiserFound {
             get {
@@ -646,7 +646,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kein Mitglied gefunden.
+        ///   Looks up a localized string similar to No Member is Found.
         /// </summary>
         internal static string ErrorNoMemberFound {
             get {
@@ -655,7 +655,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  kann nicht akzeptiert werden.
+        ///   Looks up a localized string similar to &apos; is not acceptable.
         /// </summary>
         internal static string ErrorNotAccepted {
             get {
@@ -664,7 +664,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Telefon kann nicht länger als 40 Zeichen sein.
+        ///   Looks up a localized string similar to Phone cannot exceed 40 characters.
         /// </summary>
         internal static string ErrorPhoneSize {
             get {
@@ -673,7 +673,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Erforderlich.
+        ///   Looks up a localized string similar to Required.
         /// </summary>
         internal static string ErrorRequired {
             get {
@@ -682,7 +682,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Benutzername existiert bereits.
+        ///   Looks up a localized string similar to User Name already exists.
         /// </summary>
         internal static string ErrorUsernameExist {
             get {
@@ -691,7 +691,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sprache hinzufügen.
+        ///   Looks up a localized string similar to Add Language.
         /// </summary>
         internal static string LabeAddLanguage {
             get {
@@ -700,7 +700,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ich akzeptiere die AGB.
+        ///   Looks up a localized string similar to I Accept the Terms and Conditions.
         /// </summary>
         internal static string LabelAcceptTermCondition {
             get {
@@ -709,7 +709,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zugriff verweigert. Ungültige Benutzerinformationen..
+        ///   Looks up a localized string similar to Access denied. Invalid credentials..
         /// </summary>
         internal static string LabelAccessDenied {
             get {
@@ -718,7 +718,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Konto.
+        ///   Looks up a localized string similar to Account.
         /// </summary>
         internal static string LabelAccount {
             get {
@@ -727,7 +727,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Die angegebenen Benutzerinformationen sind nicht richtig. Konto wurde vorübergehend gesperrt. Bitte versuchen Sie es in &quot;60 Min.&quot; erneut oder kontaktieren Sie Ihren Systemadministrator..
+        ///   Looks up a localized string similar to The supplied credentials are invalid. Account has been temporarily locked. Please try again in “60 mins” or contact your system administrator..
         /// </summary>
         internal static string LabelAccountLocked {
             get {
@@ -736,7 +736,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kontonummer.
+        ///   Looks up a localized string similar to Account No..
         /// </summary>
         internal static string LabelAccountNumber {
             get {
@@ -745,7 +745,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-Mail der Kreditorenbuchhaltung.
+        ///   Looks up a localized string similar to Accounts Payable Email.
         /// </summary>
         internal static string LabelAccountsPayableEmail {
             get {
@@ -754,7 +754,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kontotyp.
+        ///   Looks up a localized string similar to Account Type.
         /// </summary>
         internal static string LabelAccountType {
             get {
@@ -763,7 +763,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Aktion.
+        ///   Looks up a localized string similar to Action.
         /// </summary>
         internal static string LabelAction {
             get {
@@ -772,7 +772,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Aktionen.
+        ///   Looks up a localized string similar to Actions.
         /// </summary>
         internal static string LabelActions {
             get {
@@ -781,7 +781,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hinzufügen.
+        ///   Looks up a localized string similar to Add.
         /// </summary>
         internal static string LabelAdd {
             get {
@@ -790,7 +790,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Einen Eintrag hinzufügen.
+        ///   Looks up a localized string similar to Add an Entry.
         /// </summary>
         internal static string LabelAddAnEntry {
             get {
@@ -799,7 +799,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Weitere Erfahrung hinzufügen.
+        ///   Looks up a localized string similar to Add Experience.
         /// </summary>
         internal static string LabelAddAnotherDirectorship {
             get {
@@ -808,7 +808,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Weitere Erfahrung hinzufügen.
+        ///   Looks up a localized string similar to Add Experience.
         /// </summary>
         internal static string LabelAddAnotherExperience {
             get {
@@ -817,7 +817,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Weitere Qualifikation hinzufügen.
+        ///   Looks up a localized string similar to Add Qualification.
         /// </summary>
         internal static string LabelAddAnotherQualification {
             get {
@@ -826,7 +826,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zertifikat &amp; Mitgliedschaft hinzufügen.
+        ///   Looks up a localized string similar to Add Certificate &amp;amp; Membership.
         /// </summary>
         internal static string LabelAddCertificateMembership {
             get {
@@ -835,7 +835,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Leitende Stelle hinzufügen.
+        ///   Looks up a localized string similar to Add Directorship.
         /// </summary>
         internal static string LabelAddDirectorship {
             get {
@@ -844,7 +844,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zusätzliche Dokumente.
+        ///   Looks up a localized string similar to Additional Documents.
         /// </summary>
         internal static string LabelAdditionalDocuments {
             get {
@@ -853,7 +853,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zusätzliche Rollen und Aufgaben hinzufügen.
+        ///   Looks up a localized string similar to Additional Roles and responsibilities.
         /// </summary>
         internal static string LabelAdditionalRolesAndResponsibilities {
             get {
@@ -862,7 +862,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lizenz hinzufügen.
+        ///   Looks up a localized string similar to Add License.
         /// </summary>
         internal static string LabelAddLicense {
             get {
@@ -871,7 +871,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Postanschrift hinzufügen.
+        ///   Looks up a localized string similar to Add Mailing Address.
         /// </summary>
         internal static string LabelAddMailingAddress {
             get {
@@ -880,7 +880,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Referenz hinzufügen.
+        ///   Looks up a localized string similar to Add Reference.
         /// </summary>
         internal static string LabelAddReference {
             get {
@@ -889,7 +889,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Adresse.
+        ///   Looks up a localized string similar to Address.
         /// </summary>
         internal static string LabelAddress {
             get {
@@ -907,7 +907,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fähigkeiten hinzufügen.
+        ///   Looks up a localized string similar to Add Skill.
         /// </summary>
         internal static string LabelAddSkill {
             get {
@@ -916,7 +916,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fähigkeit existiert bereits.
+        ///   Looks up a localized string similar to Skill already exists.
         /// </summary>
         internal static string LabelAddSkillAlreadyExist {
             get {
@@ -925,7 +925,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ihre Fähigkeit hinzufügen.
+        ///   Looks up a localized string similar to Add Your Skill.
         /// </summary>
         internal static string LabelAddYourSkill {
             get {
@@ -934,7 +934,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fortgeschritten.
+        ///   Looks up a localized string similar to Advanced.
         /// </summary>
         internal static string LabelAdvanced {
             get {
@@ -943,7 +943,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Inserent.
+        ///   Looks up a localized string similar to Advertiser.
         /// </summary>
         internal static string LabelAdvertiser {
             get {
@@ -952,7 +952,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kontodetails wurden erfolgreich gesendet..
+        ///   Looks up a localized string similar to Account details have been submitted successfully..
         /// </summary>
         internal static string LabelAdvertiserEditSuccess {
             get {
@@ -961,7 +961,18 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Inserentenverifizierung fehlgeschlagen..
+        ///   Looks up a localized string similar to Advertiser Full Register.
+        /// </summary>
+        internal static string LabelAdvertiserFullRegister {
+            get {
+                return ResourceManager.GetString("LabelAdvertiserFullRegister", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;h2&gt;Dear Advertiser,&lt;/h2&gt;
+        ///
+        ///&lt;p&gt;Your account has already been validated with us. You can access your account via the &lt;a href=&quot;/advertiser/login.aspx&quot;&gt;login page&lt;/a&gt;.&lt;/p&gt;.
         /// </summary>
         internal static string LabelAdvertiserInvalid {
             get {
@@ -970,7 +981,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-Vorlagenlogo für Inserenten.
+        ///   Looks up a localized string similar to Advertiser Job Template Logo.
         /// </summary>
         internal static string LabelAdvertiserJobTemplateLogo {
             get {
@@ -979,7 +990,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vorlagenlogo-ID.
+        ///   Looks up a localized string similar to Template Logo ID.
         /// </summary>
         internal static string LabelAdvertiserJobTemplateLogoID {
             get {
@@ -988,7 +999,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name des Bildes/Logos.
+        ///   Looks up a localized string similar to Name of Image/Logo.
         /// </summary>
         internal static string LabelAdvertiserJobTemplateLogoName {
             get {
@@ -997,7 +1008,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Datei hochladen.
+        ///   Looks up a localized string similar to Upload file.
         /// </summary>
         internal static string LabelAdvertiserJobTemplateLogoSelectDoc {
             get {
@@ -1006,7 +1017,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Inserentenbenutzer.
+        ///   Looks up a localized string similar to Advertiser User.
         /// </summary>
         internal static string LabelAdvertiserUser {
             get {
@@ -1015,7 +1026,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sie wurden erfolgreich verifiziert..
+        ///   Looks up a localized string similar to You have been validated successfully..
         /// </summary>
         internal static string LabelAdvertiserValidated {
             get {
@@ -1024,7 +1035,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Verifizierungsanfrage fehlgeschlagen.
+        ///   Looks up a localized string similar to Validation Request Failure.
         /// </summary>
         internal static string LabelAdvertiserValidation {
             get {
@@ -1033,7 +1044,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Berater.
+        ///   Looks up a localized string similar to Advisor.
         /// </summary>
         internal static string LabelAdvisor {
             get {
@@ -1042,7 +1053,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Alle Bewerbungen für den Job werden an diese E-Mail-Adresse gesendet..
+        ///   Looks up a localized string similar to All applications for job will be sent to this email address.
         /// </summary>
         internal static string LabelAllApplicationsSendEmail {
             get {
@@ -1051,7 +1062,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - Alle Gebiete -.
+        ///   Looks up a localized string similar to - All Areas - .
         /// </summary>
         internal static string LabelAllArea {
             get {
@@ -1060,7 +1071,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -Alle Gebiete-.
+        ///   Looks up a localized string similar to -All Areas-.
         /// </summary>
         internal static string LabelAllAreas {
             get {
@@ -1069,7 +1080,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - Alle Verfügbarkeiten -.
+        ///   Looks up a localized string similar to - All Availability - .
         /// </summary>
         internal static string LabelAllAvailability {
             get {
@@ -1078,7 +1089,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - Alle Klassifizierungen -.
+        ///   Looks up a localized string similar to - All Classification -.
         /// </summary>
         internal static string LabelAllClassification {
             get {
@@ -1087,7 +1098,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - Alle Klassifizierungen -.
+        ///   Looks up a localized string similar to - All Classifications -.
         /// </summary>
         internal static string LabelAllClassifications {
             get {
@@ -1096,7 +1107,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -Alle Länder-.
+        ///   Looks up a localized string similar to -All Countries-.
         /// </summary>
         internal static string LabelAllCountries {
             get {
@@ -1105,7 +1116,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - Alle Länder -.
+        ///   Looks up a localized string similar to - All Countries - .
         /// </summary>
         internal static string LabelAllCountry {
             get {
@@ -1114,7 +1125,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - Alle Standort -.
+        ///   Looks up a localized string similar to - All Locations - .
         /// </summary>
         internal static string LabelAllLocation {
             get {
@@ -1123,7 +1134,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -Alle Standorte-.
+        ///   Looks up a localized string similar to -All Locations-.
         /// </summary>
         internal static string LabelAllLocations {
             get {
@@ -1132,7 +1143,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - Alle Gehälter -.
+        ///   Looks up a localized string similar to - All Salary - .
         /// </summary>
         internal static string LabelAllSalary {
             get {
@@ -1141,7 +1152,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - Alle Gehaltstypen -.
+        ///   Looks up a localized string similar to - All Salary Type -.
         /// </summary>
         internal static string LabelAllSalaryType {
             get {
@@ -1150,7 +1161,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - Alle Unterklassifizierungen -.
+        ///   Looks up a localized string similar to - All Sub-classifications -.
         /// </summary>
         internal static string LabelAllSubClassifications {
             get {
@@ -1159,7 +1170,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - Alle Arbeitstypen -.
+        ///   Looks up a localized string similar to - All Work types -.
         /// </summary>
         internal static string LabelAllWorkTypes {
             get {
@@ -1186,7 +1197,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bereits registriert.
+        ///   Looks up a localized string similar to Already registered.
         /// </summary>
         internal static string LabelAlreadyRegistered {
             get {
@@ -1204,7 +1215,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Betrag.
+        ///   Looks up a localized string similar to Amount.
         /// </summary>
         internal static string LabelAmount {
             get {
@@ -1222,7 +1233,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Jährliches Gehalt.
+        ///   Looks up a localized string similar to Annual Salary.
         /// </summary>
         internal static string LabelAnnualSalary {
             get {
@@ -1231,7 +1242,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bewerberstufe.
+        ///   Looks up a localized string similar to Applicant Grade.
         /// </summary>
         internal static string LabelApplicantGrade {
             get {
@@ -1240,7 +1251,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bewerbungsdatum.
+        ///   Looks up a localized string similar to Application Date.
         /// </summary>
         internal static string LabelApplicationDate {
             get {
@@ -1249,7 +1260,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bewerbungs-E-Mail.
+        ///   Looks up a localized string similar to Application email.
         /// </summary>
         internal static string LabelApplicationEmail {
             get {
@@ -1258,7 +1269,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bewerbungs-E-Mail-Adresse.
+        ///   Looks up a localized string similar to Application Email Address.
         /// </summary>
         internal static string LabelApplicationEmailAddress {
             get {
@@ -1267,7 +1278,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bewerbungsmanager.
+        ///   Looks up a localized string similar to Application Manager.
         /// </summary>
         internal static string LabelApplicationManager {
             get {
@@ -1276,7 +1287,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bewerbungsmethode.
+        ///   Looks up a localized string similar to Application Method.
         /// </summary>
         internal static string LabelApplicationMethod {
             get {
@@ -1285,7 +1296,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bewerbungen.
+        ///   Looks up a localized string similar to Applications.
         /// </summary>
         internal static string LabelApplications {
             get {
@@ -1294,7 +1305,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bewerbungsstatus.
+        ///   Looks up a localized string similar to Application Status.
         /// </summary>
         internal static string LabelApplicationStatus {
             get {
@@ -1303,7 +1314,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bewerbungs-URL.
+        ///   Looks up a localized string similar to Application URL.
         /// </summary>
         internal static string LabelApplicationURL {
             get {
@@ -1312,7 +1323,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Beworben.
+        ///   Looks up a localized string similar to Applied.
         /// </summary>
         internal static string LabelApplied {
             get {
@@ -1321,7 +1332,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bewerben.
+        ///   Looks up a localized string similar to Apply.
         /// </summary>
         internal static string LabelApply {
             get {
@@ -1330,7 +1341,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Beworben für.
+        ///   Looks up a localized string similar to Apply For.
         /// </summary>
         internal static string LabelApplyFor {
             get {
@@ -1339,7 +1350,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Für Stelle bewerben.
+        ///   Looks up a localized string similar to Apply for position.
         /// </summary>
         internal static string LabelApplyForPosition {
             get {
@@ -1348,7 +1359,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bewerben mit.
+        ///   Looks up a localized string similar to Apply with.
         /// </summary>
         internal static string LabelApplyWith {
             get {
@@ -1366,7 +1377,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Archivierte Jobs.
+        ///   Looks up a localized string similar to Archived Jobs.
         /// </summary>
         internal static string LabelArchivedJobs {
             get {
@@ -1375,7 +1386,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gebiet.
+        ///   Looks up a localized string similar to Area.
         /// </summary>
         internal static string LabelArea {
             get {
@@ -1384,7 +1395,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gebiets-ID.
+        ///   Looks up a localized string similar to Area IDs.
         /// </summary>
         internal static string LabelAreaIDs {
             get {
@@ -1393,7 +1404,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gebiet ist erforderlich.
+        ///   Looks up a localized string similar to Area is required.
         /// </summary>
         internal static string LabelAreaRequired {
             get {
@@ -1402,7 +1413,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job zuweisen an.
+        ///   Looks up a localized string similar to Assign Job To.
         /// </summary>
         internal static string LabelAssignedJobTo {
             get {
@@ -1420,7 +1431,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Anschreiben anhängen.
+        ///   Looks up a localized string similar to Attach Cover Letter.
         /// </summary>
         internal static string LabelAttachCoverLetter {
             get {
@@ -1429,7 +1440,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lebenslauf anhängen.
+        ///   Looks up a localized string similar to Attach Resume.
         /// </summary>
         internal static string LabelAttachResume {
             get {
@@ -1438,7 +1449,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Die zur Verfügung gestellten Benutzerinformationen sind ungültig. Konto für 60 Minuten nach {0} fehlgeschlagenen Login-Versuchen gesperrt. .
+        ///   Looks up a localized string similar to The supplied credentials are invalid. Account will be locked for 60 minutes after {0} more failed login attempt/s..
         /// </summary>
         internal static string LabelAttemptFailed {
             get {
@@ -1456,7 +1467,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Autor.
+        ///   Looks up a localized string similar to Author.
         /// </summary>
         internal static string LabelAuthor {
             get {
@@ -1465,7 +1476,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Behörde.
+        ///   Looks up a localized string similar to Authority.
         /// </summary>
         internal static string LabelAuthority {
             get {
@@ -1474,7 +1485,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Verfügbarkeitsdatum.
+        ///   Looks up a localized string similar to Availability Date.
         /// </summary>
         internal static string LabelAvailabilityDate {
             get {
@@ -1483,7 +1494,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Verfügbarkeitsdatum ab.
+        ///   Looks up a localized string similar to Availability Date From.
         /// </summary>
         internal static string LabelAvailabilityDateFrom {
             get {
@@ -1510,7 +1521,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Verfügbar ab.
+        ///   Looks up a localized string similar to Available From.
         /// </summary>
         internal static string LabelAvailableFrom {
             get {
@@ -1519,7 +1530,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Verfügbarkeitsstatus.
+        ///   Looks up a localized string similar to Availability Status.
         /// </summary>
         internal static string LabelAvailableStatus {
             get {
@@ -1537,7 +1548,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bachelor-Abschluss.
+        ///   Looks up a localized string similar to Bachelor Degree.
         /// </summary>
         internal static string LabelBachelorsDegree {
             get {
@@ -1546,7 +1557,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zurück zum Job.
+        ///   Looks up a localized string similar to Back to Job.
         /// </summary>
         internal static string LabelBackToJob {
             get {
@@ -1564,7 +1575,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Anfänger.
+        ///   Looks up a localized string similar to Beginner.
         /// </summary>
         internal static string LabelBeginner {
             get {
@@ -1573,7 +1584,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to unten.
+        ///   Looks up a localized string similar to below.
         /// </summary>
         internal static string LabelBelow {
             get {
@@ -1582,7 +1593,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unten finden Sie eine Liste mit Ihren gespeicherten Jobs.
+        ///   Looks up a localized string similar to Below is a list of your saved jobs.
         /// </summary>
         internal static string LabelBelowListSavedJobs {
             get {
@@ -1591,7 +1602,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Abgerechnet.
+        ///   Looks up a localized string similar to Billed.
         /// </summary>
         internal static string LabelBilled {
             get {
@@ -1600,7 +1611,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ihr Weg.
+        ///   Looks up a localized string similar to Your Path.
         /// </summary>
         internal static string LabelBreadcrumbs {
             get {
@@ -1609,7 +1620,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Durchsuchen.
+        ///   Looks up a localized string similar to Browse.
         /// </summary>
         internal static string LabelBrowse {
             get {
@@ -1618,7 +1629,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Beenden.
+        ///   Looks up a localized string similar to Finish.
         /// </summary>
         internal static string LabelBtnFinish {
             get {
@@ -1627,7 +1638,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zurück.
+        ///   Looks up a localized string similar to Previous.
         /// </summary>
         internal static string LabelBtnPrevious {
             get {
@@ -1636,7 +1647,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Speichern &amp; Fortfahren.
+        ///   Looks up a localized string similar to Save &amp;amp; Continue.
         /// </summary>
         internal static string LabelBtnSaveContinue {
             get {
@@ -1654,7 +1665,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gliederungspunkt 1.
+        ///   Looks up a localized string similar to Bullet Point 1.
         /// </summary>
         internal static string LabelBulletPoint1 {
             get {
@@ -1663,7 +1674,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gliederungspunkt 2.
+        ///   Looks up a localized string similar to Bullet Point 2.
         /// </summary>
         internal static string LabelBulletPoint2 {
             get {
@@ -1672,7 +1683,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gliederungspunkt 3.
+        ///   Looks up a localized string similar to Bullet Point 3.
         /// </summary>
         internal static string LabelBulletPoint3 {
             get {
@@ -1681,7 +1692,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Geschäftsname.
+        ///   Looks up a localized string similar to Business Name.
         /// </summary>
         internal static string LabelBusinessName {
             get {
@@ -1690,7 +1701,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Geschäftsnummer.
+        ///   Looks up a localized string similar to Business Number.
         /// </summary>
         internal static string LabelBusinessNumber {
             get {
@@ -1699,7 +1710,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Geschäftstyp.
+        ///   Looks up a localized string similar to Business Type.
         /// </summary>
         internal static string LabelBusinessType {
             get {
@@ -1708,7 +1719,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Geschäftstyp ist erforderlich.
+        ///   Looks up a localized string similar to Business Type is required.
         /// </summary>
         internal static string LabelBusinessTypeRequired {
             get {
@@ -1717,7 +1728,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Abbrechen.
+        ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string LabelCancel {
             get {
@@ -1726,7 +1737,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bewerber .
+        ///   Looks up a localized string similar to Candidate.
         /// </summary>
         internal static string LabelCandidate {
             get {
@@ -1744,7 +1755,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bewerber müssen berechtigt sein, in diesem Land zu arbeiten.
+        ///   Looks up a localized string similar to Candidates must have the right to work in this country.
         /// </summary>
         internal static string LabelCandidatesRight {
             get {
@@ -1762,7 +1773,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bitte geben Sie Captcha ein.
+        ///   Looks up a localized string similar to Please complete the captcha.
         /// </summary>
         internal static string LabelCaptchaRequired {
             get {
@@ -1771,7 +1782,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sie haben im Moment keine Produkte im Warenkorb.
+        ///   Looks up a localized string similar to You currently have no products selected to checkout.
         /// </summary>
         internal static string LabelCartEmpty {
             get {
@@ -1780,7 +1791,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kategorien.
+        ///   Looks up a localized string similar to Categories.
         /// </summary>
         internal static string LabelCategories {
             get {
@@ -1789,7 +1800,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zertifikate &amp; Mitgliedschaften.
+        ///   Looks up a localized string similar to Certs &amp;amp; Memberships.
         /// </summary>
         internal static string LabelCertAndMembership {
             get {
@@ -1798,7 +1809,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zertifikat/Mitgliedschaft läuft nicht ab.
+        ///   Looks up a localized string similar to Certificate/Membership Does Not Expire.
         /// </summary>
         internal static string LabelCertificateDoesNotExpire {
             get {
@@ -1807,7 +1818,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zertifikatsnr./Mitgliedschaftsnr. .
+        ///   Looks up a localized string similar to Certificate/Membership No..
         /// </summary>
         internal static string LabelCertificateMembershipNumber {
             get {
@@ -1816,7 +1827,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bescheinigungen &amp; Mitgliedschaften.
+        ///   Looks up a localized string similar to Certifications &amp;amp; Memberships.
         /// </summary>
         internal static string LabelCertificationsAndMemberships {
             get {
@@ -1825,7 +1836,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bescheinigungs-URL.
+        ///   Looks up a localized string similar to Certification URL.
         /// </summary>
         internal static string LabelCertificationURL {
             get {
@@ -1834,7 +1845,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vorstandsvorsitzender.
+        ///   Looks up a localized string similar to Chairman of a board.
         /// </summary>
         internal static string LabelChairmanOfABoard {
             get {
@@ -1843,7 +1854,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ändern.
+        ///   Looks up a localized string similar to Change.
         /// </summary>
         internal static string LabelChange {
             get {
@@ -1852,7 +1863,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Um die E-Mail-Adresse zu ändern, kontaktieren Sie bitte den Administrator.
+        ///   Looks up a localized string similar to To change email address, please contact administrator.
         /// </summary>
         internal static string LabelChangeEmailContactAdmin {
             get {
@@ -1861,7 +1872,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Passwort ändern.
+        ///   Looks up a localized string similar to Change Password.
         /// </summary>
         internal static string LabelChangePwd {
             get {
@@ -1870,7 +1881,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zur Kasse.
+        ///   Looks up a localized string similar to Check out.
         /// </summary>
         internal static string LabelCheckOut {
             get {
@@ -1879,7 +1890,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bitte wählen Sie ein Anschreiben aus.
+        ///   Looks up a localized string similar to Please choose a cover letter.
         /// </summary>
         internal static string LabelChooseCover {
             get {
@@ -1888,7 +1899,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bitte auswählen.
+        ///   Looks up a localized string similar to Choose One.
         /// </summary>
         internal static string LabelChooseOne {
             get {
@@ -1897,7 +1908,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bitte wählen Sie einen Lebenslauf aus .
+        ///   Looks up a localized string similar to Please choose a resume.
         /// </summary>
         internal static string LabelChooseResume {
             get {
@@ -1915,7 +1926,16 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Stadt.
+        ///   Looks up a localized string similar to City / State.
+        /// </summary>
+        internal static string LabelCityState {
+            get {
+                return ResourceManager.GetString("LabelCityState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to City / Town.
         /// </summary>
         internal static string LabelCityTown {
             get {
@@ -1924,7 +1944,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Klassifizierung.
+        ///   Looks up a localized string similar to Classification.
         /// </summary>
         internal static string LabelClassification {
             get {
@@ -1933,7 +1953,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Klassifizierung/Unterklassifizierung.
+        ///   Looks up a localized string similar to Classification / Sub Classification.
         /// </summary>
         internal static string LabelClassificationAndSubClassification {
             get {
@@ -1942,7 +1962,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Klassifizierungen.
+        ///   Looks up a localized string similar to Classifications.
         /// </summary>
         internal static string LabelClassifications {
             get {
@@ -1951,7 +1971,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Klassifizierung/Unterklassifizierung.
+        ///   Looks up a localized string similar to Classification / SubClassification.
         /// </summary>
         internal static string LabelClassificationSubClassification {
             get {
@@ -1960,7 +1980,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Löschen.
+        ///   Looks up a localized string similar to Clear.
         /// </summary>
         internal static string LabelClear {
             get {
@@ -1969,7 +1989,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Klicken.
+        ///   Looks up a localized string similar to Click.
         /// </summary>
         internal static string LabelClick {
             get {
@@ -1978,7 +1998,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hier klicken.
+        ///   Looks up a localized string similar to click here.
         /// </summary>
         internal static string LabelClickHere {
             get {
@@ -1987,7 +2007,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zum Generieren klicken ….
+        ///   Looks up a localized string similar to click to generate ....
         /// </summary>
         internal static string LabelClickToGenerate {
             get {
@@ -1996,7 +2016,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mein Konto schließen.
+        ///   Looks up a localized string similar to Close my Account.
         /// </summary>
         internal static string LabelCloseMyAccount {
             get {
@@ -2005,7 +2025,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kollege.
+        ///   Looks up a localized string similar to Colleague.
         /// </summary>
         internal static string LabelColleague {
             get {
@@ -2014,7 +2034,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kommentare.
+        ///   Looks up a localized string similar to Comments.
         /// </summary>
         internal static string LabelComments {
             get {
@@ -2023,7 +2043,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unternehmen .
+        ///   Looks up a localized string similar to Company.
         /// </summary>
         internal static string LabelCompany {
             get {
@@ -2032,7 +2052,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unternehmensdetails.
+        ///   Looks up a localized string similar to Company Details.
         /// </summary>
         internal static string LabelCompanyDetails {
             get {
@@ -2041,7 +2061,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unternehmenslogo.
+        ///   Looks up a localized string similar to Company logo.
         /// </summary>
         internal static string LabelCompanyLogo {
             get {
@@ -2050,7 +2070,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unternehmensname.
+        ///   Looks up a localized string similar to Company Name.
         /// </summary>
         internal static string LabelCompanyName {
             get {
@@ -2059,7 +2079,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unternehmensname ist erforderlich.
+        ///   Looks up a localized string similar to Company Name is required.
         /// </summary>
         internal static string LabelCompanyNameRequired {
             get {
@@ -2068,7 +2088,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unternehmensprofil .
+        ///   Looks up a localized string similar to Company Profile.
         /// </summary>
         internal static string LabelCompanyProfile {
             get {
@@ -2077,7 +2097,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unternehmenssekretär.
+        ///   Looks up a localized string similar to Company Secretary.
         /// </summary>
         internal static string LabelCompanySecretary {
             get {
@@ -2086,7 +2106,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Abgeschlossene Bewerbung.
+        ///   Looks up a localized string similar to Completed Application.
         /// </summary>
         internal static string LabelCompletedApplication {
             get {
@@ -2095,7 +2115,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bestellung abschließen.
+        ///   Looks up a localized string similar to Complete Order.
         /// </summary>
         internal static string labelCompleteOrder {
             get {
@@ -2104,7 +2124,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sind Sie sicher, dass sie diesen Eintrag löschen möchten?.
+        ///   Looks up a localized string similar to Are you sure you want to delete this record?.
         /// </summary>
         internal static string LabelConfirmDeleteRecord {
             get {
@@ -2113,7 +2133,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-Mail bestätigen.
+        ///   Looks up a localized string similar to Confirm email address.
         /// </summary>
         internal static string LabelConfirmEmail {
             get {
@@ -2122,7 +2142,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bestätigungs-E-Mail stimmt nicht überein.
+        ///   Looks up a localized string similar to Confirm email not match.
         /// </summary>
         internal static string LabelConfirmEmailNotMatch {
             get {
@@ -2131,7 +2151,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-Mail bestätigen.
+        ///   Looks up a localized string similar to Confirm email.
         /// </summary>
         internal static string LabelConfirmEmailPage {
             get {
@@ -2140,7 +2160,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bestätigungs-E-Mail ist erforderlich.
+        ///   Looks up a localized string similar to Confirm email is required.
         /// </summary>
         internal static string LabelConfirmEmailRequired {
             get {
@@ -2149,7 +2169,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Neues Passwort bestätigen.
+        ///   Looks up a localized string similar to Confirm New Password.
         /// </summary>
         internal static string LabelConfirmNewPassword {
             get {
@@ -2158,7 +2178,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Passwort bestätigen.
+        ///   Looks up a localized string similar to Confirm password.
         /// </summary>
         internal static string LabelConfirmPassword {
             get {
@@ -2167,7 +2187,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sie werden den/die ausgewählten Job(s) erneut posten. Bitte bestätigen Sie, dass Sie erneut posten möchten?.
+        ///   Looks up a localized string similar to You are about to repost selected job(s), please confirm you want to repost.
         /// </summary>
         internal static string LabelConfirmRepost {
             get {
@@ -2176,7 +2196,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zurücksetzen des Passworts bestätigen.
+        ///   Looks up a localized string similar to Confirm Reset Password.
         /// </summary>
         internal static string LabelConfirmResetPassword {
             get {
@@ -2185,7 +2205,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kontaktdetails.
+        ///   Looks up a localized string similar to Contact Details.
         /// </summary>
         internal static string LabelContactDetails {
             get {
@@ -2194,7 +2214,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-Mail.
+        ///   Looks up a localized string similar to Email.
         /// </summary>
         internal static string LabelContactEmail {
             get {
@@ -2203,7 +2223,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kontaktinformationen.
+        ///   Looks up a localized string similar to Contact Information.
         /// </summary>
         internal static string LabelContactInformation {
             get {
@@ -2212,7 +2232,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kontaktnummer.
+        ///   Looks up a localized string similar to Contact Number.
         /// </summary>
         internal static string LabelContactNumber {
             get {
@@ -2221,7 +2241,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Inhalt  .
+        ///   Looks up a localized string similar to Content.
         /// </summary>
         internal static string LabelContent {
             get {
@@ -2230,7 +2250,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fortfahren.
+        ///   Looks up a localized string similar to Continue.
         /// </summary>
         internal static string LabelContinue {
             get {
@@ -2239,7 +2259,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bewerbung fortsetzen.
+        ///   Looks up a localized string similar to Continue Application.
         /// </summary>
         internal static string LabelContinueApplication {
             get {
@@ -2248,7 +2268,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kopieren.
+        ///   Looks up a localized string similar to Copy.
         /// </summary>
         internal static string LabelCopyJob {
             get {
@@ -2257,7 +2277,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sind Sie sicher, dass Sie diesen Job kopieren möchten?.
+        ///   Looks up a localized string similar to Are you sure you want to copy this job?.
         /// </summary>
         internal static string LabelCopyJobConfirm {
             get {
@@ -2266,7 +2286,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Land.
+        ///   Looks up a localized string similar to Country.
         /// </summary>
         internal static string LabelCountry {
             get {
@@ -2275,7 +2295,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Land/Standort/Gebiet.
+        ///   Looks up a localized string similar to Country / Location / Area.
         /// </summary>
         internal static string LabelCountryLocationArea {
             get {
@@ -2284,7 +2304,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Land ist erforderlich.
+        ///   Looks up a localized string similar to Country is Mandatory..
         /// </summary>
         internal static string LabelCountryMandatory {
             get {
@@ -2293,7 +2313,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Land ist erforderlich.
+        ///   Looks up a localized string similar to   Country is required.
         /// </summary>
         internal static string LabelCountryRequired {
             get {
@@ -2302,7 +2322,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Anschreiben.
+        ///   Looks up a localized string similar to Cover Letter.
         /// </summary>
         internal static string LabelCoverLetter {
             get {
@@ -2311,7 +2331,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to oder schreiben Sie Ihr eigenes.
+        ///   Looks up a localized string similar to Or Write Your Own.
         /// </summary>
         internal static string LabelCoverLetterWriteYourOwn {
             get {
@@ -2320,7 +2340,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kästchen.
+        ///   Looks up a localized string similar to Checkboxes.
         /// </summary>
         internal static string LabelCreateAlertCheckBoxes {
             get {
@@ -2329,7 +2349,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Als Job-E-Mail erstellen.
+        ///   Looks up a localized string similar to Create as alert.
         /// </summary>
         internal static string LabelCreateAsAlert {
             get {
@@ -2338,7 +2358,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Erstellt.
+        ///   Looks up a localized string similar to Created.
         /// </summary>
         internal static string LabelCreated {
             get {
@@ -2347,7 +2367,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lieblingssuche erstellen.
+        ///   Looks up a localized string similar to Create Favourite Search.
         /// </summary>
         internal static string LabelCreateFavouriteSearch {
             get {
@@ -2356,7 +2376,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job erstellen.
+        ///   Looks up a localized string similar to Create Job.
         /// </summary>
         internal static string LabelCreateJob {
             get {
@@ -2365,7 +2385,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-E-Mail erstellen.
+        ///   Looks up a localized string similar to Create Job Alert.
         /// </summary>
         internal static string LabelCreateJobAlert {
             get {
@@ -2374,7 +2394,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name der Job-E-Mail fehlt.
+        ///   Looks up a localized string similar to Create Job Alert Name is missing.
         /// </summary>
         internal static string LabelCreateJobAlertNameIsMissing {
             get {
@@ -2383,7 +2403,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kreditkarte.
+        ///   Looks up a localized string similar to Credit Card.
         /// </summary>
         internal static string LabelCreditCard {
             get {
@@ -2392,7 +2412,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name auf Karte.
+        ///   Looks up a localized string similar to Name on Card.
         /// </summary>
         internal static string LabelCreditCardName {
             get {
@@ -2401,7 +2421,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kartennummer .
+        ///   Looks up a localized string similar to Card Number.
         /// </summary>
         internal static string LabelCreditCardNumber {
             get {
@@ -2410,7 +2430,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mit Kreditkarte zahlen.
+        ///   Looks up a localized string similar to Payment by Credit Card.
         /// </summary>
         internal static string LabelCreditCardPayment {
             get {
@@ -2419,7 +2439,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CSC-Code.
+        ///   Looks up a localized string similar to CSC Code.
         /// </summary>
         internal static string LabelCSC {
             get {
@@ -2428,7 +2448,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Währung basiert auf.
+        ///   Looks up a localized string similar to Currency is based in.
         /// </summary>
         internal static string LabelCurrencyBaseText {
             get {
@@ -2437,7 +2457,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Aktuell.
+        ///   Looks up a localized string similar to Current.
         /// </summary>
         internal static string LabelCurrent {
             get {
@@ -2455,7 +2475,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Aktuelle Jobs.
+        ///   Looks up a localized string similar to Current Jobs.
         /// </summary>
         internal static string LabelCurrentJobs {
             get {
@@ -2464,7 +2484,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Aktuelle Job-Statistiken.
+        ///   Looks up a localized string similar to Current Job Statistics.
         /// </summary>
         internal static string LabelCurrentJobStatistics {
             get {
@@ -2482,7 +2502,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Im Moment angemeldet als.
+        ///   Looks up a localized string similar to You are currently logged in as .
         /// </summary>
         internal static string LabelCurrentLogin {
             get {
@@ -2491,7 +2511,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Aktuelles Passwort .
+        ///   Looks up a localized string similar to Current password.
         /// </summary>
         internal static string LabelCurrentPassword {
             get {
@@ -2509,7 +2529,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Aktueller Status.
+        ///   Looks up a localized string similar to Current Status.
         /// </summary>
         internal static string LabelCurrentStatus {
             get {
@@ -2518,7 +2538,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Individuelles Anschreiben.
+        ///   Looks up a localized string similar to Custom Cover Letter.
         /// </summary>
         internal static string LabelCustomCoverLetter {
             get {
@@ -2527,7 +2547,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lebenslauf-Builder.
+        ///   Looks up a localized string similar to CV Builder.
         /// </summary>
         internal static string LabelCVBuilder {
             get {
@@ -2554,7 +2574,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TT.
+        ///   Looks up a localized string similar to DD.
         /// </summary>
         internal static string LabelDateDisplayDD {
             get {
@@ -2572,7 +2592,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JJJJ.
+        ///   Looks up a localized string similar to YYYY.
         /// </summary>
         internal static string LabelDateDisplayYYYY {
             get {
@@ -2581,7 +2601,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Eingegeben am.
+        ///   Looks up a localized string similar to Date Entered.
         /// </summary>
         internal static string LabelDateEntered {
             get {
@@ -2590,7 +2610,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bearbeitet am.
+        ///   Looks up a localized string similar to Date modified.
         /// </summary>
         internal static string LabelDateModified {
             get {
@@ -2599,7 +2619,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Geburtsdatum.
+        ///   Looks up a localized string similar to Date of birth.
         /// </summary>
         internal static string LabelDateOfBirth {
             get {
@@ -2608,7 +2628,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gepostet am.
+        ///   Looks up a localized string similar to Date Posted.
         /// </summary>
         internal static string LabelDatePosted {
             get {
@@ -2617,7 +2637,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Veröffentlicht am.
+        ///   Looks up a localized string similar to Date published.
         /// </summary>
         internal static string LabelDatePublished {
             get {
@@ -2626,7 +2646,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tag.
+        ///   Looks up a localized string similar to Day.
         /// </summary>
         internal static string LabelDay {
             get {
@@ -2635,7 +2655,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tage gepostet.
+        ///   Looks up a localized string similar to Days Posted.
         /// </summary>
         internal static string LabelDaysPosted {
             get {
@@ -2644,7 +2664,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tage bis Ablauf.
+        ///   Looks up a localized string similar to Days Till Expiry.
         /// </summary>
         internal static string LabelDaysTillExpiry {
             get {
@@ -2653,7 +2673,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dezember.
+        ///   Looks up a localized string similar to December.
         /// </summary>
         internal static string LabelDec {
             get {
@@ -2662,7 +2682,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Akzeptiert nur Dezimalstellen.
+        ///   Looks up a localized string similar to Accepts decimals only.
         /// </summary>
         internal static string LabelDecimalOnly {
             get {
@@ -2671,7 +2691,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Abgelehnte Jobs.
+        ///   Looks up a localized string similar to Declined Jobs.
         /// </summary>
         internal static string LabelDeclinedJobs {
             get {
@@ -2680,7 +2700,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Standard.
+        ///   Looks up a localized string similar to Default.
         /// </summary>
         internal static string LabelDefault {
             get {
@@ -2689,7 +2709,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Löschen.
+        ///   Looks up a localized string similar to Delete.
         /// </summary>
         internal static string LabelDelete {
             get {
@@ -2698,7 +2718,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Beschreibung.
+        ///   Looks up a localized string similar to Description.
         /// </summary>
         internal static string LabelDescription {
             get {
@@ -2707,7 +2727,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Beschreibung hier ….
+        ///   Looks up a localized string similar to Description Here....
         /// </summary>
         internal static string LabelDescriptionHere {
             get {
@@ -2716,7 +2736,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gewünschte Stadt.
+        ///   Looks up a localized string similar to Desired City.
         /// </summary>
         internal static string LabelDesiredLocation {
             get {
@@ -2725,7 +2745,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gewünschte Zahlung.
+        ///   Looks up a localized string similar to Desired Pay.
         /// </summary>
         internal static string LabelDesiredPay {
             get {
@@ -2743,7 +2763,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gewünschte Region.
+        ///   Looks up a localized string similar to Desired Region.
         /// </summary>
         internal static string LabelDesiredRegion {
             get {
@@ -2752,7 +2772,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Details .
+        ///   Looks up a localized string similar to Details.
         /// </summary>
         internal static string LabelDetails {
             get {
@@ -2761,7 +2781,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Diplom .
+        ///   Looks up a localized string similar to Diploma.
         /// </summary>
         internal static string LabelDiploma {
             get {
@@ -2770,7 +2790,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Leitende Stelle  .
+        ///   Looks up a localized string similar to Directorship.
         /// </summary>
         internal static string LabelDirectorship {
             get {
@@ -2779,7 +2799,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Direkter Bericht.
+        ///   Looks up a localized string similar to Direct Report.
         /// </summary>
         internal static string LabelDirectReport {
             get {
@@ -2788,7 +2808,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gehalt anzeigen.
+        ///   Looks up a localized string similar to Display salary.
         /// </summary>
         internal static string LabelDisplaySalary {
             get {
@@ -2797,7 +2817,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nur doc, docx, txt, pdf.
+        ///   Looks up a localized string similar to doc, docx, txt, pdf only.
         /// </summary>
         internal static string LabelDocRestriction {
             get {
@@ -2806,7 +2826,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Doktorat.
+        ///   Looks up a localized string similar to Doctorate.
         /// </summary>
         internal static string LabelDoctorate {
             get {
@@ -2815,7 +2835,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Humanmediziner.
+        ///   Looks up a localized string similar to Doctor of Medicine.
         /// </summary>
         internal static string LabelDoctorOfMedicine {
             get {
@@ -2824,7 +2844,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Doktor der Philosophie.
+        ///   Looks up a localized string similar to Doctor of Philosophy.
         /// </summary>
         internal static string LabelDoctorOfPhilosophy {
             get {
@@ -2833,7 +2853,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dokumentenlink.
+        ///   Looks up a localized string similar to Document Link.
         /// </summary>
         internal static string LabelDocumentLink {
             get {
@@ -2842,7 +2862,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dokumentenname.
+        ///   Looks up a localized string similar to Document Name.
         /// </summary>
         internal static string LabelDocumentName {
             get {
@@ -2851,7 +2871,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dokumententitel.
+        ///   Looks up a localized string similar to Document Title.
         /// </summary>
         internal static string LabelDocumentTitle {
             get {
@@ -2869,7 +2889,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bewerber in Excel herunterladen.
+        ///   Looks up a localized string similar to Download Applicants in Excel.
         /// </summary>
         internal static string LabelDownloadApplicantsInExcel {
             get {
@@ -2878,7 +2898,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ausgewählte Bewerber herunterladen.
+        ///   Looks up a localized string similar to Download Selected Applicants.
         /// </summary>
         internal static string LabelDownloadSelectedApplicants {
             get {
@@ -2887,7 +2907,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dr. .
+        ///   Looks up a localized string similar to Dr.
         /// </summary>
         internal static string LabelDr {
             get {
@@ -2896,7 +2916,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Entwurfsdatum.
+        ///   Looks up a localized string similar to Draft Date.
         /// </summary>
         internal static string LabelDraftDate {
             get {
@@ -2905,7 +2925,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Entwurfsjobs.
+        ///   Looks up a localized string similar to Draft Jobs.
         /// </summary>
         internal static string LabelDraftJobs {
             get {
@@ -2914,7 +2934,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dauer.
+        ///   Looks up a localized string similar to Duration.
         /// </summary>
         internal static string LabelDuration {
             get {
@@ -2923,7 +2943,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bearbeiten .
+        ///   Looks up a localized string similar to Edit.
         /// </summary>
         internal static string LabelEdit {
             get {
@@ -2932,7 +2952,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rollenpräferenzen.
+        ///   Looks up a localized string similar to Edit A Role Preferences.
         /// </summary>
         internal static string LabelEditARolePreference {
             get {
@@ -2941,7 +2961,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zertifikats-/Mitgliedsschaftsname .
+        ///   Looks up a localized string similar to Certificate / Membership Name.
         /// </summary>
         internal static string LabelEditCertificationsMembershipName {
             get {
@@ -2950,7 +2970,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lebenslauf bearbeiten.
+        ///   Looks up a localized string similar to Edit CV.
         /// </summary>
         internal static string LabelEditCV {
             get {
@@ -2959,7 +2979,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Details bearbeiten.
+        ///   Looks up a localized string similar to Edit Details.
         /// </summary>
         internal static string LabelEditDetails {
             get {
@@ -2968,7 +2988,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Eintrag bearbeiten.
+        ///   Looks up a localized string similar to Edit Entry.
         /// </summary>
         internal static string LabelEditEntry {
             get {
@@ -2977,7 +2997,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lieblingssuche bearbeiten.
+        ///   Looks up a localized string similar to Edit Favourite Search.
         /// </summary>
         internal static string LabelEditFavouriteSearch {
             get {
@@ -2986,7 +3006,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-E-Mail bearbeiten.
+        ///   Looks up a localized string similar to Edit Job Alert.
         /// </summary>
         internal static string LabelEditJobAlert {
             get {
@@ -2995,7 +3015,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-Bewerbung bearbeiten.
+        ///   Looks up a localized string similar to Edit Job Application.
         /// </summary>
         internal static string LabelEditJobApplication {
             get {
@@ -3004,7 +3024,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Profil bearbeiten.
+        ///   Looks up a localized string similar to Edit Profile.
         /// </summary>
         internal static string LabelEditProfile {
             get {
@@ -3013,7 +3033,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bildungswesen.
+        ///   Looks up a localized string similar to Education.
         /// </summary>
         internal static string LabelEducation {
             get {
@@ -3022,7 +3042,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to z. B. Jobsuche Buchhaltung in Sydney.
+        ///   Looks up a localized string similar to e.g. Accounting job search in Sydney.
         /// </summary>
         internal static string LabelEGAccountingJobInSydney {
             get {
@@ -3031,7 +3051,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Allgemeine Grundkenntnisse.
+        ///   Looks up a localized string similar to Elementary proficiency.
         /// </summary>
         internal static string LabelElementaryProficiency {
             get {
@@ -3040,7 +3060,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Berechtigt zu arbeiten in.
+        ///   Looks up a localized string similar to Eligible to work in.
         /// </summary>
         internal static string LabelEligibleToWorkIn {
             get {
@@ -3049,7 +3069,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-Mail.
+        ///   Looks up a localized string similar to Email address.
         /// </summary>
         internal static string LabelEmail {
             get {
@@ -3058,7 +3078,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-Mail-Adresse .
+        ///   Looks up a localized string similar to Email address.
         /// </summary>
         internal static string LabelEmailAddress {
             get {
@@ -3067,7 +3087,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-Mail-Adresse existiert bereits, &lt;a href=&quot;/member/forgetpassword.aspx&quot;&gt;klicken Sie hier&lt;/a&gt;, um Ihr Passwort zu erhalten.
+        ///   Looks up a localized string similar to Email Address already exists, &lt;a href=&quot;/member/forgetpassword.aspx&quot;&gt;click here&lt;/a&gt; to retrieve password.
         /// </summary>
         internal static string LabelEmailAddressExist {
             get {
@@ -3076,7 +3096,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-Mail ist erforderlich.
+        ///   Looks up a localized string similar to Email Address is required.
         /// </summary>
         internal static string LabelEmailAddressRequired {
             get {
@@ -3085,7 +3105,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-Mail existiert bereits. Bitte fahren Sie zur &lt;a href=&quot;~/member/login.aspx&quot;&gt;Anmeldung&lt;/a&gt; fort.
+        ///   Looks up a localized string similar to Email already exists. Please proceed to &lt;a href=&quot;/member/login.aspx&quot;&gt;login&lt;/a&gt;..
         /// </summary>
         internal static string LabelEmailAlreadyExist {
             get {
@@ -3094,7 +3114,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-Mail existiert bereits.
+        ///   Looks up a localized string similar to Email already exists.
         /// </summary>
         internal static string LabelEmailExist {
             get {
@@ -3103,7 +3123,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-Mail-Format.
+        ///   Looks up a localized string similar to Email format.
         /// </summary>
         internal static string LabelEmailFormat {
             get {
@@ -3112,7 +3132,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Einem Freund emailen.
+        ///   Looks up a localized string similar to Email Friend.
         /// </summary>
         internal static string LabelEmailFriend {
             get {
@@ -3121,7 +3141,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Der Link wurde an die zur Verfügung gestellte E-Mail-Adresse gesendet. Wählen Sie den Zurück-Button aus, um zu den Stellendetails zurückzukehren. .
+        ///   Looks up a localized string similar to The link has been sent to the email addresses provided. Select the Back button below to return to the role details..
         /// </summary>
         internal static string LabelEmailFriendSuccess {
             get {
@@ -3130,7 +3150,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-Mail ist ungültig..
+        ///   Looks up a localized string similar to Email is invalid..
         /// </summary>
         internal static string LabelEmailInvalid {
             get {
@@ -3139,7 +3159,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hier klicken, um diesen Job an einen Freund zu senden.
+        ///   Looks up a localized string similar to Click here to email this job to a friend.
         /// </summary>
         internal static string LabelEmailJobToAFriend {
             get {
@@ -3148,7 +3168,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-Mail ist erforderlich.
+        ///   Looks up a localized string similar to Email is mandatory.
         /// </summary>
         internal static string LabelEmailMandatory {
             get {
@@ -3157,7 +3177,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mir emailen.
+        ///   Looks up a localized string similar to Email Me.
         /// </summary>
         internal static string LabelEmailMe {
             get {
@@ -3166,7 +3186,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mir die ausgewählten Bewerber emailen.
+        ///   Looks up a localized string similar to Email Me Selected Applicant.
         /// </summary>
         internal static string LabelEmailMeSelectedApplicants {
             get {
@@ -3175,7 +3195,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-Mail ist erforderlich.
+        ///   Looks up a localized string similar to Email is required.
         /// </summary>
         internal static string LabelEmailRequired {
             get {
@@ -3184,7 +3204,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-Mail erfolgreich gesendet.
+        ///   Looks up a localized string similar to Job {0} has been sent to your email.
         /// </summary>
         internal static string LabelEmailSuccess {
             get {
@@ -3193,7 +3213,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-Mail-Adressen stimmen nicht überein.
+        ///   Looks up a localized string similar to Email Address does not match.
         /// </summary>
         internal static string LabelEmalAddressNotMatch {
             get {
@@ -3220,7 +3240,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Aktivieren.
+        ///   Looks up a localized string similar to Enable.
         /// </summary>
         internal static string LabelEnable {
             get {
@@ -3229,7 +3249,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ende.
+        ///   Looks up a localized string similar to End.
         /// </summary>
         internal static string LabelEnd {
             get {
@@ -3238,7 +3258,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enddatum.
+        ///   Looks up a localized string similar to End Date.
         /// </summary>
         internal static string LabelEndDate {
             get {
@@ -3247,7 +3267,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Anfangsdatum kann nicht dem aktuellen Datum entsprechen oder nach dem Enddatum liegen.
+        ///   Looks up a localized string similar to Start Date cannot be later than current date or later than End Date.
         /// </summary>
         internal static string LabelEndDateError {
             get {
@@ -3256,7 +3276,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bitte trennen Sie mit Kommas &quot;,&quot;.
+        ///   Looks up a localized string similar to Please enter comma seperated &quot;,&quot;.
         /// </summary>
         internal static string LabelEnterCommaSeparated {
             get {
@@ -3265,7 +3285,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-Mail erneut senden.
+        ///   Looks up a localized string similar to Email.
         /// </summary>
         internal static string LabelEnterEmail {
             get {
@@ -3274,7 +3294,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Geben Sie Ihren Vornamen ein.
+        ///   Looks up a localized string similar to Enter your first name.
         /// </summary>
         internal static string LabelEnterFirstName {
             get {
@@ -3283,7 +3303,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Stichwörter eingeben.
+        ///   Looks up a localized string similar to Keywords.
         /// </summary>
         internal static string LabelEnterKeywords {
             get {
@@ -3292,7 +3312,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sprache eingeben ….
+        ///   Looks up a localized string similar to Enter Language....
         /// </summary>
         internal static string LabelEnterLanguage {
             get {
@@ -3301,7 +3321,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Geben Sie Ihren Nachnamen ein.
+        ///   Looks up a localized string similar to Enter your last name.
         /// </summary>
         internal static string LabelEnterLastName {
             get {
@@ -3310,7 +3330,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Passwort .
+        ///   Looks up a localized string similar to Password.
         /// </summary>
         internal static string LabelEnterPassword {
             get {
@@ -3319,7 +3339,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Telefonnummer eingeben.
+        ///   Looks up a localized string similar to Enter phone number.
         /// </summary>
         internal static string LabelEnterPhoneNumber {
             get {
@@ -3328,7 +3348,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Promocode eingeben.
+        ///   Looks up a localized string similar to Enter promo code.
         /// </summary>
         internal static string LabelEnterPromoCode {
             get {
@@ -3337,7 +3357,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Doppelte Rollen können nicht ausgewählt werden.
+        ///   Looks up a localized string similar to Cannot select duplicated Roles.
         /// </summary>
         internal static string LabelErrorDuplicateRole {
             get {
@@ -3346,7 +3366,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bitte laden Sie ein Bild im jpg-, gif- oder png-Format hoch. Die max. Dateigröße ist 1 MB und die max. Breite ist 300px. .
+        ///   Looks up a localized string similar to Please upload your image as jpg, gif or png format. Maximum file size of 1MB and maximum width of 300px..
         /// </summary>
         internal static string LabelErrorFileExtension1MB {
             get {
@@ -3355,7 +3375,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gewünschtes /Erwartetes Gehalt.
+        ///   Looks up a localized string similar to Expected Salary.
         /// </summary>
         internal static string LabelExpectedSalary {
             get {
@@ -3364,7 +3384,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Erfahrungsende.
+        ///   Looks up a localized string similar to Experience End.
         /// </summary>
         internal static string LabelExperienceEnd {
             get {
@@ -3373,7 +3393,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Erfahrungsanfang.
+        ///   Looks up a localized string similar to Experience Start.
         /// </summary>
         internal static string LabelExperienceStart {
             get {
@@ -3382,7 +3402,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Experte.
+        ///   Looks up a localized string similar to Expert.
         /// </summary>
         internal static string LabelExpert {
             get {
@@ -3391,7 +3411,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ablauf.
+        ///   Looks up a localized string similar to Expire.
         /// </summary>
         internal static string LabelExpire {
             get {
@@ -3400,7 +3420,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Abgelaufen.
+        ///   Looks up a localized string similar to Expired.
         /// </summary>
         internal static string LabelExpired {
             get {
@@ -3409,7 +3429,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ablauf.
+        ///   Looks up a localized string similar to Expiry.
         /// </summary>
         internal static string LabelExpiry {
             get {
@@ -3418,7 +3438,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ablaufdatum.
+        ///   Looks up a localized string similar to Expiry Date.
         /// </summary>
         internal static string LabelExpiryDate {
             get {
@@ -3427,7 +3447,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ablaufmonat.
+        ///   Looks up a localized string similar to Expiry Month.
         /// </summary>
         internal static string LabelExpiryMonth {
             get {
@@ -3436,7 +3456,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ablaufjahr.
+        ///   Looks up a localized string similar to Expiry Year.
         /// </summary>
         internal static string LabelExpiryYear {
             get {
@@ -3445,7 +3465,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Externe Job-Bewerbung.
+        ///   Looks up a localized string similar to External Job Application.
         /// </summary>
         internal static string LabelExternalJobApplication {
             get {
@@ -3454,7 +3474,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ihre Job-E-Mail konnte nicht erstellt werden.
+        ///   Looks up a localized string similar to Failed to created your alert.
         /// </summary>
         internal static string LabelFailedToCreatedYouJobAlert {
             get {
@@ -3463,7 +3483,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ihre Suche konnte nicht gespeichert werden.
+        ///   Looks up a localized string similar to Failed to saved your search.
         /// </summary>
         internal static string LabelFailedToSavedYourSearch {
             get {
@@ -3472,7 +3492,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-Mail konnte nicht gesendet werden.
+        ///   Looks up a localized string similar to Failed to send email.
         /// </summary>
         internal static string LabelFailedToSendEmail {
             get {
@@ -3481,7 +3501,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lieblingssuche erfolgreich erstellt.
+        ///   Looks up a localized string similar to Favourite Search created successfully.
         /// </summary>
         internal static string LabelFavouriteSearchCreateSuccess {
             get {
@@ -3490,7 +3510,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lieblingssuchen.
+        ///   Looks up a localized string similar to Favourite Searches.
         /// </summary>
         internal static string LabelFavouriteSearches {
             get {
@@ -3499,7 +3519,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name der Lieblingssuche fehlt.
+        ///   Looks up a localized string similar to Favourite Search Name is missing.
         /// </summary>
         internal static string LabelFavouriteSearchNameIsMissing {
             get {
@@ -3508,7 +3528,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lieblingssuche erfolgreich gespeichert.
+        ///   Looks up a localized string similar to Favourite Search saved successfully.
         /// </summary>
         internal static string LabelFavouriteSearchSaveSuccess {
             get {
@@ -3517,7 +3537,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Diese Suche favorisieren.
+        ///   Looks up a localized string similar to Favourite this search.
         /// </summary>
         internal static string LabelFavouriteThisSearch {
             get {
@@ -3535,7 +3555,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Februar.
+        ///   Looks up a localized string similar to February.
         /// </summary>
         internal static string LabelFeb {
             get {
@@ -3544,7 +3564,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Weiblich .
+        ///   Looks up a localized string similar to Female.
         /// </summary>
         internal static string LabelFemale {
             get {
@@ -3553,7 +3573,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Abgelegt unter.
+        ///   Looks up a localized string similar to Filed under.
         /// </summary>
         internal static string LabelFiledUnder {
             get {
@@ -3562,7 +3582,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dateiname.
+        ///   Looks up a localized string similar to File Name.
         /// </summary>
         internal static string LabelFileName {
             get {
@@ -3580,7 +3600,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dateityp.
+        ///   Looks up a localized string similar to File Type.
         /// </summary>
         internal static string LabelFileType {
             get {
@@ -3589,7 +3609,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Datei-Upload.
+        ///   Looks up a localized string similar to File Upload.
         /// </summary>
         internal static string LabelFileUpload {
             get {
@@ -3607,7 +3627,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Beenden.
+        ///   Looks up a localized string similar to Finish.
         /// </summary>
         internal static string LabelFinish {
             get {
@@ -3616,7 +3636,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vorname  .
+        ///   Looks up a localized string similar to First name.
         /// </summary>
         internal static string LabelFirstName {
             get {
@@ -3625,7 +3645,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vorname (Örtliche Sprache).
+        ///   Looks up a localized string similar to First Name (Local language).
         /// </summary>
         internal static string LabelFirstNameLocalLanguage {
             get {
@@ -3634,7 +3654,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vorname ist erforderlich..
+        ///   Looks up a localized string similar to First name is mandatory..
         /// </summary>
         internal static string LabelFirstNameMandatory {
             get {
@@ -3643,7 +3663,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vorname ist erforderlich..
+        ///   Looks up a localized string similar to First name is required.
         /// </summary>
         internal static string LabelFirstnameRequired {
             get {
@@ -3661,7 +3681,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Passwort abrufen.
+        ///   Looks up a localized string similar to Retrieve Password.
         /// </summary>
         internal static string LabelForgetPassword {
             get {
@@ -3670,7 +3690,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Passwort vergessen.
+        ///   Looks up a localized string similar to Forgot password.
         /// </summary>
         internal static string LabelForgotPassword {
             get {
@@ -3679,7 +3699,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Passwort vergessen.
+        ///   Looks up a localized string similar to Forgotten Password.
         /// </summary>
         internal static string LabelForgottenPassword {
             get {
@@ -3688,7 +3708,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vorheriger Arbeitgeber.
+        ///   Looks up a localized string similar to Former Employer.
         /// </summary>
         internal static string LabelFormerEmployer {
             get {
@@ -3697,7 +3717,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Von.
+        ///   Looks up a localized string similar to From.
         /// </summary>
         internal static string LabelFrom {
             get {
@@ -3706,7 +3726,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Von-Datum.
+        ///   Looks up a localized string similar to From Date.
         /// </summary>
         internal static string LabelFromDate {
             get {
@@ -3715,7 +3735,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Von-Gehalt eingeben.
+        ///   Looks up a localized string similar to Enter From Salary.
         /// </summary>
         internal static string LabelFromSalary {
             get {
@@ -3724,7 +3744,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Von/An.
+        ///   Looks up a localized string similar to From/To.
         /// </summary>
         internal static string LabelFromTo {
             get {
@@ -3733,7 +3753,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Komplette Beschreibung.
+        ///   Looks up a localized string similar to Full Description.
         /// </summary>
         internal static string LabelFullDescription {
             get {
@@ -3742,7 +3762,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vollständiger Name.
+        ///   Looks up a localized string similar to Full name.
         /// </summary>
         internal static string LabelFullName {
             get {
@@ -3751,7 +3771,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vollständige Erlaubnis ist erforderlich.
+        ///   Looks up a localized string similar to Full permission is required.
         /// </summary>
         internal static string LabelFullPermissionRequired {
             get {
@@ -3760,7 +3780,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vollständiges fachliches Können.
+        ///   Looks up a localized string similar to Full Professional proficiency.
         /// </summary>
         internal static string LabelFullProfessionalProficiency {
             get {
@@ -3769,7 +3789,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vollständige Registrierung.
+        ///   Looks up a localized string similar to Full Registration.
         /// </summary>
         internal static string LabelFullRegistration {
             get {
@@ -3778,7 +3798,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Geschlecht.
+        ///   Looks up a localized string similar to Gender.
         /// </summary>
         internal static string LabelGender {
             get {
@@ -3787,7 +3807,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Generieren.
+        ///   Looks up a localized string similar to Generate.
         /// </summary>
         internal static string LabelGenerate {
             get {
@@ -3796,7 +3816,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to , um zu Ihren Suchergebnissen zurückzukehren..
+        ///   Looks up a localized string similar to to go back to your search results..
         /// </summary>
         internal static string LabelGoBackToSearchResults {
             get {
@@ -3832,7 +3852,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Haben Sie Ihre Willkommens-E-Mail nicht erhalten? Unten erneut senden.
+        ///   Looks up a localized string similar to Haven&apos;t received welcome email? Resend below.
         /// </summary>
         internal static string LabelHaventReceivedWelcomeEmail {
             get {
@@ -3841,7 +3861,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Überschrift.
+        ///   Looks up a localized string similar to Headline.
         /// </summary>
         internal static string LabelHeadline {
             get {
@@ -3850,7 +3870,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hier.
+        ///   Looks up a localized string similar to Here.
         /// </summary>
         internal static string LabelHere {
             get {
@@ -3859,7 +3879,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hallo.
+        ///   Looks up a localized string similar to Hi.
         /// </summary>
         internal static string LabelHi {
             get {
@@ -3877,7 +3897,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Historische Job-Statistiken .
+        ///   Looks up a localized string similar to Historical Job Statistics.
         /// </summary>
         internal static string LabelHistoricalJobStatistics {
             get {
@@ -3886,7 +3906,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Angesagter Job.
+        ///   Looks up a localized string similar to Hot Job.
         /// </summary>
         internal static string LabelHotJob {
             get {
@@ -3904,7 +3924,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Stundengehalt.
+        ///   Looks up a localized string similar to Hourly Salary.
         /// </summary>
         internal static string LabelHourlySalary {
             get {
@@ -3913,7 +3933,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wie sieht mein Profil im Vergleich aus?.
+        ///   Looks up a localized string similar to How does my profile compare?.
         /// </summary>
         internal static string LabelHowDoesMyFileCompare {
             get {
@@ -3922,7 +3942,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wie sieht mein Profil im Vergleich aus?.
+        ///   Looks up a localized string similar to How does my profile compare?.
         /// </summary>
         internal static string LabelHowDoesMyProfileCompare {
             get {
@@ -3949,7 +3969,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Indirekter Bericht.
+        ///   Looks up a localized string similar to Indirect Report.
         /// </summary>
         internal static string LabelIndirectReport {
             get {
@@ -3958,7 +3978,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Branchen.
+        ///   Looks up a localized string similar to Industries.
         /// </summary>
         internal static string LabelIndustries {
             get {
@@ -3967,7 +3987,16 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Institutionsname.
+        ///   Looks up a localized string similar to Industry.
+        /// </summary>
+        internal static string LabelIndustry {
+            get {
+                return ResourceManager.GetString("LabelIndustry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Institution Name.
         /// </summary>
         internal static string LabelInstitutionName {
             get {
@@ -3976,7 +4005,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An diesem Job interessiert?.
+        ///   Looks up a localized string similar to Interested in this job?.
         /// </summary>
         internal static string LabelInterestedInThisJob {
             get {
@@ -3985,7 +4014,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An diesem Job interessiert?.
+        ///   Looks up a localized string similar to Interested in this job?.
         /// </summary>
         internal static string LabelInterestedInThisJob1 {
             get {
@@ -3994,7 +4023,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mittleres Level.
+        ///   Looks up a localized string similar to Intermediate.
         /// </summary>
         internal static string LabelIntermediate {
             get {
@@ -4003,7 +4032,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bewerbungsgespräch.
+        ///   Looks up a localized string similar to Interview.
         /// </summary>
         internal static string LabelInterview {
             get {
@@ -4012,7 +4041,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ungültiges Datum.
+        ///   Looks up a localized string similar to Invalid Date.
         /// </summary>
         internal static string LabelInvalidDate {
             get {
@@ -4021,7 +4050,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Datum außerhalb des Bereichs. .
+        ///   Looks up a localized string similar to Date out of range..
         /// </summary>
         internal static string LabelInvalidDateRange {
             get {
@@ -4030,7 +4059,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ungültiger Dateityp. GIF, JPG und JPEG sind die einzigen gültigen Bildtypen, die hochgeladen werden dürfen. .
+        ///   Looks up a localized string similar to Invalid file type. GIF, JPG and JPEG are the only valid images types allowed for upload..
         /// </summary>
         internal static string LabelInvalidImage {
             get {
@@ -4039,7 +4068,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ungültige Job-E-Mail.
+        ///   Looks up a localized string similar to Invalid Job Alert.
         /// </summary>
         internal static string LabelInvalidJobAlert {
             get {
@@ -4048,7 +4077,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ungültige URL.
+        ///   Looks up a localized string similar to Invalid URL.
         /// </summary>
         internal static string LabelInvalidURL {
             get {
@@ -4057,7 +4086,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ausstellungsdatum.
+        ///   Looks up a localized string similar to Issue Date.
         /// </summary>
         internal static string LabelIssueDate {
             get {
@@ -4066,7 +4095,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Element.
+        ///   Looks up a localized string similar to Item.
         /// </summary>
         internal static string LabelItem {
             get {
@@ -4075,7 +4104,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Januar.
+        ///   Looks up a localized string similar to January.
         /// </summary>
         internal static string LabelJan {
             get {
@@ -4084,7 +4113,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-Werbeoption.
+        ///   Looks up a localized string similar to Job Advertisement Option.
         /// </summary>
         internal static string LabelJobAdOptions {
             get {
@@ -4093,7 +4122,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-Werbeoption.
+        ///   Looks up a localized string similar to Job Advertisement Option.
         /// </summary>
         internal static string LabelJobAdvertisementOption {
             get {
@@ -4102,7 +4131,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-E-Mail.
+        ///   Looks up a localized string similar to Job Alert.
         /// </summary>
         internal static string LabelJobAlert {
             get {
@@ -4111,7 +4140,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Eine Job-E-Mail wurde erstellt..
+        ///   Looks up a localized string similar to A Job Alert has been created..
         /// </summary>
         internal static string LabelJobAlertCreateSuccess {
             get {
@@ -4120,7 +4149,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-E-Mail-Kriterien.
+        ///   Looks up a localized string similar to Alert Criteria.
         /// </summary>
         internal static string LabelJobAlertCriteria {
             get {
@@ -4129,7 +4158,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-E-Mail-Details.
+        ///   Looks up a localized string similar to Alert Details.
         /// </summary>
         internal static string LabelJobAlertDetail {
             get {
@@ -4138,7 +4167,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bearbeiten der Job-E-Mail-GUID fehlgeschlagen.
+        ///   Looks up a localized string similar to Sorry but the link you&apos;ve just tried has expired.&lt;br /&gt;&lt;br /&gt;This could be because you&apos;ve already tried to access this link or your security token has expired.&lt;br /&gt;&lt;br /&gt;If you would like to view your job alerts please sign-in &lt;a href=&apos;/member/login.aspx&apos;&gt;here&lt;/a&gt;..
         /// </summary>
         internal static string LabelJobAlertEditGUIDFailed {
             get {
@@ -4147,7 +4176,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-E-Mail-Name.
+        ///   Looks up a localized string similar to Job Alert Name.
         /// </summary>
         internal static string LabelJobAlertName {
             get {
@@ -4156,7 +4185,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nein, mir keine täglichen Job-E-Mails senden.
+        ///   Looks up a localized string similar to No, do not send me a Daily Job Alert.
         /// </summary>
         internal static string LabelJobAlertNo {
             get {
@@ -4165,7 +4194,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-E-Mail erfolgreich gespeichert.
+        ///   Looks up a localized string similar to Job Alert saved successfully.
         /// </summary>
         internal static string LabelJobAlertSaveSuccess {
             get {
@@ -4174,7 +4203,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Abmelden von Job-E-Mail-GUID fehlgeschlagen.
+        ///   Looks up a localized string similar to Dear User&lt;br /&gt;&lt;br /&gt;It looks like you have already tried to use this link to unsubscribe your job alert. This link can be used only once..
         /// </summary>
         internal static string LabelJobAlertUnsubscribeGUIDFailed {
             get {
@@ -4183,7 +4212,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ansicht von Job-E-Mail-GUID fehlgeschlagen.
+        ///   Looks up a localized string similar to Dear User&lt;br /&gt;&lt;br /&gt;It looks like you have already tried to use this link to view your job alert. This link can be used only once..
         /// </summary>
         internal static string LabelJobAlertViewGUIDFailed {
             get {
@@ -4192,7 +4221,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ja, mir täglich Jobs per E-Mail senden.
+        ///   Looks up a localized string similar to Yes, send me a Daily Job Alert.
         /// </summary>
         internal static string LabelJobAlertYes {
             get {
@@ -4201,7 +4230,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-Bewerbung  .
+        ///   Looks up a localized string similar to Job Application .
         /// </summary>
         internal static string LabelJobApplication {
             get {
@@ -4210,7 +4239,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-Bewerbungsdetail.
+        ///   Looks up a localized string similar to Job Application Detail.
         /// </summary>
         internal static string LabelJobApplicationDetail {
             get {
@@ -4219,7 +4248,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-Bewerbungsdetails.
+        ///   Looks up a localized string similar to Job Application Details.
         /// </summary>
         internal static string LabelJobApplicationDetails {
             get {
@@ -4228,7 +4257,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-Bewerbungsnotiz.
+        ///   Looks up a localized string similar to Job Application Note.
         /// </summary>
         internal static string LabelJobApplicationNote {
             get {
@@ -4237,7 +4266,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sie haben sich für diesen Job beworben am .
+        ///   Looks up a localized string similar to You applied for this job on .
         /// </summary>
         internal static string LabelJobApplied {
             get {
@@ -4246,7 +4275,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-Bewerbung konnte nicht gesendet werden. Bitte erneut versuchen. .
+        ///   Looks up a localized string similar to Failed to submit job application. Please try again..
         /// </summary>
         internal static string LabelJobApplyFailed {
             get {
@@ -4255,7 +4284,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job wurde folgendem Benutzernamen zugewiesen.
+        ///   Looks up a localized string similar to Job is assigend to username.
         /// </summary>
         internal static string LabelJobAssignnedTo {
             get {
@@ -4273,7 +4302,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-Klassifizierung.
+        ///   Looks up a localized string similar to Job Classification.
         /// </summary>
         internal static string LabelJobClassification {
             get {
@@ -4282,7 +4311,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-Klassifizierungsdetail.
+        ///   Looks up a localized string similar to Job Classification Detail.
         /// </summary>
         internal static string LabelJobClassificationDetail {
             get {
@@ -4291,7 +4320,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-Kontaktdetails.
+        ///   Looks up a localized string similar to Job Contact Details.
         /// </summary>
         internal static string LabelJobContactDetails {
             get {
@@ -4300,7 +4329,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-Beschreibung.
+        ///   Looks up a localized string similar to Job Description.
         /// </summary>
         internal static string LabelJobDescription {
             get {
@@ -4309,7 +4338,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job abgelaufen.
+        ///   Looks up a localized string similar to Job Expired.
         /// </summary>
         internal static string LabelJobExpired {
             get {
@@ -4318,7 +4347,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-Ablaufbenachrichtigung.
+        ///   Looks up a localized string similar to Job Expiry Notification.
         /// </summary>
         internal static string LabelJobExpiryNotification {
             get {
@@ -4327,7 +4356,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Jobfreundlicher Name.
+        ///   Looks up a localized string similar to Job Friendly Name.
         /// </summary>
         internal static string LabelJobFriendlyName {
             get {
@@ -4345,7 +4374,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sie haben sich evtl. für diesen Job beworben am .
+        ///   Looks up a localized string similar to You might have applied for this job on .
         /// </summary>
         internal static string LabelJobHaveApplied {
             get {
@@ -4354,7 +4383,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-ID.
+        ///   Looks up a localized string similar to Job ID.
         /// </summary>
         internal static string LabelJobID {
             get {
@@ -4363,7 +4392,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dieser Job wurde archiviert.
+        ///   Looks up a localized string similar to This job is archived.
         /// </summary>
         internal static string LabelJobIsArchived {
             get {
@@ -4372,7 +4401,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dieser Job ist abgelaufen.
+        ///   Looks up a localized string similar to This job is expired.
         /// </summary>
         internal static string LabelJobIsExpired {
             get {
@@ -4381,7 +4410,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-Element.
+        ///   Looks up a localized string similar to Job Item.
         /// </summary>
         internal static string LabelJobItem {
             get {
@@ -4390,7 +4419,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-Elementpreis.
+        ///   Looks up a localized string similar to Job Item Price.
         /// </summary>
         internal static string LabelJobItemPrice {
             get {
@@ -4399,7 +4428,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-Elementtyp.
+        ///   Looks up a localized string similar to Job Item Type.
         /// </summary>
         internal static string LabelJobItemType {
             get {
@@ -4408,7 +4437,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-Standort.
+        ///   Looks up a localized string similar to Job Location.
         /// </summary>
         internal static string LabelJobLocation {
             get {
@@ -4417,7 +4446,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-Name.
+        ///   Looks up a localized string similar to Job Name.
         /// </summary>
         internal static string LabelJobName {
             get {
@@ -4426,7 +4455,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-Vorschau .
+        ///   Looks up a localized string similar to Job Preview.
         /// </summary>
         internal static string LabelJobPreview {
             get {
@@ -4435,7 +4464,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-Gehaltsdetails.
+        ///   Looks up a localized string similar to Job Salary Detail.
         /// </summary>
         internal static string LabelJobSalaryDetail {
             get {
@@ -4444,7 +4473,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job gespeichert.
+        ///   Looks up a localized string similar to Job Saved.
         /// </summary>
         internal static string LabelJobSaved {
             get {
@@ -4453,7 +4482,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Jobsuchender.
+        ///   Looks up a localized string similar to Job Seeker.
         /// </summary>
         internal static string LabelJobSeeker {
             get {
@@ -4462,7 +4491,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Jobsuchende®.
+        ///   Looks up a localized string similar to job seeker(s).
         /// </summary>
         internal static string LabelJobSeekers {
             get {
@@ -4471,7 +4500,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job läuft in 24 Stunden ab.
+        ///   Looks up a localized string similar to Jobs Expiring in 24 hrs.
         /// </summary>
         internal static string LabelJobsExpiringIn24hrs {
             get {
@@ -4480,7 +4509,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-Anfangsdatum.
+        ///   Looks up a localized string similar to Job Start Date.
         /// </summary>
         internal static string LabelJobStartDate {
             get {
@@ -4489,7 +4518,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-Vorlage  .
+        ///   Looks up a localized string similar to Job Template.
         /// </summary>
         internal static string LabelJobTemplate {
             get {
@@ -4498,7 +4527,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-Vorlagenlogo  .
+        ///   Looks up a localized string similar to Job Template Logo.
         /// </summary>
         internal static string LabelJobTemplateLogo {
             get {
@@ -4507,7 +4536,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-Vorlage-Einstellungen.
+        ///   Looks up a localized string similar to Job Template Settings.
         /// </summary>
         internal static string LabelJobTemplateSettings {
             get {
@@ -4516,7 +4545,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-Titel.
+        ///   Looks up a localized string similar to Job Title.
         /// </summary>
         internal static string LabelJobTitle {
             get {
@@ -4525,7 +4554,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Der Job-Titel ist jetzt abgelaufen.
+        ///   Looks up a localized string similar to The job &quot;{0}&quot; is now Expired.
         /// </summary>
         internal static string LabelJobTitleIsExpired {
             get {
@@ -4534,7 +4563,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-Arbeitstyp.
+        ///   Looks up a localized string similar to Job Worktype.
         /// </summary>
         internal static string LabelJobWorktype {
             get {
@@ -4543,7 +4572,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Juli.
+        ///   Looks up a localized string similar to July.
         /// </summary>
         internal static string LabelJul {
             get {
@@ -4552,7 +4581,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Juni.
+        ///   Looks up a localized string similar to June.
         /// </summary>
         internal static string LabelJun {
             get {
@@ -4570,7 +4599,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Jetzt bewerben.
+        ///   Looks up a localized string similar to Apply now.
         /// </summary>
         internal static string LabelJustApply {
             get {
@@ -4579,7 +4608,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nur bewerben.
+        ///   Looks up a localized string similar to Just Apply.
         /// </summary>
         internal static string LabelJustApplyPage {
             get {
@@ -4588,7 +4617,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Stichwort .
+        ///   Looks up a localized string similar to Keyword.
         /// </summary>
         internal static string LabelKeyword {
             get {
@@ -4597,7 +4626,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Stichwörter   .
+        ///   Looks up a localized string similar to Keywords.
         /// </summary>
         internal static string LabelKeywords {
             get {
@@ -4606,7 +4635,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Festnetznummer.
+        ///   Looks up a localized string similar to Land line.
         /// </summary>
         internal static string LabelLandLine {
             get {
@@ -4615,7 +4644,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sprache.
+        ///   Looks up a localized string similar to Language.
         /// </summary>
         internal static string LabelLanguage {
             get {
@@ -4624,7 +4653,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sprachen.
+        ///   Looks up a localized string similar to Languages.
         /// </summary>
         internal static string LabelLanguages {
             get {
@@ -4633,7 +4662,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zuletzt modifiziert.
+        ///   Looks up a localized string similar to Last Modified.
         /// </summary>
         internal static string LabelLastModified {
             get {
@@ -4642,7 +4671,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zuletzt modifiziert von Admin-Benutzer.
+        ///   Looks up a localized string similar to Last modified by Admin User.
         /// </summary>
         internal static string LabelLastModifiedByAdminUser {
             get {
@@ -4651,7 +4680,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zuletzt modifiziert von Inserentenbenutzer.
+        ///   Looks up a localized string similar to Last Modified By Advertiser User.
         /// </summary>
         internal static string LabelLastModifiedByAdvertiserUser {
             get {
@@ -4660,7 +4689,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nachname.
+        ///   Looks up a localized string similar to Last name.
         /// </summary>
         internal static string LabelLastName {
             get {
@@ -4669,7 +4698,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nachname (Örtliche Sprache).
+        ///   Looks up a localized string similar to Last Name (Local language).
         /// </summary>
         internal static string LabelLastNameLocalLanguage {
             get {
@@ -4678,7 +4707,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zuletzt angesehen am.
+        ///   Looks up a localized string similar to Last Viewed Date.
         /// </summary>
         internal static string LabelLastViewedDate {
             get {
@@ -4687,7 +4716,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Neueste.
+        ///   Looks up a localized string similar to Latest.
         /// </summary>
         internal static string LabelLatest {
             get {
@@ -4696,7 +4725,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lizenzname.
+        ///   Looks up a localized string similar to License Name.
         /// </summary>
         internal static string LabelLicenseName {
             get {
@@ -4705,7 +4734,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lizenzen .
+        ///   Looks up a localized string similar to Licenses.
         /// </summary>
         internal static string LabelLicenses {
             get {
@@ -4714,7 +4743,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lizenztyp.
+        ///   Looks up a localized string similar to License Type.
         /// </summary>
         internal static string LabelLicenseType {
             get {
@@ -4723,7 +4752,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Begrenzte Arbeitskenntnisse.
+        ///   Looks up a localized string similar to Limited working proficiency.
         /// </summary>
         internal static string LabelLimitedWorkProficiency {
             get {
@@ -4732,7 +4761,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Live-Jobs.
+        ///   Looks up a localized string similar to Live Jobs.
         /// </summary>
         internal static string LabelLiveJobs {
             get {
@@ -4741,7 +4770,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Örtliche Sprache.
+        ///   Looks up a localized string similar to Local Language.
         /// </summary>
         internal static string LabelLocalLanguage {
             get {
@@ -4750,7 +4779,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name (Örtliche Sprache).
+        ///   Looks up a localized string similar to Name (Local language).
         /// </summary>
         internal static string LabelLocalName {
             get {
@@ -4759,7 +4788,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Standort.
+        ///   Looks up a localized string similar to Location.
         /// </summary>
         internal static string LabelLocation {
             get {
@@ -4768,7 +4797,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Standort/Gebiet.
+        ///   Looks up a localized string similar to Location / Area.
         /// </summary>
         internal static string LabelLocationAndArea {
             get {
@@ -4777,7 +4806,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Standort/Gebiet.
+        ///   Looks up a localized string similar to Location / Area.
         /// </summary>
         internal static string LabelLocationArea {
             get {
@@ -4786,7 +4815,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Standortdetails.
+        ///   Looks up a localized string similar to Location details.
         /// </summary>
         internal static string LabelLocationDetails {
             get {
@@ -4795,7 +4824,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Standortpräferenzen.
+        ///   Looks up a localized string similar to Location Preferences.
         /// </summary>
         internal static string LabelLocationPreferences {
             get {
@@ -4804,7 +4833,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Standort erforderlich.
+        ///   Looks up a localized string similar to Location is required.
         /// </summary>
         internal static string LabelLocationRequired {
             get {
@@ -4813,7 +4842,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Standort/Aktualisiert.
+        ///   Looks up a localized string similar to Location/Updated.
         /// </summary>
         internal static string LabelLocationUpdated {
             get {
@@ -4831,7 +4860,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Login-Details.
+        ///   Looks up a localized string similar to Login Details.
         /// </summary>
         internal static string LabelLoginDetails {
             get {
@@ -4840,7 +4869,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mit Social Media anmelden .
+        ///   Looks up a localized string similar to Login with Social Media.
         /// </summary>
         internal static string LabelLoginWithSocialMedia {
             get {
@@ -4849,7 +4878,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Logobild.
+        ///   Looks up a localized string similar to Logo Image.
         /// </summary>
         internal static string LabelLogoImage {
             get {
@@ -4858,7 +4887,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Abmelden   .
+        ///   Looks up a localized string similar to Logout.
         /// </summary>
         internal static string LabelLogout {
             get {
@@ -4867,7 +4896,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Passwort ist erforderlich.
+        ///   Looks up a localized string similar to Password is required.
         /// </summary>
         internal static string labellPasswordRequired {
             get {
@@ -4876,7 +4905,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Postanschrift   .
+        ///   Looks up a localized string similar to Mailing Address.
         /// </summary>
         internal static string LabelMailingAddress {
             get {
@@ -4885,7 +4914,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Land.
+        ///   Looks up a localized string similar to Mailing Country.
         /// </summary>
         internal static string LabelMailingCountry {
             get {
@@ -4894,7 +4923,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Postleitzahl.
+        ///   Looks up a localized string similar to Mailing Postcode.
         /// </summary>
         internal static string LabelMailingPostcode {
             get {
@@ -4903,7 +4932,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bundesland.
+        ///   Looks up a localized string similar to Mailing State.
         /// </summary>
         internal static string LabelMailingState {
             get {
@@ -4912,7 +4941,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vorort.
+        ///   Looks up a localized string similar to Mailing Suburb.
         /// </summary>
         internal static string LabelMailingSuburb {
             get {
@@ -4921,7 +4950,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Haupt-Job-E-Mail?.
+        ///   Looks up a localized string similar to Main Alert?.
         /// </summary>
         internal static string LabelMainAlert {
             get {
@@ -4930,7 +4959,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zahlung tätigen.
+        ///   Looks up a localized string similar to Make Payment.
         /// </summary>
         internal static string LabelMakePayment {
             get {
@@ -4939,7 +4968,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Männlich.
+        ///   Looks up a localized string similar to Male.
         /// </summary>
         internal static string LabelMale {
             get {
@@ -4957,7 +4986,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Erforderliche Felder.
+        ///   Looks up a localized string similar to Mandatory Fields.
         /// </summary>
         internal static string LabelMandatoryField {
             get {
@@ -4966,7 +4995,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to März.
+        ///   Looks up a localized string similar to March.
         /// </summary>
         internal static string LabelMar {
             get {
@@ -4984,7 +5013,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Masterabschluss.
+        ///   Looks up a localized string similar to Master Degree.
         /// </summary>
         internal static string LabelMastersDegree {
             get {
@@ -4993,7 +5022,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MBA .
+        ///   Looks up a localized string similar to Master of Business Administration.
         /// </summary>
         internal static string LabelMastersOfBusinessAdministration {
             get {
@@ -5002,7 +5031,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Max..
+        ///   Looks up a localized string similar to Max.
         /// </summary>
         internal static string LabelMax {
             get {
@@ -5011,7 +5040,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Maximum .
+        ///   Looks up a localized string similar to Maximum.
         /// </summary>
         internal static string LabelMaximum {
             get {
@@ -5020,7 +5049,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to max. Größe.
+        ///   Looks up a localized string similar to max size.
         /// </summary>
         internal static string LabelMaxSize {
             get {
@@ -5029,7 +5058,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Max. Breite.
+        ///   Looks up a localized string similar to Max width.
         /// </summary>
         internal static string LabelMaxWidth {
             get {
@@ -5038,7 +5067,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mai.
+        ///   Looks up a localized string similar to May.
         /// </summary>
         internal static string LabelMay {
             get {
@@ -5047,7 +5076,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mitgliedsdetails.
+        ///   Looks up a localized string similar to Member Details.
         /// </summary>
         internal static string LabelMemberDetail {
             get {
@@ -5056,7 +5085,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kontodetails erfolgreich aktualisiert.
+        ///   Looks up a localized string similar to Account profile details updated successfully.
         /// </summary>
         internal static string LabelMemberEditSuccess {
             get {
@@ -5065,7 +5094,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mitgliedsdateien.
+        ///   Looks up a localized string similar to Member Files.
         /// </summary>
         internal static string LabelMemberFiles {
             get {
@@ -5074,7 +5103,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Willkommen zur Mitgliedsdateien-Seite..
+        ///   Looks up a localized string similar to Welcome to the Member Files Page..
         /// </summary>
         internal static string LabelMemberFileWelcome {
             get {
@@ -5083,7 +5112,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vollständige Registrierung - Zum Erweitern klicken.
+        ///   Looks up a localized string similar to Full Registration - Click to expand.
         /// </summary>
         internal static string LabelMemberFullRegister {
             get {
@@ -5092,7 +5121,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mitgliedsverifizierung fehlgeschlagen..
+        ///   Looks up a localized string similar to Member validation failed..
         /// </summary>
         internal static string LabelMemberInvalid {
             get {
@@ -5101,7 +5130,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mitglied des Vorstandsausschusses.
+        ///   Looks up a localized string similar to Member of board Committee.
         /// </summary>
         internal static string LabelMemberOfBoardCommittee {
             get {
@@ -5110,9 +5139,9 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Konto wurde verifiziert
+        ///   Looks up a localized string similar to Account has been validated
         ///&lt;br /&gt;&lt;br /&gt;
-        ///Ihr Konto wurde bereits verifiziert. Bitte fahren Sie zum&lt;a href=/member/login.aspx&quot;&gt;Login&lt;/a&gt;&quot; fort. .
+        ///Your account has already been validated. Please proceed to &lt;a href=&quot;/member/login.aspx&quot;&gt;login&lt;/a&gt;..
         /// </summary>
         internal static string LabelMemberValidated {
             get {
@@ -5121,7 +5150,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mitgliedsverifizierung  .
+        ///   Looks up a localized string similar to Member Validation.
         /// </summary>
         internal static string LabelMemberValidation {
             get {
@@ -5139,7 +5168,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nachricht für Ihren Freund.
+        ///   Looks up a localized string similar to Message For Your Friend.
         /// </summary>
         internal static string LabelMessageForYourFriend {
             get {
@@ -5148,7 +5177,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Min..
+        ///   Looks up a localized string similar to Min.
         /// </summary>
         internal static string LabelMin {
             get {
@@ -5166,7 +5195,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fr. .
+        ///   Looks up a localized string similar to Miss.
         /// </summary>
         internal static string LabelMiss {
             get {
@@ -5175,7 +5204,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fehlende Information.
+        ///   Looks up a localized string similar to Missing Information.
         /// </summary>
         internal static string LabelMissingInformation {
             get {
@@ -5184,7 +5213,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Monat.
+        ///   Looks up a localized string similar to Month.
         /// </summary>
         internal static string LabelMonth {
             get {
@@ -5193,7 +5222,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Monate.
+        ///   Looks up a localized string similar to Months.
         /// </summary>
         internal static string LabelMonths {
             get {
@@ -5202,7 +5231,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Für weitere Informationen zu Kontotypen.
+        ///   Looks up a localized string similar to For more information on account types.
         /// </summary>
         internal static string LabelMoreInfoOnAcc {
             get {
@@ -5211,7 +5240,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hr..
+        ///   Looks up a localized string similar to Mr.
         /// </summary>
         internal static string LabelMr {
             get {
@@ -5220,7 +5249,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fr. .
+        ///   Looks up a localized string similar to Mrs.
         /// </summary>
         internal static string LabelMrs {
             get {
@@ -5229,7 +5258,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fr. .
+        ///   Looks up a localized string similar to Ms.
         /// </summary>
         internal static string LabelMs {
             get {
@@ -5238,7 +5267,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mein Konto  .
+        ///   Looks up a localized string similar to My Account.
         /// </summary>
         internal static string LabelMyAccount {
             get {
@@ -5247,7 +5276,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mein Kontoprofil.
+        ///   Looks up a localized string similar to My Account Profile.
         /// </summary>
         internal static string LabelMyAccountProfile {
             get {
@@ -5256,7 +5285,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Meine Bewerbungstracker.
+        ///   Looks up a localized string similar to Application Tracker.
         /// </summary>
         internal static string LabelMyApplicationTracker {
             get {
@@ -5265,7 +5294,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mein Broadcast.
+        ///   Looks up a localized string similar to My Broadcast.
         /// </summary>
         internal static string LabelMyBroadcast {
             get {
@@ -5274,7 +5303,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mein Lebenslaufprofil.
+        ///   Looks up a localized string similar to My CV Profile.
         /// </summary>
         internal static string LabelMyCVProfile {
             get {
@@ -5283,7 +5312,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Meine Details.
+        ///   Looks up a localized string similar to My Details.
         /// </summary>
         internal static string LabelMyDetails {
             get {
@@ -5292,7 +5321,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Meine Dokumente.
+        ///   Looks up a localized string similar to My Documents.
         /// </summary>
         internal static string LabelMyDocuments {
             get {
@@ -5301,7 +5330,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Meine Lieblingssuche(n).
+        ///   Looks up a localized string similar to My favourite search(es).
         /// </summary>
         internal static string LabelMyFavouriteSearches {
             get {
@@ -5310,7 +5339,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mein Home .
+        ///   Looks up a localized string similar to My Home.
         /// </summary>
         internal static string LabelMyHome {
             get {
@@ -5319,7 +5348,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Meine Job-E-Mails .
+        ///   Looks up a localized string similar to Job Alerts.
         /// </summary>
         internal static string LabelMyJobAlerts {
             get {
@@ -5328,7 +5357,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Meine Job-E-Mail(s).
+        ///   Looks up a localized string similar to My job alert(s).
         /// </summary>
         internal static string LabelMyJobAlert_s {
             get {
@@ -5337,7 +5366,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Meine Job-Tools.
+        ///   Looks up a localized string similar to My Job Tools.
         /// </summary>
         internal static string LabelMyJobTools {
             get {
@@ -5346,7 +5375,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mein Passwort .
+        ///   Looks up a localized string similar to Change Password.
         /// </summary>
         internal static string LabelMyPassword {
             get {
@@ -5355,7 +5384,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Meine persönlichen Details.
+        ///   Looks up a localized string similar to My Personal Details.
         /// </summary>
         internal static string LabelMyPersonalDetails {
             get {
@@ -5373,7 +5402,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mein Lebenslauf/Anschreiben.
+        ///   Looks up a localized string similar to My Resume / Cover Letter.
         /// </summary>
         internal static string LabelMyResumeCoverLetter {
             get {
@@ -5382,7 +5411,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Meine gespeicherten Jobs.
+        ///   Looks up a localized string similar to Saved Jobs.
         /// </summary>
         internal static string LabelMySavedJobs {
             get {
@@ -5391,7 +5420,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Meine Suchkriterien.
+        ///   Looks up a localized string similar to My Search Criteria.
         /// </summary>
         internal static string LabelMySearchCriteria {
             get {
@@ -5400,7 +5429,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to k. A. .
+        ///   Looks up a localized string similar to N/A.
         /// </summary>
         internal static string LabelNA {
             get {
@@ -5409,7 +5438,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name  .
+        ///   Looks up a localized string similar to Name.
         /// </summary>
         internal static string LabelName {
             get {
@@ -5418,7 +5447,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name des Feeds ist erforderlich..
+        ///   Looks up a localized string similar to Name of the alert is mandatory..
         /// </summary>
         internal static string LabelNameFeedMandatory {
             get {
@@ -5427,7 +5456,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name der Job-E-Mail ist erforderlich .
+        ///   Looks up a localized string similar to Name of alert is required.
         /// </summary>
         internal static string LabelNameOfAlertRequired {
             get {
@@ -5436,7 +5465,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name der Job-E-Mail .
+        ///   Looks up a localized string similar to Name of alert.
         /// </summary>
         internal static string LabelNameOfFeed {
             get {
@@ -5454,7 +5483,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Muttersprache oder zweisprachige Kenntnisse.
+        ///   Looks up a localized string similar to Native or bilingual proficiency.
         /// </summary>
         internal static string LabelNativeOrBilingualProficiency {
             get {
@@ -5463,7 +5492,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nächste Transportmöglichkeit.
+        ///   Looks up a localized string similar to Nearest Transport.
         /// </summary>
         internal static string LabelNearestTransport {
             get {
@@ -5472,7 +5501,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sie müssen sich anmelden.
+        ///   Looks up a localized string similar to You need to login.
         /// </summary>
         internal static string LabelNeedLogin {
             get {
@@ -5481,7 +5510,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nettosumme.
+        ///   Looks up a localized string similar to Net total.
         /// </summary>
         internal static string LabelNetTotal {
             get {
@@ -5490,7 +5519,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Neu  .
+        ///   Looks up a localized string similar to New.
         /// </summary>
         internal static string LabelNew {
             get {
@@ -5499,7 +5528,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Neues Passwort   .
+        ///   Looks up a localized string similar to New Password.
         /// </summary>
         internal static string LabelNewPassword {
             get {
@@ -5508,7 +5537,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Neuigkeiten.
+        ///   Looks up a localized string similar to News.
         /// </summary>
         internal static string LabelNews {
             get {
@@ -5517,7 +5546,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Neuigkeiten-Home.
+        ///   Looks up a localized string similar to News Home.
         /// </summary>
         internal static string LabelNewsHome {
             get {
@@ -5535,7 +5564,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Weiter.
+        ///   Looks up a localized string similar to Next.
         /// </summary>
         internal static string LabelNext {
             get {
@@ -5544,7 +5573,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nein  .
+        ///   Looks up a localized string similar to No.
         /// </summary>
         internal static string LabelNo {
             get {
@@ -5553,7 +5582,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sie haben im Moment keine zusätzlichen Dokumente.
+        ///   Looks up a localized string similar to You currently do not have Additional Document.
         /// </summary>
         internal static string LabelNoAdditionalDocuments {
             get {
@@ -5562,7 +5591,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sie haben im Moment kein Anschreiben .
+        ///   Looks up a localized string similar to You currently do not have Cover Letter.
         /// </summary>
         internal static string LabelNoCoverLetter {
             get {
@@ -5571,7 +5600,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Keine Daten gefunden.
+        ///   Looks up a localized string similar to No Data Found.
         /// </summary>
         internal static string LabelNoData {
             get {
@@ -5580,7 +5609,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sie haben noch keine Job-Entwürfe..
+        ///   Looks up a localized string similar to You haven&apos;t got any draft job yet..
         /// </summary>
         internal static string LabelNoDraftJobs {
             get {
@@ -5589,7 +5618,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Keine Datei ausgewählt ….
+        ///   Looks up a localized string similar to No File Choosen....
         /// </summary>
         internal static string LabelNoFileChosen {
             get {
@@ -5598,7 +5627,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sie haben im Moment keine Job-E-Mails..
+        ///   Looks up a localized string similar to You currently don&apos;t have any Job alerts..
         /// </summary>
         internal static string LabelNoJobAlerts {
             get {
@@ -5607,7 +5636,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Keine Job-Credits.
+        ///   Looks up a localized string similar to No job credit.
         /// </summary>
         internal static string LabelNoJobCredit {
             get {
@@ -5616,7 +5645,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Es wurden keine Jobs ausgewählt. Bitte wählen Sie einen Job aus, um fortzufahren.
+        ///   Looks up a localized string similar to No Jobs have been selected, please select a job to proceed.
         /// </summary>
         internal static string LabelNoJobSelected {
             get {
@@ -5625,7 +5654,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sie haben sich noch für keinen Job beworben..
+        ///   Looks up a localized string similar to You haven&apos;t applied for any jobs yet..
         /// </summary>
         internal static string LabelNoJobTracked {
             get {
@@ -5634,7 +5663,52 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Keine.
+        ///   Looks up a localized string similar to Nominated Company Email Address.
+        /// </summary>
+        internal static string LabelNominatedCompanyEmailAddress {
+            get {
+                return ResourceManager.GetString("LabelNominatedCompanyEmailAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nominated Company First Name.
+        /// </summary>
+        internal static string LabelNominatedCompanyFirstName {
+            get {
+                return ResourceManager.GetString("LabelNominatedCompanyFirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nominated Company Last Name.
+        /// </summary>
+        internal static string LabelNominatedCompanyLastName {
+            get {
+                return ResourceManager.GetString("LabelNominatedCompanyLastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nominated Company Phone.
+        /// </summary>
+        internal static string LabelNominatedCompanyPhone {
+            get {
+                return ResourceManager.GetString("LabelNominatedCompanyPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nominated Company Role.
+        /// </summary>
+        internal static string LabelNominatedCompanyRole {
+            get {
+                return ResourceManager.GetString("LabelNominatedCompanyRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
         /// </summary>
         internal static string LabelNone {
             get {
@@ -5643,7 +5717,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Keine Ergebnisse gefunden.
+        ///   Looks up a localized string similar to No results found.
         /// </summary>
         internal static string LabelNoResultFound {
             get {
@@ -5652,7 +5726,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sie haben im Moment keinen Lebenslauf.
+        ///   Looks up a localized string similar to You currently do not have Resume.
         /// </summary>
         internal static string LabelNoResume {
             get {
@@ -5661,7 +5735,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sie haben im Moment keine gespeicherten Jobs..
+        ///   Looks up a localized string similar to You currently don&apos;t have any saved jobs..
         /// </summary>
         internal static string LabelNoSavedJob {
             get {
@@ -5670,7 +5744,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hinweis.
+        ///   Looks up a localized string similar to Note.
         /// </summary>
         internal static string LabelNote {
             get {
@@ -5679,7 +5753,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nicht registriert? Kein Problem! Es geht schnell..
+        ///   Looks up a localized string similar to Not registered? No problem! Quickly.
         /// </summary>
         internal static string LabelNotRegisteredQuickly {
             get {
@@ -5688,7 +5762,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zurzeit nicht auf der Suche.
+        ///   Looks up a localized string similar to Not Currently Seeking.
         /// </summary>
         internal static string LabelNotSeeking {
             get {
@@ -5715,7 +5789,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Anzahl.
+        ///   Looks up a localized string similar to Number.
         /// </summary>
         internal static string LabelNumber {
             get {
@@ -5724,7 +5798,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Anzahl Angestellte.
+        ///   Looks up a localized string similar to Number of employees.
         /// </summary>
         internal static string LabelNumberOfEmployees {
             get {
@@ -5733,7 +5807,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Oktober.
+        ///   Looks up a localized string similar to October.
         /// </summary>
         internal static string LabelOct {
             get {
@@ -5742,7 +5816,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Älteste.
+        ///   Looks up a localized string similar to Oldest.
         /// </summary>
         internal static string LabelOldest {
             get {
@@ -5751,7 +5825,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Laufendes Konto.
+        ///   Looks up a localized string similar to Ongoing account.
         /// </summary>
         internal static string LabelOngoingAccount {
             get {
@@ -5760,7 +5834,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Still gelegt.
+        ///   Looks up a localized string similar to On Hold.
         /// </summary>
         internal static string LabelOnHold {
             get {
@@ -5769,7 +5843,8 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ups! Es sieht so aus, als ob Sie keine Job-Credits haben. Um einen Job posten zu können, müssen Sie zuerst unten Credits kaufen. .
+        ///   Looks up a localized string similar to Oops! Seems you don&apos;t have job credits. In order to post a job, you must first
+        ///                    purchase credits below..
         /// </summary>
         internal static string LabelOopsNoJobCredit {
             get {
@@ -5787,7 +5862,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wählen Sie eine der folgenden Optionen aus, um Ihr Anschreiben hochzuladen oder selbst zu erstellen..
+        ///   Looks up a localized string similar to Select one of the following options to upload your cover letter or create your own..
         /// </summary>
         internal static string LabelOptionUploadCreateCover {
             get {
@@ -5796,7 +5871,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wählen Sie eine der folgenden Optionen aus, um Ihren Lebenslauf hochzuladen..
+        ///   Looks up a localized string similar to Select one of the following options to upload your resume..
         /// </summary>
         internal static string LabelOptionUploadResume {
             get {
@@ -5805,7 +5880,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ODER.
+        ///   Looks up a localized string similar to OR.
         /// </summary>
         internal static string LabelOr {
             get {
@@ -5814,7 +5889,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bestellnummer.
+        ///   Looks up a localized string similar to Order number.
         /// </summary>
         internal static string LabelOrderNumber {
             get {
@@ -5823,7 +5898,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Organisationsname.
+        ///   Looks up a localized string similar to Organisation Name.
         /// </summary>
         internal static string LabelOrganisationName {
             get {
@@ -5832,7 +5907,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Organisationswebseite.
+        ///   Looks up a localized string similar to Organisation Website.
         /// </summary>
         internal static string LabelOrganisationWebsite {
             get {
@@ -5841,7 +5916,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to oder selbst schreiben.
+        ///   Looks up a localized string similar to Or Write One.
         /// </summary>
         internal static string LabelOrWriteOneNow {
             get {
@@ -5850,7 +5925,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Andere.
+        ///   Looks up a localized string similar to Other.
         /// </summary>
         internal static string LabelOther {
             get {
@@ -5859,7 +5934,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Andere Qualifikation.
+        ///   Looks up a localized string similar to Other Qualification.
         /// </summary>
         internal static string LabelOtherQualification {
             get {
@@ -5868,7 +5943,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Andere.
+        ///   Looks up a localized string similar to Others.
         /// </summary>
         internal static string LabelOthers {
             get {
@@ -5877,7 +5952,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Beinhaltet.
+        ///   Looks up a localized string similar to Contains.
         /// </summary>
         internal static string LabelPackageContains {
             get {
@@ -5886,7 +5961,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Paketdetails.
+        ///   Looks up a localized string similar to Package details.
         /// </summary>
         internal static string LabelPackageDetails {
             get {
@@ -5895,7 +5970,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Seite.
+        ///   Looks up a localized string similar to Page.
         /// </summary>
         internal static string LabelPage {
             get {
@@ -5904,7 +5979,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Seite(n).
+        ///   Looks up a localized string similar to page(s).
         /// </summary>
         internal static string LabelPages {
             get {
@@ -5913,7 +5988,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Passportnummer.
+        ///   Looks up a localized string similar to Passport Number.
         /// </summary>
         internal static string LabelPassportNumber {
             get {
@@ -5922,7 +5997,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Passwort .
+        ///   Looks up a localized string similar to Password.
         /// </summary>
         internal static string LabelPassword {
             get {
@@ -5931,7 +6006,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Passwort und Passwortbestätigung stimmen nicht überein.
+        ///   Looks up a localized string similar to The password and confirmation password do not match.
         /// </summary>
         internal static string LabelPasswordNotMatch {
             get {
@@ -5940,7 +6015,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Passwort muss mindestens 8 Zeichen lang sein, 1 Kleinbuchstaben, 1 Großbuchstaben und 1 Zahl beinhalten..
+        ///   Looks up a localized string similar to Password must contain 8 characters or more, 1 lowercase letter, 1 uppercase letter and 1 number..
         /// </summary>
         internal static string LabelPasswordPrompt {
             get {
@@ -5949,7 +6024,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mit Kreditkarte zahlen.
+        ///   Looks up a localized string similar to Pay by credit card.
         /// </summary>
         internal static string LabelPayByCreditCard {
             get {
@@ -5958,7 +6033,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ihr Konto wurde mit den relevanten Job-Credits aktualisiert. &lt;span style=&apos;display:none&apos;&gt;Diese Gebühr erscheint auf Ihrem Kreditkartenauszug als Zahlung an  &quot;{0}&quot;.&lt;/span&gt;.
+        ///   Looks up a localized string similar to Your account has now been updated with the relevant job credits. &lt;span style=&apos;display:none&apos;&gt;This charge will appear on your credit card statement as payment to &quot;{0}&quot;.&lt;/span&gt;.
         /// </summary>
         internal static string LabelPaymentConfirmationDescription {
             get {
@@ -5967,7 +6042,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zahlungsmethode.
+        ///   Looks up a localized string similar to Payment Method.
         /// </summary>
         internal static string LabelPaymentMethod {
             get {
@@ -5985,7 +6060,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ausstehende Jobs.
+        ///   Looks up a localized string similar to Pending Jobs.
         /// </summary>
         internal static string LabelPendingJobs {
             get {
@@ -6003,7 +6078,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Persönliche Details.
+        ///   Looks up a localized string similar to Personal Details.
         /// </summary>
         internal static string LabelPersonalDetails {
             get {
@@ -6012,7 +6087,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Telefon.
+        ///   Looks up a localized string similar to Phone.
         /// </summary>
         internal static string LabelPhone {
             get {
@@ -6021,7 +6096,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Telefonnummer Zuhause.
+        ///   Looks up a localized string similar to Phone (H).
         /// </summary>
         internal static string LabelPhoneHome {
             get {
@@ -6039,7 +6114,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mobiletelefonnummer.
+        ///   Looks up a localized string similar to Mobile.
         /// </summary>
         internal static string LabelPhoneMobile {
             get {
@@ -6057,7 +6132,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Telefon ist erforderlich.
+        ///   Looks up a localized string similar to Phone is required.
         /// </summary>
         internal static string LabelPhoneRequired {
             get {
@@ -6066,7 +6141,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Telefonnummer Arbeit.
+        ///   Looks up a localized string similar to Phone (W).
         /// </summary>
         internal static string LabelPhoneWork {
             get {
@@ -6075,7 +6150,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Foto.
+        ///   Looks up a localized string similar to Photo.
         /// </summary>
         internal static string LabelPhoto {
             get {
@@ -6084,7 +6159,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bitte antworten …..
+        ///   Looks up a localized string similar to Please answer....
         /// </summary>
         internal static string LabelPleaseAnswer {
             get {
@@ -6093,7 +6168,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bitte auswählen ….
+        ///   Looks up a localized string similar to Please Choose ....
         /// </summary>
         internal static string LabelPleaseChoose {
             get {
@@ -6102,7 +6177,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bitte kontaktieren Sie unser Supportteam über die Kontaktseite unserer Webseite, um die Probleme zu lösen..
+        ///   Looks up a localized string similar to Please contact our support team via the contact page of our website to resolve your issues..
         /// </summary>
         internal static string LabelPleaseContactSupport {
             get {
@@ -6111,7 +6186,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bitte anmelden .
+        ///   Looks up a localized string similar to Please Login.
         /// </summary>
         internal static string LabelPleaseLogin {
             get {
@@ -6120,7 +6195,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bitte sehen Sie sich Folgendes an.
+        ///   Looks up a localized string similar to Please see the .
         /// </summary>
         internal static string LabelPleaseSeeThe {
             get {
@@ -6129,7 +6204,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bitte auswählen.
+        ///   Looks up a localized string similar to Please Select.
         /// </summary>
         internal static string LabelPleaseSelect {
             get {
@@ -6138,7 +6213,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bitte wählen Sie Dokumente zum Hochladen aus..
+        ///   Looks up a localized string similar to Please Select Document to Upload..
         /// </summary>
         internal static string LabelPleaseSelectDoc {
             get {
@@ -6147,7 +6222,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bitte wählen Sie den Gehaltstyp aus.
+        ///   Looks up a localized string similar to Please select salary type.
         /// </summary>
         internal static string LabelPleaseSelectSalaryType {
             get {
@@ -6156,7 +6231,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bitte wählen Sie Ihr Paket aus.
+        ///   Looks up a localized string similar to Please select your package.
         /// </summary>
         internal static string LabelPleaseSelectYourPackage {
             get {
@@ -6165,7 +6240,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bitte wählen Sie ein Produkt zum Kaufen aus.
+        ///   Looks up a localized string similar to Select Product to Purchase.
         /// </summary>
         internal static string LabelPleaseSelectYourProduct {
             get {
@@ -6174,7 +6249,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bitte klicken Sie das Feld an, um zu abonnieren..
+        ///   Looks up a localized string similar to Please tick box to subscribe.
         /// </summary>
         internal static string LabelPleaseTickBoxToSubscribe {
             get {
@@ -6183,7 +6258,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Position(en).
+        ///   Looks up a localized string similar to position(s).
         /// </summary>
         internal static string LabelPositions {
             get {
@@ -6192,7 +6267,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job posten.
+        ///   Looks up a localized string similar to Post a job.
         /// </summary>
         internal static string LabelPostAJob {
             get {
@@ -6201,7 +6276,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Postanschrift 1.
+        ///   Looks up a localized string similar to Postal Address 1.
         /// </summary>
         internal static string LabelPostalAddress1 {
             get {
@@ -6210,7 +6285,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Postanschrift 2.
+        ///   Looks up a localized string similar to Postal Address 2.
         /// </summary>
         internal static string LabelPostalAddress2 {
             get {
@@ -6219,7 +6294,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Postleitzahl.
+        ///   Looks up a localized string similar to Postcode.
         /// </summary>
         internal static string LabelPostcode {
             get {
@@ -6228,7 +6303,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gepostet von.
+        ///   Looks up a localized string similar to Posted.
         /// </summary>
         internal static string LabelPosted {
             get {
@@ -6237,7 +6312,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Doktorand.
+        ///   Looks up a localized string similar to Postgraduate.
         /// </summary>
         internal static string LabelPostGraduateDegree {
             get {
@@ -6246,7 +6321,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Posttyp.
+        ///   Looks up a localized string similar to Post type.
         /// </summary>
         internal static string LabelPostType {
             get {
@@ -6255,7 +6330,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bevorzugtes Gebiet.
+        ///   Looks up a localized string similar to Preferred Area.
         /// </summary>
         internal static string LabelPreferredArea {
             get {
@@ -6264,7 +6339,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bevorzugte Klassifizierung.
+        ///   Looks up a localized string similar to Preferred Classification.
         /// </summary>
         internal static string LabelPreferredClassification {
             get {
@@ -6273,7 +6348,16 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bevorzugte E-Mail-Sprache.
+        ///   Looks up a localized string similar to Preferred Contact Method.
+        /// </summary>
+        internal static string LabelPreferredContactMethod {
+            get {
+                return ResourceManager.GetString("LabelPreferredContactMethod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preferred email language.
         /// </summary>
         internal static string LabelPreferredEmailLanguage {
             get {
@@ -6282,7 +6366,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bevorzugte Anstellung.
+        ///   Looks up a localized string similar to Preferred Employment.
         /// </summary>
         internal static string LabelPreferredEmployment {
             get {
@@ -6291,7 +6375,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bevorzugte Telefonnummer.
+        ///   Looks up a localized string similar to Preferred Line.
         /// </summary>
         internal static string LabelPreferredLine {
             get {
@@ -6300,7 +6384,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bevorzugter Standort.
+        ///   Looks up a localized string similar to Preferred Location.
         /// </summary>
         internal static string LabelPreferredLocation {
             get {
@@ -6309,7 +6393,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bevorzugte Unterklassifizierung.
+        ///   Looks up a localized string similar to Preferred Sub-classification.
         /// </summary>
         internal static string LabelPreferredSubClassification {
             get {
@@ -6327,7 +6411,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Aktuell.
+        ///   Looks up a localized string similar to Present.
         /// </summary>
         internal static string LabelPresent {
             get {
@@ -6336,7 +6420,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vorh..
+        ///   Looks up a localized string similar to Prev.
         /// </summary>
         internal static string LabelPrevious {
             get {
@@ -6345,7 +6429,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Preis.
+        ///   Looks up a localized string similar to Price.
         /// </summary>
         internal static string LabelPrice {
             get {
@@ -6354,7 +6438,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Preisbereich muss zwischen 1 und 9999 liegen.
+        ///   Looks up a localized string similar to Price Range must be between 1 - 9999.
         /// </summary>
         internal static string LabelPriceRange {
             get {
@@ -6408,7 +6492,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Haupt-E-Mail.
+        ///   Looks up a localized string similar to Primary Email.
         /// </summary>
         internal static string LabelPrimaryEmail {
             get {
@@ -6417,7 +6501,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Produkte.
+        ///   Looks up a localized string similar to Products.
         /// </summary>
         internal static string LabelProduct {
             get {
@@ -6435,7 +6519,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Produktdetails.
+        ///   Looks up a localized string similar to Product details.
         /// </summary>
         internal static string LabelProductDetails {
             get {
@@ -6444,7 +6528,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Produkttyp .
+        ///   Looks up a localized string similar to Product type.
         /// </summary>
         internal static string LabelProductType {
             get {
@@ -6453,7 +6537,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Beruf/Rolle.
+        ///   Looks up a localized string similar to Profession / Role.
         /// </summary>
         internal static string LabelProfession {
             get {
@@ -6462,7 +6546,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Professionelle Arbeitskenntnisse.
+        ///   Looks up a localized string similar to Professional working proficiency.
         /// </summary>
         internal static string LabelProfessionalWorkingProficiency {
             get {
@@ -6471,7 +6555,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Beruf/Rolle.
+        ///   Looks up a localized string similar to Profession / Role.
         /// </summary>
         internal static string LabelProfessionRole {
             get {
@@ -6480,7 +6564,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Beruf/Rollendetails.
+        ///   Looks up a localized string similar to Profession/Role Details.
         /// </summary>
         internal static string LabelProfessionRoleDetails {
             get {
@@ -6489,7 +6573,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Beruf .
+        ///   Looks up a localized string similar to Professions.
         /// </summary>
         internal static string LabelProfessions {
             get {
@@ -6498,7 +6582,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Professor .
+        ///   Looks up a localized string similar to Professor.
         /// </summary>
         internal static string LabelProfessor {
             get {
@@ -6507,7 +6591,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kenntnisse.
+        ///   Looks up a localized string similar to Proficiency.
         /// </summary>
         internal static string LabelProficiency {
             get {
@@ -6516,7 +6600,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Profil .
+        ///   Looks up a localized string similar to Profile.
         /// </summary>
         internal static string LabelProfile {
             get {
@@ -6534,7 +6618,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Als PDF herunterladen.
+        ///   Looks up a localized string similar to Download as PDF.
         /// </summary>
         internal static string LabelProfileDownloadPDF {
             get {
@@ -6552,7 +6636,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zuletzt aktualisiert.
+        ///   Looks up a localized string similar to Last Updated.
         /// </summary>
         internal static string LabelProfileProgressLastUpdated {
             get {
@@ -6561,7 +6645,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ihr Profil.
+        ///   Looks up a localized string similar to Your profile.
         /// </summary>
         internal static string LabelProfileProgressText1 {
             get {
@@ -6570,7 +6654,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to vollständig .
+        ///   Looks up a localized string similar to complete.
         /// </summary>
         internal static string LabelProfileProgressText2 {
             get {
@@ -6597,7 +6681,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Promotionscode.
+        ///   Looks up a localized string similar to Promotion Code.
         /// </summary>
         internal static string LabelPromoCodeTitle {
             get {
@@ -6606,7 +6690,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Öffentliches Profil   .
+        ///   Looks up a localized string similar to Public Profile.
         /// </summary>
         internal static string LabelPublicProfile {
             get {
@@ -6615,7 +6699,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Öffentlicher Transport.
+        ///   Looks up a localized string similar to Public Transport.
         /// </summary>
         internal static string LabelPublicTransport {
             get {
@@ -6624,7 +6708,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Einkaufsdetails.
+        ///   Looks up a localized string similar to Purchase details.
         /// </summary>
         internal static string LabelPurchaseDetails {
             get {
@@ -6633,7 +6717,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gesamte Produktkosten .
+        ///   Looks up a localized string similar to Product Total Cost.
         /// </summary>
         internal static string LabelPurchaseTotal {
             get {
@@ -6642,7 +6726,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ihr Passwort wurde erfolgreich geändert.
+        ///   Looks up a localized string similar to Your password has been changed successfully..
         /// </summary>
         internal static string LabelPwdChanged {
             get {
@@ -6651,7 +6735,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Qualifikation.
+        ///   Looks up a localized string similar to Qualification.
         /// </summary>
         internal static string LabelQualification {
             get {
@@ -6660,7 +6744,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Qualifikationslevel.
+        ///   Looks up a localized string similar to Qualification Level.
         /// </summary>
         internal static string LabelQualificationLevel {
             get {
@@ -6669,7 +6753,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Qualifikationsname.
+        ///   Looks up a localized string similar to Qualification Name.
         /// </summary>
         internal static string LabelQualificationName {
             get {
@@ -6678,7 +6762,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Qualifikationen anerkannt.
+        ///   Looks up a localized string similar to Qualifications Recognised.
         /// </summary>
         internal static string LabelQualificationsRecognised {
             get {
@@ -6687,7 +6771,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Quantität.
+        ///   Looks up a localized string similar to Quantity.
         /// </summary>
         internal static string LabelQuantity {
             get {
@@ -6696,7 +6780,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Frage.
+        ///   Looks up a localized string similar to Question.
         /// </summary>
         internal static string LabelQuestion {
             get {
@@ -6705,7 +6789,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Schnell erneut posten.
+        ///   Looks up a localized string similar to Quick Repost.
         /// </summary>
         internal static string LabelQuickRepostJob {
             get {
@@ -6714,7 +6798,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vollständige Geschichte lesen.
+        ///   Looks up a localized string similar to Read full story.
         /// </summary>
         internal static string LabelReadFullStory {
             get {
@@ -6723,7 +6807,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mehr lesen.
+        ///   Looks up a localized string similar to Read more.
         /// </summary>
         internal static string LabelReadMore {
             get {
@@ -6732,7 +6816,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-E-Mail erhalten.
+        ///   Looks up a localized string similar to Receive Job Alert.
         /// </summary>
         internal static string LabelReceiveJobAlert {
             get {
@@ -6741,7 +6825,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Newsletter erhalten.
+        ///   Looks up a localized string similar to Receive Newsletter.
         /// </summary>
         internal static string LabelReceiveNewsletter {
             get {
@@ -6759,7 +6843,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Referenznummer.
+        ///   Looks up a localized string similar to Reference Number.
         /// </summary>
         internal static string LabelReferenceNumber {
             get {
@@ -6768,7 +6852,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Referenzen .
+        ///   Looks up a localized string similar to References.
         /// </summary>
         internal static string LabelReferences {
             get {
@@ -6777,7 +6861,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Empfehlende Domain.
+        ///   Looks up a localized string similar to Referral Domain.
         /// </summary>
         internal static string LabelReferralDomain {
             get {
@@ -6786,7 +6870,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Verfeinern.
+        ///   Looks up a localized string similar to Refine.
         /// </summary>
         internal static string LabelRefine {
             get {
@@ -6795,7 +6879,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ergebnisse verfeinern.
+        ///   Looks up a localized string similar to Refine results.
         /// </summary>
         internal static string LabelRefineResult {
             get {
@@ -6804,7 +6888,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Verfeinern Sie Ihre Ergebnisse.
+        ///   Looks up a localized string similar to Refine Your Results.
         /// </summary>
         internal static string LabelRefineResults {
             get {
@@ -6813,7 +6897,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ref.-Nr..
+        ///   Looks up a localized string similar to Ref. No.
         /// </summary>
         internal static string LabelRefNo {
             get {
@@ -6822,7 +6906,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Aktualisieren.
+        ///   Looks up a localized string similar to Refresh.
         /// </summary>
         internal static string LabelRefresh {
             get {
@@ -6840,7 +6924,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Registrieren  .
+        ///   Looks up a localized string similar to Register Sample.
         /// </summary>
         internal static string LabelRegister {
             get {
@@ -6849,7 +6933,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Registrieren und bewerben.
+        ///   Looks up a localized string similar to register and apply.
         /// </summary>
         internal static string LabelRegisterAndApply {
             get {
@@ -6858,7 +6942,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wenn Sie sich registrieren, stimmen Sie Folgendem zu.
+        ///   Looks up a localized string similar to By registering, you agree to our.
         /// </summary>
         internal static string LabelRegisteringAgree {
             get {
@@ -6867,7 +6951,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Registrieren/Anmelden.
+        ///   Looks up a localized string similar to Register / Login - Sample.
         /// </summary>
         internal static string LabelRegisterLogin {
             get {
@@ -6876,7 +6960,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nicht registriert? Registrieren Sie sich heute!.
+        ///   Looks up a localized string similar to Not registered? Register today!.
         /// </summary>
         internal static string LabelRegisterToday {
             get {
@@ -6885,7 +6969,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Registrieren Sie Ihre Informationen.
+        ///   Looks up a localized string similar to Register your details.
         /// </summary>
         internal static string LabelRegisterYourDetails {
             get {
@@ -6903,7 +6987,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Das hochgeladene Bild ist kein gültiges Bildformat. Bitte überprüfen Sie, dass die Datei GIF, JPG oder JPEG ist und versuchen Sie es erneut..
+        ///   Looks up a localized string similar to The image uploaded is not a valid image format. Please check that the file is either a GIF, JPG or JPEG and try again..
         /// </summary>
         internal static string LabelReInvalidImage {
             get {
@@ -6912,7 +6996,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Abgelehnt .
+        ///   Looks up a localized string similar to Rejected.
         /// </summary>
         internal static string LabelRejected {
             get {
@@ -6921,7 +7005,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ähnliche Artikel.
+        ///   Looks up a localized string similar to Related Articles.
         /// </summary>
         internal static string LabelRelatedArticles {
             get {
@@ -6930,7 +7014,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Beziehung.
+        ///   Looks up a localized string similar to Relationship.
         /// </summary>
         internal static string LabelRelationship {
             get {
@@ -6939,7 +7023,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Verbleibende Tage.
+        ///   Looks up a localized string similar to Remaining days.
         /// </summary>
         internal static string LabelRemaining {
             get {
@@ -6948,7 +7032,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mich erinnern.
+        ///   Looks up a localized string similar to Remember&amp;nbsp;me.
         /// </summary>
         internal static string LabelRememberMe {
             get {
@@ -6957,7 +7041,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Entfernen.
+        ///   Looks up a localized string similar to Remove.
         /// </summary>
         internal static string LabelRemove {
             get {
@@ -6966,7 +7050,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Logo entfernen.
+        ///   Looks up a localized string similar to Remove Logo.
         /// </summary>
         internal static string LabelRemovelogo {
             get {
@@ -6975,7 +7059,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sie haben den/die ausgewählten Job(s) erneut gepostet. Sie können diesen Job jetzt in den aktuellen Jobs sehen.
+        ///   Looks up a localized string similar to You have renewed selected job(s), you can view this job(s) now in current jobs.
         /// </summary>
         internal static string LabelRepostCompleted {
             get {
@@ -6984,7 +7068,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Erneut posten.
+        ///   Looks up a localized string similar to Repost.
         /// </summary>
         internal static string LabelRepostJob {
             get {
@@ -6993,7 +7077,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sind Sie sicher, dass Sie diesen Job erneut posten möchten?.
+        ///   Looks up a localized string similar to Are you sure you want to repost this job?.
         /// </summary>
         internal static string LabelRepostJobConfirm {
             get {
@@ -7002,7 +7086,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ich möchte Job-E-Mails für neue Jobs erhalten, die zu meinen Suchkriterien passen..
+        ///   Looks up a localized string similar to I would like to receive email alerts for new jobs matching my search criteria..
         /// </summary>
         internal static string LabelRequestAlertEmail {
             get {
@@ -7011,7 +7095,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zeigt ein erforderliches Feld an.
+        ///   Looks up a localized string similar to Indicates a required field.
         /// </summary>
         internal static string LabelRequiredField {
             get {
@@ -7020,7 +7104,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Erforderliches Feld.
+        ///   Looks up a localized string similar to Required Field.
         /// </summary>
         internal static string LabelRequiredField1 {
             get {
@@ -7029,7 +7113,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sie haben nicht alle erforderlichen Informationsfelder ausgefüllt..
+        ///   Looks up a localized string similar to You have not completed all the required information fields..
         /// </summary>
         internal static string LabelRequiredFieldsNeeded {
             get {
@@ -7047,7 +7131,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Anmeldung erforderlich.
+        ///   Looks up a localized string similar to Require Logon.
         /// </summary>
         internal static string LabelRequireLogon {
             get {
@@ -7056,7 +7140,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Anmeldung für externe Bewerbungen erforderlich.
+        ///   Looks up a localized string similar to Require Logon For External Applications.
         /// </summary>
         internal static string LabelRequireLogonForExternalApplications {
             get {
@@ -7065,7 +7149,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-Mail erneut senden.
+        ///   Looks up a localized string similar to Resend Email.
         /// </summary>
         internal static string LabelResendEmail {
             get {
@@ -7083,7 +7167,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zurücksetzen fehlgeschlagen.
+        ///   Looks up a localized string similar to Reset Failed.
         /// </summary>
         internal static string LabelResetFailed {
             get {
@@ -7092,7 +7176,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zurücksetzen der GUID fehlgeschlagen.
+        ///   Looks up a localized string similar to Dear User&lt;br /&gt;&lt;br /&gt;It looks like you have already tried to use this link to reset your password. This link can be used only once.&lt;br /&gt;&lt;br /&gt;If you did not click the link, please click &lt;a href=&quot;./ForgetPassword.aspx&quot;&gt;here&lt;/a&gt; to have a new password reset link sent to you by email again..
         /// </summary>
         internal static string LabelResetGUIDFailed {
             get {
@@ -7101,7 +7185,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Geben Sie Ihren Benutzernamen oder Ihre E-Mail unten ein und wählen Sie den Zurücksetzen-Button aus. Sie erhalten dann eine E-Mail mit einem Link, der Ihnen ermöglicht, Ihr Passwort zurückzusetzen..
+        ///   Looks up a localized string similar to Enter your username or email address below and select the Reset button.  You will then receive an email with a link allowing you to reset your password..
         /// </summary>
         internal static string LabelResetPasswordInfo {
             get {
@@ -7110,7 +7194,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wohnort.
+        ///   Looks up a localized string similar to Residency.
         /// </summary>
         internal static string LabelResidency {
             get {
@@ -7119,7 +7203,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nur Einwohner.
+        ///   Looks up a localized string similar to Resident Only.
         /// </summary>
         internal static string LabelResidentOnly {
             get {
@@ -7128,7 +7212,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Aufgaben und Errungenschaften.
+        ///   Looks up a localized string similar to Responsibilities and Achievements.
         /// </summary>
         internal static string LabelResponsibilitiesAndAchievements {
             get {
@@ -7137,7 +7221,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ergebnisse  .
+        ///   Looks up a localized string similar to results.
         /// </summary>
         internal static string LabelResults {
             get {
@@ -7146,7 +7230,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lebenslauf.
+        ///   Looks up a localized string similar to Resume.
         /// </summary>
         internal static string LabelResume {
             get {
@@ -7164,7 +7248,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Passwort erneut eingeben.
+        ///   Looks up a localized string similar to Retype Password.
         /// </summary>
         internal static string LabelRetypePassword {
             get {
@@ -7173,7 +7257,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rolle.
+        ///   Looks up a localized string similar to Role.
         /// </summary>
         internal static string LabelRole {
             get {
@@ -7182,7 +7266,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rollenpräferenzen.
+        ///   Looks up a localized string similar to Role Preferences.
         /// </summary>
         internal static string LabelRolePreferences {
             get {
@@ -7200,7 +7284,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to RSS-Feed.
+        ///   Looks up a localized string similar to RSS Feed.
         /// </summary>
         internal static string LabelRSSFeed {
             get {
@@ -7209,7 +7293,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gehalt.
+        ///   Looks up a localized string similar to Salary.
         /// </summary>
         internal static string LabelSalary {
             get {
@@ -7218,7 +7302,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Jahresgehalt.
+        ///   Looks up a localized string similar to Annual.
         /// </summary>
         internal static string LabelSalaryAnnual {
             get {
@@ -7227,7 +7311,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Jährlich.
+        ///   Looks up a localized string similar to Annually.
         /// </summary>
         internal static string LabelSalaryAnnually {
             get {
@@ -7236,7 +7320,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gehaltsdetails.
+        ///   Looks up a localized string similar to Salary details.
         /// </summary>
         internal static string LabelSalaryDetails {
             get {
@@ -7245,7 +7329,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gehalt ab.
+        ///   Looks up a localized string similar to From.
         /// </summary>
         internal static string LabelSalaryFrom {
             get {
@@ -7254,7 +7338,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Stundengehalt.
+        ///   Looks up a localized string similar to Hourly.
         /// </summary>
         internal static string LabelSalaryHourly {
             get {
@@ -7272,7 +7356,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gehaltsbereich.
+        ///   Looks up a localized string similar to Salary Range.
         /// </summary>
         internal static string LabelSalaryRange {
             get {
@@ -7281,7 +7365,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gehaltsbereich ungültig.
+        ///   Looks up a localized string similar to Salary range invalid.
         /// </summary>
         internal static string LabelSalaryRangeError {
             get {
@@ -7290,7 +7374,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gehaltsanforderungen.
+        ///   Looks up a localized string similar to Salary Requirements.
         /// </summary>
         internal static string LabelSalaryRequirements {
             get {
@@ -7299,7 +7383,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gehaltstext.
+        ///   Looks up a localized string similar to Salary Text.
         /// </summary>
         internal static string LabelSalaryText {
             get {
@@ -7308,7 +7392,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gehalt bis.
+        ///   Looks up a localized string similar to To.
         /// </summary>
         internal static string LabelSalaryTo {
             get {
@@ -7317,7 +7401,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gehaltstyp.
+        ///   Looks up a localized string similar to Type.
         /// </summary>
         internal static string LabelSalaryType {
             get {
@@ -7335,7 +7419,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gehaltstyp-ID.
+        ///   Looks up a localized string similar to Salary Type ID.
         /// </summary>
         internal static string LabelSalaryTypeID {
             get {
@@ -7344,7 +7428,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wie oben.
+        ///   Looks up a localized string similar to Same as above.
         /// </summary>
         internal static string LabelSameAsAbove {
             get {
@@ -7353,7 +7437,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Speichern   .
+        ///   Looks up a localized string similar to Save.
         /// </summary>
         internal static string LabelSave {
             get {
@@ -7362,7 +7446,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Speichern &amp; Fortfahren.
+        ///   Looks up a localized string similar to Save &amp; Continue.
         /// </summary>
         internal static string LabelSaveAndContinue {
             get {
@@ -7371,7 +7455,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Als Entwurf speichern.
+        ///   Looks up a localized string similar to Save As Draft.
         /// </summary>
         internal static string LabelSaveAsDraft {
             get {
@@ -7380,7 +7464,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gespeichertes Datum.
+        ///   Looks up a localized string similar to Saved Date.
         /// </summary>
         internal static string LabelSavedDate {
             get {
@@ -7389,7 +7473,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job speichern.
+        ///   Looks up a localized string similar to Save Job.
         /// </summary>
         internal static string LabelSaveJob {
             get {
@@ -7407,7 +7491,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Suchkriterien.
+        ///   Looks up a localized string similar to Search Criteria.
         /// </summary>
         internal static string LabelSearchCriteria {
             get {
@@ -7416,7 +7500,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Um maximale Reichweite in Suchergebnissen von potentiellen Arbeitgebern zu erhalten, wählen Sie bitte unten die Kriterien aus, die Sie am besten repräsentieren.
+        ///   Looks up a localized string similar to For maximum exposure for search results from potential employers, please select from the below criteria’s that  represent you best.
         /// </summary>
         internal static string LabelSearchCriteriaWelcome {
             get {
@@ -7425,7 +7509,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Suchdetails.
+        ///   Looks up a localized string similar to Search Details.
         /// </summary>
         internal static string LabelSearchDetails {
             get {
@@ -7434,7 +7518,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Alle Jobs durchsucht.
+        ///   Looks up a localized string similar to Searched all jobs.
         /// </summary>
         internal static string LabelSearchedAllJobs {
             get {
@@ -7443,7 +7527,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Suchfeld-Erweiterung.
+        ///   Looks up a localized string similar to Search Field Extension.
         /// </summary>
         internal static string LabelSearchFieldExtension {
             get {
@@ -7452,7 +7536,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Stichwort suchen.
+        ///   Looks up a localized string similar to Search Keyword.
         /// </summary>
         internal static string LabelSearchKeyword {
             get {
@@ -7461,7 +7545,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ihre Suche hat ergeben:.
+        ///   Looks up a localized string similar to Your search resulted in:.
         /// </summary>
         internal static string LabelSearchResult {
             get {
@@ -7470,7 +7554,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rollen-IDs suchen.
+        ///   Looks up a localized string similar to Search Role IDs.
         /// </summary>
         internal static string LabelSearchRoleIDs {
             get {
@@ -7479,7 +7563,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Die Seite durchsuchen.
+        ///   Looks up a localized string similar to Search the site.
         /// </summary>
         internal static string LabelSearchTheSite {
             get {
@@ -7497,7 +7581,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zweit-E-Mail.
+        ///   Looks up a localized string similar to Secondary Email.
         /// </summary>
         internal static string LabelSecondaryEmail {
             get {
@@ -7524,7 +7608,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Weiterführende Schule.
+        ///   Looks up a localized string similar to Secondary School.
         /// </summary>
         internal static string LabelSecondarySchool {
             get {
@@ -7533,7 +7617,16 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Aktuell auf Suche.
+        ///   Looks up a localized string similar to What is left to complete?.
+        /// </summary>
+        internal static string LabelSectionIncomplete {
+            get {
+                return ResourceManager.GetString("LabelSectionIncomplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Currently Seeking.
         /// </summary>
         internal static string LabelSeeking {
             get {
@@ -7542,7 +7635,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Suchstatus.
+        ///   Looks up a localized string similar to Seeking Status.
         /// </summary>
         internal static string LabelSeekingStatus {
             get {
@@ -7551,7 +7644,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Auswählen.
+        ///   Looks up a localized string similar to Select.
         /// </summary>
         internal static string LabelSelect {
             get {
@@ -7560,7 +7653,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - Unternehmen auswählen -.
+        ///   Looks up a localized string similar to - Select a Company -.
         /// </summary>
         internal static string LabelSelectACompany {
             get {
@@ -7569,7 +7662,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bitte wählen Sie eine Bewerbung zum Emailen aus.
+        ///   Looks up a localized string similar to Please select an application to email.
         /// </summary>
         internal static string LabelSelectAnApplicationToEmail {
             get {
@@ -7578,7 +7671,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -Verfügbarkeitsstatus auswählen-.
+        ///   Looks up a localized string similar to -Select Available Status-.
         /// </summary>
         internal static string LabelSelectAvailableStatus {
             get {
@@ -7587,7 +7680,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -Geschäftstyp auswählen-.
+        ///   Looks up a localized string similar to -Select Business Type-.
         /// </summary>
         internal static string LabelSelectBusinessType {
             get {
@@ -7596,7 +7689,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -Zuerst Klassifizierung auswählen-.
+        ///   Looks up a localized string similar to - Select a Classification First -.
         /// </summary>
         internal static string LabelSelectClassificationFirst {
             get {
@@ -7605,7 +7698,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - Land auswählen -.
+        ///   Looks up a localized string similar to - Select Country -.
         /// </summary>
         internal static string LabelSelectCountry {
             get {
@@ -7614,7 +7707,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -Zuerst Land auswählen-.
+        ///   Looks up a localized string similar to -Select a Country First-.
         /// </summary>
         internal static string LabelSelectCountryFirst {
             get {
@@ -7623,7 +7716,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dokument auswählen.
+        ///   Looks up a localized string similar to Select Document.
         /// </summary>
         internal static string LabelSelectDocument {
             get {
@@ -7632,7 +7725,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -Ausbildung auswählen-.
+        ///   Looks up a localized string similar to -Select Education-.
         /// </summary>
         internal static string LabelSelectEducation {
             get {
@@ -7641,7 +7734,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Existierendes Anschreiben auswählen.
+        ///   Looks up a localized string similar to Select Existing Cover Letter.
         /// </summary>
         internal static string LabelSelectExistingCover {
             get {
@@ -7650,7 +7743,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Existierenden Lebenslauf auswählen.
+        ///   Looks up a localized string similar to Select Existing Resume.
         /// </summary>
         internal static string LabelSelectExistingResume {
             get {
@@ -7659,7 +7752,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -Note auswählen-.
+        ///   Looks up a localized string similar to - Select Grade -.
         /// </summary>
         internal static string LabelSelectGrade {
             get {
@@ -7668,7 +7761,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-Vorlage auswählen.
+        ///   Looks up a localized string similar to Select Job Template.
         /// </summary>
         internal static string LabelSelectJobTemplate {
             get {
@@ -7677,7 +7770,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sprache auswählen.
+        ///   Looks up a localized string similar to Select Language.
         /// </summary>
         internal static string LabelSelectLanguage {
             get {
@@ -7686,7 +7779,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wählen Sie mindestens einen Wert aus. .
+        ///   Looks up a localized string similar to Select at least one value..
         /// </summary>
         internal static string LabelSelectLeastOneValue {
             get {
@@ -7695,7 +7788,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -Zuerst Standort auswählen-.
+        ///   Looks up a localized string similar to - Select a Location First - .
         /// </summary>
         internal static string LabelSelectLocationFirst {
             get {
@@ -7704,7 +7797,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bitte wählen Sie mindestens eine Bewerbung zum Herunterladen aus.
+        ///   Looks up a localized string similar to Please select at least one application to download.
         /// </summary>
         internal static string LabelSelectOneApplicationToEmail {
             get {
@@ -7713,7 +7806,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -Gehalt auswählen-.
+        ///   Looks up a localized string similar to -Select Salary-.
         /// </summary>
         internal static string LabelSelectSalary {
             get {
@@ -7722,7 +7815,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Login-Typ auswählen.
+        ///   Looks up a localized string similar to Select Login Type.
         /// </summary>
         internal static string LabelSelectUserLogin {
             get {
@@ -7731,7 +7824,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Benutzertyp auswählen.
+        ///   Looks up a localized string similar to Select User Type.
         /// </summary>
         internal static string LabelSelectUserRegister {
             get {
@@ -7740,7 +7833,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Jetzt eine Job-E-Mail senden.
+        ///   Looks up a localized string similar to Send a Job Alert now.
         /// </summary>
         internal static string LabelSendaJobAlertNow {
             get {
@@ -7749,7 +7842,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-E-Mails senden.
+        ///   Looks up a localized string similar to Send email alerts.
         /// </summary>
         internal static string LabelSendEmailAlerts {
             get {
@@ -7758,7 +7851,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bewerbungs-E-Mail an den Inserenten gesendet.
+        ///   Looks up a localized string similar to Sent the application email to the advertiser.
         /// </summary>
         internal static string LabelSentApplicantEmail {
             get {
@@ -7776,7 +7869,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bitte trennen Sie jede Fähigkeit mit einem Komma (,)..
+        ///   Looks up a localized string similar to Please separate each skill with a comma (,)..
         /// </summary>
         internal static string LabelSeperateSkillComma {
             get {
@@ -7785,7 +7878,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Einstellungen.
+        ///   Looks up a localized string similar to Settings.
         /// </summary>
         internal static string LabelSettings {
             get {
@@ -7794,7 +7887,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Teilen:.
+        ///   Looks up a localized string similar to Share:.
         /// </summary>
         internal static string LabelShare {
             get {
@@ -7803,7 +7896,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Auf Google+ teilen.
+        ///   Looks up a localized string similar to Share this on Google+.
         /// </summary>
         internal static string LabelShareOnGooglePlus {
             get {
@@ -7812,7 +7905,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kurzbiografie.
+        ///   Looks up a localized string similar to Short Bio.
         /// </summary>
         internal static string LabelShortBio {
             get {
@@ -7821,7 +7914,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kurzbeschreibung.
+        ///   Looks up a localized string similar to Short Description.
         /// </summary>
         internal static string LabelShortDescription {
             get {
@@ -7830,7 +7923,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Auswahlliste.
+        ///   Looks up a localized string similar to Short List.
         /// </summary>
         internal static string LabelShortList {
             get {
@@ -7839,7 +7932,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wird angezeigt.
+        ///   Looks up a localized string similar to Showing.
         /// </summary>
         internal static string LabelShowing {
             get {
@@ -7848,7 +7941,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Standortdetails anzeigen.
+        ///   Looks up a localized string similar to Show Location Detail.
         /// </summary>
         internal static string LabelShowLocationDetail {
             get {
@@ -7857,7 +7950,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gehaltsdetails anzeigen.
+        ///   Looks up a localized string similar to Show Salary Details.
         /// </summary>
         internal static string LabelShowSalaryDetail {
             get {
@@ -7866,7 +7959,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gehaltsbereich anzeigen.
+        ///   Looks up a localized string similar to Show Salary Range.
         /// </summary>
         internal static string LabelShowSalaryRange {
             get {
@@ -7875,7 +7968,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ähnliche Jobs.
+        ///   Looks up a localized string similar to Similar Jobs.
         /// </summary>
         internal static string LabelSimilarJobs {
             get {
@@ -7884,7 +7977,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Seite.
+        ///   Looks up a localized string similar to Site.
         /// </summary>
         internal static string LabelSite {
             get {
@@ -7893,7 +7986,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Seiten-Standortname.
+        ///   Looks up a localized string similar to Site Location Name.
         /// </summary>
         internal static string LabelSiteLocationName {
             get {
@@ -7902,7 +7995,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Seiten-Berufsname.
+        ///   Looks up a localized string similar to Site Profession Name.
         /// </summary>
         internal static string LabelSiteProfessionName {
             get {
@@ -7911,11 +8004,20 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fähigkeiten.
+        ///   Looks up a localized string similar to Skills.
         /// </summary>
         internal static string LabelSkills {
             get {
                 return ResourceManager.GetString("LabelSkills", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SMS.
+        /// </summary>
+        internal static string LabelSMS {
+            get {
+                return ResourceManager.GetString("LabelSMS", resourceCulture);
             }
         }
         
@@ -7929,7 +8031,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sortieren nach.
+        ///   Looks up a localized string similar to Sort By.
         /// </summary>
         internal static string LabelSortBy {
             get {
@@ -7938,7 +8040,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sortieren nach - Alphabetisch A-Z.
+        ///   Looks up a localized string similar to Sort by – Alphabetical A-Z.
         /// </summary>
         internal static string LabelSortByAlphabeticalAZ {
             get {
@@ -7947,7 +8049,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sortieren nach - Alphabetisch Z-A.
+        ///   Looks up a localized string similar to Sort by – Alphabetical Z-A.
         /// </summary>
         internal static string LabelSortByAlphabeticalZA {
             get {
@@ -7956,7 +8058,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sortieren nach - Älteste Post.
+        ///   Looks up a localized string similar to Sort by – Oldest Posts.
         /// </summary>
         internal static string LabelSortByOldestPosts {
             get {
@@ -7965,7 +8067,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sortieren nach - Neueste Posts.
+        ///   Looks up a localized string similar to Sort by – Recent Posts.
         /// </summary>
         internal static string LabelSortByRecentPosts {
             get {
@@ -7974,7 +8076,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sortieren nach - Gehalt von hoch nach niedrig.
+        ///   Looks up a localized string similar to Sort by – Salary high to low.
         /// </summary>
         internal static string LabelSortBySalaryHighLow {
             get {
@@ -7983,7 +8085,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sortieren nach - Gehalt von niedrig nach hoch.
+        ///   Looks up a localized string similar to Sort by – Salary low to high.
         /// </summary>
         internal static string LabelSortBySalaryLowHigh {
             get {
@@ -7992,7 +8094,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sortieren nach.
+        ///   Looks up a localized string similar to Sort by.
         /// </summary>
         internal static string LabelSortsby {
             get {
@@ -8001,7 +8103,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Anfang.
+        ///   Looks up a localized string similar to Start.
         /// </summary>
         internal static string LabelStart {
             get {
@@ -8010,7 +8112,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Anfangsdatum.
+        ///   Looks up a localized string similar to Start Date.
         /// </summary>
         internal static string LabelStartDate {
             get {
@@ -8019,7 +8121,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bundesland.
+        ///   Looks up a localized string similar to State.
         /// </summary>
         internal static string LabelState {
             get {
@@ -8028,7 +8130,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bundesland, in dem ich wohne.
+        ///   Looks up a localized string similar to State I reside in.
         /// </summary>
         internal static string LabelStateResideIn {
             get {
@@ -8037,7 +8139,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Statistiken.
+        ///   Looks up a localized string similar to Statistics.
         /// </summary>
         internal static string LabelStatistics {
             get {
@@ -8055,7 +8157,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Immer noch Probleme?.
+        ///   Looks up a localized string similar to Still having issues.
         /// </summary>
         internal static string LabelStillHavingIssue {
             get {
@@ -8064,7 +8166,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Straße .
+        ///   Looks up a localized string similar to Street Address.
         /// </summary>
         internal static string LabelStreetAddress {
             get {
@@ -8073,7 +8175,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Adresse 1.
+        ///   Looks up a localized string similar to Street Address 1.
         /// </summary>
         internal static string LabelStreetAddress1 {
             get {
@@ -8082,7 +8184,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Adresse 2.
+        ///   Looks up a localized string similar to Street Address 2.
         /// </summary>
         internal static string LabelStreetAddress2 {
             get {
@@ -8091,7 +8193,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Das neue Unterkonto wurde erstellt. Eine E-Mail wurde zum Verifizieren des neuen Unterkontos gesendet..
+        ///   Looks up a localized string similar to The new sub-account has been created. An email has been sent to verify the new sub-account..
         /// </summary>
         internal static string LabelSubAccountCreated {
             get {
@@ -8100,7 +8202,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unterkonten.
+        ///   Looks up a localized string similar to Sub Accounts.
         /// </summary>
         internal static string LabelSubAccounts {
             get {
@@ -8109,7 +8211,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unterklassifizierung.
+        ///   Looks up a localized string similar to Sub-classification.
         /// </summary>
         internal static string LabelSubClassification {
             get {
@@ -8118,7 +8220,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bitte geben Sie eine Straße ein, um die Karten- und Radiussuche zu aktivieren.
+        ///   Looks up a localized string similar to Please submit street address to enable map and radius searching.
         /// </summary>
         internal static string LabelSubmitStreetAddress {
             get {
@@ -8127,7 +8229,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-E-Mails abonnieren.
+        ///   Looks up a localized string similar to Subscribe to Job alert.
         /// </summary>
         internal static string LabelSubscribeToJobAlert {
             get {
@@ -8136,7 +8238,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ich möchte den Newsletter abonnieren.
+        ///   Looks up a localized string similar to I would like to subscribe to the newsletter.
         /// </summary>
         internal static string LabelSubscribeToNewsLetter {
             get {
@@ -8145,7 +8247,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zwischensummer.
+        ///   Looks up a localized string similar to Subtotal.
         /// </summary>
         internal static string LabelSubtotal {
             get {
@@ -8154,7 +8256,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vorort.
+        ///   Looks up a localized string similar to Suburb.
         /// </summary>
         internal static string LabelSuburb {
             get {
@@ -8163,7 +8265,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sie haben erfolgreich eine Job-E-Mail erstellt..
+        ///   Looks up a localized string similar to You have successfully created an alert..
         /// </summary>
         internal static string LabelSuccessfullyCreatedYouJobAlert {
             get {
@@ -8172,7 +8274,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sie habe Ihre Suche erfolgreich gespeichert..
+        ///   Looks up a localized string similar to You have successfully saved your search..
         /// </summary>
         internal static string LabelSuccessfullySavedYourSearch {
             get {
@@ -8181,7 +8283,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zusammenfassung.
+        ///   Looks up a localized string similar to Summary.
         /// </summary>
         internal static string LabelSummary {
             get {
@@ -8190,7 +8292,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Betreuer.
+        ///   Looks up a localized string similar to Supervisor.
         /// </summary>
         internal static string LabelSupervisor {
             get {
@@ -8199,7 +8301,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nachname ist erforderlich.
+        ///   Looks up a localized string similar to Last name is mandatory.
         /// </summary>
         internal static string LabelSurameMandatory {
             get {
@@ -8208,7 +8310,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nachname.
+        ///   Looks up a localized string similar to Last name.
         /// </summary>
         internal static string LabelSurname {
             get {
@@ -8217,7 +8319,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nachname ist erforderlich.
+        ///   Looks up a localized string similar to Last name is required.
         /// </summary>
         internal static string LabelSurnameRequired {
             get {
@@ -8226,7 +8328,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tags.
+        ///   Looks up a localized string similar to Tags (Comma Separated).
         /// </summary>
         internal static string LabelTags {
             get {
@@ -8235,7 +8337,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lehrer.
+        ///   Looks up a localized string similar to Teacher.
         /// </summary>
         internal static string LabelTeacher {
             get {
@@ -8244,7 +8346,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tel..
+        ///   Looks up a localized string similar to Phone number.
         /// </summary>
         internal static string LabelTel {
             get {
@@ -8253,7 +8355,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Telefon.
+        ///   Looks up a localized string similar to Telephone.
         /// </summary>
         internal static string LabelTelephone {
             get {
@@ -8262,7 +8364,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Telefonnummer ist erforderlich.
+        ///   Looks up a localized string similar to  Telephone number is required.
         /// </summary>
         internal static string LabelTelephoneRequired {
             get {
@@ -8271,7 +8373,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ihr Konto wurde vorübergehend gesperrt. Bitte versuchen Sie es in &quot;{0} Min.&quot; erneut oder kontaktieren Sie Ihren Systemadministrator..
+        ///   Looks up a localized string similar to Your account is temporarily locked. Please try again in “{0} mins” or contact your system administrator..
         /// </summary>
         internal static string LabelTempLocked {
             get {
@@ -8280,7 +8382,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Geneigt.
+        ///   Looks up a localized string similar to Possibly seeking.
         /// </summary>
         internal static string LabelTempted {
             get {
@@ -8289,7 +8391,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AGB.
+        ///   Looks up a localized string similar to terms and conditions.
         /// </summary>
         internal static string LabelTermsAndConditions {
             get {
@@ -8298,7 +8400,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hochschulbildung.
+        ///   Looks up a localized string similar to Tertiary Education.
         /// </summary>
         internal static string LabelTertiaryEducation {
             get {
@@ -8316,7 +8418,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dieses Feld ist erforderlich..
+        ///   Looks up a localized string similar to This field is required..
         /// </summary>
         internal static string LabelThisFieldIsRequired {
             get {
@@ -8325,7 +8427,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Titel.
+        ///   Looks up a localized string similar to Title.
         /// </summary>
         internal static string LabelTitle {
             get {
@@ -8334,7 +8436,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dokumententitel ist erforderlich.
+        ///   Looks up a localized string similar to Document Title required.
         /// </summary>
         internal static string LabelTitleRequired {
             get {
@@ -8343,7 +8445,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dokumententitel kann nicht länger als 500 Zeichen sein..
+        ///   Looks up a localized string similar to Document Title size cannot exceed 500 characters.
         /// </summary>
         internal static string LabelTitleSizeError {
             get {
@@ -8352,7 +8454,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to an.
+        ///   Looks up a localized string similar to to.
         /// </summary>
         internal static string LabelTo {
             get {
@@ -8361,7 +8463,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An-Datum.
+        ///   Looks up a localized string similar to To Date.
         /// </summary>
         internal static string LabelToDate {
             get {
@@ -8370,7 +8472,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bei Gehalt eingeben.
+        ///   Looks up a localized string similar to Enter To Salary.
         /// </summary>
         internal static string LabelToSalary {
             get {
@@ -8379,7 +8481,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gesamte Produktkosten .
+        ///   Looks up a localized string similar to Total.
         /// </summary>
         internal static string LabelTotal {
             get {
@@ -8388,7 +8490,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gesamtbetrag.
+        ///   Looks up a localized string similar to Total Amount.
         /// </summary>
         internal static string LabelTotalAmount {
             get {
@@ -8397,7 +8499,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Anz. Angestellter/Angestellte insgesamt.
+        ///   Looks up a localized string similar to No. of Employees.
         /// </summary>
         internal static string LabelTotalEmployees {
             get {
@@ -8406,7 +8508,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Typ.
+        ///   Looks up a localized string similar to Type.
         /// </summary>
         internal static string LabelType {
             get {
@@ -8415,7 +8517,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Art der leitenden Position.
+        ///   Looks up a localized string similar to Type of Directorship.
         /// </summary>
         internal static string LabelTypeOfDirectorship {
             get {
@@ -8424,7 +8526,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Neuigkeiten abbestellen.
+        ///   Looks up a localized string similar to Unsubscribe News.
         /// </summary>
         internal static string LabelUnsubscribeNews {
             get {
@@ -8433,7 +8535,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Aktualisieren.
+        ///   Looks up a localized string similar to Update.
         /// </summary>
         internal static string LabelUpdate {
             get {
@@ -8442,7 +8544,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Meine Details aktualisieren.
+        ///   Looks up a localized string similar to Update My Details.
         /// </summary>
         internal static string LabelUpdateMyDetails {
             get {
@@ -8451,7 +8553,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Profil aktualisieren.
+        ///   Looks up a localized string similar to Update Profile.
         /// </summary>
         internal static string LabelUpdateProfile {
             get {
@@ -8460,7 +8562,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Anschreiben aktualisieren.
+        ///   Looks up a localized string similar to Upload a cover letter.
         /// </summary>
         internal static string LabelUploadACoverLetter {
             get {
@@ -8469,7 +8571,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lebenslauf hochladen.
+        ///   Looks up a localized string similar to Upload a resume.
         /// </summary>
         internal static string LabelUploadAResume {
             get {
@@ -8478,7 +8580,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bitte laden Sie Ihre Datei Microsoft Word (.doc oder .docx), Microsoft Excel (.xls oder .xlsx), Adobe Acrobat (.pdf) oder Textdatei (.txt oder .rtf) hoch..
+        ///   Looks up a localized string similar to Please upload your file as Microsoft Word (.doc or .docx), Microsoft Excel (.xls or .xlsx), Adobe Acrobat (.pdf) or text file (.txt or .rtf).
         /// </summary>
         internal static string LabelUploadCoverDesc {
             get {
@@ -8487,7 +8589,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Anschreiben hochladen.
+        ///   Looks up a localized string similar to Upload Cover letter.
         /// </summary>
         internal static string LabelUploadCoverLetter {
             get {
@@ -8496,7 +8598,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dokumente hochladen.
+        ///   Looks up a localized string similar to Upload Documents.
         /// </summary>
         internal static string LabelUploadDocument {
             get {
@@ -8514,7 +8616,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Datei hochladen.
+        ///   Looks up a localized string similar to Upload file.
         /// </summary>
         internal static string LabelUploadFile {
             get {
@@ -8523,7 +8625,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Methode hochladen.
+        ///   Looks up a localized string similar to Upload Method.
         /// </summary>
         internal static string LabelUploadMethod {
             get {
@@ -8532,7 +8634,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Neues Logo hochladen.
+        ///   Looks up a localized string similar to Upload New Logo.
         /// </summary>
         internal static string LabelUploadNewLogo {
             get {
@@ -8541,7 +8643,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Profilbild hochladen.
+        ///   Looks up a localized string similar to Upload Profile Image.
         /// </summary>
         internal static string LabelUploadProfileImage {
             get {
@@ -8550,7 +8652,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bild-Upload-Beschreibung.
+        ///   Looks up a localized string similar to Please upload your image as jpg, gif or png format. Maximum file size of 500KB..
         /// </summary>
         internal static string LabelUploadProfileImageDesc {
             get {
@@ -8559,7 +8661,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bitte laden Sie einen gültigen Dateityp hoch..
+        ///   Looks up a localized string similar to Please upload a valid file type..
         /// </summary>
         internal static string LabelUploadProfileImageInvalid {
             get {
@@ -8568,7 +8670,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bitte laden Sie eine datei mit max. 500 KB hoch. .
+        ///   Looks up a localized string similar to Please upload a file with a maximum of 500KB..
         /// </summary>
         internal static string LabelUploadProfileImageInvalidFileSize {
             get {
@@ -8577,7 +8679,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lebenslauf hochladen.
+        ///   Looks up a localized string similar to Upload Resume.
         /// </summary>
         internal static string LabelUploadResume {
             get {
@@ -8595,7 +8697,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Auf Anfrage.
+        ///   Looks up a localized string similar to Upon Request.
         /// </summary>
         internal static string LabelUponRequest {
             get {
@@ -8613,7 +8715,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to URL - Verbinden.
+        ///   Looks up a localized string similar to URL - Link out.
         /// </summary>
         internal static string LabelURLLinkOut {
             get {
@@ -8622,7 +8724,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Existierende Anschreibendatei verwenden.
+        ///   Looks up a localized string similar to Use existing cover letter file.
         /// </summary>
         internal static string LabelUseExistingCoverLetterFile {
             get {
@@ -8631,7 +8733,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Existierende Lebenslaufdatei verwenden.
+        ///   Looks up a localized string similar to Use existing resume file.
         /// </summary>
         internal static string LabelUseExistingResumeFile {
             get {
@@ -8640,7 +8742,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mein Profil verwenden.
+        ///   Looks up a localized string similar to Use my profile.
         /// </summary>
         internal static string LabelUseMyProfile {
             get {
@@ -8649,7 +8751,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Benutzername existiert bereits.
+        ///   Looks up a localized string similar to Username.
         /// </summary>
         internal static string LabelUsername {
             get {
@@ -8658,7 +8760,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Benutzername existiert bereits, bitte anmelden..
+        ///   Looks up a localized string similar to Username already exists, please login..
         /// </summary>
         internal static string LabelUsernameExists {
             get {
@@ -8667,7 +8769,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Benutzername ist erforderlich.
+        ///   Looks up a localized string similar to Username is required.
         /// </summary>
         internal static string LabelUsernameRequired {
             get {
@@ -8676,7 +8778,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Verifizieren.
+        ///   Looks up a localized string similar to Validate.
         /// </summary>
         internal static string LabelValidate {
             get {
@@ -8685,7 +8787,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Verifiziert.
+        ///   Looks up a localized string similar to Validated.
         /// </summary>
         internal static string LabelValidated {
             get {
@@ -8703,7 +8805,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gültige E-Mail-Adresse ist erforderlich.
+        ///   Looks up a localized string similar to Valid email address is required.
         /// </summary>
         internal static string LabelValidEmailRequired {
             get {
@@ -8712,7 +8814,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Version .
+        ///   Looks up a localized string similar to Version.
         /// </summary>
         internal static string LabelVersion {
             get {
@@ -8721,7 +8823,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to per E-Mail.
+        ///   Looks up a localized string similar to via Email.
         /// </summary>
         internal static string LabelViaEmail {
             get {
@@ -8730,7 +8832,16 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Video-URL.
+        ///   Looks up a localized string similar to Video Link.
+        /// </summary>
+        internal static string LabelVideoLink {
+            get {
+                return ResourceManager.GetString("LabelVideoLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Video URL.
         /// </summary>
         internal static string LabelVideoURL {
             get {
@@ -8739,7 +8850,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ansicht von Job-E-Mail-GUID fehlgeschlagen.
+        ///   Looks up a localized string similar to View.
         /// </summary>
         internal static string LabelView {
             get {
@@ -8748,7 +8859,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Produkte zum Kaufen.
+        ///   Looks up a localized string similar to Products To Purchase.
         /// </summary>
         internal static string LabelViewCart {
             get {
@@ -8757,7 +8868,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Angesehen.
+        ///   Looks up a localized string similar to Viewed.
         /// </summary>
         internal static string LabelViewed {
             get {
@@ -8766,7 +8877,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Weniger sehen.
+        ///   Looks up a localized string similar to View less.
         /// </summary>
         internal static string LabelViewLess {
             get {
@@ -8775,7 +8886,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mehr sehen ….
+        ///   Looks up a localized string similar to View More....
         /// </summary>
         internal static string LabelViewMore {
             get {
@@ -8784,7 +8895,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Seite ansehen.
+        ///   Looks up a localized string similar to View Page.
         /// </summary>
         internal static string LabelViewPage {
             get {
@@ -8793,7 +8904,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Profil ansehen.
+        ///   Looks up a localized string similar to View Profile.
         /// </summary>
         internal static string LabelViewProfile {
             get {
@@ -8802,7 +8913,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ansichten.
+        ///   Looks up a localized string similar to Views.
         /// </summary>
         internal static string LabelViews {
             get {
@@ -8820,7 +8931,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sichtbar.
+        ///   Looks up a localized string similar to Visible.
         /// </summary>
         internal static string LabelVisible {
             get {
@@ -8829,7 +8940,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Anwendungs-URL kann nicht leer sein, wenn URL ausgewählt wurde.
+        ///   Looks up a localized string similar to Application URL cannot be Blank when URL is selected.
         /// </summary>
         internal static string LabelWarningBlankURL {
             get {
@@ -8838,7 +8949,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Internetadresse.
+        ///   Looks up a localized string similar to Web Address.
         /// </summary>
         internal static string LabelWebAddress {
             get {
@@ -8856,7 +8967,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Webseite.
+        ///   Looks up a localized string similar to Website.
         /// </summary>
         internal static string LabelWebsite {
             get {
@@ -8865,7 +8976,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Willkommen  .
+        ///   Looks up a localized string similar to Welcome.
         /// </summary>
         internal static string LabelWelcome {
             get {
@@ -8874,7 +8985,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Willkommen zurück.
+        ///   Looks up a localized string similar to Welcome back.
         /// </summary>
         internal static string LabelWelcomeBack {
             get {
@@ -8883,7 +8994,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Willkommen beim Mitgliedsbroadcast.
+        ///   Looks up a localized string similar to Welcome to Member Broadcast.
         /// </summary>
         internal static string LabelWelcomeBroadcast {
             get {
@@ -8892,7 +9003,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Willkommen zur Seite, wo Sie Ihr Mitgliedsdetails aktualisieren können. .
+        ///   Looks up a localized string similar to Welcome to the Member details update page..
         /// </summary>
         internal static string LabelWelcomeMemberEditDetail {
             get {
@@ -8901,7 +9012,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Willkommen zur Mitgliedsseite, wo Sie Ihr Passwort ändern können. Bitte geben Sie Ihr aktuelles und neues Passwort unten im Formular ein..
+        ///   Looks up a localized string similar to Welcome to the Member change password page. Please enter your current password and new password in the form below..
         /// </summary>
         internal static string LabelWelcomeMemberEditPassword {
             get {
@@ -8919,7 +9030,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bereit umzuziehen.
+        ///   Looks up a localized string similar to Willing To Relocate.
         /// </summary>
         internal static string LabelWillingToRelocate {
             get {
@@ -8928,7 +9039,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Arbeitserfahrung.
+        ///   Looks up a localized string similar to Work Experience.
         /// </summary>
         internal static string LabelWorkExperience {
             get {
@@ -8937,7 +9048,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Arbeitstyp.
+        ///   Looks up a localized string similar to Work type.
         /// </summary>
         internal static string LabelWorkType {
             get {
@@ -8946,7 +9057,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Arbeitstyp-Ids.
+        ///   Looks up a localized string similar to Work Type IDs.
         /// </summary>
         internal static string LabelWorkTypeIDs {
             get {
@@ -8955,7 +9066,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Geben Sie hier Ihr eigenes Anschreiben ein.
+        ///   Looks up a localized string similar to Write your own Cover Letter here.
         /// </summary>
         internal static string LabelWriteCoverLetter {
             get {
@@ -8964,7 +9075,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mein eigenes Anschreiben erstellen.
+        ///   Looks up a localized string similar to Write my own cover letter.
         /// </summary>
         internal static string LabelWriteOwnCoverLetter {
             get {
@@ -8973,7 +9084,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Jahr .
+        ///   Looks up a localized string similar to Year.
         /// </summary>
         internal static string LabelYear {
             get {
@@ -8982,7 +9093,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Jahre .
+        ///   Looks up a localized string similar to Years.
         /// </summary>
         internal static string LabelYears {
             get {
@@ -8991,7 +9102,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ja.
+        ///   Looks up a localized string similar to Yes.
         /// </summary>
         internal static string LabelYes {
             get {
@@ -9000,7 +9111,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sie haben im Moment kein Logo..
+        ///   Looks up a localized string similar to You currently have no logo..
         /// </summary>
         internal static string LabelYouhavenologo {
             get {
@@ -9009,7 +9120,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ihre Bestellung wurde abgeschlossen.
+        ///   Looks up a localized string similar to Your order is complete.
         /// </summary>
         internal static string LabelYouMadeAPayment {
             get {
@@ -9018,7 +9129,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ihre E-Mail.
+        ///   Looks up a localized string similar to Your Email.
         /// </summary>
         internal static string LabelYourEmail {
             get {
@@ -9027,7 +9138,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-Mail Ihres Freundes.
+        ///   Looks up a localized string similar to Your Friend&apos;s Email.
         /// </summary>
         internal static string LabelYourFriendEmail {
             get {
@@ -9036,7 +9147,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name Ihres Freundes.
+        ///   Looks up a localized string similar to Your Friend&apos;s Name.
         /// </summary>
         internal static string LabelYourFriendName {
             get {
@@ -9045,7 +9156,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ihr Name.
+        ///   Looks up a localized string similar to Your Name.
         /// </summary>
         internal static string LabelYourName {
             get {
@@ -9054,7 +9165,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ihre Bestellung .
+        ///   Looks up a localized string similar to Your order.
         /// </summary>
         internal static string LabelYourOrder {
             get {
@@ -9072,7 +9183,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ihre Fähigkeiten.
+        ///   Looks up a localized string similar to Your Skill Sets.
         /// </summary>
         internal static string LabelYourSkillSets {
             get {
@@ -9108,7 +9219,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Verfügbarkeitsdatum ab.
+        ///   Looks up a localized string similar to Availability Date From.
         /// </summary>
         internal static string LabrlAvailableDayFrom {
             get {
@@ -9117,7 +9228,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gepostet von.
+        ///   Looks up a localized string similar to Posted By.
         /// </summary>
         internal static string lblPostedByAdvertiserUser {
             get {
@@ -9126,7 +9237,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zurück zum Neuigkeitenindex.
+        ///   Looks up a localized string similar to Back to News Index.
         /// </summary>
         internal static string LinkBacktoNewsIndex {
             get {
@@ -9135,7 +9246,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kontodetails .
+        ///   Looks up a localized string similar to Account Details.
         /// </summary>
         internal static string LinkButtonAccountDetails {
             get {
@@ -9144,7 +9255,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Notizen hinzufügen.
+        ///   Looks up a localized string similar to Add notes.
         /// </summary>
         internal static string LinkButtonAddNote {
             get {
@@ -9153,7 +9264,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tags hinzufügen.
+        ///   Looks up a localized string similar to Add tags.
         /// </summary>
         internal static string LinkButtonAddTag {
             get {
@@ -9162,7 +9273,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Jetzt bewerben.
+        ///   Looks up a localized string similar to Apply now.
         /// </summary>
         internal static string LinkButtonApplyNow {
             get {
@@ -9171,7 +9282,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Archivierte Jobanzeigen.
+        ///   Looks up a localized string similar to Archived Job Ads.
         /// </summary>
         internal static string LinkButtonArchivedJobAds {
             get {
@@ -9180,7 +9291,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zurück zu den Ergebnissen.
+        ///   Looks up a localized string similar to Back to results.
         /// </summary>
         internal static string LinkButtonBackToResult {
             get {
@@ -9189,7 +9300,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-Credits kaufen.
+        ///   Looks up a localized string similar to Buy Job Credits.
         /// </summary>
         internal static string LinkButtonBuyJobCredits {
             get {
@@ -9198,7 +9309,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Einkaufswagen.
+        ///   Looks up a localized string similar to Cart.
         /// </summary>
         internal static string LinkButtonCart {
             get {
@@ -9207,7 +9318,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-Vorlage-Artwork.
+        ///   Looks up a localized string similar to Job template artwork.
         /// </summary>
         internal static string LinkButtonChangeTemplateLogo {
             get {
@@ -9216,7 +9327,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Neue Job-Anzeige erstellen.
+        ///   Looks up a localized string similar to Create a New Job Ad.
         /// </summary>
         internal static string LinkButtonCreateNewJobAd {
             get {
@@ -9225,7 +9336,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Aktuelle Job-Anzeige.
+        ///   Looks up a localized string similar to Current Job Ads.
         /// </summary>
         internal static string LinkButtonCurrentJobAds {
             get {
@@ -9234,7 +9345,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Abgelehnte Job-Anzeige.
+        ///   Looks up a localized string similar to Declined Job Ads.
         /// </summary>
         internal static string LinkButtonDeclinedJobAds {
             get {
@@ -9243,7 +9354,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Löschen.
+        ///   Looks up a localized string similar to Delete.
         /// </summary>
         internal static string LinkButtonDelete {
             get {
@@ -9252,7 +9363,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Herunterladen.
+        ///   Looks up a localized string similar to Download.
         /// </summary>
         internal static string LinkButtonDownload {
             get {
@@ -9261,7 +9372,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-Anzeigen-Entwurf.
+        ///   Looks up a localized string similar to Draft Job Ads.
         /// </summary>
         internal static string LinkButtonDraftJobAds {
             get {
@@ -9270,7 +9381,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bearbeiten.
+        ///   Looks up a localized string similar to Edit.
         /// </summary>
         internal static string LinkButtonEdit {
             get {
@@ -9279,7 +9390,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Diesen Job emailen.
+        ///   Looks up a localized string similar to Email this Job.
         /// </summary>
         internal static string LinkButtonEmailJob {
             get {
@@ -9288,7 +9399,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Diesen Job auf LinkedIn teilen.
+        ///   Looks up a localized string similar to Share this Job on LinkedIn.
         /// </summary>
         internal static string LinkButtonJobLinkedIn {
             get {
@@ -9297,7 +9408,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-Berichte.
+        ///   Looks up a localized string similar to Job Reports.
         /// </summary>
         internal static string LinkButtonJobReports {
             get {
@@ -9306,7 +9417,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to RSS-Feed abonnieren.
+        ///   Looks up a localized string similar to Subscribe to RSS Feed.
         /// </summary>
         internal static string LinkButtonJobRSS {
             get {
@@ -9315,7 +9426,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Diesen Job auf Facebook teilen.
+        ///   Looks up a localized string similar to Share this Job on Facebook.
         /// </summary>
         internal static string LinkButtonJobShareFacebook {
             get {
@@ -9324,7 +9435,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Diesen Job tweeten.
+        ///   Looks up a localized string similar to Tweet this Job.
         /// </summary>
         internal static string LinkButtonJobShareTwitter {
             get {
@@ -9333,7 +9444,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-Tracker.
+        ///   Looks up a localized string similar to Job Tracker.
         /// </summary>
         internal static string LinkButtonJobTracker {
             get {
@@ -9342,7 +9453,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Jobs verwalten.
+        ///   Looks up a localized string similar to Manage Jobs.
         /// </summary>
         internal static string LinkButtonManageJobs {
             get {
@@ -9351,7 +9462,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ausstehende Job-Anzeigen.
+        ///   Looks up a localized string similar to Pending Job Ads.
         /// </summary>
         internal static string LinkButtonPendingJobAds {
             get {
@@ -9360,7 +9471,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Personensuche.
+        ///   Looks up a localized string similar to People search.
         /// </summary>
         internal static string LinkButtonPeopleSearch {
             get {
@@ -9369,7 +9480,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Diesen Job drucken.
+        ///   Looks up a localized string similar to Print this Job.
         /// </summary>
         internal static string LinkButtonPrintJob {
             get {
@@ -9378,7 +9489,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Berichte.
+        ///   Looks up a localized string similar to Reports.
         /// </summary>
         internal static string LinkButtonReports {
             get {
@@ -9387,7 +9498,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Diesen Job speichern.
+        ///   Looks up a localized string similar to Save this Job.
         /// </summary>
         internal static string LinkButtonSavedJobs {
             get {
@@ -9396,7 +9507,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job speichern.
+        ///   Looks up a localized string similar to save job.
         /// </summary>
         internal static string LinkButtonSaveJob {
             get {
@@ -9405,7 +9516,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-Mail senden.
+        ///   Looks up a localized string similar to send email.
         /// </summary>
         internal static string LinkButtonSendEmail {
             get {
@@ -9414,7 +9525,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Statistiken.
+        ///   Looks up a localized string similar to Statistics.
         /// </summary>
         internal static string LinkButtonStatistics {
             get {
@@ -9423,7 +9534,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unterkonten.
+        ///   Looks up a localized string similar to Sub accounts.
         /// </summary>
         internal static string LinkButtonSubAccounts {
             get {
@@ -9432,7 +9543,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ansehen.
+        ///   Looks up a localized string similar to View.
         /// </summary>
         internal static string LinkButtonView {
             get {
@@ -9441,7 +9552,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Inserentenlogo.
+        ///   Looks up a localized string similar to Advertiser logo.
         /// </summary>
         internal static string LinkButtonViewChangeLogo {
             get {
@@ -9450,7 +9561,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job-Vorlagen-Artwork/Logo.
+        ///   Looks up a localized string similar to Job template artwork/logo.
         /// </summary>
         internal static string LinkButtonViewChangeTemplateLogo {
             get {
@@ -9459,7 +9570,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Jobs ansehen.
+        ///   Looks up a localized string similar to View Jobs.
         /// </summary>
         internal static string LinkButtonViewJobs {
             get {
@@ -9468,7 +9579,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Jahresgehalt eingeben von.
+        ///   Looks up a localized string similar to Enter annual salary from.
         /// </summary>
         internal static string PlaceHolderSalaryAnnualFrom {
             get {
@@ -9477,7 +9588,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Jahresgehalt eingeben bis.
+        ///   Looks up a localized string similar to Enter annual salary to.
         /// </summary>
         internal static string PlaceHolderSalaryAnnualTo {
             get {
@@ -9486,7 +9597,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Stundengehalt eingeben von.
+        ///   Looks up a localized string similar to Enter hourly rate from.
         /// </summary>
         internal static string PlaceHolderSalaryHourlyFrom {
             get {
@@ -9495,7 +9606,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Stundengehalt eingeben bis.
+        ///   Looks up a localized string similar to Enter hourly rate to.
         /// </summary>
         internal static string PlaceHolderSalaryHourlyTo {
             get {
@@ -9504,7 +9615,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bewerbersuche - Bitte wählen Sie die relevanten Kriterien für Ihren Standort und Ihr Gebiet aus.
+        ///   Looks up a localized string similar to Candidate Search - Please select relevant criteria for your location and area.
         /// </summary>
         internal static string sLabelCandidateSearch {
             get {
@@ -9513,7 +9624,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Öffentliches Profil von.
+        ///   Looks up a localized string similar to &apos;s Public Profile.
         /// </summary>
         internal static string sLabelPublicProfile {
             get {

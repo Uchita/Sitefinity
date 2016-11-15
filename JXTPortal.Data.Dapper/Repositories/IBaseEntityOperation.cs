@@ -10,7 +10,7 @@ using JXTPortal.Data.Dapper.Entities;
 
 namespace JXTPortal.Data.Dapper.Repositories
 {
-    public interface IBaseEntityOperation<T> where T : BaseEntity
+    public interface IBaseEntityOperation<T>
     {
         int Insert(T entity);
         void Update(T entity);

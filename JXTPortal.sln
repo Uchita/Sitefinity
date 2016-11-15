@@ -1,9 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NetTiers", "NetTiers", "{F3A10C8D-3227-449F-A2CB-014DE2D7F415}"
-	ProjectSection(SolutionItems) = preProject
-		AssemblyInfo.cs = AssemblyInfo.cs
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{06164622-3B6F-427E-BA84-9072B6245849}"
 EndProject
@@ -16,6 +13,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JXTPortal.Data.SqlClient", "JXTPortal.Data.SqlClient\JXTPortal.Data.SqlClient.csproj", "{8996A7B4-57D3-440B-A545-A701844B8C4A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JXTPortal", "JXTPortal\JXTPortal.csproj", "{794327CE-DC0A-4381-89EE-4C00AFB08D5A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F93FE82B-6B51-440B-86C9-55F6BA9CF038} = {F93FE82B-6B51-440B-86C9-55F6BA9CF038}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JXTPortal.Website", "JXTPortal.Website\JXTPortal.Website.csproj", "{1DCAB031-308A-4581-AFA8-BD29F45A1357}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -118,6 +118,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JXTPortal.Service.Dapper", "JXTPortal.Service.Dapper\JXTPortal.Service.Dapper.csproj", "{F93FE82B-6B51-440B-86C9-55F6BA9CF038}"
+	ProjectSection(ProjectDependencies) = postProject
+		{20E43088-4618-4F4A-B8AD-FC31B50D94CD} = {20E43088-4618-4F4A-B8AD-FC31B50D94CD}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{12308C9E-6BC3-4C26-B6D4-F3102A92E666}"
 	ProjectSection(SolutionItems) = preProject

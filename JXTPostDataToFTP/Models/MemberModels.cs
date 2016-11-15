@@ -1010,6 +1010,7 @@ namespace JXTPostDataToFTP.Models
             }
             [XmlIgnore]
             public string LastModifiedDate { get; set; }
+            public string ReferenceEmail { get; set; }
         }
 
         public class MemberCustomQuestion

@@ -11,7 +11,7 @@ using JXTPortal;
 using System.Data;
 using System.IO;
 using System.Net;
-using EmailSender;
+using JXTPortal.EmailSender;
 using System.Net.Mail;
 using System.Net.Configuration;
 using System.Diagnostics;
@@ -60,7 +60,9 @@ namespace JXTPostJobApplicationToFTP
                             password = (string)c.Element("password"),
                             sftp = (bool)c.Element("sftp"),
                             port = (int)c.Element("port"),
-                            LastJobApplicationId = (string)c.Element("LastJobApplicationId")
+                            Mode = (string)c.Element("Mode"),
+                            LastJobApplicationId = (string)c.Element("LastJobApplicationId"),
+                            LastModifiedDate = (string)c.Element("LastModifiedDate")
                         });
 
 
@@ -93,17 +95,40 @@ namespace JXTPostJobApplicationToFTP
                     }
                 }
 
-                if (!string.IsNullOrWhiteSpace(siteXML.LastJobApplicationId))
-                    jobApplicationDS = jobApplicationService.CustomGetNewJobApplications(siteXML.SiteId, int.Parse(siteXML.LastJobApplicationId), null);
-                else
+
+                DataRow[] drValidJobApplication = null;
+
+                if (siteXML.Mode == "Shortlist")
+                {
                     jobApplicationDS = jobApplicationService.CustomGetNewJobApplications(siteXML.SiteId, null, null);
 
-                dt = jobApplicationDS.Tables[0];
+                    dt = jobApplicationDS.Tables[0];
 
+                    if (!string.IsNullOrWhiteSpace(siteXML.LastModifiedDate))
+                    {
+                        drValidJobApplication = drValidJobApplication = dt.Select("LastViewedDate > #" + DateTime.Parse(siteXML.LastModifiedDate).ToString() + "# AND ApplicationStatus = " + ((int)PortalEnums.JobApplications.ApplicationStatus.ShortList).ToString());
+                    }
+                    else
+                    {
+                        drValidJobApplication = drValidJobApplication = dt.Select("ApplicationStatus = " + ((int)PortalEnums.JobApplications.ApplicationStatus.ShortList).ToString());
+                    }
+                }
+                else
+                {
+                    if (!string.IsNullOrWhiteSpace(siteXML.LastJobApplicationId))
+                        jobApplicationDS = jobApplicationService.CustomGetNewJobApplications(siteXML.SiteId, int.Parse(siteXML.LastJobApplicationId), null);
+                    else
+                        jobApplicationDS = jobApplicationService.CustomGetNewJobApplications(siteXML.SiteId, null, null);
+
+                    dt = jobApplicationDS.Tables[0];
+
+                    drValidJobApplication = drValidJobApplication = dt.Select();
+                }
+                
                 if (dt.Rows != null)
                 {
-                    Console.WriteLine("Number of Job Applications:" + dt.Rows.Count);
-                    Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Number of Job Applications: " + dt.Rows.Count.ToString());
+                    Console.WriteLine("Number of Job Applications:" + drValidJobApplication.Length);
+                    Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Number of Job Applications: " + drValidJobApplication.Length.ToString());
 
                 }
                 else
@@ -115,7 +140,7 @@ namespace JXTPostJobApplicationToFTP
 
                 // If there is an error it will stop at the Job application 
 
-                foreach (DataRow drApplication in dt.Rows)
+                foreach (DataRow drApplication in drValidJobApplication)
                 {
                     try
                     {
@@ -136,7 +161,7 @@ namespace JXTPostJobApplicationToFTP
                                                                     drApplication["JobID"].ToString(),
                                                                     drApplication["JobApplicationID"].ToString(),
                                                                     Path.GetExtension(ConfigurationManager.AppSettings["ResumeFolder"] + drApplication["MemberResumeFile"].ToString()));
-
+                            
                             filesToUpload.Add(new FileNames(drApplication["JobApplicationID"].ToString(), ConfigurationManager.AppSettings["ResumeFolder"] + drApplication["MemberResumeFile"].ToString(), strResumeFileName));
                         }
                         else
@@ -216,6 +241,7 @@ namespace JXTPostJobApplicationToFTP
                             Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] File Uploaded: " + drApplication["JobApplicationID"].ToString());
                             // Update the XML file of the last successful Job application ID
                             UpdateXMLwithJobApplication(siteXML, drApplication["JobApplicationID"].ToString());
+                            UpdateXMLwithLastModifiedDate(siteXML, drApplication["LastViewedDate"].ToString());
                         }
                     }
                     catch (Exception ex)
@@ -226,9 +252,6 @@ namespace JXTPostJobApplicationToFTP
 
                     }
                 }
-
-
-
 
             }
 
@@ -385,6 +408,22 @@ namespace JXTPostJobApplicationToFTP
 
             xmlFile.Save(ConfigurationManager.AppSettings["SitesXML"]);
         }
+        protected static void UpdateXMLwithLastModifiedDate(SitesXML siteXML, string strLastModifiedDate)
+        {
+            string test = string.Empty;
+
+            XDocument xmlFile = XDocument.Load(ConfigurationManager.AppSettings["SitesXML"]);
+            var query = from c in xmlFile.Elements("sites").Elements("site")
+                        select c;
+            foreach (XElement site in query)
+            {
+                if (site.Element("SiteId").Value == siteXML.SiteId.ToString())
+                    site.Element("strLastModifiedDate").Value = strLastModifiedDate;
+            }
+
+            xmlFile.Save(ConfigurationManager.AppSettings["SitesXML"]);
+        }
+
 
 
         #region Utils
@@ -479,8 +518,10 @@ ExceptionID: {5}",
         public string password;
         public bool sftp;
         public int port;
+        public string Mode;
         public string folderPath;
         public string LastJobApplicationId;
+        public string LastModifiedDate;
 
     }
 

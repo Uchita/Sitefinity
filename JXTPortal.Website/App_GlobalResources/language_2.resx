@@ -4371,7 +4371,7 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <comment>Current Role</comment>
   </data>
   <data name="labelMyProfile" xml:space="preserve">
-    <value>labelMyProfile</value>
+    <value>My Profile</value>
     <comment>labelMyProfile</comment>
   </data>
   <data name="LabelDoctorate" xml:space="preserve">

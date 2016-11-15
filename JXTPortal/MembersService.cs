@@ -15,6 +15,7 @@ using JXTPortal.Data;
 using Microsoft.Practices.EnterpriseLibrary.Logging;
 using System.Collections.Generic;
 using System.Web.Script.Serialization;
+using JXTPortal.Custom;
 using log4net;
 
 #endregion
@@ -30,6 +31,7 @@ namespace JXTPortal
     [CLSCompliant(true)]
     public partial class MembersService : JXTPortal.MembersServiceBase
     {
+        private ISessionService _sessionService;
         private ILog _logger;
 
         #region Constructors
@@ -327,8 +329,8 @@ namespace JXTPortal
                     service.Update(member);
 
                 // Logout the advertiser and login the member
-                SessionService.RemoveAdvertiserUser();
-                SessionService.SetMember(member);
+                _sessionService.RemoveAdvertiserUser();
+                _sessionService.SetMember(member);
 
             }
             catch (Exception ex)

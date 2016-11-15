@@ -7802,7 +7802,7 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
                                                 <Id>{0}</Id>
                                                 <Type>{1}</Type>
                                                 <Value>{2}</Value>
-                                            </Answer>", answer.Id, answer.Type, answer.Value);
+                                            </Answer>", answer.Id, answer.Type, Utils.XmlEncode(answer.Value));
                 }
 
                 sbAnswer.AppendLine("</Answers>");

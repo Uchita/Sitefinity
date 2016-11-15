@@ -28,6 +28,7 @@ namespace JXTPostDataToFTP
         public string password;
         public bool sftp;
         public int port;
+        public string mode;
         public string folderPath;
         public string LastModifiedDate;
         public string ExceptionID;

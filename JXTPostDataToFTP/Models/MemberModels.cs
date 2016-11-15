@@ -377,6 +377,7 @@ namespace JXTPostDataToFTP.Models
                     Company = thisDR["Company"].ToString(),
                     Phone = thisDR["Phone"].ToString(),
                     Relationship = thisDR["Relationship"].ToString(),
+                    ReferenceEmail = thisDR["ReferenceEmail"].ToString(),
                     LastModifiedDate = !string.IsNullOrEmpty(thisDR["LastModifiedDate"].ToString()) ? ((DateTime)thisDR["LastModifiedDate"]).ToString(dateformat).Trim() : string.Empty
                 };
                 References.Add(thisRef);

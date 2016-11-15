@@ -371,7 +371,8 @@ namespace SocialMedia.Client.AICD
             bool blnNewMember = false;
             bool blnValid = true;
 
-            JXTPortal.Entities.Members member = service.GetBySiteIdEmailAddress(siteid, emailaddress);
+            //search by external ID first, then email address
+            JXTPortal.Entities.Members member = service.GetBySiteIDExternalIDThenEmail(siteid, externalMemberId, emailaddress);
             try
             {
                 // Update the Member

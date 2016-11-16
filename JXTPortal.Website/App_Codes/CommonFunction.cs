@@ -80,9 +80,7 @@ namespace JXTPortal.Website
         {
             if (!string.IsNullOrEmpty(email))
             {
-                string strRegex = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
-         @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
-         @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
+                string strRegex = ConfigurationManager.AppSettings["EmailValidationRegex"];
                 Regex re = new Regex(strRegex);
 
                 return re.IsMatch(email);
@@ -94,7 +92,7 @@ namespace JXTPortal.Website
         public static bool CheckExtension(string filename)
         {
             bool found = false;
-            string extList = System.Configuration.ConfigurationSettings.AppSettings["ApplicationFileTypes"];
+            string extList = ConfigurationManager.AppSettings["ApplicationFileTypes"];
             string[] exts = extList.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             foreach (string ext in exts)
             {

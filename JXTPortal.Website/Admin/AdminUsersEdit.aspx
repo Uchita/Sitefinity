@@ -119,7 +119,7 @@
                     <asp:RequiredFieldValidator ID="ReqVal_AdminUserEnail" runat="server" Display="Dynamic"
                         ControlToValidate="txtAdminUserEmail" ErrorMessage="Required"></asp:RequiredFieldValidator>
                     <asp:RegularExpressionValidator ID="revAdminUserEmail" runat="server" ControlToValidate="txtAdminUserEmail"
-                        ErrorMessage="A valid email address is required" ValidationExpression="^(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6}$">  
+                        ErrorMessage="A valid email address is required">  
                     </asp:RegularExpressionValidator>
                 </div>
             </li>

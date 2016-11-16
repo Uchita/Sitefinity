@@ -11,6 +11,7 @@ using JXTPortal.Common;
 using JXTPortal;
 using JXTPortal.Client.Salesforce;
 using JXTPortal.Client.Bullhorn;
+using System.Configuration;
 #endregion
 
 public partial class MembersEdit : System.Web.UI.Page
@@ -326,6 +327,8 @@ public partial class MembersEdit : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        revEmailAddress.ValidationExpression = ConfigurationManager.AppSettings["EmailValidationRegex"];
+
         if (!IsPostBack)
         {
             if ((Request.QueryString["MemberID"] != null))

@@ -625,6 +625,7 @@ namespace JXTPortal.Client.Salesforce
                         object jsonObj;  
                         if (newSFRecordCreated)
                         {
+                            //only assign the following if this is a newly created candidate
                             jsonObj = new
                             {
                                 First_Name_Local__c = member.MultiLingualFirstName,
@@ -632,11 +633,15 @@ namespace JXTPortal.Client.Salesforce
                                 PIPL_Agreed__c = true,
                                 PIPL_Agreed_Date__c = String.Format("{0:yyyy-MM-dd}", member.RegisteredDate),
                                 Secondary_Email__c = member.SecondaryEmail,
-                                Registration_Country__c = registerSiteCountryName
+                                Registration_Country__c = registerSiteCountryName,
+                                ts2__Candidate_Source__c = "a0e1000000NFocK", //hard coded Source ID provided by Enworld 2016-11-16
+                                ts2__People_Status__c = "Inactive",
+                                Candidate_Status__c = "New Registrant"
                             };
                         }
                         else
                         {
+                            //only assign the following if this is an update to a candidate
                             jsonObj = new
                             {
                                 First_Name_Local__c = member.MultiLingualFirstName,

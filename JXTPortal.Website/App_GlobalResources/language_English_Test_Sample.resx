@@ -4412,4 +4412,8 @@ Your account has already been validated. Please proceed to &lt;a href="/member/l
     <value>- Please select a Primary Desired Job Category -</value>
     <comment>- Please select a Primary Desired Job Category -</comment>
   </data>
+  <data name="LabelNewsResultsCount" xml:space="preserve">
+    <value>{0} {1} {2} {3}</value>
+    <comment>{0}{1}{2}{3}</comment>
+  </data>
 </root>

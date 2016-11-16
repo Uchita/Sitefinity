@@ -3733,6 +3733,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to for.
+        /// </summary>
+        internal static string LabelFor {
+            get {
+                return ResourceManager.GetString("LabelFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Recuperar Contraseña.
         /// </summary>
         internal static string LabelForgetPassword {
@@ -5601,6 +5610,15 @@ namespace Resources {
         internal static string LabelNewsletter {
             get {
                 return ResourceManager.GetString("LabelNewsletter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} {1} {2} {3}.
+        /// </summary>
+        internal static string LabelNewsResultsCount {
+            get {
+                return ResourceManager.GetString("LabelNewsResultsCount", resourceCulture);
             }
         }
         

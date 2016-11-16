@@ -970,7 +970,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Thêm Hồ sơ ứng viên/ Thêm Resume.
+        ///   Looks up a localized string similar to レジュメを追加.
         /// </summary>
         internal static string LabelAddResumeFile {
             get {
@@ -3752,6 +3752,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to for.
+        /// </summary>
+        internal static string LabelFor {
+            get {
+                return ResourceManager.GetString("LabelFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to パスワードを取り戻す.
         /// </summary>
         internal static string LabelForgetPassword {
@@ -5455,7 +5464,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to labelMyProfile.
+        ///   Looks up a localized string similar to 情報入力.
         /// </summary>
         internal static string labelMyProfile {
             get {
@@ -5622,6 +5631,15 @@ namespace Resources {
         internal static string LabelNewsletter {
             get {
                 return ResourceManager.GetString("LabelNewsletter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} {1} {2} {3}.
+        /// </summary>
+        internal static string LabelNewsResultsCount {
+            get {
+                return ResourceManager.GetString("LabelNewsResultsCount", resourceCulture);
             }
         }
         
@@ -6527,7 +6545,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search.
+        ///   Looks up a localized string similar to 希望職種カテゴリー.
         /// </summary>
         internal static string LabelPrimaryDesiredJobCategory {
             get {

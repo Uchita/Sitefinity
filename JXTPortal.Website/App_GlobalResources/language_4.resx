@@ -490,7 +490,7 @@
     <comment>Address</comment>
   </data>
   <data name="LabelAddResumeFile" xml:space="preserve">
-    <value>Thêm Hồ sơ ứng viên/ Thêm Resume</value>
+    <value>レジュメを追加</value>
     <comment>Add Resume File</comment>
   </data>
   <data name="LabelAddSkill" xml:space="preserve">
@@ -2486,7 +2486,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>My Personal Details</comment>
   </data>
   <data name="labelMyProfile" xml:space="preserve">
-    <value>labelMyProfile</value>
+    <value>情報入力</value>
     <comment>labelMyProfile</comment>
   </data>
   <data name="LabelMyResumeCoverLetter" xml:space="preserve">
@@ -2959,7 +2959,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Primary Desired Industry</comment>
   </data>
   <data name="LabelPrimaryDesiredJobCategory" xml:space="preserve">
-    <value>Search</value>
+    <value>希望職種カテゴリー</value>
     <comment>Search</comment>
   </data>
   <data name="LabelPrimaryDesiredJobFunction" xml:space="preserve">
@@ -4406,5 +4406,13 @@ Your account has already been validated, you are not required to do this again.<
   <data name="DDLPleaseSelectPrimaryDesiredJobCategory" xml:space="preserve">
     <value>- 選択してください -</value>
     <comment>- Please select a Primary Desired Job Category -</comment>
+  </data>
+  <data name="LabelFor" xml:space="preserve">
+    <value>for</value>
+    <comment>for</comment>
+  </data>
+  <data name="LabelNewsResultsCount" xml:space="preserve">
+    <value>{0} {1} {2} {3}</value>
+    <comment>{0}{1}{2}{3}</comment>
   </data>
 </root>

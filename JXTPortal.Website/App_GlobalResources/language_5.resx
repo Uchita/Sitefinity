@@ -1679,7 +1679,7 @@
     <comment>Female</comment>
   </data>
   <data name="LabelFiledUnder" xml:space="preserve">
-    <value>…아래 보관</value>
+    <value />
     <comment>Filed under</comment>
   </data>
   <data name="LabelFileName" xml:space="preserve">
@@ -2373,7 +2373,9 @@
   <data name="LabelMemberValidated" xml:space="preserve">
     <value>계정이 인증되었습니다&lt;br /&gt;&lt;br /&gt;
  귀하의 계정은 이미 인증되었습니다. &lt;a href="/member/login.aspx"&gt;로그인&lt;/a&gt;을 하시기 바랍니다.</value>
-    <comment>Account has been validated&lt;br /&gt;&lt;br /&gt;Your account has already been validated. Please proceed to &lt;a href=/member/login.aspx&gt;login&lt;/a&gt;.</comment>
+    <comment>Account has been validated
+&lt;br /&gt;&lt;br /&gt;
+Your account has already been validated. Please proceed to &lt;a href=/member/login.aspx&gt;login&lt;/a&gt;.</comment>
   </data>
   <data name="LabelMemberValidation" xml:space="preserve">
     <value>회원 인증</value>
@@ -2484,7 +2486,7 @@
     <comment>My Personal Details</comment>
   </data>
   <data name="labelMyProfile" xml:space="preserve">
-    <value>labelMyProfile</value>
+    <value>상세프로필</value>
     <comment>labelMyProfile</comment>
   </data>
   <data name="LabelMyResumeCoverLetter" xml:space="preserve">
@@ -2953,15 +2955,15 @@
     <comment>Primary Desired Country</comment>
   </data>
   <data name="LabelPrimaryDesiredIndustry" xml:space="preserve">
-    <value>希望業種</value>
+    <value>사업분야</value>
     <comment>Primary Desired Industry</comment>
   </data>
   <data name="LabelPrimaryDesiredJobCategory" xml:space="preserve">
-    <value>Search</value>
+    <value>직업 분류</value>
     <comment>Search</comment>
   </data>
   <data name="LabelPrimaryDesiredJobFunction" xml:space="preserve">
-    <value>希望職種</value>
+    <value>직업 기능</value>
     <comment>Primary Desired Job Function</comment>
   </data>
   <data name="LabelPrimaryDesiredLocation" xml:space="preserve">
@@ -3609,7 +3611,7 @@
     <comment>Short List</comment>
   </data>
   <data name="LabelShowing" xml:space="preserve">
-    <value>보기</value>
+    <value>에 대한 결과</value>
     <comment>Showing</comment>
   </data>
   <data name="LabelShowLocationDetail" xml:space="preserve">
@@ -4403,5 +4405,17 @@
   <data name="DDLPleaseSelectPrimaryDesiredJobCategory" xml:space="preserve">
     <value>- 선택하시기 바랍니다 -</value>
     <comment>- Please select a Primary Desired Job Category -</comment>
+  </data>
+  <data name="LabelAddResumeFile" xml:space="preserve">
+    <value>이력서 첨부</value>
+    <comment>Add Resume File</comment>
+  </data>
+  <data name="LabelNewsResultsCount" xml:space="preserve">
+    <value>{3} {0} {1} </value>
+    <comment>{0}{1}{2}{3}</comment>
+  </data>
+  <data name="LabelFor" xml:space="preserve">
+    <value />
+    <comment>for</comment>
   </data>
 </root>

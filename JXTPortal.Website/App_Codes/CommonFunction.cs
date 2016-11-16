@@ -172,8 +172,7 @@ namespace JXTPortal.Website
                         //strGlobalResource = "Could not find global resource.";
                     }
                 }
-
-                if (String.IsNullOrEmpty(strGlobalResource))
+                else
                     strGlobalResource = field;
             }
 

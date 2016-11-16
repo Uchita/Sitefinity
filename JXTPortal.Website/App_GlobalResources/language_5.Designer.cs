@@ -979,6 +979,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 이력서 첨부.
+        /// </summary>
+        internal static string LabelAddResumeFile {
+            get {
+                return ResourceManager.GetString("LabelAddResumeFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 기술 추가.
         /// </summary>
         internal static string LabelAddSkill {
@@ -3644,7 +3653,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to …아래 보관.
+        ///   Looks up a localized string similar to .
         /// </summary>
         internal static string LabelFiledUnder {
             get {
@@ -3748,6 +3757,15 @@ namespace Resources {
         internal static string LabelFixedSalary {
             get {
                 return ResourceManager.GetString("LabelFixedSalary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string LabelFor {
+            get {
+                return ResourceManager.GetString("LabelFor", resourceCulture);
             }
         }
         
@@ -5454,7 +5472,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to labelMyProfile.
+        ///   Looks up a localized string similar to 상세프로필.
         /// </summary>
         internal static string labelMyProfile {
             get {
@@ -5621,6 +5639,15 @@ namespace Resources {
         internal static string LabelNewsletter {
             get {
                 return ResourceManager.GetString("LabelNewsletter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {3} {0} {1} .
+        /// </summary>
+        internal static string LabelNewsResultsCount {
+            get {
+                return ResourceManager.GetString("LabelNewsResultsCount", resourceCulture);
             }
         }
         
@@ -6517,7 +6544,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 希望業種.
+        ///   Looks up a localized string similar to 사업분야.
         /// </summary>
         internal static string LabelPrimaryDesiredIndustry {
             get {
@@ -6526,7 +6553,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search.
+        ///   Looks up a localized string similar to 직업 분류.
         /// </summary>
         internal static string LabelPrimaryDesiredJobCategory {
             get {
@@ -6535,7 +6562,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 希望職種.
+        ///   Looks up a localized string similar to 직업 기능.
         /// </summary>
         internal static string LabelPrimaryDesiredJobFunction {
             get {
@@ -7993,7 +8020,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 보기.
+        ///   Looks up a localized string similar to 에 대한 결과.
         /// </summary>
         internal static string LabelShowing {
             get {

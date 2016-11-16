@@ -490,7 +490,7 @@
     <comment>Address</comment>
   </data>
   <data name="LabelAddResumeFile" xml:space="preserve">
-    <value>レジュメを追加</value>
+    <value>Thêm Hồ sơ ứng viên/ Thêm Resume</value>
     <comment>Add Resume File</comment>
   </data>
   <data name="LabelAddSkill" xml:space="preserve">
@@ -2479,7 +2479,7 @@
     <comment>My Personal Details</comment>
   </data>
   <data name="labelMyProfile" xml:space="preserve">
-    <value>labelMyProfile</value>
+    <value>My Profile</value>
     <comment>labelMyProfile</comment>
   </data>
   <data name="LabelMyResumeCoverLetter" xml:space="preserve">
@@ -2955,7 +2955,7 @@
     <comment>Primary Desired Industry</comment>
   </data>
   <data name="LabelPrimaryDesiredJobCategory" xml:space="preserve">
-    <value>Search</value>
+    <value>Nhóm ngành</value>
     <comment>Search</comment>
   </data>
   <data name="LabelPrimaryDesiredJobFunction" xml:space="preserve">
@@ -4367,7 +4367,9 @@
     <comment>Accepts only numbers, spaces, '+', '(' and ')'</comment>
   </data>
   <data name="LabelMemberValidated" xml:space="preserve">
-    <value>Tài khoản đã được xác thực&lt;br /&gt;&lt;br /&gt;Tài khoản của bạn đã được xác thực. Bạn vui lòng &lt;a ref="/member/login.aspx"&gt;đăng nhập&lt;/a&gt;.</value>
+    <value>Tài khoản đã được xác thực
+&lt;br /&gt;&lt;br /&gt;
+Tài khoản của bạn đã được xác thực. Bạn vui lòng &lt;a ref="/member/login.aspx"&gt;đăng nhập&lt;/a&gt;.</value>
     <comment>Account has been validated&lt;br /&gt;&lt;br /&gt;Your account has already been validated. Please proceed to &lt;a href=/member/login.aspx&gt;login&lt;/a&gt;.</comment>
   </data>
   <data name="DDLAllAreas" xml:space="preserve">
@@ -4401,5 +4403,13 @@
   <data name="DDLPleaseSelectPrimaryDesiredJobCategory" xml:space="preserve">
     <value>- Please select a Primary Desired Job Category -</value>
     <comment>- Please select a Primary Desired Job Category -</comment>
+  </data>
+  <data name="LabelFor" xml:space="preserve">
+    <value>for</value>
+    <comment>for</comment>
+  </data>
+  <data name="LabelNewsResultsCount" xml:space="preserve">
+    <value>{0} {1} {2} {3}</value>
+    <comment>{0}{1}{2}{3}</comment>
   </data>
 </root>

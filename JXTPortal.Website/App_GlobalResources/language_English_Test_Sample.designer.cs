@@ -358,6 +358,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to - All Areas -.
+        /// </summary>
+        internal static string DDLAllAreas {
+            get {
+                return ResourceManager.GetString("DDLAllAreas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ascending.
         /// </summary>
         internal static string DDLAscending {
@@ -403,6 +412,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to - Not Specified -.
+        /// </summary>
+        internal static string DDLNotSpecified {
+            get {
+                return ResourceManager.GetString("DDLNotSpecified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Number of Applications.
         /// </summary>
         internal static string DDLNumberOfApplications {
@@ -444,6 +462,60 @@ namespace Resources {
         internal static string DDLOneWeek {
             get {
                 return ResourceManager.GetString("DDLOneWeek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to - Please Select -.
+        /// </summary>
+        internal static string DDLPleaseSelect {
+            get {
+                return ResourceManager.GetString("DDLPleaseSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to - Please select a Country -.
+        /// </summary>
+        internal static string DDLPleaseSelectCountry {
+            get {
+                return ResourceManager.GetString("DDLPleaseSelectCountry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to - Please select an Industry -.
+        /// </summary>
+        internal static string DDLPleaseSelectIndustry {
+            get {
+                return ResourceManager.GetString("DDLPleaseSelectIndustry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to - Please select a Job Category -.
+        /// </summary>
+        internal static string DDLPleaseSelectJobCategory {
+            get {
+                return ResourceManager.GetString("DDLPleaseSelectJobCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to - Please select a Primary Desired Country -.
+        /// </summary>
+        internal static string DDLPleaseSelectPrimaryDesiredCountry {
+            get {
+                return ResourceManager.GetString("DDLPleaseSelectPrimaryDesiredCountry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to - Please select a Primary Desired Job Category -.
+        /// </summary>
+        internal static string DDLPleaseSelectPrimaryDesiredJobCategory {
+            get {
+                return ResourceManager.GetString("DDLPleaseSelectPrimaryDesiredJobCategory", resourceCulture);
             }
         }
         
@@ -5560,6 +5632,15 @@ namespace Resources {
         internal static string LabelNewsletter {
             get {
                 return ResourceManager.GetString("LabelNewsletter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} {1} {2} {3}.
+        /// </summary>
+        internal static string LabelNewsResultsCount {
+            get {
+                return ResourceManager.GetString("LabelNewsResultsCount", resourceCulture);
             }
         }
         

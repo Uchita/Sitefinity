@@ -4329,4 +4329,44 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <value>Doktorat</value>
     <comment>Doctorate</comment>
   </data>
+  <data name="DDLAllAreas" xml:space="preserve">
+    <value>- All Areas -</value>
+    <comment>- All Areas -</comment>
+  </data>
+  <data name="DDLNotSpecified" xml:space="preserve">
+    <value>- Not Specified -</value>
+    <comment>- Not Specified -</comment>
+  </data>
+  <data name="DDLPleaseSelect" xml:space="preserve">
+    <value>- Please Select -</value>
+    <comment>- Please Select -</comment>
+  </data>
+  <data name="DDLPleaseSelectCountry" xml:space="preserve">
+    <value>- Please select a Country -</value>
+    <comment>- Please select a Country -</comment>
+  </data>
+  <data name="DDLPleaseSelectIndustry" xml:space="preserve">
+    <value>- Please select an Industry -</value>
+    <comment>- Please select an Industry -</comment>
+  </data>
+  <data name="DDLPleaseSelectJobCategory" xml:space="preserve">
+    <value>- Please select a Job Category -</value>
+    <comment>- Please select a Job Category -</comment>
+  </data>
+  <data name="DDLPleaseSelectPrimaryDesiredCountry" xml:space="preserve">
+    <value>- Please select a Primary Desired Country -</value>
+    <comment>- Please select a Primary Desired Country -</comment>
+  </data>
+  <data name="DDLPleaseSelectPrimaryDesiredJobCategory" xml:space="preserve">
+    <value>- Please select a Primary Desired Job Category -</value>
+    <comment>- Please select a Primary Desired Job Category -</comment>
+  </data>
+  <data name="LabelFor" xml:space="preserve">
+    <value>for</value>
+    <comment>for</comment>
+  </data>
+  <data name="LabelNewsResultsCount" xml:space="preserve">
+    <value>{0} {1} {2} {3}</value>
+    <comment>{0}{1}{2}{3}</comment>
+  </data>
 </root>

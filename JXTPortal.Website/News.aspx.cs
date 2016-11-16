@@ -809,7 +809,16 @@ namespace JXTPortal.Website
                 int count = result.ToList().Count;
                 if (!string.IsNullOrWhiteSpace(SortBy))
                 {
-                    ltRefineResult.Text = "<p class='jxt-news-refine-summary'>" + CommonFunction.GetResourceValue("LabelShowing") + " <span>" + count.ToString() + "</span> " + CommonFunction.GetResourceValue("LabelResults") + ((string.IsNullOrWhiteSpace(Keywords)) ? "" : " for <strong>&ldquo;" + HttpUtility.HtmlEncode(Keywords) + "&rdquo;</strong>") + "</p>";
+                    //ltRefineResult.Text = "<p class='jxt-news-refine-summary'>" + CommonFunction.GetResourceValue("LabelShowing") + " <span>" + count.ToString() + "</span> " + CommonFunction.GetResourceValue("LabelResults") + ((string.IsNullOrWhiteSpace(Keywords)) ? "" : " for <strong>&ldquo;" + HttpUtility.HtmlEncode(Keywords) + "&rdquo;</strong>") + "</p>";
+                    //Showing <span>{0}</span> results for <strong>{1}</strong>
+                    ltRefineResult.Text = "<p class='jxt-news-refine-summary'>" + String.Format(CommonFunction.GetResourceValue("LabelNewsResultsCount"),
+                            CommonFunction.GetResourceValue("LabelShowing"),
+                            "<span>" + count.ToString() + "</span>",
+                            CommonFunction.GetResourceValue("LabelResults"),
+                            ((string.IsNullOrWhiteSpace(Keywords)) ? string.Empty : ( CommonFunction.GetResourceValue("LabelFor") + " <strong>&ldquo;" + HttpUtility.HtmlEncode(Keywords) + "&rdquo;</strong>"))) 
+                        
+                        + "</p>";
+
                 }
                 result = result.Skip(intSitePaging * CurrentPage).Take(intSitePaging);
                 //PagedDataSource pds = new PagedDataSource();

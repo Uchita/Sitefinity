@@ -6,6 +6,7 @@ using System.Web .UI;
 using System.Web.UI.WebControls;
 using JXTPortal.Entities;
 using System.Net;
+using System.Configuration;
 
 namespace JXTPortal.Website.pages
 {
@@ -54,6 +55,8 @@ namespace JXTPortal.Website.pages
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            revEnquiryEmailAddress.ValidationExpression = ConfigurationManager.AppSettings["EmailValidationRegex"];
+
             SetFormValues();
         }
 

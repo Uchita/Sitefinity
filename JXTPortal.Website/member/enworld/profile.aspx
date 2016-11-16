@@ -543,6 +543,7 @@
                                                 <div class="form-group">
                                                     <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral243" runat="server" SetLanguageCode="LabelUploadResumeUpto" />
                                                 </div>
+                                            </div>
                                         </asp:PlaceHolder>
                                         <asp:PlaceHolder ID="phFileUpload" runat="server">
                                             <div class="form-group row">

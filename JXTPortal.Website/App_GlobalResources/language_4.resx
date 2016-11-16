@@ -490,7 +490,7 @@
     <comment>Address</comment>
   </data>
   <data name="LabelAddResumeFile" xml:space="preserve">
-    <value>Thêm Hồ sơ ứng viên/ Thêm Resume</value>
+    <value>レジュメを追加</value>
     <comment>Add Resume File</comment>
   </data>
   <data name="LabelAddSkill" xml:space="preserve">
@@ -506,7 +506,7 @@
     <comment>Add Your Skill</comment>
   </data>
   <data name="LabelAdvanced" xml:space="preserve">
-    <value>Advanced</value>
+    <value>完成度</value>
     <comment>Advanced</comment>
   </data>
   <data name="LabelAdvertiser" xml:space="preserve">
@@ -791,7 +791,7 @@
     <comment>Basic Information</comment>
   </data>
   <data name="LabelBeginner" xml:space="preserve">
-    <value>初心者</value>
+    <value>完成度</value>
     <comment>Beginner</comment>
   </data>
   <data name="LabelBelow" xml:space="preserve">
@@ -943,11 +943,11 @@
     <comment>Please choose a resume</comment>
   </data>
   <data name="LabelCity" xml:space="preserve">
-    <value>City</value>
+    <value>市区町村</value>
     <comment>City</comment>
   </data>
   <data name="LabelCityState" xml:space="preserve">
-    <value>City / State</value>
+    <value>市区町村</value>
     <comment>City / State</comment>
   </data>
   <data name="LabelCityTown" xml:space="preserve">
@@ -999,7 +999,7 @@
     <comment>Comments</comment>
   </data>
   <data name="LabelCompany" xml:space="preserve">
-    <value>企業</value>
+    <value>会社名</value>
     <comment>Company</comment>
   </data>
   <data name="LabelCompanyDetails" xml:space="preserve">
@@ -1255,7 +1255,7 @@
     <comment>Date modified</comment>
   </data>
   <data name="LabelDateOfBirth" xml:space="preserve">
-    <value>生年月日</value>
+    <value>誕生日</value>
     <comment>Date of birth</comment>
   </data>
   <data name="LabelDatePosted" xml:space="preserve">
@@ -1707,11 +1707,11 @@
     <comment>Finish</comment>
   </data>
   <data name="LabelFirstName" xml:space="preserve">
-    <value>名</value>
+    <value>名（ローマ字）</value>
     <comment>First name</comment>
   </data>
   <data name="LabelFirstNameLocalLanguage" xml:space="preserve">
-    <value>名 (現地語)</value>
+    <value>名</value>
     <comment>First Name (Local language)</comment>
   </data>
   <data name="LabelFirstNameMandatory" xml:space="preserve">
@@ -1839,7 +1839,7 @@
     <comment>How does my profile compare?</comment>
   </data>
   <data name="LabelHowDoesMyProfileCompare" xml:space="preserve">
-    <value>How does my profile compare?</value>
+    <value>プロフィール完成度</value>
     <comment>How does my profile compare?</comment>
   </data>
   <data name="LabelHTML" xml:space="preserve">
@@ -1855,11 +1855,11 @@
     <comment>Indirect Report</comment>
   </data>
   <data name="LabelIndustries" xml:space="preserve">
-    <value>Industries</value>
+    <value>業種</value>
     <comment>Industries</comment>
   </data>
   <data name="LabelIndustry" xml:space="preserve">
-    <value>Industry</value>
+    <value>業種</value>
     <comment>Industry</comment>
   </data>
   <data name="LabelInstitutionName" xml:space="preserve">
@@ -2171,11 +2171,11 @@
     <comment>Last Modified By Advertiser User</comment>
   </data>
   <data name="LabelLastName" xml:space="preserve">
-    <value>姓</value>
+    <value>姓（ローマ字）</value>
     <comment>Last name</comment>
   </data>
   <data name="LabelLastNameLocalLanguage" xml:space="preserve">
-    <value>姓 （現地語）</value>
+    <value>姓</value>
     <comment>Last Name (Local language)</comment>
   </data>
   <data name="LabelLastViewedDate" xml:space="preserve">
@@ -2486,7 +2486,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>My Personal Details</comment>
   </data>
   <data name="labelMyProfile" xml:space="preserve">
-    <value>labelMyProfile</value>
+    <value>情報入力</value>
     <comment>labelMyProfile</comment>
   </data>
   <data name="LabelMyResumeCoverLetter" xml:space="preserve">
@@ -2959,7 +2959,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Primary Desired Industry</comment>
   </data>
   <data name="LabelPrimaryDesiredJobCategory" xml:space="preserve">
-    <value>Search</value>
+    <value>希望職種カテゴリー</value>
     <comment>Search</comment>
   </data>
   <data name="LabelPrimaryDesiredJobFunction" xml:space="preserve">
@@ -3023,7 +3023,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Profile</comment>
   </data>
   <data name="LabelProfileDetails" xml:space="preserve">
-    <value>Profile Details</value>
+    <value>情報入力</value>
     <comment>Profile Details</comment>
   </data>
   <data name="LabelProfileDownloadPDF" xml:space="preserve">
@@ -3456,7 +3456,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Secondary Desired Countries</comment>
   </data>
   <data name="LabelSecondaryEmail" xml:space="preserve">
-    <value>第2メールアドレス</value>
+    <value>予備メールアドレス</value>
     <comment>Secondary Email</comment>
   </data>
   <data name="LabelSecondaryLanguage" xml:space="preserve">
@@ -3572,7 +3572,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Send a Job Alert now</comment>
   </data>
   <data name="LabelSendEmailAlerts" xml:space="preserve">
-    <value>電子メール警告を送信</value>
+    <value>アラート</value>
     <comment>Send Email Alerts</comment>
   </data>
   <data name="LabelSentApplicantEmail" xml:space="preserve">
@@ -3996,7 +3996,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Validated</comment>
   </data>
   <data name="LabelValidation" xml:space="preserve">
-    <value>Validation</value>
+    <value>認証</value>
     <comment>Validation</comment>
   </data>
   <data name="LabelValidEmailRequired" xml:space="preserve">
@@ -4096,7 +4096,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Welcome to the Member change password page. Please enter your current password and new password in the form below.</comment>
   </data>
   <data name="LabelWhatAreYouUpTo" xml:space="preserve">
-    <value>What are you up to?</value>
+    <value>ステータス</value>
     <comment>What are you up to?</comment>
   </data>
   <data name="LabelWillingToRelocate" xml:space="preserve">
@@ -4374,5 +4374,45 @@ Your account has already been validated, you are not required to do this again.<
   <data name="LabelPremiumJobsNote" xml:space="preserve">
     <value>Please note: Premium jobs will be displayed at the top of the specified classification when searched.</value>
     <comment>Please note: Premium jobs will be displayed at the top of the specified classification when searched.</comment>
+  </data>
+  <data name="DDLAllAreas" xml:space="preserve">
+    <value>- 選択してください -</value>
+    <comment>- All Areas -</comment>
+  </data>
+  <data name="DDLNotSpecified" xml:space="preserve">
+    <value>- 選択してください -</value>
+    <comment>- Not Specified -</comment>
+  </data>
+  <data name="DDLPleaseSelect" xml:space="preserve">
+    <value>- 選択してください -</value>
+    <comment>- Please Select -</comment>
+  </data>
+  <data name="DDLPleaseSelectCountry" xml:space="preserve">
+    <value>- 選択してください -</value>
+    <comment>- Please select a Country -</comment>
+  </data>
+  <data name="DDLPleaseSelectIndustry" xml:space="preserve">
+    <value>- 選択してください -</value>
+    <comment>- Please select an Industry -</comment>
+  </data>
+  <data name="DDLPleaseSelectJobCategory" xml:space="preserve">
+    <value>- 選択してください -</value>
+    <comment>- Please select a Job Category -</comment>
+  </data>
+  <data name="DDLPleaseSelectPrimaryDesiredCountry" xml:space="preserve">
+    <value>- 選択してください -</value>
+    <comment>- Please select a Primary Desired Country -</comment>
+  </data>
+  <data name="DDLPleaseSelectPrimaryDesiredJobCategory" xml:space="preserve">
+    <value>- 選択してください -</value>
+    <comment>- Please select a Primary Desired Job Category -</comment>
+  </data>
+  <data name="LabelFor" xml:space="preserve">
+    <value>for</value>
+    <comment>for</comment>
+  </data>
+  <data name="LabelNewsResultsCount" xml:space="preserve">
+    <value>{0} {1} {2} {3}</value>
+    <comment>{0}{1}{2}{3}</comment>
   </data>
 </root>

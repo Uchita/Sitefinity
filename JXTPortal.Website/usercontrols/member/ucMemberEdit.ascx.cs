@@ -154,6 +154,8 @@ namespace JXTPortal.Website.usercontrols.member
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            revSecondaryEmailAddress.ValidationExpression = ConfigurationManager.AppSettings["EmailValidationRegex"];
+
             if (!IsPostBack)
             {
                 loadForm();

@@ -404,8 +404,7 @@
                                 <asp:RequiredFieldValidator ID="ReqVal_ApplicationEmailAddress" runat="server" ControlToValidate="txtApplicationEmailAddress"
                                     SetFocusOnError="true" Display="Dynamic" />
                                 <asp:RegularExpressionValidator ID="revEmailAddress" runat="server" ControlToValidate="txtApplicationEmailAddress"
-                                    SetFocusOnError="true" Display="Dynamic" ErrorMessage="Invalid email address"
-                                    ValidationExpression="^(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6}$">  
+                                    SetFocusOnError="true" Display="Dynamic" ErrorMessage="Invalid email address">  
                                 </asp:RegularExpressionValidator>
                             </div>
                             <p class="help-block">

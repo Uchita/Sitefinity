@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using JXTPortal.Entities;
 using System.Data;
+using System.Configuration;
 
 namespace JXTPortal.Website.advertiser
 {
@@ -34,7 +35,7 @@ namespace JXTPortal.Website.advertiser
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            revEmailAddress.ValidationExpression = ConfigurationManager.AppSettings["EmailValidationRegex"];
         }
 
 

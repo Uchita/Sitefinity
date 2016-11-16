@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using JXTPortal.Entities;
 using JXTPortal.Common;
 using JXTPortal.Client.Salesforce;
+using System.Configuration;
 
 namespace JXTPortal.Website.members
 {
@@ -23,6 +24,7 @@ namespace JXTPortal.Website.members
         protected void Page_Load(object sender, EventArgs e)
         {
             CommonPage.SetBrowserPageTitle(Page, "Member Settings");
+            revSecondaryEmailAddress.ValidationExpression = ConfigurationManager.AppSettings["EmailValidationRegex"];
 
             if (SessionData.Member == null)
             {

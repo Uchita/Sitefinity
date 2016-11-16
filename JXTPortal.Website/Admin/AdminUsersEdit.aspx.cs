@@ -69,7 +69,7 @@ public partial class AdminUsersEdit : System.Web.UI.Page
             Response.Redirect("~/admin/login.aspx?returnurl=" + Server.UrlEncode(Request.Url.PathAndQuery));
             return;
         }
-
+        revAdminUserEmail.ValidationExpression = ConfigurationManager.AppSettings["EmailValidationRegex"];
         if (!IsPostBack)
         {
             loadForm();

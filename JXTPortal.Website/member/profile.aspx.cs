@@ -6952,6 +6952,17 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
                     }
                 }
 
+                if (string.IsNullOrWhiteSpace(tbRefernecesAddCompany.Text))
+                {
+                    hasError = true;
+                    phReferencesCompany.Visible = true;
+
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = phReferencesCompany.ClientID;
+                    }
+                }
+
                 if (string.IsNullOrWhiteSpace(tbReferencesEmail.Text))
                 {
                     hasError = true;

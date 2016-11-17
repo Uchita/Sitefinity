@@ -3436,7 +3436,7 @@
                                                         <div class="form-input-wide">
                                                             <label class="spacer-lbl">
                                                                 &nbsp;</label>
-                                                            <asp:LinkButton ID="lbReferencesSave" runat="server" CssClass="btn btn-primary btn-sm">
+                                                            <asp:LinkButton ID="lbReferencesSave" runat="server" CssClass="btn btn-primary btn-sm" CausesValidation="false">
                                                                 <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral36" runat="server" SetLanguageCode="LabelSave" />
                                                             </asp:LinkButton>
                                                             <a href="#edit-Reference<%# Container.ItemIndex + 1 %>" class="btn btn-primary btn-sm cancel-btn"
@@ -3550,7 +3550,7 @@
                                                 <div class="form-input-wide">
                                                     <label class="spacer-lbl">
                                                         &nbsp;</label>
-                                                    <asp:LinkButton ID="lbReferencesAddSave" runat="server" CssClass="btn btn-primary btn-sm"
+                                                    <asp:LinkButton ID="lbReferencesAddSave" runat="server" CssClass="btn btn-primary btn-sm" CausesValidation="false"
                                                         OnClick="lbReferencesAddSave_Click">
                                                         <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral236" runat="server" SetLanguageCode="LabelSave" />
                                                     </asp:LinkButton>
@@ -3652,7 +3652,7 @@
                                         <!-- Save buttton  -->
                                         <div class="form-input-wide">
                                             <div class="form-buttons-wrapper">
-                                                <asp:LinkButton ID="lbCustomQuestionsSave" runat="server" CssClass="btn btn-primary btn-sm"
+                                                <asp:LinkButton ID="lbCustomQuestionsSave" runat="server" CssClass="btn btn-primary btn-sm" CausesValidation="false"
                                                     OnClick="lbCustomQuestionsSave_Click">
                                                     <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral269" runat="server" SetLanguageCode="LabelSave" />
                                                 </asp:LinkButton>

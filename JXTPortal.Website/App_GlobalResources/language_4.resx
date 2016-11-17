@@ -1355,7 +1355,7 @@
     <comment>Doctor of Medicine</comment>
   </data>
   <data name="LabelDoctorOfPhilosophy" xml:space="preserve">
-    <value>博士</value>
+    <value>哲学博士</value>
     <comment>Doctor of Philosophy</comment>
   </data>
   <data name="LabelDocumentLink" xml:space="preserve">
@@ -3251,7 +3251,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>You have not completed all the required information fields.</comment>
   </data>
   <data name="LabelRequiredProfileSectionsHeading" xml:space="preserve">
-    <value>Required Profile Sections left to complete?</value>
+    <value>登録情報</value>
     <comment>Required Profile Sections left to complete?</comment>
   </data>
   <data name="LabelRequireLogon" xml:space="preserve">

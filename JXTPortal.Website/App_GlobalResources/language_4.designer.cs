@@ -2915,7 +2915,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 博士.
+        ///   Looks up a localized string similar to 哲学博士.
         /// </summary>
         internal static string LabelDoctorOfPhilosophy {
             get {
@@ -7202,7 +7202,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Required Profile Sections left to complete?.
+        ///   Looks up a localized string similar to 登録情報.
         /// </summary>
         internal static string LabelRequiredProfileSectionsHeading {
             get {

@@ -405,7 +405,7 @@ namespace JXTPortal.Website
                 throw new ArgumentException(String.Format("typeof({0}).IsEnum == false", enumType), "TEnum");
 
             //List<string> formattedNames = new List<string>();
-            var list = Enum.GetValues(enumType).OfType<TEnum>().ToList<TEnum>();
+            var list = Enum.GetValues(enumType).Cast<TEnum>().ToList();
             var listNames = Enum.GetNames(enumType);
 
             //get all details including sequence
@@ -422,7 +422,8 @@ namespace JXTPortal.Website
             Dictionary<string, int> dicFormattedValues = new Dictionary<string, int>();
             foreach(Tuple<string,int,int> enumDetail in tEnumValues.OrderBy(c => c.Item3).ToList())
             {
-                dicFormattedValues.Add(enumDetail.Item1, enumDetail.Item2);
+                if( !dicFormattedValues.Keys.Contains(enumDetail.Item1) ) // prevent errors 
+                    dicFormattedValues.Add(enumDetail.Item1, enumDetail.Item2);
             }
 
             /*

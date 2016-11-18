@@ -104,7 +104,8 @@ namespace JXTPortal
 		///<param name="_hasAdvertiserLogo"></param>
 		///<param name="_customXml"></param>
 		///<param name="_address"></param>
-		public static ViewJobSearch CreateViewJobSearch(System.Int32 _jobId, System.Int32 _siteId, System.String _jobName, System.String _description, System.String _fullDescription, System.DateTime _datePosted, System.Boolean _visible, System.Int32? _expired, System.Boolean _showSalaryDetails, System.Boolean _showSalaryRange, System.String _salaryText, System.Int32? _advertiserId, System.Int32? _applicationMethod, System.String _applicationUrl, System.Int32? _advertiserJobTemplateLogoId, System.String _companyName, System.Boolean? _showLocationDetails, System.String _bulletPoint1, System.String _bulletPoint2, System.String _bulletPoint3, System.Boolean _hotJob, System.String _applicationEmailAddress, System.DateTime _expiryDate, System.String _contactDetails, System.String _refNo, System.String _advertiserName, System.String _currencySymbol, System.Decimal _salaryUpperBand, System.Decimal _salaryLowerBand, System.Int32 _salaryTypeId, System.String _salaryTypeName, System.String _workTypeName, System.Int32 _countryId, System.Int32 _locationId, System.Int32 _areaId, System.String _countryName, System.String _locationName, System.String _areaName, System.Int32 _professionId, System.Int32 _roleId, System.String _siteProfessionName, System.String _siteRoleName, System.String _breadCrumbNavigation, System.Int32 _workTypeId, System.String _jobFriendlyName, System.String _salaryDisplay, System.Int32? _jobItemTypeId, System.Double? _jobLatitude, System.Double? _jobLongitude, System.Int32? _addressStatus, System.Int32 _hasAdvertiserLogo, System.String _customXml, System.String _address)
+		///<param name="_publicTransport"></param>
+		public static ViewJobSearch CreateViewJobSearch(System.Int32 _jobId, System.Int32 _siteId, System.String _jobName, System.String _description, System.String _fullDescription, System.DateTime _datePosted, System.Boolean _visible, System.Int32? _expired, System.Boolean _showSalaryDetails, System.Boolean _showSalaryRange, System.String _salaryText, System.Int32? _advertiserId, System.Int32? _applicationMethod, System.String _applicationUrl, System.Int32? _advertiserJobTemplateLogoId, System.String _companyName, System.Boolean? _showLocationDetails, System.String _bulletPoint1, System.String _bulletPoint2, System.String _bulletPoint3, System.Boolean _hotJob, System.String _applicationEmailAddress, System.DateTime _expiryDate, System.String _contactDetails, System.String _refNo, System.String _advertiserName, System.String _currencySymbol, System.Decimal _salaryUpperBand, System.Decimal _salaryLowerBand, System.Int32 _salaryTypeId, System.String _salaryTypeName, System.String _workTypeName, System.Int32 _countryId, System.Int32 _locationId, System.Int32 _areaId, System.String _countryName, System.String _locationName, System.String _areaName, System.Int32 _professionId, System.Int32 _roleId, System.String _siteProfessionName, System.String _siteRoleName, System.String _breadCrumbNavigation, System.Int32 _workTypeId, System.String _jobFriendlyName, System.String _salaryDisplay, System.Int32? _jobItemTypeId, System.Double? _jobLatitude, System.Double? _jobLongitude, System.Int32? _addressStatus, System.Int32 _hasAdvertiserLogo, System.String _customXml, System.String _address, System.String _publicTransport)
 		{
 			ViewJobSearch newEntityViewJobSearch = new ViewJobSearch();
 			newEntityViewJobSearch.JobId  = _jobId;
@@ -160,6 +161,7 @@ namespace JXTPortal
 			newEntityViewJobSearch.HasAdvertiserLogo  = _hasAdvertiserLogo;
 			newEntityViewJobSearch.CustomXml  = _customXml;
 			newEntityViewJobSearch.Address  = _address;
+			newEntityViewJobSearch.PublicTransport  = _publicTransport;
 			return newEntityViewJobSearch;
 		}
 		#endregion Constructors
@@ -464,7 +466,7 @@ namespace JXTPortal
 		/// <param name="orderBy"> A <c>System.String</c> instance.</param>
 		/// <param name="jobTypeIds"> A <c>System.String</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		/// <returns>A <see cref="VList{ViewJobSearch}"/> instance.</returns>
 		public virtual VList<ViewJobSearch> GetBySearchFilter(System.String keyword, System.Int32? siteId, System.Int32? advertiserId, System.Int32? currencyId, System.Decimal? salaryLowerBand, System.Decimal? salaryUpperBand, System.Int32? salaryTypeId, System.Int32? workTypeId, System.Int32? professionId, System.String roleId, System.Int32? countryId, System.Int32? locationId, System.String areaId, System.DateTime? dateFrom, System.Int32? pageIndex, System.Int32? pageSize, System.String orderBy, System.String jobTypeIds)
 		{
 			return GetBySearchFilter( keyword, siteId, advertiserId, currencyId, salaryLowerBand, salaryUpperBand, salaryTypeId, workTypeId, professionId, roleId, countryId, locationId, areaId, dateFrom, pageIndex, pageSize, orderBy, jobTypeIds, 0, defaultMaxRecords );
@@ -494,7 +496,7 @@ namespace JXTPortal
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		/// <returns>A <see cref="VList{ViewJobSearch}"/> instance.</returns>
 		public virtual VList<ViewJobSearch> GetBySearchFilter(System.String keyword, System.Int32? siteId, System.Int32? advertiserId, System.Int32? currencyId, System.Decimal? salaryLowerBand, System.Decimal? salaryUpperBand, System.Int32? salaryTypeId, System.Int32? workTypeId, System.Int32? professionId, System.String roleId, System.Int32? countryId, System.Int32? locationId, System.String areaId, System.DateTime? dateFrom, System.Int32? pageIndex, System.Int32? pageSize, System.String orderBy, System.String jobTypeIds, int start, int pageLength)
 		{
 			// throws security exception if not authorized
@@ -542,7 +544,7 @@ namespace JXTPortal
 		/// <param name="orderBy"> A <c>System.String</c> instance.</param>
 		/// <param name="pageSize"> A <c>System.Int32?</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		/// <returns>A <see cref="VList{ViewJobSearch}"/> instance.</returns>
 		public virtual VList<ViewJobSearch> GetPremiumSearchFilter(System.Int32? siteId, System.Int32? professionId, System.String roleId, System.String orderBy, System.Int32? pageSize)
 		{
 			return GetPremiumSearchFilter( siteId, professionId, roleId, orderBy, pageSize, 0, defaultMaxRecords );
@@ -559,7 +561,7 @@ namespace JXTPortal
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		/// <returns>A <see cref="VList{ViewJobSearch}"/> instance.</returns>
 		public virtual VList<ViewJobSearch> GetPremiumSearchFilter(System.Int32? siteId, System.Int32? professionId, System.String roleId, System.String orderBy, System.Int32? pageSize, int start, int pageLength)
 		{
 			// throws security exception if not authorized
@@ -676,7 +678,7 @@ namespace JXTPortal
 		/// <param name="southWestLat"> A <c>System.Double?</c> instance.</param>
 		/// <param name="southWestLng"> A <c>System.Double?</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		/// <returns>A <see cref="VList{ViewJobSearch}"/> instance.</returns>
 		public virtual VList<ViewJobSearch> GetBySearchFilterGoogleMap(System.String keyword, System.Int32? siteId, System.Int32? advertiserId, System.Int32? currencyId, System.Decimal? salaryLowerBand, System.Decimal? salaryUpperBand, System.Int32? salaryTypeId, System.Int32? workTypeId, System.Int32? professionId, System.String roleId, System.Int32? countryId, System.Int32? locationId, System.String areaId, System.String orderBy, System.String jobTypeIds, System.Double? northEastLat, System.Double? northEastLng, System.Double? southWestLat, System.Double? southWestLng)
 		{
 			return GetBySearchFilterGoogleMap( keyword, siteId, advertiserId, currencyId, salaryLowerBand, salaryUpperBand, salaryTypeId, workTypeId, professionId, roleId, countryId, locationId, areaId, orderBy, jobTypeIds, northEastLat, northEastLng, southWestLat, southWestLng, 0, defaultMaxRecords );
@@ -707,7 +709,7 @@ namespace JXTPortal
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		/// <returns>A <see cref="VList{ViewJobSearch}"/> instance.</returns>
 		public virtual VList<ViewJobSearch> GetBySearchFilterGoogleMap(System.String keyword, System.Int32? siteId, System.Int32? advertiserId, System.Int32? currencyId, System.Decimal? salaryLowerBand, System.Decimal? salaryUpperBand, System.Int32? salaryTypeId, System.Int32? workTypeId, System.Int32? professionId, System.String roleId, System.Int32? countryId, System.Int32? locationId, System.String areaId, System.String orderBy, System.String jobTypeIds, System.Double? northEastLat, System.Double? northEastLng, System.Double? southWestLat, System.Double? southWestLng, int start, int pageLength)
 		{
 			// throws security exception if not authorized

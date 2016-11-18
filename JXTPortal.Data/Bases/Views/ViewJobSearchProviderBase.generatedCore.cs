@@ -45,7 +45,7 @@ namespace JXTPortal.Data.Bases
 		/// <param name="orderBy"> A <c>System.String</c> instance.</param>
 		/// <param name="jobTypeIds"> A <c>System.String</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		/// <returns>A <see cref="VList&lt;ViewJobSearch&gt;"/> instance.</returns>
 		public VList<ViewJobSearch> GetBySearchFilter(System.String keyword, System.Int32? siteId, System.Int32? advertiserId, System.Int32? currencyId, System.Decimal? salaryLowerBand, System.Decimal? salaryUpperBand, System.Int32? salaryTypeId, System.Int32? workTypeId, System.Int32? professionId, System.String roleId, System.Int32? countryId, System.Int32? locationId, System.String areaId, System.DateTime? dateFrom, System.Int32? pageIndex, System.Int32? pageSize, System.String orderBy, System.String jobTypeIds)
 		{
 			return GetBySearchFilter(null, 0, int.MaxValue , keyword, siteId, advertiserId, currencyId, salaryLowerBand, salaryUpperBand, salaryTypeId, workTypeId, professionId, roleId, countryId, locationId, areaId, dateFrom, pageIndex, pageSize, orderBy, jobTypeIds);
@@ -104,7 +104,7 @@ namespace JXTPortal.Data.Bases
 		/// <param name="jobTypeIds"> A <c>System.String</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		/// <returns>A <see cref="VList&lt;ViewJobSearch&gt;"/> instance.</returns>
 		public VList<ViewJobSearch> GetBySearchFilter(TransactionManager transactionManager, System.String keyword, System.Int32? siteId, System.Int32? advertiserId, System.Int32? currencyId, System.Decimal? salaryLowerBand, System.Decimal? salaryUpperBand, System.Int32? salaryTypeId, System.Int32? workTypeId, System.Int32? professionId, System.String roleId, System.Int32? countryId, System.Int32? locationId, System.String areaId, System.DateTime? dateFrom, System.Int32? pageIndex, System.Int32? pageSize, System.String orderBy, System.String jobTypeIds)
 		{
 			return GetBySearchFilter(transactionManager, 0, int.MaxValue , keyword, siteId, advertiserId, currencyId, salaryLowerBand, salaryUpperBand, salaryTypeId, workTypeId, professionId, roleId, countryId, locationId, areaId, dateFrom, pageIndex, pageSize, orderBy, jobTypeIds);
@@ -135,7 +135,7 @@ namespace JXTPortal.Data.Bases
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		/// <returns>A <see cref="VList&lt;ViewJobSearch&gt;"/> instance.</returns>
 		public abstract VList<ViewJobSearch> GetBySearchFilter(TransactionManager transactionManager, int start, int pageLength, System.String keyword, System.Int32? siteId, System.Int32? advertiserId, System.Int32? currencyId, System.Decimal? salaryLowerBand, System.Decimal? salaryUpperBand, System.Int32? salaryTypeId, System.Int32? workTypeId, System.Int32? professionId, System.String roleId, System.Int32? countryId, System.Int32? locationId, System.String areaId, System.DateTime? dateFrom, System.Int32? pageIndex, System.Int32? pageSize, System.String orderBy, System.String jobTypeIds);
 		
 		#endregion
@@ -152,7 +152,7 @@ namespace JXTPortal.Data.Bases
 		/// <param name="orderBy"> A <c>System.String</c> instance.</param>
 		/// <param name="pageSize"> A <c>System.Int32?</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		/// <returns>A <see cref="VList&lt;ViewJobSearch&gt;"/> instance.</returns>
 		public VList<ViewJobSearch> GetPremiumSearchFilter(System.Int32? siteId, System.Int32? professionId, System.String roleId, System.String orderBy, System.Int32? pageSize)
 		{
 			return GetPremiumSearchFilter(null, 0, int.MaxValue , siteId, professionId, roleId, orderBy, pageSize);
@@ -169,7 +169,7 @@ namespace JXTPortal.Data.Bases
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		/// <returns>A <see cref="VList&lt;ViewJobSearch&gt;"/> instance.</returns>
 		public VList<ViewJobSearch> GetPremiumSearchFilter(int start, int pageLength, System.Int32? siteId, System.Int32? professionId, System.String roleId, System.String orderBy, System.Int32? pageSize)
 		{
 			return GetPremiumSearchFilter(null, start, pageLength , siteId, professionId, roleId, orderBy, pageSize);
@@ -185,7 +185,7 @@ namespace JXTPortal.Data.Bases
 		/// <param name="pageSize"> A <c>System.Int32?</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		/// <returns>A <see cref="VList&lt;ViewJobSearch&gt;"/> instance.</returns>
 		public VList<ViewJobSearch> GetPremiumSearchFilter(TransactionManager transactionManager, System.Int32? siteId, System.Int32? professionId, System.String roleId, System.String orderBy, System.Int32? pageSize)
 		{
 			return GetPremiumSearchFilter(transactionManager, 0, int.MaxValue , siteId, professionId, roleId, orderBy, pageSize);
@@ -203,7 +203,7 @@ namespace JXTPortal.Data.Bases
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		/// <returns>A <see cref="VList&lt;ViewJobSearch&gt;"/> instance.</returns>
 		public abstract VList<ViewJobSearch> GetPremiumSearchFilter(TransactionManager transactionManager, int start, int pageLength, System.Int32? siteId, System.Int32? professionId, System.String roleId, System.String orderBy, System.Int32? pageSize);
 		
 		#endregion
@@ -282,7 +282,7 @@ namespace JXTPortal.Data.Bases
 		/// <param name="southWestLat"> A <c>System.Double?</c> instance.</param>
 		/// <param name="southWestLng"> A <c>System.Double?</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		/// <returns>A <see cref="VList&lt;ViewJobSearch&gt;"/> instance.</returns>
 		public VList<ViewJobSearch> GetBySearchFilterGoogleMap(System.String keyword, System.Int32? siteId, System.Int32? advertiserId, System.Int32? currencyId, System.Decimal? salaryLowerBand, System.Decimal? salaryUpperBand, System.Int32? salaryTypeId, System.Int32? workTypeId, System.Int32? professionId, System.String roleId, System.Int32? countryId, System.Int32? locationId, System.String areaId, System.String orderBy, System.String jobTypeIds, System.Double? northEastLat, System.Double? northEastLng, System.Double? southWestLat, System.Double? southWestLng)
 		{
 			return GetBySearchFilterGoogleMap(null, 0, int.MaxValue , keyword, siteId, advertiserId, currencyId, salaryLowerBand, salaryUpperBand, salaryTypeId, workTypeId, professionId, roleId, countryId, locationId, areaId, orderBy, jobTypeIds, northEastLat, northEastLng, southWestLat, southWestLng);
@@ -313,7 +313,7 @@ namespace JXTPortal.Data.Bases
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		/// <returns>A <see cref="VList&lt;ViewJobSearch&gt;"/> instance.</returns>
 		public VList<ViewJobSearch> GetBySearchFilterGoogleMap(int start, int pageLength, System.String keyword, System.Int32? siteId, System.Int32? advertiserId, System.Int32? currencyId, System.Decimal? salaryLowerBand, System.Decimal? salaryUpperBand, System.Int32? salaryTypeId, System.Int32? workTypeId, System.Int32? professionId, System.String roleId, System.Int32? countryId, System.Int32? locationId, System.String areaId, System.String orderBy, System.String jobTypeIds, System.Double? northEastLat, System.Double? northEastLng, System.Double? southWestLat, System.Double? southWestLng)
 		{
 			return GetBySearchFilterGoogleMap(null, start, pageLength , keyword, siteId, advertiserId, currencyId, salaryLowerBand, salaryUpperBand, salaryTypeId, workTypeId, professionId, roleId, countryId, locationId, areaId, orderBy, jobTypeIds, northEastLat, northEastLng, southWestLat, southWestLng);
@@ -343,7 +343,7 @@ namespace JXTPortal.Data.Bases
 		/// <param name="southWestLng"> A <c>System.Double?</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		/// <returns>A <see cref="VList&lt;ViewJobSearch&gt;"/> instance.</returns>
 		public VList<ViewJobSearch> GetBySearchFilterGoogleMap(TransactionManager transactionManager, System.String keyword, System.Int32? siteId, System.Int32? advertiserId, System.Int32? currencyId, System.Decimal? salaryLowerBand, System.Decimal? salaryUpperBand, System.Int32? salaryTypeId, System.Int32? workTypeId, System.Int32? professionId, System.String roleId, System.Int32? countryId, System.Int32? locationId, System.String areaId, System.String orderBy, System.String jobTypeIds, System.Double? northEastLat, System.Double? northEastLng, System.Double? southWestLat, System.Double? southWestLng)
 		{
 			return GetBySearchFilterGoogleMap(transactionManager, 0, int.MaxValue , keyword, siteId, advertiserId, currencyId, salaryLowerBand, salaryUpperBand, salaryTypeId, workTypeId, professionId, roleId, countryId, locationId, areaId, orderBy, jobTypeIds, northEastLat, northEastLng, southWestLat, southWestLng);
@@ -375,7 +375,7 @@ namespace JXTPortal.Data.Bases
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		/// <returns>A <see cref="VList&lt;ViewJobSearch&gt;"/> instance.</returns>
 		public abstract VList<ViewJobSearch> GetBySearchFilterGoogleMap(TransactionManager transactionManager, int start, int pageLength, System.String keyword, System.Int32? siteId, System.Int32? advertiserId, System.Int32? currencyId, System.Decimal? salaryLowerBand, System.Decimal? salaryUpperBand, System.Int32? salaryTypeId, System.Int32? workTypeId, System.Int32? professionId, System.String roleId, System.Int32? countryId, System.Int32? locationId, System.String areaId, System.String orderBy, System.String jobTypeIds, System.Double? northEastLat, System.Double? northEastLng, System.Double? southWestLat, System.Double? southWestLng);
 		
 		#endregion
@@ -645,6 +645,7 @@ namespace JXTPortal.Data.Bases
 					c.HasAdvertiserLogo = (Convert.IsDBNull(row["HasAdvertiserLogo"]))?(int)0:(System.Int32)row["HasAdvertiserLogo"];
 					c.CustomXml = (Convert.IsDBNull(row["CustomXML"]))?string.Empty:(System.String)row["CustomXML"];
 					c.Address = (Convert.IsDBNull(row["Address"]))?string.Empty:(System.String)row["Address"];
+					c.PublicTransport = (Convert.IsDBNull(row["PublicTransport"]))?string.Empty:(System.String)row["PublicTransport"];
 					c.AcceptChanges();
 					rows.Add(c);
 					pagelen -= 1;
@@ -752,7 +753,7 @@ namespace JXTPortal.Data.Bases
 					//entity.LocationId = (Convert.IsDBNull(reader["LocationID"]))?(int)0:(System.Int32)reader["LocationID"];
 					entity.AreaId = (System.Int32)reader[((int)ViewJobSearchColumn.AreaId)];
 					//entity.AreaId = (Convert.IsDBNull(reader["AreaID"]))?(int)0:(System.Int32)reader["AreaID"];
-					entity.CountryName = (System.String)reader[((int)ViewJobSearchColumn.CountryName)];
+					entity.CountryName = (reader.IsDBNull(((int)ViewJobSearchColumn.CountryName)))?null:(System.String)reader[((int)ViewJobSearchColumn.CountryName)];
 					//entity.CountryName = (Convert.IsDBNull(reader["CountryName"]))?string.Empty:(System.String)reader["CountryName"];
 					entity.LocationName = (reader.IsDBNull(((int)ViewJobSearchColumn.LocationName)))?null:(System.String)reader[((int)ViewJobSearchColumn.LocationName)];
 					//entity.LocationName = (Convert.IsDBNull(reader["LocationName"]))?string.Empty:(System.String)reader["LocationName"];
@@ -788,6 +789,8 @@ namespace JXTPortal.Data.Bases
 					//entity.CustomXml = (Convert.IsDBNull(reader["CustomXML"]))?string.Empty:(System.String)reader["CustomXML"];
 					entity.Address = (reader.IsDBNull(((int)ViewJobSearchColumn.Address)))?null:(System.String)reader[((int)ViewJobSearchColumn.Address)];
 					//entity.Address = (Convert.IsDBNull(reader["Address"]))?string.Empty:(System.String)reader["Address"];
+					entity.PublicTransport = (reader.IsDBNull(((int)ViewJobSearchColumn.PublicTransport)))?null:(System.String)reader[((int)ViewJobSearchColumn.PublicTransport)];
+					//entity.PublicTransport = (Convert.IsDBNull(reader["PublicTransport"]))?string.Empty:(System.String)reader["PublicTransport"];
 					entity.AcceptChanges();
 					entity.SuppressEntityEvents = false;
 					
@@ -878,7 +881,7 @@ namespace JXTPortal.Data.Bases
 			//entity.LocationId = (Convert.IsDBNull(reader["LocationID"]))?(int)0:(System.Int32)reader["LocationID"];
 			entity.AreaId = (System.Int32)reader[((int)ViewJobSearchColumn.AreaId)];
 			//entity.AreaId = (Convert.IsDBNull(reader["AreaID"]))?(int)0:(System.Int32)reader["AreaID"];
-			entity.CountryName = (System.String)reader[((int)ViewJobSearchColumn.CountryName)];
+			entity.CountryName = (reader.IsDBNull(((int)ViewJobSearchColumn.CountryName)))?null:(System.String)reader[((int)ViewJobSearchColumn.CountryName)];
 			//entity.CountryName = (Convert.IsDBNull(reader["CountryName"]))?string.Empty:(System.String)reader["CountryName"];
 			entity.LocationName = (reader.IsDBNull(((int)ViewJobSearchColumn.LocationName)))?null:(System.String)reader[((int)ViewJobSearchColumn.LocationName)];
 			//entity.LocationName = (Convert.IsDBNull(reader["LocationName"]))?string.Empty:(System.String)reader["LocationName"];
@@ -914,6 +917,8 @@ namespace JXTPortal.Data.Bases
 			//entity.CustomXml = (Convert.IsDBNull(reader["CustomXML"]))?string.Empty:(System.String)reader["CustomXML"];
 			entity.Address = (reader.IsDBNull(((int)ViewJobSearchColumn.Address)))?null:(System.String)reader[((int)ViewJobSearchColumn.Address)];
 			//entity.Address = (Convert.IsDBNull(reader["Address"]))?string.Empty:(System.String)reader["Address"];
+			entity.PublicTransport = (reader.IsDBNull(((int)ViewJobSearchColumn.PublicTransport)))?null:(System.String)reader[((int)ViewJobSearchColumn.PublicTransport)];
+			//entity.PublicTransport = (Convert.IsDBNull(reader["PublicTransport"]))?string.Empty:(System.String)reader["PublicTransport"];
 			reader.Close();
 	
 			entity.AcceptChanges();
@@ -982,6 +987,7 @@ namespace JXTPortal.Data.Bases
 			entity.HasAdvertiserLogo = (Convert.IsDBNull(dataRow["HasAdvertiserLogo"]))?(int)0:(System.Int32)dataRow["HasAdvertiserLogo"];
 			entity.CustomXml = (Convert.IsDBNull(dataRow["CustomXML"]))?string.Empty:(System.String)dataRow["CustomXML"];
 			entity.Address = (Convert.IsDBNull(dataRow["Address"]))?string.Empty:(System.String)dataRow["Address"];
+			entity.PublicTransport = (Convert.IsDBNull(dataRow["PublicTransport"]))?string.Empty:(System.String)dataRow["PublicTransport"];
 			entity.AcceptChanges();
 		}
 		*/

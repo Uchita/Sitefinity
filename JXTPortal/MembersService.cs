@@ -206,7 +206,7 @@ namespace JXTPortal
         /// <param name="emailAddress"></param>
         public Members GetBySiteIDExternalIDThenEmail(int siteID, string externalMemberID, string emailAddress)
         {
-            List<Members> membersWithExternalID = base.Find("siteID = " + siteID + " AND ExternalMemberID = " + externalMemberID).ToList();
+            List<Members> membersWithExternalID = base.Find("siteID = " + siteID + " AND ExternalMemberID = " + externalMemberID + " AND Status = 0").ToList();
 
             if (membersWithExternalID.Count() > 1)
                 throw new Exception("More than 1 member with the same external ID - " + externalMemberID);

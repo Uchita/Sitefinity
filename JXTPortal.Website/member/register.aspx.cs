@@ -8,6 +8,7 @@ using JXTPortal.Entities;
 using JXTPortal.Common;
 using System.Configuration;
 using JXTPortal.Client.Salesforce;
+using System.Text.RegularExpressions;
 
 namespace JXTPortal.Website.members
 {
@@ -161,6 +162,20 @@ namespace JXTPortal.Website.members
             this.ddlTitle.Items[6].Text = CommonFunction.GetResourceValue("LabelOther");
 
             validatorPhone.ErrorMessage = CommonFunction.GetResourceValue(validatorPhone.ErrorMessage);
+
+            rgvAddress.ErrorMessage = CommonFunction.GetResourceValue(rgvAddress.ErrorMessage);
+            rgvFirstname.ErrorMessage = CommonFunction.GetResourceValue(rgvFirstname.ErrorMessage);
+            rgvMailingAddress.ErrorMessage = CommonFunction.GetResourceValue(rgvMailingAddress.ErrorMessage);
+            rgvMailingPostcode.ErrorMessage = CommonFunction.GetResourceValue(rgvMailingPostcode.ErrorMessage);
+            rgvMailingState.ErrorMessage = CommonFunction.GetResourceValue(rgvMailingState.ErrorMessage);
+            rgvMailingSuburb.ErrorMessage = CommonFunction.GetResourceValue(rgvMailingSuburb.ErrorMessage);
+            rgvMultiLingualFirstname.ErrorMessage = CommonFunction.GetResourceValue(rgvMultiLingualFirstname.ErrorMessage);
+            rgvMultiLingualSurname.ErrorMessage = CommonFunction.GetResourceValue(rgvMultiLingualSurname.ErrorMessage);
+            rgvPostcode.ErrorMessage = CommonFunction.GetResourceValue(rgvPostcode.ErrorMessage);
+            rgvState.ErrorMessage = CommonFunction.GetResourceValue(rgvState.ErrorMessage);
+            rgvSuburb.ErrorMessage = CommonFunction.GetResourceValue(rgvSuburb.ErrorMessage);
+            rgvSurname.ErrorMessage = CommonFunction.GetResourceValue(rgvSurname.ErrorMessage);
+            rgvUsername.ErrorMessage = CommonFunction.GetResourceValue(rgvUsername.ErrorMessage);
         }
 
         private void LoadSiteProfession()
@@ -240,6 +255,26 @@ namespace JXTPortal.Website.members
             string js = "$(document).ready(function() { var el = document.getElementById(\"" + clientid + "\"); el.scrollIntoView(false); })";
 
             Page.ClientScript.RegisterClientScriptBlock(Page.GetType(), "focusJS", js, true);
+        }
+
+        private void ValidateInputsContainsInvalidCharacters()
+        {
+            Regex r = new Regex("^((?!<.*?>).)*$", RegexOptions.IgnoreCase);
+
+            if (!r.IsMatch(txtAddress.Text)) rgvAddress.IsValid = false;
+            if (!r.IsMatch(txtFirstName.Text)) rgvFirstname.IsValid = false;
+            if (!r.IsMatch(tbMailingAddress.Text)) rgvMailingAddress.IsValid = false;
+            if (!r.IsMatch(tbMailingPostcode.Text)) rgvMailingPostcode.IsValid = false;
+            if (!r.IsMatch(tbMailingState.Text)) rgvMailingState.IsValid = false;
+            if (!r.IsMatch(tbMailingSuburb.Text)) rgvMailingSuburb.IsValid = false;
+            if (!r.IsMatch(txtMultiLingualFirstname.Text)) rgvMultiLingualFirstname.IsValid = false;
+            if (!r.IsMatch(txtMultiLingualSurname.Text)) rgvMultiLingualSurname.IsValid = false;
+            if (!r.IsMatch(txtPostcode.Text)) rgvPostcode.IsValid = false;
+            if (!r.IsMatch(txtState.Text)) rgvState.IsValid = false;
+            if (!r.IsMatch(txtSuburb.Text)) rgvSuburb.IsValid = false;
+            if (!r.IsMatch(txtSurname.Text)) rgvSurname.IsValid = false;
+            if (!r.IsMatch(txtUsername.Text)) rgvUsername.IsValid = false;
+
         }
 
         #endregion
@@ -390,6 +425,8 @@ namespace JXTPortal.Website.members
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            ValidateInputsContainsInvalidCharacters();
+
             if (this.IsValid)
             {
                 using (JXTPortal.Entities.Members objMembers = new JXTPortal.Entities.Members())

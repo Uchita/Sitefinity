@@ -4416,4 +4416,8 @@ Your account has already been validated. Please proceed to &lt;a href="/member/l
     <value>{0} {1} {2} {3}</value>
     <comment>{0}{1}{2}{3}</comment>
   </data>
+  <data name="ValidateNoHTMLContent" xml:space="preserve">
+    <value>Cannot contain invalid content</value>
+    <comment>Cannot contain invalid content</comment>
+  </data>
 </root>

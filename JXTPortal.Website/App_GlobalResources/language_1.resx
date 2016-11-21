@@ -4424,4 +4424,8 @@ Your account has already been validated. Please proceed to &lt;a href="/member/l
     <value />
     <comment>(To be left empty)</comment>
   </data>
+  <data name="ValidateNoHTMLContent" xml:space="preserve">
+    <value>Cannot contain invalid content</value>
+    <comment>Cannot contain invalid content</comment>
+  </data>
 </root>

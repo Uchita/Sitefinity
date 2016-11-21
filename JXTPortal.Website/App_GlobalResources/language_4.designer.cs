@@ -9714,6 +9714,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot contain invalid content.
+        /// </summary>
+        internal static string ValidateNoHTMLContent {
+            get {
+                return ResourceManager.GetString("ValidateNoHTMLContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Accepts only numbers, spaces, &apos;+&apos;, &apos;(&apos; and &apos;)&apos;.
         /// </summary>
         internal static string ValidationPhoneNumbers {

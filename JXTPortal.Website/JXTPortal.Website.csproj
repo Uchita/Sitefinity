@@ -2758,6 +2758,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>language_13.resx</DependentUpon>
     </Compile>
+    <Compile Include="App_GlobalResources\language_5_Adecco.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>language_5_Adecco.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_GlobalResources\language_English_Test_Sample.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -4653,6 +4658,12 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>language_English_Test_Sample.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\language_5_Adecco.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>language_5_Adecco.designer.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSHARP.Targets" />

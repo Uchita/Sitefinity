@@ -11,6 +11,8 @@
     </ajaxToolkit:ToolkitScriptManager>--%>
     <asp:ScriptManager ID="scriptManager" runat="server" />
     <script type="text/javascript" src="/scripts/uni-form.jquery.js"></script>
+    <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="/scripts/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
 
@@ -234,6 +236,14 @@
                 </h3>
                 <asp:Panel ID="pnlFullRegistration" runat="server" Style="display: none;">
                     <div class="ctrlHolder">
+                        <asp:Label id="lbDOB" runat="server" AssociatedControlID="tbDOB">
+                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral13" runat="server" SetLanguageCode="LabelDateOfBirth" />
+                        </asp:Label>
+                        <asp:TextBox ID="tbDOB" runat="server" CssClass="textInput medium error" TabIndex="8"
+                            MaxLength="10" ClientIDMode="Static" />
+                            <asp:CustomValidator ID="cvDOB" runat="server" CssClass="fieldstar" SetFocusOnError="true" Display="Dynamic" OnServerValidate="cvDOB_ServerValidate"></asp:CustomValidator>
+                    </div>
+                    <div class="ctrlHolder">
                         <label id="Label2" runat="server" for="ctl00_ContentPlaceHolder1_txtTel">
                             <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral1" runat="server" SetLanguageCode="LabelTel" />
                         </label>
@@ -411,8 +421,7 @@
                         </label>
                         <asp:FileUpload ID="docInput" runat="server" CssClass="form-textbox2" TabIndex="24" />
                         <asp:CustomValidator ID="cvalDocument" runat="server" CssClass="fieldstar" ErrorMessage="CustomValidator"
-                            SetFocusOnError="true" Display="Dynamic" OnServerValidate="cvalDocument_ServerValidate"
-                            ValidationGroup="GroupMemberFilesValidation"></asp:CustomValidator>
+                            SetFocusOnError="true" Display="Dynamic" OnServerValidate="cvalDocument_ServerValidate"></asp:CustomValidator>
                     </div>
                     <div class="ctrlHolder">
                         <asp:Label ID="lbCoverLetter" runat="server" AssociatedControlID="fuCoverLetter">
@@ -420,8 +429,7 @@
                         </asp:Label>
                         <asp:FileUpload ID="fuCoverLetter" runat="server" CssClass="form-textbox2" TabIndex="24" />
                         <asp:CustomValidator ID="cvalCoverLetter" runat="server" CssClass="fieldstar" ErrorMessage="CustomValidator"
-                            SetFocusOnError="true" Display="Dynamic" OnServerValidate="cvalCoverLetter_ServerValidate"
-                            ValidationGroup="GroupMemberFilesValidation"></asp:CustomValidator>
+                            SetFocusOnError="true" Display="Dynamic" OnServerValidate="cvalCoverLetter_ServerValidate"></asp:CustomValidator>
                     </div>
                     <%--<div class="ctrlHolder">
                           
@@ -470,5 +478,20 @@
             }
 
         }
+
+        $(document).ready(function () {
+
+            var nowTemp = new Date();
+            var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate() + 1, 0, 0, 0, 0);
+
+            $('#tbDOB').datepicker({
+                format: '<%=DateFormat %>',
+                onRender: function (date) {
+                    return date.valueOf() >= now.valueOf() ? 'disabled' : '';
+                }
+            });
+
+
+        });
     </script>
 </asp:Content>

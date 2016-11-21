@@ -83,6 +83,10 @@ namespace JXTPortal.Website.members
             }
         }
 
+        protected string DateFormat
+        {
+            get { return SessionData.Site.DateFormat.ToLower(); }
+        }
         #endregion
 
         #region Page Event Handlers
@@ -406,11 +410,14 @@ namespace JXTPortal.Website.members
                 return;
             }
             else */
-            if (docInput.PostedFile != null && !CommonFunction.CheckExtension(docInput.PostedFile.FileName))
+            if (docInput.HasFile)
             {
-                args.IsValid = false;
-                this.cvalDocument.ErrorMessage = CommonFunction.GetResourceValue("ErrorFileExtension");
-                return;
+                if (!CommonFunction.CheckExtension(docInput.PostedFile.FileName))
+                {
+                    args.IsValid = false;
+                    this.cvalDocument.ErrorMessage = CommonFunction.GetResourceValue("ErrorFileExtension");
+                    return;
+                }
             }
             /*else if (CheckFileName == true)
             {
@@ -426,11 +433,14 @@ namespace JXTPortal.Website.members
 
         protected void cvalCoverLetter_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            if (fuCoverLetter.PostedFile != null && !CommonFunction.CheckExtension(fuCoverLetter.PostedFile.FileName))
+            if (fuCoverLetter.HasFile)
             {
-                args.IsValid = false;
-                this.cvalCoverLetter.ErrorMessage = CommonFunction.GetResourceValue("ErrorFileExtension");
-                return;
+                if (!CommonFunction.CheckExtension(fuCoverLetter.PostedFile.FileName))
+                {
+                    args.IsValid = false;
+                    this.cvalCoverLetter.ErrorMessage = CommonFunction.GetResourceValue("ErrorFileExtension");
+                    return;
+                }
             }
             else
             {
@@ -449,6 +459,13 @@ namespace JXTPortal.Website.members
             {
                 using (JXTPortal.Entities.Members objMembers = new JXTPortal.Entities.Members())
                 {
+                    DateTime dob = DateTime.Now;
+
+                    if (!string.IsNullOrWhiteSpace(tbDOB.Text))
+                    {
+                        DateTime.TryParseExact(tbDOB.Text, SessionData.Site.DateFormat, null, System.Globalization.DateTimeStyles.None, out dob);
+                    }
+
                     objMembers.SiteId = SessionData.Site.MasterSiteId;
                     objMembers.Username = CommonService.EncodeString(txtUsername.Text);
                     objMembers.Password = CommonService.EncryptMD5(txtPassword.Text);
@@ -458,6 +475,7 @@ namespace JXTPortal.Website.members
                     objMembers.Surname = CommonService.EncodeString(txtSurname.Text);
                     objMembers.MultiLingualFirstName = CommonService.EncodeString(txtMultiLingualFirstname.Text);
                     objMembers.MultiLingualSurame = CommonService.EncodeString(txtMultiLingualSurname.Text);
+                    objMembers.DateOfBirth = (!string.IsNullOrWhiteSpace(tbDOB.Text)) ? dob : (DateTime?)null;
                     objMembers.HomePhone = CommonService.EncodeString(txtTel.Text);
                     objMembers.Address1 = CommonService.EncodeString(txtAddress.Text);
                     objMembers.Suburb = CommonService.EncodeString(txtSuburb.Text);
@@ -588,6 +606,16 @@ namespace JXTPortal.Website.members
             }
         }
 
+        protected void cvDOB_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            DateTime dob = DateTime.Now;
+
+            if (!string.IsNullOrWhiteSpace(tbDOB.Text))
+            {
+                cvEmailAddress.ErrorMessage = CommonFunction.GetResourceValue("LabelInvalidDate");
+                args.IsValid = DateTime.TryParseExact(tbDOB.Text, SessionData.Site.DateFormat, null, System.Globalization.DateTimeStyles.None, out dob);
+            }
+        }
 
         #endregion
 

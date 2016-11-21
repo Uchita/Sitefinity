@@ -418,6 +418,42 @@ namespace JXTPortal.Website.members {
         protected global::System.Web.UI.WebControls.Panel pnlFullRegistration;
         
         /// <summary>
+        /// lbDOB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDOB;
+        
+        /// <summary>
+        /// UcLanguageLiteral13 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral13;
+        
+        /// <summary>
+        /// tbDOB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbDOB;
+        
+        /// <summary>
+        /// cvDOB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cvDOB;
+        
+        /// <summary>
         /// Label2 control.
         /// </summary>
         /// <remarks>

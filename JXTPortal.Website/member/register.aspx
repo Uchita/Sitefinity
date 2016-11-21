@@ -214,7 +214,7 @@
                     <JXTControl:ucLanguageLiteral ID="ltMemberFullRegister" runat="server" SetLanguageCode="LabelMemberFullRegister" />
                 </h3>
                 <asp:Panel ID="pnlFullRegistration" runat="server" Style="display: none;">
-                    <div class="ctrlHolder">
+                    <div class="ctrlHolder hidden">
                         <asp:Label id="lbDOB" runat="server" AssociatedControlID="tbDOB">
                             <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral13" runat="server" SetLanguageCode="LabelDateOfBirth" />
                         </asp:Label>

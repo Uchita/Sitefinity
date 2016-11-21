@@ -63,7 +63,9 @@
     <EmbeddedResource Include="Scripts\Script0001-KnowledgeBase.sql" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Scripts\Script0003-ViewJobSearch.sql" />
+    <EmbeddedResource Include="Scripts\Script0003-MoveBinaryToFTP.sql" />
+    <EmbeddedResource Include="Scripts\Script0004-MoveBinarySPUpdate.sql" />
+    <EmbeddedResource Include="Scripts\Script0005-ViewJobSearch.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

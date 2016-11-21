@@ -8431,7 +8431,8 @@ AS
 					[LastModifiedBy],
 					[Live],
 					[MobileEnabled],
-					[MobileUrl]
+					[MobileUrl],
+					[SiteAdminLogoUrl]
 				FROM
 					[dbo].[Sites]
 					
@@ -8515,7 +8516,7 @@ AS
 				EXEC sp_executesql @SQL
 
 				-- Return paged results
-				SELECT O.[SiteID], O.[SiteName], O.[SiteURL], O.[SiteDescription], O.[SiteAdminLogo], O.[LastModified], O.[LastModifiedBy], O.[Live], O.[MobileEnabled], O.[MobileUrl]
+				SELECT O.[SiteID], O.[SiteName], O.[SiteURL], O.[SiteDescription], O.[SiteAdminLogo], O.[LastModified], O.[LastModifiedBy], O.[Live], O.[MobileEnabled], O.[MobileUrl], O.[SiteAdminLogoUrl]
 				FROM
 				    [dbo].[Sites] O,
 				    #PageIndex PageIndex
@@ -8582,7 +8583,9 @@ CREATE PROCEDURE dbo.Sites_Insert
 
 	@MobileEnabled bit   ,
 
-	@MobileUrl varchar (255)  
+	@MobileUrl varchar (255)  ,
+
+	@SiteAdminLogoUrl nvarchar (1000)  
 )
 AS
 
@@ -8599,6 +8602,7 @@ AS
 					,[Live]
 					,[MobileEnabled]
 					,[MobileUrl]
+					,[SiteAdminLogoUrl]
 					)
 				VALUES
 					(
@@ -8611,6 +8615,7 @@ AS
 					,@Live
 					,@MobileEnabled
 					,@MobileUrl
+					,@SiteAdminLogoUrl
 					)
 				
 				-- Get the identity value
@@ -8664,7 +8669,9 @@ CREATE PROCEDURE dbo.Sites_Update
 
 	@MobileEnabled bit   ,
 
-	@MobileUrl varchar (255)  
+	@MobileUrl varchar (255)  ,
+
+	@SiteAdminLogoUrl nvarchar (1000)  
 )
 AS
 
@@ -8684,6 +8691,7 @@ AS
 					,[Live] = @Live
 					,[MobileEnabled] = @MobileEnabled
 					,[MobileUrl] = @MobileUrl
+					,[SiteAdminLogoUrl] = @SiteAdminLogoUrl
 				WHERE
 [SiteID] = @SiteId 
 				
@@ -8771,7 +8779,8 @@ AS
 					[LastModifiedBy],
 					[Live],
 					[MobileEnabled],
-					[MobileUrl]
+					[MobileUrl],
+					[SiteAdminLogoUrl]
 				FROM
 					[dbo].[Sites]
 				WHERE
@@ -8823,7 +8832,8 @@ AS
 					[LastModifiedBy],
 					[Live],
 					[MobileEnabled],
-					[MobileUrl]
+					[MobileUrl],
+					[SiteAdminLogoUrl]
 				FROM
 					[dbo].[Sites]
 				WHERE
@@ -8874,7 +8884,8 @@ AS
 					[LastModifiedBy],
 					[Live],
 					[MobileEnabled],
-					[MobileUrl]
+					[MobileUrl],
+					[SiteAdminLogoUrl]
 				FROM
 					[dbo].[Sites]
 				WHERE
@@ -8930,7 +8941,9 @@ CREATE PROCEDURE dbo.Sites_Find
 
 	@MobileEnabled bit   = null ,
 
-	@MobileUrl varchar (255)  = null 
+	@MobileUrl varchar (255)  = null ,
+
+	@SiteAdminLogoUrl nvarchar (1000)  = null 
 )
 AS
 
@@ -8949,6 +8962,7 @@ AS
 	, [Live]
 	, [MobileEnabled]
 	, [MobileUrl]
+	, [SiteAdminLogoUrl]
     FROM
 	[dbo].[Sites]
     WHERE 
@@ -8961,6 +8975,7 @@ AS
 	AND ([Live] = @Live OR @Live IS NULL)
 	AND ([MobileEnabled] = @MobileEnabled OR @MobileEnabled IS NULL)
 	AND ([MobileUrl] = @MobileUrl OR @MobileUrl IS NULL)
+	AND ([SiteAdminLogoUrl] = @SiteAdminLogoUrl OR @SiteAdminLogoUrl IS NULL)
 						
   END
   ELSE
@@ -8976,6 +8991,7 @@ AS
 	, [Live]
 	, [MobileEnabled]
 	, [MobileUrl]
+	, [SiteAdminLogoUrl]
     FROM
 	[dbo].[Sites]
     WHERE 
@@ -8988,6 +9004,7 @@ AS
 	OR ([Live] = @Live AND @Live is not null)
 	OR ([MobileEnabled] = @MobileEnabled AND @MobileEnabled is not null)
 	OR ([MobileUrl] = @MobileUrl AND @MobileUrl is not null)
+	OR ([SiteAdminLogoUrl] = @SiteAdminLogoUrl AND @SiteAdminLogoUrl is not null)
 	SELECT @@ROWCOUNT			
   END
 				
@@ -31983,7 +32000,7 @@ CREATE PROCEDURE dbo.SiteCountries_Insert
 
 	@CountryId int   ,
 
-	@SiteCountryName varchar (255)  ,
+	@SiteCountryName nvarchar (255)  ,
 
 	@SiteCountryFriendlyUrl varchar (255)  ,
 
@@ -32053,7 +32070,7 @@ CREATE PROCEDURE dbo.SiteCountries_Update
 
 	@CountryId int   ,
 
-	@SiteCountryName varchar (255)  ,
+	@SiteCountryName nvarchar (255)  ,
 
 	@SiteCountryFriendlyUrl varchar (255)  ,
 
@@ -32355,7 +32372,7 @@ CREATE PROCEDURE dbo.SiteCountries_Find
 
 	@CountryId int   = null ,
 
-	@SiteCountryName varchar (255)  = null ,
+	@SiteCountryName nvarchar (255)  = null ,
 
 	@SiteCountryFriendlyUrl varchar (255)  = null ,
 
@@ -32447,7 +32464,8 @@ AS
 					[SiteLanguageID],
 					[SiteID],
 					[LanguageID],
-					[SiteLanguageName]
+					[SiteLanguageName],
+					[ResourceFileName]
 				FROM
 					[dbo].[SiteLanguages]
 					
@@ -32531,7 +32549,7 @@ AS
 				EXEC sp_executesql @SQL
 
 				-- Return paged results
-				SELECT O.[SiteLanguageID], O.[SiteID], O.[LanguageID], O.[SiteLanguageName]
+				SELECT O.[SiteLanguageID], O.[SiteID], O.[LanguageID], O.[SiteLanguageName], O.[ResourceFileName]
 				FROM
 				    [dbo].[SiteLanguages] O,
 				    #PageIndex PageIndex
@@ -32586,7 +32604,9 @@ CREATE PROCEDURE dbo.SiteLanguages_Insert
 
 	@LanguageId int   ,
 
-	@SiteLanguageName nvarchar (255)  
+	@SiteLanguageName nvarchar (255)  ,
+
+	@ResourceFileName nvarchar (512)  
 )
 AS
 
@@ -32597,12 +32617,14 @@ AS
 					[SiteID]
 					,[LanguageID]
 					,[SiteLanguageName]
+					,[ResourceFileName]
 					)
 				VALUES
 					(
 					@SiteId
 					,@LanguageId
 					,@SiteLanguageName
+					,@ResourceFileName
 					)
 				
 				-- Get the identity value
@@ -32644,7 +32666,9 @@ CREATE PROCEDURE dbo.SiteLanguages_Update
 
 	@LanguageId int   ,
 
-	@SiteLanguageName nvarchar (255)  
+	@SiteLanguageName nvarchar (255)  ,
+
+	@ResourceFileName nvarchar (512)  
 )
 AS
 
@@ -32658,6 +32682,7 @@ AS
 					[SiteID] = @SiteId
 					,[LanguageID] = @LanguageId
 					,[SiteLanguageName] = @SiteLanguageName
+					,[ResourceFileName] = @ResourceFileName
 				WHERE
 [SiteLanguageID] = @SiteLanguageId 
 				
@@ -32739,7 +32764,8 @@ AS
 					[SiteLanguageID],
 					[SiteID],
 					[LanguageID],
-					[SiteLanguageName]
+					[SiteLanguageName],
+					[ResourceFileName]
 				FROM
 					[dbo].[SiteLanguages]
 				WHERE
@@ -32787,7 +32813,8 @@ AS
 					[SiteLanguageID],
 					[SiteID],
 					[LanguageID],
-					[SiteLanguageName]
+					[SiteLanguageName],
+					[ResourceFileName]
 				FROM
 					[dbo].[SiteLanguages]
 				WHERE
@@ -32835,7 +32862,8 @@ AS
 					[SiteLanguageID],
 					[SiteID],
 					[LanguageID],
-					[SiteLanguageName]
+					[SiteLanguageName],
+					[ResourceFileName]
 				FROM
 					[dbo].[SiteLanguages]
 				WHERE
@@ -32881,7 +32909,8 @@ AS
 					[SiteLanguageID],
 					[SiteID],
 					[LanguageID],
-					[SiteLanguageName]
+					[SiteLanguageName],
+					[ResourceFileName]
 				FROM
 					[dbo].[SiteLanguages]
 				WHERE
@@ -32925,7 +32954,9 @@ CREATE PROCEDURE dbo.SiteLanguages_Find
 
 	@LanguageId int   = null ,
 
-	@SiteLanguageName nvarchar (255)  = null 
+	@SiteLanguageName nvarchar (255)  = null ,
+
+	@ResourceFileName nvarchar (512)  = null 
 )
 AS
 
@@ -32938,6 +32969,7 @@ AS
 	, [SiteID]
 	, [LanguageID]
 	, [SiteLanguageName]
+	, [ResourceFileName]
     FROM
 	[dbo].[SiteLanguages]
     WHERE 
@@ -32945,6 +32977,7 @@ AS
 	AND ([SiteID] = @SiteId OR @SiteId IS NULL)
 	AND ([LanguageID] = @LanguageId OR @LanguageId IS NULL)
 	AND ([SiteLanguageName] = @SiteLanguageName OR @SiteLanguageName IS NULL)
+	AND ([ResourceFileName] = @ResourceFileName OR @ResourceFileName IS NULL)
 						
   END
   ELSE
@@ -32954,6 +32987,7 @@ AS
 	, [SiteID]
 	, [LanguageID]
 	, [SiteLanguageName]
+	, [ResourceFileName]
     FROM
 	[dbo].[SiteLanguages]
     WHERE 
@@ -32961,6 +32995,7 @@ AS
 	OR ([SiteID] = @SiteId AND @SiteId is not null)
 	OR ([LanguageID] = @LanguageId AND @LanguageId is not null)
 	OR ([SiteLanguageName] = @SiteLanguageName AND @SiteLanguageName is not null)
+	OR ([ResourceFileName] = @ResourceFileName AND @ResourceFileName is not null)
 	SELECT @@ROWCOUNT			
   END
 				
@@ -34330,7 +34365,8 @@ AS
 					[AdvertiserJobTemplateLogoID],
 					[AdvertiserID],
 					[JobLogoName],
-					[JobTemplateLogo]
+					[JobTemplateLogo],
+					[JobTemplateLogoUrl]
 				FROM
 					[dbo].[AdvertiserJobTemplateLogo]
 					
@@ -34414,7 +34450,7 @@ AS
 				EXEC sp_executesql @SQL
 
 				-- Return paged results
-				SELECT O.[AdvertiserJobTemplateLogoID], O.[AdvertiserID], O.[JobLogoName], O.[JobTemplateLogo]
+				SELECT O.[AdvertiserJobTemplateLogoID], O.[AdvertiserID], O.[JobLogoName], O.[JobTemplateLogo], O.[JobTemplateLogoUrl]
 				FROM
 				    [dbo].[AdvertiserJobTemplateLogo] O,
 				    #PageIndex PageIndex
@@ -34469,7 +34505,9 @@ CREATE PROCEDURE dbo.AdvertiserJobTemplateLogo_Insert
 
 	@JobLogoName nvarchar (255)  ,
 
-	@JobTemplateLogo image   
+	@JobTemplateLogo image   ,
+
+	@JobTemplateLogoUrl nvarchar (1000)  
 )
 AS
 
@@ -34480,12 +34518,14 @@ AS
 					[AdvertiserID]
 					,[JobLogoName]
 					,[JobTemplateLogo]
+					,[JobTemplateLogoUrl]
 					)
 				VALUES
 					(
 					@AdvertiserId
 					,@JobLogoName
 					,@JobTemplateLogo
+					,@JobTemplateLogoUrl
 					)
 				
 				-- Get the identity value
@@ -34527,7 +34567,9 @@ CREATE PROCEDURE dbo.AdvertiserJobTemplateLogo_Update
 
 	@JobLogoName nvarchar (255)  ,
 
-	@JobTemplateLogo image   
+	@JobTemplateLogo image   ,
+
+	@JobTemplateLogoUrl nvarchar (1000)  
 )
 AS
 
@@ -34541,6 +34583,7 @@ AS
 					[AdvertiserID] = @AdvertiserId
 					,[JobLogoName] = @JobLogoName
 					,[JobTemplateLogo] = @JobTemplateLogo
+					,[JobTemplateLogoUrl] = @JobTemplateLogoUrl
 				WHERE
 [AdvertiserJobTemplateLogoID] = @AdvertiserJobTemplateLogoId 
 				
@@ -34622,7 +34665,8 @@ AS
 					[AdvertiserJobTemplateLogoID],
 					[AdvertiserID],
 					[JobLogoName],
-					[JobTemplateLogo]
+					[JobTemplateLogo],
+					[JobTemplateLogoUrl]
 				FROM
 					[dbo].[AdvertiserJobTemplateLogo]
 				WHERE
@@ -34668,7 +34712,8 @@ AS
 					[AdvertiserJobTemplateLogoID],
 					[AdvertiserID],
 					[JobLogoName],
-					[JobTemplateLogo]
+					[JobTemplateLogo],
+					[JobTemplateLogoUrl]
 				FROM
 					[dbo].[AdvertiserJobTemplateLogo]
 				WHERE
@@ -34712,7 +34757,9 @@ CREATE PROCEDURE dbo.AdvertiserJobTemplateLogo_Find
 
 	@JobLogoName nvarchar (255)  = null ,
 
-	@JobTemplateLogo image   = null 
+	@JobTemplateLogo image   = null ,
+
+	@JobTemplateLogoUrl nvarchar (1000)  = null 
 )
 AS
 
@@ -34725,12 +34772,14 @@ AS
 	, [AdvertiserID]
 	, [JobLogoName]
 	, [JobTemplateLogo]
+	, [JobTemplateLogoUrl]
     FROM
 	[dbo].[AdvertiserJobTemplateLogo]
     WHERE 
 	 ([AdvertiserJobTemplateLogoID] = @AdvertiserJobTemplateLogoId OR @AdvertiserJobTemplateLogoId IS NULL)
 	AND ([AdvertiserID] = @AdvertiserId OR @AdvertiserId IS NULL)
 	AND ([JobLogoName] = @JobLogoName OR @JobLogoName IS NULL)
+	AND ([JobTemplateLogoUrl] = @JobTemplateLogoUrl OR @JobTemplateLogoUrl IS NULL)
 						
   END
   ELSE
@@ -34740,12 +34789,14 @@ AS
 	, [AdvertiserID]
 	, [JobLogoName]
 	, [JobTemplateLogo]
+	, [JobTemplateLogoUrl]
     FROM
 	[dbo].[AdvertiserJobTemplateLogo]
     WHERE 
 	 ([AdvertiserJobTemplateLogoID] = @AdvertiserJobTemplateLogoId AND @AdvertiserJobTemplateLogoId is not null)
 	OR ([AdvertiserID] = @AdvertiserId AND @AdvertiserId is not null)
 	OR ([JobLogoName] = @JobLogoName AND @JobLogoName is not null)
+	OR ([JobTemplateLogoUrl] = @JobTemplateLogoUrl AND @JobTemplateLogoUrl is not null)
 	SELECT @@ROWCOUNT			
   END
 				
@@ -35276,7 +35327,8 @@ AS
 					[MemberFileContent],
 					[MemberFileTitle],
 					[LastModifiedDate],
-					[DocumentTypeID]
+					[DocumentTypeID],
+					[MemberFileUrl]
 				FROM
 					[dbo].[MemberFiles]
 					
@@ -35360,7 +35412,7 @@ AS
 				EXEC sp_executesql @SQL
 
 				-- Return paged results
-				SELECT O.[MemberFileID], O.[MemberID], O.[MemberFileTypeID], O.[MemberFileName], O.[MemberFileSearchExtension], O.[MemberFileContent], O.[MemberFileTitle], O.[LastModifiedDate], O.[DocumentTypeID]
+				SELECT O.[MemberFileID], O.[MemberID], O.[MemberFileTypeID], O.[MemberFileName], O.[MemberFileSearchExtension], O.[MemberFileContent], O.[MemberFileTitle], O.[LastModifiedDate], O.[DocumentTypeID], O.[MemberFileUrl]
 				FROM
 				    [dbo].[MemberFiles] O,
 				    #PageIndex PageIndex
@@ -35425,7 +35477,9 @@ CREATE PROCEDURE dbo.MemberFiles_Insert
 
 	@LastModifiedDate datetime   ,
 
-	@DocumentTypeId int   
+	@DocumentTypeId int   ,
+
+	@MemberFileUrl nvarchar (1000)  
 )
 AS
 
@@ -35441,6 +35495,7 @@ AS
 					,[MemberFileTitle]
 					,[LastModifiedDate]
 					,[DocumentTypeID]
+					,[MemberFileUrl]
 					)
 				VALUES
 					(
@@ -35452,6 +35507,7 @@ AS
 					,@MemberFileTitle
 					,@LastModifiedDate
 					,@DocumentTypeId
+					,@MemberFileUrl
 					)
 				
 				-- Get the identity value
@@ -35503,7 +35559,9 @@ CREATE PROCEDURE dbo.MemberFiles_Update
 
 	@LastModifiedDate datetime   ,
 
-	@DocumentTypeId int   
+	@DocumentTypeId int   ,
+
+	@MemberFileUrl nvarchar (1000)  
 )
 AS
 
@@ -35522,6 +35580,7 @@ AS
 					,[MemberFileTitle] = @MemberFileTitle
 					,[LastModifiedDate] = @LastModifiedDate
 					,[DocumentTypeID] = @DocumentTypeId
+					,[MemberFileUrl] = @MemberFileUrl
 				WHERE
 [MemberFileID] = @MemberFileId 
 				
@@ -35608,7 +35667,8 @@ AS
 					[MemberFileContent],
 					[MemberFileTitle],
 					[LastModifiedDate],
-					[DocumentTypeID]
+					[DocumentTypeID],
+					[MemberFileUrl]
 				FROM
 					[dbo].[MemberFiles]
 				WHERE
@@ -35661,7 +35721,8 @@ AS
 					[MemberFileContent],
 					[MemberFileTitle],
 					[LastModifiedDate],
-					[DocumentTypeID]
+					[DocumentTypeID],
+					[MemberFileUrl]
 				FROM
 					[dbo].[MemberFiles]
 				WHERE
@@ -35712,7 +35773,8 @@ AS
 					[MemberFileContent],
 					[MemberFileTitle],
 					[LastModifiedDate],
-					[DocumentTypeID]
+					[DocumentTypeID],
+					[MemberFileUrl]
 				FROM
 					[dbo].[MemberFiles]
 				WHERE
@@ -35766,7 +35828,9 @@ CREATE PROCEDURE dbo.MemberFiles_Find
 
 	@LastModifiedDate datetime   = null ,
 
-	@DocumentTypeId int   = null 
+	@DocumentTypeId int   = null ,
+
+	@MemberFileUrl nvarchar (1000)  = null 
 )
 AS
 
@@ -35784,6 +35848,7 @@ AS
 	, [MemberFileTitle]
 	, [LastModifiedDate]
 	, [DocumentTypeID]
+	, [MemberFileUrl]
     FROM
 	[dbo].[MemberFiles]
     WHERE 
@@ -35795,6 +35860,7 @@ AS
 	AND ([MemberFileTitle] = @MemberFileTitle OR @MemberFileTitle IS NULL)
 	AND ([LastModifiedDate] = @LastModifiedDate OR @LastModifiedDate IS NULL)
 	AND ([DocumentTypeID] = @DocumentTypeId OR @DocumentTypeId IS NULL)
+	AND ([MemberFileUrl] = @MemberFileUrl OR @MemberFileUrl IS NULL)
 						
   END
   ELSE
@@ -35809,6 +35875,7 @@ AS
 	, [MemberFileTitle]
 	, [LastModifiedDate]
 	, [DocumentTypeID]
+	, [MemberFileUrl]
     FROM
 	[dbo].[MemberFiles]
     WHERE 
@@ -35820,6 +35887,7 @@ AS
 	OR ([MemberFileTitle] = @MemberFileTitle AND @MemberFileTitle is not null)
 	OR ([LastModifiedDate] = @LastModifiedDate AND @LastModifiedDate is not null)
 	OR ([DocumentTypeID] = @DocumentTypeId AND @DocumentTypeId is not null)
+	OR ([MemberFileUrl] = @MemberFileUrl AND @MemberFileUrl is not null)
 	SELECT @@ROWCOUNT			
   END
 				
@@ -42830,7 +42898,8 @@ AS
 					[LastModified],
 					[Sequence],
 					[LastName],
-					[ConsultantsXML]
+					[ConsultantsXML],
+					[ConsultantImageUrl]
 				FROM
 					[dbo].[Consultants]
 					
@@ -42914,7 +42983,7 @@ AS
 				EXEC sp_executesql @SQL
 
 				-- Return paged results
-				SELECT O.[ConsultantID], O.[SiteID], O.[LanguageID], O.[Title], O.[FirstName], O.[Email], O.[Phone], O.[Mobile], O.[PositionTitle], O.[OfficeLocation], O.[Categories], O.[Location], O.[FriendlyURL], O.[ShortDescription], O.[Testimonial], O.[FullDescription], O.[ConsultantData], O.[LinkedInURL], O.[TwitterURL], O.[FacebookURL], O.[GoogleURL], O.[Link], O.[WechatURL], O.[FeaturedTeamMember], O.[ImageURL], O.[VideoURL], O.[BlogRSS], O.[NewsRSS], O.[JobRSS], O.[TestimonialsRSS], O.[Valid], O.[MetaTitle], O.[MetaDescription], O.[MetaKeywords], O.[LastModifiedBy], O.[LastModified], O.[Sequence], O.[LastName], O.[ConsultantsXML]
+				SELECT O.[ConsultantID], O.[SiteID], O.[LanguageID], O.[Title], O.[FirstName], O.[Email], O.[Phone], O.[Mobile], O.[PositionTitle], O.[OfficeLocation], O.[Categories], O.[Location], O.[FriendlyURL], O.[ShortDescription], O.[Testimonial], O.[FullDescription], O.[ConsultantData], O.[LinkedInURL], O.[TwitterURL], O.[FacebookURL], O.[GoogleURL], O.[Link], O.[WechatURL], O.[FeaturedTeamMember], O.[ImageURL], O.[VideoURL], O.[BlogRSS], O.[NewsRSS], O.[JobRSS], O.[TestimonialsRSS], O.[Valid], O.[MetaTitle], O.[MetaDescription], O.[MetaKeywords], O.[LastModifiedBy], O.[LastModified], O.[Sequence], O.[LastName], O.[ConsultantsXML], O.[ConsultantImageUrl]
 				FROM
 				    [dbo].[Consultants] O,
 				    #PageIndex PageIndex
@@ -43039,7 +43108,9 @@ CREATE PROCEDURE dbo.Consultants_Insert
 
 	@LastName nvarchar (512)  ,
 
-	@ConsultantsXml nvarchar (MAX)  
+	@ConsultantsXml nvarchar (MAX)  ,
+
+	@ConsultantImageUrl nvarchar (1000)  
 )
 AS
 
@@ -43085,6 +43156,7 @@ AS
 					,[Sequence]
 					,[LastName]
 					,[ConsultantsXML]
+					,[ConsultantImageUrl]
 					)
 				VALUES
 					(
@@ -43126,6 +43198,7 @@ AS
 					,@Sequence
 					,@LastName
 					,@ConsultantsXml
+					,@ConsultantImageUrl
 					)
 				
 				-- Get the identity value
@@ -43237,7 +43310,9 @@ CREATE PROCEDURE dbo.Consultants_Update
 
 	@LastName nvarchar (512)  ,
 
-	@ConsultantsXml nvarchar (MAX)  
+	@ConsultantsXml nvarchar (MAX)  ,
+
+	@ConsultantImageUrl nvarchar (1000)  
 )
 AS
 
@@ -43286,6 +43361,7 @@ AS
 					,[Sequence] = @Sequence
 					,[LastName] = @LastName
 					,[ConsultantsXML] = @ConsultantsXml
+					,[ConsultantImageUrl] = @ConsultantImageUrl
 				WHERE
 [ConsultantID] = @ConsultantId 
 				
@@ -43402,7 +43478,8 @@ AS
 					[LastModified],
 					[Sequence],
 					[LastName],
-					[ConsultantsXML]
+					[ConsultantsXML],
+					[ConsultantImageUrl]
 				FROM
 					[dbo].[Consultants]
 				WHERE
@@ -43483,7 +43560,8 @@ AS
 					[LastModified],
 					[Sequence],
 					[LastName],
-					[ConsultantsXML]
+					[ConsultantsXML],
+					[ConsultantImageUrl]
 				FROM
 					[dbo].[Consultants]
 				WHERE
@@ -43597,7 +43675,9 @@ CREATE PROCEDURE dbo.Consultants_Find
 
 	@LastName nvarchar (512)  = null ,
 
-	@ConsultantsXml nvarchar (MAX)  = null 
+	@ConsultantsXml nvarchar (MAX)  = null ,
+
+	@ConsultantImageUrl nvarchar (1000)  = null 
 )
 AS
 
@@ -43645,6 +43725,7 @@ AS
 	, [Sequence]
 	, [LastName]
 	, [ConsultantsXML]
+	, [ConsultantImageUrl]
     FROM
 	[dbo].[Consultants]
     WHERE 
@@ -43686,6 +43767,7 @@ AS
 	AND ([Sequence] = @Sequence OR @Sequence IS NULL)
 	AND ([LastName] = @LastName OR @LastName IS NULL)
 	AND ([ConsultantsXML] = @ConsultantsXml OR @ConsultantsXml IS NULL)
+	AND ([ConsultantImageUrl] = @ConsultantImageUrl OR @ConsultantImageUrl IS NULL)
 						
   END
   ELSE
@@ -43730,6 +43812,7 @@ AS
 	, [Sequence]
 	, [LastName]
 	, [ConsultantsXML]
+	, [ConsultantImageUrl]
     FROM
 	[dbo].[Consultants]
     WHERE 
@@ -43771,6 +43854,7 @@ AS
 	OR ([Sequence] = @Sequence AND @Sequence is not null)
 	OR ([LastName] = @LastName AND @LastName is not null)
 	OR ([ConsultantsXML] = @ConsultantsXml AND @ConsultantsXml is not null)
+	OR ([ConsultantImageUrl] = @ConsultantImageUrl AND @ConsultantImageUrl is not null)
 	SELECT @@ROWCOUNT			
   END
 				
@@ -48380,7 +48464,8 @@ AS
 					[NominatedCompanyLastName],
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
-					[PreferredContactMethod]
+					[PreferredContactMethod],
+					[AdvertiserLogoUrl]
 				FROM
 					[dbo].[Advertisers]
 					
@@ -48464,7 +48549,7 @@ AS
 				EXEC sp_executesql @SQL
 
 				-- Return paged results
-				SELECT O.[AdvertiserID], O.[SiteID], O.[AdvertiserAccountTypeID], O.[AdvertiserBusinessTypeID], O.[AdvertiserAccountStatusID], O.[CompanyName], O.[BusinessNumber], O.[StreetAddress1], O.[StreetAddress2], O.[LastModified], O.[LastModifiedBy], O.[PostalAddress1], O.[PostalAddress2], O.[WebAddress], O.[NoOfEmployees], O.[FirstApprovedDate], O.[Profile], O.[CharityNumber], O.[SearchField], O.[FreeTrialStartDate], O.[FreeTrialEndDate], O.[AccountsPayableEmail], O.[RequireLogonForExternalApplication], O.[AdvertiserLogo], O.[LinkedInLogo], O.[LinkedInCompanyId], O.[LinkedInEmail], O.[RegisterDate], O.[ExternalAdvertiserID], O.[VideoLink], O.[Industry], O.[NominatedCompanyRole], O.[NominatedCompanyFirstName], O.[NominatedCompanyLastName], O.[NominatedCompanyEmailAddress], O.[NominatedCompanyPhone], O.[PreferredContactMethod]
+				SELECT O.[AdvertiserID], O.[SiteID], O.[AdvertiserAccountTypeID], O.[AdvertiserBusinessTypeID], O.[AdvertiserAccountStatusID], O.[CompanyName], O.[BusinessNumber], O.[StreetAddress1], O.[StreetAddress2], O.[LastModified], O.[LastModifiedBy], O.[PostalAddress1], O.[PostalAddress2], O.[WebAddress], O.[NoOfEmployees], O.[FirstApprovedDate], O.[Profile], O.[CharityNumber], O.[SearchField], O.[FreeTrialStartDate], O.[FreeTrialEndDate], O.[AccountsPayableEmail], O.[RequireLogonForExternalApplication], O.[AdvertiserLogo], O.[LinkedInLogo], O.[LinkedInCompanyId], O.[LinkedInEmail], O.[RegisterDate], O.[ExternalAdvertiserID], O.[VideoLink], O.[Industry], O.[NominatedCompanyRole], O.[NominatedCompanyFirstName], O.[NominatedCompanyLastName], O.[NominatedCompanyEmailAddress], O.[NominatedCompanyPhone], O.[PreferredContactMethod], O.[AdvertiserLogoUrl]
 				FROM
 				    [dbo].[Advertisers] O,
 				    #PageIndex PageIndex
@@ -48585,7 +48670,9 @@ CREATE PROCEDURE dbo.Advertisers_Insert
 
 	@NominatedCompanyPhone varchar (40)  ,
 
-	@PreferredContactMethod int   
+	@PreferredContactMethod int   ,
+
+	@AdvertiserLogoUrl nvarchar (1000)  
 )
 AS
 
@@ -48629,6 +48716,7 @@ AS
 					,[NominatedCompanyEmailAddress]
 					,[NominatedCompanyPhone]
 					,[PreferredContactMethod]
+					,[AdvertiserLogoUrl]
 					)
 				VALUES
 					(
@@ -48668,6 +48756,7 @@ AS
 					,@NominatedCompanyEmailAddress
 					,@NominatedCompanyPhone
 					,@PreferredContactMethod
+					,@AdvertiserLogoUrl
 					)
 				
 				-- Get the identity value
@@ -48775,7 +48864,9 @@ CREATE PROCEDURE dbo.Advertisers_Update
 
 	@NominatedCompanyPhone varchar (40)  ,
 
-	@PreferredContactMethod int   
+	@PreferredContactMethod int   ,
+
+	@AdvertiserLogoUrl nvarchar (1000)  
 )
 AS
 
@@ -48822,6 +48913,7 @@ AS
 					,[NominatedCompanyEmailAddress] = @NominatedCompanyEmailAddress
 					,[NominatedCompanyPhone] = @NominatedCompanyPhone
 					,[PreferredContactMethod] = @PreferredContactMethod
+					,[AdvertiserLogoUrl] = @AdvertiserLogoUrl
 				WHERE
 [AdvertiserID] = @AdvertiserId 
 				
@@ -48936,7 +49028,8 @@ AS
 					[NominatedCompanyLastName],
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
-					[PreferredContactMethod]
+					[PreferredContactMethod],
+					[AdvertiserLogoUrl]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -49017,7 +49110,8 @@ AS
 					[NominatedCompanyLastName],
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
-					[PreferredContactMethod]
+					[PreferredContactMethod],
+					[AdvertiserLogoUrl]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -49098,7 +49192,8 @@ AS
 					[NominatedCompanyLastName],
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
-					[PreferredContactMethod]
+					[PreferredContactMethod],
+					[AdvertiserLogoUrl]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -49179,7 +49274,8 @@ AS
 					[NominatedCompanyLastName],
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
-					[PreferredContactMethod]
+					[PreferredContactMethod],
+					[AdvertiserLogoUrl]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -49260,7 +49356,8 @@ AS
 					[NominatedCompanyLastName],
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
-					[PreferredContactMethod]
+					[PreferredContactMethod],
+					[AdvertiserLogoUrl]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -49339,7 +49436,8 @@ AS
 					[NominatedCompanyLastName],
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
-					[PreferredContactMethod]
+					[PreferredContactMethod],
+					[AdvertiserLogoUrl]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -49417,6 +49515,7 @@ SELECT dbo.[Advertisers].[AdvertiserID]
        ,dbo.[Advertisers].[NominatedCompanyEmailAddress]
        ,dbo.[Advertisers].[NominatedCompanyPhone]
        ,dbo.[Advertisers].[PreferredContactMethod]
+       ,dbo.[Advertisers].[AdvertiserLogoUrl]
   FROM dbo.[Advertisers]
  WHERE EXISTS (SELECT 1
                  FROM dbo.[AdvertiserJobPricing] 
@@ -49527,7 +49626,9 @@ CREATE PROCEDURE dbo.Advertisers_Find
 
 	@NominatedCompanyPhone varchar (40)  = null ,
 
-	@PreferredContactMethod int   = null 
+	@PreferredContactMethod int   = null ,
+
+	@AdvertiserLogoUrl nvarchar (1000)  = null 
 )
 AS
 
@@ -49573,6 +49674,7 @@ AS
 	, [NominatedCompanyEmailAddress]
 	, [NominatedCompanyPhone]
 	, [PreferredContactMethod]
+	, [AdvertiserLogoUrl]
     FROM
 	[dbo].[Advertisers]
     WHERE 
@@ -49611,6 +49713,7 @@ AS
 	AND ([NominatedCompanyEmailAddress] = @NominatedCompanyEmailAddress OR @NominatedCompanyEmailAddress IS NULL)
 	AND ([NominatedCompanyPhone] = @NominatedCompanyPhone OR @NominatedCompanyPhone IS NULL)
 	AND ([PreferredContactMethod] = @PreferredContactMethod OR @PreferredContactMethod IS NULL)
+	AND ([AdvertiserLogoUrl] = @AdvertiserLogoUrl OR @AdvertiserLogoUrl IS NULL)
 						
   END
   ELSE
@@ -49653,6 +49756,7 @@ AS
 	, [NominatedCompanyEmailAddress]
 	, [NominatedCompanyPhone]
 	, [PreferredContactMethod]
+	, [AdvertiserLogoUrl]
     FROM
 	[dbo].[Advertisers]
     WHERE 
@@ -49691,6 +49795,7 @@ AS
 	OR ([NominatedCompanyEmailAddress] = @NominatedCompanyEmailAddress AND @NominatedCompanyEmailAddress is not null)
 	OR ([NominatedCompanyPhone] = @NominatedCompanyPhone AND @NominatedCompanyPhone is not null)
 	OR ([PreferredContactMethod] = @PreferredContactMethod AND @PreferredContactMethod is not null)
+	OR ([AdvertiserLogoUrl] = @AdvertiserLogoUrl AND @AdvertiserLogoUrl is not null)
 	SELECT @@ROWCOUNT			
   END
 				
@@ -54022,7 +54127,8 @@ AS
 					[LastModifiedBy],
 					[LastModified],
 					[JobTemplateLogo],
-					[AdvertiserID]
+					[AdvertiserID],
+					[JobTemplateLogoUrl]
 				FROM
 					[dbo].[JobTemplates]
 					
@@ -54106,7 +54212,7 @@ AS
 				EXEC sp_executesql @SQL
 
 				-- Return paged results
-				SELECT O.[JobTemplateID], O.[SiteID], O.[JobTemplateDescription], O.[JobTemplateHTML], O.[GlobalTemplate], O.[LastModifiedBy], O.[LastModified], O.[JobTemplateLogo], O.[AdvertiserID]
+				SELECT O.[JobTemplateID], O.[SiteID], O.[JobTemplateDescription], O.[JobTemplateHTML], O.[GlobalTemplate], O.[LastModifiedBy], O.[LastModified], O.[JobTemplateLogo], O.[AdvertiserID], O.[JobTemplateLogoUrl]
 				FROM
 				    [dbo].[JobTemplates] O,
 				    #PageIndex PageIndex
@@ -54171,7 +54277,9 @@ CREATE PROCEDURE dbo.JobTemplates_Insert
 
 	@JobTemplateLogo image   ,
 
-	@AdvertiserId int   
+	@AdvertiserId int   ,
+
+	@JobTemplateLogoUrl nvarchar (1000)  
 )
 AS
 
@@ -54187,6 +54295,7 @@ AS
 					,[LastModified]
 					,[JobTemplateLogo]
 					,[AdvertiserID]
+					,[JobTemplateLogoUrl]
 					)
 				VALUES
 					(
@@ -54198,6 +54307,7 @@ AS
 					,@LastModified
 					,@JobTemplateLogo
 					,@AdvertiserId
+					,@JobTemplateLogoUrl
 					)
 				
 				-- Get the identity value
@@ -54249,7 +54359,9 @@ CREATE PROCEDURE dbo.JobTemplates_Update
 
 	@JobTemplateLogo image   ,
 
-	@AdvertiserId int   
+	@AdvertiserId int   ,
+
+	@JobTemplateLogoUrl nvarchar (1000)  
 )
 AS
 
@@ -54268,6 +54380,7 @@ AS
 					,[LastModified] = @LastModified
 					,[JobTemplateLogo] = @JobTemplateLogo
 					,[AdvertiserID] = @AdvertiserId
+					,[JobTemplateLogoUrl] = @JobTemplateLogoUrl
 				WHERE
 [JobTemplateID] = @JobTemplateId 
 				
@@ -54354,7 +54467,8 @@ AS
 					[LastModifiedBy],
 					[LastModified],
 					[JobTemplateLogo],
-					[AdvertiserID]
+					[AdvertiserID],
+					[JobTemplateLogoUrl]
 				FROM
 					[dbo].[JobTemplates]
 				WHERE
@@ -54407,7 +54521,8 @@ AS
 					[LastModifiedBy],
 					[LastModified],
 					[JobTemplateLogo],
-					[AdvertiserID]
+					[AdvertiserID],
+					[JobTemplateLogoUrl]
 				FROM
 					[dbo].[JobTemplates]
 				WHERE
@@ -54460,7 +54575,8 @@ AS
 					[LastModifiedBy],
 					[LastModified],
 					[JobTemplateLogo],
-					[AdvertiserID]
+					[AdvertiserID],
+					[JobTemplateLogoUrl]
 				FROM
 					[dbo].[JobTemplates]
 				WHERE
@@ -54511,7 +54627,8 @@ AS
 					[LastModifiedBy],
 					[LastModified],
 					[JobTemplateLogo],
-					[AdvertiserID]
+					[AdvertiserID],
+					[JobTemplateLogoUrl]
 				FROM
 					[dbo].[JobTemplates]
 				WHERE
@@ -54565,7 +54682,9 @@ CREATE PROCEDURE dbo.JobTemplates_Find
 
 	@JobTemplateLogo image   = null ,
 
-	@AdvertiserId int   = null 
+	@AdvertiserId int   = null ,
+
+	@JobTemplateLogoUrl nvarchar (1000)  = null 
 )
 AS
 
@@ -54583,6 +54702,7 @@ AS
 	, [LastModified]
 	, [JobTemplateLogo]
 	, [AdvertiserID]
+	, [JobTemplateLogoUrl]
     FROM
 	[dbo].[JobTemplates]
     WHERE 
@@ -54593,6 +54713,7 @@ AS
 	AND ([LastModifiedBy] = @LastModifiedBy OR @LastModifiedBy IS NULL)
 	AND ([LastModified] = @LastModified OR @LastModified IS NULL)
 	AND ([AdvertiserID] = @AdvertiserId OR @AdvertiserId IS NULL)
+	AND ([JobTemplateLogoUrl] = @JobTemplateLogoUrl OR @JobTemplateLogoUrl IS NULL)
 						
   END
   ELSE
@@ -54607,6 +54728,7 @@ AS
 	, [LastModified]
 	, [JobTemplateLogo]
 	, [AdvertiserID]
+	, [JobTemplateLogoUrl]
     FROM
 	[dbo].[JobTemplates]
     WHERE 
@@ -54617,6 +54739,7 @@ AS
 	OR ([LastModifiedBy] = @LastModifiedBy AND @LastModifiedBy is not null)
 	OR ([LastModified] = @LastModified AND @LastModified is not null)
 	OR ([AdvertiserID] = @AdvertiserId AND @AdvertiserId is not null)
+	OR ([JobTemplateLogoUrl] = @JobTemplateLogoUrl AND @JobTemplateLogoUrl is not null)
 	SELECT @@ROWCOUNT			
   END
 				
@@ -69483,7 +69606,7 @@ AS
                         [LastModifiedByAdminUserId],
                         [JobItemTypeID],
                         [ApplicationMethod],
-                        [ApplicationURL],
+                        [ApplicationUrl],
                         [UploadMethod],
                         [Tags],
                         [JobTemplateID],
@@ -69513,6 +69636,7 @@ AS
                         [Profile],
                         [RequireLogonForExternalApplication],
                         [AdvertiserLogo],
+                        [AdvertiserLogoUrl],
                         [SiteWorkTypeName],
                         [CurrencySymbol],
                         [SalaryUpperBand],
@@ -69651,7 +69775,7 @@ AS
                         [LastModifiedByAdminUserId],
                         [JobItemTypeID],
                         [ApplicationMethod],
-                        [ApplicationURL],
+                        [ApplicationUrl],
                         [UploadMethod],
                         [Tags],
                         [JobTemplateID],
@@ -69681,6 +69805,7 @@ AS
                         [Profile],
                         [RequireLogonForExternalApplication],
                         [AdvertiserLogo],
+                        [AdvertiserLogoUrl],
                         [SiteWorkTypeName],
                         [CurrencySymbol],
                         [SalaryUpperBand],
@@ -69845,7 +69970,8 @@ AS
                         [AddressStatus],
                         [HasAdvertiserLogo],
                         [CustomXML],
-                        [Address]
+                        [Address],
+                        [PublicTransport]
                     FROM
                         [dbo].[ViewJobSearch]
                         

@@ -498,6 +498,7 @@ namespace JXTPortal.Website.usercontrols.job
             <span class='jxt-result-area'>{16}</span>
             <span class='jxt-result-salary'>{4}</span>
             <span class='jxt-result-worktype'>{5}</span>
+            <span class='jxt-result-publictransport hidden'>{17}</span>
         </div>
         <div class='description-text'>{6}</div>
         <div class='description-logo'>{7}</div>
@@ -525,7 +526,8 @@ namespace JXTPortal.Website.usercontrols.job
  CommonFunction.GetResourceValue("LinkButtonSendEmail"),
  IsMemberSavedJob(viewJobSearch.JobId) ? " job-saved" : string.Empty,
  SessionData.Member != null && SessionData.Member.MemberId > 0 ? string.Format(" onclick=\"return SaveJob(this, 'aSaveJob{0}',{0});\" ", viewJobSearch.JobId) : string.Empty,
- viewJobSearch.AreaName
+ viewJobSearch.AreaName,
+ viewJobSearch.PublicTransport
  );
 
 
@@ -613,6 +615,7 @@ namespace JXTPortal.Website.usercontrols.job
             <span class='jxt-result-area'>{17}</span>
             <span class='jxt-result-salary'>{4}</span>
             <span class='jxt-result-worktype'>{5}</span>
+            <span class='jxt-result-publictransport hidden'>{18}</span>
         </div>
         <div class='description-text'>{6}</div>
         <div class='description-logo'>{7}</div>
@@ -641,7 +644,8 @@ namespace JXTPortal.Website.usercontrols.job
  IsMemberSavedJob(viewJobSearch.JobId) ? " job-saved" : string.Empty,
  SessionData.Member != null && SessionData.Member.MemberId > 0 ? string.Format(" onclick=\"return SaveJob(this, 'aSaveJob{0}',{0});\" ", viewJobSearch.JobId) : string.Empty,
  (viewJobSearch.SiteId == SessionData.Site.SiteId && viewJobSearch.JobItemTypeId == (int)PortalEnums.Jobs.JobItemType.StandOut ? " jxt-standout-job" : string.Empty),  // Show as Standout only on the created site.
- viewJobSearch.AreaName
+ viewJobSearch.AreaName,
+ viewJobSearch.PublicTransport
  );
 
 

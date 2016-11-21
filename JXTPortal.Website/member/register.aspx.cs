@@ -16,6 +16,8 @@ namespace JXTPortal.Website.members
     {
         #region Properties
 
+        private const string INVALID_CONTENT_REGEX = "^((?!<.*?>).)*$";
+
         private MembersService _membersService = null;
         private MembersService MembersService
         {
@@ -163,6 +165,22 @@ namespace JXTPortal.Website.members
 
             validatorPhone.ErrorMessage = CommonFunction.GetResourceValue(validatorPhone.ErrorMessage);
 
+            //set validation regex values for invalid contents            
+            rgvAddress.ValidationExpression = INVALID_CONTENT_REGEX;
+            rgvFirstname.ValidationExpression = INVALID_CONTENT_REGEX;
+            rgvMailingAddress.ValidationExpression = INVALID_CONTENT_REGEX;
+            rgvMailingPostcode.ValidationExpression = INVALID_CONTENT_REGEX;
+            rgvMailingState.ValidationExpression = INVALID_CONTENT_REGEX;
+            rgvMailingSuburb.ValidationExpression = INVALID_CONTENT_REGEX;
+            rgvMultiLingualFirstname.ValidationExpression = INVALID_CONTENT_REGEX;
+            rgvMultiLingualSurname.ValidationExpression = INVALID_CONTENT_REGEX;
+            rgvPostcode.ValidationExpression = INVALID_CONTENT_REGEX;
+            rgvState.ValidationExpression = INVALID_CONTENT_REGEX;
+            rgvSuburb.ValidationExpression = INVALID_CONTENT_REGEX;
+            rgvSurname.ValidationExpression = INVALID_CONTENT_REGEX;
+            rgvUsername.ValidationExpression = INVALID_CONTENT_REGEX;
+
+            //set multi-lingual support for error messages on validators
             rgvAddress.ErrorMessage = CommonFunction.GetResourceValue(rgvAddress.ErrorMessage);
             rgvFirstname.ErrorMessage = CommonFunction.GetResourceValue(rgvFirstname.ErrorMessage);
             rgvMailingAddress.ErrorMessage = CommonFunction.GetResourceValue(rgvMailingAddress.ErrorMessage);
@@ -259,7 +277,7 @@ namespace JXTPortal.Website.members
 
         private void ValidateInputsContainsInvalidCharacters()
         {
-            Regex r = new Regex("^((?!<.*?>).)*$", RegexOptions.IgnoreCase);
+            Regex r = new Regex(INVALID_CONTENT_REGEX, RegexOptions.IgnoreCase);
 
             if (!r.IsMatch(txtAddress.Text)) rgvAddress.IsValid = false;
             if (!r.IsMatch(txtFirstName.Text)) rgvFirstname.IsValid = false;

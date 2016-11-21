@@ -4418,4 +4418,8 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <value />
     <comment>for</comment>
   </data>
+  <data name="ValidateNoHTMLContent" xml:space="preserve">
+    <value>Cannot contain invalid content</value>
+    <comment>Cannot contain invalid content</comment>
+  </data>
 </root>

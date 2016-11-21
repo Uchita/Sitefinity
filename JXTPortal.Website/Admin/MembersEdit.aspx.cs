@@ -437,8 +437,8 @@ public partial class MembersEdit : System.Web.UI.Page
                         }
 
 
-                        ddlSite.ClearSelection();
-                        ddlSite.SelectedValue = Convert.ToString(objMembers.SiteId);
+                        //ddlSite.ClearSelection();
+                        //ddlSite.SelectedValue = Convert.ToString(objMembers.SiteId);
                         txtUsername.ReadOnly = true;
                         txtUsername.Text = CommonService.DecodeString(objMembers.Username);
 
@@ -893,8 +893,11 @@ public partial class MembersEdit : System.Web.UI.Page
 
     private void loadSites()
     {
-        List<JXTPortal.Entities.Sites> sites = new List<JXTPortal.Entities.Sites>();
-        sites = SitesService.GetAll().OrderBy(s => s.SiteName).ToList();
+        //only load the current site into the site DDL
+        List<JXTPortal.Entities.Sites> sites = new List<JXTPortal.Entities.Sites> { SitesService.GetBySiteId(SessionData.Site.SiteId) };
+
+        ddlSite.ClearSelection();
+        ddlSite.SelectedValue = Convert.ToString(SessionData.Site.SiteId);
 
         ddlSite.DataSource = sites;
         ddlSite.DataTextField = "SiteName";

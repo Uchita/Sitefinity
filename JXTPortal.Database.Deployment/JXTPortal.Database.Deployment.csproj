@@ -57,7 +57,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Scripts\Script0002-SiteLangauges_Res.sql" />
+    <EmbeddedResource Include="Scripts\Script0002-SiteLangauges_Res.sql" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Scripts\Script0001-KnowledgeBase.sql" />

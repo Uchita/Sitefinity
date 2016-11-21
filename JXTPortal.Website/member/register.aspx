@@ -115,7 +115,7 @@
                         <asp:RequiredFieldValidator ID="rfvFirstname" runat="server" ControlToValidate="txtFirstname"
                             SetFocusOnError="true" Display="Dynamic"></asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator ID="rgvFirstname" runat="server" ControlToValidate="txtFirstname"
-                            ValidationExpression="^((?!<.*?>).)*$" SetFocusOnError="true" Display="Dynamic"
+                             SetFocusOnError="true" Display="Dynamic"
                             ErrorMessage="ValidateNoHTMLContent"></asp:RegularExpressionValidator>
                     </div>
                     <div class="ctrlHolder">
@@ -127,7 +127,7 @@
                         <asp:RequiredFieldValidator ID="rfvSurname" runat="server" ControlToValidate="txtSurname"
                             SetFocusOnError="true" Display="Dynamic"></asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator ID="rgvSurname" runat="server" ControlToValidate="txtSurname"
-                            ValidationExpression="^((?!<.*?>).)*$" SetFocusOnError="true" Display="Dynamic"
+                             SetFocusOnError="true" Display="Dynamic"
                             ErrorMessage="ValidateNoHTMLContent"></asp:RegularExpressionValidator>
                     </div>
                     <div id="divMultilingualName">
@@ -140,7 +140,7 @@
                             <asp:TextBox ID="txtMultiLingualFirstname" runat="server" CssClass="textInput medium error"
                                 TabIndex="3" />
                             <asp:RegularExpressionValidator ID="rgvMultiLingualFirstname" runat="server" ControlToValidate="txtMultiLingualFirstname"
-                                ValidationExpression="^((?!<.*?>).)*$" SetFocusOnError="true" Display="Dynamic"
+                                 SetFocusOnError="true" Display="Dynamic"
                                 ErrorMessage="ValidateNoHTMLContent"></asp:RegularExpressionValidator>
                         </div>
                         <div class="ctrlHolder">
@@ -152,7 +152,7 @@
                             <asp:TextBox ID="txtMultiLingualSurname" runat="server" CssClass="textInput medium error"
                                 TabIndex="3" />
                             <asp:RegularExpressionValidator ID="rgvMultiLingualSurname" runat="server" ControlToValidate="txtMultiLingualSurname"
-                                ValidationExpression="^((?!<.*?>).)*$" SetFocusOnError="true" Display="Dynamic"
+                                 SetFocusOnError="true" Display="Dynamic"
                                 ErrorMessage="ValidateNoHTMLContent"></asp:RegularExpressionValidator>
                         </div>
                     </div>
@@ -165,7 +165,7 @@
                         <asp:RequiredFieldValidator ID="rfvUsername" runat="server" ControlToValidate="txtUsername"
                             SetFocusOnError="true" Display="Dynamic"></asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator ID="rgvUsername" runat="server" ControlToValidate="txtUsername"
-                            ValidationExpression="^((?!<.*?>).)*$" SetFocusOnError="true" Display="Dynamic"
+                             SetFocusOnError="true" Display="Dynamic"
                             ErrorMessage="ValidateNoHTMLContent"></asp:RegularExpressionValidator>
                     </div>
                     <div class="ctrlHolder">
@@ -260,7 +260,7 @@
                             Display="Dynamic" ErrorMessage="Please enter maximum 1500 characters for Suburb"
                             ValidationExpression="[\s\S]{1,1500}"></asp:RegularExpressionValidator>
                         <asp:RegularExpressionValidator ID="rgvAddress" runat="server" ControlToValidate="txtAddress"
-                            ValidationExpression="^((?!<.*?>).)*$" SetFocusOnError="true" Display="Dynamic"
+                             SetFocusOnError="true" Display="Dynamic"
                             ErrorMessage="ValidateNoHTMLContent"></asp:RegularExpressionValidator>
                     </div>
                     <div class="ctrlHolder">
@@ -272,7 +272,7 @@
                             Display="Dynamic" ErrorMessage="Please enter maximum 20 characters for Suburb"
                             ValidationExpression="[\s\S]{1,20}"></asp:RegularExpressionValidator>
                        <asp:RegularExpressionValidator ID="rgvSuburb" runat="server" ControlToValidate="txtSuburb"
-                            ValidationExpression="^((?!<.*?>).)*$" SetFocusOnError="true" Display="Dynamic"
+                             SetFocusOnError="true" Display="Dynamic"
                             ErrorMessage="ValidateNoHTMLContent"></asp:RegularExpressionValidator>
                      </div>
                     <div class="ctrlHolder">
@@ -284,7 +284,7 @@
                             Display="Dynamic" ErrorMessage="Please enter maximum 10 characters for Postcode"
                             ValidationExpression="[\s\S]{1,10}"></asp:RegularExpressionValidator>
                        <asp:RegularExpressionValidator ID="rgvPostcode" runat="server" ControlToValidate="txtPostcode"
-                            ValidationExpression="^((?!<.*?>).)*$" SetFocusOnError="true" Display="Dynamic"
+                             SetFocusOnError="true" Display="Dynamic"
                             ErrorMessage="ValidateNoHTMLContent"></asp:RegularExpressionValidator>
                     </div>
                     <div class="ctrlHolder">
@@ -296,7 +296,7 @@
                             Display="Dynamic" ErrorMessage="Please enter maximum 20 characters for State"
                             ValidationExpression="[\s\S]{1,20}"></asp:RegularExpressionValidator>
                        <asp:RegularExpressionValidator ID="rgvState" runat="server" ControlToValidate="txtState"
-                            ValidationExpression="^((?!<.*?>).)*$" SetFocusOnError="true" Display="Dynamic"
+                             SetFocusOnError="true" Display="Dynamic"
                             ErrorMessage="ValidateNoHTMLContent"></asp:RegularExpressionValidator>
                     </div>
                     <div class="ctrlHolder">
@@ -324,7 +324,7 @@
                             Display="Dynamic" ErrorMessage="Please enter maximum 1500 characters for Suburb"
                             ValidationExpression="[\s\S]{1,1500}"></asp:RegularExpressionValidator>
                        <asp:RegularExpressionValidator ID="rgvMailingAddress" runat="server" ControlToValidate="tbMailingAddress"
-                            ValidationExpression="^((?!<.*?>).)*$" SetFocusOnError="true" Display="Dynamic"
+                             SetFocusOnError="true" Display="Dynamic"
                             ErrorMessage="ValidateNoHTMLContent"></asp:RegularExpressionValidator>
                     </div>
                     <div id="divMailingSuburb" class="ctrlHolder" style="display: none;" runat="server"
@@ -338,7 +338,7 @@
                             Display="Dynamic" ErrorMessage="Please enter maximum 20 characters for Suburb"
                             ValidationExpression="[\s\S]{1,20}"></asp:RegularExpressionValidator>
                        <asp:RegularExpressionValidator ID="rgvMailingSuburb" runat="server" ControlToValidate="tbMailingSuburb"
-                            ValidationExpression="^((?!<.*?>).)*$" SetFocusOnError="true" Display="Dynamic"
+                             SetFocusOnError="true" Display="Dynamic"
                             ErrorMessage="ValidateNoHTMLContent"></asp:RegularExpressionValidator>
                     </div>
                     <div id="divMailingPostcode" class="ctrlHolder" style="display: none;" runat="server"
@@ -352,7 +352,7 @@
                             Display="Dynamic" ErrorMessage="Please enter maximum 10 characters for Postcode"
                             ValidationExpression="[\s\S]{1,10}"></asp:RegularExpressionValidator>
                        <asp:RegularExpressionValidator ID="rgvMailingPostcode" runat="server" ControlToValidate="tbMailingPostcode"
-                            ValidationExpression="^((?!<.*?>).)*$" SetFocusOnError="true" Display="Dynamic"
+                             SetFocusOnError="true" Display="Dynamic"
                             ErrorMessage="ValidateNoHTMLContent"></asp:RegularExpressionValidator>
                     </div>
                     <div id="divMailingState" class="ctrlHolder" style="display: none;" runat="server"
@@ -366,7 +366,7 @@
                             Display="Dynamic" ErrorMessage="Please enter maximum 20 characters for State"
                             ValidationExpression="[\s\S]{1,20}"></asp:RegularExpressionValidator>
                        <asp:RegularExpressionValidator ID="rgvMailingState" runat="server" ControlToValidate="tbMailingState"
-                            ValidationExpression="^((?!<.*?>).)*$" SetFocusOnError="true" Display="Dynamic"
+                             SetFocusOnError="true" Display="Dynamic"
                             ErrorMessage="ValidateNoHTMLContent"></asp:RegularExpressionValidator>
                     </div>
                     <div id="divMailingCountry" class="ctrlHolder" style="display: none;" runat="server"

@@ -824,6 +824,7 @@ namespace JXTPortal.Client.Salesforce
             //public bool unique { get; set; }
             //public bool updateable { get; set; }
             //public bool writeRequiresMasterRead { get; set; }
+
         }
 
         //public class Urls
@@ -864,6 +865,11 @@ namespace JXTPortal.Client.Salesforce
             public string label { get; set; }
             public string validFor { get; set; }
             public string value { get; set; }
+
+            //CUSTOM Fields for display
+            [ScriptIgnore]
+            public string FullFieldDisplay { get { return value + " - " + label; } }
+
         }
 
         public class SObjDescribe
@@ -983,6 +989,7 @@ namespace JXTPortal.Client.Salesforce
             public string Salary_Period__c { get; set; }
             public string Current_Fixed_Salary__c { get; set; }
             public string Annual_Variable_Salary__c { get; set; }
+            public string CurrencyIsoCode { get; set; }
 
             //tab3
             public string Desired_Country__c { get; set; }

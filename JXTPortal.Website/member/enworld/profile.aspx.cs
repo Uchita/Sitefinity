@@ -20,6 +20,8 @@ namespace JXTPortal.Website.member.enworld
 {
     public partial class profile : System.Web.UI.Page
     {
+        private static string ContentValidationRegex = ConfigurationManager.AppSettings["ContentValidationRegex"];
+        private static string EmailValidationRegex = ConfigurationManager.AppSettings["EmailValidationRegex"];
         private string XMLPath = "/xml/enworld.xml";
         private const string ENWORLD_SF_QUERY = @"SELECT Id, FirstName, LastName, First_Name_Local__c, Last_Name_Local__c, Email, 
                                                     RecordTypeId, ts2__EEO_Gender__c, Birthdate, MobilePhone, Phone, Secondary_Email__c ,MailingStreet, MailingCity, MailingPostalCode, MailingState, MailingCountry,Native_Language__c,Second_Language__c, Second_Language_Proficiency__c, 
@@ -748,6 +750,16 @@ namespace JXTPortal.Website.member.enworld
                     return;
                 }
 
+                if (!string.IsNullOrEmpty(fileUploadTitle.Text))
+                {
+                    if (!Regex.IsMatch(fileUploadTitle.Text, ContentValidationRegex))
+                    {
+                        FileUploadMessage.Text = "Resume File Name cannot contain invalid content";
+                        ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), "FileUpload", "$(document).ready(function() {$('#aDesiredPosition').click()})", true);
+                        return;
+                    }
+                }
+
                 if (_mfs.GetByMemberId(SessionData.Member.MemberId).Where(c => c.DocumentTypeId == 2).Count() >= 3)
                 {
                     //can not have more than 3
@@ -989,9 +1001,57 @@ namespace JXTPortal.Website.member.enworld
             if (!string.IsNullOrEmpty(secondLanguage) && secondLanguage != "--None--" && (string.IsNullOrEmpty(secondLanguageLevel) || secondLanguageLevel == "--None--"))
                 errors.Add("You must select a language level for your Secondary Language");
 
+            if (!string.IsNullOrEmpty(dob))
+            {
+                if (!Regex.IsMatch(dob, ContentValidationRegex))
+                {
+                    errors.Add("DOB cannot contain invalid content");
+                }
+            }
+
+            if (!string.IsNullOrEmpty(mobile))
+            {
+                if (!Regex.IsMatch(mobile, ContentValidationRegex))
+                {
+                    errors.Add("Mobile Phone cannot contain invalid content");
+                }
+            }
+
+            if (!string.IsNullOrEmpty(phone))
+            {
+                if (!Regex.IsMatch(phone, ContentValidationRegex))
+                {
+                    errors.Add("Home Phone cannot contain invalid content");
+                }
+            }
+
+            if (!string.IsNullOrEmpty(address))
+            {
+                if (!Regex.IsMatch(address, ContentValidationRegex))
+                {
+                    errors.Add("Address cannot contain invalid content");
+                }
+            }
+
+            if (!string.IsNullOrEmpty(city))
+            {
+                if (!Regex.IsMatch(city, ContentValidationRegex))
+                {
+                    errors.Add("City cannot contain invalid content");
+                }
+            }
+
+            if (!string.IsNullOrEmpty(zip))
+            {
+                if (!Regex.IsMatch(zip, ContentValidationRegex))
+                {
+                    errors.Add("Zip Code cannot contain invalid content");
+                }
+            }
+
             if (!string.IsNullOrEmpty(secondEmail))
             {
-                string emailRegExpPat = @"^(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6}$";
+                string emailRegExpPat = EmailValidationRegex;
                 Regex r = new Regex(emailRegExpPat, RegexOptions.IgnoreCase);
                 Match m = r.Match(secondEmail);
 
@@ -1099,6 +1159,22 @@ namespace JXTPortal.Website.member.enworld
 
             if (string.IsNullOrEmpty(employmenttype) || employmenttype == "--None--")
                 errors.Add("You must select an Employment Type");
+
+            if (!string.IsNullOrEmpty(company))
+            {
+                if (!Regex.IsMatch(company, ContentValidationRegex))
+                {
+                    errors.Add("Company cannot contain invalid content");
+                }
+            }
+
+            if (!string.IsNullOrEmpty(jobtitle))
+            {
+                if (!Regex.IsMatch(jobtitle, ContentValidationRegex))
+                {
+                    errors.Add("Job Title cannot contain invalid content");
+                }
+            }
 
             try
             {

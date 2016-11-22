@@ -747,29 +747,8 @@ ExceptionID: {4}",
                     {
                         int membersiteid = siteID;
 
-                        string errormessage = string.Empty;
-                        byte[] memberfilecontent = null;
-
-                        if (!string.IsNullOrWhiteSpace(memberFile.MemberFileUrl))
-                        {
-
-                            FtpClient ftpclient = new FtpClient();
-                            ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                            ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                            ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
-                            string filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], memberFile.MemberId, memberFile.MemberFileUrl);
-                            Stream ms = null;
-                            ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
-                            ms.Position = 0;
-
-                            memberfilecontent = ((MemoryStream)ms).ToArray();
-                        }
-                        else
-                        {
-                            memberfilecontent = memberFile.MemberFileContent;
-                        }
-                        file.Base64FileContent = Convert.ToBase64String(memberfilecontent, 0, memberfilecontent.Length);
+                        byte[] thisFileContent = memberFile.MemberFileContent;
+                        file.Base64FileContent = Convert.ToBase64String(thisFileContent, 0, thisFileContent.Length);
                     }
                 }
             }

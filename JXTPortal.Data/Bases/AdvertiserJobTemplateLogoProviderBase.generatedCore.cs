@@ -252,12 +252,11 @@ namespace JXTPortal.Data.Bases
 		/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="jobLogoName"> A <c>System.String</c> instance.</param>
 		/// <param name="jobTemplateLogo"> A <c>System.Byte[]</c> instance.</param>
-		/// <param name="jobTemplateLogoUrl"> A <c>System.String</c> instance.</param>
 			/// <param name="advertiserJobTemplateLogoId"> A <c>System.Int32?</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public void Insert(System.Int32? advertiserId, System.String jobLogoName, System.Byte[] jobTemplateLogo, System.String jobTemplateLogoUrl, ref System.Int32? advertiserJobTemplateLogoId)
+		public void Insert(System.Int32? advertiserId, System.String jobLogoName, System.Byte[] jobTemplateLogo, ref System.Int32? advertiserJobTemplateLogoId)
 		{
-			 Insert(null, 0, int.MaxValue , advertiserId, jobLogoName, jobTemplateLogo, jobTemplateLogoUrl, ref advertiserJobTemplateLogoId);
+			 Insert(null, 0, int.MaxValue , advertiserId, jobLogoName, jobTemplateLogo, ref advertiserJobTemplateLogoId);
 		}
 		
 		/// <summary>
@@ -266,14 +265,13 @@ namespace JXTPortal.Data.Bases
 		/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="jobLogoName"> A <c>System.String</c> instance.</param>
 		/// <param name="jobTemplateLogo"> A <c>System.Byte[]</c> instance.</param>
-		/// <param name="jobTemplateLogoUrl"> A <c>System.String</c> instance.</param>
 			/// <param name="advertiserJobTemplateLogoId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public void Insert(int start, int pageLength, System.Int32? advertiserId, System.String jobLogoName, System.Byte[] jobTemplateLogo, System.String jobTemplateLogoUrl, ref System.Int32? advertiserJobTemplateLogoId)
+		public void Insert(int start, int pageLength, System.Int32? advertiserId, System.String jobLogoName, System.Byte[] jobTemplateLogo, ref System.Int32? advertiserJobTemplateLogoId)
 		{
-			 Insert(null, start, pageLength , advertiserId, jobLogoName, jobTemplateLogo, jobTemplateLogoUrl, ref advertiserJobTemplateLogoId);
+			 Insert(null, start, pageLength , advertiserId, jobLogoName, jobTemplateLogo, ref advertiserJobTemplateLogoId);
 		}
 				
 		/// <summary>
@@ -282,13 +280,12 @@ namespace JXTPortal.Data.Bases
 		/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="jobLogoName"> A <c>System.String</c> instance.</param>
 		/// <param name="jobTemplateLogo"> A <c>System.Byte[]</c> instance.</param>
-		/// <param name="jobTemplateLogoUrl"> A <c>System.String</c> instance.</param>
 			/// <param name="advertiserJobTemplateLogoId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public void Insert(TransactionManager transactionManager, System.Int32? advertiserId, System.String jobLogoName, System.Byte[] jobTemplateLogo, System.String jobTemplateLogoUrl, ref System.Int32? advertiserJobTemplateLogoId)
+		public void Insert(TransactionManager transactionManager, System.Int32? advertiserId, System.String jobLogoName, System.Byte[] jobTemplateLogo, ref System.Int32? advertiserJobTemplateLogoId)
 		{
-			 Insert(transactionManager, 0, int.MaxValue , advertiserId, jobLogoName, jobTemplateLogo, jobTemplateLogoUrl, ref advertiserJobTemplateLogoId);
+			 Insert(transactionManager, 0, int.MaxValue , advertiserId, jobLogoName, jobTemplateLogo, ref advertiserJobTemplateLogoId);
 		}
 		
 		/// <summary>
@@ -297,13 +294,12 @@ namespace JXTPortal.Data.Bases
 		/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="jobLogoName"> A <c>System.String</c> instance.</param>
 		/// <param name="jobTemplateLogo"> A <c>System.Byte[]</c> instance.</param>
-		/// <param name="jobTemplateLogoUrl"> A <c>System.String</c> instance.</param>
 			/// <param name="advertiserJobTemplateLogoId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public abstract void Insert(TransactionManager transactionManager, int start, int pageLength , System.Int32? advertiserId, System.String jobLogoName, System.Byte[] jobTemplateLogo, System.String jobTemplateLogoUrl, ref System.Int32? advertiserJobTemplateLogoId);
+		public abstract void Insert(TransactionManager transactionManager, int start, int pageLength , System.Int32? advertiserId, System.String jobLogoName, System.Byte[] jobTemplateLogo, ref System.Int32? advertiserJobTemplateLogoId);
 		
 		#endregion
 		
@@ -313,8 +309,8 @@ namespace JXTPortal.Data.Bases
 		///	This method wrap the 'AdvertiserJobTemplateLogo_Get_List' stored procedure. 
 		/// </summary>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet Get_List()
+		/// <returns>A <see cref="TList&lt;AdvertiserJobTemplateLogo&gt;"/> instance.</returns>
+		public TList<AdvertiserJobTemplateLogo> Get_List()
 		{
 			return Get_List(null, 0, int.MaxValue );
 		}
@@ -325,8 +321,8 @@ namespace JXTPortal.Data.Bases
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet Get_List(int start, int pageLength)
+		/// <returns>A <see cref="TList&lt;AdvertiserJobTemplateLogo&gt;"/> instance.</returns>
+		public TList<AdvertiserJobTemplateLogo> Get_List(int start, int pageLength)
 		{
 			return Get_List(null, start, pageLength );
 		}
@@ -336,8 +332,8 @@ namespace JXTPortal.Data.Bases
 		/// </summary>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet Get_List(TransactionManager transactionManager)
+		/// <returns>A <see cref="TList&lt;AdvertiserJobTemplateLogo&gt;"/> instance.</returns>
+		public TList<AdvertiserJobTemplateLogo> Get_List(TransactionManager transactionManager)
 		{
 			return Get_List(transactionManager, 0, int.MaxValue );
 		}
@@ -349,8 +345,8 @@ namespace JXTPortal.Data.Bases
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public abstract DataSet Get_List(TransactionManager transactionManager, int start, int pageLength );
+		/// <returns>A <see cref="TList&lt;AdvertiserJobTemplateLogo&gt;"/> instance.</returns>
+		public abstract TList<AdvertiserJobTemplateLogo> Get_List(TransactionManager transactionManager, int start, int pageLength );
 		
 		#endregion
 		
@@ -364,8 +360,8 @@ namespace JXTPortal.Data.Bases
 		/// <param name="pageIndex"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="pageSize"> A <c>System.Int32?</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet GetPaged(System.String whereClause, System.String orderBy, System.Int32? pageIndex, System.Int32? pageSize)
+		/// <returns>A <see cref="TList&lt;AdvertiserJobTemplateLogo&gt;"/> instance.</returns>
+		public TList<AdvertiserJobTemplateLogo> GetPaged(System.String whereClause, System.String orderBy, System.Int32? pageIndex, System.Int32? pageSize)
 		{
 			return GetPaged(null, 0, int.MaxValue , whereClause, orderBy, pageIndex, pageSize);
 		}
@@ -380,8 +376,8 @@ namespace JXTPortal.Data.Bases
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet GetPaged(int start, int pageLength, System.String whereClause, System.String orderBy, System.Int32? pageIndex, System.Int32? pageSize)
+		/// <returns>A <see cref="TList&lt;AdvertiserJobTemplateLogo&gt;"/> instance.</returns>
+		public TList<AdvertiserJobTemplateLogo> GetPaged(int start, int pageLength, System.String whereClause, System.String orderBy, System.Int32? pageIndex, System.Int32? pageSize)
 		{
 			return GetPaged(null, start, pageLength , whereClause, orderBy, pageIndex, pageSize);
 		}
@@ -395,8 +391,8 @@ namespace JXTPortal.Data.Bases
 		/// <param name="pageSize"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet GetPaged(TransactionManager transactionManager, System.String whereClause, System.String orderBy, System.Int32? pageIndex, System.Int32? pageSize)
+		/// <returns>A <see cref="TList&lt;AdvertiserJobTemplateLogo&gt;"/> instance.</returns>
+		public TList<AdvertiserJobTemplateLogo> GetPaged(TransactionManager transactionManager, System.String whereClause, System.String orderBy, System.Int32? pageIndex, System.Int32? pageSize)
 		{
 			return GetPaged(transactionManager, 0, int.MaxValue , whereClause, orderBy, pageIndex, pageSize);
 		}
@@ -412,8 +408,8 @@ namespace JXTPortal.Data.Bases
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public abstract DataSet GetPaged(TransactionManager transactionManager, int start, int pageLength , System.String whereClause, System.String orderBy, System.Int32? pageIndex, System.Int32? pageSize);
+		/// <returns>A <see cref="TList&lt;AdvertiserJobTemplateLogo&gt;"/> instance.</returns>
+		public abstract TList<AdvertiserJobTemplateLogo> GetPaged(TransactionManager transactionManager, int start, int pageLength , System.String whereClause, System.String orderBy, System.Int32? pageIndex, System.Int32? pageSize);
 		
 		#endregion
 		
@@ -483,8 +479,8 @@ namespace JXTPortal.Data.Bases
 		/// </summary>
 		/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet GetByAdvertiserId(System.Int32? advertiserId)
+		/// <returns>A <see cref="TList&lt;AdvertiserJobTemplateLogo&gt;"/> instance.</returns>
+		public TList<AdvertiserJobTemplateLogo> GetByAdvertiserId(System.Int32? advertiserId)
 		{
 			return GetByAdvertiserId(null, 0, int.MaxValue , advertiserId);
 		}
@@ -496,8 +492,8 @@ namespace JXTPortal.Data.Bases
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet GetByAdvertiserId(int start, int pageLength, System.Int32? advertiserId)
+		/// <returns>A <see cref="TList&lt;AdvertiserJobTemplateLogo&gt;"/> instance.</returns>
+		public TList<AdvertiserJobTemplateLogo> GetByAdvertiserId(int start, int pageLength, System.Int32? advertiserId)
 		{
 			return GetByAdvertiserId(null, start, pageLength , advertiserId);
 		}
@@ -508,8 +504,8 @@ namespace JXTPortal.Data.Bases
 		/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet GetByAdvertiserId(TransactionManager transactionManager, System.Int32? advertiserId)
+		/// <returns>A <see cref="TList&lt;AdvertiserJobTemplateLogo&gt;"/> instance.</returns>
+		public TList<AdvertiserJobTemplateLogo> GetByAdvertiserId(TransactionManager transactionManager, System.Int32? advertiserId)
 		{
 			return GetByAdvertiserId(transactionManager, 0, int.MaxValue , advertiserId);
 		}
@@ -522,8 +518,8 @@ namespace JXTPortal.Data.Bases
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public abstract DataSet GetByAdvertiserId(TransactionManager transactionManager, int start, int pageLength , System.Int32? advertiserId);
+		/// <returns>A <see cref="TList&lt;AdvertiserJobTemplateLogo&gt;"/> instance.</returns>
+		public abstract TList<AdvertiserJobTemplateLogo> GetByAdvertiserId(TransactionManager transactionManager, int start, int pageLength , System.Int32? advertiserId);
 		
 		#endregion
 		
@@ -534,8 +530,8 @@ namespace JXTPortal.Data.Bases
 		/// </summary>
 		/// <param name="advertiserJobTemplateLogoId"> A <c>System.Int32?</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet GetByAdvertiserJobTemplateLogoId(System.Int32? advertiserJobTemplateLogoId)
+		/// <returns>A <see cref="TList&lt;AdvertiserJobTemplateLogo&gt;"/> instance.</returns>
+		public TList<AdvertiserJobTemplateLogo> GetByAdvertiserJobTemplateLogoId(System.Int32? advertiserJobTemplateLogoId)
 		{
 			return GetByAdvertiserJobTemplateLogoId(null, 0, int.MaxValue , advertiserJobTemplateLogoId);
 		}
@@ -547,8 +543,8 @@ namespace JXTPortal.Data.Bases
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet GetByAdvertiserJobTemplateLogoId(int start, int pageLength, System.Int32? advertiserJobTemplateLogoId)
+		/// <returns>A <see cref="TList&lt;AdvertiserJobTemplateLogo&gt;"/> instance.</returns>
+		public TList<AdvertiserJobTemplateLogo> GetByAdvertiserJobTemplateLogoId(int start, int pageLength, System.Int32? advertiserJobTemplateLogoId)
 		{
 			return GetByAdvertiserJobTemplateLogoId(null, start, pageLength , advertiserJobTemplateLogoId);
 		}
@@ -559,8 +555,8 @@ namespace JXTPortal.Data.Bases
 		/// <param name="advertiserJobTemplateLogoId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet GetByAdvertiserJobTemplateLogoId(TransactionManager transactionManager, System.Int32? advertiserJobTemplateLogoId)
+		/// <returns>A <see cref="TList&lt;AdvertiserJobTemplateLogo&gt;"/> instance.</returns>
+		public TList<AdvertiserJobTemplateLogo> GetByAdvertiserJobTemplateLogoId(TransactionManager transactionManager, System.Int32? advertiserJobTemplateLogoId)
 		{
 			return GetByAdvertiserJobTemplateLogoId(transactionManager, 0, int.MaxValue , advertiserJobTemplateLogoId);
 		}
@@ -573,8 +569,8 @@ namespace JXTPortal.Data.Bases
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public abstract DataSet GetByAdvertiserJobTemplateLogoId(TransactionManager transactionManager, int start, int pageLength , System.Int32? advertiserJobTemplateLogoId);
+		/// <returns>A <see cref="TList&lt;AdvertiserJobTemplateLogo&gt;"/> instance.</returns>
+		public abstract TList<AdvertiserJobTemplateLogo> GetByAdvertiserJobTemplateLogoId(TransactionManager transactionManager, int start, int pageLength , System.Int32? advertiserJobTemplateLogoId);
 		
 		#endregion
 		
@@ -588,12 +584,11 @@ namespace JXTPortal.Data.Bases
 		/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="jobLogoName"> A <c>System.String</c> instance.</param>
 		/// <param name="jobTemplateLogo"> A <c>System.Byte[]</c> instance.</param>
-		/// <param name="jobTemplateLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet Find(System.Boolean? searchUsingOr, System.Int32? advertiserJobTemplateLogoId, System.Int32? advertiserId, System.String jobLogoName, System.Byte[] jobTemplateLogo, System.String jobTemplateLogoUrl)
+		/// <returns>A <see cref="TList&lt;AdvertiserJobTemplateLogo&gt;"/> instance.</returns>
+		public TList<AdvertiserJobTemplateLogo> Find(System.Boolean? searchUsingOr, System.Int32? advertiserJobTemplateLogoId, System.Int32? advertiserId, System.String jobLogoName, System.Byte[] jobTemplateLogo)
 		{
-			return Find(null, 0, int.MaxValue , searchUsingOr, advertiserJobTemplateLogoId, advertiserId, jobLogoName, jobTemplateLogo, jobTemplateLogoUrl);
+			return Find(null, 0, int.MaxValue , searchUsingOr, advertiserJobTemplateLogoId, advertiserId, jobLogoName, jobTemplateLogo);
 		}
 		
 		/// <summary>
@@ -604,14 +599,13 @@ namespace JXTPortal.Data.Bases
 		/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="jobLogoName"> A <c>System.String</c> instance.</param>
 		/// <param name="jobTemplateLogo"> A <c>System.Byte[]</c> instance.</param>
-		/// <param name="jobTemplateLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet Find(int start, int pageLength, System.Boolean? searchUsingOr, System.Int32? advertiserJobTemplateLogoId, System.Int32? advertiserId, System.String jobLogoName, System.Byte[] jobTemplateLogo, System.String jobTemplateLogoUrl)
+		/// <returns>A <see cref="TList&lt;AdvertiserJobTemplateLogo&gt;"/> instance.</returns>
+		public TList<AdvertiserJobTemplateLogo> Find(int start, int pageLength, System.Boolean? searchUsingOr, System.Int32? advertiserJobTemplateLogoId, System.Int32? advertiserId, System.String jobLogoName, System.Byte[] jobTemplateLogo)
 		{
-			return Find(null, start, pageLength , searchUsingOr, advertiserJobTemplateLogoId, advertiserId, jobLogoName, jobTemplateLogo, jobTemplateLogoUrl);
+			return Find(null, start, pageLength , searchUsingOr, advertiserJobTemplateLogoId, advertiserId, jobLogoName, jobTemplateLogo);
 		}
 				
 		/// <summary>
@@ -622,13 +616,12 @@ namespace JXTPortal.Data.Bases
 		/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="jobLogoName"> A <c>System.String</c> instance.</param>
 		/// <param name="jobTemplateLogo"> A <c>System.Byte[]</c> instance.</param>
-		/// <param name="jobTemplateLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet Find(TransactionManager transactionManager, System.Boolean? searchUsingOr, System.Int32? advertiserJobTemplateLogoId, System.Int32? advertiserId, System.String jobLogoName, System.Byte[] jobTemplateLogo, System.String jobTemplateLogoUrl)
+		/// <returns>A <see cref="TList&lt;AdvertiserJobTemplateLogo&gt;"/> instance.</returns>
+		public TList<AdvertiserJobTemplateLogo> Find(TransactionManager transactionManager, System.Boolean? searchUsingOr, System.Int32? advertiserJobTemplateLogoId, System.Int32? advertiserId, System.String jobLogoName, System.Byte[] jobTemplateLogo)
 		{
-			return Find(transactionManager, 0, int.MaxValue , searchUsingOr, advertiserJobTemplateLogoId, advertiserId, jobLogoName, jobTemplateLogo, jobTemplateLogoUrl);
+			return Find(transactionManager, 0, int.MaxValue , searchUsingOr, advertiserJobTemplateLogoId, advertiserId, jobLogoName, jobTemplateLogo);
 		}
 		
 		/// <summary>
@@ -639,13 +632,12 @@ namespace JXTPortal.Data.Bases
 		/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="jobLogoName"> A <c>System.String</c> instance.</param>
 		/// <param name="jobTemplateLogo"> A <c>System.Byte[]</c> instance.</param>
-		/// <param name="jobTemplateLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public abstract DataSet Find(TransactionManager transactionManager, int start, int pageLength , System.Boolean? searchUsingOr, System.Int32? advertiserJobTemplateLogoId, System.Int32? advertiserId, System.String jobLogoName, System.Byte[] jobTemplateLogo, System.String jobTemplateLogoUrl);
+		/// <returns>A <see cref="TList&lt;AdvertiserJobTemplateLogo&gt;"/> instance.</returns>
+		public abstract TList<AdvertiserJobTemplateLogo> Find(TransactionManager transactionManager, int start, int pageLength , System.Boolean? searchUsingOr, System.Int32? advertiserJobTemplateLogoId, System.Int32? advertiserId, System.String jobLogoName, System.Byte[] jobTemplateLogo);
 		
 		#endregion
 		
@@ -705,11 +697,10 @@ namespace JXTPortal.Data.Bases
 		/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="jobLogoName"> A <c>System.String</c> instance.</param>
 		/// <param name="jobTemplateLogo"> A <c>System.Byte[]</c> instance.</param>
-		/// <param name="jobTemplateLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public void Update(System.Int32? advertiserJobTemplateLogoId, System.Int32? advertiserId, System.String jobLogoName, System.Byte[] jobTemplateLogo, System.String jobTemplateLogoUrl)
+		public void Update(System.Int32? advertiserJobTemplateLogoId, System.Int32? advertiserId, System.String jobLogoName, System.Byte[] jobTemplateLogo)
 		{
-			 Update(null, 0, int.MaxValue , advertiserJobTemplateLogoId, advertiserId, jobLogoName, jobTemplateLogo, jobTemplateLogoUrl);
+			 Update(null, 0, int.MaxValue , advertiserJobTemplateLogoId, advertiserId, jobLogoName, jobTemplateLogo);
 		}
 		
 		/// <summary>
@@ -719,13 +710,12 @@ namespace JXTPortal.Data.Bases
 		/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="jobLogoName"> A <c>System.String</c> instance.</param>
 		/// <param name="jobTemplateLogo"> A <c>System.Byte[]</c> instance.</param>
-		/// <param name="jobTemplateLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public void Update(int start, int pageLength, System.Int32? advertiserJobTemplateLogoId, System.Int32? advertiserId, System.String jobLogoName, System.Byte[] jobTemplateLogo, System.String jobTemplateLogoUrl)
+		public void Update(int start, int pageLength, System.Int32? advertiserJobTemplateLogoId, System.Int32? advertiserId, System.String jobLogoName, System.Byte[] jobTemplateLogo)
 		{
-			 Update(null, start, pageLength , advertiserJobTemplateLogoId, advertiserId, jobLogoName, jobTemplateLogo, jobTemplateLogoUrl);
+			 Update(null, start, pageLength , advertiserJobTemplateLogoId, advertiserId, jobLogoName, jobTemplateLogo);
 		}
 				
 		/// <summary>
@@ -735,12 +725,11 @@ namespace JXTPortal.Data.Bases
 		/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="jobLogoName"> A <c>System.String</c> instance.</param>
 		/// <param name="jobTemplateLogo"> A <c>System.Byte[]</c> instance.</param>
-		/// <param name="jobTemplateLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public void Update(TransactionManager transactionManager, System.Int32? advertiserJobTemplateLogoId, System.Int32? advertiserId, System.String jobLogoName, System.Byte[] jobTemplateLogo, System.String jobTemplateLogoUrl)
+		public void Update(TransactionManager transactionManager, System.Int32? advertiserJobTemplateLogoId, System.Int32? advertiserId, System.String jobLogoName, System.Byte[] jobTemplateLogo)
 		{
-			 Update(transactionManager, 0, int.MaxValue , advertiserJobTemplateLogoId, advertiserId, jobLogoName, jobTemplateLogo, jobTemplateLogoUrl);
+			 Update(transactionManager, 0, int.MaxValue , advertiserJobTemplateLogoId, advertiserId, jobLogoName, jobTemplateLogo);
 		}
 		
 		/// <summary>
@@ -750,12 +739,11 @@ namespace JXTPortal.Data.Bases
 		/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="jobLogoName"> A <c>System.String</c> instance.</param>
 		/// <param name="jobTemplateLogo"> A <c>System.Byte[]</c> instance.</param>
-		/// <param name="jobTemplateLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public abstract void Update(TransactionManager transactionManager, int start, int pageLength , System.Int32? advertiserJobTemplateLogoId, System.Int32? advertiserId, System.String jobLogoName, System.Byte[] jobTemplateLogo, System.String jobTemplateLogoUrl);
+		public abstract void Update(TransactionManager transactionManager, int start, int pageLength , System.Int32? advertiserJobTemplateLogoId, System.Int32? advertiserId, System.String jobLogoName, System.Byte[] jobTemplateLogo);
 		
 		#endregion
 		
@@ -823,7 +811,6 @@ namespace JXTPortal.Data.Bases
 					c.AdvertiserId = (System.Int32)reader[((int)AdvertiserJobTemplateLogoColumn.AdvertiserId - 1)];
 					c.JobLogoName = (System.String)reader[((int)AdvertiserJobTemplateLogoColumn.JobLogoName - 1)];
 					c.JobTemplateLogo = (System.Byte[])reader[((int)AdvertiserJobTemplateLogoColumn.JobTemplateLogo - 1)];
-					c.JobTemplateLogoUrl = (reader.IsDBNull(((int)AdvertiserJobTemplateLogoColumn.JobTemplateLogoUrl - 1)))?null:(System.String)reader[((int)AdvertiserJobTemplateLogoColumn.JobTemplateLogoUrl - 1)];
 					c.EntityTrackingKey = key;
 					c.AcceptChanges();
 					c.SuppressEntityEvents = false;
@@ -845,7 +832,6 @@ namespace JXTPortal.Data.Bases
 			entity.AdvertiserId = (System.Int32)reader[((int)AdvertiserJobTemplateLogoColumn.AdvertiserId - 1)];
 			entity.JobLogoName = (System.String)reader[((int)AdvertiserJobTemplateLogoColumn.JobLogoName - 1)];
 			entity.JobTemplateLogo = (System.Byte[])reader[((int)AdvertiserJobTemplateLogoColumn.JobTemplateLogo - 1)];
-			entity.JobTemplateLogoUrl = (reader.IsDBNull(((int)AdvertiserJobTemplateLogoColumn.JobTemplateLogoUrl - 1)))?null:(System.String)reader[((int)AdvertiserJobTemplateLogoColumn.JobTemplateLogoUrl - 1)];
 			entity.AcceptChanges();
 		}
 		
@@ -862,7 +848,6 @@ namespace JXTPortal.Data.Bases
 			entity.AdvertiserId = (System.Int32)dataRow["AdvertiserID"];
 			entity.JobLogoName = (System.String)dataRow["JobLogoName"];
 			entity.JobTemplateLogo = (System.Byte[])dataRow["JobTemplateLogo"];
-			entity.JobTemplateLogoUrl = Convert.IsDBNull(dataRow["JobTemplateLogoUrl"]) ? null : (System.String)dataRow["JobTemplateLogoUrl"];
 			entity.AcceptChanges();
 		}
 		#endregion 

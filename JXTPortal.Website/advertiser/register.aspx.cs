@@ -9,8 +9,6 @@ using JXTPortal;
 using JXTPortal.Entities;
 using System.IO;
 using System.Xml;
-using JXTPortal.Common;
-using System.Configuration;
 
 namespace JXTPortal.Website.advertiser
 {
@@ -321,6 +319,22 @@ namespace JXTPortal.Website.advertiser
                 }
                 advertisers.SiteId = SessionData.Site.SiteId;
 
+                if (fuCompanyLogo.HasFile)
+                {
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        byte[] buffer = new byte[fuCompanyLogo.PostedFile.InputStream.Length]; // Fairly arbitrary size
+                        int bytesRead;
+                        fuCompanyLogo.PostedFile.InputStream.Position = 0;
+                        while ((bytesRead = fuCompanyLogo.PostedFile.InputStream.Read(buffer, 0, buffer.Length)) > 0)
+                        {
+                            ms.Write(buffer, 0, bytesRead);
+                        }
+
+                        advertisers.AdvertiserLogo = ms.ToArray();
+                    }
+                }
+
                 advertisers.VideoLink = tbVideoLink.Text;
                 advertisers.Industry = ddlIndustry.SelectedValue.ToString();
                 advertisers.NominatedCompanyRole = tbNominatedCompanyRole.Text;
@@ -336,35 +350,6 @@ namespace JXTPortal.Website.advertiser
                 AdvertisersService advs = new AdvertisersService();
                 if (advs.Insert(advertisers))
                 {
-                    if (fuCompanyLogo.HasFile)
-                    {
-                        using (MemoryStream ms = new MemoryStream())
-                        {
-                            byte[] buffer = new byte[fuCompanyLogo.PostedFile.InputStream.Length]; // Fairly arbitrary size
-                            int bytesRead;
-                            fuCompanyLogo.PostedFile.InputStream.Position = 0;
-                            while ((bytesRead = fuCompanyLogo.PostedFile.InputStream.Read(buffer, 0, buffer.Length)) > 0)
-                            {
-                                ms.Write(buffer, 0, bytesRead);
-                            }
-
-                            System.Drawing.Image objOriginalImage = System.Drawing.Image.FromStream(ms);
-
-                            FtpClient ftpclient = new FtpClient();
-                            string errormessage = string.Empty;
-                            string extension = Utils.GetImageExtension(objOriginalImage);
-                            ftpclient.Host = ConfigurationManager.AppSettings["FTPFileManager"];
-                            ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                            ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-                            ftpclient.UploadFileFromStream(ms, string.Format("{0}/{1}/Advertisers_{2}.{3}", ftpclient.Host, ConfigurationManager.AppSettings["AdvertisersFolder"], advertisers.AdvertiserId, extension), out errormessage);
-
-                            if (string.IsNullOrWhiteSpace(errormessage))
-                            {
-                                advertisers.AdvertiserLogoUrl = string.Format("Advertisers_{0}.{1}", advertisers.AdvertiserId, extension);
-                            }
-                        }
-                    }
-
                     using (Entities.AdvertiserUsers user = new Entities.AdvertiserUsers())
                     {
                         user.AdvertiserId = advertisers.AdvertiserId;

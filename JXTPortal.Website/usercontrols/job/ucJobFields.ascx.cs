@@ -21,7 +21,6 @@ using System.Text;
 using System.Linq;
 using System.Xml;
 using JXTPortal.Entities.Models;
-using JXTPortal.Common;
 #endregion
 
 namespace JXTPortal.Website.Admin.UserControls
@@ -1369,7 +1368,7 @@ namespace JXTPortal.Website.Admin.UserControls
 
             if (aid > 0)
             {
-                using (DataSet jobtemplates = JobTemplatesService.GetAdvertiserJobTemplates(SessionData.Site.SiteId, aid))
+                using (TList<JXTPortal.Entities.JobTemplates> jobtemplates = JobTemplatesService.GetAdvertiserJobTemplates(SessionData.Site.SiteId, aid))
                 {
                     ddlJobTemplateID.DataSource = jobtemplates;
                     ddlJobTemplateID.DataBind();
@@ -2194,16 +2193,12 @@ namespace JXTPortal.Website.Admin.UserControls
 
                         objAdvJobTemplateLogo.JobLogoName = tbJobLogoName.Text.Trim();
 
-                        AdvertiserJobTemplateLogoService.Insert(objAdvJobTemplateLogo);
-
                         if ((docInput.PostedFile != null) && docInput.PostedFile.ContentLength > 0)
                         {
                             if (this.docInput.PostedFile != null)
                             {
-                                System.Drawing.Image objOriginalImage = null;
-                                string contenttype = string.Empty;
-
-                                Utils.IsValidUploadImage(docInput.PostedFile.FileName, docInput.PostedFile.InputStream, out objOriginalImage, out contenttype);
+                                System.IO.MemoryStream objInputMemoryStream = new System.IO.MemoryStream(this.getArray(this.docInput.PostedFile));
+                                System.Drawing.Image objOriginalImage = System.Drawing.Image.FromStream(objInputMemoryStream);
                                 System.Drawing.Image objResizedImage = JXTPortal.Common.Utils.ResizeImage(objOriginalImage,
                                     PortalConstants.THUMBNAIL_WIDTH, PortalConstants.THUMBNAIL_HEIGHT);
 
@@ -2214,22 +2209,11 @@ namespace JXTPortal.Website.Admin.UserControls
                                 objOutputMemorySTream.Position = 0;
                                 objOutputMemorySTream.Read(abytFile, 0, abytFile.Length);
 
-                                FtpClient ftpclient = new FtpClient();
-                                string errormessage = string.Empty;
-                                string extension = Utils.GetImageExtension(objOriginalImage);
-                                ftpclient.Host = ConfigurationManager.AppSettings["FTPFileManager"];
-                                ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                                ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-                                ftpclient.UploadFileFromStream(objOutputMemorySTream, string.Format("{0}/{1}/AdvertiserJobTemplateLogo_{2}.{3}", ftpclient.Host, ConfigurationManager.AppSettings["AdvertiserJobTemplateLogoFolder"], objAdvJobTemplateLogo.AdvertiserJobTemplateLogoId, extension), out errormessage);
-
-                                if (string.IsNullOrWhiteSpace(errormessage))
-                                {
-                                    objAdvJobTemplateLogo.JobTemplateLogoUrl = string.Format("AdvertiserJobTemplateLogo_{0}.{1}", objAdvJobTemplateLogo.AdvertiserJobTemplateLogoId, extension);
-                                    AdvertiserJobTemplateLogoService.Update(objAdvJobTemplateLogo);
-                                }
+                                objAdvJobTemplateLogo.JobTemplateLogo = abytFile;
                             }
 
                         }
+                        AdvertiserJobTemplateLogoService.Insert(objAdvJobTemplateLogo);
 
                         job.AdvertiserJobTemplateLogoId = objAdvJobTemplateLogo.AdvertiserJobTemplateLogoId;
                     }
@@ -2599,16 +2583,12 @@ namespace JXTPortal.Website.Admin.UserControls
 
                             objAdvJobTemplateLogo.JobLogoName = tbJobLogoName.Text.Trim();
 
-                            AdvertiserJobTemplateLogoService.Insert(objAdvJobTemplateLogo);
-
                             if ((docInput.PostedFile != null) && docInput.PostedFile.ContentLength > 0)
                             {
                                 if (this.docInput.PostedFile != null)
                                 {
-                                    System.Drawing.Image objOriginalImage = null;
-                                    string contenttype = string.Empty;
-
-                                    Utils.IsValidUploadImage(docInput.PostedFile.FileName, docInput.PostedFile.InputStream, out objOriginalImage, out contenttype);
+                                    System.IO.MemoryStream objInputMemoryStream = new System.IO.MemoryStream(this.getArray(this.docInput.PostedFile));
+                                    System.Drawing.Image objOriginalImage = System.Drawing.Image.FromStream(objInputMemoryStream);
                                     System.Drawing.Image objResizedImage = JXTPortal.Common.Utils.ResizeImage(objOriginalImage,
                                         PortalConstants.THUMBNAIL_WIDTH, PortalConstants.THUMBNAIL_HEIGHT);
 
@@ -2619,22 +2599,11 @@ namespace JXTPortal.Website.Admin.UserControls
                                     objOutputMemorySTream.Position = 0;
                                     objOutputMemorySTream.Read(abytFile, 0, abytFile.Length);
 
-                                    FtpClient ftpclient = new FtpClient();
-                                    string errormessage = string.Empty;
-                                    string extension = Utils.GetImageExtension(objOriginalImage);
-                                    ftpclient.Host = ConfigurationManager.AppSettings["FTPFileManager"];
-                                    ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                                    ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-                                    ftpclient.UploadFileFromStream(objOutputMemorySTream, string.Format("{0}/{1}/AdvertiserJobTemplateLogo_{2}.{3}", ftpclient.Host, ConfigurationManager.AppSettings["AdvertiserJobTemplateLogoFolder"], objAdvJobTemplateLogo.AdvertiserJobTemplateLogoId, extension), out errormessage);
-
-                                    if (string.IsNullOrWhiteSpace(errormessage))
-                                    {
-                                        objAdvJobTemplateLogo.JobTemplateLogoUrl = string.Format("AdvertiserJobTemplateLogo_{0}.{1}", objAdvJobTemplateLogo.AdvertiserJobTemplateLogoId, extension);
-                                        AdvertiserJobTemplateLogoService.Update(objAdvJobTemplateLogo);
-                                    }
+                                    objAdvJobTemplateLogo.JobTemplateLogo = abytFile;
                                 }
 
                             }
+                            AdvertiserJobTemplateLogoService.Insert(objAdvJobTemplateLogo);
 
                             job.AdvertiserJobTemplateLogoId = objAdvJobTemplateLogo.AdvertiserJobTemplateLogoId;
                         }

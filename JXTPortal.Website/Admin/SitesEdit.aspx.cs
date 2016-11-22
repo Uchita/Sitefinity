@@ -17,7 +17,6 @@ using JXTPortal.Entities;
 using JXTPortal;
 
 using System.Web.Script.Serialization;
-using JXTPortal.Common;
 #endregion
 
 public partial class SitesEdit : System.Web.UI.Page
@@ -124,6 +123,10 @@ public partial class SitesEdit : System.Web.UI.Page
             site.MobileUrl = txtSiteURL.Text.ToLower().Replace("http://", string.Empty).Replace("www.", string.Empty);
 
             site.Live = chkLive.Checked;
+            if ((flAdminSiteLogo.PostedFile != null) && flAdminSiteLogo.PostedFile.ContentLength > 0)
+            {
+                site.SiteAdminLogo = this.getArray(this.flAdminSiteLogo.PostedFile);
+            }
 
             if (SiteId > 0)
             {
@@ -140,32 +143,6 @@ public partial class SitesEdit : System.Web.UI.Page
                 //TODO : Remove AddDefaultGlobalSettings function
                 //AddDefaultGlobalSettings(site.SiteId);
             }
-
-            if ((flAdminSiteLogo.PostedFile != null) && flAdminSiteLogo.PostedFile.ContentLength > 0)
-            {
-                System.IO.MemoryStream objOutputMemorySTream = new System.IO.MemoryStream();
-
-                byte[] abytFile = new byte[Convert.ToInt32(flAdminSiteLogo.PostedFile.ContentLength)];
-                objOutputMemorySTream.Position = 0;
-                objOutputMemorySTream.Read(abytFile, 0, abytFile.Length);
-
-                System.Drawing.Image objOriginalImage = System.Drawing.Image.FromStream(objOutputMemorySTream);
-
-                FtpClient ftpclient = new FtpClient();
-                string errormessage = string.Empty;
-                string extension = Utils.GetImageExtension(objOriginalImage);
-                ftpclient.Host = ConfigurationManager.AppSettings["FTPFileManager"];
-                ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-                ftpclient.UploadFileFromStream(objOutputMemorySTream, string.Format("{0}/{1}/Sites_{2}.{3}", ftpclient.Host, ConfigurationManager.AppSettings["SitesFolder"], site.SiteId, extension), out errormessage);
-
-                if (string.IsNullOrWhiteSpace(errormessage))
-                {
-                    site.SiteAdminLogoUrl = string.Format("Sites_{0}.{1}", site.SiteId, extension);
-                    SitesService.Update(site);
-                }
-            }
-
         }
         catch (Exception ex)
         {
@@ -212,18 +189,7 @@ public partial class SitesEdit : System.Web.UI.Page
                     //txtMobileUrl.Text = site.MobileUrl.ToLower();
                     txtStagingSiteUrl.Text = String.Format("{0}{1}", site.SiteUrl.ToLower(), URLPOSTFIX);
                     chkLive.Checked = site.Live.Value;
-
-                    if (!string.IsNullOrWhiteSpace(site.SiteAdminLogoUrl))
-                    {
-                        imgSiteLogo.ImageUrl = string.Format("/media/{0}/{1}", ConfigurationManager.AppSettings["SitesFolder"], site.SiteAdminLogoUrl);
-                    }
-                    else
-                    {
-                        if (site.SiteAdminLogo != null)
-                        {
-                            imgSiteLogo.ImageUrl = String.Format("GetAdminLogo.aspx?SiteID={0}", siteID);
-                        }
-                    }
+                    imgSiteLogo.ImageUrl = String.Format("GetAdminLogo.aspx?SiteID={0}", siteID);
                 }
             }
         }

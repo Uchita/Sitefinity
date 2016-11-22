@@ -60,8 +60,7 @@ namespace JXTPortal
 		///<param name="_lastModified"></param>
 		///<param name="_jobTemplateLogo"></param>
 		///<param name="_advertiserId"></param>
-		///<param name="_jobTemplateLogoUrl"></param>
-		public static JobTemplates CreateJobTemplates(System.Int32? _siteId, System.String _jobTemplateDescription, System.String _jobTemplateHtml, System.Boolean _globalTemplate, System.Int32 _lastModifiedBy, System.DateTime _lastModified, System.Byte[] _jobTemplateLogo, System.Int32 _advertiserId, System.String _jobTemplateLogoUrl)
+		public static JobTemplates CreateJobTemplates(System.Int32? _siteId, System.String _jobTemplateDescription, System.String _jobTemplateHtml, System.Boolean _globalTemplate, System.Int32 _lastModifiedBy, System.DateTime _lastModified, System.Byte[] _jobTemplateLogo, System.Int32 _advertiserId)
 		{
 			JobTemplates newEntityJobTemplates = new JobTemplates();
 			newEntityJobTemplates.SiteId  = _siteId;
@@ -72,7 +71,6 @@ namespace JXTPortal
 			newEntityJobTemplates.LastModified  = _lastModified;
 			newEntityJobTemplates.JobTemplateLogo  = _jobTemplateLogo;
 			newEntityJobTemplates.AdvertiserId  = _advertiserId;
-			newEntityJobTemplates.JobTemplateLogoUrl  = _jobTemplateLogoUrl;
 			return newEntityJobTemplates;
 		}
 		#endregion Constructors
@@ -1564,10 +1562,9 @@ namespace JXTPortal
 		/// <param name="lastModified"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="jobTemplateLogo"> A <c>System.Byte[]</c> instance.</param>
 		/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="jobTemplateLogoUrl"> A <c>System.String</c> instance.</param>
 			/// <param name="jobTemplateId"> A <c>System.Int32?</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public virtual  void Insert(System.Int32? siteId, System.String jobTemplateDescription, System.String jobTemplateHtml, System.Boolean? globalTemplate, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.Byte[] jobTemplateLogo, System.Int32? advertiserId, System.String jobTemplateLogoUrl, ref System.Int32? jobTemplateId)
+		public virtual  void Insert(System.Int32? siteId, System.String jobTemplateDescription, System.String jobTemplateHtml, System.Boolean? globalTemplate, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.Byte[] jobTemplateLogo, System.Int32? advertiserId, ref System.Int32? jobTemplateId)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -1587,7 +1584,7 @@ namespace JXTPortal
 				
 				transactionManager = ConnectionScope.ValidateOrCreateTransaction();
 				dataProvider = ConnectionScope.Current.DataProvider;
-				dataProvider.JobTemplatesProvider.Insert(transactionManager , siteId, jobTemplateDescription, jobTemplateHtml, globalTemplate, lastModifiedBy, lastModified, jobTemplateLogo, advertiserId, jobTemplateLogoUrl, ref jobTemplateId);
+				dataProvider.JobTemplatesProvider.Insert(transactionManager , siteId, jobTemplateDescription, jobTemplateHtml, globalTemplate, lastModifiedBy, lastModified, jobTemplateLogo, advertiserId, ref jobTemplateId);
 	        
 				if (!isBorrowedTransaction && transactionManager != null && transactionManager.IsOpen)
 					transactionManager.Commit();
@@ -1618,12 +1615,11 @@ namespace JXTPortal
 		/// <param name="lastModified"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="jobTemplateLogo"> A <c>System.Byte[]</c> instance.</param>
 		/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="jobTemplateLogoUrl"> A <c>System.String</c> instance.</param>
 			/// <param name="jobTemplateId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public virtual  void Insert( System.Int32? siteId, System.String jobTemplateDescription, System.String jobTemplateHtml, System.Boolean? globalTemplate, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.Byte[] jobTemplateLogo, System.Int32? advertiserId, System.String jobTemplateLogoUrl, ref System.Int32? jobTemplateId, int start, int pageLength)
+		public virtual  void Insert( System.Int32? siteId, System.String jobTemplateDescription, System.String jobTemplateHtml, System.Boolean? globalTemplate, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.Byte[] jobTemplateLogo, System.Int32? advertiserId, ref System.Int32? jobTemplateId, int start, int pageLength)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -1644,7 +1640,7 @@ namespace JXTPortal
 				transactionManager = ConnectionScope.ValidateOrCreateTransaction();
 				dataProvider = ConnectionScope.Current.DataProvider;
                 
-				dataProvider.JobTemplatesProvider.Insert(transactionManager, start, pageLength , siteId, jobTemplateDescription, jobTemplateHtml, globalTemplate, lastModifiedBy, lastModified, jobTemplateLogo, advertiserId, jobTemplateLogoUrl, ref jobTemplateId);
+				dataProvider.JobTemplatesProvider.Insert(transactionManager, start, pageLength , siteId, jobTemplateDescription, jobTemplateHtml, globalTemplate, lastModifiedBy, lastModified, jobTemplateLogo, advertiserId, ref jobTemplateId);
 	        
 				if (!isBorrowedTransaction && transactionManager != null && transactionManager.IsOpen)
 					transactionManager.Commit();
@@ -1666,7 +1662,7 @@ namespace JXTPortal
 		#endregion 
 		
 		#region JobTemplates_GetBySiteId
-	
+		
 		/// <summary>
 		///	This method wrap the 'JobTemplates_GetBySiteId' stored procedure. 
 		/// </summary>
@@ -1674,8 +1670,8 @@ namespace JXTPortal
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public virtual  DataSet GetBySiteId( System.Int32? siteId, int start, int pageLength)
+		/// <returns>A <see cref="TList{JobTemplates}"/> instance.</returns>
+		public virtual  TList<JobTemplates> GetBySiteId( System.Int32? siteId, int start, int pageLength)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -1684,7 +1680,7 @@ namespace JXTPortal
 		
 			#region Initialisation
 			bool isBorrowedTransaction = false;
-			DataSet result = null; 
+			TList<JobTemplates> result = null; 
 			TransactionManager transactionManager = null; 
 			NetTiersProvider dataProvider = null;
 			#endregion Initialisation
@@ -1720,8 +1716,8 @@ namespace JXTPortal
 		///	This method wrap the 'JobTemplates_Get_List' stored procedure. 
 		/// </summary>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public virtual  DataSet Get_List()
+		/// <returns>A <see cref="TList{JobTemplates}"/> instance.</returns>
+		public virtual  TList<JobTemplates> Get_List()
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -1730,7 +1726,7 @@ namespace JXTPortal
 		
 			#region Initialisation
 			bool isBorrowedTransaction = false;
-			DataSet result = null; 
+			TList<JobTemplates> result = null; 
 			TransactionManager transactionManager = null; 
 			NetTiersProvider dataProvider = null;
 			#endregion Initialisation
@@ -1765,8 +1761,8 @@ namespace JXTPortal
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public virtual  DataSet Get_List( int start, int pageLength)
+		/// <returns>A <see cref="TList{JobTemplates}"/> instance.</returns>
+		public virtual  TList<JobTemplates> Get_List( int start, int pageLength)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -1775,7 +1771,7 @@ namespace JXTPortal
 		
 			#region Initialisation
 			bool isBorrowedTransaction = false;
-			DataSet result = null; 
+			TList<JobTemplates> result = null; 
 			TransactionManager transactionManager = null; 
 			NetTiersProvider dataProvider = null;
 			#endregion Initialisation
@@ -1815,8 +1811,8 @@ namespace JXTPortal
 		/// <param name="pageIndex"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="pageSize"> A <c>System.Int32?</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public virtual  DataSet GetPaged(System.String whereClause, System.String orderBy, System.Int32? pageIndex, System.Int32? pageSize)
+		/// <returns>A <see cref="TList{JobTemplates}"/> instance.</returns>
+		public virtual  TList<JobTemplates> GetPaged(System.String whereClause, System.String orderBy, System.Int32? pageIndex, System.Int32? pageSize)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -1825,7 +1821,7 @@ namespace JXTPortal
 		
 			#region Initialisation
 			bool isBorrowedTransaction = false;
-			DataSet result = null; 
+			TList<JobTemplates> result = null; 
 			TransactionManager transactionManager = null; 
 			NetTiersProvider dataProvider = null;
 			#endregion Initialisation
@@ -1864,8 +1860,8 @@ namespace JXTPortal
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public virtual  DataSet GetPaged( System.String whereClause, System.String orderBy, System.Int32? pageIndex, System.Int32? pageSize, int start, int pageLength)
+		/// <returns>A <see cref="TList{JobTemplates}"/> instance.</returns>
+		public virtual  TList<JobTemplates> GetPaged( System.String whereClause, System.String orderBy, System.Int32? pageIndex, System.Int32? pageSize, int start, int pageLength)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -1874,7 +1870,7 @@ namespace JXTPortal
 		
 			#region Initialisation
 			bool isBorrowedTransaction = false;
-			DataSet result = null; 
+			TList<JobTemplates> result = null; 
 			TransactionManager transactionManager = null; 
 			NetTiersProvider dataProvider = null;
 			#endregion Initialisation
@@ -1911,8 +1907,8 @@ namespace JXTPortal
 		/// </summary>
 		/// <param name="jobTemplateId"> A <c>System.Int32?</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public virtual  DataSet GetByJobTemplateId(System.Int32? jobTemplateId)
+		/// <returns>A <see cref="TList{JobTemplates}"/> instance.</returns>
+		public virtual  TList<JobTemplates> GetByJobTemplateId(System.Int32? jobTemplateId)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -1921,7 +1917,7 @@ namespace JXTPortal
 		
 			#region Initialisation
 			bool isBorrowedTransaction = false;
-			DataSet result = null; 
+			TList<JobTemplates> result = null; 
 			TransactionManager transactionManager = null; 
 			NetTiersProvider dataProvider = null;
 			#endregion Initialisation
@@ -1957,8 +1953,8 @@ namespace JXTPortal
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public virtual  DataSet GetByJobTemplateId( System.Int32? jobTemplateId, int start, int pageLength)
+		/// <returns>A <see cref="TList{JobTemplates}"/> instance.</returns>
+		public virtual  TList<JobTemplates> GetByJobTemplateId( System.Int32? jobTemplateId, int start, int pageLength)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -1967,7 +1963,7 @@ namespace JXTPortal
 		
 			#region Initialisation
 			bool isBorrowedTransaction = false;
-			DataSet result = null; 
+			TList<JobTemplates> result = null; 
 			TransactionManager transactionManager = null; 
 			NetTiersProvider dataProvider = null;
 			#endregion Initialisation
@@ -2004,8 +2000,8 @@ namespace JXTPortal
 		/// </summary>
 		/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public virtual  DataSet GetByAdvertiserId(System.Int32? advertiserId)
+		/// <returns>A <see cref="TList{JobTemplates}"/> instance.</returns>
+		public virtual  TList<JobTemplates> GetByAdvertiserId(System.Int32? advertiserId)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -2014,7 +2010,7 @@ namespace JXTPortal
 		
 			#region Initialisation
 			bool isBorrowedTransaction = false;
-			DataSet result = null; 
+			TList<JobTemplates> result = null; 
 			TransactionManager transactionManager = null; 
 			NetTiersProvider dataProvider = null;
 			#endregion Initialisation
@@ -2050,8 +2046,8 @@ namespace JXTPortal
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public virtual  DataSet GetByAdvertiserId( System.Int32? advertiserId, int start, int pageLength)
+		/// <returns>A <see cref="TList{JobTemplates}"/> instance.</returns>
+		public virtual  TList<JobTemplates> GetByAdvertiserId( System.Int32? advertiserId, int start, int pageLength)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -2060,7 +2056,7 @@ namespace JXTPortal
 		
 			#region Initialisation
 			bool isBorrowedTransaction = false;
-			DataSet result = null; 
+			TList<JobTemplates> result = null; 
 			TransactionManager transactionManager = null; 
 			NetTiersProvider dataProvider = null;
 			#endregion Initialisation
@@ -2098,8 +2094,8 @@ namespace JXTPortal
 		/// <param name="siteId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public virtual  DataSet GetAdvertiserJobTemplates(System.Int32? siteId, System.Int32? advertiserId)
+		/// <returns>A <see cref="TList{JobTemplates}"/> instance.</returns>
+		public virtual  TList<JobTemplates> GetAdvertiserJobTemplates(System.Int32? siteId, System.Int32? advertiserId)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -2108,7 +2104,7 @@ namespace JXTPortal
 		
 			#region Initialisation
 			bool isBorrowedTransaction = false;
-			DataSet result = null; 
+			TList<JobTemplates> result = null; 
 			TransactionManager transactionManager = null; 
 			NetTiersProvider dataProvider = null;
 			#endregion Initialisation
@@ -2145,8 +2141,8 @@ namespace JXTPortal
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public virtual  DataSet GetAdvertiserJobTemplates( System.Int32? siteId, System.Int32? advertiserId, int start, int pageLength)
+		/// <returns>A <see cref="TList{JobTemplates}"/> instance.</returns>
+		public virtual  TList<JobTemplates> GetAdvertiserJobTemplates( System.Int32? siteId, System.Int32? advertiserId, int start, int pageLength)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -2155,7 +2151,7 @@ namespace JXTPortal
 		
 			#region Initialisation
 			bool isBorrowedTransaction = false;
-			DataSet result = null; 
+			TList<JobTemplates> result = null; 
 			TransactionManager transactionManager = null; 
 			NetTiersProvider dataProvider = null;
 			#endregion Initialisation
@@ -2199,9 +2195,8 @@ namespace JXTPortal
 		/// <param name="lastModified"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="jobTemplateLogo"> A <c>System.Byte[]</c> instance.</param>
 		/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="jobTemplateLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public virtual  void Update(System.Int32? jobTemplateId, System.Int32? siteId, System.String jobTemplateDescription, System.String jobTemplateHtml, System.Boolean? globalTemplate, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.Byte[] jobTemplateLogo, System.Int32? advertiserId, System.String jobTemplateLogoUrl)
+		public virtual  void Update(System.Int32? jobTemplateId, System.Int32? siteId, System.String jobTemplateDescription, System.String jobTemplateHtml, System.Boolean? globalTemplate, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.Byte[] jobTemplateLogo, System.Int32? advertiserId)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -2221,7 +2216,7 @@ namespace JXTPortal
 				
 				transactionManager = ConnectionScope.ValidateOrCreateTransaction();
 				dataProvider = ConnectionScope.Current.DataProvider;
-				dataProvider.JobTemplatesProvider.Update(transactionManager , jobTemplateId, siteId, jobTemplateDescription, jobTemplateHtml, globalTemplate, lastModifiedBy, lastModified, jobTemplateLogo, advertiserId, jobTemplateLogoUrl);
+				dataProvider.JobTemplatesProvider.Update(transactionManager , jobTemplateId, siteId, jobTemplateDescription, jobTemplateHtml, globalTemplate, lastModifiedBy, lastModified, jobTemplateLogo, advertiserId);
 	        
 				if (!isBorrowedTransaction && transactionManager != null && transactionManager.IsOpen)
 					transactionManager.Commit();
@@ -2253,11 +2248,10 @@ namespace JXTPortal
 		/// <param name="lastModified"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="jobTemplateLogo"> A <c>System.Byte[]</c> instance.</param>
 		/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="jobTemplateLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public virtual  void Update( System.Int32? jobTemplateId, System.Int32? siteId, System.String jobTemplateDescription, System.String jobTemplateHtml, System.Boolean? globalTemplate, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.Byte[] jobTemplateLogo, System.Int32? advertiserId, System.String jobTemplateLogoUrl, int start, int pageLength)
+		public virtual  void Update( System.Int32? jobTemplateId, System.Int32? siteId, System.String jobTemplateDescription, System.String jobTemplateHtml, System.Boolean? globalTemplate, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.Byte[] jobTemplateLogo, System.Int32? advertiserId, int start, int pageLength)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -2278,7 +2272,7 @@ namespace JXTPortal
 				transactionManager = ConnectionScope.ValidateOrCreateTransaction();
 				dataProvider = ConnectionScope.Current.DataProvider;
                 
-				dataProvider.JobTemplatesProvider.Update(transactionManager, start, pageLength , jobTemplateId, siteId, jobTemplateDescription, jobTemplateHtml, globalTemplate, lastModifiedBy, lastModified, jobTemplateLogo, advertiserId, jobTemplateLogoUrl);
+				dataProvider.JobTemplatesProvider.Update(transactionManager, start, pageLength , jobTemplateId, siteId, jobTemplateDescription, jobTemplateHtml, globalTemplate, lastModifiedBy, lastModified, jobTemplateLogo, advertiserId);
 	        
 				if (!isBorrowedTransaction && transactionManager != null && transactionManager.IsOpen)
 					transactionManager.Commit();
@@ -2313,10 +2307,9 @@ namespace JXTPortal
 		/// <param name="lastModified"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="jobTemplateLogo"> A <c>System.Byte[]</c> instance.</param>
 		/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="jobTemplateLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public virtual  DataSet Find(System.Boolean? searchUsingOr, System.Int32? jobTemplateId, System.Int32? siteId, System.String jobTemplateDescription, System.String jobTemplateHtml, System.Boolean? globalTemplate, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.Byte[] jobTemplateLogo, System.Int32? advertiserId, System.String jobTemplateLogoUrl)
+		/// <returns>A <see cref="TList{JobTemplates}"/> instance.</returns>
+		public virtual  TList<JobTemplates> Find(System.Boolean? searchUsingOr, System.Int32? jobTemplateId, System.Int32? siteId, System.String jobTemplateDescription, System.String jobTemplateHtml, System.Boolean? globalTemplate, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.Byte[] jobTemplateLogo, System.Int32? advertiserId)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -2325,7 +2318,7 @@ namespace JXTPortal
 		
 			#region Initialisation
 			bool isBorrowedTransaction = false;
-			DataSet result = null; 
+			TList<JobTemplates> result = null; 
 			TransactionManager transactionManager = null; 
 			NetTiersProvider dataProvider = null;
 			#endregion Initialisation
@@ -2336,7 +2329,7 @@ namespace JXTPortal
 				
 				transactionManager = ConnectionScope.ValidateOrCreateTransaction(noTranByDefault);
 				dataProvider = ConnectionScope.Current.DataProvider;
-				result = dataProvider.JobTemplatesProvider.Find(transactionManager , searchUsingOr, jobTemplateId, siteId, jobTemplateDescription, jobTemplateHtml, globalTemplate, lastModifiedBy, lastModified, jobTemplateLogo, advertiserId, jobTemplateLogoUrl);
+				result = dataProvider.JobTemplatesProvider.Find(transactionManager , searchUsingOr, jobTemplateId, siteId, jobTemplateDescription, jobTemplateHtml, globalTemplate, lastModifiedBy, lastModified, jobTemplateLogo, advertiserId);
 	        
 			}
             catch (Exception exc)
@@ -2367,12 +2360,11 @@ namespace JXTPortal
 		/// <param name="lastModified"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="jobTemplateLogo"> A <c>System.Byte[]</c> instance.</param>
 		/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="jobTemplateLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public virtual  DataSet Find( System.Boolean? searchUsingOr, System.Int32? jobTemplateId, System.Int32? siteId, System.String jobTemplateDescription, System.String jobTemplateHtml, System.Boolean? globalTemplate, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.Byte[] jobTemplateLogo, System.Int32? advertiserId, System.String jobTemplateLogoUrl, int start, int pageLength)
+		/// <returns>A <see cref="TList{JobTemplates}"/> instance.</returns>
+		public virtual  TList<JobTemplates> Find( System.Boolean? searchUsingOr, System.Int32? jobTemplateId, System.Int32? siteId, System.String jobTemplateDescription, System.String jobTemplateHtml, System.Boolean? globalTemplate, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.Byte[] jobTemplateLogo, System.Int32? advertiserId, int start, int pageLength)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -2381,7 +2373,7 @@ namespace JXTPortal
 		
 			#region Initialisation
 			bool isBorrowedTransaction = false;
-			DataSet result = null; 
+			TList<JobTemplates> result = null; 
 			TransactionManager transactionManager = null; 
 			NetTiersProvider dataProvider = null;
 			#endregion Initialisation
@@ -2393,7 +2385,7 @@ namespace JXTPortal
 				transactionManager = ConnectionScope.ValidateOrCreateTransaction(noTranByDefault);
 				dataProvider = ConnectionScope.Current.DataProvider;
                 
-				result = dataProvider.JobTemplatesProvider.Find(transactionManager, start, pageLength , searchUsingOr, jobTemplateId, siteId, jobTemplateDescription, jobTemplateHtml, globalTemplate, lastModifiedBy, lastModified, jobTemplateLogo, advertiserId, jobTemplateLogoUrl);
+				result = dataProvider.JobTemplatesProvider.Find(transactionManager, start, pageLength , searchUsingOr, jobTemplateId, siteId, jobTemplateDescription, jobTemplateHtml, globalTemplate, lastModifiedBy, lastModified, jobTemplateLogo, advertiserId);
 	        
 			}
             catch (Exception exc)
@@ -2513,8 +2505,8 @@ namespace JXTPortal
 		/// </summary>
 		/// <param name="lastModifiedBy"> A <c>System.Int32?</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public virtual  DataSet GetByLastModifiedBy(System.Int32? lastModifiedBy)
+		/// <returns>A <see cref="TList{JobTemplates}"/> instance.</returns>
+		public virtual  TList<JobTemplates> GetByLastModifiedBy(System.Int32? lastModifiedBy)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -2523,7 +2515,7 @@ namespace JXTPortal
 		
 			#region Initialisation
 			bool isBorrowedTransaction = false;
-			DataSet result = null; 
+			TList<JobTemplates> result = null; 
 			TransactionManager transactionManager = null; 
 			NetTiersProvider dataProvider = null;
 			#endregion Initialisation
@@ -2559,8 +2551,8 @@ namespace JXTPortal
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public virtual  DataSet GetByLastModifiedBy( System.Int32? lastModifiedBy, int start, int pageLength)
+		/// <returns>A <see cref="TList{JobTemplates}"/> instance.</returns>
+		public virtual  TList<JobTemplates> GetByLastModifiedBy( System.Int32? lastModifiedBy, int start, int pageLength)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -2569,7 +2561,7 @@ namespace JXTPortal
 		
 			#region Initialisation
 			bool isBorrowedTransaction = false;
-			DataSet result = null; 
+			TList<JobTemplates> result = null; 
 			TransactionManager transactionManager = null; 
 			NetTiersProvider dataProvider = null;
 			#endregion Initialisation

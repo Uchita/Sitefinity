@@ -185,7 +185,6 @@ namespace JXTPortal.Data.SqlClient
 		database.AddInParameter(commandWrapper, "@Live", DbType.Boolean, DBNull.Value);
 		database.AddInParameter(commandWrapper, "@MobileEnabled", DbType.Boolean, DBNull.Value);
 		database.AddInParameter(commandWrapper, "@MobileUrl", DbType.AnsiString, DBNull.Value);
-		database.AddInParameter(commandWrapper, "@SiteAdminLogoUrl", DbType.String, DBNull.Value);
 	
 			// replace all instances of 'AND' and 'OR' because we already set searchUsingOR
 			whereClause = whereClause.Replace(" AND ", "|").Replace(" OR ", "|") ; 
@@ -258,12 +257,6 @@ namespace JXTPortal.Data.SqlClient
 				{
 					database.SetParameterValue(commandWrapper, "@MobileUrl", 
 						clause.Trim().Remove(0,9).Trim().TrimStart(equalSign).Trim().Trim(singleQuote));
-					continue;
-				}
-				if (clause.Trim().StartsWith("siteadminlogourl ") || clause.Trim().StartsWith("siteadminlogourl="))
-				{
-					database.SetParameterValue(commandWrapper, "@SiteAdminLogoUrl", 
-						clause.Trim().Remove(0,16).Trim().TrimStart(equalSign).Trim().Trim(singleQuote));
 					continue;
 				}
 	
@@ -814,8 +807,6 @@ namespace JXTPortal.Data.SqlClient
 			col8.AllowDBNull = false;		
 			DataColumn col9 = dataTable.Columns.Add("MobileUrl", typeof(System.String));
 			col9.AllowDBNull = false;		
-			DataColumn col10 = dataTable.Columns.Add("SiteAdminLogoUrl", typeof(System.String));
-			col10.AllowDBNull = true;		
 			
 			bulkCopy.ColumnMappings.Add("SiteID", "SiteID");
 			bulkCopy.ColumnMappings.Add("SiteName", "SiteName");
@@ -827,7 +818,6 @@ namespace JXTPortal.Data.SqlClient
 			bulkCopy.ColumnMappings.Add("Live", "Live");
 			bulkCopy.ColumnMappings.Add("MobileEnabled", "MobileEnabled");
 			bulkCopy.ColumnMappings.Add("MobileUrl", "MobileUrl");
-			bulkCopy.ColumnMappings.Add("SiteAdminLogoUrl", "SiteAdminLogoUrl");
 			
 			foreach(JXTPortal.Entities.Sites entity in entities)
 			{
@@ -864,9 +854,6 @@ namespace JXTPortal.Data.SqlClient
 							
 				
 					row["MobileUrl"] = entity.MobileUrl;
-							
-				
-					row["SiteAdminLogoUrl"] = entity.SiteAdminLogoUrl;
 							
 				
 				dataTable.Rows.Add(row);
@@ -913,7 +900,6 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@Live", DbType.Boolean, (entity.Live.HasValue ? (object) entity.Live  : System.DBNull.Value));
 			database.AddInParameter(commandWrapper, "@MobileEnabled", DbType.Boolean, entity.MobileEnabled );
 			database.AddInParameter(commandWrapper, "@MobileUrl", DbType.AnsiString, entity.MobileUrl );
-			database.AddInParameter(commandWrapper, "@SiteAdminLogoUrl", DbType.String, entity.SiteAdminLogoUrl );
 			
 			int results = 0;
 			
@@ -972,7 +958,6 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@Live", DbType.Boolean, (entity.Live.HasValue ? (object) entity.Live : System.DBNull.Value) );
 			database.AddInParameter(commandWrapper, "@MobileEnabled", DbType.Boolean, entity.MobileEnabled );
 			database.AddInParameter(commandWrapper, "@MobileUrl", DbType.AnsiString, entity.MobileUrl );
-			database.AddInParameter(commandWrapper, "@SiteAdminLogoUrl", DbType.String, entity.SiteAdminLogoUrl );
 			
 			int results = 0;
 			
@@ -1073,13 +1058,12 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="live"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileEnabled"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileUrl"> A <c>System.String</c> instance.</param>
-		/// <param name="siteAdminLogoUrl"> A <c>System.String</c> instance.</param>
 			/// <param name="siteId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
-		public override void Insert(TransactionManager transactionManager, int start, int pageLength , System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl, System.String siteAdminLogoUrl, ref System.Int32? siteId)
+		public override void Insert(TransactionManager transactionManager, int start, int pageLength , System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl, ref System.Int32? siteId)
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.Sites_Insert", true);
@@ -1093,7 +1077,6 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@Live", DbType.Boolean,  live );
 			database.AddInParameter(commandWrapper, "@MobileEnabled", DbType.Boolean,  mobileEnabled );
 			database.AddInParameter(commandWrapper, "@MobileUrl", DbType.AnsiString,  mobileUrl );
-			database.AddInParameter(commandWrapper, "@SiteAdminLogoUrl", DbType.String,  siteAdminLogoUrl );
 	
 			database.AddParameter(commandWrapper, "@SiteId", DbType.Int32, 4, ParameterDirection.InputOutput, true, 10, 0, string.Empty, DataRowVersion.Current, siteId);
 			
@@ -1172,34 +1155,44 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
 		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public override DataSet Get_List(TransactionManager transactionManager, int start, int pageLength )
+        public override TList<Sites> Get_List(TransactionManager transactionManager, int start, int pageLength)
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.Sites_Get_List", true);
-			
-	
-			
-			DataSet ds = null;
-			
-			//Provider Data Requesting Command Event
-			OnDataRequesting(new CommandEventArgs(commandWrapper, "Get_List", (IEntity)null));
 
-			if (transactionManager != null)
-			{	
-				ds = Utility.ExecuteDataSet(transactionManager, commandWrapper);
-			}
-			else
-			{
-				ds = Utility.ExecuteDataSet(database, commandWrapper);
-			}
-			
-			//Provider Data Requested Command Event
-			OnDataRequested(new CommandEventArgs(commandWrapper, "Get_List", (IEntity)null));
 
-			
 
-			
-			return ds;	
+            IDataReader reader = null;
+
+            //Create Collection
+            TList<Sites> rows = new TList<Sites>();
+            //Provider Data Requesting Command Event
+            OnDataRequesting(new CommandEventArgs(commandWrapper, "Get_List", rows));
+
+            if (transactionManager != null)
+            {
+                reader = Utility.ExecuteReader(transactionManager, commandWrapper);
+            }
+            else
+            {
+                reader = Utility.ExecuteReader(database, commandWrapper);
+            }
+
+            try
+            {
+                Fill(reader, rows, start, pageLength);
+            }
+            finally
+            {
+                if (reader != null)
+                    reader.Close();
+            }
+
+            //Provider Data Requested Command Event
+            OnDataRequested(new CommandEventArgs(commandWrapper, "Get_List", rows));
+
+
+            return rows;	
 		}
 		#endregion
 
@@ -1306,12 +1299,11 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="live"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileEnabled"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileUrl"> A <c>System.String</c> instance.</param>
-		/// <param name="siteAdminLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
-		public override void Update(TransactionManager transactionManager, int start, int pageLength , System.Int32? siteId, System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl, System.String siteAdminLogoUrl)
+		public override void Update(TransactionManager transactionManager, int start, int pageLength , System.Int32? siteId, System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl)
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.Sites_Update", true);
@@ -1326,7 +1318,6 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@Live", DbType.Boolean,  live );
 			database.AddInParameter(commandWrapper, "@MobileEnabled", DbType.Boolean,  mobileEnabled );
 			database.AddInParameter(commandWrapper, "@MobileUrl", DbType.AnsiString,  mobileUrl );
-			database.AddInParameter(commandWrapper, "@SiteAdminLogoUrl", DbType.String,  siteAdminLogoUrl );
 	
 			
 			//Provider Data Requesting Command Event
@@ -1411,7 +1402,7 @@ namespace JXTPortal.Data.SqlClient
 			
 			database.AddInParameter(commandWrapper, "@SiteID", DbType.Int32,  siteId );
 			database.AddInParameter(commandWrapper, "@SiteName", DbType.AnsiString,  siteName );
-			database.AddInParameter(commandWrapper, "@SiteUrl", DbType.AnsiString,  siteUrl );
+			database.AddInParameter(commandWrapper, "@SiteURL", DbType.AnsiString,  siteUrl );
 			database.AddInParameter(commandWrapper, "@pageSize", DbType.Int32,  pageSize );
 			database.AddInParameter(commandWrapper, "@pageNumber", DbType.Int32,  pageNumber );
 	
@@ -1456,13 +1447,12 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="live"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileEnabled"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileUrl"> A <c>System.String</c> instance.</param>
-		/// <param name="siteAdminLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
 		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public override DataSet Find(TransactionManager transactionManager, int start, int pageLength , System.Boolean? searchUsingOr, System.Int32? siteId, System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl, System.String siteAdminLogoUrl)
+		public override DataSet Find(TransactionManager transactionManager, int start, int pageLength , System.Boolean? searchUsingOr, System.Int32? siteId, System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl)
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.Sites_Find", true);
@@ -1478,7 +1468,6 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@Live", DbType.Boolean,  live );
 			database.AddInParameter(commandWrapper, "@MobileEnabled", DbType.Boolean,  mobileEnabled );
 			database.AddInParameter(commandWrapper, "@MobileUrl", DbType.AnsiString,  mobileUrl );
-			database.AddInParameter(commandWrapper, "@SiteAdminLogoUrl", DbType.String,  siteAdminLogoUrl );
 	
 			
 			DataSet ds = null;

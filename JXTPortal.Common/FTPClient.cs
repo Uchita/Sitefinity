@@ -369,19 +369,6 @@ namespace JXTPortal.Common
 
             try
             {
-                Uri filenameuri = new Uri(strHostWithFilename);
-                string directory = string.Empty;
-
-                for (int i = 0; i < filenameuri.Segments.Length - 1; i++)
-                {
-                    directory += filenameuri.Segments[i];
-                }
-
-                if (!DirectoryExists(directory, out errormessage))
-                {
-                    CreateDirectory(directory, out errormessage);
-                }
-
                 FtpWebRequest request = (FtpWebRequest)WebRequest.Create(strHostWithFilename);
                 request.Method = WebRequestMethods.Ftp.UploadFile;
 

@@ -58,11 +58,6 @@ namespace JXTPortal.Entities
 		/// AdvertiserID : 
 		/// </summary>
 		System.Int32  AdvertiserId  { get; set; }
-		
-		/// <summary>
-		/// JobTemplateLogoUrl : 
-		/// </summary>
-		System.String  JobTemplateLogoUrl  { get; set; }
 			
 		/// <summary>
 		/// Creates a new object that is a copy of the current instance.

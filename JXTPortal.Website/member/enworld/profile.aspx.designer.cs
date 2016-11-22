@@ -472,15 +472,6 @@ namespace JXTPortal.Website.member.enworld {
         protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral17;
         
         /// <summary>
-        /// ddlSalaryCurrency control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSalaryCurrency;
-        
-        /// <summary>
         /// tbFixedSalary control.
         /// </summary>
         /// <remarks>

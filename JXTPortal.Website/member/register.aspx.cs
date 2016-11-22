@@ -9,7 +9,6 @@ using JXTPortal.Common;
 using System.Configuration;
 using JXTPortal.Client.Salesforce;
 using System.Text.RegularExpressions;
-using System.IO;
 
 namespace JXTPortal.Website.members
 {
@@ -84,10 +83,6 @@ namespace JXTPortal.Website.members
             }
         }
 
-        protected string DateFormat
-        {
-            get { return SessionData.Site.DateFormat.ToLower(); }
-        }
         #endregion
 
         #region Page Event Handlers
@@ -320,7 +315,7 @@ namespace JXTPortal.Website.members
                                 objMemberFiles.MemberFileName = System.IO.Path.GetFileName(docInput.PostedFile.FileName).Trim().Replace(c.ToString(), "");
                             }
                             objMemberFiles.MemberFileSearchExtension = System.IO.Path.GetExtension(docInput.PostedFile.FileName).Trim();
-                            
+                            objMemberFiles.MemberFileContent = this.getArray(this.docInput.PostedFile);
                             objMemberFiles.MemberFileTitle = objMemberFiles.MemberFileName;
                             objMemberFiles.MemberId = memberID;
                             objMemberFiles.MemberFileTypeId = memberFileTypeID;
@@ -328,23 +323,6 @@ namespace JXTPortal.Website.members
 
                             MemberFilesService mfs = new MemberFilesService();
                             mfs.Insert(objMemberFiles);
-
-
-                            FtpClient ftpclient = new FtpClient();
-                            ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                            ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                            ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
-                            string extension = string.Empty;
-
-                            extension = Path.GetExtension(docInput.PostedFile.FileName);
-                            string filepath = string.Format("{0}{1}/{2}/{3}/MemberFiles_{4}{5}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], SessionData.Member.MemberId, objMemberFiles.MemberFileId, extension);
-                            string errormessage = string.Empty;
-
-                            ftpclient.UploadFileFromStream(docInput.PostedFile.InputStream, filepath, out errormessage);
-                            objMemberFiles.MemberFileUrl = string.Format("MemberFiles_{0}{1}", objMemberFiles.MemberFileId, extension);
-
-                            mfs.Update(objMemberFiles);
 
                             hasUploadedFile = true;
                         }
@@ -373,6 +351,7 @@ namespace JXTPortal.Website.members
                                 objMemberFiles.MemberFileName = System.IO.Path.GetFileName(fuCoverLetter.PostedFile.FileName).Trim().Replace(c.ToString(), "");
                             }
                             objMemberFiles.MemberFileSearchExtension = System.IO.Path.GetExtension(fuCoverLetter.PostedFile.FileName).Trim();
+                            objMemberFiles.MemberFileContent = this.getArray(this.fuCoverLetter.PostedFile);
                             objMemberFiles.MemberFileTitle = objMemberFiles.MemberFileName;
                             objMemberFiles.MemberId = memberID;
                             objMemberFiles.MemberFileTypeId = memberFileTypeID;
@@ -380,23 +359,6 @@ namespace JXTPortal.Website.members
 
                             MemberFilesService mfs = new MemberFilesService();
                             mfs.Insert(objMemberFiles);
-
-
-                            FtpClient ftpclient = new FtpClient();
-                            ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                            ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                            ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
-                            string extension = string.Empty;
-
-                            extension = Path.GetExtension(fuCoverLetter.PostedFile.FileName);
-                            string filepath = string.Format("{0}{1}/{2}/{3}/MemberFiles_{4}{5}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], SessionData.Member.MemberId, objMemberFiles.MemberFileId, extension);
-                            string errormessage = string.Empty;
-
-                            ftpclient.UploadFileFromStream(fuCoverLetter.PostedFile.InputStream, filepath, out errormessage);
-                            objMemberFiles.MemberFileUrl = string.Format("MemberFiles_{0}{1}", objMemberFiles.MemberFileId, extension);
-
-                            mfs.Update(objMemberFiles);
 
                             hasUploadedFile = true;
                         }
@@ -444,14 +406,11 @@ namespace JXTPortal.Website.members
                 return;
             }
             else */
-            if (docInput.HasFile)
+            if (docInput.PostedFile != null && !CommonFunction.CheckExtension(docInput.PostedFile.FileName))
             {
-                if (!CommonFunction.CheckExtension(docInput.PostedFile.FileName))
-                {
-                    args.IsValid = false;
-                    this.cvalDocument.ErrorMessage = CommonFunction.GetResourceValue("ErrorFileExtension");
-                    return;
-                }
+                args.IsValid = false;
+                this.cvalDocument.ErrorMessage = CommonFunction.GetResourceValue("ErrorFileExtension");
+                return;
             }
             /*else if (CheckFileName == true)
             {
@@ -467,14 +426,11 @@ namespace JXTPortal.Website.members
 
         protected void cvalCoverLetter_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            if (fuCoverLetter.HasFile)
+            if (fuCoverLetter.PostedFile != null && !CommonFunction.CheckExtension(fuCoverLetter.PostedFile.FileName))
             {
-                if (!CommonFunction.CheckExtension(fuCoverLetter.PostedFile.FileName))
-                {
-                    args.IsValid = false;
-                    this.cvalCoverLetter.ErrorMessage = CommonFunction.GetResourceValue("ErrorFileExtension");
-                    return;
-                }
+                args.IsValid = false;
+                this.cvalCoverLetter.ErrorMessage = CommonFunction.GetResourceValue("ErrorFileExtension");
+                return;
             }
             else
             {
@@ -493,13 +449,6 @@ namespace JXTPortal.Website.members
             {
                 using (JXTPortal.Entities.Members objMembers = new JXTPortal.Entities.Members())
                 {
-                    DateTime dob = DateTime.Now;
-
-                    if (!string.IsNullOrWhiteSpace(tbDOB.Text))
-                    {
-                        DateTime.TryParseExact(tbDOB.Text, SessionData.Site.DateFormat, null, System.Globalization.DateTimeStyles.None, out dob);
-                    }
-
                     objMembers.SiteId = SessionData.Site.MasterSiteId;
                     objMembers.Username = CommonService.EncodeString(txtUsername.Text);
                     objMembers.Password = CommonService.EncryptMD5(txtPassword.Text);
@@ -509,7 +458,6 @@ namespace JXTPortal.Website.members
                     objMembers.Surname = CommonService.EncodeString(txtSurname.Text);
                     objMembers.MultiLingualFirstName = CommonService.EncodeString(txtMultiLingualFirstname.Text);
                     objMembers.MultiLingualSurame = CommonService.EncodeString(txtMultiLingualSurname.Text);
-                    objMembers.DateOfBirth = (!string.IsNullOrWhiteSpace(tbDOB.Text)) ? dob : (DateTime?)null;
                     objMembers.HomePhone = CommonService.EncodeString(txtTel.Text);
                     objMembers.Address1 = CommonService.EncodeString(txtAddress.Text);
                     objMembers.Suburb = CommonService.EncodeString(txtSuburb.Text);
@@ -640,16 +588,6 @@ namespace JXTPortal.Website.members
             }
         }
 
-        protected void cvDOB_ServerValidate(object source, ServerValidateEventArgs args)
-        {
-            DateTime dob = DateTime.Now;
-
-            if (!string.IsNullOrWhiteSpace(tbDOB.Text))
-            {
-                cvEmailAddress.ErrorMessage = CommonFunction.GetResourceValue("LabelInvalidDate");
-                args.IsValid = DateTime.TryParseExact(tbDOB.Text, SessionData.Site.DateFormat, null, System.Globalization.DateTimeStyles.None, out dob);
-            }
-        }
 
         #endregion
 

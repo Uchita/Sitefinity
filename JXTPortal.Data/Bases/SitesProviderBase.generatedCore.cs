@@ -408,12 +408,11 @@ namespace JXTPortal.Data.Bases
 		/// <param name="live"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileEnabled"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileUrl"> A <c>System.String</c> instance.</param>
-		/// <param name="siteAdminLogoUrl"> A <c>System.String</c> instance.</param>
 			/// <param name="siteId"> A <c>System.Int32?</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public void Insert(System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl, System.String siteAdminLogoUrl, ref System.Int32? siteId)
+		public void Insert(System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl, ref System.Int32? siteId)
 		{
-			 Insert(null, 0, int.MaxValue , siteName, siteUrl, siteDescription, siteAdminLogo, lastModified, lastModifiedBy, live, mobileEnabled, mobileUrl, siteAdminLogoUrl, ref siteId);
+			 Insert(null, 0, int.MaxValue , siteName, siteUrl, siteDescription, siteAdminLogo, lastModified, lastModifiedBy, live, mobileEnabled, mobileUrl, ref siteId);
 		}
 		
 		/// <summary>
@@ -428,14 +427,13 @@ namespace JXTPortal.Data.Bases
 		/// <param name="live"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileEnabled"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileUrl"> A <c>System.String</c> instance.</param>
-		/// <param name="siteAdminLogoUrl"> A <c>System.String</c> instance.</param>
 			/// <param name="siteId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public void Insert(int start, int pageLength, System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl, System.String siteAdminLogoUrl, ref System.Int32? siteId)
+		public void Insert(int start, int pageLength, System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl, ref System.Int32? siteId)
 		{
-			 Insert(null, start, pageLength , siteName, siteUrl, siteDescription, siteAdminLogo, lastModified, lastModifiedBy, live, mobileEnabled, mobileUrl, siteAdminLogoUrl, ref siteId);
+			 Insert(null, start, pageLength , siteName, siteUrl, siteDescription, siteAdminLogo, lastModified, lastModifiedBy, live, mobileEnabled, mobileUrl, ref siteId);
 		}
 				
 		/// <summary>
@@ -450,13 +448,12 @@ namespace JXTPortal.Data.Bases
 		/// <param name="live"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileEnabled"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileUrl"> A <c>System.String</c> instance.</param>
-		/// <param name="siteAdminLogoUrl"> A <c>System.String</c> instance.</param>
 			/// <param name="siteId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public void Insert(TransactionManager transactionManager, System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl, System.String siteAdminLogoUrl, ref System.Int32? siteId)
+		public void Insert(TransactionManager transactionManager, System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl, ref System.Int32? siteId)
 		{
-			 Insert(transactionManager, 0, int.MaxValue , siteName, siteUrl, siteDescription, siteAdminLogo, lastModified, lastModifiedBy, live, mobileEnabled, mobileUrl, siteAdminLogoUrl, ref siteId);
+			 Insert(transactionManager, 0, int.MaxValue , siteName, siteUrl, siteDescription, siteAdminLogo, lastModified, lastModifiedBy, live, mobileEnabled, mobileUrl, ref siteId);
 		}
 		
 		/// <summary>
@@ -471,13 +468,12 @@ namespace JXTPortal.Data.Bases
 		/// <param name="live"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileEnabled"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileUrl"> A <c>System.String</c> instance.</param>
-		/// <param name="siteAdminLogoUrl"> A <c>System.String</c> instance.</param>
 			/// <param name="siteId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public abstract void Insert(TransactionManager transactionManager, int start, int pageLength , System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl, System.String siteAdminLogoUrl, ref System.Int32? siteId);
+		public abstract void Insert(TransactionManager transactionManager, int start, int pageLength , System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl, ref System.Int32? siteId);
 		
 		#endregion
 		
@@ -539,7 +535,7 @@ namespace JXTPortal.Data.Bases
 		/// </summary>
 		/// <remark>This method is generate from a stored procedure.</remark>
 		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet Get_List()
+        public TList<Sites> Get_List()
 		{
 			return Get_List(null, 0, int.MaxValue );
 		}
@@ -551,7 +547,7 @@ namespace JXTPortal.Data.Bases
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
 		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet Get_List(int start, int pageLength)
+        public TList<Sites> Get_List(int start, int pageLength)
 		{
 			return Get_List(null, start, pageLength );
 		}
@@ -562,7 +558,7 @@ namespace JXTPortal.Data.Bases
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
 		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet Get_List(TransactionManager transactionManager)
+        public TList<Sites> Get_List(TransactionManager transactionManager)
 		{
 			return Get_List(transactionManager, 0, int.MaxValue );
 		}
@@ -575,7 +571,7 @@ namespace JXTPortal.Data.Bases
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
 		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public abstract DataSet Get_List(TransactionManager transactionManager, int start, int pageLength );
+        public abstract TList<Sites> Get_List(TransactionManager transactionManager, int start, int pageLength);
 		
 		#endregion
 		
@@ -678,11 +674,10 @@ namespace JXTPortal.Data.Bases
 		/// <param name="live"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileEnabled"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileUrl"> A <c>System.String</c> instance.</param>
-		/// <param name="siteAdminLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public void Update(System.Int32? siteId, System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl, System.String siteAdminLogoUrl)
+		public void Update(System.Int32? siteId, System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl)
 		{
-			 Update(null, 0, int.MaxValue , siteId, siteName, siteUrl, siteDescription, siteAdminLogo, lastModified, lastModifiedBy, live, mobileEnabled, mobileUrl, siteAdminLogoUrl);
+			 Update(null, 0, int.MaxValue , siteId, siteName, siteUrl, siteDescription, siteAdminLogo, lastModified, lastModifiedBy, live, mobileEnabled, mobileUrl);
 		}
 		
 		/// <summary>
@@ -698,13 +693,12 @@ namespace JXTPortal.Data.Bases
 		/// <param name="live"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileEnabled"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileUrl"> A <c>System.String</c> instance.</param>
-		/// <param name="siteAdminLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public void Update(int start, int pageLength, System.Int32? siteId, System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl, System.String siteAdminLogoUrl)
+		public void Update(int start, int pageLength, System.Int32? siteId, System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl)
 		{
-			 Update(null, start, pageLength , siteId, siteName, siteUrl, siteDescription, siteAdminLogo, lastModified, lastModifiedBy, live, mobileEnabled, mobileUrl, siteAdminLogoUrl);
+			 Update(null, start, pageLength , siteId, siteName, siteUrl, siteDescription, siteAdminLogo, lastModified, lastModifiedBy, live, mobileEnabled, mobileUrl);
 		}
 				
 		/// <summary>
@@ -720,12 +714,11 @@ namespace JXTPortal.Data.Bases
 		/// <param name="live"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileEnabled"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileUrl"> A <c>System.String</c> instance.</param>
-		/// <param name="siteAdminLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public void Update(TransactionManager transactionManager, System.Int32? siteId, System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl, System.String siteAdminLogoUrl)
+		public void Update(TransactionManager transactionManager, System.Int32? siteId, System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl)
 		{
-			 Update(transactionManager, 0, int.MaxValue , siteId, siteName, siteUrl, siteDescription, siteAdminLogo, lastModified, lastModifiedBy, live, mobileEnabled, mobileUrl, siteAdminLogoUrl);
+			 Update(transactionManager, 0, int.MaxValue , siteId, siteName, siteUrl, siteDescription, siteAdminLogo, lastModified, lastModifiedBy, live, mobileEnabled, mobileUrl);
 		}
 		
 		/// <summary>
@@ -741,12 +734,11 @@ namespace JXTPortal.Data.Bases
 		/// <param name="live"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileEnabled"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileUrl"> A <c>System.String</c> instance.</param>
-		/// <param name="siteAdminLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public abstract void Update(TransactionManager transactionManager, int start, int pageLength , System.Int32? siteId, System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl, System.String siteAdminLogoUrl);
+		public abstract void Update(TransactionManager transactionManager, int start, int pageLength , System.Int32? siteId, System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl);
 		
 		#endregion
 		
@@ -880,12 +872,11 @@ namespace JXTPortal.Data.Bases
 		/// <param name="live"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileEnabled"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileUrl"> A <c>System.String</c> instance.</param>
-		/// <param name="siteAdminLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
 		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet Find(System.Boolean? searchUsingOr, System.Int32? siteId, System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl, System.String siteAdminLogoUrl)
+		public DataSet Find(System.Boolean? searchUsingOr, System.Int32? siteId, System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl)
 		{
-			return Find(null, 0, int.MaxValue , searchUsingOr, siteId, siteName, siteUrl, siteDescription, siteAdminLogo, lastModified, lastModifiedBy, live, mobileEnabled, mobileUrl, siteAdminLogoUrl);
+			return Find(null, 0, int.MaxValue , searchUsingOr, siteId, siteName, siteUrl, siteDescription, siteAdminLogo, lastModified, lastModifiedBy, live, mobileEnabled, mobileUrl);
 		}
 		
 		/// <summary>
@@ -902,14 +893,13 @@ namespace JXTPortal.Data.Bases
 		/// <param name="live"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileEnabled"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileUrl"> A <c>System.String</c> instance.</param>
-		/// <param name="siteAdminLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
 		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet Find(int start, int pageLength, System.Boolean? searchUsingOr, System.Int32? siteId, System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl, System.String siteAdminLogoUrl)
+		public DataSet Find(int start, int pageLength, System.Boolean? searchUsingOr, System.Int32? siteId, System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl)
 		{
-			return Find(null, start, pageLength , searchUsingOr, siteId, siteName, siteUrl, siteDescription, siteAdminLogo, lastModified, lastModifiedBy, live, mobileEnabled, mobileUrl, siteAdminLogoUrl);
+			return Find(null, start, pageLength , searchUsingOr, siteId, siteName, siteUrl, siteDescription, siteAdminLogo, lastModified, lastModifiedBy, live, mobileEnabled, mobileUrl);
 		}
 				
 		/// <summary>
@@ -926,13 +916,12 @@ namespace JXTPortal.Data.Bases
 		/// <param name="live"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileEnabled"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileUrl"> A <c>System.String</c> instance.</param>
-		/// <param name="siteAdminLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
 		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet Find(TransactionManager transactionManager, System.Boolean? searchUsingOr, System.Int32? siteId, System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl, System.String siteAdminLogoUrl)
+		public DataSet Find(TransactionManager transactionManager, System.Boolean? searchUsingOr, System.Int32? siteId, System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl)
 		{
-			return Find(transactionManager, 0, int.MaxValue , searchUsingOr, siteId, siteName, siteUrl, siteDescription, siteAdminLogo, lastModified, lastModifiedBy, live, mobileEnabled, mobileUrl, siteAdminLogoUrl);
+			return Find(transactionManager, 0, int.MaxValue , searchUsingOr, siteId, siteName, siteUrl, siteDescription, siteAdminLogo, lastModified, lastModifiedBy, live, mobileEnabled, mobileUrl);
 		}
 		
 		/// <summary>
@@ -949,13 +938,12 @@ namespace JXTPortal.Data.Bases
 		/// <param name="live"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileEnabled"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileUrl"> A <c>System.String</c> instance.</param>
-		/// <param name="siteAdminLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
 		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public abstract DataSet Find(TransactionManager transactionManager, int start, int pageLength , System.Boolean? searchUsingOr, System.Int32? siteId, System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl, System.String siteAdminLogoUrl);
+		public abstract DataSet Find(TransactionManager transactionManager, int start, int pageLength , System.Boolean? searchUsingOr, System.Int32? siteId, System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl);
 		
 		#endregion
 		
@@ -1155,6 +1143,7 @@ namespace JXTPortal.Data.Bases
 		
 		#region Sites_GetByLastModifiedBy 
 		
+		
 		/// <summary>
 		///	This method wrap the 'Sites_GetByLastModifiedBy' stored procedure. 
 		/// </summary>
@@ -1167,6 +1156,7 @@ namespace JXTPortal.Data.Bases
 		{
 			return GetByLastModifiedBy(null, start, pageLength , lastModifiedBy);
 		}
+				
 		
 		/// <summary>
 		///	This method wrap the 'Sites_GetByLastModifiedBy' stored procedure. 
@@ -1298,7 +1288,6 @@ namespace JXTPortal.Data.Bases
 					c.Live = (reader.IsDBNull(((int)SitesColumn.Live - 1)))?null:(System.Boolean?)reader[((int)SitesColumn.Live - 1)];
 					c.MobileEnabled = (System.Boolean)reader[((int)SitesColumn.MobileEnabled - 1)];
 					c.MobileUrl = (System.String)reader[((int)SitesColumn.MobileUrl - 1)];
-					c.SiteAdminLogoUrl = (reader.IsDBNull(((int)SitesColumn.SiteAdminLogoUrl - 1)))?null:(System.String)reader[((int)SitesColumn.SiteAdminLogoUrl - 1)];
 					c.EntityTrackingKey = key;
 					c.AcceptChanges();
 					c.SuppressEntityEvents = false;
@@ -1326,7 +1315,6 @@ namespace JXTPortal.Data.Bases
 			entity.Live = (reader.IsDBNull(((int)SitesColumn.Live - 1)))?null:(System.Boolean?)reader[((int)SitesColumn.Live - 1)];
 			entity.MobileEnabled = (System.Boolean)reader[((int)SitesColumn.MobileEnabled - 1)];
 			entity.MobileUrl = (System.String)reader[((int)SitesColumn.MobileUrl - 1)];
-			entity.SiteAdminLogoUrl = (reader.IsDBNull(((int)SitesColumn.SiteAdminLogoUrl - 1)))?null:(System.String)reader[((int)SitesColumn.SiteAdminLogoUrl - 1)];
 			entity.AcceptChanges();
 		}
 		
@@ -1349,7 +1337,6 @@ namespace JXTPortal.Data.Bases
 			entity.Live = Convert.IsDBNull(dataRow["Live"]) ? null : (System.Boolean?)dataRow["Live"];
 			entity.MobileEnabled = (System.Boolean)dataRow["MobileEnabled"];
 			entity.MobileUrl = (System.String)dataRow["MobileUrl"];
-			entity.SiteAdminLogoUrl = Convert.IsDBNull(dataRow["SiteAdminLogoUrl"]) ? null : (System.String)dataRow["SiteAdminLogoUrl"];
 			entity.AcceptChanges();
 		}
 		#endregion 
@@ -1405,21 +1392,21 @@ namespace JXTPortal.Data.Bases
 			Dictionary<string, KeyValuePair<Delegate, object>> deepHandles = new Dictionary<string, KeyValuePair<Delegate, object>>();
 			// Deep load child collections  - Call GetBySiteId methods when available
 			
-			#region AvailableStatusCollection
+			#region JobItemsTypeCollection
 			//Relationship Type One : Many
-			if (CanDeepLoad(entity, "List<AvailableStatus>|AvailableStatusCollection", deepLoadType, innerList)) 
+			if (CanDeepLoad(entity, "List<JobItemsType>|JobItemsTypeCollection", deepLoadType, innerList)) 
 			{
 				#if NETTIERS_DEBUG
-				System.Diagnostics.Debug.WriteLine("- property 'AvailableStatusCollection' loaded. key " + entity.EntityTrackingKey);
+				System.Diagnostics.Debug.WriteLine("- property 'JobItemsTypeCollection' loaded. key " + entity.EntityTrackingKey);
 				#endif 
 
-				entity.AvailableStatusCollection = DataRepository.AvailableStatusProvider.GetBySiteId(transactionManager, entity.SiteId);
+				entity.JobItemsTypeCollection = DataRepository.JobItemsTypeProvider.GetBySiteId(transactionManager, entity.SiteId);
 
-				if (deep && entity.AvailableStatusCollection.Count > 0)
+				if (deep && entity.JobItemsTypeCollection.Count > 0)
 				{
-					deepHandles.Add("AvailableStatusCollection",
-						new KeyValuePair<Delegate, object>((DeepLoadHandle<AvailableStatus>) DataRepository.AvailableStatusProvider.DeepLoad,
-						new object[] { transactionManager, entity.AvailableStatusCollection, deep, deepLoadType, childTypes, innerList }
+					deepHandles.Add("JobItemsTypeCollection",
+						new KeyValuePair<Delegate, object>((DeepLoadHandle<JobItemsType>) DataRepository.JobItemsTypeProvider.DeepLoad,
+						new object[] { transactionManager, entity.JobItemsTypeCollection, deep, deepLoadType, childTypes, innerList }
 					));
 				}
 			}		
@@ -1462,48 +1449,6 @@ namespace JXTPortal.Data.Bases
 					deepHandles.Add("JobViewsCollection",
 						new KeyValuePair<Delegate, object>((DeepLoadHandle<JobViews>) DataRepository.JobViewsProvider.DeepLoad,
 						new object[] { transactionManager, entity.JobViewsCollection, deep, deepLoadType, childTypes, innerList }
-					));
-				}
-			}		
-			#endregion 
-			
-			
-			#region IntegrationMappingsCollection
-			//Relationship Type One : Many
-			if (CanDeepLoad(entity, "List<IntegrationMappings>|IntegrationMappingsCollection", deepLoadType, innerList)) 
-			{
-				#if NETTIERS_DEBUG
-				System.Diagnostics.Debug.WriteLine("- property 'IntegrationMappingsCollection' loaded. key " + entity.EntityTrackingKey);
-				#endif 
-
-				entity.IntegrationMappingsCollection = DataRepository.IntegrationMappingsProvider.GetBySiteId(transactionManager, entity.SiteId);
-
-				if (deep && entity.IntegrationMappingsCollection.Count > 0)
-				{
-					deepHandles.Add("IntegrationMappingsCollection",
-						new KeyValuePair<Delegate, object>((DeepLoadHandle<IntegrationMappings>) DataRepository.IntegrationMappingsProvider.DeepLoad,
-						new object[] { transactionManager, entity.IntegrationMappingsCollection, deep, deepLoadType, childTypes, innerList }
-					));
-				}
-			}		
-			#endregion 
-			
-			
-			#region SiteResourcesCollectionGetBySiteId
-			//Relationship Type One : Many
-			if (CanDeepLoad(entity, "List<SiteResources>|SiteResourcesCollectionGetBySiteId", deepLoadType, innerList)) 
-			{
-				#if NETTIERS_DEBUG
-				System.Diagnostics.Debug.WriteLine("- property 'SiteResourcesCollectionGetBySiteId' loaded. key " + entity.EntityTrackingKey);
-				#endif 
-
-				entity.SiteResourcesCollectionGetBySiteId = DataRepository.SiteResourcesProvider.GetBySiteId(transactionManager, entity.SiteId);
-
-				if (deep && entity.SiteResourcesCollectionGetBySiteId.Count > 0)
-				{
-					deepHandles.Add("SiteResourcesCollectionGetBySiteId",
-						new KeyValuePair<Delegate, object>((DeepLoadHandle<SiteResources>) DataRepository.SiteResourcesProvider.DeepLoad,
-						new object[] { transactionManager, entity.SiteResourcesCollectionGetBySiteId, deep, deepLoadType, childTypes, innerList }
 					));
 				}
 			}		
@@ -1594,27 +1539,6 @@ namespace JXTPortal.Data.Bases
 			#endregion 
 			
 			
-			#region SiteMappingsCollectionGetByMasterSiteId
-			//Relationship Type One : Many
-			if (CanDeepLoad(entity, "List<SiteMappings>|SiteMappingsCollectionGetByMasterSiteId", deepLoadType, innerList)) 
-			{
-				#if NETTIERS_DEBUG
-				System.Diagnostics.Debug.WriteLine("- property 'SiteMappingsCollectionGetByMasterSiteId' loaded. key " + entity.EntityTrackingKey);
-				#endif 
-
-				entity.SiteMappingsCollectionGetByMasterSiteId = DataRepository.SiteMappingsProvider.GetByMasterSiteId(transactionManager, entity.SiteId);
-
-				if (deep && entity.SiteMappingsCollectionGetByMasterSiteId.Count > 0)
-				{
-					deepHandles.Add("SiteMappingsCollectionGetByMasterSiteId",
-						new KeyValuePair<Delegate, object>((DeepLoadHandle<SiteMappings>) DataRepository.SiteMappingsProvider.DeepLoad,
-						new object[] { transactionManager, entity.SiteMappingsCollectionGetByMasterSiteId, deep, deepLoadType, childTypes, innerList }
-					));
-				}
-			}		
-			#endregion 
-			
-			
 			#region SiteWebPartsCollectionGetBySiteId
 			//Relationship Type One : Many
 			if (CanDeepLoad(entity, "List<SiteWebParts>|SiteWebPartsCollectionGetBySiteId", deepLoadType, innerList)) 
@@ -1630,27 +1554,6 @@ namespace JXTPortal.Data.Bases
 					deepHandles.Add("SiteWebPartsCollectionGetBySiteId",
 						new KeyValuePair<Delegate, object>((DeepLoadHandle<SiteWebParts>) DataRepository.SiteWebPartsProvider.DeepLoad,
 						new object[] { transactionManager, entity.SiteWebPartsCollectionGetBySiteId, deep, deepLoadType, childTypes, innerList }
-					));
-				}
-			}		
-			#endregion 
-			
-			
-			#region JobCustomXmlCollection
-			//Relationship Type One : Many
-			if (CanDeepLoad(entity, "List<JobCustomXml>|JobCustomXmlCollection", deepLoadType, innerList)) 
-			{
-				#if NETTIERS_DEBUG
-				System.Diagnostics.Debug.WriteLine("- property 'JobCustomXmlCollection' loaded. key " + entity.EntityTrackingKey);
-				#endif 
-
-				entity.JobCustomXmlCollection = DataRepository.JobCustomXmlProvider.GetBySiteId(transactionManager, entity.SiteId);
-
-				if (deep && entity.JobCustomXmlCollection.Count > 0)
-				{
-					deepHandles.Add("JobCustomXmlCollection",
-						new KeyValuePair<Delegate, object>((DeepLoadHandle<JobCustomXml>) DataRepository.JobCustomXmlProvider.DeepLoad,
-						new object[] { transactionManager, entity.JobCustomXmlCollection, deep, deepLoadType, childTypes, innerList }
 					));
 				}
 			}		
@@ -1741,21 +1644,21 @@ namespace JXTPortal.Data.Bases
 			#endregion 
 			
 			
-			#region MemberMembershipsCollection
+			#region AvailableStatusCollection
 			//Relationship Type One : Many
-			if (CanDeepLoad(entity, "List<MemberMemberships>|MemberMembershipsCollection", deepLoadType, innerList)) 
+			if (CanDeepLoad(entity, "List<AvailableStatus>|AvailableStatusCollection", deepLoadType, innerList)) 
 			{
 				#if NETTIERS_DEBUG
-				System.Diagnostics.Debug.WriteLine("- property 'MemberMembershipsCollection' loaded. key " + entity.EntityTrackingKey);
+				System.Diagnostics.Debug.WriteLine("- property 'AvailableStatusCollection' loaded. key " + entity.EntityTrackingKey);
 				#endif 
 
-				entity.MemberMembershipsCollection = DataRepository.MemberMembershipsProvider.GetBySiteId(transactionManager, entity.SiteId);
+				entity.AvailableStatusCollection = DataRepository.AvailableStatusProvider.GetBySiteId(transactionManager, entity.SiteId);
 
-				if (deep && entity.MemberMembershipsCollection.Count > 0)
+				if (deep && entity.AvailableStatusCollection.Count > 0)
 				{
-					deepHandles.Add("MemberMembershipsCollection",
-						new KeyValuePair<Delegate, object>((DeepLoadHandle<MemberMemberships>) DataRepository.MemberMembershipsProvider.DeepLoad,
-						new object[] { transactionManager, entity.MemberMembershipsCollection, deep, deepLoadType, childTypes, innerList }
+					deepHandles.Add("AvailableStatusCollection",
+						new KeyValuePair<Delegate, object>((DeepLoadHandle<AvailableStatus>) DataRepository.AvailableStatusProvider.DeepLoad,
+						new object[] { transactionManager, entity.AvailableStatusCollection, deep, deepLoadType, childTypes, innerList }
 					));
 				}
 			}		
@@ -1804,27 +1707,6 @@ namespace JXTPortal.Data.Bases
 			#endregion 
 			
 			
-			#region WebServiceLogCollection
-			//Relationship Type One : Many
-			if (CanDeepLoad(entity, "List<WebServiceLog>|WebServiceLogCollection", deepLoadType, innerList)) 
-			{
-				#if NETTIERS_DEBUG
-				System.Diagnostics.Debug.WriteLine("- property 'WebServiceLogCollection' loaded. key " + entity.EntityTrackingKey);
-				#endif 
-
-				entity.WebServiceLogCollection = DataRepository.WebServiceLogProvider.GetBySiteId(transactionManager, entity.SiteId);
-
-				if (deep && entity.WebServiceLogCollection.Count > 0)
-				{
-					deepHandles.Add("WebServiceLogCollection",
-						new KeyValuePair<Delegate, object>((DeepLoadHandle<WebServiceLog>) DataRepository.WebServiceLogProvider.DeepLoad,
-						new object[] { transactionManager, entity.WebServiceLogCollection, deep, deepLoadType, childTypes, innerList }
-					));
-				}
-			}		
-			#endregion 
-			
-			
 			#region SiteLocationCollection
 			//Relationship Type One : Many
 			if (CanDeepLoad(entity, "List<SiteLocation>|SiteLocationCollection", deepLoadType, innerList)) 
@@ -1867,69 +1749,6 @@ namespace JXTPortal.Data.Bases
 			#endregion 
 			
 			
-			#region MemberWizardCollection
-			//Relationship Type One : Many
-			if (CanDeepLoad(entity, "List<MemberWizard>|MemberWizardCollection", deepLoadType, innerList)) 
-			{
-				#if NETTIERS_DEBUG
-				System.Diagnostics.Debug.WriteLine("- property 'MemberWizardCollection' loaded. key " + entity.EntityTrackingKey);
-				#endif 
-
-				entity.MemberWizardCollection = DataRepository.MemberWizardProvider.GetBySiteId(transactionManager, entity.SiteId);
-
-				if (deep && entity.MemberWizardCollection.Count > 0)
-				{
-					deepHandles.Add("MemberWizardCollection",
-						new KeyValuePair<Delegate, object>((DeepLoadHandle<MemberWizard>) DataRepository.MemberWizardProvider.DeepLoad,
-						new object[] { transactionManager, entity.MemberWizardCollection, deep, deepLoadType, childTypes, innerList }
-					));
-				}
-			}		
-			#endregion 
-			
-			
-			#region IndustryCollection
-			//Relationship Type One : Many
-			if (CanDeepLoad(entity, "List<Industry>|IndustryCollection", deepLoadType, innerList)) 
-			{
-				#if NETTIERS_DEBUG
-				System.Diagnostics.Debug.WriteLine("- property 'IndustryCollection' loaded. key " + entity.EntityTrackingKey);
-				#endif 
-
-				entity.IndustryCollection = DataRepository.IndustryProvider.GetBySiteId(transactionManager, entity.SiteId);
-
-				if (deep && entity.IndustryCollection.Count > 0)
-				{
-					deepHandles.Add("IndustryCollection",
-						new KeyValuePair<Delegate, object>((DeepLoadHandle<Industry>) DataRepository.IndustryProvider.DeepLoad,
-						new object[] { transactionManager, entity.IndustryCollection, deep, deepLoadType, childTypes, innerList }
-					));
-				}
-			}		
-			#endregion 
-			
-			
-			#region ConsultantsCollection
-			//Relationship Type One : Many
-			if (CanDeepLoad(entity, "List<Consultants>|ConsultantsCollection", deepLoadType, innerList)) 
-			{
-				#if NETTIERS_DEBUG
-				System.Diagnostics.Debug.WriteLine("- property 'ConsultantsCollection' loaded. key " + entity.EntityTrackingKey);
-				#endif 
-
-				entity.ConsultantsCollection = DataRepository.ConsultantsProvider.GetBySiteId(transactionManager, entity.SiteId);
-
-				if (deep && entity.ConsultantsCollection.Count > 0)
-				{
-					deepHandles.Add("ConsultantsCollection",
-						new KeyValuePair<Delegate, object>((DeepLoadHandle<Consultants>) DataRepository.ConsultantsProvider.DeepLoad,
-						new object[] { transactionManager, entity.ConsultantsCollection, deep, deepLoadType, childTypes, innerList }
-					));
-				}
-			}		
-			#endregion 
-			
-			
 			#region FilesCollection
 			//Relationship Type One : Many
 			if (CanDeepLoad(entity, "List<Files>|FilesCollection", deepLoadType, innerList)) 
@@ -1951,21 +1770,21 @@ namespace JXTPortal.Data.Bases
 			#endregion 
 			
 			
-			#region SiteResourcesXmlCollection
+			#region JobsArchiveCollection
 			//Relationship Type One : Many
-			if (CanDeepLoad(entity, "List<SiteResourcesXml>|SiteResourcesXmlCollection", deepLoadType, innerList)) 
+			if (CanDeepLoad(entity, "List<JobsArchive>|JobsArchiveCollection", deepLoadType, innerList)) 
 			{
 				#if NETTIERS_DEBUG
-				System.Diagnostics.Debug.WriteLine("- property 'SiteResourcesXmlCollection' loaded. key " + entity.EntityTrackingKey);
+				System.Diagnostics.Debug.WriteLine("- property 'JobsArchiveCollection' loaded. key " + entity.EntityTrackingKey);
 				#endif 
 
-				entity.SiteResourcesXmlCollection = DataRepository.SiteResourcesXmlProvider.GetBySiteId(transactionManager, entity.SiteId);
+				entity.JobsArchiveCollection = DataRepository.JobsArchiveProvider.GetBySiteId(transactionManager, entity.SiteId);
 
-				if (deep && entity.SiteResourcesXmlCollection.Count > 0)
+				if (deep && entity.JobsArchiveCollection.Count > 0)
 				{
-					deepHandles.Add("SiteResourcesXmlCollection",
-						new KeyValuePair<Delegate, object>((DeepLoadHandle<SiteResourcesXml>) DataRepository.SiteResourcesXmlProvider.DeepLoad,
-						new object[] { transactionManager, entity.SiteResourcesXmlCollection, deep, deepLoadType, childTypes, innerList }
+					deepHandles.Add("JobsArchiveCollection",
+						new KeyValuePair<Delegate, object>((DeepLoadHandle<JobsArchive>) DataRepository.JobsArchiveProvider.DeepLoad,
+						new object[] { transactionManager, entity.JobsArchiveCollection, deep, deepLoadType, childTypes, innerList }
 					));
 				}
 			}		
@@ -1987,27 +1806,6 @@ namespace JXTPortal.Data.Bases
 					deepHandles.Add("AdvertisersCollection",
 						new KeyValuePair<Delegate, object>((DeepLoadHandle<Advertisers>) DataRepository.AdvertisersProvider.DeepLoad,
 						new object[] { transactionManager, entity.AdvertisersCollection, deep, deepLoadType, childTypes, innerList }
-					));
-				}
-			}		
-			#endregion 
-			
-			
-			#region MemberStatusCollection
-			//Relationship Type One : Many
-			if (CanDeepLoad(entity, "List<MemberStatus>|MemberStatusCollection", deepLoadType, innerList)) 
-			{
-				#if NETTIERS_DEBUG
-				System.Diagnostics.Debug.WriteLine("- property 'MemberStatusCollection' loaded. key " + entity.EntityTrackingKey);
-				#endif 
-
-				entity.MemberStatusCollection = DataRepository.MemberStatusProvider.GetBySiteId(transactionManager, entity.SiteId);
-
-				if (deep && entity.MemberStatusCollection.Count > 0)
-				{
-					deepHandles.Add("MemberStatusCollection",
-						new KeyValuePair<Delegate, object>((DeepLoadHandle<MemberStatus>) DataRepository.MemberStatusProvider.DeepLoad,
-						new object[] { transactionManager, entity.MemberStatusCollection, deep, deepLoadType, childTypes, innerList }
 					));
 				}
 			}		
@@ -2050,27 +1848,6 @@ namespace JXTPortal.Data.Bases
 					deepHandles.Add("FoldersCollection",
 						new KeyValuePair<Delegate, object>((DeepLoadHandle<Folders>) DataRepository.FoldersProvider.DeepLoad,
 						new object[] { transactionManager, entity.FoldersCollection, deep, deepLoadType, childTypes, innerList }
-					));
-				}
-			}		
-			#endregion 
-			
-			
-			#region SiteCustomMappingCollection
-			//Relationship Type One : Many
-			if (CanDeepLoad(entity, "List<SiteCustomMapping>|SiteCustomMappingCollection", deepLoadType, innerList)) 
-			{
-				#if NETTIERS_DEBUG
-				System.Diagnostics.Debug.WriteLine("- property 'SiteCustomMappingCollection' loaded. key " + entity.EntityTrackingKey);
-				#endif 
-
-				entity.SiteCustomMappingCollection = DataRepository.SiteCustomMappingProvider.GetBySiteId(transactionManager, entity.SiteId);
-
-				if (deep && entity.SiteCustomMappingCollection.Count > 0)
-				{
-					deepHandles.Add("SiteCustomMappingCollection",
-						new KeyValuePair<Delegate, object>((DeepLoadHandle<SiteCustomMapping>) DataRepository.SiteCustomMappingProvider.DeepLoad,
-						new object[] { transactionManager, entity.SiteCustomMappingCollection, deep, deepLoadType, childTypes, innerList }
 					));
 				}
 			}		
@@ -2140,69 +1917,6 @@ namespace JXTPortal.Data.Bases
 			#endregion 
 			
 			
-			#region JobApplicationTypeCollection
-			//Relationship Type One : Many
-			if (CanDeepLoad(entity, "List<JobApplicationType>|JobApplicationTypeCollection", deepLoadType, innerList)) 
-			{
-				#if NETTIERS_DEBUG
-				System.Diagnostics.Debug.WriteLine("- property 'JobApplicationTypeCollection' loaded. key " + entity.EntityTrackingKey);
-				#endif 
-
-				entity.JobApplicationTypeCollection = DataRepository.JobApplicationTypeProvider.GetBySiteId(transactionManager, entity.SiteId);
-
-				if (deep && entity.JobApplicationTypeCollection.Count > 0)
-				{
-					deepHandles.Add("JobApplicationTypeCollection",
-						new KeyValuePair<Delegate, object>((DeepLoadHandle<JobApplicationType>) DataRepository.JobApplicationTypeProvider.DeepLoad,
-						new object[] { transactionManager, entity.JobApplicationTypeCollection, deep, deepLoadType, childTypes, innerList }
-					));
-				}
-			}		
-			#endregion 
-			
-			
-			#region CustomWidgetCollection
-			//Relationship Type One : Many
-			if (CanDeepLoad(entity, "List<CustomWidget>|CustomWidgetCollection", deepLoadType, innerList)) 
-			{
-				#if NETTIERS_DEBUG
-				System.Diagnostics.Debug.WriteLine("- property 'CustomWidgetCollection' loaded. key " + entity.EntityTrackingKey);
-				#endif 
-
-				entity.CustomWidgetCollection = DataRepository.CustomWidgetProvider.GetBySiteId(transactionManager, entity.SiteId);
-
-				if (deep && entity.CustomWidgetCollection.Count > 0)
-				{
-					deepHandles.Add("CustomWidgetCollection",
-						new KeyValuePair<Delegate, object>((DeepLoadHandle<CustomWidget>) DataRepository.CustomWidgetProvider.DeepLoad,
-						new object[] { transactionManager, entity.CustomWidgetCollection, deep, deepLoadType, childTypes, innerList }
-					));
-				}
-			}		
-			#endregion 
-			
-			
-			#region SiteMappingsCollectionGetBySiteId
-			//Relationship Type One : Many
-			if (CanDeepLoad(entity, "List<SiteMappings>|SiteMappingsCollectionGetBySiteId", deepLoadType, innerList)) 
-			{
-				#if NETTIERS_DEBUG
-				System.Diagnostics.Debug.WriteLine("- property 'SiteMappingsCollectionGetBySiteId' loaded. key " + entity.EntityTrackingKey);
-				#endif 
-
-				entity.SiteMappingsCollectionGetBySiteId = DataRepository.SiteMappingsProvider.GetBySiteId(transactionManager, entity.SiteId);
-
-				if (deep && entity.SiteMappingsCollectionGetBySiteId.Count > 0)
-				{
-					deepHandles.Add("SiteMappingsCollectionGetBySiteId",
-						new KeyValuePair<Delegate, object>((DeepLoadHandle<SiteMappings>) DataRepository.SiteMappingsProvider.DeepLoad,
-						new object[] { transactionManager, entity.SiteMappingsCollectionGetBySiteId, deep, deepLoadType, childTypes, innerList }
-					));
-				}
-			}		
-			#endregion 
-			
-			
 			#region SiteWebPartsCollectionGetBySiteId
 			//Relationship Type One : Many
 			if (CanDeepLoad(entity, "List<SiteWebParts>|SiteWebPartsCollectionGetBySiteId", deepLoadType, innerList)) 
@@ -2224,27 +1938,6 @@ namespace JXTPortal.Data.Bases
 			#endregion 
 			
 			
-			#region SiteRolesCollection
-			//Relationship Type One : Many
-			if (CanDeepLoad(entity, "List<SiteRoles>|SiteRolesCollection", deepLoadType, innerList)) 
-			{
-				#if NETTIERS_DEBUG
-				System.Diagnostics.Debug.WriteLine("- property 'SiteRolesCollection' loaded. key " + entity.EntityTrackingKey);
-				#endif 
-
-				entity.SiteRolesCollection = DataRepository.SiteRolesProvider.GetBySiteId(transactionManager, entity.SiteId);
-
-				if (deep && entity.SiteRolesCollection.Count > 0)
-				{
-					deepHandles.Add("SiteRolesCollection",
-						new KeyValuePair<Delegate, object>((DeepLoadHandle<SiteRoles>) DataRepository.SiteRolesProvider.DeepLoad,
-						new object[] { transactionManager, entity.SiteRolesCollection, deep, deepLoadType, childTypes, innerList }
-					));
-				}
-			}		
-			#endregion 
-			
-			
 			#region CustomPaymentCollection
 			//Relationship Type One : Many
 			if (CanDeepLoad(entity, "List<CustomPayment>|CustomPaymentCollection", deepLoadType, innerList)) 
@@ -2260,27 +1953,6 @@ namespace JXTPortal.Data.Bases
 					deepHandles.Add("CustomPaymentCollection",
 						new KeyValuePair<Delegate, object>((DeepLoadHandle<CustomPayment>) DataRepository.CustomPaymentProvider.DeepLoad,
 						new object[] { transactionManager, entity.CustomPaymentCollection, deep, deepLoadType, childTypes, innerList }
-					));
-				}
-			}		
-			#endregion 
-			
-			
-			#region IntegrationsCollection
-			//Relationship Type One : Many
-			if (CanDeepLoad(entity, "List<Integrations>|IntegrationsCollection", deepLoadType, innerList)) 
-			{
-				#if NETTIERS_DEBUG
-				System.Diagnostics.Debug.WriteLine("- property 'IntegrationsCollection' loaded. key " + entity.EntityTrackingKey);
-				#endif 
-
-				entity.IntegrationsCollection = DataRepository.IntegrationsProvider.GetBySiteId(transactionManager, entity.SiteId);
-
-				if (deep && entity.IntegrationsCollection.Count > 0)
-				{
-					deepHandles.Add("IntegrationsCollection",
-						new KeyValuePair<Delegate, object>((DeepLoadHandle<Integrations>) DataRepository.IntegrationsProvider.DeepLoad,
-						new object[] { transactionManager, entity.IntegrationsCollection, deep, deepLoadType, childTypes, innerList }
 					));
 				}
 			}		
@@ -2329,21 +2001,21 @@ namespace JXTPortal.Data.Bases
 			#endregion 
 			
 			
-			#region SiteResourcesCollectionGetBySiteId
+			#region SiteResourcesCollection
 			//Relationship Type One : Many
-			if (CanDeepLoad(entity, "List<SiteResources>|SiteResourcesCollectionGetBySiteId", deepLoadType, innerList)) 
+			if (CanDeepLoad(entity, "List<SiteResources>|SiteResourcesCollection", deepLoadType, innerList)) 
 			{
 				#if NETTIERS_DEBUG
-				System.Diagnostics.Debug.WriteLine("- property 'SiteResourcesCollectionGetBySiteId' loaded. key " + entity.EntityTrackingKey);
+				System.Diagnostics.Debug.WriteLine("- property 'SiteResourcesCollection' loaded. key " + entity.EntityTrackingKey);
 				#endif 
 
-				entity.SiteResourcesCollectionGetBySiteId = DataRepository.SiteResourcesProvider.GetBySiteId(transactionManager, entity.SiteId);
+				entity.SiteResourcesCollection = DataRepository.SiteResourcesProvider.GetBySiteId(transactionManager, entity.SiteId);
 
-				if (deep && entity.SiteResourcesCollectionGetBySiteId.Count > 0)
+				if (deep && entity.SiteResourcesCollection.Count > 0)
 				{
-					deepHandles.Add("SiteResourcesCollectionGetBySiteId",
+					deepHandles.Add("SiteResourcesCollection",
 						new KeyValuePair<Delegate, object>((DeepLoadHandle<SiteResources>) DataRepository.SiteResourcesProvider.DeepLoad,
-						new object[] { transactionManager, entity.SiteResourcesCollectionGetBySiteId, deep, deepLoadType, childTypes, innerList }
+						new object[] { transactionManager, entity.SiteResourcesCollection, deep, deepLoadType, childTypes, innerList }
 					));
 				}
 			}		
@@ -2413,48 +2085,6 @@ namespace JXTPortal.Data.Bases
 			#endregion 
 			
 			
-			#region DynamicContentCollection
-			//Relationship Type One : Many
-			if (CanDeepLoad(entity, "List<DynamicContent>|DynamicContentCollection", deepLoadType, innerList)) 
-			{
-				#if NETTIERS_DEBUG
-				System.Diagnostics.Debug.WriteLine("- property 'DynamicContentCollection' loaded. key " + entity.EntityTrackingKey);
-				#endif 
-
-				entity.DynamicContentCollection = DataRepository.DynamicContentProvider.GetBySiteId(transactionManager, entity.SiteId);
-
-				if (deep && entity.DynamicContentCollection.Count > 0)
-				{
-					deepHandles.Add("DynamicContentCollection",
-						new KeyValuePair<Delegate, object>((DeepLoadHandle<DynamicContent>) DataRepository.DynamicContentProvider.DeepLoad,
-						new object[] { transactionManager, entity.DynamicContentCollection, deep, deepLoadType, childTypes, innerList }
-					));
-				}
-			}		
-			#endregion 
-			
-			
-			#region JobItemsTypeCollection
-			//Relationship Type One : Many
-			if (CanDeepLoad(entity, "List<JobItemsType>|JobItemsTypeCollection", deepLoadType, innerList)) 
-			{
-				#if NETTIERS_DEBUG
-				System.Diagnostics.Debug.WriteLine("- property 'JobItemsTypeCollection' loaded. key " + entity.EntityTrackingKey);
-				#endif 
-
-				entity.JobItemsTypeCollection = DataRepository.JobItemsTypeProvider.GetBySiteId(transactionManager, entity.SiteId);
-
-				if (deep && entity.JobItemsTypeCollection.Count > 0)
-				{
-					deepHandles.Add("JobItemsTypeCollection",
-						new KeyValuePair<Delegate, object>((DeepLoadHandle<JobItemsType>) DataRepository.JobItemsTypeProvider.DeepLoad,
-						new object[] { transactionManager, entity.JobItemsTypeCollection, deep, deepLoadType, childTypes, innerList }
-					));
-				}
-			}		
-			#endregion 
-			
-			
 			#region SiteSalaryTypeCollection
 			//Relationship Type One : Many
 			if (CanDeepLoad(entity, "List<SiteSalaryType>|SiteSalaryTypeCollection", deepLoadType, innerList)) 
@@ -2497,21 +2127,21 @@ namespace JXTPortal.Data.Bases
 			#endregion 
 			
 			
-			#region JobsArchiveCollection
+			#region SiteRolesCollection
 			//Relationship Type One : Many
-			if (CanDeepLoad(entity, "List<JobsArchive>|JobsArchiveCollection", deepLoadType, innerList)) 
+			if (CanDeepLoad(entity, "List<SiteRoles>|SiteRolesCollection", deepLoadType, innerList)) 
 			{
 				#if NETTIERS_DEBUG
-				System.Diagnostics.Debug.WriteLine("- property 'JobsArchiveCollection' loaded. key " + entity.EntityTrackingKey);
+				System.Diagnostics.Debug.WriteLine("- property 'SiteRolesCollection' loaded. key " + entity.EntityTrackingKey);
 				#endif 
 
-				entity.JobsArchiveCollection = DataRepository.JobsArchiveProvider.GetBySiteId(transactionManager, entity.SiteId);
+				entity.SiteRolesCollection = DataRepository.SiteRolesProvider.GetBySiteId(transactionManager, entity.SiteId);
 
-				if (deep && entity.JobsArchiveCollection.Count > 0)
+				if (deep && entity.SiteRolesCollection.Count > 0)
 				{
-					deepHandles.Add("JobsArchiveCollection",
-						new KeyValuePair<Delegate, object>((DeepLoadHandle<JobsArchive>) DataRepository.JobsArchiveProvider.DeepLoad,
-						new object[] { transactionManager, entity.JobsArchiveCollection, deep, deepLoadType, childTypes, innerList }
+					deepHandles.Add("SiteRolesCollection",
+						new KeyValuePair<Delegate, object>((DeepLoadHandle<SiteRoles>) DataRepository.SiteRolesProvider.DeepLoad,
+						new object[] { transactionManager, entity.SiteRolesCollection, deep, deepLoadType, childTypes, innerList }
 					));
 				}
 			}		
@@ -2533,27 +2163,6 @@ namespace JXTPortal.Data.Bases
 					deepHandles.Add("SiteLanguagesCollection",
 						new KeyValuePair<Delegate, object>((DeepLoadHandle<SiteLanguages>) DataRepository.SiteLanguagesProvider.DeepLoad,
 						new object[] { transactionManager, entity.SiteLanguagesCollection, deep, deepLoadType, childTypes, innerList }
-					));
-				}
-			}		
-			#endregion 
-			
-			
-			#region CustomWidgetCssSelectorCollection
-			//Relationship Type One : Many
-			if (CanDeepLoad(entity, "List<CustomWidgetCssSelector>|CustomWidgetCssSelectorCollection", deepLoadType, innerList)) 
-			{
-				#if NETTIERS_DEBUG
-				System.Diagnostics.Debug.WriteLine("- property 'CustomWidgetCssSelectorCollection' loaded. key " + entity.EntityTrackingKey);
-				#endif 
-
-				entity.CustomWidgetCssSelectorCollection = DataRepository.CustomWidgetCssSelectorProvider.GetBySiteId(transactionManager, entity.SiteId);
-
-				if (deep && entity.CustomWidgetCssSelectorCollection.Count > 0)
-				{
-					deepHandles.Add("CustomWidgetCssSelectorCollection",
-						new KeyValuePair<Delegate, object>((DeepLoadHandle<CustomWidgetCssSelector>) DataRepository.CustomWidgetCssSelectorProvider.DeepLoad,
-						new object[] { transactionManager, entity.CustomWidgetCssSelectorCollection, deep, deepLoadType, childTypes, innerList }
 					));
 				}
 			}		
@@ -2628,11 +2237,11 @@ namespace JXTPortal.Data.Bases
 			//used to hold DeepSave method delegates and fire after all the local children have been saved.
 			Dictionary<string, KeyValuePair<Delegate, object>> deepHandles = new Dictionary<string, KeyValuePair<Delegate, object>>();
 	
-			#region List<AvailableStatus>
-				if (CanDeepSave(entity.AvailableStatusCollection, "List<AvailableStatus>|AvailableStatusCollection", deepSaveType, innerList)) 
+			#region List<JobItemsType>
+				if (CanDeepSave(entity.JobItemsTypeCollection, "List<JobItemsType>|JobItemsTypeCollection", deepSaveType, innerList)) 
 				{	
 					// update each child parent id with the real parent id (mostly used on insert)
-					foreach(AvailableStatus child in entity.AvailableStatusCollection)
+					foreach(JobItemsType child in entity.JobItemsTypeCollection)
 					{
 						if(child.SiteIdSource != null)
 						{
@@ -2645,13 +2254,13 @@ namespace JXTPortal.Data.Bases
 
 					}
 
-					if (entity.AvailableStatusCollection.Count > 0 || entity.AvailableStatusCollection.DeletedItems.Count > 0)
+					if (entity.JobItemsTypeCollection.Count > 0 || entity.JobItemsTypeCollection.DeletedItems.Count > 0)
 					{
-						//DataRepository.AvailableStatusProvider.Save(transactionManager, entity.AvailableStatusCollection);
+						//DataRepository.JobItemsTypeProvider.Save(transactionManager, entity.JobItemsTypeCollection);
 						
-						deepHandles.Add("AvailableStatusCollection",
-						new KeyValuePair<Delegate, object>((DeepSaveHandle< AvailableStatus >) DataRepository.AvailableStatusProvider.DeepSave,
-							new object[] { transactionManager, entity.AvailableStatusCollection, deepSaveType, childTypes, innerList }
+						deepHandles.Add("JobItemsTypeCollection",
+						new KeyValuePair<Delegate, object>((DeepSaveHandle< JobItemsType >) DataRepository.JobItemsTypeProvider.DeepSave,
+							new object[] { transactionManager, entity.JobItemsTypeCollection, deepSaveType, childTypes, innerList }
 						));
 					}
 				} 
@@ -2712,66 +2321,6 @@ namespace JXTPortal.Data.Bases
 						deepHandles.Add("JobViewsCollection",
 						new KeyValuePair<Delegate, object>((DeepSaveHandle< JobViews >) DataRepository.JobViewsProvider.DeepSave,
 							new object[] { transactionManager, entity.JobViewsCollection, deepSaveType, childTypes, innerList }
-						));
-					}
-				} 
-			#endregion 
-				
-	
-			#region List<IntegrationMappings>
-				if (CanDeepSave(entity.IntegrationMappingsCollection, "List<IntegrationMappings>|IntegrationMappingsCollection", deepSaveType, innerList)) 
-				{	
-					// update each child parent id with the real parent id (mostly used on insert)
-					foreach(IntegrationMappings child in entity.IntegrationMappingsCollection)
-					{
-						if(child.SiteIdSource != null)
-						{
-							child.SiteId = child.SiteIdSource.SiteId;
-						}
-						else
-						{
-							child.SiteId = entity.SiteId;
-						}
-
-					}
-
-					if (entity.IntegrationMappingsCollection.Count > 0 || entity.IntegrationMappingsCollection.DeletedItems.Count > 0)
-					{
-						//DataRepository.IntegrationMappingsProvider.Save(transactionManager, entity.IntegrationMappingsCollection);
-						
-						deepHandles.Add("IntegrationMappingsCollection",
-						new KeyValuePair<Delegate, object>((DeepSaveHandle< IntegrationMappings >) DataRepository.IntegrationMappingsProvider.DeepSave,
-							new object[] { transactionManager, entity.IntegrationMappingsCollection, deepSaveType, childTypes, innerList }
-						));
-					}
-				} 
-			#endregion 
-				
-	
-			#region List<SiteResources>
-				if (CanDeepSave(entity.SiteResourcesCollectionGetBySiteId, "List<SiteResources>|SiteResourcesCollectionGetBySiteId", deepSaveType, innerList)) 
-				{	
-					// update each child parent id with the real parent id (mostly used on insert)
-					foreach(SiteResources child in entity.SiteResourcesCollectionGetBySiteId)
-					{
-						if(child.SiteIdSource != null)
-						{
-							child.SiteId = child.SiteIdSource.SiteId;
-						}
-						else
-						{
-							child.SiteId = entity.SiteId;
-						}
-
-					}
-
-					if (entity.SiteResourcesCollectionGetBySiteId.Count > 0 || entity.SiteResourcesCollectionGetBySiteId.DeletedItems.Count > 0)
-					{
-						//DataRepository.SiteResourcesProvider.Save(transactionManager, entity.SiteResourcesCollectionGetBySiteId);
-						
-						deepHandles.Add("SiteResourcesCollectionGetBySiteId",
-						new KeyValuePair<Delegate, object>((DeepSaveHandle< SiteResources >) DataRepository.SiteResourcesProvider.DeepSave,
-							new object[] { transactionManager, entity.SiteResourcesCollectionGetBySiteId, deepSaveType, childTypes, innerList }
 						));
 					}
 				} 
@@ -2898,36 +2447,6 @@ namespace JXTPortal.Data.Bases
 			#endregion 
 				
 	
-			#region List<SiteMappings>
-				if (CanDeepSave(entity.SiteMappingsCollectionGetByMasterSiteId, "List<SiteMappings>|SiteMappingsCollectionGetByMasterSiteId", deepSaveType, innerList)) 
-				{	
-					// update each child parent id with the real parent id (mostly used on insert)
-					foreach(SiteMappings child in entity.SiteMappingsCollectionGetByMasterSiteId)
-					{
-						if(child.MasterSiteIdSource != null)
-						{
-							child.MasterSiteId = child.MasterSiteIdSource.SiteId;
-						}
-						else
-						{
-							child.MasterSiteId = entity.SiteId;
-						}
-
-					}
-
-					if (entity.SiteMappingsCollectionGetByMasterSiteId.Count > 0 || entity.SiteMappingsCollectionGetByMasterSiteId.DeletedItems.Count > 0)
-					{
-						//DataRepository.SiteMappingsProvider.Save(transactionManager, entity.SiteMappingsCollectionGetByMasterSiteId);
-						
-						deepHandles.Add("SiteMappingsCollectionGetByMasterSiteId",
-						new KeyValuePair<Delegate, object>((DeepSaveHandle< SiteMappings >) DataRepository.SiteMappingsProvider.DeepSave,
-							new object[] { transactionManager, entity.SiteMappingsCollectionGetByMasterSiteId, deepSaveType, childTypes, innerList }
-						));
-					}
-				} 
-			#endregion 
-				
-	
 			#region List<SiteWebParts>
 				if (CanDeepSave(entity.SiteWebPartsCollectionGetBySiteId, "List<SiteWebParts>|SiteWebPartsCollectionGetBySiteId", deepSaveType, innerList)) 
 				{	
@@ -2952,36 +2471,6 @@ namespace JXTPortal.Data.Bases
 						deepHandles.Add("SiteWebPartsCollectionGetBySiteId",
 						new KeyValuePair<Delegate, object>((DeepSaveHandle< SiteWebParts >) DataRepository.SiteWebPartsProvider.DeepSave,
 							new object[] { transactionManager, entity.SiteWebPartsCollectionGetBySiteId, deepSaveType, childTypes, innerList }
-						));
-					}
-				} 
-			#endregion 
-				
-	
-			#region List<JobCustomXml>
-				if (CanDeepSave(entity.JobCustomXmlCollection, "List<JobCustomXml>|JobCustomXmlCollection", deepSaveType, innerList)) 
-				{	
-					// update each child parent id with the real parent id (mostly used on insert)
-					foreach(JobCustomXml child in entity.JobCustomXmlCollection)
-					{
-						if(child.SiteIdSource != null)
-						{
-							child.SiteId = child.SiteIdSource.SiteId;
-						}
-						else
-						{
-							child.SiteId = entity.SiteId;
-						}
-
-					}
-
-					if (entity.JobCustomXmlCollection.Count > 0 || entity.JobCustomXmlCollection.DeletedItems.Count > 0)
-					{
-						//DataRepository.JobCustomXmlProvider.Save(transactionManager, entity.JobCustomXmlCollection);
-						
-						deepHandles.Add("JobCustomXmlCollection",
-						new KeyValuePair<Delegate, object>((DeepSaveHandle< JobCustomXml >) DataRepository.JobCustomXmlProvider.DeepSave,
-							new object[] { transactionManager, entity.JobCustomXmlCollection, deepSaveType, childTypes, innerList }
 						));
 					}
 				} 
@@ -3108,11 +2597,11 @@ namespace JXTPortal.Data.Bases
 			#endregion 
 				
 	
-			#region List<MemberMemberships>
-				if (CanDeepSave(entity.MemberMembershipsCollection, "List<MemberMemberships>|MemberMembershipsCollection", deepSaveType, innerList)) 
+			#region List<AvailableStatus>
+				if (CanDeepSave(entity.AvailableStatusCollection, "List<AvailableStatus>|AvailableStatusCollection", deepSaveType, innerList)) 
 				{	
 					// update each child parent id with the real parent id (mostly used on insert)
-					foreach(MemberMemberships child in entity.MemberMembershipsCollection)
+					foreach(AvailableStatus child in entity.AvailableStatusCollection)
 					{
 						if(child.SiteIdSource != null)
 						{
@@ -3125,13 +2614,13 @@ namespace JXTPortal.Data.Bases
 
 					}
 
-					if (entity.MemberMembershipsCollection.Count > 0 || entity.MemberMembershipsCollection.DeletedItems.Count > 0)
+					if (entity.AvailableStatusCollection.Count > 0 || entity.AvailableStatusCollection.DeletedItems.Count > 0)
 					{
-						//DataRepository.MemberMembershipsProvider.Save(transactionManager, entity.MemberMembershipsCollection);
+						//DataRepository.AvailableStatusProvider.Save(transactionManager, entity.AvailableStatusCollection);
 						
-						deepHandles.Add("MemberMembershipsCollection",
-						new KeyValuePair<Delegate, object>((DeepSaveHandle< MemberMemberships >) DataRepository.MemberMembershipsProvider.DeepSave,
-							new object[] { transactionManager, entity.MemberMembershipsCollection, deepSaveType, childTypes, innerList }
+						deepHandles.Add("AvailableStatusCollection",
+						new KeyValuePair<Delegate, object>((DeepSaveHandle< AvailableStatus >) DataRepository.AvailableStatusProvider.DeepSave,
+							new object[] { transactionManager, entity.AvailableStatusCollection, deepSaveType, childTypes, innerList }
 						));
 					}
 				} 
@@ -3198,36 +2687,6 @@ namespace JXTPortal.Data.Bases
 			#endregion 
 				
 	
-			#region List<WebServiceLog>
-				if (CanDeepSave(entity.WebServiceLogCollection, "List<WebServiceLog>|WebServiceLogCollection", deepSaveType, innerList)) 
-				{	
-					// update each child parent id with the real parent id (mostly used on insert)
-					foreach(WebServiceLog child in entity.WebServiceLogCollection)
-					{
-						if(child.SiteIdSource != null)
-						{
-							child.SiteId = child.SiteIdSource.SiteId;
-						}
-						else
-						{
-							child.SiteId = entity.SiteId;
-						}
-
-					}
-
-					if (entity.WebServiceLogCollection.Count > 0 || entity.WebServiceLogCollection.DeletedItems.Count > 0)
-					{
-						//DataRepository.WebServiceLogProvider.Save(transactionManager, entity.WebServiceLogCollection);
-						
-						deepHandles.Add("WebServiceLogCollection",
-						new KeyValuePair<Delegate, object>((DeepSaveHandle< WebServiceLog >) DataRepository.WebServiceLogProvider.DeepSave,
-							new object[] { transactionManager, entity.WebServiceLogCollection, deepSaveType, childTypes, innerList }
-						));
-					}
-				} 
-			#endregion 
-				
-	
 			#region List<SiteLocation>
 				if (CanDeepSave(entity.SiteLocationCollection, "List<SiteLocation>|SiteLocationCollection", deepSaveType, innerList)) 
 				{	
@@ -3288,96 +2747,6 @@ namespace JXTPortal.Data.Bases
 			#endregion 
 				
 	
-			#region List<MemberWizard>
-				if (CanDeepSave(entity.MemberWizardCollection, "List<MemberWizard>|MemberWizardCollection", deepSaveType, innerList)) 
-				{	
-					// update each child parent id with the real parent id (mostly used on insert)
-					foreach(MemberWizard child in entity.MemberWizardCollection)
-					{
-						if(child.SiteIdSource != null)
-						{
-							child.SiteId = child.SiteIdSource.SiteId;
-						}
-						else
-						{
-							child.SiteId = entity.SiteId;
-						}
-
-					}
-
-					if (entity.MemberWizardCollection.Count > 0 || entity.MemberWizardCollection.DeletedItems.Count > 0)
-					{
-						//DataRepository.MemberWizardProvider.Save(transactionManager, entity.MemberWizardCollection);
-						
-						deepHandles.Add("MemberWizardCollection",
-						new KeyValuePair<Delegate, object>((DeepSaveHandle< MemberWizard >) DataRepository.MemberWizardProvider.DeepSave,
-							new object[] { transactionManager, entity.MemberWizardCollection, deepSaveType, childTypes, innerList }
-						));
-					}
-				} 
-			#endregion 
-				
-	
-			#region List<Industry>
-				if (CanDeepSave(entity.IndustryCollection, "List<Industry>|IndustryCollection", deepSaveType, innerList)) 
-				{	
-					// update each child parent id with the real parent id (mostly used on insert)
-					foreach(Industry child in entity.IndustryCollection)
-					{
-						if(child.SiteIdSource != null)
-						{
-							child.SiteId = child.SiteIdSource.SiteId;
-						}
-						else
-						{
-							child.SiteId = entity.SiteId;
-						}
-
-					}
-
-					if (entity.IndustryCollection.Count > 0 || entity.IndustryCollection.DeletedItems.Count > 0)
-					{
-						//DataRepository.IndustryProvider.Save(transactionManager, entity.IndustryCollection);
-						
-						deepHandles.Add("IndustryCollection",
-						new KeyValuePair<Delegate, object>((DeepSaveHandle< Industry >) DataRepository.IndustryProvider.DeepSave,
-							new object[] { transactionManager, entity.IndustryCollection, deepSaveType, childTypes, innerList }
-						));
-					}
-				} 
-			#endregion 
-				
-	
-			#region List<Consultants>
-				if (CanDeepSave(entity.ConsultantsCollection, "List<Consultants>|ConsultantsCollection", deepSaveType, innerList)) 
-				{	
-					// update each child parent id with the real parent id (mostly used on insert)
-					foreach(Consultants child in entity.ConsultantsCollection)
-					{
-						if(child.SiteIdSource != null)
-						{
-							child.SiteId = child.SiteIdSource.SiteId;
-						}
-						else
-						{
-							child.SiteId = entity.SiteId;
-						}
-
-					}
-
-					if (entity.ConsultantsCollection.Count > 0 || entity.ConsultantsCollection.DeletedItems.Count > 0)
-					{
-						//DataRepository.ConsultantsProvider.Save(transactionManager, entity.ConsultantsCollection);
-						
-						deepHandles.Add("ConsultantsCollection",
-						new KeyValuePair<Delegate, object>((DeepSaveHandle< Consultants >) DataRepository.ConsultantsProvider.DeepSave,
-							new object[] { transactionManager, entity.ConsultantsCollection, deepSaveType, childTypes, innerList }
-						));
-					}
-				} 
-			#endregion 
-				
-	
 			#region List<Files>
 				if (CanDeepSave(entity.FilesCollection, "List<Files>|FilesCollection", deepSaveType, innerList)) 
 				{	
@@ -3408,11 +2777,11 @@ namespace JXTPortal.Data.Bases
 			#endregion 
 				
 	
-			#region List<SiteResourcesXml>
-				if (CanDeepSave(entity.SiteResourcesXmlCollection, "List<SiteResourcesXml>|SiteResourcesXmlCollection", deepSaveType, innerList)) 
+			#region List<JobsArchive>
+				if (CanDeepSave(entity.JobsArchiveCollection, "List<JobsArchive>|JobsArchiveCollection", deepSaveType, innerList)) 
 				{	
 					// update each child parent id with the real parent id (mostly used on insert)
-					foreach(SiteResourcesXml child in entity.SiteResourcesXmlCollection)
+					foreach(JobsArchive child in entity.JobsArchiveCollection)
 					{
 						if(child.SiteIdSource != null)
 						{
@@ -3425,13 +2794,13 @@ namespace JXTPortal.Data.Bases
 
 					}
 
-					if (entity.SiteResourcesXmlCollection.Count > 0 || entity.SiteResourcesXmlCollection.DeletedItems.Count > 0)
+					if (entity.JobsArchiveCollection.Count > 0 || entity.JobsArchiveCollection.DeletedItems.Count > 0)
 					{
-						//DataRepository.SiteResourcesXmlProvider.Save(transactionManager, entity.SiteResourcesXmlCollection);
+						//DataRepository.JobsArchiveProvider.Save(transactionManager, entity.JobsArchiveCollection);
 						
-						deepHandles.Add("SiteResourcesXmlCollection",
-						new KeyValuePair<Delegate, object>((DeepSaveHandle< SiteResourcesXml >) DataRepository.SiteResourcesXmlProvider.DeepSave,
-							new object[] { transactionManager, entity.SiteResourcesXmlCollection, deepSaveType, childTypes, innerList }
+						deepHandles.Add("JobsArchiveCollection",
+						new KeyValuePair<Delegate, object>((DeepSaveHandle< JobsArchive >) DataRepository.JobsArchiveProvider.DeepSave,
+							new object[] { transactionManager, entity.JobsArchiveCollection, deepSaveType, childTypes, innerList }
 						));
 					}
 				} 
@@ -3462,36 +2831,6 @@ namespace JXTPortal.Data.Bases
 						deepHandles.Add("AdvertisersCollection",
 						new KeyValuePair<Delegate, object>((DeepSaveHandle< Advertisers >) DataRepository.AdvertisersProvider.DeepSave,
 							new object[] { transactionManager, entity.AdvertisersCollection, deepSaveType, childTypes, innerList }
-						));
-					}
-				} 
-			#endregion 
-				
-	
-			#region List<MemberStatus>
-				if (CanDeepSave(entity.MemberStatusCollection, "List<MemberStatus>|MemberStatusCollection", deepSaveType, innerList)) 
-				{	
-					// update each child parent id with the real parent id (mostly used on insert)
-					foreach(MemberStatus child in entity.MemberStatusCollection)
-					{
-						if(child.SiteIdSource != null)
-						{
-							child.SiteId = child.SiteIdSource.SiteId;
-						}
-						else
-						{
-							child.SiteId = entity.SiteId;
-						}
-
-					}
-
-					if (entity.MemberStatusCollection.Count > 0 || entity.MemberStatusCollection.DeletedItems.Count > 0)
-					{
-						//DataRepository.MemberStatusProvider.Save(transactionManager, entity.MemberStatusCollection);
-						
-						deepHandles.Add("MemberStatusCollection",
-						new KeyValuePair<Delegate, object>((DeepSaveHandle< MemberStatus >) DataRepository.MemberStatusProvider.DeepSave,
-							new object[] { transactionManager, entity.MemberStatusCollection, deepSaveType, childTypes, innerList }
 						));
 					}
 				} 
@@ -3552,36 +2891,6 @@ namespace JXTPortal.Data.Bases
 						deepHandles.Add("FoldersCollection",
 						new KeyValuePair<Delegate, object>((DeepSaveHandle< Folders >) DataRepository.FoldersProvider.DeepSave,
 							new object[] { transactionManager, entity.FoldersCollection, deepSaveType, childTypes, innerList }
-						));
-					}
-				} 
-			#endregion 
-				
-	
-			#region List<SiteCustomMapping>
-				if (CanDeepSave(entity.SiteCustomMappingCollection, "List<SiteCustomMapping>|SiteCustomMappingCollection", deepSaveType, innerList)) 
-				{	
-					// update each child parent id with the real parent id (mostly used on insert)
-					foreach(SiteCustomMapping child in entity.SiteCustomMappingCollection)
-					{
-						if(child.SiteIdSource != null)
-						{
-							child.SiteId = child.SiteIdSource.SiteId;
-						}
-						else
-						{
-							child.SiteId = entity.SiteId;
-						}
-
-					}
-
-					if (entity.SiteCustomMappingCollection.Count > 0 || entity.SiteCustomMappingCollection.DeletedItems.Count > 0)
-					{
-						//DataRepository.SiteCustomMappingProvider.Save(transactionManager, entity.SiteCustomMappingCollection);
-						
-						deepHandles.Add("SiteCustomMappingCollection",
-						new KeyValuePair<Delegate, object>((DeepSaveHandle< SiteCustomMapping >) DataRepository.SiteCustomMappingProvider.DeepSave,
-							new object[] { transactionManager, entity.SiteCustomMappingCollection, deepSaveType, childTypes, innerList }
 						));
 					}
 				} 
@@ -3678,96 +2987,6 @@ namespace JXTPortal.Data.Bases
 			#endregion 
 				
 	
-			#region List<JobApplicationType>
-				if (CanDeepSave(entity.JobApplicationTypeCollection, "List<JobApplicationType>|JobApplicationTypeCollection", deepSaveType, innerList)) 
-				{	
-					// update each child parent id with the real parent id (mostly used on insert)
-					foreach(JobApplicationType child in entity.JobApplicationTypeCollection)
-					{
-						if(child.SiteIdSource != null)
-						{
-							child.SiteId = child.SiteIdSource.SiteId;
-						}
-						else
-						{
-							child.SiteId = entity.SiteId;
-						}
-
-					}
-
-					if (entity.JobApplicationTypeCollection.Count > 0 || entity.JobApplicationTypeCollection.DeletedItems.Count > 0)
-					{
-						//DataRepository.JobApplicationTypeProvider.Save(transactionManager, entity.JobApplicationTypeCollection);
-						
-						deepHandles.Add("JobApplicationTypeCollection",
-						new KeyValuePair<Delegate, object>((DeepSaveHandle< JobApplicationType >) DataRepository.JobApplicationTypeProvider.DeepSave,
-							new object[] { transactionManager, entity.JobApplicationTypeCollection, deepSaveType, childTypes, innerList }
-						));
-					}
-				} 
-			#endregion 
-				
-	
-			#region List<CustomWidget>
-				if (CanDeepSave(entity.CustomWidgetCollection, "List<CustomWidget>|CustomWidgetCollection", deepSaveType, innerList)) 
-				{	
-					// update each child parent id with the real parent id (mostly used on insert)
-					foreach(CustomWidget child in entity.CustomWidgetCollection)
-					{
-						if(child.SiteIdSource != null)
-						{
-							child.SiteId = child.SiteIdSource.SiteId;
-						}
-						else
-						{
-							child.SiteId = entity.SiteId;
-						}
-
-					}
-
-					if (entity.CustomWidgetCollection.Count > 0 || entity.CustomWidgetCollection.DeletedItems.Count > 0)
-					{
-						//DataRepository.CustomWidgetProvider.Save(transactionManager, entity.CustomWidgetCollection);
-						
-						deepHandles.Add("CustomWidgetCollection",
-						new KeyValuePair<Delegate, object>((DeepSaveHandle< CustomWidget >) DataRepository.CustomWidgetProvider.DeepSave,
-							new object[] { transactionManager, entity.CustomWidgetCollection, deepSaveType, childTypes, innerList }
-						));
-					}
-				} 
-			#endregion 
-				
-	
-			#region List<SiteMappings>
-				if (CanDeepSave(entity.SiteMappingsCollectionGetBySiteId, "List<SiteMappings>|SiteMappingsCollectionGetBySiteId", deepSaveType, innerList)) 
-				{	
-					// update each child parent id with the real parent id (mostly used on insert)
-					foreach(SiteMappings child in entity.SiteMappingsCollectionGetBySiteId)
-					{
-						if(child.SiteIdSource != null)
-						{
-							child.SiteId = child.SiteIdSource.SiteId;
-						}
-						else
-						{
-							child.SiteId = entity.SiteId;
-						}
-
-					}
-
-					if (entity.SiteMappingsCollectionGetBySiteId.Count > 0 || entity.SiteMappingsCollectionGetBySiteId.DeletedItems.Count > 0)
-					{
-						//DataRepository.SiteMappingsProvider.Save(transactionManager, entity.SiteMappingsCollectionGetBySiteId);
-						
-						deepHandles.Add("SiteMappingsCollectionGetBySiteId",
-						new KeyValuePair<Delegate, object>((DeepSaveHandle< SiteMappings >) DataRepository.SiteMappingsProvider.DeepSave,
-							new object[] { transactionManager, entity.SiteMappingsCollectionGetBySiteId, deepSaveType, childTypes, innerList }
-						));
-					}
-				} 
-			#endregion 
-				
-	
 			#region List<SiteWebParts>
 				if (CanDeepSave(entity.SiteWebPartsCollectionGetBySiteId, "List<SiteWebParts>|SiteWebPartsCollectionGetBySiteId", deepSaveType, innerList)) 
 				{	
@@ -3798,36 +3017,6 @@ namespace JXTPortal.Data.Bases
 			#endregion 
 				
 	
-			#region List<SiteRoles>
-				if (CanDeepSave(entity.SiteRolesCollection, "List<SiteRoles>|SiteRolesCollection", deepSaveType, innerList)) 
-				{	
-					// update each child parent id with the real parent id (mostly used on insert)
-					foreach(SiteRoles child in entity.SiteRolesCollection)
-					{
-						if(child.SiteIdSource != null)
-						{
-							child.SiteId = child.SiteIdSource.SiteId;
-						}
-						else
-						{
-							child.SiteId = entity.SiteId;
-						}
-
-					}
-
-					if (entity.SiteRolesCollection.Count > 0 || entity.SiteRolesCollection.DeletedItems.Count > 0)
-					{
-						//DataRepository.SiteRolesProvider.Save(transactionManager, entity.SiteRolesCollection);
-						
-						deepHandles.Add("SiteRolesCollection",
-						new KeyValuePair<Delegate, object>((DeepSaveHandle< SiteRoles >) DataRepository.SiteRolesProvider.DeepSave,
-							new object[] { transactionManager, entity.SiteRolesCollection, deepSaveType, childTypes, innerList }
-						));
-					}
-				} 
-			#endregion 
-				
-	
 			#region List<CustomPayment>
 				if (CanDeepSave(entity.CustomPaymentCollection, "List<CustomPayment>|CustomPaymentCollection", deepSaveType, innerList)) 
 				{	
@@ -3852,36 +3041,6 @@ namespace JXTPortal.Data.Bases
 						deepHandles.Add("CustomPaymentCollection",
 						new KeyValuePair<Delegate, object>((DeepSaveHandle< CustomPayment >) DataRepository.CustomPaymentProvider.DeepSave,
 							new object[] { transactionManager, entity.CustomPaymentCollection, deepSaveType, childTypes, innerList }
-						));
-					}
-				} 
-			#endregion 
-				
-	
-			#region List<Integrations>
-				if (CanDeepSave(entity.IntegrationsCollection, "List<Integrations>|IntegrationsCollection", deepSaveType, innerList)) 
-				{	
-					// update each child parent id with the real parent id (mostly used on insert)
-					foreach(Integrations child in entity.IntegrationsCollection)
-					{
-						if(child.SiteIdSource != null)
-						{
-							child.SiteId = child.SiteIdSource.SiteId;
-						}
-						else
-						{
-							child.SiteId = entity.SiteId;
-						}
-
-					}
-
-					if (entity.IntegrationsCollection.Count > 0 || entity.IntegrationsCollection.DeletedItems.Count > 0)
-					{
-						//DataRepository.IntegrationsProvider.Save(transactionManager, entity.IntegrationsCollection);
-						
-						deepHandles.Add("IntegrationsCollection",
-						new KeyValuePair<Delegate, object>((DeepSaveHandle< Integrations >) DataRepository.IntegrationsProvider.DeepSave,
-							new object[] { transactionManager, entity.IntegrationsCollection, deepSaveType, childTypes, innerList }
 						));
 					}
 				} 
@@ -3949,10 +3108,10 @@ namespace JXTPortal.Data.Bases
 				
 	
 			#region List<SiteResources>
-				if (CanDeepSave(entity.SiteResourcesCollectionGetBySiteId, "List<SiteResources>|SiteResourcesCollectionGetBySiteId", deepSaveType, innerList)) 
+				if (CanDeepSave(entity.SiteResourcesCollection, "List<SiteResources>|SiteResourcesCollection", deepSaveType, innerList)) 
 				{	
 					// update each child parent id with the real parent id (mostly used on insert)
-					foreach(SiteResources child in entity.SiteResourcesCollectionGetBySiteId)
+					foreach(SiteResources child in entity.SiteResourcesCollection)
 					{
 						if(child.SiteIdSource != null)
 						{
@@ -3965,13 +3124,13 @@ namespace JXTPortal.Data.Bases
 
 					}
 
-					if (entity.SiteResourcesCollectionGetBySiteId.Count > 0 || entity.SiteResourcesCollectionGetBySiteId.DeletedItems.Count > 0)
+					if (entity.SiteResourcesCollection.Count > 0 || entity.SiteResourcesCollection.DeletedItems.Count > 0)
 					{
-						//DataRepository.SiteResourcesProvider.Save(transactionManager, entity.SiteResourcesCollectionGetBySiteId);
+						//DataRepository.SiteResourcesProvider.Save(transactionManager, entity.SiteResourcesCollection);
 						
-						deepHandles.Add("SiteResourcesCollectionGetBySiteId",
+						deepHandles.Add("SiteResourcesCollection",
 						new KeyValuePair<Delegate, object>((DeepSaveHandle< SiteResources >) DataRepository.SiteResourcesProvider.DeepSave,
-							new object[] { transactionManager, entity.SiteResourcesCollectionGetBySiteId, deepSaveType, childTypes, innerList }
+							new object[] { transactionManager, entity.SiteResourcesCollection, deepSaveType, childTypes, innerList }
 						));
 					}
 				} 
@@ -4068,66 +3227,6 @@ namespace JXTPortal.Data.Bases
 			#endregion 
 				
 	
-			#region List<DynamicContent>
-				if (CanDeepSave(entity.DynamicContentCollection, "List<DynamicContent>|DynamicContentCollection", deepSaveType, innerList)) 
-				{	
-					// update each child parent id with the real parent id (mostly used on insert)
-					foreach(DynamicContent child in entity.DynamicContentCollection)
-					{
-						if(child.SiteIdSource != null)
-						{
-							child.SiteId = child.SiteIdSource.SiteId;
-						}
-						else
-						{
-							child.SiteId = entity.SiteId;
-						}
-
-					}
-
-					if (entity.DynamicContentCollection.Count > 0 || entity.DynamicContentCollection.DeletedItems.Count > 0)
-					{
-						//DataRepository.DynamicContentProvider.Save(transactionManager, entity.DynamicContentCollection);
-						
-						deepHandles.Add("DynamicContentCollection",
-						new KeyValuePair<Delegate, object>((DeepSaveHandle< DynamicContent >) DataRepository.DynamicContentProvider.DeepSave,
-							new object[] { transactionManager, entity.DynamicContentCollection, deepSaveType, childTypes, innerList }
-						));
-					}
-				} 
-			#endregion 
-				
-	
-			#region List<JobItemsType>
-				if (CanDeepSave(entity.JobItemsTypeCollection, "List<JobItemsType>|JobItemsTypeCollection", deepSaveType, innerList)) 
-				{	
-					// update each child parent id with the real parent id (mostly used on insert)
-					foreach(JobItemsType child in entity.JobItemsTypeCollection)
-					{
-						if(child.SiteIdSource != null)
-						{
-							child.SiteId = child.SiteIdSource.SiteId;
-						}
-						else
-						{
-							child.SiteId = entity.SiteId;
-						}
-
-					}
-
-					if (entity.JobItemsTypeCollection.Count > 0 || entity.JobItemsTypeCollection.DeletedItems.Count > 0)
-					{
-						//DataRepository.JobItemsTypeProvider.Save(transactionManager, entity.JobItemsTypeCollection);
-						
-						deepHandles.Add("JobItemsTypeCollection",
-						new KeyValuePair<Delegate, object>((DeepSaveHandle< JobItemsType >) DataRepository.JobItemsTypeProvider.DeepSave,
-							new object[] { transactionManager, entity.JobItemsTypeCollection, deepSaveType, childTypes, innerList }
-						));
-					}
-				} 
-			#endregion 
-				
-	
 			#region List<SiteSalaryType>
 				if (CanDeepSave(entity.SiteSalaryTypeCollection, "List<SiteSalaryType>|SiteSalaryTypeCollection", deepSaveType, innerList)) 
 				{	
@@ -4188,11 +3287,11 @@ namespace JXTPortal.Data.Bases
 			#endregion 
 				
 	
-			#region List<JobsArchive>
-				if (CanDeepSave(entity.JobsArchiveCollection, "List<JobsArchive>|JobsArchiveCollection", deepSaveType, innerList)) 
+			#region List<SiteRoles>
+				if (CanDeepSave(entity.SiteRolesCollection, "List<SiteRoles>|SiteRolesCollection", deepSaveType, innerList)) 
 				{	
 					// update each child parent id with the real parent id (mostly used on insert)
-					foreach(JobsArchive child in entity.JobsArchiveCollection)
+					foreach(SiteRoles child in entity.SiteRolesCollection)
 					{
 						if(child.SiteIdSource != null)
 						{
@@ -4205,13 +3304,13 @@ namespace JXTPortal.Data.Bases
 
 					}
 
-					if (entity.JobsArchiveCollection.Count > 0 || entity.JobsArchiveCollection.DeletedItems.Count > 0)
+					if (entity.SiteRolesCollection.Count > 0 || entity.SiteRolesCollection.DeletedItems.Count > 0)
 					{
-						//DataRepository.JobsArchiveProvider.Save(transactionManager, entity.JobsArchiveCollection);
+						//DataRepository.SiteRolesProvider.Save(transactionManager, entity.SiteRolesCollection);
 						
-						deepHandles.Add("JobsArchiveCollection",
-						new KeyValuePair<Delegate, object>((DeepSaveHandle< JobsArchive >) DataRepository.JobsArchiveProvider.DeepSave,
-							new object[] { transactionManager, entity.JobsArchiveCollection, deepSaveType, childTypes, innerList }
+						deepHandles.Add("SiteRolesCollection",
+						new KeyValuePair<Delegate, object>((DeepSaveHandle< SiteRoles >) DataRepository.SiteRolesProvider.DeepSave,
+							new object[] { transactionManager, entity.SiteRolesCollection, deepSaveType, childTypes, innerList }
 						));
 					}
 				} 
@@ -4242,36 +3341,6 @@ namespace JXTPortal.Data.Bases
 						deepHandles.Add("SiteLanguagesCollection",
 						new KeyValuePair<Delegate, object>((DeepSaveHandle< SiteLanguages >) DataRepository.SiteLanguagesProvider.DeepSave,
 							new object[] { transactionManager, entity.SiteLanguagesCollection, deepSaveType, childTypes, innerList }
-						));
-					}
-				} 
-			#endregion 
-				
-	
-			#region List<CustomWidgetCssSelector>
-				if (CanDeepSave(entity.CustomWidgetCssSelectorCollection, "List<CustomWidgetCssSelector>|CustomWidgetCssSelectorCollection", deepSaveType, innerList)) 
-				{	
-					// update each child parent id with the real parent id (mostly used on insert)
-					foreach(CustomWidgetCssSelector child in entity.CustomWidgetCssSelectorCollection)
-					{
-						if(child.SiteIdSource != null)
-						{
-							child.SiteId = child.SiteIdSource.SiteId;
-						}
-						else
-						{
-							child.SiteId = entity.SiteId;
-						}
-
-					}
-
-					if (entity.CustomWidgetCssSelectorCollection.Count > 0 || entity.CustomWidgetCssSelectorCollection.DeletedItems.Count > 0)
-					{
-						//DataRepository.CustomWidgetCssSelectorProvider.Save(transactionManager, entity.CustomWidgetCssSelectorCollection);
-						
-						deepHandles.Add("CustomWidgetCssSelectorCollection",
-						new KeyValuePair<Delegate, object>((DeepSaveHandle< CustomWidgetCssSelector >) DataRepository.CustomWidgetCssSelectorProvider.DeepSave,
-							new object[] { transactionManager, entity.CustomWidgetCssSelectorCollection, deepSaveType, childTypes, innerList }
 						));
 					}
 				} 
@@ -4341,10 +3410,10 @@ namespace JXTPortal.Data.Bases
 		AdminUsers,
 	
 		///<summary>
-		/// Collection of <c>Sites</c> as OneToMany for AvailableStatusCollection
+		/// Collection of <c>Sites</c> as OneToMany for JobItemsTypeCollection
 		///</summary>
-		[ChildEntityType(typeof(TList<AvailableStatus>))]
-		AvailableStatusCollection,
+		[ChildEntityType(typeof(TList<JobItemsType>))]
+		JobItemsTypeCollection,
 
 		///<summary>
 		/// Collection of <c>Sites</c> as OneToMany for JobApplicationCollection
@@ -4357,18 +3426,6 @@ namespace JXTPortal.Data.Bases
 		///</summary>
 		[ChildEntityType(typeof(TList<JobViews>))]
 		JobViewsCollection,
-
-		///<summary>
-		/// Collection of <c>Sites</c> as OneToMany for IntegrationMappingsCollection
-		///</summary>
-		[ChildEntityType(typeof(TList<IntegrationMappings>))]
-		IntegrationMappingsCollection,
-
-		///<summary>
-		/// Collection of <c>Sites</c> as OneToMany for SiteResourcesCollection
-		///</summary>
-		[ChildEntityType(typeof(TList<SiteResources>))]
-		SiteResourcesCollectionGetBySiteId,
 
 		///<summary>
 		/// Collection of <c>Sites</c> as OneToMany for EmailTemplatesCollection
@@ -4395,22 +3452,10 @@ namespace JXTPortal.Data.Bases
 		DynamicPageFilesCollection,
 
 		///<summary>
-		/// Collection of <c>Sites</c> as OneToMany for SiteMappingsCollection
-		///</summary>
-		[ChildEntityType(typeof(TList<SiteMappings>))]
-		SiteMappingsCollectionGetByMasterSiteId,
-
-		///<summary>
 		/// Collection of <c>Sites</c> as OneToMany for SiteWebPartsCollection
 		///</summary>
 		[ChildEntityType(typeof(TList<SiteWebParts>))]
 		SiteWebPartsCollectionGetBySiteId,
-
-		///<summary>
-		/// Collection of <c>Sites</c> as OneToMany for JobCustomXmlCollection
-		///</summary>
-		[ChildEntityType(typeof(TList<JobCustomXml>))]
-		JobCustomXmlCollection,
 
 		///<summary>
 		/// Collection of <c>Sites</c> as OneToMany for DynamicPageWebPartTemplatesCollection
@@ -4437,10 +3482,10 @@ namespace JXTPortal.Data.Bases
 		SiteAdvertiserFilterCollection,
 
 		///<summary>
-		/// Collection of <c>Sites</c> as OneToMany for MemberMembershipsCollection
+		/// Collection of <c>Sites</c> as OneToMany for AvailableStatusCollection
 		///</summary>
-		[ChildEntityType(typeof(TList<MemberMemberships>))]
-		MemberMembershipsCollection,
+		[ChildEntityType(typeof(TList<AvailableStatus>))]
+		AvailableStatusCollection,
 
 		///<summary>
 		/// Collection of <c>Sites</c> as OneToMany for JobTemplatesCollection
@@ -4455,12 +3500,6 @@ namespace JXTPortal.Data.Bases
 		SiteCountriesCollection,
 
 		///<summary>
-		/// Collection of <c>Sites</c> as OneToMany for WebServiceLogCollection
-		///</summary>
-		[ChildEntityType(typeof(TList<WebServiceLog>))]
-		WebServiceLogCollection,
-
-		///<summary>
 		/// Collection of <c>Sites</c> as OneToMany for SiteLocationCollection
 		///</summary>
 		[ChildEntityType(typeof(TList<SiteLocation>))]
@@ -4473,46 +3512,22 @@ namespace JXTPortal.Data.Bases
 		SiteProfessionCollection,
 
 		///<summary>
-		/// Collection of <c>Sites</c> as OneToMany for MemberWizardCollection
-		///</summary>
-		[ChildEntityType(typeof(TList<MemberWizard>))]
-		MemberWizardCollection,
-
-		///<summary>
-		/// Collection of <c>Sites</c> as OneToMany for IndustryCollection
-		///</summary>
-		[ChildEntityType(typeof(TList<Industry>))]
-		IndustryCollection,
-
-		///<summary>
-		/// Collection of <c>Sites</c> as OneToMany for ConsultantsCollection
-		///</summary>
-		[ChildEntityType(typeof(TList<Consultants>))]
-		ConsultantsCollection,
-
-		///<summary>
 		/// Collection of <c>Sites</c> as OneToMany for FilesCollection
 		///</summary>
 		[ChildEntityType(typeof(TList<Files>))]
 		FilesCollection,
 
 		///<summary>
-		/// Collection of <c>Sites</c> as OneToMany for SiteResourcesXmlCollection
+		/// Collection of <c>Sites</c> as OneToMany for JobsArchiveCollection
 		///</summary>
-		[ChildEntityType(typeof(TList<SiteResourcesXml>))]
-		SiteResourcesXmlCollection,
+		[ChildEntityType(typeof(TList<JobsArchive>))]
+		JobsArchiveCollection,
 
 		///<summary>
 		/// Collection of <c>Sites</c> as OneToMany for AdvertisersCollection
 		///</summary>
 		[ChildEntityType(typeof(TList<Advertisers>))]
 		AdvertisersCollection,
-
-		///<summary>
-		/// Collection of <c>Sites</c> as OneToMany for MemberStatusCollection
-		///</summary>
-		[ChildEntityType(typeof(TList<MemberStatus>))]
-		MemberStatusCollection,
 
 		///<summary>
 		/// Collection of <c>Sites</c> as OneToMany for WidgetContainersCollection
@@ -4525,12 +3540,6 @@ namespace JXTPortal.Data.Bases
 		///</summary>
 		[ChildEntityType(typeof(TList<Folders>))]
 		FoldersCollection,
-
-		///<summary>
-		/// Collection of <c>Sites</c> as OneToMany for SiteCustomMappingCollection
-		///</summary>
-		[ChildEntityType(typeof(TList<SiteCustomMapping>))]
-		SiteCustomMappingCollection,
 
 		///<summary>
 		/// Collection of <c>Sites</c> as OneToMany for ProfessionCollection
@@ -4549,42 +3558,12 @@ namespace JXTPortal.Data.Bases
 		///</summary>
 		[ChildEntityType(typeof(TList<JobAlerts>))]
 		JobAlertsCollection,
-
-		///<summary>
-		/// Collection of <c>Sites</c> as OneToMany for JobApplicationTypeCollection
-		///</summary>
-		[ChildEntityType(typeof(TList<JobApplicationType>))]
-		JobApplicationTypeCollection,
-
-		///<summary>
-		/// Collection of <c>Sites</c> as OneToMany for CustomWidgetCollection
-		///</summary>
-		[ChildEntityType(typeof(TList<CustomWidget>))]
-		CustomWidgetCollection,
-
-		///<summary>
-		/// Collection of <c>Sites</c> as OneToMany for SiteMappingsCollection
-		///</summary>
-		[ChildEntityType(typeof(TList<SiteMappings>))]
-		SiteMappingsCollectionGetBySiteId,
-
-		///<summary>
-		/// Collection of <c>Sites</c> as OneToMany for SiteRolesCollection
-		///</summary>
-		[ChildEntityType(typeof(TList<SiteRoles>))]
-		SiteRolesCollection,
-
+        
 		///<summary>
 		/// Collection of <c>Sites</c> as OneToMany for CustomPaymentCollection
 		///</summary>
 		[ChildEntityType(typeof(TList<CustomPayment>))]
 		CustomPaymentCollection,
-
-		///<summary>
-		/// Collection of <c>Sites</c> as OneToMany for IntegrationsCollection
-		///</summary>
-		[ChildEntityType(typeof(TList<Integrations>))]
-		IntegrationsCollection,
 
 		///<summary>
 		/// Collection of <c>Sites</c> as OneToMany for EnquiriesCollection
@@ -4597,6 +3576,12 @@ namespace JXTPortal.Data.Bases
 		///</summary>
 		[ChildEntityType(typeof(TList<SiteArea>))]
 		SiteAreaCollection,
+
+		///<summary>
+		/// Collection of <c>Sites</c> as OneToMany for SiteResourcesCollection
+		///</summary>
+		[ChildEntityType(typeof(TList<SiteResources>))]
+		SiteResourcesCollection,
 
 		///<summary>
 		/// Collection of <c>Sites</c> as OneToMany for NewsCollection
@@ -4617,18 +3602,6 @@ namespace JXTPortal.Data.Bases
 		SiteWorkTypeCollection,
 
 		///<summary>
-		/// Collection of <c>Sites</c> as OneToMany for DynamicContentCollection
-		///</summary>
-		[ChildEntityType(typeof(TList<DynamicContent>))]
-		DynamicContentCollection,
-
-		///<summary>
-		/// Collection of <c>Sites</c> as OneToMany for JobItemsTypeCollection
-		///</summary>
-		[ChildEntityType(typeof(TList<JobItemsType>))]
-		JobItemsTypeCollection,
-
-		///<summary>
 		/// Collection of <c>Sites</c> as OneToMany for SiteSalaryTypeCollection
 		///</summary>
 		[ChildEntityType(typeof(TList<SiteSalaryType>))]
@@ -4641,22 +3614,16 @@ namespace JXTPortal.Data.Bases
 		GlobalSettingsCollection,
 
 		///<summary>
-		/// Collection of <c>Sites</c> as OneToMany for JobsArchiveCollection
+		/// Collection of <c>Sites</c> as OneToMany for SiteRolesCollection
 		///</summary>
-		[ChildEntityType(typeof(TList<JobsArchive>))]
-		JobsArchiveCollection,
+		[ChildEntityType(typeof(TList<SiteRoles>))]
+		SiteRolesCollection,
 
 		///<summary>
 		/// Collection of <c>Sites</c> as OneToMany for SiteLanguagesCollection
 		///</summary>
 		[ChildEntityType(typeof(TList<SiteLanguages>))]
 		SiteLanguagesCollection,
-
-		///<summary>
-		/// Collection of <c>Sites</c> as OneToMany for CustomWidgetCssSelectorCollection
-		///</summary>
-		[ChildEntityType(typeof(TList<CustomWidgetCssSelector>))]
-		CustomWidgetCssSelectorCollection,
 
 		///<summary>
 		/// Collection of <c>Sites</c> as OneToMany for EducationsCollection

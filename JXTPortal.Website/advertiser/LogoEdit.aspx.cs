@@ -7,7 +7,6 @@ using System.Web.UI.WebControls;
 using JXTPortal.Entities;
 using System.IO;
 using JXTPortal.Common;
-using System.Configuration;
 
 namespace JXTPortal.Website.advertiser
 {
@@ -67,20 +66,11 @@ namespace JXTPortal.Website.advertiser
         {
             using (JXTPortal.Entities.Advertisers advertiser = AdvertisersService.GetByAdvertiserId(SessionData.AdvertiserUser.AdvertiserId))
             {
-                if (string.IsNullOrWhiteSpace(advertiser.AdvertiserLogoUrl))
-                {
-                    if (advertiser.AdvertiserLogo != null)
-                    {
-                        lblNoLogo.Visible = false;
-
-                        imgLogo.ImageUrl = Page.ResolveUrl("~/getfile.aspx") + "?advertiserid=" + Convert.ToString(advertiser.AdvertiserId);
-                    }
-                }
-                else
+                if (advertiser.AdvertiserLogo != null)
                 {
                     lblNoLogo.Visible = false;
 
-                    imgLogo.ImageUrl = string.Format("/media/{0}/{1}", ConfigurationManager.AppSettings["AdvertisersFolder"], advertiser.AdvertiserLogoUrl);
+                    imgLogo.ImageUrl = Page.ResolveUrl("~/getfile.aspx") + "?advertiserid=" + Convert.ToString(advertiser.AdvertiserId);
                 }
             }
         }
@@ -164,18 +154,7 @@ namespace JXTPortal.Website.advertiser
                         objOutputMemorySTream.Position = 0;
                         objOutputMemorySTream.Read(abytFile, 0, abytFile.Length);
 
-                        FtpClient ftpclient = new FtpClient();
-                        string errormessage = string.Empty;
-                        string extension = Utils.GetImageExtension(objOriginalImage);
-                        ftpclient.Host = ConfigurationManager.AppSettings["FTPFileManager"];
-                        ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                        ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-                        ftpclient.UploadFileFromStream(objOutputMemorySTream, string.Format("{0}/{1}/Advertisers_{2}.{3}", ftpclient.Host, ConfigurationManager.AppSettings["AdvertisersFolder"], advertiser.AdvertiserId, extension), out errormessage);
-
-                        if (string.IsNullOrWhiteSpace(errormessage))
-                        {
-                            advertiser.AdvertiserLogoUrl = string.Format("Advertisers_{0}.{1}", advertiser.AdvertiserId, extension);
-                        }
+                        advertiser.AdvertiserLogo = abytFile;
 
                         AdvertisersService.Update(advertiser);
                     }

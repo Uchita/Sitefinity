@@ -208,11 +208,6 @@ namespace JXTPortal.Entities
 		/// ConsultantsXML : 
 		/// </summary>
 		System.String  ConsultantsXml  { get; set; }
-		
-		/// <summary>
-		/// ConsultantImageUrl : 
-		/// </summary>
-		System.String  ConsultantImageUrl  { get; set; }
 			
 		/// <summary>
 		/// Creates a new object that is a copy of the current instance.

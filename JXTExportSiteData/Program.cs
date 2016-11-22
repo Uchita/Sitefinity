@@ -7,7 +7,6 @@ using System.Data;
 using System.Configuration;
 using JXTPortal.Entities;
 using System.IO;
-using JXTPortal.Common;
 
 namespace JXTExportSiteData
 {
@@ -131,7 +130,7 @@ namespace JXTExportSiteData
         {
             Console.WriteLine("Generating Member File...");
 
-            using (TList<Members> members = new MembersService().GetBySiteId(siteID))
+            using(TList<Members> members = new MembersService().GetBySiteId(siteID))
             {
                 //open stream
                 using (System.IO.StreamWriter file = new System.IO.StreamWriter(destinationPath + csvFileName))
@@ -174,30 +173,7 @@ namespace JXTExportSiteData
                                 {
                                     string fileName = thisMemberID.ToString() + "_" + resumeFile.MemberFileName;
                                     System.IO.FileStream _FileStream = new System.IO.FileStream(destinationPath + fileName, System.IO.FileMode.Create, System.IO.FileAccess.Write);
-
-                                    string errormessage = string.Empty;
-                                    byte[] memberfilecontent = null;
-
-                                    if (!string.IsNullOrWhiteSpace(resumeFile.MemberFileUrl))
-                                    {
-                                        FtpClient ftpclient = new FtpClient();
-                                        ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                                        ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                                        ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
-                                        string filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], resumeFile.MemberId, resumeFile.MemberFileUrl);
-                                        Stream ms = null;
-                                        ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
-                                        ms.Position = 0;
-
-                                        memberfilecontent = ((MemoryStream)ms).ToArray();
-                                    }
-                                    else
-                                    {
-                                        memberfilecontent = resumeFile.MemberFileContent;
-                                    }
-
-                                    _FileStream.Write(memberfilecontent, 0, resumeFile.MemberFileContent.Length);
+                                    _FileStream.Write(resumeFile.MemberFileContent, 0, resumeFile.MemberFileContent.Length);
                                     _FileStream.Close();
                                     thisMemberCSV += "\t" + fileName;
                                 }
@@ -213,30 +189,7 @@ namespace JXTExportSiteData
                                 {
                                     string fileName = thisMemberID.ToString() + "_" + coverFile.MemberFileName;
                                     System.IO.FileStream _FileStream = new System.IO.FileStream(destinationPath + fileName, System.IO.FileMode.Create, System.IO.FileAccess.Write);
-
-                                    string errormessage = string.Empty;
-                                    byte[] memberfilecontent = null;
-
-                                    if (!string.IsNullOrWhiteSpace(coverFile.MemberFileUrl))
-                                    {
-                                        FtpClient ftpclient = new FtpClient();
-                                        ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                                        ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                                        ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
-                                        string filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], coverFile.MemberId, coverFile.MemberFileUrl);
-                                        Stream ms = null;
-                                        ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
-                                        ms.Position = 0;
-
-                                        memberfilecontent = ((MemoryStream)ms).ToArray();
-                                    }
-                                    else
-                                    {
-                                        memberfilecontent = coverFile.MemberFileContent;
-                                    }
-
-                                    _FileStream.Write(memberfilecontent, 0, coverFile.MemberFileContent.Length);
+                                    _FileStream.Write(coverFile.MemberFileContent, 0, coverFile.MemberFileContent.Length);
                                     _FileStream.Close();
                                     thisMemberCSV += "\t" + fileName;
                                 }

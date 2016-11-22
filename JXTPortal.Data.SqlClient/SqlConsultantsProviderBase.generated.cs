@@ -214,7 +214,6 @@ namespace JXTPortal.Data.SqlClient
 		database.AddInParameter(commandWrapper, "@Sequence", DbType.Int32, DBNull.Value);
 		database.AddInParameter(commandWrapper, "@LastName", DbType.String, DBNull.Value);
 		database.AddInParameter(commandWrapper, "@ConsultantsXml", DbType.String, DBNull.Value);
-		database.AddInParameter(commandWrapper, "@ConsultantImageUrl", DbType.String, DBNull.Value);
 	
 			// replace all instances of 'AND' and 'OR' because we already set searchUsingOR
 			whereClause = whereClause.Replace(" AND ", "|").Replace(" OR ", "|") ; 
@@ -461,12 +460,6 @@ namespace JXTPortal.Data.SqlClient
 				{
 					database.SetParameterValue(commandWrapper, "@ConsultantsXml", 
 						clause.Trim().Remove(0,14).Trim().TrimStart(equalSign).Trim().Trim(singleQuote));
-					continue;
-				}
-				if (clause.Trim().StartsWith("consultantimageurl ") || clause.Trim().StartsWith("consultantimageurl="))
-				{
-					database.SetParameterValue(commandWrapper, "@ConsultantImageUrl", 
-						clause.Trim().Remove(0,18).Trim().TrimStart(equalSign).Trim().Trim(singleQuote));
 					continue;
 				}
 	
@@ -996,8 +989,6 @@ namespace JXTPortal.Data.SqlClient
 			col37.AllowDBNull = true;		
 			DataColumn col38 = dataTable.Columns.Add("ConsultantsXML", typeof(System.String));
 			col38.AllowDBNull = true;		
-			DataColumn col39 = dataTable.Columns.Add("ConsultantImageUrl", typeof(System.String));
-			col39.AllowDBNull = true;		
 			
 			bulkCopy.ColumnMappings.Add("ConsultantID", "ConsultantID");
 			bulkCopy.ColumnMappings.Add("SiteID", "SiteID");
@@ -1038,7 +1029,6 @@ namespace JXTPortal.Data.SqlClient
 			bulkCopy.ColumnMappings.Add("Sequence", "Sequence");
 			bulkCopy.ColumnMappings.Add("LastName", "LastName");
 			bulkCopy.ColumnMappings.Add("ConsultantsXML", "ConsultantsXML");
-			bulkCopy.ColumnMappings.Add("ConsultantImageUrl", "ConsultantImageUrl");
 			
 			foreach(JXTPortal.Entities.Consultants entity in entities)
 			{
@@ -1164,9 +1154,6 @@ namespace JXTPortal.Data.SqlClient
 					row["ConsultantsXML"] = entity.ConsultantsXml;
 							
 				
-					row["ConsultantImageUrl"] = entity.ConsultantImageUrl;
-							
-				
 				dataTable.Rows.Add(row);
 			}		
 			
@@ -1240,7 +1227,6 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@Sequence", DbType.Int32, entity.Sequence );
 			database.AddInParameter(commandWrapper, "@LastName", DbType.String, entity.LastName );
 			database.AddInParameter(commandWrapper, "@ConsultantsXml", DbType.String, entity.ConsultantsXml );
-			database.AddInParameter(commandWrapper, "@ConsultantImageUrl", DbType.String, entity.ConsultantImageUrl );
 			
 			int results = 0;
 			
@@ -1328,7 +1314,6 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@Sequence", DbType.Int32, entity.Sequence );
 			database.AddInParameter(commandWrapper, "@LastName", DbType.String, entity.LastName );
 			database.AddInParameter(commandWrapper, "@ConsultantsXml", DbType.String, entity.ConsultantsXml );
-			database.AddInParameter(commandWrapper, "@ConsultantImageUrl", DbType.String, entity.ConsultantImageUrl );
 			
 			int results = 0;
 			
@@ -1404,14 +1389,12 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="lastModified"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="sequence"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="lastName"> A <c>System.String</c> instance.</param>
-		/// <param name="consultantsXml"> A <c>System.String</c> instance.</param>
-		/// <param name="consultantImageUrl"> A <c>System.String</c> instance.</param>
 			/// <param name="consultantId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
-		public override void Insert(TransactionManager transactionManager, int start, int pageLength , System.Int32? siteId, System.Int32? languageId, System.String title, System.String firstName, System.String email, System.String phone, System.String mobile, System.String positionTitle, System.String officeLocation, System.String categories, System.String location, System.String friendlyUrl, System.String shortDescription, System.String testimonial, System.String fullDescription, System.String consultantData, System.String linkedInUrl, System.String twitterUrl, System.String facebookUrl, System.String googleUrl, System.String link, System.String wechatUrl, System.Int32? featuredTeamMember, System.Byte[] imageUrl, System.String videoUrl, System.String blogRss, System.String newsRss, System.String jobRss, System.String testimonialsRss, System.Int32? valid, System.String metaTitle, System.String metaDescription, System.String metaKeywords, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.Int32? sequence, System.String lastName, System.String consultantsXml, System.String consultantImageUrl, ref System.Int32? consultantId)
+		public override void Insert(TransactionManager transactionManager, int start, int pageLength , System.Int32? siteId, System.Int32? languageId, System.String title, System.String firstName, System.String email, System.String phone, System.String mobile, System.String positionTitle, System.String officeLocation, System.String categories, System.String location, System.String friendlyUrl, System.String shortDescription, System.String testimonial, System.String fullDescription, System.String consultantData, System.String linkedInUrl, System.String twitterUrl, System.String facebookUrl, System.String googleUrl, System.String link, System.String wechatUrl, System.Int32? featuredTeamMember, System.Byte[] imageUrl, System.String videoUrl, System.String blogRss, System.String newsRss, System.String jobRss, System.String testimonialsRss, System.Int32? valid, System.String metaTitle, System.String metaDescription, System.String metaKeywords, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.Int32? sequence, System.String lastName, ref System.Int32? consultantId)
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.Consultants_Insert", true);
@@ -1453,8 +1436,6 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@LastModified", DbType.DateTime,  lastModified );
 			database.AddInParameter(commandWrapper, "@Sequence", DbType.Int32,  sequence );
 			database.AddInParameter(commandWrapper, "@LastName", DbType.String,  lastName );
-			database.AddInParameter(commandWrapper, "@ConsultantsXml", DbType.String,  consultantsXml );
-			database.AddInParameter(commandWrapper, "@ConsultantImageUrl", DbType.String,  consultantImageUrl );
 	
 			database.AddParameter(commandWrapper, "@ConsultantId", DbType.Int32, 4, ParameterDirection.InputOutput, true, 10, 0, string.Empty, DataRowVersion.Current, consultantId);
 			
@@ -1700,14 +1681,12 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="lastModified"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="sequence"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="lastName"> A <c>System.String</c> instance.</param>
-		/// <param name="consultantsXml"> A <c>System.String</c> instance.</param>
-		/// <param name="consultantImageUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
 		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public override DataSet Find(TransactionManager transactionManager, int start, int pageLength , System.Boolean? searchUsingOr, System.Int32? consultantId, System.Int32? siteId, System.Int32? languageId, System.String title, System.String firstName, System.String email, System.String phone, System.String mobile, System.String positionTitle, System.String officeLocation, System.String categories, System.String location, System.String friendlyUrl, System.String shortDescription, System.String testimonial, System.String fullDescription, System.String consultantData, System.String linkedInUrl, System.String twitterUrl, System.String facebookUrl, System.String googleUrl, System.String link, System.String wechatUrl, System.Int32? featuredTeamMember, System.Byte[] imageUrl, System.String videoUrl, System.String blogRss, System.String newsRss, System.String jobRss, System.String testimonialsRss, System.Int32? valid, System.String metaTitle, System.String metaDescription, System.String metaKeywords, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.Int32? sequence, System.String lastName, System.String consultantsXml, System.String consultantImageUrl)
+		public override DataSet Find(TransactionManager transactionManager, int start, int pageLength , System.Boolean? searchUsingOr, System.Int32? consultantId, System.Int32? siteId, System.Int32? languageId, System.String title, System.String firstName, System.String email, System.String phone, System.String mobile, System.String positionTitle, System.String officeLocation, System.String categories, System.String location, System.String friendlyUrl, System.String shortDescription, System.String testimonial, System.String fullDescription, System.String consultantData, System.String linkedInUrl, System.String twitterUrl, System.String facebookUrl, System.String googleUrl, System.String link, System.String wechatUrl, System.Int32? featuredTeamMember, System.Byte[] imageUrl, System.String videoUrl, System.String blogRss, System.String newsRss, System.String jobRss, System.String testimonialsRss, System.Int32? valid, System.String metaTitle, System.String metaDescription, System.String metaKeywords, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.Int32? sequence, System.String lastName)
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.Consultants_Find", true);
@@ -1751,8 +1730,6 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@LastModified", DbType.DateTime,  lastModified );
 			database.AddInParameter(commandWrapper, "@Sequence", DbType.Int32,  sequence );
 			database.AddInParameter(commandWrapper, "@LastName", DbType.String,  lastName );
-			database.AddInParameter(commandWrapper, "@ConsultantsXml", DbType.String,  consultantsXml );
-			database.AddInParameter(commandWrapper, "@ConsultantImageUrl", DbType.String,  consultantImageUrl );
 	
 			
 			DataSet ds = null;
@@ -1861,13 +1838,11 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="lastModified"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="sequence"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="lastName"> A <c>System.String</c> instance.</param>
-		/// <param name="consultantsXml"> A <c>System.String</c> instance.</param>
-		/// <param name="consultantImageUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
-		public override void Update(TransactionManager transactionManager, int start, int pageLength , System.Int32? consultantId, System.Int32? siteId, System.Int32? languageId, System.String title, System.String firstName, System.String email, System.String phone, System.String mobile, System.String positionTitle, System.String officeLocation, System.String categories, System.String location, System.String friendlyUrl, System.String shortDescription, System.String testimonial, System.String fullDescription, System.String consultantData, System.String linkedInUrl, System.String twitterUrl, System.String facebookUrl, System.String googleUrl, System.String link, System.String wechatUrl, System.Int32? featuredTeamMember, System.Byte[] imageUrl, System.String videoUrl, System.String blogRss, System.String newsRss, System.String jobRss, System.String testimonialsRss, System.Int32? valid, System.String metaTitle, System.String metaDescription, System.String metaKeywords, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.Int32? sequence, System.String lastName, System.String consultantsXml, System.String consultantImageUrl)
+		public override void Update(TransactionManager transactionManager, int start, int pageLength , System.Int32? consultantId, System.Int32? siteId, System.Int32? languageId, System.String title, System.String firstName, System.String email, System.String phone, System.String mobile, System.String positionTitle, System.String officeLocation, System.String categories, System.String location, System.String friendlyUrl, System.String shortDescription, System.String testimonial, System.String fullDescription, System.String consultantData, System.String linkedInUrl, System.String twitterUrl, System.String facebookUrl, System.String googleUrl, System.String link, System.String wechatUrl, System.Int32? featuredTeamMember, System.Byte[] imageUrl, System.String videoUrl, System.String blogRss, System.String newsRss, System.String jobRss, System.String testimonialsRss, System.Int32? valid, System.String metaTitle, System.String metaDescription, System.String metaKeywords, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.Int32? sequence, System.String lastName)
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.Consultants_Update", true);
@@ -1910,8 +1885,6 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@LastModified", DbType.DateTime,  lastModified );
 			database.AddInParameter(commandWrapper, "@Sequence", DbType.Int32,  sequence );
 			database.AddInParameter(commandWrapper, "@LastName", DbType.String,  lastName );
-			database.AddInParameter(commandWrapper, "@ConsultantsXml", DbType.String,  consultantsXml );
-			database.AddInParameter(commandWrapper, "@ConsultantImageUrl", DbType.String,  consultantImageUrl );
 	
 			
 			//Provider Data Requesting Command Event

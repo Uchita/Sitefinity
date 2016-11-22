@@ -156,27 +156,14 @@ namespace JXTPortal.Website.usercontrols.advertiser
                 }
 
                 string strImage = string.Empty;
-
-                if (!string.IsNullOrWhiteSpace(advertiser.AdvertiserLogoUrl))
+                if (advertiser.AdvertiserLogo != null)
                 {
                     strImage = string.Format(@"<div class='job-rightlinks'>
-                    <br />
-                    <span class='dateText'>
-                        <img src='/media/{0}/{1}' />
-                    </span>
-                    </div>", ConfigurationManager.AppSettings["AdvertisersFolder"], advertiser.AdvertiserLogoUrl);
-                }
-                else
-                {
-                    if (advertiser.AdvertiserLogo != null)
-                    {
-                        strImage = string.Format(@"<div class='job-rightlinks'>
                     <br />
                     <span class='dateText'>
                         <img src='/getfile.aspx?advertiserid={0}' />
                     </span>
                     </div>", advertiser.AdvertiserId);
-                    }
                 }
 
                 string strAdvertiser = string.Format(@"<div id='job-holder'><div class='job-toplink'>

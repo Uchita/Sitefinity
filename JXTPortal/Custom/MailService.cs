@@ -164,18 +164,8 @@ namespace JXTPortal
                 colemailfields["WEBADDRESS"] = advertiser.PostalAddress2;
                 colemailfields["PROFILE"] = advertiser.Profile;
                 colemailfields["ACCOUNTPAYABLEEMAIL"] = advertiser.AccountsPayableEmail;
-                if (string.IsNullOrWhiteSpace(advertiser.AdvertiserLogoUrl))
-                {
-                    colemailfields["ADVERTIERLOGO"] = (advertiser.AdvertiserLogo != null && advertiser.AdvertiserLogo.Length > 0) ? string.Format("<img src=\"data:image/jpeg;base64,{0}\" />", Convert.ToBase64String(advertiser.AdvertiserLogo)) : string.Empty;
-                }
-                else
-                {
-                    string imgurl = string.Empty;
+                colemailfields["ADVERTIERLOGO"] = (advertiser.AdvertiserLogo != null && advertiser.AdvertiserLogo.Length > 0) ? string.Format("<img src=\"data:image/jpeg;base64,{0}\" />", Convert.ToBase64String(advertiser.AdvertiserLogo)) : string.Empty;
 
-                    imgurl = string.Format("{0}{1}/media/{2}/{3}", (HttpContext.Current.Request.IsSecureConnection) ? "https://" : "http://", siteurl, ConfigurationManager.AppSettings["AdvertisersFolder"], advertiser.AdvertiserLogoUrl);
-
-                    colemailfields["ADVERTIERLOGO"] = string.Format("<img src=\"{0}\" />", imgurl);
-                }
 
                 message.Bcc = emailtemplate.EmailAddressBcc;
                 message.Format = (Format)advertiseruser.EmailFormat;
@@ -224,18 +214,7 @@ namespace JXTPortal
                 colemailfields["PROFILE"] = advertiser.Profile;
                 colemailfields["STATUS"] = status;
                 colemailfields["ACCOUNTPAYABLEEMAIL"] = advertiser.AccountsPayableEmail;
-                if (string.IsNullOrWhiteSpace(advertiser.AdvertiserLogoUrl))
-                {
-                    colemailfields["ADVERTIERLOGO"] = (advertiser.AdvertiserLogo != null && advertiser.AdvertiserLogo.Length > 0) ? string.Format("<img src=\"data:image/jpeg;base64,{0}\" />", Convert.ToBase64String(advertiser.AdvertiserLogo)) : string.Empty;
-                }
-                else
-                {
-                    string imgurl = string.Empty;
-
-                    imgurl = string.Format("{0}{1}/media/{2}/{3}", (HttpContext.Current.Request.IsSecureConnection) ? "https://" : "http://", siteurl, ConfigurationManager.AppSettings["AdvertisersFolder"], advertiser.AdvertiserLogoUrl);
-
-                    colemailfields["ADVERTIERLOGO"] = string.Format("<img src=\"{0}\" />", imgurl);
-                }
+                colemailfields["ADVERTIERLOGO"] = (advertiser.AdvertiserLogo != null && advertiser.AdvertiserLogo.Length > 0) ? string.Format("<img src=\"data:image/jpeg;base64,{0}\" />", Convert.ToBase64String(advertiser.AdvertiserLogo)) : string.Empty;
 
 
                 message.Bcc = emailtemplate.EmailAddressBcc;

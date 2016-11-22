@@ -6341,6 +6341,8 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
                 else
                 {
                     updateResume = true;
+
+                    mf.MemberFileContent = this.getArray(this.fuResume.PostedFile);
                     mf.MemberFileTitle = mf.MemberFileName;
                     mf.MemberId = SessionData.Member.MemberId;
                     mf.MemberFileTypeId = MemberFileTypeID(fuResume.PostedFile.FileName);
@@ -6358,22 +6360,6 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
                     {
                         if (MemberFilesService.Insert(mf))
                         {
-                            FtpClient ftpclient = new FtpClient();
-                            ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                            ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                            ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
-                            string extension = string.Empty;
-
-                            extension = Path.GetExtension(fuResume.PostedFile.FileName);
-                            string filepath = string.Format("{0}{1}/{2}/{3}/MemberFiles_{4}{5}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], SessionData.Member.MemberId, mf.MemberFileId, extension);
-                            string errormessage = string.Empty;
-
-                            ftpclient.UploadFileFromStream(fuResume.PostedFile.InputStream, filepath, out errormessage);
-                            mf.MemberFileUrl = string.Format("MemberFiles_{0}{1}", mf.MemberFileId, extension);
-
-                            MemberFilesService.Update(mf);
-
                             UpdateMemberLastModified();
 
                             //Upload to the BH if enabled
@@ -6581,6 +6567,7 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
                     }
                     else
                     {
+                        mf.MemberFileContent = this.getArray(this.fuCoverLetter.PostedFile);
                         mf.MemberFileTitle = tbCoverLetterTitle.Text;
                         mf.MemberId = SessionData.Member.MemberId;
                         mf.MemberFileTypeId = MemberFileTypeID(fuCoverLetter.PostedFile.FileName);
@@ -6608,6 +6595,7 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
                     mf.MemberFileName = "CoverLetter.txt";
 
                     mf.MemberFileSearchExtension = System.IO.Path.GetExtension("CoverLetter.txt").Trim();
+                    mf.MemberFileContent = GetBytes(tbCustomCoverLetter.Text);
                     mf.MemberFileTitle = tbCoverLetterTitle.Text;
                     mf.MemberId = SessionData.Member.MemberId;
                     mf.MemberFileTypeId = MemberFileTypeID("CoverLetter.txt");
@@ -6624,34 +6612,6 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
             }
 
             MemberFilesService.Insert(mf);
-
-            FtpClient ftpclient = new FtpClient();
-            ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-            ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-            ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
-            string extension = string.Empty;
-
-            extension = mf.MemberFileSearchExtension;
-            string filepath = string.Format("{0}{1}/{2}/{3}/MemberFiles_{4}{5}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], SessionData.Member.MemberId, mf.MemberFileId, extension);
-            string errormessage = string.Empty;
-
-            Stream ms = null;
-            if (rbCoverLetterUpload.Checked)
-            {
-                ms = fuCoverLetter.PostedFile.InputStream;   
-            }
-            else
-            {
-                ms = new MemoryStream(GetBytes(tbCustomCoverLetter.Text));
-            }
-
-            ftpclient.UploadFileFromStream(ms, filepath, out errormessage);
-            mf.MemberFileUrl = string.Format("MemberFiles_{0}{1}", mf.MemberFileId, extension);
-
-            MemberFilesService.Update(mf);
-
-
             UpdateMemberLastModified();
 
             //Upload to the BH if enabled
@@ -6662,7 +6622,9 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
 
                 if (!string.IsNullOrEmpty(thisMember.ExternalMemberId))
                 {
-                    BullhornRESTAPI.BHCandidateFileAttach(int.Parse(thisMember.ExternalMemberId), SessionData.Site.SiteId, null, ms, mf.MemberFileName);
+                    //CoverLetter
+                    Stream fileContentStream = new MemoryStream(mf.MemberFileContent);
+                    BullhornRESTAPI.BHCandidateFileAttach(int.Parse(thisMember.ExternalMemberId), SessionData.Site.SiteId, null, fileContentStream, mf.MemberFileName);
                 }
             }
 

@@ -14,7 +14,7 @@ namespace JXTPortal.Website
     public partial class jobbrowse : DefaultBase
     {
         #region Declaration
-
+        
         public string strMemberJobIds = string.Empty;
 
         int _resultCount = 0;
@@ -451,7 +451,7 @@ namespace JXTPortal.Website
 
                 // Description or Bulletpoints
                 string strJobDescription = string.Empty;
-                if ((!string.IsNullOrEmpty(viewJobSearch.BulletPoint1) && viewJobSearch.BulletPoint1.Trim().Length > 0) ||
+                if ((!string.IsNullOrEmpty(viewJobSearch.BulletPoint1) && viewJobSearch.BulletPoint1.Trim().Length > 0 )||
                         (!string.IsNullOrEmpty(viewJobSearch.BulletPoint2) && viewJobSearch.BulletPoint2.Trim().Length > 0) ||
                         (!string.IsNullOrEmpty(viewJobSearch.BulletPoint3) && viewJobSearch.BulletPoint3.Trim().Length > 0))
                     strJobDescription = String.Format(@"<ul><li>{0}</li><li>{1}</li><li>{2}</li></ul>",
@@ -465,23 +465,18 @@ namespace JXTPortal.Website
                 // Advertiser Job Template Logo
                 string strAdvertiserLogo = string.Empty;
 
-                if (viewJobSearch.AdvertiserId.HasValue) //AdvertiserJobTemplateLogoId
+                if (viewJobSearch.AdvertiserId.HasValue && viewJobSearch.HasAdvertiserLogo > 0) //AdvertiserJobTemplateLogoId
                 {
-                    if (viewJobSearch.HasAdvertiserLogo == 1)
+                    /*using (Entities.Advertisers advertiser = AdvertisersService.GetByAdvertiserId(viewJobSearch.AdvertiserId.Value))
                     {
-                        strAdvertiserLogo = String.Format(@"<a href='{2}'><img src='/getfile.aspx?advertiserid={0}' alt='{1}' /></a>",
+                        if (advertiser.AdvertiserLogo != null)
+                        {*/
+                            strAdvertiserLogo = String.Format(@"<a href='{2}'><img src='/getfile.aspx?advertiserid={0}' alt='{1}' /></a>",
                                                                 viewJobSearch.AdvertiserId.Value,
                                                                 viewJobSearch.CompanyName,
                                                                 Utils.GetJobUrl(viewJobSearch.JobId, viewJobSearch.JobFriendlyName));
-                    }
-
-                    if (viewJobSearch.HasAdvertiserLogo == 2)
-                    {
-                        using (Entities.Advertisers advertiser = AdvertisersService.GetByAdvertiserId(viewJobSearch.AdvertiserId.Value))
-                        {
-                            strAdvertiserLogo = String.Format(@"<a href='{2}'><img src='/media/{0}/{1}' alt='{3}' /></a>", ConfigurationManager.AppSettings["AdvertisersFolder"], advertiser.AdvertiserLogoUrl, Utils.GetJobUrl(viewJobSearch.JobId, viewJobSearch.JobFriendlyName), viewJobSearch.CompanyName);
-                        }
-                    }
+                        /*}
+                    }*/
                 }
 
 
@@ -511,11 +506,11 @@ namespace JXTPortal.Website
 </div>
 <!-- end of job holder-->
 ", viewJobSearch.JobName, viewJobSearch.CompanyName,
- viewJobSearch.DatePosted.ToString(SessionData.Site.DateFormat), viewJobSearch.LocationName,
+ viewJobSearch.DatePosted.ToString(SessionData.Site.DateFormat), viewJobSearch.LocationName, 
  viewJobSearch.WorkTypeName, strJobDescription,
  strAdvertiserLogo, Utils.GetJobUrl(viewJobSearch.JobId, viewJobSearch.JobFriendlyName),
- viewJobSearch.JobId, viewJobSearch.BreadCrumbNavigation,
- Utils.GetEmailFriendUrl(viewJobSearch.JobFriendlyName.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries)[0], viewJobSearch.JobId),
+ viewJobSearch.JobId, viewJobSearch.BreadCrumbNavigation, 
+ Utils.GetEmailFriendUrl(viewJobSearch.JobFriendlyName.Split(new char[] {'/'}, StringSplitOptions.RemoveEmptyEntries)[0], viewJobSearch.JobId),
  IsMemberSavedJob(viewJobSearch.JobId) ? CommonFunction.GetResourceValue("LabelJobSaved") : CommonFunction.GetResourceValue("LinkButtonSaveJob"),
  CommonFunction.GetResourceValue("LinkButtonSendEmail"),
  IsMemberSavedJob(viewJobSearch.JobId) ? " job-saved" : string.Empty);

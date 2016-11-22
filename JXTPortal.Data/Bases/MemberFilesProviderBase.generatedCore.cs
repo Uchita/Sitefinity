@@ -246,6 +246,91 @@ namespace JXTPortal.Data.Bases
 		}
 		
 		/// <summary>
+		/// 	Gets rows from the datasource based on the primary key IX_Unique_MemberFiles index.
+		/// </summary>
+		/// <param name="_memberId"></param>
+		/// <param name="_memberFileName"></param>
+		/// <returns>Returns an instance of the <see cref="JXTPortal.Entities.MemberFiles"/> class.</returns>
+		public JXTPortal.Entities.MemberFiles GetByMemberIdMemberFileName(System.Int32 _memberId, System.String _memberFileName)
+		{
+			int count = -1;
+			return GetByMemberIdMemberFileName(null,_memberId, _memberFileName, 0, int.MaxValue, out count);
+		}
+		
+		/// <summary>
+		/// 	Gets rows from the datasource based on the IX_Unique_MemberFiles index.
+		/// </summary>
+		/// <param name="_memberId"></param>
+		/// <param name="_memberFileName"></param>
+		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
+		/// <param name="pageLength">Number of rows to return.</param>
+		/// <remarks></remarks>
+		/// <returns>Returns an instance of the <see cref="JXTPortal.Entities.MemberFiles"/> class.</returns>
+		public JXTPortal.Entities.MemberFiles GetByMemberIdMemberFileName(System.Int32 _memberId, System.String _memberFileName, int start, int pageLength)
+		{
+			int count = -1;
+			return GetByMemberIdMemberFileName(null, _memberId, _memberFileName, start, pageLength, out count);
+		}
+		
+		/// <summary>
+		/// 	Gets rows from the datasource based on the IX_Unique_MemberFiles index.
+		/// </summary>
+		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
+		/// <param name="_memberId"></param>
+		/// <param name="_memberFileName"></param>
+		/// <remarks></remarks>
+		/// <returns>Returns an instance of the <see cref="JXTPortal.Entities.MemberFiles"/> class.</returns>
+		public JXTPortal.Entities.MemberFiles GetByMemberIdMemberFileName(TransactionManager transactionManager, System.Int32 _memberId, System.String _memberFileName)
+		{
+			int count = -1;
+			return GetByMemberIdMemberFileName(transactionManager, _memberId, _memberFileName, 0, int.MaxValue, out count);
+		}
+		
+		/// <summary>
+		/// 	Gets rows from the datasource based on the IX_Unique_MemberFiles index.
+		/// </summary>
+		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
+		/// <param name="_memberId"></param>
+		/// <param name="_memberFileName"></param>
+		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
+		/// <param name="pageLength">Number of rows to return.</param>
+		/// <remarks></remarks>
+		/// <returns>Returns an instance of the <see cref="JXTPortal.Entities.MemberFiles"/> class.</returns>
+		public JXTPortal.Entities.MemberFiles GetByMemberIdMemberFileName(TransactionManager transactionManager, System.Int32 _memberId, System.String _memberFileName, int start, int pageLength)
+		{
+			int count = -1;
+			return GetByMemberIdMemberFileName(transactionManager, _memberId, _memberFileName, start, pageLength, out count);
+		}
+		
+		/// <summary>
+		/// 	Gets rows from the datasource based on the IX_Unique_MemberFiles index.
+		/// </summary>
+		/// <param name="_memberId"></param>
+		/// <param name="_memberFileName"></param>
+		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
+		/// <param name="pageLength">Number of rows to return.</param>
+		/// <param name="count">out parameter to get total records for query</param>
+		/// <remarks></remarks>
+		/// <returns>Returns an instance of the <see cref="JXTPortal.Entities.MemberFiles"/> class.</returns>
+		public JXTPortal.Entities.MemberFiles GetByMemberIdMemberFileName(System.Int32 _memberId, System.String _memberFileName, int start, int pageLength, out int count)
+		{
+			return GetByMemberIdMemberFileName(null, _memberId, _memberFileName, start, pageLength, out count);
+		}
+		
+				
+		/// <summary>
+		/// 	Gets rows from the datasource based on the IX_Unique_MemberFiles index.
+		/// </summary>
+		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
+		/// <param name="_memberId"></param>
+		/// <param name="_memberFileName"></param>
+		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
+		/// <param name="pageLength">Number of rows to return.</param>
+		/// <param name="count">The total number of records.</param>
+		/// <returns>Returns an instance of the <see cref="JXTPortal.Entities.MemberFiles"/> class.</returns>
+		public abstract JXTPortal.Entities.MemberFiles GetByMemberIdMemberFileName(TransactionManager transactionManager, System.Int32 _memberId, System.String _memberFileName, int start, int pageLength, out int count);
+						
+		/// <summary>
 		/// 	Gets rows from the datasource based on the primary key PK__MemberFiles__267ABA7A index.
 		/// </summary>
 		/// <param name="_memberFileId"></param>
@@ -336,8 +421,8 @@ namespace JXTPortal.Data.Bases
 		/// </summary>
 		/// <param name="memberFileId"> A <c>System.Int32?</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet GetByMemberFileId(System.Int32? memberFileId)
+		/// <returns>A <see cref="TList&lt;MemberFiles&gt;"/> instance.</returns>
+		public TList<MemberFiles> GetByMemberFileId(System.Int32? memberFileId)
 		{
 			return GetByMemberFileId(null, 0, int.MaxValue , memberFileId);
 		}
@@ -349,8 +434,8 @@ namespace JXTPortal.Data.Bases
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet GetByMemberFileId(int start, int pageLength, System.Int32? memberFileId)
+		/// <returns>A <see cref="TList&lt;MemberFiles&gt;"/> instance.</returns>
+		public TList<MemberFiles> GetByMemberFileId(int start, int pageLength, System.Int32? memberFileId)
 		{
 			return GetByMemberFileId(null, start, pageLength , memberFileId);
 		}
@@ -361,8 +446,8 @@ namespace JXTPortal.Data.Bases
 		/// <param name="memberFileId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet GetByMemberFileId(TransactionManager transactionManager, System.Int32? memberFileId)
+		/// <returns>A <see cref="TList&lt;MemberFiles&gt;"/> instance.</returns>
+		public TList<MemberFiles> GetByMemberFileId(TransactionManager transactionManager, System.Int32? memberFileId)
 		{
 			return GetByMemberFileId(transactionManager, 0, int.MaxValue , memberFileId);
 		}
@@ -375,8 +460,8 @@ namespace JXTPortal.Data.Bases
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public abstract DataSet GetByMemberFileId(TransactionManager transactionManager, int start, int pageLength , System.Int32? memberFileId);
+		/// <returns>A <see cref="TList&lt;MemberFiles&gt;"/> instance.</returns>
+		public abstract TList<MemberFiles> GetByMemberFileId(TransactionManager transactionManager, int start, int pageLength , System.Int32? memberFileId);
 		
 		#endregion
 		
@@ -393,12 +478,11 @@ namespace JXTPortal.Data.Bases
 		/// <param name="memberFileTitle"> A <c>System.String</c> instance.</param>
 		/// <param name="lastModifiedDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="documentTypeId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="memberFileUrl"> A <c>System.String</c> instance.</param>
 			/// <param name="memberFileId"> A <c>System.Int32?</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public void Insert(System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId, System.String memberFileUrl, ref System.Int32? memberFileId)
+		public void Insert(System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId, ref System.Int32? memberFileId)
 		{
-			 Insert(null, 0, int.MaxValue , memberId, memberFileTypeId, memberFileName, memberFileSearchExtension, memberFileContent, memberFileTitle, lastModifiedDate, documentTypeId, memberFileUrl, ref memberFileId);
+			 Insert(null, 0, int.MaxValue , memberId, memberFileTypeId, memberFileName, memberFileSearchExtension, memberFileContent, memberFileTitle, lastModifiedDate, documentTypeId, ref memberFileId);
 		}
 		
 		/// <summary>
@@ -412,14 +496,13 @@ namespace JXTPortal.Data.Bases
 		/// <param name="memberFileTitle"> A <c>System.String</c> instance.</param>
 		/// <param name="lastModifiedDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="documentTypeId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="memberFileUrl"> A <c>System.String</c> instance.</param>
 			/// <param name="memberFileId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public void Insert(int start, int pageLength, System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId, System.String memberFileUrl, ref System.Int32? memberFileId)
+		public void Insert(int start, int pageLength, System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId, ref System.Int32? memberFileId)
 		{
-			 Insert(null, start, pageLength , memberId, memberFileTypeId, memberFileName, memberFileSearchExtension, memberFileContent, memberFileTitle, lastModifiedDate, documentTypeId, memberFileUrl, ref memberFileId);
+			 Insert(null, start, pageLength , memberId, memberFileTypeId, memberFileName, memberFileSearchExtension, memberFileContent, memberFileTitle, lastModifiedDate, documentTypeId, ref memberFileId);
 		}
 				
 		/// <summary>
@@ -433,13 +516,12 @@ namespace JXTPortal.Data.Bases
 		/// <param name="memberFileTitle"> A <c>System.String</c> instance.</param>
 		/// <param name="lastModifiedDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="documentTypeId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="memberFileUrl"> A <c>System.String</c> instance.</param>
 			/// <param name="memberFileId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public void Insert(TransactionManager transactionManager, System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId, System.String memberFileUrl, ref System.Int32? memberFileId)
+		public void Insert(TransactionManager transactionManager, System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId, ref System.Int32? memberFileId)
 		{
-			 Insert(transactionManager, 0, int.MaxValue , memberId, memberFileTypeId, memberFileName, memberFileSearchExtension, memberFileContent, memberFileTitle, lastModifiedDate, documentTypeId, memberFileUrl, ref memberFileId);
+			 Insert(transactionManager, 0, int.MaxValue , memberId, memberFileTypeId, memberFileName, memberFileSearchExtension, memberFileContent, memberFileTitle, lastModifiedDate, documentTypeId, ref memberFileId);
 		}
 		
 		/// <summary>
@@ -453,13 +535,12 @@ namespace JXTPortal.Data.Bases
 		/// <param name="memberFileTitle"> A <c>System.String</c> instance.</param>
 		/// <param name="lastModifiedDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="documentTypeId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="memberFileUrl"> A <c>System.String</c> instance.</param>
 			/// <param name="memberFileId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public abstract void Insert(TransactionManager transactionManager, int start, int pageLength , System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId, System.String memberFileUrl, ref System.Int32? memberFileId);
+		public abstract void Insert(TransactionManager transactionManager, int start, int pageLength , System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId, ref System.Int32? memberFileId);
 		
 		#endregion
 		
@@ -470,8 +551,8 @@ namespace JXTPortal.Data.Bases
 		/// </summary>
 		/// <param name="memberId"> A <c>System.Int32?</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet GetByMemberId(System.Int32? memberId)
+		/// <returns>A <see cref="TList&lt;MemberFiles&gt;"/> instance.</returns>
+		public TList<MemberFiles> GetByMemberId(System.Int32? memberId)
 		{
 			return GetByMemberId(null, 0, int.MaxValue , memberId);
 		}
@@ -483,8 +564,8 @@ namespace JXTPortal.Data.Bases
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet GetByMemberId(int start, int pageLength, System.Int32? memberId)
+		/// <returns>A <see cref="TList&lt;MemberFiles&gt;"/> instance.</returns>
+		public TList<MemberFiles> GetByMemberId(int start, int pageLength, System.Int32? memberId)
 		{
 			return GetByMemberId(null, start, pageLength , memberId);
 		}
@@ -495,8 +576,8 @@ namespace JXTPortal.Data.Bases
 		/// <param name="memberId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet GetByMemberId(TransactionManager transactionManager, System.Int32? memberId)
+		/// <returns>A <see cref="TList&lt;MemberFiles&gt;"/> instance.</returns>
+		public TList<MemberFiles> GetByMemberId(TransactionManager transactionManager, System.Int32? memberId)
 		{
 			return GetByMemberId(transactionManager, 0, int.MaxValue , memberId);
 		}
@@ -509,8 +590,8 @@ namespace JXTPortal.Data.Bases
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public abstract DataSet GetByMemberId(TransactionManager transactionManager, int start, int pageLength , System.Int32? memberId);
+		/// <returns>A <see cref="TList&lt;MemberFiles&gt;"/> instance.</returns>
+		public abstract TList<MemberFiles> GetByMemberId(TransactionManager transactionManager, int start, int pageLength , System.Int32? memberId);
 		
 		#endregion
 		
@@ -520,8 +601,8 @@ namespace JXTPortal.Data.Bases
 		///	This method wrap the 'MemberFiles_Get_List' stored procedure. 
 		/// </summary>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet Get_List()
+		/// <returns>A <see cref="TList&lt;MemberFiles&gt;"/> instance.</returns>
+		public TList<MemberFiles> Get_List()
 		{
 			return Get_List(null, 0, int.MaxValue );
 		}
@@ -532,8 +613,8 @@ namespace JXTPortal.Data.Bases
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet Get_List(int start, int pageLength)
+		/// <returns>A <see cref="TList&lt;MemberFiles&gt;"/> instance.</returns>
+		public TList<MemberFiles> Get_List(int start, int pageLength)
 		{
 			return Get_List(null, start, pageLength );
 		}
@@ -543,8 +624,8 @@ namespace JXTPortal.Data.Bases
 		/// </summary>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet Get_List(TransactionManager transactionManager)
+		/// <returns>A <see cref="TList&lt;MemberFiles&gt;"/> instance.</returns>
+		public TList<MemberFiles> Get_List(TransactionManager transactionManager)
 		{
 			return Get_List(transactionManager, 0, int.MaxValue );
 		}
@@ -556,8 +637,8 @@ namespace JXTPortal.Data.Bases
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public abstract DataSet Get_List(TransactionManager transactionManager, int start, int pageLength );
+		/// <returns>A <see cref="TList&lt;MemberFiles&gt;"/> instance.</returns>
+		public abstract TList<MemberFiles> Get_List(TransactionManager transactionManager, int start, int pageLength );
 		
 		#endregion
 		
@@ -571,8 +652,8 @@ namespace JXTPortal.Data.Bases
 		/// <param name="pageIndex"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="pageSize"> A <c>System.Int32?</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet GetPaged(System.String whereClause, System.String orderBy, System.Int32? pageIndex, System.Int32? pageSize)
+		/// <returns>A <see cref="TList&lt;MemberFiles&gt;"/> instance.</returns>
+		public TList<MemberFiles> GetPaged(System.String whereClause, System.String orderBy, System.Int32? pageIndex, System.Int32? pageSize)
 		{
 			return GetPaged(null, 0, int.MaxValue , whereClause, orderBy, pageIndex, pageSize);
 		}
@@ -587,8 +668,8 @@ namespace JXTPortal.Data.Bases
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet GetPaged(int start, int pageLength, System.String whereClause, System.String orderBy, System.Int32? pageIndex, System.Int32? pageSize)
+		/// <returns>A <see cref="TList&lt;MemberFiles&gt;"/> instance.</returns>
+		public TList<MemberFiles> GetPaged(int start, int pageLength, System.String whereClause, System.String orderBy, System.Int32? pageIndex, System.Int32? pageSize)
 		{
 			return GetPaged(null, start, pageLength , whereClause, orderBy, pageIndex, pageSize);
 		}
@@ -602,8 +683,8 @@ namespace JXTPortal.Data.Bases
 		/// <param name="pageSize"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet GetPaged(TransactionManager transactionManager, System.String whereClause, System.String orderBy, System.Int32? pageIndex, System.Int32? pageSize)
+		/// <returns>A <see cref="TList&lt;MemberFiles&gt;"/> instance.</returns>
+		public TList<MemberFiles> GetPaged(TransactionManager transactionManager, System.String whereClause, System.String orderBy, System.Int32? pageIndex, System.Int32? pageSize)
 		{
 			return GetPaged(transactionManager, 0, int.MaxValue , whereClause, orderBy, pageIndex, pageSize);
 		}
@@ -619,8 +700,8 @@ namespace JXTPortal.Data.Bases
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public abstract DataSet GetPaged(TransactionManager transactionManager, int start, int pageLength , System.String whereClause, System.String orderBy, System.Int32? pageIndex, System.Int32? pageSize);
+		/// <returns>A <see cref="TList&lt;MemberFiles&gt;"/> instance.</returns>
+		public abstract TList<MemberFiles> GetPaged(TransactionManager transactionManager, int start, int pageLength , System.String whereClause, System.String orderBy, System.Int32? pageIndex, System.Int32? pageSize);
 		
 		#endregion
 		
@@ -638,11 +719,10 @@ namespace JXTPortal.Data.Bases
 		/// <param name="memberFileTitle"> A <c>System.String</c> instance.</param>
 		/// <param name="lastModifiedDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="documentTypeId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="memberFileUrl"> A <c>System.String</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public void Update(System.Int32? memberFileId, System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId, System.String memberFileUrl)
+		public void Update(System.Int32? memberFileId, System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId)
 		{
-			 Update(null, 0, int.MaxValue , memberFileId, memberId, memberFileTypeId, memberFileName, memberFileSearchExtension, memberFileContent, memberFileTitle, lastModifiedDate, documentTypeId, memberFileUrl);
+			 Update(null, 0, int.MaxValue , memberFileId, memberId, memberFileTypeId, memberFileName, memberFileSearchExtension, memberFileContent, memberFileTitle, lastModifiedDate, documentTypeId);
 		}
 		
 		/// <summary>
@@ -657,13 +737,12 @@ namespace JXTPortal.Data.Bases
 		/// <param name="memberFileTitle"> A <c>System.String</c> instance.</param>
 		/// <param name="lastModifiedDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="documentTypeId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="memberFileUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public void Update(int start, int pageLength, System.Int32? memberFileId, System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId, System.String memberFileUrl)
+		public void Update(int start, int pageLength, System.Int32? memberFileId, System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId)
 		{
-			 Update(null, start, pageLength , memberFileId, memberId, memberFileTypeId, memberFileName, memberFileSearchExtension, memberFileContent, memberFileTitle, lastModifiedDate, documentTypeId, memberFileUrl);
+			 Update(null, start, pageLength , memberFileId, memberId, memberFileTypeId, memberFileName, memberFileSearchExtension, memberFileContent, memberFileTitle, lastModifiedDate, documentTypeId);
 		}
 				
 		/// <summary>
@@ -678,12 +757,11 @@ namespace JXTPortal.Data.Bases
 		/// <param name="memberFileTitle"> A <c>System.String</c> instance.</param>
 		/// <param name="lastModifiedDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="documentTypeId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="memberFileUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public void Update(TransactionManager transactionManager, System.Int32? memberFileId, System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId, System.String memberFileUrl)
+		public void Update(TransactionManager transactionManager, System.Int32? memberFileId, System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId)
 		{
-			 Update(transactionManager, 0, int.MaxValue , memberFileId, memberId, memberFileTypeId, memberFileName, memberFileSearchExtension, memberFileContent, memberFileTitle, lastModifiedDate, documentTypeId, memberFileUrl);
+			 Update(transactionManager, 0, int.MaxValue , memberFileId, memberId, memberFileTypeId, memberFileName, memberFileSearchExtension, memberFileContent, memberFileTitle, lastModifiedDate, documentTypeId);
 		}
 		
 		/// <summary>
@@ -698,12 +776,11 @@ namespace JXTPortal.Data.Bases
 		/// <param name="memberFileTitle"> A <c>System.String</c> instance.</param>
 		/// <param name="lastModifiedDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="documentTypeId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="memberFileUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public abstract void Update(TransactionManager transactionManager, int start, int pageLength , System.Int32? memberFileId, System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId, System.String memberFileUrl);
+		public abstract void Update(TransactionManager transactionManager, int start, int pageLength , System.Int32? memberFileId, System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId);
 		
 		#endregion
 		
@@ -722,12 +799,11 @@ namespace JXTPortal.Data.Bases
 		/// <param name="memberFileTitle"> A <c>System.String</c> instance.</param>
 		/// <param name="lastModifiedDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="documentTypeId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="memberFileUrl"> A <c>System.String</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet Find(System.Boolean? searchUsingOr, System.Int32? memberFileId, System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId, System.String memberFileUrl)
+		/// <returns>A <see cref="TList&lt;MemberFiles&gt;"/> instance.</returns>
+		public TList<MemberFiles> Find(System.Boolean? searchUsingOr, System.Int32? memberFileId, System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId)
 		{
-			return Find(null, 0, int.MaxValue , searchUsingOr, memberFileId, memberId, memberFileTypeId, memberFileName, memberFileSearchExtension, memberFileContent, memberFileTitle, lastModifiedDate, documentTypeId, memberFileUrl);
+			return Find(null, 0, int.MaxValue , searchUsingOr, memberFileId, memberId, memberFileTypeId, memberFileName, memberFileSearchExtension, memberFileContent, memberFileTitle, lastModifiedDate, documentTypeId);
 		}
 		
 		/// <summary>
@@ -743,14 +819,13 @@ namespace JXTPortal.Data.Bases
 		/// <param name="memberFileTitle"> A <c>System.String</c> instance.</param>
 		/// <param name="lastModifiedDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="documentTypeId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="memberFileUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet Find(int start, int pageLength, System.Boolean? searchUsingOr, System.Int32? memberFileId, System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId, System.String memberFileUrl)
+		/// <returns>A <see cref="TList&lt;MemberFiles&gt;"/> instance.</returns>
+		public TList<MemberFiles> Find(int start, int pageLength, System.Boolean? searchUsingOr, System.Int32? memberFileId, System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId)
 		{
-			return Find(null, start, pageLength , searchUsingOr, memberFileId, memberId, memberFileTypeId, memberFileName, memberFileSearchExtension, memberFileContent, memberFileTitle, lastModifiedDate, documentTypeId, memberFileUrl);
+			return Find(null, start, pageLength , searchUsingOr, memberFileId, memberId, memberFileTypeId, memberFileName, memberFileSearchExtension, memberFileContent, memberFileTitle, lastModifiedDate, documentTypeId);
 		}
 				
 		/// <summary>
@@ -766,13 +841,12 @@ namespace JXTPortal.Data.Bases
 		/// <param name="memberFileTitle"> A <c>System.String</c> instance.</param>
 		/// <param name="lastModifiedDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="documentTypeId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="memberFileUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet Find(TransactionManager transactionManager, System.Boolean? searchUsingOr, System.Int32? memberFileId, System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId, System.String memberFileUrl)
+		/// <returns>A <see cref="TList&lt;MemberFiles&gt;"/> instance.</returns>
+		public TList<MemberFiles> Find(TransactionManager transactionManager, System.Boolean? searchUsingOr, System.Int32? memberFileId, System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId)
 		{
-			return Find(transactionManager, 0, int.MaxValue , searchUsingOr, memberFileId, memberId, memberFileTypeId, memberFileName, memberFileSearchExtension, memberFileContent, memberFileTitle, lastModifiedDate, documentTypeId, memberFileUrl);
+			return Find(transactionManager, 0, int.MaxValue , searchUsingOr, memberFileId, memberId, memberFileTypeId, memberFileName, memberFileSearchExtension, memberFileContent, memberFileTitle, lastModifiedDate, documentTypeId);
 		}
 		
 		/// <summary>
@@ -788,13 +862,12 @@ namespace JXTPortal.Data.Bases
 		/// <param name="memberFileTitle"> A <c>System.String</c> instance.</param>
 		/// <param name="lastModifiedDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="documentTypeId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="memberFileUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public abstract DataSet Find(TransactionManager transactionManager, int start, int pageLength , System.Boolean? searchUsingOr, System.Int32? memberFileId, System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId, System.String memberFileUrl);
+		/// <returns>A <see cref="TList&lt;MemberFiles&gt;"/> instance.</returns>
+		public abstract TList<MemberFiles> Find(TransactionManager transactionManager, int start, int pageLength , System.Boolean? searchUsingOr, System.Int32? memberFileId, System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId);
 		
 		#endregion
 		
@@ -912,8 +985,8 @@ namespace JXTPortal.Data.Bases
 		/// <param name="memberId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="memberFileName"> A <c>System.String</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet GetByMemberIdMemberFileName(System.Int32? memberId, System.String memberFileName)
+		/// <returns>A <see cref="TList&lt;MemberFiles&gt;"/> instance.</returns>
+		public TList<MemberFiles> GetByMemberIdMemberFileName(System.Int32? memberId, System.String memberFileName)
 		{
 			return GetByMemberIdMemberFileName(null, 0, int.MaxValue , memberId, memberFileName);
 		}
@@ -926,8 +999,8 @@ namespace JXTPortal.Data.Bases
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet GetByMemberIdMemberFileName(int start, int pageLength, System.Int32? memberId, System.String memberFileName)
+		/// <returns>A <see cref="TList&lt;MemberFiles&gt;"/> instance.</returns>
+		public TList<MemberFiles> GetByMemberIdMemberFileName(int start, int pageLength, System.Int32? memberId, System.String memberFileName)
 		{
 			return GetByMemberIdMemberFileName(null, start, pageLength , memberId, memberFileName);
 		}
@@ -939,8 +1012,8 @@ namespace JXTPortal.Data.Bases
 		/// <param name="memberFileName"> A <c>System.String</c> instance.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet GetByMemberIdMemberFileName(TransactionManager transactionManager, System.Int32? memberId, System.String memberFileName)
+		/// <returns>A <see cref="TList&lt;MemberFiles&gt;"/> instance.</returns>
+		public TList<MemberFiles> GetByMemberIdMemberFileName(TransactionManager transactionManager, System.Int32? memberId, System.String memberFileName)
 		{
 			return GetByMemberIdMemberFileName(transactionManager, 0, int.MaxValue , memberId, memberFileName);
 		}
@@ -954,8 +1027,8 @@ namespace JXTPortal.Data.Bases
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public abstract DataSet GetByMemberIdMemberFileName(TransactionManager transactionManager, int start, int pageLength , System.Int32? memberId, System.String memberFileName);
+		/// <returns>A <see cref="TList&lt;MemberFiles&gt;"/> instance.</returns>
+		public abstract TList<MemberFiles> GetByMemberIdMemberFileName(TransactionManager transactionManager, int start, int pageLength , System.Int32? memberId, System.String memberFileName);
 		
 		#endregion
 		
@@ -966,8 +1039,8 @@ namespace JXTPortal.Data.Bases
 		/// </summary>
 		/// <param name="memberFileTypeId"> A <c>System.Int32?</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet GetByMemberFileTypeId(System.Int32? memberFileTypeId)
+		/// <returns>A <see cref="TList&lt;MemberFiles&gt;"/> instance.</returns>
+		public TList<MemberFiles> GetByMemberFileTypeId(System.Int32? memberFileTypeId)
 		{
 			return GetByMemberFileTypeId(null, 0, int.MaxValue , memberFileTypeId);
 		}
@@ -979,8 +1052,8 @@ namespace JXTPortal.Data.Bases
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet GetByMemberFileTypeId(int start, int pageLength, System.Int32? memberFileTypeId)
+		/// <returns>A <see cref="TList&lt;MemberFiles&gt;"/> instance.</returns>
+		public TList<MemberFiles> GetByMemberFileTypeId(int start, int pageLength, System.Int32? memberFileTypeId)
 		{
 			return GetByMemberFileTypeId(null, start, pageLength , memberFileTypeId);
 		}
@@ -991,8 +1064,8 @@ namespace JXTPortal.Data.Bases
 		/// <param name="memberFileTypeId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet GetByMemberFileTypeId(TransactionManager transactionManager, System.Int32? memberFileTypeId)
+		/// <returns>A <see cref="TList&lt;MemberFiles&gt;"/> instance.</returns>
+		public TList<MemberFiles> GetByMemberFileTypeId(TransactionManager transactionManager, System.Int32? memberFileTypeId)
 		{
 			return GetByMemberFileTypeId(transactionManager, 0, int.MaxValue , memberFileTypeId);
 		}
@@ -1005,8 +1078,8 @@ namespace JXTPortal.Data.Bases
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public abstract DataSet GetByMemberFileTypeId(TransactionManager transactionManager, int start, int pageLength , System.Int32? memberFileTypeId);
+		/// <returns>A <see cref="TList&lt;MemberFiles&gt;"/> instance.</returns>
+		public abstract TList<MemberFiles> GetByMemberFileTypeId(TransactionManager transactionManager, int start, int pageLength , System.Int32? memberFileTypeId);
 		
 		#endregion
 		
@@ -1079,7 +1152,6 @@ namespace JXTPortal.Data.Bases
 					c.MemberFileTitle = (System.String)reader[((int)MemberFilesColumn.MemberFileTitle - 1)];
 					c.LastModifiedDate = (System.DateTime)reader[((int)MemberFilesColumn.LastModifiedDate - 1)];
 					c.DocumentTypeId = (reader.IsDBNull(((int)MemberFilesColumn.DocumentTypeId - 1)))?null:(System.Int32?)reader[((int)MemberFilesColumn.DocumentTypeId - 1)];
-					c.MemberFileUrl = (reader.IsDBNull(((int)MemberFilesColumn.MemberFileUrl - 1)))?null:(System.String)reader[((int)MemberFilesColumn.MemberFileUrl - 1)];
 					c.EntityTrackingKey = key;
 					c.AcceptChanges();
 					c.SuppressEntityEvents = false;
@@ -1106,7 +1178,6 @@ namespace JXTPortal.Data.Bases
 			entity.MemberFileTitle = (System.String)reader[((int)MemberFilesColumn.MemberFileTitle - 1)];
 			entity.LastModifiedDate = (System.DateTime)reader[((int)MemberFilesColumn.LastModifiedDate - 1)];
 			entity.DocumentTypeId = (reader.IsDBNull(((int)MemberFilesColumn.DocumentTypeId - 1)))?null:(System.Int32?)reader[((int)MemberFilesColumn.DocumentTypeId - 1)];
-			entity.MemberFileUrl = (reader.IsDBNull(((int)MemberFilesColumn.MemberFileUrl - 1)))?null:(System.String)reader[((int)MemberFilesColumn.MemberFileUrl - 1)];
 			entity.AcceptChanges();
 		}
 		
@@ -1128,7 +1199,6 @@ namespace JXTPortal.Data.Bases
 			entity.MemberFileTitle = (System.String)dataRow["MemberFileTitle"];
 			entity.LastModifiedDate = (System.DateTime)dataRow["LastModifiedDate"];
 			entity.DocumentTypeId = Convert.IsDBNull(dataRow["DocumentTypeID"]) ? null : (System.Int32?)dataRow["DocumentTypeID"];
-			entity.MemberFileUrl = Convert.IsDBNull(dataRow["MemberFileUrl"]) ? null : (System.String)dataRow["MemberFileUrl"];
 			entity.AcceptChanges();
 		}
 		#endregion 

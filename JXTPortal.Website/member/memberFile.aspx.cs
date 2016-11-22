@@ -12,7 +12,6 @@ using System.Web.Security;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using JXTPortal.Web.UI;
-using JXTPortal.Common;
 
 namespace JXTPortal.Website.members
 {
@@ -212,29 +211,13 @@ namespace JXTPortal.Website.members
                                 objMemberFiles.MemberFileName = Path.GetFileName(docInput.PostedFile.FileName).Trim().Replace(c.ToString(), "");
                             }
                             objMemberFiles.MemberFileSearchExtension = Path.GetExtension(docInput.PostedFile.FileName).Trim();
+                            objMemberFiles.MemberFileContent = this.getArray(this.docInput.PostedFile);
                             objMemberFiles.MemberFileTitle = txtDocumentTitle.Text;
                             objMemberFiles.MemberId = memberID;
                             objMemberFiles.MemberFileTypeId = MemberFileTypeID;
 
                             MemberFilesService mfs = new MemberFilesService();
-                            if (mfs.Insert(objMemberFiles))
-                            {
-                                FtpClient ftpclient = new FtpClient();
-                                ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                                ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                                ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
-                                string extension = string.Empty;
-
-                                extension = Path.GetExtension(docInput.PostedFile.FileName);
-                                string filepath = string.Format("{0}{1}/{2}/{3}/MemberFiles_{4}{5}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], SessionData.Member.MemberId, objMemberFiles.MemberFileId, extension);
-                                string errormessage = string.Empty;
-
-                                ftpclient.UploadFileFromStream(docInput.PostedFile.InputStream, filepath, out errormessage);
-                                objMemberFiles.MemberFileUrl = string.Format("MemberFiles_{0}{1}", objMemberFiles.MemberFileId, extension);
-
-                                mfs.Update(objMemberFiles);
-                            }
+                            mfs.Insert(objMemberFiles);
                         }
                     }
 
@@ -288,9 +271,9 @@ namespace JXTPortal.Website.members
                 }
 
                 MemberFilesService memberFileService = new MemberFilesService();
-                DataSet memberFile = memberFileService.GetByMemberIdMemberFileName(memberID, ss);
+                Entities.MemberFiles memberFile = memberFileService.GetByMemberIdMemberFileName(memberID, ss);
 
-                if (memberFile != null && memberFile.Tables[0].Rows.Count > 0)
+                if (memberFile != null)
                 {
                     return true;
                 }

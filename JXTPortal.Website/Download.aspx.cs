@@ -9,8 +9,6 @@ using System.Data;
 using System.IO;
 using JXTPortal.Web.UI;
 using JXTPortal.Entities;
-using JXTPortal.Common;
-using System.Configuration;
 #endregion
 
 namespace JXTPortal.Website
@@ -68,29 +66,7 @@ namespace JXTPortal.Website
                                 {
                                     this.Response.ContentType = "application/octet-stream";
                                     this.Response.AppendHeader("Content-Disposition", "attachment;filename=" + memberFile.MemberFileName);
-
-                                    if (!string.IsNullOrWhiteSpace(memberFile.MemberFileUrl))
-                                    {
-                                        string errormessage = string.Empty;
-
-                                        FtpClient ftpclient = new FtpClient();
-                                        ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                                        ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                                        ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
-                                        string filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], memberFile.MemberId, memberFile.MemberFileUrl);
-                                        Stream ms = null;
-                                        ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
-                                        ms.Position = 0;
-                                        if (string.IsNullOrEmpty(errormessage))
-                                        {
-                                            this.Response.BinaryWrite(((MemoryStream)ms).ToArray());
-                                        }
-                                    }
-                                    else
-                                    {
-                                        this.Response.BinaryWrite(memberFile.MemberFileContent);
-                                    }
+                                    this.Response.BinaryWrite(memberFile.MemberFileContent);
                                     blnAuthorised = true;
 
                                 }

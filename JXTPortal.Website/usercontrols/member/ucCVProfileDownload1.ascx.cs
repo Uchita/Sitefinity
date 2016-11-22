@@ -8,7 +8,6 @@ using System.Text;
 using JXTPortal.Entities;
 using JXTPortal.Common;
 using System.Data;
-using System.Configuration;
 
 namespace JXTPortal.Website.usercontrols.member
 {
@@ -16,20 +15,6 @@ namespace JXTPortal.Website.usercontrols.member
     {
 
         #region Service Declarations
-
-        private SitesService _sitesService;
-
-        private SitesService SitesService
-        {
-            get
-            {
-                if (_sitesService == null)
-                {
-                    _sitesService = new SitesService();
-                }
-                return _sitesService;
-            }
-        }
 
         private MembersService _membersService;
 
@@ -248,20 +233,7 @@ namespace JXTPortal.Website.usercontrols.member
         {
             //setup header/footer image
             // IMPORTANT - for the PDF logos to work 
-            string imageURL = string.Empty;
-
-            using (Entities.Sites site = SitesService.GetBySiteId(SessionData.Site.SiteId))
-            {
-                if (!string.IsNullOrWhiteSpace(site.SiteAdminLogoUrl))
-                {
-                    imageURL = string.Format("http://jxt1.com.jxt1.com/media/{0}/{1}", ConfigurationManager.AppSettings["SitesFolder"], site.SiteAdminLogoUrl);
-                }
-                else
-                {
-                    imageURL = "http://jxt1.com.jxt1.com/admin/getadminlogo.aspx?siteid=" + SessionData.Site.SiteId.ToString();
-                }
-            }
-
+            string imageURL = "http://jxt1.com.jxt1.com/admin/getadminlogo.aspx?siteid=" + SessionData.Site.SiteId;
             imgHeaderLogo.ImageUrl = imageURL;
             imgFooterLogo.ImageUrl = imageURL;
 

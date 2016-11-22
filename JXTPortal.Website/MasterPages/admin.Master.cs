@@ -6,26 +6,11 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using JXTPortal.Website.BaseClasses;
 using JXTPortal.Entities;
-using System.Configuration;
 
 namespace JXTPortal.Website.MasterPages
 {
     public partial class admin : AdminPageBase 
     {
-        private SitesService _sitesService = null;
-
-        public SitesService SitesService
-        {
-            get
-            {
-                if (_sitesService == null)
-                {
-                    _sitesService = new SitesService();
-                }
-                return _sitesService;
-            }
-        }
-
         protected string HostName = JXTPortal.Common.Utils.GetHostName();
 
         private void HideNavigation()
@@ -104,24 +89,14 @@ namespace JXTPortal.Website.MasterPages
                 hypSite.NavigateUrl = "/";
                 hypSite.Text = String.Format("<span><strong>Visit Site &raquo;</strong></span>");
 
-                int siteid = Convert.ToInt32(JXTPortal.Common.Utils.GetAppSettings("MasterSiteID"));
-
                 if (SessionData.Site.HasAdminLogo)
                 {
-                    siteid = SessionData.Site.SiteId;
-                    // imgAdminLogo.ImageUrl = "~/Admin/GetAdminLogo.aspx?SiteID=" + SessionData.Site.SiteId.ToString();                                        
+                    imgAdminLogo.ImageUrl = "~/Admin/GetAdminLogo.aspx?SiteID=" + SessionData.Site.SiteId.ToString();                                        
                 }
-
-                using (Entities.Sites site = SitesService.GetBySiteId(SessionData.Site.SiteId))
+                else
                 {
-                    if (!string.IsNullOrWhiteSpace(site.SiteAdminLogoUrl))
-                    {
-                        imgAdminLogo.ImageUrl = string.Format("/media/{1}/{2}", SessionData.Site.SiteUrl, ConfigurationManager.AppSettings["SitesFolder"], site.SiteAdminLogoUrl);
-                    }
-                    else
-                    {
-                        imgAdminLogo.ImageUrl = "~/Admin/GetAdminLogo.aspx?SiteID=" + SessionData.Site.SiteId.ToString();                                        
-                    }
+                    // Default
+                    imgAdminLogo.ImageUrl = "~/Admin/GetAdminLogo.aspx?SiteID=" + JXTPortal.Common.Utils.GetAppSettings("MasterSiteID");
                 }
                 
                 if (SessionData.AdminUser != null)

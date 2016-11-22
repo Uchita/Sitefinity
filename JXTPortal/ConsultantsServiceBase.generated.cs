@@ -90,8 +90,7 @@ namespace JXTPortal
 		///<param name="_sequence"></param>
 		///<param name="_lastName"></param>
 		///<param name="_consultantsXml"></param>
-		///<param name="_consultantImageUrl"></param>
-		public static Consultants CreateConsultants(System.Int32 _siteId, System.Int32? _languageId, System.String _title, System.String _firstName, System.String _email, System.String _phone, System.String _mobile, System.String _positionTitle, System.String _officeLocation, System.String _categories, System.String _location, System.String _friendlyUrl, System.String _shortDescription, System.String _testimonial, System.String _fullDescription, System.String _consultantData, System.String _linkedInUrl, System.String _twitterUrl, System.String _facebookUrl, System.String _googleUrl, System.String _link, System.String _wechatUrl, System.Int32 _featuredTeamMember, System.Byte[] _imageUrl, System.String _videoUrl, System.String _blogRss, System.String _newsRss, System.String _jobRss, System.String _testimonialsRss, System.Int32 _valid, System.String _metaTitle, System.String _metaDescription, System.String _metaKeywords, System.Int32? _lastModifiedBy, System.DateTime? _lastModified, System.Int32 _sequence, System.String _lastName, System.String _consultantsXml, System.String _consultantImageUrl)
+		public static Consultants CreateConsultants(System.Int32 _siteId, System.Int32? _languageId, System.String _title, System.String _firstName, System.String _email, System.String _phone, System.String _mobile, System.String _positionTitle, System.String _officeLocation, System.String _categories, System.String _location, System.String _friendlyUrl, System.String _shortDescription, System.String _testimonial, System.String _fullDescription, System.String _consultantData, System.String _linkedInUrl, System.String _twitterUrl, System.String _facebookUrl, System.String _googleUrl, System.String _link, System.String _wechatUrl, System.Int32 _featuredTeamMember, System.Byte[] _imageUrl, System.String _videoUrl, System.String _blogRss, System.String _newsRss, System.String _jobRss, System.String _testimonialsRss, System.Int32 _valid, System.String _metaTitle, System.String _metaDescription, System.String _metaKeywords, System.Int32? _lastModifiedBy, System.DateTime? _lastModified, System.Int32 _sequence, System.String _lastName, System.String _consultantsXml)
 		{
 			Consultants newEntityConsultants = new Consultants();
 			newEntityConsultants.SiteId  = _siteId;
@@ -132,7 +131,6 @@ namespace JXTPortal
 			newEntityConsultants.Sequence  = _sequence;
 			newEntityConsultants.LastName  = _lastName;
 			newEntityConsultants.ConsultantsXml  = _consultantsXml;
-			newEntityConsultants.ConsultantImageUrl  = _consultantImageUrl;
 			return newEntityConsultants;
 		}
 		#endregion Constructors
@@ -1479,11 +1477,9 @@ namespace JXTPortal
 		/// <param name="lastModified"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="sequence"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="lastName"> A <c>System.String</c> instance.</param>
-		/// <param name="consultantsXml"> A <c>System.String</c> instance.</param>
-		/// <param name="consultantImageUrl"> A <c>System.String</c> instance.</param>
 			/// <param name="consultantId"> A <c>System.Int32?</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public virtual  void Insert(System.Int32? siteId, System.Int32? languageId, System.String title, System.String firstName, System.String email, System.String phone, System.String mobile, System.String positionTitle, System.String officeLocation, System.String categories, System.String location, System.String friendlyUrl, System.String shortDescription, System.String testimonial, System.String fullDescription, System.String consultantData, System.String linkedInUrl, System.String twitterUrl, System.String facebookUrl, System.String googleUrl, System.String link, System.String wechatUrl, System.Int32? featuredTeamMember, System.Byte[] imageUrl, System.String videoUrl, System.String blogRss, System.String newsRss, System.String jobRss, System.String testimonialsRss, System.Int32? valid, System.String metaTitle, System.String metaDescription, System.String metaKeywords, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.Int32? sequence, System.String lastName, System.String consultantsXml, System.String consultantImageUrl, ref System.Int32? consultantId)
+		public virtual  void Insert(System.Int32? siteId, System.Int32? languageId, System.String title, System.String firstName, System.String email, System.String phone, System.String mobile, System.String positionTitle, System.String officeLocation, System.String categories, System.String location, System.String friendlyUrl, System.String shortDescription, System.String testimonial, System.String fullDescription, System.String consultantData, System.String linkedInUrl, System.String twitterUrl, System.String facebookUrl, System.String googleUrl, System.String link, System.String wechatUrl, System.Int32? featuredTeamMember, System.Byte[] imageUrl, System.String videoUrl, System.String blogRss, System.String newsRss, System.String jobRss, System.String testimonialsRss, System.Int32? valid, System.String metaTitle, System.String metaDescription, System.String metaKeywords, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.Int32? sequence, System.String lastName, ref System.Int32? consultantId)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -1503,7 +1499,7 @@ namespace JXTPortal
 				
 				transactionManager = ConnectionScope.ValidateOrCreateTransaction();
 				dataProvider = ConnectionScope.Current.DataProvider;
-				dataProvider.ConsultantsProvider.Insert(transactionManager , siteId, languageId, title, firstName, email, phone, mobile, positionTitle, officeLocation, categories, location, friendlyUrl, shortDescription, testimonial, fullDescription, consultantData, linkedInUrl, twitterUrl, facebookUrl, googleUrl, link, wechatUrl, featuredTeamMember, imageUrl, videoUrl, blogRss, newsRss, jobRss, testimonialsRss, valid, metaTitle, metaDescription, metaKeywords, lastModifiedBy, lastModified, sequence, lastName, consultantsXml, consultantImageUrl, ref consultantId);
+				dataProvider.ConsultantsProvider.Insert(transactionManager , siteId, languageId, title, firstName, email, phone, mobile, positionTitle, officeLocation, categories, location, friendlyUrl, shortDescription, testimonial, fullDescription, consultantData, linkedInUrl, twitterUrl, facebookUrl, googleUrl, link, wechatUrl, featuredTeamMember, imageUrl, videoUrl, blogRss, newsRss, jobRss, testimonialsRss, valid, metaTitle, metaDescription, metaKeywords, lastModifiedBy, lastModified, sequence, lastName, ref consultantId);
 	        
 				if (!isBorrowedTransaction && transactionManager != null && transactionManager.IsOpen)
 					transactionManager.Commit();
@@ -1563,13 +1559,11 @@ namespace JXTPortal
 		/// <param name="lastModified"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="sequence"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="lastName"> A <c>System.String</c> instance.</param>
-		/// <param name="consultantsXml"> A <c>System.String</c> instance.</param>
-		/// <param name="consultantImageUrl"> A <c>System.String</c> instance.</param>
 			/// <param name="consultantId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public virtual  void Insert( System.Int32? siteId, System.Int32? languageId, System.String title, System.String firstName, System.String email, System.String phone, System.String mobile, System.String positionTitle, System.String officeLocation, System.String categories, System.String location, System.String friendlyUrl, System.String shortDescription, System.String testimonial, System.String fullDescription, System.String consultantData, System.String linkedInUrl, System.String twitterUrl, System.String facebookUrl, System.String googleUrl, System.String link, System.String wechatUrl, System.Int32? featuredTeamMember, System.Byte[] imageUrl, System.String videoUrl, System.String blogRss, System.String newsRss, System.String jobRss, System.String testimonialsRss, System.Int32? valid, System.String metaTitle, System.String metaDescription, System.String metaKeywords, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.Int32? sequence, System.String lastName, System.String consultantsXml, System.String consultantImageUrl, ref System.Int32? consultantId, int start, int pageLength)
+		public virtual  void Insert( System.Int32? siteId, System.Int32? languageId, System.String title, System.String firstName, System.String email, System.String phone, System.String mobile, System.String positionTitle, System.String officeLocation, System.String categories, System.String location, System.String friendlyUrl, System.String shortDescription, System.String testimonial, System.String fullDescription, System.String consultantData, System.String linkedInUrl, System.String twitterUrl, System.String facebookUrl, System.String googleUrl, System.String link, System.String wechatUrl, System.Int32? featuredTeamMember, System.Byte[] imageUrl, System.String videoUrl, System.String blogRss, System.String newsRss, System.String jobRss, System.String testimonialsRss, System.Int32? valid, System.String metaTitle, System.String metaDescription, System.String metaKeywords, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.Int32? sequence, System.String lastName, ref System.Int32? consultantId, int start, int pageLength)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -1590,7 +1584,7 @@ namespace JXTPortal
 				transactionManager = ConnectionScope.ValidateOrCreateTransaction();
 				dataProvider = ConnectionScope.Current.DataProvider;
                 
-				dataProvider.ConsultantsProvider.Insert(transactionManager, start, pageLength , siteId, languageId, title, firstName, email, phone, mobile, positionTitle, officeLocation, categories, location, friendlyUrl, shortDescription, testimonial, fullDescription, consultantData, linkedInUrl, twitterUrl, facebookUrl, googleUrl, link, wechatUrl, featuredTeamMember, imageUrl, videoUrl, blogRss, newsRss, jobRss, testimonialsRss, valid, metaTitle, metaDescription, metaKeywords, lastModifiedBy, lastModified, sequence, lastName, consultantsXml, consultantImageUrl, ref consultantId);
+				dataProvider.ConsultantsProvider.Insert(transactionManager, start, pageLength , siteId, languageId, title, firstName, email, phone, mobile, positionTitle, officeLocation, categories, location, friendlyUrl, shortDescription, testimonial, fullDescription, consultantData, linkedInUrl, twitterUrl, facebookUrl, googleUrl, link, wechatUrl, featuredTeamMember, imageUrl, videoUrl, blogRss, newsRss, jobRss, testimonialsRss, valid, metaTitle, metaDescription, metaKeywords, lastModifiedBy, lastModified, sequence, lastName, ref consultantId);
 	        
 				if (!isBorrowedTransaction && transactionManager != null && transactionManager.IsOpen)
 					transactionManager.Commit();
@@ -2030,11 +2024,9 @@ namespace JXTPortal
 		/// <param name="lastModified"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="sequence"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="lastName"> A <c>System.String</c> instance.</param>
-		/// <param name="consultantsXml"> A <c>System.String</c> instance.</param>
-		/// <param name="consultantImageUrl"> A <c>System.String</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
 		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public virtual  DataSet Find(System.Boolean? searchUsingOr, System.Int32? consultantId, System.Int32? siteId, System.Int32? languageId, System.String title, System.String firstName, System.String email, System.String phone, System.String mobile, System.String positionTitle, System.String officeLocation, System.String categories, System.String location, System.String friendlyUrl, System.String shortDescription, System.String testimonial, System.String fullDescription, System.String consultantData, System.String linkedInUrl, System.String twitterUrl, System.String facebookUrl, System.String googleUrl, System.String link, System.String wechatUrl, System.Int32? featuredTeamMember, System.Byte[] imageUrl, System.String videoUrl, System.String blogRss, System.String newsRss, System.String jobRss, System.String testimonialsRss, System.Int32? valid, System.String metaTitle, System.String metaDescription, System.String metaKeywords, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.Int32? sequence, System.String lastName, System.String consultantsXml, System.String consultantImageUrl)
+		public virtual  DataSet Find(System.Boolean? searchUsingOr, System.Int32? consultantId, System.Int32? siteId, System.Int32? languageId, System.String title, System.String firstName, System.String email, System.String phone, System.String mobile, System.String positionTitle, System.String officeLocation, System.String categories, System.String location, System.String friendlyUrl, System.String shortDescription, System.String testimonial, System.String fullDescription, System.String consultantData, System.String linkedInUrl, System.String twitterUrl, System.String facebookUrl, System.String googleUrl, System.String link, System.String wechatUrl, System.Int32? featuredTeamMember, System.Byte[] imageUrl, System.String videoUrl, System.String blogRss, System.String newsRss, System.String jobRss, System.String testimonialsRss, System.Int32? valid, System.String metaTitle, System.String metaDescription, System.String metaKeywords, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.Int32? sequence, System.String lastName)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -2054,7 +2046,7 @@ namespace JXTPortal
 				
 				transactionManager = ConnectionScope.ValidateOrCreateTransaction(noTranByDefault);
 				dataProvider = ConnectionScope.Current.DataProvider;
-				result = dataProvider.ConsultantsProvider.Find(transactionManager , searchUsingOr, consultantId, siteId, languageId, title, firstName, email, phone, mobile, positionTitle, officeLocation, categories, location, friendlyUrl, shortDescription, testimonial, fullDescription, consultantData, linkedInUrl, twitterUrl, facebookUrl, googleUrl, link, wechatUrl, featuredTeamMember, imageUrl, videoUrl, blogRss, newsRss, jobRss, testimonialsRss, valid, metaTitle, metaDescription, metaKeywords, lastModifiedBy, lastModified, sequence, lastName, consultantsXml, consultantImageUrl);
+				result = dataProvider.ConsultantsProvider.Find(transactionManager , searchUsingOr, consultantId, siteId, languageId, title, firstName, email, phone, mobile, positionTitle, officeLocation, categories, location, friendlyUrl, shortDescription, testimonial, fullDescription, consultantData, linkedInUrl, twitterUrl, facebookUrl, googleUrl, link, wechatUrl, featuredTeamMember, imageUrl, videoUrl, blogRss, newsRss, jobRss, testimonialsRss, valid, metaTitle, metaDescription, metaKeywords, lastModifiedBy, lastModified, sequence, lastName);
 	        
 			}
             catch (Exception exc)
@@ -2114,13 +2106,11 @@ namespace JXTPortal
 		/// <param name="lastModified"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="sequence"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="lastName"> A <c>System.String</c> instance.</param>
-		/// <param name="consultantsXml"> A <c>System.String</c> instance.</param>
-		/// <param name="consultantImageUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
 		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public virtual  DataSet Find( System.Boolean? searchUsingOr, System.Int32? consultantId, System.Int32? siteId, System.Int32? languageId, System.String title, System.String firstName, System.String email, System.String phone, System.String mobile, System.String positionTitle, System.String officeLocation, System.String categories, System.String location, System.String friendlyUrl, System.String shortDescription, System.String testimonial, System.String fullDescription, System.String consultantData, System.String linkedInUrl, System.String twitterUrl, System.String facebookUrl, System.String googleUrl, System.String link, System.String wechatUrl, System.Int32? featuredTeamMember, System.Byte[] imageUrl, System.String videoUrl, System.String blogRss, System.String newsRss, System.String jobRss, System.String testimonialsRss, System.Int32? valid, System.String metaTitle, System.String metaDescription, System.String metaKeywords, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.Int32? sequence, System.String lastName, System.String consultantsXml, System.String consultantImageUrl, int start, int pageLength)
+		public virtual  DataSet Find( System.Boolean? searchUsingOr, System.Int32? consultantId, System.Int32? siteId, System.Int32? languageId, System.String title, System.String firstName, System.String email, System.String phone, System.String mobile, System.String positionTitle, System.String officeLocation, System.String categories, System.String location, System.String friendlyUrl, System.String shortDescription, System.String testimonial, System.String fullDescription, System.String consultantData, System.String linkedInUrl, System.String twitterUrl, System.String facebookUrl, System.String googleUrl, System.String link, System.String wechatUrl, System.Int32? featuredTeamMember, System.Byte[] imageUrl, System.String videoUrl, System.String blogRss, System.String newsRss, System.String jobRss, System.String testimonialsRss, System.Int32? valid, System.String metaTitle, System.String metaDescription, System.String metaKeywords, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.Int32? sequence, System.String lastName, int start, int pageLength)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -2141,7 +2131,7 @@ namespace JXTPortal
 				transactionManager = ConnectionScope.ValidateOrCreateTransaction(noTranByDefault);
 				dataProvider = ConnectionScope.Current.DataProvider;
                 
-				result = dataProvider.ConsultantsProvider.Find(transactionManager, start, pageLength , searchUsingOr, consultantId, siteId, languageId, title, firstName, email, phone, mobile, positionTitle, officeLocation, categories, location, friendlyUrl, shortDescription, testimonial, fullDescription, consultantData, linkedInUrl, twitterUrl, facebookUrl, googleUrl, link, wechatUrl, featuredTeamMember, imageUrl, videoUrl, blogRss, newsRss, jobRss, testimonialsRss, valid, metaTitle, metaDescription, metaKeywords, lastModifiedBy, lastModified, sequence, lastName, consultantsXml, consultantImageUrl);
+				result = dataProvider.ConsultantsProvider.Find(transactionManager, start, pageLength , searchUsingOr, consultantId, siteId, languageId, title, firstName, email, phone, mobile, positionTitle, officeLocation, categories, location, friendlyUrl, shortDescription, testimonial, fullDescription, consultantData, linkedInUrl, twitterUrl, facebookUrl, googleUrl, link, wechatUrl, featuredTeamMember, imageUrl, videoUrl, blogRss, newsRss, jobRss, testimonialsRss, valid, metaTitle, metaDescription, metaKeywords, lastModifiedBy, lastModified, sequence, lastName);
 	        
 			}
             catch (Exception exc)
@@ -2297,10 +2287,8 @@ namespace JXTPortal
 		/// <param name="lastModified"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="sequence"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="lastName"> A <c>System.String</c> instance.</param>
-		/// <param name="consultantsXml"> A <c>System.String</c> instance.</param>
-		/// <param name="consultantImageUrl"> A <c>System.String</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public virtual  void Update(System.Int32? consultantId, System.Int32? siteId, System.Int32? languageId, System.String title, System.String firstName, System.String email, System.String phone, System.String mobile, System.String positionTitle, System.String officeLocation, System.String categories, System.String location, System.String friendlyUrl, System.String shortDescription, System.String testimonial, System.String fullDescription, System.String consultantData, System.String linkedInUrl, System.String twitterUrl, System.String facebookUrl, System.String googleUrl, System.String link, System.String wechatUrl, System.Int32? featuredTeamMember, System.Byte[] imageUrl, System.String videoUrl, System.String blogRss, System.String newsRss, System.String jobRss, System.String testimonialsRss, System.Int32? valid, System.String metaTitle, System.String metaDescription, System.String metaKeywords, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.Int32? sequence, System.String lastName, System.String consultantsXml, System.String consultantImageUrl)
+		public virtual  void Update(System.Int32? consultantId, System.Int32? siteId, System.Int32? languageId, System.String title, System.String firstName, System.String email, System.String phone, System.String mobile, System.String positionTitle, System.String officeLocation, System.String categories, System.String location, System.String friendlyUrl, System.String shortDescription, System.String testimonial, System.String fullDescription, System.String consultantData, System.String linkedInUrl, System.String twitterUrl, System.String facebookUrl, System.String googleUrl, System.String link, System.String wechatUrl, System.Int32? featuredTeamMember, System.Byte[] imageUrl, System.String videoUrl, System.String blogRss, System.String newsRss, System.String jobRss, System.String testimonialsRss, System.Int32? valid, System.String metaTitle, System.String metaDescription, System.String metaKeywords, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.Int32? sequence, System.String lastName)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -2320,7 +2308,7 @@ namespace JXTPortal
 				
 				transactionManager = ConnectionScope.ValidateOrCreateTransaction();
 				dataProvider = ConnectionScope.Current.DataProvider;
-				dataProvider.ConsultantsProvider.Update(transactionManager , consultantId, siteId, languageId, title, firstName, email, phone, mobile, positionTitle, officeLocation, categories, location, friendlyUrl, shortDescription, testimonial, fullDescription, consultantData, linkedInUrl, twitterUrl, facebookUrl, googleUrl, link, wechatUrl, featuredTeamMember, imageUrl, videoUrl, blogRss, newsRss, jobRss, testimonialsRss, valid, metaTitle, metaDescription, metaKeywords, lastModifiedBy, lastModified, sequence, lastName, consultantsXml, consultantImageUrl);
+				dataProvider.ConsultantsProvider.Update(transactionManager , consultantId, siteId, languageId, title, firstName, email, phone, mobile, positionTitle, officeLocation, categories, location, friendlyUrl, shortDescription, testimonial, fullDescription, consultantData, linkedInUrl, twitterUrl, facebookUrl, googleUrl, link, wechatUrl, featuredTeamMember, imageUrl, videoUrl, blogRss, newsRss, jobRss, testimonialsRss, valid, metaTitle, metaDescription, metaKeywords, lastModifiedBy, lastModified, sequence, lastName);
 	        
 				if (!isBorrowedTransaction && transactionManager != null && transactionManager.IsOpen)
 					transactionManager.Commit();
@@ -2381,12 +2369,10 @@ namespace JXTPortal
 		/// <param name="lastModified"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="sequence"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="lastName"> A <c>System.String</c> instance.</param>
-		/// <param name="consultantsXml"> A <c>System.String</c> instance.</param>
-		/// <param name="consultantImageUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public virtual  void Update( System.Int32? consultantId, System.Int32? siteId, System.Int32? languageId, System.String title, System.String firstName, System.String email, System.String phone, System.String mobile, System.String positionTitle, System.String officeLocation, System.String categories, System.String location, System.String friendlyUrl, System.String shortDescription, System.String testimonial, System.String fullDescription, System.String consultantData, System.String linkedInUrl, System.String twitterUrl, System.String facebookUrl, System.String googleUrl, System.String link, System.String wechatUrl, System.Int32? featuredTeamMember, System.Byte[] imageUrl, System.String videoUrl, System.String blogRss, System.String newsRss, System.String jobRss, System.String testimonialsRss, System.Int32? valid, System.String metaTitle, System.String metaDescription, System.String metaKeywords, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.Int32? sequence, System.String lastName, System.String consultantsXml, System.String consultantImageUrl, int start, int pageLength)
+		public virtual  void Update( System.Int32? consultantId, System.Int32? siteId, System.Int32? languageId, System.String title, System.String firstName, System.String email, System.String phone, System.String mobile, System.String positionTitle, System.String officeLocation, System.String categories, System.String location, System.String friendlyUrl, System.String shortDescription, System.String testimonial, System.String fullDescription, System.String consultantData, System.String linkedInUrl, System.String twitterUrl, System.String facebookUrl, System.String googleUrl, System.String link, System.String wechatUrl, System.Int32? featuredTeamMember, System.Byte[] imageUrl, System.String videoUrl, System.String blogRss, System.String newsRss, System.String jobRss, System.String testimonialsRss, System.Int32? valid, System.String metaTitle, System.String metaDescription, System.String metaKeywords, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.Int32? sequence, System.String lastName, int start, int pageLength)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -2407,7 +2393,7 @@ namespace JXTPortal
 				transactionManager = ConnectionScope.ValidateOrCreateTransaction();
 				dataProvider = ConnectionScope.Current.DataProvider;
                 
-				dataProvider.ConsultantsProvider.Update(transactionManager, start, pageLength , consultantId, siteId, languageId, title, firstName, email, phone, mobile, positionTitle, officeLocation, categories, location, friendlyUrl, shortDescription, testimonial, fullDescription, consultantData, linkedInUrl, twitterUrl, facebookUrl, googleUrl, link, wechatUrl, featuredTeamMember, imageUrl, videoUrl, blogRss, newsRss, jobRss, testimonialsRss, valid, metaTitle, metaDescription, metaKeywords, lastModifiedBy, lastModified, sequence, lastName, consultantsXml, consultantImageUrl);
+				dataProvider.ConsultantsProvider.Update(transactionManager, start, pageLength , consultantId, siteId, languageId, title, firstName, email, phone, mobile, positionTitle, officeLocation, categories, location, friendlyUrl, shortDescription, testimonial, fullDescription, consultantData, linkedInUrl, twitterUrl, facebookUrl, googleUrl, link, wechatUrl, featuredTeamMember, imageUrl, videoUrl, blogRss, newsRss, jobRss, testimonialsRss, valid, metaTitle, metaDescription, metaKeywords, lastModifiedBy, lastModified, sequence, lastName);
 	        
 				if (!isBorrowedTransaction && transactionManager != null && transactionManager.IsOpen)
 					transactionManager.Commit();

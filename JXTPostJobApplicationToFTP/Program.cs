@@ -418,7 +418,7 @@ namespace JXTPostJobApplicationToFTP
             foreach (XElement site in query)
             {
                 if (site.Element("SiteId").Value == siteXML.SiteId.ToString())
-                    site.Element("LastModifiedDate").Value = strLastModifiedDate;
+                    site.Element("strLastModifiedDate").Value = strLastModifiedDate;
             }
 
             xmlFile.Save(ConfigurationManager.AppSettings["SitesXML"]);

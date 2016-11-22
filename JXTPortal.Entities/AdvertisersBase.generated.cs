@@ -117,7 +117,6 @@ namespace JXTPortal.Entities
 		///<param name="_nominatedCompanyEmailAddress"></param>
 		///<param name="_nominatedCompanyPhone"></param>
 		///<param name="_preferredContactMethod"></param>
-		///<param name="_advertiserLogoUrl"></param>
 		public AdvertisersBase(System.Int32? _siteId, System.Int32 _advertiserAccountTypeId, 
 			System.Int32 _advertiserBusinessTypeId, System.Int32 _advertiserAccountStatusId, System.String _companyName, 
 			System.String _businessNumber, System.String _streetAddress1, System.String _streetAddress2, 
@@ -130,7 +129,7 @@ namespace JXTPortal.Entities
 			System.DateTime? _registerDate, System.String _externalAdvertiserId, System.String _videoLink, 
 			System.String _industry, System.String _nominatedCompanyRole, System.String _nominatedCompanyFirstName, 
 			System.String _nominatedCompanyLastName, System.String _nominatedCompanyEmailAddress, System.String _nominatedCompanyPhone, 
-			System.Int32? _preferredContactMethod, System.String _advertiserLogoUrl)
+			System.Int32? _preferredContactMethod)
 		{
 			this.entityData = new AdvertisersEntityData();
 			this.backupData = null;
@@ -171,7 +170,6 @@ namespace JXTPortal.Entities
 			this.NominatedCompanyEmailAddress = _nominatedCompanyEmailAddress;
 			this.NominatedCompanyPhone = _nominatedCompanyPhone;
 			this.PreferredContactMethod = _preferredContactMethod;
-			this.AdvertiserLogoUrl = _advertiserLogoUrl;
 		}
 		
 		///<summary>
@@ -213,7 +211,6 @@ namespace JXTPortal.Entities
 		///<param name="_nominatedCompanyEmailAddress"></param>
 		///<param name="_nominatedCompanyPhone"></param>
 		///<param name="_preferredContactMethod"></param>
-		///<param name="_advertiserLogoUrl"></param>
 		public static Advertisers CreateAdvertisers(System.Int32? _siteId, System.Int32 _advertiserAccountTypeId, 
 			System.Int32 _advertiserBusinessTypeId, System.Int32 _advertiserAccountStatusId, System.String _companyName, 
 			System.String _businessNumber, System.String _streetAddress1, System.String _streetAddress2, 
@@ -226,7 +223,7 @@ namespace JXTPortal.Entities
 			System.DateTime? _registerDate, System.String _externalAdvertiserId, System.String _videoLink, 
 			System.String _industry, System.String _nominatedCompanyRole, System.String _nominatedCompanyFirstName, 
 			System.String _nominatedCompanyLastName, System.String _nominatedCompanyEmailAddress, System.String _nominatedCompanyPhone, 
-			System.Int32? _preferredContactMethod, System.String _advertiserLogoUrl)
+			System.Int32? _preferredContactMethod)
 		{
 			Advertisers newAdvertisers = new Advertisers();
 			newAdvertisers.SiteId = _siteId;
@@ -265,7 +262,6 @@ namespace JXTPortal.Entities
 			newAdvertisers.NominatedCompanyEmailAddress = _nominatedCompanyEmailAddress;
 			newAdvertisers.NominatedCompanyPhone = _nominatedCompanyPhone;
 			newAdvertisers.PreferredContactMethod = _preferredContactMethod;
-			newAdvertisers.AdvertiserLogoUrl = _advertiserLogoUrl;
 			return newAdvertisers;
 		}
 				
@@ -1582,41 +1578,6 @@ namespace JXTPortal.Entities
 			}
 		}
 		
-		/// <summary>
-		/// 	Gets or sets the AdvertiserLogoUrl property. 
-		///		
-		/// </summary>
-		/// <value>This type is nvarchar.</value>
-		/// <remarks>
-		/// This property can be set to null. 
-		/// </remarks>
-
-
-
-
-		[DescriptionAttribute(@""), System.ComponentModel.Bindable( System.ComponentModel.BindableSupport.Yes)]
-		[DataObjectField(false, false, true, 1000)]
-		public virtual System.String AdvertiserLogoUrl
-		{
-			get
-			{
-				return this.entityData.AdvertiserLogoUrl; 
-			}
-			
-			set
-			{
-				if (this.entityData.AdvertiserLogoUrl == value)
-					return;
-					
-				OnColumnChanging(AdvertisersColumn.AdvertiserLogoUrl, this.entityData.AdvertiserLogoUrl);
-				this.entityData.AdvertiserLogoUrl = value;
-				if (this.EntityState == EntityState.Unchanged)
-					this.EntityState = EntityState.Changed;
-				OnColumnChanged(AdvertisersColumn.AdvertiserLogoUrl, this.entityData.AdvertiserLogoUrl);
-				OnPropertyChanged("AdvertiserLogoUrl");
-			}
-		}
-		
 		#endregion Data Properties		
 
 		#region Source Foreign Key Property
@@ -1832,8 +1793,6 @@ namespace JXTPortal.Entities
 				new CommonRules.MaxLengthRuleArgs("NominatedCompanyEmailAddress", "Nominated Company Email Address", 255));
 			ValidationRules.AddRule( CommonRules.StringMaxLength, 
 				new CommonRules.MaxLengthRuleArgs("NominatedCompanyPhone", "Nominated Company Phone", 40));
-			ValidationRules.AddRule( CommonRules.StringMaxLength, 
-				new CommonRules.MaxLengthRuleArgs("AdvertiserLogoUrl", "Advertiser Logo Url", 1000));
 		}
    		#endregion
 		
@@ -1855,7 +1814,7 @@ namespace JXTPortal.Entities
 		{
 			get
 			{
-				return new string[] {"AdvertiserID", "SiteID", "AdvertiserAccountTypeID", "AdvertiserBusinessTypeID", "AdvertiserAccountStatusID", "CompanyName", "BusinessNumber", "StreetAddress1", "StreetAddress2", "LastModified", "LastModifiedBy", "PostalAddress1", "PostalAddress2", "WebAddress", "NoOfEmployees", "FirstApprovedDate", "Profile", "CharityNumber", "SearchField", "FreeTrialStartDate", "FreeTrialEndDate", "AccountsPayableEmail", "RequireLogonForExternalApplication", "AdvertiserLogo", "LinkedInLogo", "LinkedInCompanyId", "LinkedInEmail", "RegisterDate", "ExternalAdvertiserID", "VideoLink", "Industry", "NominatedCompanyRole", "NominatedCompanyFirstName", "NominatedCompanyLastName", "NominatedCompanyEmailAddress", "NominatedCompanyPhone", "PreferredContactMethod", "AdvertiserLogoUrl"};
+				return new string[] {"AdvertiserID", "SiteID", "AdvertiserAccountTypeID", "AdvertiserBusinessTypeID", "AdvertiserAccountStatusID", "CompanyName", "BusinessNumber", "StreetAddress1", "StreetAddress2", "LastModified", "LastModifiedBy", "PostalAddress1", "PostalAddress2", "WebAddress", "NoOfEmployees", "FirstApprovedDate", "Profile", "CharityNumber", "SearchField", "FreeTrialStartDate", "FreeTrialEndDate", "AccountsPayableEmail", "RequireLogonForExternalApplication", "AdvertiserLogo", "LinkedInLogo", "LinkedInCompanyId", "LinkedInEmail", "RegisterDate", "ExternalAdvertiserID", "VideoLink", "Industry", "NominatedCompanyRole", "NominatedCompanyFirstName", "NominatedCompanyLastName", "NominatedCompanyEmailAddress", "NominatedCompanyPhone", "PreferredContactMethod"};
 			}
 		}
 		#endregion 
@@ -2040,7 +1999,6 @@ namespace JXTPortal.Entities
 				copy.NominatedCompanyEmailAddress = this.NominatedCompanyEmailAddress;
 				copy.NominatedCompanyPhone = this.NominatedCompanyPhone;
 				copy.PreferredContactMethod = this.PreferredContactMethod;
-				copy.AdvertiserLogoUrl = this.AdvertiserLogoUrl;
 			
 			if (this.AdvertiserAccountStatusIdSource != null && existingCopies.Contains(this.AdvertiserAccountStatusIdSource))
 				copy.AdvertiserAccountStatusIdSource = existingCopies[this.AdvertiserAccountStatusIdSource] as AdvertiserAccountStatus;
@@ -2277,8 +2235,6 @@ namespace JXTPortal.Entities
 					return entityData.NominatedCompanyPhone != _originalData.NominatedCompanyPhone;
 					case AdvertisersColumn.PreferredContactMethod:
 					return entityData.PreferredContactMethod != _originalData.PreferredContactMethod;
-					case AdvertisersColumn.AdvertiserLogoUrl:
-					return entityData.AdvertiserLogoUrl != _originalData.AdvertiserLogoUrl;
 			
 				default:
 					return false;
@@ -2343,7 +2299,6 @@ namespace JXTPortal.Entities
 			result = result || entityData.NominatedCompanyEmailAddress != _originalData.NominatedCompanyEmailAddress;
 			result = result || entityData.NominatedCompanyPhone != _originalData.NominatedCompanyPhone;
 			result = result || entityData.PreferredContactMethod != _originalData.PreferredContactMethod;
-			result = result || entityData.AdvertiserLogoUrl != _originalData.AdvertiserLogoUrl;
 			return result;
 		}	
 		
@@ -2389,8 +2344,7 @@ namespace JXTPortal.Entities
 				_originalData.NominatedCompanyLastName,
 				_originalData.NominatedCompanyEmailAddress,
 				_originalData.NominatedCompanyPhone,
-				_originalData.PreferredContactMethod,
-				_originalData.AdvertiserLogoUrl
+				_originalData.PreferredContactMethod
 				);
 				
 			return (Advertisers)this.Clone();
@@ -2456,8 +2410,7 @@ namespace JXTPortal.Entities
 					((this.NominatedCompanyLastName == null) ? string.Empty : this.NominatedCompanyLastName.ToString()).GetHashCode() ^ 
 					((this.NominatedCompanyEmailAddress == null) ? string.Empty : this.NominatedCompanyEmailAddress.ToString()).GetHashCode() ^ 
 					((this.NominatedCompanyPhone == null) ? string.Empty : this.NominatedCompanyPhone.ToString()).GetHashCode() ^ 
-					((this.PreferredContactMethod == null) ? string.Empty : this.PreferredContactMethod.ToString()).GetHashCode() ^ 
-					((this.AdvertiserLogoUrl == null) ? string.Empty : this.AdvertiserLogoUrl.ToString()).GetHashCode();
+					((this.PreferredContactMethod == null) ? string.Empty : this.PreferredContactMethod.ToString()).GetHashCode();
         }
 		
 		///<summary>
@@ -2774,15 +2727,6 @@ namespace JXTPortal.Entities
 			{
 				equal = false;
 			}
-			if ( Object1.AdvertiserLogoUrl != null && Object2.AdvertiserLogoUrl != null )
-			{
-				if (Object1.AdvertiserLogoUrl != Object2.AdvertiserLogoUrl)
-					equal = false;
-			}
-			else if (Object1.AdvertiserLogoUrl == null ^ Object2.AdvertiserLogoUrl == null )
-			{
-				equal = false;
-			}
 					
 			return equal;
 		}
@@ -3043,12 +2987,6 @@ namespace JXTPortal.Entities
             		return this.PreferredContactMethod.Value.CompareTo(rhs.PreferredContactMethod.Value);
             		
             		                 
-            	
-            	
-            	case AdvertisersColumn.AdvertiserLogoUrl:
-            		return this.AdvertiserLogoUrl.CompareTo(rhs.AdvertiserLogoUrl);
-            		
-            		                 
             }
             return 0;
         }
@@ -3183,7 +3121,7 @@ namespace JXTPortal.Entities
 		public override string ToString()
 		{
 			return string.Format(System.Globalization.CultureInfo.InvariantCulture,
-				"{39}{38}- AdvertiserId: {0}{38}- SiteId: {1}{38}- AdvertiserAccountTypeId: {2}{38}- AdvertiserBusinessTypeId: {3}{38}- AdvertiserAccountStatusId: {4}{38}- CompanyName: {5}{38}- BusinessNumber: {6}{38}- StreetAddress1: {7}{38}- StreetAddress2: {8}{38}- LastModified: {9}{38}- LastModifiedBy: {10}{38}- PostalAddress1: {11}{38}- PostalAddress2: {12}{38}- WebAddress: {13}{38}- NoOfEmployees: {14}{38}- FirstApprovedDate: {15}{38}- Profile: {16}{38}- CharityNumber: {17}{38}- SearchField: {18}{38}- FreeTrialStartDate: {19}{38}- FreeTrialEndDate: {20}{38}- AccountsPayableEmail: {21}{38}- RequireLogonForExternalApplication: {22}{38}- AdvertiserLogo: {23}{38}- LinkedInLogo: {24}{38}- LinkedInCompanyId: {25}{38}- LinkedInEmail: {26}{38}- RegisterDate: {27}{38}- ExternalAdvertiserId: {28}{38}- VideoLink: {29}{38}- Industry: {30}{38}- NominatedCompanyRole: {31}{38}- NominatedCompanyFirstName: {32}{38}- NominatedCompanyLastName: {33}{38}- NominatedCompanyEmailAddress: {34}{38}- NominatedCompanyPhone: {35}{38}- PreferredContactMethod: {36}{38}- AdvertiserLogoUrl: {37}{38}{40}", 
+				"{38}{37}- AdvertiserId: {0}{37}- SiteId: {1}{37}- AdvertiserAccountTypeId: {2}{37}- AdvertiserBusinessTypeId: {3}{37}- AdvertiserAccountStatusId: {4}{37}- CompanyName: {5}{37}- BusinessNumber: {6}{37}- StreetAddress1: {7}{37}- StreetAddress2: {8}{37}- LastModified: {9}{37}- LastModifiedBy: {10}{37}- PostalAddress1: {11}{37}- PostalAddress2: {12}{37}- WebAddress: {13}{37}- NoOfEmployees: {14}{37}- FirstApprovedDate: {15}{37}- Profile: {16}{37}- CharityNumber: {17}{37}- SearchField: {18}{37}- FreeTrialStartDate: {19}{37}- FreeTrialEndDate: {20}{37}- AccountsPayableEmail: {21}{37}- RequireLogonForExternalApplication: {22}{37}- AdvertiserLogo: {23}{37}- LinkedInLogo: {24}{37}- LinkedInCompanyId: {25}{37}- LinkedInEmail: {26}{37}- RegisterDate: {27}{37}- ExternalAdvertiserId: {28}{37}- VideoLink: {29}{37}- Industry: {30}{37}- NominatedCompanyRole: {31}{37}- NominatedCompanyFirstName: {32}{37}- NominatedCompanyLastName: {33}{37}- NominatedCompanyEmailAddress: {34}{37}- NominatedCompanyPhone: {35}{37}- PreferredContactMethod: {36}{37}{39}", 
 				this.AdvertiserId,
 				(this.SiteId == null) ? string.Empty : this.SiteId.ToString(),
 				this.AdvertiserAccountTypeId,
@@ -3221,7 +3159,6 @@ namespace JXTPortal.Entities
 				(this.NominatedCompanyEmailAddress == null) ? string.Empty : this.NominatedCompanyEmailAddress.ToString(),
 				(this.NominatedCompanyPhone == null) ? string.Empty : this.NominatedCompanyPhone.ToString(),
 				(this.PreferredContactMethod == null) ? string.Empty : this.PreferredContactMethod.ToString(),
-				(this.AdvertiserLogoUrl == null) ? string.Empty : this.AdvertiserLogoUrl.ToString(),
 				System.Environment.NewLine, 
 				this.GetType(),
 				this.Error.Length == 0 ? string.Empty : string.Format("- Error: {0}\n",this.Error));
@@ -3435,11 +3372,6 @@ namespace JXTPortal.Entities
 		/// PreferredContactMethod : 
 		/// </summary>
 		public System.Int32?		  PreferredContactMethod = null;
-		
-		/// <summary>
-		/// AdvertiserLogoUrl : 
-		/// </summary>
-		public System.String		  AdvertiserLogoUrl = null;
 		#endregion
 			
 		#region Source Foreign Key Property
@@ -3789,7 +3721,6 @@ namespace JXTPortal.Entities
 			_tmp.NominatedCompanyEmailAddress = this.NominatedCompanyEmailAddress;
 			_tmp.NominatedCompanyPhone = this.NominatedCompanyPhone;
 			_tmp.PreferredContactMethod = this.PreferredContactMethod;
-			_tmp.AdvertiserLogoUrl = this.AdvertiserLogoUrl;
 			
 			#region Source Parent Composite Entities
 			if (this.AdvertiserAccountStatusIdSource != null)
@@ -3881,7 +3812,6 @@ namespace JXTPortal.Entities
 			_tmp.NominatedCompanyEmailAddress = this.NominatedCompanyEmailAddress;
 			_tmp.NominatedCompanyPhone = this.NominatedCompanyPhone;
 			_tmp.PreferredContactMethod = this.PreferredContactMethod;
-			_tmp.AdvertiserLogoUrl = this.AdvertiserLogoUrl;
 			
 			#region Source Parent Composite Entities
 			if (this.AdvertiserAccountStatusIdSource != null && existingCopies.Contains(this.AdvertiserAccountStatusIdSource))
@@ -4506,13 +4436,7 @@ namespace JXTPortal.Entities
 		/// </summary>
 		[EnumTextValue("PreferredContactMethod")]
 		[ColumnEnum("PreferredContactMethod", typeof(System.Int32), System.Data.DbType.Int32, false, false, true)]
-		PreferredContactMethod = 37,
-		/// <summary>
-		/// AdvertiserLogoUrl : 
-		/// </summary>
-		[EnumTextValue("AdvertiserLogoUrl")]
-		[ColumnEnum("AdvertiserLogoUrl", typeof(System.String), System.Data.DbType.String, false, false, true, 1000)]
-		AdvertiserLogoUrl = 38
+		PreferredContactMethod = 37
 	}//End enum
 
 	#endregion AdvertisersColumn Enum

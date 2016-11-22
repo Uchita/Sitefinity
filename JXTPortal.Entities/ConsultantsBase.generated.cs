@@ -119,7 +119,6 @@ namespace JXTPortal.Entities
 		///<param name="_sequence"></param>
 		///<param name="_lastName"></param>
 		///<param name="_consultantsXml"></param>
-		///<param name="_consultantImageUrl"></param>
 		public ConsultantsBase(System.Int32 _siteId, System.Int32? _languageId, System.String _title, 
 			System.String _firstName, System.String _email, System.String _phone, System.String _mobile, 
 			System.String _positionTitle, System.String _officeLocation, System.String _categories, 
@@ -130,7 +129,7 @@ namespace JXTPortal.Entities
 			System.String _blogRss, System.String _newsRss, System.String _jobRss, System.String _testimonialsRss, 
 			System.Int32 _valid, System.String _metaTitle, System.String _metaDescription, System.String _metaKeywords, 
 			System.Int32? _lastModifiedBy, System.DateTime? _lastModified, System.Int32 _sequence, System.String _lastName, 
-			System.String _consultantsXml, System.String _consultantImageUrl)
+			System.String _consultantsXml)
 		{
 			this.entityData = new ConsultantsEntityData();
 			this.backupData = null;
@@ -173,7 +172,6 @@ namespace JXTPortal.Entities
 			this.Sequence = _sequence;
 			this.LastName = _lastName;
 			this.ConsultantsXml = _consultantsXml;
-			this.ConsultantImageUrl = _consultantImageUrl;
 		}
 		
 		///<summary>
@@ -217,7 +215,6 @@ namespace JXTPortal.Entities
 		///<param name="_sequence"></param>
 		///<param name="_lastName"></param>
 		///<param name="_consultantsXml"></param>
-		///<param name="_consultantImageUrl"></param>
 		public static Consultants CreateConsultants(System.Int32 _siteId, System.Int32? _languageId, System.String _title, 
 			System.String _firstName, System.String _email, System.String _phone, System.String _mobile, 
 			System.String _positionTitle, System.String _officeLocation, System.String _categories, 
@@ -228,7 +225,7 @@ namespace JXTPortal.Entities
 			System.String _blogRss, System.String _newsRss, System.String _jobRss, System.String _testimonialsRss, 
 			System.Int32 _valid, System.String _metaTitle, System.String _metaDescription, System.String _metaKeywords, 
 			System.Int32? _lastModifiedBy, System.DateTime? _lastModified, System.Int32 _sequence, System.String _lastName, 
-			System.String _consultantsXml, System.String _consultantImageUrl)
+			System.String _consultantsXml)
 		{
 			Consultants newConsultants = new Consultants();
 			newConsultants.SiteId = _siteId;
@@ -269,7 +266,6 @@ namespace JXTPortal.Entities
 			newConsultants.Sequence = _sequence;
 			newConsultants.LastName = _lastName;
 			newConsultants.ConsultantsXml = _consultantsXml;
-			newConsultants.ConsultantImageUrl = _consultantImageUrl;
 			return newConsultants;
 		}
 				
@@ -1650,41 +1646,6 @@ namespace JXTPortal.Entities
 			}
 		}
 		
-		/// <summary>
-		/// 	Gets or sets the ConsultantImageUrl property. 
-		///		
-		/// </summary>
-		/// <value>This type is nvarchar.</value>
-		/// <remarks>
-		/// This property can be set to null. 
-		/// </remarks>
-
-
-
-
-		[DescriptionAttribute(@""), System.ComponentModel.Bindable( System.ComponentModel.BindableSupport.Yes)]
-		[DataObjectField(false, false, true, 1000)]
-		public virtual System.String ConsultantImageUrl
-		{
-			get
-			{
-				return this.entityData.ConsultantImageUrl; 
-			}
-			
-			set
-			{
-				if (this.entityData.ConsultantImageUrl == value)
-					return;
-					
-				OnColumnChanging(ConsultantsColumn.ConsultantImageUrl, this.entityData.ConsultantImageUrl);
-				this.entityData.ConsultantImageUrl = value;
-				if (this.EntityState == EntityState.Unchanged)
-					this.EntityState = EntityState.Changed;
-				OnColumnChanged(ConsultantsColumn.ConsultantImageUrl, this.entityData.ConsultantImageUrl);
-				OnPropertyChanged("ConsultantImageUrl");
-			}
-		}
-		
 		#endregion Data Properties		
 
 		#region Source Foreign Key Property
@@ -1765,8 +1726,6 @@ namespace JXTPortal.Entities
 				new CommonRules.MaxLengthRuleArgs("MetaKeywords", "Meta Keywords", 510));
 			ValidationRules.AddRule( CommonRules.StringMaxLength, 
 				new CommonRules.MaxLengthRuleArgs("LastName", "Last Name", 512));
-			ValidationRules.AddRule( CommonRules.StringMaxLength, 
-				new CommonRules.MaxLengthRuleArgs("ConsultantImageUrl", "Consultant Image Url", 1000));
 		}
    		#endregion
 		
@@ -1788,7 +1747,7 @@ namespace JXTPortal.Entities
 		{
 			get
 			{
-				return new string[] {"ConsultantID", "SiteID", "LanguageID", "Title", "FirstName", "Email", "Phone", "Mobile", "PositionTitle", "OfficeLocation", "Categories", "Location", "FriendlyURL", "ShortDescription", "Testimonial", "FullDescription", "ConsultantData", "LinkedInURL", "TwitterURL", "FacebookURL", "GoogleURL", "Link", "WechatURL", "FeaturedTeamMember", "ImageURL", "VideoURL", "BlogRSS", "NewsRSS", "JobRSS", "TestimonialsRSS", "Valid", "MetaTitle", "MetaDescription", "MetaKeywords", "LastModifiedBy", "LastModified", "Sequence", "LastName", "ConsultantsXML", "ConsultantImageUrl"};
+				return new string[] {"ConsultantID", "SiteID", "LanguageID", "Title", "FirstName", "Email", "Phone", "Mobile", "PositionTitle", "OfficeLocation", "Categories", "Location", "FriendlyURL", "ShortDescription", "Testimonial", "FullDescription", "ConsultantData", "LinkedInURL", "TwitterURL", "FacebookURL", "GoogleURL", "Link", "WechatURL", "FeaturedTeamMember", "ImageURL", "VideoURL", "BlogRSS", "NewsRSS", "JobRSS", "TestimonialsRSS", "Valid", "MetaTitle", "MetaDescription", "MetaKeywords", "LastModifiedBy", "LastModified", "Sequence", "LastName", "ConsultantsXML"};
 			}
 		}
 		#endregion 
@@ -1975,7 +1934,6 @@ namespace JXTPortal.Entities
 				copy.Sequence = this.Sequence;
 				copy.LastName = this.LastName;
 				copy.ConsultantsXml = this.ConsultantsXml;
-				copy.ConsultantImageUrl = this.ConsultantImageUrl;
 			
 			if (this.SiteIdSource != null && existingCopies.Contains(this.SiteIdSource))
 				copy.SiteIdSource = existingCopies[this.SiteIdSource] as Sites;
@@ -2190,8 +2148,6 @@ namespace JXTPortal.Entities
 					return entityData.LastName != _originalData.LastName;
 					case ConsultantsColumn.ConsultantsXml:
 					return entityData.ConsultantsXml != _originalData.ConsultantsXml;
-					case ConsultantsColumn.ConsultantImageUrl:
-					return entityData.ConsultantImageUrl != _originalData.ConsultantImageUrl;
 			
 				default:
 					return false;
@@ -2258,7 +2214,6 @@ namespace JXTPortal.Entities
 			result = result || entityData.Sequence != _originalData.Sequence;
 			result = result || entityData.LastName != _originalData.LastName;
 			result = result || entityData.ConsultantsXml != _originalData.ConsultantsXml;
-			result = result || entityData.ConsultantImageUrl != _originalData.ConsultantImageUrl;
 			return result;
 		}	
 		
@@ -2306,8 +2261,7 @@ namespace JXTPortal.Entities
 				_originalData.LastModified,
 				_originalData.Sequence,
 				_originalData.LastName,
-				_originalData.ConsultantsXml,
-				_originalData.ConsultantImageUrl
+				_originalData.ConsultantsXml
 				);
 				
 			return (Consultants)this.Clone();
@@ -2375,8 +2329,7 @@ namespace JXTPortal.Entities
 					((this.LastModified == null) ? string.Empty : this.LastModified.ToString()).GetHashCode() ^ 
 					this.Sequence.GetHashCode() ^ 
 					((this.LastName == null) ? string.Empty : this.LastName.ToString()).GetHashCode() ^ 
-					((this.ConsultantsXml == null) ? string.Empty : this.ConsultantsXml.ToString()).GetHashCode() ^ 
-					((this.ConsultantImageUrl == null) ? string.Empty : this.ConsultantImageUrl.ToString()).GetHashCode();
+					((this.ConsultantsXml == null) ? string.Empty : this.ConsultantsXml.ToString()).GetHashCode();
         }
 		
 		///<summary>
@@ -2725,15 +2678,6 @@ namespace JXTPortal.Entities
 			{
 				equal = false;
 			}
-			if ( Object1.ConsultantImageUrl != null && Object2.ConsultantImageUrl != null )
-			{
-				if (Object1.ConsultantImageUrl != Object2.ConsultantImageUrl)
-					equal = false;
-			}
-			else if (Object1.ConsultantImageUrl == null ^ Object2.ConsultantImageUrl == null )
-			{
-				equal = false;
-			}
 					
 			return equal;
 		}
@@ -3006,12 +2950,6 @@ namespace JXTPortal.Entities
             		return this.ConsultantsXml.CompareTo(rhs.ConsultantsXml);
             		
             		                 
-            	
-            	
-            	case ConsultantsColumn.ConsultantImageUrl:
-            		return this.ConsultantImageUrl.CompareTo(rhs.ConsultantImageUrl);
-            		
-            		                 
             }
             return 0;
         }
@@ -3146,7 +3084,7 @@ namespace JXTPortal.Entities
 		public override string ToString()
 		{
 			return string.Format(System.Globalization.CultureInfo.InvariantCulture,
-				"{41}{40}- ConsultantId: {0}{40}- SiteId: {1}{40}- LanguageId: {2}{40}- Title: {3}{40}- FirstName: {4}{40}- Email: {5}{40}- Phone: {6}{40}- Mobile: {7}{40}- PositionTitle: {8}{40}- OfficeLocation: {9}{40}- Categories: {10}{40}- Location: {11}{40}- FriendlyUrl: {12}{40}- ShortDescription: {13}{40}- Testimonial: {14}{40}- FullDescription: {15}{40}- ConsultantData: {16}{40}- LinkedInUrl: {17}{40}- TwitterUrl: {18}{40}- FacebookUrl: {19}{40}- GoogleUrl: {20}{40}- Link: {21}{40}- WechatUrl: {22}{40}- FeaturedTeamMember: {23}{40}- ImageUrl: {24}{40}- VideoUrl: {25}{40}- BlogRss: {26}{40}- NewsRss: {27}{40}- JobRss: {28}{40}- TestimonialsRss: {29}{40}- Valid: {30}{40}- MetaTitle: {31}{40}- MetaDescription: {32}{40}- MetaKeywords: {33}{40}- LastModifiedBy: {34}{40}- LastModified: {35}{40}- Sequence: {36}{40}- LastName: {37}{40}- ConsultantsXml: {38}{40}- ConsultantImageUrl: {39}{40}{42}", 
+				"{40}{39}- ConsultantId: {0}{39}- SiteId: {1}{39}- LanguageId: {2}{39}- Title: {3}{39}- FirstName: {4}{39}- Email: {5}{39}- Phone: {6}{39}- Mobile: {7}{39}- PositionTitle: {8}{39}- OfficeLocation: {9}{39}- Categories: {10}{39}- Location: {11}{39}- FriendlyUrl: {12}{39}- ShortDescription: {13}{39}- Testimonial: {14}{39}- FullDescription: {15}{39}- ConsultantData: {16}{39}- LinkedInUrl: {17}{39}- TwitterUrl: {18}{39}- FacebookUrl: {19}{39}- GoogleUrl: {20}{39}- Link: {21}{39}- WechatUrl: {22}{39}- FeaturedTeamMember: {23}{39}- ImageUrl: {24}{39}- VideoUrl: {25}{39}- BlogRss: {26}{39}- NewsRss: {27}{39}- JobRss: {28}{39}- TestimonialsRss: {29}{39}- Valid: {30}{39}- MetaTitle: {31}{39}- MetaDescription: {32}{39}- MetaKeywords: {33}{39}- LastModifiedBy: {34}{39}- LastModified: {35}{39}- Sequence: {36}{39}- LastName: {37}{39}- ConsultantsXml: {38}{39}{41}", 
 				this.ConsultantId,
 				this.SiteId,
 				(this.LanguageId == null) ? string.Empty : this.LanguageId.ToString(),
@@ -3186,7 +3124,6 @@ namespace JXTPortal.Entities
 				this.Sequence,
 				(this.LastName == null) ? string.Empty : this.LastName.ToString(),
 				(this.ConsultantsXml == null) ? string.Empty : this.ConsultantsXml.ToString(),
-				(this.ConsultantImageUrl == null) ? string.Empty : this.ConsultantImageUrl.ToString(),
 				System.Environment.NewLine, 
 				this.GetType(),
 				this.Error.Length == 0 ? string.Empty : string.Format("- Error: {0}\n",this.Error));
@@ -3410,11 +3347,6 @@ namespace JXTPortal.Entities
 		/// ConsultantsXML : 
 		/// </summary>
 		public System.String		  ConsultantsXml = null;
-		
-		/// <summary>
-		/// ConsultantImageUrl : 
-		/// </summary>
-		public System.String		  ConsultantImageUrl = null;
 		#endregion
 			
 		#region Source Foreign Key Property
@@ -3489,7 +3421,6 @@ namespace JXTPortal.Entities
 			_tmp.Sequence = this.Sequence;
 			_tmp.LastName = this.LastName;
 			_tmp.ConsultantsXml = this.ConsultantsXml;
-			_tmp.ConsultantImageUrl = this.ConsultantImageUrl;
 			
 			#region Source Parent Composite Entities
 			if (this.SiteIdSource != null)
@@ -3556,7 +3487,6 @@ namespace JXTPortal.Entities
 			_tmp.Sequence = this.Sequence;
 			_tmp.LastName = this.LastName;
 			_tmp.ConsultantsXml = this.ConsultantsXml;
-			_tmp.ConsultantImageUrl = this.ConsultantImageUrl;
 			
 			#region Source Parent Composite Entities
 			if (this.SiteIdSource != null && existingCopies.Contains(this.SiteIdSource))
@@ -4167,13 +4097,7 @@ namespace JXTPortal.Entities
 		/// </summary>
 		[EnumTextValue("ConsultantsXML")]
 		[ColumnEnum("ConsultantsXML", typeof(System.String), System.Data.DbType.String, false, false, true)]
-		ConsultantsXml = 39,
-		/// <summary>
-		/// ConsultantImageUrl : 
-		/// </summary>
-		[EnumTextValue("ConsultantImageUrl")]
-		[ColumnEnum("ConsultantImageUrl", typeof(System.String), System.Data.DbType.String, false, false, true, 1000)]
-		ConsultantImageUrl = 40
+		ConsultantsXml = 39
 	}//End enum
 
 	#endregion ConsultantsColumn Enum

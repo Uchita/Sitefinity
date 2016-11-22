@@ -5,7 +5,6 @@ using System.Text;
 using System.Net;
 using System.Web.Script.Serialization;
 using System.Web;
-using log4net;
 
 namespace SectionIO
 {
@@ -16,23 +15,14 @@ namespace SectionIO
         private long _accountID;
         private long _applicationID;
         private Environment _environmentName;
-        private ILog _logger;
 
         public SectionIO_API(long accountID, long appID, Environment environment)
         {
             _accountID = accountID;
             _applicationID = appID;
             _environmentName = environment;
-
-            _logger = LogManager.GetLogger(typeof(SectionIO_API));
         }
 
-
-        /// <summary>
-        /// Clear the Section cache for the desired url
-        /// </summary>
-        /// <param name="proxy"></param>
-        /// <param name="banExpression"></param>
         public void API_Proxy_State_Post(Proxy proxy, string banExpression)
         {
             string request_end_point = string.Format(API_END_POINT, _accountID, _applicationID, _environmentName.ToString());
@@ -48,38 +38,22 @@ namespace SectionIO
             byte[] auth = System.Text.Encoding.UTF8.GetBytes("himmy@jxt.com.au:jxt888888");
             string base64Auth = Convert.ToBase64String(auth);
             req.Headers.Add("Authorization", "Basic " + base64Auth);
-
+            // Do the post and get the response.
+            System.Net.WebResponse response = null;
             try
             {
-                //Perform Asynchronously to ensure main thread isn't blocked. 
-                IAsyncResult result = (IAsyncResult)req.BeginGetResponse(new AsyncCallback(ProcessResponse), req);
-            }
-            catch (Exception ex)
-            {
-                _logger.Error(ex);
-            }
-        }
-
-        private void ProcessResponse(IAsyncResult result)
-        {
-            try
-            {
-                WebRequest request = (WebRequest)result.AsyncState;
-                //Finish the request
-                WebResponse response = request.EndGetResponse(result);
-
-                //Ensure resource is disposed
-                response.Close();
+                response = req.GetResponse();
             }
             catch (WebException ex)
             {
-                string msg = string.Format("{0}: {1}", ex.Status, ex.Message);
+                string msg = "";
 
-                _logger.Error(msg, ex);
-            }
-            catch (Exception ex)
-            {
-                _logger.Error(ex);
+                if (ex.Status == WebExceptionStatus.ProtocolError)
+                {
+                    //throw ex;
+                    response = ex.Response;
+                    msg = new System.IO.StreamReader(response.GetResponseStream()).ReadToEnd().Trim();
+                }
             }
         }
 
@@ -97,17 +71,6 @@ namespace SectionIO
         }
 
         #endregion
-
-        private class RequestState
-        {
-            public RequestState(WebRequest req)
-            {
-                Request = req;
-            }
-            public WebRequest Request { get; private set; }
-            public WebResponse Response { get; set; }
-        }
-
 
     }
 }

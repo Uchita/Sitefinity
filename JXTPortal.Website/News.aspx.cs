@@ -12,7 +12,6 @@ using System.Text;
 using JXTPortal;
 using JXTPortal.Entities;
 using JXTPortal.Common;
-using System.Configuration;
 
 namespace JXTPortal.Website
 {
@@ -25,7 +24,6 @@ namespace JXTPortal.Website
         private NewsTypeService _newstypeservice;
         private NewsIndustryService _newsindustryservice;
         private GlobalSettingsService _globalsettingsservice;
-        private SitesService _sitesservice;
         private int _newsid;
         private int _year;
         private int _month;
@@ -102,18 +100,6 @@ namespace JXTPortal.Website
                     _globalsettingsservice = new GlobalSettingsService();
                 }
                 return _globalsettingsservice;
-            }
-        }
-
-        private SitesService SitesService
-        {
-            get
-            {
-                if (_sitesservice == null)
-                {
-                    _sitesservice = new SitesService();
-                }
-                return _sitesservice;
             }
         }
 
@@ -560,7 +546,6 @@ namespace JXTPortal.Website
         {
             mvNews.ActiveViewIndex = 1;
             using (JXTPortal.Entities.News news = NewsService.GetByNewsId(NewsID))
-            using (JXTPortal.Entities.Sites site = SitesService.GetBySiteId(SessionData.Site.SiteId))
             {
                 if (news != null && (news.SiteId == SessionData.Site.SiteId))
                 {
@@ -571,17 +556,6 @@ namespace JXTPortal.Website
 
                         ltDetailArticleStartTag.Text = "<article class=\"jxt-news-item jxt-has-image\" itemscope=\"\" itemtype=\"http://schema.org/NewsArticle\">";
                         string url = string.Format("/news/{0}/{1}/", news.PageFriendlyName, news.NewsId);
-                        string imageurl = string.Empty;
-
-                        if (!string.IsNullOrWhiteSpace(site.SiteAdminLogoUrl))
-                        {
-                            imageurl = string.Format("/media/{0}/{1}", ConfigurationManager.AppSettings["SitesFolder"], site.SiteAdminLogoUrl);
-                        }
-                        else
-                        {
-                            imageurl = "/GetAdminLogo.aspx?SiteID=" + SessionData.Site.SiteId.ToString();
-                        }
-
                         ltDetailSubject.Text = ltDetailSubject.Text = news.Subject;
                         ltDetailBreadcrumb.Text = string.Format("<a itemprop='item' href='{0}'><span itemprop='name'>{1}</span></a>", url, news.Subject);
                         /*phDetailImage.Visible = false;
@@ -653,11 +627,10 @@ namespace JXTPortal.Website
                         ltDetailAuthor.Text = HttpUtility.HtmlEncode(news.Author);
                         if (string.IsNullOrWhiteSpace(news.Author)) phDetailAuthor.Visible = false;
                         ltDetailSiteName.Text = HttpUtility.HtmlEncode(SessionData.Site.SiteName);
-
                         ltDetailSiteImage.Text = string.Format(@"<figure itemprop=""logo"" itemscope="""" itemtype=""https://schema.org/ImageObject"">
 									            <img src=""{0}"" alt=""{1}"">
 									            <meta itemprop=""url"" content=""{0}"">
-								            </figure>", imageurl, SessionData.Site.SiteName.Replace("\"", ""));
+								            </figure>", "/GetAdminLogo.aspx?SiteID=" + SessionData.Site.SiteId.ToString(), SessionData.Site.SiteName.Replace("\"", ""));
                         //Social Media Share
 
                         string fbherf = string.Format("http://www.facebook.com/share.php?u={0}", Server.UrlEncode("http://" + SessionData.Site.SiteUrl + url));
@@ -1036,24 +1009,10 @@ namespace JXTPortal.Website
                 ltAuthor.Text = HttpUtility.HtmlEncode(news.Author);
                 if (string.IsNullOrWhiteSpace(news.Author)) phAuthor.Visible = false;
                 ltSiteName.Text = HttpUtility.HtmlEncode(SessionData.Site.SiteName);
-
-                string imageurl = string.Empty;
-                using (Entities.Sites site = SitesService.GetBySiteId(news.SiteId))
-                {
-                    if (!string.IsNullOrWhiteSpace(site.SiteAdminLogoUrl))
-                    {
-                        imageurl = string.Format("/media/{0}/{1}", ConfigurationManager.AppSettings["SitesFolder"], site.SiteAdminLogoUrl);
-                    }
-                    else
-                    {
-                        imageurl = "/GetAdminLogo.aspx?SiteID=" + SessionData.Site.SiteId.ToString();
-                    }
-                }
-
                 ltSiteImage.Text = string.Format(@"<figure itemprop=""logo"" itemscope="""" itemtype=""https://schema.org/ImageObject"">
 									            <img src=""{0}"" alt=""{1}"">
 									            <meta itemprop=""url"" content=""{0}"">
-								            </figure>", imageurl, SessionData.Site.SiteName.Replace("\"", ""));
+								            </figure>", "/GetAdminLogo.aspx?SiteID=" + SessionData.Site.SiteId.ToString(), SessionData.Site.SiteName.Replace("\"", ""));
 
 
             }

@@ -18,7 +18,6 @@ using System.Web.UI.WebControls;
 
 using Microsoft.Win32;
 using System.Runtime.InteropServices;
-using System.Drawing.Imaging;
 
 
 namespace JXTPortal.Common
@@ -444,29 +443,6 @@ namespace JXTPortal.Common
             objResizedImage = objOriginalImage.GetThumbnailImage(intNewWidth, intNewHeight, myCallback, IntPtr.Zero);
 
             return objResizedImage;
-        }
-
-        public static string GetImageExtension(System.Drawing.Image img)
-        {
-            string extension = "bmp";
-
-            if (ImageFormat.Gif.Equals(img.RawFormat))
-            {
-                extension = "gif";
-            }
-            else if (ImageFormat.Icon.Equals(img.RawFormat))
-            {
-                extension = "ico";
-            }
-            else if (ImageFormat.Jpeg.Equals(img.RawFormat))
-            {
-                extension = "jpg";
-            }
-            else if (ImageFormat.Png.Equals(img.RawFormat))
-            {
-                extension = "png";
-            }
-            return extension;
         }
 
         private static bool mThumbnailImageAbort()

@@ -9,7 +9,6 @@ using System.Text;
 using System.Data;
 using System.Xml;
 using JXTPortal.Entities;
-using System.Configuration;
 
 namespace JXTPortal.Website
 {
@@ -136,20 +135,13 @@ namespace JXTPortal.Website
                     strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_WECHATURL, HttpUtility.HtmlEncode(consultant.WechatUrl.ToString()));
                     strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_FEATUREDTEAMMEMBER, HttpUtility.HtmlEncode(consultant.FeaturedTeamMember.ToString()));
 
-                    if (!string.IsNullOrWhiteSpace(consultant.ConsultantImageUrl))
+                    if (consultant.ImageUrl != null)
                     {
-                        strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_IMAGEURL, string.Format("/media/{0}/{1}", ConfigurationManager.AppSettings["ConsultantsFolder"], consultant.ConsultantImageUrl));
+                        strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_IMAGEURL, "/getfile.aspx?consultantid=" + consultant.ConsultantId.ToString());
                     }
                     else
                     {
-                        if (consultant.ImageUrl != null)
-                        {
-                            strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_IMAGEURL, "/getfile.aspx?consultantid=" + consultant.ConsultantId.ToString());
-                        }
-                        else
-                        {
-                            strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_IMAGEURL, string.Empty);
-                        }
+                        strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_IMAGEURL, string.Empty);
                     }
 
                     strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_VIDEOURL, HttpUtility.HtmlEncode(consultant.VideoUrl.ToString()));

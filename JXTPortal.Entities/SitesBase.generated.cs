@@ -90,10 +90,9 @@ namespace JXTPortal.Entities
 		///<param name="_live"></param>
 		///<param name="_mobileEnabled"></param>
 		///<param name="_mobileUrl"></param>
-		///<param name="_siteAdminLogoUrl"></param>
 		public SitesBase(System.String _siteName, System.String _siteUrl, System.String _siteDescription, 
 			System.Byte[] _siteAdminLogo, System.DateTime _lastModified, System.Int32? _lastModifiedBy, System.Boolean? _live, 
-			System.Boolean _mobileEnabled, System.String _mobileUrl, System.String _siteAdminLogoUrl)
+			System.Boolean _mobileEnabled, System.String _mobileUrl)
 		{
 			this.entityData = new SitesEntityData();
 			this.backupData = null;
@@ -107,7 +106,6 @@ namespace JXTPortal.Entities
 			this.Live = _live;
 			this.MobileEnabled = _mobileEnabled;
 			this.MobileUrl = _mobileUrl;
-			this.SiteAdminLogoUrl = _siteAdminLogoUrl;
 		}
 		
 		///<summary>
@@ -122,10 +120,9 @@ namespace JXTPortal.Entities
 		///<param name="_live"></param>
 		///<param name="_mobileEnabled"></param>
 		///<param name="_mobileUrl"></param>
-		///<param name="_siteAdminLogoUrl"></param>
 		public static Sites CreateSites(System.String _siteName, System.String _siteUrl, System.String _siteDescription, 
 			System.Byte[] _siteAdminLogo, System.DateTime _lastModified, System.Int32? _lastModifiedBy, System.Boolean? _live, 
-			System.Boolean _mobileEnabled, System.String _mobileUrl, System.String _siteAdminLogoUrl)
+			System.Boolean _mobileEnabled, System.String _mobileUrl)
 		{
 			Sites newSites = new Sites();
 			newSites.SiteName = _siteName;
@@ -137,7 +134,6 @@ namespace JXTPortal.Entities
 			newSites.Live = _live;
 			newSites.MobileEnabled = _mobileEnabled;
 			newSites.MobileUrl = _mobileUrl;
-			newSites.SiteAdminLogoUrl = _siteAdminLogoUrl;
 			return newSites;
 		}
 				
@@ -502,41 +498,6 @@ namespace JXTPortal.Entities
 			}
 		}
 		
-		/// <summary>
-		/// 	Gets or sets the SiteAdminLogoUrl property. 
-		///		
-		/// </summary>
-		/// <value>This type is nvarchar.</value>
-		/// <remarks>
-		/// This property can be set to null. 
-		/// </remarks>
-
-
-
-
-		[DescriptionAttribute(@""), System.ComponentModel.Bindable( System.ComponentModel.BindableSupport.Yes)]
-		[DataObjectField(false, false, true, 1000)]
-		public virtual System.String SiteAdminLogoUrl
-		{
-			get
-			{
-				return this.entityData.SiteAdminLogoUrl; 
-			}
-			
-			set
-			{
-				if (this.entityData.SiteAdminLogoUrl == value)
-					return;
-					
-				OnColumnChanging(SitesColumn.SiteAdminLogoUrl, this.entityData.SiteAdminLogoUrl);
-				this.entityData.SiteAdminLogoUrl = value;
-				if (this.EntityState == EntityState.Unchanged)
-					this.EntityState = EntityState.Changed;
-				OnColumnChanged(SitesColumn.SiteAdminLogoUrl, this.entityData.SiteAdminLogoUrl);
-				OnPropertyChanged("SiteAdminLogoUrl");
-			}
-		}
-		
 		#endregion Data Properties		
 
 		#region Source Foreign Key Property
@@ -557,14 +518,14 @@ namespace JXTPortal.Entities
 		#region Children Collections
 	
 		/// <summary>
-		///	Holds a collection of AvailableStatus objects
-		///	which are related to this object through the relation FK__Available__SiteI__78F3E6EC
+		///	Holds a collection of JobItemsType objects
+		///	which are related to this object through the relation FK__JobItemsT__SiteI__5B3966D3
 		/// </summary>	
 		[System.ComponentModel.Bindable(System.ComponentModel.BindableSupport.Yes)]
-		public virtual TList<AvailableStatus> AvailableStatusCollection
+		public virtual TList<JobItemsType> JobItemsTypeCollection
 		{
-			get { return entityData.AvailableStatusCollection; }
-			set { entityData.AvailableStatusCollection = value; }	
+			get { return entityData.JobItemsTypeCollection; }
+			set { entityData.JobItemsTypeCollection = value; }	
 		}
 	
 		/// <summary>
@@ -587,28 +548,6 @@ namespace JXTPortal.Entities
 		{
 			get { return entityData.JobViewsCollection; }
 			set { entityData.JobViewsCollection = value; }	
-		}
-	
-		/// <summary>
-		///	Holds a collection of IntegrationMappings objects
-		///	which are related to this object through the relation FK_IntegrationMappings_SiteID
-		/// </summary>	
-		[System.ComponentModel.Bindable(System.ComponentModel.BindableSupport.Yes)]
-		public virtual TList<IntegrationMappings> IntegrationMappingsCollection
-		{
-			get { return entityData.IntegrationMappingsCollection; }
-			set { entityData.IntegrationMappingsCollection = value; }	
-		}
-	
-		/// <summary>
-		///	Holds a collection of SiteResources objects
-		///	which are related to this object through the relation FK__SiteResou__SiteI__2A92E03A
-		/// </summary>	
-		[System.ComponentModel.Bindable(System.ComponentModel.BindableSupport.Yes)]
-		public virtual TList<SiteResources> SiteResourcesCollectionGetBySiteId
-		{
-			get { return entityData.SiteResourcesCollectionGetBySiteId; }
-			set { entityData.SiteResourcesCollectionGetBySiteId = value; }	
 		}
 	
 		/// <summary>
@@ -656,17 +595,6 @@ namespace JXTPortal.Entities
 		}
 	
 		/// <summary>
-		///	Holds a collection of SiteMappings objects
-		///	which are related to this object through the relation FK__SiteMappi__Maste__6201483D
-		/// </summary>	
-		[System.ComponentModel.Bindable(System.ComponentModel.BindableSupport.Yes)]
-		public virtual TList<SiteMappings> SiteMappingsCollectionGetByMasterSiteId
-		{
-			get { return entityData.SiteMappingsCollectionGetByMasterSiteId; }
-			set { entityData.SiteMappingsCollectionGetByMasterSiteId = value; }	
-		}
-	
-		/// <summary>
 		///	Holds a collection of SiteWebParts objects
 		///	which are related to this object through the relation FK__SiteWebPa__SiteI__1446FBA6
 		/// </summary>	
@@ -675,17 +603,6 @@ namespace JXTPortal.Entities
 		{
 			get { return entityData.SiteWebPartsCollectionGetBySiteId; }
 			set { entityData.SiteWebPartsCollectionGetBySiteId = value; }	
-		}
-	
-		/// <summary>
-		///	Holds a collection of JobCustomXml objects
-		///	which are related to this object through the relation FK__JobCustom__SiteI__096F4FC2
-		/// </summary>	
-		[System.ComponentModel.Bindable(System.ComponentModel.BindableSupport.Yes)]
-		public virtual TList<JobCustomXml> JobCustomXmlCollection
-		{
-			get { return entityData.JobCustomXmlCollection; }
-			set { entityData.JobCustomXmlCollection = value; }	
 		}
 	
 		/// <summary>
@@ -733,14 +650,14 @@ namespace JXTPortal.Entities
 		}
 	
 		/// <summary>
-		///	Holds a collection of MemberMemberships objects
-		///	which are related to this object through the relation FK__MemberMem__SiteI__0E8809B4
+		///	Holds a collection of AvailableStatus objects
+		///	which are related to this object through the relation FK__Available__SiteI__78F3E6EC
 		/// </summary>	
 		[System.ComponentModel.Bindable(System.ComponentModel.BindableSupport.Yes)]
-		public virtual TList<MemberMemberships> MemberMembershipsCollection
+		public virtual TList<AvailableStatus> AvailableStatusCollection
 		{
-			get { return entityData.MemberMembershipsCollection; }
-			set { entityData.MemberMembershipsCollection = value; }	
+			get { return entityData.AvailableStatusCollection; }
+			set { entityData.AvailableStatusCollection = value; }	
 		}
 	
 		/// <summary>
@@ -766,17 +683,6 @@ namespace JXTPortal.Entities
 		}
 	
 		/// <summary>
-		///	Holds a collection of WebServiceLog objects
-		///	which are related to this object through the relation FK__WebServic__SiteI__7C446C43
-		/// </summary>	
-		[System.ComponentModel.Bindable(System.ComponentModel.BindableSupport.Yes)]
-		public virtual TList<WebServiceLog> WebServiceLogCollection
-		{
-			get { return entityData.WebServiceLogCollection; }
-			set { entityData.WebServiceLogCollection = value; }	
-		}
-	
-		/// <summary>
 		///	Holds a collection of SiteLocation objects
 		///	which are related to this object through the relation FK__SiteLocat__SiteI__515009E6
 		/// </summary>	
@@ -799,39 +705,6 @@ namespace JXTPortal.Entities
 		}
 	
 		/// <summary>
-		///	Holds a collection of MemberWizard objects
-		///	which are related to this object through the relation FK__MemberWiz__SiteI__293BFFF0
-		/// </summary>	
-		[System.ComponentModel.Bindable(System.ComponentModel.BindableSupport.Yes)]
-		public virtual TList<MemberWizard> MemberWizardCollection
-		{
-			get { return entityData.MemberWizardCollection; }
-			set { entityData.MemberWizardCollection = value; }	
-		}
-	
-		/// <summary>
-		///	Holds a collection of Industry objects
-		///	which are related to this object through the relation FK_Industry_SiteID
-		/// </summary>	
-		[System.ComponentModel.Bindable(System.ComponentModel.BindableSupport.Yes)]
-		public virtual TList<Industry> IndustryCollection
-		{
-			get { return entityData.IndustryCollection; }
-			set { entityData.IndustryCollection = value; }	
-		}
-	
-		/// <summary>
-		///	Holds a collection of Consultants objects
-		///	which are related to this object through the relation FK__Consultan__SiteI__777D1EBE
-		/// </summary>	
-		[System.ComponentModel.Bindable(System.ComponentModel.BindableSupport.Yes)]
-		public virtual TList<Consultants> ConsultantsCollection
-		{
-			get { return entityData.ConsultantsCollection; }
-			set { entityData.ConsultantsCollection = value; }	
-		}
-	
-		/// <summary>
 		///	Holds a collection of Files objects
 		///	which are related to this object through the relation FK_Files_Sites
 		/// </summary>	
@@ -843,14 +716,14 @@ namespace JXTPortal.Entities
 		}
 	
 		/// <summary>
-		///	Holds a collection of SiteResourcesXml objects
-		///	which are related to this object through the relation FK__SiteResou__SiteI__3BBD6C3C
+		///	Holds a collection of JobsArchive objects
+		///	which are related to this object through the relation FK__JobsArchi__SiteI__79BDEDF3
 		/// </summary>	
 		[System.ComponentModel.Bindable(System.ComponentModel.BindableSupport.Yes)]
-		public virtual TList<SiteResourcesXml> SiteResourcesXmlCollection
+		public virtual TList<JobsArchive> JobsArchiveCollection
 		{
-			get { return entityData.SiteResourcesXmlCollection; }
-			set { entityData.SiteResourcesXmlCollection = value; }	
+			get { return entityData.JobsArchiveCollection; }
+			set { entityData.JobsArchiveCollection = value; }	
 		}
 	
 		/// <summary>
@@ -862,17 +735,6 @@ namespace JXTPortal.Entities
 		{
 			get { return entityData.AdvertisersCollection; }
 			set { entityData.AdvertisersCollection = value; }	
-		}
-	
-		/// <summary>
-		///	Holds a collection of MemberStatus objects
-		///	which are related to this object through the relation FK__MemberSta__SiteI__16292B7C
-		/// </summary>	
-		[System.ComponentModel.Bindable(System.ComponentModel.BindableSupport.Yes)]
-		public virtual TList<MemberStatus> MemberStatusCollection
-		{
-			get { return entityData.MemberStatusCollection; }
-			set { entityData.MemberStatusCollection = value; }	
 		}
 	
 		/// <summary>
@@ -898,19 +760,8 @@ namespace JXTPortal.Entities
 		}
 	
 		/// <summary>
-		///	Holds a collection of SiteCustomMapping objects
-		///	which are related to this object through the relation FK__SiteCusto__SiteI__142B3EA9
-		/// </summary>	
-		[System.ComponentModel.Bindable(System.ComponentModel.BindableSupport.Yes)]
-		public virtual TList<SiteCustomMapping> SiteCustomMappingCollection
-		{
-			get { return entityData.SiteCustomMappingCollection; }
-			set { entityData.SiteCustomMappingCollection = value; }	
-		}
-	
-		/// <summary>
 		///	Holds a collection of Profession objects
-		///	which are related to this object through the relation FK__Professio__Refer__64049B05
+		///	which are related to this object through the relation FK__Professio__Refer__0552B4A1
 		/// </summary>	
 		[System.ComponentModel.Bindable(System.ComponentModel.BindableSupport.Yes)]
 		public virtual TList<Profession> ProfessionCollection
@@ -940,51 +791,7 @@ namespace JXTPortal.Entities
 			get { return entityData.JobAlertsCollection; }
 			set { entityData.JobAlertsCollection = value; }	
 		}
-	
-		/// <summary>
-		///	Holds a collection of JobApplicationType objects
-		///	which are related to this object through the relation FK__JobApplic__SiteI__1D9344A9
-		/// </summary>	
-		[System.ComponentModel.Bindable(System.ComponentModel.BindableSupport.Yes)]
-		public virtual TList<JobApplicationType> JobApplicationTypeCollection
-		{
-			get { return entityData.JobApplicationTypeCollection; }
-			set { entityData.JobApplicationTypeCollection = value; }	
-		}
-	
-		/// <summary>
-		///	Holds a collection of CustomWidget objects
-		///	which are related to this object through the relation FK__CustomWid__SiteI__0B6120B2
-		/// </summary>	
-		[System.ComponentModel.Bindable(System.ComponentModel.BindableSupport.Yes)]
-		public virtual TList<CustomWidget> CustomWidgetCollection
-		{
-			get { return entityData.CustomWidgetCollection; }
-			set { entityData.CustomWidgetCollection = value; }	
-		}
-	
-		/// <summary>
-		///	Holds a collection of SiteMappings objects
-		///	which are related to this object through the relation FK__SiteMappi__SiteI__610D2404
-		/// </summary>	
-		[System.ComponentModel.Bindable(System.ComponentModel.BindableSupport.Yes)]
-		public virtual TList<SiteMappings> SiteMappingsCollectionGetBySiteId
-		{
-			get { return entityData.SiteMappingsCollectionGetBySiteId; }
-			set { entityData.SiteMappingsCollectionGetBySiteId = value; }	
-		}
-	
-		/// <summary>
-		///	Holds a collection of SiteRoles objects
-		///	which are related to this object through the relation FK__SiteRoles__SiteI__1D9B5BB6
-		/// </summary>	
-		[System.ComponentModel.Bindable(System.ComponentModel.BindableSupport.Yes)]
-		public virtual TList<SiteRoles> SiteRolesCollection
-		{
-			get { return entityData.SiteRolesCollection; }
-			set { entityData.SiteRolesCollection = value; }	
-		}
-	
+		
 		/// <summary>
 		///	Holds a collection of CustomPayment objects
 		///	which are related to this object through the relation FK_CustomPayment_Sites
@@ -994,17 +801,6 @@ namespace JXTPortal.Entities
 		{
 			get { return entityData.CustomPaymentCollection; }
 			set { entityData.CustomPaymentCollection = value; }	
-		}
-	
-		/// <summary>
-		///	Holds a collection of Integrations objects
-		///	which are related to this object through the relation fk_SiteID
-		/// </summary>	
-		[System.ComponentModel.Bindable(System.ComponentModel.BindableSupport.Yes)]
-		public virtual TList<Integrations> IntegrationsCollection
-		{
-			get { return entityData.IntegrationsCollection; }
-			set { entityData.IntegrationsCollection = value; }	
 		}
 	
 		/// <summary>
@@ -1027,6 +823,17 @@ namespace JXTPortal.Entities
 		{
 			get { return entityData.SiteAreaCollection; }
 			set { entityData.SiteAreaCollection = value; }	
+		}
+	
+		/// <summary>
+		///	Holds a collection of SiteResources objects
+		///	which are related to this object through the relation FK__SiteResou__SiteI__116A8EFB
+		/// </summary>	
+		[System.ComponentModel.Bindable(System.ComponentModel.BindableSupport.Yes)]
+		public virtual TList<SiteResources> SiteResourcesCollection
+		{
+			get { return entityData.SiteResourcesCollection; }
+			set { entityData.SiteResourcesCollection = value; }	
 		}
 	
 		/// <summary>
@@ -1063,28 +870,6 @@ namespace JXTPortal.Entities
 		}
 	
 		/// <summary>
-		///	Holds a collection of DynamicContent objects
-		///	which are related to this object through the relation FK__DynamicCo__SiteI__62B3134F
-		/// </summary>	
-		[System.ComponentModel.Bindable(System.ComponentModel.BindableSupport.Yes)]
-		public virtual TList<DynamicContent> DynamicContentCollection
-		{
-			get { return entityData.DynamicContentCollection; }
-			set { entityData.DynamicContentCollection = value; }	
-		}
-	
-		/// <summary>
-		///	Holds a collection of JobItemsType objects
-		///	which are related to this object through the relation FK__JobItemsT__SiteI__5B3966D3
-		/// </summary>	
-		[System.ComponentModel.Bindable(System.ComponentModel.BindableSupport.Yes)]
-		public virtual TList<JobItemsType> JobItemsTypeCollection
-		{
-			get { return entityData.JobItemsTypeCollection; }
-			set { entityData.JobItemsTypeCollection = value; }	
-		}
-	
-		/// <summary>
 		///	Holds a collection of SiteSalaryType objects
 		///	which are related to this object through the relation FK__SiteSalar__SiteI__5614BF03
 		/// </summary>	
@@ -1107,14 +892,14 @@ namespace JXTPortal.Entities
 		}
 	
 		/// <summary>
-		///	Holds a collection of JobsArchive objects
-		///	which are related to this object through the relation FK__JobsArchi__SiteI__79BDEDF3
+		///	Holds a collection of SiteRoles objects
+		///	which are related to this object through the relation FK__SiteRoles__SiteI__1D9B5BB6
 		/// </summary>	
 		[System.ComponentModel.Bindable(System.ComponentModel.BindableSupport.Yes)]
-		public virtual TList<JobsArchive> JobsArchiveCollection
+		public virtual TList<SiteRoles> SiteRolesCollection
 		{
-			get { return entityData.JobsArchiveCollection; }
-			set { entityData.JobsArchiveCollection = value; }	
+			get { return entityData.SiteRolesCollection; }
+			set { entityData.SiteRolesCollection = value; }	
 		}
 	
 		/// <summary>
@@ -1126,17 +911,6 @@ namespace JXTPortal.Entities
 		{
 			get { return entityData.SiteLanguagesCollection; }
 			set { entityData.SiteLanguagesCollection = value; }	
-		}
-	
-		/// <summary>
-		///	Holds a collection of CustomWidgetCssSelector objects
-		///	which are related to this object through the relation FK__CustomWid__SiteI__05A8475C
-		/// </summary>	
-		[System.ComponentModel.Bindable(System.ComponentModel.BindableSupport.Yes)]
-		public virtual TList<CustomWidgetCssSelector> CustomWidgetCssSelectorCollection
-		{
-			get { return entityData.CustomWidgetCssSelectorCollection; }
-			set { entityData.CustomWidgetCssSelectorCollection = value; }	
 		}
 	
 		/// <summary>
@@ -1169,8 +943,6 @@ namespace JXTPortal.Entities
 				new ValidationRuleArgs("MobileUrl", "Mobile Url"));
 			ValidationRules.AddRule( CommonRules.StringMaxLength, 
 				new CommonRules.MaxLengthRuleArgs("MobileUrl", "Mobile Url", 255));
-			ValidationRules.AddRule( CommonRules.StringMaxLength, 
-				new CommonRules.MaxLengthRuleArgs("SiteAdminLogoUrl", "Site Admin Logo Url", 1000));
 		}
    		#endregion
 		
@@ -1192,7 +964,7 @@ namespace JXTPortal.Entities
 		{
 			get
 			{
-				return new string[] {"SiteID", "SiteName", "SiteURL", "SiteDescription", "SiteAdminLogo", "LastModified", "LastModifiedBy", "Live", "MobileEnabled", "MobileUrl", "SiteAdminLogoUrl"};
+				return new string[] {"SiteID", "SiteName", "SiteURL", "SiteDescription", "SiteAdminLogo", "LastModified", "LastModifiedBy", "Live", "MobileEnabled", "MobileUrl"};
 			}
 		}
 		#endregion 
@@ -1350,7 +1122,6 @@ namespace JXTPortal.Entities
 				copy.Live = this.Live;
 				copy.MobileEnabled = this.MobileEnabled;
 				copy.MobileUrl = this.MobileUrl;
-				copy.SiteAdminLogoUrl = this.SiteAdminLogoUrl;
 			
 			if (this.LastModifiedBySource != null && existingCopies.Contains(this.LastModifiedBySource))
 				copy.LastModifiedBySource = existingCopies[this.LastModifiedBySource] as AdminUsers;
@@ -1358,61 +1129,43 @@ namespace JXTPortal.Entities
 				copy.LastModifiedBySource = MakeCopyOf(this.LastModifiedBySource, existingCopies) as AdminUsers;
 		
 			//deep copy nested objects
-			copy.AvailableStatusCollection = (TList<AvailableStatus>) MakeCopyOf(this.AvailableStatusCollection, existingCopies); 
+			copy.JobItemsTypeCollection = (TList<JobItemsType>) MakeCopyOf(this.JobItemsTypeCollection, existingCopies); 
 			copy.JobApplicationCollection = (TList<JobApplication>) MakeCopyOf(this.JobApplicationCollection, existingCopies); 
 			copy.JobViewsCollection = (TList<JobViews>) MakeCopyOf(this.JobViewsCollection, existingCopies); 
-			copy.IntegrationMappingsCollection = (TList<IntegrationMappings>) MakeCopyOf(this.IntegrationMappingsCollection, existingCopies); 
-			copy.SiteResourcesCollectionGetBySiteId = (TList<SiteResources>) MakeCopyOf(this.SiteResourcesCollectionGetBySiteId, existingCopies); 
 			copy.EmailTemplatesCollection = (TList<EmailTemplates>) MakeCopyOf(this.EmailTemplatesCollection, existingCopies); 
 			copy.MembersCollection = (TList<Members>) MakeCopyOf(this.MembersCollection, existingCopies); 
 			copy.JobsCollection = (TList<Jobs>) MakeCopyOf(this.JobsCollection, existingCopies); 
 			copy.DynamicPageFilesCollection = (TList<DynamicPageFiles>) MakeCopyOf(this.DynamicPageFilesCollection, existingCopies); 
-			copy.SiteMappingsCollectionGetByMasterSiteId = (TList<SiteMappings>) MakeCopyOf(this.SiteMappingsCollectionGetByMasterSiteId, existingCopies); 
 			copy.SiteWebPartsCollectionGetBySiteId = (TList<SiteWebParts>) MakeCopyOf(this.SiteWebPartsCollectionGetBySiteId, existingCopies); 
-			copy.JobCustomXmlCollection = (TList<JobCustomXml>) MakeCopyOf(this.JobCustomXmlCollection, existingCopies); 
 			copy.DynamicPageWebPartTemplatesCollection = (TList<DynamicPageWebPartTemplates>) MakeCopyOf(this.DynamicPageWebPartTemplatesCollection, existingCopies); 
 			copy.DynamicPagesCollection = (TList<DynamicPages>) MakeCopyOf(this.DynamicPagesCollection, existingCopies); 
 			copy.NewsCategoriesCollection = (TList<NewsCategories>) MakeCopyOf(this.NewsCategoriesCollection, existingCopies); 
 			copy.SiteAdvertiserFilterCollection = (TList<SiteAdvertiserFilter>) MakeCopyOf(this.SiteAdvertiserFilterCollection, existingCopies); 
-			copy.MemberMembershipsCollection = (TList<MemberMemberships>) MakeCopyOf(this.MemberMembershipsCollection, existingCopies); 
+			copy.AvailableStatusCollection = (TList<AvailableStatus>) MakeCopyOf(this.AvailableStatusCollection, existingCopies); 
 			copy.JobTemplatesCollection = (TList<JobTemplates>) MakeCopyOf(this.JobTemplatesCollection, existingCopies); 
 			copy.SiteCountriesCollection = (TList<SiteCountries>) MakeCopyOf(this.SiteCountriesCollection, existingCopies); 
-			copy.WebServiceLogCollection = (TList<WebServiceLog>) MakeCopyOf(this.WebServiceLogCollection, existingCopies); 
 			copy.SiteLocationCollection = (TList<SiteLocation>) MakeCopyOf(this.SiteLocationCollection, existingCopies); 
 			copy.SiteProfessionCollection = (TList<SiteProfession>) MakeCopyOf(this.SiteProfessionCollection, existingCopies); 
-			copy.MemberWizardCollection = (TList<MemberWizard>) MakeCopyOf(this.MemberWizardCollection, existingCopies); 
-			copy.IndustryCollection = (TList<Industry>) MakeCopyOf(this.IndustryCollection, existingCopies); 
-			copy.ConsultantsCollection = (TList<Consultants>) MakeCopyOf(this.ConsultantsCollection, existingCopies); 
 			copy.FilesCollection = (TList<Files>) MakeCopyOf(this.FilesCollection, existingCopies); 
-			copy.SiteResourcesXmlCollection = (TList<SiteResourcesXml>) MakeCopyOf(this.SiteResourcesXmlCollection, existingCopies); 
+			copy.JobsArchiveCollection = (TList<JobsArchive>) MakeCopyOf(this.JobsArchiveCollection, existingCopies); 
 			copy.AdvertisersCollection = (TList<Advertisers>) MakeCopyOf(this.AdvertisersCollection, existingCopies); 
-			copy.MemberStatusCollection = (TList<MemberStatus>) MakeCopyOf(this.MemberStatusCollection, existingCopies); 
 			copy.WidgetContainersCollection = (TList<WidgetContainers>) MakeCopyOf(this.WidgetContainersCollection, existingCopies); 
 			copy.FoldersCollection = (TList<Folders>) MakeCopyOf(this.FoldersCollection, existingCopies); 
-			copy.SiteCustomMappingCollection = (TList<SiteCustomMapping>) MakeCopyOf(this.SiteCustomMappingCollection, existingCopies); 
 			copy.ProfessionCollection = (TList<Profession>) MakeCopyOf(this.ProfessionCollection, existingCopies); 
 			copy.AdminUsersCollection = (TList<AdminUsers>) MakeCopyOf(this.AdminUsersCollection, existingCopies); 
 			copy.JobAlertsCollection = (TList<JobAlerts>) MakeCopyOf(this.JobAlertsCollection, existingCopies); 
-			copy.JobApplicationTypeCollection = (TList<JobApplicationType>) MakeCopyOf(this.JobApplicationTypeCollection, existingCopies); 
-			copy.CustomWidgetCollection = (TList<CustomWidget>) MakeCopyOf(this.CustomWidgetCollection, existingCopies); 
-			copy.SiteMappingsCollectionGetBySiteId = (TList<SiteMappings>) MakeCopyOf(this.SiteMappingsCollectionGetBySiteId, existingCopies); 
 			copy.SiteWebPartsCollectionGetBySiteId = (TList<SiteWebParts>) MakeCopyOf(this.SiteWebPartsCollectionGetBySiteId, existingCopies); 
-			copy.SiteRolesCollection = (TList<SiteRoles>) MakeCopyOf(this.SiteRolesCollection, existingCopies); 
 			copy.CustomPaymentCollection = (TList<CustomPayment>) MakeCopyOf(this.CustomPaymentCollection, existingCopies); 
-			copy.IntegrationsCollection = (TList<Integrations>) MakeCopyOf(this.IntegrationsCollection, existingCopies); 
 			copy.EnquiriesCollection = (TList<Enquiries>) MakeCopyOf(this.EnquiriesCollection, existingCopies); 
 			copy.SiteAreaCollection = (TList<SiteArea>) MakeCopyOf(this.SiteAreaCollection, existingCopies); 
-			copy.SiteResourcesCollectionGetBySiteId = (TList<SiteResources>) MakeCopyOf(this.SiteResourcesCollectionGetBySiteId, existingCopies); 
+			copy.SiteResourcesCollection = (TList<SiteResources>) MakeCopyOf(this.SiteResourcesCollection, existingCopies); 
 			copy.NewsCollection = (TList<News>) MakeCopyOf(this.NewsCollection, existingCopies); 
 			copy.SiteCurrenciesCollection = (TList<SiteCurrencies>) MakeCopyOf(this.SiteCurrenciesCollection, existingCopies); 
 			copy.SiteWorkTypeCollection = (TList<SiteWorkType>) MakeCopyOf(this.SiteWorkTypeCollection, existingCopies); 
-			copy.DynamicContentCollection = (TList<DynamicContent>) MakeCopyOf(this.DynamicContentCollection, existingCopies); 
-			copy.JobItemsTypeCollection = (TList<JobItemsType>) MakeCopyOf(this.JobItemsTypeCollection, existingCopies); 
 			copy.SiteSalaryTypeCollection = (TList<SiteSalaryType>) MakeCopyOf(this.SiteSalaryTypeCollection, existingCopies); 
 			copy.GlobalSettingsCollection = (TList<GlobalSettings>) MakeCopyOf(this.GlobalSettingsCollection, existingCopies); 
-			copy.JobsArchiveCollection = (TList<JobsArchive>) MakeCopyOf(this.JobsArchiveCollection, existingCopies); 
+			copy.SiteRolesCollection = (TList<SiteRoles>) MakeCopyOf(this.SiteRolesCollection, existingCopies); 
 			copy.SiteLanguagesCollection = (TList<SiteLanguages>) MakeCopyOf(this.SiteLanguagesCollection, existingCopies); 
-			copy.CustomWidgetCssSelectorCollection = (TList<CustomWidgetCssSelector>) MakeCopyOf(this.CustomWidgetCssSelectorCollection, existingCopies); 
 			copy.EducationsCollection = (TList<Educations>) MakeCopyOf(this.EducationsCollection, existingCopies); 
 			copy.EntityState = this.EntityState;
 			copy.SuppressEntityEvents = false;
@@ -1564,8 +1317,6 @@ namespace JXTPortal.Entities
 					return entityData.MobileEnabled != _originalData.MobileEnabled;
 					case SitesColumn.MobileUrl:
 					return entityData.MobileUrl != _originalData.MobileUrl;
-					case SitesColumn.SiteAdminLogoUrl:
-					return entityData.SiteAdminLogoUrl != _originalData.SiteAdminLogoUrl;
 			
 				default:
 					return false;
@@ -1603,7 +1354,6 @@ namespace JXTPortal.Entities
 			result = result || entityData.Live != _originalData.Live;
 			result = result || entityData.MobileEnabled != _originalData.MobileEnabled;
 			result = result || entityData.MobileUrl != _originalData.MobileUrl;
-			result = result || entityData.SiteAdminLogoUrl != _originalData.SiteAdminLogoUrl;
 			return result;
 		}	
 		
@@ -1622,8 +1372,7 @@ namespace JXTPortal.Entities
 				_originalData.LastModifiedBy,
 				_originalData.Live,
 				_originalData.MobileEnabled,
-				_originalData.MobileUrl,
-				_originalData.SiteAdminLogoUrl
+				_originalData.MobileUrl
 				);
 				
 			return (Sites)this.Clone();
@@ -1662,8 +1411,7 @@ namespace JXTPortal.Entities
 					((this.LastModifiedBy == null) ? string.Empty : this.LastModifiedBy.ToString()).GetHashCode() ^ 
 					((this.Live == null) ? string.Empty : this.Live.ToString()).GetHashCode() ^ 
 					this.MobileEnabled.GetHashCode() ^ 
-					this.MobileUrl.GetHashCode() ^ 
-					((this.SiteAdminLogoUrl == null) ? string.Empty : this.SiteAdminLogoUrl.ToString()).GetHashCode();
+					this.MobileUrl.GetHashCode();
         }
 		
 		///<summary>
@@ -1758,15 +1506,6 @@ namespace JXTPortal.Entities
 				equal = false;
 			if (Object1.MobileUrl != Object2.MobileUrl)
 				equal = false;
-			if ( Object1.SiteAdminLogoUrl != null && Object2.SiteAdminLogoUrl != null )
-			{
-				if (Object1.SiteAdminLogoUrl != Object2.SiteAdminLogoUrl)
-					equal = false;
-			}
-			else if (Object1.SiteAdminLogoUrl == null ^ Object2.SiteAdminLogoUrl == null )
-			{
-				equal = false;
-			}
 					
 			return equal;
 		}
@@ -1863,12 +1602,6 @@ namespace JXTPortal.Entities
             	
             	case SitesColumn.MobileUrl:
             		return this.MobileUrl.CompareTo(rhs.MobileUrl);
-            		
-            		                 
-            	
-            	
-            	case SitesColumn.SiteAdminLogoUrl:
-            		return this.SiteAdminLogoUrl.CompareTo(rhs.SiteAdminLogoUrl);
             		
             		                 
             }
@@ -2005,7 +1738,7 @@ namespace JXTPortal.Entities
 		public override string ToString()
 		{
 			return string.Format(System.Globalization.CultureInfo.InvariantCulture,
-				"{12}{11}- SiteId: {0}{11}- SiteName: {1}{11}- SiteUrl: {2}{11}- SiteDescription: {3}{11}- SiteAdminLogo: {4}{11}- LastModified: {5}{11}- LastModifiedBy: {6}{11}- Live: {7}{11}- MobileEnabled: {8}{11}- MobileUrl: {9}{11}- SiteAdminLogoUrl: {10}{11}{13}", 
+				"{11}{10}- SiteId: {0}{10}- SiteName: {1}{10}- SiteUrl: {2}{10}- SiteDescription: {3}{10}- SiteAdminLogo: {4}{10}- LastModified: {5}{10}- LastModifiedBy: {6}{10}- Live: {7}{10}- MobileEnabled: {8}{10}- MobileUrl: {9}{10}{12}", 
 				this.SiteId,
 				(this.SiteName == null) ? string.Empty : this.SiteName.ToString(),
 				(this.SiteUrl == null) ? string.Empty : this.SiteUrl.ToString(),
@@ -2016,7 +1749,6 @@ namespace JXTPortal.Entities
 				(this.Live == null) ? string.Empty : this.Live.ToString(),
 				this.MobileEnabled,
 				this.MobileUrl,
-				(this.SiteAdminLogoUrl == null) ? string.Empty : this.SiteAdminLogoUrl.ToString(),
 				System.Environment.NewLine, 
 				this.GetType(),
 				this.Error.Length == 0 ? string.Empty : string.Format("- Error: {0}\n",this.Error));
@@ -2095,11 +1827,6 @@ namespace JXTPortal.Entities
 		/// MobileUrl : 
 		/// </summary>
 		public System.String		  MobileUrl = string.Empty;
-		
-		/// <summary>
-		/// SiteAdminLogoUrl : 
-		/// </summary>
-		public System.String		  SiteAdminLogoUrl = null;
 		#endregion
 			
 		#region Source Foreign Key Property
@@ -2122,27 +1849,27 @@ namespace JXTPortal.Entities
 	
 		#region Data Properties
 
-		#region AvailableStatusCollection
+		#region JobItemsTypeCollection
 		
-		private TList<AvailableStatus> _availableStatusSiteId;
+		private TList<JobItemsType> _jobItemsTypeSiteId;
 		
 		/// <summary>
 		///	Holds a collection of entity objects
-		///	which are related to this object through the relation _availableStatusSiteId
+		///	which are related to this object through the relation _jobItemsTypeSiteId
 		/// </summary>
 		
-		public TList<AvailableStatus> AvailableStatusCollection
+		public TList<JobItemsType> JobItemsTypeCollection
 		{
 			get
 			{
-				if (_availableStatusSiteId == null)
+				if (_jobItemsTypeSiteId == null)
 				{
-				_availableStatusSiteId = new TList<AvailableStatus>();
+				_jobItemsTypeSiteId = new TList<JobItemsType>();
 				}
 	
-				return _availableStatusSiteId;
+				return _jobItemsTypeSiteId;
 			}
-			set { _availableStatusSiteId = value; }
+			set { _jobItemsTypeSiteId = value; }
 		}
 		
 		#endregion
@@ -2193,56 +1920,6 @@ namespace JXTPortal.Entities
 				return _jobViewsSiteId;
 			}
 			set { _jobViewsSiteId = value; }
-		}
-		
-		#endregion
-
-		#region IntegrationMappingsCollection
-		
-		private TList<IntegrationMappings> _integrationMappingsSiteId;
-		
-		/// <summary>
-		///	Holds a collection of entity objects
-		///	which are related to this object through the relation _integrationMappingsSiteId
-		/// </summary>
-		
-		public TList<IntegrationMappings> IntegrationMappingsCollection
-		{
-			get
-			{
-				if (_integrationMappingsSiteId == null)
-				{
-				_integrationMappingsSiteId = new TList<IntegrationMappings>();
-				}
-	
-				return _integrationMappingsSiteId;
-			}
-			set { _integrationMappingsSiteId = value; }
-		}
-		
-		#endregion
-
-		#region SiteResourcesCollectionGetBySiteId
-		
-		private TList<SiteResources> _siteResourcesSiteIdGetBySiteId;
-		
-		/// <summary>
-		///	Holds a collection of entity objects
-		///	which are related to this object through the relation _siteResourcesSiteIdGetBySiteId
-		/// </summary>
-		
-		public TList<SiteResources> SiteResourcesCollectionGetBySiteId
-		{
-			get
-			{
-				if (_siteResourcesSiteIdGetBySiteId == null)
-				{
-				_siteResourcesSiteIdGetBySiteId = new TList<SiteResources>();
-				}
-	
-				return _siteResourcesSiteIdGetBySiteId;
-			}
-			set { _siteResourcesSiteIdGetBySiteId = value; }
 		}
 		
 		#endregion
@@ -2347,31 +2024,6 @@ namespace JXTPortal.Entities
 		
 		#endregion
 
-		#region SiteMappingsCollectionGetByMasterSiteId
-		
-		private TList<SiteMappings> _siteMappingsSiteIdGetByMasterSiteId;
-		
-		/// <summary>
-		///	Holds a collection of entity objects
-		///	which are related to this object through the relation _siteMappingsSiteIdGetByMasterSiteId
-		/// </summary>
-		
-		public TList<SiteMappings> SiteMappingsCollectionGetByMasterSiteId
-		{
-			get
-			{
-				if (_siteMappingsSiteIdGetByMasterSiteId == null)
-				{
-				_siteMappingsSiteIdGetByMasterSiteId = new TList<SiteMappings>();
-				}
-	
-				return _siteMappingsSiteIdGetByMasterSiteId;
-			}
-			set { _siteMappingsSiteIdGetByMasterSiteId = value; }
-		}
-		
-		#endregion
-
 		#region SiteWebPartsCollectionGetBySiteId
 		
 		private TList<SiteWebParts> _siteWebPartsSiteIdGetBySiteId;
@@ -2393,31 +2045,6 @@ namespace JXTPortal.Entities
 				return _siteWebPartsSiteIdGetBySiteId;
 			}
 			set { _siteWebPartsSiteIdGetBySiteId = value; }
-		}
-		
-		#endregion
-
-		#region JobCustomXmlCollection
-		
-		private TList<JobCustomXml> _jobCustomXmlSiteId;
-		
-		/// <summary>
-		///	Holds a collection of entity objects
-		///	which are related to this object through the relation _jobCustomXmlSiteId
-		/// </summary>
-		
-		public TList<JobCustomXml> JobCustomXmlCollection
-		{
-			get
-			{
-				if (_jobCustomXmlSiteId == null)
-				{
-				_jobCustomXmlSiteId = new TList<JobCustomXml>();
-				}
-	
-				return _jobCustomXmlSiteId;
-			}
-			set { _jobCustomXmlSiteId = value; }
 		}
 		
 		#endregion
@@ -2522,27 +2149,27 @@ namespace JXTPortal.Entities
 		
 		#endregion
 
-		#region MemberMembershipsCollection
+		#region AvailableStatusCollection
 		
-		private TList<MemberMemberships> _memberMembershipsSiteId;
+		private TList<AvailableStatus> _availableStatusSiteId;
 		
 		/// <summary>
 		///	Holds a collection of entity objects
-		///	which are related to this object through the relation _memberMembershipsSiteId
+		///	which are related to this object through the relation _availableStatusSiteId
 		/// </summary>
 		
-		public TList<MemberMemberships> MemberMembershipsCollection
+		public TList<AvailableStatus> AvailableStatusCollection
 		{
 			get
 			{
-				if (_memberMembershipsSiteId == null)
+				if (_availableStatusSiteId == null)
 				{
-				_memberMembershipsSiteId = new TList<MemberMemberships>();
+				_availableStatusSiteId = new TList<AvailableStatus>();
 				}
 	
-				return _memberMembershipsSiteId;
+				return _availableStatusSiteId;
 			}
-			set { _memberMembershipsSiteId = value; }
+			set { _availableStatusSiteId = value; }
 		}
 		
 		#endregion
@@ -2597,31 +2224,6 @@ namespace JXTPortal.Entities
 		
 		#endregion
 
-		#region WebServiceLogCollection
-		
-		private TList<WebServiceLog> _webServiceLogSiteId;
-		
-		/// <summary>
-		///	Holds a collection of entity objects
-		///	which are related to this object through the relation _webServiceLogSiteId
-		/// </summary>
-		
-		public TList<WebServiceLog> WebServiceLogCollection
-		{
-			get
-			{
-				if (_webServiceLogSiteId == null)
-				{
-				_webServiceLogSiteId = new TList<WebServiceLog>();
-				}
-	
-				return _webServiceLogSiteId;
-			}
-			set { _webServiceLogSiteId = value; }
-		}
-		
-		#endregion
-
 		#region SiteLocationCollection
 		
 		private TList<SiteLocation> _siteLocationSiteId;
@@ -2672,81 +2274,6 @@ namespace JXTPortal.Entities
 		
 		#endregion
 
-		#region MemberWizardCollection
-		
-		private TList<MemberWizard> _memberWizardSiteId;
-		
-		/// <summary>
-		///	Holds a collection of entity objects
-		///	which are related to this object through the relation _memberWizardSiteId
-		/// </summary>
-		
-		public TList<MemberWizard> MemberWizardCollection
-		{
-			get
-			{
-				if (_memberWizardSiteId == null)
-				{
-				_memberWizardSiteId = new TList<MemberWizard>();
-				}
-	
-				return _memberWizardSiteId;
-			}
-			set { _memberWizardSiteId = value; }
-		}
-		
-		#endregion
-
-		#region IndustryCollection
-		
-		private TList<Industry> _industrySiteId;
-		
-		/// <summary>
-		///	Holds a collection of entity objects
-		///	which are related to this object through the relation _industrySiteId
-		/// </summary>
-		
-		public TList<Industry> IndustryCollection
-		{
-			get
-			{
-				if (_industrySiteId == null)
-				{
-				_industrySiteId = new TList<Industry>();
-				}
-	
-				return _industrySiteId;
-			}
-			set { _industrySiteId = value; }
-		}
-		
-		#endregion
-
-		#region ConsultantsCollection
-		
-		private TList<Consultants> _consultantsSiteId;
-		
-		/// <summary>
-		///	Holds a collection of entity objects
-		///	which are related to this object through the relation _consultantsSiteId
-		/// </summary>
-		
-		public TList<Consultants> ConsultantsCollection
-		{
-			get
-			{
-				if (_consultantsSiteId == null)
-				{
-				_consultantsSiteId = new TList<Consultants>();
-				}
-	
-				return _consultantsSiteId;
-			}
-			set { _consultantsSiteId = value; }
-		}
-		
-		#endregion
-
 		#region FilesCollection
 		
 		private TList<Files> _filesSiteId;
@@ -2772,27 +2299,27 @@ namespace JXTPortal.Entities
 		
 		#endregion
 
-		#region SiteResourcesXmlCollection
+		#region JobsArchiveCollection
 		
-		private TList<SiteResourcesXml> _siteResourcesXmlSiteId;
+		private TList<JobsArchive> _jobsArchiveSiteId;
 		
 		/// <summary>
 		///	Holds a collection of entity objects
-		///	which are related to this object through the relation _siteResourcesXmlSiteId
+		///	which are related to this object through the relation _jobsArchiveSiteId
 		/// </summary>
 		
-		public TList<SiteResourcesXml> SiteResourcesXmlCollection
+		public TList<JobsArchive> JobsArchiveCollection
 		{
 			get
 			{
-				if (_siteResourcesXmlSiteId == null)
+				if (_jobsArchiveSiteId == null)
 				{
-				_siteResourcesXmlSiteId = new TList<SiteResourcesXml>();
+				_jobsArchiveSiteId = new TList<JobsArchive>();
 				}
 	
-				return _siteResourcesXmlSiteId;
+				return _jobsArchiveSiteId;
 			}
-			set { _siteResourcesXmlSiteId = value; }
+			set { _jobsArchiveSiteId = value; }
 		}
 		
 		#endregion
@@ -2818,31 +2345,6 @@ namespace JXTPortal.Entities
 				return _advertisersSiteId;
 			}
 			set { _advertisersSiteId = value; }
-		}
-		
-		#endregion
-
-		#region MemberStatusCollection
-		
-		private TList<MemberStatus> _memberStatusSiteId;
-		
-		/// <summary>
-		///	Holds a collection of entity objects
-		///	which are related to this object through the relation _memberStatusSiteId
-		/// </summary>
-		
-		public TList<MemberStatus> MemberStatusCollection
-		{
-			get
-			{
-				if (_memberStatusSiteId == null)
-				{
-				_memberStatusSiteId = new TList<MemberStatus>();
-				}
-	
-				return _memberStatusSiteId;
-			}
-			set { _memberStatusSiteId = value; }
 		}
 		
 		#endregion
@@ -2893,31 +2395,6 @@ namespace JXTPortal.Entities
 				return _foldersSiteId;
 			}
 			set { _foldersSiteId = value; }
-		}
-		
-		#endregion
-
-		#region SiteCustomMappingCollection
-		
-		private TList<SiteCustomMapping> _siteCustomMappingSiteId;
-		
-		/// <summary>
-		///	Holds a collection of entity objects
-		///	which are related to this object through the relation _siteCustomMappingSiteId
-		/// </summary>
-		
-		public TList<SiteCustomMapping> SiteCustomMappingCollection
-		{
-			get
-			{
-				if (_siteCustomMappingSiteId == null)
-				{
-				_siteCustomMappingSiteId = new TList<SiteCustomMapping>();
-				}
-	
-				return _siteCustomMappingSiteId;
-			}
-			set { _siteCustomMappingSiteId = value; }
 		}
 		
 		#endregion
@@ -2997,106 +2474,14 @@ namespace JXTPortal.Entities
 		
 		#endregion
 
-		#region JobApplicationTypeCollection
-		
-		private TList<JobApplicationType> _jobApplicationTypeSiteId;
-		
-		/// <summary>
-		///	Holds a collection of entity objects
-		///	which are related to this object through the relation _jobApplicationTypeSiteId
-		/// </summary>
-		
-		public TList<JobApplicationType> JobApplicationTypeCollection
-		{
-			get
-			{
-				if (_jobApplicationTypeSiteId == null)
-				{
-				_jobApplicationTypeSiteId = new TList<JobApplicationType>();
-				}
-	
-				return _jobApplicationTypeSiteId;
-			}
-			set { _jobApplicationTypeSiteId = value; }
-		}
-		
-		#endregion
-
-		#region CustomWidgetCollection
-		
-		private TList<CustomWidget> _customWidgetSiteId;
-		
-		/// <summary>
-		///	Holds a collection of entity objects
-		///	which are related to this object through the relation _customWidgetSiteId
-		/// </summary>
-		
-		public TList<CustomWidget> CustomWidgetCollection
-		{
-			get
-			{
-				if (_customWidgetSiteId == null)
-				{
-				_customWidgetSiteId = new TList<CustomWidget>();
-				}
-	
-				return _customWidgetSiteId;
-			}
-			set { _customWidgetSiteId = value; }
-		}
-		
-		#endregion
-
-		#region SiteMappingsCollectionGetBySiteId
-		
-		private TList<SiteMappings> _siteMappingsSiteIdGetBySiteId;
-		
-		/// <summary>
-		///	Holds a collection of entity objects
-		///	which are related to this object through the relation _siteMappingsSiteIdGetBySiteId
-		/// </summary>
-		
-		public TList<SiteMappings> SiteMappingsCollectionGetBySiteId
-		{
-			get
-			{
-				if (_siteMappingsSiteIdGetBySiteId == null)
-				{
-				_siteMappingsSiteIdGetBySiteId = new TList<SiteMappings>();
-				}
-	
-				return _siteMappingsSiteIdGetBySiteId;
-			}
-			set { _siteMappingsSiteIdGetBySiteId = value; }
-		}
-		
-		#endregion
-
 		#region SiteWebPartsCollectionGetBySiteId
-		#endregion
-
-		#region SiteRolesCollection
 		
-		private TList<SiteRoles> _siteRolesSiteId;
 		
 		/// <summary>
 		///	Holds a collection of entity objects
-		///	which are related to this object through the relation _siteRolesSiteId
+		///	which are related to this object through the relation _siteWebPartsSiteIdGetBySiteId
 		/// </summary>
 		
-		public TList<SiteRoles> SiteRolesCollection
-		{
-			get
-			{
-				if (_siteRolesSiteId == null)
-				{
-				_siteRolesSiteId = new TList<SiteRoles>();
-				}
-	
-				return _siteRolesSiteId;
-			}
-			set { _siteRolesSiteId = value; }
-		}
 		
 		#endregion
 
@@ -3121,31 +2506,6 @@ namespace JXTPortal.Entities
 				return _customPaymentSiteId;
 			}
 			set { _customPaymentSiteId = value; }
-		}
-		
-		#endregion
-
-		#region IntegrationsCollection
-		
-		private TList<Integrations> _integrationsSiteId;
-		
-		/// <summary>
-		///	Holds a collection of entity objects
-		///	which are related to this object through the relation _integrationsSiteId
-		/// </summary>
-		
-		public TList<Integrations> IntegrationsCollection
-		{
-			get
-			{
-				if (_integrationsSiteId == null)
-				{
-				_integrationsSiteId = new TList<Integrations>();
-				}
-	
-				return _integrationsSiteId;
-			}
-			set { _integrationsSiteId = value; }
 		}
 		
 		#endregion
@@ -3196,6 +2556,31 @@ namespace JXTPortal.Entities
 				return _siteAreaSiteId;
 			}
 			set { _siteAreaSiteId = value; }
+		}
+		
+		#endregion
+
+		#region SiteResourcesCollection
+		
+		private TList<SiteResources> _siteResourcesSiteId;
+		
+		/// <summary>
+		///	Holds a collection of entity objects
+		///	which are related to this object through the relation _siteResourcesSiteId
+		/// </summary>
+		
+		public TList<SiteResources> SiteResourcesCollection
+		{
+			get
+			{
+				if (_siteResourcesSiteId == null)
+				{
+				_siteResourcesSiteId = new TList<SiteResources>();
+				}
+	
+				return _siteResourcesSiteId;
+			}
+			set { _siteResourcesSiteId = value; }
 		}
 		
 		#endregion
@@ -3275,56 +2660,6 @@ namespace JXTPortal.Entities
 		
 		#endregion
 
-		#region DynamicContentCollection
-		
-		private TList<DynamicContent> _dynamicContentSiteId;
-		
-		/// <summary>
-		///	Holds a collection of entity objects
-		///	which are related to this object through the relation _dynamicContentSiteId
-		/// </summary>
-		
-		public TList<DynamicContent> DynamicContentCollection
-		{
-			get
-			{
-				if (_dynamicContentSiteId == null)
-				{
-				_dynamicContentSiteId = new TList<DynamicContent>();
-				}
-	
-				return _dynamicContentSiteId;
-			}
-			set { _dynamicContentSiteId = value; }
-		}
-		
-		#endregion
-
-		#region JobItemsTypeCollection
-		
-		private TList<JobItemsType> _jobItemsTypeSiteId;
-		
-		/// <summary>
-		///	Holds a collection of entity objects
-		///	which are related to this object through the relation _jobItemsTypeSiteId
-		/// </summary>
-		
-		public TList<JobItemsType> JobItemsTypeCollection
-		{
-			get
-			{
-				if (_jobItemsTypeSiteId == null)
-				{
-				_jobItemsTypeSiteId = new TList<JobItemsType>();
-				}
-	
-				return _jobItemsTypeSiteId;
-			}
-			set { _jobItemsTypeSiteId = value; }
-		}
-		
-		#endregion
-
 		#region SiteSalaryTypeCollection
 		
 		private TList<SiteSalaryType> _siteSalaryTypeSiteId;
@@ -3375,27 +2710,27 @@ namespace JXTPortal.Entities
 		
 		#endregion
 
-		#region JobsArchiveCollection
+		#region SiteRolesCollection
 		
-		private TList<JobsArchive> _jobsArchiveSiteId;
+		private TList<SiteRoles> _siteRolesSiteId;
 		
 		/// <summary>
 		///	Holds a collection of entity objects
-		///	which are related to this object through the relation _jobsArchiveSiteId
+		///	which are related to this object through the relation _siteRolesSiteId
 		/// </summary>
 		
-		public TList<JobsArchive> JobsArchiveCollection
+		public TList<SiteRoles> SiteRolesCollection
 		{
 			get
 			{
-				if (_jobsArchiveSiteId == null)
+				if (_siteRolesSiteId == null)
 				{
-				_jobsArchiveSiteId = new TList<JobsArchive>();
+				_siteRolesSiteId = new TList<SiteRoles>();
 				}
 	
-				return _jobsArchiveSiteId;
+				return _siteRolesSiteId;
 			}
-			set { _jobsArchiveSiteId = value; }
+			set { _siteRolesSiteId = value; }
 		}
 		
 		#endregion
@@ -3421,31 +2756,6 @@ namespace JXTPortal.Entities
 				return _siteLanguagesSiteId;
 			}
 			set { _siteLanguagesSiteId = value; }
-		}
-		
-		#endregion
-
-		#region CustomWidgetCssSelectorCollection
-		
-		private TList<CustomWidgetCssSelector> _customWidgetCssSelectorSiteId;
-		
-		/// <summary>
-		///	Holds a collection of entity objects
-		///	which are related to this object through the relation _customWidgetCssSelectorSiteId
-		/// </summary>
-		
-		public TList<CustomWidgetCssSelector> CustomWidgetCssSelectorCollection
-		{
-			get
-			{
-				if (_customWidgetCssSelectorSiteId == null)
-				{
-				_customWidgetCssSelectorSiteId = new TList<CustomWidgetCssSelector>();
-				}
-	
-				return _customWidgetCssSelectorSiteId;
-			}
-			set { _customWidgetCssSelectorSiteId = value; }
 		}
 		
 		#endregion
@@ -3498,7 +2808,6 @@ namespace JXTPortal.Entities
 			_tmp.Live = this.Live;
 			_tmp.MobileEnabled = this.MobileEnabled;
 			_tmp.MobileUrl = this.MobileUrl;
-			_tmp.SiteAdminLogoUrl = this.SiteAdminLogoUrl;
 			
 			#region Source Parent Composite Entities
 			if (this.LastModifiedBySource != null)
@@ -3507,16 +2816,12 @@ namespace JXTPortal.Entities
 		
 			#region Child Collections
 			//deep copy nested objects
-			if (this._availableStatusSiteId != null)
-				_tmp.AvailableStatusCollection = (TList<AvailableStatus>) MakeCopyOf(this.AvailableStatusCollection); 
+			if (this._jobItemsTypeSiteId != null)
+				_tmp.JobItemsTypeCollection = (TList<JobItemsType>) MakeCopyOf(this.JobItemsTypeCollection); 
 			if (this._jobApplicationSiteIdReferral != null)
 				_tmp.JobApplicationCollection = (TList<JobApplication>) MakeCopyOf(this.JobApplicationCollection); 
 			if (this._jobViewsSiteId != null)
 				_tmp.JobViewsCollection = (TList<JobViews>) MakeCopyOf(this.JobViewsCollection); 
-			if (this._integrationMappingsSiteId != null)
-				_tmp.IntegrationMappingsCollection = (TList<IntegrationMappings>) MakeCopyOf(this.IntegrationMappingsCollection); 
-			if (this._siteResourcesSiteIdGetBySiteId != null)
-				_tmp.SiteResourcesCollectionGetBySiteId = (TList<SiteResources>) MakeCopyOf(this.SiteResourcesCollectionGetBySiteId); 
 			if (this._emailTemplatesSiteId != null)
 				_tmp.EmailTemplatesCollection = (TList<EmailTemplates>) MakeCopyOf(this.EmailTemplatesCollection); 
 			if (this._membersSiteId != null)
@@ -3525,12 +2830,8 @@ namespace JXTPortal.Entities
 				_tmp.JobsCollection = (TList<Jobs>) MakeCopyOf(this.JobsCollection); 
 			if (this._dynamicPageFilesSiteId != null)
 				_tmp.DynamicPageFilesCollection = (TList<DynamicPageFiles>) MakeCopyOf(this.DynamicPageFilesCollection); 
-			if (this._siteMappingsSiteIdGetByMasterSiteId != null)
-				_tmp.SiteMappingsCollectionGetByMasterSiteId = (TList<SiteMappings>) MakeCopyOf(this.SiteMappingsCollectionGetByMasterSiteId); 
 			if (this._siteWebPartsSiteIdGetBySiteId != null)
 				_tmp.SiteWebPartsCollectionGetBySiteId = (TList<SiteWebParts>) MakeCopyOf(this.SiteWebPartsCollectionGetBySiteId); 
-			if (this._jobCustomXmlSiteId != null)
-				_tmp.JobCustomXmlCollection = (TList<JobCustomXml>) MakeCopyOf(this.JobCustomXmlCollection); 
 			if (this._dynamicPageWebPartTemplatesSiteId != null)
 				_tmp.DynamicPageWebPartTemplatesCollection = (TList<DynamicPageWebPartTemplates>) MakeCopyOf(this.DynamicPageWebPartTemplatesCollection); 
 			if (this._dynamicPagesSiteId != null)
@@ -3539,84 +2840,56 @@ namespace JXTPortal.Entities
 				_tmp.NewsCategoriesCollection = (TList<NewsCategories>) MakeCopyOf(this.NewsCategoriesCollection); 
 			if (this._siteAdvertiserFilterSiteId != null)
 				_tmp.SiteAdvertiserFilterCollection = (TList<SiteAdvertiserFilter>) MakeCopyOf(this.SiteAdvertiserFilterCollection); 
-			if (this._memberMembershipsSiteId != null)
-				_tmp.MemberMembershipsCollection = (TList<MemberMemberships>) MakeCopyOf(this.MemberMembershipsCollection); 
+			if (this._availableStatusSiteId != null)
+				_tmp.AvailableStatusCollection = (TList<AvailableStatus>) MakeCopyOf(this.AvailableStatusCollection); 
 			if (this._jobTemplatesSiteId != null)
 				_tmp.JobTemplatesCollection = (TList<JobTemplates>) MakeCopyOf(this.JobTemplatesCollection); 
 			if (this._siteCountriesSiteId != null)
 				_tmp.SiteCountriesCollection = (TList<SiteCountries>) MakeCopyOf(this.SiteCountriesCollection); 
-			if (this._webServiceLogSiteId != null)
-				_tmp.WebServiceLogCollection = (TList<WebServiceLog>) MakeCopyOf(this.WebServiceLogCollection); 
 			if (this._siteLocationSiteId != null)
 				_tmp.SiteLocationCollection = (TList<SiteLocation>) MakeCopyOf(this.SiteLocationCollection); 
 			if (this._siteProfessionSiteId != null)
 				_tmp.SiteProfessionCollection = (TList<SiteProfession>) MakeCopyOf(this.SiteProfessionCollection); 
-			if (this._memberWizardSiteId != null)
-				_tmp.MemberWizardCollection = (TList<MemberWizard>) MakeCopyOf(this.MemberWizardCollection); 
-			if (this._industrySiteId != null)
-				_tmp.IndustryCollection = (TList<Industry>) MakeCopyOf(this.IndustryCollection); 
-			if (this._consultantsSiteId != null)
-				_tmp.ConsultantsCollection = (TList<Consultants>) MakeCopyOf(this.ConsultantsCollection); 
 			if (this._filesSiteId != null)
 				_tmp.FilesCollection = (TList<Files>) MakeCopyOf(this.FilesCollection); 
-			if (this._siteResourcesXmlSiteId != null)
-				_tmp.SiteResourcesXmlCollection = (TList<SiteResourcesXml>) MakeCopyOf(this.SiteResourcesXmlCollection); 
+			if (this._jobsArchiveSiteId != null)
+				_tmp.JobsArchiveCollection = (TList<JobsArchive>) MakeCopyOf(this.JobsArchiveCollection); 
 			if (this._advertisersSiteId != null)
 				_tmp.AdvertisersCollection = (TList<Advertisers>) MakeCopyOf(this.AdvertisersCollection); 
-			if (this._memberStatusSiteId != null)
-				_tmp.MemberStatusCollection = (TList<MemberStatus>) MakeCopyOf(this.MemberStatusCollection); 
 			if (this._widgetContainersSiteId != null)
 				_tmp.WidgetContainersCollection = (TList<WidgetContainers>) MakeCopyOf(this.WidgetContainersCollection); 
 			if (this._foldersSiteId != null)
 				_tmp.FoldersCollection = (TList<Folders>) MakeCopyOf(this.FoldersCollection); 
-			if (this._siteCustomMappingSiteId != null)
-				_tmp.SiteCustomMappingCollection = (TList<SiteCustomMapping>) MakeCopyOf(this.SiteCustomMappingCollection); 
 			if (this._professionReferredSiteId != null)
 				_tmp.ProfessionCollection = (TList<Profession>) MakeCopyOf(this.ProfessionCollection); 
 			if (this._adminUsersSiteId != null)
 				_tmp.AdminUsersCollection = (TList<AdminUsers>) MakeCopyOf(this.AdminUsersCollection); 
 			if (this._jobAlertsSiteId != null)
 				_tmp.JobAlertsCollection = (TList<JobAlerts>) MakeCopyOf(this.JobAlertsCollection); 
-			if (this._jobApplicationTypeSiteId != null)
-				_tmp.JobApplicationTypeCollection = (TList<JobApplicationType>) MakeCopyOf(this.JobApplicationTypeCollection); 
-			if (this._customWidgetSiteId != null)
-				_tmp.CustomWidgetCollection = (TList<CustomWidget>) MakeCopyOf(this.CustomWidgetCollection); 
-			if (this._siteMappingsSiteIdGetBySiteId != null)
-				_tmp.SiteMappingsCollectionGetBySiteId = (TList<SiteMappings>) MakeCopyOf(this.SiteMappingsCollectionGetBySiteId); 
 			if (this._siteWebPartsSiteIdGetBySiteId != null)
 				_tmp.SiteWebPartsCollectionGetBySiteId = (TList<SiteWebParts>) MakeCopyOf(this.SiteWebPartsCollectionGetBySiteId); 
-			if (this._siteRolesSiteId != null)
-				_tmp.SiteRolesCollection = (TList<SiteRoles>) MakeCopyOf(this.SiteRolesCollection); 
 			if (this._customPaymentSiteId != null)
 				_tmp.CustomPaymentCollection = (TList<CustomPayment>) MakeCopyOf(this.CustomPaymentCollection); 
-			if (this._integrationsSiteId != null)
-				_tmp.IntegrationsCollection = (TList<Integrations>) MakeCopyOf(this.IntegrationsCollection); 
 			if (this._enquiriesSiteId != null)
 				_tmp.EnquiriesCollection = (TList<Enquiries>) MakeCopyOf(this.EnquiriesCollection); 
 			if (this._siteAreaSiteId != null)
 				_tmp.SiteAreaCollection = (TList<SiteArea>) MakeCopyOf(this.SiteAreaCollection); 
-			if (this._siteResourcesSiteIdGetBySiteId != null)
-				_tmp.SiteResourcesCollectionGetBySiteId = (TList<SiteResources>) MakeCopyOf(this.SiteResourcesCollectionGetBySiteId); 
+			if (this._siteResourcesSiteId != null)
+				_tmp.SiteResourcesCollection = (TList<SiteResources>) MakeCopyOf(this.SiteResourcesCollection); 
 			if (this._newsSiteId != null)
 				_tmp.NewsCollection = (TList<News>) MakeCopyOf(this.NewsCollection); 
 			if (this._siteCurrenciesSiteId != null)
 				_tmp.SiteCurrenciesCollection = (TList<SiteCurrencies>) MakeCopyOf(this.SiteCurrenciesCollection); 
 			if (this._siteWorkTypeSiteId != null)
 				_tmp.SiteWorkTypeCollection = (TList<SiteWorkType>) MakeCopyOf(this.SiteWorkTypeCollection); 
-			if (this._dynamicContentSiteId != null)
-				_tmp.DynamicContentCollection = (TList<DynamicContent>) MakeCopyOf(this.DynamicContentCollection); 
-			if (this._jobItemsTypeSiteId != null)
-				_tmp.JobItemsTypeCollection = (TList<JobItemsType>) MakeCopyOf(this.JobItemsTypeCollection); 
 			if (this._siteSalaryTypeSiteId != null)
 				_tmp.SiteSalaryTypeCollection = (TList<SiteSalaryType>) MakeCopyOf(this.SiteSalaryTypeCollection); 
 			if (this._globalSettingsSiteId != null)
 				_tmp.GlobalSettingsCollection = (TList<GlobalSettings>) MakeCopyOf(this.GlobalSettingsCollection); 
-			if (this._jobsArchiveSiteId != null)
-				_tmp.JobsArchiveCollection = (TList<JobsArchive>) MakeCopyOf(this.JobsArchiveCollection); 
+			if (this._siteRolesSiteId != null)
+				_tmp.SiteRolesCollection = (TList<SiteRoles>) MakeCopyOf(this.SiteRolesCollection); 
 			if (this._siteLanguagesSiteId != null)
 				_tmp.SiteLanguagesCollection = (TList<SiteLanguages>) MakeCopyOf(this.SiteLanguagesCollection); 
-			if (this._customWidgetCssSelectorSiteId != null)
-				_tmp.CustomWidgetCssSelectorCollection = (TList<CustomWidgetCssSelector>) MakeCopyOf(this.CustomWidgetCssSelectorCollection); 
 			if (this._educationsSiteId != null)
 				_tmp.EducationsCollection = (TList<Educations>) MakeCopyOf(this.EducationsCollection); 
 			#endregion Child Collections
@@ -3649,7 +2922,6 @@ namespace JXTPortal.Entities
 			_tmp.Live = this.Live;
 			_tmp.MobileEnabled = this.MobileEnabled;
 			_tmp.MobileUrl = this.MobileUrl;
-			_tmp.SiteAdminLogoUrl = this.SiteAdminLogoUrl;
 			
 			#region Source Parent Composite Entities
 			if (this.LastModifiedBySource != null && existingCopies.Contains(this.LastModifiedBySource))
@@ -3660,60 +2932,43 @@ namespace JXTPortal.Entities
 		
 			#region Child Collections
 			//deep copy nested objects
-			_tmp.AvailableStatusCollection = (TList<AvailableStatus>) MakeCopyOf(this.AvailableStatusCollection, existingCopies); 
+			_tmp.JobItemsTypeCollection = (TList<JobItemsType>) MakeCopyOf(this.JobItemsTypeCollection, existingCopies); 
 			_tmp.JobApplicationCollection = (TList<JobApplication>) MakeCopyOf(this.JobApplicationCollection, existingCopies); 
 			_tmp.JobViewsCollection = (TList<JobViews>) MakeCopyOf(this.JobViewsCollection, existingCopies); 
-			_tmp.IntegrationMappingsCollection = (TList<IntegrationMappings>) MakeCopyOf(this.IntegrationMappingsCollection, existingCopies); 
-			_tmp.SiteResourcesCollectionGetBySiteId = (TList<SiteResources>) MakeCopyOf(this.SiteResourcesCollectionGetBySiteId, existingCopies); 
 			_tmp.EmailTemplatesCollection = (TList<EmailTemplates>) MakeCopyOf(this.EmailTemplatesCollection, existingCopies); 
 			_tmp.MembersCollection = (TList<Members>) MakeCopyOf(this.MembersCollection, existingCopies); 
 			_tmp.JobsCollection = (TList<Jobs>) MakeCopyOf(this.JobsCollection, existingCopies); 
 			_tmp.DynamicPageFilesCollection = (TList<DynamicPageFiles>) MakeCopyOf(this.DynamicPageFilesCollection, existingCopies); 
-			_tmp.SiteMappingsCollectionGetByMasterSiteId = (TList<SiteMappings>) MakeCopyOf(this.SiteMappingsCollectionGetByMasterSiteId, existingCopies); 
 			_tmp.SiteWebPartsCollectionGetBySiteId = (TList<SiteWebParts>) MakeCopyOf(this.SiteWebPartsCollectionGetBySiteId, existingCopies); 
-			_tmp.JobCustomXmlCollection = (TList<JobCustomXml>) MakeCopyOf(this.JobCustomXmlCollection, existingCopies); 
 			_tmp.DynamicPageWebPartTemplatesCollection = (TList<DynamicPageWebPartTemplates>) MakeCopyOf(this.DynamicPageWebPartTemplatesCollection, existingCopies); 
 			_tmp.DynamicPagesCollection = (TList<DynamicPages>) MakeCopyOf(this.DynamicPagesCollection, existingCopies); 
 			_tmp.NewsCategoriesCollection = (TList<NewsCategories>) MakeCopyOf(this.NewsCategoriesCollection, existingCopies); 
 			_tmp.SiteAdvertiserFilterCollection = (TList<SiteAdvertiserFilter>) MakeCopyOf(this.SiteAdvertiserFilterCollection, existingCopies); 
-			_tmp.MemberMembershipsCollection = (TList<MemberMemberships>) MakeCopyOf(this.MemberMembershipsCollection, existingCopies); 
+			_tmp.AvailableStatusCollection = (TList<AvailableStatus>) MakeCopyOf(this.AvailableStatusCollection, existingCopies); 
 			_tmp.JobTemplatesCollection = (TList<JobTemplates>) MakeCopyOf(this.JobTemplatesCollection, existingCopies); 
 			_tmp.SiteCountriesCollection = (TList<SiteCountries>) MakeCopyOf(this.SiteCountriesCollection, existingCopies); 
-			_tmp.WebServiceLogCollection = (TList<WebServiceLog>) MakeCopyOf(this.WebServiceLogCollection, existingCopies); 
 			_tmp.SiteLocationCollection = (TList<SiteLocation>) MakeCopyOf(this.SiteLocationCollection, existingCopies); 
 			_tmp.SiteProfessionCollection = (TList<SiteProfession>) MakeCopyOf(this.SiteProfessionCollection, existingCopies); 
-			_tmp.MemberWizardCollection = (TList<MemberWizard>) MakeCopyOf(this.MemberWizardCollection, existingCopies); 
-			_tmp.IndustryCollection = (TList<Industry>) MakeCopyOf(this.IndustryCollection, existingCopies); 
-			_tmp.ConsultantsCollection = (TList<Consultants>) MakeCopyOf(this.ConsultantsCollection, existingCopies); 
 			_tmp.FilesCollection = (TList<Files>) MakeCopyOf(this.FilesCollection, existingCopies); 
-			_tmp.SiteResourcesXmlCollection = (TList<SiteResourcesXml>) MakeCopyOf(this.SiteResourcesXmlCollection, existingCopies); 
+			_tmp.JobsArchiveCollection = (TList<JobsArchive>) MakeCopyOf(this.JobsArchiveCollection, existingCopies); 
 			_tmp.AdvertisersCollection = (TList<Advertisers>) MakeCopyOf(this.AdvertisersCollection, existingCopies); 
-			_tmp.MemberStatusCollection = (TList<MemberStatus>) MakeCopyOf(this.MemberStatusCollection, existingCopies); 
 			_tmp.WidgetContainersCollection = (TList<WidgetContainers>) MakeCopyOf(this.WidgetContainersCollection, existingCopies); 
 			_tmp.FoldersCollection = (TList<Folders>) MakeCopyOf(this.FoldersCollection, existingCopies); 
-			_tmp.SiteCustomMappingCollection = (TList<SiteCustomMapping>) MakeCopyOf(this.SiteCustomMappingCollection, existingCopies); 
 			_tmp.ProfessionCollection = (TList<Profession>) MakeCopyOf(this.ProfessionCollection, existingCopies); 
 			_tmp.AdminUsersCollection = (TList<AdminUsers>) MakeCopyOf(this.AdminUsersCollection, existingCopies); 
 			_tmp.JobAlertsCollection = (TList<JobAlerts>) MakeCopyOf(this.JobAlertsCollection, existingCopies); 
-			_tmp.JobApplicationTypeCollection = (TList<JobApplicationType>) MakeCopyOf(this.JobApplicationTypeCollection, existingCopies); 
-			_tmp.CustomWidgetCollection = (TList<CustomWidget>) MakeCopyOf(this.CustomWidgetCollection, existingCopies); 
-			_tmp.SiteMappingsCollectionGetBySiteId = (TList<SiteMappings>) MakeCopyOf(this.SiteMappingsCollectionGetBySiteId, existingCopies); 
-			_tmp.SiteRolesCollection = (TList<SiteRoles>) MakeCopyOf(this.SiteRolesCollection, existingCopies); 
+			_tmp.SiteWebPartsCollectionGetBySiteId = (TList<SiteWebParts>) MakeCopyOf(this.SiteWebPartsCollectionGetBySiteId, existingCopies); 
 			_tmp.CustomPaymentCollection = (TList<CustomPayment>) MakeCopyOf(this.CustomPaymentCollection, existingCopies); 
-			_tmp.IntegrationsCollection = (TList<Integrations>) MakeCopyOf(this.IntegrationsCollection, existingCopies); 
 			_tmp.EnquiriesCollection = (TList<Enquiries>) MakeCopyOf(this.EnquiriesCollection, existingCopies); 
 			_tmp.SiteAreaCollection = (TList<SiteArea>) MakeCopyOf(this.SiteAreaCollection, existingCopies); 
-			_tmp.SiteResourcesCollectionGetBySiteId = (TList<SiteResources>) MakeCopyOf(this.SiteResourcesCollectionGetBySiteId, existingCopies); 
+			_tmp.SiteResourcesCollection = (TList<SiteResources>) MakeCopyOf(this.SiteResourcesCollection, existingCopies); 
 			_tmp.NewsCollection = (TList<News>) MakeCopyOf(this.NewsCollection, existingCopies); 
 			_tmp.SiteCurrenciesCollection = (TList<SiteCurrencies>) MakeCopyOf(this.SiteCurrenciesCollection, existingCopies); 
 			_tmp.SiteWorkTypeCollection = (TList<SiteWorkType>) MakeCopyOf(this.SiteWorkTypeCollection, existingCopies); 
-			_tmp.DynamicContentCollection = (TList<DynamicContent>) MakeCopyOf(this.DynamicContentCollection, existingCopies); 
-			_tmp.JobItemsTypeCollection = (TList<JobItemsType>) MakeCopyOf(this.JobItemsTypeCollection, existingCopies); 
 			_tmp.SiteSalaryTypeCollection = (TList<SiteSalaryType>) MakeCopyOf(this.SiteSalaryTypeCollection, existingCopies); 
 			_tmp.GlobalSettingsCollection = (TList<GlobalSettings>) MakeCopyOf(this.GlobalSettingsCollection, existingCopies); 
-			_tmp.JobsArchiveCollection = (TList<JobsArchive>) MakeCopyOf(this.JobsArchiveCollection, existingCopies); 
+			_tmp.SiteRolesCollection = (TList<SiteRoles>) MakeCopyOf(this.SiteRolesCollection, existingCopies); 
 			_tmp.SiteLanguagesCollection = (TList<SiteLanguages>) MakeCopyOf(this.SiteLanguagesCollection, existingCopies); 
-			_tmp.CustomWidgetCssSelectorCollection = (TList<CustomWidgetCssSelector>) MakeCopyOf(this.CustomWidgetCssSelectorCollection, existingCopies); 
 			_tmp.EducationsCollection = (TList<Educations>) MakeCopyOf(this.EducationsCollection, existingCopies); 
 			#endregion Child Collections
 			
@@ -4142,13 +3397,7 @@ namespace JXTPortal.Entities
 		/// </summary>
 		[EnumTextValue("MobileUrl")]
 		[ColumnEnum("MobileUrl", typeof(System.String), System.Data.DbType.AnsiString, false, false, false, 255)]
-		MobileUrl = 10,
-		/// <summary>
-		/// SiteAdminLogoUrl : 
-		/// </summary>
-		[EnumTextValue("SiteAdminLogoUrl")]
-		[ColumnEnum("SiteAdminLogoUrl", typeof(System.String), System.Data.DbType.String, false, false, true, 1000)]
-		SiteAdminLogoUrl = 11
+		MobileUrl = 10
 	}//End enum
 
 	#endregion SitesColumn Enum

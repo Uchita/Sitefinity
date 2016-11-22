@@ -88,8 +88,7 @@ namespace JXTPortal
 		///<param name="_nominatedCompanyEmailAddress"></param>
 		///<param name="_nominatedCompanyPhone"></param>
 		///<param name="_preferredContactMethod"></param>
-		///<param name="_advertiserLogoUrl"></param>
-		public static Advertisers CreateAdvertisers(System.Int32? _siteId, System.Int32 _advertiserAccountTypeId, System.Int32 _advertiserBusinessTypeId, System.Int32 _advertiserAccountStatusId, System.String _companyName, System.String _businessNumber, System.String _streetAddress1, System.String _streetAddress2, System.DateTime _lastModified, System.Int32 _lastModifiedBy, System.String _postalAddress1, System.String _postalAddress2, System.String _webAddress, System.String _noOfEmployees, System.DateTime? _firstApprovedDate, System.String _profile, System.String _charityNumber, System.String _searchField, System.DateTime? _freeTrialStartDate, System.DateTime? _freeTrialEndDate, System.String _accountsPayableEmail, System.Boolean _requireLogonForExternalApplication, System.Byte[] _advertiserLogo, System.String _linkedInLogo, System.String _linkedInCompanyId, System.String _linkedInEmail, System.DateTime? _registerDate, System.String _externalAdvertiserId, System.String _videoLink, System.String _industry, System.String _nominatedCompanyRole, System.String _nominatedCompanyFirstName, System.String _nominatedCompanyLastName, System.String _nominatedCompanyEmailAddress, System.String _nominatedCompanyPhone, System.Int32? _preferredContactMethod, System.String _advertiserLogoUrl)
+		public static Advertisers CreateAdvertisers(System.Int32? _siteId, System.Int32 _advertiserAccountTypeId, System.Int32 _advertiserBusinessTypeId, System.Int32 _advertiserAccountStatusId, System.String _companyName, System.String _businessNumber, System.String _streetAddress1, System.String _streetAddress2, System.DateTime _lastModified, System.Int32 _lastModifiedBy, System.String _postalAddress1, System.String _postalAddress2, System.String _webAddress, System.String _noOfEmployees, System.DateTime? _firstApprovedDate, System.String _profile, System.String _charityNumber, System.String _searchField, System.DateTime? _freeTrialStartDate, System.DateTime? _freeTrialEndDate, System.String _accountsPayableEmail, System.Boolean _requireLogonForExternalApplication, System.Byte[] _advertiserLogo, System.String _linkedInLogo, System.String _linkedInCompanyId, System.String _linkedInEmail, System.DateTime? _registerDate, System.String _externalAdvertiserId, System.String _videoLink, System.String _industry, System.String _nominatedCompanyRole, System.String _nominatedCompanyFirstName, System.String _nominatedCompanyLastName, System.String _nominatedCompanyEmailAddress, System.String _nominatedCompanyPhone, System.Int32? _preferredContactMethod)
 		{
 			Advertisers newEntityAdvertisers = new Advertisers();
 			newEntityAdvertisers.SiteId  = _siteId;
@@ -128,7 +127,6 @@ namespace JXTPortal
 			newEntityAdvertisers.NominatedCompanyEmailAddress  = _nominatedCompanyEmailAddress;
 			newEntityAdvertisers.NominatedCompanyPhone  = _nominatedCompanyPhone;
 			newEntityAdvertisers.PreferredContactMethod  = _preferredContactMethod;
-			newEntityAdvertisers.AdvertiserLogoUrl  = _advertiserLogoUrl;
 			return newEntityAdvertisers;
 		}
 		#endregion Constructors
@@ -2109,18 +2107,9 @@ namespace JXTPortal
 		/// <param name="linkedInEmail"> A <c>System.String</c> instance.</param>
 		/// <param name="registerDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="externalAdvertiserId"> A <c>System.String</c> instance.</param>
-		/// <param name="videoLink"> A <c>System.String</c> instance.</param>
-		/// <param name="industry"> A <c>System.String</c> instance.</param>
-		/// <param name="nominatedCompanyRole"> A <c>System.String</c> instance.</param>
-		/// <param name="nominatedCompanyFirstName"> A <c>System.String</c> instance.</param>
-		/// <param name="nominatedCompanyLastName"> A <c>System.String</c> instance.</param>
-		/// <param name="nominatedCompanyEmailAddress"> A <c>System.String</c> instance.</param>
-		/// <param name="nominatedCompanyPhone"> A <c>System.String</c> instance.</param>
-		/// <param name="preferredContactMethod"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="advertiserLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
 		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public virtual  DataSet Find(System.Boolean? searchUsingOr, System.Int32? advertiserId, System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId, System.String videoLink, System.String industry, System.String nominatedCompanyRole, System.String nominatedCompanyFirstName, System.String nominatedCompanyLastName, System.String nominatedCompanyEmailAddress, System.String nominatedCompanyPhone, System.Int32? preferredContactMethod, System.String advertiserLogoUrl)
+		public virtual  DataSet Find(System.Boolean? searchUsingOr, System.Int32? advertiserId, System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -2140,7 +2129,7 @@ namespace JXTPortal
 				
 				transactionManager = ConnectionScope.ValidateOrCreateTransaction(noTranByDefault);
 				dataProvider = ConnectionScope.Current.DataProvider;
-				result = dataProvider.AdvertisersProvider.Find(transactionManager , searchUsingOr, advertiserId, siteId, advertiserAccountTypeId, advertiserBusinessTypeId, advertiserAccountStatusId, companyName, businessNumber, streetAddress1, streetAddress2, lastModified, lastModifiedBy, postalAddress1, postalAddress2, webAddress, noOfEmployees, firstApprovedDate, profile, charityNumber, searchField, freeTrialStartDate, freeTrialEndDate, accountsPayableEmail, requireLogonForExternalApplication, advertiserLogo, linkedInLogo, linkedInCompanyId, linkedInEmail, registerDate, externalAdvertiserId, videoLink, industry, nominatedCompanyRole, nominatedCompanyFirstName, nominatedCompanyLastName, nominatedCompanyEmailAddress, nominatedCompanyPhone, preferredContactMethod, advertiserLogoUrl);
+				result = dataProvider.AdvertisersProvider.Find(transactionManager , searchUsingOr, advertiserId, siteId, advertiserAccountTypeId, advertiserBusinessTypeId, advertiserAccountStatusId, companyName, businessNumber, streetAddress1, streetAddress2, lastModified, lastModifiedBy, postalAddress1, postalAddress2, webAddress, noOfEmployees, firstApprovedDate, profile, charityNumber, searchField, freeTrialStartDate, freeTrialEndDate, accountsPayableEmail, requireLogonForExternalApplication, advertiserLogo, linkedInLogo, linkedInCompanyId, linkedInEmail, registerDate, externalAdvertiserId);
 	        
 			}
             catch (Exception exc)
@@ -2191,20 +2180,11 @@ namespace JXTPortal
 		/// <param name="linkedInEmail"> A <c>System.String</c> instance.</param>
 		/// <param name="registerDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="externalAdvertiserId"> A <c>System.String</c> instance.</param>
-		/// <param name="videoLink"> A <c>System.String</c> instance.</param>
-		/// <param name="industry"> A <c>System.String</c> instance.</param>
-		/// <param name="nominatedCompanyRole"> A <c>System.String</c> instance.</param>
-		/// <param name="nominatedCompanyFirstName"> A <c>System.String</c> instance.</param>
-		/// <param name="nominatedCompanyLastName"> A <c>System.String</c> instance.</param>
-		/// <param name="nominatedCompanyEmailAddress"> A <c>System.String</c> instance.</param>
-		/// <param name="nominatedCompanyPhone"> A <c>System.String</c> instance.</param>
-		/// <param name="preferredContactMethod"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="advertiserLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
 		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public virtual  DataSet Find( System.Boolean? searchUsingOr, System.Int32? advertiserId, System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId, System.String videoLink, System.String industry, System.String nominatedCompanyRole, System.String nominatedCompanyFirstName, System.String nominatedCompanyLastName, System.String nominatedCompanyEmailAddress, System.String nominatedCompanyPhone, System.Int32? preferredContactMethod, System.String advertiserLogoUrl, int start, int pageLength)
+		public virtual  DataSet Find( System.Boolean? searchUsingOr, System.Int32? advertiserId, System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId, int start, int pageLength)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -2225,7 +2205,7 @@ namespace JXTPortal
 				transactionManager = ConnectionScope.ValidateOrCreateTransaction(noTranByDefault);
 				dataProvider = ConnectionScope.Current.DataProvider;
                 
-				result = dataProvider.AdvertisersProvider.Find(transactionManager, start, pageLength , searchUsingOr, advertiserId, siteId, advertiserAccountTypeId, advertiserBusinessTypeId, advertiserAccountStatusId, companyName, businessNumber, streetAddress1, streetAddress2, lastModified, lastModifiedBy, postalAddress1, postalAddress2, webAddress, noOfEmployees, firstApprovedDate, profile, charityNumber, searchField, freeTrialStartDate, freeTrialEndDate, accountsPayableEmail, requireLogonForExternalApplication, advertiserLogo, linkedInLogo, linkedInCompanyId, linkedInEmail, registerDate, externalAdvertiserId, videoLink, industry, nominatedCompanyRole, nominatedCompanyFirstName, nominatedCompanyLastName, nominatedCompanyEmailAddress, nominatedCompanyPhone, preferredContactMethod, advertiserLogoUrl);
+				result = dataProvider.AdvertisersProvider.Find(transactionManager, start, pageLength , searchUsingOr, advertiserId, siteId, advertiserAccountTypeId, advertiserBusinessTypeId, advertiserAccountStatusId, companyName, businessNumber, streetAddress1, streetAddress2, lastModified, lastModifiedBy, postalAddress1, postalAddress2, webAddress, noOfEmployees, firstApprovedDate, profile, charityNumber, searchField, freeTrialStartDate, freeTrialEndDate, accountsPayableEmail, requireLogonForExternalApplication, advertiserLogo, linkedInLogo, linkedInCompanyId, linkedInEmail, registerDate, externalAdvertiserId);
 	        
 			}
             catch (Exception exc)
@@ -2277,17 +2257,8 @@ namespace JXTPortal
 		/// <param name="linkedInEmail"> A <c>System.String</c> instance.</param>
 		/// <param name="registerDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="externalAdvertiserId"> A <c>System.String</c> instance.</param>
-		/// <param name="videoLink"> A <c>System.String</c> instance.</param>
-		/// <param name="industry"> A <c>System.String</c> instance.</param>
-		/// <param name="nominatedCompanyRole"> A <c>System.String</c> instance.</param>
-		/// <param name="nominatedCompanyFirstName"> A <c>System.String</c> instance.</param>
-		/// <param name="nominatedCompanyLastName"> A <c>System.String</c> instance.</param>
-		/// <param name="nominatedCompanyEmailAddress"> A <c>System.String</c> instance.</param>
-		/// <param name="nominatedCompanyPhone"> A <c>System.String</c> instance.</param>
-		/// <param name="preferredContactMethod"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="advertiserLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public virtual  void Update(System.Int32? advertiserId, System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId, System.String videoLink, System.String industry, System.String nominatedCompanyRole, System.String nominatedCompanyFirstName, System.String nominatedCompanyLastName, System.String nominatedCompanyEmailAddress, System.String nominatedCompanyPhone, System.Int32? preferredContactMethod, System.String advertiserLogoUrl)
+		public virtual  void Update(System.Int32? advertiserId, System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -2307,7 +2278,7 @@ namespace JXTPortal
 				
 				transactionManager = ConnectionScope.ValidateOrCreateTransaction();
 				dataProvider = ConnectionScope.Current.DataProvider;
-				dataProvider.AdvertisersProvider.Update(transactionManager , advertiserId, siteId, advertiserAccountTypeId, advertiserBusinessTypeId, advertiserAccountStatusId, companyName, businessNumber, streetAddress1, streetAddress2, lastModified, lastModifiedBy, postalAddress1, postalAddress2, webAddress, noOfEmployees, firstApprovedDate, profile, charityNumber, searchField, freeTrialStartDate, freeTrialEndDate, accountsPayableEmail, requireLogonForExternalApplication, advertiserLogo, linkedInLogo, linkedInCompanyId, linkedInEmail, registerDate, externalAdvertiserId, videoLink, industry, nominatedCompanyRole, nominatedCompanyFirstName, nominatedCompanyLastName, nominatedCompanyEmailAddress, nominatedCompanyPhone, preferredContactMethod, advertiserLogoUrl);
+				dataProvider.AdvertisersProvider.Update(transactionManager , advertiserId, siteId, advertiserAccountTypeId, advertiserBusinessTypeId, advertiserAccountStatusId, companyName, businessNumber, streetAddress1, streetAddress2, lastModified, lastModifiedBy, postalAddress1, postalAddress2, webAddress, noOfEmployees, firstApprovedDate, profile, charityNumber, searchField, freeTrialStartDate, freeTrialEndDate, accountsPayableEmail, requireLogonForExternalApplication, advertiserLogo, linkedInLogo, linkedInCompanyId, linkedInEmail, registerDate, externalAdvertiserId);
 	        
 				if (!isBorrowedTransaction && transactionManager != null && transactionManager.IsOpen)
 					transactionManager.Commit();
@@ -2359,19 +2330,10 @@ namespace JXTPortal
 		/// <param name="linkedInEmail"> A <c>System.String</c> instance.</param>
 		/// <param name="registerDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="externalAdvertiserId"> A <c>System.String</c> instance.</param>
-		/// <param name="videoLink"> A <c>System.String</c> instance.</param>
-		/// <param name="industry"> A <c>System.String</c> instance.</param>
-		/// <param name="nominatedCompanyRole"> A <c>System.String</c> instance.</param>
-		/// <param name="nominatedCompanyFirstName"> A <c>System.String</c> instance.</param>
-		/// <param name="nominatedCompanyLastName"> A <c>System.String</c> instance.</param>
-		/// <param name="nominatedCompanyEmailAddress"> A <c>System.String</c> instance.</param>
-		/// <param name="nominatedCompanyPhone"> A <c>System.String</c> instance.</param>
-		/// <param name="preferredContactMethod"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="advertiserLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public virtual  void Update( System.Int32? advertiserId, System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId, System.String videoLink, System.String industry, System.String nominatedCompanyRole, System.String nominatedCompanyFirstName, System.String nominatedCompanyLastName, System.String nominatedCompanyEmailAddress, System.String nominatedCompanyPhone, System.Int32? preferredContactMethod, System.String advertiserLogoUrl, int start, int pageLength)
+		public virtual  void Update( System.Int32? advertiserId, System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId, int start, int pageLength)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -2392,7 +2354,7 @@ namespace JXTPortal
 				transactionManager = ConnectionScope.ValidateOrCreateTransaction();
 				dataProvider = ConnectionScope.Current.DataProvider;
                 
-				dataProvider.AdvertisersProvider.Update(transactionManager, start, pageLength , advertiserId, siteId, advertiserAccountTypeId, advertiserBusinessTypeId, advertiserAccountStatusId, companyName, businessNumber, streetAddress1, streetAddress2, lastModified, lastModifiedBy, postalAddress1, postalAddress2, webAddress, noOfEmployees, firstApprovedDate, profile, charityNumber, searchField, freeTrialStartDate, freeTrialEndDate, accountsPayableEmail, requireLogonForExternalApplication, advertiserLogo, linkedInLogo, linkedInCompanyId, linkedInEmail, registerDate, externalAdvertiserId, videoLink, industry, nominatedCompanyRole, nominatedCompanyFirstName, nominatedCompanyLastName, nominatedCompanyEmailAddress, nominatedCompanyPhone, preferredContactMethod, advertiserLogoUrl);
+				dataProvider.AdvertisersProvider.Update(transactionManager, start, pageLength , advertiserId, siteId, advertiserAccountTypeId, advertiserBusinessTypeId, advertiserAccountStatusId, companyName, businessNumber, streetAddress1, streetAddress2, lastModified, lastModifiedBy, postalAddress1, postalAddress2, webAddress, noOfEmployees, firstApprovedDate, profile, charityNumber, searchField, freeTrialStartDate, freeTrialEndDate, accountsPayableEmail, requireLogonForExternalApplication, advertiserLogo, linkedInLogo, linkedInCompanyId, linkedInEmail, registerDate, externalAdvertiserId);
 	        
 				if (!isBorrowedTransaction && transactionManager != null && transactionManager.IsOpen)
 					transactionManager.Commit();
@@ -3027,18 +2989,9 @@ namespace JXTPortal
 		/// <param name="linkedInEmail"> A <c>System.String</c> instance.</param>
 		/// <param name="registerDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="externalAdvertiserId"> A <c>System.String</c> instance.</param>
-		/// <param name="videoLink"> A <c>System.String</c> instance.</param>
-		/// <param name="industry"> A <c>System.String</c> instance.</param>
-		/// <param name="nominatedCompanyRole"> A <c>System.String</c> instance.</param>
-		/// <param name="nominatedCompanyFirstName"> A <c>System.String</c> instance.</param>
-		/// <param name="nominatedCompanyLastName"> A <c>System.String</c> instance.</param>
-		/// <param name="nominatedCompanyEmailAddress"> A <c>System.String</c> instance.</param>
-		/// <param name="nominatedCompanyPhone"> A <c>System.String</c> instance.</param>
-		/// <param name="preferredContactMethod"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="advertiserLogoUrl"> A <c>System.String</c> instance.</param>
 			/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public virtual  void Insert(System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId, System.String videoLink, System.String industry, System.String nominatedCompanyRole, System.String nominatedCompanyFirstName, System.String nominatedCompanyLastName, System.String nominatedCompanyEmailAddress, System.String nominatedCompanyPhone, System.Int32? preferredContactMethod, System.String advertiserLogoUrl, ref System.Int32? advertiserId)
+		public virtual  void Insert(System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId, ref System.Int32? advertiserId)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -3058,7 +3011,7 @@ namespace JXTPortal
 				
 				transactionManager = ConnectionScope.ValidateOrCreateTransaction();
 				dataProvider = ConnectionScope.Current.DataProvider;
-				dataProvider.AdvertisersProvider.Insert(transactionManager , siteId, advertiserAccountTypeId, advertiserBusinessTypeId, advertiserAccountStatusId, companyName, businessNumber, streetAddress1, streetAddress2, lastModified, lastModifiedBy, postalAddress1, postalAddress2, webAddress, noOfEmployees, firstApprovedDate, profile, charityNumber, searchField, freeTrialStartDate, freeTrialEndDate, accountsPayableEmail, requireLogonForExternalApplication, advertiserLogo, linkedInLogo, linkedInCompanyId, linkedInEmail, registerDate, externalAdvertiserId, videoLink, industry, nominatedCompanyRole, nominatedCompanyFirstName, nominatedCompanyLastName, nominatedCompanyEmailAddress, nominatedCompanyPhone, preferredContactMethod, advertiserLogoUrl, ref advertiserId);
+				dataProvider.AdvertisersProvider.Insert(transactionManager , siteId, advertiserAccountTypeId, advertiserBusinessTypeId, advertiserAccountStatusId, companyName, businessNumber, streetAddress1, streetAddress2, lastModified, lastModifiedBy, postalAddress1, postalAddress2, webAddress, noOfEmployees, firstApprovedDate, profile, charityNumber, searchField, freeTrialStartDate, freeTrialEndDate, accountsPayableEmail, requireLogonForExternalApplication, advertiserLogo, linkedInLogo, linkedInCompanyId, linkedInEmail, registerDate, externalAdvertiserId, ref advertiserId);
 	        
 				if (!isBorrowedTransaction && transactionManager != null && transactionManager.IsOpen)
 					transactionManager.Commit();
@@ -3109,20 +3062,11 @@ namespace JXTPortal
 		/// <param name="linkedInEmail"> A <c>System.String</c> instance.</param>
 		/// <param name="registerDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="externalAdvertiserId"> A <c>System.String</c> instance.</param>
-		/// <param name="videoLink"> A <c>System.String</c> instance.</param>
-		/// <param name="industry"> A <c>System.String</c> instance.</param>
-		/// <param name="nominatedCompanyRole"> A <c>System.String</c> instance.</param>
-		/// <param name="nominatedCompanyFirstName"> A <c>System.String</c> instance.</param>
-		/// <param name="nominatedCompanyLastName"> A <c>System.String</c> instance.</param>
-		/// <param name="nominatedCompanyEmailAddress"> A <c>System.String</c> instance.</param>
-		/// <param name="nominatedCompanyPhone"> A <c>System.String</c> instance.</param>
-		/// <param name="preferredContactMethod"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="advertiserLogoUrl"> A <c>System.String</c> instance.</param>
 			/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public virtual  void Insert( System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId, System.String videoLink, System.String industry, System.String nominatedCompanyRole, System.String nominatedCompanyFirstName, System.String nominatedCompanyLastName, System.String nominatedCompanyEmailAddress, System.String nominatedCompanyPhone, System.Int32? preferredContactMethod, System.String advertiserLogoUrl, ref System.Int32? advertiserId, int start, int pageLength)
+		public virtual  void Insert( System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId, ref System.Int32? advertiserId, int start, int pageLength)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -3143,7 +3087,7 @@ namespace JXTPortal
 				transactionManager = ConnectionScope.ValidateOrCreateTransaction();
 				dataProvider = ConnectionScope.Current.DataProvider;
                 
-				dataProvider.AdvertisersProvider.Insert(transactionManager, start, pageLength , siteId, advertiserAccountTypeId, advertiserBusinessTypeId, advertiserAccountStatusId, companyName, businessNumber, streetAddress1, streetAddress2, lastModified, lastModifiedBy, postalAddress1, postalAddress2, webAddress, noOfEmployees, firstApprovedDate, profile, charityNumber, searchField, freeTrialStartDate, freeTrialEndDate, accountsPayableEmail, requireLogonForExternalApplication, advertiserLogo, linkedInLogo, linkedInCompanyId, linkedInEmail, registerDate, externalAdvertiserId, videoLink, industry, nominatedCompanyRole, nominatedCompanyFirstName, nominatedCompanyLastName, nominatedCompanyEmailAddress, nominatedCompanyPhone, preferredContactMethod, advertiserLogoUrl, ref advertiserId);
+				dataProvider.AdvertisersProvider.Insert(transactionManager, start, pageLength , siteId, advertiserAccountTypeId, advertiserBusinessTypeId, advertiserAccountStatusId, companyName, businessNumber, streetAddress1, streetAddress2, lastModified, lastModifiedBy, postalAddress1, postalAddress2, webAddress, noOfEmployees, firstApprovedDate, profile, charityNumber, searchField, freeTrialStartDate, freeTrialEndDate, accountsPayableEmail, requireLogonForExternalApplication, advertiserLogo, linkedInLogo, linkedInCompanyId, linkedInEmail, registerDate, externalAdvertiserId, ref advertiserId);
 	        
 				if (!isBorrowedTransaction && transactionManager != null && transactionManager.IsOpen)
 					transactionManager.Commit();
@@ -3913,7 +3857,6 @@ namespace JXTPortal
 		#endregion 
 		
 		#region Advertisers_GetBySiteId
-	
 		/// <summary>
 		///	This method wrap the 'Advertisers_GetBySiteId' stored procedure. 
 		/// </summary>

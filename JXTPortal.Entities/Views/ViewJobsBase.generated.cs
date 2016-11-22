@@ -144,7 +144,7 @@ namespace JXTPortal.Entities
 		private System.Int32?		  _applicationMethod = null;
 		
 		/// <summary>
-		/// ApplicationUrl : 
+		/// ApplicationURL : 
 		/// </summary>
 		private System.String		  _applicationUrl = null;
 		
@@ -292,11 +292,6 @@ namespace JXTPortal.Entities
 		/// AdvertiserLogo : 
 		/// </summary>
 		private System.Byte[]		  _advertiserLogo = null;
-		
-		/// <summary>
-		/// AdvertiserLogoUrl : 
-		/// </summary>
-		private System.String		  _advertiserLogoUrl = null;
 		
 		/// <summary>
 		/// SiteWorkTypeName : 
@@ -472,7 +467,6 @@ namespace JXTPortal.Entities
 		///<param name="_profile"></param>
 		///<param name="_requireLogonForExternalApplication"></param>
 		///<param name="_advertiserLogo"></param>
-		///<param name="_advertiserLogoUrl"></param>
 		///<param name="_siteWorkTypeName"></param>
 		///<param name="_currencySymbol"></param>
 		///<param name="_salaryUpperBand"></param>
@@ -492,7 +486,7 @@ namespace JXTPortal.Entities
 		///<param name="_locationId"></param>
 		///<param name="_areaId"></param>
 		///<param name="_salaryDisplay"></param>
-		public ViewJobsBase(System.Int32 _jobId, System.Int32 _siteId, System.Int32 _workTypeId, System.String _jobName, System.String _description, System.String _fullDescription, System.Boolean _webServiceProcessed, System.String _applicationEmailAddress, System.String _refNo, System.Boolean _visible, System.DateTime _datePosted, System.DateTime _expiryDate, System.Int32? _expired, System.Decimal? _jobItemPrice, System.Boolean _billed, System.DateTime _lastModified, System.Boolean _showSalaryDetails, System.Boolean _showSalaryRange, System.String _salaryText, System.Int32? _advertiserId, System.Int32? _lastModifiedByAdvertiserUserId, System.Int32? _lastModifiedByAdminUserId, System.Int32? _jobItemTypeId, System.Int32? _applicationMethod, System.String _applicationUrl, System.Int32? _uploadMethod, System.String _tags, System.Int32? _jobTemplateId, System.String _searchField, System.Int32? _advertiserJobTemplateLogoId, System.String _companyName, System.Byte[] _hashValue, System.Boolean _requireLogonForExternalApplications, System.Boolean? _showLocationDetails, System.String _publicTransport, System.String _address, System.String _contactDetails, System.String _jobContactPhone, System.String _jobContactName, System.Boolean _qualificationsRecognised, System.Boolean _residentOnly, System.String _documentLink, System.String _bulletPoint1, System.String _bulletPoint2, System.String _bulletPoint3, System.Boolean _hotJob, System.String _advertiserCompanyName, System.String _businessNumber, System.String _streetAddress1, System.String _streetAddress2, System.String _webAddress, System.String _profile, System.Boolean _requireLogonForExternalApplication, System.Byte[] _advertiserLogo, System.String _advertiserLogoUrl, System.String _siteWorkTypeName, System.String _currencySymbol, System.Decimal _salaryUpperBand, System.Decimal _salaryLowerBand, System.Int32 _salaryTypeId, System.String _jobTemplateHtml, System.String _salaryTypeName, System.String _siteAreaName, System.String _siteLocationName, System.String _siteRoleName, System.String _siteRoleCanonicalUrl, System.String _siteProfessionName, System.String _siteProfessionCanonicalUrl, System.String _jobFriendlyName, System.Int32 _professionId, System.Int32 _roleId, System.Int32 _locationId, System.Int32 _areaId, System.String _salaryDisplay)
+		public ViewJobsBase(System.Int32 _jobId, System.Int32 _siteId, System.Int32 _workTypeId, System.String _jobName, System.String _description, System.String _fullDescription, System.Boolean _webServiceProcessed, System.String _applicationEmailAddress, System.String _refNo, System.Boolean _visible, System.DateTime _datePosted, System.DateTime _expiryDate, System.Int32? _expired, System.Decimal? _jobItemPrice, System.Boolean _billed, System.DateTime _lastModified, System.Boolean _showSalaryDetails, System.Boolean _showSalaryRange, System.String _salaryText, System.Int32? _advertiserId, System.Int32? _lastModifiedByAdvertiserUserId, System.Int32? _lastModifiedByAdminUserId, System.Int32? _jobItemTypeId, System.Int32? _applicationMethod, System.String _applicationUrl, System.Int32? _uploadMethod, System.String _tags, System.Int32? _jobTemplateId, System.String _searchField, System.Int32? _advertiserJobTemplateLogoId, System.String _companyName, System.Byte[] _hashValue, System.Boolean _requireLogonForExternalApplications, System.Boolean? _showLocationDetails, System.String _publicTransport, System.String _address, System.String _contactDetails, System.String _jobContactPhone, System.String _jobContactName, System.Boolean _qualificationsRecognised, System.Boolean _residentOnly, System.String _documentLink, System.String _bulletPoint1, System.String _bulletPoint2, System.String _bulletPoint3, System.Boolean _hotJob, System.String _advertiserCompanyName, System.String _businessNumber, System.String _streetAddress1, System.String _streetAddress2, System.String _webAddress, System.String _profile, System.Boolean _requireLogonForExternalApplication, System.Byte[] _advertiserLogo, System.String _siteWorkTypeName, System.String _currencySymbol, System.Decimal _salaryUpperBand, System.Decimal _salaryLowerBand, System.Int32 _salaryTypeId, System.String _jobTemplateHtml, System.String _salaryTypeName, System.String _siteAreaName, System.String _siteLocationName, System.String _siteRoleName, System.String _siteRoleCanonicalUrl, System.String _siteProfessionName, System.String _siteProfessionCanonicalUrl, System.String _jobFriendlyName, System.Int32 _professionId, System.Int32 _roleId, System.Int32 _locationId, System.Int32 _areaId, System.String _salaryDisplay)
 		{
 			this._jobId = _jobId;
 			this._siteId = _siteId;
@@ -548,7 +542,6 @@ namespace JXTPortal.Entities
 			this._profile = _profile;
 			this._requireLogonForExternalApplication = _requireLogonForExternalApplication;
 			this._advertiserLogo = _advertiserLogo;
-			this._advertiserLogoUrl = _advertiserLogoUrl;
 			this._siteWorkTypeName = _siteWorkTypeName;
 			this._currencySymbol = _currencySymbol;
 			this._salaryUpperBand = _salaryUpperBand;
@@ -627,7 +620,6 @@ namespace JXTPortal.Entities
 		///<param name="_profile"></param>
 		///<param name="_requireLogonForExternalApplication"></param>
 		///<param name="_advertiserLogo"></param>
-		///<param name="_advertiserLogoUrl"></param>
 		///<param name="_siteWorkTypeName"></param>
 		///<param name="_currencySymbol"></param>
 		///<param name="_salaryUpperBand"></param>
@@ -647,7 +639,7 @@ namespace JXTPortal.Entities
 		///<param name="_locationId"></param>
 		///<param name="_areaId"></param>
 		///<param name="_salaryDisplay"></param>
-		public static ViewJobs CreateViewJobs(System.Int32 _jobId, System.Int32 _siteId, System.Int32 _workTypeId, System.String _jobName, System.String _description, System.String _fullDescription, System.Boolean _webServiceProcessed, System.String _applicationEmailAddress, System.String _refNo, System.Boolean _visible, System.DateTime _datePosted, System.DateTime _expiryDate, System.Int32? _expired, System.Decimal? _jobItemPrice, System.Boolean _billed, System.DateTime _lastModified, System.Boolean _showSalaryDetails, System.Boolean _showSalaryRange, System.String _salaryText, System.Int32? _advertiserId, System.Int32? _lastModifiedByAdvertiserUserId, System.Int32? _lastModifiedByAdminUserId, System.Int32? _jobItemTypeId, System.Int32? _applicationMethod, System.String _applicationUrl, System.Int32? _uploadMethod, System.String _tags, System.Int32? _jobTemplateId, System.String _searchField, System.Int32? _advertiserJobTemplateLogoId, System.String _companyName, System.Byte[] _hashValue, System.Boolean _requireLogonForExternalApplications, System.Boolean? _showLocationDetails, System.String _publicTransport, System.String _address, System.String _contactDetails, System.String _jobContactPhone, System.String _jobContactName, System.Boolean _qualificationsRecognised, System.Boolean _residentOnly, System.String _documentLink, System.String _bulletPoint1, System.String _bulletPoint2, System.String _bulletPoint3, System.Boolean _hotJob, System.String _advertiserCompanyName, System.String _businessNumber, System.String _streetAddress1, System.String _streetAddress2, System.String _webAddress, System.String _profile, System.Boolean _requireLogonForExternalApplication, System.Byte[] _advertiserLogo, System.String _advertiserLogoUrl, System.String _siteWorkTypeName, System.String _currencySymbol, System.Decimal _salaryUpperBand, System.Decimal _salaryLowerBand, System.Int32 _salaryTypeId, System.String _jobTemplateHtml, System.String _salaryTypeName, System.String _siteAreaName, System.String _siteLocationName, System.String _siteRoleName, System.String _siteRoleCanonicalUrl, System.String _siteProfessionName, System.String _siteProfessionCanonicalUrl, System.String _jobFriendlyName, System.Int32 _professionId, System.Int32 _roleId, System.Int32 _locationId, System.Int32 _areaId, System.String _salaryDisplay)
+		public static ViewJobs CreateViewJobs(System.Int32 _jobId, System.Int32 _siteId, System.Int32 _workTypeId, System.String _jobName, System.String _description, System.String _fullDescription, System.Boolean _webServiceProcessed, System.String _applicationEmailAddress, System.String _refNo, System.Boolean _visible, System.DateTime _datePosted, System.DateTime _expiryDate, System.Int32? _expired, System.Decimal? _jobItemPrice, System.Boolean _billed, System.DateTime _lastModified, System.Boolean _showSalaryDetails, System.Boolean _showSalaryRange, System.String _salaryText, System.Int32? _advertiserId, System.Int32? _lastModifiedByAdvertiserUserId, System.Int32? _lastModifiedByAdminUserId, System.Int32? _jobItemTypeId, System.Int32? _applicationMethod, System.String _applicationUrl, System.Int32? _uploadMethod, System.String _tags, System.Int32? _jobTemplateId, System.String _searchField, System.Int32? _advertiserJobTemplateLogoId, System.String _companyName, System.Byte[] _hashValue, System.Boolean _requireLogonForExternalApplications, System.Boolean? _showLocationDetails, System.String _publicTransport, System.String _address, System.String _contactDetails, System.String _jobContactPhone, System.String _jobContactName, System.Boolean _qualificationsRecognised, System.Boolean _residentOnly, System.String _documentLink, System.String _bulletPoint1, System.String _bulletPoint2, System.String _bulletPoint3, System.Boolean _hotJob, System.String _advertiserCompanyName, System.String _businessNumber, System.String _streetAddress1, System.String _streetAddress2, System.String _webAddress, System.String _profile, System.Boolean _requireLogonForExternalApplication, System.Byte[] _advertiserLogo, System.String _siteWorkTypeName, System.String _currencySymbol, System.Decimal _salaryUpperBand, System.Decimal _salaryLowerBand, System.Int32 _salaryTypeId, System.String _jobTemplateHtml, System.String _salaryTypeName, System.String _siteAreaName, System.String _siteLocationName, System.String _siteRoleName, System.String _siteRoleCanonicalUrl, System.String _siteProfessionName, System.String _siteProfessionCanonicalUrl, System.String _jobFriendlyName, System.Int32 _professionId, System.Int32 _roleId, System.Int32 _locationId, System.Int32 _areaId, System.String _salaryDisplay)
 		{
 			ViewJobs newViewJobs = new ViewJobs();
 			newViewJobs.JobId = _jobId;
@@ -704,7 +696,6 @@ namespace JXTPortal.Entities
 			newViewJobs.Profile = _profile;
 			newViewJobs.RequireLogonForExternalApplication = _requireLogonForExternalApplication;
 			newViewJobs.AdvertiserLogo = _advertiserLogo;
-			newViewJobs.AdvertiserLogoUrl = _advertiserLogoUrl;
 			newViewJobs.SiteWorkTypeName = _siteWorkTypeName;
 			newViewJobs.CurrencySymbol = _currencySymbol;
 			newViewJobs.SalaryUpperBand = _salaryUpperBand;
@@ -1405,7 +1396,7 @@ namespace JXTPortal.Entities
 		}
 		
 		/// <summary>
-		/// 	Gets or Sets the ApplicationUrl property. 
+		/// 	Gets or Sets the ApplicationURL property. 
 		///		
 		/// </summary>
 		/// <value>This type is varchar</value>
@@ -2226,33 +2217,6 @@ namespace JXTPortal.Entities
 		}
 		
 		/// <summary>
-		/// 	Gets or Sets the AdvertiserLogoUrl property. 
-		///		
-		/// </summary>
-		/// <value>This type is nvarchar</value>
-		/// <remarks>
-		/// This property can be set to null. 
-		/// </remarks>
-		[DescriptionAttribute(""), System.ComponentModel.Bindable( System.ComponentModel.BindableSupport.Yes)]
-		public virtual System.String AdvertiserLogoUrl
-		{
-			get
-			{
-				return this._advertiserLogoUrl; 
-			}
-			set
-			{
-				if (_advertiserLogoUrl == value)
-					return;
-					
-				this._advertiserLogoUrl = value;
-				this._isDirty = true;
-				
-				OnPropertyChanged("AdvertiserLogoUrl");
-			}
-		}
-		
-		/// <summary>
 		/// 	Gets or Sets the SiteWorkTypeName property. 
 		///		
 		/// </summary>
@@ -2952,7 +2916,6 @@ namespace JXTPortal.Entities
 				copy.Profile = this.Profile;
 				copy.RequireLogonForExternalApplication = this.RequireLogonForExternalApplication;
 				copy.AdvertiserLogo = this.AdvertiserLogo;
-				copy.AdvertiserLogoUrl = this.AdvertiserLogoUrl;
 				copy.SiteWorkTypeName = this.SiteWorkTypeName;
 				copy.CurrencySymbol = this.CurrencySymbol;
 				copy.SalaryUpperBand = this.SalaryUpperBand;
@@ -3368,15 +3331,6 @@ namespace JXTPortal.Entities
 			{
 				equal = false;
 			}
-			if (Object1.AdvertiserLogoUrl != null && Object2.AdvertiserLogoUrl != null )
-			{
-				if (Object1.AdvertiserLogoUrl != Object2.AdvertiserLogoUrl)
-					equal = false;
-			}
-			else if (Object1.AdvertiserLogoUrl == null ^ Object1.AdvertiserLogoUrl == null )
-			{
-				equal = false;
-			}
 			if (Object1.SiteWorkTypeName != null && Object2.SiteWorkTypeName != null )
 			{
 				if (Object1.SiteWorkTypeName != Object2.SiteWorkTypeName)
@@ -3655,8 +3609,6 @@ namespace JXTPortal.Entities
 					return entity.RequireLogonForExternalApplication;
 				case "AdvertiserLogo":
 					return entity.AdvertiserLogo;
-				case "AdvertiserLogoUrl":
-					return entity.AdvertiserLogoUrl;
 				case "SiteWorkTypeName":
 					return entity.SiteWorkTypeName;
 				case "CurrencySymbol":
@@ -3715,7 +3667,7 @@ namespace JXTPortal.Entities
 		public override string ToString()
 		{
 			return string.Format(System.Globalization.CultureInfo.InvariantCulture,
-				"{75}{74}- JobId: {0}{74}- SiteId: {1}{74}- WorkTypeId: {2}{74}- JobName: {3}{74}- Description: {4}{74}- FullDescription: {5}{74}- WebServiceProcessed: {6}{74}- ApplicationEmailAddress: {7}{74}- RefNo: {8}{74}- Visible: {9}{74}- DatePosted: {10}{74}- ExpiryDate: {11}{74}- Expired: {12}{74}- JobItemPrice: {13}{74}- Billed: {14}{74}- LastModified: {15}{74}- ShowSalaryDetails: {16}{74}- ShowSalaryRange: {17}{74}- SalaryText: {18}{74}- AdvertiserId: {19}{74}- LastModifiedByAdvertiserUserId: {20}{74}- LastModifiedByAdminUserId: {21}{74}- JobItemTypeId: {22}{74}- ApplicationMethod: {23}{74}- ApplicationUrl: {24}{74}- UploadMethod: {25}{74}- Tags: {26}{74}- JobTemplateId: {27}{74}- SearchField: {28}{74}- AdvertiserJobTemplateLogoId: {29}{74}- CompanyName: {30}{74}- HashValue: {31}{74}- RequireLogonForExternalApplications: {32}{74}- ShowLocationDetails: {33}{74}- PublicTransport: {34}{74}- Address: {35}{74}- ContactDetails: {36}{74}- JobContactPhone: {37}{74}- JobContactName: {38}{74}- QualificationsRecognised: {39}{74}- ResidentOnly: {40}{74}- DocumentLink: {41}{74}- BulletPoint1: {42}{74}- BulletPoint2: {43}{74}- BulletPoint3: {44}{74}- HotJob: {45}{74}- AdvertiserCompanyName: {46}{74}- BusinessNumber: {47}{74}- StreetAddress1: {48}{74}- StreetAddress2: {49}{74}- WebAddress: {50}{74}- Profile: {51}{74}- RequireLogonForExternalApplication: {52}{74}- AdvertiserLogo: {53}{74}- AdvertiserLogoUrl: {54}{74}- SiteWorkTypeName: {55}{74}- CurrencySymbol: {56}{74}- SalaryUpperBand: {57}{74}- SalaryLowerBand: {58}{74}- SalaryTypeId: {59}{74}- JobTemplateHtml: {60}{74}- SalaryTypeName: {61}{74}- SiteAreaName: {62}{74}- SiteLocationName: {63}{74}- SiteRoleName: {64}{74}- SiteRoleCanonicalUrl: {65}{74}- SiteProfessionName: {66}{74}- SiteProfessionCanonicalUrl: {67}{74}- JobFriendlyName: {68}{74}- ProfessionId: {69}{74}- RoleId: {70}{74}- LocationId: {71}{74}- AreaId: {72}{74}- SalaryDisplay: {73}{74}", 
+				"{74}{73}- JobId: {0}{73}- SiteId: {1}{73}- WorkTypeId: {2}{73}- JobName: {3}{73}- Description: {4}{73}- FullDescription: {5}{73}- WebServiceProcessed: {6}{73}- ApplicationEmailAddress: {7}{73}- RefNo: {8}{73}- Visible: {9}{73}- DatePosted: {10}{73}- ExpiryDate: {11}{73}- Expired: {12}{73}- JobItemPrice: {13}{73}- Billed: {14}{73}- LastModified: {15}{73}- ShowSalaryDetails: {16}{73}- ShowSalaryRange: {17}{73}- SalaryText: {18}{73}- AdvertiserId: {19}{73}- LastModifiedByAdvertiserUserId: {20}{73}- LastModifiedByAdminUserId: {21}{73}- JobItemTypeId: {22}{73}- ApplicationMethod: {23}{73}- ApplicationUrl: {24}{73}- UploadMethod: {25}{73}- Tags: {26}{73}- JobTemplateId: {27}{73}- SearchField: {28}{73}- AdvertiserJobTemplateLogoId: {29}{73}- CompanyName: {30}{73}- HashValue: {31}{73}- RequireLogonForExternalApplications: {32}{73}- ShowLocationDetails: {33}{73}- PublicTransport: {34}{73}- Address: {35}{73}- ContactDetails: {36}{73}- JobContactPhone: {37}{73}- JobContactName: {38}{73}- QualificationsRecognised: {39}{73}- ResidentOnly: {40}{73}- DocumentLink: {41}{73}- BulletPoint1: {42}{73}- BulletPoint2: {43}{73}- BulletPoint3: {44}{73}- HotJob: {45}{73}- AdvertiserCompanyName: {46}{73}- BusinessNumber: {47}{73}- StreetAddress1: {48}{73}- StreetAddress2: {49}{73}- WebAddress: {50}{73}- Profile: {51}{73}- RequireLogonForExternalApplication: {52}{73}- AdvertiserLogo: {53}{73}- SiteWorkTypeName: {54}{73}- CurrencySymbol: {55}{73}- SalaryUpperBand: {56}{73}- SalaryLowerBand: {57}{73}- SalaryTypeId: {58}{73}- JobTemplateHtml: {59}{73}- SalaryTypeName: {60}{73}- SiteAreaName: {61}{73}- SiteLocationName: {62}{73}- SiteRoleName: {63}{73}- SiteRoleCanonicalUrl: {64}{73}- SiteProfessionName: {65}{73}- SiteProfessionCanonicalUrl: {66}{73}- JobFriendlyName: {67}{73}- ProfessionId: {68}{73}- RoleId: {69}{73}- LocationId: {70}{73}- AreaId: {71}{73}- SalaryDisplay: {72}{73}", 
 				this.JobId,
 				this.SiteId,
 				this.WorkTypeId,
@@ -3802,8 +3754,6 @@ namespace JXTPortal.Entities
 			     
 				this.RequireLogonForExternalApplication,
 				(this.AdvertiserLogo == null) ? string.Empty : this.AdvertiserLogo.ToString(),
-			     
-				(this.AdvertiserLogoUrl == null) ? string.Empty : this.AdvertiserLogoUrl.ToString(),
 			     
 				(this.SiteWorkTypeName == null) ? string.Empty : this.SiteWorkTypeName.ToString(),
 			     
@@ -3992,10 +3942,10 @@ namespace JXTPortal.Entities
 		[ColumnEnum("ApplicationMethod", typeof(System.Int32), System.Data.DbType.Int32, false, false, true)]
 		ApplicationMethod,
 		/// <summary>
-		/// ApplicationUrl : 
+		/// ApplicationURL : 
 		/// </summary>
-		[EnumTextValue("ApplicationUrl")]
-		[ColumnEnum("ApplicationUrl", typeof(System.String), System.Data.DbType.AnsiString, false, false, true, 8000)]
+		[EnumTextValue("ApplicationURL")]
+		[ColumnEnum("ApplicationURL", typeof(System.String), System.Data.DbType.AnsiString, false, false, true, 8000)]
 		ApplicationUrl,
 		/// <summary>
 		/// UploadMethod : 
@@ -4171,12 +4121,6 @@ namespace JXTPortal.Entities
 		[EnumTextValue("AdvertiserLogo")]
 		[ColumnEnum("AdvertiserLogo", typeof(System.Byte[]), System.Data.DbType.Binary, false, false, true)]
 		AdvertiserLogo,
-		/// <summary>
-		/// AdvertiserLogoUrl : 
-		/// </summary>
-		[EnumTextValue("AdvertiserLogoUrl")]
-		[ColumnEnum("AdvertiserLogoUrl", typeof(System.String), System.Data.DbType.String, false, false, true, 1000)]
-		AdvertiserLogoUrl,
 		/// <summary>
 		/// SiteWorkTypeName : 
 		/// </summary>

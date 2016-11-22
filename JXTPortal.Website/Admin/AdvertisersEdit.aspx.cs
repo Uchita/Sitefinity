@@ -304,18 +304,9 @@ public partial class AdvertisersEdit : System.Web.UI.Page
                         hypAdvertiserUsers.NavigateUrl = "/admin/advertiserUsers.aspx?advertiserID=" + AdvertiserID;
                         hypAdvertiserUsers.Visible = true;
 
-                        if (advertiser.AdvertiserLogo != null || string.IsNullOrWhiteSpace(advertiser.AdvertiserLogoUrl) == false)
+                        if (advertiser.AdvertiserLogo != null)
                         {
-                            if (string.IsNullOrWhiteSpace(advertiser.AdvertiserLogoUrl))
-                            {
-                                imgLogo.ImageUrl = Page.ResolveUrl("~/getfile.aspx") + "?advertiserid=" + Convert.ToString(AdvertiserID);
-                                
-                            }
-                            else
-                            {
-                                imgLogo.ImageUrl = string.Format("/media/{0}/{1}", ConfigurationManager.AppSettings["AdvertisersFolder"], advertiser.AdvertiserLogoUrl);
-                            }
-
+                            imgLogo.ImageUrl = Page.ResolveUrl("~/getfile.aspx") + "?advertiserid=" + Convert.ToString(AdvertiserID);
                             imgLogo.Visible = true;
                             lblNoLogo.Visible = false;
                             lblRemoveLogo.Visible = true;
@@ -523,6 +514,19 @@ public partial class AdvertisersEdit : System.Web.UI.Page
                         ltlMessage.Text = ltlMessage.Text = "Invalid Advertiser Logo.";
                         return;
                     }
+
+
+                    System.Drawing.Image objResizedImage = JXTPortal.Common.Utils.ResizeImage(objOriginalImage, PortalConstants.THUMBNAIL_WIDTH, PortalConstants.THUMBNAIL_HEIGHT);
+
+                    System.IO.MemoryStream objOutputMemorySTream = new System.IO.MemoryStream();
+                    objResizedImage.Save(objOutputMemorySTream, objOriginalImage.RawFormat);
+
+                    byte[] abytFile = new byte[Convert.ToInt32(objOutputMemorySTream.Length)];
+                    objOutputMemorySTream.Position = 0;
+                    objOutputMemorySTream.Read(abytFile, 0, abytFile.Length);
+
+                    advertiser.AdvertiserLogo = abytFile;
+
                 }
                 catch
                 {
@@ -546,46 +550,6 @@ public partial class AdvertisersEdit : System.Web.UI.Page
             advertiser.SiteId = SessionData.Site.SiteId;
 
             AdvertisersService.Insert(advertiser);
-
-            if (docInput.HasFile && docInput.PostedFile.ContentLength > 0)
-            {
-                try
-                {
-                    System.Drawing.Image objOriginalImage = null;
-                    string contenttype = string.Empty;
-                    Utils.IsValidUploadImage(docInput.PostedFile.FileName, this.docInput.PostedFile.InputStream, out objOriginalImage, out contenttype);
-
-                    System.Drawing.Image objResizedImage = JXTPortal.Common.Utils.ResizeImage(objOriginalImage, PortalConstants.THUMBNAIL_WIDTH, PortalConstants.THUMBNAIL_HEIGHT);
-
-                    System.IO.MemoryStream objOutputMemorySTream = new System.IO.MemoryStream();
-                    objResizedImage.Save(objOutputMemorySTream, objOriginalImage.RawFormat);
-
-                    byte[] abytFile = new byte[Convert.ToInt32(objOutputMemorySTream.Length)];
-                    objOutputMemorySTream.Position = 0;
-                    objOutputMemorySTream.Read(abytFile, 0, abytFile.Length);
-
-                    FtpClient ftpclient = new FtpClient();
-                    string errormessage = string.Empty;
-                    string extension = Utils.GetImageExtension(objOriginalImage);
-                    ftpclient.Host = ConfigurationManager.AppSettings["FTPFileManager"];
-                    ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                    ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-                    ftpclient.UploadFileFromStream(objOutputMemorySTream, string.Format("{0}/{1}/Advertisers_{2}.{3}", ftpclient.Host, ConfigurationManager.AppSettings["AdvertisersFolder"], advertiser.AdvertiserId, extension), out errormessage);
-
-                    if (string.IsNullOrWhiteSpace(errormessage))
-                    {
-                        advertiser.AdvertiserLogoUrl = string.Format("Advertisers_{0}.{1}", advertiser.AdvertiserId, extension);
-                        AdvertisersService.Update(advertiser);
-                    }
-                }
-                catch
-                {
-                    ltlMessage.Text = ltlMessage.Text = "Invalid Advertiser Logo.";
-                    return;
-                }
-
-
-            }
 
             #region BH Advertiser/Users sync
             BullhornRESTAPI BullhornRESTAPI = new BullhornRESTAPI(SessionData.Site.SiteId);
@@ -692,23 +656,11 @@ public partial class AdvertisersEdit : System.Web.UI.Page
                             objOutputMemorySTream.Position = 0;
                             objOutputMemorySTream.Read(abytFile, 0, abytFile.Length);
 
-                            FtpClient ftpclient = new FtpClient();
-                            string errormessage = string.Empty;
-                            string extension = Utils.GetImageExtension(objOriginalImage);
-                            ftpclient.Host = ConfigurationManager.AppSettings["FTPFileManager"];
-                            ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                            ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-                            ftpclient.UploadFileFromStream(objOutputMemorySTream, string.Format("{0}/{1}/Advertisers_{2}.{3}", ftpclient.Host, ConfigurationManager.AppSettings["AdvertisersFolder"], advertiser.AdvertiserId, extension), out errormessage);
-
-                            if (string.IsNullOrWhiteSpace(errormessage))
-                            {
-                                advertiser.AdvertiserLogoUrl = string.Format("Advertisers_{0}.{1}", advertiser.AdvertiserId, extension);
-                                ltlMessage.Text = "Failed to update Advertiser Logo.";
-                            }
+                            advertiser.AdvertiserLogo = abytFile;
                         }
                         catch
                         {
-                            ltlMessage.Text = "Invalid Advertiser Logo.";
+                            ltlMessage.Text = ltlMessage.Text = "Invalid Advertiser Logo.";
                             return;
                         }
                     }
@@ -716,7 +668,6 @@ public partial class AdvertisersEdit : System.Web.UI.Page
                 else
                 {
                     advertiser.AdvertiserLogo = null;
-                    advertiser.AdvertiserLogoUrl = string.Empty;
                 }
 
                 // Default Value

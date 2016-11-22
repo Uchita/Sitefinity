@@ -10,7 +10,6 @@ using System.Text;
 using JXTPortal.Entities;
 using JXTPortal.Common;
 using JXTPortal.Client.Salesforce;
-using System.IO;
 
 namespace JXTPortal.Website.member
 {
@@ -1304,7 +1303,7 @@ namespace JXTPortal.Website.member
             {
                 hasError = true;
             }
-
+            
 
             if (!hasError)
             {
@@ -2087,22 +2086,7 @@ namespace JXTPortal.Website.member
                             {
                                 updateCoverLetter = true;
 
-                                if (hasExistingCoverLetter)
-                                {
-                                    FtpClient ftpclient = new FtpClient();
-                                    ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                                    ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                                    ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-                                    string extension = string.Empty;
-                                    extension = Path.GetExtension(fuCoverletter.PostedFile.FileName);
-
-                                    string filepath = string.Format("{0}{1}/{2}/{3}/MemberFiles_{4}{5}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], SessionData.Member.MemberId, mf.MemberFileId, mf.MemberFileSearchExtension);
-                                    string errormessage = string.Empty;
-
-                                    ftpclient.UploadFileFromStream(fuCoverletter.PostedFile.InputStream, filepath, out errormessage);
-                                    mf.MemberFileUrl = string.Format("MemberFiles_{0}{1}", mf.MemberFileId, extension);
-                                }
-
+                                mf.MemberFileContent = this.getArray(this.fuCoverletter.PostedFile);
                                 mf.MemberFileTitle = mf.MemberFileName;
                                 mf.MemberId = SessionData.Member.MemberId;
                                 mf.MemberFileTypeId = MemberFileTypeID(fuCoverletter.PostedFile.FileName);
@@ -2114,35 +2098,21 @@ namespace JXTPortal.Website.member
                     {
                         if (!string.IsNullOrEmpty(tbWriteCoverLetter.Text))
                         {
-                            updateCoverLetter = true;
+                            updateCoverLetter = true; 
 
                             mf.MemberFileName = "CoverLetter.txt";
 
                             mf.MemberFileSearchExtension = System.IO.Path.GetExtension("CoverLetter.txt").Trim();
-
-                            if (hasExistingCoverLetter)
-                            {
-                                FtpClient ftpclient = new FtpClient();
-                                ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                                ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                                ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
-                                string filepath = string.Format("{0}{1}/{2}/{3}/MemberFiles_{4}{5}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], SessionData.Member.MemberId, mf.MemberFileId, mf.MemberFileSearchExtension);
-                                string errormessage = string.Empty;
-
-                                ftpclient.UploadFileFromStream(new MemoryStream(Encoding.UTF8.GetBytes(tbWriteCoverLetter.Text)), filepath, out errormessage);
-                            }
-
+                            mf.MemberFileContent = GetBytes(tbWriteCoverLetter.Text);
                             mf.MemberFileTitle = "CoverLetter.txt";
                             mf.MemberId = SessionData.Member.MemberId;
                             mf.MemberFileTypeId = MemberFileTypeID("CoverLetter.txt");
                             mf.DocumentTypeId = 1;
                         }
                     }
-
                     if (updateCoverLetter)
                     {
-                        if (string.IsNullOrWhiteSpace(mf.MemberFileUrl) || mf.MemberFileContent != null)
+                        if (mf.MemberFileContent != null)
                         {
                             if (hasExistingCoverLetter)
                             {
@@ -2155,40 +2125,6 @@ namespace JXTPortal.Website.member
                             {
                                 if (MemberFilesService.Insert(mf))
                                 {
-                                    FtpClient ftpclient = new FtpClient();
-                                    ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                                    ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                                    ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
-                                    string extension = string.Empty;
-
-                                    if (rbUploadCoverLetter.Checked)
-                                    {
-                                        extension = Path.GetExtension(fuCoverletter.PostedFile.FileName);
-                                        string filepath = string.Format("{0}{1}/{2}/{3}/MemberFiles_{4}{5}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], SessionData.Member.MemberId, mf.MemberFileId, extension);
-                                        string errormessage = string.Empty;
-
-                                        ftpclient.UploadFileFromStream(fuCoverletter.PostedFile.InputStream, filepath, out errormessage);
-                                    }
-                                    else
-                                    {
-                                        if (!string.IsNullOrEmpty(tbWriteCoverLetter.Text))
-                                        {
-                                            extension = ".txt";
-                                            string filepath = string.Format("{0}{1}/{2}/{3}/MemberFiles_{4}{5}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], SessionData.Member.MemberId, mf.MemberFileId, extension);
-                                            string errormessage = string.Empty;
-
-                                            ftpclient.UploadFileFromStream(new MemoryStream(Encoding.UTF8.GetBytes(tbWriteCoverLetter.Text)), filepath, out errormessage);
-                                        }
-                                    }
-                                    mf.MemberFileUrl = string.Format("MemberFiles_{0}.{1}", mf.MemberFileId, extension);
-                                    mf.MemberFileTitle = mf.MemberFileName;
-                                    mf.MemberId = SessionData.Member.MemberId;
-                                    mf.MemberFileTypeId = MemberFileTypeID(fuCoverletter.PostedFile.FileName);
-                                    mf.DocumentTypeId = 1;
-
-                                    MemberFilesService.Update(mf);
-
                                     LoadCV();
                                 }
                             }
@@ -2237,35 +2173,18 @@ namespace JXTPortal.Website.member
                         }
                         else
                         {
-                            updateResume = true;
+                            updateResume = true; 
 
+                            mf.MemberFileContent = this.getArray(this.fuResume.PostedFile);
                             mf.MemberFileTitle = mf.MemberFileName;
                             mf.MemberId = SessionData.Member.MemberId;
                             mf.MemberFileTypeId = MemberFileTypeID(fuResume.PostedFile.FileName);
                             mf.DocumentTypeId = 2;
-
                         }
                         if (updateResume)
                         {
                             if (hasExistingResume)
                             {
-                                FtpClient ftpclient = new FtpClient();
-                                ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                                ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                                ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
-                                string extension = string.Empty;
-
-                                if (rbUploadCoverLetter.Checked)
-                                {
-                                    extension = Path.GetExtension(fuResume.PostedFile.FileName);
-                                    string filepath = string.Format("{0}{1}/{2}/{3}/MemberFiles_{4}{5}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], SessionData.Member.MemberId, mf.MemberFileId, extension);
-                                    string errormessage = string.Empty;
-
-                                    ftpclient.UploadFileFromStream(fuResume.PostedFile.InputStream, filepath, out errormessage);
-                                    mf.MemberFileUrl = string.Format("MemberFiles_{0}{1}", mf.MemberFileId, extension);
-                                }
-
                                 if (MemberFilesService.Update(mf))
                                 {
                                     LoadCV();
@@ -2275,24 +2194,7 @@ namespace JXTPortal.Website.member
                             {
                                 if (MemberFilesService.Insert(mf))
                                 {
-                                    FtpClient ftpclient = new FtpClient();
-                                    ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                                    ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                                    ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
-                                    string extension = string.Empty;
-
-                                    extension = Path.GetExtension(fuResume.PostedFile.FileName);
-                                    string filepath = string.Format("{0}{1}/{2}/{3}/MemberFiles_{4}{5}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], SessionData.Member.MemberId, mf.MemberFileId, extension);
-                                    string errormessage = string.Empty;
-
-                                    ftpclient.UploadFileFromStream(fuResume.PostedFile.InputStream, filepath, out errormessage);
-                                    mf.MemberFileUrl = string.Format("MemberFiles_{0}{1}", mf.MemberFileId, extension);
-
-                                    if (MemberFilesService.Update(mf))
-                                    {
-                                        LoadCV();
-                                    }
+                                    LoadCV();
                                 }
                             }
                         }
@@ -2466,7 +2368,7 @@ namespace JXTPortal.Website.member
             tbDirectorshipCompanyName.Text = CommonService.EncodeString(tbDirectorshipCompanyName.Text);
             tbDirectorshipSummary.Text = CommonService.EncodeString(tbDirectorshipSummary.Text);
             tbOrganisationWebsite.Text = CommonService.EncodeString(tbOrganisationWebsite.Text);
-            tbResponsibilities.Text = CommonService.EncodeString(tbResponsibilities.Text);
+            tbResponsibilities.Text = CommonService.EncodeString(tbResponsibilities.Text);            
         }
 
         private void Experience_StripInputsHTML()

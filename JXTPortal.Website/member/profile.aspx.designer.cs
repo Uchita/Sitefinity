@@ -310,13 +310,13 @@ namespace JXTPortal.Website.member {
         protected global::System.Web.UI.WebControls.PlaceHolder phProfileFirstNameError;
         
         /// <summary>
-        /// UcLanguageLiteral272 control.
+        /// ltErrorProfileFirstName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral272;
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ltErrorProfileFirstName;
         
         /// <summary>
         /// lbProfileLastName control.
@@ -355,13 +355,13 @@ namespace JXTPortal.Website.member {
         protected global::System.Web.UI.WebControls.PlaceHolder phProfileLastNameError;
         
         /// <summary>
-        /// UcLanguageLiteral273 control.
+        /// ltErrorProfileLastName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral273;
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ltErrorProfileLastName;
         
         /// <summary>
         /// phMultilingual control.
@@ -400,6 +400,24 @@ namespace JXTPortal.Website.member {
         protected global::System.Web.UI.WebControls.TextBox tbProfileFirstNameLocalLanguage;
         
         /// <summary>
+        /// phProfileFirstNameLocalError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phProfileFirstNameLocalError;
+        
+        /// <summary>
+        /// ltErrorProfileFirstNameLocal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ltErrorProfileFirstNameLocal;
+        
+        /// <summary>
         /// lbProfileLastNameLocalLanguage control.
         /// </summary>
         /// <remarks>
@@ -425,6 +443,24 @@ namespace JXTPortal.Website.member {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbProfileLastNameLocalLanguage;
+        
+        /// <summary>
+        /// phProfileLastNameLocalError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phProfileLastNameLocalError;
+        
+        /// <summary>
+        /// ltErrorProfileLastNameLocal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ltErrorProfileLastNameLocal;
         
         /// <summary>
         /// lbProfileHeadline control.

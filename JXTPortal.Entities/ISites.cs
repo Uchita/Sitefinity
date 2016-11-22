@@ -63,6 +63,11 @@ namespace JXTPortal.Entities
 		/// MobileUrl : 
 		/// </summary>
 		System.String  MobileUrl  { get; set; }
+		
+		/// <summary>
+		/// SiteAdminLogoUrl : 
+		/// </summary>
+		System.String  SiteAdminLogoUrl  { get; set; }
 			
 		/// <summary>
 		/// Creates a new object that is a copy of the current instance.
@@ -75,9 +80,9 @@ namespace JXTPortal.Entities
 
 		/// <summary>
 		///	Holds a collection of entity objects
-		///	which are related to this object through the relation _jobItemsTypeSiteId
+		///	which are related to this object through the relation _availableStatusSiteId
 		/// </summary>	
-		TList<JobItemsType> JobItemsTypeCollection {  get;  set;}	
+		TList<AvailableStatus> AvailableStatusCollection {  get;  set;}	
 
 
 		/// <summary>
@@ -92,6 +97,20 @@ namespace JXTPortal.Entities
 		///	which are related to this object through the relation _jobViewsSiteId
 		/// </summary>	
 		TList<JobViews> JobViewsCollection {  get;  set;}	
+
+
+		/// <summary>
+		///	Holds a collection of entity objects
+		///	which are related to this object through the relation _integrationMappingsSiteId
+		/// </summary>	
+		TList<IntegrationMappings> IntegrationMappingsCollection {  get;  set;}	
+
+
+		/// <summary>
+		///	Holds a collection of entity objects
+		///	which are related to this object through the relation _siteResourcesSiteIdGetBySiteId
+		/// </summary>	
+		TList<SiteResources> SiteResourcesCollectionGetBySiteId {  get;  set;}	
 
 
 		/// <summary>
@@ -124,9 +143,23 @@ namespace JXTPortal.Entities
 
 		/// <summary>
 		///	Holds a collection of entity objects
+		///	which are related to this object through the relation _siteMappingsSiteIdGetByMasterSiteId
+		/// </summary>	
+		TList<SiteMappings> SiteMappingsCollectionGetByMasterSiteId {  get;  set;}	
+
+
+		/// <summary>
+		///	Holds a collection of entity objects
 		///	which are related to this object through the relation _siteWebPartsSiteIdGetBySiteId
 		/// </summary>	
 		TList<SiteWebParts> SiteWebPartsCollectionGetBySiteId {  get;  set;}	
+
+
+		/// <summary>
+		///	Holds a collection of entity objects
+		///	which are related to this object through the relation _jobCustomXmlSiteId
+		/// </summary>	
+		TList<JobCustomXml> JobCustomXmlCollection {  get;  set;}	
 
 
 		/// <summary>
@@ -159,9 +192,9 @@ namespace JXTPortal.Entities
 
 		/// <summary>
 		///	Holds a collection of entity objects
-		///	which are related to this object through the relation _availableStatusSiteId
+		///	which are related to this object through the relation _memberMembershipsSiteId
 		/// </summary>	
-		TList<AvailableStatus> AvailableStatusCollection {  get;  set;}	
+		TList<MemberMemberships> MemberMembershipsCollection {  get;  set;}	
 
 
 		/// <summary>
@@ -180,6 +213,13 @@ namespace JXTPortal.Entities
 
 		/// <summary>
 		///	Holds a collection of entity objects
+		///	which are related to this object through the relation _webServiceLogSiteId
+		/// </summary>	
+		TList<WebServiceLog> WebServiceLogCollection {  get;  set;}	
+
+
+		/// <summary>
+		///	Holds a collection of entity objects
 		///	which are related to this object through the relation _siteLocationSiteId
 		/// </summary>	
 		TList<SiteLocation> SiteLocationCollection {  get;  set;}	
@@ -194,6 +234,27 @@ namespace JXTPortal.Entities
 
 		/// <summary>
 		///	Holds a collection of entity objects
+		///	which are related to this object through the relation _memberWizardSiteId
+		/// </summary>	
+		TList<MemberWizard> MemberWizardCollection {  get;  set;}	
+
+
+		/// <summary>
+		///	Holds a collection of entity objects
+		///	which are related to this object through the relation _industrySiteId
+		/// </summary>	
+		TList<Industry> IndustryCollection {  get;  set;}	
+
+
+		/// <summary>
+		///	Holds a collection of entity objects
+		///	which are related to this object through the relation _consultantsSiteId
+		/// </summary>	
+		TList<Consultants> ConsultantsCollection {  get;  set;}	
+
+
+		/// <summary>
+		///	Holds a collection of entity objects
 		///	which are related to this object through the relation _filesSiteId
 		/// </summary>	
 		TList<Files> FilesCollection {  get;  set;}	
@@ -201,9 +262,9 @@ namespace JXTPortal.Entities
 
 		/// <summary>
 		///	Holds a collection of entity objects
-		///	which are related to this object through the relation _jobsArchiveSiteId
+		///	which are related to this object through the relation _siteResourcesXmlSiteId
 		/// </summary>	
-		TList<JobsArchive> JobsArchiveCollection {  get;  set;}	
+		TList<SiteResourcesXml> SiteResourcesXmlCollection {  get;  set;}	
 
 
 		/// <summary>
@@ -211,6 +272,13 @@ namespace JXTPortal.Entities
 		///	which are related to this object through the relation _advertisersSiteId
 		/// </summary>	
 		TList<Advertisers> AdvertisersCollection {  get;  set;}	
+
+
+		/// <summary>
+		///	Holds a collection of entity objects
+		///	which are related to this object through the relation _memberStatusSiteId
+		/// </summary>	
+		TList<MemberStatus> MemberStatusCollection {  get;  set;}	
 
 
 		/// <summary>
@@ -225,6 +293,13 @@ namespace JXTPortal.Entities
 		///	which are related to this object through the relation _foldersSiteId
 		/// </summary>	
 		TList<Folders> FoldersCollection {  get;  set;}	
+
+
+		/// <summary>
+		///	Holds a collection of entity objects
+		///	which are related to this object through the relation _siteCustomMappingSiteId
+		/// </summary>	
+		TList<SiteCustomMapping> SiteCustomMappingCollection {  get;  set;}	
 
 
 		/// <summary>
@@ -247,12 +322,47 @@ namespace JXTPortal.Entities
 		/// </summary>	
 		TList<JobAlerts> JobAlertsCollection {  get;  set;}	
 
-        
+
+		/// <summary>
+		///	Holds a collection of entity objects
+		///	which are related to this object through the relation _jobApplicationTypeSiteId
+		/// </summary>	
+		TList<JobApplicationType> JobApplicationTypeCollection {  get;  set;}	
+
+
+		/// <summary>
+		///	Holds a collection of entity objects
+		///	which are related to this object through the relation _customWidgetSiteId
+		/// </summary>	
+		TList<CustomWidget> CustomWidgetCollection {  get;  set;}	
+
+
+		/// <summary>
+		///	Holds a collection of entity objects
+		///	which are related to this object through the relation _siteMappingsSiteIdGetBySiteId
+		/// </summary>	
+		TList<SiteMappings> SiteMappingsCollectionGetBySiteId {  get;  set;}	
+
+
+		/// <summary>
+		///	Holds a collection of entity objects
+		///	which are related to this object through the relation _siteRolesSiteId
+		/// </summary>	
+		TList<SiteRoles> SiteRolesCollection {  get;  set;}	
+
+
 		/// <summary>
 		///	Holds a collection of entity objects
 		///	which are related to this object through the relation _customPaymentSiteId
 		/// </summary>	
 		TList<CustomPayment> CustomPaymentCollection {  get;  set;}	
+
+
+		/// <summary>
+		///	Holds a collection of entity objects
+		///	which are related to this object through the relation _integrationsSiteId
+		/// </summary>	
+		TList<Integrations> IntegrationsCollection {  get;  set;}	
 
 
 		/// <summary>
@@ -267,13 +377,6 @@ namespace JXTPortal.Entities
 		///	which are related to this object through the relation _siteAreaSiteId
 		/// </summary>	
 		TList<SiteArea> SiteAreaCollection {  get;  set;}	
-
-
-		/// <summary>
-		///	Holds a collection of entity objects
-		///	which are related to this object through the relation _siteResourcesSiteId
-		/// </summary>	
-		TList<SiteResources> SiteResourcesCollection {  get;  set;}	
 
 
 		/// <summary>
@@ -299,6 +402,20 @@ namespace JXTPortal.Entities
 
 		/// <summary>
 		///	Holds a collection of entity objects
+		///	which are related to this object through the relation _dynamicContentSiteId
+		/// </summary>	
+		TList<DynamicContent> DynamicContentCollection {  get;  set;}	
+
+
+		/// <summary>
+		///	Holds a collection of entity objects
+		///	which are related to this object through the relation _jobItemsTypeSiteId
+		/// </summary>	
+		TList<JobItemsType> JobItemsTypeCollection {  get;  set;}	
+
+
+		/// <summary>
+		///	Holds a collection of entity objects
 		///	which are related to this object through the relation _siteSalaryTypeSiteId
 		/// </summary>	
 		TList<SiteSalaryType> SiteSalaryTypeCollection {  get;  set;}	
@@ -313,9 +430,9 @@ namespace JXTPortal.Entities
 
 		/// <summary>
 		///	Holds a collection of entity objects
-		///	which are related to this object through the relation _siteRolesSiteId
+		///	which are related to this object through the relation _jobsArchiveSiteId
 		/// </summary>	
-		TList<SiteRoles> SiteRolesCollection {  get;  set;}	
+		TList<JobsArchive> JobsArchiveCollection {  get;  set;}	
 
 
 		/// <summary>
@@ -323,6 +440,13 @@ namespace JXTPortal.Entities
 		///	which are related to this object through the relation _siteLanguagesSiteId
 		/// </summary>	
 		TList<SiteLanguages> SiteLanguagesCollection {  get;  set;}	
+
+
+		/// <summary>
+		///	Holds a collection of entity objects
+		///	which are related to this object through the relation _customWidgetCssSelectorSiteId
+		/// </summary>	
+		TList<CustomWidgetCssSelector> CustomWidgetCssSelectorCollection {  get;  set;}	
 
 
 		/// <summary>

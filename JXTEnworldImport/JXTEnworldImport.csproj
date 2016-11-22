@@ -56,6 +56,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\JXTPortal.Common\JXTPortal.Common.csproj">
+      <Project>{E41704D8-FFB8-462F-8FF9-DF315D39251A}</Project>
+      <Name>JXTPortal.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JXTPortal.Data.SqlClient\JXTPortal.Data.SqlClient.csproj">
       <Project>{8996A7B4-57D3-440B-A545-A701844B8C4A}</Project>
       <Name>JXTPortal.Data.SqlClient</Name>

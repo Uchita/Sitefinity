@@ -128,6 +128,7 @@ namespace JXTPortal.Website
 
                                         if (string.IsNullOrEmpty(errormessage) && downloadedfile.Length > 0)
                                         {
+                                            downloadedfile.Position = 0;
                                             this.Response.ContentType = "application/octet-stream";
                                             this.Response.AppendHeader("Content-Disposition", "attachment;filename=" + jobapp.MemberCoverLetterFile);
                                             this.Response.BinaryWrite(((MemoryStream)downloadedfile).ToArray());
@@ -175,6 +176,7 @@ namespace JXTPortal.Website
 
                                         if (string.IsNullOrEmpty( errormessage) && downloadedfile.Length > 0)
                                         {
+                                            downloadedfile.Position = 0;
                                             this.Response.ContentType = "application/octet-stream";
                                             this.Response.AppendHeader("Content-Disposition", "attachment;filename=" + jobapp.MemberResumeFile);
                                             this.Response.BinaryWrite(((MemoryStream)downloadedfile).ToArray());

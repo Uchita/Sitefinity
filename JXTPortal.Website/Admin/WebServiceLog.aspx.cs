@@ -301,12 +301,10 @@ namespace JXTPortal.Website.Admin
         {
             ddlSite.Items.Clear();
 
-            TList<JXTPortal.Entities.Sites> sites = new TList<Entities.Sites>();
-            
-            sites = SitesService.Get_List();
+            DataSet sites = SitesService.Get_List();
             //SitesService.GetBySiteId(SessionData.Site.SiteId)
-
-            sites.Sort("SiteName");
+            DataRow[] siterows = sites.Tables[0].Select("", "SiteName");
+            
             ddlSite.DataSource = sites; // sites.Where(s => s.Live == true);
             ddlSite.DataBind();
 

@@ -10,6 +10,9 @@ using JXTPortal.Mobile.Website;
 using JXTPortal.Mobile.Website.Attributes;
 using JXTPortal.Domain.ViewModel;
 using JXTPortal.Domain.Services;
+using JXTPortal.Common;
+using System.Configuration;
+using System.IO;
 
 namespace JXTPortal.Mobile.Website.Controllers
 {
@@ -417,6 +420,29 @@ namespace JXTPortal.Mobile.Website.Controllers
             //make sure this File is belong to that member
             if (SessionData.Member.MemberId == memberFile.MemberId)
             {
+                string errormessage = string.Empty;
+                byte[] memberfilecontent = null;
+
+                if (!string.IsNullOrWhiteSpace(memberFile.MemberFileUrl))
+                {
+
+                    FtpClient ftpclient = new FtpClient();
+                    ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
+                    ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                    ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+
+                    string filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], memberFile.MemberId, memberFile.MemberFileUrl);
+                    Stream ms = null;
+                    ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
+                    ms.Position = 0;
+
+                    memberfilecontent = ((MemoryStream)ms).ToArray();
+                }
+                else
+                {
+                    memberfilecontent = memberFile.MemberFileContent;
+                }
+
                 return File(memberFile.MemberFileContent, "application/octet-stream", memberFile.MemberFileName);
             }
 

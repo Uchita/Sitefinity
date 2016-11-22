@@ -15,6 +15,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using System.IO;
 using System.Text.RegularExpressions;
+using JXTPortal.Common;
 
 namespace JXTPortal.Website.member.enworld
 {
@@ -84,7 +85,33 @@ namespace JXTPortal.Website.member.enworld
                         {
                             foreach (MemberFiles f in thisMemberFiles)
                             {
-                                bool uploadToSFSuccess = ResumeUploadToSF(f.MemberFileContent, f.MemberFileName);
+                                byte[] memberfilecontent = null;
+
+                                if (!string.IsNullOrWhiteSpace(f.MemberFileUrl))
+                                {
+                                    string errormessage = string.Empty;
+
+                                    FtpClient ftpclient = new FtpClient();
+                                    ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
+                                    ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                                    ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+
+                                    string filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], f.MemberId, f.MemberFileUrl);
+                                    Stream ms = null;
+                                    ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
+
+                                    if (string.IsNullOrEmpty(errormessage))
+                                    {
+                                        ms.Position = 0;
+                                        memberfilecontent = ((MemoryStream)ms).ToArray();
+                                    }
+                                }
+                                else
+                                {
+                                    memberfilecontent = f.MemberFileContent;
+                                }
+
+                                bool uploadToSFSuccess = ResumeUploadToSF(memberfilecontent, f.MemberFileName);
                             }
                         }
                     }
@@ -768,13 +795,33 @@ namespace JXTPortal.Website.member.enworld
 
                     if (uploadToSFSuccess)
                     {
-                        mf.MemberFileContent = getArray(fuTest.PostedFile);
                         mf.MemberFileTitle = fileUploadTitle.Text;
                         mf.MemberId = SessionData.Member.MemberId;
                         mf.MemberFileTypeId = MemberFileTypeID(fuTest.PostedFile.FileName);
                         mf.DocumentTypeId = 2;
 
                         _mfs.Insert(mf);
+
+                        FtpClient ftpclient = new FtpClient();
+                        ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
+                        ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                        ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+
+                        string extension = string.Empty;
+
+                        extension = Path.GetExtension(fuTest.PostedFile.FileName);
+                        string filepath = string.Format("{0}{1}/{2}/{3}/MemberFiles_{4}{5}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], SessionData.Member.MemberId, mf.MemberFileId, extension);
+                        string errormessage = string.Empty;
+
+                        ftpclient.UploadFileFromStream(fuTest.PostedFile.InputStream, filepath, out errormessage);
+
+                        mf.MemberFileUrl = string.Format("MemberFiles_{0}.{1}", mf.MemberFileId, extension);
+                        mf.MemberFileTitle = mf.MemberFileName;
+                        mf.MemberId = SessionData.Member.MemberId;
+                        mf.MemberFileTypeId = MemberFileTypeID(fuTest.PostedFile.FileName);
+                        mf.DocumentTypeId = 1;
+
+                        _mfs.Update(mf);
 
                         List<MemberFiles> memberFiles = _mfs.GetByMemberId(SessionData.Member.MemberId).ToList();
                         rptResume.DataSource = memberFiles;

@@ -81,7 +81,7 @@
         <asp:CompareValidator ID="ctmAdminAdvertiserID" runat="server" ErrorMessage=" * AdvertiserID must be numbers"
             ControlToValidate="txtAdvertiserUserListingAdvertiserID" Type="Integer" Operator="DataTypeCheck" ValidationGroup="AdminMember"></asp:CompareValidator>
         <asp:RegularExpressionValidator ID="revEmailAddress" runat="server" ControlToValidate="txtAdvertiserUserListingEmail" ValidationGroup="AdminMember"
-            ErrorMessage=" * A valid email address is required" ValidationExpression="^(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6}$">  
+            ErrorMessage=" * A valid email address is required">  
         </asp:RegularExpressionValidator>
         <table cellpadding="3" border="0" class="grid">
             <asp:Repeater ID="rptAdminAdvertiserUser" runat="server" OnItemCommand="rptAdminAdvertiserUser_ItemCommand"

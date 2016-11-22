@@ -58,6 +58,42 @@ namespace JXTPortal.Website.member.enworld {
         protected global::JXTPortal.Website.usercontrols.navigation.ucMemberAccountNavigation ucMemberAccountNavigation1;
         
         /// <summary>
+        /// UcLanguageLiteral37 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral37;
+        
+        /// <summary>
+        /// UcLanguageLiteral36 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral36;
+        
+        /// <summary>
+        /// UcLanguageLiteral35 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral35;
+        
+        /// <summary>
+        /// UcLanguageLiteral34 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral34;
+        
+        /// <summary>
         /// UcLanguageLiteral1 control.
         /// </summary>
         /// <remarks>

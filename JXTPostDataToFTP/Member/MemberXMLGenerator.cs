@@ -422,6 +422,7 @@ ExceptionID: {4}",
                 password = (string)c.Element("password"),
                 sftp = (bool)c.Element("sftp"),
                 port = (int)c.Element("port"),
+                mode = (string)c.Element("Mode"),
                 LastModifiedDate = (string)c.Element("LastModifiedDate")            // Job application id used for getting the last modified date
             });
 
@@ -459,7 +460,16 @@ ExceptionID: {4}",
                     DataTable dtMemberLanguages = ds.Tables[8];
                     DataTable dtMemberReferences = ds.Tables[9];
 
-                    DataRow[] drValidatedMembers = dtMembers.Select("Validated=1");
+                    DataRow[] drValidatedMembers = null;
+
+                    if (sitexml.mode == "FullCandidate")
+                    {
+                        drValidatedMembers = dtMembers.Select("Validated=1 AND ISNULL(Title, '') <> '' AND ISNULL(FirstName, '') <> '' AND ISNULL(Surname, '') <> '' AND ISNULL(EmailAddress, '') <> '' AND ISNULL(HomePhone, '') <> '' AND ISNULL(Address1, '') <> ''");
+                    }
+                    else
+                    {
+                        drValidatedMembers = dtMembers.Select("Validated=1");
+                    }
 
                     Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Number of Members: " + drValidatedMembers.Count().ToString());
 

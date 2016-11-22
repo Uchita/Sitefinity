@@ -126,7 +126,7 @@ namespace JXTPortal.Website
                     strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_LOCATION, HttpUtility.HtmlEncode((!string.IsNullOrWhiteSpace(MultiLocation)) ? MultiLocation : consultant.Location.ToString()));
                     strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_FRIENDLYURL, HttpUtility.HtmlEncode(consultant.FriendlyUrl.ToString()));
                     strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_SHORTDESCRIPTION, (!string.IsNullOrWhiteSpace(MultiShortDescription)) ? MultiShortDescription : consultant.ShortDescription.ToString());
-                    strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_TESTIMONIAL, consultant.Testimonial.ToString());
+                    strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_TESTIMONIAL, (!string.IsNullOrWhiteSpace(MultiTestimonial)) ? MultiTestimonial : consultant.Testimonial.ToString());
                     strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_FULLDESCRIPTION, (!string.IsNullOrWhiteSpace(MultiFullDescription)) ? MultiFullDescription : consultant.FullDescription.ToString());
                     strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_LINKEDINURL, HttpUtility.HtmlEncode(consultant.LinkedInUrl.ToString()));
                     strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_TWITTERURL, HttpUtility.HtmlEncode(consultant.TwitterUrl.ToString()));

@@ -377,6 +377,7 @@ namespace JXTPostDataToFTP.Models
                     Company = thisDR["Company"].ToString(),
                     Phone = thisDR["Phone"].ToString(),
                     Relationship = thisDR["Relationship"].ToString(),
+                    ReferenceEmail = thisDR["ReferenceEmail"].ToString(),
                     LastModifiedDate = !string.IsNullOrEmpty(thisDR["LastModifiedDate"].ToString()) ? ((DateTime)thisDR["LastModifiedDate"]).ToString(dateformat).Trim() : string.Empty
                 };
                 References.Add(thisRef);
@@ -684,7 +685,7 @@ namespace JXTPostDataToFTP.Models
             public string LastAttemptDate { get; set; }
             [XmlIgnore]
             public string Status { get; set; }
-            [XmlIgnore]
+            
             public string LastTermsAndConditionsDate { get; set; }
             [XmlIgnore]
             public string DefaultLanguageId { get; set; }
@@ -1010,6 +1011,7 @@ namespace JXTPostDataToFTP.Models
             }
             [XmlIgnore]
             public string LastModifiedDate { get; set; }
+            public string ReferenceEmail { get; set; }
         }
 
         public class MemberCustomQuestion

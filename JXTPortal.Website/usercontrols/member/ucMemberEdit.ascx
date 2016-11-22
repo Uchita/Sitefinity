@@ -90,7 +90,7 @@
             <div class="form-input">
                 <asp:TextBox ID="txtSecondaryEmailAddress" runat="server" CssClass="form-textbox2" />
                 <asp:RegularExpressionValidator ID="revSecondaryEmailAddress" runat="server" ControlToValidate="txtSecondaryEmailAddress"
-                    ValidationGroup="MemberEdit" ValidationExpression="^(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6}$"
+                    ValidationGroup="MemberEdit"
                     SetFocusOnError="true" Display="Dynamic"> 
                 </asp:RegularExpressionValidator>
             </div>

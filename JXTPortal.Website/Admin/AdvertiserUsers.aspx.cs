@@ -199,6 +199,8 @@ public partial class AdvertiserUsers : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        revEmailAddress.ValidationExpression = ConfigurationManager.AppSettings["EmailValidationRegex"];
+
         if (!IsPostBack)
         {
             loadSites();

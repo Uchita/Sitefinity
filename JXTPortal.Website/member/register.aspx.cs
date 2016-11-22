@@ -1,4 +1,4 @@
-﻿using System;
+﻿3using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +8,7 @@ using JXTPortal.Entities;
 using JXTPortal.Common;
 using System.Configuration;
 using JXTPortal.Client.Salesforce;
+using System.Text.RegularExpressions;
 using System.IO;
 
 namespace JXTPortal.Website.members
@@ -15,6 +16,8 @@ namespace JXTPortal.Website.members
     public partial class register : System.Web.UI.Page
     {
         #region Properties
+
+        private const string INVALID_CONTENT_REGEX = "^((?!<.*?>).)*$";
 
         private MembersService _membersService = null;
         private MembersService MembersService
@@ -81,6 +84,10 @@ namespace JXTPortal.Website.members
             }
         }
 
+        protected string DateFormat
+        {
+            get { return SessionData.Site.DateFormat.ToLower(); }
+        }
         #endregion
 
         #region Page Event Handlers
@@ -95,6 +102,8 @@ namespace JXTPortal.Website.members
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            revEmailAddress.ValidationExpression = ConfigurationManager.AppSettings["EmailValidationRegex"];
+
             if (!IsPostBack)
             {
                 SetFormValues();
@@ -160,6 +169,36 @@ namespace JXTPortal.Website.members
             this.ddlTitle.Items[6].Text = CommonFunction.GetResourceValue("LabelOther");
 
             validatorPhone.ErrorMessage = CommonFunction.GetResourceValue(validatorPhone.ErrorMessage);
+
+            //set validation regex values for invalid contents            
+            rgvAddress.ValidationExpression = INVALID_CONTENT_REGEX;
+            rgvFirstname.ValidationExpression = INVALID_CONTENT_REGEX;
+            rgvMailingAddress.ValidationExpression = INVALID_CONTENT_REGEX;
+            rgvMailingPostcode.ValidationExpression = INVALID_CONTENT_REGEX;
+            rgvMailingState.ValidationExpression = INVALID_CONTENT_REGEX;
+            rgvMailingSuburb.ValidationExpression = INVALID_CONTENT_REGEX;
+            rgvMultiLingualFirstname.ValidationExpression = INVALID_CONTENT_REGEX;
+            rgvMultiLingualSurname.ValidationExpression = INVALID_CONTENT_REGEX;
+            rgvPostcode.ValidationExpression = INVALID_CONTENT_REGEX;
+            rgvState.ValidationExpression = INVALID_CONTENT_REGEX;
+            rgvSuburb.ValidationExpression = INVALID_CONTENT_REGEX;
+            rgvSurname.ValidationExpression = INVALID_CONTENT_REGEX;
+            rgvUsername.ValidationExpression = INVALID_CONTENT_REGEX;
+
+            //set multi-lingual support for error messages on validators
+            rgvAddress.ErrorMessage = CommonFunction.GetResourceValue(rgvAddress.ErrorMessage);
+            rgvFirstname.ErrorMessage = CommonFunction.GetResourceValue(rgvFirstname.ErrorMessage);
+            rgvMailingAddress.ErrorMessage = CommonFunction.GetResourceValue(rgvMailingAddress.ErrorMessage);
+            rgvMailingPostcode.ErrorMessage = CommonFunction.GetResourceValue(rgvMailingPostcode.ErrorMessage);
+            rgvMailingState.ErrorMessage = CommonFunction.GetResourceValue(rgvMailingState.ErrorMessage);
+            rgvMailingSuburb.ErrorMessage = CommonFunction.GetResourceValue(rgvMailingSuburb.ErrorMessage);
+            rgvMultiLingualFirstname.ErrorMessage = CommonFunction.GetResourceValue(rgvMultiLingualFirstname.ErrorMessage);
+            rgvMultiLingualSurname.ErrorMessage = CommonFunction.GetResourceValue(rgvMultiLingualSurname.ErrorMessage);
+            rgvPostcode.ErrorMessage = CommonFunction.GetResourceValue(rgvPostcode.ErrorMessage);
+            rgvState.ErrorMessage = CommonFunction.GetResourceValue(rgvState.ErrorMessage);
+            rgvSuburb.ErrorMessage = CommonFunction.GetResourceValue(rgvSuburb.ErrorMessage);
+            rgvSurname.ErrorMessage = CommonFunction.GetResourceValue(rgvSurname.ErrorMessage);
+            rgvUsername.ErrorMessage = CommonFunction.GetResourceValue(rgvUsername.ErrorMessage);
         }
 
         private void LoadSiteProfession()
@@ -239,6 +278,26 @@ namespace JXTPortal.Website.members
             string js = "$(document).ready(function() { var el = document.getElementById(\"" + clientid + "\"); el.scrollIntoView(false); })";
 
             Page.ClientScript.RegisterClientScriptBlock(Page.GetType(), "focusJS", js, true);
+        }
+
+        private void ValidateInputsContainsInvalidCharacters()
+        {
+            Regex r = new Regex(INVALID_CONTENT_REGEX, RegexOptions.IgnoreCase);
+
+            if (!r.IsMatch(txtAddress.Text)) rgvAddress.IsValid = false;
+            if (!r.IsMatch(txtFirstName.Text)) rgvFirstname.IsValid = false;
+            if (!r.IsMatch(tbMailingAddress.Text)) rgvMailingAddress.IsValid = false;
+            if (!r.IsMatch(tbMailingPostcode.Text)) rgvMailingPostcode.IsValid = false;
+            if (!r.IsMatch(tbMailingState.Text)) rgvMailingState.IsValid = false;
+            if (!r.IsMatch(tbMailingSuburb.Text)) rgvMailingSuburb.IsValid = false;
+            if (!r.IsMatch(txtMultiLingualFirstname.Text)) rgvMultiLingualFirstname.IsValid = false;
+            if (!r.IsMatch(txtMultiLingualSurname.Text)) rgvMultiLingualSurname.IsValid = false;
+            if (!r.IsMatch(txtPostcode.Text)) rgvPostcode.IsValid = false;
+            if (!r.IsMatch(txtState.Text)) rgvState.IsValid = false;
+            if (!r.IsMatch(txtSuburb.Text)) rgvSuburb.IsValid = false;
+            if (!r.IsMatch(txtSurname.Text)) rgvSurname.IsValid = false;
+            if (!r.IsMatch(txtUsername.Text)) rgvUsername.IsValid = false;
+
         }
 
         #endregion
@@ -385,11 +444,14 @@ namespace JXTPortal.Website.members
                 return;
             }
             else */
-            if (docInput.PostedFile != null && !CommonFunction.CheckExtension(docInput.PostedFile.FileName))
+            if (docInput.HasFile)
             {
-                args.IsValid = false;
-                this.cvalDocument.ErrorMessage = CommonFunction.GetResourceValue("ErrorFileExtension");
-                return;
+                if (!CommonFunction.CheckExtension(docInput.PostedFile.FileName))
+                {
+                    args.IsValid = false;
+                    this.cvalDocument.ErrorMessage = CommonFunction.GetResourceValue("ErrorFileExtension");
+                    return;
+                }
             }
             /*else if (CheckFileName == true)
             {
@@ -405,11 +467,14 @@ namespace JXTPortal.Website.members
 
         protected void cvalCoverLetter_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            if (fuCoverLetter.PostedFile != null && !CommonFunction.CheckExtension(fuCoverLetter.PostedFile.FileName))
+            if (fuCoverLetter.HasFile)
             {
-                args.IsValid = false;
-                this.cvalCoverLetter.ErrorMessage = CommonFunction.GetResourceValue("ErrorFileExtension");
-                return;
+                if (!CommonFunction.CheckExtension(fuCoverLetter.PostedFile.FileName))
+                {
+                    args.IsValid = false;
+                    this.cvalCoverLetter.ErrorMessage = CommonFunction.GetResourceValue("ErrorFileExtension");
+                    return;
+                }
             }
             else
             {
@@ -422,10 +487,19 @@ namespace JXTPortal.Website.members
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            ValidateInputsContainsInvalidCharacters();
+
             if (this.IsValid)
             {
                 using (JXTPortal.Entities.Members objMembers = new JXTPortal.Entities.Members())
                 {
+                    DateTime dob = DateTime.Now;
+
+                    if (!string.IsNullOrWhiteSpace(tbDOB.Text))
+                    {
+                        DateTime.TryParseExact(tbDOB.Text, SessionData.Site.DateFormat, null, System.Globalization.DateTimeStyles.None, out dob);
+                    }
+
                     objMembers.SiteId = SessionData.Site.MasterSiteId;
                     objMembers.Username = CommonService.EncodeString(txtUsername.Text);
                     objMembers.Password = CommonService.EncryptMD5(txtPassword.Text);
@@ -435,6 +509,7 @@ namespace JXTPortal.Website.members
                     objMembers.Surname = CommonService.EncodeString(txtSurname.Text);
                     objMembers.MultiLingualFirstName = CommonService.EncodeString(txtMultiLingualFirstname.Text);
                     objMembers.MultiLingualSurame = CommonService.EncodeString(txtMultiLingualSurname.Text);
+                    objMembers.DateOfBirth = (!string.IsNullOrWhiteSpace(tbDOB.Text)) ? dob : (DateTime?)null;
                     objMembers.HomePhone = CommonService.EncodeString(txtTel.Text);
                     objMembers.Address1 = CommonService.EncodeString(txtAddress.Text);
                     objMembers.Suburb = CommonService.EncodeString(txtSuburb.Text);
@@ -565,6 +640,16 @@ namespace JXTPortal.Website.members
             }
         }
 
+        protected void cvDOB_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            DateTime dob = DateTime.Now;
+
+            if (!string.IsNullOrWhiteSpace(tbDOB.Text))
+            {
+                cvEmailAddress.ErrorMessage = CommonFunction.GetResourceValue("LabelInvalidDate");
+                args.IsValid = DateTime.TryParseExact(tbDOB.Text, SessionData.Site.DateFormat, null, System.Globalization.DateTimeStyles.None, out dob);
+            }
+        }
 
         #endregion
 

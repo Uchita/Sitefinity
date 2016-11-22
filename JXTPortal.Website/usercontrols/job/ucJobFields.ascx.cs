@@ -495,6 +495,7 @@ namespace JXTPortal.Website.Admin.UserControls
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            revEmailAddress.ValidationExpression = ConfigurationManager.AppSettings["EmailValidationRegex"];
             cal_tbStartDate.Format = SessionData.Site.DateFormat;
 
             if (!Page.IsPostBack)

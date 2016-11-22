@@ -7,9 +7,11 @@ using System.IO;
 using JXTPortal;
 using System.Web.Script.Serialization;
 using System.Security.Cryptography;
+using log4net;
 
 public class WeVideo
 {
+    private ILog logger;
     private string Domain { get; set; }
     private string Email { get; set; }
     private string ClientName { get; set; }
@@ -31,6 +33,7 @@ public class WeVideo
         ClientName = clientname;
         APIKey = apikey;
         APISecret = apisecret;
+        logger = LogManager.GetLogger(typeof(WeVideo));
     }
 
     public bool CheckUserExists()
@@ -58,8 +61,7 @@ public class WeVideo
         }
         catch (Exception ex)
         {
-            ExceptionTableService serviceException = new ExceptionTableService();
-            serviceException.LogException(ex.GetBaseException());
+            logger.Error(ex);
         }
 
         return false;
@@ -134,8 +136,7 @@ public class WeVideo
         }
         catch (Exception ex)
         {
-            ExceptionTableService serviceException = new ExceptionTableService();
-            serviceException.LogException(ex.GetBaseException());
+            logger.Error(ex);
         }
 
         return string.Empty;
@@ -215,8 +216,7 @@ public class WeVideo
         }
         catch (Exception ex)
         {
-            ExceptionTableService serviceException = new ExceptionTableService();
-            serviceException.LogException(ex.GetBaseException());
+            logger.Error(ex);
         }
 
         return string.Empty;

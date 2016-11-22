@@ -545,6 +545,8 @@ namespace JXTPortal.Website.job
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            revEmailAddress.ValidationExpression = ConfigurationManager.AppSettings["EmailValidationRegex"];
+
             cal_tbStartDate.Format = SessionData.Site.DateFormat;
             //Everytime starts of this page, we get the advertiser details from integration settings
             AdvertiserID = BullhornSettingsDefaultAdvertiserID;

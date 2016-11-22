@@ -24,6 +24,7 @@ using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using NotesFor.HtmlToOpenXml;
+using log4net;
 
 #endregion
 
@@ -38,6 +39,7 @@ namespace JXTPortal
     [CLSCompliant(true)]
     public partial class JobApplicationService : JXTPortal.JobApplicationServiceBase
     {
+        private ILog _logger;
         #region Constructors
         /// <summary>
         /// Initializes a new instance of the JobApplicationService class.
@@ -45,6 +47,7 @@ namespace JXTPortal
         public JobApplicationService()
             : base()
         {
+            _logger = LogManager.GetLogger(typeof(MembersService));
         }
         #endregion Constructors
 
@@ -444,8 +447,7 @@ namespace JXTPortal
                     }
                     catch (Exception ex)
                     {
-                        ExceptionTableService ets = new ExceptionTableService();
-                        ets.LogException(ex);
+                        _logger.Error(ex);
                     }
                 }
 

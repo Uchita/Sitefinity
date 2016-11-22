@@ -121,6 +121,15 @@ namespace JXTPortal.Website.members {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvFirstname;
         
         /// <summary>
+        /// rgvFirstname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator rgvFirstname;
+        
+        /// <summary>
         /// ltMemberRegisterSurname control.
         /// </summary>
         /// <remarks>
@@ -146,6 +155,15 @@ namespace JXTPortal.Website.members {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvSurname;
+        
+        /// <summary>
+        /// rgvSurname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator rgvSurname;
         
         /// <summary>
         /// ltMultiLingualFirstName control.
@@ -175,6 +193,15 @@ namespace JXTPortal.Website.members {
         protected global::System.Web.UI.WebControls.TextBox txtMultiLingualFirstname;
         
         /// <summary>
+        /// rgvMultiLingualFirstname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator rgvMultiLingualFirstname;
+        
+        /// <summary>
         /// ltMultiLingualSurname control.
         /// </summary>
         /// <remarks>
@@ -202,6 +229,15 @@ namespace JXTPortal.Website.members {
         protected global::System.Web.UI.WebControls.TextBox txtMultiLingualSurname;
         
         /// <summary>
+        /// rgvMultiLingualSurname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator rgvMultiLingualSurname;
+        
+        /// <summary>
         /// ltMemberRegisterUsername control.
         /// </summary>
         /// <remarks>
@@ -227,6 +263,15 @@ namespace JXTPortal.Website.members {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvUsername;
+        
+        /// <summary>
+        /// rgvUsername control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator rgvUsername;
         
         /// <summary>
         /// ltMemberRegisterPassword control.
@@ -418,6 +463,42 @@ namespace JXTPortal.Website.members {
         protected global::System.Web.UI.WebControls.Panel pnlFullRegistration;
         
         /// <summary>
+        /// lbDOB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDOB;
+        
+        /// <summary>
+        /// UcLanguageLiteral13 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral13;
+        
+        /// <summary>
+        /// tbDOB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbDOB;
+        
+        /// <summary>
+        /// cvDOB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cvDOB;
+        
+        /// <summary>
         /// Label2 control.
         /// </summary>
         /// <remarks>
@@ -490,6 +571,15 @@ namespace JXTPortal.Website.members {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator revAddress;
         
         /// <summary>
+        /// rgvAddress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator rgvAddress;
+        
+        /// <summary>
         /// Label4 control.
         /// </summary>
         /// <remarks>
@@ -524,6 +614,15 @@ namespace JXTPortal.Website.members {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator revSuburb;
+        
+        /// <summary>
+        /// rgvSuburb control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator rgvSuburb;
         
         /// <summary>
         /// Label1 control.
@@ -562,6 +661,15 @@ namespace JXTPortal.Website.members {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator revPostcode;
         
         /// <summary>
+        /// rgvPostcode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator rgvPostcode;
+        
+        /// <summary>
         /// Label6 control.
         /// </summary>
         /// <remarks>
@@ -596,6 +704,15 @@ namespace JXTPortal.Website.members {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator revState;
+        
+        /// <summary>
+        /// rgvState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator rgvState;
         
         /// <summary>
         /// ltMemberRegisterCountry control.
@@ -679,6 +796,15 @@ namespace JXTPortal.Website.members {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
         
         /// <summary>
+        /// rgvMailingAddress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator rgvMailingAddress;
+        
+        /// <summary>
         /// divMailingSuburb control.
         /// </summary>
         /// <remarks>
@@ -722,6 +848,15 @@ namespace JXTPortal.Website.members {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator2;
+        
+        /// <summary>
+        /// rgvMailingSuburb control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator rgvMailingSuburb;
         
         /// <summary>
         /// divMailingPostcode control.
@@ -769,6 +904,15 @@ namespace JXTPortal.Website.members {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator3;
         
         /// <summary>
+        /// rgvMailingPostcode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator rgvMailingPostcode;
+        
+        /// <summary>
         /// divMailingState control.
         /// </summary>
         /// <remarks>
@@ -812,6 +956,15 @@ namespace JXTPortal.Website.members {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator4;
+        
+        /// <summary>
+        /// rgvMailingState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator rgvMailingState;
         
         /// <summary>
         /// divMailingCountry control.

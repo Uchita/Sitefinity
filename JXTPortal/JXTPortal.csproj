@@ -102,6 +102,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\JXTPortal.Service.Dapper\JXTPortal.Service.Dapper.csproj">
+      <Project>{F93FE82B-6B51-440B-86C9-55F6BA9CF038}</Project>
+      <Name>JXTPortal.Service.Dapper</Name>
+    </ProjectReference>
     <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\JXTPortal.Website\References\DocumentFormat.OpenXml.dll</HintPath>
@@ -112,6 +116,10 @@
     <Reference Include="Intelligencia.UrlRewriter, Version=2.0.0.6, Culture=neutral, PublicKeyToken=0573f3650687980d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\References\Intelligencia.UrlRewriter.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -301,6 +309,7 @@
     <Compile Include="CountriesServiceBase.generated.cs" />
     <Compile Include="Custom\ApplicationService.cs" />
     <Compile Include="Custom\CacheObject.cs" />
+    <Compile Include="Custom\ISessionService.cs" />
     <Compile Include="Custom\SessionService.cs" />
     <Compile Include="DefaultResourcesService.cs" />
     <Compile Include="DefaultResourcesServiceBase.generated.cs" />

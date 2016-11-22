@@ -32464,7 +32464,8 @@ AS
 					[SiteLanguageID],
 					[SiteID],
 					[LanguageID],
-					[SiteLanguageName]
+					[SiteLanguageName],
+					[ResourceFileName]
 				FROM
 					[dbo].[SiteLanguages]
 					
@@ -32548,7 +32549,7 @@ AS
 				EXEC sp_executesql @SQL
 
 				-- Return paged results
-				SELECT O.[SiteLanguageID], O.[SiteID], O.[LanguageID], O.[SiteLanguageName]
+				SELECT O.[SiteLanguageID], O.[SiteID], O.[LanguageID], O.[SiteLanguageName], O.[ResourceFileName]
 				FROM
 				    [dbo].[SiteLanguages] O,
 				    #PageIndex PageIndex
@@ -32603,7 +32604,9 @@ CREATE PROCEDURE dbo.SiteLanguages_Insert
 
 	@LanguageId int   ,
 
-	@SiteLanguageName nvarchar (255)  
+	@SiteLanguageName nvarchar (255)  ,
+
+	@ResourceFileName nvarchar (512)  
 )
 AS
 
@@ -32614,12 +32617,14 @@ AS
 					[SiteID]
 					,[LanguageID]
 					,[SiteLanguageName]
+					,[ResourceFileName]
 					)
 				VALUES
 					(
 					@SiteId
 					,@LanguageId
 					,@SiteLanguageName
+					,@ResourceFileName
 					)
 				
 				-- Get the identity value
@@ -32661,7 +32666,9 @@ CREATE PROCEDURE dbo.SiteLanguages_Update
 
 	@LanguageId int   ,
 
-	@SiteLanguageName nvarchar (255)  
+	@SiteLanguageName nvarchar (255)  ,
+
+	@ResourceFileName nvarchar (512)  
 )
 AS
 
@@ -32675,6 +32682,7 @@ AS
 					[SiteID] = @SiteId
 					,[LanguageID] = @LanguageId
 					,[SiteLanguageName] = @SiteLanguageName
+					,[ResourceFileName] = @ResourceFileName
 				WHERE
 [SiteLanguageID] = @SiteLanguageId 
 				
@@ -32756,7 +32764,8 @@ AS
 					[SiteLanguageID],
 					[SiteID],
 					[LanguageID],
-					[SiteLanguageName]
+					[SiteLanguageName],
+					[ResourceFileName]
 				FROM
 					[dbo].[SiteLanguages]
 				WHERE
@@ -32804,7 +32813,8 @@ AS
 					[SiteLanguageID],
 					[SiteID],
 					[LanguageID],
-					[SiteLanguageName]
+					[SiteLanguageName],
+					[ResourceFileName]
 				FROM
 					[dbo].[SiteLanguages]
 				WHERE
@@ -32852,7 +32862,8 @@ AS
 					[SiteLanguageID],
 					[SiteID],
 					[LanguageID],
-					[SiteLanguageName]
+					[SiteLanguageName],
+					[ResourceFileName]
 				FROM
 					[dbo].[SiteLanguages]
 				WHERE
@@ -32898,7 +32909,8 @@ AS
 					[SiteLanguageID],
 					[SiteID],
 					[LanguageID],
-					[SiteLanguageName]
+					[SiteLanguageName],
+					[ResourceFileName]
 				FROM
 					[dbo].[SiteLanguages]
 				WHERE
@@ -32942,7 +32954,9 @@ CREATE PROCEDURE dbo.SiteLanguages_Find
 
 	@LanguageId int   = null ,
 
-	@SiteLanguageName nvarchar (255)  = null 
+	@SiteLanguageName nvarchar (255)  = null ,
+
+	@ResourceFileName nvarchar (512)  = null 
 )
 AS
 
@@ -32955,6 +32969,7 @@ AS
 	, [SiteID]
 	, [LanguageID]
 	, [SiteLanguageName]
+	, [ResourceFileName]
     FROM
 	[dbo].[SiteLanguages]
     WHERE 
@@ -32962,6 +32977,7 @@ AS
 	AND ([SiteID] = @SiteId OR @SiteId IS NULL)
 	AND ([LanguageID] = @LanguageId OR @LanguageId IS NULL)
 	AND ([SiteLanguageName] = @SiteLanguageName OR @SiteLanguageName IS NULL)
+	AND ([ResourceFileName] = @ResourceFileName OR @ResourceFileName IS NULL)
 						
   END
   ELSE
@@ -32971,6 +32987,7 @@ AS
 	, [SiteID]
 	, [LanguageID]
 	, [SiteLanguageName]
+	, [ResourceFileName]
     FROM
 	[dbo].[SiteLanguages]
     WHERE 
@@ -32978,6 +32995,7 @@ AS
 	OR ([SiteID] = @SiteId AND @SiteId is not null)
 	OR ([LanguageID] = @LanguageId AND @LanguageId is not null)
 	OR ([SiteLanguageName] = @SiteLanguageName AND @SiteLanguageName is not null)
+	OR ([ResourceFileName] = @ResourceFileName AND @ResourceFileName is not null)
 	SELECT @@ROWCOUNT			
   END
 				
@@ -69952,7 +69970,8 @@ AS
                         [AddressStatus],
                         [HasAdvertiserLogo],
                         [CustomXML],
-                        [Address]
+                        [Address],
+                        [PublicTransport]
                     FROM
                         [dbo].[ViewJobSearch]
                         

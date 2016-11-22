@@ -57,6 +57,7 @@
     <Compile Include="Entities\KnowledgeBase\KnowledgeBaseCategoryEntity.cs" />
     <Compile Include="Entities\KnowledgeBase\KnowledgeBaseEntity.cs" />
     <Compile Include="Entities\Core\SitesEntity.cs" />
+    <Compile Include="Entities\Site\SiteLanguageEntity.cs" />
     <Compile Include="Factories\IConnectionFactory.cs" />
     <Compile Include="Factories\SqlServerConnectionFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,6 +66,9 @@
     <Compile Include="Repositories\ConsultantsRepository.cs" />
     <Compile Include="Repositories\IBaseEntityOperation.cs" />
     <Compile Include="Repositories\JobTemplatesRepository.cs" />
+    <Compile Include="Repositories\BaseEnitityOperation.cs" />
+    <Compile Include="Repositories\SiteLanguageRepository.cs" />
+    <Compile Include="Repositories\IBaseEntityOperation.cs" />
     <Compile Include="Repositories\KnowledgeBaseCategoryRepository.cs" />
     <Compile Include="Repositories\KnowledgeBaseRepository.cs" />
     <Compile Include="Repositories\MemberFilesRepository.cs" />

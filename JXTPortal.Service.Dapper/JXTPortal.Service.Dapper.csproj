@@ -54,11 +54,18 @@
     <Compile Include="MemberFilesService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SitesService.cs" />
+    <Compile Include="Models\SiteLanguages.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SiteLanguageService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JXTPortal.Data.Dapper\JXTPortal.Data.Dapper.csproj">
       <Project>{32EEE44E-E778-4F22-BDFF-7787D2F97E70}</Project>
       <Name>JXTPortal.Data.Dapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JXTPortal.Entities\JXTPortal.Entities.csproj">
+      <Project>{20E43088-4618-4F4A-B8AD-FC31B50D94CD}</Project>
+      <Name>JXTPortal.Entities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

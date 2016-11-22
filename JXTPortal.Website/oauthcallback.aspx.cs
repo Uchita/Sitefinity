@@ -661,7 +661,7 @@ namespace JXTPortal.Website
             oauthfb.ClientID = facebookappid;
             oauthfb.ClientSecret = facebooksecret;
             oauthfb.RedirectURI = facebookuri;
-            oauthfb.Permissions = "email,user_work_history,user_location,user_birthday,user_education_history";
+            oauthfb.Permissions = "email,user_location,user_birthday";
             oauthfb.Code = code;
 
             //get access token using code

@@ -3118,7 +3118,7 @@ namespace JXTPortal.Website.member
 
         private void LoadMemberQualificationLevel()
         {
-            QualificationLevelList = CommonFunction.GetEnumFormattedNames<PortalEnums.Members.QualificationLevel>();
+            QualificationLevelList = CommonFunction.GetEnumFormattedNames<PortalEnums.Members.QualificationLevel>(true);
         }
 
         private int SetEducation()
@@ -5924,6 +5924,12 @@ $('#" + ddlRolePreferenceJobSubClassification.ClientID + @"').multiselect({
             numberDisplayed: 2,
             buttonClass: 'form-control'
             });
+
+                //call custom function if any
+                if (typeof CustomFunction == 'function') { 
+                  CustomFunction('member/profile.aspx'); 
+                }
+
             });
             </script>
             ", false);
@@ -5955,6 +5961,11 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect({
 
 $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').val(['" + hfRolePreferenceEligibleWorkIn.Value.Replace(",", "','") + @"']);
 $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh');
+
+                //call custom function if any
+                if (typeof CustomFunction == 'function') { 
+                  CustomFunction('member/profile.aspx'); 
+                }
 
             });
 
@@ -6979,6 +6990,17 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
                     }
                 }
 
+                if (string.IsNullOrWhiteSpace(tbRefernecesAddCompany.Text))
+                {
+                    hasError = true;
+                    phReferencesCompany.Visible = true;
+
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = phReferencesCompany.ClientID;
+                    }
+                }
+
                 if (string.IsNullOrWhiteSpace(tbReferencesEmail.Text))
                 {
                     hasError = true;
@@ -7829,7 +7851,7 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
                                                 <Id>{0}</Id>
                                                 <Type>{1}</Type>
                                                 <Value>{2}</Value>
-                                            </Answer>", answer.Id, answer.Type, answer.Value);
+                                            </Answer>", answer.Id, answer.Type, Utils.XmlEncode(answer.Value));
                 }
 
                 sbAnswer.AppendLine("</Answers>");

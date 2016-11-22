@@ -44331,7 +44331,8 @@ TotalRowCount'
 					[SiteLanguageID],
 					[SiteID],
 					[LanguageID],
-					[SiteLanguageName]
+					[SiteLanguageName],
+					[ResourceFileName]
 				FROM
 					[dbo].[SiteLanguages]
 					
@@ -44395,7 +44396,7 @@ TotalRowCount'
 				EXEC sp_executesql @SQL
 
 				-- Return paged results
-				SELECT O.[SiteLanguageID], O.[SiteID], O.[LanguageID], O.[SiteLanguageName]
+				SELECT O.[SiteLanguageID], O.[SiteID], O.[LanguageID], O.[SiteLanguageName], O.[ResourceFileName]
 				FROM
 				    [dbo].[SiteLanguages] O,
 				    #PageIndex PageIndex
@@ -44432,6 +44433,7 @@ TotalRowCount'
 				<parameter name="@SiteId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
 				<parameter name="@LanguageId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
 				<parameter name="@SiteLanguageName" type="nvarchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault=""/>
+				<parameter name="@ResourceFileName" type="nvarchar" direction="Input" size="512" precision="0" scale="0" param="(512)" nulldefault=""/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -44440,12 +44442,14 @@ TotalRowCount'
 					[SiteID]
 					,[LanguageID]
 					,[SiteLanguageName]
+					,[ResourceFileName]
 					)
 				VALUES
 					(
 					@SiteId
 					,@LanguageId
 					,@SiteLanguageName
+					,@ResourceFileName
 					)
 				
 				-- Get the identity value
@@ -44468,6 +44472,7 @@ TotalRowCount'
 				<parameter name="@SiteId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
 				<parameter name="@LanguageId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
 				<parameter name="@SiteLanguageName" type="nvarchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault=""/>
+				<parameter name="@ResourceFileName" type="nvarchar" direction="Input" size="512" precision="0" scale="0" param="(512)" nulldefault=""/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -44479,6 +44484,7 @@ TotalRowCount'
 					[SiteID] = @SiteId
 					,[LanguageID] = @LanguageId
 					,[SiteLanguageName] = @SiteLanguageName
+					,[ResourceFileName] = @ResourceFileName
 				WHERE
 [SiteLanguageID] = @SiteLanguageId 
 				
@@ -44522,7 +44528,8 @@ TotalRowCount'
 					[SiteLanguageID],
 					[SiteID],
 					[LanguageID],
-					[SiteLanguageName]
+					[SiteLanguageName],
+					[ResourceFileName]
 				FROM
 					[dbo].[SiteLanguages]
 				WHERE
@@ -44551,7 +44558,8 @@ TotalRowCount'
 					[SiteLanguageID],
 					[SiteID],
 					[LanguageID],
-					[SiteLanguageName]
+					[SiteLanguageName],
+					[ResourceFileName]
 				FROM
 					[dbo].[SiteLanguages]
 				WHERE
@@ -44579,7 +44587,8 @@ TotalRowCount'
 					[SiteLanguageID],
 					[SiteID],
 					[LanguageID],
-					[SiteLanguageName]
+					[SiteLanguageName],
+					[ResourceFileName]
 				FROM
 					[dbo].[SiteLanguages]
 				WHERE
@@ -44607,7 +44616,8 @@ TotalRowCount'
 					[SiteLanguageID],
 					[SiteID],
 					[LanguageID],
-					[SiteLanguageName]
+					[SiteLanguageName],
+					[ResourceFileName]
 				FROM
 					[dbo].[SiteLanguages]
 				WHERE
@@ -44632,6 +44642,7 @@ TotalRowCount'
 				<parameter name="@SiteId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@LanguageId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@SiteLanguageName" type="nvarchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
+				<parameter name="@ResourceFileName" type="nvarchar" direction="Input" size="512" precision="0" scale="0" param="(512)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -44642,6 +44653,7 @@ TotalRowCount'
 	, [SiteID]
 	, [LanguageID]
 	, [SiteLanguageName]
+	, [ResourceFileName]
     FROM
 	[dbo].[SiteLanguages]
     WHERE 
@@ -44649,6 +44661,7 @@ TotalRowCount'
 	AND ([SiteID] = @SiteId OR @SiteId IS NULL)
 	AND ([LanguageID] = @LanguageId OR @LanguageId IS NULL)
 	AND ([SiteLanguageName] = @SiteLanguageName OR @SiteLanguageName IS NULL)
+	AND ([ResourceFileName] = @ResourceFileName OR @ResourceFileName IS NULL)
 						
   END
   ELSE
@@ -44658,6 +44671,7 @@ TotalRowCount'
 	, [SiteID]
 	, [LanguageID]
 	, [SiteLanguageName]
+	, [ResourceFileName]
     FROM
 	[dbo].[SiteLanguages]
     WHERE 
@@ -44665,6 +44679,7 @@ TotalRowCount'
 	OR ([SiteID] = @SiteId AND @SiteId is not null)
 	OR ([LanguageID] = @LanguageId AND @LanguageId is not null)
 	OR ([SiteLanguageName] = @SiteLanguageName AND @SiteLanguageName is not null)
+	OR ([ResourceFileName] = @ResourceFileName AND @ResourceFileName is not null)
 	SELECT @@ROWCOUNT			
   END
 				]]></body>
@@ -44699,7 +44714,7 @@ TotalRowCount'
 				ORDER BY {1}
 				
 				-- Return paged results
-				SELECT O.[SiteLanguageID], O.[SiteID], O.[LanguageID], O.[SiteLanguageName]
+				SELECT O.[SiteLanguageID], O.[SiteID], O.[LanguageID], O.[SiteLanguageName], O.[ResourceFileName]
 				FROM
 				    [dbo].[SiteLanguages] O,
 				    #PageIndex PageIndex
@@ -92491,27 +92506,18 @@ END
 			</parameters>
 			<body><![CDATA[
 				
-TABLE(JobID INT, Abbr NVARCHAR(400))  
- INSERT INTO @tmpJobApplicationAbbr  
- SELECT jaa.JobID, Abbr FROM @tmpJobApplicationArea jaa  
- INNER JOIN Area a  WITH (NOLOCK)            
- ON jaa.AreaID = a.AreaID  
- INNER JOIN Location l  WITH (NOLOCK)            
- ON a.LocationID = l.LocationID            
- INNER JOIN Countries c  WITH (NOLOCK)            
- ON l.CountryID = c.CountryID       
-  
- SELECT ja.JobApplicationID, ja.ApplicationDate, m.FirstName, m.Surname, m.EmailAddress, m.MobilePhone, m.PreferredCategoryID, m.PreferredSubCategoryID, ja.MemberResumeFile, ja.MemberCoverLetterFile, ja.ApplicationStatus, c.Abbr, tja.RefNo, tja.JobID, ja.Draft, ja.JobApplicationTypeID, ja.ExternalXMLFilename , ja.ExternalPDFFilename, ja.URL_Referral,ja.AppliedWith           
- FROM @tmpJobApplication tja   
- INNER JOIN JobApplication ja WITH (NOLOCK)            
- ON tja.JobApplicationID = ja.JobApplicationID  
- INNER JOIN Members m WITH (NOLOCK) ON m.MemberID = ja.MemberID  
- INNER JOIN @tmpJobApplicationAbbr c  
- ON c.JobID = ja.JobID    or c.JobID = ja.JobArchiveID     
-   
- ORDER BY ja.JobApplicationID    
-  
+tViewedDate             
+ FROM @tmpJobApplication tja     
+ INNER JOIN JobApplication ja WITH (NOLOCK)              
+ ON tja.JobApplicationID = ja.JobApplicationID    
+ INNER JOIN Members m WITH (NOLOCK) ON m.MemberID = ja.MemberID    
+ INNER JOIN @tmpJobApplicationAbbr c    
+ ON c.JobID = ja.JobID    or c.JobID = ja.JobArchiveID       
+     
+ ORDER BY ja.JobApplicationID      
+    
 END
+
 			]]></body>
 					</procedure>
 				
@@ -96167,7 +96173,8 @@ DELETE FROM [dbo].[JobApplicationType] WITH (ROWLOCK)
                         [AddressStatus],
                         [HasAdvertiserLogo],
                         [CustomXML],
-                        [Address]
+                        [Address],
+                        [PublicTransport]
                     FROM
                         [dbo].[ViewJobSearch]
                         

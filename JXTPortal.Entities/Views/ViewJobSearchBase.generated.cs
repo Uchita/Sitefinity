@@ -201,7 +201,7 @@ namespace JXTPortal.Entities
 		/// <summary>
 		/// CountryName : 
 		/// </summary>
-		private System.String		  _countryName = string.Empty;
+		private System.String		  _countryName = null;
 		
 		/// <summary>
 		/// LocationName : 
@@ -289,6 +289,11 @@ namespace JXTPortal.Entities
 		private System.String		  _address = null;
 		
 		/// <summary>
+		/// PublicTransport : 
+		/// </summary>
+		private System.String		  _publicTransport = null;
+		
+		/// <summary>
 		/// Object that contains data to associate with this object
 		/// </summary>
 		private object _tag;
@@ -366,7 +371,8 @@ namespace JXTPortal.Entities
 		///<param name="_hasAdvertiserLogo"></param>
 		///<param name="_customXml"></param>
 		///<param name="_address"></param>
-		public ViewJobSearchBase(System.Int32 _jobId, System.Int32 _siteId, System.String _jobName, System.String _description, System.String _fullDescription, System.DateTime _datePosted, System.Boolean _visible, System.Int32? _expired, System.Boolean _showSalaryDetails, System.Boolean _showSalaryRange, System.String _salaryText, System.Int32? _advertiserId, System.Int32? _applicationMethod, System.String _applicationUrl, System.Int32? _advertiserJobTemplateLogoId, System.String _companyName, System.Boolean? _showLocationDetails, System.String _bulletPoint1, System.String _bulletPoint2, System.String _bulletPoint3, System.Boolean _hotJob, System.String _applicationEmailAddress, System.DateTime _expiryDate, System.String _contactDetails, System.String _refNo, System.String _advertiserName, System.String _currencySymbol, System.Decimal _salaryUpperBand, System.Decimal _salaryLowerBand, System.Int32 _salaryTypeId, System.String _salaryTypeName, System.String _workTypeName, System.Int32 _countryId, System.Int32 _locationId, System.Int32 _areaId, System.String _countryName, System.String _locationName, System.String _areaName, System.Int32 _professionId, System.Int32 _roleId, System.String _siteProfessionName, System.String _siteRoleName, System.String _breadCrumbNavigation, System.Int32 _workTypeId, System.String _jobFriendlyName, System.String _salaryDisplay, System.Int32? _jobItemTypeId, System.Double? _jobLatitude, System.Double? _jobLongitude, System.Int32? _addressStatus, System.Int32 _hasAdvertiserLogo, System.String _customXml, System.String _address)
+		///<param name="_publicTransport"></param>
+		public ViewJobSearchBase(System.Int32 _jobId, System.Int32 _siteId, System.String _jobName, System.String _description, System.String _fullDescription, System.DateTime _datePosted, System.Boolean _visible, System.Int32? _expired, System.Boolean _showSalaryDetails, System.Boolean _showSalaryRange, System.String _salaryText, System.Int32? _advertiserId, System.Int32? _applicationMethod, System.String _applicationUrl, System.Int32? _advertiserJobTemplateLogoId, System.String _companyName, System.Boolean? _showLocationDetails, System.String _bulletPoint1, System.String _bulletPoint2, System.String _bulletPoint3, System.Boolean _hotJob, System.String _applicationEmailAddress, System.DateTime _expiryDate, System.String _contactDetails, System.String _refNo, System.String _advertiserName, System.String _currencySymbol, System.Decimal _salaryUpperBand, System.Decimal _salaryLowerBand, System.Int32 _salaryTypeId, System.String _salaryTypeName, System.String _workTypeName, System.Int32 _countryId, System.Int32 _locationId, System.Int32 _areaId, System.String _countryName, System.String _locationName, System.String _areaName, System.Int32 _professionId, System.Int32 _roleId, System.String _siteProfessionName, System.String _siteRoleName, System.String _breadCrumbNavigation, System.Int32 _workTypeId, System.String _jobFriendlyName, System.String _salaryDisplay, System.Int32? _jobItemTypeId, System.Double? _jobLatitude, System.Double? _jobLongitude, System.Int32? _addressStatus, System.Int32 _hasAdvertiserLogo, System.String _customXml, System.String _address, System.String _publicTransport)
 		{
 			this._jobId = _jobId;
 			this._siteId = _siteId;
@@ -421,6 +427,7 @@ namespace JXTPortal.Entities
 			this._hasAdvertiserLogo = _hasAdvertiserLogo;
 			this._customXml = _customXml;
 			this._address = _address;
+			this._publicTransport = _publicTransport;
 		}
 		
 		///<summary>
@@ -479,7 +486,8 @@ namespace JXTPortal.Entities
 		///<param name="_hasAdvertiserLogo"></param>
 		///<param name="_customXml"></param>
 		///<param name="_address"></param>
-		public static ViewJobSearch CreateViewJobSearch(System.Int32 _jobId, System.Int32 _siteId, System.String _jobName, System.String _description, System.String _fullDescription, System.DateTime _datePosted, System.Boolean _visible, System.Int32? _expired, System.Boolean _showSalaryDetails, System.Boolean _showSalaryRange, System.String _salaryText, System.Int32? _advertiserId, System.Int32? _applicationMethod, System.String _applicationUrl, System.Int32? _advertiserJobTemplateLogoId, System.String _companyName, System.Boolean? _showLocationDetails, System.String _bulletPoint1, System.String _bulletPoint2, System.String _bulletPoint3, System.Boolean _hotJob, System.String _applicationEmailAddress, System.DateTime _expiryDate, System.String _contactDetails, System.String _refNo, System.String _advertiserName, System.String _currencySymbol, System.Decimal _salaryUpperBand, System.Decimal _salaryLowerBand, System.Int32 _salaryTypeId, System.String _salaryTypeName, System.String _workTypeName, System.Int32 _countryId, System.Int32 _locationId, System.Int32 _areaId, System.String _countryName, System.String _locationName, System.String _areaName, System.Int32 _professionId, System.Int32 _roleId, System.String _siteProfessionName, System.String _siteRoleName, System.String _breadCrumbNavigation, System.Int32 _workTypeId, System.String _jobFriendlyName, System.String _salaryDisplay, System.Int32? _jobItemTypeId, System.Double? _jobLatitude, System.Double? _jobLongitude, System.Int32? _addressStatus, System.Int32 _hasAdvertiserLogo, System.String _customXml, System.String _address)
+		///<param name="_publicTransport"></param>
+		public static ViewJobSearch CreateViewJobSearch(System.Int32 _jobId, System.Int32 _siteId, System.String _jobName, System.String _description, System.String _fullDescription, System.DateTime _datePosted, System.Boolean _visible, System.Int32? _expired, System.Boolean _showSalaryDetails, System.Boolean _showSalaryRange, System.String _salaryText, System.Int32? _advertiserId, System.Int32? _applicationMethod, System.String _applicationUrl, System.Int32? _advertiserJobTemplateLogoId, System.String _companyName, System.Boolean? _showLocationDetails, System.String _bulletPoint1, System.String _bulletPoint2, System.String _bulletPoint3, System.Boolean _hotJob, System.String _applicationEmailAddress, System.DateTime _expiryDate, System.String _contactDetails, System.String _refNo, System.String _advertiserName, System.String _currencySymbol, System.Decimal _salaryUpperBand, System.Decimal _salaryLowerBand, System.Int32 _salaryTypeId, System.String _salaryTypeName, System.String _workTypeName, System.Int32 _countryId, System.Int32 _locationId, System.Int32 _areaId, System.String _countryName, System.String _locationName, System.String _areaName, System.Int32 _professionId, System.Int32 _roleId, System.String _siteProfessionName, System.String _siteRoleName, System.String _breadCrumbNavigation, System.Int32 _workTypeId, System.String _jobFriendlyName, System.String _salaryDisplay, System.Int32? _jobItemTypeId, System.Double? _jobLatitude, System.Double? _jobLongitude, System.Int32? _addressStatus, System.Int32 _hasAdvertiserLogo, System.String _customXml, System.String _address, System.String _publicTransport)
 		{
 			ViewJobSearch newViewJobSearch = new ViewJobSearch();
 			newViewJobSearch.JobId = _jobId;
@@ -535,6 +543,7 @@ namespace JXTPortal.Entities
 			newViewJobSearch.HasAdvertiserLogo = _hasAdvertiserLogo;
 			newViewJobSearch.CustomXml = _customXml;
 			newViewJobSearch.Address = _address;
+			newViewJobSearch.PublicTransport = _publicTransport;
 			return newViewJobSearch;
 		}
 				
@@ -1518,11 +1527,10 @@ namespace JXTPortal.Entities
 		/// 	Gets or Sets the CountryName property. 
 		///		
 		/// </summary>
-		/// <value>This type is varchar</value>
+		/// <value>This type is nvarchar</value>
 		/// <remarks>
-		/// This property can not be set to null. 
+		/// This property can be set to null. 
 		/// </remarks>
-		/// <exception cref="ArgumentNullException">If you attempt to set to null.</exception>
 		[DescriptionAttribute(""), System.ComponentModel.Bindable( System.ComponentModel.BindableSupport.Yes)]
 		public virtual System.String CountryName
 		{
@@ -1532,8 +1540,6 @@ namespace JXTPortal.Entities
 			}
 			set
 			{
-				if ( value == null )
-					throw new ArgumentNullException("value", "CountryName does not allow null values.");
 				if (_countryName == value)
 					return;
 					
@@ -2014,6 +2020,33 @@ namespace JXTPortal.Entities
 			}
 		}
 		
+		/// <summary>
+		/// 	Gets or Sets the PublicTransport property. 
+		///		
+		/// </summary>
+		/// <value>This type is nvarchar</value>
+		/// <remarks>
+		/// This property can be set to null. 
+		/// </remarks>
+		[DescriptionAttribute(""), System.ComponentModel.Bindable( System.ComponentModel.BindableSupport.Yes)]
+		public virtual System.String PublicTransport
+		{
+			get
+			{
+				return this._publicTransport; 
+			}
+			set
+			{
+				if (_publicTransport == value)
+					return;
+					
+				this._publicTransport = value;
+				this._isDirty = true;
+				
+				OnPropertyChanged("PublicTransport");
+			}
+		}
+		
 		
 		/// <summary>
 		///     Gets or sets the object that contains supplemental data about this object.
@@ -2194,6 +2227,7 @@ namespace JXTPortal.Entities
 				copy.HasAdvertiserLogo = this.HasAdvertiserLogo;
 				copy.CustomXml = this.CustomXml;
 				copy.Address = this.Address;
+				copy.PublicTransport = this.PublicTransport;
 			copy.AcceptChanges();
 			return (ViewJobSearch)copy;
 		}
@@ -2426,8 +2460,15 @@ namespace JXTPortal.Entities
 				equal = false;
 			if (Object1.AreaId != Object2.AreaId)
 				equal = false;
-			if (Object1.CountryName != Object2.CountryName)
+			if (Object1.CountryName != null && Object2.CountryName != null )
+			{
+				if (Object1.CountryName != Object2.CountryName)
+					equal = false;
+			}
+			else if (Object1.CountryName == null ^ Object1.CountryName == null )
+			{
 				equal = false;
+			}
 			if (Object1.LocationName != null && Object2.LocationName != null )
 			{
 				if (Object1.LocationName != Object2.LocationName)
@@ -2543,6 +2584,15 @@ namespace JXTPortal.Entities
 					equal = false;
 			}
 			else if (Object1.Address == null ^ Object1.Address == null )
+			{
+				equal = false;
+			}
+			if (Object1.PublicTransport != null && Object2.PublicTransport != null )
+			{
+				if (Object1.PublicTransport != Object2.PublicTransport)
+					equal = false;
+			}
+			else if (Object1.PublicTransport == null ^ Object1.PublicTransport == null )
 			{
 				equal = false;
 			}
@@ -2714,6 +2764,8 @@ namespace JXTPortal.Entities
 					return entity.CustomXml;
 				case "Address":
 					return entity.Address;
+				case "PublicTransport":
+					return entity.PublicTransport;
 			}
 			return null;
 		}
@@ -2734,7 +2786,7 @@ namespace JXTPortal.Entities
 		public override string ToString()
 		{
 			return string.Format(System.Globalization.CultureInfo.InvariantCulture,
-				"{54}{53}- JobId: {0}{53}- SiteId: {1}{53}- JobName: {2}{53}- Description: {3}{53}- FullDescription: {4}{53}- DatePosted: {5}{53}- Visible: {6}{53}- Expired: {7}{53}- ShowSalaryDetails: {8}{53}- ShowSalaryRange: {9}{53}- SalaryText: {10}{53}- AdvertiserId: {11}{53}- ApplicationMethod: {12}{53}- ApplicationUrl: {13}{53}- AdvertiserJobTemplateLogoId: {14}{53}- CompanyName: {15}{53}- ShowLocationDetails: {16}{53}- BulletPoint1: {17}{53}- BulletPoint2: {18}{53}- BulletPoint3: {19}{53}- HotJob: {20}{53}- ApplicationEmailAddress: {21}{53}- ExpiryDate: {22}{53}- ContactDetails: {23}{53}- RefNo: {24}{53}- AdvertiserName: {25}{53}- CurrencySymbol: {26}{53}- SalaryUpperBand: {27}{53}- SalaryLowerBand: {28}{53}- SalaryTypeId: {29}{53}- SalaryTypeName: {30}{53}- WorkTypeName: {31}{53}- CountryId: {32}{53}- LocationId: {33}{53}- AreaId: {34}{53}- CountryName: {35}{53}- LocationName: {36}{53}- AreaName: {37}{53}- ProfessionId: {38}{53}- RoleId: {39}{53}- SiteProfessionName: {40}{53}- SiteRoleName: {41}{53}- BreadCrumbNavigation: {42}{53}- WorkTypeId: {43}{53}- JobFriendlyName: {44}{53}- SalaryDisplay: {45}{53}- JobItemTypeId: {46}{53}- JobLatitude: {47}{53}- JobLongitude: {48}{53}- AddressStatus: {49}{53}- HasAdvertiserLogo: {50}{53}- CustomXml: {51}{53}- Address: {52}{53}", 
+				"{55}{54}- JobId: {0}{54}- SiteId: {1}{54}- JobName: {2}{54}- Description: {3}{54}- FullDescription: {4}{54}- DatePosted: {5}{54}- Visible: {6}{54}- Expired: {7}{54}- ShowSalaryDetails: {8}{54}- ShowSalaryRange: {9}{54}- SalaryText: {10}{54}- AdvertiserId: {11}{54}- ApplicationMethod: {12}{54}- ApplicationUrl: {13}{54}- AdvertiserJobTemplateLogoId: {14}{54}- CompanyName: {15}{54}- ShowLocationDetails: {16}{54}- BulletPoint1: {17}{54}- BulletPoint2: {18}{54}- BulletPoint3: {19}{54}- HotJob: {20}{54}- ApplicationEmailAddress: {21}{54}- ExpiryDate: {22}{54}- ContactDetails: {23}{54}- RefNo: {24}{54}- AdvertiserName: {25}{54}- CurrencySymbol: {26}{54}- SalaryUpperBand: {27}{54}- SalaryLowerBand: {28}{54}- SalaryTypeId: {29}{54}- SalaryTypeName: {30}{54}- WorkTypeName: {31}{54}- CountryId: {32}{54}- LocationId: {33}{54}- AreaId: {34}{54}- CountryName: {35}{54}- LocationName: {36}{54}- AreaName: {37}{54}- ProfessionId: {38}{54}- RoleId: {39}{54}- SiteProfessionName: {40}{54}- SiteRoleName: {41}{54}- BreadCrumbNavigation: {42}{54}- WorkTypeId: {43}{54}- JobFriendlyName: {44}{54}- SalaryDisplay: {45}{54}- JobItemTypeId: {46}{54}- JobLatitude: {47}{54}- JobLongitude: {48}{54}- AddressStatus: {49}{54}- HasAdvertiserLogo: {50}{54}- CustomXml: {51}{54}- Address: {52}{54}- PublicTransport: {53}{54}", 
 				this.JobId,
 				this.SiteId,
 				this.JobName,
@@ -2785,7 +2837,8 @@ namespace JXTPortal.Entities
 				this.CountryId,
 				this.LocationId,
 				this.AreaId,
-				this.CountryName,
+				(this.CountryName == null) ? string.Empty : this.CountryName.ToString(),
+			     
 				(this.LocationName == null) ? string.Empty : this.LocationName.ToString(),
 			     
 				(this.AreaName == null) ? string.Empty : this.AreaName.ToString(),
@@ -2814,6 +2867,8 @@ namespace JXTPortal.Entities
 				(this.CustomXml == null) ? string.Empty : this.CustomXml.ToString(),
 			     
 				(this.Address == null) ? string.Empty : this.Address.ToString(),
+			     
+				(this.PublicTransport == null) ? string.Empty : this.PublicTransport.ToString(),
 			     
 				System.Environment.NewLine, 
 				this.GetType());
@@ -3042,7 +3097,7 @@ namespace JXTPortal.Entities
 		/// CountryName : 
 		/// </summary>
 		[EnumTextValue("CountryName")]
-		[ColumnEnum("CountryName", typeof(System.String), System.Data.DbType.AnsiString, false, false, false, 255)]
+		[ColumnEnum("CountryName", typeof(System.String), System.Data.DbType.String, false, false, true, 255)]
 		CountryName,
 		/// <summary>
 		/// LocationName : 
@@ -3145,7 +3200,13 @@ namespace JXTPortal.Entities
 		/// </summary>
 		[EnumTextValue("Address")]
 		[ColumnEnum("Address", typeof(System.String), System.Data.DbType.AnsiString, false, false, true, 255)]
-		Address
+		Address,
+		/// <summary>
+		/// PublicTransport : 
+		/// </summary>
+		[EnumTextValue("PublicTransport")]
+		[ColumnEnum("PublicTransport", typeof(System.String), System.Data.DbType.String, false, false, true, 500)]
+		PublicTransport
 	}//End enum
 
 } // end namespace

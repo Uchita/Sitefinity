@@ -217,12 +217,12 @@ namespace JXTPortal.Website.member.enworld
             Tab2Setup();
             Tab3Setup();
 
-            SetupPlaceholders();
+            SetupPlaceholdersAndLangRelated();
 
             PopulateDataToForm();
         }
 
-        private void SetupPlaceholders()
+        private void SetupPlaceholdersAndLangRelated()
         {
             tbMobilePhone.Attributes.Add("placeholder", CommonFunction.GetResourceValue("LabelPhoneMobileFull"));
             tbHomePhone.Attributes.Add("placeholder", CommonFunction.GetResourceValue("LabelPhoneHomeFull"));
@@ -233,6 +233,11 @@ namespace JXTPortal.Website.member.enworld
             tbCurrentJobTitle.Attributes.Add("placeholder", CommonFunction.GetResourceValue("LabelCurrentJobTitle"));
             tbFixedSalary.Attributes.Add("placeholder", CommonFunction.GetResourceValue("LabelFixedSalary"));
             tbIncentiveSalary.Attributes.Add("placeholder", CommonFunction.GetResourceValue("LabelIncentiveSalary"));
+            fileUploadTitle.Attributes.Add("placeholder", CommonFunction.GetResourceValue("LabelFileTitle"));
+            tbZip.Attributes.Add("placeholder", CommonFunction.GetResourceValue("LabelZipCodePlaceholder"));
+
+
+            btnUpload.Text = CommonFunction.GetResourceValue("LabelUploadFile");
         }
 
         private void PopulateDataToForm()
@@ -417,7 +422,8 @@ namespace JXTPortal.Website.member.enworld
             ddlGender.DataTextField = "text";
             ddlGender.DataValueField = "value";
             ddlGender.DataBind();
-            ddlGender.Items.Insert(0, new ListItem("- Not Specified -", "--None--"));
+            //ddlGender.Items.Insert(0, new ListItem("- Not Specified -", "--None--"));
+            ddlGender.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLNotSpecified"), "--None--"));
 
             #endregion
 
@@ -430,8 +436,10 @@ namespace JXTPortal.Website.member.enworld
             ddlCountry.DataTextField = "text";
             ddlCountry.DataValueField = "value";
             ddlCountry.DataBind();
-            ddlCountry.Items.Insert(0, new ListItem("- Please Select -", "--None--"));
+            //ddlCountry.Items.Insert(0, new ListItem("- Please Select -", "--None--"));
+            ddlCountry.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelect"), "--None--"));
 
+            
             if (!string.IsNullOrEmpty(thisContact.MailingCountry))
             {
                 List<string> stateDDValues = XMLPullMultiValue("country", thisContact.MailingCountry);
@@ -459,8 +467,9 @@ namespace JXTPortal.Website.member.enworld
             }
 
             //state default display
-            ddlState.Items.Insert(0, new ListItem("- Not Specified -", ""));
-
+            //ddlState.Items.Insert(0, new ListItem("- Not Specified -", ""));
+            ddlState.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLNotSpecified"), ""));
+            
             #endregion
 
             #region DDL Languages
@@ -471,13 +480,15 @@ namespace JXTPortal.Website.member.enworld
             ddlNativeLanguage.DataTextField = "text";
             ddlNativeLanguage.DataValueField = "value";
             ddlNativeLanguage.DataBind();
-            ddlNativeLanguage.Items.Insert(0, new ListItem("- Please Select -", "--None--"));
+            //ddlNativeLanguage.Items.Insert(0, new ListItem("- Please Select -", "--None--"));
+            ddlNativeLanguage.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelect"), "--None--"));
 
             ddlSecondaryLanguage.DataSource = languagesSelectableValues;
             ddlSecondaryLanguage.DataTextField = "text";
             ddlSecondaryLanguage.DataValueField = "value";
             ddlSecondaryLanguage.DataBind();
-            ddlSecondaryLanguage.Items.Insert(0, new ListItem("- Not Specified -", "--None--"));
+            //ddlSecondaryLanguage.Items.Insert(0, new ListItem("- Not Specified -", "--None--"));
+            ddlSecondaryLanguage.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLNotSpecified"), "--None--"));
 
             List<string> languageLevelsDDValues = XMLPullValue("languagelevel");
             var languageLevelsSelectableDDValues = (from m in languageLevelsDDValues select new { text = m, value = m }).ToList();
@@ -486,7 +497,8 @@ namespace JXTPortal.Website.member.enworld
             ddlSecondaryLanguageLevel.DataTextField = "text";
             ddlSecondaryLanguageLevel.DataValueField = "value";
             ddlSecondaryLanguageLevel.DataBind();
-            ddlSecondaryLanguageLevel.Items.Insert(0, new ListItem("- Not Specified -", "--None--"));
+            //ddlSecondaryLanguageLevel.Items.Insert(0, new ListItem("- Not Specified -", "--None--"));
+            ddlSecondaryLanguageLevel.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLNotSpecified"), "--None--"));
 
             #endregion
         }
@@ -502,7 +514,8 @@ namespace JXTPortal.Website.member.enworld
             ddlIndustry.DataTextField = "text";
             ddlIndustry.DataValueField = "value";
             ddlIndustry.DataBind();
-            ddlIndustry.Items.Insert(0, new ListItem("- Please select an Industry -", "--None--"));
+            //ddlIndustry.Items.Insert(0, new ListItem("- Please select an Industry -", "--None--"));
+            ddlIndustry.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelectIndustry"), "--None--"));
             #endregion
 
             #region DDL Employment Type
@@ -538,9 +551,11 @@ namespace JXTPortal.Website.member.enworld
             ddlJobCategory.DataValueField = "value";
             ddlJobCategory.DataBind();
 
-            ddlJobCategory.Items.Insert(0, new ListItem("- Please select a Job Category -", "--None--"));
+            //ddlJobCategory.Items.Insert(0, new ListItem("- Please select a Job Category -", "--None--"));
+            ddlJobCategory.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelectJobCategory"), "--None--"));
 
-            ddlJobFunctions.Items.Insert(0, new ListItem("- Please select a Job Category -", "--None--"));
+            //ddlJobFunctions.Items.Insert(0, new ListItem("- Please select a Job Category -", "--None--"));
+            ddlJobFunctions.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelectJobCategory"), "--None--"));
 
             #endregion
         }
@@ -556,7 +571,9 @@ namespace JXTPortal.Website.member.enworld
             ddlPrimDesiredCountry.DataTextField = "text";
             ddlPrimDesiredCountry.DataValueField = "value";
             ddlPrimDesiredCountry.DataBind();
-            ddlPrimDesiredCountry.Items.Insert(0, new ListItem("- Please select a Country -", "--None--"));
+            
+            //ddlPrimDesiredCountry.Items.Insert(0, new ListItem("- Please select a Country -", "--None--"));
+            ddlPrimDesiredCountry.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelectCountry"), "--None--"));
 
             ddlSecondDesiredCountry.DataSource = dCountrySelectableValues;
             ddlSecondDesiredCountry.DataTextField = "text";
@@ -585,8 +602,8 @@ namespace JXTPortal.Website.member.enworld
             ddlPrimDesiredIndustry.DataValueField = "value";
             ddlPrimDesiredIndustry.DataBind();
 
-
-            ddlPrimDesiredIndustry.Items.Insert(0, new ListItem("- Please select an Industry -", "--None--"));
+            //ddlPrimDesiredIndustry.Items.Insert(0, new ListItem("- Please select an Industry -", "--None--"));
+            ddlPrimDesiredIndustry.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelectIndustry"), "--None--"));
             #endregion
 
             #region DDL Desired Job Category / Job Functions
@@ -599,9 +616,11 @@ namespace JXTPortal.Website.member.enworld
             ddlPrimDesiredJobCategory.DataValueField = "value";
             ddlPrimDesiredJobCategory.DataBind();
 
-            ddlPrimDesiredJobCategory.Items.Insert(0, new ListItem("- Please select a Job Category -", "--None--"));
+            //ddlPrimDesiredJobCategory.Items.Insert(0, new ListItem("- Please select a Job Category -", "--None--"));
+            ddlPrimDesiredJobCategory.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelectJobCategory"), "--None--"));
 
-            ddlPrmDesiredJobFunction.Items.Insert(0, new ListItem("- Please select a Job Category -", "--None--"));
+            //ddlPrmDesiredJobFunction.Items.Insert(0, new ListItem("- Please select a Job Category -", "--None--"));
+            ddlPrmDesiredJobFunction.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelectJobCategory"), "--None--"));
 
             #endregion
 
@@ -659,9 +678,9 @@ namespace JXTPortal.Website.member.enworld
             if (dLocSelectableValues.Count() == 0)
             {
                 if (ddlPrimDesiredCountry.SelectedValue == "--None--")
-                    ddlPrimDesiredLocation.Items.Insert(0, new ListItem("- Please select a Primary Desired Country -", "--None--"));
+                    ddlPrimDesiredLocation.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelectJobCategory"), "--None--"));
                 else
-                    ddlPrimDesiredLocation.Items.Insert(0, new ListItem("- All Areas -", "--None--"));
+                    ddlPrimDesiredLocation.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLAllAreas"), "--None--"));
             }
 
             ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), "FileUpload", "$(document).ready(function() {$('#aDesiredPosition').click(); MultiselectInit(); })", true);
@@ -684,9 +703,9 @@ namespace JXTPortal.Website.member.enworld
             if (dFuncSelectableValues.Count() == 0)
             {
                 if (ddlPrimDesiredJobCategory.SelectedValue == "--None--")
-                    ddlPrmDesiredJobFunction.Items.Insert(0, new ListItem("- Please select a Primary Desired Job Category -", "--None--"));
+                    ddlPrmDesiredJobFunction.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelectPrimaryDesiredJobCategory"), "--None--"));
                 else
-                    ddlPrmDesiredJobFunction.Items.Insert(0, new ListItem("- All Areas -", "--None--"));
+                    ddlPrmDesiredJobFunction.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLAllAreas"), "--None--"));
             }
 
             ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), "FileUpload", "$(document).ready(function() {$('#aDesiredPosition').click(); MultiselectInit(); })", true);

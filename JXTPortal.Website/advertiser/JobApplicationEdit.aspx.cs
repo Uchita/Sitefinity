@@ -349,7 +349,7 @@ namespace JXTPortal.Website.advertiser
                     {
                         jobapp.ApplicantGrade = Convert.ToInt32(ddlApplicantGrade.SelectedValue);
                     }
-
+                    jobapp.LastViewedDate = DateTime.Now;
                     JobApplicationService.Save(jobapp);
                     Response.Redirect("~/advertiser/jobtrackerapplications.aspx" + GetReturnParam(jobapp));
                 }

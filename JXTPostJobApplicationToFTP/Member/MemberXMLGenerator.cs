@@ -11,7 +11,7 @@ using JXTPortal;
 using System.Data;
 using System.IO;
 using System.Net;
-using EmailSender;
+using JXTPortal.EmailSender;
 using System.Net.Mail;
 using System.Net.Configuration;
 using Tamir.SharpSsh;
@@ -83,56 +83,69 @@ namespace JXTPostJobApplicationToFTP
                 password = (string)c.Element("password"),
                 sftp = (bool)c.Element("sftp"),
                 port = (int)c.Element("port"),
+                Mode = (string)c.Element("Mode"),
                 LastJobApplicationId = (string)c.Element("LastModifiedDate")            // Job application id used for getting the last modified date
             });
 
             foreach (SitesXML sitexml in siteXMLList)
             {
-                try
+
+                if (string.IsNullOrWhiteSpace(sitexml.Mode))
                 {
-                    DateTime lastRun = (string.IsNullOrEmpty(sitexml.LastJobApplicationId) ? new DateTime(2012, 1, 1) : Convert.ToDateTime(sitexml.LastJobApplicationId));
-                    fileslist = new List<FileNames>();
-                    ds = memberservice.CustomGetNewValidMembers(sitexml.SiteId, lastRun);
-                    dtMembers = ds.Tables[0];
-                    dtMemberFiles = ds.Tables[1];
-
-                    // Get the default country from the Site Global settings
-                    string strSiteDefaultCountryCode = string.Empty;
-
-                    // Get the Site URL 
-                    SitesService sitesService = new SitesService();
-                    string strDomainName = sitesService.GetBySiteId(sitexml.SiteId).SiteUrl;
-
-                    using (TList<GlobalSettings> gslist = GlobalSettingsService.GetBySiteId(sitexml.SiteId))
+                    try
                     {
-                        if (gslist.Count > 0)
+                        DateTime lastRun = (string.IsNullOrEmpty(sitexml.LastJobApplicationId) ? new DateTime(2012, 1, 1) : Convert.ToDateTime(sitexml.LastJobApplicationId));
+                        fileslist = new List<FileNames>();
+                        ds = memberservice.CustomGetNewValidMembers(sitexml.SiteId, lastRun);
+                        dtMembers = ds.Tables[0];
+                        dtMemberFiles = ds.Tables[1];
+
+                        // Get the default country from the Site Global settings
+                        string strSiteDefaultCountryCode = string.Empty;
+
+                        // Get the Site URL 
+                        SitesService sitesService = new SitesService();
+                        string strDomainName = sitesService.GetBySiteId(sitexml.SiteId).SiteUrl;
+
+                        using (TList<GlobalSettings> gslist = GlobalSettingsService.GetBySiteId(sitexml.SiteId))
                         {
-                            if (gslist[0].DefaultCountryId.HasValue)
+                            if (gslist.Count > 0)
                             {
-                                using (Countries countries = CountriesService.GetByCountryId(gslist[0].DefaultCountryId.Value))
+                                if (gslist[0].DefaultCountryId.HasValue)
                                 {
-                                    // Get the default site country code
-                                    if (countries != null)
-                                        strSiteDefaultCountryCode = countries.Abbr;
+                                    using (Countries countries = CountriesService.GetByCountryId(gslist[0].DefaultCountryId.Value))
+                                    {
+                                        // Get the default site country code
+                                        if (countries != null)
+                                            strSiteDefaultCountryCode = countries.Abbr;
+                                    }
                                 }
                             }
                         }
-                    }
 
-                    DataRow[] drValidatedMembers = dtMembers.Select("Validated=1");
+                        DataRow[] drValidatedMembers = null;
 
-                    Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Number of Members: " + drValidatedMembers.Count().ToString());
+                        if (sitexml.Mode == "FullCandidate")
+                        {
+                            drValidatedMembers = dtMembers.Select("ISNULL(Title, '') <> '' AND ISNULL(FirstName, '') <> '' AND ISNULL(Surname, '') <> '' AND ISNULL(EmailAddress, '') <> '' AND ISNULL(HomePhone, '') <> '' AND ISNULL(Address1, '') <> ''");
+                        }
+                        else
+                        {
+                            drValidatedMembers = dtMembers.Select();
+                        }
 
-                    // For each member
-                    foreach (DataRow drMember in drValidatedMembers)
-                    {
-                        memberxml = new StringBuilder();
-                        membercoverletterxml = new StringBuilder();
-                        memberresumexml = new StringBuilder();
-                        currentMember = drMember;
+                        Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Number of Members: " + drValidatedMembers.Count().ToString());
 
-                        // Get the member XML
-                        memberxml.AppendFormat(@"
+                        // For each member
+                        foreach (DataRow drMember in drValidatedMembers)
+                        {
+                            memberxml = new StringBuilder();
+                            membercoverletterxml = new StringBuilder();
+                            memberresumexml = new StringBuilder();
+                            currentMember = drMember;
+
+                            // Get the member XML
+                            memberxml.AppendFormat(@"
 <member>
     <domain>{24}</domain>
     <memberid>{0}</memberid>
@@ -160,48 +173,48 @@ namespace JXTPostJobApplicationToFTP
     <classificationid>{22}</classificationid>
     <subclassificationid>{23}</subclassificationid>
                                                 ",
-                                                        drMember["MemberID"].ToString().Trim(),
-                                                        drMember["Username"].ToString().Trim(),
-                                                        drMember["Title"].ToString().Trim(),
-                                                        drMember["FirstName"].ToString().Trim(),
-                                                        drMember["Surname"].ToString().Trim(),
-                                                        drMember["EmailAddress"].ToString().Trim(),
-                                                        drMember["HomePhone"].ToString().Trim(),
-                                                        drMember["WorkPhone"].ToString().Trim(),
-                                                        drMember["MobilePhone"].ToString().Trim(),
-                                                        drMember["Address1"].ToString().Trim(),
-                                                        drMember["PostCode"].ToString().Trim(),
-                                                        drMember["Suburb"].ToString().Trim(),
-                                                        drMember["States"].ToString().Trim(),
-                                                        (string.IsNullOrEmpty(drMember["EmailFormat"].ToString().Trim())) ? string.Empty : ((PortalEnums.Email.EmailFormat)Convert.ToInt32(drMember["EmailFormat"])).ToString(),
-                                                        drMember["DateOfBirth"].ToString().Trim(),
-                                                        drMember["Gender"].ToString().Trim(),
-                                                        drMember["Fax"].ToString().Trim(),
-                                                        drMember["CountryID"].ToString().Trim(),
-                                                        drMember["Tags"].ToString().Trim(),
-                                                        drMember["LastModifiedDate"].ToString().Trim(),
-                                                        drMember["Subscribed"].ToString().Trim(),
-                                                        drMember["PassportNo"].ToString().Trim(),
-                                                        (string.IsNullOrEmpty(drMember["PreferredCategoryID"].ToString().Trim())) ? string.Empty : drMember["PreferredCategoryID"].ToString().Trim(),
-                                                        (string.IsNullOrEmpty(drMember["PreferredSubCategoryID"].ToString().Trim())) ? string.Empty : drMember["PreferredSubCategoryID"].ToString().Trim(),
-                                                        strDomainName);
+                                                            drMember["MemberID"].ToString().Trim(),
+                                                            drMember["Username"].ToString().Trim(),
+                                                            drMember["Title"].ToString().Trim(),
+                                                            drMember["FirstName"].ToString().Trim(),
+                                                            drMember["Surname"].ToString().Trim(),
+                                                            drMember["EmailAddress"].ToString().Trim(),
+                                                            drMember["HomePhone"].ToString().Trim(),
+                                                            drMember["WorkPhone"].ToString().Trim(),
+                                                            drMember["MobilePhone"].ToString().Trim(),
+                                                            drMember["Address1"].ToString().Trim(),
+                                                            drMember["PostCode"].ToString().Trim(),
+                                                            drMember["Suburb"].ToString().Trim(),
+                                                            drMember["States"].ToString().Trim(),
+                                                            (string.IsNullOrEmpty(drMember["EmailFormat"].ToString().Trim())) ? string.Empty : ((PortalEnums.Email.EmailFormat)Convert.ToInt32(drMember["EmailFormat"])).ToString(),
+                                                            drMember["DateOfBirth"].ToString().Trim(),
+                                                            drMember["Gender"].ToString().Trim(),
+                                                            drMember["Fax"].ToString().Trim(),
+                                                            drMember["CountryID"].ToString().Trim(),
+                                                            drMember["Tags"].ToString().Trim(),
+                                                            drMember["LastModifiedDate"].ToString().Trim(),
+                                                            drMember["Subscribed"].ToString().Trim(),
+                                                            drMember["PassportNo"].ToString().Trim(),
+                                                            (string.IsNullOrEmpty(drMember["PreferredCategoryID"].ToString().Trim())) ? string.Empty : drMember["PreferredCategoryID"].ToString().Trim(),
+                                                            (string.IsNullOrEmpty(drMember["PreferredSubCategoryID"].ToString().Trim())) ? string.Empty : drMember["PreferredSubCategoryID"].ToString().Trim(),
+                                                            strDomainName);
 
-                        // Get the Member files
-                        foreach (DataRow drMemberFile in dtMemberFiles.Rows)
-                        {
-                            if (drMemberFile["MemberID"].ToString() == drMember["MemberID"].ToString())
+                            // Get the Member files
+                            foreach (DataRow drMemberFile in dtMemberFiles.Rows)
                             {
-                                string filename = string.Empty;
-                                // Saving Files
-                                if (Convert.ToInt32(drMemberFile["MemberFileTypeID"]) == (int)PortalEnums.Members.MemberFileTypes.CoverLetter)
+                                if (drMemberFile["MemberID"].ToString() == drMember["MemberID"].ToString())
                                 {
-                                    filename = string.Format("{0}_Registration_{1}_{2}_Coverletter{3}", strSiteDefaultCountryCode, drMember["MemberID"], drMemberFile["MemberFileID"], drMemberFile["MemberFileSearchExtension"]);
-                                    membercoverletterxml.AppendFormat(@"<filename>{0}</filename>", filename);
-
-                                    memberfile = memberfilesservice.GetByMemberFileId(Convert.ToInt32(drMemberFile["MemberFileID"]));
-                                    if (memberfile != null)
+                                    string filename = string.Empty;
+                                    // Saving Files
+                                    if (Convert.ToInt32(drMemberFile["MemberFileTypeID"]) == (int)PortalEnums.Members.MemberFileTypes.CoverLetter)
                                     {
-                                        string savepath = ConfigurationManager.AppSettings["CoverletterFolder"] + filename;
+                                        filename = string.Format("{0}_Registration_{1}_{2}_Coverletter{3}", strSiteDefaultCountryCode, drMember["MemberID"], drMemberFile["MemberFileID"], drMemberFile["MemberFileSearchExtension"]);
+                                        membercoverletterxml.AppendFormat(@"<filename>{0}</filename>", filename);
+
+                                        memberfile = memberfilesservice.GetByMemberFileId(Convert.ToInt32(drMemberFile["MemberFileID"]));
+                                        if (memberfile != null)
+                                        {
+                                            string savepath = ConfigurationManager.AppSettings["CoverletterFolder"] + filename;
                                         byte[] memberfilecontent = null;
 
                                         if (!string.IsNullOrWhiteSpace(drMemberFile["MemberFileContent"].ToString()))
@@ -227,19 +240,19 @@ namespace JXTPostJobApplicationToFTP
                                         
                                         File.WriteAllBytes(savepath, memberfilecontent);
 
-                                        fileslist.Add(new FileNames(drMember["MemberID"].ToString(), savepath, filename));
+                                            fileslist.Add(new FileNames(drMember["MemberID"].ToString(), savepath, filename));
+                                        }
                                     }
-                                }
 
-                                if (Convert.ToInt32(drMemberFile["MemberFileTypeID"]) == (int)PortalEnums.Members.MemberFileTypes.Resume)
-                                {
-                                    filename = string.Format("{0}_Registration_{1}_{2}_Resume{3}", strSiteDefaultCountryCode, drMember["MemberID"], drMemberFile["MemberFileID"], drMemberFile["MemberFileSearchExtension"]);
-                                    memberresumexml.AppendFormat(@"<filename>{0}</filename>", filename);
-
-                                    memberfile = memberfilesservice.GetByMemberFileId(Convert.ToInt32(drMemberFile["MemberFileID"]));
-                                    if (memberfile != null)
+                                    if (Convert.ToInt32(drMemberFile["MemberFileTypeID"]) == (int)PortalEnums.Members.MemberFileTypes.Resume)
                                     {
-                                        string savepath = ConfigurationManager.AppSettings["ResumeFolder"] + filename;
+                                        filename = string.Format("{0}_Registration_{1}_{2}_Resume{3}", strSiteDefaultCountryCode, drMember["MemberID"], drMemberFile["MemberFileID"], drMemberFile["MemberFileSearchExtension"]);
+                                        memberresumexml.AppendFormat(@"<filename>{0}</filename>", filename);
+
+                                        memberfile = memberfilesservice.GetByMemberFileId(Convert.ToInt32(drMemberFile["MemberFileID"]));
+                                        if (memberfile != null)
+                                        {
+                                            string savepath = ConfigurationManager.AppSettings["ResumeFolder"] + filename;
                                         byte[] memberfilecontent = null;
 
                                         if (!string.IsNullOrWhiteSpace(memberfile.MemberFileUrl))
@@ -265,83 +278,84 @@ namespace JXTPostJobApplicationToFTP
 
                                         File.WriteAllBytes(savepath, memberfilecontent);
 
-                                        fileslist.Add(new FileNames(drMember["MemberID"].ToString(), savepath, filename));
+                                            fileslist.Add(new FileNames(drMember["MemberID"].ToString(), savepath, filename));
+                                        }
                                     }
                                 }
                             }
-                        }
 
-                        // Only if the RESUME file is uploaded, then upload the Member details with the files.
-                        if (!string.IsNullOrWhiteSpace(memberresumexml.ToString()))
-                        {
+                            // Only if the RESUME file is uploaded, then upload the Member details with the files.
+                            if (!string.IsNullOrWhiteSpace(memberresumexml.ToString()))
+                            {
 
-                            Console.WriteLine(string.Format("Member ID {2} - Resume: {0}, Coverletter: {1}", memberresumexml.ToString(), membercoverletterxml.ToString(), drMember["MemberID"]));
+                                Console.WriteLine(string.Format("Member ID {2} - Resume: {0}, Coverletter: {1}", memberresumexml.ToString(), membercoverletterxml.ToString(), drMember["MemberID"]));
 
-                            membercoverletterxml = new StringBuilder(string.Format(@"
+                                membercoverletterxml = new StringBuilder(string.Format(@"
     <coverletter>
         {0}
     </coverletter>", membercoverletterxml.ToString()));
-                            memberresumexml = new StringBuilder(string.Format(@"   
+                                memberresumexml = new StringBuilder(string.Format(@"   
     <resume>
         {0}
     </resume>", memberresumexml.ToString()));
 
-                            memberxml.Append(membercoverletterxml.ToString());
-                            memberxml.Append(memberresumexml.ToString());
+                                memberxml.Append(membercoverletterxml.ToString());
+                                memberxml.Append(memberresumexml.ToString());
 
-                            memberxml.Append(@"
+                                memberxml.Append(@"
 </member>");
 
-                            // Save Member XML & include it in file list. File Name:  CountryCode_Registration_MemberID.XML
-                            string memberfilename = string.Format("{0}_Registration_{1}.XML", strSiteDefaultCountryCode, drMember["MemberID"]); //drMember["Abbr"]
+                                // Save Member XML & include it in file list. File Name:  CountryCode_Registration_MemberID.XML
+                                string memberfilename = string.Format("{0}_Registration_{1}.XML", strSiteDefaultCountryCode, drMember["MemberID"]); //drMember["Abbr"]
 
-                            memberfilepath = string.Format("{0}{1}", ConfigurationManager.AppSettings["ResumeFolder"], memberfilename);
-                            File.WriteAllText(memberfilepath, memberxml.ToString());
-                            fileslist.Add(new FileNames(drMember["MemberID"].ToString(), memberfilepath, memberfilename));
+                                memberfilepath = string.Format("{0}{1}", ConfigurationManager.AppSettings["ResumeFolder"], memberfilename);
+                                File.WriteAllText(memberfilepath, memberxml.ToString());
+                                fileslist.Add(new FileNames(drMember["MemberID"].ToString(), memberfilepath, memberfilename));
+                            }
+                            else
+                            {
+                                Console.WriteLine("No resume for Member - ", drMember["MemberID"]);
+                            fileslist.RemoveAll(s => s.Id == drMember["MemberID"].ToString()); 
+                            }
+
+                        }
+
+                        string errormsg = string.Empty;
+                        if (sitexml.sftp)
+                        {
+                       blnFileUploaded =  UploadTempFilesToSFTP(sitexml, fileslist, out errormsg);
                         }
                         else
                         {
-                            Console.WriteLine("No resume for Member - ", drMember["MemberID"]);
-                            fileslist.RemoveAll(s => s.Id == drMember["MemberID"].ToString());
+                            blnFileUploaded = UploadTempFilesToFTP(sitexml, fileslist, out errormsg);
                         }
 
-                    }
-
-                    string errormsg = string.Empty;
-                    if (sitexml.sftp)
-                    {
-                        blnFileUploaded = UploadTempFilesToSFTP(sitexml, fileslist, out errormsg);
-                    }
-                    else
-                    {
-                        blnFileUploaded = UploadTempFilesToFTP(sitexml, fileslist, out errormsg);
-                    }
-
-                    // Only if successful upload then update the LastModifed Date in the XML.
-                    // So that when it runs next it runs from the successful Run.
-                    if (blnFileUploaded)
-                    {
-                        XDocument xmlFile = XDocument.Load(ConfigurationManager.AppSettings["SiteMemberXML"]);
-                        var query = from c in xmlFile.Elements("sites").Elements("site")
-                                    select c;
-                        foreach (XElement site in query)
+                        // Only if successful upload then update the LastModifed Date in the XML.
+                        // So that when it runs next it runs from the successful Run.
+                        if (blnFileUploaded)
                         {
-                            // Save the Exception ID and the application which has exception in the XML.
-                            if (site.Element("SiteId").Value == sitexml.SiteId.ToString())
+                            XDocument xmlFile = XDocument.Load(ConfigurationManager.AppSettings["SiteMemberXML"]);
+                            var query = from c in xmlFile.Elements("sites").Elements("site")
+                                        select c;
+                            foreach (XElement site in query)
                             {
-                                site.Element("LastModifiedDate").Value = DateTime.Now.ToString();
+                                // Save the Exception ID and the application which has exception in the XML.
+                                if (site.Element("SiteId").Value == sitexml.SiteId.ToString())
+                                {
+                                    site.Element("LastModifiedDate").Value = DateTime.Now.ToString();
+                                }
                             }
+
+                            xmlFile.Save(ConfigurationManager.AppSettings["SiteMemberXML"]);
                         }
-
-                        xmlFile.Save(ConfigurationManager.AppSettings["SiteMemberXML"]);
                     }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] ERROR: " + ex.StackTrace);
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] ERROR: " + ex.StackTrace);
 
-                    int exceptionID = LogExceptionAndEmail(sitexml, currentMember, ex);
+                        int exceptionID = LogExceptionAndEmail(sitexml, currentMember, ex);
 
+                    }
                 }
             }
         }

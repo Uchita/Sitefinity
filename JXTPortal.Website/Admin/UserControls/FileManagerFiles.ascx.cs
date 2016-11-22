@@ -474,7 +474,7 @@ namespace JXTPortal.Website.Admin.UserControls
                             ftpclient.DownloadFileToClient(string.Format("{0}{1}/{2}", FTPHostUrl, hfCurrentPath.Value, HttpUtility.HtmlDecode(btnFileLink.Text)), ref downloadedfile, out errormessage);
                             if (string.IsNullOrEmpty(errormessage))
                             {
-
+                                downloadedfile.Position = 0;
 
                                 if (downloadedfile != null && downloadedfile.Length > 0)
                                 {

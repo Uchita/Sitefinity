@@ -848,11 +848,20 @@ namespace JXTPortal.Data.Bases
 		/// <param name="linkedInEmail"> A <c>System.String</c> instance.</param>
 		/// <param name="registerDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="externalAdvertiserId"> A <c>System.String</c> instance.</param>
+		/// <param name="videoLink"> A <c>System.String</c> instance.</param>
+		/// <param name="industry"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyRole"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyFirstName"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyLastName"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyEmailAddress"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyPhone"> A <c>System.String</c> instance.</param>
+		/// <param name="preferredContactMethod"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="advertiserLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
 		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet Find(System.Boolean? searchUsingOr, System.Int32? advertiserId, System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId)
+		public DataSet Find(System.Boolean? searchUsingOr, System.Int32? advertiserId, System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId, System.String videoLink, System.String industry, System.String nominatedCompanyRole, System.String nominatedCompanyFirstName, System.String nominatedCompanyLastName, System.String nominatedCompanyEmailAddress, System.String nominatedCompanyPhone, System.Int32? preferredContactMethod, System.String advertiserLogoUrl)
 		{
-			return Find(null, 0, int.MaxValue , searchUsingOr, advertiserId, siteId, advertiserAccountTypeId, advertiserBusinessTypeId, advertiserAccountStatusId, companyName, businessNumber, streetAddress1, streetAddress2, lastModified, lastModifiedBy, postalAddress1, postalAddress2, webAddress, noOfEmployees, firstApprovedDate, profile, charityNumber, searchField, freeTrialStartDate, freeTrialEndDate, accountsPayableEmail, requireLogonForExternalApplication, advertiserLogo, linkedInLogo, linkedInCompanyId, linkedInEmail, registerDate, externalAdvertiserId);
+			return Find(null, 0, int.MaxValue , searchUsingOr, advertiserId, siteId, advertiserAccountTypeId, advertiserBusinessTypeId, advertiserAccountStatusId, companyName, businessNumber, streetAddress1, streetAddress2, lastModified, lastModifiedBy, postalAddress1, postalAddress2, webAddress, noOfEmployees, firstApprovedDate, profile, charityNumber, searchField, freeTrialStartDate, freeTrialEndDate, accountsPayableEmail, requireLogonForExternalApplication, advertiserLogo, linkedInLogo, linkedInCompanyId, linkedInEmail, registerDate, externalAdvertiserId, videoLink, industry, nominatedCompanyRole, nominatedCompanyFirstName, nominatedCompanyLastName, nominatedCompanyEmailAddress, nominatedCompanyPhone, preferredContactMethod, advertiserLogoUrl);
 		}
 		
 		/// <summary>
@@ -888,13 +897,22 @@ namespace JXTPortal.Data.Bases
 		/// <param name="linkedInEmail"> A <c>System.String</c> instance.</param>
 		/// <param name="registerDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="externalAdvertiserId"> A <c>System.String</c> instance.</param>
+		/// <param name="videoLink"> A <c>System.String</c> instance.</param>
+		/// <param name="industry"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyRole"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyFirstName"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyLastName"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyEmailAddress"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyPhone"> A <c>System.String</c> instance.</param>
+		/// <param name="preferredContactMethod"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="advertiserLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
 		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet Find(int start, int pageLength, System.Boolean? searchUsingOr, System.Int32? advertiserId, System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId)
+		public DataSet Find(int start, int pageLength, System.Boolean? searchUsingOr, System.Int32? advertiserId, System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId, System.String videoLink, System.String industry, System.String nominatedCompanyRole, System.String nominatedCompanyFirstName, System.String nominatedCompanyLastName, System.String nominatedCompanyEmailAddress, System.String nominatedCompanyPhone, System.Int32? preferredContactMethod, System.String advertiserLogoUrl)
 		{
-			return Find(null, start, pageLength , searchUsingOr, advertiserId, siteId, advertiserAccountTypeId, advertiserBusinessTypeId, advertiserAccountStatusId, companyName, businessNumber, streetAddress1, streetAddress2, lastModified, lastModifiedBy, postalAddress1, postalAddress2, webAddress, noOfEmployees, firstApprovedDate, profile, charityNumber, searchField, freeTrialStartDate, freeTrialEndDate, accountsPayableEmail, requireLogonForExternalApplication, advertiserLogo, linkedInLogo, linkedInCompanyId, linkedInEmail, registerDate, externalAdvertiserId);
+			return Find(null, start, pageLength , searchUsingOr, advertiserId, siteId, advertiserAccountTypeId, advertiserBusinessTypeId, advertiserAccountStatusId, companyName, businessNumber, streetAddress1, streetAddress2, lastModified, lastModifiedBy, postalAddress1, postalAddress2, webAddress, noOfEmployees, firstApprovedDate, profile, charityNumber, searchField, freeTrialStartDate, freeTrialEndDate, accountsPayableEmail, requireLogonForExternalApplication, advertiserLogo, linkedInLogo, linkedInCompanyId, linkedInEmail, registerDate, externalAdvertiserId, videoLink, industry, nominatedCompanyRole, nominatedCompanyFirstName, nominatedCompanyLastName, nominatedCompanyEmailAddress, nominatedCompanyPhone, preferredContactMethod, advertiserLogoUrl);
 		}
 				
 		/// <summary>
@@ -930,12 +948,21 @@ namespace JXTPortal.Data.Bases
 		/// <param name="linkedInEmail"> A <c>System.String</c> instance.</param>
 		/// <param name="registerDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="externalAdvertiserId"> A <c>System.String</c> instance.</param>
+		/// <param name="videoLink"> A <c>System.String</c> instance.</param>
+		/// <param name="industry"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyRole"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyFirstName"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyLastName"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyEmailAddress"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyPhone"> A <c>System.String</c> instance.</param>
+		/// <param name="preferredContactMethod"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="advertiserLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
 		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet Find(TransactionManager transactionManager, System.Boolean? searchUsingOr, System.Int32? advertiserId, System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId)
+		public DataSet Find(TransactionManager transactionManager, System.Boolean? searchUsingOr, System.Int32? advertiserId, System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId, System.String videoLink, System.String industry, System.String nominatedCompanyRole, System.String nominatedCompanyFirstName, System.String nominatedCompanyLastName, System.String nominatedCompanyEmailAddress, System.String nominatedCompanyPhone, System.Int32? preferredContactMethod, System.String advertiserLogoUrl)
 		{
-			return Find(transactionManager, 0, int.MaxValue , searchUsingOr, advertiserId, siteId, advertiserAccountTypeId, advertiserBusinessTypeId, advertiserAccountStatusId, companyName, businessNumber, streetAddress1, streetAddress2, lastModified, lastModifiedBy, postalAddress1, postalAddress2, webAddress, noOfEmployees, firstApprovedDate, profile, charityNumber, searchField, freeTrialStartDate, freeTrialEndDate, accountsPayableEmail, requireLogonForExternalApplication, advertiserLogo, linkedInLogo, linkedInCompanyId, linkedInEmail, registerDate, externalAdvertiserId);
+			return Find(transactionManager, 0, int.MaxValue , searchUsingOr, advertiserId, siteId, advertiserAccountTypeId, advertiserBusinessTypeId, advertiserAccountStatusId, companyName, businessNumber, streetAddress1, streetAddress2, lastModified, lastModifiedBy, postalAddress1, postalAddress2, webAddress, noOfEmployees, firstApprovedDate, profile, charityNumber, searchField, freeTrialStartDate, freeTrialEndDate, accountsPayableEmail, requireLogonForExternalApplication, advertiserLogo, linkedInLogo, linkedInCompanyId, linkedInEmail, registerDate, externalAdvertiserId, videoLink, industry, nominatedCompanyRole, nominatedCompanyFirstName, nominatedCompanyLastName, nominatedCompanyEmailAddress, nominatedCompanyPhone, preferredContactMethod, advertiserLogoUrl);
 		}
 		
 		/// <summary>
@@ -971,12 +998,21 @@ namespace JXTPortal.Data.Bases
 		/// <param name="linkedInEmail"> A <c>System.String</c> instance.</param>
 		/// <param name="registerDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="externalAdvertiserId"> A <c>System.String</c> instance.</param>
+		/// <param name="videoLink"> A <c>System.String</c> instance.</param>
+		/// <param name="industry"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyRole"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyFirstName"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyLastName"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyEmailAddress"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyPhone"> A <c>System.String</c> instance.</param>
+		/// <param name="preferredContactMethod"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="advertiserLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
 		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public abstract DataSet Find(TransactionManager transactionManager, int start, int pageLength , System.Boolean? searchUsingOr, System.Int32? advertiserId, System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId);
+		public abstract DataSet Find(TransactionManager transactionManager, int start, int pageLength , System.Boolean? searchUsingOr, System.Int32? advertiserId, System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId, System.String videoLink, System.String industry, System.String nominatedCompanyRole, System.String nominatedCompanyFirstName, System.String nominatedCompanyLastName, System.String nominatedCompanyEmailAddress, System.String nominatedCompanyPhone, System.Int32? preferredContactMethod, System.String advertiserLogoUrl);
 		
 		#endregion
 		
@@ -1014,10 +1050,19 @@ namespace JXTPortal.Data.Bases
 		/// <param name="linkedInEmail"> A <c>System.String</c> instance.</param>
 		/// <param name="registerDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="externalAdvertiserId"> A <c>System.String</c> instance.</param>
+		/// <param name="videoLink"> A <c>System.String</c> instance.</param>
+		/// <param name="industry"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyRole"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyFirstName"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyLastName"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyEmailAddress"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyPhone"> A <c>System.String</c> instance.</param>
+		/// <param name="preferredContactMethod"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="advertiserLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public void Update(System.Int32? advertiserId, System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId)
+		public void Update(System.Int32? advertiserId, System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId, System.String videoLink, System.String industry, System.String nominatedCompanyRole, System.String nominatedCompanyFirstName, System.String nominatedCompanyLastName, System.String nominatedCompanyEmailAddress, System.String nominatedCompanyPhone, System.Int32? preferredContactMethod, System.String advertiserLogoUrl)
 		{
-			 Update(null, 0, int.MaxValue , advertiserId, siteId, advertiserAccountTypeId, advertiserBusinessTypeId, advertiserAccountStatusId, companyName, businessNumber, streetAddress1, streetAddress2, lastModified, lastModifiedBy, postalAddress1, postalAddress2, webAddress, noOfEmployees, firstApprovedDate, profile, charityNumber, searchField, freeTrialStartDate, freeTrialEndDate, accountsPayableEmail, requireLogonForExternalApplication, advertiserLogo, linkedInLogo, linkedInCompanyId, linkedInEmail, registerDate, externalAdvertiserId);
+			 Update(null, 0, int.MaxValue , advertiserId, siteId, advertiserAccountTypeId, advertiserBusinessTypeId, advertiserAccountStatusId, companyName, businessNumber, streetAddress1, streetAddress2, lastModified, lastModifiedBy, postalAddress1, postalAddress2, webAddress, noOfEmployees, firstApprovedDate, profile, charityNumber, searchField, freeTrialStartDate, freeTrialEndDate, accountsPayableEmail, requireLogonForExternalApplication, advertiserLogo, linkedInLogo, linkedInCompanyId, linkedInEmail, registerDate, externalAdvertiserId, videoLink, industry, nominatedCompanyRole, nominatedCompanyFirstName, nominatedCompanyLastName, nominatedCompanyEmailAddress, nominatedCompanyPhone, preferredContactMethod, advertiserLogoUrl);
 		}
 		
 		/// <summary>
@@ -1052,12 +1097,21 @@ namespace JXTPortal.Data.Bases
 		/// <param name="linkedInEmail"> A <c>System.String</c> instance.</param>
 		/// <param name="registerDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="externalAdvertiserId"> A <c>System.String</c> instance.</param>
+		/// <param name="videoLink"> A <c>System.String</c> instance.</param>
+		/// <param name="industry"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyRole"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyFirstName"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyLastName"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyEmailAddress"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyPhone"> A <c>System.String</c> instance.</param>
+		/// <param name="preferredContactMethod"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="advertiserLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public void Update(int start, int pageLength, System.Int32? advertiserId, System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId)
+		public void Update(int start, int pageLength, System.Int32? advertiserId, System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId, System.String videoLink, System.String industry, System.String nominatedCompanyRole, System.String nominatedCompanyFirstName, System.String nominatedCompanyLastName, System.String nominatedCompanyEmailAddress, System.String nominatedCompanyPhone, System.Int32? preferredContactMethod, System.String advertiserLogoUrl)
 		{
-			 Update(null, start, pageLength , advertiserId, siteId, advertiserAccountTypeId, advertiserBusinessTypeId, advertiserAccountStatusId, companyName, businessNumber, streetAddress1, streetAddress2, lastModified, lastModifiedBy, postalAddress1, postalAddress2, webAddress, noOfEmployees, firstApprovedDate, profile, charityNumber, searchField, freeTrialStartDate, freeTrialEndDate, accountsPayableEmail, requireLogonForExternalApplication, advertiserLogo, linkedInLogo, linkedInCompanyId, linkedInEmail, registerDate, externalAdvertiserId);
+			 Update(null, start, pageLength , advertiserId, siteId, advertiserAccountTypeId, advertiserBusinessTypeId, advertiserAccountStatusId, companyName, businessNumber, streetAddress1, streetAddress2, lastModified, lastModifiedBy, postalAddress1, postalAddress2, webAddress, noOfEmployees, firstApprovedDate, profile, charityNumber, searchField, freeTrialStartDate, freeTrialEndDate, accountsPayableEmail, requireLogonForExternalApplication, advertiserLogo, linkedInLogo, linkedInCompanyId, linkedInEmail, registerDate, externalAdvertiserId, videoLink, industry, nominatedCompanyRole, nominatedCompanyFirstName, nominatedCompanyLastName, nominatedCompanyEmailAddress, nominatedCompanyPhone, preferredContactMethod, advertiserLogoUrl);
 		}
 				
 		/// <summary>
@@ -1092,11 +1146,20 @@ namespace JXTPortal.Data.Bases
 		/// <param name="linkedInEmail"> A <c>System.String</c> instance.</param>
 		/// <param name="registerDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="externalAdvertiserId"> A <c>System.String</c> instance.</param>
+		/// <param name="videoLink"> A <c>System.String</c> instance.</param>
+		/// <param name="industry"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyRole"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyFirstName"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyLastName"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyEmailAddress"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyPhone"> A <c>System.String</c> instance.</param>
+		/// <param name="preferredContactMethod"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="advertiserLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public void Update(TransactionManager transactionManager, System.Int32? advertiserId, System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId)
+		public void Update(TransactionManager transactionManager, System.Int32? advertiserId, System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId, System.String videoLink, System.String industry, System.String nominatedCompanyRole, System.String nominatedCompanyFirstName, System.String nominatedCompanyLastName, System.String nominatedCompanyEmailAddress, System.String nominatedCompanyPhone, System.Int32? preferredContactMethod, System.String advertiserLogoUrl)
 		{
-			 Update(transactionManager, 0, int.MaxValue , advertiserId, siteId, advertiserAccountTypeId, advertiserBusinessTypeId, advertiserAccountStatusId, companyName, businessNumber, streetAddress1, streetAddress2, lastModified, lastModifiedBy, postalAddress1, postalAddress2, webAddress, noOfEmployees, firstApprovedDate, profile, charityNumber, searchField, freeTrialStartDate, freeTrialEndDate, accountsPayableEmail, requireLogonForExternalApplication, advertiserLogo, linkedInLogo, linkedInCompanyId, linkedInEmail, registerDate, externalAdvertiserId);
+			 Update(transactionManager, 0, int.MaxValue , advertiserId, siteId, advertiserAccountTypeId, advertiserBusinessTypeId, advertiserAccountStatusId, companyName, businessNumber, streetAddress1, streetAddress2, lastModified, lastModifiedBy, postalAddress1, postalAddress2, webAddress, noOfEmployees, firstApprovedDate, profile, charityNumber, searchField, freeTrialStartDate, freeTrialEndDate, accountsPayableEmail, requireLogonForExternalApplication, advertiserLogo, linkedInLogo, linkedInCompanyId, linkedInEmail, registerDate, externalAdvertiserId, videoLink, industry, nominatedCompanyRole, nominatedCompanyFirstName, nominatedCompanyLastName, nominatedCompanyEmailAddress, nominatedCompanyPhone, preferredContactMethod, advertiserLogoUrl);
 		}
 		
 		/// <summary>
@@ -1131,11 +1194,20 @@ namespace JXTPortal.Data.Bases
 		/// <param name="linkedInEmail"> A <c>System.String</c> instance.</param>
 		/// <param name="registerDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="externalAdvertiserId"> A <c>System.String</c> instance.</param>
+		/// <param name="videoLink"> A <c>System.String</c> instance.</param>
+		/// <param name="industry"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyRole"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyFirstName"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyLastName"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyEmailAddress"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyPhone"> A <c>System.String</c> instance.</param>
+		/// <param name="preferredContactMethod"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="advertiserLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public abstract void Update(TransactionManager transactionManager, int start, int pageLength , System.Int32? advertiserId, System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId);
+		public abstract void Update(TransactionManager transactionManager, int start, int pageLength , System.Int32? advertiserId, System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId, System.String videoLink, System.String industry, System.String nominatedCompanyRole, System.String nominatedCompanyFirstName, System.String nominatedCompanyLastName, System.String nominatedCompanyEmailAddress, System.String nominatedCompanyPhone, System.Int32? preferredContactMethod, System.String advertiserLogoUrl);
 		
 		#endregion
 		
@@ -1518,11 +1590,20 @@ namespace JXTPortal.Data.Bases
 		/// <param name="linkedInEmail"> A <c>System.String</c> instance.</param>
 		/// <param name="registerDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="externalAdvertiserId"> A <c>System.String</c> instance.</param>
+		/// <param name="videoLink"> A <c>System.String</c> instance.</param>
+		/// <param name="industry"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyRole"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyFirstName"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyLastName"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyEmailAddress"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyPhone"> A <c>System.String</c> instance.</param>
+		/// <param name="preferredContactMethod"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="advertiserLogoUrl"> A <c>System.String</c> instance.</param>
 			/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public void Insert(System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId, ref System.Int32? advertiserId)
+		public void Insert(System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId, System.String videoLink, System.String industry, System.String nominatedCompanyRole, System.String nominatedCompanyFirstName, System.String nominatedCompanyLastName, System.String nominatedCompanyEmailAddress, System.String nominatedCompanyPhone, System.Int32? preferredContactMethod, System.String advertiserLogoUrl, ref System.Int32? advertiserId)
 		{
-			 Insert(null, 0, int.MaxValue , siteId, advertiserAccountTypeId, advertiserBusinessTypeId, advertiserAccountStatusId, companyName, businessNumber, streetAddress1, streetAddress2, lastModified, lastModifiedBy, postalAddress1, postalAddress2, webAddress, noOfEmployees, firstApprovedDate, profile, charityNumber, searchField, freeTrialStartDate, freeTrialEndDate, accountsPayableEmail, requireLogonForExternalApplication, advertiserLogo, linkedInLogo, linkedInCompanyId, linkedInEmail, registerDate, externalAdvertiserId, ref advertiserId);
+			 Insert(null, 0, int.MaxValue , siteId, advertiserAccountTypeId, advertiserBusinessTypeId, advertiserAccountStatusId, companyName, businessNumber, streetAddress1, streetAddress2, lastModified, lastModifiedBy, postalAddress1, postalAddress2, webAddress, noOfEmployees, firstApprovedDate, profile, charityNumber, searchField, freeTrialStartDate, freeTrialEndDate, accountsPayableEmail, requireLogonForExternalApplication, advertiserLogo, linkedInLogo, linkedInCompanyId, linkedInEmail, registerDate, externalAdvertiserId, videoLink, industry, nominatedCompanyRole, nominatedCompanyFirstName, nominatedCompanyLastName, nominatedCompanyEmailAddress, nominatedCompanyPhone, preferredContactMethod, advertiserLogoUrl, ref advertiserId);
 		}
 		
 		/// <summary>
@@ -1556,13 +1637,22 @@ namespace JXTPortal.Data.Bases
 		/// <param name="linkedInEmail"> A <c>System.String</c> instance.</param>
 		/// <param name="registerDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="externalAdvertiserId"> A <c>System.String</c> instance.</param>
+		/// <param name="videoLink"> A <c>System.String</c> instance.</param>
+		/// <param name="industry"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyRole"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyFirstName"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyLastName"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyEmailAddress"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyPhone"> A <c>System.String</c> instance.</param>
+		/// <param name="preferredContactMethod"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="advertiserLogoUrl"> A <c>System.String</c> instance.</param>
 			/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public void Insert(int start, int pageLength, System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId, ref System.Int32? advertiserId)
+		public void Insert(int start, int pageLength, System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId, System.String videoLink, System.String industry, System.String nominatedCompanyRole, System.String nominatedCompanyFirstName, System.String nominatedCompanyLastName, System.String nominatedCompanyEmailAddress, System.String nominatedCompanyPhone, System.Int32? preferredContactMethod, System.String advertiserLogoUrl, ref System.Int32? advertiserId)
 		{
-			 Insert(null, start, pageLength , siteId, advertiserAccountTypeId, advertiserBusinessTypeId, advertiserAccountStatusId, companyName, businessNumber, streetAddress1, streetAddress2, lastModified, lastModifiedBy, postalAddress1, postalAddress2, webAddress, noOfEmployees, firstApprovedDate, profile, charityNumber, searchField, freeTrialStartDate, freeTrialEndDate, accountsPayableEmail, requireLogonForExternalApplication, advertiserLogo, linkedInLogo, linkedInCompanyId, linkedInEmail, registerDate, externalAdvertiserId, ref advertiserId);
+			 Insert(null, start, pageLength , siteId, advertiserAccountTypeId, advertiserBusinessTypeId, advertiserAccountStatusId, companyName, businessNumber, streetAddress1, streetAddress2, lastModified, lastModifiedBy, postalAddress1, postalAddress2, webAddress, noOfEmployees, firstApprovedDate, profile, charityNumber, searchField, freeTrialStartDate, freeTrialEndDate, accountsPayableEmail, requireLogonForExternalApplication, advertiserLogo, linkedInLogo, linkedInCompanyId, linkedInEmail, registerDate, externalAdvertiserId, videoLink, industry, nominatedCompanyRole, nominatedCompanyFirstName, nominatedCompanyLastName, nominatedCompanyEmailAddress, nominatedCompanyPhone, preferredContactMethod, advertiserLogoUrl, ref advertiserId);
 		}
 				
 		/// <summary>
@@ -1596,12 +1686,21 @@ namespace JXTPortal.Data.Bases
 		/// <param name="linkedInEmail"> A <c>System.String</c> instance.</param>
 		/// <param name="registerDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="externalAdvertiserId"> A <c>System.String</c> instance.</param>
+		/// <param name="videoLink"> A <c>System.String</c> instance.</param>
+		/// <param name="industry"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyRole"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyFirstName"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyLastName"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyEmailAddress"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyPhone"> A <c>System.String</c> instance.</param>
+		/// <param name="preferredContactMethod"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="advertiserLogoUrl"> A <c>System.String</c> instance.</param>
 			/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public void Insert(TransactionManager transactionManager, System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId, ref System.Int32? advertiserId)
+		public void Insert(TransactionManager transactionManager, System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId, System.String videoLink, System.String industry, System.String nominatedCompanyRole, System.String nominatedCompanyFirstName, System.String nominatedCompanyLastName, System.String nominatedCompanyEmailAddress, System.String nominatedCompanyPhone, System.Int32? preferredContactMethod, System.String advertiserLogoUrl, ref System.Int32? advertiserId)
 		{
-			 Insert(transactionManager, 0, int.MaxValue , siteId, advertiserAccountTypeId, advertiserBusinessTypeId, advertiserAccountStatusId, companyName, businessNumber, streetAddress1, streetAddress2, lastModified, lastModifiedBy, postalAddress1, postalAddress2, webAddress, noOfEmployees, firstApprovedDate, profile, charityNumber, searchField, freeTrialStartDate, freeTrialEndDate, accountsPayableEmail, requireLogonForExternalApplication, advertiserLogo, linkedInLogo, linkedInCompanyId, linkedInEmail, registerDate, externalAdvertiserId, ref advertiserId);
+			 Insert(transactionManager, 0, int.MaxValue , siteId, advertiserAccountTypeId, advertiserBusinessTypeId, advertiserAccountStatusId, companyName, businessNumber, streetAddress1, streetAddress2, lastModified, lastModifiedBy, postalAddress1, postalAddress2, webAddress, noOfEmployees, firstApprovedDate, profile, charityNumber, searchField, freeTrialStartDate, freeTrialEndDate, accountsPayableEmail, requireLogonForExternalApplication, advertiserLogo, linkedInLogo, linkedInCompanyId, linkedInEmail, registerDate, externalAdvertiserId, videoLink, industry, nominatedCompanyRole, nominatedCompanyFirstName, nominatedCompanyLastName, nominatedCompanyEmailAddress, nominatedCompanyPhone, preferredContactMethod, advertiserLogoUrl, ref advertiserId);
 		}
 		
 		/// <summary>
@@ -1635,12 +1734,21 @@ namespace JXTPortal.Data.Bases
 		/// <param name="linkedInEmail"> A <c>System.String</c> instance.</param>
 		/// <param name="registerDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="externalAdvertiserId"> A <c>System.String</c> instance.</param>
+		/// <param name="videoLink"> A <c>System.String</c> instance.</param>
+		/// <param name="industry"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyRole"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyFirstName"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyLastName"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyEmailAddress"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyPhone"> A <c>System.String</c> instance.</param>
+		/// <param name="preferredContactMethod"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="advertiserLogoUrl"> A <c>System.String</c> instance.</param>
 			/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public abstract void Insert(TransactionManager transactionManager, int start, int pageLength , System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId, ref System.Int32? advertiserId);
+		public abstract void Insert(TransactionManager transactionManager, int start, int pageLength , System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId, System.String videoLink, System.String industry, System.String nominatedCompanyRole, System.String nominatedCompanyFirstName, System.String nominatedCompanyLastName, System.String nominatedCompanyEmailAddress, System.String nominatedCompanyPhone, System.Int32? preferredContactMethod, System.String advertiserLogoUrl, ref System.Int32? advertiserId);
 		
 		#endregion
 		
@@ -2062,7 +2170,6 @@ namespace JXTPortal.Data.Bases
 		
 		#region Advertisers_GetBySiteId 
 		
-		
 		/// <summary>
 		///	This method wrap the 'Advertisers_GetBySiteId' stored procedure. 
 		/// </summary>
@@ -2075,7 +2182,7 @@ namespace JXTPortal.Data.Bases
 		{
 			return GetBySiteId(null, start, pageLength , siteId);
 		}
-				
+		
 		/// <summary>
 		///	This method wrap the 'Advertisers_GetBySiteId' stored procedure. 
 		/// </summary>
@@ -2284,6 +2391,7 @@ namespace JXTPortal.Data.Bases
 					c.NominatedCompanyEmailAddress = (reader.IsDBNull(((int)AdvertisersColumn.NominatedCompanyEmailAddress - 1)))?null:(System.String)reader[((int)AdvertisersColumn.NominatedCompanyEmailAddress - 1)];
 					c.NominatedCompanyPhone = (reader.IsDBNull(((int)AdvertisersColumn.NominatedCompanyPhone - 1)))?null:(System.String)reader[((int)AdvertisersColumn.NominatedCompanyPhone - 1)];
 					c.PreferredContactMethod = (reader.IsDBNull(((int)AdvertisersColumn.PreferredContactMethod - 1)))?null:(System.Int32?)reader[((int)AdvertisersColumn.PreferredContactMethod - 1)];
+					c.AdvertiserLogoUrl = (reader.IsDBNull(((int)AdvertisersColumn.AdvertiserLogoUrl - 1)))?null:(System.String)reader[((int)AdvertisersColumn.AdvertiserLogoUrl - 1)];
 					c.EntityTrackingKey = key;
 					c.AcceptChanges();
 					c.SuppressEntityEvents = false;
@@ -2338,6 +2446,7 @@ namespace JXTPortal.Data.Bases
 			entity.NominatedCompanyEmailAddress = (reader.IsDBNull(((int)AdvertisersColumn.NominatedCompanyEmailAddress - 1)))?null:(System.String)reader[((int)AdvertisersColumn.NominatedCompanyEmailAddress - 1)];
 			entity.NominatedCompanyPhone = (reader.IsDBNull(((int)AdvertisersColumn.NominatedCompanyPhone - 1)))?null:(System.String)reader[((int)AdvertisersColumn.NominatedCompanyPhone - 1)];
 			entity.PreferredContactMethod = (reader.IsDBNull(((int)AdvertisersColumn.PreferredContactMethod - 1)))?null:(System.Int32?)reader[((int)AdvertisersColumn.PreferredContactMethod - 1)];
+			entity.AdvertiserLogoUrl = (reader.IsDBNull(((int)AdvertisersColumn.AdvertiserLogoUrl - 1)))?null:(System.String)reader[((int)AdvertisersColumn.AdvertiserLogoUrl - 1)];
 			entity.AcceptChanges();
 		}
 		
@@ -2387,6 +2496,7 @@ namespace JXTPortal.Data.Bases
 			entity.NominatedCompanyEmailAddress = Convert.IsDBNull(dataRow["NominatedCompanyEmailAddress"]) ? null : (System.String)dataRow["NominatedCompanyEmailAddress"];
 			entity.NominatedCompanyPhone = Convert.IsDBNull(dataRow["NominatedCompanyPhone"]) ? null : (System.String)dataRow["NominatedCompanyPhone"];
 			entity.PreferredContactMethod = Convert.IsDBNull(dataRow["PreferredContactMethod"]) ? null : (System.Int32?)dataRow["PreferredContactMethod"];
+			entity.AdvertiserLogoUrl = Convert.IsDBNull(dataRow["AdvertiserLogoUrl"]) ? null : (System.String)dataRow["AdvertiserLogoUrl"];
 			entity.AcceptChanges();
 		}
 		#endregion 

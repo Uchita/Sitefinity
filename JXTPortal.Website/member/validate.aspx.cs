@@ -8,6 +8,9 @@ using JXTPortal;
 using JXTPortal.Entities;
 using JXTPortal.Client.Salesforce;
 using JXTPortal.Client.Bullhorn;
+using JXTPortal.Common;
+using System.Configuration;
+using System.IO;
 
 namespace JXTPortal.Website.members
 {
@@ -127,10 +130,45 @@ namespace JXTPortal.Website.members
                             MemberFiles thisResume = memberFiles.Where(c => c.DocumentTypeId.HasValue && c.DocumentTypeId == 2).SingleOrDefault();
                             MemberFiles thisCoverLetter = memberFiles.Where(c => c.DocumentTypeId.HasValue && c.DocumentTypeId == 1).SingleOrDefault();
 
+                            string errormessage = string.Empty;
+                            FtpClient ftpclient = new FtpClient();
+                            ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
+                            ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                            ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+
+                            byte[] resumecontent = null;
+                            byte[] coverlettercontent = null; 
+                            string filepath = string.Empty;
+                            Stream ms = null;
+
+                            if (!string.IsNullOrWhiteSpace(thisResume.MemberFileUrl))
+                            {
+                                filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], thisResume.MemberId, thisResume.MemberFileUrl);    
+                                ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
+
+                                resumecontent = ((MemoryStream)ms).ToArray();
+                            }
+                            else
+                            {
+                                resumecontent = thisResume.MemberFileContent;
+                            }
+
+                            if (!string.IsNullOrWhiteSpace(thisResume.MemberFileUrl))
+                            {
+                                filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], thisCoverLetter.MemberId, thisCoverLetter.MemberFileUrl);
+                                ms = null;
+                                ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
+                                coverlettercontent = ((MemoryStream)ms).ToArray();
+                            }
+                            else
+                            {
+                                coverlettercontent = thisCoverLetter.MemberFileContent;
+                            }
+
                             BullhornRESTAPI.SyncCandidate(member,
-                                    thisResume != null ? thisResume.MemberFileContent : null,
+                                    thisResume != null ? resumecontent : null,
                                     thisResume != null ? thisResume.MemberFileName : null,
-                                    thisCoverLetter != null ? thisCoverLetter.MemberFileContent : null,
+                                    thisCoverLetter != null ? coverlettercontent : null,
                                     thisCoverLetter != null ? thisCoverLetter.MemberFileName : null,
                                     out errorMsg);
                         }

@@ -15,6 +15,7 @@ using BullhornPartnerApi;
 using JXTPortal.Entities.Models;
 using JXTPortal.Client.Bullhorn;
 using System.IO;
+using JXTPortal.Common;
 using System.Configuration;
 
 namespace JXTPortal.Website.job
@@ -1577,6 +1578,8 @@ namespace JXTPortal.Website.job
 
                         objAdvJobTemplateLogo.JobLogoName = tbJobLogoName.Text.Trim();
 
+                        AdvertiserJobTemplateLogoService.Insert(objAdvJobTemplateLogo);
+
                         if ((docInput.PostedFile != null) && docInput.PostedFile.ContentLength > 0)
                         {
                             if (this.docInput.PostedFile != null)
@@ -1587,17 +1590,22 @@ namespace JXTPortal.Website.job
                                     PortalConstants.THUMBNAIL_WIDTH, PortalConstants.THUMBNAIL_HEIGHT);
 
                                 System.IO.MemoryStream objOutputMemorySTream = new System.IO.MemoryStream();
-                                objResizedImage.Save(objOutputMemorySTream, objOriginalImage.RawFormat);
+                                FtpClient ftpclient = new FtpClient();
+                                string errormessage = string.Empty;
+                                string extension = Utils.GetImageExtension(objOriginalImage);
+                                ftpclient.Host = ConfigurationManager.AppSettings["FTPFileManager"];
+                                ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                                ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+                                ftpclient.UploadFileFromStream(objOutputMemorySTream, string.Format("{0}/{1}/AdvertiserJobTemplateLogo_{2}.{3}", ftpclient.Host, ConfigurationManager.AppSettings["AdvertiserJobTemplateLogoFolder"], objAdvJobTemplateLogo.AdvertiserJobTemplateLogoId, extension), out errormessage);
 
-                                byte[] abytFile = new byte[Convert.ToInt32(objOutputMemorySTream.Length)];
-                                objOutputMemorySTream.Position = 0;
-                                objOutputMemorySTream.Read(abytFile, 0, abytFile.Length);
-
-                                objAdvJobTemplateLogo.JobTemplateLogo = abytFile;
+                                if (string.IsNullOrWhiteSpace(errormessage))
+                                {
+                                    objAdvJobTemplateLogo.JobTemplateLogoUrl = string.Format("AdvertiserJobTemplateLogo_{0}.{1}", objAdvJobTemplateLogo.AdvertiserJobTemplateLogoId, extension);
+                                    AdvertiserJobTemplateLogoService.Update(objAdvJobTemplateLogo);
+                                }
                             }
 
                         }
-                        AdvertiserJobTemplateLogoService.Insert(objAdvJobTemplateLogo);
 
                         job.AdvertiserJobTemplateLogoId = objAdvJobTemplateLogo.AdvertiserJobTemplateLogoId;
                     }
@@ -1953,7 +1961,7 @@ namespace JXTPortal.Website.job
 
             if (aid > 0)
             {
-                using (TList<JXTPortal.Entities.JobTemplates> jobtemplates = JobTemplatesService.GetAdvertiserJobTemplates(SessionData.Site.SiteId, aid))
+                using (DataSet jobtemplates = JobTemplatesService.GetAdvertiserJobTemplates(SessionData.Site.SiteId, aid))
                 {
                     ddlJobTemplateID.DataSource = jobtemplates;
                     ddlJobTemplateID.DataBind();
@@ -2261,6 +2269,8 @@ namespace JXTPortal.Website.job
 
                         objAdvJobTemplateLogo.JobLogoName = tbJobLogoName.Text.Trim();
 
+                        AdvertiserJobTemplateLogoService.Insert(objAdvJobTemplateLogo);
+
                         if ((docInput.PostedFile != null) && docInput.PostedFile.ContentLength > 0)
                         {
                             if (this.docInput.PostedFile != null)
@@ -2271,17 +2281,22 @@ namespace JXTPortal.Website.job
                                     PortalConstants.THUMBNAIL_WIDTH, PortalConstants.THUMBNAIL_HEIGHT);
 
                                 System.IO.MemoryStream objOutputMemorySTream = new System.IO.MemoryStream();
-                                objResizedImage.Save(objOutputMemorySTream, objOriginalImage.RawFormat);
+                                FtpClient ftpclient = new FtpClient();
+                                string errormessage = string.Empty;
+                                string extension = Utils.GetImageExtension(objOriginalImage);
+                                ftpclient.Host = ConfigurationManager.AppSettings["FTPFileManager"];
+                                ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                                ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+                                ftpclient.UploadFileFromStream(objOutputMemorySTream, string.Format("{0}/{1}/AdvertiserJobTemplateLogo_{2}.{3}", ftpclient.Host, ConfigurationManager.AppSettings["AdvertiserJobTemplateLogoFolder"], objAdvJobTemplateLogo.AdvertiserJobTemplateLogoId, extension), out errormessage);
 
-                                byte[] abytFile = new byte[Convert.ToInt32(objOutputMemorySTream.Length)];
-                                objOutputMemorySTream.Position = 0;
-                                objOutputMemorySTream.Read(abytFile, 0, abytFile.Length);
-
-                                objAdvJobTemplateLogo.JobTemplateLogo = abytFile;
+                                if (string.IsNullOrWhiteSpace(errormessage))
+                                {
+                                    objAdvJobTemplateLogo.JobTemplateLogoUrl = string.Format("AdvertiserJobTemplateLogo_{0}.{1}", objAdvJobTemplateLogo.AdvertiserJobTemplateLogoId, extension);
+                                    AdvertiserJobTemplateLogoService.Update(objAdvJobTemplateLogo);
+                                }
                             }
 
                         }
-                        AdvertiserJobTemplateLogoService.Insert(objAdvJobTemplateLogo);
 
                         job.AdvertiserJobTemplateLogoId = objAdvJobTemplateLogo.AdvertiserJobTemplateLogoId;
                     }

@@ -184,6 +184,7 @@ namespace JXTPortal.Data.SqlClient
 		database.AddInParameter(commandWrapper, "@LastModified", DbType.DateTime, DBNull.Value);
 		database.AddInParameter(commandWrapper, "@JobTemplateLogo", DbType.Binary, DBNull.Value);
 		database.AddInParameter(commandWrapper, "@AdvertiserId", DbType.Int32, DBNull.Value);
+		database.AddInParameter(commandWrapper, "@JobTemplateLogoUrl", DbType.String, DBNull.Value);
 	
 			// replace all instances of 'AND' and 'OR' because we already set searchUsingOR
 			whereClause = whereClause.Replace(" AND ", "|").Replace(" OR ", "|") ; 
@@ -250,6 +251,12 @@ namespace JXTPortal.Data.SqlClient
 				{
 					database.SetParameterValue(commandWrapper, "@AdvertiserId", 
 						clause.Trim().Remove(0,12).Trim().TrimStart(equalSign).Trim().Trim(singleQuote));
+					continue;
+				}
+				if (clause.Trim().StartsWith("jobtemplatelogourl ") || clause.Trim().StartsWith("jobtemplatelogourl="))
+				{
+					database.SetParameterValue(commandWrapper, "@JobTemplateLogoUrl", 
+						clause.Trim().Remove(0,18).Trim().TrimStart(equalSign).Trim().Trim(singleQuote));
 					continue;
 				}
 	
@@ -847,6 +854,8 @@ namespace JXTPortal.Data.SqlClient
 			col7.AllowDBNull = true;		
 			DataColumn col8 = dataTable.Columns.Add("AdvertiserID", typeof(System.Int32));
 			col8.AllowDBNull = false;		
+			DataColumn col9 = dataTable.Columns.Add("JobTemplateLogoUrl", typeof(System.String));
+			col9.AllowDBNull = true;		
 			
 			bulkCopy.ColumnMappings.Add("JobTemplateID", "JobTemplateID");
 			bulkCopy.ColumnMappings.Add("SiteID", "SiteID");
@@ -857,6 +866,7 @@ namespace JXTPortal.Data.SqlClient
 			bulkCopy.ColumnMappings.Add("LastModified", "LastModified");
 			bulkCopy.ColumnMappings.Add("JobTemplateLogo", "JobTemplateLogo");
 			bulkCopy.ColumnMappings.Add("AdvertiserID", "AdvertiserID");
+			bulkCopy.ColumnMappings.Add("JobTemplateLogoUrl", "JobTemplateLogoUrl");
 			
 			foreach(JXTPortal.Entities.JobTemplates entity in entities)
 			{
@@ -890,6 +900,9 @@ namespace JXTPortal.Data.SqlClient
 							
 				
 					row["AdvertiserID"] = entity.AdvertiserId;
+							
+				
+					row["JobTemplateLogoUrl"] = entity.JobTemplateLogoUrl;
 							
 				
 				dataTable.Rows.Add(row);
@@ -935,6 +948,7 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@LastModified", DbType.DateTime, entity.LastModified );
 			database.AddInParameter(commandWrapper, "@JobTemplateLogo", DbType.Binary, entity.JobTemplateLogo );
 			database.AddInParameter(commandWrapper, "@AdvertiserId", DbType.Int32, entity.AdvertiserId );
+			database.AddInParameter(commandWrapper, "@JobTemplateLogoUrl", DbType.String, entity.JobTemplateLogoUrl );
 			
 			int results = 0;
 			
@@ -992,6 +1006,7 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@LastModified", DbType.DateTime, entity.LastModified );
 			database.AddInParameter(commandWrapper, "@JobTemplateLogo", DbType.Binary, entity.JobTemplateLogo );
 			database.AddInParameter(commandWrapper, "@AdvertiserId", DbType.Int32, entity.AdvertiserId );
+			database.AddInParameter(commandWrapper, "@JobTemplateLogoUrl", DbType.String, entity.JobTemplateLogoUrl );
 			
 			int results = 0;
 			
@@ -1038,12 +1053,13 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="lastModified"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="jobTemplateLogo"> A <c>System.Byte[]</c> instance.</param>
 		/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="jobTemplateLogoUrl"> A <c>System.String</c> instance.</param>
 			/// <param name="jobTemplateId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
-		public override void Insert(TransactionManager transactionManager, int start, int pageLength , System.Int32? siteId, System.String jobTemplateDescription, System.String jobTemplateHtml, System.Boolean? globalTemplate, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.Byte[] jobTemplateLogo, System.Int32? advertiserId, ref System.Int32? jobTemplateId)
+		public override void Insert(TransactionManager transactionManager, int start, int pageLength , System.Int32? siteId, System.String jobTemplateDescription, System.String jobTemplateHtml, System.Boolean? globalTemplate, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.Byte[] jobTemplateLogo, System.Int32? advertiserId, System.String jobTemplateLogoUrl, ref System.Int32? jobTemplateId)
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.JobTemplates_Insert", true);
@@ -1056,6 +1072,7 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@LastModified", DbType.DateTime,  lastModified );
 			database.AddInParameter(commandWrapper, "@JobTemplateLogo", DbType.Binary,  jobTemplateLogo );
 			database.AddInParameter(commandWrapper, "@AdvertiserId", DbType.Int32,  advertiserId );
+			database.AddInParameter(commandWrapper, "@JobTemplateLogoUrl", DbType.String,  jobTemplateLogoUrl );
 	
 			database.AddParameter(commandWrapper, "@JobTemplateId", DbType.Int32, 4, ParameterDirection.InputOutput, true, 10, 0, string.Empty, DataRowVersion.Current, jobTemplateId);
 			
@@ -1091,8 +1108,8 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
-		/// <returns>A <see cref="TList&lt;JobTemplates&gt;"/> instance.</returns>
-		public override TList<JobTemplates> GetBySiteId(TransactionManager transactionManager, int start, int pageLength , System.Int32? siteId)
+		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		public override DataSet GetBySiteId(TransactionManager transactionManager, int start, int pageLength , System.Int32? siteId)
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.JobTemplates_GetBySiteId", true);
@@ -1100,37 +1117,27 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@SiteId", DbType.Int32,  siteId );
 	
 			
-			IDataReader reader = null;
+			DataSet ds = null;
 			
-			//Create Collection
-				TList<JobTemplates> rows = new TList<JobTemplates>();
-				//Provider Data Requesting Command Event
-				OnDataRequesting(new CommandEventArgs(commandWrapper, "GetBySiteId", rows));
-	
-				if (transactionManager != null)
-				{	
-					reader = Utility.ExecuteReader(transactionManager, commandWrapper);
-				}
-				else
-				{
-					reader = Utility.ExecuteReader(database, commandWrapper);
-				}	
-				
-				try
-				{    
-					Fill(reader, rows, start, pageLength);
-				}
-				finally
-				{
-					if (reader != null) 
-						reader.Close();
-				}
-				
-				//Provider Data Requested Command Event
-				OnDataRequested(new CommandEventArgs(commandWrapper, "GetBySiteId", rows));
+			//Provider Data Requesting Command Event
+			OnDataRequesting(new CommandEventArgs(commandWrapper, "GetBySiteId", (IEntity)null));
 
+			if (transactionManager != null)
+			{	
+				ds = Utility.ExecuteDataSet(transactionManager, commandWrapper);
+			}
+			else
+			{
+				ds = Utility.ExecuteDataSet(database, commandWrapper);
+			}
+			
+			//Provider Data Requested Command Event
+			OnDataRequested(new CommandEventArgs(commandWrapper, "GetBySiteId", (IEntity)null));
 
-				return rows;
+			
+
+			
+			return ds;	
 		}
 		#endregion
 
@@ -1143,45 +1150,35 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
-		/// <returns>A <see cref="TList&lt;JobTemplates&gt;"/> instance.</returns>
-		public override TList<JobTemplates> Get_List(TransactionManager transactionManager, int start, int pageLength )
+		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		public override DataSet Get_List(TransactionManager transactionManager, int start, int pageLength )
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.JobTemplates_Get_List", true);
 			
 	
 			
-			IDataReader reader = null;
+			DataSet ds = null;
 			
-			//Create Collection
-				TList<JobTemplates> rows = new TList<JobTemplates>();
-				//Provider Data Requesting Command Event
-				OnDataRequesting(new CommandEventArgs(commandWrapper, "Get_List", rows));
-	
-				if (transactionManager != null)
-				{	
-					reader = Utility.ExecuteReader(transactionManager, commandWrapper);
-				}
-				else
-				{
-					reader = Utility.ExecuteReader(database, commandWrapper);
-				}	
-				
-				try
-				{    
-					Fill(reader, rows, start, pageLength);
-				}
-				finally
-				{
-					if (reader != null) 
-						reader.Close();
-				}
-				
-				//Provider Data Requested Command Event
-				OnDataRequested(new CommandEventArgs(commandWrapper, "Get_List", rows));
+			//Provider Data Requesting Command Event
+			OnDataRequesting(new CommandEventArgs(commandWrapper, "Get_List", (IEntity)null));
 
+			if (transactionManager != null)
+			{	
+				ds = Utility.ExecuteDataSet(transactionManager, commandWrapper);
+			}
+			else
+			{
+				ds = Utility.ExecuteDataSet(database, commandWrapper);
+			}
+			
+			//Provider Data Requested Command Event
+			OnDataRequested(new CommandEventArgs(commandWrapper, "Get_List", (IEntity)null));
 
-				return rows;
+			
+
+			
+			return ds;	
 		}
 		#endregion
 
@@ -1198,8 +1195,8 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
-		/// <returns>A <see cref="TList&lt;JobTemplates&gt;"/> instance.</returns>
-		public override TList<JobTemplates> GetPaged(TransactionManager transactionManager, int start, int pageLength , System.String whereClause, System.String orderBy, System.Int32? pageIndex, System.Int32? pageSize)
+		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		public override DataSet GetPaged(TransactionManager transactionManager, int start, int pageLength , System.String whereClause, System.String orderBy, System.Int32? pageIndex, System.Int32? pageSize)
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.JobTemplates_GetPaged", true);
@@ -1210,37 +1207,27 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@PageSize", DbType.Int32,  pageSize );
 	
 			
-			IDataReader reader = null;
+			DataSet ds = null;
 			
-			//Create Collection
-				TList<JobTemplates> rows = new TList<JobTemplates>();
-				//Provider Data Requesting Command Event
-				OnDataRequesting(new CommandEventArgs(commandWrapper, "GetPaged", rows));
-	
-				if (transactionManager != null)
-				{	
-					reader = Utility.ExecuteReader(transactionManager, commandWrapper);
-				}
-				else
-				{
-					reader = Utility.ExecuteReader(database, commandWrapper);
-				}	
-				
-				try
-				{    
-					Fill(reader, rows, start, pageLength);
-				}
-				finally
-				{
-					if (reader != null) 
-						reader.Close();
-				}
-				
-				//Provider Data Requested Command Event
-				OnDataRequested(new CommandEventArgs(commandWrapper, "GetPaged", rows));
+			//Provider Data Requesting Command Event
+			OnDataRequesting(new CommandEventArgs(commandWrapper, "GetPaged", (IEntity)null));
 
+			if (transactionManager != null)
+			{	
+				ds = Utility.ExecuteDataSet(transactionManager, commandWrapper);
+			}
+			else
+			{
+				ds = Utility.ExecuteDataSet(database, commandWrapper);
+			}
+			
+			//Provider Data Requested Command Event
+			OnDataRequested(new CommandEventArgs(commandWrapper, "GetPaged", (IEntity)null));
 
-				return rows;
+			
+
+			
+			return ds;	
 		}
 		#endregion
 
@@ -1254,8 +1241,8 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
-		/// <returns>A <see cref="TList&lt;JobTemplates&gt;"/> instance.</returns>
-		public override TList<JobTemplates> GetByJobTemplateId(TransactionManager transactionManager, int start, int pageLength , System.Int32? jobTemplateId)
+		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		public override DataSet GetByJobTemplateId(TransactionManager transactionManager, int start, int pageLength , System.Int32? jobTemplateId)
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.JobTemplates_GetByJobTemplateId", true);
@@ -1263,37 +1250,27 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@JobTemplateId", DbType.Int32,  jobTemplateId );
 	
 			
-			IDataReader reader = null;
+			DataSet ds = null;
 			
-			//Create Collection
-				TList<JobTemplates> rows = new TList<JobTemplates>();
-				//Provider Data Requesting Command Event
-				OnDataRequesting(new CommandEventArgs(commandWrapper, "GetByJobTemplateId", rows));
-	
-				if (transactionManager != null)
-				{	
-					reader = Utility.ExecuteReader(transactionManager, commandWrapper);
-				}
-				else
-				{
-					reader = Utility.ExecuteReader(database, commandWrapper);
-				}	
-				
-				try
-				{    
-					Fill(reader, rows, start, pageLength);
-				}
-				finally
-				{
-					if (reader != null) 
-						reader.Close();
-				}
-				
-				//Provider Data Requested Command Event
-				OnDataRequested(new CommandEventArgs(commandWrapper, "GetByJobTemplateId", rows));
+			//Provider Data Requesting Command Event
+			OnDataRequesting(new CommandEventArgs(commandWrapper, "GetByJobTemplateId", (IEntity)null));
 
+			if (transactionManager != null)
+			{	
+				ds = Utility.ExecuteDataSet(transactionManager, commandWrapper);
+			}
+			else
+			{
+				ds = Utility.ExecuteDataSet(database, commandWrapper);
+			}
+			
+			//Provider Data Requested Command Event
+			OnDataRequested(new CommandEventArgs(commandWrapper, "GetByJobTemplateId", (IEntity)null));
 
-				return rows;
+			
+
+			
+			return ds;	
 		}
 		#endregion
 
@@ -1307,8 +1284,8 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
-		/// <returns>A <see cref="TList&lt;JobTemplates&gt;"/> instance.</returns>
-		public override TList<JobTemplates> GetByAdvertiserId(TransactionManager transactionManager, int start, int pageLength , System.Int32? advertiserId)
+		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		public override DataSet GetByAdvertiserId(TransactionManager transactionManager, int start, int pageLength , System.Int32? advertiserId)
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.JobTemplates_GetByAdvertiserId", true);
@@ -1316,37 +1293,27 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@AdvertiserId", DbType.Int32,  advertiserId );
 	
 			
-			IDataReader reader = null;
+			DataSet ds = null;
 			
-			//Create Collection
-				TList<JobTemplates> rows = new TList<JobTemplates>();
-				//Provider Data Requesting Command Event
-				OnDataRequesting(new CommandEventArgs(commandWrapper, "GetByAdvertiserId", rows));
-	
-				if (transactionManager != null)
-				{	
-					reader = Utility.ExecuteReader(transactionManager, commandWrapper);
-				}
-				else
-				{
-					reader = Utility.ExecuteReader(database, commandWrapper);
-				}	
-				
-				try
-				{    
-					Fill(reader, rows, start, pageLength);
-				}
-				finally
-				{
-					if (reader != null) 
-						reader.Close();
-				}
-				
-				//Provider Data Requested Command Event
-				OnDataRequested(new CommandEventArgs(commandWrapper, "GetByAdvertiserId", rows));
+			//Provider Data Requesting Command Event
+			OnDataRequesting(new CommandEventArgs(commandWrapper, "GetByAdvertiserId", (IEntity)null));
 
+			if (transactionManager != null)
+			{	
+				ds = Utility.ExecuteDataSet(transactionManager, commandWrapper);
+			}
+			else
+			{
+				ds = Utility.ExecuteDataSet(database, commandWrapper);
+			}
+			
+			//Provider Data Requested Command Event
+			OnDataRequested(new CommandEventArgs(commandWrapper, "GetByAdvertiserId", (IEntity)null));
 
-				return rows;
+			
+
+			
+			return ds;	
 		}
 		#endregion
 
@@ -1361,8 +1328,8 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
-		/// <returns>A <see cref="TList&lt;JobTemplates&gt;"/> instance.</returns>
-		public override TList<JobTemplates> GetAdvertiserJobTemplates(TransactionManager transactionManager, int start, int pageLength , System.Int32? siteId, System.Int32? advertiserId)
+		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		public override DataSet GetAdvertiserJobTemplates(TransactionManager transactionManager, int start, int pageLength , System.Int32? siteId, System.Int32? advertiserId)
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.JobTemplates_GetAdvertiserJobTemplates", true);
@@ -1371,37 +1338,27 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@AdvertiserId", DbType.Int32,  advertiserId );
 	
 			
-			IDataReader reader = null;
+			DataSet ds = null;
 			
-			//Create Collection
-				TList<JobTemplates> rows = new TList<JobTemplates>();
-				//Provider Data Requesting Command Event
-				OnDataRequesting(new CommandEventArgs(commandWrapper, "GetAdvertiserJobTemplates", rows));
-	
-				if (transactionManager != null)
-				{	
-					reader = Utility.ExecuteReader(transactionManager, commandWrapper);
-				}
-				else
-				{
-					reader = Utility.ExecuteReader(database, commandWrapper);
-				}	
-				
-				try
-				{    
-					Fill(reader, rows, start, pageLength);
-				}
-				finally
-				{
-					if (reader != null) 
-						reader.Close();
-				}
-				
-				//Provider Data Requested Command Event
-				OnDataRequested(new CommandEventArgs(commandWrapper, "GetAdvertiserJobTemplates", rows));
+			//Provider Data Requesting Command Event
+			OnDataRequesting(new CommandEventArgs(commandWrapper, "GetAdvertiserJobTemplates", (IEntity)null));
 
+			if (transactionManager != null)
+			{	
+				ds = Utility.ExecuteDataSet(transactionManager, commandWrapper);
+			}
+			else
+			{
+				ds = Utility.ExecuteDataSet(database, commandWrapper);
+			}
+			
+			//Provider Data Requested Command Event
+			OnDataRequested(new CommandEventArgs(commandWrapper, "GetAdvertiserJobTemplates", (IEntity)null));
 
-				return rows;
+			
+
+			
+			return ds;	
 		}
 		#endregion
 
@@ -1419,11 +1376,12 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="lastModified"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="jobTemplateLogo"> A <c>System.Byte[]</c> instance.</param>
 		/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="jobTemplateLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
-		public override void Update(TransactionManager transactionManager, int start, int pageLength , System.Int32? jobTemplateId, System.Int32? siteId, System.String jobTemplateDescription, System.String jobTemplateHtml, System.Boolean? globalTemplate, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.Byte[] jobTemplateLogo, System.Int32? advertiserId)
+		public override void Update(TransactionManager transactionManager, int start, int pageLength , System.Int32? jobTemplateId, System.Int32? siteId, System.String jobTemplateDescription, System.String jobTemplateHtml, System.Boolean? globalTemplate, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.Byte[] jobTemplateLogo, System.Int32? advertiserId, System.String jobTemplateLogoUrl)
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.JobTemplates_Update", true);
@@ -1437,6 +1395,7 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@LastModified", DbType.DateTime,  lastModified );
 			database.AddInParameter(commandWrapper, "@JobTemplateLogo", DbType.Binary,  jobTemplateLogo );
 			database.AddInParameter(commandWrapper, "@AdvertiserId", DbType.Int32,  advertiserId );
+			database.AddInParameter(commandWrapper, "@JobTemplateLogoUrl", DbType.String,  jobTemplateLogoUrl );
 	
 			
 			//Provider Data Requesting Command Event
@@ -1475,12 +1434,13 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="lastModified"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="jobTemplateLogo"> A <c>System.Byte[]</c> instance.</param>
 		/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="jobTemplateLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
-		/// <returns>A <see cref="TList&lt;JobTemplates&gt;"/> instance.</returns>
-		public override TList<JobTemplates> Find(TransactionManager transactionManager, int start, int pageLength , System.Boolean? searchUsingOr, System.Int32? jobTemplateId, System.Int32? siteId, System.String jobTemplateDescription, System.String jobTemplateHtml, System.Boolean? globalTemplate, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.Byte[] jobTemplateLogo, System.Int32? advertiserId)
+		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		public override DataSet Find(TransactionManager transactionManager, int start, int pageLength , System.Boolean? searchUsingOr, System.Int32? jobTemplateId, System.Int32? siteId, System.String jobTemplateDescription, System.String jobTemplateHtml, System.Boolean? globalTemplate, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.Byte[] jobTemplateLogo, System.Int32? advertiserId, System.String jobTemplateLogoUrl)
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.JobTemplates_Find", true);
@@ -1495,39 +1455,30 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@LastModified", DbType.DateTime,  lastModified );
 			database.AddInParameter(commandWrapper, "@JobTemplateLogo", DbType.Binary,  jobTemplateLogo );
 			database.AddInParameter(commandWrapper, "@AdvertiserId", DbType.Int32,  advertiserId );
+			database.AddInParameter(commandWrapper, "@JobTemplateLogoUrl", DbType.String,  jobTemplateLogoUrl );
 	
 			
-			IDataReader reader = null;
+			DataSet ds = null;
 			
-			//Create Collection
-				TList<JobTemplates> rows = new TList<JobTemplates>();
-				//Provider Data Requesting Command Event
-				OnDataRequesting(new CommandEventArgs(commandWrapper, "Find", rows));
-	
-				if (transactionManager != null)
-				{	
-					reader = Utility.ExecuteReader(transactionManager, commandWrapper);
-				}
-				else
-				{
-					reader = Utility.ExecuteReader(database, commandWrapper);
-				}	
-				
-				try
-				{    
-					Fill(reader, rows, start, pageLength);
-				}
-				finally
-				{
-					if (reader != null) 
-						reader.Close();
-				}
-				
-				//Provider Data Requested Command Event
-				OnDataRequested(new CommandEventArgs(commandWrapper, "Find", rows));
+			//Provider Data Requesting Command Event
+			OnDataRequesting(new CommandEventArgs(commandWrapper, "Find", (IEntity)null));
 
+			if (transactionManager != null)
+			{	
+				ds = Utility.ExecuteDataSet(transactionManager, commandWrapper);
+			}
+			else
+			{
+				ds = Utility.ExecuteDataSet(database, commandWrapper);
+			}
+			
+			//Provider Data Requested Command Event
+			OnDataRequested(new CommandEventArgs(commandWrapper, "Find", (IEntity)null));
 
-				return rows;
+			
+
+			
+			return ds;	
 		}
 		#endregion
 
@@ -1580,8 +1531,8 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
-		/// <returns>A <see cref="TList&lt;JobTemplates&gt;"/> instance.</returns>
-		public override TList<JobTemplates> GetByLastModifiedBy(TransactionManager transactionManager, int start, int pageLength , System.Int32? lastModifiedBy)
+		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		public override DataSet GetByLastModifiedBy(TransactionManager transactionManager, int start, int pageLength , System.Int32? lastModifiedBy)
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.JobTemplates_GetByLastModifiedBy", true);
@@ -1589,37 +1540,27 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@LastModifiedBy", DbType.Int32,  lastModifiedBy );
 	
 			
-			IDataReader reader = null;
+			DataSet ds = null;
 			
-			//Create Collection
-				TList<JobTemplates> rows = new TList<JobTemplates>();
-				//Provider Data Requesting Command Event
-				OnDataRequesting(new CommandEventArgs(commandWrapper, "GetByLastModifiedBy", rows));
-	
-				if (transactionManager != null)
-				{	
-					reader = Utility.ExecuteReader(transactionManager, commandWrapper);
-				}
-				else
-				{
-					reader = Utility.ExecuteReader(database, commandWrapper);
-				}	
-				
-				try
-				{    
-					Fill(reader, rows, start, pageLength);
-				}
-				finally
-				{
-					if (reader != null) 
-						reader.Close();
-				}
-				
-				//Provider Data Requested Command Event
-				OnDataRequested(new CommandEventArgs(commandWrapper, "GetByLastModifiedBy", rows));
+			//Provider Data Requesting Command Event
+			OnDataRequesting(new CommandEventArgs(commandWrapper, "GetByLastModifiedBy", (IEntity)null));
 
+			if (transactionManager != null)
+			{	
+				ds = Utility.ExecuteDataSet(transactionManager, commandWrapper);
+			}
+			else
+			{
+				ds = Utility.ExecuteDataSet(database, commandWrapper);
+			}
+			
+			//Provider Data Requested Command Event
+			OnDataRequested(new CommandEventArgs(commandWrapper, "GetByLastModifiedBy", (IEntity)null));
 
-				return rows;
+			
+
+			
+			return ds;	
 		}
 		#endregion
 		#endregion

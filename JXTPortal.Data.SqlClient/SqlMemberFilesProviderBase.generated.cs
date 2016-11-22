@@ -184,6 +184,7 @@ namespace JXTPortal.Data.SqlClient
 		database.AddInParameter(commandWrapper, "@MemberFileTitle", DbType.String, DBNull.Value);
 		database.AddInParameter(commandWrapper, "@LastModifiedDate", DbType.DateTime, DBNull.Value);
 		database.AddInParameter(commandWrapper, "@DocumentTypeId", DbType.Int32, DBNull.Value);
+		database.AddInParameter(commandWrapper, "@MemberFileUrl", DbType.String, DBNull.Value);
 	
 			// replace all instances of 'AND' and 'OR' because we already set searchUsingOR
 			whereClause = whereClause.Replace(" AND ", "|").Replace(" OR ", "|") ; 
@@ -250,6 +251,12 @@ namespace JXTPortal.Data.SqlClient
 				{
 					database.SetParameterValue(commandWrapper, "@DocumentTypeId", 
 						clause.Trim().Remove(0,14).Trim().TrimStart(equalSign).Trim().Trim(singleQuote));
+					continue;
+				}
+				if (clause.Trim().StartsWith("memberfileurl ") || clause.Trim().StartsWith("memberfileurl="))
+				{
+					database.SetParameterValue(commandWrapper, "@MemberFileUrl", 
+						clause.Trim().Remove(0,13).Trim().TrimStart(equalSign).Trim().Trim(singleQuote));
 					continue;
 				}
 	
@@ -654,87 +661,6 @@ namespace JXTPortal.Data.SqlClient
 	
 		#region Get By Index Functions
 
-		#region GetByMemberIdMemberFileName
-					
-		/// <summary>
-		/// 	Gets rows from the datasource based on the IX_Unique_MemberFiles index.
-		/// </summary>
-		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
-		/// <param name="_memberId"></param>
-		/// <param name="_memberFileName"></param>
-		/// <param name="start">Row number at which to start reading.</param>
-		/// <param name="pageLength">Number of rows to return.</param>
-		/// <param name="count">out parameter to get total records for query.</param>
-		/// <returns>Returns an instance of the <see cref="JXTPortal.Entities.MemberFiles"/> class.</returns>
-		/// <remarks></remarks>
-        /// <exception cref="System.Exception">The command could not be executed.</exception>
-        /// <exception cref="System.Data.DataException">The <paramref name="transactionManager"/> is not open.</exception>
-        /// <exception cref="System.Data.Common.DbException">The command could not be executed.</exception>
-		public override JXTPortal.Entities.MemberFiles GetByMemberIdMemberFileName(TransactionManager transactionManager, System.Int32 _memberId, System.String _memberFileName, int start, int pageLength, out int count)
-		{
-			SqlDatabase database = new SqlDatabase(this._connectionString);
-			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.MemberFiles_GetByMemberIdMemberFileName", _useStoredProcedure);
-			
-				database.AddInParameter(commandWrapper, "@MemberId", DbType.Int32, _memberId);
-				database.AddInParameter(commandWrapper, "@MemberFileName", DbType.String, _memberFileName);
-			
-			IDataReader reader = null;
-			TList<MemberFiles> tmp = new TList<MemberFiles>();
-			try
-			{
-				//Provider Data Requesting Command Event
-				OnDataRequesting(new CommandEventArgs(commandWrapper, "GetByMemberIdMemberFileName", tmp)); 
-
-				if (transactionManager != null)
-				{
-					reader = Utility.ExecuteReader(transactionManager, commandWrapper);
-				}
-				else
-				{
-					reader = Utility.ExecuteReader(database, commandWrapper);
-				}		
-		
-				//Create collection and fill
-				Fill(reader, tmp, start, pageLength);
-				count = -1;
-				if(reader.NextResult())
-				{
-					if(reader.Read())
-					{
-						count = reader.GetInt32(0);
-					}
-				}
-				
-				//Provider Data Requested Command Event
-				OnDataRequested(new CommandEventArgs(commandWrapper, "GetByMemberIdMemberFileName", tmp));
-			}
-			finally 
-			{
-				if (reader != null) 
-					reader.Close();
-					
-				commandWrapper = null;
-			}
-			
-			if (tmp.Count == 1)
-			{
-				return tmp[0];
-			}
-			else if (tmp.Count == 0)
-			{
-				return null;
-			}
-			else
-			{
-				throw new DataException("Cannot find the unique instance of the class.");
-			}
-			
-			//return rows;
-		}
-		
-		#endregion
-
-
 		#region GetByMemberFileId
 					
 		/// <summary>
@@ -864,6 +790,8 @@ namespace JXTPortal.Data.SqlClient
 			col7.AllowDBNull = false;		
 			DataColumn col8 = dataTable.Columns.Add("DocumentTypeID", typeof(System.Int32));
 			col8.AllowDBNull = true;		
+			DataColumn col9 = dataTable.Columns.Add("MemberFileUrl", typeof(System.String));
+			col9.AllowDBNull = true;		
 			
 			bulkCopy.ColumnMappings.Add("MemberFileID", "MemberFileID");
 			bulkCopy.ColumnMappings.Add("MemberID", "MemberID");
@@ -874,6 +802,7 @@ namespace JXTPortal.Data.SqlClient
 			bulkCopy.ColumnMappings.Add("MemberFileTitle", "MemberFileTitle");
 			bulkCopy.ColumnMappings.Add("LastModifiedDate", "LastModifiedDate");
 			bulkCopy.ColumnMappings.Add("DocumentTypeID", "DocumentTypeID");
+			bulkCopy.ColumnMappings.Add("MemberFileUrl", "MemberFileUrl");
 			
 			foreach(JXTPortal.Entities.MemberFiles entity in entities)
 			{
@@ -907,6 +836,9 @@ namespace JXTPortal.Data.SqlClient
 							
 				
 					row["DocumentTypeID"] = entity.DocumentTypeId.HasValue ? (object) entity.DocumentTypeId  : System.DBNull.Value;
+							
+				
+					row["MemberFileUrl"] = entity.MemberFileUrl;
 							
 				
 				dataTable.Rows.Add(row);
@@ -952,6 +884,7 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@MemberFileTitle", DbType.String, entity.MemberFileTitle );
 			database.AddInParameter(commandWrapper, "@LastModifiedDate", DbType.DateTime, entity.LastModifiedDate );
 			database.AddInParameter(commandWrapper, "@DocumentTypeId", DbType.Int32, (entity.DocumentTypeId.HasValue ? (object) entity.DocumentTypeId  : System.DBNull.Value));
+			database.AddInParameter(commandWrapper, "@MemberFileUrl", DbType.String, entity.MemberFileUrl );
 			
 			int results = 0;
 			
@@ -1009,6 +942,7 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@MemberFileTitle", DbType.String, entity.MemberFileTitle );
 			database.AddInParameter(commandWrapper, "@LastModifiedDate", DbType.DateTime, entity.LastModifiedDate );
 			database.AddInParameter(commandWrapper, "@DocumentTypeId", DbType.Int32, (entity.DocumentTypeId.HasValue ? (object) entity.DocumentTypeId : System.DBNull.Value) );
+			database.AddInParameter(commandWrapper, "@MemberFileUrl", DbType.String, entity.MemberFileUrl );
 			
 			int results = 0;
 			
@@ -1052,8 +986,8 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
-		/// <returns>A <see cref="TList&lt;MemberFiles&gt;"/> instance.</returns>
-		public override TList<MemberFiles> GetByMemberFileId(TransactionManager transactionManager, int start, int pageLength , System.Int32? memberFileId)
+		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		public override DataSet GetByMemberFileId(TransactionManager transactionManager, int start, int pageLength , System.Int32? memberFileId)
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.MemberFiles_GetByMemberFileId", true);
@@ -1061,37 +995,27 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@MemberFileId", DbType.Int32,  memberFileId );
 	
 			
-			IDataReader reader = null;
+			DataSet ds = null;
 			
-			//Create Collection
-				TList<MemberFiles> rows = new TList<MemberFiles>();
-				//Provider Data Requesting Command Event
-				OnDataRequesting(new CommandEventArgs(commandWrapper, "GetByMemberFileId", rows));
-	
-				if (transactionManager != null)
-				{	
-					reader = Utility.ExecuteReader(transactionManager, commandWrapper);
-				}
-				else
-				{
-					reader = Utility.ExecuteReader(database, commandWrapper);
-				}	
-				
-				try
-				{    
-					Fill(reader, rows, start, pageLength);
-				}
-				finally
-				{
-					if (reader != null) 
-						reader.Close();
-				}
-				
-				//Provider Data Requested Command Event
-				OnDataRequested(new CommandEventArgs(commandWrapper, "GetByMemberFileId", rows));
+			//Provider Data Requesting Command Event
+			OnDataRequesting(new CommandEventArgs(commandWrapper, "GetByMemberFileId", (IEntity)null));
 
+			if (transactionManager != null)
+			{	
+				ds = Utility.ExecuteDataSet(transactionManager, commandWrapper);
+			}
+			else
+			{
+				ds = Utility.ExecuteDataSet(database, commandWrapper);
+			}
+			
+			//Provider Data Requested Command Event
+			OnDataRequested(new CommandEventArgs(commandWrapper, "GetByMemberFileId", (IEntity)null));
 
-				return rows;
+			
+
+			
+			return ds;	
 		}
 		#endregion
 
@@ -1108,12 +1032,13 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="memberFileTitle"> A <c>System.String</c> instance.</param>
 		/// <param name="lastModifiedDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="documentTypeId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="memberFileUrl"> A <c>System.String</c> instance.</param>
 			/// <param name="memberFileId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
-		public override void Insert(TransactionManager transactionManager, int start, int pageLength , System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId, ref System.Int32? memberFileId)
+		public override void Insert(TransactionManager transactionManager, int start, int pageLength , System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId, System.String memberFileUrl, ref System.Int32? memberFileId)
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.MemberFiles_Insert", true);
@@ -1126,6 +1051,7 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@MemberFileTitle", DbType.String,  memberFileTitle );
 			database.AddInParameter(commandWrapper, "@LastModifiedDate", DbType.DateTime,  lastModifiedDate );
 			database.AddInParameter(commandWrapper, "@DocumentTypeId", DbType.Int32,  documentTypeId );
+			database.AddInParameter(commandWrapper, "@MemberFileUrl", DbType.String,  memberFileUrl );
 	
 			database.AddParameter(commandWrapper, "@MemberFileId", DbType.Int32, 4, ParameterDirection.InputOutput, true, 10, 0, string.Empty, DataRowVersion.Current, memberFileId);
 			
@@ -1161,8 +1087,8 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
-		/// <returns>A <see cref="TList&lt;MemberFiles&gt;"/> instance.</returns>
-		public override TList<MemberFiles> GetByMemberId(TransactionManager transactionManager, int start, int pageLength , System.Int32? memberId)
+		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		public override DataSet GetByMemberId(TransactionManager transactionManager, int start, int pageLength , System.Int32? memberId)
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.MemberFiles_GetByMemberId", true);
@@ -1170,37 +1096,27 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@MemberId", DbType.Int32,  memberId );
 	
 			
-			IDataReader reader = null;
+			DataSet ds = null;
 			
-			//Create Collection
-				TList<MemberFiles> rows = new TList<MemberFiles>();
-				//Provider Data Requesting Command Event
-				OnDataRequesting(new CommandEventArgs(commandWrapper, "GetByMemberId", rows));
-	
-				if (transactionManager != null)
-				{	
-					reader = Utility.ExecuteReader(transactionManager, commandWrapper);
-				}
-				else
-				{
-					reader = Utility.ExecuteReader(database, commandWrapper);
-				}	
-				
-				try
-				{    
-					Fill(reader, rows, start, pageLength);
-				}
-				finally
-				{
-					if (reader != null) 
-						reader.Close();
-				}
-				
-				//Provider Data Requested Command Event
-				OnDataRequested(new CommandEventArgs(commandWrapper, "GetByMemberId", rows));
+			//Provider Data Requesting Command Event
+			OnDataRequesting(new CommandEventArgs(commandWrapper, "GetByMemberId", (IEntity)null));
 
+			if (transactionManager != null)
+			{	
+				ds = Utility.ExecuteDataSet(transactionManager, commandWrapper);
+			}
+			else
+			{
+				ds = Utility.ExecuteDataSet(database, commandWrapper);
+			}
+			
+			//Provider Data Requested Command Event
+			OnDataRequested(new CommandEventArgs(commandWrapper, "GetByMemberId", (IEntity)null));
 
-				return rows;
+			
+
+			
+			return ds;	
 		}
 		#endregion
 
@@ -1213,45 +1129,35 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
-		/// <returns>A <see cref="TList&lt;MemberFiles&gt;"/> instance.</returns>
-		public override TList<MemberFiles> Get_List(TransactionManager transactionManager, int start, int pageLength )
+		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		public override DataSet Get_List(TransactionManager transactionManager, int start, int pageLength )
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.MemberFiles_Get_List", true);
 			
 	
 			
-			IDataReader reader = null;
+			DataSet ds = null;
 			
-			//Create Collection
-				TList<MemberFiles> rows = new TList<MemberFiles>();
-				//Provider Data Requesting Command Event
-				OnDataRequesting(new CommandEventArgs(commandWrapper, "Get_List", rows));
-	
-				if (transactionManager != null)
-				{	
-					reader = Utility.ExecuteReader(transactionManager, commandWrapper);
-				}
-				else
-				{
-					reader = Utility.ExecuteReader(database, commandWrapper);
-				}	
-				
-				try
-				{    
-					Fill(reader, rows, start, pageLength);
-				}
-				finally
-				{
-					if (reader != null) 
-						reader.Close();
-				}
-				
-				//Provider Data Requested Command Event
-				OnDataRequested(new CommandEventArgs(commandWrapper, "Get_List", rows));
+			//Provider Data Requesting Command Event
+			OnDataRequesting(new CommandEventArgs(commandWrapper, "Get_List", (IEntity)null));
 
+			if (transactionManager != null)
+			{	
+				ds = Utility.ExecuteDataSet(transactionManager, commandWrapper);
+			}
+			else
+			{
+				ds = Utility.ExecuteDataSet(database, commandWrapper);
+			}
+			
+			//Provider Data Requested Command Event
+			OnDataRequested(new CommandEventArgs(commandWrapper, "Get_List", (IEntity)null));
 
-				return rows;
+			
+
+			
+			return ds;	
 		}
 		#endregion
 
@@ -1268,8 +1174,8 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
-		/// <returns>A <see cref="TList&lt;MemberFiles&gt;"/> instance.</returns>
-		public override TList<MemberFiles> GetPaged(TransactionManager transactionManager, int start, int pageLength , System.String whereClause, System.String orderBy, System.Int32? pageIndex, System.Int32? pageSize)
+		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		public override DataSet GetPaged(TransactionManager transactionManager, int start, int pageLength , System.String whereClause, System.String orderBy, System.Int32? pageIndex, System.Int32? pageSize)
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.MemberFiles_GetPaged", true);
@@ -1280,37 +1186,27 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@PageSize", DbType.Int32,  pageSize );
 	
 			
-			IDataReader reader = null;
+			DataSet ds = null;
 			
-			//Create Collection
-				TList<MemberFiles> rows = new TList<MemberFiles>();
-				//Provider Data Requesting Command Event
-				OnDataRequesting(new CommandEventArgs(commandWrapper, "GetPaged", rows));
-	
-				if (transactionManager != null)
-				{	
-					reader = Utility.ExecuteReader(transactionManager, commandWrapper);
-				}
-				else
-				{
-					reader = Utility.ExecuteReader(database, commandWrapper);
-				}	
-				
-				try
-				{    
-					Fill(reader, rows, start, pageLength);
-				}
-				finally
-				{
-					if (reader != null) 
-						reader.Close();
-				}
-				
-				//Provider Data Requested Command Event
-				OnDataRequested(new CommandEventArgs(commandWrapper, "GetPaged", rows));
+			//Provider Data Requesting Command Event
+			OnDataRequesting(new CommandEventArgs(commandWrapper, "GetPaged", (IEntity)null));
 
+			if (transactionManager != null)
+			{	
+				ds = Utility.ExecuteDataSet(transactionManager, commandWrapper);
+			}
+			else
+			{
+				ds = Utility.ExecuteDataSet(database, commandWrapper);
+			}
+			
+			//Provider Data Requested Command Event
+			OnDataRequested(new CommandEventArgs(commandWrapper, "GetPaged", (IEntity)null));
 
-				return rows;
+			
+
+			
+			return ds;	
 		}
 		#endregion
 
@@ -1328,11 +1224,12 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="memberFileTitle"> A <c>System.String</c> instance.</param>
 		/// <param name="lastModifiedDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="documentTypeId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="memberFileUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
-		public override void Update(TransactionManager transactionManager, int start, int pageLength , System.Int32? memberFileId, System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId)
+		public override void Update(TransactionManager transactionManager, int start, int pageLength , System.Int32? memberFileId, System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId, System.String memberFileUrl)
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.MemberFiles_Update", true);
@@ -1346,6 +1243,7 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@MemberFileTitle", DbType.String,  memberFileTitle );
 			database.AddInParameter(commandWrapper, "@LastModifiedDate", DbType.DateTime,  lastModifiedDate );
 			database.AddInParameter(commandWrapper, "@DocumentTypeId", DbType.Int32,  documentTypeId );
+			database.AddInParameter(commandWrapper, "@MemberFileUrl", DbType.String,  memberFileUrl );
 	
 			
 			//Provider Data Requesting Command Event
@@ -1384,12 +1282,13 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="memberFileTitle"> A <c>System.String</c> instance.</param>
 		/// <param name="lastModifiedDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="documentTypeId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="memberFileUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
-		/// <returns>A <see cref="TList&lt;MemberFiles&gt;"/> instance.</returns>
-		public override TList<MemberFiles> Find(TransactionManager transactionManager, int start, int pageLength , System.Boolean? searchUsingOr, System.Int32? memberFileId, System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId)
+		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		public override DataSet Find(TransactionManager transactionManager, int start, int pageLength , System.Boolean? searchUsingOr, System.Int32? memberFileId, System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId, System.String memberFileUrl)
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.MemberFiles_Find", true);
@@ -1404,39 +1303,30 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@MemberFileTitle", DbType.String,  memberFileTitle );
 			database.AddInParameter(commandWrapper, "@LastModifiedDate", DbType.DateTime,  lastModifiedDate );
 			database.AddInParameter(commandWrapper, "@DocumentTypeId", DbType.Int32,  documentTypeId );
+			database.AddInParameter(commandWrapper, "@MemberFileUrl", DbType.String,  memberFileUrl );
 	
 			
-			IDataReader reader = null;
+			DataSet ds = null;
 			
-			//Create Collection
-				TList<MemberFiles> rows = new TList<MemberFiles>();
-				//Provider Data Requesting Command Event
-				OnDataRequesting(new CommandEventArgs(commandWrapper, "Find", rows));
-	
-				if (transactionManager != null)
-				{	
-					reader = Utility.ExecuteReader(transactionManager, commandWrapper);
-				}
-				else
-				{
-					reader = Utility.ExecuteReader(database, commandWrapper);
-				}	
-				
-				try
-				{    
-					Fill(reader, rows, start, pageLength);
-				}
-				finally
-				{
-					if (reader != null) 
-						reader.Close();
-				}
-				
-				//Provider Data Requested Command Event
-				OnDataRequested(new CommandEventArgs(commandWrapper, "Find", rows));
+			//Provider Data Requesting Command Event
+			OnDataRequesting(new CommandEventArgs(commandWrapper, "Find", (IEntity)null));
 
+			if (transactionManager != null)
+			{	
+				ds = Utility.ExecuteDataSet(transactionManager, commandWrapper);
+			}
+			else
+			{
+				ds = Utility.ExecuteDataSet(database, commandWrapper);
+			}
+			
+			//Provider Data Requested Command Event
+			OnDataRequested(new CommandEventArgs(commandWrapper, "Find", (IEntity)null));
 
-				return rows;
+			
+
+			
+			return ds;	
 		}
 		#endregion
 
@@ -1537,8 +1427,8 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
-		/// <returns>A <see cref="TList&lt;MemberFiles&gt;"/> instance.</returns>
-		public override TList<MemberFiles> GetByMemberIdMemberFileName(TransactionManager transactionManager, int start, int pageLength , System.Int32? memberId, System.String memberFileName)
+		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		public override DataSet GetByMemberIdMemberFileName(TransactionManager transactionManager, int start, int pageLength , System.Int32? memberId, System.String memberFileName)
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.MemberFiles_GetByMemberIdMemberFileName", true);
@@ -1547,37 +1437,27 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@MemberFileName", DbType.String,  memberFileName );
 	
 			
-			IDataReader reader = null;
+			DataSet ds = null;
 			
-			//Create Collection
-				TList<MemberFiles> rows = new TList<MemberFiles>();
-				//Provider Data Requesting Command Event
-				OnDataRequesting(new CommandEventArgs(commandWrapper, "GetByMemberIdMemberFileName", rows));
-	
-				if (transactionManager != null)
-				{	
-					reader = Utility.ExecuteReader(transactionManager, commandWrapper);
-				}
-				else
-				{
-					reader = Utility.ExecuteReader(database, commandWrapper);
-				}	
-				
-				try
-				{    
-					Fill(reader, rows, start, pageLength);
-				}
-				finally
-				{
-					if (reader != null) 
-						reader.Close();
-				}
-				
-				//Provider Data Requested Command Event
-				OnDataRequested(new CommandEventArgs(commandWrapper, "GetByMemberIdMemberFileName", rows));
+			//Provider Data Requesting Command Event
+			OnDataRequesting(new CommandEventArgs(commandWrapper, "GetByMemberIdMemberFileName", (IEntity)null));
 
+			if (transactionManager != null)
+			{	
+				ds = Utility.ExecuteDataSet(transactionManager, commandWrapper);
+			}
+			else
+			{
+				ds = Utility.ExecuteDataSet(database, commandWrapper);
+			}
+			
+			//Provider Data Requested Command Event
+			OnDataRequested(new CommandEventArgs(commandWrapper, "GetByMemberIdMemberFileName", (IEntity)null));
 
-				return rows;
+			
+
+			
+			return ds;	
 		}
 		#endregion
 
@@ -1591,8 +1471,8 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
-		/// <returns>A <see cref="TList&lt;MemberFiles&gt;"/> instance.</returns>
-		public override TList<MemberFiles> GetByMemberFileTypeId(TransactionManager transactionManager, int start, int pageLength , System.Int32? memberFileTypeId)
+		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		public override DataSet GetByMemberFileTypeId(TransactionManager transactionManager, int start, int pageLength , System.Int32? memberFileTypeId)
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.MemberFiles_GetByMemberFileTypeId", true);
@@ -1600,37 +1480,27 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@MemberFileTypeId", DbType.Int32,  memberFileTypeId );
 	
 			
-			IDataReader reader = null;
+			DataSet ds = null;
 			
-			//Create Collection
-				TList<MemberFiles> rows = new TList<MemberFiles>();
-				//Provider Data Requesting Command Event
-				OnDataRequesting(new CommandEventArgs(commandWrapper, "GetByMemberFileTypeId", rows));
-	
-				if (transactionManager != null)
-				{	
-					reader = Utility.ExecuteReader(transactionManager, commandWrapper);
-				}
-				else
-				{
-					reader = Utility.ExecuteReader(database, commandWrapper);
-				}	
-				
-				try
-				{    
-					Fill(reader, rows, start, pageLength);
-				}
-				finally
-				{
-					if (reader != null) 
-						reader.Close();
-				}
-				
-				//Provider Data Requested Command Event
-				OnDataRequested(new CommandEventArgs(commandWrapper, "GetByMemberFileTypeId", rows));
+			//Provider Data Requesting Command Event
+			OnDataRequesting(new CommandEventArgs(commandWrapper, "GetByMemberFileTypeId", (IEntity)null));
 
+			if (transactionManager != null)
+			{	
+				ds = Utility.ExecuteDataSet(transactionManager, commandWrapper);
+			}
+			else
+			{
+				ds = Utility.ExecuteDataSet(database, commandWrapper);
+			}
+			
+			//Provider Data Requested Command Event
+			OnDataRequested(new CommandEventArgs(commandWrapper, "GetByMemberFileTypeId", (IEntity)null));
 
-				return rows;
+			
+
+			
+			return ds;	
 		}
 		#endregion
 		#endregion

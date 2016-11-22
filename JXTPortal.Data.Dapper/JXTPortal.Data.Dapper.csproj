@@ -49,17 +49,30 @@
     <Compile Include="Configuration\DefaultApplicationConfiguration.cs" />
     <Compile Include="Configuration\IApplicationConfiguration.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
+    <Compile Include="Entities\Core\AdvertiserJobTemplateLogoEntity.cs" />
+    <Compile Include="Entities\Core\AdvertisersEntity.cs" />
+    <Compile Include="Entities\Core\ConsultantsEntity.cs" />
+    <Compile Include="Entities\Core\JobTemplatesEntity.cs" />
+    <Compile Include="Entities\Core\MemberFilesEntity.cs" />
     <Compile Include="Entities\KnowledgeBase\KnowledgeBaseCategoryEntity.cs" />
     <Compile Include="Entities\KnowledgeBase\KnowledgeBaseEntity.cs" />
+    <Compile Include="Entities\Core\SitesEntity.cs" />
     <Compile Include="Entities\Site\SiteLanguageEntity.cs" />
     <Compile Include="Factories\IConnectionFactory.cs" />
     <Compile Include="Factories\SqlServerConnectionFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AdvertiserJobTemplateLogoRepository.cs" />
+    <Compile Include="Repositories\AdvertisersRepository.cs" />
+    <Compile Include="Repositories\ConsultantsRepository.cs" />
+    <Compile Include="Repositories\IBaseEntityOperation.cs" />
+    <Compile Include="Repositories\JobTemplatesRepository.cs" />
     <Compile Include="Repositories\BaseEnitityOperation.cs" />
     <Compile Include="Repositories\IBaseEntityOperation.cs" />
     <Compile Include="Repositories\SiteLanguageRepository.cs" />
     <Compile Include="Repositories\KnowledgeBaseCategoryRepository.cs" />
     <Compile Include="Repositories\KnowledgeBaseRepository.cs" />
+    <Compile Include="Repositories\MemberFilesRepository.cs" />
+    <Compile Include="Repositories\SitesRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

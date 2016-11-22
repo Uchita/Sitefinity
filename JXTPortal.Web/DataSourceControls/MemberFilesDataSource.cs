@@ -211,14 +211,14 @@ namespace JXTPortal.Web.Data
 					count = results.Count;
 					break;
 				// IX
-				case MemberFilesSelectMethod.GetByMemberIdMemberFileName:
-					_memberId = ( values["MemberId"] != null ) ? (System.Int32) EntityUtil.ChangeType(values["MemberId"], typeof(System.Int32)) : (int)0;
-					_memberFileName = ( values["MemberFileName"] != null ) ? (System.String) EntityUtil.ChangeType(values["MemberFileName"], typeof(System.String)) : string.Empty;
-					item = MemberFilesProvider.GetByMemberIdMemberFileName(_memberId, _memberFileName);
-					results = new TList<MemberFiles>();
-					if ( item != null ) results.Add(item);
-					count = results.Count;
-					break;
+                //case MemberFilesSelectMethod.GetByMemberIdMemberFileName:
+                //    _memberId = ( values["MemberId"] != null ) ? (System.Int32) EntityUtil.ChangeType(values["MemberId"], typeof(System.Int32)) : (int)0;
+                //    _memberFileName = ( values["MemberFileName"] != null ) ? (System.String) EntityUtil.ChangeType(values["MemberFileName"], typeof(System.String)) : string.Empty;
+                //    item = MemberFilesProvider.GetByMemberIdMemberFileName(_memberId, _memberFileName);
+                //    results = new TList<MemberFiles>();
+                //    if ( item != null ) results.Add(item);
+                //    count = results.Count;
+                //    break;
 				// FK
 				case MemberFilesSelectMethod.GetByMemberId:
 					_memberId = ( values["MemberId"] != null ) ? (System.Int32) EntityUtil.ChangeType(values["MemberId"], typeof(System.Int32)) : (int)0;
@@ -230,9 +230,9 @@ namespace JXTPortal.Web.Data
 					break;
 				// M:M
 				// Custom
-				case MemberFilesSelectMethod.Get_List:
-					results = MemberFilesProvider.Get_List(StartIndex, PageSize);
-					break;
+                //case MemberFilesSelectMethod.Get_List:
+                //    results = MemberFilesProvider.Get_List(StartIndex, PageSize);
+                //    break;
 				
 				default:
 					break;

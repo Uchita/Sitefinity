@@ -313,12 +313,19 @@ namespace JXTJobAlerts
                                             {
                                                 using (JXTPortal.Entities.Advertisers advertiser = AdvertisersService.GetByAdvertiserId(vjs.AdvertiserId.Value))
                                                 {
-                                                    if (advertiser.AdvertiserLogo != null)
+                                                    if (!string.IsNullOrWhiteSpace(advertiser.AdvertiserLogoUrl))
                                                     {
-                                                        strAdvertiserLogo = String.Format(@"<a href='#'><img src='http://{0}/getfile.aspx?advertiserid={1}' border='0' hspace='0' vspace='0' alt='{2}' /></a>",
-                                                                                            siteurl,
-                                                                                            vjs.AdvertiserId.Value,
-                                                                                            vjs.CompanyName);
+                                                        strAdvertiserLogo = string.Format(@"<a href='#'><img src='http://{0}/media/{1}/{2}' border='0' hspace='0' vspace='0' alt='{3}' /></a>", siteurl, ConfigurationManager.AppSettings["AdvertisersFolder"], advertiser.AdvertiserLogoUrl, vjs.CompanyName);
+                                                    }
+                                                    else
+                                                    {
+                                                        if (advertiser.AdvertiserLogo != null)
+                                                        {
+                                                            strAdvertiserLogo = String.Format(@"<a href='#'><img src='http://{0}/getfile.aspx?advertiserid={1}' border='0' hspace='0' vspace='0' alt='{2}' /></a>",
+                                                                                                siteurl,
+                                                                                                vjs.AdvertiserId.Value,
+                                                                                                vjs.CompanyName);
+                                                        }
                                                     }
                                                 }
                                             }

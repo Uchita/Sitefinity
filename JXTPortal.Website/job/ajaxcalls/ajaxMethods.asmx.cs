@@ -52,6 +52,21 @@ namespace JXTPortal.Website.job.ajaxcalls
             }
         }
 
+        private AdvertisersService _advertisersService = null;
+
+        public AdvertisersService AdvertisersService
+        {
+
+            get
+            {
+                if (_advertisersService == null)
+                {
+                    _advertisersService = new AdvertisersService();
+                }
+                return _advertisersService;
+            }
+        }
+
         #endregion
 
         [WebMethod]
@@ -611,14 +626,23 @@ namespace JXTPortal.Website.job.ajaxcalls
             {
                 foreach (ViewJobSearch s in viewJobSearch)
                 {
+                    string logourl = string.Empty;
+                    if (s.HasAdvertiserLogo == 1)
+                        logourl = String.Format(@"/getfile.aspx?advertiserid={0}", s.AdvertiserId.Value);
+                    if (s.HasAdvertiserLogo == 2)
+                    {
+                        using (Entities.Advertisers adv = AdvertisersService.GetByAdvertiserId(s.AdvertiserId.Value))
+                            logourl = String.Format(@"/media/{0}/{1}", ConfigurationManager.AppSettings["AdvertisersFolder"], adv.AdvertiserLogoUrl);
+                    }
+                   
                     var thisJob = 
                         new { 
                             jobLink = Utils.GetJobUrl(s.JobId, s.JobFriendlyName),
                             jobName = s.JobName,
                             //companyName = s.CompanyName,
                             advertiserName = s.AdvertiserName,
-                            hasAdvertiserLogo = s.HasAdvertiserLogo == 1,
-                            advertiserLogo = String.Format(@"/getfile.aspx?advertiserid={0}", s.AdvertiserId.Value),
+                            hasAdvertiserLogo = s.HasAdvertiserLogo > 0,
+                            advertiserLogo = logourl,
                             salaryShow = s.ShowSalaryRange,
                             salaryFrom = s.ShowSalaryRange ? s.SalaryLowerBand : 0,
                             salaryTo = s.ShowSalaryRange ? s.SalaryUpperBand : 0,

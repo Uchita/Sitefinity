@@ -27,6 +27,17 @@ namespace JXTPortal.Mobile.Website.Controllers.Job
 {
     public class JobController : Controller
     {
+        private SitesService _sitesService;
+        private SitesService SitesService
+        {
+            get
+            {
+                if (_sitesService == null)
+                    _sitesService = new SitesService();
+                return _sitesService;
+            }
+        }
+
         private JobsService _jobService;
         private JobsService JobsService
         {
@@ -222,8 +233,20 @@ namespace JXTPortal.Mobile.Website.Controllers.Job
 
                                 ftpclient.Username = ftpusername;
                                 ftpclient.Password = ftppassword;
-                                
-                                string strUrl = "http://" + SessionData.Site.SiteUrl + "/GetAdminLogo.aspx?SiteID=" + SessionData.Site.SiteId.ToString();
+
+                                string strUrl = string.Empty;
+
+                                using (Entities.Sites site = SitesService.GetBySiteId(SessionData.Site.SiteId))
+                                {
+                                    if (!string.IsNullOrWhiteSpace(site.SiteAdminLogoUrl))
+                                    {
+                                        strUrl = string.Format("http://{0}/media/{1}/{2}", SessionData.Site.SiteUrl, ConfigurationManager.AppSettings["SitesFolder"], site.SiteAdminLogoUrl);
+                                    }
+                                    else
+                                    {
+                                        strUrl = "http://" + SessionData.Site.SiteUrl + "/GetAdminLogo.aspx?SiteID=" + SessionData.Site.SiteId.ToString();
+                                    }
+                                }
                                 string strHTML = _oauth.oAuth2GetProfileHTML(accessToken, strUrl);
 
                                 using (MemoryStream generatedDocument = new MemoryStream())

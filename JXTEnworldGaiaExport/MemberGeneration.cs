@@ -8,6 +8,7 @@ using System.Web.Script.Serialization;
 using System.Data;
 using System.Configuration;
 using System.IO;
+using JXTPortal.Common;
 
 namespace JXTEnworldGaiaExport
 {
@@ -64,12 +65,36 @@ namespace JXTEnworldGaiaExport
 
                                     foreach (var item in memberFiles)
                                     {
+                                        string errormessage = string.Empty;
+
+                                        byte[] memberfilecontent = null;
+
+                                        if (!string.IsNullOrWhiteSpace(item.MemberFileUrl))
+                                        {
+
+                                            FtpClient ftpclient = new FtpClient();
+                                            ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
+                                            ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                                            ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+
+                                            string filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], item.MemberId, item.MemberFileUrl);
+                                            Stream ms = null;
+                                            ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
+                                            ms.Position = 0;
+
+                                            memberfilecontent = ((MemoryStream)ms).ToArray();
+                                        }
+                                        else
+                                        {
+                                            memberfilecontent = item.MemberFileContent;
+                                        }
+
                                         thisCandidateData.Resumes.Add(new Resume
                                         {
                                             Title = item.MemberFileTitle,
                                             FileName = item.MemberFileName,
                                             UploadedDate = String.Format("{0:yyyy-MM-dd HH:mm:ss}", item.LastModifiedDate),
-                                            FileContent = Convert.ToBase64String(item.MemberFileContent, 0, item.MemberFileContent.Length)
+                                            FileContent = Convert.ToBase64String(memberfilecontent, 0, item.MemberFileContent.Length)
                                         });
                                     }
                                 }

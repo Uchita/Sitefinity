@@ -49,16 +49,28 @@ namespace JXTJobAlerts
             int totalErrors = 0;
             string strAdvertiserLogo = string.Empty;
             // Retrieve all sites
-            using (TList<JXTPortal.Entities.Sites> sites = ss.Get_List())
+            using (DataSet sites = ss.Get_List())
             {
-                sites.Filter = "Live = True"; // only live sites. // Todo  Remove SiteID
+                DataRow[] siterows = sites.Tables[0].Select("Live = 1"); // only live sites. // Todo  Remove SiteID
 
-                if (sites.Count > 0)
+                if (siterows.Length > 0)
                 {
                     TList<JXTPortal.Entities.EmailTemplates> etl = ets.CustomGetByEmailCode("JOBALERT");
 
-                    foreach (JXTPortal.Entities.Sites site in sites)
+                    foreach (DataRow siterow in siterows)
                     {
+                        JXTPortal.Entities.Sites site = new JXTPortal.Entities.Sites();
+                        site.SiteId = (int)siterow["SiteID"];
+                        site.SiteName = siterow["SiteName"].ToString();
+                        site.SiteUrl = siterow["SiteURL"].ToString();
+                        site.SiteDescription = siterow["SiteDescription"].ToString();
+                        site.SiteAdminLogo = (byte[])siterow["SiteAdminLogo"];
+                        site.LastModified = (DateTime)siterow["LastModified"];
+                        site.LastModifiedBy = (int)siterow["LastModifiedBy"];
+                        site.Live = (bool)siterow["Live"];
+                        site.MobileEnabled = (bool)siterow["MobileEnabled"];
+                        site.MobileUrl = siterow["MobileUrl"].ToString();
+                        site.SiteAdminLogoUrl = siterow["SiteAdminLogoUrl"].ToString();
 
                         Console.WriteLine(site.SiteId.ToString() + ". " + site.SiteName);
 

@@ -60,7 +60,8 @@ namespace JXTPortal
 		///<param name="_memberFileTitle"></param>
 		///<param name="_lastModifiedDate"></param>
 		///<param name="_documentTypeId"></param>
-		public static MemberFiles CreateMemberFiles(System.Int32 _memberId, System.Int32 _memberFileTypeId, System.String _memberFileName, System.String _memberFileSearchExtension, System.Byte[] _memberFileContent, System.String _memberFileTitle, System.DateTime _lastModifiedDate, System.Int32? _documentTypeId)
+		///<param name="_memberFileUrl"></param>
+		public static MemberFiles CreateMemberFiles(System.Int32 _memberId, System.Int32 _memberFileTypeId, System.String _memberFileName, System.String _memberFileSearchExtension, System.Byte[] _memberFileContent, System.String _memberFileTitle, System.DateTime _lastModifiedDate, System.Int32? _documentTypeId, System.String _memberFileUrl)
 		{
 			MemberFiles newEntityMemberFiles = new MemberFiles();
 			newEntityMemberFiles.MemberId  = _memberId;
@@ -71,6 +72,7 @@ namespace JXTPortal
 			newEntityMemberFiles.MemberFileTitle  = _memberFileTitle;
 			newEntityMemberFiles.LastModifiedDate  = _lastModifiedDate;
 			newEntityMemberFiles.DocumentTypeId  = _documentTypeId;
+			newEntityMemberFiles.MemberFileUrl  = _memberFileUrl;
 			return newEntityMemberFiles;
 		}
 		#endregion Constructors
@@ -286,95 +288,6 @@ namespace JXTPortal
 		{
 			return GetByMemberFileId(key.MemberFileId);
 		}
-
-		/// <summary>
-		///  method that Gets rows in a <see cref="TList{MemberFiles}" /> from the datasource based on the primary key IX_Unique_MemberFiles index.
-		/// </summary>
-		/// <param name="_memberId"></param>
-		/// <param name="_memberFileName"></param>
-		/// <returns>Returns an instance of the <see cref="MemberFiles"/> class.</returns>
-		[DataObjectMethod(DataObjectMethodType.Select)]
-		public virtual MemberFiles GetByMemberIdMemberFileName(System.Int32 _memberId, System.String _memberFileName)
-		{
-			#region Security check
-			// throws security exception if not authorized
-			SecurityContext.IsAuthorized("GetByMemberIdMemberFileName");
-			#endregion Security check
-			
-			#region Initialisation
-			MemberFiles entity = null;
-			TransactionManager transactionManager = null; 
-			NetTiersProvider dataProvider = null;
-			#endregion Initialisation
-			
-			try
-            {	
-				transactionManager = ConnectionScope.ValidateOrCreateTransaction(noTranByDefault);
-				dataProvider = ConnectionScope.Current.DataProvider;
-				
-				entity = dataProvider.MemberFilesProvider.GetByMemberIdMemberFileName(transactionManager, _memberId, _memberFileName)   as MemberFiles;
-			}
-            catch (Exception exc)
-            {
-				#region Handle transaction rollback and exception
-                if (transactionManager != null && transactionManager.IsOpen) 
-					transactionManager.Rollback();
-				
-				//Handle exception based on policy
-                if (DomainUtil.HandleException(exc, layerExceptionPolicy)) 
-					throw;
-				#endregion Handle transaction rollback and exception
-			}
-			
-			return entity;
-		}
-		
-		/// <summary>
-		///  Method that Gets rows in a <see cref="TList{MemberFiles}" /> from the datasource based on the primary key IX_Unique_MemberFiles index.
-		/// </summary>
-		/// <param name="_memberId"></param>
-		/// <param name="_memberFileName"></param>
-		/// <param name="start">Row number at which to start reading.</param>
-		/// <param name="pageLength">Page length of records you would like to retrieve</param>
-		/// <param name="totalCount">out parameter, number of total rows in given query.</param>
-		/// <returns>Returns an instance of the <see cref="MemberFiles"/> class.</returns>
-		[DataObjectMethod(DataObjectMethodType.Select)]
-		public virtual MemberFiles GetByMemberIdMemberFileName(System.Int32 _memberId, System.String _memberFileName, int start, int pageLength, out int totalCount)
-		{
-			#region Security check
-			// throws security exception if not authorized
-			SecurityContext.IsAuthorized("GetByMemberIdMemberFileName");
-			#endregion Security check
-			
-			#region Initialisation
-			totalCount = -1;
-			MemberFiles entity = null;
-			TransactionManager transactionManager = null; 
-			NetTiersProvider dataProvider = null;
-			#endregion Initialisation
-			
-			try
-            {	
-				transactionManager = ConnectionScope.ValidateOrCreateTransaction(noTranByDefault);
-				dataProvider = ConnectionScope.Current.DataProvider;
-				
-				entity = dataProvider.MemberFilesProvider.GetByMemberIdMemberFileName(transactionManager, _memberId, _memberFileName, start, pageLength, out totalCount)   as MemberFiles;
-			}
-            catch (Exception exc)
-            {
-				#region Handle transaction rollback and exception
-                if (transactionManager != null && transactionManager.IsOpen) 
-					transactionManager.Rollback();
-				
-				//Handle exception based on policy
-                if (DomainUtil.HandleException(exc, layerExceptionPolicy)) 
-					throw;
-				#endregion Handle transaction rollback and exception
-			}
-			
-			return entity;
-		}
-	
 
 		/// <summary>
 		///  method that Gets rows in a <see cref="TList{MemberFiles}" /> from the datasource based on the primary key PK__MemberFiles__267ABA7A index.
@@ -1558,8 +1471,8 @@ namespace JXTPortal
 		/// </summary>
 		/// <param name="memberFileId"> A <c>System.Int32?</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="TList{MemberFiles}"/> instance.</returns>
-		public virtual  TList<MemberFiles> GetByMemberFileId(System.Int32? memberFileId)
+		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		public virtual  DataSet GetByMemberFileId(System.Int32? memberFileId)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -1568,7 +1481,7 @@ namespace JXTPortal
 		
 			#region Initialisation
 			bool isBorrowedTransaction = false;
-			TList<MemberFiles> result = null; 
+			DataSet result = null; 
 			TransactionManager transactionManager = null; 
 			NetTiersProvider dataProvider = null;
 			#endregion Initialisation
@@ -1604,8 +1517,8 @@ namespace JXTPortal
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="TList{MemberFiles}"/> instance.</returns>
-		public virtual  TList<MemberFiles> GetByMemberFileId( System.Int32? memberFileId, int start, int pageLength)
+		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		public virtual  DataSet GetByMemberFileId( System.Int32? memberFileId, int start, int pageLength)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -1614,7 +1527,7 @@ namespace JXTPortal
 		
 			#region Initialisation
 			bool isBorrowedTransaction = false;
-			TList<MemberFiles> result = null; 
+			DataSet result = null; 
 			TransactionManager transactionManager = null; 
 			NetTiersProvider dataProvider = null;
 			#endregion Initialisation
@@ -1657,9 +1570,10 @@ namespace JXTPortal
 		/// <param name="memberFileTitle"> A <c>System.String</c> instance.</param>
 		/// <param name="lastModifiedDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="documentTypeId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="memberFileUrl"> A <c>System.String</c> instance.</param>
 			/// <param name="memberFileId"> A <c>System.Int32?</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public virtual  void Insert(System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId, ref System.Int32? memberFileId)
+		public virtual  void Insert(System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId, System.String memberFileUrl, ref System.Int32? memberFileId)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -1679,7 +1593,7 @@ namespace JXTPortal
 				
 				transactionManager = ConnectionScope.ValidateOrCreateTransaction();
 				dataProvider = ConnectionScope.Current.DataProvider;
-				dataProvider.MemberFilesProvider.Insert(transactionManager , memberId, memberFileTypeId, memberFileName, memberFileSearchExtension, memberFileContent, memberFileTitle, lastModifiedDate, documentTypeId, ref memberFileId);
+				dataProvider.MemberFilesProvider.Insert(transactionManager , memberId, memberFileTypeId, memberFileName, memberFileSearchExtension, memberFileContent, memberFileTitle, lastModifiedDate, documentTypeId, memberFileUrl, ref memberFileId);
 	        
 				if (!isBorrowedTransaction && transactionManager != null && transactionManager.IsOpen)
 					transactionManager.Commit();
@@ -1710,11 +1624,12 @@ namespace JXTPortal
 		/// <param name="memberFileTitle"> A <c>System.String</c> instance.</param>
 		/// <param name="lastModifiedDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="documentTypeId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="memberFileUrl"> A <c>System.String</c> instance.</param>
 			/// <param name="memberFileId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public virtual  void Insert( System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId, ref System.Int32? memberFileId, int start, int pageLength)
+		public virtual  void Insert( System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId, System.String memberFileUrl, ref System.Int32? memberFileId, int start, int pageLength)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -1735,7 +1650,7 @@ namespace JXTPortal
 				transactionManager = ConnectionScope.ValidateOrCreateTransaction();
 				dataProvider = ConnectionScope.Current.DataProvider;
                 
-				dataProvider.MemberFilesProvider.Insert(transactionManager, start, pageLength , memberId, memberFileTypeId, memberFileName, memberFileSearchExtension, memberFileContent, memberFileTitle, lastModifiedDate, documentTypeId, ref memberFileId);
+				dataProvider.MemberFilesProvider.Insert(transactionManager, start, pageLength , memberId, memberFileTypeId, memberFileName, memberFileSearchExtension, memberFileContent, memberFileTitle, lastModifiedDate, documentTypeId, memberFileUrl, ref memberFileId);
 	        
 				if (!isBorrowedTransaction && transactionManager != null && transactionManager.IsOpen)
 					transactionManager.Commit();
@@ -1762,8 +1677,8 @@ namespace JXTPortal
 		/// </summary>
 		/// <param name="memberId"> A <c>System.Int32?</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="TList{MemberFiles}"/> instance.</returns>
-		public virtual  TList<MemberFiles> GetByMemberId(System.Int32? memberId)
+		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		public virtual  DataSet GetByMemberId(System.Int32? memberId)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -1772,7 +1687,7 @@ namespace JXTPortal
 		
 			#region Initialisation
 			bool isBorrowedTransaction = false;
-			TList<MemberFiles> result = null; 
+			DataSet result = null; 
 			TransactionManager transactionManager = null; 
 			NetTiersProvider dataProvider = null;
 			#endregion Initialisation
@@ -1808,8 +1723,8 @@ namespace JXTPortal
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="TList{MemberFiles}"/> instance.</returns>
-		public virtual  TList<MemberFiles> GetByMemberId( System.Int32? memberId, int start, int pageLength)
+		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		public virtual  DataSet GetByMemberId( System.Int32? memberId, int start, int pageLength)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -1818,7 +1733,7 @@ namespace JXTPortal
 		
 			#region Initialisation
 			bool isBorrowedTransaction = false;
-			TList<MemberFiles> result = null; 
+			DataSet result = null; 
 			TransactionManager transactionManager = null; 
 			NetTiersProvider dataProvider = null;
 			#endregion Initialisation
@@ -1854,8 +1769,8 @@ namespace JXTPortal
 		///	This method wrap the 'MemberFiles_Get_List' stored procedure. 
 		/// </summary>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="TList{MemberFiles}"/> instance.</returns>
-		public virtual  TList<MemberFiles> Get_List()
+		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		public virtual  DataSet Get_List()
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -1864,7 +1779,7 @@ namespace JXTPortal
 		
 			#region Initialisation
 			bool isBorrowedTransaction = false;
-			TList<MemberFiles> result = null; 
+			DataSet result = null; 
 			TransactionManager transactionManager = null; 
 			NetTiersProvider dataProvider = null;
 			#endregion Initialisation
@@ -1899,8 +1814,8 @@ namespace JXTPortal
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="TList{MemberFiles}"/> instance.</returns>
-		public virtual  TList<MemberFiles> Get_List( int start, int pageLength)
+		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		public virtual  DataSet Get_List( int start, int pageLength)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -1909,7 +1824,7 @@ namespace JXTPortal
 		
 			#region Initialisation
 			bool isBorrowedTransaction = false;
-			TList<MemberFiles> result = null; 
+			DataSet result = null; 
 			TransactionManager transactionManager = null; 
 			NetTiersProvider dataProvider = null;
 			#endregion Initialisation
@@ -1949,8 +1864,8 @@ namespace JXTPortal
 		/// <param name="pageIndex"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="pageSize"> A <c>System.Int32?</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="TList{MemberFiles}"/> instance.</returns>
-		public virtual  TList<MemberFiles> GetPaged(System.String whereClause, System.String orderBy, System.Int32? pageIndex, System.Int32? pageSize)
+		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		public virtual  DataSet GetPaged(System.String whereClause, System.String orderBy, System.Int32? pageIndex, System.Int32? pageSize)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -1959,7 +1874,7 @@ namespace JXTPortal
 		
 			#region Initialisation
 			bool isBorrowedTransaction = false;
-			TList<MemberFiles> result = null; 
+			DataSet result = null; 
 			TransactionManager transactionManager = null; 
 			NetTiersProvider dataProvider = null;
 			#endregion Initialisation
@@ -1998,8 +1913,8 @@ namespace JXTPortal
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="TList{MemberFiles}"/> instance.</returns>
-		public virtual  TList<MemberFiles> GetPaged( System.String whereClause, System.String orderBy, System.Int32? pageIndex, System.Int32? pageSize, int start, int pageLength)
+		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		public virtual  DataSet GetPaged( System.String whereClause, System.String orderBy, System.Int32? pageIndex, System.Int32? pageSize, int start, int pageLength)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -2008,7 +1923,7 @@ namespace JXTPortal
 		
 			#region Initialisation
 			bool isBorrowedTransaction = false;
-			TList<MemberFiles> result = null; 
+			DataSet result = null; 
 			TransactionManager transactionManager = null; 
 			NetTiersProvider dataProvider = null;
 			#endregion Initialisation
@@ -2052,8 +1967,9 @@ namespace JXTPortal
 		/// <param name="memberFileTitle"> A <c>System.String</c> instance.</param>
 		/// <param name="lastModifiedDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="documentTypeId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="memberFileUrl"> A <c>System.String</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public virtual  void Update(System.Int32? memberFileId, System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId)
+		public virtual  void Update(System.Int32? memberFileId, System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId, System.String memberFileUrl)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -2073,7 +1989,7 @@ namespace JXTPortal
 				
 				transactionManager = ConnectionScope.ValidateOrCreateTransaction();
 				dataProvider = ConnectionScope.Current.DataProvider;
-				dataProvider.MemberFilesProvider.Update(transactionManager , memberFileId, memberId, memberFileTypeId, memberFileName, memberFileSearchExtension, memberFileContent, memberFileTitle, lastModifiedDate, documentTypeId);
+				dataProvider.MemberFilesProvider.Update(transactionManager , memberFileId, memberId, memberFileTypeId, memberFileName, memberFileSearchExtension, memberFileContent, memberFileTitle, lastModifiedDate, documentTypeId, memberFileUrl);
 	        
 				if (!isBorrowedTransaction && transactionManager != null && transactionManager.IsOpen)
 					transactionManager.Commit();
@@ -2105,10 +2021,11 @@ namespace JXTPortal
 		/// <param name="memberFileTitle"> A <c>System.String</c> instance.</param>
 		/// <param name="lastModifiedDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="documentTypeId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="memberFileUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public virtual  void Update( System.Int32? memberFileId, System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId, int start, int pageLength)
+		public virtual  void Update( System.Int32? memberFileId, System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId, System.String memberFileUrl, int start, int pageLength)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -2129,7 +2046,7 @@ namespace JXTPortal
 				transactionManager = ConnectionScope.ValidateOrCreateTransaction();
 				dataProvider = ConnectionScope.Current.DataProvider;
                 
-				dataProvider.MemberFilesProvider.Update(transactionManager, start, pageLength , memberFileId, memberId, memberFileTypeId, memberFileName, memberFileSearchExtension, memberFileContent, memberFileTitle, lastModifiedDate, documentTypeId);
+				dataProvider.MemberFilesProvider.Update(transactionManager, start, pageLength , memberFileId, memberId, memberFileTypeId, memberFileName, memberFileSearchExtension, memberFileContent, memberFileTitle, lastModifiedDate, documentTypeId, memberFileUrl);
 	        
 				if (!isBorrowedTransaction && transactionManager != null && transactionManager.IsOpen)
 					transactionManager.Commit();
@@ -2164,9 +2081,10 @@ namespace JXTPortal
 		/// <param name="memberFileTitle"> A <c>System.String</c> instance.</param>
 		/// <param name="lastModifiedDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="documentTypeId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="memberFileUrl"> A <c>System.String</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="TList{MemberFiles}"/> instance.</returns>
-		public virtual  TList<MemberFiles> Find(System.Boolean? searchUsingOr, System.Int32? memberFileId, System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId)
+		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		public virtual  DataSet Find(System.Boolean? searchUsingOr, System.Int32? memberFileId, System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId, System.String memberFileUrl)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -2175,7 +2093,7 @@ namespace JXTPortal
 		
 			#region Initialisation
 			bool isBorrowedTransaction = false;
-			TList<MemberFiles> result = null; 
+			DataSet result = null; 
 			TransactionManager transactionManager = null; 
 			NetTiersProvider dataProvider = null;
 			#endregion Initialisation
@@ -2186,7 +2104,7 @@ namespace JXTPortal
 				
 				transactionManager = ConnectionScope.ValidateOrCreateTransaction(noTranByDefault);
 				dataProvider = ConnectionScope.Current.DataProvider;
-				result = dataProvider.MemberFilesProvider.Find(transactionManager , searchUsingOr, memberFileId, memberId, memberFileTypeId, memberFileName, memberFileSearchExtension, memberFileContent, memberFileTitle, lastModifiedDate, documentTypeId);
+				result = dataProvider.MemberFilesProvider.Find(transactionManager , searchUsingOr, memberFileId, memberId, memberFileTypeId, memberFileName, memberFileSearchExtension, memberFileContent, memberFileTitle, lastModifiedDate, documentTypeId, memberFileUrl);
 	        
 			}
             catch (Exception exc)
@@ -2217,11 +2135,12 @@ namespace JXTPortal
 		/// <param name="memberFileTitle"> A <c>System.String</c> instance.</param>
 		/// <param name="lastModifiedDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="documentTypeId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="memberFileUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="TList{MemberFiles}"/> instance.</returns>
-		public virtual  TList<MemberFiles> Find( System.Boolean? searchUsingOr, System.Int32? memberFileId, System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId, int start, int pageLength)
+		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		public virtual  DataSet Find( System.Boolean? searchUsingOr, System.Int32? memberFileId, System.Int32? memberId, System.Int32? memberFileTypeId, System.String memberFileName, System.String memberFileSearchExtension, System.Byte[] memberFileContent, System.String memberFileTitle, System.DateTime? lastModifiedDate, System.Int32? documentTypeId, System.String memberFileUrl, int start, int pageLength)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -2230,7 +2149,7 @@ namespace JXTPortal
 		
 			#region Initialisation
 			bool isBorrowedTransaction = false;
-			TList<MemberFiles> result = null; 
+			DataSet result = null; 
 			TransactionManager transactionManager = null; 
 			NetTiersProvider dataProvider = null;
 			#endregion Initialisation
@@ -2242,7 +2161,7 @@ namespace JXTPortal
 				transactionManager = ConnectionScope.ValidateOrCreateTransaction(noTranByDefault);
 				dataProvider = ConnectionScope.Current.DataProvider;
                 
-				result = dataProvider.MemberFilesProvider.Find(transactionManager, start, pageLength , searchUsingOr, memberFileId, memberId, memberFileTypeId, memberFileName, memberFileSearchExtension, memberFileContent, memberFileTitle, lastModifiedDate, documentTypeId);
+				result = dataProvider.MemberFilesProvider.Find(transactionManager, start, pageLength , searchUsingOr, memberFileId, memberId, memberFileTypeId, memberFileName, memberFileSearchExtension, memberFileContent, memberFileTitle, lastModifiedDate, documentTypeId, memberFileUrl);
 	        
 			}
             catch (Exception exc)
@@ -2460,8 +2379,8 @@ namespace JXTPortal
 		/// <param name="memberId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="memberFileName"> A <c>System.String</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="TList{MemberFiles}"/> instance.</returns>
-		public virtual  TList<MemberFiles> GetByMemberIdMemberFileName(System.Int32? memberId, System.String memberFileName)
+		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		public virtual  DataSet GetByMemberIdMemberFileName(System.Int32? memberId, System.String memberFileName)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -2470,7 +2389,7 @@ namespace JXTPortal
 		
 			#region Initialisation
 			bool isBorrowedTransaction = false;
-			TList<MemberFiles> result = null; 
+			DataSet result = null; 
 			TransactionManager transactionManager = null; 
 			NetTiersProvider dataProvider = null;
 			#endregion Initialisation
@@ -2507,8 +2426,8 @@ namespace JXTPortal
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="TList{MemberFiles}"/> instance.</returns>
-		public virtual  TList<MemberFiles> GetByMemberIdMemberFileName( System.Int32? memberId, System.String memberFileName, int start, int pageLength)
+		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		public virtual  DataSet GetByMemberIdMemberFileName( System.Int32? memberId, System.String memberFileName, int start, int pageLength)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -2517,7 +2436,7 @@ namespace JXTPortal
 		
 			#region Initialisation
 			bool isBorrowedTransaction = false;
-			TList<MemberFiles> result = null; 
+			DataSet result = null; 
 			TransactionManager transactionManager = null; 
 			NetTiersProvider dataProvider = null;
 			#endregion Initialisation
@@ -2554,8 +2473,8 @@ namespace JXTPortal
 		/// </summary>
 		/// <param name="memberFileTypeId"> A <c>System.Int32?</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="TList{MemberFiles}"/> instance.</returns>
-		public virtual  TList<MemberFiles> GetByMemberFileTypeId(System.Int32? memberFileTypeId)
+		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		public virtual  DataSet GetByMemberFileTypeId(System.Int32? memberFileTypeId)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -2564,7 +2483,7 @@ namespace JXTPortal
 		
 			#region Initialisation
 			bool isBorrowedTransaction = false;
-			TList<MemberFiles> result = null; 
+			DataSet result = null; 
 			TransactionManager transactionManager = null; 
 			NetTiersProvider dataProvider = null;
 			#endregion Initialisation
@@ -2600,8 +2519,8 @@ namespace JXTPortal
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		/// <returns>A <see cref="TList{MemberFiles}"/> instance.</returns>
-		public virtual  TList<MemberFiles> GetByMemberFileTypeId( System.Int32? memberFileTypeId, int start, int pageLength)
+		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		public virtual  DataSet GetByMemberFileTypeId( System.Int32? memberFileTypeId, int start, int pageLength)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -2610,7 +2529,7 @@ namespace JXTPortal
 		
 			#region Initialisation
 			bool isBorrowedTransaction = false;
-			TList<MemberFiles> result = null; 
+			DataSet result = null; 
 			TransactionManager transactionManager = null; 
 			NetTiersProvider dataProvider = null;
 			#endregion Initialisation
@@ -2644,33 +2563,6 @@ namespace JXTPortal
 		
 		#region DeepLoad
 		#region Deep Load By Entity Keys
-		
-		/// <summary>
-		/// public virtualDeep Loads the requested <see cref="MemberFiles"/> by the entity keys.  The criteria of the child 
-		/// property collections only N Levels Deep based on the <see cref="DeepLoadType"/>.
-		/// </summary>
-		/// <param name="_memberId"></param>
-		/// <param name="_memberFileName"></param>
-		/// <param name="deep">Boolean. A flag that indicates whether to recursively save all Property Collection that are descendants of this instance. If True, saves the complete object graph below this object. If False, saves this object only. </param>
-		/// <param name="deepLoadType">DeepLoadType Enumeration to Include/Exclude object property collections from Load.</param>
-		/// <param name="childTypes">MemberFiles Property Collection Type Array To Include or Exclude from Load</param>
-		/// <returns>Returns an instance of the <see cref="MemberFiles"/> class and DeepLoaded.</returns>
-		[DataObjectMethod(DataObjectMethodType.Select)]
-		public virtual MemberFiles DeepLoadByMemberIdMemberFileName(System.Int32 _memberId, System.String _memberFileName, bool deep, DeepLoadType deepLoadType, params System.Type[] childTypes)
-		{
-			// throws security exception if not authorized
-			SecurityContext.IsAuthorized("DeepLoadByMemberIdMemberFileName");		    
-			bool isBorrowedTransaction = ConnectionScope.Current.HasTransaction;				
-	
-			MemberFiles entity = GetByMemberIdMemberFileName(_memberId, _memberFileName);
-			
-			//Check to see if entity is not null, before attempting to Deep Load
-			if (entity != null)
-				DeepLoad(entity, deep, deepLoadType, childTypes);
-			
-			return entity;
-		}
-		
 		
 		/// <summary>
 		/// public virtualDeep Loads the requested <see cref="MemberFiles"/> by the entity keys.  The criteria of the child 

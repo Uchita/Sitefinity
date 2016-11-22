@@ -68,7 +68,6 @@
     <Compile Include="Repositories\JobTemplatesRepository.cs" />
     <Compile Include="Repositories\BaseEnitityOperation.cs" />
     <Compile Include="Repositories\SiteLanguageRepository.cs" />
-    <Compile Include="Repositories\IBaseEntityOperation.cs" />
     <Compile Include="Repositories\KnowledgeBaseCategoryRepository.cs" />
     <Compile Include="Repositories\KnowledgeBaseRepository.cs" />
     <Compile Include="Repositories\MemberFilesRepository.cs" />

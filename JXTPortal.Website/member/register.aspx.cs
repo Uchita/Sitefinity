@@ -1,4 +1,4 @@
-﻿3using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -278,26 +278,6 @@ namespace JXTPortal.Website.members
             string js = "$(document).ready(function() { var el = document.getElementById(\"" + clientid + "\"); el.scrollIntoView(false); })";
 
             Page.ClientScript.RegisterClientScriptBlock(Page.GetType(), "focusJS", js, true);
-        }
-
-        private void ValidateInputsContainsInvalidCharacters()
-        {
-            Regex r = new Regex(INVALID_CONTENT_REGEX, RegexOptions.IgnoreCase);
-
-            if (!r.IsMatch(txtAddress.Text)) rgvAddress.IsValid = false;
-            if (!r.IsMatch(txtFirstName.Text)) rgvFirstname.IsValid = false;
-            if (!r.IsMatch(tbMailingAddress.Text)) rgvMailingAddress.IsValid = false;
-            if (!r.IsMatch(tbMailingPostcode.Text)) rgvMailingPostcode.IsValid = false;
-            if (!r.IsMatch(tbMailingState.Text)) rgvMailingState.IsValid = false;
-            if (!r.IsMatch(tbMailingSuburb.Text)) rgvMailingSuburb.IsValid = false;
-            if (!r.IsMatch(txtMultiLingualFirstname.Text)) rgvMultiLingualFirstname.IsValid = false;
-            if (!r.IsMatch(txtMultiLingualSurname.Text)) rgvMultiLingualSurname.IsValid = false;
-            if (!r.IsMatch(txtPostcode.Text)) rgvPostcode.IsValid = false;
-            if (!r.IsMatch(txtState.Text)) rgvState.IsValid = false;
-            if (!r.IsMatch(txtSuburb.Text)) rgvSuburb.IsValid = false;
-            if (!r.IsMatch(txtSurname.Text)) rgvSurname.IsValid = false;
-            if (!r.IsMatch(txtUsername.Text)) rgvUsername.IsValid = false;
-
         }
 
         private void ValidateInputsContainsInvalidCharacters()

@@ -474,6 +474,12 @@
                                                 <div id="tbIncentiveSalaryMsg" class="errormsg">
                                                 </div>
                                             </div>
+                                            <div class="col-sm-6 form-group-element">
+                                                <label>
+                                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral38" runat="server" SetLanguageCode="LabelCurrencyBaseText" /></label>
+                                                    <asp:DropDownList ID="ddlSalaryCurrency" ClientIDMode="Static" runat="server" CssClass="form-control">
+                                                    </asp:DropDownList>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

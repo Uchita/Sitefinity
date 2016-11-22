@@ -499,6 +499,24 @@ namespace JXTPortal.Website.member.enworld {
         protected global::System.Web.UI.WebControls.TextBox tbIncentiveSalary;
         
         /// <summary>
+        /// UcLanguageLiteral38 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral38;
+        
+        /// <summary>
+        /// ddlSalaryCurrency control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSalaryCurrency;
+        
+        /// <summary>
         /// UcLanguageLiteral19 control.
         /// </summary>
         /// <remarks>

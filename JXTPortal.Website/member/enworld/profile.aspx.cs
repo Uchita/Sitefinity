@@ -24,7 +24,7 @@ namespace JXTPortal.Website.member.enworld
         private const string ENWORLD_SF_QUERY = @"SELECT Id, FirstName, LastName, First_Name_Local__c, Last_Name_Local__c, Email, 
                                                     RecordTypeId, ts2__EEO_Gender__c, Birthdate, MobilePhone, Phone, Secondary_Email__c ,MailingStreet, MailingCity, MailingPostalCode, MailingState, MailingCountry,Native_Language__c,Second_Language__c, Second_Language_Proficiency__c, 
                                                     Current_Company__c, Current_Position__c, Industry__c, Job_Category__c, Job_Functions__c, Employment_Type__c, Salary_Period__c, Current_Fixed_Salary__c, Annual_Variable_Salary__c, 
-                                                    Desired_Country__c, Desired_Locations__c, Employment_Preference__c, Desired_Industry__c, Desired_Job_Category__c, Desired_Job_Functions__c, Desired_Other_Countries__c 
+                                                    Desired_Country__c, Desired_Locations__c, Employment_Preference__c, Desired_Industry__c, Desired_Job_Category__c, Desired_Job_Functions__c, Desired_Other_Countries__c, CurrencyIsoCode
                                                     FROM CONTACT where Id = '{0}'";
 
         public string _SFContactID;
@@ -151,7 +151,6 @@ namespace JXTPortal.Website.member.enworld
             sb.Append("desiredCountryData = jQuery.parseJSON('" + ser.Serialize(dCountryLoc).Replace("\\", "\\\\") + "');\n");
 
             #endregion
-
 
             #region Job Category / Job Functions
             List<object> jobCateFunc = XMLMultiValueListGet("jobcategory");
@@ -286,6 +285,8 @@ namespace JXTPortal.Website.member.enworld
             ddlSalaryPeriod.SelectedValue = thisContact.Salary_Period__c;
             tbFixedSalary.Text = thisContact.Current_Fixed_Salary__c;
             tbIncentiveSalary.Text = thisContact.Annual_Variable_Salary__c;
+
+            ddlSalaryCurrency.SelectedValue = thisContact.CurrencyIsoCode;
 
             #endregion
 
@@ -530,6 +531,26 @@ namespace JXTPortal.Website.member.enworld
             //ddlJobFunctions.Items.Insert(0, new ListItem("- Please select a Job Category -", "--None--"));
             ddlJobFunctions.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelectJobCategory"), "--None--"));
 
+            #endregion
+
+            #region DDL Salary Currency 
+            string errorMsg;
+            SalesforceIntegration.SObjDescribeResponse descResp;
+            bool contactGetSuccess = new SalesforceIntegration(SessionData.Site.SiteId)
+                                    .PostSObjectDescribeBatchRequest(new string[]
+                                        {
+                                            "Contact"
+                                        }, out descResp, out errorMsg);
+            if (contactGetSuccess)
+            {
+                SalesforceIntegration.SObjField currencyField = descResp.results.First().result.fields.Where(c => c.name.Equals("CurrencyIsoCode")).FirstOrDefault();
+
+                ddlSalaryCurrency.DataSource = currencyField.picklistValues;
+                ddlSalaryCurrency.DataTextField = "FullFieldDisplay";
+                ddlSalaryCurrency.DataValueField = "value";
+                ddlSalaryCurrency.DataBind();
+
+            }
             #endregion
         }
 
@@ -1058,7 +1079,7 @@ namespace JXTPortal.Website.member.enworld
         }
 
         [WebMethod(EnableSession = true)]
-        public static object Tab2Save(string company, string jobtitle, string industry, string jobcategory, List<string> jobfunctions, string employmenttype, string salaryperiod, string fixedsalary, string incentivesalary)
+        public static object Tab2Save(string company, string jobtitle, string industry, string jobcategory, List<string> jobfunctions, string employmenttype, string salaryperiod, string fixedsalary, string incentivesalary, string ddlSalaryCurrency)
         {
             string sfContactID = SFContactIDGetFromSessionMember();
 
@@ -1124,7 +1145,8 @@ namespace JXTPortal.Website.member.enworld
                         Employment_Type__c = employmenttype,
                         Salary_Period__c = salaryperiod,
                         Current_Fixed_Salary__c = fixedsalary,
-                        Annual_Variable_Salary__c = incentivesalary
+                        Annual_Variable_Salary__c = incentivesalary,
+                        CurrencyIsoCode = ddlSalaryCurrency
                     }, out sfEntityID, out errorMsgs);
 
                 if (postSuccess)
@@ -1141,6 +1163,7 @@ namespace JXTPortal.Website.member.enworld
                     thisCandData.Salary_Period__c = salaryperiod;
                     thisCandData.Current_Fixed_Salary__c = fixedsalary;
                     thisCandData.Annual_Variable_Salary__c = incentivesalary;
+                    thisCandData.CurrencyIsoCode = ddlSalaryCurrency;
 
                     _ms.CandidateDataUpdate(SessionData.Member.MemberId, SessionData.Site.SiteId, thisCandData);
 

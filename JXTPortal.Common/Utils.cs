@@ -303,10 +303,7 @@ namespace JXTPortal.Common
         {
             if (!string.IsNullOrEmpty(email))
             {
-                return Regex.IsMatch(email,
-                @"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
-                @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$",
-                RegexOptions.IgnoreCase);
+                return Regex.IsMatch(email, ConfigurationManager.AppSettings["EmailValidationRegex"], RegexOptions.IgnoreCase);
             }
 
             return false;
@@ -989,8 +986,7 @@ namespace JXTPortal.Common
                         byteArray.Take(4).SequenceEqual(new byte[4] { 255, 216, 255, 237 }) == false &&
                         byteArray.Take(4).SequenceEqual(new byte[4] { 255, 216, 255, 238 }) == false &&
                         byteArray.Take(4).SequenceEqual(new byte[4] { 255, 216, 255, 219 }) == false &&
-                        byteArray.Take(4).SequenceEqual(new byte[4] { 0, 0, 1, 0}) == false) // ico
-
+                        byteArray.Take(4).SequenceEqual(new byte[4] { 0, 0, 1, 0 }) == false) // ico
                     {
                         return false;
                     }
@@ -1046,7 +1042,7 @@ namespace JXTPortal.Common
                         Marshal.FreeCoTaskMem(pMimeType);
                         System.Drawing.Imaging.ImageFormat imgformat = System.Drawing.Imaging.ImageFormat.Png;
 
-                        if (byteArray.Take(8).SequenceEqual( new byte[8] { 137, 80, 78, 71, 13, 10, 26, 10 }))
+                        if (byteArray.Take(8).SequenceEqual(new byte[8] { 137, 80, 78, 71, 13, 10, 26, 10 }))
                         {
                             contenttype = "image/png";
                             imgformat = System.Drawing.Imaging.ImageFormat.Png;
@@ -1152,7 +1148,6 @@ namespace JXTPortal.Common
                         else if (
                             byteArray.Take(4).SequenceEqual(new byte[4] { 255, 216, 255, 224 }) ||
                         byteArray.Take(4).SequenceEqual(new byte[4] { 255, 216, 255, 225 }))
-
                         {
                             contenttype = "image/jpeg";
                             imgformat = System.Drawing.Imaging.ImageFormat.Jpeg;

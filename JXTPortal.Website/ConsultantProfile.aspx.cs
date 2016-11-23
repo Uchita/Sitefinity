@@ -63,7 +63,6 @@ namespace JXTPortal.Website
                 {
                     Consultants consultant = consultants[0];
 
-                    SetMetaContentWithFavIcon(Master.FindControl("ltlMetaContent") as Literal, null, Page, (string.IsNullOrWhiteSpace(consultant.MetaTitle)) ? consultant.FirstName : consultant.MetaTitle, consultant.MetaDescription, consultant.MetaKeywords, false, true);
                     // Load Template from dynamic page
                     ucSystemDynamicPage ucSystemDynamicPage = new ucSystemDynamicPage();
                     string strContent = ucSystemDynamicPage.GetContent("SystemPage_ConsultantProfile");
@@ -150,9 +149,20 @@ namespace JXTPortal.Website
                     strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_JOBRSS, HttpUtility.HtmlEncode(consultant.JobRss.ToString()));
                     strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_TESTIMONIALSRSS, HttpUtility.HtmlEncode((!string.IsNullOrWhiteSpace(MultiTestimonial)) ? MultiTestimonial : consultant.TestimonialsRss.ToString()));
                     strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_VALID, HttpUtility.HtmlEncode(consultant.Valid.ToString()));
-                    strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_METATITLE, HttpUtility.HtmlEncode((!string.IsNullOrWhiteSpace(MultiMetaTitle)) ? MultiMetaTitle : consultant.MetaTitle.ToString()));
-                    strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_METADESCRIPTION, HttpUtility.HtmlEncode((!string.IsNullOrWhiteSpace(MultiMetaDescription)) ? MultiMetaDescription : consultant.MetaDescription.ToString()));
-                    strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_METAKEYWORDS, HttpUtility.HtmlEncode((!string.IsNullOrWhiteSpace(MultiMetaKeyword)) ? MultiMetaKeyword : consultant.MetaKeywords.ToString()));
+
+                    string thisMetaTitle = HttpUtility.HtmlEncode((!string.IsNullOrWhiteSpace(MultiMetaTitle)) ? MultiMetaTitle : consultant.MetaTitle.ToString());
+                    string thisMetaDesc = HttpUtility.HtmlEncode((!string.IsNullOrWhiteSpace(MultiMetaDescription)) ? MultiMetaDescription : consultant.MetaDescription.ToString());
+                    string thisMetaKeyword = HttpUtility.HtmlEncode((!string.IsNullOrWhiteSpace(MultiMetaKeyword)) ? MultiMetaKeyword : consultant.MetaKeywords.ToString());
+                    
+                    //strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_METATITLE, HttpUtility.HtmlEncode((!string.IsNullOrWhiteSpace(MultiMetaTitle)) ? MultiMetaTitle : consultant.MetaTitle.ToString()));
+                    //strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_METADESCRIPTION, HttpUtility.HtmlEncode((!string.IsNullOrWhiteSpace(MultiMetaDescription)) ? MultiMetaDescription : consultant.MetaDescription.ToString()));
+                    //strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_METAKEYWORDS, HttpUtility.HtmlEncode((!string.IsNullOrWhiteSpace(MultiMetaKeyword)) ? MultiMetaKeyword : consultant.MetaKeywords.ToString()));
+
+                    //SetMetaContentWithFavIcon(ltlMetaContent, null, Page, thisMetaTitle, thisMetaDesc, thisMetaKeyword, false, true);
+                    //SetMetaContentWithFavIcon(Master.FindControl("ltlMetaContent") as Literal, null, Page, (string.IsNullOrWhiteSpace(thisMetaTitle)) ? consultant.FirstName : consultant.MetaTitle, consultant.MetaDescription, consultant.MetaKeywords, false, true);
+                    SetMetaContentWithFavIcon(Master.FindControl("ltlMetaContent") as Literal, null, Page, thisMetaTitle, thisMetaDesc, thisMetaKeyword, false, true);
+                    
+
                     strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_LASTMODIFIEDBY, HttpUtility.HtmlEncode(consultant.LastModifiedBy.ToString()));
                     strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_LASTMODIFIED, HttpUtility.HtmlEncode(consultant.LastModified.ToString()));
                     strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_SEQUENCE, HttpUtility.HtmlEncode(consultant.Sequence.ToString()));

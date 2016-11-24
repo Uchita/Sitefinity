@@ -23,6 +23,8 @@ using JXTPortal.Common;
 using JXTPortal.Entities.Models;
 using JXTPortal.Client.Bullhorn;
 using System.IO;
+using System.Text.RegularExpressions;
+using JXTPortal.Website.usercontrols.common;
 #endregion
 
 namespace JXTPortal.Website.member
@@ -30,6 +32,9 @@ namespace JXTPortal.Website.member
     public partial class profile : System.Web.UI.Page
     {
         #region "Properties"
+
+        private string ContentValidationRegex = ConfigurationManager.AppSettings["ContentValidationRegex"];
+
         protected string DateFormat
         {
             get { return SessionData.Site.DateFormat.ToLower().Replace("yyyy", "yy"); }
@@ -1050,15 +1055,30 @@ namespace JXTPortal.Website.member
             phProfileTitleError.Visible = false;
             phProfileHeadlineError.Visible = false;
             phProfileAvailDateError.Visible = false;
+            phProfileFirstNameLocalError.Visible = false;
+            phProfileLastNameLocalError.Visible = false;
 
             if (string.IsNullOrWhiteSpace(tbProfileFirstName.Text))
             {
                 hasError = true;
                 phProfileFirstNameError.Visible = true;
-
+                ltErrorProfileFirstName.SetLanguageCode = "LabelRequiredField1";
                 if (string.IsNullOrWhiteSpace(controltofocus))
                 {
                     controltofocus = tbProfileFirstName.ClientID;
+                }
+            }
+            else
+            {
+                if (Regex.IsMatch(tbProfileFirstName.Text, ContentValidationRegex) == false)
+                {
+                    hasError = true;
+                    phProfileFirstNameError.Visible = true;
+                    ltErrorProfileFirstName.SetLanguageCode = "ValidateNoHTMLContent";
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = tbProfileFirstName.ClientID;
+                    }
                 }
             }
 
@@ -1066,12 +1086,55 @@ namespace JXTPortal.Website.member
             {
                 hasError = true;
                 phProfileLastNameError.Visible = true;
+                ltErrorProfileLastName.SetLanguageCode = "LabelRequiredField1";
 
                 if (string.IsNullOrWhiteSpace(controltofocus))
                 {
                     controltofocus = tbProfileLastName.ClientID;
                 }
             }
+            else
+            {
+                if (Regex.IsMatch(tbProfileLastName.Text, ContentValidationRegex) == false)
+                {
+                    hasError = true;
+                    phProfileLastNameError.Visible = true;
+                    ltErrorProfileLastName.SetLanguageCode = "ValidateNoHTMLContent";
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = tbProfileLastName.ClientID;
+                    }
+                }
+            }
+
+            if (!string.IsNullOrEmpty(tbProfileFirstNameLocalLanguage.Text))
+            {
+                if (Regex.IsMatch(tbProfileFirstNameLocalLanguage.Text, ContentValidationRegex) == false)
+                {
+                    hasError = true;
+                    phProfileFirstNameLocalError.Visible = true;
+                    ltErrorProfileFirstNameLocal.SetLanguageCode = "ValidateNoHTMLContent";
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = tbProfileFirstNameLocalLanguage.ClientID;
+                    }
+                }
+            }
+
+            if (!string.IsNullOrEmpty(tbProfileLastNameLocalLanguage.Text))
+            {
+                if (Regex.IsMatch(tbProfileLastNameLocalLanguage.Text, ContentValidationRegex) == false)
+                {
+                    hasError = true;
+                    phProfileLastNameLocalError.Visible = true;
+                    ltErrorProfileLastNameLocal.SetLanguageCode = "ValidateNoHTMLContent";
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = tbProfileLastNameLocalLanguage.ClientID;
+                    }
+                }
+            }
+
 
             if (string.IsNullOrWhiteSpace(tbProfileHeadline.Text))
             {
@@ -1081,6 +1144,19 @@ namespace JXTPortal.Website.member
                 if (string.IsNullOrWhiteSpace(controltofocus))
                 {
                     controltofocus = tbProfileHeadline.ClientID;
+                }
+            }
+            else
+            {
+                if (Regex.IsMatch(tbProfileHeadline.Text, ContentValidationRegex) == false)
+                {
+                    hasError = true;
+                    phProfileHeadlineError.Visible = true;
+                    ucProfileHeadlineError.SetLanguageCode = "ValidateNoHTMLContent";
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = tbProfileHeadline.ClientID;
+                    }
                 }
             }
 
@@ -1260,10 +1336,25 @@ namespace JXTPortal.Website.member
             {
                 hasError = true;
                 phSummaryError.Visible = true;
+                ucSummaryError.SetLanguageCode = "LabelRequiredField1";
 
                 if (string.IsNullOrWhiteSpace(controltofocus))
                 {
                     controltofocus = tbSummary.ClientID;
+                }
+            }
+            else
+            {
+                if (Regex.IsMatch(tbSummary.Text, ContentValidationRegex) == false)
+                {
+                    hasError = true;
+                    phSummaryError.Visible = true;
+                    ucSummaryError.SetLanguageCode = "ValidateNoHTMLContent";
+
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = tbSummary.ClientID;
+                    }
                 }
             }
 
@@ -1703,8 +1794,12 @@ namespace JXTPortal.Website.member
 
             Literal ltDirectorshipCompanyName = e.Item.FindControl("ltDirectorshipCompanyName") as Literal;
             PlaceHolder phDirectorshipCompanyNameError = e.Item.FindControl("phDirectorshipCompanyNameError") as PlaceHolder;
+            ucLanguageLiteral ltErrorDirectorshipCompanyName = e.Item.FindControl("ltErrorDirectorshipCompanyName") as ucLanguageLiteral;
             Literal ltDirectorshipJobTitle = e.Item.FindControl("ltDirectorshipJobTitle") as Literal;
             PlaceHolder phDirectorshipJobTitleError = e.Item.FindControl("phDirectorshipJobTitleError") as PlaceHolder;
+            ucLanguageLiteral ltErrorDirectorshipJobTitle = e.Item.FindControl("ltErrorDirectorshipJobTitle") as ucLanguageLiteral;
+            PlaceHolder phDirectorshipWebsiteError = e.Item.FindControl("phDirectorshipWebsiteError") as PlaceHolder;
+            ucLanguageLiteral ltErrorDirectorshipWebsite = e.Item.FindControl("ltErrorDirectorshipWebsite") as ucLanguageLiteral;
 
             //HyperLink hlDirectorshipWebsite = e.Item.FindControl("hlDirectorshipWebsite") as HyperLink;
             Literal ltDirectorshipWebsite = e.Item.FindControl("ltDirectorshipWebsite") as Literal;
@@ -1733,8 +1828,14 @@ namespace JXTPortal.Website.member
             LinkButton lbDirectorshipSave = e.Item.FindControl("lbDirectorshipSave") as LinkButton;
             System.Web.UI.HtmlControls.HtmlAnchor aDirectorshipEdit = e.Item.FindControl("aDirectorshipEdit") as System.Web.UI.HtmlControls.HtmlAnchor;
             PlaceHolder phDirectorshipEndError = e.Item.FindControl("phDirectorshipEndError") as PlaceHolder;
+            ucLanguageLiteral ltErroDirectorshipEnd = e.Item.FindControl("DirectorshipEnd") as ucLanguageLiteral;
+
             System.Web.UI.HtmlControls.HtmlGenericControl acDirectorship = e.Item.FindControl("acDirectorship") as System.Web.UI.HtmlControls.HtmlGenericControl;
 
+            PlaceHolder phDirectorshipSummaryError = e.Item.FindControl("phDirectorshipSummaryError") as PlaceHolder;
+            ucLanguageLiteral ltErrorDirectorshipSummary = e.Item.FindControl("ltErrorDirectorshipSummary") as ucLanguageLiteral;
+            PlaceHolder phDirectorshipResponsibilitiesError = e.Item.FindControl("phDirectorshipResponsibilitiesError") as PlaceHolder;
+            ucLanguageLiteral ltErrorDirectorshipResponsibilities = e.Item.FindControl("ltErrorDirectorshipResponsibilities") as ucLanguageLiteral;
 
             ddlDirectorshipEndMonth.Enabled = !(cbDirectorshipCurrent.Checked);
             ddlDirectorshipEndYear.Enabled = !(cbDirectorshipCurrent.Checked);
@@ -1746,15 +1847,33 @@ namespace JXTPortal.Website.member
                 phDirectorshipEndError.Visible = false;
                 phDirectorshipCompanyNameError.Visible = false;
                 phDirectorshipJobTitleError.Visible = false;
+                phDirectorshipWebsiteError.Visible = false;
+                phDirectorshipSummaryError.Visible = false;
+                phDirectorshipResponsibilitiesError.Visible = false;
 
                 if (string.IsNullOrWhiteSpace(tbDirectorshipJobTitle.Text))
                 {
                     hasError = true;
                     phDirectorshipJobTitleError.Visible = true;
+                    ltErrorDirectorshipJobTitle.SetLanguageCode = "LabelRequiredField1";
 
                     if (string.IsNullOrWhiteSpace(controltofocus))
                     {
                         controltofocus = tbDirectorshipJobTitle.ClientID;
+                    }
+                }
+                else
+                {
+                    if (Regex.IsMatch(tbDirectorshipJobTitle.Text, ContentValidationRegex) == false)
+                    {
+                        hasError = true;
+                        phDirectorshipJobTitleError.Visible = true;
+                        ltErrorDirectorshipJobTitle.SetLanguageCode = "ValidateNoHTMLContent";
+
+                        if (string.IsNullOrWhiteSpace(controltofocus))
+                        {
+                            controltofocus = tbDirectorshipJobTitle.ClientID;
+                        }
                     }
                 }
 
@@ -1762,14 +1881,75 @@ namespace JXTPortal.Website.member
                 {
                     hasError = true;
                     phDirectorshipCompanyNameError.Visible = true;
+                    ltErrorDirectorshipCompanyName.SetLanguageCode = "LabelRequiredField1";
 
                     if (string.IsNullOrWhiteSpace(controltofocus))
                     {
                         controltofocus = tbDirectorshipCompanyName.ClientID;
                     }
                 }
+                else
+                {
+                    if (Regex.IsMatch(tbDirectorshipCompanyName.Text, ContentValidationRegex) == false)
+                    {
+                        hasError = true;
+                        phDirectorshipCompanyNameError.Visible = true;
+                        ltErrorDirectorshipCompanyName.SetLanguageCode = "ValidateNoHTMLContent";
 
-                if (DateTime.Now < new DateTime(Convert.ToInt32(ddlDirectorshipStartYear.SelectedValue), Convert.ToInt32(ddlDirectorshipStartMonth.SelectedValue), 1))
+                        if (string.IsNullOrWhiteSpace(controltofocus))
+                        {
+                            controltofocus = tbDirectorshipCompanyName.ClientID;
+                        }
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(tbDirectorshipWebsite.Text))
+                {
+                    if (Regex.IsMatch(tbDirectorshipWebsite.Text, ContentValidationRegex) == false)
+                    {
+                        hasError = true;
+                        phDirectorshipWebsiteError.Visible = true;
+                        ltErrorDirectorshipWebsite.SetLanguageCode = "ValidateNoHTMLContent";
+
+                        if (string.IsNullOrWhiteSpace(controltofocus))
+                        {
+                            controltofocus = tbDirectorshipWebsite.ClientID;
+                        }
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(tbDirectorshipSummary.Text))
+                {
+                    if (Regex.IsMatch(tbDirectorshipSummary.Text, ContentValidationRegex) == false)
+                    {
+                        hasError = true;
+                        phDirectorshipSummaryError.Visible = true;
+                        ltErrorDirectorshipSummary.SetLanguageCode = "ValidateNoHTMLContent";
+
+                        if (string.IsNullOrWhiteSpace(controltofocus))
+                        {
+                            controltofocus = tbDirectorshipSummary.ClientID;
+                        }
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(tbDirectorshipResponsibilities.Text))
+                {
+                    if (Regex.IsMatch(tbDirectorshipResponsibilities.Text, ContentValidationRegex) == false)
+                    {
+                        hasError = true;
+                        phDirectorshipResponsibilitiesError.Visible = true;
+                        ltErrorDirectorshipResponsibilities.SetLanguageCode = "ValidateNoHTMLContent";
+
+                        if (string.IsNullOrWhiteSpace(controltofocus))
+                        {
+                            controltofocus = tbDirectorshipResponsibilities.ClientID;
+                        }
+                    }
+                }
+
+                if ((ddlDirectorshipStartYear.SelectedValue == "0" || ddlDirectorshipStartMonth.SelectedValue == "0")
+                || DateTime.Now < new DateTime(Convert.ToInt32(ddlDirectorshipStartYear.SelectedValue), Convert.ToInt32(ddlDirectorshipStartMonth.SelectedValue), 1))
                 {
                     hasError = true;
                     phDirectorshipEndError.Visible = true;
@@ -1783,7 +1963,8 @@ namespace JXTPortal.Website.member
                 // Date Error Checking
                 if (!cbDirectorshipCurrent.Checked)
                 {
-                    if ((Convert.ToInt32(ddlDirectorshipStartYear.SelectedValue) > Convert.ToInt32(ddlDirectorshipEndYear.SelectedValue))
+                    if (ddlDirectorshipEndYear.SelectedValue == "0" || ddlDirectorshipEndMonth.SelectedValue == "0"
+                        || (Convert.ToInt32(ddlDirectorshipStartYear.SelectedValue) > Convert.ToInt32(ddlDirectorshipEndYear.SelectedValue))
                         || ((Convert.ToInt32(ddlDirectorshipEndYear.SelectedValue) == Convert.ToInt32(ddlDirectorshipStartYear.SelectedValue) && (Convert.ToInt32(ddlDirectorshipEndMonth.SelectedValue) < Convert.ToInt32(ddlDirectorshipStartMonth.SelectedValue)))))
                     {
                         phDirectorshipEndError.Visible = true;
@@ -2088,86 +2269,94 @@ namespace JXTPortal.Website.member
                 ddlDirectorshipStartMonth.DataTextField = "text";
                 ddlDirectorshipStartMonth.DataSource = MonthList;
                 ddlDirectorshipStartMonth.DataBind();
+                ddlDirectorshipStartMonth.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelDateDisplayMM"), "0"));
 
                 ddlDirectorshipStartYear.Items.Clear();
                 ddlDirectorshipStartYear.DataValueField = "value";
                 ddlDirectorshipStartYear.DataTextField = "text";
                 ddlDirectorshipStartYear.DataSource = YearList;
                 ddlDirectorshipStartYear.DataBind();
+                ddlDirectorshipStartYear.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelDateDisplayYYYY"), "0"));
 
                 ddlDirectorshipEndMonth.Items.Clear();
                 ddlDirectorshipEndMonth.DataValueField = "value";
                 ddlDirectorshipEndMonth.DataTextField = "text";
                 ddlDirectorshipEndMonth.DataSource = MonthList;
                 ddlDirectorshipEndMonth.DataBind();
+                ddlDirectorshipEndMonth.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelDateDisplayMM"), "0"));
 
                 ddlDirectorshipEndYear.Items.Clear();
                 ddlDirectorshipEndYear.DataValueField = "value";
                 ddlDirectorshipEndYear.DataTextField = "text";
                 ddlDirectorshipEndYear.DataSource = YearList;
                 ddlDirectorshipEndYear.DataBind();
+                ddlDirectorshipEndYear.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelDateDisplayYYYY"), "0"));
 
                 string experiencedate = string.Empty;
-                DateTime StartDate = new DateTime(directorship.StartYear.Value, directorship.StartMonth.Value, 1);
-                DateTime EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-                if (!directorship.IsCurrent && directorship.EndYear.HasValue && directorship.EndMonth.HasValue)
-                {
-                    EndDate = new DateTime(directorship.EndYear.Value, directorship.EndMonth.Value, 1);
-                }
-                TimeSpan timespan = EndDate.Subtract(StartDate);
 
-                string startmonth = string.Empty;
-                string endmonth = string.Empty;
-                string duration = string.Empty;
-                DateTime timespandt = DateTime.MinValue + timespan;
-
-                foreach (ListItem month in MonthList)
+                if (directorship.StartMonth.HasValue && directorship.StartYear.HasValue && directorship.StartMonth.Value != 0 && directorship.StartYear.Value != 0)
                 {
-                    if (month.Value == directorship.StartMonth.Value.ToString())
+                    DateTime StartDate = new DateTime(directorship.StartYear.Value, directorship.StartMonth.Value, 1);
+                    DateTime EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+                    if (!directorship.IsCurrent && directorship.EndYear.HasValue && directorship.EndMonth.HasValue)
                     {
-                        startmonth = CommonFunction.GetResourceValue(month.Text);
-                        break;
+                        EndDate = new DateTime(directorship.EndYear.Value, directorship.EndMonth.Value, 1);
                     }
-                }
-                if (directorship.EndMonth.HasValue)
-                {
+                    TimeSpan timespan = EndDate.Subtract(StartDate);
+
+                    string startmonth = string.Empty;
+                    string endmonth = string.Empty;
+                    string duration = string.Empty;
+                    DateTime timespandt = DateTime.MinValue + timespan;
+
                     foreach (ListItem month in MonthList)
                     {
-                        if (month.Value == directorship.EndMonth.Value.ToString())
+                        if (month.Value == directorship.StartMonth.Value.ToString())
                         {
-                            endmonth = CommonFunction.GetResourceValue(month.Text);
+                            startmonth = CommonFunction.GetResourceValue(month.Text);
                             break;
                         }
                     }
-                }
-
-                if (timespandt.Year - 1 > 0)
-                {
-                    duration = (timespandt.Year - 1).ToString() + " " + ((timespandt.Year - 1) == 1 ? CommonFunction.GetResourceValue("LabelYear") : CommonFunction.GetResourceValue("LabelYears"));
-                }
-
-                if (timespandt.Month - 1 > 0)
-                {
-                    if (!string.IsNullOrWhiteSpace(duration))
+                    if (directorship.EndMonth.HasValue)
                     {
-                        duration += ", ";
+                        foreach (ListItem month in MonthList)
+                        {
+                            if (month.Value == directorship.EndMonth.Value.ToString())
+                            {
+                                endmonth = CommonFunction.GetResourceValue(month.Text);
+                                break;
+                            }
+                        }
                     }
 
-                    duration += (timespandt.Month - 1).ToString() + " " + ((timespandt.Month - 1) == 1 ? CommonFunction.GetResourceValue("LabelMonth") : CommonFunction.GetResourceValue("LabelMonths"));
-                }
+                    if (timespandt.Year - 1 > 0)
+                    {
+                        duration = (timespandt.Year - 1).ToString() + " " + ((timespandt.Year - 1) == 1 ? CommonFunction.GetResourceValue("LabelYear") : CommonFunction.GetResourceValue("LabelYears"));
+                    }
 
-                if (timespandt.Year == 1 && timespandt.Month == 1)
-                {
-                    duration += "1 " + CommonFunction.GetResourceValue("LabelMonth");
-                }
+                    if (timespandt.Month - 1 > 0)
+                    {
+                        if (!string.IsNullOrWhiteSpace(duration))
+                        {
+                            duration += ", ";
+                        }
 
-                if (directorship.IsCurrent)
-                {
-                    experiencedate = string.Format("{0} {1} - {2} / ({3})", startmonth, directorship.StartYear, CommonFunction.GetResourceValue("LabelPresent"), duration);
-                }
-                else
-                {
-                    experiencedate = string.Format("{0} {1} - {2} {3} / ({4})", startmonth, directorship.StartYear, endmonth, directorship.EndYear, duration);
+                        duration += (timespandt.Month - 1).ToString() + " " + ((timespandt.Month - 1) == 1 ? CommonFunction.GetResourceValue("LabelMonth") : CommonFunction.GetResourceValue("LabelMonths"));
+                    }
+
+                    if (timespandt.Year == 1 && timespandt.Month == 1)
+                    {
+                        duration += "1 " + CommonFunction.GetResourceValue("LabelMonth");
+                    }
+
+                    if (directorship.IsCurrent)
+                    {
+                        experiencedate = string.Format("{0} {1} - {2} / ({3})", startmonth, directorship.StartYear, CommonFunction.GetResourceValue("LabelPresent"), duration);
+                    }
+                    else
+                    {
+                        experiencedate = string.Format("{0} {1} - {2} {3} / ({4})", startmonth, directorship.StartYear, endmonth, directorship.EndYear, duration);
+                    }
                 }
 
                 if (!string.IsNullOrEmpty(directorship.OrganisationWebsite))
@@ -2303,15 +2492,33 @@ namespace JXTPortal.Website.member
             string controltofocus = string.Empty;
             phDirectorshipAddCompanyNameError.Visible = false;
             phDirectorshipAddJobTitleError.Visible = false;
+            phDirectorshipAddWebsiteError.Visible = false;
+            phDirectorshipAddSummaryError.Visible = false;
+            phDirectorshipAddResponsibilitiesError.Visible = false;
 
             if (string.IsNullOrWhiteSpace(tbDirectorshipAddJobTitle.Text))
             {
                 hasError = true;
                 phDirectorshipAddJobTitleError.Visible = true;
+                ltErrorAddDirectorshipJobTitle.SetLanguageCode = "LabelRequiredField1";
 
                 if (string.IsNullOrWhiteSpace(controltofocus))
                 {
                     controltofocus = tbDirectorshipAddJobTitle.ClientID;
+                }
+            }
+            else
+            {
+                if (Regex.IsMatch(tbDirectorshipAddJobTitle.Text, ContentValidationRegex) == false)
+                {
+                    hasError = true;
+                    phDirectorshipAddJobTitleError.Visible = true;
+                    ltErrorAddDirectorshipJobTitle.SetLanguageCode = "ValidateNoHTMLContent";
+
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = tbDirectorshipAddJobTitle.ClientID;
+                    }
                 }
             }
 
@@ -2319,13 +2526,90 @@ namespace JXTPortal.Website.member
             {
                 hasError = true;
                 phDirectorshipAddCompanyNameError.Visible = true;
+                ltErrorAddDirectorshipCompanyName.SetLanguageCode = "LabelRequiredField1";
 
                 if (string.IsNullOrWhiteSpace(controltofocus))
                 {
                     controltofocus = tbDirectorshipAddCompanyName.ClientID;
                 }
             }
-            if (DateTime.Now < new DateTime(Convert.ToInt32(ddlDirectorshipAddStartYear.SelectedValue), Convert.ToInt32(ddlDirectorshipAddStartMonth.SelectedValue), 1))
+            else
+            {
+                if (Regex.IsMatch(tbDirectorshipAddJobTitle.Text, ContentValidationRegex) == false)
+                {
+                    hasError = true;
+                    phDirectorshipAddJobTitleError.Visible = true;
+                    ltErrorAddDirectorshipJobTitle.SetLanguageCode = "ValidateNoHTMLContent";
+
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = tbDirectorshipAddJobTitle.ClientID;
+                    }
+                }
+            }
+
+            if (!string.IsNullOrEmpty(tbDirectorshipAddCompanyName.Text))
+            {
+                if (Regex.IsMatch(tbDirectorshipAddCompanyName.Text, ContentValidationRegex) == false)
+                {
+                    hasError = true;
+                    phDirectorshipAddCompanyNameError.Visible = true;
+                    ltErrorAddDirectorshipCompanyName.SetLanguageCode = "ValidateNoHTMLContent";
+
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = tbDirectorshipAddCompanyName.ClientID;
+                    }
+                }
+            }
+
+            if (!string.IsNullOrEmpty(tbDirectorshipAddWebsite.Text))
+            {
+                if (Regex.IsMatch(tbDirectorshipAddWebsite.Text, ContentValidationRegex) == false)
+                {
+                    hasError = true;
+                    phDirectorshipAddWebsiteError.Visible = true;
+                    ltErrorAddDirectorshipWebsite.SetLanguageCode = "ValidateNoHTMLContent";
+
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = tbDirectorshipAddWebsite.ClientID;
+                    }
+                }
+            }
+
+            if (!string.IsNullOrEmpty(tbDirectorshipAddSummary.Text))
+            {
+                if (Regex.IsMatch(tbDirectorshipAddSummary.Text, ContentValidationRegex) == false)
+                {
+                    hasError = true;
+                    phDirectorshipAddSummaryError.Visible = true;
+                    ltErrorAddDirectorshipSummary.SetLanguageCode = "ValidateNoHTMLContent";
+
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = tbDirectorshipAddSummary.ClientID;
+                    }
+                }
+            }
+
+            if (!string.IsNullOrEmpty(tbDirectorshipAddResponsibilities.Text))
+            {
+                if (Regex.IsMatch(tbDirectorshipAddResponsibilities.Text, ContentValidationRegex) == false)
+                {
+                    hasError = true;
+                    phDirectorshipAddResponsibilitiesError.Visible = true;
+                    ltErrorAddDirectorshipResponsibilities.SetLanguageCode = "ValidateNoHTMLContent";
+
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = tbDirectorshipAddResponsibilities.ClientID;
+                    }
+                }
+            }
+
+            if ((ddlDirectorshipAddStartYear.SelectedValue == "0" || ddlDirectorshipAddStartMonth.SelectedValue == "0")
+                || DateTime.Now < new DateTime(Convert.ToInt32(ddlDirectorshipAddStartYear.SelectedValue), Convert.ToInt32(ddlDirectorshipAddStartMonth.SelectedValue), 1))
             {
                 hasError = true;
                 phDirectorshipAddEndError.Visible = true;
@@ -2339,7 +2623,8 @@ namespace JXTPortal.Website.member
             // Date Error Checking
             if (!cbDirectorshipAddCurrent.Checked)
             {
-                if ((Convert.ToInt32(ddlDirectorshipAddStartYear.SelectedValue) > Convert.ToInt32(ddlDirectorshipAddEndYear.SelectedValue))
+                if (ddlDirectorshipAddEndYear.SelectedValue == "0" || ddlDirectorshipAddEndMonth.SelectedValue == "0"
+                    || (Convert.ToInt32(ddlDirectorshipAddStartYear.SelectedValue) > Convert.ToInt32(ddlDirectorshipAddEndYear.SelectedValue))
                     || ((Convert.ToInt32(ddlDirectorshipAddEndYear.SelectedValue) == Convert.ToInt32(ddlDirectorshipAddStartYear.SelectedValue) && (Convert.ToInt32(ddlDirectorshipAddEndMonth.SelectedValue) < Convert.ToInt32(ddlDirectorshipAddStartMonth.SelectedValue)))))
                 {
                     phDirectorshipAddEndError.Visible = true;
@@ -2514,8 +2799,10 @@ namespace JXTPortal.Website.member
             Literal ltExperienceDescription = e.Item.FindControl("ltExperienceDescription") as Literal;
             TextBox tbExperienceCompanyName = e.Item.FindControl("tbExperienceCompanyName") as TextBox;
             PlaceHolder phExperienceCompanyNameError = e.Item.FindControl("phExperienceCompanyNameError") as PlaceHolder;
+            ucLanguageLiteral ltErrorExperienceCompanyName = e.Item.FindControl("ltErrorExperienceCompanyName") as ucLanguageLiteral;
             TextBox tbExperienceJobTitle = e.Item.FindControl("tbExperienceJobTitle") as TextBox;
             PlaceHolder phExperienceJobTitleError = e.Item.FindControl("phExperienceJobTitleError") as PlaceHolder;
+            ucLanguageLiteral ltErrorExperienceJobTitle = e.Item.FindControl("ltErrorExperienceJobTitle") as ucLanguageLiteral;
             DropDownList ddlExperienceCountry = e.Item.FindControl("ddlExperienceCountry") as DropDownList;
             TextBox tbExperienceCity = e.Item.FindControl("tbExperienceCity") as TextBox;
             TextBox tbExperienceState = e.Item.FindControl("tbExperienceState") as TextBox;
@@ -2531,6 +2818,13 @@ namespace JXTPortal.Website.member
             System.Web.UI.HtmlControls.HtmlAnchor aExperienceEdit = e.Item.FindControl("aExperienceEdit") as System.Web.UI.HtmlControls.HtmlAnchor;
             aExperienceEdit.Attributes.Add("href", "#edit-Experience" + (e.Item.ItemIndex + 1).ToString());
 
+            PlaceHolder phExperienceCityError = e.Item.FindControl("phExperienceCityError") as PlaceHolder;
+            ucLanguageLiteral ltErrorExperienceCity = e.Item.FindControl("ltErrorExperienceCity") as ucLanguageLiteral;
+            PlaceHolder phExperienceStateError = e.Item.FindControl("phExperienceStateError") as PlaceHolder;
+            ucLanguageLiteral ltErrorExperienceState = e.Item.FindControl("ltErrorExperienceState") as ucLanguageLiteral;
+            PlaceHolder phExperienceDescriptionError = e.Item.FindControl("phExperienceDescriptionError") as PlaceHolder;
+            ucLanguageLiteral ltErrorExperienceDescription = e.Item.FindControl("ltErrorExperienceDescription") as ucLanguageLiteral;
+
             ddlExperienceEndMonth.Enabled = !(cbExperienceCurrent.Checked);
             ddlExperienceEndYear.Enabled = !(cbExperienceCurrent.Checked);
 
@@ -2542,15 +2836,33 @@ namespace JXTPortal.Website.member
                 phExperienceCompanyNameError.Visible = false;
                 phExperienceJobTitleError.Visible = false;
                 phExperienceEndError.Visible = false;
+                phExperienceCityError.Visible = false;
+                phExperienceStateError.Visible = false;
+                phExperienceDescriptionError.Visible = false;
 
                 if (string.IsNullOrWhiteSpace(tbExperienceCompanyName.Text))
                 {
                     hasError = true;
                     phExperienceCompanyNameError.Visible = true;
+                    ltErrorExperienceCompanyName.SetLanguageCode = "LabelRequiredField1";
 
                     if (string.IsNullOrWhiteSpace(controltofocus))
                     {
                         controltofocus = tbExperienceCompanyName.ClientID;
+                    }
+                }
+                else
+                {
+                    if (Regex.IsMatch(tbExperienceCompanyName.Text, ContentValidationRegex) == false)
+                    {
+                        hasError = true;
+                        phExperienceCompanyNameError.Visible = true;
+                        ltErrorExperienceCompanyName.SetLanguageCode = "ValidateNoHTMLContent";
+
+                        if (string.IsNullOrWhiteSpace(controltofocus))
+                        {
+                            controltofocus = tbExperienceCompanyName.ClientID;
+                        }
                     }
                 }
 
@@ -2558,12 +2870,73 @@ namespace JXTPortal.Website.member
                 {
                     hasError = true;
                     phExperienceJobTitleError.Visible = true;
+                    ltErrorExperienceJobTitle.SetLanguageCode = "LabelRequiredField1";
 
                     if (string.IsNullOrWhiteSpace(controltofocus))
                     {
                         controltofocus = tbExperienceJobTitle.ClientID;
                     }
                 }
+                else
+                {
+                    if (Regex.IsMatch(tbExperienceJobTitle.Text, ContentValidationRegex) == false)
+                    {
+                        hasError = true;
+                        phExperienceJobTitleError.Visible = true;
+                        ltErrorExperienceJobTitle.SetLanguageCode = "ValidateNoHTMLContent";
+
+                        if (string.IsNullOrWhiteSpace(controltofocus))
+                        {
+                            controltofocus = tbExperienceJobTitle.ClientID;
+                        }
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(tbExperienceCity.Text))
+                {
+                    if (Regex.IsMatch(tbExperienceCity.Text, ContentValidationRegex) == false)
+                    {
+                        hasError = true;
+                        phExperienceCityError.Visible = true;
+                        ltErrorExperienceCity.SetLanguageCode = "ValidateNoHTMLContent";
+
+                        if (string.IsNullOrWhiteSpace(controltofocus))
+                        {
+                            controltofocus = tbExperienceCity.ClientID;
+                        }
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(tbExperienceState.Text))
+                {
+                    if (Regex.IsMatch(tbExperienceState.Text, ContentValidationRegex) == false)
+                    {
+                        hasError = true;
+                        phExperienceStateError.Visible = true;
+                        ltErrorExperienceState.SetLanguageCode = "ValidateNoHTMLContent";
+
+                        if (string.IsNullOrWhiteSpace(controltofocus))
+                        {
+                            controltofocus = tbExperienceState.ClientID;
+                        }
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(tbExperienceDescription.Text))
+                {
+                    if (Regex.IsMatch(tbExperienceDescription.Text, ContentValidationRegex) == false)
+                    {
+                        hasError = true;
+                        phExperienceDescriptionError.Visible = true;
+                        ltErrorExperienceDescription.SetLanguageCode = "ValidateNoHTMLContent";
+
+                        if (string.IsNullOrWhiteSpace(controltofocus))
+                        {
+                            controltofocus = tbExperienceDescription.ClientID;
+                        }
+                    }
+                }
+
 
                 if (DateTime.Now < new DateTime(Convert.ToInt32(ddlExperienceStartYear.SelectedValue), Convert.ToInt32(ddlExperienceStartMonth.SelectedValue), 1))
                 {
@@ -2986,15 +3359,33 @@ namespace JXTPortal.Website.member
             phExperienceAddCompanyNameError.Visible = false;
             phExperienceAddJobTitleError.Visible = false;
             phExperienceAddEndError.Visible = false;
+            phExperienceAddCityError.Visible = false;
+            phExperienceAddStateError.Visible = false;
+            phExperienceAddDescriptionError.Visible = false;
 
             if (string.IsNullOrWhiteSpace(tbExperienceAddCompanyName.Text))
             {
                 hasError = true;
                 phExperienceAddCompanyNameError.Visible = true;
+                ltErrorAddExperienceCompanyName.SetLanguageCode = "LabelRequiredField1";
 
                 if (string.IsNullOrWhiteSpace(controltofocus))
                 {
                     controltofocus = tbExperienceAddCompanyName.ClientID;
+                }
+            }
+            else
+            {
+                if (Regex.IsMatch(tbExperienceAddCompanyName.Text, ContentValidationRegex) == false)
+                {
+                    hasError = true;
+                    phExperienceAddCompanyNameError.Visible = true;
+                    ltErrorAddExperienceCompanyName.SetLanguageCode = "ValidateNoHTMLContent";
+
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = tbExperienceAddCompanyName.ClientID;
+                    }
                 }
             }
 
@@ -3002,10 +3393,25 @@ namespace JXTPortal.Website.member
             {
                 hasError = true;
                 phExperienceAddJobTitleError.Visible = true;
+                ltErrorAddExperienceJobTitle.SetLanguageCode = "LabelRequiredField1";
 
                 if (string.IsNullOrWhiteSpace(controltofocus))
                 {
                     controltofocus = tbExperienceAddJobTitle.ClientID;
+                }
+            }
+            else
+            {
+                if (Regex.IsMatch(tbExperienceAddJobTitle.Text, ContentValidationRegex) == false)
+                {
+                    hasError = true;
+                    phExperienceAddJobTitleError.Visible = true;
+                    ltErrorAddExperienceJobTitle.SetLanguageCode = "ValidateNoHTMLContent";
+
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = tbExperienceAddJobTitle.ClientID;
+                    }
                 }
             }
 
@@ -3018,6 +3424,51 @@ namespace JXTPortal.Website.member
                 if (string.IsNullOrWhiteSpace(controltofocus))
                 {
                     controltofocus = ddlExperienceAddStartMonth.ClientID;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(tbExperienceAddCity.Text))
+            {
+                if (Regex.IsMatch(tbExperienceAddCity.Text, ContentValidationRegex) == false)
+                {
+                    hasError = true;
+                    phExperienceAddCityError.Visible = true;
+                    ltErrorAddExperienceCity.SetLanguageCode = "ValidateNoHTMLContent";
+
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = tbExperienceAddCity.ClientID;
+                    }
+                }
+            }
+
+            if (!string.IsNullOrEmpty(tbExperienceAddState.Text))
+            {
+                if (Regex.IsMatch(tbExperienceAddState.Text, ContentValidationRegex) == false)
+                {
+                    hasError = true;
+                    phExperienceAddStateError.Visible = true;
+                    ltErrorAddExperienceState.SetLanguageCode = "ValidateNoHTMLContent";
+
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = tbExperienceAddState.ClientID;
+                    }
+                }
+            }
+
+            if (!string.IsNullOrEmpty(tbExperienceAddDescription.Text))
+            {
+                if (Regex.IsMatch(tbExperienceAddDescription.Text, ContentValidationRegex) == false)
+                {
+                    hasError = true;
+                    phExperienceAddDescriptionError.Visible = true;
+                    ltErrorAddExperienceDescription.SetLanguageCode = "ValidateNoHTMLContent";
+
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = tbExperienceAddDescription.ClientID;
+                    }
                 }
             }
 
@@ -3169,6 +3620,7 @@ namespace JXTPortal.Website.member
 
             TextBox tbEducationInstitute = e.Item.FindControl("tbEducationInstitute") as TextBox;
             PlaceHolder phEducationInstituteError = e.Item.FindControl("phEducationInstituteError") as PlaceHolder;
+            ucLanguageLiteral ltErrorEducationInstitute = e.Item.FindControl("ltErrorEducationInstitute") as ucLanguageLiteral;
 
             DropDownList ddlEducationCountry = e.Item.FindControl("ddlEducationCountry") as DropDownList;
             TextBox tbEducationState = e.Item.FindControl("tbEducationState") as TextBox;
@@ -3177,8 +3629,12 @@ namespace JXTPortal.Website.member
             TextBox tbEducationGraduatedCredits = e.Item.FindControl("tbEducationGraduatedCredits") as TextBox;
 
             PlaceHolder phEducationQualificationLevelError = e.Item.FindControl("phEducationQualificationLevelError") as PlaceHolder;
+            ucLanguageLiteral ltErrorEducationQualificationLevel = e.Item.FindControl("ltErrorEducationQualificationLevel") as ucLanguageLiteral;
+
             TextBox tbEducationQualificationName = e.Item.FindControl("tbEducationQualificationName") as TextBox;
             PlaceHolder phEducationQualificationNameError = e.Item.FindControl("phEducationQualificationNameError") as PlaceHolder;
+            ucLanguageLiteral ltErrorEducationQualificationName = e.Item.FindControl("ltErrorEducationQualificationName") as ucLanguageLiteral;
+
             TextBox tbEducationOtherQualification = e.Item.FindControl("tbEducationOtherQualification") as TextBox;
             DropDownList ddlEducationGraduated = e.Item.FindControl("ddlEducationGraduated") as DropDownList;
             DropDownList ddlEducationStartMonth = e.Item.FindControl("ddlEducationStartMonth") as DropDownList;
@@ -3186,6 +3642,15 @@ namespace JXTPortal.Website.member
             DropDownList ddlEducationEndMonth = e.Item.FindControl("ddlEducationEndMonth") as DropDownList;
             DropDownList ddlEducationEndYear = e.Item.FindControl("ddlEducationEndYear") as DropDownList;
             PlaceHolder phEducationEndError = e.Item.FindControl("phEducationEndError") as PlaceHolder;
+
+            PlaceHolder phEducationStateError = e.Item.FindControl("phEducationStateError") as PlaceHolder;
+            ucLanguageLiteral ltErrorEducationState = e.Item.FindControl("ltErrorEducationState") as ucLanguageLiteral;
+
+            PlaceHolder phEducationOtherQualificationError = e.Item.FindControl("phEducationOtherQualificationError") as PlaceHolder;
+            ucLanguageLiteral ltErrorEducationOtherQualification = e.Item.FindControl("ltErrorEducationOtherQualification") as ucLanguageLiteral;
+
+            PlaceHolder phEducationGraduatedCreditsError = e.Item.FindControl("phEducationGraduatedCreditsError") as PlaceHolder;
+            ucLanguageLiteral ltErrorEducationGraduatedCredits = e.Item.FindControl("ltErrorEducationGraduatedCredits") as ucLanguageLiteral;
 
             System.Web.UI.HtmlControls.HtmlInputCheckBox cbEducationCurrent = e.Item.FindControl("cbEducationCurrent") as System.Web.UI.HtmlControls.HtmlInputCheckBox;
             LinkButton lbEducationSave = e.Item.FindControl("lbEducationSave") as LinkButton;
@@ -3205,15 +3670,33 @@ namespace JXTPortal.Website.member
                 phEducationQualificationLevelError.Visible = false;
                 phEducationQualificationNameError.Visible = false;
                 phEducationEndError.Visible = false;
+                phEducationStateError.Visible = false;
+                phEducationOtherQualificationError.Visible = false;
+                phEducationGraduatedCreditsError.Visible = false;
 
                 if (string.IsNullOrWhiteSpace(tbEducationInstitute.Text))
                 {
                     hasError = true;
                     phEducationInstituteError.Visible = true;
+                    ltErrorEducationInstitute.SetLanguageCode = "LabelRequiredField1";
 
                     if (string.IsNullOrWhiteSpace(controltofocus))
                     {
                         controltofocus = tbEducationInstitute.ClientID;
+                    }
+                }
+                else
+                {
+                    if (Regex.IsMatch(tbEducationInstitute.Text, ContentValidationRegex) == false)
+                    {
+                        hasError = true;
+                        phEducationInstituteError.Visible = true;
+                        ltErrorEducationInstitute.SetLanguageCode = "ValidateNoHTMLContent";
+
+                        if (string.IsNullOrWhiteSpace(controltofocus))
+                        {
+                            controltofocus = tbEducationInstitute.ClientID;
+                        }
                     }
                 }
 
@@ -3232,10 +3715,70 @@ namespace JXTPortal.Website.member
                 {
                     hasError = true;
                     phEducationQualificationNameError.Visible = true;
+                    ltErrorEducationQualificationName.SetLanguageCode = "LabelRequiredField1";
 
                     if (string.IsNullOrWhiteSpace(controltofocus))
                     {
                         controltofocus = tbEducationQualificationName.ClientID;
+                    }
+                }
+                else
+                {
+                    if (Regex.IsMatch(tbEducationQualificationName.Text, ContentValidationRegex) == false)
+                    {
+                        hasError = true;
+                        phEducationQualificationNameError.Visible = true;
+                        ltErrorEducationQualificationName.SetLanguageCode = "ValidateNoHTMLContent";
+
+                        if (string.IsNullOrWhiteSpace(controltofocus))
+                        {
+                            controltofocus = tbEducationQualificationName.ClientID;
+                        }
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(tbEducationState.Text))
+                {
+                    if (Regex.IsMatch(tbEducationState.Text, ContentValidationRegex) == false)
+                    {
+                        hasError = true;
+                        phEducationStateError.Visible = true;
+                        ltErrorEducationState.SetLanguageCode = "ValidateNoHTMLContent";
+
+                        if (string.IsNullOrWhiteSpace(controltofocus))
+                        {
+                            controltofocus = tbEducationState.ClientID;
+                        }
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(tbEducationOtherQualification.Text))
+                {
+                    if (Regex.IsMatch(tbEducationOtherQualification.Text, ContentValidationRegex) == false)
+                    {
+                        hasError = true;
+                        phEducationOtherQualificationError.Visible = true;
+                        ltErrorEducationOtherQualification.SetLanguageCode = "ValidateNoHTMLContent";
+
+                        if (string.IsNullOrWhiteSpace(controltofocus))
+                        {
+                            controltofocus = tbEducationOtherQualification.ClientID;
+                        }
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(tbEducationGraduatedCredits.Text))
+                {
+                    if (Regex.IsMatch(tbEducationGraduatedCredits.Text, ContentValidationRegex) == false)
+                    {
+                        hasError = true;
+                        phEducationGraduatedCreditsError.Visible = true;
+                        ltErrorEducationGraduatedCredits.SetLanguageCode = "ValidateNoHTMLContent";
+
+                        if (string.IsNullOrWhiteSpace(controltofocus))
+                        {
+                            controltofocus = tbEducationGraduatedCredits.ClientID;
+                        }
                     }
                 }
 
@@ -3771,15 +4314,33 @@ namespace JXTPortal.Website.member
             phEducationAddQualificationLevelError.Visible = false;
             phEducationAddQualificationNameError.Visible = false;
             phEducationAddEndError.Visible = false;
+            phEducationAddStateError.Visible = false;
+            phEducationAddOtherQualificationError.Visible = false;
+            phEducationAddGraduatedCreditsError.Visible = false;
 
             if (string.IsNullOrWhiteSpace(tbEducationAddInstitute.Text))
             {
                 hasError = true;
                 phEducationAddInstituteError.Visible = true;
+                ltErrorAddEdicationInstitute.SetLanguageCode = "LabelRequiredField1";
 
                 if (string.IsNullOrWhiteSpace(controltofocus))
                 {
                     controltofocus = tbEducationAddInstitute.ClientID;
+                }
+            }
+            else
+            {
+                if (Regex.IsMatch(tbEducationAddInstitute.Text, ContentValidationRegex) == false)
+                {
+                    hasError = true;
+                    phEducationAddInstituteError.Visible = true;
+                    ltErrorAddEdicationInstitute.SetLanguageCode = "ValidateNoHTMLContent";
+
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = tbEducationAddInstitute.ClientID;
+                    }
                 }
             }
 
@@ -3787,6 +4348,7 @@ namespace JXTPortal.Website.member
             {
                 hasError = true;
                 phEducationAddQualificationLevelError.Visible = true;
+                ltErrorAddEdicationInstitute.SetLanguageCode = "LabelRequiredField1";
 
                 if (string.IsNullOrWhiteSpace(controltofocus))
                 {
@@ -3798,10 +4360,70 @@ namespace JXTPortal.Website.member
             {
                 hasError = true;
                 phEducationAddQualificationNameError.Visible = true;
+                ltErrorAddEducationAddQualificationName.SetLanguageCode = "LabelRequiredField1";
 
                 if (string.IsNullOrWhiteSpace(controltofocus))
                 {
                     controltofocus = tbEducationAddQualificationName.ClientID;
+                }
+            }
+            else
+            {
+                if (Regex.IsMatch(tbEducationAddQualificationName.Text, ContentValidationRegex) == false)
+                {
+                    hasError = true;
+                    phEducationAddQualificationNameError.Visible = true;
+                    ltErrorAddEducationAddQualificationName.SetLanguageCode = "ValidateNoHTMLContent";
+
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = tbEducationAddQualificationName.ClientID;
+                    }
+                }
+            }
+
+            if (!string.IsNullOrEmpty(tbEducationAddState.Text))
+            {
+                if (Regex.IsMatch(tbEducationAddState.Text, ContentValidationRegex) == false)
+                {
+                    hasError = true;
+                    phEducationAddStateError.Visible = true;
+                    ltErrorAddEducationState.SetLanguageCode = "ValidateNoHTMLContent";
+
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = tbEducationAddState.ClientID;
+                    }
+                }
+            }
+
+            if (!string.IsNullOrEmpty(tbEducationAddOtherQualification.Text))
+            {
+                if (Regex.IsMatch(tbEducationAddOtherQualification.Text, ContentValidationRegex) == false)
+                {
+                    hasError = true;
+                    phEducationAddOtherQualificationError.Visible = true;
+                    ltErrorAddEducationOtherQualification.SetLanguageCode = "ValidateNoHTMLContent";
+
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = tbEducationAddOtherQualification.ClientID;
+                    }
+                }
+            }
+
+            if (!string.IsNullOrEmpty(tbEducationAddGraduatedCredits.Text))
+            {
+                if (Regex.IsMatch(tbEducationAddGraduatedCredits.Text, ContentValidationRegex) == false)
+                {
+                    hasError = true;
+                    phEducationAddGraduatedCreditsError.Visible = true;
+                    ltErrorAddEducationGraduatedCredits.SetLanguageCode = "ValidateNoHTMLContent";
+
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = tbEducationAddGraduatedCredits.ClientID;
+                    }
                 }
             }
 
@@ -4079,6 +4701,28 @@ namespace JXTPortal.Website.member
         {
             ltAddSkillErrorMsgWrapper.Visible = false;
 
+            if (!string.IsNullOrWhiteSpace(tbSkillsAddSkill.Text))
+            {
+                if (Regex.IsMatch(tbSkillsAddSkill.Text, ContentValidationRegex) == false)
+                {
+                    ltAddSkillErrorMsgWrapper.Visible = true;
+                    ltAddSkillErrorMsg.SetLanguageCode = "ValidateNoHTMLContent";
+
+                    StandardResetJS();
+                    OpenRepeaterDiv(string.Empty, tbSkillsAddSkill.ClientID);
+
+                    SkillsAutoCompleteJS(false);
+                    ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), "AddSkillNoHTMLFocus", @"
+                    <script type='text/javascript'>
+                        $(document).ready(function() {
+                            $('#tbSkillsAddSkill').focus();
+		                });
+                    </script>
+                    ", false);
+                    return;
+                }
+            }
+
             string targetValue = tbSkillsAddSkill.Text;
 
             if (SessionData.Member != null && !string.IsNullOrWhiteSpace(targetValue) && !targetValue.Contains("||"))
@@ -4100,6 +4744,7 @@ namespace JXTPortal.Website.member
                         if (alreadyExists)
                         {
                             ltAddSkillErrorMsgWrapper.Visible = true;
+                            ltAddSkillErrorMsg.SetLanguageCode = "LabelAddSkillAlreadyExist";
 
                             StandardResetJS();
                             OpenRepeaterDiv(string.Empty, tbSkillsAddSkill.ClientID);
@@ -4200,8 +4845,10 @@ namespace JXTPortal.Website.member
 
             TextBox tbCertificateCertificateMembershipName = e.Item.FindControl("tbCertificateCertificateMembershipName") as TextBox;
             PlaceHolder phCertificateMembershipNameError = e.Item.FindControl("phCertificateMembershipNameError") as PlaceHolder;
+            ucLanguageLiteral ltErrorCertificateMembershipName = e.Item.FindControl("ltErrorCertificateMembershipName") as ucLanguageLiteral;
             TextBox tbCertificateAuthority = e.Item.FindControl("tbCertificateAuthority") as TextBox;
             PlaceHolder phCertificateAuthorityError = e.Item.FindControl("phCertificateAuthorityError") as PlaceHolder;
+            ucLanguageLiteral ltErrorCertificateAuthority = e.Item.FindControl("ltErrorCertificateAuthority") as ucLanguageLiteral;
             TextBox tbCertificateMembershipNumber = e.Item.FindControl("tbCertificateMembershipNumber") as TextBox;
             TextBox tbCertificateURL = e.Item.FindControl("tbCertificateURL") as TextBox;
             DropDownList ddlCertificateStartMonth = e.Item.FindControl("ddlCertificateStartMonth") as DropDownList;
@@ -4215,6 +4862,11 @@ namespace JXTPortal.Website.member
             aCertificateEdit.Attributes.Add("href", "#edit-CnM" + (e.Item.ItemIndex + 1).ToString());
             System.Web.UI.HtmlControls.HtmlGenericControl acCertificate = e.Item.FindControl("acCertificate") as System.Web.UI.HtmlControls.HtmlGenericControl;
 
+            PlaceHolder phCertificateMembershipNumberError = e.Item.FindControl("phCertificateMembershipNumberError") as PlaceHolder;
+            ucLanguageLiteral ltErrorCertificateMembershipNumber = e.Item.FindControl("ltErrorCertificateMembershipNumber") as ucLanguageLiteral;
+
+            PlaceHolder phCertificateURLError = e.Item.FindControl("phCertificateURLError") as PlaceHolder;
+            ucLanguageLiteral ltErrorCertificateURL = e.Item.FindControl("ltErrorCertificateURL") as ucLanguageLiteral;
 
             ddlCertificateEndMonth.Enabled = !(cbCertificateDoesNotExpire.Checked);
             ddlCertificateEndYear.Enabled = !(cbCertificateDoesNotExpire.Checked);
@@ -4226,16 +4878,33 @@ namespace JXTPortal.Website.member
 
                 phCertificateMembershipNameError.Visible = false;
                 phCertificateAuthorityError.Visible = false;
+                phCertificateMembershipNumberError.Visible = false;
+                phCertificateURLError.Visible = false;
                 phCertificateError.Visible = false;
 
                 if (string.IsNullOrWhiteSpace(tbCertificateCertificateMembershipName.Text))
                 {
                     hasError = true;
                     phCertificateMembershipNameError.Visible = true;
+                    ltErrorCertificateMembershipName.SetLanguageCode = "LabelRequiredField1";
 
                     if (string.IsNullOrWhiteSpace(controltofocus))
                     {
                         controltofocus = tbCertificateCertificateMembershipName.ClientID;
+                    }
+                }
+                else
+                {
+                    if (Regex.IsMatch(tbCertificateCertificateMembershipName.Text, ContentValidationRegex) == false)
+                    {
+                        hasError = true;
+                        phCertificateMembershipNameError.Visible = true;
+                        ltErrorCertificateMembershipName.SetLanguageCode = "ValidateNoHTMLContent";
+
+                        if (string.IsNullOrWhiteSpace(controltofocus))
+                        {
+                            controltofocus = tbCertificateCertificateMembershipName.ClientID;
+                        }
                     }
                 }
 
@@ -4243,10 +4912,55 @@ namespace JXTPortal.Website.member
                 {
                     hasError = true;
                     phCertificateAuthorityError.Visible = true;
+                    ltErrorCertificateAuthority.SetLanguageCode = "LabelRequiredField1";
 
                     if (string.IsNullOrWhiteSpace(controltofocus))
                     {
                         controltofocus = tbCertificateAuthority.ClientID;
+                    }
+                }
+                else
+                {
+                    if (Regex.IsMatch(tbCertificateAuthority.Text, ContentValidationRegex) == false)
+                    {
+                        hasError = true;
+                        phCertificateAuthorityError.Visible = true;
+                        ltErrorCertificateAuthority.SetLanguageCode = "ValidateNoHTMLContent";
+
+                        if (string.IsNullOrWhiteSpace(controltofocus))
+                        {
+                            controltofocus = tbCertificateAuthority.ClientID;
+                        }
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(tbCertificateMembershipNumber.Text))
+                {
+                    if (Regex.IsMatch(tbCertificateMembershipNumber.Text, ContentValidationRegex) == false)
+                    {
+                        hasError = true;
+                        phCertificateMembershipNumberError.Visible = true;
+                        ltErrorCertificateMembershipNumber.SetLanguageCode = "ValidateNoHTMLContent";
+
+                        if (string.IsNullOrWhiteSpace(controltofocus))
+                        {
+                            controltofocus = tbCertificateMembershipNumber.ClientID;
+                        }
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(tbCertificateURL.Text))
+                {
+                    if (Regex.IsMatch(tbCertificateURL.Text, ContentValidationRegex) == false)
+                    {
+                        hasError = true;
+                        phCertificateURLError.Visible = true;
+                        ltErrorCertificateURL.SetLanguageCode = "ValidateNoHTMLContent";
+
+                        if (string.IsNullOrWhiteSpace(controltofocus))
+                        {
+                            controltofocus = tbCertificateURL.ClientID;
+                        }
                     }
                 }
 
@@ -4692,15 +5406,32 @@ namespace JXTPortal.Website.member
             phCertificateAddNameError.Visible = false;
             phCertificateAddAuthorityError.Visible = false;
             phCertificateAddError.Visible = false;
+            phCertificateAddMembershipNumberError.Visible = false;
+            phCertificateAddURLError.Visible = false;
 
             if (string.IsNullOrWhiteSpace(tbCertificateAddCertificateMembershipName.Text))
             {
                 hasError = true;
                 phCertificateAddNameError.Visible = true;
+                ltErrorAddCertificateName.SetLanguageCode = "LabelRequiredField1";
 
                 if (string.IsNullOrWhiteSpace(controltofocus))
                 {
                     controltofocus = tbCertificateAddCertificateMembershipName.ClientID;
+                }
+            }
+            else
+            {
+                if (Regex.IsMatch(tbCertificateAddCertificateMembershipName.Text, ContentValidationRegex) == false)
+                {
+                    hasError = true;
+                    phCertificateAddNameError.Visible = true;
+                    ltErrorAddCertificateName.SetLanguageCode = "ValidateNoHTMLContent";
+
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = tbCertificateAddCertificateMembershipName.ClientID;
+                    }
                 }
             }
 
@@ -4708,13 +5439,57 @@ namespace JXTPortal.Website.member
             {
                 hasError = true;
                 phCertificateAddAuthorityError.Visible = true;
+                ltErrorAddCertificateAuthority.SetLanguageCode = "LabelRequiredField1";
 
                 if (string.IsNullOrWhiteSpace(controltofocus))
                 {
                     controltofocus = tbCertificateAddAuthority.ClientID;
                 }
             }
+            else
+            {
+                if (Regex.IsMatch(tbCertificateAddAuthority.Text, ContentValidationRegex) == false)
+                {
+                    hasError = true;
+                    phCertificateAddAuthorityError.Visible = true;
+                    ltErrorAddCertificateAuthority.SetLanguageCode = "ValidateNoHTMLContent";
 
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = tbCertificateAddAuthority.ClientID;
+                    }
+                }
+            }
+
+            if (!string.IsNullOrEmpty(tbCertificateAddMembershipNumber.Text))
+            {
+                if (Regex.IsMatch(tbCertificateAddMembershipNumber.Text, ContentValidationRegex) == false)
+                {
+                    hasError = true;
+                    phCertificateAddMembershipNumberError.Visible = true;
+                    ltErrorAddCertificateMembershipNumber.SetLanguageCode = "ValidateNoHTMLContent";
+
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = tbCertificateAddMembershipNumber.ClientID;
+                    }
+                }
+            }
+
+            if (!string.IsNullOrEmpty(tbCertificateAddURL.Text))
+            {
+                if (Regex.IsMatch(tbCertificateAddURL.Text, ContentValidationRegex) == false)
+                {
+                    hasError = true;
+                    phCertificateAddURLError.Visible = true;
+                    ltErrorAddCertificateURL.SetLanguageCode = "ValidateNoHTMLContent";
+
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = tbCertificateAddURL.ClientID;
+                    }
+                }
+            }
 
             bool hasAddDate = false;
             DateTime? thisIssueDateTime = null;
@@ -4935,10 +5710,14 @@ namespace JXTPortal.Website.member
             Literal ltLicenseStateCountry = e.Item.FindControl("ltLicenseStateCountry") as Literal;
 
             PlaceHolder phLicenseAddress = e.Item.FindControl("phLicenseAddress") as PlaceHolder;
-
             TextBox tbLicenseName = e.Item.FindControl("tbLicenseName") as TextBox;
             PlaceHolder phLicenseNameError = e.Item.FindControl("phLicenseNameError") as PlaceHolder;
+            ucLanguageLiteral ltErrorLicenseName = e.Item.FindControl("ltErrorLicenseName") as ucLanguageLiteral;
+            PlaceHolder phLicenseStateError = e.Item.FindControl("phLicenseStateError") as PlaceHolder;
+            ucLanguageLiteral ltErrorLicenseState = e.Item.FindControl("ltErrorLicenseState") as ucLanguageLiteral;
+
             TextBox tbLicenseType = e.Item.FindControl("tbLicenseType") as TextBox;
+            ucLanguageLiteral ltErrorLicenseType = e.Item.FindControl("ltErrorLicenseType") as ucLanguageLiteral;
             PlaceHolder phLicenseTypeError = e.Item.FindControl("phLicenseTypeError") as PlaceHolder;
             DropDownList ddlLicenseCountry = e.Item.FindControl("ddlLicenseCountry") as DropDownList;
             TextBox tbLicenseState = e.Item.FindControl("tbLicenseState") as TextBox;
@@ -4959,16 +5738,32 @@ namespace JXTPortal.Website.member
 
                 phLicenseNameError.Visible = false;
                 phLicenseTypeError.Visible = false;
+                phLicenseStateError.Visible = false;
                 phLicenseError.Visible = false;
 
                 if (string.IsNullOrWhiteSpace(tbLicenseName.Text))
                 {
                     hasError = true;
                     phLicenseNameError.Visible = true;
+                    ltErrorLicenseName.SetLanguageCode = "LabelRequiredField1";
 
                     if (string.IsNullOrWhiteSpace(controltofocus))
                     {
                         controltofocus = tbLicenseName.ClientID;
+                    }
+                }
+                else
+                {
+                    if (Regex.IsMatch(tbLicenseName.Text, ContentValidationRegex) == false)
+                    {
+                        hasError = true;
+                        phLicenseNameError.Visible = true;
+                        ltErrorLicenseName.SetLanguageCode = "ValidateNoHTMLContent";
+
+                        if (string.IsNullOrWhiteSpace(controltofocus))
+                        {
+                            controltofocus = tbLicenseName.ClientID;
+                        }
                     }
                 }
 
@@ -4976,13 +5771,42 @@ namespace JXTPortal.Website.member
                 {
                     hasError = true;
                     phLicenseTypeError.Visible = true;
+                    ltErrorLicenseType.SetLanguageCode = "ValidateNoHTMLContent";
 
                     if (string.IsNullOrWhiteSpace(controltofocus))
                     {
                         controltofocus = tbLicenseType.ClientID;
                     }
                 }
+                else
+                {
+                    if (Regex.IsMatch(tbLicenseType.Text, ContentValidationRegex) == false)
+                    {
+                        hasError = true;
+                        phLicenseTypeError.Visible = true;
+                        ltErrorLicenseType.SetLanguageCode = "ValidateNoHTMLContent";
 
+                        if (string.IsNullOrWhiteSpace(controltofocus))
+                        {
+                            controltofocus = tbLicenseType.ClientID;
+                        }
+                    }
+                }
+
+                if (!string.IsNullOrWhiteSpace(tbLicenseState.Text))
+                {
+                    if (Regex.IsMatch(tbLicenseState.Text, ContentValidationRegex) == false)
+                    {
+                        hasError = true;
+                        phLicenseStateError.Visible = true;
+                        ltErrorLicenseState.SetLanguageCode = "ValidateNoHTMLContent";
+
+                        if (string.IsNullOrWhiteSpace(controltofocus))
+                        {
+                            controltofocus = tbLicenseState.ClientID;
+                        }
+                    }
+                }
 
                 bool hasAddDate = false;
                 DateTime? thisIssueDateTime = null;
@@ -5385,16 +6209,32 @@ namespace JXTPortal.Website.member
 
             phLicenseAddNameError.Visible = false;
             phLicenseAddTypeError.Visible = false;
+            phLicenseAddStateError.Visible = false;
             phLicenseAddError.Visible = false;
 
             if (string.IsNullOrWhiteSpace(tbLicenseAddName.Text))
             {
                 hasError = true;
                 phLicenseAddNameError.Visible = true;
+                ltErrorAddLicenseName.SetLanguageCode = "LabelRequiredField1";
 
                 if (string.IsNullOrWhiteSpace(controltofocus))
                 {
                     controltofocus = tbLicenseAddName.ClientID;
+                }
+            }
+            else
+            {
+                if (Regex.IsMatch(tbLicenseAddName.Text, ContentValidationRegex) == false)
+                {
+                    hasError = true;
+                    phLicenseAddNameError.Visible = true;
+                    ltErrorAddLicenseName.SetLanguageCode = "ValidateNoHTMLContent";
+
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = tbLicenseAddName.ClientID;
+                    }
                 }
             }
 
@@ -5402,10 +6242,40 @@ namespace JXTPortal.Website.member
             {
                 hasError = true;
                 phLicenseAddTypeError.Visible = true;
+                ltErrorAddLicenseType.SetLanguageCode = "LabelRequiredField1";
 
                 if (string.IsNullOrWhiteSpace(controltofocus))
                 {
                     controltofocus = tbLicenseAddType.ClientID;
+                }
+            }
+            else
+            {
+                if (Regex.IsMatch(tbLicenseAddType.Text, ContentValidationRegex) == false)
+                {
+                    hasError = true;
+                    phLicenseAddTypeError.Visible = true;
+                    ltErrorAddLicenseType.SetLanguageCode = "ValidateNoHTMLContent";
+
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = tbLicenseAddType.ClientID;
+                    }
+                }
+            }
+
+            if (!string.IsNullOrWhiteSpace(tbLicenseAddState.Text))
+            {
+                if (Regex.IsMatch(tbLicenseAddState.Text, ContentValidationRegex) == false)
+                {
+                    hasError = true;
+                    phLicenseAddStateError.Visible = true;
+                    ltErrorAddLicenseState.SetLanguageCode = "ValidateNoHTMLContent";
+
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = tbLicenseAddState.ClientID;
+                    }
                 }
             }
 
@@ -6523,12 +7393,26 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
             if (string.IsNullOrWhiteSpace(tbCoverLetterTitle.Text))
             {
                 phCoverLetterTitleError.Visible = true;
-
+                ltErrorCoverLetterTitle.SetLanguageCode = "LabelRequiredField1";
                 StandardResetJS();
                 OpenAddDiv(hfCoverLetter.ClientID, tbCoverLetterTitle.ClientID);
                 newCoverletter.Attributes.Add("class", "profile-edit collapse in");
 
                 return;
+            }
+            else
+            {
+                if (Regex.IsMatch(tbCoverLetterTitle.Text, ContentValidationRegex) == false)
+                {
+                    phCoverLetterTitleError.Visible = true;
+                    ltErrorCoverLetterTitle.SetLanguageCode = "ValidateNoHTMLContent";
+
+                    StandardResetJS();
+                    OpenAddDiv(hfCoverLetter.ClientID, tbCoverLetterTitle.ClientID);
+                    newCoverletter.Attributes.Add("class", "profile-edit collapse in");
+
+                    return;
+                }
             }
 
 
@@ -6694,14 +7578,28 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
             if (string.IsNullOrWhiteSpace(tbLanguageName.Text))
             {
                 hasError = true;
-                phLicenseAddNameError.Visible = true;
+                phLanguageNameError.Visible = true;
+                ucLanguageNameError.SetLanguageCode = "LabelRequiredField1";
 
                 if (string.IsNullOrWhiteSpace(controltofocus))
                 {
                     controltofocus = tbLanguageName.ClientID;
                 }
             }
+            else
+            {
+                if (Regex.IsMatch(tbLanguageName.Text, ContentValidationRegex) == false)
+                {
+                    hasError = true;
+                    phLanguageNameError.Visible = true;
+                    ucLanguageNameError.SetLanguageCode = "ValidateNoHTMLContent";
 
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = tbLanguageName.ClientID;
+                    }
+                }
+            }
 
             if (hasError)
             {
@@ -6885,10 +7783,15 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
             Literal ltReferenceEmail = e.Item.FindControl("ltReferenceEmail") as Literal;
 
             PlaceHolder phReferencesPhone = e.Item.FindControl("phReferencesPhone") as PlaceHolder;
+
             PlaceHolder phReferencesPhoneError = e.Item.FindControl("phReferencesPhoneError") as PlaceHolder;
+            ucLanguageLiteral ucReferencesPhoneError = e.Item.FindControl("ucReferencesPhoneError") as ucLanguageLiteral;
 
             PlaceHolder phReferencesNameError = e.Item.FindControl("phReferencesNameError") as PlaceHolder;
-            PlaceHolder phReferencesCompany = e.Item.FindControl("phReferencesCompanyError") as PlaceHolder;
+            ucLanguageLiteral ucReferencesNameError = e.Item.FindControl("ucReferencesNameError") as ucLanguageLiteral;
+
+            PlaceHolder phReferencesCompanyError = e.Item.FindControl("phReferencesCompanyError") as PlaceHolder;
+            ucLanguageLiteral ucReferencesCompanyError = e.Item.FindControl("ucReferencesCompanyError") as ucLanguageLiteral;
 
             PlaceHolder phReferencesEmailRequiredError = e.Item.FindControl("phReferencesEmailRequiredError") as PlaceHolder;
             PlaceHolder phReferencesEmailError = e.Item.FindControl("phReferencesEmailError") as PlaceHolder;
@@ -6896,6 +7799,8 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
             TextBox tbReferencesName = e.Item.FindControl("tbReferencesName") as TextBox;
 
             TextBox tbReferencesJobTitle = e.Item.FindControl("tbReferencesJobTitle") as TextBox;
+            ucLanguageLiteral ucReferencesJobTitleError = e.Item.FindControl("ucReferencesJobTitleError") as ucLanguageLiteral;
+
             PlaceHolder phReferencesJobTitleError = e.Item.FindControl("phReferencesJobTitleError") as PlaceHolder;
             TextBox tbRefernecesCompany = e.Item.FindControl("tbRefernecesCompany") as TextBox;
             TextBox tbReferencesPhone = e.Item.FindControl("tbReferencesPhone") as TextBox;
@@ -6914,7 +7819,7 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
                 phReferencesPhoneError.Visible = false;
                 phReferencesNameError.Visible = false;
                 phReferencesJobTitleError.Visible = false;
-                phReferencesCompany.Visible = false;
+                phReferencesCompanyError.Visible = false;
                 phReferencesEmailError.Visible = false;
                 phReferencesEmailRequiredError.Visible = false;
 
@@ -6922,22 +7827,51 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
                 {
                     hasError = true;
                     phReferencesPhoneError.Visible = true;
+                    ucReferencesPhoneError.SetLanguageCode = "LabelRequiredField1";
 
                     if (string.IsNullOrWhiteSpace(controltofocus))
                     {
                         controltofocus = tbReferencesPhone.ClientID;
                     }
                 }
+                else
+                {
+                    if (Regex.IsMatch(tbReferencesPhone.Text, ContentValidationRegex) == false)
+                    {
+                        hasError = true;
+                        phReferencesPhoneError.Visible = true;
+                        ucReferencesPhoneError.SetLanguageCode = "ValidateNoHTMLContent";
 
+                        if (string.IsNullOrWhiteSpace(controltofocus))
+                        {
+                            controltofocus = tbReferencesPhone.ClientID;
+                        }
+                    }
+                }
 
                 if (string.IsNullOrWhiteSpace(tbReferencesName.Text))
                 {
                     hasError = true;
                     phReferencesNameError.Visible = true;
+                    ucReferencesNameError.SetLanguageCode = "LabelRequiredField1";
 
                     if (string.IsNullOrWhiteSpace(controltofocus))
                     {
                         controltofocus = tbReferencesName.ClientID;
+                    }
+                }
+                else
+                {
+                    if (Regex.IsMatch(tbReferencesName.Text, ContentValidationRegex) == false)
+                    {
+                        hasError = true;
+                        phReferencesNameError.Visible = true;
+                        ucReferencesNameError.SetLanguageCode = "ValidateNoHTMLContent";
+
+                        if (string.IsNullOrWhiteSpace(controltofocus))
+                        {
+                            controltofocus = tbReferencesName.ClientID;
+                        }
                     }
                 }
 
@@ -6945,21 +7879,51 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
                 {
                     hasError = true;
                     phReferencesJobTitleError.Visible = true;
+                    ucReferencesJobTitleError.SetLanguageCode = "LabelRequiredField1";
 
                     if (string.IsNullOrWhiteSpace(controltofocus))
                     {
                         controltofocus = tbReferencesJobTitle.ClientID;
                     }
                 }
+                else
+                {
+                    if (Regex.IsMatch(tbReferencesJobTitle.Text, ContentValidationRegex) == false)
+                    {
+                        hasError = true;
+                        phReferencesJobTitleError.Visible = true;
+                        ucReferencesJobTitleError.SetLanguageCode = "ValidateNoHTMLContent";
 
-                if (string.IsNullOrWhiteSpace(tbRefernecesAddCompany.Text))
+                        if (string.IsNullOrWhiteSpace(controltofocus))
+                        {
+                            controltofocus = tbReferencesJobTitle.ClientID;
+                        }
+                    }
+                }
+
+                if (string.IsNullOrWhiteSpace(tbRefernecesCompany.Text))
                 {
                     hasError = true;
-                    phReferencesCompany.Visible = true;
+                    phReferencesCompanyError.Visible = true;
+                    ucReferencesCompanyError.SetLanguageCode = "LabelRequiredField1";
 
                     if (string.IsNullOrWhiteSpace(controltofocus))
                     {
-                        controltofocus = phReferencesCompany.ClientID;
+                        controltofocus = tbRefernecesCompany.ClientID;
+                    }
+                }
+                else
+                {
+                    if (Regex.IsMatch(tbRefernecesCompany.Text, ContentValidationRegex) == false)
+                    {
+                        hasError = true;
+                        phReferencesCompanyError.Visible = true;
+                        ucReferencesCompanyError.SetLanguageCode = "ValidateNoHTMLContent";
+
+                        if (string.IsNullOrWhiteSpace(controltofocus))
+                        {
+                            controltofocus = tbReferencesJobTitle.ClientID;
+                        }
                     }
                 }
 
@@ -7204,10 +8168,25 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
             {
                 hasError = true;
                 phReferencesAddPhoneError.Visible = true;
+                ucReferencesAddPhone.SetLanguageCode = "LabelRequiredField1";
 
                 if (string.IsNullOrWhiteSpace(controltofocus))
                 {
                     controltofocus = tbReferencesAddPhone.ClientID;
+                }
+            }
+            else
+            {
+                if (Regex.IsMatch(tbReferencesAddPhone.Text, ContentValidationRegex) == false)
+                {
+                    hasError = true;
+                    phReferencesAddPhoneError.Visible = true;
+                    ucReferencesAddPhone.SetLanguageCode = "ValidateNoHTMLContent";
+
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = tbReferencesAddPhone.ClientID;
+                    }
                 }
             }
 
@@ -7215,10 +8194,25 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
             {
                 hasError = true;
                 phReferencesAddNameError.Visible = true;
+                ucReferencesAddNameError.SetLanguageCode = "LabelRequiredField1";
 
                 if (string.IsNullOrWhiteSpace(controltofocus))
                 {
                     controltofocus = tbReferencesAddName.ClientID;
+                }
+            }
+            else
+            {
+                if (Regex.IsMatch(tbReferencesAddName.Text, ContentValidationRegex) == false)
+                {
+                    hasError = true;
+                    phReferencesAddNameError.Visible = true;
+                    ucReferencesAddNameError.SetLanguageCode = "ValidateNoHTMLContent";
+
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = tbReferencesAddName.ClientID;
+                    }
                 }
             }
 
@@ -7237,10 +8231,25 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
             {
                 hasError = true;
                 phReferencesAddJobTitleError.Visible = true;
+                ucReferencesAddJobTitle.SetLanguageCode = "LabelRequiredField1";
 
                 if (string.IsNullOrWhiteSpace(controltofocus))
                 {
                     controltofocus = tbReferencesAddJobTitle.ClientID;
+                }
+            }
+            else
+            {
+                if (Regex.IsMatch(tbReferencesAddJobTitle.Text, ContentValidationRegex) == false)
+                {
+                    hasError = true;
+                    phReferencesAddJobTitleError.Visible = true;
+                    ucReferencesAddJobTitle.SetLanguageCode = "ValidateNoHTMLContent";
+
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = tbReferencesAddJobTitle.ClientID;
+                    }
                 }
             }
 
@@ -7248,13 +8257,27 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
             {
                 hasError = true;
                 phReferencesAddCompany.Visible = true;
+                ucReferencesAddCompany.SetLanguageCode = "LabelRequiredField1";
 
                 if (string.IsNullOrWhiteSpace(controltofocus))
                 {
                     controltofocus = tbRefernecesAddCompany.ClientID;
                 }
             }
+            else
+            {
+                if (Regex.IsMatch(tbRefernecesAddCompany.Text, ContentValidationRegex) == false)
+                {
+                    hasError = true;
+                    phReferencesAddCompany.Visible = true;
+                    ucReferencesAddCompany.SetLanguageCode = "ValidateNoHTMLContent";
 
+                    if (string.IsNullOrWhiteSpace(controltofocus))
+                    {
+                        controltofocus = tbRefernecesAddCompany.ClientID;
+                    }
+                }
+            }
             if (string.IsNullOrEmpty(tbReferencesAddEmail.Text))
             {
                 hasError = true;
@@ -7424,16 +8447,29 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
                                     question.Mandatory = Convert.ToBoolean(questionnode["Mandatory"].InnerXml);
                                     question.Answer = GetCustomQuestionAnswer(customquestionanswer, Convert.ToInt32(question.Id));
                                     question.TempAnswer = GetCustomQuestionAnswer(customquestionanswer, Convert.ToInt32(question.Id));
-                                    question.IsError = false;
+                                    question.ErrorType = eErrorType.NoError;
 
                                     if (onUpdate)
                                     {
                                         question.TempAnswer = GetCustomQuestionAnswer(tempanswers, Convert.ToInt32(question.Id));
 
+                                        
+
                                         if (question.Mandatory && string.IsNullOrWhiteSpace(question.TempAnswer))
                                         {
                                             hasError = true;
-                                            question.IsError = true;
+                                            question.ErrorType = eErrorType.Missing;
+                                        }
+                                        else
+                                        {
+                                            if (question.Type == "textbox" || question.Type == "textarea")
+                                            {
+                                                if (Regex.IsMatch(question.TempAnswer, ContentValidationRegex) == false)
+                                                {
+                                                    hasError = true;
+                                                    question.ErrorType = eErrorType.InvalidContent;
+                                                }
+                                            }
                                         }
                                     }
 
@@ -7568,6 +8604,7 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
                 Literal ltAnswer = e.Item.FindControl("ltAnswer") as Literal;
                 System.Web.UI.HtmlControls.HtmlGenericControl divInput = e.Item.FindControl("divInput") as System.Web.UI.HtmlControls.HtmlGenericControl;
                 PlaceHolder phCustomQuestionError = e.Item.FindControl("phCustomQuestionError") as PlaceHolder;
+                ucLanguageLiteral ucCustomQuestionError = e.Item.FindControl("ucCustomQuestionError") as ucLanguageLiteral;
 
                 CustomQuestion question = e.Item.DataItem as CustomQuestion;
                 ltQuestion.Text = "<label>" + HttpUtility.HtmlEncode(question.Title);
@@ -7577,9 +8614,19 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
                 }
                 ltQuestion.Text += "</label>";
 
-                if (question.IsError)
+                if (question.ErrorType != eErrorType.NoError)
                 {
                     phCustomQuestionError.Visible = true;
+                    if (question.ErrorType == eErrorType.Missing)
+                    {
+                        ucCustomQuestionError.SetLanguageCode = "LabelRequiredField1";
+                    }
+
+                    if (question.ErrorType == eErrorType.InvalidContent)
+                    {
+                        ucCustomQuestionError.SetLanguageCode = "ValidateNoHTMLContent";
+                    }
+
                 }
 
                 if (question.Type == "textbox")
@@ -7934,6 +8981,50 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
             //Assign Other Language stuffs here
             validatorHomePhone.ErrorMessage = CommonFunction.GetResourceValue(validatorHomePhone.ErrorMessage);
             validatorMobilePhone.ErrorMessage = CommonFunction.GetResourceValue(validatorMobilePhone.ErrorMessage);
+
+            // Content Checking
+            revHomePhone.ValidationExpression = ContentValidationRegex;
+            revHomePhone.ErrorMessage = CommonFunction.GetResourceValue(revHomePhone.ErrorMessage);
+
+            revMobilePhone.ValidationExpression = ContentValidationRegex;
+            revMobilePhone.ErrorMessage = CommonFunction.GetResourceValue(revMobilePhone.ErrorMessage);
+
+            revAddress1.ValidationExpression = ContentValidationRegex;
+            revAddress1.ErrorMessage = CommonFunction.GetResourceValue(revAddress1.ErrorMessage);
+
+            revAddress2.ValidationExpression = ContentValidationRegex;
+            revAddress2.ErrorMessage = CommonFunction.GetResourceValue(revAddress2.ErrorMessage);
+
+            revSuburb.ValidationExpression = ContentValidationRegex;
+            revSuburb.ErrorMessage = CommonFunction.GetResourceValue(revSuburb.ErrorMessage);
+
+            revState.ValidationExpression = ContentValidationRegex;
+            revState.ErrorMessage = CommonFunction.GetResourceValue(revState.ErrorMessage);
+
+            revPostcode.ValidationExpression = ContentValidationRegex;
+            revPostcode.ErrorMessage = CommonFunction.GetResourceValue(revPostcode.ErrorMessage);
+
+            revVideoURL.ValidationExpression = ContentValidationRegex;
+            revVideoURL.ErrorMessage = CommonFunction.GetResourceValue(revVideoURL.ErrorMessage);
+
+            revPassportNumber.ValidationExpression = ContentValidationRegex;
+            revPassportNumber.ErrorMessage = CommonFunction.GetResourceValue(revPassportNumber.ErrorMessage);
+
+            revMailingAddress1.ValidationExpression = ContentValidationRegex;
+            revMailingAddress1.ErrorMessage = CommonFunction.GetResourceValue(revMailingAddress1.ErrorMessage);
+
+            revMailingAddress2.ValidationExpression = ContentValidationRegex;
+            revMailingAddress2.ErrorMessage = CommonFunction.GetResourceValue(revMailingAddress2.ErrorMessage);
+
+            revMailingState.ValidationExpression = ContentValidationRegex;
+            revMailingState.ErrorMessage = CommonFunction.GetResourceValue(revMailingState.ErrorMessage);
+
+            revMailingSuburb.ValidationExpression = ContentValidationRegex;
+            revMailingSuburb.ErrorMessage = CommonFunction.GetResourceValue(revMailingSuburb.ErrorMessage);
+
+            revMailingPostcode.ValidationExpression = ContentValidationRegex;
+            revMailingPostcode.ErrorMessage = CommonFunction.GetResourceValue(revMailingPostcode.ErrorMessage);
+
         }
 
         private void LoadCountry()
@@ -8804,6 +9895,13 @@ Expert	90% +
 
         #endregion
 
+        internal enum eErrorType
+        {
+            NoError = 0,
+            Missing = 1,
+            InvalidContent = 2
+        }
+
         internal class CustomQuestion
         {
             public int Id { get; set; }
@@ -8815,7 +9913,9 @@ Expert	90% +
             public int Status { get; set; }
             public string Answer { get; set; }
             public string TempAnswer { get; set; }
-            public bool IsError { get; set; }
+            public eErrorType ErrorType { get; set; }
+
+            
         }
 
         internal class CustomQuestionAnswer

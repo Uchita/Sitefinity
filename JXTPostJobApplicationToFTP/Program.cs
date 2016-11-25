@@ -96,7 +96,8 @@ namespace JXTPostJobApplicationToFTP
                 }
 
 
-                DataRow[] drValidJobApplication = null;
+                DataRow[] drValidJobApplication = new DataRow[] { };
+                List<DataRow> jobapplicationlist = new List<DataRow>();
 
                 if (siteXML.Mode == "Shortlist")
                 {
@@ -106,11 +107,25 @@ namespace JXTPostJobApplicationToFTP
 
                     if (!string.IsNullOrWhiteSpace(siteXML.LastModifiedDate))
                     {
-                        drValidJobApplication = drValidJobApplication = dt.Select("LastViewedDate > #" + DateTime.Parse(siteXML.LastModifiedDate).ToString() + "# AND ApplicationStatus = " + ((int)PortalEnums.JobApplications.ApplicationStatus.ShortList).ToString());
+                        foreach (DataRow jobapplicationrow in dt.Rows)
+                        {
+                            string lastvieweddate = Convert.ToString(jobapplicationrow["LastViewedDate"]);
+
+                            int? applicationstatus = ((int?)jobapplicationrow["ApplicationStatus"]);
+
+                            if (string.IsNullOrEmpty(lastvieweddate) == false && Convert.ToDateTime(lastvieweddate) > Convert.ToDateTime(siteXML.LastModifiedDate) && applicationstatus.HasValue && applicationstatus.Value == ((int)PortalEnums.JobApplications.ApplicationStatus.ShortList))
+                            {
+                                jobapplicationlist.Add(jobapplicationrow);
+                            }
+                        }
+                        if (jobapplicationlist.Count > 0)
+                        {
+                            drValidJobApplication = jobapplicationlist.ToArray();
+                        }
                     }
                     else
                     {
-                        drValidJobApplication = drValidJobApplication = dt.Select("ApplicationStatus = " + ((int)PortalEnums.JobApplications.ApplicationStatus.ShortList).ToString());
+                        drValidJobApplication = dt.Select("ApplicationStatus = " + ((int)PortalEnums.JobApplications.ApplicationStatus.ShortList).ToString());
                     }
                 }
                 else
@@ -122,9 +137,9 @@ namespace JXTPostJobApplicationToFTP
 
                     dt = jobApplicationDS.Tables[0];
 
-                    drValidJobApplication = drValidJobApplication = dt.Select();
+                    drValidJobApplication = dt.Select();
                 }
-                
+
                 if (dt.Rows != null)
                 {
                     Console.WriteLine("Number of Job Applications:" + drValidJobApplication.Length);
@@ -161,7 +176,7 @@ namespace JXTPostJobApplicationToFTP
                                                                     drApplication["JobID"].ToString(),
                                                                     drApplication["JobApplicationID"].ToString(),
                                                                     Path.GetExtension(ConfigurationManager.AppSettings["ResumeFolder"] + drApplication["MemberResumeFile"].ToString()));
-                            
+
                             filesToUpload.Add(new FileNames(drApplication["JobApplicationID"].ToString(), ConfigurationManager.AppSettings["ResumeFolder"] + drApplication["MemberResumeFile"].ToString(), strResumeFileName));
                         }
                         else
@@ -194,6 +209,7 @@ namespace JXTPostJobApplicationToFTP
     <refno>{8}</refno>
     <applicationid>{0}</applicationid>
     <date>{1}</date>
+    <memberid>{11}</memberid>
     <firstname>{2}</firstname>
     <lastname>{3}</lastname>
     <email>{4}</email>
@@ -214,7 +230,8 @@ namespace JXTPostJobApplicationToFTP
     strCoverLetterFileName,
     drApplication["RefNo"] != null ? drApplication["RefNo"].ToString().Trim() : string.Empty,
     drApplication["PreferredCategoryID"] != null ? drApplication["PreferredCategoryID"].ToString().Trim() : string.Empty,
-    drApplication["PreferredSubCategoryID"] != null ? drApplication["PreferredSubCategoryID"].ToString().Trim() : string.Empty);
+    drApplication["PreferredSubCategoryID"] != null ? drApplication["PreferredSubCategoryID"].ToString().Trim() : string.Empty,
+    ((int)drApplication["MemberID"]).ToString());
 
 
                         System.IO.File.WriteAllText(ConfigurationManager.AppSettings["ApplicationXML"], strXMLContents);
@@ -323,7 +340,7 @@ namespace JXTPostJobApplicationToFTP
                     Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] ERROR: " + ex.Message);
                     blnResult = false;
                 }
-                
+
             }
 
 
@@ -418,7 +435,7 @@ namespace JXTPostJobApplicationToFTP
             foreach (XElement site in query)
             {
                 if (site.Element("SiteId").Value == siteXML.SiteId.ToString())
-                    site.Element("strLastModifiedDate").Value = strLastModifiedDate;
+                    site.Element("LastModifiedDate").Value = strLastModifiedDate;
             }
 
             xmlFile.Save(ConfigurationManager.AppSettings["SitesXML"]);

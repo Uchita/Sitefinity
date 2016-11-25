@@ -67,6 +67,9 @@
     <EmbeddedResource Include="Scripts\Script0004-MoveBinarySPUpdate.sql" />
     <EmbeddedResource Include="Scripts\Script0005-ViewJobSearch.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Script0006-JobApplication_CustomGetNewJobApplications.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

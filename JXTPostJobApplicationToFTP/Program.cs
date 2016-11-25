@@ -97,7 +97,7 @@ namespace JXTPostJobApplicationToFTP
 
 
                 DataRow[] drValidJobApplication = new DataRow[] { };
-                List<DataRow> jobapplicationlist = new List<DataRow>();
+                List<DataRow> jobApplications = new List<DataRow>();
 
                 if (siteXML.Mode == "Shortlist")
                 {
@@ -107,20 +107,20 @@ namespace JXTPostJobApplicationToFTP
 
                     if (!string.IsNullOrWhiteSpace(siteXML.LastModifiedDate))
                     {
-                        foreach (DataRow jobapplicationrow in dt.Rows)
+                        foreach (DataRow jobapplication in dt.Rows)
                         {
-                            string lastvieweddate = Convert.ToString(jobapplicationrow["LastViewedDate"]);
+                            string lastvieweddate = Convert.ToString(jobapplication["LastViewedDate"]);
 
-                            int? applicationstatus = ((int?)jobapplicationrow["ApplicationStatus"]);
+                            int? applicationstatus = ((int?)jobapplication["ApplicationStatus"]);
 
                             if (string.IsNullOrEmpty(lastvieweddate) == false && Convert.ToDateTime(lastvieweddate) > Convert.ToDateTime(siteXML.LastModifiedDate) && applicationstatus.HasValue && applicationstatus.Value == ((int)PortalEnums.JobApplications.ApplicationStatus.ShortList))
                             {
-                                jobapplicationlist.Add(jobapplicationrow);
+                                jobApplications.Add(jobapplication);
                             }
                         }
-                        if (jobapplicationlist.Count > 0)
+                        if (jobApplications.Count > 0)
                         {
-                            drValidJobApplication = jobapplicationlist.ToArray();
+                            drValidJobApplication = jobApplications.ToArray();
                         }
                     }
                     else

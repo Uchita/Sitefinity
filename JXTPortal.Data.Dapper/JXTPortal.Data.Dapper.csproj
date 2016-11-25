@@ -64,7 +64,6 @@
     <Compile Include="Repositories\AdvertiserJobTemplateLogoRepository.cs" />
     <Compile Include="Repositories\AdvertisersRepository.cs" />
     <Compile Include="Repositories\ConsultantsRepository.cs" />
-    <Compile Include="Repositories\IBaseEntityOperation.cs" />
     <Compile Include="Repositories\JobTemplatesRepository.cs" />
     <Compile Include="Repositories\BaseEnitityOperation.cs" />
     <Compile Include="Repositories\IBaseEntityOperation.cs" />

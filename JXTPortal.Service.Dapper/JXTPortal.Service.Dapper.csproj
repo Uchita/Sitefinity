@@ -52,7 +52,6 @@
     <Compile Include="KnowledgeBaseCategoryService.cs" />
     <Compile Include="KnowledgeBaseService.cs" />
     <Compile Include="MemberFilesService.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SitesService.cs" />
     <Compile Include="Models\SiteLanguages.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

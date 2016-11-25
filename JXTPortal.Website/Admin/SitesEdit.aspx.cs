@@ -18,6 +18,7 @@ using JXTPortal;
 
 using System.Web.Script.Serialization;
 using JXTPortal.Common;
+using System.IO;
 #endregion
 
 public partial class SitesEdit : System.Web.UI.Page
@@ -143,13 +144,14 @@ public partial class SitesEdit : System.Web.UI.Page
 
             if ((flAdminSiteLogo.PostedFile != null) && flAdminSiteLogo.PostedFile.ContentLength > 0)
             {
-                System.IO.MemoryStream objOutputMemorySTream = new System.IO.MemoryStream();
+                //System.IO.MemoryStream objOutputMemorySTream = new System.IO.MemoryStream();
 
-                byte[] abytFile = new byte[Convert.ToInt32(flAdminSiteLogo.PostedFile.ContentLength)];
-                objOutputMemorySTream.Position = 0;
-                objOutputMemorySTream.Read(abytFile, 0, abytFile.Length);
+                //byte[] abytFile = new byte[Convert.ToInt32(flAdminSiteLogo.PostedFile.ContentLength)];
+                //objOutputMemorySTream.Position = 0;
+                //objOutputMemorySTream.Read(abytFile, 0, abytFile.Length);
 
-                System.Drawing.Image objOriginalImage = System.Drawing.Image.FromStream(objOutputMemorySTream);
+                //Image objOriginalImage = Image.FromStream(objOutputMemorySTream);
+                System.Drawing.Image objOriginalImage = System.Drawing.Image.FromStream(flAdminSiteLogo.PostedFile.InputStream);
 
                 FtpClient ftpclient = new FtpClient();
                 string errormessage = string.Empty;
@@ -157,7 +159,7 @@ public partial class SitesEdit : System.Web.UI.Page
                 ftpclient.Host = ConfigurationManager.AppSettings["FTPFileManager"];
                 ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
                 ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-                ftpclient.UploadFileFromStream(objOutputMemorySTream, string.Format("{0}/{1}/Sites_{2}.{3}", ftpclient.Host, ConfigurationManager.AppSettings["SitesFolder"], site.SiteId, extension), out errormessage);
+                ftpclient.UploadFileFromStream(flAdminSiteLogo.PostedFile.InputStream, string.Format("{0}/{1}/Sites_{2}.{3}", ftpclient.Host, ConfigurationManager.AppSettings["SitesFolder"], site.SiteId, extension), out errormessage);
 
                 if (string.IsNullOrWhiteSpace(errormessage))
                 {

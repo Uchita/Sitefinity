@@ -25,7 +25,7 @@ namespace JXTPostDataToFTP
     public class MemberXMLGenerator
     {
 
-        #region Properties 
+        #region Properties
 
         MembersService _membersService;
         MembersService MembersService
@@ -185,7 +185,7 @@ namespace JXTPostDataToFTP
         #endregion
 
         #region Constructor
-        
+
         public MemberXMLGenerator()
         {
         }
@@ -407,7 +407,7 @@ ExceptionID: {4}",
         }
 
         #endregion
-        
+
         public void GenerateMemberXML()
         {
             var xml = XDocument.Load(ConfigurationManager.AppSettings["SiteMemberXML"]);
@@ -426,7 +426,7 @@ ExceptionID: {4}",
                 LastModifiedDate = (string)c.Element("LastModifiedDate")            // Job application id used for getting the last modified date
             });
 
-            
+
             foreach (SitesXML sitexml in siteXMLList)
             {
                 try
@@ -442,7 +442,7 @@ ExceptionID: {4}",
                             dateformat = gslist[0].GlobalDateFormat;
                         }
                     }
-                    
+
                     //load references
                     SiteSettingReferences siteRefs = SiteSettingReferencesGet(siteID);
                     JXTPostDataToFTP.Models.MemberXMLModel.StaticSiteReference.SetRefData(siteRefs);
@@ -474,6 +474,7 @@ ExceptionID: {4}",
                     Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Number of Members: " + drValidatedMembers.Count().ToString());
 
                     List<MemberXMLModel> MembersXML = new List<MemberXMLModel>();
+                    List<MemberFiles> MembersFilesList = new List<MemberFiles>();
 
                     // For each member
                     foreach (DataRow drMember in drValidatedMembers)
@@ -496,6 +497,24 @@ ExceptionID: {4}",
                         MemberWizardService.CustomGetMemberPoints(siteID, thisMemberID, ref memberPoints);
 
                         //TODO: Assign to model
+
+
+                        //Empty memberfiles if it is PhysicalFile mode
+                        if (sitexml.mode == "PhysicalFile")
+                        {
+                            foreach (DataRow drmemberfile in thisMemberFiles)
+                            {
+                                MemberFiles memberfile = new MemberFiles();
+                                memberfile.MemberFileId = Convert.ToInt32(drmemberfile["MemberFileID"]);
+                                memberfile.MemberId = Convert.ToInt32(drmemberfile["MemberID"]);
+                                memberfile.MemberFileName = drmemberfile["MemberFileName"].ToString();
+
+                                MembersFilesList.Add(memberfile);
+                            }
+
+                            thisMemberFiles = new DataRow[] { };
+                        }
+
                         MemberXMLModel thisMemberXML = new MemberXMLModel(siteRefs, drMember, thisMemberFiles, thisMemberDirectorships, thisMemberExperiences, thisMemberEducations, thisMemberCerts, thisMemberLicenses, thisMemberRolePreference, thisMemberLanguages, thisMemberReferences, memberPoints, dateformat);
 
                         //TODO: Get File Contents to Base64
@@ -521,7 +540,7 @@ ExceptionID: {4}",
                     try
                     {
                         List<FileNames> fileslist = new List<FileNames>();
-                        
+
                         foreach (MemberXMLModel thisXML in MembersXML)
                         {
                             Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] About to Write Member ID: " + thisXML.Profile.MemberID.ToString());
@@ -529,11 +548,11 @@ ExceptionID: {4}",
                             XmlSerializer xmlSerializer = new XmlSerializer(typeof(MemberXMLModel));
                             /*try
                             {*/
-                                using (StringWriter textWriter = new StringWriter())
-                                {
-                                    xmlSerializer.Serialize(textWriter, thisXML);
-                                    thisMemberXML = textWriter.ToString(); // Memory exception here.
-                                }
+                            using (StringWriter textWriter = new StringWriter())
+                            {
+                                xmlSerializer.Serialize(textWriter, thisXML);
+                                thisMemberXML = textWriter.ToString(); // Memory exception here.
+                            }
                             /*}
                             catch (Exception ex)
                             {
@@ -549,6 +568,24 @@ ExceptionID: {4}",
                             File.WriteAllText(memberfilepath, thisMemberXML.ToString());
 
                             fileslist.Add(new FileNames(thisXML.Profile.MemberID.ToString(), memberfilepath, memberfilename));
+                        }
+
+                        foreach (MemberFiles memberfile in MembersFilesList)
+                        {
+                            Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] About to Write Member File: " + memberfile.MemberFileId.ToString());
+
+
+                            string memberfilename = string.Format("MemberFile_{0}_{1}_{2}", memberfile.MemberId, memberfile.MemberFileId, memberfile.MemberFileName);
+
+                            string memberfilepath = string.Format("{0}{1}", ConfigurationManager.AppSettings["MemberXMLExportFolder"], memberfilename);
+
+                            MemberFiles mf = MembersFilesService.GetByMemberFileId(memberfile.MemberFileId);
+                            if (mf != null && mf.MemberFileContent != null)
+                            {
+                                File.WriteAllBytes(memberfilepath, mf.MemberFileContent);
+
+                                fileslist.Add(new FileNames(memberfile.MemberFileId.ToString(), memberfilepath, memberfilename));
+                            }
                         }
 
                         string errormsg = string.Empty;

@@ -107,15 +107,15 @@ namespace JXTPostJobApplicationToFTP
 
                     if (!string.IsNullOrWhiteSpace(siteXML.LastModifiedDate))
                     {
-                        foreach (DataRow jobapplication in dt.Rows)
+                        foreach (DataRow jobApplication in dt.Rows)
                         {
-                            string lastvieweddate = Convert.ToString(jobapplication["LastViewedDate"]);
+                            string lastvieweddate = Convert.ToString(jobApplication["LastViewedDate"]);
 
-                            int? applicationstatus = ((int?)jobapplication["ApplicationStatus"]);
+                            int? applicationstatus = ((int?)jobApplication["ApplicationStatus"]);
 
                             if (string.IsNullOrEmpty(lastvieweddate) == false && Convert.ToDateTime(lastvieweddate) > Convert.ToDateTime(siteXML.LastModifiedDate) && applicationstatus.HasValue && applicationstatus.Value == ((int)PortalEnums.JobApplications.ApplicationStatus.ShortList))
                             {
-                                jobApplications.Add(jobapplication);
+                                jobApplications.Add(jobApplication);
                             }
                         }
                         if (jobApplications.Count > 0)

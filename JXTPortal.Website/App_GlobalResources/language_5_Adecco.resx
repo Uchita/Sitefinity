@@ -522,8 +522,7 @@
     <comment>Advertiser Full Register</comment>
   </data>
   <data name="LabelAdvertiserInvalid" xml:space="preserve">
-    <value>&lt;h2&gt;광고주님께,&lt;/h2&gt;
- &lt;p&gt;귀하의 계정은 이미 승인되었습니다. &lt;a href=/advertiser/login.aspx&gt;로그인 페이지&lt;/a&gt;를 통해 계정에 접속할 수 있습니다.&lt;/p&gt;""</value>
+    <value>&lt;h2&gt;광고주님께,&lt;/h2&gt;&lt;p&gt;귀하의 계정은 이미 승인되었습니다. &lt;a href=/advertiser/login.aspx&gt;로그인 페이지&lt;/a&gt;를 통해 계정에 접속할 수 있습니다.&lt;/p&gt;</value>
     <comment>Advertiser validation failed.</comment>
   </data>
   <data name="LabelAdvertiserJobTemplateLogo" xml:space="preserve">
@@ -1463,7 +1462,7 @@
     <comment>EmailAddress</comment>
   </data>
   <data name="LabelEmailAddressExist" xml:space="preserve">
-    <value>이미 등록된 이메일 주소입니다. &lt;a href="/member/forgetpassword.aspx"&gt;이곳을 클릭&lt;/a&gt;하여 비밀번호를 찾으세요.</value>
+    <value>이미 등록된 이메일 주소입니다. &lt;a href='/member/forgetpassword.aspx'&gt;이곳을 클릭&lt;/a&gt;하여 비밀번호를 찾으세요.</value>
     <comment>Email Address already exists, &lt;a href="/member/forgetpassword.aspx"&gt;click here&lt;/a&gt; to retrieve password</comment>
   </data>
   <data name="LabelEmailAddressRequired" xml:space="preserve">
@@ -1471,7 +1470,7 @@
     <comment>Email Address is required</comment>
   </data>
   <data name="LabelEmailAlreadyExist" xml:space="preserve">
-    <value>존재하는 이메일입니다. &lt;a href="/member/login.aspx"&gt;로그인&lt;/a&gt;을 계속해주세요.</value>
+    <value>존재하는 이메일입니다. &lt;a href='/member/login.aspx'&gt;로그인&lt;/a&gt;을 계속해주세요.</value>
     <comment>Email already exists. Please proceed to &lt;a href="~/member/login.aspx"&gt;login&lt;/a&gt;</comment>
   </data>
   <data name="LabelEmailExist" xml:space="preserve">
@@ -1507,7 +1506,7 @@
     <comment>Email Me</comment>
   </data>
   <data name="LabelEmailMeSelectedApplicants" xml:space="preserve">
-    <value>선택한지원자를이메일보내기</value>
+    <value>선택한 지원자를 이메일 보내기</value>
     <comment>Email Me Selected Applicant</comment>
   </data>
   <data name="LabelEmailRequired" xml:space="preserve">
@@ -1823,7 +1822,7 @@
     <comment>High School</comment>
   </data>
   <data name="LabelHistoricalJobStatistics" xml:space="preserve">
-    <value>인기공고</value>
+    <value>직무 통계 이력</value>
     <comment>Historical Job Statistics</comment>
   </data>
   <data name="LabelHotJob" xml:space="preserve">
@@ -1835,7 +1834,7 @@
     <comment>Hourly Range</comment>
   </data>
   <data name="LabelHourlySalary" xml:space="preserve">
-    <value>나의 이력서 완성도</value>
+    <value>시급</value>
     <comment>Hourly Salary</comment>
   </data>
   <data name="LabelHowDoesMyFileCompare" xml:space="preserve">
@@ -1843,11 +1842,11 @@
     <comment>How does my profile compare?</comment>
   </data>
   <data name="LabelHowDoesMyProfileCompare" xml:space="preserve">
-    <value>내 프로필은 어떻게 비교합니까?</value>
+    <value>나의 이력서 완성도</value>
     <comment>How does my profile compare?</comment>
   </data>
   <data name="LabelHTML" xml:space="preserve">
-    <value>인센티브</value>
+    <value>HTML</value>
     <comment>HTML</comment>
   </data>
   <data name="LabelIncentiveSalary" xml:space="preserve">
@@ -1863,11 +1862,11 @@
     <comment>Industries</comment>
   </data>
   <data name="LabelIndustry" xml:space="preserve">
-    <value>교육기관 명</value>
+    <value>사업분야</value>
     <comment>Industry</comment>
   </data>
   <data name="LabelInstitutionName" xml:space="preserve">
-    <value>이 채용정보에 관심이 있습니까?</value>
+    <value>교육기관 명</value>
     <comment>Institution Name</comment>
   </data>
   <data name="LabelInterestedInThisJob" xml:space="preserve">
@@ -1879,11 +1878,11 @@
     <comment>Interested in this job?</comment>
   </data>
   <data name="LabelIntermediate" xml:space="preserve">
-    <value>면접</value>
+    <value>중급</value>
     <comment>Intermediate</comment>
   </data>
   <data name="LabelInterview" xml:space="preserve">
-    <value>유효하지 않은 날짜</value>
+    <value>면접</value>
     <comment>Interview</comment>
   </data>
   <data name="LabelInvalidDate" xml:space="preserve">
@@ -1891,11 +1890,11 @@
     <comment>Invalid Date</comment>
   </data>
   <data name="LabelInvalidDateRange" xml:space="preserve">
-    <value>파일 유형이 잘못되었습니다. GIF, JPG, JPEG </value>
+    <value>유효하지 않은 날짜</value>
     <comment>Date out of range.</comment>
   </data>
   <data name="LabelInvalidImage" xml:space="preserve">
-    <value>오류 발생</value>
+    <value>파일 유형이 잘못되었습니다. GIF, JPG, JPEG </value>
     <comment>Invalid file type. GIF, JPG and JPEG are the only valid images types allowed for upload.</comment>
   </data>
   <data name="LabelInvalidJobAlert" xml:space="preserve">
@@ -1923,39 +1922,39 @@
     <comment>Job Advertisement Option</comment>
   </data>
   <data name="LabelJobAdvertisementOption" xml:space="preserve">
-    <value>맞춤 채용 알림</value>
+    <value>구인광고 옵션</value>
     <comment>Job Advertisement Option</comment>
   </data>
   <data name="LabelJobAlert" xml:space="preserve">
-    <value>맞춤 채용 알림이 설정되었습니다.</value>
+    <value>맞춤 채용 알림</value>
     <comment>Job Alert</comment>
   </data>
   <data name="LabelJobAlertCreateSuccess" xml:space="preserve">
-    <value>직무 알림이 생성되었습니다.</value>
+    <value>맞춤 채용 알림이 설정되었습니다.</value>
     <comment>A Job Alert has been created.</comment>
   </data>
   <data name="LabelJobAlertCriteria" xml:space="preserve">
-    <value>맞춤 채용 알림정보</value>
+    <value>직무 알림이 생성되었습니다.</value>
     <comment>Job Alert Criteria</comment>
   </data>
   <data name="LabelJobAlertDetail" xml:space="preserve">
-    <value>죄송합니다. 해당 링크가 만료되었습니다.&lt;br /&gt;&lt;br /&gt;이 링크로 시도하셨거나, 보안 토큰이 만료되어 안내드립니다.&lt;br /&gt;&lt;br /&gt;맞춤 채용 알림으로 돌아가시려면 &lt;a href='/member/login.aspx'&gt;여기&lt;/a&gt;에서 로그인하시기 바랍니다.</value>
+    <value>맞춤 채용 알림정보</value>
     <comment>Job Alert Detail</comment>
   </data>
   <data name="LabelJobAlertEditGUIDFailed" xml:space="preserve">
-    <value>맞춤 채용 이름</value>
+    <value>죄송합니다. 해당 링크가 만료되었습니다.&lt;br /&gt;&lt;br /&gt;이 링크로 시도하셨거나, 보안 토큰이 만료되어 안내드립니다.&lt;br /&gt;&lt;br /&gt;맞춤 채용 알림으로 돌아가시려면 &lt;a href='/member/login.aspx'&gt;여기&lt;/a&gt;에서 로그인하시기 바랍니다.</value>
     <comment>Job Alert Edit GUID Failed</comment>
   </data>
   <data name="LabelJobAlertName" xml:space="preserve">
-    <value>아니오, 매일 수신을 원치 않습니다.</value>
+    <value>맞춤 채용 이름</value>
     <comment>Job Alert Name</comment>
   </data>
   <data name="LabelJobAlertNo" xml:space="preserve">
-    <value>맞춤 채용 알림 저장</value>
+    <value>아니오, 매일 수신을 원치 않습니다.</value>
     <comment>No, do not send me a Daily Job Alert</comment>
   </data>
   <data name="LabelJobAlertSaveSuccess" xml:space="preserve">
-    <value>고객님&lt;br /&gt;&lt;br /&gt;맞춤채용 알람 해제를 위해 이 링크를 이미 사용한 것 같습니다. 이 링크는 단 한 번만 사용할 수 있습니다.</value>
+    <value>맞춤 채용 알림 저장</value>
     <comment>Job Alert saved successfully</comment>
   </data>
   <data name="LabelJobAlertUnsubscribeGUIDFailed" xml:space="preserve">
@@ -1963,11 +1962,11 @@
     <comment>Job Alert Unsubscribe GUID Failed</comment>
   </data>
   <data name="LabelJobAlertViewGUIDFailed" xml:space="preserve">
-    <value>네, 매일 알림을 보내주세요.</value>
+    <value>고객님&lt;br /&gt;&lt;br /&gt;맞춤채용 알람 해제를 위해 이 링크를 이미 사용한 것 같습니다. 이 링크는 단 한 번만 사용할 수 있습니다.</value>
     <comment>Job Alert View GUID Failed</comment>
   </data>
   <data name="LabelJobAlertYes" xml:space="preserve">
-    <value>네, 일일 직무 알림을 보내주세요</value>
+    <value>네, 매일 알림을 보내주세요.</value>
     <comment>Yes, send me a Daily Job Alert</comment>
   </data>
   <data name="LabelJobApplication" xml:space="preserve">
@@ -1983,19 +1982,19 @@
     <comment>Job Application Details</comment>
   </data>
   <data name="LabelJobApplicationNote" xml:space="preserve">
-    <value>이미 지원한 채용공고입니다.</value>
+    <value>직무 지원서 노트</value>
     <comment>Job Application Note</comment>
   </data>
   <data name="LabelJobApplied" xml:space="preserve">
-    <value>지원에 실패했습니다. 다시 시도해주세요.</value>
+    <value>이미 지원한 채용공고입니다.</value>
     <comment>You applied for this job on</comment>
   </data>
   <data name="LabelJobApplyFailed" xml:space="preserve">
-    <value>직무 지원서 제출 실패. 다시 시도해보시기 바랍니다.</value>
+    <value>지원에 실패했습니다. 다시 시도해주세요.</value>
     <comment>Failed to submit job application. Please try again.</comment>
   </data>
   <data name="LabelJobAssignnedTo" xml:space="preserve">
-    <value>공고분류</value>
+    <value>공고 분류</value>
     <comment>Job is assigend to username</comment>
   </data>
   <data name="LabelJobCategory" xml:space="preserve">
@@ -2007,47 +2006,47 @@
     <comment>Job Classification</comment>
   </data>
   <data name="LabelJobClassificationDetail" xml:space="preserve">
-    <value>담당자 정보</value>
+    <value>직무 분류 세부 사항</value>
     <comment>Job Classification Detail</comment>
   </data>
   <data name="LabelJobContactDetails" xml:space="preserve">
-    <value>상세내용</value>
+    <value>담당자 정보</value>
     <comment>Job Contact Details</comment>
   </data>
   <data name="LabelJobDescription" xml:space="preserve">
-    <value>마감된 공고</value>
+    <value>상세내용</value>
     <comment>Job Description</comment>
   </data>
   <data name="LabelJobExpired" xml:space="preserve">
-    <value>채용공고 만료 안내</value>
+    <value>마감된 공고</value>
     <comment>Job Expired</comment>
   </data>
   <data name="LabelJobExpiryNotification" xml:space="preserve">
-    <value>채용공고 별명</value>
+    <value>채용공고 만료 안내</value>
     <comment>Job Expiry Notification</comment>
   </data>
   <data name="LabelJobFriendlyName" xml:space="preserve">
-    <value>직무 별칭</value>
+    <value>채용공고 별명</value>
     <comment>Job Friendly Name</comment>
   </data>
   <data name="LabelJobFunction" xml:space="preserve">
-    <value>…에서 지원할 수 있습니다.</value>
+    <value>직무 별칭</value>
     <comment>Job Function</comment>
   </data>
   <data name="LabelJobHaveApplied" xml:space="preserve">
-    <value>채용공고 ID</value>
+    <value>…에서 지원할 수 있습니다.</value>
     <comment>You might have applied for this job on</comment>
   </data>
   <data name="LabelJobID" xml:space="preserve">
-    <value>이 채용공고를 보관했습니다.</value>
+    <value>채용공고 ID</value>
     <comment>Job ID</comment>
   </data>
   <data name="LabelJobIsArchived" xml:space="preserve">
-    <value>이 채용공고는 만료되었습니다.</value>
+    <value>이 채용공고를 보관했습니다.</value>
     <comment>This job is archived</comment>
   </data>
   <data name="LabelJobIsExpired" xml:space="preserve">
-    <value>이 직무가 만료되었습니다</value>
+    <value>이 채용공고는 만료되었습니다.</value>
     <comment>This job is expired</comment>
   </data>
   <data name="LabelJobItem" xml:space="preserve">
@@ -2063,47 +2062,47 @@
     <comment>Job Item Type</comment>
   </data>
   <data name="LabelJobLocation" xml:space="preserve">
-    <value>채용공고</value>
+    <value>직무 위치 </value>
     <comment>Job Location</comment>
   </data>
   <data name="LabelJobName" xml:space="preserve">
-    <value>채용공고 미리보기</value>
+    <value>채용공고</value>
     <comment>Job Name</comment>
   </data>
   <data name="LabelJobPreview" xml:space="preserve">
-    <value>급여세부정보</value>
+    <value>채용공고 미리보기</value>
     <comment>Job Preview</comment>
   </data>
   <data name="LabelJobSalaryDetail" xml:space="preserve">
-    <value>저장된 채용공고</value>
+    <value>급여세부정보</value>
     <comment>Job Salary Detail</comment>
   </data>
   <data name="LabelJobSaved" xml:space="preserve">
-    <value>저장된 직무</value>
+    <value>저장된 채용공고</value>
     <comment>Job Saved</comment>
   </data>
   <data name="LabelJobSeeker" xml:space="preserve">
-    <value>구직자</value>
+    <value>저장된 직무</value>
     <comment>Job Seeker</comment>
   </data>
   <data name="LabelJobSeekers" xml:space="preserve">
-    <value>마감임박공고</value>
+    <value>구직자</value>
     <comment>job seeker(s)</comment>
   </data>
   <data name="LabelJobsExpiringIn24hrs" xml:space="preserve">
-    <value>공고 시작일</value>
+    <value>마감임박공고</value>
     <comment>Jobs Expiring in 24 hrs</comment>
   </data>
   <data name="LabelJobStartDate" xml:space="preserve">
-    <value>공고 템플렛</value>
+    <value>공고 시작일</value>
     <comment>Job Start Date</comment>
   </data>
   <data name="LabelJobTemplate" xml:space="preserve">
-    <value>공고 템플렛 로고</value>
+    <value>공고 템플렛</value>
     <comment>Job Template</comment>
   </data>
   <data name="LabelJobTemplateLogo" xml:space="preserve">
-    <value>직무 템플릿 로고</value>
+    <value>공고 템플렛 로고</value>
     <comment>Job Template Logo</comment>
   </data>
   <data name="LabelJobTemplateSettings" xml:space="preserve">
@@ -2111,15 +2110,15 @@
     <comment>Job Template Settings</comment>
   </data>
   <data name="LabelJobTitle" xml:space="preserve">
-    <value>이 공고는 마감됩니다.</value>
+    <value>직책</value>
     <comment>JobTitle</comment>
   </data>
   <data name="LabelJobTitleIsExpired" xml:space="preserve">
-    <value>고용형태</value>
+    <value>이 공고는 마감됩니다.</value>
     <comment>The job Title is now Expired</comment>
   </data>
   <data name="LabelJobWorktype" xml:space="preserve">
-    <value>직무 업무유형</value>
+    <value>고용형태</value>
     <comment>Job Worktype</comment>
   </data>
   <data name="LabelJul" xml:space="preserve">
@@ -2131,7 +2130,7 @@
     <comment>June</comment>
   </data>
   <data name="LabelJurisDoctor" xml:space="preserve">
-    <value>지원하기</value>
+    <value>법학 박사</value>
     <comment>Juris Doctor</comment>
   </data>
   <data name="LabelJustApply" xml:space="preserve">
@@ -2159,7 +2158,7 @@
     <comment>Language</comment>
   </data>
   <data name="LabelLanguages" xml:space="preserve">
-    <value>최근수정</value>
+    <value>언어</value>
     <comment>Languages</comment>
   </data>
   <data name="LabelLastModified" xml:space="preserve">
@@ -2171,7 +2170,7 @@
     <comment>Last modified by Admin User</comment>
   </data>
   <data name="LabelLastModifiedByAdvertiserUser" xml:space="preserve">
-    <value>성</value>
+    <value>최근수정</value>
     <comment>Last Modified By Advertiser User</comment>
   </data>
   <data name="LabelLastName" xml:space="preserve">
@@ -2179,31 +2178,31 @@
     <comment>Last name</comment>
   </data>
   <data name="LabelLastNameLocalLanguage" xml:space="preserve">
-    <value>최근 열람일자</value>
+    <value>성</value>
     <comment>Last Name (Local language)</comment>
   </data>
   <data name="LabelLastViewedDate" xml:space="preserve">
-    <value>최근</value>
+    <value>최근 열람일자</value>
     <comment>Last Viewed Date</comment>
   </data>
   <data name="LabelLatest" xml:space="preserve">
-    <value>자격명</value>
+    <value>최근</value>
     <comment>Latest</comment>
   </data>
   <data name="LabelLicenseName" xml:space="preserve">
-    <value>자격증 명</value>
+    <value>자격명</value>
     <comment>License Name</comment>
   </data>
   <data name="LabelLicenses" xml:space="preserve">
-    <value>자격증 종류</value>
+    <value>자격증 명</value>
     <comment>Licenses</comment>
   </data>
   <data name="LabelLicenseType" xml:space="preserve">
-    <value>라이선스 유형</value>
+    <value>자격증 종류</value>
     <comment>License Type</comment>
   </data>
   <data name="LabelLimitedWorkProficiency" xml:space="preserve">
-    <value>진행중인 공고</value>
+    <value>제한된 업무 능력</value>
     <comment>Limited working proficiency</comment>
   </data>
   <data name="LabelLiveJobs" xml:space="preserve">
@@ -2211,11 +2210,11 @@
     <comment>Live Jobs</comment>
   </data>
   <data name="LabelLocalLanguage" xml:space="preserve">
-    <value>이름</value>
+    <value>현지 언어</value>
     <comment>Local Language</comment>
   </data>
   <data name="LabelLocalName" xml:space="preserve">
-    <value>이름 (현지 언어)</value>
+    <value>이름</value>
     <comment>Name (Local language)</comment>
   </data>
   <data name="LabelLocation" xml:space="preserve">
@@ -2263,11 +2262,11 @@
     <comment>Logo Image</comment>
   </data>
   <data name="LabelLogout" xml:space="preserve">
-    <value>비밀번호를 입력하세요</value>
+    <value>로그아웃 </value>
     <comment>Log out</comment>
   </data>
   <data name="labellPasswordRequired" xml:space="preserve">
-    <value>비밀번호가 필요합니다</value>
+    <value>비밀번호를 입력하세요</value>
     <comment>Password is required</comment>
   </data>
   <data name="LabelMailingAddress" xml:space="preserve">
@@ -2287,15 +2286,15 @@
     <comment>Mailing State</comment>
   </data>
   <data name="LabelMailingSuburb" xml:space="preserve">
-    <value>알림</value>
+    <value>읍/면/동</value>
     <comment>Mailing Suburb</comment>
   </data>
   <data name="LabelMainAlert" xml:space="preserve">
-    <value>결제</value>
+    <value>알림</value>
     <comment>Main Alert?</comment>
   </data>
   <data name="LabelMakePayment" xml:space="preserve">
-    <value>지불하기</value>
+    <value>결제</value>
     <comment>Make Payment</comment>
   </data>
   <data name="LabelMale" xml:space="preserve">
@@ -2351,19 +2350,19 @@
     <comment>Member Details</comment>
   </data>
   <data name="LabelMemberEditSuccess" xml:space="preserve">
-    <value>회원</value>
+    <value>계정 프로필 세부 정보 업데이트 성공</value>
     <comment>Account profile details updated successfully</comment>
   </data>
   <data name="LabelMemberFiles" xml:space="preserve">
-    <value>회원 페이지에 오신것을 환영합니다. </value>
+    <value>회원</value>
     <comment>Member Files</comment>
   </data>
   <data name="LabelMemberFileWelcome" xml:space="preserve">
-    <value>전체 등록 - 클릭하여 진행하기</value>
+    <value>회원 페이지에 오신것을 환영합니다. </value>
     <comment>Welcome to the Member Files Page.</comment>
   </data>
   <data name="LabelMemberFullRegister" xml:space="preserve">
-    <value>전체 등록 - 클릭하여 확장하세요</value>
+    <value>전체 등록 - 클릭하여 진행하기</value>
     <comment>Full Registration - Click to expand</comment>
   </data>
   <data name="LabelMemberInvalid" xml:space="preserve">
@@ -2376,20 +2375,21 @@
   </data>
   <data name="LabelMemberValidated" xml:space="preserve">
     <value>계정이 인증되었습니다&lt;br /&gt;&lt;br /&gt;
- 귀하의 계정은 이미 인증되었습니다. &lt;a href=/member/login.aspx&gt;로그인&lt;/a&gt;을 하시기 바랍니다."</value>
+ 귀하의 계정은 이미 인증되었습니다. &lt;a href=/member/login.aspx&gt;로그인&lt;/a&gt;을 하시기 바랍니다.</value>
     <comment>Account has been validated
-&lt;br /&gt;&lt;br /&gt;Your account has already been validated. Please proceed to &lt;a href=/member/login.aspx&gt;login&lt;/a&gt;.</comment>
+&lt;br /&gt;&lt;br /&gt;
+Your account has already been validated. Please proceed to &lt;a href=/member/login.aspx&gt;login&lt;/a&gt;.</comment>
   </data>
   <data name="LabelMemberValidation" xml:space="preserve">
     <value>회원 인증</value>
     <comment>Member Validation</comment>
   </data>
   <data name="LabelMentor" xml:space="preserve">
-    <value>친구에게 메시지 전송</value>
+    <value>멘토</value>
     <comment>Mentor</comment>
   </data>
   <data name="LabelMessageForYourFriend" xml:space="preserve">
-    <value>친구를 위한 메시지</value>
+    <value>친구에게 메시지 전송</value>
     <comment>Message For Your Friend</comment>
   </data>
   <data name="LabelMin" xml:space="preserve">
@@ -2413,11 +2413,11 @@
     <comment>Month</comment>
   </data>
   <data name="LabelMonths" xml:space="preserve">
-    <value>더 많은 계정 보기</value>
+    <value>개월</value>
     <comment>Months</comment>
   </data>
   <data name="LabelMoreInfoOnAcc" xml:space="preserve">
-    <value>계정 유형에 대한 더 많은 정보</value>
+    <value>더 많은 계정 보기</value>
     <comment>For more information on account types</comment>
   </data>
   <data name="LabelMr" xml:space="preserve">
@@ -2433,43 +2433,43 @@
     <comment>Ms</comment>
   </data>
   <data name="LabelMyAccount" xml:space="preserve">
-    <value>나의 이력서</value>
+    <value>나의 계정</value>
     <comment>My Account</comment>
   </data>
   <data name="LabelMyAccountProfile" xml:space="preserve">
-    <value>나의 지원 현황</value>
+    <value>나의 이력서</value>
     <comment>My Account Profile</comment>
   </data>
   <data name="LabelMyApplicationTracker" xml:space="preserve">
-    <value>방송</value>
+    <value>나의 지원 현황</value>
     <comment>My Application Tracker</comment>
   </data>
   <data name="LabelMyBroadcast" xml:space="preserve">
-    <value>나의 이력서 프로필</value>
+    <value>방송</value>
     <comment>My Broadcast</comment>
   </data>
   <data name="LabelMyCVProfile" xml:space="preserve">
-    <value>나의 세부 정보</value>
+    <value>나의 이력서 프로필</value>
     <comment>My CV Profile</comment>
   </data>
   <data name="LabelMyDetails" xml:space="preserve">
-    <value>내 문서</value>
+    <value>나의 세부 정보</value>
     <comment>My Details</comment>
   </data>
   <data name="LabelMyDocuments" xml:space="preserve">
-    <value>즐겨찾기</value>
+    <value>내 문서</value>
     <comment>My Documents</comment>
   </data>
   <data name="LabelMyFavouriteSearches" xml:space="preserve">
-    <value>홈</value>
+    <value>즐겨찾기</value>
     <comment>My favourite search(es)</comment>
   </data>
   <data name="LabelMyHome" xml:space="preserve">
-    <value>채용공고 알림</value>
+    <value>홈</value>
     <comment>My Home</comment>
   </data>
   <data name="LabelMyJobAlerts" xml:space="preserve">
-    <value>채용공고 방법</value>
+    <value>채용공고 알림</value>
     <comment>My Job Alerts</comment>
   </data>
   <data name="LabelMyJobAlert_s" xml:space="preserve">
@@ -2477,31 +2477,31 @@
     <comment>My job alert(s)</comment>
   </data>
   <data name="LabelMyJobTools" xml:space="preserve">
-    <value>비밀번호</value>
+    <value>채용공고 방법</value>
     <comment>My Job Tools</comment>
   </data>
   <data name="LabelMyPassword" xml:space="preserve">
-    <value>비밀번호 변경</value>
+    <value>비밀번호</value>
     <comment>My Password</comment>
   </data>
   <data name="LabelMyPersonalDetails" xml:space="preserve">
-    <value>나의 프로필</value>
+    <value>비밀번호 변경</value>
     <comment>My Personal Details</comment>
   </data>
   <data name="labelMyProfile" xml:space="preserve">
-    <value>labelMyProfile</value>
+    <value>나의 프로필</value>
     <comment>labelMyProfile</comment>
   </data>
   <data name="LabelMyResumeCoverLetter" xml:space="preserve">
-    <value>저장된 채용공고</value>
+    <value>내 이력서/자기소개서</value>
     <comment>My Resume / Cover Letter</comment>
   </data>
   <data name="LabelMySavedJobs" xml:space="preserve">
-    <value>검색 조건</value>
+    <value>저장된 채용공고</value>
     <comment>My Saved Jobs</comment>
   </data>
   <data name="LabelMySearchCriteria" xml:space="preserve">
-    <value>내 검색 조건</value>
+    <value>검색 조건</value>
     <comment>My Search Criteria</comment>
   </data>
   <data name="LabelNA" xml:space="preserve">
@@ -2509,15 +2509,15 @@
     <comment>N/A</comment>
   </data>
   <data name="LabelName" xml:space="preserve">
-    <value>알림명 설정은 필수입니다. </value>
+    <value>이름</value>
     <comment>Name</comment>
   </data>
   <data name="LabelNameFeedMandatory" xml:space="preserve">
-    <value>알림명이 필요합니다. </value>
+    <value>알림명 설정은 필수입니다. </value>
     <comment>Name of the alert is mandatory.</comment>
   </data>
   <data name="LabelNameOfAlertRequired" xml:space="preserve">
-    <value>알림명이 필요합니다</value>
+    <value>알림명이 필요합니다. </value>
     <comment>Name of alert is required</comment>
   </data>
   <data name="LabelNameOfFeed" xml:space="preserve">
@@ -2525,15 +2525,15 @@
     <comment>Name of Alert</comment>
   </data>
   <data name="LabelNativeLanguage" xml:space="preserve">
-    <value>모국어 또는 제2외국어 능력</value>
+    <value>모국어     </value>
     <comment>Native Language</comment>
   </data>
   <data name="LabelNativeOrBilingualProficiency" xml:space="preserve">
-    <value>인근 대중 교통</value>
+    <value>모국어 또는 제2외국어 능력</value>
     <comment>Native or bilingual proficiency</comment>
   </data>
   <data name="LabelNearestTransport" xml:space="preserve">
-    <value>가까운 대중 교통</value>
+    <value>인근 대중 교통</value>
     <comment>Nearest Transport</comment>
   </data>
   <data name="LabelNeedLogin" xml:space="preserve">
@@ -2581,31 +2581,31 @@
     <comment>You currently do not have Cover Letter</comment>
   </data>
   <data name="LabelNoData" xml:space="preserve">
-    <value>아직 채용공고를 받지 않았습니다. </value>
+    <value>데이터 없음</value>
     <comment>No Data Found</comment>
   </data>
   <data name="LabelNoDraftJobs" xml:space="preserve">
-    <value>아직보관직무를받지않았습니다.</value>
+    <value>아직 채용공고를 받지 않았습니다. </value>
     <comment>You haven't got any draft job yet.</comment>
   </data>
   <data name="LabelNoFileChosen" xml:space="preserve">
-    <value>현재 채용공고 알림이 없습니다. </value>
+    <value>선택한 파일 없음</value>
     <comment>No File Choosen...</comment>
   </data>
   <data name="LabelNoJobAlerts" xml:space="preserve">
-    <value>채용공고 크레딧 없음</value>
+    <value>현재 채용공고 알림이 없습니다. </value>
     <comment>You currently don't have any Job alerts.</comment>
   </data>
   <data name="LabelNoJobCredit" xml:space="preserve">
-    <value>채용공고를 선택하지 않았습니다. 진행을 위해 채용공고를 선택하시기 바랍니다.</value>
+    <value>채용공고 크레딧 없음</value>
     <comment>No job credit</comment>
   </data>
   <data name="LabelNoJobSelected" xml:space="preserve">
-    <value>채용공고를 아직 지원하지 않았습니다. </value>
+    <value>채용공고를 선택하지 않았습니다. 진행을 위해 채용공고를 선택하시기 바랍니다.</value>
     <comment>No Jobs have been selected, please select a job to proceed</comment>
   </data>
   <data name="LabelNoJobTracked" xml:space="preserve">
-    <value>어떤 직무에도 아직 지원하지 않았습니다.</value>
+    <value>채용공고를 아직 지원하지 않았습니다. </value>
     <comment>You haven't applied for any jobs yet.</comment>
   </data>
   <data name="LabelNominatedCompanyEmailAddress" xml:space="preserve">
@@ -2645,19 +2645,19 @@
     <comment>You currently do not have any saved jobs.</comment>
   </data>
   <data name="LabelNote" xml:space="preserve">
-    <value>아직 회원이 아니십니까? 회원가입을 진행하여 주시기 바랍니다. </value>
+    <value>노트</value>
     <comment>Note</comment>
   </data>
   <data name="LabelNotRegisteredQuickly" xml:space="preserve">
-    <value>등록하지 않으셨습니까? 괜찮습니다! 빨리 하세요</value>
+    <value>아직 회원이 아니십니까? 회원가입을 진행하여 주시기 바랍니다. </value>
     <comment>Not registered? No problem! Quickly</comment>
   </data>
   <data name="LabelNotSeeking" xml:space="preserve">
-    <value>아직 제출되지 않았습니다.</value>
+    <value>현재구하고있지않음</value>
     <comment>Not Currently Seeking</comment>
   </data>
   <data name="LabelNotYetSubmitted" xml:space="preserve">
-    <value>Not yet submitted</value>
+    <value>아직 제출되지 않았습니다.</value>
     <comment>Not yet submitted</comment>
   </data>
   <data name="LabelNov" xml:space="preserve">
@@ -2685,29 +2685,28 @@
     <comment>Ongoing account</comment>
   </data>
   <data name="LabelOnHold" xml:space="preserve">
-    <value>주의! 채용공고 크레딧을 찾을 수 없습니다. 채용공고를 게시하려면 먼저 아래의 크레딧을 구입해야 합니다. </value>
+    <value>보류</value>
     <comment>On Hold</comment>
   </data>
   <data name="LabelOopsNoJobCredit" xml:space="preserve">
-    <value>이런! 직무 크레딧이 없는 것 같습니다. 직무를 게시하려면 먼저 아래에서 
-  크레딧을 구입해야 합니다.</value>
+    <value>주의! 채용공고 크레딧을 찾을 수 없습니다. 채용공고를 게시하려면 먼저 아래의 크레딧을 구입해야 합니다. </value>
     <comment>Oops! Seems you don't have job credits. In order to post a job, you must first_x000D_
                     purchase credits below.</comment>
   </data>
   <data name="LabelOptional" xml:space="preserve">
-    <value>자기소개서를 업로드하기 위해 아래 옵션에서 선택하거나 직접 만드세요.</value>
+    <value>선택사항</value>
     <comment>optional</comment>
   </data>
   <data name="LabelOptionUploadCreateCover" xml:space="preserve">
-    <value>이력서를 업로드하기 위해 아래 옵션에서 선택하세요.</value>
+    <value>자기소개서를 업로드하기 위해 아래 옵션에서 선택하거나 직접 만드세요.</value>
     <comment>Select one of the following options to upload your cover letter or create your own.</comment>
   </data>
   <data name="LabelOptionUploadResume" xml:space="preserve">
-    <value>또는 </value>
+    <value>이력서를 업로드하기 위해 아래 옵션에서 선택하세요.</value>
     <comment>Select one of the following options to upload your resume.</comment>
   </data>
   <data name="LabelOr" xml:space="preserve">
-    <value>OR</value>
+    <value>또는 </value>
     <comment>OR</comment>
   </data>
   <data name="LabelOrderNumber" xml:space="preserve">
@@ -2727,7 +2726,7 @@
     <comment>Or Write One</comment>
   </data>
   <data name="LabelOther" xml:space="preserve">
-    <value>부전공</value>
+    <value>기타 자격</value>
     <comment>Other</comment>
   </data>
   <data name="LabelOtherQualification" xml:space="preserve">
@@ -2735,7 +2734,7 @@
     <comment>Other Qualification</comment>
   </data>
   <data name="LabelOthers" xml:space="preserve">
-    <value>포함사항</value>
+    <value>기타 자격</value>
     <comment>Others</comment>
   </data>
   <data name="LabelPackageContains" xml:space="preserve">
@@ -2759,11 +2758,11 @@
     <comment>Passport Number</comment>
   </data>
   <data name="LabelPassword" xml:space="preserve">
-    <value>비밀번호가 일치하지 않습니다. </value>
+    <value>패스워드</value>
     <comment>Password</comment>
   </data>
   <data name="LabelPasswordNotMatch" xml:space="preserve">
-    <value>비밀번호와 비밀번호 확인이 일치하지 않습니다</value>
+    <value>비밀번호가 일치하지 않습니다. </value>
     <comment>The password and confirmation password do not match</comment>
   </data>
   <data name="LabelPasswordPrompt" xml:space="preserve">
@@ -2771,11 +2770,11 @@
     <comment>Password must contain 8 characters or more, 1 lowercase letter, 1 uppercase letter and 1 number.</comment>
   </data>
   <data name="LabelPayByCreditCard" xml:space="preserve">
-    <value>귀하의 계정은 관련 채용공고 크레딧으로 업데이트 되었습니다. / &lt;span style='display:none'&gt; 비용은 "{0}" 의 귀하의 신용카드 내역서에 표시됩니다. &lt;/span&gt;</value>
+    <value>신용카드로 결제하기</value>
     <comment>Pay by credit card</comment>
   </data>
   <data name="LabelPaymentConfirmationDescription" xml:space="preserve">
-    <value>귀하의 계정은 관련 직무 크레딧으로 지금 업데이트되었습니다. &lt;span style='display:none'&gt;이 비용은 "{0}"에 지불한 것으로 귀하의 신용카드 내역서에 표시됩니다.&lt;/span&gt;</value>
+    <value>귀하의 계정은 관련 채용공고 크레딧으로 업데이트 되었습니다. / &lt;span style='display:none'&gt; 비용은 "{0}" 의 귀하의 신용카드 내역서에 표시됩니다. &lt;/span&gt;</value>
     <comment>Your account has now been updated with the relevant job credits. &lt;span style='display:none'&gt;This charge will appear on your credit card statement as payment to "{0}".&lt;/span&gt;</comment>
   </data>
   <data name="LabelPaymentMethod" xml:space="preserve">
@@ -2783,7 +2782,7 @@
     <comment>Payment Method</comment>
   </data>
   <data name="LabelPaypal" xml:space="preserve">
-    <value>대기중인 채용공고</value>
+    <value>페이팔</value>
     <comment>Paypal</comment>
   </data>
   <data name="LabelPendingJobs" xml:space="preserve">
@@ -2874,11 +2873,11 @@
     <comment>Please tick box to subscribe</comment>
   </data>
   <data name="LabelPositions" xml:space="preserve">
-    <value>채용공고 게시</value>
+    <value>포지션</value>
     <comment>position(s)</comment>
   </data>
   <data name="LabelPostAJob" xml:space="preserve">
-    <value>직무 게시</value>
+    <value>채용공고 게시</value>
     <comment>Post a job</comment>
   </data>
   <data name="LabelPostalAddress1" xml:space="preserve">
@@ -2890,7 +2889,7 @@
     <comment>Postal Address 2</comment>
   </data>
   <data name="LabelPostcode" xml:space="preserve">
-    <value>등록일</value>
+    <value>우편번호</value>
     <comment>Postcode</comment>
   </data>
   <data name="LabelPosted" xml:space="preserve">
@@ -2902,7 +2901,7 @@
     <comment>Postgraduate</comment>
   </data>
   <data name="LabelPostType" xml:space="preserve">
-    <value>희망 근무지역</value>
+    <value>게시 유형</value>
     <comment>Post type</comment>
   </data>
   <data name="LabelPreferredArea" xml:space="preserve">
@@ -2926,15 +2925,15 @@
     <comment>Preferred Employment</comment>
   </data>
   <data name="LabelPreferredLine" xml:space="preserve">
-    <value>희망 근무지역</value>
+    <value>선호 라인</value>
     <comment>Preferred Line</comment>
   </data>
   <data name="LabelPreferredLocation" xml:space="preserve">
-    <value>하위 분류</value>
+    <value>희망 근무지역</value>
     <comment>Preferred Location</comment>
   </data>
   <data name="LabelPreferredSubClassification" xml:space="preserve">
-    <value>선호 하위 분류</value>
+    <value>하위 분류</value>
     <comment>Preferred Sub Classification</comment>
   </data>
   <data name="LabelPresent" xml:space="preserve">
@@ -2998,11 +2997,11 @@
     <comment>Profession / Role</comment>
   </data>
   <data name="LabelProfessionalWorkingProficiency" xml:space="preserve">
-    <value>직무/산업</value>
+    <value>전문적인 업무 능력</value>
     <comment>Professional working proficiency</comment>
   </data>
   <data name="LabelProfessionRole" xml:space="preserve">
-    <value>직무/산업 키워드 선택</value>
+    <value>직업 / 업무</value>
     <comment>Profession / Role</comment>
   </data>
   <data name="LabelProfessionRoleDetails" xml:space="preserve">
@@ -3074,27 +3073,27 @@
     <comment>Purchase details</comment>
   </data>
   <data name="LabelPurchaseTotal" xml:space="preserve">
-    <value>비밀번호 변경이 완료되었습니다.</value>
+    <value>제품 전체 비용</value>
     <comment>Product Total Cost</comment>
   </data>
   <data name="LabelPwdChanged" xml:space="preserve">
-    <value>비밀번호를 성공적으로 변경하였습니다.</value>
+    <value>비밀번호 변경이 완료되었습니다.</value>
     <comment>Your password has been changed successfully.</comment>
   </data>
   <data name="LabelQualification" xml:space="preserve">
-    <value>학력</value>
+    <value>자격증</value>
     <comment>Qualification</comment>
   </data>
   <data name="LabelQualificationLevel" xml:space="preserve">
-    <value>전공명</value>
+    <value>학력</value>
     <comment>Qualification Level</comment>
   </data>
   <data name="LabelQualificationName" xml:space="preserve">
-    <value>공인된 자격증</value>
+    <value>전공명</value>
     <comment>Qualification Name</comment>
   </data>
   <data name="LabelQualificationsRecognised" xml:space="preserve">
-    <value>공증된자격증</value>
+    <value>공인된 자격증</value>
     <comment>Qualifications Recognised</comment>
   </data>
   <data name="LabelQuantity" xml:space="preserve">
@@ -3102,11 +3101,11 @@
     <comment>Quantity</comment>
   </data>
   <data name="LabelQuestion" xml:space="preserve">
-    <value>Quick Repost</value>
+    <value>질문</value>
     <comment>Question</comment>
   </data>
   <data name="LabelQuickRepostJob" xml:space="preserve">
-    <value>빠른 재게시</value>
+    <value>Quick Repost</value>
     <comment>Quick Repost</comment>
   </data>
   <data name="LabelReadFullStory" xml:space="preserve">
@@ -3114,15 +3113,15 @@
     <comment>Read full story</comment>
   </data>
   <data name="LabelReadMore" xml:space="preserve">
-    <value>채용공고 알림 받기</value>
+    <value>더보기</value>
     <comment>Read more</comment>
   </data>
   <data name="LabelReceiveJobAlert" xml:space="preserve">
-    <value>뉴스레터 받기</value>
+    <value>채용공고 알림 받기</value>
     <comment>Receive Job Alert</comment>
   </data>
   <data name="LabelReceiveNewsletter" xml:space="preserve">
-    <value>뉴스레터 수신</value>
+    <value>뉴스레터 받기</value>
     <comment>Receive Newsletter</comment>
   </data>
   <data name="LabelRecentCandidate" xml:space="preserve">
@@ -3130,7 +3129,7 @@
     <comment>Recent Candidate</comment>
   </data>
   <data name="LabelReferenceNumber" xml:space="preserve">
-    <value>공고번호</value>
+    <value>레퍼런스 번호</value>
     <comment>Reference Number</comment>
   </data>
   <data name="LabelReferences" xml:space="preserve">
@@ -3154,7 +3153,7 @@
     <comment>Refine Your Results</comment>
   </data>
   <data name="LabelRefNo" xml:space="preserve">
-    <value>공고번호</value>
+    <value>레퍼런스 번호</value>
     <comment>Ref. No</comment>
   </data>
   <data name="LabelRefresh" xml:space="preserve">
@@ -3166,7 +3165,7 @@
     <comment>Region</comment>
   </data>
   <data name="LabelRegister" xml:space="preserve">
-    <value>등록</value>
+    <value>회원가입</value>
     <comment>Register</comment>
   </data>
   <data name="LabelRegisterAndApply" xml:space="preserve">
@@ -3174,7 +3173,7 @@
     <comment>register and apply</comment>
   </data>
   <data name="LabelRegisteringAgree" xml:space="preserve">
-    <value>동의하신 것으로 간주합니다.</value>
+    <value>회원가입하시면 저희…에 동의하신 것으로 간주합니다.</value>
     <comment>By registering, you agree to our</comment>
   </data>
   <data name="LabelRegisterLogin" xml:space="preserve">
@@ -3254,7 +3253,7 @@
     <comment>You have not completed all the required information fields.</comment>
   </data>
   <data name="LabelRequiredProfileSectionsHeading" xml:space="preserve">
-    <value>등록 정보</value>
+    <value>필수정보항목을모두입력하지않았습니다.</value>
     <comment>Required Profile Sections left to complete?</comment>
   </data>
   <data name="LabelRequireLogon" xml:space="preserve">
@@ -3570,7 +3569,7 @@
     <comment>Select User Type</comment>
   </data>
   <data name="LabelSendaJobAlertNow" xml:space="preserve">
-    <value>지금 자신의 직무를 받아 볼 수 있는 알람을 신청하세요. </value>
+    <value>지금 자신의 직무를 받아 볼 수 있는 알림을 신청하세요. </value>
     <comment>Send a Job Alert now</comment>
   </data>
   <data name="LabelSendEmailAlerts" xml:space="preserve">
@@ -3894,7 +3893,7 @@
     <comment>Update Profile</comment>
   </data>
   <data name="LabelUploadACoverLetter" xml:space="preserve">
-    <value> </value>
+    <value>자기소개서 등록하기 </value>
     <comment>Upload a cover letter</comment>
   </data>
   <data name="LabelUploadAResume" xml:space="preserve">
@@ -4270,7 +4269,7 @@
     <comment>Share this Job on LinkedIn</comment>
   </data>
   <data name="LinkButtonJobReports" xml:space="preserve">
-    <value>Share this Job on LinkedIn</value>
+    <value>직무 보고서 </value>
     <comment>Job Reports</comment>
   </data>
   <data name="LinkButtonJobRSS" xml:space="preserve">

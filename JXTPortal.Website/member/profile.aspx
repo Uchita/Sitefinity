@@ -189,7 +189,7 @@
                                                                 <asp:TextBox ID="tbProfileFirstName" runat="server" CssClass="form-control" placeholder="First Name" />
                                                                 <asp:PlaceHolder ID="phProfileFirstNameError" runat="server" Visible="false"><span
                                                                     class="error-message">
-                                                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral272" runat="server" SetLanguageCode="LabelRequiredField1" />
+                                                                    <JXTControl:ucLanguageLiteral ID="ltErrorProfileFirstName" runat="server" SetLanguageCode="LabelRequiredField1" />
                                                                 </span></asp:PlaceHolder>
                                                             </div>
                                                         </div>
@@ -204,7 +204,7 @@
                                                             <asp:TextBox ID="tbProfileLastName" runat="server" CssClass="form-control" placeholder="Last Name" />
                                                             <asp:PlaceHolder ID="phProfileLastNameError" runat="server" Visible="false"><span
                                                                 class="error-message">
-                                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral273" runat="server" SetLanguageCode="LabelRequiredField1" />
+                                                                <JXTControl:ucLanguageLiteral ID="ltErrorProfileLastName" runat="server" SetLanguageCode="LabelRequiredField1" />
                                                             </span></asp:PlaceHolder>
                                                         </div>
                                                     </div>
@@ -224,6 +224,11 @@
                                                                     placeholder="First Name" />
                                                             </div>
                                                         </div>
+                                                        <asp:PlaceHolder ID="phProfileFirstNameLocalError" runat="server" Visible="false">
+                                                            <span class="error-message">
+                                                                <JXTControl:ucLanguageLiteral ID="ltErrorProfileFirstNameLocal" runat="server" SetLanguageCode="ValidateNoHTMLContent" />
+                                                            </span>
+                                                        </asp:PlaceHolder>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-xs-12">
@@ -236,6 +241,11 @@
                                                                 placeholder="Last Name" />
                                                         </div>
                                                     </div>
+                                                    <asp:PlaceHolder ID="phProfileLastNameLocalError" runat="server" Visible="false">
+                                                        <span class="error-message">
+                                                            <JXTControl:ucLanguageLiteral ID="ltErrorProfileLastNameLocal" runat="server" SetLanguageCode="ValidateNoHTMLContent" />
+                                                        </span>
+                                                    </asp:PlaceHolder>
                                                 </div>
                                             </div>
                                             </asp:PlaceHolder>
@@ -665,7 +675,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div id="personal-item-6"  class="col-md-6">
+                                        <div id="personal-item-6" class="col-md-6">
                                             <div class="row">
                                                 <div class="col-sm-8 col-xs-6">
                                                     <asp:Label ID="lbDetailsHomePhone" runat="server" AssociatedControlID="tbDetailsHomePhone">
@@ -677,6 +687,10 @@
                                                         <asp:RegularExpressionValidator ID="validatorHomePhone" runat="server" ControlToValidate="tbDetailsHomePhone"
                                                             SetFocusOnError="true" Display="Dynamic" ValidationExpression="^[ \+\(\)\d]*$"
                                                             ErrorMessage="ValidationPhoneNumbers">  
+                                                        </asp:RegularExpressionValidator>
+                                                        <asp:RegularExpressionValidator ID="revHomePhone" runat="server" ControlToValidate="tbDetailsHomePhone"
+                                                            SetFocusOnError="true" Display="Dynamic"
+                                                            ErrorMessage="ValidateNoHTMLContent">  
                                                         </asp:RegularExpressionValidator>
                                                     </div>
                                                 </div>
@@ -704,6 +718,11 @@
                                                             SetFocusOnError="true" Display="Dynamic" ValidationExpression="^[ \+\(\)\d]*$"
                                                             ErrorMessage="ValidationPhoneNumbers">  
                                                         </asp:RegularExpressionValidator>
+                                                        <asp:RegularExpressionValidator ID="revMobilePhone" runat="server" ControlToValidate="tbDetailsMobilePhone"
+                                                            SetFocusOnError="true" Display="Dynamic"
+                                                            ErrorMessage="ValidateNoHTMLContent">
+                                                        </asp:RegularExpressionValidator>
+
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4 col-xs-6 text-center">
@@ -725,6 +744,10 @@
                                                 1:</asp:Label>
                                             <div class="form-input">
                                                 <asp:TextBox ID="tbDetailsAddress1" runat="server" CssClass="form-control" />
+                                                <asp:RegularExpressionValidator ID="revAddress1" runat="server" ControlToValidate="tbDetailsAddress1"
+                                                            SetFocusOnError="true" Display="Dynamic"
+                                                            ErrorMessage="ValidateNoHTMLContent">
+                                                        </asp:RegularExpressionValidator>
                                             </div>
                                         </div>
                                         <div id="personal-item-9" class="col-md-6">
@@ -733,6 +756,11 @@
                                                 2:</asp:Label>
                                             <div class="form-input">
                                                 <asp:TextBox ID="tbDetailsAddress2" runat="server" CssClass="form-control" />
+
+                                                <asp:RegularExpressionValidator ID="revAddress2" runat="server" ControlToValidate="tbDetailsAddress2"
+                                                            SetFocusOnError="true" Display="Dynamic"
+                                                            ErrorMessage="ValidateNoHTMLContent">
+                                                        </asp:RegularExpressionValidator>
                                             </div>
                                         </div>
                                     </div>
@@ -745,6 +773,11 @@
                                                         :</asp:Label>
                                                     <div class="form-input">
                                                         <asp:TextBox ID="tbDetailsSuburb" runat="server" CssClass="form-control" />
+
+                                                        <asp:RegularExpressionValidator ID="revSuburb" runat="server" ControlToValidate="tbDetailsSuburb"
+                                                            SetFocusOnError="true" Display="Dynamic"
+                                                            ErrorMessage="ValidateNoHTMLContent">
+                                                        </asp:RegularExpressionValidator>
                                                     </div>
                                                 </div>
                                                 <div id="personal-item-11" class="col-md-6">
@@ -753,6 +786,11 @@
                                                         :</asp:Label>
                                                     <div class="form-input">
                                                         <asp:TextBox ID="tbDetailsState" runat="server" CssClass="form-control" />
+
+                                                        <asp:RegularExpressionValidator ID="revState" runat="server" ControlToValidate="tbDetailsState"
+                                                            SetFocusOnError="true" Display="Dynamic"
+                                                            ErrorMessage="ValidateNoHTMLContent">
+                                                        </asp:RegularExpressionValidator>
                                                     </div>
                                                 </div>
                                             </div>
@@ -765,6 +803,11 @@
                                                         :</asp:Label>
                                                     <div class="form-input">
                                                         <asp:TextBox ID="tbDetailsPostcode" runat="server" CssClass="form-control" />
+
+                                                        <asp:RegularExpressionValidator ID="revPostcode" runat="server" ControlToValidate="tbDetailsPostcode"
+                                                            SetFocusOnError="true" Display="Dynamic"
+                                                            ErrorMessage="ValidateNoHTMLContent">
+                                                        </asp:RegularExpressionValidator>
                                                     </div>
                                                 </div>
                                                 <div id="personal-item-13" class="col-md-6">
@@ -789,6 +832,11 @@
                                                 :</asp:Label>
                                             <div class="form-input">
                                                 <asp:TextBox ID="tbDetailsVideoURL" runat="server" CssClass="form-control" />
+
+                                                <asp:RegularExpressionValidator ID="revVideoURL" runat="server" ControlToValidate="tbDetailsVideoURL"
+                                                            SetFocusOnError="true" Display="Dynamic"
+                                                            ErrorMessage="ValidateNoHTMLContent">
+                                                        </asp:RegularExpressionValidator>
                                             </div>
                                         </div>
                                         <div id="personal-item-15" class="col-md-3">
@@ -797,6 +845,10 @@
                                                 :</asp:Label>
                                             <div class="form-input">
                                                 <asp:TextBox ID="tbDetailsPassportNumber" runat="server" CssClass="form-control" />
+                                                <asp:RegularExpressionValidator ID="revPassportNumber" runat="server" ControlToValidate="tbDetailsPassportNumber"
+                                                            SetFocusOnError="true" Display="Dynamic"
+                                                            ErrorMessage="ValidateNoHTMLContent">
+                                                        </asp:RegularExpressionValidator>
                                             </div>
                                         </div>
                                     </div>
@@ -826,6 +878,10 @@
                                                 <div class="form-input">
                                                     <asp:TextBox ID="tbDetailsMailingAddress1" runat="server" CssClass="form-control"
                                                         placeholder="tbDetailsMailingAddress1" />
+                                                        <asp:RegularExpressionValidator ID="revMailingAddress1" runat="server" ControlToValidate="tbDetailsMailingAddress1"
+                                                            SetFocusOnError="true" Display="Dynamic"
+                                                            ErrorMessage="ValidateNoHTMLContent">
+                                                        </asp:RegularExpressionValidator>
                                                 </div>
                                             </div>
                                             <div id="personal-item-17" class="col-md-6">
@@ -835,18 +891,26 @@
                                                 <div class="form-input">
                                                     <asp:TextBox ID="tbDetailsMailingAddress2" runat="server" CssClass="form-control"
                                                         placeholder="tbDetailsMailingAddress2" />
+                                                        <asp:RegularExpressionValidator ID="revMailingAddress2" runat="server" ControlToValidate="tbDetailsMailingAddress2"
+                                                            SetFocusOnError="true" Display="Dynamic"
+                                                            ErrorMessage="ValidateNoHTMLContent">
+                                                        </asp:RegularExpressionValidator>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="row">
-                                                    <div id="personal-item-18"class="col-md-6">
+                                                    <div id="personal-item-18" class="col-md-6">
                                                         <asp:Label ID="lbDetailsMailingSuburb" runat="server" AssociatedControlID="tbDetailsMailingSuburb">
                                                             <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral71" runat="server" SetLanguageCode="LabelCityTown" />
                                                             :</asp:Label>
                                                         <div class="form-input">
                                                             <asp:TextBox ID="tbDetailsMailingSuburb" runat="server" CssClass="form-control" placeholder="tbDetailsMailingSuburb" />
+                                                            <asp:RegularExpressionValidator ID="revMailingSuburb" runat="server" ControlToValidate="tbDetailsMailingSuburb"
+                                                            SetFocusOnError="true" Display="Dynamic"
+                                                            ErrorMessage="ValidateNoHTMLContent">
+                                                        </asp:RegularExpressionValidator>
                                                         </div>
                                                     </div>
                                                     <div id="personal-item-19" class="col-md-6">
@@ -855,6 +919,10 @@
                                                             :</asp:Label>
                                                         <div class="form-input">
                                                             <asp:TextBox ID="tbDetailsMailingState" runat="server" CssClass="form-control" placeholder="tbDetailsMailingState" />
+                                                            <asp:RegularExpressionValidator ID="revMailingState" runat="server" ControlToValidate="tbDetailsMailingState"
+                                                            SetFocusOnError="true" Display="Dynamic"
+                                                            ErrorMessage="ValidateNoHTMLContent">
+                                                        </asp:RegularExpressionValidator>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -868,6 +936,10 @@
                                                         <div class="form-input">
                                                             <asp:TextBox ID="tbDetailsMailingPostcode" runat="server" CssClass="form-control"
                                                                 placeholder="tbDetailsMailingPostcode" />
+                                                                <asp:RegularExpressionValidator ID="revMailingPostcode" runat="server" ControlToValidate="tbDetailsMailingPostcode"
+                                                            SetFocusOnError="true" Display="Dynamic"
+                                                            ErrorMessage="ValidateNoHTMLContent">
+                                                        </asp:RegularExpressionValidator>
                                                         </div>
                                                     </div>
                                                     <div id="personal-item-21" class="col-md-6">
@@ -1038,7 +1110,7 @@
                                                     </div>
                                                     <asp:PlaceHolder ID="phCoverLetterTitleError" runat="server" Visible="false"><span
                                                         class="error-message">
-                                                        <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral280" runat="server" SetLanguageCode="LabelRequiredField1" />
+                                                        <JXTControl:ucLanguageLiteral ID="ltErrorCoverLetterTitle" runat="server" SetLanguageCode="LabelRequiredField1" />
                                                     </span></asp:PlaceHolder>
                                                 </div>
                                             </div>
@@ -1248,7 +1320,7 @@
                                                         </div>
                                                         <asp:PlaceHolder ID="phDirectorshipJobTitleError" runat="server" Visible="false"><span
                                                             class="error-message">
-                                                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral273" runat="server" SetLanguageCode="LabelRequiredField1" />
+                                                            <JXTControl:ucLanguageLiteral ID="ltErrorDirectorshipJobTitle" runat="server" SetLanguageCode="LabelRequiredField1" />
                                                         </span></asp:PlaceHolder>
                                                     </div>
                                                     <div class="col-sm-6 col-xs-12">
@@ -1260,7 +1332,7 @@
                                                         </div>
                                                         <asp:PlaceHolder ID="phDirectorshipCompanyNameError" runat="server" Visible="false">
                                                             <span class="error-message">
-                                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral274" runat="server" SetLanguageCode="LabelRequiredField1" />
+                                                                <JXTControl:ucLanguageLiteral ID="ltErrorDirectorshipCompanyName" runat="server" SetLanguageCode="LabelRequiredField1" />
                                                             </span></asp:PlaceHolder>
                                                     </div>
                                                 </div>
@@ -1272,6 +1344,10 @@
                                                         <div class="form-input">
                                                             <asp:TextBox ID="tbDirectorshipWebsite" runat="server" CssClass="form-control" />
                                                         </div>
+                                                        <asp:PlaceHolder ID="phDirectorshipWebsiteError" runat="server" Visible="false">
+                                                            <span class="error-message">
+                                                                <JXTControl:ucLanguageLiteral ID="ltErrorDirectorshipWebsite" runat="server" SetLanguageCode="LabelRequiredField1" />
+                                                            </span></asp:PlaceHolder>
                                                     </div>
                                                 </div>
                                                 <div class="row date_wrap">
@@ -1318,6 +1394,10 @@
                                                         <div class="form-input">
                                                             <asp:TextBox ID="tbDirectorshipSummary" runat="server" TextMode="MultiLine" Rows="5"
                                                                 Columns="5" CssClass="form-control" placeholder="Directorship summary" />
+                                                            <asp:PlaceHolder ID="phDirectorshipSummaryError" runat="server" Visible="false">
+                                                            <span class="error-message">
+                                                                <JXTControl:ucLanguageLiteral ID="ltErrorDirectorshipSummary" runat="server" SetLanguageCode="ValidateNoHTMLContent" />
+                                                            </span></asp:PlaceHolder>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1329,6 +1409,11 @@
                                                         <div class="form-input">
                                                             <asp:TextBox ID="tbDirectorshipResponsibilities" runat="server" TextMode="MultiLine"
                                                                 Rows="5" Columns="5" CssClass="form-control" placeholder="Responsibilities and achievements" />
+                                                            <asp:PlaceHolder ID="phDirectorshipResponsibilitiesError" runat="server" Visible="false">
+                                                                <span class="error-message">
+                                                                    <JXTControl:ucLanguageLiteral ID="ltErrorDirectorshipResponsibilities" runat="server" SetLanguageCode="ValidateNoHTMLContent" />
+                                                                </span>
+                                                            </asp:PlaceHolder>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1413,7 +1498,7 @@
                                                 </div>
                                                 <asp:PlaceHolder ID="phDirectorshipAddJobTitleError" runat="server" Visible="false">
                                                     <span class="error-message">
-                                                        <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral274" runat="server" SetLanguageCode="LabelRequiredField1" />
+                                                        <JXTControl:ucLanguageLiteral ID="ltErrorAddDirectorshipJobTitle" runat="server" SetLanguageCode="LabelRequiredField1" />
                                                     </span></asp:PlaceHolder>
                                             </div>
                                             <div class="col-sm-6 col-xs-12">
@@ -1425,7 +1510,7 @@
                                                 </div>
                                                 <asp:PlaceHolder ID="phDirectorshipAddCompanyNameError" runat="server" Visible="false">
                                                     <span class="error-message">
-                                                        <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral275" runat="server" SetLanguageCode="LabelRequiredField1" />
+                                                        <JXTControl:ucLanguageLiteral ID="ltErrorAddDirectorshipCompanyName" runat="server" SetLanguageCode="LabelRequiredField1" />
                                                     </span></asp:PlaceHolder>
                                             </div>
                                         </div>
@@ -1437,6 +1522,10 @@
                                                 <div class="form-input">
                                                     <asp:TextBox ID="tbDirectorshipAddWebsite" runat="server" CssClass="form-control" />
                                                 </div>
+                                                <asp:PlaceHolder ID="phDirectorshipAddWebsiteError" runat="server" Visible="false">
+                                                    <span class="error-message">
+                                                        <JXTControl:ucLanguageLiteral ID="ltErrorAddDirectorshipWebsite" runat="server" SetLanguageCode="ValidateNoHTMLContent" />
+                                                    </span></asp:PlaceHolder>
                                             </div>
                                         </div>
                                         <div class="row date_wrap">
@@ -1484,6 +1573,10 @@
                                                     <asp:TextBox ID="tbDirectorshipAddSummary" runat="server" TextMode="MultiLine" Rows="5"
                                                         Columns="5" CssClass="form-control" placeholder="Directorship summary" />
                                                 </div>
+                                                <asp:PlaceHolder ID="phDirectorshipAddSummaryError" runat="server" Visible="false">
+                                                    <span class="error-message">
+                                                        <JXTControl:ucLanguageLiteral ID="ltErrorAddDirectorshipSummary" runat="server" SetLanguageCode="ValidateNoHTMLContent" />
+                                                    </span></asp:PlaceHolder>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -1495,6 +1588,10 @@
                                                     <asp:TextBox ID="tbDirectorshipAddResponsibilities" runat="server" TextMode="MultiLine"
                                                         Rows="5" Columns="5" CssClass="form-control" placeholder="Responsibilities and achievements" />
                                                 </div>
+                                                <asp:PlaceHolder ID="phDirectorshipAddResponsibilitiesError" runat="server" Visible="false">
+                                                    <span class="error-message">
+                                                        <JXTControl:ucLanguageLiteral ID="ltErrorAddDirectorshipResponsibilities" runat="server" SetLanguageCode="ValidateNoHTMLContent" />
+                                                    </span></asp:PlaceHolder>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -1647,7 +1744,7 @@
                                                         </div>
                                                         <asp:PlaceHolder ID="phExperienceCompanyNameError" runat="server" Visible="false"><span
                                                             class="error-message">
-                                                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral275" runat="server" SetLanguageCode="LabelRequiredField1" />
+                                                            <JXTControl:ucLanguageLiteral ID="ltErrorExperienceCompanyName" runat="server" SetLanguageCode="LabelRequiredField1" />
                                                         </span></asp:PlaceHolder>
                                                     </div>
                                                     <div class="col-sm-6 col-xs-12">
@@ -1659,7 +1756,7 @@
                                                         </div>
                                                         <asp:PlaceHolder ID="phExperienceJobTitleError" runat="server" Visible="false"><span
                                                             class="error-message">
-                                                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral276" runat="server" SetLanguageCode="LabelRequiredField1" />
+                                                            <JXTControl:ucLanguageLiteral ID="ltErrorExperienceJobTitle" runat="server" SetLanguageCode="LabelRequiredField1" />
                                                         </span></asp:PlaceHolder>
                                                     </div>
                                                 </div>
@@ -1672,6 +1769,11 @@
                                                             <asp:TextBox ID="tbExperienceCity" runat="server" PlaceHolder="tbExperienceCity"
                                                                 CssClass="form-control" />
                                                         </div>
+                                                        <asp:PlaceHolder ID="phExperienceCityError" runat="server" Visible="false"><span
+                                                            class="error-message">
+                                                            <JXTControl:ucLanguageLiteral ID="ltErrorExperienceCity" runat="server" SetLanguageCode="ValidateNoHTMLContent" />
+                                                            </span>
+                                                        </asp:PlaceHolder>
                                                     </div>
                                                     <div class="col-sm-4 col-xs-12">
                                                         <asp:label id="Label107" runat="server" AssociatedControlID="tbExperienceState">
@@ -1680,6 +1782,11 @@
                                                         <div class="form-input">
                                                             <asp:TextBox ID="tbExperienceState" runat="server" PlaceHolder="LabelState" CssClass="form-control" />
                                                         </div>
+                                                        <asp:PlaceHolder ID="phExperienceStateError" runat="server" Visible="false"><span
+                                                            class="error-message">
+                                                            <JXTControl:ucLanguageLiteral ID="ltErrorExperienceState" runat="server" SetLanguageCode="ValidateNoHTMLContent" />
+                                                            </span>
+                                                        </asp:PlaceHolder>
                                                     </div>
                                                     <div class="col-sm-4 col-xs-12">
                                                         <asp:label id="Label22" runat="server" AssociatedControlID="ddlExperienceCountry">
@@ -1747,6 +1854,11 @@
                                                             <asp:TextBox ID="tbExperienceDescription" runat="server" Rows="5" Columns="5" TextMode="MultiLine"
                                                                 CssClass="form-control" placeholder="tbExperienceDescription" />
                                                         </div>
+                                                        <asp:PlaceHolder ID="phExperienceDescriptionError" runat="server" Visible="false"><span
+                                                            class="error-message">
+                                                            <JXTControl:ucLanguageLiteral ID="ltErrorExperienceDescription" runat="server" SetLanguageCode="ValidateNoHTMLContent" />
+                                                            </span>
+                                                        </asp:PlaceHolder>
                                                     </div>
                                                 </div>
                                                 <div class="button-container">
@@ -1780,7 +1892,7 @@
                                                 </div>
                                                 <asp:PlaceHolder ID="phExperienceAddCompanyNameError" runat="server" Visible="false">
                                                     <span class="error-message">
-                                                        <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral276" runat="server" SetLanguageCode="LabelRequiredField1" />
+                                                        <JXTControl:ucLanguageLiteral ID="ltErrorAddExperienceCompanyName" runat="server" SetLanguageCode="LabelRequiredField1" />
                                                     </span></asp:PlaceHolder>
                                             </div>
                                             <div class="col-sm-6 col-xs-12">
@@ -1792,7 +1904,7 @@
                                                 </div>
                                                 <asp:PlaceHolder ID="phExperienceAddJobTitleError" runat="server" Visible="false"><span
                                                     class="error-message">
-                                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral277" runat="server" SetLanguageCode="LabelRequiredField1" />
+                                                    <JXTControl:ucLanguageLiteral ID="ltErrorAddExperienceJobTitle" runat="server" SetLanguageCode="LabelRequiredField1" />
                                                 </span></asp:PlaceHolder>
                                             </div>
                                         </div>
@@ -1804,6 +1916,11 @@
                                                 <div class="form-input">
                                                     <asp:TextBox ID="tbExperienceAddCity" runat="server" PlaceHolder="LabelCityTown" CssClass="form-control" />
                                                 </div>
+                                                <asp:PlaceHolder ID="phExperienceAddCityError" runat="server" Visible="false"><span
+                                                    class="error-message">
+                                                    <JXTControl:ucLanguageLiteral ID="ltErrorAddExperienceCity" runat="server" SetLanguageCode="ValidateNoHTMLContent" />
+                                                    </span>
+                                                </asp:PlaceHolder>
                                             </div>
                                             <div class="col-sm-4 col-xs-12">
                                                 <asp:label id="Label31" runat="server" AssociatedControlID="tbExperienceAddState">
@@ -1812,6 +1929,11 @@
                                                 <div class="form-input">
                                                     <asp:TextBox ID="tbExperienceAddState" runat="server" PlaceHolder="LabelState" CssClass="form-control" />
                                                 </div>
+                                                <asp:PlaceHolder ID="phExperienceAddStateError" runat="server" Visible="false"><span
+                                                    class="error-message">
+                                                    <JXTControl:ucLanguageLiteral ID="ltErrorAddExperienceState" runat="server" SetLanguageCode="ValidateNoHTMLContent" />
+                                                    </span>
+                                                </asp:PlaceHolder>
                                             </div>
                                             <div class="col-sm-4 col-xs-12">
                                                 <asp:label id="Label30" runat="server" AssociatedControlID="ddlExperienceAddCountry">
@@ -1880,6 +2002,11 @@
                                                     <asp:TextBox ID="tbExperienceAddDescription" runat="server" Rows="5" Columns="5"
                                                         TextMode="MultiLine" CssClass="form-control" placeholder="tbExperienceAddDescription" />
                                                 </div>
+                                                <asp:PlaceHolder ID="phExperienceAddDescriptionError" runat="server" Visible="false"><span
+                                                    class="error-message">
+                                                    <JXTControl:ucLanguageLiteral ID="ltErrorAddExperienceDescription" runat="server" SetLanguageCode="ValidateNoHTMLContent" />
+                                                    </span>
+                                                </asp:PlaceHolder>
                                             </div>
                                         </div>
                                         <div class="button-container">
@@ -1972,7 +2099,7 @@
                                                         </div>
                                                         <asp:PlaceHolder ID="phEducationInstituteError" runat="server" Visible="false"><span
                                                             class="error-message">
-                                                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral277" runat="server" SetLanguageCode="LabelRequiredField1" />
+                                                            <JXTControl:ucLanguageLiteral ID="ltErrorEducationInstitute" runat="server" SetLanguageCode="LabelRequiredField1" />
                                                         </span></asp:PlaceHolder>
                                                     </div>
                                                 </div>
@@ -2004,7 +2131,7 @@
                                                         </div>
                                                         <asp:PlaceHolder ID="phEducationQualificationNameError" runat="server" Visible="false">
                                                             <span class="error-message">
-                                                                <JXTControl:ucLanguageLiteral ID="ucEducationQualificationNameError" runat="server"
+                                                                <JXTControl:ucLanguageLiteral ID="ltErrorEducationQualificationName" runat="server"
                                                                     SetLanguageCode="LabelRequiredField1" />
                                                             </span></asp:PlaceHolder>
                                                     </div>
@@ -2029,6 +2156,10 @@
                                                         <div class="form-input">
                                                             <asp:TextBox ID="tbEducationState" runat="server" CssClass="form-control" placeholder="tbEducationState"  maxlength="100" />
                                                         </div>
+                                                        <asp:PlaceHolder ID="phEducationStateError" runat="server" Visible="false"><span
+                                                            class="error-message">
+                                                            <JXTControl:ucLanguageLiteral ID="ltErrorEducationState" runat="server" SetLanguageCode="LabelRequiredField1" />
+                                                        </span></asp:PlaceHolder>
                                                     </div>
                                                 </div>
                                                 
@@ -2040,6 +2171,10 @@
                                                         <div class="form-input">
                                                             <asp:TextBox ID="tbEducationOtherQualification" runat="server" CssClass="form-control" maxlength="100" />
                                                         </div>
+                                                        <asp:PlaceHolder ID="phEducationOtherQualificationError" runat="server" Visible="false"><span
+                                                            class="error-message">
+                                                            <JXTControl:ucLanguageLiteral ID="ltErrorEducationOtherQualification" runat="server" SetLanguageCode="LabelRequiredField1" />
+                                                        </span></asp:PlaceHolder>
                                                     </div>
                                                     <div class="col-sm-1 col-xs-12">
                                                         <asp:label id="Label111" runat="server" AssociatedControlID="cbEducationGraduated">
@@ -2056,6 +2191,10 @@
                                                         <div class="form-input">
                                                             <asp:TextBox ID="tbEducationGraduatedCredits" runat="server" Enabled="true" CssClass="tbEducationGraduatedCredits" />
                                                         </div>
+                                                        <asp:PlaceHolder ID="phEducationGraduatedCreditsError" runat="server" Visible="false"><span
+                                                            class="error-message">
+                                                            <JXTControl:ucLanguageLiteral ID="ltErrorEducationGraduatedCredits" runat="server" SetLanguageCode="LabelRequiredField1" />
+                                                        </span></asp:PlaceHolder>
                                                     </div>
                                                 </div>
                                                 <div class="row date_wrap">
@@ -2136,7 +2275,7 @@
                                                 </div>
                                                 <asp:PlaceHolder ID="phEducationAddInstituteError" runat="server" Visible="false"><span
                                                     class="error-message">
-                                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral278" runat="server" SetLanguageCode="LabelRequiredField1" />
+                                                    <JXTControl:ucLanguageLiteral ID="ltErrorAddEdicationInstitute" runat="server" SetLanguageCode="LabelRequiredField1" />
                                                 </span></asp:PlaceHolder>
                                             </div>
                                         </div>
@@ -2168,7 +2307,7 @@
                                                 </div>
                                                 <asp:PlaceHolder ID="phEducationAddQualificationNameError" runat="server" Visible="false">
                                                     <span class="error-message">
-                                                        <JXTControl:ucLanguageLiteral ID="ucEducationAddQualificationNameError" runat="server"
+                                                        <JXTControl:ucLanguageLiteral ID="ltErrorAddEducationAddQualificationName" runat="server"
                                                             SetLanguageCode="LabelRequiredField1" />
                                                     </span></asp:PlaceHolder>
                                             </div>
@@ -2193,6 +2332,10 @@
                                                 <div class="form-input">
                                                     <asp:TextBox ID="tbEducationAddState" runat="server" CssClass="form-control" placeholder="tbEducationAddState" maxlength="100" />
                                                 </div>
+                                                <asp:PlaceHolder ID="phEducationAddStateError" runat="server" Visible="false"><span
+                                                            class="error-message">
+                                                            <JXTControl:ucLanguageLiteral ID="ltErrorAddEducationState" runat="server" SetLanguageCode="LabelRequiredField1" />
+                                                        </span></asp:PlaceHolder>
                                             </div>
                                         </div>
                                         <div class="row rw_Education_OtherQualification">
@@ -2204,6 +2347,10 @@
                                                     <asp:TextBox ID="tbEducationAddOtherQualification" runat="server" CssClass="form-control"
                                                         placeholder="tbEducationAddOtherQualificationLevel"  maxlength="100"/>
                                                 </div>
+                                                <asp:PlaceHolder ID="phEducationAddOtherQualificationError" runat="server" Visible="false"><span
+                                                            class="error-message">
+                                                            <JXTControl:ucLanguageLiteral ID="ltErrorAddEducationOtherQualification" runat="server" SetLanguageCode="LabelRequiredField1" />
+                                                        </span></asp:PlaceHolder>
                                             </div>
                                             <div class="col-sm-1 col-xs-12">
                                                 <asp:label id="Label113" runat="server" AssociatedControlID="cbEducationAddGraduated">
@@ -2220,6 +2367,10 @@
                                                 <div class="form-input">
                                                     <asp:TextBox ID="tbEducationAddGraduatedCredits" runat="server" Enabled="true" CssClass="tbEducationAddGraduatedCredits" />
                                                 </div>
+                                                <asp:PlaceHolder ID="phEducationAddGraduatedCreditsError" runat="server" Visible="false"><span
+                                                            class="error-message">
+                                                            <JXTControl:ucLanguageLiteral ID="ltErrorAddEducationGraduatedCredits" runat="server" SetLanguageCode="LabelRequiredField1" />
+                                                        </span></asp:PlaceHolder>
                                             </div>
                                         </div>
                                         <div class="row date_wrap">
@@ -2449,7 +2600,7 @@
                                                         </div>
                                                         <asp:PlaceHolder ID="phCertificateMembershipNameError" runat="server" Visible="false">
                                                             <span class="error-message">
-                                                                <JXTControl:ucLanguageLiteral ID="ucCertificateMembershipNameError" runat="server"
+                                                                <JXTControl:ucLanguageLiteral ID="ltErrorCertificateMembershipName" runat="server"
                                                                     SetLanguageCode="LabelRequiredField1" />
                                                             </span></asp:PlaceHolder>
                                                     </div>
@@ -2464,7 +2615,7 @@
                                                         </div>
                                                         <asp:PlaceHolder ID="phCertificateAuthorityError" runat="server" Visible="false"><span
                                                             class="error-message">
-                                                            <JXTControl:ucLanguageLiteral ID="ucCertificateAuthorityError" runat="server" SetLanguageCode="LabelRequiredField1" />
+                                                            <JXTControl:ucLanguageLiteral ID="ltErrorCertificateAuthority" runat="server" SetLanguageCode="LabelRequiredField1" />
                                                         </span></asp:PlaceHolder>
                                                     </div>
                                                     <div class="col-sm-6 col-xs-12">
@@ -2474,6 +2625,10 @@
                                                         <div class="form-input">
                                                             <asp:TextBox ID="tbCertificateMembershipNumber" runat="server" CssClass="form-control"
                                                                 placeholder="tbCertificateMembershipNumber"  maxlength="100"/>
+                                                        <asp:PlaceHolder ID="phCertificateMembershipNumberError" runat="server" Visible="false"><span
+                                                            class="error-message">
+                                                            <JXTControl:ucLanguageLiteral ID="ltErrorCertificateMembershipNumber" runat="server" SetLanguageCode="ValidateNoHTMLContent" />
+                                                        </span></asp:PlaceHolder>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2485,6 +2640,10 @@
                                                         <div class="form-input">
                                                             <asp:TextBox ID="tbCertificateURL" runat="server" CssClass="form-control" placeholder="tbCertificateURL" maxlength="256" />
                                                         </div>
+                                                        <asp:PlaceHolder ID="phCertificateURLError" runat="server" Visible="false"><span
+                                                            class="error-message">
+                                                            <JXTControl:ucLanguageLiteral ID="ltErrorCertificateURL" runat="server" SetLanguageCode="ValidateNoHTMLContent" />
+                                                        </span></asp:PlaceHolder>
                                                     </div>
                                                 </div>
                                                 <div class="row certificate_validity_wrap">
@@ -2569,7 +2728,7 @@
                                                 </div>
                                                 <asp:PlaceHolder ID="phCertificateAddNameError" runat="server" Visible="false"><span
                                                     class="error-message">
-                                                    <JXTControl:ucLanguageLiteral ID="ucCertificateAddNameError" runat="server" SetLanguageCode="LabelRequiredField1" />
+                                                    <JXTControl:ucLanguageLiteral ID="ltErrorAddCertificateName" runat="server" SetLanguageCode="LabelRequiredField1" />
                                                 </span></asp:PlaceHolder>
                                             </div>
                                         </div>
@@ -2584,7 +2743,7 @@
                                                 </div>
                                                 <asp:PlaceHolder ID="phCertificateAddAuthorityError" runat="server" Visible="false">
                                                     <span class="error-message">
-                                                        <JXTControl:ucLanguageLiteral ID="ucCertificateeAddAuthorityError" runat="server"
+                                                        <JXTControl:ucLanguageLiteral ID="ltErrorAddCertificateAuthority" runat="server"
                                                             SetLanguageCode="LabelRequiredField1" />
                                                     </span></asp:PlaceHolder>
                                             </div>
@@ -2596,6 +2755,11 @@
                                                     <asp:TextBox ID="tbCertificateAddMembershipNumber" runat="server" CssClass="form-control"
                                                         placeholder="tbCertificateAddMembershipNumber" maxlength="100" />
                                                 </div>
+                                                <asp:PlaceHolder ID="phCertificateAddMembershipNumberError" runat="server" Visible="false">
+                                                    <span class="error-message">
+                                                        <JXTControl:ucLanguageLiteral ID="ltErrorAddCertificateMembershipNumber" runat="server"
+                                                            SetLanguageCode="ValidateNoHTMLContent" />
+                                                    </span></asp:PlaceHolder>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -2606,6 +2770,11 @@
                                                 <div class="form-input">
                                                     <asp:TextBox ID="tbCertificateAddURL" runat="server" CssClass="form-control" placeholder="tbCertificateAddURL"  maxlength="256"/>
                                                 </div>
+                                                <asp:PlaceHolder ID="phCertificateAddURLError" runat="server" Visible="false">
+                                                    <span class="error-message">
+                                                        <JXTControl:ucLanguageLiteral ID="ltErrorAddCertificateURL" runat="server"
+                                                            SetLanguageCode="ValidateNoHTMLContent" />
+                                                    </span></asp:PlaceHolder>
                                             </div>
                                         </div>
                                         <div class="row certificate_validity_wrap">
@@ -2749,7 +2918,7 @@
                                                             <asp:TextBox ID="tbLicenseName" runat="server" CssClass="form-control" placeholder="tbLicenseName" maxlength="100" />
                                                         </div>
                                                         <asp:PlaceHolder ID="phLicenseNameError" runat="server" Visible="false"><span class="error-message">
-                                                            <JXTControl:ucLanguageLiteral ID="ucLicenseNameError" runat="server" SetLanguageCode="LabelRequiredField1" />
+                                                            <JXTControl:ucLanguageLiteral ID="ltErrorLicenseName" runat="server" SetLanguageCode="LabelRequiredField1" />
                                                         </span></asp:PlaceHolder>
                                                     </div>
                                                 </div>
@@ -2762,7 +2931,7 @@
                                                             <asp:TextBox ID="tbLicenseType" runat="server" CssClass="form-control licenseTypeAutocomplete" placeholder="tbLicenseType" maxlength="200" />
                                                         </div>
                                                         <asp:PlaceHolder ID="phLicenseTypeError" runat="server" Visible="false"><span class="error-message">
-                                                            <JXTControl:ucLanguageLiteral ID="ucLicenseTypeError" runat="server" SetLanguageCode="LabelRequiredField1" />
+                                                            <JXTControl:ucLanguageLiteral ID="ltErrorLicenseType" runat="server" SetLanguageCode="LabelRequiredField1" />
                                                         </span></asp:PlaceHolder>
                                                     </div>
                                                 </div>
@@ -2786,6 +2955,9 @@
                                                         <div class="form-input">
                                                             <asp:TextBox ID="tbLicenseState" runat="server" CssClass="form-control" placeholder="tbLicenseState" maxlength="100" />
                                                         </div>
+                                                        <asp:PlaceHolder ID="phLicenseStateError" runat="server" Visible="false"><span class="error-message">
+                                                            <JXTControl:ucLanguageLiteral ID="ltErrorLicenseState" runat="server" SetLanguageCode="ValidateNoHTMLContent" />
+                                                        </span></asp:PlaceHolder>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -2854,7 +3026,7 @@
                                                 </div>
                                                 <asp:PlaceHolder ID="phLicenseAddNameError" runat="server" Visible="false"><span
                                                     class="error-message">
-                                                    <JXTControl:ucLanguageLiteral ID="ucLicenseAddNameError" runat="server" SetLanguageCode="LabelRequiredField1" />
+                                                    <JXTControl:ucLanguageLiteral ID="ltErrorAddLicenseName" runat="server" SetLanguageCode="LabelRequiredField1" />
                                                 </span></asp:PlaceHolder>
                                             </div>
                                         </div>
@@ -2868,7 +3040,7 @@
                                                 </div>
                                                 <asp:PlaceHolder ID="phLicenseAddTypeError" runat="server" Visible="false"><span
                                                     class="error-message">
-                                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral279" runat="server" SetLanguageCode="LabelRequiredField1" />
+                                                    <JXTControl:ucLanguageLiteral ID="ltErrorAddLicenseType" runat="server" SetLanguageCode="LabelRequiredField1" />
                                                 </span></asp:PlaceHolder>
                                             </div>
                                         </div>
@@ -2892,6 +3064,9 @@
                                                 <div class="form-input">
                                                     <asp:TextBox ID="tbLicenseAddState" runat="server" CssClass="form-control" placeholder="tbLicenseAddState" maxlength="100" />
                                                 </div>
+                                                <asp:PlaceHolder ID="phLicenseAddStateError" runat="server" Visible="false"><span class="error-message">
+                                                            <JXTControl:ucLanguageLiteral ID="ltErrorAddLicenseState" runat="server" SetLanguageCode="ValidateNoHTMLContent" />
+                                                        </span></asp:PlaceHolder>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -3397,7 +3572,7 @@
                                                         </div>
                                                         <asp:PlaceHolder ID="phReferencesPhoneError" runat="server" Visible="false"><span
                                                             class="error-message">
-                                                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral198" runat="server" SetLanguageCode="LabelRequiredField1" />
+                                                            <JXTControl:ucLanguageLiteral ID="ucReferencesPhoneError" runat="server" SetLanguageCode="LabelRequiredField1" />
                                                         </span></asp:PlaceHolder>
                                                     </div>
                                                 </div>
@@ -3507,7 +3682,7 @@
                                                 </div>
                                                 <asp:PlaceHolder ID="phReferencesAddPhoneError" runat="server" Visible="false"><span
                                                     class="error-message">
-                                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral185" runat="server" SetLanguageCode="LabelRequiredField1" />
+                                                    <JXTControl:ucLanguageLiteral ID="ucReferencesAddPhone" runat="server" SetLanguageCode="LabelRequiredField1" />
                                                 </span></asp:PlaceHolder>
                                             </div>
                                         </div>

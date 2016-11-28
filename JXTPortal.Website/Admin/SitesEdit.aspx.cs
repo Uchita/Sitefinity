@@ -144,18 +144,11 @@ public partial class SitesEdit : System.Web.UI.Page
 
             if ((flAdminSiteLogo.PostedFile != null) && flAdminSiteLogo.PostedFile.ContentLength > 0)
             {
-                //System.IO.MemoryStream objOutputMemorySTream = new System.IO.MemoryStream();
-
-                //byte[] abytFile = new byte[Convert.ToInt32(flAdminSiteLogo.PostedFile.ContentLength)];
-                //objOutputMemorySTream.Position = 0;
-                //objOutputMemorySTream.Read(abytFile, 0, abytFile.Length);
-
-                //Image objOriginalImage = Image.FromStream(objOutputMemorySTream);
-                System.Drawing.Image objOriginalImage = System.Drawing.Image.FromStream(flAdminSiteLogo.PostedFile.InputStream);
+                System.Drawing.Image originalImage = System.Drawing.Image.FromStream(flAdminSiteLogo.PostedFile.InputStream);
 
                 FtpClient ftpclient = new FtpClient();
                 string errormessage = string.Empty;
-                string extension = Utils.GetImageExtension(objOriginalImage);
+                string extension = Utils.GetImageExtension(originalImage);
                 ftpclient.Host = ConfigurationManager.AppSettings["FTPFileManager"];
                 ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
                 ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
@@ -302,7 +295,7 @@ public partial class SitesEdit : System.Web.UI.Page
             sitemap.site.sitename = s.SiteName;
             sitemap.site.siteurl = s.SiteUrl;
 
-            string strDynamicUrl = string.Empty;
+            string dynamicUrl = string.Empty;
             foreach (JXTPortal.Entities.DynamicPages dp in ldp)
             {
                 if (dp.ParentDynamicPageId == 0 && dp.Sequence == CampaignSequenceNumber)
@@ -312,10 +305,10 @@ public partial class SitesEdit : System.Web.UI.Page
                     // Only if checked to display on Sitemap.
                     if (dp.OnSiteMap)
                     {
-                        strDynamicUrl = dps.GetDynamicPageFullUrl(s.SiteUrl, dp, gs.WwwRedirect, gs.EnableSsl).ToLower();
+                        dynamicUrl = dps.GetDynamicPageFullUrl(s.SiteUrl, dp, gs.WwwRedirect, gs.EnableSsl).ToLower();
 
                         DynamicPageContainer dpc = new DynamicPageContainer();
-                        dpc.loc = strDynamicUrl;
+                        dpc.loc = dynamicUrl;
                         dpc.priority = (dp.PageName != null && dp.PageName.ToLower().Equals("homepage") ? "1" : "0.7");
                         dpc.changefreq = "weekly";
 

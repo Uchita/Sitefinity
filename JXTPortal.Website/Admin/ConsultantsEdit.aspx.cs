@@ -428,13 +428,7 @@ namespace JXTPortal.Website.Admin
 
                     if (fuImage.HasFile)
                     {
-                        System.IO.MemoryStream objOutputMemorySTream = new System.IO.MemoryStream();
-
-                        byte[] abytFile = new byte[Convert.ToInt32(fuImage.PostedFile.ContentLength)];
-                        objOutputMemorySTream.Position = 0;
-                        objOutputMemorySTream.Read(abytFile, 0, abytFile.Length);
-
-                        System.Drawing.Image objOriginalImage = System.Drawing.Image.FromStream(objOutputMemorySTream);
+                        System.Drawing.Image objOriginalImage = System.Drawing.Image.FromStream(fuImage.FileContent);
 
                         FtpClient ftpclient = new FtpClient();
                         string errormessage = string.Empty;
@@ -442,7 +436,7 @@ namespace JXTPortal.Website.Admin
                         ftpclient.Host = ConfigurationManager.AppSettings["FTPFileManager"];
                         ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
                         ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-                        ftpclient.UploadFileFromStream(objOutputMemorySTream, string.Format("{0}/{1}/Consultants_{2}.{3}", ftpclient.Host, ConfigurationManager.AppSettings["ConsultantsFolder"], consultant.ConsultantId, extension), out errormessage);
+                        ftpclient.UploadFileFromStream(fuImage.FileContent, string.Format("{0}/{1}/Consultants_{2}.{3}", ftpclient.Host, ConfigurationManager.AppSettings["ConsultantsFolder"], consultant.ConsultantId, extension), out errormessage);
 
                         if (string.IsNullOrWhiteSpace(errormessage))
                         {

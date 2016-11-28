@@ -568,7 +568,7 @@ namespace JXTPortal.Website.usercontrols.job
                                     hLinkJob.Text = job.JobName;
                                     hLinkJob.NavigateUrl = Utils.GetJobUrl(job.JobId, job.JobFriendlyName);
                                     hLinkProfession.Text = HttpUtility.HtmlEncode(ProfessionService.GetTranslatedProfession(job.ProfessionId, SessionData.Language.LanguageId, SessionData.Site.UseCustomProfessionRole).ProfessionName);
-                                    hLinkProfession.NavigateUrl = string.Format("/advancedsearch.aspx?search=1&amp;ProfessionID={0}", siteprofessions.Tables[0].Rows[0]["ProfessionID"]);
+                                    hLinkProfession.NavigateUrl = string.Format("/advancedsearch.aspx?search=1&ProfessionID={0}", siteprofessions.Tables[0].Rows[0]["ProfessionID"]);
 
                                     //if (!job.ShowSalaryRange)
                                     //{

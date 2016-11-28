@@ -54,7 +54,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-6">
-                        <a href="/advancedsearch.aspx?search=1&amp;retainsearch=1" class="backToResults"><span
+                        <a href="/advancedsearch.aspx?search=1&retainsearch=1" class="backToResults"><span
                             class="glyphicon glyphicon-chevron-left"></span>
                             <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral1" runat="server" SetLanguageCode="LinkButtonBackToResult" />
                         </a>

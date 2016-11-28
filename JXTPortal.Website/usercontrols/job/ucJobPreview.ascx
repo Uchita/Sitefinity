@@ -8,7 +8,7 @@
         <asp:HyperLink ID="hLinkProfession" runat="server" />
     </div>
     <div class="backtoresults">
-        <asp:PlaceHolder ID="phBackToResult" runat="server"><a href="/advancedsearch.aspx?search=1&amp;retainsearch=1">
+        <asp:PlaceHolder ID="phBackToResult" runat="server"><a href="/advancedsearch.aspx?search=1&retainsearch=1">
             <JXTControl:ucLanguageLiteral ID="ltUsername" runat="server" SetLanguageCode="LinkButtonBackToResult" />
         </a></asp:PlaceHolder>
     </div>

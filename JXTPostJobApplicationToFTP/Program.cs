@@ -28,13 +28,14 @@ namespace JXTPostJobApplicationToFTP
         {
             Console.WriteLine(string.Format("\n[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] ************ Started {0} *****************", DateTime.Now));
 
-            GetLoad();
+            List<int> memberids = null;
+            GetLoad(out memberids);
 
             Console.WriteLine(string.Format("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] ************ Finished {0} *****************\n", DateTime.Now));
 
             Console.WriteLine(string.Format("\n[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] ************ Started Member {0} *****************", DateTime.Now));
             MemberXMLGenerator mxg = new MemberXMLGenerator();
-            mxg.GenerateKellyMemberXML();
+            mxg.GenerateKellyMemberXML(memberids);
 
             Console.WriteLine(string.Format("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] ************ Finished Member {0} *****************\n", DateTime.Now));
             Trace.Flush();
@@ -45,8 +46,9 @@ namespace JXTPostJobApplicationToFTP
 
         }
 
-        protected static void GetLoad()
+        protected static void GetLoad(out List<int> memberIds)
         {
+            memberIds = new List<int>();
             // Loading from a file, you can also load from a stream
             var xml = XDocument.Load(ConfigurationManager.AppSettings["SitesXML"]);
 
@@ -118,9 +120,15 @@ namespace JXTPostJobApplicationToFTP
                                 jobApplications.Add(jobApplication);
                             }
                         }
+
                         if (jobApplications.Count > 0)
                         {
                             drValidJobApplication = jobApplications.ToArray();
+
+                            foreach (DataRow jobapplication in drValidJobApplication)
+                            {
+                                memberIds.Add(Convert.ToInt32(jobapplication["MemberID"].ToString()));
+                            }
                         }
                     }
                     else
@@ -157,7 +165,7 @@ namespace JXTPostJobApplicationToFTP
 
                 foreach (DataRow drApplication in drValidJobApplication)
                 {
-                    try
+                    try 
                     {
                         strApplicationID = drApplication["JobApplicationID"].ToString();
                         Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Application ID about to be uploaded:" + strApplicationID);

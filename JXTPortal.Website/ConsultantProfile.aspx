@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPages/CustomMain.Master" AutoEventWireup="true" CodeBehind="ConsultantProfile.aspx.cs" Inherits="JXTPortal.Website.ConsultantProfile" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <asp:Literal ID="ltlMetaContent" runat="server" />
     <link rel="stylesheet" href="//images.jxt.net.au/COMMON/newdash/lib/bootstrap.min.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

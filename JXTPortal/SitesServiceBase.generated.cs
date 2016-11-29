@@ -61,7 +61,8 @@ namespace JXTPortal
 		///<param name="_live"></param>
 		///<param name="_mobileEnabled"></param>
 		///<param name="_mobileUrl"></param>
-		public static Sites CreateSites(System.String _siteName, System.String _siteUrl, System.String _siteDescription, System.Byte[] _siteAdminLogo, System.DateTime _lastModified, System.Int32? _lastModifiedBy, System.Boolean? _live, System.Boolean _mobileEnabled, System.String _mobileUrl)
+		///<param name="_siteAdminLogoUrl"></param>
+		public static Sites CreateSites(System.String _siteName, System.String _siteUrl, System.String _siteDescription, System.Byte[] _siteAdminLogo, System.DateTime _lastModified, System.Int32? _lastModifiedBy, System.Boolean? _live, System.Boolean _mobileEnabled, System.String _mobileUrl, System.String _siteAdminLogoUrl)
 		{
 			Sites newEntitySites = new Sites();
 			newEntitySites.SiteName  = _siteName;
@@ -73,6 +74,7 @@ namespace JXTPortal
 			newEntitySites.Live  = _live;
 			newEntitySites.MobileEnabled  = _mobileEnabled;
 			newEntitySites.MobileUrl  = _mobileUrl;
+			newEntitySites.SiteAdminLogoUrl  = _siteAdminLogoUrl;
 			return newEntitySites;
 		}
 		#endregion Constructors
@@ -1581,9 +1583,10 @@ namespace JXTPortal
 		/// <param name="live"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileEnabled"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileUrl"> A <c>System.String</c> instance.</param>
+		/// <param name="siteAdminLogoUrl"> A <c>System.String</c> instance.</param>
 			/// <param name="siteId"> A <c>System.Int32?</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public virtual  void Insert(System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl, ref System.Int32? siteId)
+		public virtual  void Insert(System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl, System.String siteAdminLogoUrl, ref System.Int32? siteId)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -1603,7 +1606,7 @@ namespace JXTPortal
 				
 				transactionManager = ConnectionScope.ValidateOrCreateTransaction();
 				dataProvider = ConnectionScope.Current.DataProvider;
-				dataProvider.SitesProvider.Insert(transactionManager , siteName, siteUrl, siteDescription, siteAdminLogo, lastModified, lastModifiedBy, live, mobileEnabled, mobileUrl, ref siteId);
+				dataProvider.SitesProvider.Insert(transactionManager , siteName, siteUrl, siteDescription, siteAdminLogo, lastModified, lastModifiedBy, live, mobileEnabled, mobileUrl, siteAdminLogoUrl, ref siteId);
 	        
 				if (!isBorrowedTransaction && transactionManager != null && transactionManager.IsOpen)
 					transactionManager.Commit();
@@ -1635,11 +1638,12 @@ namespace JXTPortal
 		/// <param name="live"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileEnabled"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileUrl"> A <c>System.String</c> instance.</param>
+		/// <param name="siteAdminLogoUrl"> A <c>System.String</c> instance.</param>
 			/// <param name="siteId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public virtual  void Insert( System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl, ref System.Int32? siteId, int start, int pageLength)
+		public virtual  void Insert( System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl, System.String siteAdminLogoUrl, ref System.Int32? siteId, int start, int pageLength)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -1660,7 +1664,7 @@ namespace JXTPortal
 				transactionManager = ConnectionScope.ValidateOrCreateTransaction();
 				dataProvider = ConnectionScope.Current.DataProvider;
                 
-				dataProvider.SitesProvider.Insert(transactionManager, start, pageLength , siteName, siteUrl, siteDescription, siteAdminLogo, lastModified, lastModifiedBy, live, mobileEnabled, mobileUrl, ref siteId);
+				dataProvider.SitesProvider.Insert(transactionManager, start, pageLength , siteName, siteUrl, siteDescription, siteAdminLogo, lastModified, lastModifiedBy, live, mobileEnabled, mobileUrl, siteAdminLogoUrl, ref siteId);
 	        
 				if (!isBorrowedTransaction && transactionManager != null && transactionManager.IsOpen)
 					transactionManager.Commit();
@@ -1780,7 +1784,7 @@ namespace JXTPortal
 		/// </summary>
 		/// <remark>This method is generate from a stored procedure.</remark>
 		/// <returns>A <see cref="DataSet"/> instance.</returns>
-        public virtual TList<Sites> Get_List()
+		public virtual  DataSet Get_List()
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -1789,7 +1793,7 @@ namespace JXTPortal
 		
 			#region Initialisation
 			bool isBorrowedTransaction = false;
-            TList<Sites> result = null; 
+			DataSet result = null; 
 			TransactionManager transactionManager = null; 
 			NetTiersProvider dataProvider = null;
 			#endregion Initialisation
@@ -1825,7 +1829,7 @@ namespace JXTPortal
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
 		/// <returns>A <see cref="DataSet"/> instance.</returns>
-        public virtual TList<Sites> Get_List(int start, int pageLength)
+		public virtual  DataSet Get_List( int start, int pageLength)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -1834,7 +1838,7 @@ namespace JXTPortal
 		
 			#region Initialisation
 			bool isBorrowedTransaction = false;
-            TList<Sites> result = null; 
+			DataSet result = null; 
 			TransactionManager transactionManager = null; 
 			NetTiersProvider dataProvider = null;
 			#endregion Initialisation
@@ -1866,8 +1870,6 @@ namespace JXTPortal
 		#endregion 
 		
 		#region Sites_GetByMobileUrl
-		
-
 	
 		/// <summary>
 		///	This method wrap the 'Sites_GetByMobileUrl' stored procedure. 
@@ -1958,7 +1960,7 @@ namespace JXTPortal
                 if (DomainUtil.HandleException(exc, layerExceptionPolicy)) 
 					throw;
 				#endregion Handle transaction rollback and exception
-             }
+            }
 			
 			return result;		
 		}
@@ -2026,8 +2028,9 @@ namespace JXTPortal
 		/// <param name="live"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileEnabled"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileUrl"> A <c>System.String</c> instance.</param>
+		/// <param name="siteAdminLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public virtual  void Update(System.Int32? siteId, System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl)
+		public virtual  void Update(System.Int32? siteId, System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl, System.String siteAdminLogoUrl)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -2047,7 +2050,7 @@ namespace JXTPortal
 				
 				transactionManager = ConnectionScope.ValidateOrCreateTransaction();
 				dataProvider = ConnectionScope.Current.DataProvider;
-				dataProvider.SitesProvider.Update(transactionManager , siteId, siteName, siteUrl, siteDescription, siteAdminLogo, lastModified, lastModifiedBy, live, mobileEnabled, mobileUrl);
+				dataProvider.SitesProvider.Update(transactionManager , siteId, siteName, siteUrl, siteDescription, siteAdminLogo, lastModified, lastModifiedBy, live, mobileEnabled, mobileUrl, siteAdminLogoUrl);
 	        
 				if (!isBorrowedTransaction && transactionManager != null && transactionManager.IsOpen)
 					transactionManager.Commit();
@@ -2080,10 +2083,11 @@ namespace JXTPortal
 		/// <param name="live"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileEnabled"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileUrl"> A <c>System.String</c> instance.</param>
+		/// <param name="siteAdminLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public virtual  void Update( System.Int32? siteId, System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl, int start, int pageLength)
+		public virtual  void Update( System.Int32? siteId, System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl, System.String siteAdminLogoUrl, int start, int pageLength)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -2104,7 +2108,7 @@ namespace JXTPortal
 				transactionManager = ConnectionScope.ValidateOrCreateTransaction();
 				dataProvider = ConnectionScope.Current.DataProvider;
                 
-				dataProvider.SitesProvider.Update(transactionManager, start, pageLength , siteId, siteName, siteUrl, siteDescription, siteAdminLogo, lastModified, lastModifiedBy, live, mobileEnabled, mobileUrl);
+				dataProvider.SitesProvider.Update(transactionManager, start, pageLength , siteId, siteName, siteUrl, siteDescription, siteAdminLogo, lastModified, lastModifiedBy, live, mobileEnabled, mobileUrl, siteAdminLogoUrl);
 	        
 				if (!isBorrowedTransaction && transactionManager != null && transactionManager.IsOpen)
 					transactionManager.Commit();
@@ -2336,9 +2340,10 @@ namespace JXTPortal
 		/// <param name="live"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileEnabled"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileUrl"> A <c>System.String</c> instance.</param>
+		/// <param name="siteAdminLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
 		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public virtual  DataSet Find(System.Boolean? searchUsingOr, System.Int32? siteId, System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl)
+		public virtual  DataSet Find(System.Boolean? searchUsingOr, System.Int32? siteId, System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl, System.String siteAdminLogoUrl)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -2358,7 +2363,7 @@ namespace JXTPortal
 				
 				transactionManager = ConnectionScope.ValidateOrCreateTransaction(noTranByDefault);
 				dataProvider = ConnectionScope.Current.DataProvider;
-				result = dataProvider.SitesProvider.Find(transactionManager , searchUsingOr, siteId, siteName, siteUrl, siteDescription, siteAdminLogo, lastModified, lastModifiedBy, live, mobileEnabled, mobileUrl);
+				result = dataProvider.SitesProvider.Find(transactionManager , searchUsingOr, siteId, siteName, siteUrl, siteDescription, siteAdminLogo, lastModified, lastModifiedBy, live, mobileEnabled, mobileUrl, siteAdminLogoUrl);
 	        
 			}
             catch (Exception exc)
@@ -2390,11 +2395,12 @@ namespace JXTPortal
 		/// <param name="live"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileEnabled"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="mobileUrl"> A <c>System.String</c> instance.</param>
+		/// <param name="siteAdminLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
 		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public virtual  DataSet Find( System.Boolean? searchUsingOr, System.Int32? siteId, System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl, int start, int pageLength)
+		public virtual  DataSet Find( System.Boolean? searchUsingOr, System.Int32? siteId, System.String siteName, System.String siteUrl, System.String siteDescription, System.Byte[] siteAdminLogo, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.Boolean? live, System.Boolean? mobileEnabled, System.String mobileUrl, System.String siteAdminLogoUrl, int start, int pageLength)
 		{
 			#region Security check
 			// throws security exception if not authorized
@@ -2415,7 +2421,7 @@ namespace JXTPortal
 				transactionManager = ConnectionScope.ValidateOrCreateTransaction(noTranByDefault);
 				dataProvider = ConnectionScope.Current.DataProvider;
                 
-				result = dataProvider.SitesProvider.Find(transactionManager, start, pageLength , searchUsingOr, siteId, siteName, siteUrl, siteDescription, siteAdminLogo, lastModified, lastModifiedBy, live, mobileEnabled, mobileUrl);
+				result = dataProvider.SitesProvider.Find(transactionManager, start, pageLength , searchUsingOr, siteId, siteName, siteUrl, siteDescription, siteAdminLogo, lastModified, lastModifiedBy, live, mobileEnabled, mobileUrl, siteAdminLogoUrl);
 	        
 			}
             catch (Exception exc)
@@ -2667,8 +2673,6 @@ namespace JXTPortal
 		#endregion 
 		
 		#region Sites_GetByLastModifiedBy
-		
-
 	
 		/// <summary>
 		///	This method wrap the 'Sites_GetByLastModifiedBy' stored procedure. 

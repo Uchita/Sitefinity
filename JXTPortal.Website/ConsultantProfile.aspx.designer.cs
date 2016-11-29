@@ -13,6 +13,15 @@ namespace JXTPortal.Website {
     public partial class ConsultantProfile {
         
         /// <summary>
+        /// ltlMetaContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlMetaContent;
+        
+        /// <summary>
         /// ltlSystemDynamicPage control.
         /// </summary>
         /// <remarks>

@@ -17,6 +17,8 @@ using JXTPortal.Entities;
 using JXTPortal;
 
 using System.Web.Script.Serialization;
+using JXTPortal.Common;
+using System.IO;
 #endregion
 
 public partial class SitesEdit : System.Web.UI.Page
@@ -123,10 +125,6 @@ public partial class SitesEdit : System.Web.UI.Page
             site.MobileUrl = txtSiteURL.Text.ToLower().Replace("http://", string.Empty).Replace("www.", string.Empty);
 
             site.Live = chkLive.Checked;
-            if ((flAdminSiteLogo.PostedFile != null) && flAdminSiteLogo.PostedFile.ContentLength > 0)
-            {
-                site.SiteAdminLogo = this.getArray(this.flAdminSiteLogo.PostedFile);
-            }
 
             if (SiteId > 0)
             {
@@ -143,6 +141,26 @@ public partial class SitesEdit : System.Web.UI.Page
                 //TODO : Remove AddDefaultGlobalSettings function
                 //AddDefaultGlobalSettings(site.SiteId);
             }
+
+            if ((flAdminSiteLogo.PostedFile != null) && flAdminSiteLogo.PostedFile.ContentLength > 0)
+            {
+                System.Drawing.Image originalImage = System.Drawing.Image.FromStream(flAdminSiteLogo.PostedFile.InputStream);
+
+                FtpClient ftpclient = new FtpClient();
+                string errormessage = string.Empty;
+                string extension = Utils.GetImageExtension(originalImage);
+                ftpclient.Host = ConfigurationManager.AppSettings["FTPFileManager"];
+                ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+                ftpclient.UploadFileFromStream(flAdminSiteLogo.PostedFile.InputStream, string.Format("{0}/{1}/Sites_{2}.{3}", ftpclient.Host, ConfigurationManager.AppSettings["SitesFolder"], site.SiteId, extension), out errormessage);
+
+                if (string.IsNullOrWhiteSpace(errormessage))
+                {
+                    site.SiteAdminLogoUrl = string.Format("Sites_{0}.{1}", site.SiteId, extension);
+                    SitesService.Update(site);
+                }
+            }
+
         }
         catch (Exception ex)
         {
@@ -189,7 +207,18 @@ public partial class SitesEdit : System.Web.UI.Page
                     //txtMobileUrl.Text = site.MobileUrl.ToLower();
                     txtStagingSiteUrl.Text = String.Format("{0}{1}", site.SiteUrl.ToLower(), URLPOSTFIX);
                     chkLive.Checked = site.Live.Value;
-                    imgSiteLogo.ImageUrl = String.Format("GetAdminLogo.aspx?SiteID={0}", siteID);
+
+                    if (!string.IsNullOrWhiteSpace(site.SiteAdminLogoUrl))
+                    {
+                        imgSiteLogo.ImageUrl = string.Format("/media/{0}/{1}", ConfigurationManager.AppSettings["SitesFolder"], site.SiteAdminLogoUrl);
+                    }
+                    else
+                    {
+                        if (site.SiteAdminLogo != null)
+                        {
+                            imgSiteLogo.ImageUrl = String.Format("GetAdminLogo.aspx?SiteID={0}", siteID);
+                        }
+                    }
                 }
             }
         }
@@ -266,7 +295,7 @@ public partial class SitesEdit : System.Web.UI.Page
             sitemap.site.sitename = s.SiteName;
             sitemap.site.siteurl = s.SiteUrl;
 
-            string strDynamicUrl = string.Empty;
+            string dynamicUrl = string.Empty;
             foreach (JXTPortal.Entities.DynamicPages dp in ldp)
             {
                 if (dp.ParentDynamicPageId == 0 && dp.Sequence == CampaignSequenceNumber)
@@ -276,10 +305,10 @@ public partial class SitesEdit : System.Web.UI.Page
                     // Only if checked to display on Sitemap.
                     if (dp.OnSiteMap)
                     {
-                        strDynamicUrl = dps.GetDynamicPageFullUrl(s.SiteUrl, dp, gs.WwwRedirect, gs.EnableSsl).ToLower();
+                        dynamicUrl = dps.GetDynamicPageFullUrl(s.SiteUrl, dp, gs.WwwRedirect, gs.EnableSsl).ToLower();
 
                         DynamicPageContainer dpc = new DynamicPageContainer();
-                        dpc.loc = strDynamicUrl;
+                        dpc.loc = dynamicUrl;
                         dpc.priority = (dp.PageName != null && dp.PageName.ToLower().Equals("homepage") ? "1" : "0.7");
                         dpc.changefreq = "weekly";
 

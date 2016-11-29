@@ -121,6 +121,20 @@ namespace JXTPortal.Website.advertiser
             }
         }
 
+        private SitesService _sitesService = null;
+
+        private SitesService SitesService
+        {
+            get
+            {
+                if (_sitesService == null)
+                {
+                    _sitesService = new SitesService();
+                }
+                return _sitesService;
+            }
+        }
+
         private JobItemsTypeService _jobitemstypeService = null;
 
         private JobItemsTypeService JobItemsTypeService
@@ -388,7 +402,7 @@ namespace JXTPortal.Website.advertiser
         {
             string text = System.IO.File.ReadAllText(Server.MapPath("~") + "App_GlobalResources\\InvoiceDetail.txt");
             string advertisername = string.Empty;
-            string advertiserlogo = string.Empty;
+            string siteslogo = string.Empty;
             string clientname = string.Empty;
             string clientaddress = string.Empty;
             string clientemail = string.Empty;
@@ -413,8 +427,21 @@ namespace JXTPortal.Website.advertiser
                                 if (adv != null && adv.SiteId == SessionData.Site.SiteId)
                                 {
                                     advertisername = HttpUtility.HtmlEncode(adv.CompanyName);
-                                    
-                                    advertiserlogo = string.Format("<img src='http://jxt1.com.jxt1.com/admin/getadminlogo.aspx?siteid={0}' alt='{1}' />", SessionData.Site.SiteId, SessionData.Site.SiteName.Replace("'", ""));
+
+                                    using (JXTPortal.Entities.Sites site = SitesService.GetBySiteId(adv.SiteId.Value))
+                                    {
+                                        if (string.IsNullOrWhiteSpace(site.SiteAdminLogoUrl))
+                                        {
+                                            if (site.SiteAdminLogo != null)
+                                            {
+                                                siteslogo = string.Format("<img src='http://jxt1.com.jxt1.com/admin/getadminlogo.aspx?siteid={0}' alt='{1}' />", SessionData.Site.SiteId, SessionData.Site.SiteName.Replace("'", ""));
+                                            }
+                                        }
+                                        else
+                                        {
+                                            siteslogo = string.Format("<img src='http://jxt1.com.jxt1.com/media/{0}/{1}' alt='{1}' />", ConfigurationManager.AppSettings["SitesFolder"], site.SiteAdminLogoUrl);
+                                        }
+                                    }
                                     
                                     clientname = adv.CompanyName;
                                     clientaddress = HttpUtility.HtmlEncode(string.Format("{0} {1}", adv.StreetAddress1, adv.StreetAddress2));
@@ -478,7 +505,7 @@ namespace JXTPortal.Website.advertiser
                 }
             }
 
-            string html = string.Format(text, advertisername, OrderID, advertiserlogo, siteinfo, clientname, clientaddress, clientemail, dateofinvoice, invoicebody, subtotal, taxlabel, tax, grandtotal, footer);
+            string html = string.Format(text, advertisername, OrderID, siteslogo, siteinfo, clientname, clientaddress, clientemail, dateofinvoice, invoicebody, subtotal, taxlabel, tax, grandtotal, footer);
 
             byte[] file = new PDFCreator().ConvertHTMLToPDF(html);
 

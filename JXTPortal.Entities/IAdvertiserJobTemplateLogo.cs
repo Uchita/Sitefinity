@@ -33,6 +33,11 @@ namespace JXTPortal.Entities
 		/// JobTemplateLogo : 
 		/// </summary>
 		System.Byte[]  JobTemplateLogo  { get; set; }
+		
+		/// <summary>
+		/// JobTemplateLogoUrl : 
+		/// </summary>
+		System.String  JobTemplateLogoUrl  { get; set; }
 			
 		/// <summary>
 		/// Creates a new object that is a copy of the current instance.

@@ -329,6 +329,19 @@ namespace JXTPortal.Website
                         }
                     }
                 }
+                string consultantimageurl = string.Empty;
+                if (!string.IsNullOrWhiteSpace(consultant.ConsultantImageUrl))
+                {
+                    consultantimageurl = string.Format("/media/{0}/{1}", ConfigurationManager.AppSettings["ConsultantsFolder"], consultant.ConsultantImageUrl);
+                }
+                else
+                {
+                    if (consultant.ImageUrl != null)
+                    {
+                        consultantimageurl = "/getfile.aspx?consultantid=" + consultant.ConsultantId;
+                    }
+                }
+
 
                 strRSS.Append(String.Format(@"
                 <consultant>
@@ -380,7 +393,7 @@ namespace JXTPortal.Website
                 (!string.IsNullOrWhiteSpace(MultiCategories)) ? MultiCategories : consultant.Categories,
                 (!string.IsNullOrWhiteSpace(MultiLocation)) ? MultiLocation : consultant.Location,
                 consultant.FriendlyUrl,
-                (!string.IsNullOrWhiteSpace(MultiShortDescription)) ? MultiShortDescription: consultant.ShortDescription,
+                (!string.IsNullOrWhiteSpace(MultiShortDescription)) ? MultiShortDescription : consultant.ShortDescription,
                 (!string.IsNullOrWhiteSpace(MultiTestimonial)) ? MultiTestimonial : consultant.Testimonial,
                 (!string.IsNullOrWhiteSpace(MultiFullDescription)) ? MultiFullDescription : consultant.FullDescription,
                 consultant.ConsultantData,
@@ -391,7 +404,7 @@ namespace JXTPortal.Website
                 consultant.Link,
                 consultant.WechatUrl,
                 consultant.FeaturedTeamMember,
-                (consultant.ImageUrl != null) ? "/getfile.aspx?consultantid=" + consultant.ConsultantId : string.Empty,
+                consultantimageurl,
                 consultant.VideoUrl,
                 consultant.BlogRss,
                 consultant.NewsRss,

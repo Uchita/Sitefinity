@@ -58,6 +58,11 @@ namespace JXTPortal.Entities
 		/// DocumentTypeID : 
 		/// </summary>
 		System.Int32?  DocumentTypeId  { get; set; }
+		
+		/// <summary>
+		/// MemberFileUrl : 
+		/// </summary>
+		System.String  MemberFileUrl  { get; set; }
 			
 		/// <summary>
 		/// Creates a new object that is a copy of the current instance.

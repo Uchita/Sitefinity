@@ -69,9 +69,16 @@ namespace JXTPortal.Website.usercontrols.advertiser
                     litCompanyName.Text = advertiser.CompanyName;
                     hlWebAddress.NavigateUrl = "http://" + advertiser.WebAddress;
                     hlWebAddress.Text = advertiser.WebAddress;
-                    if (advertiser.AdvertiserLogo != null)
+                    if (advertiser.AdvertiserLogo != null || string.IsNullOrWhiteSpace(advertiser.AdvertiserLogoUrl) == false)
                     {
-                        imgAdvertiserLogo.ImageUrl = "/getfile.aspx?advertiserid=" + AdvertiserID.ToString();
+                        if (!string.IsNullOrWhiteSpace(advertiser.AdvertiserLogoUrl))
+                        {
+                            imgAdvertiserLogo.ImageUrl = string.Format(@"/media/{0}/{1}", ConfigurationManager.AppSettings["AdvertisersFolder"], advertiser.AdvertiserLogoUrl);
+                        }
+                        else
+                        {
+                            imgAdvertiserLogo.ImageUrl = "/getfile.aspx?advertiserid=" + AdvertiserID.ToString();
+                        }
                     }
                     else
                     {

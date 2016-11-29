@@ -252,7 +252,7 @@ namespace JXTPortal.Data.Bases
 					c.LastModifiedByAdminUserId = (Convert.IsDBNull(row["LastModifiedByAdminUserId"]))?(int)0:(System.Int32?)row["LastModifiedByAdminUserId"];
 					c.JobItemTypeId = (Convert.IsDBNull(row["JobItemTypeID"]))?(int)0:(System.Int32?)row["JobItemTypeID"];
 					c.ApplicationMethod = (Convert.IsDBNull(row["ApplicationMethod"]))?(int)0:(System.Int32?)row["ApplicationMethod"];
-					c.ApplicationUrl = (Convert.IsDBNull(row["ApplicationURL"]))?string.Empty:(System.String)row["ApplicationURL"];
+					c.ApplicationUrl = (Convert.IsDBNull(row["ApplicationUrl"]))?string.Empty:(System.String)row["ApplicationUrl"];
 					c.UploadMethod = (Convert.IsDBNull(row["UploadMethod"]))?(int)0:(System.Int32?)row["UploadMethod"];
 					c.Tags = (Convert.IsDBNull(row["Tags"]))?string.Empty:(System.String)row["Tags"];
 					c.JobTemplateId = (Convert.IsDBNull(row["JobTemplateID"]))?(int)0:(System.Int32?)row["JobTemplateID"];
@@ -282,6 +282,7 @@ namespace JXTPortal.Data.Bases
 					c.Profile = (Convert.IsDBNull(row["Profile"]))?string.Empty:(System.String)row["Profile"];
 					c.RequireLogonForExternalApplication = (Convert.IsDBNull(row["RequireLogonForExternalApplication"]))?false:(System.Boolean)row["RequireLogonForExternalApplication"];
 					c.AdvertiserLogo = (Convert.IsDBNull(row["AdvertiserLogo"]))?new byte[] {}:(System.Byte[])row["AdvertiserLogo"];
+					c.AdvertiserLogoUrl = (Convert.IsDBNull(row["AdvertiserLogoUrl"]))?string.Empty:(System.String)row["AdvertiserLogoUrl"];
 					c.SiteWorkTypeName = (Convert.IsDBNull(row["SiteWorkTypeName"]))?string.Empty:(System.String)row["SiteWorkTypeName"];
 					c.CurrencySymbol = (Convert.IsDBNull(row["CurrencySymbol"]))?string.Empty:(System.String)row["CurrencySymbol"];
 					c.SalaryUpperBand = (Convert.IsDBNull(row["SalaryUpperBand"]))?0.0m:(System.Decimal)row["SalaryUpperBand"];
@@ -385,7 +386,7 @@ namespace JXTPortal.Data.Bases
 					entity.ApplicationMethod = (reader.IsDBNull(((int)ViewJobsArchiveColumn.ApplicationMethod)))?null:(System.Int32?)reader[((int)ViewJobsArchiveColumn.ApplicationMethod)];
 					//entity.ApplicationMethod = (Convert.IsDBNull(reader["ApplicationMethod"]))?(int)0:(System.Int32?)reader["ApplicationMethod"];
 					entity.ApplicationUrl = (reader.IsDBNull(((int)ViewJobsArchiveColumn.ApplicationUrl)))?null:(System.String)reader[((int)ViewJobsArchiveColumn.ApplicationUrl)];
-					//entity.ApplicationUrl = (Convert.IsDBNull(reader["ApplicationURL"]))?string.Empty:(System.String)reader["ApplicationURL"];
+					//entity.ApplicationUrl = (Convert.IsDBNull(reader["ApplicationUrl"]))?string.Empty:(System.String)reader["ApplicationUrl"];
 					entity.UploadMethod = (reader.IsDBNull(((int)ViewJobsArchiveColumn.UploadMethod)))?null:(System.Int32?)reader[((int)ViewJobsArchiveColumn.UploadMethod)];
 					//entity.UploadMethod = (Convert.IsDBNull(reader["UploadMethod"]))?(int)0:(System.Int32?)reader["UploadMethod"];
 					entity.Tags = (reader.IsDBNull(((int)ViewJobsArchiveColumn.Tags)))?null:(System.String)reader[((int)ViewJobsArchiveColumn.Tags)];
@@ -444,6 +445,8 @@ namespace JXTPortal.Data.Bases
 					//entity.RequireLogonForExternalApplication = (Convert.IsDBNull(reader["RequireLogonForExternalApplication"]))?false:(System.Boolean)reader["RequireLogonForExternalApplication"];
 					entity.AdvertiserLogo = (reader.IsDBNull(((int)ViewJobsArchiveColumn.AdvertiserLogo)))?null:(System.Byte[])reader[((int)ViewJobsArchiveColumn.AdvertiserLogo)];
 					//entity.AdvertiserLogo = (Convert.IsDBNull(reader["AdvertiserLogo"]))?new byte[] {}:(System.Byte[])reader["AdvertiserLogo"];
+					entity.AdvertiserLogoUrl = (reader.IsDBNull(((int)ViewJobsArchiveColumn.AdvertiserLogoUrl)))?null:(System.String)reader[((int)ViewJobsArchiveColumn.AdvertiserLogoUrl)];
+					//entity.AdvertiserLogoUrl = (Convert.IsDBNull(reader["AdvertiserLogoUrl"]))?string.Empty:(System.String)reader["AdvertiserLogoUrl"];
 					entity.SiteWorkTypeName = (reader.IsDBNull(((int)ViewJobsArchiveColumn.SiteWorkTypeName)))?null:(System.String)reader[((int)ViewJobsArchiveColumn.SiteWorkTypeName)];
 					//entity.SiteWorkTypeName = (Convert.IsDBNull(reader["SiteWorkTypeName"]))?string.Empty:(System.String)reader["SiteWorkTypeName"];
 					entity.CurrencySymbol = (System.String)reader[((int)ViewJobsArchiveColumn.CurrencySymbol)];
@@ -547,7 +550,7 @@ namespace JXTPortal.Data.Bases
 			entity.ApplicationMethod = (reader.IsDBNull(((int)ViewJobsArchiveColumn.ApplicationMethod)))?null:(System.Int32?)reader[((int)ViewJobsArchiveColumn.ApplicationMethod)];
 			//entity.ApplicationMethod = (Convert.IsDBNull(reader["ApplicationMethod"]))?(int)0:(System.Int32?)reader["ApplicationMethod"];
 			entity.ApplicationUrl = (reader.IsDBNull(((int)ViewJobsArchiveColumn.ApplicationUrl)))?null:(System.String)reader[((int)ViewJobsArchiveColumn.ApplicationUrl)];
-			//entity.ApplicationUrl = (Convert.IsDBNull(reader["ApplicationURL"]))?string.Empty:(System.String)reader["ApplicationURL"];
+			//entity.ApplicationUrl = (Convert.IsDBNull(reader["ApplicationUrl"]))?string.Empty:(System.String)reader["ApplicationUrl"];
 			entity.UploadMethod = (reader.IsDBNull(((int)ViewJobsArchiveColumn.UploadMethod)))?null:(System.Int32?)reader[((int)ViewJobsArchiveColumn.UploadMethod)];
 			//entity.UploadMethod = (Convert.IsDBNull(reader["UploadMethod"]))?(int)0:(System.Int32?)reader["UploadMethod"];
 			entity.Tags = (reader.IsDBNull(((int)ViewJobsArchiveColumn.Tags)))?null:(System.String)reader[((int)ViewJobsArchiveColumn.Tags)];
@@ -606,6 +609,8 @@ namespace JXTPortal.Data.Bases
 			//entity.RequireLogonForExternalApplication = (Convert.IsDBNull(reader["RequireLogonForExternalApplication"]))?false:(System.Boolean)reader["RequireLogonForExternalApplication"];
 			entity.AdvertiserLogo = (reader.IsDBNull(((int)ViewJobsArchiveColumn.AdvertiserLogo)))?null:(System.Byte[])reader[((int)ViewJobsArchiveColumn.AdvertiserLogo)];
 			//entity.AdvertiserLogo = (Convert.IsDBNull(reader["AdvertiserLogo"]))?new byte[] {}:(System.Byte[])reader["AdvertiserLogo"];
+			entity.AdvertiserLogoUrl = (reader.IsDBNull(((int)ViewJobsArchiveColumn.AdvertiserLogoUrl)))?null:(System.String)reader[((int)ViewJobsArchiveColumn.AdvertiserLogoUrl)];
+			//entity.AdvertiserLogoUrl = (Convert.IsDBNull(reader["AdvertiserLogoUrl"]))?string.Empty:(System.String)reader["AdvertiserLogoUrl"];
 			entity.SiteWorkTypeName = (reader.IsDBNull(((int)ViewJobsArchiveColumn.SiteWorkTypeName)))?null:(System.String)reader[((int)ViewJobsArchiveColumn.SiteWorkTypeName)];
 			//entity.SiteWorkTypeName = (Convert.IsDBNull(reader["SiteWorkTypeName"]))?string.Empty:(System.String)reader["SiteWorkTypeName"];
 			entity.CurrencySymbol = (System.String)reader[((int)ViewJobsArchiveColumn.CurrencySymbol)];
@@ -679,7 +684,7 @@ namespace JXTPortal.Data.Bases
 			entity.LastModifiedByAdminUserId = (Convert.IsDBNull(dataRow["LastModifiedByAdminUserId"]))?(int)0:(System.Int32?)dataRow["LastModifiedByAdminUserId"];
 			entity.JobItemTypeId = (Convert.IsDBNull(dataRow["JobItemTypeID"]))?(int)0:(System.Int32?)dataRow["JobItemTypeID"];
 			entity.ApplicationMethod = (Convert.IsDBNull(dataRow["ApplicationMethod"]))?(int)0:(System.Int32?)dataRow["ApplicationMethod"];
-			entity.ApplicationUrl = (Convert.IsDBNull(dataRow["ApplicationURL"]))?string.Empty:(System.String)dataRow["ApplicationURL"];
+			entity.ApplicationUrl = (Convert.IsDBNull(dataRow["ApplicationUrl"]))?string.Empty:(System.String)dataRow["ApplicationUrl"];
 			entity.UploadMethod = (Convert.IsDBNull(dataRow["UploadMethod"]))?(int)0:(System.Int32?)dataRow["UploadMethod"];
 			entity.Tags = (Convert.IsDBNull(dataRow["Tags"]))?string.Empty:(System.String)dataRow["Tags"];
 			entity.JobTemplateId = (Convert.IsDBNull(dataRow["JobTemplateID"]))?(int)0:(System.Int32?)dataRow["JobTemplateID"];
@@ -709,6 +714,7 @@ namespace JXTPortal.Data.Bases
 			entity.Profile = (Convert.IsDBNull(dataRow["Profile"]))?string.Empty:(System.String)dataRow["Profile"];
 			entity.RequireLogonForExternalApplication = (Convert.IsDBNull(dataRow["RequireLogonForExternalApplication"]))?false:(System.Boolean)dataRow["RequireLogonForExternalApplication"];
 			entity.AdvertiserLogo = (Convert.IsDBNull(dataRow["AdvertiserLogo"]))?new byte[] {}:(System.Byte[])dataRow["AdvertiserLogo"];
+			entity.AdvertiserLogoUrl = (Convert.IsDBNull(dataRow["AdvertiserLogoUrl"]))?string.Empty:(System.String)dataRow["AdvertiserLogoUrl"];
 			entity.SiteWorkTypeName = (Convert.IsDBNull(dataRow["SiteWorkTypeName"]))?string.Empty:(System.String)dataRow["SiteWorkTypeName"];
 			entity.CurrencySymbol = (Convert.IsDBNull(dataRow["CurrencySymbol"]))?string.Empty:(System.String)dataRow["CurrencySymbol"];
 			entity.SalaryUpperBand = (Convert.IsDBNull(dataRow["SalaryUpperBand"]))?0.0m:(System.Decimal)dataRow["SalaryUpperBand"];

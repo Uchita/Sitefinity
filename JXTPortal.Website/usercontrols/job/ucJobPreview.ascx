@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ucJobPreview.ascx.cs"
-    Inherits="JXTPortal.Website.usercontrols.job.ucJobPreview" %>
+    Inherits="JXTPortal.Website.usercontrols.job.ucJobPreview" %>   
     <asp:Literal ID="litJobExpired" runat="server" />
 <div class="jobdetail-top">
     <div class="job-detailtop-title">

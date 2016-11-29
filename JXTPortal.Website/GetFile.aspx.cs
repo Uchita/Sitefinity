@@ -7,6 +7,9 @@ using System.Web.UI.WebControls;
 using System.Drawing;
 using JXTPortal.Entities;
 using System.Data;
+using System.Configuration;
+using JXTPortal.Common;
+using System.IO;
 
 namespace JXTPortal.Website
 {
@@ -222,17 +225,40 @@ namespace JXTPortal.Website
                 DataSet ds = AdvertisersService.CustomGetAllAdvertisers(SessionData.Site.SiteId, AdvertiserID);
                 if (ds != null && ds.Tables[0].Rows.Count > 0)
                 {
-                    if (advertiser != null && advertiser.AdvertiserLogo != null)
+                    if (advertiser != null && (string.IsNullOrWhiteSpace(advertiser.AdvertiserLogoUrl) == false || advertiser.AdvertiserLogo != null))
                     {
                         System.Drawing.Image objOriginalImage = null;
                         string contenttype = string.Empty;
+                        byte[] advertiserlogo = null;
 
-                        if (JXTPortal.Common.Utils.IsValidUploadImage("", advertiser.AdvertiserLogo, out objOriginalImage, out contenttype))
+                        if (!string.IsNullOrWhiteSpace(advertiser.AdvertiserLogoUrl))
+                        {
+                            string errormessage = string.Empty;
+
+                            FtpClient ftpclient = new FtpClient();
+                            ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
+                            ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                            ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+
+                            string filepath = string.Format("{0}{1}/{2}/{3}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["RootFolder"], ConfigurationManager.AppSettings["AdvertisersFolder"], advertiser.AdvertiserLogoUrl);
+                            Stream ms = null;
+                            ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
+                            ms.Position = 0;
+
+                            advertiserlogo = ((MemoryStream)ms).ToArray();
+
+                        }
+                        else
+                        {
+                            advertiserlogo = advertiser.AdvertiserLogo;
+                        }
+
+                        if (JXTPortal.Common.Utils.IsValidUploadImage("", advertiserlogo, out objOriginalImage, out contenttype))
                         {
                             Response.ContentType = contenttype;
                         }
 
-                        Response.BinaryWrite(advertiser.AdvertiserLogo);
+                        Response.BinaryWrite(advertiserlogo);
                         Response.End();
                     }
                     else
@@ -261,7 +287,7 @@ namespace JXTPortal.Website
                     Response.End();
                 }
 
-                
+
             }
 
         }
@@ -276,10 +302,10 @@ namespace JXTPortal.Website
         /// </summary>
         private void CreateAdvertiserJobTemplateLogo()
         {
-            using (JXTPortal.Entities.AdvertiserJobTemplateLogo advertiserJobTemplateLogo = 
+            using (JXTPortal.Entities.AdvertiserJobTemplateLogo advertiserJobTemplateLogo =
                 AdvertiserJobTemplateLogoService.GetByAdvertiserJobTemplateLogoId(AdvertiserJobTemplateLogoID))
             {
-                if (advertiserJobTemplateLogo != null && advertiserJobTemplateLogo.JobTemplateLogo != null)
+                if (advertiserJobTemplateLogo != null && (string.IsNullOrWhiteSpace(advertiserJobTemplateLogo.JobTemplateLogoUrl) == false || advertiserJobTemplateLogo.JobTemplateLogo != null))
                 {
                     using (JXTPortal.Entities.Advertisers advertiser = AdvertisersService.GetByAdvertiserId(advertiserJobTemplateLogo.AdvertiserId))
                     {
@@ -290,12 +316,36 @@ namespace JXTPortal.Website
                             System.Drawing.Image objOriginalImage = null;
                             string contenttype = string.Empty;
 
-                            if (JXTPortal.Common.Utils.IsValidUploadImage("", advertiserJobTemplateLogo.JobTemplateLogo, out objOriginalImage, out contenttype))
+                            byte[] jobtemplatelogo = null;
+
+                            if (!string.IsNullOrWhiteSpace(advertiserJobTemplateLogo.JobTemplateLogoUrl))
+                            {
+                                string errormessage = string.Empty;
+
+                                FtpClient ftpclient = new FtpClient();
+                                ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
+                                ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                                ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+
+                                string filepath = string.Format("{0}{1}/{2}/{3}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["RootFolder"], ConfigurationManager.AppSettings["AdvertiserJobTemplateLogoFolder"], advertiserJobTemplateLogo.JobTemplateLogoUrl);
+                                Stream ms = null;
+                                ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
+                                ms.Position = 0;
+
+                                jobtemplatelogo = ((MemoryStream)ms).ToArray();
+
+                            }
+                            else
+                            {
+                                jobtemplatelogo = advertiserJobTemplateLogo.JobTemplateLogo;
+                            }
+
+                            if (JXTPortal.Common.Utils.IsValidUploadImage("", jobtemplatelogo, out objOriginalImage, out contenttype))
                             {
                                 Response.ContentType = contenttype;
                             }
 
-                            Response.BinaryWrite(advertiserJobTemplateLogo.JobTemplateLogo);
+                            Response.BinaryWrite(jobtemplatelogo);
                             Response.End();
                         }
                     }
@@ -311,7 +361,7 @@ namespace JXTPortal.Website
             using (JXTPortal.Entities.JobTemplates jobTemplate = JobTemplatesService.GetByJobTemplateId(JobTemplateID))
             {
                 // Check if part of the site.
-                if (jobTemplate != null && jobTemplate.JobTemplateLogo != null)
+                if (jobTemplate != null && (string.IsNullOrWhiteSpace(jobTemplate.JobTemplateLogoUrl) == false || jobTemplate.JobTemplateLogo != null))
                 {
                     using (JXTPortal.Entities.Advertisers advertiser = AdvertisersService.GetByAdvertiserId(jobTemplate.AdvertiserId))
                     {
@@ -322,12 +372,37 @@ namespace JXTPortal.Website
                             System.Drawing.Image objOriginalImage = null;
                             string contenttype = string.Empty;
 
-                            if (JXTPortal.Common.Utils.IsValidUploadImage("", jobTemplate.JobTemplateLogo, out objOriginalImage, out contenttype))
+                            byte[] jobtemplatelogo = null;
+
+                            if (!string.IsNullOrWhiteSpace(jobTemplate.JobTemplateLogoUrl))
+                            {
+                                string errormessage = string.Empty;
+
+                                FtpClient ftpclient = new FtpClient();
+                                ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
+                                ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                                ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+
+                                string filepath = string.Format("{0}{1}/{2}/{3}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["RootFolder"], ConfigurationManager.AppSettings["JobTemplatesFolder"], jobTemplate.JobTemplateLogoUrl);
+                                Stream ms = null;
+                                ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
+                                ms.Position = 0;
+
+                                jobtemplatelogo = ((MemoryStream)ms).ToArray();
+
+                            }
+                            else
+                            {
+                                jobtemplatelogo = jobTemplate.JobTemplateLogo;
+                            }
+
+
+                            if (JXTPortal.Common.Utils.IsValidUploadImage("", jobtemplatelogo, out objOriginalImage, out contenttype))
                             {
                                 Response.ContentType = contenttype;
                             }
 
-                            Response.BinaryWrite(jobTemplate.JobTemplateLogo);
+                            Response.BinaryWrite(jobtemplatelogo);
                             Response.End();
                         }
                     }
@@ -366,12 +441,36 @@ namespace JXTPortal.Website
                         System.Drawing.Image objOriginalImage = null;
                         string contenttype = string.Empty;
 
-                        if (JXTPortal.Common.Utils.IsValidUploadImage("", consultant.ImageUrl, out objOriginalImage, out contenttype))
+                        byte[] consultantimage = null;
+
+                        if (!string.IsNullOrWhiteSpace(consultant.ConsultantImageUrl))
+                        {
+                            string errormessage = string.Empty;
+
+                            FtpClient ftpclient = new FtpClient();
+                            ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
+                            ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                            ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+
+                            string filepath = string.Format("{0}{1}/{2}/{3}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["RootFolder"], ConfigurationManager.AppSettings["ConsultantsFolder"], consultant.ConsultantImageUrl);
+                            Stream ms = null;
+                            ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
+                            ms.Position = 0;
+
+                            consultantimage = ((MemoryStream)ms).ToArray();
+
+                        }
+                        else
+                        {
+                            consultantimage = consultant.ImageUrl;
+                        }
+
+                        if (JXTPortal.Common.Utils.IsValidUploadImage("", consultantimage, out objOriginalImage, out contenttype))
                         {
                             Response.ContentType = contenttype;
                         }
 
-                        Response.BinaryWrite(consultant.ImageUrl);
+                        Response.BinaryWrite(consultantimage);
                         Response.End();
                     }
                 }

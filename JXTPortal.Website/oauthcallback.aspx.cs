@@ -117,6 +117,20 @@ namespace JXTPortal.Website
                 return _integrationsService;
             }
         }
+
+        private SitesService _sitesService;
+        private SitesService SitesService
+        {
+            get
+            {
+                if (_sitesService == null)
+                {
+                    _sitesService = new SitesService();
+                }
+
+                return _sitesService;
+            }
+        }
         #endregion
 
         public bool AcceptAllCertifications(object sender, System.Security.Cryptography.X509Certificates.X509Certificate certification, System.Security.Cryptography.X509Certificates.X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors)
@@ -253,7 +267,7 @@ namespace JXTPortal.Website
 
                             // Retrieve value from JobsViewed Cookie, the format is {JobID}|{Domain},...
                             string domain = Utils.GetCookieDomain(Request.Cookies["JobsViewed"], newjobapp.JobId.Value);
-                            
+
                             using (Entities.Jobs job = JobsService.GetByJobId(jobid))
                             {
                                 if (job != null)
@@ -425,7 +439,7 @@ namespace JXTPortal.Website
 
                         byte[] bytes = System.Convert.FromBase64String(data);
                         MemoryStream generatedDocument = new MemoryStream(bytes);
-                        
+
                         string filename = string.Format("{0}_Resume_{1}", newjobapp.JobApplicationId, DocumentName);
 
                         newjobapp.MemberResumeFile = filename;
@@ -783,7 +797,19 @@ namespace JXTPortal.Website
                             }
                             else if (Request.Params["cbaction"].ToLower() == "apply")
                             {
-                                string strUrl = Page.ResolveUrl("~/GetAdminLogo.aspx?SiteID=" + SessionData.Site.SiteId.ToString());
+                                string strUrl = string.Empty;
+                                using (Entities.Sites site = SitesService.GetBySiteId(SessionData.Site.SiteId))
+                                {
+                                    if (!string.IsNullOrWhiteSpace(site.SiteAdminLogoUrl))
+                                    {
+                                        strUrl = string.Format("/media/{0}/{1}", ConfigurationManager.AppSettings["SitesFolder"], site.SiteAdminLogoUrl);
+                                    }
+                                    else
+                                    {
+                                        strUrl = Page.ResolveUrl("~/GetAdminLogo.aspx?SiteID=" + SessionData.Site.SiteId.ToString());
+                                    }
+                                }
+
                                 string strHTML = _oauth.oAuth2GetProfileHTML(userinfo, strUrl); // TODO: Construct HTML for facebook resume
 
                                 ApplyJob(strHTML, "Facebook", "Facebook.docx");
@@ -1097,7 +1123,19 @@ namespace JXTPortal.Website
                         }
                         else if (callbackAction == PortalEnums.SocialMedia.OAuthCallbackAction.Apply)
                         {
-                            string strUrl = Page.ResolveUrl("~/GetAdminLogo.aspx?SiteID=" + SessionData.Site.SiteId.ToString());
+                            string strUrl = string.Empty;
+                            using (Entities.Sites site = SitesService.GetBySiteId(SessionData.Site.SiteId))
+                            {
+                                if (!string.IsNullOrWhiteSpace(site.SiteAdminLogoUrl))
+                                {
+                                    strUrl = string.Format("/media/{0}/{1}", ConfigurationManager.AppSettings["SitesFolder"], site.SiteAdminLogoUrl);
+                                }
+                                else
+                                {
+                                    strUrl = Page.ResolveUrl("~/GetAdminLogo.aspx?SiteID=" + SessionData.Site.SiteId.ToString());
+                                }
+                            }
+
                             string strHTML = _oauth.oAuth2GetProfileHTML(accessToken, strUrl);
 
                             ApplyJob(strHTML, "LinkedIn", "LinkedIn.docx");

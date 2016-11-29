@@ -150,6 +150,22 @@ namespace JXTPortal.Website.usercontrols.job
             }
         }
 
+
+        private SiteSalaryTypeService _sitesalaryService = null;
+
+        public SiteSalaryTypeService SiteSalaryService
+        {
+
+            get
+            {
+                if (_sitesalaryService == null)
+                {
+                    _sitesalaryService = new SiteSalaryTypeService();
+                }
+                return _sitesalaryService;
+            }
+        }
+
         private GlobalSettingsService GlobalSettingsService
         {
             get
@@ -514,7 +530,7 @@ namespace JXTPortal.Website.usercontrols.job
  (viewJobSearch.ShowSalaryRange) ? string.Format("{0}{1} - {0}{2:#,###} {3}",
  viewJobSearch.CurrencySymbol,
  (viewJobSearch.SalaryLowerBand == 0) ? "0" : viewJobSearch.SalaryLowerBand.ToString("#,###"),
- viewJobSearch.SalaryUpperBand, viewJobSearch.SalaryTypeName) : viewJobSearch.SalaryTypeName,
+ viewJobSearch.SalaryUpperBand, SiteSalaryService.Get_TranslatedSalaryType(SessionData.Site.SiteId, viewJobSearch.SalaryTypeId).SalaryTypeName) : SiteSalaryService.Get_TranslatedSalaryType(SessionData.Site.SiteId, viewJobSearch.SalaryTypeId).SalaryTypeName,
  viewJobSearch.WorkTypeName,
  strJobDescription,
  strAdvertiserLogo,
@@ -631,7 +647,7 @@ namespace JXTPortal.Website.usercontrols.job
  (viewJobSearch.ShowSalaryRange) ? string.Format("{0}{1} - {0}{2:#,###} {3}",  
  viewJobSearch.CurrencySymbol,  
  (viewJobSearch.SalaryLowerBand == 0) ? "0" : viewJobSearch.SalaryLowerBand.ToString("#,###"),
- viewJobSearch.SalaryUpperBand, viewJobSearch.SalaryTypeName) : viewJobSearch.SalaryTypeName,
+ viewJobSearch.SalaryUpperBand, SiteSalaryService.Get_TranslatedSalaryType(SessionData.Site.SiteId, viewJobSearch.SalaryTypeId).SalaryTypeName) : SiteSalaryService.Get_TranslatedSalaryType(SessionData.Site.SiteId, viewJobSearch.SalaryTypeId).SalaryTypeName,
  viewJobSearch.WorkTypeName, 
  strJobDescription,
  strAdvertiserLogo, 

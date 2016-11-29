@@ -55,7 +55,7 @@ namespace JXTPostJobApplicationToFTP
         {
         }
 
-        public void GenerateKellyMemberXML()
+        public void GenerateKellyMemberXML(List<int> memberIds)
         {
             IEnumerable<SitesXML> siteXMLList;
             MembersService memberservice = new MembersService();
@@ -122,13 +122,20 @@ namespace JXTPostJobApplicationToFTP
 
                     DataRow[] drValidatedMembers = null;
 
-                    if (sitexml.Mode == "FullCandidate")
+                    if (memberIds.Count > 0)
                     {
-                        drValidatedMembers = dtMembers.Select("ISNULL(Title, '') <> '' AND ISNULL(FirstName, '') <> '' AND ISNULL(Surname, '') <> '' AND ISNULL(EmailAddress, '') <> '' AND ISNULL(HomePhone, '') <> '' AND ISNULL(Address1, '') <> ''");
+                        drValidatedMembers = dtMembers.Select("MemberID IN (" + string.Join(",", memberIds.ToArray()) + ")");
                     }
                     else
                     {
-                        drValidatedMembers = dtMembers.Select();
+                        if (sitexml.Mode == "FullCandidate")
+                        {
+                            drValidatedMembers = dtMembers.Select("ISNULL(Title, '') <> '' AND ISNULL(FirstName, '') <> '' AND ISNULL(Surname, '') <> '' AND ISNULL(EmailAddress, '') <> '' AND ISNULL(HomePhone, '') <> '' AND ISNULL(Address1, '') <> ''");
+                        }
+                        else
+                        {
+                            drValidatedMembers = dtMembers.Select();
+                        }
                     }
 
                     Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Number of Members: " + drValidatedMembers.Count().ToString());

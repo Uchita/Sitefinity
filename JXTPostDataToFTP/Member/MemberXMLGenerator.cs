@@ -500,7 +500,7 @@ ExceptionID: {4}",
 
 
                         //Empty memberfiles if it is PhysicalFile mode
-                        if (sitexml.mode == "PhysicalFile")
+                        if (sitexml.mode == "PhysicalFile" || sitexml.mode == "FullCandidate")
                         {
                             foreach (DataRow drmemberfile in thisMemberFiles)
                             {

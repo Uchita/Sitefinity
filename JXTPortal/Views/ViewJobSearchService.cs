@@ -51,7 +51,7 @@ namespace JXTPortal
                 {
                     AreaService areaService = new AreaService();
                     string translatedAreaName = areaService.GetTranslatedStringArea(viewJobSearch.AreaId, SessionData.Language.LanguageId);
-                    viewJobSearch.AreaName =  string.IsNullOrEmpty(translatedAreaName) ? viewJobSearch.AreaName : translatedAreaName;
+                    viewJobSearch.AreaName = string.IsNullOrEmpty(translatedAreaName) ? viewJobSearch.AreaName : translatedAreaName;
                     areaService = null;
 
                     ProfessionService professionService = new ProfessionService();
@@ -90,77 +90,99 @@ namespace JXTPortal
                                                           int? currencyId, decimal? salaryLowerBand, decimal? salaryUpperBand,
                                                           int? salaryTypeId, int? workTypeId, int? professionId,
                                                           string roleId, int? countryId, int? locationId,
-                                                          string areaId, DateTime? dateFrom, int languageId)
+                                                          string areaId, DateTime? dateFrom, int targetedTranslatedLanguageID)
         {
             DataSet dsSearch = base.GetBySearchFilterRedefine(keyword, siteId,
                                                                 advertiserId, currencyId, salaryTypeId,
                                                                 salaryLowerBand, salaryUpperBand,
                                                                 workTypeId, professionId,
                                                                 roleId, countryId, locationId, areaId, dateFrom, null);
-            //We don't translate english - TODO: please put the default languageid to constant
-            if (languageId != PortalConstants.DEFAULT_LANGUAGE_ID)
+            int lid = targetedTranslatedLanguageID;
+            if (System.Web.HttpContext.Current != null)
             {
-                int lid = languageId;
-                if (System.Web.HttpContext.Current != null)
-                {
-                    lid = SessionData.Language.LanguageId;
-                }
+                lid = SessionData.Language.LanguageId;
+            }
 
-                if (dsSearch.Tables.Count > 0 && dsSearch.Tables[0].Rows.Count > 0)
+            if (dsSearch.Tables.Count > 0 && dsSearch.Tables[0].Rows.Count > 0)
+            {
+                #region Services Initialize
+                AreaService aService = new AreaService();
+                SiteAreaService areaService = new SiteAreaService();
+                SiteProfessionService professionService = new SiteProfessionService();
+                LocationService lService = new LocationService();
+                SiteLocationService locationService = new SiteLocationService();
+                RolesService rService = new RolesService();
+                SiteRolesService rolesService = new SiteRolesService();
+                WorkTypeService workTypeService = new WorkTypeService();
+                #endregion
+
+                foreach (DataRow row in dsSearch.Tables[0].Rows)
                 {
-                    foreach (DataRow row in dsSearch.Tables[0].Rows)
+                    int RefineTypeID = Convert.ToInt32(row["RefineTypeID"]);
+                    int RefineID = Convert.ToInt32(row["RefineID"]);
+                    string TranslatedLabel = string.Empty;
+
+                    switch ((PortalEnums.Search.Redefine)RefineTypeID)
                     {
-                        int RefineTypeID = Convert.ToInt32(row["RefineTypeID"]);
-                        int RefineID = Convert.ToInt32(row["RefineID"]);
-                        string TranslatedLabel = string.Empty;
+                        case PortalEnums.Search.Redefine.Area:
+                        case PortalEnums.Search.Redefine.Location:
+                            //We translate only if the requested language is NOT the site's default language
+                            //The idea of this is because the SP above grabs the site's default values already and does not require translation
+                            if (targetedTranslatedLanguageID != SessionData.Site.DefaultLanguageId)
+                            {
+                                if (RefineTypeID == (int)PortalEnums.Search.Redefine.Area)
+                                {
+                                    TranslatedLabel = areaService.GetTranslatedArea(RefineID, aService.GetByAreaId(RefineID).LocationId, targetedTranslatedLanguageID, SessionData.Site.SiteId).SiteAreaName;
+                                }
+                                else if (RefineTypeID == (int)PortalEnums.Search.Redefine.Location)
+                                {
+                                    TranslatedLabel = locationService.GetTranslatedLocation(RefineID, lService.GetByLocationId(RefineID).CountryId, targetedTranslatedLanguageID).SiteLocationName;
+                                }
+                            }
+                            break;
+                        case PortalEnums.Search.Redefine.Classification:
+                        case PortalEnums.Search.Redefine.SubClassification:
+                        case PortalEnums.Search.Redefine.WorkType:
+                            //We don't translate english - TODO: please put the default languageid to constant
+                            if (targetedTranslatedLanguageID != PortalConstants.DEFAULT_LANGUAGE_ID)
+                            {
+                                if (RefineTypeID == (int)PortalEnums.Search.Redefine.Classification)
+                                {
+                                    TranslatedLabel = professionService.GetTranslatedProfessionById(RefineID, true, SessionData.Site.UseCustomProfessionRole).SiteProfessionName;
+                                }
+                                else if (RefineTypeID == (int)PortalEnums.Search.Redefine.SubClassification)
+                                {
+                                    TranslatedLabel = rolesService.GetTranslatedRolesById(RefineID, rService.GetByRoleId(RefineID).ProfessionId, SessionData.Site.UseCustomProfessionRole).SiteRoleName;
+                                }
+                                else if (RefineTypeID == (int)PortalEnums.Search.Redefine.WorkType)
+                                {
+                                    TranslatedLabel = workTypeService.GetTranslatedStringWorkType(RefineID, lid);
+                                }
+                            }
+                            break;
 
-                        if (RefineTypeID == (int)PortalEnums.Search.Redefine.Area)
-                        {
-                            AreaService aService = new AreaService();
-                            SiteAreaService areaService = new SiteAreaService();
-                            TranslatedLabel = areaService.GetTranslatedArea(RefineID, aService.GetByAreaId(RefineID).LocationId, SessionData.Site.SiteId).SiteAreaName;
-                            areaService = null;
-                        }
-                        else if (RefineTypeID == (int)PortalEnums.Search.Redefine.Classification)
-                        {
-                            SiteProfessionService professionService = new SiteProfessionService();
-                            TranslatedLabel = professionService.GetTranslatedProfessionById(RefineID, true, SessionData.Site.UseCustomProfessionRole).SiteProfessionName;
-                            professionService = null;
-                        }
-                        else if (RefineTypeID == (int)PortalEnums.Search.Redefine.Company)
-                        {
+                        case PortalEnums.Search.Redefine.Company:
                             //We don't translate company :)
-                        }
-                        else if (RefineTypeID == (int)PortalEnums.Search.Redefine.Location)
-                        {
-                            LocationService lService = new LocationService();
-                            SiteLocationService locationService = new SiteLocationService();
+                            break;
 
-                            TranslatedLabel = locationService.GetTranslatedLocation(RefineID, lService.GetByLocationId(RefineID).CountryId, lid).SiteLocationName;
-                            locationService = null;
-                            lService = null;
-                        }
-                        else if (RefineTypeID == (int)PortalEnums.Search.Redefine.SubClassification)
-                        {
-                            RolesService rService = new RolesService();
-                            SiteRolesService rolesService = new SiteRolesService();
-                            TranslatedLabel = rolesService.GetTranslatedRolesById(RefineID, rService.GetByRoleId(RefineID).ProfessionId, SessionData.Site.UseCustomProfessionRole).SiteRoleName;
-                            rolesService = null;
-                        }
-                        else if (RefineTypeID == (int)PortalEnums.Search.Redefine.WorkType)
-                        {
-                            WorkTypeService workTypeService = new WorkTypeService();
-                            TranslatedLabel = workTypeService.GetTranslatedStringWorkType(RefineID, lid);
-                            workTypeService = null;
-                        }
+                    }
 
-                        if (TranslatedLabel.Trim().Length > 0)
-                        {
-                            row["RefineLabel"] = TranslatedLabel;
-                        }
+                    if (TranslatedLabel.Trim().Length > 0)
+                    {
+                        row["RefineLabel"] = TranslatedLabel;
                     }
                 }
+
+                #region Close all services
+                areaService = null;
+                professionService = null;
+                locationService = null;
+                lService = null;
+                rolesService = null;
+                workTypeService = null;
+                #endregion
             }
+
 
             return dsSearch;
         }

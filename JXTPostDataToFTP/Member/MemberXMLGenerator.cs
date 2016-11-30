@@ -511,14 +511,15 @@ ExceptionID: {4}",
 
                                 MembersFilesList.Add(memberfile);
                             }
-
-                            thisMemberFiles = new DataRow[] { };
                         }
 
                         MemberXMLModel thisMemberXML = new MemberXMLModel(siteRefs, drMember, thisMemberFiles, thisMemberDirectorships, thisMemberExperiences, thisMemberEducations, thisMemberCerts, thisMemberLicenses, thisMemberRolePreference, thisMemberLanguages, thisMemberReferences, memberPoints, dateformat);
 
                         //TODO: Get File Contents to Base64
-                        SetFileContentsForMemberXML(siteID, thisMemberXML);
+                        if (sitexml.mode == "PhysicalFile" || sitexml.mode == "FullCandidate")
+                        {
+                            SetFileContentsForMemberXML(siteID, thisMemberXML);
+                        }
 
                         //TODO: Get Custom Questions and Answers
                         thisMemberXML.CustomQuestions = GetCustomQuestions(siteID, thisMemberID);

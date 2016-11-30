@@ -516,7 +516,7 @@ ExceptionID: {4}",
                         MemberXMLModel thisMemberXML = new MemberXMLModel(siteRefs, drMember, thisMemberFiles, thisMemberDirectorships, thisMemberExperiences, thisMemberEducations, thisMemberCerts, thisMemberLicenses, thisMemberRolePreference, thisMemberLanguages, thisMemberReferences, memberPoints, dateformat);
 
                         //TODO: Get File Contents to Base64
-                        if (sitexml.mode == "PhysicalFile" || sitexml.mode == "FullCandidate")
+                        if (string.IsNullOrEmpty(sitexml.mode))
                         {
                             SetFileContentsForMemberXML(siteID, thisMemberXML);
                         }

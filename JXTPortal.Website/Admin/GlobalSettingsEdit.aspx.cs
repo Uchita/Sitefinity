@@ -29,6 +29,7 @@ namespace JXTPortal.Website.Admin
         private GlobalSettingsService _globalsettingsservice;
         private DynamicPagesService _dynamicPagesService;
         private SiteCountriesService _siteCountriesService;
+        private CountriesService _countriesService;
         private JobItemsTypeService _jobItemTypeService;
         #endregion
 
@@ -85,6 +86,18 @@ namespace JXTPortal.Website.Admin
                     _siteCountriesService = new SiteCountriesService();
                 }
                 return _siteCountriesService;
+            }
+        }
+
+        public CountriesService CountriesService
+        {
+            get
+            {
+                if (_countriesService == null)
+                {
+                    _countriesService = new CountriesService();
+                }
+                return _countriesService;
             }
         }
 
@@ -335,11 +348,11 @@ namespace JXTPortal.Website.Admin
         private void LoadCountries()
         {
 
-            TList<JXTPortal.Entities.SiteCountries> siteCountries = SiteCountriesService.GetBySiteId(SessionData.Site.SiteId);
+            TList<JXTPortal.Entities.Countries> countries = CountriesService.GetAll();
 
-            dataCountry.DataTextField = "SiteCountryName";
+            dataCountry.DataTextField = "CountryName";
             dataCountry.DataValueField = "CountryID";
-            dataCountry.DataSource = siteCountries;
+            dataCountry.DataSource = countries;
             dataCountry.DataBind();
         }
 

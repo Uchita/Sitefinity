@@ -137,19 +137,18 @@ public partial class JobTemplatesEdit : System.Web.UI.Page
                 txtJobTemplateDescription.Text = template.JobTemplateDescription;
                 txtJobTemplateHTML.Text = template.JobTemplateHtml;
                 chkEducationGlobalTemplate.Checked = template.GlobalTemplate;
-                if (template.JobTemplateLogo.Length > 0 || string.IsNullOrWhiteSpace(template.JobTemplateLogoUrl) == false)
-                {
-                    imgAdvJobTemplateLogo.Visible = true;
-                }
 
                 if (string.IsNullOrWhiteSpace(template.JobTemplateLogoUrl))
                 {
                     imgAdvJobTemplateLogo.ImageUrl = Page.ResolveUrl("~/getfile.aspx") + "?jobtemplateid=" + Convert.ToString(JobTemplateId);
                 }
-                else
+                else if (template.JobTemplateLogo != null && template.JobTemplateLogo.Length > 0)
                 {
                     imgAdvJobTemplateLogo.ImageUrl = string.Format("/{0}/{1}/{2}", ConfigurationManager.AppSettings["RootFolder"], ConfigurationManager.AppSettings["JobTemplatesFolder"], template.JobTemplateLogoUrl);
                 }
+
+                //Only show the logo if there is one available
+                imgAdvJobTemplateLogo.Visible = !string.IsNullOrWhiteSpace(imgAdvJobTemplateLogo.ImageUrl);
 
                 JXTPortal.Website.CommonFunction.SetDropDownByValue(ddlAdvertiser, template.AdvertiserId.ToString());
 

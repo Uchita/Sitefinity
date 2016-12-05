@@ -224,6 +224,7 @@ namespace JXTPostDataToFTP.Models
                     IsDirectorship = thisDR["IsDirectorship"].ToString(),
                     City = thisDR["City"].ToString(),
                     CountryID = thisDR["CountryID"].ToString(),
+                    State = thisDR["State"].ToString()
                 };
                 WorkExperiences.Add(thisExperience);
             }
@@ -255,7 +256,9 @@ namespace JXTPostDataToFTP.Models
                     Major = thisDR["Major"].ToString(),
                     Present = thisDR["Present"].ToString(),
                     StartMonth = thisDR["StartMonth"].ToString(),
-                    EndMonth = thisDR["EndMonth"].ToString()
+                    EndMonth = thisDR["EndMonth"].ToString(),
+                    Graduated = thisDR["Graduated"].ToString(),
+                    GraduatedCredits = thisDR["NonGraduatedCredits"].ToString()
                 };
                 Educations.Add(thisEducation);
             }
@@ -300,8 +303,8 @@ namespace JXTPostDataToFTP.Models
                     MemberID = thisDR["MemberID"].ToString(),
                     MemberLicenseName = thisDR["MemberLicenseName"].ToString(),
                     LicenseType = thisDR["LicenseType"].ToString(),
-                    IssueDate = thisDR["IssueDate"].ToString(),
-                    ExpiryDate = thisDR["ExpiryDate"].ToString(),
+                    IssueDate = (string.IsNullOrEmpty(thisDR["IssueDate"].ToString()))?string.Empty : ((DateTime?)thisDR["IssueDate"]).Value.ToString(dateformat.Replace("dd", "")).Trim(new char[] {'/'}),
+                    ExpiryDate = (string.IsNullOrEmpty(thisDR["ExpiryDate"].ToString())) ? string.Empty : ((DateTime?)thisDR["ExpiryDate"]).Value.ToString(dateformat.Replace("dd", "")).Trim(new char[] { '/' }),
                     CountryID = thisDR["CountryID"].ToString(),
                     State = thisDR["State"].ToString(),
                     DoesNotExpire = thisDR["DoesNotExpire"].ToString(),
@@ -838,6 +841,7 @@ namespace JXTPostDataToFTP.Models
             [XmlIgnore]
             public string CountryID { get; set; }
             public string CountryName { get { return string.IsNullOrEmpty(CountryID) ? null : StaticSiteReference.GetCountryReference(int.Parse(CountryID)); } set { } }
+            public string State { get; set; }
         }
 
         public class MemberEducations
@@ -885,6 +889,8 @@ namespace JXTPostDataToFTP.Models
             public string Present { get; set; }
             public string StartMonth { get; set; }
             public string EndMonth { get; set; }
+            public string Graduated { get; set; }
+            public string GraduatedCredits { get; set; }
         }
 
         public class MemberCertificate

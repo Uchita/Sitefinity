@@ -16,7 +16,6 @@ using JXTPortal.EmailSender;
 using JXTPortal.Entities;
 using System.Web;
 using System.Web.Script.Serialization;
-using JXTPortal.EmailSender;
 
 namespace JXTJobScienceIntegration
 {
@@ -433,8 +432,8 @@ namespace JXTJobScienceIntegration
             {
                 continueToNextApplication = false;
                 int exceptionID = LogExceptionAndEmail(siteXML, JobApplicationID, ex);
+                errormessage = "ERROR: (" + exceptionID + ") " + ex.Message;
                 Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] ERROR: (" + exceptionID + ") " + ex.Message);
-
             }
 
             return continueToNextApplication;

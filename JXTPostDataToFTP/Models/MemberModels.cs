@@ -30,11 +30,11 @@ namespace JXTPostDataToFTP.Models
 
         public List<MemberCustomQuestion> CustomQuestions { get; set; }
 
-        public static string GetResourceValue(string key)
+        public static string GetResourceValue(string key, int languageId)
         {
             string value = key;
-
-            System.Resources.ResXResourceReader resourceReader = new ResXResourceReader(@".\Resources\language_1.resx");
+            
+            System.Resources.ResXResourceReader resourceReader = new ResXResourceReader(string.Format(@".\Resources\language_{0}.resx", languageId));
             foreach (DictionaryEntry entry in resourceReader)
             {
                 if (entry.Key.ToString() == key)
@@ -46,7 +46,7 @@ namespace JXTPostDataToFTP.Models
             return value;
         }
 
-        public static string GetEnumDescription(Enum currentEnum)
+        public static string GetEnumDescription(Enum currentEnum, int languageId)
         {
             string description = String.Empty;
             DescriptionAttribute da;
@@ -59,7 +59,7 @@ namespace JXTPostDataToFTP.Models
             else
                 description = currentEnum.ToString();
 
-            return GetResourceValue(description);
+            return GetResourceValue(description, languageId);
         }
 
         public MemberXMLModel()
@@ -641,9 +641,10 @@ namespace JXTPostDataToFTP.Models
 
                     JXTPortal.Entities.PortalEnums.Members.CurrentlySeeking thisStatus;
                     bool enumParseSuccess = Enum.TryParse<JXTPortal.Entities.PortalEnums.Members.CurrentlySeeking>(AvailabilityID, out thisStatus);
+                    int languageId = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultLanguageId"]);
 
                     if (enumParseSuccess)
-                        return GetEnumDescription(thisStatus);
+                        return GetEnumDescription(thisStatus, languageId);
                     else
                         return null;
                 }

@@ -68,6 +68,7 @@
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -79,6 +80,54 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\JXTPortal.Website\App_GlobalResources\CVBuilderResource.Designer.cs">
+      <Link>Resources\CVBuilderResource.Designer.cs</Link>
+    </Compile>
+    <Compile Include="..\JXTPortal.Website\App_GlobalResources\language_1.designer.cs">
+      <Link>Resources\language_1.designer.cs</Link>
+    </Compile>
+    <Compile Include="..\JXTPortal.Website\App_GlobalResources\language_10.designer.cs">
+      <Link>Resources\language_10.designer.cs</Link>
+    </Compile>
+    <Compile Include="..\JXTPortal.Website\App_GlobalResources\language_11.designer.cs">
+      <Link>Resources\language_11.designer.cs</Link>
+    </Compile>
+    <Compile Include="..\JXTPortal.Website\App_GlobalResources\language_12.designer.cs">
+      <Link>Resources\language_12.designer.cs</Link>
+    </Compile>
+    <Compile Include="..\JXTPortal.Website\App_GlobalResources\language_13.designer.cs">
+      <Link>Resources\language_13.designer.cs</Link>
+    </Compile>
+    <Compile Include="..\JXTPortal.Website\App_GlobalResources\language_2.Designer.cs">
+      <Link>Resources\language_2.Designer.cs</Link>
+    </Compile>
+    <Compile Include="..\JXTPortal.Website\App_GlobalResources\language_3.designer.cs">
+      <Link>Resources\language_3.designer.cs</Link>
+    </Compile>
+    <Compile Include="..\JXTPortal.Website\App_GlobalResources\language_4.designer.cs">
+      <Link>Resources\language_4.designer.cs</Link>
+    </Compile>
+    <Compile Include="..\JXTPortal.Website\App_GlobalResources\language_5.Designer.cs">
+      <Link>Resources\language_5.Designer.cs</Link>
+    </Compile>
+    <Compile Include="..\JXTPortal.Website\App_GlobalResources\language_5_Adecco.designer.cs">
+      <Link>Resources\language_5_Adecco.designer.cs</Link>
+    </Compile>
+    <Compile Include="..\JXTPortal.Website\App_GlobalResources\language_6.Designer.cs">
+      <Link>Resources\language_6.Designer.cs</Link>
+    </Compile>
+    <Compile Include="..\JXTPortal.Website\App_GlobalResources\language_7.designer.cs">
+      <Link>Resources\language_7.designer.cs</Link>
+    </Compile>
+    <Compile Include="..\JXTPortal.Website\App_GlobalResources\language_8.designer.cs">
+      <Link>Resources\language_8.designer.cs</Link>
+    </Compile>
+    <Compile Include="..\JXTPortal.Website\App_GlobalResources\language_9.designer.cs">
+      <Link>Resources\language_9.designer.cs</Link>
+    </Compile>
+    <Compile Include="..\JXTPortal.Website\App_GlobalResources\language_English_Test_Sample.designer.cs">
+      <Link>Resources\language_English_Test_Sample.designer.cs</Link>
+    </Compile>
     <Compile Include="Member\MemberXMLGenerator.cs" />
     <Compile Include="Models\MemberModels.cs" />
     <Compile Include="Program.cs" />
@@ -146,6 +195,58 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="..\JXTPortal.Website\App_GlobalResources\CVBuilderResource.resx">
+      <Link>Resources\CVBuilderResource.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\JXTPortal.Website\App_GlobalResources\language_1.resx">
+      <Link>Resources\language_1.resx</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\JXTPortal.Website\App_GlobalResources\language_10.resx">
+      <Link>Resources\language_10.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\JXTPortal.Website\App_GlobalResources\language_11.resx">
+      <Link>Resources\language_11.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\JXTPortal.Website\App_GlobalResources\language_12.resx">
+      <Link>Resources\language_12.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\JXTPortal.Website\App_GlobalResources\language_13.resx">
+      <Link>Resources\language_13.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\JXTPortal.Website\App_GlobalResources\language_2.resx">
+      <Link>Resources\language_2.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\JXTPortal.Website\App_GlobalResources\language_3.resx">
+      <Link>Resources\language_3.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\JXTPortal.Website\App_GlobalResources\language_4.resx">
+      <Link>Resources\language_4.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\JXTPortal.Website\App_GlobalResources\language_5.resx">
+      <Link>Resources\language_5.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\JXTPortal.Website\App_GlobalResources\language_5_Adecco.resx">
+      <Link>Resources\language_5_Adecco.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\JXTPortal.Website\App_GlobalResources\language_6.resx">
+      <Link>Resources\language_6.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\JXTPortal.Website\App_GlobalResources\language_7.resx">
+      <Link>Resources\language_7.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\JXTPortal.Website\App_GlobalResources\language_8.resx">
+      <Link>Resources\language_8.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\JXTPortal.Website\App_GlobalResources\language_9.resx">
+      <Link>Resources\language_9.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\JXTPortal.Website\App_GlobalResources\language_English_Test_Sample.resx">
+      <Link>Resources\language_English_Test_Sample.resx</Link>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

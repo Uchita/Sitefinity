@@ -2,12 +2,12 @@
 <sites>
     <site>
         <SiteId>281</SiteId>
-      <host>remote-contracts.wetafx.co.nz</host>
-      <FolderPath>//incoming//</FolderPath>
-      <username>jxt</username>
-      <password>fush1234</password>
-      <sftp>1</sftp>
-      <port>22</port>
+      <host>ftp://10.0.20.87/testing3</host>
+      <FolderPath></FolderPath>
+      <username>jxtupload</username>
+      <password>jobx123</password>
+      <sftp>0</sftp>
+      <port>21</port>
       <LastModifiedDate>1/1/2016</LastModifiedDate>
       <ExceptionID></ExceptionID>
     

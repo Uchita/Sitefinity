@@ -89,9 +89,11 @@ namespace JXTPortal.Entities
 		///<param name="_lastModified"></param>
 		///<param name="_jobTemplateLogo"></param>
 		///<param name="_advertiserId"></param>
+		///<param name="_jobTemplateLogoUrl"></param>
 		public JobTemplatesBase(System.Int32? _siteId, System.String _jobTemplateDescription, 
 			System.String _jobTemplateHtml, System.Boolean _globalTemplate, System.Int32 _lastModifiedBy, 
-			System.DateTime _lastModified, System.Byte[] _jobTemplateLogo, System.Int32 _advertiserId)
+			System.DateTime _lastModified, System.Byte[] _jobTemplateLogo, System.Int32 _advertiserId, 
+			System.String _jobTemplateLogoUrl)
 		{
 			this.entityData = new JobTemplatesEntityData();
 			this.backupData = null;
@@ -104,6 +106,7 @@ namespace JXTPortal.Entities
 			this.LastModified = _lastModified;
 			this.JobTemplateLogo = _jobTemplateLogo;
 			this.AdvertiserId = _advertiserId;
+			this.JobTemplateLogoUrl = _jobTemplateLogoUrl;
 		}
 		
 		///<summary>
@@ -117,9 +120,11 @@ namespace JXTPortal.Entities
 		///<param name="_lastModified"></param>
 		///<param name="_jobTemplateLogo"></param>
 		///<param name="_advertiserId"></param>
+		///<param name="_jobTemplateLogoUrl"></param>
 		public static JobTemplates CreateJobTemplates(System.Int32? _siteId, System.String _jobTemplateDescription, 
 			System.String _jobTemplateHtml, System.Boolean _globalTemplate, System.Int32 _lastModifiedBy, 
-			System.DateTime _lastModified, System.Byte[] _jobTemplateLogo, System.Int32 _advertiserId)
+			System.DateTime _lastModified, System.Byte[] _jobTemplateLogo, System.Int32 _advertiserId, 
+			System.String _jobTemplateLogoUrl)
 		{
 			JobTemplates newJobTemplates = new JobTemplates();
 			newJobTemplates.SiteId = _siteId;
@@ -130,6 +135,7 @@ namespace JXTPortal.Entities
 			newJobTemplates.LastModified = _lastModified;
 			newJobTemplates.JobTemplateLogo = _jobTemplateLogo;
 			newJobTemplates.AdvertiserId = _advertiserId;
+			newJobTemplates.JobTemplateLogoUrl = _jobTemplateLogoUrl;
 			return newJobTemplates;
 		}
 				
@@ -457,6 +463,41 @@ namespace JXTPortal.Entities
 			}
 		}
 		
+		/// <summary>
+		/// 	Gets or sets the JobTemplateLogoUrl property. 
+		///		
+		/// </summary>
+		/// <value>This type is nvarchar.</value>
+		/// <remarks>
+		/// This property can be set to null. 
+		/// </remarks>
+
+
+
+
+		[DescriptionAttribute(@""), System.ComponentModel.Bindable( System.ComponentModel.BindableSupport.Yes)]
+		[DataObjectField(false, false, true, 1000)]
+		public virtual System.String JobTemplateLogoUrl
+		{
+			get
+			{
+				return this.entityData.JobTemplateLogoUrl; 
+			}
+			
+			set
+			{
+				if (this.entityData.JobTemplateLogoUrl == value)
+					return;
+					
+				OnColumnChanging(JobTemplatesColumn.JobTemplateLogoUrl, this.entityData.JobTemplateLogoUrl);
+				this.entityData.JobTemplateLogoUrl = value;
+				if (this.EntityState == EntityState.Unchanged)
+					this.EntityState = EntityState.Changed;
+				OnColumnChanged(JobTemplatesColumn.JobTemplateLogoUrl, this.entityData.JobTemplateLogoUrl);
+				OnPropertyChanged("JobTemplateLogoUrl");
+			}
+		}
+		
 		#endregion Data Properties		
 
 		#region Source Foreign Key Property
@@ -535,6 +576,8 @@ namespace JXTPortal.Entities
 				new ValidationRuleArgs("JobTemplateDescription", "Job Template Description"));
 			ValidationRules.AddRule( CommonRules.StringMaxLength, 
 				new CommonRules.MaxLengthRuleArgs("JobTemplateDescription", "Job Template Description", 255));
+			ValidationRules.AddRule( CommonRules.StringMaxLength, 
+				new CommonRules.MaxLengthRuleArgs("JobTemplateLogoUrl", "Job Template Logo Url", 1000));
 		}
    		#endregion
 		
@@ -556,7 +599,7 @@ namespace JXTPortal.Entities
 		{
 			get
 			{
-				return new string[] {"JobTemplateID", "SiteID", "JobTemplateDescription", "JobTemplateHTML", "GlobalTemplate", "LastModifiedBy", "LastModified", "JobTemplateLogo", "AdvertiserID"};
+				return new string[] {"JobTemplateID", "SiteID", "JobTemplateDescription", "JobTemplateHTML", "GlobalTemplate", "LastModifiedBy", "LastModified", "JobTemplateLogo", "AdvertiserID", "JobTemplateLogoUrl"};
 			}
 		}
 		#endregion 
@@ -713,6 +756,7 @@ namespace JXTPortal.Entities
 				copy.LastModified = this.LastModified;
 				copy.JobTemplateLogo = this.JobTemplateLogo;
 				copy.AdvertiserId = this.AdvertiserId;
+				copy.JobTemplateLogoUrl = this.JobTemplateLogoUrl;
 			
 			if (this.AdvertiserIdSource != null && existingCopies.Contains(this.AdvertiserIdSource))
 				copy.AdvertiserIdSource = existingCopies[this.AdvertiserIdSource] as Advertisers;
@@ -878,6 +922,8 @@ namespace JXTPortal.Entities
 					return entityData.JobTemplateLogo != _originalData.JobTemplateLogo;
 					case JobTemplatesColumn.AdvertiserId:
 					return entityData.AdvertiserId != _originalData.AdvertiserId;
+					case JobTemplatesColumn.JobTemplateLogoUrl:
+					return entityData.JobTemplateLogoUrl != _originalData.JobTemplateLogoUrl;
 			
 				default:
 					return false;
@@ -914,6 +960,7 @@ namespace JXTPortal.Entities
 			result = result || entityData.LastModified != _originalData.LastModified;
 			result = result || entityData.JobTemplateLogo != _originalData.JobTemplateLogo;
 			result = result || entityData.AdvertiserId != _originalData.AdvertiserId;
+			result = result || entityData.JobTemplateLogoUrl != _originalData.JobTemplateLogoUrl;
 			return result;
 		}	
 		
@@ -931,7 +978,8 @@ namespace JXTPortal.Entities
 				_originalData.LastModifiedBy,
 				_originalData.LastModified,
 				_originalData.JobTemplateLogo,
-				_originalData.AdvertiserId
+				_originalData.AdvertiserId,
+				_originalData.JobTemplateLogoUrl
 				);
 				
 			return (JobTemplates)this.Clone();
@@ -969,7 +1017,8 @@ namespace JXTPortal.Entities
 					this.LastModifiedBy.GetHashCode() ^ 
 					this.LastModified.GetHashCode() ^ 
 					((this.JobTemplateLogo == null) ? string.Empty : this.JobTemplateLogo.ToString()).GetHashCode() ^ 
-					this.AdvertiserId.GetHashCode();
+					this.AdvertiserId.GetHashCode() ^ 
+					((this.JobTemplateLogoUrl == null) ? string.Empty : this.JobTemplateLogoUrl.ToString()).GetHashCode();
         }
 		
 		///<summary>
@@ -1041,6 +1090,15 @@ namespace JXTPortal.Entities
 			}
 			if (Object1.AdvertiserId != Object2.AdvertiserId)
 				equal = false;
+			if ( Object1.JobTemplateLogoUrl != null && Object2.JobTemplateLogoUrl != null )
+			{
+				if (Object1.JobTemplateLogoUrl != Object2.JobTemplateLogoUrl)
+					equal = false;
+			}
+			else if (Object1.JobTemplateLogoUrl == null ^ Object2.JobTemplateLogoUrl == null )
+			{
+				equal = false;
+			}
 					
 			return equal;
 		}
@@ -1131,6 +1189,12 @@ namespace JXTPortal.Entities
             	
             	case JobTemplatesColumn.AdvertiserId:
             		return this.AdvertiserId.CompareTo(rhs.AdvertiserId);
+            		
+            		                 
+            	
+            	
+            	case JobTemplatesColumn.JobTemplateLogoUrl:
+            		return this.JobTemplateLogoUrl.CompareTo(rhs.JobTemplateLogoUrl);
             		
             		                 
             }
@@ -1267,7 +1331,7 @@ namespace JXTPortal.Entities
 		public override string ToString()
 		{
 			return string.Format(System.Globalization.CultureInfo.InvariantCulture,
-				"{10}{9}- JobTemplateId: {0}{9}- SiteId: {1}{9}- JobTemplateDescription: {2}{9}- JobTemplateHtml: {3}{9}- GlobalTemplate: {4}{9}- LastModifiedBy: {5}{9}- LastModified: {6}{9}- JobTemplateLogo: {7}{9}- AdvertiserId: {8}{9}{11}", 
+				"{11}{10}- JobTemplateId: {0}{10}- SiteId: {1}{10}- JobTemplateDescription: {2}{10}- JobTemplateHtml: {3}{10}- GlobalTemplate: {4}{10}- LastModifiedBy: {5}{10}- LastModified: {6}{10}- JobTemplateLogo: {7}{10}- AdvertiserId: {8}{10}- JobTemplateLogoUrl: {9}{10}{12}", 
 				this.JobTemplateId,
 				(this.SiteId == null) ? string.Empty : this.SiteId.ToString(),
 				this.JobTemplateDescription,
@@ -1277,6 +1341,7 @@ namespace JXTPortal.Entities
 				this.LastModified,
 				(this.JobTemplateLogo == null) ? string.Empty : this.JobTemplateLogo.ToString(),
 				this.AdvertiserId,
+				(this.JobTemplateLogoUrl == null) ? string.Empty : this.JobTemplateLogoUrl.ToString(),
 				System.Environment.NewLine, 
 				this.GetType(),
 				this.Error.Length == 0 ? string.Empty : string.Format("- Error: {0}\n",this.Error));
@@ -1350,6 +1415,11 @@ namespace JXTPortal.Entities
 		/// AdvertiserID : 
 		/// </summary>
 		public System.Int32		  AdvertiserId = (int)0;
+		
+		/// <summary>
+		/// JobTemplateLogoUrl : 
+		/// </summary>
+		public System.String		  JobTemplateLogoUrl = null;
 		#endregion
 			
 		#region Source Foreign Key Property
@@ -1470,6 +1540,7 @@ namespace JXTPortal.Entities
 			_tmp.LastModified = this.LastModified;
 			_tmp.JobTemplateLogo = this.JobTemplateLogo;
 			_tmp.AdvertiserId = this.AdvertiserId;
+			_tmp.JobTemplateLogoUrl = this.JobTemplateLogoUrl;
 			
 			#region Source Parent Composite Entities
 			if (this.AdvertiserIdSource != null)
@@ -1515,6 +1586,7 @@ namespace JXTPortal.Entities
 			_tmp.LastModified = this.LastModified;
 			_tmp.JobTemplateLogo = this.JobTemplateLogo;
 			_tmp.AdvertiserId = this.AdvertiserId;
+			_tmp.JobTemplateLogoUrl = this.JobTemplateLogoUrl;
 			
 			#region Source Parent Composite Entities
 			if (this.AdvertiserIdSource != null && existingCopies.Contains(this.AdvertiserIdSource))
@@ -1956,7 +2028,13 @@ namespace JXTPortal.Entities
 		/// </summary>
 		[EnumTextValue("AdvertiserID")]
 		[ColumnEnum("AdvertiserID", typeof(System.Int32), System.Data.DbType.Int32, false, false, false)]
-		AdvertiserId = 9
+		AdvertiserId = 9,
+		/// <summary>
+		/// JobTemplateLogoUrl : 
+		/// </summary>
+		[EnumTextValue("JobTemplateLogoUrl")]
+		[ColumnEnum("JobTemplateLogoUrl", typeof(System.String), System.Data.DbType.String, false, false, true, 1000)]
+		JobTemplateLogoUrl = 10
 	}//End enum
 
 	#endregion JobTemplatesColumn Enum

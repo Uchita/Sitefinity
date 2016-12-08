@@ -145,6 +145,20 @@ namespace JXTPortal.Website.job
             }
         }
 
+        private SitesService _sitesService = null;
+
+        public SitesService SitesService
+        {
+            get
+            {
+                if (_sitesService == null)
+                {
+                    _sitesService = new SitesService();
+                }
+                return _sitesService;
+            }
+        }
+
         #endregion
 
         protected void Page_Load(object sender, EventArgs e)
@@ -164,6 +178,20 @@ namespace JXTPortal.Website.job
             
         <atom:link href='http://www.jobx.com.au/job/rss.aspx' rel='self'/>
              */
+            string url = string.Empty;
+
+            using (Entities.Sites site = SitesService.GetBySiteId(SessionData.Site.SiteId))
+            {
+                if (!string.IsNullOrWhiteSpace(site.SiteAdminLogoUrl))
+                {
+                    url = string.Format("http://{0}/media/{1}/{2}", SessionData.Site.SiteUrl, ConfigurationManager.AppSettings["SitesFolder"], site.SiteAdminLogoUrl);
+                }
+                else
+                {
+                    url = string.Format("http://{0}/Admin/GetAdminLogo.aspx?SiteID={1}", SessionData.Site.SiteUrl, SessionData.Site.SiteId);
+                }
+            }
+
             strRSS.Append(String.Format(@"<?xml version=""1.0"" encoding=""utf-8""?>
                                         <rss version=""2.0"">
                                             <channel>
@@ -178,7 +206,7 @@ namespace JXTPortal.Website.job
                                                 <webMaster>webmaster@jobx.com.au</webMaster>
                                                 <image>
                                                     <title>{3}</title>
-                                                    <url>http://{0}/Admin/GetAdminLogo.aspx?SiteID={5}</url>
+                                                    <url>{5}</url>
                                                     <link>http://{0}/</link>
                                                     <description>{3} logo</description>
                                                 </image>
@@ -187,7 +215,7 @@ namespace JXTPortal.Website.job
                                          HttpUtility.HtmlEncode(SessionData.Site.SiteDescription),
                                          DateTime.Today.Year,
                                          HttpUtility.HtmlEncode(SessionData.Site.SiteName),
-                                         String.Format("{0:R}", DateTime.Now), SessionData.Site.SiteId));
+                                         String.Format("{0:R}", DateTime.Now), url));
 
             //Set PagingCount 50 jobs as per request - it was based on advancedsearch paging
             string kw = string.Empty;

@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 using JXTPortal.Common;
+using System.Configuration;
+using System.IO;
 
 namespace JXTPortal.Website.Admin
 {
@@ -44,52 +46,44 @@ namespace JXTPortal.Website.Admin
         {
             using (JXTPortal.Entities.Sites site = SitesService.GetBySiteId(SiteID)) //SiteID
             {
-                if (site != null && site.SiteAdminLogo != null)
+                if (site != null && (string.IsNullOrWhiteSpace(site.SiteAdminLogoUrl) == false || site.SiteAdminLogo != null))
                 {
-                    //try
-                    //{
-                    //    System.Drawing.Image logo = System.Drawing.Image.FromStream(new System.IO.MemoryStream(site.SiteAdminLogo));
-                    //    System.Drawing.Imaging.ImageFormat format = logo.RawFormat;
-
-                    //    if (format == System.Drawing.Imaging.ImageFormat.Gif)
-                    //    {
-                    //        Response.ContentType = "image/gif";
-                    //    }
-                    //    else if (format == System.Drawing.Imaging.ImageFormat.Jpeg)
-                    //    {
-                    //        Response.ContentType = "image/jpeg";
-                    //    }
-                    //    else if (format == System.Drawing.Imaging.ImageFormat.Png)
-                    //    {
-                    //        Response.ContentType = "image/png";
-                    //    }
-                    //    else if (format == System.Drawing.Imaging.ImageFormat.Bmp)
-                    //    {
-                    //        Response.ContentType = "image/bmp";
-                    //    }
-                    //    else
-                    //    {
-                    //        Response.ContentType = "image/gif";
-                    //    } 
-                    //}
-                    //catch { }
                     
                     System.Drawing.Image objOriginalImage = null;
                     string contenttype = string.Empty;
 
-                    if (Utils.IsValidUploadImage("", site.SiteAdminLogo, out objOriginalImage, out contenttype))
+                    byte[] siteadminlogo = null;
+
+                    if (!string.IsNullOrWhiteSpace(site.SiteAdminLogoUrl))
                     {
-                        // Response.Headers.Clear();
+                        string errormessage = string.Empty;
+
+                        FtpClient ftpclient = new FtpClient();
+                        ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
+                        ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                        ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+
+                        string filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["RootFolder"], ConfigurationManager.AppSettings["SitesFolder"], site.SiteId, site.SiteAdminLogoUrl);
+                        Stream ms = null;
+                        ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
+                        ms.Position = 0;
+
+                        siteadminlogo = ((MemoryStream)ms).ToArray();
+                    }
+                    else
+                    {
+                        siteadminlogo = site.SiteAdminLogo;
+                    }
+
+                    if (Utils.IsValidUploadImage("", siteadminlogo, out objOriginalImage, out contenttype))
+                    {
                         Response.ContentType = contenttype;
                     }
                     else
                         Response.ContentType = "image/gif";
 
-                    //Response.Write(contenttype);
-                    //Response.End();
 
-                    Response.BinaryWrite(site.SiteAdminLogo);
-                    //Response.End();
+                    Response.BinaryWrite(siteadminlogo);
                 }
             }
 

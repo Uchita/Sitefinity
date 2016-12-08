@@ -9,6 +9,7 @@ using System.Web.Script.Serialization;
 using JXTPortal;
 using JXTPortal.Data;
 using JXTPortal.Entities;
+using JXTPortal.Common;
 
 namespace JXTEnworldImport
 {
@@ -483,13 +484,27 @@ namespace JXTEnworldImport
 
                                         objMemberFiles.MemberFileSearchExtension = Path.GetExtension(filename).Trim();
                                         objMemberFiles.MemberFileName = attachment.filename;
-                                        objMemberFiles.MemberFileContent = bytes;
                                         objMemberFiles.MemberFileTitle = attachment.displayFilename;
                                         objMemberFiles.MemberId = member.MemberId;
                                         objMemberFiles.MemberFileTypeId = MemberFileTypeID(attachment.filename);
                                         objMemberFiles.DocumentTypeId = (int) PortalEnums.JobApplications.DocumentType.Resume;
 
                                         MemberFilesService.Insert(objMemberFiles);
+
+                                        FtpClient ftpclient = new FtpClient();
+                                        ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
+                                        ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                                        ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+
+                                        string extension = string.Empty;
+
+                                        extension = objMemberFiles.MemberFileSearchExtension;
+                                        string filepath = string.Format("{0}{1}/{2}/{3}/MemberFiles_{4}{5}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], objMemberFiles.MemberId, objMemberFiles.MemberFileId, extension);
+                                        string errormessage = string.Empty;
+
+                                        ftpclient.UploadFileFromStream(new MemoryStream(bytes), filepath, out errormessage);
+
+                                        MemberFilesService.Update(objMemberFiles);
 
                                         Console.WriteLine(string.Format("Member File Inserted - ID:{0} File Name:{1} Display Name:{2}", objMemberFiles.MemberFileId, objMemberFiles.MemberFileName, objMemberFiles.MemberFileTitle));
                                 }

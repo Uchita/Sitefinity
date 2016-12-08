@@ -122,11 +122,20 @@ namespace JXTPortal.Website.Admin
                         tbWeChat.Text = consultant.WechatUrl;
                         tbFeaturedTeamMember.Checked = (consultant.FeaturedTeamMember > 0);
 
-                        if (consultant.ImageUrl != null)
+                        if (!string.IsNullOrWhiteSpace(consultant.ConsultantImageUrl))
                         {
-                            imImage.ImageUrl = "/getfile.aspx?consultantid=" + consultant.ConsultantId.ToString();
+                            imImage.ImageUrl = string.Format("/media/{0}/{1}", ConfigurationManager.AppSettings["ConsultantsFolder"], consultant.ConsultantImageUrl);
                             imImage.Visible = true;
                             cbRemoveImage.Visible = true;
+                        }
+                        else
+                        {
+                            if (consultant.ImageUrl != null)
+                            {
+                                imImage.ImageUrl = "/getfile.aspx?consultantid=" + consultant.ConsultantId;
+                                imImage.Visible = true;
+                                cbRemoveImage.Visible = true;
+                            }
                         }
 
                         //tbImageURL.Text = consultant.ImageUrl;
@@ -314,13 +323,7 @@ namespace JXTPortal.Website.Admin
                     if (cbRemoveImage.Checked)
                     {
                         consultant.ImageUrl = null;
-                    }
-
-                    if (fuImage.HasFile)
-                    {
-                        System.IO.BinaryReader b = new System.IO.BinaryReader(fuImage.FileContent);
-                        fuImage.FileContent.Position = 0;
-                        consultant.ImageUrl = b.ReadBytes((int)fuImage.FileContent.Length);
+                        consultant.ConsultantImageUrl = string.Empty;
                     }
                     consultant.VideoUrl = tbVideoURL.Text;
                     consultant.BlogRss = tbBlogRSS.Text;
@@ -421,6 +424,25 @@ namespace JXTPortal.Website.Admin
                     else
                     {
                         ConsultantsService.Insert(consultant);
+                    }
+
+                    if (fuImage.HasFile)
+                    {
+                        System.Drawing.Image objOriginalImage = System.Drawing.Image.FromStream(fuImage.FileContent);
+
+                        FtpClient ftpclient = new FtpClient();
+                        string errormessage = string.Empty;
+                        string extension = Utils.GetImageExtension(objOriginalImage);
+                        ftpclient.Host = ConfigurationManager.AppSettings["FTPFileManager"];
+                        ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                        ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+                        ftpclient.UploadFileFromStream(fuImage.FileContent, string.Format("{0}/{1}/Consultants_{2}.{3}", ftpclient.Host, ConfigurationManager.AppSettings["ConsultantsFolder"], consultant.ConsultantId, extension), out errormessage);
+
+                        if (string.IsNullOrWhiteSpace(errormessage))
+                        {
+                            consultant.ConsultantImageUrl = string.Format("Consultants_{0}.{1}", consultant.ConsultantId, extension);
+                            ConsultantsService.Update(consultant);
+                        }
                     }
 
                     hfConsultantId.Value = consultant.ConsultantId.ToString();

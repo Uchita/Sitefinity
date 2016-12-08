@@ -137,11 +137,18 @@ public partial class JobTemplatesEdit : System.Web.UI.Page
                 txtJobTemplateDescription.Text = template.JobTemplateDescription;
                 txtJobTemplateHTML.Text = template.JobTemplateHtml;
                 chkEducationGlobalTemplate.Checked = template.GlobalTemplate;
-                if (template.JobTemplateLogo.Length > 0)
+
+                if (string.IsNullOrWhiteSpace(template.JobTemplateLogoUrl))
                 {
-                    imgAdvJobTemplateLogo.Visible = true;
+                    imgAdvJobTemplateLogo.ImageUrl = Page.ResolveUrl("~/getfile.aspx") + "?jobtemplateid=" + Convert.ToString(JobTemplateId);
                 }
-                imgAdvJobTemplateLogo.ImageUrl = Page.ResolveUrl("~/getfile.aspx") + "?jobtemplateid=" + Convert.ToString(JobTemplateId);
+                else if (template.JobTemplateLogo != null && template.JobTemplateLogo.Length > 0)
+                {
+                    imgAdvJobTemplateLogo.ImageUrl = string.Format("/{0}/{1}/{2}", ConfigurationManager.AppSettings["RootFolder"], ConfigurationManager.AppSettings["JobTemplatesFolder"], template.JobTemplateLogoUrl);
+                }
+
+                //Only show the logo if there is one available
+                imgAdvJobTemplateLogo.Visible = !string.IsNullOrWhiteSpace(imgAdvJobTemplateLogo.ImageUrl);
 
                 JXTPortal.Website.CommonFunction.SetDropDownByValue(ddlAdvertiser, template.AdvertiserId.ToString());
 
@@ -269,22 +276,6 @@ public partial class JobTemplatesEdit : System.Web.UI.Page
 
                 }
 
-                //Upload Thumbnail
-                if ((docThumbnail.PostedFile != null) && docThumbnail.PostedFile.ContentLength > 0)
-                {
-                    System.Drawing.Image objOriginalImage = System.Drawing.Image.FromStream(this.docThumbnail.PostedFile.InputStream);
-                    System.Drawing.Image objResizedImage = JXTPortal.Common.Utils.ResizeImage(objOriginalImage, 240, 150);
-
-                    System.IO.MemoryStream objOutputMemorySTream = new System.IO.MemoryStream();
-                    objResizedImage.Save(objOutputMemorySTream, objOriginalImage.RawFormat);
-
-                    byte[] abytFile = new byte[Convert.ToInt32(objOutputMemorySTream.Length)];
-                    objOutputMemorySTream.Position = 0;
-                    objOutputMemorySTream.Read(abytFile, 0, abytFile.Length);
-
-                    template.JobTemplateLogo = abytFile;
-                }
-
                 template.SiteId = SessionData.Site.SiteId;
                 template.JobTemplateDescription = txtJobTemplateDescription.Text;
                 template.JobTemplateHtml = txtJobTemplateHTML.Text;
@@ -302,6 +293,39 @@ public partial class JobTemplatesEdit : System.Web.UI.Page
                 {
                     JobTemplatesService.Insert(template);
                 }
+
+                //Upload Thumbnail
+                if ((docThumbnail.PostedFile != null) && docThumbnail.PostedFile.ContentLength > 0)
+                {
+                    System.Drawing.Image objOriginalImage = System.Drawing.Image.FromStream(this.docThumbnail.PostedFile.InputStream);
+                    System.Drawing.Image objResizedImage = JXTPortal.Common.Utils.ResizeImage(objOriginalImage, 240, 150);
+
+                    System.IO.MemoryStream objOutputMemorySTream = new System.IO.MemoryStream();
+                    objResizedImage.Save(objOutputMemorySTream, objOriginalImage.RawFormat);
+
+                    byte[] abytFile = new byte[Convert.ToInt32(objOutputMemorySTream.Length)];
+                    objOutputMemorySTream.Position = 0;
+                    objOutputMemorySTream.Read(abytFile, 0, abytFile.Length);
+
+                    FtpClient ftpclient = new FtpClient();
+                    string errormessage = string.Empty;
+                    string extension = Utils.GetImageExtension(objOriginalImage);
+                    ftpclient.Host = ConfigurationManager.AppSettings["FTPFileManager"];
+                    ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                    ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+                    ftpclient.UploadFileFromStream(objOutputMemorySTream, string.Format("{0}/{1}/JobTemplates_{2}.{3}", ftpclient.Host, ConfigurationManager.AppSettings["JobTemplatesFolder"], template.JobTemplateId, extension), out errormessage);
+
+                    if (!string.IsNullOrWhiteSpace(errormessage))
+                    {
+                        ltlMessage.Text = "Thumbnail image upload failed.";
+                    }
+                    else
+                    {
+                        template.JobTemplateLogoUrl = string.Format("JobTemplates_{0}.{1}", template.JobTemplateId, extension);
+                        JobTemplatesService.Update(template);
+                    }
+                }
+
             }
             catch (Exception ex)
             {

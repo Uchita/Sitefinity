@@ -275,6 +275,7 @@ namespace JXTPortal.Data.SqlClient
 		database.AddInParameter(commandWrapper, "@NominatedCompanyEmailAddress", DbType.String, DBNull.Value);
 		database.AddInParameter(commandWrapper, "@NominatedCompanyPhone", DbType.AnsiString, DBNull.Value);
 		database.AddInParameter(commandWrapper, "@PreferredContactMethod", DbType.Int32, DBNull.Value);
+		database.AddInParameter(commandWrapper, "@AdvertiserLogoUrl", DbType.String, DBNull.Value);
 	
 			// replace all instances of 'AND' and 'OR' because we already set searchUsingOR
 			whereClause = whereClause.Replace(" AND ", "|").Replace(" OR ", "|") ; 
@@ -509,6 +510,12 @@ namespace JXTPortal.Data.SqlClient
 				{
 					database.SetParameterValue(commandWrapper, "@PreferredContactMethod", 
 						clause.Trim().Remove(0,22).Trim().TrimStart(equalSign).Trim().Trim(singleQuote));
+					continue;
+				}
+				if (clause.Trim().StartsWith("advertiserlogourl ") || clause.Trim().StartsWith("advertiserlogourl="))
+				{
+					database.SetParameterValue(commandWrapper, "@AdvertiserLogoUrl", 
+						clause.Trim().Remove(0,17).Trim().TrimStart(equalSign).Trim().Trim(singleQuote));
 					continue;
 				}
 	
@@ -1290,6 +1297,8 @@ namespace JXTPortal.Data.SqlClient
 			col35.AllowDBNull = true;		
 			DataColumn col36 = dataTable.Columns.Add("PreferredContactMethod", typeof(System.Int32));
 			col36.AllowDBNull = true;		
+			DataColumn col37 = dataTable.Columns.Add("AdvertiserLogoUrl", typeof(System.String));
+			col37.AllowDBNull = true;		
 			
 			bulkCopy.ColumnMappings.Add("AdvertiserID", "AdvertiserID");
 			bulkCopy.ColumnMappings.Add("SiteID", "SiteID");
@@ -1328,6 +1337,7 @@ namespace JXTPortal.Data.SqlClient
 			bulkCopy.ColumnMappings.Add("NominatedCompanyEmailAddress", "NominatedCompanyEmailAddress");
 			bulkCopy.ColumnMappings.Add("NominatedCompanyPhone", "NominatedCompanyPhone");
 			bulkCopy.ColumnMappings.Add("PreferredContactMethod", "PreferredContactMethod");
+			bulkCopy.ColumnMappings.Add("AdvertiserLogoUrl", "AdvertiserLogoUrl");
 			
 			foreach(JXTPortal.Entities.Advertisers entity in entities)
 			{
@@ -1447,6 +1457,9 @@ namespace JXTPortal.Data.SqlClient
 					row["PreferredContactMethod"] = entity.PreferredContactMethod.HasValue ? (object) entity.PreferredContactMethod  : System.DBNull.Value;
 							
 				
+					row["AdvertiserLogoUrl"] = entity.AdvertiserLogoUrl;
+							
+				
 				dataTable.Rows.Add(row);
 			}		
 			
@@ -1518,6 +1531,7 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@NominatedCompanyEmailAddress", DbType.String, entity.NominatedCompanyEmailAddress );
 			database.AddInParameter(commandWrapper, "@NominatedCompanyPhone", DbType.AnsiString, entity.NominatedCompanyPhone );
 			database.AddInParameter(commandWrapper, "@PreferredContactMethod", DbType.Int32, (entity.PreferredContactMethod.HasValue ? (object) entity.PreferredContactMethod  : System.DBNull.Value));
+			database.AddInParameter(commandWrapper, "@AdvertiserLogoUrl", DbType.String, entity.AdvertiserLogoUrl );
 			
 			int results = 0;
 			
@@ -1603,6 +1617,7 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@NominatedCompanyEmailAddress", DbType.String, entity.NominatedCompanyEmailAddress );
 			database.AddInParameter(commandWrapper, "@NominatedCompanyPhone", DbType.AnsiString, entity.NominatedCompanyPhone );
 			database.AddInParameter(commandWrapper, "@PreferredContactMethod", DbType.Int32, (entity.PreferredContactMethod.HasValue ? (object) entity.PreferredContactMethod : System.DBNull.Value) );
+			database.AddInParameter(commandWrapper, "@AdvertiserLogoUrl", DbType.String, entity.AdvertiserLogoUrl );
 			
 			int results = 0;
 			
@@ -1771,12 +1786,21 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="linkedInEmail"> A <c>System.String</c> instance.</param>
 		/// <param name="registerDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="externalAdvertiserId"> A <c>System.String</c> instance.</param>
+		/// <param name="videoLink"> A <c>System.String</c> instance.</param>
+		/// <param name="industry"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyRole"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyFirstName"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyLastName"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyEmailAddress"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyPhone"> A <c>System.String</c> instance.</param>
+		/// <param name="preferredContactMethod"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="advertiserLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
 		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public override DataSet Find(TransactionManager transactionManager, int start, int pageLength , System.Boolean? searchUsingOr, System.Int32? advertiserId, System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId)
+		public override DataSet Find(TransactionManager transactionManager, int start, int pageLength , System.Boolean? searchUsingOr, System.Int32? advertiserId, System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId, System.String videoLink, System.String industry, System.String nominatedCompanyRole, System.String nominatedCompanyFirstName, System.String nominatedCompanyLastName, System.String nominatedCompanyEmailAddress, System.String nominatedCompanyPhone, System.Int32? preferredContactMethod, System.String advertiserLogoUrl)
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.Advertisers_Find", true);
@@ -1811,6 +1835,15 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@LinkedInEmail", DbType.AnsiString,  linkedInEmail );
 			database.AddInParameter(commandWrapper, "@RegisterDate", DbType.DateTime,  registerDate );
 			database.AddInParameter(commandWrapper, "@ExternalAdvertiserId", DbType.AnsiString,  externalAdvertiserId );
+			database.AddInParameter(commandWrapper, "@VideoLink", DbType.AnsiString,  videoLink );
+			database.AddInParameter(commandWrapper, "@Industry", DbType.AnsiString,  industry );
+			database.AddInParameter(commandWrapper, "@NominatedCompanyRole", DbType.AnsiString,  nominatedCompanyRole );
+			database.AddInParameter(commandWrapper, "@NominatedCompanyFirstName", DbType.AnsiString,  nominatedCompanyFirstName );
+			database.AddInParameter(commandWrapper, "@NominatedCompanyLastName", DbType.String,  nominatedCompanyLastName );
+			database.AddInParameter(commandWrapper, "@NominatedCompanyEmailAddress", DbType.String,  nominatedCompanyEmailAddress );
+			database.AddInParameter(commandWrapper, "@NominatedCompanyPhone", DbType.AnsiString,  nominatedCompanyPhone );
+			database.AddInParameter(commandWrapper, "@PreferredContactMethod", DbType.Int32,  preferredContactMethod );
+			database.AddInParameter(commandWrapper, "@AdvertiserLogoUrl", DbType.String,  advertiserLogoUrl );
 	
 			
 			DataSet ds = null;
@@ -1871,11 +1904,20 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="linkedInEmail"> A <c>System.String</c> instance.</param>
 		/// <param name="registerDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="externalAdvertiserId"> A <c>System.String</c> instance.</param>
+		/// <param name="videoLink"> A <c>System.String</c> instance.</param>
+		/// <param name="industry"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyRole"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyFirstName"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyLastName"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyEmailAddress"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyPhone"> A <c>System.String</c> instance.</param>
+		/// <param name="preferredContactMethod"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="advertiserLogoUrl"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
-		public override void Update(TransactionManager transactionManager, int start, int pageLength , System.Int32? advertiserId, System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId)
+		public override void Update(TransactionManager transactionManager, int start, int pageLength , System.Int32? advertiserId, System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId, System.String videoLink, System.String industry, System.String nominatedCompanyRole, System.String nominatedCompanyFirstName, System.String nominatedCompanyLastName, System.String nominatedCompanyEmailAddress, System.String nominatedCompanyPhone, System.Int32? preferredContactMethod, System.String advertiserLogoUrl)
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.Advertisers_Update", true);
@@ -1909,6 +1951,15 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@LinkedInEmail", DbType.AnsiString,  linkedInEmail );
 			database.AddInParameter(commandWrapper, "@RegisterDate", DbType.DateTime,  registerDate );
 			database.AddInParameter(commandWrapper, "@ExternalAdvertiserId", DbType.AnsiString,  externalAdvertiserId );
+			database.AddInParameter(commandWrapper, "@VideoLink", DbType.AnsiString,  videoLink );
+			database.AddInParameter(commandWrapper, "@Industry", DbType.AnsiString,  industry );
+			database.AddInParameter(commandWrapper, "@NominatedCompanyRole", DbType.AnsiString,  nominatedCompanyRole );
+			database.AddInParameter(commandWrapper, "@NominatedCompanyFirstName", DbType.AnsiString,  nominatedCompanyFirstName );
+			database.AddInParameter(commandWrapper, "@NominatedCompanyLastName", DbType.String,  nominatedCompanyLastName );
+			database.AddInParameter(commandWrapper, "@NominatedCompanyEmailAddress", DbType.String,  nominatedCompanyEmailAddress );
+			database.AddInParameter(commandWrapper, "@NominatedCompanyPhone", DbType.AnsiString,  nominatedCompanyPhone );
+			database.AddInParameter(commandWrapper, "@PreferredContactMethod", DbType.Int32,  preferredContactMethod );
+			database.AddInParameter(commandWrapper, "@AdvertiserLogoUrl", DbType.String,  advertiserLogoUrl );
 	
 			
 			//Provider Data Requesting Command Event
@@ -2241,12 +2292,21 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="linkedInEmail"> A <c>System.String</c> instance.</param>
 		/// <param name="registerDate"> A <c>System.DateTime?</c> instance.</param>
 		/// <param name="externalAdvertiserId"> A <c>System.String</c> instance.</param>
+		/// <param name="videoLink"> A <c>System.String</c> instance.</param>
+		/// <param name="industry"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyRole"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyFirstName"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyLastName"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyEmailAddress"> A <c>System.String</c> instance.</param>
+		/// <param name="nominatedCompanyPhone"> A <c>System.String</c> instance.</param>
+		/// <param name="preferredContactMethod"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="advertiserLogoUrl"> A <c>System.String</c> instance.</param>
 			/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
-		public override void Insert(TransactionManager transactionManager, int start, int pageLength , System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId, ref System.Int32? advertiserId)
+		public override void Insert(TransactionManager transactionManager, int start, int pageLength , System.Int32? siteId, System.Int32? advertiserAccountTypeId, System.Int32? advertiserBusinessTypeId, System.Int32? advertiserAccountStatusId, System.String companyName, System.String businessNumber, System.String streetAddress1, System.String streetAddress2, System.DateTime? lastModified, System.Int32? lastModifiedBy, System.String postalAddress1, System.String postalAddress2, System.String webAddress, System.String noOfEmployees, System.DateTime? firstApprovedDate, System.String profile, System.String charityNumber, System.String searchField, System.DateTime? freeTrialStartDate, System.DateTime? freeTrialEndDate, System.String accountsPayableEmail, System.Boolean? requireLogonForExternalApplication, System.Byte[] advertiserLogo, System.String linkedInLogo, System.String linkedInCompanyId, System.String linkedInEmail, System.DateTime? registerDate, System.String externalAdvertiserId, System.String videoLink, System.String industry, System.String nominatedCompanyRole, System.String nominatedCompanyFirstName, System.String nominatedCompanyLastName, System.String nominatedCompanyEmailAddress, System.String nominatedCompanyPhone, System.Int32? preferredContactMethod, System.String advertiserLogoUrl, ref System.Int32? advertiserId)
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.Advertisers_Insert", true);
@@ -2279,6 +2339,15 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@LinkedInEmail", DbType.AnsiString,  linkedInEmail );
 			database.AddInParameter(commandWrapper, "@RegisterDate", DbType.DateTime,  registerDate );
 			database.AddInParameter(commandWrapper, "@ExternalAdvertiserId", DbType.AnsiString,  externalAdvertiserId );
+			database.AddInParameter(commandWrapper, "@VideoLink", DbType.AnsiString,  videoLink );
+			database.AddInParameter(commandWrapper, "@Industry", DbType.AnsiString,  industry );
+			database.AddInParameter(commandWrapper, "@NominatedCompanyRole", DbType.AnsiString,  nominatedCompanyRole );
+			database.AddInParameter(commandWrapper, "@NominatedCompanyFirstName", DbType.AnsiString,  nominatedCompanyFirstName );
+			database.AddInParameter(commandWrapper, "@NominatedCompanyLastName", DbType.String,  nominatedCompanyLastName );
+			database.AddInParameter(commandWrapper, "@NominatedCompanyEmailAddress", DbType.String,  nominatedCompanyEmailAddress );
+			database.AddInParameter(commandWrapper, "@NominatedCompanyPhone", DbType.AnsiString,  nominatedCompanyPhone );
+			database.AddInParameter(commandWrapper, "@PreferredContactMethod", DbType.Int32,  preferredContactMethod );
+			database.AddInParameter(commandWrapper, "@AdvertiserLogoUrl", DbType.String,  advertiserLogoUrl );
 	
 			database.AddParameter(commandWrapper, "@AdvertiserId", DbType.Int32, 4, ParameterDirection.InputOutput, true, 10, 0, string.Empty, DataRowVersion.Current, advertiserId);
 			

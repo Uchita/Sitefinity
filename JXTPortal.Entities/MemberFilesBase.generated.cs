@@ -89,9 +89,10 @@ namespace JXTPortal.Entities
 		///<param name="_memberFileTitle"></param>
 		///<param name="_lastModifiedDate"></param>
 		///<param name="_documentTypeId"></param>
+		///<param name="_memberFileUrl"></param>
 		public MemberFilesBase(System.Int32 _memberId, System.Int32 _memberFileTypeId, System.String _memberFileName, 
 			System.String _memberFileSearchExtension, System.Byte[] _memberFileContent, System.String _memberFileTitle, 
-			System.DateTime _lastModifiedDate, System.Int32? _documentTypeId)
+			System.DateTime _lastModifiedDate, System.Int32? _documentTypeId, System.String _memberFileUrl)
 		{
 			this.entityData = new MemberFilesEntityData();
 			this.backupData = null;
@@ -104,6 +105,7 @@ namespace JXTPortal.Entities
 			this.MemberFileTitle = _memberFileTitle;
 			this.LastModifiedDate = _lastModifiedDate;
 			this.DocumentTypeId = _documentTypeId;
+			this.MemberFileUrl = _memberFileUrl;
 		}
 		
 		///<summary>
@@ -117,9 +119,10 @@ namespace JXTPortal.Entities
 		///<param name="_memberFileTitle"></param>
 		///<param name="_lastModifiedDate"></param>
 		///<param name="_documentTypeId"></param>
+		///<param name="_memberFileUrl"></param>
 		public static MemberFiles CreateMemberFiles(System.Int32 _memberId, System.Int32 _memberFileTypeId, System.String _memberFileName, 
 			System.String _memberFileSearchExtension, System.Byte[] _memberFileContent, System.String _memberFileTitle, 
-			System.DateTime _lastModifiedDate, System.Int32? _documentTypeId)
+			System.DateTime _lastModifiedDate, System.Int32? _documentTypeId, System.String _memberFileUrl)
 		{
 			MemberFiles newMemberFiles = new MemberFiles();
 			newMemberFiles.MemberId = _memberId;
@@ -130,6 +133,7 @@ namespace JXTPortal.Entities
 			newMemberFiles.MemberFileTitle = _memberFileTitle;
 			newMemberFiles.LastModifiedDate = _lastModifiedDate;
 			newMemberFiles.DocumentTypeId = _documentTypeId;
+			newMemberFiles.MemberFileUrl = _memberFileUrl;
 			return newMemberFiles;
 		}
 				
@@ -458,6 +462,41 @@ namespace JXTPortal.Entities
 			}
 		}
 		
+		/// <summary>
+		/// 	Gets or sets the MemberFileUrl property. 
+		///		
+		/// </summary>
+		/// <value>This type is nvarchar.</value>
+		/// <remarks>
+		/// This property can be set to null. 
+		/// </remarks>
+
+
+
+
+		[DescriptionAttribute(@""), System.ComponentModel.Bindable( System.ComponentModel.BindableSupport.Yes)]
+		[DataObjectField(false, false, true, 1000)]
+		public virtual System.String MemberFileUrl
+		{
+			get
+			{
+				return this.entityData.MemberFileUrl; 
+			}
+			
+			set
+			{
+				if (this.entityData.MemberFileUrl == value)
+					return;
+					
+				OnColumnChanging(MemberFilesColumn.MemberFileUrl, this.entityData.MemberFileUrl);
+				this.entityData.MemberFileUrl = value;
+				if (this.EntityState == EntityState.Unchanged)
+					this.EntityState = EntityState.Changed;
+				OnColumnChanged(MemberFilesColumn.MemberFileUrl, this.entityData.MemberFileUrl);
+				OnPropertyChanged("MemberFileUrl");
+			}
+		}
+		
 		#endregion Data Properties		
 
 		#region Source Foreign Key Property
@@ -509,6 +548,8 @@ namespace JXTPortal.Entities
 				new ValidationRuleArgs("MemberFileTitle", "Member File Title"));
 			ValidationRules.AddRule( CommonRules.StringMaxLength, 
 				new CommonRules.MaxLengthRuleArgs("MemberFileTitle", "Member File Title", 500));
+			ValidationRules.AddRule( CommonRules.StringMaxLength, 
+				new CommonRules.MaxLengthRuleArgs("MemberFileUrl", "Member File Url", 1000));
 		}
    		#endregion
 		
@@ -530,7 +571,7 @@ namespace JXTPortal.Entities
 		{
 			get
 			{
-				return new string[] {"MemberFileID", "MemberID", "MemberFileTypeID", "MemberFileName", "MemberFileSearchExtension", "MemberFileContent", "MemberFileTitle", "LastModifiedDate", "DocumentTypeID"};
+				return new string[] {"MemberFileID", "MemberID", "MemberFileTypeID", "MemberFileName", "MemberFileSearchExtension", "MemberFileContent", "MemberFileTitle", "LastModifiedDate", "DocumentTypeID", "MemberFileUrl"};
 			}
 		}
 		#endregion 
@@ -687,6 +728,7 @@ namespace JXTPortal.Entities
 				copy.MemberFileTitle = this.MemberFileTitle;
 				copy.LastModifiedDate = this.LastModifiedDate;
 				copy.DocumentTypeId = this.DocumentTypeId;
+				copy.MemberFileUrl = this.MemberFileUrl;
 			
 			if (this.MemberIdSource != null && existingCopies.Contains(this.MemberIdSource))
 				copy.MemberIdSource = existingCopies[this.MemberIdSource] as Members;
@@ -845,6 +887,8 @@ namespace JXTPortal.Entities
 					return entityData.LastModifiedDate != _originalData.LastModifiedDate;
 					case MemberFilesColumn.DocumentTypeId:
 					return entityData.DocumentTypeId != _originalData.DocumentTypeId;
+					case MemberFilesColumn.MemberFileUrl:
+					return entityData.MemberFileUrl != _originalData.MemberFileUrl;
 			
 				default:
 					return false;
@@ -881,6 +925,7 @@ namespace JXTPortal.Entities
 			result = result || entityData.MemberFileTitle != _originalData.MemberFileTitle;
 			result = result || entityData.LastModifiedDate != _originalData.LastModifiedDate;
 			result = result || entityData.DocumentTypeId != _originalData.DocumentTypeId;
+			result = result || entityData.MemberFileUrl != _originalData.MemberFileUrl;
 			return result;
 		}	
 		
@@ -898,7 +943,8 @@ namespace JXTPortal.Entities
 				_originalData.MemberFileContent,
 				_originalData.MemberFileTitle,
 				_originalData.LastModifiedDate,
-				_originalData.DocumentTypeId
+				_originalData.DocumentTypeId,
+				_originalData.MemberFileUrl
 				);
 				
 			return (MemberFiles)this.Clone();
@@ -936,7 +982,8 @@ namespace JXTPortal.Entities
 					((this.MemberFileContent == null) ? string.Empty : this.MemberFileContent.ToString()).GetHashCode() ^ 
 					this.MemberFileTitle.GetHashCode() ^ 
 					this.LastModifiedDate.GetHashCode() ^ 
-					((this.DocumentTypeId == null) ? string.Empty : this.DocumentTypeId.ToString()).GetHashCode();
+					((this.DocumentTypeId == null) ? string.Empty : this.DocumentTypeId.ToString()).GetHashCode() ^ 
+					((this.MemberFileUrl == null) ? string.Empty : this.MemberFileUrl.ToString()).GetHashCode();
         }
 		
 		///<summary>
@@ -1005,6 +1052,15 @@ namespace JXTPortal.Entities
 					equal = false;
 			}
 			else if (Object1.DocumentTypeId == null ^ Object2.DocumentTypeId == null )
+			{
+				equal = false;
+			}
+			if ( Object1.MemberFileUrl != null && Object2.MemberFileUrl != null )
+			{
+				if (Object1.MemberFileUrl != Object2.MemberFileUrl)
+					equal = false;
+			}
+			else if (Object1.MemberFileUrl == null ^ Object2.MemberFileUrl == null )
 			{
 				equal = false;
 			}
@@ -1098,6 +1154,12 @@ namespace JXTPortal.Entities
             	
             	case MemberFilesColumn.DocumentTypeId:
             		return this.DocumentTypeId.Value.CompareTo(rhs.DocumentTypeId.Value);
+            		
+            		                 
+            	
+            	
+            	case MemberFilesColumn.MemberFileUrl:
+            		return this.MemberFileUrl.CompareTo(rhs.MemberFileUrl);
             		
             		                 
             }
@@ -1234,7 +1296,7 @@ namespace JXTPortal.Entities
 		public override string ToString()
 		{
 			return string.Format(System.Globalization.CultureInfo.InvariantCulture,
-				"{10}{9}- MemberFileId: {0}{9}- MemberId: {1}{9}- MemberFileTypeId: {2}{9}- MemberFileName: {3}{9}- MemberFileSearchExtension: {4}{9}- MemberFileContent: {5}{9}- MemberFileTitle: {6}{9}- LastModifiedDate: {7}{9}- DocumentTypeId: {8}{9}{11}", 
+				"{11}{10}- MemberFileId: {0}{10}- MemberId: {1}{10}- MemberFileTypeId: {2}{10}- MemberFileName: {3}{10}- MemberFileSearchExtension: {4}{10}- MemberFileContent: {5}{10}- MemberFileTitle: {6}{10}- LastModifiedDate: {7}{10}- DocumentTypeId: {8}{10}- MemberFileUrl: {9}{10}{12}", 
 				this.MemberFileId,
 				this.MemberId,
 				this.MemberFileTypeId,
@@ -1244,6 +1306,7 @@ namespace JXTPortal.Entities
 				this.MemberFileTitle,
 				this.LastModifiedDate,
 				(this.DocumentTypeId == null) ? string.Empty : this.DocumentTypeId.ToString(),
+				(this.MemberFileUrl == null) ? string.Empty : this.MemberFileUrl.ToString(),
 				System.Environment.NewLine, 
 				this.GetType(),
 				this.Error.Length == 0 ? string.Empty : string.Format("- Error: {0}\n",this.Error));
@@ -1317,6 +1380,11 @@ namespace JXTPortal.Entities
 		/// DocumentTypeID : 
 		/// </summary>
 		public System.Int32?		  DocumentTypeId = null;
+		
+		/// <summary>
+		/// MemberFileUrl : 
+		/// </summary>
+		public System.String		  MemberFileUrl = null;
 		#endregion
 			
 		#region Source Foreign Key Property
@@ -1374,6 +1442,7 @@ namespace JXTPortal.Entities
 			_tmp.MemberFileTitle = this.MemberFileTitle;
 			_tmp.LastModifiedDate = this.LastModifiedDate;
 			_tmp.DocumentTypeId = this.DocumentTypeId;
+			_tmp.MemberFileUrl = this.MemberFileUrl;
 			
 			#region Source Parent Composite Entities
 			if (this.MemberIdSource != null)
@@ -1412,6 +1481,7 @@ namespace JXTPortal.Entities
 			_tmp.MemberFileTitle = this.MemberFileTitle;
 			_tmp.LastModifiedDate = this.LastModifiedDate;
 			_tmp.DocumentTypeId = this.DocumentTypeId;
+			_tmp.MemberFileUrl = this.MemberFileUrl;
 			
 			#region Source Parent Composite Entities
 			if (this.MemberIdSource != null && existingCopies.Contains(this.MemberIdSource))
@@ -1846,7 +1916,13 @@ namespace JXTPortal.Entities
 		/// </summary>
 		[EnumTextValue("DocumentTypeID")]
 		[ColumnEnum("DocumentTypeID", typeof(System.Int32), System.Data.DbType.Int32, false, false, true)]
-		DocumentTypeId = 9
+		DocumentTypeId = 9,
+		/// <summary>
+		/// MemberFileUrl : 
+		/// </summary>
+		[EnumTextValue("MemberFileUrl")]
+		[ColumnEnum("MemberFileUrl", typeof(System.String), System.Data.DbType.String, false, false, true, 1000)]
+		MemberFileUrl = 10
 	}//End enum
 
 	#endregion MemberFilesColumn Enum

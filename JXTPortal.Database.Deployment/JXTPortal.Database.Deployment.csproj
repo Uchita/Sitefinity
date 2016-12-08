@@ -65,7 +65,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Scripts\Script0003-MoveBinaryToFTP.sql" />
     <EmbeddedResource Include="Scripts\Script0004-MoveBinarySPUpdate.sql" />
-    <EmbeddedResource Include="Scripts\Script0005-ViewJobSearch.sql" />
+    <EmbeddedResource Include="Scripts\Script0001-ViewJobSearch.sql" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Scripts\Script0006-JobApplication_CustomGetNewJobApplications.sql" />

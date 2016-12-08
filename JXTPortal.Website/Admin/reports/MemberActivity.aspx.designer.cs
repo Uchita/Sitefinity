@@ -13,13 +13,22 @@ namespace JXTPortal.Website.Admin.reports {
     public partial class MemberActivity {
         
         /// <summary>
+        /// scriptManager control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager scriptManager;
+        
+        /// <summary>
         /// pnlSite control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlSite;
+        protected global::System.Web.UI.WebControls.PlaceHolder pnlSite;
         
         /// <summary>
         /// ddlSite control.
@@ -31,6 +40,15 @@ namespace JXTPortal.Website.Admin.reports {
         protected global::System.Web.UI.WebControls.DropDownList ddlSite;
         
         /// <summary>
+        /// lblErrorMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorMsg;
+        
+        /// <summary>
         /// rptMemberActivity control.
         /// </summary>
         /// <remarks>
@@ -38,5 +56,14 @@ namespace JXTPortal.Website.Admin.reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptMemberActivity;
+        
+        /// <summary>
+        /// rptPage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptPage;
     }
 }

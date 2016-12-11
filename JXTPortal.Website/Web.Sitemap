@@ -128,6 +128,7 @@
 		<siteMapNode url="" title="Reports"  description="">
 			<siteMapNode url="~/admin/reports/alljobstatistics.aspx" title="All Jobs Statistics"  description="" />
 			<siteMapNode url="~/admin/reports/membercount.aspx" title="Member Count"  description="" />
+      <siteMapNode url="~/admin/reports/memberactivity.aspx" title="Member Activity"  description="" />
 			<siteMapNode url="~/admin/reports/alladvertisers.aspx" title="All Advertisers"  description="" />
 			<siteMapNode url="~/admin/reports/advertisercount.aspx" title="Advertiser Count"  description="" />
 			<siteMapNode url="~/admin/reports/advertisersnotpostedsince.aspx" title="Advertisers Not Posted Since"  description="" />

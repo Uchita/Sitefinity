@@ -6,6 +6,10 @@ using System.Data;
 using System.Web.Script.Serialization;
 using System.Xml.Serialization;
 using System.Configuration;
+using System.Resources;
+using System.Reflection;
+using System.Collections;
+using System.ComponentModel;
 
 namespace JXTPostDataToFTP.Models
 {
@@ -25,6 +29,38 @@ namespace JXTPostDataToFTP.Models
         public List<MemberReference> References { get; set; }
 
         public List<MemberCustomQuestion> CustomQuestions { get; set; }
+
+        public static string GetResourceValue(string key, int languageId)
+        {
+            string value = key;
+            
+            System.Resources.ResXResourceReader resourceReader = new ResXResourceReader(string.Format(@".\Resources\language_{0}.resx", languageId));
+            foreach (DictionaryEntry entry in resourceReader)
+            {
+                if (entry.Key.ToString() == key)
+                {
+                    value = entry.Value.ToString();
+                }
+            }
+
+            return value;
+        }
+
+        public static string GetEnumDescription(Enum currentEnum, int languageId)
+        {
+            string description = String.Empty;
+            DescriptionAttribute da;
+
+            FieldInfo fi = currentEnum.GetType().
+                        GetField(currentEnum.ToString());
+            da = (DescriptionAttribute)Attribute.GetCustomAttribute(fi, typeof(DescriptionAttribute));
+            if (da != null)
+                description = da.Description;
+            else
+                description = currentEnum.ToString();
+
+            return GetResourceValue(description, languageId);
+        }
 
         public MemberXMLModel()
         { }
@@ -597,12 +633,18 @@ namespace JXTPostDataToFTP.Models
                 {
                     if (string.IsNullOrEmpty(AvailabilityID))
                         return null;
+                    else
+                    {
+                        if (Convert.ToInt32(AvailabilityID) <= 0)
+                            return null;
+                    }
 
                     JXTPortal.Entities.PortalEnums.Members.CurrentlySeeking thisStatus;
                     bool enumParseSuccess = Enum.TryParse<JXTPortal.Entities.PortalEnums.Members.CurrentlySeeking>(AvailabilityID, out thisStatus);
+                    int languageId = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultLanguageId"]);
 
                     if (enumParseSuccess)
-                        return thisStatus.ToString();
+                        return GetEnumDescription(thisStatus, languageId);
                     else
                         return null;
                 }

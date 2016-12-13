@@ -429,7 +429,7 @@ namespace JXTPostDataToFTP
                     site.Element("ExceptionID").Value = intExceptionID.ToString();
                 }
             }
-            xmlFile.Save(ConfigurationManager.AppSettings["SitesXML"]);
+            xmlFile.Save(ConfigurationManager.AppSettings["SiteXML"]);
 
 
             // **** Send email when there is an error.
@@ -549,7 +549,7 @@ ExceptionID: {4}",
                     DataTable dtMemberReferences = ds.Tables[9];
 
                     DataRow[] drValidatedMembers = null;
-                    
+
                     if (sitexml.mode == "JobApplication")
                     {
                         dtMembers.Rows.Clear();
@@ -1149,15 +1149,21 @@ ExceptionID: {4}",
                             string filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], memberFile.MemberId, memberFile.MemberFileUrl);
                             Stream ms = null;
                             ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
-                            ms.Position = 0;
-
-                            memberfilecontent = ((MemoryStream)ms).ToArray();
+                            if (ms != null)
+                            {
+                                ms.Position = 0;
+                                memberfilecontent = ((MemoryStream)ms).ToArray();
+                            }
                         }
                         else
                         {
                             memberfilecontent = memberFile.MemberFileContent;
                         }
-                        file.Base64FileContent = Convert.ToBase64String(memberfilecontent, 0, memberfilecontent.Length);
+
+                        if (memberfilecontent != null)
+                        {
+                            file.Base64FileContent = Convert.ToBase64String(memberfilecontent, 0, memberfilecontent.Length);
+                        }
                     }
                 }
             }

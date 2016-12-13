@@ -279,7 +279,7 @@ namespace JXTPortal.Website.members
                             string extension = string.Empty;
 
                             extension = Path.GetExtension(docInput.PostedFile.FileName);
-                            string filepath = string.Format("{0}{1}/{2}/{3}/MemberFiles_{4}{5}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], SessionData.Member.MemberId, objMemberFiles.MemberFileId, extension);
+                            string filepath = string.Format("{0}{1}/{2}/{3}/MemberFiles_{4}{5}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], memberID, objMemberFiles.MemberFileId, extension);
                             string errormessage = string.Empty;
 
                             ftpclient.UploadFileFromStream(docInput.PostedFile.InputStream, filepath, out errormessage);
@@ -331,7 +331,7 @@ namespace JXTPortal.Website.members
                             string extension = string.Empty;
 
                             extension = Path.GetExtension(fuCoverLetter.PostedFile.FileName);
-                            string filepath = string.Format("{0}{1}/{2}/{3}/MemberFiles_{4}{5}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], SessionData.Member.MemberId, objMemberFiles.MemberFileId, extension);
+                            string filepath = string.Format("{0}{1}/{2}/{3}/MemberFiles_{4}{5}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], memberID, objMemberFiles.MemberFileId, extension);
                             string errormessage = string.Empty;
 
                             ftpclient.UploadFileFromStream(fuCoverLetter.PostedFile.InputStream, filepath, out errormessage);

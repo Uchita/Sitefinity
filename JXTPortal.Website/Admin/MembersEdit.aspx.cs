@@ -12,6 +12,7 @@ using JXTPortal;
 using JXTPortal.Client.Salesforce;
 using JXTPortal.Client.Bullhorn;
 using System.Configuration;
+using log4net;
 #endregion
 
 public partial class MembersEdit : System.Web.UI.Page
@@ -28,7 +29,7 @@ public partial class MembersEdit : System.Web.UI.Page
     private RolesService _rolesService;
     private GlobalSettingsService _globalSettingsService;
     private DynamicContentService  _dynamicContentService;
-
+    private ILog _logger;
     #endregion
 
     #region Properties
@@ -322,6 +323,11 @@ public partial class MembersEdit : System.Web.UI.Page
     }
 
     #endregion
+
+    public MembersEdit()
+    {
+        _logger = LogManager.GetLogger(typeof(MembersEdit));
+    }
 
     #region Page Event handlers
 
@@ -828,7 +834,7 @@ public partial class MembersEdit : System.Web.UI.Page
 
                 if (!string.IsNullOrWhiteSpace(errorMsg))
                 {
-                    ExceptionTableService exService = new ExceptionTableService("MembersEdit.aspx -> btnLoginAsMember_Click", errorMsg);    // Check error
+                    _logger.Error("MembersEdit.aspx -> btnLoginAsMember_Click" + errorMsg);  
                 }
 
                 SessionService.RemoveAdvertiserUser();

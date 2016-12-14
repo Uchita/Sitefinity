@@ -25,12 +25,15 @@ using JXTPortal.Client.Bullhorn;
 using System.IO;
 using System.Text.RegularExpressions;
 using JXTPortal.Website.usercontrols.common;
+using log4net;
 #endregion
 
 namespace JXTPortal.Website.member
 {
     public partial class profile : System.Web.UI.Page
     {
+        ILog _logger;
+        
         #region "Properties"
 
         private string ContentValidationRegex = ConfigurationManager.AppSettings["ContentValidationRegex"];
@@ -360,6 +363,10 @@ namespace JXTPortal.Website.member
 
         #endregion
 
+        public profile()
+        {
+            _logger = LogManager.GetLogger(typeof(profile));
+        }
         protected void Page_Init(object sender, EventArgs e)
         {
             // ONLY FOR ENWORLD SITES - redirect to custom profile page
@@ -7265,10 +7272,9 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
                                     catch (Exception ex)
                                     {
                                         //TODO: log exception
-                                        ExceptionTableService exceptionTableService = new ExceptionTableService();
-                                        int exID = exceptionTableService.LogException(ex);
+                                        _logger.Error("Failed to process candidate file via Bullhorn API", ex);
 
-                                        throw new Exception("Failed to process candidate file via Bullhorn API - Exception ID: " + exID);
+                                        throw new Exception("Failed to process candidate file via Bullhorn API - Exception ID: " + -1);
                                     }
                                 }
                             }

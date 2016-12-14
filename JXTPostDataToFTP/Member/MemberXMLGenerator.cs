@@ -19,12 +19,13 @@ using System.Diagnostics;
 using JXTPostDataToFTP.Models;
 using System.Xml.Serialization;
 using System.Xml;
+using log4net;
 
 namespace JXTPostDataToFTP
 {
     public class MemberXMLGenerator
     {
-
+        private ILog _logger;
         #region Properties
 
         MembersService _membersService;
@@ -278,6 +279,7 @@ namespace JXTPostDataToFTP
 
         public MemberXMLGenerator()
         {
+            _logger = LogManager.GetLogger(typeof(MemberXMLGenerator));
         }
 
         #endregion
@@ -411,12 +413,8 @@ namespace JXTPostDataToFTP
         #endregion
 
         #region Log exception and email
-        protected static int LogExceptionAndEmail(SitesXML siteXML, int? memberID, Exception ex)
+        protected static void SaveExceptionToSiteXML(SitesXML siteXML, int? memberID)
         {
-            ExceptionTableService serviceException = new ExceptionTableService();
-
-            int intExceptionID = serviceException.LogException(ex.GetBaseException());
-
             // Save the exception id
             XDocument xmlFile = XDocument.Load(ConfigurationManager.AppSettings["SiteMemberXML"]);
             var query = from c in xmlFile.Elements("sites").Elements("site")
@@ -426,76 +424,12 @@ namespace JXTPostDataToFTP
                 // Save the Exception ID and the application which has exception in the XML.
                 if (site.Element("SiteId").Value == siteXML.SiteId.ToString())
                 {
-                    site.Element("ExceptionID").Value = intExceptionID.ToString();
+                    site.Element("ExceptionID").Value = "-1";
                 }
             }
             xmlFile.Save(ConfigurationManager.AppSettings["SitesXML"]);
 
-
-            // **** Send email when there is an error.
-            Message message = new Message();
-            message.Format = Format.Html;
-            if (memberID != null)
-            {
-                message.Body = string.Format(@"
-SiteId: {0}<br /><br />
-MemberID: {1}<br /><br />
-DateTime: {2}<br /><br />
-Message: {3}<br /><br />
-StackTrace: {4}<br /><br />
-ExceptionID: {5}",
-                        siteXML.SiteId,
-                        memberID.Value,
-                        DateTime.Now,
-                        ex.Message,
-                        ex.StackTrace,
-                        intExceptionID);
-            }
-            else
-            {
-                message.Body = string.Format(@"
-SiteId: {0}<br /><br />
-DateTime: {1}<br /><br />
-Message: {2}<br /><br />
-StackTrace: {3}<br /><br />
-ExceptionID: {4}",
-                        siteXML.SiteId,
-                        DateTime.Now,
-                        ex.Message,
-                        ex.StackTrace,
-                        intExceptionID);
-            }
-
-            message.From = new MailAddress("bugs@jxt.com.au", "MiniJXT Support");
-            message.To = new MailAddress(ConfigurationManager.AppSettings["AdminEmail"]);
-            message.Subject = "MiniJXT - Job application FTP Error";
-
-            EmailSender().Send(message);
-
-            return intExceptionID;
         }
-
-        /// <summary>
-        /// Email Sender
-        /// </summary>
-        /// <returns></returns>
-        private static SmtpSender EmailSender()
-        {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            MailSettingsSectionGroup mailConfiguration = (MailSettingsSectionGroup)config.GetSectionGroup("system.net/mailSettings");
-
-            SmtpSender mailObject = new SmtpSender(mailConfiguration.Smtp.Network.Host);
-
-            mailObject.Port = mailConfiguration.Smtp.Network.Port;
-            if (!mailConfiguration.Smtp.Network.DefaultCredentials)
-            {
-                mailObject.UserName = mailConfiguration.Smtp.Network.UserName;
-                mailObject.Password = mailConfiguration.Smtp.Network.Password;
-            }
-
-            return mailObject;
-        }
-
         #endregion
 
         public void GenerateMemberXML()
@@ -1006,23 +940,17 @@ ExceptionID: {4}",
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] ERROR: " + ex.StackTrace);
-
-                        int exceptionID = LogExceptionAndEmail(sitexml, 0, ex);
+                        _logger.Error(string.Format("Failed to generate XML for Member on SiteId:{1}", sitexml.SiteId), ex);
+                        SaveException(sitexml, 0, ex);
                     }
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] ERROR: " + ex.Message + "\n" + ex.StackTrace);
-
-                    int exceptionID = LogExceptionAndEmail(sitexml, 0, ex);
-
+                    _logger.Error(string.Format("Failed to generate XML for Member on SiteId:{1}", sitexml.SiteId), ex);
+                    SaveException(sitexml, 0, ex);
                 }
-
-
             }
         }
-
 
         private SiteSettingReferences SiteSettingReferencesGet(int siteID)
         {

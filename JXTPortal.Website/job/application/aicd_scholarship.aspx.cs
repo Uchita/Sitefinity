@@ -22,8 +22,7 @@ namespace JXTPortal.Website.job.application
     {
 
         #region Properties
-        ILog _logger;
-
+        
         private int _jobid = 0;
         protected int JobID
         {
@@ -147,10 +146,6 @@ namespace JXTPortal.Website.job.application
             }
         }
 
-        public aicd_scholarship()
-        {
-            _logger = LogManager.GetLogger(typeof(aicd_scholarship));
-        }
         #endregion
 
         #region Page Events
@@ -387,7 +382,8 @@ namespace JXTPortal.Website.job.application
             }
             catch (Exception e)
             {
-                _logger.Error(e);
+                var logger = LogManager.GetLogger(typeof(aicd_scholarship));
+                logger.Error(e);
 
                 return new { Success = false, ValidateResult = new List<ValidationResult> { new ValidationResult("Error occured while processing the last request. Please try again.", new List<string> { "form_error" }) } };
             }
@@ -465,7 +461,8 @@ namespace JXTPortal.Website.job.application
             }
             catch (Exception e)
             {
-                _logger.Error(e);
+                var logger = LogManager.GetLogger(typeof(aicd_scholarship));
+                logger.Error(e);
 
                 return new { Success = false, ValidateResult = new List<ValidationResult> { new ValidationResult("Error occured while processing the last request. Please try again.", new List<string> { "form_error" }) } };
             }

@@ -901,8 +901,16 @@ ExceptionID: {4}",
                             {*/
                             using (StringWriter textWriter = new StringWriter())
                             {
-                                xmlSerializer.Serialize(textWriter, thisXML);
-                                thisMemberXML = textWriter.ToString(); // Memory exception here.
+                                try
+                                {
+                                    xmlSerializer.Serialize(textWriter, thisXML);
+                                    thisMemberXML = textWriter.ToString(); // Memory exception here.
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Member ID: " + thisXML.Profile.MemberID.ToString() + " cannot be serialized.");
+                                    continue;
+                                }
                             }
                             /*}
                             catch (Exception ex)
@@ -931,9 +939,35 @@ ExceptionID: {4}",
                             string memberfilepath = string.Format("{0}{1}", ConfigurationManager.AppSettings["MemberXMLExportFolder"], memberfilename);
 
                             MemberFiles mf = MembersFilesService.GetByMemberFileId(memberfile.MemberFileId);
-                            if (mf != null && mf.MemberFileContent != null)
+                            if (mf != null)
                             {
-                                File.WriteAllBytes(memberfilepath, mf.MemberFileContent);
+                                string errormessage = string.Empty;
+                                byte[] memberfilecontent = null;
+
+                                if (!string.IsNullOrWhiteSpace(mf.MemberFileUrl))
+                                {
+
+                                    FtpClient ftpclient = new FtpClient();
+                                    ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
+                                    ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                                    ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+
+                                    string filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], mf.MemberId, mf.MemberFileUrl);
+                                    Stream ms = null;
+                                    ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
+                                    ms.Position = 0;
+
+                                    memberfilecontent = ((MemoryStream)ms).ToArray();
+                                }
+                                else
+                                {
+                                    if (mf.MemberFileContent != null)
+                                    {
+                                        memberfilecontent = mf.MemberFileContent;
+                                    }
+                                }
+
+                                File.WriteAllBytes(memberfilepath, memberfilecontent);
 
                                 fileslist.Add(new FileNames(memberfile.MemberFileId.ToString(), memberfilepath, memberfilename));
                             }

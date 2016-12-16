@@ -289,7 +289,7 @@ namespace JXTPortal.Website
                             ftpresumepath = ConfigurationManager.AppSettings["FTPJobApplyResumeUrl"];
                             ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
                             ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
+                            ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
                             ftpclient.Username = ftpusername;
                             ftpclient.Password = ftppassword;
 
@@ -433,7 +433,7 @@ namespace JXTPortal.Website
                         ftpresumepath = ConfigurationManager.AppSettings["FTPJobApplyResumeUrl"];
                         ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
                         ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
+                        ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
                         ftpclient.Username = ftpusername;
                         ftpclient.Password = ftppassword;
 
@@ -545,7 +545,7 @@ namespace JXTPortal.Website
                         ftpresumepath = ConfigurationManager.AppSettings["FTPJobApplyResumeUrl"];
                         ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
                         ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
+                        ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
                         ftpclient.Username = ftpusername;
                         ftpclient.Password = ftppassword;
 

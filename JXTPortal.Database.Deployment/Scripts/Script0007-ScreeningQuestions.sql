@@ -99,7 +99,7 @@ BEGIN
 	[EnablePeopleSearch] [bit] NOT NULL,
 	[GlobalDateFormat] [varchar](20) NOT NULL,
 	[TimeZone] [varchar](255) NOT NULL,
-	[EnableScreeningQuestions] [bit] NOT NULL DEFAULT 0
+	[EnableScreeningQuestions] [bit] NOT NULL DEFAULT 0,
  CONSTRAINT [PK__tmp_ms_xx_Global__408F9238] PRIMARY KEY CLUSTERED 
 (
 	[GlobalSettingID] ASC
@@ -279,14 +279,13 @@ CREATE TABLE [dbo].[Jobs](
 	[JobLongitude] [float] NULL,
 	[AddressStatus] [int] NULL,
 	[JobExternalId] [varchar](50) NULL,
-	[HasScreeningQuestions] [int] NOT NULL DEFAULT 0
+	[HasScreeningQuestions] [int] NOT NULL DEFAULT 0,
  CONSTRAINT [PK__Jobs__63CEACD4] PRIMARY KEY CLUSTERED 
 (
 	[JobID] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
-SET ANSI_PADDING ON
 
 ALTER TABLE [dbo].[Jobs]  WITH NOCHECK ADD  CONSTRAINT [FK__Jobs__Advertiser__6C63F2D5] FOREIGN KEY([AdvertiserID])
 REFERENCES [dbo].[Advertisers] ([AdvertiserID])
@@ -355,6 +354,7 @@ BEGIN
 	WHERE Name = N'ScreeningQuestionsGUID' AND OBJECT_ID = OBJECT_ID(N'JobApplication'))
 	BEGIN
 		ALTER TABLE JobApplication ADD ScreeningQuestionsGUID GUID NULL
+    END
 END
 ELSE
 BEGIN 
@@ -393,7 +393,6 @@ CREATE TABLE [dbo].[JobApplication](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
-GO
 
 ALTER TABLE [dbo].[JobApplication]  WITH CHECK ADD  CONSTRAINT [FK__JobApplic__JobAr__612C0E5D] FOREIGN KEY([JobArchiveID])
 REFERENCES [dbo].[JobsArchive] ([JobID])
@@ -427,4 +426,43 @@ ALTER TABLE [dbo].[JobApplication] ADD  DEFAULT ((0)) FOR [FileDownloaded]
 END
 GO
 -- ScreeningQuestions
+IF OBJECT_ID('dbo.ScreeningQuestions', 'U') IS NOT NULL
+BEGIN
+	DROP TABLE ScreeningQuestions
+END
+ELSE
+BEGIN 
+	CREATE TABLE ScreeningQuestions
+	(
+	  [ScreeningQuestionId] [int] IDENTITY(1,1) NOT NULL,
+	  [QuestionTitle] [nvarchar] NOT NULL,
+	  [LanguageId] [int] NOT NULL,
+	  [KnockoutIndex] [int] NOT NULL,
+	  [Options] [nvarchar] NULL,
+	  [LastModified] [datetime] NULL,
+	  [LastModifiedBy] [int] NULL,
+	  [LastModifiedByAdvertiserId] [int] NULL,
+	)
+
+END
+GO
+
 -- ScreeningQuestionsTemplates
+IF OBJECT_ID('dbo.ScreeningQuestions', 'U') IS NOT NULL
+BEGIN
+	DROP TABLE ScreeningQuestions
+END
+ELSE
+BEGIN 
+	CREATE TABLE ScreeningQuestions
+	(
+		[ScreeningQuestionsTemplateId] [int] IDENTITY(1,1) NOT NULL,
+		[TemplateName] [int] IDENTITY(1,1) NOT NULL,
+		[SiteId] [int] IDENTITY(1,1) NOT NULL,
+		[AdvertiserId] [int] IDENTITY(1,1) NOT NULL,
+		[GlobalTemplate] [int] IDENTITY(1,1) NOT NULL,
+		[Visible] [int] IDENTITY(1,1) NOT NULL
+	)
+
+END
+GO

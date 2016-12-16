@@ -286,10 +286,9 @@ namespace JXTPostDataToFTP
 
         #region FTP / SFTP Methods
 
-        public static bool UploadTempFilesToFTP(SitesXML siteXML, List<FileNames> filesToUpload, out string errormessage)
+        public bool UploadTempFilesToFTP(SitesXML siteXML, List<FileNames> filesToUpload, out string errormessage)
         {
-
-            Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Files Upload Begin");
+            _logger.Info("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Files Upload Begin");
 
             errormessage = string.Empty;
             bool blnResult = true;
@@ -309,7 +308,7 @@ namespace JXTPostDataToFTP
                     request.Method = WebRequestMethods.Ftp.UploadFile;
                     request.UseBinary = true;
 
-                    Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Uploading File: " + fileNames.fromFilename);
+                   _logger.Info("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Uploading File: " + fileNames.fromFilename);
 
                     fileInfo = new FileInfo(fileNames.fromFilename);
                     request.ContentLength = fileInfo.Length;
@@ -336,20 +335,20 @@ namespace JXTPostDataToFTP
 
                     FtpWebResponse response = (FtpWebResponse)request.GetResponse();
                     response.Close();
-                    Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] File Uploaded: " + fileNames.toFilename);
+                    _logger.Info("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] File Uploaded: " + fileNames.toFilename);
 
                     // Delete file
                     File.Delete(fileNames.fromFilename);
-                    Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] File Deleted: " + fileNames.fromFilename);
+                    _logger.Info("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] File Deleted: " + fileNames.fromFilename);
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] ERROR: " + ex.Message + "\n" + ex.StackTrace);
+                   _logger.Error(ex);
                     blnResult = false;
                 }
             }
 
-            Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Files Upload Ends");
+            _logger.Info("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Files Upload Ends");
 
             return blnResult;
         }
@@ -375,17 +374,17 @@ namespace JXTPostDataToFTP
                     if (File.Exists(fileNames.fromFilename))
                     {
                         // Upload a file
-                        Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Uploading File: " + fileNames.fromFilename);
+                        _logger.Info("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Uploading File: " + fileNames.fromFilename);
                         sftp.Put(fileNames.fromFilename, (siteXML.folderPath != null ? siteXML.folderPath : string.Empty) + fileNames.toFilename);
-                        Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] File Uploaded: " + fileNames.toFilename);
+                        _logger.Info("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] File Uploaded: " + fileNames.toFilename);
 
                         // Delete file
                         File.Delete(fileNames.fromFilename);
-                        Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] File Deleted: " + fileNames.fromFilename);
+                        _logger.Info("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] File Deleted: " + fileNames.fromFilename);
                     }
                     else
                     {
-                        Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] File Not Found: " + fileNames.fromFilename);
+                        _logger.Info("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] File Not Found: " + fileNames.fromFilename);
                     }
                     // Close the Sftp connection
                     //sftp.Close();
@@ -395,7 +394,7 @@ namespace JXTPostDataToFTP
             }
             catch (Exception ex)
             {
-                Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] ERROR: " + ex.Message + "\n" + ex.StackTrace);
+                _logger.Info(ex);
             }
             finally
             {
@@ -755,8 +754,8 @@ namespace JXTPostDataToFTP
                         }
                     }
 
-                    Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Number of Members: " + drValidatedMembers.Count().ToString());
-
+                    _logger.Info("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Number of Members: " + drValidatedMembers.Count().ToString());
+                    
                     List<MemberXMLModel> MembersXML = new List<MemberXMLModel>();
                     List<MemberFiles> MembersFilesList = new List<MemberFiles>();
 
@@ -765,7 +764,7 @@ namespace JXTPostDataToFTP
                     {
                         int thisMemberID = int.Parse(drMember["MemberID"].ToString());
 
-                        Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Processing Member XML: " + thisMemberID.ToString());
+                        _logger.Info("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Processing Member XML: " + thisMemberID.ToString());
 
                         DataRow[] thisMemberFiles = dtMemberFiles.Select("MemberID=" + thisMemberID);
                         DataRow[] thisMemberDirectorships = dtMemberDirectorships.Select("MemberID=" + thisMemberID);
@@ -810,7 +809,7 @@ namespace JXTPostDataToFTP
 
                         MembersXML.Add(thisMemberXML);
 
-                        Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Member XML Processed: " + thisMemberID.ToString());
+                        _logger.Info("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Member XML Processed: " + thisMemberID.ToString());
                     }
 
                     //Finally, xml serialize
@@ -828,7 +827,7 @@ namespace JXTPostDataToFTP
 
                         foreach (MemberXMLModel thisXML in MembersXML)
                         {
-                            Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] About to Write Member ID: " + thisXML.Profile.MemberID.ToString());
+                            _logger.Info("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] About to Write Member ID: " + thisXML.Profile.MemberID.ToString());
                             string thisMemberXML = string.Empty;
                             XmlSerializer xmlSerializer = new XmlSerializer(typeof(MemberXMLModel));
                             /*try
@@ -842,7 +841,8 @@ namespace JXTPostDataToFTP
                                 }
                                 catch (Exception ex)
                                 {
-                                    Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Member ID: " + thisXML.Profile.MemberID.ToString() + " cannot be serialized.");
+                                    _logger.Error("Member ID: " + thisXML.Profile.MemberID.ToString() + " cannot be serialized.", ex);
+                                    
                                     continue;
                                 }
                             }
@@ -865,7 +865,7 @@ namespace JXTPostDataToFTP
 
                         foreach (MemberFiles memberfile in MembersFilesList)
                         {
-                            Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] About to Write Member File: " + memberfile.MemberFileId.ToString());
+                            _logger.Info("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] About to Write Member File: " + memberfile.MemberFileId.ToString());
 
 
                             string memberfilename = string.Format("MemberFile_{0}_{1}_{2}", memberfile.MemberId, memberfile.MemberFileId, memberfile.MemberFileName);
@@ -941,13 +941,13 @@ namespace JXTPostDataToFTP
                     catch (Exception ex)
                     {
                         _logger.Error(string.Format("Failed to generate XML for Member on SiteId:{1}", sitexml.SiteId), ex);
-                        SaveException(sitexml, 0, ex);
+                        SaveExceptionToSiteXML(sitexml, 0);
                     }
                 }
                 catch (Exception ex)
                 {
                     _logger.Error(string.Format("Failed to generate XML for Member on SiteId:{1}", sitexml.SiteId), ex);
-                    SaveException(sitexml, 0, ex);
+                    SaveExceptionToSiteXML(sitexml, 0);
                 }
             }
         }

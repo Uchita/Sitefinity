@@ -23,11 +23,14 @@ using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using NotesFor.HtmlToOpenXml;
 using JXTPortal.Entities.Models;
+using log4net;
 
 namespace JXTPortal.Website
 {
     public partial class oauthcallback : System.Web.UI.Page
     {
+        ILog _logger;
+
         #region Properties
         public string ID
         {
@@ -133,6 +136,11 @@ namespace JXTPortal.Website
         }
         #endregion
 
+        public oauthcallback()
+        {
+            _logger = LogManager.GetLogger(typeof(oauthcallback));
+        }
+
         public bool AcceptAllCertifications(object sender, System.Security.Cryptography.X509Certificates.X509Certificate certification, System.Security.Cryptography.X509Certificates.X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors)
         {
             return true;
@@ -140,42 +148,47 @@ namespace JXTPortal.Website
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            _logger.Debug("oAuthCallback: onPageLoad");
             System.Net.ServicePointManager.ServerCertificateValidationCallback = new System.Net.Security.RemoteCertificateValidationCallback(AcceptAllCertifications);
 
             OAuthErrorCheck();
-
+            _logger.Debug("oAuthCallback: onErrorCheck success");
             PortalEnums.SocialMedia.SocialMediaType callbackType;
             bool typeParseOK = Enum.TryParse<PortalEnums.SocialMedia.SocialMediaType>(Request["cbtype"], true, out callbackType);
+            _logger.Debug(string.Format("oAuthCallback typeParseOk = {0}, callbackType = {1}", typeParseOK, callbackType));
 
             if (!string.IsNullOrEmpty(hfGoogleAccessDenied.Value))
             {
+                _logger.Debug(string.Format("hfGoogleAccessDenied.Value = {0}", hfGoogleAccessDenied.Value));
+                
                 if (Session["ApplyURL"] != null)
                 {
-                    Response.Redirect(Session["ApplyURL"].ToString(), false);
+                    var url = Session["ApplyURL"].ToString();
+                    _logger.Debug(string.Format("Redirecting back to {0}", url));
+                    Response.Redirect(url, false);
                     return;
                 }
                 return;
             }
 
             //other special cases due to restriction on callback urls
-            if (!typeParseOK)
+            if (!typeParseOK && !string.IsNullOrEmpty(hfGoogleAccessToken.Value))
             {
-                if (!string.IsNullOrEmpty(hfGoogleAccessToken.Value))
-                {
-                    typeParseOK = true;
-                    callbackType = PortalEnums.SocialMedia.SocialMediaType.Google;
-                }
-
-
+                _logger.Debug("Setting TryparseOK to true and Callbacktype to Google");
+                typeParseOK = true;
+                callbackType = PortalEnums.SocialMedia.SocialMediaType.Google;
             }
 
             PortalEnums.SocialMedia.OAuthCallbackAction callbackAction;
             bool actionParseOK = Enum.TryParse<PortalEnums.SocialMedia.OAuthCallbackAction>(Request["cbaction"], true, out callbackAction);
+            _logger.Debug(string.Format("oAuthCallback typeParseOk = {0}, callbackType = {1}", actionParseOK, callbackAction));
+            
             //other special cases due to restriction on callback urls
             if (!actionParseOK)
             {
                 if (!string.IsNullOrEmpty(hfGoogleAccessToken.Value))
                 {
+                    _logger.Debug("Setting actionParseOK to true and callbackAction to ApplyLogin");
                     actionParseOK = true;
                     callbackAction = PortalEnums.SocialMedia.OAuthCallbackAction.ApplyLogin;
                 }
@@ -213,12 +226,13 @@ namespace JXTPortal.Website
             else
             {
                 //TODO: ERROR
-                Response.Redirect("~/member/login.aspx?oautherror=" + LoginErrorCodeGet("OAuthorizationFailed"), false);
+                int oAuthError = LoginErrorCodeGet("OAuthorizationFailed");
+
+                _logger.Error(string.Format("OAuthFailure {0}", oAuthError));
+                Response.Redirect("~/member/login.aspx?oautherror=" + oAuthError, false);
                 return;
             }
-
         }
-
 
         private bool SeekApplyJob(int jobid, string url, string DocumentName, string data, bool isHTML, out string errormsg)
         {
@@ -371,7 +385,7 @@ namespace JXTPortal.Website
         private void IndeedApplyJob(int jobid, string url, string DocumentName, string data)
         {
             // Check if member has applied for the job
-
+            _logger.Debug(string.Format("IndeedApplyJob: jobId{0}"));
             using (TList<JXTPortal.Entities.JobApplication> jobapp = JobApplicationService.GetByJobId(jobid))
             {
                 if (jobapp != null)
@@ -379,6 +393,7 @@ namespace JXTPortal.Website
                     jobapp.Filter = "MemberID = " + SessionData.Member.MemberId.ToString();
                     if (jobapp.Count > 0)
                     {
+                        _logger.Debug("Member has already applied for job");
                         Response.Redirect(url, false);
                         return;
                     }
@@ -390,6 +405,7 @@ namespace JXTPortal.Website
                 // [TODO] Member Apply for job sp
                 using (JXTPortal.Entities.JobApplication newjobapp = new JXTPortal.Entities.JobApplication())
                 {
+                    _logger.Debug(string.Format("Creating new application for member({0}", SessionData.Member.MemberId));
                     newjobapp.ApplicationDate = DateTime.Now;
                     newjobapp.JobId = Convert.ToInt32(jobid);
                     newjobapp.MemberId = SessionData.Member.MemberId;
@@ -407,6 +423,7 @@ namespace JXTPortal.Website
 
                     if (JobApplicationService.Insert(newjobapp))
                     {
+                        _logger.Debug("Job application successfully added");
                         string errormessage = string.Empty;
 
                         // Retrieve value from JobsViewed Cookie, the format is {JobID}|{Domain},...
@@ -423,6 +440,7 @@ namespace JXTPortal.Website
                             }
                         }
 
+                      
                         bool useFTP = (!string.IsNullOrEmpty(ConfigurationManager.AppSettings["FTPJobApplyResumeUrl"]));
                         string ftpresumepath = string.Empty;
                         string ftpusername = string.Empty;
@@ -443,12 +461,13 @@ namespace JXTPortal.Website
                         string filename = string.Format("{0}_Resume_{1}", newjobapp.JobApplicationId, DocumentName);
 
                         newjobapp.MemberResumeFile = filename;
-
+                        _logger.Debug(string.Format("FTPing the resume filename {0}", filename));
                         ftpclient.UploadFileFromStream(generatedDocument, ftpresumepath + filename, out errormessage);
 
 
                         if (string.IsNullOrEmpty(errormessage))
                         {
+                            _logger.Debug("Successfully uploaded resume");
                             if (JobApplicationService.Update(newjobapp))
                             {
                                 Entities.Members member = MembersService.GetByMemberId(SessionData.Member.MemberId);
@@ -467,9 +486,22 @@ namespace JXTPortal.Website
                                 // Response.Redirect(DynamicPagesService.GetDynamicPageUrl(JXTPortal.SystemPages.JOBAPPLY_SUCCESS, "", "", ""), false);
                                 return;
                             }
+                            else
+                            {
+                                _logger.Warn("Failed to update the job application");
+                            }
+                        }
+                        else
+                        {
+                            _logger.Warn(string.Format("Error sending resume: {0}", errormessage));
                         }
 
                     }
+                    else
+                    {
+                        _logger.Warn("Failed to insert job application");
+                    }
+
                 }
 
             }
@@ -606,6 +638,7 @@ namespace JXTPortal.Website
 
         private void LoginFromAPI(GeneralAPIMember gam, string source, bool redirectToMemberHome = true, string accessToken = "", bool validated = true)
         {
+            _logger.Debug(string.Format("LoginFromAPI: source = {0}", source));
             string memberHome = "~/member/default.aspx";
             SocialMedia.API.MemberAPIService s = new SocialMedia.API.MemberAPIService();
             int memberid = 0;
@@ -615,6 +648,7 @@ namespace JXTPortal.Website
             {
                 if (redirectToMemberHome)
                 {
+                    _logger.Debug("redirecting member back to home");
                     MembersService service = new MembersService();
                     using (Entities.Members m = service.GetByMemberId(memberid))
                     {
@@ -1176,6 +1210,7 @@ namespace JXTPortal.Website
 
         private void OAuthCallBackIndeed(PortalEnums.SocialMedia.OAuthCallbackAction callbackAction, string code)
         {
+          
             switch (callbackAction)
             {
                 case PortalEnums.SocialMedia.OAuthCallbackAction.Apply:
@@ -1187,7 +1222,8 @@ namespace JXTPortal.Website
         }
 
         private void ApplyWithIndeed()
-        {
+        { 
+            _logger.Debug("Handling apply with Indeed Callback");
             //Indeed Methods
             string IndeedDataFile = ConfigurationManager.AppSettings["IndeedDataFile"];
 
@@ -1209,8 +1245,10 @@ namespace JXTPortal.Website
                 JavaScriptSerializer jss = new JavaScriptSerializer();
                 oAuthIndeed.IndeedContract indeeddata = jss.Deserialize<oAuthIndeed.IndeedContract>(data);
 
+                _logger.Debug(string.Format("Application: {0}; Resume: {1}; file: {2}", indeeddata.applicant != null, (indeeddata.applicant != null && indeeddata.applicant.resume != null), (indeeddata.applicant != null && indeeddata.applicant.resume != null && indeeddata.applicant.resume.file != null)));
                 if (indeeddata.applicant == null || indeeddata.applicant.resume == null || indeeddata.applicant.resume.file == null)
                 {
+                    _logger.Debug("Applicant, resume or file missing");
                     if (!string.IsNullOrEmpty(IndeedDataFile))
                     {
                         string fname = Server.MapPath(IndeedDataFile);
@@ -1227,6 +1265,8 @@ namespace JXTPortal.Website
                 bool validated = false;
                 if (indeeddata.applicant.resume.json == null)
                 {
+                    _logger.Debug("applicant resume json is null, finding name based on full name");
+
                     string[] names = indeeddata.applicant.fullName.Split(new char[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
 
                     gam.FirstName = names[0];
@@ -1239,6 +1279,7 @@ namespace JXTPortal.Website
                 }
                 else
                 {
+                    _logger.Debug("found applicant resume json, Determining full name");
                     gam.FirstName = indeeddata.applicant.resume.json.firstName;
                     gam.Surname = indeeddata.applicant.resume.json.lastName;
                     validated = true;
@@ -1475,7 +1516,20 @@ namespace JXTPortal.Website
 
         private void OAuthErrorCheck()
         {
-            if (string.IsNullOrWhiteSpace(Request.Params["error"]) == false && string.IsNullOrWhiteSpace(Request.Params["error_description"]) == false)
+            bool hasError = false;
+            if (!string.IsNullOrWhiteSpace(Request.Params["error"]))
+            {
+                _logger.Debug(string.Format("oAuthError: {0}", Request.Params["error"]));
+                hasError = true;
+            }
+
+            if (!string.IsNullOrWhiteSpace(Request.Params["error_description"]))
+            {
+                _logger.Debug(string.Format("oAuthError_description: {0}", Request.Params["error_description"]));
+                hasError = true;
+            }
+
+            if (hasError)
             {
                 if (string.IsNullOrWhiteSpace(ID))
                 {

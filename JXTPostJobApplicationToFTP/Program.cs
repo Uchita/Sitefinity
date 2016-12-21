@@ -458,7 +458,7 @@ namespace JXTPostJobApplicationToFTP
         /// <param name="strLastExceptionApplicationID"></param>
         /// <param name="ex"></param>
         /// <returns></returns>
-        protected static int SaveExceptionToSiteXML(SitesXML siteXML, string strLastExceptionApplicationID)
+        protected static void SaveExceptionToSiteXML(SitesXML siteXML, string strLastExceptionApplicationID)
         {
             XDocument xmlFile = XDocument.Load(ConfigurationManager.AppSettings["SitesXML"]);
             var query = from c in xmlFile.Elements("sites").Elements("site")
@@ -512,3 +512,4 @@ namespace JXTPostJobApplicationToFTP
     #endregion
 
 }
+

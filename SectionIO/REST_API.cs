@@ -9,7 +9,7 @@ using log4net;
 
 namespace SectionIO
 {
-    public class SectionIO_API
+    public class SectionIO_API : ICacheFlusher
     {
         private const string API_END_POINT = "https://aperture.section.io/api/v1/account/{0}/application/{1}/environment/{2}";
         
@@ -18,7 +18,7 @@ namespace SectionIO
         private Environment _environmentName;
         private ILog _logger;
 
-        public SectionIO_API(long accountID, long appID, Environment environment)
+        public SectionIO_API(long accountID, long appID, Environment environment = Environment.Production)
         {
             _accountID = accountID;
             _applicationID = appID;
@@ -33,7 +33,7 @@ namespace SectionIO
         /// </summary>
         /// <param name="proxy"></param>
         /// <param name="banExpression"></param>
-        public void API_Proxy_State_Post(Proxy proxy, string banExpression)
+        internal void API_Proxy_State_Post(Proxy proxy, string banExpression)
         {
             string request_end_point = string.Format(API_END_POINT, _accountID, _applicationID, _environmentName.ToString());
 
@@ -85,12 +85,12 @@ namespace SectionIO
 
         #region Enums
 
-        public enum Proxy
+        internal enum Proxy
         {
             Varnish = 1
         }
 
-        public enum Environment
+        internal enum Environment
         {
             Development = 1,
             Production = 2
@@ -109,5 +109,17 @@ namespace SectionIO
         }
 
 
+        public void FlushByUrl(string pageUrl)
+        {
+           API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, "req.url == " + pageUrl);
+        }
+
+        public void FlushAsset(AssetClass asset, string siteBaseUri)
+        {
+            //build ban expression
+            string expression = siteBaseUri + string.Empty;
+
+            API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, expression);
+        }
     }
 }

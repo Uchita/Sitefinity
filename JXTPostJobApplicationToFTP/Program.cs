@@ -468,13 +468,13 @@ namespace JXTPostJobApplicationToFTP
                 // Save the Exception ID and the application which has exception in the XML.
                 if (site.Element("SiteId").Value == siteXML.SiteId.ToString())
                 {
-                    
+
                     site.Element("LastExceptionApplicationID").Value = strLastExceptionApplicationID;
                 }
             }
 
             xmlFile.Save(ConfigurationManager.AppSettings["SitesXML"]);
-
+        }
         #endregion
     }
 

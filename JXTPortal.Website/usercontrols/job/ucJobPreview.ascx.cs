@@ -421,7 +421,7 @@ namespace JXTPortal.Website.usercontrols.job
 
                                 // Advertiser Job Template Logo
                                 string strAdvertiserLogo = string.Empty;
-                                if (job.AdvertiserJobTemplateLogoId.HasValue && job.AdvertiserJobTemplateLogoId.Value > 0)
+                                if (job.AdvertiserJobTemplateLogoId.GetValueOrDefault(0) > 0)
                                     strAdvertiserLogo = String.Format(@"<img src='/getfile.aspx?advertiserjobtemplatelogoid={0}' alt='{1}' />",
                                                                         job.AdvertiserJobTemplateLogoId.Value,
                                                                         job.CompanyName);
@@ -671,7 +671,7 @@ namespace JXTPortal.Website.usercontrols.job
                                     // Advertiser Job Template Logo
                                     string strAdvertiserLogo = string.Empty;
 
-                                    if (job.AdvertiserJobTemplateLogoId.HasValue)
+                                    if (job.AdvertiserJobTemplateLogoId.GetValueOrDefault(0) > 0)
                                     {
                                         using (AdvertiserJobTemplateLogo logo = AdvertiserJobTemplateLogoService.GetByAdvertiserJobTemplateLogoId(job.AdvertiserJobTemplateLogoId.Value))
                                         {
@@ -686,7 +686,7 @@ namespace JXTPortal.Website.usercontrols.job
                                             {
                                                 if (logo.JobTemplateLogo != null)
                                                 {
-                                                    if (job.AdvertiserJobTemplateLogoId.HasValue && job.AdvertiserJobTemplateLogoId.Value > 0)
+                                                    if (job.AdvertiserJobTemplateLogoId.GetValueOrDefault(0) > 0)
                                                         strAdvertiserLogo = String.Format(@"<img src='/getfile.aspx?advertiserjobtemplatelogoid={0}' alt='{1}' />",
                                                                                             job.AdvertiserJobTemplateLogoId.Value,
                                                                                             job.CompanyName);

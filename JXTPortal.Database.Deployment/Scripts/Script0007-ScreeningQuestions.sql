@@ -214,9 +214,9 @@ IF OBJECT_ID('dbo.Jobs', 'U') IS NOT NULL
 BEGIN
 	-- Check if URL Column Exists
 	IF NOT EXISTS(SELECT * FROM sys.columns
-	WHERE Name = N'HasScreeningQuestions' AND OBJECT_ID = OBJECT_ID(N'Jobs'))
+	WHERE Name = N'ScreeningQuestionsTemplateId' AND OBJECT_ID = OBJECT_ID(N'Jobs'))
 	BEGIN
-		ALTER TABLE Jobs ADD HasScreeningQuestions INT NOT NULL DEFAULT 0
+		ALTER TABLE Jobs ADD ScreeningQuestionsTemplateId INT NULL FOREIGN KEY REFERENCES ScreeningQuestionsTemplates(ScreeningQuestionsTemplateId)
 	END 
 END
 ELSE
@@ -279,7 +279,7 @@ CREATE TABLE [dbo].[Jobs](
 	[JobLongitude] [float] NULL,
 	[AddressStatus] [int] NULL,
 	[JobExternalId] [varchar](50) NULL,
-	[HasScreeningQuestions] [int] NOT NULL DEFAULT 0,
+	[ScreeningQuestionsTemplateId] [int] NULL FOREIGN KEY REFERENCES ScreeningQuestionsTemplates(ScreeningQuestionsTemplateId),
  CONSTRAINT [PK__Jobs__63CEACD4] PRIMARY KEY CLUSTERED 
 (
 	[JobID] ASC
@@ -346,14 +346,155 @@ ALTER TABLE [dbo].[Jobs] ADD  CONSTRAINT [DF__Jobs__HotJob__76E18148]  DEFAULT (
 END
 GO
 
+-- JobsArchive
+
+IF OBJECT_ID('dbo.JobsArchive', 'U') IS NOT NULL
+BEGIN
+	-- Check if URL Column Exists
+	IF NOT EXISTS(SELECT * FROM sys.columns
+	WHERE Name = N'ScreeningQuestionsTemplateId' AND OBJECT_ID = OBJECT_ID(N'JobsArchive'))
+	BEGIN
+		ALTER TABLE JobsArchive ADD ScreeningQuestionsTemplateId INT NULL FOREIGN KEY REFERENCES ScreeningQuestionsTemplates(ScreeningQuestionsTemplateId)
+	END 
+END
+ELSE
+BEGIN 
+CREATE TABLE [dbo].[JobsArchive](
+	[JobID] [int] NOT NULL,
+	[SiteID] [int] NOT NULL,
+	[WorkTypeID] [int] NOT NULL,
+	[JobName] [nvarchar](510) NOT NULL,
+	[Description] [nvarchar](2000) NOT NULL,
+	[FullDescription] [nvarchar](max) NOT NULL,
+	[WebServiceProcessed] [bit] NOT NULL,
+	[ApplicationEmailAddress] [varchar](255) NOT NULL,
+	[RefNo] [varchar](255) NULL,
+	[Visible] [bit] NOT NULL,
+	[DatePosted] [smalldatetime] NOT NULL,
+	[ExpiryDate] [smalldatetime] NOT NULL,
+	[Expired] [int] NULL,
+	[JobItemPrice] [money] NULL,
+	[Billed] [bit] NOT NULL,
+	[LastModified] [datetime] NOT NULL,
+	[ShowSalaryDetails] [bit] NOT NULL,
+	[SalaryText] [varchar](500) NULL,
+	[AdvertiserID] [int] NULL,
+	[LastModifiedByAdvertiserUserId] [int] NULL,
+	[LastModifiedByAdminUserId] [int] NULL,
+	[JobItemTypeID] [int] NULL,
+	[ApplicationMethod] [int] NULL,
+	[ApplicationURL] [varchar](8000) NULL,
+	[UploadMethod] [int] NULL,
+	[Tags] [text] NULL,
+	[JobTemplateID] [int] NULL,
+	[SearchFieldExtension] [varchar](8) NOT NULL,
+	[AdvertiserJobTemplateLogoID] [int] NULL,
+	[CompanyName] [varchar](255) NULL,
+	[HashValue] [varbinary](max) NULL,
+	[RequireLogonForExternalApplications] [bit] NOT NULL,
+	[ShowLocationDetails] [bit] NULL,
+	[PublicTransport] [nvarchar](500) NULL,
+	[Address] [varchar](255) NULL,
+	[ContactDetails] [nvarchar](510) NOT NULL,
+	[JobContactPhone] [varchar](50) NULL,
+	[JobContactName] [varchar](255) NULL,
+	[QualificationsRecognised] [bit] NOT NULL,
+	[ResidentOnly] [bit] NOT NULL,
+	[DocumentLink] [varchar](255) NULL,
+	[BulletPoint1] [nvarchar](160) NULL,
+	[BulletPoint2] [nvarchar](160) NULL,
+	[BulletPoint3] [nvarchar](160) NULL,
+	[HotJob] [bit] NOT NULL,
+	[JobFriendlyName] [varchar](512) NULL,
+	[SearchField] [nvarchar](max) NULL,
+	[ShowSalaryRange] [bit] NOT NULL,
+	[SalaryLowerBand] [numeric](15, 2) NOT NULL,
+	[SalaryUpperBand] [numeric](15, 2) NOT NULL,
+	[CurrencyID] [int] NOT NULL,
+	[SalaryTypeID] [int] NOT NULL,
+	[EnteredByAdvertiserUserID] [int] NULL,
+	[JobLatitude] [float] NULL,
+	[JobLongitude] [float] NULL,
+	[AddressStatus] [int] NULL,
+	[JobExternalId] [varchar](50) NULL,
+	[ScreeningQuestionsTemplateId] [int] NULL FOREIGN KEY REFERENCES ScreeningQuestionsTemplates(ScreeningQuestionsTemplateId),
+ CONSTRAINT [PK__JobsArchive__78C9C9BA] PRIMARY KEY CLUSTERED 
+(
+	[JobID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+
+ALTER TABLE [dbo].[JobsArchive]  WITH CHECK ADD  CONSTRAINT [FK__JobsArchi__Adver__015F0FBB] FOREIGN KEY([AdvertiserID])
+REFERENCES [dbo].[Advertisers] ([AdvertiserID])
+
+ALTER TABLE [dbo].[JobsArchive] CHECK CONSTRAINT [FK__JobsArchi__Adver__015F0FBB]
+
+ALTER TABLE [dbo].[JobsArchive]  WITH CHECK ADD FOREIGN KEY([CurrencyID])
+REFERENCES [dbo].[Currencies] ([CurrencyID])
+
+ALTER TABLE [dbo].[JobsArchive]  WITH CHECK ADD  CONSTRAINT [FK__JobsArchi__JobTe__052FA09F] FOREIGN KEY([JobTemplateID])
+REFERENCES [dbo].[JobTemplates] ([JobTemplateID])
+
+ALTER TABLE [dbo].[JobsArchive] CHECK CONSTRAINT [FK__JobsArchi__JobTe__052FA09F]
+
+ALTER TABLE [dbo].[JobsArchive]  WITH CHECK ADD  CONSTRAINT [FK__JobsArchi__LastM__025333F4] FOREIGN KEY([LastModifiedByAdvertiserUserId])
+REFERENCES [dbo].[AdvertiserUsers] ([AdvertiserUserID])
+
+ALTER TABLE [dbo].[JobsArchive] CHECK CONSTRAINT [FK__JobsArchi__LastM__025333F4]
+
+ALTER TABLE [dbo].[JobsArchive]  WITH CHECK ADD  CONSTRAINT [FK__JobsArchi__LastM__0347582D] FOREIGN KEY([LastModifiedByAdminUserId])
+REFERENCES [dbo].[AdminUsers] ([AdminUserID])
+
+ALTER TABLE [dbo].[JobsArchive] CHECK CONSTRAINT [FK__JobsArchi__LastM__0347582D]
+
+ALTER TABLE [dbo].[JobsArchive]  WITH CHECK ADD FOREIGN KEY([SalaryTypeID])
+REFERENCES [dbo].[SalaryType] ([SalaryTypeID])
+
+ALTER TABLE [dbo].[JobsArchive]  WITH CHECK ADD  CONSTRAINT [FK__JobsArchi__SiteI__79BDEDF3] FOREIGN KEY([SiteID])
+REFERENCES [dbo].[Sites] ([SiteID])
+
+ALTER TABLE [dbo].[JobsArchive] CHECK CONSTRAINT [FK__JobsArchi__SiteI__79BDEDF3]
+
+ALTER TABLE [dbo].[JobsArchive]  WITH CHECK ADD  CONSTRAINT [FK__JobsArchi__WorkT__7AB2122C] FOREIGN KEY([WorkTypeID])
+REFERENCES [dbo].[WorkType] ([WorkTypeID])
+
+ALTER TABLE [dbo].[JobsArchive] CHECK CONSTRAINT [FK__JobsArchi__WorkT__7AB2122C]
+
+ALTER TABLE [dbo].[JobsArchive] ADD  CONSTRAINT [DF__JobsArchi__WebSe__7C9A5A9E]  DEFAULT ((0)) FOR [WebServiceProcessed]
+
+ALTER TABLE [dbo].[JobsArchive] ADD  CONSTRAINT [DF__JobsArchi__Bille__7E82A310]  DEFAULT ((1)) FOR [Billed]
+
+ALTER TABLE [dbo].[JobsArchive] ADD  CONSTRAINT [DF__JobsArchi__LastM__7F76C749]  DEFAULT (getdate()) FOR [LastModified]
+
+ALTER TABLE [dbo].[JobsArchive] ADD  CONSTRAINT [DF__JobsArchi__ShowS__006AEB82]  DEFAULT ((1)) FOR [ShowSalaryDetails]
+
+ALTER TABLE [dbo].[JobsArchive] ADD  CONSTRAINT [DF__JobsArchi__Requi__0623C4D8]  DEFAULT ((1)) FOR [RequireLogonForExternalApplications]
+
+ALTER TABLE [dbo].[JobsArchive] ADD  CONSTRAINT [DF__JobsArchi__Quali__0717E911]  DEFAULT ((0)) FOR [QualificationsRecognised]
+
+ALTER TABLE [dbo].[JobsArchive] ADD  CONSTRAINT [DF__JobsArchi__Resid__080C0D4A]  DEFAULT ((0)) FOR [ResidentOnly]
+
+ALTER TABLE [dbo].[JobsArchive] ADD  CONSTRAINT [DF__JobsArchi__Bulle__09003183]  DEFAULT ('') FOR [BulletPoint1]
+
+ALTER TABLE [dbo].[JobsArchive] ADD  CONSTRAINT [DF__JobsArchi__Bulle__09F455BC]  DEFAULT ('') FOR [BulletPoint2]
+
+ALTER TABLE [dbo].[JobsArchive] ADD  CONSTRAINT [DF__JobsArchi__Bulle__0AE879F5]  DEFAULT ('') FOR [BulletPoint3]
+
+ALTER TABLE [dbo].[JobsArchive] ADD  CONSTRAINT [DF__JobsArchi__HotJo__0BDC9E2E]  DEFAULT ((0)) FOR [HotJob]
+
+END
+GO
+
+
 -- JobApplication
 IF OBJECT_ID('dbo.JobApplication', 'U') IS NOT NULL
 BEGIN
 	-- Check if URL Column Exists
 	IF NOT EXISTS(SELECT * FROM sys.columns
-	WHERE Name = N'ScreeningQuestionsGUID' AND OBJECT_ID = OBJECT_ID(N'JobApplication'))
+	WHERE Name = N'ScreeningQuestionsGuid' AND OBJECT_ID = OBJECT_ID(N'JobApplication'))
 	BEGIN
-		ALTER TABLE JobApplication ADD ScreeningQuestionsGUID GUID NULL
+		ALTER TABLE JobApplication ADD ScreeningQuestionsGuid UNIQUEIDENTIFIER NULL
     END
 END
 ELSE
@@ -425,44 +566,135 @@ ALTER TABLE [dbo].[JobApplication] ADD  DEFAULT ((0)) FOR [FileDownloaded]
 
 END
 GO
+
+-- NEW TABLES
 -- ScreeningQuestions
 IF OBJECT_ID('dbo.ScreeningQuestions', 'U') IS NOT NULL
 BEGIN
 	DROP TABLE ScreeningQuestions
 END
-ELSE
-BEGIN 
-	CREATE TABLE ScreeningQuestions
-	(
-	  [ScreeningQuestionId] [int] IDENTITY(1,1) NOT NULL,
-	  [QuestionTitle] [nvarchar] NOT NULL,
-	  [LanguageId] [int] NOT NULL,
-	  [KnockoutIndex] [int] NOT NULL,
-	  [Options] [nvarchar] NULL,
-	  [LastModified] [datetime] NULL,
-	  [LastModifiedBy] [int] NULL,
-	  [LastModifiedByAdvertiserId] [int] NULL,
-	)
+GO
 
-END
+CREATE TABLE ScreeningQuestions
+(
+  [ScreeningQuestionId] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
+  [ScreeningQuestionIndex] [int] NOT NULL,
+  [QuestionTitle] [nvarchar](512) NOT NULL,
+  [LanguageId] [int] NOT NULL FOREIGN KEY REFERENCES Languages(LanguageId), -- FK
+  [KnockoutValue] [nvarchar](512) NULL,
+  [Options] [nvarchar] NULL,
+  [LastModified] [datetime] NULL,
+  [LastModifiedBy] [int] NULL FOREIGN KEY REFERENCES AdminUsers(AdminUserId), -- FK
+  [LastModifiedByAdvertiserUserId] [int] NULL FOREIGN KEY REFERENCES AdvertiserUsers(AdvertiserUserID) -- FK
+)
+	
 GO
 
 -- ScreeningQuestionsTemplates
-IF OBJECT_ID('dbo.ScreeningQuestions', 'U') IS NOT NULL
+IF OBJECT_ID('dbo.ScreeningQuestionsTemplates', 'U') IS NOT NULL
 BEGIN
-	DROP TABLE ScreeningQuestions
+	DROP TABLE ScreeningQuestionsTemplates
 END
-ELSE
-BEGIN 
-	CREATE TABLE ScreeningQuestions
+GO
+
+CREATE TABLE ScreeningQuestionsTemplates
+(
+	[ScreeningQuestionsTemplateId] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	[TemplateName] [nvarchar](512) NOT NULL,
+	[SiteId] [int] NOT NULL FOREIGN KEY REFERENCES Sites(SiteId), -- FK
+	[Visible] [bit] NOT NULL DEFAULT 1
+)
+GO
+
+-- ScreeningQuestionsTemplateOwners
+IF OBJECT_ID('dbo.ScreeningQuestionsTemplateOwners', 'U') IS NOT NULL
+BEGIN
+	DROP TABLE ScreeningQuestionsTemplateOwners
+END
+GO
+
+CREATE TABLE ScreeningQuestionsTemplateOwners
+(
+	[ScreeningQuestionsTemplatesOwnerId] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	[ScreeningQuestionsTemplateId] [int] NOT NULL FOREIGN KEY REFERENCES ScreeningQuestionsTemplates(ScreeningQuestionsTemplateId), -- FK
+	[AdvertiserId] [int] NOT NULL  FOREIGN KEY REFERENCES Advertisers(AdvertiserId)-- FK
+)
+
+GO
+
+-- JobScreeningQuestions
+IF OBJECT_ID('dbo.JobScreeningQuestions', 'U') IS NOT NULL
+BEGIN
+	DROP TABLE JobScreeningQuestions
+END
+GO
+
+CREATE TABLE JobScreeningQuestions
+(
+	[JobScreeningQuestionId] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	[JobId] [int] NULL FOREIGN KEY REFERENCES Jobs(JobId), -- FK
+	[JobArchiveId] [int] NULL FOREIGN KEY REFERENCES JobsArchive(JobId), -- FK
+	[ScreeningQuestionId] [int] NOT NULL FOREIGN KEY REFERENCES ScreeningQuestions(ScreeningQuestionId)-- FK
+)
+
+GO
+
+-- JobApplicationScreeningAnswers
+IF OBJECT_ID('dbo.JobApplicationScreeningAnswers', 'U') IS NOT NULL
+BEGIN
+	DROP TABLE JobApplicationScreeningAnswers
+END
+GO
+	CREATE TABLE JobApplicationScreeningAnswers
 	(
-		[ScreeningQuestionsTemplateId] [int] IDENTITY(1,1) NOT NULL,
-		[TemplateName] [int] IDENTITY(1,1) NOT NULL,
-		[SiteId] [int] IDENTITY(1,1) NOT NULL,
-		[AdvertiserId] [int] IDENTITY(1,1) NOT NULL,
-		[GlobalTemplate] [int] IDENTITY(1,1) NOT NULL,
-		[Visible] [int] IDENTITY(1,1) NOT NULL
+		[JobApplicationScreeningAnswerId] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
+		[ScreeningQuestionId] [int] NOT NULL FOREIGN KEY REFERENCES ScreeningQuestions(ScreeningQuestionId), -- FK
+		[Answer] [nvarchar](max) NULL, 
+		[JobApplicationId] [int] NOT NULL  FOREIGN KEY REFERENCES JobApplication(JobApplicationId)-- FK
 	)
 
+GO
+
+-- JobApplication_CustomGetByJobIdMemberId
+
+ALTER PROCEDURE [dbo].[JobApplication_CustomGetByJobIdMemberId]          
+(          
+ @JobID INT,          
+ @MemberID INT          
+)          
+AS          
+BEGIN          
+          
+SELECT      
+[JobApplicationID],      
+[ApplicationDate],      
+[JobID],      
+[MemberID],      
+[MemberResumeFile],      
+[MemberCoverLetterFile],      
+[ApplicationStatus],      
+[JobAppValidateID],      
+[SiteID_Referral],      
+[URL_Referral],      
+[ApplicantGrade],      
+[LastViewedDate],      
+[FirstName],      
+[Surname],      
+[EmailAddress],      
+[MobilePhone],      
+[MemberNote],      
+[AdvertiserNote],      
+[JobArchiveID],      
+[Draft],      
+[JobApplicationTypeID],      
+[ExternalXMLFilename],      
+[ExternalPDFFilename],      
+[CustomQuestionnaireXML],    
+[FileDownloaded],
+AppliedWith,
+ScreeningQuestionaireXML,
+ScreeningQuestionsGuid
+FROM JobApplication WITH (NOLOCK)          
+WHERE JobID = @JobID AND MemberID = @MemberID          
 END
 GO

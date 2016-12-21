@@ -1443,7 +1443,6 @@
     <Content Include="member\sso\monash\login.aspx" />
     <Content Include="pages\Preview.aspx" />
     <Content Include="References\HtmlToOpenXml.dll" />
-    <Content Include="References\HtmlToOpenXml.pdb" />
     <Content Include="References\HtmlToOpenXml.XML" />
     <Content Include="scripts\applications\aicd_scholarship.js" />
     <Content Include="scripts\bootstrap-datepicker.js" />

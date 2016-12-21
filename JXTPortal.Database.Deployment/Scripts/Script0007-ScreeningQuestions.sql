@@ -655,6 +655,25 @@ GO
 
 GO
 
+-- JobApplicationScreeningAnswers
+IF OBJECT_ID('dbo.ScreeningQuestionsMappings', 'U') IS NOT NULL
+BEGIN
+	DROP TABLE ScreeningQuestionsMappings
+END
+GO
+	CREATE TABLE ScreeningQuestionsMappings
+	(
+	ScreeningQuestionsMappingId [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	QuestionType [int] NOT NULL,
+	Mandatory [bit] NOT NULL DEFAULT 0,
+	ScreeningQuestionsTemplateId  [int] NOT NULL FOREIGN KEY REFERENCES ScreeningQuestionsTemplates(ScreeningQuestionsTemplateId),
+	Visible [bit] NOT NULL DEFAULT 1,
+	ScreeningQuestionId [int] NOT NULL FOREIGN KEY REFERENCES ScreeningQuestions(ScreeningQuestionId)
+	)
+
+GO
+
+
 -- JobApplication_CustomGetByJobIdMemberId
 
 ALTER PROCEDURE [dbo].[JobApplication_CustomGetByJobIdMemberId]          

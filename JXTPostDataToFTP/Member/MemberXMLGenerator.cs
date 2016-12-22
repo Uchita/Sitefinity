@@ -558,13 +558,13 @@ namespace JXTPostDataToFTP
                     catch (Exception ex)
                     {
                         _logger.Error(string.Format("Failed to generate XML for Member on SiteId:{1}", sitexml.SiteId), ex);
-                        SaveException(sitexml, 0, ex);
+                        SaveExceptionToSiteXML(sitexml, 0);
                     }
                 }
                 catch (Exception ex)
                 {
                     _logger.Error(string.Format("Failed to generate XML for Member on SiteId:{1}", sitexml.SiteId), ex);
-                    SaveException(sitexml, 0, ex);
+                    SaveExceptionToSiteXML(sitexml, 0);
                 }
             }
         }

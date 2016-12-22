@@ -90,7 +90,7 @@ namespace SectionIO
             Varnish = 1
         }
 
-        internal enum Environment
+        public enum Environment
         {
             Development = 1,
             Production = 2
@@ -114,7 +114,7 @@ namespace SectionIO
            API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, "req.url == " + pageUrl);
         }
 
-        public void FlushAsset(AssetClass asset, string siteBaseUri)
+        public void FlushAssetType(AssetClass asset, string siteBaseUri)
         {
             //build ban expression
             string expression = siteBaseUri + string.Empty;

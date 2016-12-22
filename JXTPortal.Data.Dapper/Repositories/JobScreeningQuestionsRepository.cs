@@ -36,5 +36,6 @@ namespace JXTPortal.Data.Dapper.Repositories
                 return entity as List<JobScreeningQuestionsEntity>;
             }
         }
+        
     }
 }

@@ -12,7 +12,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Configuration;
 using System.Net.Configuration;
-using EmailSender;
+using JXTPortal.EmailSender;
 using JXTPortal.Entities;
 using System.Web;
 using System.Web.Script.Serialization;

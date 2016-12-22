@@ -116,6 +116,21 @@
                     </div>
                 </div>
             </li>
+
+            <%--SectionIO Buttons--%>
+            <li class="form-line">
+                <div class="form-input-wide">
+                    <div class="form-buttons-wrapper">
+                        <asp:Button ID="btnFlushJs" runat="server" Text="Flush Js" OnClick="btnFlushJs_Click"
+                            CssClass="form-submit-button" />
+                       <asp:Button ID="btnFLushCss" runat="server" Text="Flush Css" onclick="btnFLushCss_Click"
+                            CssClass="form-submit-button" />
+                        <asp:Button ID="btnFlushAll" runat="server" Text="Flush All" OnClick="btnFlushAll_Click"
+                            CssClass="form-submit-button" />
+                    </div>
+                </div>
+            </li>
+
         </ul>
     </div>
 </asp:Content>

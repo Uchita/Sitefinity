@@ -19,10 +19,19 @@ using JXTPortal;
 using System.Web.Script.Serialization;
 using JXTPortal.Common;
 using System.IO;
+using SectionIO;
 #endregion
 
 public partial class SitesEdit : System.Web.UI.Page
 {
+   
+    ICacheFlusher _cacheFlusher;
+
+    public SitesEdit(ICacheFlusher cacheFlusher)
+    {
+        _cacheFlusher = cacheFlusher;
+    }
+
     #region Properties
 
     protected string URLPOSTFIX = ConfigurationManager.AppSettings[PortalConstants.WebConfigurationKeys.WEBSITEURLPOSTFIX];
@@ -72,12 +81,15 @@ public partial class SitesEdit : System.Web.UI.Page
 
     #endregion
 
+
     #region Page Event handlers
 
     protected void Page_Init(object sender, EventArgs e)
     {
         ScriptManager.GetCurrent(this).RegisterPostBackControl(btnEditSave);
     }
+
+    public string UrlToFlush { get { return "://" + Request.Url.Host; } }
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -328,6 +340,22 @@ public partial class SitesEdit : System.Web.UI.Page
         }
     }
 
+    protected void btnFlushJs_Click(object sender, EventArgs e)
+    {
+        _cacheFlusher.FlushAssetType(AssetClass.Javascript, UrlToFlush);      
+    }
+
+    protected void btnFLushCss_Click(object sender, EventArgs e)
+    {
+        _cacheFlusher.FlushAssetType(AssetClass.Css, UrlToFlush);
+    }
+
+    protected void btnFlushAll_Click(object sender, EventArgs e)
+    {
+        _cacheFlusher.FlushAssetType(AssetClass.Images, UrlToFlush);
+    }
+
+
     internal class SitemapContainer
     {
         public SiteContainer site;
@@ -353,6 +381,8 @@ public partial class SitesEdit : System.Web.UI.Page
         public string priority;
         public string changefreq;
     }
+
+    
 }
 
 

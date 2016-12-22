@@ -148,14 +148,14 @@ namespace JXTPortal.Website
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            _logger.Debug("oAuthCallback: onPageLoad");
+            _logger.Debug("onPageLoad()");
             System.Net.ServicePointManager.ServerCertificateValidationCallback = new System.Net.Security.RemoteCertificateValidationCallback(AcceptAllCertifications);
 
             OAuthErrorCheck();
-            _logger.Debug("oAuthCallback: onErrorCheck success");
+            _logger.Debug("onErrorCheck success");
             PortalEnums.SocialMedia.SocialMediaType callbackType;
             bool typeParseOK = Enum.TryParse<PortalEnums.SocialMedia.SocialMediaType>(Request["cbtype"], true, out callbackType);
-            _logger.Debug(string.Format("oAuthCallback typeParseOk = {0}, callbackType = {1}", typeParseOK, callbackType));
+            _logger.Debug(string.Format("typeParseOk = {0}, callbackType = {1}", typeParseOK, callbackType));
 
             if (!string.IsNullOrEmpty(hfGoogleAccessDenied.Value))
             {
@@ -181,7 +181,7 @@ namespace JXTPortal.Website
 
             PortalEnums.SocialMedia.OAuthCallbackAction callbackAction;
             bool actionParseOK = Enum.TryParse<PortalEnums.SocialMedia.OAuthCallbackAction>(Request["cbaction"], true, out callbackAction);
-            _logger.Debug(string.Format("oAuthCallback typeParseOk = {0}, callbackType = {1}", actionParseOK, callbackAction));
+            _logger.Debug(string.Format("typeParseOk = {0}, callbackAction = {1}", actionParseOK, callbackAction));
             
             //other special cases due to restriction on callback urls
             if (!actionParseOK)
@@ -464,7 +464,6 @@ namespace JXTPortal.Website
                         _logger.Debug(string.Format("FTPing the resume filename {0}", filename));
                         ftpclient.UploadFileFromStream(generatedDocument, ftpresumepath + filename, out errormessage);
 
-
                         if (string.IsNullOrEmpty(errormessage))
                         {
                             _logger.Debug("Successfully uploaded resume");
@@ -501,17 +500,13 @@ namespace JXTPortal.Website
                     {
                         _logger.Warn("Failed to insert job application");
                     }
-
                 }
-
             }
         }
-
 
         private void ApplyJob(string strHTML, string AppliedWith, string DocumentName)
         {
             // Check if member has applied for the job
-
             using (TList<JXTPortal.Entities.JobApplication> jobapp = JobApplicationService.GetByJobId(Convert.ToInt32(ID)))
             {
                 if (jobapp != null)

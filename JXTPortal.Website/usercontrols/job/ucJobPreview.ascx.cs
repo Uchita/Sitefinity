@@ -696,8 +696,6 @@ namespace JXTPortal.Website.usercontrols.job
                                         }
                                     }
 
-                                    
-
                                     //replace the advertiser logo
                                     litJobPreview.Text = litJobPreview.Text.Replace("{AdvertiserLogo}", strAdvertiserLogo);
 

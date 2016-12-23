@@ -16,5 +16,7 @@ namespace SectionIO
         Javascript = 1,
         Css = 2,
         Images = 4,
+
+        All = 7
     }
 }

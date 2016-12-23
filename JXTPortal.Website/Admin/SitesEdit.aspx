@@ -123,7 +123,7 @@
                     <div class="form-buttons-wrapper">
                         <asp:Button ID="btnFlushJs" runat="server" Text="Flush Js" OnClick="btnFlushJs_Click"
                             CssClass="form-submit-button" />
-                       <asp:Button ID="btnFLushCss" runat="server" Text="Flush Css" onclick="btnFLushCss_Click"
+                       <asp:Button ID="btnFLushCss" runat="server" Text="Flush Css" onclick="btnFlushCss_Click"
                             CssClass="form-submit-button" />
                         <asp:Button ID="btnFlushAll" runat="server" Text="Flush All" OnClick="btnFlushAll_Click"
                             CssClass="form-submit-button" />

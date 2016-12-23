@@ -89,10 +89,9 @@ public partial class SitesEdit : System.Web.UI.Page
         ScriptManager.GetCurrent(this).RegisterPostBackControl(btnEditSave);
     }
 
-    public string UrlToFlush { get { return "://" + Request.Url.Host; } }
-
     protected void Page_Load(object sender, EventArgs e)
     {
+
         if (!Page.IsPostBack)
         {
             txtSiteURL.Attributes.Add("onkeyup", "javascript:SetStagingUrl(\"" + txtSiteURL.ClientID + "\", \"" + txtStagingSiteUrl.ClientID + "\")");
@@ -336,25 +335,32 @@ public partial class SitesEdit : System.Web.UI.Page
 
             Response.OutputStream.Write(file, 0, file.Length);
             Response.ContentType = "application/json";
-            Response.End();
+            Response.End();            
         }
     }
-
+    
     protected void btnFlushJs_Click(object sender, EventArgs e)
     {
-        _cacheFlusher.FlushAssetType(AssetClass.Javascript, UrlToFlush);      
+        FlushAssets(AssetClass.Javascript);
     }
 
-    protected void btnFLushCss_Click(object sender, EventArgs e)
+    protected void btnFlushCss_Click(object sender, EventArgs e)
     {
-        _cacheFlusher.FlushAssetType(AssetClass.Css, UrlToFlush);
+        FlushAssets(AssetClass.Css);
     }
 
     protected void btnFlushAll_Click(object sender, EventArgs e)
     {
-        _cacheFlusher.FlushAssetType(AssetClass.Images, UrlToFlush);
+       
+        FlushAssets(AssetClass.All);
     }
 
+    private void FlushAssets(AssetClass asset)
+    {
+        string urlToFlush = "://" + Request.Url.Host;
+
+        _cacheFlusher.FlushAssetType(asset, urlToFlush);   
+    }
 
     internal class SitemapContainer
     {

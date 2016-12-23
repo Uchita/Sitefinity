@@ -598,6 +598,9 @@
     <PageName>IndustryEdit.aspx</PageName>
     <AdminRoleID>1</AdminRoleID>
 
+    <PageName>ScreeningQuestionsTemplate.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
   </AdminPage>
   <ContentEditorPage>
 
@@ -1099,6 +1102,9 @@
     <AdminRoleID>2</AdminRoleID>
 
     <PageName>KnowledgeBaseBrowse.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>ScreeningQuestionsTemplate.aspx</PageName>
     <AdminRoleID>2</AdminRoleID>
   </ContentEditorPage>
   <DeveloperPage>

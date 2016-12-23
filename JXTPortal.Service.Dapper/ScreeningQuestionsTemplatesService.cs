@@ -7,8 +7,9 @@ using JXTPortal.Data.Dapper.Entities.ScreeningQuestions;
 
 namespace JXTPortal.Service.Dapper
 {
-    public interface IScreeningQuestionsTemplatesService : IScreeningQuestionsTemplatesRepository
+    public interface IScreeningQuestionsTemplatesService
     {
+        List<ScreeningQuestionsTemplatesEntity> SelectBySiteId(int siteId);
     }
 
     public class ScreeningQuestionsTemplatesService : IScreeningQuestionsTemplatesService

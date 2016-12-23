@@ -7,7 +7,7 @@ using JXTPortal.Data.Dapper.Entities.ScreeningQuestions;
 
 namespace JXTPortal.Service.Dapper
 {
-    public interface IScreeningQuestionsMappingsService : IScreeningQuestionsMappingsRepository
+    public interface IScreeningQuestionsMappingsService
     {
     }
 

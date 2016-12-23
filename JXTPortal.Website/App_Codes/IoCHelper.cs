@@ -28,8 +28,12 @@ namespace JXTPortal.Website.App_Codes
             builder.Register(c => new KnowledgeBaseCategoryService(c.Resolve<IKnowledgeBaseCategoryRepository>())).As<IKnowledgeBaseCategoryService>();
 
             builder.RegisterType<SiteLanguageRepository>().WithParameter(new Autofac.NamedParameter("connectionStringName", DEFAULT_CONNECTIONSTRING_KEY)).AsImplementedInterfaces();
+            builder.RegisterType<ScreeningQuestionsRepository>().WithParameter(new Autofac.NamedParameter("connectionStringName", DEFAULT_CONNECTIONSTRING_KEY)).AsImplementedInterfaces();
+            builder.RegisterType<ScreeningQuestionsTemplatesRepository>().WithParameter(new Autofac.NamedParameter("connectionStringName", DEFAULT_CONNECTIONSTRING_KEY)).AsImplementedInterfaces();
             
             builder.RegisterType<SiteLanguageService>().AsImplementedInterfaces();
+            builder.RegisterType<ScreeningQuestionsService>().AsImplementedInterfaces();
+            builder.RegisterType<ScreeningQuestionsTemplatesService>().AsImplementedInterfaces();
 
             return builder.Build();
         }

@@ -7,8 +7,9 @@ using JXTPortal.Data.Dapper.Entities.ScreeningQuestions;
 
 namespace JXTPortal.Service.Dapper
 {
-    public interface IJobScreeningQuestionsService : IJobScreeningQuestionsRepository
+    public interface IJobScreeningQuestionsService
     {
+        List<JobScreeningQuestionsEntity> SelectByJobID(int jobId);
     }
 
     public class JobScreeningQuestionsService : IJobScreeningQuestionsService

@@ -351,7 +351,6 @@ public partial class SitesEdit : System.Web.UI.Page
 
     protected void btnFlushAll_Click(object sender, EventArgs e)
     {
-       
         FlushAssets(AssetClass.All);
     }
 

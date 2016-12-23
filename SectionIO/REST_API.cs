@@ -117,7 +117,37 @@ namespace SectionIO
         public void FlushAssetType(AssetClass asset, string siteBaseUri)
         {
             //build ban expression
-            string expression = siteBaseUri + string.Empty;
+            string _banExpression;
+            string expression;
+
+            //if (asset == AssetClass.Javascript)
+            //{
+            //    banExpression = "";
+            //}
+            //else if (asset == AssetClass.Css)
+            //{
+
+            //}
+            //else if(asset == AssetClass.All)
+            //{
+            //}
+
+            switch (asset)
+            {
+                case AssetClass.Javascript: _banExpression = "";
+                    break;
+
+                case AssetClass.Css: _banExpression = "";
+                    break;
+
+                case AssetClass.All: _banExpression = "";
+                    break;
+
+                default: _banExpression = ""; 
+                    break;
+            }
+
+            expression = siteBaseUri + _banExpression;
 
             API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, expression);
         }

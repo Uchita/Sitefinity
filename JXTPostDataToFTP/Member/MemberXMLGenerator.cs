@@ -187,7 +187,7 @@ namespace JXTPostDataToFTP
         public MemberXMLGenerator()
         {
             _logger = LogManager.GetLogger(typeof(MemberXMLGenerator));
-            _fileUploader = new FileUploader;
+            _fileUploader = new FileUploader();
         }
 
         public void GenerateMemberXML(string configFile)

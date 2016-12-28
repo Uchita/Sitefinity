@@ -22,6 +22,8 @@ namespace JXTMoveImageToFTP.Proccessors
             _repository = repository;
         }
 
+        public string Type { get { return "AdvertiserJobTemplateLogo"; } }
+
         public int Priority
         {
             get { return 30; }

@@ -21,6 +21,8 @@ namespace JXTMoveImageToFTP.Proccessors
             _repository = repository;
         }
 
+        public string Type { get { return "MemberFiles"; } }
+
         public int Priority
         {
             get { return 60; }

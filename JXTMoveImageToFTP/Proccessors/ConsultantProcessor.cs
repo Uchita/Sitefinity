@@ -21,6 +21,7 @@ namespace JXTMoveImageToFTP.Proccessors
             _logger = LogManager.GetLogger(typeof(ConsultantProcessor));
             _repository = repository;
         }
+        public string Type { get { return "Consultant"; } }
 
         public int Priority
         {

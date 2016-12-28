@@ -8,6 +8,7 @@ namespace JXTMoveImageToFTP
 {
     public interface IProcessor
     {
+        string Type { get; }
         int Priority { get; }
         void Begin(IFtpClient ftpClient);
     }

@@ -21,6 +21,7 @@ namespace JXTMoveImageToFTP.Proccessors
             _logger = LogManager.GetLogger(typeof(SiteProcessor));
             _sitesRepository = sitesRepository;
         }
+        public string Type { get { return "Site"; } }
 
         public int Priority { get { return 10; } }
         public void Begin(IFtpClient ftpClient)

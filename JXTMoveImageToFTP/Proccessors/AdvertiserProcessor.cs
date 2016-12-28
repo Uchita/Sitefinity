@@ -22,6 +22,8 @@ namespace JXTMoveImageToFTP.Proccessors
             _advertiserRepository = advertiserRepository;
         }
 
+        public string Type { get { return "Advertiser"; } }
+
         public int Priority
         {
             get { return 20; }
@@ -60,6 +62,8 @@ namespace JXTMoveImageToFTP.Proccessors
             List<AdvertisersEntity> advertisers = _advertiserRepository.SelectAll();
 
             advertisers = advertisers.Where(advertiser => advertiser.AdvertiserLogo != null && advertiser.AdvertiserLogo.Length > 0 && string.IsNullOrEmpty(advertiser.AdvertiserLogoUrl)).ToList();
+            _logger.Info(string.Format("Found {0} advertisers to migrate", advertisers.Count()));
+
             //iterate each site
             foreach (AdvertisersEntity advertiser in advertisers)
             {

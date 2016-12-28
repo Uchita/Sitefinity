@@ -14,76 +14,86 @@ namespace JXTMoveImageToFTP
 {
     class Program
     {
+        static ILog logger = LogManager.GetLogger(typeof(Program));
+
         static void Main(string[] args)
         {
             bool isLive = false;
 
-            if (args != null && args.Count() > 0)
+            ContainerBuilder builder = new ContainerBuilder();
+            IContainer container = IoCHelper.CreateContainer();
+            logger.Info("Configured IoC");
+
+            using (var scope = container.BeginLifetimeScope())
             {
-                if (args.Any(a =>a == "?"))
+                IEnumerable<string> requestedProcessors = new List<string>();
+                List<IProcessor> processors = scope.Resolve<IEnumerable<IProcessor>>().OrderBy(p => p.Priority).ToList();
+
+                if (args == null || args.Count() < 1)
                 {
                     Console.WriteLine("Application will run in Debug by default");
                     Console.WriteLine("Use argument the 'Live', to run in production mode");
+
+                    Console.WriteLine("------ Processors to apply -------");
+
+                    processors.ForEach(p => Console.WriteLine(p.Type));
+                    return;
                 }
 
                 isLive = args.Any(a => string.Equals(a, "Live", StringComparison.InvariantCultureIgnoreCase));
-            }
+                requestedProcessors = args.Where(a => !string.Equals(a, "Live", StringComparison.InvariantCultureIgnoreCase)).Select(p => p.ToLower());
 
-            Console.WriteLine(string.Format("Running in {0} mode", isLive ? "LIVE" : "DEBUG"));
+                logger.Info(string.Format("Running in {0} mode", isLive ? "LIVE" : "DEBUG"));
 
-            //1: Configure Container
-            ContainerBuilder builder = new ContainerBuilder();
-       
-            //2: Build Container
-            IContainer container = IoCHelper.CreateContainer();
-
-            ILog logger = LogManager.GetLogger(typeof(Program));
-           
-            //3: Build Dependencies
-            using (var scope = container.BeginLifetimeScope())
-            {
                 IFtpClient ftpClient = isLive ? (IFtpClient)new FtpClient() : (IFtpClient)new MockFTPClient();
                 ftpClient.Host = ConfigurationManager.AppSettings["FTPHost"];
                 ftpClient.Username = ConfigurationManager.AppSettings["FTPUsername"];
                 ftpClient.Password = ConfigurationManager.AppSettings["FTPPassword"];
 
-                IEnumerable<IProcessor> processors = scope.Resolve<IEnumerable<IProcessor>>().OrderBy(p => p.Priority);
+                var processorsToRun = processors.Where(p => requestedProcessors.Contains(p.Type.ToLower())).ToList();
 
-                logger.Info(string.Format("Found {0} processors", processors.Count()));
-                foreach(var processor in processors)
-                {
-                    processor.Begin(ftpClient);
-                }
+                logger.Info(string.Format("Found {0} processors", processorsToRun.Count()));
+
+                processorsToRun.ForEach(p => p.Begin(ftpClient));
             }
         }
     }
 
     internal class MockFTPClient : IFtpClient
     {
+        ILog _logger;
+        public MockFTPClient()
+        {
+            _logger = LogManager.GetLogger(typeof(MockFTPClient));
+            _logger.Info("Creating a new MockFTPClient");
+        }
         #region IFtpClient Members
-
+        
         public void ChangeDirectory(string directory, out string errormessage)
         {
+            _logger.Info(string.Format("Changed directory to {0}",directory));
             errormessage = string.Empty;
         }
 
         public void CreateDirectory(string directory, out string errormessage)
         {
+            _logger.Info(string.Format("Creating directory to {0}", directory));
             errormessage = string.Empty;
         }
 
         public void DeleteDirectory(string directory, out string errormessage)
         {
-            errormessage = string.Empty;
+            throw new NotImplementedException();
         }
 
         public void DeleteFiles(out string errormessage, params string[] files)
         {
-            errormessage = string.Empty;
+            throw new NotImplementedException();
         }
 
         public bool DirectoryExists(string directory, out string errormessage)
         {
+            _logger.Info(string.Format("Checking if directory {0} exists", directory));
             errormessage = string.Empty;
             return false;
         }
@@ -136,6 +146,7 @@ namespace JXTMoveImageToFTP
 
         public void UploadFileFromStream(System.IO.Stream streamFileToUpload, string strHostWithFilename, out string errormessage)
         {
+            _logger.Info(string.Format("Uploading file to {0}", strHostWithFilename));
             errormessage = string.Empty;
         }
 

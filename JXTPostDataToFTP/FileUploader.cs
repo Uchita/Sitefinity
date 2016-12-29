@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using log4net;
-using System.Net;
 using System.IO;
+using System.Net;
+using log4net;
 using Tamir.SharpSsh;
 
 namespace JXTPostDataToFTP
@@ -33,7 +31,7 @@ namespace JXTPostDataToFTP
         private bool UploadFilesToSFTP(SitesXML siteXML, List<FileNames> filesToUpload)
         {
             int totalFiles = filesToUpload.Count;
-            _logger.Info(string.Format("uploading {0} files, via SFTP", totalFiles));
+            _logger.InfoFormat("uploading {0} files, via SFTP", totalFiles);
 
             Sftp sftp = null;
 
@@ -48,18 +46,18 @@ namespace JXTPostDataToFTP
                     if (File.Exists(fileNames.fromFilename))
                     {
                         // Upload a file
-                        _logger.Debug(string.Format("Uploading: {0}", fileNames.fromFilename));
+                        _logger.DebugFormat("Uploading: {0}", fileNames.fromFilename);
                         sftp.Put(fileNames.fromFilename, (siteXML.folderPath != null ? siteXML.folderPath : string.Empty) + fileNames.toFilename);
-                        _logger.Info(string.Format("Uploaded: {0}", fileNames.fromFilename));
+                        _logger.InfoFormat("Uploaded: {0}", fileNames.fromFilename);
 
                         // Delete file
                         File.Delete(fileNames.fromFilename);
-                        _logger.Info(string.Format("Removed temporary file: {0}", fileNames.fromFilename));
+                        _logger.InfoFormat("Removed temporary file: {0}", fileNames.fromFilename);
                         successCount++;
                     }
                     else
                     {
-                        _logger.Warn(string.Format("File not found: {0}", fileNames.fromFilename));
+                        _logger.WarnFormat("File not found: {0}", fileNames.fromFilename);
                     }
                 }
             }
@@ -81,7 +79,7 @@ namespace JXTPostDataToFTP
         private bool UploadFilesToFTP(SitesXML siteXML, List<FileNames> filesToUpload)
         {
             int totalFiles = filesToUpload.Count;
-            _logger.Info(string.Format("uploading {0} files, via FTP", totalFiles));
+            _logger.InfoFormat("uploading {0} files, via FTP", totalFiles);
 
             int successCount = 0;
 
@@ -93,21 +91,21 @@ namespace JXTPostDataToFTP
                 }
             }
 
-            _logger.Info(string.Format("Successfully uploaded {0} files"));
+            _logger.InfoFormat("Successfully uploaded {0} files");
 
             return successCount == totalFiles;
         }
 
         private bool UploadFileToFTP(SitesXML siteXML, string sourceFile, string destFile)
         {
-            _logger.Debug(string.Format("Attempting to upload {0}", sourceFile));
+            _logger.DebugFormat("Attempting to upload {0}", sourceFile);
 
             FtpWebRequest request = null;
             FileInfo fileInfo = null;
 
             if (!File.Exists(sourceFile))
             {
-                _logger.Warn(string.Format("File not found: {0}", sourceFile));
+                _logger.WarnFormat("File not found: {0}", sourceFile);
                 return false;
             }
 
@@ -121,7 +119,7 @@ namespace JXTPostDataToFTP
                 request.Method = WebRequestMethods.Ftp.UploadFile;
                 request.UseBinary = true;
 
-                _logger.Info(string.Format("Uploading file", sourceFile));
+                _logger.InfoFormat("Uploading file", sourceFile);
 
                 fileInfo = new FileInfo(sourceFile);
                 request.ContentLength = fileInfo.Length;
@@ -147,11 +145,11 @@ namespace JXTPostDataToFTP
 
                 FtpWebResponse response = (FtpWebResponse)request.GetResponse();
                 response.Close();
-                _logger.Info(string.Format("File Uploaded: {0}" + destFile));
+                _logger.InfoFormat("File Uploaded: {0}" + destFile);
 
                 // Delete file
                 File.Delete(sourceFile);
-                _logger.Info(string.Format("Deleted Temporary File: {0} " + sourceFile));
+                _logger.InfoFormat("Deleted Temporary File: {0} " + sourceFile);
             }
             catch (Exception ex)
             {

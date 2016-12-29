@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.IO;
 using log4net;
-using System.IO;
 
 namespace JXTPostDataToFTP
 {
@@ -23,7 +19,7 @@ namespace JXTPostDataToFTP
             {
                 if (!File.Exists(configFile))
                 {
-                    _logger.Error(string.Format("Cannot find config file. {0}", configFile));
+                    _logger.ErrorFormat("Cannot find config file. {0}", configFile);
                     continue;
                 }
 

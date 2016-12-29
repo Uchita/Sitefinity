@@ -1,24 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using JXTPortal.Entities;
-using JXTPortal.Data;
-using System.Xml.Linq;
-using JXTPortal.Common;
-using JXTPortal;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Net;
-using JXTPortal.EmailSender;
-using System.Net.Mail;
-using System.Net.Configuration;
-using Tamir.SharpSsh;
-using System.Diagnostics;
-using JXTPostDataToFTP.Models;
-using System.Xml.Serialization;
 using System.Xml;
+using System.Xml.Linq;
+using System.Xml.Serialization;
+using JXTPortal;
+using JXTPortal.Common;
+using JXTPortal.Entities;
+using JXTPostDataToFTP.Models;
 using log4net;
 
 namespace JXTPostDataToFTP
@@ -192,7 +185,7 @@ namespace JXTPostDataToFTP
 
         public void GenerateMemberXML(string configFile)
         {
-            _logger.Info(string.Format("Generating Member XMl files for the config: {0}", configFile));
+            _logger.InfoFormat("Generating Member XMl files for the config: {0}", configFile);
 
             XDocument xml = null;
 
@@ -255,7 +248,6 @@ namespace JXTPostDataToFTP
 
                     DataRow[] drValidatedMembers = null;
                     
-
                     if (sitexml.mode == "FullCandidate")
                     {
                         drValidatedMembers = dtMembers.Select("Validated=1 AND ISNULL(Title, '') <> '' AND ISNULL(FirstName, '') <> '' AND ISNULL(Surname, '') <> '' AND ISNULL(EmailAddress, '') <> '' AND ISNULL(HomePhone, '') <> '' AND ISNULL(Address1, '') <> ''");
@@ -623,7 +615,6 @@ namespace JXTPostDataToFTP
                         }
                     }
 
-
                     try
                     {
                         if (!string.IsNullOrWhiteSpace(customquestionxml))
@@ -671,16 +662,13 @@ namespace JXTPostDataToFTP
 
                                     customquestionlist.Add(question);
                                 }
-
                             }
 
                             customquestionlist = customquestionlist.OrderBy(q => q.Sequence).ToList();
-
-
                         }
                     }
-                    catch { }
-
+                    catch (Exception e)
+                    { _logger.Warn(e); }
                 }
             }
             return customquestionlist;

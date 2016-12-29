@@ -11,115 +11,90 @@ using JXTPortal.Common;
 
 namespace JXTMoveImageToFTP.Proccessors
 {
-    public class MemberFileProcessor: IProcessor
+    public class MemberFileProcessor: Processor<MemberFilesEntity>
     {
-        ILog _logger;
         IMemberFilesRepository _repository;
         public MemberFileProcessor(IMemberFilesRepository repository)
         {
-            _logger = LogManager.GetLogger(typeof(MemberFileProcessor));
             _repository = repository;
         }
 
-        public string Type { get { return "MemberFiles"; } }
+        public override string Type { get { return "MemberFiles"; } }
 
-        public int Priority
+        public override int Priority
         {
             get { return 60; }
         }
 
-        public void Begin(IFtpClient ftpClient)
+        public override string Folder
         {
-            _logger.Info("Start moving Member Files Binary Data to FTP");
+            get { return string.Format("/{0}/{1}", ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"]); }
+        }
+        
+        public override IEnumerable<MemberFilesEntity> GetEntitiesToUpdate(int? batchSize)
+        {
+            IEnumerable<MemberFilesEntity> memberFiles = _repository.SelectAllNonBinary()
+                                                       .Where(m => string.IsNullOrWhiteSpace(m.MemberFileUrl));
 
-            string errorMsg = string.Empty;
-            string path = string.Format("/{0}/{1}", ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"]);
-            
-            // Check if directory exists
-            if (!ftpClient.DirectoryExists(path, out errorMsg))
+            if (batchSize.HasValue)
             {
-                _logger.Debug(string.Format("Creating ftp directory: {0}", path));
-
-                // Create Directory
-                ftpClient.CreateDirectory(path, out errorMsg);
+                memberFiles = memberFiles.Take(batchSize.Value);
             }
 
-            if (!string.IsNullOrWhiteSpace(errorMsg))
-            { 
-                _logger.Warn(string.Format("Create Directory Error: {0}", errorMsg));
-                return;
-            }
+            return memberFiles;
+        }
 
-            // Change to the Sites Directory to make sure the directory exists.
-            ftpClient.ChangeDirectory(path, out errorMsg);
+        public override byte[] GetBinaryData(MemberFilesEntity entity)
+        {
+            MemberFilesEntity memberFile = _repository.Select(entity.MemberFileID);
+            return memberFile.MemberFileContent;
+        }
 
-            if (!string.IsNullOrWhiteSpace(errorMsg))
+        public override int GetId(MemberFilesEntity entity)
+        {
+            return entity.MemberFileID;
+        }
+
+        public override void UpdateEntity(MemberFilesEntity entity, string filename)
+        {
+            entity.MemberFileUrl = filename;
+            _repository.Update(entity);
+        }
+
+        public override bool PerformFileSave(MemberFilesEntity entity, string path, out string filename)
+        {
+            int id = GetId(entity);
+            Logger.InfoFormat("Saving MemberFile: MemberFileID: {0} MemberFileName: {1}", id, entity.MemberFileName);
+
+            byte[] buffer = GetBinaryData(entity);
+
+            if (buffer == null || buffer.Length <= 0)
             {
-                _logger.Warn(string.Format("Change Directory Error: {0}", errorMsg));
-                return;
+                Logger.Warn("Nothing to save");
+                filename = null;
+                return false;
             }
 
-            IEnumerable<int> memberFiles = _repository.SelectAllNonBinary().Select(m => m.MemberFileID).ToList();
+            string extension = Path.GetExtension(entity.MemberFileName);
+            filename = string.Format("{0}_{1}.{2}", Type, id, extension);
+            string newPath = string.Format(@"{0}\{1}", path, filename);
 
-            _logger.Info(string.Format("Found {0} member Files to migrate", memberFiles.Count()));
-            
-            foreach (int memberFileId in memberFiles)
+            try
             {
-                MemberFilesEntity memberFile = _repository.Select(memberFileId);
-
-                string memberPath = string.Format("/{0}/{1}/{2}", ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], memberFile.MemberID);
-                    
-                // Check if directory exists
-                if (!ftpClient.DirectoryExists(memberPath, out errorMsg))
+                using (FileStream fs = new FileStream(newPath, FileMode.Create))
                 {
-                    _logger.Debug(string.Format("Creating ftp directory for member: {0}", memberPath));
-                    // Create Directory
-                    ftpClient.CreateDirectory(memberPath, out errorMsg);
-                }
-
-                if (!string.IsNullOrWhiteSpace(errorMsg))
-                { 
-                    _logger.Warn(string.Format("Create Directory Error: {0}", errorMsg));
-                    continue;
-                }
-               
-                // Change to the Sites Directory to make sure the directory exists.
-                ftpClient.ChangeDirectory(path, out errorMsg);
-
-                if (!string.IsNullOrWhiteSpace(errorMsg))
-                {
-                    _logger.Warn(string.Format("Change Directory Error: {0}", errorMsg));
-                    continue;
-                }
-
-                if (memberFile.MemberFileContent != null && memberFile.MemberFileContent.Length > 0 && string.IsNullOrEmpty(memberFile.MemberFileUrl))
-                {
-                    _logger.Info(string.Format("Start uploading Member Files for MemberFileID: {0} MemberFileName: {1}", memberFile.MemberFileID, memberFile.MemberFileName));
-
-                    MemoryStream ms = new MemoryStream(memberFile.MemberFileContent);
-
-                    string extension = Path.GetExtension(memberFile.MemberFileName);
-                    string newFileName = string.Format("MemberFiles_{0}{1}", memberFile.MemberFileID, extension);
-                    string newpath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], memberFile.MemberID, newFileName);
-
-                    // Upload to FTP
-                    _logger.Info(string.Format("Uploading file to {0}", newpath));
-
-                    ftpClient.UploadFileFromStream(ms, newpath, out errorMsg);
-
-                    if (string.IsNullOrWhiteSpace(errorMsg))
-                    {
-                        memberFile.MemberFileUrl = newFileName;
-
-                        _repository.Update(memberFile);
-                        _logger.Info(string.Format("Successfully uploaded file to {0}", newFileName));
-                    }
-                    else
-                    {
-                        _logger.Warn(string.Format("Upload Error: {0}", errorMsg));
-                    }
+                    fs.Write(buffer, 0, buffer.Count());
                 }
             }
+            catch (Exception e)
+            {
+                Logger.Error(e);
+                filename = null;
+                return false;
+            }
+
+            Logger.InfoFormat("Saved File {0}", filename);
+            return true;
         }
     }
 }

@@ -18,145 +18,70 @@ namespace JXTMoveImageToFTP
 
         static void Main(string[] args)
         {
-            bool isLive = false;
-
             ContainerBuilder builder = new ContainerBuilder();
             IContainer container = IoCHelper.CreateContainer();
             logger.Info("Configured IoC");
 
             using (var scope = container.BeginLifetimeScope())
             {
-                IEnumerable<string> requestedProcessors = new List<string>();
                 List<IProcessor> processors = scope.Resolve<IEnumerable<IProcessor>>().OrderBy(p => p.Priority).ToList();
 
                 if (args == null || args.Count() < 1)
                 {
-                    Console.WriteLine("Application will run in Debug by default");
-                    Console.WriteLine("Use argument the 'Live', to run in production mode");
+                    Console.WriteLine("Default behaviour: Debug mode and Batched processing (1000)");
+                    Console.WriteLine("Arguments:" );
+                    Console.WriteLine("'Live': To use live FTP and DB");
+                    Console.WriteLine("'Full': To skip the Batch processing");
 
-                    Console.WriteLine("------ Processors to apply -------");
+                    Console.WriteLine("------ Processors available to apply -------");
 
                     processors.ForEach(p => Console.WriteLine(p.Type));
                     return;
                 }
 
-                isLive = args.Any(a => string.Equals(a, "Live", StringComparison.InvariantCultureIgnoreCase));
-                requestedProcessors = args.Where(a => !string.Equals(a, "Live", StringComparison.InvariantCultureIgnoreCase)).Select(p => p.ToLower());
+                bool isDebug = IsDebugMode(args);
+                logger.Info(string.Format("Running in {0} mode", isDebug ? "DEBUG" : "LIVE"));
 
-                logger.Info(string.Format("Running in {0} mode", isLive ? "LIVE" : "DEBUG"));
-
-                IFtpClient ftpClient = isLive ? (IFtpClient)new FtpClient() : (IFtpClient)new MockFTPClient();
-                ftpClient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                ftpClient.Username = ConfigurationManager.AppSettings["FTPUsername"];
-                ftpClient.Password = ConfigurationManager.AppSettings["FTPPassword"];
-
+                bool isBatched = IsBatchedRun(args);
+                int? batchSize = isBatched ? Convert.ToInt32(ConfigurationManager.AppSettings["DefaultBatchSize"]) : (int?)null;
+                
+                logger.Info(string.Format("Running in {0} mode. Batch size is {1}", isBatched ? "BATCHED" : "FULL", batchSize));
+                
+                IEnumerable<string> requestedProcessors = FindProcessorsToRun(args);
                 var processorsToRun = processors.Where(p => requestedProcessors.Contains(p.Type.ToLower())).ToList();
+                if (!processorsToRun.Any())
+                {
+                    Console.WriteLine("No Valid Processors were selected. Please select from the list below");
+                    Console.WriteLine("------ Processors available to apply -------");
+
+                    processors.ForEach(p => Console.WriteLine(p.Type));
+                }
 
                 logger.Info(string.Format("Found {0} processors", processorsToRun.Count()));
 
-                processorsToRun.ForEach(p => p.Begin(ftpClient));
+                processorsToRun.ForEach(p => p.Begin(batchSize, isDebug));
             }
         }
-    }
 
-    internal class MockFTPClient : IFtpClient
-    {
-        ILog _logger;
-        public MockFTPClient()
+        static bool IsDebugMode(string[] args)
         {
-            _logger = LogManager.GetLogger(typeof(MockFTPClient));
-            _logger.Info("Creating a new MockFTPClient");
-        }
-        #region IFtpClient Members
-        
-        public void ChangeDirectory(string directory, out string errormessage)
-        {
-            _logger.Info(string.Format("Changed directory to {0}",directory));
-            errormessage = string.Empty;
+            bool isLive = args.Any(a => string.Equals(a, "Live", StringComparison.InvariantCultureIgnoreCase));
+
+            return !isLive;
         }
 
-        public void CreateDirectory(string directory, out string errormessage)
+        static bool IsBatchedRun(string[] args)
         {
-            _logger.Info(string.Format("Creating directory to {0}", directory));
-            errormessage = string.Empty;
+            bool isFull = args.Any(a => string.Equals(a, "Full", StringComparison.InvariantCultureIgnoreCase));
+
+            return !isFull;
         }
 
-        public void DeleteDirectory(string directory, out string errormessage)
+        static IEnumerable<string> FindProcessorsToRun(string[] args)
         {
-            throw new NotImplementedException();
+            var results = args.Where(a => !string.Equals(a, "Live", StringComparison.InvariantCultureIgnoreCase))
+                              .Where(a => !string.Equals(a, "Full", StringComparison.InvariantCultureIgnoreCase));
+            return results.Select(p => p.ToLower()).ToList(); ;
         }
-
-        public void DeleteFiles(out string errormessage, params string[] files)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool DirectoryExists(string directory, out string errormessage)
-        {
-            _logger.Info(string.Format("Checking if directory {0} exists", directory));
-            errormessage = string.Empty;
-            return false;
-        }
-
-        public void DownloadFiles(string path, out string errormessage, params string[] files)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DownloadFileToClient(string filepath, ref System.IO.Stream downloadedfile, out string errormessage)
-        {
-            throw new NotImplementedException();
-        }
-
-        public DateTime? GetDateTimestamp(string filename, out string errormessage)
-        {
-            throw new NotImplementedException();
-        }
-
-        public long GetFileSize(string filename)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string Host {get;set;}
-
-        public bool IsRootDirectory {get;set;}
-
-        public List<FtpDirectoryEntry> ListDirectory(out string errormessage)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void MoveFile(string oldname, string newname, out string errormessage)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string Password { get; set; }
-
-        public void RenameFile(string oldname, ref string newname, out string errormessage)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void RenameFolder(string oldname, ref string newname, out string errormessage)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UploadFileFromStream(System.IO.Stream streamFileToUpload, string strHostWithFilename, out string errormessage)
-        {
-            _logger.Info(string.Format("Uploading file to {0}", strHostWithFilename));
-            errormessage = string.Empty;
-        }
-
-        public void UploadFiles(out string errormessage, params string[] paths)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string Username {get;set;}
-
-        #endregion
     }
 }

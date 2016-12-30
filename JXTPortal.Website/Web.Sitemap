@@ -139,9 +139,7 @@
             <siteMapNode url="~/admin/invoice.aspx" title="Invoice Report"  description="" />
 		</siteMapNode>
 
-		<siteMapNode  url="~/admin/exceptions.aspx" title="Exceptions"  description="" />
     <siteMapNode  url="~/admin/webservicelog.aspx" title="Web Service Log"  description="" />
     
-
   </siteMapNode>
 </siteMap>

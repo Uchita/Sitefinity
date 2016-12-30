@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using JXTPortal.JobApplications.PeopleProfile;
 using System.Configuration;
 using JXTPortal.Common;
+using log4net;
 
 namespace JXTPortal.Website.job.ajaxcalls
 {
@@ -24,7 +25,12 @@ namespace JXTPortal.Website.job.ajaxcalls
     [System.Web.Script.Services.ScriptService]
     public class ajaxMethods : System.Web.Services.WebService
     {
+        ILog _logger;
 
+        public ajaxMethods()
+        {
+            _logger = LogManager.GetLogger(typeof(ajaxMethods));
+        }
         #region Properties
 
         private SiteRolesService _siteRolesService;
@@ -547,9 +553,7 @@ namespace JXTPortal.Website.job.ajaxcalls
                 }
                 catch (Exception ex)
                 {
-                    ExceptionTableService serviceException = new ExceptionTableService();
-                    serviceException.LogException(ex.GetBaseException());
-
+                    _logger.Error(ex.GetBaseException());
                     return "Error";
                 }
             }
@@ -771,9 +775,7 @@ namespace JXTPortal.Website.job.ajaxcalls
             }
             catch (Exception ex)
             {
-                ExceptionTableService serviceException = new ExceptionTableService();
-                serviceException.LogException(ex.GetBaseException());
-
+                _logger.Error(ex.GetBaseException());
                 return "Error";
             }
         }

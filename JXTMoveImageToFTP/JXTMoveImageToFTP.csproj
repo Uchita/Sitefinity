@@ -41,6 +41,10 @@
       <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -53,7 +57,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Codes\IoCHelper.cs" />
-    <Compile Include="Client.cs" />
+    <Compile Include="ImageExtenensions.cs" />
+    <Compile Include="IProcessor.cs" />
+    <Compile Include="Proccessors\AdvertiserJobTemplateLogoProcessor.cs" />
+    <Compile Include="Proccessors\AdvertiserProcessor.cs" />
+    <Compile Include="Proccessors\ConsultantProcessor.cs" />
+    <Compile Include="Proccessors\JobTemplateProcessor.cs" />
+    <Compile Include="Proccessors\MemberFileProcessor.cs" />
+    <Compile Include="Proccessors\SiteProcessor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

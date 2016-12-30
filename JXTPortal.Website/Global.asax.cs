@@ -16,6 +16,7 @@ using Autofac.Integration.Web;
 using JXTPortal.Website.App_Codes;
 using Autofac;
 using JXTPortal.Custom;
+using log4net;
 
 namespace JXTPortal.Website
 {
@@ -32,6 +33,8 @@ namespace JXTPortal.Website
         {
             get { return _containerProvider; }
         }
+
+        private ILog _logger = LogManager.GetLogger(typeof(Global));
 
         protected void Application_Start(object sender, EventArgs e)
         {
@@ -455,23 +458,15 @@ namespace JXTPortal.Website
                 }
                 if (!isRewrite)
                 {
-                    ExceptionTableService exService = new ExceptionTableService();
+                    _logger.Error(ex.GetBaseException());
 
                     if (Convert.ToBoolean(System.Configuration.ConfigurationSettings.AppSettings["DisplayErrorMessage"]))
                     {
                         string strUrl = "~/errorpage.aspx";
 
                         int intExceptionID = -1;
-
-                        ExceptionTableService serviceException = new ExceptionTableService();
-
-                        //get the most inside exception
-                        //while (ex.InnerException != null) ex.InnerException; 
-                        ex = ex.GetBaseException();
-                        intExceptionID = serviceException.LogException(ex);
-
+                        
                         strUrl += "?exceptionID=" + Convert.ToString(intExceptionID);
-
 
                         //--- Redirect to clean error page
                         HttpContext.Current.ClearError();

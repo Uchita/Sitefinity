@@ -114,11 +114,18 @@ namespace SectionIO
            API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, "req.url == " + pageUrl);
         }
 
-        public void FlushAssetType(AssetClass asset, string siteBaseUri)
-        {
+        /// <summary>
+        /// this is what I do
+        /// </summary>
+        /// <param name="asset"></param>
+        /// <param name="siteBaseUriFormat">The format of the uri <example>"://www.example.com/http_imagesjxtnetau/{0}/*"</example></param>
+        public void FlushAssetType(AssetClass asset, string siteBaseUriFormat)
+        {            
             //build ban expression
-            string _banExpression;
-            string expression;
+
+            string _banExpression = string.Empty;
+            string folderName = GetFolderName(); //Make sure this is updated
+            string expression = string.Format(siteBaseUriFormat, folderName);
 
             //if (asset == AssetClass.Javascript)
             //{
@@ -134,22 +141,26 @@ namespace SectionIO
 
             switch (asset)
             {
-                case AssetClass.Javascript: _banExpression = "";
+                case AssetClass.js: _banExpression = expression += asset.ToString(); 
                     break;
 
-                case AssetClass.Css: _banExpression = "";
+                case AssetClass.css: _banExpression = expression += asset.ToString();
                     break;
 
-                case AssetClass.All: _banExpression = "";
-                    break;
-
-                default: _banExpression = ""; 
+                case AssetClass.all: _banExpression = expression;
                     break;
             }
 
-            expression = siteBaseUri + _banExpression;
 
-            API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, expression);
+            //expression = siteBaseUriFormat + _banExpression;
+
+            API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, _banExpression);
+        }
+
+        private string GetFolderName()
+        {
+            throw new NotImplementedException("Need to update this");
+            return "folderName || globalPath";
         }
     }
 }

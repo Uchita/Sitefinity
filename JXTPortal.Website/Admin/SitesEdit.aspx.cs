@@ -341,22 +341,22 @@ public partial class SitesEdit : System.Web.UI.Page
     
     protected void btnFlushJs_Click(object sender, EventArgs e)
     {
-        FlushAssets(AssetClass.Javascript);
+        FlushAssets(AssetClass.js);
     }
 
     protected void btnFlushCss_Click(object sender, EventArgs e)
     {
-        FlushAssets(AssetClass.Css);
+        FlushAssets(AssetClass.css);
     }
 
     protected void btnFlushAll_Click(object sender, EventArgs e)
     {
-        FlushAssets(AssetClass.All);
+        FlushAssets(AssetClass.all);
     }
 
     private void FlushAssets(AssetClass asset)
     {
-        string urlToFlush = "://" + Request.Url.Host;
+        string urlToFlush = "://" + Request.Url.Host + "/http_imagesjxtnetau/{0}/";
 
         _cacheFlusher.FlushAssetType(asset, urlToFlush);   
     }

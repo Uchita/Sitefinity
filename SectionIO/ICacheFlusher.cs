@@ -7,16 +7,25 @@ namespace SectionIO
 {
     public interface ICacheFlusher
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pageUrl"></param>
         void FlushByUrl(string pageUrl);
-        void FlushAssetType(AssetClass assetToFlush, string siteBaseUri);
+
+        /// <summary>
+        /// this is what I do
+        /// </summary>
+        /// <param name="asset"></param>
+        /// <param name="siteBaseUriFormat">The format of the uri <example>"://www.example.com/http_imagesjxtnetau/{0}"</example></param>
+        void FlushAssetType(AssetClass assetToFlush, string siteBaseUriFormat);
     }
-    [Flags]
+
     public enum AssetClass
     {
-        Javascript = 1,
-        Css = 2,
-        Images = 4,
-
-        All = 7
+        js,
+        css,
+        all
     }
 }
+

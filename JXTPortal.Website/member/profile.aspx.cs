@@ -8402,6 +8402,7 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
             tbReferencesAddJobTitle.Text = string.Empty;
             tbRefernecesAddCompany.Text = string.Empty;
             tbReferencesAddPhone.Text = string.Empty;
+            tbReferencesAddEmail.Text = string.Empty;
 
             ddlReferencesAddRelationship.SelectedIndex = 0;
 

@@ -177,6 +177,97 @@ namespace JXTPostDataToFTP
             }
         }
 
+        JobApplicationService _jobApplicationService = null;
+        JobApplicationService JobApplicationService
+        {
+            get
+            {
+                if (_jobApplicationService == null)
+                {
+                    _jobApplicationService = new JobApplicationService();
+                }
+                return _jobApplicationService;
+            }
+        }
+
+        MemberFilesService _memberFilesService = null;
+        MemberFilesService MemberFilesService
+        {
+            get
+            {
+                if (_memberFilesService == null)
+                {
+                    _memberFilesService = new MemberFilesService();
+                }
+                return _memberFilesService;
+            }
+        }
+
+        MemberQualificationService _memberQualificationService = null;
+        MemberQualificationService MemberQualificationService
+        {
+            get
+            {
+                if (_memberQualificationService == null)
+                {
+                    _memberQualificationService = new MemberQualificationService();
+                }
+                return _memberQualificationService;
+            }
+        }
+
+        MemberCertificateMembershipsService _memberCertificateMembershipService = null;
+        MemberCertificateMembershipsService MemberCertificateMembershipsService
+        {
+            get
+            {
+                if (_memberCertificateMembershipService == null)
+                {
+                    _memberCertificateMembershipService = new MemberCertificateMembershipsService();
+                }
+                return _memberCertificateMembershipService;
+            }
+        }
+
+        MemberLicensesService _memberLicensesService = null;
+        MemberLicensesService MemberLicensesService
+        {
+            get
+            {
+                if (_memberLicensesService == null)
+                {
+                    _memberLicensesService = new MemberLicensesService();
+                }
+                return _memberLicensesService;
+            }
+        }
+
+        MemberLanguagesService _memberLanguagesService = null;
+        MemberLanguagesService MemberLanguagesService
+        {
+            get
+            {
+                if (_memberLanguagesService == null)
+                {
+                    _memberLanguagesService = new MemberLanguagesService();
+                }
+                return _memberLanguagesService;
+            }
+        }
+
+        MemberReferencesService _memberReferencesService = null;
+        MemberReferencesService MemberReferencesService
+        {
+            get
+            {
+                if (_memberReferencesService == null)
+                {
+                    _memberReferencesService = new MemberReferencesService();
+                }
+                return _memberReferencesService;
+            }
+        }
+
         public MemberXMLGenerator()
         {
             _logger = LogManager.GetLogger(typeof(MemberXMLGenerator));
@@ -232,8 +323,6 @@ namespace JXTPostDataToFTP
                     //load references
                     SiteSettingReferences siteRefs = SiteSettingReferencesGet(siteID);
                     JXTPostDataToFTP.Models.MemberXMLModel.StaticSiteReference.SetRefData(siteRefs);
-
-                    //fileslist = new List<FileNames>();
                     DataSet ds = MembersService.CustomGetNewValidProfiles(siteID, lastRun);
                     DataTable dtMembers = ds.Tables[0];
                     DataTable dtMemberFiles = ds.Tables[1];
@@ -248,13 +337,275 @@ namespace JXTPostDataToFTP
 
                     DataRow[] drValidatedMembers = null;
                     
-                    if (sitexml.mode == "FullCandidate")
+                    if (sitexml.mode == "JobApplication")
                     {
-                        drValidatedMembers = dtMembers.Select("Validated=1 AND ISNULL(Title, '') <> '' AND ISNULL(FirstName, '') <> '' AND ISNULL(Surname, '') <> '' AND ISNULL(EmailAddress, '') <> '' AND ISNULL(HomePhone, '') <> '' AND ISNULL(Address1, '') <> ''");
+                        dtMembers.Rows.Clear();
+                        dtMemberFiles.Rows.Clear();
+                        dtMemberDirectorships.Rows.Clear();
+                        dtMemberExperiences.Rows.Clear();
+                        dtMemberEducations.Rows.Clear();
+                        dtMemberCerts.Rows.Clear();
+                        dtMemberLicenses.Rows.Clear();
+                        dtMemberRolePreferences.Rows.Clear();
+                        dtMemberLanguages.Rows.Clear();
+                        dtMemberReferences.Rows.Clear();
+
+                        TList<JobApplication> jobapplications = JobApplicationService.GetBySiteIdReferral(sitexml.SiteId);
+
+                        foreach (JobApplication jobapplication in jobapplications)
+                        {
+                            if (jobapplication.LastViewedDate.HasValue && jobapplication.LastViewedDate.Value > lastRun && jobapplication.ApplicationStatus == (int)PortalEnums.JobApplications.ApplicationStatus.ShortList && jobapplication.MemberId.HasValue)
+                            {
+                                Members member = MembersService.GetByMemberId(jobapplication.MemberId.Value);
+                                TList<MemberFiles> memberFiles = MemberFilesService.GetByMemberId(jobapplication.MemberId.Value);
+                                TList<MemberPositions> memberPositions = MemberPositionsService.GetByMemberId(jobapplication.MemberId.Value);
+                                TList<MemberQualification> memberQualifications = MemberQualificationService.GetByMemberId(jobapplication.MemberId.Value);
+                                TList<MemberCertificateMemberships> memberCertificates = MemberCertificateMembershipsService.GetByMemberId(jobapplication.MemberId.Value);
+                                TList<MemberLicenses> memberLicenses = MemberLicensesService.GetByMemberId(jobapplication.MemberId.Value);
+                                TList<MemberLanguages> memberLanguages = MemberLanguagesService.GetByMemberId(jobapplication.MemberId.Value);
+                                TList<MemberReferences> memberReferences = MemberReferencesService.GetByMemberId(jobapplication.MemberId.Value);
+
+                                dtMembers.Rows.Add(member.MemberId,
+                                                     member.SiteId,
+                                                     member.Username,
+                                                     member.Password,
+                                                     member.Title,
+                                                     member.FirstName,
+                                                     member.Surname,
+                                                     member.EmailAddress,
+                                                     member.Company,
+                                                     member.Position,
+                                                     member.HomePhone,
+                                                     member.WorkPhone,
+                                                     member.MobilePhone,
+                                                     member.Fax,
+                                                     member.Address1,
+                                                     member.Address2,
+                                                     member.LocationId,
+                                                     member.AreaId,
+                                                     member.CountryId,
+                                                     member.PreferredCategoryId,
+                                                     member.PreferredSubCategoryId,
+                                                     member.PreferredSalaryId,
+                                                     member.Subscribed,
+                                                     member.MonthlyUpdate,
+                                                     member.ReferringMemberId,
+                                                     member.LastModifiedDate,
+                                                     member.Valid,
+                                                     member.EmailFormat,
+                                                     member.LastLogon,
+                                                     member.DateOfBirth,
+                                                     member.Gender,
+                                                     member.Tags,
+                                                     member.Validated,
+                                                     member.ValidateGuid,
+                                                     member.MemberUrlExtension,
+                                                     member.WebsiteUrl,
+                                                     member.AvailabilityId,
+                                                     member.AvailabilityFromDate,
+                                                     member.MySpaceHeading,
+                                                     member.MySpaceContent,
+                                                     member.UrlReferrer,
+                                                     member.RequiredPasswordChange,
+                                                     member.PreferredJobTitle,
+                                                     member.PreferredAvailability,
+                                                     member.PreferredAvailabilityType,
+                                                     member.PreferredSalaryFrom,
+                                                     member.PreferredSalaryTo,
+                                                     member.CurrentSalaryFrom,
+                                                     member.CurrentSalaryTo,
+                                                     member.LookingFor,
+                                                     member.Experience,
+                                                     member.Skills,
+                                                     member.Reasons,
+                                                     member.Comments,
+                                                     member.ProfileType,
+                                                     member.EducationId,
+                                                     member.SearchField,
+                                                     member.RegisteredDate,
+                                                     member.States,
+                                                     member.Suburb,
+                                                     member.PostCode,
+                                                     member.ProfilePicture,
+                                                     member.ShortBio,
+                                                     member.WorkTypeId,
+                                                     member.Memberships,
+                                                     member.MemberStatusId,
+                                                     member.LinkedInAccessToken,
+                                                     member.ExternalMemberId,
+                                                     member.PassportNo,
+                                                     member.MailingAddress1,
+                                                     member.MailingAddress2,
+                                                     member.MailingStates,
+                                                     member.MailingSuburb,
+                                                     member.MailingPostCode,
+                                                     member.MailingCountryId,
+                                                     member.CountryName,
+                                                     member.MailingCountryName,
+                                                     member.LoginAttempts,
+                                                     member.LastAttemptDate,
+                                                     member.Status,
+                                                     member.LastTermsAndConditionsDate,
+                                                     member.DefaultLanguageId,
+                                                     member.ReferringSiteId,
+                                                     member.MultiLingualFirstName,
+                                                     member.MultiLingualSurame,
+                                                     member.SecondaryEmail,
+                                                     member.CandidateData,
+                                                     member.PreferredLine,
+                                                     member.EligibleToWorkIn,
+                                                     member.ReferenceUponRequest,
+                                                     member.VideoUrl,
+                                                     member.ProfileDataXml,
+                                                     member.LastProfileSubmittedDate,
+                                                     "SK",
+                                                     member.CountryName,
+                                                    memberFiles.Count);
+
+                                foreach (MemberFiles memberFile in memberFiles)
+                                {
+                                    dtMemberFiles.Rows.Add(memberFile.MemberFileId,
+                                                            memberFile.MemberId,
+                                                            memberFile.MemberFileTypeId,
+                                                            memberFile.MemberFileName,
+                                                            memberFile.MemberFileSearchExtension,
+                                                            memberFile.MemberFileTitle,
+                                                            memberFile.LastModifiedDate);
+                                }
+
+                                foreach (MemberPositions memberPosition in memberPositions)
+                                {
+                                    dtMemberExperiences.Rows.Add(memberPosition.MemberPositionId,
+                                                                memberPosition.LinkedInInternalPositionId,
+                                                                memberPosition.Title,
+                                                                memberPosition.Summary,
+                                                                memberPosition.CompanyId,
+                                                                memberPosition.CompanyName,
+                                                                memberPosition.CompanyIndustry,
+                                                                memberPosition.StartMonth,
+                                                                memberPosition.StartYear,
+                                                                memberPosition.EndMonth,
+                                                                memberPosition.EndYear,
+                                                                memberPosition.IsCurrent,
+                                                                memberPosition.MemberId,
+                                                                memberPosition.OrganisationWebsite,
+                                                                memberPosition.ResponsibilitiesAndAchievements,
+                                                                memberPosition.TypeOfDirectorship,
+                                                                memberPosition.AdditionalRolesAndResponsibilities,
+                                                                memberPosition.IsDirectorship,
+                                                                memberPosition.City,
+                                                                memberPosition.CountryId,
+                                                                memberPosition.State);
+                                }
+
+                                foreach (MemberQualification memberQualification in memberQualifications)
+                                {
+                                    dtMemberEducations.Rows.Add(memberQualification.MemberQualificationId,
+                                                                memberQualification.LinkedInInternalEducationId,
+                                                                memberQualification.SchoolName,
+                                                                memberQualification.FieldOfStudy,
+                                                                memberQualification.StartYear,
+                                                                memberQualification.EndYear,
+                                                                memberQualification.Degree,
+                                                                memberQualification.Activities,
+                                                                memberQualification.Notes,
+                                                                memberQualification.MemberId,
+                                                                memberQualification.City,
+                                                                memberQualification.CountryId,
+                                                                memberQualification.QualificationLevelId,
+                                                                memberQualification.QualificationLevelOther,
+                                                                memberQualification.Major,
+                                                                memberQualification.Present,
+                                                                memberQualification.StartMonth,
+                                                                memberQualification.EndMonth,
+                                                                memberQualification.Graduated,
+                                                                memberQualification.NonGraduatedCredits);
+                                }
+
+                                foreach (MemberCertificateMemberships memberCertificate in memberCertificates)
+                                {
+                                    dtMemberCerts.Rows.Add(memberCertificate.MemberCertificateMembershipId,
+                                                            memberCertificate.MemberId,
+                                                            memberCertificate.MemberCertificateMembershipName,
+                                                            memberCertificate.CertificationAuthority,
+                                                            memberCertificate.LicenseNumber,
+                                                            memberCertificate.CertificationUrl,
+                                                            memberCertificate.StartMonth,
+                                                            memberCertificate.StartYear,
+                                                            memberCertificate.EndMonth,
+                                                            memberCertificate.EndYear,
+                                                            memberCertificate.DoesnotExpire,
+                                                            memberCertificate.LastModifiedDate);
+                                }
+
+                                foreach (MemberLicenses memberLicense in memberLicenses)
+                                {
+                                    dtMemberLicenses.Rows.Add(memberLicense.MemberLicenseId,
+                                                            memberLicense.MemberId,
+                                                            memberLicense.MemberLicenseName,
+                                                            memberLicense.LicenseType,
+                                                            memberLicense.IssueDate,
+                                                            memberLicense.ExpiryDate,
+                                                            memberLicense.CountryId,
+                                                            memberLicense.State,
+                                                            memberLicense.DoesNotExpire,
+                                                            memberLicense.LastModifiedDate);
+                                }
+
+                                dtMemberRolePreferences.Rows.Add(member.MemberId,
+                                                                 member.WorkTypeId,
+                                                                 null,
+                                                                 member.PreferredSalaryId,
+                                                                 null,
+                                                                 member.PreferredSalaryFrom,
+                                                                 member.PreferredSalaryTo,
+                                                                 member.PreferredCategoryId,
+                                                                 null,
+                                                                 member.PreferredSubCategoryId,
+                                                                 null,
+                                                                 member.LocationId,
+                                                                 null,
+                                                                 member.AreaId,
+                                                                 null,
+                                                                 member.EligibleToWorkIn,
+                                                                 null);
+
+                                foreach (MemberLanguages memberLanguage in memberLanguages)
+                                {
+                                    dtMemberLanguages.Rows.Add(memberLanguage.MemberLanguageId,
+                                                                             memberLanguage.MemberId,
+                                                                             memberLanguage.Langauges,
+                                                                             memberLanguage.Profieciency,
+                                                                             memberLanguage.LastModifiedDate);
+                                }
+
+                                foreach (MemberReferences memberReference in memberReferences)
+                                {
+                                    dtMemberReferences.Rows.Add(memberReference.MemberReferenceId,
+                                                            memberReference.MemberId,
+                                                            memberReference.MemberReferenceName,
+                                                            memberReference.JobTitle,
+                                                            memberReference.Company,
+                                                            memberReference.Phone,
+                                                            memberReference.Relationship,
+                                                            memberReference.LastModifiedDate,
+                                                            memberReference.ReferenceEmail);
+                                }
+                            }
+                        }
+
+                        drValidatedMembers = dtMembers.Select();
                     }
                     else
                     {
-                        drValidatedMembers = dtMembers.Select("Validated=1");
+                        if (sitexml.mode == "FullCandidate")
+                        {
+                            drValidatedMembers = dtMembers.Select("Validated=1 AND ISNULL(Title, '') <> '' AND ISNULL(FirstName, '') <> '' AND ISNULL(Surname, '') <> '' AND ISNULL(EmailAddress, '') <> '' AND ISNULL(HomePhone, '') <> '' AND ISNULL(Address1, '') <> ''");
+                        }
+                        else
+                        {
+                            drValidatedMembers = dtMembers.Select("Validated=1");
+                        }
                     }
 
                     Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Number of Members: " + drValidatedMembers.Count().ToString());
@@ -405,7 +756,7 @@ namespace JXTPostDataToFTP
                 }
                 catch (Exception ex)
                 {
-                    _logger.Error(string.Format("Failed to generate XML for Member on SiteId:{1}", sitexml.SiteId), ex);
+                    Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] ERROR: " + ex.StackTrace);
                 }
             }
         }

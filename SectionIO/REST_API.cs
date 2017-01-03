@@ -118,14 +118,15 @@ namespace SectionIO
         /// This method builds the banexpression that needs to be passed into "API_Proxy_State_Post()"
         /// </summary>
         /// <param name="asset">Asset type that was passed into the method from SitesEdit.aspx button click</param>
-        /// <param name="siteBaseUriFormat">The format of the uri <example>"http://www.example.com/http_imagesjxtnetau/jxt-solutions"</example></param>
+        /// <param name="site">The format of the uri <example>"http://www.example.com/http_imagesjxtnetau/jxt-solutions"</example></param>
+        /// <param name="folderName">Passes global FTP folder name</param>
         public void FlushAssetType(AssetClass asset, string site, string siteFtpFolderName)
         {            
             //build ban expression
             string folderToFlush = string.Format("{0}{1}", siteFtpFolderName, asset == AssetClass.all ? string.Empty : "/" + asset.ToString());
             string sectionIOFolder = "http_imagesjxtnetau";
 
-            // Accordint to sectionIO documentation we dont need to use '/' at end of the URI
+            // According to sectionIO documentation we dont need to use '/' at end of the URI
             string _banExpression = string.Format(@"http://{0}/{1}/{2}", site, sectionIOFolder, folderToFlush); ;
            
             API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, _banExpression);

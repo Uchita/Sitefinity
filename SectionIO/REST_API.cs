@@ -118,42 +118,17 @@ namespace SectionIO
         /// This method builds the banexpression that needs to be passed into "API_Proxy_State_Post()"
         /// </summary>
         /// <param name="asset">Asset type that was passed into the method from SitesEdit.aspx button click</param>
-        /// <param name="siteBaseUriFormat">The format of the uri <example>"://www.example.com/http_imagesjxtnetau/jxt-solutions/"</example></param>
-        public void FlushAssetType(AssetClass asset, string siteBaseUriFormat)
+        /// <param name="siteBaseUriFormat">The format of the uri <example>"http://www.example.com/http_imagesjxtnetau/jxt-solutions"</example></param>
+        public void FlushAssetType(AssetClass asset, string site, string siteFtpFolderName)
         {            
             //build ban expression
+            string folderToFlush = string.Format("{0}{1}", siteFtpFolderName, asset == AssetClass.all ? string.Empty : "/" + asset.ToString());
+            string sectionIOFolder = "http_imagesjxtnetau";
 
-            string _banExpression = string.Empty;
-            string folderName = GetFolderName(); //Make sure this is updated
-            string expression = string.Format(siteBaseUriFormat, folderName);
-
-            switch (asset)
-            {
-                case AssetClass.js: _banExpression = expression += asset.ToString(); 
-                    break;
-
-                case AssetClass.css: _banExpression = expression += asset.ToString();
-                    break;
-
-                case AssetClass.all: _banExpression = expression;
-                    break;
-            }
-
+            // Accordint to sectionIO documentation we dont need to use '/' at end of the URI
+            string _banExpression = string.Format(@"http://{0}/{1}/{2}", site, sectionIOFolder, folderToFlush); ;
            
-            if (!string.IsNullOrEmpty(_banExpression))
-            {
-                API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, _banExpression);
-            }
-            else
-            {
-                throw new NullReferenceException("_banExpression is not assigned with a value");
-            }
-        }
-
-        private string GetFolderName()
-        {
-            throw new NotImplementedException("Need to update this");
-            return "folderName || globalPath";
+            API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, _banExpression);
         }
     }
 }

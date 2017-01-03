@@ -18,7 +18,7 @@ namespace SectionIO
         /// </summary>
         /// <param name="asset">Asset type that was passed into the method from SitesEdit.aspx button click</param>
         /// <param name="siteBaseUriFormat">The format of the uri <example>"://www.example.com/http_imagesjxtnetau/jxt-solutions/"</example></param
-        void FlushAssetType(AssetClass assetToFlush, string siteBaseUriFormat);
+        void FlushAssetType(AssetClass asset, string site, string folderName);
     }
 
     public enum AssetClass

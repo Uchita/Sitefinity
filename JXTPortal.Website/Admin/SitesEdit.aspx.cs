@@ -355,11 +355,36 @@ public partial class SitesEdit : System.Web.UI.Page
     }
 
     private void FlushAssets(AssetClass asset)
-    {
-        string urlToFlush = "://" + Request.Url.Host + "/http_imagesjxtnetau/{0}/";
-
-        _cacheFlusher.FlushAssetType(asset, urlToFlush);   
+    {  
+        _cacheFlusher.FlushAssetType(asset, Request.Url.Host, GetSiteFTPFolder());
     }
+
+    private string GetSiteFTPFolder()
+    {
+        string ftpFolder = string.Empty;
+
+        using (var siteGlobalSettings = GlobalSettingsService.GetBySiteId(SiteId))
+        {
+            var siteSettings = siteGlobalSettings.FirstOrDefault();
+            
+            if (siteSettings == null)
+            {
+                //Deal with this
+            }
+
+            ftpFolder = siteSettings.GlobalFtpFolderLocation;
+
+            //if doesn't exist prompt and save
+            if (string.IsNullOrWhiteSpace(ftpFolder))
+            {
+                //Prompt and save
+                Response.Redirect("/globalsettingsedit.aspx");
+            }
+        }
+
+        return ftpFolder;
+    }
+
 
     internal class SitemapContainer
     {

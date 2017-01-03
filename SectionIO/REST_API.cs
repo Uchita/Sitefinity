@@ -115,10 +115,10 @@ namespace SectionIO
         }
 
         /// <summary>
-        /// this is what I do
+        /// This method builds the banexpression that needs to be passed into "API_Proxy_State_Post()"
         /// </summary>
-        /// <param name="asset"></param>
-        /// <param name="siteBaseUriFormat">The format of the uri <example>"://www.example.com/http_imagesjxtnetau/{0}/*"</example></param>
+        /// <param name="asset">Asset type that was passed into the method from SitesEdit.aspx button click</param>
+        /// <param name="siteBaseUriFormat">The format of the uri <example>"://www.example.com/http_imagesjxtnetau/jxt-solutions/"</example></param>
         public void FlushAssetType(AssetClass asset, string siteBaseUriFormat)
         {            
             //build ban expression
@@ -126,18 +126,6 @@ namespace SectionIO
             string _banExpression = string.Empty;
             string folderName = GetFolderName(); //Make sure this is updated
             string expression = string.Format(siteBaseUriFormat, folderName);
-
-            //if (asset == AssetClass.Javascript)
-            //{
-            //    banExpression = "";
-            //}
-            //else if (asset == AssetClass.Css)
-            //{
-
-            //}
-            //else if(asset == AssetClass.All)
-            //{
-            //}
 
             switch (asset)
             {
@@ -151,10 +139,15 @@ namespace SectionIO
                     break;
             }
 
-
-            //expression = siteBaseUriFormat + _banExpression;
-
-            API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, _banExpression);
+           
+            if (!string.IsNullOrEmpty(_banExpression))
+            {
+                API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, _banExpression);
+            }
+            else
+            {
+                throw new NullReferenceException("_banExpression is not assigned with a value");
+            }
         }
 
         private string GetFolderName()

@@ -25,11 +25,10 @@ using SectionIO;
 public partial class SitesEdit : System.Web.UI.Page
 {
    
-    ICacheFlusher _cacheFlusher;
+    public ICacheFlusher CacheFlusher {get;set;}
 
-    public SitesEdit(ICacheFlusher cacheFlusher)
+    public SitesEdit()
     {
-        _cacheFlusher = cacheFlusher;
     }
 
     #region Properties
@@ -356,7 +355,7 @@ public partial class SitesEdit : System.Web.UI.Page
 
     private void FlushAssets(AssetClass asset)
     {  
-        _cacheFlusher.FlushAssetType(asset, Request.Url.Host, GetSiteFTPFolder());
+        CacheFlusher.FlushAssetType(asset, Request.Url.Host, GetSiteFTPFolder());
     }
 
     private string GetSiteFTPFolder()
@@ -369,22 +368,23 @@ public partial class SitesEdit : System.Web.UI.Page
             
             if (siteSettings == null)
             {
-                Response.Redirect("/sites.aspx");
+                Response.Redirect("/admin/sites.aspx");
             }
 
-            ftpFolder = siteSettings.GlobalFtpFolderLocation;
+            ftpFolder = siteSettings.GlobalFolder;
 
             //if doesn't exist prompt and save
             if (string.IsNullOrWhiteSpace(ftpFolder))
             {
                 //Prompt and save
-                Response.Redirect("/globalsettingsedit.aspx");
+                string script = "alert(\"Global FTP Folder Field is Empty!\"); location.href=\"/admin/globalsettingsedit.aspx\"";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "test", script, true);
+                //Response.Redirect("/admin/globalsettingsedit.aspx");
             }
         }
 
         return ftpFolder;
     }
-
 
     internal class SitemapContainer
     {

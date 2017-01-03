@@ -13,10 +13,13 @@ namespace JXTPortal.Database.Deployment
         static int Main(string[] args)
         {
             var connectionString = args.FirstOrDefault() ?? ConfigurationManager.ConnectionStrings["JXTPortal.Data.ConnectionString"].ConnectionString;
+            string scriptPath = Properties.Settings.Default.ScriptDirectory;
+
+            Console.WriteLine("Running scripts from: {0}", scriptPath);
 
             var upgrader = DeployChanges.To
                     .SqlDatabase(connectionString)
-                    .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly())
+                    .WithScriptsFromFileSystem(scriptPath)
                     .LogToConsole()
                     .Build();
 

@@ -1953,20 +1953,6 @@
     <Compile Include="Admin\EnquiriesEdit.aspx.designer.cs">
       <DependentUpon>EnquiriesEdit.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Exceptions.aspx.cs">
-      <DependentUpon>Exceptions.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Exceptions.aspx.designer.cs">
-      <DependentUpon>Exceptions.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\ExceptionView.aspx.cs">
-      <DependentUpon>ExceptionView.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\ExceptionView.aspx.designer.cs">
-      <DependentUpon>ExceptionView.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Admin\FilesEdit.aspx.cs">
       <DependentUpon>FilesEdit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3894,8 +3880,6 @@
     <Content Include="Admin\EducationsEdit.aspx" />
     <Content Include="Admin\EmailTemplates.aspx" />
     <Content Include="Admin\EmailTemplatesEdit.aspx" />
-    <Content Include="Admin\Exceptions.aspx" />
-    <Content Include="Admin\ExceptionView.aspx" />
     <Content Include="Admin\GetAdminLogo.aspx" />
     <Content Include="Admin\scripts\images\ajax-loader.gif" />
     <Content Include="Admin\scripts\images\file.gif" />

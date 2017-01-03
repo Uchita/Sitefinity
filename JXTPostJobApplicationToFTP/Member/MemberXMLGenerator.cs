@@ -16,12 +16,13 @@ using System.Net.Mail;
 using System.Net.Configuration;
 using Tamir.SharpSsh;
 using System.Diagnostics;
+using log4net;
 
 namespace JXTPostJobApplicationToFTP
 {
     public class MemberXMLGenerator
     {
-
+        ILog _logger; 
 
         private GlobalSettingsService _GlobalSettingsService = null;
         private GlobalSettingsService GlobalSettingsService
@@ -53,6 +54,7 @@ namespace JXTPostJobApplicationToFTP
 
         public MemberXMLGenerator()
         {
+            _logger = LogManager.GetLogger(typeof(MemberXMLGenerator));
         }
 
         public void GenerateKellyMemberXML(List<int> memberIds)
@@ -368,14 +370,10 @@ namespace JXTPostJobApplicationToFTP
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] ERROR: " + ex.Message + "\n" + ex.StackTrace);
-
-                    int exceptionID = LogExceptionAndEmail(sitexml, currentMember, ex);
-
+                    _logger.Error(ex);
                 }
             }
         }
-
 
         public static bool UploadTempFilesToFTP(SitesXML siteXML, List<FileNames> filesToUpload, out string errormessage)
         {
@@ -486,70 +484,6 @@ namespace JXTPostJobApplicationToFTP
 
             return blnResult;
 
-        }
-
-        protected static int LogExceptionAndEmail(SitesXML siteXML, DataRow drMember, Exception ex)
-        {
-            ExceptionTableService serviceException = new ExceptionTableService();
-
-            int intExceptionID = serviceException.LogException(ex.GetBaseException());
-
-            //XDocument xmlFile = XDocument.Load(ConfigurationManager.AppSettings["SitesXML"]);
-            //var query = from c in xmlFile.Elements("sites").Elements("site")
-            //            select c;
-            //foreach (XElement site in query)
-            //{
-            //    // Save the Exception ID and the application which has exception in the XML.
-            //    if (site.Element("SiteId").Value == siteXML.SiteId.ToString())
-            //    {
-            //        site.Element("ExceptionID").Value = intExceptionID.ToString();
-            //    }
-            //}
-
-            // xmlFile.Save(ConfigurationManager.AppSettings["SitesXML"]);
-
-
-            // **** Send email when there is an error.
-            Message message = new Message();
-            message.Format = Format.Html;
-            if (drMember != null)
-            {
-                message.Body = string.Format(@"
-SiteId: {0}<br /><br />
-MemberID: {1}<br /><br />
-DateTime: {2}<br /><br />
-Message: {3}<br /><br />
-StackTrace: {4}<br /><br />
-ExceptionID: {5}",
-                        siteXML.SiteId,
-                        drMember["MemberID"],
-                        DateTime.Now,
-                        ex.Message,
-                        ex.StackTrace,
-                        intExceptionID);
-            }
-            else
-            {
-                message.Body = string.Format(@"
-SiteId: {0}<br /><br />
-DateTime: {1}<br /><br />
-Message: {2}<br /><br />
-StackTrace: {3}<br /><br />
-ExceptionID: {4}",
-                        siteXML.SiteId,
-                        DateTime.Now,
-                        ex.Message,
-                        ex.StackTrace,
-                        intExceptionID);
-            }
-
-            message.From = new MailAddress("bugs@jxt.com.au", "MiniJXT Support");
-            message.To = new MailAddress(ConfigurationManager.AppSettings["AdminEmail"]);
-            message.Subject = "MiniJXT - Job application FTP Error";
-
-            EmailSender().Send(message);
-
-            return intExceptionID;
         }
 
         /// <summary>

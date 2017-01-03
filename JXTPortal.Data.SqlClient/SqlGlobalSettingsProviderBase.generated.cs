@@ -262,6 +262,7 @@ namespace JXTPortal.Data.SqlClient
 		database.AddInParameter(commandWrapper, "@EnablePeopleSearch", DbType.Boolean, DBNull.Value);
 		database.AddInParameter(commandWrapper, "@GlobalDateFormat", DbType.AnsiString, DBNull.Value);
 		database.AddInParameter(commandWrapper, "@TimeZone", DbType.AnsiString, DBNull.Value);
+		database.AddInParameter(commandWrapper, "@GlobalFolder", DbType.AnsiString, DBNull.Value);
 	
 			// replace all instances of 'AND' and 'OR' because we already set searchUsingOR
 			whereClause = whereClause.Replace(" AND ", "|").Replace(" OR ", "|") ; 
@@ -796,6 +797,12 @@ namespace JXTPortal.Data.SqlClient
 				{
 					database.SetParameterValue(commandWrapper, "@TimeZone", 
 						clause.Trim().Remove(0,8).Trim().TrimStart(equalSign).Trim().Trim(singleQuote));
+					continue;
+				}
+				if (clause.Trim().StartsWith("globalfolder ") || clause.Trim().StartsWith("globalfolder="))
+				{
+					database.SetParameterValue(commandWrapper, "@GlobalFolder", 
+						clause.Trim().Remove(0,12).Trim().TrimStart(equalSign).Trim().Trim(singleQuote));
 					continue;
 				}
 	
@@ -2023,6 +2030,8 @@ namespace JXTPortal.Data.SqlClient
 			col85.AllowDBNull = false;		
 			DataColumn col86 = dataTable.Columns.Add("TimeZone", typeof(System.String));
 			col86.AllowDBNull = false;		
+			DataColumn col87 = dataTable.Columns.Add("GlobalFolder", typeof(System.String));
+			col87.AllowDBNull = true;		
 			
 			bulkCopy.ColumnMappings.Add("GlobalSettingID", "GlobalSettingID");
 			bulkCopy.ColumnMappings.Add("SiteID", "SiteID");
@@ -2111,6 +2120,7 @@ namespace JXTPortal.Data.SqlClient
 			bulkCopy.ColumnMappings.Add("EnablePeopleSearch", "EnablePeopleSearch");
 			bulkCopy.ColumnMappings.Add("GlobalDateFormat", "GlobalDateFormat");
 			bulkCopy.ColumnMappings.Add("TimeZone", "TimeZone");
+			bulkCopy.ColumnMappings.Add("GlobalFolder", "GlobalFolder");
 			
 			foreach(JXTPortal.Entities.GlobalSettings entity in entities)
 			{
@@ -2380,6 +2390,9 @@ namespace JXTPortal.Data.SqlClient
 					row["TimeZone"] = entity.TimeZone;
 							
 				
+					row["GlobalFolder"] = entity.GlobalFolder;
+							
+				
 				dataTable.Rows.Add(row);
 			}		
 			
@@ -2501,6 +2514,7 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@EnablePeopleSearch", DbType.Boolean, entity.EnablePeopleSearch );
 			database.AddInParameter(commandWrapper, "@GlobalDateFormat", DbType.AnsiString, entity.GlobalDateFormat );
 			database.AddInParameter(commandWrapper, "@TimeZone", DbType.AnsiString, entity.TimeZone );
+			database.AddInParameter(commandWrapper, "@GlobalFolder", DbType.AnsiString, entity.GlobalFolder );
 			
 			int results = 0;
 			
@@ -2636,6 +2650,7 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@EnablePeopleSearch", DbType.Boolean, entity.EnablePeopleSearch );
 			database.AddInParameter(commandWrapper, "@GlobalDateFormat", DbType.AnsiString, entity.GlobalDateFormat );
 			database.AddInParameter(commandWrapper, "@TimeZone", DbType.AnsiString, entity.TimeZone );
+			database.AddInParameter(commandWrapper, "@GlobalFolder", DbType.AnsiString, entity.GlobalFolder );
 			
 			int results = 0;
 			
@@ -2856,12 +2871,15 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="googleAnalytics"> A <c>System.String</c> instance.</param>
 		/// <param name="googleWebMaster"> A <c>System.String</c> instance.</param>
 		/// <param name="enablePeopleSearch"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="globalDateFormat"> A <c>System.String</c> instance.</param>
+		/// <param name="timeZone"> A <c>System.String</c> instance.</param>
+		/// <param name="globalFolder"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
 		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public override DataSet Find(TransactionManager transactionManager, int start, int pageLength , System.Boolean? searchUsingOr, System.Int32? globalSettingId, System.Int32? siteId, System.Int32? defaultLanguageId, System.Int32? defaultDynamicPageId, System.Boolean? publicJobsSearch, System.Boolean? publicMembersSearch, System.Boolean? publicCompaniesSearch, System.Boolean? publicSponsoredAdverts, System.Boolean? privateJobs, System.Boolean? privateMembers, System.Boolean? privateCompanies, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.String pageTitlePrefix, System.String pageTitleSuffix, System.String defaultTitle, System.String homeTitle, System.String defaultDescription, System.String homeDescription, System.String defaultKeywords, System.String homeKeywords, System.Boolean? showFaceBookButton, System.Int32? useAdvertiserFilter, System.Int32? merchantId, System.Boolean? showTwitterButton, System.Boolean? showJobAlertButton, System.Boolean? showLinkedInButton, System.Int32? siteFavIconId, System.String siteDocType, System.String currencySymbol, System.String ftpFolderLocation, System.String metaTags, System.String systemMetaTags, System.String memberRegistrationNotification, System.String linkedInApi, System.String linkedInLogo, System.Int32? linkedInCompanyId, System.String linkedInEmail, System.String privacySettings, System.Boolean? wwwRedirect, System.Boolean? allowAdvertiser, System.String linkedInApiSecret, System.String googleClientId, System.String googleClientSecret, System.String facebookAppId, System.String facebookAppSecret, System.Int32? linkedInButtonSize, System.Int32? defaultCountryId, System.String payPalUsername, System.String payPalPassword, System.String payPalSignature, System.String securePayMerchantId, System.String securePayPassword, System.Boolean? usingSsl, System.Boolean? useCustomProfessionRole, System.Boolean? generateJobXml, System.Boolean? isPrivateSite, System.String privateRedirectUrl, System.Boolean? enableJobCustomQuestionnaire, System.Int32? jobApplicationTypeId, System.Boolean? jobScreeningProcess, System.Int32? advertiserApprovalProcess, System.Int32? siteType, System.Boolean? enableSsl, System.Decimal? gst, System.String gstLabel, System.Int32? numberOfPremiumJobs, System.Int32? premiumJobDays, System.Boolean? displayPremiumJobsOnResults, System.Boolean? jobExpiryNotification, System.Int32? currencyId, System.String payPalClientId, System.String payPalClientSecret, System.String paypalUser, System.String paypalProPassword, System.String paypalVendor, System.String paypalPartner, System.String invoiceSiteInfo, System.String invoiceSiteFooter, System.Boolean? enableTermsAndConditions, System.Int32? defaultEmailLanguageId, System.String googleTagManager, System.String googleAnalytics, System.String googleWebMaster, System.Boolean? enablePeopleSearch)
+		public override DataSet Find(TransactionManager transactionManager, int start, int pageLength , System.Boolean? searchUsingOr, System.Int32? globalSettingId, System.Int32? siteId, System.Int32? defaultLanguageId, System.Int32? defaultDynamicPageId, System.Boolean? publicJobsSearch, System.Boolean? publicMembersSearch, System.Boolean? publicCompaniesSearch, System.Boolean? publicSponsoredAdverts, System.Boolean? privateJobs, System.Boolean? privateMembers, System.Boolean? privateCompanies, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.String pageTitlePrefix, System.String pageTitleSuffix, System.String defaultTitle, System.String homeTitle, System.String defaultDescription, System.String homeDescription, System.String defaultKeywords, System.String homeKeywords, System.Boolean? showFaceBookButton, System.Int32? useAdvertiserFilter, System.Int32? merchantId, System.Boolean? showTwitterButton, System.Boolean? showJobAlertButton, System.Boolean? showLinkedInButton, System.Int32? siteFavIconId, System.String siteDocType, System.String currencySymbol, System.String ftpFolderLocation, System.String metaTags, System.String systemMetaTags, System.String memberRegistrationNotification, System.String linkedInApi, System.String linkedInLogo, System.Int32? linkedInCompanyId, System.String linkedInEmail, System.String privacySettings, System.Boolean? wwwRedirect, System.Boolean? allowAdvertiser, System.String linkedInApiSecret, System.String googleClientId, System.String googleClientSecret, System.String facebookAppId, System.String facebookAppSecret, System.Int32? linkedInButtonSize, System.Int32? defaultCountryId, System.String payPalUsername, System.String payPalPassword, System.String payPalSignature, System.String securePayMerchantId, System.String securePayPassword, System.Boolean? usingSsl, System.Boolean? useCustomProfessionRole, System.Boolean? generateJobXml, System.Boolean? isPrivateSite, System.String privateRedirectUrl, System.Boolean? enableJobCustomQuestionnaire, System.Int32? jobApplicationTypeId, System.Boolean? jobScreeningProcess, System.Int32? advertiserApprovalProcess, System.Int32? siteType, System.Boolean? enableSsl, System.Decimal? gst, System.String gstLabel, System.Int32? numberOfPremiumJobs, System.Int32? premiumJobDays, System.Boolean? displayPremiumJobsOnResults, System.Boolean? jobExpiryNotification, System.Int32? currencyId, System.String payPalClientId, System.String payPalClientSecret, System.String paypalUser, System.String paypalProPassword, System.String paypalVendor, System.String paypalPartner, System.String invoiceSiteInfo, System.String invoiceSiteFooter, System.Boolean? enableTermsAndConditions, System.Int32? defaultEmailLanguageId, System.String googleTagManager, System.String googleAnalytics, System.String googleWebMaster, System.Boolean? enablePeopleSearch, System.String globalDateFormat, System.String timeZone, System.String globalFolder)
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.GlobalSettings_Find", true);
@@ -2952,6 +2970,9 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@GoogleAnalytics", DbType.AnsiString,  googleAnalytics );
 			database.AddInParameter(commandWrapper, "@GoogleWebMaster", DbType.AnsiString,  googleWebMaster );
 			database.AddInParameter(commandWrapper, "@EnablePeopleSearch", DbType.Boolean,  enablePeopleSearch );
+			database.AddInParameter(commandWrapper, "@GlobalDateFormat", DbType.AnsiString,  globalDateFormat );
+			database.AddInParameter(commandWrapper, "@TimeZone", DbType.AnsiString,  timeZone );
+			database.AddInParameter(commandWrapper, "@GlobalFolder", DbType.AnsiString,  globalFolder );
 	
 			
 			DataSet ds = null;
@@ -3111,11 +3132,14 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="googleAnalytics"> A <c>System.String</c> instance.</param>
 		/// <param name="googleWebMaster"> A <c>System.String</c> instance.</param>
 		/// <param name="enablePeopleSearch"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="globalDateFormat"> A <c>System.String</c> instance.</param>
+		/// <param name="timeZone"> A <c>System.String</c> instance.</param>
+		/// <param name="globalFolder"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
-		public override void Update(TransactionManager transactionManager, int start, int pageLength , System.Int32? globalSettingId, System.Int32? siteId, System.Int32? defaultLanguageId, System.Int32? defaultDynamicPageId, System.Boolean? publicJobsSearch, System.Boolean? publicMembersSearch, System.Boolean? publicCompaniesSearch, System.Boolean? publicSponsoredAdverts, System.Boolean? privateJobs, System.Boolean? privateMembers, System.Boolean? privateCompanies, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.String pageTitlePrefix, System.String pageTitleSuffix, System.String defaultTitle, System.String homeTitle, System.String defaultDescription, System.String homeDescription, System.String defaultKeywords, System.String homeKeywords, System.Boolean? showFaceBookButton, System.Int32? useAdvertiserFilter, System.Int32? merchantId, System.Boolean? showTwitterButton, System.Boolean? showJobAlertButton, System.Boolean? showLinkedInButton, System.Int32? siteFavIconId, System.String siteDocType, System.String currencySymbol, System.String ftpFolderLocation, System.String metaTags, System.String systemMetaTags, System.String memberRegistrationNotification, System.String linkedInApi, System.String linkedInLogo, System.Int32? linkedInCompanyId, System.String linkedInEmail, System.String privacySettings, System.Boolean? wwwRedirect, System.Boolean? allowAdvertiser, System.String linkedInApiSecret, System.String googleClientId, System.String googleClientSecret, System.String facebookAppId, System.String facebookAppSecret, System.Int32? linkedInButtonSize, System.Int32? defaultCountryId, System.String payPalUsername, System.String payPalPassword, System.String payPalSignature, System.String securePayMerchantId, System.String securePayPassword, System.Boolean? usingSsl, System.Boolean? useCustomProfessionRole, System.Boolean? generateJobXml, System.Boolean? isPrivateSite, System.String privateRedirectUrl, System.Boolean? enableJobCustomQuestionnaire, System.Int32? jobApplicationTypeId, System.Boolean? jobScreeningProcess, System.Int32? advertiserApprovalProcess, System.Int32? siteType, System.Boolean? enableSsl, System.Decimal? gst, System.String gstLabel, System.Int32? numberOfPremiumJobs, System.Int32? premiumJobDays, System.Boolean? displayPremiumJobsOnResults, System.Boolean? jobExpiryNotification, System.Int32? currencyId, System.String payPalClientId, System.String payPalClientSecret, System.String paypalUser, System.String paypalProPassword, System.String paypalVendor, System.String paypalPartner, System.String invoiceSiteInfo, System.String invoiceSiteFooter, System.Boolean? enableTermsAndConditions, System.Int32? defaultEmailLanguageId, System.String googleTagManager, System.String googleAnalytics, System.String googleWebMaster, System.Boolean? enablePeopleSearch)
+		public override void Update(TransactionManager transactionManager, int start, int pageLength , System.Int32? globalSettingId, System.Int32? siteId, System.Int32? defaultLanguageId, System.Int32? defaultDynamicPageId, System.Boolean? publicJobsSearch, System.Boolean? publicMembersSearch, System.Boolean? publicCompaniesSearch, System.Boolean? publicSponsoredAdverts, System.Boolean? privateJobs, System.Boolean? privateMembers, System.Boolean? privateCompanies, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.String pageTitlePrefix, System.String pageTitleSuffix, System.String defaultTitle, System.String homeTitle, System.String defaultDescription, System.String homeDescription, System.String defaultKeywords, System.String homeKeywords, System.Boolean? showFaceBookButton, System.Int32? useAdvertiserFilter, System.Int32? merchantId, System.Boolean? showTwitterButton, System.Boolean? showJobAlertButton, System.Boolean? showLinkedInButton, System.Int32? siteFavIconId, System.String siteDocType, System.String currencySymbol, System.String ftpFolderLocation, System.String metaTags, System.String systemMetaTags, System.String memberRegistrationNotification, System.String linkedInApi, System.String linkedInLogo, System.Int32? linkedInCompanyId, System.String linkedInEmail, System.String privacySettings, System.Boolean? wwwRedirect, System.Boolean? allowAdvertiser, System.String linkedInApiSecret, System.String googleClientId, System.String googleClientSecret, System.String facebookAppId, System.String facebookAppSecret, System.Int32? linkedInButtonSize, System.Int32? defaultCountryId, System.String payPalUsername, System.String payPalPassword, System.String payPalSignature, System.String securePayMerchantId, System.String securePayPassword, System.Boolean? usingSsl, System.Boolean? useCustomProfessionRole, System.Boolean? generateJobXml, System.Boolean? isPrivateSite, System.String privateRedirectUrl, System.Boolean? enableJobCustomQuestionnaire, System.Int32? jobApplicationTypeId, System.Boolean? jobScreeningProcess, System.Int32? advertiserApprovalProcess, System.Int32? siteType, System.Boolean? enableSsl, System.Decimal? gst, System.String gstLabel, System.Int32? numberOfPremiumJobs, System.Int32? premiumJobDays, System.Boolean? displayPremiumJobsOnResults, System.Boolean? jobExpiryNotification, System.Int32? currencyId, System.String payPalClientId, System.String payPalClientSecret, System.String paypalUser, System.String paypalProPassword, System.String paypalVendor, System.String paypalPartner, System.String invoiceSiteInfo, System.String invoiceSiteFooter, System.Boolean? enableTermsAndConditions, System.Int32? defaultEmailLanguageId, System.String googleTagManager, System.String googleAnalytics, System.String googleWebMaster, System.Boolean? enablePeopleSearch, System.String globalDateFormat, System.String timeZone, System.String globalFolder)
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.GlobalSettings_Update", true);
@@ -3205,6 +3229,9 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@GoogleAnalytics", DbType.AnsiString,  googleAnalytics );
 			database.AddInParameter(commandWrapper, "@GoogleWebMaster", DbType.AnsiString,  googleWebMaster );
 			database.AddInParameter(commandWrapper, "@EnablePeopleSearch", DbType.Boolean,  enablePeopleSearch );
+			database.AddInParameter(commandWrapper, "@GlobalDateFormat", DbType.AnsiString,  globalDateFormat );
+			database.AddInParameter(commandWrapper, "@TimeZone", DbType.AnsiString,  timeZone );
+			database.AddInParameter(commandWrapper, "@GlobalFolder", DbType.AnsiString,  globalFolder );
 	
 			
 			//Provider Data Requesting Command Event
@@ -3403,12 +3430,15 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="googleAnalytics"> A <c>System.String</c> instance.</param>
 		/// <param name="googleWebMaster"> A <c>System.String</c> instance.</param>
 		/// <param name="enablePeopleSearch"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="globalDateFormat"> A <c>System.String</c> instance.</param>
+		/// <param name="timeZone"> A <c>System.String</c> instance.</param>
+		/// <param name="globalFolder"> A <c>System.String</c> instance.</param>
 			/// <param name="globalSettingId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
-		public override void Insert(TransactionManager transactionManager, int start, int pageLength , System.Int32? siteId, System.Int32? defaultLanguageId, System.Int32? defaultDynamicPageId, System.Boolean? publicJobsSearch, System.Boolean? publicMembersSearch, System.Boolean? publicCompaniesSearch, System.Boolean? publicSponsoredAdverts, System.Boolean? privateJobs, System.Boolean? privateMembers, System.Boolean? privateCompanies, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.String pageTitlePrefix, System.String pageTitleSuffix, System.String defaultTitle, System.String homeTitle, System.String defaultDescription, System.String homeDescription, System.String defaultKeywords, System.String homeKeywords, System.Boolean? showFaceBookButton, System.Int32? useAdvertiserFilter, System.Int32? merchantId, System.Boolean? showTwitterButton, System.Boolean? showJobAlertButton, System.Boolean? showLinkedInButton, System.Int32? siteFavIconId, System.String siteDocType, System.String currencySymbol, System.String ftpFolderLocation, System.String metaTags, System.String systemMetaTags, System.String memberRegistrationNotification, System.String linkedInApi, System.String linkedInLogo, System.Int32? linkedInCompanyId, System.String linkedInEmail, System.String privacySettings, System.Boolean? wwwRedirect, System.Boolean? allowAdvertiser, System.String linkedInApiSecret, System.String googleClientId, System.String googleClientSecret, System.String facebookAppId, System.String facebookAppSecret, System.Int32? linkedInButtonSize, System.Int32? defaultCountryId, System.String payPalUsername, System.String payPalPassword, System.String payPalSignature, System.String securePayMerchantId, System.String securePayPassword, System.Boolean? usingSsl, System.Boolean? useCustomProfessionRole, System.Boolean? generateJobXml, System.Boolean? isPrivateSite, System.String privateRedirectUrl, System.Boolean? enableJobCustomQuestionnaire, System.Int32? jobApplicationTypeId, System.Boolean? jobScreeningProcess, System.Int32? advertiserApprovalProcess, System.Int32? siteType, System.Boolean? enableSsl, System.Decimal? gst, System.String gstLabel, System.Int32? numberOfPremiumJobs, System.Int32? premiumJobDays, System.Boolean? displayPremiumJobsOnResults, System.Boolean? jobExpiryNotification, System.Int32? currencyId, System.String payPalClientId, System.String payPalClientSecret, System.String paypalUser, System.String paypalProPassword, System.String paypalVendor, System.String paypalPartner, System.String invoiceSiteInfo, System.String invoiceSiteFooter, System.Boolean? enableTermsAndConditions, System.Int32? defaultEmailLanguageId, System.String googleTagManager, System.String googleAnalytics, System.String googleWebMaster, System.Boolean? enablePeopleSearch, ref System.Int32? globalSettingId)
+		public override void Insert(TransactionManager transactionManager, int start, int pageLength , System.Int32? siteId, System.Int32? defaultLanguageId, System.Int32? defaultDynamicPageId, System.Boolean? publicJobsSearch, System.Boolean? publicMembersSearch, System.Boolean? publicCompaniesSearch, System.Boolean? publicSponsoredAdverts, System.Boolean? privateJobs, System.Boolean? privateMembers, System.Boolean? privateCompanies, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.String pageTitlePrefix, System.String pageTitleSuffix, System.String defaultTitle, System.String homeTitle, System.String defaultDescription, System.String homeDescription, System.String defaultKeywords, System.String homeKeywords, System.Boolean? showFaceBookButton, System.Int32? useAdvertiserFilter, System.Int32? merchantId, System.Boolean? showTwitterButton, System.Boolean? showJobAlertButton, System.Boolean? showLinkedInButton, System.Int32? siteFavIconId, System.String siteDocType, System.String currencySymbol, System.String ftpFolderLocation, System.String metaTags, System.String systemMetaTags, System.String memberRegistrationNotification, System.String linkedInApi, System.String linkedInLogo, System.Int32? linkedInCompanyId, System.String linkedInEmail, System.String privacySettings, System.Boolean? wwwRedirect, System.Boolean? allowAdvertiser, System.String linkedInApiSecret, System.String googleClientId, System.String googleClientSecret, System.String facebookAppId, System.String facebookAppSecret, System.Int32? linkedInButtonSize, System.Int32? defaultCountryId, System.String payPalUsername, System.String payPalPassword, System.String payPalSignature, System.String securePayMerchantId, System.String securePayPassword, System.Boolean? usingSsl, System.Boolean? useCustomProfessionRole, System.Boolean? generateJobXml, System.Boolean? isPrivateSite, System.String privateRedirectUrl, System.Boolean? enableJobCustomQuestionnaire, System.Int32? jobApplicationTypeId, System.Boolean? jobScreeningProcess, System.Int32? advertiserApprovalProcess, System.Int32? siteType, System.Boolean? enableSsl, System.Decimal? gst, System.String gstLabel, System.Int32? numberOfPremiumJobs, System.Int32? premiumJobDays, System.Boolean? displayPremiumJobsOnResults, System.Boolean? jobExpiryNotification, System.Int32? currencyId, System.String payPalClientId, System.String payPalClientSecret, System.String paypalUser, System.String paypalProPassword, System.String paypalVendor, System.String paypalPartner, System.String invoiceSiteInfo, System.String invoiceSiteFooter, System.Boolean? enableTermsAndConditions, System.Int32? defaultEmailLanguageId, System.String googleTagManager, System.String googleAnalytics, System.String googleWebMaster, System.Boolean? enablePeopleSearch, System.String globalDateFormat, System.String timeZone, System.String globalFolder, ref System.Int32? globalSettingId)
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.GlobalSettings_Insert", true);
@@ -3497,6 +3527,9 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@GoogleAnalytics", DbType.AnsiString,  googleAnalytics );
 			database.AddInParameter(commandWrapper, "@GoogleWebMaster", DbType.AnsiString,  googleWebMaster );
 			database.AddInParameter(commandWrapper, "@EnablePeopleSearch", DbType.Boolean,  enablePeopleSearch );
+			database.AddInParameter(commandWrapper, "@GlobalDateFormat", DbType.AnsiString,  globalDateFormat );
+			database.AddInParameter(commandWrapper, "@TimeZone", DbType.AnsiString,  timeZone );
+			database.AddInParameter(commandWrapper, "@GlobalFolder", DbType.AnsiString,  globalFolder );
 	
 			database.AddParameter(commandWrapper, "@GlobalSettingId", DbType.Int32, 4, ParameterDirection.InputOutput, true, 10, 0, string.Empty, DataRowVersion.Current, globalSettingId);
 			

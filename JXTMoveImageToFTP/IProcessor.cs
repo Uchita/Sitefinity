@@ -43,7 +43,7 @@ namespace JXTMoveImageToFTP
         {
             Logger.InfoFormat("Start moving {0} Binary Data to FTP", Type);
 
-            string path = string.Format(@"{0}\{1}", ConfigurationManager.AppSettings["RootFolder"], Folder);
+            string path = Folder;
 
             // Check if directory exists
             if (!Directory.Exists(path))

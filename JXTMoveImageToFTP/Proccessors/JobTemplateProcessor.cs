@@ -30,7 +30,7 @@ namespace JXTMoveImageToFTP.Proccessors
         public override string Folder
         {
             get
-            { return ConfigurationManager.AppSettings["JobTemplatesFolder"]; }
+            { return string.Format(@"{0}\{1}", ConfigurationManager.AppSettings["RootFolder"], ConfigurationManager.AppSettings["JobTemplatesFolder"]); }
         }
 
         public override IEnumerable<JobTemplatesEntity> GetEntitiesToUpdate(int? batchSize)

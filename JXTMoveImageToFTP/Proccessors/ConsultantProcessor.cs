@@ -30,7 +30,7 @@ namespace JXTMoveImageToFTP.Proccessors
         {
             get
             {
-                return ConfigurationManager.AppSettings["ConsultantsFolder"];
+                return string.Format(@"{0}\{1}", ConfigurationManager.AppSettings["RootFolder"], ConfigurationManager.AppSettings["ConsultantsFolder"]);
             }
         }
 

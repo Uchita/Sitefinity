@@ -26,7 +26,7 @@ namespace JXTMoveImageToFTP.Proccessors
 
         public override string Folder
         {
-            get { return ConfigurationManager.AppSettings["SitesFolder"]; }
+            get { return string.Format(@"{0}\{1}", ConfigurationManager.AppSettings["RootFolder"], ConfigurationManager.AppSettings["SitesFolder"]); }
         }
         
         public override IEnumerable<SitesEntity> GetEntitiesToUpdate(int? batchSize)

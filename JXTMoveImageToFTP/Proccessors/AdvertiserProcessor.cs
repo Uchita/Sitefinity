@@ -29,7 +29,7 @@ namespace JXTMoveImageToFTP.Proccessors
 
         public override string Folder
         {
-            get { return ConfigurationManager.AppSettings["AdvertisersFolder"]; }
+            get { return string.Format(@"{0}\{1}", ConfigurationManager.AppSettings["RootFolder"], ConfigurationManager.AppSettings["AdvertisersFolder"]); }
         }
 
         public override IEnumerable<AdvertisersEntity> GetEntitiesToUpdate(int? batchSize)

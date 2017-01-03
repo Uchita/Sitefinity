@@ -28,7 +28,7 @@ namespace JXTMoveImageToFTP.Proccessors
 
         public override string Folder
         {
-            get { return string.Format("/{0}/{1}", ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"]); }
+            get { return string.Format(@"{0}\{1}", ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"]); }
         }
         
         public override IEnumerable<MemberFilesEntity> GetEntitiesToUpdate(int? batchSize)
@@ -64,9 +64,21 @@ namespace JXTMoveImageToFTP.Proccessors
         public override bool PerformFileSave(MemberFilesEntity entity, string path, out string filename)
         {
             int id = GetId(entity);
-            Logger.InfoFormat("Saving MemberFile: MemberFileID: {0} MemberFileName: {1}", id, entity.MemberFileName);
+            string memberPath = string.Format(@"{0}\{1}", path, entity.MemberID);
+            Logger.InfoFormat("Saving MemberFile. MemberFileID: {0}; MemberId: {1}; MemberFileName: {2}; Path: {3}", id,entity.MemberID, entity.MemberFileName, memberPath);
 
-            byte[] buffer = GetBinaryData(entity);
+            byte[] buffer = null;
+
+            try
+            {
+                buffer = GetBinaryData(entity);
+            }
+            catch (Exception e)
+            {
+                Logger.Error("Error fetching the binary data", e);
+                filename = string.Empty;
+                return false;
+            }
 
             if (buffer == null || buffer.Length <= 0)
             {
@@ -75,9 +87,41 @@ namespace JXTMoveImageToFTP.Proccessors
                 return false;
             }
 
-            string extension = Path.GetExtension(entity.MemberFileName);
-            filename = string.Format("{0}_{1}.{2}", Type, id, extension);
-            string newPath = string.Format(@"{0}\{1}", path, filename);
+            // Check if directory exists
+            if (!Directory.Exists(memberPath))
+            {
+                Logger.InfoFormat("Directory doesn't exist, creating directory {0}", memberPath);
+
+                try
+                {
+                    Directory.CreateDirectory(memberPath);
+                }
+                catch (Exception e)
+                {
+                    string message = string.Format("Could not create directory: {0}", memberPath);
+
+                    Logger.Error(message, e);
+                    filename = string.Empty;
+                    return false;
+                }
+            }
+
+            try
+            {
+
+                string extension = Path.GetExtension(entity.MemberFileName).TrimStart('.');
+                filename = string.Format("{0}_{1}.{2}", Type, id, extension);
+            }
+            catch (Exception e)
+            {
+                string message =string.Format("Could not retrieve the file extension for {0}", entity.MemberFileName);
+
+                Logger.Error(message, e);
+                filename = string.Empty;
+                return false;
+            }
+
+            string newPath = string.Format(@"{0}\{1}", memberPath, filename);
 
             try
             {
@@ -88,7 +132,9 @@ namespace JXTMoveImageToFTP.Proccessors
             }
             catch (Exception e)
             {
-                Logger.Error(e);
+                string message = string.Format("Could not Save file: {0}", newPath);
+
+                Logger.Error(message, e);
                 filename = null;
                 return false;
             }

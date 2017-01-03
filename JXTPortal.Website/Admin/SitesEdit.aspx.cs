@@ -369,7 +369,7 @@ public partial class SitesEdit : System.Web.UI.Page
             
             if (siteSettings == null)
             {
-                //Deal with this
+                Response.Redirect("/sites.aspx");
             }
 
             ftpFolder = siteSettings.GlobalFtpFolderLocation;

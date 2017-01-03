@@ -17,7 +17,7 @@ namespace SectionIO
         /// This method builds the banexpression that needs to be passed into "API_Proxy_State_Post()"
         /// </summary>
         /// <param name="asset">Asset type that was passed into the method from SitesEdit.aspx button click</param>
-        /// <param name="site">The format of the uri <example>"http://www.example.com/http_imagesjxtnetau/jxt-solutions"</example></param>
+        /// <param name="site">The format of the uri <example>"https://www.example.com/http_imagesjxtnetau/jxt-solutions"</example></param>
         /// <param name="folderName">Passes global FTP folder name</param>
         void FlushAssetType(AssetClass asset, string site, string folderName);
     }

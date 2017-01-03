@@ -1,24 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using JXTPortal.Entities;
-using JXTPortal.Data;
-using System.Xml.Linq;
-using JXTPortal.Common;
-using JXTPortal;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Net;
-using JXTPortal.EmailSender;
-using System.Net.Mail;
-using System.Net.Configuration;
-using Tamir.SharpSsh;
-using System.Diagnostics;
-using JXTPostDataToFTP.Models;
-using System.Xml.Serialization;
 using System.Xml;
+using System.Xml.Linq;
+using System.Xml.Serialization;
+using JXTPortal;
+using JXTPortal.Common;
+using JXTPortal.Entities;
+using JXTPostDataToFTP.Models;
 using log4net;
 
 namespace JXTPostDataToFTP
@@ -26,8 +19,9 @@ namespace JXTPostDataToFTP
     public class MemberXMLGenerator
     {
         private ILog _logger;
-        #region Properties
 
+        IFileUploader _fileUploader;
+        
         MembersService _membersService;
         MembersService MembersService
         {
@@ -273,168 +267,28 @@ namespace JXTPostDataToFTP
                 return _memberReferencesService;
             }
         }
-        #endregion
-
-        #region Constructor
 
         public MemberXMLGenerator()
         {
             _logger = LogManager.GetLogger(typeof(MemberXMLGenerator));
+            _fileUploader = new FileUploader();
         }
 
-        #endregion
-
-        #region FTP / SFTP Methods
-
-        public static bool UploadTempFilesToFTP(SitesXML siteXML, List<FileNames> filesToUpload, out string errormessage)
+        public void GenerateMemberXML(string configFile)
         {
+            _logger.InfoFormat("Generating Member XMl files for the config: {0}", configFile);
 
-            Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Files Upload Begin");
+            XDocument xml = null;
 
-            errormessage = string.Empty;
-            bool blnResult = true;
-
-            FtpWebRequest request = null;
-            FileInfo fileInfo = null;
-            foreach (FileNames fileNames in filesToUpload)
-            {
-                try
-                {
-                    request = (FtpWebRequest)WebRequest.Create(string.Format("{0}/{1}", siteXML.host, fileNames.toFilename));
-                    request.Credentials = new NetworkCredential(siteXML.username, siteXML.password);
-                    request.Proxy = null;
-                    request.KeepAlive = true;
-
-                    //FtpWebRequest request = GetRequest(Path.GetFileName(path));
-                    request.Method = WebRequestMethods.Ftp.UploadFile;
-                    request.UseBinary = true;
-
-                    Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Uploading File: " + fileNames.fromFilename);
-
-                    fileInfo = new FileInfo(fileNames.fromFilename);
-                    request.ContentLength = fileInfo.Length;
-
-                    // Create buffer for file contents
-                    int buffLength = 16384;
-                    byte[] buff = new byte[buffLength];
-
-                    // Upload this file
-                    using (FileStream instream = fileInfo.OpenRead())
-                    {
-                        using (Stream outstream = request.GetRequestStream())
-                        {
-                            int bytesRead = instream.Read(buff, 0, buffLength);
-                            while (bytesRead > 0)
-                            {
-                                outstream.Write(buff, 0, bytesRead);
-                                bytesRead = instream.Read(buff, 0, buffLength);
-                            }
-                            outstream.Close();
-                        }
-                        instream.Close();
-                    }
-
-                    FtpWebResponse response = (FtpWebResponse)request.GetResponse();
-                    response.Close();
-                    Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] File Uploaded: " + fileNames.toFilename);
-
-                    // Delete file
-                    File.Delete(fileNames.fromFilename);
-                    Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] File Deleted: " + fileNames.fromFilename);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] ERROR: " + ex.Message + "\n" + ex.StackTrace);
-                    blnResult = false;
-                }
-            }
-
-            Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Files Upload Ends");
-
-            return blnResult;
-        }
-
-        private bool UploadTempFilesToSFTP(SitesXML siteXML, List<FileNames> filesToUpload, out string errormessage)
-        {
-            errormessage = string.Empty;
-            bool blnResult = false;
-            Sftp sftp = null;
             try
             {
-
-                // Create instance for Sftp to upload given files using given credentials
-                sftp = new Sftp(siteXML.host, siteXML.username, siteXML.password);
-                //sftp.Port = siteXML.port;
-
-                // Connect Sftp
-                sftp.Connect();
-
-                foreach (FileNames fileNames in filesToUpload)
-                {
-
-                    if (File.Exists(fileNames.fromFilename))
-                    {
-                        // Upload a file
-                        Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Uploading File: " + fileNames.fromFilename);
-                        sftp.Put(fileNames.fromFilename, (siteXML.folderPath != null ? siteXML.folderPath : string.Empty) + fileNames.toFilename);
-                        Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] File Uploaded: " + fileNames.toFilename);
-
-                        // Delete file
-                        File.Delete(fileNames.fromFilename);
-                        Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] File Deleted: " + fileNames.fromFilename);
-                    }
-                    else
-                    {
-                        Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] File Not Found: " + fileNames.fromFilename);
-                    }
-                    // Close the Sftp connection
-                    //sftp.Close();
-                }
-
-                blnResult = true;
+                xml = XDocument.Load(configFile);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] ERROR: " + ex.Message + "\n" + ex.StackTrace);
+                _logger.Error("Config file not valid XML", ex);
+                return;
             }
-            finally
-            {
-                if (sftp != null)
-                {
-                    // Close the Sftp connection
-                    sftp.Close();
-                }
-            }
-
-            return blnResult;
-
-        }
-
-        #endregion
-
-        #region Log exception and email
-        protected static void SaveExceptionToSiteXML(SitesXML siteXML, int? memberID)
-        {
-            // Save the exception id
-            XDocument xmlFile = XDocument.Load(ConfigurationManager.AppSettings["SiteMemberXML"]);
-            var query = from c in xmlFile.Elements("sites").Elements("site")
-                        select c;
-            foreach (XElement site in query)
-            {
-                // Save the Exception ID and the application which has exception in the XML.
-                if (site.Element("SiteId").Value == siteXML.SiteId.ToString())
-                {
-                    site.Element("ExceptionID").Value = "-1";
-                }
-            }
-            xmlFile.Save(ConfigurationManager.AppSettings["SiteXML"]);
-
-        }
-        #endregion
-
-        public void GenerateMemberXML()
-        {
-            var xml = XDocument.Load(ConfigurationManager.AppSettings["SiteMemberXML"]);
 
             // Query the data and write out a subset of contacts
             IEnumerable<SitesXML> siteXMLList = xml.Descendants("site").Select(c => new SitesXML()
@@ -449,7 +303,6 @@ namespace JXTPostDataToFTP
                 mode = (string)c.Element("Mode"),
                 LastModifiedDate = (string)c.Element("LastModifiedDate")            // Job application id used for getting the last modified date
             });
-
 
             foreach (SitesXML sitexml in siteXMLList)
             {
@@ -484,7 +337,6 @@ namespace JXTPostDataToFTP
 
                     DataRow[] drValidatedMembers = null;
                     
-
                     if (sitexml.mode == "JobApplication")
                     {
                         dtMembers.Rows.Clear();
@@ -875,40 +727,31 @@ namespace JXTPostDataToFTP
                         }
 
                         string errormsg = string.Empty;
-                        bool blnFileUploaded = false;
-                        if (sitexml.sftp)
-                        {
-                            blnFileUploaded = UploadTempFilesToSFTP(sitexml, fileslist, out errormsg);
-                        }
-                        else
-                        {
-                            blnFileUploaded = UploadTempFilesToFTP(sitexml, fileslist, out errormsg);
-                        }
-
+                        
+                        bool success = _fileUploader.UploadFiles(sitexml, fileslist);
+                        
                         // Only if successful upload then update the LastModifed Date in the XML.
                         // So that when it runs next it runs from the successful Run.
-                        if (blnFileUploaded)
+                        if (success)
                         {
-                            XDocument xmlFile = XDocument.Load(ConfigurationManager.AppSettings["SiteMemberXML"]);
+                            XDocument xmlFile = XDocument.Load(configFile);
                             var query = from c in xmlFile.Elements("sites").Elements("site")
                                         select c;
+
                             foreach (XElement site in query)
                             {
-                                // Save the Exception ID and the application which has exception in the XML.
                                 if (site.Element("SiteId").Value == sitexml.SiteId.ToString())
                                 {
                                     site.Element("LastModifiedDate").Value = DateTime.Now.ToString();
                                 }
                             }
 
-                            xmlFile.Save(ConfigurationManager.AppSettings["SiteMemberXML"]);
+                            xmlFile.Save(configFile);
                         }
-
                     }
                     catch (Exception ex)
                     {
                         _logger.Error(string.Format("Failed to generate XML for Member on SiteId:{1}", sitexml.SiteId), ex);
-                        SaveExceptionToSiteXML(sitexml, 0);
                     }
                 }
                 catch (Exception ex)
@@ -1124,7 +967,6 @@ namespace JXTPostDataToFTP
                         }
                     }
 
-
                     try
                     {
                         if (!string.IsNullOrWhiteSpace(customquestionxml))
@@ -1172,16 +1014,13 @@ namespace JXTPostDataToFTP
 
                                     customquestionlist.Add(question);
                                 }
-
                             }
 
                             customquestionlist = customquestionlist.OrderBy(q => q.Sequence).ToList();
-
-
                         }
                     }
-                    catch { }
-
+                    catch (Exception e)
+                    { _logger.Warn(e); }
                 }
             }
             return customquestionlist;
@@ -1208,6 +1047,5 @@ namespace JXTPostDataToFTP
 
             return value;
         }
-
     }
 }

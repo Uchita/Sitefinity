@@ -1,18 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-
-using JXTPortal.Common;
 using System.Configuration;
 using System.IO;
+using System.Web.UI;
+using JXTPortal.Common;
+using log4net;
+using System.Drawing;
 
 namespace JXTPortal.Website.Admin
 {
     public partial class GetAdminLogo : System.Web.UI.Page
     {
+        private ILog _logger;
+
+        public GetAdminLogo()
+        {
+            _logger = LogManager.GetLogger(typeof(GetAdminLogo));
+        }
+
         // ToDo - Move to Root - And do caching
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -46,47 +50,62 @@ namespace JXTPortal.Website.Admin
         {
             using (JXTPortal.Entities.Sites site = SitesService.GetBySiteId(SiteID)) //SiteID
             {
-                if (site != null && (string.IsNullOrWhiteSpace(site.SiteAdminLogoUrl) == false || site.SiteAdminLogo != null))
+                if (site == null)
+                    return;
+
+                byte[] logo = RetrieveImage(site.SiteId, site.SiteAdminLogoUrl, site.SiteAdminLogo);
+
+                if (logo == null)
                 {
-                    
-                    System.Drawing.Image objOriginalImage = null;
-                    string contenttype = string.Empty;
-
-                    byte[] siteadminlogo = null;
-
-                    if (!string.IsNullOrWhiteSpace(site.SiteAdminLogoUrl))
-                    {
-                        string errormessage = string.Empty;
-
-                        FtpClient ftpclient = new FtpClient();
-                        ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                        ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                        ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
-                        string filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["RootFolder"], ConfigurationManager.AppSettings["SitesFolder"], site.SiteId, site.SiteAdminLogoUrl);
-                        Stream ms = null;
-                        ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
-                        ms.Position = 0;
-
-                        siteadminlogo = ((MemoryStream)ms).ToArray();
-                    }
-                    else
-                    {
-                        siteadminlogo = site.SiteAdminLogo;
-                    }
-
-                    if (Utils.IsValidUploadImage("", siteadminlogo, out objOriginalImage, out contenttype))
-                    {
-                        Response.ContentType = contenttype;
-                    }
-                    else
-                        Response.ContentType = "image/gif";
-
-
-                    Response.BinaryWrite(siteadminlogo);
+                    return;
                 }
+
+                string contentType = string.Empty;
+                Image image = null;
+
+                if (Utils.IsValidUploadImage("", logo, out image, out contentType))
+                {
+                    Response.ContentType = contentType;
+                }
+                else
+                    Response.ContentType = "image/gif";
+
+                Response.BinaryWrite(logo);
+            }
+        }
+
+        private byte[] RetrieveImage(int siteId, string logoUrl, byte[] logo)
+        {
+            if (string.IsNullOrWhiteSpace(logoUrl))
+                return logo;
+
+            _logger.DebugFormat("Attempting to fetch logo for siteId {0}, from {1}", siteId, logoUrl);
+            string errormessage = string.Empty;
+
+            FtpClient ftpclient = new FtpClient();
+            ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
+            ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+            ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+
+            string filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["RootFolder"], ConfigurationManager.AppSettings["SitesFolder"], siteId, logoUrl);
+            Stream ms = null;
+            ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
+            
+            if (!string.IsNullOrWhiteSpace(errormessage))
+            {
+                _logger.Error(errormessage);
+                return null;
             }
 
+            if (ms == null)
+            {
+                _logger.WarnFormat("Failed to download logo for siteId {0}", siteId);
+                return null;
+            }
+
+            _logger.InfoFormat("Found logo for siteId {0}", siteId);
+            ms.Position = 0;
+            return ((MemoryStream)ms).ToArray();
         }
 
         #region Properties

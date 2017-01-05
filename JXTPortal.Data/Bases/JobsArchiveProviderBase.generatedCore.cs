@@ -1990,7 +1990,6 @@ namespace JXTPortal.Data.Bases
 		
 		#region JobsArchive_GetByAddressStatus 
 		
-		
 		/// <summary>
 		///	This method wrap the 'JobsArchive_GetByAddressStatus' stored procedure. 
 		/// </summary>
@@ -2003,7 +2002,7 @@ namespace JXTPortal.Data.Bases
 		{
 			return GetByAddressStatus(null, start, pageLength , addressStatus);
 		}
-		
+
 		/// <summary>
 		///	This method wrap the 'JobsArchive_GetByAddressStatus' stored procedure. 
 		/// </summary>
@@ -2164,7 +2163,6 @@ namespace JXTPortal.Data.Bases
 		
 		#region JobsArchive_GetByScreeningQuestionsTemplateId 
 		
-		
 		/// <summary>
 		///	This method wrap the 'JobsArchive_GetByScreeningQuestionsTemplateId' stored procedure. 
 		/// </summary>
@@ -2177,6 +2175,7 @@ namespace JXTPortal.Data.Bases
 		{
 			return GetByScreeningQuestionsTemplateId(null, start, pageLength , screeningQuestionsTemplateId);
 		}
+		
 		/// <summary>
 		///	This method wrap the 'JobsArchive_GetByScreeningQuestionsTemplateId' stored procedure. 
 		/// </summary>
@@ -2683,7 +2682,6 @@ namespace JXTPortal.Data.Bases
 		
 		#region JobsArchive_GetByLastModifiedByAdminUserId 
 		
-		
 		/// <summary>
 		///	This method wrap the 'JobsArchive_GetByLastModifiedByAdminUserId' stored procedure. 
 		/// </summary>
@@ -2865,7 +2863,6 @@ namespace JXTPortal.Data.Bases
 		#endregion
 		
 		#region JobsArchive_GetByAdvertiserId 
-		
 		
 		/// <summary>
 		///	This method wrap the 'JobsArchive_GetByAdvertiserId' stored procedure. 
@@ -3071,7 +3068,7 @@ namespace JXTPortal.Data.Bases
 		
 		#endregion
 		
-		#region JobsArchive_GetByJobTemplateId
+		#region JobsArchive_GetByJobTemplateId 
 		
 		/// <summary>
 		///	This method wrap the 'JobsArchive_GetByJobTemplateId' stored procedure. 

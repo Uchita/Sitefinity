@@ -601,6 +601,9 @@
     <PageName>ScreeningQuestionsTemplate.aspx</PageName>
     <AdminRoleID>1</AdminRoleID>
 
+    <PageName>ScreeningQuestionsTemplateEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
   </AdminPage>
   <ContentEditorPage>
 
@@ -1105,6 +1108,9 @@
     <AdminRoleID>2</AdminRoleID>
 
     <PageName>ScreeningQuestionsTemplate.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>ScreeningQuestionsTemplateEdit.aspx</PageName>
     <AdminRoleID>2</AdminRoleID>
   </ContentEditorPage>
   <DeveloperPage>

@@ -54,6 +54,7 @@
     <Compile Include="KnowledgeBaseCategoryService.cs" />
     <Compile Include="KnowledgeBaseService.cs" />
     <Compile Include="MemberFilesService.cs" />
+    <Compile Include="Models\ScreeningQuestionsTemplates.cs" />
     <Compile Include="ScreeningQuestionsMappingsService.cs" />
     <Compile Include="ScreeningQuestionsService.cs" />
     <Compile Include="ScreeningQuestionsTemplateOwnersService.cs" />

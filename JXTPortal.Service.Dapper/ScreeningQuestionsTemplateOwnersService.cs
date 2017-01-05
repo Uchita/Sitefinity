@@ -29,9 +29,9 @@ namespace JXTPortal.Service.Dapper
             screeningQuestionsTemplateOwnersRepository.Update(entity);
         }
 
-        public void Delete(int id)
+        public void Delete(int templateId, int advertiserId)
         {
-            screeningQuestionsTemplateOwnersRepository.Delete(id);
+            screeningQuestionsTemplateOwnersRepository.Delete(templateId, advertiserId);
         }
 
         public ScreeningQuestionsTemplateOwnersEntity Select(int id)

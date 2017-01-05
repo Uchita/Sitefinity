@@ -9,6 +9,11 @@ namespace JXTPortal.Service.Dapper
 {
     public interface IScreeningQuestionsService
     {
+        int Insert(ScreeningQuestionsEntity entity);
+        void Update(ScreeningQuestionsEntity entity);
+        void Delete(int id);
+        ScreeningQuestionsEntity Select(int id);
+        ScreeningQuestionsEntity SelectByScreeningQuestionId(int screeningQuestionId);
     }
 
     public class ScreeningQuestionsService : IScreeningQuestionsService

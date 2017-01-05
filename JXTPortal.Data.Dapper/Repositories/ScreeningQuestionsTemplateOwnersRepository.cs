@@ -12,6 +12,8 @@ namespace JXTPortal.Data.Dapper.Repositories
     public interface IScreeningQuestionsTemplateOwnersRepository : IBaseEntityOperation<ScreeningQuestionsTemplateOwnersEntity>
     {
         List<ScreeningQuestionsTemplateOwnersEntity> SelectByAdvertiserId(int advertiserId);
+        void Delete(int templateId, int advertiserId);
+
     }
 
     public class ScreeningQuestionsTemplateOwnersRepository : BaseEntityOperation<ScreeningQuestionsTemplateOwnersEntity>, IScreeningQuestionsTemplateOwnersRepository
@@ -34,6 +36,17 @@ namespace JXTPortal.Data.Dapper.Repositories
                 var query = string.Format("SELECT {0} FROM dbo.{1} WHERE {2}", columns, TableName, whereClause);
                 var entity = dbConnection.Query<ScreeningQuestionsTemplateOwnersEntity>(query, new { AdvertiserId = advertiserId }).ToList();
                 return entity as List<ScreeningQuestionsTemplateOwnersEntity>;
+            }
+        }
+
+        public void Delete(int templateId, int advertiserId)
+        {
+            using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
+            {
+                dbConnection.Open();
+                string whereClause = string.Format("ScreeningQuestionsTemplateId = {0} AND AdvertiserId = {1}", templateId, advertiserId);
+                var query = string.Format("DELETE FROM {0} dbo.{1} WHERE {1}", TableName, whereClause);
+                dbConnection.Execute(query);
             }
         }
     }

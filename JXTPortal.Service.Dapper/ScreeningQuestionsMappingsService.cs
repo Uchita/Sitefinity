@@ -9,6 +9,8 @@ namespace JXTPortal.Service.Dapper
 {
     public interface IScreeningQuestionsMappingsService
     {
+        int Insert(ScreeningQuestionsMappingsEntity entity);
+        void Delete(int templateId, int questionId);
     }
 
     public class ScreeningQuestionsMappingsService : IScreeningQuestionsMappingsService
@@ -29,9 +31,9 @@ namespace JXTPortal.Service.Dapper
             screeningQuestionsMappingsRepository.Update(entity);
         }
 
-        public void Delete(int id)
+        public void Delete(int templateId, int questionId)
         {
-            screeningQuestionsMappingsRepository.Delete(id);
+            screeningQuestionsMappingsRepository.Delete(templateId, questionId);
         }
 
         public ScreeningQuestionsMappingsEntity Select(int id)

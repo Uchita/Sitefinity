@@ -99,7 +99,8 @@ BEGIN
 	[EnablePeopleSearch] [bit] NOT NULL,
 	[GlobalDateFormat] [varchar](20) NOT NULL,
 	[TimeZone] [varchar](255) NOT NULL,
-	[EnableScreeningQuestions] [bit] NOT NULL DEFAULT 0,
+	[GlobalFolder] [varchar](255) NULL,
+	[EnableScreeningQuestions] [bit] NOT NULL,
  CONSTRAINT [PK__tmp_ms_xx_Global__408F9238] PRIMARY KEY CLUSTERED 
 (
 	[GlobalSettingID] ASC
@@ -602,7 +603,9 @@ CREATE TABLE ScreeningQuestionsTemplates
 	[ScreeningQuestionsTemplateId] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	[TemplateName] [nvarchar](512) NOT NULL,
 	[SiteId] [int] NOT NULL FOREIGN KEY REFERENCES Sites(SiteId), -- FK
-	[Visible] [bit] NOT NULL DEFAULT 1
+	[Visible] [bit] NOT NULL DEFAULT 1,
+	[LastModified] [datetime] NULL,
+    [LastModifiedBy] [int] NULL FOREIGN KEY REFERENCES AdminUsers(AdminUserId) -- FK
 )
 GO
 

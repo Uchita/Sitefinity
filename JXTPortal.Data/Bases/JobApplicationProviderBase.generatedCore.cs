@@ -544,8 +544,7 @@ namespace JXTPortal.Data.Bases
 		
 		#endregion
 		
-		#region JobApplication_GetByMemberId 
-		
+		#region JobApplication_GetByMemberId
 		
 		/// <summary>
 		///	This method wrap the 'JobApplication_GetByMemberId' stored procedure. 
@@ -947,6 +946,7 @@ namespace JXTPortal.Data.Bases
 		#endregion
 		
 		#region JobApplication_GetByJobId 
+		
 		
 		/// <summary>
 		///	This method wrap the 'JobApplication_GetByJobId' stored procedure. 
@@ -1406,7 +1406,6 @@ namespace JXTPortal.Data.Bases
 		
 		#region JobApplication_GetBySiteIdReferral 
 		
-		
 		/// <summary>
 		///	This method wrap the 'JobApplication_GetBySiteIdReferral' stored procedure. 
 		/// </summary>
@@ -1419,7 +1418,7 @@ namespace JXTPortal.Data.Bases
 		{
 			return GetBySiteIdReferral(null, start, pageLength , siteIdReferral);
 		}
-
+		
 		/// <summary>
 		///	This method wrap the 'JobApplication_GetBySiteIdReferral' stored procedure. 
 		/// </summary>
@@ -1493,7 +1492,6 @@ namespace JXTPortal.Data.Bases
 		#endregion
 		
 		#region JobApplication_GetByJobArchiveId 
-		
 		
 		/// <summary>
 		///	This method wrap the 'JobApplication_GetByJobArchiveId' stored procedure. 

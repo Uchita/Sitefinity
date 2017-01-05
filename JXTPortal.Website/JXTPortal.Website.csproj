@@ -470,6 +470,13 @@
     <Compile Include="Admin\ScreeningQuestionsTemplate.aspx.designer.cs">
       <DependentUpon>ScreeningQuestionsTemplate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\ScreeningQuestionsTemplateEdit.aspx.cs">
+      <DependentUpon>ScreeningQuestionsTemplateEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ScreeningQuestionsTemplateEdit.aspx.designer.cs">
+      <DependentUpon>ScreeningQuestionsTemplateEdit.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\SiteBusinessType.aspx.cs">
       <DependentUpon>SiteBusinessType.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -947,6 +954,7 @@
     <Content Include="Admin\DynamicPageRevisions.aspx" />
     <Content Include="Admin\reports\MemberActivity.aspx" />
     <Content Include="Admin\ScreeningQuestionsTemplate.aspx" />
+    <Content Include="Admin\ScreeningQuestionsTemplateEdit.aspx" />
     <Content Include="Admin\scripts\images\design\menu-yellow-contributer.gif" />
     <Content Include="Admin\Industry.aspx" />
     <Content Include="Admin\IndustryEdit.aspx" />

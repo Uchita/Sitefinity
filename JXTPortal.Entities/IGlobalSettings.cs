@@ -450,6 +450,11 @@ namespace JXTPortal.Entities
 		System.String  TimeZone  { get; set; }
 		
 		/// <summary>
+		/// GlobalFolder : 
+		/// </summary>
+		System.String  GlobalFolder  { get; set; }
+		
+		/// <summary>
 		/// EnableScreeningQuestions : 
 		/// </summary>
 		System.Boolean  EnableScreeningQuestions  { get; set; }

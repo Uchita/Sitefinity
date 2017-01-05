@@ -27,13 +27,19 @@ namespace JXTPortal.Website.App_Codes
             builder.Register(c => new KnowledgeBaseService(c.Resolve<IKnowledgeBaseRepository>())).As<IKnowledgeBaseService>();
             builder.Register(c => new KnowledgeBaseCategoryService(c.Resolve<IKnowledgeBaseCategoryRepository>())).As<IKnowledgeBaseCategoryService>();
 
+            builder.RegisterType<AdminUsersRepository>().WithParameter(new Autofac.NamedParameter("connectionStringName", DEFAULT_CONNECTIONSTRING_KEY)).AsImplementedInterfaces();
             builder.RegisterType<SiteLanguageRepository>().WithParameter(new Autofac.NamedParameter("connectionStringName", DEFAULT_CONNECTIONSTRING_KEY)).AsImplementedInterfaces();
             builder.RegisterType<ScreeningQuestionsRepository>().WithParameter(new Autofac.NamedParameter("connectionStringName", DEFAULT_CONNECTIONSTRING_KEY)).AsImplementedInterfaces();
             builder.RegisterType<ScreeningQuestionsTemplatesRepository>().WithParameter(new Autofac.NamedParameter("connectionStringName", DEFAULT_CONNECTIONSTRING_KEY)).AsImplementedInterfaces();
+            builder.RegisterType<ScreeningQuestionsMappingsRepository>().WithParameter(new Autofac.NamedParameter("connectionStringName", DEFAULT_CONNECTIONSTRING_KEY)).AsImplementedInterfaces();
+            builder.RegisterType<ScreeningQuestionsTemplateOwnersRepository>().WithParameter(new Autofac.NamedParameter("connectionStringName", DEFAULT_CONNECTIONSTRING_KEY)).AsImplementedInterfaces();
+
             
             builder.RegisterType<SiteLanguageService>().AsImplementedInterfaces();
             builder.RegisterType<ScreeningQuestionsService>().AsImplementedInterfaces();
             builder.RegisterType<ScreeningQuestionsTemplatesService>().AsImplementedInterfaces();
+            builder.RegisterType<ScreeningQuestionsMappingsService>().AsImplementedInterfaces();
+            builder.RegisterType<ScreeningQuestionsTemplateOwnersService>().AsImplementedInterfaces();
 
             return builder.Build();
         }

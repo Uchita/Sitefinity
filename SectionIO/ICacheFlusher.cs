@@ -20,6 +20,8 @@ namespace SectionIO
         /// <param name="site">The format of the uri <example>"https://www.example.com/http_imagesjxtnetau/jxt-solutions"</example></param>
         /// <param name="folderName">Passes global FTP folder name</param>
         void FlushAssetType(AssetClass asset, string site, string folderName);
+
+        void FlushSitelogo(string siteUrl, string siteID, string siteLogoName);
     }
 
     public enum AssetClass

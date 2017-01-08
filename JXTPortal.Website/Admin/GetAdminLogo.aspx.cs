@@ -85,8 +85,9 @@ namespace JXTPortal.Website.Admin
             ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
             ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
             ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+            
+            string filepath = string.Format("{0}{1}/{2}/{3}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["RootFolder"], ConfigurationManager.AppSettings["SitesFolder"], logoUrl);
 
-            string filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["RootFolder"], ConfigurationManager.AppSettings["SitesFolder"], siteId, logoUrl);
             _logger.DebugFormat("Attempting to fetch logo for siteId {0}, from {1}", siteId, filepath);
             Stream ms = null;
             ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);

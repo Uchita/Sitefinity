@@ -131,5 +131,10 @@ namespace SectionIO
            
             API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, _banExpression);
         }
+
+        public void FlushSitelogo(string siteUrl, string siteID, string siteLogoName)
+        {
+            // code goes here
+        }
     }
 }

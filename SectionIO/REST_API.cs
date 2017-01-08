@@ -132,9 +132,15 @@ namespace SectionIO
             API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, _banExpression);
         }
 
-        public void FlushSitelogo(string siteUrl, string siteID, string siteLogoName)
+        public void FlushSitelogo(string siteUrl, string siteLogoName)
         {
-            // code goes here
+            // _banExpressionBuild
+
+            string jxtMediaPath = @"/media/sites/";
+
+            string _banExpression = string.Format("{0}{1}{2}",siteUrl,jxtMediaPath,siteLogoName);
+
+            API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, _banExpression);
         }
     }
 }

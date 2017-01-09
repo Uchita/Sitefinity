@@ -8,6 +8,7 @@ using JXTPortal.Data.Dapper.Factories;
 using JXTPortal.Data.Dapper.Repositories;
 using JXTPortal.Service.Dapper;
 using JXTPortal.Data.SqlClient;
+using SectionIO;
 
 namespace JXTPortal.Website.App_Codes
 {
@@ -23,6 +24,8 @@ namespace JXTPortal.Website.App_Codes
             builder.Register(c => new SqlServerConnectionFactory(c.Resolve<IApplicationConfiguration>())).As<IConnectionFactory>();
             builder.Register(c => new KnowledgeBaseCategoryRepository(c.Resolve<IConnectionFactory>(), DEFAULT_CONNECTIONSTRING_KEY)).As<IKnowledgeBaseCategoryRepository>();
             builder.Register(c => new KnowledgeBaseRepository(c.Resolve<IConnectionFactory>(), DEFAULT_CONNECTIONSTRING_KEY)).As<IKnowledgeBaseRepository>();
+            builder.Register(c => new SectionIO_API(1295, 2227)).As<ICacheFlusher>();
+
 
             builder.Register(c => new KnowledgeBaseService(c.Resolve<IKnowledgeBaseRepository>())).As<IKnowledgeBaseService>();
             builder.Register(c => new KnowledgeBaseCategoryService(c.Resolve<IKnowledgeBaseCategoryRepository>())).As<IKnowledgeBaseCategoryService>();

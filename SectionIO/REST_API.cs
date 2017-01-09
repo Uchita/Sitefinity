@@ -136,11 +136,18 @@ namespace SectionIO
         {
             // _banExpressionBuild
 
-            string jxtMediaPath = @"/media/sites/";
+            string jxtMediaPath = @"media/sites";
 
-            string _banExpression = string.Format("{0}{1}{2}",siteUrl,jxtMediaPath,siteLogoName);
+            string _banExpression = string.Format("{0}/{1}/{2}",siteUrl,jxtMediaPath,siteLogoName);
 
             API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, _banExpression);
+        }
+
+        void FlushConsultantImage(string siteUrl, string consultantImageName)
+        {
+            string jxtConsultantImagePath = @"media/consultants";
+
+            string _banExpression = string.Format("{0}/{1}/{2}", siteUrl, jxtConsultantImagePath, consultantImageName);
         }
     }
 }

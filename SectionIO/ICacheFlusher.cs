@@ -22,6 +22,8 @@ namespace SectionIO
         void FlushAssetType(AssetClass asset, string site, string folderName);
 
         void FlushSitelogo(string siteUrl, string siteLogoName);
+        
+        void FlushConsultantImage(string siteUrl, string consultantImageName);
     }
 
     public enum AssetClass

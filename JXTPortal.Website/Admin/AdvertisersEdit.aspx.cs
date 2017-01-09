@@ -772,9 +772,9 @@ public partial class AdvertisersEdit : System.Web.UI.Page
 
             String siteUrl = string.Format("{0}://{1}", Request.Url.Scheme, Request.Url.Host);
             String path = "advertisers";
-            String advertisertImage = string.Format("Advertisers_{0}.jpg", _advertiserid);
+            String advertiserImage = string.Format("Advertisers_{0}.jpg", _advertiserid);
 
-            CacheFlusher.FlushImage(siteUrl, path, advertisertImage);
+            CacheFlusher.FlushImage(siteUrl, path, advertiserImage);
 
             Response.Redirect("Advertisers.aspx");
         }

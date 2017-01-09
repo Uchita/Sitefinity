@@ -24,6 +24,8 @@ namespace SectionIO
         void FlushSitelogo(string siteUrl, string siteLogoName);
         
         void FlushConsultantImage(string siteUrl, string consultantImageName);
+
+        void FlushAdvertiserLogo(string siteUrl, string advertiserImageName);
     }
 
     public enum AssetClass

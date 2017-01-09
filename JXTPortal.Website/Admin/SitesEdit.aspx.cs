@@ -181,15 +181,13 @@ public partial class SitesEdit : System.Web.UI.Page
             site.Dispose();
         }
 
-        if (String.IsNullOrEmpty(ltlMessage.Text))
-            Response.Redirect("sites.aspx");
-
-
         String siteUrl = string.Format("{0}://{1}", Request.Url.Scheme, Request.Url.Host);
         String siteLogoName = string.Format("Site_{0}.png", site.SiteId);
 
-        CacheFlusher.FlushSitelogo(siteUrl,siteLogoName);
-        
+        CacheFlusher.FlushSitelogo(siteUrl, siteLogoName);
+
+        if (String.IsNullOrEmpty(ltlMessage.Text))
+            Response.Redirect("sites.aspx");      
     }
 
     protected void btnReturn_Click(object sender, EventArgs e)

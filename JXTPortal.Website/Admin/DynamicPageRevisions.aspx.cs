@@ -23,7 +23,8 @@ namespace JXTPortal.Website.Admin
 {
     public partial class DynamicPageRevisions : System.Web.UI.Page
     {
-        ICacheFlusher _cacheFlusher;
+        public ICacheFlusher _cacheFlusher {get;set;}
+
         #region "Properties"
 
         protected string DateFormat
@@ -1649,9 +1650,8 @@ namespace JXTPortal.Website.Admin
 
         #endregion
 
-        public DynamicPageRevisions(ICacheFlusher cacheFlusher)
+        public DynamicPageRevisions()
         {
-            _cacheFlusher = cacheFlusher;
         }
 
         protected void CusVal_PageName_ServerValidate(object source, ServerValidateEventArgs args)

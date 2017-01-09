@@ -132,6 +132,12 @@ namespace SectionIO
             API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, _banExpression);
         }
 
+        /// <summary>
+        /// This Method builds the banexpression that needs to be passed into "API_Proxy_State_Post()" inorder to clear cached Images
+        /// </summary>
+        /// <param name="siteUrl">This parameter contains first bit of the URL (before /media)<example>"http(s)://wwww.example.com"</example></param>
+        /// <param name="imagepath">This parameter contains folderpath that comes after "/media"</param>
+        /// <param name="imageName">This parameter passes name of the image that needs to be cleared from SEctionIO cache</param>
         public void FlushImage(string siteUrl, string imagePath, string imageName) 
         {
             string jxtJobtemplateLogoImagePath = string.Format(@"media/{0}",imagePath);

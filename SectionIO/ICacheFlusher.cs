@@ -21,11 +21,8 @@ namespace SectionIO
         /// <param name="folderName">Passes global FTP folder name</param>
         void FlushAssetType(AssetClass asset, string site, string folderName);
 
-        void FlushSitelogo(string siteUrl, string siteLogoName);
         
-        void FlushConsultantImage(string siteUrl, string consultantImageName);
-
-        void FlushAdvertiserLogo(string siteUrl, string advertiserImageName);
+        void FlushImage(string siteUrl, string imagepath, string imageName);
     }
 
     public enum AssetClass

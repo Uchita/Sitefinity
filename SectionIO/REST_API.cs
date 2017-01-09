@@ -143,11 +143,22 @@ namespace SectionIO
             API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, _banExpression);
         }
 
-        void FlushConsultantImage(string siteUrl, string consultantImageName)
+        public void FlushConsultantImage(string siteUrl, string consultantImageName)
         {
             string jxtConsultantImagePath = @"media/consultants";
 
             string _banExpression = string.Format("{0}/{1}/{2}", siteUrl, jxtConsultantImagePath, consultantImageName);
+            
+            API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, _banExpression);
+        }
+
+        public void FlushAdvertiserLogo(string siteUrl, string advertiserImageName) 
+        {
+            string jxtJobtemplateLogoImagePath = @"media/jobtemplates";
+
+            string _banExpression = string.Format("{0}/{1}/{2}", siteUrl, jxtJobtemplateLogoImagePath, advertiserImageName);
+
+            API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, _banExpression);
         }
     }
 }

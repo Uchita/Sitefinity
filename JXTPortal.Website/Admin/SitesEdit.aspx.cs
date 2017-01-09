@@ -382,9 +382,8 @@ public partial class SitesEdit : System.Web.UI.Page
             if (string.IsNullOrWhiteSpace(ftpFolder))
             {
                 //Prompt and save
-                string script = "alert(\"Global FTP Folder Field is Empty!\"); location.href=\"/admin/globalsettingsedit.aspx\"";
+                string script = "alert(\"Global FTP Folder Field is Empty, please update before attempting to flush cache\"); location.href=\"/admin/globalsettingsedit.aspx\"";
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "test", script, true);
-                //Response.Redirect("/admin/globalsettingsedit.aspx");
             }
         }
 

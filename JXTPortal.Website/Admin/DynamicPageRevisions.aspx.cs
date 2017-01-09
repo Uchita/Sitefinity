@@ -23,7 +23,7 @@ namespace JXTPortal.Website.Admin
 {
     public partial class DynamicPageRevisions : System.Web.UI.Page
     {
-        public ICacheFlusher _cacheFlusher {get;set;}
+        public ICacheFlusher CacheFlusher { get; set; }
 
         #region "Properties"
 
@@ -2142,7 +2142,7 @@ namespace JXTPortal.Website.Admin
                         {
                             string urlToFlush = Request.Url.Scheme + "://" + Request.Url.Host + DynamicPagesService.GetDynamicPageUrl(DynamicPagesService.GetByDynamicPageId(dprf.DynamicPageID));
                             
-                            _cacheFlusher.FlushByUrl(urlToFlush);
+                            CacheFlusher.FlushByUrl(urlToFlush);
                         }
                     }
 

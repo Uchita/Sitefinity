@@ -9,7 +9,7 @@ using log4net;
 
 namespace SectionIO
 {
-    public class SectionIO_API
+    public class SectionIO_API : ICacheFlusher
     {
         private const string API_END_POINT = "https://aperture.section.io/api/v1/account/{0}/application/{1}/environment/{2}";
         
@@ -18,7 +18,7 @@ namespace SectionIO
         private Environment _environmentName;
         private ILog _logger;
 
-        public SectionIO_API(long accountID, long appID, Environment environment)
+        public SectionIO_API(long accountID, long appID, Environment environment = Environment.Production)
         {
             _accountID = accountID;
             _applicationID = appID;
@@ -33,7 +33,7 @@ namespace SectionIO
         /// </summary>
         /// <param name="proxy"></param>
         /// <param name="banExpression"></param>
-        public void API_Proxy_State_Post(Proxy proxy, string banExpression)
+        internal void API_Proxy_State_Post(Proxy proxy, string banExpression)
         {
             string request_end_point = string.Format(API_END_POINT, _accountID, _applicationID, _environmentName.ToString());
 
@@ -85,7 +85,7 @@ namespace SectionIO
 
         #region Enums
 
-        public enum Proxy
+        internal enum Proxy
         {
             Varnish = 1
         }
@@ -109,5 +109,42 @@ namespace SectionIO
         }
 
 
+        public void FlushByUrl(string pageUrl)
+        {
+           API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, "req.url == " + pageUrl);
+        }
+
+        /// <summary>
+        /// This method builds the banexpression that needs to be passed into "API_Proxy_State_Post()"
+        /// </summary>
+        /// <param name="asset">Asset type that was passed into the method from SitesEdit.aspx button click</param>
+        /// <param name="site">The format of the uri <example>"https://www.example.com/http_imagesjxtnetau/jxt-solutions"</example></param>
+        /// <param name="folderName">Passes global FTP folder name</param>
+        public void FlushAssetType(AssetClass asset, string site, string siteFtpFolderName)
+        {            
+            //build ban expression
+            string folderToFlush = string.Format("{0}{1}", siteFtpFolderName, asset == AssetClass.all ? string.Empty : "/" + asset.ToString());
+            string sectionIOFolder = "http_imagesjxtnetau";
+
+            // According to sectionIO documentation we dont need to use '/' at end of the URI
+            string _banExpression = string.Format(@"https://{0}/{1}/{2}", site, sectionIOFolder, folderToFlush); ;
+           
+            API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, _banExpression);
+        }
+
+        /// <summary>
+        /// This Method builds the banexpression that needs to be passed into "API_Proxy_State_Post()" inorder to clear cached Images
+        /// </summary>
+        /// <param name="siteUrl">This parameter contains first bit of the URL (before /media)<example>"http(s)://wwww.example.com"</example></param>
+        /// <param name="imagepath">This parameter contains folderpath that comes after "/media"</param>
+        /// <param name="imageName">This parameter passes name of the image that needs to be cleared from SEctionIO cache</param>
+        public void FlushImage(string siteUrl, string imagePath, string imageName) 
+        {
+            string jxtJobtemplateLogoImagePath = string.Format(@"media/{0}",imagePath);
+
+            string _banExpression = string.Format("{0}/{1}/{2}", siteUrl, jxtJobtemplateLogoImagePath, imageName);
+
+            API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, _banExpression);
+        }
     }
 }

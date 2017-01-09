@@ -544,6 +544,15 @@ namespace JXTPortal.Website.Admin {
         protected global::System.Web.UI.WebControls.TextBox dataFTPFolder;
         
         /// <summary>
+        /// dataGlobalFTPFolder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox dataGlobalFTPFolder;
+        
+        /// <summary>
         /// dataPrivacySettings control.
         /// </summary>
         /// <remarks>

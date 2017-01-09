@@ -62,6 +62,7 @@
     <Content Include="Scripts\Script0007-Alter_ViewJobSearch_GetBySearchFilter.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\Script0008-GlobalFolder.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -13,12 +13,15 @@ using System.Xml;
 using JXTPortal.Common;
 using JXTPortal.Web.UI;
 using JXTPortal.Entities;
+using SectionIO;
 #endregion
 
 namespace JXTPortal.Website.Admin
 {
     public partial class ConsultantsEdit : System.Web.UI.Page
     {
+        public ICacheFlusher CacheFlusher { get; set; }
+
         #region Declare Variables
 
         private int consultantId = 0;
@@ -460,7 +463,12 @@ namespace JXTPortal.Website.Admin
                 {
                     consultant.Dispose();
                 }
-                
+
+                String siteUrl = string.Format("{0}://{1}", Request.Url.Scheme, Request.Url.Host);
+                String path = "consultants";
+                String consultantImage = string.Format("Consultant_{0}.jpg", ConsultantId);
+
+                CacheFlusher.FlushImage(siteUrl,path,consultantImage);
             }
         }
 

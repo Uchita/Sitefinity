@@ -18,10 +18,13 @@ using System.Reflection;
 using JXTPortal.Entities;
 using System.Linq;
 using System.IO;
+using SectionIO;
 #endregion
 
 public partial class JobTemplatesEdit : System.Web.UI.Page
 {
+    public ICacheFlusher CacheFlusher {get; set;}
+
     #region "Properties"
 
     private JobTemplatesService _jobTemplatesService;
@@ -338,6 +341,12 @@ public partial class JobTemplatesEdit : System.Web.UI.Page
 
                 return;
             }
+
+            String siteUrl = string.Format("{0}://{1}", Request.Url.Scheme, Request.Url.Host);
+            String path = "jobtemplates";
+            String jobtemplateLogo = string.Format("JobTemplate_{0}.jpg", JobTemplateId);
+
+            CacheFlusher.FlushImage(siteUrl, path, jobtemplateLogo);
 
             if (((Button)sender).Text == "Save")
                 Response.Redirect("jobtemplates.aspx");

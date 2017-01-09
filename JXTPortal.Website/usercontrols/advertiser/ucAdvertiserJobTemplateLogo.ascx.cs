@@ -20,6 +20,7 @@ using JXTPortal.Common;
 
 using Microsoft.Win32;
 using System.Runtime.InteropServices;
+using SectionIO;
 
 #endregion
 
@@ -27,6 +28,8 @@ namespace JXTPortal.Website.Admin.UserControls
 {
     public partial class AdvertiserJobTemplateLogo : System.Web.UI.UserControl
     {
+        public ICacheFlusher CacheFlusher { get; set; }
+
         #region Declarations
 
         private int _advertiserid = 0;
@@ -591,6 +594,12 @@ namespace JXTPortal.Website.Admin.UserControls
                     }
 
                 }
+
+                String siteUrl = string.Format("{0}://{1}", Request.Url.Scheme, Request.Url.Host);
+                String path = "advertiserjobtemplatelogo";
+                String advertisertImage = string.Format("AdvertiserJobTemplateLogo_{0}.jpg", AdvertiserID);
+
+                CacheFlusher.FlushImage(siteUrl, path, advertisertImage);
 
                 if (IsAdmin)
                 {

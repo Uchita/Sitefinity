@@ -24,10 +24,13 @@ using Microsoft.Win32;
 using System.Runtime.InteropServices;
 using System.Xml;
 using JXTPortal.Client.Bullhorn;
+using SectionIO;
 #endregion
 
 public partial class AdvertisersEdit : System.Web.UI.Page
 {
+    public ICacheFlusher CacheFlusher { get; set; }
+
     #region Declarations
 
     private int _advertiserid = 0;
@@ -766,6 +769,12 @@ public partial class AdvertisersEdit : System.Web.UI.Page
                     }
                 }
             }
+
+            String siteUrl = string.Format("{0}://{1}", Request.Url.Scheme, Request.Url.Host);
+            String path = "advertisers";
+            String advertisertImage = string.Format("Advertisers_{0}.jpg", _advertiserid);
+
+            CacheFlusher.FlushImage(siteUrl, path, advertisertImage);
 
             Response.Redirect("Advertisers.aspx");
         }

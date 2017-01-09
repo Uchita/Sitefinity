@@ -343,9 +343,10 @@ public partial class JobTemplatesEdit : System.Web.UI.Page
             }
 
             String siteUrl = string.Format("{0}://{1}", Request.Url.Scheme, Request.Url.Host);
+            String path = "jobtemplates";
             String jobtemplateLogo = string.Format("JobTemplate_{0}.jpg", JobTemplateId);
 
-            CacheFlusher.FlushAdvertiserLogo(siteUrl, jobtemplateLogo);
+            CacheFlusher.FlushImage(siteUrl, path, jobtemplateLogo);
 
             if (((Button)sender).Text == "Save")
                 Response.Redirect("jobtemplates.aspx");

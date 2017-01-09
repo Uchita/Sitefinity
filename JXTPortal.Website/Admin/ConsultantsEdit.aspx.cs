@@ -465,9 +465,10 @@ namespace JXTPortal.Website.Admin
                 }
 
                 String siteUrl = string.Format("{0}://{1}", Request.Url.Scheme, Request.Url.Host);
+                String path = "consultants";
                 String consultantImage = string.Format("Consultant_{0}.jpg", ConsultantId);
 
-                CacheFlusher.FlushConsultantImage(siteUrl, consultantImage);
+                CacheFlusher.FlushImage(siteUrl,path,consultantImage);
             }
         }
 

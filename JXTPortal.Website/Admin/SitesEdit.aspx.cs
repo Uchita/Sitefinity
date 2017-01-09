@@ -182,9 +182,10 @@ public partial class SitesEdit : System.Web.UI.Page
         }
 
         String siteUrl = string.Format("{0}://{1}", Request.Url.Scheme, Request.Url.Host);
+        String path = "sites";
         String siteLogoName = string.Format("Site_{0}.png", site.SiteId);
 
-        CacheFlusher.FlushSitelogo(siteUrl, siteLogoName);
+        CacheFlusher.FlushImage(siteUrl, path, siteLogoName);
 
         if (String.IsNullOrEmpty(ltlMessage.Text))
             Response.Redirect("sites.aspx");      

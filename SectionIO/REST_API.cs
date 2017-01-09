@@ -132,31 +132,11 @@ namespace SectionIO
             API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, _banExpression);
         }
 
-        public void FlushSitelogo(string siteUrl, string siteLogoName)
+        public void FlushImage(string siteUrl, string imagePath, string imageName) 
         {
-            // _banExpressionBuild
+            string jxtJobtemplateLogoImagePath = string.Format(@"media/{0}",imagePath);
 
-            string jxtMediaPath = @"media/sites";
-
-            string _banExpression = string.Format("{0}/{1}/{2}",siteUrl,jxtMediaPath,siteLogoName);
-
-            API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, _banExpression);
-        }
-
-        public void FlushConsultantImage(string siteUrl, string consultantImageName)
-        {
-            string jxtConsultantImagePath = @"media/consultants";
-
-            string _banExpression = string.Format("{0}/{1}/{2}", siteUrl, jxtConsultantImagePath, consultantImageName);
-            
-            API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, _banExpression);
-        }
-
-        public void FlushAdvertiserLogo(string siteUrl, string advertiserImageName) 
-        {
-            string jxtJobtemplateLogoImagePath = @"media/jobtemplates";
-
-            string _banExpression = string.Format("{0}/{1}/{2}", siteUrl, jxtJobtemplateLogoImagePath, advertiserImageName);
+            string _banExpression = string.Format("{0}/{1}/{2}", siteUrl, jxtJobtemplateLogoImagePath, imageName);
 
             API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, _banExpression);
         }

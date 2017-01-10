@@ -10,15 +10,17 @@ using System.Web.Script.Serialization;
 using JXTPortal.Entities.Models;
 using System.Xml;
 using System.Globalization;
+using log4net;
 
 public class oAuthFacebook
 {
+    private ILog _logger;
     private string _clientId;
     private string _clientSecret;
     private string _redirectUri;
     private string _code;
     private string _jobapplyurl;
-    private string _permissions = "email,user_work_history,user_education_history,user_website"; //default
+    private string _permissions = "email"; //user_work_history,user_education_history, user_website
 
     private string authorize_url = SocialMedia.Resource1.fb_authroize_with_permissions;
     private string access_token_url = SocialMedia.Resource1.fb_access_token;
@@ -48,6 +50,10 @@ public class oAuthFacebook
     {
         get { return _code; }
         set { _code = value; }
+    }
+    public oAuthFacebook()
+    {
+        _logger = LogManager.GetLogger(typeof(oAuthFacebook));
     }
 
     public string Permissions

@@ -289,18 +289,28 @@ public class oAuthFacebook
 
     private string RetrieveUserInfo(string access_token)
     {
+        _logger.Info("Retrieving User Info\n");
+
         string url = string.Format(userinfo_url, access_token);
+        _logger.InfoFormat("Request URL: {0}", url);
 
         HttpWebRequest webrequest = WebRequest.Create(url) as HttpWebRequest;
+        _logger.DebugFormat("Http WebRequet: {0}", webrequest);
+
         HttpWebResponse webresponse = webrequest.GetResponse() as HttpWebResponse;
+        _logger.DebugFormat("Http Response: {0}", webresponse);
+
         string result = string.Empty;
 
         if (webresponse.StatusCode.ToString() == "OK")
         {
             Stream stream = webresponse.GetResponseStream();
             StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8);
+            _logger.DebugFormat("Webresponse Stream: (0}", reader);
+
             result = reader.ReadToEnd();
             result = result.Replace(@"u0040", "@");
+            _logger.DebugFormat("Webresponse Result: (0}", result);
 
             result = Regex.Unescape(result);
         }
@@ -310,23 +320,35 @@ public class oAuthFacebook
 
     public string RetreiveAccessTokenWithFBCode()
     {
+        _logger.Info("Retrieving facebook Access Token");
         if (!string.IsNullOrEmpty(this.Code) && !string.IsNullOrEmpty(this.ClientID) && !string.IsNullOrEmpty(this.RedirectURI) && !string.IsNullOrEmpty(this.ClientSecret))
         {
+            _logger.DebugFormat("FBcode: {0}, clientId: {1}, RedirectUri: {2}", Code, ClientID, RedirectURI);
+            
             WebResponse response;
+
             try
             {
                 string tokenGetURL = "https://graph.facebook.com/v2.3/oauth/access_token?client_id=" + this.ClientID + "&redirect_uri=" + this.RedirectURI + "&client_secret=" + this.ClientSecret + "&code=" + this.Code;
 
+                _logger.InfoFormat("oAuth Token URL {0}", tokenGetURL);
+
                 WebRequest request = WebRequest.Create(tokenGetURL);
                 response = request.GetResponse();
 
-                StreamReader sr = new StreamReader(response.GetResponseStream());
+                _logger.DebugFormat("Web Request Response: {0}", response);
 
+                StreamReader sr = new StreamReader(response.GetResponseStream());
+                               
                 string tokenJsonObj = sr.ReadToEnd();
+
+                _logger.DebugFormat("Response Stream: {0}", tokenJsonObj);
 
                 FacebookToken tokenObj = new JavaScriptSerializer().Deserialize<FacebookToken>(tokenJsonObj);
 
                 string token = tokenObj.access_token;
+
+                _logger.InfoFormat("Token Received from Response: {0}", token);
 
                 sr.Close();
                 response.Close();
@@ -335,6 +357,7 @@ public class oAuthFacebook
             }
             catch (WebException ex)
             {
+                _logger.Error(ex);
                 string msg = "";
 
                 if (ex.Status == WebExceptionStatus.ProtocolError)
@@ -342,6 +365,7 @@ public class oAuthFacebook
                     //throw ex;
                     response = ex.Response;
                     msg = new System.IO.StreamReader(response.GetResponseStream()).ReadToEnd().Trim();
+                    _logger.ErrorFormat("Exeption Response Stream: {0}", msg);
                     response.Close();
                 }
             }
@@ -351,16 +375,22 @@ public class oAuthFacebook
 
     public FacebookUserDetails RetreiveUserDetails(string token)
     {
+        _logger.Info("Retrieving Facebook User Details\n");
+
         string url = "https://graph.facebook.com/me?access_token=" + token;
+        _logger.InfoFormat("Request url: {0}", url);
 
         WebRequest request = WebRequest.Create(url);
         WebResponse response = request.GetResponse();
+        _logger.DebugFormat("Request Response: {0}", response);
 
         StreamReader sr = new StreamReader(response.GetResponseStream());
 
         string userJsonObj = sr.ReadToEnd();
+        _logger.DebugFormat("Request JSON Object: {0}", userJsonObj);
 
         FacebookUserDetails userObj = new JavaScriptSerializer().Deserialize<FacebookUserDetails>(userJsonObj);
+        _logger.InfoFormat("Retrieved USer Object: {0}", userObj);
 
         sr.Close();
         response.Close();

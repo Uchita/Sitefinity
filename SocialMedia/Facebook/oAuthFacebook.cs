@@ -75,24 +75,31 @@ public class oAuthFacebook
 
     public string AuthorizeWithoutURLEncode()
     {
+        _logger.InfoFormat("AuthorizeWithoutURLEncode() Started");
+
         if (string.IsNullOrEmpty(this.ClientID) || string.IsNullOrEmpty(this.RedirectURI) || string.IsNullOrEmpty(this.Permissions))
         {
             return "Error: Please provide ClientID, Redirect URI & Permissions required";
         }
 
         string url = string.Format(authorize_url, this.ClientID, this.RedirectURI, System.Web.HttpUtility.UrlEncode(this.Permissions));
+        _logger.InfoFormat("AutoriseWithout URL: {0}", url);
         return url;
     }
 
     public string HasFullPermission(string userid, string accesstoken)
     {
+        _logger.Info("Has Full Permission Started");
+
         string url = string.Format(checkpermission_url, userid, accesstoken);
+        _logger.InfoFormat("Permission URL: {0}", url);
 
         try
         {
             HttpWebRequest webrequest = WebRequest.Create(url) as HttpWebRequest;
             webrequest.Method = "GET";
             HttpWebResponse webresponse = webrequest.GetResponse() as HttpWebResponse;
+            _logger.InfoFormat("Webresponse Status Code: {0}", webresponse.StatusDescription);
 
             if (webresponse.StatusCode.ToString() == "OK")
             {
@@ -102,6 +109,7 @@ public class oAuthFacebook
 
                 JavaScriptSerializer jss = new JavaScriptSerializer();
                 FBDataPermission permissions = jss.Deserialize<FBDataPermission>(result);
+                _logger.DebugFormat("FB data Permission: {0}", permissions);
 
                 bool hasEducation = false, hasWork = false, hasWebsite = false, hasEmail = false, hasPublicProfile = false;
 
@@ -128,6 +136,7 @@ public class oAuthFacebook
                         hasPublicProfile = true;
                     }
 
+                    _logger.DebugFormat("Permission Type: {0} and Permission Status: {1}", permission.permission, permission.status);
                 }
 
                 if (hasEducation && hasWork && hasWebsite && hasEmail && hasPublicProfile)
@@ -147,6 +156,7 @@ public class oAuthFacebook
         }
         catch (Exception ex)
         {
+            _logger.ErrorFormat("HasFullPermission Exeption: {0}", ex);
             return "Facebook Error: " + ex.Message + "<br />";
         }
     }

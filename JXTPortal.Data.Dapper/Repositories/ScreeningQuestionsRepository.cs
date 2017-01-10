@@ -12,6 +12,8 @@ namespace JXTPortal.Data.Dapper.Repositories
     public interface IScreeningQuestionsRepository : IBaseEntityOperation<ScreeningQuestionsEntity>
     {
         ScreeningQuestionsEntity SelectByScreeningQuestionId(int screeningQuestionId);
+        List<ScreeningQuestionsEntity> SelectByScreeningQuestionsTemplateIdLanguageId(int templateId, int languageId);
+        List<ScreeningQuestionsEntity> SelectByScreeningQuestionsTemplateId(int templateId);
     }
 
     public class ScreeningQuestionsRepository : BaseEntityOperation<ScreeningQuestionsEntity>, IScreeningQuestionsRepository
@@ -20,7 +22,7 @@ namespace JXTPortal.Data.Dapper.Repositories
             : base(connectionFactory, connectionStringName)
         {
             TableName = "ScreeningQuestions";
-            ColumnNames = new List<string> { "ScreeningQuestionIndex", "QuestionTitle", "LanguageId", "KnockoutValue", "Options", "LastModified", "LastModifiedBy", "LastModifiedByAdvertiserUserId" };
+            ColumnNames = new List<string> { "ScreeningQuestionIndex", "QuestionTitle", "QuestionType", "Mandatory", "LanguageId", "KnockoutValue", "Options", "Visible", "LastModified", "LastModifiedBy", "LastModifiedByAdvertiserUserId" };
             IdColumnName = "ScreeningQuestionId";
         }
 
@@ -34,6 +36,38 @@ namespace JXTPortal.Data.Dapper.Repositories
                 var query = string.Format("SELECT {0} FROM dbo.{1} WHERE {2}", columns, TableName, whereClause);
                 var entity = dbConnection.Query<ScreeningQuestionsEntity>(query, new { ScreeningQuestionsId = screeningQuestionId });
                 return entity as ScreeningQuestionsEntity;
+            }
+        }
+
+        public List<ScreeningQuestionsEntity> SelectByScreeningQuestionsTemplateId(int templateId)
+        {
+            using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
+            {
+                dbConnection.Open();
+
+                string columns = "sq.ScreeningQuestionId as ScreeningQuestionId, " + string.Join(", ", ColumnNames);
+                string whereClause = string.Format("ScreeningQuestionsTemplateId = {0}", templateId);
+                var query = string.Format(@"SELECT {0} FROM ScreeningQuestionsMappings sqm WITH (NOLOCK)
+                                            INNER JOIN ScreeningQuestions sq WITH (NOLOCK)
+                                            ON sqm.ScreeningQuestionId = sq.ScreeningQuestionId WHERE {1} ORDER BY ScreeningQuestionIndex", columns, whereClause);
+                var entity = dbConnection.Query<ScreeningQuestionsEntity>(query, null).ToList();
+                return entity;
+            }
+        }
+
+        public List<ScreeningQuestionsEntity> SelectByScreeningQuestionsTemplateIdLanguageId(int templateId, int languageId)
+        {
+            using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
+            {
+                dbConnection.Open();
+
+                string columns = "sq.ScreeningQuestionId as ScreeningQuestionId, " + string.Join(", ", ColumnNames);
+                string whereClause = string.Format("ScreeningQuestionsTemplateId = {0} AND LanguageID = {1}", templateId, languageId);
+                var query = string.Format(@"SELECT {0} FROM ScreeningQuestionsMappings sqm WITH (NOLOCK)
+                                            INNER JOIN ScreeningQuestions sq WITH (NOLOCK)
+                                            ON sqm.ScreeningQuestionId = sq.ScreeningQuestionId WHERE {1} ORDER BY ScreeningQuestionIndex", columns, whereClause);
+                var entity = dbConnection.Query<ScreeningQuestionsEntity>(query, null).ToList();
+                return entity;
             }
         }
     }

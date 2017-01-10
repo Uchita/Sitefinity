@@ -1471,6 +1471,60 @@ namespace JXTPortal.Website.Admin.UserControls {
         protected global::System.Web.UI.WebControls.RangeValidator RangeVal_JobItemPrice;
         
         /// <summary>
+        /// phScreeningQuestionsTemplates control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phScreeningQuestionsTemplates;
+        
+        /// <summary>
+        /// lbScreeningQuestionsTemplate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbScreeningQuestionsTemplate;
+        
+        /// <summary>
+        /// UcLanguageLiteral3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral3;
+        
+        /// <summary>
+        /// upScreeningQuestions control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upScreeningQuestions;
+        
+        /// <summary>
+        /// ddlScreeningQuestionsTemplate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlScreeningQuestionsTemplate;
+        
+        /// <summary>
+        /// phScreeningQuestions control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phScreeningQuestions;
+        
+        /// <summary>
         /// ltJobAdvertisementOption control.
         /// </summary>
         /// <remarks>

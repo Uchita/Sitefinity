@@ -22,6 +22,10 @@ using System.Linq;
 using System.Xml;
 using JXTPortal.Entities.Models;
 using JXTPortal.Common;
+using JXTPortal.Common;
+
+using JXTPortal.Service.Dapper;
+using JXTPortal.Data.Dapper.Entities.ScreeningQuestions;
 #endregion
 
 namespace JXTPortal.Website.Admin.UserControls
@@ -485,6 +489,10 @@ namespace JXTPortal.Website.Admin.UserControls
             }
         }
 
+        public IScreeningQuestionsTemplatesService ScreeningQuestionsTemplatesService { get; set; }
+        public IJobScreeningQuestionsService JobScreeningQuestionsService { get; set; }
+        public IScreeningQuestionsService ScreeningQuestionsService { get; set; }
+
         #endregion
 
         #region "User Control Properties"
@@ -655,6 +663,7 @@ namespace JXTPortal.Website.Admin.UserControls
                 LoadRoles(0, ref ddlRole2);
                 LoadRoles(0, ref ddlRole3);
                 LoadJobStatus();
+                LoadScreeningQuesitonsTemplate();
 
                 LoadJob();
                 LoadUI();
@@ -1265,6 +1274,9 @@ namespace JXTPortal.Website.Admin.UserControls
                         //dataAdvertiserJobTemplateLogoID.Text = job.AdvertiserJobTemplateLogoId.ToString();
                         if (job.AdvertiserJobTemplateLogoId.HasValue)
                             ddlAdvertiserJobTemplateLogo.SelectedValue = Convert.ToString(job.AdvertiserJobTemplateLogoId);
+
+                        if (job.ScreeningQuestionsTemplateId.HasValue)
+                            ddlScreeningQuestionsTemplate.SelectedValue = Convert.ToString(job.ScreeningQuestionsTemplateId.Value);
                         // chkRequireLogonForExternalApplications.Checked = job.RequireLogonForExternalApplications;
                         chkShowLocationDetails.Checked = (job.ShowLocationDetails == null) ? false : (bool)job.ShowLocationDetails;
                         if (!string.IsNullOrEmpty(job.PublicTransport))
@@ -1414,6 +1426,33 @@ namespace JXTPortal.Website.Admin.UserControls
             // Remove the expired from the list
             ddlStatus.Items.Remove(ddlStatus.Items.FindByValue(((int)PortalEnums.Jobs.JobStatus.Expired).ToString()));
             ddlStatus.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelPleaseChoose"), ""));
+        }
+
+        private void LoadScreeningQuesitonsTemplate()
+        {
+            GlobalSettings globalSetting = GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId).FirstOrDefault();
+            ddlScreeningQuestionsTemplate.Items.Clear();
+
+            if (globalSetting.EnableScreeningQuestions)
+            {
+                phScreeningQuestionsTemplates.Visible = true;
+
+                List<ScreeningQuestionsTemplatesEntity> screeningQuestionsTemplates = ScreeningQuestionsTemplatesService.SelectByAdvertiserId(SessionData.AdvertiserUser.AdvertiserId);
+
+                ddlScreeningQuestionsTemplate.DataSource = screeningQuestionsTemplates;
+                ddlScreeningQuestionsTemplate.DataBind();
+            }
+            else
+            {
+                phScreeningQuestionsTemplates.Visible = false;
+            }
+
+            ddlScreeningQuestionsTemplate.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelPleaseChoose"), ""));
+        }
+
+        protected void ddlScreeningQuestionsTemplate_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
 
         private void LoadWorkType()
@@ -1802,6 +1841,12 @@ namespace JXTPortal.Website.Admin.UserControls
                         //dataAdvertiserJobTemplateLogoID.Text = job.AdvertiserJobTemplateLogoId.ToString();
                         if (job.AdvertiserJobTemplateLogoId.HasValue)
                             ddlAdvertiserJobTemplateLogo.SelectedValue = Convert.ToString(job.AdvertiserJobTemplateLogoId);
+
+                        if (job.ScreeningQuestionsTemplateId.HasValue)
+                        {
+                            ddlScreeningQuestionsTemplate.SelectedValue = Convert.ToString(job.ScreeningQuestionsTemplateId.Value);
+                            ddlScreeningQuestionsTemplate.Enabled = false;
+                        }
                         //chkRequireLogonForExternalApplications.Checked = job.RequireLogonForExternalApplications;
                         chkShowLocationDetails.Checked = (job.ShowLocationDetails == null) ? false : (bool)job.ShowLocationDetails;
                         if (!string.IsNullOrEmpty(job.PublicTransport))
@@ -2187,6 +2232,9 @@ namespace JXTPortal.Website.Admin.UserControls
                     //    (string.IsNullOrEmpty(dataAdvertiserJobTemplateLogoID.Text)) ? (int?)null : Convert.ToInt32(dataAdvertiserJobTemplateLogoID.Text);
 
                     job.AdvertiserJobTemplateLogoId = Convert.ToInt32(ddlAdvertiserJobTemplateLogo.SelectedValue);
+                    job.ScreeningQuestionsTemplateId = (!string.IsNullOrEmpty(ddlScreeningQuestionsTemplate.SelectedValue)) ? Convert.ToInt32(ddlScreeningQuestionsTemplate.SelectedValue) : (int?)null;
+
+
                     if (docInput.HasFile)
                     {
                         Entities.AdvertiserJobTemplateLogo objAdvJobTemplateLogo = new JXTPortal.Entities.AdvertiserJobTemplateLogo();
@@ -2335,6 +2383,19 @@ namespace JXTPortal.Website.Admin.UserControls
 
                     if (JobsService.Insert(job))
                     {
+                        // Insert Screeing Questions into job
+                        if (job.ScreeningQuestionsTemplateId.HasValue)
+                        {
+                            List<ScreeningQuestionsEntity> screeningQuestions = ScreeningQuestionsService.SelectByScreeningQuestionsTemplateId(job.ScreeningQuestionsTemplateId.Value);
+                            foreach (ScreeningQuestionsEntity screeningQuestion in screeningQuestions)
+                            {
+                                if (screeningQuestion.Visible)
+                                {
+                                    JobScreeningQuestionsService.Insert(new JobScreeningQuestionsEntity { JobId = job.JobId, ScreeningQuestionId = screeningQuestion.ScreeningQuestionId });
+                                }
+                            }
+                        }
+
                         // Insert MultiLingual
 
                         if (rptLanguagesPanel.Items.Count > 1)

@@ -614,6 +614,20 @@ namespace JXTPortal.Entities
             {
                 Job = 1
             }
+
+            public enum ScreeningQuestionsType
+            {
+                [Description("Text Box")]
+                TextBox = 1,
+                [Description("Text Area")]
+                TextArea = 2,
+                [Description("Dropdown")]
+                Dropdown = 3,
+                [Description("MultiSelect")]
+                MultiSelect = 4,
+                [Description("Radio Buttons")]
+                RadioButtons = 5
+            }
         }
 
         public class JobApplications

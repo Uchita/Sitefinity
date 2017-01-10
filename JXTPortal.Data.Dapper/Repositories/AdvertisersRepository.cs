@@ -11,18 +11,17 @@ namespace JXTPortal.Data.Dapper.Repositories
 {
     public interface IAdvertisersRepository : IBaseEntityOperation<AdvertisersEntity>
     {
+        List<AdvertisersEntity> SelectAdvertiserIDs(List<int> advertiserIds);
     }
 
-    public class AdvertisersRepository : IAdvertisersRepository
+    public class AdvertisersRepository : BaseEntityOperation<AdvertisersEntity>, IAdvertisersRepository
     {
-        private readonly IConnectionFactory _connectionFactory;
-
-        private readonly string _connectionStringName;
-
         public AdvertisersRepository(IConnectionFactory connectionFactory, string connectionStringName)
+            : base(connectionFactory, connectionStringName)
         {
-            this._connectionFactory = connectionFactory;
-            _connectionStringName = connectionStringName;
+            TableName = "Advertisers";
+            ColumnNames = new List<string> { "SiteID", "AdvertiserAccountTypeID", "AdvertiserBusinessTypeID", "AdvertiserAccountStatusID", "CompanyName", "BusinessNumber", "StreetAddress1", "StreetAddress2", "LastModified", "LastModifiedBy", "PostalAddress1", "PostalAddress2", "WebAddress", "NoOfEmployees", "FirstApprovedDate", "Profile", "CharityNumber", "SearchField", "FreeTrialStartDate", "FreeTrialEndDate", "AccountsPayableEmail", "RequireLogonForExternalApplication", "AdvertiserLogo", "LinkedInLogo", "LinkedInCompanyId", "LinkedInEmail", "RegisterDate", "ExternalAdvertiserID", "VideoLink", "Industry", "NominatedCompanyRole", "NominatedCompanyFirstName", "NominatedCompanyLastName", "NominatedCompanyEmailAddress", "NominatedCompanyPhone", "PreferredContactMethod", "AdvertiserLogoUrl" };
+            IdColumnName = "AdvertiserID";
         }
 
         #region IBaseEntityOperation<AdvertisersRepository> Members
@@ -61,14 +60,16 @@ namespace JXTPortal.Data.Dapper.Repositories
             }
         }
 
-        public AdvertisersEntity Select(int id)
+        public List<AdvertisersEntity> SelectAdvertiserIDs(List<int> advertiserIds)
         {
             using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
             {
                 dbConnection.Open();
-                var query = "SELECT AdvertiserID, SiteID, AdvertiserAccountTypeID, AdvertiserBusinessTypeID, AdvertiserAccountStatusID, CompanyName, BusinessNumber, StreetAddress1, StreetAddress2, LastModified, LastModifiedBy, PostalAddress1, PostalAddress2, WebAddress, NoOfEmployees, FirstApprovedDate, Profile, CharityNumber, SearchField, FreeTrialStartDate, FreeTrialEndDate, AccountsPayableEmail, RequireLogonForExternalApplication, AdvertiserLogo, LinkedInLogo, LinkedInCompanyId, LinkedInEmail, RegisterDate, ExternalAdvertiserID, VideoLink, Industry, NominatedCompanyRole, NominatedCompanyFirstName, NominatedCompanyLastName, NominatedCompanyEmailAddress, NominatedCompanyPhone, PreferredContactMethod, AdvertiserLogoUrl FROM dbo.Advertisers NOLOCK WHERE SiteID = @SiteID";
-                var entity = dbConnection.Query<AdvertisersEntity>(query, new { AdvertiserID = id }).SingleOrDefault();
-                return entity;
+                string columns = IdColumnName + ", " + string.Join(", ", ColumnNames);
+                string whereClause = string.Format("AdvertiserID IN ({0})", string.Join(", ", advertiserIds));
+                var query = string.Format("SELECT {0} FROM dbo.{1} WHERE {2}", columns, TableName, whereClause);
+                var entity = dbConnection.Query<AdvertisersEntity>(query, null).ToList();
+                return entity as List<AdvertisersEntity>;
             }
         }
 

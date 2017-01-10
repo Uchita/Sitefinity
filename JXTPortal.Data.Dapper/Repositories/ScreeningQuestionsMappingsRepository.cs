@@ -21,7 +21,7 @@ namespace JXTPortal.Data.Dapper.Repositories
             : base(connectionFactory, connectionStringName)
         {
             TableName = "ScreeningQuestionsMappings";
-            ColumnNames = new List<string> { "QuestionType", "Mandatory", "ScreeningQuestionsTemplateId", "Visible", "ScreeningQuestionId" };
+            ColumnNames = new List<string> { "ScreeningQuestionsTemplateId", "ScreeningQuestionId" };
             IdColumnName = "ScreeningQuestionsMappingId";
         }
 

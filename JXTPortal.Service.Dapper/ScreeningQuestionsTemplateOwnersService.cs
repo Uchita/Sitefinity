@@ -9,6 +9,10 @@ namespace JXTPortal.Service.Dapper
 {
     public interface IScreeningQuestionsTemplateOwnersService
     {
+        int Insert(ScreeningQuestionsTemplateOwnersEntity entity);
+        void Delete(int templateId, int advertiserId);
+        List<ScreeningQuestionsTemplateOwnersEntity> SelectByAdvertiserId(int advertiserId);
+        List<ScreeningQuestionsTemplateOwnersEntity> SelectByTemplateId(int templateId);
     }
 
     public class ScreeningQuestionsTemplateOwnersService : IScreeningQuestionsTemplateOwnersService
@@ -47,6 +51,11 @@ namespace JXTPortal.Service.Dapper
         public List<ScreeningQuestionsTemplateOwnersEntity> SelectByAdvertiserId(int advertiserId)
         {
             return screeningQuestionsTemplateOwnersRepository.SelectByAdvertiserId(advertiserId);
+        }
+
+        public List<ScreeningQuestionsTemplateOwnersEntity> SelectByTemplateId(int templateId)
+        {
+            return screeningQuestionsTemplateOwnersRepository.SelectByTemplateId(templateId);
         }
     }
 }

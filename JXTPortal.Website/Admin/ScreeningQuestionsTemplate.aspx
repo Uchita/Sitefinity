@@ -44,7 +44,7 @@
             <ItemTemplate>
                 <tr>
                     <td>
-                        <a href='/Admin/ScreeningQuestionsTemplateEdit.aspx?templated=<%# Eval("ScreeningQuestionsTemplateId") %>'>
+                        <a href='/Admin/ScreeningQuestionsTemplateEdit.aspx?screeningquestionstemplateid=<%# Eval("ScreeningQuestionsTemplateId") %>'>
                             <asp:Literal ID="ltViewTemplate" runat="server" Text="Select" /></a>
                     </td>
                     <td scope="col">

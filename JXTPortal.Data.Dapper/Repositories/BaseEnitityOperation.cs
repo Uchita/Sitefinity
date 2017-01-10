@@ -75,10 +75,10 @@ namespace JXTPortal.Data.Dapper.Repositories
             using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
             {
                 dbConnection.Open();
-                string columns = string.Join(", ", ColumnNames);
+                string columns = IdColumnName + ", " + string.Join(", ", ColumnNames);
                 string whereClause = string.Format("{0} = @Id", IdColumnName);
                 var query = string.Format("SELECT {0} FROM dbo.{1} WHERE {2}", columns, TableName, whereClause);
-                var entity = dbConnection.Query<KnowledgeBaseEntity>(query, new { Id = id }).SingleOrDefault();
+                var entity = dbConnection.Query<T>(query, new { Id = id }).SingleOrDefault();
                 return entity as T;
             }
         }

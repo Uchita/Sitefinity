@@ -10,6 +10,7 @@ namespace JXTPortal.Service.Dapper
     public interface IJobScreeningQuestionsService
     {
         List<JobScreeningQuestionsEntity> SelectByJobID(int jobId);
+        int Insert(JobScreeningQuestionsEntity entity);
     }
 
     public class JobScreeningQuestionsService : IJobScreeningQuestionsService

@@ -9,6 +9,8 @@ namespace JXTPortal.Service.Dapper
 {
     public interface IAdvertisersService
     {
+        List<AdvertisersEntity> SelectByAdvertiserIDs(List<int> advertiserIds);
+        AdvertisersEntity Select(int id);
     }
 
     public class AdvertisersService : IAdvertisersService
@@ -42,6 +44,11 @@ namespace JXTPortal.Service.Dapper
         public List<AdvertisersEntity> SelectAll()
         {
             return advertisersRepository.SelectAll();
+        }
+
+        public List<AdvertisersEntity> SelectByAdvertiserIDs(List<int>advertiserIds)
+        {
+            return advertisersRepository.SelectAdvertiserIDs(advertiserIds);
         }
     }
 }

@@ -7,7 +7,6 @@ using JXTPortal.Data.Dapper.Configuration;
 using JXTPortal.Data.Dapper.Factories;
 using JXTPortal.Data.Dapper.Repositories;
 using JXTPortal.Service.Dapper;
-using JXTPortal.Data.SqlClient;
 
 namespace JXTPortal.Website.App_Codes
 {
@@ -27,6 +26,7 @@ namespace JXTPortal.Website.App_Codes
             builder.Register(c => new KnowledgeBaseService(c.Resolve<IKnowledgeBaseRepository>())).As<IKnowledgeBaseService>();
             builder.Register(c => new KnowledgeBaseCategoryService(c.Resolve<IKnowledgeBaseCategoryRepository>())).As<IKnowledgeBaseCategoryService>();
 
+            builder.RegisterType<AdvertisersRepository>().WithParameter(new Autofac.NamedParameter("connectionStringName", DEFAULT_CONNECTIONSTRING_KEY)).AsImplementedInterfaces();
             builder.RegisterType<AdminUsersRepository>().WithParameter(new Autofac.NamedParameter("connectionStringName", DEFAULT_CONNECTIONSTRING_KEY)).AsImplementedInterfaces();
             builder.RegisterType<SiteLanguageRepository>().WithParameter(new Autofac.NamedParameter("connectionStringName", DEFAULT_CONNECTIONSTRING_KEY)).AsImplementedInterfaces();
             builder.RegisterType<ScreeningQuestionsRepository>().WithParameter(new Autofac.NamedParameter("connectionStringName", DEFAULT_CONNECTIONSTRING_KEY)).AsImplementedInterfaces();
@@ -34,7 +34,8 @@ namespace JXTPortal.Website.App_Codes
             builder.RegisterType<ScreeningQuestionsMappingsRepository>().WithParameter(new Autofac.NamedParameter("connectionStringName", DEFAULT_CONNECTIONSTRING_KEY)).AsImplementedInterfaces();
             builder.RegisterType<ScreeningQuestionsTemplateOwnersRepository>().WithParameter(new Autofac.NamedParameter("connectionStringName", DEFAULT_CONNECTIONSTRING_KEY)).AsImplementedInterfaces();
 
-            
+
+            builder.RegisterType<JXTPortal.Service.Dapper.AdvertisersService>().AsImplementedInterfaces();
             builder.RegisterType<SiteLanguageService>().AsImplementedInterfaces();
             builder.RegisterType<ScreeningQuestionsService>().AsImplementedInterfaces();
             builder.RegisterType<ScreeningQuestionsTemplatesService>().AsImplementedInterfaces();

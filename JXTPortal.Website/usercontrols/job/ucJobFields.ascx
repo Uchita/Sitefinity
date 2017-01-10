@@ -21,7 +21,7 @@
                         </div>
                     </li>
                 </ul>
-                <hr /> 
+                <hr />
                 <span class="form-message">
                     <asp:Literal ID="ltlMessage" runat="server" />
                     <asp:CustomValidator ID="CusValJobProfessionRole" runat="server" Display="Dynamic"
@@ -95,8 +95,8 @@
                                 </ajaxToolkit:CalendarExtender>
                                 <asp:RequiredFieldValidator ID="rqStartDate" runat="server" ControlToValidate="tbStartDate"
                                     SetFocusOnError="true" Display="Dynamic" />
-
-                                <asp:CustomValidator ID="cvStartDate" runat="server" ControlToValidate="tbStartDate" OnServerValidate="cvStartDate_ServerValidate" />
+                                <asp:CustomValidator ID="cvStartDate" runat="server" ControlToValidate="tbStartDate"
+                                    OnServerValidate="cvStartDate_ServerValidate" />
                             </div>
                         </li>
                     </asp:PlaceHolder>
@@ -382,13 +382,13 @@
                         <asp:Label ID="lbWorkType" runat="server" AssociatedControlID="ddlWorkType">
                             <JXTControl:ucLanguageLiteral ID="ltWorktype" runat="server" SetLanguageCode="LabelWorktype" />
                             <!-- Worktype-->
-                            <span class="form-required">*</span></asp:label>
-                            <div>
-                                <asp:DropDownList runat="server" ID="ddlWorkType" DataTextField="SiteWorkTypeName"
-                                    DataValueField="WorkTypeID" CssClass="form-multiple-column" />
-                                <asp:RequiredFieldValidator ID="ReqVal_WorkType" runat="server" InitialValue="0"
-                                    ControlToValidate="ddlWorkType" SetFocusOnError="true" Display="Dynamic" />
-                            </div>
+                            <span class="form-required">*</span></asp:Label>
+                        <div>
+                            <asp:DropDownList runat="server" ID="ddlWorkType" DataTextField="SiteWorkTypeName"
+                                DataValueField="WorkTypeID" CssClass="form-multiple-column" />
+                            <asp:RequiredFieldValidator ID="ReqVal_WorkType" runat="server" InitialValue="0"
+                                ControlToValidate="ddlWorkType" SetFocusOnError="true" Display="Dynamic" />
+                        </div>
                     </li>
                     <h3>
                         <JXTControl:ucLanguageLiteral ID="ltJobApplicationDetails" runat="server" SetLanguageCode="LabelJobApplicationDetails" />
@@ -399,18 +399,18 @@
                             <JXTControl:ucLanguageLiteral ID="ltApplicationEmail" runat="server" SetLanguageCode="LabelApplicationEmail" />
                             <!-- Application email -->
                             <span class="form-required">*</span></asp:Label>
-                            <div>
-                                <asp:TextBox ID="txtApplicationEmailAddress" runat="server" />
-                                <asp:RequiredFieldValidator ID="ReqVal_ApplicationEmailAddress" runat="server" ControlToValidate="txtApplicationEmailAddress"
-                                    SetFocusOnError="true" Display="Dynamic" />
-                                <asp:RegularExpressionValidator ID="revEmailAddress" runat="server" ControlToValidate="txtApplicationEmailAddress"
-                                    SetFocusOnError="true" Display="Dynamic" ErrorMessage="Invalid email address">  
-                                </asp:RegularExpressionValidator>
-                            </div>
-                            <p class="help-block">
-                                <JXTControl:ucLanguageLiteral ID="ltAllApplicationsSendEmail" runat="server" SetLanguageCode="LabelAllApplicationsSendEmail" />
-                                <!-- All applications for job will be sent to this email address -->
-                            </p>
+                        <div>
+                            <asp:TextBox ID="txtApplicationEmailAddress" runat="server" />
+                            <asp:RequiredFieldValidator ID="ReqVal_ApplicationEmailAddress" runat="server" ControlToValidate="txtApplicationEmailAddress"
+                                SetFocusOnError="true" Display="Dynamic" />
+                            <asp:RegularExpressionValidator ID="revEmailAddress" runat="server" ControlToValidate="txtApplicationEmailAddress"
+                                SetFocusOnError="true" Display="Dynamic" ErrorMessage="Invalid email address">  
+                            </asp:RegularExpressionValidator>
+                        </div>
+                        <p class="help-block">
+                            <JXTControl:ucLanguageLiteral ID="ltAllApplicationsSendEmail" runat="server" SetLanguageCode="LabelAllApplicationsSendEmail" />
+                            <!-- All applications for job will be sent to this email address -->
+                        </p>
                     </li>
                     <asp:UpdatePanel ID="updatePanelapplicationmethod" runat="server">
                         <ContentTemplate>
@@ -503,18 +503,18 @@
                         <asp:Label ID="lbUploadFile" runat="server" AssociatedControlID="docInput">
                             <JXTControl:ucLanguageLiteral ID="ltUploadFile" runat="server" SetLanguageCode="LabelUploadFile" />
                             <!-- Upload file -->
-                            </asp:Label>
-                            <div>
-                                <asp:FileUpload ID="docInput" runat="server" />&nbsp;
-                                <asp:RequiredFieldValidator ID="rfvAdvJobTemplateLogoImage" runat="server" ControlToValidate="docInput"
-                                    SetFocusOnError="true" Display="Dynamic" Enabled="false"></asp:RequiredFieldValidator>
-                                <asp:CustomValidator ID="cvalFile" runat="server" OnServerValidate="cvalFile_ServerValidate"
-                                    SetFocusOnError="true" Display="Dynamic"></asp:CustomValidator>
-                                <asp:LinkButton ID="LinkButton1" runat="server" Text="Cancel" CausesValidation="false"
-                                    OnClientClick="CancelNewLogoClicked(); return false;" />
-                            </div>
-                            <br />
-                            <br />
+                        </asp:Label>
+                        <div>
+                            <asp:FileUpload ID="docInput" runat="server" />&nbsp;
+                            <asp:RequiredFieldValidator ID="rfvAdvJobTemplateLogoImage" runat="server" ControlToValidate="docInput"
+                                SetFocusOnError="true" Display="Dynamic" Enabled="false"></asp:RequiredFieldValidator>
+                            <asp:CustomValidator ID="cvalFile" runat="server" OnServerValidate="cvalFile_ServerValidate"
+                                SetFocusOnError="true" Display="Dynamic"></asp:CustomValidator>
+                            <asp:LinkButton ID="LinkButton1" runat="server" Text="Cancel" CausesValidation="false"
+                                OnClientClick="CancelNewLogoClicked(); return false;" />
+                        </div>
+                        <br />
+                        <br />
                     </li>
                     <li class="form-line" id="jobs-jobtemplateid-field">
                         <asp:Label ID="lbJobTemplate" runat="server" AssociatedControlID="ddlJobTemplateID">
@@ -550,6 +550,99 @@
                                     Type="Double" ControlToValidate="txtJobItemPrice" SetFocusOnError="true" Display="Dynamic" />
                             </div>
                         </li>
+                    </asp:PlaceHolder>
+                    <asp:PlaceHolder ID="phScreeningQuestionsTemplates" runat="server" Visible="false">
+                        <asp:Label ID="lbScreeningQuestionsTemplate" runat="server" AssociatedControlID="ddlJobTemplateID">
+                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral3" runat="server" SetLanguageCode="LabelSelectScreeningQuestionsTemplate" />
+                        </asp:Label>
+                        <asp:UpdatePanel ID="upScreeningQuestions" runat="server">
+                            <ContentTemplate>
+                                <asp:DropDownList runat="server" ID="ddlScreeningQuestionsTemplate" DataTextField="TemplateName"
+                                    DataValueField="ScreeningQuestionsTemplateId" CssClass="form-multiple-column"
+                                    OnSelectedIndexChanged="ddlScreeningQuestionsTemplate_SelectedIndexChanged" />
+                                <asp:PlaceHolder ID="phScreeningQuestions" runat="server" Visible="true">
+                                    <div>
+                                        <div class="custom-select">
+                                            <span>
+                                                <select name="cmbSQstns" id="cmbSQstns" class="form-multiple-column" onchange="javascript:showSQuestions(this.options[this.selectedIndex].value)">
+                                                    <option value="0">Please Choose...</option>
+                                                    <option value="1">Omegamedical - </option>
+                                                    <option value="2">Omegavave</option>
+                                                </select></span></div>
+                                        <span id="lblQstnTempalate">
+                                            <ul class="SQstTemp" id="QstnTemp1" style="display: block;">
+                                                <li><strong>When are you available to start?</strong>
+                                                    <input disabled="" type="radio" name="availability" value="male">
+                                                    &lt; 2 weeks
+                                                    <input disabled="" type="radio" name="availability" value="female">
+                                                    &lt; 4 weeks
+                                                    <input disabled="" type="radio" name="availability" value="other">
+                                                    &gt;1 month </li>
+                                                <li><strong>What is your expected annual salary?</strong>
+                                                    <input disabled="" type="radio" name="salary" value="male">
+                                                    65,000 - 75,000
+                                                    <input disabled="" type="radio" name="salary" value="female">
+                                                    75,000 - 85,000
+                                                    <input disabled="" type="radio" name="salary" value="other">
+                                                    85,000 - 1,00,000 </li>
+                                                <li><strong>Are you willing to relocate to UK?</strong>
+                                                    <input disabled="" type="radio" name="relocate" value="male">
+                                                    Yes
+                                                    <input disabled="" type="radio" name="relocate" value="female">
+                                                    No </li>
+                                                <li><strong>Sample Dropdown?</strong>
+                                                    <select name="drpSample" id="Select1" class="form-multiple-column">
+                                                        <option disabled="" value="0">Please Choose...</option>
+                                                        <option disabled="" value="1">First Option</option>
+                                                        <option disabled="" value="2">Second Option</option>
+                                                    </select>
+                                                </li>
+                                                <li><strong>Sample Text fields?</strong>
+                                                    <input readonly="" name="txtText" type="text" id="Text1" autocomplete="off">
+                                                </li>
+                                                <li><strong>Sample TextArea?</strong>
+                                                    <textarea readonly="" id="Textarea1"></textarea>
+                                                </li>
+                                            </ul>
+                                            <ul class="SQstTemp" id="QstnTemp2" style="display: none;">
+                                                <li><strong>Sample Dropdown?</strong>
+                                                    <select name="drpSample" id="drpSample" class="form-multiple-column">
+                                                        <option disabled="" value="0">Please Choose...</option>
+                                                        <option disabled="" value="1">First Option</option>
+                                                        <option disabled="" value="2">Second Option</option>
+                                                    </select>
+                                                </li>
+                                                <li><strong>Sample Text fields?</strong>
+                                                    <input name="txtText" readonly="" type="text" id="txtText" autocomplete="off">
+                                                </li>
+                                                <li><strong>When are you available to start?</strong>
+                                                    <input type="radio" disabled="" name="availability" value="male">
+                                                    &lt; 2 weeks
+                                                    <input type="radio" disabled="" name="availability" value="female">
+                                                    &lt; 4 weeks
+                                                    <input type="radio" disabled="" name="availability" value="other">
+                                                    &gt;1 month </li>
+                                                <li><strong>What is your expected annual salary?</strong>
+                                                    <input type="radio" disabled="" name="salary" value="male">
+                                                    65,000 - 75,000
+                                                    <input type="radio" disabled="" name="salary" value="female">
+                                                    75,000 - 85,000
+                                                    <input type="radio" disabled="" name="salary" value="other">
+                                                    85,000 - 1,00,000 </li>
+                                                <li><strong>Are you willing to relocate to UK?</strong>
+                                                    <input type="radio" disabled="" name="relocate" value="male">
+                                                    Yes
+                                                    <input type="radio" disabled="" name="relocate" value="female">
+                                                    No </li>
+                                                <li><strong>Sample TextArea?</strong>
+                                                    <textarea readonly="" id="txtTextArea"></textarea>
+                                                </li>
+                                            </ul>
+                                        </span>
+                                    </div>
+                                </asp:PlaceHolder>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
                     </asp:PlaceHolder>
                     <h3>
                         <JXTControl:ucLanguageLiteral ID="ltJobAdvertisementOption" runat="server" SetLanguageCode="LabelJobAdvertisementOption" />
@@ -640,10 +733,10 @@
                     </asp:PlaceHolder>
                     <asp:PlaceHolder ID="phlastmodifiedByAdvuserID" runat="server">
                         <li class="form-line" id="jobs-lastmodifiedbyadvertiseruserid-field">
-                            <asp:label id="lbLastModifiedByAdvertiserUser" runat="server" associatedcontrolid="lblLastModifiedByAdvertiserUserId">
+                            <asp:Label ID="lbLastModifiedByAdvertiserUser" runat="server" AssociatedControlID="lblLastModifiedByAdvertiserUserId">
                                 <JXTControl:ucLanguageLiteral ID="ltJobFieldLastModifiedByAdvertiserUser" runat="server"
                                     SetLanguageCode="LabelLastModifiedByAdvertiserUser" />
-                                :</asp:label>
+                                :</asp:Label>
                             <div>
                                 <asp:Label ID="lblLastModifiedByAdvertiserUserId" runat="server" />
                             </div>
@@ -670,20 +763,19 @@
     </div>
 </div>
 <%
-        if (string.IsNullOrEmpty(MapKey))
-        {
+    if (string.IsNullOrEmpty(MapKey))
+    {
 %>
 <script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=false&v=3.exp&signed_in=true&libraries=places"></script>
 <%
-        }
-        else
-        {
+    }
+    else
+    {
 %>
 <script type="text/javascript" src="//maps.google.com/maps/api/js?key=<%=MapKey %>&sensor=false&v=3.exp&signed_in=true&libraries=places"></script>
 <%
-        }
+    }
 %>
-
 <script type='text/javascript'>
 
     //Google Map Variable

@@ -12,6 +12,7 @@ namespace JXTPortal.Data.Dapper.Repositories
     public interface IScreeningQuestionsTemplateOwnersRepository : IBaseEntityOperation<ScreeningQuestionsTemplateOwnersEntity>
     {
         List<ScreeningQuestionsTemplateOwnersEntity> SelectByAdvertiserId(int advertiserId);
+        List<ScreeningQuestionsTemplateOwnersEntity> SelectByTemplateId(int templateId);
         void Delete(int templateId, int advertiserId);
 
     }
@@ -33,8 +34,21 @@ namespace JXTPortal.Data.Dapper.Repositories
                 dbConnection.Open();
                 string columns = IdColumnName + ", " + string.Join(", ", ColumnNames);
                 string whereClause = string.Format("AdvertiserId = {0}", advertiserId);
-                var query = string.Format("SELECT {0} FROM dbo.{1} WHERE {2}", columns, TableName, whereClause);
+                var query = string.Format("SELECT {0} FROM dbo.{1} WITH (NOLOCK) WHERE {2}", columns, TableName, whereClause);
                 var entity = dbConnection.Query<ScreeningQuestionsTemplateOwnersEntity>(query, new { AdvertiserId = advertiserId }).ToList();
+                return entity as List<ScreeningQuestionsTemplateOwnersEntity>;
+            }
+        }
+
+        public List<ScreeningQuestionsTemplateOwnersEntity> SelectByTemplateId(int templateId)
+        {
+            using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
+            {
+                dbConnection.Open();
+                string columns = IdColumnName + ", " + string.Join(", ", ColumnNames);
+                string whereClause = string.Format("ScreeningQuestionsTemplateId = {0}", templateId);
+                var query = string.Format("SELECT {0} FROM dbo.{1} WITH (NOLOCK) WHERE {2}", columns, TableName, whereClause);
+                var entity = dbConnection.Query<ScreeningQuestionsTemplateOwnersEntity>(query, null).ToList();
                 return entity as List<ScreeningQuestionsTemplateOwnersEntity>;
             }
         }
@@ -45,7 +59,7 @@ namespace JXTPortal.Data.Dapper.Repositories
             {
                 dbConnection.Open();
                 string whereClause = string.Format("ScreeningQuestionsTemplateId = {0} AND AdvertiserId = {1}", templateId, advertiserId);
-                var query = string.Format("DELETE FROM {0} dbo.{1} WHERE {1}", TableName, whereClause);
+                var query = string.Format("DELETE FROM dbo.{0} WHERE {1}", TableName, whereClause);
                 dbConnection.Execute(query);
             }
         }

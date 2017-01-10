@@ -14,6 +14,8 @@ namespace JXTPortal.Service.Dapper
         void Delete(int id);
         ScreeningQuestionsEntity Select(int id);
         ScreeningQuestionsEntity SelectByScreeningQuestionId(int screeningQuestionId);
+        List<ScreeningQuestionsEntity> SelectByScreeningQuestionsTemplateId(int templateId);
+        List<ScreeningQuestionsEntity> SelectByScreeningQuestionsTemplateIdLanguageId(int templateId, int languageId);
     }
 
     public class ScreeningQuestionsService : IScreeningQuestionsService
@@ -52,6 +54,16 @@ namespace JXTPortal.Service.Dapper
         public ScreeningQuestionsEntity SelectByScreeningQuestionId(int screeningQuestionId)
         {
             return screeningQuestionsRepository.SelectByScreeningQuestionId(screeningQuestionId);
+        }
+
+        public List<ScreeningQuestionsEntity> SelectByScreeningQuestionsTemplateId(int templateId)
+        {
+            return screeningQuestionsRepository.SelectByScreeningQuestionsTemplateId(templateId);
+        }
+
+        public List<ScreeningQuestionsEntity> SelectByScreeningQuestionsTemplateIdLanguageId(int templateId, int languageId)
+        {
+            return screeningQuestionsRepository.SelectByScreeningQuestionsTemplateIdLanguageId(templateId, languageId);
         }
     }
 }

@@ -18,6 +18,7 @@ namespace JXTPortal.Service.Dapper
         List<ScreeningQuestionsTemplatesEntity> SelectBySiteId(int siteId);
         ScreeningQuestionsTemplateDetail GetPaged(int siteId, int pageIndex, int pageSize);
         int GetSiteCount(int siteId);
+        List<ScreeningQuestionsTemplatesEntity> SelectByAdvertiserId(int advertiserId);
     }
 
     public class ScreeningQuestionsTemplatesService : IScreeningQuestionsTemplatesService
@@ -111,6 +112,11 @@ namespace JXTPortal.Service.Dapper
             }
 
             return screeningQuestionsTemplateDetail;
+        }
+
+        public List<ScreeningQuestionsTemplatesEntity> SelectByAdvertiserId(int advertiserId)
+        {
+            return screeningQuestionsTemplatesRepository.SelectByAdvertiserId(advertiserId);
         }
     }
 }

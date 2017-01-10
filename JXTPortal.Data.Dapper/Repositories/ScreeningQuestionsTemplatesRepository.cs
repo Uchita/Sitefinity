@@ -14,6 +14,7 @@ namespace JXTPortal.Data.Dapper.Repositories
         List<ScreeningQuestionsTemplatesEntity> SelectBySiteId(int advertiserId);
         List<ScreeningQuestionsTemplatesEntity> GetPaged(int siteId, int rowFrom, int rowTo, string orderBy);
         int GetSiteCount(int siteId);
+        List<ScreeningQuestionsTemplatesEntity> SelectByAdvertiserId(int advertiserId);
     }
 
     public class ScreeningQuestionsTemplatesRepository : BaseEntityOperation<ScreeningQuestionsTemplatesEntity>, IScreeningQuestionsTemplatesRepository
@@ -35,6 +36,21 @@ namespace JXTPortal.Data.Dapper.Repositories
                 string whereClause = string.Format("SiteId = {0}", siteId);
                 var query = string.Format("SELECT {0} FROM dbo.{1} WHERE {2}", columns, TableName, whereClause);
                 var entity = dbConnection.Query<ScreeningQuestionsTemplatesEntity>(query, new { SiteId = siteId }).ToList();
+                return entity as List<ScreeningQuestionsTemplatesEntity>;
+            }
+        }
+
+        public List<ScreeningQuestionsTemplatesEntity> SelectByAdvertiserId(int advertiserId)
+        {
+            using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
+            {
+                dbConnection.Open();
+                string columns = "sqt.ScreeningQuestionsTemplateId, " + string.Join(", ", ColumnNames);
+                string whereClause = string.Format("AdvertiserId = {0}", advertiserId);
+                var query = string.Format(@"SELECT {0} FROM ScreeningQuestionsTemplateOwners sqto WITH (NOLOCK)
+                                            INNER JOIN ScreeningQuestionsTemplates sqt WITH (NOLOCK)
+                                            ON sqto.ScreeningQuestionsTemplateId = sqt.ScreeningQuestionsTemplateId WHERE {1}", columns, whereClause);
+                var entity = dbConnection.Query<ScreeningQuestionsTemplatesEntity>(query, null).ToList();
                 return entity as List<ScreeningQuestionsTemplatesEntity>;
             }
         }

@@ -156,7 +156,7 @@ public class oAuthFacebook
         }
         catch (Exception ex)
         {
-            _logger.ErrorFormat("HasFullPermission Exeption: {0}", ex);
+            _logger.Error(ex);
             return "Facebook Error: " + ex.Message + "<br />";
         }
     }
@@ -305,10 +305,9 @@ public class oAuthFacebook
         _logger.InfoFormat("Request URL: {0}", url);
 
         HttpWebRequest webrequest = WebRequest.Create(url) as HttpWebRequest;
-        _logger.DebugFormat("Http WebRequet: {0}", webrequest);
 
         HttpWebResponse webresponse = webrequest.GetResponse() as HttpWebResponse;
-        _logger.DebugFormat("Http Response: {0}", webresponse);
+        _logger.DebugFormat("Http Response: {0}", webresponse.StatusDescription);
 
         string result = string.Empty;
 
@@ -316,11 +315,9 @@ public class oAuthFacebook
         {
             Stream stream = webresponse.GetResponseStream();
             StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8);
-            _logger.DebugFormat("Webresponse Stream: (0}", reader);
-
+       
             result = reader.ReadToEnd();
             result = result.Replace(@"u0040", "@");
-            _logger.DebugFormat("Webresponse Result: (0}", result);
 
             result = Regex.Unescape(result);
         }
@@ -339,26 +336,23 @@ public class oAuthFacebook
 
             try
             {
-                string tokenGetURL = "https://graph.facebook.com/v2.3/oauth/access_token?client_id=" + this.ClientID + "&redirect_uri=" + this.RedirectURI + "&client_secret=" + this.ClientSecret + "&code=" + this.Code;
+                string tokenGetURL = "https://graph.facebook.com/v2.3/oauth/access_token?client_id=" + this.ClientID + "&redirect_uri=" + this.RedirectURI + "&code=" + this.Code + "&client_secret=" ;
 
-                _logger.InfoFormat("oAuth Token URL {0}", tokenGetURL);
+                _logger.InfoFormat("oAuth Token URL {0}******", tokenGetURL);
+
+                tokenGetURL += this.ClientSecret;
 
                 WebRequest request = WebRequest.Create(tokenGetURL);
                 response = request.GetResponse();
-
-                _logger.DebugFormat("Web Request Response: {0}", response);
 
                 StreamReader sr = new StreamReader(response.GetResponseStream());
                                
                 string tokenJsonObj = sr.ReadToEnd();
 
-                _logger.DebugFormat("Response Stream: {0}", tokenJsonObj);
-
                 FacebookToken tokenObj = new JavaScriptSerializer().Deserialize<FacebookToken>(tokenJsonObj);
 
                 string token = tokenObj.access_token;
 
-                _logger.InfoFormat("Token Received from Response: {0}", token);
 
                 sr.Close();
                 response.Close();
@@ -375,7 +369,6 @@ public class oAuthFacebook
                     //throw ex;
                     response = ex.Response;
                     msg = new System.IO.StreamReader(response.GetResponseStream()).ReadToEnd().Trim();
-                    _logger.ErrorFormat("Exeption Response Stream: {0}", msg);
                     response.Close();
                 }
             }
@@ -397,10 +390,8 @@ public class oAuthFacebook
         StreamReader sr = new StreamReader(response.GetResponseStream());
 
         string userJsonObj = sr.ReadToEnd();
-        _logger.DebugFormat("Request JSON Object: {0}", userJsonObj);
 
         FacebookUserDetails userObj = new JavaScriptSerializer().Deserialize<FacebookUserDetails>(userJsonObj);
-        _logger.InfoFormat("Retrieved USer Object: {0}", userObj);
 
         sr.Close();
         response.Close();

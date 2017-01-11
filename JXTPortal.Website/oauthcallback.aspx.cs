@@ -660,7 +660,6 @@ namespace JXTPortal.Website
         #region Facebook Methods
         private void OAuthCallBackFacebook(PortalEnums.SocialMedia.OAuthCallbackAction callbackAction, string code)
         {
-
             switch (callbackAction)
             {
                 case PortalEnums.SocialMedia.OAuthCallbackAction.Login:
@@ -678,6 +677,8 @@ namespace JXTPortal.Website
 
         private void LoginWithFacebook(string code)
         {
+            _logger.DebugFormat("Attempting login with facebook for: {0}", code);
+
             //Get Integration Details
             AdminIntegrations.Integrations integrations = IntegrationsService.AdminIntegrationsForSiteGet(SessionData.Site.SiteId);
 
@@ -690,7 +691,6 @@ namespace JXTPortal.Website
             oauthfb.ClientID = facebookappid;
             oauthfb.ClientSecret = facebooksecret;
             oauthfb.RedirectURI = facebookuri;
-            oauthfb.Permissions = "email,user_location,user_birthday";
             oauthfb.Code = code;
 
             //get access token using code
@@ -698,6 +698,7 @@ namespace JXTPortal.Website
 
             if (string.IsNullOrEmpty(access_token))
             {
+                _logger.Warn("facebook login failed");
                 Response.Redirect("~/member/login.aspx?oautherror=" + LoginErrorCodeGet("OAuthorizationFailed"), false);
                 return;
             }
@@ -706,21 +707,25 @@ namespace JXTPortal.Website
 
             if (fbDetails == null)
             {
+                _logger.Warn("failed to retrieve use details");
                 Response.Redirect("~/member/login.aspx?oautherror=" + LoginErrorCodeGet("OAuthorizationFailed"), false);
                 return;
             }
-
-
-
             //finally process the user
             int loginErrorCode = 0; //0 means no error
 
             loginErrorCode = ProcessSocialUser(fbDetails.id, fbDetails.email, fbDetails.first_name, fbDetails.last_name);
 
             if (loginErrorCode == 0)
+            {
+                _logger.Info("successfully logged in with facebook");
                 Response.Redirect("~/member/default.aspx", false);
+            }
             else
+            {
+                _logger.WarnFormat("Could not process social user. errorCode = {0}", loginErrorCode);
                 Response.Redirect("~/member/login.aspx?oautherror=" + LoginErrorCodeGet("OAuthorizationFailed"), false);
+            }
             return;
         }
 
@@ -764,7 +769,6 @@ namespace JXTPortal.Website
                         return;
                     }
 
-
                     try
                     {
                         JavaScriptSerializer jss = new JavaScriptSerializer();
@@ -789,8 +793,6 @@ namespace JXTPortal.Website
                         gam.FirstName = oAuthResult.first_name;
                         gam.Surname = oAuthResult.last_name;
                         gam.EmailAddress = oAuthResult.email;
-
-
 
                         //if (string.IsNullOrWhiteSpace(gam.EmailAddress))
                         //{
@@ -853,8 +855,6 @@ namespace JXTPortal.Website
                         Response.Redirect("~/member/login.aspx?oautherror=" + LoginErrorCodeGet("Exception"), false);
                         return;
                     }
-
-
                 }
             }
         }
@@ -1448,40 +1448,42 @@ namespace JXTPortal.Website
 
         private int ProcessSocialUser(string externalUserID, string email, string firstName, string lastName)
         {
-            int loginErrorCode = 0;
-            try
+            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName))
             {
-                if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName))
-                    loginErrorCode = LoginErrorCodeGet("InputError");
-                else
+                _logger.WarnFormat("User requries Email, firstname and lastname. email: {0}, Firstname{1}, lastname{2}", email, firstName, lastName);
+                return LoginErrorCodeGet("InputError");
+            }
+            int loginErrorCode = 0;
+            
+            try
+            { 
+                bool newMemberCreated = false;
+                string newMemberPassword = null;
+                using (Entities.Members member = MembersService.SocialMediaUserHandler(externalUserID, email, firstName, lastName, out newMemberCreated, out newMemberPassword))
                 {
-                    bool newMemberCreated = false;
-                    string newMemberPassword = null;
-                    using (Entities.Members member = MembersService.SocialMediaUserHandler(externalUserID, email, firstName, lastName, out newMemberCreated, out newMemberPassword))
+                    //log user in
+                    if (member.Valid)
                     {
-                        //log user in
-                        if (member.Valid)
-                        {
-                            SessionService.SetMember(member);
-                            member.LastLogon = DateTime.Now;
+                        SessionService.SetMember(member);
+                        member.LastLogon = DateTime.Now;
 
-                            MembersService.Update(member);
-                        }
-                        else
-                            loginErrorCode = LoginErrorCodeGet("InvalidAccount");
-
-                        if (loginErrorCode == 0 && newMemberCreated)
-                        {
-                            if (!string.IsNullOrEmpty(SessionData.Site.MemberRegistrationNotificationEmail))
-                            {
-                                //Send confirmation email to new member and site's admin
-                                MailService.SendMemberRegistrationToSiteAdmin(member, string.Empty, string.Empty, null, SessionData.Site.MemberRegistrationNotificationEmail);
-                            }
-
-                            //Send confirmation email to new member
-                            MailService.SendNewJobApplicationAccount(member, newMemberPassword);
-                        }
+                        MembersService.Update(member);
                     }
+                    else
+                        loginErrorCode = LoginErrorCodeGet("InvalidAccount");
+
+                    if (loginErrorCode == 0 && newMemberCreated)
+                    {
+                        if (!string.IsNullOrEmpty(SessionData.Site.MemberRegistrationNotificationEmail))
+                        {
+                            //Send confirmation email to new member and site's admin
+                            MailService.SendMemberRegistrationToSiteAdmin(member, string.Empty, string.Empty, null, SessionData.Site.MemberRegistrationNotificationEmail);
+                        }
+
+                        //Send confirmation email to new member
+                        MailService.SendNewJobApplicationAccount(member, newMemberPassword);
+                    }
+                    
                 }
             }
             catch (Exception e)

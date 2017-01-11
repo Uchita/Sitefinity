@@ -11,15 +11,18 @@ using System.Text.RegularExpressions;
 using System.Text;
 using System.Xml;
 using System.Collections.Generic;
+using log4net;
 
 public class oAuthLinkedIn : oAuthBase2
 {
+    private ILog _logger;
+
     public enum Method { GET, POST, PUT, DELETE };
 
-    private string _consumerKey = "";
-    private string _consumerSecret = "";
-    private string _token = "";
-    private string _tokenSecret = "";
+    //private string _consumerKey = "";
+    //private string _consumerSecret = "";
+    // private string _token = "";
+    //private string _tokenSecret = "";
     private string request_token_url = SocialMedia.Resource1.li_oauth2_authorization;
     private string request_token_login_url = SocialMedia.Resource1.li_oauth2_authorization_login;
     private string mobile_request_token_url = SocialMedia.Resource1.li_oauth2_mobile_authorization;
@@ -29,25 +32,11 @@ public class oAuthLinkedIn : oAuthBase2
     private string people_email_url = SocialMedia.Resource1.li_email_address;
 
     #region Properties
-    public string ConsumerKey
-    {
-        get
-        {
-            return _consumerKey;
-        }
-        set { _consumerKey = value; }
-    }
 
-    public string ConsumerSecret
-    {
-        get
-        {
-            return _consumerSecret;
-        }
-        set { _consumerSecret = value; }
-    }
-    public string Token { get { return _token; } set { _token = value; } }
-    public string TokenSecret { get { return _tokenSecret; } set { _tokenSecret = value; } }
+    public string ConsumerKey { get; set; } //{  return _consumerKey;}set { _consumerKey = value; }}
+    public string ConsumerSecret {get; set;} //{ return _consumerSecret;//}//set { _consumerSecret = value; }  
+    public string Token { get; set; } //{ return _token; } set { _token = value; } }
+    public string TokenSecret { get; set; } //{ return _tokenSecret; } set { _tokenSecret = value; } }
 
     #endregion
 
@@ -59,8 +48,8 @@ public class oAuthLinkedIn : oAuthBase2
 
     public oAuthLinkedIn(string consumerKey, string consumerSecret)
     {
-        _consumerKey = consumerKey;
-        _consumerSecret = consumerSecret;
+        ConsumerKey = consumerKey;
+        ConsumerSecret = consumerSecret;
     }
 
     #endregion
@@ -69,6 +58,7 @@ public class oAuthLinkedIn : oAuthBase2
     {
         string url = string.Format(access_token_url, code, redirecturi, clientid, clientsecret);
 
+        _logger.InfoFormat("WebRequest URL(access_token_url, code, redirecturi, clientid, clientsecret): {0}{0}{0}*****", access_token_url, code, redirecturi, clientid);
         return WebRequest(Method.POST, url, string.Empty);
     }
 
@@ -80,6 +70,7 @@ public class oAuthLinkedIn : oAuthBase2
     public string oAuth2GetProfile(string accesscode, bool resultInJson)
     {
         string url = people_url + ":(first-name,last-name,headline,summary,specialties,educations,industry,positions,interests,patents,languages,skills,certifications,courses,volunteer,three-current-positions,three-past-positions,date-of-birth,phone-numbers,bound-account-types,im-accounts,main-address,twitter-accounts,primary-twitter-account,recommendations-received,projects,picture-url)?oauth2_access_token=" + accesscode;
+        _logger.InfoFormat("oAuth2GetProfile URL: {0}", url);
 
         if (resultInJson)
             url += "&format=json";
@@ -95,6 +86,7 @@ public class oAuthLinkedIn : oAuthBase2
     public string oAuth2GetEmail(string accesscode, bool resultInJson)
     {
         string url = people_email_url + "?oauth2_access_token=" + accesscode;
+        _logger.InfoFormat("oAuth2GetEmail URL: {0}", people_email_url);
 
         if (resultInJson)
             url += "&format=json";
@@ -124,22 +116,29 @@ public class oAuthLinkedIn : oAuthBase2
         string profile = oAuth2GetProfile(accessToken);
         string email = oAuth2GetEmail(accessToken);
         string sth = String.Empty;
+
         if (profile.StartsWith("Error:") || profile.StartsWith("The remote server returned an error:"))
         {
+            _logger.ErrorFormat("LinkedIn Proile Error");
             return profile;
         }
         if (email.StartsWith("Error:") || profile.StartsWith("The remote server returned an error:"))
         {
+            _logger.ErrorFormat("LinkedIn Email Error");
             return email;
         }
+
         XmlDocument ppxml = new XmlDocument();
         ppxml.LoadXml(profile);
+
         XmlDocument pexml = new XmlDocument();
         pexml.LoadXml(email);
 
         strFirstName = ppxml.GetElementsByTagName("first-name")[0].InnerText;
         strSurame = ppxml.GetElementsByTagName("last-name")[0].InnerText;
         strEmail = pexml.GetElementsByTagName("email-address")[0].InnerText;
+
+        _logger.InfoFormat("LinkedIn firstName: {0}, LastName: {1}, Email: {2}", strFirstName, strSurame, strEmail );
 
         if ((ppxml.GetElementsByTagName("headline").Count > 0))
         {
@@ -170,6 +169,7 @@ public class oAuthLinkedIn : oAuthBase2
                 "-></td>", strPictureUrl)); sb.Append(Environment.NewLine);
         sb.Append("</tr>"); sb.Append(Environment.NewLine);
         sb.Append("</table>"); sb.Append(Environment.NewLine);
+
         if (!string.IsNullOrEmpty(strSummary))
         {
             sb.Append("<p style=\"font-size: 16pt; font-weight:bold; color:#999;\">Summary</p>"); sb.Append(Environment.NewLine);
@@ -263,6 +263,7 @@ public class oAuthLinkedIn : oAuthBase2
 
             }
         }
+
         if ((ppxml.GetElementsByTagName("projects").Count > 0))
         {
             string projectTitle = string.Empty;
@@ -414,6 +415,7 @@ public class oAuthLinkedIn : oAuthBase2
         string querystring = "";
         string ret = "";
 
+        _logger.Info("Submitting a oAuthWebRequest");
 
         //Setup postData for signing.
         //Add the postData to the querystring.
@@ -449,16 +451,18 @@ public class oAuthLinkedIn : oAuthBase2
 
         Uri uri = new Uri(url);
 
-        string nonce = this.GenerateNonce();
-        string timeStamp = this.GenerateTimeStamp();
+        //string nonce = this.GenerateNonce();
+        //string timeStamp = this.GenerateTimeStamp();
+        string nonce = GenerateNonce();
+        string timeStamp = GenerateTimeStamp()
 
 
         //Generate Signature
-        string sig = this.GenerateSignature(uri,
-            this.ConsumerKey,
-            this.ConsumerSecret,
-            this.Token,
-            this.TokenSecret,
+        string sig = GenerateSignature(uri,
+            ConsumerKey,
+            ConsumerSecret,
+            Token,
+            TokenSecret,
             method.ToString(),
             timeStamp,
             nonce,
@@ -486,6 +490,7 @@ public class oAuthLinkedIn : oAuthBase2
         {
             ret = WebRequest(method, outUrl + querystring, postData, true);
         }
+
         return ret;
     }
 
@@ -575,6 +580,7 @@ public class oAuthLinkedIn : oAuthBase2
 
     public string RequestToken(string clientkey, string urlauthority, string jobid = "", string friendlyname = "", string urlreferrerdomain = "", List<string> extraQueryParams = null)
     {
+        _logger.Info("Token Request Initialised");
         List<string> queryParams = new List<string>();
 
         string returnString = string.Empty;
@@ -588,6 +594,7 @@ public class oAuthLinkedIn : oAuthBase2
             foreach (string p in extraQueryParams)
                 queryParams.Add(p);
         }
+        _logger.DebugFormat("Extra Query params: {0} and Query Params: {1}", extraQueryParams, queryParams);
 
         string queryString = queryParams.Count == 0 ? string.Empty : ( "?" + String.Join("&",queryParams) );  
 
@@ -601,6 +608,7 @@ public class oAuthLinkedIn : oAuthBase2
 
     public string RequestLoginToken(string clientkey, string redirectURL)
     {
+        _logger.InfoFormat("RequestLoginToken Initialised! Redirect URI: {0}", redirectURL);
         string returnString = string.Empty;
 
         if (string.IsNullOrEmpty(clientkey) == false)
@@ -646,12 +654,12 @@ public class oAuthLinkedIn : oAuthBase2
         string outUrl, querystring;
 
         //Generate Signature
-        string sig = this.GenerateSignature(
+        string sig = GenerateSignature(
             uri,
-            this.ConsumerKey,
-            this.ConsumerSecret,
-            this.Token,
-            this.TokenSecret,
+            ConsumerKey,
+            ConsumerSecret,
+            Token,
+            TokenSecret,
             "GET",
             timeStamp,
             nonce,
@@ -662,7 +670,7 @@ public class oAuthLinkedIn : oAuthBase2
         querystring += "&oauth_signature=" + HttpUtility.UrlEncode(sig);
         NameValueCollection qs = HttpUtility.ParseQueryString(querystring);
 
-        Debug.WriteLine("Token= " + this.Token);
+        Debug.WriteLine("Token= " + Token);
 
         HttpWebRequest webRequest = null;
 
@@ -713,25 +721,28 @@ public class oAuthLinkedIn : oAuthBase2
 
     public string GetUserEmail()
     {
+        _logger.Info("GetUserEmail Start...");
         HttpWebResponse response = null;
-        string url = people_email_url;
 
-        Debug.WriteLine("Token= " + this.Token);
+        string url = people_email_url;
+        _logger.InfoFormat("People Email URI: {0}", url);
+
+        Debug.WriteLine("Token= " + Token);
 
         Uri uri = new Uri(url);
 
-        string nonce = this.GenerateNonce();
-        string timeStamp = this.GenerateTimeStamp();
+        string nonce = GenerateNonce();
+        string timeStamp = GenerateTimeStamp();
 
         string outUrl, querystring;
 
         //Generate Signature
-        string sig = this.GenerateSignature(
+        string sig = GenerateSignature(
             uri,
-            this.ConsumerKey,
-            this.ConsumerSecret,
-            this.Token,
-            this.TokenSecret,
+            ConsumerKey,
+            ConsumerSecret,
+            Token,
+            TokenSecret,
             "GET",
             timeStamp,
             nonce,
@@ -742,7 +753,7 @@ public class oAuthLinkedIn : oAuthBase2
         querystring += "&oauth_signature=" + HttpUtility.UrlEncode(sig);
         NameValueCollection qs = HttpUtility.ParseQueryString(querystring);
 
-        Debug.WriteLine("Token= " + this.Token);
+        Debug.WriteLine("Token= " + Token);
 
         HttpWebRequest webRequest = null;
 
@@ -781,6 +792,7 @@ public class oAuthLinkedIn : oAuthBase2
         }
         catch (Exception ex)
         {
+            _logger.Error(ex);
             if (ex.Message.Contains("500"))
             {
                 WebResponseGet(url, ref response);
@@ -795,22 +807,22 @@ public class oAuthLinkedIn : oAuthBase2
     {
         StreamReader responseReader = null;
 
-        Debug.WriteLine("Token= " + this.Token);
+        Debug.WriteLine("Token= " + Token);
 
         Uri uri = new Uri(url);
 
-        string nonce = this.GenerateNonce();
-        string timeStamp = this.GenerateTimeStamp();
+        string nonce = GenerateNonce();
+        string timeStamp = GenerateTimeStamp();
 
         string outUrl, querystring;
 
         //Generate Signature
-        string sig = this.GenerateSignature(
+        string sig = GenerateSignature(
             uri,
-            this.ConsumerKey,
-            this.ConsumerSecret,
-            this.Token,
-            this.TokenSecret,
+            ConsumerKey,
+            ConsumerSecret,
+            Token,
+            TokenSecret,
             "GET",
             timeStamp,
             nonce,
@@ -852,6 +864,7 @@ public class oAuthLinkedIn : oAuthBase2
         }
         catch (Exception ex)
         {
+            _logger.Error(ex);
             if (ex.Message.Contains("500"))
             {
                 WebResponseGet(url, ref response);
@@ -871,23 +884,24 @@ public class oAuthLinkedIn : oAuthBase2
     /// <returns>The web server response.</returns>
     public string WebRequestWithPost(Method method, string url, string postData, ref HttpWebResponse response)
     {
+        _logger.Info("Web Request with POST");
 
-        Debug.WriteLine("Token= " + this.Token);
+        Debug.WriteLine("Token= " + Token);
 
         Uri uri = new Uri(url);
 
-        string nonce = this.GenerateNonce();
-        string timeStamp = this.GenerateTimeStamp();
+        string nonce = GenerateNonce();
+        string timeStamp = GenerateTimeStamp();
 
         string outUrl, querystring;
 
         //Generate Signature
-        string sig = this.GenerateSignature(
+        string sig = GenerateSignature(
             uri,
-            this.ConsumerKey,
-            this.ConsumerSecret,
-            this.Token,
-            this.TokenSecret,
+            ConsumerKey,
+            ConsumerSecret,
+            Token,
+            TokenSecret,
             "POST",
             timeStamp,
             nonce,
@@ -906,14 +920,14 @@ public class oAuthLinkedIn : oAuthBase2
         string authHeader = "OAuth realm=\"\", ";
         authHeader += "oauth_nonce=\"" + nonce + "\", ";
         authHeader += "oauth_timestamp=\"" + timeStamp + "\", ";
-        authHeader += "oauth_consumer_key=\"" + this.ConsumerKey + "\", ";
+        authHeader += "oauth_consumer_key=\"" + ConsumerKey + "\", ";
         authHeader += "oauth_signature_method=\"HMAC-SHA1\", ";
         authHeader += "oauth_version=\"1.0\", ";
-        if (this.Token != "")
+        if (Token != "")
         {
-            authHeader += "oauth_token=\"" + this.Token + "\", ";
+            authHeader += "oauth_token=\"" + Token + "\", ";
         }
-        authHeader += "oauth_signature=\"" + this.UrlEncode(sig) + "\"";
+        authHeader += "oauth_signature=\"" + UrlEncode(sig) + "\"";
         webRequest.Headers.Add("Authorization", authHeader);
 
         StreamWriter requestWriter = new StreamWriter(webRequest.GetRequestStream());
@@ -934,7 +948,9 @@ public class oAuthLinkedIn : oAuthBase2
 
 
         response = (HttpWebResponse)webRequest.GetResponse();
+
         string returnString = response.StatusCode.ToString();
+        _logger.DebugFormat("http response status code: {0}", returnString);
 
         webRequest = null;
 
@@ -944,23 +960,24 @@ public class oAuthLinkedIn : oAuthBase2
 
     public string WebRequestWithPut(Method method, string url, string postData)
     {
+        _logger.Info("webrequest with put");
 
-        Debug.WriteLine("Token= " + this.Token);
+        Debug.WriteLine("Token= " + Token);
 
         Uri uri = new Uri(url);
 
-        string nonce = this.GenerateNonce();
-        string timeStamp = this.GenerateTimeStamp();
+        string nonce = GenerateNonce();
+        string timeStamp = GenerateTimeStamp();
 
         string outUrl, querystring;
 
         //Generate Signature
-        string sig = this.GenerateSignature(
+        string sig = GenerateSignature(
             uri,
-            this.ConsumerKey,
-            this.ConsumerSecret,
-            this.Token,
-            this.TokenSecret,
+            ConsumerKey,
+            ConsumerSecret,
+            Token,
+            TokenSecret,
             "PUT",
             timeStamp,
             nonce,
@@ -979,14 +996,14 @@ public class oAuthLinkedIn : oAuthBase2
         string authHeader = "OAuth realm=\"\", ";
         authHeader += "oauth_nonce=\"" + nonce + "\", ";
         authHeader += "oauth_timestamp=\"" + timeStamp + "\", ";
-        authHeader += "oauth_consumer_key=\"" + this.ConsumerKey + "\", ";
+        authHeader += "oauth_consumer_key=\"" + ConsumerKey + "\", ";
         authHeader += "oauth_signature_method=\"HMAC-SHA1\", ";
         authHeader += "oauth_version=\"1.0\", ";
-        if (this.Token != "")
+        if (Token != "")
         {
-            authHeader += "oauth_token=\"" + this.Token + "\", ";
+            authHeader += "oauth_token=\"" + Token + "\", ";
         }
-        authHeader += "oauth_signature=\"" + this.UrlEncode(sig) + "\"";
+        authHeader += "oauth_signature=\"" + UrlEncode(sig) + "\"";
         webRequest.Headers.Add("Authorization", authHeader);
 
         StreamWriter requestWriter = new StreamWriter(webRequest.GetRequestStream());
@@ -1008,6 +1025,7 @@ public class oAuthLinkedIn : oAuthBase2
 
         HttpWebResponse response = (HttpWebResponse)webRequest.GetResponse();
         string returnString = response.StatusCode.ToString();
+        _logger.DebugFormat("Return String: {0}", returnString);
 
         webRequest = null;
 
@@ -1017,23 +1035,24 @@ public class oAuthLinkedIn : oAuthBase2
 
     public string WebRequestWithDelete(Method method, string url)
     {
+        _logger.Info("Request With Delete");
 
-        Debug.WriteLine("Token= " + this.Token);
+        Debug.WriteLine("Token= " + Token);
 
         Uri uri = new Uri(url);
 
-        string nonce = this.GenerateNonce();
-        string timeStamp = this.GenerateTimeStamp();
+        string nonce = GenerateNonce();
+        string timeStamp = GenerateTimeStamp();
 
         string outUrl, querystring;
 
         //Generate Signature
-        string sig = this.GenerateSignature(
+        string sig = GenerateSignature(
             uri,
-            this.ConsumerKey,
-            this.ConsumerSecret,
-            this.Token,
-            this.TokenSecret,
+            ConsumerKey,
+            ConsumerSecret,
+            Token,
+            TokenSecret,
             "DELETE",
             timeStamp,
             nonce,
@@ -1052,14 +1071,14 @@ public class oAuthLinkedIn : oAuthBase2
         string authHeader = "OAuth realm=\"\", ";
         authHeader += "oauth_nonce=\"" + nonce + "\", ";
         authHeader += "oauth_timestamp=\"" + timeStamp + "\", ";
-        authHeader += "oauth_consumer_key=\"" + this.ConsumerKey + "\", ";
+        authHeader += "oauth_consumer_key=\"" + ConsumerKey + "\", ";
         authHeader += "oauth_signature_method=\"HMAC-SHA1\", ";
         authHeader += "oauth_version=\"1.0\", ";
-        if (this.Token != "")
+        if (Token != "")
         {
-            authHeader += "oauth_token=\"" + this.Token + "\", ";
+            authHeader += "oauth_token=\"" + Token + "\", ";
         }
-        authHeader += "oauth_signature=\"" + this.UrlEncode(sig) + "\"";
+        authHeader += "oauth_signature=\"" + UrlEncode(sig) + "\"";
         webRequest.Headers.Add("Authorization", authHeader);
 
         StreamWriter requestWriter = new StreamWriter(webRequest.GetRequestStream());
@@ -1082,6 +1101,7 @@ public class oAuthLinkedIn : oAuthBase2
         HttpWebResponse response = (HttpWebResponse)webRequest.GetResponse();
         string returnString = response.StatusCode.ToString();
 
+        _logger.DebugFormat("Return String: {0}", returnString);
         webRequest = null;
 
         return returnString;

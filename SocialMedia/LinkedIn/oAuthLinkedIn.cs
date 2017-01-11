@@ -19,10 +19,6 @@ public class oAuthLinkedIn : oAuthBase2
 
     public enum Method { GET, POST, PUT, DELETE };
 
-    //private string _consumerKey = "";
-    //private string _consumerSecret = "";
-    // private string _token = "";
-    //private string _tokenSecret = "";
     private string request_token_url = SocialMedia.Resource1.li_oauth2_authorization;
     private string request_token_login_url = SocialMedia.Resource1.li_oauth2_authorization_login;
     private string mobile_request_token_url = SocialMedia.Resource1.li_oauth2_mobile_authorization;
@@ -31,16 +27,10 @@ public class oAuthLinkedIn : oAuthBase2
     private string people_url = SocialMedia.Resource1.li_people;
     private string people_email_url = SocialMedia.Resource1.li_email_address;
 
-    #region Properties
-
-    public string ConsumerKey { get; set; } //{  return _consumerKey;}set { _consumerKey = value; }}
-    public string ConsumerSecret {get; set;} //{ return _consumerSecret;//}//set { _consumerSecret = value; }  
-    public string Token { get; set; } //{ return _token; } set { _token = value; } }
-    public string TokenSecret { get; set; } //{ return _tokenSecret; } set { _tokenSecret = value; } }
-
-    #endregion
-
-    #region constructor
+    public string ConsumerKey { get; set; } 
+    public string ConsumerSecret {get; set;}
+    public string Token { get; set; } 
+    public string TokenSecret { get; set; }
 
     public oAuthLinkedIn()
     {
@@ -51,8 +41,6 @@ public class oAuthLinkedIn : oAuthBase2
         ConsumerKey = consumerKey;
         ConsumerSecret = consumerSecret;
     }
-
-    #endregion
 
     public string oAuth2AccessToken(string code, string redirecturi, string clientid, string clientsecret)
     {
@@ -93,7 +81,6 @@ public class oAuthLinkedIn : oAuthBase2
 
         return WebRequest(Method.GET, url, string.Empty);
     }
-
 
     public string oAuth2GetProfileHTML(string accessToken, string logourl)
     {
@@ -398,7 +385,6 @@ public class oAuthLinkedIn : oAuthBase2
         sb.Append("</body>"); sb.Append(Environment.NewLine);
         sb.Append("</html>");
 
-
         return sb.ToString();
     }
 
@@ -454,7 +440,7 @@ public class oAuthLinkedIn : oAuthBase2
         //string nonce = this.GenerateNonce();
         //string timeStamp = this.GenerateTimeStamp();
         string nonce = GenerateNonce();
-        string timeStamp = GenerateTimeStamp()
+        string timeStamp = GenerateTimeStamp();
 
 
         //Generate Signature
@@ -493,7 +479,6 @@ public class oAuthLinkedIn : oAuthBase2
 
         return ret;
     }
-
 
     /// <summary>
     /// Web Request Wrapper
@@ -549,8 +534,8 @@ public class oAuthLinkedIn : oAuthBase2
         webRequest = null;
 
         return responseData;
-
     }
+
     /// <summary>
     /// Process the web response.
     /// </summary>
@@ -620,7 +605,6 @@ public class oAuthLinkedIn : oAuthBase2
 
         return returnString;
     }
-
 
     public string MobileRequestToken(string clientkey, string urlauthority, string jobid = "", string friendlyname = "", string urlreferrerdomain = "")
     {

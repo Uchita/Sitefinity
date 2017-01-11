@@ -15,76 +15,72 @@ using log4net;
 public class oAuthFacebook
 {
     private ILog _logger;
-    private string _clientId;
-    private string _clientSecret;
-    private string _redirectUri;
-    private string _code;
+   
     private string _jobapplyurl;
-    private string _permissions = "email"; //user_work_history,user_education_history, user_website
 
-    private string authorize_url = SocialMedia.Resource1.fb_authroize_with_permissions;
+private string authorize_url = SocialMedia.Resource1.fb_authroize_with_permissions;
     private string access_token_url = SocialMedia.Resource1.fb_access_token;
     private string userinfo_url = SocialMedia.Resource1.fb_userinfo;
     private string checkpermission_url = SocialMedia.Resource1.fb_checkpermission;
-    
+
 
     public string ClientID
     {
-        get { return _clientId; }
-        set { _clientId = value; }
+        get;
+        set;
     }
 
     public string ClientSecret
     {
-        get { return _clientSecret; }
-        set { _clientSecret = value; }
+        get;
+        set;
     }
 
     public string RedirectURI
     {
-        get { return _redirectUri; }
-        set { _redirectUri = value; }
+        get;
+        set;
     }
 
     public string Code
     {
-        get { return _code; }
-        set { _code = value; }
-    }
-    public oAuthFacebook()
-    {
-        _logger = LogManager.GetLogger(typeof(oAuthFacebook));
+        get;
+        set;
     }
 
     public string Permissions
     {
-        get { return _permissions; }
-        set { _permissions = value; }
+        get;
+        set;
     }
 
-    public string Authorize()
+    public oAuthFacebook()
     {
-        if (string.IsNullOrEmpty(this.ClientID) || string.IsNullOrEmpty(this.RedirectURI) || string.IsNullOrEmpty(this.Permissions))
+        _logger = LogManager.GetLogger(typeof(oAuthFacebook));
+        Permissions = SocialMedia.Resource1.default_FBRequestPermissions;
+    }
+
+    private string getBaseAutorizationUrl(string redirectURI)
+    {
+        if (string.IsNullOrWhiteSpace(ClientID) || string.IsNullOrWhiteSpace(RedirectURI) || string.IsNullOrWhiteSpace(Permissions))
         {
+            _logger.WarnFormat("Cannot FB Authorize clientId: {0}, Redirect: {1}, Permissions: {2}", ClientID, RedirectURI, Permissions);
             return "Error: Please provide ClientID, Redirect URI & Permissions required";
         }
 
-        string url = string.Format(authorize_url, this.ClientID, System.Web.HttpUtility.UrlEncode(this.RedirectURI), System.Web.HttpUtility.UrlEncode(this.Permissions));
+        string url = string.Format(authorize_url, ClientID, redirectURI, System.Web.HttpUtility.UrlEncode(Permissions));
+        _logger.DebugFormat("Authorisation URL is: {0}", url);
         return url;
     }
 
-    public string AuthorizeWithoutURLEncode()
+    public string GetAuthorizationUrl()
     {
-        _logger.InfoFormat("AuthorizeWithoutURLEncode() Started");
+        return getBaseAutorizationUrl(System.Web.HttpUtility.UrlEncode(RedirectURI));
+    }
 
-        if (string.IsNullOrEmpty(this.ClientID) || string.IsNullOrEmpty(this.RedirectURI) || string.IsNullOrEmpty(this.Permissions))
-        {
-            return "Error: Please provide ClientID, Redirect URI & Permissions required";
-        }
-
-        string url = string.Format(authorize_url, this.ClientID, this.RedirectURI, System.Web.HttpUtility.UrlEncode(this.Permissions));
-        _logger.InfoFormat("AutoriseWithout URL: {0}", url);
-        return url;
+    public string GetAuthorizeURLWithoutEncode()
+    {
+        return getBaseAutorizationUrl(RedirectURI);
     }
 
     public string HasFullPermission(string userid, string accesstoken)
@@ -241,12 +237,13 @@ public class oAuthFacebook
     {
         accesstoken = string.Empty;
 
-        if (string.IsNullOrEmpty(this.ClientID) || string.IsNullOrEmpty(this.RedirectURI) || string.IsNullOrEmpty(this.ClientSecret) || string.IsNullOrEmpty(this.Code))
+        if (string.IsNullOrEmpty(ClientID) || string.IsNullOrEmpty(RedirectURI) || string.IsNullOrEmpty(ClientSecret) || string.IsNullOrEmpty(Code))
         {
+            _logger.WarnFormat("Cannotretrieve user info: {0}, Redirect: {1}, Permissions: {2}", ClientID, RedirectURI, Permissions);
             return "Error: Please provide ClientID, Redirect URI, ClientSecret & Code";
         }
 
-        string url = string.Format(access_token_url, this.ClientID, HttpUtility.UrlEncode(this.RedirectURI), this.ClientSecret, this.Code);
+        string url = string.Format(access_token_url, ClientID, HttpUtility.UrlEncode(RedirectURI), ClientSecret, Code);
 
         try
         {
@@ -328,58 +325,53 @@ public class oAuthFacebook
     public string RetreiveAccessTokenWithFBCode()
     {
         _logger.Info("Retrieving facebook Access Token");
-        if (!string.IsNullOrEmpty(this.Code) && !string.IsNullOrEmpty(this.ClientID) && !string.IsNullOrEmpty(this.RedirectURI) && !string.IsNullOrEmpty(this.ClientSecret))
+        if (string.IsNullOrEmpty(ClientID) || string.IsNullOrEmpty(RedirectURI) || string.IsNullOrEmpty(ClientSecret) || string.IsNullOrEmpty(Code))
         {
-            _logger.DebugFormat("FBcode: {0}, clientId: {1}, RedirectUri: {2}", Code, ClientID, RedirectURI);
-            
-            WebResponse response;
-
-            try
-            {
-                string tokenGetURL = "https://graph.facebook.com/v2.3/oauth/access_token?client_id=" + this.ClientID + "&redirect_uri=" + this.RedirectURI + "&code=" + this.Code + "&client_secret=" ;
-
-                _logger.InfoFormat("oAuth Token URL {0}******", tokenGetURL);
-
-                tokenGetURL += this.ClientSecret;
-
-                WebRequest request = WebRequest.Create(tokenGetURL);
-                response = request.GetResponse();
-
-                StreamReader sr = new StreamReader(response.GetResponseStream());
-                               
-                string tokenJsonObj = sr.ReadToEnd();
-
-                FacebookToken tokenObj = new JavaScriptSerializer().Deserialize<FacebookToken>(tokenJsonObj);
-
-                string token = tokenObj.access_token;
-
-
-                sr.Close();
-                response.Close();
-
-                return token;
-            }
-            catch (WebException ex)
-            {
-                _logger.Error(ex);
-                string msg = "";
-
-                if (ex.Status == WebExceptionStatus.ProtocolError)
-                {
-                    //throw ex;
-                    response = ex.Response;
-                    msg = new System.IO.StreamReader(response.GetResponseStream()).ReadToEnd().Trim();
-                    response.Close();
-                }
-            }
+            _logger.WarnFormat("ClientId, RedirectURI, ClientSecret and Code are all required to Retrieve access token: ClientId {0}, Redirect: {1}, Code: {2}, ClientSecret: (no Im not logging it)", ClientID, RedirectURI, Code);
+            return null;
         }
-        return null;
+
+        WebResponse response;
+        string tokenGetURL = "https://graph.facebook.com/v2.3/oauth/access_token?client_id=" + this.ClientID + "&redirect_uri=" + this.RedirectURI + "&code=" + this.Code + "&client_secret=";
+        _logger.InfoFormat("oAuth Token URL {0}******", tokenGetURL);
+        tokenGetURL += this.ClientSecret;
+
+        try
+        {
+            WebRequest request = WebRequest.Create(tokenGetURL);
+            response = request.GetResponse();
+
+            StreamReader sr = new StreamReader(response.GetResponseStream());
+            string tokenJsonObj = sr.ReadToEnd();
+
+            FacebookToken tokenObj = new JavaScriptSerializer().Deserialize<FacebookToken>(tokenJsonObj);
+            string token = tokenObj.access_token;
+
+            sr.Close();
+            response.Close();
+
+            return token;
+        }
+        catch (WebException ex)
+        {
+            _logger.Error(ex);
+            string msg = "";
+
+            if (ex.Status == WebExceptionStatus.ProtocolError)
+            {
+                //throw ex;
+                response = ex.Response;
+                msg = new System.IO.StreamReader(response.GetResponseStream()).ReadToEnd().Trim();
+                response.Close();
+            }
+            return null;
+        }
     }
 
     public FacebookUserDetails RetreiveUserDetails(string token)
     {
         _logger.Info("Retrieving Facebook User Details\n");
-
+    
         string url = "https://graph.facebook.com/me?access_token=" + token;
         _logger.InfoFormat("Request url: {0}", url);
 

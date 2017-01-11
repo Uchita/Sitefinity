@@ -125,7 +125,7 @@ namespace JXTPortal.Website
             fbmodule.ClientID = facebookappid;
             fbmodule.RedirectURI = facebookuri;
 
-            return fbmodule.Authorize();
+            return fbmodule.GetAuthorizationUrl();
         }
 
         [WebMethod(EnableSession = true)]

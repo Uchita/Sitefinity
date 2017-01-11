@@ -189,4 +189,7 @@
   <data name="fb_checkpermission" xml:space="preserve">
     <value>https://graph.facebook.com/{0}/permissions?access_token={1}</value>
   </data>
+  <data name="default_FBRequestPermissions" xml:space="preserve">
+    <value>email, public_profile</value>
+  </data>
 </root>

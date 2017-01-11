@@ -19,6 +19,7 @@ namespace JXTPortal.Data.Dapper.Repositories
             :base(connectionFactory, connectionStringName)
         {
             TableName = "KnowledgeBase";
+            IdColumnName = "Id"; 
             ColumnNames = new List<string>{"KnowledgeBaseCategoryID", "Subject", "Content", "Valid", "Sequence", "LastModified", "LastModifiedBy", "SearchField", "Tags"};
         }
     }

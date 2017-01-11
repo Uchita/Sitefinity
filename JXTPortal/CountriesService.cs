@@ -40,7 +40,8 @@ namespace JXTPortal
 
 
         #region "Methods"
-
+        
+        [Obsolete("GetTranslatedCountries should only be used on Member related purpose")]
         public List<Countries> GetTranslatedCountries(int languageID)
         {
             string xmlprefix = "{0}{2}_{1}.xml";
@@ -51,6 +52,7 @@ namespace JXTPortal
             return XMLLanguageService.Translate(GetAll().ToList(), "CountryId", "CountryName", url);
         }
 
+        [Obsolete("GetTranslatedCountry should only be used on Member related purpose")]
         public Entities.Countries GetTranslatedCountry(int countryid, int languageID)
         {
             Entities.Countries country = GetByCountryId(countryid);
@@ -72,6 +74,8 @@ namespace JXTPortal
         /// </summary>
         /// <param name="languageID"></param>
         /// <returns></returns>
+
+        [Obsolete("GetTranslatedCountries should only be used on Member related purpose")]
         public List<Countries> GetTranslatedCountries(int languageID, string xmlFilesPath)
         {
             string xmlprefix = "{0}{2}_{1}.xml";

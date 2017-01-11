@@ -758,7 +758,7 @@ namespace JXTPortal.Website.usercontrols.job
         private string TranslateJobPreviewToSelectedLanguage(string templateHTML, int locationID, int professionID, int roleID, int worktypeID, int areaID)
         {
             //Do any translate according to the selected language
-            if (SessionData.Language.LanguageId != (int)PortalEnums.Languages.Language.English)
+            if (SessionData.Language.LanguageId != SessionData.Site.DefaultLanguageId)
             {
                 //get the country ID
                 int location_countryID = 0;

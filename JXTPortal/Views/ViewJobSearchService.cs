@@ -45,22 +45,22 @@ namespace JXTPortal
             VList<ViewJobSearch> viewJobSearchList = base.GetBySearchFilter(keyword, siteId, advertiserId, currencyId, salaryLowerBand, salaryUpperBand, salaryTypeId, workTypeId, professionId,
                                             roleId, countryId, locationId, areaId, dateFrom, pageIndex, pageSize, orderBy, jobTypeIds);
 
-            if (languageId != PortalConstants.DEFAULT_LANGUAGE_ID)
+            if (languageId != SessionData.Site.DefaultLanguageId)
             {
                 foreach (ViewJobSearch viewJobSearch in viewJobSearchList)
                 {
-                    AreaService areaService = new AreaService();
-                    string translatedAreaName = areaService.GetTranslatedStringArea(viewJobSearch.AreaId, SessionData.Language.LanguageId);
+                    SiteAreaService siteAreaService = new SiteAreaService();
+                    string translatedAreaName = siteAreaService.GetTranslatedArea(viewJobSearch.AreaId, viewJobSearch.LocationId, SessionData.Language.LanguageId, SessionData.Site.SiteId).SiteAreaName;
                     viewJobSearch.AreaName = string.IsNullOrEmpty(translatedAreaName) ? viewJobSearch.AreaName : translatedAreaName;
-                    areaService = null;
+                    siteAreaService = null;
 
                     ProfessionService professionService = new ProfessionService();
                     string translatedProfessionName = professionService.GetTranslatedStringProfession(viewJobSearch.ProfessionId, SessionData.Language.LanguageId, SessionData.Site.UseCustomProfessionRole);
                     viewJobSearch.SiteProfessionName = string.IsNullOrEmpty(translatedProfessionName) ? viewJobSearch.SiteProfessionName : translatedProfessionName;
                     professionService = null;
 
-                    LocationService locationService = new LocationService();
-                    string translatedLocationName = locationService.GetTranslatedStringLocation(viewJobSearch.LocationId, SessionData.Language.LanguageId);
+                    SiteLocationService locationService = new SiteLocationService();
+                    string translatedLocationName = locationService.GetTranslatedLocation(viewJobSearch.LocationId, viewJobSearch.CountryId, SessionData.Language.LanguageId).SiteLocationName;
                     viewJobSearch.LocationName = string.IsNullOrEmpty(translatedLocationName) ? viewJobSearch.LocationName : translatedLocationName;
                     locationService = null;
 

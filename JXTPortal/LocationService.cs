@@ -44,7 +44,7 @@ namespace JXTPortal
         #endregion
 
         #region "Methods"
-
+        [Obsolete("GetTranslatedLocations should only be used on Member related purpose")]
         public List<Location> GetTranslatedLocations(int languageID, int countryID)
         {
             string url = string.Format(xmlprefix,
@@ -54,10 +54,11 @@ namespace JXTPortal
             return XMLLanguageService.Translate(GetByCountryId(countryID).ToList(), "LocationId", "LocationName", url);            
         }
 
+        [Obsolete("GetTranslatedLocation should only be used on Member related purpose")]
         public Location GetTranslatedLocation(int locationID, int languageID)
         {
             Location loc = GetByLocationId(locationID);
-
+            
             string url = string.Format(xmlprefix,
                                       ConfigurationManager.AppSettings["XMLFilesPath"],
                                       languageID,
@@ -66,6 +67,7 @@ namespace JXTPortal
 
         }
 
+        [Obsolete("GetTranslatedStringLocation should only be used on Member related purpose")]
         public string GetTranslatedStringLocation(int locationID, int languageID)
         {
             Location loc = GetByLocationId(locationID);

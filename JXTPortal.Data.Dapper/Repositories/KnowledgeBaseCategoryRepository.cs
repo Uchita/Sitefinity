@@ -20,9 +20,11 @@ namespace JXTPortal.Data.Dapper.Repositories
             : base(connectionFactory, connectionStringName)
         {
             TableName = "KnowledgeBaseCategories";
+            IdColumnName = "Id";
             ColumnNames = new List<string> { "KnowledgeBaseCategoryName", "ParentId", "Valid", "Sequence", "LastModified", "LastModifiedBy" };
         }
 
+        
         #region IKnowledgeBaseCategoryRepository Members
 
         public List<KnowledgeBaseCategoryEntity> GetCategoryByParentCategoryId(int parentId)

@@ -1238,7 +1238,14 @@ namespace JXTPortal.Website
                 }
 
                 JavaScriptSerializer jss = new JavaScriptSerializer();
+                
                 oAuthIndeed.IndeedContract indeeddata = jss.Deserialize<oAuthIndeed.IndeedContract>(data);
+                if (indeeddata == null)
+                {
+                    _logger.WarnFormat("Failed to deserialize the indeed data: \r\n{0}", data);
+                    Response.Redirect("~/member/login.aspx?oautherror=" + LoginErrorCodeGet("Exception"), false);
+                    return;
+                }
 
                 _logger.Debug(string.Format("Application: {0}; Resume: {1}; file: {2}", indeeddata.applicant != null, (indeeddata.applicant != null && indeeddata.applicant.resume != null), (indeeddata.applicant != null && indeeddata.applicant.resume != null && indeeddata.applicant.resume.file != null)));
                 if (indeeddata.applicant == null || indeeddata.applicant.resume == null || indeeddata.applicant.resume.file == null)
@@ -1291,14 +1298,13 @@ namespace JXTPortal.Website
             }
             catch (Exception ex)
             {
-
+                _logger.Error(ex);
                 if (!string.IsNullOrEmpty(IndeedDataFile))
                 {
                     string fname = Server.MapPath(IndeedDataFile);
 
                     File.AppendAllText(fname, data + "\n" + ex.Message + "\n" + ex.StackTrace);
                 }
-
 
                 //Response.Write(ex.Message);
                 Response.Redirect("~/member/login.aspx?oautherror=" + LoginErrorCodeGet("Exception"), false);

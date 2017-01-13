@@ -171,13 +171,13 @@ namespace SectionIO
             API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, banExpression);
         }
 
-        public string buildBanExpression(string asset, string siteURI, string assetToFush)
+        public string buildBanExpression(string assetPath, string siteURI, string assetToFush)
         {
 
             string hostPath = string.Format(@"https://{0}",siteURI);
             _logger.DebugFormat("Site URI: {0}", hostPath);
             // Using '==' matches request directly for varnish entries where "~" conducts a regExp match
-            string banExpression = string.Format("req.http.host == \"{0}\" &&  req.url ~ \"/{1}/{2}\"", siteURI, asset, assetToFush);
+            string banExpression = string.Format("req.http.host == \"{0}\" &&  req.url ~ \"/{1}/{2}\"", siteURI, assetPath, assetToFush);
             _logger.DebugFormat("Returning banExpression: {0}", banExpression);
 
             return banExpression;

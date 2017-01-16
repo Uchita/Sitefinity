@@ -552,95 +552,34 @@
                         </li>
                     </asp:PlaceHolder>
                     <asp:PlaceHolder ID="phScreeningQuestionsTemplates" runat="server" Visible="false">
-                        <asp:Label ID="lbScreeningQuestionsTemplate" runat="server" AssociatedControlID="ddlJobTemplateID">
-                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral3" runat="server" SetLanguageCode="LabelSelectScreeningQuestionsTemplate" />
-                        </asp:Label>
                         <asp:UpdatePanel ID="upScreeningQuestions" runat="server">
                             <ContentTemplate>
-                                <asp:DropDownList runat="server" ID="ddlScreeningQuestionsTemplate" DataTextField="TemplateName"
-                                    DataValueField="ScreeningQuestionsTemplateId" CssClass="form-multiple-column"
-                                    OnSelectedIndexChanged="ddlScreeningQuestionsTemplate_SelectedIndexChanged" />
-                                <asp:PlaceHolder ID="phScreeningQuestions" runat="server" Visible="true">
-                                    <div>
-                                        <div class="custom-select">
-                                            <span>
-                                                <select name="cmbSQstns" id="cmbSQstns" class="form-multiple-column" onchange="javascript:showSQuestions(this.options[this.selectedIndex].value)">
-                                                    <option value="0">Please Choose...</option>
-                                                    <option value="1">Omegamedical - </option>
-                                                    <option value="2">Omegavave</option>
-                                                </select></span></div>
-                                        <span id="lblQstnTempalate">
-                                            <ul class="SQstTemp" id="QstnTemp1" style="display: block;">
-                                                <li><strong>When are you available to start?</strong>
-                                                    <input disabled="" type="radio" name="availability" value="male">
-                                                    &lt; 2 weeks
-                                                    <input disabled="" type="radio" name="availability" value="female">
-                                                    &lt; 4 weeks
-                                                    <input disabled="" type="radio" name="availability" value="other">
-                                                    &gt;1 month </li>
-                                                <li><strong>What is your expected annual salary?</strong>
-                                                    <input disabled="" type="radio" name="salary" value="male">
-                                                    65,000 - 75,000
-                                                    <input disabled="" type="radio" name="salary" value="female">
-                                                    75,000 - 85,000
-                                                    <input disabled="" type="radio" name="salary" value="other">
-                                                    85,000 - 1,00,000 </li>
-                                                <li><strong>Are you willing to relocate to UK?</strong>
-                                                    <input disabled="" type="radio" name="relocate" value="male">
-                                                    Yes
-                                                    <input disabled="" type="radio" name="relocate" value="female">
-                                                    No </li>
-                                                <li><strong>Sample Dropdown?</strong>
-                                                    <select name="drpSample" id="Select1" class="form-multiple-column">
-                                                        <option disabled="" value="0">Please Choose...</option>
-                                                        <option disabled="" value="1">First Option</option>
-                                                        <option disabled="" value="2">Second Option</option>
-                                                    </select>
+                                <li class="form-line" id="Li2">
+                                    <asp:Label ID="lbScreeningQuestionsTemplate" runat="server" AssociatedControlID="ddlJobTemplateID">
+                                        <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral3" runat="server" SetLanguageCode="LabelSelectScreeningQuestionsTemplate" />
+                                    </asp:Label>
+                                    <asp:DropDownList runat="server" ID="ddlScreeningQuestionsTemplate" DataTextField="TemplateName"
+                                        DataValueField="ScreeningQuestionsTemplateId" CssClass="form-multiple-column"
+                                        OnSelectedIndexChanged="ddlScreeningQuestionsTemplate_SelectedIndexChanged" AutoPostBack="true" />
+                                    <asp:PlaceHolder ID="phScreeningQuestions" runat="server" Visible="true">
+                                        <asp:Repeater ID="rptScreeningQuestions" runat="server" OnItemDataBound="rptScreeningQuestions_ItemDataBound">
+                                            <HeaderTemplate>
+                                                <div>
+                                                    <span id="lblQstnTempalate">
+                                                        <ul class="SQstTemp" id="QstnTemp1" style="display: block;">
+                                            </HeaderTemplate>
+                                            <ItemTemplate>
+                                                <li><strong>
+                                                    <asp:Literal ID="ltQuestion" runat="server" /></strong>
+                                                    <asp:Literal ID="ltOptions" runat="server" />
                                                 </li>
-                                                <li><strong>Sample Text fields?</strong>
-                                                    <input readonly="" name="txtText" type="text" id="Text1" autocomplete="off">
-                                                </li>
-                                                <li><strong>Sample TextArea?</strong>
-                                                    <textarea readonly="" id="Textarea1"></textarea>
-                                                </li>
-                                            </ul>
-                                            <ul class="SQstTemp" id="QstnTemp2" style="display: none;">
-                                                <li><strong>Sample Dropdown?</strong>
-                                                    <select name="drpSample" id="drpSample" class="form-multiple-column">
-                                                        <option disabled="" value="0">Please Choose...</option>
-                                                        <option disabled="" value="1">First Option</option>
-                                                        <option disabled="" value="2">Second Option</option>
-                                                    </select>
-                                                </li>
-                                                <li><strong>Sample Text fields?</strong>
-                                                    <input name="txtText" readonly="" type="text" id="txtText" autocomplete="off">
-                                                </li>
-                                                <li><strong>When are you available to start?</strong>
-                                                    <input type="radio" disabled="" name="availability" value="male">
-                                                    &lt; 2 weeks
-                                                    <input type="radio" disabled="" name="availability" value="female">
-                                                    &lt; 4 weeks
-                                                    <input type="radio" disabled="" name="availability" value="other">
-                                                    &gt;1 month </li>
-                                                <li><strong>What is your expected annual salary?</strong>
-                                                    <input type="radio" disabled="" name="salary" value="male">
-                                                    65,000 - 75,000
-                                                    <input type="radio" disabled="" name="salary" value="female">
-                                                    75,000 - 85,000
-                                                    <input type="radio" disabled="" name="salary" value="other">
-                                                    85,000 - 1,00,000 </li>
-                                                <li><strong>Are you willing to relocate to UK?</strong>
-                                                    <input type="radio" disabled="" name="relocate" value="male">
-                                                    Yes
-                                                    <input type="radio" disabled="" name="relocate" value="female">
-                                                    No </li>
-                                                <li><strong>Sample TextArea?</strong>
-                                                    <textarea readonly="" id="txtTextArea"></textarea>
-                                                </li>
-                                            </ul>
-                                        </span>
-                                    </div>
-                                </asp:PlaceHolder>
+                                            </ItemTemplate>
+                                            <FooterTemplate>
+                                                </ul> </span> </div>
+                                            </FooterTemplate>
+                                        </asp:Repeater>
+                                    </asp:PlaceHolder>
+                                </li>
                             </ContentTemplate>
                         </asp:UpdatePanel>
                     </asp:PlaceHolder>

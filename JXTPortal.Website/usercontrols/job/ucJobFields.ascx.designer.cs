@@ -1480,6 +1480,15 @@ namespace JXTPortal.Website.Admin.UserControls {
         protected global::System.Web.UI.WebControls.PlaceHolder phScreeningQuestionsTemplates;
         
         /// <summary>
+        /// upScreeningQuestions control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upScreeningQuestions;
+        
+        /// <summary>
         /// lbScreeningQuestionsTemplate control.
         /// </summary>
         /// <remarks>
@@ -1498,15 +1507,6 @@ namespace JXTPortal.Website.Admin.UserControls {
         protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral3;
         
         /// <summary>
-        /// upScreeningQuestions control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upScreeningQuestions;
-        
-        /// <summary>
         /// ddlScreeningQuestionsTemplate control.
         /// </summary>
         /// <remarks>
@@ -1523,6 +1523,15 @@ namespace JXTPortal.Website.Admin.UserControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder phScreeningQuestions;
+        
+        /// <summary>
+        /// rptScreeningQuestions control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptScreeningQuestions;
         
         /// <summary>
         /// ltJobAdvertisementOption control.

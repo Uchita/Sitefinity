@@ -26,6 +26,7 @@ using JXTPortal.Common;
 
 using JXTPortal.Service.Dapper;
 using JXTPortal.Data.Dapper.Entities.ScreeningQuestions;
+using System.Text.RegularExpressions;
 #endregion
 
 namespace JXTPortal.Website.Admin.UserControls
@@ -1430,14 +1431,15 @@ namespace JXTPortal.Website.Admin.UserControls
 
         private void LoadScreeningQuesitonsTemplate()
         {
+            int advertiserId = (IsAdmin) ? AdvertiserID : SessionData.AdvertiserUser.AdvertiserId;
             GlobalSettings globalSetting = GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId).FirstOrDefault();
             ddlScreeningQuestionsTemplate.Items.Clear();
 
-            if (globalSetting.EnableScreeningQuestions)
+           if (globalSetting.EnableScreeningQuestions)
             {
                 phScreeningQuestionsTemplates.Visible = true;
 
-                List<ScreeningQuestionsTemplatesEntity> screeningQuestionsTemplates = ScreeningQuestionsTemplatesService.SelectByAdvertiserId(SessionData.AdvertiserUser.AdvertiserId);
+                List<ScreeningQuestionsTemplatesEntity> screeningQuestionsTemplates = ScreeningQuestionsTemplatesService.SelectByAdvertiserId(advertiserId);
 
                 ddlScreeningQuestionsTemplate.DataSource = screeningQuestionsTemplates;
                 ddlScreeningQuestionsTemplate.DataBind();
@@ -1452,7 +1454,65 @@ namespace JXTPortal.Website.Admin.UserControls
 
         protected void ddlScreeningQuestionsTemplate_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            phScreeningQuestions.Visible = (ddlScreeningQuestionsTemplate.SelectedIndex != 0);
+            if (!string.IsNullOrEmpty(ddlScreeningQuestionsTemplate.SelectedValue))
+            {
+                List<ScreeningQuestionsEntity> screeningQuestions = ScreeningQuestionsService.SelectByScreeningQuestionsTemplateIdLanguageId(Convert.ToInt32(ddlScreeningQuestionsTemplate.SelectedValue), SessionData.Site.DefaultLanguageId);
+                rptScreeningQuestions.DataSource = screeningQuestions;
+                rptScreeningQuestions.DataBind();
+            }
+            else
+            {
+                rptScreeningQuestions.DataSource = null;
+                rptScreeningQuestions.DataBind();
+            }
+        }
+
+        protected void rptScreeningQuestions_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                Literal ltQuestion = e.Item.FindControl("ltQuestion") as Literal;
+                Literal ltOptions = e.Item.FindControl("ltOptions") as Literal;
+
+                ScreeningQuestionsEntity screeningQuestion = e.Item.DataItem as ScreeningQuestionsEntity;
+
+                ltQuestion.Text = HttpUtility.HtmlEncode(screeningQuestion.QuestionTitle);
+
+                StringBuilder options = new StringBuilder();
+                Regex regex = new Regex("(\".*?\"|[^\",\\s]+)(?=\\s*,|\\s*$)");
+                MatchCollection matches = regex.Matches(screeningQuestion.Options);
+
+                if (screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.Dropdown)
+                {
+                    foreach (Match m in matches)
+                    {
+                        options.AppendLine(string.Format("<option>{0}</option>", HttpUtility.HtmlEncode(m.Value)));
+
+                        ltOptions.Text = string.Format("<select>{0}</select>", options);
+                    }
+                }
+
+                if (screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.MultiSelect)
+                {
+                    foreach (Match m in matches)
+                    {
+                        options.AppendLine(string.Format("<input type=\"checkbox\" name=\"\" value=\"\" disabled>{0}&nbsp;", HttpUtility.HtmlEncode(m.Value)));
+
+                        ltOptions.Text = options.ToString();
+                    }
+                }
+
+                if (screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.RadioButtons)
+                {
+                    foreach (Match m in matches)
+                    {
+                        options.AppendLine(string.Format("<input type=\"radio\" name=\"\" value=\"\" disabled>{0}&nbsp;", HttpUtility.HtmlEncode(m.Value)));
+
+                        ltOptions.Text = options.ToString();
+                    }
+                }
+            }
         }
 
         private void LoadWorkType()
@@ -2383,7 +2443,7 @@ namespace JXTPortal.Website.Admin.UserControls
 
                     if (JobsService.Insert(job))
                     {
-                        // Insert Screeing Questions into job
+                        // Insert Screening Questions into job
                         if (job.ScreeningQuestionsTemplateId.HasValue)
                         {
                             List<ScreeningQuestionsEntity> screeningQuestions = ScreeningQuestionsService.SelectByScreeningQuestionsTemplateId(job.ScreeningQuestionsTemplateId.Value);

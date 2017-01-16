@@ -16,6 +16,7 @@ namespace JXTPortal.Service.Dapper
         ScreeningQuestionsEntity SelectByScreeningQuestionId(int screeningQuestionId);
         List<ScreeningQuestionsEntity> SelectByScreeningQuestionsTemplateId(int templateId);
         List<ScreeningQuestionsEntity> SelectByScreeningQuestionsTemplateIdLanguageId(int templateId, int languageId);
+        List<ScreeningQuestionsEntity> SelectByIds(List<int> screeningQuestionIds);
     }
 
     public class ScreeningQuestionsService : IScreeningQuestionsService
@@ -64,6 +65,11 @@ namespace JXTPortal.Service.Dapper
         public List<ScreeningQuestionsEntity> SelectByScreeningQuestionsTemplateIdLanguageId(int templateId, int languageId)
         {
             return screeningQuestionsRepository.SelectByScreeningQuestionsTemplateIdLanguageId(templateId, languageId);
+        }
+
+        public List<ScreeningQuestionsEntity> SelectByIds(List<int> screeningQuestionIds)
+        {
+            return screeningQuestionsRepository.SelectByIds(screeningQuestionIds);
         }
     }
 }

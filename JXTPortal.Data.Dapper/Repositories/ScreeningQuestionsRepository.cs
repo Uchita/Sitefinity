@@ -14,6 +14,7 @@ namespace JXTPortal.Data.Dapper.Repositories
         ScreeningQuestionsEntity SelectByScreeningQuestionId(int screeningQuestionId);
         List<ScreeningQuestionsEntity> SelectByScreeningQuestionsTemplateIdLanguageId(int templateId, int languageId);
         List<ScreeningQuestionsEntity> SelectByScreeningQuestionsTemplateId(int templateId);
+        List<ScreeningQuestionsEntity> SelectByIds(List<int> screeningQuestionIds);
     }
 
     public class ScreeningQuestionsRepository : BaseEntityOperation<ScreeningQuestionsEntity>, IScreeningQuestionsRepository
@@ -68,6 +69,19 @@ namespace JXTPortal.Data.Dapper.Repositories
                                             ON sqm.ScreeningQuestionId = sq.ScreeningQuestionId WHERE {1} ORDER BY ScreeningQuestionIndex", columns, whereClause);
                 var entity = dbConnection.Query<ScreeningQuestionsEntity>(query, null).ToList();
                 return entity;
+            }
+        }
+
+        public List<ScreeningQuestionsEntity> SelectByIds(List<int> screeningQuestionIds)
+        {
+            using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
+            {
+                dbConnection.Open();
+                string columns = IdColumnName + ", " + string.Join(", ", ColumnNames);
+                string whereClause = string.Format("ScreeningQuestionId IN ({0})", string.Join(",", screeningQuestionIds));
+                var query = string.Format("SELECT {0} FROM dbo.{1} WHERE {2}", columns, TableName, whereClause);
+                var entity = dbConnection.Query<ScreeningQuestionsEntity>(query, null);
+                return entity as List<ScreeningQuestionsEntity>;
             }
         }
     }

@@ -1456,7 +1456,7 @@ namespace JXTPortal.Website
         {
             if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName))
             {
-                _logger.WarnFormat("User requries Email, firstname and lastname. email: {0}, Firstname{1}, lastname{2}", email, firstName, lastName);
+                _logger.WarnFormat("User requires Email, firstname and lastname. email: {0}, Firstname:{1}, lastname:{2}", email, firstName, lastName);
                 return LoginErrorCodeGet("InputError");
             }
             int loginErrorCode = 0;

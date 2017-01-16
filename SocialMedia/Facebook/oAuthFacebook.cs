@@ -239,7 +239,7 @@ private string authorize_url = SocialMedia.Resource1.fb_authroize_with_permissio
 
         if (string.IsNullOrEmpty(ClientID) || string.IsNullOrEmpty(RedirectURI) || string.IsNullOrEmpty(ClientSecret) || string.IsNullOrEmpty(Code))
         {
-            _logger.WarnFormat("Cannotretrieve user info: {0}, Redirect: {1}, Permissions: {2}", ClientID, RedirectURI, Permissions);
+            _logger.WarnFormat("Cannot retrieve user info: {0}, Redirect: {1}, Code: {2}", ClientID, RedirectURI, Code);
             return "Error: Please provide ClientID, Redirect URI, ClientSecret & Code";
         }
 
@@ -304,7 +304,7 @@ private string authorize_url = SocialMedia.Resource1.fb_authroize_with_permissio
         HttpWebRequest webrequest = WebRequest.Create(url) as HttpWebRequest;
 
         HttpWebResponse webresponse = webrequest.GetResponse() as HttpWebResponse;
-        _logger.DebugFormat("Http Response: {0}", webresponse.StatusDescription);
+        _logger.DebugFormat("Http Response Status: {0}", webresponse.StatusDescription);
 
         string result = string.Empty;
 
@@ -314,9 +314,13 @@ private string authorize_url = SocialMedia.Resource1.fb_authroize_with_permissio
             StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8);
        
             result = reader.ReadToEnd();
+            _logger.DebugFormat("Raw Http Response: {0}", result);
+            
             result = result.Replace(@"u0040", "@");
 
             result = Regex.Unescape(result);
+
+            _logger.DebugFormat("Unescaped Http Response: {0}", result);
         }
 
         return (string.IsNullOrEmpty(result) ? "Error: Request Failed" : result);
@@ -377,12 +381,11 @@ private string authorize_url = SocialMedia.Resource1.fb_authroize_with_permissio
 
         WebRequest request = WebRequest.Create(url);
         WebResponse response = request.GetResponse();
-        _logger.DebugFormat("Request Response: {0}", response);
-
+        
         StreamReader sr = new StreamReader(response.GetResponseStream());
 
         string userJsonObj = sr.ReadToEnd();
-
+        _logger.DebugFormat("Request Response: {0}", userJsonObj);
         FacebookUserDetails userObj = new JavaScriptSerializer().Deserialize<FacebookUserDetails>(userJsonObj);
 
         sr.Close();

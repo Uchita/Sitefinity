@@ -107,6 +107,12 @@ namespace JXTPosterTransform.Library.Models
             public string Username { get; set; }
             [Description("Password")]
             public string Password { get; set; }
+
+            [Description("Class/SubClass CategoryListID")]
+            public string ProfRoleCategoryListID { get; set; }
+            [Description("Locations CategoryListID")]
+            public string LocationCategoryListID { get; set; }
+
         }
 
     }

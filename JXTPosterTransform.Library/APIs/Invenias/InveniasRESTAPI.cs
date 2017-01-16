@@ -112,14 +112,55 @@ namespace JXTPosterTransform.Library.APIs.Invenias
 
         }
 
-        public bool AdvertisementCreate(InveniasAdvertisementsValue ad)
+        public List<T> NavigationPropertyGet<T>(string navigatorEntityName, string navigatorID, string pathEntityName)
         {
-            JavaScriptSerializer ser = new JavaScriptSerializer();
-            string adJson = ser.Serialize(ad);
+            string targetURL = string.Format("https://publicapi.invenias.com/v1/{0}({1})/{2}", navigatorEntityName, navigatorID, pathEntityName);
 
-            HttpPost("https://publicapi.invenias.com/v1/Advertisements", adJson, true);
+            string pathEntitysJson = HttpGet(targetURL, true);
 
-            return true;
+            if (!string.IsNullOrEmpty(pathEntitysJson))
+            {
+                JavaScriptSerializer ser = new JavaScriptSerializer();
+                InveniasValueRoot<T> token = (InveniasValueRoot<T>)ser.Deserialize(pathEntitysJson, typeof(InveniasValueRoot<T>));
+
+                return token.value;
+            }
+            return null;
+
+        }
+
+        public T EntityGet<T>(string entityName, string entityID)
+        {
+            string targetURL = string.Format("https://publicapi.invenias.com/v1/{0}({1})", entityName, entityID);
+
+            string pathEntitysJson = HttpGet(targetURL, true);
+
+            if (!string.IsNullOrEmpty(pathEntitysJson))
+            {
+                JavaScriptSerializer ser = new JavaScriptSerializer();
+                T entityResult = (T)ser.Deserialize(pathEntitysJson, typeof(T));
+
+                if(entityResult != null)
+                    return entityResult;
+            }
+            return default(T);
+
+        }
+
+        public List<InveniaCategoryListEntryValue> AdvertisementCategoryEntriesGet(string advertisementID)
+        {
+            string targetURL = "https://publicapi.invenias.com/v1/Advertisements(" + advertisementID + ")/Categories";
+
+            string locations = HttpGet(targetURL, true);
+
+            if (!string.IsNullOrEmpty(locations))
+            {
+                JavaScriptSerializer ser = new JavaScriptSerializer();
+                InveniaCategoryListEntryRoot token = (InveniaCategoryListEntryRoot)ser.Deserialize(locations, typeof(InveniaCategoryListEntryRoot));
+
+                return token.value;
+            }
+            return null;
         }
 
         public bool AssignmentCreate(InveniasAssignmentValue ad)
@@ -305,7 +346,6 @@ namespace JXTPosterTransform.Library.APIs.Invenias
 
             return true;
         }
-
 
         public bool RelationCreate(string entity1Name, string entity1ID, string entity2Name, string entity2Ref)
         {

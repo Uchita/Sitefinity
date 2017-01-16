@@ -39,6 +39,23 @@ namespace JXTPosterTransform.Library.APIs.Invenias
         public string refresh_token { get; set; }
     }
 
+    public class JXTCLAModel
+    {
+        public string CountryName { get; set; }
+        public string LocationName { get; set; }
+        public string AreaName { get; set; }
+    }
+
+    public class JXTPRModel
+    {
+        public string ProfessionName { get; set; }
+        public string RoleName { get; set; }
+    }
+
+    public class InveniasValueRoot<T>
+    {
+        public List<T> value { get; set; }
+    }
 
     #region Advertisement
     public class InveniasAdvertisementsValue
@@ -67,7 +84,7 @@ namespace JXTPosterTransform.Library.APIs.Invenias
         public string IsCompanyProfileVisible { get; set; }
         public string IsPackagesRatesVisible { get; set; }
         public string IsPrimaryBusinessPhoneVisible { get; set; }
-        public string IsPrimaryEmailVisible { get; set; }
+        public bool IsPrimaryEmailVisible { get; set; }
         public string IsPrimaryJobTitleVisible { get; set; }
         public string IsPrimaryMobilePhoneVisible { get; set; }
         public string IsSecondaryBusinessPhoneVisible { get; set; }
@@ -93,7 +110,7 @@ namespace JXTPosterTransform.Library.APIs.Invenias
         public string Summary { get; set; }
         public string Twitter { get; set; }
         public string UnpublishedBy { get; set; }
-        public string UseGenericEmail { get; set; }
+        public bool UseGenericEmail { get; set; }
         public string WebPage { get; set; }
         public string XING { get; set; }
     }
@@ -164,6 +181,61 @@ namespace JXTPosterTransform.Library.APIs.Invenias
 
     #endregion
 
+    #region Company
+
+    public class InveniasCompanyValue
+    {
+       //public string AccountsPhone { get; set; }
+       //public string BoardEx { get; set; }
+       //public string BodyFieldId { get; set; }
+       //public string BusinessPhone2 { get; set; }
+       //public string ClientReference { get; set; }
+       //public string ClientStatus { get; set; }
+       //public string CompanyNumber { get; set; }
+       //public string CompanyProfileFieldId { get; set; }
+       //public string CreatorId { get; set; }
+       //public string DateCreated { get; set; }
+       //public string DateModified { get; set; }
+       //public string Email2 { get; set; }
+       //public string Email3 { get; set; }
+       //public string ExternalCompanyProfileFieldId { get; set; }
+       //public string ExternalId1 { get; set; }
+       //public string ExternalId2 { get; set; }
+       //public string ExternalId3 { get; set; }
+       //public string Facebook { get; set; }
+       //public string Id { get; set; }
+       //public string InternalComments { get; set; }
+       //public string IsClient { get; set; }
+       //public string ISDN { get; set; }
+       //public string IsDoNotContactChecked { get; set; }
+       //public string IsDoNotMailshotChecked { get; set; }
+       //public string IsPartner { get; set; }
+       //public string IsPlaceOfStudy { get; set; }
+       //public string IsSupplier { get; set; }
+       //public string LinkedIn { get; set; }
+       //public string ModifierId { get; set; }
+       public string Name { get; set; }
+       //public string OffMarketEndDate { get; set; }
+       //public string OffMarketOwnerId { get; set; }
+       //public string OffMarketReason { get; set; }
+       //public string OffMarketStatus { get; set; }
+       //public string OwnerId { get; set; }
+       //public string PaymentTerms { get; set; }
+       //public string PrimaryContactIndex { get; set; }
+       //public string RecordPicture { get; set; }
+       //public string RegistrationNumber { get; set; }
+       //public string SalesPhone { get; set; }
+       //public string Skype { get; set; }
+       //public string SupportPhone { get; set; }
+       //public string Synonyms { get; set; }
+       //public string Twitter { get; set; }
+       //public string VATNumber { get; set; }
+       //public string WebPage { get; set; }
+       //public string XING { get; set; }
+    }
+
+    #endregion
+
     #region Loactions
 
     public class InveniasLocationValue
@@ -197,8 +269,8 @@ namespace JXTPosterTransform.Library.APIs.Invenias
     #region Interim Rates
     public class InveniaInterimRatesValue
     {
-        public double BillAmountFrom { get; set; }
-        public double BillAmountTo { get; set; }
+        public double? BillAmountFrom { get; set; }
+        public double? BillAmountTo { get; set; }
         public string BillCurrency { get; set; }
         public string CreatorId { get; set; }
         public string DateCreated { get; set; }
@@ -226,8 +298,8 @@ namespace JXTPosterTransform.Library.APIs.Invenias
     #region Non-Exec Package
     public class InveniaNonExecPackageValue
     {
-        public double AmountFrom { get; set; }
-        public double AmountTo { get; set; }
+        public double? AmountFrom { get; set; }
+        public double? AmountTo { get; set; }
         public string CreatorId { get; set; }
         public string Currency { get; set; }
         public string DateCreated { get; set; }
@@ -249,8 +321,8 @@ namespace JXTPosterTransform.Library.APIs.Invenias
     #region Permanent Packages
     public class InveniaPermanentPackageValue
     {
-        public double AmountFrom { get; set; }
-        public double AmountTo { get; set; }
+        public double? AmountFrom { get; set; }
+        public double? AmountTo { get; set; }
         public string CreatorId { get; set; }
         public string Currency { get; set; }
         public string DateCreated { get; set; }
@@ -312,25 +384,49 @@ namespace JXTPosterTransform.Library.APIs.Invenias
 
     #endregion
 
+    #region NoteField
 
+    public class InveniaNoteFieldValue
+    {
+        public string CreatorId { get; set; }
+        public string DateCreated { get; set; }
+        public string DateModified { get; set; }
+        public string Id { get; set; }
+        public string ModifierId { get; set; }
+        public string NoteFieldType { get; set; }
+        public string TextBody { get; set; }
+    }
+
+    #endregion
 
     public class InveniasPTModel
     {
         public InveniasAdvertisementsValue advertisement { get; set; }
+        public string advertisementDescription { get; set; }
         public InveniasAssignmentValue assignment { get; set; }
-        public InveniasLocationValue location { get; set; }
-        public InveniaCategoryListValue category { get; set; }
+        public InveniasCompanyValue company { get; set; }
+        public JXTCLAModel location { get; set; }
+        public List<JXTPRModel> profRole { get; set; }
 
-        public double SalaryBaseOnPackage_Min { get; set; }
-        public double SalaryBaseOnPackage_Max { get; set; } 
+        public double? SalaryBaseOnPackage_Min { get; set; }
+        public double? SalaryBaseOnPackage_Max { get; set; } 
 
         //reference only if needed for manipulations
         public InveniaInterimRatesValue interim_rate { get; set; }
         public InveniaNonExecPackageValue non_exec_package { get; set; }
         public InveniaPermanentPackageValue perm_package { get; set; }
 
-
-
+        //GETTERS
+        public string GET_Application
+        {
+            get
+            {
+                if (advertisement.UseGenericEmail)
+                    return advertisement.ApplicationsEmail;
+                else
+                    return advertisement.PrimaryEmail;
+            }
+        }
     }
 
 

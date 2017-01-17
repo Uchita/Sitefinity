@@ -68,7 +68,7 @@ private string authorize_url = SocialMedia.Resource1.fb_authroize_with_permissio
             return "Error: Please provide ClientID, Redirect URI & Permissions required";
         }
 
-        string url = string.Format(authorize_url, ClientID, redirectURI, System.Web.HttpUtility.UrlEncode(Permissions));
+        string url = string.Format(authorize_url, ClientID, redirectURI, Permissions);
         _logger.DebugFormat("Authorisation URL is: {0}", url);
         return url;
     }
@@ -371,8 +371,8 @@ private string authorize_url = SocialMedia.Resource1.fb_authroize_with_permissio
     public FacebookUserDetails RetreiveUserDetails(string token)
     {
         _logger.Info("Retrieving Facebook User Details\n");
-    
-        string url = "https://graph.facebook.com/me?access_token=" + token;
+
+        string url = string.Format(SocialMedia.Resource1.fb_userdetails_url, token);
         _logger.InfoFormat("Request url: {0}", url);
 
         WebRequest request = WebRequest.Create(url);

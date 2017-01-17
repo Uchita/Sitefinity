@@ -121,10 +121,10 @@
     <value>https://graph.facebook.com/oauth/access_token?client_id={0}&amp;redirect_uri={1}&amp;client_secret={2}&amp;code={3}</value>
   </data>
   <data name="fb_authroize" xml:space="preserve">
-    <value>https://www.facebook.com/dialog/oauth/?client_id={0}&amp;redirect_uri={1}&amp;state=profile&amp;scope=email</value>
+    <value>https://www.facebook.com/dialog/oauth?client_id={0}&amp;redirect_uri={1}&amp;state=profile&amp;scope=email</value>
   </data>
   <data name="fb_authroize_with_permissions" xml:space="preserve">
-    <value>https://www.facebook.com/dialog/oauth/?auth_type=rerequest&amp;client_id={0}&amp;redirect_uri={1}&amp;state=profile&amp;scope={2}</value>
+    <value>https://www.facebook.com/dialog/oauth?auth_type=rerequest&amp;client_id={0}&amp;redirect_uri={1}&amp;state=profile&amp;scope=public_profile</value>
   </data>
   <data name="fb_userinfo" xml:space="preserve">
     <value>https://graph.facebook.com/me?access_token={0}&amp;fields=first_name,last_name,email,work,education,website</value>
@@ -181,7 +181,7 @@
     <value>https://api.twitter.com/oauth/request_token</value>
   </data>
   <data name="fb_authroize_with_permissions_code" xml:space="preserve">
-    <value>https://www.facebook.com/dialog/oauth/?client_id={0}&amp;response_type=code&amp;redirect_uri={1}&amp;scope={2}</value>
+    <value>https://www.facebook.com/dialog/oauth?client_id={0}&amp;response_type=code&amp;redirect_uri={1}&amp;scope={2}</value>
   </data>
   <data name="li_oauth2_authorization_login" xml:space="preserve">
     <value>https://www.linkedin.com/uas/oauth2/authorization?response_type=code&amp;client_id={0}&amp;scope=r_basicprofile%20r_fullprofile%20r_contactinfo%20r_emailaddress&amp;state=DCEEFWF45453sdffef424&amp;redirect_uri={1}</value>
@@ -190,6 +190,9 @@
     <value>https://graph.facebook.com/{0}/permissions?access_token={1}</value>
   </data>
   <data name="default_FBRequestPermissions" xml:space="preserve">
-    <value>email, public_profile</value>
+    <value>email,public_profile</value>
+  </data>
+  <data name="fb_userdetails_url" xml:space="preserve">
+    <value>https://graph.facebook.com/me?fields=email,first_name,last_name&amp;access_token={0}</value>
   </data>
 </root>

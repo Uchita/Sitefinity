@@ -118,7 +118,7 @@
             </li>
 
             <%--SectionIO Buttons--%>
-            <li class="form-line">
+            <%--<li class="form-line">
                 <div class="form-input-wide">
                     <div class="form-buttons-wrapper">
                         <asp:Button ID="btnFlushJs" runat="server" Text="Flush Js" OnClick="btnFlushJs_Click"
@@ -129,7 +129,7 @@
                             CssClass="form-submit-button" />
                     </div>
                 </div>
-            </li>
+            </li>--%>
 
         </ul>
     </div>

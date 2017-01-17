@@ -342,26 +342,28 @@ public partial class SitesEdit : System.Web.UI.Page
             Response.End();            
         }
     }
-    
-    protected void btnFlushJs_Click(object sender, EventArgs e)
-    {
-        FlushAssets(AssetClass.js);
-    }
 
-    protected void btnFlushCss_Click(object sender, EventArgs e)
-    {
-        FlushAssets(AssetClass.css);
-    }
+    #region SectionIO cacheFlushButtons
+    //protected void btnFlushJs_Click(object sender, EventArgs e)
+    //{
+    //    FlushAssets(AssetClass.js);
+    //}
 
-    protected void btnFlushAll_Click(object sender, EventArgs e)
-    {
-        FlushAssets(AssetClass.all);
-    }
+    //protected void btnFlushCss_Click(object sender, EventArgs e)
+    //{
+    //    FlushAssets(AssetClass.css);
+    //}
 
-    private void FlushAssets(AssetClass asset)
-    {  
-        CacheFlusher.FlushAssetType(asset, Request.Url.Host, GetSiteFTPFolder());
-    }
+    //protected void btnFlushAll_Click(object sender, EventArgs e)
+    //{
+    //    FlushAssets(AssetClass.all);
+    //}
+
+    //private void FlushAssets(AssetClass asset)
+    //{  
+    //    CacheFlusher.FlushAssetType(asset, Request.Url.Host, GetSiteFTPFolder());
+    //}
+    #endregion;
 
     private string GetSiteFTPFolder()
     {

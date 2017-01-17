@@ -159,6 +159,8 @@ private string authorize_url = SocialMedia.Resource1.fb_authroize_with_permissio
 
     public string oAuth2GetProfileHTML(string profile, string logourl)
     {
+        _logger.Info("oAuth2GetProfileHTML() Started");
+
         if (profile.StartsWith("Error:") || profile.StartsWith("The remote server returned an error:"))
         {
             return profile;
@@ -235,6 +237,8 @@ private string authorize_url = SocialMedia.Resource1.fb_authroize_with_permissio
 
     public string GetUserInfo(out string accesstoken)
     {
+        _logger.Info("GetUserInfo() Started!");
+
         accesstoken = string.Empty;
 
         if (string.IsNullOrEmpty(ClientID) || string.IsNullOrEmpty(RedirectURI) || string.IsNullOrEmpty(ClientSecret) || string.IsNullOrEmpty(Code))
@@ -244,6 +248,7 @@ private string authorize_url = SocialMedia.Resource1.fb_authroize_with_permissio
         }
 
         string url = string.Format(access_token_url, ClientID, HttpUtility.UrlEncode(RedirectURI), ClientSecret, Code);
+        _logger.DebugFormat("Get USer Info URL: {0}(1}{2}{3}{4}", access_token_url, ClientID, HttpUtility.UrlEncode(RedirectURI), "*****[secret]", "****[code]");
 
         try
         {
@@ -255,9 +260,9 @@ private string authorize_url = SocialMedia.Resource1.fb_authroize_with_permissio
                 Stream stream = webresponse.GetResponseStream();
                 StreamReader reader = new StreamReader(stream);
                 string result = reader.ReadToEnd();
-                
+                _logger.DebugFormat("GetUserInfo webresponse result: {0}", result);
 
-                if (!string.IsNullOrEmpty(result))
+                if (!string.IsNullOrWhiteSpace(result))
                 {
                     string[] strs = result.Split(new char[] { '&' }, StringSplitOptions.RemoveEmptyEntries);
                     foreach (string s in strs)
@@ -275,21 +280,25 @@ private string authorize_url = SocialMedia.Resource1.fb_authroize_with_permissio
                     }
                     else
                     {
-                        return "Error: Request Failed";
+                        _logger.Error("Access Token Request Failed: Access Token Null or Empty");
+                        return "Error: Request Failed";              
                     }
                 }
                 else
                 {
+                    _logger.Error("GetUserInfo Request Failed: Webresponse is Null or empty");
                     return "Error: Request Failed";
                 }
             }
             else
             {
+                _logger.Error("Webresponse returned 404");
                 return "Error: Request Failed";
             }
         }
         catch (Exception ex)
         {
+            _logger.Error(ex);
             return " GetUserInfoError: " + ex.Message + "<br />";
         }
     }
@@ -314,6 +323,7 @@ private string authorize_url = SocialMedia.Resource1.fb_authroize_with_permissio
             StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8);
        
             result = reader.ReadToEnd();
+            _logger.DebugFormat("RetrieveUserInfo Weresponse JSON: {0}", result);
             result = result.Replace(@"u0040", "@");
 
             result = Regex.Unescape(result);
@@ -342,7 +352,9 @@ private string authorize_url = SocialMedia.Resource1.fb_authroize_with_permissio
             response = request.GetResponse();
 
             StreamReader sr = new StreamReader(response.GetResponseStream());
+
             string tokenJsonObj = sr.ReadToEnd();
+            _logger.DebugFormat("RetreiveAccessTokenWithFBCode() responsed Json: {0}", tokenJsonObj);
 
             FacebookToken tokenObj = new JavaScriptSerializer().Deserialize<FacebookToken>(tokenJsonObj);
             string token = tokenObj.access_token;
@@ -377,11 +389,11 @@ private string authorize_url = SocialMedia.Resource1.fb_authroize_with_permissio
 
         WebRequest request = WebRequest.Create(url);
         WebResponse response = request.GetResponse();
-        _logger.DebugFormat("Request Response: {0}", response);
 
         StreamReader sr = new StreamReader(response.GetResponseStream());
 
         string userJsonObj = sr.ReadToEnd();
+        _logger.DebugFormat("Stream JSON Object: {0}", userJsonObj);
 
         FacebookUserDetails userObj = new JavaScriptSerializer().Deserialize<FacebookUserDetails>(userJsonObj);
 

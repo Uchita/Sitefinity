@@ -236,7 +236,6 @@ namespace JXTPortal.Website
 
         private bool SeekApplyJob(int jobid, string url, string DocumentName, string data, bool isHTML, out string errormsg)
         {
-
             // Check if member has applied for the job
             bool success = false;
             errormsg = string.Empty;
@@ -661,6 +660,7 @@ namespace JXTPortal.Website
         #region Facebook Methods
         private void OAuthCallBackFacebook(PortalEnums.SocialMedia.OAuthCallbackAction callbackAction, string code)
         {
+            _logger.InfoFormat("OAuthCallBack option: {0}", callbackAction);
             switch (callbackAction)
             {
                 case PortalEnums.SocialMedia.OAuthCallbackAction.Login:
@@ -678,7 +678,7 @@ namespace JXTPortal.Website
 
         private void LoginWithFacebook(string code)
         {
-            _logger.DebugFormat("Attempting login with facebook for: {0}", code);
+            _logger.DebugFormat("Attempting login with facebook with: {0}", code);
 
             //Get Integration Details
             AdminIntegrations.Integrations integrations = IntegrationsService.AdminIntegrationsForSiteGet(SessionData.Site.SiteId);
@@ -893,8 +893,6 @@ namespace JXTPortal.Website
 
         private void OAuthCallBackGoogle(PortalEnums.SocialMedia.OAuthCallbackAction callbackAction, string code)
         {
-            _logger.InfoFormat("oAuthCallbackAction: {0} and code: {1}", callbackAction, code);
-
             switch (callbackAction)
             {
                 case PortalEnums.SocialMedia.OAuthCallbackAction.Login:
@@ -912,7 +910,6 @@ namespace JXTPortal.Website
 
         private void LoginWithGoogle(string code)
         {
-            _logger.InfoFormat("Attempting to login with Google using, Code: {0}", code);
             //Get Integration Details
             AdminIntegrations.Integrations integrations = IntegrationsService.AdminIntegrationsForSiteGet(SessionData.Site.SiteId);
 
@@ -932,19 +929,11 @@ namespace JXTPortal.Website
                 loginErrorCode = ProcessSocialUser(ggUser.id, ggUser.email, ggUser.given_name, ggUser.family_name);
 
                 if (loginErrorCode == 0)
-                {
-                    _logger.Info("Google login Success!");
                     Response.Redirect("~/member/default.aspx", false);
-                }
                 else
-                {
-                    _logger.Warn("Google Login Failed!");
                     Response.Redirect("~/member/login.aspx?oautherror=" + loginErrorCode, false);
-                }
                 return;
             }
-
-            _logger.ErrorFormat("Google login error: {0}", LoginErrorCodeGet("Exception"));
             Response.Redirect("~/member/login.aspx?oautherror=" + LoginErrorCodeGet("Exception"), false);
             return;
         }
@@ -1010,11 +999,8 @@ namespace JXTPortal.Website
 
         private void OAuthCallBackLinkedIn(PortalEnums.SocialMedia.OAuthCallbackAction callbackAction, string code)
         {
-            _logger.InfoFormat("oAuhCallBackLinkedIn(), callbackaction: {0}, code: {1}", callbackAction, code);
-
             if (string.IsNullOrEmpty(Request["error"]) == false || string.IsNullOrEmpty(Request["error_description"]) == false)
             {
-                _logger.Error("oAuthRequest Error: OAuthorizationFailed");
                 Response.Redirect("~/member/login.aspx?oautherror=" + LoginErrorCodeGet("OAuthorizationFailed"), false);
             }
 
@@ -1035,7 +1021,6 @@ namespace JXTPortal.Website
 
         private void LoginWithLinkedIn(string code)
         {
-            _logger.InfoFormat("Login with linkedIn initialised with code: {0}",code);
             string linkedinconsumerkey = string.Empty;
             string linkedinconsumersecret = string.Empty;
 
@@ -1066,7 +1051,6 @@ namespace JXTPortal.Website
 
             if (string.IsNullOrEmpty(accessToken))
             {
-                _logger.Error("Access token returned Null or empty");
                 Response.Redirect("~/member/login.aspx?oautherror=" + LoginErrorCodeGet("OAuthorizationFailed"), false);
                 return;
             }
@@ -1088,15 +1072,9 @@ namespace JXTPortal.Website
             loginErrorCode = ProcessSocialUser(profile.id, email.Replace("\"", ""), profile.firstName, profile.lastName);
 
             if (loginErrorCode == 0)
-            {
-                _logger.Info("LinkedIn login success");
                 Response.Redirect("~/member/default.aspx", false);
-            }
             else
-            {
-                _logger.Error("LinkedIn Login Failed");
                 Response.Redirect("~/member/login.aspx?oautherror=" + loginErrorCode, false);
-            }
         }
 
         private void ApplyWithLinkedIn()

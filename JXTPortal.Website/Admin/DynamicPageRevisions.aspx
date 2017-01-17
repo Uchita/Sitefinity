@@ -2,9 +2,8 @@
     AutoEventWireup="True" CodeBehind="DynamicPageRevisions.aspx.cs" Inherits="JXTPortal.Website.Admin.DynamicPageRevisions" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder3" runat="server">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- External JS files -->
-    <!-- script type="text/javascript" src="http://www.psc.nsw.gov.au/include/js/jquery-1.7.min.js"></script -->
+    <%-- script type="text/javascript" src="http://www.psc.nsw.gov.au/include/js/jquery-1.7.min.js"></script --%>
     <script type="text/javascript" src="/admin/js/myjs.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <!-- External CSS files -->

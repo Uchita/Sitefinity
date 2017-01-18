@@ -2,8 +2,6 @@
     AutoEventWireup="True" CodeBehind="DynamicPageRevisions.aspx.cs" Inherits="JXTPortal.Website.Admin.DynamicPageRevisions" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder3" runat="server">
-    <!-- External JS files -->
-    <%-- script type="text/javascript" src="http://www.psc.nsw.gov.au/include/js/jquery-1.7.min.js"></script --%>
     <script type="text/javascript" src="/admin/js/myjs.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <!-- External CSS files -->

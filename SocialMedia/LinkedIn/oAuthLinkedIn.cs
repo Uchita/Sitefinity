@@ -106,7 +106,7 @@ public class oAuthLinkedIn : oAuthBase2
 
         if (profile.StartsWith("Error:") || profile.StartsWith("The remote server returned an error:"))
         {
-            _logger.ErrorFormat("LinkedIn Proile Error");
+            _logger.ErrorFormat("LinkedIn Profile Error");
             return profile;
         }
         if (email.StartsWith("Error:") || profile.StartsWith("The remote server returned an error:"))
@@ -593,7 +593,7 @@ public class oAuthLinkedIn : oAuthBase2
 
     public string RequestLoginToken(string clientkey, string redirectURL)
     {
-        _logger.InfoFormat("RequestLoginToken Initialised! Redirect URI: {0}", redirectURL);
+        _logger.InfoFormat("RequestLoginToken Initialised! ClientKey: {0} Redirect URI: {1}", clientkey, redirectURL);
         string returnString = string.Empty;
 
         if (string.IsNullOrEmpty(clientkey) == false)
@@ -624,11 +624,13 @@ public class oAuthLinkedIn : oAuthBase2
 
     public string GetUserInfo()
     {
+        _logger.Info("GetUserInfo() Started!");
+
         HttpWebResponse response = null;
 
         string url = people_url + ":(first-name,last-name,headline,summary,specialties,educations,industry,positions,interests,patents,languages,skills,certifications,courses,three-current-positions,three-past-positions,date-of-birth,phone-numbers,bound-account-types,im-accounts,main-address,twitter-accounts,primary-twitter-account,recommendations-received)";//":(first-name,last-name,headline,industry,positions,proposal-comments,associations,honors,interests,patents,languages,skills,certificates,educations,courses,three-current-positions,three-past-positions,date-of-birth)";
 
-        Debug.WriteLine("Token= " + this.Token);
+        _logger.DebugFormat("Token= " + this.Token);
 
         Uri uri = new Uri(url);
 
@@ -654,7 +656,7 @@ public class oAuthLinkedIn : oAuthBase2
         querystring += "&oauth_signature=" + HttpUtility.UrlEncode(sig);
         NameValueCollection qs = HttpUtility.ParseQueryString(querystring);
 
-        Debug.WriteLine("Token= " + Token);
+        _logger.DebugFormat("Token= " + Token);
 
         HttpWebRequest webRequest = null;
 
@@ -711,7 +713,7 @@ public class oAuthLinkedIn : oAuthBase2
         string url = people_email_url;
         _logger.InfoFormat("People Email URI: {0}", url);
 
-        Debug.WriteLine("Token= " + Token);
+        _logger.DebugFormat("Token= " + Token);
 
         Uri uri = new Uri(url);
 
@@ -737,7 +739,7 @@ public class oAuthLinkedIn : oAuthBase2
         querystring += "&oauth_signature=" + HttpUtility.UrlEncode(sig);
         NameValueCollection qs = HttpUtility.ParseQueryString(querystring);
 
-        Debug.WriteLine("Token= " + Token);
+        _logger.DebugFormat("Token= " + Token);
 
         HttpWebRequest webRequest = null;
 
@@ -789,9 +791,11 @@ public class oAuthLinkedIn : oAuthBase2
 
     public string WebResponseGet(string url, ref HttpWebResponse response)
     {
+        _logger.Info("WebResponseGet Started!");
+
         StreamReader responseReader = null;
 
-        Debug.WriteLine("Token= " + Token);
+        _logger.DebugFormat("Token= " + Token);
 
         Uri uri = new Uri(url);
 
@@ -870,7 +874,7 @@ public class oAuthLinkedIn : oAuthBase2
     {
         _logger.Info("Web Request with POST");
 
-        Debug.WriteLine("Token= " + Token);
+        _logger.DebugFormat("Token= " + Token);
 
         Uri uri = new Uri(url);
 
@@ -946,7 +950,7 @@ public class oAuthLinkedIn : oAuthBase2
     {
         _logger.Info("webrequest with put");
 
-        Debug.WriteLine("Token= " + Token);
+        _logger.DebugFormat("Token= " + Token);
 
         Uri uri = new Uri(url);
 
@@ -1021,7 +1025,7 @@ public class oAuthLinkedIn : oAuthBase2
     {
         _logger.Info("Request With Delete");
 
-        Debug.WriteLine("Token= " + Token);
+        _logger.DebugFormat("Token= " + Token);
 
         Uri uri = new Uri(url);
 

@@ -248,7 +248,7 @@ private string authorize_url = SocialMedia.Resource1.fb_authroize_with_permissio
         }
 
         string url = string.Format(access_token_url, ClientID, HttpUtility.UrlEncode(RedirectURI), ClientSecret, Code);
-        _logger.DebugFormat("Get USer Info URL: {0}(1}{2}{3}{4}", access_token_url, ClientID, HttpUtility.UrlEncode(RedirectURI), "*****[secret]", "****[code]");
+        _logger.DebugFormat("Get User Info URL: Token URL: {0}, ClientID: (1}, RedirectURL: {2}, Secret:{3}, Code: {4}", access_token_url, ClientID, HttpUtility.UrlEncode(RedirectURI), "*****", "****");
 
         try
         {

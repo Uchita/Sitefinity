@@ -51,19 +51,6 @@
                     <asp:TextBox ID="txtStagingSiteUrl" runat="server" ReadOnly="true" Width="300px" />(<%=URLPOSTFIX%>)
                 </div>
             </li>
-            <%--
-            <li class="form-line">
-                <label class="form-label-left">
-                    Mobile Site URL:
-                    <br />
-                    (Remove http://www.)
-                </label>
-                <div class="form-input">
-                    <asp:TextBox ID="txtMobileUrl" runat="server" Width="300px" />
-                    <!--<asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" Display="Dynamic"
-                        ControlToValidate="txtMobileUrl" ErrorMessage="Required"></asp:RequiredFieldValidator>--!><br />
-                </div>
-            </li>--%>
             <li class="form-line">
                 <label class="form-label-left">
                     Site Description:<span class="form-required">*</span>
@@ -116,21 +103,6 @@
                     </div>
                 </div>
             </li>
-
-            <%--SectionIO Buttons--%>
-            <%--<li class="form-line">
-                <div class="form-input-wide">
-                    <div class="form-buttons-wrapper">
-                        <asp:Button ID="btnFlushJs" runat="server" Text="Flush Js" OnClick="btnFlushJs_Click"
-                            CssClass="form-submit-button" />
-                       <asp:Button ID="btnFLushCss" runat="server" Text="Flush Css" onclick="btnFlushCss_Click"
-                            CssClass="form-submit-button" />
-                        <asp:Button ID="btnFlushAll" runat="server" Text="Flush All" OnClick="btnFlushAll_Click"
-                            CssClass="form-submit-button" />
-                    </div>
-                </div>
-            </li>--%>
-
         </ul>
     </div>
 </asp:Content>

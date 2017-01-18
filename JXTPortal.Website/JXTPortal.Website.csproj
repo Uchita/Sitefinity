@@ -961,6 +961,8 @@
     <Content Include="Admin\SiteNewsTypeEdit.aspx" />
     <Content Include="Admin\SiteSummary.aspx" />
     <Content Include="Admin\SiteSummaryEdit.aspx" />
+    <Content Include="Admin\styles\dashboard.css" />
+    <Content Include="Admin\styles\dynamicPageRevisions\styles.css" />
     <Content Include="Admin\TermsAndConditions.aspx" />
     <Content Include="Admin\advertiser\AdvertiserCredits.aspx" />
     <Content Include="Admin\advertiser\AdvertiserJobPricing.aspx" />

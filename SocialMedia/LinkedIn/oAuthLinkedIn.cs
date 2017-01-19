@@ -437,11 +437,8 @@ public class oAuthLinkedIn : oAuthBase2
 
         Uri uri = new Uri(url);
 
-        //string nonce = this.GenerateNonce();
-        //string timeStamp = this.GenerateTimeStamp();
         string nonce = GenerateNonce();
         string timeStamp = GenerateTimeStamp();
-
 
         //Generate Signature
         string sig = GenerateSignature(uri,

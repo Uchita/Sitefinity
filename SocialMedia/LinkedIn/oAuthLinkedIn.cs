@@ -44,9 +44,9 @@ public class oAuthLinkedIn : oAuthBase2
 
     public string oAuth2AccessToken(string code, string redirecturi, string clientid, string clientsecret)
     {
+        _logger.DebugFormat("Fetching acecss token: {0}", string.Format(access_token_url, code, redirecturi, clientid, "****"));
         string url = string.Format(access_token_url, code, redirecturi, clientid, clientsecret);
 
-        _logger.InfoFormat("WebRequest URL(access_token_url, code, redirecturi, clientid, clientsecret): {0}{0}{0}*****", access_token_url, code, redirecturi, clientid);
         return WebRequest(Method.POST, url, string.Empty);
     }
 
@@ -630,7 +630,7 @@ public class oAuthLinkedIn : oAuthBase2
 
         string url = people_url + ":(first-name,last-name,headline,summary,specialties,educations,industry,positions,interests,patents,languages,skills,certifications,courses,three-current-positions,three-past-positions,date-of-birth,phone-numbers,bound-account-types,im-accounts,main-address,twitter-accounts,primary-twitter-account,recommendations-received)";//":(first-name,last-name,headline,industry,positions,proposal-comments,associations,honors,interests,patents,languages,skills,certificates,educations,courses,three-current-positions,three-past-positions,date-of-birth)";
 
-        _logger.DebugFormat("Token= " + this.Token);
+        _logger.DebugFormat("Token= {0}", Token);
 
         Uri uri = new Uri(url);
 
@@ -656,7 +656,7 @@ public class oAuthLinkedIn : oAuthBase2
         querystring += "&oauth_signature=" + HttpUtility.UrlEncode(sig);
         NameValueCollection qs = HttpUtility.ParseQueryString(querystring);
 
-        _logger.DebugFormat("Token= " + Token);
+        _logger.DebugFormat("Token= {0}", Token);
 
         HttpWebRequest webRequest = null;
 
@@ -713,7 +713,7 @@ public class oAuthLinkedIn : oAuthBase2
         string url = people_email_url;
         _logger.InfoFormat("People Email URI: {0}", url);
 
-        _logger.DebugFormat("Token= " + Token);
+        _logger.DebugFormat("Token= {0}", Token);
 
         Uri uri = new Uri(url);
 
@@ -739,7 +739,7 @@ public class oAuthLinkedIn : oAuthBase2
         querystring += "&oauth_signature=" + HttpUtility.UrlEncode(sig);
         NameValueCollection qs = HttpUtility.ParseQueryString(querystring);
 
-        _logger.DebugFormat("Token= " + Token);
+        _logger.DebugFormat("Token= {0}", Token);
 
         HttpWebRequest webRequest = null;
 
@@ -795,7 +795,7 @@ public class oAuthLinkedIn : oAuthBase2
 
         StreamReader responseReader = null;
 
-        _logger.DebugFormat("Token= " + Token);
+        _logger.DebugFormat("Token= {0}", Token);
 
         Uri uri = new Uri(url);
 
@@ -874,7 +874,7 @@ public class oAuthLinkedIn : oAuthBase2
     {
         _logger.Info("Web Request with POST");
 
-        _logger.DebugFormat("Token= " + Token);
+        _logger.DebugFormat("Token= {0}", Token);
 
         Uri uri = new Uri(url);
 
@@ -950,7 +950,7 @@ public class oAuthLinkedIn : oAuthBase2
     {
         _logger.Info("webrequest with put");
 
-        _logger.DebugFormat("Token= " + Token);
+        _logger.DebugFormat("Token= {0}", Token);
 
         Uri uri = new Uri(url);
 
@@ -1025,7 +1025,7 @@ public class oAuthLinkedIn : oAuthBase2
     {
         _logger.Info("Request With Delete");
 
-        _logger.DebugFormat("Token= " + Token);
+        _logger.DebugFormat("Token= {0}", Token);
 
         Uri uri = new Uri(url);
 

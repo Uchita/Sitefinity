@@ -35,10 +35,14 @@ namespace SectionIO
         /// <param name="banExpression"></param>
         internal void API_Proxy_State_Post(Proxy proxy, string banExpression)
         {
+            _logger.Info("API_Proxy_State_Post Started!");
+
             string request_end_point = string.Format(API_END_POINT, _accountID, _applicationID, _environmentName.ToString());
+            _logger.DebugFormat("Request End Point [Before BanExpression]: {0}", request_end_point);
 
             //varnish and state call
             request_end_point += "/proxy/" + proxy.ToString().ToLower() + "/state?banExpression=" + Uri.EscapeDataString(banExpression);
+            _logger.DebugFormat("Final Request End point that passes into Web Request: {0}",request_end_point);
 
             WebRequest req = WebRequest.Create(request_end_point);
             req.ContentType = "application/json";
@@ -109,9 +113,14 @@ namespace SectionIO
         }
 
 
-        public void FlushByUrl(string pageUrl)
+        public void FlushByUrl(Uri uri)
         {
-           API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, "req.url == " + pageUrl);
+            string scheme = uri.Scheme;
+            string domain = uri.Host;
+            string path = uri.LocalPath;
+
+            string banExpression = BuildBanExpression(scheme, domain, path);
+            API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, banExpression);
         }
 
         /// <summary>
@@ -121,15 +130,31 @@ namespace SectionIO
         /// <param name="site">The format of the uri <example>"https://www.example.com/http_imagesjxtnetau/jxt-solutions"</example></param>
         /// <param name="folderName">Passes global FTP folder name</param>
         public void FlushAssetType(AssetClass asset, string site, string siteFtpFolderName)
-        {            
+        {
+            _logger.Info("Flush Asset Type Started");
             //build ban expression
             string folderToFlush = string.Format("{0}{1}", siteFtpFolderName, asset == AssetClass.all ? string.Empty : "/" + asset.ToString());
             string sectionIOFolder = "http_imagesjxtnetau";
 
+            _logger.DebugFormat("folderToFlush: {0}", folderToFlush);
+
+            #region commented Stuff
             // According to sectionIO documentation we dont need to use '/' at end of the URI
-            string _banExpression = string.Format(@"https://{0}/{1}/{2}", site, sectionIOFolder, folderToFlush); ;
-           
-            API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, _banExpression);
+            
+            // Example of a Valid working Ban Expression: req.http.host == "www.diversecitycareers.com" && req.url ~ "/http_imagesjxtnetau/diversecitycareers/css"
+
+            /*string hostPath = string.Format(@"https://{0}",site);
+            _logger.DebugFormat("hostPath URL: {0}", hostPath);*/
+
+            // Using '==' matches request directly for varnish entries where "~" conducts a regExp match
+            //string banExpression = string.Format("req.http.host == \"{0}\" &&  req.url ~ \"/{1}/{2}\"", hostPath,sectionIOFolder,folderToFlush);
+            #endregion
+
+            string banExpression = BuildBanExpressionForAsset(sectionIOFolder, site, folderToFlush);
+
+            _logger.DebugFormat("Banexpression: {0}", banExpression);
+
+            API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, banExpression);
         }
 
         /// <summary>
@@ -140,11 +165,45 @@ namespace SectionIO
         /// <param name="imageName">This parameter passes name of the image that needs to be cleared from SEctionIO cache</param>
         public void FlushImage(string siteUrl, string imagePath, string imageName) 
         {
+            _logger.Info("FlushImage Method");
             string jxtJobtemplateLogoImagePath = string.Format(@"media/{0}",imagePath);
+            _logger.DebugFormat("JXT Media Image Path: {0}", jxtJobtemplateLogoImagePath);
+           
+            //string banExpression = string.Format("{0}/{1}/{2}", siteUrl, jxtJobtemplateLogoImagePath, imageName);
+            string banExpression = BuildBanExpressionForAsset(jxtJobtemplateLogoImagePath, siteUrl, imageName);
+            _logger.DebugFormat("Ban expression: {0}", banExpression);
 
-            string _banExpression = string.Format("{0}/{1}/{2}", siteUrl, jxtJobtemplateLogoImagePath, imageName);
+            API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, banExpression);
+        }
 
-            API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, _banExpression);
+        private string BuildBanExpressionForAsset(string assetPath, string siteURI, string assetToFush)
+        {
+            string hostPath = string.Format(@"https://{0}",siteURI);
+            _logger.DebugFormat("Site URI: {0}", hostPath);
+            // Using '==' matches request directly for varnish entries where "~" conducts a regExp match
+            string banExpression = string.Format("req.http.host == \"{0}\" &&  req.url ~ \"/{1}/{2}\"", siteURI, assetPath, assetToFush);
+            _logger.DebugFormat("Returning banExpression: {0}", banExpression);
+
+            return banExpression;
+        }
+
+        private string BuildBanExpression(string uriScheme, string domain, string path = null)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append(string.Format("req.http.host == \"{0}://{1}\"",uriScheme,domain));
+
+            if (!string.IsNullOrWhiteSpace(path))
+            {
+                //ensure no leading '/', or trailing '$' as these are added in the banexpression
+                path = path.TrimStart("/".ToCharArray());
+                path = path.TrimEnd("$".ToCharArray());
+                sb.Append(string.Format(" && req.url ~ \"/{0}$\"", path));
+            }
+
+            string banExpression = sb.ToString();
+            _logger.DebugFormat("BanExpression is: {0}", banExpression);
+            return banExpression;
         }
     }
 }

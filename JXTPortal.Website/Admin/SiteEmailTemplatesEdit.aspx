@@ -3,15 +3,6 @@
     Title="Sites - Site Email Template Edit" ValidateRequest="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder3" runat="server">
-     <link rel="stylesheet" media="screen,projection" type="text/css" href="http://www.r13.jxt.com.au/admin/css/reset.css" />
-    <link rel="stylesheet" media="screen,projection" type="text/css" href="http://www.r13.jxt.com.au/admin/css/main.css" />
-    <link rel="stylesheet" media="screen,projection" type="text/css" href="http://www.r13.jxt.com.au/admin/css/2col.css" title="2col" />
-    <link rel="alternate stylesheet" media="screen,projection" type="text/css" href="http://www.r13.jxt.com.au/admin/css/1col.css" title="1col" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <!--[if lte IE 6]><link rel="stylesheet" media="screen,projection" type="text/css" href="http://www.r13.jxt.com.au/admin/css/main-ie6.css" /><![endif]-->
-    <!-- MSIE6 -->
-    <link rel="stylesheet" media="screen,projection" type="text/css" href="http://www.r13.jxt.com.au/admin/css/style.css" />
-
     <link rel="stylesheet" href="css/3col.css" />
 
     <meta http-equiv="X-UA-Compatible" content="IE=9" />

@@ -2,13 +2,13 @@
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
 
 	<siteMapNode url="" title="Admin"  description="">
-		<siteMapNode url="~/admin/default.aspx" title="Home"  description="" />
-    <siteMapNode url="" title="Knowledge Base"  description="">
+		<siteMapNode url="~/admin/default.aspx" title="Home"  description="" iconLogo="fa fa-home" />
+    <siteMapNode url="" title="Knowledge Base"  description="" iconLogo="fa fa-leanpub">
       <siteMapNode  url="~/admin/knowledgebasebrowse.aspx" title="Browse Knowledge Base"  description="" />
       <siteMapNode  url="~/admin/knowledgebase.aspx" title="Knowledge Base List"  description="" />
       <siteMapNode  url="~/admin/knowledgebaseCategories.aspx" title="Knowledge Base Categories List"  description="" />
     </siteMapNode>
-		<siteMapNode url="" title="Admin Global"  description="Admin Global">
+		<siteMapNode url="" title="Admin Global"  description="Admin Global" iconLogo="fa fa-cog">
 			<siteMapNode url="~/admin/sites.aspx?all=true" title="All Sites"  description="" />
 			<siteMapNode url="~/admin/adminusers.aspx" title="Admin Users"  description="" />
 			<!--<siteMapNode url="~/admin/defaultresources.aspx" title="Default Resources"  description="" />
@@ -31,7 +31,7 @@
       <siteMapNode url="~/admin/adminloginpageedit.aspx" title="Admin Login Page"  description="" />
 		</siteMapNode>
 
-		<siteMapNode url="" title="Multilingual"  description="">
+		<siteMapNode url="" title="Multilingual"  description="" iconLogo="fa fa-globe">
 			<siteMapNode url="~/admin/multiLingualcountry.aspx" title="Multilingual (Country)"  description="" />
 			<siteMapNode url="~/admin/multiLinguallocation.aspx" title="Multilingual Location"  description="" />
 			<siteMapNode url="~/admin/multiLingualarea.aspx" title="Multilingual Area"  description="" />
@@ -45,7 +45,7 @@
 			<siteMapNode url="~/admin/multiLingualadvertiserbusinesstype.aspx" title="Multilingual Advertiser Business Type"  description="" / -->
 		</siteMapNode>
 
-		<siteMapNode url="" title="Site Global"  description="">
+		<siteMapNode url="" title="Site Global"  description="" iconLogo="fa fa-plane">
 			<siteMapNode url="~/admin/sites.aspx" title="Sites"  description="" />
 			<siteMapNode url="~/admin/globalsettingsedit.aspx" title="Site Global Settings"  description="" />
             <siteMapNode url="~/admin/jobboardsettings.aspx" title="Job Board Settings"  description="" />
@@ -61,7 +61,7 @@
       <siteMapNode url="~/admin/integrations.aspx" title="Integrations"  description="" />
     </siteMapNode>
 
-		<siteMapNode url="" title="Job Settings and Parameters"  description="">
+		<siteMapNode url="" title="Job Settings and Parameters"  description="" iconLogo="fa fa-thumb-tack">
       <siteMapNode url="~/admin/sitecountries.aspx" title="Site Countries"  description="" />
 			<siteMapNode url="~/admin/sitelocationarea.aspx" title="Site Locations"  description="" />
 			<siteMapNode url="~/admin/siteprofession.aspx" title="Site Profession / Roles"  description="" />
@@ -77,24 +77,24 @@
       
     </siteMapNode>
 
-		<siteMapNode url="" title="Page Templates"  description="">
+		<siteMapNode url="" title="Page Templates"  description="" iconLogo="fa fa-file-text">
 			<siteMapNode url="~/admin/dynamicpagewebparttemplates.aspx" title="Web Containers"  description="" />
 			<siteMapNode url="~/admin/sitewebparts.aspx" title="Web Parts"  description="" />
 			<siteMapNode url="~/admin/dynamicpagewebparttemplateslinkedit.aspx" title="Link Container with Web Parts"  description="" />
 		</siteMapNode>
 
-    <siteMapNode title="Dynamic Pages"  description="" >
+    <siteMapNode title="Dynamic Pages"  description="" iconLogo="fa fa-picture-o">
       <siteMapNode url="~/admin/dynamicpages.aspx" title="Published Pages"  description="" />
       <siteMapNode url="~/admin/dynamicpagerev.aspx" title="Draft/Pending Revisions"  description="" />
     </siteMapNode>
 
-    <siteMapNode title="Custom Widget"  description="">
+    <siteMapNode title="Custom Widget"  description="" iconLogo="fa fa-leaf">
       <siteMapNode url="~/admin/customwidget.aspx" title="Create/Edit Custom Widget"  description="" />
       <siteMapNode url="~/admin/customwidgetcss.aspx" title="Custom Widget CSS Selector"  description="" />
     </siteMapNode>
-    <siteMapNode url="~/admin/campaignlist.aspx" title="Campaigns"  description=""></siteMapNode>
+    <siteMapNode url="~/admin/campaignlist.aspx" title="Campaigns"  description="" iconLogo="fa fa-flag"></siteMapNode>
 
-		<siteMapNode url="" title="Advertisers"  description="">
+		<siteMapNode url="" title="Advertisers"  description="" iconLogo="fa fa-comment-o">
 			<siteMapNode url="~/admin/advertisers.aspx" title="Advertisers"  description="" />
 			<siteMapNode url="~/admin/advertiserusers.aspx" title="Advertiser Users"  description="" />
       <siteMapNode url="~/admin/consultants.aspx" title="Consultants"  description="" />
@@ -102,7 +102,7 @@
 
 		</siteMapNode>
 
-		<siteMapNode url="" title="Candidates / Members"  description="">
+		<siteMapNode url="" title="Candidates / Members"  description="" iconLogo="fa fa-users">
       <siteMapNode url="~/admin/members.aspx" title="Members"  description="" />
       <siteMapNode url="~/admin/memberwizard.aspx" title="Member Profile Wizard"  description="" />
       <!--<siteMapNode url="~/admin/memberstatus.aspx" title="Member Current Status"  description="" />
@@ -111,21 +111,21 @@
 
 		</siteMapNode>
 
-		<siteMapNode url="" title="File Management"  description="">
+		<siteMapNode url="" title="File Management"  description="" iconLogo="fa fa-files-o">
 			<!--<siteMapNode url="~/admin/filesedit.aspx" title="File Management"  description="" />-->
 			<siteMapNode url="~/admin/filemanager.aspx" title="File Manager"  description="" />
 			<!--<siteMapNode url="~/admin/filetypes.aspx" title="File Types"  description="" />
 			<siteMapNode url="~/admin/folders.aspx" title="Folders"  description="" />-->
 		</siteMapNode>
 
-		<siteMapNode url="" title="News Categories"  description="">
+		<siteMapNode url="" title="News Categories"  description="" iconLogo="fa fa-folder">
 			<siteMapNode url="~/admin/newscategories.aspx" title="News Categories"  description="" />
       <siteMapNode url="~/admin/sitenewsindustry.aspx" title="News Industry"  description="" />
       <siteMapNode url="~/admin/sitenewstype.aspx" title="News Type"  description="" />
 			<siteMapNode url="~/admin/news.aspx" title="News"  description="" />
 		</siteMapNode>
 
-		<siteMapNode url="" title="Reports"  description="">
+		<siteMapNode url="" title="Reports"  description="" iconLogo="fa fa-headphones">
 			<siteMapNode url="~/admin/reports/alljobstatistics.aspx" title="All Jobs Statistics"  description="" />
 			<siteMapNode url="~/admin/reports/membercount.aspx" title="Member Count"  description="" />
       <siteMapNode url="~/admin/reports/memberactivity.aspx" title="Member Activity"  description="" />
@@ -139,7 +139,7 @@
             <siteMapNode url="~/admin/invoice.aspx" title="Invoice Report"  description="" />
 		</siteMapNode>
 
-    <siteMapNode  url="~/admin/webservicelog.aspx" title="Web Service Log"  description="" />
+    <siteMapNode  url="~/admin/webservicelog.aspx" title="Web Service Log"  description="" iconLogo="fa fa-trophy" />
     
   </siteMapNode>
 </siteMap>

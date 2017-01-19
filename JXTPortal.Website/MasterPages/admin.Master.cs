@@ -163,6 +163,13 @@ namespace JXTPortal.Website.MasterPages
             {
                 SiteMapNode sitemap = e.Item.DataItem as SiteMapNode;
 
+                Literal ltTitleIcon = e.Item.FindControl("ltTitleIcon") as Literal;
+
+                if (!string.IsNullOrWhiteSpace(sitemap["iconLogo"]))
+                {
+                    ltTitleIcon.Text = string.Format("<span class=\"{0}\"></span>", sitemap["iconLogo"]);
+                }
+
                 if (sitemap.Title == "Invoice Report")
                 {
                     GlobalSettingsService service = new GlobalSettingsService();

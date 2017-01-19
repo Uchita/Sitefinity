@@ -113,9 +113,14 @@ namespace SectionIO
         }
 
 
-        public void FlushByUrl(string pageUrl)
+        public void FlushByUrl(Uri uri)
         {
-           API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, "req.url == " + pageUrl);
+            string scheme = uri.Scheme;
+            string domain = uri.Host;
+            string path = uri.LocalPath;
+
+            string banExpression = BuildBanExpression(scheme, domain, path);
+            API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, banExpression);
         }
 
         /// <summary>
@@ -145,7 +150,7 @@ namespace SectionIO
             //string banExpression = string.Format("req.http.host == \"{0}\" &&  req.url ~ \"/{1}/{2}\"", hostPath,sectionIOFolder,folderToFlush);
             #endregion
 
-            string banExpression = buildBanExpression(sectionIOFolder, site, folderToFlush);
+            string banExpression = BuildBanExpressionForAsset(sectionIOFolder, site, folderToFlush);
 
             _logger.DebugFormat("Banexpression: {0}", banExpression);
 
@@ -165,21 +170,39 @@ namespace SectionIO
             _logger.DebugFormat("JXT Media Image Path: {0}", jxtJobtemplateLogoImagePath);
            
             //string banExpression = string.Format("{0}/{1}/{2}", siteUrl, jxtJobtemplateLogoImagePath, imageName);
-            string banExpression = buildBanExpression(jxtJobtemplateLogoImagePath, siteUrl, imageName);
+            string banExpression = BuildBanExpressionForAsset(jxtJobtemplateLogoImagePath, siteUrl, imageName);
             _logger.DebugFormat("Ban expression: {0}", banExpression);
 
             API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, banExpression);
         }
 
-        public string buildBanExpression(string assetPath, string siteURI, string assetToFush)
+        private string BuildBanExpressionForAsset(string assetPath, string siteURI, string assetToFush)
         {
-
             string hostPath = string.Format(@"https://{0}",siteURI);
             _logger.DebugFormat("Site URI: {0}", hostPath);
             // Using '==' matches request directly for varnish entries where "~" conducts a regExp match
             string banExpression = string.Format("req.http.host == \"{0}\" &&  req.url ~ \"/{1}/{2}\"", siteURI, assetPath, assetToFush);
             _logger.DebugFormat("Returning banExpression: {0}", banExpression);
 
+            return banExpression;
+        }
+
+        private string BuildBanExpression(string uriScheme, string domain, string path = null)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append(string.Format("req.http.host == \"{0}://{1}\"",uriScheme,domain));
+
+            if (!string.IsNullOrWhiteSpace(path))
+            {
+                //ensure no leading '/', or trailing '$' as these are added in the banexpression
+                path = path.TrimStart("/".ToCharArray());
+                path = path.TrimEnd("$".ToCharArray());
+                sb.Append(string.Format(" && req.url ~ \"/{0}$\"", path));
+            }
+
+            string banExpression = sb.ToString();
+            _logger.DebugFormat("BanExpression is: {0}", banExpression);
             return banExpression;
         }
     }

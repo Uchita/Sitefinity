@@ -660,6 +660,7 @@ namespace JXTPortal.Website
         #region Facebook Methods
         private void OAuthCallBackFacebook(PortalEnums.SocialMedia.OAuthCallbackAction callbackAction, string code)
         {
+            _logger.InfoFormat("OAuthCallBack option: {0}", callbackAction);
             switch (callbackAction)
             {
                 case PortalEnums.SocialMedia.OAuthCallbackAction.Login:
@@ -677,7 +678,7 @@ namespace JXTPortal.Website
 
         private void LoginWithFacebook(string code)
         {
-            _logger.DebugFormat("Attempting login with facebook for: {0}", code);
+            _logger.DebugFormat("Attempting login with facebook with: {0}", code);
 
             //Get Integration Details
             AdminIntegrations.Integrations integrations = IntegrationsService.AdminIntegrationsForSiteGet(SessionData.Site.SiteId);

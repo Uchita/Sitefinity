@@ -61,7 +61,7 @@ namespace SocialMedia {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to email, public_profile.
+        ///   Looks up a localized string similar to email,public_profile.
         /// </summary>
         internal static string default_FBRequestPermissions {
             get {
@@ -79,7 +79,7 @@ namespace SocialMedia {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://www.facebook.com/dialog/oauth/?client_id={0}&amp;redirect_uri={1}&amp;state=profile&amp;scope=email.
+        ///   Looks up a localized string similar to https://www.facebook.com/dialog/oauth?client_id={0}&amp;redirect_uri={1}&amp;state=profile&amp;scope=email.
         /// </summary>
         internal static string fb_authroize {
             get {
@@ -88,7 +88,7 @@ namespace SocialMedia {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://www.facebook.com/dialog/oauth/?auth_type=rerequest&amp;client_id={0}&amp;redirect_uri={1}&amp;state=profile&amp;scope={2}.
+        ///   Looks up a localized string similar to https://www.facebook.com/dialog/oauth?auth_type=rerequest&amp;client_id={0}&amp;redirect_uri={1}&amp;state=profile&amp;scope=public_profile.
         /// </summary>
         internal static string fb_authroize_with_permissions {
             get {
@@ -97,7 +97,7 @@ namespace SocialMedia {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://www.facebook.com/dialog/oauth/?client_id={0}&amp;response_type=code&amp;redirect_uri={1}&amp;scope={2}.
+        ///   Looks up a localized string similar to https://www.facebook.com/dialog/oauth?client_id={0}&amp;response_type=code&amp;redirect_uri={1}&amp;scope={2}.
         /// </summary>
         internal static string fb_authroize_with_permissions_code {
             get {
@@ -111,6 +111,15 @@ namespace SocialMedia {
         internal static string fb_checkpermission {
             get {
                 return ResourceManager.GetString("fb_checkpermission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://graph.facebook.com/me?fields=email,first_name,last_name&amp;access_token={0}.
+        /// </summary>
+        internal static string fb_userdetails_url {
+            get {
+                return ResourceManager.GetString("fb_userdetails_url", resourceCulture);
             }
         }
         

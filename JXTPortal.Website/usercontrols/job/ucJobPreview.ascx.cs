@@ -721,7 +721,7 @@ namespace JXTPortal.Website.usercontrols.job
                                         jobowner = HttpUtility.HtmlEncode(consultants[0].FirstName);
                                         consultantemail = HttpUtility.HtmlEncode(consultants[0].Email);
                                         consultantphone = HttpUtility.HtmlEncode(consultants[0].Phone);
-                                        
+
                                         if (!string.IsNullOrWhiteSpace(consultants[0].ConsultantImageUrl))
                                         {
                                             consultantimageurl = string.Format("/media/{0}/{1}", ConfigurationManager.AppSettings["ConsultantsFolder"], consultants[0].ConsultantImageUrl);
@@ -758,6 +758,21 @@ namespace JXTPortal.Website.usercontrols.job
         private string TranslateJobPreviewToSelectedLanguage(string templateHTML, int locationID, int professionID, int roleID, int worktypeID, int areaID)
         {
             //Do any translate according to the selected language
+            if (SessionData.Language.LanguageId != (int)PortalEnums.Languages.Language.English)
+            {
+                using (Entities.SiteProfession siteProfession = SiteProfessionService.GetTranslatedProfessionById(professionID, SessionData.Site.UseCustomProfessionRole))
+                using (Entities.SiteRoles siteRole = SiteRoleService.GetTranslatedRolesById(roleID, professionID, SessionData.Site.UseCustomProfessionRole))
+                using (Entities.SiteWorkType siteWorkType = SiteWorkTypeService.GetTranslatedWorkTypesById(worktypeID))
+                {
+                    //Profession
+                    templateHTML = (siteProfession != null ? templateHTML.Replace("{SiteProfessionName}", siteProfession.SiteProfessionName) : templateHTML);
+                    //Role
+                    templateHTML = (siteRole != null ? templateHTML.Replace("{SiteRoleName}", siteRole.SiteRoleName) : templateHTML);
+                    //Worktype
+                    templateHTML = (siteWorkType != null ? templateHTML.Replace("{SiteWorkTypeName}", siteWorkType.SiteWorkTypeName) : templateHTML);
+                }
+            }
+
             if (SessionData.Language.LanguageId != SessionData.Site.DefaultLanguageId)
             {
                 //get the country ID
@@ -768,18 +783,11 @@ namespace JXTPortal.Website.usercontrols.job
                         location_countryID = location.CountryId;
                 }
 
-                using (Entities.SiteProfession siteProfession = SiteProfessionService.GetTranslatedProfessionById(professionID, SessionData.Site.UseCustomProfessionRole))
-                using (Entities.SiteRoles siteRole = SiteRoleService.GetTranslatedRolesById(roleID, professionID, SessionData.Site.UseCustomProfessionRole))
-                using (Entities.SiteWorkType siteWorkType = SiteWorkTypeService.GetTranslatedWorkTypesById(worktypeID))
+
                 using (Entities.SiteLocation siteLocation = SiteLocationService.GetTranslatedLocation(locationID, location_countryID))
                 using (Entities.SiteArea siteArea = SiteAreaService.GetTranslatedArea(areaID, locationID, SessionData.Site.SiteId))
                 {
-                    //Profession
-                    templateHTML = (siteProfession != null ? templateHTML.Replace("{SiteProfessionName}", siteProfession.SiteProfessionName) : templateHTML);
-                    //Role
-                    templateHTML = (siteRole != null ? templateHTML.Replace("{SiteRoleName}", siteRole.SiteRoleName) : templateHTML);
-                    //Worktype
-                    templateHTML = (siteWorkType != null ? templateHTML.Replace("{SiteWorkTypeName}", siteWorkType.SiteWorkTypeName) : templateHTML);
+
                     //Location
                     templateHTML = (siteLocation != null ? templateHTML.Replace("{SiteLocationName}", siteLocation.SiteLocationName) : templateHTML);
                     //Area

@@ -2142,7 +2142,7 @@ namespace JXTPortal.Website.Admin
                         {
                             string urlToFlush = Request.Url.Scheme + "://" + Request.Url.Host + DynamicPagesService.GetDynamicPageUrl(DynamicPagesService.GetByDynamicPageId(dprf.DynamicPageID));
                             
-                            CacheFlusher.FlushByUrl(urlToFlush);
+                            CacheFlusher.FlushByUrl(new Uri(urlToFlush));
                         }
                     }
 

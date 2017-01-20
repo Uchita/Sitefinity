@@ -14,6 +14,7 @@ namespace JXTPortal.Website.Admin
 {
     public partial class ScreeningQuestionsTemplate : System.Web.UI.Page
     {
+  
         public IScreeningQuestionsTemplatesService ScreeningQuestionsTemplatesService { get; set; }
 
         public int CurrentPage
@@ -44,41 +45,16 @@ namespace JXTPortal.Website.Admin
 
         private void LoadScreeningQuestionsTemplates()
         {
-            int totalCount = 0;
-            int pageCount = 0;
             int sitePageCount = JXTPortal.Common.Utils.GetAppSettingsInt("SitePaging");
 
             ScreeningQuestionsTemplateDetail screeningQuestionsTemplateDetail = ScreeningQuestionsTemplatesService.GetPaged(SessionData.Site.SiteId, CurrentPage, sitePageCount);
             lblErrorMsg.Visible = false;
 
-            if (screeningQuestionsTemplateDetail.ScreeningQuestionsTemplates.Count > 0)
+            if (screeningQuestionsTemplateDetail.ScreeningQuestionsTemplates.Any())
             {
-                ArrayList pagelist = new ArrayList();
-                totalCount = ScreeningQuestionsTemplatesService.GetSiteCount(SessionData.Site.SiteId);
+                var pagelist = GetPageList(sitePageCount);
 
-                if (totalCount % sitePageCount == 0)
-                    pageCount = totalCount / sitePageCount;
-                else
-                    pageCount = (totalCount / sitePageCount) + 1;
-
-                if (CurrentPage >= 10)
-                {
-                    pagelist.Add("previous");
-                }
-
-                int index = (CurrentPage == 0) ? 0 : (CurrentPage) / 10 * 10;
-                for (int i = index; i < pageCount; i++)
-                {
-                    pagelist.Add(i.ToString());
-
-                    if ((i % 10) == 9 && (i < pageCount - 1))
-                    {
-                        pagelist.Add("next");
-                        break;
-                    }
-                }
-
-                if (pagelist.Count > 1)
+                if (pagelist.Any())
                 {
                     rptPage.DataSource = pagelist;
                     rptPage.DataBind();
@@ -101,7 +77,35 @@ namespace JXTPortal.Website.Admin
                 rptPage.DataSource = null;
                 rptPage.DataBind();
             }
+        }
 
+        private IEnumerable<string> GetPageList(int sitePageCount)
+        {
+            int _maxPagesToDisplay = 10;
+            IList<string> results = new List<string>();
+            int totalCount = ScreeningQuestionsTemplatesService.GetSiteCount(SessionData.Site.SiteId);
+            int pageCount = (int)Math.Ceiling((double)totalCount / sitePageCount);
+
+            if (CurrentPage >= _maxPagesToDisplay)
+            {
+                results.Add("previous");
+            }
+
+            //Determine the index of the first page to add to the pageList
+            int index = (CurrentPage == 0) ? 0 : (CurrentPage / _maxPagesToDisplay) * _maxPagesToDisplay;
+
+            for (int i = index; i < pageCount; i++)
+            {
+                results.Add(i.ToString());
+
+                if ((i % 10) == 9 && (i < pageCount - 1))
+                {
+                    results.Add("next");
+                    break;
+                }
+            }
+
+            return results;
         }
 
         protected void btnCreateNewTemplate_Click(object sender, EventArgs e)

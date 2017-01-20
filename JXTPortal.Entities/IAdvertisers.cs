@@ -203,6 +203,11 @@ namespace JXTPortal.Entities
 		/// AdvertiserLogoUrl : 
 		/// </summary>
 		System.String  AdvertiserLogoUrl  { get; set; }
+		
+		/// <summary>
+		/// AllowPeopleSearchAccess : 
+		/// </summary>
+		System.Boolean  AllowPeopleSearchAccess  { get; set; }
 			
 		/// <summary>
 		/// Creates a new object that is a copy of the current instance.

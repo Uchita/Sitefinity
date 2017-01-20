@@ -118,6 +118,7 @@ namespace JXTPortal.Entities
 		///<param name="_nominatedCompanyPhone"></param>
 		///<param name="_preferredContactMethod"></param>
 		///<param name="_advertiserLogoUrl"></param>
+		///<param name="_allowPeopleSearchAccess"></param>
 		public AdvertisersBase(System.Int32? _siteId, System.Int32 _advertiserAccountTypeId, 
 			System.Int32 _advertiserBusinessTypeId, System.Int32 _advertiserAccountStatusId, System.String _companyName, 
 			System.String _businessNumber, System.String _streetAddress1, System.String _streetAddress2, 
@@ -130,7 +131,7 @@ namespace JXTPortal.Entities
 			System.DateTime? _registerDate, System.String _externalAdvertiserId, System.String _videoLink, 
 			System.String _industry, System.String _nominatedCompanyRole, System.String _nominatedCompanyFirstName, 
 			System.String _nominatedCompanyLastName, System.String _nominatedCompanyEmailAddress, System.String _nominatedCompanyPhone, 
-			System.Int32? _preferredContactMethod, System.String _advertiserLogoUrl)
+			System.Int32? _preferredContactMethod, System.String _advertiserLogoUrl, System.Boolean _allowPeopleSearchAccess)
 		{
 			this.entityData = new AdvertisersEntityData();
 			this.backupData = null;
@@ -172,6 +173,7 @@ namespace JXTPortal.Entities
 			this.NominatedCompanyPhone = _nominatedCompanyPhone;
 			this.PreferredContactMethod = _preferredContactMethod;
 			this.AdvertiserLogoUrl = _advertiserLogoUrl;
+			this.AllowPeopleSearchAccess = _allowPeopleSearchAccess;
 		}
 		
 		///<summary>
@@ -214,6 +216,7 @@ namespace JXTPortal.Entities
 		///<param name="_nominatedCompanyPhone"></param>
 		///<param name="_preferredContactMethod"></param>
 		///<param name="_advertiserLogoUrl"></param>
+		///<param name="_allowPeopleSearchAccess"></param>
 		public static Advertisers CreateAdvertisers(System.Int32? _siteId, System.Int32 _advertiserAccountTypeId, 
 			System.Int32 _advertiserBusinessTypeId, System.Int32 _advertiserAccountStatusId, System.String _companyName, 
 			System.String _businessNumber, System.String _streetAddress1, System.String _streetAddress2, 
@@ -226,7 +229,7 @@ namespace JXTPortal.Entities
 			System.DateTime? _registerDate, System.String _externalAdvertiserId, System.String _videoLink, 
 			System.String _industry, System.String _nominatedCompanyRole, System.String _nominatedCompanyFirstName, 
 			System.String _nominatedCompanyLastName, System.String _nominatedCompanyEmailAddress, System.String _nominatedCompanyPhone, 
-			System.Int32? _preferredContactMethod, System.String _advertiserLogoUrl)
+			System.Int32? _preferredContactMethod, System.String _advertiserLogoUrl, System.Boolean _allowPeopleSearchAccess)
 		{
 			Advertisers newAdvertisers = new Advertisers();
 			newAdvertisers.SiteId = _siteId;
@@ -266,6 +269,7 @@ namespace JXTPortal.Entities
 			newAdvertisers.NominatedCompanyPhone = _nominatedCompanyPhone;
 			newAdvertisers.PreferredContactMethod = _preferredContactMethod;
 			newAdvertisers.AdvertiserLogoUrl = _advertiserLogoUrl;
+			newAdvertisers.AllowPeopleSearchAccess = _allowPeopleSearchAccess;
 			return newAdvertisers;
 		}
 				
@@ -1617,6 +1621,41 @@ namespace JXTPortal.Entities
 			}
 		}
 		
+		/// <summary>
+		/// 	Gets or sets the AllowPeopleSearchAccess property. 
+		///		
+		/// </summary>
+		/// <value>This type is bit.</value>
+		/// <remarks>
+		/// This property can not be set to null. 
+		/// </remarks>
+
+
+
+
+		[DescriptionAttribute(@""), System.ComponentModel.Bindable( System.ComponentModel.BindableSupport.Yes)]
+		[DataObjectField(false, false, false)]
+		public virtual System.Boolean AllowPeopleSearchAccess
+		{
+			get
+			{
+				return this.entityData.AllowPeopleSearchAccess; 
+			}
+			
+			set
+			{
+				if (this.entityData.AllowPeopleSearchAccess == value)
+					return;
+					
+				OnColumnChanging(AdvertisersColumn.AllowPeopleSearchAccess, this.entityData.AllowPeopleSearchAccess);
+				this.entityData.AllowPeopleSearchAccess = value;
+				if (this.EntityState == EntityState.Unchanged)
+					this.EntityState = EntityState.Changed;
+				OnColumnChanged(AdvertisersColumn.AllowPeopleSearchAccess, this.entityData.AllowPeopleSearchAccess);
+				OnPropertyChanged("AllowPeopleSearchAccess");
+			}
+		}
+		
 		#endregion Data Properties		
 
 		#region Source Foreign Key Property
@@ -1855,7 +1894,7 @@ namespace JXTPortal.Entities
 		{
 			get
 			{
-				return new string[] {"AdvertiserID", "SiteID", "AdvertiserAccountTypeID", "AdvertiserBusinessTypeID", "AdvertiserAccountStatusID", "CompanyName", "BusinessNumber", "StreetAddress1", "StreetAddress2", "LastModified", "LastModifiedBy", "PostalAddress1", "PostalAddress2", "WebAddress", "NoOfEmployees", "FirstApprovedDate", "Profile", "CharityNumber", "SearchField", "FreeTrialStartDate", "FreeTrialEndDate", "AccountsPayableEmail", "RequireLogonForExternalApplication", "AdvertiserLogo", "LinkedInLogo", "LinkedInCompanyId", "LinkedInEmail", "RegisterDate", "ExternalAdvertiserID", "VideoLink", "Industry", "NominatedCompanyRole", "NominatedCompanyFirstName", "NominatedCompanyLastName", "NominatedCompanyEmailAddress", "NominatedCompanyPhone", "PreferredContactMethod", "AdvertiserLogoUrl"};
+				return new string[] {"AdvertiserID", "SiteID", "AdvertiserAccountTypeID", "AdvertiserBusinessTypeID", "AdvertiserAccountStatusID", "CompanyName", "BusinessNumber", "StreetAddress1", "StreetAddress2", "LastModified", "LastModifiedBy", "PostalAddress1", "PostalAddress2", "WebAddress", "NoOfEmployees", "FirstApprovedDate", "Profile", "CharityNumber", "SearchField", "FreeTrialStartDate", "FreeTrialEndDate", "AccountsPayableEmail", "RequireLogonForExternalApplication", "AdvertiserLogo", "LinkedInLogo", "LinkedInCompanyId", "LinkedInEmail", "RegisterDate", "ExternalAdvertiserID", "VideoLink", "Industry", "NominatedCompanyRole", "NominatedCompanyFirstName", "NominatedCompanyLastName", "NominatedCompanyEmailAddress", "NominatedCompanyPhone", "PreferredContactMethod", "AdvertiserLogoUrl", "AllowPeopleSearchAccess"};
 			}
 		}
 		#endregion 
@@ -2041,6 +2080,7 @@ namespace JXTPortal.Entities
 				copy.NominatedCompanyPhone = this.NominatedCompanyPhone;
 				copy.PreferredContactMethod = this.PreferredContactMethod;
 				copy.AdvertiserLogoUrl = this.AdvertiserLogoUrl;
+				copy.AllowPeopleSearchAccess = this.AllowPeopleSearchAccess;
 			
 			if (this.AdvertiserAccountStatusIdSource != null && existingCopies.Contains(this.AdvertiserAccountStatusIdSource))
 				copy.AdvertiserAccountStatusIdSource = existingCopies[this.AdvertiserAccountStatusIdSource] as AdvertiserAccountStatus;
@@ -2279,6 +2319,8 @@ namespace JXTPortal.Entities
 					return entityData.PreferredContactMethod != _originalData.PreferredContactMethod;
 					case AdvertisersColumn.AdvertiserLogoUrl:
 					return entityData.AdvertiserLogoUrl != _originalData.AdvertiserLogoUrl;
+					case AdvertisersColumn.AllowPeopleSearchAccess:
+					return entityData.AllowPeopleSearchAccess != _originalData.AllowPeopleSearchAccess;
 			
 				default:
 					return false;
@@ -2344,6 +2386,7 @@ namespace JXTPortal.Entities
 			result = result || entityData.NominatedCompanyPhone != _originalData.NominatedCompanyPhone;
 			result = result || entityData.PreferredContactMethod != _originalData.PreferredContactMethod;
 			result = result || entityData.AdvertiserLogoUrl != _originalData.AdvertiserLogoUrl;
+			result = result || entityData.AllowPeopleSearchAccess != _originalData.AllowPeopleSearchAccess;
 			return result;
 		}	
 		
@@ -2390,7 +2433,8 @@ namespace JXTPortal.Entities
 				_originalData.NominatedCompanyEmailAddress,
 				_originalData.NominatedCompanyPhone,
 				_originalData.PreferredContactMethod,
-				_originalData.AdvertiserLogoUrl
+				_originalData.AdvertiserLogoUrl,
+				_originalData.AllowPeopleSearchAccess
 				);
 				
 			return (Advertisers)this.Clone();
@@ -2457,7 +2501,8 @@ namespace JXTPortal.Entities
 					((this.NominatedCompanyEmailAddress == null) ? string.Empty : this.NominatedCompanyEmailAddress.ToString()).GetHashCode() ^ 
 					((this.NominatedCompanyPhone == null) ? string.Empty : this.NominatedCompanyPhone.ToString()).GetHashCode() ^ 
 					((this.PreferredContactMethod == null) ? string.Empty : this.PreferredContactMethod.ToString()).GetHashCode() ^ 
-					((this.AdvertiserLogoUrl == null) ? string.Empty : this.AdvertiserLogoUrl.ToString()).GetHashCode();
+					((this.AdvertiserLogoUrl == null) ? string.Empty : this.AdvertiserLogoUrl.ToString()).GetHashCode() ^ 
+					this.AllowPeopleSearchAccess.GetHashCode();
         }
 		
 		///<summary>
@@ -2783,6 +2828,8 @@ namespace JXTPortal.Entities
 			{
 				equal = false;
 			}
+			if (Object1.AllowPeopleSearchAccess != Object2.AllowPeopleSearchAccess)
+				equal = false;
 					
 			return equal;
 		}
@@ -3049,6 +3096,12 @@ namespace JXTPortal.Entities
             		return this.AdvertiserLogoUrl.CompareTo(rhs.AdvertiserLogoUrl);
             		
             		                 
+            	
+            	
+            	case AdvertisersColumn.AllowPeopleSearchAccess:
+            		return this.AllowPeopleSearchAccess.CompareTo(rhs.AllowPeopleSearchAccess);
+            		
+            		                 
             }
             return 0;
         }
@@ -3183,7 +3236,7 @@ namespace JXTPortal.Entities
 		public override string ToString()
 		{
 			return string.Format(System.Globalization.CultureInfo.InvariantCulture,
-				"{39}{38}- AdvertiserId: {0}{38}- SiteId: {1}{38}- AdvertiserAccountTypeId: {2}{38}- AdvertiserBusinessTypeId: {3}{38}- AdvertiserAccountStatusId: {4}{38}- CompanyName: {5}{38}- BusinessNumber: {6}{38}- StreetAddress1: {7}{38}- StreetAddress2: {8}{38}- LastModified: {9}{38}- LastModifiedBy: {10}{38}- PostalAddress1: {11}{38}- PostalAddress2: {12}{38}- WebAddress: {13}{38}- NoOfEmployees: {14}{38}- FirstApprovedDate: {15}{38}- Profile: {16}{38}- CharityNumber: {17}{38}- SearchField: {18}{38}- FreeTrialStartDate: {19}{38}- FreeTrialEndDate: {20}{38}- AccountsPayableEmail: {21}{38}- RequireLogonForExternalApplication: {22}{38}- AdvertiserLogo: {23}{38}- LinkedInLogo: {24}{38}- LinkedInCompanyId: {25}{38}- LinkedInEmail: {26}{38}- RegisterDate: {27}{38}- ExternalAdvertiserId: {28}{38}- VideoLink: {29}{38}- Industry: {30}{38}- NominatedCompanyRole: {31}{38}- NominatedCompanyFirstName: {32}{38}- NominatedCompanyLastName: {33}{38}- NominatedCompanyEmailAddress: {34}{38}- NominatedCompanyPhone: {35}{38}- PreferredContactMethod: {36}{38}- AdvertiserLogoUrl: {37}{38}{40}", 
+				"{40}{39}- AdvertiserId: {0}{39}- SiteId: {1}{39}- AdvertiserAccountTypeId: {2}{39}- AdvertiserBusinessTypeId: {3}{39}- AdvertiserAccountStatusId: {4}{39}- CompanyName: {5}{39}- BusinessNumber: {6}{39}- StreetAddress1: {7}{39}- StreetAddress2: {8}{39}- LastModified: {9}{39}- LastModifiedBy: {10}{39}- PostalAddress1: {11}{39}- PostalAddress2: {12}{39}- WebAddress: {13}{39}- NoOfEmployees: {14}{39}- FirstApprovedDate: {15}{39}- Profile: {16}{39}- CharityNumber: {17}{39}- SearchField: {18}{39}- FreeTrialStartDate: {19}{39}- FreeTrialEndDate: {20}{39}- AccountsPayableEmail: {21}{39}- RequireLogonForExternalApplication: {22}{39}- AdvertiserLogo: {23}{39}- LinkedInLogo: {24}{39}- LinkedInCompanyId: {25}{39}- LinkedInEmail: {26}{39}- RegisterDate: {27}{39}- ExternalAdvertiserId: {28}{39}- VideoLink: {29}{39}- Industry: {30}{39}- NominatedCompanyRole: {31}{39}- NominatedCompanyFirstName: {32}{39}- NominatedCompanyLastName: {33}{39}- NominatedCompanyEmailAddress: {34}{39}- NominatedCompanyPhone: {35}{39}- PreferredContactMethod: {36}{39}- AdvertiserLogoUrl: {37}{39}- AllowPeopleSearchAccess: {38}{39}{41}", 
 				this.AdvertiserId,
 				(this.SiteId == null) ? string.Empty : this.SiteId.ToString(),
 				this.AdvertiserAccountTypeId,
@@ -3222,6 +3275,7 @@ namespace JXTPortal.Entities
 				(this.NominatedCompanyPhone == null) ? string.Empty : this.NominatedCompanyPhone.ToString(),
 				(this.PreferredContactMethod == null) ? string.Empty : this.PreferredContactMethod.ToString(),
 				(this.AdvertiserLogoUrl == null) ? string.Empty : this.AdvertiserLogoUrl.ToString(),
+				this.AllowPeopleSearchAccess,
 				System.Environment.NewLine, 
 				this.GetType(),
 				this.Error.Length == 0 ? string.Empty : string.Format("- Error: {0}\n",this.Error));
@@ -3440,6 +3494,11 @@ namespace JXTPortal.Entities
 		/// AdvertiserLogoUrl : 
 		/// </summary>
 		public System.String		  AdvertiserLogoUrl = null;
+		
+		/// <summary>
+		/// AllowPeopleSearchAccess : 
+		/// </summary>
+		public System.Boolean		  AllowPeopleSearchAccess = false;
 		#endregion
 			
 		#region Source Foreign Key Property
@@ -3790,6 +3849,7 @@ namespace JXTPortal.Entities
 			_tmp.NominatedCompanyPhone = this.NominatedCompanyPhone;
 			_tmp.PreferredContactMethod = this.PreferredContactMethod;
 			_tmp.AdvertiserLogoUrl = this.AdvertiserLogoUrl;
+			_tmp.AllowPeopleSearchAccess = this.AllowPeopleSearchAccess;
 			
 			#region Source Parent Composite Entities
 			if (this.AdvertiserAccountStatusIdSource != null)
@@ -3882,6 +3942,7 @@ namespace JXTPortal.Entities
 			_tmp.NominatedCompanyPhone = this.NominatedCompanyPhone;
 			_tmp.PreferredContactMethod = this.PreferredContactMethod;
 			_tmp.AdvertiserLogoUrl = this.AdvertiserLogoUrl;
+			_tmp.AllowPeopleSearchAccess = this.AllowPeopleSearchAccess;
 			
 			#region Source Parent Composite Entities
 			if (this.AdvertiserAccountStatusIdSource != null && existingCopies.Contains(this.AdvertiserAccountStatusIdSource))
@@ -4512,7 +4573,13 @@ namespace JXTPortal.Entities
 		/// </summary>
 		[EnumTextValue("AdvertiserLogoUrl")]
 		[ColumnEnum("AdvertiserLogoUrl", typeof(System.String), System.Data.DbType.String, false, false, true, 1000)]
-		AdvertiserLogoUrl = 38
+		AdvertiserLogoUrl = 38,
+		/// <summary>
+		/// AllowPeopleSearchAccess : 
+		/// </summary>
+		[EnumTextValue("AllowPeopleSearchAccess")]
+		[ColumnEnum("AllowPeopleSearchAccess", typeof(System.Boolean), System.Data.DbType.Boolean, false, false, false)]
+		AllowPeopleSearchAccess = 39
 	}//End enum
 
 	#endregion AdvertisersColumn Enum

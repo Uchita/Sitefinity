@@ -482,7 +482,7 @@ public partial class AdvertisersEdit : System.Web.UI.Page
             advertiser.PostalAddress1 = CommonService.EncodeString(dataPostalAddress1.Text);
             advertiser.PostalAddress2 = CommonService.EncodeString(dataPostalAddress2.Text);
             advertiser.WebAddress = CommonService.EncodeString(dataWebAddress.Text);
-
+            
             advertiser.AccountsPayableEmail = CommonService.EncodeString(dataAccountsPayableEmail.Text);
             advertiser.Profile = dataProfile.Text;
 

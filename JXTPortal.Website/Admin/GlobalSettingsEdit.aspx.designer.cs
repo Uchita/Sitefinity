@@ -310,6 +310,15 @@ namespace JXTPortal.Website.Admin {
         protected global::System.Web.UI.WebControls.CheckBox cbPeopleSearchCB;
         
         /// <summary>
+        /// cbScreeningQuestions control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbScreeningQuestions;
+        
+        /// <summary>
         /// chkEnableJobCustomQuestionnaire control.
         /// </summary>
         /// <remarks>

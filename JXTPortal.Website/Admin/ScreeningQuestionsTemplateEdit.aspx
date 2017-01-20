@@ -42,11 +42,12 @@
             </li>
         </ul>
         <asp:PlaceHolder ID="phScreeningQuestions" runat="server" Visible="false">
-            <h2>
-                <asp:Literal ID="ltScreeningQuestions" runat="server" Text="Screening Questions" /></h2>
+            
             <asp:Repeater ID="rptScreeningQuestions" runat="server" OnItemDataBound="rptScreeningQuestions_ItemDataBound"
                 OnItemCommand="rptScreeningQuestions_ItemCommand">
                 <HeaderTemplate>
+                    <h2>
+                <asp:Literal ID="ltScreeningQuestions" runat="server" Text="Screening Questions" /></h2>
                     <table>
                         <thead>
                             <tr class="grid-header">

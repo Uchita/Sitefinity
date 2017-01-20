@@ -15,6 +15,7 @@ namespace JXTPortal.Data.Dapper.Repositories
         List<ScreeningQuestionsTemplatesEntity> GetPaged(int siteId, int rowFrom, int rowTo, string orderBy);
         int GetSiteCount(int siteId);
         List<ScreeningQuestionsTemplatesEntity> SelectByAdvertiserId(int advertiserId);
+        List<ScreeningQuestionsTemplatesEntity> SelectByCreatedByAdvertiserId(int advertiserId);
     }
 
     public class ScreeningQuestionsTemplatesRepository : BaseEntityOperation<ScreeningQuestionsTemplatesEntity>, IScreeningQuestionsTemplatesRepository
@@ -23,7 +24,7 @@ namespace JXTPortal.Data.Dapper.Repositories
             : base(connectionFactory, connectionStringName)
         {
             TableName = "ScreeningQuestionsTemplates";
-            ColumnNames = new List<string> { "TemplateName", "SiteId", "Visible", "LastModified", "LastModifiedBy" };
+            ColumnNames = new List<string> { "TemplateName", "SiteId", "Visible", "LastModified", "LastModifiedBy", "CreatedByAdvertiserId" };
             IdColumnName = "ScreeningQuestionsTemplateId";
         }
 
@@ -91,6 +92,19 @@ namespace JXTPortal.Data.Dapper.Repositories
                 var count = dbConnection.ExecuteScalar(query);
 
                 return (int)count;
+            }
+        }
+
+        public List<ScreeningQuestionsTemplatesEntity> SelectByCreatedByAdvertiserId(int advertiserId)
+        {
+            using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
+            {
+                dbConnection.Open();
+                string columns = IdColumnName + ", " + string.Join(", ", ColumnNames);
+                string whereClause = string.Format("CreatedByAdvertiserId = {0}", advertiserId);
+                var query = string.Format("SELECT {0} FROM dbo.{1} WHERE {2}", columns, TableName, whereClause);
+                var entity = dbConnection.Query<ScreeningQuestionsTemplatesEntity>(query, null).ToList();
+                return entity as List<ScreeningQuestionsTemplatesEntity>;
             }
         }
     }

@@ -19,6 +19,7 @@ namespace JXTPortal.Service.Dapper
         ScreeningQuestionsTemplateDetail GetPaged(int siteId, int pageIndex, int pageSize);
         int GetSiteCount(int siteId);
         List<ScreeningQuestionsTemplatesEntity> SelectByAdvertiserId(int advertiserId);
+        List<ScreeningQuestionsTemplatesEntity> SelectByCreatedByAdvertiserId(int advertiserId);
     }
 
     public class ScreeningQuestionsTemplatesService : IScreeningQuestionsTemplatesService
@@ -77,9 +78,9 @@ namespace JXTPortal.Service.Dapper
             List<ScreeningQuestionsTemplatesEntity> screeningQuestionsTemplates = screeningQuestionsTemplatesRepository.GetPaged(siteId, rowFrom, rowTo, "ScreeningQuestionsTemplateId");
             foreach (ScreeningQuestionsTemplatesEntity screeningQuestion in screeningQuestionsTemplates)
             {
-                if (!adminUserIds.Contains(screeningQuestion.LastModifiedBy))
+                if (screeningQuestion.LastModifiedBy.HasValue && !adminUserIds.Contains(screeningQuestion.LastModifiedBy.Value))
                 {
-                    adminUserIds.Add(screeningQuestion.LastModifiedBy);
+                    adminUserIds.Add(screeningQuestion.LastModifiedBy.Value);
                 }
             }
 
@@ -91,24 +92,28 @@ namespace JXTPortal.Service.Dapper
 
             foreach (ScreeningQuestionsTemplatesEntity screeningQuestionTemplate in screeningQuestionsTemplates)
             {
+
+                ScreeningQuestionsTemplate screeningQuestionsTemplate = new ScreeningQuestionsTemplate
+                {
+                    ScreeningQuestionsTemplateId = screeningQuestionTemplate.ScreeningQuestionsTemplateId,
+                    TemplateName = screeningQuestionTemplate.TemplateName,
+                    SiteId = screeningQuestionTemplate.SiteId,
+                    Visible = screeningQuestionTemplate.Visible,
+                    LastModified = screeningQuestionTemplate.LastModified,
+                    LastModifiedBy = screeningQuestionTemplate.LastModifiedBy
+                };
+
                 foreach (AdminUsersEntity adminUser in adminUsers)
                 {
                     if (adminUser.AdminUserID == screeningQuestionTemplate.LastModifiedBy)
                     {
-                        screeningQuestionsTemplateDetail.ScreeningQuestionsTemplates.Add(new ScreeningQuestionsTemplate
-                        {
-                            ScreeningQuestionsTemplateId = screeningQuestionTemplate.ScreeningQuestionsTemplateId,
-                            TemplateName = screeningQuestionTemplate.TemplateName,
-                            SiteId = screeningQuestionTemplate.SiteId,
-                            Visible = screeningQuestionTemplate.Visible,
-                            LastModified = screeningQuestionTemplate.LastModified,
-                            LastModifiedBy = screeningQuestionTemplate.LastModifiedBy,
-                            LastModifiedByName = adminUser.UserName
-                        });
+                        screeningQuestionsTemplate.LastModifiedByName = adminUser.UserName;
 
                         break;
                     }
                 }
+
+                screeningQuestionsTemplateDetail.ScreeningQuestionsTemplates.Add(screeningQuestionsTemplate);
             }
 
             return screeningQuestionsTemplateDetail;
@@ -117,6 +122,11 @@ namespace JXTPortal.Service.Dapper
         public List<ScreeningQuestionsTemplatesEntity> SelectByAdvertiserId(int advertiserId)
         {
             return screeningQuestionsTemplatesRepository.SelectByAdvertiserId(advertiserId);
+        }
+
+        public List<ScreeningQuestionsTemplatesEntity> SelectByCreatedByAdvertiserId(int advertiserId)
+        {
+            return screeningQuestionsTemplatesRepository.SelectByCreatedByAdvertiserId(advertiserId);
         }
     }
 }

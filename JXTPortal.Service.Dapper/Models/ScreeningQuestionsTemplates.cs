@@ -20,7 +20,7 @@ namespace JXTPortal.Service.Dapper.Models
         public int SiteId { get; set; }
         public bool Visible { get; set; }
         public DateTime LastModified { get; set; }
-        public int LastModifiedBy { get; set; }
+        public int? LastModifiedBy { get; set; }
         public string LastModifiedByName { get; set; }
     }
 }

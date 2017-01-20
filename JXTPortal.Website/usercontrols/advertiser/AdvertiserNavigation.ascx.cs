@@ -101,6 +101,7 @@ namespace JXTPortal.Website.usercontrols.advertiser
             hlViewChangeLogo.Text = CommonFunction.GetResourceValue("LinkButtonViewChangeLogo");
             hlViewChangeTemplateLogo.Text = CommonFunction.GetResourceValue("LinkButtonViewChangeTemplateLogo");
             hlPeopleSearch.Text = CommonFunction.GetResourceValue("LinkButtonPeopleSearch");
+            hlScreeningQuestionTemplate.Text = CommonFunction.GetResourceValue("LinkButtonScreeningQuestionsTemplate");
             hlJobTracker.Text = CommonFunction.GetResourceValue("LinkButtonJobTracker");
             hlStatistics.Text = CommonFunction.GetResourceValue("LinkButtonStatistics");
 
@@ -126,6 +127,7 @@ namespace JXTPortal.Website.usercontrols.advertiser
                                 Entities.GlobalSettings globalsetting = globalsettings[0];
                                 phPendingJobs.Visible = (globalsetting.JobScreeningProcess.HasValue) ? globalsetting.JobScreeningProcess.Value : false;
                                 phPeopleSearch.Visible = globalsetting.EnablePeopleSearch;
+                                phScreeningQuestions.Visible = globalsetting.EnableScreeningQuestions;
                             }
                         }
                     }

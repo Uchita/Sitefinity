@@ -11,5 +11,6 @@ namespace JXTPortal.Data.Dapper.Entities.ScreeningQuestions
         public string TemplateName { get; set; }
         public int SiteId { get; set; }
         public bool Visible { get; set; }
+        public int? CreatedByAdvertiserId { get; set; }
     }
 }

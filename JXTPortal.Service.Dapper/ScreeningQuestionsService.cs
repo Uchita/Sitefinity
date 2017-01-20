@@ -17,14 +17,18 @@ namespace JXTPortal.Service.Dapper
         List<ScreeningQuestionsEntity> SelectByScreeningQuestionsTemplateId(int templateId);
         List<ScreeningQuestionsEntity> SelectByScreeningQuestionsTemplateIdLanguageId(int templateId, int languageId);
         List<ScreeningQuestionsEntity> SelectByIds(List<int> screeningQuestionIds);
+        List<ScreeningQuestionsEntity> SelectByJobId(int jobId);
     }
 
     public class ScreeningQuestionsService : IScreeningQuestionsService
     {
         IScreeningQuestionsRepository screeningQuestionsRepository;
-        public ScreeningQuestionsService(IScreeningQuestionsRepository screeningQuestionsRepository)
+        IJobScreeningQuestionsRepository jobScreeningQuestionsRepository;
+
+        public ScreeningQuestionsService(IScreeningQuestionsRepository screeningQuestionsRepository, IJobScreeningQuestionsRepository jobScreeningQuestionsRepository)
         {
             this.screeningQuestionsRepository = screeningQuestionsRepository;
+            this.jobScreeningQuestionsRepository = jobScreeningQuestionsRepository;
         }
 
         public int Insert(ScreeningQuestionsEntity entity)
@@ -69,6 +73,19 @@ namespace JXTPortal.Service.Dapper
 
         public List<ScreeningQuestionsEntity> SelectByIds(List<int> screeningQuestionIds)
         {
+            return screeningQuestionsRepository.SelectByIds(screeningQuestionIds);
+        }
+
+        public List<ScreeningQuestionsEntity> SelectByJobId(int jobId)
+        {
+            List<JobScreeningQuestionsEntity> jobScreeningQuestions = jobScreeningQuestionsRepository.SelectByJobID(jobId);
+            List<int> screeningQuestionIds = new List<int>();
+
+            foreach (JobScreeningQuestionsEntity jobScreeningQuestion in jobScreeningQuestions)
+            {
+                screeningQuestionIds.Add(jobScreeningQuestion.JobScreeningQuestionId);
+            }
+
             return screeningQuestionsRepository.SelectByIds(screeningQuestionIds);
         }
     }

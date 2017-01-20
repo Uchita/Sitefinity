@@ -617,15 +617,15 @@ namespace JXTPortal.Entities
 
             public enum ScreeningQuestionsType
             {
-                [Description("Text Box")]
+                [Description("LabelTextBox")]
                 TextBox = 1,
-                [Description("Text Area")]
+                [Description("LabelTextArea")]
                 TextArea = 2,
-                [Description("Dropdown")]
+                [Description("LabelDropdown")]
                 Dropdown = 3,
-                [Description("MultiSelect")]
+                [Description("LabelMultiSelect")]
                 MultiSelect = 4,
-                [Description("Radio Buttons")]
+                [Description("LabelRadioButtons")]
                 RadioButtons = 5
             }
         }

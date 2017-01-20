@@ -603,7 +603,8 @@ BEGIN
 		[SiteId] [int] NOT NULL FOREIGN KEY REFERENCES Sites(SiteId), -- FK
 		[Visible] [bit] NOT NULL DEFAULT 1,
 		[LastModified] [datetime] NULL,
-		[LastModifiedBy] [int] NULL FOREIGN KEY REFERENCES AdminUsers(AdminUserId) -- FK
+		[LastModifiedBy] [int] NULL FOREIGN KEY REFERENCES AdminUsers(AdminUserId), -- FK
+		[CreatedByAdvertiserId] [int] NULL FOREIGN KEY REFERENCES Advertisers(AdvertiserId) -- FK
 	)
 END
 GO

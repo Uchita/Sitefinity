@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace JXTPortal.Website.Admin {
+namespace JXTPortal.Website.advertiser {
     
     
-    public partial class ScreeningQuestionsTemplateEdit {
+    public partial class ScreeningQuestionTemplateEdit {
         
         /// <summary>
         /// ScriptManager1 control.
@@ -20,6 +20,24 @@ namespace JXTPortal.Website.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager ScriptManager1;
+        
+        /// <summary>
+        /// ucSystemDynamicPage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucSystemDynamicPage ucSystemDynamicPage;
+        
+        /// <summary>
+        /// ucAdvertiserAccountNavigation1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.navigation.ucAdvertiserAccountNavigation ucAdvertiserAccountNavigation1;
         
         /// <summary>
         /// ltlMessage control.
@@ -38,6 +56,15 @@ namespace JXTPortal.Website.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbTemplateName;
+        
+        /// <summary>
+        /// ltTemplateName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ltTemplateName;
         
         /// <summary>
         /// tbTemplateName control.
@@ -65,6 +92,15 @@ namespace JXTPortal.Website.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbVisible;
+        
+        /// <summary>
+        /// UcLanguageLiteral1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral1;
         
         /// <summary>
         /// cbVisible control.
@@ -101,6 +137,15 @@ namespace JXTPortal.Website.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder phScreeningQuestions;
+        
+        /// <summary>
+        /// UpdatePanel2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
         
         /// <summary>
         /// rptScreeningQuestions control.
@@ -202,6 +247,24 @@ namespace JXTPortal.Website.Admin {
         protected global::System.Web.UI.WebControls.Label lbOptions;
         
         /// <summary>
+        /// UcLanguageLiteral7 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral7;
+        
+        /// <summary>
+        /// UcLanguageLiteral8 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral8;
+        
+        /// <summary>
         /// tbOptions control.
         /// </summary>
         /// <remarks>
@@ -227,6 +290,15 @@ namespace JXTPortal.Website.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbSequence;
+        
+        /// <summary>
+        /// UcLanguageLiteral9 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral9;
         
         /// <summary>
         /// tbSequence control.
@@ -265,6 +337,15 @@ namespace JXTPortal.Website.Admin {
         protected global::System.Web.UI.WebControls.Label lbMandatory;
         
         /// <summary>
+        /// UcLanguageLiteral10 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral10;
+        
+        /// <summary>
         /// cbMandatory control.
         /// </summary>
         /// <remarks>
@@ -281,6 +362,15 @@ namespace JXTPortal.Website.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
+        /// UcLanguageLiteral11 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral11;
         
         /// <summary>
         /// cbQuestionVisible control.
@@ -317,68 +407,5 @@ namespace JXTPortal.Website.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCancel;
-        
-        /// <summary>
-        /// phOwners control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder phOwners;
-        
-        /// <summary>
-        /// ltOwners control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltOwners;
-        
-        /// <summary>
-        /// tbAdvertiserId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbAdvertiserId;
-        
-        /// <summary>
-        /// rvAdvertiserId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rvAdvertiserId;
-        
-        /// <summary>
-        /// cvAdvertiserId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator cvAdvertiserId;
-        
-        /// <summary>
-        /// btnAddAdvertiser control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddAdvertiser;
-        
-        /// <summary>
-        /// rptAdvertiser control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptAdvertiser;
     }
 }

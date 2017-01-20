@@ -9,6 +9,6 @@ namespace JXTPortal.Data.Dapper.Entities
     {
         public int Id { get; set; }
         public DateTime LastModified { get; set; }
-        public int LastModifiedBy { get; set; }
+        public int? LastModifiedBy { get; set; }
     }
 }

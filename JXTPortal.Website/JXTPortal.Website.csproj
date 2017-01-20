@@ -848,6 +848,20 @@
     <Compile Include="advertiser\ResendEmailValidation.aspx.designer.cs">
       <DependentUpon>ResendEmailValidation.aspx</DependentUpon>
     </Compile>
+    <Compile Include="advertiser\ScreeningQuestionsTemplates.aspx.cs">
+      <DependentUpon>ScreeningQuestionsTemplates.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="advertiser\ScreeningQuestionsTemplates.aspx.designer.cs">
+      <DependentUpon>ScreeningQuestionsTemplates.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="advertiser\ScreeningQuestionTemplateEdit.aspx.cs">
+      <DependentUpon>ScreeningQuestionTemplateEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="advertiser\ScreeningQuestionTemplateEdit.aspx.designer.cs">
+      <DependentUpon>ScreeningQuestionTemplateEdit.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Codes\CommonAdvancedSearch.cs" />
     <Compile Include="App_Codes\IoCHelper.cs" />
     <Compile Include="App_Code\**\*.cs">
@@ -1119,6 +1133,8 @@
     <Content Include="advertiser\ProductSelect.aspx" />
     <Content Include="advertiser\Reports.aspx" />
     <Content Include="advertiser\ResendEmailValidation.aspx" />
+    <Content Include="advertiser\ScreeningQuestionsTemplates.aspx" />
+    <Content Include="advertiser\ScreeningQuestionTemplateEdit.aspx" />
     <Content Include="App_GlobalResources\InvoiceDetail.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

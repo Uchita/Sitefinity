@@ -10,7 +10,7 @@ using System.Configuration;
 
 namespace JXTPortal.Website.MasterPages
 {
-    public partial class admin : AdminPageBase 
+    public partial class admin : AdminPageBase
     {
         private SitesService _sitesService = null;
 
@@ -70,7 +70,7 @@ namespace JXTPortal.Website.MasterPages
                 Repeater1.Visible = true;
                 lnkLogout.Visible = true;
             }
-            
+
         }
 
         protected void Page_Init(object sender, EventArgs e)
@@ -98,7 +98,7 @@ namespace JXTPortal.Website.MasterPages
             }
 
             // Show if there is an Image
-            if (! Page.IsPostBack)
+            if (!Page.IsPostBack)
             {
                 ltlTitle.Text = SessionData.Site.SiteName;
                 hypSite.NavigateUrl = "/";
@@ -120,10 +120,10 @@ namespace JXTPortal.Website.MasterPages
                     }
                     else
                     {
-                        imgAdminLogo.ImageUrl = "~/Admin/GetAdminLogo.aspx?SiteID=" + SessionData.Site.SiteId.ToString();                                        
+                        imgAdminLogo.ImageUrl = "~/Admin/GetAdminLogo.aspx?SiteID=" + SessionData.Site.SiteId.ToString();
                     }
                 }
-                
+
                 if (SessionData.AdminUser != null)
                 {
                     ltlUser.Text = SessionData.AdminUser.FirstName;
@@ -147,7 +147,7 @@ namespace JXTPortal.Website.MasterPages
             //Session.Clear();
 
             Response.Redirect("~/admin/login.aspx");
-        
+
         }
 
         protected string GetUrl(object input)
@@ -162,12 +162,12 @@ namespace JXTPortal.Website.MasterPages
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
                 SiteMapNode sitemap = e.Item.DataItem as SiteMapNode;
+                GlobalSettingsService service = new GlobalSettingsService();
+                GlobalSettings GlobalSettings = new GlobalSettings();
+                GlobalSettings = service.GetBySiteId(SessionData.Site.SiteId).FirstOrDefault();
 
                 if (sitemap.Title == "Invoice Report")
                 {
-                    GlobalSettingsService service = new GlobalSettingsService();
-                    GlobalSettings GlobalSettings = new GlobalSettings();
-                    GlobalSettings = service.GetBySiteId(SessionData.Site.SiteId).FirstOrDefault();
                     if (GlobalSettings.SiteType == (int)PortalEnums.Admin.SiteType.Recruiter)
                     {
                         e.Item.Visible = false;
@@ -182,15 +182,21 @@ namespace JXTPortal.Website.MasterPages
             {
                 SiteMapNode sitemap = e.Item.DataItem as SiteMapNode;
 
+                GlobalSettingsService service = new GlobalSettingsService();
+                GlobalSettings GlobalSettings = new GlobalSettings();
+                GlobalSettings = service.GetBySiteId(SessionData.Site.SiteId).FirstOrDefault();
+
                 if (sitemap.Title == "Invoice Report")
                 {
-                    GlobalSettingsService service = new GlobalSettingsService();
-                    GlobalSettings GlobalSettings = new GlobalSettings();
-                    GlobalSettings = service.GetBySiteId(SessionData.Site.SiteId).FirstOrDefault();
                     if (GlobalSettings.SiteType == (int)PortalEnums.Admin.SiteType.Recruiter)
                     {
                         e.Item.Visible = false;
                     }
+                }
+
+                if (sitemap.Title == "Screening Questions")
+                {
+                    e.Item.Visible = GlobalSettings.EnableScreeningQuestions;
                 }
             }
         }

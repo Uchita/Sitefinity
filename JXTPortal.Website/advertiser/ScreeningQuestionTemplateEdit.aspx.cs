@@ -11,9 +11,9 @@ using JXTPortal.Data.Dapper.Entities.ScreeningQuestions;
 using JXTPortal.Service.Dapper.Models;
 using JXTPortal.Data.Dapper.Entities.Core;
 
-namespace JXTPortal.Website.Admin
+namespace JXTPortal.Website.advertiser
 {
-    public partial class ScreeningQuestionsTemplateEdit : System.Web.UI.Page
+    public partial class ScreeningQuestionTemplateEdit : System.Web.UI.Page
     {
         private int _screeningQuestionsTemplateId = 0;
         protected int ScreeningQuestionsTemplateId
@@ -45,12 +45,34 @@ namespace JXTPortal.Website.Admin
         public IScreeningQuestionsTemplateOwnersService ScreeningQuestionsTemplateOwnersService { get; set; }
         public IAdvertisersService AdvertisersService { get; set; }
 
+        protected void Page_Init(object sender, EventArgs e)
+        {
+            CommonPage.SetBrowserPageTitle(Page, "Screening Questions - Add/Edit");
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            btnSubmit.Text = CommonFunction.GetResourceValue("LabelAdd");
+
+            if (SessionData.AdvertiserUser == null)
+            {
+                Response.Redirect("~/advertiser/login.aspx?returnurl=" + Server.UrlEncode(Request.Url.PathAndQuery));
+            }
+
             if (!Page.IsPostBack)
             {
+                LoadQuestionType();
                 LoadTemplate();
             }
+        }
+
+        private void LoadQuestionType()
+        {
+            ddlType.Items.Add(new ListItem(CommonFunction.GetResourceValue("LabelTextBox"), "1"));
+            ddlType.Items.Add(new ListItem(CommonFunction.GetResourceValue("LabelTextArea"), "2"));
+            ddlType.Items.Add(new ListItem(CommonFunction.GetResourceValue("LabelDropdown"), "3"));
+            ddlType.Items.Add(new ListItem(CommonFunction.GetResourceValue("LabelMultiSelect"), "4"));
+            ddlType.Items.Add(new ListItem(CommonFunction.GetResourceValue("LabelRadioButtons"), "5"));
         }
 
         private void InsertTemplate()
@@ -59,13 +81,19 @@ namespace JXTPortal.Website.Admin
             screeningQuestionsTemplate.TemplateName = tbTemplateName.Text;
             screeningQuestionsTemplate.SiteId = SessionData.Site.SiteId;
             screeningQuestionsTemplate.Visible = true;
+            screeningQuestionsTemplate.CreatedByAdvertiserId = SessionData.AdvertiserUser.AdvertiserId;
             screeningQuestionsTemplate.LastModified = DateTime.Now;
-            screeningQuestionsTemplate.LastModifiedBy = SessionData.AdminUser.AdminUserId;
+
 
             int newScreeningQuestionsTemplateId = ScreeningQuestionsTemplatesService.Insert(screeningQuestionsTemplate);
             ViewState["ScreeningQuestionsTemplateId"] = newScreeningQuestionsTemplateId;
+
+            ScreeningQuestionsTemplateOwnersService.Insert(new ScreeningQuestionsTemplateOwnersEntity { 
+                                                                    AdvertiserId = SessionData.AdvertiserUser.AdvertiserId,
+                                                                    ScreeningQuestionsTemplateId = newScreeningQuestionsTemplateId
+            });
+
             phScreeningQuestions.Visible = true;
-            phOwners.Visible = true;
 
         }
 
@@ -78,7 +106,6 @@ namespace JXTPortal.Website.Admin
                 screeningQuestionsTemplate.SiteId = SessionData.Site.SiteId;
                 screeningQuestionsTemplate.Visible = true;
                 screeningQuestionsTemplate.LastModified = DateTime.Now;
-                screeningQuestionsTemplate.LastModifiedBy = SessionData.AdminUser.AdminUserId;
 
                 ScreeningQuestionsTemplatesService.Update(screeningQuestionsTemplate);
             }
@@ -122,19 +149,19 @@ namespace JXTPortal.Website.Admin
             if (ScreeningQuestionsTemplateId > 0)
             {
                 ScreeningQuestionsTemplatesEntity screeningQuestionsTemplate = ScreeningQuestionsTemplatesService.Select(ScreeningQuestionsTemplateId);
-                if (screeningQuestionsTemplate != null)
+                if (screeningQuestionsTemplate != null && screeningQuestionsTemplate.CreatedByAdvertiserId.HasValue && screeningQuestionsTemplate.CreatedByAdvertiserId.Value == SessionData.AdvertiserUser.AdvertiserId)
                 {
                     tbTemplateName.Text = screeningQuestionsTemplate.TemplateName;
                     cbVisible.Checked = screeningQuestionsTemplate.Visible;
                     phScreeningQuestions.Visible = true;
-                    phOwners.Visible = true;
+
+                    btnSubmit.Text = CommonFunction.GetResourceValue("LabelSave");
 
                     LoadQuestions(SessionData.Site.DefaultLanguageId);
-                    LoadOwners();
                 }
                 else
                 {
-                    Response.Redirect("/admin/ScreeningQuestionsTemplate.aspx");
+                    Response.Redirect("/advertiser/ScreeningQuestionsTemplate.aspx");
                 }
             }
         }
@@ -144,6 +171,7 @@ namespace JXTPortal.Website.Admin
             if (ScreeningQuestionsTemplateId > 0)
             {
                 List<ScreeningQuestionsEntity> screeningQuestions = ScreeningQuestionsService.SelectByScreeningQuestionsTemplateIdLanguageId(ScreeningQuestionsTemplateId, languageId);
+
                 rptScreeningQuestions.DataSource = (screeningQuestions.Count > 0) ? screeningQuestions : null;
                 rptScreeningQuestions.DataBind();
             }
@@ -156,6 +184,12 @@ namespace JXTPortal.Website.Admin
 
         protected void rptScreeningQuestions_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
+            if (e.Item.ItemType == ListItemType.Header)
+            {
+                Literal ltScreeningQuestions = e.Item.FindControl("ltScreeningQuestions") as Literal;
+                ltScreeningQuestions.Text = HttpUtility.HtmlEncode(CommonFunction.GetResourceValue("LabelScreeningQuestions"));
+            }
+
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
                 LinkButton lbSelect = e.Item.FindControl("lbSelect") as LinkButton;
@@ -168,69 +202,13 @@ namespace JXTPortal.Website.Admin
                 ScreeningQuestionsEntity screeningQuestion = e.Item.DataItem as ScreeningQuestionsEntity;
                 lbSelect.CommandArgument = screeningQuestion.ScreeningQuestionId.ToString();
                 ltSequence.Text = screeningQuestion.ScreeningQuestionIndex.ToString();
-                ltQuestionType.Text = CommonFunction.GetEnumDescription((PortalEnums.Jobs.ScreeningQuestionsType)screeningQuestion.QuestionType).Replace("Label", "");
+                ltQuestionType.Text = CommonFunction.GetResourceValue(CommonFunction.GetEnumDescription((PortalEnums.Jobs.ScreeningQuestionsType)screeningQuestion.QuestionType));
                 ltQuestionTitle.Text = HttpUtility.HtmlEncode(screeningQuestion.QuestionTitle.ToString());
-                ltMandatory.Text = (screeningQuestion.Mandatory) ? "Yes" : "No";
-                ltVisible.Text = (screeningQuestion.Visible) ? "Yes" : "No";
+                ltMandatory.Text = (screeningQuestion.Mandatory) ? CommonFunction.GetResourceValue("LabelYes") : CommonFunction.GetResourceValue("LabelNo");
+                ltVisible.Text = (screeningQuestion.Visible) ? CommonFunction.GetResourceValue("LabelYes") : CommonFunction.GetResourceValue("LabelNo");
             }
         }
 
-        private void LoadOwners()
-        {
-            List<ScreeningQuestionsTemplateOwnersEntity> screeningQuestionsOwners = ScreeningQuestionsTemplateOwnersService.SelectByTemplateId(ScreeningQuestionsTemplateId);
-            List<int> advertiserIds = new List<int>();
-
-            foreach (ScreeningQuestionsTemplateOwnersEntity screeningQuestionsOwner in screeningQuestionsOwners)
-            {
-                advertiserIds.Add(screeningQuestionsOwner.AdvertiserId);
-            }
-
-            if (advertiserIds.Count > 0)
-            {
-                List<AdvertisersEntity> advertisers = AdvertisersService.SelectByAdvertiserIDs(advertiserIds);
-                rptAdvertiser.DataSource = advertisers;
-                rptAdvertiser.DataBind();
-            }
-            else
-            {
-                rptAdvertiser.DataSource = null;
-                rptAdvertiser.DataBind();
-            }
-        }
-
-        protected void cvAdvertiserId_ServerValidate(object source, ServerValidateEventArgs args)
-        {
-            int advertiserId = Convert.ToInt32(tbAdvertiserId.Text);
-
-            List<ScreeningQuestionsTemplateOwnersEntity> screeningQuestionsOwners = ScreeningQuestionsTemplateOwnersService.SelectByTemplateId(ScreeningQuestionsTemplateId);
-
-            foreach (ScreeningQuestionsTemplateOwnersEntity screeningQuestionsOwner in screeningQuestionsOwners)
-            {
-                if (screeningQuestionsOwner.AdvertiserId == advertiserId)
-                {
-                    cvAdvertiserId.ErrorMessage = "Advertiser already exists.";
-                    args.IsValid = false;
-                    return;
-                }
-            }
-
-            AdvertisersEntity advertiser = AdvertisersService.Select(advertiserId);
-            if (advertiser == null)
-            {
-                cvAdvertiserId.ErrorMessage = "Invalid Advertiser Id";
-                args.IsValid = false;
-                return;
-            }
-            else
-            {
-                if (advertiser.SiteID != SessionData.Site.SiteId)
-                {
-                    cvAdvertiserId.ErrorMessage = "Invalid Advertiser Id";
-                    args.IsValid = false;
-                    return;
-                }
-            }
-        }
 
         protected void rptAdvertiser_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
@@ -248,34 +226,6 @@ namespace JXTPortal.Website.Admin
             }
         }
 
-        protected void rptAdvertiser_ItemCommand(object source, RepeaterCommandEventArgs e)
-        {
-            if (e.CommandName == "Delete")
-            {
-                int advertiserId = Convert.ToInt32(e.CommandArgument);
-
-                ScreeningQuestionsTemplateOwnersService.Delete(ScreeningQuestionsTemplateId, advertiserId);
-
-                LoadOwners();
-            }
-        }
-
-        protected void btnAddAdvertiser_Click(object sender, EventArgs e)
-        {
-            if (Page.IsValid)
-            {
-                ScreeningQuestionsTemplateOwnersEntity owner = new ScreeningQuestionsTemplateOwnersEntity
-                {
-                    AdvertiserId = Convert.ToInt32(tbAdvertiserId.Text),
-                    ScreeningQuestionsTemplateId = ScreeningQuestionsTemplateId
-                };
-
-                ScreeningQuestionsTemplateOwnersService.Insert(owner);
-
-                LoadOwners();
-            }
-        }
-
         protected void btnSave_Click(object sender, EventArgs e)
         {
             ScreeningQuestionsEntity screeningQuestion = ScreeningQuestionsService.Select(Convert.ToInt32(hfScreeningQuestionId.Value));
@@ -290,11 +240,10 @@ namespace JXTPortal.Website.Admin
                 screeningQuestion.Visible = cbQuestionVisible.Checked;
                 screeningQuestion.LanguageId = SessionData.Site.DefaultLanguageId;
                 screeningQuestion.LastModified = DateTime.Now;
-                screeningQuestion.LastModifiedBy = SessionData.AdminUser.AdminUserId;
 
                 ScreeningQuestionsService.Update(screeningQuestion);
 
-                ltAddScreeningQuestions.Text = "Add Screening Questions";
+                ltAddScreeningQuestions.Text = CommonFunction.GetResourceValue("LabelAddScreeningQuestions");
 
                 tbTitle.Text = string.Empty;
                 ddlType.SelectedIndex = 0;
@@ -313,7 +262,7 @@ namespace JXTPortal.Website.Admin
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            ltAddScreeningQuestions.Text = "Add Screening Questions";
+            ltAddScreeningQuestions.Text = CommonFunction.GetResourceValue("LabelAddScreeningQuestions");
 
             tbTitle.Text = string.Empty;
             ddlType.SelectedIndex = 0;
@@ -333,7 +282,7 @@ namespace JXTPortal.Website.Admin
         {
             if (e.CommandName == "Select")
             {
-                ltAddScreeningQuestions.Text = "Edit Screening Questions";
+                ltAddScreeningQuestions.Text = CommonFunction.GetResourceValue("LabelEditScreeningQuestions");
 
                 btnAdd.Visible = false;
                 btnSave.Visible = true;
@@ -355,7 +304,7 @@ namespace JXTPortal.Website.Admin
                 }
                 else
                 {
-                    Response.Redirect("/admin/ScreeningQuestionsTemplate.aspx");
+                    Response.Redirect("/advertiser/ScreeningQuestionsTemplates.aspx");
                 }
             }
         }
@@ -376,8 +325,7 @@ namespace JXTPortal.Website.Admin
                 Mandatory = cbMandatory.Checked,
                 Visible = cbQuestionVisible.Checked,
                 LanguageId = SessionData.Site.DefaultLanguageId,
-                LastModified = DateTime.Now,
-                LastModifiedBy = SessionData.AdminUser.AdminUserId
+                LastModified = DateTime.Now
             };
 
             int screeningQuestionId = ScreeningQuestionsService.Insert(screeningQuestion);
@@ -412,7 +360,7 @@ namespace JXTPortal.Website.Admin
 
         protected void btnReturn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/admin/ScreeningQuestionsTemplate.aspx");
+            Response.Redirect("/advertiser/ScreeningQuestionsTemplates.aspx");
         }
     }
 }

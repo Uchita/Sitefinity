@@ -836,9 +836,14 @@
                             <ItemTemplate>
                                 <li>
                                     <span class="screen-qsts">
-								        <strong><asp:Literal ID="ltQuestion" runat="server" /></strong>
+								        <strong><asp:HiddenField ID="hfScreeningQuestionId" runat="server" /><asp:Literal ID="ltQuestion" runat="server" /></strong>
                                         <asp:Literal ID="ltOptions" runat="server" />
                                     </span>
+                                    <asp:PlaceHolder ID="phError" runat="server" Visible="false">
+                                        <span class="help-block">
+                                                <span class="error"><JXTControl:ucLanguageLiteral ID="ltError" runat="server" /></span>
+                                        </span>
+                                    </asp:PlaceHolder>
                                 </li>
                             </ItemTemplate>
                         </asp:Repeater>

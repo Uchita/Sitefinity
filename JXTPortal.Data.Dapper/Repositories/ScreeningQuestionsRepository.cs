@@ -33,9 +33,9 @@ namespace JXTPortal.Data.Dapper.Repositories
             {
                 dbConnection.Open();
                 string columns = IdColumnName + ", " + string.Join(", ", ColumnNames);
-                string whereClause = string.Format("ScreeningQuestionsId = {0}", screeningQuestionId);
+                string whereClause = "ScreeningQuestionsId = @Id";
                 var query = string.Format("SELECT {0} FROM dbo.{1} WHERE {2}", columns, TableName, whereClause);
-                var entity = dbConnection.Query<ScreeningQuestionsEntity>(query, new { ScreeningQuestionsId = screeningQuestionId });
+                var entity = dbConnection.Query<ScreeningQuestionsEntity>(query, new { Id = screeningQuestionId });
                 return entity as ScreeningQuestionsEntity;
             }
         }
@@ -47,11 +47,11 @@ namespace JXTPortal.Data.Dapper.Repositories
                 dbConnection.Open();
 
                 string columns = "sq.ScreeningQuestionId as ScreeningQuestionId, " + string.Join(", ", ColumnNames);
-                string whereClause = string.Format("ScreeningQuestionsTemplateId = {0}", templateId);
+                string whereClause = "ScreeningQuestionsTemplateId = @TemplateId";
                 var query = string.Format(@"SELECT {0} FROM ScreeningQuestionsMappings sqm WITH (NOLOCK)
                                             INNER JOIN ScreeningQuestions sq WITH (NOLOCK)
                                             ON sqm.ScreeningQuestionId = sq.ScreeningQuestionId WHERE {1} ORDER BY ScreeningQuestionIndex", columns, whereClause);
-                var entity = dbConnection.Query<ScreeningQuestionsEntity>(query, null).ToList();
+                var entity = dbConnection.Query<ScreeningQuestionsEntity>(query, new { TemplateId = templateId}).ToList();
                 return entity;
             }
         }
@@ -63,11 +63,11 @@ namespace JXTPortal.Data.Dapper.Repositories
                 dbConnection.Open();
 
                 string columns = "sq.ScreeningQuestionId as ScreeningQuestionId, " + string.Join(", ", ColumnNames);
-                string whereClause = string.Format("ScreeningQuestionsTemplateId = {0} AND LanguageID = {1}", templateId, languageId);
+                string whereClause = "ScreeningQuestionsTemplateId = @TemplateId AND LanguageID = @LanguageId";
                 var query = string.Format(@"SELECT {0} FROM ScreeningQuestionsMappings sqm WITH (NOLOCK)
                                             INNER JOIN ScreeningQuestions sq WITH (NOLOCK)
                                             ON sqm.ScreeningQuestionId = sq.ScreeningQuestionId WHERE {1} ORDER BY ScreeningQuestionIndex", columns, whereClause);
-                var entity = dbConnection.Query<ScreeningQuestionsEntity>(query, null).ToList();
+                var entity = dbConnection.Query<ScreeningQuestionsEntity>(query, new { TemplateId = templateId, LanguageId = languageId}).ToList();
                 return entity;
             }
         }
@@ -78,9 +78,9 @@ namespace JXTPortal.Data.Dapper.Repositories
             {
                 dbConnection.Open();
                 string columns = IdColumnName + ", " + string.Join(", ", ColumnNames);
-                string whereClause = string.Format("ScreeningQuestionId IN ({0})", string.Join(",", screeningQuestionIds));
+                string whereClause = "ScreeningQuestionId IN (@Ids)";
                 var query = string.Format("SELECT {0} FROM dbo.{1} WHERE {2}", columns, TableName, whereClause);
-                var entity = dbConnection.Query<ScreeningQuestionsEntity>(query, null);
+                var entity = dbConnection.Query<ScreeningQuestionsEntity>(query, new { Ids = string.Join(",", screeningQuestionIds)});
                 return entity as List<ScreeningQuestionsEntity>;
             }
         }

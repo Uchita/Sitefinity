@@ -47,11 +47,11 @@ namespace JXTPortal.Data.Dapper.Repositories
             {
                 dbConnection.Open();
                 string columns = "sqt.ScreeningQuestionsTemplateId, " + string.Join(", ", ColumnNames);
-                string whereClause = string.Format("AdvertiserId = {0}", advertiserId);
+                string whereClause = "AdvertiserId = @AdvertiserId";
                 var query = string.Format(@"SELECT {0} FROM ScreeningQuestionsTemplateOwners sqto WITH (NOLOCK)
                                             INNER JOIN ScreeningQuestionsTemplates sqt WITH (NOLOCK)
                                             ON sqto.ScreeningQuestionsTemplateId = sqt.ScreeningQuestionsTemplateId WHERE {1}", columns, whereClause);
-                var entity = dbConnection.Query<ScreeningQuestionsTemplatesEntity>(query, null).ToList();
+                var entity = dbConnection.Query<ScreeningQuestionsTemplatesEntity>(query, new { AdvertiserId = advertiserId}).ToList();
                 return entity as List<ScreeningQuestionsTemplatesEntity>;
             }
         }
@@ -67,7 +67,7 @@ namespace JXTPortal.Data.Dapper.Repositories
             {
                 dbConnection.Open();
                 string columns = IdColumnName + ", " + string.Join(", ", ColumnNames);
-                string whereClause = string.Format("SiteId = {0} AND RowNum >= {1} AND RowNum < {2}", siteId, rowFrom, rowTo);
+                string whereClause = string.Format("SiteId = @SiteId AND RowNum >= @RowFrom AND RowNum < @RowTo", siteId, rowFrom, rowTo);
                 var query = string.Format(@"SELECT {0}
                                             FROM    ( SELECT    RowNum = ROW_NUMBER() OVER ( ORDER BY {4} ), {0}
                                                       FROM      {2} WITH (NOLOCK)
@@ -76,7 +76,7 @@ namespace JXTPortal.Data.Dapper.Repositories
                                             WHERE   {3}
                                             ORDER BY RowNum", columns, siteId, TableName, whereClause, orderBy);
 
-                var entity = dbConnection.Query<ScreeningQuestionsTemplatesEntity>(query, null).ToList();
+                var entity = dbConnection.Query<ScreeningQuestionsTemplatesEntity>(query, new { SiteId = siteId, RowFrom = rowFrom, RowTo = rowTo }).ToList();
                 return entity as List<ScreeningQuestionsTemplatesEntity>;
             }
         }
@@ -86,10 +86,10 @@ namespace JXTPortal.Data.Dapper.Repositories
             using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
             {
                 dbConnection.Open();
-                string whereClause = string.Format("SiteId = {0}", siteId);
+                string whereClause = "SiteId = @SiteId";
                 var query = string.Format(@"SELECT COUNT(*) FROM ScreeningQuestionsTemplates WITH (NOLOCK) WHERE {0}", whereClause);
 
-                var count = dbConnection.ExecuteScalar(query);
+                var count = dbConnection.ExecuteScalar(query, new { SiteId = siteId });
 
                 return (int)count;
             }
@@ -101,9 +101,9 @@ namespace JXTPortal.Data.Dapper.Repositories
             {
                 dbConnection.Open();
                 string columns = IdColumnName + ", " + string.Join(", ", ColumnNames);
-                string whereClause = string.Format("CreatedByAdvertiserId = {0}", advertiserId);
+                string whereClause = "CreatedByAdvertiserId = @AdvertiserId";
                 var query = string.Format("SELECT {0} FROM dbo.{1} WHERE {2}", columns, TableName, whereClause);
-                var entity = dbConnection.Query<ScreeningQuestionsTemplatesEntity>(query, null).ToList();
+                var entity = dbConnection.Query<ScreeningQuestionsTemplatesEntity>(query, new { AdvertiserId = advertiserId }).ToList();
                 return entity as List<ScreeningQuestionsTemplatesEntity>;
             }
         }

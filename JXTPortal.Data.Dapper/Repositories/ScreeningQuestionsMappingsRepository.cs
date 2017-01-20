@@ -31,9 +31,9 @@ namespace JXTPortal.Data.Dapper.Repositories
             {
                 dbConnection.Open();
                 string columns = IdColumnName + ", " + string.Join(", ", ColumnNames);
-                string whereClause = string.Format("ScreeningQuestionsTemplateId = {0}", screeningQuestionsTemplateId);
+                string whereClause = "ScreeningQuestionsTemplateId = @Id";
                 var query = string.Format("SELECT {0} FROM dbo.{1} WHERE {2}", columns, TableName, whereClause);
-                var entity = dbConnection.Query<ScreeningQuestionsMappingsEntity>(query, new { ScreeningQuestionsTemplateId = screeningQuestionsTemplateId }).ToList();
+                var entity = dbConnection.Query<ScreeningQuestionsMappingsEntity>(query, new { Id = screeningQuestionsTemplateId }).ToList();
                 return entity as List<ScreeningQuestionsMappingsEntity>;
             }
         }
@@ -43,9 +43,9 @@ namespace JXTPortal.Data.Dapper.Repositories
             using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
             {
                 dbConnection.Open();
-                string whereClause = string.Format("ScreeningQuestionsTemplateId = {0} AND ScreeningQuestionId = {1}", templateId, questionId);
+                string whereClause = "ScreeningQuestionsTemplateId = @TemplateId AND ScreeningQuestionId = @QuestionId";
                 var query = string.Format("DELETE FROM {0} dbo.{1} WHERE {1}", TableName, whereClause);
-                dbConnection.Execute(query);
+                dbConnection.Execute(query, new { TemplateId = templateId, QuestionId = questionId});
             }
         }
     }

@@ -33,7 +33,7 @@ namespace JXTPortal.Data.Dapper.Repositories
             {
                 dbConnection.Open();
                 string columns = IdColumnName + ", " + string.Join(", ", ColumnNames);
-                string whereClause = string.Format("AdvertiserId = {0}", advertiserId);
+                string whereClause = "AdvertiserId = @AdvertiserId";
                 var query = string.Format("SELECT {0} FROM dbo.{1} WITH (NOLOCK) WHERE {2}", columns, TableName, whereClause);
                 var entity = dbConnection.Query<ScreeningQuestionsTemplateOwnersEntity>(query, new { AdvertiserId = advertiserId }).ToList();
                 return entity as List<ScreeningQuestionsTemplateOwnersEntity>;
@@ -46,9 +46,9 @@ namespace JXTPortal.Data.Dapper.Repositories
             {
                 dbConnection.Open();
                 string columns = IdColumnName + ", " + string.Join(", ", ColumnNames);
-                string whereClause = string.Format("ScreeningQuestionsTemplateId = {0}", templateId);
+                string whereClause = "ScreeningQuestionsTemplateId = @TemplateId";
                 var query = string.Format("SELECT {0} FROM dbo.{1} WITH (NOLOCK) WHERE {2}", columns, TableName, whereClause);
-                var entity = dbConnection.Query<ScreeningQuestionsTemplateOwnersEntity>(query, null).ToList();
+                var entity = dbConnection.Query<ScreeningQuestionsTemplateOwnersEntity>(query, new { TemplateId = templateId}).ToList();
                 return entity as List<ScreeningQuestionsTemplateOwnersEntity>;
             }
         }
@@ -58,9 +58,9 @@ namespace JXTPortal.Data.Dapper.Repositories
             using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
             {
                 dbConnection.Open();
-                string whereClause = string.Format("ScreeningQuestionsTemplateId = {0} AND AdvertiserId = {1}", templateId, advertiserId);
+                string whereClause = "ScreeningQuestionsTemplateId = @TemplateOd AND AdvertiserId = @AdvertiserId";
                 var query = string.Format("DELETE FROM dbo.{0} WHERE {1}", TableName, whereClause);
-                dbConnection.Execute(query);
+                dbConnection.Execute(query, new { TemplateId = templateId, AdvertiserId = advertiserId });
             }
         }
     }

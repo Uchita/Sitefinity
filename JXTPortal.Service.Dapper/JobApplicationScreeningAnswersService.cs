@@ -30,26 +30,6 @@ namespace JXTPortal.Service.Dapper
             return jobApplicationScreeningAnswersRepository.Insert(entity);
         }
 
-        public void Update(JobApplicationScreeningAnswersEntity entity)
-        {
-            jobApplicationScreeningAnswersRepository.Update(entity);
-        }
-
-        public void Delete(int id)
-        {
-            jobApplicationScreeningAnswersRepository.Delete(id);
-        }
-
-        public JobApplicationScreeningAnswersEntity Select(int id)
-        {
-            return jobApplicationScreeningAnswersRepository.Select(id);
-        }
-
-        public List<JobApplicationScreeningAnswersEntity> SelectAll()
-        {
-            return jobApplicationScreeningAnswersRepository.SelectAll();
-        }
-
         public JobApplicationScreeningAnswerDetail SelectByJobApplicationId(int jobApplicationId)
         {
             JobApplicationScreeningAnswerDetail jobApplicationScreeningAnswerDetail = new JobApplicationScreeningAnswerDetail();
@@ -58,27 +38,25 @@ namespace JXTPortal.Service.Dapper
             jobApplicationScreeningAnswerDetail.JobApplicationScreeningAnswers = new List<JobApplicationScreeningAnswer>();
 
             List<JobApplicationScreeningAnswersEntity> jobApplicationScreeningAnswers = jobApplicationScreeningAnswersRepository.SelectByJobApplicationID(jobApplicationId);
-            List<int> screeningQuestionIds = new List<int>();
 
-            foreach (JobApplicationScreeningAnswersEntity jobApplicationScreeningAnswer in jobApplicationScreeningAnswers)
+            var screeningQuestionIds = jobApplicationScreeningAnswers.Select(i => i.ScreeningQuestionId).ToList();
+
+            var screeningQuestions = screeningQuestionsRepository.SelectByIds(screeningQuestionIds);
+
+            foreach (JobApplicationScreeningAnswersEntity answer in jobApplicationScreeningAnswers)
             {
-                screeningQuestionIds.Add(jobApplicationScreeningAnswer.ScreeningQuestionId);
-            }
-
-            List<ScreeningQuestionsEntity> screeningQuestions = screeningQuestionsRepository.SelectByIds(screeningQuestionIds);
-
-            foreach (JobApplicationScreeningAnswersEntity jobApplicationScreeningAnswer in jobApplicationScreeningAnswers)
-            {
-                foreach (ScreeningQuestionsEntity screeningQuestion in screeningQuestions)
+                var question = screeningQuestions.FirstOrDefault(q => q.ScreeningQuestionId == answer.ScreeningQuestionId);
+                
+                if (question != null)
                 {
-                    jobApplicationScreeningAnswerDetail.JobApplicationScreeningAnswers.Add(new JobApplicationScreeningAnswer { 
-                                                                                                ScreeningQuestionId = screeningQuestion.ScreeningQuestionId, 
-                                                                                                QuestionTitle = screeningQuestion.QuestionTitle, 
-                                                                                                Answer = jobApplicationScreeningAnswer.Answer });
-                    break;
+                    jobApplicationScreeningAnswerDetail.JobApplicationScreeningAnswers.Add(new JobApplicationScreeningAnswer
+                    {
+                        ScreeningQuestionId = question.ScreeningQuestionId,
+                        QuestionTitle = question.QuestionTitle,
+                        Answer = answer.Answer
+                    });
                 }
             }
-
 
             return jobApplicationScreeningAnswerDetail;
         }

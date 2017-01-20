@@ -44,7 +44,7 @@ namespace JXTPortal.Data.Dapper.Repositories
             using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
             {
                 dbConnection.Open();
-                string whereClause = string.Format("{0} = Id", IdColumnName);
+                string whereClause = string.Format("{0} = @Id", IdColumnName);
                 var query = string.Format("DELETE FROM dbo.{0} WHERE {1}", TableName, whereClause);
                 dbConnection.Execute(query, new { Id = id });
             }
@@ -88,7 +88,7 @@ namespace JXTPortal.Data.Dapper.Repositories
             using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
             {
                 dbConnection.Open();
-                string columns = string.Join(", ", ColumnNames);
+                string columns = IdColumnName + ", " + string.Join(", ", ColumnNames);
                 var query = string.Format("SELECT {0} FROM dbo.{1}", columns, TableName);
                 var entities = dbConnection.Query<T>(query).Cast<T>().ToList();
                 return entities;

@@ -51,19 +51,6 @@
                     <asp:TextBox ID="txtStagingSiteUrl" runat="server" ReadOnly="true" Width="300px" />(<%=URLPOSTFIX%>)
                 </div>
             </li>
-            <%--
-            <li class="form-line">
-                <label class="form-label-left">
-                    Mobile Site URL:
-                    <br />
-                    (Remove http://www.)
-                </label>
-                <div class="form-input">
-                    <asp:TextBox ID="txtMobileUrl" runat="server" Width="300px" />
-                    <!--<asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" Display="Dynamic"
-                        ControlToValidate="txtMobileUrl" ErrorMessage="Required"></asp:RequiredFieldValidator>--!><br />
-                </div>
-            </li>--%>
             <li class="form-line">
                 <label class="form-label-left">
                     Site Description:<span class="form-required">*</span>

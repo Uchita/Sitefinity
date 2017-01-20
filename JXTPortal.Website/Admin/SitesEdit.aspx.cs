@@ -19,10 +19,18 @@ using JXTPortal;
 using System.Web.Script.Serialization;
 using JXTPortal.Common;
 using System.IO;
+using SectionIO;
 #endregion
 
 public partial class SitesEdit : System.Web.UI.Page
 {
+   
+    public ICacheFlusher CacheFlusher {get;set;}
+
+    public SitesEdit()
+    {
+    }
+
     #region Properties
 
     protected string URLPOSTFIX = ConfigurationManager.AppSettings[PortalConstants.WebConfigurationKeys.WEBSITEURLPOSTFIX];
@@ -72,6 +80,7 @@ public partial class SitesEdit : System.Web.UI.Page
 
     #endregion
 
+
     #region Page Event handlers
 
     protected void Page_Init(object sender, EventArgs e)
@@ -81,6 +90,7 @@ public partial class SitesEdit : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+
         if (!Page.IsPostBack)
         {
             txtSiteURL.Attributes.Add("onkeyup", "javascript:SetStagingUrl(\"" + txtSiteURL.ClientID + "\", \"" + txtStagingSiteUrl.ClientID + "\")");
@@ -171,9 +181,14 @@ public partial class SitesEdit : System.Web.UI.Page
             site.Dispose();
         }
 
-        if (String.IsNullOrEmpty(ltlMessage.Text))
-            Response.Redirect("sites.aspx");
+        String siteUrl = string.Format("{0}://{1}", Request.Url.Scheme, Request.Url.Host);
+        String path = "sites";
+        String siteLogoName = string.Format("Site_{0}.png", site.SiteId);
 
+        CacheFlusher.FlushImage(siteUrl, path, siteLogoName);
+
+        if (String.IsNullOrEmpty(ltlMessage.Text))
+            Response.Redirect("sites.aspx");      
     }
 
     protected void btnReturn_Click(object sender, EventArgs e)
@@ -324,8 +339,35 @@ public partial class SitesEdit : System.Web.UI.Page
 
             Response.OutputStream.Write(file, 0, file.Length);
             Response.ContentType = "application/json";
-            Response.End();
+            Response.End();            
         }
+    }
+
+    private string GetSiteFTPFolder()
+    {
+        string ftpFolder = string.Empty;
+
+        using (var siteGlobalSettings = GlobalSettingsService.GetBySiteId(SiteId))
+        {
+            var siteSettings = siteGlobalSettings.FirstOrDefault();
+            
+            if (siteSettings == null)
+            {
+                Response.Redirect("/admin/sites.aspx");
+            }
+
+            ftpFolder = siteSettings.GlobalFolder;
+
+            //if doesn't exist prompt and save
+            if (string.IsNullOrWhiteSpace(ftpFolder))
+            {
+                //Prompt and save
+                string script = "alert(\"Global FTP Folder Field is Empty, please update before attempting to flush cache\"); location.href=\"/admin/globalsettingsedit.aspx\"";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "test", script, true);
+            }
+        }
+
+        return ftpFolder;
     }
 
     internal class SitemapContainer
@@ -353,6 +395,8 @@ public partial class SitesEdit : System.Web.UI.Page
         public string priority;
         public string changefreq;
     }
+
+    
 }
 
 

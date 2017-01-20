@@ -1,5 +1,4 @@
-﻿#region Imports...
-using System;
+﻿using System;
 using System.Data;
 using System.Configuration;
 using System.Collections;
@@ -18,14 +17,14 @@ using JXTPortal.Website.Admin.UserControls;
 using JXTPortal.Website;
 using System.Collections.Generic;
 using SectionIO;
-#endregion
-
 using System.Linq;
 
 namespace JXTPortal.Website.Admin
 {
     public partial class DynamicPageRevisions : System.Web.UI.Page
     {
+        public ICacheFlusher CacheFlusher { get; set; }
+
         #region "Properties"
 
         protected string DateFormat
@@ -1651,8 +1650,12 @@ namespace JXTPortal.Website.Admin
 
         #endregion
 
-        protected void CusVal_PageName_ServerValidate(object source, ServerValidateEventArgs args)
+        public DynamicPageRevisions()
         {
+        }
+
+        protected void CusVal_PageName_ServerValidate(object source, ServerValidateEventArgs args)
+        { 
             char[] invalidchars = new char[] { '+', '/', '?', '%', '#', '&', '\'' };
 
             foreach (char c in invalidchars)
@@ -1711,8 +1714,7 @@ namespace JXTPortal.Website.Admin
                     return;
                 }
             }
-
-
+            
             if (!string.IsNullOrWhiteSpace(StrPageName))
             {
                 TList<JXTPortal.Entities.DynamicPages> pages = DynamicPagesService.GetBySiteId(SessionData.Site.SiteId);
@@ -1730,8 +1732,6 @@ namespace JXTPortal.Website.Admin
                     }
                 }
             }
-
-
         }
 
         protected void CusVal_txtHyperLink_ServerValidate(object source, ServerValidateEventArgs args)
@@ -1778,7 +1778,7 @@ namespace JXTPortal.Website.Admin
                                 dynamicPage.PublishOn = _publishedDate;
                             else
                                 dynamicPage.PublishOn = null;
-
+                            
                             DynamicPageRevisionsService.Update(dynamicPage);
                         }
                     }
@@ -2027,8 +2027,6 @@ namespace JXTPortal.Website.Admin
                     pageRevision.OnSiteMap = cbOnSiteMap.Checked;
                     pageRevision.Status = (int)targetStatus;
 
-
-
                     PortalEnums.DynamicPage.Visiblity selectedVis = (PortalEnums.DynamicPage.Visiblity)int.Parse(ddlVisibility.SelectedValue);
 
                     pageRevision.Secured = (selectedVis == PortalEnums.DynamicPage.Visiblity.Secured);
@@ -2142,8 +2140,9 @@ namespace JXTPortal.Website.Admin
 
                         if (dprf.DynamicPageID > 0)
                         {
-                            SectionIO_API sectionio = new SectionIO_API(1295, 2227, SectionIO_API.Environment.Production);
-                            sectionio.API_Proxy_State_Post(SectionIO_API.Proxy.Varnish, "req.url == " + Request.Url.Scheme + "://" + Request.Url.Host + DynamicPagesService.GetDynamicPageUrl(DynamicPagesService.GetByDynamicPageId(dprf.DynamicPageID)));
+                            string urlToFlush = Request.Url.Scheme + "://" + Request.Url.Host + DynamicPagesService.GetDynamicPageUrl(DynamicPagesService.GetByDynamicPageId(dprf.DynamicPageID));
+                            
+                            CacheFlusher.FlushByUrl(new Uri(urlToFlush));
                         }
                     }
 

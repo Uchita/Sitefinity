@@ -3493,7 +3493,7 @@
                                                         <a id="aReferenceEdit" runat="server" class="fa fa-edit fa-0" data-toggle="collapse">
                                                             <!-- icon -->
                                                         </a>
-                                                        <asp:LinkButton ID="lbReferencesDelete" runat="server" CssClass="fa fa-trash fa-1" data-toggle="modal" data-target="#deleteConfirm" CommandName="ReferencesDelete" />
+                                                        <asp:LinkButton ID="lbReferencesDelete" runat="server" CssClass="fa fa-trash fa-1" data-toggle="modal" data-target="#deleteConfirm" CommandName="ReferencesDelete" CausesValidation="false" />
                                                     </div>
                                                     <h3>
                                                         <asp:Literal ID="ltReferencesName" runat="server" /></h3>

@@ -94,6 +94,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileUploader.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="..\JXTPortal.Website\App_GlobalResources\CVBuilderResource.Designer.cs">
       <Link>Resources\CVBuilderResource.Designer.cs</Link>
     </Compile>

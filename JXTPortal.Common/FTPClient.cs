@@ -50,7 +50,7 @@ namespace JXTPortal.Common
     /// <summary>
     /// General, easy-to-use FTP class.
     /// </summary>
-    public class FtpClient
+    public class FtpClient : JXTPortal.Common.IFtpClient
     {
         protected FtpDirectory _host;
 

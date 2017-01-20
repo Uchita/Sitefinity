@@ -2185,15 +2185,11 @@ namespace JXTPortal.Website
                 oAuthFacebook _oauth = new oAuthFacebook();
                 _oauth.ClientID = integrations.Facebook.ApplicationID;
                 _oauth.RedirectURI = urlsuffix + "/oauthcallback.aspx?cbtype=facebook&cbaction=apply&id=" + JobID.ToString() + "&profession=" + Profession + "&jobname=" + JobName;
-                string token = _oauth.Authorize();
+                string token = _oauth.GetAuthorizationUrl();
                 Response.Write(token);
                 Response.Redirect(token);
-
             }
-
         }
-
-
 
         private string RenderControl(System.Web.UI.Control control)
         {

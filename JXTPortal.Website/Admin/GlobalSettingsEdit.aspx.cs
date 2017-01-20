@@ -225,6 +225,8 @@ namespace JXTPortal.Website.Admin
                 globalSetting.DefaultKeywords = dataDefaultKeywords.Text;
                 globalSetting.HomeKeywords = dataHomeKeywords.Text;
                 globalSetting.FtpFolderLocation = dataFTPFolder.Text.TrimStart(new char[] {'/'}).TrimEnd(new char[] {'/'});
+                // Adding Global FTPFolder
+                globalSetting.GlobalFolder = dataGlobalFTPFolder.Text.TrimStart(new char[] { '/' }).TrimEnd(new char[] { '/' });
                 globalSetting.ShowFaceBookButton = false;
                 globalSetting.PrivacySettings = dataPrivacySettings.Text;
                 globalSetting.UseCustomProfessionRole = cbUseCustomProfessionRoles.Checked;
@@ -392,64 +394,69 @@ namespace JXTPortal.Website.Admin
             {
                 SecruityCheck();
 
-                using (TList<JXTPortal.Entities.GlobalSettings> globalSettings = GlobalSettingsService.GetBySiteId(SiteID))
+                GlobalSettings globalSetting = null;
+                using (TList<GlobalSettings> globalSettings = GlobalSettingsService.GetBySiteId(SiteID))
                 {
-                    //dataSite.SelectedValue = globalSetting.SiteId.ToString();
-                    if (globalSettings.Count > 0)
+                    globalSetting = globalSettings.FirstOrDefault();
+                    if (globalSetting == null)
                     {
-                        JXTPortal.Entities.GlobalSettings globalSetting = globalSettings.FirstOrDefault();
-                        CommonFunction.SetDropDownByValue(ddlSiteType, globalSetting.SiteType.ToString());
-                        cbAdvertiserApprovalProcess.Checked = (globalSetting.AdvertiserApprovalProcess == (int)PortalEnums.Admin.AdvertiserApproval.AllApprovalProcess);
-                        ddlAdvertiserApprovalProcess.SelectedValue = globalSetting.AdvertiserApprovalProcess.ToString();
-                        CommonFunction.SetDropDownByValue(dataLanguage, globalSetting.DefaultLanguageId.ToString());
-                        CommonFunction.SetDropDownByValue(ddlDefaultEmailLanguage, globalSetting.DefaultEmailLanguageId.ToString());
-                        CommonFunction.SetDropDownByValue(dataCountry, globalSetting.DefaultCountryId.ToString());
-                        cbJobExpiryNotification.Checked = globalSetting.JobExpiryNotification;
-                        SetAdvertiserApprovalProcess();
-                        LoadDynamicPages();
+                        return;
+                    }
+                }
+
+                CommonFunction.SetDropDownByValue(ddlSiteType, globalSetting.SiteType.ToString());
+                cbAdvertiserApprovalProcess.Checked = (globalSetting.AdvertiserApprovalProcess == (int)PortalEnums.Admin.AdvertiserApproval.AllApprovalProcess);
+                ddlAdvertiserApprovalProcess.SelectedValue = globalSetting.AdvertiserApprovalProcess.ToString();
+                CommonFunction.SetDropDownByValue(dataLanguage, globalSetting.DefaultLanguageId.ToString());
+                CommonFunction.SetDropDownByValue(ddlDefaultEmailLanguage, globalSetting.DefaultEmailLanguageId.ToString());
+                CommonFunction.SetDropDownByValue(dataCountry, globalSetting.DefaultCountryId.ToString());
+                cbJobExpiryNotification.Checked = globalSetting.JobExpiryNotification;
+                SetAdvertiserApprovalProcess();
+                LoadDynamicPages();
 
                         CommonFunction.SetDropDownByValue(dataDynamicPage, globalSetting.DefaultDynamicPageId.ToString());
 
                         dataPublicJobSearch.Checked = globalSetting.PublicJobsSearch;
                         dataPrivateJobs.Checked = globalSetting.PrivateJobs;
-                        AdminUsersService aus = new AdminUsersService();
+                AdminUsersService aus = new AdminUsersService();
                         using (Entities.AdminUsers adminuser = aus.GetByAdminUserId(globalSetting.LastModifiedBy))
-                        {
-                            lblLastModifiedBy.Text = adminuser.UserName;
-                        }
+                {
+                    lblLastModifiedBy.Text = adminuser.UserName;
+                }
                         lblLastModified.Text = globalSetting.LastModified.ToString(SessionData.Site.DateFormat + " hh:mm:ss tt");
 
                         tbGoogleTagManager.Text = globalSetting.GoogleTagManager;
                         tbGoogleAnalytics.Text = globalSetting.GoogleAnalytics;
                         tbGoogleWebMaster.Text = globalSetting.GoogleWebMaster;
 
-                        dataPageTitlePrefix.Text = globalSetting.PageTitlePrefix;
-                        dataPageTitleSuffix.Text = globalSetting.PageTitleSuffix;
-                        dataDefaultTitle.Text = globalSetting.DefaultTitle;
-                        dataHomeTitle.Text = globalSetting.HomeTitle;
-                        cbSSLEnabled.Checked = globalSetting.EnableSsl;
-                        dataWWWRedirect.Checked = globalSetting.WwwRedirect;
-                        dataDescription.Text = globalSetting.DefaultDescription;
-                        dataHomeDescription.Text = globalSetting.HomeDescription;
-                        dataDefaultKeywords.Text = globalSetting.DefaultKeywords;
-                        dataHomeKeywords.Text = globalSetting.HomeKeywords;
-                        dataFTPFolder.Text = globalSetting.FtpFolderLocation;
-                        //dataBlankHomePageDynamicPage.SelectedValue = globalSetting.BlankHomePageDynamicPageId.ToString();
-                        txtMetaTags.Text = globalSetting.MetaTags;
-                        txtSystemPages.Text = globalSetting.SystemMetaTags;
-                        dataUseAdvertiserFilter.Checked = (globalSetting.UseAdvertiserFilter == 1) ? true : false;
-                        dataPrivacySettings.Text = globalSetting.PrivacySettings;
-                        cbUseCustomProfessionRoles.Checked = globalSetting.UseCustomProfessionRole;
-                        chkGenerateJobXML.Checked = globalSetting.GenerateJobXml;
-                        cbJobScreeningProcess.Checked = (globalSetting.JobScreeningProcess.HasValue)?globalSetting.JobScreeningProcess.Value:false;
-                        // cbAdvertiserApprovalProcess.Checked = (globalSetting.AdvertiserApprovalProcess.HasValue) ? true : false; // TODO Naveen change this //globalSetting.AdvertiserApprovalProcess.Value : false;
-                        ddlDateFormat.SelectedValue = globalSetting.GlobalDateFormat;
+                dataPageTitlePrefix.Text = globalSetting.PageTitlePrefix;
+                dataPageTitleSuffix.Text = globalSetting.PageTitleSuffix;
+                dataDefaultTitle.Text = globalSetting.DefaultTitle;
+                dataHomeTitle.Text = globalSetting.HomeTitle;
+                cbSSLEnabled.Checked = globalSetting.EnableSsl;
+                dataWWWRedirect.Checked = globalSetting.WwwRedirect;
+                dataDescription.Text = globalSetting.DefaultDescription;
+                dataHomeDescription.Text = globalSetting.HomeDescription;
+                dataDefaultKeywords.Text = globalSetting.DefaultKeywords;
+                dataHomeKeywords.Text = globalSetting.HomeKeywords;
+                dataFTPFolder.Text = globalSetting.FtpFolderLocation;
+                dataGlobalFTPFolder.Text = globalSetting.GlobalFolder;
+                //dataBlankHomePageDynamicPage.SelectedValue = globalSetting.BlankHomePageDynamicPageId.ToString();
+                txtMetaTags.Text = globalSetting.MetaTags;
+                txtSystemPages.Text = globalSetting.SystemMetaTags;
+                dataUseAdvertiserFilter.Checked = (globalSetting.UseAdvertiserFilter == 1) ? true : false;
+                dataPrivacySettings.Text = globalSetting.PrivacySettings;
+                cbUseCustomProfessionRoles.Checked = globalSetting.UseCustomProfessionRole;
+                chkGenerateJobXML.Checked = globalSetting.GenerateJobXml;
+                cbJobScreeningProcess.Checked = (globalSetting.JobScreeningProcess.HasValue) ? globalSetting.JobScreeningProcess.Value : false;
+                // cbAdvertiserApprovalProcess.Checked = (globalSetting.AdvertiserApprovalProcess.HasValue) ? true : false; // TODO Naveen change this //globalSetting.AdvertiserApprovalProcess.Value : false;
+                ddlDateFormat.SelectedValue = globalSetting.GlobalDateFormat;
 
                         chkPrivateSite.Checked = globalSetting.IsPrivateSite.HasValue ? globalSetting.IsPrivateSite.Value : false;
-                        if (chkPrivateSite.Checked)
+                if (chkPrivateSite.Checked)
                             txtPrivateRedirectUrl.Text = globalSetting.PrivateRedirectUrl;
 
-                        //People Search Settings
+                //People Search Settings
                         cbPeopleSearchCB.Checked = globalSetting.EnablePeopleSearch;
 
                         cbScreeningQuestions.Checked = globalSetting.EnableScreeningQuestions;
@@ -457,14 +464,14 @@ namespace JXTPortal.Website.Admin
                         chkEnableJobCustomQuestionnaire.Checked = globalSetting.EnableJobCustomQuestionnaire.HasValue ? globalSetting.EnableJobCustomQuestionnaire.Value : false;
                         if (globalSetting.JobApplicationTypeId.HasValue)
                             CommonFunction.SetDropDownByValue(ddlJobApplicationTypeID, globalSetting.JobApplicationTypeId.ToString());
-                        
-                        if (cbUseCustomProfessionRoles.Checked)
-                        {
-                            dataPrivateJobs.Checked = true;
-                            dataPrivateJobs.Enabled = false;
-                            dataPublicJobSearch.Enabled = false;
-                            dataUseAdvertiserFilter.Enabled = false;
-                        }
+
+                if (cbUseCustomProfessionRoles.Checked)
+                {
+                    dataPrivateJobs.Checked = true;
+                    dataPrivateJobs.Enabled = false;
+                    dataPublicJobSearch.Enabled = false;
+                    dataUseAdvertiserFilter.Enabled = false;
+                }
 
                         //if (globalSetting.SiteFavIconId.HasValue)
                         //    dataSiteFavIcon.Text = globalSetting.SiteFavIconId.Value.ToString();
@@ -473,25 +480,25 @@ namespace JXTPortal.Website.Admin
 
                         txtSiteEmailMemberRegistration.Text = globalSetting.MemberRegistrationNotification;
 
-                        if (SessionData.AdminUser != null && SessionData.AdminUser.AdminRoleId != (int)PortalEnums.Admin.AdminRole.Administrator)
-                        {
-                            dataDynamicPage.Enabled = false;
-                            dataLanguage.Enabled = false;
-                            dataPrivateJobs.Enabled = false;
-                            dataPublicJobSearch.Enabled = false;
-                            dataPrivateJobs.Enabled = false;
-                            dataFTPFolder.Enabled = false;
-                            txtMetaTags.Enabled = false;
-                            txtSystemPages.Enabled = false;
-                            dataUseAdvertiserFilter.Enabled = false;
-                            dataSiteDocType.Enabled = false;
-                            hypLinkAdvertiserFilter.Visible = false;
-                            chkGenerateJobXML.Enabled = false;
-                            chkPrivateSite.Enabled = false;
-                            chkEnableJobCustomQuestionnaire.Enabled = false;
-                            ddlJobApplicationTypeID.Enabled = false;
-                            txtPrivateRedirectUrl.Enabled = false;
-                        }
+                if (SessionData.AdminUser != null && SessionData.AdminUser.AdminRoleId != (int)PortalEnums.Admin.AdminRole.Administrator)
+                {
+                    dataDynamicPage.Enabled = false;
+                    dataLanguage.Enabled = false;
+                    dataPrivateJobs.Enabled = false;
+                    dataPublicJobSearch.Enabled = false;
+                    dataPrivateJobs.Enabled = false;
+                    dataFTPFolder.Enabled = false;
+                    txtMetaTags.Enabled = false;
+                    txtSystemPages.Enabled = false;
+                    dataUseAdvertiserFilter.Enabled = false;
+                    dataSiteDocType.Enabled = false;
+                    hypLinkAdvertiserFilter.Visible = false;
+                    chkGenerateJobXML.Enabled = false;
+                    chkPrivateSite.Enabled = false;
+                    chkEnableJobCustomQuestionnaire.Enabled = false;
+                    ddlJobApplicationTypeID.Enabled = false;
+                    txtPrivateRedirectUrl.Enabled = false;
+                }
 
                         tbLinkedInAPI.Text = (string.IsNullOrEmpty(globalSetting.LinkedInApi)) ? string.Empty : globalSetting.LinkedInApi;
                         tbLinkedInAPISecret.Text = (string.IsNullOrEmpty(globalSetting.LinkedInApiSecret)) ? string.Empty : globalSetting.LinkedInApiSecret;
@@ -504,8 +511,6 @@ namespace JXTPortal.Website.Admin
 
                         //tbFacebookAppID.Text = (string.IsNullOrEmpty(globalSetting.FacebookAppId)) ? string.Empty : globalSetting.FacebookAppId;
                         //tbFacebookAppSecret.Text = (string.IsNullOrEmpty(globalSetting.FacebookAppSecret)) ? string.Empty : globalSetting.FacebookAppSecret;
-                    }
-                }
 
             }
         }

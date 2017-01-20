@@ -53,6 +53,7 @@ namespace JXTPortal
             return XMLLanguageService.Translate(GetByLocationId(locationID).ToList(), "AreaId", "AreaName", url);
         }
 
+        [Obsolete("GetTranslatedArea should only be used on Member related purpose")]
         public Area GetTranslatedArea(int areaID, int languageID)
         {
             Area area = GetByAreaId(areaID);
@@ -65,6 +66,7 @@ namespace JXTPortal
       
         }
 
+        [Obsolete("GetTranslatedStringArea should only be used on Member related purpose")]
         public string GetTranslatedStringArea(int areaID, int languageID)
         {
             Area area = GetByAreaId(areaID);

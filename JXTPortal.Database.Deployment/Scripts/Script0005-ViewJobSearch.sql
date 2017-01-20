@@ -59,7 +59,8 @@ SELECT DISTINCT
  Jobs.JobItemTypeID,      
  Jobs.JobLatitude,      
  Jobs.JobLongitude,      
- Jobs.AddressStatus,      
+ Jobs.AddressStatus,  
+     
  CASE WHEN Advertisers.AdvertiserLogo IS NULL THEN 0 ELSE 1  END as HasAdvertiserLogo,  
  JobCustomXML.CustomXML,
  Jobs.[Address],
@@ -1015,72 +1016,47 @@ SELECT
        ) as RowNumber               
  FROM                                           
  [dbo].[udfSite_GetAdvertisers](@SiteID) AdvertiserFilter                                           
- INNER JOIN Jobs (NOLOCK)        
- ON Jobs.AdvertiserID = AdvertiserFilter.AdvertiserID                                                
+ INNER JOIN Jobs (NOLOCK) ON Jobs.AdvertiserID = AdvertiserFilter.AdvertiserID                                                
  INNER JOIN Advertisers (NOLOCK) ON Jobs.AdvertiserID = Advertisers.AdvertiserID                                                     
- LEFT JOIN SalaryType (NOLOCK)                                                      
- ON SalaryType.SalaryTypeID = Jobs.SalaryTypeID                                                     
- INNER JOIN SiteSalaryType (NOLOCK)                                                      
- ON SiteSalaryType.SalaryTypeID = Jobs.SalaryTypeID                                              
- AND SiteSalaryType.SiteID = @SiteID                                         
-                                         
- INNER JOIN [dbo].[SiteCurrencies] (NOLOCK) SiteCurrencies           
- ON [SiteCurrencies].CurrencyID = [Jobs].CurrencyID                                       
- AND [SiteCurrencies].SiteID = Jobs.SiteID                                       
-        --AND SiteCurrencies.SiteID = @SiteID          --Added on 27th August 2013                                
- INNER JOIN [dbo].[Currencies] (NOLOCK) Currencies                                        
- ON [Currencies].CurrencyID = [SiteCurrencies].CurrencyID                                       
-INNER JOIN WorkType (NOLOCK)                                                      
- ON WorkType.WorkTypeID = Jobs.WorkTypeID                                                 
- LEFT JOIN SiteWorkType (NOLOCK)                                                      
- ON SiteWorkType.WorkTypeID = Jobs.WorkTypeID                                                
- AND SiteWorkType.SiteID = @SiteID                                                 
-                                          
- -- Country Location Area                                  
- INNER JOIN JobArea (NOLOCK)                                                  
- ON JobArea.JobID = Jobs.JobID                                                 
- INNER JOIN ViewSiteAreaLocationCountry (NOLOCK)                                                  
- ON JobArea.AreaID = ViewSiteAreaLocationCountry.AreaID                                            
- AND ViewSiteAreaLocationCountry.Siteid = @SiteID                                           
- AND ViewSiteAreaLocationCountry.SiteLocationSiteId = @SiteID                               
- AND ViewSiteAreaLocationCountry.SiteCountrySiteId = @SiteID                                               
+ LEFT JOIN SalaryType (NOLOCK) ON SalaryType.SalaryTypeID = Jobs.SalaryTypeID                                                     
+ INNER JOIN SiteSalaryType (NOLOCK) ON SiteSalaryType.SalaryTypeID = Jobs.SalaryTypeID AND SiteSalaryType.SiteID = @SiteID                                         
+ INNER JOIN [dbo].[SiteCurrencies] (NOLOCK) SiteCurrencies ON [SiteCurrencies].CurrencyID = [Jobs].CurrencyID AND [SiteCurrencies].SiteID = Jobs.SiteID        --AND SiteCurrencies.SiteID = @SiteID          --Added on 27th August 2013                                
+ INNER JOIN [dbo].[Currencies] (NOLOCK) Currencies ON [Currencies].CurrencyID = [SiteCurrencies].CurrencyID                                       
+ INNER JOIN WorkType (NOLOCK) ON WorkType.WorkTypeID = Jobs.WorkTypeID                                                 
+ LEFT JOIN SiteWorkType (NOLOCK) ON SiteWorkType.WorkTypeID = Jobs.WorkTypeID AND SiteWorkType.SiteID = @SiteID                                                 
+  -- Country Location Area                                  
+ INNER JOIN JobArea (NOLOCK) ON JobArea.JobID = Jobs.JobID                                                 
+ INNER JOIN ViewSiteAreaLocationCountry (NOLOCK)  ON JobArea.AreaID = ViewSiteAreaLocationCountry.AreaID AND ViewSiteAreaLocationCountry.Siteid = @SiteID AND ViewSiteAreaLocationCountry.SiteLocationSiteId = @SiteID AND ViewSiteAreaLocationCountry.SiteCountrySiteId = @SiteID                                               
                                               
  -- Profession Role                                                 
- INNER JOIN JobRoles (NOLOCK)                                                 
- ON JobRoles.JobID = Jobs.JobId                                               
- INNER JOIN SiteRoles (NOLOCK)                                    
- ON SiteRoles.RoleID = JobRoles.RoleID                                             
- AND SiteRoles.SiteID = @SiteID                                                 
- INNER JOIN Roles (NOLOCK)                                                 
- ON Roles.RoleID = JobRoles.RoleID                                               
- INNER JOIN Profession (NOLOCK)                                                 
- ON Profession.ProfessionID = Roles.ProfessionID                                               
- INNER JOIN SiteProfession (NOLOCK)                                                 
- ON SiteProfession.ProfessionID = Profession.ProfessionID                                              
- AND SiteProfession.SiteID = @SiteID                                                   
+ INNER JOIN JobRoles (NOLOCK) ON JobRoles.JobID = Jobs.JobId                                               
+ INNER JOIN SiteRoles (NOLOCK) ON SiteRoles.RoleID = JobRoles.RoleID AND SiteRoles.SiteID = @SiteID                                                 
+ INNER JOIN Roles (NOLOCK) ON Roles.RoleID = JobRoles.RoleID                                               
+ INNER JOIN Profession (NOLOCK) ON Profession.ProfessionID = Roles.ProfessionID                                               
+ INNER JOIN SiteProfession (NOLOCK) ON SiteProfession.ProfessionID = Profession.ProfessionID AND SiteProfession.SiteID = @SiteID                                                   
  WHERE                                                  
- Jobs.Expired = 0 AND              
- Jobs.ExpiryDate >= GETDATE() AND                                            
- ((@AdvertiserId is NULL) OR (Jobs.AdvertiserID = @AdvertiserId)) AND                                                 
- ((@CurrencyID IS NULL) OR (Jobs.CurrencyID = @CurrencyID)) AND                                         
- ((@SalaryLowerBand IS NULL) OR (Jobs.SalaryLowerBand >= @SalaryLowerBand)) AND                                     
-((@SalaryUpperBand IS NULL) OR (Jobs.SalaryUpperBand <= @SalaryUpperBand)) AND                                       
- ((ISNULL(@SalaryTypeID,0) = 0 OR Jobs.SalaryTypeID  = @SalaryTypeID)) AND                         
-((ISNULL(@WorkTypeID, 0) = 0) OR (Jobs.WorkTypeID = @WorkTypeID)) AND                                                 
- ((ISNULL(@ProfessionID, 0) = 0) OR (Roles.ProfessionID = @ProfessionID)) AND                    
- ((ISNULL(@RoleID,'') = '') OR (EXISTS (Select id from ParseIntCSV(@RoleID) where id = Roles.RoleID))) AND                                               
- ((ISNULL(@CountryID, '') = '') OR (ViewSiteAreaLocationCountry.CountryID = @CountryID))  AND                                                
- ((ISNULL(@LocationID, '') = '') OR (ViewSiteAreaLocationCountry.LocationID = @LocationID))  AND                                                
- ((ISNULL(@AreaID,'') = '') OR (EXISTS (Select id from ParseIntCSV(@AreaID) where id = ViewSiteAreaLocationCountry.AreaID)))             
-  AND (--(ISNULL(@JobTypeIDs, '') = '') OR             
-  (Jobs.JobItemTypeID IN (Select id from ParseIntCSV(@JobTypeIDs)))             
-  OR (Jobs.JobItemTypeID IS NULL) -- TODO REMOVE Jobs.JobItemTypeID NULL              
-  OR (@DisplayPremiumJobsOnResults = 1 AND Jobs.JobItemTypeID = 3 AND Jobs.SiteID = @SiteId))            
- AND Jobs.DatePosted <= CAST(GETDATE()+1 AS DATE)           
- AND ((@DateFrom IS NULL) OR Jobs.DatePosted >= @DateFrom)                   -- FOR JOB ALERT - Only send new jobs - Don't REMOVE                             
- AND ((ISNULL(@Keyword,'') = '""') OR CONTAINS(Jobs.[SearchField], @Keyword))                                             
- -- AND ((@UseCustomProfessionRole = 0) OR (@UseCustomProfessionRole = 1 AND Profession.ReferredSiteID = @SiteID))                          
-)                                                 
+	 Jobs.Expired = 0 AND              
+	 Jobs.ExpiryDate >= GETDATE() AND                                            
+	 ((@AdvertiserId is NULL) OR (Jobs.AdvertiserID = @AdvertiserId)) AND                                                 
+	 ((@CurrencyID IS NULL) OR (Jobs.CurrencyID = @CurrencyID)) AND                                         
+	 ((@SalaryLowerBand IS NULL) OR (Jobs.SalaryLowerBand >= @SalaryLowerBand)) AND                                     
+	((@SalaryUpperBand IS NULL) OR (Jobs.SalaryUpperBand <= @SalaryUpperBand)) AND                                       
+	 ((ISNULL(@SalaryTypeID,0) = 0 OR Jobs.SalaryTypeID  = @SalaryTypeID)) AND                         
+	((ISNULL(@WorkTypeID, 0) = 0) OR (Jobs.WorkTypeID = @WorkTypeID)) AND                                                 
+	 ((ISNULL(@ProfessionID, 0) = 0) OR (Roles.ProfessionID = @ProfessionID)) AND                    
+	 ((ISNULL(@RoleID,'') = '') OR (EXISTS (Select id from ParseIntCSV(@RoleID) where id = Roles.RoleID))) AND                                               
+	 ((ISNULL(@CountryID, '') = '') OR (ViewSiteAreaLocationCountry.CountryID = @CountryID))  AND                                                
+	 ((ISNULL(@LocationID, '') = '') OR (ViewSiteAreaLocationCountry.LocationID = @LocationID))  AND                                                
+	 ((ISNULL(@AreaID,'') = '') OR (EXISTS (Select id from ParseIntCSV(@AreaID) where id = ViewSiteAreaLocationCountry.AreaID)))             
+	  AND (--(ISNULL(@JobTypeIDs, '') = '') OR             
+	  (Jobs.JobItemTypeID IN (Select id from ParseIntCSV(@JobTypeIDs)))             
+	  OR (Jobs.JobItemTypeID IS NULL) -- TODO REMOVE Jobs.JobItemTypeID NULL              
+	  OR (@DisplayPremiumJobsOnResults = 1 AND Jobs.JobItemTypeID = 3 AND Jobs.SiteID = @SiteId))            
+	 AND Jobs.DatePosted <= CAST(GETDATE()+1 AS DATE)           
+	 AND ((@DateFrom IS NULL) OR Jobs.DatePosted >= @DateFrom)                   -- FOR JOB ALERT - Only send new jobs - Don't REMOVE                             
+	 AND ((ISNULL(@Keyword,'') = '""') OR CONTAINS(Jobs.[SearchField], @Keyword))                                             
+	 -- AND ((@UseCustomProfessionRole = 0) OR (@UseCustomProfessionRole = 1 AND Profession.ReferredSiteID = @SiteID))                          
+	)                                                 
 Job                                                 
 WHERE                               
  Job.RowNumber BETWEEN (@PageIndex * @PageSize + 1) AND ((@PageIndex * @PageSize) + @PageSize)                                                 
@@ -1155,50 +1131,27 @@ SELECT
  JobCustomXML.CustomXML,  
  Jobs.Address,
  JObs.PublicTransport        
- FROM                                           
- @tmpJobIdSearch tmpJobIdSearch             
+ FROM @tmpJobIdSearch tmpJobIdSearch             
  INNER JOIN Jobs (NOLOCK) ON tmpJobIdSearch.JobID = Jobs.JobID                                           
  INNER JOIN Advertisers (NOLOCK) ON Jobs.AdvertiserID = Advertisers.AdvertiserID                                                     
- LEFT JOIN SalaryType (NOLOCK)                                                      
- ON SalaryType.SalaryTypeID = Jobs.SalaryTypeID                                                     
- INNER JOIN SiteSalaryType (NOLOCK)                                                      
- ON SiteSalaryType.SalaryTypeID = Jobs.SalaryTypeID                                              
- AND SiteSalaryType.SiteID = @SiteID                                         
+ LEFT JOIN SalaryType (NOLOCK) ON SalaryType.SalaryTypeID = Jobs.SalaryTypeID                                                     
+ INNER JOIN SiteSalaryType (NOLOCK) ON SiteSalaryType.SalaryTypeID = Jobs.SalaryTypeID AND SiteSalaryType.SiteID = @SiteID                                         
                                          
- INNER JOIN [dbo].[SiteCurrencies] (NOLOCK) SiteCurrencies                                        
- ON [SiteCurrencies].CurrencyID = [Jobs].CurrencyID                                       
- AND [SiteCurrencies].SiteID = Jobs.SiteID                                       
-        --AND SiteCurrencies.SiteID = @SiteID          --Added on 27th August 2013                                
- INNER JOIN [dbo].[Currencies] (NOLOCK) Currencies                                        
- ON [Currencies].CurrencyID = [SiteCurrencies].CurrencyID                                       
-INNER JOIN WorkType (NOLOCK)                                                      
- ON WorkType.WorkTypeID = Jobs.WorkTypeID                                                 
- LEFT JOIN SiteWorkType (NOLOCK)                                                      
- ON SiteWorkType.WorkTypeID = Jobs.WorkTypeID                                             
- AND SiteWorkType.SiteID = @SiteID                                                 
+ INNER JOIN [dbo].[SiteCurrencies] (NOLOCK) SiteCurrencies ON [SiteCurrencies].CurrencyID = [Jobs].CurrencyID AND [SiteCurrencies].SiteID = Jobs.SiteID --AND SiteCurrencies.SiteID = @SiteID          --Added on 27th August 2013                                
+ INNER JOIN [dbo].[Currencies] (NOLOCK) Currencies ON [Currencies].CurrencyID = [SiteCurrencies].CurrencyID                                       
+ INNER JOIN WorkType (NOLOCK) ON WorkType.WorkTypeID = Jobs.WorkTypeID                                                 
+ LEFT JOIN SiteWorkType (NOLOCK) ON SiteWorkType.WorkTypeID = Jobs.WorkTypeID AND SiteWorkType.SiteID = @SiteID                                                 
                                           
  -- Country Location Area                                  
- INNER JOIN JobArea (NOLOCK)                                                  
- ON JobArea.JobID = Jobs.JobID                                                 
- INNER JOIN ViewSiteAreaLocationCountry (NOLOCK)                                                  
- ON JobArea.AreaID = ViewSiteAreaLocationCountry.AreaID                                            
- AND ViewSiteAreaLocationCountry.Siteid = @SiteID                                           
- AND ViewSiteAreaLocationCountry.SiteLocationSiteId = @SiteID                               
- AND ViewSiteAreaLocationCountry.SiteCountrySiteId = @SiteID                                               
+ INNER JOIN JobArea (NOLOCK) ON JobArea.JobID = Jobs.JobID                                                 
+ INNER JOIN ViewSiteAreaLocationCountry (NOLOCK) ON JobArea.AreaID = ViewSiteAreaLocationCountry.AreaID AND ViewSiteAreaLocationCountry.Siteid = @SiteID
+ AND ViewSiteAreaLocationCountry.SiteLocationSiteId = @SiteID AND ViewSiteAreaLocationCountry.SiteCountrySiteId = @SiteID                                               
                                               
  -- Profession Role                                                 
- INNER JOIN JobRoles (NOLOCK)                                                 
- ON JobRoles.JobID = Jobs.JobId                                               
- INNER JOIN SiteRoles (NOLOCK)                                     
- ON SiteRoles.RoleID = JobRoles.RoleID                                             
-  AND SiteRoles.SiteID = @SiteID              
-  AND SiteRoles.RoleID = tmpJobIdSearch.RoleId                                               
- INNER JOIN Roles (NOLOCK)                                                 
- ON Roles.RoleID = JobRoles.RoleID                                               
- INNER JOIN Profession (NOLOCK)                                                 
- ON Profession.ProfessionID = Roles.ProfessionID                                               
- INNER JOIN SiteProfession (NOLOCK)                                                 
- ON SiteProfession.ProfessionID = Profession.ProfessionID AND SiteProfession.SiteID = @SiteID                
- LEFT JOIN JobCustomXML WITH (NOLOCK) ON JobCustomXML.JobID = Jobs.JobID    
- ORDER BY RowNumber
+ INNER JOIN JobRoles (NOLOCK) ON JobRoles.JobID = Jobs.JobId                                               
+ INNER JOIN SiteRoles (NOLOCK) ON SiteRoles.RoleID = JobRoles.RoleID AND SiteRoles.SiteID = @SiteID AND SiteRoles.RoleID = tmpJobIdSearch.RoleId                                               
+ INNER JOIN Roles (NOLOCK) ON Roles.RoleID = JobRoles.RoleID                                               
+ INNER JOIN Profession (NOLOCK) ON Profession.ProfessionID = Roles.ProfessionID                                               
+ INNER JOIN SiteProfession (NOLOCK) ON SiteProfession.ProfessionID = Profession.ProfessionID AND SiteProfession.SiteID = @SiteID                
+ LEFT JOIN JobCustomXML WITH (NOLOCK) ON JobCustomXML.JobID = Jobs.JobID ORDER BY RowNumber
 GO

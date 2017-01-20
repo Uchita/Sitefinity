@@ -7,6 +7,10 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using JXTPortal.Mobile.Website.ViewEngine;
+using Autofac;
+using Autofac.Integration.Web;
+using JXTPortal.Website.App_Codes;
+using JXTPortal.Custom;
 
 namespace JXTPortal.Mobile.Website
 {
@@ -15,6 +19,16 @@ namespace JXTPortal.Mobile.Website
 
     public class MvcApplication : System.Web.HttpApplication
     {
+        // Provider that holds the application container.
+        static IContainerProvider _containerProvider;
+
+        // Instance property that will be used by Autofac HttpModules
+        // to resolve and inject dependencies.
+        public IContainerProvider ContainerProvider
+        {
+            get { return _containerProvider; }
+        }
+
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
@@ -52,6 +66,10 @@ namespace JXTPortal.Mobile.Website
 
         protected void Application_Start()
         {
+            _containerProvider = new ContainerProvider(IoCHelper.CreateContainer());
+
+            SessionService.InnerService = ContainerProvider.ApplicationContainer.Resolve<ISessionService>();
+
             AreaRegistration.RegisterAllAreas();
 
             RegisterGlobalFilters(GlobalFilters.Filters);

@@ -39981,8 +39981,7 @@ AS
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[GlobalFolder]
 				FROM
 					[dbo].[GlobalSettings]
 					
@@ -40066,7 +40065,7 @@ AS
 				EXEC sp_executesql @SQL
 
 				-- Return paged results
-				SELECT O.[GlobalSettingID], O.[SiteID], O.[DefaultLanguageID], O.[DefaultDynamicPageID], O.[PublicJobsSearch], O.[PublicMembersSearch], O.[PublicCompaniesSearch], O.[PublicSponsoredAdverts], O.[PrivateJobs], O.[PrivateMembers], O.[PrivateCompanies], O.[LastModifiedBy], O.[LastModified], O.[PageTitlePrefix], O.[PageTitleSuffix], O.[DefaultTitle], O.[HomeTitle], O.[DefaultDescription], O.[HomeDescription], O.[DefaultKeywords], O.[HomeKeywords], O.[ShowFaceBookButton], O.[UseAdvertiserFilter], O.[MerchantID], O.[ShowTwitterButton], O.[ShowJobAlertButton], O.[ShowLinkedInButton], O.[SiteFavIconID], O.[SiteDocType], O.[CurrencySymbol], O.[FtpFolderLocation], O.[MetaTags], O.[SystemMetaTags], O.[MemberRegistrationNotification], O.[LinkedInAPI], O.[LinkedInLogo], O.[LinkedInCompanyID], O.[LinkedInEmail], O.[PrivacySettings], O.[WWWRedirect], O.[AllowAdvertiser], O.[LinkedInAPISecret], O.[GoogleClientID], O.[GoogleClientSecret], O.[FacebookAppID], O.[FacebookAppSecret], O.[LinkedInButtonSize], O.[DefaultCountryID], O.[PayPalUsername], O.[PayPalPassword], O.[PayPalSignature], O.[SecurePayMerchantID], O.[SecurePayPassword], O.[UsingSSL], O.[UseCustomProfessionRole], O.[GenerateJobXML], O.[IsPrivateSite], O.[PrivateRedirectUrl], O.[EnableJobCustomQuestionnaire], O.[JobApplicationTypeID], O.[JobScreeningProcess], O.[AdvertiserApprovalProcess], O.[SiteType], O.[EnableSSL], O.[GST], O.[GSTLabel], O.[NumberOfPremiumJobs], O.[PremiumJobDays], O.[DisplayPremiumJobsOnResults], O.[JobExpiryNotification], O.[CurrencyID], O.[PayPalClientID], O.[PayPalClientSecret], O.[PaypalUser], O.[PaypalProPassword], O.[PaypalVendor], O.[PaypalPartner], O.[InvoiceSiteInfo], O.[InvoiceSiteFooter], O.[EnableTermsAndConditions], O.[DefaultEmailLanguageId], O.[GoogleTagManager], O.[GoogleAnalytics], O.[GoogleWebMaster], O.[EnablePeopleSearch], O.[GlobalDateFormat], O.[TimeZone], O.[GlobalFolder], O.[EnableScreeningQuestions]
+				SELECT O.[GlobalSettingID], O.[SiteID], O.[DefaultLanguageID], O.[DefaultDynamicPageID], O.[PublicJobsSearch], O.[PublicMembersSearch], O.[PublicCompaniesSearch], O.[PublicSponsoredAdverts], O.[PrivateJobs], O.[PrivateMembers], O.[PrivateCompanies], O.[LastModifiedBy], O.[LastModified], O.[PageTitlePrefix], O.[PageTitleSuffix], O.[DefaultTitle], O.[HomeTitle], O.[DefaultDescription], O.[HomeDescription], O.[DefaultKeywords], O.[HomeKeywords], O.[ShowFaceBookButton], O.[UseAdvertiserFilter], O.[MerchantID], O.[ShowTwitterButton], O.[ShowJobAlertButton], O.[ShowLinkedInButton], O.[SiteFavIconID], O.[SiteDocType], O.[CurrencySymbol], O.[FtpFolderLocation], O.[MetaTags], O.[SystemMetaTags], O.[MemberRegistrationNotification], O.[LinkedInAPI], O.[LinkedInLogo], O.[LinkedInCompanyID], O.[LinkedInEmail], O.[PrivacySettings], O.[WWWRedirect], O.[AllowAdvertiser], O.[LinkedInAPISecret], O.[GoogleClientID], O.[GoogleClientSecret], O.[FacebookAppID], O.[FacebookAppSecret], O.[LinkedInButtonSize], O.[DefaultCountryID], O.[PayPalUsername], O.[PayPalPassword], O.[PayPalSignature], O.[SecurePayMerchantID], O.[SecurePayPassword], O.[UsingSSL], O.[UseCustomProfessionRole], O.[GenerateJobXML], O.[IsPrivateSite], O.[PrivateRedirectUrl], O.[EnableJobCustomQuestionnaire], O.[JobApplicationTypeID], O.[JobScreeningProcess], O.[AdvertiserApprovalProcess], O.[SiteType], O.[EnableSSL], O.[GST], O.[GSTLabel], O.[NumberOfPremiumJobs], O.[PremiumJobDays], O.[DisplayPremiumJobsOnResults], O.[JobExpiryNotification], O.[CurrencyID], O.[PayPalClientID], O.[PayPalClientSecret], O.[PaypalUser], O.[PaypalProPassword], O.[PaypalVendor], O.[PaypalPartner], O.[InvoiceSiteInfo], O.[InvoiceSiteFooter], O.[EnableTermsAndConditions], O.[DefaultEmailLanguageId], O.[GoogleTagManager], O.[GoogleAnalytics], O.[GoogleWebMaster], O.[EnablePeopleSearch], O.[GlobalDateFormat], O.[TimeZone], O.[GlobalFolder]
 				FROM
 				    [dbo].[GlobalSettings] O,
 				    #PageIndex PageIndex
@@ -40289,9 +40288,7 @@ CREATE PROCEDURE dbo.GlobalSettings_Insert
 
 	@TimeZone varchar (255)  ,
 
-	@GlobalFolder varchar (255)  ,
-
-	@EnableScreeningQuestions bit   
+	@GlobalFolder varchar (255)  
 )
 AS
 
@@ -40386,7 +40383,6 @@ AS
 					,[GlobalDateFormat]
 					,[TimeZone]
 					,[GlobalFolder]
-					,[EnableScreeningQuestions]
 					)
 				VALUES
 					(
@@ -40477,7 +40473,6 @@ AS
 					,@GlobalDateFormat
 					,@TimeZone
 					,@GlobalFolder
-					,@EnableScreeningQuestions
 					)
 				
 				-- Get the identity value
@@ -40687,9 +40682,7 @@ CREATE PROCEDURE dbo.GlobalSettings_Update
 
 	@TimeZone varchar (255)  ,
 
-	@GlobalFolder varchar (255)  ,
-
-	@EnableScreeningQuestions bit   
+	@GlobalFolder varchar (255)  
 )
 AS
 
@@ -40787,7 +40780,6 @@ AS
 					,[GlobalDateFormat] = @GlobalDateFormat
 					,[TimeZone] = @TimeZone
 					,[GlobalFolder] = @GlobalFolder
-					,[EnableScreeningQuestions] = @EnableScreeningQuestions
 				WHERE
 [GlobalSettingID] = @GlobalSettingId 
 				
@@ -40953,8 +40945,7 @@ AS
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[GlobalFolder]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -41086,8 +41077,7 @@ AS
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[GlobalFolder]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -41219,8 +41209,7 @@ AS
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[GlobalFolder]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -41352,8 +41341,7 @@ AS
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[GlobalFolder]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -41485,8 +41473,7 @@ AS
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[GlobalFolder]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -41618,8 +41605,7 @@ AS
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[GlobalFolder]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -41751,8 +41737,7 @@ AS
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[GlobalFolder]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -41884,8 +41869,7 @@ AS
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[GlobalFolder]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -42017,8 +42001,7 @@ AS
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[GlobalFolder]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -42152,8 +42135,7 @@ AS
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[GlobalFolder]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -42284,8 +42266,7 @@ AS
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[GlobalFolder]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -42497,9 +42478,7 @@ CREATE PROCEDURE dbo.GlobalSettings_Find
 
 	@TimeZone varchar (255)  = null ,
 
-	@GlobalFolder varchar (255)  = null ,
-
-	@EnableScreeningQuestions bit   = null 
+	@GlobalFolder varchar (255)  = null 
 )
 AS
 
@@ -42596,7 +42575,6 @@ AS
 	, [GlobalDateFormat]
 	, [TimeZone]
 	, [GlobalFolder]
-	, [EnableScreeningQuestions]
     FROM
 	[dbo].[GlobalSettings]
     WHERE 
@@ -42688,7 +42666,6 @@ AS
 	AND ([GlobalDateFormat] = @GlobalDateFormat OR @GlobalDateFormat IS NULL)
 	AND ([TimeZone] = @TimeZone OR @TimeZone IS NULL)
 	AND ([GlobalFolder] = @GlobalFolder OR @GlobalFolder IS NULL)
-	AND ([EnableScreeningQuestions] = @EnableScreeningQuestions OR @EnableScreeningQuestions IS NULL)
 						
   END
   ELSE
@@ -42782,7 +42759,6 @@ AS
 	, [GlobalDateFormat]
 	, [TimeZone]
 	, [GlobalFolder]
-	, [EnableScreeningQuestions]
     FROM
 	[dbo].[GlobalSettings]
     WHERE 
@@ -42874,7 +42850,6 @@ AS
 	OR ([GlobalDateFormat] = @GlobalDateFormat AND @GlobalDateFormat is not null)
 	OR ([TimeZone] = @TimeZone AND @TimeZone is not null)
 	OR ([GlobalFolder] = @GlobalFolder AND @GlobalFolder is not null)
-	OR ([EnableScreeningQuestions] = @EnableScreeningQuestions AND @EnableScreeningQuestions is not null)
 	SELECT @@ROWCOUNT			
   END
 				

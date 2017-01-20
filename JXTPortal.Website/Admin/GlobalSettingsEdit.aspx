@@ -431,6 +431,14 @@
                                 <asp:TextBox ID="dataFTPFolder" runat="server"></asp:TextBox>
                             </div>
                         </li>
+                        <%--Global FTP Folder--%>
+                        <li class="form-line" id="gse-globalFtpFolder-field">
+                            <label class="form-label-left">
+                                Global FTP Folder:</label>
+                            <div class="form-input">
+                                <asp:TextBox ID="dataGlobalFTPFolder" runat="server"></asp:TextBox>
+                            </div>
+                        </li>
                         <li class="form-line" id="Li1">
                             <h3>
                                 Privacy Settings</h3>

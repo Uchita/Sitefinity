@@ -421,7 +421,7 @@ namespace JXTPortal.Website.usercontrols.job
 
                                 // Advertiser Job Template Logo
                                 string strAdvertiserLogo = string.Empty;
-                                if (job.AdvertiserJobTemplateLogoId.HasValue && job.AdvertiserJobTemplateLogoId.Value > 0)
+                                if (job.AdvertiserJobTemplateLogoId.GetValueOrDefault(0) > 0)
                                     strAdvertiserLogo = String.Format(@"<img src='/getfile.aspx?advertiserjobtemplatelogoid={0}' alt='{1}' />",
                                                                         job.AdvertiserJobTemplateLogoId.Value,
                                                                         job.CompanyName);
@@ -671,7 +671,7 @@ namespace JXTPortal.Website.usercontrols.job
                                     // Advertiser Job Template Logo
                                     string strAdvertiserLogo = string.Empty;
 
-                                    if (job.AdvertiserJobTemplateLogoId.HasValue)
+                                    if (job.AdvertiserJobTemplateLogoId.GetValueOrDefault(0) > 0)
                                     {
                                         using (AdvertiserJobTemplateLogo logo = AdvertiserJobTemplateLogoService.GetByAdvertiserJobTemplateLogoId(job.AdvertiserJobTemplateLogoId.Value))
                                         {
@@ -686,7 +686,7 @@ namespace JXTPortal.Website.usercontrols.job
                                             {
                                                 if (logo.JobTemplateLogo != null)
                                                 {
-                                                    if (job.AdvertiserJobTemplateLogoId.HasValue && job.AdvertiserJobTemplateLogoId.Value > 0)
+                                                    if (job.AdvertiserJobTemplateLogoId.GetValueOrDefault(0) > 0)
                                                         strAdvertiserLogo = String.Format(@"<img src='/getfile.aspx?advertiserjobtemplatelogoid={0}' alt='{1}' />",
                                                                                             job.AdvertiserJobTemplateLogoId.Value,
                                                                                             job.CompanyName);
@@ -695,8 +695,6 @@ namespace JXTPortal.Website.usercontrols.job
 
                                         }
                                     }
-
-                                    
 
                                     //replace the advertiser logo
                                     litJobPreview.Text = litJobPreview.Text.Replace("{AdvertiserLogo}", strAdvertiserLogo);
@@ -723,7 +721,7 @@ namespace JXTPortal.Website.usercontrols.job
                                         jobowner = HttpUtility.HtmlEncode(consultants[0].FirstName);
                                         consultantemail = HttpUtility.HtmlEncode(consultants[0].Email);
                                         consultantphone = HttpUtility.HtmlEncode(consultants[0].Phone);
-                                        
+
                                         if (!string.IsNullOrWhiteSpace(consultants[0].ConsultantImageUrl))
                                         {
                                             consultantimageurl = string.Format("/media/{0}/{1}", ConfigurationManager.AppSettings["ConsultantsFolder"], consultants[0].ConsultantImageUrl);
@@ -762,6 +760,21 @@ namespace JXTPortal.Website.usercontrols.job
             //Do any translate according to the selected language
             if (SessionData.Language.LanguageId != (int)PortalEnums.Languages.Language.English)
             {
+                using (Entities.SiteProfession siteProfession = SiteProfessionService.GetTranslatedProfessionById(professionID, SessionData.Site.UseCustomProfessionRole))
+                using (Entities.SiteRoles siteRole = SiteRoleService.GetTranslatedRolesById(roleID, professionID, SessionData.Site.UseCustomProfessionRole))
+                using (Entities.SiteWorkType siteWorkType = SiteWorkTypeService.GetTranslatedWorkTypesById(worktypeID))
+                {
+                    //Profession
+                    templateHTML = (siteProfession != null ? templateHTML.Replace("{SiteProfessionName}", siteProfession.SiteProfessionName) : templateHTML);
+                    //Role
+                    templateHTML = (siteRole != null ? templateHTML.Replace("{SiteRoleName}", siteRole.SiteRoleName) : templateHTML);
+                    //Worktype
+                    templateHTML = (siteWorkType != null ? templateHTML.Replace("{SiteWorkTypeName}", siteWorkType.SiteWorkTypeName) : templateHTML);
+                }
+            }
+
+            if (SessionData.Language.LanguageId != SessionData.Site.DefaultLanguageId)
+            {
                 //get the country ID
                 int location_countryID = 0;
                 using (Entities.Location location = new LocationService().GetByLocationId(locationID))
@@ -770,18 +783,11 @@ namespace JXTPortal.Website.usercontrols.job
                         location_countryID = location.CountryId;
                 }
 
-                using (Entities.SiteProfession siteProfession = SiteProfessionService.GetTranslatedProfessionById(professionID, SessionData.Site.UseCustomProfessionRole))
-                using (Entities.SiteRoles siteRole = SiteRoleService.GetTranslatedRolesById(roleID, professionID, SessionData.Site.UseCustomProfessionRole))
-                using (Entities.SiteWorkType siteWorkType = SiteWorkTypeService.GetTranslatedWorkTypesById(worktypeID))
+
                 using (Entities.SiteLocation siteLocation = SiteLocationService.GetTranslatedLocation(locationID, location_countryID))
                 using (Entities.SiteArea siteArea = SiteAreaService.GetTranslatedArea(areaID, locationID, SessionData.Site.SiteId))
                 {
-                    //Profession
-                    templateHTML = (siteProfession != null ? templateHTML.Replace("{SiteProfessionName}", siteProfession.SiteProfessionName) : templateHTML);
-                    //Role
-                    templateHTML = (siteRole != null ? templateHTML.Replace("{SiteRoleName}", siteRole.SiteRoleName) : templateHTML);
-                    //Worktype
-                    templateHTML = (siteWorkType != null ? templateHTML.Replace("{SiteWorkTypeName}", siteWorkType.SiteWorkTypeName) : templateHTML);
+
                     //Location
                     templateHTML = (siteLocation != null ? templateHTML.Replace("{SiteLocationName}", siteLocation.SiteLocationName) : templateHTML);
                     //Area

@@ -166,6 +166,13 @@ namespace JXTPortal.Website.MasterPages
                 GlobalSettings GlobalSettings = new GlobalSettings();
                 GlobalSettings = service.GetBySiteId(SessionData.Site.SiteId).FirstOrDefault();
 
+                Literal ltTitleIcon = e.Item.FindControl("ltTitleIcon") as Literal;
+
+                if (!string.IsNullOrWhiteSpace(sitemap["iconLogo"]))
+                {
+                    ltTitleIcon.Text = string.Format("<span class=\"{0}\"></span>", sitemap["iconLogo"]);
+                }
+
                 if (sitemap.Title == "Invoice Report")
                 {
                     if (GlobalSettings.SiteType == (int)PortalEnums.Admin.SiteType.Recruiter)

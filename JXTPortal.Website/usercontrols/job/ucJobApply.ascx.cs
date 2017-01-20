@@ -653,7 +653,7 @@ namespace JXTPortal.Website.usercontrols.job
                                                         SessionData.Site.SiteId, null,
                                                         null, null, null, null, null,
                                                         professionId, string.Empty,
-                                                        null, null, string.Empty, null,
+                                                        null, null, string.Empty, null, SessionData.Language.LanguageId,
                                                         0, 10, string.Empty, null))
                     {
                         if (viewJobSearchs_1 != null && viewJobSearchs_1.Where(s => s.JobId != jobid).Count() > 0)

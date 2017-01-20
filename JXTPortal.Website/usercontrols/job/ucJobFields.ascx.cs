@@ -1273,7 +1273,7 @@ namespace JXTPortal.Website.Admin.UserControls
 
                         //dataSearchFieldExtension.Text = job.SearchFieldExtension.ToString();
                         //dataAdvertiserJobTemplateLogoID.Text = job.AdvertiserJobTemplateLogoId.ToString();
-                        if (job.AdvertiserJobTemplateLogoId.HasValue)
+                        if (job.AdvertiserJobTemplateLogoId.GetValueOrDefault(0) > 0)
                             ddlAdvertiserJobTemplateLogo.SelectedValue = Convert.ToString(job.AdvertiserJobTemplateLogoId);
 
                         if (job.ScreeningQuestionsTemplateId.HasValue)
@@ -1899,7 +1899,7 @@ namespace JXTPortal.Website.Admin.UserControls
 
                         //dataSearchFieldExtension.Text = job.SearchFieldExtension.ToString();
                         //dataAdvertiserJobTemplateLogoID.Text = job.AdvertiserJobTemplateLogoId.ToString();
-                        if (job.AdvertiserJobTemplateLogoId.HasValue)
+                        if (job.AdvertiserJobTemplateLogoId.GetValueOrDefault(0) > 0)
                             ddlAdvertiserJobTemplateLogo.SelectedValue = Convert.ToString(job.AdvertiserJobTemplateLogoId);
 
                         if (job.ScreeningQuestionsTemplateId.HasValue)

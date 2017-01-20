@@ -279,12 +279,25 @@ namespace JXTPortal.Website.members
 
                         if (member.CountryId > 0)
                         {
+                            #region Get Country Display Text
                             SiteCountriesService SiteCountriesService = new SiteCountriesService();
-                            using (TList<Entities.SiteCountries> sc = SiteCountriesService.GetByCountryId(member.CountryId))
+                            using (Entities.SiteCountries sc = SiteCountriesService.GetBySiteIdCountryId(SessionData.Site.SiteId, member.CountryId))
                             {
-                                if (sc.Count > 0)
-                                    strCountry = sc[0].SiteCountryName;
+                                if (sc != null)
+                                    strCountry = sc.SiteCountryName;
                             }
+
+                            //if could not find it in SiteCountries, we get from default which is in the Countries table
+                            if (string.IsNullOrEmpty(strCountry))
+                            {
+                                CountriesService CountriesService = new CountriesService();
+                                using (Entities.Countries c = CountriesService.GetByCountryId(member.CountryId))
+                                {
+                                    if (c != null)
+                                        strCountry = c.CountryName;
+                                }
+                            }
+                            #endregion
                         }
 
                         ltlAddress.Text = string.Empty;

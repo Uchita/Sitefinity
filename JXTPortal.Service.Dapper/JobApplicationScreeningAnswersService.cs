@@ -35,28 +35,21 @@ namespace JXTPortal.Service.Dapper
             JobApplicationScreeningAnswerDetail jobApplicationScreeningAnswerDetail = new JobApplicationScreeningAnswerDetail();
 
             jobApplicationScreeningAnswerDetail.JobApplicationId = jobApplicationId;
-            jobApplicationScreeningAnswerDetail.JobApplicationScreeningAnswers = new List<JobApplicationScreeningAnswer>();
+          
+            List<JobApplicationScreeningAnswersEntity> answers = jobApplicationScreeningAnswersRepository.SelectByJobApplicationID(jobApplicationId);
 
-            List<JobApplicationScreeningAnswersEntity> jobApplicationScreeningAnswers = jobApplicationScreeningAnswersRepository.SelectByJobApplicationID(jobApplicationId);
-
-            var screeningQuestionIds = jobApplicationScreeningAnswers.Select(i => i.ScreeningQuestionId).ToList();
+            var screeningQuestionIds = answers.Select(i => i.ScreeningQuestionId).ToList();
 
             var screeningQuestions = screeningQuestionsRepository.SelectByIds(screeningQuestionIds);
 
-            foreach (JobApplicationScreeningAnswersEntity answer in jobApplicationScreeningAnswers)
-            {
-                var question = screeningQuestions.FirstOrDefault(q => q.ScreeningQuestionId == answer.ScreeningQuestionId);
-                
-                if (question != null)
-                {
-                    jobApplicationScreeningAnswerDetail.JobApplicationScreeningAnswers.Add(new JobApplicationScreeningAnswer
+            var answersToAdd = answers.Join(screeningQuestions, a => a.ScreeningQuestionId, q => q.ScreeningQuestionId, (a, q) => new JobApplicationScreeningAnswer
                     {
-                        ScreeningQuestionId = question.ScreeningQuestionId,
-                        QuestionTitle = question.QuestionTitle,
-                        Answer = answer.Answer
+                        ScreeningQuestionId = q.ScreeningQuestionId,
+                        QuestionTitle = q.QuestionTitle,
+                        Answer = a.Answer
                     });
-                }
-            }
+
+            jobApplicationScreeningAnswerDetail.JobApplicationScreeningAnswers = answersToAdd.ToList();
 
             return jobApplicationScreeningAnswerDetail;
         }

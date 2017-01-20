@@ -30,7 +30,7 @@ namespace JXTPortal.Data.Dapper.Repositories
             {
                 dbConnection.Open();
                 string columns = IdColumnName + ", " + string.Join(", ", ColumnNames);
-                string whereClause = string.Format("JobApplicationId = {0}", jobApplicationId);
+                string whereClause = "JobApplicationId = @JobApplicationId";
                 var query = string.Format("SELECT {0} FROM dbo.{1} WHERE {2}", columns, TableName, whereClause);
                 var entity = dbConnection.Query<JobApplicationScreeningAnswersEntity>(query, new { JobApplicationId = jobApplicationId }).ToList();
                 return entity as List<JobApplicationScreeningAnswersEntity>;

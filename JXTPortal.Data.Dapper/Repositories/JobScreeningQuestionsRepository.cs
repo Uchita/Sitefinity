@@ -30,9 +30,9 @@ namespace JXTPortal.Data.Dapper.Repositories
             {
                 dbConnection.Open();
                 string columns = IdColumnName + ", " + string.Join(", ", ColumnNames);
-                string whereClause = string.Format("JobID = {0} OR JobArchiveId = {0}", jobId);
+                string whereClause = "JobID = @JobId OR JobArchiveId = @JobArchiveId";
                 var query = string.Format("SELECT {0} FROM dbo.{1} WHERE {2}", columns, TableName, whereClause);
-                var entity = dbConnection.Query<JobScreeningQuestionsEntity>(query, new { jobId = jobId }).ToList();
+                var entity = dbConnection.Query<JobScreeningQuestionsEntity>(query, new { JobId = jobId, JobArchiveId = jobId }).ToList();
                 return entity as List<JobScreeningQuestionsEntity>;
             }
         }

@@ -26,26 +26,6 @@ namespace JXTPortal.Service.Dapper
             return jobScreeningQuestionsRepository.Insert(entity);
         }
 
-        public void Update(JobScreeningQuestionsEntity entity)
-        {
-            jobScreeningQuestionsRepository.Update(entity);
-        }
-
-        public void Delete(int id)
-        {
-            jobScreeningQuestionsRepository.Delete(id);
-        }
-
-        public JobScreeningQuestionsEntity Select(int id)
-        {
-            return jobScreeningQuestionsRepository.Select(id);
-        }
-
-        public List<JobScreeningQuestionsEntity> SelectAll()
-        {
-            return jobScreeningQuestionsRepository.SelectAll();
-        }
-
         public List<JobScreeningQuestionsEntity> SelectByJobID(int jobId)
         {
             return jobScreeningQuestionsRepository.SelectByJobID(jobId);

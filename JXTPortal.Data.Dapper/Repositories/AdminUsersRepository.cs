@@ -31,9 +31,9 @@ namespace JXTPortal.Data.Dapper.Repositories
             {
                 dbConnection.Open();
                 string columns = IdColumnName + ", " + string.Join(", ", ColumnNames);
-                string whereClause = string.Format("SiteID = {0}", siteID);
+                string whereClause = string.Format("SiteID = @Id", siteID);
                 var query = string.Format("SELECT {0} FROM dbo.{1} WHERE {2}", columns, TableName, whereClause);
-                var entity = dbConnection.Query<AdminUsersEntity>(query, new { SiteID = siteID }).ToList();
+                var entity = dbConnection.Query<AdminUsersEntity>(query, new { Id = siteID }).ToList();
                 return entity as List<AdminUsersEntity>;
             }
         }
@@ -44,9 +44,9 @@ namespace JXTPortal.Data.Dapper.Repositories
             {
                 dbConnection.Open();
                 string columns = IdColumnName + ", " + string.Join(", ", ColumnNames);
-                string whereClause = string.Format("SiteID IN ({0})", string.Join(", ", adminUserIds));
+                string whereClause = string.Format("SiteID IN @Ids", string.Join(", ", adminUserIds));
                 var query = string.Format("SELECT {0} FROM dbo.{1} WHERE {2}", columns, TableName, whereClause);
-                var entity = dbConnection.Query<AdminUsersEntity>(query, null).ToList();
+                var entity = dbConnection.Query<AdminUsersEntity>(query, new { Ids = adminUserIds }).ToList();
                 return entity as List<AdminUsersEntity>;
             }
         }

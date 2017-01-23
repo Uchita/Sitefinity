@@ -79,14 +79,9 @@ namespace JXTPortal.Service.Dapper
         public List<ScreeningQuestionsEntity> SelectByJobId(int jobId)
         {
             List<JobScreeningQuestionsEntity> jobScreeningQuestions = jobScreeningQuestionsRepository.SelectByJobID(jobId);
-            List<int> screeningQuestionIds = new List<int>();
+            var screeningQuestionIds = jobScreeningQuestions.Select(q => q.ScreeningQuestionId);
 
-            foreach (JobScreeningQuestionsEntity jobScreeningQuestion in jobScreeningQuestions)
-            {
-                screeningQuestionIds.Add(jobScreeningQuestion.JobScreeningQuestionId);
-            }
-
-            return screeningQuestionsRepository.SelectByIds(screeningQuestionIds);
+            return screeningQuestionsRepository.SelectByIds(screeningQuestionIds.ToList());
         }
     }
 }

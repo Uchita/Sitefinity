@@ -58,7 +58,7 @@ namespace JXTPortal.Data.Dapper.Repositories
             using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
             {
                 dbConnection.Open();
-                string whereClause = "ScreeningQuestionsTemplateId = @TemplateOd AND AdvertiserId = @AdvertiserId";
+                string whereClause = "ScreeningQuestionsTemplateId = @TemplateId AND AdvertiserId = @AdvertiserId";
                 var query = string.Format("DELETE FROM dbo.{0} WHERE {1}", TableName, whereClause);
                 dbConnection.Execute(query, new { TemplateId = templateId, AdvertiserId = advertiserId });
             }

@@ -78,9 +78,9 @@ namespace JXTPortal.Data.Dapper.Repositories
             {
                 dbConnection.Open();
                 string columns = IdColumnName + ", " + string.Join(", ", ColumnNames);
-                string whereClause = "ScreeningQuestionId IN (@Ids)";
+                string whereClause = "ScreeningQuestionId IN @Ids";
                 var query = string.Format("SELECT {0} FROM dbo.{1} WHERE {2}", columns, TableName, whereClause);
-                var entity = dbConnection.Query<ScreeningQuestionsEntity>(query, new { Ids = string.Join(",", screeningQuestionIds)});
+                var entity = dbConnection.Query<ScreeningQuestionsEntity>(query, new { Ids = screeningQuestionIds });
                 return entity as List<ScreeningQuestionsEntity>;
             }
         }

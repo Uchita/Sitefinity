@@ -32,7 +32,7 @@ namespace JXTPortal.Data.Dapper.Repositories
             {
                 dbConnection.Open();
                 string columns = IdColumnName + ", " + string.Join(", ", ColumnNames);
-                string whereClause = string.Format("AdvertiserID IN @Ids", string.Join(", ", advertiserIds));
+                string whereClause = "AdvertiserID IN @Ids";
                 var query = string.Format("SELECT {0} FROM dbo.{1} WHERE {2}", columns, TableName, whereClause);
                 var entity = dbConnection.Query<AdvertisersEntity>(query, new { Ids = advertiserIds}).ToList();
                 return entity as List<AdvertisersEntity>;

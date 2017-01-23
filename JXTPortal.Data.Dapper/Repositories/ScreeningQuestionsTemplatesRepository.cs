@@ -34,9 +34,9 @@ namespace JXTPortal.Data.Dapper.Repositories
             {
                 dbConnection.Open();
                 string columns = IdColumnName + ", " + string.Join(", ", ColumnNames);
-                string whereClause = string.Format("SiteId = {0}", siteId);
+                string whereClause = string.Format("SiteId = @Id", siteId);
                 var query = string.Format("SELECT {0} FROM dbo.{1} WHERE {2}", columns, TableName, whereClause);
-                var entity = dbConnection.Query<ScreeningQuestionsTemplatesEntity>(query, new { SiteId = siteId }).ToList();
+                var entity = dbConnection.Query<ScreeningQuestionsTemplatesEntity>(query, new { Id = siteId }).ToList();
                 return entity as List<ScreeningQuestionsTemplatesEntity>;
             }
         }
@@ -67,7 +67,7 @@ namespace JXTPortal.Data.Dapper.Repositories
             {
                 dbConnection.Open();
                 string columns = IdColumnName + ", " + string.Join(", ", ColumnNames);
-                string whereClause = string.Format("SiteId = @SiteId AND RowNum >= @RowFrom AND RowNum < @RowTo", siteId, rowFrom, rowTo);
+                string whereClause = "SiteId = @SiteId AND RowNum >= @RowFrom AND RowNum < @RowTo";
                 var query = string.Format(@"SELECT {0}
                                             FROM    ( SELECT    RowNum = ROW_NUMBER() OVER ( ORDER BY {4} ), {0}
                                                       FROM      {2} WITH (NOLOCK)

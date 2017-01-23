@@ -26,29 +26,9 @@ namespace JXTPortal.Service.Dapper
             return screeningQuestionsMappingsRepository.Insert(entity);
         }
 
-        public void Update(ScreeningQuestionsMappingsEntity entity)
-        {
-            screeningQuestionsMappingsRepository.Update(entity);
-        }
-
         public void Delete(int templateId, int questionId)
         {
             screeningQuestionsMappingsRepository.Delete(templateId, questionId);
-        }
-
-        public ScreeningQuestionsMappingsEntity Select(int id)
-        {
-            return screeningQuestionsMappingsRepository.Select(id);
-        }
-
-        public List<ScreeningQuestionsMappingsEntity> SelectAll()
-        {
-            return screeningQuestionsMappingsRepository.SelectAll();
-        }
-
-        public List<ScreeningQuestionsMappingsEntity> SelectByScreeningQuestionsTemplateId(int screeningQuestionsTemplateId)
-        {
-            return screeningQuestionsMappingsRepository.SelectByScreeningQuestionsTemplateId(screeningQuestionsTemplateId);
         }
     }
 }

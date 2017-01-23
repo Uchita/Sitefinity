@@ -103,14 +103,9 @@ namespace JXTPortal.Service.Dapper
                     LastModifiedBy = screeningQuestionTemplate.LastModifiedBy
                 };
 
-                foreach (AdminUsersEntity adminUser in adminUsers)
+                if (screeningQuestionTemplate.LastModifiedBy.HasValue)
                 {
-                    if (adminUser.AdminUserID == screeningQuestionTemplate.LastModifiedBy)
-                    {
-                        screeningQuestionsTemplate.LastModifiedByName = adminUser.UserName;
-
-                        break;
-                    }
+                    screeningQuestionsTemplate.LastModifiedByName = adminUsers.Where(u => u.AdminUserID == screeningQuestionTemplate.LastModifiedBy.Value).Select(u => u.UserName).FirstOrDefault();
                 }
 
                 screeningQuestionsTemplateDetail.ScreeningQuestionsTemplates.Add(screeningQuestionsTemplate);

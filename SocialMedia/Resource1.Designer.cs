@@ -88,7 +88,7 @@ namespace SocialMedia {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://www.facebook.com/dialog/oauth?auth_type=rerequest&amp;client_id={0}&amp;redirect_uri={1}&amp;state=profile&amp;scope=public_profile.
+        ///   Looks up a localized string similar to https://www.facebook.com/dialog/oauth?auth_type=rerequest&amp;client_id={0}&amp;redirect_uri={1}&amp;state=profile&amp;scope={2}.
         /// </summary>
         internal static string fb_authroize_with_permissions {
             get {

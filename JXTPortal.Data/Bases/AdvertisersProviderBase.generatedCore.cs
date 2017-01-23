@@ -2392,6 +2392,7 @@ namespace JXTPortal.Data.Bases
 					c.NominatedCompanyPhone = (reader.IsDBNull(((int)AdvertisersColumn.NominatedCompanyPhone - 1)))?null:(System.String)reader[((int)AdvertisersColumn.NominatedCompanyPhone - 1)];
 					c.PreferredContactMethod = (reader.IsDBNull(((int)AdvertisersColumn.PreferredContactMethod - 1)))?null:(System.Int32?)reader[((int)AdvertisersColumn.PreferredContactMethod - 1)];
 					c.AdvertiserLogoUrl = (reader.IsDBNull(((int)AdvertisersColumn.AdvertiserLogoUrl - 1)))?null:(System.String)reader[((int)AdvertisersColumn.AdvertiserLogoUrl - 1)];
+					c.AllowPeopleSearchAccess = (System.Boolean)reader[((int)AdvertisersColumn.AllowPeopleSearchAccess - 1)];
 					c.EntityTrackingKey = key;
 					c.AcceptChanges();
 					c.SuppressEntityEvents = false;
@@ -2447,6 +2448,7 @@ namespace JXTPortal.Data.Bases
 			entity.NominatedCompanyPhone = (reader.IsDBNull(((int)AdvertisersColumn.NominatedCompanyPhone - 1)))?null:(System.String)reader[((int)AdvertisersColumn.NominatedCompanyPhone - 1)];
 			entity.PreferredContactMethod = (reader.IsDBNull(((int)AdvertisersColumn.PreferredContactMethod - 1)))?null:(System.Int32?)reader[((int)AdvertisersColumn.PreferredContactMethod - 1)];
 			entity.AdvertiserLogoUrl = (reader.IsDBNull(((int)AdvertisersColumn.AdvertiserLogoUrl - 1)))?null:(System.String)reader[((int)AdvertisersColumn.AdvertiserLogoUrl - 1)];
+			entity.AllowPeopleSearchAccess = (System.Boolean)reader[((int)AdvertisersColumn.AllowPeopleSearchAccess - 1)];
 			entity.AcceptChanges();
 		}
 		
@@ -2497,6 +2499,7 @@ namespace JXTPortal.Data.Bases
 			entity.NominatedCompanyPhone = Convert.IsDBNull(dataRow["NominatedCompanyPhone"]) ? null : (System.String)dataRow["NominatedCompanyPhone"];
 			entity.PreferredContactMethod = Convert.IsDBNull(dataRow["PreferredContactMethod"]) ? null : (System.Int32?)dataRow["PreferredContactMethod"];
 			entity.AdvertiserLogoUrl = Convert.IsDBNull(dataRow["AdvertiserLogoUrl"]) ? null : (System.String)dataRow["AdvertiserLogoUrl"];
+			entity.AllowPeopleSearchAccess = (System.Boolean)dataRow["AllowPeopleSearchAccess"];
 			entity.AcceptChanges();
 		}
 		#endregion 

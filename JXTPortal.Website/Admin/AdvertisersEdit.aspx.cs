@@ -274,6 +274,7 @@ public partial class AdvertisersEdit : System.Web.UI.Page
                         tbNominatedCompanyEmailAddress.Text = advertiser.NominatedCompanyEmailAddress;
                         tbNominatedCompanyPhone.Text = advertiser.NominatedCompanyPhone;
                         ddlPreferredContactMethod.SelectedValue = (advertiser.PreferredContactMethod.HasValue) ? advertiser.PreferredContactMethod.ToString() : string.Empty;
+                        cbEnablePeopleSearch.Checked = advertiser.AllowPeopleSearchAccess;
 
                         //Trial Settings and Dates
                         if (advertiser.FreeTrialStartDate != null)
@@ -482,7 +483,7 @@ public partial class AdvertisersEdit : System.Web.UI.Page
             advertiser.PostalAddress1 = CommonService.EncodeString(dataPostalAddress1.Text);
             advertiser.PostalAddress2 = CommonService.EncodeString(dataPostalAddress2.Text);
             advertiser.WebAddress = CommonService.EncodeString(dataWebAddress.Text);
-
+            
             advertiser.AccountsPayableEmail = CommonService.EncodeString(dataAccountsPayableEmail.Text);
             advertiser.Profile = dataProfile.Text;
 
@@ -651,6 +652,7 @@ public partial class AdvertisersEdit : System.Web.UI.Page
                 advertiser.NominatedCompanyEmailAddress = tbNominatedCompanyEmailAddress.Text;
                 advertiser.NominatedCompanyPhone = tbNominatedCompanyPhone.Text;
                 advertiser.PreferredContactMethod = (!string.IsNullOrWhiteSpace(ddlPreferredContactMethod.SelectedValue)) ? Convert.ToInt32(ddlPreferredContactMethod.SelectedValue) : (int?)null;
+                advertiser.AllowPeopleSearchAccess = cbEnablePeopleSearch.Checked;
 
                 //Trial settings only available to Approved accounts, if status is not set as approved, we ignore the trial dates
                 if (newStatus == PortalEnums.Advertiser.AccountStatus.Approved)

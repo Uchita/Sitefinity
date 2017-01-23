@@ -264,7 +264,7 @@ namespace JXTPortal
             System.Web.HttpContext.Current.Session.Remove(PortalConstants.Session.SessionAdminUser);
         }
 
-        public  void SetAdvertiserUser(AdvertiserUsers advertiserUser)
+        public void SetAdvertiserUser(AdvertiserUsers advertiserUser)
         {
             SessionAdvertiserUser sessionAdvertiserUser = new SessionAdvertiserUser();
             sessionAdvertiserUser.AdvertiserId = advertiserUser.AdvertiserId;
@@ -281,6 +281,9 @@ namespace JXTPortal
             if (adv != null)
             {
                 sessionAdvertiserUser.AccountType = (PortalEnums.Advertiser.AccountType)adv.AdvertiserAccountTypeId;
+
+                //People Search flag from the advertiser level
+                sessionAdvertiserUser.AllowedToAccessPeopleSearch = adv.AllowPeopleSearchAccess;
             }
 
             System.Web.HttpContext.Current.Session[PortalConstants.Session.SessionAdvertiserUser] = sessionAdvertiserUser;

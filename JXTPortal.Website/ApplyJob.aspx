@@ -847,58 +847,6 @@
                                 </li>
                             </ItemTemplate>
                         </asp:Repeater>
-<%--
-                        <li>
-                            <span class="screen-qsts">
-								<strong>When are you available to start?</strong>
-								<input type="radio" name="availability" value="male"> &lt; 2 weeks
-								<input type="radio" name="availability" value="female"> &lt; 4 weeks
-								<input type="radio" name="availability" value="other"> &gt;1 month
-                            </span>
-                        </li>
-                        <li>
-                            <span class="screen-qsts">
-								<strong>What is your expected annual salary?</strong>
-								<input type="radio" name="salary" value="male"> 65,000 - 75,000
-								<input type="radio" name="salary" value="female"> 75,000 - 85,000
-								<input type="radio" name="salary" value="other"> 85,000 - 1,00,000
-                            </span>
-                            <span class="help-block">
-                                    <span class="error">Please choose one of the options</span>
-                            </span>
-                        </li>
-                        <li>
-                            <span class="screen-qsts">
-								<strong>Are you willing to relocate to UK?</strong>
-								<input type="radio" name="relocate" value="male"> Yes
-								<input type="radio" name="relocate" value="female"> No
-                            </span>
-                        </li>
-                        <li>
-                            <span class="inner">
-								<strong>Sample Dropdown?</strong>
-								<div class="custom-select"><select name="drpSample" id="drpSample" class="form-multiple-column form-control">
-									<option value="0">Please Choose...</option>
-									<option value="1">First Option</option>
-									<option value="2">Second Option</option>
-								</select></div>
-                            </span>
-                        </li>
-                        <li>
-                            <span class="screen-qsts">
-								<strong>Sample Text fields?</strong>
-								<input name="txtText" type="text" id="txtText" autocomplete="off" class="form-control">
-                            </span>
-                            <span class="help-block">
-                                    <span class="error">Field cannot be blank</span>
-                            </span>
-                        </li>
-                        <li>
-                            <span class="screen-qsts">
-								<strong>Sample TextArea?</strong>
-								<textarea id="txtTextArea" class="form-control"></textarea>
-                            </span>
-                        </li>--%>
                     </ul>
                 </div>
             </div>

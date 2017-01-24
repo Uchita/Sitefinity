@@ -1485,35 +1485,42 @@ namespace JXTPortal.Website.Admin.UserControls
 
                 if (screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.Dropdown)
                 {
-                    foreach (Match m in matches)
-                    {
-                        options.AppendLine(string.Format("<option>{0}</option>", HttpUtility.HtmlEncode(m.Value)));
-
-                        ltOptions.Text = string.Format("<select>{0}</select>", options);
-                    }
+                    ltOptions.Text = CreateDropDown(matches.Cast<Match>());
                 }
 
                 if (screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.MultiSelect)
                 {
-                    foreach (Match m in matches)
-                    {
-                        options.AppendLine(string.Format("<input type=\"checkbox\" name=\"\" value=\"\" disabled>{0}&nbsp;", HttpUtility.HtmlEncode(m.Value)));
-
-                        ltOptions.Text = options.ToString();
-                    }
+                    ltOptions.Text = CreateMultiSelect(matches.Cast<Match>());
                 }
 
                 if (screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.RadioButtons)
                 {
-                    foreach (Match m in matches)
-                    {
-                        options.AppendLine(string.Format("<input type=\"radio\" name=\"\" value=\"\" disabled>{0}&nbsp;", HttpUtility.HtmlEncode(m.Value)));
-
-                        ltOptions.Text = options.ToString();
-                    }
+                    ltOptions.Text = CreateRadioButtons(matches.Cast<Match>());
                 }
             }
         }
+
+        private string CreateDropDown(IEnumerable<Match> matches)
+        {
+            var options = matches.Select(m => "<option>" + m.Value + "</option>");
+
+            return string.Format("<select>{0}</select>", string.Join("\n", options.ToList()));
+        }
+
+        private string CreateMultiSelect(IEnumerable<Match> matches)
+        {
+            var options = matches.Select(m => string.Format("<input type=\"checkbox\" name=\"\" value=\"\" disabled>{0}", HttpUtility.HtmlEncode(m.Value)));
+
+            return string.Join(" ", options.ToList());
+        }
+
+        private string CreateRadioButtons(IEnumerable<Match> matches)
+        {
+            var options = matches.Select(m => string.Format("<input type=\"radio\" name=\"\" value=\"\" disabled>{0}", HttpUtility.HtmlEncode(m.Value)));
+
+            return string.Join(" ", options.ToList());
+        }
+
 
         private void LoadWorkType()
         {

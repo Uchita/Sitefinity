@@ -34,7 +34,7 @@ namespace JXTPortal.Data.Dapper.Repositories
             {
                 dbConnection.Open();
                 string columns = IdColumnName + ", " + string.Join(", ", ColumnNames);
-                string whereClause = string.Format("SiteId = @Id", siteId);
+                string whereClause = "SiteId = @Id";
                 var query = string.Format("SELECT {0} FROM dbo.{1} WHERE {2}", columns, TableName, whereClause);
                 var entity = dbConnection.Query<ScreeningQuestionsTemplatesEntity>(query, new { Id = siteId }).ToList();
                 return entity as List<ScreeningQuestionsTemplatesEntity>;

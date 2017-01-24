@@ -10,6 +10,7 @@ using System.Text;
 using System.Configuration;
 using System.Xml;
 using JXTPortal.Common;
+using JXTPortal.Common.Extensions;
 
 namespace JXTPortal.Website
 {
@@ -332,13 +333,13 @@ namespace JXTPortal.Website
                 string consultantimageurl = string.Empty;
                 if (!string.IsNullOrWhiteSpace(consultant.ConsultantImageUrl))
                 {
-                    consultantimageurl = string.Format("/media/{0}/{1}", ConfigurationManager.AppSettings["ConsultantsFolder"], consultant.ConsultantImageUrl);
+                    consultantimageurl = string.Format("/media/{0}/{1}?ver={2}", ConfigurationManager.AppSettings["ConsultantsFolder"], consultant.ConsultantImageUrl, consultant.LastModified.ToEpocTimestamp());
                 }
                 else
                 {
                     if (consultant.ImageUrl != null)
                     {
-                        consultantimageurl = "/getfile.aspx?consultantid=" + consultant.ConsultantId;
+                        consultantimageurl = string.Format("/getfile.aspx?consultantid={0}", consultant.ConsultantId);
                     }
                 }
 

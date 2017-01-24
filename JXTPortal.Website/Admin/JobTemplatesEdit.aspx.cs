@@ -14,6 +14,7 @@ using System.Web.UI.HtmlControls;
 using JXTPortal.Web.UI;
 using JXTPortal;
 using JXTPortal.Common;
+using JXTPortal.Common.Extensions;
 using System.Reflection;
 using JXTPortal.Entities;
 using System.Linq;
@@ -142,8 +143,8 @@ public partial class JobTemplatesEdit : System.Web.UI.Page
                 chkEducationGlobalTemplate.Checked = template.GlobalTemplate;
 
                 if (string.IsNullOrWhiteSpace(template.JobTemplateLogoUrl))
-                {
-                    imgAdvJobTemplateLogo.ImageUrl = Page.ResolveUrl("~/getfile.aspx") + "?jobtemplateid=" + Convert.ToString(JobTemplateId);
+                {                    
+                    imgAdvJobTemplateLogo.ImageUrl = string.Format("{0}?jobtemplateid={1}&ver={2}", Page.ResolveUrl("~/getfile.aspx"),Convert.ToString(JobTemplateId), template.LastModified.ToEpocTimestamp());
                 }
                 else if (template.JobTemplateLogo != null && template.JobTemplateLogo.Length > 0)
                 {

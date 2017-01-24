@@ -13,6 +13,7 @@ using System.Xml.Linq;
 using JXTPortal.Entities;
 using JXTPortal;
 using JXTPortal.Data;
+using JXTPortal.Common.Extensions;
 
 namespace JXTPortal.Website.usercontrols.advertiser
 {
@@ -77,7 +78,7 @@ namespace JXTPortal.Website.usercontrols.advertiser
                         }
                         else
                         {
-                            imgAdvertiserLogo.ImageUrl = "/getfile.aspx?advertiserid=" + AdvertiserID.ToString();
+                            imgAdvertiserLogo.ImageUrl = string.Format("/getfile.aspx?advertiserid={0}&ver={1}",AdvertiserID.ToString(), advertiser.LastModified.ToEpocTimestamp());
                         }
                     }
                     else

@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using System.Xml;
 using JXTPortal.Entities;
 using JXTPortal.Common;
+using JXTPortal.Common.Extensions;
 using System.Configuration;
 
 namespace JXTPortal.Website.usercontrols.job
@@ -422,8 +423,9 @@ namespace JXTPortal.Website.usercontrols.job
                                 // Advertiser Job Template Logo
                                 string strAdvertiserLogo = string.Empty;
                                 if (job.AdvertiserJobTemplateLogoId.GetValueOrDefault(0) > 0)
-                                    strAdvertiserLogo = String.Format(@"<img src='/getfile.aspx?advertiserjobtemplatelogoid={0}' alt='{1}' />",
+                                    strAdvertiserLogo = String.Format(@"<img src='/getfile.aspx?advertiserjobtemplatelogoid={0}&ver={1}' alt='{2}' />",
                                                                         job.AdvertiserJobTemplateLogoId.Value,
+                                                                        job.LastModified.ToEpocTimestamp(),
                                                                         job.CompanyName);
 
                                 //replace the advertiser logo
@@ -527,7 +529,7 @@ namespace JXTPortal.Website.usercontrols.job
                                         {
                                             if (consultants[0].ImageUrl != null)
                                             {
-                                                consultantimageurl = "/getfile.aspx?consultantid=" + consultants[0].ConsultantId.ToString();
+                                                consultantimageurl = string.Format("/getfile.aspx?consultantid={0}&ver={1}", consultants[0].ConsultantId.ToString(), consultants[0].LastModified.ToEpocTimestamp());
                                             }
                                         }
 
@@ -687,8 +689,9 @@ namespace JXTPortal.Website.usercontrols.job
                                                 if (logo.JobTemplateLogo != null)
                                                 {
                                                     if (job.AdvertiserJobTemplateLogoId.GetValueOrDefault(0) > 0)
-                                                        strAdvertiserLogo = String.Format(@"<img src='/getfile.aspx?advertiserjobtemplatelogoid={0}' alt='{1}' />",
+                                                        strAdvertiserLogo = String.Format(@"<img src='/getfile.aspx?advertiserjobtemplatelogoid={0}&ver={1}' alt='{2}' />",
                                                                                             job.AdvertiserJobTemplateLogoId.Value,
+                                                                                            job.LastModified.ToEpocTimestamp(),
                                                                                             job.CompanyName);
                                                 }
                                             }
@@ -730,7 +733,7 @@ namespace JXTPortal.Website.usercontrols.job
                                         {
                                             if (consultants[0].ImageUrl != null)
                                             {
-                                                consultantimageurl = "/getfile.aspx?consultantid=" + consultants[0].ConsultantId.ToString();
+                                                consultantimageurl = string.Format("/getfile.aspx?consultantid={0}&ver={1}", consultants[0].ConsultantId, consultants[0].LastModified.ToEpocTimestamp());
                                             }
                                         }
                                     }

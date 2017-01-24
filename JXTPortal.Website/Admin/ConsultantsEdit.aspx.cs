@@ -11,6 +11,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Xml;
 using JXTPortal.Common;
+using JXTPortal.Common.Extensions;
 using JXTPortal.Web.UI;
 using JXTPortal.Entities;
 using SectionIO;
@@ -127,7 +128,7 @@ namespace JXTPortal.Website.Admin
 
                         if (!string.IsNullOrWhiteSpace(consultant.ConsultantImageUrl))
                         {
-                            imImage.ImageUrl = string.Format("/media/{0}/{1}", ConfigurationManager.AppSettings["ConsultantsFolder"], consultant.ConsultantImageUrl);
+                            imImage.ImageUrl = string.Format("/media/{0}/{1}?ver={2}", ConfigurationManager.AppSettings["ConsultantsFolder"], consultant.ConsultantImageUrl, consultant.LastModified.ToEpocTimestamp());
                             imImage.Visible = true;
                             cbRemoveImage.Visible = true;
                         }

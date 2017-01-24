@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using JXTPortal.Entities;
 using System.Configuration;
 using JXTPortal.Common;
+using JXTPortal.Common.Extensions;
 using System.Text;
 using System.Xml;
 using JXTPortal.Entities.Models;
@@ -486,10 +487,11 @@ namespace JXTPortal.Website.usercontrols.job
                     {
                         if (advertiser.AdvertiserLogo != null)
                         {*/
-                            strAdvertiserLogo = String.Format(@"<a href='{2}'><img src='/getfile.aspx?advertiserid={0}' alt='{1}' /></a>",
+                            strAdvertiserLogo = String.Format(@"<a href='{2}'><img src='/getfile.aspx?advertiserid={0}&ver={3}' alt='{1}' /></a>",
                                                                 viewJobSearch.AdvertiserId.Value,
                                                                 viewJobSearch.CompanyName,
-                                                                Utils.GetJobUrl(viewJobSearch.JobId, viewJobSearch.JobFriendlyName));
+                                                                Utils.GetJobUrl(viewJobSearch.JobId, viewJobSearch.JobFriendlyName),
+                                                                viewJobSearch.DatePosted.ToEpocTimestamp());
                         /*}
                     }*/
                 }
@@ -603,10 +605,11 @@ namespace JXTPortal.Website.usercontrols.job
                     {
                         if (advertiser.AdvertiserLogo != null)
                         {*/
-                            strAdvertiserLogo = String.Format(@"<a href='{2}'><img src='/getfile.aspx?advertiserid={0}' alt='{1}' /></a>",
+                            strAdvertiserLogo = String.Format(@"<a href='{2}'><img src='/getfile.aspx?advertiserid={0}&ver={3}' alt='{1}' /></a>",
                                                                 viewJobSearch.AdvertiserId.Value,
                                                                 viewJobSearch.CompanyName,
-                                                                Utils.GetJobUrl(viewJobSearch.JobId, viewJobSearch.JobFriendlyName));
+                                                                Utils.GetJobUrl(viewJobSearch.JobId, viewJobSearch.JobFriendlyName),
+                                                                viewJobSearch.DatePosted.ToEpocTimestamp());
                         /*}
                     }*/
                 }

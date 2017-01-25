@@ -102,6 +102,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\JXTPortal.Data.Dapper\JXTPortal.Data.Dapper.csproj">
+      <Project>{32EEE44E-E778-4F22-BDFF-7787D2F97E70}</Project>
+      <Name>JXTPortal.Data.Dapper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JXTPortal.Service.Dapper\JXTPortal.Service.Dapper.csproj">
       <Project>{F93FE82B-6B51-440B-86C9-55F6BA9CF038}</Project>
       <Name>JXTPortal.Service.Dapper</Name>

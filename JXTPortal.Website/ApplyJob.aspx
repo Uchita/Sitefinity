@@ -15,6 +15,7 @@
     <script src="//images.jxt.net.au/COMMON/newdash/lib/bootstrap.min.js"></script>
     <% } %>
     <link rel="stylesheet" href="//images.jxt.net.au/COMMON/css/apply.css" />
+    <link rel="stylesheet" href="./styles/ScreeningQuestions/style.css" />
     <script src="/scripts/JXTApplyFormScript.js"></script>
     <script type="text/javascript" src="/scripts/strength.js"></script>
 </asp:Content>
@@ -77,7 +78,8 @@
                                     <div class="col-sm-9 input-group">
                                         <span class="input-group-addon" id="defaultLoginEmail"><span class="glyphicon glyphicon-envelope">
                                         </span></span>
-                                        <asp:TextBox ID="tbUserName" runat="server" CssClass="form-control" placeholder="Username" ClientIDMode="Static" />
+                                        <asp:TextBox ID="tbUserName" runat="server" CssClass="form-control" placeholder="Username"
+                                            ClientIDMode="Static" />
                                     </div>
                                     <asp:PlaceHolder ID="phLoginError" runat="server" Visible="true">
                                         <div id="divLoginError" class="col-sm-8 col-sm-offset-3 input-group">
@@ -248,354 +250,354 @@
                             <%--</span>--%>
                         </h3>
                     </asp:PlaceHolder>
-
                     <div class="justapply-wrapper">
-                    <asp:PlaceHolder ID="phJustApplyTop" runat="server">
-                        <div class="form-group boardy-apply-titles first">
-                            <h3 id="registerSec">
-                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral13" runat="server" SetLanguageCode="LabelJustApply" />
-                            </h3>
-                            <br />
-                        </div>
-                    </asp:PlaceHolder>
-                    <asp:PlaceHolder ID="phJustApplyTopSection" runat="server">
-                        <section class="boardy-apply-register form-horizontal">
-                    </asp:PlaceHolder>
-                    <asp:PlaceHolder ID="phJustApplyTopLeft" runat="server">
+                        <asp:PlaceHolder ID="phJustApplyTop" runat="server">
+                            <div class="form-group boardy-apply-titles first">
+                                <h3 id="registerSec">
+                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral13" runat="server" SetLanguageCode="LabelJustApply" />
+                                </h3>
+                                <br />
+                            </div>
+                        </asp:PlaceHolder>
+                        <asp:PlaceHolder ID="phJustApplyTopSection" runat="server">
+                            <section class="boardy-apply-register form-horizontal">
+                        </asp:PlaceHolder>
+                        <asp:PlaceHolder ID="phJustApplyTopLeft" runat="server">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="row">
+                        </asp:PlaceHolder>
+                        <asp:PlaceHolder ID="phJustApplyLeft" runat="server">
+                            <div class="form-group">
+                                <label for="tbFirstName" class="col-md-3 col-sm-4 control-label">
+                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral14" runat="server" SetLanguageCode="LabelFirstName" />
+                                    &nbsp;<span class="required">*</span></label>
+                                <div class="col-md-9 col-sm-8 input-group">
+                                    <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user">
+                                    </span></span>
+                                    <asp:TextBox ID="tbFirstName" runat="server" ClientIDMode="Static" placeholder="Enter your first name"
+                                        CssClass="form-control" />
+                                </div>
+                                <div id="divFirstNameRequired" runat="server" clientidmode="Static" style="display: none"
+                                    class="col-sm-8 col-sm-offset-3 input-group">
+                                    <p class="help-block">
+                                        <span class="error">First name is required</span></p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="tbLastName" class="col-md-3 col-sm-4 control-label">
+                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral15" runat="server" SetLanguageCode="LabelLastName" />
+                                    &nbsp;<span class="required">*</span></label>
+                                <div class="col-md-9 col-sm-8 input-group">
+                                    <span class="input-group-addon" id="basic-addon2"><span class="glyphicon glyphicon-user">
+                                    </span></span>
+                                    <asp:TextBox ID="tbLastName" runat="server" ClientIDMode="Static" placeholder="Enter your last name"
+                                        CssClass="form-control" />
+                                </div>
+                                <div id="divLastNameRequired" runat="server" clientidmode="Static" style="display: none"
+                                    class="col-sm-8 col-sm-offset-3 input-group">
+                                    <p class="help-block">
+                                        <span class="error">Last name is required</span></p>
+                                </div>
+                            </div>
+                            <div id="divPhone" runat="server" class="form-group">
+                                <label for="tbPhone" class="col-md-3 col-sm-4 control-label">
+                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral16" runat="server" SetLanguageCode="LabelPhone" />
+                                </label>
+                                <div class="col-md-9 col-sm-8 input-group">
+                                    <span class="input-group-addon" id="basic-addon3"><span class="glyphicon glyphicon-phone-alt">
+                                    </span></span>
+                                    <asp:TextBox ID="tbPhone" runat="server" ClientIDMode="Static" placeholder="Enter phone number"
+                                        CssClass="form-control" />
+                                </div>
+                                <div id="divPhoneIncorrectFormat" runat="server" clientidmode="Static" style="display: none"
+                                    class="col-sm-8 col-sm-offset-3 input-group">
+                                    <p class="help-block">
+                                        <span class="error">Phone is incorrect format</span></p>
+                                </div>
+                            </div>
+                        </asp:PlaceHolder>
+                        <asp:PlaceHolder ID="pnlPeopleBankLeft" runat="server" Visible="False">
+                            <div class="form-group">
+                                <label for="tbLandLine" class="col-md-3 col-sm-4 control-label">
+                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral20" runat="server" SetLanguageCode="LabelLandLine" />
+                                    :&nbsp;<span class="required">*</span></label>
+                                <div class="col-md-9 col-sm-8 input-group">
+                                    <span class="input-group-addon" id="Span1"><span class="glyphicon glyphicon-phone-alt">
+                                    </span></span>
+                                    <asp:TextBox ID="tbLandLine" runat="server" ClientIDMode="Static" placeholder="Landline Number"
+                                        CssClass="form-control" />
+                                </div>
+                                <div id="divLandLineError" runat="server" clientidmode="Static" style="display: none"
+                                    class="col-sm-8 col-sm-offset-3 input-group">
+                                    <p class="help-block">
+                                        <span class="error">Landline is required</span></p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="ddlState" class="col-md-3 col-sm-4 control-label">
+                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral21" runat="server" SetLanguageCode="LabelStateResideIn" />
+                                    :&nbsp;<span class="required">*</span></label>
+                                <div class="col-md-9 col-sm-8 input-group">
+                                    <asp:DropDownList ID="ddlState" runat="server" ClientIDMode="Static" CssClass="form-control">
+                                        <asp:ListItem Text="Please Select" Value=""></asp:ListItem>
+                                        <asp:ListItem Text="ACT" Value="ACT"></asp:ListItem>
+                                        <asp:ListItem Text="NSW" Value="NSW"></asp:ListItem>
+                                        <asp:ListItem Text="NT" Value="NT"></asp:ListItem>
+                                        <asp:ListItem Text="QLD" Value="QLD"></asp:ListItem>
+                                        <asp:ListItem Text="SA" Value="SA"></asp:ListItem>
+                                        <asp:ListItem Text="TAS" Value="TAS"></asp:ListItem>
+                                        <asp:ListItem Text="VIC" Value="VIC"></asp:ListItem>
+                                        <asp:ListItem Text="WA" Value="WA"></asp:ListItem>
+                                        <asp:ListItem Text="I'm Overseas" Value="Overseas"></asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                                <div id="divStateError" runat="server" clientidmode="Static" style="display: none"
+                                    class="col-sm-8 col-sm-offset-3 input-group">
+                                    <p class="help-block">
+                                        <span class="error">State is required</span></p>
+                                </div>
+                            </div>
+                        </asp:PlaceHolder>
+                        <asp:PlaceHolder ID="pnlSafeSearchLeft" runat="server" Visible="False">
+                            <div class="form-group">
+                                <label for="tbAddress" class="col-md-3 col-sm-4 control-label">
+                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral28" runat="server" SetLanguageCode="LabelAddress" />
+                                    :&nbsp;<span class="required">*</span></label>
+                                <div class="col-md-9 col-sm-8 input-group">
+                                    <span class="input-group-addon" id="Span2"><span class="glyphicon glyphicon-envelope">
+                                    </span></span>
+                                    <asp:TextBox ID="tbAddress" runat="server" ClientIDMode="Static" placeholder="Address"
+                                        CssClass="form-control" MaxLength="100" />
+                                </div>
+                                <div id="divSSAddressError" runat="server" clientidmode="Static" style="display: none"
+                                    class="col-sm-8 col-sm-offset-3 input-group">
+                                    <p class="help-block">
+                                        <span class="error">Address is required</span></p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="tbCountry" class="col-md-3 col-sm-4 control-label">
+                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral41" runat="server" SetLanguageCode="LabelCountry" />
+                                    :&nbsp;<span class="required">*</span></label>
+                                <div class="col-md-9 col-sm-8 input-group">
+                                    <span class="input-group-addon" id="Span4"><span class="glyphicon glyphicon-envelope">
+                                    </span></span>
+                                    <asp:TextBox ID="tbCountry" runat="server" ClientIDMode="Static" placeholder="Country"
+                                        CssClass="form-control" MaxLength="100" />
+                                </div>
+                                <div id="divSSCountryError" runat="server" clientidmode="Static" style="display: none"
+                                    class="col-sm-8 col-sm-offset-3 input-group">
+                                    <p class="help-block">
+                                        <span class="error">Country is required</span></p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="tbPostcode" class="col-md-3 col-sm-4 control-label">
+                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral42" runat="server" SetLanguageCode="LabelPostcode" />
+                                    :&nbsp;<span class="required">*</span></label>
+                                <div class="col-md-9 col-sm-8 input-group">
+                                    <span class="input-group-addon" id="Span5"><span class="glyphicon glyphicon-envelope">
+                                    </span></span>
+                                    <asp:TextBox ID="tbPostcode" runat="server" ClientIDMode="Static" placeholder="Postcode"
+                                        CssClass="form-control" MaxLength="100" />
+                                </div>
+                                <div id="divSSPostcodeError" runat="server" clientidmode="Static" style="display: none"
+                                    class="col-sm-8 col-sm-offset-3 input-group">
+                                    <p class="help-block">
+                                        <span class="error">Postcode is required</span></p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="tbContactNumber" class="col-md-3 col-sm-4 control-label">
+                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral37" runat="server" SetLanguageCode="LabelContactNumber" />
+                                    :&nbsp;<span class="required">*</span></label>
+                                <div class="col-md-9 col-sm-8 input-group">
+                                    <span class="input-group-addon" id="Span3"><span class="glyphicon glyphicon-phone-alt">
+                                    </span></span>
+                                    <asp:TextBox ID="tbContactNumber" runat="server" ClientIDMode="Static" placeholder="Contact Number"
+                                        CssClass="form-control" MaxLength="100" />
+                                </div>
+                                <div id="divSSContactNumberError" runat="server" clientidmode="Static" style="display: none"
+                                    class="col-sm-8 col-sm-offset-3 input-group">
+                                    <p class="help-block">
+                                        <span class="error">Contact Number is required</span></p>
+                                </div>
+                            </div>
+                        </asp:PlaceHolder>
+                        <asp:PlaceHolder ID="phJustApplyBottomLeft" runat="server">
+                    </div>
+                </div>
+                </asp:PlaceHolder>
+                <asp:PlaceHolder ID="phJustApplyTopRight" runat="server">
+                    <div class="col-sm-6">
                         <div class="row">
-                            <div class="col-sm-6">
-                                <div class="row">
-                    </asp:PlaceHolder>
-                    <asp:PlaceHolder ID="phJustApplyLeft" runat="server">
-                        <div class="form-group">
-                            <label for="tbFirstName" class="col-md-3 col-sm-4 control-label">
-                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral14" runat="server" SetLanguageCode="LabelFirstName" />
-                                &nbsp;<span class="required">*</span></label>
-                            <div class="col-md-9 col-sm-8 input-group">
-                                <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user">
-                                </span></span>
-                                <asp:TextBox ID="tbFirstName" runat="server" ClientIDMode="Static" placeholder="Enter your first name"
-                                    CssClass="form-control" />
-                            </div>
-                            <div id="divFirstNameRequired" runat="server" clientidmode="Static" style="display: none"
-                                class="col-sm-8 col-sm-offset-3 input-group">
-                                <p class="help-block">
-                                    <span class="error">First name is required</span></p>
-                            </div>
+                </asp:PlaceHolder>
+                <asp:PlaceHolder ID="phJustApplyRight" runat="server">
+                    <div class="form-group">
+                        <label for="tbEmail" class="col-md-3 col-sm-4 control-label">
+                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral17" runat="server" SetLanguageCode="LabelEmail" />
+                            &nbsp;<span class="required">*</span></label>
+                        <div class="col-md-9 col-sm-8 input-group">
+                            <span class="input-group-addon" id="basic-addon4"><span class="glyphicon glyphicon-envelope">
+                            </span></span>
+                            <asp:TextBox ID="tbEmail" runat="server" TextMode="Email" ClientIDMode="Static" placeholder="Email"
+                                CssClass="form-control" />
                         </div>
-                        <div class="form-group">
-                            <label for="tbLastName" class="col-md-3 col-sm-4 control-label">
-                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral15" runat="server" SetLanguageCode="LabelLastName" />
-                                &nbsp;<span class="required">*</span></label>
-                            <div class="col-md-9 col-sm-8 input-group">
-                                <span class="input-group-addon" id="basic-addon2"><span class="glyphicon glyphicon-user">
-                                </span></span>
-                                <asp:TextBox ID="tbLastName" runat="server" ClientIDMode="Static" placeholder="Enter your last name"
-                                    CssClass="form-control" />
-                            </div>
-                            <div id="divLastNameRequired" runat="server" clientidmode="Static" style="display: none"
-                                class="col-sm-8 col-sm-offset-3 input-group">
-                                <p class="help-block">
-                                    <span class="error">Last name is required</span></p>
-                            </div>
+                        <div id="divEmailRequired" runat="server" clientidmode="Static" style="display: none"
+                            class="col-sm-8 col-sm-offset-3 input-group">
+                            <p class="help-block">
+                                <span id="spEmailError" runat="server" class="error">Email is required</span></p>
                         </div>
-                        <div id="divPhone" runat="server" class="form-group">
-                            <label for="tbPhone" class="col-md-3 col-sm-4 control-label">
-                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral16" runat="server" SetLanguageCode="LabelPhone" />
-                            </label>
-                            <div class="col-md-9 col-sm-8 input-group">
-                                <span class="input-group-addon" id="basic-addon3"><span class="glyphicon glyphicon-phone-alt">
-                                </span></span>
-                                <asp:TextBox ID="tbPhone" runat="server" ClientIDMode="Static" placeholder="Enter phone number"
-                                    CssClass="form-control" />
-                            </div>
-                            <div id="divPhoneIncorrectFormat" runat="server" clientidmode="Static" style="display: none"
-                                class="col-sm-8 col-sm-offset-3 input-group">
-                                <p class="help-block">
-                                    <span class="error">Phone is incorrect format</span></p>
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tbConfirmEmail" class="col-md-3 col-sm-4 control-label">
+                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral18" runat="server" SetLanguageCode="LabelConfirmEmailPage" />
+                            &nbsp;<span class="required">*</span></label>
+                        <div class="col-md-9 col-sm-8 input-group">
+                            <span class="input-group-addon" id="basic-addon5"><span class="glyphicon glyphicon-envelope">
+                            </span></span>
+                            <asp:TextBox ID="tbConfirmEmail" runat="server" TextMode="Email" ClientIDMode="Static"
+                                placeholder="Confirm Email" CssClass="form-control" />
                         </div>
-                    </asp:PlaceHolder>
-                    <asp:PlaceHolder ID="pnlPeopleBankLeft" runat="server" Visible="False">
-                        <div class="form-group">
-                            <label for="tbLandLine" class="col-md-3 col-sm-4 control-label">
-                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral20" runat="server" SetLanguageCode="LabelLandLine" />
-                                :&nbsp;<span class="required">*</span></label>
-                            <div class="col-md-9 col-sm-8 input-group">
-                                <span class="input-group-addon" id="Span1"><span class="glyphicon glyphicon-phone-alt">
-                                </span></span>
-                                <asp:TextBox ID="tbLandLine" runat="server" ClientIDMode="Static" placeholder="Landline Number"
-                                    CssClass="form-control" />
-                            </div>
-                            <div id="divLandLineError" runat="server" clientidmode="Static" style="display: none"
-                                class="col-sm-8 col-sm-offset-3 input-group">
-                                <p class="help-block">
-                                    <span class="error">Landline is required</span></p>
-                            </div>
+                        <div id="divConfirmEmailRequired" runat="server" clientidmode="Static" style="display: none"
+                            class="col-sm-8 col-sm-offset-3 input-group">
+                            <p class="help-block">
+                                <span id="spConfEmailError" runat="server" class="error">Confirm Email is required</span></p>
                         </div>
-                        <div class="form-group">
-                            <label for="ddlState" class="col-md-3 col-sm-4 control-label">
-                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral21" runat="server" SetLanguageCode="LabelStateResideIn" />
-                                :&nbsp;<span class="required">*</span></label>
-                            <div class="col-md-9 col-sm-8 input-group">
-                                <asp:DropDownList ID="ddlState" runat="server" ClientIDMode="Static" CssClass="form-control">
-                                    <asp:ListItem Text="Please Select" Value=""></asp:ListItem>
-                                    <asp:ListItem Text="ACT" Value="ACT"></asp:ListItem>
-                                    <asp:ListItem Text="NSW" Value="NSW"></asp:ListItem>
-                                    <asp:ListItem Text="NT" Value="NT"></asp:ListItem>
-                                    <asp:ListItem Text="QLD" Value="QLD"></asp:ListItem>
-                                    <asp:ListItem Text="SA" Value="SA"></asp:ListItem>
-                                    <asp:ListItem Text="TAS" Value="TAS"></asp:ListItem>
-                                    <asp:ListItem Text="VIC" Value="VIC"></asp:ListItem>
-                                    <asp:ListItem Text="WA" Value="WA"></asp:ListItem>
-                                    <asp:ListItem Text="I'm Overseas" Value="Overseas"></asp:ListItem>
-                                </asp:DropDownList>
-                            </div>
-                            <div id="divStateError" runat="server" clientidmode="Static" style="display: none"
-                                class="col-sm-8 col-sm-offset-3 input-group">
-                                <p class="help-block">
-                                    <span class="error">State is required</span></p>
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tbNewPassword" class="col-md-3 col-sm-4 control-label">
+                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral19" runat="server" SetLanguageCode="LabelPassword" />
+                            &nbsp;<span class="required">*</span></label>
+                        <div class="col-md-9 col-sm-8 input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                            <asp:TextBox ID="tbNewPassword" runat="server" TextMode="Password" ClientIDMode="Static"
+                                placeholder="Password" CssClass="form-control" autocomplete="off" />
                         </div>
-                    </asp:PlaceHolder>
-                    <asp:PlaceHolder ID="pnlSafeSearchLeft" runat="server" Visible="False">
-                        <div class="form-group">
-                            <label for="tbAddress" class="col-md-3 col-sm-4 control-label">
-                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral28" runat="server" SetLanguageCode="LabelAddress" />
-                                :&nbsp;<span class="required">*</span></label>
-                            <div class="col-md-9 col-sm-8 input-group">
-                                <span class="input-group-addon" id="Span2"><span class="glyphicon glyphicon-envelope">
-                                </span></span>
-                                <asp:TextBox ID="tbAddress" runat="server" ClientIDMode="Static" placeholder="Address"
-                                    CssClass="form-control" MaxLength="100" />
-                            </div>
-                            <div id="divSSAddressError" runat="server" clientidmode="Static" style="display: none"
-                                class="col-sm-8 col-sm-offset-3 input-group">
-                                <p class="help-block">
-                                    <span class="error">Address is required</span></p>
-                            </div>
+                        <div id="divPasswordRequired" runat="server" clientidmode="Static" style="display: none"
+                            class="col-sm-8 col-sm-offset-3 input-group">
+                            <p class="help-block">
+                                <span class="error">Password is required</span></p>
                         </div>
-                        <div class="form-group">
-                            <label for="tbCountry" class="col-md-3 col-sm-4 control-label">
-                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral41" runat="server" SetLanguageCode="LabelCountry" />
-                                :&nbsp;<span class="required">*</span></label>
-                            <div class="col-md-9 col-sm-8 input-group">
-                                <span class="input-group-addon" id="Span4"><span class="glyphicon glyphicon-envelope">
-                                </span></span>
-                                <asp:TextBox ID="tbCountry" runat="server" ClientIDMode="Static" placeholder="Country"
-                                    CssClass="form-control" MaxLength="100" />
-                            </div>
-                            <div id="divSSCountryError" runat="server" clientidmode="Static" style="display: none"
-                                class="col-sm-8 col-sm-offset-3 input-group">
-                                <p class="help-block">
-                                    <span class="error">Country is required</span></p>
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-9 col-sm-8 col-md-offset-3 col-sm-offset-4 input-group">
+                            <p id="pPasswordError" class="help-block">
+                                <asp:RegularExpressionValidator ID="revPassword" runat="server" ErrorMessage="" Display="Dynamic"
+                                    ClientIDMode="Static" ControlToValidate="tbNewPassword" ValidationExpression="^(?=.{8,}$)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).*$" /><JXTControl:ucLanguageLiteral
+                                        ID="ltPasswordPrompt" runat="server" SetLanguageCode="LabelPasswordPrompt" />
+                            </p>
                         </div>
-                        <div class="form-group">
-                            <label for="tbPostcode" class="col-md-3 col-sm-4 control-label">
-                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral42" runat="server" SetLanguageCode="LabelPostcode" />
-                                :&nbsp;<span class="required">*</span></label>
-                            <div class="col-md-9 col-sm-8 input-group">
-                                <span class="input-group-addon" id="Span5"><span class="glyphicon glyphicon-envelope">
-                                </span></span>
-                                <asp:TextBox ID="tbPostcode" runat="server" ClientIDMode="Static" placeholder="Postcode"
-                                    CssClass="form-control" MaxLength="100" />
-                            </div>
-                            <div id="divSSPostcodeError" runat="server" clientidmode="Static" style="display: none"
-                                class="col-sm-8 col-sm-offset-3 input-group">
-                                <p class="help-block">
-                                    <span class="error">Postcode is required</span></p>
-                            </div>
+                    </div>
+                </asp:PlaceHolder>
+                <asp:PlaceHolder ID="pnlPeopleBankRight" runat="server" Visible="False">
+                    <div class="form-group">
+                        <label for="ddlResidencyStatus" class="col-md-3 col-sm-4 control-label">
+                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral22" runat="server" SetLanguageCode="LabelResidency" />
+                            :&nbsp;<span class="required">*</span></label>
+                        <div class="col-md-9 col-sm-8 input-group">
+                            <asp:DropDownList ID="ddlResidencyStatus" runat="server" ClientIDMode="Static" CssClass="form-control">
+                                <asp:ListItem Text="Please Select" Value="" />
+                                <asp:ListItem Text="Australian Citizen" Value="Australian Citizen"></asp:ListItem>
+                                <asp:ListItem Text="Australian Permanent Resident" Value="Australian Permanent Resident"></asp:ListItem>
+                                <asp:ListItem Text="NZ Citizen" Value="NZ Citizen"></asp:ListItem>
+                                <asp:ListItem Text="International Applicant" Value="International Applicant"></asp:ListItem>
+                                <asp:ListItem Text="International Applicant with Work Visa" Value="International Applicant with Work Visa"></asp:ListItem>
+                            </asp:DropDownList>
                         </div>
-                        <div class="form-group">
-                            <label for="tbContactNumber" class="col-md-3 col-sm-4 control-label">
-                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral37" runat="server" SetLanguageCode="LabelContactNumber" />
-                                :&nbsp;<span class="required">*</span></label>
-                            <div class="col-md-9 col-sm-8 input-group">
-                                <span class="input-group-addon" id="Span3"><span class="glyphicon glyphicon-phone-alt">
-                                </span></span>
-                                <asp:TextBox ID="tbContactNumber" runat="server" ClientIDMode="Static" placeholder="Contact Number"
-                                    CssClass="form-control" MaxLength="100" />
-                            </div>
-                            <div id="divSSContactNumberError" runat="server" clientidmode="Static" style="display: none"
-                                class="col-sm-8 col-sm-offset-3 input-group">
-                                <p class="help-block">
-                                    <span class="error">Contact Number is required</span></p>
-                            </div>
+                        <div id="divResidencyStatusError" runat="server" clientidmode="Static" style="display: none"
+                            class="col-sm-8 col-sm-offset-3 input-group">
+                            <p class="help-block">
+                                <span class="error">Residency Status is required</span></p>
                         </div>
-                    </asp:PlaceHolder>
-                    <asp:PlaceHolder ID="phJustApplyBottomLeft" runat="server">
-                </div>
+                    </div>
+                </asp:PlaceHolder>
+                <asp:PlaceHolder ID="pnlSafeSearchRight" runat="server" Visible="False">
+                    <div class="form-group">
+                        <label for="ddlWillingToRelocate" class="col-md-3 col-sm-4 control-label">
+                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral38" runat="server" SetLanguageCode="LabelWillingToRelocate" />
+                            :&nbsp;<span class="required">*</span></label>
+                        <div class="col-md-9 col-sm-8 input-group">
+                            <asp:DropDownList ID="ddlWillingToRelocate" runat="server" ClientIDMode="Static"
+                                CssClass="form-control">
+                                <asp:ListItem Text="Please Select" Value=""></asp:ListItem>
+                                <asp:ListItem Text="Yes" Value="Yes"></asp:ListItem>
+                                <asp:ListItem Text="No" Value="No"></asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                        <div id="divSSWillingToRelocateError" runat="server" clientidmode="Static" style="display: none"
+                            class="col-sm-8 col-sm-offset-3 input-group">
+                            <p class="help-block">
+                                <span class="error">Willing To Relocate is required</span></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="ddlPreferredEmployment" class="col-md-3 col-sm-4 control-label">
+                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral39" runat="server" SetLanguageCode="LabelPreferredEmployment" />
+                            :&nbsp;<span class="required">*</span></label>
+                        <div class="col-md-9 col-sm-8 input-group">
+                            <asp:DropDownList ID="ddlPreferredEmployment" runat="server" ClientIDMode="Static"
+                                CssClass="form-control">
+                                <asp:ListItem Text="Please Select" Value=""></asp:ListItem>
+                                <asp:ListItem Text="Permanent" Value="Permanent"></asp:ListItem>
+                                <asp:ListItem Text="Contract" Value="Contract"></asp:ListItem>
+                                <asp:ListItem Text="Permanent or Contract" Value="Permanent or Conatract"></asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                        <div id="divSSPreferredEmploymentError" runat="server" clientidmode="Static" style="display: none"
+                            class="col-sm-8 col-sm-offset-3 input-group">
+                            <p class="help-block">
+                                <span class="error">Preferred Employment is required</span></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="ddlSalary" class="col-md-3 col-sm-4 control-label">
+                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral40" runat="server" SetLanguageCode="LabelSalary" />
+                            :&nbsp;<span class="required">*</span></label>
+                        <div class="col-md-9 col-sm-8 input-group">
+                            <asp:DropDownList ID="ddlSalary" runat="server" ClientIDMode="Static" CssClass="form-control">
+                                <asp:ListItem Text="Please Select" Value=""></asp:ListItem>
+                                <asp:ListItem Value="60000">$60,000</asp:ListItem>
+                                <asp:ListItem Value="70000">$70,000</asp:ListItem>
+                                <asp:ListItem Value="80000">$80,000</asp:ListItem>
+                                <asp:ListItem Value="90000">$90,000</asp:ListItem>
+                                <asp:ListItem Value="100000">$100,000</asp:ListItem>
+                                <asp:ListItem Value="110000">$110,000</asp:ListItem>
+                                <asp:ListItem Value="120000">$120,000</asp:ListItem>
+                                <asp:ListItem Value="130000">$130,000</asp:ListItem>
+                                <asp:ListItem Value="140000">$140,000</asp:ListItem>
+                                <asp:ListItem Value="150000">$150,000</asp:ListItem>
+                                <asp:ListItem Value="160000">$160,000</asp:ListItem>
+                                <asp:ListItem Value="170000">$170,000</asp:ListItem>
+                                <asp:ListItem Value="180000">$180,000</asp:ListItem>
+                                <asp:ListItem Value="190000">$190,000</asp:ListItem>
+                                <asp:ListItem Value="200000">$200,000</asp:ListItem>
+                                <asp:ListItem Value="210000">$210,000</asp:ListItem>
+                                <asp:ListItem Value="220000">$220,000</asp:ListItem>
+                                <asp:ListItem Value="230000">$230,000</asp:ListItem>
+                                <asp:ListItem Value="240000">$240,000</asp:ListItem>
+                                <asp:ListItem Value="250000">$250,000</asp:ListItem>
+                                <asp:ListItem Value="260000">$260,000</asp:ListItem>
+                                <asp:ListItem Value="270000">$270,000</asp:ListItem>
+                                <asp:ListItem Value="280000">$280,000</asp:ListItem>
+                                <asp:ListItem Value="290000">$290,000</asp:ListItem>
+                                <asp:ListItem Value="300000">$300,000</asp:ListItem>
+                                <asp:ListItem Value="300000+">$300,000+</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                        <div id="divSSSalaryError" runat="server" clientidmode="Static" style="display: none"
+                            class="col-sm-8 col-sm-offset-3 input-group">
+                            <p class="help-block">
+                                <span class="error">Salary is required</span></p>
+                        </div>
+                    </div>
+                </asp:PlaceHolder>
+                <asp:PlaceHolder ID="phJustApplyBottomRight" runat="server">
             </div>
-            </asp:PlaceHolder>
-            <asp:PlaceHolder ID="phJustApplyTopRight" runat="server">
-                <div class="col-sm-6">
-                    <div class="row">
-            </asp:PlaceHolder>
-            <asp:PlaceHolder ID="phJustApplyRight" runat="server">
-                <div class="form-group">
-                    <label for="tbEmail" class="col-md-3 col-sm-4 control-label">
-                        <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral17" runat="server" SetLanguageCode="LabelEmail" />
-                        &nbsp;<span class="required">*</span></label>
-                    <div class="col-md-9 col-sm-8 input-group">
-                        <span class="input-group-addon" id="basic-addon4"><span class="glyphicon glyphicon-envelope">
-                        </span></span>
-                        <asp:TextBox ID="tbEmail" runat="server" TextMode="Email" ClientIDMode="Static" placeholder="Email"
-                            CssClass="form-control" />
-                    </div>
-                    <div id="divEmailRequired" runat="server" clientidmode="Static" style="display: none"
-                        class="col-sm-8 col-sm-offset-3 input-group">
-                        <p class="help-block">
-                            <span id="spEmailError" runat="server" class="error">Email is required</span></p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="tbConfirmEmail" class="col-md-3 col-sm-4 control-label">
-                        <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral18" runat="server" SetLanguageCode="LabelConfirmEmailPage" />
-                        &nbsp;<span class="required">*</span></label>
-                    <div class="col-md-9 col-sm-8 input-group">
-                        <span class="input-group-addon" id="basic-addon5"><span class="glyphicon glyphicon-envelope">
-                        </span></span>
-                        <asp:TextBox ID="tbConfirmEmail" runat="server" TextMode="Email" ClientIDMode="Static"
-                            placeholder="Confirm Email" CssClass="form-control" />
-                    </div>
-                    <div id="divConfirmEmailRequired" runat="server" clientidmode="Static" style="display: none"
-                        class="col-sm-8 col-sm-offset-3 input-group">
-                        <p class="help-block">
-                            <span id="spConfEmailError" runat="server" class="error">Confirm Email is required</span></p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="tbNewPassword" class="col-md-3 col-sm-4 control-label">
-                        <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral19" runat="server" SetLanguageCode="LabelPassword" />
-                        &nbsp;<span class="required">*</span></label>
-                    <div class="col-md-9 col-sm-8 input-group">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                        <asp:TextBox ID="tbNewPassword" runat="server" TextMode="Password" ClientIDMode="Static"
-                            placeholder="Password" CssClass="form-control" autocomplete="off" />
-                    </div>
-                    <div id="divPasswordRequired" runat="server" clientidmode="Static" style="display: none"
-                        class="col-sm-8 col-sm-offset-3 input-group">
-                        <p class="help-block">
-                            <span class="error">Password is required</span></p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-9 col-sm-8 col-md-offset-3 col-sm-offset-4 input-group">
-                        <p id="pPasswordError" class="help-block">
-                            <asp:RegularExpressionValidator ID="revPassword" runat="server" ErrorMessage="" Display="Dynamic"
-                                ClientIDMode="Static" ControlToValidate="tbNewPassword" ValidationExpression="^(?=.{8,}$)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).*$" /><JXTControl:ucLanguageLiteral
-                                    ID="ltPasswordPrompt" runat="server" SetLanguageCode="LabelPasswordPrompt" />
-                        </p>
-                    </div>
-                </div>
-            </asp:PlaceHolder>
-            <asp:PlaceHolder ID="pnlPeopleBankRight" runat="server" Visible="False">
-                <div class="form-group">
-                    <label for="ddlResidencyStatus" class="col-md-3 col-sm-4 control-label">
-                        <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral22" runat="server" SetLanguageCode="LabelResidency" />
-                        :&nbsp;<span class="required">*</span></label>
-                    <div class="col-md-9 col-sm-8 input-group">
-                        <asp:DropDownList ID="ddlResidencyStatus" runat="server" ClientIDMode="Static" CssClass="form-control">
-                            <asp:ListItem Text="Please Select" Value="" />
-                            <asp:ListItem Text="Australian Citizen" Value="Australian Citizen"></asp:ListItem>
-                            <asp:ListItem Text="Australian Permanent Resident" Value="Australian Permanent Resident"></asp:ListItem>
-                            <asp:ListItem Text="NZ Citizen" Value="NZ Citizen"></asp:ListItem>
-                            <asp:ListItem Text="International Applicant" Value="International Applicant"></asp:ListItem>
-                            <asp:ListItem Text="International Applicant with Work Visa" Value="International Applicant with Work Visa"></asp:ListItem>
-                        </asp:DropDownList>
-                    </div>
-                    <div id="divResidencyStatusError" runat="server" clientidmode="Static" style="display: none"
-                        class="col-sm-8 col-sm-offset-3 input-group">
-                        <p class="help-block">
-                            <span class="error">Residency Status is required</span></p>
-                    </div>
-                </div>
-            </asp:PlaceHolder>
-            <asp:PlaceHolder ID="pnlSafeSearchRight" runat="server" Visible="False">
-                <div class="form-group">
-                    <label for="ddlWillingToRelocate" class="col-md-3 col-sm-4 control-label">
-                        <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral38" runat="server" SetLanguageCode="LabelWillingToRelocate" />
-                        :&nbsp;<span class="required">*</span></label>
-                    <div class="col-md-9 col-sm-8 input-group">
-                        <asp:DropDownList ID="ddlWillingToRelocate" runat="server" ClientIDMode="Static"
-                            CssClass="form-control">
-                            <asp:ListItem Text="Please Select" Value=""></asp:ListItem>
-                            <asp:ListItem Text="Yes" Value="Yes"></asp:ListItem>
-                            <asp:ListItem Text="No" Value="No"></asp:ListItem>
-                        </asp:DropDownList>
-                    </div>
-                    <div id="divSSWillingToRelocateError" runat="server" clientidmode="Static" style="display: none"
-                        class="col-sm-8 col-sm-offset-3 input-group">
-                        <p class="help-block">
-                            <span class="error">Willing To Relocate is required</span></p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="ddlPreferredEmployment" class="col-md-3 col-sm-4 control-label">
-                        <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral39" runat="server" SetLanguageCode="LabelPreferredEmployment" />
-                        :&nbsp;<span class="required">*</span></label>
-                    <div class="col-md-9 col-sm-8 input-group">
-                        <asp:DropDownList ID="ddlPreferredEmployment" runat="server" ClientIDMode="Static"
-                            CssClass="form-control">
-                            <asp:ListItem Text="Please Select" Value=""></asp:ListItem>
-                            <asp:ListItem Text="Permanent" Value="Permanent"></asp:ListItem>
-                            <asp:ListItem Text="Contract" Value="Contract"></asp:ListItem>
-                            <asp:ListItem Text="Permanent or Contract" Value="Permanent or Conatract"></asp:ListItem>
-                        </asp:DropDownList>
-                    </div>
-                    <div id="divSSPreferredEmploymentError" runat="server" clientidmode="Static" style="display: none"
-                        class="col-sm-8 col-sm-offset-3 input-group">
-                        <p class="help-block">
-                            <span class="error">Preferred Employment is required</span></p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="ddlSalary" class="col-md-3 col-sm-4 control-label">
-                        <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral40" runat="server" SetLanguageCode="LabelSalary" />
-                        :&nbsp;<span class="required">*</span></label>
-                    <div class="col-md-9 col-sm-8 input-group">
-                        <asp:DropDownList ID="ddlSalary" runat="server" ClientIDMode="Static" CssClass="form-control">
-                            <asp:ListItem Text="Please Select" Value=""></asp:ListItem>
-                            <asp:ListItem Value="60000">$60,000</asp:ListItem>
-                            <asp:ListItem Value="70000">$70,000</asp:ListItem>
-                            <asp:ListItem Value="80000">$80,000</asp:ListItem>
-                            <asp:ListItem Value="90000">$90,000</asp:ListItem>
-                            <asp:ListItem Value="100000">$100,000</asp:ListItem>
-                            <asp:ListItem Value="110000">$110,000</asp:ListItem>
-                            <asp:ListItem Value="120000">$120,000</asp:ListItem>
-                            <asp:ListItem Value="130000">$130,000</asp:ListItem>
-                            <asp:ListItem Value="140000">$140,000</asp:ListItem>
-                            <asp:ListItem Value="150000">$150,000</asp:ListItem>
-                            <asp:ListItem Value="160000">$160,000</asp:ListItem>
-                            <asp:ListItem Value="170000">$170,000</asp:ListItem>
-                            <asp:ListItem Value="180000">$180,000</asp:ListItem>
-                            <asp:ListItem Value="190000">$190,000</asp:ListItem>
-                            <asp:ListItem Value="200000">$200,000</asp:ListItem>
-                            <asp:ListItem Value="210000">$210,000</asp:ListItem>
-                            <asp:ListItem Value="220000">$220,000</asp:ListItem>
-                            <asp:ListItem Value="230000">$230,000</asp:ListItem>
-                            <asp:ListItem Value="240000">$240,000</asp:ListItem>
-                            <asp:ListItem Value="250000">$250,000</asp:ListItem>
-                            <asp:ListItem Value="260000">$260,000</asp:ListItem>
-                            <asp:ListItem Value="270000">$270,000</asp:ListItem>
-                            <asp:ListItem Value="280000">$280,000</asp:ListItem>
-                            <asp:ListItem Value="290000">$290,000</asp:ListItem>
-                            <asp:ListItem Value="300000">$300,000</asp:ListItem>
-                            <asp:ListItem Value="300000+">$300,000+</asp:ListItem>
-                        </asp:DropDownList>
-                    </div>
-                    <div id="divSSSalaryError" runat="server" clientidmode="Static" style="display: none"
-                        class="col-sm-8 col-sm-offset-3 input-group">
-                        <p class="help-block">
-                            <span class="error">Salary is required</span></p>
-                    </div>
-                </div>
-            </asp:PlaceHolder>
-            <asp:PlaceHolder ID="phJustApplyBottomRight" runat="server">
         </div>
     </div>
-    </div> </asp:PlaceHolder>
+    </asp:PlaceHolder>
     <asp:PlaceHolder ID="phJustApplyBottomSection" runat="server"></section> </asp:PlaceHolder>
     <asp:PlaceHolder ID="phJustApplyBottom" runat="server"></asp:PlaceHolder>
     <div class="row">
@@ -823,6 +825,34 @@
             </section>
         </div>
     </div>
+    <asp:PlaceHolder ID="phScreeningQuestions" runat="server">
+        <section class="boardy-screen-questions boardy-apply-register" style="display: block;">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="row">
+                    <h3><JXTControl:ucLanguageLiteral ID="ltScreeningQuestions" runat="server" SetLanguageCode="LabelScreeningQuestions" /></h3>
+                    <ul class="SQstTemp">
+                        <asp:Repeater ID="rptScreeningQuestions" runat="server" OnItemDataBound="rptScreeningQuestions_ItemDataBound">
+                            <ItemTemplate>
+                                <li>
+                                    <span class="screen-qsts">
+								        <strong><asp:HiddenField ID="hfScreeningQuestionId" runat="server" /><asp:Literal ID="ltQuestion" runat="server" /></strong>
+                                        <asp:Literal ID="ltOptions" runat="server" />
+                                    </span>
+                                    <asp:PlaceHolder ID="phError" runat="server" Visible="false">
+                                        <span class="help-block">
+                                                <span class="error"><JXTControl:ucLanguageLiteral ID="ltError" runat="server" /></span>
+                                        </span>
+                                    </asp:PlaceHolder>
+                                </li>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </section>
+    </asp:PlaceHolder>
     <section class="boardy-captcha-alert-terms">
 
         <!-- Multiple Checkboxes -->
@@ -838,7 +868,6 @@
 
     </section>
     </div>
-
     <hr />
     <!-- Button (Double) -->
     <div class="form-group">

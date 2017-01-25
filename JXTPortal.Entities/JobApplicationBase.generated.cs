@@ -107,6 +107,7 @@ namespace JXTPortal.Entities
 		///<param name="_fileDownloaded"></param>
 		///<param name="_appliedWith"></param>
 		///<param name="_screeningQuestionaireXml"></param>
+		///<param name="_screeningQuestionsGuid"></param>
 		public JobApplicationBase(System.DateTime? _applicationDate, System.Int32? _jobId, 
 			System.Int32? _memberId, System.String _memberResumeFile, System.String _memberCoverLetterFile, 
 			System.Int32? _applicationStatus, System.Guid _jobAppValidateId, System.Int32? _siteIdReferral, 
@@ -115,7 +116,8 @@ namespace JXTPortal.Entities
 			System.String _mobilePhone, System.String _memberNote, System.String _advertiserNote, 
 			System.Int32? _jobArchiveId, System.Boolean? _draft, System.Int32? _jobApplicationTypeId, 
 			System.String _externalXmlFilename, System.String _customQuestionnaireXml, System.String _externalPdfFilename, 
-			System.Boolean? _fileDownloaded, System.String _appliedWith, System.String _screeningQuestionaireXml)
+			System.Boolean? _fileDownloaded, System.String _appliedWith, System.String _screeningQuestionaireXml, 
+			System.Guid? _screeningQuestionsGuid)
 		{
 			this.entityData = new JobApplicationEntityData();
 			this.backupData = null;
@@ -146,6 +148,7 @@ namespace JXTPortal.Entities
 			this.FileDownloaded = _fileDownloaded;
 			this.AppliedWith = _appliedWith;
 			this.ScreeningQuestionaireXml = _screeningQuestionaireXml;
+			this.ScreeningQuestionsGuid = _screeningQuestionsGuid;
 		}
 		
 		///<summary>
@@ -177,6 +180,7 @@ namespace JXTPortal.Entities
 		///<param name="_fileDownloaded"></param>
 		///<param name="_appliedWith"></param>
 		///<param name="_screeningQuestionaireXml"></param>
+		///<param name="_screeningQuestionsGuid"></param>
 		public static JobApplication CreateJobApplication(System.DateTime? _applicationDate, System.Int32? _jobId, 
 			System.Int32? _memberId, System.String _memberResumeFile, System.String _memberCoverLetterFile, 
 			System.Int32? _applicationStatus, System.Guid _jobAppValidateId, System.Int32? _siteIdReferral, 
@@ -185,7 +189,8 @@ namespace JXTPortal.Entities
 			System.String _mobilePhone, System.String _memberNote, System.String _advertiserNote, 
 			System.Int32? _jobArchiveId, System.Boolean? _draft, System.Int32? _jobApplicationTypeId, 
 			System.String _externalXmlFilename, System.String _customQuestionnaireXml, System.String _externalPdfFilename, 
-			System.Boolean? _fileDownloaded, System.String _appliedWith, System.String _screeningQuestionaireXml)
+			System.Boolean? _fileDownloaded, System.String _appliedWith, System.String _screeningQuestionaireXml, 
+			System.Guid? _screeningQuestionsGuid)
 		{
 			JobApplication newJobApplication = new JobApplication();
 			newJobApplication.ApplicationDate = _applicationDate;
@@ -214,6 +219,7 @@ namespace JXTPortal.Entities
 			newJobApplication.FileDownloaded = _fileDownloaded;
 			newJobApplication.AppliedWith = _appliedWith;
 			newJobApplication.ScreeningQuestionaireXml = _screeningQuestionaireXml;
+			newJobApplication.ScreeningQuestionsGuid = _screeningQuestionsGuid;
 			return newJobApplication;
 		}
 				
@@ -1193,6 +1199,43 @@ namespace JXTPortal.Entities
 			}
 		}
 		
+		/// <summary>
+		/// 	Gets or sets the ScreeningQuestionsGuid property. 
+		///		
+		/// </summary>
+		/// <value>This type is uniqueidentifier.</value>
+		/// <remarks>
+		/// This property can be set to null. 
+		/// If this column is null, this property will return Guid.Empty. It is up to the developer
+		/// to check the value of IsScreeningQuestionsGuidNull() and perform business logic appropriately.
+		/// </remarks>
+
+
+
+
+		[DescriptionAttribute(@""), System.ComponentModel.Bindable( System.ComponentModel.BindableSupport.Yes)]
+		[DataObjectField(false, false, true)]
+		public virtual System.Guid? ScreeningQuestionsGuid
+		{
+			get
+			{
+				return this.entityData.ScreeningQuestionsGuid; 
+			}
+			
+			set
+			{
+				if (this.entityData.ScreeningQuestionsGuid == value)
+					return;
+					
+				OnColumnChanging(JobApplicationColumn.ScreeningQuestionsGuid, this.entityData.ScreeningQuestionsGuid);
+				this.entityData.ScreeningQuestionsGuid = value;
+				if (this.EntityState == EntityState.Unchanged)
+					this.EntityState = EntityState.Changed;
+				OnColumnChanged(JobApplicationColumn.ScreeningQuestionsGuid, this.entityData.ScreeningQuestionsGuid);
+				OnPropertyChanged("ScreeningQuestionsGuid");
+			}
+		}
+		
 		#endregion Data Properties		
 
 		#region Source Foreign Key Property
@@ -1314,7 +1357,7 @@ namespace JXTPortal.Entities
 		{
 			get
 			{
-				return new string[] {"JobApplicationID", "ApplicationDate", "JobID", "MemberID", "MemberResumeFile", "MemberCoverLetterFile", "ApplicationStatus", "JobAppValidateID", "SiteID_Referral", "URL_Referral", "ApplicantGrade", "LastViewedDate", "FirstName", "Surname", "EmailAddress", "MobilePhone", "MemberNote", "AdvertiserNote", "JobArchiveID", "Draft", "JobApplicationTypeID", "ExternalXMLFilename", "CustomQuestionnaireXML", "ExternalPDFFilename", "FileDownloaded", "AppliedWith", "ScreeningQuestionaireXML"};
+				return new string[] {"JobApplicationID", "ApplicationDate", "JobID", "MemberID", "MemberResumeFile", "MemberCoverLetterFile", "ApplicationStatus", "JobAppValidateID", "SiteID_Referral", "URL_Referral", "ApplicantGrade", "LastViewedDate", "FirstName", "Surname", "EmailAddress", "MobilePhone", "MemberNote", "AdvertiserNote", "JobArchiveID", "Draft", "JobApplicationTypeID", "ExternalXMLFilename", "CustomQuestionnaireXML", "ExternalPDFFilename", "FileDownloaded", "AppliedWith", "ScreeningQuestionaireXML", "ScreeningQuestionsGuid"};
 			}
 		}
 		#endregion 
@@ -1489,6 +1532,7 @@ namespace JXTPortal.Entities
 				copy.FileDownloaded = this.FileDownloaded;
 				copy.AppliedWith = this.AppliedWith;
 				copy.ScreeningQuestionaireXml = this.ScreeningQuestionaireXml;
+				copy.ScreeningQuestionsGuid = this.ScreeningQuestionsGuid;
 			
 			if (this.JobArchiveIdSource != null && existingCopies.Contains(this.JobArchiveIdSource))
 				copy.JobArchiveIdSource = existingCopies[this.JobArchiveIdSource] as JobsArchive;
@@ -1693,6 +1737,8 @@ namespace JXTPortal.Entities
 					return entityData.AppliedWith != _originalData.AppliedWith;
 					case JobApplicationColumn.ScreeningQuestionaireXml:
 					return entityData.ScreeningQuestionaireXml != _originalData.ScreeningQuestionaireXml;
+					case JobApplicationColumn.ScreeningQuestionsGuid:
+					return entityData.ScreeningQuestionsGuid != _originalData.ScreeningQuestionsGuid;
 			
 				default:
 					return false;
@@ -1747,6 +1793,7 @@ namespace JXTPortal.Entities
 			result = result || entityData.FileDownloaded != _originalData.FileDownloaded;
 			result = result || entityData.AppliedWith != _originalData.AppliedWith;
 			result = result || entityData.ScreeningQuestionaireXml != _originalData.ScreeningQuestionaireXml;
+			result = result || entityData.ScreeningQuestionsGuid != _originalData.ScreeningQuestionsGuid;
 			return result;
 		}	
 		
@@ -1782,7 +1829,8 @@ namespace JXTPortal.Entities
 				_originalData.ExternalPdfFilename,
 				_originalData.FileDownloaded,
 				_originalData.AppliedWith,
-				_originalData.ScreeningQuestionaireXml
+				_originalData.ScreeningQuestionaireXml,
+				_originalData.ScreeningQuestionsGuid
 				);
 				
 			return (JobApplication)this.Clone();
@@ -1838,7 +1886,8 @@ namespace JXTPortal.Entities
 					((this.ExternalPdfFilename == null) ? string.Empty : this.ExternalPdfFilename.ToString()).GetHashCode() ^ 
 					((this.FileDownloaded == null) ? string.Empty : this.FileDownloaded.ToString()).GetHashCode() ^ 
 					((this.AppliedWith == null) ? string.Empty : this.AppliedWith.ToString()).GetHashCode() ^ 
-					((this.ScreeningQuestionaireXml == null) ? string.Empty : this.ScreeningQuestionaireXml.ToString()).GetHashCode();
+					((this.ScreeningQuestionaireXml == null) ? string.Empty : this.ScreeningQuestionaireXml.ToString()).GetHashCode() ^ 
+					((this.ScreeningQuestionsGuid == null) ? string.Empty : this.ScreeningQuestionsGuid.ToString()).GetHashCode();
         }
 		
 		///<summary>
@@ -2079,6 +2128,15 @@ namespace JXTPortal.Entities
 			{
 				equal = false;
 			}
+			if ( Object1.ScreeningQuestionsGuid != null && Object2.ScreeningQuestionsGuid != null )
+			{
+				if (Object1.ScreeningQuestionsGuid != Object2.ScreeningQuestionsGuid)
+					equal = false;
+			}
+			else if (Object1.ScreeningQuestionsGuid == null ^ Object2.ScreeningQuestionsGuid == null )
+			{
+				equal = false;
+			}
 					
 			return equal;
 		}
@@ -2283,6 +2341,12 @@ namespace JXTPortal.Entities
             		return this.ScreeningQuestionaireXml.CompareTo(rhs.ScreeningQuestionaireXml);
             		
             		                 
+            	
+            	
+            	case JobApplicationColumn.ScreeningQuestionsGuid:
+            		return this.ScreeningQuestionsGuid.Value.CompareTo(rhs.ScreeningQuestionsGuid.Value);
+            		
+            		                 
             }
             return 0;
         }
@@ -2417,7 +2481,7 @@ namespace JXTPortal.Entities
 		public override string ToString()
 		{
 			return string.Format(System.Globalization.CultureInfo.InvariantCulture,
-				"{28}{27}- JobApplicationId: {0}{27}- ApplicationDate: {1}{27}- JobId: {2}{27}- MemberId: {3}{27}- MemberResumeFile: {4}{27}- MemberCoverLetterFile: {5}{27}- ApplicationStatus: {6}{27}- JobAppValidateId: {7}{27}- SiteIdReferral: {8}{27}- UrlReferral: {9}{27}- ApplicantGrade: {10}{27}- LastViewedDate: {11}{27}- FirstName: {12}{27}- Surname: {13}{27}- EmailAddress: {14}{27}- MobilePhone: {15}{27}- MemberNote: {16}{27}- AdvertiserNote: {17}{27}- JobArchiveId: {18}{27}- Draft: {19}{27}- JobApplicationTypeId: {20}{27}- ExternalXmlFilename: {21}{27}- CustomQuestionnaireXml: {22}{27}- ExternalPdfFilename: {23}{27}- FileDownloaded: {24}{27}- AppliedWith: {25}{27}- ScreeningQuestionaireXml: {26}{27}{29}", 
+				"{29}{28}- JobApplicationId: {0}{28}- ApplicationDate: {1}{28}- JobId: {2}{28}- MemberId: {3}{28}- MemberResumeFile: {4}{28}- MemberCoverLetterFile: {5}{28}- ApplicationStatus: {6}{28}- JobAppValidateId: {7}{28}- SiteIdReferral: {8}{28}- UrlReferral: {9}{28}- ApplicantGrade: {10}{28}- LastViewedDate: {11}{28}- FirstName: {12}{28}- Surname: {13}{28}- EmailAddress: {14}{28}- MobilePhone: {15}{28}- MemberNote: {16}{28}- AdvertiserNote: {17}{28}- JobArchiveId: {18}{28}- Draft: {19}{28}- JobApplicationTypeId: {20}{28}- ExternalXmlFilename: {21}{28}- CustomQuestionnaireXml: {22}{28}- ExternalPdfFilename: {23}{28}- FileDownloaded: {24}{28}- AppliedWith: {25}{28}- ScreeningQuestionaireXml: {26}{28}- ScreeningQuestionsGuid: {27}{28}{30}", 
 				this.JobApplicationId,
 				(this.ApplicationDate == null) ? string.Empty : this.ApplicationDate.ToString(),
 				(this.JobId == null) ? string.Empty : this.JobId.ToString(),
@@ -2445,6 +2509,7 @@ namespace JXTPortal.Entities
 				(this.FileDownloaded == null) ? string.Empty : this.FileDownloaded.ToString(),
 				(this.AppliedWith == null) ? string.Empty : this.AppliedWith.ToString(),
 				(this.ScreeningQuestionaireXml == null) ? string.Empty : this.ScreeningQuestionaireXml.ToString(),
+				(this.ScreeningQuestionsGuid == null) ? string.Empty : this.ScreeningQuestionsGuid.ToString(),
 				System.Environment.NewLine, 
 				this.GetType(),
 				this.Error.Length == 0 ? string.Empty : string.Format("- Error: {0}\n",this.Error));
@@ -2608,6 +2673,11 @@ namespace JXTPortal.Entities
 		/// ScreeningQuestionaireXML : 
 		/// </summary>
 		public System.String		  ScreeningQuestionaireXml = null;
+		
+		/// <summary>
+		/// ScreeningQuestionsGuid : 
+		/// </summary>
+		public System.Guid?		  ScreeningQuestionsGuid = null;
 		#endregion
 			
 		#region Source Foreign Key Property
@@ -2734,6 +2804,7 @@ namespace JXTPortal.Entities
 			_tmp.FileDownloaded = this.FileDownloaded;
 			_tmp.AppliedWith = this.AppliedWith;
 			_tmp.ScreeningQuestionaireXml = this.ScreeningQuestionaireXml;
+			_tmp.ScreeningQuestionsGuid = this.ScreeningQuestionsGuid;
 			
 			#region Source Parent Composite Entities
 			if (this.JobArchiveIdSource != null)
@@ -2797,6 +2868,7 @@ namespace JXTPortal.Entities
 			_tmp.FileDownloaded = this.FileDownloaded;
 			_tmp.AppliedWith = this.AppliedWith;
 			_tmp.ScreeningQuestionaireXml = this.ScreeningQuestionaireXml;
+			_tmp.ScreeningQuestionsGuid = this.ScreeningQuestionsGuid;
 			
 			#region Source Parent Composite Entities
 			if (this.JobArchiveIdSource != null && existingCopies.Contains(this.JobArchiveIdSource))
@@ -3349,7 +3421,13 @@ namespace JXTPortal.Entities
 		/// </summary>
 		[EnumTextValue("ScreeningQuestionaireXML")]
 		[ColumnEnum("ScreeningQuestionaireXML", typeof(System.String), System.Data.DbType.String, false, false, true)]
-		ScreeningQuestionaireXml = 27
+		ScreeningQuestionaireXml = 27,
+		/// <summary>
+		/// ScreeningQuestionsGuid : 
+		/// </summary>
+		[EnumTextValue("ScreeningQuestionsGuid")]
+		[ColumnEnum("ScreeningQuestionsGuid", typeof(System.Guid), System.Data.DbType.Guid, false, false, true)]
+		ScreeningQuestionsGuid = 28
 	}//End enum
 
 	#endregion JobApplicationColumn Enum

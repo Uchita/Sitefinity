@@ -24,6 +24,10 @@ using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using NotesFor.HtmlToOpenXml;
 
+using JXTPortal.Service.Dapper;
+using JXTPortal.Data.Dapper.Entities.ScreeningQuestions;
+using JXTPortal.Website.usercontrols.common;
+
 namespace JXTPortal.Website
 {
     public partial class NewApplyPage : System.Web.UI.Page
@@ -457,6 +461,12 @@ namespace JXTPortal.Website
 
         #endregion
 
+        public IJobScreeningQuestionsService JobScreeningQuestionsService { get; set; }
+        public IScreeningQuestionsService ScreeningQuestionsService { get; set; }
+        public IJobApplicationScreeningAnswersService JobApplicationScreeningAnswersService { get; set; }
+
+        private string ContentValidationRegex = ConfigurationManager.AppSettings["ContentValidationRegex"];
+
         private void SetDisplay()
         {
             UsernameError = CommonFunction.GetResourceValue("LabelUsernameRequired");
@@ -489,6 +499,150 @@ namespace JXTPortal.Website
 
             spEmailError.InnerText = CommonFunction.GetResourceValue("LabelEmailInvalid");
             spConfEmailError.InnerText = CommonFunction.GetResourceValue("LabelConfirmEmailRequired");
+        }
+
+        private void LoadScreeningQuestions()
+        {
+            phScreeningQuestions.Visible = false;
+
+            GlobalSettings globalSetting = GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId).FirstOrDefault();
+
+            if (globalSetting.EnableScreeningQuestions)
+            {
+                List<JobScreeningQuestionsEntity> jobScreeningQuestions = JobScreeningQuestionsService.SelectByJobID(JobID);
+                var screeningQuestionIds = jobScreeningQuestions.Select(q => q.ScreeningQuestionId).ToList();
+
+
+                if (screeningQuestionIds.Count > 0)
+                {
+                    List<ScreeningQuestionsEntity> screeningQuestions = ScreeningQuestionsService.SelectByIds(screeningQuestionIds);
+
+                    List<ScreeningQuestionsEntity> visibleScreeningQuestions = screeningQuestions.Where(q => q.Visible = true).ToList<ScreeningQuestionsEntity>();
+
+                    if (screeningQuestions.Count > 0)
+                    {
+                        phScreeningQuestions.Visible = true;
+                        rptScreeningQuestions.DataSource = visibleScreeningQuestions;
+                        rptScreeningQuestions.DataBind();
+                    }
+                    else
+                    {
+                        rptScreeningQuestions.DataSource = null;
+                        rptScreeningQuestions.DataBind();
+                    }
+                }
+            }
+        }
+
+        private string CreateTextBox(int id, string value)
+        {
+            return string.Format("<input type=\"text\" id=\"ScreeningQuestion_{0}\" name=\"ScreeningQuestion_{0}\" class=\"form-control\" autocomplete=\"off\" value=\"{1}\"/>", id, (!string.IsNullOrEmpty(value)) ? value.Replace("\"", "&quot;") : string.Empty);
+        }
+
+        private string CreateTextArea(int id, string value)
+        {
+            return string.Format("<textarea id=\"ScreeningQuestion_{0}\" name=\"ScreeningQuestion_{0}\" rows=\"4\" class=\"form-control\" autocomplete=\"off\" value=\"{1}\" />", id, (!string.IsNullOrEmpty(value)) ? value.Replace("\"", "&quot;") : string.Empty);
+        }
+
+        private string CreateDropDown(int id, string value, IEnumerable<Match> matches)
+        {
+            StringBuilder options = new StringBuilder();
+
+            if (matches != null)
+            {
+                options.AppendLine(string.Format("<option value=\"\">{0}</option>", CommonFunction.GetResourceValue("LabelPleaseSelect")));
+
+                var selectoptions = matches.Select((m, i) => new { Index = i, Value = m.Value })
+                                           .Select(x => string.Format("<option value=\"{1}\" {2}>{0}</option>", HttpUtility.HtmlEncode(x.Value), x.Index, (x.Index.ToString() == value) ? "selected" : string.Empty));
+
+                options.AppendLine(string.Join("\n", selectoptions.ToList()));
+            }
+
+            return string.Format("<select id=\"ScreeningQuestion_{1}\" name=\"ScreeningQuestion_{1}\">{0}</select>", options, id);
+        }
+
+        private string CreateMultiSelect(int id, string value, IEnumerable<Match> matches)
+        {
+            StringBuilder options = new StringBuilder();
+            string[] splits = (string.IsNullOrEmpty(value)) ? null : value.Split(new char[] { ',' });
+
+            if (matches != null)
+            {
+                var inputs = matches.Select((m, i) => new { Index = i, Value = m.Value })
+                                    .Select(x => string.Format("<input type=\"checkbox\" id=\"ScreeningQuestion_{1}_{2}\" name=\"ScreeningQuestion_{1}\" value=\"{2}\" {3}/>{0} ", HttpUtility.HtmlEncode(x.Value), id, x.Index, (splits != null && splits.Contains(x.Index.ToString())) ? "checked" : string.Empty));
+
+                options.AppendLine(string.Join("\n", inputs));
+            }
+
+            return options.ToString();
+        }
+
+        private string CreateRadioBox(int id, string value, IEnumerable<Match> matches)
+        {
+            StringBuilder options = new StringBuilder();
+
+            if (matches != null)
+            {
+                var inputs = matches.Select((m, i) => new { Index = i, Value = m.Value })
+                                    .Select(x => string.Format("<input type=\"radio\" id=\"ScreeningQuestion_{1}_{2}\" name=\"ScreeningQuestion_{1}\" value=\"{2}\" {3} />{0} ", HttpUtility.HtmlEncode(x.Value), id, x.Index, (x.Index.ToString() == value) ? "checked" : string.Empty));
+
+                options.AppendLine(string.Join("\n", inputs));
+            }
+
+            return options.ToString();
+        }
+
+
+        protected void rptScreeningQuestions_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                HiddenField hfScreeningQuestionId = e.Item.FindControl("hfScreeningQuestionId") as HiddenField;
+                Literal ltQuestion = e.Item.FindControl("ltQuestion") as Literal;
+                Literal ltOptions = e.Item.FindControl("ltOptions") as Literal;
+                PlaceHolder phError = e.Item.FindControl("phError") as PlaceHolder;
+                ucLanguageLiteral ltError = e.Item.FindControl("ltError") as ucLanguageLiteral;
+
+                ScreeningQuestionsEntity screeningQuestion = e.Item.DataItem as ScreeningQuestionsEntity;
+                hfScreeningQuestionId.Value = screeningQuestion.ScreeningQuestionId.ToString();
+                ltQuestion.Text = HttpUtility.HtmlEncode(screeningQuestion.QuestionTitle);
+
+                if (screeningQuestion.Mandatory)
+                {
+                    ltQuestion.Text += "&nbsp;<span class=\"required\">*</span>";
+                }
+
+                string screeningQuestionId = string.Format("ScreeningQuestion_{0}", hfScreeningQuestionId.Value);
+                string screeningQuestionAnswer = Request.Params[screeningQuestionId];
+
+                Regex regex = new Regex("(\".*?\"|[^\",\\s]+)(?=\\s*,|\\s*$)");
+                MatchCollection matches = (screeningQuestion.Options != null) ? regex.Matches(screeningQuestion.Options) : null;
+
+                if (screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.TextBox)
+                {
+                    ltOptions.Text = CreateTextBox(screeningQuestion.ScreeningQuestionId, screeningQuestionAnswer);
+                }
+
+                if (screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.TextArea)
+                {
+                    ltOptions.Text = CreateTextArea(screeningQuestion.ScreeningQuestionId, screeningQuestionAnswer);
+                }
+
+                if (screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.Dropdown)
+                {
+                    ltOptions.Text = CreateDropDown(screeningQuestion.ScreeningQuestionId, screeningQuestionAnswer, matches.Cast<Match>());
+                }
+
+                if (screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.MultiSelect)
+                {
+                    ltOptions.Text = CreateMultiSelect(screeningQuestion.ScreeningQuestionId, screeningQuestionAnswer, matches.Cast<Match>());
+                }
+
+                if (screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.RadioButtons)
+                {
+                    ltOptions.Text = CreateRadioBox(screeningQuestion.ScreeningQuestionId, screeningQuestionAnswer, matches.Cast<Match>());
+                }
+            }
         }
 
         private void LoadResume()
@@ -575,6 +729,7 @@ namespace JXTPortal.Website
             phLoginError.Visible = false;
 
             SetSocialMediaLoginButtons();
+            LoadScreeningQuestions();
             SetDisplay();
 
             if (!string.IsNullOrEmpty(hfOAuthError.Value))
@@ -1024,6 +1179,53 @@ namespace JXTPortal.Website
             Page.ClientScript.RegisterClientScriptBlock(Page.GetType(), "focusJS", js, true);
         }
 
+        private bool ScreeningQuestionsError()
+        {
+            bool hasError = false;
+
+            if (phScreeningQuestions.Visible)
+            {
+                foreach (RepeaterItem item in rptScreeningQuestions.Items)
+                {
+                    HiddenField hfScreeningQuestionId = item.FindControl("hfScreeningQuestionId") as HiddenField;
+                    Literal ltQuestion = item.FindControl("ltQuestion") as Literal;
+                    Literal ltOptions = item.FindControl("ltOptions") as Literal;
+                    PlaceHolder phError = item.FindControl("phError") as PlaceHolder;
+                    ucLanguageLiteral ltError = item.FindControl("ltError") as ucLanguageLiteral;
+
+                    string screeningQuestionId = string.Format("ScreeningQuestion_{0}", hfScreeningQuestionId.Value);
+                    string screeningQuestionAnswer = Request.Params[screeningQuestionId];
+
+                    if (ltQuestion.Text.EndsWith("<span class=\"required\">*</span>")) // Mandatory
+                    {
+                        if (string.IsNullOrWhiteSpace(screeningQuestionAnswer))
+                        {
+                            hasError = true;
+                            phError.Visible = true;
+                            ltError.SetLanguageCode = "LabelRequiredField1";
+                        }
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(screeningQuestionAnswer))
+                    {
+                        if (Regex.IsMatch(screeningQuestionAnswer, ContentValidationRegex) == false)
+                        {
+                            hasError = true;
+                            phError.Visible = true;
+                            ltError.SetLanguageCode = "ValidateNoHTMLContent";
+                        }
+                    }
+
+                    if (!hasError)
+                    {
+                        phError.Visible = false;
+                    }
+                }
+            }
+
+            return hasError;
+        }
+
         protected void apply_Click(object sender, EventArgs e)
         {
             if (SessionData.Member == null && phJustApplyTopLeft.Visible == false)
@@ -1042,7 +1244,7 @@ namespace JXTPortal.Website
                     memberemail = SessionData.Member.EmailAddress;
                 }
 
-                bool validEmail = Regex.IsMatch(memberemail, @"^(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6}$");
+                bool validEmail = Utils.VerifyEmail(memberemail);
                 if (!validEmail)
                 {
                     divEmailRequired.Style["display"] = "block";
@@ -1126,6 +1328,11 @@ namespace JXTPortal.Website
                         }
                     }
 
+                }
+
+                if (ScreeningQuestionsError())
+                {
+                    hasError = true;
                 }
 
                 if (hasError) return;
@@ -1338,7 +1545,7 @@ namespace JXTPortal.Website
                                         ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
                                         if (string.IsNullOrWhiteSpace(errormessage))
                                         {
-                                            ftpclient.UploadFileFromStream(((MemoryStream) ms), ftpclpath + jobapp.MemberCoverLetterFile, out errormessage);
+                                            ftpclient.UploadFileFromStream(((MemoryStream)ms), ftpclpath + jobapp.MemberCoverLetterFile, out errormessage);
                                         }
                                     }
                                     else
@@ -1712,6 +1919,55 @@ namespace JXTPortal.Website
                                 }
                             }
 
+                            // Screenining Question
+                            if (phScreeningQuestions.Visible)
+                            {
+                                List<ScreeningQuestionsEntity> screeningQuestions = ScreeningQuestionsService.SelectByJobId(jobapp.JobId.Value);
+
+                                foreach (ScreeningQuestionsEntity screeningQuestion in screeningQuestions)
+                                {
+                                    string screeningQuestionId = string.Format("ScreeningQuestion_{0}", screeningQuestion.ScreeningQuestionId);
+                                    string screeningQuestionAnswer = Request.Params[screeningQuestionId];
+
+                                    if (screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.Dropdown
+                                        || screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.MultiSelect
+                                        || screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.RadioButtons)
+                                    {
+                                        Regex regex = new Regex("(\".*?\"|[^\",\\s]+)(?=\\s*,|\\s*$)");
+                                        MatchCollection matches = (screeningQuestion.Options != null) ? regex.Matches(screeningQuestion.Options) : null;
+
+                                        if (screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.MultiSelect)
+                                        {
+                                            string[] splits = screeningQuestionAnswer.Split(new char[] { ',' });
+
+                                            var answer = matches.Cast<Match>().Select((m, i) => new { Index = i, Value = m.Value })
+                                                                            .Where(x => splits.ToList().Contains(x.Index.ToString()))
+                                                                            .Select(x => x.Value);
+
+                                            screeningQuestionAnswer = string.Join(", ", answer.ToList());
+                                        }
+                                        else
+                                        {
+                                            var answer = matches.Cast<Match>().Select((m, i) => new { Index = i, Value = m.Value })
+                                                                            .Where(x => screeningQuestionAnswer == x.Index.ToString())
+                                                                            .Select(x => x.Value).FirstOrDefault();
+
+                                            screeningQuestionAnswer = answer;
+                                        }
+                                    }
+
+                                    if (!string.IsNullOrEmpty(screeningQuestionAnswer))
+                                    {
+                                        JobApplicationScreeningAnswersService.Insert(new JobApplicationScreeningAnswersEntity
+                                        {
+                                            JobApplicationId = jobapp.JobApplicationId,
+                                            ScreeningQuestionId = screeningQuestion.ScreeningQuestionId,
+                                            Answer = screeningQuestionAnswer
+                                        });
+                                    }
+                                }
+                            }
+
                             // Custom Fields
                             HybridDictionary customEmailFields = new HybridDictionary();
 
@@ -1752,9 +2008,10 @@ namespace JXTPortal.Website
                                 if (!string.IsNullOrWhiteSpace(ConfigurationManager.AppSettings["EnworldSiteID"]) &&
                                         !ConfigurationManager.AppSettings["EnworldSiteID"].Contains(" " + SessionData.Site.MasterSiteId + " "))
                                 {
+                                    MailService.SetJobApplicationScreeningAnswers(JobApplicationScreeningAnswersService);
                                     MailService.SendAdvertiserJobApplicationEmail(member, jobapp, customEmailFields, siteid, jobapplicationemail);
-                                }        
-           
+                                }
+
                                 Response.Redirect(DynamicPagesService.GetDynamicPageUrl(JXTPortal.SystemPages.JOBAPPLY_SUCCESS, "", "", ""));
                             }
                             else

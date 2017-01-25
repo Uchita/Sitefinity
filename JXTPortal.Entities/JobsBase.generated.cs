@@ -137,6 +137,7 @@ namespace JXTPortal.Entities
 		///<param name="_jobLongitude"></param>
 		///<param name="_addressStatus"></param>
 		///<param name="_jobExternalId"></param>
+		///<param name="_screeningQuestionsTemplateId"></param>
 		public JobsBase(System.Int32 _siteId, System.Int32 _workTypeId, System.String _jobName, 
 			System.String _description, System.String _fullDescription, System.Boolean _webServiceProcessed, System.String _applicationEmailAddress, 
 			System.String _refNo, System.Boolean _visible, System.DateTime _datePosted, System.DateTime _expiryDate, System.Int32? _expired, 
@@ -150,7 +151,8 @@ namespace JXTPortal.Entities
 			System.String _bulletPoint1, System.String _bulletPoint2, System.String _bulletPoint3, System.Boolean _hotJob, 
 			System.String _jobFriendlyName, System.String _searchField, System.Boolean _showSalaryRange, System.Decimal _salaryLowerBand, 
 			System.Decimal _salaryUpperBand, System.Int32 _currencyId, System.Int32 _salaryTypeId, System.Int32? _enteredByAdvertiserUserId, 
-			System.Double? _jobLatitude, System.Double? _jobLongitude, System.Int32? _addressStatus, System.String _jobExternalId)
+			System.Double? _jobLatitude, System.Double? _jobLongitude, System.Int32? _addressStatus, System.String _jobExternalId, 
+			System.Int32? _screeningQuestionsTemplateId)
 		{
 			this.entityData = new JobsEntityData();
 			this.backupData = null;
@@ -211,6 +213,7 @@ namespace JXTPortal.Entities
 			this.JobLongitude = _jobLongitude;
 			this.AddressStatus = _addressStatus;
 			this.JobExternalId = _jobExternalId;
+			this.ScreeningQuestionsTemplateId = _screeningQuestionsTemplateId;
 		}
 		
 		///<summary>
@@ -272,6 +275,7 @@ namespace JXTPortal.Entities
 		///<param name="_jobLongitude"></param>
 		///<param name="_addressStatus"></param>
 		///<param name="_jobExternalId"></param>
+		///<param name="_screeningQuestionsTemplateId"></param>
 		public static Jobs CreateJobs(System.Int32 _siteId, System.Int32 _workTypeId, System.String _jobName, 
 			System.String _description, System.String _fullDescription, System.Boolean _webServiceProcessed, System.String _applicationEmailAddress, 
 			System.String _refNo, System.Boolean _visible, System.DateTime _datePosted, System.DateTime _expiryDate, System.Int32? _expired, 
@@ -285,7 +289,8 @@ namespace JXTPortal.Entities
 			System.String _bulletPoint1, System.String _bulletPoint2, System.String _bulletPoint3, System.Boolean _hotJob, 
 			System.String _jobFriendlyName, System.String _searchField, System.Boolean _showSalaryRange, System.Decimal _salaryLowerBand, 
 			System.Decimal _salaryUpperBand, System.Int32 _currencyId, System.Int32 _salaryTypeId, System.Int32? _enteredByAdvertiserUserId, 
-			System.Double? _jobLatitude, System.Double? _jobLongitude, System.Int32? _addressStatus, System.String _jobExternalId)
+			System.Double? _jobLatitude, System.Double? _jobLongitude, System.Int32? _addressStatus, System.String _jobExternalId, 
+			System.Int32? _screeningQuestionsTemplateId)
 		{
 			Jobs newJobs = new Jobs();
 			newJobs.SiteId = _siteId;
@@ -344,6 +349,7 @@ namespace JXTPortal.Entities
 			newJobs.JobLongitude = _jobLongitude;
 			newJobs.AddressStatus = _addressStatus;
 			newJobs.JobExternalId = _jobExternalId;
+			newJobs.ScreeningQuestionsTemplateId = _screeningQuestionsTemplateId;
 			return newJobs;
 		}
 				
@@ -2384,6 +2390,43 @@ namespace JXTPortal.Entities
 			}
 		}
 		
+		/// <summary>
+		/// 	Gets or sets the ScreeningQuestionsTemplateId property. 
+		///		
+		/// </summary>
+		/// <value>This type is int.</value>
+		/// <remarks>
+		/// This property can be set to null. 
+		/// If this column is null, this property will return (int)0. It is up to the developer
+		/// to check the value of IsScreeningQuestionsTemplateIdNull() and perform business logic appropriately.
+		/// </remarks>
+
+
+
+
+		[DescriptionAttribute(@""), System.ComponentModel.Bindable( System.ComponentModel.BindableSupport.Yes)]
+		[DataObjectField(false, false, true)]
+		public virtual System.Int32? ScreeningQuestionsTemplateId
+		{
+			get
+			{
+				return this.entityData.ScreeningQuestionsTemplateId; 
+			}
+			
+			set
+			{
+				if (this.entityData.ScreeningQuestionsTemplateId == value)
+					return;
+					
+				OnColumnChanging(JobsColumn.ScreeningQuestionsTemplateId, this.entityData.ScreeningQuestionsTemplateId);
+				this.entityData.ScreeningQuestionsTemplateId = value;
+				if (this.EntityState == EntityState.Unchanged)
+					this.EntityState = EntityState.Changed;
+				OnColumnChanged(JobsColumn.ScreeningQuestionsTemplateId, this.entityData.ScreeningQuestionsTemplateId);
+				OnPropertyChanged("ScreeningQuestionsTemplateId");
+			}
+		}
+		
 		#endregion Data Properties		
 
 		#region Source Foreign Key Property
@@ -2628,7 +2671,7 @@ namespace JXTPortal.Entities
 		{
 			get
 			{
-				return new string[] {"JobID", "SiteID", "WorkTypeID", "JobName", "Description", "FullDescription", "WebServiceProcessed", "ApplicationEmailAddress", "RefNo", "Visible", "DatePosted", "ExpiryDate", "Expired", "JobItemPrice", "Billed", "LastModified", "ShowSalaryDetails", "SalaryText", "AdvertiserID", "LastModifiedByAdvertiserUserId", "LastModifiedByAdminUserId", "JobItemTypeID", "ApplicationMethod", "ApplicationURL", "UploadMethod", "Tags", "JobTemplateID", "SearchFieldExtension", "AdvertiserJobTemplateLogoID", "CompanyName", "HashValue", "RequireLogonForExternalApplications", "ShowLocationDetails", "PublicTransport", "Address", "ContactDetails", "JobContactPhone", "JobContactName", "QualificationsRecognised", "ResidentOnly", "DocumentLink", "BulletPoint1", "BulletPoint2", "BulletPoint3", "HotJob", "JobFriendlyName", "SearchField", "ShowSalaryRange", "SalaryLowerBand", "SalaryUpperBand", "CurrencyID", "SalaryTypeID", "EnteredByAdvertiserUserID", "JobLatitude", "JobLongitude", "AddressStatus", "JobExternalId"};
+				return new string[] {"JobID", "SiteID", "WorkTypeID", "JobName", "Description", "FullDescription", "WebServiceProcessed", "ApplicationEmailAddress", "RefNo", "Visible", "DatePosted", "ExpiryDate", "Expired", "JobItemPrice", "Billed", "LastModified", "ShowSalaryDetails", "SalaryText", "AdvertiserID", "LastModifiedByAdvertiserUserId", "LastModifiedByAdminUserId", "JobItemTypeID", "ApplicationMethod", "ApplicationURL", "UploadMethod", "Tags", "JobTemplateID", "SearchFieldExtension", "AdvertiserJobTemplateLogoID", "CompanyName", "HashValue", "RequireLogonForExternalApplications", "ShowLocationDetails", "PublicTransport", "Address", "ContactDetails", "JobContactPhone", "JobContactName", "QualificationsRecognised", "ResidentOnly", "DocumentLink", "BulletPoint1", "BulletPoint2", "BulletPoint3", "HotJob", "JobFriendlyName", "SearchField", "ShowSalaryRange", "SalaryLowerBand", "SalaryUpperBand", "CurrencyID", "SalaryTypeID", "EnteredByAdvertiserUserID", "JobLatitude", "JobLongitude", "AddressStatus", "JobExternalId", "ScreeningQuestionsTemplateId"};
 			}
 		}
 		#endregion 
@@ -2833,6 +2876,7 @@ namespace JXTPortal.Entities
 				copy.JobLongitude = this.JobLongitude;
 				copy.AddressStatus = this.AddressStatus;
 				copy.JobExternalId = this.JobExternalId;
+				copy.ScreeningQuestionsTemplateId = this.ScreeningQuestionsTemplateId;
 			
 			if (this.AdvertiserIdSource != null && existingCopies.Contains(this.AdvertiserIdSource))
 				copy.AdvertiserIdSource = existingCopies[this.AdvertiserIdSource] as Advertisers;
@@ -3118,6 +3162,8 @@ namespace JXTPortal.Entities
 					return entityData.AddressStatus != _originalData.AddressStatus;
 					case JobsColumn.JobExternalId:
 					return entityData.JobExternalId != _originalData.JobExternalId;
+					case JobsColumn.ScreeningQuestionsTemplateId:
+					return entityData.ScreeningQuestionsTemplateId != _originalData.ScreeningQuestionsTemplateId;
 			
 				default:
 					return false;
@@ -3202,6 +3248,7 @@ namespace JXTPortal.Entities
 			result = result || entityData.JobLongitude != _originalData.JobLongitude;
 			result = result || entityData.AddressStatus != _originalData.AddressStatus;
 			result = result || entityData.JobExternalId != _originalData.JobExternalId;
+			result = result || entityData.ScreeningQuestionsTemplateId != _originalData.ScreeningQuestionsTemplateId;
 			return result;
 		}	
 		
@@ -3267,7 +3314,8 @@ namespace JXTPortal.Entities
 				_originalData.JobLatitude,
 				_originalData.JobLongitude,
 				_originalData.AddressStatus,
-				_originalData.JobExternalId
+				_originalData.JobExternalId,
+				_originalData.ScreeningQuestionsTemplateId
 				);
 				
 			return (Jobs)this.Clone();
@@ -3353,7 +3401,8 @@ namespace JXTPortal.Entities
 					((this.JobLatitude == null) ? string.Empty : this.JobLatitude.ToString()).GetHashCode() ^ 
 					((this.JobLongitude == null) ? string.Empty : this.JobLongitude.ToString()).GetHashCode() ^ 
 					((this.AddressStatus == null) ? string.Empty : this.AddressStatus.ToString()).GetHashCode() ^ 
-					((this.JobExternalId == null) ? string.Empty : this.JobExternalId.ToString()).GetHashCode();
+					((this.JobExternalId == null) ? string.Empty : this.JobExternalId.ToString()).GetHashCode() ^ 
+					((this.ScreeningQuestionsTemplateId == null) ? string.Empty : this.ScreeningQuestionsTemplateId.ToString()).GetHashCode();
         }
 		
 		///<summary>
@@ -3721,6 +3770,15 @@ namespace JXTPortal.Entities
 					equal = false;
 			}
 			else if (Object1.JobExternalId == null ^ Object2.JobExternalId == null )
+			{
+				equal = false;
+			}
+			if ( Object1.ScreeningQuestionsTemplateId != null && Object2.ScreeningQuestionsTemplateId != null )
+			{
+				if (Object1.ScreeningQuestionsTemplateId != Object2.ScreeningQuestionsTemplateId)
+					equal = false;
+			}
+			else if (Object1.ScreeningQuestionsTemplateId == null ^ Object2.ScreeningQuestionsTemplateId == null )
 			{
 				equal = false;
 			}
@@ -4104,6 +4162,12 @@ namespace JXTPortal.Entities
             		return this.JobExternalId.CompareTo(rhs.JobExternalId);
             		
             		                 
+            	
+            	
+            	case JobsColumn.ScreeningQuestionsTemplateId:
+            		return this.ScreeningQuestionsTemplateId.Value.CompareTo(rhs.ScreeningQuestionsTemplateId.Value);
+            		
+            		                 
             }
             return 0;
         }
@@ -4238,7 +4302,7 @@ namespace JXTPortal.Entities
 		public override string ToString()
 		{
 			return string.Format(System.Globalization.CultureInfo.InvariantCulture,
-				"{58}{57}- JobId: {0}{57}- SiteId: {1}{57}- WorkTypeId: {2}{57}- JobName: {3}{57}- Description: {4}{57}- FullDescription: {5}{57}- WebServiceProcessed: {6}{57}- ApplicationEmailAddress: {7}{57}- RefNo: {8}{57}- Visible: {9}{57}- DatePosted: {10}{57}- ExpiryDate: {11}{57}- Expired: {12}{57}- JobItemPrice: {13}{57}- Billed: {14}{57}- LastModified: {15}{57}- ShowSalaryDetails: {16}{57}- SalaryText: {17}{57}- AdvertiserId: {18}{57}- LastModifiedByAdvertiserUserId: {19}{57}- LastModifiedByAdminUserId: {20}{57}- JobItemTypeId: {21}{57}- ApplicationMethod: {22}{57}- ApplicationUrl: {23}{57}- UploadMethod: {24}{57}- Tags: {25}{57}- JobTemplateId: {26}{57}- SearchFieldExtension: {27}{57}- AdvertiserJobTemplateLogoId: {28}{57}- CompanyName: {29}{57}- HashValue: {30}{57}- RequireLogonForExternalApplications: {31}{57}- ShowLocationDetails: {32}{57}- PublicTransport: {33}{57}- Address: {34}{57}- ContactDetails: {35}{57}- JobContactPhone: {36}{57}- JobContactName: {37}{57}- QualificationsRecognised: {38}{57}- ResidentOnly: {39}{57}- DocumentLink: {40}{57}- BulletPoint1: {41}{57}- BulletPoint2: {42}{57}- BulletPoint3: {43}{57}- HotJob: {44}{57}- JobFriendlyName: {45}{57}- SearchField: {46}{57}- ShowSalaryRange: {47}{57}- SalaryLowerBand: {48}{57}- SalaryUpperBand: {49}{57}- CurrencyId: {50}{57}- SalaryTypeId: {51}{57}- EnteredByAdvertiserUserId: {52}{57}- JobLatitude: {53}{57}- JobLongitude: {54}{57}- AddressStatus: {55}{57}- JobExternalId: {56}{57}{59}", 
+				"{59}{58}- JobId: {0}{58}- SiteId: {1}{58}- WorkTypeId: {2}{58}- JobName: {3}{58}- Description: {4}{58}- FullDescription: {5}{58}- WebServiceProcessed: {6}{58}- ApplicationEmailAddress: {7}{58}- RefNo: {8}{58}- Visible: {9}{58}- DatePosted: {10}{58}- ExpiryDate: {11}{58}- Expired: {12}{58}- JobItemPrice: {13}{58}- Billed: {14}{58}- LastModified: {15}{58}- ShowSalaryDetails: {16}{58}- SalaryText: {17}{58}- AdvertiserId: {18}{58}- LastModifiedByAdvertiserUserId: {19}{58}- LastModifiedByAdminUserId: {20}{58}- JobItemTypeId: {21}{58}- ApplicationMethod: {22}{58}- ApplicationUrl: {23}{58}- UploadMethod: {24}{58}- Tags: {25}{58}- JobTemplateId: {26}{58}- SearchFieldExtension: {27}{58}- AdvertiserJobTemplateLogoId: {28}{58}- CompanyName: {29}{58}- HashValue: {30}{58}- RequireLogonForExternalApplications: {31}{58}- ShowLocationDetails: {32}{58}- PublicTransport: {33}{58}- Address: {34}{58}- ContactDetails: {35}{58}- JobContactPhone: {36}{58}- JobContactName: {37}{58}- QualificationsRecognised: {38}{58}- ResidentOnly: {39}{58}- DocumentLink: {40}{58}- BulletPoint1: {41}{58}- BulletPoint2: {42}{58}- BulletPoint3: {43}{58}- HotJob: {44}{58}- JobFriendlyName: {45}{58}- SearchField: {46}{58}- ShowSalaryRange: {47}{58}- SalaryLowerBand: {48}{58}- SalaryUpperBand: {49}{58}- CurrencyId: {50}{58}- SalaryTypeId: {51}{58}- EnteredByAdvertiserUserId: {52}{58}- JobLatitude: {53}{58}- JobLongitude: {54}{58}- AddressStatus: {55}{58}- JobExternalId: {56}{58}- ScreeningQuestionsTemplateId: {57}{58}{60}", 
 				this.JobId,
 				this.SiteId,
 				this.WorkTypeId,
@@ -4296,6 +4360,7 @@ namespace JXTPortal.Entities
 				(this.JobLongitude == null) ? string.Empty : this.JobLongitude.ToString(),
 				(this.AddressStatus == null) ? string.Empty : this.AddressStatus.ToString(),
 				(this.JobExternalId == null) ? string.Empty : this.JobExternalId.ToString(),
+				(this.ScreeningQuestionsTemplateId == null) ? string.Empty : this.ScreeningQuestionsTemplateId.ToString(),
 				System.Environment.NewLine, 
 				this.GetType(),
 				this.Error.Length == 0 ? string.Empty : string.Format("- Error: {0}\n",this.Error));
@@ -4609,6 +4674,11 @@ namespace JXTPortal.Entities
 		/// JobExternalId : 
 		/// </summary>
 		public System.String		  JobExternalId = null;
+		
+		/// <summary>
+		/// ScreeningQuestionsTemplateId : 
+		/// </summary>
+		public System.Int32?		  ScreeningQuestionsTemplateId = null;
 		#endregion
 			
 		#region Source Foreign Key Property
@@ -4942,6 +5012,7 @@ namespace JXTPortal.Entities
 			_tmp.JobLongitude = this.JobLongitude;
 			_tmp.AddressStatus = this.AddressStatus;
 			_tmp.JobExternalId = this.JobExternalId;
+			_tmp.ScreeningQuestionsTemplateId = this.ScreeningQuestionsTemplateId;
 			
 			#region Source Parent Composite Entities
 			if (this.AdvertiserIdSource != null)
@@ -5053,6 +5124,7 @@ namespace JXTPortal.Entities
 			_tmp.JobLongitude = this.JobLongitude;
 			_tmp.AddressStatus = this.AddressStatus;
 			_tmp.JobExternalId = this.JobExternalId;
+			_tmp.ScreeningQuestionsTemplateId = this.ScreeningQuestionsTemplateId;
 			
 			#region Source Parent Composite Entities
 			if (this.AdvertiserIdSource != null && existingCopies.Contains(this.AdvertiserIdSource))
@@ -5806,7 +5878,13 @@ namespace JXTPortal.Entities
 		/// </summary>
 		[EnumTextValue("JobExternalId")]
 		[ColumnEnum("JobExternalId", typeof(System.String), System.Data.DbType.AnsiString, false, false, true, 50)]
-		JobExternalId = 57
+		JobExternalId = 57,
+		/// <summary>
+		/// ScreeningQuestionsTemplateId : 
+		/// </summary>
+		[EnumTextValue("ScreeningQuestionsTemplateId")]
+		[ColumnEnum("ScreeningQuestionsTemplateId", typeof(System.Int32), System.Data.DbType.Int32, false, false, true)]
+		ScreeningQuestionsTemplateId = 58
 	}//End enum
 
 	#endregion JobsColumn Enum

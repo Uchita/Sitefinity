@@ -463,6 +463,20 @@
     <Compile Include="Admin\reports\MemberActivity.aspx.designer.cs">
       <DependentUpon>MemberActivity.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\ScreeningQuestionsTemplate.aspx.cs">
+      <DependentUpon>ScreeningQuestionsTemplate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ScreeningQuestionsTemplate.aspx.designer.cs">
+      <DependentUpon>ScreeningQuestionsTemplate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ScreeningQuestionsTemplateEdit.aspx.cs">
+      <DependentUpon>ScreeningQuestionsTemplateEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ScreeningQuestionsTemplateEdit.aspx.designer.cs">
+      <DependentUpon>ScreeningQuestionsTemplateEdit.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\SiteBusinessType.aspx.cs">
       <DependentUpon>SiteBusinessType.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -834,6 +848,20 @@
     <Compile Include="advertiser\ResendEmailValidation.aspx.designer.cs">
       <DependentUpon>ResendEmailValidation.aspx</DependentUpon>
     </Compile>
+    <Compile Include="advertiser\ScreeningQuestionsTemplates.aspx.cs">
+      <DependentUpon>ScreeningQuestionsTemplates.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="advertiser\ScreeningQuestionsTemplates.aspx.designer.cs">
+      <DependentUpon>ScreeningQuestionsTemplates.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="advertiser\ScreeningQuestionTemplateEdit.aspx.cs">
+      <DependentUpon>ScreeningQuestionTemplateEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="advertiser\ScreeningQuestionTemplateEdit.aspx.designer.cs">
+      <DependentUpon>ScreeningQuestionTemplateEdit.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Codes\CommonAdvancedSearch.cs" />
     <Compile Include="App_Codes\IoCHelper.cs" />
     <Compile Include="App_Code\**\*.cs">
@@ -939,6 +967,8 @@
     <Content Include="Admin\DynamicPageRev.aspx" />
     <Content Include="Admin\DynamicPageRevisions.aspx" />
     <Content Include="Admin\reports\MemberActivity.aspx" />
+    <Content Include="Admin\ScreeningQuestionsTemplate.aspx" />
+    <Content Include="Admin\ScreeningQuestionsTemplateEdit.aspx" />
     <Content Include="Admin\scripts\images\design\menu-yellow-contributer.gif" />
     <Content Include="Admin\Industry.aspx" />
     <Content Include="Admin\IndustryEdit.aspx" />
@@ -1105,6 +1135,8 @@
     <Content Include="advertiser\ProductSelect.aspx" />
     <Content Include="advertiser\Reports.aspx" />
     <Content Include="advertiser\ResendEmailValidation.aspx" />
+    <Content Include="advertiser\ScreeningQuestionsTemplates.aspx" />
+    <Content Include="advertiser\ScreeningQuestionTemplateEdit.aspx" />
     <Content Include="App_GlobalResources\InvoiceDetail.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1445,7 +1477,6 @@
     <Content Include="member\sso\monash\login.aspx" />
     <Content Include="pages\Preview.aspx" />
     <Content Include="References\HtmlToOpenXml.dll" />
-    <Content Include="References\HtmlToOpenXml.pdb" />
     <Content Include="References\HtmlToOpenXml.XML" />
     <Content Include="scripts\applications\aicd_scholarship.js" />
     <Content Include="scripts\bootstrap-datepicker.js" />

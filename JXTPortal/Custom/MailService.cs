@@ -15,11 +15,20 @@ using System.Net.Mime;
 
 using JXTPortal.Entities;
 using JXTPortal.Common;
+using JXTPortal.Service.Dapper;
+using JXTPortal.Data.Dapper.Entities.ScreeningQuestions;
+using JXTPortal.Service.Dapper.Models;
 
 namespace JXTPortal
 {
     public static class MailService
     {
+        public static IJobApplicationScreeningAnswersService JobApplicationScreeningAnswersService { get; set; }
+
+        public static void SetJobApplicationScreeningAnswers(IJobApplicationScreeningAnswersService container)
+        {
+            JobApplicationScreeningAnswersService = container;
+        }
 
         public static void Send(string fromTo, string to, string subject, string message)
         {
@@ -712,6 +721,28 @@ namespace JXTPortal
                 JobsService jobs = new JobsService();
                 JXTPortal.Entities.Jobs job = jobs.GetByJobId(jobapp.JobId.Value);
 
+                // Screening Questions
+                StringBuilder screeingQuestionsAttachment = new StringBuilder();
+                StringBuilder screeingQuestionsContent = new StringBuilder();
+
+                JobApplicationScreeningAnswerDetail jobApplicationScreeningAnswerDetail = JobApplicationScreeningAnswersService.SelectByJobApplicationId(jobapp.JobApplicationId);
+                if (jobApplicationScreeningAnswerDetail.JobApplicationScreeningAnswers.Count > 0)
+                {
+                    screeingQuestionsAttachment.AppendLine(string.Format("JobTitle: {0}", job.JobName));
+                    screeingQuestionsAttachment.AppendLine(string.Format("Applicant Name: {0} {1}", member.FirstName, member.Surname));
+                    screeingQuestionsAttachment.AppendLine(string.Format("Applicant Email: {0}", member.EmailAddress));
+                    screeingQuestionsAttachment.AppendLine(string.Format("Date: {0}", jobapp.ApplicationDate.Value.ToString("dd/MM/yyyy")));
+                    screeingQuestionsAttachment.AppendLine("\nAnswer\n");
+
+                    foreach (JobApplicationScreeningAnswer answer in jobApplicationScreeningAnswerDetail.JobApplicationScreeningAnswers)
+                    {
+                        screeingQuestionsAttachment.AppendLine(string.Format("Q. {0}", answer.QuestionTitle));
+                        screeingQuestionsAttachment.AppendLine(string.Format("A. {0}\n", answer.Answer));
+
+                        screeingQuestionsContent.AppendLine(string.Format("<strong>Q. {0}</strong><br />", HttpUtility.HtmlEncode(answer.QuestionTitle)));
+                        screeingQuestionsContent.AppendLine(string.Format("A. {0}<br /><br />", HttpUtility.HtmlEncode(answer.Answer)));
+                    }
+                }
 
                 // Use custom jobapplication email address if it has value (for job tracking), otherwise uses email provided in job detail
                 if (string.IsNullOrWhiteSpace(jobapplicationemail))
@@ -739,6 +770,7 @@ namespace JXTPortal
                 colemailfields["URLSUFFIX"] = siteurl;
                 colemailfields["SiteID"] = siteid.ToString();
                 colemailfields["SCREENINGQUESTIONS"] = "http://" + siteurl + "/advertiser/jobtracker.aspx?JobId=" + job.JobId; // Todo Add Job Location
+                colemailfields["SCREENINGQUESTIONANSWERS"] = screeingQuestionsContent.ToString();
                 //colemailfields["EXTERNALJOBID"] = job.JobExternalId;
 
                 // New fields added
@@ -880,6 +912,16 @@ namespace JXTPortal
                         MessageAttachment resumeAttachment = new MessageAttachment(jobapp.MemberResumeFile, MediaTypeNames.Application.Octet, ms);
                         message.Attachments.Add(resumeAttachment);
                     }
+                }
+
+                if (screeingQuestionsAttachment.Length > 0)
+                {
+                    string screeingQuestionsString = screeingQuestionsAttachment.ToString();
+                    byte[] screeingQuestionsByteArray = System.Text.Encoding.UTF8.GetBytes(screeingQuestionsString);
+                    MemoryStream screeingQuestionsStream = new MemoryStream(screeingQuestionsByteArray);
+
+                    MessageAttachment screeningQuestionsAttachment = new MessageAttachment("ScreeningQuestion.txt", MediaTypeNames.Text.Plain, screeingQuestionsStream);
+                    message.Attachments.Add(screeningQuestionsAttachment);
                 }
 
                 message.Bcc = emailtemplate.EmailAddressBcc;

@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Autofac;
+﻿using Autofac;
 using JXTPortal.Data.Dapper.Configuration;
 using JXTPortal.Data.Dapper.Factories;
 using JXTPortal.Data.Dapper.Repositories;
 using JXTPortal.Service.Dapper;
-using JXTPortal.Data.SqlClient;
 using SectionIO;
 
 namespace JXTPortal.Website.App_Codes
@@ -30,9 +25,25 @@ namespace JXTPortal.Website.App_Codes
             builder.Register(c => new KnowledgeBaseService(c.Resolve<IKnowledgeBaseRepository>())).As<IKnowledgeBaseService>();
             builder.Register(c => new KnowledgeBaseCategoryService(c.Resolve<IKnowledgeBaseCategoryRepository>())).As<IKnowledgeBaseCategoryService>();
 
+            builder.RegisterType<AdvertisersRepository>().WithParameter(new Autofac.NamedParameter("connectionStringName", DEFAULT_CONNECTIONSTRING_KEY)).AsImplementedInterfaces();
+            builder.RegisterType<AdminUsersRepository>().WithParameter(new Autofac.NamedParameter("connectionStringName", DEFAULT_CONNECTIONSTRING_KEY)).AsImplementedInterfaces();
             builder.RegisterType<SiteLanguageRepository>().WithParameter(new Autofac.NamedParameter("connectionStringName", DEFAULT_CONNECTIONSTRING_KEY)).AsImplementedInterfaces();
+            builder.RegisterType<ScreeningQuestionsRepository>().WithParameter(new Autofac.NamedParameter("connectionStringName", DEFAULT_CONNECTIONSTRING_KEY)).AsImplementedInterfaces();
+            builder.RegisterType<ScreeningQuestionsTemplatesRepository>().WithParameter(new Autofac.NamedParameter("connectionStringName", DEFAULT_CONNECTIONSTRING_KEY)).AsImplementedInterfaces();
+            builder.RegisterType<ScreeningQuestionsMappingsRepository>().WithParameter(new Autofac.NamedParameter("connectionStringName", DEFAULT_CONNECTIONSTRING_KEY)).AsImplementedInterfaces();
+            builder.RegisterType<ScreeningQuestionsTemplateOwnersRepository>().WithParameter(new Autofac.NamedParameter("connectionStringName", DEFAULT_CONNECTIONSTRING_KEY)).AsImplementedInterfaces();
+            builder.RegisterType<JobScreeningQuestionsRepository>().WithParameter(new Autofac.NamedParameter("connectionStringName", DEFAULT_CONNECTIONSTRING_KEY)).AsImplementedInterfaces();
+            builder.RegisterType<JobApplicationScreeningAnswersRepository>().WithParameter(new Autofac.NamedParameter("connectionStringName", DEFAULT_CONNECTIONSTRING_KEY)).AsImplementedInterfaces();
             
+
+            builder.RegisterType<JXTPortal.Service.Dapper.AdvertisersService>().AsImplementedInterfaces();
             builder.RegisterType<SiteLanguageService>().AsImplementedInterfaces();
+            builder.RegisterType<ScreeningQuestionsService>().AsImplementedInterfaces();
+            builder.RegisterType<ScreeningQuestionsTemplatesService>().AsImplementedInterfaces();
+            builder.RegisterType<ScreeningQuestionsMappingsService>().AsImplementedInterfaces();
+            builder.RegisterType<ScreeningQuestionsTemplateOwnersService>().AsImplementedInterfaces();
+            builder.RegisterType<JobScreeningQuestionsService>().AsImplementedInterfaces();
+            builder.RegisterType<JobApplicationScreeningAnswersService>().AsImplementedInterfaces();
 
             return builder.Build();
         }

@@ -157,6 +157,24 @@ namespace JXTPortal.Website.usercontrols.navigation {
         protected global::System.Web.UI.WebControls.HyperLink hlChangePassword;
         
         /// <summary>
+        /// phScreeingQuestions control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phScreeingQuestions;
+        
+        /// <summary>
+        /// hlScreeningQuestionTemplate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlScreeningQuestionTemplate;
+        
+        /// <summary>
         /// hlChangeTemplateLogo control.
         /// </summary>
         /// <remarks>

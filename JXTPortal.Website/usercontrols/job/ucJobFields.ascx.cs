@@ -1435,7 +1435,7 @@ namespace JXTPortal.Website.Admin.UserControls
             GlobalSettings globalSetting = GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId).FirstOrDefault();
             ddlScreeningQuestionsTemplate.Items.Clear();
 
-           if (globalSetting.EnableScreeningQuestions)
+            if (globalSetting.EnableScreeningQuestions)
             {
                 phScreeningQuestionsTemplates.Visible = true;
 

@@ -17,6 +17,7 @@ using System.IO;
 using System.Linq;
 using System.Drawing;
 using JXTPortal.Common;
+using JXTPortal.Common.Extensions;
 using JXTPortal;
 using JXTPortal.Entities;
 
@@ -312,12 +313,12 @@ public partial class AdvertisersEdit : System.Web.UI.Page
                         {
                             if (string.IsNullOrWhiteSpace(advertiser.AdvertiserLogoUrl))
                             {
-                                imgLogo.ImageUrl = Page.ResolveUrl("~/getfile.aspx") + "?advertiserid=" + Convert.ToString(AdvertiserID);
+                                imgLogo.ImageUrl = string.Format("~/getfile.aspx?advertiserid={0}&ver={1}", Convert.ToString(AdvertiserID), advertiser.LastModified.ToEpocTimestamp());
                                 
                             }
                             else
                             {
-                                imgLogo.ImageUrl = string.Format("/media/{0}/{1}", ConfigurationManager.AppSettings["AdvertisersFolder"], advertiser.AdvertiserLogoUrl);
+                                imgLogo.ImageUrl = string.Format("/media/{0}/{1}?ver={2}", ConfigurationManager.AppSettings["AdvertisersFolder"], advertiser.AdvertiserLogoUrl,advertiser.LastModified.ToEpocTimestamp());
                             }
 
                             imgLogo.Visible = true;
@@ -483,7 +484,7 @@ public partial class AdvertisersEdit : System.Web.UI.Page
             advertiser.PostalAddress1 = CommonService.EncodeString(dataPostalAddress1.Text);
             advertiser.PostalAddress2 = CommonService.EncodeString(dataPostalAddress2.Text);
             advertiser.WebAddress = CommonService.EncodeString(dataWebAddress.Text);
-            
+
             advertiser.AccountsPayableEmail = CommonService.EncodeString(dataAccountsPayableEmail.Text);
             advertiser.Profile = dataProfile.Text;
 

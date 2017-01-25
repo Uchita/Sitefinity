@@ -14,75 +14,14 @@ namespace JXTPortal.Data.Dapper.Repositories
     {
     }
 
-    public class JobTemplatesRepository : IJobTemplatesRepository
+    public class JobTemplatesRepository : BaseEntityOperation<JobTemplatesEntity>, IJobTemplatesRepository
     {
-        private readonly IConnectionFactory _connectionFactory;
-
-        private readonly string _connectionStringName;
-
         public JobTemplatesRepository(IConnectionFactory connectionFactory, string connectionStringName)
+            : base(connectionFactory, connectionStringName)
         {
-            this._connectionFactory = connectionFactory;
-            _connectionStringName = connectionStringName;
+            TableName = "JobTemplates";
+            ColumnNames = new List<string> { "SiteID", "JobTemplateDescription", "JobTemplateHTML", "GlobalTemplate", "LastModifiedBy", "LastModified", "JobTemplateLogo", "AdvertiserID", "JobTemplateLogoUrl" };
+            IdColumnName = "JobTemplateID";
         }
-
-        #region IBaseEntityOperation<JobTemplatesRepository> Members
-
-        public int Insert(JobTemplatesEntity entity)
-        {
-            using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
-            {
-                var sbQuery = new StringBuilder();
-                sbQuery.Append("INSERT INTO dbo.JobTemplates (SiteID, JobTemplateDescription, JobTemplateHTML, GlobalTemplate, LastModifiedBy, LastModified, JobTemplateLogo, AdvertiserID, JobTemplateLogoUrl)");
-                sbQuery.Append(" VALUES(@SiteID, @JobTemplateDescription, @JobTemplateHTML, @GlobalTemplate, @LastModifiedBy, @LastModified, @JobTemplateLogo, @AdvertiserID, @JobTemplateLogoUrl)");
-                sbQuery.Append("SELECT CAST(SCOPE_IDENTITY() as int)");
-                var Id = dbConnection.Query<int>(sbQuery.ToString(), entity).Single();
-                return Id;
-            }
-        }
-
-        public void Update(JobTemplatesEntity entity)
-        {
-            using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
-            {
-                dbConnection.Open();
-                var query = "UPDATE dbo.JobTemplates SET SiteID = @SiteID, JobTemplateDescription = @JobTemplateDescription, JobTemplateHTML = @JobTemplateHTML, GlobalTemplate = @GlobalTemplate, LastModifiedBy = @LastModifiedBy, LastModified = @LastModified, JobTemplateLogo= @JobTemplateLogo, AdvertiserID = @AdvertiserID, JobTemplateLogoUrl = @JobTemplateLogoUrl WHERE JobTemplateID = @JobTemplateID";
-                dbConnection.Execute(query, entity);
-            }
-        }
-
-        public void Delete(int id)
-        {
-            using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
-            {
-                dbConnection.Open();
-                var query = "DELETE FROM dbo.JobTemplates WHERE JobTemplateID = @JobTemplateID";
-                dbConnection.Execute(query, new { JobTemplateID = id });
-            }
-        }
-
-        public JobTemplatesEntity Select(int id)
-        {
-            using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
-            {
-                dbConnection.Open();
-                var query = "SELECT JobTemplateID, SiteID, JobTemplateDescription, JobTemplateHTML, GlobalTemplate, LastModifiedBy, LastModified, JobTemplateLogo, AdvertiserID, JobTemplateLogoUrl FROM dbo.JobTemplates NOLOCK WHERE JobTemplateID = @JobTemplateID";
-                var entity = dbConnection.Query<JobTemplatesEntity>(query, new { SiteID = id }).SingleOrDefault();
-                return entity;
-            }
-        }
-
-        public List<JobTemplatesEntity> SelectAll()
-        {
-            using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
-            {
-                dbConnection.Open();
-                var query = "SELECT JobTemplateID, SiteID, JobTemplateDescription, JobTemplateHTML, GlobalTemplate, LastModifiedBy, LastModified, JobTemplateLogo, AdvertiserID, JobTemplateLogoUrl FROM dbo.JobTemplates NOLOCK";
-                var entities = dbConnection.Query<JobTemplatesEntity>(query).ToList();
-                return entities;
-            }
-        }
-
-        #endregion
     }
 }

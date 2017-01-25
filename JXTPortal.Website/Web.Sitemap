@@ -99,7 +99,7 @@
 			<siteMapNode url="~/admin/advertiserusers.aspx" title="Advertiser Users"  description="" />
       <siteMapNode url="~/admin/consultants.aspx" title="Consultants"  description="" />
       <siteMapNode url="~/admin/industry.aspx" title="Industry"  description="" />
-
+      <siteMapNode url="~/admin/screeningquestionstemplate.aspx" title="Screening Questions"  description="" />
 		</siteMapNode>
 
 		<siteMapNode url="" title="Candidates / Members"  description="" iconLogo="fa fa-users">

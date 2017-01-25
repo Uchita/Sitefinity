@@ -148,6 +148,11 @@ namespace JXTPortal.Entities
 		/// ScreeningQuestionaireXML : 
 		/// </summary>
 		System.String  ScreeningQuestionaireXml  { get; set; }
+		
+		/// <summary>
+		/// ScreeningQuestionsGuid : 
+		/// </summary>
+		System.Guid?  ScreeningQuestionsGuid  { get; set; }
 			
 		/// <summary>
 		/// Creates a new object that is a copy of the current instance.

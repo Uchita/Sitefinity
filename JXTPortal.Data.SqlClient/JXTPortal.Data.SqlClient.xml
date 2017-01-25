@@ -1691,6 +1691,22 @@
             <exception cref="T:System.Data.DataException">The <paramref name="transactionManager"/> is not open.</exception>
             <exception cref="T:System.Data.Common.DbException">The command could not be executed.</exception>
         </member>
+        <member name="M:JXTPortal.Data.SqlClient.SqlJobsArchiveProviderBase.GetByScreeningQuestionsTemplateId(JXTPortal.Data.TransactionManager,System.Nullable{System.Int32},System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            	Gets rows from the datasource based on the FK__JobsArchi__Scree__78B7C69B key.
+            	FK__JobsArchi__Scree__78B7C69B Description: 
+            </summary>
+            <param name="start">Row number at which to start reading.</param>
+            <param name="pageLength">Number of rows to return.</param>
+            <param name="transactionManager"><see cref="T:JXTPortal.Data.TransactionManager"/> object</param>
+            <param name="_screeningQuestionsTemplateId"></param>
+            <param name="count">out parameter to get total records for query</param>
+            <remarks></remarks>
+            <returns>Returns a typed collection of JXTPortal.Entities.JobsArchive objects.</returns>
+            <exception cref="T:System.Exception">The command could not be executed.</exception>
+            <exception cref="T:System.Data.DataException">The <paramref name="transactionManager"/> is not open.</exception>
+            <exception cref="T:System.Data.Common.DbException">The command could not be executed.</exception>
+        </member>
         <member name="M:JXTPortal.Data.SqlClient.SqlJobsArchiveProviderBase.GetBySiteId(JXTPortal.Data.TransactionManager,System.Int32,System.Int32,System.Int32,System.Int32@)">
             <summary>
             	Gets rows from the datasource based on the FK__JobsArchi__SiteI__79BDEDF3 key.
@@ -1876,7 +1892,7 @@
             <remark>This method is generated from a stored procedure.</remark>
             <returns>A <see cref="T:System.Data.DataSet"/> instance.</returns>
         </member>
-        <member name="M:JXTPortal.Data.SqlClient.SqlJobsArchiveProviderBase.Update(JXTPortal.Data.TransactionManager,System.Int32,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Nullable{System.Decimal},System.Nullable{System.Boolean},System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.String,System.Byte[],System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Double},System.Nullable{System.Double},System.Nullable{System.Int32})">
+        <member name="M:JXTPortal.Data.SqlClient.SqlJobsArchiveProviderBase.Update(JXTPortal.Data.TransactionManager,System.Int32,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Nullable{System.Decimal},System.Nullable{System.Boolean},System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.String,System.Byte[],System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Double},System.Nullable{System.Double},System.Nullable{System.Int32},System.String,System.Nullable{System.Int32})">
             <summary>
             This method wraps the 'JobsArchive_Update' stored procedure. 
             </summary>	
@@ -1937,12 +1953,14 @@
             <param name="jobLatitude"> A <c>System.Double?</c> instance.</param>
             <param name="jobLongitude"> A <c>System.Double?</c> instance.</param>
             <param name="addressStatus"> A <c>System.Int32?</c> instance.</param>
+            <param name="jobExternalId"> A <c>System.String</c> instance.</param>
+            <param name="screeningQuestionsTemplateId"> A <c>System.Int32?</c> instance.</param>
             <param name="start">Row number at which to start reading.</param>
             <param name="pageLength">Number of rows to return.</param>
             <param name="transactionManager"><see cref="T:JXTPortal.Data.TransactionManager"/> object.</param>
             <remark>This method is generated from a stored procedure.</remark>
         </member>
-        <member name="M:JXTPortal.Data.SqlClient.SqlJobsArchiveProviderBase.Find(JXTPortal.Data.TransactionManager,System.Int32,System.Int32,System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Nullable{System.Decimal},System.Nullable{System.Boolean},System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.String,System.Byte[],System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Double},System.Nullable{System.Double},System.Nullable{System.Int32})">
+        <member name="M:JXTPortal.Data.SqlClient.SqlJobsArchiveProviderBase.Find(JXTPortal.Data.TransactionManager,System.Int32,System.Int32,System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Nullable{System.Decimal},System.Nullable{System.Boolean},System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.String,System.Byte[],System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Double},System.Nullable{System.Double},System.Nullable{System.Int32},System.String,System.Nullable{System.Int32})">
             <summary>
             This method wraps the 'JobsArchive_Find' stored procedure. 
             </summary>	
@@ -2003,10 +2021,13 @@
             <param name="jobLatitude"> A <c>System.Double?</c> instance.</param>
             <param name="jobLongitude"> A <c>System.Double?</c> instance.</param>
             <param name="addressStatus"> A <c>System.Int32?</c> instance.</param>
+            <param name="jobExternalId"> A <c>System.String</c> instance.</param>
+            <param name="screeningQuestionsTemplateId"> A <c>System.Int32?</c> instance.</param>
             <param name="start">Row number at which to start reading.</param>
             <param name="pageLength">Number of rows to return.</param>
             <param name="transactionManager"><see cref="T:JXTPortal.Data.TransactionManager"/> object.</param>
             <remark>This method is generated from a stored procedure.</remark>
+            <returns>A <see cref="T:System.Data.DataSet"/> instance.</returns>
         </member>
         <member name="M:JXTPortal.Data.SqlClient.SqlJobsArchiveProviderBase.GetByAddressStatus(JXTPortal.Data.TransactionManager,System.Int32,System.Int32,System.Nullable{System.Int32})">
             <summary>
@@ -2049,6 +2070,17 @@
             <param name="pageLength">Number of rows to return.</param>
             <param name="transactionManager"><see cref="T:JXTPortal.Data.TransactionManager"/> object.</param>
             <remark>This method is generated from a stored procedure.</remark>
+        </member>
+        <member name="M:JXTPortal.Data.SqlClient.SqlJobsArchiveProviderBase.GetByScreeningQuestionsTemplateId(JXTPortal.Data.TransactionManager,System.Int32,System.Int32,System.Nullable{System.Int32})">
+            <summary>
+            This method wraps the 'JobsArchive_GetByScreeningQuestionsTemplateId' stored procedure. 
+            </summary>	
+            <param name="screeningQuestionsTemplateId"> A <c>System.Int32?</c> instance.</param>
+            <param name="start">Row number at which to start reading.</param>
+            <param name="pageLength">Number of rows to return.</param>
+            <param name="transactionManager"><see cref="T:JXTPortal.Data.TransactionManager"/> object.</param>
+            <remark>This method is generated from a stored procedure.</remark>
+            <returns>A <see cref="T:System.Data.DataSet"/> instance.</returns>
         </member>
         <member name="M:JXTPortal.Data.SqlClient.SqlJobsArchiveProviderBase.GetPaged(JXTPortal.Data.TransactionManager,System.Int32,System.Int32,System.String,System.String,System.Nullable{System.Int32},System.Nullable{System.Int32})">
             <summary>
@@ -2097,7 +2129,7 @@
             <remark>This method is generated from a stored procedure.</remark>
             <returns>A <see cref="T:System.Data.DataSet"/> instance.</returns>
         </member>
-        <member name="M:JXTPortal.Data.SqlClient.SqlJobsArchiveProviderBase.Insert(JXTPortal.Data.TransactionManager,System.Int32,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Nullable{System.Decimal},System.Nullable{System.Boolean},System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.String,System.Byte[],System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Double},System.Nullable{System.Double},System.Nullable{System.Int32})">
+        <member name="M:JXTPortal.Data.SqlClient.SqlJobsArchiveProviderBase.Insert(JXTPortal.Data.TransactionManager,System.Int32,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Nullable{System.Decimal},System.Nullable{System.Boolean},System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.String,System.Byte[],System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Double},System.Nullable{System.Double},System.Nullable{System.Int32},System.String,System.Nullable{System.Int32})">
             <summary>
             This method wraps the 'JobsArchive_Insert' stored procedure. 
             </summary>	
@@ -2157,6 +2189,8 @@
             <param name="jobLatitude"> A <c>System.Double?</c> instance.</param>
             <param name="jobLongitude"> A <c>System.Double?</c> instance.</param>
             <param name="addressStatus"> A <c>System.Int32?</c> instance.</param>
+            <param name="jobExternalId"> A <c>System.String</c> instance.</param>
+            <param name="screeningQuestionsTemplateId"> A <c>System.Int32?</c> instance.</param>
             <param name="start">Row number at which to start reading.</param>
             <param name="pageLength">Number of rows to return.</param>
             <param name="transactionManager"><see cref="T:JXTPortal.Data.TransactionManager"/> object.</param>
@@ -7114,7 +7148,7 @@
             <remark>This method is generated from a stored procedure.</remark>
             <returns>A <see cref="T:System.Data.DataSet"/> instance.</returns>
         </member>
-        <member name="M:JXTPortal.Data.SqlClient.SqlGlobalSettingsProviderBase.Find(JXTPortal.Data.TransactionManager,System.Int32,System.Int32,System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.DateTime},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Int32},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Int32},System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Decimal},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Int32},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Int32},System.String,System.String,System.String,System.Nullable{System.Boolean})">
+        <member name="M:JXTPortal.Data.SqlClient.SqlGlobalSettingsProviderBase.Find(JXTPortal.Data.TransactionManager,System.Int32,System.Int32,System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.DateTime},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Int32},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Int32},System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Decimal},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Int32},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Int32},System.String,System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean})">
             <summary>
             This method wraps the 'GlobalSettings_Find' stored procedure. 
             </summary>	
@@ -7204,6 +7238,9 @@
             <param name="googleAnalytics"> A <c>System.String</c> instance.</param>
             <param name="googleWebMaster"> A <c>System.String</c> instance.</param>
             <param name="enablePeopleSearch"> A <c>System.Boolean?</c> instance.</param>
+            <param name="globalDateFormat"> A <c>System.String</c> instance.</param>
+            <param name="timeZone"> A <c>System.String</c> instance.</param>
+            <param name="enableScreeningQuestions"> A <c>System.Boolean?</c> instance.</param>
             <param name="start">Row number at which to start reading.</param>
             <param name="pageLength">Number of rows to return.</param>
             <param name="transactionManager"><see cref="T:JXTPortal.Data.TransactionManager"/> object.</param>
@@ -7221,7 +7258,7 @@
             <remark>This method is generated from a stored procedure.</remark>
             <returns>A <see cref="T:System.Data.DataSet"/> instance.</returns>
         </member>
-        <member name="M:JXTPortal.Data.SqlClient.SqlGlobalSettingsProviderBase.Update(JXTPortal.Data.TransactionManager,System.Int32,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.DateTime},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Int32},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Int32},System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Decimal},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Int32},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Int32},System.String,System.String,System.String,System.Nullable{System.Boolean})">
+        <member name="M:JXTPortal.Data.SqlClient.SqlGlobalSettingsProviderBase.Update(JXTPortal.Data.TransactionManager,System.Int32,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.DateTime},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Int32},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Int32},System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Decimal},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Int32},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Int32},System.String,System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean})">
             <summary>
             This method wraps the 'GlobalSettings_Update' stored procedure. 
             </summary>	
@@ -7310,6 +7347,9 @@
             <param name="googleAnalytics"> A <c>System.String</c> instance.</param>
             <param name="googleWebMaster"> A <c>System.String</c> instance.</param>
             <param name="enablePeopleSearch"> A <c>System.Boolean?</c> instance.</param>
+            <param name="globalDateFormat"> A <c>System.String</c> instance.</param>
+            <param name="timeZone"> A <c>System.String</c> instance.</param>
+            <param name="enableScreeningQuestions"> A <c>System.Boolean?</c> instance.</param>
             <param name="start">Row number at which to start reading.</param>
             <param name="pageLength">Number of rows to return.</param>
             <param name="transactionManager"><see cref="T:JXTPortal.Data.TransactionManager"/> object.</param>
@@ -7337,7 +7377,7 @@
             <remark>This method is generated from a stored procedure.</remark>
             <returns>A <see cref="T:System.Data.DataSet"/> instance.</returns>
         </member>
-        <member name="M:JXTPortal.Data.SqlClient.SqlGlobalSettingsProviderBase.Insert(JXTPortal.Data.TransactionManager,System.Int32,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.DateTime},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Int32},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Int32},System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Decimal},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Int32},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Int32},System.String,System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Int32}@)">
+        <member name="M:JXTPortal.Data.SqlClient.SqlGlobalSettingsProviderBase.Insert(JXTPortal.Data.TransactionManager,System.Int32,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.DateTime},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Int32},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Int32},System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Decimal},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Int32},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Int32},System.String,System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Int32}@)">
             <summary>
             This method wraps the 'GlobalSettings_Insert' stored procedure. 
             </summary>	
@@ -7425,6 +7465,9 @@
             <param name="googleAnalytics"> A <c>System.String</c> instance.</param>
             <param name="googleWebMaster"> A <c>System.String</c> instance.</param>
             <param name="enablePeopleSearch"> A <c>System.Boolean?</c> instance.</param>
+            <param name="globalDateFormat"> A <c>System.String</c> instance.</param>
+            <param name="timeZone"> A <c>System.String</c> instance.</param>
+            <param name="enableScreeningQuestions"> A <c>System.Boolean?</c> instance.</param>
             <param name="globalSettingId"> A <c>System.Int32?</c> instance.</param>
             <param name="start">Row number at which to start reading.</param>
             <param name="pageLength">Number of rows to return.</param>
@@ -16961,7 +17004,7 @@
             <remark>This method is generated from a stored procedure.</remark>
             <returns>A <see cref="T:JXTPortal.Entities.TList`1"/> instance.</returns>
         </member>
-        <member name="M:JXTPortal.Data.SqlClient.SqlJobApplicationProviderBase.Find(JXTPortal.Data.TransactionManager,System.Int32,System.Int32,System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String,System.Nullable{System.Int32},System.Nullable{System.Guid},System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.Nullable{System.DateTime},System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Int32},System.String,System.String,System.String,System.Nullable{System.Boolean},System.String,System.String)">
+        <member name="M:JXTPortal.Data.SqlClient.SqlJobApplicationProviderBase.Find(JXTPortal.Data.TransactionManager,System.Int32,System.Int32,System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String,System.Nullable{System.Int32},System.Nullable{System.Guid},System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.Nullable{System.DateTime},System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Int32},System.String,System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Guid})">
             <summary>
             This method wraps the 'JobApplication_Find' stored procedure. 
             </summary>	
@@ -16993,13 +17036,14 @@
             <param name="fileDownloaded"> A <c>System.Boolean?</c> instance.</param>
             <param name="appliedWith"> A <c>System.String</c> instance.</param>
             <param name="screeningQuestionaireXml"> A <c>System.String</c> instance.</param>
+            <param name="screeningQuestionsGuid"> A <c>System.Guid?</c> instance.</param>
             <param name="start">Row number at which to start reading.</param>
             <param name="pageLength">Number of rows to return.</param>
             <param name="transactionManager"><see cref="T:JXTPortal.Data.TransactionManager"/> object.</param>
             <remark>This method is generated from a stored procedure.</remark>
             <returns>A <see cref="T:System.Data.DataSet"/> instance.</returns>
         </member>
-        <member name="M:JXTPortal.Data.SqlClient.SqlJobApplicationProviderBase.Update(JXTPortal.Data.TransactionManager,System.Int32,System.Int32,System.Nullable{System.Int32},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String,System.Nullable{System.Int32},System.Nullable{System.Guid},System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.Nullable{System.DateTime},System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Int32},System.String,System.String,System.String,System.Nullable{System.Boolean},System.String,System.String)">
+        <member name="M:JXTPortal.Data.SqlClient.SqlJobApplicationProviderBase.Update(JXTPortal.Data.TransactionManager,System.Int32,System.Int32,System.Nullable{System.Int32},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String,System.Nullable{System.Int32},System.Nullable{System.Guid},System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.Nullable{System.DateTime},System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Int32},System.String,System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Guid})">
             <summary>
             This method wraps the 'JobApplication_Update' stored procedure. 
             </summary>	
@@ -17030,6 +17074,7 @@
             <param name="fileDownloaded"> A <c>System.Boolean?</c> instance.</param>
             <param name="appliedWith"> A <c>System.String</c> instance.</param>
             <param name="screeningQuestionaireXml"> A <c>System.String</c> instance.</param>
+            <param name="screeningQuestionsGuid"> A <c>System.Guid?</c> instance.</param>
             <param name="start">Row number at which to start reading.</param>
             <param name="pageLength">Number of rows to return.</param>
             <param name="transactionManager"><see cref="T:JXTPortal.Data.TransactionManager"/> object.</param>
@@ -17106,7 +17151,7 @@
             <remark>This method is generated from a stored procedure.</remark>
             <returns>A <see cref="T:System.Data.DataSet"/> instance.</returns>
         </member>
-        <member name="M:JXTPortal.Data.SqlClient.SqlJobApplicationProviderBase.Insert(JXTPortal.Data.TransactionManager,System.Int32,System.Int32,System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.Nullable{System.DateTime},System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Int32},System.String,System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Int32}@,System.Nullable{System.Guid}@)">
+        <member name="M:JXTPortal.Data.SqlClient.SqlJobApplicationProviderBase.Insert(JXTPortal.Data.TransactionManager,System.Int32,System.Int32,System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.Nullable{System.DateTime},System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Int32},System.String,System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Guid},System.Nullable{System.Int32}@,System.Nullable{System.Guid}@)">
             <summary>
             This method wraps the 'JobApplication_Insert' stored procedure. 
             </summary>	
@@ -17135,6 +17180,7 @@
             <param name="fileDownloaded"> A <c>System.Boolean?</c> instance.</param>
             <param name="appliedWith"> A <c>System.String</c> instance.</param>
             <param name="screeningQuestionaireXml"> A <c>System.String</c> instance.</param>
+            <param name="screeningQuestionsGuid"> A <c>System.Guid?</c> instance.</param>
             <param name="jobApplicationId"> A <c>System.Int32?</c> instance.</param>
             <param name="jobAppValidateId"> A <c>System.Guid?</c> instance.</param>
             <param name="start">Row number at which to start reading.</param>
@@ -19103,6 +19149,22 @@
             <exception cref="T:System.Data.DataException">The <paramref name="transactionManager"/> is not open.</exception>
             <exception cref="T:System.Data.Common.DbException">The command could not be executed.</exception>
         </member>
+        <member name="M:JXTPortal.Data.SqlClient.SqlJobsProviderBase.GetByScreeningQuestionsTemplateId(JXTPortal.Data.TransactionManager,System.Nullable{System.Int32},System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            	Gets rows from the datasource based on the FK__Jobs__ScreeningQ__43CEFD10 key.
+            	FK__Jobs__ScreeningQ__43CEFD10 Description: 
+            </summary>
+            <param name="start">Row number at which to start reading.</param>
+            <param name="pageLength">Number of rows to return.</param>
+            <param name="transactionManager"><see cref="T:JXTPortal.Data.TransactionManager"/> object</param>
+            <param name="_screeningQuestionsTemplateId"></param>
+            <param name="count">out parameter to get total records for query</param>
+            <remarks></remarks>
+            <returns>Returns a typed collection of JXTPortal.Entities.Jobs objects.</returns>
+            <exception cref="T:System.Exception">The command could not be executed.</exception>
+            <exception cref="T:System.Data.DataException">The <paramref name="transactionManager"/> is not open.</exception>
+            <exception cref="T:System.Data.Common.DbException">The command could not be executed.</exception>
+        </member>
         <member name="M:JXTPortal.Data.SqlClient.SqlJobsProviderBase.GetBySiteId(JXTPortal.Data.TransactionManager,System.Int32,System.Int32,System.Int32,System.Int32@)">
             <summary>
             	Gets rows from the datasource based on the FK__Jobs__SiteID__64C2D10D key.
@@ -19762,7 +19824,7 @@
             <remark>This method is generated from a stored procedure.</remark>
             <returns>A <see cref="T:System.Data.DataSet"/> instance.</returns>
         </member>
-        <member name="M:JXTPortal.Data.SqlClient.SqlJobsProviderBase.Insert(JXTPortal.Data.TransactionManager,System.Int32,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Nullable{System.Decimal},System.Nullable{System.Boolean},System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.String,System.Byte[],System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Double},System.Nullable{System.Double},System.Nullable{System.Int32},System.Nullable{System.Int32}@)">
+        <member name="M:JXTPortal.Data.SqlClient.SqlJobsProviderBase.Insert(JXTPortal.Data.TransactionManager,System.Int32,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Nullable{System.Decimal},System.Nullable{System.Boolean},System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.String,System.Byte[],System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Double},System.Nullable{System.Double},System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32}@)">
             <summary>
             This method wraps the 'Jobs_Insert' stored procedure. 
             </summary>	
@@ -19821,6 +19883,8 @@
             <param name="jobLatitude"> A <c>System.Double?</c> instance.</param>
             <param name="jobLongitude"> A <c>System.Double?</c> instance.</param>
             <param name="addressStatus"> A <c>System.Int32?</c> instance.</param>
+            <param name="jobExternalId"> A <c>System.String</c> instance.</param>
+            <param name="hasScreeningQuestions"> A <c>System.Int32?</c> instance.</param>
             <param name="jobId"> A <c>System.Int32?</c> instance.</param>
             <param name="start">Row number at which to start reading.</param>
             <param name="pageLength">Number of rows to return.</param>
@@ -19863,7 +19927,7 @@
             <remark>This method is generated from a stored procedure.</remark>
             <returns>A <see cref="T:System.Data.DataSet"/> instance.</returns>
         </member>
-        <member name="M:JXTPortal.Data.SqlClient.SqlJobsProviderBase.Find(JXTPortal.Data.TransactionManager,System.Int32,System.Int32,System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Nullable{System.Decimal},System.Nullable{System.Boolean},System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.String,System.Byte[],System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Double},System.Nullable{System.Double},System.Nullable{System.Int32})">
+        <member name="M:JXTPortal.Data.SqlClient.SqlJobsProviderBase.Find(JXTPortal.Data.TransactionManager,System.Int32,System.Int32,System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Nullable{System.Decimal},System.Nullable{System.Boolean},System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.String,System.Byte[],System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Double},System.Nullable{System.Double},System.Nullable{System.Int32},System.String,System.Nullable{System.Int32})">
             <summary>
             This method wraps the 'Jobs_Find' stored procedure. 
             </summary>	
@@ -19924,6 +19988,8 @@
             <param name="jobLatitude"> A <c>System.Double?</c> instance.</param>
             <param name="jobLongitude"> A <c>System.Double?</c> instance.</param>
             <param name="addressStatus"> A <c>System.Int32?</c> instance.</param>
+            <param name="jobExternalId"> A <c>System.String</c> instance.</param>
+            <param name="hasScreeningQuestions"> A <c>System.Int32?</c> instance.</param>
             <param name="start">Row number at which to start reading.</param>
             <param name="pageLength">Number of rows to return.</param>
             <param name="transactionManager"><see cref="T:JXTPortal.Data.TransactionManager"/> object.</param>
@@ -19946,7 +20012,7 @@
             <param name="transactionManager"><see cref="T:JXTPortal.Data.TransactionManager"/> object.</param>
             <remark>This method is generated from a stored procedure.</remark>
         </member>
-        <member name="M:JXTPortal.Data.SqlClient.SqlJobsProviderBase.Update(JXTPortal.Data.TransactionManager,System.Int32,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Nullable{System.Decimal},System.Nullable{System.Boolean},System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.String,System.Byte[],System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Double},System.Nullable{System.Double},System.Nullable{System.Int32})">
+        <member name="M:JXTPortal.Data.SqlClient.SqlJobsProviderBase.Update(JXTPortal.Data.TransactionManager,System.Int32,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Nullable{System.Decimal},System.Nullable{System.Boolean},System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.String,System.Byte[],System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Double},System.Nullable{System.Double},System.Nullable{System.Int32},System.String,System.Nullable{System.Int32})">
             <summary>
             This method wraps the 'Jobs_Update' stored procedure. 
             </summary>	
@@ -20006,6 +20072,8 @@
             <param name="jobLatitude"> A <c>System.Double?</c> instance.</param>
             <param name="jobLongitude"> A <c>System.Double?</c> instance.</param>
             <param name="addressStatus"> A <c>System.Int32?</c> instance.</param>
+            <param name="jobExternalId"> A <c>System.String</c> instance.</param>
+            <param name="hasScreeningQuestions"> A <c>System.Int32?</c> instance.</param>
             <param name="start">Row number at which to start reading.</param>
             <param name="pageLength">Number of rows to return.</param>
             <param name="transactionManager"><see cref="T:JXTPortal.Data.TransactionManager"/> object.</param>
@@ -25032,7 +25100,7 @@
             <param name="pageLength">Number of rows to return.</param>
             <param name="transactionManager"><see cref="T:JXTPortal.Data.TransactionManager"/> object</param>
             <remark>This method is generated from a stored procedure.</remark>
-            <returns>A <see cref="T:System.Data.DataSet"/> instance.</returns>
+            <returns>A <see cref="T:JXTPortal.Entities.VList`1"/> instance.</returns>
         </member>
         <member name="M:JXTPortal.Data.SqlClient.SqlViewJobSearchProviderBase.GetPremiumSearchFilter(JXTPortal.Data.TransactionManager,System.Int32,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String,System.Nullable{System.Int32})">
             <summary>

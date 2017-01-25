@@ -6,7 +6,8 @@
         <ul class='dropdown-menu' role='menu' aria-labelledby='advertiserDropdown'>
             <li class='advertiserLoggedas'>
                 <JXTControl:ucLanguageLiteral ID="litnavAdvertiserCurrentLogin" runat="server" SetLanguageCode="LabelCurrentLogin" />
-                <strong><asp:Literal ID="ltAdvertiserLoginName" runat="server" /></strong></li>
+                <strong>
+                    <asp:Literal ID="ltAdvertiserLoginName" runat="server" /></strong></li>
             <li class='divider'></li>
             <li id='advertiserDashHome'>
                 <asp:HyperLink ID="hlManageJobs" runat="server" NavigateUrl="/advertiser/default.aspx">
@@ -43,30 +44,44 @@
                 </ul>
             </li>
             <li class='divider'></li>
-            <li id='advertiserDashDetails'><asp:HyperLink ID="hlAccountDetails" runat="server" NavigateUrl="/advertiser/edit.aspx">
-            </asp:HyperLink>
+            <li id='advertiserDashDetails'>
+                <asp:HyperLink ID="hlAccountDetails" runat="server" NavigateUrl="/advertiser/edit.aspx">
+                </asp:HyperLink>
                 <ul class='dropdown-menu-sub'>
-                    <li id='advertiserDashSubaccount'><asp:HyperLink ID="hlSubAccounts" runat="server" NavigateUrl="/advertiser/edit.aspx?tab=1">
-                    </asp:HyperLink></li>
-                    <li id='advertiserDashAdvlogo'><asp:HyperLink ID="hlViewChangeLogo" runat="server" NavigateUrl="/advertiser/logoedit.aspx">
-                    </asp:HyperLink></li>
-                    <li id='advertiserDashPassword'><asp:HyperLink ID="hlChangePassword" runat="server" NavigateUrl="/advertiser/edit.aspx?tab=2">
-                    </asp:HyperLink></li>
+                    <li id='advertiserDashSubaccount'>
+                        <asp:HyperLink ID="hlSubAccounts" runat="server" NavigateUrl="/advertiser/edit.aspx?tab=1">
+                        </asp:HyperLink></li>
+                    <li id='advertiserDashAdvlogo'>
+                        <asp:HyperLink ID="hlViewChangeLogo" runat="server" NavigateUrl="/advertiser/logoedit.aspx">
+                        </asp:HyperLink></li>
+                    <li id='advertiserDashPassword'>
+                        <asp:HyperLink ID="hlChangePassword" runat="server" NavigateUrl="/advertiser/edit.aspx?tab=2">
+                        </asp:HyperLink></li>
                 </ul>
             </li>
+            <asp:PlaceHolder ID="phScreeingQuestions" runat="server" Visible="false">
             <li class='divider'></li>
-            <li id='advertiserDashTemplatelogo'><asp:HyperLink ID="hlChangeTemplateLogo" runat="server" NavigateUrl="/advertiser/advertiserjobtemplatelogo.aspx">
-            </asp:HyperLink></li>
+                    <li id='advertiserDashScreeningQuestions'>
+                        <asp:HyperLink ID="hlScreeningQuestionTemplate" runat="server" NavigateUrl="~/advertiser/screeningquestionstemplates.aspx">
+                        </asp:HyperLink></li>
+            </asp:PlaceHolder>
             <li class='divider'></li>
-            <li id='advertiserDashTracker'><asp:HyperLink ID="hlJobTracker" runat="server" NavigateUrl="~/advertiser/jobtracker.aspx">
-            </asp:HyperLink>
+            <li id='advertiserDashTemplatelogo'>
+                <asp:HyperLink ID="hlChangeTemplateLogo" runat="server" NavigateUrl="/advertiser/advertiserjobtemplatelogo.aspx">
+                </asp:HyperLink></li>
+            <li class='divider'></li>
+            <li id='advertiserDashTracker'>
+                <asp:HyperLink ID="hlJobTracker" runat="server" NavigateUrl="~/advertiser/jobtracker.aspx">
+                </asp:HyperLink>
             </li>
             <li class='divider'></li>
-            <li id='advertiserDashStatistics'><asp:HyperLink ID="hlStatistics" runat="server" NavigateUrl="~/advertiser/statistics.aspx">
-            </asp:HyperLink>
+            <li id='advertiserDashStatistics'>
+                <asp:HyperLink ID="hlStatistics" runat="server" NavigateUrl="~/advertiser/statistics.aspx">
+                </asp:HyperLink>
             </li>
             <li class='divider'></li>
-            <li id='advertiserDashLogout'><asp:HyperLink ID="lnkLogout" runat="server" NavigateUrl="~/logout.aspx?advertiser=true"></asp:HyperLink></li>
+            <li id='advertiserDashLogout'>
+                <asp:HyperLink ID="lnkLogout" runat="server" NavigateUrl="~/logout.aspx?advertiser=true"></asp:HyperLink></li>
         </ul>
     </li>
 </ul>

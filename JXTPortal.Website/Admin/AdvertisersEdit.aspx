@@ -85,7 +85,8 @@
                                             TargetControlID="dataFreeTrialStartDate" PopupButtonID="ibFreeTrialStartDate">
                                         </ajaxToolkit:CalendarExtender>
                                         <div>
-                                            <asp:CustomValidator ID="cvFreeTrialStartDate" runat="server" ControlToValidate="dataFreeTrialStartDate" OnServerValidate="cvFreeTrialStartDate_ServerValidate" />
+                                            <asp:CustomValidator ID="cvFreeTrialStartDate" runat="server" ControlToValidate="dataFreeTrialStartDate"
+                                                OnServerValidate="cvFreeTrialStartDate_ServerValidate" />
                                         </div>
                                     </div>
                                 </div>
@@ -100,7 +101,8 @@
                                             TargetControlID="dataFreeTrialEndDate" PopupButtonID="ibFreeTrialEndDate">
                                         </ajaxToolkit:CalendarExtender>
                                         <div>
-                                                <asp:CustomValidator ID="cvFreeTrialEndDate" runat="server" ControlToValidate="dataFreeTrialEndDate" OnServerValidate="cvFreeTrialEndDate_ServerValidate" />
+                                            <asp:CustomValidator ID="cvFreeTrialEndDate" runat="server" ControlToValidate="dataFreeTrialEndDate"
+                                                OnServerValidate="cvFreeTrialEndDate_ServerValidate" />
                                         </div>
                                     </div>
                                 </div>
@@ -283,7 +285,14 @@
                             <asp:DropDownList ID="ddlPreferredContactMethod" runat="server" class="form-dropdown" />
                         </div>
                     </li>
-
+                    <li class="form-line" id="Li10">
+                        <label class="form-label-left">
+                            Enable People Search For All Users:</label>
+                        <div class="form-input">
+                            <asp:CheckBox ID="cbEnablePeopleSearch" runat="server" Checked="false" AutoPostBack="false" /><br />
+                            <i><small>This will only work if People Search is enabled in the Global Settings</small></i>
+                        </div>
+                    </li>
                     <asp:PlaceHolder ID="phExternalID" runat="server" Visible="false">
                         <li class="form-line" id="Li3">
                             <label class="form-label-left">

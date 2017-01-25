@@ -89,7 +89,8 @@ namespace JXTPortal
 		///<param name="_nominatedCompanyPhone"></param>
 		///<param name="_preferredContactMethod"></param>
 		///<param name="_advertiserLogoUrl"></param>
-		public static Advertisers CreateAdvertisers(System.Int32? _siteId, System.Int32 _advertiserAccountTypeId, System.Int32 _advertiserBusinessTypeId, System.Int32 _advertiserAccountStatusId, System.String _companyName, System.String _businessNumber, System.String _streetAddress1, System.String _streetAddress2, System.DateTime _lastModified, System.Int32 _lastModifiedBy, System.String _postalAddress1, System.String _postalAddress2, System.String _webAddress, System.String _noOfEmployees, System.DateTime? _firstApprovedDate, System.String _profile, System.String _charityNumber, System.String _searchField, System.DateTime? _freeTrialStartDate, System.DateTime? _freeTrialEndDate, System.String _accountsPayableEmail, System.Boolean _requireLogonForExternalApplication, System.Byte[] _advertiserLogo, System.String _linkedInLogo, System.String _linkedInCompanyId, System.String _linkedInEmail, System.DateTime? _registerDate, System.String _externalAdvertiserId, System.String _videoLink, System.String _industry, System.String _nominatedCompanyRole, System.String _nominatedCompanyFirstName, System.String _nominatedCompanyLastName, System.String _nominatedCompanyEmailAddress, System.String _nominatedCompanyPhone, System.Int32? _preferredContactMethod, System.String _advertiserLogoUrl)
+		///<param name="_allowPeopleSearchAccess"></param>
+		public static Advertisers CreateAdvertisers(System.Int32? _siteId, System.Int32 _advertiserAccountTypeId, System.Int32 _advertiserBusinessTypeId, System.Int32 _advertiserAccountStatusId, System.String _companyName, System.String _businessNumber, System.String _streetAddress1, System.String _streetAddress2, System.DateTime _lastModified, System.Int32 _lastModifiedBy, System.String _postalAddress1, System.String _postalAddress2, System.String _webAddress, System.String _noOfEmployees, System.DateTime? _firstApprovedDate, System.String _profile, System.String _charityNumber, System.String _searchField, System.DateTime? _freeTrialStartDate, System.DateTime? _freeTrialEndDate, System.String _accountsPayableEmail, System.Boolean _requireLogonForExternalApplication, System.Byte[] _advertiserLogo, System.String _linkedInLogo, System.String _linkedInCompanyId, System.String _linkedInEmail, System.DateTime? _registerDate, System.String _externalAdvertiserId, System.String _videoLink, System.String _industry, System.String _nominatedCompanyRole, System.String _nominatedCompanyFirstName, System.String _nominatedCompanyLastName, System.String _nominatedCompanyEmailAddress, System.String _nominatedCompanyPhone, System.Int32? _preferredContactMethod, System.String _advertiserLogoUrl, System.Boolean _allowPeopleSearchAccess)
 		{
 			Advertisers newEntityAdvertisers = new Advertisers();
 			newEntityAdvertisers.SiteId  = _siteId;
@@ -129,6 +130,7 @@ namespace JXTPortal
 			newEntityAdvertisers.NominatedCompanyPhone  = _nominatedCompanyPhone;
 			newEntityAdvertisers.PreferredContactMethod  = _preferredContactMethod;
 			newEntityAdvertisers.AdvertiserLogoUrl  = _advertiserLogoUrl;
+			newEntityAdvertisers.AllowPeopleSearchAccess  = _allowPeopleSearchAccess;
 			return newEntityAdvertisers;
 		}
 		#endregion Constructors

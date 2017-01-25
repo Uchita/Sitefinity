@@ -544,8 +544,7 @@ namespace JXTPortal.Data.Bases
 		
 		#endregion
 		
-		#region JobApplication_GetByMemberId 
-		
+		#region JobApplication_GetByMemberId
 		
 		/// <summary>
 		///	This method wrap the 'JobApplication_GetByMemberId' stored procedure. 
@@ -559,7 +558,7 @@ namespace JXTPortal.Data.Bases
 		{
 			return GetByMemberId(null, start, pageLength , memberId);
 		}
-			
+		
 		/// <summary>
 		///	This method wrap the 'JobApplication_GetByMemberId' stored procedure. 
 		/// </summary>
@@ -661,11 +660,12 @@ namespace JXTPortal.Data.Bases
 		/// <param name="fileDownloaded"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="appliedWith"> A <c>System.String</c> instance.</param>
 		/// <param name="screeningQuestionaireXml"> A <c>System.String</c> instance.</param>
+		/// <param name="screeningQuestionsGuid"> A <c>System.Guid?</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
 		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet Find(System.Boolean? searchUsingOr, System.Int32? jobApplicationId, System.DateTime? applicationDate, System.Int32? jobId, System.Int32? memberId, System.String memberResumeFile, System.String memberCoverLetterFile, System.Int32? applicationStatus, System.Guid? jobAppValidateId, System.Int32? siteIdReferral, System.String urlReferral, System.Int32? applicantGrade, System.DateTime? lastViewedDate, System.String firstName, System.String surname, System.String emailAddress, System.String mobilePhone, System.String memberNote, System.String advertiserNote, System.Int32? jobArchiveId, System.Boolean? draft, System.Int32? jobApplicationTypeId, System.String externalXmlFilename, System.String customQuestionnaireXml, System.String externalPdfFilename, System.Boolean? fileDownloaded, System.String appliedWith, System.String screeningQuestionaireXml)
+		public DataSet Find(System.Boolean? searchUsingOr, System.Int32? jobApplicationId, System.DateTime? applicationDate, System.Int32? jobId, System.Int32? memberId, System.String memberResumeFile, System.String memberCoverLetterFile, System.Int32? applicationStatus, System.Guid? jobAppValidateId, System.Int32? siteIdReferral, System.String urlReferral, System.Int32? applicantGrade, System.DateTime? lastViewedDate, System.String firstName, System.String surname, System.String emailAddress, System.String mobilePhone, System.String memberNote, System.String advertiserNote, System.Int32? jobArchiveId, System.Boolean? draft, System.Int32? jobApplicationTypeId, System.String externalXmlFilename, System.String customQuestionnaireXml, System.String externalPdfFilename, System.Boolean? fileDownloaded, System.String appliedWith, System.String screeningQuestionaireXml, System.Guid? screeningQuestionsGuid)
 		{
-			return Find(null, 0, int.MaxValue , searchUsingOr, jobApplicationId, applicationDate, jobId, memberId, memberResumeFile, memberCoverLetterFile, applicationStatus, jobAppValidateId, siteIdReferral, urlReferral, applicantGrade, lastViewedDate, firstName, surname, emailAddress, mobilePhone, memberNote, advertiserNote, jobArchiveId, draft, jobApplicationTypeId, externalXmlFilename, customQuestionnaireXml, externalPdfFilename, fileDownloaded, appliedWith, screeningQuestionaireXml);
+			return Find(null, 0, int.MaxValue , searchUsingOr, jobApplicationId, applicationDate, jobId, memberId, memberResumeFile, memberCoverLetterFile, applicationStatus, jobAppValidateId, siteIdReferral, urlReferral, applicantGrade, lastViewedDate, firstName, surname, emailAddress, mobilePhone, memberNote, advertiserNote, jobArchiveId, draft, jobApplicationTypeId, externalXmlFilename, customQuestionnaireXml, externalPdfFilename, fileDownloaded, appliedWith, screeningQuestionaireXml, screeningQuestionsGuid);
 		}
 		
 		/// <summary>
@@ -699,13 +699,14 @@ namespace JXTPortal.Data.Bases
 		/// <param name="fileDownloaded"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="appliedWith"> A <c>System.String</c> instance.</param>
 		/// <param name="screeningQuestionaireXml"> A <c>System.String</c> instance.</param>
+		/// <param name="screeningQuestionsGuid"> A <c>System.Guid?</c> instance.</param>
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
 		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet Find(int start, int pageLength, System.Boolean? searchUsingOr, System.Int32? jobApplicationId, System.DateTime? applicationDate, System.Int32? jobId, System.Int32? memberId, System.String memberResumeFile, System.String memberCoverLetterFile, System.Int32? applicationStatus, System.Guid? jobAppValidateId, System.Int32? siteIdReferral, System.String urlReferral, System.Int32? applicantGrade, System.DateTime? lastViewedDate, System.String firstName, System.String surname, System.String emailAddress, System.String mobilePhone, System.String memberNote, System.String advertiserNote, System.Int32? jobArchiveId, System.Boolean? draft, System.Int32? jobApplicationTypeId, System.String externalXmlFilename, System.String customQuestionnaireXml, System.String externalPdfFilename, System.Boolean? fileDownloaded, System.String appliedWith, System.String screeningQuestionaireXml)
+		public DataSet Find(int start, int pageLength, System.Boolean? searchUsingOr, System.Int32? jobApplicationId, System.DateTime? applicationDate, System.Int32? jobId, System.Int32? memberId, System.String memberResumeFile, System.String memberCoverLetterFile, System.Int32? applicationStatus, System.Guid? jobAppValidateId, System.Int32? siteIdReferral, System.String urlReferral, System.Int32? applicantGrade, System.DateTime? lastViewedDate, System.String firstName, System.String surname, System.String emailAddress, System.String mobilePhone, System.String memberNote, System.String advertiserNote, System.Int32? jobArchiveId, System.Boolean? draft, System.Int32? jobApplicationTypeId, System.String externalXmlFilename, System.String customQuestionnaireXml, System.String externalPdfFilename, System.Boolean? fileDownloaded, System.String appliedWith, System.String screeningQuestionaireXml, System.Guid? screeningQuestionsGuid)
 		{
-			return Find(null, start, pageLength , searchUsingOr, jobApplicationId, applicationDate, jobId, memberId, memberResumeFile, memberCoverLetterFile, applicationStatus, jobAppValidateId, siteIdReferral, urlReferral, applicantGrade, lastViewedDate, firstName, surname, emailAddress, mobilePhone, memberNote, advertiserNote, jobArchiveId, draft, jobApplicationTypeId, externalXmlFilename, customQuestionnaireXml, externalPdfFilename, fileDownloaded, appliedWith, screeningQuestionaireXml);
+			return Find(null, start, pageLength , searchUsingOr, jobApplicationId, applicationDate, jobId, memberId, memberResumeFile, memberCoverLetterFile, applicationStatus, jobAppValidateId, siteIdReferral, urlReferral, applicantGrade, lastViewedDate, firstName, surname, emailAddress, mobilePhone, memberNote, advertiserNote, jobArchiveId, draft, jobApplicationTypeId, externalXmlFilename, customQuestionnaireXml, externalPdfFilename, fileDownloaded, appliedWith, screeningQuestionaireXml, screeningQuestionsGuid);
 		}
 				
 		/// <summary>
@@ -739,12 +740,13 @@ namespace JXTPortal.Data.Bases
 		/// <param name="fileDownloaded"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="appliedWith"> A <c>System.String</c> instance.</param>
 		/// <param name="screeningQuestionaireXml"> A <c>System.String</c> instance.</param>
+		/// <param name="screeningQuestionsGuid"> A <c>System.Guid?</c> instance.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
 		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet Find(TransactionManager transactionManager, System.Boolean? searchUsingOr, System.Int32? jobApplicationId, System.DateTime? applicationDate, System.Int32? jobId, System.Int32? memberId, System.String memberResumeFile, System.String memberCoverLetterFile, System.Int32? applicationStatus, System.Guid? jobAppValidateId, System.Int32? siteIdReferral, System.String urlReferral, System.Int32? applicantGrade, System.DateTime? lastViewedDate, System.String firstName, System.String surname, System.String emailAddress, System.String mobilePhone, System.String memberNote, System.String advertiserNote, System.Int32? jobArchiveId, System.Boolean? draft, System.Int32? jobApplicationTypeId, System.String externalXmlFilename, System.String customQuestionnaireXml, System.String externalPdfFilename, System.Boolean? fileDownloaded, System.String appliedWith, System.String screeningQuestionaireXml)
+		public DataSet Find(TransactionManager transactionManager, System.Boolean? searchUsingOr, System.Int32? jobApplicationId, System.DateTime? applicationDate, System.Int32? jobId, System.Int32? memberId, System.String memberResumeFile, System.String memberCoverLetterFile, System.Int32? applicationStatus, System.Guid? jobAppValidateId, System.Int32? siteIdReferral, System.String urlReferral, System.Int32? applicantGrade, System.DateTime? lastViewedDate, System.String firstName, System.String surname, System.String emailAddress, System.String mobilePhone, System.String memberNote, System.String advertiserNote, System.Int32? jobArchiveId, System.Boolean? draft, System.Int32? jobApplicationTypeId, System.String externalXmlFilename, System.String customQuestionnaireXml, System.String externalPdfFilename, System.Boolean? fileDownloaded, System.String appliedWith, System.String screeningQuestionaireXml, System.Guid? screeningQuestionsGuid)
 		{
-			return Find(transactionManager, 0, int.MaxValue , searchUsingOr, jobApplicationId, applicationDate, jobId, memberId, memberResumeFile, memberCoverLetterFile, applicationStatus, jobAppValidateId, siteIdReferral, urlReferral, applicantGrade, lastViewedDate, firstName, surname, emailAddress, mobilePhone, memberNote, advertiserNote, jobArchiveId, draft, jobApplicationTypeId, externalXmlFilename, customQuestionnaireXml, externalPdfFilename, fileDownloaded, appliedWith, screeningQuestionaireXml);
+			return Find(transactionManager, 0, int.MaxValue , searchUsingOr, jobApplicationId, applicationDate, jobId, memberId, memberResumeFile, memberCoverLetterFile, applicationStatus, jobAppValidateId, siteIdReferral, urlReferral, applicantGrade, lastViewedDate, firstName, surname, emailAddress, mobilePhone, memberNote, advertiserNote, jobArchiveId, draft, jobApplicationTypeId, externalXmlFilename, customQuestionnaireXml, externalPdfFilename, fileDownloaded, appliedWith, screeningQuestionaireXml, screeningQuestionsGuid);
 		}
 		
 		/// <summary>
@@ -778,12 +780,13 @@ namespace JXTPortal.Data.Bases
 		/// <param name="fileDownloaded"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="appliedWith"> A <c>System.String</c> instance.</param>
 		/// <param name="screeningQuestionaireXml"> A <c>System.String</c> instance.</param>
+		/// <param name="screeningQuestionsGuid"> A <c>System.Guid?</c> instance.</param>
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
 		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public abstract DataSet Find(TransactionManager transactionManager, int start, int pageLength , System.Boolean? searchUsingOr, System.Int32? jobApplicationId, System.DateTime? applicationDate, System.Int32? jobId, System.Int32? memberId, System.String memberResumeFile, System.String memberCoverLetterFile, System.Int32? applicationStatus, System.Guid? jobAppValidateId, System.Int32? siteIdReferral, System.String urlReferral, System.Int32? applicantGrade, System.DateTime? lastViewedDate, System.String firstName, System.String surname, System.String emailAddress, System.String mobilePhone, System.String memberNote, System.String advertiserNote, System.Int32? jobArchiveId, System.Boolean? draft, System.Int32? jobApplicationTypeId, System.String externalXmlFilename, System.String customQuestionnaireXml, System.String externalPdfFilename, System.Boolean? fileDownloaded, System.String appliedWith, System.String screeningQuestionaireXml);
+		public abstract DataSet Find(TransactionManager transactionManager, int start, int pageLength , System.Boolean? searchUsingOr, System.Int32? jobApplicationId, System.DateTime? applicationDate, System.Int32? jobId, System.Int32? memberId, System.String memberResumeFile, System.String memberCoverLetterFile, System.Int32? applicationStatus, System.Guid? jobAppValidateId, System.Int32? siteIdReferral, System.String urlReferral, System.Int32? applicantGrade, System.DateTime? lastViewedDate, System.String firstName, System.String surname, System.String emailAddress, System.String mobilePhone, System.String memberNote, System.String advertiserNote, System.Int32? jobArchiveId, System.Boolean? draft, System.Int32? jobApplicationTypeId, System.String externalXmlFilename, System.String customQuestionnaireXml, System.String externalPdfFilename, System.Boolean? fileDownloaded, System.String appliedWith, System.String screeningQuestionaireXml, System.Guid? screeningQuestionsGuid);
 		
 		#endregion
 		
@@ -819,10 +822,11 @@ namespace JXTPortal.Data.Bases
 		/// <param name="fileDownloaded"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="appliedWith"> A <c>System.String</c> instance.</param>
 		/// <param name="screeningQuestionaireXml"> A <c>System.String</c> instance.</param>
+		/// <param name="screeningQuestionsGuid"> A <c>System.Guid?</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public void Update(System.Int32? jobApplicationId, System.DateTime? applicationDate, System.Int32? jobId, System.Int32? memberId, System.String memberResumeFile, System.String memberCoverLetterFile, System.Int32? applicationStatus, System.Guid? jobAppValidateId, System.Int32? siteIdReferral, System.String urlReferral, System.Int32? applicantGrade, System.DateTime? lastViewedDate, System.String firstName, System.String surname, System.String emailAddress, System.String mobilePhone, System.String memberNote, System.String advertiserNote, System.Int32? jobArchiveId, System.Boolean? draft, System.Int32? jobApplicationTypeId, System.String externalXmlFilename, System.String customQuestionnaireXml, System.String externalPdfFilename, System.Boolean? fileDownloaded, System.String appliedWith, System.String screeningQuestionaireXml)
+		public void Update(System.Int32? jobApplicationId, System.DateTime? applicationDate, System.Int32? jobId, System.Int32? memberId, System.String memberResumeFile, System.String memberCoverLetterFile, System.Int32? applicationStatus, System.Guid? jobAppValidateId, System.Int32? siteIdReferral, System.String urlReferral, System.Int32? applicantGrade, System.DateTime? lastViewedDate, System.String firstName, System.String surname, System.String emailAddress, System.String mobilePhone, System.String memberNote, System.String advertiserNote, System.Int32? jobArchiveId, System.Boolean? draft, System.Int32? jobApplicationTypeId, System.String externalXmlFilename, System.String customQuestionnaireXml, System.String externalPdfFilename, System.Boolean? fileDownloaded, System.String appliedWith, System.String screeningQuestionaireXml, System.Guid? screeningQuestionsGuid)
 		{
-			 Update(null, 0, int.MaxValue , jobApplicationId, applicationDate, jobId, memberId, memberResumeFile, memberCoverLetterFile, applicationStatus, jobAppValidateId, siteIdReferral, urlReferral, applicantGrade, lastViewedDate, firstName, surname, emailAddress, mobilePhone, memberNote, advertiserNote, jobArchiveId, draft, jobApplicationTypeId, externalXmlFilename, customQuestionnaireXml, externalPdfFilename, fileDownloaded, appliedWith, screeningQuestionaireXml);
+			 Update(null, 0, int.MaxValue , jobApplicationId, applicationDate, jobId, memberId, memberResumeFile, memberCoverLetterFile, applicationStatus, jobAppValidateId, siteIdReferral, urlReferral, applicantGrade, lastViewedDate, firstName, surname, emailAddress, mobilePhone, memberNote, advertiserNote, jobArchiveId, draft, jobApplicationTypeId, externalXmlFilename, customQuestionnaireXml, externalPdfFilename, fileDownloaded, appliedWith, screeningQuestionaireXml, screeningQuestionsGuid);
 		}
 		
 		/// <summary>
@@ -855,12 +859,13 @@ namespace JXTPortal.Data.Bases
 		/// <param name="fileDownloaded"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="appliedWith"> A <c>System.String</c> instance.</param>
 		/// <param name="screeningQuestionaireXml"> A <c>System.String</c> instance.</param>
+		/// <param name="screeningQuestionsGuid"> A <c>System.Guid?</c> instance.</param>
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public void Update(int start, int pageLength, System.Int32? jobApplicationId, System.DateTime? applicationDate, System.Int32? jobId, System.Int32? memberId, System.String memberResumeFile, System.String memberCoverLetterFile, System.Int32? applicationStatus, System.Guid? jobAppValidateId, System.Int32? siteIdReferral, System.String urlReferral, System.Int32? applicantGrade, System.DateTime? lastViewedDate, System.String firstName, System.String surname, System.String emailAddress, System.String mobilePhone, System.String memberNote, System.String advertiserNote, System.Int32? jobArchiveId, System.Boolean? draft, System.Int32? jobApplicationTypeId, System.String externalXmlFilename, System.String customQuestionnaireXml, System.String externalPdfFilename, System.Boolean? fileDownloaded, System.String appliedWith, System.String screeningQuestionaireXml)
+		public void Update(int start, int pageLength, System.Int32? jobApplicationId, System.DateTime? applicationDate, System.Int32? jobId, System.Int32? memberId, System.String memberResumeFile, System.String memberCoverLetterFile, System.Int32? applicationStatus, System.Guid? jobAppValidateId, System.Int32? siteIdReferral, System.String urlReferral, System.Int32? applicantGrade, System.DateTime? lastViewedDate, System.String firstName, System.String surname, System.String emailAddress, System.String mobilePhone, System.String memberNote, System.String advertiserNote, System.Int32? jobArchiveId, System.Boolean? draft, System.Int32? jobApplicationTypeId, System.String externalXmlFilename, System.String customQuestionnaireXml, System.String externalPdfFilename, System.Boolean? fileDownloaded, System.String appliedWith, System.String screeningQuestionaireXml, System.Guid? screeningQuestionsGuid)
 		{
-			 Update(null, start, pageLength , jobApplicationId, applicationDate, jobId, memberId, memberResumeFile, memberCoverLetterFile, applicationStatus, jobAppValidateId, siteIdReferral, urlReferral, applicantGrade, lastViewedDate, firstName, surname, emailAddress, mobilePhone, memberNote, advertiserNote, jobArchiveId, draft, jobApplicationTypeId, externalXmlFilename, customQuestionnaireXml, externalPdfFilename, fileDownloaded, appliedWith, screeningQuestionaireXml);
+			 Update(null, start, pageLength , jobApplicationId, applicationDate, jobId, memberId, memberResumeFile, memberCoverLetterFile, applicationStatus, jobAppValidateId, siteIdReferral, urlReferral, applicantGrade, lastViewedDate, firstName, surname, emailAddress, mobilePhone, memberNote, advertiserNote, jobArchiveId, draft, jobApplicationTypeId, externalXmlFilename, customQuestionnaireXml, externalPdfFilename, fileDownloaded, appliedWith, screeningQuestionaireXml, screeningQuestionsGuid);
 		}
 				
 		/// <summary>
@@ -893,11 +898,12 @@ namespace JXTPortal.Data.Bases
 		/// <param name="fileDownloaded"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="appliedWith"> A <c>System.String</c> instance.</param>
 		/// <param name="screeningQuestionaireXml"> A <c>System.String</c> instance.</param>
+		/// <param name="screeningQuestionsGuid"> A <c>System.Guid?</c> instance.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public void Update(TransactionManager transactionManager, System.Int32? jobApplicationId, System.DateTime? applicationDate, System.Int32? jobId, System.Int32? memberId, System.String memberResumeFile, System.String memberCoverLetterFile, System.Int32? applicationStatus, System.Guid? jobAppValidateId, System.Int32? siteIdReferral, System.String urlReferral, System.Int32? applicantGrade, System.DateTime? lastViewedDate, System.String firstName, System.String surname, System.String emailAddress, System.String mobilePhone, System.String memberNote, System.String advertiserNote, System.Int32? jobArchiveId, System.Boolean? draft, System.Int32? jobApplicationTypeId, System.String externalXmlFilename, System.String customQuestionnaireXml, System.String externalPdfFilename, System.Boolean? fileDownloaded, System.String appliedWith, System.String screeningQuestionaireXml)
+		public void Update(TransactionManager transactionManager, System.Int32? jobApplicationId, System.DateTime? applicationDate, System.Int32? jobId, System.Int32? memberId, System.String memberResumeFile, System.String memberCoverLetterFile, System.Int32? applicationStatus, System.Guid? jobAppValidateId, System.Int32? siteIdReferral, System.String urlReferral, System.Int32? applicantGrade, System.DateTime? lastViewedDate, System.String firstName, System.String surname, System.String emailAddress, System.String mobilePhone, System.String memberNote, System.String advertiserNote, System.Int32? jobArchiveId, System.Boolean? draft, System.Int32? jobApplicationTypeId, System.String externalXmlFilename, System.String customQuestionnaireXml, System.String externalPdfFilename, System.Boolean? fileDownloaded, System.String appliedWith, System.String screeningQuestionaireXml, System.Guid? screeningQuestionsGuid)
 		{
-			 Update(transactionManager, 0, int.MaxValue , jobApplicationId, applicationDate, jobId, memberId, memberResumeFile, memberCoverLetterFile, applicationStatus, jobAppValidateId, siteIdReferral, urlReferral, applicantGrade, lastViewedDate, firstName, surname, emailAddress, mobilePhone, memberNote, advertiserNote, jobArchiveId, draft, jobApplicationTypeId, externalXmlFilename, customQuestionnaireXml, externalPdfFilename, fileDownloaded, appliedWith, screeningQuestionaireXml);
+			 Update(transactionManager, 0, int.MaxValue , jobApplicationId, applicationDate, jobId, memberId, memberResumeFile, memberCoverLetterFile, applicationStatus, jobAppValidateId, siteIdReferral, urlReferral, applicantGrade, lastViewedDate, firstName, surname, emailAddress, mobilePhone, memberNote, advertiserNote, jobArchiveId, draft, jobApplicationTypeId, externalXmlFilename, customQuestionnaireXml, externalPdfFilename, fileDownloaded, appliedWith, screeningQuestionaireXml, screeningQuestionsGuid);
 		}
 		
 		/// <summary>
@@ -930,15 +936,17 @@ namespace JXTPortal.Data.Bases
 		/// <param name="fileDownloaded"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="appliedWith"> A <c>System.String</c> instance.</param>
 		/// <param name="screeningQuestionaireXml"> A <c>System.String</c> instance.</param>
+		/// <param name="screeningQuestionsGuid"> A <c>System.Guid?</c> instance.</param>
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public abstract void Update(TransactionManager transactionManager, int start, int pageLength , System.Int32? jobApplicationId, System.DateTime? applicationDate, System.Int32? jobId, System.Int32? memberId, System.String memberResumeFile, System.String memberCoverLetterFile, System.Int32? applicationStatus, System.Guid? jobAppValidateId, System.Int32? siteIdReferral, System.String urlReferral, System.Int32? applicantGrade, System.DateTime? lastViewedDate, System.String firstName, System.String surname, System.String emailAddress, System.String mobilePhone, System.String memberNote, System.String advertiserNote, System.Int32? jobArchiveId, System.Boolean? draft, System.Int32? jobApplicationTypeId, System.String externalXmlFilename, System.String customQuestionnaireXml, System.String externalPdfFilename, System.Boolean? fileDownloaded, System.String appliedWith, System.String screeningQuestionaireXml);
+		public abstract void Update(TransactionManager transactionManager, int start, int pageLength , System.Int32? jobApplicationId, System.DateTime? applicationDate, System.Int32? jobId, System.Int32? memberId, System.String memberResumeFile, System.String memberCoverLetterFile, System.Int32? applicationStatus, System.Guid? jobAppValidateId, System.Int32? siteIdReferral, System.String urlReferral, System.Int32? applicantGrade, System.DateTime? lastViewedDate, System.String firstName, System.String surname, System.String emailAddress, System.String mobilePhone, System.String memberNote, System.String advertiserNote, System.Int32? jobArchiveId, System.Boolean? draft, System.Int32? jobApplicationTypeId, System.String externalXmlFilename, System.String customQuestionnaireXml, System.String externalPdfFilename, System.Boolean? fileDownloaded, System.String appliedWith, System.String screeningQuestionaireXml, System.Guid? screeningQuestionsGuid);
 		
 		#endregion
 		
 		#region JobApplication_GetByJobId 
+		
 		
 		/// <summary>
 		///	This method wrap the 'JobApplication_GetByJobId' stored procedure. 
@@ -952,7 +960,6 @@ namespace JXTPortal.Data.Bases
 		{
 			return GetByJobId(null, start, pageLength , jobId);
 		}
-				
 		
 		/// <summary>
 		///	This method wrap the 'JobApplication_GetByJobId' stored procedure. 
@@ -1272,12 +1279,13 @@ namespace JXTPortal.Data.Bases
 		/// <param name="fileDownloaded"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="appliedWith"> A <c>System.String</c> instance.</param>
 		/// <param name="screeningQuestionaireXml"> A <c>System.String</c> instance.</param>
+		/// <param name="screeningQuestionsGuid"> A <c>System.Guid?</c> instance.</param>
 			/// <param name="jobApplicationId"> A <c>System.Int32?</c> instance.</param>
 			/// <param name="jobAppValidateId"> A <c>System.Guid?</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public void Insert(System.DateTime? applicationDate, System.Int32? jobId, System.Int32? memberId, System.String memberResumeFile, System.String memberCoverLetterFile, System.Int32? applicationStatus, System.Int32? siteIdReferral, System.String urlReferral, System.Int32? applicantGrade, System.DateTime? lastViewedDate, System.String firstName, System.String surname, System.String emailAddress, System.String mobilePhone, System.String memberNote, System.String advertiserNote, System.Int32? jobArchiveId, System.Boolean? draft, System.Int32? jobApplicationTypeId, System.String externalXmlFilename, System.String customQuestionnaireXml, System.String externalPdfFilename, System.Boolean? fileDownloaded, System.String appliedWith, System.String screeningQuestionaireXml, ref System.Int32? jobApplicationId, ref System.Guid? jobAppValidateId)
+		public void Insert(System.DateTime? applicationDate, System.Int32? jobId, System.Int32? memberId, System.String memberResumeFile, System.String memberCoverLetterFile, System.Int32? applicationStatus, System.Int32? siteIdReferral, System.String urlReferral, System.Int32? applicantGrade, System.DateTime? lastViewedDate, System.String firstName, System.String surname, System.String emailAddress, System.String mobilePhone, System.String memberNote, System.String advertiserNote, System.Int32? jobArchiveId, System.Boolean? draft, System.Int32? jobApplicationTypeId, System.String externalXmlFilename, System.String customQuestionnaireXml, System.String externalPdfFilename, System.Boolean? fileDownloaded, System.String appliedWith, System.String screeningQuestionaireXml, System.Guid? screeningQuestionsGuid, ref System.Int32? jobApplicationId, ref System.Guid? jobAppValidateId)
 		{
-			 Insert(null, 0, int.MaxValue , applicationDate, jobId, memberId, memberResumeFile, memberCoverLetterFile, applicationStatus, siteIdReferral, urlReferral, applicantGrade, lastViewedDate, firstName, surname, emailAddress, mobilePhone, memberNote, advertiserNote, jobArchiveId, draft, jobApplicationTypeId, externalXmlFilename, customQuestionnaireXml, externalPdfFilename, fileDownloaded, appliedWith, screeningQuestionaireXml, ref jobApplicationId, ref jobAppValidateId);
+			 Insert(null, 0, int.MaxValue , applicationDate, jobId, memberId, memberResumeFile, memberCoverLetterFile, applicationStatus, siteIdReferral, urlReferral, applicantGrade, lastViewedDate, firstName, surname, emailAddress, mobilePhone, memberNote, advertiserNote, jobArchiveId, draft, jobApplicationTypeId, externalXmlFilename, customQuestionnaireXml, externalPdfFilename, fileDownloaded, appliedWith, screeningQuestionaireXml, screeningQuestionsGuid, ref jobApplicationId, ref jobAppValidateId);
 		}
 		
 		/// <summary>
@@ -1308,14 +1316,15 @@ namespace JXTPortal.Data.Bases
 		/// <param name="fileDownloaded"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="appliedWith"> A <c>System.String</c> instance.</param>
 		/// <param name="screeningQuestionaireXml"> A <c>System.String</c> instance.</param>
+		/// <param name="screeningQuestionsGuid"> A <c>System.Guid?</c> instance.</param>
 			/// <param name="jobApplicationId"> A <c>System.Int32?</c> instance.</param>
 			/// <param name="jobAppValidateId"> A <c>System.Guid?</c> instance.</param>
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public void Insert(int start, int pageLength, System.DateTime? applicationDate, System.Int32? jobId, System.Int32? memberId, System.String memberResumeFile, System.String memberCoverLetterFile, System.Int32? applicationStatus, System.Int32? siteIdReferral, System.String urlReferral, System.Int32? applicantGrade, System.DateTime? lastViewedDate, System.String firstName, System.String surname, System.String emailAddress, System.String mobilePhone, System.String memberNote, System.String advertiserNote, System.Int32? jobArchiveId, System.Boolean? draft, System.Int32? jobApplicationTypeId, System.String externalXmlFilename, System.String customQuestionnaireXml, System.String externalPdfFilename, System.Boolean? fileDownloaded, System.String appliedWith, System.String screeningQuestionaireXml, ref System.Int32? jobApplicationId, ref System.Guid? jobAppValidateId)
+		public void Insert(int start, int pageLength, System.DateTime? applicationDate, System.Int32? jobId, System.Int32? memberId, System.String memberResumeFile, System.String memberCoverLetterFile, System.Int32? applicationStatus, System.Int32? siteIdReferral, System.String urlReferral, System.Int32? applicantGrade, System.DateTime? lastViewedDate, System.String firstName, System.String surname, System.String emailAddress, System.String mobilePhone, System.String memberNote, System.String advertiserNote, System.Int32? jobArchiveId, System.Boolean? draft, System.Int32? jobApplicationTypeId, System.String externalXmlFilename, System.String customQuestionnaireXml, System.String externalPdfFilename, System.Boolean? fileDownloaded, System.String appliedWith, System.String screeningQuestionaireXml, System.Guid? screeningQuestionsGuid, ref System.Int32? jobApplicationId, ref System.Guid? jobAppValidateId)
 		{
-			 Insert(null, start, pageLength , applicationDate, jobId, memberId, memberResumeFile, memberCoverLetterFile, applicationStatus, siteIdReferral, urlReferral, applicantGrade, lastViewedDate, firstName, surname, emailAddress, mobilePhone, memberNote, advertiserNote, jobArchiveId, draft, jobApplicationTypeId, externalXmlFilename, customQuestionnaireXml, externalPdfFilename, fileDownloaded, appliedWith, screeningQuestionaireXml, ref jobApplicationId, ref jobAppValidateId);
+			 Insert(null, start, pageLength , applicationDate, jobId, memberId, memberResumeFile, memberCoverLetterFile, applicationStatus, siteIdReferral, urlReferral, applicantGrade, lastViewedDate, firstName, surname, emailAddress, mobilePhone, memberNote, advertiserNote, jobArchiveId, draft, jobApplicationTypeId, externalXmlFilename, customQuestionnaireXml, externalPdfFilename, fileDownloaded, appliedWith, screeningQuestionaireXml, screeningQuestionsGuid, ref jobApplicationId, ref jobAppValidateId);
 		}
 				
 		/// <summary>
@@ -1346,13 +1355,14 @@ namespace JXTPortal.Data.Bases
 		/// <param name="fileDownloaded"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="appliedWith"> A <c>System.String</c> instance.</param>
 		/// <param name="screeningQuestionaireXml"> A <c>System.String</c> instance.</param>
+		/// <param name="screeningQuestionsGuid"> A <c>System.Guid?</c> instance.</param>
 			/// <param name="jobApplicationId"> A <c>System.Int32?</c> instance.</param>
 			/// <param name="jobAppValidateId"> A <c>System.Guid?</c> instance.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public void Insert(TransactionManager transactionManager, System.DateTime? applicationDate, System.Int32? jobId, System.Int32? memberId, System.String memberResumeFile, System.String memberCoverLetterFile, System.Int32? applicationStatus, System.Int32? siteIdReferral, System.String urlReferral, System.Int32? applicantGrade, System.DateTime? lastViewedDate, System.String firstName, System.String surname, System.String emailAddress, System.String mobilePhone, System.String memberNote, System.String advertiserNote, System.Int32? jobArchiveId, System.Boolean? draft, System.Int32? jobApplicationTypeId, System.String externalXmlFilename, System.String customQuestionnaireXml, System.String externalPdfFilename, System.Boolean? fileDownloaded, System.String appliedWith, System.String screeningQuestionaireXml, ref System.Int32? jobApplicationId, ref System.Guid? jobAppValidateId)
+		public void Insert(TransactionManager transactionManager, System.DateTime? applicationDate, System.Int32? jobId, System.Int32? memberId, System.String memberResumeFile, System.String memberCoverLetterFile, System.Int32? applicationStatus, System.Int32? siteIdReferral, System.String urlReferral, System.Int32? applicantGrade, System.DateTime? lastViewedDate, System.String firstName, System.String surname, System.String emailAddress, System.String mobilePhone, System.String memberNote, System.String advertiserNote, System.Int32? jobArchiveId, System.Boolean? draft, System.Int32? jobApplicationTypeId, System.String externalXmlFilename, System.String customQuestionnaireXml, System.String externalPdfFilename, System.Boolean? fileDownloaded, System.String appliedWith, System.String screeningQuestionaireXml, System.Guid? screeningQuestionsGuid, ref System.Int32? jobApplicationId, ref System.Guid? jobAppValidateId)
 		{
-			 Insert(transactionManager, 0, int.MaxValue , applicationDate, jobId, memberId, memberResumeFile, memberCoverLetterFile, applicationStatus, siteIdReferral, urlReferral, applicantGrade, lastViewedDate, firstName, surname, emailAddress, mobilePhone, memberNote, advertiserNote, jobArchiveId, draft, jobApplicationTypeId, externalXmlFilename, customQuestionnaireXml, externalPdfFilename, fileDownloaded, appliedWith, screeningQuestionaireXml, ref jobApplicationId, ref jobAppValidateId);
+			 Insert(transactionManager, 0, int.MaxValue , applicationDate, jobId, memberId, memberResumeFile, memberCoverLetterFile, applicationStatus, siteIdReferral, urlReferral, applicantGrade, lastViewedDate, firstName, surname, emailAddress, mobilePhone, memberNote, advertiserNote, jobArchiveId, draft, jobApplicationTypeId, externalXmlFilename, customQuestionnaireXml, externalPdfFilename, fileDownloaded, appliedWith, screeningQuestionaireXml, screeningQuestionsGuid, ref jobApplicationId, ref jobAppValidateId);
 		}
 		
 		/// <summary>
@@ -1383,18 +1393,18 @@ namespace JXTPortal.Data.Bases
 		/// <param name="fileDownloaded"> A <c>System.Boolean?</c> instance.</param>
 		/// <param name="appliedWith"> A <c>System.String</c> instance.</param>
 		/// <param name="screeningQuestionaireXml"> A <c>System.String</c> instance.</param>
+		/// <param name="screeningQuestionsGuid"> A <c>System.Guid?</c> instance.</param>
 			/// <param name="jobApplicationId"> A <c>System.Int32?</c> instance.</param>
 			/// <param name="jobAppValidateId"> A <c>System.Guid?</c> instance.</param>
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public abstract void Insert(TransactionManager transactionManager, int start, int pageLength , System.DateTime? applicationDate, System.Int32? jobId, System.Int32? memberId, System.String memberResumeFile, System.String memberCoverLetterFile, System.Int32? applicationStatus, System.Int32? siteIdReferral, System.String urlReferral, System.Int32? applicantGrade, System.DateTime? lastViewedDate, System.String firstName, System.String surname, System.String emailAddress, System.String mobilePhone, System.String memberNote, System.String advertiserNote, System.Int32? jobArchiveId, System.Boolean? draft, System.Int32? jobApplicationTypeId, System.String externalXmlFilename, System.String customQuestionnaireXml, System.String externalPdfFilename, System.Boolean? fileDownloaded, System.String appliedWith, System.String screeningQuestionaireXml, ref System.Int32? jobApplicationId, ref System.Guid? jobAppValidateId);
+		public abstract void Insert(TransactionManager transactionManager, int start, int pageLength , System.DateTime? applicationDate, System.Int32? jobId, System.Int32? memberId, System.String memberResumeFile, System.String memberCoverLetterFile, System.Int32? applicationStatus, System.Int32? siteIdReferral, System.String urlReferral, System.Int32? applicantGrade, System.DateTime? lastViewedDate, System.String firstName, System.String surname, System.String emailAddress, System.String mobilePhone, System.String memberNote, System.String advertiserNote, System.Int32? jobArchiveId, System.Boolean? draft, System.Int32? jobApplicationTypeId, System.String externalXmlFilename, System.String customQuestionnaireXml, System.String externalPdfFilename, System.Boolean? fileDownloaded, System.String appliedWith, System.String screeningQuestionaireXml, System.Guid? screeningQuestionsGuid, ref System.Int32? jobApplicationId, ref System.Guid? jobAppValidateId);
 		
 		#endregion
 		
 		#region JobApplication_GetBySiteIdReferral 
-		
 		
 		/// <summary>
 		///	This method wrap the 'JobApplication_GetBySiteIdReferral' stored procedure. 
@@ -1408,7 +1418,6 @@ namespace JXTPortal.Data.Bases
 		{
 			return GetBySiteIdReferral(null, start, pageLength , siteIdReferral);
 		}
-				
 		
 		/// <summary>
 		///	This method wrap the 'JobApplication_GetBySiteIdReferral' stored procedure. 
@@ -1484,7 +1493,6 @@ namespace JXTPortal.Data.Bases
 		
 		#region JobApplication_GetByJobArchiveId 
 		
-		
 		/// <summary>
 		///	This method wrap the 'JobApplication_GetByJobArchiveId' stored procedure. 
 		/// </summary>
@@ -1497,7 +1505,7 @@ namespace JXTPortal.Data.Bases
 		{
 			return GetByJobArchiveId(null, start, pageLength , jobArchiveId);
 		}
-				
+		
 		/// <summary>
 		///	This method wrap the 'JobApplication_GetByJobArchiveId' stored procedure. 
 		/// </summary>
@@ -1873,6 +1881,7 @@ namespace JXTPortal.Data.Bases
 					c.FileDownloaded = (reader.IsDBNull(((int)JobApplicationColumn.FileDownloaded - 1)))?null:(System.Boolean?)reader[((int)JobApplicationColumn.FileDownloaded - 1)];
 					c.AppliedWith = (reader.IsDBNull(((int)JobApplicationColumn.AppliedWith - 1)))?null:(System.String)reader[((int)JobApplicationColumn.AppliedWith - 1)];
 					c.ScreeningQuestionaireXml = (reader.IsDBNull(((int)JobApplicationColumn.ScreeningQuestionaireXml - 1)))?null:(System.String)reader[((int)JobApplicationColumn.ScreeningQuestionaireXml - 1)];
+					c.ScreeningQuestionsGuid = (reader.IsDBNull(((int)JobApplicationColumn.ScreeningQuestionsGuid - 1)))?null:(System.Guid?)reader[((int)JobApplicationColumn.ScreeningQuestionsGuid - 1)];
 					c.EntityTrackingKey = key;
 					c.AcceptChanges();
 					c.SuppressEntityEvents = false;
@@ -1917,6 +1926,7 @@ namespace JXTPortal.Data.Bases
 			entity.FileDownloaded = (reader.IsDBNull(((int)JobApplicationColumn.FileDownloaded - 1)))?null:(System.Boolean?)reader[((int)JobApplicationColumn.FileDownloaded - 1)];
 			entity.AppliedWith = (reader.IsDBNull(((int)JobApplicationColumn.AppliedWith - 1)))?null:(System.String)reader[((int)JobApplicationColumn.AppliedWith - 1)];
 			entity.ScreeningQuestionaireXml = (reader.IsDBNull(((int)JobApplicationColumn.ScreeningQuestionaireXml - 1)))?null:(System.String)reader[((int)JobApplicationColumn.ScreeningQuestionaireXml - 1)];
+			entity.ScreeningQuestionsGuid = (reader.IsDBNull(((int)JobApplicationColumn.ScreeningQuestionsGuid - 1)))?null:(System.Guid?)reader[((int)JobApplicationColumn.ScreeningQuestionsGuid - 1)];
 			entity.AcceptChanges();
 		}
 		
@@ -1956,6 +1966,7 @@ namespace JXTPortal.Data.Bases
 			entity.FileDownloaded = Convert.IsDBNull(dataRow["FileDownloaded"]) ? null : (System.Boolean?)dataRow["FileDownloaded"];
 			entity.AppliedWith = Convert.IsDBNull(dataRow["AppliedWith"]) ? null : (System.String)dataRow["AppliedWith"];
 			entity.ScreeningQuestionaireXml = Convert.IsDBNull(dataRow["ScreeningQuestionaireXML"]) ? null : (System.String)dataRow["ScreeningQuestionaireXML"];
+			entity.ScreeningQuestionsGuid = Convert.IsDBNull(dataRow["ScreeningQuestionsGuid"]) ? null : (System.Guid?)dataRow["ScreeningQuestionsGuid"];
 			entity.AcceptChanges();
 		}
 		#endregion 

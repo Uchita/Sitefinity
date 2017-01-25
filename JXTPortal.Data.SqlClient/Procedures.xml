@@ -54972,7 +54972,8 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 					
@@ -55036,7 +55037,7 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 				EXEC sp_executesql @SQL
 
 				-- Return paged results
-				SELECT O.[GlobalSettingID], O.[SiteID], O.[DefaultLanguageID], O.[DefaultDynamicPageID], O.[PublicJobsSearch], O.[PublicMembersSearch], O.[PublicCompaniesSearch], O.[PublicSponsoredAdverts], O.[PrivateJobs], O.[PrivateMembers], O.[PrivateCompanies], O.[LastModifiedBy], O.[LastModified], O.[PageTitlePrefix], O.[PageTitleSuffix], O.[DefaultTitle], O.[HomeTitle], O.[DefaultDescription], O.[HomeDescription], O.[DefaultKeywords], O.[HomeKeywords], O.[ShowFaceBookButton], O.[UseAdvertiserFilter], O.[MerchantID], O.[ShowTwitterButton], O.[ShowJobAlertButton], O.[ShowLinkedInButton], O.[SiteFavIconID], O.[SiteDocType], O.[CurrencySymbol], O.[FtpFolderLocation], O.[MetaTags], O.[SystemMetaTags], O.[MemberRegistrationNotification], O.[LinkedInAPI], O.[LinkedInLogo], O.[LinkedInCompanyID], O.[LinkedInEmail], O.[PrivacySettings], O.[WWWRedirect], O.[AllowAdvertiser], O.[LinkedInAPISecret], O.[GoogleClientID], O.[GoogleClientSecret], O.[FacebookAppID], O.[FacebookAppSecret], O.[LinkedInButtonSize], O.[DefaultCountryID], O.[PayPalUsername], O.[PayPalPassword], O.[PayPalSignature], O.[SecurePayMerchantID], O.[SecurePayPassword], O.[UsingSSL], O.[UseCustomProfessionRole], O.[GenerateJobXML], O.[IsPrivateSite], O.[PrivateRedirectUrl], O.[EnableJobCustomQuestionnaire], O.[JobApplicationTypeID], O.[JobScreeningProcess], O.[AdvertiserApprovalProcess], O.[SiteType], O.[EnableSSL], O.[GST], O.[GSTLabel], O.[NumberOfPremiumJobs], O.[PremiumJobDays], O.[DisplayPremiumJobsOnResults], O.[JobExpiryNotification], O.[CurrencyID], O.[PayPalClientID], O.[PayPalClientSecret], O.[PaypalUser], O.[PaypalProPassword], O.[PaypalVendor], O.[PaypalPartner], O.[InvoiceSiteInfo], O.[InvoiceSiteFooter], O.[EnableTermsAndConditions], O.[DefaultEmailLanguageId], O.[GoogleTagManager], O.[GoogleAnalytics], O.[GoogleWebMaster], O.[EnablePeopleSearch], O.[GlobalDateFormat], O.[TimeZone], O.[GlobalFolder]
+				SELECT O.[GlobalSettingID], O.[SiteID], O.[DefaultLanguageID], O.[DefaultDynamicPageID], O.[PublicJobsSearch], O.[PublicMembersSearch], O.[PublicCompaniesSearch], O.[PublicSponsoredAdverts], O.[PrivateJobs], O.[PrivateMembers], O.[PrivateCompanies], O.[LastModifiedBy], O.[LastModified], O.[PageTitlePrefix], O.[PageTitleSuffix], O.[DefaultTitle], O.[HomeTitle], O.[DefaultDescription], O.[HomeDescription], O.[DefaultKeywords], O.[HomeKeywords], O.[ShowFaceBookButton], O.[UseAdvertiserFilter], O.[MerchantID], O.[ShowTwitterButton], O.[ShowJobAlertButton], O.[ShowLinkedInButton], O.[SiteFavIconID], O.[SiteDocType], O.[CurrencySymbol], O.[FtpFolderLocation], O.[MetaTags], O.[SystemMetaTags], O.[MemberRegistrationNotification], O.[LinkedInAPI], O.[LinkedInLogo], O.[LinkedInCompanyID], O.[LinkedInEmail], O.[PrivacySettings], O.[WWWRedirect], O.[AllowAdvertiser], O.[LinkedInAPISecret], O.[GoogleClientID], O.[GoogleClientSecret], O.[FacebookAppID], O.[FacebookAppSecret], O.[LinkedInButtonSize], O.[DefaultCountryID], O.[PayPalUsername], O.[PayPalPassword], O.[PayPalSignature], O.[SecurePayMerchantID], O.[SecurePayPassword], O.[UsingSSL], O.[UseCustomProfessionRole], O.[GenerateJobXML], O.[IsPrivateSite], O.[PrivateRedirectUrl], O.[EnableJobCustomQuestionnaire], O.[JobApplicationTypeID], O.[JobScreeningProcess], O.[AdvertiserApprovalProcess], O.[SiteType], O.[EnableSSL], O.[GST], O.[GSTLabel], O.[NumberOfPremiumJobs], O.[PremiumJobDays], O.[DisplayPremiumJobsOnResults], O.[JobExpiryNotification], O.[CurrencyID], O.[PayPalClientID], O.[PayPalClientSecret], O.[PaypalUser], O.[PaypalProPassword], O.[PaypalVendor], O.[PaypalPartner], O.[InvoiceSiteInfo], O.[InvoiceSiteFooter], O.[EnableTermsAndConditions], O.[DefaultEmailLanguageId], O.[GoogleTagManager], O.[GoogleAnalytics], O.[GoogleWebMaster], O.[EnablePeopleSearch], O.[GlobalDateFormat], O.[TimeZone], O.[GlobalFolder], O.[EnableScreeningQuestions]
 				FROM
 				    [dbo].[GlobalSettings] O,
 				    #PageIndex PageIndex
@@ -55157,6 +55158,7 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 				<parameter name="@GlobalDateFormat" type="varchar" direction="Input" size="20" precision="0" scale="0" param="(20)" nulldefault=""/>
 				<parameter name="@TimeZone" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault=""/>
 				<parameter name="@GlobalFolder" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault=""/>
+				<parameter name="@EnableScreeningQuestions" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault=""/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -55249,6 +55251,7 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					,[GlobalDateFormat]
 					,[TimeZone]
 					,[GlobalFolder]
+					,[EnableScreeningQuestions]
 					)
 				VALUES
 					(
@@ -55339,6 +55342,7 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					,@GlobalDateFormat
 					,@TimeZone
 					,@GlobalFolder
+					,@EnableScreeningQuestions
 					)
 				
 				-- Get the identity value
@@ -55445,6 +55449,7 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 				<parameter name="@GlobalDateFormat" type="varchar" direction="Input" size="20" precision="0" scale="0" param="(20)" nulldefault=""/>
 				<parameter name="@TimeZone" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault=""/>
 				<parameter name="@GlobalFolder" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault=""/>
+				<parameter name="@EnableScreeningQuestions" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault=""/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -55540,6 +55545,7 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					,[GlobalDateFormat] = @GlobalDateFormat
 					,[TimeZone] = @TimeZone
 					,[GlobalFolder] = @GlobalFolder
+					,[EnableScreeningQuestions] = @EnableScreeningQuestions
 				WHERE
 [GlobalSettingID] = @GlobalSettingId 
 				
@@ -55667,7 +55673,8 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -55780,7 +55787,8 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -55893,7 +55901,8 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -56006,7 +56015,8 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -56119,7 +56129,8 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -56232,7 +56243,8 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -56344,7 +56356,8 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -56457,7 +56470,8 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -56570,7 +56584,8 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -56684,7 +56699,8 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -56797,7 +56813,8 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -56906,6 +56923,7 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 				<parameter name="@GlobalDateFormat" type="varchar" direction="Input" size="20" precision="0" scale="0" param="(20)" nulldefault="null"/>
 				<parameter name="@TimeZone" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@GlobalFolder" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
+				<parameter name="@EnableScreeningQuestions" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -57000,6 +57018,7 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 	, [GlobalDateFormat]
 	, [TimeZone]
 	, [GlobalFolder]
+	, [EnableScreeningQuestions]
     FROM
 	[dbo].[GlobalSettings]
     WHERE 
@@ -57091,6 +57110,7 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 	AND ([GlobalDateFormat] = @GlobalDateFormat OR @GlobalDateFormat IS NULL)
 	AND ([TimeZone] = @TimeZone OR @TimeZone IS NULL)
 	AND ([GlobalFolder] = @GlobalFolder OR @GlobalFolder IS NULL)
+	AND ([EnableScreeningQuestions] = @EnableScreeningQuestions OR @EnableScreeningQuestions IS NULL)
 						
   END
   ELSE
@@ -57184,6 +57204,7 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 	, [GlobalDateFormat]
 	, [TimeZone]
 	, [GlobalFolder]
+	, [EnableScreeningQuestions]
     FROM
 	[dbo].[GlobalSettings]
     WHERE 
@@ -57275,6 +57296,7 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 	OR ([GlobalDateFormat] = @GlobalDateFormat AND @GlobalDateFormat is not null)
 	OR ([TimeZone] = @TimeZone AND @TimeZone is not null)
 	OR ([GlobalFolder] = @GlobalFolder AND @GlobalFolder is not null)
+	OR ([EnableScreeningQuestions] = @EnableScreeningQuestions AND @EnableScreeningQuestions is not null)
 	SELECT @@ROWCOUNT			
   END
 				]]></body>
@@ -57309,7 +57331,7 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 				ORDER BY {1}
 				
 				-- Return paged results
-				SELECT O.[GlobalSettingID], O.[SiteID], O.[DefaultLanguageID], O.[DefaultDynamicPageID], O.[PublicJobsSearch], O.[PublicMembersSearch], O.[PublicCompaniesSearch], O.[PublicSponsoredAdverts], O.[PrivateJobs], O.[PrivateMembers], O.[PrivateCompanies], O.[LastModifiedBy], O.[LastModified], O.[PageTitlePrefix], O.[PageTitleSuffix], O.[DefaultTitle], O.[HomeTitle], O.[DefaultDescription], O.[HomeDescription], O.[DefaultKeywords], O.[HomeKeywords], O.[ShowFaceBookButton], O.[UseAdvertiserFilter], O.[MerchantID], O.[ShowTwitterButton], O.[ShowJobAlertButton], O.[ShowLinkedInButton], O.[SiteFavIconID], O.[SiteDocType], O.[CurrencySymbol], O.[FtpFolderLocation], O.[MetaTags], O.[SystemMetaTags], O.[MemberRegistrationNotification], O.[LinkedInAPI], O.[LinkedInLogo], O.[LinkedInCompanyID], O.[LinkedInEmail], O.[PrivacySettings], O.[WWWRedirect], O.[AllowAdvertiser], O.[LinkedInAPISecret], O.[GoogleClientID], O.[GoogleClientSecret], O.[FacebookAppID], O.[FacebookAppSecret], O.[LinkedInButtonSize], O.[DefaultCountryID], O.[PayPalUsername], O.[PayPalPassword], O.[PayPalSignature], O.[SecurePayMerchantID], O.[SecurePayPassword], O.[UsingSSL], O.[UseCustomProfessionRole], O.[GenerateJobXML], O.[IsPrivateSite], O.[PrivateRedirectUrl], O.[EnableJobCustomQuestionnaire], O.[JobApplicationTypeID], O.[JobScreeningProcess], O.[AdvertiserApprovalProcess], O.[SiteType], O.[EnableSSL], O.[GST], O.[GSTLabel], O.[NumberOfPremiumJobs], O.[PremiumJobDays], O.[DisplayPremiumJobsOnResults], O.[JobExpiryNotification], O.[CurrencyID], O.[PayPalClientID], O.[PayPalClientSecret], O.[PaypalUser], O.[PaypalProPassword], O.[PaypalVendor], O.[PaypalPartner], O.[InvoiceSiteInfo], O.[InvoiceSiteFooter], O.[EnableTermsAndConditions], O.[DefaultEmailLanguageId], O.[GoogleTagManager], O.[GoogleAnalytics], O.[GoogleWebMaster], O.[EnablePeopleSearch], O.[GlobalDateFormat], O.[TimeZone], O.[GlobalFolder]
+				SELECT O.[GlobalSettingID], O.[SiteID], O.[DefaultLanguageID], O.[DefaultDynamicPageID], O.[PublicJobsSearch], O.[PublicMembersSearch], O.[PublicCompaniesSearch], O.[PublicSponsoredAdverts], O.[PrivateJobs], O.[PrivateMembers], O.[PrivateCompanies], O.[LastModifiedBy], O.[LastModified], O.[PageTitlePrefix], O.[PageTitleSuffix], O.[DefaultTitle], O.[HomeTitle], O.[DefaultDescription], O.[HomeDescription], O.[DefaultKeywords], O.[HomeKeywords], O.[ShowFaceBookButton], O.[UseAdvertiserFilter], O.[MerchantID], O.[ShowTwitterButton], O.[ShowJobAlertButton], O.[ShowLinkedInButton], O.[SiteFavIconID], O.[SiteDocType], O.[CurrencySymbol], O.[FtpFolderLocation], O.[MetaTags], O.[SystemMetaTags], O.[MemberRegistrationNotification], O.[LinkedInAPI], O.[LinkedInLogo], O.[LinkedInCompanyID], O.[LinkedInEmail], O.[PrivacySettings], O.[WWWRedirect], O.[AllowAdvertiser], O.[LinkedInAPISecret], O.[GoogleClientID], O.[GoogleClientSecret], O.[FacebookAppID], O.[FacebookAppSecret], O.[LinkedInButtonSize], O.[DefaultCountryID], O.[PayPalUsername], O.[PayPalPassword], O.[PayPalSignature], O.[SecurePayMerchantID], O.[SecurePayPassword], O.[UsingSSL], O.[UseCustomProfessionRole], O.[GenerateJobXML], O.[IsPrivateSite], O.[PrivateRedirectUrl], O.[EnableJobCustomQuestionnaire], O.[JobApplicationTypeID], O.[JobScreeningProcess], O.[AdvertiserApprovalProcess], O.[SiteType], O.[EnableSSL], O.[GST], O.[GSTLabel], O.[NumberOfPremiumJobs], O.[PremiumJobDays], O.[DisplayPremiumJobsOnResults], O.[JobExpiryNotification], O.[CurrencyID], O.[PayPalClientID], O.[PayPalClientSecret], O.[PaypalUser], O.[PaypalProPassword], O.[PaypalVendor], O.[PaypalPartner], O.[InvoiceSiteInfo], O.[InvoiceSiteFooter], O.[EnableTermsAndConditions], O.[DefaultEmailLanguageId], O.[GoogleTagManager], O.[GoogleAnalytics], O.[GoogleWebMaster], O.[EnablePeopleSearch], O.[GlobalDateFormat], O.[TimeZone], O.[GlobalFolder], O.[EnableScreeningQuestions]
 				FROM
 				    [dbo].[GlobalSettings] O,
 				    #PageIndex PageIndex
@@ -57387,7 +57409,8 @@ ter],
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -57504,6 +57527,7 @@ ter],
 				<parameter name="@GlobalDateFormat" type="varchar" direction="Input" size="20" precision="0" scale="0" param="(20)" nulldefault="null"/>
 				<parameter name="@TimeZone" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@GlobalFolder" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
+				<parameter name="@EnableScreeningQuestions" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -57512,6 +57536,7 @@ ter is not null)
 	OR ([GlobalDateFormat] = @GlobalDateFormat AND @GlobalDateFormat is not null)
 	OR ([TimeZone] = @TimeZone AND @TimeZone is not null)
 	OR ([GlobalFolder] = @GlobalFolder AND @GlobalFolder is not null)
+	OR ([EnableScreeningQuestions] = @EnableScreeningQuestions AND @EnableScreeningQuestions is not null)
 	SELECT @@ROWCOUNT			
   END
 				
@@ -57541,7 +57566,8 @@ ter],
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -57555,16 +57581,16 @@ ter],
 					</procedure>
 				
 		<procedure owner="dbo" name="GlobalSettings_Update"  skip="true">
-			<comment><![CDATA[
-/*
-----------------------------------------------------------------------------------------------------
-
--- Created By:  ()
--- Purpose: Updates a record in the GlobalSettings table
-----------------------------------------------------------------------------------------------------
-*/
-
-
+			<comment><![CDATA[  
+/*  
+----------------------------------------------------------------------------------------------------  
+  
+-- Created By:  ()  
+-- Purpose: Updates a record in the GlobalSettings table  
+----------------------------------------------------------------------------------------------------  
+*/  
+  
+  
 ]]></comment>
 			<parameters>
 				<parameter name="@GlobalSettingId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
@@ -57655,19 +57681,20 @@ ter],
 				<parameter name="@GlobalDateFormat" type="varchar" direction="Input" size="20" precision="0" scale="0" param="(20)" nulldefault="null"/>
 				<parameter name="@TimeZone" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@GlobalFolder" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
+				<parameter name="@EnableScreeningQuestions" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
-ter
-					,[EnablePeopleSearch] = @EnablePeopleSearch
-					,[GlobalDateFormat] = @GlobalDateFormat
-					,[TimeZone] = @TimeZone
-					,[GlobalFolder] = @GlobalFolder
-				WHERE
-[GlobalSettingID] = @GlobalSettingId 
-				
-			
-
+ter  
+     ,[EnablePeopleSearch] = @EnablePeopleSearch  
+     ,[GlobalDateFormat] = @GlobalDateFormat  
+     ,[TimeZone] = @TimeZone  
+     ,[GlobalFolder] = @GlobalFolder  
+     ,[EnableScreeningQuestions] = @EnableScreeningQuestions
+    WHERE  
+[GlobalSettingID] = @GlobalSettingId   
+      
+     
 
 			]]></body>
 					</procedure>
@@ -57693,7 +57720,8 @@ ter],
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -57728,7 +57756,8 @@ ter],
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -57843,6 +57872,7 @@ ter],
 				<parameter name="@GlobalDateFormat" type="varchar" direction="Input" size="20" precision="0" scale="0" param="(20)" nulldefault="null"/>
 				<parameter name="@TimeZone" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@GlobalFolder" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
+				<parameter name="@EnableScreeningQuestions" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -57851,6 +57881,7 @@ ter
 					,@GlobalDateFormat
 					,@TimeZone
 					,@GlobalFolder
+					,@EnableScreeningQuestions
 					)
 				
 				-- Get the identity value
@@ -57910,7 +57941,8 @@ ter],
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 					
@@ -57942,7 +57974,8 @@ ter],
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -57957,7 +57990,8 @@ ter],
 					</procedure>
 				
 		<procedure owner="dbo" name="GlobalSettings_CustomGetPaymentDetail"  skip="true">
-			<comment><![CDATA[]]></comment>
+			<comment><![CDATA[
+]]></comment>
 			<parameters>
 				<parameter name="@SiteID" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 			</parameters>
@@ -57993,7 +58027,8 @@ ter],
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -58028,7 +58063,8 @@ ter],
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -58091,7 +58127,8 @@ ter],
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -58127,7 +58164,8 @@ ter],
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -58162,7 +58200,8 @@ ter],
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -65500,7 +65539,8 @@ tModifiedBy
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
 					[PreferredContactMethod],
-					[AdvertiserLogoUrl]
+					[AdvertiserLogoUrl],
+					[AllowPeopleSearchAccess]
 				FROM
 					[dbo].[Advertisers]
 					
@@ -65564,7 +65604,7 @@ tModifiedBy
 				EXEC sp_executesql @SQL
 
 				-- Return paged results
-				SELECT O.[AdvertiserID], O.[SiteID], O.[AdvertiserAccountTypeID], O.[AdvertiserBusinessTypeID], O.[AdvertiserAccountStatusID], O.[CompanyName], O.[BusinessNumber], O.[StreetAddress1], O.[StreetAddress2], O.[LastModified], O.[LastModifiedBy], O.[PostalAddress1], O.[PostalAddress2], O.[WebAddress], O.[NoOfEmployees], O.[FirstApprovedDate], O.[Profile], O.[CharityNumber], O.[SearchField], O.[FreeTrialStartDate], O.[FreeTrialEndDate], O.[AccountsPayableEmail], O.[RequireLogonForExternalApplication], O.[AdvertiserLogo], O.[LinkedInLogo], O.[LinkedInCompanyId], O.[LinkedInEmail], O.[RegisterDate], O.[ExternalAdvertiserID], O.[VideoLink], O.[Industry], O.[NominatedCompanyRole], O.[NominatedCompanyFirstName], O.[NominatedCompanyLastName], O.[NominatedCompanyEmailAddress], O.[NominatedCompanyPhone], O.[PreferredContactMethod], O.[AdvertiserLogoUrl]
+				SELECT O.[AdvertiserID], O.[SiteID], O.[AdvertiserAccountTypeID], O.[AdvertiserBusinessTypeID], O.[AdvertiserAccountStatusID], O.[CompanyName], O.[BusinessNumber], O.[StreetAddress1], O.[StreetAddress2], O.[LastModified], O.[LastModifiedBy], O.[PostalAddress1], O.[PostalAddress2], O.[WebAddress], O.[NoOfEmployees], O.[FirstApprovedDate], O.[Profile], O.[CharityNumber], O.[SearchField], O.[FreeTrialStartDate], O.[FreeTrialEndDate], O.[AccountsPayableEmail], O.[RequireLogonForExternalApplication], O.[AdvertiserLogo], O.[LinkedInLogo], O.[LinkedInCompanyId], O.[LinkedInEmail], O.[RegisterDate], O.[ExternalAdvertiserID], O.[VideoLink], O.[Industry], O.[NominatedCompanyRole], O.[NominatedCompanyFirstName], O.[NominatedCompanyLastName], O.[NominatedCompanyEmailAddress], O.[NominatedCompanyPhone], O.[PreferredContactMethod], O.[AdvertiserLogoUrl], O.[AllowPeopleSearchAccess]
 				FROM
 				    [dbo].[Advertisers] O,
 				    #PageIndex PageIndex
@@ -65635,6 +65675,7 @@ tModifiedBy
 				<parameter name="@NominatedCompanyPhone" type="varchar" direction="Input" size="40" precision="0" scale="0" param="(40)" nulldefault=""/>
 				<parameter name="@PreferredContactMethod" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
 				<parameter name="@AdvertiserLogoUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault=""/>
+				<parameter name="@AllowPeopleSearchAccess" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault=""/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -65677,6 +65718,7 @@ tModifiedBy
 					,[NominatedCompanyPhone]
 					,[PreferredContactMethod]
 					,[AdvertiserLogoUrl]
+					,[AllowPeopleSearchAccess]
 					)
 				VALUES
 					(
@@ -65717,6 +65759,7 @@ tModifiedBy
 					,@NominatedCompanyPhone
 					,@PreferredContactMethod
 					,@AdvertiserLogoUrl
+					,@AllowPeopleSearchAccess
 					)
 				
 				-- Get the identity value
@@ -65773,6 +65816,7 @@ tModifiedBy
 				<parameter name="@NominatedCompanyPhone" type="varchar" direction="Input" size="40" precision="0" scale="0" param="(40)" nulldefault=""/>
 				<parameter name="@PreferredContactMethod" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
 				<parameter name="@AdvertiserLogoUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault=""/>
+				<parameter name="@AllowPeopleSearchAccess" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault=""/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -65818,6 +65862,7 @@ tModifiedBy
 					,[NominatedCompanyPhone] = @NominatedCompanyPhone
 					,[PreferredContactMethod] = @PreferredContactMethod
 					,[AdvertiserLogoUrl] = @AdvertiserLogoUrl
+					,[AllowPeopleSearchAccess] = @AllowPeopleSearchAccess
 				WHERE
 [AdvertiserID] = @AdvertiserId 
 				
@@ -65895,7 +65940,8 @@ tModifiedBy
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
 					[PreferredContactMethod],
-					[AdvertiserLogoUrl]
+					[AdvertiserLogoUrl],
+					[AllowPeopleSearchAccess]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -65958,7 +66004,8 @@ tModifiedBy
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
 					[PreferredContactMethod],
-					[AdvertiserLogoUrl]
+					[AdvertiserLogoUrl],
+					[AllowPeopleSearchAccess]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -66021,7 +66068,8 @@ tModifiedBy
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
 					[PreferredContactMethod],
-					[AdvertiserLogoUrl]
+					[AdvertiserLogoUrl],
+					[AllowPeopleSearchAccess]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -66084,7 +66132,8 @@ tModifiedBy
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
 					[PreferredContactMethod],
-					[AdvertiserLogoUrl]
+					[AdvertiserLogoUrl],
+					[AllowPeopleSearchAccess]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -66147,7 +66196,8 @@ tModifiedBy
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
 					[PreferredContactMethod],
-					[AdvertiserLogoUrl]
+					[AdvertiserLogoUrl],
+					[AllowPeopleSearchAccess]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -66208,7 +66258,8 @@ tModifiedBy
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
 					[PreferredContactMethod],
-					[AdvertiserLogoUrl]
+					[AdvertiserLogoUrl],
+					[AllowPeopleSearchAccess]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -66269,6 +66320,7 @@ SELECT dbo.[Advertisers].[AdvertiserID]
        ,dbo.[Advertisers].[NominatedCompanyPhone]
        ,dbo.[Advertisers].[PreferredContactMethod]
        ,dbo.[Advertisers].[AdvertiserLogoUrl]
+       ,dbo.[Advertisers].[AllowPeopleSearchAccess]
   FROM dbo.[Advertisers]
  WHERE EXISTS (SELECT 1
                  FROM dbo.[AdvertiserJobPricing] 
@@ -66327,6 +66379,7 @@ SELECT dbo.[Advertisers].[AdvertiserID]
 				<parameter name="@NominatedCompanyPhone" type="varchar" direction="Input" size="40" precision="0" scale="0" param="(40)" nulldefault="null"/>
 				<parameter name="@PreferredContactMethod" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@AdvertiserLogoUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
+				<parameter name="@AllowPeopleSearchAccess" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -66371,6 +66424,7 @@ SELECT dbo.[Advertisers].[AdvertiserID]
 	, [NominatedCompanyPhone]
 	, [PreferredContactMethod]
 	, [AdvertiserLogoUrl]
+	, [AllowPeopleSearchAccess]
     FROM
 	[dbo].[Advertisers]
     WHERE 
@@ -66410,6 +66464,7 @@ SELECT dbo.[Advertisers].[AdvertiserID]
 	AND ([NominatedCompanyPhone] = @NominatedCompanyPhone OR @NominatedCompanyPhone IS NULL)
 	AND ([PreferredContactMethod] = @PreferredContactMethod OR @PreferredContactMethod IS NULL)
 	AND ([AdvertiserLogoUrl] = @AdvertiserLogoUrl OR @AdvertiserLogoUrl IS NULL)
+	AND ([AllowPeopleSearchAccess] = @AllowPeopleSearchAccess OR @AllowPeopleSearchAccess IS NULL)
 						
   END
   ELSE
@@ -66453,6 +66508,7 @@ SELECT dbo.[Advertisers].[AdvertiserID]
 	, [NominatedCompanyPhone]
 	, [PreferredContactMethod]
 	, [AdvertiserLogoUrl]
+	, [AllowPeopleSearchAccess]
     FROM
 	[dbo].[Advertisers]
     WHERE 
@@ -66492,6 +66548,7 @@ SELECT dbo.[Advertisers].[AdvertiserID]
 	OR ([NominatedCompanyPhone] = @NominatedCompanyPhone AND @NominatedCompanyPhone is not null)
 	OR ([PreferredContactMethod] = @PreferredContactMethod AND @PreferredContactMethod is not null)
 	OR ([AdvertiserLogoUrl] = @AdvertiserLogoUrl AND @AdvertiserLogoUrl is not null)
+	OR ([AllowPeopleSearchAccess] = @AllowPeopleSearchAccess AND @AllowPeopleSearchAccess is not null)
 	SELECT @@ROWCOUNT			
   END
 				]]></body>
@@ -66526,7 +66583,7 @@ SELECT dbo.[Advertisers].[AdvertiserID]
 				ORDER BY {1}
 				
 				-- Return paged results
-				SELECT O.[AdvertiserID], O.[SiteID], O.[AdvertiserAccountTypeID], O.[AdvertiserBusinessTypeID], O.[AdvertiserAccountStatusID], O.[CompanyName], O.[BusinessNumber], O.[StreetAddress1], O.[StreetAddress2], O.[LastModified], O.[LastModifiedBy], O.[PostalAddress1], O.[PostalAddress2], O.[WebAddress], O.[NoOfEmployees], O.[FirstApprovedDate], O.[Profile], O.[CharityNumber], O.[SearchField], O.[FreeTrialStartDate], O.[FreeTrialEndDate], O.[AccountsPayableEmail], O.[RequireLogonForExternalApplication], O.[AdvertiserLogo], O.[LinkedInLogo], O.[LinkedInCompanyId], O.[LinkedInEmail], O.[RegisterDate], O.[ExternalAdvertiserID], O.[VideoLink], O.[Industry], O.[NominatedCompanyRole], O.[NominatedCompanyFirstName], O.[NominatedCompanyLastName], O.[NominatedCompanyEmailAddress], O.[NominatedCompanyPhone], O.[PreferredContactMethod], O.[AdvertiserLogoUrl]
+				SELECT O.[AdvertiserID], O.[SiteID], O.[AdvertiserAccountTypeID], O.[AdvertiserBusinessTypeID], O.[AdvertiserAccountStatusID], O.[CompanyName], O.[BusinessNumber], O.[StreetAddress1], O.[StreetAddress2], O.[LastModified], O.[LastModifiedBy], O.[PostalAddress1], O.[PostalAddress2], O.[WebAddress], O.[NoOfEmployees], O.[FirstApprovedDate], O.[Profile], O.[CharityNumber], O.[SearchField], O.[FreeTrialStartDate], O.[FreeTrialEndDate], O.[AccountsPayableEmail], O.[RequireLogonForExternalApplication], O.[AdvertiserLogo], O.[LinkedInLogo], O.[LinkedInCompanyId], O.[LinkedInEmail], O.[RegisterDate], O.[ExternalAdvertiserID], O.[VideoLink], O.[Industry], O.[NominatedCompanyRole], O.[NominatedCompanyFirstName], O.[NominatedCompanyLastName], O.[NominatedCompanyEmailAddress], O.[NominatedCompanyPhone], O.[PreferredContactMethod], O.[AdvertiserLogoUrl], O.[AllowPeopleSearchAccess]
 				FROM
 				    [dbo].[Advertisers] O,
 				    #PageIndex PageIndex

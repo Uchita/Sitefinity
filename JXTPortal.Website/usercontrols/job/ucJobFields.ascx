@@ -21,7 +21,7 @@
                         </div>
                     </li>
                 </ul>
-                <hr /> 
+                <hr />
                 <span class="form-message">
                     <asp:Literal ID="ltlMessage" runat="server" />
                     <asp:CustomValidator ID="CusValJobProfessionRole" runat="server" Display="Dynamic"
@@ -95,8 +95,8 @@
                                 </ajaxToolkit:CalendarExtender>
                                 <asp:RequiredFieldValidator ID="rqStartDate" runat="server" ControlToValidate="tbStartDate"
                                     SetFocusOnError="true" Display="Dynamic" />
-
-                                <asp:CustomValidator ID="cvStartDate" runat="server" ControlToValidate="tbStartDate" OnServerValidate="cvStartDate_ServerValidate" />
+                                <asp:CustomValidator ID="cvStartDate" runat="server" ControlToValidate="tbStartDate"
+                                    OnServerValidate="cvStartDate_ServerValidate" />
                             </div>
                         </li>
                     </asp:PlaceHolder>
@@ -382,13 +382,13 @@
                         <asp:Label ID="lbWorkType" runat="server" AssociatedControlID="ddlWorkType">
                             <JXTControl:ucLanguageLiteral ID="ltWorktype" runat="server" SetLanguageCode="LabelWorktype" />
                             <!-- Worktype-->
-                            <span class="form-required">*</span></asp:label>
-                            <div>
-                                <asp:DropDownList runat="server" ID="ddlWorkType" DataTextField="SiteWorkTypeName"
-                                    DataValueField="WorkTypeID" CssClass="form-multiple-column" />
-                                <asp:RequiredFieldValidator ID="ReqVal_WorkType" runat="server" InitialValue="0"
-                                    ControlToValidate="ddlWorkType" SetFocusOnError="true" Display="Dynamic" />
-                            </div>
+                            <span class="form-required">*</span></asp:Label>
+                        <div>
+                            <asp:DropDownList runat="server" ID="ddlWorkType" DataTextField="SiteWorkTypeName"
+                                DataValueField="WorkTypeID" CssClass="form-multiple-column" />
+                            <asp:RequiredFieldValidator ID="ReqVal_WorkType" runat="server" InitialValue="0"
+                                ControlToValidate="ddlWorkType" SetFocusOnError="true" Display="Dynamic" />
+                        </div>
                     </li>
                     <h3>
                         <JXTControl:ucLanguageLiteral ID="ltJobApplicationDetails" runat="server" SetLanguageCode="LabelJobApplicationDetails" />
@@ -399,18 +399,18 @@
                             <JXTControl:ucLanguageLiteral ID="ltApplicationEmail" runat="server" SetLanguageCode="LabelApplicationEmail" />
                             <!-- Application email -->
                             <span class="form-required">*</span></asp:Label>
-                            <div>
-                                <asp:TextBox ID="txtApplicationEmailAddress" runat="server" />
-                                <asp:RequiredFieldValidator ID="ReqVal_ApplicationEmailAddress" runat="server" ControlToValidate="txtApplicationEmailAddress"
-                                    SetFocusOnError="true" Display="Dynamic" />
-                                <asp:RegularExpressionValidator ID="revEmailAddress" runat="server" ControlToValidate="txtApplicationEmailAddress"
-                                    SetFocusOnError="true" Display="Dynamic" ErrorMessage="Invalid email address">  
-                                </asp:RegularExpressionValidator>
-                            </div>
-                            <p class="help-block">
-                                <JXTControl:ucLanguageLiteral ID="ltAllApplicationsSendEmail" runat="server" SetLanguageCode="LabelAllApplicationsSendEmail" />
-                                <!-- All applications for job will be sent to this email address -->
-                            </p>
+                        <div>
+                            <asp:TextBox ID="txtApplicationEmailAddress" runat="server" />
+                            <asp:RequiredFieldValidator ID="ReqVal_ApplicationEmailAddress" runat="server" ControlToValidate="txtApplicationEmailAddress"
+                                SetFocusOnError="true" Display="Dynamic" />
+                            <asp:RegularExpressionValidator ID="revEmailAddress" runat="server" ControlToValidate="txtApplicationEmailAddress"
+                                SetFocusOnError="true" Display="Dynamic" ErrorMessage="Invalid email address">  
+                            </asp:RegularExpressionValidator>
+                        </div>
+                        <p class="help-block">
+                            <JXTControl:ucLanguageLiteral ID="ltAllApplicationsSendEmail" runat="server" SetLanguageCode="LabelAllApplicationsSendEmail" />
+                            <!-- All applications for job will be sent to this email address -->
+                        </p>
                     </li>
                     <asp:UpdatePanel ID="updatePanelapplicationmethod" runat="server">
                         <ContentTemplate>
@@ -503,18 +503,18 @@
                         <asp:Label ID="lbUploadFile" runat="server" AssociatedControlID="docInput">
                             <JXTControl:ucLanguageLiteral ID="ltUploadFile" runat="server" SetLanguageCode="LabelUploadFile" />
                             <!-- Upload file -->
-                            </asp:Label>
-                            <div>
-                                <asp:FileUpload ID="docInput" runat="server" />&nbsp;
-                                <asp:RequiredFieldValidator ID="rfvAdvJobTemplateLogoImage" runat="server" ControlToValidate="docInput"
-                                    SetFocusOnError="true" Display="Dynamic" Enabled="false"></asp:RequiredFieldValidator>
-                                <asp:CustomValidator ID="cvalFile" runat="server" OnServerValidate="cvalFile_ServerValidate"
-                                    SetFocusOnError="true" Display="Dynamic"></asp:CustomValidator>
-                                <asp:LinkButton ID="LinkButton1" runat="server" Text="Cancel" CausesValidation="false"
-                                    OnClientClick="CancelNewLogoClicked(); return false;" />
-                            </div>
-                            <br />
-                            <br />
+                        </asp:Label>
+                        <div>
+                            <asp:FileUpload ID="docInput" runat="server" />&nbsp;
+                            <asp:RequiredFieldValidator ID="rfvAdvJobTemplateLogoImage" runat="server" ControlToValidate="docInput"
+                                SetFocusOnError="true" Display="Dynamic" Enabled="false"></asp:RequiredFieldValidator>
+                            <asp:CustomValidator ID="cvalFile" runat="server" OnServerValidate="cvalFile_ServerValidate"
+                                SetFocusOnError="true" Display="Dynamic"></asp:CustomValidator>
+                            <asp:LinkButton ID="LinkButton1" runat="server" Text="Cancel" CausesValidation="false"
+                                OnClientClick="CancelNewLogoClicked(); return false;" />
+                        </div>
+                        <br />
+                        <br />
                     </li>
                     <li class="form-line" id="jobs-jobtemplateid-field">
                         <asp:Label ID="lbJobTemplate" runat="server" AssociatedControlID="ddlJobTemplateID">
@@ -550,6 +550,38 @@
                                     Type="Double" ControlToValidate="txtJobItemPrice" SetFocusOnError="true" Display="Dynamic" />
                             </div>
                         </li>
+                    </asp:PlaceHolder>
+                    <asp:PlaceHolder ID="phScreeningQuestionsTemplates" runat="server" Visible="false">
+                        <asp:UpdatePanel ID="upScreeningQuestions" runat="server">
+                            <ContentTemplate>
+                                <li class="form-line" id="Li2">
+                                    <asp:Label ID="lbScreeningQuestionsTemplate" runat="server" AssociatedControlID="ddlJobTemplateID">
+                                        <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral3" runat="server" SetLanguageCode="LabelSelectScreeningQuestionsTemplate" />
+                                    </asp:Label>
+                                    <asp:DropDownList runat="server" ID="ddlScreeningQuestionsTemplate" DataTextField="TemplateName"
+                                        DataValueField="ScreeningQuestionsTemplateId" CssClass="form-multiple-column"
+                                        OnSelectedIndexChanged="ddlScreeningQuestionsTemplate_SelectedIndexChanged" AutoPostBack="true" />
+                                    <asp:PlaceHolder ID="phScreeningQuestions" runat="server" Visible="true">
+                                        <asp:Repeater ID="rptScreeningQuestions" runat="server" OnItemDataBound="rptScreeningQuestions_ItemDataBound">
+                                            <HeaderTemplate>
+                                                <div>
+                                                    <span id="lblQstnTempalate">
+                                                        <ul class="SQstTemp" id="QstnTemp1" style="display: block;">
+                                            </HeaderTemplate>
+                                            <ItemTemplate>
+                                                <li><strong>
+                                                    <asp:Literal ID="ltQuestion" runat="server" /></strong>
+                                                    <asp:Literal ID="ltOptions" runat="server" />
+                                                </li>
+                                            </ItemTemplate>
+                                            <FooterTemplate>
+                                                </ul> </span> </div>
+                                            </FooterTemplate>
+                                        </asp:Repeater>
+                                    </asp:PlaceHolder>
+                                </li>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
                     </asp:PlaceHolder>
                     <h3>
                         <JXTControl:ucLanguageLiteral ID="ltJobAdvertisementOption" runat="server" SetLanguageCode="LabelJobAdvertisementOption" />
@@ -640,10 +672,10 @@
                     </asp:PlaceHolder>
                     <asp:PlaceHolder ID="phlastmodifiedByAdvuserID" runat="server">
                         <li class="form-line" id="jobs-lastmodifiedbyadvertiseruserid-field">
-                            <asp:label id="lbLastModifiedByAdvertiserUser" runat="server" associatedcontrolid="lblLastModifiedByAdvertiserUserId">
+                            <asp:Label ID="lbLastModifiedByAdvertiserUser" runat="server" AssociatedControlID="lblLastModifiedByAdvertiserUserId">
                                 <JXTControl:ucLanguageLiteral ID="ltJobFieldLastModifiedByAdvertiserUser" runat="server"
                                     SetLanguageCode="LabelLastModifiedByAdvertiserUser" />
-                                :</asp:label>
+                                :</asp:Label>
                             <div>
                                 <asp:Label ID="lblLastModifiedByAdvertiserUserId" runat="server" />
                             </div>
@@ -670,20 +702,19 @@
     </div>
 </div>
 <%
-        if (string.IsNullOrEmpty(MapKey))
-        {
+    if (string.IsNullOrEmpty(MapKey))
+    {
 %>
 <script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=false&v=3.exp&signed_in=true&libraries=places"></script>
 <%
-        }
-        else
-        {
+    }
+    else
+    {
 %>
 <script type="text/javascript" src="//maps.google.com/maps/api/js?key=<%=MapKey %>&sensor=false&v=3.exp&signed_in=true&libraries=places"></script>
 <%
-        }
+    }
 %>
-
 <script type='text/javascript'>
 
     //Google Map Variable

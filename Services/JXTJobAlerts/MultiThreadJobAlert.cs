@@ -621,7 +621,7 @@ namespace JXTJobAlerts
             }
             else if (hasLogo)
             {
-                srcUrl = string.Format(@"{0}://{1}/getfile.aspx?advertiserid={2}&ver={3}", httpScheme, siteUrl, advertiserId, , lastModified.ToEpocTimestamp());
+                srcUrl = string.Format(@"{0}://{1}/getfile.aspx?advertiserid={2}&ver={3}", httpScheme, siteUrl, advertiserId, lastModified.ToEpocTimestamp());
             }
 
             if (string.IsNullOrWhiteSpace(srcUrl))

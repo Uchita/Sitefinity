@@ -136,7 +136,7 @@ namespace JXTPortal.Website.Admin
                         {
                             if (consultant.ImageUrl != null)
                             {
-                                imImage.ImageUrl = "/getfile.aspx?consultantid=" + consultant.ConsultantId;
+                                imImage.ImageUrl = string.Format("/getfile.aspx?consultantid={0}&ver={1}",consultant.ConsultantId,consultant.LastModified.ToEpocTimestamp());
                                 imImage.Visible = true;
                                 cbRemoveImage.Visible = true;
                             }

@@ -523,7 +523,7 @@ namespace JXTPortal.Website.usercontrols.job
 
                                         if (!string.IsNullOrWhiteSpace(consultants[0].ConsultantImageUrl))
                                         {
-                                            consultantimageurl = string.Format("/media/{0}/{1}", ConfigurationManager.AppSettings["ConsultantsFolder"], consultants[0].ConsultantImageUrl);
+                                            consultantimageurl = string.Format("/media/{0}/{1}?ver={2}", ConfigurationManager.AppSettings["ConsultantsFolder"], consultants[0].ConsultantImageUrl, consultants[0].LastModified.ToEpocTimestamp());
                                         }
                                         else
                                         {
@@ -679,9 +679,10 @@ namespace JXTPortal.Website.usercontrols.job
                                         {
                                             if (!string.IsNullOrWhiteSpace(logo.JobTemplateLogoUrl))
                                             {
-                                                strAdvertiserLogo = String.Format(@"<img src='/media/{0}/{1}' alt='{2}' />",
+                                                strAdvertiserLogo = String.Format(@"<img src='/media/{0}/{1}?ver={2}' alt='{3}' />",
                                                                                             ConfigurationManager.AppSettings["AdvertiserJobTemplateLogoFolder"],
                                                                                             logo.JobTemplateLogoUrl,
+                                                                                            job.LastModified.ToEpocTimestamp(),
                                                                                             job.CompanyName);
                                             }
                                             else
@@ -727,7 +728,7 @@ namespace JXTPortal.Website.usercontrols.job
 
                                         if (!string.IsNullOrWhiteSpace(consultants[0].ConsultantImageUrl))
                                         {
-                                            consultantimageurl = string.Format("/media/{0}/{1}", ConfigurationManager.AppSettings["ConsultantsFolder"], consultants[0].ConsultantImageUrl);
+                                            consultantimageurl = string.Format("/media/{0}/{1}?ver={2}", ConfigurationManager.AppSettings["ConsultantsFolder"], consultants[0].ConsultantImageUrl, consultants[0].LastModified.ToEpocTimestamp());
                                         }
                                         else
                                         {

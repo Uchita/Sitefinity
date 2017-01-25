@@ -144,7 +144,9 @@ namespace JXTPortal.Website
                     {
                         if (consultant.ImageUrl != null)
                         {
-                            strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_IMAGEURL, "/getfile.aspx?consultantid=" + consultant.ConsultantId.ToString());
+                            var contentURL = string.Format("/getfile.aspx?consultantid={0}&ver={1}", consultant.ConsultantId.ToString(),consultant.LastModified.ToEpocTimestamp());
+
+                            strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_IMAGEURL, contentURL);
                         }
                         else
                         {

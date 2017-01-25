@@ -24,7 +24,7 @@ using SectionIO;
 
 public partial class JobTemplatesEdit : System.Web.UI.Page
 {
-    public ICacheFlusher CacheFlusher {get; set;}
+    public ICacheFlusher CacheFlusher { get; set; }
 
     #region "Properties"
 
@@ -143,12 +143,16 @@ public partial class JobTemplatesEdit : System.Web.UI.Page
                 chkEducationGlobalTemplate.Checked = template.GlobalTemplate;
 
                 if (string.IsNullOrWhiteSpace(template.JobTemplateLogoUrl))
-                {                    
-                    imgAdvJobTemplateLogo.ImageUrl = string.Format("{0}?jobtemplateid={1}&ver={2}", Page.ResolveUrl("~/getfile.aspx"),Convert.ToString(JobTemplateId), template.LastModified.ToEpocTimestamp());
+                {
+                    imgAdvJobTemplateLogo.ImageUrl = string.Format("{0}?jobtemplateid={1}&ver={2}", Page.ResolveUrl("~/getfile.aspx"), Convert.ToString(JobTemplateId), template.LastModified.ToEpocTimestamp());
                 }
                 else if (template.JobTemplateLogo != null && template.JobTemplateLogo.Length > 0)
                 {
-                    imgAdvJobTemplateLogo.ImageUrl = string.Format("/{0}/{1}/{2}", ConfigurationManager.AppSettings["RootFolder"], ConfigurationManager.AppSettings["JobTemplatesFolder"], template.JobTemplateLogoUrl);
+                    imgAdvJobTemplateLogo.ImageUrl = string.Format("/{0}/{1}/{2}?ver={3}",
+                                                    ConfigurationManager.AppSettings["RootFolder"],
+                                                    ConfigurationManager.AppSettings["JobTemplatesFolder"],
+                                                    template.JobTemplateLogoUrl,
+                                                    template.LastModified.ToEpocTimestamp());
                 }
 
                 //Only show the logo if there is one available

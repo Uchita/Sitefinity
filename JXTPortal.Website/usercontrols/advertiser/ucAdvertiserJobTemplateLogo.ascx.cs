@@ -152,6 +152,9 @@ namespace JXTPortal.Website.Admin.UserControls
 
         protected void rptAdvJobTemplateLogo_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
+          //  JXTPortal.Entities.AdvertiserJobTemplateLogo advertiserLogo = AdvertiserJobTemplateLogoService.GetByAdvertiserJobTemplateLogoId(SessionData);
+            JXTPortal.Entities.AdvertiserJobTemplateLogo advJobTemplateLogo = AdvertiserJobTemplateLogoService.GetByAdvertiserJobTemplateLogoId(Convert.ToInt32(LogoID));
+
             if (e.Item.ItemType == ListItemType.Header)
             {
                 Literal ltHeaderAdvJobTemplateLogoID = e.Item.FindControl("ltHeaderAdvJobTemplateLogoID") as Literal;
@@ -168,16 +171,20 @@ namespace JXTPortal.Website.Admin.UserControls
             {
                 Literal ltAdvJobTemplateLogoID = e.Item.FindControl("ltAdvJobTemplateLogoID") as Literal;
                 Literal ltAdvJobTemplateLogoName = e.Item.FindControl("ltAdvJobTemplateLogoName") as Literal;
+
                 System.Web.UI.WebControls.Image imgAdvJobTemplateLogo = e.Item.FindControl("imgAdvJobTemplateLogo") as System.Web.UI.WebControls.Image;
 
                 DataRowView rowAdvJobTemplateLogo = (DataRowView)e.Item.DataItem;
                 ltAdvJobTemplateLogoID.Text = Convert.ToString(rowAdvJobTemplateLogo["AdvertiserJobTemplateLogoId"]);
                 ltAdvJobTemplateLogoName.Text = Convert.ToString(rowAdvJobTemplateLogo["JobLogoName"]);
 
+                JXTPortal.Entities.AdvertiserJobTemplateLogo advertiserLogo = AdvertiserJobTemplateLogoService.GetByAdvertiserJobTemplateLogoId(Convert.ToInt32(rowAdvJobTemplateLogo["AdvertiserJobTemplateLogoId"]));
+
                 if (string.IsNullOrWhiteSpace(Convert.ToString(rowAdvJobTemplateLogo["JobTemplateLogoUrl"])))
                 {
-                    imgAdvJobTemplateLogo.ImageUrl = Page.ResolveUrl("~/getfile.aspx") + "?advertiserjobtemplatelogoid=" +
-                        Convert.ToString(rowAdvJobTemplateLogo["AdvertiserJobTemplateLogoId"]);
+                    imgAdvJobTemplateLogo.ImageUrl = string.Format("{0}?advertiserjobtemplatelogoid={1}", 
+                                                                    Page.ResolveUrl("~/getfile.aspx"),
+                                                                    Convert.ToString(rowAdvJobTemplateLogo["AdvertiserJobTemplateLogoId"]));
                 }
                 else
                 {
@@ -237,8 +244,7 @@ namespace JXTPortal.Website.Admin.UserControls
             {
                 imgAdvJobTemplateLogoEdit.Visible = true;
 
-                JXTPortal.Entities.AdvertiserJobTemplateLogo advJobTemplateLogo =
-                    AdvertiserJobTemplateLogoService.GetByAdvertiserJobTemplateLogoId(Convert.ToInt32(LogoID));
+                JXTPortal.Entities.AdvertiserJobTemplateLogo advJobTemplateLogo = AdvertiserJobTemplateLogoService.GetByAdvertiserJobTemplateLogoId(Convert.ToInt32(LogoID));
                 // Make sure the logo belongs to the advertiser
                 if (advJobTemplateLogo == null)
                 {
@@ -287,8 +293,8 @@ namespace JXTPortal.Website.Admin.UserControls
                 }
 
                 txtAdvJobTemplateLogoName.Text = advJobTemplateLogo.JobLogoName;
-                imgAdvJobTemplateLogoEdit.ImageUrl = Page.ResolveUrl("~/getfile.aspx") + "?advertiserjobtemplatelogoid=" +
-                        Convert.ToString(LogoID);
+
+                imgAdvJobTemplateLogoEdit.ImageUrl = string.Format("{0}?advertiserjobtemplatelogoid={1}", Page.ResolveUrl("~/getfile.aspx"), Convert.ToString(LogoID));
 
             }
 

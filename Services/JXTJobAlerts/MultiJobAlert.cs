@@ -6,6 +6,7 @@ using System.Data;
 using JXTPortal.Entities;
 using JXTPortal;
 using JXTPortal.Common;
+using JXTPortal.Common.Extensions;
 using System.Configuration;
 using JXTPortal.EmailSender;
 using System.Collections.Specialized;
@@ -13,6 +14,7 @@ using System.Web;
 using System.Net.Mail;
 using System.Diagnostics;
 using System.Threading.Tasks;
+
 
 namespace JXTJobAlerts
 {
@@ -315,15 +317,16 @@ namespace JXTJobAlerts
                                                 {
                                                     if (!string.IsNullOrWhiteSpace(advertiser.AdvertiserLogoUrl))
                                                     {
-                                                        strAdvertiserLogo = string.Format(@"<a href='#'><img src='http://{0}/media/{1}/{2}' border='0' hspace='0' vspace='0' alt='{3}' /></a>", siteurl, ConfigurationManager.AppSettings["AdvertisersFolder"], advertiser.AdvertiserLogoUrl, vjs.CompanyName);
+                                                        strAdvertiserLogo = string.Format(@"<a href='#'><img src='http://{0}/media/{1}/{2}?ver={3}' border='0' hspace='0' vspace='0' alt='{4}' /></a>", siteurl, ConfigurationManager.AppSettings["AdvertisersFolder"], advertiser.AdvertiserLogoUrl, advertiser.LastModified.ToEpocTimestamp(), vjs.CompanyName);
                                                     }
                                                     else
                                                     {
                                                         if (advertiser.AdvertiserLogo != null)
                                                         {
-                                                            strAdvertiserLogo = String.Format(@"<a href='#'><img src='http://{0}/getfile.aspx?advertiserid={1}' border='0' hspace='0' vspace='0' alt='{2}' /></a>",
+                                                            strAdvertiserLogo = String.Format(@"<a href='#'><img src='http://{0}/getfile.aspx?advertiserid={1}&ver={2}' border='0' hspace='0' vspace='0' alt='{3}' /></a>",
                                                                                                 siteurl,
                                                                                                 vjs.AdvertiserId.Value,
+                                                                                                advertiser.LastModified.ToEpocTimestamp(),
                                                                                                 vjs.CompanyName);
                                                         }
                                                     }

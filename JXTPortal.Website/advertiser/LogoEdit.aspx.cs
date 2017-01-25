@@ -74,7 +74,6 @@ namespace JXTPortal.Website.advertiser
                     {
                         lblNoLogo.Visible = false;
 
-                        //imgLogo.ImageUrl = Page.ResolveUrl("~/getfile.aspx") + "?advertiserid=" + Convert.ToString(advertiser.AdvertiserId);
                         imgLogo.ImageUrl = string.Format("{0}?advertiserid={1}&ver={2}", Page.ResolveUrl("~/getfile.aspx"), Convert.ToString(advertiser.AdvertiserId), advertiser.LastModified.ToEpocTimestamp());
 
                     }
@@ -83,7 +82,7 @@ namespace JXTPortal.Website.advertiser
                 {
                     lblNoLogo.Visible = false;
 
-                    imgLogo.ImageUrl = string.Format("/media/{0}/{1}", ConfigurationManager.AppSettings["AdvertisersFolder"], advertiser.AdvertiserLogoUrl);
+                    imgLogo.ImageUrl = string.Format("/media/{0}/{1}?ver={2}", ConfigurationManager.AppSettings["AdvertisersFolder"], advertiser.AdvertiserLogoUrl, advertiser.LastModified.ToEpocTimestamp());
                 }
             }
         }

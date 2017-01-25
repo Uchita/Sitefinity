@@ -339,7 +339,7 @@ namespace JXTPortal.Website
                 {
                     if (consultant.ImageUrl != null)
                     {
-                        consultantimageurl = string.Format("/getfile.aspx?consultantid={0}", consultant.ConsultantId);
+                        consultantimageurl = string.Format("/getfile.aspx?consultantid={0}&ver={1}", consultant.ConsultantId, consultant.LastModified.ToEpocTimestamp());
                     }
                 }
 

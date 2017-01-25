@@ -483,7 +483,9 @@ namespace JXTPortal.Website.usercontrols.job
                 // Todo - The hyperlink is hardcoded to job but it should be for advertiser
                 if (viewJobSearch.AdvertiserId.HasValue && viewJobSearch.HasAdvertiserLogo > 0) //AdvertiserJobTemplateLogoId
                 {
-                    strAdvertiserLogo = buildImageURL(Utils.GetJobUrl(viewJobSearch.JobId, viewJobSearch.JobFriendlyName), Convert.ToString(viewJobSearch.AdvertiserId.Value), Convert.ToString(viewJobSearch.DatePosted.ToEpocTimestamp()), viewJobSearch.CompanyName);
+                    string jobUrl = Utils.GetJobUrl(viewJobSearch.JobId, viewJobSearch.JobFriendlyName);
+
+                    strAdvertiserLogo = buildImageURL(jobUrl, viewJobSearch.AdvertiserId.Value, viewJobSearch.DatePosted.ToEpocTimestamp(), viewJobSearch.CompanyName);
                 }
 
 
@@ -548,9 +550,9 @@ namespace JXTPortal.Website.usercontrols.job
         #endregion
 
 
-        public string buildImageURL(string jobURL, string advertiserID, string timestamp, string companyName )
+        public string buildImageURL(string jobURL, int advertiserID, long timestamp, string companyName )
         {
-            var imageUrl = string.Format("<img src='/getfile.aspx?advertiserid={0}&ver={1}' alt='{2}' />", advertiserID, timestamp,companyName);
+            var imageUrl = string.Format("<img src='/getfile.aspx?advertiserid={0}&ver={1}' alt='{2}' />", advertiserID, timestamp, companyName);
 
             var assetUrl = string.Format("<a href='{0}'>{1}</a>", jobURL,imageUrl);
 
@@ -602,7 +604,8 @@ namespace JXTPortal.Website.usercontrols.job
                 // Todo - The hyperlink is hardcoded to job but it should be for advertiser
                 if (viewJobSearch.AdvertiserId.HasValue && viewJobSearch.HasAdvertiserLogo > 0) //AdvertiserJobTemplateLogoId
                 {
-                    strAdvertiserLogo = buildImageURL(Utils.GetJobUrl(viewJobSearch.JobId, viewJobSearch.JobFriendlyName), Convert.ToString(viewJobSearch.AdvertiserId.Value), Convert.ToString(viewJobSearch.DatePosted.ToEpocTimestamp()), viewJobSearch.CompanyName);
+                    var jobUrl = Utils.GetJobUrl(viewJobSearch.JobId, viewJobSearch.JobFriendlyName);
+                    strAdvertiserLogo = buildImageURL(jobUrl, viewJobSearch.AdvertiserId.Value, viewJobSearch.DatePosted.ToEpocTimestamp(), viewJobSearch.CompanyName);
                                 
                 }
 

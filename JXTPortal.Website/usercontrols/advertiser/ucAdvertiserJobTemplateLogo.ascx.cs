@@ -152,9 +152,6 @@ namespace JXTPortal.Website.Admin.UserControls
 
         protected void rptAdvJobTemplateLogo_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-          //  JXTPortal.Entities.AdvertiserJobTemplateLogo advertiserLogo = AdvertiserJobTemplateLogoService.GetByAdvertiserJobTemplateLogoId(SessionData);
-            JXTPortal.Entities.AdvertiserJobTemplateLogo advJobTemplateLogo = AdvertiserJobTemplateLogoService.GetByAdvertiserJobTemplateLogoId(Convert.ToInt32(LogoID));
-
             if (e.Item.ItemType == ListItemType.Header)
             {
                 Literal ltHeaderAdvJobTemplateLogoID = e.Item.FindControl("ltHeaderAdvJobTemplateLogoID") as Literal;
@@ -178,13 +175,10 @@ namespace JXTPortal.Website.Admin.UserControls
                 ltAdvJobTemplateLogoID.Text = Convert.ToString(rowAdvJobTemplateLogo["AdvertiserJobTemplateLogoId"]);
                 ltAdvJobTemplateLogoName.Text = Convert.ToString(rowAdvJobTemplateLogo["JobLogoName"]);
 
-                JXTPortal.Entities.AdvertiserJobTemplateLogo advertiserLogo = AdvertiserJobTemplateLogoService.GetByAdvertiserJobTemplateLogoId(Convert.ToInt32(rowAdvJobTemplateLogo["AdvertiserJobTemplateLogoId"]));
-
                 if (string.IsNullOrWhiteSpace(Convert.ToString(rowAdvJobTemplateLogo["JobTemplateLogoUrl"])))
                 {
-                    imgAdvJobTemplateLogo.ImageUrl = string.Format("{0}?advertiserjobtemplatelogoid={1}", 
-                                                                    Page.ResolveUrl("~/getfile.aspx"),
-                                                                    Convert.ToString(rowAdvJobTemplateLogo["AdvertiserJobTemplateLogoId"]));
+                    string url = string.Format("~/getfile.aspx?advertiserjobtemplatelogoid={0}", Convert.ToString(rowAdvJobTemplateLogo["AdvertiserJobTemplateLogoId"]));
+                    imgAdvJobTemplateLogo.ImageUrl = Page.ResolveUrl(url);
                 }
                 else
                 {
@@ -293,8 +287,9 @@ namespace JXTPortal.Website.Admin.UserControls
                 }
 
                 txtAdvJobTemplateLogoName.Text = advJobTemplateLogo.JobLogoName;
-
-                imgAdvJobTemplateLogoEdit.ImageUrl = string.Format("{0}?advertiserjobtemplatelogoid={1}", Page.ResolveUrl("~/getfile.aspx"), Convert.ToString(LogoID));
+                
+                string url = string.Format("~/getfile.aspx?advertiserjobtemplatelogoid={0}", Convert.ToString(LogoID));
+                imgAdvJobTemplateLogoEdit.ImageUrl = Page.ResolveUrl(url);
 
             }
 

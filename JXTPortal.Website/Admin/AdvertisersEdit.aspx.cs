@@ -313,12 +313,12 @@ public partial class AdvertisersEdit : System.Web.UI.Page
                         {
                             if (string.IsNullOrWhiteSpace(advertiser.AdvertiserLogoUrl))
                             {
-                                imgLogo.ImageUrl = string.Format("~/getfile.aspx?advertiserid={0}&ver={1}", Convert.ToString(AdvertiserID), advertiser.LastModified.ToEpocTimestamp());
-                                
+                                string url = string.Format("~/getfile.aspx?advertiserid={0}&ver={1}", Convert.ToString(AdvertiserID), advertiser.LastModified.ToEpocTimestamp());
+                                imgLogo.ImageUrl = Page.ResolveUrl(url);
                             }
                             else
                             {
-                                imgLogo.ImageUrl = string.Format("/media/{0}/{1}?ver={2}", ConfigurationManager.AppSettings["AdvertisersFolder"], advertiser.AdvertiserLogoUrl,advertiser.LastModified.ToEpocTimestamp());
+                                imgLogo.ImageUrl = string.Format("/media/{0}/{1}?ver={2}", ConfigurationManager.AppSettings["AdvertisersFolder"], advertiser.AdvertiserLogoUrl, advertiser.LastModified.ToEpocTimestamp());
                             }
 
                             imgLogo.Visible = true;

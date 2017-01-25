@@ -164,6 +164,7 @@ namespace JXTJobAlerts
                     Message message = null;
                     HybridDictionary colemailfields = null;
                     string siteurl = string.Empty;
+                    string httpScheme = string.Empty;
                     string sitename = string.Empty;
 
                     string jobresults = string.Empty;
@@ -277,6 +278,7 @@ namespace JXTJobAlerts
                         message = null;
                         colemailfields = null;
                         siteurl = (gs.WwwRedirect) ? "www." + site.SiteUrl : site.SiteUrl;
+                        httpScheme = (gs.UsingSsl) ? "https" : "http";
                         sitename = site.SiteName;
                         /*string jobresults = "<table width=\"600\" align=\"center\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" class=\"templetcontainer\" bgcolor=\"#f2f2f2\" style=\"background-color: #f2f2f2; border-bottom:1px solid #c7c7c7; border-left:1px solid #c7c7c7; border-right:1px solid #c7c7c7;\">" +
                                                 "     <tbody>" +
@@ -398,21 +400,7 @@ namespace JXTJobAlerts
                                             {
                                                 using (JXTPortal.Entities.Advertisers advertiser = AdvertisersService.GetByAdvertiserId(vjs.AdvertiserId.Value))
                                                 {
-                                                    if (!string.IsNullOrWhiteSpace(advertiser.AdvertiserLogoUrl))
-                                                    {
-                                                        strAdvertiserLogo = string.Format(@"<a href='#'><img src='http://{0}/media/{1}/{2}?ver={3}' border='0' hspace='0' vspace='0' alt='{4}' /></a>", siteurl, ConfigurationManager.AppSettings["AdvertisersFolder"], advertiser.AdvertiserLogoUrl, advertiser.LastModified.ToEpocTimestamp(), vjs.CompanyName);
-                                                    }
-                                                    else
-                                                    {
-                                                        if (advertiser.AdvertiserLogo != null)
-                                                        {
-                                                            strAdvertiserLogo = String.Format(@"<a href='#'><img src='http://{0}/getfile.aspx?advertiserid={1}&ver={2}' border='0' hspace='0' vspace='0' alt='{3}' /></a>",
-                                                                                                siteurl,
-                                                                                                vjs.AdvertiserId.Value,
-                                                                                                advertiser.LastModified.ToEpocTimestamp(),
-                                                                                                vjs.CompanyName);
-                                                        }
-                                                    }
+                                                    strAdvertiserLogo = GetImageAsset(httpScheme, advertiser.AdvertiserLogoUrl, advertiser.AdvertiserLogo != null, siteurl, advertiser.AdvertiserId, advertiser.LastModified, vjs.CompanyName);
                                                 }
                                             }
 
@@ -493,12 +481,12 @@ namespace JXTJobAlerts
 										<table width='100%' height='10'></table>
 									</td>
 								</tr>",
-                                                string.Format("http://{0}{1}", siteurl, JXTPortal.Common.Utils.GetJobUrl(vjs.JobId, vjs.JobFriendlyName)),
+                                                string.Format("{0}://{1}{2}", httpScheme, siteurl, JXTPortal.Common.Utils.GetJobUrl(vjs.JobId, vjs.JobFriendlyName)),
                                                  HttpUtility.HtmlEncode(JobName),
                                                 HttpUtility.HtmlEncode(vjs.CompanyName),
                                                  HttpUtility.HtmlEncode(Description),
                                                 (!string.IsNullOrWhiteSpace(strAdvertiserLogo)) ? strAdvertiserLogo : string.Empty);
-                                            //http://{0}/advertisers/{1} - advertiser url
+                                            
                                         }
 
                                     }
@@ -538,18 +526,18 @@ namespace JXTJobAlerts
 
                                 strViewResultsUrl =
                                     string.Format(
-                                        "http://{0}/JobAlertsSwitch.aspx?searchid={1}&viewValidateID={2}",
-                                        siteurl, JobAlertID.ToString(),
+                                        "{0}://{1}/JobAlertsSwitch.aspx?searchid={2}&viewValidateID={3}",
+                                        httpScheme, siteurl, JobAlertID.ToString(),
                                         HttpUtility.UrlEncode(Utils.EncryptString(JobAlertID.ToString())));
                                 strEditUrl =
                                     string.Format(
-                                        "http://{0}/JobAlertsEditSwitch.aspx?searchid={1}&editValidateID={2}",
-                                        siteurl, JobAlertID.ToString(),
+                                        "{0}://{1}/JobAlertsEditSwitch.aspx?searchid={2}&editValidateID={3}",
+                                        httpScheme, siteurl, JobAlertID.ToString(),
                                         HttpUtility.UrlEncode(Utils.EncryptString(JobAlertID.ToString())));
                                 strUnSubscribeURL =
                                     string.Format(
-                                        "http://{0}/JobAlertsUnsubscribe.aspx?searchid={1}&unsubscribeValidateID={2}",
-                                        siteurl, JobAlertID.ToString(), UnsubscribeValidateID.ToString());
+                                        "{0}://{1}/JobAlertsUnsubscribe.aspx?searchid={2}&unsubscribeValidateID={3}",
+                                        httpScheme, siteurl, JobAlertID.ToString(), UnsubscribeValidateID.ToString());
 
                                 //jobresults = string.Format(jobresults, results);
                                 colemailfields["FIRSTNAME"] = FirstName;
@@ -623,6 +611,30 @@ namespace JXTJobAlerts
 
         }
 
+        public string GetImageAsset(string httpScheme, string advertiserLogoUrl, bool hasLogo, string siteUrl, int advertiserId, DateTime lastModified, string companyName)
+        {
+            string srcUrl = string.Empty;
+
+            if (!string.IsNullOrWhiteSpace(advertiserLogoUrl))
+            {
+                srcUrl = string.Format(@"{0}://{1}/media/{2}/{3}?ver={4}", httpScheme, siteUrl, ConfigurationManager.AppSettings["AdvertisersFolder"], advertiserLogoUrl, lastModified.ToEpocTimestamp());
+            }
+            else if (hasLogo)
+            {
+                srcUrl = string.Format(@"{0}://{1}/getfile.aspx?advertiserid={2}&ver={3}", httpScheme, siteUrl, advertiserId, , lastModified.ToEpocTimestamp());
+            }
+
+            if (string.IsNullOrWhiteSpace(srcUrl))
+            {
+                //Shouldn't end up here, but catching it just in case
+                return string.Empty;
+            }
+
+            string imageTag = string.Format("<img src='{0}' border='0' hspace='0' vspace='0' alt='{1}' />", srcUrl, companyName);
+            
+            return string.Format("<a href='#'>{0}</a>", imageTag);
+        }
+        
         /// <summary>
         /// Per site get the Whitelabel jobs
         /// </summary>
@@ -725,169 +737,6 @@ namespace JXTJobAlerts
 
             return _viewJobSearchTemp;
 
-        }
-
-        /*
-        private VList<ViewJobSearch> GetKeywordJobSearchResults(string kw, int? siteId, int? advertiserId,
-                                                          int? currencyId, decimal? salaryLowerBand, decimal? salaryUpperBand,
-                                                          int? salaryTypeId, string workTypeId, string professionId,
-                                                          string roleId, string locationId,
-                                                          string areaId, DateTime? dateFrom, int languageId, out int count)
-        {
-            int _workTypeID = 0;
-            if (!string.IsNullOrEmpty(workTypeId) && int.TryParse(workTypeId, out _workTypeID))
-                ;
-
-            int _professionId = 0;
-            if (!string.IsNullOrEmpty(professionId) && int.TryParse(professionId, out _professionId))
-                ;
-
-            int _locationId = 0;
-            if (!string.IsNullOrEmpty(professionId) && int.TryParse(locationId, out _locationId))
-                ;
-
-
-            VList<ViewJobSearch> viewJobSearch = new VList<ViewJobSearch>();
-
-            using (DataSet dsJobSearch = ViewJobSearchService.GetBySearchFilterRedefine(kw,
-                                                                        siteId, advertiserId, currencyId,
-                                                                        salaryLowerBand, salaryUpperBand, salaryTypeId,
-                                                                        (_workTypeID > 0) ? _workTypeID : (int?)null,
-                                                                        _professionId, roleId,
-                                                                        null, _locationId,
-                                                                        areaId, dateFrom, languageId))
-            {
-                count = 0;
-
-                DataTable dtJobSearch = dsJobSearch.Tables[0];
-                if (dtJobSearch.Rows.Count > 0)
-                {
-                    // Getting Total Job Count
-                    count = int.Parse(dtJobSearch.Compute("Sum(RefineCount)", String.Format("RefineTypeID = {0}", (int)PortalEnums.Search.Redefine.SubClassification)).ToString());
-
-                    if (count > 0)
-                    {
-                        viewJobSearch = ViewJobSearchService.GetBySearchFilter(
-                                    kw,
-                                    siteId, advertiserId, currencyId,
-                                    salaryLowerBand, salaryUpperBand, salaryTypeId,
-                                    (_workTypeID > 0) ? _workTypeID : (int?)null,
-                                    _professionId, roleId,
-                                    null, _locationId, areaId, dateFrom,
-                                    languageId,
-                                    0, jobalertresult, string.Empty, null);
-
-                    }
-                }
-            }
-
-
-            return viewJobSearch;
-
-        }
-
-
-        private IEnumerable<ViewJobSearch> GetKeywordJobSearchResultsNew(string kw, int? siteId, string professionIDs, string roleIDs,
-                                                string countryIDs, string locationIDs, string areaIDs,
-                                                int? SalaryTypeID, decimal? SalaryLowerBand, decimal? SalaryUpperBand,
-                                                string worktypeIDs,
-                                                DateTime? DateLastRun, int languageId, out int count)
-        {
-
-            VList<ViewJobSearch> viewJobSearchTemp = new VList<ViewJobSearch>();
-
-            using (viewJobSearchTemp = ViewJobSearchService.GetBySearchFilter(
-                                                kw,
-                                                siteId, null,
-                                                null, null, null, null,
-                                                null,
-                                                null, null,
-                                                null, null, null, null,
-                                                languageId,
-                                                0, TOTAL_JOB_COUNT, string.Empty, null))
-            {
-
-
-            }
-
-            IEnumerable<ViewJobSearch> _viewJobSearchTemp = viewJobSearchTemp.Where(s =>
-                                        (string.IsNullOrWhiteSpace(professionIDs) || professionIDs.Split(',').Contains(s.ProfessionId.ToString())) &&
-                                        (string.IsNullOrWhiteSpace(roleIDs) || roleIDs.Split(',').Contains(s.RoleId.ToString())) &&
-                                        (string.IsNullOrWhiteSpace(countryIDs) || countryIDs.Split(',').Contains(s.CountryId.ToString())) &&
-                                        (string.IsNullOrWhiteSpace(locationIDs) || locationIDs.Split(',').Contains(s.LocationId.ToString())) &&
-                                        (string.IsNullOrWhiteSpace(areaIDs) || areaIDs.Split(',').Contains(s.AreaId.ToString())) &&
-                                        (string.IsNullOrWhiteSpace(worktypeIDs) || worktypeIDs.Split(',').Contains(s.WorkTypeId.ToString()))
-                                        );
-
-            // Salary Filter
-            if (_viewJobSearchTemp.Count() > 0 && SalaryTypeID.HasValue && (SalaryLowerBand.HasValue || SalaryUpperBand.HasValue))
-            {
-                _viewJobSearchTemp = _viewJobSearchTemp.Where(s => s.SalaryTypeId == SalaryTypeID.Value);
-
-                if (_viewJobSearchTemp.Count() > 0 && SalaryLowerBand.HasValue)
-                    _viewJobSearchTemp = _viewJobSearchTemp.Where(s => s.SalaryLowerBand >= SalaryLowerBand.Value);
-
-                if (_viewJobSearchTemp.Count() > 0 && SalaryUpperBand.HasValue)
-                    _viewJobSearchTemp = _viewJobSearchTemp.Where(s => s.SalaryUpperBand <= SalaryUpperBand.Value);
-            }
-
-            // Filter by Date Last Run
-            if (_viewJobSearchTemp.Count() > 0 && DateLastRun.HasValue)
-            {
-                _viewJobSearchTemp = _viewJobSearchTemp.Where(s => s.DatePosted >= DateLastRun.Value);
-            }
-
-            count = _viewJobSearchTemp.Count();
-
-            return _viewJobSearchTemp;
-
-        }*/
-
-
+        }   
     }
-
 }
-
-
-/*
-private string RemoveStopWordsAndSpecialCharacters(string strKeywords)
-{
-    if (!string.IsNullOrWhiteSpace(strKeywords))
-    {
-        //string str = "this is some text just some dummy text Just text";
-        List<string> stopwordsList = new List<string>() { "I", "a", "about", "an", "and", "are", "as", "at", "be", "by", "com", "for", "from", "how", "in", "is", "it", "of", 
-                                                            "on", "or", "that", "the", "this", "to", "was", "what", "when", "where", "who", "will", "with", "the", "www" };
-        strKeywords = string.Join(" ", strKeywords.Split().Where(w => !stopwordsList.Contains(w, StringComparer.InvariantCultureIgnoreCase)));
-    }
-
-    strKeywords = JXTPortal.Common.Utils.RemoveMetaSpecialCharacters(strKeywords);
-    // Todo - try catch ?
-    return strKeywords;
-}
-*/
-
-
-// Remove stop words and Special characters
-/*strKeywords = RemoveStopWordsAndSpecialCharacters(strKeywords);
-            
-// Do Keyword search
-if (_viewJobSearchTemp.Count() > 0 && !string.IsNullOrWhiteSpace(strKeywords))
-{
-
-    _viewJobSearchTemp = _viewJobSearchTemp.Where(s => strKeywords.Split(' ').Contains(s.JobId.ToString()) ||
-                                    strKeywords.Split(' ').Contains(s.JobName) ||
-                                    strKeywords.Split(' ').Contains(s.FullDescription) ||
-                                    strKeywords.Split(' ').Contains(s.CompanyName) ||
-                                    strKeywords.Split(' ').Contains(s.RefNo) ||
-                                    strKeywords.Split(' ').Contains(s.SalaryText) ||
-                                    strKeywords.Split(' ').Contains(s.ContactDetails) ||
-                                    strKeywords.Split(' ').Contains(s.BulletPoint1) ||
-                                    strKeywords.Split(' ').Contains(s.BulletPoint2) ||
-                                    strKeywords.Split(' ').Contains(s.BulletPoint3) ||
-                                    strKeywords.Split(' ').Contains(s.Description));
-
-    // IMPORTANT - the keywords which are not filtered.
-    //strKeywords.Split(' ').Contains(s.PublicTransport) || 
-    //strKeywords.Split(' ').Contains(s.Address) || 
-    //strKeywords.Split(' ').Contains(s.Tags) ||
-}*/

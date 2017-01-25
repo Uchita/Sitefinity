@@ -140,6 +140,7 @@ namespace JXTJobAlerts
                 Message message = null;
                 HybridDictionary colemailfields = null;
                 string siteurl = string.Empty;
+                string httpScheme = string.Empty;
                 string sitename = string.Empty;
 
                 string jobresults = string.Empty;
@@ -210,6 +211,7 @@ namespace JXTJobAlerts
                         message = null;
                         colemailfields = null;
                         siteurl = (gs.WwwRedirect) ? "www." + site.SiteUrl : site.SiteUrl;
+                        httpScheme = (gs.UsingSsl) ? "https" : "http";
                         sitename = site.SiteName;
                         /*string jobresults = "<table width=\"600\" align=\"center\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" class=\"templetcontainer\" bgcolor=\"#f2f2f2\" style=\"background-color: #f2f2f2; border-bottom:1px solid #c7c7c7; border-left:1px solid #c7c7c7; border-right:1px solid #c7c7c7;\">" +
                                                 "     <tbody>" +
@@ -315,21 +317,7 @@ namespace JXTJobAlerts
                                             {
                                                 using (JXTPortal.Entities.Advertisers advertiser = AdvertisersService.GetByAdvertiserId(vjs.AdvertiserId.Value))
                                                 {
-                                                    if (!string.IsNullOrWhiteSpace(advertiser.AdvertiserLogoUrl))
-                                                    {
-                                                        strAdvertiserLogo = string.Format(@"<a href='#'><img src='http://{0}/media/{1}/{2}?ver={3}' border='0' hspace='0' vspace='0' alt='{4}' /></a>", siteurl, ConfigurationManager.AppSettings["AdvertisersFolder"], advertiser.AdvertiserLogoUrl, advertiser.LastModified.ToEpocTimestamp(), vjs.CompanyName);
-                                                    }
-                                                    else
-                                                    {
-                                                        if (advertiser.AdvertiserLogo != null)
-                                                        {
-                                                            strAdvertiserLogo = String.Format(@"<a href='#'><img src='http://{0}/getfile.aspx?advertiserid={1}&ver={2}' border='0' hspace='0' vspace='0' alt='{3}' /></a>",
-                                                                                                siteurl,
-                                                                                                vjs.AdvertiserId.Value,
-                                                                                                advertiser.LastModified.ToEpocTimestamp(),
-                                                                                                vjs.CompanyName);
-                                                        }
-                                                    }
+                                                    strAdvertiserLogo = GetImageAsset(httpScheme, advertiser.AdvertiserLogoUrl, advertiser.AdvertiserLogo != null, siteurl, advertiser.AdvertiserId, advertiser.LastModified, vjs.CompanyName);
                                                 }
                                             }
 
@@ -381,7 +369,7 @@ namespace JXTJobAlerts
 										<table width='100%' height='10'></table>
 									</td>
 								</tr>",
-                                                string.Format("http://{0}{1}", siteurl, JXTPortal.Common.Utils.GetJobUrl(vjs.JobId, vjs.JobFriendlyName)),
+                                                string.Format("{0}://{1}{2}", httpScheme, siteurl, JXTPortal.Common.Utils.GetJobUrl(vjs.JobId, vjs.JobFriendlyName)),
                                                 HttpUtility.HtmlEncode(vjs.JobName),
                                                 HttpUtility.HtmlEncode(vjs.CompanyName),
                                                 HttpUtility.HtmlEncode(vjs.Description),
@@ -426,18 +414,18 @@ namespace JXTJobAlerts
 
                                 strViewResultsUrl =
                                     string.Format(
-                                        "http://{0}/JobAlertsSwitch.aspx?searchid={1}&viewValidateID={2}",
-                                        siteurl, JobAlertID.ToString(),
+                                        "{0}://{1}/JobAlertsSwitch.aspx?searchid={2}&viewValidateID={3}",
+                                        httpScheme, siteurl, JobAlertID.ToString(),
                                         HttpUtility.UrlEncode(Utils.EncryptString(JobAlertID.ToString())));
                                 strEditUrl =
                                     string.Format(
-                                        "http://{0}/JobAlertsEditSwitch.aspx?searchid={1}&editValidateID={2}",
-                                        siteurl, JobAlertID.ToString(),
+                                        "{0}://{1}/JobAlertsEditSwitch.aspx?searchid={2}&editValidateID={3}",
+                                        httpScheme, siteurl, JobAlertID.ToString(),
                                         HttpUtility.UrlEncode(Utils.EncryptString(JobAlertID.ToString())));
                                 strUnSubscribeURL =
                                     string.Format(
-                                        "http://{0}/JobAlertsUnsubscribe.aspx?searchid={1}&unsubscribeValidateID={2}",
-                                        siteurl, JobAlertID.ToString(), UnsubscribeValidateID.ToString());
+                                        "{0}://{1}/JobAlertsUnsubscribe.aspx?searchid={2}&unsubscribeValidateID={3}",
+                                        httpScheme, siteurl, JobAlertID.ToString(), UnsubscribeValidateID.ToString());
 
                                 //jobresults = string.Format(jobresults, results);
                                 colemailfields["FIRSTNAME"] = FirstName;
@@ -507,6 +495,30 @@ namespace JXTJobAlerts
                 Console.WriteLine("Entire Program Runtime: " + sw1.ElapsedMilliseconds + "ms");
             }
 
+        }
+
+        public string GetImageAsset(string httpScheme, string advertiserLogoUrl, bool hasLogo, string siteUrl, int advertiserId, DateTime lastModified, string companyName)
+        {
+            string srcUrl = string.Empty;
+
+            if (!string.IsNullOrWhiteSpace(advertiserLogoUrl))
+            {
+                srcUrl = string.Format(@"{0}://{1}/media/{2}/{3}?ver={4}", httpScheme, siteUrl, ConfigurationManager.AppSettings["AdvertisersFolder"], advertiserLogoUrl, lastModified.ToEpocTimestamp());
+            }
+            else if (hasLogo)
+            {
+                srcUrl = string.Format(@"{0}://{1}/getfile.aspx?advertiserid={2}&ver={3}", httpScheme, siteUrl, advertiserId, , lastModified.ToEpocTimestamp());
+            }
+
+            if (string.IsNullOrWhiteSpace(srcUrl))
+            {
+                //Shouldn't end up here, but catching it just in case
+                return string.Empty;
+            }
+
+            string imageTag = string.Format("<img src='{0}' border='0' hspace='0' vspace='0' alt='{1}' />", srcUrl, companyName);
+            
+            return string.Format("<a href='#'>{0}</a>", imageTag);
         }
 
         VList<ViewJobSearch> viewJobSearchList = new VList<ViewJobSearch>();

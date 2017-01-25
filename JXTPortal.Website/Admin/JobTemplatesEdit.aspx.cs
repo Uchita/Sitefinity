@@ -144,7 +144,10 @@ public partial class JobTemplatesEdit : System.Web.UI.Page
 
                 if (string.IsNullOrWhiteSpace(template.JobTemplateLogoUrl))
                 {
-                    imgAdvJobTemplateLogo.ImageUrl = string.Format("{0}?jobtemplateid={1}&ver={2}", Page.ResolveUrl("~/getfile.aspx"), Convert.ToString(JobTemplateId), template.LastModified.ToEpocTimestamp());
+                    string url = string.Format("~/getfile.aspx?jobtemplateid={0}&ver={1}", Convert.ToString(JobTemplateId), template.LastModified.ToEpocTimestamp()); ;
+
+                    imgAdvJobTemplateLogo.ImageUrl = Page.ResolveUrl(url);
+                        
                 }
                 else if (template.JobTemplateLogo != null && template.JobTemplateLogo.Length > 0)
                 {

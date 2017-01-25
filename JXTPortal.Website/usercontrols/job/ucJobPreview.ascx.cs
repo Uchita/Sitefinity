@@ -514,30 +514,32 @@ namespace JXTPortal.Website.usercontrols.job
 
                                 using (TList<Consultants> consultants = ConsultantsService.GetPaged(string.Format("SiteId IN ({0}) and Email = '{1}' and Valid = 1", sSiteId, job.ApplicationEmailAddress.Replace("'", "''")), string.Empty, 1, 0, out consultantcount))
                                 {
-                                    if (consultants.Count > 0)
+                                    var consultant = consultants.FirstOrDefault();
+                                    
+                                    if (consultant != null)
                                     {
-                                        firstname = HttpUtility.HtmlEncode(consultants[0].FirstName);
-                                        lastname = HttpUtility.HtmlEncode(consultants[0].LastName);
-                                        consultantemail = HttpUtility.HtmlEncode(consultants[0].Email);
-                                        consultantphone = HttpUtility.HtmlEncode(consultants[0].Phone);
+                                        firstname = HttpUtility.HtmlEncode(consultant.FirstName);
+                                        lastname = HttpUtility.HtmlEncode(consultant.LastName);
+                                        consultantemail = HttpUtility.HtmlEncode(consultant.Email);
+                                        consultantphone = HttpUtility.HtmlEncode(consultant.Phone);
 
-                                        if (!string.IsNullOrWhiteSpace(consultants[0].ConsultantImageUrl))
+                                        if (!string.IsNullOrWhiteSpace(consultant.ConsultantImageUrl))
                                         {
-                                            consultantimageurl = string.Format("/media/{0}/{1}?ver={2}", ConfigurationManager.AppSettings["ConsultantsFolder"], consultants[0].ConsultantImageUrl, consultants[0].LastModified.ToEpocTimestamp());
+                                            consultantimageurl = string.Format("/media/{0}/{1}?ver={2}", ConfigurationManager.AppSettings["ConsultantsFolder"], consultant.ConsultantImageUrl, consultant.LastModified.ToEpocTimestamp());
                                         }
                                         else
                                         {
-                                            if (consultants[0].ImageUrl != null)
+                                            if (consultant.ImageUrl != null)
                                             {
-                                                consultantimageurl = string.Format("/getfile.aspx?consultantid={0}&ver={1}", consultants[0].ConsultantId.ToString(), consultants[0].LastModified.ToEpocTimestamp());
+                                                consultantimageurl = string.Format("/getfile.aspx?consultantid={0}&ver={1}", consultant.ConsultantId.ToString(), consultant.LastModified.ToEpocTimestamp());
                                             }
                                         }
 
-                                        if (!string.IsNullOrWhiteSpace(consultants[0].ConsultantsXml))
+                                        if (!string.IsNullOrWhiteSpace(consultant.ConsultantsXml))
                                         {
                                             XmlDocument langxml = new XmlDocument();
 
-                                            langxml.LoadXml(consultants[0].ConsultantsXml);
+                                            langxml.LoadXml(consultant.ConsultantsXml);
 
                                             XmlNodeList langlist = langxml.GetElementsByTagName("Language");
                                             foreach (XmlNode langnode in langlist)

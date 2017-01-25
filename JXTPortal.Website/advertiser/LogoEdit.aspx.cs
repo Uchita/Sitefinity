@@ -73,9 +73,8 @@ namespace JXTPortal.Website.advertiser
                     if (advertiser.AdvertiserLogo != null)
                     {
                         lblNoLogo.Visible = false;
-
-                        imgLogo.ImageUrl = string.Format("{0}?advertiserid={1}&ver={2}", Page.ResolveUrl("~/getfile.aspx"), Convert.ToString(advertiser.AdvertiserId), advertiser.LastModified.ToEpocTimestamp());
-
+                        string url = string.Format("~/getfile.aspx?advertiserid={0}&ver={1}", Convert.ToString(advertiser.AdvertiserId), advertiser.LastModified.ToEpocTimestamp());
+                        imgLogo.ImageUrl = Page.ResolveUrl(url);
                     }
                 }
                 else

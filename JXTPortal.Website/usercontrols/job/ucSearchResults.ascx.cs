@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using JXTPortal.Entities;
 using System.Configuration;
 using JXTPortal.Common;
+using JXTPortal.Common.Extensions;
 using System.Text;
 using System.Xml;
 using JXTPortal.Entities.Models;
@@ -482,17 +483,11 @@ namespace JXTPortal.Website.usercontrols.job
                 // Todo - The hyperlink is hardcoded to job but it should be for advertiser
                 if (viewJobSearch.AdvertiserId.HasValue && viewJobSearch.HasAdvertiserLogo > 0) //AdvertiserJobTemplateLogoId
                 {
-                    /*using (Entities.Advertisers advertiser = AdvertisersService.GetByAdvertiserId(viewJobSearch.AdvertiserId.Value))
-                    {
-                        if (advertiser.AdvertiserLogo != null)
-                        {*/
-                            strAdvertiserLogo = String.Format(@"<a href='{2}'><img src='/getfile.aspx?advertiserid={0}' alt='{1}' /></a>",
-                                                                viewJobSearch.AdvertiserId.Value,
-                                                                viewJobSearch.CompanyName,
-                                                                Utils.GetJobUrl(viewJobSearch.JobId, viewJobSearch.JobFriendlyName));
-                        /*}
-                    }*/
+                    string jobUrl = Utils.GetJobUrl(viewJobSearch.JobId, viewJobSearch.JobFriendlyName);
+
+                    strAdvertiserLogo = buildImageURL(jobUrl, viewJobSearch.AdvertiserId.Value, viewJobSearch.DatePosted.ToEpocTimestamp(), viewJobSearch.CompanyName);
                 }
+
 
                 //<a id='aSaveJob{9}' href='javascript:void(0);' onclick='return SaveJob(""aSaveJob{9}"",{9});'>save job</a>
                 //onmouseover='MouseMover_row(this)' onmouseout='MouseOut_row(this)'
@@ -554,6 +549,16 @@ namespace JXTPortal.Website.usercontrols.job
 
         #endregion
 
+
+        public string buildImageURL(string jobURL, int advertiserID, long timestamp, string companyName )
+        {
+            var imageUrl = string.Format("<img src='/getfile.aspx?advertiserid={0}&ver={1}' alt='{2}' />", advertiserID, timestamp, companyName);
+
+            var assetUrl = string.Format("<a href='{0}'>{1}</a>", jobURL,imageUrl);
+
+            return assetUrl;
+        }
+
         #region Job Search Repeater
 
         protected void rptJobResults_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -599,16 +604,9 @@ namespace JXTPortal.Website.usercontrols.job
                 // Todo - The hyperlink is hardcoded to job but it should be for advertiser
                 if (viewJobSearch.AdvertiserId.HasValue && viewJobSearch.HasAdvertiserLogo > 0) //AdvertiserJobTemplateLogoId
                 {
-                    /*using (Entities.Advertisers advertiser = AdvertisersService.GetByAdvertiserId(viewJobSearch.AdvertiserId.Value))
-                    {
-                        if (advertiser.AdvertiserLogo != null)
-                        {*/
-                            strAdvertiserLogo = String.Format(@"<a href='{2}'><img src='/getfile.aspx?advertiserid={0}' alt='{1}' /></a>",
-                                                                viewJobSearch.AdvertiserId.Value,
-                                                                viewJobSearch.CompanyName,
-                                                                Utils.GetJobUrl(viewJobSearch.JobId, viewJobSearch.JobFriendlyName));
-                        /*}
-                    }*/
+                    var jobUrl = Utils.GetJobUrl(viewJobSearch.JobId, viewJobSearch.JobFriendlyName);
+                    strAdvertiserLogo = buildImageURL(jobUrl, viewJobSearch.AdvertiserId.Value, viewJobSearch.DatePosted.ToEpocTimestamp(), viewJobSearch.CompanyName);
+                                
                 }
 
                 //<a id='aSaveJob{9}' href='javascript:void(0);' onclick='return SaveJob(""aSaveJob{9}"",{9});'>save job</a>

@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using JXTPortal.Entities;
 using System.Drawing;
 using JXTPortal.Common;
+using JXTPortal.Common.Extensions;
 using System.IO;
 using JXTPortal.Website;
 using System.Xml;
@@ -286,11 +287,13 @@ namespace JXTPortal.Website.usercontrols.advertiser
                         {
                             if (!string.IsNullOrWhiteSpace(adv.AdvertiserLogoUrl))
                             {
-                                imgLogo.ImageUrl = string.Format(@"/media/{0}/{1}", ConfigurationManager.AppSettings["AdvertisersFolder"], adv.AdvertiserLogoUrl);
+                                imgLogo.ImageUrl = string.Format(@"/media/{0}/{1}?ver={2}", ConfigurationManager.AppSettings["AdvertisersFolder"], adv.AdvertiserLogoUrl,adv.LastModified.ToEpocTimestamp());
                             }
                             else
                             {
-                                imgLogo.ImageUrl = Page.ResolveUrl("~/getfile.aspx") + "?advertiserid=" + Convert.ToString(advu.AdvertiserId);
+                                string url = string.Format("~/getfile.aspx?advertiserid={0}&ver={1}", Convert.ToString(advu.AdvertiserId),adv.LastModified.ToEpocTimestamp());
+
+                                imgLogo.ImageUrl = Page.ResolveUrl(url);
                             }
                             lblNoLogo.Visible = false;
                             lblRemoveLogo.Visible = true;

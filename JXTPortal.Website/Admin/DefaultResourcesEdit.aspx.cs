@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using JXTPortal.Entities;
 using System.Data;
 using System.Configuration;
+using JXTPortal.Common.Extensions;
 
 namespace JXTPortal.Website.Admin
 {
@@ -236,7 +237,7 @@ namespace JXTPortal.Website.Admin
                 JXTPortal.Entities.FileTypes filetypes = FileTypesService.GetByFileTypeId(files.FileTypeId);
                 if (imgexts.Contains(filetypes.FileTypeName.ToLower()))
                 {
-                    imgDispaly.ImageUrl = "~/getfile.aspx?id=" + files.FileId.ToString();
+                    imgDispaly.ImageUrl = string.Format("~/getfile.aspx?id={0}&ver={1}", files.FileId.ToString(),files.LastModified.ToEpocTimestamp());
                     imgDispaly.Visible = true;
                 }
                 else

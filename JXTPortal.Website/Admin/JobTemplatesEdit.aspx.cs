@@ -14,6 +14,7 @@ using System.Web.UI.HtmlControls;
 using JXTPortal.Web.UI;
 using JXTPortal;
 using JXTPortal.Common;
+using JXTPortal.Common.Extensions;
 using System.Reflection;
 using JXTPortal.Entities;
 using System.Linq;
@@ -23,7 +24,7 @@ using SectionIO;
 
 public partial class JobTemplatesEdit : System.Web.UI.Page
 {
-    public ICacheFlusher CacheFlusher {get; set;}
+    public ICacheFlusher CacheFlusher { get; set; }
 
     #region "Properties"
 
@@ -143,11 +144,18 @@ public partial class JobTemplatesEdit : System.Web.UI.Page
 
                 if (string.IsNullOrWhiteSpace(template.JobTemplateLogoUrl))
                 {
-                    imgAdvJobTemplateLogo.ImageUrl = Page.ResolveUrl("~/getfile.aspx") + "?jobtemplateid=" + Convert.ToString(JobTemplateId);
+                    string url = string.Format("~/getfile.aspx?jobtemplateid={0}&ver={1}", Convert.ToString(JobTemplateId), template.LastModified.ToEpocTimestamp()); ;
+
+                    imgAdvJobTemplateLogo.ImageUrl = Page.ResolveUrl(url);
+                        
                 }
                 else if (template.JobTemplateLogo != null && template.JobTemplateLogo.Length > 0)
                 {
-                    imgAdvJobTemplateLogo.ImageUrl = string.Format("/{0}/{1}/{2}", ConfigurationManager.AppSettings["RootFolder"], ConfigurationManager.AppSettings["JobTemplatesFolder"], template.JobTemplateLogoUrl);
+                    imgAdvJobTemplateLogo.ImageUrl = string.Format("/{0}/{1}/{2}?ver={3}",
+                                                    ConfigurationManager.AppSettings["RootFolder"],
+                                                    ConfigurationManager.AppSettings["JobTemplatesFolder"],
+                                                    template.JobTemplateLogoUrl,
+                                                    template.LastModified.ToEpocTimestamp());
                 }
 
                 //Only show the logo if there is one available

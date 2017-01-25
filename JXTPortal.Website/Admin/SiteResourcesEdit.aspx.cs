@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using JXTPortal.Data;
+using JXTPortal.Common.Extensions;
 using JXTPortal.Entities;
 using System.Configuration;
 using System.Web.UI.HtmlControls;
@@ -349,7 +350,7 @@ $('#browser{0}').bind('contextmenu', function(event) {{
                 {
                     if (imgexts.Contains(filetypes.FileTypeName.ToLower()))
                     {
-                        imgSiteDispaly.ImageUrl = "~/getfile.aspx?id=" + files.FileId.ToString();
+                        imgSiteDispaly.ImageUrl = string.Format("~/getfile.aspx?id={0}&ver={1}", files.FileId.ToString(), files.LastModified.ToEpocTimestamp());
                         imgSiteDispaly.Visible = true;
                     }
                     else
@@ -530,7 +531,7 @@ $('#browser{0}').bind('contextmenu', function(event) {{
                 JXTPortal.Entities.FileTypes filetypes = FileTypesService.GetByFileTypeId(files.FileTypeId);
                 if (imgexts.Contains(filetypes.FileTypeName.ToLower()))
                 {
-                    dataDefaultFileDisplay.ImageUrl = "~/getfile.aspx?id=" + files.FileId.ToString();
+                    dataDefaultFileDisplay.ImageUrl = string.Format("~/getfile.aspx?id={0}&ver={1}", files.FileId.ToString(), files.LastModified.ToEpocTimestamp());
                     dataDefaultFileDisplay.Visible = true;
                 }
                 else

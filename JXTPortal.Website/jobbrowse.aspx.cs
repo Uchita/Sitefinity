@@ -8,6 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using JXTPortal.Entities;
 using JXTPortal.Common;
+using JXTPortal.Common.Extensions;
 
 namespace JXTPortal.Website
 {
@@ -448,6 +449,7 @@ namespace JXTPortal.Website
                 ViewJobSearch viewJobSearch = e.Item.DataItem as ViewJobSearch;
                 Literal ltlJob = e.Item.FindControl("ltlJob") as Literal;
                 String strItem = string.Empty;
+                string strAdvertiserLogo = string.Empty;
 
                 // Description or Bulletpoints
                 string strJobDescription = string.Empty;
@@ -463,68 +465,95 @@ namespace JXTPortal.Website
 
 
                 // Advertiser Job Template Logo
-                string strAdvertiserLogo = string.Empty;
-
-                if (viewJobSearch.AdvertiserId.HasValue) //AdvertiserJobTemplateLogoId
-                {
-                    if (viewJobSearch.HasAdvertiserLogo == 1)
-                    {
-                        strAdvertiserLogo = String.Format(@"<a href='{2}'><img src='/getfile.aspx?advertiserid={0}' alt='{1}' /></a>",
-                                                                viewJobSearch.AdvertiserId.Value,
-                                                                viewJobSearch.CompanyName,
-                                                                Utils.GetJobUrl(viewJobSearch.JobId, viewJobSearch.JobFriendlyName));
-                    }
-
-                    if (viewJobSearch.HasAdvertiserLogo == 2)
-                    {
-                        using (Entities.Advertisers advertiser = AdvertisersService.GetByAdvertiserId(viewJobSearch.AdvertiserId.Value))
-                        {
-                            strAdvertiserLogo = String.Format(@"<a href='{2}'><img src='/media/{0}/{1}' alt='{3}' /></a>", ConfigurationManager.AppSettings["AdvertisersFolder"], advertiser.AdvertiserLogoUrl, Utils.GetJobUrl(viewJobSearch.JobId, viewJobSearch.JobFriendlyName), viewJobSearch.CompanyName);
-                        }
-                    }
-                }
-
-
+                strAdvertiserLogo = getAdvertiserLogo(viewJobSearch);
 
                 //<a id='aSaveJob{9}' href='javascript:void(0);' onclick='return SaveJob(""aSaveJob{9}"",{9});'>save job</a>
                 ltlJob.Text = String.Format(@"
-<div id='job-holder' onmouseover='MouseMover_row(this)' onmouseout='MouseOut_row(this)'>
-    <div class='job-toplink'>
-        <a href='{7}'>{0}</a>
-        <div class='nameofcompany'>{1}</div>
-    </div>
-    <div class='job-rightlinks'>
-        <a class='search-result-save-job-link{13}' id='aSaveJob{8}' onclick='return SaveJob(""aSaveJob{8}"",{8});' href='/member/mysavedjobs.aspx?id={8}'>{11}</a> | <a href='{10}'>{12}</a>
-        <br />
-        <span class='dateText'>{2}</span>
-    </div>
-    <div class='description-holder'>
-        <div class='job-checkbox' style='width: 20px;'>&nbsp;</div>
-        <div class='locandsalary'>
-            {3}<br />
-            {4}</div>
-        <div class='description-text'>{5}</div>
-        <div class='description-logo'>{6}</div>
-    </div>
-    <!-- end of description holder -->
-    <div class='job-breadcrumbs'>{9}</div>
-</div>
-<!-- end of job holder-->
-", viewJobSearch.JobName, viewJobSearch.CompanyName,
- viewJobSearch.DatePosted.ToString(SessionData.Site.DateFormat), viewJobSearch.LocationName,
- viewJobSearch.WorkTypeName, strJobDescription,
- strAdvertiserLogo, Utils.GetJobUrl(viewJobSearch.JobId, viewJobSearch.JobFriendlyName),
- viewJobSearch.JobId, viewJobSearch.BreadCrumbNavigation,
- Utils.GetEmailFriendUrl(viewJobSearch.JobFriendlyName.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries)[0], viewJobSearch.JobId),
- IsMemberSavedJob(viewJobSearch.JobId) ? CommonFunction.GetResourceValue("LabelJobSaved") : CommonFunction.GetResourceValue("LinkButtonSaveJob"),
- CommonFunction.GetResourceValue("LinkButtonSendEmail"),
- IsMemberSavedJob(viewJobSearch.JobId) ? " job-saved" : string.Empty);
-
+                                <div id='job-holder' onmouseover='MouseMover_row(this)' onmouseout='MouseOut_row(this)'>
+                                    <div class='job-toplink'>
+                                        <a href='{7}'>{0}</a>
+                                        <div class='nameofcompany'>{1}</div>
+                                    </div>
+                                    <div class='job-rightlinks'>
+                                        <a class='search-result-save-job-link{13}' id='aSaveJob{8}' onclick='return SaveJob(""aSaveJob{8}"",{8});' href='/member/mysavedjobs.aspx?id={8}'>{11}</a> | <a href='{10}'>{12}</a>
+                                        <br />
+                                        <span class='dateText'>{2}</span>
+                                    </div>
+                                    <div class='description-holder'>
+                                        <div class='job-checkbox' style='width: 20px;'>&nbsp;</div>
+                                        <div class='locandsalary'>
+                                            {3}<br />
+                                            {4}</div>
+                                        <div class='description-text'>{5}</div>
+                                        <div class='description-logo'>{6}</div>
+                                    </div>
+                                    <!-- end of description holder -->
+                                    <div class='job-breadcrumbs'>{9}</div>
+                                </div>
+                                <!-- end of job holder-->
+                                ", viewJobSearch.JobName, viewJobSearch.CompanyName,
+                                    viewJobSearch.DatePosted.ToString(SessionData.Site.DateFormat), viewJobSearch.LocationName,
+                                    viewJobSearch.WorkTypeName, strJobDescription,
+                                    strAdvertiserLogo, Utils.GetJobUrl(viewJobSearch.JobId, viewJobSearch.JobFriendlyName),
+                                    viewJobSearch.JobId, viewJobSearch.BreadCrumbNavigation,
+                                    Utils.GetEmailFriendUrl(viewJobSearch.JobFriendlyName.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries)[0], viewJobSearch.JobId),
+                                    IsMemberSavedJob(viewJobSearch.JobId) ? CommonFunction.GetResourceValue("LabelJobSaved") : CommonFunction.GetResourceValue("LinkButtonSaveJob"),
+                                    CommonFunction.GetResourceValue("LinkButtonSendEmail"),
+                                    IsMemberSavedJob(viewJobSearch.JobId) ? " job-saved" : string.Empty);
 
                 // ToDO - Need breadcrumbs - Profession name, Role Name with Links
 
             }
         }
+
+        // Advertiser Job Template Logo
+        public string getAdvertiserLogo(ViewJobSearch viewJobSearch)
+        {
+            var logoImagePath = string.Empty;
+            var jobURL = string.Empty;
+
+            string advertiserLogo = string.Empty;
+
+            if (viewJobSearch.AdvertiserId.HasValue) //AdvertiserJobTemplateLogoId
+            {
+                Entities.Advertisers advertiser = AdvertisersService.GetByAdvertiserId(viewJobSearch.AdvertiserId.Value);
+
+                if (viewJobSearch.HasAdvertiserLogo == 1)
+                {
+                    logoImagePath = string.Format(@"<img src='/getfile.aspx?advertiserid={0}&ver={1}' alt='{2}' />",
+                                                        viewJobSearch.AdvertiserId.Value,
+                                                        advertiser.LastModified.ToEpocTimestamp(),
+                                                        viewJobSearch.CompanyName);
+
+                    jobURL = string.Format(@"<a href='{0}'>{1}</a>",
+                                                Utils.GetJobUrl(viewJobSearch.JobId, viewJobSearch.JobFriendlyName),
+                                                logoImagePath);
+
+                    advertiserLogo = jobURL;
+                }
+
+                if (viewJobSearch.HasAdvertiserLogo == 2)
+                {
+                    using (advertiser)
+                    {
+                        logoImagePath = string.Format("<img src='/media/{0}/{1}?ver={2}' alt='{3}'/>",
+                                                                     ConfigurationManager.AppSettings["AdvertisersFolder"],
+                                                                     advertiser.AdvertiserLogoUrl,
+                                                                     advertiser.LastModified.ToEpocTimestamp(),
+                                                                     viewJobSearch.CompanyName);
+
+                        jobURL = string.Format(@"<a href='{0}'>{1}</a>",
+                                                     Utils.GetJobUrl(viewJobSearch.JobId, viewJobSearch.JobFriendlyName),
+                                                     logoImagePath);
+
+                        advertiserLogo = jobURL;
+
+                    }
+                }
+            }
+            return advertiserLogo;
+        }
+
 
         protected void rptPaging_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {

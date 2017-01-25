@@ -9,6 +9,7 @@ using System.Text;
 using System.Data;
 using System.Xml;
 using JXTPortal.Entities;
+using JXTPortal.Common.Extensions;
 using System.Configuration;
 
 namespace JXTPortal.Website
@@ -137,13 +138,15 @@ namespace JXTPortal.Website
 
                     if (!string.IsNullOrWhiteSpace(consultant.ConsultantImageUrl))
                     {
-                        strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_IMAGEURL, string.Format("/media/{0}/{1}", ConfigurationManager.AppSettings["ConsultantsFolder"], consultant.ConsultantImageUrl));
+                        strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_IMAGEURL, string.Format("/media/{0}/{1}?ver={2}", ConfigurationManager.AppSettings["ConsultantsFolder"], consultant.ConsultantImageUrl, consultant.LastModified.ToEpocTimestamp()));
                     }
                     else
                     {
                         if (consultant.ImageUrl != null)
                         {
-                            strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_IMAGEURL, "/getfile.aspx?consultantid=" + consultant.ConsultantId.ToString());
+                            var contentURL = string.Format("/getfile.aspx?consultantid={0}&ver={1}", consultant.ConsultantId.ToString(),consultant.LastModified.ToEpocTimestamp());
+
+                            strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_IMAGEURL, contentURL);
                         }
                         else
                         {

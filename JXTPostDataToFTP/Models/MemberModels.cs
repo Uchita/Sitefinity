@@ -33,8 +33,11 @@ namespace JXTPostDataToFTP.Models
         public static string GetResourceValue(string key, int languageId)
         {
             string value = key;
-            
-            System.Resources.ResXResourceReader resourceReader = new ResXResourceReader(string.Format(@".\Resources\language_{0}.resx", languageId));
+
+            string file = string.Format(@"{1}\Resources\language_{0}.resx", languageId, AppDomain.CurrentDomain.BaseDirectory);
+            Console.WriteLine(string.Format("Fetching RESX file: {0}", file));
+
+            System.Resources.ResXResourceReader resourceReader = new ResXResourceReader(file);
             foreach (DictionaryEntry entry in resourceReader)
             {
                 if (entry.Key.ToString() == key)

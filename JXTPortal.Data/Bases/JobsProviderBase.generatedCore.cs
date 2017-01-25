@@ -570,6 +570,91 @@ namespace JXTPortal.Data.Bases
 		
 	
 		/// <summary>
+		/// 	Gets rows from the datasource based on the FK__Jobs__ScreeningQ__43CEFD10 key.
+		///		FK__Jobs__ScreeningQ__43CEFD10 Description: 
+		/// </summary>
+		/// <param name="_screeningQuestionsTemplateId"></param>
+		/// <returns>Returns a typed collection of JXTPortal.Entities.Jobs objects.</returns>
+		public TList<Jobs> GetByScreeningQuestionsTemplateId(System.Int32? _screeningQuestionsTemplateId)
+		{
+			int count = -1;
+			return GetByScreeningQuestionsTemplateId(_screeningQuestionsTemplateId, 0,int.MaxValue, out count);
+		}
+		
+		/// <summary>
+		/// 	Gets rows from the datasource based on the FK__Jobs__ScreeningQ__43CEFD10 key.
+		///		FK__Jobs__ScreeningQ__43CEFD10 Description: 
+		/// </summary>
+		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
+		/// <param name="_screeningQuestionsTemplateId"></param>
+		/// <returns>Returns a typed collection of JXTPortal.Entities.Jobs objects.</returns>
+		/// <remarks></remarks>
+		public TList<Jobs> GetByScreeningQuestionsTemplateId(TransactionManager transactionManager, System.Int32? _screeningQuestionsTemplateId)
+		{
+			int count = -1;
+			return GetByScreeningQuestionsTemplateId(transactionManager, _screeningQuestionsTemplateId, 0, int.MaxValue, out count);
+		}
+		
+			/// <summary>
+		/// 	Gets rows from the datasource based on the FK__Jobs__ScreeningQ__43CEFD10 key.
+		///		FK__Jobs__ScreeningQ__43CEFD10 Description: 
+		/// </summary>
+		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
+		/// <param name="_screeningQuestionsTemplateId"></param>
+		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
+		///  <param name="pageLength">Number of rows to return.</param>
+		/// <remarks></remarks>
+		/// <returns>Returns a typed collection of JXTPortal.Entities.Jobs objects.</returns>
+		public TList<Jobs> GetByScreeningQuestionsTemplateId(TransactionManager transactionManager, System.Int32? _screeningQuestionsTemplateId, int start, int pageLength)
+		{
+			int count = -1;
+			return GetByScreeningQuestionsTemplateId(transactionManager, _screeningQuestionsTemplateId, start, pageLength, out count);
+		}
+		
+		/// <summary>
+		/// 	Gets rows from the datasource based on the FK__Jobs__ScreeningQ__43CEFD10 key.
+		///		fkJobsScreeningq43Cefd10 Description: 
+		/// </summary>
+		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
+		/// <param name="pageLength">Number of rows to return.</param>
+		/// <param name="_screeningQuestionsTemplateId"></param>
+		/// <remarks></remarks>
+		/// <returns>Returns a typed collection of JXTPortal.Entities.Jobs objects.</returns>
+		public TList<Jobs> GetByScreeningQuestionsTemplateId(System.Int32? _screeningQuestionsTemplateId, int start, int pageLength)
+		{
+			int count =  -1;
+			return GetByScreeningQuestionsTemplateId(null, _screeningQuestionsTemplateId, start, pageLength,out count);	
+		}
+		
+		/// <summary>
+		/// 	Gets rows from the datasource based on the FK__Jobs__ScreeningQ__43CEFD10 key.
+		///		fkJobsScreeningq43Cefd10 Description: 
+		/// </summary>
+		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
+		/// <param name="pageLength">Number of rows to return.</param>
+		/// <param name="_screeningQuestionsTemplateId"></param>
+		/// <param name="count">out parameter to get total records for query</param>
+		/// <remarks></remarks>
+		/// <returns>Returns a typed collection of JXTPortal.Entities.Jobs objects.</returns>
+		public TList<Jobs> GetByScreeningQuestionsTemplateId(System.Int32? _screeningQuestionsTemplateId, int start, int pageLength,out int count)
+		{
+			return GetByScreeningQuestionsTemplateId(null, _screeningQuestionsTemplateId, start, pageLength, out count);	
+		}
+						
+		/// <summary>
+		/// 	Gets rows from the datasource based on the FK__Jobs__ScreeningQ__43CEFD10 key.
+		///		FK__Jobs__ScreeningQ__43CEFD10 Description: 
+		/// </summary>
+		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
+		/// <param name="_screeningQuestionsTemplateId"></param>
+		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
+		/// <param name="pageLength">Number of rows to return.</param>
+		/// <param name="count">The total number of records.</param>
+		/// <returns>Returns a typed collection of JXTPortal.Entities.Jobs objects.</returns>
+		public abstract TList<Jobs> GetByScreeningQuestionsTemplateId(TransactionManager transactionManager, System.Int32? _screeningQuestionsTemplateId, int start, int pageLength, out int count);
+		
+	
+		/// <summary>
 		/// 	Gets rows from the datasource based on the FK__Jobs__SiteID__64C2D10D key.
 		///		FK__Jobs__SiteID__64C2D10D Description: 
 		/// </summary>
@@ -1484,7 +1569,7 @@ namespace JXTPortal.Data.Bases
 		{
 			return GetByAdvertiserId(null, start, pageLength , advertiserId);
 		}
-				
+		
 		/// <summary>
 		///	This method wrap the 'Jobs_GetByAdvertiserId' stored procedure. 
 		/// </summary>
@@ -1495,6 +1580,281 @@ namespace JXTPortal.Data.Bases
 		/// <remark>This method is generate from a stored procedure.</remark>
 		/// <returns>A <see cref="DataSet"/> instance.</returns>
 		public abstract DataSet GetByAdvertiserId(TransactionManager transactionManager, int start, int pageLength , System.Int32? advertiserId);
+		
+		#endregion
+		
+		#region Jobs_Update 
+		
+		/// <summary>
+		///	This method wrap the 'Jobs_Update' stored procedure. 
+		/// </summary>
+		/// <param name="jobId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="siteId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="workTypeId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="jobName"> A <c>System.String</c> instance.</param>
+		/// <param name="description"> A <c>System.String</c> instance.</param>
+		/// <param name="fullDescription"> A <c>System.String</c> instance.</param>
+		/// <param name="webServiceProcessed"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="applicationEmailAddress"> A <c>System.String</c> instance.</param>
+		/// <param name="refNo"> A <c>System.String</c> instance.</param>
+		/// <param name="visible"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="datePosted"> A <c>System.DateTime?</c> instance.</param>
+		/// <param name="expiryDate"> A <c>System.DateTime?</c> instance.</param>
+		/// <param name="expired"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="jobItemPrice"> A <c>System.Decimal?</c> instance.</param>
+		/// <param name="billed"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="lastModified"> A <c>System.DateTime?</c> instance.</param>
+		/// <param name="showSalaryDetails"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="salaryText"> A <c>System.String</c> instance.</param>
+		/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="lastModifiedByAdvertiserUserId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="lastModifiedByAdminUserId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="jobItemTypeId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="applicationMethod"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="applicationUrl"> A <c>System.String</c> instance.</param>
+		/// <param name="uploadMethod"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="tags"> A <c>System.String</c> instance.</param>
+		/// <param name="jobTemplateId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="searchFieldExtension"> A <c>System.String</c> instance.</param>
+		/// <param name="advertiserJobTemplateLogoId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="companyName"> A <c>System.String</c> instance.</param>
+		/// <param name="hashValue"> A <c>System.Byte[]</c> instance.</param>
+		/// <param name="requireLogonForExternalApplications"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="showLocationDetails"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="publicTransport"> A <c>System.String</c> instance.</param>
+		/// <param name="address"> A <c>System.String</c> instance.</param>
+		/// <param name="contactDetails"> A <c>System.String</c> instance.</param>
+		/// <param name="jobContactPhone"> A <c>System.String</c> instance.</param>
+		/// <param name="jobContactName"> A <c>System.String</c> instance.</param>
+		/// <param name="qualificationsRecognised"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="residentOnly"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="documentLink"> A <c>System.String</c> instance.</param>
+		/// <param name="bulletPoint1"> A <c>System.String</c> instance.</param>
+		/// <param name="bulletPoint2"> A <c>System.String</c> instance.</param>
+		/// <param name="bulletPoint3"> A <c>System.String</c> instance.</param>
+		/// <param name="hotJob"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="jobFriendlyName"> A <c>System.String</c> instance.</param>
+		/// <param name="searchField"> A <c>System.String</c> instance.</param>
+		/// <param name="showSalaryRange"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="salaryLowerBand"> A <c>System.Decimal?</c> instance.</param>
+		/// <param name="salaryUpperBand"> A <c>System.Decimal?</c> instance.</param>
+		/// <param name="currencyId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="salaryTypeId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="enteredByAdvertiserUserId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="jobLatitude"> A <c>System.Double?</c> instance.</param>
+		/// <param name="jobLongitude"> A <c>System.Double?</c> instance.</param>
+		/// <param name="addressStatus"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="jobExternalId"> A <c>System.String</c> instance.</param>
+		/// <param name="screeningQuestionsTemplateId"> A <c>System.Int32?</c> instance.</param>
+		/// <remark>This method is generate from a stored procedure.</remark>
+		public void Update(System.Int32? jobId, System.Int32? siteId, System.Int32? workTypeId, System.String jobName, System.String description, System.String fullDescription, System.Boolean? webServiceProcessed, System.String applicationEmailAddress, System.String refNo, System.Boolean? visible, System.DateTime? datePosted, System.DateTime? expiryDate, System.Int32? expired, System.Decimal? jobItemPrice, System.Boolean? billed, System.DateTime? lastModified, System.Boolean? showSalaryDetails, System.String salaryText, System.Int32? advertiserId, System.Int32? lastModifiedByAdvertiserUserId, System.Int32? lastModifiedByAdminUserId, System.Int32? jobItemTypeId, System.Int32? applicationMethod, System.String applicationUrl, System.Int32? uploadMethod, System.String tags, System.Int32? jobTemplateId, System.String searchFieldExtension, System.Int32? advertiserJobTemplateLogoId, System.String companyName, System.Byte[] hashValue, System.Boolean? requireLogonForExternalApplications, System.Boolean? showLocationDetails, System.String publicTransport, System.String address, System.String contactDetails, System.String jobContactPhone, System.String jobContactName, System.Boolean? qualificationsRecognised, System.Boolean? residentOnly, System.String documentLink, System.String bulletPoint1, System.String bulletPoint2, System.String bulletPoint3, System.Boolean? hotJob, System.String jobFriendlyName, System.String searchField, System.Boolean? showSalaryRange, System.Decimal? salaryLowerBand, System.Decimal? salaryUpperBand, System.Int32? currencyId, System.Int32? salaryTypeId, System.Int32? enteredByAdvertiserUserId, System.Double? jobLatitude, System.Double? jobLongitude, System.Int32? addressStatus, System.String jobExternalId, System.Int32? screeningQuestionsTemplateId)
+		{
+			 Update(null, 0, int.MaxValue , jobId, siteId, workTypeId, jobName, description, fullDescription, webServiceProcessed, applicationEmailAddress, refNo, visible, datePosted, expiryDate, expired, jobItemPrice, billed, lastModified, showSalaryDetails, salaryText, advertiserId, lastModifiedByAdvertiserUserId, lastModifiedByAdminUserId, jobItemTypeId, applicationMethod, applicationUrl, uploadMethod, tags, jobTemplateId, searchFieldExtension, advertiserJobTemplateLogoId, companyName, hashValue, requireLogonForExternalApplications, showLocationDetails, publicTransport, address, contactDetails, jobContactPhone, jobContactName, qualificationsRecognised, residentOnly, documentLink, bulletPoint1, bulletPoint2, bulletPoint3, hotJob, jobFriendlyName, searchField, showSalaryRange, salaryLowerBand, salaryUpperBand, currencyId, salaryTypeId, enteredByAdvertiserUserId, jobLatitude, jobLongitude, addressStatus, jobExternalId, screeningQuestionsTemplateId);
+		}
+		
+		/// <summary>
+		///	This method wrap the 'Jobs_Update' stored procedure. 
+		/// </summary>
+		/// <param name="jobId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="siteId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="workTypeId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="jobName"> A <c>System.String</c> instance.</param>
+		/// <param name="description"> A <c>System.String</c> instance.</param>
+		/// <param name="fullDescription"> A <c>System.String</c> instance.</param>
+		/// <param name="webServiceProcessed"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="applicationEmailAddress"> A <c>System.String</c> instance.</param>
+		/// <param name="refNo"> A <c>System.String</c> instance.</param>
+		/// <param name="visible"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="datePosted"> A <c>System.DateTime?</c> instance.</param>
+		/// <param name="expiryDate"> A <c>System.DateTime?</c> instance.</param>
+		/// <param name="expired"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="jobItemPrice"> A <c>System.Decimal?</c> instance.</param>
+		/// <param name="billed"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="lastModified"> A <c>System.DateTime?</c> instance.</param>
+		/// <param name="showSalaryDetails"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="salaryText"> A <c>System.String</c> instance.</param>
+		/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="lastModifiedByAdvertiserUserId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="lastModifiedByAdminUserId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="jobItemTypeId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="applicationMethod"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="applicationUrl"> A <c>System.String</c> instance.</param>
+		/// <param name="uploadMethod"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="tags"> A <c>System.String</c> instance.</param>
+		/// <param name="jobTemplateId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="searchFieldExtension"> A <c>System.String</c> instance.</param>
+		/// <param name="advertiserJobTemplateLogoId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="companyName"> A <c>System.String</c> instance.</param>
+		/// <param name="hashValue"> A <c>System.Byte[]</c> instance.</param>
+		/// <param name="requireLogonForExternalApplications"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="showLocationDetails"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="publicTransport"> A <c>System.String</c> instance.</param>
+		/// <param name="address"> A <c>System.String</c> instance.</param>
+		/// <param name="contactDetails"> A <c>System.String</c> instance.</param>
+		/// <param name="jobContactPhone"> A <c>System.String</c> instance.</param>
+		/// <param name="jobContactName"> A <c>System.String</c> instance.</param>
+		/// <param name="qualificationsRecognised"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="residentOnly"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="documentLink"> A <c>System.String</c> instance.</param>
+		/// <param name="bulletPoint1"> A <c>System.String</c> instance.</param>
+		/// <param name="bulletPoint2"> A <c>System.String</c> instance.</param>
+		/// <param name="bulletPoint3"> A <c>System.String</c> instance.</param>
+		/// <param name="hotJob"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="jobFriendlyName"> A <c>System.String</c> instance.</param>
+		/// <param name="searchField"> A <c>System.String</c> instance.</param>
+		/// <param name="showSalaryRange"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="salaryLowerBand"> A <c>System.Decimal?</c> instance.</param>
+		/// <param name="salaryUpperBand"> A <c>System.Decimal?</c> instance.</param>
+		/// <param name="currencyId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="salaryTypeId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="enteredByAdvertiserUserId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="jobLatitude"> A <c>System.Double?</c> instance.</param>
+		/// <param name="jobLongitude"> A <c>System.Double?</c> instance.</param>
+		/// <param name="addressStatus"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="jobExternalId"> A <c>System.String</c> instance.</param>
+		/// <param name="screeningQuestionsTemplateId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
+		/// <param name="pageLength">Number of rows to return.</param>
+		/// <remark>This method is generate from a stored procedure.</remark>
+		public void Update(int start, int pageLength, System.Int32? jobId, System.Int32? siteId, System.Int32? workTypeId, System.String jobName, System.String description, System.String fullDescription, System.Boolean? webServiceProcessed, System.String applicationEmailAddress, System.String refNo, System.Boolean? visible, System.DateTime? datePosted, System.DateTime? expiryDate, System.Int32? expired, System.Decimal? jobItemPrice, System.Boolean? billed, System.DateTime? lastModified, System.Boolean? showSalaryDetails, System.String salaryText, System.Int32? advertiserId, System.Int32? lastModifiedByAdvertiserUserId, System.Int32? lastModifiedByAdminUserId, System.Int32? jobItemTypeId, System.Int32? applicationMethod, System.String applicationUrl, System.Int32? uploadMethod, System.String tags, System.Int32? jobTemplateId, System.String searchFieldExtension, System.Int32? advertiserJobTemplateLogoId, System.String companyName, System.Byte[] hashValue, System.Boolean? requireLogonForExternalApplications, System.Boolean? showLocationDetails, System.String publicTransport, System.String address, System.String contactDetails, System.String jobContactPhone, System.String jobContactName, System.Boolean? qualificationsRecognised, System.Boolean? residentOnly, System.String documentLink, System.String bulletPoint1, System.String bulletPoint2, System.String bulletPoint3, System.Boolean? hotJob, System.String jobFriendlyName, System.String searchField, System.Boolean? showSalaryRange, System.Decimal? salaryLowerBand, System.Decimal? salaryUpperBand, System.Int32? currencyId, System.Int32? salaryTypeId, System.Int32? enteredByAdvertiserUserId, System.Double? jobLatitude, System.Double? jobLongitude, System.Int32? addressStatus, System.String jobExternalId, System.Int32? screeningQuestionsTemplateId)
+		{
+			 Update(null, start, pageLength , jobId, siteId, workTypeId, jobName, description, fullDescription, webServiceProcessed, applicationEmailAddress, refNo, visible, datePosted, expiryDate, expired, jobItemPrice, billed, lastModified, showSalaryDetails, salaryText, advertiserId, lastModifiedByAdvertiserUserId, lastModifiedByAdminUserId, jobItemTypeId, applicationMethod, applicationUrl, uploadMethod, tags, jobTemplateId, searchFieldExtension, advertiserJobTemplateLogoId, companyName, hashValue, requireLogonForExternalApplications, showLocationDetails, publicTransport, address, contactDetails, jobContactPhone, jobContactName, qualificationsRecognised, residentOnly, documentLink, bulletPoint1, bulletPoint2, bulletPoint3, hotJob, jobFriendlyName, searchField, showSalaryRange, salaryLowerBand, salaryUpperBand, currencyId, salaryTypeId, enteredByAdvertiserUserId, jobLatitude, jobLongitude, addressStatus, jobExternalId, screeningQuestionsTemplateId);
+		}
+				
+		/// <summary>
+		///	This method wrap the 'Jobs_Update' stored procedure. 
+		/// </summary>
+		/// <param name="jobId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="siteId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="workTypeId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="jobName"> A <c>System.String</c> instance.</param>
+		/// <param name="description"> A <c>System.String</c> instance.</param>
+		/// <param name="fullDescription"> A <c>System.String</c> instance.</param>
+		/// <param name="webServiceProcessed"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="applicationEmailAddress"> A <c>System.String</c> instance.</param>
+		/// <param name="refNo"> A <c>System.String</c> instance.</param>
+		/// <param name="visible"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="datePosted"> A <c>System.DateTime?</c> instance.</param>
+		/// <param name="expiryDate"> A <c>System.DateTime?</c> instance.</param>
+		/// <param name="expired"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="jobItemPrice"> A <c>System.Decimal?</c> instance.</param>
+		/// <param name="billed"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="lastModified"> A <c>System.DateTime?</c> instance.</param>
+		/// <param name="showSalaryDetails"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="salaryText"> A <c>System.String</c> instance.</param>
+		/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="lastModifiedByAdvertiserUserId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="lastModifiedByAdminUserId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="jobItemTypeId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="applicationMethod"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="applicationUrl"> A <c>System.String</c> instance.</param>
+		/// <param name="uploadMethod"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="tags"> A <c>System.String</c> instance.</param>
+		/// <param name="jobTemplateId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="searchFieldExtension"> A <c>System.String</c> instance.</param>
+		/// <param name="advertiserJobTemplateLogoId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="companyName"> A <c>System.String</c> instance.</param>
+		/// <param name="hashValue"> A <c>System.Byte[]</c> instance.</param>
+		/// <param name="requireLogonForExternalApplications"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="showLocationDetails"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="publicTransport"> A <c>System.String</c> instance.</param>
+		/// <param name="address"> A <c>System.String</c> instance.</param>
+		/// <param name="contactDetails"> A <c>System.String</c> instance.</param>
+		/// <param name="jobContactPhone"> A <c>System.String</c> instance.</param>
+		/// <param name="jobContactName"> A <c>System.String</c> instance.</param>
+		/// <param name="qualificationsRecognised"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="residentOnly"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="documentLink"> A <c>System.String</c> instance.</param>
+		/// <param name="bulletPoint1"> A <c>System.String</c> instance.</param>
+		/// <param name="bulletPoint2"> A <c>System.String</c> instance.</param>
+		/// <param name="bulletPoint3"> A <c>System.String</c> instance.</param>
+		/// <param name="hotJob"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="jobFriendlyName"> A <c>System.String</c> instance.</param>
+		/// <param name="searchField"> A <c>System.String</c> instance.</param>
+		/// <param name="showSalaryRange"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="salaryLowerBand"> A <c>System.Decimal?</c> instance.</param>
+		/// <param name="salaryUpperBand"> A <c>System.Decimal?</c> instance.</param>
+		/// <param name="currencyId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="salaryTypeId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="enteredByAdvertiserUserId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="jobLatitude"> A <c>System.Double?</c> instance.</param>
+		/// <param name="jobLongitude"> A <c>System.Double?</c> instance.</param>
+		/// <param name="addressStatus"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="jobExternalId"> A <c>System.String</c> instance.</param>
+		/// <param name="screeningQuestionsTemplateId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
+		/// <remark>This method is generate from a stored procedure.</remark>
+		public void Update(TransactionManager transactionManager, System.Int32? jobId, System.Int32? siteId, System.Int32? workTypeId, System.String jobName, System.String description, System.String fullDescription, System.Boolean? webServiceProcessed, System.String applicationEmailAddress, System.String refNo, System.Boolean? visible, System.DateTime? datePosted, System.DateTime? expiryDate, System.Int32? expired, System.Decimal? jobItemPrice, System.Boolean? billed, System.DateTime? lastModified, System.Boolean? showSalaryDetails, System.String salaryText, System.Int32? advertiserId, System.Int32? lastModifiedByAdvertiserUserId, System.Int32? lastModifiedByAdminUserId, System.Int32? jobItemTypeId, System.Int32? applicationMethod, System.String applicationUrl, System.Int32? uploadMethod, System.String tags, System.Int32? jobTemplateId, System.String searchFieldExtension, System.Int32? advertiserJobTemplateLogoId, System.String companyName, System.Byte[] hashValue, System.Boolean? requireLogonForExternalApplications, System.Boolean? showLocationDetails, System.String publicTransport, System.String address, System.String contactDetails, System.String jobContactPhone, System.String jobContactName, System.Boolean? qualificationsRecognised, System.Boolean? residentOnly, System.String documentLink, System.String bulletPoint1, System.String bulletPoint2, System.String bulletPoint3, System.Boolean? hotJob, System.String jobFriendlyName, System.String searchField, System.Boolean? showSalaryRange, System.Decimal? salaryLowerBand, System.Decimal? salaryUpperBand, System.Int32? currencyId, System.Int32? salaryTypeId, System.Int32? enteredByAdvertiserUserId, System.Double? jobLatitude, System.Double? jobLongitude, System.Int32? addressStatus, System.String jobExternalId, System.Int32? screeningQuestionsTemplateId)
+		{
+			 Update(transactionManager, 0, int.MaxValue , jobId, siteId, workTypeId, jobName, description, fullDescription, webServiceProcessed, applicationEmailAddress, refNo, visible, datePosted, expiryDate, expired, jobItemPrice, billed, lastModified, showSalaryDetails, salaryText, advertiserId, lastModifiedByAdvertiserUserId, lastModifiedByAdminUserId, jobItemTypeId, applicationMethod, applicationUrl, uploadMethod, tags, jobTemplateId, searchFieldExtension, advertiserJobTemplateLogoId, companyName, hashValue, requireLogonForExternalApplications, showLocationDetails, publicTransport, address, contactDetails, jobContactPhone, jobContactName, qualificationsRecognised, residentOnly, documentLink, bulletPoint1, bulletPoint2, bulletPoint3, hotJob, jobFriendlyName, searchField, showSalaryRange, salaryLowerBand, salaryUpperBand, currencyId, salaryTypeId, enteredByAdvertiserUserId, jobLatitude, jobLongitude, addressStatus, jobExternalId, screeningQuestionsTemplateId);
+		}
+		
+		/// <summary>
+		///	This method wrap the 'Jobs_Update' stored procedure. 
+		/// </summary>
+		/// <param name="jobId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="siteId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="workTypeId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="jobName"> A <c>System.String</c> instance.</param>
+		/// <param name="description"> A <c>System.String</c> instance.</param>
+		/// <param name="fullDescription"> A <c>System.String</c> instance.</param>
+		/// <param name="webServiceProcessed"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="applicationEmailAddress"> A <c>System.String</c> instance.</param>
+		/// <param name="refNo"> A <c>System.String</c> instance.</param>
+		/// <param name="visible"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="datePosted"> A <c>System.DateTime?</c> instance.</param>
+		/// <param name="expiryDate"> A <c>System.DateTime?</c> instance.</param>
+		/// <param name="expired"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="jobItemPrice"> A <c>System.Decimal?</c> instance.</param>
+		/// <param name="billed"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="lastModified"> A <c>System.DateTime?</c> instance.</param>
+		/// <param name="showSalaryDetails"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="salaryText"> A <c>System.String</c> instance.</param>
+		/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="lastModifiedByAdvertiserUserId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="lastModifiedByAdminUserId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="jobItemTypeId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="applicationMethod"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="applicationUrl"> A <c>System.String</c> instance.</param>
+		/// <param name="uploadMethod"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="tags"> A <c>System.String</c> instance.</param>
+		/// <param name="jobTemplateId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="searchFieldExtension"> A <c>System.String</c> instance.</param>
+		/// <param name="advertiserJobTemplateLogoId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="companyName"> A <c>System.String</c> instance.</param>
+		/// <param name="hashValue"> A <c>System.Byte[]</c> instance.</param>
+		/// <param name="requireLogonForExternalApplications"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="showLocationDetails"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="publicTransport"> A <c>System.String</c> instance.</param>
+		/// <param name="address"> A <c>System.String</c> instance.</param>
+		/// <param name="contactDetails"> A <c>System.String</c> instance.</param>
+		/// <param name="jobContactPhone"> A <c>System.String</c> instance.</param>
+		/// <param name="jobContactName"> A <c>System.String</c> instance.</param>
+		/// <param name="qualificationsRecognised"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="residentOnly"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="documentLink"> A <c>System.String</c> instance.</param>
+		/// <param name="bulletPoint1"> A <c>System.String</c> instance.</param>
+		/// <param name="bulletPoint2"> A <c>System.String</c> instance.</param>
+		/// <param name="bulletPoint3"> A <c>System.String</c> instance.</param>
+		/// <param name="hotJob"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="jobFriendlyName"> A <c>System.String</c> instance.</param>
+		/// <param name="searchField"> A <c>System.String</c> instance.</param>
+		/// <param name="showSalaryRange"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="salaryLowerBand"> A <c>System.Decimal?</c> instance.</param>
+		/// <param name="salaryUpperBand"> A <c>System.Decimal?</c> instance.</param>
+		/// <param name="currencyId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="salaryTypeId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="enteredByAdvertiserUserId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="jobLatitude"> A <c>System.Double?</c> instance.</param>
+		/// <param name="jobLongitude"> A <c>System.Double?</c> instance.</param>
+		/// <param name="addressStatus"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="jobExternalId"> A <c>System.String</c> instance.</param>
+		/// <param name="screeningQuestionsTemplateId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
+		/// <param name="pageLength">Number of rows to return.</param>
+		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
+		/// <remark>This method is generate from a stored procedure.</remark>
+		public abstract void Update(TransactionManager transactionManager, int start, int pageLength , System.Int32? jobId, System.Int32? siteId, System.Int32? workTypeId, System.String jobName, System.String description, System.String fullDescription, System.Boolean? webServiceProcessed, System.String applicationEmailAddress, System.String refNo, System.Boolean? visible, System.DateTime? datePosted, System.DateTime? expiryDate, System.Int32? expired, System.Decimal? jobItemPrice, System.Boolean? billed, System.DateTime? lastModified, System.Boolean? showSalaryDetails, System.String salaryText, System.Int32? advertiserId, System.Int32? lastModifiedByAdvertiserUserId, System.Int32? lastModifiedByAdminUserId, System.Int32? jobItemTypeId, System.Int32? applicationMethod, System.String applicationUrl, System.Int32? uploadMethod, System.String tags, System.Int32? jobTemplateId, System.String searchFieldExtension, System.Int32? advertiserJobTemplateLogoId, System.String companyName, System.Byte[] hashValue, System.Boolean? requireLogonForExternalApplications, System.Boolean? showLocationDetails, System.String publicTransport, System.String address, System.String contactDetails, System.String jobContactPhone, System.String jobContactName, System.Boolean? qualificationsRecognised, System.Boolean? residentOnly, System.String documentLink, System.String bulletPoint1, System.String bulletPoint2, System.String bulletPoint3, System.Boolean? hotJob, System.String jobFriendlyName, System.String searchField, System.Boolean? showSalaryRange, System.Decimal? salaryLowerBand, System.Decimal? salaryUpperBand, System.Int32? currencyId, System.Int32? salaryTypeId, System.Int32? enteredByAdvertiserUserId, System.Double? jobLatitude, System.Double? jobLongitude, System.Int32? addressStatus, System.String jobExternalId, System.Int32? screeningQuestionsTemplateId);
 		
 		#endregion
 		
@@ -1551,7 +1911,6 @@ namespace JXTPortal.Data.Bases
 		
 		#region Jobs_GetByLastModifiedByAdvertiserUserId 
 		
-		
 		/// <summary>
 		///	This method wrap the 'Jobs_GetByLastModifiedByAdvertiserUserId' stored procedure. 
 		/// </summary>
@@ -1564,7 +1923,6 @@ namespace JXTPortal.Data.Bases
 		{
 			return GetByLastModifiedByAdvertiserUserId(null, start, pageLength , lastModifiedByAdvertiserUserId);
 		}
-			
 		
 		/// <summary>
 		///	This method wrap the 'Jobs_GetByLastModifiedByAdvertiserUserId' stored procedure. 
@@ -2193,8 +2551,7 @@ namespace JXTPortal.Data.Bases
 		
 		#endregion
 		
-		#region Jobs_GetByJobTemplateId 
-		
+		#region Jobs_GetByJobTemplateId
 		
 		/// <summary>
 		///	This method wrap the 'Jobs_GetByJobTemplateId' stored procedure. 
@@ -2208,7 +2565,6 @@ namespace JXTPortal.Data.Bases
 		{
 			return GetByJobTemplateId(null, start, pageLength , jobTemplateId);
 		}
-				
 		
 		/// <summary>
 		///	This method wrap the 'Jobs_GetByJobTemplateId' stored procedure. 
@@ -2922,7 +3278,6 @@ namespace JXTPortal.Data.Bases
 		{
 			return GetByLastModifiedByAdminUserId(null, start, pageLength , lastModifiedByAdminUserId);
 		}
-			
 		
 		/// <summary>
 		///	This method wrap the 'Jobs_GetByLastModifiedByAdminUserId' stored procedure. 
@@ -3508,11 +3863,13 @@ namespace JXTPortal.Data.Bases
 		/// <param name="jobLatitude"> A <c>System.Double?</c> instance.</param>
 		/// <param name="jobLongitude"> A <c>System.Double?</c> instance.</param>
 		/// <param name="addressStatus"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="jobExternalId"> A <c>System.String</c> instance.</param>
+		/// <param name="screeningQuestionsTemplateId"> A <c>System.Int32?</c> instance.</param>
 			/// <param name="jobId"> A <c>System.Int32?</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public void Insert(System.Int32? siteId, System.Int32? workTypeId, System.String jobName, System.String description, System.String fullDescription, System.Boolean? webServiceProcessed, System.String applicationEmailAddress, System.String refNo, System.Boolean? visible, System.DateTime? datePosted, System.DateTime? expiryDate, System.Int32? expired, System.Decimal? jobItemPrice, System.Boolean? billed, System.DateTime? lastModified, System.Boolean? showSalaryDetails, System.String salaryText, System.Int32? advertiserId, System.Int32? lastModifiedByAdvertiserUserId, System.Int32? lastModifiedByAdminUserId, System.Int32? jobItemTypeId, System.Int32? applicationMethod, System.String applicationUrl, System.Int32? uploadMethod, System.String tags, System.Int32? jobTemplateId, System.String searchFieldExtension, System.Int32? advertiserJobTemplateLogoId, System.String companyName, System.Byte[] hashValue, System.Boolean? requireLogonForExternalApplications, System.Boolean? showLocationDetails, System.String publicTransport, System.String address, System.String contactDetails, System.String jobContactPhone, System.String jobContactName, System.Boolean? qualificationsRecognised, System.Boolean? residentOnly, System.String documentLink, System.String bulletPoint1, System.String bulletPoint2, System.String bulletPoint3, System.Boolean? hotJob, System.String jobFriendlyName, System.String searchField, System.Boolean? showSalaryRange, System.Decimal? salaryLowerBand, System.Decimal? salaryUpperBand, System.Int32? currencyId, System.Int32? salaryTypeId, System.Int32? enteredByAdvertiserUserId, System.Double? jobLatitude, System.Double? jobLongitude, System.Int32? addressStatus, ref System.Int32? jobId)
+		public void Insert(System.Int32? siteId, System.Int32? workTypeId, System.String jobName, System.String description, System.String fullDescription, System.Boolean? webServiceProcessed, System.String applicationEmailAddress, System.String refNo, System.Boolean? visible, System.DateTime? datePosted, System.DateTime? expiryDate, System.Int32? expired, System.Decimal? jobItemPrice, System.Boolean? billed, System.DateTime? lastModified, System.Boolean? showSalaryDetails, System.String salaryText, System.Int32? advertiserId, System.Int32? lastModifiedByAdvertiserUserId, System.Int32? lastModifiedByAdminUserId, System.Int32? jobItemTypeId, System.Int32? applicationMethod, System.String applicationUrl, System.Int32? uploadMethod, System.String tags, System.Int32? jobTemplateId, System.String searchFieldExtension, System.Int32? advertiserJobTemplateLogoId, System.String companyName, System.Byte[] hashValue, System.Boolean? requireLogonForExternalApplications, System.Boolean? showLocationDetails, System.String publicTransport, System.String address, System.String contactDetails, System.String jobContactPhone, System.String jobContactName, System.Boolean? qualificationsRecognised, System.Boolean? residentOnly, System.String documentLink, System.String bulletPoint1, System.String bulletPoint2, System.String bulletPoint3, System.Boolean? hotJob, System.String jobFriendlyName, System.String searchField, System.Boolean? showSalaryRange, System.Decimal? salaryLowerBand, System.Decimal? salaryUpperBand, System.Int32? currencyId, System.Int32? salaryTypeId, System.Int32? enteredByAdvertiserUserId, System.Double? jobLatitude, System.Double? jobLongitude, System.Int32? addressStatus, System.String jobExternalId, System.Int32? screeningQuestionsTemplateId, ref System.Int32? jobId)
 		{
-			 Insert(null, 0, int.MaxValue , siteId, workTypeId, jobName, description, fullDescription, webServiceProcessed, applicationEmailAddress, refNo, visible, datePosted, expiryDate, expired, jobItemPrice, billed, lastModified, showSalaryDetails, salaryText, advertiserId, lastModifiedByAdvertiserUserId, lastModifiedByAdminUserId, jobItemTypeId, applicationMethod, applicationUrl, uploadMethod, tags, jobTemplateId, searchFieldExtension, advertiserJobTemplateLogoId, companyName, hashValue, requireLogonForExternalApplications, showLocationDetails, publicTransport, address, contactDetails, jobContactPhone, jobContactName, qualificationsRecognised, residentOnly, documentLink, bulletPoint1, bulletPoint2, bulletPoint3, hotJob, jobFriendlyName, searchField, showSalaryRange, salaryLowerBand, salaryUpperBand, currencyId, salaryTypeId, enteredByAdvertiserUserId, jobLatitude, jobLongitude, addressStatus, ref jobId);
+			 Insert(null, 0, int.MaxValue , siteId, workTypeId, jobName, description, fullDescription, webServiceProcessed, applicationEmailAddress, refNo, visible, datePosted, expiryDate, expired, jobItemPrice, billed, lastModified, showSalaryDetails, salaryText, advertiserId, lastModifiedByAdvertiserUserId, lastModifiedByAdminUserId, jobItemTypeId, applicationMethod, applicationUrl, uploadMethod, tags, jobTemplateId, searchFieldExtension, advertiserJobTemplateLogoId, companyName, hashValue, requireLogonForExternalApplications, showLocationDetails, publicTransport, address, contactDetails, jobContactPhone, jobContactName, qualificationsRecognised, residentOnly, documentLink, bulletPoint1, bulletPoint2, bulletPoint3, hotJob, jobFriendlyName, searchField, showSalaryRange, salaryLowerBand, salaryUpperBand, currencyId, salaryTypeId, enteredByAdvertiserUserId, jobLatitude, jobLongitude, addressStatus, jobExternalId, screeningQuestionsTemplateId, ref jobId);
 		}
 		
 		/// <summary>
@@ -3573,13 +3930,15 @@ namespace JXTPortal.Data.Bases
 		/// <param name="jobLatitude"> A <c>System.Double?</c> instance.</param>
 		/// <param name="jobLongitude"> A <c>System.Double?</c> instance.</param>
 		/// <param name="addressStatus"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="jobExternalId"> A <c>System.String</c> instance.</param>
+		/// <param name="screeningQuestionsTemplateId"> A <c>System.Int32?</c> instance.</param>
 			/// <param name="jobId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public void Insert(int start, int pageLength, System.Int32? siteId, System.Int32? workTypeId, System.String jobName, System.String description, System.String fullDescription, System.Boolean? webServiceProcessed, System.String applicationEmailAddress, System.String refNo, System.Boolean? visible, System.DateTime? datePosted, System.DateTime? expiryDate, System.Int32? expired, System.Decimal? jobItemPrice, System.Boolean? billed, System.DateTime? lastModified, System.Boolean? showSalaryDetails, System.String salaryText, System.Int32? advertiserId, System.Int32? lastModifiedByAdvertiserUserId, System.Int32? lastModifiedByAdminUserId, System.Int32? jobItemTypeId, System.Int32? applicationMethod, System.String applicationUrl, System.Int32? uploadMethod, System.String tags, System.Int32? jobTemplateId, System.String searchFieldExtension, System.Int32? advertiserJobTemplateLogoId, System.String companyName, System.Byte[] hashValue, System.Boolean? requireLogonForExternalApplications, System.Boolean? showLocationDetails, System.String publicTransport, System.String address, System.String contactDetails, System.String jobContactPhone, System.String jobContactName, System.Boolean? qualificationsRecognised, System.Boolean? residentOnly, System.String documentLink, System.String bulletPoint1, System.String bulletPoint2, System.String bulletPoint3, System.Boolean? hotJob, System.String jobFriendlyName, System.String searchField, System.Boolean? showSalaryRange, System.Decimal? salaryLowerBand, System.Decimal? salaryUpperBand, System.Int32? currencyId, System.Int32? salaryTypeId, System.Int32? enteredByAdvertiserUserId, System.Double? jobLatitude, System.Double? jobLongitude, System.Int32? addressStatus, ref System.Int32? jobId)
+		public void Insert(int start, int pageLength, System.Int32? siteId, System.Int32? workTypeId, System.String jobName, System.String description, System.String fullDescription, System.Boolean? webServiceProcessed, System.String applicationEmailAddress, System.String refNo, System.Boolean? visible, System.DateTime? datePosted, System.DateTime? expiryDate, System.Int32? expired, System.Decimal? jobItemPrice, System.Boolean? billed, System.DateTime? lastModified, System.Boolean? showSalaryDetails, System.String salaryText, System.Int32? advertiserId, System.Int32? lastModifiedByAdvertiserUserId, System.Int32? lastModifiedByAdminUserId, System.Int32? jobItemTypeId, System.Int32? applicationMethod, System.String applicationUrl, System.Int32? uploadMethod, System.String tags, System.Int32? jobTemplateId, System.String searchFieldExtension, System.Int32? advertiserJobTemplateLogoId, System.String companyName, System.Byte[] hashValue, System.Boolean? requireLogonForExternalApplications, System.Boolean? showLocationDetails, System.String publicTransport, System.String address, System.String contactDetails, System.String jobContactPhone, System.String jobContactName, System.Boolean? qualificationsRecognised, System.Boolean? residentOnly, System.String documentLink, System.String bulletPoint1, System.String bulletPoint2, System.String bulletPoint3, System.Boolean? hotJob, System.String jobFriendlyName, System.String searchField, System.Boolean? showSalaryRange, System.Decimal? salaryLowerBand, System.Decimal? salaryUpperBand, System.Int32? currencyId, System.Int32? salaryTypeId, System.Int32? enteredByAdvertiserUserId, System.Double? jobLatitude, System.Double? jobLongitude, System.Int32? addressStatus, System.String jobExternalId, System.Int32? screeningQuestionsTemplateId, ref System.Int32? jobId)
 		{
-			 Insert(null, start, pageLength , siteId, workTypeId, jobName, description, fullDescription, webServiceProcessed, applicationEmailAddress, refNo, visible, datePosted, expiryDate, expired, jobItemPrice, billed, lastModified, showSalaryDetails, salaryText, advertiserId, lastModifiedByAdvertiserUserId, lastModifiedByAdminUserId, jobItemTypeId, applicationMethod, applicationUrl, uploadMethod, tags, jobTemplateId, searchFieldExtension, advertiserJobTemplateLogoId, companyName, hashValue, requireLogonForExternalApplications, showLocationDetails, publicTransport, address, contactDetails, jobContactPhone, jobContactName, qualificationsRecognised, residentOnly, documentLink, bulletPoint1, bulletPoint2, bulletPoint3, hotJob, jobFriendlyName, searchField, showSalaryRange, salaryLowerBand, salaryUpperBand, currencyId, salaryTypeId, enteredByAdvertiserUserId, jobLatitude, jobLongitude, addressStatus, ref jobId);
+			 Insert(null, start, pageLength , siteId, workTypeId, jobName, description, fullDescription, webServiceProcessed, applicationEmailAddress, refNo, visible, datePosted, expiryDate, expired, jobItemPrice, billed, lastModified, showSalaryDetails, salaryText, advertiserId, lastModifiedByAdvertiserUserId, lastModifiedByAdminUserId, jobItemTypeId, applicationMethod, applicationUrl, uploadMethod, tags, jobTemplateId, searchFieldExtension, advertiserJobTemplateLogoId, companyName, hashValue, requireLogonForExternalApplications, showLocationDetails, publicTransport, address, contactDetails, jobContactPhone, jobContactName, qualificationsRecognised, residentOnly, documentLink, bulletPoint1, bulletPoint2, bulletPoint3, hotJob, jobFriendlyName, searchField, showSalaryRange, salaryLowerBand, salaryUpperBand, currencyId, salaryTypeId, enteredByAdvertiserUserId, jobLatitude, jobLongitude, addressStatus, jobExternalId, screeningQuestionsTemplateId, ref jobId);
 		}
 				
 		/// <summary>
@@ -3640,12 +3999,14 @@ namespace JXTPortal.Data.Bases
 		/// <param name="jobLatitude"> A <c>System.Double?</c> instance.</param>
 		/// <param name="jobLongitude"> A <c>System.Double?</c> instance.</param>
 		/// <param name="addressStatus"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="jobExternalId"> A <c>System.String</c> instance.</param>
+		/// <param name="screeningQuestionsTemplateId"> A <c>System.Int32?</c> instance.</param>
 			/// <param name="jobId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public void Insert(TransactionManager transactionManager, System.Int32? siteId, System.Int32? workTypeId, System.String jobName, System.String description, System.String fullDescription, System.Boolean? webServiceProcessed, System.String applicationEmailAddress, System.String refNo, System.Boolean? visible, System.DateTime? datePosted, System.DateTime? expiryDate, System.Int32? expired, System.Decimal? jobItemPrice, System.Boolean? billed, System.DateTime? lastModified, System.Boolean? showSalaryDetails, System.String salaryText, System.Int32? advertiserId, System.Int32? lastModifiedByAdvertiserUserId, System.Int32? lastModifiedByAdminUserId, System.Int32? jobItemTypeId, System.Int32? applicationMethod, System.String applicationUrl, System.Int32? uploadMethod, System.String tags, System.Int32? jobTemplateId, System.String searchFieldExtension, System.Int32? advertiserJobTemplateLogoId, System.String companyName, System.Byte[] hashValue, System.Boolean? requireLogonForExternalApplications, System.Boolean? showLocationDetails, System.String publicTransport, System.String address, System.String contactDetails, System.String jobContactPhone, System.String jobContactName, System.Boolean? qualificationsRecognised, System.Boolean? residentOnly, System.String documentLink, System.String bulletPoint1, System.String bulletPoint2, System.String bulletPoint3, System.Boolean? hotJob, System.String jobFriendlyName, System.String searchField, System.Boolean? showSalaryRange, System.Decimal? salaryLowerBand, System.Decimal? salaryUpperBand, System.Int32? currencyId, System.Int32? salaryTypeId, System.Int32? enteredByAdvertiserUserId, System.Double? jobLatitude, System.Double? jobLongitude, System.Int32? addressStatus, ref System.Int32? jobId)
+		public void Insert(TransactionManager transactionManager, System.Int32? siteId, System.Int32? workTypeId, System.String jobName, System.String description, System.String fullDescription, System.Boolean? webServiceProcessed, System.String applicationEmailAddress, System.String refNo, System.Boolean? visible, System.DateTime? datePosted, System.DateTime? expiryDate, System.Int32? expired, System.Decimal? jobItemPrice, System.Boolean? billed, System.DateTime? lastModified, System.Boolean? showSalaryDetails, System.String salaryText, System.Int32? advertiserId, System.Int32? lastModifiedByAdvertiserUserId, System.Int32? lastModifiedByAdminUserId, System.Int32? jobItemTypeId, System.Int32? applicationMethod, System.String applicationUrl, System.Int32? uploadMethod, System.String tags, System.Int32? jobTemplateId, System.String searchFieldExtension, System.Int32? advertiserJobTemplateLogoId, System.String companyName, System.Byte[] hashValue, System.Boolean? requireLogonForExternalApplications, System.Boolean? showLocationDetails, System.String publicTransport, System.String address, System.String contactDetails, System.String jobContactPhone, System.String jobContactName, System.Boolean? qualificationsRecognised, System.Boolean? residentOnly, System.String documentLink, System.String bulletPoint1, System.String bulletPoint2, System.String bulletPoint3, System.Boolean? hotJob, System.String jobFriendlyName, System.String searchField, System.Boolean? showSalaryRange, System.Decimal? salaryLowerBand, System.Decimal? salaryUpperBand, System.Int32? currencyId, System.Int32? salaryTypeId, System.Int32? enteredByAdvertiserUserId, System.Double? jobLatitude, System.Double? jobLongitude, System.Int32? addressStatus, System.String jobExternalId, System.Int32? screeningQuestionsTemplateId, ref System.Int32? jobId)
 		{
-			 Insert(transactionManager, 0, int.MaxValue , siteId, workTypeId, jobName, description, fullDescription, webServiceProcessed, applicationEmailAddress, refNo, visible, datePosted, expiryDate, expired, jobItemPrice, billed, lastModified, showSalaryDetails, salaryText, advertiserId, lastModifiedByAdvertiserUserId, lastModifiedByAdminUserId, jobItemTypeId, applicationMethod, applicationUrl, uploadMethod, tags, jobTemplateId, searchFieldExtension, advertiserJobTemplateLogoId, companyName, hashValue, requireLogonForExternalApplications, showLocationDetails, publicTransport, address, contactDetails, jobContactPhone, jobContactName, qualificationsRecognised, residentOnly, documentLink, bulletPoint1, bulletPoint2, bulletPoint3, hotJob, jobFriendlyName, searchField, showSalaryRange, salaryLowerBand, salaryUpperBand, currencyId, salaryTypeId, enteredByAdvertiserUserId, jobLatitude, jobLongitude, addressStatus, ref jobId);
+			 Insert(transactionManager, 0, int.MaxValue , siteId, workTypeId, jobName, description, fullDescription, webServiceProcessed, applicationEmailAddress, refNo, visible, datePosted, expiryDate, expired, jobItemPrice, billed, lastModified, showSalaryDetails, salaryText, advertiserId, lastModifiedByAdvertiserUserId, lastModifiedByAdminUserId, jobItemTypeId, applicationMethod, applicationUrl, uploadMethod, tags, jobTemplateId, searchFieldExtension, advertiserJobTemplateLogoId, companyName, hashValue, requireLogonForExternalApplications, showLocationDetails, publicTransport, address, contactDetails, jobContactPhone, jobContactName, qualificationsRecognised, residentOnly, documentLink, bulletPoint1, bulletPoint2, bulletPoint3, hotJob, jobFriendlyName, searchField, showSalaryRange, salaryLowerBand, salaryUpperBand, currencyId, salaryTypeId, enteredByAdvertiserUserId, jobLatitude, jobLongitude, addressStatus, jobExternalId, screeningQuestionsTemplateId, ref jobId);
 		}
 		
 		/// <summary>
@@ -3706,12 +4067,14 @@ namespace JXTPortal.Data.Bases
 		/// <param name="jobLatitude"> A <c>System.Double?</c> instance.</param>
 		/// <param name="jobLongitude"> A <c>System.Double?</c> instance.</param>
 		/// <param name="addressStatus"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="jobExternalId"> A <c>System.String</c> instance.</param>
+		/// <param name="screeningQuestionsTemplateId"> A <c>System.Int32?</c> instance.</param>
 			/// <param name="jobId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public abstract void Insert(TransactionManager transactionManager, int start, int pageLength , System.Int32? siteId, System.Int32? workTypeId, System.String jobName, System.String description, System.String fullDescription, System.Boolean? webServiceProcessed, System.String applicationEmailAddress, System.String refNo, System.Boolean? visible, System.DateTime? datePosted, System.DateTime? expiryDate, System.Int32? expired, System.Decimal? jobItemPrice, System.Boolean? billed, System.DateTime? lastModified, System.Boolean? showSalaryDetails, System.String salaryText, System.Int32? advertiserId, System.Int32? lastModifiedByAdvertiserUserId, System.Int32? lastModifiedByAdminUserId, System.Int32? jobItemTypeId, System.Int32? applicationMethod, System.String applicationUrl, System.Int32? uploadMethod, System.String tags, System.Int32? jobTemplateId, System.String searchFieldExtension, System.Int32? advertiserJobTemplateLogoId, System.String companyName, System.Byte[] hashValue, System.Boolean? requireLogonForExternalApplications, System.Boolean? showLocationDetails, System.String publicTransport, System.String address, System.String contactDetails, System.String jobContactPhone, System.String jobContactName, System.Boolean? qualificationsRecognised, System.Boolean? residentOnly, System.String documentLink, System.String bulletPoint1, System.String bulletPoint2, System.String bulletPoint3, System.Boolean? hotJob, System.String jobFriendlyName, System.String searchField, System.Boolean? showSalaryRange, System.Decimal? salaryLowerBand, System.Decimal? salaryUpperBand, System.Int32? currencyId, System.Int32? salaryTypeId, System.Int32? enteredByAdvertiserUserId, System.Double? jobLatitude, System.Double? jobLongitude, System.Int32? addressStatus, ref System.Int32? jobId);
+		public abstract void Insert(TransactionManager transactionManager, int start, int pageLength , System.Int32? siteId, System.Int32? workTypeId, System.String jobName, System.String description, System.String fullDescription, System.Boolean? webServiceProcessed, System.String applicationEmailAddress, System.String refNo, System.Boolean? visible, System.DateTime? datePosted, System.DateTime? expiryDate, System.Int32? expired, System.Decimal? jobItemPrice, System.Boolean? billed, System.DateTime? lastModified, System.Boolean? showSalaryDetails, System.String salaryText, System.Int32? advertiserId, System.Int32? lastModifiedByAdvertiserUserId, System.Int32? lastModifiedByAdminUserId, System.Int32? jobItemTypeId, System.Int32? applicationMethod, System.String applicationUrl, System.Int32? uploadMethod, System.String tags, System.Int32? jobTemplateId, System.String searchFieldExtension, System.Int32? advertiserJobTemplateLogoId, System.String companyName, System.Byte[] hashValue, System.Boolean? requireLogonForExternalApplications, System.Boolean? showLocationDetails, System.String publicTransport, System.String address, System.String contactDetails, System.String jobContactPhone, System.String jobContactName, System.Boolean? qualificationsRecognised, System.Boolean? residentOnly, System.String documentLink, System.String bulletPoint1, System.String bulletPoint2, System.String bulletPoint3, System.Boolean? hotJob, System.String jobFriendlyName, System.String searchField, System.Boolean? showSalaryRange, System.Decimal? salaryLowerBand, System.Decimal? salaryUpperBand, System.Int32? currencyId, System.Int32? salaryTypeId, System.Int32? enteredByAdvertiserUserId, System.Double? jobLatitude, System.Double? jobLongitude, System.Int32? addressStatus, System.String jobExternalId, System.Int32? screeningQuestionsTemplateId, ref System.Int32? jobId);
 		
 		#endregion
 		
@@ -3942,11 +4305,13 @@ namespace JXTPortal.Data.Bases
 		/// <param name="jobLatitude"> A <c>System.Double?</c> instance.</param>
 		/// <param name="jobLongitude"> A <c>System.Double?</c> instance.</param>
 		/// <param name="addressStatus"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="jobExternalId"> A <c>System.String</c> instance.</param>
+		/// <param name="screeningQuestionsTemplateId"> A <c>System.Int32?</c> instance.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
 		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet Find(System.Boolean? searchUsingOr, System.Int32? jobId, System.Int32? siteId, System.Int32? workTypeId, System.String jobName, System.String description, System.String fullDescription, System.Boolean? webServiceProcessed, System.String applicationEmailAddress, System.String refNo, System.Boolean? visible, System.DateTime? datePosted, System.DateTime? expiryDate, System.Int32? expired, System.Decimal? jobItemPrice, System.Boolean? billed, System.DateTime? lastModified, System.Boolean? showSalaryDetails, System.String salaryText, System.Int32? advertiserId, System.Int32? lastModifiedByAdvertiserUserId, System.Int32? lastModifiedByAdminUserId, System.Int32? jobItemTypeId, System.Int32? applicationMethod, System.String applicationUrl, System.Int32? uploadMethod, System.String tags, System.Int32? jobTemplateId, System.String searchFieldExtension, System.Int32? advertiserJobTemplateLogoId, System.String companyName, System.Byte[] hashValue, System.Boolean? requireLogonForExternalApplications, System.Boolean? showLocationDetails, System.String publicTransport, System.String address, System.String contactDetails, System.String jobContactPhone, System.String jobContactName, System.Boolean? qualificationsRecognised, System.Boolean? residentOnly, System.String documentLink, System.String bulletPoint1, System.String bulletPoint2, System.String bulletPoint3, System.Boolean? hotJob, System.String jobFriendlyName, System.String searchField, System.Boolean? showSalaryRange, System.Decimal? salaryLowerBand, System.Decimal? salaryUpperBand, System.Int32? currencyId, System.Int32? salaryTypeId, System.Int32? enteredByAdvertiserUserId, System.Double? jobLatitude, System.Double? jobLongitude, System.Int32? addressStatus)
+		public DataSet Find(System.Boolean? searchUsingOr, System.Int32? jobId, System.Int32? siteId, System.Int32? workTypeId, System.String jobName, System.String description, System.String fullDescription, System.Boolean? webServiceProcessed, System.String applicationEmailAddress, System.String refNo, System.Boolean? visible, System.DateTime? datePosted, System.DateTime? expiryDate, System.Int32? expired, System.Decimal? jobItemPrice, System.Boolean? billed, System.DateTime? lastModified, System.Boolean? showSalaryDetails, System.String salaryText, System.Int32? advertiserId, System.Int32? lastModifiedByAdvertiserUserId, System.Int32? lastModifiedByAdminUserId, System.Int32? jobItemTypeId, System.Int32? applicationMethod, System.String applicationUrl, System.Int32? uploadMethod, System.String tags, System.Int32? jobTemplateId, System.String searchFieldExtension, System.Int32? advertiserJobTemplateLogoId, System.String companyName, System.Byte[] hashValue, System.Boolean? requireLogonForExternalApplications, System.Boolean? showLocationDetails, System.String publicTransport, System.String address, System.String contactDetails, System.String jobContactPhone, System.String jobContactName, System.Boolean? qualificationsRecognised, System.Boolean? residentOnly, System.String documentLink, System.String bulletPoint1, System.String bulletPoint2, System.String bulletPoint3, System.Boolean? hotJob, System.String jobFriendlyName, System.String searchField, System.Boolean? showSalaryRange, System.Decimal? salaryLowerBand, System.Decimal? salaryUpperBand, System.Int32? currencyId, System.Int32? salaryTypeId, System.Int32? enteredByAdvertiserUserId, System.Double? jobLatitude, System.Double? jobLongitude, System.Int32? addressStatus, System.String jobExternalId, System.Int32? screeningQuestionsTemplateId)
 		{
-			return Find(null, 0, int.MaxValue , searchUsingOr, jobId, siteId, workTypeId, jobName, description, fullDescription, webServiceProcessed, applicationEmailAddress, refNo, visible, datePosted, expiryDate, expired, jobItemPrice, billed, lastModified, showSalaryDetails, salaryText, advertiserId, lastModifiedByAdvertiserUserId, lastModifiedByAdminUserId, jobItemTypeId, applicationMethod, applicationUrl, uploadMethod, tags, jobTemplateId, searchFieldExtension, advertiserJobTemplateLogoId, companyName, hashValue, requireLogonForExternalApplications, showLocationDetails, publicTransport, address, contactDetails, jobContactPhone, jobContactName, qualificationsRecognised, residentOnly, documentLink, bulletPoint1, bulletPoint2, bulletPoint3, hotJob, jobFriendlyName, searchField, showSalaryRange, salaryLowerBand, salaryUpperBand, currencyId, salaryTypeId, enteredByAdvertiserUserId, jobLatitude, jobLongitude, addressStatus);
+			return Find(null, 0, int.MaxValue , searchUsingOr, jobId, siteId, workTypeId, jobName, description, fullDescription, webServiceProcessed, applicationEmailAddress, refNo, visible, datePosted, expiryDate, expired, jobItemPrice, billed, lastModified, showSalaryDetails, salaryText, advertiserId, lastModifiedByAdvertiserUserId, lastModifiedByAdminUserId, jobItemTypeId, applicationMethod, applicationUrl, uploadMethod, tags, jobTemplateId, searchFieldExtension, advertiserJobTemplateLogoId, companyName, hashValue, requireLogonForExternalApplications, showLocationDetails, publicTransport, address, contactDetails, jobContactPhone, jobContactName, qualificationsRecognised, residentOnly, documentLink, bulletPoint1, bulletPoint2, bulletPoint3, hotJob, jobFriendlyName, searchField, showSalaryRange, salaryLowerBand, salaryUpperBand, currencyId, salaryTypeId, enteredByAdvertiserUserId, jobLatitude, jobLongitude, addressStatus, jobExternalId, screeningQuestionsTemplateId);
 		}
 		
 		/// <summary>
@@ -4009,13 +4374,15 @@ namespace JXTPortal.Data.Bases
 		/// <param name="jobLatitude"> A <c>System.Double?</c> instance.</param>
 		/// <param name="jobLongitude"> A <c>System.Double?</c> instance.</param>
 		/// <param name="addressStatus"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="jobExternalId"> A <c>System.String</c> instance.</param>
+		/// <param name="screeningQuestionsTemplateId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
 		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet Find(int start, int pageLength, System.Boolean? searchUsingOr, System.Int32? jobId, System.Int32? siteId, System.Int32? workTypeId, System.String jobName, System.String description, System.String fullDescription, System.Boolean? webServiceProcessed, System.String applicationEmailAddress, System.String refNo, System.Boolean? visible, System.DateTime? datePosted, System.DateTime? expiryDate, System.Int32? expired, System.Decimal? jobItemPrice, System.Boolean? billed, System.DateTime? lastModified, System.Boolean? showSalaryDetails, System.String salaryText, System.Int32? advertiserId, System.Int32? lastModifiedByAdvertiserUserId, System.Int32? lastModifiedByAdminUserId, System.Int32? jobItemTypeId, System.Int32? applicationMethod, System.String applicationUrl, System.Int32? uploadMethod, System.String tags, System.Int32? jobTemplateId, System.String searchFieldExtension, System.Int32? advertiserJobTemplateLogoId, System.String companyName, System.Byte[] hashValue, System.Boolean? requireLogonForExternalApplications, System.Boolean? showLocationDetails, System.String publicTransport, System.String address, System.String contactDetails, System.String jobContactPhone, System.String jobContactName, System.Boolean? qualificationsRecognised, System.Boolean? residentOnly, System.String documentLink, System.String bulletPoint1, System.String bulletPoint2, System.String bulletPoint3, System.Boolean? hotJob, System.String jobFriendlyName, System.String searchField, System.Boolean? showSalaryRange, System.Decimal? salaryLowerBand, System.Decimal? salaryUpperBand, System.Int32? currencyId, System.Int32? salaryTypeId, System.Int32? enteredByAdvertiserUserId, System.Double? jobLatitude, System.Double? jobLongitude, System.Int32? addressStatus)
+		public DataSet Find(int start, int pageLength, System.Boolean? searchUsingOr, System.Int32? jobId, System.Int32? siteId, System.Int32? workTypeId, System.String jobName, System.String description, System.String fullDescription, System.Boolean? webServiceProcessed, System.String applicationEmailAddress, System.String refNo, System.Boolean? visible, System.DateTime? datePosted, System.DateTime? expiryDate, System.Int32? expired, System.Decimal? jobItemPrice, System.Boolean? billed, System.DateTime? lastModified, System.Boolean? showSalaryDetails, System.String salaryText, System.Int32? advertiserId, System.Int32? lastModifiedByAdvertiserUserId, System.Int32? lastModifiedByAdminUserId, System.Int32? jobItemTypeId, System.Int32? applicationMethod, System.String applicationUrl, System.Int32? uploadMethod, System.String tags, System.Int32? jobTemplateId, System.String searchFieldExtension, System.Int32? advertiserJobTemplateLogoId, System.String companyName, System.Byte[] hashValue, System.Boolean? requireLogonForExternalApplications, System.Boolean? showLocationDetails, System.String publicTransport, System.String address, System.String contactDetails, System.String jobContactPhone, System.String jobContactName, System.Boolean? qualificationsRecognised, System.Boolean? residentOnly, System.String documentLink, System.String bulletPoint1, System.String bulletPoint2, System.String bulletPoint3, System.Boolean? hotJob, System.String jobFriendlyName, System.String searchField, System.Boolean? showSalaryRange, System.Decimal? salaryLowerBand, System.Decimal? salaryUpperBand, System.Int32? currencyId, System.Int32? salaryTypeId, System.Int32? enteredByAdvertiserUserId, System.Double? jobLatitude, System.Double? jobLongitude, System.Int32? addressStatus, System.String jobExternalId, System.Int32? screeningQuestionsTemplateId)
 		{
-			return Find(null, start, pageLength , searchUsingOr, jobId, siteId, workTypeId, jobName, description, fullDescription, webServiceProcessed, applicationEmailAddress, refNo, visible, datePosted, expiryDate, expired, jobItemPrice, billed, lastModified, showSalaryDetails, salaryText, advertiserId, lastModifiedByAdvertiserUserId, lastModifiedByAdminUserId, jobItemTypeId, applicationMethod, applicationUrl, uploadMethod, tags, jobTemplateId, searchFieldExtension, advertiserJobTemplateLogoId, companyName, hashValue, requireLogonForExternalApplications, showLocationDetails, publicTransport, address, contactDetails, jobContactPhone, jobContactName, qualificationsRecognised, residentOnly, documentLink, bulletPoint1, bulletPoint2, bulletPoint3, hotJob, jobFriendlyName, searchField, showSalaryRange, salaryLowerBand, salaryUpperBand, currencyId, salaryTypeId, enteredByAdvertiserUserId, jobLatitude, jobLongitude, addressStatus);
+			return Find(null, start, pageLength , searchUsingOr, jobId, siteId, workTypeId, jobName, description, fullDescription, webServiceProcessed, applicationEmailAddress, refNo, visible, datePosted, expiryDate, expired, jobItemPrice, billed, lastModified, showSalaryDetails, salaryText, advertiserId, lastModifiedByAdvertiserUserId, lastModifiedByAdminUserId, jobItemTypeId, applicationMethod, applicationUrl, uploadMethod, tags, jobTemplateId, searchFieldExtension, advertiserJobTemplateLogoId, companyName, hashValue, requireLogonForExternalApplications, showLocationDetails, publicTransport, address, contactDetails, jobContactPhone, jobContactName, qualificationsRecognised, residentOnly, documentLink, bulletPoint1, bulletPoint2, bulletPoint3, hotJob, jobFriendlyName, searchField, showSalaryRange, salaryLowerBand, salaryUpperBand, currencyId, salaryTypeId, enteredByAdvertiserUserId, jobLatitude, jobLongitude, addressStatus, jobExternalId, screeningQuestionsTemplateId);
 		}
 				
 		/// <summary>
@@ -4078,12 +4445,14 @@ namespace JXTPortal.Data.Bases
 		/// <param name="jobLatitude"> A <c>System.Double?</c> instance.</param>
 		/// <param name="jobLongitude"> A <c>System.Double?</c> instance.</param>
 		/// <param name="addressStatus"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="jobExternalId"> A <c>System.String</c> instance.</param>
+		/// <param name="screeningQuestionsTemplateId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
 		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public DataSet Find(TransactionManager transactionManager, System.Boolean? searchUsingOr, System.Int32? jobId, System.Int32? siteId, System.Int32? workTypeId, System.String jobName, System.String description, System.String fullDescription, System.Boolean? webServiceProcessed, System.String applicationEmailAddress, System.String refNo, System.Boolean? visible, System.DateTime? datePosted, System.DateTime? expiryDate, System.Int32? expired, System.Decimal? jobItemPrice, System.Boolean? billed, System.DateTime? lastModified, System.Boolean? showSalaryDetails, System.String salaryText, System.Int32? advertiserId, System.Int32? lastModifiedByAdvertiserUserId, System.Int32? lastModifiedByAdminUserId, System.Int32? jobItemTypeId, System.Int32? applicationMethod, System.String applicationUrl, System.Int32? uploadMethod, System.String tags, System.Int32? jobTemplateId, System.String searchFieldExtension, System.Int32? advertiserJobTemplateLogoId, System.String companyName, System.Byte[] hashValue, System.Boolean? requireLogonForExternalApplications, System.Boolean? showLocationDetails, System.String publicTransport, System.String address, System.String contactDetails, System.String jobContactPhone, System.String jobContactName, System.Boolean? qualificationsRecognised, System.Boolean? residentOnly, System.String documentLink, System.String bulletPoint1, System.String bulletPoint2, System.String bulletPoint3, System.Boolean? hotJob, System.String jobFriendlyName, System.String searchField, System.Boolean? showSalaryRange, System.Decimal? salaryLowerBand, System.Decimal? salaryUpperBand, System.Int32? currencyId, System.Int32? salaryTypeId, System.Int32? enteredByAdvertiserUserId, System.Double? jobLatitude, System.Double? jobLongitude, System.Int32? addressStatus)
+		public DataSet Find(TransactionManager transactionManager, System.Boolean? searchUsingOr, System.Int32? jobId, System.Int32? siteId, System.Int32? workTypeId, System.String jobName, System.String description, System.String fullDescription, System.Boolean? webServiceProcessed, System.String applicationEmailAddress, System.String refNo, System.Boolean? visible, System.DateTime? datePosted, System.DateTime? expiryDate, System.Int32? expired, System.Decimal? jobItemPrice, System.Boolean? billed, System.DateTime? lastModified, System.Boolean? showSalaryDetails, System.String salaryText, System.Int32? advertiserId, System.Int32? lastModifiedByAdvertiserUserId, System.Int32? lastModifiedByAdminUserId, System.Int32? jobItemTypeId, System.Int32? applicationMethod, System.String applicationUrl, System.Int32? uploadMethod, System.String tags, System.Int32? jobTemplateId, System.String searchFieldExtension, System.Int32? advertiserJobTemplateLogoId, System.String companyName, System.Byte[] hashValue, System.Boolean? requireLogonForExternalApplications, System.Boolean? showLocationDetails, System.String publicTransport, System.String address, System.String contactDetails, System.String jobContactPhone, System.String jobContactName, System.Boolean? qualificationsRecognised, System.Boolean? residentOnly, System.String documentLink, System.String bulletPoint1, System.String bulletPoint2, System.String bulletPoint3, System.Boolean? hotJob, System.String jobFriendlyName, System.String searchField, System.Boolean? showSalaryRange, System.Decimal? salaryLowerBand, System.Decimal? salaryUpperBand, System.Int32? currencyId, System.Int32? salaryTypeId, System.Int32? enteredByAdvertiserUserId, System.Double? jobLatitude, System.Double? jobLongitude, System.Int32? addressStatus, System.String jobExternalId, System.Int32? screeningQuestionsTemplateId)
 		{
-			return Find(transactionManager, 0, int.MaxValue , searchUsingOr, jobId, siteId, workTypeId, jobName, description, fullDescription, webServiceProcessed, applicationEmailAddress, refNo, visible, datePosted, expiryDate, expired, jobItemPrice, billed, lastModified, showSalaryDetails, salaryText, advertiserId, lastModifiedByAdvertiserUserId, lastModifiedByAdminUserId, jobItemTypeId, applicationMethod, applicationUrl, uploadMethod, tags, jobTemplateId, searchFieldExtension, advertiserJobTemplateLogoId, companyName, hashValue, requireLogonForExternalApplications, showLocationDetails, publicTransport, address, contactDetails, jobContactPhone, jobContactName, qualificationsRecognised, residentOnly, documentLink, bulletPoint1, bulletPoint2, bulletPoint3, hotJob, jobFriendlyName, searchField, showSalaryRange, salaryLowerBand, salaryUpperBand, currencyId, salaryTypeId, enteredByAdvertiserUserId, jobLatitude, jobLongitude, addressStatus);
+			return Find(transactionManager, 0, int.MaxValue , searchUsingOr, jobId, siteId, workTypeId, jobName, description, fullDescription, webServiceProcessed, applicationEmailAddress, refNo, visible, datePosted, expiryDate, expired, jobItemPrice, billed, lastModified, showSalaryDetails, salaryText, advertiserId, lastModifiedByAdvertiserUserId, lastModifiedByAdminUserId, jobItemTypeId, applicationMethod, applicationUrl, uploadMethod, tags, jobTemplateId, searchFieldExtension, advertiserJobTemplateLogoId, companyName, hashValue, requireLogonForExternalApplications, showLocationDetails, publicTransport, address, contactDetails, jobContactPhone, jobContactName, qualificationsRecognised, residentOnly, documentLink, bulletPoint1, bulletPoint2, bulletPoint3, hotJob, jobFriendlyName, searchField, showSalaryRange, salaryLowerBand, salaryUpperBand, currencyId, salaryTypeId, enteredByAdvertiserUserId, jobLatitude, jobLongitude, addressStatus, jobExternalId, screeningQuestionsTemplateId);
 		}
 		
 		/// <summary>
@@ -4146,12 +4515,14 @@ namespace JXTPortal.Data.Bases
 		/// <param name="jobLatitude"> A <c>System.Double?</c> instance.</param>
 		/// <param name="jobLongitude"> A <c>System.Double?</c> instance.</param>
 		/// <param name="addressStatus"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="jobExternalId"> A <c>System.String</c> instance.</param>
+		/// <param name="screeningQuestionsTemplateId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
 		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public abstract DataSet Find(TransactionManager transactionManager, int start, int pageLength , System.Boolean? searchUsingOr, System.Int32? jobId, System.Int32? siteId, System.Int32? workTypeId, System.String jobName, System.String description, System.String fullDescription, System.Boolean? webServiceProcessed, System.String applicationEmailAddress, System.String refNo, System.Boolean? visible, System.DateTime? datePosted, System.DateTime? expiryDate, System.Int32? expired, System.Decimal? jobItemPrice, System.Boolean? billed, System.DateTime? lastModified, System.Boolean? showSalaryDetails, System.String salaryText, System.Int32? advertiserId, System.Int32? lastModifiedByAdvertiserUserId, System.Int32? lastModifiedByAdminUserId, System.Int32? jobItemTypeId, System.Int32? applicationMethod, System.String applicationUrl, System.Int32? uploadMethod, System.String tags, System.Int32? jobTemplateId, System.String searchFieldExtension, System.Int32? advertiserJobTemplateLogoId, System.String companyName, System.Byte[] hashValue, System.Boolean? requireLogonForExternalApplications, System.Boolean? showLocationDetails, System.String publicTransport, System.String address, System.String contactDetails, System.String jobContactPhone, System.String jobContactName, System.Boolean? qualificationsRecognised, System.Boolean? residentOnly, System.String documentLink, System.String bulletPoint1, System.String bulletPoint2, System.String bulletPoint3, System.Boolean? hotJob, System.String jobFriendlyName, System.String searchField, System.Boolean? showSalaryRange, System.Decimal? salaryLowerBand, System.Decimal? salaryUpperBand, System.Int32? currencyId, System.Int32? salaryTypeId, System.Int32? enteredByAdvertiserUserId, System.Double? jobLatitude, System.Double? jobLongitude, System.Int32? addressStatus);
+		public abstract DataSet Find(TransactionManager transactionManager, int start, int pageLength , System.Boolean? searchUsingOr, System.Int32? jobId, System.Int32? siteId, System.Int32? workTypeId, System.String jobName, System.String description, System.String fullDescription, System.Boolean? webServiceProcessed, System.String applicationEmailAddress, System.String refNo, System.Boolean? visible, System.DateTime? datePosted, System.DateTime? expiryDate, System.Int32? expired, System.Decimal? jobItemPrice, System.Boolean? billed, System.DateTime? lastModified, System.Boolean? showSalaryDetails, System.String salaryText, System.Int32? advertiserId, System.Int32? lastModifiedByAdvertiserUserId, System.Int32? lastModifiedByAdminUserId, System.Int32? jobItemTypeId, System.Int32? applicationMethod, System.String applicationUrl, System.Int32? uploadMethod, System.String tags, System.Int32? jobTemplateId, System.String searchFieldExtension, System.Int32? advertiserJobTemplateLogoId, System.String companyName, System.Byte[] hashValue, System.Boolean? requireLogonForExternalApplications, System.Boolean? showLocationDetails, System.String publicTransport, System.String address, System.String contactDetails, System.String jobContactPhone, System.String jobContactName, System.Boolean? qualificationsRecognised, System.Boolean? residentOnly, System.String documentLink, System.String bulletPoint1, System.String bulletPoint2, System.String bulletPoint3, System.Boolean? hotJob, System.String jobFriendlyName, System.String searchField, System.Boolean? showSalaryRange, System.Decimal? salaryLowerBand, System.Decimal? salaryUpperBand, System.Int32? currencyId, System.Int32? salaryTypeId, System.Int32? enteredByAdvertiserUserId, System.Double? jobLatitude, System.Double? jobLongitude, System.Int32? addressStatus, System.String jobExternalId, System.Int32? screeningQuestionsTemplateId);
 		
 		#endregion
 		
@@ -4226,270 +4597,31 @@ namespace JXTPortal.Data.Bases
 		
 		#endregion
 		
-		#region Jobs_Update 
+		#region Jobs_GetByScreeningQuestionsTemplateId 
 		
 		/// <summary>
-		///	This method wrap the 'Jobs_Update' stored procedure. 
+		///	This method wrap the 'Jobs_GetByScreeningQuestionsTemplateId' stored procedure. 
 		/// </summary>
-		/// <param name="jobId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="siteId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="workTypeId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="jobName"> A <c>System.String</c> instance.</param>
-		/// <param name="description"> A <c>System.String</c> instance.</param>
-		/// <param name="fullDescription"> A <c>System.String</c> instance.</param>
-		/// <param name="webServiceProcessed"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="applicationEmailAddress"> A <c>System.String</c> instance.</param>
-		/// <param name="refNo"> A <c>System.String</c> instance.</param>
-		/// <param name="visible"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="datePosted"> A <c>System.DateTime?</c> instance.</param>
-		/// <param name="expiryDate"> A <c>System.DateTime?</c> instance.</param>
-		/// <param name="expired"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="jobItemPrice"> A <c>System.Decimal?</c> instance.</param>
-		/// <param name="billed"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="lastModified"> A <c>System.DateTime?</c> instance.</param>
-		/// <param name="showSalaryDetails"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="salaryText"> A <c>System.String</c> instance.</param>
-		/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="lastModifiedByAdvertiserUserId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="lastModifiedByAdminUserId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="jobItemTypeId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="applicationMethod"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="applicationUrl"> A <c>System.String</c> instance.</param>
-		/// <param name="uploadMethod"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="tags"> A <c>System.String</c> instance.</param>
-		/// <param name="jobTemplateId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="searchFieldExtension"> A <c>System.String</c> instance.</param>
-		/// <param name="advertiserJobTemplateLogoId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="companyName"> A <c>System.String</c> instance.</param>
-		/// <param name="hashValue"> A <c>System.Byte[]</c> instance.</param>
-		/// <param name="requireLogonForExternalApplications"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="showLocationDetails"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="publicTransport"> A <c>System.String</c> instance.</param>
-		/// <param name="address"> A <c>System.String</c> instance.</param>
-		/// <param name="contactDetails"> A <c>System.String</c> instance.</param>
-		/// <param name="jobContactPhone"> A <c>System.String</c> instance.</param>
-		/// <param name="jobContactName"> A <c>System.String</c> instance.</param>
-		/// <param name="qualificationsRecognised"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="residentOnly"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="documentLink"> A <c>System.String</c> instance.</param>
-		/// <param name="bulletPoint1"> A <c>System.String</c> instance.</param>
-		/// <param name="bulletPoint2"> A <c>System.String</c> instance.</param>
-		/// <param name="bulletPoint3"> A <c>System.String</c> instance.</param>
-		/// <param name="hotJob"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="jobFriendlyName"> A <c>System.String</c> instance.</param>
-		/// <param name="searchField"> A <c>System.String</c> instance.</param>
-		/// <param name="showSalaryRange"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="salaryLowerBand"> A <c>System.Decimal?</c> instance.</param>
-		/// <param name="salaryUpperBand"> A <c>System.Decimal?</c> instance.</param>
-		/// <param name="currencyId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="salaryTypeId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="enteredByAdvertiserUserId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="jobLatitude"> A <c>System.Double?</c> instance.</param>
-		/// <param name="jobLongitude"> A <c>System.Double?</c> instance.</param>
-		/// <param name="addressStatus"> A <c>System.Int32?</c> instance.</param>
-		/// <remark>This method is generate from a stored procedure.</remark>
-		public void Update(System.Int32? jobId, System.Int32? siteId, System.Int32? workTypeId, System.String jobName, System.String description, System.String fullDescription, System.Boolean? webServiceProcessed, System.String applicationEmailAddress, System.String refNo, System.Boolean? visible, System.DateTime? datePosted, System.DateTime? expiryDate, System.Int32? expired, System.Decimal? jobItemPrice, System.Boolean? billed, System.DateTime? lastModified, System.Boolean? showSalaryDetails, System.String salaryText, System.Int32? advertiserId, System.Int32? lastModifiedByAdvertiserUserId, System.Int32? lastModifiedByAdminUserId, System.Int32? jobItemTypeId, System.Int32? applicationMethod, System.String applicationUrl, System.Int32? uploadMethod, System.String tags, System.Int32? jobTemplateId, System.String searchFieldExtension, System.Int32? advertiserJobTemplateLogoId, System.String companyName, System.Byte[] hashValue, System.Boolean? requireLogonForExternalApplications, System.Boolean? showLocationDetails, System.String publicTransport, System.String address, System.String contactDetails, System.String jobContactPhone, System.String jobContactName, System.Boolean? qualificationsRecognised, System.Boolean? residentOnly, System.String documentLink, System.String bulletPoint1, System.String bulletPoint2, System.String bulletPoint3, System.Boolean? hotJob, System.String jobFriendlyName, System.String searchField, System.Boolean? showSalaryRange, System.Decimal? salaryLowerBand, System.Decimal? salaryUpperBand, System.Int32? currencyId, System.Int32? salaryTypeId, System.Int32? enteredByAdvertiserUserId, System.Double? jobLatitude, System.Double? jobLongitude, System.Int32? addressStatus)
-		{
-			 Update(null, 0, int.MaxValue , jobId, siteId, workTypeId, jobName, description, fullDescription, webServiceProcessed, applicationEmailAddress, refNo, visible, datePosted, expiryDate, expired, jobItemPrice, billed, lastModified, showSalaryDetails, salaryText, advertiserId, lastModifiedByAdvertiserUserId, lastModifiedByAdminUserId, jobItemTypeId, applicationMethod, applicationUrl, uploadMethod, tags, jobTemplateId, searchFieldExtension, advertiserJobTemplateLogoId, companyName, hashValue, requireLogonForExternalApplications, showLocationDetails, publicTransport, address, contactDetails, jobContactPhone, jobContactName, qualificationsRecognised, residentOnly, documentLink, bulletPoint1, bulletPoint2, bulletPoint3, hotJob, jobFriendlyName, searchField, showSalaryRange, salaryLowerBand, salaryUpperBand, currencyId, salaryTypeId, enteredByAdvertiserUserId, jobLatitude, jobLongitude, addressStatus);
-		}
-		
-		/// <summary>
-		///	This method wrap the 'Jobs_Update' stored procedure. 
-		/// </summary>
-		/// <param name="jobId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="siteId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="workTypeId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="jobName"> A <c>System.String</c> instance.</param>
-		/// <param name="description"> A <c>System.String</c> instance.</param>
-		/// <param name="fullDescription"> A <c>System.String</c> instance.</param>
-		/// <param name="webServiceProcessed"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="applicationEmailAddress"> A <c>System.String</c> instance.</param>
-		/// <param name="refNo"> A <c>System.String</c> instance.</param>
-		/// <param name="visible"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="datePosted"> A <c>System.DateTime?</c> instance.</param>
-		/// <param name="expiryDate"> A <c>System.DateTime?</c> instance.</param>
-		/// <param name="expired"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="jobItemPrice"> A <c>System.Decimal?</c> instance.</param>
-		/// <param name="billed"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="lastModified"> A <c>System.DateTime?</c> instance.</param>
-		/// <param name="showSalaryDetails"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="salaryText"> A <c>System.String</c> instance.</param>
-		/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="lastModifiedByAdvertiserUserId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="lastModifiedByAdminUserId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="jobItemTypeId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="applicationMethod"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="applicationUrl"> A <c>System.String</c> instance.</param>
-		/// <param name="uploadMethod"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="tags"> A <c>System.String</c> instance.</param>
-		/// <param name="jobTemplateId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="searchFieldExtension"> A <c>System.String</c> instance.</param>
-		/// <param name="advertiserJobTemplateLogoId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="companyName"> A <c>System.String</c> instance.</param>
-		/// <param name="hashValue"> A <c>System.Byte[]</c> instance.</param>
-		/// <param name="requireLogonForExternalApplications"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="showLocationDetails"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="publicTransport"> A <c>System.String</c> instance.</param>
-		/// <param name="address"> A <c>System.String</c> instance.</param>
-		/// <param name="contactDetails"> A <c>System.String</c> instance.</param>
-		/// <param name="jobContactPhone"> A <c>System.String</c> instance.</param>
-		/// <param name="jobContactName"> A <c>System.String</c> instance.</param>
-		/// <param name="qualificationsRecognised"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="residentOnly"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="documentLink"> A <c>System.String</c> instance.</param>
-		/// <param name="bulletPoint1"> A <c>System.String</c> instance.</param>
-		/// <param name="bulletPoint2"> A <c>System.String</c> instance.</param>
-		/// <param name="bulletPoint3"> A <c>System.String</c> instance.</param>
-		/// <param name="hotJob"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="jobFriendlyName"> A <c>System.String</c> instance.</param>
-		/// <param name="searchField"> A <c>System.String</c> instance.</param>
-		/// <param name="showSalaryRange"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="salaryLowerBand"> A <c>System.Decimal?</c> instance.</param>
-		/// <param name="salaryUpperBand"> A <c>System.Decimal?</c> instance.</param>
-		/// <param name="currencyId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="salaryTypeId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="enteredByAdvertiserUserId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="jobLatitude"> A <c>System.Double?</c> instance.</param>
-		/// <param name="jobLongitude"> A <c>System.Double?</c> instance.</param>
-		/// <param name="addressStatus"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="screeningQuestionsTemplateId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public void Update(int start, int pageLength, System.Int32? jobId, System.Int32? siteId, System.Int32? workTypeId, System.String jobName, System.String description, System.String fullDescription, System.Boolean? webServiceProcessed, System.String applicationEmailAddress, System.String refNo, System.Boolean? visible, System.DateTime? datePosted, System.DateTime? expiryDate, System.Int32? expired, System.Decimal? jobItemPrice, System.Boolean? billed, System.DateTime? lastModified, System.Boolean? showSalaryDetails, System.String salaryText, System.Int32? advertiserId, System.Int32? lastModifiedByAdvertiserUserId, System.Int32? lastModifiedByAdminUserId, System.Int32? jobItemTypeId, System.Int32? applicationMethod, System.String applicationUrl, System.Int32? uploadMethod, System.String tags, System.Int32? jobTemplateId, System.String searchFieldExtension, System.Int32? advertiserJobTemplateLogoId, System.String companyName, System.Byte[] hashValue, System.Boolean? requireLogonForExternalApplications, System.Boolean? showLocationDetails, System.String publicTransport, System.String address, System.String contactDetails, System.String jobContactPhone, System.String jobContactName, System.Boolean? qualificationsRecognised, System.Boolean? residentOnly, System.String documentLink, System.String bulletPoint1, System.String bulletPoint2, System.String bulletPoint3, System.Boolean? hotJob, System.String jobFriendlyName, System.String searchField, System.Boolean? showSalaryRange, System.Decimal? salaryLowerBand, System.Decimal? salaryUpperBand, System.Int32? currencyId, System.Int32? salaryTypeId, System.Int32? enteredByAdvertiserUserId, System.Double? jobLatitude, System.Double? jobLongitude, System.Int32? addressStatus)
+		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		public DataSet GetByScreeningQuestionsTemplateId(int start, int pageLength, System.Int32? screeningQuestionsTemplateId)
 		{
-			 Update(null, start, pageLength , jobId, siteId, workTypeId, jobName, description, fullDescription, webServiceProcessed, applicationEmailAddress, refNo, visible, datePosted, expiryDate, expired, jobItemPrice, billed, lastModified, showSalaryDetails, salaryText, advertiserId, lastModifiedByAdvertiserUserId, lastModifiedByAdminUserId, jobItemTypeId, applicationMethod, applicationUrl, uploadMethod, tags, jobTemplateId, searchFieldExtension, advertiserJobTemplateLogoId, companyName, hashValue, requireLogonForExternalApplications, showLocationDetails, publicTransport, address, contactDetails, jobContactPhone, jobContactName, qualificationsRecognised, residentOnly, documentLink, bulletPoint1, bulletPoint2, bulletPoint3, hotJob, jobFriendlyName, searchField, showSalaryRange, salaryLowerBand, salaryUpperBand, currencyId, salaryTypeId, enteredByAdvertiserUserId, jobLatitude, jobLongitude, addressStatus);
-		}
-				
-		/// <summary>
-		///	This method wrap the 'Jobs_Update' stored procedure. 
-		/// </summary>
-		/// <param name="jobId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="siteId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="workTypeId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="jobName"> A <c>System.String</c> instance.</param>
-		/// <param name="description"> A <c>System.String</c> instance.</param>
-		/// <param name="fullDescription"> A <c>System.String</c> instance.</param>
-		/// <param name="webServiceProcessed"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="applicationEmailAddress"> A <c>System.String</c> instance.</param>
-		/// <param name="refNo"> A <c>System.String</c> instance.</param>
-		/// <param name="visible"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="datePosted"> A <c>System.DateTime?</c> instance.</param>
-		/// <param name="expiryDate"> A <c>System.DateTime?</c> instance.</param>
-		/// <param name="expired"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="jobItemPrice"> A <c>System.Decimal?</c> instance.</param>
-		/// <param name="billed"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="lastModified"> A <c>System.DateTime?</c> instance.</param>
-		/// <param name="showSalaryDetails"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="salaryText"> A <c>System.String</c> instance.</param>
-		/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="lastModifiedByAdvertiserUserId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="lastModifiedByAdminUserId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="jobItemTypeId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="applicationMethod"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="applicationUrl"> A <c>System.String</c> instance.</param>
-		/// <param name="uploadMethod"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="tags"> A <c>System.String</c> instance.</param>
-		/// <param name="jobTemplateId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="searchFieldExtension"> A <c>System.String</c> instance.</param>
-		/// <param name="advertiserJobTemplateLogoId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="companyName"> A <c>System.String</c> instance.</param>
-		/// <param name="hashValue"> A <c>System.Byte[]</c> instance.</param>
-		/// <param name="requireLogonForExternalApplications"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="showLocationDetails"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="publicTransport"> A <c>System.String</c> instance.</param>
-		/// <param name="address"> A <c>System.String</c> instance.</param>
-		/// <param name="contactDetails"> A <c>System.String</c> instance.</param>
-		/// <param name="jobContactPhone"> A <c>System.String</c> instance.</param>
-		/// <param name="jobContactName"> A <c>System.String</c> instance.</param>
-		/// <param name="qualificationsRecognised"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="residentOnly"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="documentLink"> A <c>System.String</c> instance.</param>
-		/// <param name="bulletPoint1"> A <c>System.String</c> instance.</param>
-		/// <param name="bulletPoint2"> A <c>System.String</c> instance.</param>
-		/// <param name="bulletPoint3"> A <c>System.String</c> instance.</param>
-		/// <param name="hotJob"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="jobFriendlyName"> A <c>System.String</c> instance.</param>
-		/// <param name="searchField"> A <c>System.String</c> instance.</param>
-		/// <param name="showSalaryRange"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="salaryLowerBand"> A <c>System.Decimal?</c> instance.</param>
-		/// <param name="salaryUpperBand"> A <c>System.Decimal?</c> instance.</param>
-		/// <param name="currencyId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="salaryTypeId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="enteredByAdvertiserUserId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="jobLatitude"> A <c>System.Double?</c> instance.</param>
-		/// <param name="jobLongitude"> A <c>System.Double?</c> instance.</param>
-		/// <param name="addressStatus"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
-		/// <remark>This method is generate from a stored procedure.</remark>
-		public void Update(TransactionManager transactionManager, System.Int32? jobId, System.Int32? siteId, System.Int32? workTypeId, System.String jobName, System.String description, System.String fullDescription, System.Boolean? webServiceProcessed, System.String applicationEmailAddress, System.String refNo, System.Boolean? visible, System.DateTime? datePosted, System.DateTime? expiryDate, System.Int32? expired, System.Decimal? jobItemPrice, System.Boolean? billed, System.DateTime? lastModified, System.Boolean? showSalaryDetails, System.String salaryText, System.Int32? advertiserId, System.Int32? lastModifiedByAdvertiserUserId, System.Int32? lastModifiedByAdminUserId, System.Int32? jobItemTypeId, System.Int32? applicationMethod, System.String applicationUrl, System.Int32? uploadMethod, System.String tags, System.Int32? jobTemplateId, System.String searchFieldExtension, System.Int32? advertiserJobTemplateLogoId, System.String companyName, System.Byte[] hashValue, System.Boolean? requireLogonForExternalApplications, System.Boolean? showLocationDetails, System.String publicTransport, System.String address, System.String contactDetails, System.String jobContactPhone, System.String jobContactName, System.Boolean? qualificationsRecognised, System.Boolean? residentOnly, System.String documentLink, System.String bulletPoint1, System.String bulletPoint2, System.String bulletPoint3, System.Boolean? hotJob, System.String jobFriendlyName, System.String searchField, System.Boolean? showSalaryRange, System.Decimal? salaryLowerBand, System.Decimal? salaryUpperBand, System.Int32? currencyId, System.Int32? salaryTypeId, System.Int32? enteredByAdvertiserUserId, System.Double? jobLatitude, System.Double? jobLongitude, System.Int32? addressStatus)
-		{
-			 Update(transactionManager, 0, int.MaxValue , jobId, siteId, workTypeId, jobName, description, fullDescription, webServiceProcessed, applicationEmailAddress, refNo, visible, datePosted, expiryDate, expired, jobItemPrice, billed, lastModified, showSalaryDetails, salaryText, advertiserId, lastModifiedByAdvertiserUserId, lastModifiedByAdminUserId, jobItemTypeId, applicationMethod, applicationUrl, uploadMethod, tags, jobTemplateId, searchFieldExtension, advertiserJobTemplateLogoId, companyName, hashValue, requireLogonForExternalApplications, showLocationDetails, publicTransport, address, contactDetails, jobContactPhone, jobContactName, qualificationsRecognised, residentOnly, documentLink, bulletPoint1, bulletPoint2, bulletPoint3, hotJob, jobFriendlyName, searchField, showSalaryRange, salaryLowerBand, salaryUpperBand, currencyId, salaryTypeId, enteredByAdvertiserUserId, jobLatitude, jobLongitude, addressStatus);
+			return GetByScreeningQuestionsTemplateId(null, start, pageLength , screeningQuestionsTemplateId);
 		}
 		
 		/// <summary>
-		///	This method wrap the 'Jobs_Update' stored procedure. 
+		///	This method wrap the 'Jobs_GetByScreeningQuestionsTemplateId' stored procedure. 
 		/// </summary>
-		/// <param name="jobId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="siteId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="workTypeId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="jobName"> A <c>System.String</c> instance.</param>
-		/// <param name="description"> A <c>System.String</c> instance.</param>
-		/// <param name="fullDescription"> A <c>System.String</c> instance.</param>
-		/// <param name="webServiceProcessed"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="applicationEmailAddress"> A <c>System.String</c> instance.</param>
-		/// <param name="refNo"> A <c>System.String</c> instance.</param>
-		/// <param name="visible"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="datePosted"> A <c>System.DateTime?</c> instance.</param>
-		/// <param name="expiryDate"> A <c>System.DateTime?</c> instance.</param>
-		/// <param name="expired"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="jobItemPrice"> A <c>System.Decimal?</c> instance.</param>
-		/// <param name="billed"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="lastModified"> A <c>System.DateTime?</c> instance.</param>
-		/// <param name="showSalaryDetails"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="salaryText"> A <c>System.String</c> instance.</param>
-		/// <param name="advertiserId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="lastModifiedByAdvertiserUserId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="lastModifiedByAdminUserId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="jobItemTypeId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="applicationMethod"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="applicationUrl"> A <c>System.String</c> instance.</param>
-		/// <param name="uploadMethod"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="tags"> A <c>System.String</c> instance.</param>
-		/// <param name="jobTemplateId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="searchFieldExtension"> A <c>System.String</c> instance.</param>
-		/// <param name="advertiserJobTemplateLogoId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="companyName"> A <c>System.String</c> instance.</param>
-		/// <param name="hashValue"> A <c>System.Byte[]</c> instance.</param>
-		/// <param name="requireLogonForExternalApplications"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="showLocationDetails"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="publicTransport"> A <c>System.String</c> instance.</param>
-		/// <param name="address"> A <c>System.String</c> instance.</param>
-		/// <param name="contactDetails"> A <c>System.String</c> instance.</param>
-		/// <param name="jobContactPhone"> A <c>System.String</c> instance.</param>
-		/// <param name="jobContactName"> A <c>System.String</c> instance.</param>
-		/// <param name="qualificationsRecognised"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="residentOnly"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="documentLink"> A <c>System.String</c> instance.</param>
-		/// <param name="bulletPoint1"> A <c>System.String</c> instance.</param>
-		/// <param name="bulletPoint2"> A <c>System.String</c> instance.</param>
-		/// <param name="bulletPoint3"> A <c>System.String</c> instance.</param>
-		/// <param name="hotJob"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="jobFriendlyName"> A <c>System.String</c> instance.</param>
-		/// <param name="searchField"> A <c>System.String</c> instance.</param>
-		/// <param name="showSalaryRange"> A <c>System.Boolean?</c> instance.</param>
-		/// <param name="salaryLowerBand"> A <c>System.Decimal?</c> instance.</param>
-		/// <param name="salaryUpperBand"> A <c>System.Decimal?</c> instance.</param>
-		/// <param name="currencyId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="salaryTypeId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="enteredByAdvertiserUserId"> A <c>System.Int32?</c> instance.</param>
-		/// <param name="jobLatitude"> A <c>System.Double?</c> instance.</param>
-		/// <param name="jobLongitude"> A <c>System.Double?</c> instance.</param>
-		/// <param name="addressStatus"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="screeningQuestionsTemplateId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="start">Row number at which to start reading, the first row is 0.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 		/// <remark>This method is generate from a stored procedure.</remark>
-		public abstract void Update(TransactionManager transactionManager, int start, int pageLength , System.Int32? jobId, System.Int32? siteId, System.Int32? workTypeId, System.String jobName, System.String description, System.String fullDescription, System.Boolean? webServiceProcessed, System.String applicationEmailAddress, System.String refNo, System.Boolean? visible, System.DateTime? datePosted, System.DateTime? expiryDate, System.Int32? expired, System.Decimal? jobItemPrice, System.Boolean? billed, System.DateTime? lastModified, System.Boolean? showSalaryDetails, System.String salaryText, System.Int32? advertiserId, System.Int32? lastModifiedByAdvertiserUserId, System.Int32? lastModifiedByAdminUserId, System.Int32? jobItemTypeId, System.Int32? applicationMethod, System.String applicationUrl, System.Int32? uploadMethod, System.String tags, System.Int32? jobTemplateId, System.String searchFieldExtension, System.Int32? advertiserJobTemplateLogoId, System.String companyName, System.Byte[] hashValue, System.Boolean? requireLogonForExternalApplications, System.Boolean? showLocationDetails, System.String publicTransport, System.String address, System.String contactDetails, System.String jobContactPhone, System.String jobContactName, System.Boolean? qualificationsRecognised, System.Boolean? residentOnly, System.String documentLink, System.String bulletPoint1, System.String bulletPoint2, System.String bulletPoint3, System.Boolean? hotJob, System.String jobFriendlyName, System.String searchField, System.Boolean? showSalaryRange, System.Decimal? salaryLowerBand, System.Decimal? salaryUpperBand, System.Int32? currencyId, System.Int32? salaryTypeId, System.Int32? enteredByAdvertiserUserId, System.Double? jobLatitude, System.Double? jobLongitude, System.Int32? addressStatus);
+		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		public abstract DataSet GetByScreeningQuestionsTemplateId(TransactionManager transactionManager, int start, int pageLength , System.Int32? screeningQuestionsTemplateId);
 		
 		#endregion
 		
@@ -4610,6 +4742,7 @@ namespace JXTPortal.Data.Bases
 					c.JobLongitude = (reader.IsDBNull(((int)JobsColumn.JobLongitude - 1)))?null:(System.Double?)reader[((int)JobsColumn.JobLongitude - 1)];
 					c.AddressStatus = (reader.IsDBNull(((int)JobsColumn.AddressStatus - 1)))?null:(System.Int32?)reader[((int)JobsColumn.AddressStatus - 1)];
 					c.JobExternalId = (reader.IsDBNull(((int)JobsColumn.JobExternalId - 1)))?null:(System.String)reader[((int)JobsColumn.JobExternalId - 1)];
+					c.ScreeningQuestionsTemplateId = (reader.IsDBNull(((int)JobsColumn.ScreeningQuestionsTemplateId - 1)))?null:(System.Int32?)reader[((int)JobsColumn.ScreeningQuestionsTemplateId - 1)];
 					c.EntityTrackingKey = key;
 					c.AcceptChanges();
 					c.SuppressEntityEvents = false;
@@ -4684,6 +4817,7 @@ namespace JXTPortal.Data.Bases
 			entity.JobLongitude = (reader.IsDBNull(((int)JobsColumn.JobLongitude - 1)))?null:(System.Double?)reader[((int)JobsColumn.JobLongitude - 1)];
 			entity.AddressStatus = (reader.IsDBNull(((int)JobsColumn.AddressStatus - 1)))?null:(System.Int32?)reader[((int)JobsColumn.AddressStatus - 1)];
 			entity.JobExternalId = (reader.IsDBNull(((int)JobsColumn.JobExternalId - 1)))?null:(System.String)reader[((int)JobsColumn.JobExternalId - 1)];
+			entity.ScreeningQuestionsTemplateId = (reader.IsDBNull(((int)JobsColumn.ScreeningQuestionsTemplateId - 1)))?null:(System.Int32?)reader[((int)JobsColumn.ScreeningQuestionsTemplateId - 1)];
 			entity.AcceptChanges();
 		}
 		
@@ -4753,6 +4887,7 @@ namespace JXTPortal.Data.Bases
 			entity.JobLongitude = Convert.IsDBNull(dataRow["JobLongitude"]) ? null : (System.Double?)dataRow["JobLongitude"];
 			entity.AddressStatus = Convert.IsDBNull(dataRow["AddressStatus"]) ? null : (System.Int32?)dataRow["AddressStatus"];
 			entity.JobExternalId = Convert.IsDBNull(dataRow["JobExternalId"]) ? null : (System.String)dataRow["JobExternalId"];
+			entity.ScreeningQuestionsTemplateId = Convert.IsDBNull(dataRow["ScreeningQuestionsTemplateId"]) ? null : (System.Int32?)dataRow["ScreeningQuestionsTemplateId"];
 			entity.AcceptChanges();
 		}
 		#endregion 

@@ -243,6 +243,8 @@ namespace JXTPortal.Website.Admin
                 //People Search Settings
                 globalSetting.EnablePeopleSearch = cbPeopleSearchCB.Checked;
 
+                globalSetting.EnableScreeningQuestions = cbScreeningQuestions.Checked;
+
                 globalSetting.EnableJobCustomQuestionnaire = chkEnableJobCustomQuestionnaire.Checked;
                 if (Convert.ToInt32(ddlJobApplicationTypeID.SelectedValue) > 0)
                     globalSetting.JobApplicationTypeId =  Convert.ToInt32(ddlJobApplicationTypeID.SelectedValue);
@@ -412,20 +414,20 @@ namespace JXTPortal.Website.Admin
                 SetAdvertiserApprovalProcess();
                 LoadDynamicPages();
 
-                CommonFunction.SetDropDownByValue(dataDynamicPage, globalSetting.DefaultDynamicPageId.ToString());
+                        CommonFunction.SetDropDownByValue(dataDynamicPage, globalSetting.DefaultDynamicPageId.ToString());
 
-                dataPublicJobSearch.Checked = globalSetting.PublicJobsSearch;
-                dataPrivateJobs.Checked = globalSetting.PrivateJobs;
+                        dataPublicJobSearch.Checked = globalSetting.PublicJobsSearch;
+                        dataPrivateJobs.Checked = globalSetting.PrivateJobs;
                 AdminUsersService aus = new AdminUsersService();
-                using (Entities.AdminUsers adminuser = aus.GetByAdminUserId(globalSetting.LastModifiedBy))
+                        using (Entities.AdminUsers adminuser = aus.GetByAdminUserId(globalSetting.LastModifiedBy))
                 {
                     lblLastModifiedBy.Text = adminuser.UserName;
                 }
-                lblLastModified.Text = globalSetting.LastModified.ToString(SessionData.Site.DateFormat + " hh:mm:ss tt");
+                        lblLastModified.Text = globalSetting.LastModified.ToString(SessionData.Site.DateFormat + " hh:mm:ss tt");
 
-                tbGoogleTagManager.Text = globalSetting.GoogleTagManager;
-                tbGoogleAnalytics.Text = globalSetting.GoogleAnalytics;
-                tbGoogleWebMaster.Text = globalSetting.GoogleWebMaster;
+                        tbGoogleTagManager.Text = globalSetting.GoogleTagManager;
+                        tbGoogleAnalytics.Text = globalSetting.GoogleAnalytics;
+                        tbGoogleWebMaster.Text = globalSetting.GoogleWebMaster;
 
                 dataPageTitlePrefix.Text = globalSetting.PageTitlePrefix;
                 dataPageTitleSuffix.Text = globalSetting.PageTitleSuffix;
@@ -450,16 +452,18 @@ namespace JXTPortal.Website.Admin
                 // cbAdvertiserApprovalProcess.Checked = (globalSetting.AdvertiserApprovalProcess.HasValue) ? true : false; // TODO Naveen change this //globalSetting.AdvertiserApprovalProcess.Value : false;
                 ddlDateFormat.SelectedValue = globalSetting.GlobalDateFormat;
 
-                chkPrivateSite.Checked = globalSetting.IsPrivateSite.HasValue ? globalSetting.IsPrivateSite.Value : false;
+                        chkPrivateSite.Checked = globalSetting.IsPrivateSite.HasValue ? globalSetting.IsPrivateSite.Value : false;
                 if (chkPrivateSite.Checked)
-                    txtPrivateRedirectUrl.Text = globalSetting.PrivateRedirectUrl;
+                            txtPrivateRedirectUrl.Text = globalSetting.PrivateRedirectUrl;
 
                 //People Search Settings
-                cbPeopleSearchCB.Checked = globalSetting.EnablePeopleSearch;
+                        cbPeopleSearchCB.Checked = globalSetting.EnablePeopleSearch;
 
-                chkEnableJobCustomQuestionnaire.Checked = globalSetting.EnableJobCustomQuestionnaire.HasValue ? globalSetting.EnableJobCustomQuestionnaire.Value : false;
-                if (globalSetting.JobApplicationTypeId.HasValue)
-                    CommonFunction.SetDropDownByValue(ddlJobApplicationTypeID, globalSetting.JobApplicationTypeId.ToString());
+                        cbScreeningQuestions.Checked = globalSetting.EnableScreeningQuestions;
+
+                        chkEnableJobCustomQuestionnaire.Checked = globalSetting.EnableJobCustomQuestionnaire.HasValue ? globalSetting.EnableJobCustomQuestionnaire.Value : false;
+                        if (globalSetting.JobApplicationTypeId.HasValue)
+                            CommonFunction.SetDropDownByValue(ddlJobApplicationTypeID, globalSetting.JobApplicationTypeId.ToString());
 
                 if (cbUseCustomProfessionRoles.Checked)
                 {
@@ -469,12 +473,12 @@ namespace JXTPortal.Website.Admin
                     dataUseAdvertiserFilter.Enabled = false;
                 }
 
-                //if (globalSetting.SiteFavIconId.HasValue)
-                //    dataSiteFavIcon.Text = globalSetting.SiteFavIconId.Value.ToString();
+                        //if (globalSetting.SiteFavIconId.HasValue)
+                        //    dataSiteFavIcon.Text = globalSetting.SiteFavIconId.Value.ToString();
 
-                dataSiteDocType.Text = globalSetting.SiteDocType;
+                        dataSiteDocType.Text = globalSetting.SiteDocType;
 
-                txtSiteEmailMemberRegistration.Text = globalSetting.MemberRegistrationNotification;
+                        txtSiteEmailMemberRegistration.Text = globalSetting.MemberRegistrationNotification;
 
                 if (SessionData.AdminUser != null && SessionData.AdminUser.AdminRoleId != (int)PortalEnums.Admin.AdminRole.Administrator)
                 {
@@ -496,17 +500,17 @@ namespace JXTPortal.Website.Admin
                     txtPrivateRedirectUrl.Enabled = false;
                 }
 
-                tbLinkedInAPI.Text = (string.IsNullOrEmpty(globalSetting.LinkedInApi)) ? string.Empty : globalSetting.LinkedInApi;
-                tbLinkedInAPISecret.Text = (string.IsNullOrEmpty(globalSetting.LinkedInApiSecret)) ? string.Empty : globalSetting.LinkedInApiSecret;
-                tbLinkedInLogo.Text = (string.IsNullOrEmpty(globalSetting.LinkedInLogo)) ? string.Empty : globalSetting.LinkedInLogo;
-                tbLinkedInCompanyID.Text = (!globalSetting.LinkedInCompanyId.HasValue) ? string.Empty : globalSetting.LinkedInCompanyId.ToString();
-                tbLinkedInEmail.Text = (string.IsNullOrEmpty(globalSetting.LinkedInEmail)) ? string.Empty : globalSetting.LinkedInEmail;
+                        tbLinkedInAPI.Text = (string.IsNullOrEmpty(globalSetting.LinkedInApi)) ? string.Empty : globalSetting.LinkedInApi;
+                        tbLinkedInAPISecret.Text = (string.IsNullOrEmpty(globalSetting.LinkedInApiSecret)) ? string.Empty : globalSetting.LinkedInApiSecret;
+                        tbLinkedInLogo.Text = (string.IsNullOrEmpty(globalSetting.LinkedInLogo)) ? string.Empty : globalSetting.LinkedInLogo;
+                        tbLinkedInCompanyID.Text = (!globalSetting.LinkedInCompanyId.HasValue) ? string.Empty : globalSetting.LinkedInCompanyId.ToString();
+                        tbLinkedInEmail.Text = (string.IsNullOrEmpty(globalSetting.LinkedInEmail)) ? string.Empty : globalSetting.LinkedInEmail;
 
-                //tbGoogleClientID.Text = (string.IsNullOrEmpty(globalSetting.GoogleClientId)) ? string.Empty : globalSetting.GoogleClientId;
-                //tbGoogleClientSecret.Text = (string.IsNullOrEmpty(globalSetting.GoogleClientSecret)) ? string.Empty : globalSetting.GoogleClientSecret;
+                        //tbGoogleClientID.Text = (string.IsNullOrEmpty(globalSetting.GoogleClientId)) ? string.Empty : globalSetting.GoogleClientId;
+                        //tbGoogleClientSecret.Text = (string.IsNullOrEmpty(globalSetting.GoogleClientSecret)) ? string.Empty : globalSetting.GoogleClientSecret;
 
-                //tbFacebookAppID.Text = (string.IsNullOrEmpty(globalSetting.FacebookAppId)) ? string.Empty : globalSetting.FacebookAppId;
-                //tbFacebookAppSecret.Text = (string.IsNullOrEmpty(globalSetting.FacebookAppSecret)) ? string.Empty : globalSetting.FacebookAppSecret;
+                        //tbFacebookAppID.Text = (string.IsNullOrEmpty(globalSetting.FacebookAppId)) ? string.Empty : globalSetting.FacebookAppId;
+                        //tbFacebookAppSecret.Text = (string.IsNullOrEmpty(globalSetting.FacebookAppSecret)) ? string.Empty : globalSetting.FacebookAppSecret;
 
             }
         }

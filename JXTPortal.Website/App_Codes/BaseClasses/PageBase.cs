@@ -422,6 +422,7 @@ namespace JXTPortal.Website
                     bool showBuyCreditLink = false;
                     bool showCheckoutLink = false;
                     bool showPeoplSearchLink = false;
+                    bool showScreeningQuestionsLink = false;
 
                     #region Set boolean flags
 
@@ -440,6 +441,7 @@ namespace JXTPortal.Website
                                         Entities.GlobalSettings globalsetting = globalsettings[0];
                                         siteHasJobScreenProcess = (globalsetting.JobScreeningProcess.HasValue) ? globalsetting.JobScreeningProcess.Value : false;
                                         showPeoplSearchLink = globalsetting.EnablePeopleSearch && thisAdvertiser.AllowPeopleSearchAccess;
+                                        showScreeningQuestionsLink = globalsetting.EnableScreeningQuestions;
                                     }
                                 }
                             }
@@ -518,6 +520,7 @@ namespace JXTPortal.Website
                         , showBuyCreditLink ? string.Format(@"<li id=""advertProfileBuyCred""><a href=""/advertiser/productselect.aspx"">{0}</a></li>", CommonFunction.GetResourceValue("LinkButtonBuyJobCredits")) : string.Empty //Format {17}
                         , showCheckoutLink ? string.Format(@"<li id=""advertProfileCheckout""><a href=""/advertiser/orderpayment.aspx"">{0} ({1})</a></li> ", CommonFunction.GetResourceValue("LinkButtonCart"), SessionData.AdvertiserUser.CartItems.Count()) : string.Empty//Format {18}
                         , showPeoplSearchLink? string.Format(@"<li id=""advertPeopleSearch""><a href=""/peoplesearch.aspx"">{0}</a></li> ", CommonFunction.GetResourceValue("LinkButtonPeopleSearch")) : string.Empty //Format {19}
+                        , showScreeningQuestionsLink ? string.Format(@"<li id=""advertScreeningQuestions""><a href=""/advertiser/screeningquestionstemplates.aspx"">{0}</a></li> ", CommonFunction.GetResourceValue("LinkScreeningQuestionsTemplate")) : string.Empty //Format {19}
                         )
                     );
                 }

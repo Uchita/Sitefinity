@@ -74,6 +74,20 @@ namespace JXTPortal.Website
             }
         }
 
+        private AdvertisersService _advertiserServicesService = null;
+
+        private AdvertisersService AdvertisersService
+        {
+            get
+            {
+                if (_advertiserServicesService == null)
+                {
+                    _advertiserServicesService = new AdvertisersService();
+                }
+                return _advertiserServicesService;
+            }
+        }
+
         #endregion
 
         protected void Page_Init(object sender, EventArgs e)
@@ -420,12 +434,13 @@ namespace JXTPortal.Website
                             {
                                 // Show pending jobs when job screening process is enabled
                                 using (TList<Entities.GlobalSettings> globalsettings = GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId))
+                                using (Entities.Advertisers thisAdvertiser = AdvertisersService.GetByAdvertiserId(advu.AdvertiserId))
                                 {
                                     if (globalsettings.Count > 0)
                                     {
                                         Entities.GlobalSettings globalsetting = globalsettings[0];
                                         siteHasJobScreenProcess = (globalsetting.JobScreeningProcess.HasValue) ? globalsetting.JobScreeningProcess.Value : false;
-                                        showPeoplSearchLink = globalsetting.EnablePeopleSearch;
+                                        showPeoplSearchLink = globalsetting.EnablePeopleSearch && thisAdvertiser.AllowPeopleSearchAccess;
                                         showScreeningQuestionsLink = globalsetting.EnableScreeningQuestions;
                                     }
                                 }

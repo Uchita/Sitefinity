@@ -399,6 +399,15 @@ public partial class AdvertisersEdit {
     protected global::System.Web.UI.WebControls.DropDownList ddlPreferredContactMethod;
     
     /// <summary>
+    /// cbEnablePeopleSearch control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.CheckBox cbEnablePeopleSearch;
+    
+    /// <summary>
     /// phExternalID control.
     /// </summary>
     /// <remarks>

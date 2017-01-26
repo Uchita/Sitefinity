@@ -1,4 +1,98 @@
-﻿-- GlobalSettings
+﻿-- NEW TABLES
+-- ScreeningQuestions
+IF OBJECT_ID('dbo.ScreeningQuestions', 'U') IS NULL
+BEGIN
+	CREATE TABLE ScreeningQuestions
+	(
+	  [ScreeningQuestionId] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	  [ScreeningQuestionIndex] [int] NOT NULL,
+	  [QuestionTitle] [nvarchar](512) NOT NULL,
+	  [QuestionType] [int] NOT NULL,
+	  [Mandatory] [bit] NOT NULL DEFAULT 0,
+	  [LanguageId] [int] NOT NULL FOREIGN KEY REFERENCES Languages(LanguageId), -- FK
+	  [KnockoutValue] [nvarchar](512) NULL,
+	  [Options] [nvarchar](1000) NULL,
+	  [Visible] [bit] NOT NULL DEFAULT 1,
+	  [LastModified] [datetime] NULL,
+	  [LastModifiedBy] [int] NULL FOREIGN KEY REFERENCES AdminUsers(AdminUserId), -- FK
+	  [LastModifiedByAdvertiserUserId] [int] NULL FOREIGN KEY REFERENCES AdvertiserUsers(AdvertiserUserID) -- FK
+	)
+	
+END
+GO
+
+
+
+-- ScreeningQuestionsTemplates
+IF OBJECT_ID('dbo.ScreeningQuestionsTemplates', 'U') IS NULL
+BEGIN
+	CREATE TABLE ScreeningQuestionsTemplates
+	(
+		[ScreeningQuestionsTemplateId] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
+		[TemplateName] [nvarchar](512) NOT NULL,
+		[SiteId] [int] NOT NULL FOREIGN KEY REFERENCES Sites(SiteId), -- FK
+		[Visible] [bit] NOT NULL DEFAULT 1,
+		[LastModified] [datetime] NULL,
+		[LastModifiedBy] [int] NULL FOREIGN KEY REFERENCES AdminUsers(AdminUserId), -- FK
+		[CreatedByAdvertiserId] [int] NULL FOREIGN KEY REFERENCES Advertisers(AdvertiserId) -- FK
+	)
+END
+GO
+
+-- ScreeningQuestionsTemplateOwners
+IF OBJECT_ID('dbo.ScreeningQuestionsTemplateOwners', 'U') IS NULL
+BEGIN
+	CREATE TABLE ScreeningQuestionsTemplateOwners
+	(
+		[ScreeningQuestionsTemplatesOwnerId] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
+		[ScreeningQuestionsTemplateId] [int] NOT NULL FOREIGN KEY REFERENCES ScreeningQuestionsTemplates(ScreeningQuestionsTemplateId), -- FK
+		[AdvertiserId] [int] NOT NULL  FOREIGN KEY REFERENCES Advertisers(AdvertiserId)-- FK
+	)
+
+END
+GO
+
+-- JobScreeningQuestions
+IF OBJECT_ID('dbo.JobScreeningQuestions', 'U') IS NULL
+BEGIN
+	CREATE TABLE JobScreeningQuestions
+(
+	[JobScreeningQuestionId] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	[JobId] [int] NULL FOREIGN KEY REFERENCES Jobs(JobId), -- FK
+	[JobArchiveId] [int] NULL FOREIGN KEY REFERENCES JobsArchive(JobId), -- FK
+	[ScreeningQuestionId] [int] NOT NULL FOREIGN KEY REFERENCES ScreeningQuestions(ScreeningQuestionId)-- FK
+)
+END
+GO
+
+-- JobApplicationScreeningAnswers
+IF OBJECT_ID('dbo.JobApplicationScreeningAnswers', 'U') IS NULL
+BEGIN
+	CREATE TABLE JobApplicationScreeningAnswers
+	(
+		[JobApplicationScreeningAnswerId] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
+		[ScreeningQuestionId] [int] NOT NULL FOREIGN KEY REFERENCES ScreeningQuestions(ScreeningQuestionId), -- FK
+		[Answer] [nvarchar](max) NULL, 
+		[JobApplicationId] [int] NOT NULL  FOREIGN KEY REFERENCES JobApplication(JobApplicationId)-- FK
+	)
+END
+GO
+
+-- ScreeningQuestionsMappings
+IF OBJECT_ID('dbo.ScreeningQuestionsMappings', 'U') IS NULL
+BEGIN
+	CREATE TABLE ScreeningQuestionsMappings
+	(
+	ScreeningQuestionsMappingId [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	ScreeningQuestionsTemplateId  [int] NOT NULL FOREIGN KEY REFERENCES ScreeningQuestionsTemplates(ScreeningQuestionsTemplateId),
+	ScreeningQuestionId [int] NOT NULL FOREIGN KEY REFERENCES ScreeningQuestions(ScreeningQuestionId)
+	)
+END
+GO
+
+
+
+-- GlobalSettings
 
 IF OBJECT_ID('dbo.GlobalSettings', 'U') IS NOT NULL
 BEGIN
@@ -567,99 +661,6 @@ ALTER TABLE [dbo].[JobApplication] ADD  DEFAULT ((0)) FOR [FileDownloaded]
 
 END
 GO
-
--- NEW TABLES
--- ScreeningQuestions
-IF OBJECT_ID('dbo.ScreeningQuestions', 'U') IS NULL
-BEGIN
-	CREATE TABLE ScreeningQuestions
-	(
-	  [ScreeningQuestionId] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
-	  [ScreeningQuestionIndex] [int] NOT NULL,
-	  [QuestionTitle] [nvarchar](512) NOT NULL,
-	  [QuestionType] [int] NOT NULL,
-	  [Mandatory] [bit] NOT NULL DEFAULT 0,
-	  [LanguageId] [int] NOT NULL FOREIGN KEY REFERENCES Languages(LanguageId), -- FK
-	  [KnockoutValue] [nvarchar](512) NULL,
-	  [Options] [nvarchar](1000) NULL,
-	  [Visible] [bit] NOT NULL DEFAULT 1,
-	  [LastModified] [datetime] NULL,
-	  [LastModifiedBy] [int] NULL FOREIGN KEY REFERENCES AdminUsers(AdminUserId), -- FK
-	  [LastModifiedByAdvertiserUserId] [int] NULL FOREIGN KEY REFERENCES AdvertiserUsers(AdvertiserUserID) -- FK
-	)
-	
-END
-GO
-
-
-
--- ScreeningQuestionsTemplates
-IF OBJECT_ID('dbo.ScreeningQuestionsTemplates', 'U') IS NULL
-BEGIN
-	CREATE TABLE ScreeningQuestionsTemplates
-	(
-		[ScreeningQuestionsTemplateId] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
-		[TemplateName] [nvarchar](512) NOT NULL,
-		[SiteId] [int] NOT NULL FOREIGN KEY REFERENCES Sites(SiteId), -- FK
-		[Visible] [bit] NOT NULL DEFAULT 1,
-		[LastModified] [datetime] NULL,
-		[LastModifiedBy] [int] NULL FOREIGN KEY REFERENCES AdminUsers(AdminUserId), -- FK
-		[CreatedByAdvertiserId] [int] NULL FOREIGN KEY REFERENCES Advertisers(AdvertiserId) -- FK
-	)
-END
-GO
-
--- ScreeningQuestionsTemplateOwners
-IF OBJECT_ID('dbo.ScreeningQuestionsTemplateOwners', 'U') IS NULL
-BEGIN
-	CREATE TABLE ScreeningQuestionsTemplateOwners
-	(
-		[ScreeningQuestionsTemplatesOwnerId] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
-		[ScreeningQuestionsTemplateId] [int] NOT NULL FOREIGN KEY REFERENCES ScreeningQuestionsTemplates(ScreeningQuestionsTemplateId), -- FK
-		[AdvertiserId] [int] NOT NULL  FOREIGN KEY REFERENCES Advertisers(AdvertiserId)-- FK
-	)
-
-END
-GO
-
--- JobScreeningQuestions
-IF OBJECT_ID('dbo.JobScreeningQuestions', 'U') IS NULL
-BEGIN
-	CREATE TABLE JobScreeningQuestions
-(
-	[JobScreeningQuestionId] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
-	[JobId] [int] NULL FOREIGN KEY REFERENCES Jobs(JobId), -- FK
-	[JobArchiveId] [int] NULL FOREIGN KEY REFERENCES JobsArchive(JobId), -- FK
-	[ScreeningQuestionId] [int] NOT NULL FOREIGN KEY REFERENCES ScreeningQuestions(ScreeningQuestionId)-- FK
-)
-END
-GO
-
--- JobApplicationScreeningAnswers
-IF OBJECT_ID('dbo.JobApplicationScreeningAnswers', 'U') IS NULL
-BEGIN
-	CREATE TABLE JobApplicationScreeningAnswers
-	(
-		[JobApplicationScreeningAnswerId] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
-		[ScreeningQuestionId] [int] NOT NULL FOREIGN KEY REFERENCES ScreeningQuestions(ScreeningQuestionId), -- FK
-		[Answer] [nvarchar](max) NULL, 
-		[JobApplicationId] [int] NOT NULL  FOREIGN KEY REFERENCES JobApplication(JobApplicationId)-- FK
-	)
-END
-GO
-
--- ScreeningQuestionsMappings
-IF OBJECT_ID('dbo.ScreeningQuestionsMappings', 'U') IS NULL
-BEGIN
-	CREATE TABLE ScreeningQuestionsMappings
-	(
-	ScreeningQuestionsMappingId [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
-	ScreeningQuestionsTemplateId  [int] NOT NULL FOREIGN KEY REFERENCES ScreeningQuestionsTemplates(ScreeningQuestionsTemplateId),
-	ScreeningQuestionId [int] NOT NULL FOREIGN KEY REFERENCES ScreeningQuestions(ScreeningQuestionId)
-	)
-END
-GO
-
 
 -- JobApplication_CustomGetByJobIdMemberId
 

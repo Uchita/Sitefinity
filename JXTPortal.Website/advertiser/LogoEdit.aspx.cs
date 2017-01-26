@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using JXTPortal.Entities;
 using System.IO;
 using JXTPortal.Common;
+using JXTPortal.Common.Extensions;
 using System.Configuration;
 
 namespace JXTPortal.Website.advertiser
@@ -72,15 +73,15 @@ namespace JXTPortal.Website.advertiser
                     if (advertiser.AdvertiserLogo != null)
                     {
                         lblNoLogo.Visible = false;
-
-                        imgLogo.ImageUrl = Page.ResolveUrl("~/getfile.aspx") + "?advertiserid=" + Convert.ToString(advertiser.AdvertiserId);
+                        string url = string.Format("~/getfile.aspx?advertiserid={0}&ver={1}", Convert.ToString(advertiser.AdvertiserId), advertiser.LastModified.ToEpocTimestamp());
+                        imgLogo.ImageUrl = Page.ResolveUrl(url);
                     }
                 }
                 else
                 {
                     lblNoLogo.Visible = false;
 
-                    imgLogo.ImageUrl = string.Format("/media/{0}/{1}", ConfigurationManager.AppSettings["AdvertisersFolder"], advertiser.AdvertiserLogoUrl);
+                    imgLogo.ImageUrl = string.Format("/media/{0}/{1}?ver={2}", ConfigurationManager.AppSettings["AdvertisersFolder"], advertiser.AdvertiserLogoUrl, advertiser.LastModified.ToEpocTimestamp());
                 }
             }
         }

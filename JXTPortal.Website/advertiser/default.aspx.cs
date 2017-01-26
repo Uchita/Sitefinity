@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using JXTPortal.Website.usercontrols.common;
 using System.Text;
 using JXTPortal.Entities;
+using JXTPortal.Common.Extensions;
 using System.Data;
 using System.Configuration;
 using JXTPortal.Website.usercontrols.navigation;
@@ -175,7 +176,7 @@ namespace JXTPortal.Website.advertiser
 
             if (strContent.Contains(PortalConstants.DynamicNavigation.ADVERTISER_DASHBOARD_PROFILEPICTURE))
                 strContent = strContent.Replace(PortalConstants.DynamicNavigation.ADVERTISER_DASHBOARD_PROFILEPICTURE,
-                                   string.Format("<img class='thumbnail profilePic' src='/getfile.aspx?advertiserid={0}' style='border-width:0px;' />", advertiser.AdvertiserId));
+                                   string.Format("<img class='thumbnail profilePic' src='/getfile.aspx?advertiserid={0}&ver={1}' style='border-width:0px;' />", advertiser.AdvertiserId, AdvUserLastModifiedDate.ToEpocTimestamp()));
 
             ltlSystemDynamicPage.Text = strContent;
         }

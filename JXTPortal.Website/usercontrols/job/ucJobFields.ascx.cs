@@ -22,6 +22,7 @@ using System.Linq;
 using System.Xml;
 using JXTPortal.Entities.Models;
 using JXTPortal.Common;
+using JXTPortal.Common.Extensions;
 using JXTPortal.Common;
 
 using JXTPortal.Service.Dapper;
@@ -1262,7 +1263,7 @@ namespace JXTPortal.Website.Admin.UserControls
                         if (job.JobTemplateId.HasValue)
                         {
                             ddlJobTemplateID.SelectedValue = job.JobTemplateId.ToString();
-                            imgAdvJobTemplate.ImageUrl = "/getfile.aspx?jobtemplateid=" + job.JobTemplateId.ToString();
+                            imgAdvJobTemplate.ImageUrl = string.Format("/getfile.aspx?jobtemplateid={0}&ver={1}", job.JobTemplateId.ToString(), job.LastModified.ToEpocTimestamp());
 
                             imgAdvJobTemplate.Attributes.Add("style", "display:block");
                         }
@@ -1895,7 +1896,7 @@ namespace JXTPortal.Website.Admin.UserControls
                         if (job.JobTemplateId.HasValue)
                         {
                             ddlJobTemplateID.SelectedValue = job.JobTemplateId.ToString();
-                            imgAdvJobTemplate.ImageUrl = "/getfile.aspx?jobtemplateid=" + job.JobTemplateId.ToString();
+                            imgAdvJobTemplate.ImageUrl = string.Format("/getfile.aspx?jobtemplateid={0}&ver={1}", job.JobTemplateId.ToString(), job.LastModified.ToEpocTimestamp());
 
                             imgAdvJobTemplate.Attributes.Add("style", "display:block");
                         }

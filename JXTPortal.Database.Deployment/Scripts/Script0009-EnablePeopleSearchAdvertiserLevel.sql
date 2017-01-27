@@ -6,8 +6,6 @@ DECLARE @tempTable table (siteID int)
 INSERT INTO @tempTable
 SELECT SiteID FROM GlobalSettings WHERE EnablePeopleSearch = 1
 
-SELECT * FROM @tempTable
-
 UPDATE Advertisers
 SET AllowPeopleSearchAccess = 1
 WHERE SiteID in (SELECT siteID FROM @tempTable)

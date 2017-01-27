@@ -148,3 +148,9 @@ Allow: /member/register.aspx
 
 user-agent: sitebot
 disallow: /
+
+User-agent: Yandex
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /

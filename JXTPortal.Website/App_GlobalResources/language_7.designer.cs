@@ -7673,6 +7673,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Screening Questions.
+        /// </summary>
+        internal static string LabelScreeningQuestions {
+            get {
+                return ResourceManager.GetString("LabelScreeningQuestions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search.
         /// </summary>
         internal static string LabelSearch {

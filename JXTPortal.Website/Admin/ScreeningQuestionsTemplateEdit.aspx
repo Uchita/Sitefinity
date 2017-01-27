@@ -186,12 +186,12 @@
             <ul class="form-section">
                 <li class="form-line" id="mlr-language-field">
                     <label class="form-label-left">
-                        Advertiser ID:<span class="form-required">*</span>
+                        Advertiser:<span class="form-required">*</span>
                     </label>
                     <div class="form-input">
-                        <asp:TextBox ID="tbAdvertiserId" runat="server" Width="400px" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
-                        <asp:RequiredFieldValidator ID="rvAdvertiserId" runat="server" ControlToValidate="tbAdvertiserId"
-                            ErrorMessage="Required" ValidationGroup="Owner" />
+                        <asp:DropDownList ID="ddlAdvertiser" runat="server" Width="400px" />
+                        <asp:RequiredFieldValidator ID="rvAdvertiserId" runat="server" ControlToValidate="ddlAdvertiser"
+                            ErrorMessage="Required" ValidationGroup="Owner" InitialValue="0" />
                         <asp:CustomValidator ID="cvAdvertiserId" runat="server" ValidationGroup="Owner" OnServerValidate="cvAdvertiserId_ServerValidate" />
                     </div>
                 </li>

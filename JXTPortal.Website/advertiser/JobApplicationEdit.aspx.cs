@@ -9,6 +9,10 @@ using System.Web.UI.WebControls;
 using JXTPortal.Common;
 using JXTPortal.Entities;
 
+using JXTPortal.Service.Dapper;
+using JXTPortal.Service.Dapper.Models;
+using JXTPortal.Data.Dapper.Entities.ScreeningQuestions;
+
 namespace JXTPortal.Website.advertiser
 {
     public partial class JobApplicationEdit : Page
@@ -96,6 +100,8 @@ namespace JXTPortal.Website.advertiser
             }
         }
 
+        public IJobApplicationScreeningAnswersService JobApplicationScreeningAnswersService { get; set; }
+
         #endregion
 
         protected void Page_Init(object sender, EventArgs e)
@@ -120,6 +126,7 @@ namespace JXTPortal.Website.advertiser
                 LoadApplicationStatus();
                 LoadApplicantGrade();
                 LoadJobApplication();
+                LoadScreeningQuestions();
             }
 
             SetFormValues();
@@ -132,6 +139,36 @@ namespace JXTPortal.Website.advertiser
             dataResume.Text = CommonFunction.GetResourceValue("LabelDownload");
             dataCoverLetter.Text = CommonFunction.GetResourceValue("LabelDownload");
             dataPDF.Text = CommonFunction.GetResourceValue("LabelDownload");
+        }
+
+        private void LoadScreeningQuestions()
+        {
+            JobApplicationScreeningAnswerDetail jobApplicationScreeningAnswerDetail = JobApplicationScreeningAnswersService.SelectByJobApplicationId(JobApplicationID);
+            if (jobApplicationScreeningAnswerDetail.JobApplicationScreeningAnswers.Count > 0)
+            {
+                phScreeningQuestions.Visible = true;
+
+                rptScreeningQuestions.DataSource = jobApplicationScreeningAnswerDetail.JobApplicationScreeningAnswers;
+                rptScreeningQuestions.DataBind();
+            }
+            else
+            {
+                phScreeningQuestions.Visible = false;
+            }
+        }
+
+        protected void rptScreeningQuestions_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                Literal ltQuestion = e.Item.FindControl("ltQuestion") as Literal;
+                Literal ltAnswer = e.Item.FindControl("ltAnswer") as Literal;
+
+                JobApplicationScreeningAnswer answer = e.Item.DataItem as JobApplicationScreeningAnswer;
+
+                ltQuestion.Text = HttpUtility.HtmlEncode(answer.QuestionTitle);
+                ltAnswer.Text = HttpUtility.HtmlEncode(answer.Answer);
+            }
         }
 
         private void LoadApplicationStatus()

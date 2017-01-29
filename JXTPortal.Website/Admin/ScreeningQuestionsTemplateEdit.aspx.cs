@@ -50,7 +50,21 @@ namespace JXTPortal.Website.Admin
             if (!Page.IsPostBack)
             {
                 LoadTemplate();
+                LoadAdvertisers();
             }
+        }
+
+        private void LoadAdvertisers()
+        {
+            ddlAdvertiser.Items.Clear();
+
+            List<AdvertisersEntity> advertisers =  AdvertisersService.SelectBySiteId(SessionData.Site.SiteId);
+            ddlAdvertiser.DataTextField = "CompanyName";
+            ddlAdvertiser.DataValueField = "AdvertiserId";
+            ddlAdvertiser.DataSource = advertisers;
+            ddlAdvertiser.DataBind();
+
+            ddlAdvertiser.Items.Insert(0, new ListItem("Please Choose...", "0"));
         }
 
         private void InsertTemplate()
@@ -200,7 +214,7 @@ namespace JXTPortal.Website.Admin
 
         protected void cvAdvertiserId_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            int advertiserId = Convert.ToInt32(tbAdvertiserId.Text);
+            int advertiserId = Convert.ToInt32(ddlAdvertiser.SelectedValue);
 
             List<ScreeningQuestionsTemplateOwnersEntity> screeningQuestionsOwners = ScreeningQuestionsTemplateOwnersService.SelectByTemplateId(ScreeningQuestionsTemplateId);
 
@@ -266,7 +280,7 @@ namespace JXTPortal.Website.Admin
             {
                 ScreeningQuestionsTemplateOwnersEntity owner = new ScreeningQuestionsTemplateOwnersEntity
                 {
-                    AdvertiserId = Convert.ToInt32(tbAdvertiserId.Text),
+                    AdvertiserId = Convert.ToInt32(ddlAdvertiser.SelectedValue),
                     ScreeningQuestionsTemplateId = ScreeningQuestionsTemplateId
                 };
 

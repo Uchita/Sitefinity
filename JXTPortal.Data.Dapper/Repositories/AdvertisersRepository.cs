@@ -12,6 +12,7 @@ namespace JXTPortal.Data.Dapper.Repositories
     public interface IAdvertisersRepository : IBaseEntityOperation<AdvertisersEntity>
     {
         List<AdvertisersEntity> SelectAdvertiserIDs(List<int> advertiserIds);
+        List<AdvertisersEntity> SelectBySiteId(int siteId);
     }
 
     public class AdvertisersRepository : BaseEntityOperation<AdvertisersEntity>, IAdvertisersRepository
@@ -35,6 +36,19 @@ namespace JXTPortal.Data.Dapper.Repositories
                 string whereClause = "AdvertiserID IN @Ids";
                 var query = string.Format("SELECT {0} FROM dbo.{1} WHERE {2}", columns, TableName, whereClause);
                 var entity = dbConnection.Query<AdvertisersEntity>(query, new { Ids = advertiserIds}).ToList();
+                return entity as List<AdvertisersEntity>;
+            }
+        }
+
+        public List<AdvertisersEntity> SelectBySiteId(int siteId)
+        {
+            using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
+            {
+                dbConnection.Open();
+                string columns = IdColumnName + ", " + string.Join(", ", ColumnNames);
+                string whereClause = "SiteID = @Id";
+                var query = string.Format("SELECT {0} FROM dbo.{1} WHERE {2}", columns, TableName, whereClause);
+                var entity = dbConnection.Query<AdvertisersEntity>(query, new { Id = siteId }).ToList();
                 return entity as List<AdvertisersEntity>;
             }
         }

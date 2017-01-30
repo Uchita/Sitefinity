@@ -160,3 +160,6 @@ Disallow: /
 
 User-agent: Jooblebot
 Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /

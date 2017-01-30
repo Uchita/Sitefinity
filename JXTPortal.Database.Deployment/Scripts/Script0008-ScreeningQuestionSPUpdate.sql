@@ -1294,7 +1294,7 @@ GO
 */
 
 
-ALTER PROCEDURE [dbo].[Jobs_GetByScreeningQuestionsTemplateId]
+CREATE PROCEDURE [dbo].[Jobs_GetByScreeningQuestionsTemplateId]
 (
 
 	@ScreeningQuestionsTemplateId int   

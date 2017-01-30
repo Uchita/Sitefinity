@@ -337,13 +337,13 @@ namespace JXTPortal.Website.Admin {
         protected global::System.Web.UI.WebControls.Literal ltOwners;
         
         /// <summary>
-        /// tbAdvertiserId control.
+        /// ddlAdvertiser control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbAdvertiserId;
+        protected global::System.Web.UI.WebControls.DropDownList ddlAdvertiser;
         
         /// <summary>
         /// rvAdvertiserId control.

@@ -4491,4 +4491,8 @@ Your account has already been validated, you are not required to do this again.<
     <value>Screening Questions Template</value>
     <comment>Screening Questions Template</comment>
   </data>
+  <data name="LabelScreeningQuestions" xml:space="preserve">
+    <value>Screening Questions</value>
+    <comment>Screening Questions</comment>
+  </data>
 </root>

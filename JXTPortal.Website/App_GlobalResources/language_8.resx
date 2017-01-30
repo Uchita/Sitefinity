@@ -4488,4 +4488,8 @@ Tài khoản của bạn đã được xác thực. Bạn vui lòng &lt;a ref="/
     <value>Screening Questions Template</value>
     <comment>Screening Questions Template</comment>
   </data>
+  <data name="LabelScreeningQuestions" xml:space="preserve">
+    <value>Screening Questions</value>
+    <comment>Screening Questions</comment>
+  </data>
 </root>

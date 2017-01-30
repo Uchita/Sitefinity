@@ -58726,8 +58726,7 @@ AS
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 					
@@ -58811,7 +58810,7 @@ AS
 				EXEC sp_executesql @SQL
 
 				-- Return paged results
-				SELECT O.[JobID], O.[SiteID], O.[WorkTypeID], O.[JobName], O.[Description], O.[FullDescription], O.[WebServiceProcessed], O.[ApplicationEmailAddress], O.[RefNo], O.[Visible], O.[DatePosted], O.[ExpiryDate], O.[Expired], O.[JobItemPrice], O.[Billed], O.[LastModified], O.[ShowSalaryDetails], O.[SalaryText], O.[AdvertiserID], O.[LastModifiedByAdvertiserUserId], O.[LastModifiedByAdminUserId], O.[JobItemTypeID], O.[ApplicationMethod], O.[ApplicationURL], O.[UploadMethod], O.[Tags], O.[JobTemplateID], O.[SearchFieldExtension], O.[AdvertiserJobTemplateLogoID], O.[CompanyName], O.[HashValue], O.[RequireLogonForExternalApplications], O.[ShowLocationDetails], O.[PublicTransport], O.[Address], O.[ContactDetails], O.[JobContactPhone], O.[JobContactName], O.[QualificationsRecognised], O.[ResidentOnly], O.[DocumentLink], O.[BulletPoint1], O.[BulletPoint2], O.[BulletPoint3], O.[HotJob], O.[JobFriendlyName], O.[SearchField], O.[ShowSalaryRange], O.[SalaryLowerBand], O.[SalaryUpperBand], O.[CurrencyID], O.[SalaryTypeID], O.[EnteredByAdvertiserUserID], O.[JobLatitude], O.[JobLongitude], O.[AddressStatus], O.[JobExternalId], O.[ScreeningQuestionsTemplateId]
+				SELECT O.[JobID], O.[SiteID], O.[WorkTypeID], O.[JobName], O.[Description], O.[FullDescription], O.[WebServiceProcessed], O.[ApplicationEmailAddress], O.[RefNo], O.[Visible], O.[DatePosted], O.[ExpiryDate], O.[Expired], O.[JobItemPrice], O.[Billed], O.[LastModified], O.[ShowSalaryDetails], O.[SalaryText], O.[AdvertiserID], O.[LastModifiedByAdvertiserUserId], O.[LastModifiedByAdminUserId], O.[JobItemTypeID], O.[ApplicationMethod], O.[ApplicationURL], O.[UploadMethod], O.[Tags], O.[JobTemplateID], O.[SearchFieldExtension], O.[AdvertiserJobTemplateLogoID], O.[CompanyName], O.[HashValue], O.[RequireLogonForExternalApplications], O.[ShowLocationDetails], O.[PublicTransport], O.[Address], O.[ContactDetails], O.[JobContactPhone], O.[JobContactName], O.[QualificationsRecognised], O.[ResidentOnly], O.[DocumentLink], O.[BulletPoint1], O.[BulletPoint2], O.[BulletPoint3], O.[HotJob], O.[JobFriendlyName], O.[SearchField], O.[ShowSalaryRange], O.[SalaryLowerBand], O.[SalaryUpperBand], O.[CurrencyID], O.[SalaryTypeID], O.[EnteredByAdvertiserUserID], O.[JobLatitude], O.[JobLongitude], O.[AddressStatus], O.[JobExternalId]
 				FROM
 				    [dbo].[JobsArchive] O,
 				    #PageIndex PageIndex
@@ -58972,9 +58971,7 @@ CREATE PROCEDURE dbo.JobsArchive_Insert
 
 	@AddressStatus int   ,
 
-	@JobExternalId varchar (50)  ,
-
-	@ScreeningQuestionsTemplateId int   
+	@JobExternalId varchar (50)  
 )
 AS
 
@@ -59039,7 +59036,6 @@ AS
 					,[JobLongitude]
 					,[AddressStatus]
 					,[JobExternalId]
-					,[ScreeningQuestionsTemplateId]
 					)
 				VALUES
 					(
@@ -59100,7 +59096,6 @@ AS
 					,@JobLongitude
 					,@AddressStatus
 					,@JobExternalId
-					,@ScreeningQuestionsTemplateId
 					)
 				
 									
@@ -59248,9 +59243,7 @@ CREATE PROCEDURE dbo.JobsArchive_Update
 
 	@AddressStatus int   ,
 
-	@JobExternalId varchar (50)  ,
-
-	@ScreeningQuestionsTemplateId int   
+	@JobExternalId varchar (50)  
 )
 AS
 
@@ -59318,7 +59311,6 @@ AS
 					,[JobLongitude] = @JobLongitude
 					,[AddressStatus] = @AddressStatus
 					,[JobExternalId] = @JobExternalId
-					,[ScreeningQuestionsTemplateId] = @ScreeningQuestionsTemplateId
 				WHERE
 [JobID] = @OriginalJobId 
 				
@@ -59453,8 +59445,7 @@ AS
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 				WHERE
@@ -59555,8 +59546,7 @@ AS
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 				WHERE
@@ -59657,8 +59647,7 @@ AS
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 				WHERE
@@ -59759,8 +59748,7 @@ AS
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 				WHERE
@@ -59861,8 +59849,7 @@ AS
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 				WHERE
@@ -59963,114 +59950,11 @@ AS
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 				WHERE
 					[SalaryTypeID] = @SalaryTypeId
-				
-				SELECT @@ROWCOUNT
-				SET ANSI_NULLS ON
-			
-
-GO
-SET QUOTED_IDENTIFIER ON 
-GO
-SET NOCOUNT ON
-GO
-SET ANSI_NULLS OFF 
-GO
-
-	
-
--- Drop the dbo.JobsArchive_GetByScreeningQuestionsTemplateId procedure
-IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'dbo.JobsArchive_GetByScreeningQuestionsTemplateId') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-DROP PROCEDURE dbo.JobsArchive_GetByScreeningQuestionsTemplateId
-GO
-
-/*
-----------------------------------------------------------------------------------------------------
-
--- Created By:  ()
--- Purpose: Select records from the JobsArchive table through a foreign key
-----------------------------------------------------------------------------------------------------
-*/
-
-
-CREATE PROCEDURE dbo.JobsArchive_GetByScreeningQuestionsTemplateId
-(
-
-	@ScreeningQuestionsTemplateId int   
-)
-AS
-
-
-				SET ANSI_NULLS OFF
-				
-				SELECT
-					[JobID],
-					[SiteID],
-					[WorkTypeID],
-					[JobName],
-					[Description],
-					[FullDescription],
-					[WebServiceProcessed],
-					[ApplicationEmailAddress],
-					[RefNo],
-					[Visible],
-					[DatePosted],
-					[ExpiryDate],
-					[Expired],
-					[JobItemPrice],
-					[Billed],
-					[LastModified],
-					[ShowSalaryDetails],
-					[SalaryText],
-					[AdvertiserID],
-					[LastModifiedByAdvertiserUserId],
-					[LastModifiedByAdminUserId],
-					[JobItemTypeID],
-					[ApplicationMethod],
-					[ApplicationURL],
-					[UploadMethod],
-					[Tags],
-					[JobTemplateID],
-					[SearchFieldExtension],
-					[AdvertiserJobTemplateLogoID],
-					[CompanyName],
-					[HashValue],
-					[RequireLogonForExternalApplications],
-					[ShowLocationDetails],
-					[PublicTransport],
-					[Address],
-					[ContactDetails],
-					[JobContactPhone],
-					[JobContactName],
-					[QualificationsRecognised],
-					[ResidentOnly],
-					[DocumentLink],
-					[BulletPoint1],
-					[BulletPoint2],
-					[BulletPoint3],
-					[HotJob],
-					[JobFriendlyName],
-					[SearchField],
-					[ShowSalaryRange],
-					[SalaryLowerBand],
-					[SalaryUpperBand],
-					[CurrencyID],
-					[SalaryTypeID],
-					[EnteredByAdvertiserUserID],
-					[JobLatitude],
-					[JobLongitude],
-					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
-				FROM
-					[dbo].[JobsArchive]
-				WHERE
-					[ScreeningQuestionsTemplateId] = @ScreeningQuestionsTemplateId
 				
 				SELECT @@ROWCOUNT
 				SET ANSI_NULLS ON
@@ -60167,8 +60051,7 @@ AS
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 				WHERE
@@ -60269,8 +60152,7 @@ AS
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 				WHERE
@@ -60369,8 +60251,7 @@ AS
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 				WHERE
@@ -60482,8 +60363,7 @@ AS
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 				WHERE
@@ -60592,8 +60472,7 @@ AS
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 				WHERE
@@ -60699,8 +60578,7 @@ AS
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 				WHERE
@@ -60801,8 +60679,7 @@ AS
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 				WHERE
@@ -60952,9 +60829,7 @@ CREATE PROCEDURE dbo.JobsArchive_Find
 
 	@AddressStatus int   = null ,
 
-	@JobExternalId varchar (50)  = null ,
-
-	@ScreeningQuestionsTemplateId int   = null 
+	@JobExternalId varchar (50)  = null 
 )
 AS
 
@@ -61020,7 +60895,6 @@ AS
 	, [JobLongitude]
 	, [AddressStatus]
 	, [JobExternalId]
-	, [ScreeningQuestionsTemplateId]
     FROM
 	[dbo].[JobsArchive]
     WHERE 
@@ -61079,7 +60953,6 @@ AS
 	AND ([JobLongitude] = @JobLongitude OR @JobLongitude IS NULL)
 	AND ([AddressStatus] = @AddressStatus OR @AddressStatus IS NULL)
 	AND ([JobExternalId] = @JobExternalId OR @JobExternalId IS NULL)
-	AND ([ScreeningQuestionsTemplateId] = @ScreeningQuestionsTemplateId OR @ScreeningQuestionsTemplateId IS NULL)
 						
   END
   ELSE
@@ -61142,7 +61015,6 @@ AS
 	, [JobLongitude]
 	, [AddressStatus]
 	, [JobExternalId]
-	, [ScreeningQuestionsTemplateId]
     FROM
 	[dbo].[JobsArchive]
     WHERE 
@@ -61201,7 +61073,6 @@ AS
 	OR ([JobLongitude] = @JobLongitude AND @JobLongitude is not null)
 	OR ([AddressStatus] = @AddressStatus AND @AddressStatus is not null)
 	OR ([JobExternalId] = @JobExternalId AND @JobExternalId is not null)
-	OR ([ScreeningQuestionsTemplateId] = @ScreeningQuestionsTemplateId AND @ScreeningQuestionsTemplateId is not null)
 	SELECT @@ROWCOUNT			
   END
 				

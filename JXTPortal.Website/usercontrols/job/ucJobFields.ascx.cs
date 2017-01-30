@@ -1438,12 +1438,12 @@ namespace JXTPortal.Website.Admin.UserControls
 
             if (globalSetting.EnableScreeningQuestions)
             {
-                phScreeningQuestionsTemplates.Visible = true;
-
                 List<ScreeningQuestionsTemplatesEntity> screeningQuestionsTemplates = ScreeningQuestionsTemplatesService.SelectByAdvertiserId(advertiserId);
 
                 ddlScreeningQuestionsTemplate.DataSource = screeningQuestionsTemplates;
                 ddlScreeningQuestionsTemplate.DataBind();
+
+                phScreeningQuestionsTemplates.Visible = (screeningQuestionsTemplates.Count > 0);
             }
             else
             {

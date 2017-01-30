@@ -154,3 +154,9 @@ Disallow: /
 
 User-agent: MJ12bot
 Disallow: /
+
+User-agent: trovitBot
+Disallow: /
+
+User-agent: Jooblebot
+Disallow: /

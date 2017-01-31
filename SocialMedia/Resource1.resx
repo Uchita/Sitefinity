@@ -124,7 +124,7 @@
     <value>https://www.facebook.com/dialog/oauth?client_id={0}&amp;redirect_uri={1}&amp;state=profile&amp;scope=email</value>
   </data>
   <data name="fb_authroize_with_permissions" xml:space="preserve">
-    <value>https://www.facebook.com/dialog/oauth?auth_type=rerequest&amp;client_id={0}&amp;redirect_uri={1}&amp;state=profile&amp;scope=public_profile</value>
+    <value>https://www.facebook.com/dialog/oauth?auth_type=rerequest&amp;client_id={0}&amp;redirect_uri={1}&amp;state=profile&amp;scope={2}</value>
   </data>
   <data name="fb_userinfo" xml:space="preserve">
     <value>https://graph.facebook.com/me?access_token={0}&amp;fields=first_name,last_name,email,work,education,website</value>

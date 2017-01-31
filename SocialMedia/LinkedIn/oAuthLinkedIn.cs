@@ -34,9 +34,11 @@ public class oAuthLinkedIn : oAuthBase2
 
     public oAuthLinkedIn()
     {
+        _logger = LogManager.GetLogger(typeof(oAuthLinkedIn));
     }
 
     public oAuthLinkedIn(string consumerKey, string consumerSecret)
+        : this()
     {
         ConsumerKey = consumerKey;
         ConsumerSecret = consumerSecret;
@@ -44,6 +46,11 @@ public class oAuthLinkedIn : oAuthBase2
 
     public string oAuth2AccessToken(string code, string redirecturi, string clientid, string clientsecret)
     {
+        _logger.DebugFormat("Code: {0}",code);
+        _logger.DebugFormat("redirecturi: {0}", redirecturi);
+        _logger.DebugFormat("clientid: {0}", clientid);
+        _logger.DebugFormat("clientsecret: {0}", clientsecret);
+        _logger.DebugFormat("access_token_url: {0}", access_token_url);
         _logger.DebugFormat("Fetching acecss token: {0}", string.Format(access_token_url, code, redirecturi, clientid, "****"));
         string url = string.Format(access_token_url, code, redirecturi, clientid, clientsecret);
 

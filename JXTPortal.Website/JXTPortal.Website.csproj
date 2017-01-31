@@ -110,6 +110,10 @@
     <ApplicationManifest>scripts\bootstrap.min.js</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FileManagement\FileManagement.csproj">
+      <Project>{96CD486D-4BA8-433E-9878-0C2B05F20672}</Project>
+      <Name>FileManagement</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JXTPortal.Data.Dapper\JXTPortal.Data.Dapper.csproj">
       <Project>{32EEE44E-E778-4F22-BDFF-7787D2F97E70}</Project>
       <Name>JXTPortal.Data.Dapper</Name>
@@ -140,14 +144,13 @@
     <Reference Include="Autofac.Integration.Web">
       <HintPath>..\packages\Autofac.Web.3.2.0\lib\net40\Autofac.Integration.Web.dll</HintPath>
     </Reference>
-    <Reference Include="AWS.SessionProvider">
-      <HintPath>..\packages\AWS.SessionProvider.3.1.0.2\lib\net35\AWS.SessionProvider.dll</HintPath>
+    <Reference Include="AWS.SessionProvider, Version=3.1.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
+      <HintPath>..\packages\AWS.SessionProvider.3.1.1\lib\net35\AWS.SessionProvider.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="AWSSDK.Core">
-      <HintPath>..\packages\AWSSDK.Core.3.1.9.1\lib\net35\AWSSDK.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="AWSSDK.DynamoDBv2">
-      <HintPath>..\packages\AWSSDK.DynamoDBv2.3.1.5.2\lib\net35\AWSSDK.DynamoDBv2.dll</HintPath>
+    <Reference Include="AWSSDK.DynamoDBv2, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
+      <HintPath>..\packages\AWSSDK.DynamoDBv2.3.3.0\lib\net35\AWSSDK.DynamoDBv2.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="CKEditor.NET">
       <HintPath>References\CKEditor.NET.dll</HintPath>

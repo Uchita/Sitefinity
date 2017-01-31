@@ -10,14 +10,19 @@ using DocumentFormat.OpenXml.Wordprocessing;
 using NotesFor.HtmlToOpenXml;
 using System.IO;
 
+using JXTPortal.Common;
+
 namespace JXTPortal.Website
 {
     public partial class ErrorPage : System.Web.UI.Page
     {
         private int exceptionid = -1;
 
+        public IFileManager FileManger { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            FileManger.ListBuckets();
             //string s = Common.Utils.UrlFriendlyName("ASSISTANT PROPERTY MANAGER - nicest team you'll ever work for!");
             //string filename = Server.MapPath("/uploads/sample.docx");
             //System.Net.WebClient client = new System.Net.WebClient();

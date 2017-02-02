@@ -553,7 +553,7 @@ namespace JXTPortal.Website
                 options.AppendLine(string.Format("<option value=\"\">{0}</option>", CommonFunction.GetResourceValue("LabelPleaseSelect")));
 
                 var selectoptions = matches.Select((m, i) => new { Index = i, Value = m.Value })
-                                           .Select(x => string.Format("<option value=\"{1}\" {2}>{0}</option>", HttpUtility.HtmlEncode(x.Value), x.Index, (x.Index.ToString() == value) ? "selected" : string.Empty));
+                                           .Select(x => string.Format("<option value=\"{1}\" {2}>{0}</option>", HttpUtility.HtmlEncode(x.Value.Trim(new char[] {'"'})), x.Index, (x.Index.ToString() == value) ? "selected" : string.Empty));
 
                 options.AppendLine(string.Join("\n", selectoptions.ToList()));
             }
@@ -569,7 +569,7 @@ namespace JXTPortal.Website
             if (matches != null)
             {
                 var inputs = matches.Select((m, i) => new { Index = i, Value = m.Value })
-                                    .Select(x => string.Format("<input type=\"checkbox\" id=\"ScreeningQuestion_{1}_{2}\" name=\"ScreeningQuestion_{1}\" value=\"{2}\" {3}/>{0} ", HttpUtility.HtmlEncode(x.Value), id, x.Index, (splits != null && splits.Contains(x.Index.ToString())) ? "checked" : string.Empty));
+                                    .Select(x => string.Format("<input type=\"checkbox\" id=\"ScreeningQuestion_{1}_{2}\" name=\"ScreeningQuestion_{1}\" value=\"{2}\" {3}/>{0} ", HttpUtility.HtmlEncode(x.Value.Trim(new char[] { '"' })), id, x.Index, (splits != null && splits.Contains(x.Index.ToString())) ? "checked" : string.Empty));
 
                 options.AppendLine(string.Join("\n", inputs));
             }
@@ -584,7 +584,7 @@ namespace JXTPortal.Website
             if (matches != null)
             {
                 var inputs = matches.Select((m, i) => new { Index = i, Value = m.Value })
-                                    .Select(x => string.Format("<input type=\"radio\" id=\"ScreeningQuestion_{1}_{2}\" name=\"ScreeningQuestion_{1}\" value=\"{2}\" {3} />{0} ", HttpUtility.HtmlEncode(x.Value), id, x.Index, (x.Index.ToString() == value) ? "checked" : string.Empty));
+                                    .Select(x => string.Format("<input type=\"radio\" id=\"ScreeningQuestion_{1}_{2}\" name=\"ScreeningQuestion_{1}\" value=\"{2}\" {3} />{0} ", HttpUtility.HtmlEncode(x.Value.Trim(new char[] { '"' })), id, x.Index, (x.Index.ToString() == value) ? "checked" : string.Empty));
 
                 options.AppendLine(string.Join("\n", inputs));
             }
@@ -616,7 +616,7 @@ namespace JXTPortal.Website
                 string screeningQuestionAnswer = Request.Params[screeningQuestionId];
 
                 Regex regex = new Regex("(\".*?\"|[^\",\\s]+)(?=\\s*,|\\s*$)");
-                MatchCollection matches = (screeningQuestion.Options != null) ? regex.Matches(screeningQuestion.Options) : null;
+                MatchCollection matches = (screeningQuestion.Options != null) ? regex.Matches(screeningQuestion.Options.Replace("\n", "")) : null;
 
                 if (screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.TextBox)
                 {
@@ -1934,7 +1934,7 @@ namespace JXTPortal.Website
                                         || screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.RadioButtons)
                                     {
                                         Regex regex = new Regex("(\".*?\"|[^\",\\s]+)(?=\\s*,|\\s*$)");
-                                        MatchCollection matches = (screeningQuestion.Options != null) ? regex.Matches(screeningQuestion.Options) : null;
+                                        MatchCollection matches = (screeningQuestion.Options != null) ? regex.Matches(screeningQuestion.Options.Replace("\n", "")) : null;
 
                                         if (screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.MultiSelect)
                                         {
@@ -1962,7 +1962,7 @@ namespace JXTPortal.Website
                                         {
                                             JobApplicationId = jobapp.JobApplicationId,
                                             ScreeningQuestionId = screeningQuestion.ScreeningQuestionId,
-                                            Answer = screeningQuestionAnswer
+                                            Answer = screeningQuestionAnswer.Trim(new char[] { '"' })
                                         });
                                     }
                                 }

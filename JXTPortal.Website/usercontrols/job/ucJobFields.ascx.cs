@@ -1482,7 +1482,10 @@ namespace JXTPortal.Website.Admin.UserControls
 
                 StringBuilder options = new StringBuilder();
                 Regex regex = new Regex("(\".*?\"|[^\",\\s]+)(?=\\s*,|\\s*$)");
-                MatchCollection matches = regex.Matches(screeningQuestion.Options);
+                MatchCollection matches = (screeningQuestion.Options != null) ? regex.Matches(screeningQuestion.Options.Replace("\n", "")) : null;
+
+                if (matches == null)
+                    return;
 
                 if (screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.Dropdown)
                 {
@@ -1503,21 +1506,21 @@ namespace JXTPortal.Website.Admin.UserControls
 
         private string CreateDropDown(IEnumerable<Match> matches)
         {
-            var options = matches.Select(m => "<option>" + m.Value + "</option>");
+            var options = matches.Select(m => "<option>" + m.Value.Trim(new char[] { '"' }) + "</option>");
 
             return string.Format("<select>{0}</select>", string.Join("\n", options.ToList()));
         }
 
         private string CreateMultiSelect(IEnumerable<Match> matches)
         {
-            var options = matches.Select(m => string.Format("<input type=\"checkbox\" name=\"\" value=\"\" disabled>{0}", HttpUtility.HtmlEncode(m.Value)));
+            var options = matches.Select(m => string.Format("<input type=\"checkbox\" name=\"\" value=\"\" disabled>{0}", HttpUtility.HtmlEncode(m.Value.Trim(new char[] { '"' }))));
 
             return string.Join(" ", options.ToList());
         }
 
         private string CreateRadioButtons(IEnumerable<Match> matches)
         {
-            var options = matches.Select(m => string.Format("<input type=\"radio\" name=\"\" value=\"\" disabled>{0}", HttpUtility.HtmlEncode(m.Value)));
+            var options = matches.Select(m => string.Format("<input type=\"radio\" name=\"\" value=\"\" disabled>{0}", HttpUtility.HtmlEncode(m.Value.Trim(new char[] { '"' }))));
 
             return string.Join(" ", options.ToList());
         }

@@ -132,7 +132,7 @@
                                 <asp:Label ID="lbOptions" runat="server" CssClass="form-label-left" AssociatedControlID="tbOptions">
                     Options (Comma seperated):<span class="form-required">*</span></asp:Label>
                                 <div class="form-input">
-                                    <asp:TextBox ID="tbOptions" runat="server" Width="400px" MaxLength="500"></asp:TextBox>
+                                    <asp:TextBox ID="tbOptions" runat="server" Width="400px" MaxLength="500" TextMode="MultiLine" Rows="3"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="rfOptions" runat="server" Display="Dynamic" ErrorMessage="Required"
                                         ControlToValidate="tbOptions" SetFocusOnError="true" ValidationGroup="Question" />
                                 </div>

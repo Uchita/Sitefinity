@@ -1499,6 +1499,9 @@
     <Content Include="styles\member\settings.css" />
     <Content Include="styles\owl.carousel.css" />
     <Content Include="styles\report.css" />
+    <Content Include="styles\ScreeningQuestions\style.css" />
+    <Content Include="styles\ScreeningQuestions\theme-responsive.css" />
+    <Content Include="styles\ScreeningQuestions\theme-style.css" />
     <Content Include="styles\strength.css" />
     <Content Include="usercontrols\advertiser\ucJobsSuspended.ascx" />
     <Content Include="usercontrols\advertiser\ucJobsDeclined.ascx" />

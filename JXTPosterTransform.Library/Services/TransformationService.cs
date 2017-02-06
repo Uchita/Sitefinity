@@ -783,7 +783,7 @@ Email: Nicky.s@stellarworkforce.co.nz</strong></span><br />
             if (data == null || data.jobBoards == null || data.jobBoards.jobboardlisting == null )
                 return true;
 
-            var listings = data.jobBoards.jobboardlisting.upserted.Where(c => c.status.ToLower() == "unpost").Select(c=> new Job{ ReferenceNo = c.id }).ToList(); //(from m in data.jobBoards.jobboardlisting.removedIds select new Job { ReferenceNo = m }).ToList();
+            var listings = data.jobBoards.jobboardlisting.upserted.Where(c => c.status.ToLower() == "unposted").Select(c=> new Job{ ReferenceNo = c.id }).ToList(); //(from m in data.jobBoards.jobboardlisting.removedIds select new Job { ReferenceNo = m }).ToList();
 
             if (!listings.Any())
                 return true;

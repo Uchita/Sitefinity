@@ -310,13 +310,13 @@ namespace JXTPortal.Website.member {
         protected global::System.Web.UI.WebControls.PlaceHolder phProfileFirstNameError;
         
         /// <summary>
-        /// UcLanguageLiteral272 control.
+        /// ltErrorProfileFirstName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral272;
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ltErrorProfileFirstName;
         
         /// <summary>
         /// lbProfileLastName control.
@@ -355,13 +355,13 @@ namespace JXTPortal.Website.member {
         protected global::System.Web.UI.WebControls.PlaceHolder phProfileLastNameError;
         
         /// <summary>
-        /// UcLanguageLiteral273 control.
+        /// ltErrorProfileLastName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral273;
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ltErrorProfileLastName;
         
         /// <summary>
         /// phMultilingual control.
@@ -400,6 +400,24 @@ namespace JXTPortal.Website.member {
         protected global::System.Web.UI.WebControls.TextBox tbProfileFirstNameLocalLanguage;
         
         /// <summary>
+        /// phProfileFirstNameLocalError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phProfileFirstNameLocalError;
+        
+        /// <summary>
+        /// ltErrorProfileFirstNameLocal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ltErrorProfileFirstNameLocal;
+        
+        /// <summary>
         /// lbProfileLastNameLocalLanguage control.
         /// </summary>
         /// <remarks>
@@ -425,6 +443,24 @@ namespace JXTPortal.Website.member {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbProfileLastNameLocalLanguage;
+        
+        /// <summary>
+        /// phProfileLastNameLocalError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phProfileLastNameLocalError;
+        
+        /// <summary>
+        /// ltErrorProfileLastNameLocal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ltErrorProfileLastNameLocal;
         
         /// <summary>
         /// lbProfileHeadline control.
@@ -1615,6 +1651,15 @@ namespace JXTPortal.Website.member {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator validatorHomePhone;
         
         /// <summary>
+        /// revHomePhone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revHomePhone;
+        
+        /// <summary>
         /// lbbPreferHomePhone control.
         /// </summary>
         /// <remarks>
@@ -1678,6 +1723,15 @@ namespace JXTPortal.Website.member {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator validatorMobilePhone;
         
         /// <summary>
+        /// revMobilePhone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revMobilePhone;
+        
+        /// <summary>
         /// lbPreferMobilePhone control.
         /// </summary>
         /// <remarks>
@@ -1732,6 +1786,15 @@ namespace JXTPortal.Website.member {
         protected global::System.Web.UI.WebControls.TextBox tbDetailsAddress1;
         
         /// <summary>
+        /// revAddress1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revAddress1;
+        
+        /// <summary>
         /// lbDetailsAddress2 control.
         /// </summary>
         /// <remarks>
@@ -1757,6 +1820,15 @@ namespace JXTPortal.Website.member {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbDetailsAddress2;
+        
+        /// <summary>
+        /// revAddress2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revAddress2;
         
         /// <summary>
         /// lbDetailsSuburb control.
@@ -1786,6 +1858,15 @@ namespace JXTPortal.Website.member {
         protected global::System.Web.UI.WebControls.TextBox tbDetailsSuburb;
         
         /// <summary>
+        /// revSuburb control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revSuburb;
+        
+        /// <summary>
         /// lbDetailsState control.
         /// </summary>
         /// <remarks>
@@ -1813,6 +1894,15 @@ namespace JXTPortal.Website.member {
         protected global::System.Web.UI.WebControls.TextBox tbDetailsState;
         
         /// <summary>
+        /// revState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revState;
+        
+        /// <summary>
         /// lbDetailsPostcode control.
         /// </summary>
         /// <remarks>
@@ -1838,6 +1928,15 @@ namespace JXTPortal.Website.member {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbDetailsPostcode;
+        
+        /// <summary>
+        /// revPostcode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revPostcode;
         
         /// <summary>
         /// lbDetailsCountry control.
@@ -1894,6 +1993,15 @@ namespace JXTPortal.Website.member {
         protected global::System.Web.UI.WebControls.TextBox tbDetailsVideoURL;
         
         /// <summary>
+        /// revVideoURL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revVideoURL;
+        
+        /// <summary>
         /// lbDetailsPassportNumber control.
         /// </summary>
         /// <remarks>
@@ -1919,6 +2027,15 @@ namespace JXTPortal.Website.member {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbDetailsPassportNumber;
+        
+        /// <summary>
+        /// revPassportNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revPassportNumber;
         
         /// <summary>
         /// UcLanguageLiteral66 control.
@@ -1993,6 +2110,15 @@ namespace JXTPortal.Website.member {
         protected global::System.Web.UI.WebControls.TextBox tbDetailsMailingAddress1;
         
         /// <summary>
+        /// revMailingAddress1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revMailingAddress1;
+        
+        /// <summary>
         /// lbDetailsMailingAddress2 control.
         /// </summary>
         /// <remarks>
@@ -2018,6 +2144,15 @@ namespace JXTPortal.Website.member {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbDetailsMailingAddress2;
+        
+        /// <summary>
+        /// revMailingAddress2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revMailingAddress2;
         
         /// <summary>
         /// lbDetailsMailingSuburb control.
@@ -2047,6 +2182,15 @@ namespace JXTPortal.Website.member {
         protected global::System.Web.UI.WebControls.TextBox tbDetailsMailingSuburb;
         
         /// <summary>
+        /// revMailingSuburb control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revMailingSuburb;
+        
+        /// <summary>
         /// lbDetailsMailingState control.
         /// </summary>
         /// <remarks>
@@ -2074,6 +2218,15 @@ namespace JXTPortal.Website.member {
         protected global::System.Web.UI.WebControls.TextBox tbDetailsMailingState;
         
         /// <summary>
+        /// revMailingState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revMailingState;
+        
+        /// <summary>
         /// lbDetailsMailingPostcode control.
         /// </summary>
         /// <remarks>
@@ -2099,6 +2252,15 @@ namespace JXTPortal.Website.member {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbDetailsMailingPostcode;
+        
+        /// <summary>
+        /// revMailingPostcode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revMailingPostcode;
         
         /// <summary>
         /// lbDetailsMailingCountry control.
@@ -2407,13 +2569,13 @@ namespace JXTPortal.Website.member {
         protected global::System.Web.UI.WebControls.PlaceHolder phCoverLetterTitleError;
         
         /// <summary>
-        /// UcLanguageLiteral280 control.
+        /// ltErrorCoverLetterTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral280;
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ltErrorCoverLetterTitle;
         
         /// <summary>
         /// Label89 control.
@@ -2884,13 +3046,13 @@ namespace JXTPortal.Website.member {
         protected global::System.Web.UI.WebControls.PlaceHolder phDirectorshipAddJobTitleError;
         
         /// <summary>
-        /// UcLanguageLiteral274 control.
+        /// ltErrorAddDirectorshipJobTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral274;
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ltErrorAddDirectorshipJobTitle;
         
         /// <summary>
         /// Label6 control.
@@ -2929,13 +3091,13 @@ namespace JXTPortal.Website.member {
         protected global::System.Web.UI.WebControls.PlaceHolder phDirectorshipAddCompanyNameError;
         
         /// <summary>
-        /// UcLanguageLiteral275 control.
+        /// ltErrorAddDirectorshipCompanyName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral275;
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ltErrorAddDirectorshipCompanyName;
         
         /// <summary>
         /// Label7 control.
@@ -2963,6 +3125,24 @@ namespace JXTPortal.Website.member {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbDirectorshipAddWebsite;
+        
+        /// <summary>
+        /// phDirectorshipAddWebsiteError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phDirectorshipAddWebsiteError;
+        
+        /// <summary>
+        /// ltErrorAddDirectorshipWebsite control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ltErrorAddDirectorshipWebsite;
         
         /// <summary>
         /// Label8 control.
@@ -3118,6 +3298,24 @@ namespace JXTPortal.Website.member {
         protected global::System.Web.UI.WebControls.TextBox tbDirectorshipAddSummary;
         
         /// <summary>
+        /// phDirectorshipAddSummaryError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phDirectorshipAddSummaryError;
+        
+        /// <summary>
+        /// ltErrorAddDirectorshipSummary control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ltErrorAddDirectorshipSummary;
+        
+        /// <summary>
         /// Label12 control.
         /// </summary>
         /// <remarks>
@@ -3143,6 +3341,24 @@ namespace JXTPortal.Website.member {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbDirectorshipAddResponsibilities;
+        
+        /// <summary>
+        /// phDirectorshipAddResponsibilitiesError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phDirectorshipAddResponsibilitiesError;
+        
+        /// <summary>
+        /// ltErrorAddDirectorshipResponsibilities control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ltErrorAddDirectorshipResponsibilities;
         
         /// <summary>
         /// Label13 control.
@@ -3541,13 +3757,13 @@ namespace JXTPortal.Website.member {
         protected global::System.Web.UI.WebControls.PlaceHolder phExperienceAddCompanyNameError;
         
         /// <summary>
-        /// UcLanguageLiteral276 control.
+        /// ltErrorAddExperienceCompanyName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral276;
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ltErrorAddExperienceCompanyName;
         
         /// <summary>
         /// Label29 control.
@@ -3586,13 +3802,13 @@ namespace JXTPortal.Website.member {
         protected global::System.Web.UI.WebControls.PlaceHolder phExperienceAddJobTitleError;
         
         /// <summary>
-        /// UcLanguageLiteral277 control.
+        /// ltErrorAddExperienceJobTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral277;
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ltErrorAddExperienceJobTitle;
         
         /// <summary>
         /// Label108 control.
@@ -3622,6 +3838,24 @@ namespace JXTPortal.Website.member {
         protected global::System.Web.UI.WebControls.TextBox tbExperienceAddCity;
         
         /// <summary>
+        /// phExperienceAddCityError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phExperienceAddCityError;
+        
+        /// <summary>
+        /// ltErrorAddExperienceCity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ltErrorAddExperienceCity;
+        
+        /// <summary>
         /// Label31 control.
         /// </summary>
         /// <remarks>
@@ -3647,6 +3881,24 @@ namespace JXTPortal.Website.member {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbExperienceAddState;
+        
+        /// <summary>
+        /// phExperienceAddStateError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phExperienceAddStateError;
+        
+        /// <summary>
+        /// ltErrorAddExperienceState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ltErrorAddExperienceState;
         
         /// <summary>
         /// Label30 control.
@@ -3827,6 +4079,24 @@ namespace JXTPortal.Website.member {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbExperienceAddDescription;
+        
+        /// <summary>
+        /// phExperienceAddDescriptionError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phExperienceAddDescriptionError;
+        
+        /// <summary>
+        /// ltErrorAddExperienceDescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ltErrorAddExperienceDescription;
         
         /// <summary>
         /// lbExperienceAddSave control.
@@ -4027,13 +4297,13 @@ namespace JXTPortal.Website.member {
         protected global::System.Web.UI.WebControls.PlaceHolder phEducationAddInstituteError;
         
         /// <summary>
-        /// UcLanguageLiteral278 control.
+        /// ltErrorAddEdicationInstitute control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral278;
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ltErrorAddEdicationInstitute;
         
         /// <summary>
         /// Label49 control.
@@ -4117,13 +4387,13 @@ namespace JXTPortal.Website.member {
         protected global::System.Web.UI.WebControls.PlaceHolder phEducationAddQualificationNameError;
         
         /// <summary>
-        /// ucEducationAddQualificationNameError control.
+        /// ltErrorAddEducationAddQualificationName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ucEducationAddQualificationNameError;
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ltErrorAddEducationAddQualificationName;
         
         /// <summary>
         /// Label47 control.
@@ -4180,6 +4450,24 @@ namespace JXTPortal.Website.member {
         protected global::System.Web.UI.WebControls.TextBox tbEducationAddState;
         
         /// <summary>
+        /// phEducationAddStateError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phEducationAddStateError;
+        
+        /// <summary>
+        /// ltErrorAddEducationState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ltErrorAddEducationState;
+        
+        /// <summary>
         /// Label51 control.
         /// </summary>
         /// <remarks>
@@ -4205,6 +4493,24 @@ namespace JXTPortal.Website.member {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbEducationAddOtherQualification;
+        
+        /// <summary>
+        /// phEducationAddOtherQualificationError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phEducationAddOtherQualificationError;
+        
+        /// <summary>
+        /// ltErrorAddEducationOtherQualification control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ltErrorAddEducationOtherQualification;
         
         /// <summary>
         /// Label113 control.
@@ -4259,6 +4565,24 @@ namespace JXTPortal.Website.member {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbEducationAddGraduatedCredits;
+        
+        /// <summary>
+        /// phEducationAddGraduatedCreditsError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phEducationAddGraduatedCreditsError;
+        
+        /// <summary>
+        /// ltErrorAddEducationGraduatedCredits control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ltErrorAddEducationGraduatedCredits;
         
         /// <summary>
         /// Label52 control.
@@ -4783,13 +5107,13 @@ namespace JXTPortal.Website.member {
         protected global::System.Web.UI.WebControls.PlaceHolder phCertificateAddNameError;
         
         /// <summary>
-        /// ucCertificateAddNameError control.
+        /// ltErrorAddCertificateName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ucCertificateAddNameError;
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ltErrorAddCertificateName;
         
         /// <summary>
         /// Label63 control.
@@ -4828,13 +5152,13 @@ namespace JXTPortal.Website.member {
         protected global::System.Web.UI.WebControls.PlaceHolder phCertificateAddAuthorityError;
         
         /// <summary>
-        /// ucCertificateeAddAuthorityError control.
+        /// ltErrorAddCertificateAuthority control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ucCertificateeAddAuthorityError;
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ltErrorAddCertificateAuthority;
         
         /// <summary>
         /// Label64 control.
@@ -4862,6 +5186,24 @@ namespace JXTPortal.Website.member {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbCertificateAddMembershipNumber;
+        
+        /// <summary>
+        /// phCertificateAddMembershipNumberError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phCertificateAddMembershipNumberError;
+        
+        /// <summary>
+        /// ltErrorAddCertificateMembershipNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ltErrorAddCertificateMembershipNumber;
         
         /// <summary>
         /// Label65 control.
@@ -4898,6 +5240,24 @@ namespace JXTPortal.Website.member {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbCertificateAddURL;
+        
+        /// <summary>
+        /// phCertificateAddURLError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phCertificateAddURLError;
+        
+        /// <summary>
+        /// ltErrorAddCertificateURL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ltErrorAddCertificateURL;
         
         /// <summary>
         /// Label66 control.
@@ -5215,13 +5575,13 @@ namespace JXTPortal.Website.member {
         protected global::System.Web.UI.WebControls.PlaceHolder phLicenseAddNameError;
         
         /// <summary>
-        /// ucLicenseAddNameError control.
+        /// ltErrorAddLicenseName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ucLicenseAddNameError;
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ltErrorAddLicenseName;
         
         /// <summary>
         /// Label76 control.
@@ -5260,13 +5620,13 @@ namespace JXTPortal.Website.member {
         protected global::System.Web.UI.WebControls.PlaceHolder phLicenseAddTypeError;
         
         /// <summary>
-        /// UcLanguageLiteral279 control.
+        /// ltErrorAddLicenseType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral279;
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ltErrorAddLicenseType;
         
         /// <summary>
         /// Label77 control.
@@ -5321,6 +5681,24 @@ namespace JXTPortal.Website.member {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbLicenseAddState;
+        
+        /// <summary>
+        /// phLicenseAddStateError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phLicenseAddStateError;
+        
+        /// <summary>
+        /// ltErrorAddLicenseState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ltErrorAddLicenseState;
         
         /// <summary>
         /// Label79 control.
@@ -6538,13 +6916,13 @@ namespace JXTPortal.Website.member {
         protected global::System.Web.UI.WebControls.PlaceHolder phReferencesAddPhoneError;
         
         /// <summary>
-        /// UcLanguageLiteral185 control.
+        /// ucReferencesAddPhone control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral185;
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ucReferencesAddPhone;
         
         /// <summary>
         /// Label106 control.

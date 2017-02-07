@@ -4364,4 +4364,144 @@ Your account has already been validated. Please proceed to &lt;a href="/member/l
     <value>Zip/Postcode</value>
     <comment>Zip/Postcode</comment>
   </data>
+  <data name="labelBasicInformation" xml:space="preserve">
+    <value>Basic Information</value>
+    <comment>Basic Information</comment>
+  </data>
+  <data name="labelCurrentRole" xml:space="preserve">
+    <value>Current Role</value>
+    <comment>Current Role</comment>
+  </data>
+  <data name="labelMyProfile" xml:space="preserve">
+    <value>My Profile</value>
+    <comment>labelMyProfile</comment>
+  </data>
+  <data name="LabelDoctorate" xml:space="preserve">
+    <value>Doctorate</value>
+    <comment>Doctorate</comment>
+  </data>
+  <data name="DDLAllAreas" xml:space="preserve">
+    <value>- All Areas -</value>
+    <comment>- All Areas -</comment>
+  </data>
+  <data name="DDLNotSpecified" xml:space="preserve">
+    <value>- Not Specified -</value>
+    <comment>- Not Specified -</comment>
+  </data>
+  <data name="DDLPleaseSelect" xml:space="preserve">
+    <value>- Please Select -</value>
+    <comment>- Please Select -</comment>
+  </data>
+  <data name="DDLPleaseSelectCountry" xml:space="preserve">
+    <value>- Please select a Country -</value>
+    <comment>- Please select a Country -</comment>
+  </data>
+  <data name="DDLPleaseSelectIndustry" xml:space="preserve">
+    <value>- Please select an Industry -</value>
+    <comment>- Please select an Industry -</comment>
+  </data>
+  <data name="DDLPleaseSelectJobCategory" xml:space="preserve">
+    <value>- Please select a Job Category -</value>
+    <comment>- Please select a Job Category -</comment>
+  </data>
+  <data name="DDLPleaseSelectPrimaryDesiredCountry" xml:space="preserve">
+    <value>- Please select a Primary Desired Country -</value>
+    <comment>- Please select a Primary Desired Country -</comment>
+  </data>
+  <data name="DDLPleaseSelectPrimaryDesiredJobCategory" xml:space="preserve">
+    <value>- Please select a Primary Desired Job Category -</value>
+    <comment>- Please select a Primary Desired Job Category -</comment>
+  </data>
+  <data name="LabelNewsResultsCount" xml:space="preserve">
+    <value>{0} {1} {2} {3}</value>
+    <comment>Showing &lt;span&gt;{0}&lt;/span&gt; results for &lt;strong&gt;{1}&lt;/strong&gt;</comment>
+  </data>
+  <data name="LabelFor" xml:space="preserve">
+    <value>for</value>
+    <comment>for</comment>
+  </data>
+  <data name="LabelNewsResultsEnd" xml:space="preserve">
+    <value />
+    <comment>(To be left empty)</comment>
+  </data>
+  <data name="ValidateNoHTMLContent" xml:space="preserve">
+    <value>Cannot contain invalid content</value>
+    <comment>Cannot contain invalid content</comment>
+  </data>
+  <data name="LabelAddScreeningQuestions" xml:space="preserve">
+    <value>Add Screening Questions</value>
+    <comment>Add Screening Questions</comment>
+  </data>
+  <data name="LabelCommaSeparated" xml:space="preserve">
+    <value>Comma Separated</value>
+    <comment>Comma Separated</comment>
+  </data>
+  <data name="LabelCreateNewTemplate" xml:space="preserve">
+    <value>Create New Template</value>
+    <comment>Create New Template</comment>
+  </data>
+  <data name="LabelDropdown" xml:space="preserve">
+    <value>Dropdown</value>
+    <comment>Dropdown</comment>
+  </data>
+  <data name="LabelEditScreeningQuestions" xml:space="preserve">
+    <value>Edit Screening Questions</value>
+    <comment>Edit Screening Questions</comment>
+  </data>
+  <data name="LabelMandatory" xml:space="preserve">
+    <value>Mandatory</value>
+    <comment>Mandatory</comment>
+  </data>
+  <data name="LabelMultiSelect" xml:space="preserve">
+    <value>MultiSelect</value>
+    <comment>MultiSelect</comment>
+  </data>
+  <data name="LabelOptions" xml:space="preserve">
+    <value>Options</value>
+    <comment>Options</comment>
+  </data>
+  <data name="LabelQuestionTitle" xml:space="preserve">
+    <value>Question Title</value>
+    <comment>Question Title</comment>
+  </data>
+  <data name="LabelQuestionType" xml:space="preserve">
+    <value>Question Type</value>
+    <comment>Question Type</comment>
+  </data>
+  <data name="LabelRadioButtons" xml:space="preserve">
+    <value>Radio Buttons</value>
+    <comment>Radio Buttons</comment>
+  </data>
+  <data name="LabelSelectScreeningQuestionsTemplate" xml:space="preserve">
+    <value>Select Screening Questions Template</value>
+    <comment>Select Screening Questions Template</comment>
+  </data>
+  <data name="LabelSequence" xml:space="preserve">
+    <value>Sequence</value>
+    <comment>Sequence</comment>
+  </data>
+  <data name="LabelTemplateName" xml:space="preserve">
+    <value>Template Name</value>
+    <comment>Template Name</comment>
+  </data>
+  <data name="LabelTextArea" xml:space="preserve">
+    <value>Text Area</value>
+    <comment>Text Area</comment>
+  </data>
+  <data name="LabelTextBox" xml:space="preserve">
+    <value>Text Box</value>
+    <comment>Text Box</comment>
+  </data>
+  <data name="LinkButtonScreeningQuestionsTemplate" xml:space="preserve">
+    <value>Screening Questions Template</value>
+    <comment>Screening Questions Template</comment>
+  </data>
+  <data name="LinkScreeningQuestionsTemplate" xml:space="preserve">
+    <value>Screening Questions Template</value>
+    <comment>Screening Questions Template</comment>
+  </data>
+  <data name="LabelScreeningQuestions" xml:space="preserve">
+    <value>Screening Questions</value>
+    <comment>Screening Questions</comment>
+  </data>
 </root>

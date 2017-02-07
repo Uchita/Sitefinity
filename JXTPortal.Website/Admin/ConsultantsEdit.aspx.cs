@@ -11,14 +11,18 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Xml;
 using JXTPortal.Common;
+using JXTPortal.Common.Extensions;
 using JXTPortal.Web.UI;
 using JXTPortal.Entities;
+using SectionIO;
 #endregion
 
 namespace JXTPortal.Website.Admin
 {
     public partial class ConsultantsEdit : System.Web.UI.Page
     {
+        public ICacheFlusher CacheFlusher { get; set; }
+
         #region Declare Variables
 
         private int consultantId = 0;
@@ -124,7 +128,7 @@ namespace JXTPortal.Website.Admin
 
                         if (!string.IsNullOrWhiteSpace(consultant.ConsultantImageUrl))
                         {
-                            imImage.ImageUrl = string.Format("/media/{0}/{1}", ConfigurationManager.AppSettings["ConsultantsFolder"], consultant.ConsultantImageUrl);
+                            imImage.ImageUrl = string.Format("/media/{0}/{1}?ver={2}", ConfigurationManager.AppSettings["ConsultantsFolder"], consultant.ConsultantImageUrl, consultant.LastModified.ToEpocTimestamp());
                             imImage.Visible = true;
                             cbRemoveImage.Visible = true;
                         }
@@ -132,7 +136,7 @@ namespace JXTPortal.Website.Admin
                         {
                             if (consultant.ImageUrl != null)
                             {
-                                imImage.ImageUrl = "/getfile.aspx?consultantid=" + consultant.ConsultantId;
+                                imImage.ImageUrl = string.Format("/getfile.aspx?consultantid={0}&ver={1}",consultant.ConsultantId,consultant.LastModified.ToEpocTimestamp());
                                 imImage.Visible = true;
                                 cbRemoveImage.Visible = true;
                             }
@@ -428,13 +432,7 @@ namespace JXTPortal.Website.Admin
 
                     if (fuImage.HasFile)
                     {
-                        System.IO.MemoryStream objOutputMemorySTream = new System.IO.MemoryStream();
-
-                        byte[] abytFile = new byte[Convert.ToInt32(fuImage.PostedFile.ContentLength)];
-                        objOutputMemorySTream.Position = 0;
-                        objOutputMemorySTream.Read(abytFile, 0, abytFile.Length);
-
-                        System.Drawing.Image objOriginalImage = System.Drawing.Image.FromStream(objOutputMemorySTream);
+                        System.Drawing.Image objOriginalImage = System.Drawing.Image.FromStream(fuImage.FileContent);
 
                         FtpClient ftpclient = new FtpClient();
                         string errormessage = string.Empty;
@@ -442,7 +440,7 @@ namespace JXTPortal.Website.Admin
                         ftpclient.Host = ConfigurationManager.AppSettings["FTPFileManager"];
                         ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
                         ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-                        ftpclient.UploadFileFromStream(objOutputMemorySTream, string.Format("{0}/{1}/Consultants_{2}.{3}", ftpclient.Host, ConfigurationManager.AppSettings["ConsultantsFolder"], consultant.ConsultantId, extension), out errormessage);
+                        ftpclient.UploadFileFromStream(fuImage.FileContent, string.Format("{0}/{1}/Consultants_{2}.{3}", ftpclient.Host, ConfigurationManager.AppSettings["ConsultantsFolder"], consultant.ConsultantId, extension), out errormessage);
 
                         if (string.IsNullOrWhiteSpace(errormessage))
                         {
@@ -466,7 +464,12 @@ namespace JXTPortal.Website.Admin
                 {
                     consultant.Dispose();
                 }
-                
+
+                String siteUrl = string.Format("{0}://{1}", Request.Url.Scheme, Request.Url.Host);
+                String path = "consultants";
+                String consultantImage = string.Format("Consultant_{0}.jpg", ConsultantId);
+
+                CacheFlusher.FlushImage(siteUrl,path,consultantImage);
             }
         }
 

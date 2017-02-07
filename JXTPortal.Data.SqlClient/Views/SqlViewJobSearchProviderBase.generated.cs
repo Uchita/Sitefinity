@@ -302,7 +302,7 @@ public abstract partial class SqlViewJobSearchProviderBase : ViewJobSearchProvid
 	/// <param name="pageLength">Number of rows to return.</param>
 	/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
 	/// <remark>This method is generated from a stored procedure.</remark>
-	/// <returns>A <see cref="DataSet"/> instance.</returns>
+	/// <returns>A <see cref="VList&lt;ViewJobSearch&gt;"/> instance.</returns>
 	public override VList<ViewJobSearch> GetBySearchFilter(TransactionManager transactionManager, int start, int pageLength, System.String keyword, System.Int32? siteId, System.Int32? advertiserId, System.Int32? currencyId, System.Decimal? salaryLowerBand, System.Decimal? salaryUpperBand, System.Int32? salaryTypeId, System.Int32? workTypeId, System.Int32? professionId, System.String roleId, System.Int32? countryId, System.Int32? locationId, System.String areaId, System.DateTime? dateFrom, System.Int32? pageIndex, System.Int32? pageSize, System.String orderBy, System.String jobTypeIds)
 	{
 		SqlDatabase database = new SqlDatabase(this._connectionString);

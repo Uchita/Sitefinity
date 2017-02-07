@@ -11,6 +11,8 @@
     </ajaxToolkit:ToolkitScriptManager>--%>
     <asp:ScriptManager ID="scriptManager" runat="server" />
     <script type="text/javascript" src="/scripts/uni-form.jquery.js"></script>
+    <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="/scripts/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
 
@@ -114,6 +116,9 @@
                         <asp:TextBox ID="txtFirstName" runat="server" CssClass="textInput medium error" TabIndex="2" />
                         <asp:RequiredFieldValidator ID="rfvFirstname" runat="server" ControlToValidate="txtFirstname"
                             SetFocusOnError="true" Display="Dynamic"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="rgvFirstname" runat="server" ControlToValidate="txtFirstname"
+                             SetFocusOnError="true" Display="Dynamic"
+                            ErrorMessage="ValidateNoHTMLContent"></asp:RegularExpressionValidator>
                     </div>
                     <div class="ctrlHolder">
                         <label for="ctl00_ContentPlaceHolder1_txtSurname">
@@ -123,19 +128,34 @@
                         <asp:TextBox ID="txtSurname" runat="server" CssClass="textInput medium error" TabIndex="3" />
                         <asp:RequiredFieldValidator ID="rfvSurname" runat="server" ControlToValidate="txtSurname"
                             SetFocusOnError="true" Display="Dynamic"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="rgvSurname" runat="server" ControlToValidate="txtSurname"
+                             SetFocusOnError="true" Display="Dynamic"
+                            ErrorMessage="ValidateNoHTMLContent"></asp:RegularExpressionValidator>
                     </div>
                     <div id="divMultilingualName">
                         <div class="ctrlHolder">
                             <label for="ctl00_ContentPlaceHolder1_txtMultiLingualFirstname">
-                                <JXTControl:ucLanguageLiteral ID="ltMultiLingualFirstName" runat="server" SetLanguageCode="LabelFirstName" />&nbsp;(<JXTControl:ucLanguageLiteral ID="UcLanguageLiteral14" runat="server" SetLanguageCode="LabelLocalLanguage" />)
+                                <JXTControl:ucLanguageLiteral ID="ltMultiLingualFirstName" runat="server" SetLanguageCode="LabelFirstName" />
+                                &nbsp;(<JXTControl:ucLanguageLiteral ID="UcLanguageLiteral14" runat="server" SetLanguageCode="LabelLocalLanguage" />
+                                )
                             </label>
-                            <asp:TextBox ID="txtMultiLingualFirstname" runat="server" CssClass="textInput medium error" TabIndex="3" />
+                            <asp:TextBox ID="txtMultiLingualFirstname" runat="server" CssClass="textInput medium error"
+                                TabIndex="3" />
+                            <asp:RegularExpressionValidator ID="rgvMultiLingualFirstname" runat="server" ControlToValidate="txtMultiLingualFirstname"
+                                 SetFocusOnError="true" Display="Dynamic"
+                                ErrorMessage="ValidateNoHTMLContent"></asp:RegularExpressionValidator>
                         </div>
                         <div class="ctrlHolder">
                             <label for="ctl00_ContentPlaceHolder1_txtMultiLingualSurname">
-                                <JXTControl:ucLanguageLiteral ID="ltMultiLingualSurname" runat="server" SetLanguageCode="LabelSurname" />&nbsp;(<JXTControl:ucLanguageLiteral ID="UcLanguageLiteral11" runat="server" SetLanguageCode="LabelLocalLanguage" />)
+                                <JXTControl:ucLanguageLiteral ID="ltMultiLingualSurname" runat="server" SetLanguageCode="LabelSurname" />
+                                &nbsp;(<JXTControl:ucLanguageLiteral ID="UcLanguageLiteral11" runat="server" SetLanguageCode="LabelLocalLanguage" />
+                                )
                             </label>
-                            <asp:TextBox ID="txtMultiLingualSurname" runat="server" CssClass="textInput medium error" TabIndex="3" />
+                            <asp:TextBox ID="txtMultiLingualSurname" runat="server" CssClass="textInput medium error"
+                                TabIndex="3" />
+                            <asp:RegularExpressionValidator ID="rgvMultiLingualSurname" runat="server" ControlToValidate="txtMultiLingualSurname"
+                                 SetFocusOnError="true" Display="Dynamic"
+                                ErrorMessage="ValidateNoHTMLContent"></asp:RegularExpressionValidator>
                         </div>
                     </div>
                     <div class="ctrlHolder">
@@ -146,6 +166,9 @@
                         <asp:TextBox ID="txtUsername" runat="server" CssClass="textInput medium error" TabIndex="4" />
                         <asp:RequiredFieldValidator ID="rfvUsername" runat="server" ControlToValidate="txtUsername"
                             SetFocusOnError="true" Display="Dynamic"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="rgvUsername" runat="server" ControlToValidate="txtUsername"
+                             SetFocusOnError="true" Display="Dynamic"
+                            ErrorMessage="ValidateNoHTMLContent"></asp:RegularExpressionValidator>
                     </div>
                     <div class="ctrlHolder">
                         <label for="txtPassword">
@@ -185,7 +208,7 @@
                         <asp:RequiredFieldValidator ID="rfvEmailAddress" runat="server" ControlToValidate="txtEmailAddress"
                             SetFocusOnError="true" Display="Dynamic"></asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator ID="revEmailAddress" runat="server" ControlToValidate="txtEmailAddress"
-                            SetFocusOnError="true" Display="Dynamic" ValidationExpression="^(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6}$">  
+                            SetFocusOnError="true" Display="Dynamic">  
                         </asp:RegularExpressionValidator>
                     </div>
                     <div class="ctrlHolder">
@@ -212,30 +235,43 @@
                     <JXTControl:ucLanguageLiteral ID="ltMemberFullRegister" runat="server" SetLanguageCode="LabelMemberFullRegister" />
                 </h3>
                 <asp:Panel ID="pnlFullRegistration" runat="server" Style="display: none;">
+                    <div class="ctrlHolder hidden">
+                        <asp:Label id="lbDOB" runat="server" AssociatedControlID="tbDOB">
+                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral13" runat="server" SetLanguageCode="LabelDateOfBirth" />
+                        </asp:Label>
+                        <asp:TextBox ID="tbDOB" runat="server" CssClass="textInput medium error" TabIndex="8"
+                            MaxLength="10" ClientIDMode="Static" />
+                            <asp:CustomValidator ID="cvDOB" runat="server" CssClass="fieldstar" SetFocusOnError="true" Display="Dynamic" OnServerValidate="cvDOB_ServerValidate"></asp:CustomValidator>
+                    </div>
                     <div class="ctrlHolder">
                         <label id="Label2" runat="server" for="ctl00_ContentPlaceHolder1_txtTel">
                             <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral1" runat="server" SetLanguageCode="LabelTel" />
                         </label>
                         <asp:TextBox ID="txtTel" runat="server" CssClass="textInput medium error" TabIndex="9"
                             MaxLength="38" />
-<%--                        <asp:CompareValidator ID="cmpTel" runat="server" ControlToValidate="txtTel" Type="Integer"
+                        <%--                        <asp:CompareValidator ID="cmpTel" runat="server" ControlToValidate="txtTel" Type="Integer"
                             Operator="DataTypeCheck" ErrorMessage="Telephone field must be numbers only"
                             Display="Dynamic" SetFocusOnError="true" />
---%>                        <%--<asp:RequiredFieldValidator ID="rfvTel" runat="server" ControlToValidate="txtTel"
+                        --%>
+                        <%--<asp:RequiredFieldValidator ID="rfvTel" runat="server" ControlToValidate="txtTel"
                             SetFocusOnError="true" Display="Dynamic" />--%>
-                                <asp:RegularExpressionValidator ID="validatorPhone" runat="server" ControlToValidate="txtTel"
-                                SetFocusOnError="true" Display="Dynamic" ValidationExpression="^[ \+\(\)\d]*$" ErrorMessage="ValidationPhoneNumbers">  
-                            </asp:RegularExpressionValidator>
+                        <asp:RegularExpressionValidator ID="validatorPhone" runat="server" ControlToValidate="txtTel"
+                            SetFocusOnError="true" Display="Dynamic" ValidationExpression="^[ \+\(\)\d]*$"
+                            ErrorMessage="ValidationPhoneNumbers">  
+                        </asp:RegularExpressionValidator>
                     </div>
                     <div class="ctrlHolder">
                         <label id="Label3" runat="server" for="ctl00_ContentPlaceHolder1_txtAddress">
                             <JXTControl:ucLanguageLiteral ID="ltMemberRegisterAddress" runat="server" SetLanguageCode="LabelAddress" />
                         </label>
                         <asp:TextBox ID="txtAddress" runat="server" TextMode="MultiLine" class="form-textarea medium"
-                             Rows="4" Columns="40" TabIndex="10" />
+                            Rows="4" Columns="40" TabIndex="10" />
                         <asp:RegularExpressionValidator ID="revAddress" runat="server" ControlToValidate="txtAddress"
                             Display="Dynamic" ErrorMessage="Please enter maximum 1500 characters for Suburb"
                             ValidationExpression="[\s\S]{1,1500}"></asp:RegularExpressionValidator>
+                        <asp:RegularExpressionValidator ID="rgvAddress" runat="server" ControlToValidate="txtAddress"
+                             SetFocusOnError="true" Display="Dynamic"
+                            ErrorMessage="ValidateNoHTMLContent"></asp:RegularExpressionValidator>
                     </div>
                     <div class="ctrlHolder">
                         <label id="Label4" runat="server" for="ctl00_ContentPlaceHolder1_txtSuburb">
@@ -245,7 +281,10 @@
                         <asp:RegularExpressionValidator ID="revSuburb" runat="server" ControlToValidate="txtSuburb"
                             Display="Dynamic" ErrorMessage="Please enter maximum 20 characters for Suburb"
                             ValidationExpression="[\s\S]{1,20}"></asp:RegularExpressionValidator>
-                    </div>
+                       <asp:RegularExpressionValidator ID="rgvSuburb" runat="server" ControlToValidate="txtSuburb"
+                             SetFocusOnError="true" Display="Dynamic"
+                            ErrorMessage="ValidateNoHTMLContent"></asp:RegularExpressionValidator>
+                     </div>
                     <div class="ctrlHolder">
                         <label id="Label1" runat="server" for="ctl00_ContentPlaceHolder1_txtPostcode">
                             <JXTControl:ucLanguageLiteral ID="ltMemberRegisterPostcode" runat="server" SetLanguageCode="LabelPostcode" />
@@ -254,6 +293,9 @@
                         <asp:RegularExpressionValidator ID="revPostcode" runat="server" ControlToValidate="txtPostcode"
                             Display="Dynamic" ErrorMessage="Please enter maximum 10 characters for Postcode"
                             ValidationExpression="[\s\S]{1,10}"></asp:RegularExpressionValidator>
+                       <asp:RegularExpressionValidator ID="rgvPostcode" runat="server" ControlToValidate="txtPostcode"
+                             SetFocusOnError="true" Display="Dynamic"
+                            ErrorMessage="ValidateNoHTMLContent"></asp:RegularExpressionValidator>
                     </div>
                     <div class="ctrlHolder">
                         <label id="Label6" runat="server" for="ctl00_ContentPlaceHolder1_txtState">
@@ -263,6 +305,9 @@
                         <asp:RegularExpressionValidator ID="revState" runat="server" ControlToValidate="txtState"
                             Display="Dynamic" ErrorMessage="Please enter maximum 20 characters for State"
                             ValidationExpression="[\s\S]{1,20}"></asp:RegularExpressionValidator>
+                       <asp:RegularExpressionValidator ID="rgvState" runat="server" ControlToValidate="txtState"
+                             SetFocusOnError="true" Display="Dynamic"
+                            ErrorMessage="ValidateNoHTMLContent"></asp:RegularExpressionValidator>
                     </div>
                     <div class="ctrlHolder">
                         <label for="ctl00_ContentPlaceHolder1_ddlCountry">
@@ -288,6 +333,9 @@
                         <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="tbMailingAddress"
                             Display="Dynamic" ErrorMessage="Please enter maximum 1500 characters for Suburb"
                             ValidationExpression="[\s\S]{1,1500}"></asp:RegularExpressionValidator>
+                       <asp:RegularExpressionValidator ID="rgvMailingAddress" runat="server" ControlToValidate="tbMailingAddress"
+                             SetFocusOnError="true" Display="Dynamic"
+                            ErrorMessage="ValidateNoHTMLContent"></asp:RegularExpressionValidator>
                     </div>
                     <div id="divMailingSuburb" class="ctrlHolder" style="display: none;" runat="server"
                         clientidmode="Static">
@@ -299,6 +347,9 @@
                         <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="tbMailingSuburb"
                             Display="Dynamic" ErrorMessage="Please enter maximum 20 characters for Suburb"
                             ValidationExpression="[\s\S]{1,20}"></asp:RegularExpressionValidator>
+                       <asp:RegularExpressionValidator ID="rgvMailingSuburb" runat="server" ControlToValidate="tbMailingSuburb"
+                             SetFocusOnError="true" Display="Dynamic"
+                            ErrorMessage="ValidateNoHTMLContent"></asp:RegularExpressionValidator>
                     </div>
                     <div id="divMailingPostcode" class="ctrlHolder" style="display: none;" runat="server"
                         clientidmode="Static">
@@ -310,6 +361,9 @@
                         <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="tbMailingPostcode"
                             Display="Dynamic" ErrorMessage="Please enter maximum 10 characters for Postcode"
                             ValidationExpression="[\s\S]{1,10}"></asp:RegularExpressionValidator>
+                       <asp:RegularExpressionValidator ID="rgvMailingPostcode" runat="server" ControlToValidate="tbMailingPostcode"
+                             SetFocusOnError="true" Display="Dynamic"
+                            ErrorMessage="ValidateNoHTMLContent"></asp:RegularExpressionValidator>
                     </div>
                     <div id="divMailingState" class="ctrlHolder" style="display: none;" runat="server"
                         clientidmode="Static">
@@ -321,6 +375,9 @@
                         <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ControlToValidate="tbMailingState"
                             Display="Dynamic" ErrorMessage="Please enter maximum 20 characters for State"
                             ValidationExpression="[\s\S]{1,20}"></asp:RegularExpressionValidator>
+                       <asp:RegularExpressionValidator ID="rgvMailingState" runat="server" ControlToValidate="tbMailingState"
+                             SetFocusOnError="true" Display="Dynamic"
+                            ErrorMessage="ValidateNoHTMLContent"></asp:RegularExpressionValidator>
                     </div>
                     <div id="divMailingCountry" class="ctrlHolder" style="display: none;" runat="server"
                         clientidmode="Static">
@@ -364,17 +421,15 @@
                         </label>
                         <asp:FileUpload ID="docInput" runat="server" CssClass="form-textbox2" TabIndex="24" />
                         <asp:CustomValidator ID="cvalDocument" runat="server" CssClass="fieldstar" ErrorMessage="CustomValidator"
-                            SetFocusOnError="true" Display="Dynamic" OnServerValidate="cvalDocument_ServerValidate"
-                            ValidationGroup="GroupMemberFilesValidation"></asp:CustomValidator>
+                            SetFocusOnError="true" Display="Dynamic" OnServerValidate="cvalDocument_ServerValidate"></asp:CustomValidator>
                     </div>
-                     <div class="ctrlHolder">
-                        <asp:label id="lbCoverLetter" runat="server" AssociatedControlID="fuCoverLetter">
+                    <div class="ctrlHolder">
+                        <asp:Label ID="lbCoverLetter" runat="server" AssociatedControlID="fuCoverLetter">
                             <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral12" runat="server" SetLanguageCode="LabelCoverLetter" />
-                        </asp:label>
+                        </asp:Label>
                         <asp:FileUpload ID="fuCoverLetter" runat="server" CssClass="form-textbox2" TabIndex="24" />
                         <asp:CustomValidator ID="cvalCoverLetter" runat="server" CssClass="fieldstar" ErrorMessage="CustomValidator"
-                            SetFocusOnError="true" Display="Dynamic" OnServerValidate="cvalCoverLetter_ServerValidate"
-                            ValidationGroup="GroupMemberFilesValidation"></asp:CustomValidator>
+                            SetFocusOnError="true" Display="Dynamic" OnServerValidate="cvalCoverLetter_ServerValidate"></asp:CustomValidator>
                     </div>
                     <%--<div class="ctrlHolder">
                           
@@ -423,5 +478,20 @@
             }
 
         }
+
+        $(document).ready(function () {
+
+            var nowTemp = new Date();
+            var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate() + 1, 0, 0, 0, 0);
+
+            $('#tbDOB').datepicker({
+                format: '<%=DateFormat %>',
+                onRender: function (date) {
+                    return date.valueOf() >= now.valueOf() ? 'disabled' : '';
+                }
+            });
+
+
+        });
     </script>
 </asp:Content>

@@ -12,10 +12,11 @@ using System.Data;
 using System.Diagnostics;
 using System.Configuration;
 using System.Net.Configuration;
-using EmailSender;
+using JXTPortal.EmailSender;
 using JXTPortal.Entities;
 using System.Web;
 using System.Web.Script.Serialization;
+using log4net;
 
 namespace JXTJobScienceIntegration
 {
@@ -67,8 +68,6 @@ namespace JXTJobScienceIntegration
         }
 
         #endregion
-
-        static IEnumerable<SitesXML> siteXMLList;
 
         static void Main(string[] args)
         {
@@ -323,139 +322,71 @@ namespace JXTJobScienceIntegration
             var xml = XDocument.Load(ConfigurationManager.AppSettings["SitesXML"]);
 
             // Query the data and write out a subset of contacts
-            siteXMLList = xml.Descendants("site").Select(c => new SitesXML()
+            var siteXMLList = xml.Descendants("site").Select(c => new SitesXML()
             {
                 SiteId = (int)c.Element("SiteId"),
                 LastJobApplicationId = (string)c.Element("LastJobApplicationId")
-            });
+            }).ToList();
 
-
-
-            bool blnContinue = true;
-            string errormessage = string.Empty;
-            string strXMLContents = string.Empty;
-
-            string strApplicationID = string.Empty;
-            DataTable dt = new DataTable();
-            DataSet jobApplicationDS = new DataSet();
-            JobApplicationService jobApplicationService = null;
-
-
-            string strResumeFileName = string.Empty;
-            string strCoverLetterFileName = string.Empty;
-
-            foreach (SitesXML siteXML in siteXMLList)
+            foreach (SitesXML thisSite in siteXMLList)
             {
-                Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Running for SiteID: " + siteXML.SiteId.ToString());
+                ProcessSite(thisSite);
+            }
+        }
 
-                jobApplicationService = new JobApplicationService();
+        private static void ProcessSite(SitesXML siteXML)
+        {
+            Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Running for SiteID: " + siteXML.SiteId.ToString());
+
+            JobApplicationService jobApplicationService = new JobApplicationService();
+
+            DataSet jobApplicationDS = null;
+            if (!string.IsNullOrWhiteSpace(siteXML.LastJobApplicationId))
+                jobApplicationDS = jobApplicationService.CustomGetNewJobApplications(siteXML.SiteId, int.Parse(siteXML.LastJobApplicationId), null);
+            else
+                jobApplicationDS = jobApplicationService.CustomGetNewJobApplications(siteXML.SiteId, null, null);
+
+            DataTable dt = jobApplicationDS.Tables[0];
 
 
-                if (!string.IsNullOrWhiteSpace(siteXML.LastJobApplicationId))
-                    jobApplicationDS = jobApplicationService.CustomGetNewJobApplications(siteXML.SiteId, int.Parse(siteXML.LastJobApplicationId), null);
-                else
-                    jobApplicationDS = jobApplicationService.CustomGetNewJobApplications(siteXML.SiteId, null, null);
-
-                dt = jobApplicationDS.Tables[0];
-
-                if (dt.Rows != null)
-                {
-                    Console.WriteLine("Number of Job Applications:" + dt.Rows.Count);
-                    Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Number of Job Applications: " + dt.Rows.Count.ToString());
-
-                }
-                else
-                {
-                    Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Number of Job Applications: None");
-
-                }
+            if (dt.Rows != null)
+            {
+                Console.WriteLine("Number of Job Applications:" + dt.Rows.Count);
+                Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Number of Job Applications: " + dt.Rows.Count.ToString());
                 Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] ****************************************************\n");
 
                 // If there is an error it will stop at the Job application 
 
                 foreach (DataRow drApplication in dt.Rows)
                 {
+                    string applicationID = drApplication["JobApplicationID"].ToString();
+                    Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Application ID about to be uploaded:" + applicationID);
+
+                    List<FileNames> filesToUpload = new List<FileNames>();
+                    string resumeFileName = string.Empty;
+
                     try
                     {
-                        strApplicationID = drApplication["JobApplicationID"].ToString();
-                        Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Application ID about to be uploaded:" + strApplicationID);
-
-
-                        //string filename = "CountryCode_KellyJobReferenceNumber_JXTJobID_JXTJobApplicationID_Resume.Extension";
-
-                        List<FileNames> filesToUpload = new List<FileNames>();
-
                         // If there is a Resume
                         if (drApplication["MemberResumeFile"] != null && !string.IsNullOrWhiteSpace(drApplication["MemberResumeFile"].ToString()))
                         {
-                            strResumeFileName = string.Format("{0}_{1}_{2}_{3}_Resume{4}",
+                            resumeFileName = string.Format("{0}_{1}_{2}_{3}_Resume{4}",
                                                                     drApplication["Abbr"].ToString(),
                                                                     drApplication["RefNo"].ToString().Trim(),
                                                                     drApplication["JobID"].ToString(),
                                                                     drApplication["JobApplicationID"].ToString(),
                                                                     Path.GetExtension(ConfigurationManager.AppSettings["ResumeFolder"] + drApplication["MemberResumeFile"].ToString()));
 
-                            filesToUpload.Add(new FileNames(drApplication["JobApplicationID"].ToString(), ConfigurationManager.AppSettings["ResumeFolder"] + drApplication["MemberResumeFile"].ToString(), strResumeFileName));
+                            filesToUpload.Add(new FileNames(drApplication["JobApplicationID"].ToString(), ConfigurationManager.AppSettings["ResumeFolder"] + drApplication["MemberResumeFile"].ToString(), resumeFileName));
                         }
-                        else
-                            strResumeFileName = string.Empty;
-
-                        //// If there is a Coverletter
-                        //if (drApplication["MemberCoverLetterFile"] != null && !string.IsNullOrWhiteSpace(drApplication["MemberCoverLetterFile"].ToString()))
-                        //{
-                        //    strCoverLetterFileName = string.Format("{0}_{1}_{2}_{3}_Coverletter{4}",
-                        //                                            drApplication["Abbr"].ToString(),
-                        //                                            drApplication["RefNo"].ToString().Trim(),
-                        //                                            drApplication["JobID"].ToString(),
-                        //                                            drApplication["JobApplicationID"].ToString(),
-                        //                                            Path.GetExtension(ConfigurationManager.AppSettings["CoverletterFolder"] + drApplication["MemberCoverLetterFile"].ToString()));
-
-                        //    filesToUpload.Add(new FileNames(drApplication["JobApplicationID"].ToString(), ConfigurationManager.AppSettings["CoverletterFolder"] + drApplication["MemberCoverLetterFile"].ToString(), strCoverLetterFileName));
-                        //}
-                        //else
-                        //    strCoverLetterFileName = string.Empty;
-
-
-                        //                        strXMLContents = string.Format(@"
-                        //<application>
-                        //    <refno>{8}</refno>
-                        //    <applicationid>{0}</applicationid>
-                        //    <date>{1}</date>
-                        //    <firstname>{2}</firstname>
-                        //    <lastname>{3}</lastname>
-                        //    <email>{4}</email>
-                        //    <mobile>{5}</mobile>
-                        //    <classificationid>{9}</classificationid>
-                        //    <subclassificationid>{10}</subclassificationid>
-                        //    <resume>{6}</resume>
-                        //    <coverletter>{7}</coverletter>
-                        //</application>
-                        //",
-                        //    drApplication["JobApplicationID"].ToString(),
-                        //    drApplication["ApplicationDate"].ToString(),
-                        //    drApplication["FirstName"] != null ? drApplication["FirstName"].ToString() : string.Empty,
-                        //    drApplication["Surname"] != null ? drApplication["Surname"].ToString() : string.Empty,
-                        //    drApplication["EmailAddress"] != null ? drApplication["EmailAddress"].ToString() : string.Empty,
-                        //    drApplication["MobilePhone"] != null ? drApplication["MobilePhone"].ToString().Trim() : string.Empty,
-                        //    strResumeFileName,
-                        //    strCoverLetterFileName,
-                        //    drApplication["RefNo"] != null ? drApplication["RefNo"].ToString().Trim() : string.Empty,
-                        //    drApplication["PreferredCategoryID"] != null ? drApplication["PreferredCategoryID"].ToString().Trim() : string.Empty,
-                        //    drApplication["PreferredSubCategoryID"] != null ? drApplication["PreferredSubCategoryID"].ToString().Trim() : string.Empty);
-
-
-                        //System.IO.File.WriteAllText(ConfigurationManager.AppSettings["ApplicationXML"], strXMLContents);
-
-                        //Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Saved the Application XML file for Application ID: " + strApplicationID);
 
                         // Upload files to FTP / SFTP
-                        blnContinue = SyncToSalesForce(siteXML, filesToUpload, drApplication["JobApplicationID"].ToString(), out errormessage);
-
+                        string errorMessage;
+                        var blnContinue = SyncToSalesForce(siteXML, filesToUpload, drApplication["JobApplicationID"].ToString(), out errorMessage);
 
                         if (!blnContinue)
                         {
                             Console.WriteLine("******** EXIT APPLICATION *************");
-                            // Exit
                             return;
                         }
                         else
@@ -467,19 +398,16 @@ namespace JXTJobScienceIntegration
                     }
                     catch (Exception ex)
                     {
-                        int exceptionID = LogExceptionAndEmail(siteXML, strApplicationID, ex);
-
-                        Console.WriteLine("ERROR: (" + exceptionID + ") " + ex.Message);
-
-
+                        ILog logger = LogManager.GetLogger(typeof(Program));
+                        logger.Error(ex);
                     }
                 }
-
-
-
-
             }
-
+            else
+            {
+                Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Number of Job Applications: NONE");
+                Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] ****************************************************\n");
+            }
         }
 
         protected static bool SyncToSalesForce(SitesXML siteXML, List<FileNames> filesToUpload, string JobApplicationID, out string errormessage)
@@ -501,13 +429,8 @@ namespace JXTJobScienceIntegration
             catch (Exception ex)
             {
                 continueToNextApplication = false;
-                int exceptionID = LogExceptionAndEmail(siteXML, JobApplicationID, ex);
-                Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] ERROR: (" + exceptionID + ") " + ex.Message);
-
-            }
-            finally
-            {
-
+                ILog logger = LogManager.GetLogger(typeof(Program));
+                logger.Error(ex);
             }
 
             return continueToNextApplication;
@@ -526,87 +449,6 @@ namespace JXTJobScienceIntegration
 
             xmlFile.Save(ConfigurationManager.AppSettings["SitesXML"]);
         }
-
-        #region Utils
-
-        /// <summary>
-        /// Email Sender
-        /// </summary>
-        /// <returns></returns>
-        private static SmtpSender EmailSender()
-        {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            MailSettingsSectionGroup mailConfiguration = (MailSettingsSectionGroup)config.GetSectionGroup("system.net/mailSettings");
-
-            SmtpSender mailObject = new SmtpSender(mailConfiguration.Smtp.Network.Host);
-
-            mailObject.Port = mailConfiguration.Smtp.Network.Port;
-            if (!mailConfiguration.Smtp.Network.DefaultCredentials)
-            {
-                mailObject.UserName = mailConfiguration.Smtp.Network.UserName;
-                mailObject.Password = mailConfiguration.Smtp.Network.Password;
-            }
-
-            return mailObject;
-        }
-
-        /// <summary>
-        /// Log the Exception and Send an email.
-        /// </summary>
-        /// <param name="siteXML"></param>
-        /// <param name="strLastExceptionApplicationID"></param>
-        /// <param name="ex"></param>
-        /// <returns></returns>
-        protected static int LogExceptionAndEmail(SitesXML siteXML, string strLastExceptionApplicationID, Exception ex)
-        {
-            ExceptionTableService serviceException = new ExceptionTableService();
-
-            int intExceptionID = serviceException.LogException(ex.GetBaseException());
-
-            XDocument xmlFile = XDocument.Load(ConfigurationManager.AppSettings["SitesXML"]);
-            var query = from c in xmlFile.Elements("sites").Elements("site")
-                        select c;
-            foreach (XElement site in query)
-            {
-                // Save the Exception ID and the application which has exception in the XML.
-                if (site.Element("SiteId").Value == siteXML.SiteId.ToString())
-                {
-                    site.Element("ExceptionID").Value = intExceptionID.ToString();
-                    site.Element("LastExceptionApplicationID").Value = strLastExceptionApplicationID;
-                }
-            }
-
-            xmlFile.Save(ConfigurationManager.AppSettings["SitesXML"]);
-
-
-            // **** Send email when there is an error.
-            Message message = new Message();
-            message.Format = Format.Html;
-
-            message.Body = string.Format(@"
-SiteId: {0}<br /><br />
-ApplicationID: {1}<br /><br />
-DateTime: {2}<br /><br />
-Message: {3}<br /><br />
-StackTrace: {4}<br /><br />
-ExceptionID: {5}",
-                    siteXML.SiteId,
-                    strLastExceptionApplicationID,
-                    DateTime.Now,
-                    ex.Message,
-                    ex.StackTrace,
-                    intExceptionID);
-
-            message.From = new MailAddress("bugs@jxt.com.au", "MiniJXT Support");
-            message.To = new MailAddress(ConfigurationManager.AppSettings["AdminEmail"]);
-            message.Subject = "MiniJXT - Job application FTP Error";
-
-            EmailSender().Send(message);
-
-            return intExceptionID;
-        }
-
-        #endregion
     }
 
     #region Classes

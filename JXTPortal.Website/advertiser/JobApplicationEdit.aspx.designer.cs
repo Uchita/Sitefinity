@@ -409,6 +409,33 @@ namespace JXTPortal.Website.advertiser {
         protected global::System.Web.UI.WebControls.DropDownList ddlApplicantGrade;
         
         /// <summary>
+        /// phScreeningQuestions control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phScreeningQuestions;
+        
+        /// <summary>
+        /// UcLanguageLiteral3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral3;
+        
+        /// <summary>
+        /// rptScreeningQuestions control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptScreeningQuestions;
+        
+        /// <summary>
         /// btnBack control.
         /// </summary>
         /// <remarks>

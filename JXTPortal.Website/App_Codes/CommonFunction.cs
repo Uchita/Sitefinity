@@ -15,6 +15,7 @@ using System.Reflection;
 using System.Collections;
 using System.ComponentModel;
 using System.Globalization;
+using JXTPortal.Entities.Custom;
 
 namespace JXTPortal.Website
 {
@@ -79,9 +80,7 @@ namespace JXTPortal.Website
         {
             if (!string.IsNullOrEmpty(email))
             {
-                string strRegex = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
-         @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
-         @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
+                string strRegex = ConfigurationManager.AppSettings["EmailValidationRegex"];
                 Regex re = new Regex(strRegex);
 
                 return re.IsMatch(email);
@@ -93,7 +92,7 @@ namespace JXTPortal.Website
         public static bool CheckExtension(string filename)
         {
             bool found = false;
-            string extList = System.Configuration.ConfigurationSettings.AppSettings["ApplicationFileTypes"];
+            string extList = ConfigurationManager.AppSettings["ApplicationFileTypes"];
             string[] exts = extList.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             foreach (string ext in exts)
             {
@@ -141,18 +140,37 @@ namespace JXTPortal.Website
 
             if (SessionData.Language != null)
             {
-                String language = "language_" + SessionData.Language.LanguageId.ToString();
+                object ResourceFileObj = null;
 
-                try
+                //try get from specified resource file
+                string customResourceFileName = SessionData.Site.ResourceFileNameMappingGet(SessionData.Language.LanguageId);
+                if (!string.IsNullOrEmpty(customResourceFileName))
                 {
-                    strGlobalResource = (String)HttpContext.GetGlobalResourceObject(language, field);
-                }
-                catch
-                {
-                    strGlobalResource = "Could not find global resource.";
+                    //this won't throw exception as I am not casting the object to anything
+                    ResourceFileObj = HttpContext.GetGlobalResourceObject(customResourceFileName, field);
                 }
 
-                if (String.IsNullOrEmpty(strGlobalResource))
+                //try get default resource file
+                if(ResourceFileObj == null)
+                {
+                    String language = "language_" + SessionData.Language.LanguageId.ToString();
+
+                    //same here no exception catched needed
+                    ResourceFileObj = HttpContext.GetGlobalResourceObject(language, field);
+                }
+
+                if (ResourceFileObj != null)
+                {
+                    try
+                    {
+                        strGlobalResource = (String)ResourceFileObj;
+                    }
+                    catch
+                    {
+                        //strGlobalResource = "Could not find global resource.";
+                    }
+                }
+                else
                     strGlobalResource = field;
             }
 
@@ -372,8 +390,12 @@ namespace JXTPortal.Website
         }
 
 
-
         public static Dictionary<string, int> GetEnumFormattedNames<TEnum>()
+        {
+            return GetEnumFormattedNames<TEnum>(false);
+        }
+
+        public static Dictionary<string, int> GetEnumFormattedNames<TEnum>(bool orderBySequenceAttribute)
         {
             var enumType = typeof(TEnum);
             if (enumType == typeof(Enum))
@@ -383,15 +405,25 @@ namespace JXTPortal.Website
                 throw new ArgumentException(String.Format("typeof({0}).IsEnum == false", enumType), "TEnum");
 
             //List<string> formattedNames = new List<string>();
-            var list = Enum.GetValues(enumType).OfType<TEnum>().ToList<TEnum>();
+            var list = Enum.GetValues(enumType).Cast<TEnum>().ToList();
             var listNames = Enum.GetNames(enumType);
 
-            Dictionary<string, int> dicFormattedValues = new Dictionary<string, int>();
-
+            //get all details including sequence
+            List<Tuple<string, int, int>> tEnumValues = new List<Tuple<string, int, int>>();
             for (int i = 0; i < list.Count; i++)
             {
+                FieldInfo fi = list[i].GetType().GetField(list[i].ToString());
+                SequenceAttribute sa = (SequenceAttribute)Attribute.GetCustomAttribute(fi, typeof(SequenceAttribute));
 
-                dicFormattedValues.Add(GetEnumDescription(list[i] as Enum), (int)Enum.Parse(enumType, listNames[i]));
+                tEnumValues.Add(new Tuple<string,int,int>(GetEnumDescription(list[i] as Enum), (int)Enum.Parse(enumType, listNames[i]), sa == null ? 0 : sa.SequenceNumber));
+            }
+
+            //place it back to varieable
+            Dictionary<string, int> dicFormattedValues = new Dictionary<string, int>();
+            foreach(Tuple<string,int,int> enumDetail in tEnumValues.OrderBy(c => c.Item3).ToList())
+            {
+                if( !dicFormattedValues.Keys.Contains(enumDetail.Item1) ) // prevent errors 
+                    dicFormattedValues.Add(enumDetail.Item1, enumDetail.Item2);
             }
 
             /*

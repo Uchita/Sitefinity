@@ -63,6 +63,8 @@ namespace JXTPosterTransform.Library.Services
                         long nextScheduledTimestamp = 0;
                         JXTPosterTransform.Library.Methods.Client.PullJsonFromRGF.RGFJobBoardDataRoot rgfData = null;
 
+
+                        bool postRequired = false;
                         // Find the type of Client setup Type and get credentials                    
                         switch (thisSetupItem.ClientSetupType)
                         {
@@ -70,24 +72,28 @@ namespace JXTPosterTransform.Library.Services
                                 {
                                     ClientSetupModels.PullXmlFromFTP FTP = jss.Deserialize<ClientSetupModels.PullXmlFromFTP>(thisSetupItem.ClientSetupTypeCredentials);
                                     response = Methods.PullXMLFromFTP.ProcessXML(FTP, fileName);
+                                    postRequired = response.blnSuccess;
                                     break;
                                 }
                             case ((int)PTCommonEnums.ClientSetup.ClientSetupType.PullXmlFromSFTP):
                                 {
                                     ClientSetupModels.PullXmlFromSFTP SFTP = jss.Deserialize<ClientSetupModels.PullXmlFromSFTP>(thisSetupItem.ClientSetupTypeCredentials);
                                     response = Methods.PullXMLFromSFTP.ProcessXML(SFTP, fileName);
+                                    postRequired = response.blnSuccess;
                                     break;
                                 }
                             case ((int)PTCommonEnums.ClientSetup.ClientSetupType.PullXmlFromUrl):
                                 {
                                     ClientSetupModels.PullXmlFromUrl URL = jss.Deserialize<ClientSetupModels.PullXmlFromUrl>(thisSetupItem.ClientSetupTypeCredentials);
                                     response = Methods.PullXMLFromURL.ProcessXML(URL.URL, fileName);
+                                    postRequired = response.blnSuccess;
                                     break;
                                 }
                             case ((int)PTCommonEnums.ClientSetup.ClientSetupType.PullXmlFromUrlWithAuth):
                                 {
                                     ClientSetupModels.PullXmlFromUrlWithAuth XmlAuth = jss.Deserialize<ClientSetupModels.PullXmlFromUrlWithAuth>(thisSetupItem.ClientSetupTypeCredentials);
                                     response = Methods.PullXMLWithWebAuthentication.ProcessXML(XmlAuth, fileName);
+                                    postRequired = response.blnSuccess;
                                     break;
                                 }
                             case ((int)PTCommonEnums.ClientSetup.ClientSetupType.PullFromInvenias):
@@ -96,6 +102,7 @@ namespace JXTPosterTransform.Library.Services
                                     PullFromInvenias inveniaLogic = new PullFromInvenias(invAuth);
                                     List<InveniasPTModel> ptModel = inveniaLogic.PosterTransformModelsGet();
                                     response = inveniaLogic.ProcessInveniaModelToXML(ptModel, fileName);
+                                    postRequired = response.blnSuccess;
                                     break;
                                 }
                             case ((int)PTCommonEnums.ClientSetup.ClientSetupType.PullJsonFromUrl):
@@ -104,6 +111,7 @@ namespace JXTPosterTransform.Library.Services
                                     enableShortDescriptionPullFromFullDescription = true;
                                     ClientSetupModels.PullJsonFromUrl jsonAuth = jss.Deserialize<ClientSetupModels.PullJsonFromUrl>(thisSetupItem.ClientSetupTypeCredentials);
                                     response = Methods.PullJsonFromURL.ProcessJsonToXML(jsonAuth.URL, fileName);
+                                    postRequired = response.blnSuccess;
                                     break;
                                 }
                             case ((int)PTCommonEnums.ClientSetup.ClientSetupType.PullXmlFromRGF):
@@ -122,7 +130,7 @@ namespace JXTPosterTransform.Library.Services
                                     {
                                         int count = 0, fileCount = 1;
 
-                                        bool blnPostSuccess = true;
+                                        bool postSuccess = true;
                                         for (count = 0; count < rgfData.jobBoards.jobboardlisting.upserted.Count(); )
                                         {
                                             string thisFileName = fileName + "-" + fileCount;
@@ -132,24 +140,20 @@ namespace JXTPosterTransform.Library.Services
                                             response = rgfLogic.ProcessRGFModelToXML(currentQueue, thisFileName);
 
                                             // Get the Credentials AND Pull the XML     AND     Post to JXT platform Webservice                            
-                                            bool blnThisPostSuccess = PostTransformationWithMappings(thisSetupItem, response.ResponseXML, thisFileName, dtStartTime);
+                                            bool thisPostSuccess = PostTransformationWithMappings(thisSetupItem, response.ResponseXML, thisFileName, dtStartTime);
 
-                                            if (!blnThisPostSuccess)
-                                                blnPostSuccess = false;
+                                            if (!thisPostSuccess)
+                                                postSuccess = false;
 
                                             count += currentQueue.jobBoards.jobboardlisting.upserted.Count();
                                             fileCount++;
                                         }
 
-                                        bool blnArchieveSuccess = PostTransformationArchieveJobs(thisSetupItem, rgfData);
+                                        bool jobsArchiveSuccess = ArchiveRGFJobs(thisSetupItem, rgfData);
 
                                         // Set the values - TODO move to a seperate function
-                                        if (blnPostSuccess && blnArchieveSuccess)
+                                        if (postSuccess && jobsArchiveSuccess)
                                         {
-                                            //switch (thisSetupItem.ClientSetupType)
-                                            //{
-                                            //    case ((int)PTCommonEnums.ClientSetup.ClientSetupType.PullXmlFromRGF):
-                                            //        {
                                             // update the timestamp
                                             PT_ClientService clientService = new PT_ClientService();
                                             ClientSetup thisSetupToBeUpdated = clientService.ClientSetupGetBySetupID(thisSetupItem.ClientSetupId);
@@ -164,27 +168,19 @@ namespace JXTPosterTransform.Library.Services
                                                 //update
                                                 clientService.ClientSetupSetupCredentialsUpdate(thisSetupItem.ClientSetupId, newSetupCredentials);
                                             }
-                                            //break;
-                                            //}
-                                            //}
                                         }
-
                                     }
-                                    return;
-
+                                    postRequired = false;
                                     break;
                                 }
                             default:
                                 break;
                         }
 
-                        if (response.blnSuccess)
+                        if (postRequired)
                         {
                             // Get the Credentials AND Pull the XML     AND     Post to JXT platform Webservice                            
-                            bool blnPostSuccess = PostTransformationWithMappings(thisSetupItem, response.ResponseXML, fileName, dtStartTime);
-
-                            bool blnArchieveSuccess = PostTransformationArchieveJobs(thisSetupItem, rgfData);
-
+                            PostTransformationWithMappings(thisSetupItem, response.ResponseXML, fileName, dtStartTime);
                         }
                         else
                         {
@@ -199,8 +195,6 @@ namespace JXTPosterTransform.Library.Services
                     Console.WriteLine("Error - " + ex.StackTrace); // TODO
                     Console.WriteLine("Error - " + ex.InnerException); // TODO
                 }
-
-
                 // Save the Response Log
             }
         }
@@ -783,45 +777,43 @@ Email: Nicky.s@stellarworkforce.co.nz</strong></span><br />
             return blnSuccess;
         }
 
-        public bool PostTransformationArchieveJobs(GetAllClientSetupsToRun_Result clientSetup, JXTPosterTransform.Library.Methods.Client.PullJsonFromRGF.RGFJobBoardDataRoot data)
+        public bool ArchiveRGFJobs(GetAllClientSetupsToRun_Result clientSetup, JXTPosterTransform.Library.Methods.Client.PullJsonFromRGF.RGFJobBoardDataRoot data)
         {
-            if (data != null && data.jobBoards != null && data.jobBoards.jobboardlisting != null && data.jobBoards.jobboardlisting.removedIds != null)
+
+            if (data == null || data.jobBoards == null || data.jobBoards.jobboardlisting == null )
+                return true;
+
+            var listings = data.jobBoards.jobboardlisting.upserted.Where(c => c.status.ToLower() == "unposted").Select(c=> new Job{ ReferenceNo = c.id }).ToList(); //(from m in data.jobBoards.jobboardlisting.removedIds select new Job { ReferenceNo = m }).ToList();
+
+            if (!listings.Any())
+                return true;
+
+            ArchiveJobRequest archiveJobRequest = new ArchiveJobRequest();
+            archiveJobRequest.AdvertiserId = clientSetup.AdvertiserId.Value;
+            archiveJobRequest.UserName = clientSetup.AdvertiserUsername;
+            archiveJobRequest.Password = clientSetup.AdvertiserPassword;
+            archiveJobRequest.Listings = listings; 
+            
+            string xmlToService = null;
+            var serializer = new XmlSerializer(typeof(ArchiveJobRequest));
+            try
             {
-                bool blnSuccess = false;
-
-                try
-                {
-                    ArchiveJobRequest archiveJobRequest = new ArchiveJobRequest();
-                    archiveJobRequest.AdvertiserId = clientSetup.AdvertiserId.Value;
-                    archiveJobRequest.UserName = clientSetup.AdvertiserUsername;
-                    archiveJobRequest.Password = clientSetup.AdvertiserPassword;
-                    archiveJobRequest.Listings = (from m in data.jobBoards.jobboardlisting.removedIds select new Job { ReferenceNo = m }).ToList();
-
-                    if (archiveJobRequest.Listings.Any())
+                using (Utf8StringWriter sww = new Utf8StringWriter())
+                    using (XmlWriter writer = XmlWriter.Create(sww))
                     {
-                        string xmlToService = null;
-                        var serializer = new XmlSerializer(typeof(ArchiveJobRequest));
-                        using (Utf8StringWriter sww = new Utf8StringWriter())
-                        using (XmlWriter writer = XmlWriter.Create(sww))
-                        {
-                            serializer.Serialize(writer, archiveJobRequest); //, ns
+                        serializer.Serialize(writer, archiveJobRequest); //, ns
 
-                            xmlToService = sww.ToString(); // Your XML
-                        }
-
-                        Process(xmlToService, ConfigurationManager.AppSettings["WebserviceArchiveURL"]);
+                        xmlToService = sww.ToString(); // Your XML
                     }
 
-                    blnSuccess = true;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Error - " + ex.Message); // TODO
-                    Console.WriteLine("Error - " + ex.StackTrace); // TODO
-                    Console.WriteLine("Error - " + ex.InnerException); // TODO
-                }
-
-                return blnSuccess;
+                Process(xmlToService, ConfigurationManager.AppSettings["WebserviceArchiveURL"]);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error - " + ex.Message); // TODO
+                Console.WriteLine("Error - " + ex.StackTrace); // TODO
+                Console.WriteLine("Error - " + ex.InnerException); // TODO
+                return false;
             }
 
             return true;

@@ -12,11 +12,13 @@ using JXTPortal.Data;
 using JXTPortal.Data.SqlClient;
 using JXTPortal;
 using JXTPortal.Entities;
+using log4net;
 
 namespace SocialMedia.Client.AICD
 {
     public class AICDSingleSignOn : System.Web.SessionState.IReadOnlySessionState
     {
+        public ILog logger;
         public enum Method { GET, POST, PUT, DELETE };
 
         private string CLIENT_ID = "diropp";
@@ -43,6 +45,8 @@ namespace SocialMedia.Client.AICD
 
         public AICDSingleSignOn(bool isLive, SessionSite _SessionDataSite)
         {
+            logger = LogManager.GetLogger(typeof(AICDSingleSignOn));
+
             SessionDataSite = _SessionDataSite;
             
             LogoffURI = string.Format("https://auth.companydirectors.com.au/user/logoff?returnurl=http://{0}{1}/member/login.aspx",
@@ -112,8 +116,7 @@ namespace SocialMedia.Client.AICD
             catch (Exception ex)
             {
                 // Save as exception 
-                ExceptionTableService exceptionTableService = new ExceptionTableService();
-                exceptionTableService.LogException(ex);
+                logger.Error(ex);
 
                 blnValid = false;
                 strMessage = ex.Message;
@@ -135,8 +138,7 @@ namespace SocialMedia.Client.AICD
                 catch (Exception ex)
                 {
                     // Save as exception 
-                    ExceptionTableService exceptionTableService = new ExceptionTableService();
-                    exceptionTableService.LogException(ex);
+                    logger.Error(ex);
 
                     blnValid = false;
                     strMessage = ex.Message;
@@ -208,9 +210,7 @@ namespace SocialMedia.Client.AICD
                 }
                 catch (Exception ex)
                 {
-                    // Save as exception and Todo Redirect 
-                    ExceptionTableService exceptionTableService = new ExceptionTableService();
-                    exceptionTableService.LogException(ex);
+                    logger.Error(ex);
 
                     blnValid = false;
                     strMessage = ex.Message;
@@ -371,7 +371,8 @@ namespace SocialMedia.Client.AICD
             bool blnNewMember = false;
             bool blnValid = true;
 
-            JXTPortal.Entities.Members member = service.GetBySiteIdEmailAddress(siteid, emailaddress);
+            //search by external ID first, then email address
+            JXTPortal.Entities.Members member = service.GetBySiteIDExternalIDThenEmail(siteid, externalMemberId, emailaddress);
             try
             {
                 // Update the Member
@@ -540,9 +541,7 @@ namespace SocialMedia.Client.AICD
             }
             catch (Exception ex)
             {
-                // Todo - Save to exception
-                ExceptionTableService exceptionTableService = new ExceptionTableService();
-                exceptionTableService.LogException(ex);
+                logger.Error(ex);
 
                 blnValid = false;
                 errormsg = ex.Message;

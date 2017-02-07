@@ -17,6 +17,7 @@ using System.IO;
 using System.Linq;
 using System.Drawing;
 using JXTPortal.Common;
+using JXTPortal.Common.Extensions;
 using JXTPortal;
 using JXTPortal.Entities;
 
@@ -24,10 +25,13 @@ using Microsoft.Win32;
 using System.Runtime.InteropServices;
 using System.Xml;
 using JXTPortal.Client.Bullhorn;
+using SectionIO;
 #endregion
 
 public partial class AdvertisersEdit : System.Web.UI.Page
 {
+    public ICacheFlusher CacheFlusher { get; set; }
+
     #region Declarations
 
     private int _advertiserid = 0;
@@ -271,6 +275,7 @@ public partial class AdvertisersEdit : System.Web.UI.Page
                         tbNominatedCompanyEmailAddress.Text = advertiser.NominatedCompanyEmailAddress;
                         tbNominatedCompanyPhone.Text = advertiser.NominatedCompanyPhone;
                         ddlPreferredContactMethod.SelectedValue = (advertiser.PreferredContactMethod.HasValue) ? advertiser.PreferredContactMethod.ToString() : string.Empty;
+                        cbEnablePeopleSearch.Checked = advertiser.AllowPeopleSearchAccess;
 
                         //Trial Settings and Dates
                         if (advertiser.FreeTrialStartDate != null)
@@ -308,12 +313,12 @@ public partial class AdvertisersEdit : System.Web.UI.Page
                         {
                             if (string.IsNullOrWhiteSpace(advertiser.AdvertiserLogoUrl))
                             {
-                                imgLogo.ImageUrl = Page.ResolveUrl("~/getfile.aspx") + "?advertiserid=" + Convert.ToString(AdvertiserID);
-                                
+                                string url = string.Format("~/getfile.aspx?advertiserid={0}&ver={1}", Convert.ToString(AdvertiserID), advertiser.LastModified.ToEpocTimestamp());
+                                imgLogo.ImageUrl = Page.ResolveUrl(url);
                             }
                             else
                             {
-                                imgLogo.ImageUrl = string.Format("/media/{0}/{1}", ConfigurationManager.AppSettings["AdvertisersFolder"], advertiser.AdvertiserLogoUrl);
+                                imgLogo.ImageUrl = string.Format("/media/{0}/{1}?ver={2}", ConfigurationManager.AppSettings["AdvertisersFolder"], advertiser.AdvertiserLogoUrl, advertiser.LastModified.ToEpocTimestamp());
                             }
 
                             imgLogo.Visible = true;
@@ -648,6 +653,7 @@ public partial class AdvertisersEdit : System.Web.UI.Page
                 advertiser.NominatedCompanyEmailAddress = tbNominatedCompanyEmailAddress.Text;
                 advertiser.NominatedCompanyPhone = tbNominatedCompanyPhone.Text;
                 advertiser.PreferredContactMethod = (!string.IsNullOrWhiteSpace(ddlPreferredContactMethod.SelectedValue)) ? Convert.ToInt32(ddlPreferredContactMethod.SelectedValue) : (int?)null;
+                advertiser.AllowPeopleSearchAccess = cbEnablePeopleSearch.Checked;
 
                 //Trial settings only available to Approved accounts, if status is not set as approved, we ignore the trial dates
                 if (newStatus == PortalEnums.Advertiser.AccountStatus.Approved)
@@ -766,6 +772,12 @@ public partial class AdvertisersEdit : System.Web.UI.Page
                     }
                 }
             }
+
+            String siteUrl = string.Format("{0}://{1}", Request.Url.Scheme, Request.Url.Host);
+            String path = "advertisers";
+            String advertiserImage = string.Format("Advertisers_{0}.jpg", _advertiserid);
+
+            CacheFlusher.FlushImage(siteUrl, path, advertiserImage);
 
             Response.Redirect("Advertisers.aspx");
         }

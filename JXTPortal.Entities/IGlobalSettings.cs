@@ -448,6 +448,16 @@ namespace JXTPortal.Entities
 		/// TimeZone : 
 		/// </summary>
 		System.String  TimeZone  { get; set; }
+		
+		/// <summary>
+		/// GlobalFolder : 
+		/// </summary>
+		System.String  GlobalFolder  { get; set; }
+		
+		/// <summary>
+		/// EnableScreeningQuestions : 
+		/// </summary>
+		System.Boolean  EnableScreeningQuestions  { get; set; }
 			
 		/// <summary>
 		/// Creates a new object that is a copy of the current instance.

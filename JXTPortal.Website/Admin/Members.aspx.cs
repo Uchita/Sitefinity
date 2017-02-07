@@ -174,6 +174,8 @@ public partial class Members : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        revEmailAddress.ValidationExpression = ConfigurationManager.AppSettings["EmailValidationRegex"];
+
         if (!IsPostBack)
         {
             loadSites();
@@ -203,11 +205,11 @@ public partial class Members : System.Web.UI.Page
 
             DataRowView members = (DataRowView)e.Item.DataItem;
             ltViewMember.Text = "Select";
-            ltAdminMemberID.Text = Convert.ToString(members["MemberID"]);
-            ltAdminMemberFirstName.Text = Convert.ToString(members["FirstName"]);
-            ltAdminMemberSurname.Text = Convert.ToString(members["Surname"]);
-            ltAdminMemberUsername.Text = Convert.ToString(members["Username"]);
-            ltAdminMemberEmail.Text = Convert.ToString(members["EmailAddress"]);
+            ltAdminMemberID.Text = HttpUtility.HtmlEncode(Convert.ToString(members["MemberID"]));
+            ltAdminMemberFirstName.Text = HttpUtility.HtmlEncode(Convert.ToString(members["FirstName"]));
+            ltAdminMemberSurname.Text = HttpUtility.HtmlEncode(Convert.ToString(members["Surname"]));
+            ltAdminMemberUsername.Text = HttpUtility.HtmlEncode(Convert.ToString(members["Username"]));
+            ltAdminMemberEmail.Text = HttpUtility.HtmlEncode(Convert.ToString(members["EmailAddress"]));
             ltAdminMemberIsValidated.Text = Convert.ToString(members["Validated"]);
             ltAdminMemberEmailFormat.Text = Convert.ToString(members["EmailFormatName"]);
             ltAdminMembersRegisteredDate.Text = string.Format("{0:"+SessionData.Site.DateFormat + "}", members["RegisteredDate"]);

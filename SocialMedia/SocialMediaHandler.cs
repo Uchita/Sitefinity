@@ -76,7 +76,7 @@ namespace SocialMedia
                 string p = (!string.IsNullOrWhiteSpace(profession)) ? "&profession=" + HttpUtility.UrlEncode(profession) : string.Empty;
                 string jobname = (!string.IsNullOrWhiteSpace(jobName)) ? "&jobname=" + HttpUtility.UrlEncode(jobName) : string.Empty;
                 _oauth.RedirectURI = urlsuffix + "/oauthcallback.aspx?cbtype=facebook&cbaction=applylogin&id=" + jobID.ToString() + p + jobname;
-                string token = _oauth.Authorize();
+                string token = _oauth.GetAuthorizationUrl();
                 return token;
             }
             return null;
@@ -100,9 +100,9 @@ namespace SocialMedia
                 _oauth.ClientID = integrations.Facebook.ApplicationID;
                 _oauth.RedirectURI = urlsuffix + "/oauthcallback.aspx?cbtype=facebook&cbaction=login";
 
-                HttpContext.Current.Session["SocialRequestedURL"] = HttpUtility.UrlEncode(_oauth.RedirectURI); 
+                HttpContext.Current.Session["SocialRequestedURL"] = HttpUtility.UrlEncode(_oauth.RedirectURI);
 
-                string token = _oauth.Authorize();
+                string token = _oauth.GetAuthorizationUrl();
                 return token;
             }
             return null;

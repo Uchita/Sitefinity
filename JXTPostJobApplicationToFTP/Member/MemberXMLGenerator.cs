@@ -11,17 +11,18 @@ using JXTPortal;
 using System.Data;
 using System.IO;
 using System.Net;
-using EmailSender;
+using JXTPortal.EmailSender;
 using System.Net.Mail;
 using System.Net.Configuration;
 using Tamir.SharpSsh;
 using System.Diagnostics;
+using log4net;
 
 namespace JXTPostJobApplicationToFTP
 {
     public class MemberXMLGenerator
     {
-
+        ILog _logger; 
 
         private GlobalSettingsService _GlobalSettingsService = null;
         private GlobalSettingsService GlobalSettingsService
@@ -53,9 +54,10 @@ namespace JXTPostJobApplicationToFTP
 
         public MemberXMLGenerator()
         {
+            _logger = LogManager.GetLogger(typeof(MemberXMLGenerator));
         }
 
-        public void GenerateKellyMemberXML()
+        public void GenerateKellyMemberXML(List<int> memberIds)
         {
             IEnumerable<SitesXML> siteXMLList;
             MembersService memberservice = new MembersService();
@@ -83,6 +85,7 @@ namespace JXTPostJobApplicationToFTP
                 password = (string)c.Element("password"),
                 sftp = (bool)c.Element("sftp"),
                 port = (int)c.Element("port"),
+                Mode = (string)c.Element("Mode"),
                 LastJobApplicationId = (string)c.Element("LastModifiedDate")            // Job application id used for getting the last modified date
             });
 
@@ -119,7 +122,23 @@ namespace JXTPostJobApplicationToFTP
                         }
                     }
 
-                    DataRow[] drValidatedMembers = dtMembers.Select("Validated=1");
+                    DataRow[] drValidatedMembers = null;
+
+                    if (memberIds.Count > 0)
+                    {
+                        drValidatedMembers = dtMembers.Select("MemberID IN (" + string.Join(",", memberIds.ToArray()) + ")");
+                    }
+                    else
+                    {
+                        if (sitexml.Mode == "FullCandidate")
+                        {
+                            drValidatedMembers = dtMembers.Select("ISNULL(Title, '') <> '' AND ISNULL(FirstName, '') <> '' AND ISNULL(Surname, '') <> '' AND ISNULL(EmailAddress, '') <> '' AND ISNULL(HomePhone, '') <> '' AND ISNULL(Address1, '') <> ''");
+                        }
+                        else
+                        {
+                            drValidatedMembers = dtMembers.Select();
+                        }
+                    }
 
                     Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Number of Members: " + drValidatedMembers.Count().ToString());
 
@@ -204,7 +223,7 @@ namespace JXTPostJobApplicationToFTP
                                         string savepath = ConfigurationManager.AppSettings["CoverletterFolder"] + filename;
                                         byte[] memberfilecontent = null;
 
-                                        if (!string.IsNullOrWhiteSpace(drMemberFile["MemberFileContent"].ToString()))
+                                        if (!string.IsNullOrWhiteSpace(memberfile.MemberFileUrl))
                                         {
                                             string errormessage = string.Empty;
 
@@ -216,18 +235,24 @@ namespace JXTPostJobApplicationToFTP
                                             string filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], memberfile.MemberId, memberfile.MemberFileUrl);
                                             Stream ms = null;
                                             ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
-                                            ms.Position = 0;
+                                            if (ms != null)
+                                            {
+                                                ms.Position = 0;
 
-                                            memberfilecontent = ((MemoryStream)ms).ToArray();
+                                                memberfilecontent = ((MemoryStream)ms).ToArray();
+                                            }
                                         }
                                         else
                                         {
                                             memberfilecontent = memberfile.MemberFileContent;
                                         }
-                                        
-                                        File.WriteAllBytes(savepath, memberfilecontent);
 
-                                        fileslist.Add(new FileNames(drMember["MemberID"].ToString(), savepath, filename));
+                                        if (memberfilecontent != null)
+                                        {
+                                            File.WriteAllBytes(savepath, memberfilecontent);
+
+                                            fileslist.Add(new FileNames(drMember["MemberID"].ToString(), savepath, filename));
+                                        }
                                     }
                                 }
 
@@ -254,18 +279,25 @@ namespace JXTPostJobApplicationToFTP
                                             string filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], memberfile.MemberId, memberfile.MemberFileUrl);
                                             Stream ms = null;
                                             ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
-                                            ms.Position = 0;
 
-                                            memberfilecontent= ((MemoryStream)ms).ToArray();
+                                            if (ms != null)
+                                            {
+                                                ms.Position = 0;
+
+                                                memberfilecontent = ((MemoryStream)ms).ToArray();
+                                            }
                                         }
                                         else
                                         {
                                             memberfilecontent = memberfile.MemberFileContent;
                                         }
 
-                                        File.WriteAllBytes(savepath, memberfilecontent);
+                                        if (memberfilecontent != null)
+                                        {
+                                            File.WriteAllBytes(savepath, memberfilecontent);
 
-                                        fileslist.Add(new FileNames(drMember["MemberID"].ToString(), savepath, filename));
+                                            fileslist.Add(new FileNames(drMember["MemberID"].ToString(), savepath, filename));
+                                        }
                                     }
                                 }
                             }
@@ -302,7 +334,7 @@ namespace JXTPostJobApplicationToFTP
                         else
                         {
                             Console.WriteLine("No resume for Member - ", drMember["MemberID"]);
-                            fileslist.RemoveAll(s => s.Id == drMember["MemberID"].ToString());
+                                fileslist.RemoveAll(s => s.Id == drMember["MemberID"].ToString());
                         }
 
                     }
@@ -310,7 +342,7 @@ namespace JXTPostJobApplicationToFTP
                     string errormsg = string.Empty;
                     if (sitexml.sftp)
                     {
-                        blnFileUploaded = UploadTempFilesToSFTP(sitexml, fileslist, out errormsg);
+                            blnFileUploaded = UploadTempFilesToSFTP(sitexml, fileslist, out errormsg);
                     }
                     else
                     {
@@ -338,14 +370,10 @@ namespace JXTPostJobApplicationToFTP
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] ERROR: " + ex.StackTrace);
-
-                    int exceptionID = LogExceptionAndEmail(sitexml, currentMember, ex);
-
+                    _logger.Error(ex);
                 }
             }
         }
-
 
         public static bool UploadTempFilesToFTP(SitesXML siteXML, List<FileNames> filesToUpload, out string errormessage)
         {
@@ -456,70 +484,6 @@ namespace JXTPostJobApplicationToFTP
 
             return blnResult;
 
-        }
-
-        protected static int LogExceptionAndEmail(SitesXML siteXML, DataRow drMember, Exception ex)
-        {
-            ExceptionTableService serviceException = new ExceptionTableService();
-
-            int intExceptionID = serviceException.LogException(ex.GetBaseException());
-
-            //XDocument xmlFile = XDocument.Load(ConfigurationManager.AppSettings["SitesXML"]);
-            //var query = from c in xmlFile.Elements("sites").Elements("site")
-            //            select c;
-            //foreach (XElement site in query)
-            //{
-            //    // Save the Exception ID and the application which has exception in the XML.
-            //    if (site.Element("SiteId").Value == siteXML.SiteId.ToString())
-            //    {
-            //        site.Element("ExceptionID").Value = intExceptionID.ToString();
-            //    }
-            //}
-
-            // xmlFile.Save(ConfigurationManager.AppSettings["SitesXML"]);
-
-
-            // **** Send email when there is an error.
-            Message message = new Message();
-            message.Format = Format.Html;
-            if (drMember != null)
-            {
-                message.Body = string.Format(@"
-SiteId: {0}<br /><br />
-MemberID: {1}<br /><br />
-DateTime: {2}<br /><br />
-Message: {3}<br /><br />
-StackTrace: {4}<br /><br />
-ExceptionID: {5}",
-                        siteXML.SiteId,
-                        drMember["MemberID"],
-                        DateTime.Now,
-                        ex.Message,
-                        ex.StackTrace,
-                        intExceptionID);
-            }
-            else
-            {
-                message.Body = string.Format(@"
-SiteId: {0}<br /><br />
-DateTime: {1}<br /><br />
-Message: {2}<br /><br />
-StackTrace: {3}<br /><br />
-ExceptionID: {4}",
-                        siteXML.SiteId,
-                        DateTime.Now,
-                        ex.Message,
-                        ex.StackTrace,
-                        intExceptionID);
-            }
-
-            message.From = new MailAddress("bugs@jxt.com.au", "MiniJXT Support");
-            message.To = new MailAddress(ConfigurationManager.AppSettings["AdminEmail"]);
-            message.Subject = "MiniJXT - Job application FTP Error";
-
-            EmailSender().Send(message);
-
-            return intExceptionID;
         }
 
         /// <summary>

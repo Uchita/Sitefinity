@@ -851,7 +851,7 @@ function Tab1Save(sender, loader) {
 }
 
 function Tab2Save(sender, loader) {
-
+    
     //clear error msg first
     $(".errormsg").empty();
 
@@ -911,7 +911,7 @@ function Tab2Save(sender, loader) {
             $(sender).removeClass("disabled");
         };
 
-        var data = { company: $("#tbCurrentCompany").val(), jobtitle: $("#tbCurrentJobTitle").val(), industry: $("#ddlIndustry").val(), jobcategory: $("#ddlJobCategory").val(), jobfunctions: $("#ddlJobFunctions").val(), employmenttype: $("#ddlEmploymentType").val(), salaryperiod: $("#ddlSalaryPeriod").val(), fixedsalary: $("#tbFixedSalary").val(), incentivesalary: $("#tbIncentiveSalary").val() };
+        var data = { company: $("#tbCurrentCompany").val(), jobtitle: $("#tbCurrentJobTitle").val(), industry: $("#ddlIndustry").val(), jobcategory: $("#ddlJobCategory").val(), jobfunctions: $("#ddlJobFunctions").val(), employmenttype: $("#ddlEmploymentType").val(), salaryperiod: $("#ddlSalaryPeriod").val(), fixedsalary: $("#tbFixedSalary").val(), incentivesalary: $("#tbIncentiveSalary").val(), ddlSalaryCurrency: $("#ddlSalaryCurrency").val() };
         var postResult = $("").sendAjaxWithExpectDataTypeReturn("member/enworld/profile.aspx", "tab2save", "POST", "json", data, onSuccess, onFailure);
     }
     else {

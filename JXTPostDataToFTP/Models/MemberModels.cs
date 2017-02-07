@@ -6,6 +6,10 @@ using System.Data;
 using System.Web.Script.Serialization;
 using System.Xml.Serialization;
 using System.Configuration;
+using System.Resources;
+using System.Reflection;
+using System.Collections;
+using System.ComponentModel;
 
 namespace JXTPostDataToFTP.Models
 {
@@ -25,6 +29,41 @@ namespace JXTPostDataToFTP.Models
         public List<MemberReference> References { get; set; }
 
         public List<MemberCustomQuestion> CustomQuestions { get; set; }
+
+        public static string GetResourceValue(string key, int languageId)
+        {
+            string value = key;
+
+            string file = string.Format(@"{1}\Resources\language_{0}.resx", languageId, AppDomain.CurrentDomain.BaseDirectory);
+            Console.WriteLine(string.Format("Fetching RESX file: {0}", file));
+
+            System.Resources.ResXResourceReader resourceReader = new ResXResourceReader(file);
+            foreach (DictionaryEntry entry in resourceReader)
+            {
+                if (entry.Key.ToString() == key)
+                {
+                    value = entry.Value.ToString();
+                }
+            }
+
+            return value;
+        }
+
+        public static string GetEnumDescription(Enum currentEnum, int languageId)
+        {
+            string description = String.Empty;
+            DescriptionAttribute da;
+
+            FieldInfo fi = currentEnum.GetType().
+                        GetField(currentEnum.ToString());
+            da = (DescriptionAttribute)Attribute.GetCustomAttribute(fi, typeof(DescriptionAttribute));
+            if (da != null)
+                description = da.Description;
+            else
+                description = currentEnum.ToString();
+
+            return GetResourceValue(description, languageId);
+        }
 
         public MemberXMLModel()
         { }
@@ -224,6 +263,7 @@ namespace JXTPostDataToFTP.Models
                     IsDirectorship = thisDR["IsDirectorship"].ToString(),
                     City = thisDR["City"].ToString(),
                     CountryID = thisDR["CountryID"].ToString(),
+                    State = thisDR["State"].ToString()
                 };
                 WorkExperiences.Add(thisExperience);
             }
@@ -255,7 +295,9 @@ namespace JXTPostDataToFTP.Models
                     Major = thisDR["Major"].ToString(),
                     Present = thisDR["Present"].ToString(),
                     StartMonth = thisDR["StartMonth"].ToString(),
-                    EndMonth = thisDR["EndMonth"].ToString()
+                    EndMonth = thisDR["EndMonth"].ToString(),
+                    Graduated = thisDR["Graduated"].ToString(),
+                    GraduatedCredits = thisDR["NonGraduatedCredits"].ToString()
                 };
                 Educations.Add(thisEducation);
             }
@@ -300,8 +342,8 @@ namespace JXTPostDataToFTP.Models
                     MemberID = thisDR["MemberID"].ToString(),
                     MemberLicenseName = thisDR["MemberLicenseName"].ToString(),
                     LicenseType = thisDR["LicenseType"].ToString(),
-                    IssueDate = thisDR["IssueDate"].ToString(),
-                    ExpiryDate = thisDR["ExpiryDate"].ToString(),
+                    IssueDate = (string.IsNullOrEmpty(thisDR["IssueDate"].ToString()))?string.Empty : ((DateTime?)thisDR["IssueDate"]).Value.ToString(dateformat.Replace("dd", "").Replace("//", "/")).Trim(new char[] {'/'}),
+                    ExpiryDate = (string.IsNullOrEmpty(thisDR["ExpiryDate"].ToString())) ? string.Empty : ((DateTime?)thisDR["ExpiryDate"]).Value.ToString(dateformat.Replace("dd", "").Replace("//", "/")).Trim(new char[] { '/' }),
                     CountryID = thisDR["CountryID"].ToString(),
                     State = thisDR["State"].ToString(),
                     DoesNotExpire = thisDR["DoesNotExpire"].ToString(),
@@ -377,6 +419,7 @@ namespace JXTPostDataToFTP.Models
                     Company = thisDR["Company"].ToString(),
                     Phone = thisDR["Phone"].ToString(),
                     Relationship = thisDR["Relationship"].ToString(),
+                    ReferenceEmail = thisDR["ReferenceEmail"].ToString(),
                     LastModifiedDate = !string.IsNullOrEmpty(thisDR["LastModifiedDate"].ToString()) ? ((DateTime)thisDR["LastModifiedDate"]).ToString(dateformat).Trim() : string.Empty
                 };
                 References.Add(thisRef);
@@ -593,12 +636,18 @@ namespace JXTPostDataToFTP.Models
                 {
                     if (string.IsNullOrEmpty(AvailabilityID))
                         return null;
+                    else
+                    {
+                        if (Convert.ToInt32(AvailabilityID) <= 0)
+                            return null;
+                    }
 
                     JXTPortal.Entities.PortalEnums.Members.CurrentlySeeking thisStatus;
                     bool enumParseSuccess = Enum.TryParse<JXTPortal.Entities.PortalEnums.Members.CurrentlySeeking>(AvailabilityID, out thisStatus);
+                    int languageId = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultLanguageId"]);
 
                     if (enumParseSuccess)
-                        return thisStatus.ToString();
+                        return GetEnumDescription(thisStatus, languageId);
                     else
                         return null;
                 }
@@ -684,7 +733,7 @@ namespace JXTPostDataToFTP.Models
             public string LastAttemptDate { get; set; }
             [XmlIgnore]
             public string Status { get; set; }
-            [XmlIgnore]
+            
             public string LastTermsAndConditionsDate { get; set; }
             [XmlIgnore]
             public string DefaultLanguageId { get; set; }
@@ -837,6 +886,7 @@ namespace JXTPostDataToFTP.Models
             [XmlIgnore]
             public string CountryID { get; set; }
             public string CountryName { get { return string.IsNullOrEmpty(CountryID) ? null : StaticSiteReference.GetCountryReference(int.Parse(CountryID)); } set { } }
+            public string State { get; set; }
         }
 
         public class MemberEducations
@@ -884,6 +934,8 @@ namespace JXTPostDataToFTP.Models
             public string Present { get; set; }
             public string StartMonth { get; set; }
             public string EndMonth { get; set; }
+            public string Graduated { get; set; }
+            public string GraduatedCredits { get; set; }
         }
 
         public class MemberCertificate
@@ -1010,6 +1062,7 @@ namespace JXTPostDataToFTP.Models
             }
             [XmlIgnore]
             public string LastModifiedDate { get; set; }
+            public string ReferenceEmail { get; set; }
         }
 
         public class MemberCustomQuestion

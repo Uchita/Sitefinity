@@ -265,24 +265,6 @@ namespace JXTPortal.Website {
         protected global::System.Web.UI.WebControls.PlaceHolder phApplyWithIndeed;
         
         /// <summary>
-        /// phApplyWithFacebook control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder phApplyWithFacebook;
-        
-        /// <summary>
-        /// ibApplyWithFacebook control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ibApplyWithFacebook;
-        
-        /// <summary>
         /// phApplyWithLinkedIn control.
         /// </summary>
         /// <remarks>
@@ -1424,6 +1406,33 @@ namespace JXTPortal.Website {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hfGoogleSelectedType;
+        
+        /// <summary>
+        /// phScreeningQuestions control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phScreeningQuestions;
+        
+        /// <summary>
+        /// ltScreeningQuestions control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ltScreeningQuestions;
+        
+        /// <summary>
+        /// rptScreeningQuestions control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptScreeningQuestions;
         
         /// <summary>
         /// ucPrivacySettings control.

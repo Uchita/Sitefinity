@@ -3,11 +3,14 @@
 
   <registercountrys>
     <registercountry>679|Australia</registercountry>
+    <registercountry>1047|Japan</registercountry>
+    <registercountry>758|Korea</registercountry>
+    <registercountry>759|Singapore</registercountry>
     <registercountry>707|Thailand</registercountry>
-    <!--<registercountry>758|Korea</registercountry>
-    <registercountry>759|Singapore</registercountry>-->
-    
-    <registercountry>281|Australia</registercountry>
+    <registercountry>766|Vietnam</registercountry>
+
+
+    <!--<registercountry>281|Australia</registercountry>-->
   </registercountrys>
 
 
@@ -20,6 +23,8 @@
     <employmenttype>Permanent</employmenttype>
     <employmenttype>Contract</employmenttype>
     <employmenttype>Temporary</employmenttype>
+    <employmenttype>Temp to Perm</employmenttype>
+    <employmenttype>Part Time</employmenttype>
   </employmenttypes>
   <countries>
     <country>

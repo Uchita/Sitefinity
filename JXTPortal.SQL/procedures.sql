@@ -32464,7 +32464,8 @@ AS
 					[SiteLanguageID],
 					[SiteID],
 					[LanguageID],
-					[SiteLanguageName]
+					[SiteLanguageName],
+					[ResourceFileName]
 				FROM
 					[dbo].[SiteLanguages]
 					
@@ -32548,7 +32549,7 @@ AS
 				EXEC sp_executesql @SQL
 
 				-- Return paged results
-				SELECT O.[SiteLanguageID], O.[SiteID], O.[LanguageID], O.[SiteLanguageName]
+				SELECT O.[SiteLanguageID], O.[SiteID], O.[LanguageID], O.[SiteLanguageName], O.[ResourceFileName]
 				FROM
 				    [dbo].[SiteLanguages] O,
 				    #PageIndex PageIndex
@@ -32603,7 +32604,9 @@ CREATE PROCEDURE dbo.SiteLanguages_Insert
 
 	@LanguageId int   ,
 
-	@SiteLanguageName nvarchar (255)  
+	@SiteLanguageName nvarchar (255)  ,
+
+	@ResourceFileName nvarchar (512)  
 )
 AS
 
@@ -32614,12 +32617,14 @@ AS
 					[SiteID]
 					,[LanguageID]
 					,[SiteLanguageName]
+					,[ResourceFileName]
 					)
 				VALUES
 					(
 					@SiteId
 					,@LanguageId
 					,@SiteLanguageName
+					,@ResourceFileName
 					)
 				
 				-- Get the identity value
@@ -32661,7 +32666,9 @@ CREATE PROCEDURE dbo.SiteLanguages_Update
 
 	@LanguageId int   ,
 
-	@SiteLanguageName nvarchar (255)  
+	@SiteLanguageName nvarchar (255)  ,
+
+	@ResourceFileName nvarchar (512)  
 )
 AS
 
@@ -32675,6 +32682,7 @@ AS
 					[SiteID] = @SiteId
 					,[LanguageID] = @LanguageId
 					,[SiteLanguageName] = @SiteLanguageName
+					,[ResourceFileName] = @ResourceFileName
 				WHERE
 [SiteLanguageID] = @SiteLanguageId 
 				
@@ -32756,7 +32764,8 @@ AS
 					[SiteLanguageID],
 					[SiteID],
 					[LanguageID],
-					[SiteLanguageName]
+					[SiteLanguageName],
+					[ResourceFileName]
 				FROM
 					[dbo].[SiteLanguages]
 				WHERE
@@ -32804,7 +32813,8 @@ AS
 					[SiteLanguageID],
 					[SiteID],
 					[LanguageID],
-					[SiteLanguageName]
+					[SiteLanguageName],
+					[ResourceFileName]
 				FROM
 					[dbo].[SiteLanguages]
 				WHERE
@@ -32852,7 +32862,8 @@ AS
 					[SiteLanguageID],
 					[SiteID],
 					[LanguageID],
-					[SiteLanguageName]
+					[SiteLanguageName],
+					[ResourceFileName]
 				FROM
 					[dbo].[SiteLanguages]
 				WHERE
@@ -32898,7 +32909,8 @@ AS
 					[SiteLanguageID],
 					[SiteID],
 					[LanguageID],
-					[SiteLanguageName]
+					[SiteLanguageName],
+					[ResourceFileName]
 				FROM
 					[dbo].[SiteLanguages]
 				WHERE
@@ -32942,7 +32954,9 @@ CREATE PROCEDURE dbo.SiteLanguages_Find
 
 	@LanguageId int   = null ,
 
-	@SiteLanguageName nvarchar (255)  = null 
+	@SiteLanguageName nvarchar (255)  = null ,
+
+	@ResourceFileName nvarchar (512)  = null 
 )
 AS
 
@@ -32955,6 +32969,7 @@ AS
 	, [SiteID]
 	, [LanguageID]
 	, [SiteLanguageName]
+	, [ResourceFileName]
     FROM
 	[dbo].[SiteLanguages]
     WHERE 
@@ -32962,6 +32977,7 @@ AS
 	AND ([SiteID] = @SiteId OR @SiteId IS NULL)
 	AND ([LanguageID] = @LanguageId OR @LanguageId IS NULL)
 	AND ([SiteLanguageName] = @SiteLanguageName OR @SiteLanguageName IS NULL)
+	AND ([ResourceFileName] = @ResourceFileName OR @ResourceFileName IS NULL)
 						
   END
   ELSE
@@ -32971,6 +32987,7 @@ AS
 	, [SiteID]
 	, [LanguageID]
 	, [SiteLanguageName]
+	, [ResourceFileName]
     FROM
 	[dbo].[SiteLanguages]
     WHERE 
@@ -32978,6 +32995,7 @@ AS
 	OR ([SiteID] = @SiteId AND @SiteId is not null)
 	OR ([LanguageID] = @LanguageId AND @LanguageId is not null)
 	OR ([SiteLanguageName] = @SiteLanguageName AND @SiteLanguageName is not null)
+	OR ([ResourceFileName] = @ResourceFileName AND @ResourceFileName is not null)
 	SELECT @@ROWCOUNT			
   END
 				
@@ -39962,7 +39980,9 @@ AS
 					[GoogleWebMaster],
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
-					[TimeZone]
+					[TimeZone],
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 					
@@ -40046,7 +40066,7 @@ AS
 				EXEC sp_executesql @SQL
 
 				-- Return paged results
-				SELECT O.[GlobalSettingID], O.[SiteID], O.[DefaultLanguageID], O.[DefaultDynamicPageID], O.[PublicJobsSearch], O.[PublicMembersSearch], O.[PublicCompaniesSearch], O.[PublicSponsoredAdverts], O.[PrivateJobs], O.[PrivateMembers], O.[PrivateCompanies], O.[LastModifiedBy], O.[LastModified], O.[PageTitlePrefix], O.[PageTitleSuffix], O.[DefaultTitle], O.[HomeTitle], O.[DefaultDescription], O.[HomeDescription], O.[DefaultKeywords], O.[HomeKeywords], O.[ShowFaceBookButton], O.[UseAdvertiserFilter], O.[MerchantID], O.[ShowTwitterButton], O.[ShowJobAlertButton], O.[ShowLinkedInButton], O.[SiteFavIconID], O.[SiteDocType], O.[CurrencySymbol], O.[FtpFolderLocation], O.[MetaTags], O.[SystemMetaTags], O.[MemberRegistrationNotification], O.[LinkedInAPI], O.[LinkedInLogo], O.[LinkedInCompanyID], O.[LinkedInEmail], O.[PrivacySettings], O.[WWWRedirect], O.[AllowAdvertiser], O.[LinkedInAPISecret], O.[GoogleClientID], O.[GoogleClientSecret], O.[FacebookAppID], O.[FacebookAppSecret], O.[LinkedInButtonSize], O.[DefaultCountryID], O.[PayPalUsername], O.[PayPalPassword], O.[PayPalSignature], O.[SecurePayMerchantID], O.[SecurePayPassword], O.[UsingSSL], O.[UseCustomProfessionRole], O.[GenerateJobXML], O.[IsPrivateSite], O.[PrivateRedirectUrl], O.[EnableJobCustomQuestionnaire], O.[JobApplicationTypeID], O.[JobScreeningProcess], O.[AdvertiserApprovalProcess], O.[SiteType], O.[EnableSSL], O.[GST], O.[GSTLabel], O.[NumberOfPremiumJobs], O.[PremiumJobDays], O.[DisplayPremiumJobsOnResults], O.[JobExpiryNotification], O.[CurrencyID], O.[PayPalClientID], O.[PayPalClientSecret], O.[PaypalUser], O.[PaypalProPassword], O.[PaypalVendor], O.[PaypalPartner], O.[InvoiceSiteInfo], O.[InvoiceSiteFooter], O.[EnableTermsAndConditions], O.[DefaultEmailLanguageId], O.[GoogleTagManager], O.[GoogleAnalytics], O.[GoogleWebMaster], O.[EnablePeopleSearch], O.[GlobalDateFormat], O.[TimeZone]
+				SELECT O.[GlobalSettingID], O.[SiteID], O.[DefaultLanguageID], O.[DefaultDynamicPageID], O.[PublicJobsSearch], O.[PublicMembersSearch], O.[PublicCompaniesSearch], O.[PublicSponsoredAdverts], O.[PrivateJobs], O.[PrivateMembers], O.[PrivateCompanies], O.[LastModifiedBy], O.[LastModified], O.[PageTitlePrefix], O.[PageTitleSuffix], O.[DefaultTitle], O.[HomeTitle], O.[DefaultDescription], O.[HomeDescription], O.[DefaultKeywords], O.[HomeKeywords], O.[ShowFaceBookButton], O.[UseAdvertiserFilter], O.[MerchantID], O.[ShowTwitterButton], O.[ShowJobAlertButton], O.[ShowLinkedInButton], O.[SiteFavIconID], O.[SiteDocType], O.[CurrencySymbol], O.[FtpFolderLocation], O.[MetaTags], O.[SystemMetaTags], O.[MemberRegistrationNotification], O.[LinkedInAPI], O.[LinkedInLogo], O.[LinkedInCompanyID], O.[LinkedInEmail], O.[PrivacySettings], O.[WWWRedirect], O.[AllowAdvertiser], O.[LinkedInAPISecret], O.[GoogleClientID], O.[GoogleClientSecret], O.[FacebookAppID], O.[FacebookAppSecret], O.[LinkedInButtonSize], O.[DefaultCountryID], O.[PayPalUsername], O.[PayPalPassword], O.[PayPalSignature], O.[SecurePayMerchantID], O.[SecurePayPassword], O.[UsingSSL], O.[UseCustomProfessionRole], O.[GenerateJobXML], O.[IsPrivateSite], O.[PrivateRedirectUrl], O.[EnableJobCustomQuestionnaire], O.[JobApplicationTypeID], O.[JobScreeningProcess], O.[AdvertiserApprovalProcess], O.[SiteType], O.[EnableSSL], O.[GST], O.[GSTLabel], O.[NumberOfPremiumJobs], O.[PremiumJobDays], O.[DisplayPremiumJobsOnResults], O.[JobExpiryNotification], O.[CurrencyID], O.[PayPalClientID], O.[PayPalClientSecret], O.[PaypalUser], O.[PaypalProPassword], O.[PaypalVendor], O.[PaypalPartner], O.[InvoiceSiteInfo], O.[InvoiceSiteFooter], O.[EnableTermsAndConditions], O.[DefaultEmailLanguageId], O.[GoogleTagManager], O.[GoogleAnalytics], O.[GoogleWebMaster], O.[EnablePeopleSearch], O.[GlobalDateFormat], O.[TimeZone], O.[GlobalFolder], O.[EnableScreeningQuestions]
 				FROM
 				    [dbo].[GlobalSettings] O,
 				    #PageIndex PageIndex
@@ -40267,7 +40287,11 @@ CREATE PROCEDURE dbo.GlobalSettings_Insert
 
 	@GlobalDateFormat varchar (20)  ,
 
-	@TimeZone varchar (255)  
+	@TimeZone varchar (255)  ,
+
+	@GlobalFolder varchar (255)  ,
+
+	@EnableScreeningQuestions bit   
 )
 AS
 
@@ -40361,6 +40385,8 @@ AS
 					,[EnablePeopleSearch]
 					,[GlobalDateFormat]
 					,[TimeZone]
+					,[GlobalFolder]
+					,[EnableScreeningQuestions]
 					)
 				VALUES
 					(
@@ -40450,6 +40476,8 @@ AS
 					,@EnablePeopleSearch
 					,@GlobalDateFormat
 					,@TimeZone
+					,@GlobalFolder
+					,@EnableScreeningQuestions
 					)
 				
 				-- Get the identity value
@@ -40657,7 +40685,11 @@ CREATE PROCEDURE dbo.GlobalSettings_Update
 
 	@GlobalDateFormat varchar (20)  ,
 
-	@TimeZone varchar (255)  
+	@TimeZone varchar (255)  ,
+
+	@GlobalFolder varchar (255)  ,
+
+	@EnableScreeningQuestions bit   
 )
 AS
 
@@ -40754,6 +40786,8 @@ AS
 					,[EnablePeopleSearch] = @EnablePeopleSearch
 					,[GlobalDateFormat] = @GlobalDateFormat
 					,[TimeZone] = @TimeZone
+					,[GlobalFolder] = @GlobalFolder
+					,[EnableScreeningQuestions] = @EnableScreeningQuestions
 				WHERE
 [GlobalSettingID] = @GlobalSettingId 
 				
@@ -40918,7 +40952,9 @@ AS
 					[GoogleWebMaster],
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
-					[TimeZone]
+					[TimeZone],
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -41049,7 +41085,9 @@ AS
 					[GoogleWebMaster],
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
-					[TimeZone]
+					[TimeZone],
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -41180,7 +41218,9 @@ AS
 					[GoogleWebMaster],
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
-					[TimeZone]
+					[TimeZone],
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -41311,7 +41351,9 @@ AS
 					[GoogleWebMaster],
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
-					[TimeZone]
+					[TimeZone],
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -41442,7 +41484,9 @@ AS
 					[GoogleWebMaster],
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
-					[TimeZone]
+					[TimeZone],
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -41573,7 +41617,9 @@ AS
 					[GoogleWebMaster],
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
-					[TimeZone]
+					[TimeZone],
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -41704,7 +41750,9 @@ AS
 					[GoogleWebMaster],
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
-					[TimeZone]
+					[TimeZone],
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -41835,7 +41883,9 @@ AS
 					[GoogleWebMaster],
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
-					[TimeZone]
+					[TimeZone],
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -41966,7 +42016,9 @@ AS
 					[GoogleWebMaster],
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
-					[TimeZone]
+					[TimeZone],
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -42099,7 +42151,9 @@ AS
 					[GoogleWebMaster],
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
-					[TimeZone]
+					[TimeZone],
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -42229,7 +42283,9 @@ AS
 					[GoogleWebMaster],
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
-					[TimeZone]
+					[TimeZone],
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -42439,7 +42495,11 @@ CREATE PROCEDURE dbo.GlobalSettings_Find
 
 	@GlobalDateFormat varchar (20)  = null ,
 
-	@TimeZone varchar (255)  = null 
+	@TimeZone varchar (255)  = null ,
+
+	@GlobalFolder varchar (255)  = null ,
+
+	@EnableScreeningQuestions bit   = null 
 )
 AS
 
@@ -42535,6 +42595,8 @@ AS
 	, [EnablePeopleSearch]
 	, [GlobalDateFormat]
 	, [TimeZone]
+	, [GlobalFolder]
+	, [EnableScreeningQuestions]
     FROM
 	[dbo].[GlobalSettings]
     WHERE 
@@ -42625,6 +42687,8 @@ AS
 	AND ([EnablePeopleSearch] = @EnablePeopleSearch OR @EnablePeopleSearch IS NULL)
 	AND ([GlobalDateFormat] = @GlobalDateFormat OR @GlobalDateFormat IS NULL)
 	AND ([TimeZone] = @TimeZone OR @TimeZone IS NULL)
+	AND ([GlobalFolder] = @GlobalFolder OR @GlobalFolder IS NULL)
+	AND ([EnableScreeningQuestions] = @EnableScreeningQuestions OR @EnableScreeningQuestions IS NULL)
 						
   END
   ELSE
@@ -42717,6 +42781,8 @@ AS
 	, [EnablePeopleSearch]
 	, [GlobalDateFormat]
 	, [TimeZone]
+	, [GlobalFolder]
+	, [EnableScreeningQuestions]
     FROM
 	[dbo].[GlobalSettings]
     WHERE 
@@ -42807,6 +42873,8 @@ AS
 	OR ([EnablePeopleSearch] = @EnablePeopleSearch AND @EnablePeopleSearch is not null)
 	OR ([GlobalDateFormat] = @GlobalDateFormat AND @GlobalDateFormat is not null)
 	OR ([TimeZone] = @TimeZone AND @TimeZone is not null)
+	OR ([GlobalFolder] = @GlobalFolder AND @GlobalFolder is not null)
+	OR ([EnableScreeningQuestions] = @EnableScreeningQuestions AND @EnableScreeningQuestions is not null)
 	SELECT @@ROWCOUNT			
   END
 				
@@ -48447,7 +48515,8 @@ AS
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
 					[PreferredContactMethod],
-					[AdvertiserLogoUrl]
+					[AdvertiserLogoUrl],
+					[AllowPeopleSearchAccess]
 				FROM
 					[dbo].[Advertisers]
 					
@@ -48531,7 +48600,7 @@ AS
 				EXEC sp_executesql @SQL
 
 				-- Return paged results
-				SELECT O.[AdvertiserID], O.[SiteID], O.[AdvertiserAccountTypeID], O.[AdvertiserBusinessTypeID], O.[AdvertiserAccountStatusID], O.[CompanyName], O.[BusinessNumber], O.[StreetAddress1], O.[StreetAddress2], O.[LastModified], O.[LastModifiedBy], O.[PostalAddress1], O.[PostalAddress2], O.[WebAddress], O.[NoOfEmployees], O.[FirstApprovedDate], O.[Profile], O.[CharityNumber], O.[SearchField], O.[FreeTrialStartDate], O.[FreeTrialEndDate], O.[AccountsPayableEmail], O.[RequireLogonForExternalApplication], O.[AdvertiserLogo], O.[LinkedInLogo], O.[LinkedInCompanyId], O.[LinkedInEmail], O.[RegisterDate], O.[ExternalAdvertiserID], O.[VideoLink], O.[Industry], O.[NominatedCompanyRole], O.[NominatedCompanyFirstName], O.[NominatedCompanyLastName], O.[NominatedCompanyEmailAddress], O.[NominatedCompanyPhone], O.[PreferredContactMethod], O.[AdvertiserLogoUrl]
+				SELECT O.[AdvertiserID], O.[SiteID], O.[AdvertiserAccountTypeID], O.[AdvertiserBusinessTypeID], O.[AdvertiserAccountStatusID], O.[CompanyName], O.[BusinessNumber], O.[StreetAddress1], O.[StreetAddress2], O.[LastModified], O.[LastModifiedBy], O.[PostalAddress1], O.[PostalAddress2], O.[WebAddress], O.[NoOfEmployees], O.[FirstApprovedDate], O.[Profile], O.[CharityNumber], O.[SearchField], O.[FreeTrialStartDate], O.[FreeTrialEndDate], O.[AccountsPayableEmail], O.[RequireLogonForExternalApplication], O.[AdvertiserLogo], O.[LinkedInLogo], O.[LinkedInCompanyId], O.[LinkedInEmail], O.[RegisterDate], O.[ExternalAdvertiserID], O.[VideoLink], O.[Industry], O.[NominatedCompanyRole], O.[NominatedCompanyFirstName], O.[NominatedCompanyLastName], O.[NominatedCompanyEmailAddress], O.[NominatedCompanyPhone], O.[PreferredContactMethod], O.[AdvertiserLogoUrl], O.[AllowPeopleSearchAccess]
 				FROM
 				    [dbo].[Advertisers] O,
 				    #PageIndex PageIndex
@@ -48654,7 +48723,9 @@ CREATE PROCEDURE dbo.Advertisers_Insert
 
 	@PreferredContactMethod int   ,
 
-	@AdvertiserLogoUrl nvarchar (1000)  
+	@AdvertiserLogoUrl nvarchar (1000)  ,
+
+	@AllowPeopleSearchAccess bit   
 )
 AS
 
@@ -48699,6 +48770,7 @@ AS
 					,[NominatedCompanyPhone]
 					,[PreferredContactMethod]
 					,[AdvertiserLogoUrl]
+					,[AllowPeopleSearchAccess]
 					)
 				VALUES
 					(
@@ -48739,6 +48811,7 @@ AS
 					,@NominatedCompanyPhone
 					,@PreferredContactMethod
 					,@AdvertiserLogoUrl
+					,@AllowPeopleSearchAccess
 					)
 				
 				-- Get the identity value
@@ -48848,7 +48921,9 @@ CREATE PROCEDURE dbo.Advertisers_Update
 
 	@PreferredContactMethod int   ,
 
-	@AdvertiserLogoUrl nvarchar (1000)  
+	@AdvertiserLogoUrl nvarchar (1000)  ,
+
+	@AllowPeopleSearchAccess bit   
 )
 AS
 
@@ -48896,6 +48971,7 @@ AS
 					,[NominatedCompanyPhone] = @NominatedCompanyPhone
 					,[PreferredContactMethod] = @PreferredContactMethod
 					,[AdvertiserLogoUrl] = @AdvertiserLogoUrl
+					,[AllowPeopleSearchAccess] = @AllowPeopleSearchAccess
 				WHERE
 [AdvertiserID] = @AdvertiserId 
 				
@@ -49011,7 +49087,8 @@ AS
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
 					[PreferredContactMethod],
-					[AdvertiserLogoUrl]
+					[AdvertiserLogoUrl],
+					[AllowPeopleSearchAccess]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -49093,7 +49170,8 @@ AS
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
 					[PreferredContactMethod],
-					[AdvertiserLogoUrl]
+					[AdvertiserLogoUrl],
+					[AllowPeopleSearchAccess]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -49175,7 +49253,8 @@ AS
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
 					[PreferredContactMethod],
-					[AdvertiserLogoUrl]
+					[AdvertiserLogoUrl],
+					[AllowPeopleSearchAccess]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -49257,7 +49336,8 @@ AS
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
 					[PreferredContactMethod],
-					[AdvertiserLogoUrl]
+					[AdvertiserLogoUrl],
+					[AllowPeopleSearchAccess]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -49339,7 +49419,8 @@ AS
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
 					[PreferredContactMethod],
-					[AdvertiserLogoUrl]
+					[AdvertiserLogoUrl],
+					[AllowPeopleSearchAccess]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -49419,7 +49500,8 @@ AS
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
 					[PreferredContactMethod],
-					[AdvertiserLogoUrl]
+					[AdvertiserLogoUrl],
+					[AllowPeopleSearchAccess]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -49498,6 +49580,7 @@ SELECT dbo.[Advertisers].[AdvertiserID]
        ,dbo.[Advertisers].[NominatedCompanyPhone]
        ,dbo.[Advertisers].[PreferredContactMethod]
        ,dbo.[Advertisers].[AdvertiserLogoUrl]
+       ,dbo.[Advertisers].[AllowPeopleSearchAccess]
   FROM dbo.[Advertisers]
  WHERE EXISTS (SELECT 1
                  FROM dbo.[AdvertiserJobPricing] 
@@ -49610,7 +49693,9 @@ CREATE PROCEDURE dbo.Advertisers_Find
 
 	@PreferredContactMethod int   = null ,
 
-	@AdvertiserLogoUrl nvarchar (1000)  = null 
+	@AdvertiserLogoUrl nvarchar (1000)  = null ,
+
+	@AllowPeopleSearchAccess bit   = null 
 )
 AS
 
@@ -49657,6 +49742,7 @@ AS
 	, [NominatedCompanyPhone]
 	, [PreferredContactMethod]
 	, [AdvertiserLogoUrl]
+	, [AllowPeopleSearchAccess]
     FROM
 	[dbo].[Advertisers]
     WHERE 
@@ -49696,6 +49782,7 @@ AS
 	AND ([NominatedCompanyPhone] = @NominatedCompanyPhone OR @NominatedCompanyPhone IS NULL)
 	AND ([PreferredContactMethod] = @PreferredContactMethod OR @PreferredContactMethod IS NULL)
 	AND ([AdvertiserLogoUrl] = @AdvertiserLogoUrl OR @AdvertiserLogoUrl IS NULL)
+	AND ([AllowPeopleSearchAccess] = @AllowPeopleSearchAccess OR @AllowPeopleSearchAccess IS NULL)
 						
   END
   ELSE
@@ -49739,6 +49826,7 @@ AS
 	, [NominatedCompanyPhone]
 	, [PreferredContactMethod]
 	, [AdvertiserLogoUrl]
+	, [AllowPeopleSearchAccess]
     FROM
 	[dbo].[Advertisers]
     WHERE 
@@ -49778,6 +49866,7 @@ AS
 	OR ([NominatedCompanyPhone] = @NominatedCompanyPhone AND @NominatedCompanyPhone is not null)
 	OR ([PreferredContactMethod] = @PreferredContactMethod AND @PreferredContactMethod is not null)
 	OR ([AdvertiserLogoUrl] = @AdvertiserLogoUrl AND @AdvertiserLogoUrl is not null)
+	OR ([AllowPeopleSearchAccess] = @AllowPeopleSearchAccess AND @AllowPeopleSearchAccess is not null)
 	SELECT @@ROWCOUNT			
   END
 				
@@ -55333,7 +55422,8 @@ AS
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId]
+					[JobExternalId],
+					[ScreeningQuestionsTemplateId]
 				FROM
 					[dbo].[Jobs]
 					
@@ -55417,7 +55507,7 @@ AS
 				EXEC sp_executesql @SQL
 
 				-- Return paged results
-				SELECT O.[JobID], O.[SiteID], O.[WorkTypeID], O.[JobName], O.[Description], O.[FullDescription], O.[WebServiceProcessed], O.[ApplicationEmailAddress], O.[RefNo], O.[Visible], O.[DatePosted], O.[ExpiryDate], O.[Expired], O.[JobItemPrice], O.[Billed], O.[LastModified], O.[ShowSalaryDetails], O.[SalaryText], O.[AdvertiserID], O.[LastModifiedByAdvertiserUserId], O.[LastModifiedByAdminUserId], O.[JobItemTypeID], O.[ApplicationMethod], O.[ApplicationURL], O.[UploadMethod], O.[Tags], O.[JobTemplateID], O.[SearchFieldExtension], O.[AdvertiserJobTemplateLogoID], O.[CompanyName], O.[HashValue], O.[RequireLogonForExternalApplications], O.[ShowLocationDetails], O.[PublicTransport], O.[Address], O.[ContactDetails], O.[JobContactPhone], O.[JobContactName], O.[QualificationsRecognised], O.[ResidentOnly], O.[DocumentLink], O.[BulletPoint1], O.[BulletPoint2], O.[BulletPoint3], O.[HotJob], O.[JobFriendlyName], O.[SearchField], O.[ShowSalaryRange], O.[SalaryLowerBand], O.[SalaryUpperBand], O.[CurrencyID], O.[SalaryTypeID], O.[EnteredByAdvertiserUserID], O.[JobLatitude], O.[JobLongitude], O.[AddressStatus], O.[JobExternalId]
+				SELECT O.[JobID], O.[SiteID], O.[WorkTypeID], O.[JobName], O.[Description], O.[FullDescription], O.[WebServiceProcessed], O.[ApplicationEmailAddress], O.[RefNo], O.[Visible], O.[DatePosted], O.[ExpiryDate], O.[Expired], O.[JobItemPrice], O.[Billed], O.[LastModified], O.[ShowSalaryDetails], O.[SalaryText], O.[AdvertiserID], O.[LastModifiedByAdvertiserUserId], O.[LastModifiedByAdminUserId], O.[JobItemTypeID], O.[ApplicationMethod], O.[ApplicationURL], O.[UploadMethod], O.[Tags], O.[JobTemplateID], O.[SearchFieldExtension], O.[AdvertiserJobTemplateLogoID], O.[CompanyName], O.[HashValue], O.[RequireLogonForExternalApplications], O.[ShowLocationDetails], O.[PublicTransport], O.[Address], O.[ContactDetails], O.[JobContactPhone], O.[JobContactName], O.[QualificationsRecognised], O.[ResidentOnly], O.[DocumentLink], O.[BulletPoint1], O.[BulletPoint2], O.[BulletPoint3], O.[HotJob], O.[JobFriendlyName], O.[SearchField], O.[ShowSalaryRange], O.[SalaryLowerBand], O.[SalaryUpperBand], O.[CurrencyID], O.[SalaryTypeID], O.[EnteredByAdvertiserUserID], O.[JobLatitude], O.[JobLongitude], O.[AddressStatus], O.[JobExternalId], O.[ScreeningQuestionsTemplateId]
 				FROM
 				    [dbo].[Jobs] O,
 				    #PageIndex PageIndex
@@ -55578,7 +55668,9 @@ CREATE PROCEDURE dbo.Jobs_Insert
 
 	@AddressStatus int   ,
 
-	@JobExternalId varchar (50)  
+	@JobExternalId varchar (50)  ,
+
+	@ScreeningQuestionsTemplateId int   
 )
 AS
 
@@ -55642,6 +55734,7 @@ AS
 					,[JobLongitude]
 					,[AddressStatus]
 					,[JobExternalId]
+					,[ScreeningQuestionsTemplateId]
 					)
 				VALUES
 					(
@@ -55701,6 +55794,7 @@ AS
 					,@JobLongitude
 					,@AddressStatus
 					,@JobExternalId
+					,@ScreeningQuestionsTemplateId
 					)
 				
 				-- Get the identity value
@@ -55848,7 +55942,9 @@ CREATE PROCEDURE dbo.Jobs_Update
 
 	@AddressStatus int   ,
 
-	@JobExternalId varchar (50)  
+	@JobExternalId varchar (50)  ,
+
+	@ScreeningQuestionsTemplateId int   
 )
 AS
 
@@ -55915,6 +56011,7 @@ AS
 					,[JobLongitude] = @JobLongitude
 					,[AddressStatus] = @AddressStatus
 					,[JobExternalId] = @JobExternalId
+					,[ScreeningQuestionsTemplateId] = @ScreeningQuestionsTemplateId
 				WHERE
 [JobID] = @JobId 
 				
@@ -56049,7 +56146,8 @@ AS
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId]
+					[JobExternalId],
+					[ScreeningQuestionsTemplateId]
 				FROM
 					[dbo].[Jobs]
 				WHERE
@@ -56150,7 +56248,8 @@ AS
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId]
+					[JobExternalId],
+					[ScreeningQuestionsTemplateId]
 				FROM
 					[dbo].[Jobs]
 				WHERE
@@ -56251,7 +56350,8 @@ AS
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId]
+					[JobExternalId],
+					[ScreeningQuestionsTemplateId]
 				FROM
 					[dbo].[Jobs]
 				WHERE
@@ -56352,7 +56452,8 @@ AS
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId]
+					[JobExternalId],
+					[ScreeningQuestionsTemplateId]
 				FROM
 					[dbo].[Jobs]
 				WHERE
@@ -56453,7 +56554,8 @@ AS
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId]
+					[JobExternalId],
+					[ScreeningQuestionsTemplateId]
 				FROM
 					[dbo].[Jobs]
 				WHERE
@@ -56554,11 +56656,114 @@ AS
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId]
+					[JobExternalId],
+					[ScreeningQuestionsTemplateId]
 				FROM
 					[dbo].[Jobs]
 				WHERE
 					[SalaryTypeID] = @SalaryTypeId
+				
+				SELECT @@ROWCOUNT
+				SET ANSI_NULLS ON
+			
+
+GO
+SET QUOTED_IDENTIFIER ON 
+GO
+SET NOCOUNT ON
+GO
+SET ANSI_NULLS OFF 
+GO
+
+	
+
+-- Drop the dbo.Jobs_GetByScreeningQuestionsTemplateId procedure
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'dbo.Jobs_GetByScreeningQuestionsTemplateId') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+DROP PROCEDURE dbo.Jobs_GetByScreeningQuestionsTemplateId
+GO
+
+/*
+----------------------------------------------------------------------------------------------------
+
+-- Created By:  ()
+-- Purpose: Select records from the Jobs table through a foreign key
+----------------------------------------------------------------------------------------------------
+*/
+
+
+CREATE PROCEDURE dbo.Jobs_GetByScreeningQuestionsTemplateId
+(
+
+	@ScreeningQuestionsTemplateId int   
+)
+AS
+
+
+				SET ANSI_NULLS OFF
+				
+				SELECT
+					[JobID],
+					[SiteID],
+					[WorkTypeID],
+					[JobName],
+					[Description],
+					[FullDescription],
+					[WebServiceProcessed],
+					[ApplicationEmailAddress],
+					[RefNo],
+					[Visible],
+					[DatePosted],
+					[ExpiryDate],
+					[Expired],
+					[JobItemPrice],
+					[Billed],
+					[LastModified],
+					[ShowSalaryDetails],
+					[SalaryText],
+					[AdvertiserID],
+					[LastModifiedByAdvertiserUserId],
+					[LastModifiedByAdminUserId],
+					[JobItemTypeID],
+					[ApplicationMethod],
+					[ApplicationURL],
+					[UploadMethod],
+					[Tags],
+					[JobTemplateID],
+					[SearchFieldExtension],
+					[AdvertiserJobTemplateLogoID],
+					[CompanyName],
+					[HashValue],
+					[RequireLogonForExternalApplications],
+					[ShowLocationDetails],
+					[PublicTransport],
+					[Address],
+					[ContactDetails],
+					[JobContactPhone],
+					[JobContactName],
+					[QualificationsRecognised],
+					[ResidentOnly],
+					[DocumentLink],
+					[BulletPoint1],
+					[BulletPoint2],
+					[BulletPoint3],
+					[HotJob],
+					[JobFriendlyName],
+					[SearchField],
+					[ShowSalaryRange],
+					[SalaryLowerBand],
+					[SalaryUpperBand],
+					[CurrencyID],
+					[SalaryTypeID],
+					[EnteredByAdvertiserUserID],
+					[JobLatitude],
+					[JobLongitude],
+					[AddressStatus],
+					[JobExternalId],
+					[ScreeningQuestionsTemplateId]
+				FROM
+					[dbo].[Jobs]
+				WHERE
+					[ScreeningQuestionsTemplateId] = @ScreeningQuestionsTemplateId
 				
 				SELECT @@ROWCOUNT
 				SET ANSI_NULLS ON
@@ -56655,7 +56860,8 @@ AS
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId]
+					[JobExternalId],
+					[ScreeningQuestionsTemplateId]
 				FROM
 					[dbo].[Jobs]
 				WHERE
@@ -56756,7 +56962,8 @@ AS
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId]
+					[JobExternalId],
+					[ScreeningQuestionsTemplateId]
 				FROM
 					[dbo].[Jobs]
 				WHERE
@@ -56859,7 +57066,8 @@ AS
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId]
+					[JobExternalId],
+					[ScreeningQuestionsTemplateId]
 				FROM
 					[dbo].[Jobs]
 				WHERE
@@ -56963,7 +57171,8 @@ AS
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId]
+					[JobExternalId],
+					[ScreeningQuestionsTemplateId]
 				FROM
 					[dbo].[Jobs]
 				WHERE
@@ -57065,7 +57274,8 @@ AS
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId]
+					[JobExternalId],
+					[ScreeningQuestionsTemplateId]
 				FROM
 					[dbo].[Jobs]
 				WHERE
@@ -57180,7 +57390,8 @@ AS
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId]
+					[JobExternalId],
+					[ScreeningQuestionsTemplateId]
 				FROM
 					[dbo].[Jobs]
 				WHERE
@@ -57290,7 +57501,8 @@ AS
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId]
+					[JobExternalId],
+					[ScreeningQuestionsTemplateId]
 				FROM
 					[dbo].[Jobs]
 				WHERE
@@ -57398,7 +57610,8 @@ AS
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId]
+					[JobExternalId],
+					[ScreeningQuestionsTemplateId]
 				FROM
 					[dbo].[Jobs]
 				WHERE
@@ -57500,7 +57713,8 @@ AS
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId]
+					[JobExternalId],
+					[ScreeningQuestionsTemplateId]
 				FROM
 					[dbo].[Jobs]
 				WHERE
@@ -57650,7 +57864,9 @@ CREATE PROCEDURE dbo.Jobs_Find
 
 	@AddressStatus int   = null ,
 
-	@JobExternalId varchar (50)  = null 
+	@JobExternalId varchar (50)  = null ,
+
+	@ScreeningQuestionsTemplateId int   = null 
 )
 AS
 
@@ -57716,6 +57932,7 @@ AS
 	, [JobLongitude]
 	, [AddressStatus]
 	, [JobExternalId]
+	, [ScreeningQuestionsTemplateId]
     FROM
 	[dbo].[Jobs]
     WHERE 
@@ -57774,6 +57991,7 @@ AS
 	AND ([JobLongitude] = @JobLongitude OR @JobLongitude IS NULL)
 	AND ([AddressStatus] = @AddressStatus OR @AddressStatus IS NULL)
 	AND ([JobExternalId] = @JobExternalId OR @JobExternalId IS NULL)
+	AND ([ScreeningQuestionsTemplateId] = @ScreeningQuestionsTemplateId OR @ScreeningQuestionsTemplateId IS NULL)
 						
   END
   ELSE
@@ -57836,6 +58054,7 @@ AS
 	, [JobLongitude]
 	, [AddressStatus]
 	, [JobExternalId]
+	, [ScreeningQuestionsTemplateId]
     FROM
 	[dbo].[Jobs]
     WHERE 
@@ -57894,6 +58113,7 @@ AS
 	OR ([JobLongitude] = @JobLongitude AND @JobLongitude is not null)
 	OR ([AddressStatus] = @AddressStatus AND @AddressStatus is not null)
 	OR ([JobExternalId] = @JobExternalId AND @JobExternalId is not null)
+	OR ([ScreeningQuestionsTemplateId] = @ScreeningQuestionsTemplateId AND @ScreeningQuestionsTemplateId is not null)
 	SELECT @@ROWCOUNT			
   END
 				
@@ -66246,7 +66466,8 @@ AS
 					[ExternalPDFFilename],
 					[FileDownloaded],
 					[AppliedWith],
-					[ScreeningQuestionaireXML]
+					[ScreeningQuestionaireXML],
+					[ScreeningQuestionsGuid]
 				FROM
 					[dbo].[JobApplication]
 					
@@ -66330,7 +66551,7 @@ AS
 				EXEC sp_executesql @SQL
 
 				-- Return paged results
-				SELECT O.[JobApplicationID], O.[ApplicationDate], O.[JobID], O.[MemberID], O.[MemberResumeFile], O.[MemberCoverLetterFile], O.[ApplicationStatus], O.[JobAppValidateID], O.[SiteID_Referral], O.[URL_Referral], O.[ApplicantGrade], O.[LastViewedDate], O.[FirstName], O.[Surname], O.[EmailAddress], O.[MobilePhone], O.[MemberNote], O.[AdvertiserNote], O.[JobArchiveID], O.[Draft], O.[JobApplicationTypeID], O.[ExternalXMLFilename], O.[CustomQuestionnaireXML], O.[ExternalPDFFilename], O.[FileDownloaded], O.[AppliedWith], O.[ScreeningQuestionaireXML]
+				SELECT O.[JobApplicationID], O.[ApplicationDate], O.[JobID], O.[MemberID], O.[MemberResumeFile], O.[MemberCoverLetterFile], O.[ApplicationStatus], O.[JobAppValidateID], O.[SiteID_Referral], O.[URL_Referral], O.[ApplicantGrade], O.[LastViewedDate], O.[FirstName], O.[Surname], O.[EmailAddress], O.[MobilePhone], O.[MemberNote], O.[AdvertiserNote], O.[JobArchiveID], O.[Draft], O.[JobApplicationTypeID], O.[ExternalXMLFilename], O.[CustomQuestionnaireXML], O.[ExternalPDFFilename], O.[FileDownloaded], O.[AppliedWith], O.[ScreeningQuestionaireXML], O.[ScreeningQuestionsGuid]
 				FROM
 				    [dbo].[JobApplication] O,
 				    #PageIndex PageIndex
@@ -66431,7 +66652,9 @@ CREATE PROCEDURE dbo.JobApplication_Insert
 
 	@AppliedWith varchar (255)  ,
 
-	@ScreeningQuestionaireXml nvarchar (MAX)  
+	@ScreeningQuestionaireXml nvarchar (MAX)  ,
+
+	@ScreeningQuestionsGuid uniqueidentifier   
 )
 AS
 
@@ -66465,6 +66688,7 @@ AS
 					,[FileDownloaded]
 					,[AppliedWith]
 					,[ScreeningQuestionaireXML]
+					,[ScreeningQuestionsGuid]
 					)
 				VALUES
 					(
@@ -66494,6 +66718,7 @@ AS
 					,@FileDownloaded
 					,@AppliedWith
 					,@ScreeningQuestionaireXml
+					,@ScreeningQuestionsGuid
 					)
 				
 				-- Get the identity value
@@ -66581,7 +66806,9 @@ CREATE PROCEDURE dbo.JobApplication_Update
 
 	@AppliedWith varchar (255)  ,
 
-	@ScreeningQuestionaireXml nvarchar (MAX)  
+	@ScreeningQuestionaireXml nvarchar (MAX)  ,
+
+	@ScreeningQuestionsGuid uniqueidentifier   
 )
 AS
 
@@ -66618,6 +66845,7 @@ AS
 					,[FileDownloaded] = @FileDownloaded
 					,[AppliedWith] = @AppliedWith
 					,[ScreeningQuestionaireXML] = @ScreeningQuestionaireXml
+					,[ScreeningQuestionsGuid] = @ScreeningQuestionsGuid
 				WHERE
 [JobApplicationID] = @JobApplicationId 
 				
@@ -66722,7 +66950,8 @@ AS
 					[ExternalPDFFilename],
 					[FileDownloaded],
 					[AppliedWith],
-					[ScreeningQuestionaireXML]
+					[ScreeningQuestionaireXML],
+					[ScreeningQuestionsGuid]
 				FROM
 					[dbo].[JobApplication]
 				WHERE
@@ -66791,7 +67020,8 @@ AS
 					[ExternalPDFFilename],
 					[FileDownloaded],
 					[AppliedWith],
-					[ScreeningQuestionaireXML]
+					[ScreeningQuestionaireXML],
+					[ScreeningQuestionsGuid]
 				FROM
 					[dbo].[JobApplication]
 				WHERE
@@ -66859,7 +67089,8 @@ AS
 					[ExternalPDFFilename],
 					[FileDownloaded],
 					[AppliedWith],
-					[ScreeningQuestionaireXML]
+					[ScreeningQuestionaireXML],
+					[ScreeningQuestionsGuid]
 				FROM
 					[dbo].[JobApplication]
 				WHERE
@@ -66927,7 +67158,8 @@ AS
 					[ExternalPDFFilename],
 					[FileDownloaded],
 					[AppliedWith],
-					[ScreeningQuestionaireXML]
+					[ScreeningQuestionaireXML],
+					[ScreeningQuestionsGuid]
 				FROM
 					[dbo].[JobApplication]
 				WHERE
@@ -66995,7 +67227,8 @@ AS
 					[ExternalPDFFilename],
 					[FileDownloaded],
 					[AppliedWith],
-					[ScreeningQuestionaireXML]
+					[ScreeningQuestionaireXML],
+					[ScreeningQuestionsGuid]
 				FROM
 					[dbo].[JobApplication]
 				WHERE
@@ -67085,7 +67318,9 @@ CREATE PROCEDURE dbo.JobApplication_Find
 
 	@AppliedWith varchar (255)  = null ,
 
-	@ScreeningQuestionaireXml nvarchar (MAX)  = null 
+	@ScreeningQuestionaireXml nvarchar (MAX)  = null ,
+
+	@ScreeningQuestionsGuid uniqueidentifier   = null 
 )
 AS
 
@@ -67121,6 +67356,7 @@ AS
 	, [FileDownloaded]
 	, [AppliedWith]
 	, [ScreeningQuestionaireXML]
+	, [ScreeningQuestionsGuid]
     FROM
 	[dbo].[JobApplication]
     WHERE 
@@ -67151,6 +67387,7 @@ AS
 	AND ([FileDownloaded] = @FileDownloaded OR @FileDownloaded IS NULL)
 	AND ([AppliedWith] = @AppliedWith OR @AppliedWith IS NULL)
 	AND ([ScreeningQuestionaireXML] = @ScreeningQuestionaireXml OR @ScreeningQuestionaireXml IS NULL)
+	AND ([ScreeningQuestionsGuid] = @ScreeningQuestionsGuid OR @ScreeningQuestionsGuid IS NULL)
 						
   END
   ELSE
@@ -67183,6 +67420,7 @@ AS
 	, [FileDownloaded]
 	, [AppliedWith]
 	, [ScreeningQuestionaireXML]
+	, [ScreeningQuestionsGuid]
     FROM
 	[dbo].[JobApplication]
     WHERE 
@@ -67213,6 +67451,7 @@ AS
 	OR ([FileDownloaded] = @FileDownloaded AND @FileDownloaded is not null)
 	OR ([AppliedWith] = @AppliedWith AND @AppliedWith is not null)
 	OR ([ScreeningQuestionaireXML] = @ScreeningQuestionaireXml AND @ScreeningQuestionaireXml is not null)
+	OR ([ScreeningQuestionsGuid] = @ScreeningQuestionsGuid AND @ScreeningQuestionsGuid is not null)
 	SELECT @@ROWCOUNT			
   END
 				
@@ -69588,7 +69827,7 @@ AS
                         [LastModifiedByAdminUserId],
                         [JobItemTypeID],
                         [ApplicationMethod],
-                        [ApplicationUrl],
+                        [ApplicationURL],
                         [UploadMethod],
                         [Tags],
                         [JobTemplateID],
@@ -69618,7 +69857,7 @@ AS
                         [Profile],
                         [RequireLogonForExternalApplication],
                         [AdvertiserLogo],
-                        [AdvertiserLogoUrl],
+                        [AdvertiserLogoURL],
                         [SiteWorkTypeName],
                         [CurrencySymbol],
                         [SalaryUpperBand],
@@ -69757,7 +69996,7 @@ AS
                         [LastModifiedByAdminUserId],
                         [JobItemTypeID],
                         [ApplicationMethod],
-                        [ApplicationUrl],
+                        [ApplicationURL],
                         [UploadMethod],
                         [Tags],
                         [JobTemplateID],
@@ -69787,7 +70026,7 @@ AS
                         [Profile],
                         [RequireLogonForExternalApplication],
                         [AdvertiserLogo],
-                        [AdvertiserLogoUrl],
+                        [AdvertiserLogoURL],
                         [SiteWorkTypeName],
                         [CurrencySymbol],
                         [SalaryUpperBand],
@@ -69952,7 +70191,8 @@ AS
                         [AddressStatus],
                         [HasAdvertiserLogo],
                         [CustomXML],
-                        [Address]
+                        [Address],
+                        [PublicTransport]
                     FROM
                         [dbo].[ViewJobSearch]
                         

@@ -175,7 +175,19 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\References\Intelligencia.UrlRewriter.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net-loggly, Version=7.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net-loggly.7.2.1\lib\net40\log4net-loggly.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -443,6 +455,27 @@
     </Compile>
     <Compile Include="Admin\NewsTypeEdit.aspx.designer.cs">
       <DependentUpon>NewsTypeEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\reports\MemberActivity.aspx.cs">
+      <DependentUpon>MemberActivity.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\reports\MemberActivity.aspx.designer.cs">
+      <DependentUpon>MemberActivity.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ScreeningQuestionsTemplate.aspx.cs">
+      <DependentUpon>ScreeningQuestionsTemplate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ScreeningQuestionsTemplate.aspx.designer.cs">
+      <DependentUpon>ScreeningQuestionsTemplate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ScreeningQuestionsTemplateEdit.aspx.cs">
+      <DependentUpon>ScreeningQuestionsTemplateEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ScreeningQuestionsTemplateEdit.aspx.designer.cs">
+      <DependentUpon>ScreeningQuestionsTemplateEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\SiteBusinessType.aspx.cs">
       <DependentUpon>SiteBusinessType.aspx</DependentUpon>
@@ -815,6 +848,20 @@
     <Compile Include="advertiser\ResendEmailValidation.aspx.designer.cs">
       <DependentUpon>ResendEmailValidation.aspx</DependentUpon>
     </Compile>
+    <Compile Include="advertiser\ScreeningQuestionsTemplates.aspx.cs">
+      <DependentUpon>ScreeningQuestionsTemplates.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="advertiser\ScreeningQuestionsTemplates.aspx.designer.cs">
+      <DependentUpon>ScreeningQuestionsTemplates.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="advertiser\ScreeningQuestionTemplateEdit.aspx.cs">
+      <DependentUpon>ScreeningQuestionTemplateEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="advertiser\ScreeningQuestionTemplateEdit.aspx.designer.cs">
+      <DependentUpon>ScreeningQuestionTemplateEdit.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Codes\CommonAdvancedSearch.cs" />
     <Compile Include="App_Codes\IoCHelper.cs" />
     <Compile Include="App_Code\**\*.cs">
@@ -919,6 +966,9 @@
     <Content Include="Admin\CustomQuestionsEdit.aspx" />
     <Content Include="Admin\DynamicPageRev.aspx" />
     <Content Include="Admin\DynamicPageRevisions.aspx" />
+    <Content Include="Admin\reports\MemberActivity.aspx" />
+    <Content Include="Admin\ScreeningQuestionsTemplate.aspx" />
+    <Content Include="Admin\ScreeningQuestionsTemplateEdit.aspx" />
     <Content Include="Admin\scripts\images\design\menu-yellow-contributer.gif" />
     <Content Include="Admin\Industry.aspx" />
     <Content Include="Admin\IndustryEdit.aspx" />
@@ -941,6 +991,8 @@
     <Content Include="Admin\SiteNewsTypeEdit.aspx" />
     <Content Include="Admin\SiteSummary.aspx" />
     <Content Include="Admin\SiteSummaryEdit.aspx" />
+    <Content Include="Admin\styles\dashboard.css" />
+    <Content Include="Admin\styles\dynamicPageRevisions\styles.css" />
     <Content Include="Admin\TermsAndConditions.aspx" />
     <Content Include="Admin\advertiser\AdvertiserCredits.aspx" />
     <Content Include="Admin\advertiser\AdvertiserJobPricing.aspx" />
@@ -1083,6 +1135,8 @@
     <Content Include="advertiser\ProductSelect.aspx" />
     <Content Include="advertiser\Reports.aspx" />
     <Content Include="advertiser\ResendEmailValidation.aspx" />
+    <Content Include="advertiser\ScreeningQuestionsTemplates.aspx" />
+    <Content Include="advertiser\ScreeningQuestionTemplateEdit.aspx" />
     <Content Include="App_GlobalResources\InvoiceDetail.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1423,7 +1477,6 @@
     <Content Include="member\sso\monash\login.aspx" />
     <Content Include="pages\Preview.aspx" />
     <Content Include="References\HtmlToOpenXml.dll" />
-    <Content Include="References\HtmlToOpenXml.pdb" />
     <Content Include="References\HtmlToOpenXml.XML" />
     <Content Include="scripts\applications\aicd_scholarship.js" />
     <Content Include="scripts\bootstrap-datepicker.js" />
@@ -1446,6 +1499,9 @@
     <Content Include="styles\member\settings.css" />
     <Content Include="styles\owl.carousel.css" />
     <Content Include="styles\report.css" />
+    <Content Include="styles\ScreeningQuestions\style.css" />
+    <Content Include="styles\ScreeningQuestions\theme-responsive.css" />
+    <Content Include="styles\ScreeningQuestions\theme-style.css" />
     <Content Include="styles\strength.css" />
     <Content Include="usercontrols\advertiser\ucJobsSuspended.ascx" />
     <Content Include="usercontrols\advertiser\ucJobsDeclined.ascx" />
@@ -1932,20 +1988,6 @@
     </Compile>
     <Compile Include="Admin\EnquiriesEdit.aspx.designer.cs">
       <DependentUpon>EnquiriesEdit.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Exceptions.aspx.cs">
-      <DependentUpon>Exceptions.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Exceptions.aspx.designer.cs">
-      <DependentUpon>Exceptions.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\ExceptionView.aspx.cs">
-      <DependentUpon>ExceptionView.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\ExceptionView.aspx.designer.cs">
-      <DependentUpon>ExceptionView.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\FilesEdit.aspx.cs">
       <DependentUpon>FilesEdit.aspx</DependentUpon>
@@ -2745,6 +2787,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>language_13.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\language_5_Adecco.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>language_5_Adecco.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\language_English_Test_Sample.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>language_English_Test_Sample.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\language_3.designer.cs">
       <AutoGen>True</AutoGen>
@@ -3864,8 +3916,6 @@
     <Content Include="Admin\EducationsEdit.aspx" />
     <Content Include="Admin\EmailTemplates.aspx" />
     <Content Include="Admin\EmailTemplatesEdit.aspx" />
-    <Content Include="Admin\Exceptions.aspx" />
-    <Content Include="Admin\ExceptionView.aspx" />
     <Content Include="Admin\GetAdminLogo.aspx" />
     <Content Include="Admin\scripts\images\ajax-loader.gif" />
     <Content Include="Admin\scripts\images\file.gif" />
@@ -4629,6 +4679,19 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>language_13.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\language_English_Test_Sample.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>language_English_Test_Sample.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\language_5_Adecco.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>language_5_Adecco.designer.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSHARP.Targets" />

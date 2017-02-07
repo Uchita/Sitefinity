@@ -2,23 +2,23 @@
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
 
   <siteMapNode url="" title="Admin"  description="">
-    <siteMapNode url="~/admin/default.aspx" title="Home"  description="" />
+    <siteMapNode url="~/admin/default.aspx" title="Home"  description="" iconLogo="fa fa-home" />
     
-    <siteMapNode title="Dynamic Pages"  description="" >
+    <siteMapNode title="Dynamic Pages"  description="" iconLogo="fa fa-picture-o" >
       <siteMapNode url="~/admin/dynamicpages.aspx" title="Published Pages"  description="" />
       <siteMapNode url="~/admin/dynamicpagerev.aspx" title="Draft/Pending Revisions"  description="" />
     </siteMapNode>
 
 
-    <siteMapNode url="" title="Advertisers"  description="">
+    <siteMapNode url="" title="Advertisers"  description="" iconLogo="fa fa-comment-o">
       <siteMapNode url="~/admin/consultants.aspx" title="Consultants"  description="" />
     </siteMapNode>
 
-    <siteMapNode url="" title="File Management"  description="">
+    <siteMapNode url="" title="File Management"  description="" iconLogo="fa fa-files-o">
       <siteMapNode url="~/admin/filemanager.aspx" title="File Manager"  description="" />
     </siteMapNode>
     
-    <siteMapNode url="" title="News Categories"  description="">
+    <siteMapNode url="" title="News Categories"  description="" iconLogo="fa fa-folder">
       <siteMapNode url="~/admin/newscategories.aspx" title="News Categories"  description="" />
       <siteMapNode url="~/admin/sitenewsindustry.aspx" title="News Industry"  description="" />
       <siteMapNode url="~/admin/sitenewstype.aspx" title="News Type"  description="" />

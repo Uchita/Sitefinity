@@ -18,10 +18,19 @@ using JXTPortal;
 
 using System.Web.Script.Serialization;
 using JXTPortal.Common;
+using System.IO;
+using SectionIO;
 #endregion
 
 public partial class SitesEdit : System.Web.UI.Page
 {
+   
+    public ICacheFlusher CacheFlusher {get;set;}
+
+    public SitesEdit()
+    {
+    }
+
     #region Properties
 
     protected string URLPOSTFIX = ConfigurationManager.AppSettings[PortalConstants.WebConfigurationKeys.WEBSITEURLPOSTFIX];
@@ -71,6 +80,7 @@ public partial class SitesEdit : System.Web.UI.Page
 
     #endregion
 
+
     #region Page Event handlers
 
     protected void Page_Init(object sender, EventArgs e)
@@ -80,6 +90,7 @@ public partial class SitesEdit : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+
         if (!Page.IsPostBack)
         {
             txtSiteURL.Attributes.Add("onkeyup", "javascript:SetStagingUrl(\"" + txtSiteURL.ClientID + "\", \"" + txtStagingSiteUrl.ClientID + "\")");
@@ -143,21 +154,15 @@ public partial class SitesEdit : System.Web.UI.Page
 
             if ((flAdminSiteLogo.PostedFile != null) && flAdminSiteLogo.PostedFile.ContentLength > 0)
             {
-                System.IO.MemoryStream objOutputMemorySTream = new System.IO.MemoryStream();
-
-                byte[] abytFile = new byte[Convert.ToInt32(flAdminSiteLogo.PostedFile.ContentLength)];
-                objOutputMemorySTream.Position = 0;
-                objOutputMemorySTream.Read(abytFile, 0, abytFile.Length);
-
-                System.Drawing.Image objOriginalImage = System.Drawing.Image.FromStream(objOutputMemorySTream);
+                System.Drawing.Image originalImage = System.Drawing.Image.FromStream(flAdminSiteLogo.PostedFile.InputStream);
 
                 FtpClient ftpclient = new FtpClient();
                 string errormessage = string.Empty;
-                string extension = Utils.GetImageExtension(objOriginalImage);
+                string extension = Utils.GetImageExtension(originalImage);
                 ftpclient.Host = ConfigurationManager.AppSettings["FTPFileManager"];
                 ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
                 ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-                ftpclient.UploadFileFromStream(objOutputMemorySTream, string.Format("{0}/{1}/Sites_{2}.{3}", ftpclient.Host, ConfigurationManager.AppSettings["SitesFolder"], site.SiteId, extension), out errormessage);
+                ftpclient.UploadFileFromStream(flAdminSiteLogo.PostedFile.InputStream, string.Format("{0}/{1}/Sites_{2}.{3}", ftpclient.Host, ConfigurationManager.AppSettings["SitesFolder"], site.SiteId, extension), out errormessage);
 
                 if (string.IsNullOrWhiteSpace(errormessage))
                 {
@@ -176,9 +181,14 @@ public partial class SitesEdit : System.Web.UI.Page
             site.Dispose();
         }
 
-        if (String.IsNullOrEmpty(ltlMessage.Text))
-            Response.Redirect("sites.aspx");
+        String siteUrl = string.Format("{0}://{1}", Request.Url.Scheme, Request.Url.Host);
+        String path = "sites";
+        String siteLogoName = string.Format("Site_{0}.png", site.SiteId);
 
+        CacheFlusher.FlushImage(siteUrl, path, siteLogoName);
+
+        if (String.IsNullOrEmpty(ltlMessage.Text))
+            Response.Redirect("sites.aspx");      
     }
 
     protected void btnReturn_Click(object sender, EventArgs e)
@@ -300,7 +310,7 @@ public partial class SitesEdit : System.Web.UI.Page
             sitemap.site.sitename = s.SiteName;
             sitemap.site.siteurl = s.SiteUrl;
 
-            string strDynamicUrl = string.Empty;
+            string dynamicUrl = string.Empty;
             foreach (JXTPortal.Entities.DynamicPages dp in ldp)
             {
                 if (dp.ParentDynamicPageId == 0 && dp.Sequence == CampaignSequenceNumber)
@@ -310,10 +320,10 @@ public partial class SitesEdit : System.Web.UI.Page
                     // Only if checked to display on Sitemap.
                     if (dp.OnSiteMap)
                     {
-                        strDynamicUrl = dps.GetDynamicPageFullUrl(s.SiteUrl, dp, gs.WwwRedirect, gs.EnableSsl).ToLower();
+                        dynamicUrl = dps.GetDynamicPageFullUrl(s.SiteUrl, dp, gs.WwwRedirect, gs.EnableSsl).ToLower();
 
                         DynamicPageContainer dpc = new DynamicPageContainer();
-                        dpc.loc = strDynamicUrl;
+                        dpc.loc = dynamicUrl;
                         dpc.priority = (dp.PageName != null && dp.PageName.ToLower().Equals("homepage") ? "1" : "0.7");
                         dpc.changefreq = "weekly";
 
@@ -329,8 +339,35 @@ public partial class SitesEdit : System.Web.UI.Page
 
             Response.OutputStream.Write(file, 0, file.Length);
             Response.ContentType = "application/json";
-            Response.End();
+            Response.End();            
         }
+    }
+
+    private string GetSiteFTPFolder()
+    {
+        string ftpFolder = string.Empty;
+
+        using (var siteGlobalSettings = GlobalSettingsService.GetBySiteId(SiteId))
+        {
+            var siteSettings = siteGlobalSettings.FirstOrDefault();
+            
+            if (siteSettings == null)
+            {
+                Response.Redirect("/admin/sites.aspx");
+            }
+
+            ftpFolder = siteSettings.GlobalFolder;
+
+            //if doesn't exist prompt and save
+            if (string.IsNullOrWhiteSpace(ftpFolder))
+            {
+                //Prompt and save
+                string script = "alert(\"Global FTP Folder Field is Empty, please update before attempting to flush cache\"); location.href=\"/admin/globalsettingsedit.aspx\"";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "test", script, true);
+            }
+        }
+
+        return ftpFolder;
     }
 
     internal class SitemapContainer
@@ -358,6 +395,8 @@ public partial class SitesEdit : System.Web.UI.Page
         public string priority;
         public string changefreq;
     }
+
+    
 }
 
 

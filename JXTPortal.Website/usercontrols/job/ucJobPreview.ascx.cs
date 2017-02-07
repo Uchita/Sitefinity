@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using System.Xml;
 using JXTPortal.Entities;
 using JXTPortal.Common;
+using JXTPortal.Common.Extensions;
 using System.Configuration;
 
 namespace JXTPortal.Website.usercontrols.job
@@ -421,9 +422,10 @@ namespace JXTPortal.Website.usercontrols.job
 
                                 // Advertiser Job Template Logo
                                 string strAdvertiserLogo = string.Empty;
-                                if (job.AdvertiserJobTemplateLogoId.HasValue && job.AdvertiserJobTemplateLogoId.Value > 0)
-                                    strAdvertiserLogo = String.Format(@"<img src='/getfile.aspx?advertiserjobtemplatelogoid={0}' alt='{1}' />",
+                                if (job.AdvertiserJobTemplateLogoId.GetValueOrDefault(0) > 0)
+                                    strAdvertiserLogo = String.Format(@"<img src='/getfile.aspx?advertiserjobtemplatelogoid={0}&ver={1}' alt='{2}' />",
                                                                         job.AdvertiserJobTemplateLogoId.Value,
+                                                                        job.LastModified.ToEpocTimestamp(),
                                                                         job.CompanyName);
 
                                 //replace the advertiser logo
@@ -512,30 +514,32 @@ namespace JXTPortal.Website.usercontrols.job
 
                                 using (TList<Consultants> consultants = ConsultantsService.GetPaged(string.Format("SiteId IN ({0}) and Email = '{1}' and Valid = 1", sSiteId, job.ApplicationEmailAddress.Replace("'", "''")), string.Empty, 1, 0, out consultantcount))
                                 {
-                                    if (consultants.Count > 0)
+                                    var consultant = consultants.FirstOrDefault();
+                                    
+                                    if (consultant != null)
                                     {
-                                        firstname = HttpUtility.HtmlEncode(consultants[0].FirstName);
-                                        lastname = HttpUtility.HtmlEncode(consultants[0].LastName);
-                                        consultantemail = HttpUtility.HtmlEncode(consultants[0].Email);
-                                        consultantphone = HttpUtility.HtmlEncode(consultants[0].Phone);
+                                        firstname = HttpUtility.HtmlEncode(consultant.FirstName);
+                                        lastname = HttpUtility.HtmlEncode(consultant.LastName);
+                                        consultantemail = HttpUtility.HtmlEncode(consultant.Email);
+                                        consultantphone = HttpUtility.HtmlEncode(consultant.Phone);
 
-                                        if (!string.IsNullOrWhiteSpace(consultants[0].ConsultantImageUrl))
+                                        if (!string.IsNullOrWhiteSpace(consultant.ConsultantImageUrl))
                                         {
-                                            consultantimageurl = string.Format("/media/{0}/{1}", ConfigurationManager.AppSettings["ConsultantsFolder"], consultants[0].ConsultantImageUrl);
+                                            consultantimageurl = string.Format("/media/{0}/{1}?ver={2}", ConfigurationManager.AppSettings["ConsultantsFolder"], consultant.ConsultantImageUrl, consultant.LastModified.ToEpocTimestamp());
                                         }
                                         else
                                         {
-                                            if (consultants[0].ImageUrl != null)
+                                            if (consultant.ImageUrl != null)
                                             {
-                                                consultantimageurl = "/getfile.aspx?consultantid=" + consultants[0].ConsultantId.ToString();
+                                                consultantimageurl = string.Format("/getfile.aspx?consultantid={0}&ver={1}", consultant.ConsultantId.ToString(), consultant.LastModified.ToEpocTimestamp());
                                             }
                                         }
 
-                                        if (!string.IsNullOrWhiteSpace(consultants[0].ConsultantsXml))
+                                        if (!string.IsNullOrWhiteSpace(consultant.ConsultantsXml))
                                         {
                                             XmlDocument langxml = new XmlDocument();
 
-                                            langxml.LoadXml(consultants[0].ConsultantsXml);
+                                            langxml.LoadXml(consultant.ConsultantsXml);
 
                                             XmlNodeList langlist = langxml.GetElementsByTagName("Language");
                                             foreach (XmlNode langnode in langlist)
@@ -593,7 +597,7 @@ namespace JXTPortal.Website.usercontrols.job
                                     hLinkJob.Text = job.JobName;
                                     hLinkJob.NavigateUrl = Utils.GetJobUrl(job.JobId, job.JobFriendlyName);
                                     hLinkProfession.Text = HttpUtility.HtmlEncode(ProfessionService.GetTranslatedProfession(job.ProfessionId, SessionData.Language.LanguageId, SessionData.Site.UseCustomProfessionRole).ProfessionName);
-                                    hLinkProfession.NavigateUrl = string.Format("/advancedsearch.aspx?search=1&amp;ProfessionID={0}", siteprofessions.Tables[0].Rows[0]["ProfessionID"]);
+                                    hLinkProfession.NavigateUrl = string.Format("/advancedsearch.aspx?search=1&ProfessionID={0}", siteprofessions.Tables[0].Rows[0]["ProfessionID"]);
 
                                     //if (!job.ShowSalaryRange)
                                     //{
@@ -671,32 +675,32 @@ namespace JXTPortal.Website.usercontrols.job
                                     // Advertiser Job Template Logo
                                     string strAdvertiserLogo = string.Empty;
 
-                                    if (job.AdvertiserJobTemplateLogoId.HasValue)
+                                    if (job.AdvertiserJobTemplateLogoId.GetValueOrDefault(0) > 0)
                                     {
                                         using (AdvertiserJobTemplateLogo logo = AdvertiserJobTemplateLogoService.GetByAdvertiserJobTemplateLogoId(job.AdvertiserJobTemplateLogoId.Value))
                                         {
                                             if (!string.IsNullOrWhiteSpace(logo.JobTemplateLogoUrl))
                                             {
-                                                strAdvertiserLogo = String.Format(@"<img src='/media/{0}/{1}' alt='{2}' />",
+                                                strAdvertiserLogo = String.Format(@"<img src='/media/{0}/{1}?ver={2}' alt='{3}' />",
                                                                                             ConfigurationManager.AppSettings["AdvertiserJobTemplateLogoFolder"],
                                                                                             logo.JobTemplateLogoUrl,
+                                                                                            job.LastModified.ToEpocTimestamp(),
                                                                                             job.CompanyName);
                                             }
                                             else
                                             {
                                                 if (logo.JobTemplateLogo != null)
                                                 {
-                                                    if (job.AdvertiserJobTemplateLogoId.HasValue && job.AdvertiserJobTemplateLogoId.Value > 0)
-                                                        strAdvertiserLogo = String.Format(@"<img src='/getfile.aspx?advertiserjobtemplatelogoid={0}' alt='{1}' />",
+                                                    if (job.AdvertiserJobTemplateLogoId.GetValueOrDefault(0) > 0)
+                                                        strAdvertiserLogo = String.Format(@"<img src='/getfile.aspx?advertiserjobtemplatelogoid={0}&ver={1}' alt='{2}' />",
                                                                                             job.AdvertiserJobTemplateLogoId.Value,
+                                                                                            job.LastModified.ToEpocTimestamp(),
                                                                                             job.CompanyName);
                                                 }
                                             }
 
                                         }
                                     }
-
-                                    
 
                                     //replace the advertiser logo
                                     litJobPreview.Text = litJobPreview.Text.Replace("{AdvertiserLogo}", strAdvertiserLogo);
@@ -723,16 +727,16 @@ namespace JXTPortal.Website.usercontrols.job
                                         jobowner = HttpUtility.HtmlEncode(consultants[0].FirstName);
                                         consultantemail = HttpUtility.HtmlEncode(consultants[0].Email);
                                         consultantphone = HttpUtility.HtmlEncode(consultants[0].Phone);
-                                        
+
                                         if (!string.IsNullOrWhiteSpace(consultants[0].ConsultantImageUrl))
                                         {
-                                            consultantimageurl = string.Format("/media/{0}/{1}", ConfigurationManager.AppSettings["ConsultantsFolder"], consultants[0].ConsultantImageUrl);
+                                            consultantimageurl = string.Format("/media/{0}/{1}?ver={2}", ConfigurationManager.AppSettings["ConsultantsFolder"], consultants[0].ConsultantImageUrl, consultants[0].LastModified.ToEpocTimestamp());
                                         }
                                         else
                                         {
                                             if (consultants[0].ImageUrl != null)
                                             {
-                                                consultantimageurl = "/getfile.aspx?consultantid=" + consultants[0].ConsultantId.ToString();
+                                                consultantimageurl = string.Format("/getfile.aspx?consultantid={0}&ver={1}", consultants[0].ConsultantId, consultants[0].LastModified.ToEpocTimestamp());
                                             }
                                         }
                                     }
@@ -762,6 +766,21 @@ namespace JXTPortal.Website.usercontrols.job
             //Do any translate according to the selected language
             if (SessionData.Language.LanguageId != (int)PortalEnums.Languages.Language.English)
             {
+                using (Entities.SiteProfession siteProfession = SiteProfessionService.GetTranslatedProfessionById(professionID, SessionData.Site.UseCustomProfessionRole))
+                using (Entities.SiteRoles siteRole = SiteRoleService.GetTranslatedRolesById(roleID, professionID, SessionData.Site.UseCustomProfessionRole))
+                using (Entities.SiteWorkType siteWorkType = SiteWorkTypeService.GetTranslatedWorkTypesById(worktypeID))
+                {
+                    //Profession
+                    templateHTML = (siteProfession != null ? templateHTML.Replace("{SiteProfessionName}", siteProfession.SiteProfessionName) : templateHTML);
+                    //Role
+                    templateHTML = (siteRole != null ? templateHTML.Replace("{SiteRoleName}", siteRole.SiteRoleName) : templateHTML);
+                    //Worktype
+                    templateHTML = (siteWorkType != null ? templateHTML.Replace("{SiteWorkTypeName}", siteWorkType.SiteWorkTypeName) : templateHTML);
+                }
+            }
+
+            if (SessionData.Language.LanguageId != SessionData.Site.DefaultLanguageId)
+            {
                 //get the country ID
                 int location_countryID = 0;
                 using (Entities.Location location = new LocationService().GetByLocationId(locationID))
@@ -770,18 +789,11 @@ namespace JXTPortal.Website.usercontrols.job
                         location_countryID = location.CountryId;
                 }
 
-                using (Entities.SiteProfession siteProfession = SiteProfessionService.GetTranslatedProfessionById(professionID, SessionData.Site.UseCustomProfessionRole))
-                using (Entities.SiteRoles siteRole = SiteRoleService.GetTranslatedRolesById(roleID, professionID, SessionData.Site.UseCustomProfessionRole))
-                using (Entities.SiteWorkType siteWorkType = SiteWorkTypeService.GetTranslatedWorkTypesById(worktypeID))
+
                 using (Entities.SiteLocation siteLocation = SiteLocationService.GetTranslatedLocation(locationID, location_countryID))
                 using (Entities.SiteArea siteArea = SiteAreaService.GetTranslatedArea(areaID, locationID, SessionData.Site.SiteId))
                 {
-                    //Profession
-                    templateHTML = (siteProfession != null ? templateHTML.Replace("{SiteProfessionName}", siteProfession.SiteProfessionName) : templateHTML);
-                    //Role
-                    templateHTML = (siteRole != null ? templateHTML.Replace("{SiteRoleName}", siteRole.SiteRoleName) : templateHTML);
-                    //Worktype
-                    templateHTML = (siteWorkType != null ? templateHTML.Replace("{SiteWorkTypeName}", siteWorkType.SiteWorkTypeName) : templateHTML);
+
                     //Location
                     templateHTML = (siteLocation != null ? templateHTML.Replace("{SiteLocationName}", siteLocation.SiteLocationName) : templateHTML);
                     //Area

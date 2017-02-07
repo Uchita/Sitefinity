@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.IO;
+using log4net;
 
 namespace JXTPostDataToFTP
 {
@@ -9,12 +7,25 @@ namespace JXTPostDataToFTP
     {
         static void Main(string[] args)
         {
+            ILog _logger = LogManager.GetLogger("PostDataToFTP");
 
-            new MemberXMLGenerator().GenerateMemberXML();
+            if (args == null)
+            {
+                _logger.Warn("Cannot run application without config files passed in as a parameter");
+                return;
+            }
 
+            foreach (string configFile in args)
+            {
+                if (!File.Exists(configFile))
+                {
+                    _logger.ErrorFormat("Cannot find config file. {0}", configFile);
+                    continue;
+                }
+
+                new MemberXMLGenerator().GenerateMemberXML(configFile);
+            }
         }
-
-
     }
 
 
@@ -28,10 +39,9 @@ namespace JXTPostDataToFTP
         public string password;
         public bool sftp;
         public int port;
+        public string mode;
         public string folderPath;
         public string LastModifiedDate;
-        public string ExceptionID;
-
     }
 
     public class FileNames

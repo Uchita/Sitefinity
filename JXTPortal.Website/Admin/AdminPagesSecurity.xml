@@ -534,6 +534,9 @@
     <PageName>MemberCount.aspx</PageName>
     <AdminRoleID>1</AdminRoleID>
 
+    <PageName>MemberActivity.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
     <PageName>CopySystemPage.aspx</PageName>
     <AdminRoleID>1</AdminRoleID>
 
@@ -593,6 +596,12 @@
     <AdminRoleID>1</AdminRoleID>
 
     <PageName>IndustryEdit.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>ScreeningQuestionsTemplate.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
+    <PageName>ScreeningQuestionsTemplateEdit.aspx</PageName>
     <AdminRoleID>1</AdminRoleID>
 
   </AdminPage>
@@ -742,6 +751,8 @@
     <PageName>alljobstatistics.aspx</PageName>
     <AdminRoleID>2</AdminRoleID>
     <PageName>membercount.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+    <PageName>memberactivity.aspx</PageName>
     <AdminRoleID>2</AdminRoleID>
     <PageName>alladvertisers.aspx</PageName>
     <AdminRoleID>2</AdminRoleID>
@@ -1094,6 +1105,12 @@
     <AdminRoleID>2</AdminRoleID>
 
     <PageName>KnowledgeBaseBrowse.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>ScreeningQuestionsTemplate.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
+
+    <PageName>ScreeningQuestionsTemplateEdit.aspx</PageName>
     <AdminRoleID>2</AdminRoleID>
   </ContentEditorPage>
   <DeveloperPage>

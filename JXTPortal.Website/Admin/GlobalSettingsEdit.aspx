@@ -242,7 +242,18 @@
                             <asp:CheckBox ID="cbPeopleSearchCB" runat="server" />
                         </div>
                     </li>
-
+                    <li class="form-line" id="Li13">
+                        <h3>
+                            Screening Questions Settings</h3>
+                    </li>
+                    <li class="form-line">
+                        <label class="form-label-left">
+                            Enable Screening Questions:
+                        </label>
+                        <div class="form-input">
+                            <asp:CheckBox ID="cbScreeningQuestions" runat="server" />
+                        </div>
+                    </li>
                     <li class="form-line" id="Li5">
                         <h3>
                             Job Application</h3>
@@ -418,6 +429,14 @@
                                 FTP Folder:</label>
                             <div class="form-input">
                                 <asp:TextBox ID="dataFTPFolder" runat="server"></asp:TextBox>
+                            </div>
+                        </li>
+                        <%--Global FTP Folder--%>
+                        <li class="form-line" id="gse-globalFtpFolder-field">
+                            <label class="form-label-left">
+                                Global FTP Folder:</label>
+                            <div class="form-input">
+                                <asp:TextBox ID="dataGlobalFTPFolder" runat="server"></asp:TextBox>
                             </div>
                         </li>
                         <li class="form-line" id="Li1">

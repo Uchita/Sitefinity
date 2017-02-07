@@ -12,11 +12,14 @@ using System.Configuration;
 using JXTPortal.Entities.Models;
 using System.Xml;
 using System.Text.RegularExpressions;
+using log4net;
 
 namespace JXTPortal.Client.Salesforce
 {
     public class SalesforceMemberSync : IDisposable
     {
+        private ILog _logger;
+
         private IntegrationsService _integrationsService;
         private IntegrationsService IntegrationsService
         {
@@ -113,6 +116,7 @@ namespace JXTPortal.Client.Salesforce
 
         public SalesforceMemberSync() : this(SessionData.Site.SiteId)
         {
+            _logger = LogManager.GetLogger(typeof(SalesforceMemberSync));
             //Add 3072 (TLS1.2) for this application
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | (SecurityProtocolType)3072;
         }
@@ -621,6 +625,7 @@ namespace JXTPortal.Client.Salesforce
                         object jsonObj;  
                         if (newSFRecordCreated)
                         {
+                            //only assign the following if this is a newly created candidate
                             jsonObj = new
                             {
                                 First_Name_Local__c = member.MultiLingualFirstName,
@@ -628,11 +633,15 @@ namespace JXTPortal.Client.Salesforce
                                 PIPL_Agreed__c = true,
                                 PIPL_Agreed_Date__c = String.Format("{0:yyyy-MM-dd}", member.RegisteredDate),
                                 Secondary_Email__c = member.SecondaryEmail,
-                                Registration_Country__c = registerSiteCountryName
+                                Registration_Country__c = registerSiteCountryName,
+                                ts2__Candidate_Source__c = "a0e1000000NFocK", //hard coded Source ID provided by Enworld 2016-11-16
+                                ts2__People_Status__c = "Inactive",
+                                Candidate_Status__c = "New Registrant"
                             };
                         }
                         else
                         {
+                            //only assign the following if this is an update to a candidate
                             jsonObj = new
                             {
                                 First_Name_Local__c = member.MultiLingualFirstName,
@@ -1128,8 +1137,7 @@ namespace JXTPortal.Client.Salesforce
             catch (Exception ex)
             {
                 // Save to exception
-                ExceptionTableService exceptionTableService = new ExceptionTableService();
-                exceptionTableService.LogException(ex);
+                _logger.Error(ex);
 
                 blnValid = false;
                 errormsg = ex.Message;

@@ -358,6 +358,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to - All Areas -.
+        /// </summary>
+        internal static string DDLAllAreas {
+            get {
+                return ResourceManager.GetString("DDLAllAreas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ascending.
         /// </summary>
         internal static string DDLAscending {
@@ -403,6 +412,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to - Not Specified -.
+        /// </summary>
+        internal static string DDLNotSpecified {
+            get {
+                return ResourceManager.GetString("DDLNotSpecified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Number of Applications.
         /// </summary>
         internal static string DDLNumberOfApplications {
@@ -444,6 +462,60 @@ namespace Resources {
         internal static string DDLOneWeek {
             get {
                 return ResourceManager.GetString("DDLOneWeek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to - Please Select -.
+        /// </summary>
+        internal static string DDLPleaseSelect {
+            get {
+                return ResourceManager.GetString("DDLPleaseSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to - Please select a Country -.
+        /// </summary>
+        internal static string DDLPleaseSelectCountry {
+            get {
+                return ResourceManager.GetString("DDLPleaseSelectCountry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to - Please select an Industry -.
+        /// </summary>
+        internal static string DDLPleaseSelectIndustry {
+            get {
+                return ResourceManager.GetString("DDLPleaseSelectIndustry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to - Please select a Job Category -.
+        /// </summary>
+        internal static string DDLPleaseSelectJobCategory {
+            get {
+                return ResourceManager.GetString("DDLPleaseSelectJobCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to - Please select a Primary Desired Country -.
+        /// </summary>
+        internal static string DDLPleaseSelectPrimaryDesiredCountry {
+            get {
+                return ResourceManager.GetString("DDLPleaseSelectPrimaryDesiredCountry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to - Please select a Primary Desired Job Category -.
+        /// </summary>
+        internal static string DDLPleaseSelectPrimaryDesiredJobCategory {
+            get {
+                return ResourceManager.GetString("DDLPleaseSelectPrimaryDesiredJobCategory", resourceCulture);
             }
         }
         
@@ -903,6 +975,15 @@ namespace Resources {
         internal static string LabelAddResumeFile {
             get {
                 return ResourceManager.GetString("LabelAddResumeFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Screening Questions.
+        /// </summary>
+        internal static string LabelAddScreeningQuestions {
+            get {
+                return ResourceManager.GetString("LabelAddScreeningQuestions", resourceCulture);
             }
         }
         
@@ -1566,6 +1647,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Basic Information.
+        /// </summary>
+        internal static string labelBasicInformation {
+            get {
+                return ResourceManager.GetString("labelBasicInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Beginner.
         /// </summary>
         internal static string LabelBeginner {
@@ -2025,6 +2115,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Comma Separated.
+        /// </summary>
+        internal static string LabelCommaSeparated {
+            get {
+                return ResourceManager.GetString("LabelCommaSeparated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Comments.
         /// </summary>
         internal static string LabelComments {
@@ -2394,6 +2493,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create New Template.
+        /// </summary>
+        internal static string LabelCreateNewTemplate {
+            get {
+                return ResourceManager.GetString("LabelCreateNewTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Credit Card.
         /// </summary>
         internal static string LabelCreditCard {
@@ -2507,6 +2615,15 @@ namespace Resources {
         internal static string LabelCurrentPassword {
             get {
                 return ResourceManager.GetString("LabelCurrentPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current Role.
+        /// </summary>
+        internal static string labelCurrentRole {
+            get {
+                return ResourceManager.GetString("labelCurrentRole", resourceCulture);
             }
         }
         
@@ -2808,6 +2925,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Doctorate.
+        /// </summary>
+        internal static string LabelDoctorate {
+            get {
+                return ResourceManager.GetString("LabelDoctorate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Doctor of Medicine.
         /// </summary>
         internal static string LabelDoctorOfMedicine {
@@ -2907,6 +3033,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dropdown.
+        /// </summary>
+        internal static string LabelDropdown {
+            get {
+                return ResourceManager.GetString("LabelDropdown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Duration.
         /// </summary>
         internal static string LabelDuration {
@@ -3002,6 +3137,15 @@ namespace Resources {
         internal static string LabelEditProfile {
             get {
                 return ResourceManager.GetString("LabelEditProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Screening Questions.
+        /// </summary>
+        internal static string LabelEditScreeningQuestions {
+            get {
+                return ResourceManager.GetString("LabelEditScreeningQuestions", resourceCulture);
             }
         }
         
@@ -3650,6 +3794,15 @@ namespace Resources {
         internal static string LabelFixedSalary {
             get {
                 return ResourceManager.GetString("LabelFixedSalary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to for.
+        /// </summary>
+        internal static string LabelFor {
+            get {
+                return ResourceManager.GetString("LabelFor", resourceCulture);
             }
         }
         
@@ -4959,6 +5112,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mandatory.
+        /// </summary>
+        internal static string LabelMandatory {
+            get {
+                return ResourceManager.GetString("LabelMandatory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mandatory Fields.
         /// </summary>
         internal static string LabelMandatoryField {
@@ -5240,6 +5402,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MultiSelect.
+        /// </summary>
+        internal static string LabelMultiSelect {
+            get {
+                return ResourceManager.GetString("LabelMultiSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to My Account.
         /// </summary>
         internal static string LabelMyAccount {
@@ -5362,6 +5533,15 @@ namespace Resources {
         internal static string LabelMyPersonalDetails {
             get {
                 return ResourceManager.GetString("LabelMyPersonalDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My Profile.
+        /// </summary>
+        internal static string labelMyProfile {
+            get {
+                return ResourceManager.GetString("labelMyProfile", resourceCulture);
             }
         }
         
@@ -5524,6 +5704,15 @@ namespace Resources {
         internal static string LabelNewsletter {
             get {
                 return ResourceManager.GetString("LabelNewsletter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} {1} {2} {3}.
+        /// </summary>
+        internal static string LabelNewsResultsCount {
+            get {
+                return ResourceManager.GetString("LabelNewsResultsCount", resourceCulture);
             }
         }
         
@@ -5822,6 +6011,15 @@ namespace Resources {
         internal static string LabelOptional {
             get {
                 return ResourceManager.GetString("LabelOptional", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Options.
+        /// </summary>
+        internal static string LabelOptions {
+            get {
+                return ResourceManager.GetString("LabelOptions", resourceCulture);
             }
         }
         
@@ -6753,11 +6951,38 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Question Title.
+        /// </summary>
+        internal static string LabelQuestionTitle {
+            get {
+                return ResourceManager.GetString("LabelQuestionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Question Type.
+        /// </summary>
+        internal static string LabelQuestionType {
+            get {
+                return ResourceManager.GetString("LabelQuestionType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Quick Repost.
         /// </summary>
         internal static string LabelQuickRepostJob {
             get {
                 return ResourceManager.GetString("LabelQuickRepostJob", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Radio Buttons.
+        /// </summary>
+        internal static string LabelRadioButtons {
+            get {
+                return ResourceManager.GetString("LabelRadioButtons", resourceCulture);
             }
         }
         
@@ -7446,6 +7671,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Screening Questions.
+        /// </summary>
+        internal static string LabelScreeningQuestions {
+            get {
+                return ResourceManager.GetString("LabelScreeningQuestions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search.
         /// </summary>
         internal static string LabelSearch {
@@ -7779,6 +8013,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select Screening Questions Template.
+        /// </summary>
+        internal static string LabelSelectScreeningQuestionsTemplate {
+            get {
+                return ResourceManager.GetString("LabelSelectScreeningQuestionsTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Login Type.
         /// </summary>
         internal static string LabelSelectUserLogin {
@@ -7838,6 +8081,15 @@ namespace Resources {
         internal static string LabelSeperateSkillComma {
             get {
                 return ResourceManager.GetString("LabelSeperateSkillComma", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sequence.
+        /// </summary>
+        internal static string LabelSequence {
+            get {
+                return ResourceManager.GetString("LabelSequence", resourceCulture);
             }
         }
         
@@ -8337,6 +8589,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Template Name.
+        /// </summary>
+        internal static string LabelTemplateName {
+            get {
+                return ResourceManager.GetString("LabelTemplateName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your account is temporarily locked. Please try again in “{0} mins” or contact your system administrator..
         /// </summary>
         internal static string LabelTempLocked {
@@ -8378,6 +8639,24 @@ namespace Resources {
         internal static string LabelText {
             get {
                 return ResourceManager.GetString("LabelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text Area.
+        /// </summary>
+        internal static string LabelTextArea {
+            get {
+                return ResourceManager.GetString("LabelTextArea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text Box.
+        /// </summary>
+        internal static string LabelTextBox {
+            get {
+                return ResourceManager.GetString("LabelTextBox", resourceCulture);
             }
         }
         
@@ -9480,6 +9759,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Screening Questions Template.
+        /// </summary>
+        internal static string LinkButtonScreeningQuestionsTemplate {
+            get {
+                return ResourceManager.GetString("LinkButtonScreeningQuestionsTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to send email.
         /// </summary>
         internal static string LinkButtonSendEmail {
@@ -9543,6 +9831,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Screening Questions Template.
+        /// </summary>
+        internal static string LinkScreeningQuestionsTemplate {
+            get {
+                return ResourceManager.GetString("LinkScreeningQuestionsTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter annual salary from.
         /// </summary>
         internal static string PlaceHolderSalaryAnnualFrom {
@@ -9593,6 +9890,15 @@ namespace Resources {
         internal static string sLabelPublicProfile {
             get {
                 return ResourceManager.GetString("sLabelPublicProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot contain invalid content.
+        /// </summary>
+        internal static string ValidateNoHTMLContent {
+            get {
+                return ResourceManager.GetString("ValidateNoHTMLContent", resourceCulture);
             }
         }
         

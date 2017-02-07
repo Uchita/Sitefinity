@@ -167,6 +167,8 @@ namespace JXTPortal.Entities
 		///<param name="_enablePeopleSearch"></param>
 		///<param name="_globalDateFormat"></param>
 		///<param name="_timeZone"></param>
+		///<param name="_globalFolder"></param>
+		///<param name="_enableScreeningQuestions"></param>
 		public GlobalSettingsBase(System.Int32 _siteId, System.Int32 _defaultLanguageId, 
 			System.Int32? _defaultDynamicPageId, System.Boolean _publicJobsSearch, System.Boolean _publicMembersSearch, 
 			System.Boolean _publicCompaniesSearch, System.Boolean _publicSponsoredAdverts, System.Boolean _privateJobs, 
@@ -195,7 +197,8 @@ namespace JXTPortal.Entities
 			System.String _paypalPartner, System.String _invoiceSiteInfo, System.String _invoiceSiteFooter, 
 			System.Boolean _enableTermsAndConditions, System.Int32? _defaultEmailLanguageId, System.String _googleTagManager, 
 			System.String _googleAnalytics, System.String _googleWebMaster, System.Boolean _enablePeopleSearch, 
-			System.String _globalDateFormat, System.String _timeZone)
+			System.String _globalDateFormat, System.String _timeZone, System.String _globalFolder, 
+			System.Boolean _enableScreeningQuestions)
 		{
 			this.entityData = new GlobalSettingsEntityData();
 			this.backupData = null;
@@ -286,6 +289,8 @@ namespace JXTPortal.Entities
 			this.EnablePeopleSearch = _enablePeopleSearch;
 			this.GlobalDateFormat = _globalDateFormat;
 			this.TimeZone = _timeZone;
+			this.GlobalFolder = _globalFolder;
+			this.EnableScreeningQuestions = _enableScreeningQuestions;
 		}
 		
 		///<summary>
@@ -377,6 +382,8 @@ namespace JXTPortal.Entities
 		///<param name="_enablePeopleSearch"></param>
 		///<param name="_globalDateFormat"></param>
 		///<param name="_timeZone"></param>
+		///<param name="_globalFolder"></param>
+		///<param name="_enableScreeningQuestions"></param>
 		public static GlobalSettings CreateGlobalSettings(System.Int32 _siteId, System.Int32 _defaultLanguageId, 
 			System.Int32? _defaultDynamicPageId, System.Boolean _publicJobsSearch, System.Boolean _publicMembersSearch, 
 			System.Boolean _publicCompaniesSearch, System.Boolean _publicSponsoredAdverts, System.Boolean _privateJobs, 
@@ -405,7 +412,8 @@ namespace JXTPortal.Entities
 			System.String _paypalPartner, System.String _invoiceSiteInfo, System.String _invoiceSiteFooter, 
 			System.Boolean _enableTermsAndConditions, System.Int32? _defaultEmailLanguageId, System.String _googleTagManager, 
 			System.String _googleAnalytics, System.String _googleWebMaster, System.Boolean _enablePeopleSearch, 
-			System.String _globalDateFormat, System.String _timeZone)
+			System.String _globalDateFormat, System.String _timeZone, System.String _globalFolder, 
+			System.Boolean _enableScreeningQuestions)
 		{
 			GlobalSettings newGlobalSettings = new GlobalSettings();
 			newGlobalSettings.SiteId = _siteId;
@@ -494,6 +502,8 @@ namespace JXTPortal.Entities
 			newGlobalSettings.EnablePeopleSearch = _enablePeopleSearch;
 			newGlobalSettings.GlobalDateFormat = _globalDateFormat;
 			newGlobalSettings.TimeZone = _timeZone;
+			newGlobalSettings.GlobalFolder = _globalFolder;
+			newGlobalSettings.EnableScreeningQuestions = _enableScreeningQuestions;
 			return newGlobalSettings;
 		}
 				
@@ -3574,6 +3584,76 @@ namespace JXTPortal.Entities
 			}
 		}
 		
+		/// <summary>
+		/// 	Gets or sets the GlobalFolder property. 
+		///		
+		/// </summary>
+		/// <value>This type is varchar.</value>
+		/// <remarks>
+		/// This property can be set to null. 
+		/// </remarks>
+
+
+
+
+		[DescriptionAttribute(@""), System.ComponentModel.Bindable( System.ComponentModel.BindableSupport.Yes)]
+		[DataObjectField(false, false, true, 255)]
+		public virtual System.String GlobalFolder
+		{
+			get
+			{
+				return this.entityData.GlobalFolder; 
+			}
+			
+			set
+			{
+				if (this.entityData.GlobalFolder == value)
+					return;
+					
+				OnColumnChanging(GlobalSettingsColumn.GlobalFolder, this.entityData.GlobalFolder);
+				this.entityData.GlobalFolder = value;
+				if (this.EntityState == EntityState.Unchanged)
+					this.EntityState = EntityState.Changed;
+				OnColumnChanged(GlobalSettingsColumn.GlobalFolder, this.entityData.GlobalFolder);
+				OnPropertyChanged("GlobalFolder");
+			}
+		}
+		
+		/// <summary>
+		/// 	Gets or sets the EnableScreeningQuestions property. 
+		///		
+		/// </summary>
+		/// <value>This type is bit.</value>
+		/// <remarks>
+		/// This property can not be set to null. 
+		/// </remarks>
+
+
+
+
+		[DescriptionAttribute(@""), System.ComponentModel.Bindable( System.ComponentModel.BindableSupport.Yes)]
+		[DataObjectField(false, false, false)]
+		public virtual System.Boolean EnableScreeningQuestions
+		{
+			get
+			{
+				return this.entityData.EnableScreeningQuestions; 
+			}
+			
+			set
+			{
+				if (this.entityData.EnableScreeningQuestions == value)
+					return;
+					
+				OnColumnChanging(GlobalSettingsColumn.EnableScreeningQuestions, this.entityData.EnableScreeningQuestions);
+				this.entityData.EnableScreeningQuestions = value;
+				if (this.EntityState == EntityState.Unchanged)
+					this.EntityState = EntityState.Changed;
+				OnColumnChanged(GlobalSettingsColumn.EnableScreeningQuestions, this.entityData.EnableScreeningQuestions);
+				OnPropertyChanged("EnableScreeningQuestions");
+			}
+		}
+		
 		#endregion Data Properties		
 
 		#region Source Foreign Key Property
@@ -3747,6 +3827,8 @@ namespace JXTPortal.Entities
 				new ValidationRuleArgs("TimeZone", "Time Zone"));
 			ValidationRules.AddRule( CommonRules.StringMaxLength, 
 				new CommonRules.MaxLengthRuleArgs("TimeZone", "Time Zone", 255));
+			ValidationRules.AddRule( CommonRules.StringMaxLength, 
+				new CommonRules.MaxLengthRuleArgs("GlobalFolder", "Global Folder", 255));
 		}
    		#endregion
 		
@@ -3768,7 +3850,7 @@ namespace JXTPortal.Entities
 		{
 			get
 			{
-				return new string[] {"GlobalSettingID", "SiteID", "DefaultLanguageID", "DefaultDynamicPageID", "PublicJobsSearch", "PublicMembersSearch", "PublicCompaniesSearch", "PublicSponsoredAdverts", "PrivateJobs", "PrivateMembers", "PrivateCompanies", "LastModifiedBy", "LastModified", "PageTitlePrefix", "PageTitleSuffix", "DefaultTitle", "HomeTitle", "DefaultDescription", "HomeDescription", "DefaultKeywords", "HomeKeywords", "ShowFaceBookButton", "UseAdvertiserFilter", "MerchantID", "ShowTwitterButton", "ShowJobAlertButton", "ShowLinkedInButton", "SiteFavIconID", "SiteDocType", "CurrencySymbol", "FtpFolderLocation", "MetaTags", "SystemMetaTags", "MemberRegistrationNotification", "LinkedInAPI", "LinkedInLogo", "LinkedInCompanyID", "LinkedInEmail", "PrivacySettings", "WWWRedirect", "AllowAdvertiser", "LinkedInAPISecret", "GoogleClientID", "GoogleClientSecret", "FacebookAppID", "FacebookAppSecret", "LinkedInButtonSize", "DefaultCountryID", "PayPalUsername", "PayPalPassword", "PayPalSignature", "SecurePayMerchantID", "SecurePayPassword", "UsingSSL", "UseCustomProfessionRole", "GenerateJobXML", "IsPrivateSite", "PrivateRedirectUrl", "EnableJobCustomQuestionnaire", "JobApplicationTypeID", "JobScreeningProcess", "AdvertiserApprovalProcess", "SiteType", "EnableSSL", "GST", "GSTLabel", "NumberOfPremiumJobs", "PremiumJobDays", "DisplayPremiumJobsOnResults", "JobExpiryNotification", "CurrencyID", "PayPalClientID", "PayPalClientSecret", "PaypalUser", "PaypalProPassword", "PaypalVendor", "PaypalPartner", "InvoiceSiteInfo", "InvoiceSiteFooter", "EnableTermsAndConditions", "DefaultEmailLanguageId", "GoogleTagManager", "GoogleAnalytics", "GoogleWebMaster", "EnablePeopleSearch", "GlobalDateFormat", "TimeZone"};
+				return new string[] {"GlobalSettingID", "SiteID", "DefaultLanguageID", "DefaultDynamicPageID", "PublicJobsSearch", "PublicMembersSearch", "PublicCompaniesSearch", "PublicSponsoredAdverts", "PrivateJobs", "PrivateMembers", "PrivateCompanies", "LastModifiedBy", "LastModified", "PageTitlePrefix", "PageTitleSuffix", "DefaultTitle", "HomeTitle", "DefaultDescription", "HomeDescription", "DefaultKeywords", "HomeKeywords", "ShowFaceBookButton", "UseAdvertiserFilter", "MerchantID", "ShowTwitterButton", "ShowJobAlertButton", "ShowLinkedInButton", "SiteFavIconID", "SiteDocType", "CurrencySymbol", "FtpFolderLocation", "MetaTags", "SystemMetaTags", "MemberRegistrationNotification", "LinkedInAPI", "LinkedInLogo", "LinkedInCompanyID", "LinkedInEmail", "PrivacySettings", "WWWRedirect", "AllowAdvertiser", "LinkedInAPISecret", "GoogleClientID", "GoogleClientSecret", "FacebookAppID", "FacebookAppSecret", "LinkedInButtonSize", "DefaultCountryID", "PayPalUsername", "PayPalPassword", "PayPalSignature", "SecurePayMerchantID", "SecurePayPassword", "UsingSSL", "UseCustomProfessionRole", "GenerateJobXML", "IsPrivateSite", "PrivateRedirectUrl", "EnableJobCustomQuestionnaire", "JobApplicationTypeID", "JobScreeningProcess", "AdvertiserApprovalProcess", "SiteType", "EnableSSL", "GST", "GSTLabel", "NumberOfPremiumJobs", "PremiumJobDays", "DisplayPremiumJobsOnResults", "JobExpiryNotification", "CurrencyID", "PayPalClientID", "PayPalClientSecret", "PaypalUser", "PaypalProPassword", "PaypalVendor", "PaypalPartner", "InvoiceSiteInfo", "InvoiceSiteFooter", "EnableTermsAndConditions", "DefaultEmailLanguageId", "GoogleTagManager", "GoogleAnalytics", "GoogleWebMaster", "EnablePeopleSearch", "GlobalDateFormat", "TimeZone", "GlobalFolder", "EnableScreeningQuestions"};
 			}
 		}
 		#endregion 
@@ -4003,6 +4085,8 @@ namespace JXTPortal.Entities
 				copy.EnablePeopleSearch = this.EnablePeopleSearch;
 				copy.GlobalDateFormat = this.GlobalDateFormat;
 				copy.TimeZone = this.TimeZone;
+				copy.GlobalFolder = this.GlobalFolder;
+				copy.EnableScreeningQuestions = this.EnableScreeningQuestions;
 			
 			if (this.DefaultCountryIdSource != null && existingCopies.Contains(this.DefaultCountryIdSource))
 				copy.DefaultCountryIdSource = existingCopies[this.DefaultCountryIdSource] as Countries;
@@ -4333,6 +4417,10 @@ namespace JXTPortal.Entities
 					return entityData.GlobalDateFormat != _originalData.GlobalDateFormat;
 					case GlobalSettingsColumn.TimeZone:
 					return entityData.TimeZone != _originalData.TimeZone;
+					case GlobalSettingsColumn.GlobalFolder:
+					return entityData.GlobalFolder != _originalData.GlobalFolder;
+					case GlobalSettingsColumn.EnableScreeningQuestions:
+					return entityData.EnableScreeningQuestions != _originalData.EnableScreeningQuestions;
 			
 				default:
 					return false;
@@ -4447,6 +4535,8 @@ namespace JXTPortal.Entities
 			result = result || entityData.EnablePeopleSearch != _originalData.EnablePeopleSearch;
 			result = result || entityData.GlobalDateFormat != _originalData.GlobalDateFormat;
 			result = result || entityData.TimeZone != _originalData.TimeZone;
+			result = result || entityData.GlobalFolder != _originalData.GlobalFolder;
+			result = result || entityData.EnableScreeningQuestions != _originalData.EnableScreeningQuestions;
 			return result;
 		}	
 		
@@ -4542,7 +4632,9 @@ namespace JXTPortal.Entities
 				_originalData.GoogleWebMaster,
 				_originalData.EnablePeopleSearch,
 				_originalData.GlobalDateFormat,
-				_originalData.TimeZone
+				_originalData.TimeZone,
+				_originalData.GlobalFolder,
+				_originalData.EnableScreeningQuestions
 				);
 				
 			return (GlobalSettings)this.Clone();
@@ -4658,7 +4750,9 @@ namespace JXTPortal.Entities
 					((this.GoogleWebMaster == null) ? string.Empty : this.GoogleWebMaster.ToString()).GetHashCode() ^ 
 					this.EnablePeopleSearch.GetHashCode() ^ 
 					this.GlobalDateFormat.GetHashCode() ^ 
-					this.TimeZone.GetHashCode();
+					this.TimeZone.GetHashCode() ^ 
+					((this.GlobalFolder == null) ? string.Empty : this.GlobalFolder.ToString()).GetHashCode() ^ 
+					this.EnableScreeningQuestions.GetHashCode();
         }
 		
 		///<summary>
@@ -5236,6 +5330,17 @@ namespace JXTPortal.Entities
 				equal = false;
 			if (Object1.TimeZone != Object2.TimeZone)
 				equal = false;
+			if ( Object1.GlobalFolder != null && Object2.GlobalFolder != null )
+			{
+				if (Object1.GlobalFolder != Object2.GlobalFolder)
+					equal = false;
+			}
+			else if (Object1.GlobalFolder == null ^ Object2.GlobalFolder == null )
+			{
+				equal = false;
+			}
+			if (Object1.EnableScreeningQuestions != Object2.EnableScreeningQuestions)
+				equal = false;
 					
 			return equal;
 		}
@@ -5800,6 +5905,18 @@ namespace JXTPortal.Entities
             		return this.TimeZone.CompareTo(rhs.TimeZone);
             		
             		                 
+            	
+            	
+            	case GlobalSettingsColumn.GlobalFolder:
+            		return this.GlobalFolder.CompareTo(rhs.GlobalFolder);
+            		
+            		                 
+            	
+            	
+            	case GlobalSettingsColumn.EnableScreeningQuestions:
+            		return this.EnableScreeningQuestions.CompareTo(rhs.EnableScreeningQuestions);
+            		
+            		                 
             }
             return 0;
         }
@@ -5934,7 +6051,7 @@ namespace JXTPortal.Entities
 		public override string ToString()
 		{
 			return string.Format(System.Globalization.CultureInfo.InvariantCulture,
-				"{88}{87}- GlobalSettingId: {0}{87}- SiteId: {1}{87}- DefaultLanguageId: {2}{87}- DefaultDynamicPageId: {3}{87}- PublicJobsSearch: {4}{87}- PublicMembersSearch: {5}{87}- PublicCompaniesSearch: {6}{87}- PublicSponsoredAdverts: {7}{87}- PrivateJobs: {8}{87}- PrivateMembers: {9}{87}- PrivateCompanies: {10}{87}- LastModifiedBy: {11}{87}- LastModified: {12}{87}- PageTitlePrefix: {13}{87}- PageTitleSuffix: {14}{87}- DefaultTitle: {15}{87}- HomeTitle: {16}{87}- DefaultDescription: {17}{87}- HomeDescription: {18}{87}- DefaultKeywords: {19}{87}- HomeKeywords: {20}{87}- ShowFaceBookButton: {21}{87}- UseAdvertiserFilter: {22}{87}- MerchantId: {23}{87}- ShowTwitterButton: {24}{87}- ShowJobAlertButton: {25}{87}- ShowLinkedInButton: {26}{87}- SiteFavIconId: {27}{87}- SiteDocType: {28}{87}- CurrencySymbol: {29}{87}- FtpFolderLocation: {30}{87}- MetaTags: {31}{87}- SystemMetaTags: {32}{87}- MemberRegistrationNotification: {33}{87}- LinkedInApi: {34}{87}- LinkedInLogo: {35}{87}- LinkedInCompanyId: {36}{87}- LinkedInEmail: {37}{87}- PrivacySettings: {38}{87}- WwwRedirect: {39}{87}- AllowAdvertiser: {40}{87}- LinkedInApiSecret: {41}{87}- GoogleClientId: {42}{87}- GoogleClientSecret: {43}{87}- FacebookAppId: {44}{87}- FacebookAppSecret: {45}{87}- LinkedInButtonSize: {46}{87}- DefaultCountryId: {47}{87}- PayPalUsername: {48}{87}- PayPalPassword: {49}{87}- PayPalSignature: {50}{87}- SecurePayMerchantId: {51}{87}- SecurePayPassword: {52}{87}- UsingSsl: {53}{87}- UseCustomProfessionRole: {54}{87}- GenerateJobXml: {55}{87}- IsPrivateSite: {56}{87}- PrivateRedirectUrl: {57}{87}- EnableJobCustomQuestionnaire: {58}{87}- JobApplicationTypeId: {59}{87}- JobScreeningProcess: {60}{87}- AdvertiserApprovalProcess: {61}{87}- SiteType: {62}{87}- EnableSsl: {63}{87}- Gst: {64}{87}- GstLabel: {65}{87}- NumberOfPremiumJobs: {66}{87}- PremiumJobDays: {67}{87}- DisplayPremiumJobsOnResults: {68}{87}- JobExpiryNotification: {69}{87}- CurrencyId: {70}{87}- PayPalClientId: {71}{87}- PayPalClientSecret: {72}{87}- PaypalUser: {73}{87}- PaypalProPassword: {74}{87}- PaypalVendor: {75}{87}- PaypalPartner: {76}{87}- InvoiceSiteInfo: {77}{87}- InvoiceSiteFooter: {78}{87}- EnableTermsAndConditions: {79}{87}- DefaultEmailLanguageId: {80}{87}- GoogleTagManager: {81}{87}- GoogleAnalytics: {82}{87}- GoogleWebMaster: {83}{87}- EnablePeopleSearch: {84}{87}- GlobalDateFormat: {85}{87}- TimeZone: {86}{87}{89}", 
+				"{90}{89}- GlobalSettingId: {0}{89}- SiteId: {1}{89}- DefaultLanguageId: {2}{89}- DefaultDynamicPageId: {3}{89}- PublicJobsSearch: {4}{89}- PublicMembersSearch: {5}{89}- PublicCompaniesSearch: {6}{89}- PublicSponsoredAdverts: {7}{89}- PrivateJobs: {8}{89}- PrivateMembers: {9}{89}- PrivateCompanies: {10}{89}- LastModifiedBy: {11}{89}- LastModified: {12}{89}- PageTitlePrefix: {13}{89}- PageTitleSuffix: {14}{89}- DefaultTitle: {15}{89}- HomeTitle: {16}{89}- DefaultDescription: {17}{89}- HomeDescription: {18}{89}- DefaultKeywords: {19}{89}- HomeKeywords: {20}{89}- ShowFaceBookButton: {21}{89}- UseAdvertiserFilter: {22}{89}- MerchantId: {23}{89}- ShowTwitterButton: {24}{89}- ShowJobAlertButton: {25}{89}- ShowLinkedInButton: {26}{89}- SiteFavIconId: {27}{89}- SiteDocType: {28}{89}- CurrencySymbol: {29}{89}- FtpFolderLocation: {30}{89}- MetaTags: {31}{89}- SystemMetaTags: {32}{89}- MemberRegistrationNotification: {33}{89}- LinkedInApi: {34}{89}- LinkedInLogo: {35}{89}- LinkedInCompanyId: {36}{89}- LinkedInEmail: {37}{89}- PrivacySettings: {38}{89}- WwwRedirect: {39}{89}- AllowAdvertiser: {40}{89}- LinkedInApiSecret: {41}{89}- GoogleClientId: {42}{89}- GoogleClientSecret: {43}{89}- FacebookAppId: {44}{89}- FacebookAppSecret: {45}{89}- LinkedInButtonSize: {46}{89}- DefaultCountryId: {47}{89}- PayPalUsername: {48}{89}- PayPalPassword: {49}{89}- PayPalSignature: {50}{89}- SecurePayMerchantId: {51}{89}- SecurePayPassword: {52}{89}- UsingSsl: {53}{89}- UseCustomProfessionRole: {54}{89}- GenerateJobXml: {55}{89}- IsPrivateSite: {56}{89}- PrivateRedirectUrl: {57}{89}- EnableJobCustomQuestionnaire: {58}{89}- JobApplicationTypeId: {59}{89}- JobScreeningProcess: {60}{89}- AdvertiserApprovalProcess: {61}{89}- SiteType: {62}{89}- EnableSsl: {63}{89}- Gst: {64}{89}- GstLabel: {65}{89}- NumberOfPremiumJobs: {66}{89}- PremiumJobDays: {67}{89}- DisplayPremiumJobsOnResults: {68}{89}- JobExpiryNotification: {69}{89}- CurrencyId: {70}{89}- PayPalClientId: {71}{89}- PayPalClientSecret: {72}{89}- PaypalUser: {73}{89}- PaypalProPassword: {74}{89}- PaypalVendor: {75}{89}- PaypalPartner: {76}{89}- InvoiceSiteInfo: {77}{89}- InvoiceSiteFooter: {78}{89}- EnableTermsAndConditions: {79}{89}- DefaultEmailLanguageId: {80}{89}- GoogleTagManager: {81}{89}- GoogleAnalytics: {82}{89}- GoogleWebMaster: {83}{89}- EnablePeopleSearch: {84}{89}- GlobalDateFormat: {85}{89}- TimeZone: {86}{89}- GlobalFolder: {87}{89}- EnableScreeningQuestions: {88}{89}{91}", 
 				this.GlobalSettingId,
 				this.SiteId,
 				this.DefaultLanguageId,
@@ -6022,6 +6139,8 @@ namespace JXTPortal.Entities
 				this.EnablePeopleSearch,
 				this.GlobalDateFormat,
 				this.TimeZone,
+				(this.GlobalFolder == null) ? string.Empty : this.GlobalFolder.ToString(),
+				this.EnableScreeningQuestions,
 				System.Environment.NewLine, 
 				this.GetType(),
 				this.Error.Length == 0 ? string.Empty : string.Format("- Error: {0}\n",this.Error));
@@ -6485,6 +6604,16 @@ namespace JXTPortal.Entities
 		/// TimeZone : 
 		/// </summary>
 		public System.String		  TimeZone = string.Empty;
+		
+		/// <summary>
+		/// GlobalFolder : 
+		/// </summary>
+		public System.String		  GlobalFolder = null;
+		
+		/// <summary>
+		/// EnableScreeningQuestions : 
+		/// </summary>
+		public System.Boolean		  EnableScreeningQuestions = false;
 		#endregion
 			
 		#region Source Foreign Key Property
@@ -6672,6 +6801,8 @@ namespace JXTPortal.Entities
 			_tmp.EnablePeopleSearch = this.EnablePeopleSearch;
 			_tmp.GlobalDateFormat = this.GlobalDateFormat;
 			_tmp.TimeZone = this.TimeZone;
+			_tmp.GlobalFolder = this.GlobalFolder;
+			_tmp.EnableScreeningQuestions = this.EnableScreeningQuestions;
 			
 			#region Source Parent Composite Entities
 			if (this.DefaultCountryIdSource != null)
@@ -6796,6 +6927,8 @@ namespace JXTPortal.Entities
 			_tmp.EnablePeopleSearch = this.EnablePeopleSearch;
 			_tmp.GlobalDateFormat = this.GlobalDateFormat;
 			_tmp.TimeZone = this.TimeZone;
+			_tmp.GlobalFolder = this.GlobalFolder;
+			_tmp.EnableScreeningQuestions = this.EnableScreeningQuestions;
 			
 			#region Source Parent Composite Entities
 			if (this.DefaultCountryIdSource != null && existingCopies.Contains(this.DefaultCountryIdSource))
@@ -7714,7 +7847,19 @@ namespace JXTPortal.Entities
 		/// </summary>
 		[EnumTextValue("TimeZone")]
 		[ColumnEnum("TimeZone", typeof(System.String), System.Data.DbType.AnsiString, false, false, false, 255)]
-		TimeZone = 87
+		TimeZone = 87,
+		/// <summary>
+		/// GlobalFolder : 
+		/// </summary>
+		[EnumTextValue("GlobalFolder")]
+		[ColumnEnum("GlobalFolder", typeof(System.String), System.Data.DbType.AnsiString, false, false, true, 255)]
+		GlobalFolder = 88,
+		/// <summary>
+		/// EnableScreeningQuestions : 
+		/// </summary>
+		[EnumTextValue("EnableScreeningQuestions")]
+		[ColumnEnum("EnableScreeningQuestions", typeof(System.Boolean), System.Data.DbType.Boolean, false, false, false)]
+		EnableScreeningQuestions = 89
 	}//End enum
 
 	#endregion GlobalSettingsColumn Enum

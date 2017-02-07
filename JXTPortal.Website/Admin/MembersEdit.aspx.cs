@@ -11,6 +11,8 @@ using JXTPortal.Common;
 using JXTPortal;
 using JXTPortal.Client.Salesforce;
 using JXTPortal.Client.Bullhorn;
+using System.Configuration;
+using log4net;
 #endregion
 
 public partial class MembersEdit : System.Web.UI.Page
@@ -27,7 +29,7 @@ public partial class MembersEdit : System.Web.UI.Page
     private RolesService _rolesService;
     private GlobalSettingsService _globalSettingsService;
     private DynamicContentService  _dynamicContentService;
-
+    private ILog _logger;
     #endregion
 
     #region Properties
@@ -322,10 +324,17 @@ public partial class MembersEdit : System.Web.UI.Page
 
     #endregion
 
+    public MembersEdit()
+    {
+        _logger = LogManager.GetLogger(typeof(MembersEdit));
+    }
+
     #region Page Event handlers
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        revEmailAddress.ValidationExpression = ConfigurationManager.AppSettings["EmailValidationRegex"];
+
         if (!IsPostBack)
         {
             if ((Request.QueryString["MemberID"] != null))
@@ -434,8 +443,8 @@ public partial class MembersEdit : System.Web.UI.Page
                         }
 
 
-                        ddlSite.ClearSelection();
-                        ddlSite.SelectedValue = Convert.ToString(objMembers.SiteId);
+                        //ddlSite.ClearSelection();
+                        //ddlSite.SelectedValue = Convert.ToString(objMembers.SiteId);
                         txtUsername.ReadOnly = true;
                         txtUsername.Text = CommonService.DecodeString(objMembers.Username);
 
@@ -825,7 +834,7 @@ public partial class MembersEdit : System.Web.UI.Page
 
                 if (!string.IsNullOrWhiteSpace(errorMsg))
                 {
-                    ExceptionTableService exService = new ExceptionTableService("MembersEdit.aspx -> btnLoginAsMember_Click", errorMsg);    // Check error
+                    _logger.Error("MembersEdit.aspx -> btnLoginAsMember_Click" + errorMsg);  
                 }
 
                 SessionService.RemoveAdvertiserUser();
@@ -890,8 +899,11 @@ public partial class MembersEdit : System.Web.UI.Page
 
     private void loadSites()
     {
-        List<JXTPortal.Entities.Sites> sites = new List<JXTPortal.Entities.Sites>();
-        sites = SitesService.GetAll().OrderBy(s => s.SiteName).ToList();
+        //only load the current site into the site DDL
+        List<JXTPortal.Entities.Sites> sites = new List<JXTPortal.Entities.Sites> { SitesService.GetBySiteId(SessionData.Site.SiteId) };
+
+        ddlSite.ClearSelection();
+        ddlSite.SelectedValue = Convert.ToString(SessionData.Site.SiteId);
 
         ddlSite.DataSource = sites;
         ddlSite.DataTextField = "SiteName";

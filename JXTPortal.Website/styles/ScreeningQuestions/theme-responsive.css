@@ -1,0 +1,120 @@
+@charset "utf-8";
+/*--------------media query css------------------*/	
+/*------------tablet landscape view------*/
+@media (max-width:1265px) {
+.cycle-pager{ display:none;}
+
+}
+@media (max-width:1200px) {
+#r19_footer-quote{ margin-left:0;}
+.r19_home-call-to-action-box{ height:400px;}
+#r19_logo{margin-left:20px; }
+#r19_home-latest-jobs .rss-item{ width:50%; margin:0 0 30px 0; padding-left:0;}
+#r19_home-latest-jobs .rss-item-description,#r19_home-latest-jobs .rss-item-title,#r19_home-latest-jobs .rss-item-location{ padding-left:100px;}
+}
+@media (max-width:1100px) {
+.r19_home-banner-caption h1, .r19_home-banner-caption h2{ font-size:30px; line-height:30px;}
+}
+
+@media (max-width:1190px) {
+.btn-1{ margin:0;}
+
+
+}
+/*------------tablet portrait  view------*/
+@media (max-width:1023px) {
+#r19_navigation > ul > li.active > a{ background:#3d96aa; color:#FFF;}
+#r19_navigation > ul > li > a:hover, #r19_navigation > ul > li > a:focus, #r19_navigation > ul > li > a:active, #r19_navigation li li a:hover, #r19_navigation li li a:focus, #r19_navigation li li a:active{ background:#3d96aa; color:#FFF;}
+#r19_navigation > #r19_mobile-navigation{ color:#FFF;}
+#r19_navigation > #r19_mobile-navigation:hover, #r19_navigation > #r19_mobile-navigation:focus, #r19_navigation > #r19_mobile-navigation:active{ color:#3d96aa;}
+#r19_navigation > #r19_mobile-navigation{ margin:11px 0 0 0; padding:0;}
+#r19_logo{ position:absolute; top:-88px; margin-top:10px; height:72px; width:271px;}
+.container-logo::before{ height:0; background:none;}
+#r19_navigation-container{ background:url("http://www.omegamedical-2015.com.au.jxt1.com/media/Omegamedical/nav-bg.png") repeat;}
+.r19_home-banner-caption h1 br, .r19_home-banner-caption h2 br{ display:none;}
+
+.banner-image,.banner-image-2{ /*z-index:-99;*/}
+#r19_home-banner-container{ height:528px;}
+
+.services-block{ margin-top:0;}
+.r19_home-call-to-action-box{ padding:0 15px 66px 15px; height:380px;}
+.r19_home-call-to-action-box h2 span{ margin-bottom:20px;}
+.services-block h2{ margin-bottom:15px;}
+.r19_home-call-to-action-box h2{ font-size:19px;}
+
+.job-seekers{ margin-top:0; padding:40px 0 10px 0; margin-bottom:0;}
+.r19_our-services-box h2{ font-size:25px; margin-top:0;}
+.r19_our-services-box p{ padding:0 20px 10px 20px;}
+
+.job-seeker-block .r19_home-call-to-action-box{ min-height:inherit !important; height:auto;}
+.job-seeker-block .r19_home-call-to-action-box:after{ height:auto;}
+.job-seeker-block .r19_home-call-to-action-box .r19_button{ position:static; margin-bottom:20px;}
+
+#r19_footer-quote-container{ margin-top:0;}
+#r19_footer-quote-content h2{margin-left:100px;}
+}
+
+@media (max-width:925px) {
+#r19_bottom-bar-copyright, #r19_bottom-bar-menu{ float:none; text-align:center;}
+#r19_footer-menu{ width:68%;}
+}
+
+/*------------mobile landscape  view------*/
+@media (max-width:767px) {
+
+#r19_home-latest-jobs h2{ margin-bottom:30px;}
+#r19_home-latest-jobs .rss-item{ width:100%;}
+
+#r19_home-banner-search #r19_job-search-submit{width:100%;}
+#r19_home-banner-container{ height:460px;}
+
+.r19_photo-box, .r19_home-call-to-action-box{ margin-bottom:30px;}
+.banner-image,.banner-image-2{ bottom:-92px;}
+#r19_inner-banner-container{ margin-top:122px;}
+
+.r19_our-services-box:first-child{ background:url("http://www.omegamedical-2015.com.au.jxt1.com/media/Omegamedical/job-bg.png") repeat ;}
+
+.r19_home-call-to-action-box::after{ border:none;}
+
+#r19_footer-quote-container{ padding:30px 0; }
+#r19_footer-quote-content h2{ margin-left:40px; width:auto; text-align:center;}
+#r19_footer-quote-content small{ text-align:center;}
+#r19_footer-quote-content h2::before{ left:50%; margin-left:-100px;}
+#r19_footer-quote .rss-item-title, #r19_footer-quote .rss-item-description{ text-align:center; display:block;}
+
+#r19_footer-summary{ padding:0; text-align:center;}
+#r19_footer-content h2{ text-align:center;}
+#r19_footer-content h2, #r19_footer-content h3{ display:block;}
+#r19_footer-summary p,#r19_footer-content h3{ text-align:center; margin-bottom:15px;}
+#r19_footer-social-media .r19_social-media{ text-align:center;}
+#r19_footer-social-media .r19_social-media a{ float:none; display:inline-block;}
+#r19_footer-summary, #r19_bottom-bar-copyright, #r19_bottom-bar-menu{ text-align:center;}
+#r19_bottom-bar-content a{ text-align:center; margin:5px auto;}
+
+#r19_home-banner-search .r19_search-field{ width:100%;}
+#r19_bottom-bar-menu a::before{ content:"";}
+
+}
+/*------------mobile portrait view------*/
+@media (max-width:640px) {
+
+.r19_home-banner-caption h1, .r19_home-banner-caption h2{ font-size:23px; line-height:25px;}
+.abs-left{ left: 0!important; }
+}
+
+@media (max-width:500px) {
+.banner-image, .banner-image-2{ /*display:none;*/left: 0;}
+#r19_home-banner-container{ margin-top:50px; height:450px;}
+.r19_home-banner-caption h1, .r19_home-banner-caption h2{ font-size:20px; line-height:20px;}
+#r19_logo{ width:210px; height:60px; background-size:100%; margin-top:15px; margin-left:0;}
+#r19_login-register a:first-child{ margin-left:10px;}
+}
+/*----------optional css------*/
+@media (max-width:480px) {
+}
+/*---------use only when design is customise-----------*/
+
+/*---------use only when design is customise-----------*/
+@media screen and (min-width:768px) and (max-width:1024px){
+
+}

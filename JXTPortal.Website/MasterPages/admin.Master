@@ -10,6 +10,7 @@
     <link rel="stylesheet" media="screen,projection" type="text/css" href="/admin/css/main.css" />
     <link rel="stylesheet" media="screen,projection" type="text/css" href="/admin/css/2col.css"
         title="2col" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="alternate stylesheet" media="screen,projection" type="text/css" href="/admin/css/1col.css"
         title="1col" />
     <!--[if lte IE 6]><link rel="stylesheet" media="screen,projection" type="text/css" href="/admin/css/main-ie6.css" /><![endif]-->
@@ -80,7 +81,8 @@
                         runat="server" OnItemDataBound="Repeater1_ItemDataBound">
                         <ItemTemplate>
                             <li><a href='<%#GetUrl(Eval("url")) %>'>
-                                <%#Eval("Title") %></a>
+                                <asp:Literal ID="ltTitleIcon" runat="server"></asp:Literal> <%#Eval("Title") %></a>
+
                                 <asp:Repeater ID="Repeater2" DataSource='<%#Eval("ChildNodes")%>' Visible='<%#Eval("HasChildNodes")%>'
                                     runat="server" OnItemDataBound="Repeater2_ItemDataBound">
                                     <HeaderTemplate>

@@ -11,11 +11,12 @@ using JXTPortal;
 using System.Data;
 using System.IO;
 using System.Net;
-using EmailSender;
+using JXTPortal.EmailSender;
 using System.Net.Mail;
 using System.Net.Configuration;
 using System.Diagnostics;
 using Tamir.SharpSsh;
+using log4net;
 
 namespace JXTPostJobApplicationToFTP
 {
@@ -28,13 +29,14 @@ namespace JXTPostJobApplicationToFTP
         {
             Console.WriteLine(string.Format("\n[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] ************ Started {0} *****************", DateTime.Now));
 
-            GetLoad();
+            List<int> memberids = null;
+            GetLoad(out memberids);
 
             Console.WriteLine(string.Format("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] ************ Finished {0} *****************\n", DateTime.Now));
 
             Console.WriteLine(string.Format("\n[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] ************ Started Member {0} *****************", DateTime.Now));
             MemberXMLGenerator mxg = new MemberXMLGenerator();
-            mxg.GenerateKellyMemberXML();
+            mxg.GenerateKellyMemberXML(memberids);
 
             Console.WriteLine(string.Format("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] ************ Finished Member {0} *****************\n", DateTime.Now));
             Trace.Flush();
@@ -45,8 +47,9 @@ namespace JXTPostJobApplicationToFTP
 
         }
 
-        protected static void GetLoad()
+        protected static void GetLoad(out List<int> memberIds)
         {
+            memberIds = new List<int>();
             // Loading from a file, you can also load from a stream
             var xml = XDocument.Load(ConfigurationManager.AppSettings["SitesXML"]);
 
@@ -60,7 +63,9 @@ namespace JXTPostJobApplicationToFTP
                             password = (string)c.Element("password"),
                             sftp = (bool)c.Element("sftp"),
                             port = (int)c.Element("port"),
-                            LastJobApplicationId = (string)c.Element("LastJobApplicationId")
+                            Mode = (string)c.Element("Mode"),
+                            LastJobApplicationId = (string)c.Element("LastJobApplicationId"),
+                            LastModifiedDate = (string)c.Element("LastModifiedDate")
                         });
 
 
@@ -93,17 +98,61 @@ namespace JXTPostJobApplicationToFTP
                     }
                 }
 
-                if (!string.IsNullOrWhiteSpace(siteXML.LastJobApplicationId))
-                    jobApplicationDS = jobApplicationService.CustomGetNewJobApplications(siteXML.SiteId, int.Parse(siteXML.LastJobApplicationId), null);
-                else
+
+                DataRow[] drValidJobApplication = new DataRow[] { };
+                List<DataRow> jobApplications = new List<DataRow>();
+
+                if (siteXML.Mode == "Shortlist")
+                {
                     jobApplicationDS = jobApplicationService.CustomGetNewJobApplications(siteXML.SiteId, null, null);
 
-                dt = jobApplicationDS.Tables[0];
+                    dt = jobApplicationDS.Tables[0];
+
+                    if (!string.IsNullOrWhiteSpace(siteXML.LastModifiedDate))
+                    {
+                        foreach (DataRow jobApplication in dt.Rows)
+                        {
+                            string lastvieweddate = Convert.ToString(jobApplication["LastViewedDate"]);
+
+                            int? applicationstatus = ((int?)jobApplication["ApplicationStatus"]);
+
+                            if (string.IsNullOrEmpty(lastvieweddate) == false && Convert.ToDateTime(lastvieweddate) > Convert.ToDateTime(siteXML.LastModifiedDate) && applicationstatus.HasValue && applicationstatus.Value == ((int)PortalEnums.JobApplications.ApplicationStatus.ShortList))
+                            {
+                                jobApplications.Add(jobApplication);
+                            }
+                        }
+
+                        if (jobApplications.Count > 0)
+                        {
+                            drValidJobApplication = jobApplications.ToArray();
+
+                            foreach (DataRow jobapplication in drValidJobApplication)
+                            {
+                                memberIds.Add(Convert.ToInt32(jobapplication["MemberID"].ToString()));
+                            }
+                        }
+                    }
+                    else
+                    {
+                        drValidJobApplication = dt.Select("ApplicationStatus = " + ((int)PortalEnums.JobApplications.ApplicationStatus.ShortList).ToString());
+                    }
+                }
+                else
+                {
+                    if (!string.IsNullOrWhiteSpace(siteXML.LastJobApplicationId))
+                        jobApplicationDS = jobApplicationService.CustomGetNewJobApplications(siteXML.SiteId, int.Parse(siteXML.LastJobApplicationId), null);
+                    else
+                        jobApplicationDS = jobApplicationService.CustomGetNewJobApplications(siteXML.SiteId, null, null);
+
+                    dt = jobApplicationDS.Tables[0];
+
+                    drValidJobApplication = dt.Select();
+                }
 
                 if (dt.Rows != null)
                 {
-                    Console.WriteLine("Number of Job Applications:" + dt.Rows.Count);
-                    Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Number of Job Applications: " + dt.Rows.Count.ToString());
+                    Console.WriteLine("Number of Job Applications:" + drValidJobApplication.Length);
+                    Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Number of Job Applications: " + drValidJobApplication.Length.ToString());
 
                 }
                 else
@@ -115,9 +164,9 @@ namespace JXTPostJobApplicationToFTP
 
                 // If there is an error it will stop at the Job application 
 
-                foreach (DataRow drApplication in dt.Rows)
+                foreach (DataRow drApplication in drValidJobApplication)
                 {
-                    try
+                    try 
                     {
                         strApplicationID = drApplication["JobApplicationID"].ToString();
                         Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Application ID about to be uploaded:" + strApplicationID);
@@ -169,6 +218,7 @@ namespace JXTPostJobApplicationToFTP
     <refno>{8}</refno>
     <applicationid>{0}</applicationid>
     <date>{1}</date>
+    <memberid>{11}</memberid>
     <firstname>{2}</firstname>
     <lastname>{3}</lastname>
     <email>{4}</email>
@@ -189,7 +239,8 @@ namespace JXTPostJobApplicationToFTP
     strCoverLetterFileName,
     drApplication["RefNo"] != null ? drApplication["RefNo"].ToString().Trim() : string.Empty,
     drApplication["PreferredCategoryID"] != null ? drApplication["PreferredCategoryID"].ToString().Trim() : string.Empty,
-    drApplication["PreferredSubCategoryID"] != null ? drApplication["PreferredSubCategoryID"].ToString().Trim() : string.Empty);
+    drApplication["PreferredSubCategoryID"] != null ? drApplication["PreferredSubCategoryID"].ToString().Trim() : string.Empty,
+    ((int)drApplication["MemberID"]).ToString());
 
 
                         System.IO.File.WriteAllText(ConfigurationManager.AppSettings["ApplicationXML"], strXMLContents);
@@ -216,19 +267,15 @@ namespace JXTPostJobApplicationToFTP
                             Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] File Uploaded: " + drApplication["JobApplicationID"].ToString());
                             // Update the XML file of the last successful Job application ID
                             UpdateXMLwithJobApplication(siteXML, drApplication["JobApplicationID"].ToString());
+                            UpdateXMLwithLastModifiedDate(siteXML, drApplication["LastViewedDate"].ToString());
                         }
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine("ERROR: " + ex.Message);
-
-                        int exceptionID = LogExceptionAndEmail(siteXML, strApplicationID, ex);
-
+                        ILog logger = LogManager.GetLogger(typeof(Program));
+                        logger.Error(ex);
                     }
                 }
-
-
-
 
             }
 
@@ -300,7 +347,7 @@ namespace JXTPostJobApplicationToFTP
                     Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] ERROR: " + ex.Message);
                     blnResult = false;
                 }
-                
+
             }
 
 
@@ -385,31 +432,25 @@ namespace JXTPostJobApplicationToFTP
 
             xmlFile.Save(ConfigurationManager.AppSettings["SitesXML"]);
         }
+        protected static void UpdateXMLwithLastModifiedDate(SitesXML siteXML, string strLastModifiedDate)
+        {
+            string test = string.Empty;
+
+            XDocument xmlFile = XDocument.Load(ConfigurationManager.AppSettings["SitesXML"]);
+            var query = from c in xmlFile.Elements("sites").Elements("site")
+                        select c;
+            foreach (XElement site in query)
+            {
+                if (site.Element("SiteId").Value == siteXML.SiteId.ToString())
+                    site.Element("LastModifiedDate").Value = strLastModifiedDate;
+            }
+
+            xmlFile.Save(ConfigurationManager.AppSettings["SitesXML"]);
+        }
+
 
 
         #region Utils
-
-        /// <summary>
-        /// Email Sender
-        /// </summary>
-        /// <returns></returns>
-        private static SmtpSender EmailSender()
-        {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            MailSettingsSectionGroup mailConfiguration = (MailSettingsSectionGroup)config.GetSectionGroup("system.net/mailSettings");
-
-            SmtpSender mailObject = new SmtpSender(mailConfiguration.Smtp.Network.Host);
-
-            mailObject.Port = mailConfiguration.Smtp.Network.Port;
-            if (!mailConfiguration.Smtp.Network.DefaultCredentials)
-            {
-                mailObject.UserName = mailConfiguration.Smtp.Network.UserName;
-                mailObject.Password = mailConfiguration.Smtp.Network.Password;
-            }
-
-            return mailObject;
-        }
-
         /// <summary>
         /// Log the Exception and Send an email.
         /// </summary>
@@ -417,12 +458,8 @@ namespace JXTPostJobApplicationToFTP
         /// <param name="strLastExceptionApplicationID"></param>
         /// <param name="ex"></param>
         /// <returns></returns>
-        protected static int LogExceptionAndEmail(SitesXML siteXML, string strLastExceptionApplicationID, Exception ex)
+        protected static void SaveExceptionToSiteXML(SitesXML siteXML, string strLastExceptionApplicationID)
         {
-            ExceptionTableService serviceException = new ExceptionTableService();
-
-            int intExceptionID = serviceException.LogException(ex.GetBaseException());
-
             XDocument xmlFile = XDocument.Load(ConfigurationManager.AppSettings["SitesXML"]);
             var query = from c in xmlFile.Elements("sites").Elements("site")
                         select c;
@@ -431,41 +468,13 @@ namespace JXTPostJobApplicationToFTP
                 // Save the Exception ID and the application which has exception in the XML.
                 if (site.Element("SiteId").Value == siteXML.SiteId.ToString())
                 {
-                    site.Element("ExceptionID").Value = intExceptionID.ToString();
+
                     site.Element("LastExceptionApplicationID").Value = strLastExceptionApplicationID;
                 }
             }
 
             xmlFile.Save(ConfigurationManager.AppSettings["SitesXML"]);
-
-
-            // **** Send email when there is an error.
-            Message message = new Message();
-            message.Format = Format.Html;
-
-            message.Body = string.Format(@"
-SiteId: {0}<br /><br />
-ApplicationID: {1}<br /><br />
-DateTime: {2}<br /><br />
-Message: {3}<br /><br />
-StackTrace: {4}<br /><br />
-ExceptionID: {5}",
-                    siteXML.SiteId,
-                    strLastExceptionApplicationID,
-                    DateTime.Now,
-                    ex.Message,
-                    ex.StackTrace,
-                    intExceptionID);
-
-            message.From = new MailAddress("bugs@jxt.com.au", "MiniJXT Support");
-            message.To = new MailAddress(ConfigurationManager.AppSettings["AdminEmail"]);
-            message.Subject = "MiniJXT - Job application FTP Error";
-
-            EmailSender().Send(message);
-
-            return intExceptionID;
         }
-
         #endregion
     }
 
@@ -479,8 +488,10 @@ ExceptionID: {5}",
         public string password;
         public bool sftp;
         public int port;
+        public string Mode;
         public string folderPath;
         public string LastJobApplicationId;
+        public string LastModifiedDate;
 
     }
 
@@ -501,3 +512,4 @@ ExceptionID: {5}",
     #endregion
 
 }
+

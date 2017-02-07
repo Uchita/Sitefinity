@@ -209,7 +209,7 @@
                     <asp:RequiredFieldValidator ID="rfvEmailAddress" runat="server" ControlToValidate="txtEmailAddress"
                         ErrorMessage="Email address is required" SetFocusOnError="true"></asp:RequiredFieldValidator>
                     <asp:RegularExpressionValidator ID="revEmailAddress" runat="server" ControlToValidate="txtEmailAddress"
-                        SetFocusOnError="true" ErrorMessage="A valid email address is required" ValidationExpression="^(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6}$">  
+                        SetFocusOnError="true" ErrorMessage="A valid email address is required">  
                     </asp:RegularExpressionValidator>
                 </div>
             </li>

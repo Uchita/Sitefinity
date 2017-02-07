@@ -14,6 +14,8 @@ namespace JXTPortal.Website.members
     public partial class CreateJobAlert : System.Web.UI.Page
     {
         #region Declare variables
+        private string ContentValidationRegex = ConfigurationManager.AppSettings["ContentValidationRegex"];
+
         private JobAlertsService _jobAlertsService;
         private MembersService _membersService = null;
 
@@ -199,6 +201,20 @@ namespace JXTPortal.Website.members
             SetFormValues();
         }
 
+        protected void Page_LoadComplete(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), "Page Unload Script", @"
+            <script type='text/javascript'>
+            $(document).ready(function() {
+                //call custom function if any
+                if (typeof CustomFunction == 'function') { 
+                  CustomFunction('member/createjobalert.aspx'); 
+                }
+            });
+            </script>
+            ", false);
+        }
+
         protected void LoadJobAlert()
         {
 
@@ -310,10 +326,24 @@ namespace JXTPortal.Website.members
                 {
                     ltlMessage.Text = String.Format("{0}<li>{1}</li>", ltlMessage.Text, CommonFunction.GetResourceValue("LabelFirstNameMandatory"));
                 }
+                else
+                {
+                    if (Regex.IsMatch(tbFirstName.Text, ContentValidationRegex) == false)
+                    {
+                        ltlMessage.Text = String.Format("{0}<li>{1}</li>", ltlMessage.Text, CommonFunction.GetResourceValue("ValidateNoHTMLContent"));
+                    }
+                }
 
                 if (string.IsNullOrEmpty(tbSurname.Text.Trim()))
                 {
                     ltlMessage.Text = String.Format("{0}<li>{1}</li>", ltlMessage.Text, CommonFunction.GetResourceValue("LabelSurameMandatory"));
+                }
+                else
+                {
+                    if (Regex.IsMatch(tbSurname.Text, ContentValidationRegex) == false)
+                    {
+                        ltlMessage.Text = String.Format("{0}<li>{1}</li>", ltlMessage.Text, CommonFunction.GetResourceValue("ValidateNoHTMLContent"));
+                    }
                 }
 
                 if (string.IsNullOrEmpty(tbEmail.Text.Trim()))
@@ -353,6 +383,13 @@ namespace JXTPortal.Website.members
             if (txtNameOfTheFeed.Text.Trim().Length < 1)
             {
                 ltlMessage.Text = String.Format("{0}<li>{1}</li>", ltlMessage.Text, CommonFunction.GetResourceValue("LabelNameFeedMandatory"));
+            }
+            else
+            {
+                if (Regex.IsMatch(txtNameOfTheFeed.Text, ContentValidationRegex) == false)
+                {
+                    ltlMessage.Text = String.Format("{0}<li>{1}</li>", ltlMessage.Text, CommonFunction.GetResourceValue("ValidateNoHTMLContent"));
+                }
             }
 
             //if (!chkTermsAndConditions.Checked)
@@ -525,6 +562,7 @@ namespace JXTPortal.Website.members
                 txtNameOfTheFeed.Focus();
             }
         }
+
 
     }
 }

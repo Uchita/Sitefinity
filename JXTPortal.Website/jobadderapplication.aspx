@@ -19,7 +19,7 @@
         <div id="jobdetail-left-bg">
             <div class="jobdetail-top">
                 <div class="backtoresults">
-                    <a href="/advancedsearch.aspx?search=1&amp;retainsearch=1">Back to results </a>
+                    <a href="/advancedsearch.aspx?search=1&retainsearch=1">Back to results </a>
                 </div>
             </div>
             <div class="jobs_iframe-thirdPartyApp">

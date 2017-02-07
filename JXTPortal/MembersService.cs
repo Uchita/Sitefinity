@@ -15,6 +15,8 @@ using JXTPortal.Data;
 using Microsoft.Practices.EnterpriseLibrary.Logging;
 using System.Collections.Generic;
 using System.Web.Script.Serialization;
+using JXTPortal.Custom;
+using log4net;
 
 #endregion
 
@@ -29,6 +31,9 @@ namespace JXTPortal
     [CLSCompliant(true)]
     public partial class MembersService : JXTPortal.MembersServiceBase
     {
+        private ISessionService _sessionService;
+        private ILog _logger;
+
         #region Constructors
         /// <summary>
         /// Initializes a new instance of the MembersService class.
@@ -36,6 +41,7 @@ namespace JXTPortal
         public MembersService()
             : base()
         {
+            _logger = LogManager.GetLogger(typeof(MembersService));
         }
         #endregion Constructors
 
@@ -181,7 +187,7 @@ namespace JXTPortal
             member.MailingAddress2 = string.Empty;
 
             //update account status
-            member.Status = (int) PortalEnums.Members.UserStatus.Closed;
+            member.Status = (int)PortalEnums.Members.UserStatus.Closed;
 
             // member validation is false
             member.Validated = false;
@@ -190,6 +196,28 @@ namespace JXTPortal
             Update(member);
 
             return true;
+        }
+
+        /// <summary>
+        /// Searching within a Site using External Member ID, if not found, then search by Email Address.
+        /// </summary>
+        /// <param name="siteID"></param>
+        /// <param name="externalMemberID"></param>
+        /// <param name="emailAddress"></param>
+        public Members GetBySiteIDExternalIDThenEmail(int siteID, string externalMemberID, string emailAddress)
+        {
+            List<Members> membersWithExternalID = base.Find("siteID = " + siteID + " AND ExternalMemberID = " + externalMemberID + " AND Status = 0").ToList();
+
+            if (membersWithExternalID.Count() > 1)
+                throw new Exception("More than 1 member with the same external ID - " + externalMemberID);
+
+            if (membersWithExternalID.Count() == 1)
+                return membersWithExternalID.First();
+
+            //no member found with external ID, now look for email address
+            Members memberWithEmailAddress = GetBySiteIdEmailAddress(siteID, emailAddress);
+
+            return memberWithEmailAddress;
         }
 
 
@@ -265,7 +293,7 @@ namespace JXTPortal
                     member.Gender = "M";
 
                 string countryName = string.Empty;
-                
+
 
 
                 // Get the country
@@ -298,7 +326,7 @@ namespace JXTPortal
                 }
 
                 member.CountryId = countryid;
-                                
+
                 // Only create the password only when a new member
                 if (blnNewMember)
                 {
@@ -323,15 +351,13 @@ namespace JXTPortal
                     service.Update(member);
 
                 // Logout the advertiser and login the member
-                SessionService.RemoveAdvertiserUser();
-                SessionService.SetMember(member);
+                _sessionService.RemoveAdvertiserUser();
+                _sessionService.SetMember(member);
 
             }
             catch (Exception ex)
             {
-                // Todo - Save to exception
-                ExceptionTableService exceptionTableService = new ExceptionTableService();
-                exceptionTableService.LogException(ex);
+                _logger.Error(ex);
 
                 blnValid = false;
                 errormsg = ex.Message;
@@ -372,7 +398,7 @@ namespace JXTPortal
                     string newJson = ser.Serialize(thisCandidateData);
                     thisMember.CandidateData = newJson;
                 }
-                
+
                 base.Update(thisMember);
 
                 return true;

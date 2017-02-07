@@ -244,7 +244,6 @@ Advertiser Activity Report
             </FooterTemplate>
         </asp:Repeater>
     </div>
-    </div>
     <script src="/scripts/bootstrap.min.js"></script>
     <script src="/scripts/bootstrap-datepicker.min.js"></script>
     <script src="/scripts/bootstrap-select.js"></script>

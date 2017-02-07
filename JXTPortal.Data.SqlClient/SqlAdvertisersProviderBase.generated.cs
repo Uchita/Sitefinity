@@ -276,6 +276,7 @@ namespace JXTPortal.Data.SqlClient
 		database.AddInParameter(commandWrapper, "@NominatedCompanyPhone", DbType.AnsiString, DBNull.Value);
 		database.AddInParameter(commandWrapper, "@PreferredContactMethod", DbType.Int32, DBNull.Value);
 		database.AddInParameter(commandWrapper, "@AdvertiserLogoUrl", DbType.String, DBNull.Value);
+		database.AddInParameter(commandWrapper, "@AllowPeopleSearchAccess", DbType.Boolean, DBNull.Value);
 	
 			// replace all instances of 'AND' and 'OR' because we already set searchUsingOR
 			whereClause = whereClause.Replace(" AND ", "|").Replace(" OR ", "|") ; 
@@ -516,6 +517,12 @@ namespace JXTPortal.Data.SqlClient
 				{
 					database.SetParameterValue(commandWrapper, "@AdvertiserLogoUrl", 
 						clause.Trim().Remove(0,17).Trim().TrimStart(equalSign).Trim().Trim(singleQuote));
+					continue;
+				}
+				if (clause.Trim().StartsWith("allowpeoplesearchaccess ") || clause.Trim().StartsWith("allowpeoplesearchaccess="))
+				{
+					database.SetParameterValue(commandWrapper, "@AllowPeopleSearchAccess", 
+						clause.Trim().Remove(0,23).Trim().TrimStart(equalSign).Trim().Trim(singleQuote));
 					continue;
 				}
 	
@@ -1299,6 +1306,8 @@ namespace JXTPortal.Data.SqlClient
 			col36.AllowDBNull = true;		
 			DataColumn col37 = dataTable.Columns.Add("AdvertiserLogoUrl", typeof(System.String));
 			col37.AllowDBNull = true;		
+			DataColumn col38 = dataTable.Columns.Add("AllowPeopleSearchAccess", typeof(System.Boolean));
+			col38.AllowDBNull = false;		
 			
 			bulkCopy.ColumnMappings.Add("AdvertiserID", "AdvertiserID");
 			bulkCopy.ColumnMappings.Add("SiteID", "SiteID");
@@ -1338,6 +1347,7 @@ namespace JXTPortal.Data.SqlClient
 			bulkCopy.ColumnMappings.Add("NominatedCompanyPhone", "NominatedCompanyPhone");
 			bulkCopy.ColumnMappings.Add("PreferredContactMethod", "PreferredContactMethod");
 			bulkCopy.ColumnMappings.Add("AdvertiserLogoUrl", "AdvertiserLogoUrl");
+			bulkCopy.ColumnMappings.Add("AllowPeopleSearchAccess", "AllowPeopleSearchAccess");
 			
 			foreach(JXTPortal.Entities.Advertisers entity in entities)
 			{
@@ -1460,6 +1470,9 @@ namespace JXTPortal.Data.SqlClient
 					row["AdvertiserLogoUrl"] = entity.AdvertiserLogoUrl;
 							
 				
+					row["AllowPeopleSearchAccess"] = entity.AllowPeopleSearchAccess;
+							
+				
 				dataTable.Rows.Add(row);
 			}		
 			
@@ -1532,6 +1545,7 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@NominatedCompanyPhone", DbType.AnsiString, entity.NominatedCompanyPhone );
 			database.AddInParameter(commandWrapper, "@PreferredContactMethod", DbType.Int32, (entity.PreferredContactMethod.HasValue ? (object) entity.PreferredContactMethod  : System.DBNull.Value));
 			database.AddInParameter(commandWrapper, "@AdvertiserLogoUrl", DbType.String, entity.AdvertiserLogoUrl );
+			database.AddInParameter(commandWrapper, "@AllowPeopleSearchAccess", DbType.Boolean, entity.AllowPeopleSearchAccess );
 			
 			int results = 0;
 			
@@ -1618,6 +1632,7 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@NominatedCompanyPhone", DbType.AnsiString, entity.NominatedCompanyPhone );
 			database.AddInParameter(commandWrapper, "@PreferredContactMethod", DbType.Int32, (entity.PreferredContactMethod.HasValue ? (object) entity.PreferredContactMethod : System.DBNull.Value) );
 			database.AddInParameter(commandWrapper, "@AdvertiserLogoUrl", DbType.String, entity.AdvertiserLogoUrl );
+			database.AddInParameter(commandWrapper, "@AllowPeopleSearchAccess", DbType.Boolean, entity.AllowPeopleSearchAccess );
 			
 			int results = 0;
 			

@@ -141,28 +141,34 @@ namespace JXTPortal.Website.members
                             string filepath = string.Empty;
                             Stream ms = null;
 
-                            if (!string.IsNullOrWhiteSpace(thisResume.MemberFileUrl))
+                            if (thisResume != null)
                             {
-                                filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], thisResume.MemberId, thisResume.MemberFileUrl);    
-                                ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
+                                if (!string.IsNullOrEmpty(thisResume.MemberFileUrl))
+                                {
+                                    filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], thisResume.MemberId, thisResume.MemberFileUrl);
+                                    ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
 
-                                resumecontent = ((MemoryStream)ms).ToArray();
-                            }
-                            else
-                            {
-                                resumecontent = thisResume.MemberFileContent;
+                                    resumecontent = ((MemoryStream)ms).ToArray();
+                                }
+                                else
+                                {
+                                    resumecontent = thisResume.MemberFileContent;
+                                }
                             }
 
-                            if (!string.IsNullOrWhiteSpace(thisResume.MemberFileUrl))
+                            if (thisCoverLetter != null)
                             {
-                                filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], thisCoverLetter.MemberId, thisCoverLetter.MemberFileUrl);
-                                ms = null;
-                                ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
-                                coverlettercontent = ((MemoryStream)ms).ToArray();
-                            }
-                            else
-                            {
-                                coverlettercontent = thisCoverLetter.MemberFileContent;
+                                if (!string.IsNullOrWhiteSpace(thisCoverLetter.MemberFileUrl))
+                                {
+                                    filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], thisCoverLetter.MemberId, thisCoverLetter.MemberFileUrl);
+                                    ms = null;
+                                    ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
+                                    coverlettercontent = ((MemoryStream)ms).ToArray();
+                                }
+                                else
+                                {
+                                    coverlettercontent = thisCoverLetter.MemberFileContent;
+                                }
                             }
 
                             BullhornRESTAPI.SyncCandidate(member,

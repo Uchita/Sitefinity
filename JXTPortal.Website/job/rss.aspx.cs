@@ -230,7 +230,7 @@ namespace JXTPortal.Website.job
                                                     SessionData.Site.SiteId, advertiserID,
                                                     currencyID, salaryLowerBand, salaryUpperBand, salarytypeID, worktypeID,
                                                     professionID, roleIDs,
-                                                    countryID, locationID, areaIDs, null,
+                                                    countryID, locationID, areaIDs, null, SessionData.Language.LanguageId,
                                                     SessionData.JobSearch.PageIndex, 50, string.Empty, ConvertJobTypesToParam(jobTypes)))
             {
                 int index = 1;

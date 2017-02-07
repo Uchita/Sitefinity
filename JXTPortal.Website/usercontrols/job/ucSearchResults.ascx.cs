@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using JXTPortal.Entities;
 using System.Configuration;
 using JXTPortal.Common;
+using JXTPortal.Common.Extensions;
 using System.Text;
 using System.Xml;
 using JXTPortal.Entities.Models;
@@ -147,6 +148,22 @@ namespace JXTPortal.Website.usercontrols.job
                     _siterolesService = new SiteRolesService();
                 }
                 return _siterolesService;
+            }
+        }
+
+
+        private SiteSalaryTypeService _sitesalaryService = null;
+
+        public SiteSalaryTypeService SiteSalaryService
+        {
+
+            get
+            {
+                if (_sitesalaryService == null)
+                {
+                    _sitesalaryService = new SiteSalaryTypeService();
+                }
+                return _sitesalaryService;
             }
         }
 
@@ -466,17 +483,11 @@ namespace JXTPortal.Website.usercontrols.job
                 // Todo - The hyperlink is hardcoded to job but it should be for advertiser
                 if (viewJobSearch.AdvertiserId.HasValue && viewJobSearch.HasAdvertiserLogo > 0) //AdvertiserJobTemplateLogoId
                 {
-                    /*using (Entities.Advertisers advertiser = AdvertisersService.GetByAdvertiserId(viewJobSearch.AdvertiserId.Value))
-                    {
-                        if (advertiser.AdvertiserLogo != null)
-                        {*/
-                            strAdvertiserLogo = String.Format(@"<a href='{2}'><img src='/getfile.aspx?advertiserid={0}' alt='{1}' /></a>",
-                                                                viewJobSearch.AdvertiserId.Value,
-                                                                viewJobSearch.CompanyName,
-                                                                Utils.GetJobUrl(viewJobSearch.JobId, viewJobSearch.JobFriendlyName));
-                        /*}
-                    }*/
+                    string jobUrl = Utils.GetJobUrl(viewJobSearch.JobId, viewJobSearch.JobFriendlyName);
+
+                    strAdvertiserLogo = buildImageURL(jobUrl, viewJobSearch.AdvertiserId.Value, viewJobSearch.DatePosted.ToEpocTimestamp(), viewJobSearch.CompanyName);
                 }
+
 
                 //<a id='aSaveJob{9}' href='javascript:void(0);' onclick='return SaveJob(""aSaveJob{9}"",{9});'>save job</a>
                 //onmouseover='MouseMover_row(this)' onmouseout='MouseOut_row(this)'
@@ -498,6 +509,7 @@ namespace JXTPortal.Website.usercontrols.job
             <span class='jxt-result-area'>{16}</span>
             <span class='jxt-result-salary'>{4}</span>
             <span class='jxt-result-worktype'>{5}</span>
+            <span class='jxt-result-publictransport hidden'>{17}</span>
         </div>
         <div class='description-text'>{6}</div>
         <div class='description-logo'>{7}</div>
@@ -513,7 +525,7 @@ namespace JXTPortal.Website.usercontrols.job
  (viewJobSearch.ShowSalaryRange) ? string.Format("{0}{1} - {0}{2:#,###} {3}",
  viewJobSearch.CurrencySymbol,
  (viewJobSearch.SalaryLowerBand == 0) ? "0" : viewJobSearch.SalaryLowerBand.ToString("#,###"),
- viewJobSearch.SalaryUpperBand, viewJobSearch.SalaryTypeName) : viewJobSearch.SalaryTypeName,
+ viewJobSearch.SalaryUpperBand, SiteSalaryService.Get_TranslatedSalaryType(SessionData.Site.SiteId, viewJobSearch.SalaryTypeId).SalaryTypeName) : SiteSalaryService.Get_TranslatedSalaryType(SessionData.Site.SiteId, viewJobSearch.SalaryTypeId).SalaryTypeName,
  viewJobSearch.WorkTypeName,
  strJobDescription,
  strAdvertiserLogo,
@@ -525,7 +537,8 @@ namespace JXTPortal.Website.usercontrols.job
  CommonFunction.GetResourceValue("LinkButtonSendEmail"),
  IsMemberSavedJob(viewJobSearch.JobId) ? " job-saved" : string.Empty,
  SessionData.Member != null && SessionData.Member.MemberId > 0 ? string.Format(" onclick=\"return SaveJob(this, 'aSaveJob{0}',{0});\" ", viewJobSearch.JobId) : string.Empty,
- viewJobSearch.AreaName
+ viewJobSearch.AreaName,
+ viewJobSearch.PublicTransport
  );
 
 
@@ -535,6 +548,16 @@ namespace JXTPortal.Website.usercontrols.job
         }
 
         #endregion
+
+
+        public string buildImageURL(string jobURL, int advertiserID, long timestamp, string companyName )
+        {
+            var imageUrl = string.Format("<img src='/getfile.aspx?advertiserid={0}&ver={1}' alt='{2}' />", advertiserID, timestamp, companyName);
+
+            var assetUrl = string.Format("<a href='{0}'>{1}</a>", jobURL,imageUrl);
+
+            return assetUrl;
+        }
 
         #region Job Search Repeater
 
@@ -581,16 +604,9 @@ namespace JXTPortal.Website.usercontrols.job
                 // Todo - The hyperlink is hardcoded to job but it should be for advertiser
                 if (viewJobSearch.AdvertiserId.HasValue && viewJobSearch.HasAdvertiserLogo > 0) //AdvertiserJobTemplateLogoId
                 {
-                    /*using (Entities.Advertisers advertiser = AdvertisersService.GetByAdvertiserId(viewJobSearch.AdvertiserId.Value))
-                    {
-                        if (advertiser.AdvertiserLogo != null)
-                        {*/
-                            strAdvertiserLogo = String.Format(@"<a href='{2}'><img src='/getfile.aspx?advertiserid={0}' alt='{1}' /></a>",
-                                                                viewJobSearch.AdvertiserId.Value,
-                                                                viewJobSearch.CompanyName,
-                                                                Utils.GetJobUrl(viewJobSearch.JobId, viewJobSearch.JobFriendlyName));
-                        /*}
-                    }*/
+                    var jobUrl = Utils.GetJobUrl(viewJobSearch.JobId, viewJobSearch.JobFriendlyName);
+                    strAdvertiserLogo = buildImageURL(jobUrl, viewJobSearch.AdvertiserId.Value, viewJobSearch.DatePosted.ToEpocTimestamp(), viewJobSearch.CompanyName);
+                                
                 }
 
                 //<a id='aSaveJob{9}' href='javascript:void(0);' onclick='return SaveJob(""aSaveJob{9}"",{9});'>save job</a>
@@ -613,6 +629,7 @@ namespace JXTPortal.Website.usercontrols.job
             <span class='jxt-result-area'>{17}</span>
             <span class='jxt-result-salary'>{4}</span>
             <span class='jxt-result-worktype'>{5}</span>
+            <span class='jxt-result-publictransport hidden'>{18}</span>
         </div>
         <div class='description-text'>{6}</div>
         <div class='description-logo'>{7}</div>
@@ -628,7 +645,7 @@ namespace JXTPortal.Website.usercontrols.job
  (viewJobSearch.ShowSalaryRange) ? string.Format("{0}{1} - {0}{2:#,###} {3}",  
  viewJobSearch.CurrencySymbol,  
  (viewJobSearch.SalaryLowerBand == 0) ? "0" : viewJobSearch.SalaryLowerBand.ToString("#,###"),
- viewJobSearch.SalaryUpperBand, viewJobSearch.SalaryTypeName) : viewJobSearch.SalaryTypeName,
+ viewJobSearch.SalaryUpperBand, SiteSalaryService.Get_TranslatedSalaryType(SessionData.Site.SiteId, viewJobSearch.SalaryTypeId).SalaryTypeName) : SiteSalaryService.Get_TranslatedSalaryType(SessionData.Site.SiteId, viewJobSearch.SalaryTypeId).SalaryTypeName,
  viewJobSearch.WorkTypeName, 
  strJobDescription,
  strAdvertiserLogo, 
@@ -641,7 +658,8 @@ namespace JXTPortal.Website.usercontrols.job
  IsMemberSavedJob(viewJobSearch.JobId) ? " job-saved" : string.Empty,
  SessionData.Member != null && SessionData.Member.MemberId > 0 ? string.Format(" onclick=\"return SaveJob(this, 'aSaveJob{0}',{0});\" ", viewJobSearch.JobId) : string.Empty,
  (viewJobSearch.SiteId == SessionData.Site.SiteId && viewJobSearch.JobItemTypeId == (int)PortalEnums.Jobs.JobItemType.StandOut ? " jxt-standout-job" : string.Empty),  // Show as Standout only on the created site.
- viewJobSearch.AreaName
+ viewJobSearch.AreaName,
+ viewJobSearch.PublicTransport
  );
 
 

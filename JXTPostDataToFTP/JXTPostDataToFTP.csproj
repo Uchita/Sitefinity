@@ -31,6 +31,8 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -64,10 +66,23 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net-loggly, Version=7.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net-loggly.7.2.1\lib\net40\log4net-loggly.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -79,6 +94,57 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileUploader.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\JXTPortal.Website\App_GlobalResources\CVBuilderResource.Designer.cs">
+      <Link>Resources\CVBuilderResource.Designer.cs</Link>
+    </Compile>
+    <Compile Include="..\JXTPortal.Website\App_GlobalResources\language_1.designer.cs">
+      <Link>Resources\language_1.designer.cs</Link>
+    </Compile>
+    <Compile Include="..\JXTPortal.Website\App_GlobalResources\language_10.designer.cs">
+      <Link>Resources\language_10.designer.cs</Link>
+    </Compile>
+    <Compile Include="..\JXTPortal.Website\App_GlobalResources\language_11.designer.cs">
+      <Link>Resources\language_11.designer.cs</Link>
+    </Compile>
+    <Compile Include="..\JXTPortal.Website\App_GlobalResources\language_12.designer.cs">
+      <Link>Resources\language_12.designer.cs</Link>
+    </Compile>
+    <Compile Include="..\JXTPortal.Website\App_GlobalResources\language_13.designer.cs">
+      <Link>Resources\language_13.designer.cs</Link>
+    </Compile>
+    <Compile Include="..\JXTPortal.Website\App_GlobalResources\language_2.Designer.cs">
+      <Link>Resources\language_2.Designer.cs</Link>
+    </Compile>
+    <Compile Include="..\JXTPortal.Website\App_GlobalResources\language_3.designer.cs">
+      <Link>Resources\language_3.designer.cs</Link>
+    </Compile>
+    <Compile Include="..\JXTPortal.Website\App_GlobalResources\language_4.designer.cs">
+      <Link>Resources\language_4.designer.cs</Link>
+    </Compile>
+    <Compile Include="..\JXTPortal.Website\App_GlobalResources\language_5.Designer.cs">
+      <Link>Resources\language_5.Designer.cs</Link>
+    </Compile>
+    <Compile Include="..\JXTPortal.Website\App_GlobalResources\language_5_Adecco.designer.cs">
+      <Link>Resources\language_5_Adecco.designer.cs</Link>
+    </Compile>
+    <Compile Include="..\JXTPortal.Website\App_GlobalResources\language_6.Designer.cs">
+      <Link>Resources\language_6.Designer.cs</Link>
+    </Compile>
+    <Compile Include="..\JXTPortal.Website\App_GlobalResources\language_7.designer.cs">
+      <Link>Resources\language_7.designer.cs</Link>
+    </Compile>
+    <Compile Include="..\JXTPortal.Website\App_GlobalResources\language_8.designer.cs">
+      <Link>Resources\language_8.designer.cs</Link>
+    </Compile>
+    <Compile Include="..\JXTPortal.Website\App_GlobalResources\language_9.designer.cs">
+      <Link>Resources\language_9.designer.cs</Link>
+    </Compile>
+    <Compile Include="..\JXTPortal.Website\App_GlobalResources\language_English_Test_Sample.designer.cs">
+      <Link>Resources\language_English_Test_Sample.designer.cs</Link>
+    </Compile>
     <Compile Include="Member\MemberXMLGenerator.cs" />
     <Compile Include="Models\MemberModels.cs" />
     <Compile Include="Program.cs" />
@@ -89,6 +155,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="JXTPostDataToFTP_TemporaryKey.pfx" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EmailSender\EmailSender.csproj">
@@ -147,7 +214,66 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="..\JXTPortal.Website\App_GlobalResources\CVBuilderResource.resx">
+      <Link>Resources\CVBuilderResource.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\JXTPortal.Website\App_GlobalResources\language_1.resx">
+      <Link>Resources\language_1.resx</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\JXTPortal.Website\App_GlobalResources\language_10.resx">
+      <Link>Resources\language_10.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\JXTPortal.Website\App_GlobalResources\language_11.resx">
+      <Link>Resources\language_11.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\JXTPortal.Website\App_GlobalResources\language_12.resx">
+      <Link>Resources\language_12.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\JXTPortal.Website\App_GlobalResources\language_13.resx">
+      <Link>Resources\language_13.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\JXTPortal.Website\App_GlobalResources\language_2.resx">
+      <Link>Resources\language_2.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\JXTPortal.Website\App_GlobalResources\language_3.resx">
+      <Link>Resources\language_3.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\JXTPortal.Website\App_GlobalResources\language_4.resx">
+      <Link>Resources\language_4.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\JXTPortal.Website\App_GlobalResources\language_5.resx">
+      <Link>Resources\language_5.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\JXTPortal.Website\App_GlobalResources\language_5_Adecco.resx">
+      <Link>Resources\language_5_Adecco.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\JXTPortal.Website\App_GlobalResources\language_6.resx">
+      <Link>Resources\language_6.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\JXTPortal.Website\App_GlobalResources\language_7.resx">
+      <Link>Resources\language_7.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\JXTPortal.Website\App_GlobalResources\language_8.resx">
+      <Link>Resources\language_8.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\JXTPortal.Website\App_GlobalResources\language_9.resx">
+      <Link>Resources\language_9.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\JXTPortal.Website\App_GlobalResources\language_English_Test_Sample.resx">
+      <Link>Resources\language_English_Test_Sample.resx</Link>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

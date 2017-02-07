@@ -9,6 +9,7 @@ using System.Text;
 using System.Data;
 using System.Xml;
 using JXTPortal.Entities;
+using JXTPortal.Common.Extensions;
 using System.Configuration;
 
 namespace JXTPortal.Website
@@ -64,7 +65,6 @@ namespace JXTPortal.Website
                 {
                     Consultants consultant = consultants[0];
 
-                    SetMetaContentWithFavIcon(Master.FindControl("ltlMetaContent") as Literal, null, Page, (string.IsNullOrWhiteSpace(consultant.MetaTitle)) ? consultant.FirstName : consultant.MetaTitle, consultant.MetaDescription, consultant.MetaKeywords, false, true);
                     // Load Template from dynamic page
                     ucSystemDynamicPage ucSystemDynamicPage = new ucSystemDynamicPage();
                     string strContent = ucSystemDynamicPage.GetContent("SystemPage_ConsultantProfile");
@@ -126,7 +126,7 @@ namespace JXTPortal.Website
                     strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_LOCATION, HttpUtility.HtmlEncode((!string.IsNullOrWhiteSpace(MultiLocation)) ? MultiLocation : consultant.Location.ToString()));
                     strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_FRIENDLYURL, HttpUtility.HtmlEncode(consultant.FriendlyUrl.ToString()));
                     strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_SHORTDESCRIPTION, (!string.IsNullOrWhiteSpace(MultiShortDescription)) ? MultiShortDescription : consultant.ShortDescription.ToString());
-                    strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_TESTIMONIAL, consultant.Testimonial.ToString());
+                    strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_TESTIMONIAL, (!string.IsNullOrWhiteSpace(MultiTestimonial)) ? MultiTestimonial : consultant.Testimonial.ToString());
                     strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_FULLDESCRIPTION, (!string.IsNullOrWhiteSpace(MultiFullDescription)) ? MultiFullDescription : consultant.FullDescription.ToString());
                     strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_LINKEDINURL, HttpUtility.HtmlEncode(consultant.LinkedInUrl.ToString()));
                     strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_TWITTERURL, HttpUtility.HtmlEncode(consultant.TwitterUrl.ToString()));
@@ -138,13 +138,15 @@ namespace JXTPortal.Website
 
                     if (!string.IsNullOrWhiteSpace(consultant.ConsultantImageUrl))
                     {
-                        strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_IMAGEURL, string.Format("/media/{0}/{1}", ConfigurationManager.AppSettings["ConsultantsFolder"], consultant.ConsultantImageUrl));
+                        strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_IMAGEURL, string.Format("/media/{0}/{1}?ver={2}", ConfigurationManager.AppSettings["ConsultantsFolder"], consultant.ConsultantImageUrl, consultant.LastModified.ToEpocTimestamp()));
                     }
                     else
                     {
                         if (consultant.ImageUrl != null)
                         {
-                            strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_IMAGEURL, "/getfile.aspx?consultantid=" + consultant.ConsultantId.ToString());
+                            var contentURL = string.Format("/getfile.aspx?consultantid={0}&ver={1}", consultant.ConsultantId.ToString(),consultant.LastModified.ToEpocTimestamp());
+
+                            strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_IMAGEURL, contentURL);
                         }
                         else
                         {
@@ -158,9 +160,20 @@ namespace JXTPortal.Website
                     strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_JOBRSS, HttpUtility.HtmlEncode(consultant.JobRss.ToString()));
                     strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_TESTIMONIALSRSS, HttpUtility.HtmlEncode((!string.IsNullOrWhiteSpace(MultiTestimonial)) ? MultiTestimonial : consultant.TestimonialsRss.ToString()));
                     strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_VALID, HttpUtility.HtmlEncode(consultant.Valid.ToString()));
-                    strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_METATITLE, HttpUtility.HtmlEncode((!string.IsNullOrWhiteSpace(MultiMetaTitle)) ? MultiMetaTitle : consultant.MetaTitle.ToString()));
-                    strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_METADESCRIPTION, HttpUtility.HtmlEncode((!string.IsNullOrWhiteSpace(MultiMetaDescription)) ? MultiMetaDescription : consultant.MetaDescription.ToString()));
-                    strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_METAKEYWORDS, HttpUtility.HtmlEncode((!string.IsNullOrWhiteSpace(MultiMetaKeyword)) ? MultiMetaKeyword : consultant.MetaKeywords.ToString()));
+
+                    string thisMetaTitle = HttpUtility.HtmlEncode((!string.IsNullOrWhiteSpace(MultiMetaTitle)) ? MultiMetaTitle : consultant.MetaTitle.ToString());
+                    string thisMetaDesc = HttpUtility.HtmlEncode((!string.IsNullOrWhiteSpace(MultiMetaDescription)) ? MultiMetaDescription : consultant.MetaDescription.ToString());
+                    string thisMetaKeyword = HttpUtility.HtmlEncode((!string.IsNullOrWhiteSpace(MultiMetaKeyword)) ? MultiMetaKeyword : consultant.MetaKeywords.ToString());
+                    
+                    //strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_METATITLE, HttpUtility.HtmlEncode((!string.IsNullOrWhiteSpace(MultiMetaTitle)) ? MultiMetaTitle : consultant.MetaTitle.ToString()));
+                    //strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_METADESCRIPTION, HttpUtility.HtmlEncode((!string.IsNullOrWhiteSpace(MultiMetaDescription)) ? MultiMetaDescription : consultant.MetaDescription.ToString()));
+                    //strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_METAKEYWORDS, HttpUtility.HtmlEncode((!string.IsNullOrWhiteSpace(MultiMetaKeyword)) ? MultiMetaKeyword : consultant.MetaKeywords.ToString()));
+
+                    //SetMetaContentWithFavIcon(ltlMetaContent, null, Page, thisMetaTitle, thisMetaDesc, thisMetaKeyword, false, true);
+                    //SetMetaContentWithFavIcon(Master.FindControl("ltlMetaContent") as Literal, null, Page, (string.IsNullOrWhiteSpace(thisMetaTitle)) ? consultant.FirstName : consultant.MetaTitle, consultant.MetaDescription, consultant.MetaKeywords, false, true);
+                    SetMetaContentWithFavIcon(Master.FindControl("ltlMetaContent") as Literal, null, Page, thisMetaTitle, thisMetaDesc, thisMetaKeyword, false, true);
+                    
+
                     strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_LASTMODIFIEDBY, HttpUtility.HtmlEncode(consultant.LastModifiedBy.ToString()));
                     strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_LASTMODIFIED, HttpUtility.HtmlEncode(consultant.LastModified.ToString()));
                     strContent = strContent.Replace(PortalConstants.ConsultantData.CONSULTANT_SEQUENCE, HttpUtility.HtmlEncode(consultant.Sequence.ToString()));

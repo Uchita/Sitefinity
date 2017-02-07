@@ -8,20 +8,30 @@ using System.Configuration;
 using JXTPortal.Common;
 using System.Data;
 using System.Security.Cryptography;
+using JXTPortal.Service.Dapper;
+using JXTPortal.Service.Dapper.Models;
+using SiteLanguages = JXTPortal.Service.Dapper.Models.SiteLanguages;
+using JXTPortal.Custom;
 
 namespace JXTPortal
 {
-    public static class SessionService
+    public class SessionServiceInner : ISessionService
     {
+        ISiteLanguageService _siteLanguageService;
+
         public static string HASHKEY_COOKIE_NAME = "AuthToken";
+
+        public SessionServiceInner(ISiteLanguageService siteLanguageService)
+        {
+            _siteLanguageService = siteLanguageService;
+        }
 
         /// <summary>
         /// setting the session upon loading based on URL
         /// </summary>
-        public static void SessionSetup()
+        public void SessionSetup()
         {
             SitesService siteService = new SitesService();
-
             // ToDO: Create Store proc for finding the url.
             DataSet dsSiteList = siteService.FindSite(null, GetCurrentWhitelabelUrl());
 
@@ -41,7 +51,7 @@ namespace JXTPortal
 
         }
 
-        public static void SessionAbandon()
+        public void SessionAbandon()
         {
             HttpContext.Current.Session.Abandon();
             HttpCookie thisCookie = HttpContext.Current.Request.Cookies["ASP.NET_SessionId"];
@@ -57,7 +67,7 @@ namespace JXTPortal
         /// within the same session. The issue found during accessing subdomain from parent domain
         /// the session will not be reloaded because its still active
         /// </summary>
-        public static void SessionVerify()
+        public void SessionVerify()
         {
             //this is to make sure it's not being called to early when the session is still not available
             //we just need to verify the site url to decide whether to refresh the session or not
@@ -74,7 +84,7 @@ namespace JXTPortal
         /// Setting the session site based on the whitelabel record
         /// </summary>
         /// <param name="dsSite"></param>
-        public static void SetSite(DataSet dsSite)
+        public void SetSite(DataSet dsSite)
         {
             SessionSite sessionSite = new SessionSite();
             sessionSite.DateFormat = "dd/MM/yyyy";
@@ -91,11 +101,19 @@ namespace JXTPortal
             else
                 sessionSite.DefaultLanguageId = PortalConstants.DEFAULT_LANGUAGE_ID;
 
-            System.Web.HttpContext.Current.Session[PortalConstants.Session.SessionSite] = sessionSite;
+            //find site language resource mappings
+            SiteLanguages siteLanguages = _siteLanguageService.GetBySiteID(thisSiteID);
+            foreach (SiteLanguageDetails langDetails in siteLanguages.Languages)
+            {
+                string customResourceFileName = langDetails.ResourceFileName;
+                sessionSite.ResourceFileNameMappings.Add((PortalEnums.Languages.Language)langDetails.LanguageID, customResourceFileName);
+            }
+
+            //Language available for this site
+            sessionSite.SiteAvailableLanguage = (from lang in siteLanguages.Languages select lang.SiteLanguageURL).Distinct().ToList();
 
             GlobalSettingsService globalService = new GlobalSettingsService();
             TList<GlobalSettings> settings = globalService.GetBySiteId(sessionSite.SiteId);
-            
             
             // Check if current site has a master site
             SiteMappingsService sitemappingsservice = new SiteMappingsService();
@@ -133,15 +151,6 @@ namespace JXTPortal
                 SetLanguage(languageService.GetByLanguageId(sessionSite.DefaultLanguageId));
             }
 
-            //Language available for this site
-            List<SiteLanguages> siteLanguages;
-            {
-                SiteLanguagesService _sl = new SiteLanguagesService();
-                siteLanguages = _sl.GetBySiteId(thisSiteID).ToList();
-                _sl = null; //manaul dump
-            } //this should GC
-            sessionSite.SiteAvailableLanguage = (from lang in siteLanguages select (PortalEnums.Languages.URLLanguage)lang.LanguageId).Distinct().ToList();
-
             if (settings[0].DefaultEmailLanguageId.HasValue)
             {
                 sessionSite.DefaultEmailLanguageId = settings[0].DefaultEmailLanguageId.Value;
@@ -154,6 +163,8 @@ namespace JXTPortal
             //Set AuthToken for the current Session
             sessionSite.AuthToken = GenerateAuthToken();
 
+            //set into session
+            System.Web.HttpContext.Current.Session[PortalConstants.Session.SessionSite] = sessionSite;
             
             // Dispose object
             languageService = null;
@@ -166,13 +177,13 @@ namespace JXTPortal
         /// get current whitelabel url - replace the staging fix
         /// </summary>
         /// <returns></returns>
-        public static string GetCurrentWhitelabelUrl()
+        public  string GetCurrentWhitelabelUrl()
         {
             string siteURL = HttpContext.Current.Request.Url.Host.ToString();
             return siteURL.Replace("dev.", "").Replace("www.", "").Replace(ConfigurationManager.AppSettings[PortalConstants.WebConfigurationKeys.WEBSITEURLPOSTFIX], string.Empty);
         }
 
-        public static void SetMember(Members member)
+        public  void SetMember(Members member)
         {
             SessionMember sessionMember = new SessionMember();
 
@@ -194,7 +205,7 @@ namespace JXTPortal
 
         }
 
-        public static void RemoveMemberAndAdvertiser()
+        public  void RemoveMemberAndAdvertiser()
         {
             System.Web.HttpContext.Current.Session.Remove(PortalConstants.Session.SessionMember);
             System.Web.HttpContext.Current.Session.Remove(PortalConstants.Session.SessionAdvertiserUser);
@@ -219,7 +230,7 @@ namespace JXTPortal
             System.Web.HttpContext.Current.Session.Remove(PortalConstants.Session.SESSION_FORMDATA_KEY);
         }
 
-        public static void RemoveMember()
+        public  void RemoveMember()
         {
             System.Web.HttpContext.Current.Session.Remove(PortalConstants.Session.SessionMember);
             // Remove stored cookie
@@ -231,12 +242,12 @@ namespace JXTPortal
             }
         }
 
-        public static void SetLanguage(Languages language)
+        public  void SetLanguage(Languages language)
         {
             System.Web.HttpContext.Current.Session[PortalConstants.Session.SessionLanguage] = language;
         }
 
-        public static void SetAdminUser(AdminUsers adminUser)
+        public  void SetAdminUser(AdminUsers adminUser)
         {
             SessionAdminUser sessionAdminUser = new SessionAdminUser();
             sessionAdminUser.AdminUserId = adminUser.AdminUserId;
@@ -248,12 +259,12 @@ namespace JXTPortal
             sessionAdminUser = null;
         }
 
-        public static void RemoveAdminUser()
+        public  void RemoveAdminUser()
         {
             System.Web.HttpContext.Current.Session.Remove(PortalConstants.Session.SessionAdminUser);
         }
 
-        public static void SetAdvertiserUser(AdvertiserUsers advertiserUser)
+        public void SetAdvertiserUser(AdvertiserUsers advertiserUser)
         {
             SessionAdvertiserUser sessionAdvertiserUser = new SessionAdvertiserUser();
             sessionAdvertiserUser.AdvertiserId = advertiserUser.AdvertiserId;
@@ -270,13 +281,16 @@ namespace JXTPortal
             if (adv != null)
             {
                 sessionAdvertiserUser.AccountType = (PortalEnums.Advertiser.AccountType)adv.AdvertiserAccountTypeId;
+
+                //People Search flag from the advertiser level
+                sessionAdvertiserUser.AllowedToAccessPeopleSearch = adv.AllowPeopleSearchAccess;
             }
 
             System.Web.HttpContext.Current.Session[PortalConstants.Session.SessionAdvertiserUser] = sessionAdvertiserUser;
             sessionAdvertiserUser = null;
         }
 
-        public static void RemoveAdvertiserUser()
+        public  void RemoveAdvertiserUser()
         {
             System.Web.HttpContext.Current.Session.Remove(PortalConstants.Session.SessionAdvertiserUser);
             // Remove stored cookie
@@ -288,7 +302,7 @@ namespace JXTPortal
             }
         }
 
-        public static string GenerateAuthToken()
+        public string GenerateAuthToken()
         {
             //use sessionID as part of the key
             //throw exception if no session
@@ -315,7 +329,7 @@ namespace JXTPortal
             return myStr.ToString();
         }
 
-        public static bool IsAuthTokenValid()
+        public bool IsAuthTokenValid()
         {
             if (SessionData.Site != null)
                 return SessionData.Site.AuthToken == GenerateAuthToken();
@@ -329,7 +343,7 @@ namespace JXTPortal
         /// <summary>
         /// setting the session upon loading based on URL
         /// </summary>
-        public static void SessionMobileSetup()
+        public void SessionMobileSetup()
         {
 
             SitesService siteService = new SitesService();
@@ -356,7 +370,7 @@ namespace JXTPortal
         /// Setting the session site based on the whitelabel record
         /// </summary>
         /// <param name="Sites"></param>
-        public static void SetMobileSite(Sites site)
+        public void SetMobileSite(Sites site)
         {
             SessionSite sessionSite = new SessionSite();
             GlobalSettingsService globalSettingsService = new GlobalSettingsService();
@@ -381,6 +395,17 @@ namespace JXTPortal
                 }
                 else
                     sessionSite.DefaultLanguageId = PortalConstants.DEFAULT_LANGUAGE_ID;
+
+                //find site language resource mappings
+                SiteLanguages siteLanguages = _siteLanguageService.GetBySiteID(site.SiteId);
+                foreach (SiteLanguageDetails langDetails in siteLanguages.Languages)
+                {
+                    string customResourceFileName = langDetails.ResourceFileName;
+                    sessionSite.ResourceFileNameMappings.Add((PortalEnums.Languages.Language)langDetails.LanguageID, customResourceFileName);
+                }
+
+                //Language available for this site
+                sessionSite.SiteAvailableLanguage = (from lang in siteLanguages.Languages select lang.SiteLanguageURL).Distinct().ToList();
             }
 
             System.Web.HttpContext.Current.Session[PortalConstants.Session.SessionSite] = sessionSite;
@@ -402,4 +427,82 @@ namespace JXTPortal
         }
         #endregion
     }
+
+    //Temporary wrapper class whilst we transition to IoC. Required to reduce the footprint of the updates to the underlying dependencies
+    public static class SessionService
+    {
+        private static ISessionService _s;
+        public static ISessionService InnerService { private get { return _s; } set { _s = value; } }
+
+        public static string GenerateAuthToken()
+        {
+            return InnerService.GenerateAuthToken();
+        }
+
+        public static string GetCurrentWhitelabelUrl()
+        {
+            return InnerService.GetCurrentWhitelabelUrl();
+        }
+        public static bool IsAuthTokenValid()
+        {
+            return InnerService.IsAuthTokenValid();
+        }
+        public static void RemoveAdminUser()
+        {
+            InnerService.RemoveAdminUser();
+        }
+        public static void RemoveAdvertiserUser()
+        {
+            InnerService.RemoveAdvertiserUser();
+        }
+        public static void RemoveMember()
+        {
+            InnerService.RemoveMember();
+        }
+        public static void RemoveMemberAndAdvertiser()
+        {
+            InnerService.RemoveMemberAndAdvertiser();
+        }
+        public static void SessionAbandon()
+        {
+            InnerService.SessionAbandon();
+        }
+
+        public static void SessionMobileSetup()
+        {
+            InnerService.SessionMobileSetup();
+        }
+        public static void SessionSetup()
+        {
+            InnerService.SessionSetup();
+        }
+        public static void SessionVerify()
+        {
+            InnerService.SessionVerify();
+        }
+        public static void SetAdminUser(global::JXTPortal.Entities.AdminUsers adminUser)
+        {
+            InnerService.SetAdminUser(adminUser);
+        }
+        public static void SetAdvertiserUser(global::JXTPortal.Entities.AdvertiserUsers advertiserUser)
+        {
+            InnerService.SetAdvertiserUser(advertiserUser);
+        }
+        public static void SetLanguage(global::JXTPortal.Entities.Languages language)
+        {
+            InnerService.SetLanguage(language);
+        }
+        public static void SetMember(global::JXTPortal.Entities.Members member)
+        {
+            InnerService.SetMember(member);
+        }
+        public static void SetMobileSite(global::JXTPortal.Entities.Sites site)
+        {
+            InnerService.SetMobileSite(site);
+        }
+        public static void SetSite(global::System.Data.DataSet dsSite)
+        {
+            InnerService.SetSite(dsSite);
+        }
+    }    
 }

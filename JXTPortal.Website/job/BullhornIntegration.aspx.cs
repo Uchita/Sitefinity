@@ -16,6 +16,7 @@ using JXTPortal.Entities.Models;
 using JXTPortal.Client.Bullhorn;
 using System.IO;
 using JXTPortal.Common;
+using JXTPortal.Common.Extensions;
 using System.Configuration;
 
 namespace JXTPortal.Website.job
@@ -545,6 +546,8 @@ namespace JXTPortal.Website.job
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            revEmailAddress.ValidationExpression = ConfigurationManager.AppSettings["EmailValidationRegex"];
+
             cal_tbStartDate.Format = SessionData.Site.DateFormat;
             //Everytime starts of this page, we get the advertiser details from integration settings
             AdvertiserID = BullhornSettingsDefaultAdvertiserID;
@@ -1294,7 +1297,7 @@ namespace JXTPortal.Website.job
                 if (job.JobTemplateId.HasValue)
                 {
                     ddlJobTemplateID.SelectedValue = job.JobTemplateId.ToString();
-                    imgAdvJobTemplate.ImageUrl = "/getfile.aspx?jobtemplateid=" + job.JobTemplateId.ToString();
+                    imgAdvJobTemplate.ImageUrl = string.Format("/getfile.aspx?jobtemplateid={0}&ver={1}", job.JobTemplateId.ToString(), job.LastModified.ToEpocTimestamp());
 
                     imgAdvJobTemplate.Attributes.Add("style", "display:block");
                 }
@@ -1305,7 +1308,7 @@ namespace JXTPortal.Website.job
 
                 //dataSearchFieldExtension.Text = job.SearchFieldExtension.ToString();
                 //dataAdvertiserJobTemplateLogoID.Text = job.AdvertiserJobTemplateLogoId.ToString();
-                if (job.AdvertiserJobTemplateLogoId.HasValue)
+                if (job.AdvertiserJobTemplateLogoId.GetValueOrDefault(0) > 0)
                     ddlAdvertiserJobTemplateLogo.SelectedValue = Convert.ToString(job.AdvertiserJobTemplateLogoId);
                 //chkRequireLogonForExternalApplications.Checked = job.RequireLogonForExternalApplications;
                 chkShowLocationDetails.Checked = (job.ShowLocationDetails == null) ? false : (bool)job.ShowLocationDetails;
@@ -1955,6 +1958,8 @@ namespace JXTPortal.Website.job
 
         private void LoadJobTemplate()
         {
+            
+ 
             int aid = AdvertiserID;
 
             if (aid > 0)
@@ -1969,7 +1974,7 @@ namespace JXTPortal.Website.job
             //show template image
             if (!string.IsNullOrEmpty(ddlJobTemplateID.SelectedValue))
             {
-                imgAdvJobTemplate.ImageUrl = "/getfile.aspx?jobtemplateid=" + ddlJobTemplateID.SelectedValue.ToString();
+                imgAdvJobTemplate.ImageUrl = string.Format("/getfile.aspx?jobtemplateid={0}", ddlJobTemplateID.SelectedValue.ToString());
 
                 imgAdvJobTemplate.Attributes.Add("style", "display:block");
             }
@@ -2158,9 +2163,10 @@ namespace JXTPortal.Website.job
 
         protected void ddlJobTemplateID_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             if (!string.IsNullOrEmpty(ddlJobTemplateID.SelectedValue))
             {
-                imgAdvJobTemplate.ImageUrl = "/getfile.aspx?jobtemplateid=" + ddlJobTemplateID.SelectedValue.ToString();
+                imgAdvJobTemplate.ImageUrl = string.Format("/getfile.aspx?jobtemplateid={0}", ddlJobTemplateID.SelectedValue.ToString());
 
                 imgAdvJobTemplate.Attributes.Add("style", "display:block");
             }
@@ -2533,7 +2539,6 @@ namespace JXTPortal.Website.job
                 }
             }
         }
-
 
         #endregion
 

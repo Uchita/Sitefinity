@@ -19,11 +19,12 @@ namespace JXT.Integration.AWS
     public class AwsS3
     {
         private IAmazonS3 _client;
-        
+        private static string DummyFileName = "NULL.jxt";
+
         public AwsS3()
         {
-                AWSCredentials credentials = new Amazon.Runtime.StoredProfileAWSCredentials("JXT_FileManager_Dev");
-                _client = new AmazonS3Client(credentials, Amazon.RegionEndpoint.APSoutheast2);
+            AWSCredentials credentials = new Amazon.Runtime.StoredProfileAWSCredentials("JXT_FileManager_Dev");
+            _client = new AmazonS3Client(credentials, Amazon.RegionEndpoint.APSoutheast2);
         }
 
         private string errorHandling(string errorCode, string message, string action)
@@ -42,6 +43,25 @@ namespace JXT.Integration.AWS
             return errorMessage;
         }
 
+        public void CreateFolder(string bucketName, string folder, out string errorMessage)
+        {
+            errorMessage = string.Empty;
+
+            try
+            {
+                PutObjectRequest request = new PutObjectRequest();
+                request.BucketName = bucketName;
+                request.Key = string.Format("{0}/{1}", folder, DummyFileName);
+                request.ContentBody = "";
+
+                PutObjectResponse response = _client.PutObject(request);
+            }
+            catch (AmazonS3Exception amazonS3Exception)
+            {
+                errorMessage = errorHandling(amazonS3Exception.ErrorCode, amazonS3Exception.Message, MethodBase.GetCurrentMethod().Name);
+            }
+        }
+
         public List<FileManagerFile> ListingObjects(string bucketName, out string errorMessage)
         {
             return ListingObjects(bucketName, string.Empty, out errorMessage);
@@ -51,21 +71,24 @@ namespace JXT.Integration.AWS
         {
             List<FileManagerFile> s3Objects = null;
             errorMessage = string.Empty;
-            
+
             try
             {
                 ListObjectsRequest request = new ListObjectsRequest();
                 request.BucketName = bucketName;
+                request.Prefix = (string.IsNullOrEmpty(folder)) ? string.Empty : folder + "/";
                 ListObjectsResponse response = _client.ListObjects(request);
 
-                s3Objects = response.S3Objects.Select(x => new FileManagerFile { 
-                                                            FolderName = x.BucketName, 
-                                                            ETag = x.ETag, 
-                                                            FileName = x.Key, 
-                                                            LastModified = x.LastModified,
-                                                            Size = x.Size
-                }).ToList();
-                
+                s3Objects = response.S3Objects.Select(x => new FileManagerFile
+                                              {
+                                                  IsFolder = false,
+                                                  BucketName = x.BucketName,
+                                                  ETag = x.ETag,
+                                                  FileName = x.Key,
+                                                  LastModified = x.LastModified,
+                                                  Size = x.Size
+                                              }).ToList();
+
             }
             catch (AmazonS3Exception amazonS3Exception)
             {
@@ -83,7 +106,7 @@ namespace JXT.Integration.AWS
             {
                 GetObjectRequest request = new GetObjectRequest();
                 request.BucketName = bucketName;
-                request.Key = folder + fileName;
+                request.Key = string.Format("{0}/{1}", folder, fileName);
 
                 GetObjectResponse response = _client.GetObject(request);
                 responseStream = response.ResponseStream;
@@ -104,7 +127,7 @@ namespace JXT.Integration.AWS
             {
                 DeleteObjectRequest request = new DeleteObjectRequest();
                 request.BucketName = bucketName;
-                request.Key = folder + fileName;
+                request.Key = (!string.IsNullOrWhiteSpace(folder)) ? folder + "/" : string.Empty + fileName;
 
                 DeleteObjectResponse response = _client.DeleteObject(request);
             }
@@ -122,7 +145,7 @@ namespace JXT.Integration.AWS
             {
                 PutObjectRequest request = new PutObjectRequest();
                 request.BucketName = bucketName;
-                request.Key = folder + fileName;
+                request.Key = string.Format("{0}/{1}", folder, fileName);
                 request.InputStream = inputSream;
 
                 PutObjectResponse response = _client.PutObject(request);
@@ -139,7 +162,7 @@ namespace JXT.Integration.AWS
 
             try
             {
-               ListBucketsResponse response = _client.ListBuckets();
+                ListBucketsResponse response = _client.ListBuckets();
             }
             catch (AmazonS3Exception amazonS3Exception)
             {

@@ -18,9 +18,14 @@ namespace FileManagement
             s3 = new AwsS3();
         }
 
-        public List<FileManagerFile> ListFiles(string directoryName, out string errorMessage)
+        public void CreateFolder(string directoryName, string folder, out string errorMessage)
         {
-            return s3.ListingObjects(directoryName, out errorMessage);
+            s3.CreateFolder(directoryName, folder, out errorMessage);
+        }
+
+        public List<FileManagerFile> ListFiles(string directoryName, string folder, out string errorMessage)
+        {
+            return s3.ListingObjects(directoryName, folder, out errorMessage);
         }
 
         public void UploadFile(string directoryName, string folder, string fileName, Stream inputStream, out string errorMessage)

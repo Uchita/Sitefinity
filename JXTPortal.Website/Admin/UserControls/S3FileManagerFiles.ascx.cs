@@ -1,0 +1,735 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Collections;
+using System.Configuration;
+using System.IO;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using JXTPortal.Common;
+using JXTPortal.Common.Models;
+using JXTPortal.Entities;
+
+namespace JXTPortal.Website.Admin.UserControls
+{
+    public delegate void S3FileManagerFilesClickedHandler(string name, bool isDirectory, string errormessage);
+
+    public partial class S3FileManagerFiles : System.Web.UI.UserControl
+    {
+
+        private string FTPHostUrl = ConfigurationManager.AppSettings["FTPFileManager"];
+        private string username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+        private string password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+        private string HTTPHostUrl = ConfigurationManager.AppSettings["HTTPFileManager"];
+        private string ImageFileTypes = ConfigurationManager.AppSettings["ImageFileTypes"];
+
+
+        #region Properties
+
+        public event S3FileManagerFilesClickedHandler FileManagerFilesClicked;
+
+        private GlobalSettingsService _globalsettingsservice;
+        private GlobalSettingsService GlobalSettingsService
+        {
+            get
+            {
+                if (_globalsettingsservice == null)
+                {
+                    _globalsettingsservice = new GlobalSettingsService();
+                }
+                return _globalsettingsservice;
+            }
+        }
+
+        private SitesService _sitesservice;
+        private SitesService SitesService
+        {
+            get
+            {
+                if (_sitesservice == null)
+                {
+                    _sitesservice = new SitesService();
+                }
+                return _sitesservice;
+            }
+        }
+
+        private string FTPFolderLocation
+        {
+            get { return GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId)[0].FtpFolderLocation; }
+        }
+
+        private string SiteUrl
+        {
+            get { return SitesService.GetBySiteId(SessionData.Site.SiteId).SiteUrl; }
+        }
+
+        private string UrlPrefix
+        {
+            get { return FTPHostUrl + GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId)[0].FtpFolderLocation + "/"; }
+        }
+
+        public string CurrentPath
+        {
+            get { return hfCurrentPath.Value; }
+        }
+
+        public bool IsRoot
+        {
+            get
+            {
+                bool _isRoot = true;
+                if (!bool.TryParse(hfIsRoot.Value, out _isRoot))
+                {
+                    _isRoot = true;
+                }
+                return _isRoot;
+
+            }
+        }
+
+        private bool _browserMode = false;
+        public bool BrowserMode
+        {
+            get { return _browserMode; }
+            set { _browserMode = value; }
+        }
+
+        private bool _isImageOnly = false;
+        public bool IsImageOnly
+        {
+            set { _isImageOnly = value; }
+        }
+
+        public IFileManager FileManagerService { get; set; }
+        static string bucketName = "jxtco01-01-dev-images";
+        private string _currentFolder = string.Empty;
+
+        #endregion
+
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (BrowserMode)
+            {
+                file_browser1.Attributes.Remove("class");
+                file_browser1.Attributes.Add("class", "span8");
+            }
+        }
+
+        public void UploadFile(Stream stream, string filename)
+        {
+            string errormessage = string.Empty;
+            FtpClient ftpclient = new FtpClient();
+            ftpclient.Host = FTPHostUrl;
+            ftpclient.Username = username;
+            ftpclient.Password = password;
+
+            ftpclient.ChangeDirectory(hfCurrentPath.Value, out errormessage);
+            if (string.IsNullOrEmpty(errormessage))
+            {
+
+                string fullpath = string.Format("{0}{1}/{2}", FTPHostUrl, hfCurrentPath.Value, filename);
+                ftpclient.UploadFileFromStream(stream, fullpath, out errormessage);
+                if (string.IsNullOrEmpty(errormessage))
+                {
+                    LoadFolderFiles(hfCurrentPath.Value, Convert.ToBoolean(hfIsRoot.Value), out errormessage);
+                }
+            }
+
+            if (FileManagerFilesClicked != null)
+            {
+                FileManagerFilesClicked(filename, Convert.ToBoolean(hfIsRoot.Value), errormessage);
+
+                if (string.IsNullOrEmpty(errormessage))
+                {
+
+                    foreach (RepeaterItem item in rptFiles.Items)
+                    {
+                        if (item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem)
+                        {
+                            LinkButton btnFileLink = item.FindControl("btnFileLink") as LinkButton;
+                            HiddenField hfIsFolder = item.FindControl("hfIsFolder") as HiddenField;
+
+                            if (HttpUtility.HtmlDecode(btnFileLink.Text) == filename && Convert.ToBoolean(hfIsFolder.Value) == false)
+                            {
+                                btnFileLink.Focus();
+                                break;
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
+        public void MoveFile(string originalfilename, string newfilename)
+        {
+            string errormessage = string.Empty;
+
+            foreach (RepeaterItem item in rptFiles.Items)
+            {
+                if (item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem)
+                {
+                    LinkButton btnFileLink = item.FindControl("btnFileLink") as LinkButton;
+                    HiddenField hfIsFolder = item.FindControl("hfIsFolder") as HiddenField;
+
+                    string[] parts = originalfilename.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+
+                    if (HttpUtility.HtmlDecode(btnFileLink.Text) == parts[parts.Length - 1])
+                    {
+                        FtpClient ftpclient = new FtpClient();
+                        ftpclient.Host = FTPHostUrl;
+                        ftpclient.Username = username;
+                        ftpclient.Password = password;
+
+                        Uri uri = new Uri(ftpclient.Host);
+
+                        ftpclient.MoveFile(string.Format("{0}/{1}", uri.LocalPath, originalfilename), string.Format("{0}/{1}", uri.LocalPath, newfilename), out errormessage);
+                        break;
+                    }
+
+                }
+            }
+
+
+            if (FileManagerFilesClicked != null)
+            {
+                if (string.IsNullOrEmpty(errormessage))
+                {
+                    LoadFolderFiles(hfCurrentPath.Value, Convert.ToBoolean(hfIsRoot.Value), out errormessage);
+                }
+
+                FileManagerFilesClicked(newfilename, Convert.ToBoolean(hfIsRoot.Value), errormessage);
+            }
+        }
+
+        public void RenameFile(string originalfilename, string newfilename)
+        {
+            string errormessage = string.Empty;
+
+            string extension = new FileInfo(originalfilename).Extension;
+
+            if (originalfilename.Replace(extension, string.Empty) != newfilename)
+            {
+
+                foreach (RepeaterItem item in rptFiles.Items)
+                {
+                    if (item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem)
+                    {
+                        LinkButton btnFileLink = item.FindControl("btnFileLink") as LinkButton;
+                        HiddenField hfIsFolder = item.FindControl("hfIsFolder") as HiddenField;
+
+
+                        if (HttpUtility.HtmlDecode(btnFileLink.Text) == originalfilename && Convert.ToBoolean(hfIsFolder.Value) == false)
+                        {
+                            FtpClient ftpclient = new FtpClient();
+                            ftpclient.Host = FTPHostUrl;
+                            ftpclient.Username = username;
+                            ftpclient.Password = password;
+                            ftpclient.ChangeDirectory(hfCurrentPath.Value, out errormessage);
+                            if (string.IsNullOrEmpty(errormessage))
+                            {
+
+                                ftpclient.RenameFile(originalfilename, ref newfilename, out errormessage);
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
+
+
+            if (FileManagerFilesClicked != null)
+            {
+                if (string.IsNullOrEmpty(errormessage))
+                {
+                    LoadFolderFiles(hfCurrentPath.Value, Convert.ToBoolean(hfIsRoot.Value), out errormessage);
+                }
+
+                FileManagerFilesClicked(newfilename, Convert.ToBoolean(hfIsRoot.Value), errormessage);
+
+                if (string.IsNullOrEmpty(errormessage))
+                {
+                    foreach (RepeaterItem item in rptFiles.Items)
+                    {
+                        if (item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem)
+                        {
+                            LinkButton btnFileLink = item.FindControl("btnFileLink") as LinkButton;
+                            HiddenField hfIsFolder = item.FindControl("hfIsFolder") as HiddenField;
+
+                            if (HttpUtility.HtmlDecode(btnFileLink.Text) == newfilename && Convert.ToBoolean(hfIsFolder.Value) == false)
+                            {
+                                btnFileLink.Focus();
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        public void CreateFolder(string newfoldername)
+        {
+            string errorMessage = string.Empty;
+
+            FileManagerService.CreateFolder(bucketName, string.Format("{0}/{1}", hfCurrentPath.Value, newfoldername), out errorMessage);
+            //FtpClient ftpclient = new FtpClient();
+            //ftpclient.Host = FTPHostUrl;
+            //ftpclient.Username = username;
+            //ftpclient.Password = password;
+            //ftpclient.ChangeDirectory(FTPFolderLocation, out errormessage);
+            //if (string.IsNullOrEmpty(errormessage))
+            //{
+            //    ftpclient.CreateDirectory(newfoldername, out errormessage);
+            //    if (string.IsNullOrEmpty(errormessage))
+            //    {
+            //        LoadFolderFiles(FTPFolderLocation, true, out errormessage);
+            //    }
+            //}
+
+            if (FileManagerFilesClicked != null)
+            {
+                FileManagerFilesClicked(FTPFolderLocation, true, errorMessage);
+            }
+        }
+
+        public void RenameFolder(string originalfoldername, string newfoldername)
+        {
+            string errormessage = string.Empty;
+
+            foreach (RepeaterItem item in rptFiles.Items)
+            {
+                if (item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem)
+                {
+                    LinkButton btnFileLink = item.FindControl("btnFileLink") as LinkButton;
+                    HiddenField hfIsFolder = item.FindControl("hfIsFolder") as HiddenField;
+
+
+                    if (HttpUtility.HtmlDecode(btnFileLink.Text) == originalfoldername && Convert.ToBoolean(hfIsFolder.Value) == true)
+                    {
+                        FtpClient ftpclient = new FtpClient();
+                        ftpclient.Host = FTPHostUrl;
+                        ftpclient.Username = username;
+                        ftpclient.Password = password;
+                        ftpclient.ChangeDirectory(hfCurrentPath.Value, out errormessage);
+                        if (string.IsNullOrEmpty(errormessage))
+                        {
+                            ftpclient.RenameFolder(originalfoldername, ref newfoldername, out errormessage);
+                        }
+
+                        break;
+                    }
+                }
+            }
+
+            if (FileManagerFilesClicked != null)
+            {
+                LoadFolderFiles(hfCurrentPath.Value, Convert.ToBoolean(hfIsRoot.Value), out errormessage);
+                FileManagerFilesClicked(newfoldername, Convert.ToBoolean(hfIsRoot.Value), errormessage);
+                if (string.IsNullOrEmpty(errormessage))
+                {
+                    foreach (RepeaterItem item in rptFiles.Items)
+                    {
+                        if (item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem)
+                        {
+                            LinkButton btnFileLink = item.FindControl("btnFileLink") as LinkButton;
+                            HiddenField hfIsFolder = item.FindControl("hfIsFolder") as HiddenField;
+
+
+                            if (HttpUtility.HtmlDecode(btnFileLink.Text) == newfoldername && Convert.ToBoolean(hfIsFolder.Value) == true)
+                            {
+                                btnFileLink.Focus();
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        public void DeleteFolder(string folderurl)
+        {
+            string errormessage = string.Empty;
+
+            foreach (RepeaterItem item in rptFiles.Items)
+            {
+                if (item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem)
+                {
+                    LinkButton btnFileLink = item.FindControl("btnFileLink") as LinkButton;
+                    HiddenField hfIsFolder = item.FindControl("hfIsFolder") as HiddenField;
+
+                    if (btnFileLink.CommandArgument == folderurl && Convert.ToBoolean(hfIsFolder.Value) == true)
+                    {
+                        FtpClient ftpclient = new FtpClient();
+                        ftpclient.Host = FTPHostUrl;
+                        ftpclient.Username = username;
+                        ftpclient.Password = password;
+                        ftpclient.ChangeDirectory(hfCurrentPath.Value, out errormessage);
+                        if (string.IsNullOrEmpty(errormessage))
+                        {
+                            ftpclient.DeleteDirectory(btnFileLink.CommandArgument, out errormessage);
+                            if (string.IsNullOrEmpty(errormessage))
+                            {
+                                LoadFolderFiles(hfCurrentPath.Value, true, out errormessage);
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+
+            if (FileManagerFilesClicked != null)
+            {
+                FileManagerFilesClicked(folderurl, true, errormessage);
+            }
+        }
+
+        public void OpenFolder(string folderurl)
+        {
+            string errormessage = string.Empty;
+
+            foreach (RepeaterItem item in rptFiles.Items)
+            {
+                if (item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem)
+                {
+                    LinkButton btnFileLink = item.FindControl("btnFileLink") as LinkButton;
+                    HiddenField hfIsFolder = item.FindControl("hfIsFolder") as HiddenField;
+
+                    if (btnFileLink.CommandArgument == folderurl && Convert.ToBoolean(hfIsFolder.Value) == true)
+                    {
+                        FtpClient ftpclient = new FtpClient();
+                        ftpclient.Host = FTPHostUrl;
+                        ftpclient.Username = username;
+                        ftpclient.Password = password;
+                        ftpclient.ChangeDirectory(hfCurrentPath.Value, out errormessage);
+                        if (string.IsNullOrEmpty(errormessage))
+                        {
+
+                            LoadFolderFiles(FTPFolderLocation.TrimEnd(new char[] { '/' }) + "/" + btnFileLink.CommandArgument, false, out errormessage);
+                        }
+                        break;
+                    }
+                }
+            }
+
+            if (FileManagerFilesClicked != null)
+            {
+                FileManagerFilesClicked(folderurl, true, errormessage);
+            }
+        }
+
+        public void DeleteFile(string fileurl)
+        {
+            string errormessage = string.Empty;
+
+            foreach (RepeaterItem item in rptFiles.Items)
+            {
+                if (item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem)
+                {
+                    HiddenField hfFileURL = item.FindControl("hfFileURL") as HiddenField;
+                    LinkButton btnFileLink = item.FindControl("btnFileLink") as LinkButton;
+                    HiddenField hfIsFolder = item.FindControl("hfIsFolder") as HiddenField;
+
+                    if (hfFileURL.Value == fileurl && Convert.ToBoolean(hfIsFolder.Value) == false)
+                    {
+                        FtpClient ftpclient = new FtpClient();
+                        ftpclient.Host = FTPHostUrl;
+                        ftpclient.Username = username;
+                        ftpclient.Password = password;
+                        ftpclient.ChangeDirectory(hfCurrentPath.Value, out errormessage);
+                        if (string.IsNullOrEmpty(errormessage))
+                        {
+                            ftpclient.DeleteFiles(out errormessage, new string[] { HttpUtility.HtmlDecode(btnFileLink.Text) });
+                            if (string.IsNullOrEmpty(errormessage))
+                            {
+                                LoadFolderFiles(hfCurrentPath.Value, Convert.ToBoolean(hfIsRoot.Value), out errormessage);
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+
+            if (FileManagerFilesClicked != null)
+            {
+                FileManagerFilesClicked(string.Empty, false, errormessage);
+            }
+        }
+
+        public void DownloadFile(string fileurl)
+        {
+            string errorMessage = string.Empty;
+            foreach (RepeaterItem item in rptFiles.Items)
+            {
+                if (item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem)
+                {
+                    HiddenField hfFileURL = item.FindControl("hfFileURL") as HiddenField;
+                    LinkButton btnFileLink = item.FindControl("btnFileLink") as LinkButton;
+
+                    if (hfFileURL.Value == fileurl)
+                    {
+                        Stream downloadedfile = FileManagerService.DownloadFile(bucketName, hfCurrentPath.Value, HttpUtility.HtmlDecode(btnFileLink.Text), out errorMessage);
+                        
+                        if (string.IsNullOrEmpty(errorMessage))
+                        {
+                            if (downloadedfile != null && downloadedfile.Length > 0)
+                            {
+                                using (MemoryStream memory = new MemoryStream())
+                                {
+                                    downloadedfile.CopyTo(memory);
+                                    byte[] bytes = memory.ToArray();
+                                    this.Response.ContentType = "application/octet-stream";
+                                    this.Response.AppendHeader("Content-Disposition", "attachment;filename=" + HttpUtility.HtmlDecode(btnFileLink.Text));
+                                    Response.OutputStream.Write(bytes, 0, bytes.Length);
+                                    this.Response.End();
+                                }
+                            }
+                        }
+
+                        //ftpclient.DownloadFileToClient(string.Format("{0}{1}/{2}", FTPHostUrl, hfCurrentPath.Value, HttpUtility.HtmlDecode(btnFileLink.Text)), ref downloadedfile, out errormessage);
+                        //if (string.IsNullOrEmpty(errormessage))
+                        //{
+                        //    downloadedfile.Position = 0;
+
+                        //    if (downloadedfile != null && downloadedfile.Length > 0)
+                        //    {
+                        //        this.Response.ContentType = "application/octet-stream";
+                        //        this.Response.AppendHeader("Content-Disposition", "attachment;filename=" + HttpUtility.HtmlDecode(btnFileLink.Text));
+                        //        this.Response.BinaryWrite(((MemoryStream)downloadedfile).ToArray());
+                        //        this.Response.End();
+                        //    }
+                        //}
+
+
+                        break;
+                    }
+                }
+            }
+
+
+            if (FileManagerFilesClicked != null)
+            {
+                FileManagerFilesClicked(string.Empty, false, errorMessage);
+            }
+        }
+
+        public void LoadFolderFiles(string folder, bool isRoot, out string errorMessage)
+        {
+            rptFiles.DataSource = null;
+            errorMessage = string.Empty;
+            hfCurrentPath.Value = folder;
+
+            List<FileManagerFile> files = FileManagerService.ListFiles(bucketName, folder, out errorMessage);
+
+            var directories = files.Where(x => x.FileName.Replace(folder + "/", "").Split(new char[] { '/' }).Length > 1)
+                                    .Select(x => new FileManagerFile { IsFolder = true, FolderName = x.FileName.Replace(folder + "/", "").Split(new char[] { '/' })[0] })
+                                    .Distinct();
+
+            var folderfiles = files.Where(x => x.FileName.Replace(folder + "/", "").Split(new char[] { '/' }).Length == 1);
+
+            var allfiles = directories.Union(folderfiles).ToList();
+
+            if (!isRoot)
+            {
+                allfiles.Insert(0, new FileManagerFile { IsFolder = true, FolderName = "..." });
+            }
+
+            if (allfiles.Count > 0)
+            {
+                rptFiles.DataSource = allfiles;
+            }
+            rptFiles.DataBind();
+        }
+
+        protected void rptFiles_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                Literal ltlDivClass = e.Item.FindControl("ltlDivClass") as Literal;
+                LinkButton btnFileLink = e.Item.FindControl("btnFileLink") as LinkButton;
+
+                Literal ltlModified = e.Item.FindControl("ltlModified") as Literal;
+                Literal ltlSize = e.Item.FindControl("ltlSize") as Literal;
+                HiddenField hfFileURL = e.Item.FindControl("hfFileURL") as HiddenField;
+                HiddenField hfIsFolder = e.Item.FindControl("hfIsFolder") as HiddenField;
+
+                Literal ltlExtension = e.Item.FindControl("ltlExtension") as Literal;
+
+                FileManagerFile entry = e.Item.DataItem as FileManagerFile;
+                string kind = "N/A";
+                // ltlDivClass
+                if (entry.IsFolder)
+                {
+                    if (entry.FolderName != "...")
+                    {
+                        ltlDivClass.Text = "<div class=\"non-droppable context2\">";
+                    }
+                    else
+                    {
+                        ltlDivClass.Text = "<div class=\"non-droppable\">";
+                    }
+
+                    btnFileLink.OnClientClick = "$.blockUI.defaults.blockMsgClass = 'blockUI-loading'; $.blockUI({ message: '<img src=images/ajax-loader.gif /><span>Loading...</span>' });";
+                }
+                else
+                {
+                    btnFileLink.Click -= btnFileLink_Click;
+                    btnFileLink.Enabled = false;
+                    ltlDivClass.Text = "<div class=\"droppable context3\">";
+                    string[] extensions = ImageFileTypes.Split(new char[] { ',' });
+                    foreach (string extension in extensions)
+                    {
+                        if (entry.ShortFileName.EndsWith(extension, StringComparison.CurrentCultureIgnoreCase))
+                        {
+                            ltlDivClass.Text = "<div class=\"droppable context1\">";
+                            break;
+                        }
+                    }
+                }
+
+                // btnFileLink
+
+                string linkclass = string.Empty;
+                if (entry.IsFolder && entry.FolderName == "...")
+                {
+                    btnFileLink.CommandName = "folderup";
+                    linkclass = "jxt-folder-up-file";
+                    kind = string.Empty;
+                }
+                else if (entry.IsFolder)
+                {
+                    btnFileLink.CommandName = "folder";
+                    btnFileLink.CommandArgument = entry.FolderName;
+                    linkclass = "jxt-folder-file";
+                    kind = "folder";
+                }
+                else
+                {
+                    linkclass = "jxt-file-default";
+
+                    if (entry.ShortFileName.EndsWith(".jpg", StringComparison.CurrentCultureIgnoreCase) || entry.ShortFileName.EndsWith(".jpeg", StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        linkclass = "jxt-jpg-file";
+                        kind = "jpg";
+                    }
+                    if (entry.ShortFileName.EndsWith(".gif", StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        linkclass = "jxt-gif-file";
+                        kind = "gif";
+                    }
+                    else if (entry.ShortFileName.EndsWith(".png", StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        linkclass = "jxt-png-file";
+                        kind = "png";
+                    }
+                    else if (entry.ShortFileName.EndsWith(".doc", StringComparison.CurrentCultureIgnoreCase) || entry.ShortFileName.EndsWith(".docx", StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        linkclass = "jxt-doc-file";
+                        kind = "document";
+                    }
+                    else if (entry.ShortFileName.EndsWith(".xls", StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        linkclass = "jxt-xls-file";
+                        kind = "excel";
+                    }
+                    else if (entry.ShortFileName.EndsWith(".html", StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        linkclass = "jxt-html-file";
+                        kind = "html";
+                    }
+                    else if (entry.ShortFileName.EndsWith(".pdf", StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        linkclass = "jxt-pdf-file";
+                        kind = "pdf";
+                    }
+                    else if (entry.ShortFileName.EndsWith(".css", StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        linkclass = "jxt-css-file";
+                        kind = "css";
+                    }
+                    else if (entry.ShortFileName.EndsWith(".mp3", StringComparison.CurrentCultureIgnoreCase) || entry.FileName.EndsWith(".wav", StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        linkclass = "jxt-mp3-file";
+                        kind = "mp3";
+                    }
+                    else if (entry.ShortFileName.EndsWith(".avi", StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        linkclass = "jxt-avi-file";
+                        kind = "avi";
+                    }
+                    else if (entry.ShortFileName.EndsWith(".xml", StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        linkclass = "jxt-xml-file";
+                        kind = "xml";
+                    }
+
+                    kind = new FileInfo(entry.ShortFileName).Extension.TrimStart(new char[] { '.' }).ToLower();
+                    btnFileLink.CommandName = "file";
+                    btnFileLink.CommandArgument = entry.FileName;
+                }
+
+                btnFileLink.CssClass = linkclass;
+                btnFileLink.Text = HttpUtility.HtmlEncode((entry.IsFolder) ? entry.FolderName : entry.ShortFileName);
+                if (!entry.IsFolder)
+                {
+                    Uri uri = new Uri(FTPHostUrl);
+
+                    hfFileURL.Value = string.Format("http://{0}{1}{2}/{3}", SiteUrl, uri.AbsolutePath, hfCurrentPath.Value, entry.ShortFileName);
+                    ltlModified.Text = string.Format("{0} {1}", entry.LastModified.ToString(SessionData.Site.DateFormat), entry.LastModified.ToLongTimeString());
+                }
+
+
+                hfIsFolder.Value = entry.IsFolder.ToString();
+
+                // ltlSize
+                if (!entry.IsFolder)
+                {
+                    // ltlSize.Text = ((double)(entry.Size / 1024)).ToString("0.000") + "kb";
+                    ltlSize.Text = GetSize(entry.Size);
+                }
+            }
+        }
+
+        private string GetSize(long size)
+        {
+            double s = size;
+
+            string[] format = new string[] { "{0} bytes", "{0} KB", "{0} MB", "{0} GB", "{0} TB", "{0} PB" };
+
+            int i = 0;
+            while (i < format.Length && s >= 1024)
+            {
+                s = (int)(100 * s / 1024) / 100.0;
+                i++;
+            }
+
+            return string.Format(format[i], s);
+        }
+
+        protected void btnFileLink_Click(object sender, EventArgs e)
+        {
+            string errormessage = string.Empty;
+            LinkButton btnFileLink = sender as LinkButton;
+
+            if (btnFileLink.CommandName == "folderup")
+            {
+                LoadFolderFiles(FTPFolderLocation, true, out errormessage); //Retrieve Root Files
+            }
+            else if (btnFileLink.CommandName == "folder")
+            {
+                LoadFolderFiles(FTPFolderLocation.TrimEnd(new char[] { '/' }) + "/" + btnFileLink.CommandArgument, false, out errormessage);
+            }
+            else if (btnFileLink.CommandName == "file")
+            {
+
+            }
+
+            if (FileManagerFilesClicked != null)
+            {
+                FileManagerFilesClicked(btnFileLink.CommandArgument, (btnFileLink.CommandName != "file"), errormessage);
+            }
+        }
+    }
+}

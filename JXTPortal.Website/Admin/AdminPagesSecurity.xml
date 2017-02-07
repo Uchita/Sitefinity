@@ -182,6 +182,9 @@
     <PageName>FileManager.aspx</PageName>
     <AdminRoleID>1</AdminRoleID>
 
+    <PageName>S3FileManager.aspx</PageName>
+    <AdminRoleID>1</AdminRoleID>
+
     <PageName>FileTypes.aspx</PageName>
     <AdminRoleID>1</AdminRoleID>
 

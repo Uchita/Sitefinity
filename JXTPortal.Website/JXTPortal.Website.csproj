@@ -466,6 +466,13 @@
     <Compile Include="Admin\reports\MemberActivity.aspx.designer.cs">
       <DependentUpon>MemberActivity.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\S3FileManager.aspx.cs">
+      <DependentUpon>S3FileManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\S3FileManager.aspx.designer.cs">
+      <DependentUpon>S3FileManager.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\ScreeningQuestionsTemplate.aspx.cs">
       <DependentUpon>ScreeningQuestionsTemplate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -746,6 +753,13 @@
     <Compile Include="Admin\CustomQuestions.aspx.designer.cs">
       <DependentUpon>CustomQuestions.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\UserControls\S3FileManagerFiles.ascx.cs">
+      <DependentUpon>S3FileManagerFiles.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\UserControls\S3FileManagerFiles.ascx.designer.cs">
+      <DependentUpon>S3FileManagerFiles.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\WebServiceLog.aspx.cs">
       <DependentUpon>WebServiceLog.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -970,6 +984,7 @@
     <Content Include="Admin\DynamicPageRev.aspx" />
     <Content Include="Admin\DynamicPageRevisions.aspx" />
     <Content Include="Admin\reports\MemberActivity.aspx" />
+    <Content Include="Admin\S3FileManager.aspx" />
     <Content Include="Admin\ScreeningQuestionsTemplate.aspx" />
     <Content Include="Admin\ScreeningQuestionsTemplateEdit.aspx" />
     <Content Include="Admin\scripts\images\design\menu-yellow-contributer.gif" />
@@ -1120,6 +1135,7 @@
     <Content Include="Admin\UserControls\FileTypesFields.ascx" />
     <Content Include="Admin\UserControls\FoldersFields.ascx" />
     <Content Include="Admin\UserControls\LanguagesFields.ascx" />
+    <Content Include="Admin\UserControls\S3FileManagerFiles.ascx" />
     <Content Include="Admin\UserControls\SiteWebPartsFields.ascx" />
     <Content Include="Admin\UserControls\SiteWebPartTypesFields.ascx" />
     <Content Include="Admin\CustomQuestions.aspx" />

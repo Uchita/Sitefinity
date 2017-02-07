@@ -87,7 +87,7 @@ namespace JXTPortal.Website
         {
             string errorMessage = string.Empty;
 
-            List<FileManagerFile> files = FileManger.ListFiles(bucketName, out errorMessage);
+            List<FileManagerFile> files = FileManger.ListFiles(bucketName, "", out errorMessage);
             if (!string.IsNullOrEmpty(errorMessage))
             {
                 ltlException.Text = HttpUtility.HtmlEncode(errorMessage);

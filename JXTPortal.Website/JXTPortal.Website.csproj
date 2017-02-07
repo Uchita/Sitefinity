@@ -2758,6 +2758,11 @@
     <Compile Include="advertiser\validate.aspx.designer.cs">
       <DependentUpon>validate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App_GlobalResources\language_3_dalta_tgroup_973.designer.cs">
+      <DependentUpon>language_3_dalta_tgroup_973.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="App_GlobalResources\CVBuilderResource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -4692,6 +4697,13 @@
     <Content Include="App_GlobalResources\language_5_Adecco.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>language_5_Adecco.designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\language_3_dalta_tgroup_973.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>language_3_dalta_tgroup_973.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSHARP.Targets" />

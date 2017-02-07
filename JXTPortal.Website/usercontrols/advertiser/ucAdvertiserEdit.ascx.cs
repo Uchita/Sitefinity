@@ -460,7 +460,19 @@ namespace JXTPortal.Website.usercontrols.advertiser
                         objOutputMemorySTream.Position = 0;
                         objOutputMemorySTream.Read(abytFile, 0, abytFile.Length);
 
-                        advertiser.AdvertiserLogo = abytFile;
+                        FtpClient ftpclient = new FtpClient();
+                        string errormessage = string.Empty;
+                        string extension = Utils.GetImageExtension(objOriginalImage);
+                        ftpclient.Host = ConfigurationManager.AppSettings["FTPFileManager"];
+                        ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                        ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+                        ftpclient.UploadFileFromStream(objOutputMemorySTream, string.Format("{0}/{1}/Advertisers_{2}.{3}", ftpclient.Host, ConfigurationManager.AppSettings["AdvertisersFolder"], advertiser.AdvertiserId, extension), out errormessage);
+
+                        if (string.IsNullOrWhiteSpace(errormessage))
+                        {
+                            advertiser.AdvertiserLogoUrl = string.Format("Advertisers_{0}.{1}", advertiser.AdvertiserId, extension);
+                            litMessage.Text = CommonFunction.GetResourceValue("LabelAdvertiserValidation");
+                        }
                     }
 
                     AdvService.Update(advertiser);

@@ -4014,7 +4014,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to High School.
+        ///   Looks up a localized string similar to High School/GED.
         /// </summary>
         internal static string LabelHighSchool {
             get {

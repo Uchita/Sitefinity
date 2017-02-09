@@ -4241,7 +4241,7 @@ Your account has already been validated. Please proceed to &lt;a href="/member/l
     <comment>Accepts only numbers, spaces, '+', '(' and ')'</comment>
   </data>
   <data name="LabelHighSchool" xml:space="preserve">
-    <value>High School</value>
+    <value>High School/GED</value>
     <comment>High School</comment>
   </data>
   <data name="LabelPremiumJobsNote" xml:space="preserve">

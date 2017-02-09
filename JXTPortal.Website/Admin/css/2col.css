@@ -11,8 +11,12 @@ LAYOUT
 ============================================================================= */
 
 #cols {position:relative; margin:0;}
-#aside {float:left; width:300px; margin-right:0; margin-top: 15px;}
+#aside {float:left; width:320px; margin-right:0; margin-top: 15px;}
 #content {margin-left:232px; overflow:visible;}
 #tray .ico-col2 {display:none;}
 
 html>body #content {margin-left:0; overflow:hidden;}
+
+@media (max-width: 1199px){
+	
+}

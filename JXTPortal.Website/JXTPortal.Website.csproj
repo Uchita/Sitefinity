@@ -1437,7 +1437,9 @@
     <Content Include="Images\google_map\people55.png" />
     <Content Include="Images\google_map\pin.png" />
     <Content Include="Images\google_map\Plan.jpg" />
+    <Content Include="Images\jxt-logo.png" />
     <Content Include="Images\member\profile-placeholder.png" />
+    <Content Include="Images\submenu-sub.gif" />
     <Content Include="jobadderapplication.aspx" />
     <Content Include="JobTracking.aspx" />
     <Content Include="job\application\aicd_scholarship.aspx" />

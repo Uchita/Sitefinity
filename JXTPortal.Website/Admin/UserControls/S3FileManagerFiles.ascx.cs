@@ -19,11 +19,9 @@ namespace JXTPortal.Website.Admin.UserControls
     {
 
         private string FTPHostUrl = ConfigurationManager.AppSettings["FTPFileManager"];
-        private string username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-        private string password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
         private string HTTPHostUrl = ConfigurationManager.AppSettings["HTTPFileManager"];
         private string ImageFileTypes = ConfigurationManager.AppSettings["ImageFileTypes"];
-
+        private string clientFolder = ConfigurationManager.AppSettings["AWSS3ClientFolder"];
 
         #region Properties
 
@@ -57,17 +55,22 @@ namespace JXTPortal.Website.Admin.UserControls
 
         private string FTPFolderLocation
         {
-            get { return GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId)[0].FtpFolderLocation; }
+            get
+            {
+                string path = GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId)[0].FtpFolderLocation.Replace("s3://", "");
+                if (SessionData.AdminUser != null && SessionData.AdminUser.AdminRoleId != (int)PortalEnums.Admin.AdminRole.Administrator)
+                {
+                    path = string.Format("{0}/{1}", path, clientFolder);
+                }
+
+                return path;
+
+            }
         }
 
         private string SiteUrl
         {
             get { return SitesService.GetBySiteId(SessionData.Site.SiteId).SiteUrl; }
-        }
-
-        private string UrlPrefix
-        {
-            get { return FTPHostUrl + GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId)[0].FtpFolderLocation + "/"; }
         }
 
         public string CurrentPath
@@ -103,7 +106,8 @@ namespace JXTPortal.Website.Admin.UserControls
         }
 
         public IFileManager FileManagerService { get; set; }
-        static string bucketName = "jxtco01-01-dev-images";
+        static string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+        private static string DummyFileName = ConfigurationManager.AppSettings["AWSS3NullFileName"];
         private string _currentFolder = string.Empty;
 
         #endregion
@@ -120,31 +124,20 @@ namespace JXTPortal.Website.Admin.UserControls
 
         public void UploadFile(Stream stream, string filename)
         {
-            string errormessage = string.Empty;
-            FtpClient ftpclient = new FtpClient();
-            ftpclient.Host = FTPHostUrl;
-            ftpclient.Username = username;
-            ftpclient.Password = password;
+            string errorMessage = string.Empty;
 
-            ftpclient.ChangeDirectory(hfCurrentPath.Value, out errormessage);
-            if (string.IsNullOrEmpty(errormessage))
+            FileManagerService.UploadFile(bucketName, hfCurrentPath.Value, filename, stream, out errorMessage);
+            if (string.IsNullOrEmpty(errorMessage))
             {
-
-                string fullpath = string.Format("{0}{1}/{2}", FTPHostUrl, hfCurrentPath.Value, filename);
-                ftpclient.UploadFileFromStream(stream, fullpath, out errormessage);
-                if (string.IsNullOrEmpty(errormessage))
-                {
-                    LoadFolderFiles(hfCurrentPath.Value, Convert.ToBoolean(hfIsRoot.Value), out errormessage);
-                }
+                LoadFolderFiles(hfCurrentPath.Value, Convert.ToBoolean(hfIsRoot.Value), out errorMessage);
             }
 
             if (FileManagerFilesClicked != null)
             {
-                FileManagerFilesClicked(filename, Convert.ToBoolean(hfIsRoot.Value), errormessage);
+                FileManagerFilesClicked(filename, Convert.ToBoolean(hfIsRoot.Value), errorMessage);
 
-                if (string.IsNullOrEmpty(errormessage))
+                if (string.IsNullOrEmpty(errorMessage))
                 {
-
                     foreach (RepeaterItem item in rptFiles.Items)
                     {
                         if (item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem)
@@ -164,9 +157,9 @@ namespace JXTPortal.Website.Admin.UserControls
             }
         }
 
-        public void MoveFile(string originalfilename, string newfilename)
+        public void MoveFile(string fromFolder, string fromFileName, string toFolder, string toFileName)
         {
-            string errormessage = string.Empty;
+            string errorMessage = string.Empty;
 
             foreach (RepeaterItem item in rptFiles.Items)
             {
@@ -175,18 +168,10 @@ namespace JXTPortal.Website.Admin.UserControls
                     LinkButton btnFileLink = item.FindControl("btnFileLink") as LinkButton;
                     HiddenField hfIsFolder = item.FindControl("hfIsFolder") as HiddenField;
 
-                    string[] parts = originalfilename.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
-
-                    if (HttpUtility.HtmlDecode(btnFileLink.Text) == parts[parts.Length - 1])
+                    if (HttpUtility.HtmlDecode(btnFileLink.Text) == fromFileName)
                     {
-                        FtpClient ftpclient = new FtpClient();
-                        ftpclient.Host = FTPHostUrl;
-                        ftpclient.Username = username;
-                        ftpclient.Password = password;
+                        FileManagerService.MoveObject(bucketName, fromFolder, fromFileName, toFolder, toFileName, out errorMessage);
 
-                        Uri uri = new Uri(ftpclient.Host);
-
-                        ftpclient.MoveFile(string.Format("{0}/{1}", uri.LocalPath, originalfilename), string.Format("{0}/{1}", uri.LocalPath, newfilename), out errormessage);
                         break;
                     }
 
@@ -196,24 +181,23 @@ namespace JXTPortal.Website.Admin.UserControls
 
             if (FileManagerFilesClicked != null)
             {
-                if (string.IsNullOrEmpty(errormessage))
+                if (string.IsNullOrEmpty(errorMessage))
                 {
-                    LoadFolderFiles(hfCurrentPath.Value, Convert.ToBoolean(hfIsRoot.Value), out errormessage);
+                    LoadFolderFiles(hfCurrentPath.Value, Convert.ToBoolean(hfIsRoot.Value), out errorMessage);
                 }
 
-                FileManagerFilesClicked(newfilename, Convert.ToBoolean(hfIsRoot.Value), errormessage);
+                FileManagerFilesClicked(toFileName, Convert.ToBoolean(hfIsRoot.Value), errorMessage);
             }
         }
 
-        public void RenameFile(string originalfilename, string newfilename)
+        public void RenameFile(string fromFileName, string toFileName)
         {
-            string errormessage = string.Empty;
+            string errorMessage = string.Empty;
+            string extension = new FileInfo(fromFileName).Extension;
+            toFileName = toFileName + extension;
 
-            string extension = new FileInfo(originalfilename).Extension;
-
-            if (originalfilename.Replace(extension, string.Empty) != newfilename)
+            if (fromFileName != toFileName)
             {
-
                 foreach (RepeaterItem item in rptFiles.Items)
                 {
                     if (item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem)
@@ -222,17 +206,12 @@ namespace JXTPortal.Website.Admin.UserControls
                         HiddenField hfIsFolder = item.FindControl("hfIsFolder") as HiddenField;
 
 
-                        if (HttpUtility.HtmlDecode(btnFileLink.Text) == originalfilename && Convert.ToBoolean(hfIsFolder.Value) == false)
+                        if (HttpUtility.HtmlDecode(btnFileLink.Text) == fromFileName && Convert.ToBoolean(hfIsFolder.Value) == false)
                         {
-                            FtpClient ftpclient = new FtpClient();
-                            ftpclient.Host = FTPHostUrl;
-                            ftpclient.Username = username;
-                            ftpclient.Password = password;
-                            ftpclient.ChangeDirectory(hfCurrentPath.Value, out errormessage);
-                            if (string.IsNullOrEmpty(errormessage))
+                            FileManagerService.MoveObject(bucketName, hfCurrentPath.Value, fromFileName, hfCurrentPath.Value, toFileName, out errorMessage);
+                            if (string.IsNullOrEmpty(errorMessage))
                             {
-
-                                ftpclient.RenameFile(originalfilename, ref newfilename, out errormessage);
+                                LoadFolderFiles(hfCurrentPath.Value, Convert.ToBoolean(hfIsRoot.Value), out errorMessage);
                             }
                             break;
                         }
@@ -243,14 +222,14 @@ namespace JXTPortal.Website.Admin.UserControls
 
             if (FileManagerFilesClicked != null)
             {
-                if (string.IsNullOrEmpty(errormessage))
+                if (string.IsNullOrEmpty(errorMessage))
                 {
-                    LoadFolderFiles(hfCurrentPath.Value, Convert.ToBoolean(hfIsRoot.Value), out errormessage);
+                    LoadFolderFiles(hfCurrentPath.Value, Convert.ToBoolean(hfIsRoot.Value), out errorMessage);
                 }
 
-                FileManagerFilesClicked(newfilename, Convert.ToBoolean(hfIsRoot.Value), errormessage);
+                FileManagerFilesClicked(toFileName, Convert.ToBoolean(hfIsRoot.Value), errorMessage);
 
-                if (string.IsNullOrEmpty(errormessage))
+                if (string.IsNullOrEmpty(errorMessage))
                 {
                     foreach (RepeaterItem item in rptFiles.Items)
                     {
@@ -259,7 +238,7 @@ namespace JXTPortal.Website.Admin.UserControls
                             LinkButton btnFileLink = item.FindControl("btnFileLink") as LinkButton;
                             HiddenField hfIsFolder = item.FindControl("hfIsFolder") as HiddenField;
 
-                            if (HttpUtility.HtmlDecode(btnFileLink.Text) == newfilename && Convert.ToBoolean(hfIsFolder.Value) == false)
+                            if (HttpUtility.HtmlDecode(btnFileLink.Text) == toFileName && Convert.ToBoolean(hfIsFolder.Value) == false)
                             {
                                 btnFileLink.Focus();
                                 break;
@@ -275,19 +254,6 @@ namespace JXTPortal.Website.Admin.UserControls
             string errorMessage = string.Empty;
 
             FileManagerService.CreateFolder(bucketName, string.Format("{0}/{1}", hfCurrentPath.Value, newfoldername), out errorMessage);
-            //FtpClient ftpclient = new FtpClient();
-            //ftpclient.Host = FTPHostUrl;
-            //ftpclient.Username = username;
-            //ftpclient.Password = password;
-            //ftpclient.ChangeDirectory(FTPFolderLocation, out errormessage);
-            //if (string.IsNullOrEmpty(errormessage))
-            //{
-            //    ftpclient.CreateDirectory(newfoldername, out errormessage);
-            //    if (string.IsNullOrEmpty(errormessage))
-            //    {
-            //        LoadFolderFiles(FTPFolderLocation, true, out errormessage);
-            //    }
-            //}
 
             if (FileManagerFilesClicked != null)
             {
@@ -297,38 +263,14 @@ namespace JXTPortal.Website.Admin.UserControls
 
         public void RenameFolder(string originalfoldername, string newfoldername)
         {
-            string errormessage = string.Empty;
+            string errorMessage = string.Empty;
 
-            foreach (RepeaterItem item in rptFiles.Items)
-            {
-                if (item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem)
-                {
-                    LinkButton btnFileLink = item.FindControl("btnFileLink") as LinkButton;
-                    HiddenField hfIsFolder = item.FindControl("hfIsFolder") as HiddenField;
-
-
-                    if (HttpUtility.HtmlDecode(btnFileLink.Text) == originalfoldername && Convert.ToBoolean(hfIsFolder.Value) == true)
-                    {
-                        FtpClient ftpclient = new FtpClient();
-                        ftpclient.Host = FTPHostUrl;
-                        ftpclient.Username = username;
-                        ftpclient.Password = password;
-                        ftpclient.ChangeDirectory(hfCurrentPath.Value, out errormessage);
-                        if (string.IsNullOrEmpty(errormessage))
-                        {
-                            ftpclient.RenameFolder(originalfoldername, ref newfoldername, out errormessage);
-                        }
-
-                        break;
-                    }
-                }
-            }
+            FileManagerService.RenameFolder(bucketName, string.Format("{0}/{1}", hfCurrentPath.Value, originalfoldername), string.Format("{0}/{1}", hfCurrentPath.Value, newfoldername), out errorMessage);
+            // LoadFolderFiles(hfCurrentPath.Value, Convert.ToBoolean(hfIsRoot.Value), out errorMessage);
 
             if (FileManagerFilesClicked != null)
             {
-                LoadFolderFiles(hfCurrentPath.Value, Convert.ToBoolean(hfIsRoot.Value), out errormessage);
-                FileManagerFilesClicked(newfoldername, Convert.ToBoolean(hfIsRoot.Value), errormessage);
-                if (string.IsNullOrEmpty(errormessage))
+                if (string.IsNullOrEmpty(errorMessage))
                 {
                     foreach (RepeaterItem item in rptFiles.Items)
                     {
@@ -351,7 +293,7 @@ namespace JXTPortal.Website.Admin.UserControls
 
         public void DeleteFolder(string folderurl)
         {
-            string errormessage = string.Empty;
+            string errorMessage = string.Empty;
 
             foreach (RepeaterItem item in rptFiles.Items)
             {
@@ -362,19 +304,8 @@ namespace JXTPortal.Website.Admin.UserControls
 
                     if (btnFileLink.CommandArgument == folderurl && Convert.ToBoolean(hfIsFolder.Value) == true)
                     {
-                        FtpClient ftpclient = new FtpClient();
-                        ftpclient.Host = FTPHostUrl;
-                        ftpclient.Username = username;
-                        ftpclient.Password = password;
-                        ftpclient.ChangeDirectory(hfCurrentPath.Value, out errormessage);
-                        if (string.IsNullOrEmpty(errormessage))
-                        {
-                            ftpclient.DeleteDirectory(btnFileLink.CommandArgument, out errormessage);
-                            if (string.IsNullOrEmpty(errormessage))
-                            {
-                                LoadFolderFiles(hfCurrentPath.Value, true, out errormessage);
-                            }
-                        }
+                        FileManagerService.DeleteFolder(bucketName, string.Format("{0}/{1}", hfCurrentPath.Value, folderurl), out errorMessage);
+
                         break;
                     }
                 }
@@ -382,7 +313,7 @@ namespace JXTPortal.Website.Admin.UserControls
 
             if (FileManagerFilesClicked != null)
             {
-                FileManagerFilesClicked(folderurl, true, errormessage);
+                FileManagerFilesClicked(folderurl, true, errorMessage);
             }
         }
 
@@ -399,16 +330,8 @@ namespace JXTPortal.Website.Admin.UserControls
 
                     if (btnFileLink.CommandArgument == folderurl && Convert.ToBoolean(hfIsFolder.Value) == true)
                     {
-                        FtpClient ftpclient = new FtpClient();
-                        ftpclient.Host = FTPHostUrl;
-                        ftpclient.Username = username;
-                        ftpclient.Password = password;
-                        ftpclient.ChangeDirectory(hfCurrentPath.Value, out errormessage);
-                        if (string.IsNullOrEmpty(errormessage))
-                        {
+                        LoadFolderFiles(FTPFolderLocation.TrimEnd(new char[] { '/' }) + "/" + btnFileLink.CommandArgument, false, out errormessage);
 
-                            LoadFolderFiles(FTPFolderLocation.TrimEnd(new char[] { '/' }) + "/" + btnFileLink.CommandArgument, false, out errormessage);
-                        }
                         break;
                     }
                 }
@@ -422,7 +345,7 @@ namespace JXTPortal.Website.Admin.UserControls
 
         public void DeleteFile(string fileurl)
         {
-            string errormessage = string.Empty;
+            string errorMessage = string.Empty;
 
             foreach (RepeaterItem item in rptFiles.Items)
             {
@@ -434,18 +357,10 @@ namespace JXTPortal.Website.Admin.UserControls
 
                     if (hfFileURL.Value == fileurl && Convert.ToBoolean(hfIsFolder.Value) == false)
                     {
-                        FtpClient ftpclient = new FtpClient();
-                        ftpclient.Host = FTPHostUrl;
-                        ftpclient.Username = username;
-                        ftpclient.Password = password;
-                        ftpclient.ChangeDirectory(hfCurrentPath.Value, out errormessage);
-                        if (string.IsNullOrEmpty(errormessage))
+                        FileManagerService.DeleteFile(bucketName, hfCurrentPath.Value, HttpUtility.HtmlDecode(btnFileLink.Text), out errorMessage);
+                        if (string.IsNullOrEmpty(errorMessage))
                         {
-                            ftpclient.DeleteFiles(out errormessage, new string[] { HttpUtility.HtmlDecode(btnFileLink.Text) });
-                            if (string.IsNullOrEmpty(errormessage))
-                            {
-                                LoadFolderFiles(hfCurrentPath.Value, Convert.ToBoolean(hfIsRoot.Value), out errormessage);
-                            }
+                            LoadFolderFiles(hfCurrentPath.Value, Convert.ToBoolean(hfIsRoot.Value), out errorMessage);
                         }
                         break;
                     }
@@ -454,7 +369,7 @@ namespace JXTPortal.Website.Admin.UserControls
 
             if (FileManagerFilesClicked != null)
             {
-                FileManagerFilesClicked(string.Empty, false, errormessage);
+                FileManagerFilesClicked(string.Empty, false, errorMessage);
             }
         }
 
@@ -471,7 +386,7 @@ namespace JXTPortal.Website.Admin.UserControls
                     if (hfFileURL.Value == fileurl)
                     {
                         Stream downloadedfile = FileManagerService.DownloadFile(bucketName, hfCurrentPath.Value, HttpUtility.HtmlDecode(btnFileLink.Text), out errorMessage);
-                        
+
                         if (string.IsNullOrEmpty(errorMessage))
                         {
                             if (downloadedfile != null && downloadedfile.Length > 0)
@@ -487,20 +402,6 @@ namespace JXTPortal.Website.Admin.UserControls
                                 }
                             }
                         }
-
-                        //ftpclient.DownloadFileToClient(string.Format("{0}{1}/{2}", FTPHostUrl, hfCurrentPath.Value, HttpUtility.HtmlDecode(btnFileLink.Text)), ref downloadedfile, out errormessage);
-                        //if (string.IsNullOrEmpty(errormessage))
-                        //{
-                        //    downloadedfile.Position = 0;
-
-                        //    if (downloadedfile != null && downloadedfile.Length > 0)
-                        //    {
-                        //        this.Response.ContentType = "application/octet-stream";
-                        //        this.Response.AppendHeader("Content-Disposition", "attachment;filename=" + HttpUtility.HtmlDecode(btnFileLink.Text));
-                        //        this.Response.BinaryWrite(((MemoryStream)downloadedfile).ToArray());
-                        //        this.Response.End();
-                        //    }
-                        //}
 
 
                         break;
@@ -520,14 +421,15 @@ namespace JXTPortal.Website.Admin.UserControls
             rptFiles.DataSource = null;
             errorMessage = string.Empty;
             hfCurrentPath.Value = folder;
+            hfIsRoot.Value = isRoot.ToString();
 
             List<FileManagerFile> files = FileManagerService.ListFiles(bucketName, folder, out errorMessage);
 
             var directories = files.Where(x => x.FileName.Replace(folder + "/", "").Split(new char[] { '/' }).Length > 1)
-                                    .Select(x => new FileManagerFile { IsFolder = true, FolderName = x.FileName.Replace(folder + "/", "").Split(new char[] { '/' })[0] })
-                                    .Distinct();
+                                    .Select(x => new FileManagerFile { IsFolder = true, FolderName = x.FileName.Replace(folder + "/", "").Split(new char[] { '/' })[0], FileName = string.Empty })
+                                    .Distinct(new FileManagerFileComparer());
 
-            var folderfiles = files.Where(x => x.FileName.Replace(folder + "/", "").Split(new char[] { '/' }).Length == 1);
+            var folderfiles = files.Where(x => x.FileName.Replace(folder + "/", "").Split(new char[] { '/' }).Length == 1 && x.ShortFileName != DummyFileName);
 
             var allfiles = directories.Union(folderfiles).ToList();
 
@@ -715,11 +617,13 @@ namespace JXTPortal.Website.Admin.UserControls
 
             if (btnFileLink.CommandName == "folderup")
             {
-                LoadFolderFiles(FTPFolderLocation, true, out errormessage); //Retrieve Root Files
+                string[] parts = hfCurrentPath.Value.Split(new char[] { '/' });
+
+                LoadFolderFiles(string.Join("/", parts, 0, parts.Length - 1), (parts.Length <= 2), out errormessage); //Retrieve Root Files
             }
             else if (btnFileLink.CommandName == "folder")
             {
-                LoadFolderFiles(FTPFolderLocation.TrimEnd(new char[] { '/' }) + "/" + btnFileLink.CommandArgument, false, out errormessage);
+                LoadFolderFiles(hfCurrentPath.Value + "/" + btnFileLink.CommandArgument, false, out errormessage);
             }
             else if (btnFileLink.CommandName == "file")
             {

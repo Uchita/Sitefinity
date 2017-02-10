@@ -28,8 +28,7 @@ namespace JXTPortal.Website.Admin
         #region Declaration
 
         private string FTPHostUrl = ConfigurationManager.AppSettings["FTPFileManager"];
-        private string username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-        private string password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+        private string clientFolder = ConfigurationManager.AppSettings["AWSS3ClientFolder"];
 
         #endregion
 
@@ -49,18 +48,23 @@ namespace JXTPortal.Website.Admin
 
         private string FTPFolderLocation
         {
-            get { return GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId)[0].FtpFolderLocation; }
-        }
+            get
+            {
+                string path = GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId)[0].FtpFolderLocation.Replace("s3://", "");
+                if (SessionData.AdminUser != null && SessionData.AdminUser.AdminRoleId != (int)PortalEnums.Admin.AdminRole.Administrator)
+                {
+                    path = string.Format("{0}/{1}", path, clientFolder);
+                }
+                
+                return path;
 
-        private string UrlPrefix
-        {
-            get { return FTPHostUrl + GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId)[0].FtpFolderLocation + "/"; }
+            }
         }
 
         #endregion
 
         public IFileManager FileManagerService { get; set; }
-        static string bucketName = "jxtco01-01-dev-images";
+        static string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
         private string _currentFolder = string.Empty;
         #region Page
 
@@ -137,7 +141,7 @@ namespace JXTPortal.Website.Admin
         private void LoadCurrentFolders(string folder)
         {
             string errorMessage = string.Empty;
-            List<FileManagerFile> files = FileManagerService.ListFiles(bucketName, folder, out errorMessage);
+            List<FileManagerFile> files = FileManagerService.ListFiles(bucketName, FTPFolderLocation, out errorMessage);
 
             if (!string.IsNullOrEmpty(errorMessage)) { DisplayErrorMessage(errorMessage); return; }
 
@@ -150,8 +154,8 @@ namespace JXTPortal.Website.Admin
                 if (!string.IsNullOrEmpty(errorMessage)) { DisplayErrorMessage(errorMessage); return; }
             }
 
-            var directories = files.Where(x => x.FileName.Replace(folder + "/", "").Split(new char[] { '/' }).Length > 1)
-                                    .Select(x => x.FileName.Replace(folder + "/", "").Split(new char[] { '/' })[0])
+            var directories = files.Where(x => x.FileName.Replace(FTPFolderLocation + "/", "").Split(new char[] { '/' }).Length > 1)
+                                    .Select(x => x.FileName.Replace(FTPFolderLocation + "/", "").Split(new char[] { '/' })[0])
                                     .Distinct();
 
             rptFolders.DataSource = null;
@@ -169,40 +173,16 @@ namespace JXTPortal.Website.Admin
 
         private void LoadFolderDropDownList()
         {
-            string errormessage = string.Empty;
-            FtpClient ftpclient = new FtpClient();
-            ftpclient.Host = FTPHostUrl;
-            ftpclient.Username = username;
-            ftpclient.Password = password;
-            ftpclient.ChangeDirectory(FTPFolderLocation, out errormessage);
+            string errorMessage = string.Empty;
 
-            if (!string.IsNullOrEmpty(errormessage)) { DisplayErrorMessage(errormessage); return; }
+            List<FileManagerFile> files = FileManagerService.ListFiles(bucketName, FTPFolderLocation, out errorMessage);
 
-            List<FtpDirectoryEntry> filedirentrylist = ftpclient.ListDirectory(out errormessage);
-            if (!string.IsNullOrEmpty(errormessage)) { DisplayErrorMessage(errormessage); return; }
+            var folders = files.Select(x => string.Join("/", x.Folders)).Where(x => x != FTPFolderLocation).Distinct()
+                               .Select(x => new ListItem(x.Replace(FTPFolderLocation + "/", ""), x));
 
             ddlFolders.Items.Clear();
-
-            string currentpath = FileManagerFiles.CurrentPath;
-
-            string[] parts = currentpath.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
-            if (parts.Length > 0)
-            {
-                string currentfolder = parts[parts.Length - 1];
-                bool isRoot = FileManagerFiles.IsRoot;
-
-                if (!isRoot)
-                {
-                    ddlFolders.Items.Add("Root");
-                }
-                foreach (FtpDirectoryEntry entry in filedirentrylist)
-                {
-                    if (entry.IsDirectory && entry.Name != currentfolder)
-                    {
-                        ddlFolders.Items.Add(entry.Name);
-                    }
-                }
-            }
+            ddlFolders.Items.AddRange(folders.ToArray());
+            ddlFolders.Items.Insert(0, new ListItem("Root", FTPFolderLocation));
         }
 
         #endregion
@@ -387,7 +367,7 @@ namespace JXTPortal.Website.Admin
         protected void btnFolderDelete_Click(object sender, EventArgs e)
         {
             FileManagerFiles.DeleteFolder(hfFolderName.Value);
-            LoadCurrentFolders(bucketName);
+            LoadCurrentFolders(FileManagerFiles.CurrentPath);
         }
 
         protected void btnRenameFileConfirm_Click(object sender, EventArgs e)
@@ -462,7 +442,7 @@ namespace JXTPortal.Website.Admin
             if (Page.IsValid)
             {
                 FileManagerFiles.RenameFolder(hfOriginalFolderName.Value, tbRenameFolder.Text);
-                LoadCurrentFolders(bucketName);
+                LoadCurrentFolders(FileManagerFiles.CurrentPath);
             }
         }
 
@@ -496,11 +476,9 @@ namespace JXTPortal.Website.Admin
 
         protected void btnMoveSelectedFileConfirm_Click(object sender, EventArgs e)
         {
-            string oldfilepath = string.Format("{0}/{1}", FileManagerFiles.CurrentPath, hfMoveSelectedFileName.Value);
+            string toFolder = ddlFolders.Items[ddlFolders.SelectedIndex].Value;
 
-            string newfilepath = string.Format("{0}/{1}{2}", FTPFolderLocation, (ddlFolders.Items[ddlFolders.SelectedIndex].Value == "Root") ? "" : ddlFolders.Items[ddlFolders.SelectedIndex].Value + "/", hfMoveSelectedFileName.Value);
-
-            FileManagerFiles.MoveFile(oldfilepath, newfilepath);
+            FileManagerFiles.MoveFile(FileManagerFiles.CurrentPath, hfMoveSelectedFileName.Value, toFolder, hfMoveSelectedFileName.Value);
         }
 
         protected void btnUpload_Click(object sender, EventArgs e)
@@ -557,7 +535,7 @@ namespace JXTPortal.Website.Admin
                     return;
                 }
 
-                FileManagerService.UploadFile(bucketName, FileManagerFiles.CurrentPath, filename, fileUpload.PostedFile.InputStream, out errorMessage); 
+                FileManagerService.UploadFile(bucketName, FileManagerFiles.CurrentPath, filename, fileUpload.PostedFile.InputStream, out errorMessage);
                 if (!string.IsNullOrEmpty(errorMessage))
                 {
                     DisplayErrorMessage(errorMessage);

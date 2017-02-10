@@ -191,9 +191,6 @@
     <PageName>FileTypesEdit.aspx</PageName>
     <AdminRoleID>1</AdminRoleID>
 
-    <PageName>FileManager.aspx</PageName>
-    <AdminRoleID>1</AdminRoleID>
-
     <PageName>Folders.aspx</PageName>
     <AdminRoleID>1</AdminRoleID>
 
@@ -867,6 +864,9 @@
 
     <PageName>FileManager.aspx</PageName>
     <AdminRoleID>2</AdminRoleID>
+    
+    <PageName>S3FileManager.aspx</PageName>
+    <AdminRoleID>2</AdminRoleID>
 
     <PageName>DynamicPagesEdit.aspx</PageName>
     <AdminRoleID>2</AdminRoleID>
@@ -1194,6 +1194,9 @@
 
     <PageName>filemanager.aspx</PageName>
     <AdminRoleID>5</AdminRoleID>
+    <PageName>S3FileManager.aspx</PageName>
+    <AdminRoleID>5</AdminRoleID>
+
     <PageName>newscategories.aspx</PageName>
     <AdminRoleID>5</AdminRoleID>
     <PageName>news.aspx</PageName>
@@ -1294,6 +1297,8 @@
     <PageName>consultantsedit.aspx</PageName>
     <AdminRoleID>6</AdminRoleID>
     <PageName>filemanager.aspx</PageName>
+    <AdminRoleID>6</AdminRoleID>
+    <PageName>S3FileManager.aspx</PageName>
     <AdminRoleID>6</AdminRoleID>
     <PageName>news.aspx</PageName>
     <AdminRoleID>6</AdminRoleID>

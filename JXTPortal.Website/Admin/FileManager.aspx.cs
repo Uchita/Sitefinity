@@ -61,6 +61,11 @@ namespace JXTPortal.Website.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (FTPFolderLocation.StartsWith("s3://"))
+            {
+                Response.Redirect("S3FileManager.aspx");
+            }
+
             Page.ClientIDMode = System.Web.UI.ClientIDMode.AutoID;
 
             if (!Page.IsPostBack)

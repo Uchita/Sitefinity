@@ -19,11 +19,12 @@ namespace JXT.Integration.AWS
     public class AwsS3
     {
         private IAmazonS3 _client;
-        private static string DummyFileName = "NULL.jxt";
+        private static string DummyFileName = ConfigurationManager.AppSettings["AWSS3NullFileName"];
 
         public AwsS3()
         {
-            AWSCredentials credentials = new Amazon.Runtime.StoredProfileAWSCredentials("JXT_FileManager_Dev");
+            string profile = ConfigurationManager.AppSettings["AWSProfileName"];
+            AWSCredentials credentials = new Amazon.Runtime.StoredProfileAWSCredentials(profile);
             _client = new AmazonS3Client(credentials, Amazon.RegionEndpoint.APSoutheast2);
         }
 
@@ -51,7 +52,7 @@ namespace JXT.Integration.AWS
             {
                 PutObjectRequest request = new PutObjectRequest();
                 request.BucketName = bucketName;
-                request.Key = string.Format("{0}/{1}", folder, DummyFileName);
+                request.Key = string.Format("{0}{1}", (string.IsNullOrEmpty(folder)) ? string.Empty : folder + "/", DummyFileName);
                 request.ContentBody = "";
 
                 PutObjectResponse response = _client.PutObject(request);
@@ -106,7 +107,7 @@ namespace JXT.Integration.AWS
             {
                 GetObjectRequest request = new GetObjectRequest();
                 request.BucketName = bucketName;
-                request.Key = string.Format("{0}/{1}", folder, fileName);
+                request.Key = string.Format("{0}{1}", (string.IsNullOrEmpty(folder)) ? string.Empty : folder + "/", fileName);
 
                 GetObjectResponse response = _client.GetObject(request);
                 responseStream = response.ResponseStream;
@@ -127,7 +128,7 @@ namespace JXT.Integration.AWS
             {
                 DeleteObjectRequest request = new DeleteObjectRequest();
                 request.BucketName = bucketName;
-                request.Key = (!string.IsNullOrWhiteSpace(folder)) ? folder + "/" : string.Empty + fileName;
+                request.Key = string.Format("{0}{1}", (string.IsNullOrEmpty(folder)) ? string.Empty : folder + "/", fileName);
 
                 DeleteObjectResponse response = _client.DeleteObject(request);
             }
@@ -145,10 +146,121 @@ namespace JXT.Integration.AWS
             {
                 PutObjectRequest request = new PutObjectRequest();
                 request.BucketName = bucketName;
-                request.Key = string.Format("{0}/{1}", folder, fileName);
+                request.Key = string.Format("{0}{1}", (string.IsNullOrEmpty(folder)) ? string.Empty : folder + "/", fileName);
                 request.InputStream = inputSream;
 
                 PutObjectResponse response = _client.PutObject(request);
+            }
+            catch (AmazonS3Exception amazonS3Exception)
+            {
+                errorMessage = errorHandling(amazonS3Exception.ErrorCode, amazonS3Exception.Message, MethodBase.GetCurrentMethod().Name);
+            }
+        }
+
+        public void CopyObject(string bucketName, string sourceFolder, string sourceName, string destinationFolder, string destinationName, out string errorMessage)
+        {
+            errorMessage = string.Empty;
+
+            try
+            {
+                CopyObjectRequest request = new CopyObjectRequest
+                {
+                    SourceBucket = bucketName,
+                    SourceKey = string.Format("{0}{1}", (string.IsNullOrEmpty(sourceFolder)) ? string.Empty : sourceFolder + "/", sourceName),
+                    DestinationBucket = bucketName,
+                    DestinationKey = string.Format("{0}{1}", (string.IsNullOrEmpty(destinationFolder)) ? string.Empty : destinationFolder + "/", destinationName)
+                };
+
+                _client.CopyObject(request);
+            }
+            catch (AmazonS3Exception amazonS3Exception)
+            {
+                errorMessage = errorHandling(amazonS3Exception.ErrorCode, amazonS3Exception.Message, MethodBase.GetCurrentMethod().Name);
+            }
+        }
+
+        public void MoveObject(string bucketName, string sourceFolder, string sourceName, string destinationFolder, string destinationName, out string errorMessage)
+        {
+            errorMessage = string.Empty;
+
+            try
+            {
+                CopyObjectRequest request = new CopyObjectRequest
+                {
+                    SourceBucket = bucketName,
+                    SourceKey = string.Format("{0}{1}", (string.IsNullOrEmpty(sourceFolder)) ? string.Empty : sourceFolder + "/", sourceName),
+                    DestinationBucket = bucketName,
+                    DestinationKey = string.Format("{0}{1}", (string.IsNullOrEmpty(destinationFolder)) ? string.Empty : destinationFolder + "/", destinationName)
+                };
+
+                _client.CopyObject(request);
+
+                DeleteObjectRequest deleteRequest = new DeleteObjectRequest();
+                deleteRequest.BucketName = bucketName;
+                deleteRequest.Key = string.Format("{0}{1}", (string.IsNullOrEmpty(sourceFolder)) ? string.Empty : sourceFolder + "/", sourceName);
+
+                DeleteObjectResponse response = _client.DeleteObject(deleteRequest);
+            }
+            catch (AmazonS3Exception amazonS3Exception)
+            {
+                errorMessage = errorHandling(amazonS3Exception.ErrorCode, amazonS3Exception.Message, MethodBase.GetCurrentMethod().Name);
+            }
+        }
+
+        public void RenameFolder(string bucketName, string sourceFolder, string destinationFolder, out string errorMessage)
+        {
+            errorMessage = string.Empty;
+
+            try
+            {
+                ListObjectsRequest request = new ListObjectsRequest();
+                request.BucketName = bucketName;
+                request.Prefix = (string.IsNullOrEmpty(sourceFolder)) ? string.Empty : sourceFolder + "/";
+                ListObjectsResponse response = _client.ListObjects(request);
+
+                foreach (S3Object s3Object in response.S3Objects)
+                {
+                    CopyObjectRequest copyRequest = new CopyObjectRequest
+                    {
+                        SourceBucket = bucketName,
+                        SourceKey = s3Object.Key,
+                        DestinationBucket = bucketName,
+                        DestinationKey = ReplaceFirst(s3Object.Key, sourceFolder + "/", destinationFolder + "/")
+                    };
+
+                    _client.CopyObject(copyRequest);
+
+                    DeleteObjectRequest deleteRequest = new DeleteObjectRequest();
+                    deleteRequest.BucketName = bucketName;
+                    deleteRequest.Key = s3Object.Key;
+
+                    DeleteObjectResponse deleteResponse = _client.DeleteObject(deleteRequest);
+                }
+            }
+            catch (AmazonS3Exception amazonS3Exception)
+            {
+                errorMessage = errorHandling(amazonS3Exception.ErrorCode, amazonS3Exception.Message, MethodBase.GetCurrentMethod().Name);
+            }
+        }
+
+        public void DeleteFolder(string bucketName, string sourceFolder, out string errorMessage)
+        {
+            errorMessage = string.Empty;
+            try
+            {
+                ListObjectsRequest request = new ListObjectsRequest();
+                request.BucketName = bucketName;
+                request.Prefix = (string.IsNullOrEmpty(sourceFolder)) ? string.Empty : sourceFolder + "/";
+                ListObjectsResponse response = _client.ListObjects(request);
+
+                foreach (S3Object s3Object in response.S3Objects)
+                {
+                    DeleteObjectRequest deleteRequest = new DeleteObjectRequest();
+                    deleteRequest.BucketName = bucketName;
+                    deleteRequest.Key = s3Object.Key;
+
+                    DeleteObjectResponse deleteResponse = _client.DeleteObject(deleteRequest);
+                }
             }
             catch (AmazonS3Exception amazonS3Exception)
             {
@@ -168,6 +280,17 @@ namespace JXT.Integration.AWS
             {
                 errorMessage = errorHandling(amazonS3Exception.ErrorCode, amazonS3Exception.Message, MethodBase.GetCurrentMethod().Name);
             }
+        }
+
+
+        private string ReplaceFirst(string text, string search, string replace)
+        {
+            int pos = text.IndexOf(search);
+            if (pos < 0)
+            {
+                return text;
+            }
+            return text.Substring(0, pos) + replace + text.Substring(pos + search.Length);
         }
     }
 }

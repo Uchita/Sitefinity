@@ -15,5 +15,9 @@ namespace JXTPortal.Common
         void UploadFile(string directoryName, string folder, string fileName, Stream inputStream, out string errorMessage);
         void DeleteFile(string directoryName, string folder, string fileName, out string errorMessage);
         Stream DownloadFile(string directoryName, string folder, string fileName, out string errorMessage);
+        void CopyObject(string directoryName, string sourceFolder, string sourceName, string destinationFolder, string destinationName, out string errorMessage);
+        void MoveObject(string directoryName, string sourceFolder, string sourceName, string destinationFolder, string destinationName, out string errorMessage);
+        void RenameFolder(string bucketName, string sourceFolder, string destinationFolder, out string errorMessage);
+        void DeleteFolder(string bucketName, string sourceFolder, out string errorMessage);
     }
 }

@@ -42,5 +42,26 @@ namespace FileManagement
         {
             return s3.GetObject(directoryName, folder, fileName, out errorMessage);
         }
+
+        public void CopyObject(string directoryName, string sourceFolder, string sourceName, string destinationFolder, string destinationName, out string errorMessage)
+        {
+            s3.CopyObject(directoryName, sourceFolder, sourceName, destinationFolder, destinationName, out errorMessage);
+        }
+
+        public void MoveObject(string directoryName, string sourceFolder, string sourceName, string destinationFolder, string destinationName, out string errorMessage)
+        {
+            s3.MoveObject(directoryName, sourceFolder, sourceName, destinationFolder, destinationName, out errorMessage);
+        }
+
+        public void RenameFolder(string directoryName, string sourceFolder, string destinationFolder, out string errorMessage)
+        {
+            s3.RenameFolder(directoryName, sourceFolder, destinationFolder, out errorMessage);
+        }
+
+        public void DeleteFolder(string directoryName, string sourceFolder, out string errorMessage)
+        {
+            s3.DeleteFolder(directoryName, sourceFolder, out errorMessage);
+        }
+
     }
 }

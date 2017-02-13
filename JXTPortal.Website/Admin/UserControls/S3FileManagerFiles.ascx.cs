@@ -619,7 +619,7 @@ namespace JXTPortal.Website.Admin.UserControls
             {
                 string[] parts = hfCurrentPath.Value.Split(new char[] { '/' });
 
-                LoadFolderFiles(string.Join("/", parts, 0, parts.Length - 1), (parts.Length <= 2), out errormessage); //Retrieve Root Files
+                LoadFolderFiles(string.Join("/", parts, 0, parts.Length - 1), (string.Join("/", parts.Take(parts.Length - 1)) == FTPFolderLocation), out errormessage); //Retrieve Root Files
             }
             else if (btnFileLink.CommandName == "folder")
             {

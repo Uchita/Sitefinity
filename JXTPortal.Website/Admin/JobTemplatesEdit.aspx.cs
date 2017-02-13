@@ -68,6 +68,23 @@ public partial class JobTemplatesEdit : System.Web.UI.Page
         }
     }
 
+    private GlobalSettingsService _globalsettingsservice;
+    private GlobalSettingsService GlobalSettingsService
+    {
+        get
+        {
+            if (_globalsettingsservice == null)
+            {
+                _globalsettingsservice = new GlobalSettingsService();
+            }
+            return _globalsettingsservice;
+        }
+    }
+
+    private string FTPFolderLocation
+    {
+        get { return GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId)[0].FtpFolderLocation; }
+    }
     private int JobTemplateId
     {
         get
@@ -88,6 +105,11 @@ public partial class JobTemplatesEdit : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (FTPFolderLocation.StartsWith("s3://"))
+        {
+            txtJobTemplateHTML.CustomConfig = "s3custom_config.js";
+        }
+
         ScriptManager.GetCurrent(Page).RegisterPostBackControl(btnUpdate);
         ltlMessage.Text = string.Empty;
         // Only if Admin User then Enable the Global Template

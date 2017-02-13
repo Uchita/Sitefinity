@@ -165,7 +165,7 @@ namespace JXTPortal.Website.Admin
             }
             rptFolders.DataBind();
 
-            FileManagerFiles.LoadFolderFiles(folder, (folder.Contains("/") == false), out errorMessage);
+            FileManagerFiles.LoadFolderFiles(folder, (folder == FTPFolderLocation), out errorMessage);
             if (!string.IsNullOrEmpty(errorMessage)) { DisplayErrorMessage(errorMessage); return; }
 
             LoadFolderDropDownList();

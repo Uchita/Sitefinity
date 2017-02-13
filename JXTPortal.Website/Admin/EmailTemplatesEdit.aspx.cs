@@ -46,6 +46,24 @@ namespace JXTPortal.Website.Admin
             }
         }
 
+        private GlobalSettingsService _globalsettingsservice;
+        private GlobalSettingsService GlobalSettingsService
+        {
+            get
+            {
+                if (_globalsettingsservice == null)
+                {
+                    _globalsettingsservice = new GlobalSettingsService();
+                }
+                return _globalsettingsservice;
+            }
+        }
+
+        private string FTPFolderLocation
+        {
+            get { return GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId)[0].FtpFolderLocation; }
+        }
+
         #endregion
 
         #region Page
@@ -55,6 +73,11 @@ namespace JXTPortal.Website.Admin
         /// 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (FTPFolderLocation.StartsWith("s3://"))
+            {
+                txtEmailBodyHTML.CustomConfig = "s3custom_config.js";
+            }
+
             if (!Page.IsPostBack)
             {
                 LoadEmailTemplate();

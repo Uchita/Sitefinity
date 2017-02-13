@@ -78,12 +78,40 @@ namespace JXTPortal.Website.Admin
             }
         }
 
+        private GlobalSettingsService _globalsettingsservice;
+        private GlobalSettingsService GlobalSettingsService
+        {
+            get
+            {
+                if (_globalsettingsservice == null)
+                {
+                    _globalsettingsservice = new GlobalSettingsService();
+                }
+                return _globalsettingsservice;
+            }
+        }
+
+        private string FTPFolderLocation
+        {
+            get { return GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId)[0].FtpFolderLocation; }
+        }
+
         #endregion
 
         #region Page Event handlers
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (FTPFolderLocation.StartsWith("s3://"))
+            {
+                tbShortDescription.CustomConfig = "s3custom_config.js";
+                tbFullDescription.CustomConfig = "s3custom_config.js";
+                tbTestimonial.CustomConfig = "s3custom_config.js";
+                txtMultiShortDescription.CustomConfig = "s3custom_config.js";
+                txtMultiFullDescription.CustomConfig = "s3custom_config.js";
+                txtMultiTestimonial.CustomConfig = "s3custom_config.js";
+            }
+
             if (!IsPostBack)
             {
                 loadForm();

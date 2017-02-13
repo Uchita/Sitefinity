@@ -466,6 +466,13 @@
     <Compile Include="Admin\reports\MemberActivity.aspx.designer.cs">
       <DependentUpon>MemberActivity.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\S3FileBrowser.aspx.cs">
+      <DependentUpon>S3FileBrowser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\S3FileBrowser.aspx.designer.cs">
+      <DependentUpon>S3FileBrowser.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\S3FileManager.aspx.cs">
       <DependentUpon>S3FileManager.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -984,6 +991,7 @@
     <Content Include="Admin\DynamicPageRev.aspx" />
     <Content Include="Admin\DynamicPageRevisions.aspx" />
     <Content Include="Admin\reports\MemberActivity.aspx" />
+    <Content Include="Admin\S3FileBrowser.aspx" />
     <Content Include="Admin\S3FileManager.aspx" />
     <Content Include="Admin\ScreeningQuestionsTemplate.aspx" />
     <Content Include="Admin\ScreeningQuestionsTemplateEdit.aspx" />
@@ -1390,6 +1398,7 @@
     <Content Include="ckeditor\plugins\uicolor\lang\zh-cn.js" />
     <Content Include="ckeditor\plugins\uicolor\lang\_translationstatus.txt" />
     <Content Include="ckeditor\plugins\xml\plugin.js" />
+    <Content Include="ckeditor\s3custom_config.js" />
     <Content Include="ckeditor\skins\kama\dialog.css" />
     <Content Include="ckeditor\skins\kama\editor.css" />
     <Content Include="ckeditor\skins\kama\icons.png" />

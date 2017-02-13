@@ -35,6 +35,11 @@ namespace JXTPortal.Website.usercontrols.advertiser
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (FTPFolderLocation.StartsWith("s3://"))
+            {
+                txtContent.CustomConfig = "s3custom_config.js";
+            }
+
             if (Entities.SessionData.AdvertiserUser == null)
             {
                 Response.Redirect("~/advertiser/login.aspx?returnurl=" + Server.UrlEncode(Request.Url.OriginalString));
@@ -154,6 +159,10 @@ namespace JXTPortal.Website.usercontrols.advertiser
             }
         }
 
+        private string FTPFolderLocation
+        {
+            get { return GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId)[0].FtpFolderLocation; }
+        }
         #endregion
 
         private void LoadIndustry()

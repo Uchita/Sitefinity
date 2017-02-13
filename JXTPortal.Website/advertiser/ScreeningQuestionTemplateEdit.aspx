@@ -134,7 +134,7 @@
                                                     <asp:PlaceHolder ID="phOptions" runat="server" Visible="false">
                                                         <li class="form-line" id="admin-questionoptions">
                                                             <asp:Label ID="lbOptions" runat="server" CssClass="form-label-left" AssociatedControlID="tbOptions">
-                     <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral7" runat="server" SetLanguageCode="LabelOptions" /> (<JXTControl:ucLanguageLiteral ID="UcLanguageLiteral8" runat="server" SetLanguageCode="LabelCommaSeparated" />):<span class="form-required">*</span></asp:Label>
+                     <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral7" runat="server" SetLanguageCode="LabelOptions" /> (<JXTControl:ucLanguageLiteral ID="UcLanguageLiteral8" runat="server" SetLanguageCode="LabelSemicolonSeparated" />):<span class="form-required">*</span></asp:Label>
                                                             <div class="form-input">
                                                                 <asp:TextBox ID="tbOptions" runat="server" Width="400px" MaxLength="500"></asp:TextBox>
                                                                 <asp:RequiredFieldValidator ID="rfOptions" runat="server" Display="Dynamic" ErrorMessage="Required"

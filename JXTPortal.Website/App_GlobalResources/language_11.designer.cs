@@ -7947,6 +7947,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Semicolon Separated.
+        /// </summary>
+        internal static string LabelSemicolonSeparated {
+            get {
+                return ResourceManager.GetString("LabelSemicolonSeparated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Jetzt eine Job-E-Mail senden.
         /// </summary>
         internal static string LabelSendaJobAlertNow {

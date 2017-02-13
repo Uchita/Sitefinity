@@ -8038,6 +8038,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Semicolon Separated.
+        /// </summary>
+        internal static string LabelSemicolonSeparated {
+            get {
+                return ResourceManager.GetString("LabelSemicolonSeparated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 지금 직무 알림을 보내세요.
         /// </summary>
         internal static string LabelSendaJobAlertNow {

@@ -4492,4 +4492,8 @@ Tài khoản của bạn đã được xác thực. Bạn vui lòng &lt;a ref="/
     <value>Screening Questions</value>
     <comment>Screening Questions</comment>
   </data>
+  <data name="LabelSemicolonSeparated" xml:space="preserve">
+    <value>Semicolon Separated</value>
+    <comment>Semicolon Separated</comment>
+  </data>
 </root>

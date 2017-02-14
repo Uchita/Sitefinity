@@ -262,8 +262,7 @@ namespace JXTPostJobApplicationToFTP
                         // Only if the RESUME file is uploaded, then upload the Member details with the files.
                         if (!string.IsNullOrWhiteSpace(memberResumeXml.ToString()))
                         {
-
-                            Console.WriteLine(string.Format("Member ID {2} - Resume: {0}, Coverletter: {1}", memberResumeXml.ToString(), memberCoverLetterXml.ToString(), drMember["MemberID"]));
+                            _logger.DebugFormat("Member ID {0} - Resume: {1}, Coverletter: {2}", drMember["MemberID"], memberResumeXml.ToString(), memberCoverLetterXml.ToString());
 
                             memberCoverLetterXml = new StringBuilder(string.Format(@"
     <coverletter>
@@ -289,7 +288,7 @@ namespace JXTPostJobApplicationToFTP
                         }
                         else
                         {
-                            Console.WriteLine("No resume for Member - ", drMember["MemberID"]);
+                            _logger.DebugFormat("No resume for Member Id ", drMember["MemberID"]);
                             filesList.RemoveAll(s => s.Id == drMember["MemberID"].ToString());
                         }
                     }

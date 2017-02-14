@@ -757,7 +757,7 @@ namespace JXTPostDataToFTP
                 catch (Exception ex)
                 {
                     _logger.Error(string.Format("Failed to generate XML for Member on SiteId:{1}", sitexml.SiteId), ex);
-                    SaveExceptionToSiteXML(sitexml, 0);
+                    SaveExceptionToSiteXML(sitexml.SiteId);
                 }
             }
         }
@@ -1046,6 +1046,23 @@ namespace JXTPostDataToFTP
             }
 
             return value;
+        }
+
+        private void SaveExceptionToSiteXML(int siteId)
+        {
+            // Save the exception id
+            XDocument xmlFile = XDocument.Load(ConfigurationManager.AppSettings["SiteMemberXML"]);
+            var query = from c in xmlFile.Elements("sites").Elements("site")
+                        select c;
+            foreach (XElement site in query)
+            {
+                // Save the Exception ID and the application which has exception in the XML.
+                if (site.Element("SiteId").Value == siteId.ToString())
+                {
+                    site.Element("ExceptionID").Value = "-1";
+                }
+            }
+            xmlFile.Save(ConfigurationManager.AppSettings["SitesXML"]);
         }
     }
 }

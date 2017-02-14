@@ -509,65 +509,53 @@ namespace JXTPortal.Website.Admin.UserControls
                 }
                 else
                 {
-                    linkclass = "jxt-file-default";
+                    linkclass = GetLinkClass(entry.ShortFileName);
 
                     if (entry.ShortFileName.EndsWith(".jpg", StringComparison.CurrentCultureIgnoreCase) || entry.ShortFileName.EndsWith(".jpeg", StringComparison.CurrentCultureIgnoreCase))
                     {
                         linkclass = "jxt-jpg-file";
-                        kind = "jpg";
                     }
                     if (entry.ShortFileName.EndsWith(".gif", StringComparison.CurrentCultureIgnoreCase))
                     {
                         linkclass = "jxt-gif-file";
-                        kind = "gif";
                     }
                     else if (entry.ShortFileName.EndsWith(".png", StringComparison.CurrentCultureIgnoreCase))
                     {
                         linkclass = "jxt-png-file";
-                        kind = "png";
                     }
                     else if (entry.ShortFileName.EndsWith(".doc", StringComparison.CurrentCultureIgnoreCase) || entry.ShortFileName.EndsWith(".docx", StringComparison.CurrentCultureIgnoreCase))
                     {
                         linkclass = "jxt-doc-file";
-                        kind = "document";
                     }
                     else if (entry.ShortFileName.EndsWith(".xls", StringComparison.CurrentCultureIgnoreCase))
                     {
                         linkclass = "jxt-xls-file";
-                        kind = "excel";
                     }
                     else if (entry.ShortFileName.EndsWith(".html", StringComparison.CurrentCultureIgnoreCase))
                     {
                         linkclass = "jxt-html-file";
-                        kind = "html";
                     }
                     else if (entry.ShortFileName.EndsWith(".pdf", StringComparison.CurrentCultureIgnoreCase))
                     {
                         linkclass = "jxt-pdf-file";
-                        kind = "pdf";
                     }
                     else if (entry.ShortFileName.EndsWith(".css", StringComparison.CurrentCultureIgnoreCase))
                     {
                         linkclass = "jxt-css-file";
-                        kind = "css";
                     }
                     else if (entry.ShortFileName.EndsWith(".mp3", StringComparison.CurrentCultureIgnoreCase) || entry.FileName.EndsWith(".wav", StringComparison.CurrentCultureIgnoreCase))
                     {
                         linkclass = "jxt-mp3-file";
-                        kind = "mp3";
                     }
                     else if (entry.ShortFileName.EndsWith(".avi", StringComparison.CurrentCultureIgnoreCase))
                     {
                         linkclass = "jxt-avi-file";
-                        kind = "avi";
                     }
                     else if (entry.ShortFileName.EndsWith(".xml", StringComparison.CurrentCultureIgnoreCase))
                     {
                         linkclass = "jxt-xml-file";
-                        kind = "xml";
                     }
 
-                    kind = new FileInfo(entry.ShortFileName).Extension.TrimStart(new char[] { '.' }).ToLower();
                     btnFileLink.CommandName = "file";
                     btnFileLink.CommandArgument = entry.FileName;
                 }
@@ -592,6 +580,58 @@ namespace JXTPortal.Website.Admin.UserControls
                     ltlSize.Text = GetSize(entry.Size);
                 }
             }
+        }
+
+        private string GetLinkClass(string fileName)
+        {
+            string linkClass = "jxt-file-default";
+
+            if (fileName.EndsWith(".jpg", StringComparison.CurrentCultureIgnoreCase) || fileName.EndsWith(".jpeg", StringComparison.CurrentCultureIgnoreCase))
+            {
+                linkClass = "jxt-jpg-file";
+            }
+            if (fileName.EndsWith(".gif", StringComparison.CurrentCultureIgnoreCase))
+            {
+                linkClass = "jxt-gif-file";
+            }
+            else if (fileName.EndsWith(".png", StringComparison.CurrentCultureIgnoreCase))
+            {
+                linkClass = "jxt-png-file";
+            }
+            else if (fileName.EndsWith(".doc", StringComparison.CurrentCultureIgnoreCase) || fileName.EndsWith(".docx", StringComparison.CurrentCultureIgnoreCase))
+            {
+                linkClass = "jxt-doc-file";
+            }
+            else if (fileName.EndsWith(".xls", StringComparison.CurrentCultureIgnoreCase))
+            {
+                linkClass = "jxt-xls-file";
+            }
+            else if (fileName.EndsWith(".html", StringComparison.CurrentCultureIgnoreCase))
+            {
+                linkClass = "jxt-html-file";
+            }
+            else if (fileName.EndsWith(".pdf", StringComparison.CurrentCultureIgnoreCase))
+            {
+                linkClass = "jxt-pdf-file";
+            }
+            else if (fileName.EndsWith(".css", StringComparison.CurrentCultureIgnoreCase))
+            {
+                linkClass = "jxt-css-file";
+            }
+            else if (fileName.EndsWith(".mp3", StringComparison.CurrentCultureIgnoreCase) || fileName.EndsWith(".wav", StringComparison.CurrentCultureIgnoreCase))
+            {
+                linkClass = "jxt-mp3-file";
+            }
+            else if (fileName.EndsWith(".avi", StringComparison.CurrentCultureIgnoreCase))
+            {
+                linkClass = "jxt-avi-file";
+            }
+            else if (fileName.EndsWith(".xml", StringComparison.CurrentCultureIgnoreCase))
+            {
+                linkClass = "jxt-xml-file";
+            }
+
+            return linkClass;
         }
 
         private string GetSize(long size)

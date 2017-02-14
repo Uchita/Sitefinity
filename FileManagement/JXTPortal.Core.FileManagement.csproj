@@ -8,8 +8,8 @@
     <ProjectGuid>{96CD486D-4BA8-433E-9878-0C2B05F20672}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FileManagement</RootNamespace>
-    <AssemblyName>FileManagement</AssemblyName>
+    <RootNamespace>JXTPortal.Core.FileManagement</RootNamespace>
+    <AssemblyName>JXTPortal.Core.FileManagement</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

@@ -110,9 +110,13 @@
     <ApplicationManifest>scripts\bootstrap.min.js</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FileManagement\FileManagement.csproj">
+    <ProjectReference Include="..\FileManagement\JXTPortal.Core.FileManagement.csproj">
       <Project>{96CD486D-4BA8-433E-9878-0C2B05F20672}</Project>
-      <Name>FileManagement</Name>
+      <Name>JXTPortal.Core.FileManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JXT.Integration.AWS\JXT.Integration.AWS.csproj">
+      <Project>{431019B0-217A-4038-BCF2-DDEFCC2097FD}</Project>
+      <Name>JXT.Integration.AWS</Name>
     </ProjectReference>
     <ProjectReference Include="..\JXTPortal.Data.Dapper\JXTPortal.Data.Dapper.csproj">
       <Project>{32EEE44E-E778-4F22-BDFF-7787D2F97E70}</Project>

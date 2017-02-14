@@ -135,7 +135,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JXTMoveImageToFTP", "JXTMov
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AWS", "AWS", "{41677C1B-46FB-4451-AA7D-164F270121FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileManagement", "FileManagement\FileManagement.csproj", "{96CD486D-4BA8-433E-9878-0C2B05F20672}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JXTPortal.Core.FileManagement", "FileManagement\JXTPortal.Core.FileManagement.csproj", "{96CD486D-4BA8-433E-9878-0C2B05F20672}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JXT.Integration.AWS", "JXT.Integration.AWS\JXT.Integration.AWS.csproj", "{431019B0-217A-4038-BCF2-DDEFCC2097FD}"
 EndProject

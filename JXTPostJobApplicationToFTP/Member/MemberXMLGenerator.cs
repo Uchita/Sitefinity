@@ -38,7 +38,6 @@ namespace JXTPostJobApplicationToFTP
             }
         }
 
-
         private CountriesService _countriesService = null;
         private CountriesService CountriesService
         {

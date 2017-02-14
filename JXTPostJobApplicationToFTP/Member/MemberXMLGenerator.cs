@@ -22,7 +22,8 @@ namespace JXTPostJobApplicationToFTP
 {
     public class MemberXMLGenerator
     {
-        ILog _logger; 
+        ILog _logger;
+        IFileUploader _fileUploader;
 
         private GlobalSettingsService _GlobalSettingsService = null;
         private GlobalSettingsService GlobalSettingsService
@@ -52,32 +53,22 @@ namespace JXTPostJobApplicationToFTP
         }
 
 
-        public MemberXMLGenerator()
+        public MemberXMLGenerator(IFileUploader fileUploader)
         {
             _logger = LogManager.GetLogger(typeof(MemberXMLGenerator));
+            _fileUploader = fileUploader;
         }
 
-        public void GenerateKellyMemberXML(List<int> memberIds)
+        public void GenerateKellyMemberXML(string memberFlePath, IEnumerable<int> memberIds)
         {
-            IEnumerable<SitesXML> siteXMLList;
-            MembersService memberservice = new MembersService();
-            MemberFilesService memberfilesservice = new MemberFilesService();
-            MemberFiles memberfile = null;
-            DataSet ds = null;
-            DataTable dtMembers = null;
-            DataTable dtMemberFiles = null;
-            bool blnFileUploaded = false;
-            StringBuilder memberxml = new StringBuilder();
-            StringBuilder membercoverletterxml = new StringBuilder();
-            StringBuilder memberresumexml = new StringBuilder();
-            List<FileNames> fileslist = new List<FileNames>();
-            string memberfilepath = string.Empty;
-            DataRow currentMember = null;
-
-            var xml = XDocument.Load(ConfigurationManager.AppSettings["SiteMemberXML"]);
+            MembersService memberService = new MembersService();
+            MemberFilesService memberFilesService = new MemberFilesService();
+            string memberFilePath = string.Empty;
+           
+            var xml = XDocument.Load(memberFlePath);
 
             // Query the data and write out a subset of contacts
-            siteXMLList = xml.Descendants("site").Select(c => new SitesXML()
+            var siteXmlList = xml.Descendants("site").Select(c => new SitesXML()
             {
                 SiteId = (int)c.Element("SiteId"),
                 host = (string)c.Element("host"),
@@ -89,69 +80,34 @@ namespace JXTPostJobApplicationToFTP
                 LastJobApplicationId = (string)c.Element("LastModifiedDate")            // Job application id used for getting the last modified date
             });
 
-            foreach (SitesXML sitexml in siteXMLList)
+            foreach (SitesXML siteXml in siteXmlList)
             {
+                int siteId = siteXml.SiteId;
+                DateTime lastRun = (string.IsNullOrEmpty(siteXml.LastJobApplicationId) ? new DateTime(2012, 1, 1) : Convert.ToDateTime(siteXml.LastJobApplicationId));
+                var filesList = new List<FileNames>();
+                
                 try
                 {
-                    DateTime lastRun = (string.IsNullOrEmpty(sitexml.LastJobApplicationId) ? new DateTime(2012, 1, 1) : Convert.ToDateTime(sitexml.LastJobApplicationId));
-                    fileslist = new List<FileNames>();
-                    ds = memberservice.CustomGetNewValidMembers(sitexml.SiteId, lastRun);
-                    dtMembers = ds.Tables[0];
-                    dtMemberFiles = ds.Tables[1];
+                    var dataSet = memberService.CustomGetNewValidMembers(siteId, lastRun);
+                    
+                    var memberFilesDataTable = dataSet.Tables[1];
 
-                    // Get the default country from the Site Global settings
-                    string strSiteDefaultCountryCode = string.Empty;
+                    string siteUrl = GetUrl(siteId);
+                    string defaultCountryCode = GetDefaultCountryCode(siteId);
 
-                    // Get the Site URL 
-                    SitesService sitesService = new SitesService();
-                    string strDomainName = sitesService.GetBySiteId(sitexml.SiteId).SiteUrl;
+                    var members = GetValidatedMembers(dataSet, memberIds, siteXml.Mode);
 
-                    using (TList<GlobalSettings> gslist = GlobalSettingsService.GetBySiteId(sitexml.SiteId))
-                    {
-                        if (gslist.Count > 0)
-                        {
-                            if (gslist[0].DefaultCountryId.HasValue)
-                            {
-                                using (Countries countries = CountriesService.GetByCountryId(gslist[0].DefaultCountryId.Value))
-                                {
-                                    // Get the default site country code
-                                    if (countries != null)
-                                        strSiteDefaultCountryCode = countries.Abbr;
-                                }
-                            }
-                        }
-                    }
-
-                    DataRow[] drValidatedMembers = null;
-
-                    if (memberIds.Count > 0)
-                    {
-                        drValidatedMembers = dtMembers.Select("MemberID IN (" + string.Join(",", memberIds.ToArray()) + ")");
-                    }
-                    else
-                    {
-                        if (sitexml.Mode == "FullCandidate")
-                        {
-                            drValidatedMembers = dtMembers.Select("ISNULL(Title, '') <> '' AND ISNULL(FirstName, '') <> '' AND ISNULL(Surname, '') <> '' AND ISNULL(EmailAddress, '') <> '' AND ISNULL(HomePhone, '') <> '' AND ISNULL(Address1, '') <> ''");
-                        }
-                        else
-                        {
-                            drValidatedMembers = dtMembers.Select();
-                        }
-                    }
-
-                    Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Number of Members: " + drValidatedMembers.Count().ToString());
-
+                    _logger.InfoFormat("Found {0} members", members.Count());
+                    
                     // For each member
-                    foreach (DataRow drMember in drValidatedMembers)
+                    foreach (DataRow drMember in members)
                     {
-                        memberxml = new StringBuilder();
-                        membercoverletterxml = new StringBuilder();
-                        memberresumexml = new StringBuilder();
-                        currentMember = drMember;
-
+                        var memberXml = new StringBuilder();
+                        var memberCoverLetterXml = new StringBuilder();
+                        var memberResumeXml = new StringBuilder();
+                        
                         // Get the member XML
-                        memberxml.AppendFormat(@"
+                        memberXml.AppendFormat(@"
 <member>
     <domain>{24}</domain>
     <memberid>{0}</memberid>
@@ -203,27 +159,27 @@ namespace JXTPostJobApplicationToFTP
                                                         drMember["PassportNo"].ToString().Trim(),
                                                         (string.IsNullOrEmpty(drMember["PreferredCategoryID"].ToString().Trim())) ? string.Empty : drMember["PreferredCategoryID"].ToString().Trim(),
                                                         (string.IsNullOrEmpty(drMember["PreferredSubCategoryID"].ToString().Trim())) ? string.Empty : drMember["PreferredSubCategoryID"].ToString().Trim(),
-                                                        strDomainName);
+                                                        siteUrl);
 
                         // Get the Member files
-                        foreach (DataRow drMemberFile in dtMemberFiles.Rows)
+                        foreach (DataRow memberFileRow in memberFilesDataTable.Rows)
                         {
-                            if (drMemberFile["MemberID"].ToString() == drMember["MemberID"].ToString())
+                            if (memberFileRow["MemberID"].ToString() == drMember["MemberID"].ToString())
                             {
                                 string filename = string.Empty;
                                 // Saving Files
-                                if (Convert.ToInt32(drMemberFile["MemberFileTypeID"]) == (int)PortalEnums.Members.MemberFileTypes.CoverLetter)
+                                if (Convert.ToInt32(memberFileRow["MemberFileTypeID"]) == (int)PortalEnums.Members.MemberFileTypes.CoverLetter)
                                 {
-                                    filename = string.Format("{0}_Registration_{1}_{2}_Coverletter{3}", strSiteDefaultCountryCode, drMember["MemberID"], drMemberFile["MemberFileID"], drMemberFile["MemberFileSearchExtension"]);
-                                    membercoverletterxml.AppendFormat(@"<filename>{0}</filename>", filename);
+                                    filename = string.Format("{0}_Registration_{1}_{2}_Coverletter{3}", defaultCountryCode, drMember["MemberID"], memberFileRow["MemberFileID"], memberFileRow["MemberFileSearchExtension"]);
+                                    memberCoverLetterXml.AppendFormat(@"<filename>{0}</filename>", filename);
 
-                                    memberfile = memberfilesservice.GetByMemberFileId(Convert.ToInt32(drMemberFile["MemberFileID"]));
-                                    if (memberfile != null)
+                                    var memberFile = memberFilesService.GetByMemberFileId(Convert.ToInt32(memberFileRow["MemberFileID"]));
+                                    if (memberFile != null)
                                     {
                                         string savepath = ConfigurationManager.AppSettings["CoverletterFolder"] + filename;
                                         byte[] memberfilecontent = null;
 
-                                        if (!string.IsNullOrWhiteSpace(memberfile.MemberFileUrl))
+                                        if (!string.IsNullOrWhiteSpace(memberFile.MemberFileUrl))
                                         {
                                             string errormessage = string.Empty;
 
@@ -232,7 +188,7 @@ namespace JXTPostJobApplicationToFTP
                                             ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
                                             ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
 
-                                            string filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], memberfile.MemberId, memberfile.MemberFileUrl);
+                                            string filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], memberFile.MemberId, memberFile.MemberFileUrl);
                                             Stream ms = null;
                                             ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
                                             if (ms != null)
@@ -244,30 +200,30 @@ namespace JXTPostJobApplicationToFTP
                                         }
                                         else
                                         {
-                                            memberfilecontent = memberfile.MemberFileContent;
+                                            memberfilecontent = memberFile.MemberFileContent;
                                         }
 
                                         if (memberfilecontent != null)
                                         {
                                             File.WriteAllBytes(savepath, memberfilecontent);
 
-                                            fileslist.Add(new FileNames(drMember["MemberID"].ToString(), savepath, filename));
+                                            filesList.Add(new FileNames(drMember["MemberID"].ToString(), savepath, filename));
                                         }
                                     }
                                 }
 
-                                if (Convert.ToInt32(drMemberFile["MemberFileTypeID"]) == (int)PortalEnums.Members.MemberFileTypes.Resume)
+                                if (Convert.ToInt32(memberFileRow["MemberFileTypeID"]) == (int)PortalEnums.Members.MemberFileTypes.Resume)
                                 {
-                                    filename = string.Format("{0}_Registration_{1}_{2}_Resume{3}", strSiteDefaultCountryCode, drMember["MemberID"], drMemberFile["MemberFileID"], drMemberFile["MemberFileSearchExtension"]);
-                                    memberresumexml.AppendFormat(@"<filename>{0}</filename>", filename);
+                                    filename = string.Format("{0}_Registration_{1}_{2}_Resume{3}", defaultCountryCode, drMember["MemberID"], memberFileRow["MemberFileID"], memberFileRow["MemberFileSearchExtension"]);
+                                    memberResumeXml.AppendFormat(@"<filename>{0}</filename>", filename);
 
-                                    memberfile = memberfilesservice.GetByMemberFileId(Convert.ToInt32(drMemberFile["MemberFileID"]));
-                                    if (memberfile != null)
+                                    var memberFile = memberFilesService.GetByMemberFileId(Convert.ToInt32(memberFileRow["MemberFileID"]));
+                                    if (memberFile != null)
                                     {
                                         string savepath = ConfigurationManager.AppSettings["ResumeFolder"] + filename;
                                         byte[] memberfilecontent = null;
 
-                                        if (!string.IsNullOrWhiteSpace(memberfile.MemberFileUrl))
+                                        if (!string.IsNullOrWhiteSpace(memberFile.MemberFileUrl))
                                         {
                                             string errormessage = string.Empty;
 
@@ -276,7 +232,7 @@ namespace JXTPostJobApplicationToFTP
                                             ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
                                             ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
 
-                                            string filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], memberfile.MemberId, memberfile.MemberFileUrl);
+                                            string filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], memberFile.MemberId, memberFile.MemberFileUrl);
                                             Stream ms = null;
                                             ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
 
@@ -289,14 +245,14 @@ namespace JXTPostJobApplicationToFTP
                                         }
                                         else
                                         {
-                                            memberfilecontent = memberfile.MemberFileContent;
+                                            memberfilecontent = memberFile.MemberFileContent;
                                         }
 
                                         if (memberfilecontent != null)
                                         {
                                             File.WriteAllBytes(savepath, memberfilecontent);
 
-                                            fileslist.Add(new FileNames(drMember["MemberID"].ToString(), savepath, filename));
+                                            filesList.Add(new FileNames(drMember["MemberID"].ToString(), savepath, filename));
                                         }
                                     }
                                 }
@@ -304,54 +260,47 @@ namespace JXTPostJobApplicationToFTP
                         }
 
                         // Only if the RESUME file is uploaded, then upload the Member details with the files.
-                        if (!string.IsNullOrWhiteSpace(memberresumexml.ToString()))
+                        if (!string.IsNullOrWhiteSpace(memberResumeXml.ToString()))
                         {
 
-                            Console.WriteLine(string.Format("Member ID {2} - Resume: {0}, Coverletter: {1}", memberresumexml.ToString(), membercoverletterxml.ToString(), drMember["MemberID"]));
+                            Console.WriteLine(string.Format("Member ID {2} - Resume: {0}, Coverletter: {1}", memberResumeXml.ToString(), memberCoverLetterXml.ToString(), drMember["MemberID"]));
 
-                            membercoverletterxml = new StringBuilder(string.Format(@"
+                            memberCoverLetterXml = new StringBuilder(string.Format(@"
     <coverletter>
         {0}
-    </coverletter>", membercoverletterxml.ToString()));
-                            memberresumexml = new StringBuilder(string.Format(@"   
+    </coverletter>", memberCoverLetterXml.ToString()));
+                            memberResumeXml = new StringBuilder(string.Format(@"   
     <resume>
         {0}
-    </resume>", memberresumexml.ToString()));
+    </resume>", memberResumeXml.ToString()));
 
-                            memberxml.Append(membercoverletterxml.ToString());
-                            memberxml.Append(memberresumexml.ToString());
+                            memberXml.Append(memberCoverLetterXml.ToString());
+                            memberXml.Append(memberResumeXml.ToString());
 
-                            memberxml.Append(@"
+                            memberXml.Append(@"
 </member>");
 
                             // Save Member XML & include it in file list. File Name:  CountryCode_Registration_MemberID.XML
-                            string memberfilename = string.Format("{0}_Registration_{1}.XML", strSiteDefaultCountryCode, drMember["MemberID"]); //drMember["Abbr"]
+                            string memberfilename = string.Format("{0}_Registration_{1}.XML", defaultCountryCode, drMember["MemberID"]); //drMember["Abbr"]
 
-                            memberfilepath = string.Format("{0}{1}", ConfigurationManager.AppSettings["ResumeFolder"], memberfilename);
-                            File.WriteAllText(memberfilepath, memberxml.ToString());
-                            fileslist.Add(new FileNames(drMember["MemberID"].ToString(), memberfilepath, memberfilename));
+                            memberFilePath = string.Format("{0}{1}", ConfigurationManager.AppSettings["ResumeFolder"], memberfilename);
+                            File.WriteAllText(memberFilePath, memberXml.ToString());
+                            filesList.Add(new FileNames(drMember["MemberID"].ToString(), memberFilePath, memberfilename));
                         }
                         else
                         {
                             Console.WriteLine("No resume for Member - ", drMember["MemberID"]);
-                                fileslist.RemoveAll(s => s.Id == drMember["MemberID"].ToString());
+                            filesList.RemoveAll(s => s.Id == drMember["MemberID"].ToString());
                         }
-
                     }
 
                     string errormsg = string.Empty;
-                    if (sitexml.sftp)
-                    {
-                            blnFileUploaded = UploadTempFilesToSFTP(sitexml, fileslist, out errormsg);
-                    }
-                    else
-                    {
-                        blnFileUploaded = UploadTempFilesToFTP(sitexml, fileslist, out errormsg);
-                    }
+                    bool uploaded = _fileUploader.UploadFiles(siteXml, filesList);
+                    
 
                     // Only if successful upload then update the LastModifed Date in the XML.
                     // So that when it runs next it runs from the successful Run.
-                    if (blnFileUploaded)
+                    if (uploaded)
                     {
                         XDocument xmlFile = XDocument.Load(ConfigurationManager.AppSettings["SiteMemberXML"]);
                         var query = from c in xmlFile.Elements("sites").Elements("site")
@@ -359,7 +308,7 @@ namespace JXTPostJobApplicationToFTP
                         foreach (XElement site in query)
                         {
                             // Save the Exception ID and the application which has exception in the XML.
-                            if (site.Element("SiteId").Value == sitexml.SiteId.ToString())
+                            if (site.Element("SiteId").Value == siteXml.SiteId.ToString())
                             {
                                 site.Element("LastModifiedDate").Value = DateTime.Now.ToString();
                             }
@@ -375,136 +324,56 @@ namespace JXTPostJobApplicationToFTP
             }
         }
 
-        public static bool UploadTempFilesToFTP(SitesXML siteXML, List<FileNames> filesToUpload, out string errormessage)
+        private IEnumerable<DataRow> GetValidatedMembers(DataSet membersDataSet, IEnumerable<int> memberIds, string exportMode)
         {
-            errormessage = string.Empty;
-            bool blnResult = true;
+            var membersDataTable = membersDataSet.Tables[0];
 
-            FtpWebRequest request = null;
-            FileInfo fileInfo = null;
-            foreach (FileNames fileNames in filesToUpload)
+            string selectClause = string.Empty;
+
+            if (memberIds.Count() > 0)
             {
-                try
+                selectClause = string.Format("MemberID IN ({0})",string.Join(",", memberIds));
+            }
+            else if (exportMode == "FullCandidate")
+            {
+                selectClause = "ISNULL(Title, '') <> '' AND ISNULL(FirstName, '') <> '' AND ISNULL(Surname, '') <> '' AND ISNULL(EmailAddress, '') <> '' AND ISNULL(HomePhone, '') <> '' AND ISNULL(Address1, '') <> ''";
+            }
+               
+            return string.IsNullOrWhiteSpace(selectClause) ? membersDataTable.Select() : membersDataTable.Select(selectClause);
+        }
+
+        private string GetDefaultCountryCode(int siteId)
+        {
+            using (TList<GlobalSettings> gslist = GlobalSettingsService.GetBySiteId(siteId))
+            {
+                if (gslist.Count > 0)
                 {
-                    request = (FtpWebRequest)WebRequest.Create(string.Format("{0}/{1}", siteXML.host, fileNames.toFilename));
-                    request.Credentials = new NetworkCredential(siteXML.username, siteXML.password);
-                    request.Proxy = null;
-                    request.KeepAlive = true;
-
-                    //FtpWebRequest request = GetRequest(Path.GetFileName(path));
-                    request.Method = WebRequestMethods.Ftp.UploadFile;
-                    request.UseBinary = true;
-
-                    Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Uploading File: " + fileNames.fromFilename);
-
-                    fileInfo = new FileInfo(fileNames.fromFilename);
-                    request.ContentLength = fileInfo.Length;
-
-                    // Create buffer for file contents
-                    int buffLength = 16384;
-                    byte[] buff = new byte[buffLength];
-
-                    // Upload this file
-                    using (FileStream instream = fileInfo.OpenRead())
+                    if (gslist[0].DefaultCountryId.HasValue)
                     {
-                        using (Stream outstream = request.GetRequestStream())
+                        using (Countries countries = CountriesService.GetByCountryId(gslist[0].DefaultCountryId.Value))
                         {
-                            int bytesRead = instream.Read(buff, 0, buffLength);
-                            while (bytesRead > 0)
+                            // Get the default site country code
+                            if (countries != null)
                             {
-                                outstream.Write(buff, 0, bytesRead);
-                                bytesRead = instream.Read(buff, 0, buffLength);
+                                string code = countries.Abbr;
+                                _logger.InfoFormat("found the default CountryCode {0} for SiteId {1}", code, siteId); 
+                                return code;
                             }
-                            outstream.Close();
                         }
-                        instream.Close();
                     }
-
-                    FtpWebResponse response = (FtpWebResponse)request.GetResponse();
-                    response.Close();
-                    Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] File Uploaded: " + fileNames.toFilename);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] ERROR: " + ex.Message + "\n" + ex.StackTrace);
-                    blnResult = false;
                 }
             }
 
-            return blnResult;
+            _logger.InfoFormat("Failed to find a default CountryCode for SiteId {1}", siteId); 
+            return string.Empty;
         }
 
-        private bool UploadTempFilesToSFTP(SitesXML siteXML, List<FileNames> filesToUpload, out string errormessage)
+        private string GetUrl(int siteId)
         {
-            errormessage = string.Empty;
-            bool blnResult = false;
-            Sftp sftp = null;
-            try
-            {
-
-                // Create instance for Sftp to upload given files using given credentials
-                sftp = new Sftp(siteXML.host, siteXML.username, siteXML.password);
-                //sftp.Port = siteXML.port;
-
-                // Connect Sftp
-                sftp.Connect();
-
-                foreach (FileNames fileNames in filesToUpload)
-                {
-
-                    if (File.Exists(fileNames.fromFilename))
-                    {
-                        // Upload a file
-                        Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Uploading File: " + fileNames.fromFilename);
-                        sftp.Put(fileNames.fromFilename, fileNames.toFilename);
-                        Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] File Uploaded: " + fileNames.toFilename);
-                    }
-                    else
-                    {
-                        Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] File Not Found: " + fileNames.fromFilename);
-                    }
-                    // Close the Sftp connection
-                    //sftp.Close();
-                }
-
-                blnResult = true;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] ERROR: " + ex.Message + "\n" + ex.StackTrace);
-            }
-            finally
-            {
-                if (sftp != null)
-                {
-                    // Close the Sftp connection
-                    sftp.Close();
-                }
-            }
-
-            return blnResult;
-
-        }
-
-        /// <summary>
-        /// Email Sender
-        /// </summary>
-        /// <returns></returns>
-        private static SmtpSender EmailSender()
-        {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            MailSettingsSectionGroup mailConfiguration = (MailSettingsSectionGroup)config.GetSectionGroup("system.net/mailSettings");
-
-            SmtpSender mailObject = new SmtpSender(mailConfiguration.Smtp.Network.Host);
-
-            mailObject.Port = mailConfiguration.Smtp.Network.Port;
-            if (!mailConfiguration.Smtp.Network.DefaultCredentials)
-            {
-                mailObject.UserName = mailConfiguration.Smtp.Network.UserName;
-                mailObject.Password = mailConfiguration.Smtp.Network.Password;
-            }
-
-            return mailObject;
+            SitesService sitesService = new SitesService();
+            string url = sitesService.GetBySiteId(siteId).SiteUrl;
+            _logger.InfoFormat("Found SiteURL: {0}, for SiteId: {1}", url, siteId);
+            return url;
         }
     }
 }

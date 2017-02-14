@@ -4699,6 +4699,7 @@
     <Content Include="App_GlobalResources\language_5_Adecco.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>language_5_Adecco.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
@@ -4722,7 +4723,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>51440</DevelopmentServerPort>
+          <DevelopmentServerPort>59339</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:49188/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

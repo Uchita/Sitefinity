@@ -12,7 +12,7 @@ using System.IO;
 
 namespace JXTPostJobApplicationToFTP
 {
-    public class DataLoader : JXTPostJobApplicationToFTP.IDataLoader
+    public class DataLoader : IDataLoader
     {
         ILog _logger;
         static IFileUploader _fileUploader;
@@ -22,7 +22,7 @@ namespace JXTPostJobApplicationToFTP
             _fileUploader = fileUploader;
         }
 
-        public IEnumerable<int> GetMemberIds(string fileName, IEnumerable<int> memberIds)
+        public IEnumerable<int> GetMemberIds(string fileName)
         {
             var results = new List<int>();
             // Loading from a file, you can also load from a stream
@@ -99,7 +99,7 @@ namespace JXTPostJobApplicationToFTP
 
                             foreach (DataRow jobapplication in drValidJobApplication)
                             {
-                                memberIds.Add(Convert.ToInt32(jobapplication["MemberID"].ToString()));
+                                results.Add(Convert.ToInt32(jobapplication["MemberID"].ToString()));
                             }
                         }
                     }

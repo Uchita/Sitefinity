@@ -1,32 +1,24 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
-using System.Drawing;
+using System.Data.OleDb;
+using System.IO;
 using System.Linq;
+using System.Net.Mail;
+using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
-using System.IO;
-using System.Configuration;
-using System.Collections;
-using System.Data.OleDb;
-using System.Net.Mail;
-using System.Threading;
-
-using JXTPortal;
-using JXTPortal.Common;
-using JXTPortal.Data;
-using JXTPortal.Entities;
-
-
-using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
+using JXTPortal;
+using JXTPortal.Common;
+using JXTPortal.Entities;
+using EmailSender = JXTPortal.EmailSender;
 
-using System.Security.Cryptography;
-using System.Collections.Specialized;
-
-using EmailSender;
 
 namespace JXTMemberTransfer
 {

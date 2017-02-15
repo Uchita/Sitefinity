@@ -934,6 +934,7 @@
     <Content Include="Admin\images\glyphicons-halflings.png" />
     <Content Include="Admin\images\icons-all-small.png" />
     <Content Include="Admin\images\icons-all.png" />
+    <Content Include="Admin\images\jxt-logo.png" />
     <Content Include="Admin\images\login\icon_back_login.gif" />
     <Content Include="Admin\images\login\inp_login.gif" />
     <Content Include="Admin\images\login\jxt-admin-logo.png" />
@@ -946,6 +947,7 @@
     <Content Include="Admin\images\plus.gif" />
     <Content Include="Admin\images\preview.png" />
     <Content Include="Admin\images\select2.png" />
+    <Content Include="Admin\images\submenu-sub.gif" />
     <Content Include="Admin\images\toggle-small-expand.png" />
     <Content Include="Admin\images\toggle-small.png" />
     <Content Include="Admin\images\treeview-black-line.gif" />

@@ -12,7 +12,7 @@ HTML - styles
 ============================================================================= */
 
 body {
-    background-color: #263238!important; /* On file manager page, the bg is reset by bootstrap */
+    background: #263238!important; /* On file manager page, the bg is reset by bootstrap */
     color: #2d2d2d;
 }
 
@@ -90,7 +90,7 @@ br{
     padding: 10px;
 }
 .form-input input[type="checkbox"], .form-input input[type="radio"] {
-    margin-top: 13px;
+    margin-top: 0px;
 }
 input[type="checkbox"], input[type="radio"] {
     background: white;
@@ -102,7 +102,7 @@ input[type="checkbox"], input[type="radio"] {
     top: 2px;
     margin-right: 5px;
 }
-input[type="checkbox"]:checked:after, input[type="radio"]:checked:after{
+input[type="checkbox"]:checked:after, input[type="radio"]:checked:after {
     font-family: fontawesome;
     font-size: 12px;
     position: absolute;
@@ -110,6 +110,11 @@ input[type="checkbox"]:checked:after, input[type="radio"]:checked:after{
     left: 0;
     width: 15px;
     text-align: center;
+}
+input[type="radio"]:checked:after{
+    font-size: 11px;
+    top: 2px;
+    width: 14px;
 }
 input[type="checkbox"]:checked:after{
     content:'\f00c';
@@ -120,10 +125,16 @@ input[type="radio"]:checked:after{
 input[type="radio"]{
     border-radius: 50%;
 }
-
+input[type="radio"] + label{
+    margin-right: 10px;
+}
+li#admin-members-date-of-birth .form-input .form-sub-label-container {
+    vertical-align: top;
+}
 
 textarea{
     padding: 2px;
+    font-family: 'Open Sans', sans-serif, arial;
 }
 #content dl dt {
     color: #df0000;
@@ -212,6 +223,8 @@ LAYOUT
 
 #menu {
     background-color: #37474f;
+    /* This is for developer/client login */
+    /*background: #00BA8F;*/
     color: #fff;
 }
 
@@ -448,20 +461,19 @@ top: 150px;*/
 top: 150px;float:right;
 right: 53px;*/
     /*background: url("/admin/images/buttons/help-on-page.png") no-repeat;*/
-    color: #FFF;
-    font-family: helvetica;
-    font-size: 13px;
+    background: #00eab4;
     width: 150px;
-    height: 25px;
     display: block;
+    text-transform: uppercase;
     text-decoration: none;
-    padding: 8px 0px 0px 39px;
+    padding: 10px 20px;
     line-height: 1.4em;
+    text-align: center;
 }
 
 .jxt-help-page-left:hover {
-    opacity: 0.9;
-    color: #EFEFEF;
+    background: #02b284;
+    color: #FFF;
     text-decoration: none;
 }
 
@@ -519,6 +531,7 @@ div.dashboard-table td a:hover {
 }
 
 div.dashboard-table td.description {
+    padding-top: 9px;
     padding-left: 30px;
     width: 50%;
     font-size: 18px;
@@ -528,6 +541,7 @@ div.dashboard-table td.dashboard-download {
     padding-left: 30px;
     width: 50%;
 }
+
 .jxt_cms-box-dark a{
     color:#fff;
 }
@@ -632,9 +646,5 @@ div.dashboard-table td.dashboard-download {
 }
 
 @media (max-width: 1350px){
-    table.grid{
-        display: block;
-        overflow-y: hidden;
-        overflow-x: auto;
-    }
+    #content .table-responsive {overflow-y: hidden; overflow-x: auto;}
 }

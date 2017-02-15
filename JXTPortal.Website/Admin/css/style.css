@@ -58,7 +58,7 @@ br{
 #content table.grid td,
 #content table.grid-err td {
     border: 1px solid #cfcfcf;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     color: #002d3e;
 }
 #content table.grid tfoot >tr >td{ 
@@ -70,7 +70,7 @@ br{
     font-size: 14px;
 }
 #content table.grid td{
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', Arial, sans-serif;
     font-size: 12px;
 }
 #content table.grid td a{
@@ -629,4 +629,12 @@ div.dashboard-table td.dashboard-download {
 .grid-pager select{
     min-width: 40px;
     width: auto;
+}
+
+@media (max-width: 1350px){
+    table.grid{
+        display: block;
+        overflow-y: hidden;
+        overflow-x: auto;
+    }
 }

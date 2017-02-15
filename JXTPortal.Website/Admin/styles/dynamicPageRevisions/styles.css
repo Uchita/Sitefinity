@@ -387,9 +387,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#49c0f0', end
     }
     .form-element {
         width:100%;
-        height:30px;
         vertical-align: center;
-        padding:0px 5px;
         border:1px solid #bfbfbf;
     }
 
@@ -404,7 +402,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#49c0f0', end
 /*        width:44%; */
         /*height:30px;*/
         vertical-align: center;
-        padding:15px 10px;
     }
 
     textarea.form-element {
@@ -533,7 +530,7 @@ margin-bottom: 0px;
   padding: 0 !important;
 }
 .section .coda-nav ul li a{
-  background: #263238;
+  background: #666;
 }
 .section .coda-nav ul li a:hover, .section .coda-nav ul li a.current {
     background: #1c2326;
@@ -655,8 +652,14 @@ margin-bottom: 0px;
 .section .coda-slider-wrapper{
     padding: 20px 15px;
 }
-.section .coda-slider, .section .coda-slider .panel2{
-  width: 100%;
+.section .coda-slider {
+  max-width: 100%;
+}
+.section .coda-slider .panel2{
+
+}
+.coda-slider h2.title{
+  margin-top: 0;
 }
 .coda-slider #Li5 .form-input{
   display: block;
@@ -664,6 +667,10 @@ margin-bottom: 0px;
 .coda-slider #Li5 .form-input .cke_skin_kama{
   width: 100%!important;
 }
+#content .coda-slider select{
+  max-width: 400px;
+}
+
 /*.coda-slider .panel-wrapper{
     padding: 0;
 }*/

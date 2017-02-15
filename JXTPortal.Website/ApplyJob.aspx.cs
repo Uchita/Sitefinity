@@ -541,10 +541,10 @@ namespace JXTPortal.Website
 
         private string CreateTextArea(int id, string value)
         {
-            return string.Format("<textarea id=\"ScreeningQuestion_{0}\" name=\"ScreeningQuestion_{0}\" rows=\"4\" class=\"form-control\" autocomplete=\"off\" value=\"{1}\" />", id, (!string.IsNullOrEmpty(value)) ? value.Replace("\"", "&quot;") : string.Empty);
+            return string.Format("<textarea id=\"ScreeningQuestion_{0}\" name=\"ScreeningQuestion_{0}\" rows=\"4\" class=\"form-control\" autocomplete=\"off\">{1}</textarea>", id, (!string.IsNullOrEmpty(value)) ? HttpUtility.HtmlEncode(value) : string.Empty);
         }
 
-        private string CreateDropDown(int id, string value, IEnumerable<Match> matches)
+        private string CreateDropDown(int id, string value, IEnumerable<string> matches)
         {
             StringBuilder options = new StringBuilder();
 
@@ -552,7 +552,7 @@ namespace JXTPortal.Website
             {
                 options.AppendLine(string.Format("<option value=\"\">{0}</option>", CommonFunction.GetResourceValue("LabelPleaseSelect")));
 
-                var selectoptions = matches.Select((m, i) => new { Index = i, Value = m.Value })
+                var selectoptions = matches.Select((m, i) => new { Index = i, Value = m })
                                            .Select(x => string.Format("<option value=\"{1}\" {2}>{0}</option>", HttpUtility.HtmlEncode(x.Value.Trim(new char[] {'"'})), x.Index, (x.Index.ToString() == value) ? "selected" : string.Empty));
 
                 options.AppendLine(string.Join("\n", selectoptions.ToList()));
@@ -561,15 +561,15 @@ namespace JXTPortal.Website
             return string.Format("<select id=\"ScreeningQuestion_{1}\" name=\"ScreeningQuestion_{1}\">{0}</select>", options, id);
         }
 
-        private string CreateMultiSelect(int id, string value, IEnumerable<Match> matches)
+        private string CreateMultiSelect(int id, string value, IEnumerable<string> matches)
         {
             StringBuilder options = new StringBuilder();
             string[] splits = (string.IsNullOrEmpty(value)) ? null : value.Split(new char[] { ',' });
 
             if (matches != null)
             {
-                var inputs = matches.Select((m, i) => new { Index = i, Value = m.Value })
-                                    .Select(x => string.Format("<input type=\"checkbox\" id=\"ScreeningQuestion_{1}_{2}\" name=\"ScreeningQuestion_{1}\" value=\"{2}\" {3}/>{0} ", HttpUtility.HtmlEncode(x.Value.Trim(new char[] { '"' })), id, x.Index, (splits != null && splits.Contains(x.Index.ToString())) ? "checked" : string.Empty));
+                var inputs = matches.Select((m, i) => new { Index = i, Value = m })
+                                    .Select(x => string.Format("<input type=\"checkbox\" id=\"ScreeningQuestion_{1}_{2}\" name=\"ScreeningQuestion_{1}\" value=\"{2}\" {3}/>{0} ", HttpUtility.HtmlEncode(x.Value), id, x.Index, (splits != null && splits.Contains(x.Index.ToString())) ? "checked" : string.Empty));
 
                 options.AppendLine(string.Join("\n", inputs));
             }
@@ -577,14 +577,14 @@ namespace JXTPortal.Website
             return options.ToString();
         }
 
-        private string CreateRadioBox(int id, string value, IEnumerable<Match> matches)
+        private string CreateRadioBox(int id, string value, IEnumerable<string> matches)
         {
             StringBuilder options = new StringBuilder();
 
             if (matches != null)
             {
-                var inputs = matches.Select((m, i) => new { Index = i, Value = m.Value })
-                                    .Select(x => string.Format("<input type=\"radio\" id=\"ScreeningQuestion_{1}_{2}\" name=\"ScreeningQuestion_{1}\" value=\"{2}\" {3} />{0} ", HttpUtility.HtmlEncode(x.Value.Trim(new char[] { '"' })), id, x.Index, (x.Index.ToString() == value) ? "checked" : string.Empty));
+                var inputs = matches.Select((m, i) => new { Index = i, Value = m })
+                                    .Select(x => string.Format("<input type=\"radio\" id=\"ScreeningQuestion_{1}_{2}\" name=\"ScreeningQuestion_{1}\" value=\"{2}\" {3} />{0} ", HttpUtility.HtmlEncode(x.Value), id, x.Index, (x.Index.ToString() == value) ? "checked" : string.Empty));
 
                 options.AppendLine(string.Join("\n", inputs));
             }
@@ -615,8 +615,7 @@ namespace JXTPortal.Website
                 string screeningQuestionId = string.Format("ScreeningQuestion_{0}", hfScreeningQuestionId.Value);
                 string screeningQuestionAnswer = Request.Params[screeningQuestionId];
 
-                Regex regex = new Regex("(\".*?\"|[^\",\\s]+)(?=\\s*,|\\s*$)");
-                MatchCollection matches = (screeningQuestion.Options != null) ? regex.Matches(screeningQuestion.Options.Replace("\n", "")) : null;
+                string[] splits = screeningQuestion.Options.Replace("\n", "").Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
 
                 if (screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.TextBox)
                 {
@@ -630,17 +629,17 @@ namespace JXTPortal.Website
 
                 if (screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.Dropdown)
                 {
-                    ltOptions.Text = CreateDropDown(screeningQuestion.ScreeningQuestionId, screeningQuestionAnswer, matches.Cast<Match>());
+                    ltOptions.Text = CreateDropDown(screeningQuestion.ScreeningQuestionId, screeningQuestionAnswer, splits);
                 }
 
                 if (screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.MultiSelect)
                 {
-                    ltOptions.Text = CreateMultiSelect(screeningQuestion.ScreeningQuestionId, screeningQuestionAnswer, matches.Cast<Match>());
+                    ltOptions.Text = CreateMultiSelect(screeningQuestion.ScreeningQuestionId, screeningQuestionAnswer, splits);
                 }
 
                 if (screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.RadioButtons)
                 {
-                    ltOptions.Text = CreateRadioBox(screeningQuestion.ScreeningQuestionId, screeningQuestionAnswer, matches.Cast<Match>());
+                    ltOptions.Text = CreateRadioBox(screeningQuestion.ScreeningQuestionId, screeningQuestionAnswer, splits);
                 }
             }
         }
@@ -1933,14 +1932,13 @@ namespace JXTPortal.Website
                                         || screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.MultiSelect
                                         || screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.RadioButtons)
                                     {
-                                        Regex regex = new Regex("(\".*?\"|[^\",\\s]+)(?=\\s*,|\\s*$)");
-                                        MatchCollection matches = (screeningQuestion.Options != null) ? regex.Matches(screeningQuestion.Options.Replace("\n", "")) : null;
+                                        string[] matches = screeningQuestion.Options.Split(new char[] {';'}, StringSplitOptions.RemoveEmptyEntries);
 
                                         if (screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.MultiSelect)
                                         {
                                             string[] splits = screeningQuestionAnswer.Split(new char[] { ',' });
 
-                                            var answer = matches.Cast<Match>().Select((m, i) => new { Index = i, Value = m.Value })
+                                            var answer = matches.Select((m, i) => new { Index = i, Value = m })
                                                                             .Where(x => splits.ToList().Contains(x.Index.ToString()))
                                                                             .Select(x => x.Value);
 
@@ -1948,7 +1946,7 @@ namespace JXTPortal.Website
                                         }
                                         else
                                         {
-                                            var answer = matches.Cast<Match>().Select((m, i) => new { Index = i, Value = m.Value })
+                                            var answer = matches.Select((m, i) => new { Index = i, Value = m })
                                                                             .Where(x => screeningQuestionAnswer == x.Index.ToString())
                                                                             .Select(x => x.Value).FirstOrDefault();
 
@@ -1962,7 +1960,7 @@ namespace JXTPortal.Website
                                         {
                                             JobApplicationId = jobapp.JobApplicationId,
                                             ScreeningQuestionId = screeningQuestion.ScreeningQuestionId,
-                                            Answer = screeningQuestionAnswer.Trim(new char[] { '"' })
+                                            Answer = screeningQuestionAnswer
                                         });
                                     }
                                 }

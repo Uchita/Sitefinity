@@ -1,3 +1,4 @@
+@import url('//fonts.googleapis.com/css?family=Montserrat:300,400,600,700%7COpen+Sans:300,400,600,700');
  /*=============================================================================
 
 	MAIN.CSS
@@ -22,12 +23,12 @@ h1, h2, h3, h4{ font-family: 'Montserrat', sans-serif; margin-top: 0; line-heigh
 #content select {padding: 3px 1px 3px 0; height: 40px; min-width: 80px; }
 #content select option {margin: 0 10px 0 0; padding: 2px 3px; }
 /*#content input { padding:3px; color:#444444;}*/
-td,th{ vertical-align: middle;  }
+td,th{ vertical-align: top;  }
 #content table {margin:0; border-collapse:collapse; width: 100%;}
 #content table.width100 {width:100%;}
 
 #content table tfoot table {width:auto;}
-#content table.grid th, #content table.grid td {padding:10px 20px;}
+#content table.grid th, #content table.grid td {padding:10px;}
 #content table th {text-align:left; vertical-align:middle; font-weight:bold;}
 
 .treeview{ font-size: 0.9em;  }
@@ -108,7 +109,7 @@ OTHERS
 #aside #btn-create a:hover {background-position:0 -37px;}
 #aside ul { margin:0 0 15px 0; list-style:none;}
 #aside > ul > li {   }
-#aside ul li a {display:block; margin:0 15px; padding:9px 0 9px 10px; text-decoration:none; font-family: 'Montserrat'; font-size: 14px;}
+#aside ul li a {display:block; margin:0 15px; padding:9px 0 9px 10px; text-decoration:none; font-family: 'Montserrat', sans-serif; font-size: 14px;}
 #aside ul li#submenu-active a { border:0; background:url("/admin/images/design/submenu-active.gif") 100% 50% no-repeat; font-weight:bold; z-index:999;}
 #aside ul ul {margin:0; position:static; background-color: #1c2326;}
 #aside ul ul li a, #aside ul li#submenu-active ul li a { padding-left:55px; background:url("../images/submenu-sub.gif") 27px 17px no-repeat; font-size: 14px; }
@@ -391,7 +392,7 @@ text-transform: uppercase;
     float:left;
     display:inline-block;
     text-align:left;
-    padding:12px 10px 12px 0px;
+    padding:6px 10px 5px 0px;
     font-size: 14px;
 }
 .form-input >span {
@@ -696,7 +697,7 @@ textbox-2
 }
 
 .form-autocomplete-list{
-    font-family:'Montserrat', sans-serif;;
+    font-family:'Montserrat', sans-serif;
     font-size:12px;
     background:#333;
     background:rgba(26,58,81,0.8);
@@ -796,9 +797,9 @@ span.cke_skin_kama{
     background: #00eab4;
     color:#263238;
     border-radius: 0;
-    font: 14px/1 'Montserrat';
+    font: 14px/1 'Montserrat',sans-serif;
     text-transform: uppercase;
-    float: left;
+    /*float: left;*/
     padding: 12px 25px;
     height: 40px;
     border:none;

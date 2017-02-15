@@ -1481,46 +1481,45 @@ namespace JXTPortal.Website.Admin.UserControls
                 ltQuestion.Text = HttpUtility.HtmlEncode(screeningQuestion.QuestionTitle);
 
                 StringBuilder options = new StringBuilder();
-                Regex regex = new Regex("(\".*?\"|[^\",\\s]+)(?=\\s*,|\\s*$)");
-                MatchCollection matches = (screeningQuestion.Options != null) ? regex.Matches(screeningQuestion.Options.Replace("\n", "")) : null;
+                string[] matches = screeningQuestion.Options.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
 
                 if (matches == null)
                     return;
 
                 if (screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.Dropdown)
                 {
-                    ltOptions.Text = CreateDropDown(matches.Cast<Match>());
+                    ltOptions.Text = CreateDropDown(matches);
                 }
 
                 if (screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.MultiSelect)
                 {
-                    ltOptions.Text = CreateMultiSelect(matches.Cast<Match>());
+                    ltOptions.Text = CreateMultiSelect(matches);
                 }
 
                 if (screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.RadioButtons)
                 {
-                    ltOptions.Text = CreateRadioButtons(matches.Cast<Match>());
+                    ltOptions.Text = CreateRadioButtons(matches);
                 }
             }
         }
 
-        private string CreateDropDown(IEnumerable<Match> matches)
+        private string CreateDropDown(IEnumerable<string> matches)
         {
-            var options = matches.Select(m => "<option>" + m.Value.Trim(new char[] { '"' }) + "</option>");
+            var options = matches.Select(m => "<option>" + m + "</option>");
 
             return string.Format("<select>{0}</select>", string.Join("\n", options.ToList()));
         }
 
-        private string CreateMultiSelect(IEnumerable<Match> matches)
+        private string CreateMultiSelect(IEnumerable<string> matches)
         {
-            var options = matches.Select(m => string.Format("<input type=\"checkbox\" name=\"\" value=\"\" disabled>{0}", HttpUtility.HtmlEncode(m.Value.Trim(new char[] { '"' }))));
+            var options = matches.Select(m => string.Format("<input type=\"checkbox\" name=\"\" value=\"\" disabled>{0}", HttpUtility.HtmlEncode(m)));
 
             return string.Join(" ", options.ToList());
         }
 
-        private string CreateRadioButtons(IEnumerable<Match> matches)
+        private string CreateRadioButtons(IEnumerable<string> matches)
         {
-            var options = matches.Select(m => string.Format("<input type=\"radio\" name=\"\" value=\"\" disabled>{0}", HttpUtility.HtmlEncode(m.Value.Trim(new char[] { '"' }))));
+            var options = matches.Select(m => string.Format("<input type=\"radio\" name=\"\" value=\"\" disabled>{0}", HttpUtility.HtmlEncode(m)));
 
             return string.Join(" ", options.ToList());
         }

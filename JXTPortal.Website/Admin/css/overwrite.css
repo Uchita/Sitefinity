@@ -79,6 +79,7 @@ height:380px;
 	color: #333;
 	line-height: 2.3;
     text-shadow: none;
+    display: inline-block;
 }
 #jxt-create-folder:hover, #jxt-move-selected-file:hover{
 	background: #02b284;

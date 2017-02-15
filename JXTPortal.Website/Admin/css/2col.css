@@ -17,6 +17,8 @@ LAYOUT
 
 html>body #content {margin-left:0; overflow:hidden;}
 
-@media (max-width: 1199px){
-	
+@media (max-width: 1300px){
+	#aside{ width: 230px; }
+	#aside > ul > li > a{ line-height: 1.3;  }
+	#aside > ul > li > a .fa{ float: left; margin-bottom: 5px; margin-right: 7px; }
 }

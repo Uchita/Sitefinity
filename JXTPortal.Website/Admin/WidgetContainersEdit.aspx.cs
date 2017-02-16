@@ -13,6 +13,7 @@ using System.Web.UI.HtmlControls;
 using JXTPortal.Web.UI;
 using JXTPortal.Entities;
 using JXTPortal;
+using JXTPortal.Website.ckeditor.Extensions;
 #endregion
 
 public partial class WidgetContainersEdit : System.Web.UI.Page
@@ -81,14 +82,10 @@ public partial class WidgetContainersEdit : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (FTPFolderLocation.StartsWith("s3://"))
-        {
-            txtJobHtml.CustomConfig = "s3custom_config.js";
-            txtCompanyHtml.CustomConfig = "s3custom_config.js";
-            txtSiteHtml.CustomConfig = "s3custom_config.js";
-            txtPeopleHtml.CustomConfig = "s3custom_config.js";
-        }
-
+        txtJobHtml.SetConfigForFTPFolder(FTPFolderLocation);
+        txtCompanyHtml.SetConfigForFTPFolder(FTPFolderLocation);
+        txtSiteHtml.SetConfigForFTPFolder(FTPFolderLocation);
+        txtPeopleHtml.SetConfigForFTPFolder(FTPFolderLocation);
 
         if (!Page.IsPostBack)
         {

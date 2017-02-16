@@ -6,12 +6,14 @@ using JXT.Integration.AWS;
 using JXTPortal.Common;
 using JXTPortal.Common.Models;
 using System.IO;
+using log4net;
 
 namespace JXTPortal.Core.FileManagement
 {
     public class FileManager : IFileManager
     {
         IAwsS3 _s3 = null;
+        
         public FileManager(IAwsS3 s3)
         {
             _s3 = s3;
@@ -22,7 +24,7 @@ namespace JXTPortal.Core.FileManagement
             _s3.CreateFolder(directoryName, folder, out errorMessage);
         }
 
-        public List<FileManagerFile> ListFiles(string directoryName, string folder, out string errorMessage)
+        public IEnumerable<FileManagerFile> ListFiles(string directoryName, string folder, out string errorMessage)
         {
             return _s3.ListingFiles(directoryName, folder, out errorMessage);
         }

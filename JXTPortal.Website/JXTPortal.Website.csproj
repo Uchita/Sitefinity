@@ -2862,6 +2862,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>language_9.resx</DependentUpon>
     </Compile>
+    <Compile Include="ckeditor\ckEditorExtensions.cs" />
     <Compile Include="CompanySearch.aspx.cs">
       <DependentUpon>CompanySearch.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

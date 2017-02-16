@@ -15,6 +15,7 @@ using JXTPortal.Common.Extensions;
 using JXTPortal.Web.UI;
 using JXTPortal.Entities;
 using SectionIO;
+using JXTPortal.Website.ckeditor.Extensions;
 #endregion
 
 namespace JXTPortal.Website.Admin
@@ -102,16 +103,13 @@ namespace JXTPortal.Website.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (FTPFolderLocation.StartsWith("s3://"))
-            {
-                tbShortDescription.CustomConfig = "s3custom_config.js";
-                tbFullDescription.CustomConfig = "s3custom_config.js";
-                tbTestimonial.CustomConfig = "s3custom_config.js";
-                txtMultiShortDescription.CustomConfig = "s3custom_config.js";
-                txtMultiFullDescription.CustomConfig = "s3custom_config.js";
-                txtMultiTestimonial.CustomConfig = "s3custom_config.js";
-            }
-
+            tbShortDescription.SetConfigForFTPFolder(FTPFolderLocation);
+            tbFullDescription.SetConfigForFTPFolder(FTPFolderLocation);
+            tbTestimonial.SetConfigForFTPFolder(FTPFolderLocation);
+            txtMultiShortDescription.SetConfigForFTPFolder(FTPFolderLocation);
+            txtMultiFullDescription.SetConfigForFTPFolder(FTPFolderLocation);
+            txtMultiTestimonial.SetConfigForFTPFolder(FTPFolderLocation);
+            
             if (!IsPostBack)
             {
                 loadForm();

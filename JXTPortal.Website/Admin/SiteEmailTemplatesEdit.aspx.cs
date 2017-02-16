@@ -13,6 +13,7 @@ using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
 using JXTPortal;
 using JXTPortal.Entities;
+using JXTPortal.Website.ckeditor.Extensions;
 
 namespace JXTPortal.Website.Admin
 {
@@ -107,11 +108,8 @@ namespace JXTPortal.Website.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (FTPFolderLocation.StartsWith("s3://"))
-            {
-                dataNewEmailBodyHTML.CustomConfig = "s3custom_config.js";
-            }
-
+            dataNewEmailBodyHTML.SetConfigForFTPFolder(FTPFolderLocation);
+            
             if (!Page.IsPostBack)
             {
                 if (ParentEmailTemplateID > 0)

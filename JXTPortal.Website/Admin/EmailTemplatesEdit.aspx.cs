@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using JXTPortal.Entities;
 using JXTPortal.Web.UI;
+using JXTPortal.Website.ckeditor.Extensions;
 
 namespace JXTPortal.Website.Admin
 {
@@ -73,11 +74,8 @@ namespace JXTPortal.Website.Admin
         /// 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (FTPFolderLocation.StartsWith("s3://"))
-            {
-                txtEmailBodyHTML.CustomConfig = "s3custom_config.js";
-            }
-
+            txtEmailBodyHTML.SetConfigForFTPFolder(FTPFolderLocation);
+        
             if (!Page.IsPostBack)
             {
                 LoadEmailTemplate();

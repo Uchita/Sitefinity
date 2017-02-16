@@ -7,7 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using JXTPortal.Web;
 using JXTPortal.Entities;
-
+using JXTPortal.Website.ckeditor.Extensions;
 namespace JXTPortal.Website.Admin.UserControls
 {
     public partial class DynamicPagesFieldsList : System.Web.UI.UserControl
@@ -145,10 +145,8 @@ namespace JXTPortal.Website.Admin.UserControls
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (FTPFolderLocation.StartsWith("s3://"))
-            {
-                txtPageContent.CustomConfig = "s3custom_config.js";
-            }
+            txtPageContent.SetConfigForFTPFolder(FTPFolderLocation);
+            
             // To Enable CkFinder
             //txtPageContent.FileBrowserImageBrowseUrl = "/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Images"; //&currentFolder=/files/images/
         }

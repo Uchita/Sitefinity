@@ -13,6 +13,7 @@ using JXTPortal.Website;
 using System.Xml;
 using JXTPortal.Client.Bullhorn;
 using System.Configuration;
+using JXTPortal.Website.ckeditor.Extensions;
 
 namespace JXTPortal.Website.usercontrols.advertiser
 {
@@ -35,11 +36,8 @@ namespace JXTPortal.Website.usercontrols.advertiser
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (FTPFolderLocation.StartsWith("s3://"))
-            {
-                txtContent.CustomConfig = "s3custom_config.js";
-            }
-
+            txtContent.SetConfigForFTPFolder(FTPFolderLocation);
+            
             if (Entities.SessionData.AdvertiserUser == null)
             {
                 Response.Redirect("~/advertiser/login.aspx?returnurl=" + Server.UrlEncode(Request.Url.OriginalString));

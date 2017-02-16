@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using JXTPortal.Entities;
+using JXTPortal.Website.ckeditor.Extensions;
 
 namespace JXTPortal.Website.Admin
 {
@@ -60,11 +61,8 @@ namespace JXTPortal.Website.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (FTPFolderLocation.StartsWith("s3://"))
-            {
-                txtPageContent.CustomConfig = "s3custom_config.js";
-            }
-
+            txtPageContent.SetConfigForFTPFolder(FTPFolderLocation);
+            
             if (!Page.IsPostBack)
             {
                 LoadDynamicPage();

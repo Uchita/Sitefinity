@@ -423,7 +423,7 @@ namespace JXTPortal.Website.Admin.UserControls
             hfCurrentPath.Value = folder;
             hfIsRoot.Value = isRoot.ToString();
 
-            List<FileManagerFile> files = FileManagerService.ListFiles(bucketName, folder, out errorMessage);
+            IEnumerable<FileManagerFile> files = FileManagerService.ListFiles(bucketName, folder, out errorMessage);
 
             var directories = files.Where(x => x.FileName.Replace(folder + "/", "").Split(new char[] { '/' }).Length > 1)
                                     .Select(x => new FileManagerFile { IsFolder = true, FolderName = x.FileName.Replace(folder + "/", "").Split(new char[] { '/' })[0], FileName = string.Empty })

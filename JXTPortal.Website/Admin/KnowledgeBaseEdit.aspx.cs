@@ -19,6 +19,7 @@ using JXTPortal.Data.Dapper.Repositories;
 using JXTPortal.Data.Dapper.Entities.KnowledgeBase;
 using System.Linq;
 using JXTPortal.Service.Dapper;
+using JXTPortal.Website.ckeditor.Extensions;
 #endregion
 
 public partial class KnowledgeBaseEdit : System.Web.UI.Page
@@ -69,11 +70,8 @@ public partial class KnowledgeBaseEdit : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (FTPFolderLocation.StartsWith("s3://"))
-        {
-            txtKnowledgeBaseContent.CustomConfig = "s3custom_config.js";
-        }
-
+        txtKnowledgeBaseContent.SetConfigForFTPFolder(FTPFolderLocation);
+        
         if (SessionData.AdminUser == null)
         {
             Response.Redirect("~/admin/login.aspx?returnurl=" + Server.UrlEncode(Request.Url.PathAndQuery));

@@ -141,11 +141,11 @@ namespace JXTPortal.Website.Admin
         private void LoadCurrentFolders(string folder)
         {
             string errorMessage = string.Empty;
-            List<FileManagerFile> files = FileManagerService.ListFiles(bucketName, FTPFolderLocation, out errorMessage);
+            IEnumerable<FileManagerFile> files = FileManagerService.ListFiles(bucketName, FTPFolderLocation, out errorMessage);
 
             if (!string.IsNullOrEmpty(errorMessage)) { DisplayErrorMessage(errorMessage); return; }
 
-            if (files.Count == 0)
+            if (files.Count() == 0)
             {
                 FileManagerService.CreateFolder(bucketName, folder, out errorMessage);
                 if (!string.IsNullOrEmpty(errorMessage)) { DisplayErrorMessage(errorMessage); return; }
@@ -175,7 +175,7 @@ namespace JXTPortal.Website.Admin
         {
             string errorMessage = string.Empty;
 
-            List<FileManagerFile> files = FileManagerService.ListFiles(bucketName, FTPFolderLocation, out errorMessage);
+            IEnumerable<FileManagerFile> files = FileManagerService.ListFiles(bucketName, FTPFolderLocation, out errorMessage);
 
             var folders = files.Select(x => string.Join("/", x.Folders)).Where(x => x != FTPFolderLocation).Distinct()
                                .Select(x => new ListItem(x.Replace(FTPFolderLocation + "/", ""), x));

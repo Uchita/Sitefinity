@@ -26,7 +26,7 @@ using DocumentFormat.OpenXml.Spreadsheet;
 using System.Security.Cryptography;
 using System.Collections.Specialized;
 
-using EmailSender;
+using EmailSender = JXTPortal.EmailSender;
 
 namespace JXTMemberTransfer
 {
@@ -83,7 +83,8 @@ namespace JXTMemberTransfer
             cbTo.ValueMember = "SiteID";
             cbTo.DisplayMember = "SiteName";
 
-            cbTo.DataSource = service.Get_List().OrderBy(s => s.SiteName).ToList();
+            cbTo.DataSource = service.GetAll().OrderBy(s => s.SiteName).ToList();
+
 
         }
 
@@ -123,6 +124,142 @@ namespace JXTMemberTransfer
 
         delegate void LoadExcelMemberCallback(int SiteId);
 
+        private int GetColumnIndex(string columnName)
+        {
+            int index = -1;
+
+            for (int i = 0; i < dgvColumnBound.Rows.Count; i++)
+            {
+                DataGridViewRow row = dgvColumnBound.Rows[i];
+
+                if (row.Cells[1].Value.ToString() == columnName)
+                {
+                    return i;
+                }
+            }
+
+            return index;
+        }
+
+        private JXTPortal.Entities.Members AssignMemberValue(ListViewItem lvi)
+        {
+            JXTPortal.Entities.Members member = new JXTPortal.Entities.Members();
+
+            member.SiteId = Convert.ToInt32(cbTo.SelectedValue);
+            member.EmailFormat = (int)EmailSender.Format.Html;
+            member.CountryId = 1;
+            member.Valid = false;
+            member.Validated = false;
+            member.ValidateGuid = Guid.NewGuid();
+            member.RegisteredDate = DateTime.Now;
+            member.RequiredPasswordChange = true;
+
+            for (int i = 0; i < dgvColumnBound.Rows.Count; i++)
+            {
+                DataGridViewRow row = dgvColumnBound.Rows[i];
+                string columnText = row.Cells[1].Value.ToString();
+                string data = string.Empty;
+
+                if (columnText != "(none)")
+                {
+                    data = (i == 0) ? lvi.Text : lvi.SubItems[i].Text;
+
+                    if (columnText == "Username") { member.Username = data; }
+                    if (columnText == "Password") { member.Password = Utils.GetMD5Password(data); }
+                    if (columnText == "Title") { member.Title = data; }
+                    if (columnText == "FirstName") { member.FirstName = data; }
+                    if (columnText == "Surname") { member.Surname = data; }
+                    if (columnText == "EmailAddress")
+                    {
+                        member.EmailAddress = data;
+                        if (string.IsNullOrEmpty(member.Username)) { member.Username = member.EmailAddress; }
+                    }
+                    if (columnText == "Company") { member.Company = data; }
+                    if (columnText == "Position") { member.Position = data; }
+                    if (columnText == "HomePhone") { member.HomePhone = data; }
+                    if (columnText == "WorkPhone") { member.WorkPhone = data; }
+                    if (columnText == "MobilePhone") { member.MobilePhone = data; }
+                    if (columnText == "Fax") { member.Fax = data; }
+                    if (columnText == "Address1") { member.Address1 = data; }
+                    if (columnText == "Address2") { member.Address2 = data; }
+                    if (columnText == "LocationId") { member.LocationId = data; }
+                    if (columnText == "AreaId") { member.AreaId = data; }
+                    if (columnText == "CountryId") { member.CountryId = (string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : 1; }
+                    if (columnText == "PreferredCategoryId") { member.PreferredCategoryId = data; }
+                    if (columnText == "PreferredSubCategoryId") { member.PreferredSubCategoryId = data; }
+                    if (columnText == "PreferredSalaryId") { member.PreferredSalaryId = (string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : (int?)null; }
+                    if (columnText == "Subscribed") { member.Subscribed = (string.IsNullOrWhiteSpace(data)) ? Convert.ToBoolean(data) : false; }
+                    if (columnText == "MonthlyUpdate") { member.MonthlyUpdate = (string.IsNullOrWhiteSpace(data)) ? Convert.ToBoolean(data) : false; }
+                    if (columnText == "ReferringMemberId") { member.ReferringMemberId = (string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : (int?)null; }
+                    if (columnText == "LastModifiedDate") { member.LastModifiedDate = (string.IsNullOrWhiteSpace(data)) ? Convert.ToDateTime(data) : (DateTime?)null; }
+                    if (columnText == "Valid") { member.Valid = (string.IsNullOrWhiteSpace(data)) ? Convert.ToBoolean(data) : false; }
+                    if (columnText == "EmailFormat") { member.EmailFormat = (string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : (int)EmailSender.Format.Html; }
+                    if (columnText == "LastLogon") { member.LastLogon = (string.IsNullOrWhiteSpace(data)) ? Convert.ToDateTime(data) : (DateTime?)null; }
+                    if (columnText == "DateOfBirth") { member.DateOfBirth = (string.IsNullOrWhiteSpace(data)) ? Convert.ToDateTime(data) : (DateTime?)null; }
+                    if (columnText == "Gender") { member.Gender = data; }
+                    if (columnText == "Tags") { member.Tags = data; }
+                    if (columnText == "Validated") { member.Validated = (string.IsNullOrWhiteSpace(data)) ? Convert.ToBoolean(data) : false; }
+                    if (columnText == "WebsiteUrl") { member.WebsiteUrl = data; }
+                    if (columnText == "AvailabilityId") { member.AvailabilityId = (string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : (int?)null; }
+                    if (columnText == "AvailabilityFromDate") { member.AvailabilityFromDate = (string.IsNullOrWhiteSpace(data)) ? Convert.ToDateTime(data) : (DateTime?)null; }
+                    if (columnText == "MySpaceHeading") { member.MySpaceHeading = data; }
+                    if (columnText == "MySpaceContent") { member.MySpaceContent = data; }
+                    if (columnText == "UrlReferrer") { member.UrlReferrer = data; }
+                    if (columnText == "PreferredJobTitle") { member.PreferredJobTitle = data; }
+                    if (columnText == "PreferredAvailability") { member.PreferredAvailability = data; }
+                    if (columnText == "PreferredAvailabilityType") { member.PreferredAvailabilityType = (string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : (int?)null; }
+                    if (columnText == "PreferredSalaryFrom") { member.PreferredSalaryFrom = data; }
+                    if (columnText == "PreferredSalaryTo") { member.PreferredSalaryTo = data; }
+                    if (columnText == "CurrentSalaryFrom") { member.CurrentSalaryFrom = data; }
+                    if (columnText == "CurrentSalaryTo") { member.CurrentSalaryTo = data; }
+                    if (columnText == "LookingFor") { member.LookingFor = data; }
+                    if (columnText == "Experience") { member.Experience = data; }
+                    if (columnText == "Skills") { member.Skills = data; }
+                    if (columnText == "Comments") { member.Comments = data; }
+                    if (columnText == "ProfileType") { member.ProfileType = data; }
+                    if (columnText == "EducationId") { member.EducationId = (string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : (int?)null; }
+                    if (columnText == "RegisteredDate") { member.RegisteredDate = (string.IsNullOrWhiteSpace(data)) ? Convert.ToDateTime(data) : DateTime.Now; }
+                    if (columnText == "States") { member.States = data; }
+                    if (columnText == "Suburb") { member.Suburb = data; }
+                    if (columnText == "PostCode") { member.PostCode = data; }
+                    if (columnText == "ProfilePicture") { member.ProfilePicture = data; }
+                    if (columnText == "ShortBio") { member.ShortBio = data; }
+                    if (columnText == "WorkTypeId") { member.WorkTypeId = data; }
+                    if (columnText == "Memberships") { member.Memberships = data; }
+                    if (columnText == "MemberStatusId") { member.MemberStatusId = (string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : (int?)null; }
+                    if (columnText == "LinkedInAccessToken") { member.LinkedInAccessToken = data; }
+                    if (columnText == "ExternalMemberId") { member.ExternalMemberId = data; }
+                    if (columnText == "PassportNo") { member.PassportNo = data; }
+                    if (columnText == "MailingAddress1") { member.MailingAddress1 = data; }
+                    if (columnText == "MailingAddress2") { member.MailingAddress2 = data; }
+                    if (columnText == "MailingStates") { member.MailingStates = data; }
+                    if (columnText == "MailingSuburb") { member.MailingSuburb = data; }
+                    if (columnText == "MailingPostCode") { member.MailingPostCode = data; }
+                    if (columnText == "MailingCountryId") { member.MailingCountryId = (string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : (int?)null; }
+                    if (columnText == "CountryName") { member.CountryName = data; }
+                    if (columnText == "MailingCountryName") { member.MailingCountryName = data; }
+                    if (columnText == "LoginAttempts") { member.LoginAttempts = (string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : 0; }
+                    if (columnText == "LastAttemptDate") { member.LastAttemptDate = (string.IsNullOrWhiteSpace(data)) ? Convert.ToDateTime(data) : (DateTime?)null; }
+                    if (columnText == "Status") { member.Status = (string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : (int?)null; }
+                    if (columnText == "LastTermsAndConditionsDate") { member.LastTermsAndConditionsDate = (string.IsNullOrWhiteSpace(data)) ? Convert.ToDateTime(data) : (DateTime?)null; }
+                    if (columnText == "DefaultLanguageId") { member.DefaultLanguageId = (string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : (int?)null; }
+                    if (columnText == "ReferringSiteId") { member.ReferringSiteId = (string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : (int?)null; }
+                    if (columnText == "MultiLingualFirstName") { member.MultiLingualFirstName = data; }
+                    if (columnText == "MultiLingualSurame") { member.MultiLingualSurame = data; }
+                    if (columnText == "SecondaryEmail") { member.SecondaryEmail = data; }
+                    if (columnText == "CandidateData") { member.CandidateData = data; }
+                    if (columnText == "EligibleToWorkIn") { member.EligibleToWorkIn = data; }
+                    if (columnText == "ReferenceUponRequest") { member.ReferenceUponRequest = (string.IsNullOrWhiteSpace(data)) ? Convert.ToBoolean(data) : (bool?)null; ; }
+                    if (columnText == "PreferredLine") { member.PreferredLine = (string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : 1; }
+                    if (columnText == "VideoUrl") { member.VideoUrl = data; }
+                    if (columnText == "ProfileDataXml") { member.ProfileDataXml = data; }
+                    if (columnText == "LastProfileSubmittedDate") { member.LastProfileSubmittedDate = (string.IsNullOrWhiteSpace(data)) ? Convert.ToDateTime(data) : (DateTime?)null; }
+                }
+            }
+
+            return member;
+        }
+
         private void LoadExcelMember(int SiteId)
         {
 
@@ -144,13 +281,10 @@ namespace JXTMemberTransfer
                 {
                     try
                     {
-
                         ListViewItem lvi = listView1.Items[i];
-                        string firstname = lvi.SubItems[0].Text;
-                        string lastname = lvi.SubItems[1].Text;
-                        string email = lvi.SubItems[2].Text;
-                        string phone = lvi.SubItems[3].Text;
-                        string state = lvi.SubItems[4].Text;
+
+                        int emailIndex = GetColumnIndex("EmailAddress");
+                        string email = (emailIndex >= 0) ? lvi.SubItems[emailIndex].Text : string.Empty;
 
                         bool exists = false;
 
@@ -188,32 +322,26 @@ namespace JXTMemberTransfer
                                 member = memberservice.GetBySiteIdEmailAddressOrUserName(Convert.ToInt32(cbTo.SelectedValue), email);
                                 if (member == null)
                                 {
-                                    member = new JXTPortal.Entities.Members();
-                                    member.SiteId = Convert.ToInt32(cbTo.SelectedValue);
-                                    member.Username = email;
-                                    member.FirstName = firstname;
-                                    member.Surname = lastname;
-                                    member.EmailAddress = email;
-                                    member.HomePhone = phone;
-                                    member.EmailFormat = (int)EmailSender.Format.Html;
-                                    member.CountryId = 1;
-                                    member.States = state;
-                                    member.Valid = false;
-                                    member.Validated = false;
-                                    member.ValidateGuid = Guid.NewGuid();
-                                    member.RegisteredDate = DateTime.Now;
+                                    try
+                                    {
+                                        member = AssignMemberValue(lvi);
 
-                                    memberservice.Insert(member);
-                                    member.MemberUrlExtension = member.MemberId.ToString();
-                                    memberservice.Update(member);
+                                        memberservice.Insert(member);
+                                        member.MemberUrlExtension = member.MemberId.ToString();
+                                        memberservice.Update(member);
 
-                                    SendEmail(member);
+                                        SendEmail(member);
 
-                                    this.Invoke(new ErrorThrowingDelegate(ErrorThrowing), "Complete", string.Format("Member with email {0} has been notified", email));
+                                        this.Invoke(new ErrorThrowingDelegate(ErrorThrowing), "Complete", string.Format("Member with email {0} has been notified", email));
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        this.Invoke(new ErrorThrowingDelegate(ErrorThrowing), "Error", string.Format("Row {0}: {1}", i + 1, ex.Message));
+                                    }
                                 }
                                 else
                                 {
-                                    this.Invoke(new ErrorThrowingDelegate(ErrorThrowing), "Error", string.Format("Member with email {0} already exist", email));
+                                    this.Invoke(new ErrorThrowingDelegate(ErrorThrowing), "Error", string.Format("Row {0}: Member with email {1} already exist", i + 1, email));
                                 }
                             }
                         }
@@ -281,10 +409,14 @@ namespace JXTMemberTransfer
             string value = string.Empty;
             DataSet ds = new DataSet();
             Row r = null;
+            int columnCount = 0;
 
             DataTable dt = null;
             lbStatus.Text = string.Empty;
             listView1.Items.Clear();
+            listView1.Columns.Clear();
+
+            dgvColumnBound.Rows.Clear();
 
             try
             {
@@ -313,10 +445,18 @@ namespace JXTMemberTransfer
                         //dAdapter.Fill(dtExcelRecords);
                         dAdapter.Fill(ds);
 
-                        if (ds.Tables[0].Columns.Count != 5)
+                        columnCount = ds.Tables[0].Columns.Count;
+                        for (int i = 0; i < columnCount; i++)
                         {
-                            lbStatus.Text = "Error: Invalid Excel file";
-                            return;
+                            listView1.Columns.Add(new ColumnHeader
+                            {
+                                Text = "Column " + (i + 1).ToString(),
+                                Name = "Column" + (i + 1).ToString(),
+                                TextAlign = HorizontalAlignment.Left,
+                                Width = 80
+                            });
+
+                            dgvColumnBound.Rows.Add("Column " + (i + 1).ToString(), "(none)");
                         }
                     }
                 }
@@ -339,6 +479,24 @@ namespace JXTMemberTransfer
                             sharedStringTable = sharedstringtablepart.SharedStringTable;
                         }
 
+                        Row row = sheetData.Elements<Row>().FirstOrDefault();
+                        if (row != null)
+                        {
+                            columnCount = row.Elements<Cell>().Count();
+                            for (int i = 0; i < columnCount; i++)
+                            {
+                                listView1.Columns.Add(new ColumnHeader
+                                {
+                                    Text = "Column " + (i + 1).ToString(),
+                                    Name = "Column" + (i + 1).ToString(),
+                                    TextAlign = HorizontalAlignment.Left,
+                                    Width = 80
+                                });
+
+                                dgvColumnBound.Rows.Add("Column " + (i + 1).ToString(), "(none)");
+                            }
+
+                        }
 
                         for (int i = 0; i < sheetData.Elements<Row>().Count(); i++)
                         {
@@ -346,11 +504,6 @@ namespace JXTMemberTransfer
 
                             if (i == 0)
                             {
-                                if (r.Elements<Cell>().Count() != 5)
-                                {
-                                    lbStatus.Text = "Error: Invalid Excel file";
-                                    return;
-                                }
 
                                 foreach (Cell c in r.Elements<Cell>())
                                 {
@@ -407,16 +560,18 @@ namespace JXTMemberTransfer
 
                 foreach (DataRow dr in ds.Tables[0].Rows)
                 {
-                    ListViewItem lvi = new ListViewItem();
-                    lvi.Text = dr[0].ToString();
-                    lvi.SubItems.Add(dr[1].ToString());
-                    lvi.SubItems.Add(dr[2].ToString());
-                    lvi.SubItems.Add(dr[3].ToString());
-                    lvi.SubItems.Add(dr[4].ToString());
+                    if (columnCount > 0)
+                    {
+                        ListViewItem lvi = new ListViewItem();
+                        lvi.Text = dr[0].ToString();
+                        for (int i = 1; i < columnCount; i++)
+                        {
+                            lvi.SubItems.Add(dr[i].ToString());
+                        }
+                        lvi.Tag = dr;
 
-                    lvi.Tag = dr;
-
-                    listView1.Items.Add(lvi);
+                        listView1.Items.Add(lvi);
+                    }
                 }
             }
             catch (Exception ex)
@@ -424,7 +579,7 @@ namespace JXTMemberTransfer
                 lbStatus.Text = "Error: " + ex.Message;
             }
 
-            if (listView1.Items.Count > 0 && tbFromEmail.Text.Length > 0 && tbSubject.Text.Length > 0 && Utils.VerifyEmail(tbFromEmail.Text))
+            if (listView1.Items.Count > 0 && tbSubject.Text.Length > 0 && (Utils.VerifyEmail(tbFromEmail.Text) || cbSendEmail.Checked == false))
             {
                 btnStart.Enabled = true;
             }
@@ -458,33 +613,36 @@ namespace JXTMemberTransfer
 
         private void SendEmail(JXTPortal.Entities.Members member)
         {
-            string fromemail = tbFromEmail.Text;
+            if (cbSendEmail.Checked)
+            {
+                string fromemail = tbFromEmail.Text;
 
-            JXTPortal.Entities.Sites site = SitesService.GetBySiteId(Convert.ToInt32(cbTo.SelectedValue));
+                JXTPortal.Entities.Sites site = SitesService.GetBySiteId(Convert.ToInt32(cbTo.SelectedValue));
 
-            EmailSender.Message message = new EmailSender.Message();
-            HybridDictionary colemailfields = new HybridDictionary();
+                EmailSender.Message message = new EmailSender.Message();
+                HybridDictionary colemailfields = new HybridDictionary();
 
-            message.From = new MailAddress(fromemail, ConfigurationManager.AppSettings["FromEmailName"]);
-            message.To = new MailAddress(member.EmailAddress);
-            colemailfields["USERNAME"] = member.Username;
-            colemailfields["FIRSTNAME"] = member.FirstName;
-            colemailfields["LASTNAME"] = member.Surname;
-            colemailfields["LINK"] = string.Format("http://www.{0}/member/ConfirmResetPassword.aspx?memberid={1}&key={2}", site.SiteUrl, member.MemberId, member.ValidateGuid.ToString().ToLower());
-            colemailfields["SITENAME"] = site.SiteName;
-            message.Format = EmailSender.Format.Html;
-            message.Body = TemplateText;
-            message.Fields = colemailfields;
-            message.Subject = tbSubject.Text.Replace("{FIRSTNAME}", member.FirstName).Replace("{LASTNAME}", member.Surname);
+                message.From = new MailAddress(fromemail, ConfigurationManager.AppSettings["FromEmailName"]);
+                message.To = new MailAddress(member.EmailAddress);
+                colemailfields["USERNAME"] = member.Username;
+                colemailfields["FIRSTNAME"] = member.FirstName;
+                colemailfields["LASTNAME"] = member.Surname;
+                colemailfields["LINK"] = string.Format("http://www.{0}/member/ConfirmResetPassword.aspx?memberid={1}&key={2}", site.SiteUrl, member.MemberId, member.ValidateGuid.ToString().ToLower());
+                colemailfields["SITENAME"] = site.SiteName;
+                message.Format = EmailSender.Format.Html;
+                message.Body = TemplateText;
+                message.Fields = colemailfields;
+                message.Subject = tbSubject.Text.Replace("{FIRSTNAME}", member.FirstName).Replace("{LASTNAME}", member.Surname);
 
-            MailService.EmailSender().Send(message);
+                MailService.EmailSender().Send(message);
+            }
         }
 
         private void tbSubject_TextChanged(object sender, EventArgs e)
         {
             btnStart.Enabled = false;
 
-            if (listView1.Items.Count > 0 && tbFromEmail.Text.Length > 0 && tbSubject.Text.Length > 0 && Utils.VerifyEmail(tbFromEmail.Text))
+            if (listView1.Items.Count > 0  && tbSubject.Text.Length > 0 && (Utils.VerifyEmail(tbFromEmail.Text) || cbSendEmail.Checked == false))
             {
                 btnStart.Enabled = true;
             }

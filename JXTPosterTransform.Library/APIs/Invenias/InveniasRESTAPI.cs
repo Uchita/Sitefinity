@@ -38,34 +38,17 @@ namespace JXTPosterTransform.Library.APIs.Invenias
             return null;
         }
 
-        //public InveniaTokenResponse RefreshToken()
-        //{
-        //    string tokenURL = "https://publicapi.invenias.com/token";
-
-        //    string postData = string.Format("grant_type=refresh_token&client_id={0}&refresh_token={1}", _settings.ClientID, _settings.RESTAuthRefreshToken);
-        //    string tokenResponse = HttpPost(tokenURL, postData, false);
-
-        //    if (!string.IsNullOrEmpty(tokenResponse))
-        //    {
-        //        JavaScriptSerializer ser = new JavaScriptSerializer();
-        //        InveniaTokenResponse token = (InveniaTokenResponse)ser.Deserialize(tokenResponse, typeof(InveniaTokenResponse));
-
-        //        if (token != null)
-        //        {
-        //            //when calling refresh token, there is no new refresh token returned
-        //            //Save it back to integrations
-        //            IntegrationsService.InveniasTokenUpdate(_siteID, token.access_token, null);
-        //        }
-
-        //        return token;
-        //    }
-
-        //    return null;
-        //}
-
         public List<InveniasAdvertisementsValue> AdvertisementsGet()
         {
+            return AdvertisementsGet(null);
+        }
+
+        public List<InveniasAdvertisementsValue> AdvertisementsGet(string query)
+        {
             string targetURL = "https://publicapi.invenias.com/v1/Advertisements";
+
+            if (!string.IsNullOrEmpty(query))
+                targetURL += "?" + query;
 
             string advertisements = HttpGet(targetURL, true);
 

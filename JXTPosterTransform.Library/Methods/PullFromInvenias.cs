@@ -9,35 +9,48 @@ using System.Configuration;
 using JXTPosterTransform.Library.Models;
 using System.IO;
 using JXTPosterTransform.Library.APIs.Invenias;
+using log4net;
 
 namespace JXTPosterTransform.Library.Methods
 {
     public class PullFromInvenias
     {
+        ILog _logger; 
         InveniasRESTAPI _api;
         string _LocationCategoryID;
         string _ProfRoleCategoryID;
 
         public PullFromInvenias(ClientSetupModels.PullFromInvenias invDetails)
         {
+            _logger = LogManager.GetLogger(typeof(PullFromInvenias));
             _LocationCategoryID = invDetails.LocationCategoryListID;
             _ProfRoleCategoryID = invDetails.ProfRoleCategoryListID;
             _api = new InveniasRESTAPI(invDetails.ClientID, invDetails.Username, invDetails.Password);
-            _api.Authenticate(false);
+
+            _logger.InfoFormat("Attempting authentication to Invenias with ClientID({0})", invDetails.ClientID);
+            InveniaTokenResponse tokenResponse = _api.Authenticate(false);
+            _logger.InfoFormat("Authentication to Invenias " + (tokenResponse == null ? "FAILED" : "SUCCESS"));
         }
 
 
         public List<InveniasPTModel> PosterTransformModelsGet()
         {
+            _logger.InfoFormat("Start retreiving data from Invenias...");
+
             //get all advertisements
-            List<InveniasAdvertisementsValue> advertisements = _api.AdvertisementsGet();
+            _logger.InfoFormat("Retreiving 'published' / 'unpublished' Advertisements data from Invenias");
+            List<InveniasAdvertisementsValue> advertisements = _api.AdvertisementsGet();//"$filter=Status eq AssignmentAdStatus(Published)");
+            _logger.InfoFormat("[DONE] Retreiving Advertisements data from Invenias - Count(" + advertisements.Count() + ")");
+
             //get all locations
             //List<InveniasLocationValue> locations = _api.LocationsGet();
 
+            _logger.InfoFormat("Processing each Advertisements");
             List<InveniasPTModel> pt = new List<InveniasPTModel>();
-
             foreach (InveniasAdvertisementsValue ad in advertisements)
             {
+                _logger.DebugFormat("Advertisement - " + ad.Id);
+
                 InveniasPTModel thisPT = new InveniasPTModel();
                 thisPT.advertisement = ad;
 
@@ -167,7 +180,10 @@ namespace JXTPosterTransform.Library.Methods
                 #endregion
 
                 pt.Add(thisPT);
+
+                _logger.DebugFormat("[DONE] Advertisement - " + ad.Id);
             }
+            _logger.InfoFormat("[DONE] Processing each Advertisements");
 
             return pt;
         }
@@ -179,6 +195,8 @@ namespace JXTPosterTransform.Library.Methods
 
         public ResponseClass ProcessInveniaModelToXML(List<InveniasPTModel> adverts, string FTP_FileName)
         {
+            _logger.InfoFormat("Processing Invenias Data to XML...");
+
             ResponseClass responseClass = new ResponseClass();
 
             System.Xml.Serialization.XmlSerializer serializer = new System.Xml.Serialization.XmlSerializer(typeof(List<InveniasPTModel>));
@@ -200,13 +218,10 @@ namespace JXTPosterTransform.Library.Methods
 
                 // Success to get the XML.
                 responseClass.blnSuccess = true;
-
-                /*else
-                {
-                    responseClass.strMessage = "Can't find the file from URL - " + XMLwithAuth.Host;
-                    Console.WriteLine(responseClass.strMessage);
-                }*/
             }
+            
+            _logger.InfoFormat("[DONE] Processing Invenias Data to XML");
+
             return responseClass;
         }
 

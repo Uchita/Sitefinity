@@ -1352,7 +1352,7 @@ namespace JXTPortal.Website.member
             }
             else
             {
-                if (Regex.IsMatch(tbSummary.Text, ContentValidationRegex) == false)
+                if (Regex.IsMatch(tbSummary.Text.Replace("\n", ""), ContentValidationRegex) == false)
                 {
                     hasError = true;
                     phSummaryError.Visible = true;

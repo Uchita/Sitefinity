@@ -72,7 +72,7 @@
 </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <link rel="stylesheet" href="./styles/ScreeningQuestions/theme-style.css" />
+    <link rel="stylesheet" href="/styles/ScreeningQuestions/theme-style.css" />
     <ajaxToolkit:ToolkitScriptManager ID="toolkitScriptManager" runat="server" CombineScripts="true" ScriptMode="Release" />
     <%--<asp:ScriptManager ID="scriptManager" runat="server" />--%>
     <%--<div id="content">--%>

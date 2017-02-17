@@ -48,16 +48,16 @@
                 <HeaderTemplate>
                     <h2>
                 <asp:Literal ID="ltScreeningQuestions" runat="server" Text="Screening Questions" /></h2>
-                    <table>
+                    <table class="grid">
                         <thead>
                             <tr class="grid-header">
                                 <th scope="col" width="50">
                                     &nbsp;
                                 </th>
-                                <th scope="col" width="100">
+                                <th scope="col" width="80">
                                     Sequence
                                 </th>
-                                <th scope="col" width="100">
+                                <th scope="col" width="120">
                                     Question Type
                                 </th>
                                 <th scope="col">

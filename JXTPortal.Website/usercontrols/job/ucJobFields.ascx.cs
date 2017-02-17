@@ -1912,10 +1912,10 @@ namespace JXTPortal.Website.Admin.UserControls
                         if (job.AdvertiserJobTemplateLogoId.GetValueOrDefault(0) > 0)
                             ddlAdvertiserJobTemplateLogo.SelectedValue = Convert.ToString(job.AdvertiserJobTemplateLogoId);
 
+                        ddlScreeningQuestionsTemplate.Enabled = false;
                         if (job.ScreeningQuestionsTemplateId.HasValue)
                         {
                             ddlScreeningQuestionsTemplate.SelectedValue = Convert.ToString(job.ScreeningQuestionsTemplateId.Value);
-                            ddlScreeningQuestionsTemplate.Enabled = false;
                         }
                         //chkRequireLogonForExternalApplications.Checked = job.RequireLogonForExternalApplications;
                         chkShowLocationDetails.Checked = (job.ShowLocationDetails == null) ? false : (bool)job.ShowLocationDetails;

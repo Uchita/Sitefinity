@@ -13,12 +13,11 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server" ScriptMode="Release" />
-    <div class="content-holder">
-        <div id="jxt-wrapper-bootstrap">
-            <div class="container-fluid">
-                <div id="content-container" class="row">
-                    <div class="container">
+    
+                <div id="content-container" class="newDash">
+                    <div id="content">
                         <div class="content-holder">
+                            <h2><JXTControl:ucLanguageLiteral ID="ltScreeningQuestionsTemplate" runat="server" SetLanguageCode="LinkButtonScreeningQuestionsTemplate" /></h2>
                             <JXTControl:ucSystemDynamicPage ID="ucSystemDynamicPage" runat="server" SetSystemPageCode="SystemPage_AdvertiserScreeningQuestionsEdit" />
                             <uc2:ucAdvertiserAccountNavigation ID="ucAdvertiserAccountNavigation1" runat="server" />
                             <span class="form-message">
@@ -140,7 +139,7 @@
                                                             <asp:Label ID="lbOptions" runat="server" CssClass="form-label-left" AssociatedControlID="tbOptions">
                      <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral7" runat="server" SetLanguageCode="LabelOptions" /> (<JXTControl:ucLanguageLiteral ID="UcLanguageLiteral8" runat="server" SetLanguageCode="LabelSemicolonSeparated" />):<span class="form-required">*</span></asp:Label>
                                                             <div class="form-input">
-                                                                <asp:TextBox ID="tbOptions" runat="server" MaxLength="500"></asp:TextBox>
+                                                                <asp:TextBox ID="tbOptions" runat="server" MaxLength="500" TextMode="MultiLine" Rows="3"></asp:TextBox>
                                                                 <asp:RequiredFieldValidator ID="rfOptions" runat="server" Display="Dynamic" ErrorMessage="Required"
                                                                     ControlToValidate="tbOptions" SetFocusOnError="true" ValidationGroup="Question" />
                                                             </div>
@@ -202,10 +201,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-
     <script src="//images.jxt.net.au/COMMON/newdash/lib/footable.js" type="text/javascript"></script>
                                         <script src="//images.jxt.net.au/COMMON/newdash/lib/footable.sort.js" type="text/javascript"></script>
                                         <script src="//images.jxt.net.au/COMMON/newdash/lib/footable.filter.js" type="text/javascript"></script>

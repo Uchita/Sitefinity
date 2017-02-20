@@ -1942,7 +1942,7 @@ namespace JXTPortal.Website
                                                                             .Where(x => splits.ToList().Contains(x.Index.ToString()))
                                                                             .Select(x => x.Value);
 
-                                            screeningQuestionAnswer = string.Join(", ", answer.ToList());
+                                            screeningQuestionAnswer = string.Join("; ", answer.ToList());
                                         }
                                         else
                                         {

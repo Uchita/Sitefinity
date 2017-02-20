@@ -4,6 +4,9 @@
 <%@ Register Src="/usercontrols/navigation/ucAdvertiserAccountNavigation.ascx" TagName="ucAdvertiserAccountNavigation"
     TagPrefix="uc2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <meta name="robots" content="nofollow" />
+    <link rel="stylesheet" href="//images.jxt.net.au/COMMON/newdash/lib/bootstrap.min.css" />
+    <link rel="stylesheet" href="//images.jxt.net.au/COMMON/newdash/newDash.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="endOfHead" runat="server">
 </asp:Content>

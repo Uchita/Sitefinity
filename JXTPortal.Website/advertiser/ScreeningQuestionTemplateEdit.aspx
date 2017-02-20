@@ -4,6 +4,10 @@
 <%@ Register Src="/usercontrols/navigation/ucAdvertiserAccountNavigation.ascx" TagName="ucAdvertiserAccountNavigation"
     TagPrefix="uc2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <meta name="robots" content="nofollow" />
+    <link rel="stylesheet" href="//images.jxt.net.au/COMMON/newdash/lib/bootstrap.min.css" />
+    <link rel="stylesheet" href="//images.jxt.net.au/COMMON/newdash/newDash.css" />
+    <link rel="stylesheet" href="/styles/ScreeningQuestions/theme-style.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="endOfHead" runat="server">
 </asp:Content>
@@ -25,7 +29,7 @@
                                     <asp:Label ID="lbTemplateName" runat="server" CssClass="form-label-left" AssociatedControlID="tbTemplateName">
                      <JXTControl:ucLanguageLiteral ID="ltTemplateName" runat="server" SetLanguageCode="LabelTemplateName" /><span class="form-required">*</span></asp:Label>
                                     <div class="form-input">
-                                        <asp:TextBox ID="tbTemplateName" runat="server" Width="400px" MaxLength="256"></asp:TextBox>
+                                        <asp:TextBox ID="tbTemplateName" runat="server" MaxLength="256"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="rfTemplateName" runat="server" Display="Dynamic"
                                             ValidationGroup="Template" ErrorMessage="Required" ControlToValidate="tbTemplateName"
                                             SetFocusOnError="true" />
@@ -41,9 +45,9 @@
                                 <li class="form-line">
                                     <div class="form-input-wide">
                                         <div class="form-buttons-wrapper">
-                                            <asp:Button ID="btnSubmit" runat="server" Text="Save" CssClass="jxtadminbutton" OnClick="btnSubmit_Click"
+                                            <asp:Button ID="btnSubmit" runat="server" Text="Save" CssClass="mini-new-buttons" OnClick="btnSubmit_Click"
                                                 ValidationGroup="Template" />
-                                            <asp:Button ID="btnReturn" runat="server" Text="Return" CssClass="jxtadminbutton"
+                                            <asp:Button ID="btnReturn" runat="server" Text="Return" CssClass="mini-new-buttons"
                                                 OnClick="btnReturn_Click" CausesValidation="false" />
                                         </div>
                                     </div>
@@ -62,10 +66,10 @@
                                                             <th scope="col" width="50">
                                                                 &nbsp;
                                                             </th>
-                                                            <th scope="col" width="100">
+                                                            <th scope="col" width="80">
                                                                  <JXTControl:ucLanguageLiteral ID="ltSequence" runat="server" SetLanguageCode="LabelSequence" />
                                                             </th>
-                                                            <th scope="col" width="100">
+                                                            <th scope="col" width="120">
                                                                 <JXTControl:ucLanguageLiteral ID="ltQuestionType" runat="server" SetLanguageCode="LabelQuestionType" />
                                                             </th>
                                                             <th scope="col">
@@ -115,7 +119,7 @@
                     Title:<span class="form-required">*</span></asp:Label>
                                                 <div class="form-input">
                                                     <asp:HiddenField ID="hfScreeningQuestionId" runat="server" />
-                                                    <asp:TextBox ID="tbTitle" runat="server" Width="400px" MaxLength="256"></asp:TextBox>
+                                                    <asp:TextBox ID="tbTitle" runat="server" MaxLength="256"></asp:TextBox>
                                                     <asp:RequiredFieldValidator ID="rfTitle" runat="server" Display="Dynamic" ErrorMessage="Required"
                                                         ControlToValidate="tbTitle" SetFocusOnError="true" ValidationGroup="Question" />
                                                 </div>
@@ -126,7 +130,7 @@
                                                         <asp:Label ID="lbType" runat="server" CssClass="form-label-left" AssociatedControlID="ddlType">
                     Type:<span class="form-required">*</span></asp:Label>
                                                         <div class="form-input">
-                                                            <asp:DropDownList ID="ddlType" runat="server" Width="400px" AutoPostBack="true" OnSelectedIndexChanged="ddlType_SelectedIndexChanged">
+                                                            <asp:DropDownList ID="ddlType" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlType_SelectedIndexChanged">
                                                                 
                                                             </asp:DropDownList>
                                                         </div>
@@ -136,7 +140,7 @@
                                                             <asp:Label ID="lbOptions" runat="server" CssClass="form-label-left" AssociatedControlID="tbOptions">
                      <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral7" runat="server" SetLanguageCode="LabelOptions" /> (<JXTControl:ucLanguageLiteral ID="UcLanguageLiteral8" runat="server" SetLanguageCode="LabelSemicolonSeparated" />):<span class="form-required">*</span></asp:Label>
                                                             <div class="form-input">
-                                                                <asp:TextBox ID="tbOptions" runat="server" Width="400px" MaxLength="500"></asp:TextBox>
+                                                                <asp:TextBox ID="tbOptions" runat="server" MaxLength="500"></asp:TextBox>
                                                                 <asp:RequiredFieldValidator ID="rfOptions" runat="server" Display="Dynamic" ErrorMessage="Required"
                                                                     ControlToValidate="tbOptions" SetFocusOnError="true" ValidationGroup="Question" />
                                                             </div>
@@ -148,7 +152,7 @@
                                                 <asp:Label ID="lbSequence" runat="server" CssClass="form-label-left" AssociatedControlID="tbSequence">
                      <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral9" runat="server" SetLanguageCode="LabelSequence" />:<span class="form-required">*</span></asp:Label>
                                                 <div class="form-input">
-                                                    <asp:TextBox ID="tbSequence" runat="server" Width="400px" onkeypress="return event.charCode >= 48 && event.charCode <= 57"></asp:TextBox>
+                                                    <asp:TextBox ID="tbSequence" runat="server" onkeypress="return event.charCode >= 48 && event.charCode <= 57"></asp:TextBox>
                                                     <asp:RequiredFieldValidator ID="rfSequence" runat="server" Display="Dynamic" ErrorMessage="Required"
                                                         ControlToValidate="tbSequence" SetFocusOnError="true" ValidationGroup="Question" />
                                                     <asp:RangeValidator ID="rvSequence" runat="server" ErrorMessage="Please enter the valid sequence"
@@ -173,11 +177,11 @@
                                             <li class="form-line" id="Li3">
                                                 <div class="form-input-wide">
                                                     <div class="form-buttons-wrapper">
-                                                        <asp:Button ID="btnAdd" runat="server" Text="Add New" OnClick="btnAdd_Click" ValidationGroup="Question">
+                                                        <asp:Button ID="btnAdd" runat="server" Text="Add New" OnClick="btnAdd_Click"  CssClass="mini-new-buttons" ValidationGroup="Question">
                                                         </asp:Button>
-                                                        <asp:Button ID="btnSave" runat="server" Text="Save" Visible="false" OnClick="btnSave_Click"
+                                                        <asp:Button ID="btnSave" runat="server" Text="Save" Visible="false" OnClick="btnSave_Click"  CssClass="mini-new-buttons"
                                                             ValidationGroup="Question"></asp:Button>
-                                                        <asp:Button ID="btnCancel" runat="server" Text="Cancel" Visible="false" OnClick="btnCancel_Click">
+                                                        <asp:Button ID="btnCancel" runat="server" Text="Cancel" Visible="false" OnClick="btnCancel_Click"  CssClass="mini-new-buttons">
                                                         </asp:Button>
                                                     </div>
                                                 </div>
@@ -190,17 +194,8 @@
                                             });
     
                                         </script>
-                                        <script src="//images.jxt.net.au/COMMON/newdash/lib/footable.js" type="text/javascript"></script>
-                                        <script src="//images.jxt.net.au/COMMON/newdash/lib/footable.sort.js" type="text/javascript"></script>
-                                        <script src="//images.jxt.net.au/COMMON/newdash/lib/footable.filter.js" type="text/javascript"></script>
-                                        <script src="//images.jxt.net.au/COMMON/newdash/lib/footable.paginate.js" type="text/javascript"></script>
-                                        <script src="//images.jxt.net.au/COMMON/newdash/lib/footable.bookmarkable.js" type="text/javascript"></script>
-                                        <!--[if lt IE 9]>
-    <script src="//images.jxt.net.au/COMMON/newdash/lib/html5shiv.js" type="text/javascript"></script>
-    <script src="//images.jxt.net.au/COMMON/newdash/lib/respond.min.js" type="text/javascript"></script>
-    <![endif]-->
-                                        <script src='//images.jxt.net.au/COMMON/newdash/lib/bootstrap.min.js'></script>
-                                        <script src='//images.jxt.net.au/COMMON/newdash/newDash.js' type="text/javascript"></script>
+                                        
+                                        
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
                             </asp:PlaceHolder>
@@ -210,4 +205,16 @@
             </div>
         </div>
     </div>
+
+    <script src="//images.jxt.net.au/COMMON/newdash/lib/footable.js" type="text/javascript"></script>
+                                        <script src="//images.jxt.net.au/COMMON/newdash/lib/footable.sort.js" type="text/javascript"></script>
+                                        <script src="//images.jxt.net.au/COMMON/newdash/lib/footable.filter.js" type="text/javascript"></script>
+                                        <script src="//images.jxt.net.au/COMMON/newdash/lib/footable.paginate.js" type="text/javascript"></script>
+                                        <script src="//images.jxt.net.au/COMMON/newdash/lib/footable.bookmarkable.js" type="text/javascript"></script>
+                                        <!--[if lt IE 9]>
+    <script src="//images.jxt.net.au/COMMON/newdash/lib/html5shiv.js" type="text/javascript"></script>
+    <script src="//images.jxt.net.au/COMMON/newdash/lib/respond.min.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src='//images.jxt.net.au/COMMON/newdash/lib/bootstrap.min.js'></script>
+                                        <script src='//images.jxt.net.au/COMMON/newdash/newDash.js' type="text/javascript"></script>
 </asp:Content>

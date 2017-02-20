@@ -311,18 +311,23 @@ namespace JXTPortal.Website.Admin
             ddlSite.Items.Clear();
 
             DataSet sites = SitesService.Get_List();
-            //SitesService.GetBySiteId(SessionData.Site.SiteId)
-            DataRow[] siterows = sites.Tables[0].Select("", "SiteName");
+          
+            DataRow[] siteRows = sites.Tables[0].Select("", "SiteName");
 
-            ddlSite.DataSource = siterows.Select(c=> new SiteDDLItems { SiteID = c["SiteID"].ToString(), SiteName = c["SiteName"].ToString()}).ToList(); // sites.Where(s => s.Live == true);
-            ddlSite.DataBind();
+            //ddlSite.DataSource = siterows.Select(c=> new SiteDDLItems { SiteID = c["SiteID"].ToString(), SiteName = c["SiteName"].ToString()}).ToList(); // sites.Where(s => s.Live == true);
+            //ddlSite.DataBind();
 
             ddlSite.Items.Insert(0, new ListItem("All", "0"));
 
-            //if (SessionData.AdminUser != null && !SessionData.AdminUser.isAdminUser)
-            //{
-                ddlSite.SelectedValue = SessionData.Site.SiteId.ToString();
-            //}
+            foreach (var site in siteRows)
+            {
+                var id = site["SiteId"].ToString();
+                var name = site["SiteName"].ToString();
+                string fullName = string.Format("{0} ({1})", name, id);
+                ddlSite.Items.Add(new ListItem(fullName, id));
+            }
+
+            ddlSite.SelectedValue = SessionData.Site.SiteId.ToString();
         }
 
         private void LoadMethodInvokedFilter()
@@ -1164,8 +1169,11 @@ namespace JXTPortal.Website.Admin
                 foreach (Entities.Advertisers advertiser in advertisers)
                 {
                     // Only approved advertisers
-                    if (advertiser.AdvertiserAccountStatusId == (int)PortalEnums.Advertiser.AccountStatus.Approved) 
-                        ddlAdvertiser.Items.Add(new ListItem(advertiser.CompanyName, advertiser.AdvertiserId.ToString()));
+                    if (advertiser.AdvertiserAccountStatusId == (int)PortalEnums.Advertiser.AccountStatus.Approved)
+                    {
+                        string advertiserListItem = string.Format("{0} ({1})", advertiser.CompanyName, advertiser.AdvertiserId);
+                        ddlAdvertiser.Items.Add(new ListItem(advertiserListItem, advertiser.AdvertiserId.ToString()));
+                    }
                 }
                 ddlAdvertiser.Items.Insert(0, new ListItem("Select an Advertiser", "0"));
             }
@@ -1219,7 +1227,11 @@ namespace JXTPortal.Website.Admin
         {
             public string SiteID { get; set; }
             public string SiteName { get; set; }
-        }
 
+            public override string ToString()
+            {
+                return string.Format("{0} ({1})", SiteName, SiteID);
+            }
+        }
     }
 }

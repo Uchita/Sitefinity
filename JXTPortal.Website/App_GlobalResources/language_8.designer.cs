@@ -1241,7 +1241,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tất cả phân loại nhánh.
+        ///   Looks up a localized string similar to - Tất cả ngành nghề -.
         /// </summary>
         internal static string LabelAllSubClassifications {
             get {

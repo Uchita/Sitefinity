@@ -607,7 +607,7 @@
     <comment>- All Salary Type -</comment>
   </data>
   <data name="LabelAllSubClassifications" xml:space="preserve">
-    <value>Tất cả phân loại nhánh</value>
+    <value>- Tất cả ngành nghề -</value>
     <comment>- All Sub Classifications -</comment>
   </data>
   <data name="LabelAllWorkTypes" xml:space="preserve">

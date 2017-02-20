@@ -607,7 +607,7 @@
     <comment>- All Salary Type -</comment>
   </data>
   <data name="LabelAllSubClassifications" xml:space="preserve">
-    <value>- 하위 분류 전체 -</value>
+    <value>- 직무분류 -</value>
     <comment>- All Sub Classifications -</comment>
   </data>
   <data name="LabelAllWorkTypes" xml:space="preserve">

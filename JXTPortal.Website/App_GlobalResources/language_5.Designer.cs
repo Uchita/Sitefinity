@@ -1250,7 +1250,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - 하위 분류 전체 -.
+        ///   Looks up a localized string similar to - 직무분류 -.
         /// </summary>
         internal static string LabelAllSubClassifications {
             get {

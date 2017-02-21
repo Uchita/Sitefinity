@@ -517,7 +517,7 @@ namespace JXTPortal.Website
                 {
                     List<ScreeningQuestionsEntity> screeningQuestions = ScreeningQuestionsService.SelectByIds(screeningQuestionIds);
 
-                    List<ScreeningQuestionsEntity> visibleScreeningQuestions = screeningQuestions.Where(q => q.Visible = true).ToList<ScreeningQuestionsEntity>();
+                    List<ScreeningQuestionsEntity> visibleScreeningQuestions = screeningQuestions.Where(q => q.Visible = true).OrderBy(q => q.ScreeningQuestionIndex).ToList<ScreeningQuestionsEntity>();
 
                     if (screeningQuestions.Count > 0)
                     {

@@ -14,6 +14,7 @@ using System.Xml.Linq;
 using JXTPortal.Entities;
 using JXTPortal.Common;
 
+
 namespace JXTPortal.Website.Admin
 {
     public partial class FileBrowser : System.Web.UI.Page
@@ -62,6 +63,11 @@ namespace JXTPortal.Website.Admin
             if (SessionData.AdminUser == null)
             {
                 Response.Redirect("/default.aspx");
+            }
+
+            if (FTPFolderLocation.StartsWith("s3://"))
+            {
+                Response.Redirect("S3FileBrowser.aspx");
             }
 
             if (!Page.IsPostBack)

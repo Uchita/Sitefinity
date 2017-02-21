@@ -4,6 +4,8 @@ using JXTPortal.Data.Dapper.Factories;
 using JXTPortal.Data.Dapper.Repositories;
 using JXTPortal.Service.Dapper;
 using SectionIO;
+using JXTPortal.Core.FileManagement;
+using JXT.Integration.AWS;
 
 namespace JXTPortal.Website.App_Codes
 {
@@ -44,6 +46,10 @@ namespace JXTPortal.Website.App_Codes
             builder.RegisterType<ScreeningQuestionsTemplateOwnersService>().AsImplementedInterfaces();
             builder.RegisterType<JobScreeningQuestionsService>().AsImplementedInterfaces();
             builder.RegisterType<JobApplicationScreeningAnswersService>().AsImplementedInterfaces();
+
+            //FileManager
+            builder.RegisterType<AwsS3>().AsImplementedInterfaces();
+            builder.RegisterType<FileManager>().AsImplementedInterfaces();
 
             return builder.Build();
         }

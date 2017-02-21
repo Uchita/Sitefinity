@@ -15,7 +15,7 @@
     <script src="//images.jxt.net.au/COMMON/newdash/lib/bootstrap.min.js"></script>
     <% } %>
     <link rel="stylesheet" href="//images.jxt.net.au/COMMON/css/apply.css" />
-    <link rel="stylesheet" href="./styles/ScreeningQuestions/style.css" />
+    <link rel="stylesheet" href="/styles/ScreeningQuestions/theme-style.css" />
     <script src="/scripts/JXTApplyFormScript.js"></script>
     <script type="text/javascript" src="/scripts/strength.js"></script>
 </asp:Content>

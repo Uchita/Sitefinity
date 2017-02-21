@@ -15,6 +15,8 @@ using System.Data.SqlTypes;
 using JXTPortal;
 using JXTPortal.Entities;
 using JXTPortal.Common;
+
+using JXTPortal.Website.ckeditor.Extensions;
 #endregion
 
 public partial class NewsEdit : System.Web.UI.Page
@@ -63,13 +65,31 @@ public partial class NewsEdit : System.Web.UI.Page
             return _newsid;
         }
     }
+    private GlobalSettingsService _globalsettingsservice;
+    private GlobalSettingsService GlobalSettingsService
+    {
+        get
+        {
+            if (_globalsettingsservice == null)
+            {
+                _globalsettingsservice = new GlobalSettingsService();
+            }
+            return _globalsettingsservice;
+        }
+    }
 
+    private string FTPFolderLocation
+    {
+        get { return GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId)[0].FtpFolderLocation; }
+    }
     #endregion
 
     #region Page Method
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        txtPageContent.SetConfigForFTPFolder(FTPFolderLocation);
+        
         // To Enable CkFinder
         //txtPageContent.FileBrowserImageBrowseUrl = "/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Images"; //&currentFolder=/files/images/
         //txtPageContent.FileBrowserImageBrowseUrl = "/ckfinder/ckfinder.html?Type=Images&CKEditor=editor1&CKEditorFuncNum=4&langCode=en"; //&currentFolder=/files/images/

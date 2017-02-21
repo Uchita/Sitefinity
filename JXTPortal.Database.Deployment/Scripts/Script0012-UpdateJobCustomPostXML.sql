@@ -967,8 +967,9 @@ BEGIN TRY
                 
     SELECT JobID, * FROM #FlatXML               
 
-	SELECT * FROM Jobs
-	Where JobID = JobID
+	SELECT * FROM Jobs j
+	Join #FlatXML f
+	ON j.JobID = f.JobID
                 
  -- *************** Drop the temporary table *********************              
     DROP TABLE #FlatXML              

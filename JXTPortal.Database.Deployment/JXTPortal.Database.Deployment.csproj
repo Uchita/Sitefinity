@@ -59,7 +59,7 @@
     <Content Include="Scripts\Script0009-UpdateEmailFields.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scripts\Script0009-WebServiceSPUpdate.sql">
+    <Content Include="Scripts\DO-NOT-DEPLOY-Script0009-WebServiceSPUpdate.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Scripts\Script0012-UpdateJobCustomPostXML.sql">

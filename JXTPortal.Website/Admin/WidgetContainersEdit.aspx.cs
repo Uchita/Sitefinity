@@ -13,6 +13,7 @@ using System.Web.UI.HtmlControls;
 using JXTPortal.Web.UI;
 using JXTPortal.Entities;
 using JXTPortal;
+using JXTPortal.Website.ckeditor.Extensions;
 #endregion
 
 public partial class WidgetContainersEdit : System.Web.UI.Page
@@ -57,7 +58,23 @@ public partial class WidgetContainersEdit : System.Web.UI.Page
         }
     }
 
+    private GlobalSettingsService _globalsettingsservice;
+    private GlobalSettingsService GlobalSettingsService
+    {
+        get
+        {
+            if (_globalsettingsservice == null)
+            {
+                _globalsettingsservice = new GlobalSettingsService();
+            }
+            return _globalsettingsservice;
+        }
+    }
 
+    private string FTPFolderLocation
+    {
+        get { return GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId)[0].FtpFolderLocation; }
+    }
 
     #endregion
 
@@ -65,6 +82,11 @@ public partial class WidgetContainersEdit : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        txtJobHtml.SetConfigForFTPFolder(FTPFolderLocation);
+        txtCompanyHtml.SetConfigForFTPFolder(FTPFolderLocation);
+        txtSiteHtml.SetConfigForFTPFolder(FTPFolderLocation);
+        txtPeopleHtml.SetConfigForFTPFolder(FTPFolderLocation);
+
         if (!Page.IsPostBack)
         {
             LoadLanguages();

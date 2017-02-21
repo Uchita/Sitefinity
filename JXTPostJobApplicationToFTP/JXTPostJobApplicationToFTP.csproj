@@ -71,6 +71,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataLoader.cs" />
+    <Compile Include="FileUploader.cs" />
+    <Compile Include="IDataLoader.cs" />
+    <Compile Include="IFileUploader.cs" />
     <Compile Include="Member\MemberXMLGenerator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

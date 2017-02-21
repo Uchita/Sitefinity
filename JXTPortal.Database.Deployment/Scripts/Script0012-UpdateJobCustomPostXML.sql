@@ -196,7 +196,8 @@ BEGIN TRY
     WarningMessage NVARCHAR(MAX),              
     JobID INT NULL,              
     UpdateJob BIT,  
-    AddressStatus INT              
+    AddressStatus INT,
+	ExpiryDate DATE NULL     
      )              
                
  INSERT INTO #FlatXML(ReferenceNo,               
@@ -246,7 +247,8 @@ ConsultantID,
     Warning,                  
     WarningMessage,              
     JobID,              
-    UpdateJob)              
+    UpdateJob,
+	ExpiryDate)              
  SELECT               
      LTRIM(RTRIM(Element.value('ReferenceNo[1]', 'VARCHAR(255)'))) AS RefNo,              
      Element.value('JobAdType[1]', 'INT') AS JobAdType,              
@@ -297,7 +299,8 @@ ConsultantID,
      0,  -- By default no warnings              
      '',  -- By default No Warnings              
      NULL, -- By default Job ID is NULL              
-     0  -- By default the Job is Inserted              
+     0,  -- By default the Job is Inserted	
+	 Element.value('ExpiryDate[1]', 'DATE') AS ExpiryDate
     FROM   @XMLFeed_New.nodes('/JobPostRequest/Listings/JobListing') Datalist(Element)              
     --OPTION ( OPTIMIZE FOR ( @XMLFeed_New = NULL ) )              
                   
@@ -563,8 +566,10 @@ ConsultantID,
    1, -- WebServiceProcessed              
    ISNULL(ApplicationEmailAddress,''),               
    1, -- Visible              
-   GETDATE(), -- DatePosted              
-   CASE WHEN (#FlatXML.JobAdType = @JobTypeID_Premium) THEN DATEADD(DAY,@PremiumExpiryDays,GETDATE()) ELSE DATEADD(DAY,30,GETDATE()) END,           
+   GETDATE(), -- DatePosted
+   CASE WHEN (#FlatXML.ExpiryDate IS NOT NULL AND #FlatXML.ExpiryDate > '1900-01-01')
+   THEN #FlatXMl.ExpiryDate              
+   ELSE CASE WHEN (#FlatXML.JobAdType = @JobTypeID_Premium) THEN DATEADD(DAY,@PremiumExpiryDays,GETDATE()) ELSE DATEADD(DAY,30,GETDATE()) END END,           
     -- If Premium set from the JobItemType table else default for Normal/Stand out          
    1, -- Billed              
    GETDATE(), -- LastModified              

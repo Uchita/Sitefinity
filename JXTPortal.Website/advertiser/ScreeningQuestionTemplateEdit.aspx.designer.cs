@@ -22,6 +22,15 @@ namespace JXTPortal.Website.advertiser {
         protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
+        /// ltScreeningQuestionsTemplate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral ltScreeningQuestionsTemplate;
+        
+        /// <summary>
         /// ucSystemDynamicPage control.
         /// </summary>
         /// <remarks>

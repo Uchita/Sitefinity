@@ -197,8 +197,7 @@ BEGIN TRY
     JobID INT NULL,              
     UpdateJob BIT,  
     AddressStatus INT,
-	ExpiryDate DATE NULL,
-	ScreeningQuestionsTemplateID INT NULL     
+	ExpiryDate DATE NULL
      )              
                
  INSERT INTO #FlatXML(ReferenceNo,               
@@ -249,8 +248,7 @@ BEGIN TRY
     WarningMessage,              
     JobID,              
     UpdateJob,
-	ExpiryDate,
-	ScreeningQuestionsTemplateID)              
+	ExpiryDate)
  SELECT               
      LTRIM(RTRIM(Element.value('ReferenceNo[1]', 'VARCHAR(255)'))) AS RefNo,              
      Element.value('JobAdType[1]', 'INT') AS JobAdType,              
@@ -302,8 +300,7 @@ BEGIN TRY
      '',  -- By default No Warnings              
      NULL, -- By default Job ID is NULL              
      0,  -- By default the Job is Inserted	
-	 Element.value('ExpiryDate[1]', 'DATE') AS ExpiryDate,
-	 Element.value('ScreeningQuestionsTemplateID[1]', 'INT') AS ScreeningQuestionsTemplateID
+	 Element.value('ExpiryDate[1]', 'DATE') AS ExpiryDate
     FROM   @XMLFeed_New.nodes('/JobPostRequest/Listings/JobListing') Datalist(Element)              
     --OPTION ( OPTIMIZE FOR ( @XMLFeed_New = NULL ) )              
                   
@@ -533,20 +530,7 @@ BEGIN TRY
    #FlatXML.ErrorMessage = ISNULL(#FlatXML.ErrorMessage,'') +  ' -> JobAdType not allowed on this site - ' + Cast(#FlatXML.JobAdType as varchar(10))               
   FROM               
    #FlatXML WHERE JobAdType NOT IN (SELECT JobItemTypeParentID FROM JobItemsType (NOLOCK) WHERE JobItemsType.SiteID = @SiteID AND Valid = 1 AND TotalNumberOfJobs = 1)           
-
- -- ERROR - Check if ScreeeningQuestionsTemplateID are valid                  
- UPDATE #FlatXML                  
-  SET                     
-   #FlatXML.Valid = 0,                  
-   #FlatXML.ErrorMessage = ISNULL(#FlatXML.ErrorMessage,'') +  ' -> ScreeeningQuestionsTemplateID doesn''t exists - ' + Cast(#FlatXML.ScreeeningQuestionsTemplateID as varchar(10))                   
-  FROM                   
-   #FlatXML WHERE ScreeeningQuestionsTemplateID IS NOT NULL AND
-				  ScreeeningQuestionsTemplateID NOT IN 
-				  (
-					SELECT ScreeningQuestionsTemplateId FROM ScreeningQuestionsTemplateOwners (NOLOCK)
-					WHERE AdvertiserId = @AdvertiserUserId
-				  ) 		         
-                  
+               
  -- *************** INSERT / UPDATE / Archive Jobs *********************              
                
  -- Update temp table with the Consultant names              
@@ -649,7 +633,7 @@ BEGIN TRY
       SalaryUpperBand = #FlatXML.SalaryUpperBand, SalaryLowerBand = #FlatXML.SalaryLowerBand, SalaryTypeID = #FlatXML.SalaryTypeID,               
       CurrencyID = 1, EnteredByAdvertiserUserID = @AdvertiserUserId,
       Expired = CASE WHEN ISNULL(#FlatXML.ExpiryDate, CAST('2001-01-01' AS DATE)) > GETDATE() THEN 0 ELSE Expired END, 
-	  ExpiryDate = CASE WHEN ISNULL(#FlatXML.ExpiryDate, CAST('2001-01-01' AS DATE)) =CAST('2001-01-01' AS DATE) THEN Jobs.ExpiryDate ELSE #FlatXML.ExpiryDate END,
+	  ExpiryDate = CASE WHEN ISNULL(#FlatXML.ExpiryDate, CAST('2001-01-01' AS DATE)) = CAST('2001-01-01' AS DATE) THEN Jobs.ExpiryDate ELSE #FlatXML.ExpiryDate END
  FROM               
   #FlatXML INNER JOIN Jobs (NOLOCK) ON       
    Jobs.JobID = #FlatXML.JobID
@@ -689,17 +673,7 @@ BEGIN TRY
  )              
                
  INSERT INTO JobArea(JobID, AreaID) SELECT JobID, Area FROM #FlatXML WHERE UpdateJob = 0 AND Valid = 1              
- 
- -- Screening Questions
- INSERT INTO JobScreeningQuestions (JobId, ScreeningQuestionId)
- (
-	SELECT JobID, sqm.ScreeningQuestionId 
-	FROM #FlatXML INNER JOIN
-	ScreeningQuestionsMappings sqm WITH (NOLOCK)
-	ON #FlatXML.ScreeningQuestionsTemplateID = sqm.ScreeningQuestionsTemplateId
-	WHERE UpdateJob = 0 AND Valid = 1 
- )
-          
+      
  -- Create Invoices only for New jobs and if the site is a JOB BOARD        
  IF (EXISTS(SELECT 1 FROM #FlatXML WHERE UpdateJob = 0 AND Valid = 1) AND @SiteType = 2)           
  BEGIN          

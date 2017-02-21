@@ -56,6 +56,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Content Include="Scripts\Script0009-UpdateEmailFields.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Script0009-WebServiceSPUpdate.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\Script0012-UpdateJobCustomPostXML.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

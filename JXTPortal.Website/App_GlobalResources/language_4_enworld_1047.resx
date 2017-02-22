@@ -314,7 +314,7 @@
     <comment>- Please select a Job Category -</comment>
   </data>
   <data name="DDLPleaseSelectPrimaryDesiredCountry" xml:space="preserve">
-    <value>- 先に希望勤務国を選んでください。-</value>
+    <value>- 先に希望勤務国を選んでください。 -</value>
     <comment>- Please select a Primary Desired Country -</comment>
   </data>
   <data name="DDLPleaseSelectPrimaryDesiredJobCategory" xml:space="preserve">
@@ -1739,7 +1739,7 @@
     <comment>File Name</comment>
   </data>
   <data name="LabelFileTitle" xml:space="preserve">
-    <value>ファイル名</value>
+    <value>ファイルの選択</value>
     <comment>File Title</comment>
   </data>
   <data name="LabelFileType" xml:space="preserve">
@@ -1791,7 +1791,7 @@
     <comment>Forgot password</comment>
   </data>
   <data name="LabelForgottenPassword" xml:space="preserve">
-    <value>パスワードを忘れてしまった</value>
+    <value>パスワードを再設定する場合はこちら</value>
     <comment>Forgotten Password</comment>
   </data>
   <data name="LabelFormerEmployer" xml:space="preserve">
@@ -2163,7 +2163,7 @@
     <comment>Job Template Settings</comment>
   </data>
   <data name="LabelJobTitle" xml:space="preserve">
-    <value>求人内容</value>
+    <value>役職</value>
     <comment>JobTitle</comment>
   </data>
   <data name="LabelJobTitleIsExpired" xml:space="preserve">
@@ -2542,7 +2542,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>My Job Tools</comment>
   </data>
   <data name="LabelMyPassword" xml:space="preserve">
-    <value>パスワード変更</value>
+    <value>パスワード再設定</value>
     <comment>My Password</comment>
   </data>
   <data name="LabelMyPersonalDetails" xml:space="preserve">
@@ -3600,7 +3600,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>- Select a Classification First -</comment>
   </data>
   <data name="LabelSelectCountry" xml:space="preserve">
-    <value>国を選択する</value>
+    <value>勤務地を選択</value>
     <comment>- Select Country -</comment>
   </data>
   <data name="LabelSelectCountryFirst" xml:space="preserve">
@@ -3884,7 +3884,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Last name is mandatory</comment>
   </data>
   <data name="LabelSurname" xml:space="preserve">
-    <value>姓</value>
+    <value>姓（ローマ字）</value>
     <comment>Last name</comment>
   </data>
   <data name="LabelSurnameRequired" xml:space="preserve">

@@ -502,7 +502,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - 先に希望勤務国を選んでください。-.
+        ///   Looks up a localized string similar to - 先に希望勤務国を選んでください。 -.
         /// </summary>
         internal static string DDLPleaseSelectPrimaryDesiredCountry {
             get {
@@ -3707,7 +3707,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ファイル名.
+        ///   Looks up a localized string similar to ファイルの選択.
         /// </summary>
         internal static string LabelFileTitle {
             get {
@@ -3824,7 +3824,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to パスワードを忘れてしまった.
+        ///   Looks up a localized string similar to パスワードを再設定する場合はこちら.
         /// </summary>
         internal static string LabelForgottenPassword {
             get {
@@ -4661,7 +4661,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 求人内容.
+        ///   Looks up a localized string similar to 役職.
         /// </summary>
         internal static string LabelJobTitle {
             get {
@@ -5509,7 +5509,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to パスワード変更.
+        ///   Looks up a localized string similar to パスワード再設定.
         /// </summary>
         internal static string LabelMyPassword {
             get {
@@ -7887,7 +7887,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 国を選択する.
+        ///   Looks up a localized string similar to 勤務地を選択.
         /// </summary>
         internal static string LabelSelectCountry {
             get {
@@ -8526,7 +8526,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 姓.
+        ///   Looks up a localized string similar to 姓（ローマ字）.
         /// </summary>
         internal static string LabelSurname {
             get {

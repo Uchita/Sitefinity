@@ -848,7 +848,7 @@ namespace JXTPortal.Website.member.enworld
 
                         ftpclient.UploadFileFromStream(fuTest.PostedFile.InputStream, filepath, out errormessage);
 
-                        mf.MemberFileUrl = string.Format("MemberFiles_{0}.{1}", mf.MemberFileId, extension);
+                        mf.MemberFileUrl = string.Format("MemberFiles_{0}{1}", mf.MemberFileId, extension);
                         mf.MemberFileTitle = mf.MemberFileName;
                         mf.MemberId = SessionData.Member.MemberId;
                         mf.MemberFileTypeId = MemberFileTypeID(fuTest.PostedFile.FileName);

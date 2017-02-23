@@ -1,0 +1,1 @@
+﻿UPDATE MemberFiles SET MemberFileURL = REPLACE(MemberFileURL, '..', '.') WHERE MemberFileURL LIKE '%..%'

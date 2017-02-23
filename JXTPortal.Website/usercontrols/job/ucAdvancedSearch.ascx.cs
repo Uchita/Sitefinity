@@ -156,7 +156,7 @@ namespace JXTPortal.Website.usercontrols.job
             SetKeywords();
             SetProfessions();
             SetRoles();
-            //SetCountry();
+            SetCountry();
             SetLocation();
             SetLocationArea();
             SetWorkTypes();
@@ -231,7 +231,7 @@ namespace JXTPortal.Website.usercontrols.job
             }
         }
 
-        /*
+
         protected void SetCountry()
         {
             if (FindKeyword(_COUNTRY))
@@ -258,7 +258,7 @@ namespace JXTPortal.Website.usercontrols.job
                 strJobHTML = strJobHTML.Replace(_COUNTRY, strSelectHtml.ToString());
             }
         }
-        */
+
         protected void SetLocation()
         {
             if (FindKeyword(_LOCATION))
@@ -266,7 +266,7 @@ namespace JXTPortal.Website.usercontrols.job
 
                 if (widgetContainer.DefaultLocationId.HasValue && widgetContainer.DefaultLocationId.Value > 0)
                 {
-                    strJobHTML = strJobHTML.Replace(_LOCATION, ajaxMethods.GetLocations(widgetContainer.DefaultLocationId.Value.ToString(), IsDynamicWidget));
+                    strJobHTML = strJobHTML.Replace(_LOCATION, ajaxMethods.GetLocations(widgetContainer.DefaultLocationId.Value.ToString(), IsDynamicWidget, (widgetContainer.DefaultCountryId.HasValue) ? widgetContainer.DefaultCountryId.Value.ToString() : null));
                     if (FindKeyword(_LOCATIONAREA))
                     {
                         strJobHTML = strJobHTML.Replace(_LOCATIONAREA, ajaxMethods.GetAreas(widgetContainer.DefaultLocationId.Value.ToString(), IsDynamicWidget));
@@ -280,7 +280,7 @@ namespace JXTPortal.Website.usercontrols.job
                     }
                 }
                 else
-                    strJobHTML = strJobHTML.Replace(_LOCATION, ajaxMethods.GetLocations(string.Empty, IsDynamicWidget));
+                    strJobHTML = strJobHTML.Replace(_LOCATION, ajaxMethods.GetLocations(string.Empty, IsDynamicWidget, (widgetContainer.DefaultCountryId.HasValue) ? widgetContainer.DefaultCountryId.Value.ToString() : null));
 
 
             }

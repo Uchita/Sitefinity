@@ -91,7 +91,7 @@ $(document).ready(function () {
     $("#txtSalaryLowerBand").focus();
     });*/
 
-
+    /
     // Advanced search - When you select location - Add the currency
     $('#locationID').change(function () {
         $(".divSalaryCurrency").html($("#locationID option:selected").data('placeholdertag') + ' ');
@@ -206,7 +206,7 @@ $(document).ready(function () {
             type: "POST",
             cache: false,
             url: "/job/ajaxcalls/ajaxmethods.asmx/getlocations",
-            data: "{'CountryId':" + countryID + ", 'DefaultLocationID':" + defaultLocationID + ", 'IsDynamicWidget':" + IsDynamicWidgetTemp + "}",
+            data: "{'CountryID':" + countryID + ", 'DefaultLocationID':" + defaultLocationID + ", 'IsDynamicWidget':" + IsDynamicWidgetTemp + "}",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (msg) {

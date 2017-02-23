@@ -91,20 +91,99 @@ $(document).ready(function () {
     $("#txtSalaryLowerBand").focus();
     });*/
 
-    /
-    // Advanced search - When you select location - Add the currency
-    $('#locationID').change(function () {
-        $(".divSalaryCurrency").html($("#locationID option:selected").data('placeholdertag') + ' ');
+    // When you select Country
 
-        var blnLocationSelected = ($("#locationID option:selected").val() < 1);
+    $('#countryID').change(function () {
 
-        if ($('#hfCountryCount').val() != "1") {
-            $('#salaryID').prop('disabled', blnLocationSelected);
-            $('#salarylowerband').prop('disabled', blnLocationSelected);
-            $('#salaryupperband').prop('disabled', blnLocationSelected);
-        }
+        $("#divLocation").html("<img src='/images/loading.gif' alt='loading' />");
 
+        var countryID = "";
+        var defaultLocationID = "-1";
+
+        $("#countryID option:selected").each(function () {
+            countryID += $(this).val();
+        });
+
+        //alert('You selected: ' + professionID);
+        $.ajax({
+            type: "POST",
+            cache: false,
+            url: "/job/ajaxcalls/ajaxmethods.asmx/GetLocations",
+            data: "{'CountryID':" + countryID + ", 'DefaultLocationID':" + defaultLocationID + ", 'IsDynamicWidget':" + IsDynamicWidgetTemp + "}",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (msg) {
+                // Replace the div's content with the page method's return.
+                $("#divLocation").html(msg.d);
+            },
+            fail: function () {
+                // Replace the div's content with the page method's return.
+                $("#divLocation").html("It didn't work");
+            }
+        });
+
+        $.ajax({
+            type: "POST",
+            cache: false,
+            url: "/job/ajaxcalls/ajaxmethods.asmx/GetAreas",
+            data: "{'LocationId':-1, 'IsDynamicWidget':" + IsDynamicWidgetTemp + "}",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (msg) {
+                // Replace the div's content with the page method's return.
+                $("#divArea").html(msg.d);
+            },
+            fail: function () {
+                // Replace the div's content with the page method's return.
+                $("#divArea").html("It didn't work");
+            }
+        });
+
+        $.ajax({
+            type: "POST",
+            cache: false,
+            url: "/job/ajaxcalls/ajaxmethods.asmx/getareasdropdown",
+            data: "{'LocationId':-1, 'IsDynamicWidget':" + IsDynamicWidgetTemp + "}",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (msg) {
+                // Replace the div's content with the page method's return.
+                $("#divAreaDropDown").html(msg.d);
+            },
+            fail: function () {
+                // Replace the div's content with the page method's return.
+                $("#divAreaDropDown").html("It didn't work");
+            }
+        });
     });
+
+    $(".divSalaryCurrency").html($("#countryID option:selected").data('placeholdertag') + ' ');
+
+    var blnCountrySelected = ($("#countryID option:selected").val() < 1);
+
+    if ($('#hfCountryCount').val() != "1") {
+        $('#salaryID').prop('disabled', blnCountrySelected);
+        $('#salarylowerband').prop('disabled', blnCountrySelected);
+        $('#salaryupperband').prop('disabled', blnCountrySelected);
+    }
+});
+
+    // Advanced search - When you select location - Add the currency
+$('#locationID').change(function () {
+    $(".divSalaryCurrency").html($("#locationID option:selected").data('placeholdertag') + ' ');
+
+    var blnLocationSelected = ($("#locationID option:selected").val() < 1 || ($("#countryID option:selected").val() < 1));
+    
+    if ($('#hfCountryCount').val() != "1") {
+        $('#salaryID').prop('disabled', blnLocationSelected);
+        $('#salarylowerband').prop('disabled', blnLocationSelected);
+        $('#salaryupperband').prop('disabled', blnLocationSelected);
+    }
+
+});
+
+    $("#countryID").change();
+
     $("#locationID").change();
 
     // Advanced search - When you select Profession
@@ -136,7 +215,7 @@ $(document).ready(function () {
         });
 
     });
-    
+
     // Advanced search
     $('#salaryID').change(function () {
 
@@ -188,74 +267,7 @@ $(document).ready(function () {
 
     });
 
-    // When you select Country
-
-    $('#countryID').change(function () {
-
-        $("#divLocation").html("<img src='/images/loading.gif' alt='loading' />");
-
-        var countryID = "";
-        var defaultLocationID = "-1";
-
-        $("#countryID option:selected").each(function () {
-            countryID += $(this).val();
-        });
-
-        //alert('You selected: ' + professionID);
-        $.ajax({
-            type: "POST",
-            cache: false,
-            url: "/job/ajaxcalls/ajaxmethods.asmx/getlocations",
-            data: "{'CountryID':" + countryID + ", 'DefaultLocationID':" + defaultLocationID + ", 'IsDynamicWidget':" + IsDynamicWidgetTemp + "}",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: function (msg) {
-                // Replace the div's content with the page method's return.
-                $("#divLocation").html(msg.d);
-            },
-            fail: function () {
-                // Replace the div's content with the page method's return.
-                $("#divLocation").html("It didn't work");
-            }
-        });
-
-        $.ajax({
-            type: "POST",
-            cache: false,
-            url: "/job/ajaxcalls/ajaxmethods.asmx/getareas",
-            data: "{'LocationId':-1, 'IsDynamicWidget':" + IsDynamicWidgetTemp + "}",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: function (msg) {
-                // Replace the div's content with the page method's return.
-                $("#divArea").html(msg.d);
-            },
-            fail: function () {
-                // Replace the div's content with the page method's return.
-                $("#divArea").html("It didn't work");
-            }
-        });
-
-        $.ajax({
-            type: "POST",
-            cache: false,
-            url: "/job/ajaxcalls/ajaxmethods.asmx/getareasdropdown",
-            data: "{'LocationId':-1, 'IsDynamicWidget':" + IsDynamicWidgetTemp + "}",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: function (msg) {
-                // Replace the div's content with the page method's return.
-                $("#divAreaDropDown").html(msg.d);
-            },
-            fail: function () {
-                // Replace the div's content with the page method's return.
-                $("#divAreaDropDown").html("It didn't work");
-            }
-        });
-    });
-
-
-});
+    
 
 function SalaryChange() {
 

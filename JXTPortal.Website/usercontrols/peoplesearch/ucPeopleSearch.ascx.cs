@@ -177,7 +177,7 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
 
         private void LoadClassification()
         {
-            List<JXTPortal.Entities.SiteProfession> professions = SiteProfessionService.GetTranslatedProfessions(SessionData.Site.UseCustomProfessionRole);
+            List<JXTPortal.Entities.SiteProfession> professions = SiteProfessionService.GetTranslatedProfessions(SessionData.Site.SiteId, SessionData.Site.UseCustomProfessionRole);
 
             ddlCategory.DataValueField = "ProfessionID";
             ddlCategory.DataTextField = "SiteProfessionName";

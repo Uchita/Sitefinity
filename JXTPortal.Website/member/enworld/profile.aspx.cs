@@ -25,7 +25,7 @@ namespace JXTPortal.Website.member.enworld
         private static string EmailValidationRegex = ConfigurationManager.AppSettings["EmailValidationRegex"];
         private string XMLPath = "/xml/enworld.xml";
         private const string ENWORLD_SF_QUERY = @"SELECT Id, FirstName, LastName, First_Name_Local__c, Last_Name_Local__c, Email, 
-                                                    RecordTypeId, ts2__EEO_Gender__c, Birthdate, MobilePhone, Phone, Secondary_Email__c ,MailingStreet, MailingCity, MailingPostalCode, MailingState, MailingCountry,Native_Language__c,Second_Language__c, Second_Language_Proficiency__c, 
+                                                    RecordTypeId, ts2__EEO_Gender__c, Birthdate, MobilePhone, Phone, Secondary_Email__c ,MailingStreet, MailingCity, MailingPostalCode, MailingState, MailingCountry,English_Language_Level__c,Japanese_Language_Level__c,Third_Language__c,Third_Language_Proficiency__c,
                                                     Current_Company__c, Current_Position__c, Industry__c, Job_Category__c, Job_Functions__c, Employment_Type__c, Salary_Period__c, Current_Fixed_Salary__c, Annual_Variable_Salary__c, 
                                                     Desired_Country__c, Desired_Locations__c, Employment_Preference__c, Desired_Industry__c, Desired_Job_Category__c, Desired_Job_Functions__c, Desired_Other_Countries__c, CurrencyIsoCode
                                                     FROM CONTACT where Id = '{0}'";
@@ -269,9 +269,11 @@ namespace JXTPortal.Website.member.enworld
             tbCity.Text = thisContact.MailingCity;
             ddlState.SelectedValue = thisContact.MailingState;
             tbZip.Text = thisContact.MailingPostalCode;
-            ddlNativeLanguage.SelectedValue = thisContact.Native_Language__c;
-            ddlSecondaryLanguage.SelectedValue = thisContact.Second_Language__c;
-            ddlSecondaryLanguageLevel.SelectedValue = thisContact.Second_Language_Proficiency__c;
+            //TODO:
+            ddlEnglishLanguageLevel.SelectedValue = thisContact.English_Language_Level__c;
+            ddlJapaneseLanguageLevel.SelectedValue = thisContact.Japanese_Language_Level__c;
+            ddlOtherLanguage.SelectedValue = thisContact.Third_Language__c;
+            ddlOtherLanguageLevel.SelectedValue = thisContact.Third_Language_Proficiency__c;
             #endregion
 
             #region Tab 2
@@ -442,7 +444,7 @@ namespace JXTPortal.Website.member.enworld
             //ddlCountry.Items.Insert(0, new ListItem("- Please Select -", "--None--"));
             ddlCountry.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelect"), "--None--"));
 
-            
+
             if (!string.IsNullOrEmpty(thisContact.MailingCountry))
             {
                 List<string> stateDDValues = XMLPullMultiValue("country", thisContact.MailingCountry);
@@ -472,36 +474,43 @@ namespace JXTPortal.Website.member.enworld
             //state default display
             //ddlState.Items.Insert(0, new ListItem("- Not Specified -", ""));
             ddlState.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLNotSpecified"), ""));
-            
+
             #endregion
 
             #region DDL Languages
             List<string> languagesDDValues = XMLPullValue("language");
             var languagesSelectableValues = (from m in languagesDDValues select new { text = m, value = m }).ToList();
 
-            ddlNativeLanguage.DataSource = languagesSelectableValues;
-            ddlNativeLanguage.DataTextField = "text";
-            ddlNativeLanguage.DataValueField = "value";
-            ddlNativeLanguage.DataBind();
-            //ddlNativeLanguage.Items.Insert(0, new ListItem("- Please Select -", "--None--"));
-            ddlNativeLanguage.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelect"), "--None--"));
-
-            ddlSecondaryLanguage.DataSource = languagesSelectableValues;
-            ddlSecondaryLanguage.DataTextField = "text";
-            ddlSecondaryLanguage.DataValueField = "value";
-            ddlSecondaryLanguage.DataBind();
-            //ddlSecondaryLanguage.Items.Insert(0, new ListItem("- Not Specified -", "--None--"));
-            ddlSecondaryLanguage.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLNotSpecified"), "--None--"));
+            ddlOtherLanguage.DataSource = languagesSelectableValues;
+            ddlOtherLanguage.DataTextField = "text";
+            ddlOtherLanguage.DataValueField = "value";
+            ddlOtherLanguage.DataBind();
+            //ddlOtherLanguage.Items.Insert(0, new ListItem("- Please Select -", "--None--"));
+            ddlOtherLanguage.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLNotSpecified"), "--None--"));
 
             List<string> languageLevelsDDValues = XMLPullValue("languagelevel");
             var languageLevelsSelectableDDValues = (from m in languageLevelsDDValues select new { text = m, value = m }).ToList();
 
-            ddlSecondaryLanguageLevel.DataSource = languageLevelsSelectableDDValues;
-            ddlSecondaryLanguageLevel.DataTextField = "text";
-            ddlSecondaryLanguageLevel.DataValueField = "value";
-            ddlSecondaryLanguageLevel.DataBind();
-            //ddlSecondaryLanguageLevel.Items.Insert(0, new ListItem("- Not Specified -", "--None--"));
-            ddlSecondaryLanguageLevel.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLNotSpecified"), "--None--"));
+            ddlEnglishLanguageLevel.DataSource = languageLevelsSelectableDDValues;
+            ddlEnglishLanguageLevel.DataTextField = "text";
+            ddlEnglishLanguageLevel.DataValueField = "value";
+            ddlEnglishLanguageLevel.DataBind();
+            //ddlEnglishLanguageLevel.Items.Insert(0, new ListItem("- Please Select -", "--None--"));
+            ddlEnglishLanguageLevel.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLNotSpecified"), "--None--"));
+
+            ddlJapaneseLanguageLevel.DataSource = languageLevelsSelectableDDValues;
+            ddlJapaneseLanguageLevel.DataTextField = "text";
+            ddlJapaneseLanguageLevel.DataValueField = "value";
+            ddlJapaneseLanguageLevel.DataBind();
+            //ddlJapaneseLanguageLevel.Items.Insert(0, new ListItem("- Not Specified -", "--None--"));
+            ddlJapaneseLanguageLevel.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLNotSpecified"), "--None--"));
+
+            ddlOtherLanguageLevel.DataSource = languageLevelsSelectableDDValues;
+            ddlOtherLanguageLevel.DataTextField = "text";
+            ddlOtherLanguageLevel.DataValueField = "value";
+            ddlOtherLanguageLevel.DataBind();
+            //ddlOtherLanguageLevel.Items.Insert(0, new ListItem("- Not Specified -", "--None--"));
+            ddlOtherLanguageLevel.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLNotSpecified"), "--None--"));
 
             #endregion
         }
@@ -562,7 +571,7 @@ namespace JXTPortal.Website.member.enworld
 
             #endregion
 
-            #region DDL Salary Currency 
+            #region DDL Salary Currency
             string errorMsg;
             SalesforceIntegration.SObjDescribeResponse descResp;
             bool contactGetSuccess = new SalesforceIntegration(SessionData.Site.SiteId)
@@ -572,10 +581,10 @@ namespace JXTPortal.Website.member.enworld
                                         }, out descResp, out errorMsg);
             if (contactGetSuccess)
             {
-                SalesforceIntegration.SObjField currencyField = descResp.results.First().result.fields.Where(c => c.name.Equals("CurrencyIsoCode")).FirstOrDefault();
+                SalesforceIntegration.SObjField currencyField = descResp.results.First().result.fields.Where(c => c.name.Equals("Salary_Currency__c")).FirstOrDefault();
 
                 ddlSalaryCurrency.DataSource = currencyField.picklistValues;
-                ddlSalaryCurrency.DataTextField = "FullFieldDisplay";
+                ddlSalaryCurrency.DataTextField = "label";
                 ddlSalaryCurrency.DataValueField = "value";
                 ddlSalaryCurrency.DataBind();
 
@@ -586,7 +595,7 @@ namespace JXTPortal.Website.member.enworld
         private void Tab3Setup()
         {
             #region DDL Desired Country / Location
-            List<string> desiredCountryDDValues = XMLPullValue("desiredcountry");
+            IEnumerable<string> desiredCountryDDValues = XMLPullValue("desiredcountry").OrderBy(c=>c);
 
             var dCountrySelectableValues = (from m in desiredCountryDDValues select new { text = m, value = m }).ToList();
 
@@ -594,7 +603,7 @@ namespace JXTPortal.Website.member.enworld
             ddlPrimDesiredCountry.DataTextField = "text";
             ddlPrimDesiredCountry.DataValueField = "value";
             ddlPrimDesiredCountry.DataBind();
-            
+
             //ddlPrimDesiredCountry.Items.Insert(0, new ListItem("- Please select a Country -", "--None--"));
             ddlPrimDesiredCountry.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelectCountry"), "--None--"));
 
@@ -1032,7 +1041,7 @@ namespace JXTPortal.Website.member.enworld
         #region WebMethod
 
         [WebMethod(EnableSession = true)]
-        public static object Tab1Save(string gender, string dob, string mobile, string phone, string country, string secondEmail, string address, string city, string state, string zip, string nativeLang, string secondLanguage, string secondLanguageLevel)
+        public static object Tab1Save(string gender, string dob, string mobile, string phone, string country, string secondEmail, string address, string city, string state, string zip, string engLevel, string japLevel, string otherLanguage, string otherLevel)
         {
             string sfContactID = SFContactIDGetFromSessionMember();
 
@@ -1040,19 +1049,22 @@ namespace JXTPortal.Website.member.enworld
             List<string> errors = new List<string>();
 
             if (string.IsNullOrEmpty(country) || country == "--None--")
-                errors.Add("You must select a Country");
+            {
+                errors.Add(CommonFunction.GetResourceValue("LabelCountryMandatory"));
+                //errors.Add("You must select a Country");
+            }
+            //if (string.IsNullOrEmpty(nativeLang) || nativeLang == "--None--")
+            //    errors.Add("You must select a Native Language");
 
-            if (string.IsNullOrEmpty(nativeLang) || nativeLang == "--None--")
-                errors.Add("You must select a Native Language");
-
-            if (!string.IsNullOrEmpty(secondLanguage) && secondLanguage != "--None--" && (string.IsNullOrEmpty(secondLanguageLevel) || secondLanguageLevel == "--None--"))
-                errors.Add("You must select a language level for your Secondary Language");
+            //if (!string.IsNullOrEmpty(secondLanguage) && secondLanguage != "--None--" && (string.IsNullOrEmpty(secondLanguageLevel) || secondLanguageLevel == "--None--"))
+            //    errors.Add("You must select a language level for your Secondary Language");
 
             if (!string.IsNullOrEmpty(dob))
             {
                 if (!Regex.IsMatch(dob, ContentValidationRegex))
                 {
-                    errors.Add("DOB cannot contain invalid content");
+                    errors.Add(CommonFunction.GetResourceValue("LabelInvalidDate"));
+                    //errors.Add("DOB cannot contain invalid content");
                 }
             }
 
@@ -1103,7 +1115,10 @@ namespace JXTPortal.Website.member.enworld
                 Match m = r.Match(secondEmail);
 
                 if (!m.Success)
-                    errors.Add("Invalid Secondary Email Address format");
+                {
+                    errors.Add(CommonFunction.GetResourceValue("LabelEmailInvalid"));
+                    //errors.Add("Invalid Secondary Email Address format");
+                }
             }
 
             if (!string.IsNullOrEmpty(dob))
@@ -1116,7 +1131,8 @@ namespace JXTPortal.Website.member.enworld
                 }
                 catch (Exception e)
                 {
-                    errors.Add("Invalid Date of Birth format");
+                    errors.Add(CommonFunction.GetResourceValue("LabelInvalidDate"));
+                    //errors.Add("Invalid Date of Birth format");
                 }
             }
 
@@ -1147,9 +1163,12 @@ namespace JXTPortal.Website.member.enworld
                         MailingCity = city,
                         MailingState = state == "--None--" ? null : state,
                         MailingPostalCode = zip,
-                        Native_Language__c = nativeLang == "--None--" ? null : nativeLang,
-                        Second_Language__c = secondLanguage == "--None--" ? null : secondLanguage,
-                        Second_Language_Proficiency__c = secondLanguageLevel == "--None--" ? null : secondLanguageLevel
+
+                        English_Language_Level__c = engLevel == "--None--" ? null : engLevel,
+                        Japanese_Language_Level__c = japLevel == "--None--" ? null : japLevel,
+                        Third_Language__c = otherLanguage == "--None--" ? null : otherLanguage,
+                        Third_Language_Proficiency__c = otherLevel == "--None--" ? null : otherLevel
+
                     }, out sfEntityID, out errorMsgs);
 
                 if (postSuccess)
@@ -1168,9 +1187,10 @@ namespace JXTPortal.Website.member.enworld
                     thisCandData.MailingCity = city;
                     thisCandData.MailingState = state == "--None--" ? null : state;
                     thisCandData.MailingPostalCode = zip;
-                    thisCandData.Native_Language__c = nativeLang == "--None--" ? null : nativeLang;
-                    thisCandData.Second_Language__c = secondLanguage == "--None--" ? null : secondLanguage;
-                    thisCandData.Second_Language_Proficiency__c = secondLanguageLevel == "--None--" ? null : secondLanguageLevel;
+                    thisCandData.English_Language_Level__c = engLevel == "--None--" ? null : engLevel;
+                    thisCandData.Japanese_Language_Level__c = japLevel == "--None--" ? null : japLevel;
+                    thisCandData.Third_Language__c = otherLanguage == "--None--" ? null : otherLanguage;
+                    thisCandData.Third_Language_Proficiency__c = otherLevel == "--None--" ? null : otherLevel;
 
                     _ms.CandidateDataUpdate(SessionData.Member.MemberId, SessionData.Site.SiteId, thisCandData);
 

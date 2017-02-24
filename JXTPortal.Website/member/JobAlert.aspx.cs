@@ -366,7 +366,7 @@ namespace JXTPortal.Website.members
 
         private void LoadClassification()
         {
-            List<Entities.SiteProfession> siteprofessions = SiteProfessionService.GetTranslatedProfessions(SessionData.Site.UseCustomProfessionRole);
+            List<Entities.SiteProfession> siteprofessions = SiteProfessionService.GetTranslatedProfessions(SessionData.Site.SiteId, SessionData.Site.UseCustomProfessionRole);
             rptClassification.DataSource = siteprofessions;
             rptClassification.DataBind();
         }

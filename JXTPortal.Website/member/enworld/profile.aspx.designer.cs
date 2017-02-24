@@ -283,13 +283,13 @@ namespace JXTPortal.Website.member.enworld {
         protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral101;
         
         /// <summary>
-        /// ddlNativeLanguage control.
+        /// ddlEnglishLanguageLevel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlNativeLanguage;
+        protected global::System.Web.UI.WebControls.DropDownList ddlEnglishLanguageLevel;
         
         /// <summary>
         /// UcLanguageLiteral102 control.
@@ -301,13 +301,13 @@ namespace JXTPortal.Website.member.enworld {
         protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral102;
         
         /// <summary>
-        /// ddlSecondaryLanguage control.
+        /// ddlJapaneseLanguageLevel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSecondaryLanguage;
+        protected global::System.Web.UI.WebControls.DropDownList ddlJapaneseLanguageLevel;
         
         /// <summary>
         /// UcLanguageLiteral103 control.
@@ -319,13 +319,31 @@ namespace JXTPortal.Website.member.enworld {
         protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral103;
         
         /// <summary>
-        /// ddlSecondaryLanguageLevel control.
+        /// ddlOtherLanguage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSecondaryLanguageLevel;
+        protected global::System.Web.UI.WebControls.DropDownList ddlOtherLanguage;
+        
+        /// <summary>
+        /// UcLanguageLiteral38 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral38;
+        
+        /// <summary>
+        /// ddlOtherLanguageLevel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlOtherLanguageLevel;
         
         /// <summary>
         /// UcLanguageLiteral11 control.

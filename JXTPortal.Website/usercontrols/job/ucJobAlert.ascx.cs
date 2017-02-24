@@ -633,7 +633,7 @@ namespace JXTPortal.Website.usercontrols.job
 
         private void LoadProfession()
         {
-            ddlProfession.DataSource = SiteProfessionService.GetTranslatedProfessions(SessionData.Site.UseCustomProfessionRole);
+            ddlProfession.DataSource = SiteProfessionService.GetTranslatedProfessions(SessionData.Site.SiteId, SessionData.Site.UseCustomProfessionRole);
             ddlProfession.DataTextField = "SiteProfessionName";
             ddlProfession.DataValueField = "ProfessionId";
             ddlProfession.DataBind();

@@ -1643,7 +1643,7 @@ namespace JXTPortal.Website.Admin.UserControls
         {
             //we just need to get the data once
             List<JXTPortal.Entities.SiteProfession>
-                siteProfessionList = SiteProfessionService.GetTranslatedProfessions(SessionData.Site.UseCustomProfessionRole).OrderBy(siteProfession => siteProfession.Sequence).ToList();
+                siteProfessionList = SiteProfessionService.GetTranslatedProfessions(SessionData.Site.SiteId, SessionData.Site.UseCustomProfessionRole).OrderBy(siteProfession => siteProfession.Sequence).ToList();
 
             LoadProfession(siteProfessionList, ddlProfession1);
             LoadProfession(siteProfessionList, ddlProfession2);

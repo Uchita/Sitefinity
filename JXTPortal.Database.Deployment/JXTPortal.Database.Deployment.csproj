@@ -56,7 +56,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Content Include="Scripts\Script0013-EnworldIssue.sql" />
+    <Content Include="Scripts\Script0013-EnworldIssue.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\Script0009-UpdateEmailFields.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Collections;
 using System.Xml.Serialization;
 using System.Data;
+using System.Linq;
 
 using JXTPortal.Entities;
 using JXTPortal.Entities.Validation;
@@ -115,6 +116,7 @@ namespace JXTPortal
                 SiteProfessionService professionService = new SiteProfessionService();
                 LocationService lService = new LocationService();
                 SiteLocationService locationService = new SiteLocationService();
+                SiteCountriesService countryService = new SiteCountriesService();
                 RolesService rService = new RolesService();
                 SiteRolesService rolesService = new SiteRolesService();
                 WorkTypeService workTypeService = new WorkTypeService();
@@ -130,6 +132,7 @@ namespace JXTPortal
                     {
                         case PortalEnums.Search.Redefine.Area:
                         case PortalEnums.Search.Redefine.Location:
+                        case PortalEnums.Search.Redefine.Country:
                             //We translate only if the requested language is NOT the site's default language
                             //The idea of this is because the SP above grabs the site's default values already and does not require translation
                             if (targetedTranslatedLanguageID != SessionData.Site.DefaultLanguageId)
@@ -141,6 +144,10 @@ namespace JXTPortal
                                 else if (RefineTypeID == (int)PortalEnums.Search.Redefine.Location)
                                 {
                                     TranslatedLabel = locationService.GetTranslatedLocation(RefineID, lService.GetByLocationId(RefineID).CountryId, targetedTranslatedLanguageID).SiteLocationName;
+                                }
+                                else if (RefineTypeID == (int)PortalEnums.Search.Redefine.Country)
+                                {
+                                    TranslatedLabel = countryService.GetTranslatedCountries(targetedTranslatedLanguageID).Where(c => c.CountryId == RefineID).FirstOrDefault().SiteCountryName;
                                 }
                             }
                             break;

@@ -156,7 +156,7 @@ namespace JXTPortal.Website.usercontrols.job
             SetKeywords();
             SetProfessions();
             SetRoles();
-            //SetCountry();
+            SetCountry();
             SetLocation();
             SetLocationArea();
             SetWorkTypes();
@@ -232,7 +232,7 @@ namespace JXTPortal.Website.usercontrols.job
             }
         }
 
-        /*
+
         protected void SetCountry()
         {
             if (FindKeyword(_COUNTRY))
@@ -241,17 +241,17 @@ namespace JXTPortal.Website.usercontrols.job
                 strSelectHtml.AppendFormat("<select class='form-dropdown' id=\"{0}\">", "countryID" + IsDynamicWidget);
                 List<Entities.SiteCountries> siteCountriesList = SiteCountriesService.GetTranslatedCountries();
 
-                strSelectHtml.AppendFormat("<option value=\"-1\" SELECTED>" + CommonFunction.GetResourceValue("LabelAllCountry") + "</option>");
+                strSelectHtml.AppendFormat("<option value=\"-1\" data-placeholdertag=\"\" SELECTED>" + CommonFunction.GetResourceValue("LabelAllCountry") + "</option>");
 
                 foreach (Entities.SiteCountries siteCountry in siteCountriesList)
                 {
                     if (widgetContainer.DefaultCountryId.HasValue && siteCountry.CountryId == widgetContainer.DefaultCountryId.Value)
                     {
-                        strSelectHtml.AppendFormat("<option value=\"{0}\" SELECTED>{1}</option>", siteCountry.CountryId.ToString(), siteCountry.SiteCountryName);
+                        strSelectHtml.AppendFormat("<option value=\"{0}\" data-placeholdertag=\"{2}\" SELECTED>{1}</option>", siteCountry.CountryId.ToString(), siteCountry.SiteCountryName, siteCountry.Currency);
                     }
                     else
                     {
-                        strSelectHtml.AppendFormat("<option value=\"{0}\">{1}</option>", siteCountry.CountryId.ToString(), siteCountry.SiteCountryName);
+                        strSelectHtml.AppendFormat("<option value=\"{0}\" data-placeholdertag=\"{2}\">{1}</option>", siteCountry.CountryId.ToString(), siteCountry.SiteCountryName, siteCountry.Currency);
                     }
                 }
                 strSelectHtml.Append("</select>");
@@ -259,7 +259,7 @@ namespace JXTPortal.Website.usercontrols.job
                 strJobHTML = strJobHTML.Replace(_COUNTRY, strSelectHtml.ToString());
             }
         }
-        */
+
         protected void SetLocation()
         {
             if (FindKeyword(_LOCATION))
@@ -267,7 +267,7 @@ namespace JXTPortal.Website.usercontrols.job
 
                 if (widgetContainer.DefaultLocationId.HasValue && widgetContainer.DefaultLocationId.Value > 0)
                 {
-                    strJobHTML = strJobHTML.Replace(_LOCATION, ajaxMethods.GetLocations(widgetContainer.DefaultLocationId.Value.ToString(), IsDynamicWidget));
+                    strJobHTML = strJobHTML.Replace(_LOCATION, ajaxMethods.GetLocations(widgetContainer.DefaultLocationId.Value.ToString(), IsDynamicWidget, (widgetContainer.DefaultCountryId.HasValue) ? widgetContainer.DefaultCountryId.Value.ToString() : null));
                     if (FindKeyword(_LOCATIONAREA))
                     {
                         strJobHTML = strJobHTML.Replace(_LOCATIONAREA, ajaxMethods.GetAreas(widgetContainer.DefaultLocationId.Value.ToString(), IsDynamicWidget));
@@ -281,7 +281,7 @@ namespace JXTPortal.Website.usercontrols.job
                     }
                 }
                 else
-                    strJobHTML = strJobHTML.Replace(_LOCATION, ajaxMethods.GetLocations(string.Empty, IsDynamicWidget));
+                    strJobHTML = strJobHTML.Replace(_LOCATION, ajaxMethods.GetLocations(string.Empty, IsDynamicWidget, (widgetContainer.DefaultCountryId.HasValue) ? widgetContainer.DefaultCountryId.Value.ToString() : null));
 
 
             }

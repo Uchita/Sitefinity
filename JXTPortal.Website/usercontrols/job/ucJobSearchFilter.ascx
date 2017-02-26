@@ -78,6 +78,21 @@
                 </ul></FooterTemplate>
         </asp:Repeater>
     </li>
+    <li id="AdvancedSearchFilter_PnlCountry" class="hidden">
+        <asp:Literal ID="ltlCountry" runat="server" />
+        <asp:Repeater ID="rptCountry" runat="server" OnItemDataBound="rptJobResultFilter_ItemDataBound"
+            OnItemCommand="rptJobResultFilter_ItemCommand">
+            <HeaderTemplate>
+                <ul>
+            </HeaderTemplate>
+            <ItemTemplate>
+                <li>
+                    <asp:LinkButton ID="lbLink" runat="server" /></li>
+            </ItemTemplate>
+            <FooterTemplate>
+                </ul></FooterTemplate>
+        </asp:Repeater>
+    </li>
     <li id="AdvancedSearchFilter_PnlLocation">
         <asp:Literal ID="ltlLocation" runat="server" />
         <asp:Repeater ID="rptLocation" runat="server" OnItemDataBound="rptJobResultFilter_ItemDataBound"

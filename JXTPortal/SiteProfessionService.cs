@@ -50,12 +50,12 @@ namespace JXTPortal
         /// Default Method of getting Translated Professions, put false if you want to show professions with total jobs
         /// </summary>
         /// <returns></returns>
-        public List<SiteProfession> GetTranslatedProfessions(bool isCustom)
+        public List<SiteProfession> GetTranslatedProfessions(int siteID, bool isCustom)
         {
-            return GetTranslatedProfessions(true, isCustom);
+            return GetTranslatedProfessions(siteID, true, isCustom);
         }
 
-        public List<SiteProfession> GetTranslatedProfessions(bool showAllJobs, bool isCustom)
+        public List<SiteProfession> GetTranslatedProfessions(int siteID, bool showAllJobs, bool isCustom)
         {
             string xmlprefix = string.Empty;
             string url = string.Empty;
@@ -67,7 +67,7 @@ namespace JXTPortal
                 url = string.Format(xmlprefix,
                                             ConfigurationManager.AppSettings["XMLFilesPath"],
                                             SessionData.Language.LanguageId,
-                                            PortalConstants.XMLTranslationFiles.XML_CUSTOMPROFESSION_FILENAME, SessionData.Site.SiteId);
+                                            PortalConstants.XMLTranslationFiles.XML_CUSTOMPROFESSION_FILENAME, siteID);
             }
             else
             {
@@ -78,12 +78,10 @@ namespace JXTPortal
                                                 PortalConstants.XMLTranslationFiles.XML_PROFESSION_FILENAME);
             }
 
-            list = GetBySiteId(SessionData.Site.SiteId).ToList();
-
-            if (!showAllJobs)
-            {
-                list = GetBySiteId(SessionData.Site.SiteId).Where(s => s.TotalJobs > 0).ToList();
-            }
+            if (showAllJobs)
+                list = GetBySiteId(siteID).ToList();
+            else
+                list = GetBySiteId(siteID).Where(s => s.TotalJobs > 0).ToList();
 
             return XMLLanguageService.Translate(list, "ProfessionId", "SiteProfessionName", url);
         }

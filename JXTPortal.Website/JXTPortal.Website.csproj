@@ -2794,6 +2794,11 @@
     <Compile Include="advertiser\validate.aspx.designer.cs">
       <DependentUpon>validate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App_GlobalResources\language_4_enworld_1047.designer.cs">
+      <DependentUpon>language_4_enworld_1047.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="App_GlobalResources\language_3_dalta_tgroup_973.designer.cs">
       <DependentUpon>language_3_dalta_tgroup_973.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -4741,6 +4746,13 @@
     <Content Include="App_GlobalResources\language_3_dalta_tgroup_973.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>language_3_dalta_tgroup_973.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\language_4_enworld_1047.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>language_4_enworld_1047.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>

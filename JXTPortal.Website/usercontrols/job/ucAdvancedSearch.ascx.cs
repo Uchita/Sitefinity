@@ -192,7 +192,8 @@ namespace JXTPortal.Website.usercontrols.job
             {
                 StringBuilder strSelectHtml = new StringBuilder();
                 strSelectHtml.AppendFormat("<select class='form-dropdown' id=\"{0}\">", "professionID" + IsDynamicWidget);
-                List<Entities.SiteProfession> siteProfessionList = SiteProfessionService.GetTranslatedProfessions(false, SessionData.Site.UseCustomProfessionRole);
+                //Note: We use master siteID here, because this will makes all Master/Child sites to have the same profession/roles options displayed in the advanced job search page.
+                List<Entities.SiteProfession> siteProfessionList = SiteProfessionService.GetTranslatedProfessions(SessionData.Site.MasterSiteId, false, SessionData.Site.UseCustomProfessionRole);
                 //IEnumerable<Entities.SiteProfession> sps = siteProfessionList.Where(s => s.TotalJobs > 0);
 
                 strSelectHtml.AppendFormat("<option value=\"-1\" SELECTED>" + CommonFunction.GetResourceValue("LabelAllClassifications") + "</option>");

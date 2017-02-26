@@ -1241,7 +1241,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - All Sub Classifications -.
+        ///   Looks up a localized string similar to 先に業種を選んでください。.
         /// </summary>
         internal static string LabelAllSubClassifications {
             get {
@@ -3392,6 +3392,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to English Language Level.
+        /// </summary>
+        internal static string LabelEnglishLanguageLevel {
+            get {
+                return ResourceManager.GetString("LabelEnglishLanguageLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to コンマを離して「,」入力してください.
         /// </summary>
         internal static string LabelEnterCommaSeparated {
@@ -4225,6 +4234,15 @@ namespace Resources {
         internal static string LabelJan {
             get {
                 return ResourceManager.GetString("LabelJan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Japanese Language Level.
+        /// </summary>
+        internal static string LabelJapaneseLanguageLevel {
+            get {
+                return ResourceManager.GetString("LabelJapaneseLanguageLevel", resourceCulture);
             }
         }
         
@@ -6082,6 +6100,24 @@ namespace Resources {
         internal static string LabelOther {
             get {
                 return ResourceManager.GetString("LabelOther", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other Language.
+        /// </summary>
+        internal static string LabelOtherLanguage {
+            get {
+                return ResourceManager.GetString("LabelOtherLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other Language Level.
+        /// </summary>
+        internal static string LabelOtherLanguageLevel {
+            get {
+                return ResourceManager.GetString("LabelOtherLanguageLevel", resourceCulture);
             }
         }
         

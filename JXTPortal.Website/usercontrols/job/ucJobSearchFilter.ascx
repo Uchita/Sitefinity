@@ -78,7 +78,7 @@
                 </ul></FooterTemplate>
         </asp:Repeater>
     </li>
-    <li id="AdvancedSearchFilter_PnlCountry">
+    <li id="AdvancedSearchFilter_PnlCountry" class="hidden">
         <asp:Literal ID="ltlCountry" runat="server" />
         <asp:Repeater ID="rptCountry" runat="server" OnItemDataBound="rptJobResultFilter_ItemDataBound"
             OnItemCommand="rptJobResultFilter_ItemCommand">

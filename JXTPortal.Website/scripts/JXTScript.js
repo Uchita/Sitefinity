@@ -91,6 +91,30 @@ $(document).ready(function () {
     $("#txtSalaryLowerBand").focus();
     });*/
 
+    // Advanced search - When you select location - Add the currency
+    $('#locationID').change(function () {
+        var currency = $("#countryID option:selected").data('placeholdertag');
+        if (currency == null || currency == '') {
+            currency = $("#locationID option:selected").data('placeholdertag');
+
+            if (currency == null) {
+                currency = "";
+            }
+            $(".divSalaryCurrency").html(currency + ' ');
+        }
+
+        var blnLocationSelected = ($("#locationID option:selected").val() < 1 && ($("#countryID").length == 0 || ($("#countryID option:selected").val() < 1)));
+
+        if ($('#hfCountryCount').val() != "1") {
+            $('#salaryID').prop('disabled', blnLocationSelected);
+            $('#salarylowerband').prop('disabled', blnLocationSelected);
+            $('#salaryupperband').prop('disabled', blnLocationSelected);
+        }
+
+    });
+
+    $("#locationID").change();
+
     // When you select Country
 
     $('#countryID').change(function () {
@@ -115,6 +139,37 @@ $(document).ready(function () {
             success: function (msg) {
                 // Replace the div's content with the page method's return.
                 $("#divLocation").html(msg.d);
+
+                $('#locationID').change(function () {
+                    var currency = $("#countryID option:selected").data('placeholdertag');
+                    if (currency == null || currency == '') {
+                        currency = $("#locationID option:selected").data('placeholdertag');
+                        if (currency == null) {
+                            currency = "";
+                        }
+                    }
+                    $(".divSalaryCurrency").html(currency + ' ');
+
+                    var blnLocationSelected = ($("#locationID option:selected").val() < 1 && ($("#countryID").length == 0 || ($("#countryID option:selected").val() < 1)));
+
+                    if ($('#hfCountryCount').val() != "1") {
+                        $('#salaryID').prop('disabled', blnLocationSelected);
+                        $('#salarylowerband').prop('disabled', blnLocationSelected);
+                        $('#salaryupperband').prop('disabled', blnLocationSelected);
+                    }
+
+                });
+
+
+                var currency = $("#countryID option:selected").data('placeholdertag');
+
+                if (currency == null || currency == '') {
+                    currency = $("#locationID option:selected").data('placeholdertag');
+                    if (currency == null) {
+                        currency = "";
+                    }
+                }
+                $(".divSalaryCurrency").html(currency + ' ');
             },
             fail: function () {
                 // Replace the div's content with the page method's return.
@@ -155,36 +210,32 @@ $(document).ready(function () {
                 $("#divAreaDropDown").html("It didn't work");
             }
         });
+
+        var ccurrency = $("#countryID option:selected").data('placeholdertag');
+        
+        if (ccurrency == null || ccurrency == '') {
+            ccurrency = $("#locationID option:selected").data('placeholdertag');
+            if (ccurrency == null) {
+                ccurrency = "";
+            }
+        }
+
+        $(".divSalaryCurrency").html(ccurrency + ' ');
     });
 
-    $(".divSalaryCurrency").html($("#countryID option:selected").data('placeholdertag') + ' ');
 
-    var blnCountrySelected = ($("#countryID option:selected").val() < 1);
+    var blnCountrySelected = ($("#countryID").length == 0 || $("#countryID option:selected").val() < 1);
 
     if ($('#hfCountryCount').val() != "1") {
+
         $('#salaryID').prop('disabled', blnCountrySelected);
         $('#salarylowerband').prop('disabled', blnCountrySelected);
         $('#salaryupperband').prop('disabled', blnCountrySelected);
     }
-});
 
-    // Advanced search - When you select location - Add the currency
-$('#locationID').change(function () {
-    $(".divSalaryCurrency").html($("#locationID option:selected").data('placeholdertag') + ' ');
-
-    var blnLocationSelected = ($("#locationID option:selected").val() < 1 || ($("#countryID option:selected").val() < 1));
-    
-    if ($('#hfCountryCount').val() != "1") {
-        $('#salaryID').prop('disabled', blnLocationSelected);
-        $('#salarylowerband').prop('disabled', blnLocationSelected);
-        $('#salaryupperband').prop('disabled', blnLocationSelected);
+    if ($("#countryID").length) {
+        $("#countryID").change();
     }
-
-});
-
-    $("#countryID").change();
-
-    $("#locationID").change();
 
     // Advanced search - When you select Profession
     $('#professionID').change(function () {
@@ -267,10 +318,10 @@ $('#locationID').change(function () {
 
     });
 
-    
+});
+   
 
 function SalaryChange() {
-
     $('#txtSalaryLowerBand').val('');
     $('#txtSalaryUpperBand').val('');
     $('#txtSalaryLowerBand').prop('disabled', ($('#ddlSalary').val() == 0 ? true : false));

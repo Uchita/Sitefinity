@@ -106,9 +106,13 @@ namespace JXTPostJobApplicationToFTP
             try
             {
                 // Create instance for Sftp to upload given files using given credentials
+                _logger.InfoFormat("Initializing SFTP: Host:{0} Username:{1}", siteXML.host, siteXML.username);
                 sftp = new Sftp(siteXML.host, siteXML.username, siteXML.password);
-                
+
+                _logger.InfoFormat("Connecting to SFTP: Host:{0} Username:{1}", siteXML.host, siteXML.username);
                 sftp.Connect();
+
+                _logger.InfoFormat("Connected: Host:{0} Username:{1}", siteXML.host, siteXML.username);
 
                 foreach (FileNames fileNames in filesToUpload)
                 {

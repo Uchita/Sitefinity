@@ -28,7 +28,7 @@ namespace JXTPortal.Website.job.ajaxcalls
         {
             string result = string.Empty;
             SiteProfessionService service = new SiteProfessionService();
-            List<Entities.SiteProfession> siteProfessionList = service.GetTranslatedProfessions(false, SessionData.Site.UseCustomProfessionRole);
+            List<Entities.SiteProfession> siteProfessionList = service.GetTranslatedProfessions(SessionData.Site.SiteId, false, SessionData.Site.UseCustomProfessionRole);
 
             foreach (Entities.SiteProfession sp in siteProfessionList)
             {

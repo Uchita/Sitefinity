@@ -6460,7 +6460,7 @@ namespace JXTPortal.Website.member
 
         private void LoadProfession()
         {
-            ProfessionList = SiteProfessionService.GetTranslatedProfessions(SessionData.Site.UseCustomProfessionRole);
+            ProfessionList = SiteProfessionService.GetTranslatedProfessions(SessionData.Site.SiteId, SessionData.Site.UseCustomProfessionRole);
 
         }
 

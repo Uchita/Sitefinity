@@ -799,7 +799,7 @@ function Tab1Save(sender, loader) {
     $(".errormsg").empty();
 
     //check minimum fields
-    if ($("#ddlCountry").val() != "--None--" && $("#ddlNativeLanguage").val() != "--None--" ) {
+    if ($("#ddlCountry").val() != "--None--"){ //-- && $("#ddlNativeLanguage").val() != "--None--" ) {
 
         $(loader).removeClass("hide");
         $(sender).addClass("disabled");
@@ -817,6 +817,11 @@ function Tab1Save(sender, loader) {
                 else {
                     var errorMsgs = result.jsonVal.d.Message;
 
+                    if (errorMsgs.includes("Session expired")) {
+                        //redirect to login
+                        window.location = "/member/login.aspx";
+                    }
+
                     if (Object.prototype.toString.call(errorMsgs) === '[object Array]') {
 
                         $.each(errorMsgs, function (index, value) {
@@ -828,7 +833,7 @@ function Tab1Save(sender, loader) {
                 }
             }
             else {
-                $("#tab1Message").append("Failed to connect to the server, please reload the page and try again.");                
+                $("#tab1Message").append("Failed to connect to the server, please reload the page and try again.");
             }
             $(loader).addClass("hide");
             $(sender).removeClass("disabled");
@@ -840,7 +845,7 @@ function Tab1Save(sender, loader) {
             $(sender).removeClass("disabled");
         };
 
-        var data = { gender: $("#ddlGender").val(), dob: $("#tbDOB").val(), mobile: $("#tbMobilePhone").val(), phone: $("#tbHomePhone").val(), country: $("#ddlCountry").val(), secondEmail: $("#tbSecondEmail").val(), address: $("#tbAddress1").val(), city: $("#tbCity").val(), state: $("#ddlState").val(), zip: $("#tbZip").val(), nativeLang: $("#ddlNativeLanguage").val(), secondLanguage: $("#ddlSecondaryLanguage").val(), secondLanguageLevel: $("#ddlSecondaryLanguageLevel").val() };
+        var data = { gender: $("#ddlGender").val(), dob: $("#tbDOB").val(), mobile: $("#tbMobilePhone").val(), phone: $("#tbHomePhone").val(), country: $("#ddlCountry").val(), secondEmail: $("#tbSecondEmail").val(), address: $("#tbAddress1").val(), city: $("#tbCity").val(), state: $("#ddlState").val(), zip: $("#tbZip").val(), engLevel: $("#ddlEnglishLanguageLevel").val(), japLevel: $("#ddlJapaneseLanguageLevel").val(), otherLanguage: $("#ddlOtherLanguage").val(), otherLevel: $("#ddlOtherLanguageLevel").val() };
         var postResult = $("").sendAjaxWithExpectDataTypeReturn("member/enworld/profile.aspx", "tab1save", "POST", "json", data, onSuccess, onFailure);
     }
     else {

@@ -248,6 +248,9 @@ namespace JXTPortal.Website.usercontrols.job
                 rptSubClassification.DataSource = dtJobSearch.Select(String.Format("RefineTypeID = {0}", (int)PortalEnums.Search.Redefine.SubClassification), "RefineLabel");
                 rptSubClassification.DataBind();
 
+                rptCountry.DataSource = dtJobSearch.Select(String.Format("RefineTypeID = {0}", (int)PortalEnums.Search.Redefine.Country), "RefineLabel");
+                rptCountry.DataBind();
+
                 rptLocation.DataSource = dtJobSearch.Select(String.Format("RefineTypeID = {0}", (int)PortalEnums.Search.Redefine.Location), "RefineLabel");
                 rptLocation.DataBind();
 
@@ -320,6 +323,7 @@ namespace JXTPortal.Website.usercontrols.job
             // Todo - Translation
             ltlClassification.Text = String.Format("<a href='#'>{0}</a>", CommonFunction.GetResourceValue("LabelClassification"));
             ltlSubClassification.Text = String.Format("<a href='#'>{0}</a>", CommonFunction.GetResourceValue("LabelSubClassification"));
+            ltlCountry.Text = String.Format("<a href='#'>{0}</a>", CommonFunction.GetResourceValue("LabelCountry"));
             ltlLocation.Text = String.Format("<a href='#'>{0}</a>", CommonFunction.GetResourceValue("LabelLocation"));
             ltlArea.Text = String.Format("<a href='#'>{0}</a>", CommonFunction.GetResourceValue("LabelArea"));
             ltlWorkType.Text = String.Format("<a href='#'>{0}</a>", CommonFunction.GetResourceValue("LabelWorkType"));
@@ -395,6 +399,9 @@ namespace JXTPortal.Website.usercontrols.job
                     break;
                 case "6":
                     SessionData.JobSearch.CurrencyID = int.Parse(e.CommandArgument.ToString());
+                    break;
+                case "7":
+                    SessionData.JobSearch.CountryID = int.Parse(e.CommandArgument.ToString());
                     break;
                 default:
                     break;
@@ -486,6 +493,7 @@ namespace JXTPortal.Website.usercontrols.job
                 }
             }
 
+            
             // Location
 
             if (!String.IsNullOrEmpty(SessionData.JobSearch.LocationID))
@@ -493,12 +501,18 @@ namespace JXTPortal.Website.usercontrols.job
                 using (Entities.Location location = LocationService.GetByLocationId(Convert.ToInt32(SessionData.JobSearch.LocationID)))
                 {
                     dr = dtJobSearch.Select("RefineTypeID = 2 and RefineID = " + SessionData.JobSearch.LocationID);
+
+                    using (Entities.SiteLocation sitelocation = SiteLocationService.GetTranslatedLocation(Convert.ToInt32(SessionData.JobSearch.LocationID), location.CountryId))
+                    {
+                        if (sitelocation != null)
+                        {
+                            values.Add(new SearchForClass("2", SessionData.JobSearch.LocationID,
+                                                   sitelocation.SiteLocationName, CommonFunction.GetResourceValue("Location")));
+                        }
+                    }
+
                     if (dr.Length > 0)
                     {
-                        values.Add(new SearchForClass("2", SessionData.JobSearch.LocationID,
-                                                            dr[0]["RefineLabel"].ToString(), CommonFunction.GetResourceValue("Location")));
-                        ltlLocation.Visible = false;
-                        rptLocation.Visible = false;
                         ltlArea.Visible = true;
                         rptArea.Visible = true;
 
@@ -520,21 +534,6 @@ namespace JXTPortal.Website.usercontrols.job
                             }
                         }
                     }
-                    else
-                    {
-                        if (location != null)
-                        {
-                            using (Entities.SiteLocation sitelocation = SiteLocationService.GetTranslatedLocation(Convert.ToInt32(SessionData.JobSearch.LocationID), location.CountryId))
-                            {
-                                if (sitelocation != null)
-                                {
-                                    values.Add(new SearchForClass("2", SessionData.JobSearch.LocationID,
-                                                           sitelocation.SiteLocationName, CommonFunction.GetResourceValue("Location")));
-                                }
-                            }
-                        }
-                    }
-
                 }
             }
             else
@@ -549,6 +548,52 @@ namespace JXTPortal.Website.usercontrols.job
 
                 plHolderSalary.Visible = (Convert.ToInt32(ViewState["SiteCountriesCount"]) == 1);
 
+            }
+
+            // Country
+
+            if (SessionData.JobSearch.CountryID.HasValue)
+            {
+                dr = dtJobSearch.Select("RefineTypeID = 7 and RefineID = " + SessionData.JobSearch.CountryID);
+
+                using (Entities.SiteCountries siteCountry = SiteCountriesService.GetTranslatedCountries().Where(c => c.CountryId == SessionData.JobSearch.CountryID).FirstOrDefault())
+                {
+                    if (siteCountry != null)
+                    {
+                        values.Add(new SearchForClass("7", SessionData.JobSearch.CountryID.ToString(),
+                                               siteCountry.SiteCountryName, CommonFunction.GetResourceValue("LabelCountry")));
+                    }
+                }
+
+                if (dr.Length > 0)
+                {
+                    plHolderSalary.Visible = true;
+
+                    ltlCountry.Visible = false;
+                    rptCountry.Visible = false;
+
+                    // Salary Currency
+
+                    using (Entities.SiteCountries siteCountry = SiteCountriesService.GetBySiteIdCountryId(SessionData.Site.SiteId, SessionData.JobSearch.CountryID.Value))
+                    {
+
+                        if (siteCountry != null)
+                        {
+                            ltlLowerCurrency.Text = siteCountry.Currency;
+                            ltlUpperCurrency.Text = siteCountry.Currency;
+                            hfCurrency.Value = siteCountry.Currency;
+                        }
+                    }
+
+                }
+
+            }
+            else
+            {
+                ltlCountry.Visible = true;
+                rptCountry.Visible = true;
+
+                plHolderSalary.Visible = (Convert.ToInt32(ViewState["SiteCountriesCount"]) == 1);
             }
 
 
@@ -636,7 +681,7 @@ namespace JXTPortal.Website.usercontrols.job
                 }
 
                 values.Add(new SearchForClass("6", "",
-                                                salarytype  +
+                                                salarytype +
                                                 ((SessionData.JobSearch.SalaryLowerBand.HasValue || SessionData.JobSearch.SalaryUpperBand.HasValue) ? (" - " +
                                                 (SessionData.JobSearch.SalaryUpperBand.HasValue ? string.Empty : CommonFunction.GetResourceValue("LabelFrom") + " ") +
                                                 hfCurrency.Value + (SessionData.JobSearch.SalaryLowerBand.HasValue ? SessionData.JobSearch.SalaryLowerBand.Value.ToString() : "0") +
@@ -745,6 +790,12 @@ namespace JXTPortal.Website.usercontrols.job
                         SessionData.JobSearch.SalaryTypeID = null;
                         SessionData.JobSearch.SalaryUpperBand = null;
                         SessionData.JobSearch.SalaryLowerBand = null;
+                    }
+                    break;
+                case "7":
+                    {
+                        // Remove Roles
+                        SessionData.JobSearch.CountryID = null;
                     }
                     break;
 

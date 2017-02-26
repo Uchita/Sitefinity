@@ -24,7 +24,6 @@
     <employmenttype>Contract</employmenttype>
     <employmenttype>Temporary</employmenttype>
     <employmenttype>Temp to Perm</employmenttype>
-    <employmenttype>Part Time</employmenttype>
   </employmenttypes>
   <countries>
     <country>
@@ -810,22 +809,22 @@
     <country>
       <name>Korea, Republic of</name>
       <states>
-        <state>Seoul Teugbyeolsi [ Seoul-T’ŭkpyŏlshi]</state>
-        <state>Busan Gwang'yeogsi [Pusan-Kwangyŏkshi]</state>
-        <state>Daegu Gwang'yeogsi [Taegu-Kwangyŏkshi)</state>
-        <state>Incheon Gwang'yeogsi [Inchŏn-Kwangyŏkshi]</state>
-        <state>Gwangju Gwang'yeogsi [Kwangju-Kwangyŏkshi]</state>
-        <state>Daejeon Gwang'yeogsi [Taejŏn-Kwangyŏkshi]</state>
-        <state>Ulsan Gwang'yeogsi [Ulsan-Kwangyŏkshi]</state>
-        <state>Gyeonggido [Kyŏnggi-do]</state>
-        <state>Gang'weondo [Kang-won-do]</state>
-        <state>Chungcheongbugdo [Ch'ungch'ŏngbuk-do]</state>
-        <state>Chungcheongnamdo [Ch'ungch'ŏngnam-do]</state>
-        <state>Jeonrabugdo [Chŏllabuk-do)</state>
-        <state>Jeonranamdo [Chŏllanam-do]</state>
-        <state>Gyeongsangbugdo [Kyŏngsangbuk-do]</state>
-        <state>Gyeongsangnamdo [Kyŏngsangnam-do]</state>
-        <state>Jejudo [Cheju-do]</state>
+        <state>Busan-gwangyeoksi</state>
+        <state>Chungcheongbugdo</state>
+        <state>Chungcheongnamdo</state>
+        <state>Daegu Gwang'yeogsi</state>
+        <state>Daejeon Gwang'yeogsi</state>
+        <state>Gang'weondo</state>
+        <state>Gwangju Gwang'yeogsi</state>
+        <state>Gyeonggido</state>
+        <state>Gyeongsangbugdo</state>
+        <state>Gyeongsangnamdo</state>
+        <state>Incheon Gwang'yeogsi</state>
+        <state>Jejudo</state>
+        <state>Jeonrabugdo</state>
+        <state>Jeonranamdo</state>
+        <state>Seoul Teugbyeolsi</state>
+        <state>Ulsan Gwang'yeogsi</state>
       </states>
     </country>
     <country>
@@ -1457,66 +1456,69 @@
     <country>
       <name>Vietnam</name>
       <states>
-        <state>Lai Châu</state>
-        <state>Lào Cai</state>
-        <state>Hà Giang</state>
-        <state>Cao Bằng</state>
-        <state>Sơn La</state>
-        <state>Yên Bái</state>
-        <state>Tuyên Quang</state>
-        <state>Lạng Sơn</state>
-        <state>Quảng Ninh</state>
-        <state>Hòa Bình</state>
-        <state>Ninh Bình</state>
-        <state>Thái Bình</state>
-        <state>Thanh Hóa</state>
-        <state>Nghệ An</state>
-        <state>Hà Tĩnh</state>
-        <state>Quảng Bình</state>
-        <state>Quảng Trị</state>
-        <state>Thừa Thiên–Huế</state>
-        <state>Quảng Nam</state>
-        <state>Kon Tum</state>
-        <state>Quảng Ngãi</state>
-        <state>Gia Lai</state>
-        <state>Bình Định</state>
-        <state>Phú Yên</state>
-        <state>Đắk Lắk</state>
-        <state>Khánh Hòa</state>
-        <state>Lâm Đồng</state>
-        <state>Ninh Thuận</state>
-        <state>Tây Ninh</state>
-        <state>Đồng Nai</state>
-        <state>Bình Thuận</state>
-        <state>Long An</state>
-        <state>Bà Rịa–Vũng Tàu</state>
         <state>An Giang</state>
-        <state>Đồng Tháp</state>
-        <state>Tiền Giang</state>
-        <state>Kiến Giang</state>
-        <state>Vĩnh Long</state>
-        <state>Bến Tre</state>
-        <state>Trà Vinh</state>
-        <state>Sóc Trăng</state>
-        <state>Bắc Kạn</state>
         <state>Bắc Giang</state>
+        <state>Bắc Kạn</state>
         <state>Bạc Liêu</state>
         <state>Bắc Ninh</state>
+        <state>Bà Rịa–Vũng Tàu</state>
+        <state>Bến Tre</state>
         <state>Bình Dương</state>
         <state>Bình Phước</state>
+        <state>Bình Thuận</state>
+        <state>Bình Định</state>
         <state>Cà Mau</state>
+        <state>Cần Thơ</state>
+        <state>Cao Bằng</state>
+        <state>Gia Lai</state>
+        <state>Hà Giang</state>
         <state>Hải Dương</state>
+        <state>Hải Phòng</state>
         <state>Hà Nam</state>
-        <state>Hưng Yên</state>
-        <state>Nam Định</state>
-        <state>Phú Thọ</state>
-        <state>Thái Nguyên</state>
-        <state>Vĩnh Phúc</state>
-        <state>Điện Biên</state>
-        <state>Đắk Nông</state>
+        <state>Hà Nội</state>
+        <state>Hà Tĩnh</state>
         <state>Hậu Giang</state>
-        <state>Can Tho</state>
-        <state>Da Nang</state>
+        <state>Hòa Bình</state>
+        <state>Hồ Chí Minh</state>
+        <state>Hưng Yên</state>
+        <state>Khánh Hòa</state>
+        <state>Kiến Giang</state>
+        <state>Kon Tum</state>
+        <state>Lai Châu</state>
+        <state>Lâm Đồng</state>
+        <state>Lạng Sơn</state>
+        <state>Lào Cai</state>
+        <state>Long An</state>
+        <state>Nam Định</state>
+        <state>Nghệ An</state>
+        <state>Ninh Bình</state>
+        <state>Ninh Thuận</state>
+        <state>Phú Thọ</state>
+        <state>Phú Yên</state>
+        <state>Quảng Bình</state>
+        <state>Quảng Nam</state>
+        <state>Quảng Ngãi</state>
+        <state>Quảng Ninh</state>
+        <state>Quảng Trị</state>
+        <state>Sóc Trăng</state>
+        <state>Sơn La</state>
+        <state>Tây Ninh</state>
+        <state>Thái Bình</state>
+        <state>Thái Nguyên</state>
+        <state>Thanh Hóa</state>
+        <state>Thừa Thiên–Huế</state>
+        <state>Tiền Giang</state>
+        <state>Trà Vinh</state>
+        <state>Tuyên Quang</state>
+        <state>Vĩnh Long</state>
+        <state>Vĩnh Phúc</state>
+        <state>Yên Bái</state>
+        <state>Đắk Lắk</state>
+        <state>Đắk Nông</state>
+        <state>Đà Nẵng</state>
+        <state>Điện Biên</state>
+        <state>Đồng Nai</state>
+        <state>Đồng Tháp</state>
       </states>
 
     </country>
@@ -1565,7 +1567,7 @@
     <industry><![CDATA[Education/Training]]></industry>
     <industry><![CDATA[Engineering/Construction]]></industry>
     <industry><![CDATA[Export-Import/Trading]]></industry>
-    <industry><![CDATA[FMCG/F&amp;B]]></industry>
+    <industry><![CDATA[FMCG/F&B]]></industry>
     <industry><![CDATA[Hotel/Restaurant]]></industry>
     <industry><![CDATA[Insurance]]></industry>
     <industry><![CDATA[IT-Hardware/Networking]]></industry>
@@ -1576,12 +1578,12 @@
     <industry><![CDATA[Manufacturing]]></industry>
     <industry><![CDATA[Media/Entertainment]]></industry>
     <industry><![CDATA[Medical/Healthcare]]></industry>
-    <industry><![CDATA[Oil &amp; Gas/Petroleum]]></industry>
+    <industry><![CDATA[Oil & Gas/Petroleum]]></industry>
     <industry><![CDATA[Pharma/Biotech]]></industry>
     <industry><![CDATA[Real Estate]]></industry>
     <industry><![CDATA[Recruitment Services]]></industry>
     <industry><![CDATA[Retail]]></industry>
-    <industry><![CDATA[elecom/ISP]]></industry>
+    <industry><![CDATA[Telecom/ISP]]></industry>
     <industry><![CDATA[Textile/Garments/Fashion]]></industry>
     <industry><![CDATA[Travel/Tourism]]></industry>
 
@@ -1863,9 +1865,20 @@
     <salaryperiod>Hourly</salaryperiod>
   </salaryperiods>
   <languages>
-    <language>English</language>
+    <language>Arabic</language>
+    <language>Bahasa (Malaysia)</language>
+    <language>Bahasa (Indonesia)</language>
+    <language>Cantonese</language>
+    <language>Filipino</language>
+    <language>French</language>
+    <language>German</language>
+    <language>Hindi</language>
+    <language>Italian</language>
     <language>Korean</language>
-    <language>Japanese</language>
+    <language>Mandarin</language>
+    <language>Portuguese</language>
+    <language>Russian</language>
+    <language>Spanish</language>
     <language>Thai</language>
     <language>Vietnamese</language>
     <language>Other</language>

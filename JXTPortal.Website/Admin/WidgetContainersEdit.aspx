@@ -108,6 +108,14 @@
                             </tr>
                             <tr>
                                 <td>
+                                    Country
+                                </td>
+                                <td>
+                                    {Country}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
                                     Location
                                 </td>
                                 <td>

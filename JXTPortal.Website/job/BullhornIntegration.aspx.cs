@@ -1889,7 +1889,7 @@ namespace JXTPortal.Website.job
         {
             //we just need to get the data once
             List<JXTPortal.Entities.SiteProfession>
-                siteProfessionList = SiteProfessionService.GetTranslatedProfessions(SessionData.Site.UseCustomProfessionRole).OrderBy(siteProfession => siteProfession.Sequence).ToList();
+                siteProfessionList = SiteProfessionService.GetTranslatedProfessions(SessionData.Site.SiteId, SessionData.Site.UseCustomProfessionRole).OrderBy(siteProfession => siteProfession.Sequence).ToList();
 
             LoadProfession(siteProfessionList, ddlProfession1);
             ddlRole1.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelPleaseChoose"), "0"));

@@ -4503,4 +4503,20 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <value>Semicolon Separated</value>
     <comment>Semicolon Separated</comment>
   </data>
+  <data name="LabelEnglishLanguageLevel" xml:space="preserve">
+    <value>English Language Level</value>
+    <comment>English Language Level</comment>
+  </data>
+  <data name="LabelJapaneseLanguageLevel" xml:space="preserve">
+    <value>Japanese Language Level</value>
+    <comment>Japanese Language Level</comment>
+  </data>
+  <data name="LabelOtherLanguage" xml:space="preserve">
+    <value>Other Language</value>
+    <comment>Other Language</comment>
+  </data>
+  <data name="LabelOtherLanguageLevel" xml:space="preserve">
+    <value>Other Language Level</value>
+    <comment>Other Language Level</comment>
+  </data>
 </root>

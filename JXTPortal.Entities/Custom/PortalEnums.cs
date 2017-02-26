@@ -694,6 +694,7 @@ namespace JXTPortal.Entities
                 WorkType = 4,
                 Company = 5,
                 Salary = 6,
+                Country = 7
             }
 
             public enum SalaryType

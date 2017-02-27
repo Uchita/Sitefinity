@@ -52,6 +52,18 @@
             }
         }
     </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#ctl00_ContentPlaceHolder1_tbKeywords').keydown(function (event) {
+                if (event.keyCode == 13) {
+                    RefineNews();
+
+                    event.preventDefault();
+                    return false;
+                }
+            });
+        });
+    </script>
     <div id="content-container">
         <div id="side-left">
             <div class="jxt-news-filter-container">

@@ -45,6 +45,33 @@
                     return date.valueOf() > now.valueOf() ? 'disabled' : '';
                 }
             });
+
+            $('#name-location input').keydown(function (event) {
+                if (event.keyCode == 13) {
+                    $('#name-location button').click();
+
+                    event.preventDefault();
+                    return false;
+                }
+            });
+
+            $('#work-history input').keydown(function (event) {
+                if (event.keyCode == 13) {
+                    $('#work-history button').click();
+
+                    event.preventDefault();
+                    return false;
+                }
+            });
+
+            $('#desired-position input').keydown(function (event) {
+                if (event.keyCode == 13) {
+                    $('#desired-position button').click();
+
+                    event.preventDefault();
+                    return false;
+                }
+            });
         });
 
         function MultiselectInit() {

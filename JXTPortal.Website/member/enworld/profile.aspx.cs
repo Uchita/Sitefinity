@@ -1051,20 +1051,13 @@ namespace JXTPortal.Website.member.enworld
             if (string.IsNullOrEmpty(country) || country == "--None--")
             {
                 errors.Add(CommonFunction.GetResourceValue("LabelCountryMandatory"));
-                //errors.Add("You must select a Country");
             }
-            //if (string.IsNullOrEmpty(nativeLang) || nativeLang == "--None--")
-            //    errors.Add("You must select a Native Language");
-
-            //if (!string.IsNullOrEmpty(secondLanguage) && secondLanguage != "--None--" && (string.IsNullOrEmpty(secondLanguageLevel) || secondLanguageLevel == "--None--"))
-            //    errors.Add("You must select a language level for your Secondary Language");
 
             if (!string.IsNullOrEmpty(dob))
             {
                 if (!Regex.IsMatch(dob, ContentValidationRegex))
                 {
                     errors.Add(CommonFunction.GetResourceValue("LabelInvalidDate"));
-                    //errors.Add("DOB cannot contain invalid content");
                 }
             }
 
@@ -1132,12 +1125,15 @@ namespace JXTPortal.Website.member.enworld
                 try
                 {
                     DateTime dt = new DateTime(int.Parse(dobSplit[2]), int.Parse(dobSplit[1]), int.Parse(dobSplit[0]));
-                    dob = string.Format("{0}-{1}-{2}", int.Parse(dobSplit[2]), int.Parse(dobSplit[1]), int.Parse(dobSplit[0]));
+
+                    if (dt >= DateTime.Now)
+                        errors.Add("Date of birth must be in the past");
+                    else 
+                        dob = string.Format("{0}-{1}-{2}", int.Parse(dobSplit[2]), int.Parse(dobSplit[1]), int.Parse(dobSplit[0]));
                 }
                 catch (Exception e)
                 {
                     errors.Add(CommonFunction.GetResourceValue("LabelInvalidDate"));
-                    //errors.Add("Invalid Date of Birth format");
                 }
             }
 

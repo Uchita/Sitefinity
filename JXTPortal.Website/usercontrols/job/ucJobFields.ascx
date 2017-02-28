@@ -117,6 +117,10 @@
                         </asp:Label>
                         <div>
                             <asp:TextBox ID="txtJobExpiryDate" runat="server" autocomplete="off" />
+                            <asp:RequiredFieldValidator ControlToValidate="txtJobExpiryDate" runat=server></asp:RequiredFieldValidator>
+                            <asp:CustomValidator
+                                ID="JobExpiryDateValidator" ControlToValidate="txtJobExpiryDate" 
+                                runat="server" onservervalidate="JobExpiryDateValidator_ServerValidate"></asp:CustomValidator>
                         </div>
                     </li>
 

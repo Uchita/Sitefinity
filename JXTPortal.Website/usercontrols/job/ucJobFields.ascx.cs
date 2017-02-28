@@ -3271,7 +3271,22 @@ namespace JXTPortal.Website.Admin.UserControls
 
             if (siteGlobalSettings != null)
             {
-                format = siteGlobalSettings.GlobalDateFormat;
+                var globalsettingDateFormat = siteGlobalSettings.GlobalDateFormat;
+
+                switch (globalsettingDateFormat)
+                {
+                    case "MM/dd/yyyy":
+                        format = "mm/dd/yy";
+                        break;
+
+                    case "yyyy/MM/dd":
+                        format = "yy/mm/dd";
+                        break;
+
+                    default:
+                        format = "dd/mm/yy";
+                        break;
+                }
             }
             else
             {
@@ -3279,6 +3294,20 @@ namespace JXTPortal.Website.Admin.UserControls
             }
 
             return format;
+        }
+
+        protected void JobExpiryDateValidator_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            DateTime currentDate = DateTime.Now;
+
+            string dateFormat = "dd/MM/YYYY";
+
+            DateTime jobExpiryDate = Convert.ToDateTime(txtJobExpiryDate.Text);
+
+            var final = jobExpiryDate.ToString(dateFormat);
+
+
+            args.IsValid = false;
         }
 
     }

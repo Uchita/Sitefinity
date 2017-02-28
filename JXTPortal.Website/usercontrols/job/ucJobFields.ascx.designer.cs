@@ -373,6 +373,15 @@ namespace JXTPortal.Website.Admin.UserControls {
         protected global::System.Web.UI.WebControls.TextBox txtJobExpiryDate;
         
         /// <summary>
+        /// JobExpiryDateValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator JobExpiryDateValidator;
+        
+        /// <summary>
         /// phSelectLanguage control.
         /// </summary>
         /// <remarks>

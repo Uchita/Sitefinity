@@ -14,7 +14,6 @@
   </registercountrys>
 
 
-
   <genders>
     <gender>Male</gender>
     <gender>Female</gender>
@@ -27,23 +26,11 @@
   </employmenttypes>
   <countries>
     <country>
-      <name>Andorra</name>
-      <states />
-    </country>
-    <country>
-      <name>United Arab Emirates</name>
-      <states />
-    </country>
-    <country>
       <name>Afghanistan</name>
       <states />
     </country>
     <country>
-      <name>Antigua and Barbuda</name>
-      <states />
-    </country>
-    <country>
-      <name>Anguilla</name>
+      <name>Aland Islands</name>
       <states />
     </country>
     <country>
@@ -51,7 +38,11 @@
       <states />
     </country>
     <country>
-      <name>Armenia</name>
+      <name>Algeria</name>
+      <states />
+    </country>
+    <country>
+      <name>Andorra</name>
       <states />
     </country>
     <country>
@@ -59,7 +50,15 @@
       <states />
     </country>
     <country>
+      <name>Anguilla</name>
+      <states />
+    </country>
+    <country>
       <name>Antarctica</name>
+      <states />
+    </country>
+    <country>
+      <name>Antigua and Barbuda</name>
       <states />
     </country>
     <country>
@@ -67,7 +66,11 @@
       <states />
     </country>
     <country>
-      <name>Austria</name>
+      <name>Armenia</name>
+      <states />
+    </country>
+    <country>
+      <name>Aruba</name>
       <states />
     </country>
     <country>
@@ -84,11 +87,7 @@
       </states>
     </country>
     <country>
-      <name>Aruba</name>
-      <states />
-    </country>
-    <country>
-      <name>Aland Islands</name>
+      <name>Austria</name>
       <states />
     </country>
     <country>
@@ -96,27 +95,7 @@
       <states />
     </country>
     <country>
-      <name>Bosnia and Herzegovina</name>
-      <states />
-    </country>
-    <country>
-      <name>Barbados</name>
-      <states />
-    </country>
-    <country>
-      <name>Bangladesh</name>
-      <states />
-    </country>
-    <country>
-      <name>Belgium</name>
-      <states />
-    </country>
-    <country>
-      <name>Burkina Faso</name>
-      <states />
-    </country>
-    <country>
-      <name>Bulgaria</name>
+      <name>Bahamas</name>
       <states />
     </country>
     <country>
@@ -124,7 +103,23 @@
       <states />
     </country>
     <country>
-      <name>Burundi</name>
+      <name>Bangladesh</name>
+      <states />
+    </country>
+    <country>
+      <name>Barbados</name>
+      <states />
+    </country>
+    <country>
+      <name>Belarus</name>
+      <states />
+    </country>
+    <country>
+      <name>Belgium</name>
+      <states />
+    </country>
+    <country>
+      <name>Belize</name>
       <states />
     </country>
     <country>
@@ -132,15 +127,11 @@
       <states />
     </country>
     <country>
-      <name>Saint Barthélemy</name>
-      <states />
-    </country>
-    <country>
       <name>Bermuda</name>
       <states />
     </country>
     <country>
-      <name>Brunei Darussalam</name>
+      <name>Bhutan</name>
       <states />
     </country>
     <country>
@@ -149,6 +140,18 @@
     </country>
     <country>
       <name>Bonaire, Sint Eustatius and Saba</name>
+      <states />
+    </country>
+    <country>
+      <name>Bosnia and Herzegovina</name>
+      <states />
+    </country>
+    <country>
+      <name>Botswana</name>
+      <states />
+    </country>
+    <country>
+      <name>Bouvet Island</name>
       <states />
     </country>
     <country>
@@ -184,27 +187,31 @@
       </states>
     </country>
     <country>
-      <name>Bahamas</name>
+      <name>British Indian Ocean Territory</name>
       <states />
     </country>
     <country>
-      <name>Bhutan</name>
+      <name>Brunei Darussalam</name>
       <states />
     </country>
     <country>
-      <name>Bouvet Island</name>
+      <name>Bulgaria</name>
       <states />
     </country>
     <country>
-      <name>Botswana</name>
+      <name>Burkina Faso</name>
       <states />
     </country>
     <country>
-      <name>Belarus</name>
+      <name>Burundi</name>
       <states />
     </country>
     <country>
-      <name>Belize</name>
+      <name>Cambodia</name>
+      <states />
+    </country>
+    <country>
+      <name>Cameroon</name>
       <states />
     </country>
     <country>
@@ -226,11 +233,11 @@
       </states>
     </country>
     <country>
-      <name>Cocos (Keeling) Islands</name>
+      <name>Cape Verde</name>
       <states />
     </country>
     <country>
-      <name>Congo, the Democratic Republic of the</name>
+      <name>Cayman Islands</name>
       <states />
     </country>
     <country>
@@ -238,27 +245,11 @@
       <states />
     </country>
     <country>
-      <name>Congo</name>
-      <states />
-    </country>
-    <country>
-      <name>Switzerland</name>
-      <states />
-    </country>
-    <country>
-      <name>Cote d'Ivoire</name>
-      <states />
-    </country>
-    <country>
-      <name>Cook Islands</name>
+      <name>Chad</name>
       <states />
     </country>
     <country>
       <name>Chile</name>
-      <states />
-    </country>
-    <country>
-      <name>Cameroon</name>
       <states />
     </country>
     <country>
@@ -301,7 +292,31 @@
       </states>
     </country>
     <country>
+      <name>Christmas Island</name>
+      <states />
+    </country>
+    <country>
+      <name>Cocos (Keeling) Islands</name>
+      <states />
+    </country>
+    <country>
       <name>Colombia</name>
+      <states />
+    </country>
+    <country>
+      <name>Comoros</name>
+      <states />
+    </country>
+    <country>
+      <name>Congo</name>
+      <states />
+    </country>
+    <country>
+      <name>Congo, the Democratic Republic of the</name>
+      <states />
+    </country>
+    <country>
+      <name>Cook Islands</name>
       <states />
     </country>
     <country>
@@ -309,19 +324,19 @@
       <states />
     </country>
     <country>
+      <name>Cote d'Ivoire</name>
+      <states />
+    </country>
+    <country>
+      <name>Croatia</name>
+      <states />
+    </country>
+    <country>
       <name>Cuba</name>
       <states />
     </country>
     <country>
-      <name>Cape Verde</name>
-      <states />
-    </country>
-    <country>
       <name>Curaçao</name>
-      <states />
-    </country>
-    <country>
-      <name>Christmas Island</name>
       <states />
     </country>
     <country>
@@ -333,15 +348,11 @@
       <states />
     </country>
     <country>
-      <name>Germany</name>
+      <name>Denmark</name>
       <states />
     </country>
     <country>
       <name>Djibouti</name>
-      <states />
-    </country>
-    <country>
-      <name>Denmark</name>
       <states />
     </country>
     <country>
@@ -353,15 +364,7 @@
       <states />
     </country>
     <country>
-      <name>Algeria</name>
-      <states />
-    </country>
-    <country>
       <name>Ecuador</name>
-      <states />
-    </country>
-    <country>
-      <name>Estonia</name>
       <states />
     </country>
     <country>
@@ -369,7 +372,11 @@
       <states />
     </country>
     <country>
-      <name>Western Sahara</name>
+      <name>El Salvador</name>
+      <states />
+    </country>
+    <country>
+      <name>Equatorial Guinea</name>
       <states />
     </country>
     <country>
@@ -377,19 +384,11 @@
       <states />
     </country>
     <country>
-      <name>Spain</name>
+      <name>Estonia</name>
       <states />
     </country>
     <country>
       <name>Ethiopia</name>
-      <states />
-    </country>
-    <country>
-      <name>Finland</name>
-      <states />
-    </country>
-    <country>
-      <name>Fiji</name>
       <states />
     </country>
     <country>
@@ -401,23 +400,15 @@
       <states />
     </country>
     <country>
+      <name>Fiji</name>
+      <states />
+    </country>
+    <country>
+      <name>Finland</name>
+      <states />
+    </country>
+    <country>
       <name>France</name>
-      <states />
-    </country>
-    <country>
-      <name>Gabon</name>
-      <states />
-    </country>
-    <country>
-      <name>United Kingdom</name>
-      <states />
-    </country>
-    <country>
-      <name>Grenada</name>
-      <states />
-    </country>
-    <country>
-      <name>Georgia</name>
       <states />
     </country>
     <country>
@@ -425,7 +416,27 @@
       <states />
     </country>
     <country>
-      <name>Guernsey</name>
+      <name>French Polynesia</name>
+      <states />
+    </country>
+    <country>
+      <name>French Southern Territories</name>
+      <states />
+    </country>
+    <country>
+      <name>Gabon</name>
+      <states />
+    </country>
+    <country>
+      <name>Gambia</name>
+      <states />
+    </country>
+    <country>
+      <name>Georgia</name>
+      <states />
+    </country>
+    <country>
+      <name>Germany</name>
       <states />
     </country>
     <country>
@@ -437,15 +448,15 @@
       <states />
     </country>
     <country>
+      <name>Greece</name>
+      <states />
+    </country>
+    <country>
       <name>Greenland</name>
       <states />
     </country>
     <country>
-      <name>Gambia</name>
-      <states />
-    </country>
-    <country>
-      <name>Guinea</name>
+      <name>Grenada</name>
       <states />
     </country>
     <country>
@@ -453,19 +464,15 @@
       <states />
     </country>
     <country>
-      <name>Equatorial Guinea</name>
-      <states />
-    </country>
-    <country>
-      <name>Greece</name>
-      <states />
-    </country>
-    <country>
-      <name>South Georgia and the South Sandwich Islands</name>
-      <states />
-    </country>
-    <country>
       <name>Guatemala</name>
+      <states />
+    </country>
+    <country>
+      <name>Guernsey</name>
+      <states />
+    </country>
+    <country>
+      <name>Guinea</name>
       <states />
     </country>
     <country>
@@ -477,7 +484,15 @@
       <states />
     </country>
     <country>
+      <name>Haiti</name>
+      <states />
+    </country>
+    <country>
       <name>Heard Island and McDonald Islands</name>
+      <states />
+    </country>
+    <country>
+      <name>Holy See (Vatican City State)</name>
       <states />
     </country>
     <country>
@@ -485,59 +500,11 @@
       <states />
     </country>
     <country>
-      <name>Croatia</name>
-      <states />
-    </country>
-    <country>
-      <name>Haiti</name>
-      <states />
-    </country>
-    <country>
       <name>Hungary</name>
       <states />
     </country>
     <country>
-      <name>Indonesia</name>
-      <states />
-    </country>
-    <country>
-      <name>Ireland</name>
-      <states>
-        <state>Clare</state>
-        <state>Cavan</state>
-        <state>Cork</state>
-        <state>Carlow</state>
-        <state>Dublin</state>
-        <state>Donegal</state>
-        <state>Galway</state>
-        <state>Kildare</state>
-        <state>Kilkenny</state>
-        <state>Kerry</state>
-        <state>Longford</state>
-        <state>Louth</state>
-        <state>Limerick</state>
-        <state>Leitrim</state>
-        <state>Laois</state>
-        <state>Meath</state>
-        <state>Monaghan</state>
-        <state>Mayo</state>
-        <state>Offaly</state>
-        <state>Roscommon</state>
-        <state>Sligo</state>
-        <state>Tipperary</state>
-        <state>Waterford</state>
-        <state>Westmeath</state>
-        <state>Wicklow</state>
-        <state>Wexford</state>
-      </states>
-
-    </country>
-    <country>
-      <name>Israel</name>
-      <states />
-    </country>
-    <country>
-      <name>Isle of Man</name>
+      <name>Iceland</name>
       <states />
     </country>
     <country>
@@ -579,14 +546,9 @@
         <state>Uttarakhand</state>
         <state>West Bengal</state>
       </states>
-
     </country>
     <country>
-      <name>British Indian Ocean Territory</name>
-      <states />
-    </country>
-    <country>
-      <name>Iraq</name>
+      <name>Indonesia</name>
       <states />
     </country>
     <country>
@@ -594,7 +556,46 @@
       <states />
     </country>
     <country>
-      <name>Iceland</name>
+      <name>Iraq</name>
+      <states />
+    </country>
+    <country>
+      <name>Ireland</name>
+      <states>
+        <state>Clare</state>
+        <state>Cavan</state>
+        <state>Cork</state>
+        <state>Carlow</state>
+        <state>Dublin</state>
+        <state>Donegal</state>
+        <state>Galway</state>
+        <state>Kildare</state>
+        <state>Kilkenny</state>
+        <state>Kerry</state>
+        <state>Longford</state>
+        <state>Louth</state>
+        <state>Limerick</state>
+        <state>Leitrim</state>
+        <state>Laois</state>
+        <state>Meath</state>
+        <state>Monaghan</state>
+        <state>Mayo</state>
+        <state>Offaly</state>
+        <state>Roscommon</state>
+        <state>Sligo</state>
+        <state>Tipperary</state>
+        <state>Waterford</state>
+        <state>Westmeath</state>
+        <state>Wicklow</state>
+        <state>Wexford</state>
+      </states>
+    </country>
+    <country>
+      <name>Isle of Man</name>
+      <states />
+    </country>
+    <country>
+      <name>Israel</name>
       <states />
     </country>
     <country>
@@ -711,18 +712,9 @@
         <state>Viterbo</state>
         <state>Vibo Valentia</state>
       </states>
-
-    </country>
-    <country>
-      <name>Jersey</name>
-      <states />
     </country>
     <country>
       <name>Jamaica</name>
-      <states />
-    </country>
-    <country>
-      <name>Jordan</name>
       <states />
     </country>
     <country>
@@ -776,30 +768,25 @@
         <state>Yamaguchi</state>
         <state>Yamanashi</state>
       </states>
-
+    </country>
+    <country>
+      <name>Jersey</name>
+      <states />
+    </country>
+    <country>
+      <name>Jordan</name>
+      <states />
+    </country>
+    <country>
+      <name>Kazakhstan</name>
+      <states />
     </country>
     <country>
       <name>Kenya</name>
       <states />
     </country>
     <country>
-      <name>Kyrgyzstan</name>
-      <states />
-    </country>
-    <country>
-      <name>Cambodia</name>
-      <states />
-    </country>
-    <country>
       <name>Kiribati</name>
-      <states />
-    </country>
-    <country>
-      <name>Comoros</name>
-      <states />
-    </country>
-    <country>
-      <name>Saint Kitts and Nevis</name>
       <states />
     </country>
     <country>
@@ -832,11 +819,7 @@
       <states />
     </country>
     <country>
-      <name>Cayman Islands</name>
-      <states />
-    </country>
-    <country>
-      <name>Kazakhstan</name>
+      <name>Kyrgyzstan</name>
       <states />
     </country>
     <country>
@@ -844,19 +827,15 @@
       <states />
     </country>
     <country>
+      <name>Latvia</name>
+      <states />
+    </country>
+    <country>
       <name>Lebanon</name>
       <states />
     </country>
     <country>
-      <name>Saint Lucia</name>
-      <states />
-    </country>
-    <country>
-      <name>Liechtenstein</name>
-      <states />
-    </country>
-    <country>
-      <name>Sri Lanka</name>
+      <name>Lesotho</name>
       <states />
     </country>
     <country>
@@ -864,7 +843,11 @@
       <states />
     </country>
     <country>
-      <name>Lesotho</name>
+      <name>Libya</name>
+      <states />
+    </country>
+    <country>
+      <name>Liechtenstein</name>
       <states />
     </country>
     <country>
@@ -876,35 +859,7 @@
       <states />
     </country>
     <country>
-      <name>Latvia</name>
-      <states />
-    </country>
-    <country>
-      <name>Libya</name>
-      <states />
-    </country>
-    <country>
-      <name>Morocco</name>
-      <states />
-    </country>
-    <country>
-      <name>Monaco</name>
-      <states />
-    </country>
-    <country>
-      <name>Moldova, Republic of</name>
-      <states />
-    </country>
-    <country>
-      <name>Montenegro</name>
-      <states />
-    </country>
-    <country>
-      <name>Saint Martin (French part)</name>
-      <states />
-    </country>
-    <country>
-      <name>Madagascar</name>
+      <name>Macao</name>
       <states />
     </country>
     <country>
@@ -912,19 +867,27 @@
       <states />
     </country>
     <country>
+      <name>Madagascar</name>
+      <states />
+    </country>
+    <country>
+      <name>Malawi</name>
+      <states />
+    </country>
+    <country>
+      <name>Malaysia</name>
+      <states />
+    </country>
+    <country>
+      <name>Maldives</name>
+      <states />
+    </country>
+    <country>
       <name>Mali</name>
       <states />
     </country>
     <country>
-      <name>Myanmar</name>
-      <states />
-    </country>
-    <country>
-      <name>Mongolia</name>
-      <states />
-    </country>
-    <country>
-      <name>Macao</name>
+      <name>Malta</name>
       <states />
     </country>
     <country>
@@ -936,23 +899,11 @@
       <states />
     </country>
     <country>
-      <name>Montserrat</name>
-      <states />
-    </country>
-    <country>
-      <name>Malta</name>
-      <states />
-    </country>
-    <country>
       <name>Mauritius</name>
       <states />
     </country>
     <country>
-      <name>Maldives</name>
-      <states />
-    </country>
-    <country>
-      <name>Malawi</name>
+      <name>Mayotte</name>
       <states />
     </country>
     <country>
@@ -993,7 +944,27 @@
       </states>
     </country>
     <country>
-      <name>Malaysia</name>
+      <name>Moldova, Republic of</name>
+      <states />
+    </country>
+    <country>
+      <name>Monaco</name>
+      <states />
+    </country>
+    <country>
+      <name>Mongolia</name>
+      <states />
+    </country>
+    <country>
+      <name>Montenegro</name>
+      <states />
+    </country>
+    <country>
+      <name>Montserrat</name>
+      <states />
+    </country>
+    <country>
+      <name>Morocco</name>
       <states />
     </country>
     <country>
@@ -1001,39 +972,11 @@
       <states />
     </country>
     <country>
+      <name>Myanmar</name>
+      <states />
+    </country>
+    <country>
       <name>Namibia</name>
-      <states />
-    </country>
-    <country>
-      <name>New Caledonia</name>
-      <states />
-    </country>
-    <country>
-      <name>Niger</name>
-      <states />
-    </country>
-    <country>
-      <name>Norfolk Island</name>
-      <states />
-    </country>
-    <country>
-      <name>Nigeria</name>
-      <states />
-    </country>
-    <country>
-      <name>Nicaragua</name>
-      <states />
-    </country>
-    <country>
-      <name>Netherlands</name>
-      <states />
-    </country>
-    <country>
-      <name>Norway</name>
-      <states />
-    </country>
-    <country>
-      <name>Nepal</name>
       <states />
     </country>
     <country>
@@ -1041,7 +984,15 @@
       <states />
     </country>
     <country>
-      <name>Niue</name>
+      <name>Nepal</name>
+      <states />
+    </country>
+    <country>
+      <name>Netherlands</name>
+      <states />
+    </country>
+    <country>
+      <name>New Caledonia</name>
       <states />
     </country>
     <country>
@@ -1049,27 +1000,31 @@
       <states />
     </country>
     <country>
+      <name>Nicaragua</name>
+      <states />
+    </country>
+    <country>
+      <name>Niger</name>
+      <states />
+    </country>
+    <country>
+      <name>Nigeria</name>
+      <states />
+    </country>
+    <country>
+      <name>Niue</name>
+      <states />
+    </country>
+    <country>
+      <name>Norfolk Island</name>
+      <states />
+    </country>
+    <country>
+      <name>Norway</name>
+      <states />
+    </country>
+    <country>
       <name>Oman</name>
-      <states />
-    </country>
-    <country>
-      <name>Panama</name>
-      <states />
-    </country>
-    <country>
-      <name>Peru</name>
-      <states />
-    </country>
-    <country>
-      <name>French Polynesia</name>
-      <states />
-    </country>
-    <country>
-      <name>Papua New Guinea</name>
-      <states />
-    </country>
-    <country>
-      <name>Philippines</name>
       <states />
     </country>
     <country>
@@ -1077,11 +1032,27 @@
       <states />
     </country>
     <country>
-      <name>Poland</name>
+      <name>Palestine</name>
       <states />
     </country>
     <country>
-      <name>Saint Pierre and Miquelon</name>
+      <name>Panama</name>
+      <states />
+    </country>
+    <country>
+      <name>Papua New Guinea</name>
+      <states />
+    </country>
+    <country>
+      <name>Paraguay</name>
+      <states />
+    </country>
+    <country>
+      <name>Peru</name>
+      <states />
+    </country>
+    <country>
+      <name>Philippines</name>
       <states />
     </country>
     <country>
@@ -1089,15 +1060,11 @@
       <states />
     </country>
     <country>
-      <name>Palestine</name>
+      <name>Poland</name>
       <states />
     </country>
     <country>
       <name>Portugal</name>
-      <states />
-    </country>
-    <country>
-      <name>Paraguay</name>
       <states />
     </country>
     <country>
@@ -1113,10 +1080,6 @@
       <states />
     </country>
     <country>
-      <name>Serbia</name>
-      <states />
-    </country>
-    <country>
       <name>Russian Federation</name>
       <states />
     </country>
@@ -1125,11 +1088,55 @@
       <states />
     </country>
     <country>
+      <name>Saint Barthélemy</name>
+      <states />
+    </country>
+    <country>
+      <name>Saint Helena, Ascension and Tristan da Cunha</name>
+      <states />
+    </country>
+    <country>
+      <name>Saint Kitts and Nevis</name>
+      <states />
+    </country>
+    <country>
+      <name>Saint Lucia</name>
+      <states />
+    </country>
+    <country>
+      <name>Saint Martin (French part)</name>
+      <states />
+    </country>
+    <country>
+      <name>Saint Pierre and Miquelon</name>
+      <states />
+    </country>
+    <country>
+      <name>Saint Vincent and the Grenadines</name>
+      <states />
+    </country>
+    <country>
+      <name>Samoa</name>
+      <states />
+    </country>
+    <country>
+      <name>San Marino</name>
+      <states />
+    </country>
+    <country>
+      <name>Sao Tome and Principe</name>
+      <states />
+    </country>
+    <country>
       <name>Saudi Arabia</name>
       <states />
     </country>
     <country>
-      <name>Solomon Islands</name>
+      <name>Senegal</name>
+      <states />
+    </country>
+    <country>
+      <name>Serbia</name>
       <states />
     </country>
     <country>
@@ -1137,11 +1144,7 @@
       <states />
     </country>
     <country>
-      <name>Sudan</name>
-      <states />
-    </country>
-    <country>
-      <name>Sweden</name>
+      <name>Sierra Leone</name>
       <states />
     </country>
     <country>
@@ -1151,15 +1154,7 @@
       </states>
     </country>
     <country>
-      <name>Saint Helena, Ascension and Tristan da Cunha</name>
-      <states />
-    </country>
-    <country>
-      <name>Slovenia</name>
-      <states />
-    </country>
-    <country>
-      <name>Svalbard and Jan Mayen</name>
+      <name>Sint Maarten (Dutch part)</name>
       <states />
     </country>
     <country>
@@ -1167,15 +1162,11 @@
       <states />
     </country>
     <country>
-      <name>Sierra Leone</name>
+      <name>Slovenia</name>
       <states />
     </country>
     <country>
-      <name>San Marino</name>
-      <states />
-    </country>
-    <country>
-      <name>Senegal</name>
+      <name>Solomon Islands</name>
       <states />
     </country>
     <country>
@@ -1183,7 +1174,11 @@
       <states />
     </country>
     <country>
-      <name>Suriname</name>
+      <name>South Africa</name>
+      <states />
+    </country>
+    <country>
+      <name>South Georgia and the South Sandwich Islands</name>
       <states />
     </country>
     <country>
@@ -1191,19 +1186,23 @@
       <states />
     </country>
     <country>
-      <name>Sao Tome and Principe</name>
+      <name>Spain</name>
       <states />
     </country>
     <country>
-      <name>El Salvador</name>
+      <name>Sri Lanka</name>
       <states />
     </country>
     <country>
-      <name>Sint Maarten (Dutch part)</name>
+      <name>Sudan</name>
       <states />
     </country>
     <country>
-      <name>Syrian Arab Republic</name>
+      <name>Suriname</name>
+      <states />
+    </country>
+    <country>
+      <name>Svalbard and Jan Mayen</name>
       <states />
     </country>
     <country>
@@ -1211,19 +1210,27 @@
       <states />
     </country>
     <country>
-      <name>Turks and Caicos Islands</name>
+      <name>Sweden</name>
       <states />
     </country>
     <country>
-      <name>Chad</name>
+      <name>Switzerland</name>
       <states />
     </country>
     <country>
-      <name>French Southern Territories</name>
+      <name>Syrian Arab Republic</name>
       <states />
     </country>
     <country>
-      <name>Togo</name>
+      <name>Taiwan</name>
+      <states />
+    </country>
+    <country>
+      <name>Tajikistan</name>
+      <states />
+    </country>
+    <country>
+      <name>Tanzania, United Republic of</name>
       <states />
     </country>
     <country>
@@ -1307,10 +1314,13 @@
         <state>Narathiwat</state>
         <state>Phatthaya</state>
       </states>
-
     </country>
     <country>
-      <name>Tajikistan</name>
+      <name>Timor-Leste</name>
+      <states />
+    </country>
+    <country>
+      <name>Togo</name>
       <states />
     </country>
     <country>
@@ -1318,23 +1328,7 @@
       <states />
     </country>
     <country>
-      <name>Timor-Leste</name>
-      <states />
-    </country>
-    <country>
-      <name>Turkmenistan</name>
-      <states />
-    </country>
-    <country>
-      <name>Tunisia</name>
-      <states />
-    </country>
-    <country>
       <name>Tonga</name>
-      <states />
-    </country>
-    <country>
-      <name>Turkey</name>
       <states />
     </country>
     <country>
@@ -1342,15 +1336,27 @@
       <states />
     </country>
     <country>
+      <name>Tunisia</name>
+      <states />
+    </country>
+    <country>
+      <name>Turkey</name>
+      <states />
+    </country>
+    <country>
+      <name>Turkmenistan</name>
+      <states />
+    </country>
+    <country>
+      <name>Turks and Caicos Islands</name>
+      <states />
+    </country>
+    <country>
       <name>Tuvalu</name>
       <states />
     </country>
     <country>
-      <name>Taiwan</name>
-      <states />
-    </country>
-    <country>
-      <name>Tanzania, United Republic of</name>
+      <name>Uganda</name>
       <states />
     </country>
     <country>
@@ -1358,7 +1364,11 @@
       <states />
     </country>
     <country>
-      <name>Uganda</name>
+      <name>United Arab Emirates</name>
+      <states />
+    </country>
+    <country>
+      <name>United Kingdom</name>
       <states />
     </country>
     <country>
@@ -1438,19 +1448,11 @@
       <states />
     </country>
     <country>
-      <name>Holy See (Vatican City State)</name>
-      <states />
-    </country>
-    <country>
-      <name>Saint Vincent and the Grenadines</name>
+      <name>Vanuatu</name>
       <states />
     </country>
     <country>
       <name>Venezuela, Bolivarian Republic of</name>
-      <states />
-    </country>
-    <country>
-      <name>Virgin Islands, British</name>
       <states />
     </country>
     <country>
@@ -1520,10 +1522,9 @@
         <state>Đồng Nai</state>
         <state>Đồng Tháp</state>
       </states>
-
     </country>
     <country>
-      <name>Vanuatu</name>
+      <name>Virgin Islands, British</name>
       <states />
     </country>
     <country>
@@ -1531,19 +1532,11 @@
       <states />
     </country>
     <country>
-      <name>Samoa</name>
+      <name>Western Sahara</name>
       <states />
     </country>
     <country>
       <name>Yemen</name>
-      <states />
-    </country>
-    <country>
-      <name>Mayotte</name>
-      <states />
-    </country>
-    <country>
-      <name>South Africa</name>
       <states />
     </country>
     <country>
@@ -1554,7 +1547,6 @@
       <name>Zimbabwe</name>
       <states />
     </country>
-
   </countries>
   <industries>
     <industry><![CDATA[Advertising/MR/PR/Events]]></industry>

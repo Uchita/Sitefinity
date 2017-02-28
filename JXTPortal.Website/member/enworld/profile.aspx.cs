@@ -21,7 +21,7 @@ namespace JXTPortal.Website.member.enworld
 {
     public partial class profile : System.Web.UI.Page
     {
-        private static string ContentValidationRegex = ConfigurationManager.AppSettings["ContentValidationRegex"];
+        private static string ContentValidationRegex = ConfigurationManager.AppSettings["ContentValidationRegex"]; //this verifies that no HTML tags are allowed
         private static string EmailValidationRegex = ConfigurationManager.AppSettings["EmailValidationRegex"];
         private string XMLPath = "/xml/enworld.xml";
         private const string ENWORLD_SF_QUERY = @"SELECT Id, FirstName, LastName, First_Name_Local__c, Last_Name_Local__c, Email, 
@@ -1071,41 +1071,46 @@ namespace JXTPortal.Website.member.enworld
             if (!string.IsNullOrEmpty(mobile))
             {
                 if (!Regex.IsMatch(mobile, ContentValidationRegex))
-                {
                     errors.Add("Mobile Phone cannot contain invalid content");
-                }
+
+                if (mobile.Length > 40)
+                    errors.Add("Mobile Phone cannot exceed 40 characters");
             }
 
             if (!string.IsNullOrEmpty(phone))
             {
                 if (!Regex.IsMatch(phone, ContentValidationRegex))
-                {
                     errors.Add("Home Phone cannot contain invalid content");
-                }
+
+                if (phone.Length > 40)
+                    errors.Add("Home Phone cannot exceed 40 characters");
             }
 
             if (!string.IsNullOrEmpty(address))
             {
                 if (!Regex.IsMatch(address, ContentValidationRegex))
-                {
                     errors.Add("Address cannot contain invalid content");
-                }
+
+                if (address.Length > 255)
+                    errors.Add("Address cannot exceed 255 characters");
             }
 
             if (!string.IsNullOrEmpty(city))
             {
                 if (!Regex.IsMatch(city, ContentValidationRegex))
-                {
                     errors.Add("City cannot contain invalid content");
-                }
+
+                if (city.Length > 40)
+                    errors.Add("City cannot exceed 40 characters");
             }
 
             if (!string.IsNullOrEmpty(zip))
             {
                 if (!Regex.IsMatch(zip, ContentValidationRegex))
-                {
                     errors.Add("Zip Code cannot contain invalid content");
-                }
+
+                if (zip.Length > 40)
+                    errors.Add("Zip Code cannot exceed 40 characters");
             }
 
             if (!string.IsNullOrEmpty(secondEmail))
@@ -1221,6 +1226,7 @@ namespace JXTPortal.Website.member.enworld
 
             if (string.IsNullOrEmpty(industry) || industry == "--None--")
                 errors.Add("You must select an Industry");
+
             if (string.IsNullOrEmpty(jobcategory) || jobcategory == "--None--")
                 errors.Add("You must select a Job Category");
 
@@ -1230,17 +1236,17 @@ namespace JXTPortal.Website.member.enworld
             if (!string.IsNullOrEmpty(company))
             {
                 if (!Regex.IsMatch(company, ContentValidationRegex))
-                {
                     errors.Add("Company cannot contain invalid content");
-                }
+                if (company.Length > 255)
+                    errors.Add("Company cannot exceed 255 characters");
             }
 
             if (!string.IsNullOrEmpty(jobtitle))
             {
                 if (!Regex.IsMatch(jobtitle, ContentValidationRegex))
-                {
                     errors.Add("Job Title cannot contain invalid content");
-                }
+                if (jobtitle.Length > 255)
+                    errors.Add("Job Title cannot exceed 255 characters");
             }
 
             try
@@ -1289,7 +1295,7 @@ namespace JXTPortal.Website.member.enworld
                         Salary_Period__c = salaryperiod,
                         Current_Fixed_Salary__c = fixedsalary,
                         Annual_Variable_Salary__c = incentivesalary,
-                        CurrencyIsoCode = ddlSalaryCurrency
+                        Salary_Currency__c = ddlSalaryCurrency
                     }, out sfEntityID, out errorMsgs);
 
                 if (postSuccess)

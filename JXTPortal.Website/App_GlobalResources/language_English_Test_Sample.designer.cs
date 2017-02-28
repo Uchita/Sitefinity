@@ -4608,7 +4608,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job Saved.
+        ///   Looks up a localized string similar to Unsave Job.
         /// </summary>
         internal static string LabelJobSaved {
             get {

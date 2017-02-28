@@ -362,7 +362,7 @@
     <comment>Sorry, we were unable to retrieve your details. Please check the details you entered and try again.</comment>
   </data>
   <data name="ErrorEnterEmailUsername" xml:space="preserve">
-    <value>ユーザー名かメールアドレスを入力してください</value>
+    <value>メールアドレスを入力してください</value>
     <comment>Please fill in username or email address</comment>
   </data>
   <data name="ErrorEnterKeyword" xml:space="preserve">
@@ -559,7 +559,7 @@
   </data>
   <data name="LabelAdvertiserInvalid" xml:space="preserve">
     <value>&lt;h2&gt;広告主各位、&lt;/h2&gt;
-&lt;p&gt;ご使用のアカウントは、既に当社で認証されています。&lt;a href=/advertiser/login.aspx"&gt;ログインページ&lt;/a&gt;からアカウントにアクセス可能です。&lt;/p&gt;"</value>
+&lt;p&gt;ご使用のアカウントは、既に当社で認証されています。&lt;a href="/advertiser/login.aspx"&gt;ログインページ&lt;/a&gt;からアカウントにアクセス可能です。&lt;/p&gt;</value>
     <comment>Advertiser validation failed.</comment>
   </data>
   <data name="LabelAdvertiserJobTemplateLogo" xml:space="preserve">
@@ -727,7 +727,7 @@
     <comment>Apply For</comment>
   </data>
   <data name="LabelApplyForPosition" xml:space="preserve">
-    <value>職に応募</value>
+    <value>応募する求人</value>
     <comment>Apply for position</comment>
   </data>
   <data name="LabelApplyWith" xml:space="preserve">
@@ -819,7 +819,7 @@
     <comment>Bachelor Degree</comment>
   </data>
   <data name="LabelBackToJob" xml:space="preserve">
-    <value>ジョブに戻る</value>
+    <value>求人に戻る</value>
     <comment>Back to Job</comment>
   </data>
   <data name="labelBasicInformation" xml:space="preserve">
@@ -831,7 +831,7 @@
     <comment>Beginner</comment>
   </data>
   <data name="LabelBelow" xml:space="preserve">
-    <value>以下</value>
+    <value>からご登録ください </value>
     <comment>below</comment>
   </data>
   <data name="LabelBelowListSavedJobs" xml:space="preserve">
@@ -1087,7 +1087,7 @@
     <comment>Confirm email not match</comment>
   </data>
   <data name="LabelConfirmEmailPage" xml:space="preserve">
-    <value>Eメール〔確認〕</value>
+    <value>メールアドレス（確認用）</value>
     <comment>Confirm email</comment>
   </data>
   <data name="LabelConfirmEmailRequired" xml:space="preserve">
@@ -1539,7 +1539,7 @@
     <comment>Email Friend</comment>
   </data>
   <data name="LabelEmailFriendSuccess" xml:space="preserve">
-    <value>リンクをメールで送りました。「戻る」をクリックして仕事内容に戻ってください。。。</value>
+    <value>ご友人に求人の紹介メールが送付されました。求人情報ページにもう一度戻るには、「戻る」をクリックしてください。</value>
     <comment>The link has been sent to the email addresses provided. Select the Back button below to return to the role details.</comment>
   </data>
   <data name="LabelEmailInvalid" xml:space="preserve">
@@ -1547,7 +1547,7 @@
     <comment>Email is invalid.</comment>
   </data>
   <data name="LabelEmailJobToAFriend" xml:space="preserve">
-    <value>このジョブを友達にメールする</value>
+    <value>この求人を友人にメールする</value>
     <comment>Click here to email this job to a friend</comment>
   </data>
   <data name="LabelEmailMandatory" xml:space="preserve">
@@ -1598,12 +1598,16 @@
     <value>開始日は現在の日付以降の終了日を超えることはできません</value>
     <comment>Start Date cannot be later than current date or later than End Date</comment>
   </data>
+  <data name="LabelEnglishLanguageLevel" xml:space="preserve">
+    <value>English Language Level</value>
+    <comment>English Language Level</comment>
+  </data>
   <data name="LabelEnterCommaSeparated" xml:space="preserve">
     <value>コンマを離して「,」入力してください</value>
     <comment>Please enter comma seperated ","</comment>
   </data>
   <data name="LabelEnterEmail" xml:space="preserve">
-    <value>Eメールを記入</value>
+    <value>メールアドレス</value>
     <comment>Email</comment>
   </data>
   <data name="LabelEnterFirstName" xml:space="preserve">
@@ -1787,7 +1791,7 @@
     <comment>Retrieve Password</comment>
   </data>
   <data name="LabelForgotPassword" xml:space="preserve">
-    <value>パスワードを忘れた方はこちら</value>
+    <value>パスワードを再設定する場合はこちら</value>
     <comment>Forgot password</comment>
   </data>
   <data name="LabelForgottenPassword" xml:space="preserve">
@@ -1969,6 +1973,10 @@
   <data name="LabelJan" xml:space="preserve">
     <value>1月</value>
     <comment>January</comment>
+  </data>
+  <data name="LabelJapaneseLanguageLevel" xml:space="preserve">
+    <value>Japanese Language Level</value>
+    <comment>Japanese Language Level</comment>
   </data>
   <data name="LabelJobAdOptions" xml:space="preserve">
     <value>ジョブ広告のオプション</value>
@@ -2187,7 +2195,7 @@
     <comment>Juris Doctor</comment>
   </data>
   <data name="LabelJustApply" xml:space="preserve">
-    <value>今すぐ応募する</value>
+    <value>求人エントリー</value>
     <comment>Apply now</comment>
   </data>
   <data name="LabelJustApplyPage" xml:space="preserve">
@@ -2446,7 +2454,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Mentor</comment>
   </data>
   <data name="LabelMessageForYourFriend" xml:space="preserve">
-    <value>友達へのメッセージ</value>
+    <value>ご友人へのメッセージ</value>
     <comment>Message For Your Friend</comment>
   </data>
   <data name="LabelMin" xml:space="preserve">
@@ -2558,7 +2566,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>My Resume / Cover Letter</comment>
   </data>
   <data name="LabelMySavedJobs" xml:space="preserve">
-    <value>検討中の求人</value>
+    <value>検討中のジョブ</value>
     <comment>My Saved Jobs</comment>
   </data>
   <data name="LabelMySearchCriteria" xml:space="preserve">
@@ -2714,7 +2722,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Note</comment>
   </data>
   <data name="LabelNotRegisteredQuickly" xml:space="preserve">
-    <value>Not registered? No problem! Quickly</value>
+    <value>初めてご利用する方は</value>
     <comment>Not registered? No problem! Quickly</comment>
   </data>
   <data name="LabelNotSeeking" xml:space="preserve">
@@ -2798,6 +2806,14 @@ Your account has already been validated, you are not required to do this again.<
   <data name="LabelOther" xml:space="preserve">
     <value>その他</value>
     <comment>Other</comment>
+  </data>
+  <data name="LabelOtherLanguage" xml:space="preserve">
+    <value>Other Language</value>
+    <comment>Other Language</comment>
+  </data>
+  <data name="LabelOtherLanguageLevel" xml:space="preserve">
+    <value>Other Language Level</value>
+    <comment>Other Language Level</comment>
   </data>
   <data name="LabelOtherQualification" xml:space="preserve">
     <value>その他の資格</value>
@@ -3255,7 +3271,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Register</comment>
   </data>
   <data name="LabelRegisterAndApply" xml:space="preserve">
-    <value>登録して適用されます</value>
+    <value>こちら</value>
     <comment>register and apply</comment>
   </data>
   <data name="LabelRegisteringAgree" xml:space="preserve">
@@ -3331,7 +3347,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Indicates a required field</comment>
   </data>
   <data name="LabelRequiredField1" xml:space="preserve">
-    <value>入力が必要です</value>
+    <value>氏名を入力してください</value>
     <comment>Required Field</comment>
   </data>
   <data name="LabelRequiredFieldsNeeded" xml:space="preserve">
@@ -3700,7 +3716,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Share:</comment>
   </data>
   <data name="LabelShareOnGooglePlus" xml:space="preserve">
-    <value>これをGoogle+でシェア</value>
+    <value>この求人をGoogle+でシェアする</value>
     <comment>Share this on Google+</comment>
   </data>
   <data name="LabelShortBio" xml:space="preserve">
@@ -3732,7 +3748,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Show Salary Range</comment>
   </data>
   <data name="LabelSimilarJobs" xml:space="preserve">
-    <value>似たような条件のジョブ</value>
+    <value>お勧めの求人</value>
     <comment>Similar Jobs</comment>
   </data>
   <data name="LabelSite" xml:space="preserve">
@@ -3848,7 +3864,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Please submit street address to enable map and radius searching</comment>
   </data>
   <data name="LabelSubscribeToJobAlert" xml:space="preserve">
-    <value>ジョブの登録をする</value>
+    <value>求人の登録をする</value>
     <comment>Subscribe to Job alert</comment>
   </data>
   <data name="LabelSubscribeToNewsLetter" xml:space="preserve">
@@ -4088,7 +4104,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Use existing resume file</comment>
   </data>
   <data name="LabelUseMyProfile" xml:space="preserve">
-    <value>私のプロフィールを使用</value>
+    <value>登録した情報で応募する</value>
     <comment>Use my profile</comment>
   </data>
   <data name="LabelUsername" xml:space="preserve">
@@ -4196,7 +4212,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Welcome</comment>
   </data>
   <data name="LabelWelcomeBack" xml:space="preserve">
-    <value>おかえりなさい</value>
+    <value>様、エンワールドをご利用くださりありがとうございます。</value>
     <comment>Welcome back</comment>
   </data>
   <data name="LabelWelcomeBroadcast" xml:space="preserve">
@@ -4264,15 +4280,15 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Your Email</comment>
   </data>
   <data name="LabelYourFriendEmail" xml:space="preserve">
-    <value>お友達のメールアドレス</value>
+    <value>ご友人のメールアドレス</value>
     <comment>Your Friend's Email</comment>
   </data>
   <data name="LabelYourFriendName" xml:space="preserve">
-    <value>お友達のお名前</value>
+    <value>ご友人の氏名</value>
     <comment>Your Friend's Name</comment>
   </data>
   <data name="LabelYourName" xml:space="preserve">
-    <value>あなたのお名前</value>
+    <value>あなたの氏名</value>
     <comment>Your Name</comment>
   </data>
   <data name="LabelYourOrder" xml:space="preserve">
@@ -4324,7 +4340,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Add tags</comment>
   </data>
   <data name="LinkButtonApplyNow" xml:space="preserve">
-    <value>今すぐ応募する</value>
+    <value>求人エントリー</value>
     <comment>Apply now</comment>
   </data>
   <data name="LinkButtonArchivedJobAds" xml:space="preserve">
@@ -4376,11 +4392,11 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Edit</comment>
   </data>
   <data name="LinkButtonEmailJob" xml:space="preserve">
-    <value>このジョブ情報をメールで送る</value>
+    <value>この求人を友人にメールする</value>
     <comment>Email this Job</comment>
   </data>
   <data name="LinkButtonJobLinkedIn" xml:space="preserve">
-    <value>このジョブをLinkedInでシェアする</value>
+    <value>この求人をLinkedInでシェアする</value>
     <comment>Share this Job on LinkedIn</comment>
   </data>
   <data name="LinkButtonJobReports" xml:space="preserve">
@@ -4392,11 +4408,11 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Subscribe to RSS Feed</comment>
   </data>
   <data name="LinkButtonJobShareFacebook" xml:space="preserve">
-    <value>このジョブをFacebookでシェアする</value>
+    <value>この求人をFacebookでシェアする</value>
     <comment>Share this Job on Facebook</comment>
   </data>
   <data name="LinkButtonJobShareTwitter" xml:space="preserve">
-    <value>このジョブをツィートする</value>
+    <value>この求人をツィートする</value>
     <comment>Tweet this Job</comment>
   </data>
   <data name="LinkButtonJobTracker" xml:space="preserve">
@@ -4416,7 +4432,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>People search</comment>
   </data>
   <data name="LinkButtonPrintJob" xml:space="preserve">
-    <value>このジョブを印刷する</value>
+    <value>この求人を印刷する</value>
     <comment>Print this Job</comment>
   </data>
   <data name="LinkButtonReports" xml:space="preserve">
@@ -4424,7 +4440,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Reports</comment>
   </data>
   <data name="LinkButtonSavedJobs" xml:space="preserve">
-    <value>このジョブを保存する</value>
+    <value>この求人を保存する</value>
     <comment>Save this Job</comment>
   </data>
   <data name="LinkButtonSaveJob" xml:space="preserve">
@@ -4498,21 +4514,5 @@ Your account has already been validated, you are not required to do this again.<
   <data name="ValidationPhoneNumbers" xml:space="preserve">
     <value>Accepts only numbers, spaces, '+', '(' and ')'</value>
     <comment>Accepts only numbers, spaces, '+', '(' and ')'</comment>
-  </data>
-  <data name="LabelEnglishLanguageLevel" xml:space="preserve">
-    <value>English Language Level</value>
-    <comment>English Language Level</comment>
-  </data>
-  <data name="LabelJapaneseLanguageLevel" xml:space="preserve">
-    <value>Japanese Language Level</value>
-    <comment>Japanese Language Level</comment>
-  </data>
-  <data name="LabelOtherLanguage" xml:space="preserve">
-    <value>Other Language</value>
-    <comment>Other Language</comment>
-  </data>
-  <data name="LabelOtherLanguageLevel" xml:space="preserve">
-    <value>Other Language Level</value>
-    <comment>Other Language Level</comment>
   </data>
 </root>

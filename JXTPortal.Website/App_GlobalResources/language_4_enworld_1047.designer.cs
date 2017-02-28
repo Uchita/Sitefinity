@@ -610,7 +610,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ユーザー名かメールアドレスを入力してください.
+        ///   Looks up a localized string similar to メールアドレスを入力してください.
         /// </summary>
         internal static string ErrorEnterEmailUsername {
             get {
@@ -1052,7 +1052,7 @@ namespace Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;h2&gt;広告主各位、&lt;/h2&gt;
-        ///&lt;p&gt;ご使用のアカウントは、既に当社で認証されています。&lt;a href=/advertiser/login.aspx&quot;&gt;ログインページ&lt;/a&gt;からアカウントにアクセス可能です。&lt;/p&gt;&quot;.
+        ///&lt;p&gt;ご使用のアカウントは、既に当社で認証されています。&lt;a href=&quot;/advertiser/login.aspx&quot;&gt;ログインページ&lt;/a&gt;からアカウントにアクセス可能です。&lt;/p&gt;.
         /// </summary>
         internal static string LabelAdvertiserInvalid {
             get {
@@ -1430,7 +1430,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 職に応募.
+        ///   Looks up a localized string similar to 応募する求人.
         /// </summary>
         internal static string LabelApplyForPosition {
             get {
@@ -1637,7 +1637,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブに戻る.
+        ///   Looks up a localized string similar to 求人に戻る.
         /// </summary>
         internal static string LabelBackToJob {
             get {
@@ -1664,7 +1664,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 以下.
+        ///   Looks up a localized string similar to からご登録ください .
         /// </summary>
         internal static string LabelBelow {
             get {
@@ -2240,7 +2240,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Eメール〔確認〕.
+        ///   Looks up a localized string similar to メールアドレス（確認用）.
         /// </summary>
         internal static string LabelConfirmEmailPage {
             get {
@@ -3257,7 +3257,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to リンクをメールで送りました。「戻る」をクリックして仕事内容に戻ってください。。。.
+        ///   Looks up a localized string similar to ご友人に求人の紹介メールが送付されました。求人情報ページにもう一度戻るには、「戻る」をクリックしてください。.
         /// </summary>
         internal static string LabelEmailFriendSuccess {
             get {
@@ -3275,7 +3275,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to このジョブを友達にメールする.
+        ///   Looks up a localized string similar to この求人を友人にメールする.
         /// </summary>
         internal static string LabelEmailJobToAFriend {
             get {
@@ -3410,7 +3410,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Eメールを記入.
+        ///   Looks up a localized string similar to メールアドレス.
         /// </summary>
         internal static string LabelEnterEmail {
             get {
@@ -3824,7 +3824,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to パスワードを忘れた方はこちら.
+        ///   Looks up a localized string similar to パスワードを再設定する場合はこちら.
         /// </summary>
         internal static string LabelForgotPassword {
             get {
@@ -4733,7 +4733,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 今すぐ応募する.
+        ///   Looks up a localized string similar to 求人エントリー.
         /// </summary>
         internal static string LabelJustApply {
             get {
@@ -5311,7 +5311,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 友達へのメッセージ.
+        ///   Looks up a localized string similar to ご友人へのメッセージ.
         /// </summary>
         internal static string LabelMessageForYourFriend {
             get {
@@ -5563,7 +5563,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 検討中の求人.
+        ///   Looks up a localized string similar to 検討中のジョブ.
         /// </summary>
         internal static string LabelMySavedJobs {
             get {
@@ -5914,7 +5914,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Not registered? No problem! Quickly.
+        ///   Looks up a localized string similar to 初めてご利用する方は.
         /// </summary>
         internal static string LabelNotRegisteredQuickly {
             get {
@@ -7148,7 +7148,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 登録して適用されます.
+        ///   Looks up a localized string similar to こちら.
         /// </summary>
         internal static string LabelRegisterAndApply {
             get {
@@ -7319,7 +7319,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 入力が必要です.
+        ///   Looks up a localized string similar to 氏名を入力してください.
         /// </summary>
         internal static string LabelRequiredField1 {
             get {
@@ -8148,7 +8148,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to これをGoogle+でシェア.
+        ///   Looks up a localized string similar to この求人をGoogle+でシェアする.
         /// </summary>
         internal static string LabelShareOnGooglePlus {
             get {
@@ -8220,7 +8220,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 似たような条件のジョブ.
+        ///   Looks up a localized string similar to お勧めの求人.
         /// </summary>
         internal static string LabelSimilarJobs {
             get {
@@ -8481,7 +8481,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブの登録をする.
+        ///   Looks up a localized string similar to 求人の登録をする.
         /// </summary>
         internal static string LabelSubscribeToJobAlert {
             get {
@@ -9021,7 +9021,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 私のプロフィールを使用.
+        ///   Looks up a localized string similar to 登録した情報で応募する.
         /// </summary>
         internal static string LabelUseMyProfile {
             get {
@@ -9264,7 +9264,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to おかえりなさい.
+        ///   Looks up a localized string similar to 様、エンワールドをご利用くださりありがとうございます。.
         /// </summary>
         internal static string LabelWelcomeBack {
             get {
@@ -9417,7 +9417,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to お友達のメールアドレス.
+        ///   Looks up a localized string similar to ご友人のメールアドレス.
         /// </summary>
         internal static string LabelYourFriendEmail {
             get {
@@ -9426,7 +9426,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to お友達のお名前.
+        ///   Looks up a localized string similar to ご友人の氏名.
         /// </summary>
         internal static string LabelYourFriendName {
             get {
@@ -9435,7 +9435,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to あなたのお名前.
+        ///   Looks up a localized string similar to あなたの氏名.
         /// </summary>
         internal static string LabelYourName {
             get {
@@ -9552,7 +9552,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 今すぐ応募する.
+        ///   Looks up a localized string similar to 求人エントリー.
         /// </summary>
         internal static string LinkButtonApplyNow {
             get {
@@ -9669,7 +9669,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to このジョブ情報をメールで送る.
+        ///   Looks up a localized string similar to この求人を友人にメールする.
         /// </summary>
         internal static string LinkButtonEmailJob {
             get {
@@ -9678,7 +9678,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to このジョブをLinkedInでシェアする.
+        ///   Looks up a localized string similar to この求人をLinkedInでシェアする.
         /// </summary>
         internal static string LinkButtonJobLinkedIn {
             get {
@@ -9705,7 +9705,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to このジョブをFacebookでシェアする.
+        ///   Looks up a localized string similar to この求人をFacebookでシェアする.
         /// </summary>
         internal static string LinkButtonJobShareFacebook {
             get {
@@ -9714,7 +9714,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to このジョブをツィートする.
+        ///   Looks up a localized string similar to この求人をツィートする.
         /// </summary>
         internal static string LinkButtonJobShareTwitter {
             get {
@@ -9759,7 +9759,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to このジョブを印刷する.
+        ///   Looks up a localized string similar to この求人を印刷する.
         /// </summary>
         internal static string LinkButtonPrintJob {
             get {
@@ -9777,7 +9777,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to このジョブを保存する.
+        ///   Looks up a localized string similar to この求人を保存する.
         /// </summary>
         internal static string LinkButtonSavedJobs {
             get {

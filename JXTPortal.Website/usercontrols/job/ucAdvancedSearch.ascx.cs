@@ -241,6 +241,10 @@ namespace JXTPortal.Website.usercontrols.job
                 strSelectHtml.AppendFormat("<select class='form-dropdown' id=\"{0}\">", "countryID" + IsDynamicWidget);
                 List<Entities.SiteCountries> siteCountriesList = SiteCountriesService.GetTranslatedCountries();
 
+                //sort by sequence
+                if (siteCountriesList != null && siteCountriesList.Count() > 0)
+                    siteCountriesList = siteCountriesList.OrderBy(c => c.Sequence).ToList();
+
                 strSelectHtml.AppendFormat("<option value=\"-1\" data-placeholdertag=\"\" SELECTED>" + CommonFunction.GetResourceValue("LabelAllCountry") + "</option>");
 
                 foreach (Entities.SiteCountries siteCountry in siteCountriesList)

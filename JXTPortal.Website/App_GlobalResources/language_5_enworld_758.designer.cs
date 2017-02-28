@@ -22,14 +22,14 @@ namespace Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Web.Application.StronglyTypedResourceProxyBuilder", "10.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class language_4_enworld_1047 {
+    internal class language_5_enworld_758 {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal language_4_enworld_1047() {
+        internal language_5_enworld_758() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resources.language_4_enworld_1047", global::System.Reflection.Assembly.Load("App_GlobalResources"));
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resources.language_5_enworld_758", global::System.Reflection.Assembly.Load("App_GlobalResources"));
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 新規.
+        ///   Looks up a localized string similar to 새로 추가.
         /// </summary>
         internal static string ButtonAdvertiserUsers {
             get {
@@ -70,7 +70,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to フィルターをかける.
+        ///   Looks up a localized string similar to 필터 적용.
         /// </summary>
         internal static string ButtonApplyFilter {
             get {
@@ -79,7 +79,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 戻る.
+        ///   Looks up a localized string similar to 뒤로.
         /// </summary>
         internal static string ButtonBack {
             get {
@@ -88,7 +88,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to キャンセル.
+        ///   Looks up a localized string similar to 취소.
         /// </summary>
         internal static string ButtonCancel {
             get {
@@ -97,7 +97,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 続行.
+        ///   Looks up a localized string similar to 계속.
         /// </summary>
         internal static string ButtonContinue {
             get {
@@ -106,7 +106,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブアラートを設定する.
+        ///   Looks up a localized string similar to 채용 공고 알림 생성.
         /// </summary>
         internal static string ButtonCreateJobAlert {
             get {
@@ -115,7 +115,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 挿入.
+        ///   Looks up a localized string similar to 삽입.
         /// </summary>
         internal static string ButtonInsert {
             get {
@@ -124,7 +124,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 新しい検索.
+        ///   Looks up a localized string similar to 새로 검색.
         /// </summary>
         internal static string ButtonNewSearch {
             get {
@@ -133,7 +133,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to カバーレターなし.
+        ///   Looks up a localized string similar to 자기소개서 없음.
         /// </summary>
         internal static string ButtonNoCoverLetter {
             get {
@@ -142,7 +142,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 履歴書なし.
+        ///   Looks up a localized string similar to 이력서 없음.
         /// </summary>
         internal static string ButtonNoResume {
             get {
@@ -151,7 +151,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 登録.
+        ///   Looks up a localized string similar to 등록.
         /// </summary>
         internal static string ButtonRegister {
             get {
@@ -160,7 +160,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブの更新.
+        ///   Looks up a localized string similar to 채용정보 갱신.
         /// </summary>
         internal static string ButtonRenewJob {
             get {
@@ -169,7 +169,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 送信.
+        ///   Looks up a localized string similar to 재설정.
         /// </summary>
         internal static string ButtonReset {
             get {
@@ -178,7 +178,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to RSSフィード.
+        ///   Looks up a localized string similar to RSS 피드.
         /// </summary>
         internal static string ButtonRSSFeed {
             get {
@@ -187,7 +187,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 保存.
+        ///   Looks up a localized string similar to 저장.
         /// </summary>
         internal static string ButtonSave {
             get {
@@ -196,7 +196,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 選択した箇所を保存.
+        ///   Looks up a localized string similar to 선택 항목 저장.
         /// </summary>
         internal static string ButtonSaveSelected {
             get {
@@ -205,7 +205,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 検索.
+        ///   Looks up a localized string similar to 검색.
         /// </summary>
         internal static string ButtonSearch {
             get {
@@ -214,7 +214,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 選択.
+        ///   Looks up a localized string similar to 선택.
         /// </summary>
         internal static string ButtonSelect {
             get {
@@ -223,7 +223,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 送信.
+        ///   Looks up a localized string similar to 발송.
         /// </summary>
         internal static string ButtonSend {
             get {
@@ -232,7 +232,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 送信.
+        ///   Looks up a localized string similar to 버튼 - 제출.
         /// </summary>
         internal static string ButtonSubmit {
             get {
@@ -241,7 +241,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 更新.
+        ///   Looks up a localized string similar to 업데이트.
         /// </summary>
         internal static string ButtonUpdate {
             get {
@@ -250,7 +250,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to パソコンからカバーレターをアップロードする.
+        ///   Looks up a localized string similar to 내 컴퓨터에서 자기 소개서 업로드.
         /// </summary>
         internal static string ButtonUploadCoverLetterNow {
             get {
@@ -259,7 +259,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to パソコンから履歴書をアップロードする.
+        ///   Looks up a localized string similar to 내 컴퓨터에서 이력서 업로드.
         /// </summary>
         internal static string ButtonUploadResumeNow {
             get {
@@ -268,7 +268,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 自分のプロフィールを使用する.
+        ///   Looks up a localized string similar to 내 프로필 사용.
         /// </summary>
         internal static string ButtonUseMyProfile {
             get {
@@ -277,7 +277,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 今すぐ記入する.
+        ///   Looks up a localized string similar to 지금작성.
         /// </summary>
         internal static string ButtonWriteOneNow {
             get {
@@ -286,7 +286,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 監査委員会.
+        ///   Looks up a localized string similar to 감사위원회.
         /// </summary>
         internal static string cbAuditCommittee {
             get {
@@ -295,7 +295,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 指名委員会.
+        ///   Looks up a localized string similar to 추천위원회.
         /// </summary>
         internal static string cbNominationsCommittee {
             get {
@@ -304,7 +304,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OH&amp;S委員会.
+        ///   Looks up a localized string similar to 산업안전보건(OH&amp;S)위원회.
         /// </summary>
         internal static string cbOHSCommittee {
             get {
@@ -313,7 +313,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to その他.
+        ///   Looks up a localized string similar to 기타.
         /// </summary>
         internal static string cbOther {
             get {
@@ -322,7 +322,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 報酬委員会.
+        ///   Looks up a localized string similar to 보상위원회.
         /// </summary>
         internal static string cbRemunerationCommittee {
             get {
@@ -331,7 +331,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to リスク委員会.
+        ///   Looks up a localized string similar to 리스크 위원회.
         /// </summary>
         internal static string cbRiskCommittee {
             get {
@@ -340,7 +340,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to このジョブ広告の下書きを削除してもよろしいですか.
+        ///   Looks up a localized string similar to 본 공고 초안을 정말로 영구 삭제하시겠습니까?.
         /// </summary>
         internal static string ConfirmDeleteJob {
             get {
@@ -349,7 +349,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to このジョブの掲載を終了してもよろしいですか.
+        ///   Looks up a localized string similar to 본 채용 공고를 정말로 만료시키시겠습니까?.
         /// </summary>
         internal static string ConfirmExpireJob {
             get {
@@ -358,7 +358,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - 選択してください -.
+        ///   Looks up a localized string similar to - 선택하시기 바랍니다 -.
         /// </summary>
         internal static string DDLAllAreas {
             get {
@@ -367,7 +367,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 昇順.
+        ///   Looks up a localized string similar to 오름차순.
         /// </summary>
         internal static string DDLAscending {
             get {
@@ -376,7 +376,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 掲載日.
+        ///   Looks up a localized string similar to 게시일.
         /// </summary>
         internal static string DDLDatePosted {
             get {
@@ -385,7 +385,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 掲載終了までの日数.
+        ///   Looks up a localized string similar to 만료일까지 남은 기간.
         /// </summary>
         internal static string DDLDaysTillExpiry {
             get {
@@ -394,7 +394,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 降順.
+        ///   Looks up a localized string similar to 내림차순.
         /// </summary>
         internal static string DDLDescending {
             get {
@@ -403,7 +403,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブのタイトル.
+        ///   Looks up a localized string similar to 직위.
         /// </summary>
         internal static string DDLJobTitle {
             get {
@@ -412,7 +412,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - 選択してください -.
+        ///   Looks up a localized string similar to - 선택하시기 바랍니다 -.
         /// </summary>
         internal static string DDLNotSpecified {
             get {
@@ -421,7 +421,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 応募件数.
+        ///   Looks up a localized string similar to 지원자 수.
         /// </summary>
         internal static string DDLNumberOfApplications {
             get {
@@ -430,7 +430,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 閲覧件数.
+        ///   Looks up a localized string similar to 조회수.
         /// </summary>
         internal static string DDLNumberOfViews {
             get {
@@ -439,7 +439,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1日.
+        ///   Looks up a localized string similar to 1일.
         /// </summary>
         internal static string DDLOneDay {
             get {
@@ -448,7 +448,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1ヶ月.
+        ///   Looks up a localized string similar to 1개월.
         /// </summary>
         internal static string DDLOneMonth {
             get {
@@ -457,7 +457,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1週間.
+        ///   Looks up a localized string similar to 1주.
         /// </summary>
         internal static string DDLOneWeek {
             get {
@@ -466,7 +466,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - 選択してください -.
+        ///   Looks up a localized string similar to - 선택하시기 바랍니다 -.
         /// </summary>
         internal static string DDLPleaseSelect {
             get {
@@ -475,7 +475,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - 選択してください -.
+        ///   Looks up a localized string similar to - 선택하시기 바랍니다 -.
         /// </summary>
         internal static string DDLPleaseSelectCountry {
             get {
@@ -484,7 +484,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - 選択してください -.
+        ///   Looks up a localized string similar to - 선택하시기 바랍니다 -.
         /// </summary>
         internal static string DDLPleaseSelectIndustry {
             get {
@@ -493,7 +493,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - 選択してください -.
+        ///   Looks up a localized string similar to - 선택하시기 바랍니다 -.
         /// </summary>
         internal static string DDLPleaseSelectJobCategory {
             get {
@@ -502,7 +502,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - 先に希望勤務国を選んでください。 -.
+        ///   Looks up a localized string similar to - 선택하시기 바랍니다 -.
         /// </summary>
         internal static string DDLPleaseSelectPrimaryDesiredCountry {
             get {
@@ -511,7 +511,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - 先に希望職種を選んでください。-.
+        ///   Looks up a localized string similar to - 선택하시기 바랍니다 -.
         /// </summary>
         internal static string DDLPleaseSelectPrimaryDesiredJobCategory {
             get {
@@ -520,7 +520,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 照会番号.
+        ///   Looks up a localized string similar to 참조 번호.
         /// </summary>
         internal static string DDLRefNo {
             get {
@@ -529,7 +529,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 6ヶ月.
+        ///   Looks up a localized string similar to 6개월.
         /// </summary>
         internal static string DDLSixMonths {
             get {
@@ -538,7 +538,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 3ヶ月.
+        ///   Looks up a localized string similar to 3개월.
         /// </summary>
         internal static string DDLThreeMonths {
             get {
@@ -547,7 +547,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ご利用規約および諸条件に同意してください.
+        ///   Looks up a localized string similar to 약관에 동의해주시기 바랍니다.
         /// </summary>
         internal static string ErrorAcceptTermCondition {
             get {
@@ -556,7 +556,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 入力文字数は160字までです.
+        ///   Looks up a localized string similar to 글머리는 160자를 초과할 수 없습니다.
         /// </summary>
         internal static string ErrorBulletPointSize {
             get {
@@ -565,7 +565,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to パスワードが一致していません.
+        ///   Looks up a localized string similar to 비밀번호가 맞지 않습니다.
         /// </summary>
         internal static string ErrorConfirmPasswordNotMatch {
             get {
@@ -574,7 +574,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to カバーレターが空白です.
+        ///   Looks up a localized string similar to 자기 소개서를 입력해야 합니다..
         /// </summary>
         internal static string ErrorCoverLetterEmpty {
             get {
@@ -583,7 +583,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 内容が空白です.
+        ///   Looks up a localized string similar to 내용을 입력해야 합니다..
         /// </summary>
         internal static string ErrorEmptyContent {
             get {
@@ -592,7 +592,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to アップロードするファイルをご確認ください.
+        ///   Looks up a localized string similar to 업로드할 문서를 선택했는지 확인하십시오..
         /// </summary>
         internal static string ErrorEnsureDocumentSelected {
             get {
@@ -601,7 +601,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to あなたの登録情報を受け取れませんでした。もう一度チェックしてからやり直してください。.
+        ///   Looks up a localized string similar to 죄송합니다. 귀하의 상세정보를 불러올 수 없습니다. 입력하신 상세정보를 확인하시고 다시 시도하십시오..
         /// </summary>
         internal static string ErrorEnterDetailAgain {
             get {
@@ -610,7 +610,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to メールアドレスを入力してください.
+        ///   Looks up a localized string similar to 사용자명 또는 이메일주소를 입력하십시오..
         /// </summary>
         internal static string ErrorEnterEmailUsername {
             get {
@@ -619,7 +619,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 検索条件を選択してください.
+        ///   Looks up a localized string similar to 검색조건을 선택하십시오..
         /// </summary>
         internal static string ErrorEnterKeyword {
             get {
@@ -628,7 +628,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to このファイルは登録済みです。違うファイルか、ファイル名を変更してから、再度登録してください。.
+        ///   Looks up a localized string similar to 파일이 이미 존재합니다. 다른 파일을 선택하시거나 파일명을 변경하십시오..
         /// </summary>
         internal static string ErrorFileExist {
             get {
@@ -637,7 +637,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to このファイルの拡張子はご利用になれません.
+        ///   Looks up a localized string similar to 파일 형식 확장자가 적절하지 않습니다..
         /// </summary>
         internal static string ErrorFileExtension {
             get {
@@ -646,7 +646,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to この画像は、最大限度の1MBを超えています.
+        ///   Looks up a localized string similar to 업로드한 이미지가 1MB 한도를 초과합니다..
         /// </summary>
         internal static string ErrorImageExceed {
             get {
@@ -655,7 +655,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The uploaded image extension &apos;.
+        ///   Looks up a localized string similar to 업로드한 이미지 확장 &apos;.
         /// </summary>
         internal static string ErrorImageExtension {
             get {
@@ -664,7 +664,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to この画像のサイズはご使用になれません。ご確認の上、もう一度やり直してください。.
+        ///   Looks up a localized string similar to 업로드한 이미지가 허용되지 않는 용량입니다. 이미지를 확인하고 다시 시도하십시오..
         /// </summary>
         internal static string ErrorImageInvalidSize {
             get {
@@ -673,7 +673,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to この画像にはファイル拡張子がついていません.
+        ///   Looks up a localized string similar to 업로드한 이미지에 확장자가 없습니다.
         /// </summary>
         internal static string ErrorImageNoExtension {
             get {
@@ -682,7 +682,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to パスワードが間違っています.
+        ///   Looks up a localized string similar to 잘못된 현재 비밀번호.
         /// </summary>
         internal static string ErrorIncorrectCurrentPassword {
             get {
@@ -691,7 +691,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to このタイプのファイルはご使用になれません.
+        ///   Looks up a localized string similar to 잘못된 파일형식.
         /// </summary>
         internal static string ErrorInvalidFileType {
             get {
@@ -700,7 +700,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to キーワードは100文字以内で入力してください.
+        ///   Looks up a localized string similar to 키워드는 1,000자를 초과할 수 없습니다.
         /// </summary>
         internal static string ErrorKeywordSize {
             get {
@@ -709,7 +709,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 広告掲載者ユーザーが見つかりません.
+        ///   Looks up a localized string similar to 구인자를 찾을 수 없습니다.
         /// </summary>
         internal static string ErrorNoAdvertiserFound {
             get {
@@ -718,7 +718,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 登録メンバーが見つかりません.
+        ///   Looks up a localized string similar to 회원을 찾을 수 없습니다.
         /// </summary>
         internal static string ErrorNoMemberFound {
             get {
@@ -727,7 +727,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to is not accepted.
+        ///   Looks up a localized string similar to 는 허용할 수 없습니다.
         /// </summary>
         internal static string ErrorNotAccepted {
             get {
@@ -736,7 +736,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 電話番号は40桁が上限です.
+        ///   Looks up a localized string similar to 전화번호는40자를초과할수없습니다.
         /// </summary>
         internal static string ErrorPhoneSize {
             get {
@@ -745,7 +745,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 必須入力項目です.
+        ///   Looks up a localized string similar to 필수.
         /// </summary>
         internal static string ErrorRequired {
             get {
@@ -754,7 +754,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to このユーザー名は登録済みです.
+        ///   Looks up a localized string similar to 사용자명이 이미 존재합니다.
         /// </summary>
         internal static string ErrorUsernameExist {
             get {
@@ -763,7 +763,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 言語を追加する.
+        ///   Looks up a localized string similar to 언어 추가.
         /// </summary>
         internal static string LabeAddLanguage {
             get {
@@ -772,7 +772,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 利用規約、諸条件に同意する.
+        ///   Looks up a localized string similar to 약관에 동의합니다.
         /// </summary>
         internal static string LabelAcceptTermCondition {
             get {
@@ -781,7 +781,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ユーザー名かパスワードが間違っているため、アクセスできません.
+        ///   Looks up a localized string similar to 액세스가 거부됨. 잘못된 자격요건..
         /// </summary>
         internal static string LabelAccessDenied {
             get {
@@ -790,7 +790,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to アカウント.
+        ///   Looks up a localized string similar to 계정.
         /// </summary>
         internal static string LabelAccount {
             get {
@@ -799,7 +799,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 入力された認証情報が無効です。アカウントが一時的にロックされています。 「&quot;60分&quot;」後にもう一度お試しになるか、お使いのシステム管理者にお問い合わせください。.
+        ///   Looks up a localized string similar to 제시한 자격요건이 적절하지 않습니다. 계정이 일시적으로 차단되었습니다. “60분” 후에 다시 시도하시거나 시스템 관리자에게 문의하십시오..
         /// </summary>
         internal static string LabelAccountLocked {
             get {
@@ -808,7 +808,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to アカウント番号.
+        ///   Looks up a localized string similar to 계좌번호.
         /// </summary>
         internal static string LabelAccountNumber {
             get {
@@ -817,7 +817,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Accounts Payable Email.
+        ///   Looks up a localized string similar to 계정번호.
         /// </summary>
         internal static string LabelAccountsPayableEmail {
             get {
@@ -826,7 +826,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to アカウントの種類.
+        ///   Looks up a localized string similar to 지급계정 이메일.
         /// </summary>
         internal static string LabelAccountType {
             get {
@@ -835,7 +835,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to アクション.
+        ///   Looks up a localized string similar to 계정 유형.
         /// </summary>
         internal static string LabelAction {
             get {
@@ -844,7 +844,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to アクション.
+        ///   Looks up a localized string similar to 조치.
         /// </summary>
         internal static string LabelActions {
             get {
@@ -853,7 +853,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 追加する.
+        ///   Looks up a localized string similar to 추가.
         /// </summary>
         internal static string LabelAdd {
             get {
@@ -862,7 +862,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to エントリーを追加する.
+        ///   Looks up a localized string similar to 항목 추가.
         /// </summary>
         internal static string LabelAddAnEntry {
             get {
@@ -871,7 +871,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 経歴を追加する.
+        ///   Looks up a localized string similar to 다른 경력 추가.
         /// </summary>
         internal static string LabelAddAnotherDirectorship {
             get {
@@ -880,7 +880,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 経験を追加する.
+        ///   Looks up a localized string similar to 다른 경력 추가.
         /// </summary>
         internal static string LabelAddAnotherExperience {
             get {
@@ -889,7 +889,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 資格を追加する.
+        ///   Looks up a localized string similar to 다른 자격요건 추가.
         /// </summary>
         internal static string LabelAddAnotherQualification {
             get {
@@ -898,7 +898,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add Certificate &amp;amp; Membership.
+        ///   Looks up a localized string similar to 자격증 및 회원증 추가.
         /// </summary>
         internal static string LabelAddCertificateMembership {
             get {
@@ -907,7 +907,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 博士号を追加する.
+        ///   Looks up a localized string similar to 이사직 경력 추가.
         /// </summary>
         internal static string LabelAddDirectorship {
             get {
@@ -916,7 +916,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Additional Documents.
+        ///   Looks up a localized string similar to 추가 서류.
         /// </summary>
         internal static string LabelAdditionalDocuments {
             get {
@@ -925,7 +925,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Additional Roles and responsibilities.
+        ///   Looks up a localized string similar to 추가 역할 및 책임.
         /// </summary>
         internal static string LabelAdditionalRolesAndResponsibilities {
             get {
@@ -934,7 +934,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add License.
+        ///   Looks up a localized string similar to 면허증 추가.
         /// </summary>
         internal static string LabelAddLicense {
             get {
@@ -943,7 +943,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add Mailing Address.
+        ///   Looks up a localized string similar to 우편주소 추가.
         /// </summary>
         internal static string LabelAddMailingAddress {
             get {
@@ -952,7 +952,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add Reference.
+        ///   Looks up a localized string similar to 추천인 추가.
         /// </summary>
         internal static string LabelAddReference {
             get {
@@ -961,7 +961,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 住所.
+        ///   Looks up a localized string similar to 주소.
         /// </summary>
         internal static string LabelAddress {
             get {
@@ -970,7 +970,16 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to レジュメを追加.
+        ///   Looks up a localized string similar to 이력서 파일 추가.
+        /// </summary>
+        internal static string LabelAddressFile {
+            get {
+                return ResourceManager.GetString("LabelAddressFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 이력서 첨부.
         /// </summary>
         internal static string LabelAddResumeFile {
             get {
@@ -988,7 +997,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to スキルを追加する.
+        ///   Looks up a localized string similar to 기술 추가.
         /// </summary>
         internal static string LabelAddSkill {
             get {
@@ -997,7 +1006,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to すでに記入済みのスキルです.
+        ///   Looks up a localized string similar to 기술이 이미 존재합니다.
         /// </summary>
         internal static string LabelAddSkillAlreadyExist {
             get {
@@ -1006,7 +1015,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to あなたのスキルを追加する.
+        ///   Looks up a localized string similar to 기술을 추가하십시오.
         /// </summary>
         internal static string LabelAddYourSkill {
             get {
@@ -1015,7 +1024,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 完成度.
+        ///   Looks up a localized string similar to 고급.
         /// </summary>
         internal static string LabelAdvanced {
             get {
@@ -1024,7 +1033,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 広告掲載者.
+        ///   Looks up a localized string similar to 구인자.
         /// </summary>
         internal static string LabelAdvertiser {
             get {
@@ -1033,7 +1042,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to アカウントの詳細が登録されました.
+        ///   Looks up a localized string similar to 계정 상세정보가 성공적으로 제출되었습니다..
         /// </summary>
         internal static string LabelAdvertiserEditSuccess {
             get {
@@ -1042,7 +1051,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Advertiser Full Register.
+        ///   Looks up a localized string similar to 구인자 전체 등록.
         /// </summary>
         internal static string LabelAdvertiserFullRegister {
             get {
@@ -1051,8 +1060,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;h2&gt;広告主各位、&lt;/h2&gt;
-        ///&lt;p&gt;ご使用のアカウントは、既に当社で認証されています。&lt;a href=/advertiser/login.aspx&gt;ログインページ&lt;/a&gt;からアカウントにアクセス可能です。&lt;/p&gt;&quot;&quot;.
+        ///   Looks up a localized string similar to 구인자 인증이 실패하였습니다..
         /// </summary>
         internal static string LabelAdvertiserInvalid {
             get {
@@ -1061,7 +1069,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 広告掲載者のジョブテンプレートロゴ.
+        ///   Looks up a localized string similar to 구인자 공고 템플릿 로고.
         /// </summary>
         internal static string LabelAdvertiserJobTemplateLogo {
             get {
@@ -1070,7 +1078,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to テンプレートロゴ　ID.
+        ///   Looks up a localized string similar to 템플릿 로고 ID.
         /// </summary>
         internal static string LabelAdvertiserJobTemplateLogoID {
             get {
@@ -1079,7 +1087,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to テンプレートロゴ名.
+        ///   Looks up a localized string similar to 이미지/로고명.
         /// </summary>
         internal static string LabelAdvertiserJobTemplateLogoName {
             get {
@@ -1088,7 +1096,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to テンプレートロゴを選択する.
+        ///   Looks up a localized string similar to 파일 업로드.
         /// </summary>
         internal static string LabelAdvertiserJobTemplateLogoSelectDoc {
             get {
@@ -1097,7 +1105,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 広告掲載者ユーザー.
+        ///   Looks up a localized string similar to 구인자.
         /// </summary>
         internal static string LabelAdvertiserUser {
             get {
@@ -1106,7 +1114,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ユーザー確認ができました.
+        ///   Looks up a localized string similar to 성공적으로 인증되었습니다..
         /// </summary>
         internal static string LabelAdvertiserValidated {
             get {
@@ -1115,7 +1123,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 検証要求の失敗.
+        ///   Looks up a localized string similar to 인증 요청 실패.
         /// </summary>
         internal static string LabelAdvertiserValidation {
             get {
@@ -1124,7 +1132,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to アドバイザー.
+        ///   Looks up a localized string similar to 고문.
         /// </summary>
         internal static string LabelAdvisor {
             get {
@@ -1133,7 +1141,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 全てのジョブ申込みがこのメールアドレスに送信されます.
+        ///   Looks up a localized string similar to 모든 입사지원서는 본 이메일 주소로 송부됩니다.
         /// </summary>
         internal static string LabelAllApplicationsSendEmail {
             get {
@@ -1142,7 +1150,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - All Areas -.
+        ///   Looks up a localized string similar to - 모든 지역 -.
         /// </summary>
         internal static string LabelAllArea {
             get {
@@ -1151,7 +1159,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -All Areas-.
+        ///   Looks up a localized string similar to -모든 지역 -.
         /// </summary>
         internal static string LabelAllAreas {
             get {
@@ -1160,7 +1168,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - All Availability -.
+        ///   Looks up a localized string similar to - 모든 근무 가능일 -.
         /// </summary>
         internal static string LabelAllAvailability {
             get {
@@ -1169,7 +1177,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - All Classification -.
+        ///   Looks up a localized string similar to - 모든 분류 -.
         /// </summary>
         internal static string LabelAllClassification {
             get {
@@ -1178,7 +1186,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - All Classifications -.
+        ///   Looks up a localized string similar to - 모든 분류 -.
         /// </summary>
         internal static string LabelAllClassifications {
             get {
@@ -1187,7 +1195,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -All Countries-.
+        ///   Looks up a localized string similar to -모든 국가 -.
         /// </summary>
         internal static string LabelAllCountries {
             get {
@@ -1196,7 +1204,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - All Countries -.
+        ///   Looks up a localized string similar to -모든 국가 -.
         /// </summary>
         internal static string LabelAllCountry {
             get {
@@ -1205,7 +1213,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - All Locations -.
+        ///   Looks up a localized string similar to - 모든 위치 -.
         /// </summary>
         internal static string LabelAllLocation {
             get {
@@ -1214,7 +1222,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -All Locations-.
+        ///   Looks up a localized string similar to -모든 위치-.
         /// </summary>
         internal static string LabelAllLocations {
             get {
@@ -1223,7 +1231,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - All Salary -.
+        ///   Looks up a localized string similar to - 급여 전체 -.
         /// </summary>
         internal static string LabelAllSalary {
             get {
@@ -1232,7 +1240,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - All Salary Type -.
+        ///   Looks up a localized string similar to - 급여 유형 전체-.
         /// </summary>
         internal static string LabelAllSalaryType {
             get {
@@ -1241,7 +1249,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 先に業種を選んでください。.
+        ///   Looks up a localized string similar to - 소분류 전체 -.
         /// </summary>
         internal static string LabelAllSubClassifications {
             get {
@@ -1250,7 +1258,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - All Worktypes -.
+        ///   Looks up a localized string similar to - 업무유형 전체 -.
         /// </summary>
         internal static string LabelAllWorkTypes {
             get {
@@ -1259,7 +1267,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Alphabetical Ascending.
+        ///   Looks up a localized string similar to 알파벳오름차순.
         /// </summary>
         internal static string LabelAlphabeticalAscending {
             get {
@@ -1268,7 +1276,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Alphabetical Descending.
+        ///   Looks up a localized string similar to 알파벳내림차순.
         /// </summary>
         internal static string LabelAlphabeticalDescending {
             get {
@@ -1277,7 +1285,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 登録済みです.
+        ///   Looks up a localized string similar to 이미 등록되었음.
         /// </summary>
         internal static string LabelAlreadyRegistered {
             get {
@@ -1295,7 +1303,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 額.
+        ///   Looks up a localized string similar to 금액.
         /// </summary>
         internal static string LabelAmount {
             get {
@@ -1304,7 +1312,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Annual Range.
+        ///   Looks up a localized string similar to 연봉 범위.
         /// </summary>
         internal static string LabelAnnualRange {
             get {
@@ -1313,7 +1321,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 年俸.
+        ///   Looks up a localized string similar to 연봉.
         /// </summary>
         internal static string LabelAnnualSalary {
             get {
@@ -1322,7 +1330,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 応募者のグレード.
+        ///   Looks up a localized string similar to 지원자 등급.
         /// </summary>
         internal static string LabelApplicantGrade {
             get {
@@ -1331,7 +1339,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 応募日.
+        ///   Looks up a localized string similar to 지원일.
         /// </summary>
         internal static string LabelApplicationDate {
             get {
@@ -1340,7 +1348,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 応募メール.
+        ///   Looks up a localized string similar to 지원자 이메일.
         /// </summary>
         internal static string LabelApplicationEmail {
             get {
@@ -1349,7 +1357,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 応募申込 メールアドレス.
+        ///   Looks up a localized string similar to 지원자 이메일 주소.
         /// </summary>
         internal static string LabelApplicationEmailAddress {
             get {
@@ -1358,7 +1366,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 応募申込 マネージャー.
+        ///   Looks up a localized string similar to 지원 관리자.
         /// </summary>
         internal static string LabelApplicationManager {
             get {
@@ -1367,7 +1375,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 応募方法.
+        ///   Looks up a localized string similar to 지원 방법.
         /// </summary>
         internal static string LabelApplicationMethod {
             get {
@@ -1376,7 +1384,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 応募申込.
+        ///   Looks up a localized string similar to 지원서.
         /// </summary>
         internal static string LabelApplications {
             get {
@@ -1385,7 +1393,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 応募手続きの状況.
+        ///   Looks up a localized string similar to 지원서 상태.
         /// </summary>
         internal static string LabelApplicationStatus {
             get {
@@ -1394,7 +1402,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 応募申込書のURL.
+        ///   Looks up a localized string similar to 지원 URL.
         /// </summary>
         internal static string LabelApplicationURL {
             get {
@@ -1403,7 +1411,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 応募済み.
+        ///   Looks up a localized string similar to 지원함.
         /// </summary>
         internal static string LabelApplied {
             get {
@@ -1412,7 +1420,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 応募.
+        ///   Looks up a localized string similar to 지원.
         /// </summary>
         internal static string LabelApply {
             get {
@@ -1421,7 +1429,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 応募内容.
+        ///   Looks up a localized string similar to 지원 대상.
         /// </summary>
         internal static string LabelApplyFor {
             get {
@@ -1430,7 +1438,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 応募する求人.
+        ///   Looks up a localized string similar to 지원할 직위.
         /// </summary>
         internal static string LabelApplyForPosition {
             get {
@@ -1439,7 +1447,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 以下で応募.
+        ///   Looks up a localized string similar to 지원 매체.
         /// </summary>
         internal static string LabelApplyWith {
             get {
@@ -1448,7 +1456,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 4月.
+        ///   Looks up a localized string similar to 4월.
         /// </summary>
         internal static string LabelApr {
             get {
@@ -1457,7 +1465,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 過去のジョブ情報.
+        ///   Looks up a localized string similar to 보관된 채용 공고.
         /// </summary>
         internal static string LabelArchivedJobs {
             get {
@@ -1466,7 +1474,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to エリア.
+        ///   Looks up a localized string similar to 지역.
         /// </summary>
         internal static string LabelArea {
             get {
@@ -1475,7 +1483,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to エリア ID.
+        ///   Looks up a localized string similar to 지역 ID.
         /// </summary>
         internal static string LabelAreaIDs {
             get {
@@ -1484,7 +1492,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to エリアを入力してください.
+        ///   Looks up a localized string similar to 지역은 필수 정보입니다.
         /// </summary>
         internal static string LabelAreaRequired {
             get {
@@ -1493,7 +1501,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Assign Job To.
+        ///   Looks up a localized string similar to 채용 건 다음으로 할당.
         /// </summary>
         internal static string LabelAssignedJobTo {
             get {
@@ -1502,7 +1510,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 準学士.
+        ///   Looks up a localized string similar to 단기대 학사.
         /// </summary>
         internal static string LabelAssociatesDegree {
             get {
@@ -1511,7 +1519,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to カバーレターを添付する.
+        ///   Looks up a localized string similar to 자기소개서 첨부.
         /// </summary>
         internal static string LabelAttachCoverLetter {
             get {
@@ -1520,7 +1528,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 履歴書を添付する.
+        ///   Looks up a localized string similar to 이력서 첨부.
         /// </summary>
         internal static string LabelAttachResume {
             get {
@@ -1529,7 +1537,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 入力された認証情報が無効です。ログイン試行にあと {0}回失敗するとアカウントが60分間ロックされます。.
+        ///   Looks up a localized string similar to 제시한 자격요건이 적절하지 않습니다. {0}번 더 로그인에 실패하면 60분간 계정이 차단됩니다..
         /// </summary>
         internal static string LabelAttemptFailed {
             get {
@@ -1538,7 +1546,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 8月.
+        ///   Looks up a localized string similar to 8월.
         /// </summary>
         internal static string LabelAug {
             get {
@@ -1547,7 +1555,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 作者.
+        ///   Looks up a localized string similar to 작성자.
         /// </summary>
         internal static string LabelAuthor {
             get {
@@ -1556,7 +1564,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 権限.
+        ///   Looks up a localized string similar to 권한.
         /// </summary>
         internal static string LabelAuthority {
             get {
@@ -1565,7 +1573,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Availability Date.
+        ///   Looks up a localized string similar to 근무 가능일.
         /// </summary>
         internal static string LabelAvailabilityDate {
             get {
@@ -1574,7 +1582,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Availability Date From.
+        ///   Looks up a localized string similar to 근무 가능 시작일.
         /// </summary>
         internal static string LabelAvailabilityDateFrom {
             get {
@@ -1583,7 +1591,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Available Date.
+        ///   Looks up a localized string similar to 근무 가능일.
         /// </summary>
         internal static string LabelAvailableDate {
             get {
@@ -1592,7 +1600,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Availability Date From.
+        ///   Looks up a localized string similar to 근무 가능 시작일.
         /// </summary>
         internal static string LabelAvailableDateFrom {
             get {
@@ -1601,7 +1609,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Available From.
+        ///   Looks up a localized string similar to 근무 가능 시작일.
         /// </summary>
         internal static string LabelAvailableFrom {
             get {
@@ -1610,7 +1618,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Availability Status.
+        ///   Looks up a localized string similar to 근무 가능 여부.
         /// </summary>
         internal static string LabelAvailableStatus {
             get {
@@ -1628,7 +1636,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 学士号.
+        ///   Looks up a localized string similar to 학사.
         /// </summary>
         internal static string LabelBachelorsDegree {
             get {
@@ -1637,7 +1645,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 求人に戻る.
+        ///   Looks up a localized string similar to 채용정보로 돌아가기.
         /// </summary>
         internal static string LabelBackToJob {
             get {
@@ -1646,7 +1654,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 基本情報.
+        ///   Looks up a localized string similar to 기본 정보.
         /// </summary>
         internal static string labelBasicInformation {
             get {
@@ -1655,7 +1663,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 完成度.
+        ///   Looks up a localized string similar to 신입.
         /// </summary>
         internal static string LabelBeginner {
             get {
@@ -1664,7 +1672,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to からご登録ください .
+        ///   Looks up a localized string similar to 아래.
         /// </summary>
         internal static string LabelBelow {
             get {
@@ -1673,7 +1681,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 検討中のジョブリスト.
+        ///   Looks up a localized string similar to 아래는 저장한 채용정보의 목록입니다.
         /// </summary>
         internal static string LabelBelowListSavedJobs {
             get {
@@ -1682,7 +1690,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 請求済み.
+        ///   Looks up a localized string similar to 청구.
         /// </summary>
         internal static string LabelBilled {
             get {
@@ -1691,7 +1699,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 履歴.
+        ///   Looks up a localized string similar to 경로.
         /// </summary>
         internal static string LabelBreadcrumbs {
             get {
@@ -1700,7 +1708,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 閲覧.
+        ///   Looks up a localized string similar to 열람.
         /// </summary>
         internal static string LabelBrowse {
             get {
@@ -1709,7 +1717,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to フィニッシュ.
+        ///   Looks up a localized string similar to 종료.
         /// </summary>
         internal static string LabelBtnFinish {
             get {
@@ -1718,7 +1726,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Previous.
+        ///   Looks up a localized string similar to 이전으로.
         /// </summary>
         internal static string LabelBtnPrevious {
             get {
@@ -1727,7 +1735,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 保存して続行.
+        ///   Looks up a localized string similar to 저장 및 계속하기.
         /// </summary>
         internal static string LabelBtnSaveContinue {
             get {
@@ -1736,7 +1744,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 保存 &amp;amp; 次へ.
+        ///   Looks up a localized string similar to 저장 후 계속.
         /// </summary>
         internal static string LabelBtnSaveNext {
             get {
@@ -1745,7 +1753,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 箇条書き 1.
+        ///   Looks up a localized string similar to 글머리 1.
         /// </summary>
         internal static string LabelBulletPoint1 {
             get {
@@ -1754,7 +1762,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 箇条書き 2.
+        ///   Looks up a localized string similar to 글머리 2.
         /// </summary>
         internal static string LabelBulletPoint2 {
             get {
@@ -1763,7 +1771,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 箇条書き 3.
+        ///   Looks up a localized string similar to 글머리 3.
         /// </summary>
         internal static string LabelBulletPoint3 {
             get {
@@ -1772,7 +1780,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 商号.
+        ///   Looks up a localized string similar to 사업체명.
         /// </summary>
         internal static string LabelBusinessName {
             get {
@@ -1781,7 +1789,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 業種番号.
+        ///   Looks up a localized string similar to 사업체 번호.
         /// </summary>
         internal static string LabelBusinessNumber {
             get {
@@ -1790,7 +1798,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 業種.
+        ///   Looks up a localized string similar to 사업체 유형.
         /// </summary>
         internal static string LabelBusinessType {
             get {
@@ -1799,7 +1807,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 業種を入力してください.
+        ///   Looks up a localized string similar to 사업체 유형은 필수정보입니다.
         /// </summary>
         internal static string LabelBusinessTypeRequired {
             get {
@@ -1808,7 +1816,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to キャンセル.
+        ///   Looks up a localized string similar to 취소.
         /// </summary>
         internal static string LabelCancel {
             get {
@@ -1817,7 +1825,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 候補者.
+        ///   Looks up a localized string similar to 후보.
         /// </summary>
         internal static string LabelCandidate {
             get {
@@ -1826,7 +1834,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Candidates.
+        ///   Looks up a localized string similar to 후보.
         /// </summary>
         internal static string LabelCandidates {
             get {
@@ -1835,7 +1843,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 申込者は、この国の労働権を保有している必要があります.
+        ///   Looks up a localized string similar to 후보는 해당 국가에서 일 할 권한이 있어야 합니다.
         /// </summary>
         internal static string LabelCandidatesRight {
             get {
@@ -1853,7 +1861,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please complete the captcha.
+        ///   Looks up a localized string similar to Captcha를 완료하십시오.
         /// </summary>
         internal static string LabelCaptchaRequired {
             get {
@@ -1862,7 +1870,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 現在、精算する商品は選択されていません.
+        ///   Looks up a localized string similar to 체크아웃할 상품을 선택하지 않았습니다.
         /// </summary>
         internal static string LabelCartEmpty {
             get {
@@ -1871,7 +1879,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to カテゴリー.
+        ///   Looks up a localized string similar to 범주.
         /// </summary>
         internal static string LabelCategories {
             get {
@@ -1880,7 +1888,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Certs &amp;amp; Memberships.
+        ///   Looks up a localized string similar to 자격증 및 회원증.
         /// </summary>
         internal static string LabelCertAndMembership {
             get {
@@ -1889,7 +1897,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Certificate/Membership Does Not Expire.
+        ///   Looks up a localized string similar to 자격증/회원증이 만료되지 않습니다.
         /// </summary>
         internal static string LabelCertificateDoesNotExpire {
             get {
@@ -1898,7 +1906,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Certificate/Membership No..
+        ///   Looks up a localized string similar to 자격증/회원증 번호.
         /// </summary>
         internal static string LabelCertificateMembershipNumber {
             get {
@@ -1907,7 +1915,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Certifications &amp;amp; Memberships.
+        ///   Looks up a localized string similar to 자격증 및 회원증.
         /// </summary>
         internal static string LabelCertificationsAndMemberships {
             get {
@@ -1916,7 +1924,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Certification URL.
+        ///   Looks up a localized string similar to 자격증 URL.
         /// </summary>
         internal static string LabelCertificationURL {
             get {
@@ -1925,7 +1933,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 取締役会会長.
+        ///   Looks up a localized string similar to 이사회 의장.
         /// </summary>
         internal static string LabelChairmanOfABoard {
             get {
@@ -1934,7 +1942,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 変更.
+        ///   Looks up a localized string similar to 변경.
         /// </summary>
         internal static string LabelChange {
             get {
@@ -1943,7 +1951,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to メールアドレスを変更するには、管理者にお問い合わせください.
+        ///   Looks up a localized string similar to 이메일 주소를 변경하시려면 관리자에게 문의하시기 바랍니다.
         /// </summary>
         internal static string LabelChangeEmailContactAdmin {
             get {
@@ -1952,7 +1960,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to パスワード再設定.
+        ///   Looks up a localized string similar to 비밀번호 변경.
         /// </summary>
         internal static string LabelChangePwd {
             get {
@@ -1961,7 +1969,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 精算.
+        ///   Looks up a localized string similar to 체크아웃.
         /// </summary>
         internal static string LabelCheckOut {
             get {
@@ -1970,7 +1978,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to カバーレターを選択する.
+        ///   Looks up a localized string similar to 자기 소개서를 선택하십시오.
         /// </summary>
         internal static string LabelChooseCover {
             get {
@@ -1979,7 +1987,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 一つ選択する.
+        ///   Looks up a localized string similar to 하나를 선택하십시오.
         /// </summary>
         internal static string LabelChooseOne {
             get {
@@ -1988,7 +1996,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 履歴書を選択する.
+        ///   Looks up a localized string similar to 이력서를 선택하십시오.
         /// </summary>
         internal static string LabelChooseResume {
             get {
@@ -1997,7 +2005,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 市区町村.
+        ///   Looks up a localized string similar to 시.
         /// </summary>
         internal static string LabelCity {
             get {
@@ -2006,7 +2014,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 市区町村.
+        ///   Looks up a localized string similar to 시/주.
         /// </summary>
         internal static string LabelCityState {
             get {
@@ -2015,7 +2023,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 市町村.
+        ///   Looks up a localized string similar to 시/도시.
         /// </summary>
         internal static string LabelCityTown {
             get {
@@ -2024,7 +2032,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Classification.
+        ///   Looks up a localized string similar to 분류.
         /// </summary>
         internal static string LabelClassification {
             get {
@@ -2033,7 +2041,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Classification / Sub Classification.
+        ///   Looks up a localized string similar to 분류/소분류.
         /// </summary>
         internal static string LabelClassificationAndSubClassification {
             get {
@@ -2042,7 +2050,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Classifications.
+        ///   Looks up a localized string similar to 분류.
         /// </summary>
         internal static string LabelClassifications {
             get {
@@ -2051,7 +2059,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Classification / SubClassification.
+        ///   Looks up a localized string similar to 분류/소분류.
         /// </summary>
         internal static string LabelClassificationSubClassification {
             get {
@@ -2060,7 +2068,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to クリア.
+        ///   Looks up a localized string similar to 지우기.
         /// </summary>
         internal static string LabelClear {
             get {
@@ -2069,7 +2077,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to クリック.
+        ///   Looks up a localized string similar to 클릭.
         /// </summary>
         internal static string LabelClick {
             get {
@@ -2078,7 +2086,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ここをクリック.
+        ///   Looks up a localized string similar to 여기를 클릭하십시오.
         /// </summary>
         internal static string LabelClickHere {
             get {
@@ -2087,7 +2095,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to クリックして次を作成 ....
+        ///   Looks up a localized string similar to 클릭하면 다음 항목이 생성됩니다..
         /// </summary>
         internal static string LabelClickToGenerate {
             get {
@@ -2096,7 +2104,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Close My Account.
+        ///   Looks up a localized string similar to 내 계정 닫기.
         /// </summary>
         internal static string LabelCloseMyAccount {
             get {
@@ -2105,7 +2113,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 同僚.
+        ///   Looks up a localized string similar to 동료.
         /// </summary>
         internal static string LabelColleague {
             get {
@@ -2123,7 +2131,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to コメント.
+        ///   Looks up a localized string similar to 비고.
         /// </summary>
         internal static string LabelComments {
             get {
@@ -2132,7 +2140,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 会社名.
+        ///   Looks up a localized string similar to 회사.
         /// </summary>
         internal static string LabelCompany {
             get {
@@ -2141,7 +2149,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 企業に関する情報.
+        ///   Looks up a localized string similar to 회사 상세정보.
         /// </summary>
         internal static string LabelCompanyDetails {
             get {
@@ -2150,7 +2158,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 企業ロゴ.
+        ///   Looks up a localized string similar to 회사 로고.
         /// </summary>
         internal static string LabelCompanyLogo {
             get {
@@ -2159,7 +2167,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 企業名.
+        ///   Looks up a localized string similar to 회사명.
         /// </summary>
         internal static string LabelCompanyName {
             get {
@@ -2168,7 +2176,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 企業名を入力してください.
+        ///   Looks up a localized string similar to 회사명은 필수정보입니다.
         /// </summary>
         internal static string LabelCompanyNameRequired {
             get {
@@ -2177,7 +2185,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 企業概要.
+        ///   Looks up a localized string similar to 회사 프로필.
         /// </summary>
         internal static string LabelCompanyProfile {
             get {
@@ -2186,7 +2194,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 会社秘書役.
+        ///   Looks up a localized string similar to 기업 비서.
         /// </summary>
         internal static string LabelCompanySecretary {
             get {
@@ -2195,7 +2203,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 応募手続きが完了しました.
+        ///   Looks up a localized string similar to 완료된 지원서.
         /// </summary>
         internal static string LabelCompletedApplication {
             get {
@@ -2204,7 +2212,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 注文を完了.
+        ///   Looks up a localized string similar to 주문 완료.
         /// </summary>
         internal static string labelCompleteOrder {
             get {
@@ -2213,7 +2221,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to この記録を削除してもよろしいですか.
+        ///   Looks up a localized string similar to 이 기록을 정말로 삭제하시겠습니까?.
         /// </summary>
         internal static string LabelConfirmDeleteRecord {
             get {
@@ -2222,7 +2230,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to メールアドレスを再入力してください。.
+        ///   Looks up a localized string similar to 이메일 확인.
         /// </summary>
         internal static string LabelConfirmEmail {
             get {
@@ -2231,7 +2239,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 確認用メールアドレスが一致しません.
+        ///   Looks up a localized string similar to 이메일 불일치 확인.
         /// </summary>
         internal static string LabelConfirmEmailNotMatch {
             get {
@@ -2240,7 +2248,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to メールアドレス（確認用）.
+        ///   Looks up a localized string similar to 이메일 확인.
         /// </summary>
         internal static string LabelConfirmEmailPage {
             get {
@@ -2249,7 +2257,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Eメールの確認は必須です.
+        ///   Looks up a localized string similar to 이메일 필수 확인.
         /// </summary>
         internal static string LabelConfirmEmailRequired {
             get {
@@ -2258,7 +2266,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 新しいパスワードを確認する.
+        ///   Looks up a localized string similar to 새 비밀번호 확인.
         /// </summary>
         internal static string LabelConfirmNewPassword {
             get {
@@ -2267,7 +2275,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to パスワードを再入力してください。.
+        ///   Looks up a localized string similar to 비밀번호 확인.
         /// </summary>
         internal static string LabelConfirmPassword {
             get {
@@ -2276,7 +2284,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 選択したジョブを再度掲載してもよろしいですか.
+        ///   Looks up a localized string similar to 선택한 채용 공고를 재게시하려고 합니다. 재게시 희망여부를 확인하십시오..
         /// </summary>
         internal static string LabelConfirmRepost {
             get {
@@ -2285,7 +2293,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to パスワードのリセットを確認する.
+        ///   Looks up a localized string similar to 비밀번호 재설정 확인.
         /// </summary>
         internal static string LabelConfirmResetPassword {
             get {
@@ -2294,7 +2302,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 連絡先.
+        ///   Looks up a localized string similar to 상세정보 확인.
         /// </summary>
         internal static string LabelContactDetails {
             get {
@@ -2303,7 +2311,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to メールアドレス.
+        ///   Looks up a localized string similar to 이메일.
         /// </summary>
         internal static string LabelContactEmail {
             get {
@@ -2312,7 +2320,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to お問い合わせ先.
+        ///   Looks up a localized string similar to 연락정보.
         /// </summary>
         internal static string LabelContactInformation {
             get {
@@ -2321,7 +2329,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to お問い合わせ番号.
+        ///   Looks up a localized string similar to 연락 번호.
         /// </summary>
         internal static string LabelContactNumber {
             get {
@@ -2330,7 +2338,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 内容.
+        ///   Looks up a localized string similar to 내용.
         /// </summary>
         internal static string LabelContent {
             get {
@@ -2339,7 +2347,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 続行する.
+        ///   Looks up a localized string similar to 계속.
         /// </summary>
         internal static string LabelContinue {
             get {
@@ -2348,7 +2356,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 申し込み手続きを続行する.
+        ///   Looks up a localized string similar to 지원 계속.
         /// </summary>
         internal static string LabelContinueApplication {
             get {
@@ -2357,7 +2365,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to コピー.
+        ///   Looks up a localized string similar to 복사.
         /// </summary>
         internal static string LabelCopyJob {
             get {
@@ -2366,7 +2374,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to このジョブをコピーしますか.
+        ///   Looks up a localized string similar to 이 채용 공고를 정말로 복사하시겠습니까?.
         /// </summary>
         internal static string LabelCopyJobConfirm {
             get {
@@ -2375,7 +2383,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 国.
+        ///   Looks up a localized string similar to 국가.
         /// </summary>
         internal static string LabelCountry {
             get {
@@ -2384,7 +2392,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 国／勤務地／エリア.
+        ///   Looks up a localized string similar to 국가 / 위치 / 지역.
         /// </summary>
         internal static string LabelCountryLocationArea {
             get {
@@ -2393,7 +2401,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 国名は入力必須項目です.
+        ///   Looks up a localized string similar to 국가를 입력해야 합니다.
         /// </summary>
         internal static string LabelCountryMandatory {
             get {
@@ -2402,7 +2410,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 国名を入力してください.
+        ///   Looks up a localized string similar to 국가는 필수정보입니다.
         /// </summary>
         internal static string LabelCountryRequired {
             get {
@@ -2411,7 +2419,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to カバーレター.
+        ///   Looks up a localized string similar to 자기소개서.
         /// </summary>
         internal static string LabelCoverLetter {
             get {
@@ -2420,7 +2428,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to または自分で作成.
+        ///   Looks up a localized string similar to 또는 직접 작성.
         /// </summary>
         internal static string LabelCoverLetterWriteYourOwn {
             get {
@@ -2429,7 +2437,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to チェック項目.
+        ///   Looks up a localized string similar to 체크박스.
         /// </summary>
         internal static string LabelCreateAlertCheckBoxes {
             get {
@@ -2438,7 +2446,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to アラートとして作成.
+        ///   Looks up a localized string similar to 알림 생성.
         /// </summary>
         internal static string LabelCreateAsAlert {
             get {
@@ -2447,7 +2455,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 作成済み.
+        ///   Looks up a localized string similar to 생성됨.
         /// </summary>
         internal static string LabelCreated {
             get {
@@ -2456,7 +2464,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to お気に入り検索を作成します.
+        ///   Looks up a localized string similar to 즐겨찾기 생성.
         /// </summary>
         internal static string LabelCreateFavouriteSearch {
             get {
@@ -2465,7 +2473,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブを作成.
+        ///   Looks up a localized string similar to 채용 공고 생성.
         /// </summary>
         internal static string LabelCreateJob {
             get {
@@ -2474,7 +2482,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブアラートの登録.
+        ///   Looks up a localized string similar to 채용 공고 알림 생성.
         /// </summary>
         internal static string LabelCreateJobAlert {
             get {
@@ -2483,7 +2491,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブアラート名が欠落している作成.
+        ///   Looks up a localized string similar to 채용 공고 알림명이 누락되어 있습니다.
         /// </summary>
         internal static string LabelCreateJobAlertNameIsMissing {
             get {
@@ -2501,7 +2509,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to クレジットカード.
+        ///   Looks up a localized string similar to 신용카드.
         /// </summary>
         internal static string LabelCreditCard {
             get {
@@ -2510,7 +2518,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to クレジットカード名.
+        ///   Looks up a localized string similar to 카드 명의자.
         /// </summary>
         internal static string LabelCreditCardName {
             get {
@@ -2519,7 +2527,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to カード番号.
+        ///   Looks up a localized string similar to 카드 번호.
         /// </summary>
         internal static string LabelCreditCardNumber {
             get {
@@ -2528,7 +2536,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to クレジットカードでのお支払い.
+        ///   Looks up a localized string similar to 신용카드 결제.
         /// </summary>
         internal static string LabelCreditCardPayment {
             get {
@@ -2537,7 +2545,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CSCコード.
+        ///   Looks up a localized string similar to CSC 코드.
         /// </summary>
         internal static string LabelCSC {
             get {
@@ -2546,7 +2554,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 基準となる通貨.
+        ///   Looks up a localized string similar to 통화 기준.
         /// </summary>
         internal static string LabelCurrencyBaseText {
             get {
@@ -2555,7 +2563,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 現在掲載中.
+        ///   Looks up a localized string similar to 현재.
         /// </summary>
         internal static string LabelCurrent {
             get {
@@ -2564,7 +2572,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 会社名.
+        ///   Looks up a localized string similar to 현재 회사명.
         /// </summary>
         internal static string LabelCurrentCompanyName {
             get {
@@ -2573,7 +2581,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 現在掲載中のジョブ.
+        ///   Looks up a localized string similar to 현재 직무.
         /// </summary>
         internal static string LabelCurrentJobs {
             get {
@@ -2582,7 +2590,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 現在掲載中のジョブの統計データ.
+        ///   Looks up a localized string similar to 현재 직무 통계.
         /// </summary>
         internal static string LabelCurrentJobStatistics {
             get {
@@ -2591,7 +2599,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 役職.
+        ///   Looks up a localized string similar to 현재 직위.
         /// </summary>
         internal static string LabelCurrentJobTitle {
             get {
@@ -2600,7 +2608,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 次のユーザー名でログイン中です.
+        ///   Looks up a localized string similar to 현재 로그인 권한.
         /// </summary>
         internal static string LabelCurrentLogin {
             get {
@@ -2609,7 +2617,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 現在のパスワード.
+        ///   Looks up a localized string similar to 현재 비밀번호.
         /// </summary>
         internal static string LabelCurrentPassword {
             get {
@@ -2618,7 +2626,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 現在の職務内容.
+        ///   Looks up a localized string similar to 현재 역할.
         /// </summary>
         internal static string labelCurrentRole {
             get {
@@ -2627,7 +2635,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 現在の状況.
+        ///   Looks up a localized string similar to 현재 상태.
         /// </summary>
         internal static string LabelCurrentStatus {
             get {
@@ -2636,7 +2644,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to カスタムカバーレター.
+        ///   Looks up a localized string similar to 자기 소개서 직접 작성.
         /// </summary>
         internal static string LabelCustomCoverLetter {
             get {
@@ -2645,7 +2653,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CV作成ツール.
+        ///   Looks up a localized string similar to CV 빌더.
         /// </summary>
         internal static string LabelCVBuilder {
             get {
@@ -2663,7 +2671,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to マイページ.
+        ///   Looks up a localized string similar to 게시판.
         /// </summary>
         internal static string LabelDashboard {
             get {
@@ -2672,7 +2680,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 日.
+        ///   Looks up a localized string similar to DD.
         /// </summary>
         internal static string LabelDateDisplayDD {
             get {
@@ -2681,7 +2689,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 月.
+        ///   Looks up a localized string similar to MM.
         /// </summary>
         internal static string LabelDateDisplayMM {
             get {
@@ -2690,7 +2698,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 年.
+        ///   Looks up a localized string similar to YYYY.
         /// </summary>
         internal static string LabelDateDisplayYYYY {
             get {
@@ -2699,7 +2707,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 入力した日付.
+        ///   Looks up a localized string similar to 날짜 입력됨.
         /// </summary>
         internal static string LabelDateEntered {
             get {
@@ -2708,7 +2716,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 修正日.
+        ///   Looks up a localized string similar to 날짜 수정됨.
         /// </summary>
         internal static string LabelDateModified {
             get {
@@ -2717,7 +2725,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 誕生日.
+        ///   Looks up a localized string similar to 생년월일.
         /// </summary>
         internal static string LabelDateOfBirth {
             get {
@@ -2726,7 +2734,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 掲載した日付.
+        ///   Looks up a localized string similar to 게시일.
         /// </summary>
         internal static string LabelDatePosted {
             get {
@@ -2735,7 +2743,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 公告日.
+        ///   Looks up a localized string similar to 공고일.
         /// </summary>
         internal static string LabelDatePublished {
             get {
@@ -2744,7 +2752,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 日付.
+        ///   Looks up a localized string similar to 일.
         /// </summary>
         internal static string LabelDay {
             get {
@@ -2753,7 +2761,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 掲載日数.
+        ///   Looks up a localized string similar to 게시 기간.
         /// </summary>
         internal static string LabelDaysPosted {
             get {
@@ -2762,7 +2770,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 掲載終了までの日数.
+        ///   Looks up a localized string similar to 만료일까지 남은 기간.
         /// </summary>
         internal static string LabelDaysTillExpiry {
             get {
@@ -2771,7 +2779,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 12月.
+        ///   Looks up a localized string similar to 12월.
         /// </summary>
         internal static string LabelDec {
             get {
@@ -2780,7 +2788,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 小数のみ受け付け.
+        ///   Looks up a localized string similar to 십진수만 허용.
         /// </summary>
         internal static string LabelDecimalOnly {
             get {
@@ -2789,7 +2797,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Declined Jobs.
+        ///   Looks up a localized string similar to 거절한 채용 건.
         /// </summary>
         internal static string LabelDeclinedJobs {
             get {
@@ -2798,7 +2806,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 標準設定.
+        ///   Looks up a localized string similar to 기본값.
         /// </summary>
         internal static string LabelDefault {
             get {
@@ -2807,7 +2815,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 削除.
+        ///   Looks up a localized string similar to 삭제.
         /// </summary>
         internal static string LabelDelete {
             get {
@@ -2816,7 +2824,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 説明.
+        ///   Looks up a localized string similar to 설명.
         /// </summary>
         internal static string LabelDescription {
             get {
@@ -2825,7 +2833,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 説明はこちらへ....
+        ///   Looks up a localized string similar to 설명은 여기에....
         /// </summary>
         internal static string LabelDescriptionHere {
             get {
@@ -2834,7 +2842,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 希望する都市.
+        ///   Looks up a localized string similar to 희망 도시.
         /// </summary>
         internal static string LabelDesiredLocation {
             get {
@@ -2843,7 +2851,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 希望給与.
+        ///   Looks up a localized string similar to 희망 급여.
         /// </summary>
         internal static string LabelDesiredPay {
             get {
@@ -2852,7 +2860,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 希望職種.
+        ///   Looks up a localized string similar to 희망 직위.
         /// </summary>
         internal static string LabelDesiredPosition {
             get {
@@ -2861,7 +2869,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 希望する地域.
+        ///   Looks up a localized string similar to 희망 지역.
         /// </summary>
         internal static string LabelDesiredRegion {
             get {
@@ -2870,7 +2878,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 詳細.
+        ///   Looks up a localized string similar to 상세정보.
         /// </summary>
         internal static string LabelDetails {
             get {
@@ -2879,7 +2887,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 卒業証書.
+        ///   Looks up a localized string similar to 학위.
         /// </summary>
         internal static string LabelDiploma {
             get {
@@ -2888,7 +2896,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 管理職.
+        ///   Looks up a localized string similar to 이사직.
         /// </summary>
         internal static string LabelDirectorship {
             get {
@@ -2897,7 +2905,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 直接報告.
+        ///   Looks up a localized string similar to 직속 부하직원.
         /// </summary>
         internal static string LabelDirectReport {
             get {
@@ -2906,7 +2914,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 給与を表示.
+        ///   Looks up a localized string similar to 라벨표시급여.
         /// </summary>
         internal static string LabelDisplaySalary {
             get {
@@ -2915,7 +2923,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to doc, docx, txt, pdf のみ可.
+        ///   Looks up a localized string similar to doc, docx, txt, pdf만.
         /// </summary>
         internal static string LabelDocRestriction {
             get {
@@ -2924,7 +2932,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 博士.
+        ///   Looks up a localized string similar to 박사.
         /// </summary>
         internal static string LabelDoctorate {
             get {
@@ -2933,7 +2941,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 医学博士.
+        ///   Looks up a localized string similar to 의학 박사.
         /// </summary>
         internal static string LabelDoctorOfMedicine {
             get {
@@ -2942,7 +2950,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 哲学博士.
+        ///   Looks up a localized string similar to 박사.
         /// </summary>
         internal static string LabelDoctorOfPhilosophy {
             get {
@@ -2951,7 +2959,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 文書のリンク.
+        ///   Looks up a localized string similar to 문서 링크.
         /// </summary>
         internal static string LabelDocumentLink {
             get {
@@ -2960,7 +2968,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 文書名.
+        ///   Looks up a localized string similar to 문서명.
         /// </summary>
         internal static string LabelDocumentName {
             get {
@@ -2969,7 +2977,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 文書タイトル.
+        ///   Looks up a localized string similar to 문서 제목.
         /// </summary>
         internal static string LabelDocumentTitle {
             get {
@@ -2978,7 +2986,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ダウンロード.
+        ///   Looks up a localized string similar to 다운로드.
         /// </summary>
         internal static string LabelDownload {
             get {
@@ -2987,7 +2995,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Excelで応募者をダウンロード.
+        ///   Looks up a localized string similar to 엑셀로 지원자 목록 다운로드.
         /// </summary>
         internal static string LabelDownloadApplicantsInExcel {
             get {
@@ -2996,7 +3004,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 選考され応募者をダウンロード.
+        ///   Looks up a localized string similar to 선택한지원자다운로드.
         /// </summary>
         internal static string LabelDownloadSelectedApplicants {
             get {
@@ -3005,7 +3013,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 博士.
+        ///   Looks up a localized string similar to 박사.
         /// </summary>
         internal static string LabelDr {
             get {
@@ -3014,7 +3022,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 下書きの日付.
+        ///   Looks up a localized string similar to 초안 작성일.
         /// </summary>
         internal static string LabelDraftDate {
             get {
@@ -3023,7 +3031,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブの下書きをする.
+        ///   Looks up a localized string similar to 채용 공고 초안작성.
         /// </summary>
         internal static string LabelDraftJobs {
             get {
@@ -3041,7 +3049,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 期間.
+        ///   Looks up a localized string similar to 기간.
         /// </summary>
         internal static string LabelDuration {
             get {
@@ -3050,7 +3058,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 編集.
+        ///   Looks up a localized string similar to 편집.
         /// </summary>
         internal static string LabelEdit {
             get {
@@ -3059,7 +3067,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 仕事内容の選択を編集する.
+        ///   Looks up a localized string similar to 역할 선호도.
         /// </summary>
         internal static string LabelEditARolePreference {
             get {
@@ -3068,7 +3076,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 証明書・会員名.
+        ///   Looks up a localized string similar to 자격증/회원증명.
         /// </summary>
         internal static string LabelEditCertificationsMembershipName {
             get {
@@ -3077,7 +3085,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 履歴書を編集する.
+        ///   Looks up a localized string similar to CV 편집.
         /// </summary>
         internal static string LabelEditCV {
             get {
@@ -3086,7 +3094,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 基本情報を編集.
+        ///   Looks up a localized string similar to 상세정보 편집.
         /// </summary>
         internal static string LabelEditDetails {
             get {
@@ -3095,7 +3103,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to エントリーを編集する.
+        ///   Looks up a localized string similar to 항목 편집.
         /// </summary>
         internal static string LabelEditEntry {
             get {
@@ -3104,7 +3112,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to お気に入り検索を編集する.
+        ///   Looks up a localized string similar to 즐겨찾기 편집.
         /// </summary>
         internal static string LabelEditFavouriteSearch {
             get {
@@ -3113,7 +3121,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブアラートを編集する.
+        ///   Looks up a localized string similar to 채용 공고 알림 편집.
         /// </summary>
         internal static string LabelEditJobAlert {
             get {
@@ -3122,7 +3130,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 応募申込フォームを編集する.
+        ///   Looks up a localized string similar to 입사지원서 편집.
         /// </summary>
         internal static string LabelEditJobApplication {
             get {
@@ -3131,7 +3139,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 登録情報を編集.
+        ///   Looks up a localized string similar to 프로필 편집.
         /// </summary>
         internal static string LabelEditProfile {
             get {
@@ -3149,7 +3157,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 学歴.
+        ///   Looks up a localized string similar to 학력.
         /// </summary>
         internal static string LabelEducation {
             get {
@@ -3158,7 +3166,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 例：シドニーで会計職を探す.
+        ///   Looks up a localized string similar to 예: 시드니에서 회계관련 구직.
         /// </summary>
         internal static string LabelEGAccountingJobInSydney {
             get {
@@ -3167,7 +3175,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 基本技能.
+        ///   Looks up a localized string similar to 초급.
         /// </summary>
         internal static string LabelElementaryProficiency {
             get {
@@ -3176,7 +3184,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 現地での就労資格有り.
+        ///   Looks up a localized string similar to 근무 자격이 있는 지역.
         /// </summary>
         internal static string LabelEligibleToWorkIn {
             get {
@@ -3185,7 +3193,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to メールアドレス.
+        ///   Looks up a localized string similar to 이메일.
         /// </summary>
         internal static string LabelEmail {
             get {
@@ -3194,7 +3202,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to メールアドレス.
+        ///   Looks up a localized string similar to 이메일 주소.
         /// </summary>
         internal static string LabelEmailAddress {
             get {
@@ -3203,7 +3211,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to このメールアドレスは登録済みです.
+        ///   Looks up a localized string similar to 이메일 주소가 이미 존재합니다. &lt;a href=&quot;/member/forgetpassword.aspx&quot;&gt;여기를 클릭&lt;/a&gt;하여 비밀번호를 찾으실 수 있습니다..
         /// </summary>
         internal static string LabelEmailAddressExist {
             get {
@@ -3212,7 +3220,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to メールアドレスを入力してください.
+        ///   Looks up a localized string similar to 이메일 주소는 필수정보입니다.
         /// </summary>
         internal static string LabelEmailAddressRequired {
             get {
@@ -3221,7 +3229,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to このメールアドレスは登録済みです。こちらへお進みください。&lt;a href=&quot;/member/login.aspx&quot;&gt;login&lt;/a&gt;..
+        ///   Looks up a localized string similar to 이메일이 이미 존재합니다. &lt;a href=&quot;~/member/login.aspx&quot;&gt;로그인&lt;/a&gt;한 후 계속하십시오.
         /// </summary>
         internal static string LabelEmailAlreadyExist {
             get {
@@ -3230,7 +3238,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to このメールアドレスは登録済みです.
+        ///   Looks up a localized string similar to 이메일이 이미 존재합니다.
         /// </summary>
         internal static string LabelEmailExist {
             get {
@@ -3239,7 +3247,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to このフォーマットをメールで送る.
+        ///   Looks up a localized string similar to 이메일 형식.
         /// </summary>
         internal static string LabelEmailFormat {
             get {
@@ -3248,7 +3256,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 友達にメールを送る.
+        ///   Looks up a localized string similar to 친구에게 이메일 보내기.
         /// </summary>
         internal static string LabelEmailFriend {
             get {
@@ -3257,7 +3265,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ご友人に求人の紹介メールが送付されました。求人情報ページにもう一度戻るには、「戻る」をクリックしてください。.
+        ///   Looks up a localized string similar to 링크를 작성한 이메일 주소로 송부하였습니다. 아래의 뒤로 버튼을 클릭하여 역할 상세정보로 돌아가십시오..
         /// </summary>
         internal static string LabelEmailFriendSuccess {
             get {
@@ -3266,7 +3274,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to このメールはご使用になれません.
+        ///   Looks up a localized string similar to 잘못된 이메일입니다..
         /// </summary>
         internal static string LabelEmailInvalid {
             get {
@@ -3275,7 +3283,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to この求人を友人にメールする.
+        ///   Looks up a localized string similar to 이 채용정보를 친구에게 이메일로 보내시려면 여기를 클릭하십시오.
         /// </summary>
         internal static string LabelEmailJobToAFriend {
             get {
@@ -3284,7 +3292,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to メールアドレスは入力必須項目です.
+        ///   Looks up a localized string similar to 이메일을 입력하셔야 합니다.
         /// </summary>
         internal static string LabelEmailMandatory {
             get {
@@ -3293,7 +3301,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to お知らせメール希望.
+        ///   Looks up a localized string similar to .
         /// </summary>
         internal static string LabelEmailMe {
             get {
@@ -3302,7 +3310,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email Me Selected Applicant.
+        ///   Looks up a localized string similar to 선택한 지원자 정보 나에게 이메일로 보내기.
         /// </summary>
         internal static string LabelEmailMeSelectedApplicants {
             get {
@@ -3311,7 +3319,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Eメールが必須です.
+        ///   Looks up a localized string similar to 이메일은 필수정보입니다.
         /// </summary>
         internal static string LabelEmailRequired {
             get {
@@ -3320,7 +3328,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}件のジョブが送信されました.
+        ///   Looks up a localized string similar to 이메일을 성공적으로 발송했습니다.
         /// </summary>
         internal static string LabelEmailSuccess {
             get {
@@ -3329,7 +3337,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to メールアドレスが一致しません.
+        ///   Looks up a localized string similar to 이메일 주소가 일치하지 않습니다.
         /// </summary>
         internal static string LabelEmalAddressNotMatch {
             get {
@@ -3338,7 +3346,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 雇用形態.
+        ///   Looks up a localized string similar to 고용 유형.
         /// </summary>
         internal static string LabelEmploymentType {
             get {
@@ -3347,7 +3355,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 雇用形態.
+        ///   Looks up a localized string similar to 고용 유형.
         /// </summary>
         internal static string LabelEmploymentTypes {
             get {
@@ -3356,7 +3364,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 有効.
+        ///   Looks up a localized string similar to 활성화.
         /// </summary>
         internal static string LabelEnable {
             get {
@@ -3365,7 +3373,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 終了.
+        ///   Looks up a localized string similar to 종료.
         /// </summary>
         internal static string LabelEnd {
             get {
@@ -3374,7 +3382,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 終了日.
+        ///   Looks up a localized string similar to 종료일.
         /// </summary>
         internal static string LabelEndDate {
             get {
@@ -3383,7 +3391,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 開始日は現在の日付以降の終了日を超えることはできません.
+        ///   Looks up a localized string similar to 시작일은 현재 날짜보다 늦거나 종료일보다 늦을 수 없습니다.
         /// </summary>
         internal static string LabelEndDateError {
             get {
@@ -3401,7 +3409,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to コンマを離して「,」入力してください.
+        ///   Looks up a localized string similar to 쉼표(,)로 구분하십시오.
         /// </summary>
         internal static string LabelEnterCommaSeparated {
             get {
@@ -3410,7 +3418,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to メールアドレス.
+        ///   Looks up a localized string similar to 이메일.
         /// </summary>
         internal static string LabelEnterEmail {
             get {
@@ -3419,7 +3427,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 名を記入.
+        ///   Looks up a localized string similar to 성을 입력하십시오.
         /// </summary>
         internal static string LabelEnterFirstName {
             get {
@@ -3428,7 +3436,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to キーワード.
+        ///   Looks up a localized string similar to 키워드 입력.
         /// </summary>
         internal static string LabelEnterKeywords {
             get {
@@ -3437,7 +3445,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 言語を記入.
+        ///   Looks up a localized string similar to 언어 입력....
         /// </summary>
         internal static string LabelEnterLanguage {
             get {
@@ -3446,7 +3454,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 姓を記入.
+        ///   Looks up a localized string similar to 성을 입력하십시오.
         /// </summary>
         internal static string LabelEnterLastName {
             get {
@@ -3455,7 +3463,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to パスワードを記入.
+        ///   Looks up a localized string similar to 비밀번호.
         /// </summary>
         internal static string LabelEnterPassword {
             get {
@@ -3464,7 +3472,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 電話番号を記入.
+        ///   Looks up a localized string similar to 전화번호 입력.
         /// </summary>
         internal static string LabelEnterPhoneNumber {
             get {
@@ -3473,7 +3481,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to プロモションコードを記入.
+        ///   Looks up a localized string similar to 프로모션 코드 입력.
         /// </summary>
         internal static string LabelEnterPromoCode {
             get {
@@ -3482,7 +3490,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to この仕事内容は選択済みです.
+        ///   Looks up a localized string similar to 판촉코드 입력.
         /// </summary>
         internal static string LabelErrorDuplicateRole {
             get {
@@ -3491,7 +3499,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 画像を jpg、gif、png のいずれかの形式でアップロードしてください。ファイルの最大容量は1MB、最大幅300ピクセルです。.
+        ///   Looks up a localized string similar to 중복된 역할을 선택할 수 없습니다.
         /// </summary>
         internal static string LabelErrorFileExtension1MB {
             get {
@@ -3500,7 +3508,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 希望給与額.
+        ///   Looks up a localized string similar to 이미지는 jpg, gif 또는 png 형식으로 업로드하십시오. 최대 파일크기는 1MB이며 최대 넓이는 300px입니다..
         /// </summary>
         internal static string LabelExpectedSalary {
             get {
@@ -3509,7 +3517,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 職務経験　終了.
+        ///   Looks up a localized string similar to 희망 급여/기대 연봉.
         /// </summary>
         internal static string LabelExperienceEnd {
             get {
@@ -3518,7 +3526,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 職務経験　開始.
+        ///   Looks up a localized string similar to 경험 종료.
         /// </summary>
         internal static string LabelExperienceStart {
             get {
@@ -3527,7 +3535,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 専門家.
+        ///   Looks up a localized string similar to 경험 시작.
         /// </summary>
         internal static string LabelExpert {
             get {
@@ -3536,7 +3544,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 掲載を終了する.
+        ///   Looks up a localized string similar to 만료.
         /// </summary>
         internal static string LabelExpire {
             get {
@@ -3545,7 +3553,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 掲載を終了しました.
+        ///   Looks up a localized string similar to 만료됨.
         /// </summary>
         internal static string LabelExpired {
             get {
@@ -3554,7 +3562,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 掲載終了日.
+        ///   Looks up a localized string similar to 만기.
         /// </summary>
         internal static string LabelExpiry {
             get {
@@ -3563,7 +3571,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 掲載終了日.
+        ///   Looks up a localized string similar to 만기일.
         /// </summary>
         internal static string LabelExpiryDate {
             get {
@@ -3572,7 +3580,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 掲載終了月.
+        ///   Looks up a localized string similar to 만기월.
         /// </summary>
         internal static string LabelExpiryMonth {
             get {
@@ -3581,7 +3589,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 掲載終了年.
+        ///   Looks up a localized string similar to 만기년.
         /// </summary>
         internal static string LabelExpiryYear {
             get {
@@ -3590,7 +3598,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to External Job Application.
+        ///   Looks up a localized string similar to 외부 입사지원.
         /// </summary>
         internal static string LabelExternalJobApplication {
             get {
@@ -3599,7 +3607,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 作成したアラートに失敗しました.
+        ///   Looks up a localized string similar to 알림 생성 실패.
         /// </summary>
         internal static string LabelFailedToCreatedYouJobAlert {
             get {
@@ -3608,7 +3616,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 保存した検索に失敗しました.
+        ///   Looks up a localized string similar to 검색 저장 실패.
         /// </summary>
         internal static string LabelFailedToSavedYourSearch {
             get {
@@ -3617,7 +3625,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to メールが送れませんでした.
+        ///   Looks up a localized string similar to 이메일 발송 실패.
         /// </summary>
         internal static string LabelFailedToSendEmail {
             get {
@@ -3626,7 +3634,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to お気に入りの検索が正常に作成されました.
+        ///   Looks up a localized string similar to 즐겨찾기 생성 성공.
         /// </summary>
         internal static string LabelFavouriteSearchCreateSuccess {
             get {
@@ -3635,7 +3643,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to お気に入り検索.
+        ///   Looks up a localized string similar to 즐겨찾기.
         /// </summary>
         internal static string LabelFavouriteSearches {
             get {
@@ -3644,7 +3652,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to お気に入り検索名がありません.
+        ///   Looks up a localized string similar to 즐겨찾기명이 누락되었습니다.
         /// </summary>
         internal static string LabelFavouriteSearchNameIsMissing {
             get {
@@ -3653,7 +3661,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to お気に入り検索は正常に保存されました.
+        ///   Looks up a localized string similar to 즐겨찾기저장성공.
         /// </summary>
         internal static string LabelFavouriteSearchSaveSuccess {
             get {
@@ -3662,7 +3670,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to この検索条件をお気に入りに保存する.
+        ///   Looks up a localized string similar to 이 검색을 즐겨찾기에 추가.
         /// </summary>
         internal static string LabelFavouriteThisSearch {
             get {
@@ -3671,7 +3679,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ファックス.
+        ///   Looks up a localized string similar to 팩스.
         /// </summary>
         internal static string LabelFax {
             get {
@@ -3680,7 +3688,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 2月.
+        ///   Looks up a localized string similar to 2월.
         /// </summary>
         internal static string LabelFeb {
             get {
@@ -3689,7 +3697,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 女性.
+        ///   Looks up a localized string similar to 여성.
         /// </summary>
         internal static string LabelFemale {
             get {
@@ -3698,7 +3706,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 次の項目下にファイル済み.
+        ///   Looks up a localized string similar to 파일 저장위치.
         /// </summary>
         internal static string LabelFiledUnder {
             get {
@@ -3707,7 +3715,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ファイル名.
+        ///   Looks up a localized string similar to 파일명.
         /// </summary>
         internal static string LabelFileName {
             get {
@@ -3716,7 +3724,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ファイルの選択.
+        ///   Looks up a localized string similar to 파일제목.
         /// </summary>
         internal static string LabelFileTitle {
             get {
@@ -3725,7 +3733,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ファイルの種類.
+        ///   Looks up a localized string similar to 파일 유형.
         /// </summary>
         internal static string LabelFileType {
             get {
@@ -3734,7 +3742,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ファイルをアップロードする.
+        ///   Looks up a localized string similar to 파일 업로드.
         /// </summary>
         internal static string LabelFileUpload {
             get {
@@ -3743,7 +3751,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Filter Results.
+        ///   Looks up a localized string similar to 결과 필터.
         /// </summary>
         internal static string LabelFilterResults {
             get {
@@ -3752,7 +3760,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 終了.
+        ///   Looks up a localized string similar to 종료.
         /// </summary>
         internal static string LabelFinish {
             get {
@@ -3761,7 +3769,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 名（ローマ字）.
+        ///   Looks up a localized string similar to 이름.
         /// </summary>
         internal static string LabelFirstName {
             get {
@@ -3770,7 +3778,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 名.
+        ///   Looks up a localized string similar to 이름(한글).
         /// </summary>
         internal static string LabelFirstNameLocalLanguage {
             get {
@@ -3779,7 +3787,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 名前は入力必須項目です.
+        ///   Looks up a localized string similar to 이름을 입력하셔야 합니다..
         /// </summary>
         internal static string LabelFirstNameMandatory {
             get {
@@ -3788,7 +3796,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 名前を入力してください.
+        ///   Looks up a localized string similar to 이름은 필수정보입니다.
         /// </summary>
         internal static string LabelFirstnameRequired {
             get {
@@ -3797,7 +3805,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 基本給.
+        ///   Looks up a localized string similar to 고정급여.
         /// </summary>
         internal static string LabelFixedSalary {
             get {
@@ -3806,7 +3814,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to for.
+        ///   Looks up a localized string similar to .
         /// </summary>
         internal static string LabelFor {
             get {
@@ -3815,7 +3823,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to パスワードの再設定.
+        ///   Looks up a localized string similar to 비밀번호 다시 찾기.
         /// </summary>
         internal static string LabelForgetPassword {
             get {
@@ -3824,7 +3832,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to パスワードを再設定する場合はこちら.
+        ///   Looks up a localized string similar to 비밀번호 분실.
         /// </summary>
         internal static string LabelForgotPassword {
             get {
@@ -3833,7 +3841,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to パスワードを再設定する場合はこちら.
+        ///   Looks up a localized string similar to 분실한 비밀번호.
         /// </summary>
         internal static string LabelForgottenPassword {
             get {
@@ -3842,7 +3850,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 以前の雇用主.
+        ///   Looks up a localized string similar to 이전 고용주.
         /// </summary>
         internal static string LabelFormerEmployer {
             get {
@@ -3851,7 +3859,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to From.
+        ///   Looks up a localized string similar to 시작.
         /// </summary>
         internal static string LabelFrom {
             get {
@@ -3860,7 +3868,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to From Date.
+        ///   Looks up a localized string similar to 시작일.
         /// </summary>
         internal static string LabelFromDate {
             get {
@@ -3869,7 +3877,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 給与から入力.
+        ///   Looks up a localized string similar to 최소 급여 입력.
         /// </summary>
         internal static string LabelFromSalary {
             get {
@@ -3878,7 +3886,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to From/To.
+        ///   Looks up a localized string similar to 시작/종료.
         /// </summary>
         internal static string LabelFromTo {
             get {
@@ -3887,7 +3895,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 詳細を全て見る.
+        ///   Looks up a localized string similar to 상세 설명.
         /// </summary>
         internal static string LabelFullDescription {
             get {
@@ -3896,7 +3904,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 姓名.
+        ///   Looks up a localized string similar to 성명.
         /// </summary>
         internal static string LabelFullName {
             get {
@@ -3905,7 +3913,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Full permission is required.
+        ///   Looks up a localized string similar to 전체 권한이 필요합니다.
         /// </summary>
         internal static string LabelFullPermissionRequired {
             get {
@@ -3914,7 +3922,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Full Professional proficiency.
+        ///   Looks up a localized string similar to 전문가 수준 숙련도.
         /// </summary>
         internal static string LabelFullProfessionalProficiency {
             get {
@@ -3923,7 +3931,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Full Registration.
+        ///   Looks up a localized string similar to 전체 등록.
         /// </summary>
         internal static string LabelFullRegistration {
             get {
@@ -3932,7 +3940,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 性別.
+        ///   Looks up a localized string similar to 성별.
         /// </summary>
         internal static string LabelGender {
             get {
@@ -3941,7 +3949,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 作成する.
+        ///   Looks up a localized string similar to 생성.
         /// </summary>
         internal static string LabelGenerate {
             get {
@@ -3950,7 +3958,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 検索結果に戻ります.
+        ///   Looks up a localized string similar to 검색결과로 돌아가기..
         /// </summary>
         internal static string LabelGoBackToSearchResults {
             get {
@@ -3959,7 +3967,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Graduated.
+        ///   Looks up a localized string similar to 졸업.
         /// </summary>
         internal static string LabelGraduated {
             get {
@@ -3968,7 +3976,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Graduated Credits.
+        ///   Looks up a localized string similar to 졸업 평점.
         /// </summary>
         internal static string LabelGraduatedCredits {
             get {
@@ -3977,7 +3985,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to GST（グリニッジ標準時）.
+        ///   Looks up a localized string similar to GST.
         /// </summary>
         internal static string LabelGST {
             get {
@@ -3986,7 +3994,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ウェルカムメールを受信されていませんか？以下を再送信してください。.
+        ///   Looks up a localized string similar to 환영 이메일을 받지 못하셨습니까? 아래에서 재발송하십시오.
         /// </summary>
         internal static string LabelHaventReceivedWelcomeEmail {
             get {
@@ -3995,7 +4003,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ヘッドライン.
+        ///   Looks up a localized string similar to 표제.
         /// </summary>
         internal static string LabelHeadline {
             get {
@@ -4004,7 +4012,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to こちら.
+        ///   Looks up a localized string similar to 여기.
         /// </summary>
         internal static string LabelHere {
             get {
@@ -4013,7 +4021,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to こんにちは.
+        ///   Looks up a localized string similar to 안녕하세요.
         /// </summary>
         internal static string LabelHi {
             get {
@@ -4022,7 +4030,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 過去のジョブの統計データ.
+        ///   Looks up a localized string similar to 채용통계 이력.
         /// </summary>
         internal static string LabelHistoricalJobStatistics {
             get {
@@ -4031,7 +4039,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 人気のジョブ.
+        ///   Looks up a localized string similar to 인기 채용 건.
         /// </summary>
         internal static string LabelHotJob {
             get {
@@ -4040,7 +4048,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hourly Range.
+        ///   Looks up a localized string similar to 시급 범위.
         /// </summary>
         internal static string LabelHourlyRange {
             get {
@@ -4049,7 +4057,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 時給給与.
+        ///   Looks up a localized string similar to 시급.
         /// </summary>
         internal static string LabelHourlySalary {
             get {
@@ -4058,7 +4066,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to How does my profile compare?.
+        ///   Looks up a localized string similar to 내 프로필은 어떻게 비교되나요?.
         /// </summary>
         internal static string LabelHowDoesMyFileCompare {
             get {
@@ -4067,7 +4075,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to プロフィール完成度.
+        ///   Looks up a localized string similar to 내 프로필은 어떻게 비교되나요?.
         /// </summary>
         internal static string LabelHowDoesMyProfileCompare {
             get {
@@ -4085,7 +4093,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 賞与.
+        ///   Looks up a localized string similar to 인센티브 급여.
         /// </summary>
         internal static string LabelIncentiveSalary {
             get {
@@ -4094,7 +4102,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Indirect Report.
+        ///   Looks up a localized string similar to 비직속 부하.
         /// </summary>
         internal static string LabelIndirectReport {
             get {
@@ -4103,7 +4111,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 業種.
+        ///   Looks up a localized string similar to 업계.
         /// </summary>
         internal static string LabelIndustries {
             get {
@@ -4112,7 +4120,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 業種.
+        ///   Looks up a localized string similar to 업계.
         /// </summary>
         internal static string LabelIndustry {
             get {
@@ -4121,7 +4129,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 組織名.
+        ///   Looks up a localized string similar to 기관명.
         /// </summary>
         internal static string LabelInstitutionName {
             get {
@@ -4130,7 +4138,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to このジョブを検討リストに入れますか.
+        ///   Looks up a localized string similar to 본 채용 건에 관심이 있습니까?.
         /// </summary>
         internal static string LabelInterestedInThisJob {
             get {
@@ -4139,7 +4147,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to このジョブを検討リストに入れますか.
+        ///   Looks up a localized string similar to 본 채용 건에 관심이 있습니까?.
         /// </summary>
         internal static string LabelInterestedInThisJob1 {
             get {
@@ -4148,7 +4156,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 仲介者.
+        ///   Looks up a localized string similar to 중급.
         /// </summary>
         internal static string LabelIntermediate {
             get {
@@ -4157,7 +4165,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 面接.
+        ///   Looks up a localized string similar to 면접.
         /// </summary>
         internal static string LabelInterview {
             get {
@@ -4166,7 +4174,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 日付が間違っています.
+        ///   Looks up a localized string similar to 잘못된 날짜.
         /// </summary>
         internal static string LabelInvalidDate {
             get {
@@ -4175,7 +4183,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to この日付はお取り扱いできません.
+        ///   Looks up a localized string similar to 기간 외 날짜..
         /// </summary>
         internal static string LabelInvalidDateRange {
             get {
@@ -4184,7 +4192,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to このタイプのファイルはご使用になれません。画像はGIF、 JPG、 JPEGのファイルのみアップロードが可能です。.
+        ///   Looks up a localized string similar to 잘못된 파일형식. GIF, JPG, JPEG 형식의 이미지만 업로드할 수 있습니다..
         /// </summary>
         internal static string LabelInvalidImage {
             get {
@@ -4193,7 +4201,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to このジョブアラートはお取り扱いできません.
+        ///   Looks up a localized string similar to 잘못된 채용 공고 알림.
         /// </summary>
         internal static string LabelInvalidJobAlert {
             get {
@@ -4202,7 +4210,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to このURLはお取り扱いできません.
+        ///   Looks up a localized string similar to 잘못된 URL.
         /// </summary>
         internal static string LabelInvalidURL {
             get {
@@ -4211,7 +4219,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 発行日.
+        ///   Looks up a localized string similar to 발행일.
         /// </summary>
         internal static string LabelIssueDate {
             get {
@@ -4220,7 +4228,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 項目.
+        ///   Looks up a localized string similar to 항목.
         /// </summary>
         internal static string LabelItem {
             get {
@@ -4229,7 +4237,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1月.
+        ///   Looks up a localized string similar to 1월.
         /// </summary>
         internal static string LabelJan {
             get {
@@ -4247,7 +4255,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブ広告のオプション.
+        ///   Looks up a localized string similar to 채용 공고 옵션.
         /// </summary>
         internal static string LabelJobAdOptions {
             get {
@@ -4256,7 +4264,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブ広告オプション.
+        ///   Looks up a localized string similar to 채용 공고 옵션.
         /// </summary>
         internal static string LabelJobAdvertisementOption {
             get {
@@ -4265,7 +4273,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブアラート.
+        ///   Looks up a localized string similar to 채용 공고 알림.
         /// </summary>
         internal static string LabelJobAlert {
             get {
@@ -4274,7 +4282,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブアラートを設定しました.
+        ///   Looks up a localized string similar to 채용 공고 알림을 생성하였습니다..
         /// </summary>
         internal static string LabelJobAlertCreateSuccess {
             get {
@@ -4283,7 +4291,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to アラートの検索条件.
+        ///   Looks up a localized string similar to 채용 공고 알림 기준.
         /// </summary>
         internal static string LabelJobAlertCriteria {
             get {
@@ -4292,7 +4300,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to アラートの詳細.
+        ///   Looks up a localized string similar to 채용 공고 알림 상세정보.
         /// </summary>
         internal static string LabelJobAlertDetail {
             get {
@@ -4301,7 +4309,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to このリンクは無効になっています。&lt;br /&gt;&lt;br /&gt;既に使用済みか、セキュリティー上の問題が理由で無効になっています。&lt;br /&gt;&lt;br /&gt;ジョブアラートをチェックするには、メンバーとしてログインしてください。。。&lt;a href=&apos;/member/login.aspx&apos;&gt;here&lt;/a&gt;.
+        ///   Looks up a localized string similar to 채용 공고 알림 GUID 편집 실패.
         /// </summary>
         internal static string LabelJobAlertEditGUIDFailed {
             get {
@@ -4310,7 +4318,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブアラート名.
+        ///   Looks up a localized string similar to 채용 공고 알림명.
         /// </summary>
         internal static string LabelJobAlertName {
             get {
@@ -4319,7 +4327,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to デイリージョブアラートを受け取らない.
+        ///   Looks up a localized string similar to 아니오, 매일 채용 공고 알림을 받지 않겠습니다.
         /// </summary>
         internal static string LabelJobAlertNo {
             get {
@@ -4328,7 +4336,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブアラートが正常に保存されました.
+        ///   Looks up a localized string similar to 채용 공고 알림 저장 성공.
         /// </summary>
         internal static string LabelJobAlertSaveSuccess {
             get {
@@ -4337,7 +4345,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;br /&gt;&lt;br /&gt;様、このリンクは、一度しか使えません。以前にジョブアラートの配信解除のためにご使用になられたようです。.
+        ///   Looks up a localized string similar to 채용 공고 알림 GUID 구독 취소 실패.
         /// </summary>
         internal static string LabelJobAlertUnsubscribeGUIDFailed {
             get {
@@ -4346,7 +4354,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;br /&gt;&lt;br /&gt;様、このリンクは、一度しか使えません。以前にジョブアラートを閲覧するためにご使用になられたようです。.
+        ///   Looks up a localized string similar to 채용 공고 알림 GUID 조회 실패.
         /// </summary>
         internal static string LabelJobAlertViewGUIDFailed {
             get {
@@ -4355,7 +4363,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 新着ジョブ情報を毎日メールで受け取る.
+        ///   Looks up a localized string similar to 네, 매일 채용 공고 알림을 받겠습니다.
         /// </summary>
         internal static string LabelJobAlertYes {
             get {
@@ -4364,7 +4372,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 応募申込.
+        ///   Looks up a localized string similar to 입사지원.
         /// </summary>
         internal static string LabelJobApplication {
             get {
@@ -4373,7 +4381,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 応募申込の詳細.
+        ///   Looks up a localized string similar to 입사지원 상세정보.
         /// </summary>
         internal static string LabelJobApplicationDetail {
             get {
@@ -4382,7 +4390,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 応募申込の詳細.
+        ///   Looks up a localized string similar to 입사지원 상세정보.
         /// </summary>
         internal static string LabelJobApplicationDetails {
             get {
@@ -4391,7 +4399,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 応募申込のメモ.
+        ///   Looks up a localized string similar to 입사지원 메모.
         /// </summary>
         internal static string LabelJobApplicationNote {
             get {
@@ -4400,7 +4408,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to このジョブに応募した日付.
+        ///   Looks up a localized string similar to 입사 지원일.
         /// </summary>
         internal static string LabelJobApplied {
             get {
@@ -4409,7 +4417,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブへの申込みができませんでした。もう一度行ってください。.
+        ///   Looks up a localized string similar to 입사지원서 제출 실패. 다시 시도하십시오..
         /// </summary>
         internal static string LabelJobApplyFailed {
             get {
@@ -4418,7 +4426,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job is assigend to username.
+        ///   Looks up a localized string similar to 채용 공고가 사용자명에 할당되었습니다.
         /// </summary>
         internal static string LabelJobAssignnedTo {
             get {
@@ -4427,7 +4435,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 職種カテゴリー.
+        ///   Looks up a localized string similar to 직무 범주.
         /// </summary>
         internal static string LabelJobCategory {
             get {
@@ -4436,7 +4444,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブの分類.
+        ///   Looks up a localized string similar to 직종.
         /// </summary>
         internal static string LabelJobClassification {
             get {
@@ -4445,7 +4453,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to このジョブの職種に関する詳細.
+        ///   Looks up a localized string similar to 직종 상세정보.
         /// </summary>
         internal static string LabelJobClassificationDetail {
             get {
@@ -4454,7 +4462,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to このジョブの連絡先.
+        ///   Looks up a localized string similar to 채용 담당자 상세정보.
         /// </summary>
         internal static string LabelJobContactDetails {
             get {
@@ -4463,7 +4471,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブの内容.
+        ///   Looks up a localized string similar to 직무 설명.
         /// </summary>
         internal static string LabelJobDescription {
             get {
@@ -4472,7 +4480,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to このジョブは終了しました.
+        ///   Looks up a localized string similar to 채용 만료.
         /// </summary>
         internal static string LabelJobExpired {
             get {
@@ -4481,7 +4489,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブの有効期限通知.
+        ///   Looks up a localized string similar to 채용 만료 통지.
         /// </summary>
         internal static string LabelJobExpiryNotification {
             get {
@@ -4490,7 +4498,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブ用の名前.
+        ///   Looks up a localized string similar to 채용 건 별명.
         /// </summary>
         internal static string LabelJobFriendlyName {
             get {
@@ -4499,7 +4507,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 職種.
+        ///   Looks up a localized string similar to 직무.
         /// </summary>
         internal static string LabelJobFunction {
             get {
@@ -4508,7 +4516,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to このジョブに応募済の可能性があります.
+        ///   Looks up a localized string similar to 다음 날짜에 이미 지원했을 수 있습니다..
         /// </summary>
         internal static string LabelJobHaveApplied {
             get {
@@ -4517,7 +4525,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブ ID.
+        ///   Looks up a localized string similar to 채용 ID.
         /// </summary>
         internal static string LabelJobID {
             get {
@@ -4526,7 +4534,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to このジョブはアーカイブに入っています.
+        ///   Looks up a localized string similar to 이 채용 건은 보관되었습니다.
         /// </summary>
         internal static string LabelJobIsArchived {
             get {
@@ -4535,7 +4543,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to このジョブの掲載は終了しました.
+        ///   Looks up a localized string similar to 이 채용 건은 만료되었습니다.
         /// </summary>
         internal static string LabelJobIsExpired {
             get {
@@ -4544,7 +4552,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブ項目.
+        ///   Looks up a localized string similar to 채용 항목.
         /// </summary>
         internal static string LabelJobItem {
             get {
@@ -4553,7 +4561,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブ項目の金額.
+        ///   Looks up a localized string similar to 채용 항목별 가격.
         /// </summary>
         internal static string LabelJobItemPrice {
             get {
@@ -4562,7 +4570,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブ項目の種類.
+        ///   Looks up a localized string similar to 채용 항목 유형.
         /// </summary>
         internal static string LabelJobItemType {
             get {
@@ -4571,7 +4579,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブ勤務地.
+        ///   Looks up a localized string similar to 채용 위치.
         /// </summary>
         internal static string LabelJobLocation {
             get {
@@ -4580,7 +4588,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブ名.
+        ///   Looks up a localized string similar to 채용명.
         /// </summary>
         internal static string LabelJobName {
             get {
@@ -4589,7 +4597,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブプレビュー.
+        ///   Looks up a localized string similar to 채용 건 미리보기.
         /// </summary>
         internal static string LabelJobPreview {
             get {
@@ -4598,7 +4606,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブに関する詳細.
+        ///   Looks up a localized string similar to 급여 상세정보.
         /// </summary>
         internal static string LabelJobSalaryDetail {
             get {
@@ -4607,7 +4615,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブ保存.
+        ///   Looks up a localized string similar to 채용권 저장됨.
         /// </summary>
         internal static string LabelJobSaved {
             get {
@@ -4616,7 +4624,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 求職者.
+        ///   Looks up a localized string similar to 구직자.
         /// </summary>
         internal static string LabelJobSeeker {
             get {
@@ -4625,7 +4633,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 求職者.
+        ///   Looks up a localized string similar to 구직자.
         /// </summary>
         internal static string LabelJobSeekers {
             get {
@@ -4634,7 +4642,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 24時間以内に終了するジョブ.
+        ///   Looks up a localized string similar to 24시간 이내 채용 건 만료.
         /// </summary>
         internal static string LabelJobsExpiringIn24hrs {
             get {
@@ -4643,7 +4651,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブ開始日.
+        ///   Looks up a localized string similar to 근무 시작일.
         /// </summary>
         internal static string LabelJobStartDate {
             get {
@@ -4652,7 +4660,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブテンプレート.
+        ///   Looks up a localized string similar to 채용 건 템플릿.
         /// </summary>
         internal static string LabelJobTemplate {
             get {
@@ -4661,7 +4669,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブテンプレートのロゴ.
+        ///   Looks up a localized string similar to 채용 건 템플릿 로고.
         /// </summary>
         internal static string LabelJobTemplateLogo {
             get {
@@ -4670,7 +4678,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブテンプレート設定.
+        ///   Looks up a localized string similar to 채용 건 템플릿 설정.
         /// </summary>
         internal static string LabelJobTemplateSettings {
             get {
@@ -4679,7 +4687,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 役職.
+        ///   Looks up a localized string similar to 직위.
         /// </summary>
         internal static string LabelJobTitle {
             get {
@@ -4688,7 +4696,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}件のジョブが終了しました.
+        ///   Looks up a localized string similar to 이 직위는 현재 만료되었습니다.
         /// </summary>
         internal static string LabelJobTitleIsExpired {
             get {
@@ -4697,7 +4705,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブの職種.
+        ///   Looks up a localized string similar to 업무유형.
         /// </summary>
         internal static string LabelJobWorktype {
             get {
@@ -4706,7 +4714,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 7月.
+        ///   Looks up a localized string similar to 7월.
         /// </summary>
         internal static string LabelJul {
             get {
@@ -4715,7 +4723,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 6月.
+        ///   Looks up a localized string similar to 6월.
         /// </summary>
         internal static string LabelJun {
             get {
@@ -4724,7 +4732,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 法学士.
+        ///   Looks up a localized string similar to 법학 박사.
         /// </summary>
         internal static string LabelJurisDoctor {
             get {
@@ -4733,7 +4741,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 求人エントリー.
+        ///   Looks up a localized string similar to 지금 지원.
         /// </summary>
         internal static string LabelJustApply {
             get {
@@ -4742,7 +4750,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 応募のみ.
+        ///   Looks up a localized string similar to 지원만 하기.
         /// </summary>
         internal static string LabelJustApplyPage {
             get {
@@ -4751,7 +4759,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to キーワード.
+        ///   Looks up a localized string similar to 키워드.
         /// </summary>
         internal static string LabelKeyword {
             get {
@@ -4760,7 +4768,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to キーワード.
+        ///   Looks up a localized string similar to 키워드.
         /// </summary>
         internal static string LabelKeywords {
             get {
@@ -4769,7 +4777,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 固定電話.
+        ///   Looks up a localized string similar to 유선전화.
         /// </summary>
         internal static string LabelLandLine {
             get {
@@ -4778,7 +4786,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 言語.
+        ///   Looks up a localized string similar to 언어.
         /// </summary>
         internal static string LabelLanguage {
             get {
@@ -4787,7 +4795,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 言語.
+        ///   Looks up a localized string similar to 언어.
         /// </summary>
         internal static string LabelLanguages {
             get {
@@ -4796,7 +4804,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 修正済み.
+        ///   Looks up a localized string similar to 최근 수정.
         /// </summary>
         internal static string LabelLastModified {
             get {
@@ -4805,7 +4813,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 管理者によって修正されました.
+        ///   Looks up a localized string similar to 관리자가 최근 수정.
         /// </summary>
         internal static string LabelLastModifiedByAdminUser {
             get {
@@ -4814,7 +4822,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 広告掲載者によって修正されました.
+        ///   Looks up a localized string similar to 구인자가 최근 수정.
         /// </summary>
         internal static string LabelLastModifiedByAdvertiserUser {
             get {
@@ -4823,7 +4831,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 姓（ローマ字）.
+        ///   Looks up a localized string similar to 성.
         /// </summary>
         internal static string LabelLastName {
             get {
@@ -4832,7 +4840,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 姓（ローマ字）.
+        ///   Looks up a localized string similar to 성(한글).
         /// </summary>
         internal static string LabelLastNameLocalLanguage {
             get {
@@ -4841,7 +4849,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 最後に閲覧された日.
+        ///   Looks up a localized string similar to 최근 조회일.
         /// </summary>
         internal static string LabelLastViewedDate {
             get {
@@ -4850,7 +4858,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 最新.
+        ///   Looks up a localized string similar to 가장 최근.
         /// </summary>
         internal static string LabelLatest {
             get {
@@ -4859,7 +4867,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to License Name.
+        ///   Looks up a localized string similar to 면허증 명칭.
         /// </summary>
         internal static string LabelLicenseName {
             get {
@@ -4868,7 +4876,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Licenses.
+        ///   Looks up a localized string similar to 면허증.
         /// </summary>
         internal static string LabelLicenses {
             get {
@@ -4877,7 +4885,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to License Type.
+        ///   Looks up a localized string similar to 면허 유형.
         /// </summary>
         internal static string LabelLicenseType {
             get {
@@ -4886,7 +4894,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Limited working proficiency.
+        ///   Looks up a localized string similar to 제한적인 업무 숙련도.
         /// </summary>
         internal static string LabelLimitedWorkProficiency {
             get {
@@ -4895,7 +4903,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 進行中のジョブ.
+        ///   Looks up a localized string similar to 실시간 채용.
         /// </summary>
         internal static string LabelLiveJobs {
             get {
@@ -4904,7 +4912,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 現地語.
+        ///   Looks up a localized string similar to 한국어.
         /// </summary>
         internal static string LabelLocalLanguage {
             get {
@@ -4913,7 +4921,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 名 (現地語).
+        ///   Looks up a localized string similar to 이름(한글).
         /// </summary>
         internal static string LabelLocalName {
             get {
@@ -4922,7 +4930,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 勤務地.
+        ///   Looks up a localized string similar to 위치.
         /// </summary>
         internal static string LabelLocation {
             get {
@@ -4931,7 +4939,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 勤務地/エリア.
+        ///   Looks up a localized string similar to 위치/지역.
         /// </summary>
         internal static string LabelLocationAndArea {
             get {
@@ -4940,7 +4948,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 勤務地／エリア.
+        ///   Looks up a localized string similar to 위치/지역.
         /// </summary>
         internal static string LabelLocationArea {
             get {
@@ -4949,7 +4957,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 勤務地詳細.
+        ///   Looks up a localized string similar to 위치 상세정보.
         /// </summary>
         internal static string LabelLocationDetails {
             get {
@@ -4958,7 +4966,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 希望の勤務地.
+        ///   Looks up a localized string similar to 위치 선호 사항.
         /// </summary>
         internal static string LabelLocationPreferences {
             get {
@@ -4967,7 +4975,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 勤務地を入力してください.
+        ///   Looks up a localized string similar to 위치는 필수정보입니다.
         /// </summary>
         internal static string LabelLocationRequired {
             get {
@@ -4976,7 +4984,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 勤務地／更新済み.
+        ///   Looks up a localized string similar to 위치/업데이트됨.
         /// </summary>
         internal static string LabelLocationUpdated {
             get {
@@ -4985,7 +4993,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ログイン.
+        ///   Looks up a localized string similar to 로그인.
         /// </summary>
         internal static string LabelLogin {
             get {
@@ -4994,7 +5002,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 基本情報.
+        ///   Looks up a localized string similar to 로그인 상세정보.
         /// </summary>
         internal static string LabelLoginDetails {
             get {
@@ -5003,7 +5011,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ソーシャルメディア ログイン.
+        ///   Looks up a localized string similar to 소셜미디어로 로그인.
         /// </summary>
         internal static string LabelLoginWithSocialMedia {
             get {
@@ -5012,7 +5020,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ロゴイメージ.
+        ///   Looks up a localized string similar to 로고 이미지.
         /// </summary>
         internal static string LabelLogoImage {
             get {
@@ -5021,7 +5029,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ログアウト.
+        ///   Looks up a localized string similar to 로그아웃.
         /// </summary>
         internal static string LabelLogout {
             get {
@@ -5030,7 +5038,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to パスワードが必要です.
+        ///   Looks up a localized string similar to 비밀번호는 필수정보입니다.
         /// </summary>
         internal static string labellPasswordRequired {
             get {
@@ -5039,7 +5047,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 郵送先住所.
+        ///   Looks up a localized string similar to 우편주소.
         /// </summary>
         internal static string LabelMailingAddress {
             get {
@@ -5048,7 +5056,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 郵送先国名.
+        ///   Looks up a localized string similar to 우편주소 국가.
         /// </summary>
         internal static string LabelMailingCountry {
             get {
@@ -5057,7 +5065,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 郵送先郵便番号.
+        ///   Looks up a localized string similar to 우편번호.
         /// </summary>
         internal static string LabelMailingPostcode {
             get {
@@ -5066,7 +5074,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 郵送先都道府県.
+        ///   Looks up a localized string similar to 우편발송 주.
         /// </summary>
         internal static string LabelMailingState {
             get {
@@ -5075,7 +5083,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 郵送先周辺地区.
+        ///   Looks up a localized string similar to 우편발송 동.
         /// </summary>
         internal static string LabelMailingSuburb {
             get {
@@ -5084,7 +5092,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to メインアラートにしますか？.
+        ///   Looks up a localized string similar to 메인 알림?.
         /// </summary>
         internal static string LabelMainAlert {
             get {
@@ -5093,7 +5101,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 支払う.
+        ///   Looks up a localized string similar to 결제하기.
         /// </summary>
         internal static string LabelMakePayment {
             get {
@@ -5102,7 +5110,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 男性.
+        ///   Looks up a localized string similar to 남성.
         /// </summary>
         internal static string LabelMale {
             get {
@@ -5111,7 +5119,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to マネージャー.
+        ///   Looks up a localized string similar to 관리자.
         /// </summary>
         internal static string LabelManager {
             get {
@@ -5129,7 +5137,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 必須項目.
+        ///   Looks up a localized string similar to 필수입력필드.
         /// </summary>
         internal static string LabelMandatoryField {
             get {
@@ -5138,7 +5146,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 3月.
+        ///   Looks up a localized string similar to 3월.
         /// </summary>
         internal static string LabelMar {
             get {
@@ -5156,7 +5164,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 修士号.
+        ///   Looks up a localized string similar to 석사.
         /// </summary>
         internal static string LabelMastersDegree {
             get {
@@ -5165,7 +5173,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MBA.
+        ///   Looks up a localized string similar to 경영학 석사(MBA).
         /// </summary>
         internal static string LabelMastersOfBusinessAdministration {
             get {
@@ -5174,7 +5182,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 最大.
+        ///   Looks up a localized string similar to 최대.
         /// </summary>
         internal static string LabelMax {
             get {
@@ -5183,7 +5191,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 給与（上限）.
+        ///   Looks up a localized string similar to 최대.
         /// </summary>
         internal static string LabelMaximum {
             get {
@@ -5192,7 +5200,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 最大容量.
+        ///   Looks up a localized string similar to 최대 크기.
         /// </summary>
         internal static string LabelMaxSize {
             get {
@@ -5201,7 +5209,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 最大幅.
+        ///   Looks up a localized string similar to 최대 넓이.
         /// </summary>
         internal static string LabelMaxWidth {
             get {
@@ -5210,7 +5218,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 5月.
+        ///   Looks up a localized string similar to 5월.
         /// </summary>
         internal static string LabelMay {
             get {
@@ -5219,7 +5227,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to メンバーの詳細.
+        ///   Looks up a localized string similar to 회원 상세정보.
         /// </summary>
         internal static string LabelMemberDetail {
             get {
@@ -5228,7 +5236,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to アカウントのプロフィール詳細が更新されました.
+        ///   Looks up a localized string similar to 계정 프로필 상세정보 업데이트 성공.
         /// </summary>
         internal static string LabelMemberEditSuccess {
             get {
@@ -5237,7 +5245,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to メンバーファイル.
+        ///   Looks up a localized string similar to 회원 파일.
         /// </summary>
         internal static string LabelMemberFiles {
             get {
@@ -5246,7 +5254,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to メンバーファイルのページ.
+        ///   Looks up a localized string similar to 회원 파일 페이지에 오신 것을 환영합니다..
         /// </summary>
         internal static string LabelMemberFileWelcome {
             get {
@@ -5255,7 +5263,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 完全登録をするには、ここをクリックしてください.
+        ///   Looks up a localized string similar to 전체 등록 - 확장하려면 클릭하십시오.
         /// </summary>
         internal static string LabelMemberFullRegister {
             get {
@@ -5264,7 +5272,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to メンバー確認ができませんでした.
+        ///   Looks up a localized string similar to 회원 인증 실패..
         /// </summary>
         internal static string LabelMemberInvalid {
             get {
@@ -5273,7 +5281,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ボード委員会のメンバー.
+        ///   Looks up a localized string similar to 이사위원회 회원.
         /// </summary>
         internal static string LabelMemberOfBoardCommittee {
             get {
@@ -5282,9 +5290,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to アカウントが認証されました
-        ///&lt;br /&gt;&lt;br /&gt;
-        ///ご使用のアカウントは既に認証されているため、再度実行する必要はありません。.
+        ///   Looks up a localized string similar to 계정이 인증되었습니다_x000D_&lt;br /&gt;&lt;br /&gt;_x000D_이미 인증된 계정입니다. &lt;a href=&quot;~/member/login.aspx&quot;&gt;로그인&lt;/a&gt;한 후 계속하십시오.&quot;&quot;.
         /// </summary>
         internal static string LabelMemberValidated {
             get {
@@ -5293,7 +5299,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to メンバーの認証.
+        ///   Looks up a localized string similar to 회원 인증.
         /// </summary>
         internal static string LabelMemberValidation {
             get {
@@ -5302,7 +5308,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 指導者.
+        ///   Looks up a localized string similar to 멘토.
         /// </summary>
         internal static string LabelMentor {
             get {
@@ -5311,7 +5317,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ご友人へのメッセージ.
+        ///   Looks up a localized string similar to 친구에게 메시지 보내기.
         /// </summary>
         internal static string LabelMessageForYourFriend {
             get {
@@ -5320,7 +5326,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 最小.
+        ///   Looks up a localized string similar to 최소.
         /// </summary>
         internal static string LabelMin {
             get {
@@ -5329,7 +5335,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 給与（下限）.
+        ///   Looks up a localized string similar to 최소.
         /// </summary>
         internal static string LabelMinimum {
             get {
@@ -5338,7 +5344,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Miss.
+        ///   Looks up a localized string similar to 누락.
         /// </summary>
         internal static string LabelMiss {
             get {
@@ -5347,7 +5353,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 不足している情報.
+        ///   Looks up a localized string similar to 누락정보.
         /// </summary>
         internal static string LabelMissingInformation {
             get {
@@ -5356,7 +5362,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 月.
+        ///   Looks up a localized string similar to 월.
         /// </summary>
         internal static string LabelMonth {
             get {
@@ -5365,7 +5371,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 月.
+        ///   Looks up a localized string similar to 개월.
         /// </summary>
         internal static string LabelMonths {
             get {
@@ -5374,7 +5380,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to アカウントタイプについての詳細はこちら.
+        ///   Looks up a localized string similar to 계정 유형에 대한 더 자세한 정보는.
         /// </summary>
         internal static string LabelMoreInfoOnAcc {
             get {
@@ -5419,7 +5425,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to マイページ.
+        ///   Looks up a localized string similar to 내 계정.
         /// </summary>
         internal static string LabelMyAccount {
             get {
@@ -5428,7 +5434,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to マイページのプロフィール.
+        ///   Looks up a localized string similar to 내 계정 프로필.
         /// </summary>
         internal static string LabelMyAccountProfile {
             get {
@@ -5437,7 +5443,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 検討中の求人.
+        ///   Looks up a localized string similar to 내 지원 추적기.
         /// </summary>
         internal static string LabelMyApplicationTracker {
             get {
@@ -5446,7 +5452,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to マイ ブロードキャスト.
+        ///   Looks up a localized string similar to 내 방송.
         /// </summary>
         internal static string LabelMyBroadcast {
             get {
@@ -5455,7 +5461,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 履歴書プロフィール.
+        ///   Looks up a localized string similar to 내 CV 프로필.
         /// </summary>
         internal static string LabelMyCVProfile {
             get {
@@ -5464,7 +5470,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 基本情報.
+        ///   Looks up a localized string similar to 내 상세정보.
         /// </summary>
         internal static string LabelMyDetails {
             get {
@@ -5473,7 +5479,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 文書.
+        ///   Looks up a localized string similar to 내 문서.
         /// </summary>
         internal static string LabelMyDocuments {
             get {
@@ -5482,7 +5488,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to お気に入りの検索.
+        ///   Looks up a localized string similar to 내즐겨찾기.
         /// </summary>
         internal static string LabelMyFavouriteSearches {
             get {
@@ -5491,7 +5497,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to マイホーム.
+        ///   Looks up a localized string similar to 내 홈.
         /// </summary>
         internal static string LabelMyHome {
             get {
@@ -5500,7 +5506,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブアラート.
+        ///   Looks up a localized string similar to 내 채용정보 알림.
         /// </summary>
         internal static string LabelMyJobAlerts {
             get {
@@ -5509,7 +5515,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブアラート.
+        ///   Looks up a localized string similar to 내 직무 알림.
         /// </summary>
         internal static string LabelMyJobAlert_s {
             get {
@@ -5518,7 +5524,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブツール.
+        ///   Looks up a localized string similar to 내 채용정보 알림.
         /// </summary>
         internal static string LabelMyJobTools {
             get {
@@ -5527,7 +5533,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to パスワード再設定.
+        ///   Looks up a localized string similar to 내 채용 도구.
         /// </summary>
         internal static string LabelMyPassword {
             get {
@@ -5536,7 +5542,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 個人情報.
+        ///   Looks up a localized string similar to 내 비밀번호.
         /// </summary>
         internal static string LabelMyPersonalDetails {
             get {
@@ -5545,7 +5551,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 登録情報.
+        ///   Looks up a localized string similar to 내 상세 개인정보.
         /// </summary>
         internal static string labelMyProfile {
             get {
@@ -5554,7 +5560,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 履歴書／カバーレター.
+        ///   Looks up a localized string similar to 라벨 내 프로필.
         /// </summary>
         internal static string LabelMyResumeCoverLetter {
             get {
@@ -5563,7 +5569,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 検討中のジョブ.
+        ///   Looks up a localized string similar to 내 이력서/자기 소개서.
         /// </summary>
         internal static string LabelMySavedJobs {
             get {
@@ -5572,7 +5578,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 検索条件.
+        ///   Looks up a localized string similar to 내가 저장한 채용 건.
         /// </summary>
         internal static string LabelMySearchCriteria {
             get {
@@ -5581,7 +5587,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 該当なし.
+        ///   Looks up a localized string similar to 내 검색기준.
         /// </summary>
         internal static string LabelNA {
             get {
@@ -5590,7 +5596,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 名前.
+        ///   Looks up a localized string similar to 해당없음.
         /// </summary>
         internal static string LabelName {
             get {
@@ -5599,7 +5605,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to フィード名は入力必須項目です.
+        ///   Looks up a localized string similar to 피드명은 필수입니다..
         /// </summary>
         internal static string LabelNameFeedMandatory {
             get {
@@ -5608,7 +5614,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to サイト内のサーチ.
+        ///   Looks up a localized string similar to 알림명을 입력하셔야 합니다..
         /// </summary>
         internal static string LabelNameOfAlertRequired {
             get {
@@ -5617,7 +5623,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to アラート名.
+        ///   Looks up a localized string similar to 알림명은 필수정보입니다.
         /// </summary>
         internal static string LabelNameOfFeed {
             get {
@@ -5626,7 +5632,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 母国語.
+        ///   Looks up a localized string similar to 모국어.
         /// </summary>
         internal static string LabelNativeLanguage {
             get {
@@ -5635,7 +5641,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 第一言語または第二言語能力.
+        ///   Looks up a localized string similar to 모국어 또는 이중언어 숙련도.
         /// </summary>
         internal static string LabelNativeOrBilingualProficiency {
             get {
@@ -5644,7 +5650,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 最寄りの交通機関.
+        ///   Looks up a localized string similar to 가장 가까운 이동수단.
         /// </summary>
         internal static string LabelNearestTransport {
             get {
@@ -5653,7 +5659,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ログインが必要です.
+        ///   Looks up a localized string similar to 로그인이 필요합니다.
         /// </summary>
         internal static string LabelNeedLogin {
             get {
@@ -5662,7 +5668,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 合計額.
+        ///   Looks up a localized string similar to 총계.
         /// </summary>
         internal static string LabelNetTotal {
             get {
@@ -5671,7 +5677,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New.
+        ///   Looks up a localized string similar to 신규.
         /// </summary>
         internal static string LabelNew {
             get {
@@ -5680,7 +5686,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 新しいパスワード.
+        ///   Looks up a localized string similar to 새 비밀번호.
         /// </summary>
         internal static string LabelNewPassword {
             get {
@@ -5689,7 +5695,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ニュース.
+        ///   Looks up a localized string similar to 뉴스.
         /// </summary>
         internal static string LabelNews {
             get {
@@ -5698,7 +5704,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ニュースホーム.
+        ///   Looks up a localized string similar to 뉴스 홈.
         /// </summary>
         internal static string LabelNewsHome {
             get {
@@ -5707,7 +5713,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to メールマガジン.
+        ///   Looks up a localized string similar to 뉴스레터.
         /// </summary>
         internal static string LabelNewsletter {
             get {
@@ -5716,7 +5722,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} {1} {2} {3}.
+        ///   Looks up a localized string similar to {3} {0} {1} .
         /// </summary>
         internal static string LabelNewsResultsCount {
             get {
@@ -5725,7 +5731,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 次へ.
+        ///   Looks up a localized string similar to 다음.
         /// </summary>
         internal static string LabelNext {
             get {
@@ -5734,7 +5740,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No.
+        ///   Looks up a localized string similar to 아니오.
         /// </summary>
         internal static string LabelNo {
             get {
@@ -5743,7 +5749,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 追加書類がありません.
+        ///   Looks up a localized string similar to 현재 추가 서류가 없습니다.
         /// </summary>
         internal static string LabelNoAdditionalDocuments {
             get {
@@ -5752,7 +5758,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to カバーレターがありません.
+        ///   Looks up a localized string similar to 현재 자기소개서가 없습니다.
         /// </summary>
         internal static string LabelNoCoverLetter {
             get {
@@ -5761,7 +5767,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to データが見つかりません.
+        ///   Looks up a localized string similar to 검색된 데이터 없음.
         /// </summary>
         internal static string LabelNoData {
             get {
@@ -5770,7 +5776,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブの下書きがありません.
+        ///   Looks up a localized string similar to 아직 작성한 초안이 없습니다..
         /// </summary>
         internal static string LabelNoDraftJobs {
             get {
@@ -5779,7 +5785,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ファイルが選択されていません...
+        ///   Looks up a localized string similar to 선택한 파일이 없습니다....
         /// </summary>
         internal static string LabelNoFileChosen {
             get {
@@ -5788,7 +5794,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ご案内できる求人情報はみつかりませんでした。.
+        ///   Looks up a localized string similar to 현재 채용 공고 알림이 없습니다..
         /// </summary>
         internal static string LabelNoJobAlerts {
             get {
@@ -5797,7 +5803,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブクレジットがありません.
+        ///   Looks up a localized string similar to 구인구직 크레딧 없음.
         /// </summary>
         internal static string LabelNoJobCredit {
             get {
@@ -5806,7 +5812,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブを選択して次へ進む.
+        ///   Looks up a localized string similar to 선택한 채용 건이 없습니다. 채용 건을 선택하고 진행하십시오..
         /// </summary>
         internal static string LabelNoJobSelected {
             get {
@@ -5815,7 +5821,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 応募済みの求人はありません。.
+        ///   Looks up a localized string similar to 아직 지원한 건이 없습니다..
         /// </summary>
         internal static string LabelNoJobTracked {
             get {
@@ -5824,7 +5830,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nominated Company Email Address.
+        ///   Looks up a localized string similar to 추천된 회사 이메일 주소.
         /// </summary>
         internal static string LabelNominatedCompanyEmailAddress {
             get {
@@ -5833,7 +5839,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nominated Company First Name.
+        ///   Looks up a localized string similar to 추천된 회사 이름.
         /// </summary>
         internal static string LabelNominatedCompanyFirstName {
             get {
@@ -5842,7 +5848,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nominated Company Last Name.
+        ///   Looks up a localized string similar to 추천된 회사 성.
         /// </summary>
         internal static string LabelNominatedCompanyLastName {
             get {
@@ -5851,7 +5857,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nominated Company Phone.
+        ///   Looks up a localized string similar to 추천된 회사 전화번호.
         /// </summary>
         internal static string LabelNominatedCompanyPhone {
             get {
@@ -5860,7 +5866,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nominated Company Role.
+        ///   Looks up a localized string similar to 추천된 회사 역할.
         /// </summary>
         internal static string LabelNominatedCompanyRole {
             get {
@@ -5869,7 +5875,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to なし.
+        ///   Looks up a localized string similar to 없음.
         /// </summary>
         internal static string LabelNone {
             get {
@@ -5878,7 +5884,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 該当する結果がありませんでした.
+        ///   Looks up a localized string similar to 결과 없음.
         /// </summary>
         internal static string LabelNoResultFound {
             get {
@@ -5887,7 +5893,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 履歴書がありません.
+        ///   Looks up a localized string similar to 현재 이력서가 없습니다.
         /// </summary>
         internal static string LabelNoResume {
             get {
@@ -5896,7 +5902,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 検討中の求人はありません。.
+        ///   Looks up a localized string similar to 현재 저장한 채용 건이 없습니다..
         /// </summary>
         internal static string LabelNoSavedJob {
             get {
@@ -5905,7 +5911,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to メモ.
+        ///   Looks up a localized string similar to 메모.
         /// </summary>
         internal static string LabelNote {
             get {
@@ -5914,7 +5920,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 初めてご利用する方は.
+        ///   Looks up a localized string similar to 등록하지 않았습니까? 괜찮습니다! 빠르게.
         /// </summary>
         internal static string LabelNotRegisteredQuickly {
             get {
@@ -5923,7 +5929,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 現在求職中ではありません.
+        ///   Looks up a localized string similar to 현재 구직 중이 아님.
         /// </summary>
         internal static string LabelNotSeeking {
             get {
@@ -5932,7 +5938,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Not yet submitted.
+        ///   Looks up a localized string similar to 아직 제출하지 않음.
         /// </summary>
         internal static string LabelNotYetSubmitted {
             get {
@@ -5941,7 +5947,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 11月.
+        ///   Looks up a localized string similar to 11월.
         /// </summary>
         internal static string LabelNov {
             get {
@@ -5950,7 +5956,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 番号.
+        ///   Looks up a localized string similar to 번호.
         /// </summary>
         internal static string LabelNumber {
             get {
@@ -5959,7 +5965,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 従業員数.
+        ///   Looks up a localized string similar to 고용인 수.
         /// </summary>
         internal static string LabelNumberOfEmployees {
             get {
@@ -5968,7 +5974,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 10月.
+        ///   Looks up a localized string similar to 10월.
         /// </summary>
         internal static string LabelOct {
             get {
@@ -5977,7 +5983,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 最古.
+        ///   Looks up a localized string similar to 가장 오래된.
         /// </summary>
         internal static string LabelOldest {
             get {
@@ -5986,7 +5992,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 継続中のアカウント.
+        ///   Looks up a localized string similar to 진행중인 계정.
         /// </summary>
         internal static string LabelOngoingAccount {
             get {
@@ -5995,7 +6001,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 保留.
+        ///   Looks up a localized string similar to 보류.
         /// </summary>
         internal static string LabelOnHold {
             get {
@@ -6004,8 +6010,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブクレジットをお持ちでないようです。ジョブを掲載するには、まず
-        ///                    下記でクレジットを購入する必要があります.
+        ///   Looks up a localized string similar to 죄송합니다. 구인구직 크레딧이 없습니다. 채용 건을 포스팅하시려면, 먼저_x000D_아래 크레딧을 구매하셔야 합니다..
         /// </summary>
         internal static string LabelOopsNoJobCredit {
             get {
@@ -6014,7 +6019,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 任意項目.
+        ///   Looks up a localized string similar to 선택사항.
         /// </summary>
         internal static string LabelOptional {
             get {
@@ -6032,7 +6037,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to カバーレターを作成するか、アップロード方法を選択してください.
+        ///   Looks up a localized string similar to 다음 중 하나의 옵션을 선택하셔서 자기 소개서를 업로드하시거나 직접 작성하십시오..
         /// </summary>
         internal static string LabelOptionUploadCreateCover {
             get {
@@ -6041,7 +6046,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 履歴書のアップロード方法を選択してください.
+        ///   Looks up a localized string similar to 다음 중 하나의 옵션을 선택하셔서 이력서를 업로드하십시오..
         /// </summary>
         internal static string LabelOptionUploadResume {
             get {
@@ -6050,7 +6055,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to または.
+        ///   Looks up a localized string similar to 또는.
         /// </summary>
         internal static string LabelOr {
             get {
@@ -6059,7 +6064,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 注文番号.
+        ///   Looks up a localized string similar to 주문 번호.
         /// </summary>
         internal static string LabelOrderNumber {
             get {
@@ -6068,7 +6073,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 組織名.
+        ///   Looks up a localized string similar to 조직명.
         /// </summary>
         internal static string LabelOrganisationName {
             get {
@@ -6077,7 +6082,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 組織のウェブサイト.
+        ///   Looks up a localized string similar to 조직 웹사이트.
         /// </summary>
         internal static string LabelOrganisationWebsite {
             get {
@@ -6086,7 +6091,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to または、記入.
+        ///   Looks up a localized string similar to 또는 직접 작성.
         /// </summary>
         internal static string LabelOrWriteOneNow {
             get {
@@ -6095,7 +6100,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to その他.
+        ///   Looks up a localized string similar to 기타.
         /// </summary>
         internal static string LabelOther {
             get {
@@ -6122,7 +6127,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to その他の資格.
+        ///   Looks up a localized string similar to 기타 자격요건.
         /// </summary>
         internal static string LabelOtherQualification {
             get {
@@ -6131,7 +6136,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to その他.
+        ///   Looks up a localized string similar to 기타.
         /// </summary>
         internal static string LabelOthers {
             get {
@@ -6140,7 +6145,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Contains.
+        ///   Looks up a localized string similar to 내용.
         /// </summary>
         internal static string LabelPackageContains {
             get {
@@ -6149,7 +6154,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to パッケージ詳細.
+        ///   Looks up a localized string similar to 패키지 상세정보.
         /// </summary>
         internal static string LabelPackageDetails {
             get {
@@ -6158,7 +6163,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ページ.
+        ///   Looks up a localized string similar to 페이지.
         /// </summary>
         internal static string LabelPage {
             get {
@@ -6167,7 +6172,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ページ.
+        ///   Looks up a localized string similar to 페이지.
         /// </summary>
         internal static string LabelPages {
             get {
@@ -6176,7 +6181,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to パスポート番号.
+        ///   Looks up a localized string similar to 여권 번호.
         /// </summary>
         internal static string LabelPassportNumber {
             get {
@@ -6185,7 +6190,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to パスワード.
+        ///   Looks up a localized string similar to 비밀번호.
         /// </summary>
         internal static string LabelPassword {
             get {
@@ -6194,7 +6199,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 入力したパスワードが一致しません.
+        ///   Looks up a localized string similar to 비밀번호와 확인 시 입력한 비밀번호가 일치하지 않습니다.
         /// </summary>
         internal static string LabelPasswordNotMatch {
             get {
@@ -6203,7 +6208,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to パスワードは大文字、小文字、数字を含む半角8文字以上で設定してください。.
+        ///   Looks up a localized string similar to 비밀번호는 8자 이상으로, 소문자 1자, 대문자 1자, 숫자 1자가 포함되어야 합니다..
         /// </summary>
         internal static string LabelPasswordPrompt {
             get {
@@ -6212,7 +6217,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to クレジットカードで支払い.
+        ///   Looks up a localized string similar to 신용카드로 결제.
         /// </summary>
         internal static string LabelPayByCreditCard {
             get {
@@ -6221,7 +6226,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 適切なジョブクレジットでアカウントが更新されました。 &lt;span style=&apos;display:none&apos;&gt;この課金は、クレジットカード明細書に「&quot;{0}&quot;」への支払いとして表示されます。&lt;/span&gt;.
+        ///   Looks up a localized string similar to 귀하의 계정이 관련 구인구직 크레딧으로 업데이트되었습니다. &lt;span style=&apos;display:none&apos;&gt;해당 청구금액은 신용카드 청구서에 &quot;{0}&quot;(으)로 표시됩니다.&lt;/span&gt;.
         /// </summary>
         internal static string LabelPaymentConfirmationDescription {
             get {
@@ -6230,7 +6235,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 支払い方法.
+        ///   Looks up a localized string similar to 결제방법.
         /// </summary>
         internal static string LabelPaymentMethod {
             get {
@@ -6239,7 +6244,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ペイパル.
+        ///   Looks up a localized string similar to Paypal.
         /// </summary>
         internal static string LabelPaypal {
             get {
@@ -6248,7 +6253,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブの保留中.
+        ///   Looks up a localized string similar to 미결 채용 건.
         /// </summary>
         internal static string LabelPendingJobs {
             get {
@@ -6257,7 +6262,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to People Search.
+        ///   Looks up a localized string similar to 구인.
         /// </summary>
         internal static string LabelPeopleSearch {
             get {
@@ -6266,7 +6271,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 個人情報.
+        ///   Looks up a localized string similar to 상세 개인정보.
         /// </summary>
         internal static string LabelPersonalDetails {
             get {
@@ -6275,7 +6280,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 電話番号.
+        ///   Looks up a localized string similar to 전화.
         /// </summary>
         internal static string LabelPhone {
             get {
@@ -6284,7 +6289,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 電話番号（自宅）.
+        ///   Looks up a localized string similar to 전화(집) 또는 집 전화번호.
         /// </summary>
         internal static string LabelPhoneHome {
             get {
@@ -6293,7 +6298,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 電話番号（自宅）.
+        ///   Looks up a localized string similar to 집 전화.
         /// </summary>
         internal static string LabelPhoneHomeFull {
             get {
@@ -6302,7 +6307,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 携帯番号.
+        ///   Looks up a localized string similar to 휴대전화 또는 휴대전화번호.
         /// </summary>
         internal static string LabelPhoneMobile {
             get {
@@ -6311,7 +6316,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 電話番号（携帯）.
+        ///   Looks up a localized string similar to 휴대전화번호.
         /// </summary>
         internal static string LabelPhoneMobileFull {
             get {
@@ -6320,7 +6325,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 電話番号を入力してください.
+        ///   Looks up a localized string similar to 전화번호는 필수정보입니다.
         /// </summary>
         internal static string LabelPhoneRequired {
             get {
@@ -6329,7 +6334,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 電話番号（勤務先）.
+        ///   Looks up a localized string similar to 전화(직장) 또는 직장전화번호.
         /// </summary>
         internal static string LabelPhoneWork {
             get {
@@ -6338,7 +6343,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 写真.
+        ///   Looks up a localized string similar to 사진.
         /// </summary>
         internal static string LabelPhoto {
             get {
@@ -6347,7 +6352,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 回答してください.
+        ///   Looks up a localized string similar to 답변하십시오....
         /// </summary>
         internal static string LabelPleaseAnswer {
             get {
@@ -6356,7 +6361,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 選択してください.
+        ///   Looks up a localized string similar to 선택하십시오....
         /// </summary>
         internal static string LabelPleaseChoose {
             get {
@@ -6365,7 +6370,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 問題の解決には、当社ウェブサイトのお問い合わせページからサポートチームにご連絡ください.
+        ///   Looks up a localized string similar to 문제를 해결하시려면 본사 웹사이트 문의 페이지를 통해 본사 지원팀에 문의하시기 바랍니다..
         /// </summary>
         internal static string LabelPleaseContactSupport {
             get {
@@ -6374,7 +6379,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ログインしてください.
+        ///   Looks up a localized string similar to 로그인하십시오.
         /// </summary>
         internal static string LabelPleaseLogin {
             get {
@@ -6383,7 +6388,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ご覧ください.
+        ///   Looks up a localized string similar to 참조하십시오.
         /// </summary>
         internal static string LabelPleaseSeeThe {
             get {
@@ -6392,7 +6397,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 選択してください.
+        ///   Looks up a localized string similar to 선택하십시오.
         /// </summary>
         internal static string LabelPleaseSelect {
             get {
@@ -6401,7 +6406,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to アップロードしたい文書を選択してください.
+        ///   Looks up a localized string similar to 업로드할 문서를 선택하십시오..
         /// </summary>
         internal static string LabelPleaseSelectDoc {
             get {
@@ -6410,7 +6415,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 給与タイプを選択してください.
+        ///   Looks up a localized string similar to 급여 유형을 선택하십시오.
         /// </summary>
         internal static string LabelPleaseSelectSalaryType {
             get {
@@ -6419,7 +6424,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to パッケージを選択してください.
+        ///   Looks up a localized string similar to 패키지를 선택하십시오.
         /// </summary>
         internal static string LabelPleaseSelectYourPackage {
             get {
@@ -6428,7 +6433,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 購入する商品を選択してください.
+        ///   Looks up a localized string similar to 구매할 상품을 선택하십시오.
         /// </summary>
         internal static string LabelPleaseSelectYourProduct {
             get {
@@ -6437,7 +6442,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 受信希望をチェックしてください.
+        ///   Looks up a localized string similar to 구독할 항목을 체크박스에 표시하십시오.
         /// </summary>
         internal static string LabelPleaseTickBoxToSubscribe {
             get {
@@ -6446,7 +6451,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ポジション.
+        ///   Looks up a localized string similar to 직위.
         /// </summary>
         internal static string LabelPositions {
             get {
@@ -6455,7 +6460,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブを掲載する.
+        ///   Looks up a localized string similar to 채용 건 공고.
         /// </summary>
         internal static string LabelPostAJob {
             get {
@@ -6464,7 +6469,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 郵便宛先 1.
+        ///   Looks up a localized string similar to 우편주소 1.
         /// </summary>
         internal static string LabelPostalAddress1 {
             get {
@@ -6473,7 +6478,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 郵便宛先 2.
+        ///   Looks up a localized string similar to 우편주소 2.
         /// </summary>
         internal static string LabelPostalAddress2 {
             get {
@@ -6482,7 +6487,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 郵便番号.
+        ///   Looks up a localized string similar to 우편 번호.
         /// </summary>
         internal static string LabelPostcode {
             get {
@@ -6491,7 +6496,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 郵送済み.
+        ///   Looks up a localized string similar to 우편발송.
         /// </summary>
         internal static string LabelPosted {
             get {
@@ -6500,7 +6505,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 大学院生.
+        ///   Looks up a localized string similar to 대학원생.
         /// </summary>
         internal static string LabelPostGraduateDegree {
             get {
@@ -6509,7 +6514,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to タイプを掲載する.
+        ///   Looks up a localized string similar to 우편 유형.
         /// </summary>
         internal static string LabelPostType {
             get {
@@ -6518,7 +6523,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 希望エリア.
+        ///   Looks up a localized string similar to 선호 지역.
         /// </summary>
         internal static string LabelPreferredArea {
             get {
@@ -6527,7 +6532,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 希望の職種.
+        ///   Looks up a localized string similar to 선호 분류.
         /// </summary>
         internal static string LabelPreferredClassification {
             get {
@@ -6536,7 +6541,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Preferred Contact Method.
+        ///   Looks up a localized string similar to 선호 연락방법.
         /// </summary>
         internal static string LabelPreferredContactMethod {
             get {
@@ -6545,7 +6550,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 希望するメール言語.
+        ///   Looks up a localized string similar to 선호 이메일 언어.
         /// </summary>
         internal static string LabelPreferredEmailLanguage {
             get {
@@ -6554,7 +6559,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 希望する職.
+        ///   Looks up a localized string similar to 선호 고용형태.
         /// </summary>
         internal static string LabelPreferredEmployment {
             get {
@@ -6563,7 +6568,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 希望の分野.
+        ///   Looks up a localized string similar to 선호 라인.
         /// </summary>
         internal static string LabelPreferredLine {
             get {
@@ -6572,7 +6577,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 希望の勤務地.
+        ///   Looks up a localized string similar to 선호 위치.
         /// </summary>
         internal static string LabelPreferredLocation {
             get {
@@ -6581,7 +6586,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 希望のキャリアレベル.
+        ///   Looks up a localized string similar to 선호 소분류.
         /// </summary>
         internal static string LabelPreferredSubClassification {
             get {
@@ -6599,7 +6604,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 現在.
+        ///   Looks up a localized string similar to 현재.
         /// </summary>
         internal static string LabelPresent {
             get {
@@ -6608,7 +6613,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 前に戻る.
+        ///   Looks up a localized string similar to 이전.
         /// </summary>
         internal static string LabelPrevious {
             get {
@@ -6617,7 +6622,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 価格.
+        ///   Looks up a localized string similar to 가격.
         /// </summary>
         internal static string LabelPrice {
             get {
@@ -6626,7 +6631,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 金額は1-9999の範囲で入力してください.
+        ///   Looks up a localized string similar to 가격대는 1~9999 사이여야 합니다.
         /// </summary>
         internal static string LabelPriceRange {
             get {
@@ -6635,7 +6640,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 希望勤務国.
+        ///   Looks up a localized string similar to 선 지망 국가.
         /// </summary>
         internal static string LabelPrimaryDesiredCountry {
             get {
@@ -6644,7 +6649,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 希望業種.
+        ///   Looks up a localized string similar to 선 지망 업계.
         /// </summary>
         internal static string LabelPrimaryDesiredIndustry {
             get {
@@ -6653,7 +6658,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 希望職種カテゴリー.
+        ///   Looks up a localized string similar to 검색.
         /// </summary>
         internal static string LabelPrimaryDesiredJobCategory {
             get {
@@ -6662,7 +6667,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 希望職種.
+        ///   Looks up a localized string similar to 선 지망 직무.
         /// </summary>
         internal static string LabelPrimaryDesiredJobFunction {
             get {
@@ -6671,7 +6676,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 希望勤務地.
+        ///   Looks up a localized string similar to 선 지망 위치.
         /// </summary>
         internal static string LabelPrimaryDesiredLocation {
             get {
@@ -6680,7 +6685,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 主要メール.
+        ///   Looks up a localized string similar to 주 사용 이메일.
         /// </summary>
         internal static string LabelPrimaryEmail {
             get {
@@ -6689,7 +6694,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 商品.
+        ///   Looks up a localized string similar to 상품.
         /// </summary>
         internal static string LabelProduct {
             get {
@@ -6698,7 +6703,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 商品原価該当なし.
+        ///   Looks up a localized string similar to 라벨상품가격NA.
         /// </summary>
         internal static string LabelProductCostNA {
             get {
@@ -6707,7 +6712,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 商品詳細.
+        ///   Looks up a localized string similar to 상품 상세정보.
         /// </summary>
         internal static string LabelProductDetails {
             get {
@@ -6716,7 +6721,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 商品タイプ.
+        ///   Looks up a localized string similar to 상품 유형.
         /// </summary>
         internal static string LabelProductType {
             get {
@@ -6725,7 +6730,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 職業／仕事内容.
+        ///   Looks up a localized string similar to 전문직/역할.
         /// </summary>
         internal static string LabelProfession {
             get {
@@ -6734,7 +6739,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 専門職務技能.
+        ///   Looks up a localized string similar to 전문적 업무 숙련도.
         /// </summary>
         internal static string LabelProfessionalWorkingProficiency {
             get {
@@ -6743,7 +6748,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 職業/仕事内容.
+        ///   Looks up a localized string similar to 전문직/역할.
         /// </summary>
         internal static string LabelProfessionRole {
             get {
@@ -6752,7 +6757,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 職業/仕事内容詳細.
+        ///   Looks up a localized string similar to 전문직/역할 상세정보.
         /// </summary>
         internal static string LabelProfessionRoleDetails {
             get {
@@ -6761,7 +6766,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 職業.
+        ///   Looks up a localized string similar to 전문직.
         /// </summary>
         internal static string LabelProfessions {
             get {
@@ -6770,7 +6775,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 教授.
+        ///   Looks up a localized string similar to 교수.
         /// </summary>
         internal static string LabelProfessor {
             get {
@@ -6779,7 +6784,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 技能.
+        ///   Looks up a localized string similar to 숙련도.
         /// </summary>
         internal static string LabelProficiency {
             get {
@@ -6788,7 +6793,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 登録情報.
+        ///   Looks up a localized string similar to 프로필.
         /// </summary>
         internal static string LabelProfile {
             get {
@@ -6797,7 +6802,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 情報入力.
+        ///   Looks up a localized string similar to 프로필 상세정보.
         /// </summary>
         internal static string LabelProfileDetails {
             get {
@@ -6806,7 +6811,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PDFとしてダウンロード.
+        ///   Looks up a localized string similar to PDF로 다운로드.
         /// </summary>
         internal static string LabelProfileDownloadPDF {
             get {
@@ -6815,7 +6820,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Minimum {0} entries is required.
+        ///   Looks up a localized string similar to 최소 {0}개의 항목을 입력해야 합니다.
         /// </summary>
         internal static string LabelProfileMinEntries {
             get {
@@ -6824,7 +6829,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 最終更新日.
+        ///   Looks up a localized string similar to 마지막 업데이트.
         /// </summary>
         internal static string LabelProfileProgressLastUpdated {
             get {
@@ -6833,7 +6838,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to あなたのプロフィール.
+        ///   Looks up a localized string similar to 귀하의 프로필.
         /// </summary>
         internal static string LabelProfileProgressText1 {
             get {
@@ -6842,7 +6847,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to complete.
+        ///   Looks up a localized string similar to 완료.
         /// </summary>
         internal static string LabelProfileProgressText2 {
             get {
@@ -6851,7 +6856,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Profile Status.
+        ///   Looks up a localized string similar to 프로필 상태.
         /// </summary>
         internal static string LabelProfileStatus {
             get {
@@ -6860,7 +6865,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Submitted {0}.
+        ///   Looks up a localized string similar to 제출됨 {0}.
         /// </summary>
         internal static string LabelProfileStatusSubmittedDateFormat {
             get {
@@ -6869,7 +6874,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 販売促進コード.
+        ///   Looks up a localized string similar to 판촉코드.
         /// </summary>
         internal static string LabelPromoCodeTitle {
             get {
@@ -6878,7 +6883,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 公開プロフィール.
+        ///   Looks up a localized string similar to 공개 프로필.
         /// </summary>
         internal static string LabelPublicProfile {
             get {
@@ -6887,7 +6892,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 交通機関.
+        ///   Looks up a localized string similar to 대중 교통.
         /// </summary>
         internal static string LabelPublicTransport {
             get {
@@ -6896,7 +6901,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 購入詳細.
+        ///   Looks up a localized string similar to 구매 상세정보.
         /// </summary>
         internal static string LabelPurchaseDetails {
             get {
@@ -6905,7 +6910,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 商品総額.
+        ///   Looks up a localized string similar to 상품 총 금액.
         /// </summary>
         internal static string LabelPurchaseTotal {
             get {
@@ -6914,7 +6919,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to パスワードの変更が完了しました.
+        ///   Looks up a localized string similar to 비밀번호가 성공적으로 변경되었습니다..
         /// </summary>
         internal static string LabelPwdChanged {
             get {
@@ -6923,7 +6928,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 資格.
+        ///   Looks up a localized string similar to 자격요건.
         /// </summary>
         internal static string LabelQualification {
             get {
@@ -6932,7 +6937,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 資格レベル.
+        ///   Looks up a localized string similar to 자격등급.
         /// </summary>
         internal static string LabelQualificationLevel {
             get {
@@ -6941,7 +6946,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 資格名.
+        ///   Looks up a localized string similar to 자격요건명.
         /// </summary>
         internal static string LabelQualificationName {
             get {
@@ -6950,7 +6955,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 資格が確認されました.
+        ///   Looks up a localized string similar to 인정 자격요건.
         /// </summary>
         internal static string LabelQualificationsRecognised {
             get {
@@ -6959,7 +6964,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 数量.
+        ///   Looks up a localized string similar to 수량.
         /// </summary>
         internal static string LabelQuantity {
             get {
@@ -6968,7 +6973,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 質問.
+        ///   Looks up a localized string similar to 질문.
         /// </summary>
         internal static string LabelQuestion {
             get {
@@ -6995,7 +7000,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 簡単に再掲載する.
+        ///   Looks up a localized string similar to 빠른 재게시.
         /// </summary>
         internal static string LabelQuickRepostJob {
             get {
@@ -7013,7 +7018,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 全文を読む.
+        ///   Looks up a localized string similar to 전체 읽기.
         /// </summary>
         internal static string LabelReadFullStory {
             get {
@@ -7022,7 +7027,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 詳細を読む.
+        ///   Looks up a localized string similar to 더 읽기.
         /// </summary>
         internal static string LabelReadMore {
             get {
@@ -7031,7 +7036,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブアラートを受け取る.
+        ///   Looks up a localized string similar to 채용정보 알림 수신.
         /// </summary>
         internal static string LabelReceiveJobAlert {
             get {
@@ -7040,7 +7045,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to メールマガジンを受信する.
+        ///   Looks up a localized string similar to 뉴스레터 수신.
         /// </summary>
         internal static string LabelReceiveNewsletter {
             get {
@@ -7049,7 +7054,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Recent Candidate.
+        ///   Looks up a localized string similar to 최근 후보.
         /// </summary>
         internal static string LabelRecentCandidate {
             get {
@@ -7058,7 +7063,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 照会番号.
+        ///   Looks up a localized string similar to 참조번호.
         /// </summary>
         internal static string LabelReferenceNumber {
             get {
@@ -7067,7 +7072,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 照会.
+        ///   Looks up a localized string similar to 추천인.
         /// </summary>
         internal static string LabelReferences {
             get {
@@ -7076,7 +7081,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 紹介ドメイン.
+        ///   Looks up a localized string similar to 이첩 도메인.
         /// </summary>
         internal static string LabelReferralDomain {
             get {
@@ -7085,7 +7090,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Refine.
+        ///   Looks up a localized string similar to 개선.
         /// </summary>
         internal static string LabelRefine {
             get {
@@ -7094,7 +7099,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 結果を精錬する.
+        ///   Looks up a localized string similar to 결과 개선.
         /// </summary>
         internal static string LabelRefineResult {
             get {
@@ -7103,7 +7108,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to もっと詳しく検索する.
+        ///   Looks up a localized string similar to 결과 개선하기.
         /// </summary>
         internal static string LabelRefineResults {
             get {
@@ -7112,7 +7117,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 照会番号.
+        ///   Looks up a localized string similar to 참조 번호.
         /// </summary>
         internal static string LabelRefNo {
             get {
@@ -7121,7 +7126,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 更新.
+        ///   Looks up a localized string similar to 새로고침.
         /// </summary>
         internal static string LabelRefresh {
             get {
@@ -7130,7 +7135,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 地域.
+        ///   Looks up a localized string similar to 지역.
         /// </summary>
         internal static string LabelRegion {
             get {
@@ -7139,7 +7144,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 新規登録.
+        ///   Looks up a localized string similar to 등록.
         /// </summary>
         internal static string LabelRegister {
             get {
@@ -7148,7 +7153,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to こちら.
+        ///   Looks up a localized string similar to 등록 및 지원.
         /// </summary>
         internal static string LabelRegisterAndApply {
             get {
@@ -7157,7 +7162,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 登録することで、以下に同意することになります.
+        ///   Looks up a localized string similar to 등록 시 본 약관에 동의하는 것으로 간주됨.
         /// </summary>
         internal static string LabelRegisteringAgree {
             get {
@@ -7166,7 +7171,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 登録/ログイン.
+        ///   Looks up a localized string similar to 등록 / 로그인.
         /// </summary>
         internal static string LabelRegisterLogin {
             get {
@@ -7175,7 +7180,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ご登録はまだですか？今すぐご登録ください。.
+        ///   Looks up a localized string similar to 등록하지 않았습니까? 오늘 등록하세요!.
         /// </summary>
         internal static string LabelRegisterToday {
             get {
@@ -7184,7 +7189,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 詳細を登録.
+        ///   Looks up a localized string similar to 상세정보 등록.
         /// </summary>
         internal static string LabelRegisterYourDetails {
             get {
@@ -7193,7 +7198,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 登録.
+        ///   Looks up a localized string similar to 등록.
         /// </summary>
         internal static string LabelRegistration {
             get {
@@ -7202,7 +7207,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to この画像のフォーマットはご使用になれません。GIF、JPG、 JPEGのフォーマットであることを確認してから、再度行ってください。.
+        ///   Looks up a localized string similar to 업로드된 이미지 형식이 올바르지 않습니다. 파일이 GIF, JPG 또는 JPEG인지 확인하시고 다시 시도하십시오..
         /// </summary>
         internal static string LabelReInvalidImage {
             get {
@@ -7211,7 +7216,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rejected.
+        ///   Looks up a localized string similar to 불합격.
         /// </summary>
         internal static string LabelRejected {
             get {
@@ -7220,7 +7225,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 関連項目.
+        ///   Looks up a localized string similar to 관련 기사.
         /// </summary>
         internal static string LabelRelatedArticles {
             get {
@@ -7229,7 +7234,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Relationship.
+        ///   Looks up a localized string similar to 관계.
         /// </summary>
         internal static string LabelRelationship {
             get {
@@ -7238,7 +7243,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remaining days.
+        ///   Looks up a localized string similar to 잔여일수.
         /// </summary>
         internal static string LabelRemaining {
             get {
@@ -7247,7 +7252,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remember&amp;nbsp;me.
+        ///   Looks up a localized string similar to 내 정보 기억하기.
         /// </summary>
         internal static string LabelRememberMe {
             get {
@@ -7256,7 +7261,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 削除.
+        ///   Looks up a localized string similar to 제거.
         /// </summary>
         internal static string LabelRemove {
             get {
@@ -7265,7 +7270,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ロゴを削除する.
+        ///   Looks up a localized string similar to 로고 제거.
         /// </summary>
         internal static string LabelRemovelogo {
             get {
@@ -7274,7 +7279,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブを更新しました。現在掲載中のジョブとして閲覧することができます.
+        ///   Looks up a localized string similar to 선택한 채용 건을 재게시하였습니다. 이제 현재 채용 건에서 해당 건을 조회할 수 있습니다.
         /// </summary>
         internal static string LabelRepostCompleted {
             get {
@@ -7283,7 +7288,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 再掲載する.
+        ///   Looks up a localized string similar to 재게시.
         /// </summary>
         internal static string LabelRepostJob {
             get {
@@ -7292,7 +7297,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to このジョブを再掲載しますか.
+        ///   Looks up a localized string similar to 이 채용 공고를 정말로 재게시하시겠습니까?.
         /// </summary>
         internal static string LabelRepostJobConfirm {
             get {
@@ -7301,7 +7306,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 設定した条件を満たすジョブ情報をメールで受け取る.
+        ///   Looks up a localized string similar to 나의 검색기준에 맞는 새로운 채용 건을 이메일 알림으로 수신하고 싶습니다..
         /// </summary>
         internal static string LabelRequestAlertEmail {
             get {
@@ -7310,7 +7315,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 入力必須項目です.
+        ///   Looks up a localized string similar to 필수 필드 표시.
         /// </summary>
         internal static string LabelRequiredField {
             get {
@@ -7319,7 +7324,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 氏名を入力してください.
+        ///   Looks up a localized string similar to 필수 필드.
         /// </summary>
         internal static string LabelRequiredField1 {
             get {
@@ -7328,7 +7333,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 必須項目が未入力です.
+        ///   Looks up a localized string similar to 필수정보필드 작성을 완료하지 않았습니다..
         /// </summary>
         internal static string LabelRequiredFieldsNeeded {
             get {
@@ -7337,7 +7342,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 登録情報.
+        ///   Looks up a localized string similar to 필수 프로필 섹션을 남겨두고 완료하시겠습니까?.
         /// </summary>
         internal static string LabelRequiredProfileSectionsHeading {
             get {
@@ -7346,7 +7351,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Require Logon.
+        ///   Looks up a localized string similar to 로그인 필수.
         /// </summary>
         internal static string LabelRequireLogon {
             get {
@@ -7355,7 +7360,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Require Logon For External Applications.
+        ///   Looks up a localized string similar to 외부 지원 시 로그인 필수.
         /// </summary>
         internal static string LabelRequireLogonForExternalApplications {
             get {
@@ -7364,7 +7369,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to メールを再送.
+        ///   Looks up a localized string similar to 이메일 재발송.
         /// </summary>
         internal static string LabelResendEmail {
             get {
@@ -7373,7 +7378,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to リセット.
+        ///   Looks up a localized string similar to 재설정.
         /// </summary>
         internal static string LabelReset {
             get {
@@ -7382,7 +7387,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to リセットができませんでした.
+        ///   Looks up a localized string similar to 재설정 실패.
         /// </summary>
         internal static string LabelResetFailed {
             get {
@@ -7391,7 +7396,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;br /&gt;&lt;br /&gt;様、このリンクは一度しか使用出来ません。以前にパスワードのリセットに使用されたようです。&lt;br /&gt;&lt;br /&gt;　もし、一度もクリックしたことがない場合は、ここを &lt;a href=&quot;./ForgetPassword.aspx&quot;&gt;クリックして&lt;/a&gt;、新しいパスワードを設定してください。。。 後ほどリセット用のメールが届きます。.
+        ///   Looks up a localized string similar to GUID 재설정 실패.
         /// </summary>
         internal static string LabelResetGUIDFailed {
             get {
@@ -7400,7 +7405,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ご登録のメールアドレスへパスワード再設定用のURLを送信します。.
+        ///   Looks up a localized string similar to 아래에 사용자명 또는 이메일 주소를 입력하시고 재설정 버튼을 선택하십시오. 그러면 비밀번호를 재설정할 수 있는 링크가 포함된 이메일을 받게 됩니다..
         /// </summary>
         internal static string LabelResetPasswordInfo {
             get {
@@ -7409,7 +7414,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 住居.
+        ///   Looks up a localized string similar to 관저.
         /// </summary>
         internal static string LabelResidency {
             get {
@@ -7418,7 +7423,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 永住者のみ.
+        ///   Looks up a localized string similar to 거주민만 해당.
         /// </summary>
         internal static string LabelResidentOnly {
             get {
@@ -7427,7 +7432,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 責任範囲と実績.
+        ///   Looks up a localized string similar to 업무 내용 및 성과.
         /// </summary>
         internal static string LabelResponsibilitiesAndAchievements {
             get {
@@ -7436,7 +7441,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 結果.
+        ///   Looks up a localized string similar to 결과.
         /// </summary>
         internal static string LabelResults {
             get {
@@ -7445,7 +7450,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 履歴書.
+        ///   Looks up a localized string similar to 이력서.
         /// </summary>
         internal static string LabelResume {
             get {
@@ -7454,7 +7459,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to レジュメアップロード.
+        ///   Looks up a localized string similar to 이력서 업로드.
         /// </summary>
         internal static string LabelResumeUpload {
             get {
@@ -7463,7 +7468,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to パスワードを再入力する.
+        ///   Looks up a localized string similar to 비밀번호 재입력.
         /// </summary>
         internal static string LabelRetypePassword {
             get {
@@ -7472,7 +7477,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 職務内容.
+        ///   Looks up a localized string similar to 역할.
         /// </summary>
         internal static string LabelRole {
             get {
@@ -7481,7 +7486,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 仕事内容の選択.
+        ///   Looks up a localized string similar to 역할 선호도.
         /// </summary>
         internal static string LabelRolePreferences {
             get {
@@ -7490,7 +7495,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 役割.
+        ///   Looks up a localized string similar to 역할.
         /// </summary>
         internal static string LabelRoles {
             get {
@@ -7499,7 +7504,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to RSSフィード.
+        ///   Looks up a localized string similar to RSS 피드.
         /// </summary>
         internal static string LabelRSSFeed {
             get {
@@ -7508,7 +7513,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 給与.
+        ///   Looks up a localized string similar to 급여.
         /// </summary>
         internal static string LabelSalary {
             get {
@@ -7517,7 +7522,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 年収.
+        ///   Looks up a localized string similar to 연.
         /// </summary>
         internal static string LabelSalaryAnnual {
             get {
@@ -7526,7 +7531,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 毎年.
+        ///   Looks up a localized string similar to 급여 상세정보.
         /// </summary>
         internal static string LabelSalaryAnnually {
             get {
@@ -7535,7 +7540,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 給与詳細.
+        ///   Looks up a localized string similar to 최소 급여.
         /// </summary>
         internal static string LabelSalaryDetails {
             get {
@@ -7544,7 +7549,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Salary From.
+        ///   Looks up a localized string similar to …부터.
         /// </summary>
         internal static string LabelSalaryFrom {
             get {
@@ -7553,7 +7558,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 時給.
+        ///   Looks up a localized string similar to 시급.
         /// </summary>
         internal static string LabelSalaryHourly {
             get {
@@ -7562,7 +7567,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 給与体系.
+        ///   Looks up a localized string similar to 급여 기간.
         /// </summary>
         internal static string LabelSalaryPeriod {
             get {
@@ -7571,7 +7576,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 給与範囲.
+        ///   Looks up a localized string similar to 급여 범위.
         /// </summary>
         internal static string LabelSalaryRange {
             get {
@@ -7580,7 +7585,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 給与範囲が無効です.
+        ///   Looks up a localized string similar to 급여 범위 오류.
         /// </summary>
         internal static string LabelSalaryRangeError {
             get {
@@ -7589,7 +7594,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 給与必要条件.
+        ///   Looks up a localized string similar to 급여 요건.
         /// </summary>
         internal static string LabelSalaryRequirements {
             get {
@@ -7598,7 +7603,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 給与　本文.
+        ///   Looks up a localized string similar to 급여 본문.
         /// </summary>
         internal static string LabelSalaryText {
             get {
@@ -7607,7 +7612,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Salary To.
+        ///   Looks up a localized string similar to 최고 급여.
         /// </summary>
         internal static string LabelSalaryTo {
             get {
@@ -7616,7 +7621,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Salary Type.
+        ///   Looks up a localized string similar to 급여 유형.
         /// </summary>
         internal static string LabelSalaryType {
             get {
@@ -7625,7 +7630,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Salary Type.
+        ///   Looks up a localized string similar to 급여 유형.
         /// </summary>
         internal static string LabelSalaryTypeFull {
             get {
@@ -7634,7 +7639,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Salary Type ID.
+        ///   Looks up a localized string similar to 급여 유형 ID.
         /// </summary>
         internal static string LabelSalaryTypeID {
             get {
@@ -7643,7 +7648,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 同上.
+        ///   Looks up a localized string similar to 상기와 동일.
         /// </summary>
         internal static string LabelSameAsAbove {
             get {
@@ -7652,7 +7657,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 保存.
+        ///   Looks up a localized string similar to 저장.
         /// </summary>
         internal static string LabelSave {
             get {
@@ -7661,7 +7666,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 保存して続行.
+        ///   Looks up a localized string similar to 저장 및 계속하기.
         /// </summary>
         internal static string LabelSaveAndContinue {
             get {
@@ -7670,7 +7675,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 下書きとして保存.
+        ///   Looks up a localized string similar to 초안으로 저장하기.
         /// </summary>
         internal static string LabelSaveAsDraft {
             get {
@@ -7679,7 +7684,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 保存した日.
+        ///   Looks up a localized string similar to 저장일.
         /// </summary>
         internal static string LabelSavedDate {
             get {
@@ -7688,7 +7693,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 求人を保存.
+        ///   Looks up a localized string similar to 채용 건 저장하기.
         /// </summary>
         internal static string LabelSaveJob {
             get {
@@ -7706,7 +7711,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 検索.
+        ///   Looks up a localized string similar to 검색.
         /// </summary>
         internal static string LabelSearch {
             get {
@@ -7715,7 +7720,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 条件で検索.
+        ///   Looks up a localized string similar to 검색 조건.
         /// </summary>
         internal static string LabelSearchCriteria {
             get {
@@ -7724,8 +7729,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to できるだけ多くの採用担当者から閲覧してもらえるように、
-        ///以下の選択肢から自身に一番合うものを選んでください.
+        ///   Looks up a localized string similar to 구인 중인 고용주의 검색 결과에 프로필이 노출될 수 있도록 아래 조건 중 귀하를 가장 잘 표현하는 조건을 선택하십시오.
         /// </summary>
         internal static string LabelSearchCriteriaWelcome {
             get {
@@ -7734,7 +7738,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 検索詳細.
+        ///   Looks up a localized string similar to 검색 상세정보.
         /// </summary>
         internal static string LabelSearchDetails {
             get {
@@ -7743,7 +7747,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to すべてのジョブを探索.
+        ///   Looks up a localized string similar to 모든 채용 건 검색.
         /// </summary>
         internal static string LabelSearchedAllJobs {
             get {
@@ -7752,7 +7756,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to フィールド拡張子を検索する.
+        ///   Looks up a localized string similar to 검색필드 펼치기.
         /// </summary>
         internal static string LabelSearchFieldExtension {
             get {
@@ -7761,7 +7765,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to キーワード検索.
+        ///   Looks up a localized string similar to 검색어.
         /// </summary>
         internal static string LabelSearchKeyword {
             get {
@@ -7770,7 +7774,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 検索結果：.
+        ///   Looks up a localized string similar to 귀하의 검색결과:.
         /// </summary>
         internal static string LabelSearchResult {
             get {
@@ -7779,7 +7783,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 仕事内容検索　ID.
+        ///   Looks up a localized string similar to 역할 ID 검색.
         /// </summary>
         internal static string LabelSearchRoleIDs {
             get {
@@ -7788,7 +7792,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to キーワード検索.
+        ///   Looks up a localized string similar to 현장 검색.
         /// </summary>
         internal static string LabelSearchTheSite {
             get {
@@ -7797,7 +7801,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 第二希望勤務国.
+        ///   Looks up a localized string similar to 후 지망 국가.
         /// </summary>
         internal static string LabelSecondaryDesiredCountries {
             get {
@@ -7806,7 +7810,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 予備メールアドレス.
+        ///   Looks up a localized string similar to 보조 사용 이메일.
         /// </summary>
         internal static string LabelSecondaryEmail {
             get {
@@ -7815,7 +7819,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 第二言語.
+        ///   Looks up a localized string similar to 제 2 외국어.
         /// </summary>
         internal static string LabelSecondaryLanguage {
             get {
@@ -7824,7 +7828,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 第二言語のレベル.
+        ///   Looks up a localized string similar to 제 2 외국어 수준.
         /// </summary>
         internal static string LabelSecondaryLanguageLevel {
             get {
@@ -7833,7 +7837,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 中等教育学校.
+        ///   Looks up a localized string similar to .
         /// </summary>
         internal static string LabelSecondarySchool {
             get {
@@ -7842,7 +7846,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Section Incomplete.
+        ///   Looks up a localized string similar to 미완료 섹션.
         /// </summary>
         internal static string LabelSectionIncomplete {
             get {
@@ -7851,7 +7855,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 現在求職中.
+        ///   Looks up a localized string similar to 현재 구직 중.
         /// </summary>
         internal static string LabelSeeking {
             get {
@@ -7860,7 +7864,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 求職状況.
+        ///   Looks up a localized string similar to 구직 상태.
         /// </summary>
         internal static string LabelSeekingStatus {
             get {
@@ -7869,7 +7873,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 選択.
+        ///   Looks up a localized string similar to 선택.
         /// </summary>
         internal static string LabelSelect {
             get {
@@ -7878,7 +7882,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ー 企業を選択 ー.
+        ///   Looks up a localized string similar to - 회사 선택 -.
         /// </summary>
         internal static string LabelSelectACompany {
             get {
@@ -7887,7 +7891,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please select an application to email.
+        ///   Looks up a localized string similar to 이메일을 발송할 지원서를 선택하십시오.
         /// </summary>
         internal static string LabelSelectAnApplicationToEmail {
             get {
@@ -7896,7 +7900,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 勤務形態を選択する.
+        ///   Looks up a localized string similar to -근무 가능 여부 선택-.
         /// </summary>
         internal static string LabelSelectAvailableStatus {
             get {
@@ -7905,7 +7909,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 事業内容を選択する.
+        ///   Looks up a localized string similar to -사업체 유형 선택-.
         /// </summary>
         internal static string LabelSelectBusinessType {
             get {
@@ -7914,7 +7918,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 先に業種を選択してください.
+        ///   Looks up a localized string similar to - 분류를 먼저 선택하십시오 -.
         /// </summary>
         internal static string LabelSelectClassificationFirst {
             get {
@@ -7923,7 +7927,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 勤務地を選択.
+        ///   Looks up a localized string similar to - 국가 선택 -.
         /// </summary>
         internal static string LabelSelectCountry {
             get {
@@ -7932,7 +7936,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 先に国を選択してください.
+        ///   Looks up a localized string similar to -국가를 먼저 선택하십시오-.
         /// </summary>
         internal static string LabelSelectCountryFirst {
             get {
@@ -7941,7 +7945,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 文書を選択する.
+        ///   Looks up a localized string similar to 문서 선택.
         /// </summary>
         internal static string LabelSelectDocument {
             get {
@@ -7950,7 +7954,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 学歴を選択する.
+        ///   Looks up a localized string similar to -학력 선택-.
         /// </summary>
         internal static string LabelSelectEducation {
             get {
@@ -7959,7 +7963,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 登録済みのカバーレターを選択する.
+        ///   Looks up a localized string similar to 기존 자기 소개서 선택.
         /// </summary>
         internal static string LabelSelectExistingCover {
             get {
@@ -7968,7 +7972,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 登録済みの履歴書を選択する.
+        ///   Looks up a localized string similar to 기존 이력서 선택.
         /// </summary>
         internal static string LabelSelectExistingResume {
             get {
@@ -7977,7 +7981,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - Select Grade -.
+        ///   Looks up a localized string similar to - 등급 선택 -.
         /// </summary>
         internal static string LabelSelectGrade {
             get {
@@ -7986,7 +7990,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブテンプレートを選択する.
+        ///   Looks up a localized string similar to 채용 건 템플릿 선택.
         /// </summary>
         internal static string LabelSelectJobTemplate {
             get {
@@ -7995,7 +7999,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 言語を選択する.
+        ///   Looks up a localized string similar to 언어 선택.
         /// </summary>
         internal static string LabelSelectLanguage {
             get {
@@ -8004,7 +8008,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 少なくとも1件を選択してください.
+        ///   Looks up a localized string similar to 최소 하나의 값을 선택하십시오..
         /// </summary>
         internal static string LabelSelectLeastOneValue {
             get {
@@ -8013,7 +8017,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 先に勤務地を選択してください.
+        ///   Looks up a localized string similar to - 위치를 먼저 선택하십시오 -.
         /// </summary>
         internal static string LabelSelectLocationFirst {
             get {
@@ -8022,7 +8026,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please select at least one application to download.
+        ///   Looks up a localized string similar to 다운로드할 지원서를 최소 하나 선택하십시오.
         /// </summary>
         internal static string LabelSelectOneApplicationToEmail {
             get {
@@ -8031,7 +8035,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 給与を選択する.
+        ///   Looks up a localized string similar to -급여 선택-.
         /// </summary>
         internal static string LabelSelectSalary {
             get {
@@ -8049,7 +8053,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to セレクトログインタイプ.
+        ///   Looks up a localized string similar to 로그인 유형 선택.
         /// </summary>
         internal static string LabelSelectUserLogin {
             get {
@@ -8058,7 +8062,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to セレクトユーザータイプ.
+        ///   Looks up a localized string similar to 사용자 유형 선택.
         /// </summary>
         internal static string LabelSelectUserRegister {
             get {
@@ -8076,7 +8080,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブアラートを送信.
+        ///   Looks up a localized string similar to 채용정보 알림 지금 발송.
         /// </summary>
         internal static string LabelSendaJobAlertNow {
             get {
@@ -8085,7 +8089,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to アラート.
+        ///   Looks up a localized string similar to 이메일 알림 발송.
         /// </summary>
         internal static string LabelSendEmailAlerts {
             get {
@@ -8094,7 +8098,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 広告主に応募メールを送信.
+        ///   Looks up a localized string similar to 구인자에게 지원서 이메일 발송함.
         /// </summary>
         internal static string LabelSentApplicantEmail {
             get {
@@ -8103,7 +8107,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 9月.
+        ///   Looks up a localized string similar to 9월.
         /// </summary>
         internal static string LabelSep {
             get {
@@ -8112,7 +8116,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to カンマ（、）で各スキルを分離してください.
+        ///   Looks up a localized string similar to 각 기술을 쉼표(,)로 구분하십시오..
         /// </summary>
         internal static string LabelSeperateSkillComma {
             get {
@@ -8130,7 +8134,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 設定.
+        ///   Looks up a localized string similar to 설정.
         /// </summary>
         internal static string LabelSettings {
             get {
@@ -8139,7 +8143,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to シェア：.
+        ///   Looks up a localized string similar to 공유:.
         /// </summary>
         internal static string LabelShare {
             get {
@@ -8148,7 +8152,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to この求人をGoogle+でシェアする.
+        ///   Looks up a localized string similar to Google+로 공유.
         /// </summary>
         internal static string LabelShareOnGooglePlus {
             get {
@@ -8157,7 +8161,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 簡単な経歴.
+        ///   Looks up a localized string similar to 요약 이력.
         /// </summary>
         internal static string LabelShortBio {
             get {
@@ -8166,7 +8170,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 簡単な説明.
+        ///   Looks up a localized string similar to 요약 설명.
         /// </summary>
         internal static string LabelShortDescription {
             get {
@@ -8175,7 +8179,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to リストに加える.
+        ///   Looks up a localized string similar to 요약 목록.
         /// </summary>
         internal static string LabelShortList {
             get {
@@ -8184,7 +8188,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 表示中.
+        ///   Looks up a localized string similar to 표시.
         /// </summary>
         internal static string LabelShowing {
             get {
@@ -8193,7 +8197,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 勤務地の詳細を見る.
+        ///   Looks up a localized string similar to 위치 상세정보 표시.
         /// </summary>
         internal static string LabelShowLocationDetail {
             get {
@@ -8202,7 +8206,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 給与の詳細を見る.
+        ///   Looks up a localized string similar to 급여 상세정보 표시.
         /// </summary>
         internal static string LabelShowSalaryDetail {
             get {
@@ -8211,7 +8215,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 給与額の範囲を見る.
+        ///   Looks up a localized string similar to 급여 범위 표시.
         /// </summary>
         internal static string LabelShowSalaryRange {
             get {
@@ -8220,7 +8224,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to お勧めの求人.
+        ///   Looks up a localized string similar to 유사한 채용 건.
         /// </summary>
         internal static string LabelSimilarJobs {
             get {
@@ -8229,7 +8233,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to サイト.
+        ///   Looks up a localized string similar to 현장.
         /// </summary>
         internal static string LabelSite {
             get {
@@ -8238,7 +8242,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to サイトのロケーション名.
+        ///   Looks up a localized string similar to 현장 위치명.
         /// </summary>
         internal static string LabelSiteLocationName {
             get {
@@ -8247,7 +8251,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to サイトの職業名.
+        ///   Looks up a localized string similar to 현장 전문직명.
         /// </summary>
         internal static string LabelSiteProfessionName {
             get {
@@ -8256,7 +8260,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to スキル.
+        ///   Looks up a localized string similar to 기술.
         /// </summary>
         internal static string LabelSkills {
             get {
@@ -8274,7 +8278,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ソーシャルメディア.
+        ///   Looks up a localized string similar to 소셜미디어.
         /// </summary>
         internal static string LabelSocialMedia {
             get {
@@ -8283,7 +8287,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 並べ替えの順番.
+        ///   Looks up a localized string similar to 정렬.
         /// </summary>
         internal static string LabelSortBy {
             get {
@@ -8292,7 +8296,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 並び替え - アルファベットA ~ Z.
+        ///   Looks up a localized string similar to 정렬 - 알파벳 A-Z.
         /// </summary>
         internal static string LabelSortByAlphabeticalAZ {
             get {
@@ -8301,7 +8305,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 並び替え - アルファベットZ ~ A.
+        ///   Looks up a localized string similar to 정렬 - 알파벳 Z-A.
         /// </summary>
         internal static string LabelSortByAlphabeticalZA {
             get {
@@ -8310,7 +8314,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 並び替え - 古い投稿.
+        ///   Looks up a localized string similar to 정렬 - 오래된 공고부터.
         /// </summary>
         internal static string LabelSortByOldestPosts {
             get {
@@ -8319,7 +8323,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 並び替え - 最近の投稿.
+        ///   Looks up a localized string similar to 정렬 - 최근 공고부터.
         /// </summary>
         internal static string LabelSortByRecentPosts {
             get {
@@ -8328,7 +8332,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 並び替え - 給与の高い順.
+        ///   Looks up a localized string similar to 정렬 - 높은 급여부터.
         /// </summary>
         internal static string LabelSortBySalaryHighLow {
             get {
@@ -8337,7 +8341,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 並び替え - 給与の低い順.
+        ///   Looks up a localized string similar to 정렬 - 낮은 급여부터.
         /// </summary>
         internal static string LabelSortBySalaryLowHigh {
             get {
@@ -8346,7 +8350,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 並び替え.
+        ///   Looks up a localized string similar to 정렬.
         /// </summary>
         internal static string LabelSortsby {
             get {
@@ -8355,7 +8359,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 開始.
+        ///   Looks up a localized string similar to 시작.
         /// </summary>
         internal static string LabelStart {
             get {
@@ -8364,7 +8368,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 開始日.
+        ///   Looks up a localized string similar to 시작일.
         /// </summary>
         internal static string LabelStartDate {
             get {
@@ -8373,7 +8377,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 都道府県.
+        ///   Looks up a localized string similar to 주.
         /// </summary>
         internal static string LabelState {
             get {
@@ -8382,7 +8386,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 居住する都道府県.
+        ///   Looks up a localized string similar to 내가 거주하는 주.
         /// </summary>
         internal static string LabelStateResideIn {
             get {
@@ -8391,7 +8395,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 統計データ.
+        ///   Looks up a localized string similar to 통계.
         /// </summary>
         internal static string LabelStatistics {
             get {
@@ -8400,7 +8404,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 状況.
+        ///   Looks up a localized string similar to 상태.
         /// </summary>
         internal static string LabelStatus {
             get {
@@ -8409,7 +8413,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Still having issues.
+        ///   Looks up a localized string similar to 미결 문제.
         /// </summary>
         internal static string LabelStillHavingIssue {
             get {
@@ -8418,7 +8422,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 市町村.
+        ///   Looks up a localized string similar to 거리주소.
         /// </summary>
         internal static string LabelStreetAddress {
             get {
@@ -8427,7 +8431,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 市町村1.
+        ///   Looks up a localized string similar to 거리주소 1.
         /// </summary>
         internal static string LabelStreetAddress1 {
             get {
@@ -8436,7 +8440,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 市町村2.
+        ///   Looks up a localized string similar to 거리주소 2.
         /// </summary>
         internal static string LabelStreetAddress2 {
             get {
@@ -8445,7 +8449,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to サブアカウントが登録されました。確認手続きのメールが届きます。.
+        ///   Looks up a localized string similar to 새로운 하위 계정이 생성되었습니다. 새로운 하위 계정 인증을 위해 이메일이 발송되었습니다..
         /// </summary>
         internal static string LabelSubAccountCreated {
             get {
@@ -8454,7 +8458,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sub Accounts.
+        ///   Looks up a localized string similar to 하위 계정.
         /// </summary>
         internal static string LabelSubAccounts {
             get {
@@ -8463,7 +8467,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sub Classification.
+        ///   Looks up a localized string similar to 소분류.
         /// </summary>
         internal static string LabelSubClassification {
             get {
@@ -8472,7 +8476,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 地図と区域検索を可能にするには、市町村名を記入してください.
+        ///   Looks up a localized string similar to 지도 활성화 및 주변 반경 검색을 위해 거리주소를 제출하십시오.
         /// </summary>
         internal static string LabelSubmitStreetAddress {
             get {
@@ -8481,7 +8485,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 求人の登録をする.
+        ///   Looks up a localized string similar to 채용정보 알림 구독.
         /// </summary>
         internal static string LabelSubscribeToJobAlert {
             get {
@@ -8490,7 +8494,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to メールマガジンを受信する.
+        ///   Looks up a localized string similar to 뉴스레터를 구독하고 싶습니다.
         /// </summary>
         internal static string LabelSubscribeToNewsLetter {
             get {
@@ -8499,7 +8503,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 小計.
+        ///   Looks up a localized string similar to 소계.
         /// </summary>
         internal static string LabelSubtotal {
             get {
@@ -8508,7 +8512,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 市町村.
+        ///   Looks up a localized string similar to 교외.
         /// </summary>
         internal static string LabelSuburb {
             get {
@@ -8517,7 +8521,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to アラートの作成に成功しました.
+        ///   Looks up a localized string similar to 알림을 성공적으로 생성하였습니다..
         /// </summary>
         internal static string LabelSuccessfullyCreatedYouJobAlert {
             get {
@@ -8526,7 +8530,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to サーチの保存に成功しました.
+        ///   Looks up a localized string similar to 검색결과를 성공적으로 저장하였습니다..
         /// </summary>
         internal static string LabelSuccessfullySavedYourSearch {
             get {
@@ -8535,7 +8539,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 概要.
+        ///   Looks up a localized string similar to 요약.
         /// </summary>
         internal static string LabelSummary {
             get {
@@ -8544,7 +8548,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Supervisor.
+        ///   Looks up a localized string similar to 감독관.
         /// </summary>
         internal static string LabelSupervisor {
             get {
@@ -8553,7 +8557,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 姓は入力必須項目です.
+        ///   Looks up a localized string similar to 성을 입력하셔야 합니다..
         /// </summary>
         internal static string LabelSurameMandatory {
             get {
@@ -8562,7 +8566,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 姓（ローマ字）.
+        ///   Looks up a localized string similar to 성.
         /// </summary>
         internal static string LabelSurname {
             get {
@@ -8571,7 +8575,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 姓を入力してください.
+        ///   Looks up a localized string similar to 성은 필수정보입니다.
         /// </summary>
         internal static string LabelSurnameRequired {
             get {
@@ -8580,7 +8584,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to タグ（コンマ使用）.
+        ///   Looks up a localized string similar to 태그.
         /// </summary>
         internal static string LabelTags {
             get {
@@ -8589,7 +8593,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 教員.
+        ///   Looks up a localized string similar to 교사.
         /// </summary>
         internal static string LabelTeacher {
             get {
@@ -8598,7 +8602,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 電話番号.
+        ///   Looks up a localized string similar to 전화.
         /// </summary>
         internal static string LabelTel {
             get {
@@ -8607,7 +8611,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 電話番号.
+        ///   Looks up a localized string similar to 전화.
         /// </summary>
         internal static string LabelTelephone {
             get {
@@ -8616,7 +8620,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 電話番号を入力してください.
+        ///   Looks up a localized string similar to 전화번호는 필수정보입니다.
         /// </summary>
         internal static string LabelTelephoneRequired {
             get {
@@ -8634,7 +8638,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to アカウントが一時的にロックされています。「&quot;{0}分&quot;」後にもう一度お試しになるか、お使いのシステム管理者にお問い合わせください。。。.
+        ///   Looks up a localized string similar to 귀하의 계정은 일시적으로 차단되었습니다. “{0}분” 내에 다시 시도하시거나 시스템 관리자에게 문의하십시오..
         /// </summary>
         internal static string LabelTempLocked {
             get {
@@ -8643,7 +8647,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tempted.
+        ///   Looks up a localized string similar to 임시 저장.
         /// </summary>
         internal static string LabelTempted {
             get {
@@ -8652,7 +8656,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to terms and conditions.
+        ///   Looks up a localized string similar to 약관.
         /// </summary>
         internal static string LabelTermsAndConditions {
             get {
@@ -8661,7 +8665,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tertiary Education.
+        ///   Looks up a localized string similar to 고등교육.
         /// </summary>
         internal static string LabelTertiaryEducation {
             get {
@@ -8670,7 +8674,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to テキスト.
+        ///   Looks up a localized string similar to 본문.
         /// </summary>
         internal static string LabelText {
             get {
@@ -8697,7 +8701,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to この項目を入力してください.
+        ///   Looks up a localized string similar to 필수 필드입니다..
         /// </summary>
         internal static string LabelThisFieldIsRequired {
             get {
@@ -8706,7 +8710,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to タイトル.
+        ///   Looks up a localized string similar to 제목.
         /// </summary>
         internal static string LabelTitle {
             get {
@@ -8715,7 +8719,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 文書タイトルが必要です.
+        ///   Looks up a localized string similar to 문서 제목은 필수정보입니다.
         /// </summary>
         internal static string LabelTitleRequired {
             get {
@@ -8724,7 +8728,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 文書タイトルは500字までです.
+        ///   Looks up a localized string similar to 문서 제목은 500자를 초과할 수 없습니다.
         /// </summary>
         internal static string LabelTitleSizeError {
             get {
@@ -8733,7 +8737,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to まで.
+        ///   Looks up a localized string similar to 종료.
         /// </summary>
         internal static string LabelTo {
             get {
@@ -8742,7 +8746,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 日まで.
+        ///   Looks up a localized string similar to 종료일.
         /// </summary>
         internal static string LabelToDate {
             get {
@@ -8751,7 +8755,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 給与に記入.
+        ///   Looks up a localized string similar to 종료 급여 입력.
         /// </summary>
         internal static string LabelToSalary {
             get {
@@ -8760,7 +8764,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 合計.
+        ///   Looks up a localized string similar to 총계.
         /// </summary>
         internal static string LabelTotal {
             get {
@@ -8769,7 +8773,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 合計金額.
+        ///   Looks up a localized string similar to 총 금액.
         /// </summary>
         internal static string LabelTotalAmount {
             get {
@@ -8778,7 +8782,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 従業員数.
+        ///   Looks up a localized string similar to 고용인 수/총 고용인.
         /// </summary>
         internal static string LabelTotalEmployees {
             get {
@@ -8787,7 +8791,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to タイプ.
+        ///   Looks up a localized string similar to 유형.
         /// </summary>
         internal static string LabelType {
             get {
@@ -8796,7 +8800,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Type of Directorship.
+        ///   Looks up a localized string similar to 이사직 유형.
         /// </summary>
         internal static string LabelTypeOfDirectorship {
             get {
@@ -8805,7 +8809,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ニュース配信を解除する.
+        ///   Looks up a localized string similar to 뉴스 구독 취소.
         /// </summary>
         internal static string LabelUnsubscribeNews {
             get {
@@ -8814,7 +8818,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 更新.
+        ///   Looks up a localized string similar to 업데이트.
         /// </summary>
         internal static string LabelUpdate {
             get {
@@ -8823,7 +8827,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 登録情報を更新する.
+        ///   Looks up a localized string similar to 내 상세정보 업데이트.
         /// </summary>
         internal static string LabelUpdateMyDetails {
             get {
@@ -8832,7 +8836,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to プロフィールを更新する.
+        ///   Looks up a localized string similar to 프로필 업데이트.
         /// </summary>
         internal static string LabelUpdateProfile {
             get {
@@ -8841,7 +8845,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to カバーレターをアップロードする.
+        ///   Looks up a localized string similar to 자기 소개서 업데이트.
         /// </summary>
         internal static string LabelUploadACoverLetter {
             get {
@@ -8850,7 +8854,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 履歴書をアップロードする.
+        ///   Looks up a localized string similar to 이력서 업데이트.
         /// </summary>
         internal static string LabelUploadAResume {
             get {
@@ -8859,7 +8863,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ファイルを、Microsoft Word (.doc または .docx)、Microsoft Excel (.xlsまたは .xlsx)、Adobe Acrobat (.pdf)、テキストファイル (.txt または .rtf)のいずれかの形式でアップロードしてください。.
+        ///   Looks up a localized string similar to 업로드할 파일은 Microsoft Word(.doc 또는 .docx), Microsoft Excel(.xls 또는 .xlsx), Adobe Acrobat(.pdf) 또는 텍스트 파일(.txt or .rtf)이어야 합니다.
         /// </summary>
         internal static string LabelUploadCoverDesc {
             get {
@@ -8868,7 +8872,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to カバーレター選択.
+        ///   Looks up a localized string similar to 자기소개서 업로드.
         /// </summary>
         internal static string LabelUploadCoverLetter {
             get {
@@ -8877,7 +8881,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 書類をアップロードする.
+        ///   Looks up a localized string similar to 문서 업로드.
         /// </summary>
         internal static string LabelUploadDocument {
             get {
@@ -8886,7 +8890,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 更新日.
+        ///   Looks up a localized string similar to 업로드일.
         /// </summary>
         internal static string LabelUploadedDate {
             get {
@@ -8895,7 +8899,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ファイルをアップロードする.
+        ///   Looks up a localized string similar to 파일 업로드.
         /// </summary>
         internal static string LabelUploadFile {
             get {
@@ -8904,7 +8908,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to アップロード方法.
+        ///   Looks up a localized string similar to 방법 업로드.
         /// </summary>
         internal static string LabelUploadMethod {
             get {
@@ -8913,7 +8917,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 新しいロゴをアップロードする.
+        ///   Looks up a localized string similar to 새 로고 업로드.
         /// </summary>
         internal static string LabelUploadNewLogo {
             get {
@@ -8922,7 +8926,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to プロフィールの画像をアップロードする.
+        ///   Looks up a localized string similar to 프로필 이미지 업로드.
         /// </summary>
         internal static string LabelUploadProfileImage {
             get {
@@ -8931,7 +8935,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 画像を jpg、gif、png のいずれかの形式でアップロードしてください。ファイルの最大容量は500KBです。.
+        ///   Looks up a localized string similar to 이미지 업로드 설명.
         /// </summary>
         internal static string LabelUploadProfileImageDesc {
             get {
@@ -8940,7 +8944,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 有効なファイルの種類をアップロードしてください.
+        ///   Looks up a localized string similar to 유효한 파일 유형으로 업로드하십시오..
         /// </summary>
         internal static string LabelUploadProfileImageInvalid {
             get {
@@ -8949,7 +8953,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 500KBの最大のファイルをアップロードしてください.
+        ///   Looks up a localized string similar to 업로드 파일 최대 용량은 500KB입니다..
         /// </summary>
         internal static string LabelUploadProfileImageInvalidFileSize {
             get {
@@ -8958,7 +8962,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 履歴書選択.
+        ///   Looks up a localized string similar to 이력서 업로드.
         /// </summary>
         internal static string LabelUploadResume {
             get {
@@ -8967,7 +8971,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 最大3つまでファイルをアップロードできます.
+        ///   Looks up a localized string similar to * 이력서는 3개까지 업로드할 수 있습니다.
         /// </summary>
         internal static string LabelUploadResumeUpto {
             get {
@@ -8976,7 +8980,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 要求に応じて.
+        ///   Looks up a localized string similar to 요청 시.
         /// </summary>
         internal static string LabelUponRequest {
             get {
@@ -8994,7 +8998,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to URL - リンクアウト.
+        ///   Looks up a localized string similar to URL - 링크 아웃.
         /// </summary>
         internal static string LabelURLLinkOut {
             get {
@@ -9003,7 +9007,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 既存のカバーレターファイルを使用.
+        ///   Looks up a localized string similar to 기존 자기소개서 파일 사용.
         /// </summary>
         internal static string LabelUseExistingCoverLetterFile {
             get {
@@ -9012,7 +9016,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 既存の履歴書ファイルを使用.
+        ///   Looks up a localized string similar to 기존 이력서 파일 사용.
         /// </summary>
         internal static string LabelUseExistingResumeFile {
             get {
@@ -9021,7 +9025,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 登録した情報で応募する.
+        ///   Looks up a localized string similar to 내 프로필 사용.
         /// </summary>
         internal static string LabelUseMyProfile {
             get {
@@ -9030,7 +9034,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ユーザー名.
+        ///   Looks up a localized string similar to 사용자명.
         /// </summary>
         internal static string LabelUsername {
             get {
@@ -9039,7 +9043,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to このユーザー名は登録済みです.
+        ///   Looks up a localized string similar to 사용자명이 이미 존재합니다. 로그인하십시오..
         /// </summary>
         internal static string LabelUsernameExists {
             get {
@@ -9048,7 +9052,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ユーザー名を入力してください.
+        ///   Looks up a localized string similar to 사용자명은 필수정보입니다.
         /// </summary>
         internal static string LabelUsernameRequired {
             get {
@@ -9057,7 +9061,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 認証.
+        ///   Looks up a localized string similar to 인증.
         /// </summary>
         internal static string LabelValidate {
             get {
@@ -9066,7 +9070,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 確認済み.
+        ///   Looks up a localized string similar to 인증.
         /// </summary>
         internal static string LabelValidated {
             get {
@@ -9075,7 +9079,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 認証.
+        ///   Looks up a localized string similar to 인증.
         /// </summary>
         internal static string LabelValidation {
             get {
@@ -9084,7 +9088,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to メールアドレスの確認が必要です.
+        ///   Looks up a localized string similar to 올바른 이메일 주소를 입력해야 합니다.
         /// </summary>
         internal static string LabelValidEmailRequired {
             get {
@@ -9093,7 +9097,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to バージョン.
+        ///   Looks up a localized string similar to 버전.
         /// </summary>
         internal static string LabelVersion {
             get {
@@ -9102,7 +9106,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to via Email.
+        ///   Looks up a localized string similar to 이메일로.
         /// </summary>
         internal static string LabelViaEmail {
             get {
@@ -9111,7 +9115,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Video Link.
+        ///   Looks up a localized string similar to 동영상 링크.
         /// </summary>
         internal static string LabelVideoLink {
             get {
@@ -9120,7 +9124,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 動画 URL.
+        ///   Looks up a localized string similar to 동영상 URL.
         /// </summary>
         internal static string LabelVideoURL {
             get {
@@ -9129,7 +9133,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 閲覧する.
+        ///   Looks up a localized string similar to 조회.
         /// </summary>
         internal static string LabelView {
             get {
@@ -9138,7 +9142,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 購入する商品.
+        ///   Looks up a localized string similar to 구매할 상품.
         /// </summary>
         internal static string LabelViewCart {
             get {
@@ -9147,7 +9151,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 閲覧済み.
+        ///   Looks up a localized string similar to 조회함.
         /// </summary>
         internal static string LabelViewed {
             get {
@@ -9156,7 +9160,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 表示範囲を少なく.
+        ///   Looks up a localized string similar to 숨기기.
         /// </summary>
         internal static string LabelViewLess {
             get {
@@ -9165,7 +9169,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to もっと閲覧する.
+        ///   Looks up a localized string similar to 더 보기....
         /// </summary>
         internal static string LabelViewMore {
             get {
@@ -9174,7 +9178,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ページを閲覧する.
+        ///   Looks up a localized string similar to 페이지 조회.
         /// </summary>
         internal static string LabelViewPage {
             get {
@@ -9183,7 +9187,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to プロフィールを閲覧する.
+        ///   Looks up a localized string similar to 프로필 조회.
         /// </summary>
         internal static string LabelViewProfile {
             get {
@@ -9192,7 +9196,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 閲覧.
+        ///   Looks up a localized string similar to 조회 수.
         /// </summary>
         internal static string LabelViews {
             get {
@@ -9201,7 +9205,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Visa.
+        ///   Looks up a localized string similar to 비자.
         /// </summary>
         internal static string LabelVisa {
             get {
@@ -9210,7 +9214,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Visible.
+        ///   Looks up a localized string similar to 조회 가능.
         /// </summary>
         internal static string LabelVisible {
             get {
@@ -9219,7 +9223,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to URLを選択した場合、URLの応募申込書は空白にしないでください.
+        ///   Looks up a localized string similar to URL 선택 시 지원서 URL은 비워둘 수 없습니다.
         /// </summary>
         internal static string LabelWarningBlankURL {
             get {
@@ -9228,7 +9232,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ウェブアドレス.
+        ///   Looks up a localized string similar to 웹 주소.
         /// </summary>
         internal static string LabelWebAddress {
             get {
@@ -9237,7 +9241,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ウェブサービス.
+        ///   Looks up a localized string similar to 웹서비스.
         /// </summary>
         internal static string LabelWebservice {
             get {
@@ -9246,7 +9250,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ウェブサイト.
+        ///   Looks up a localized string similar to 웹사이트.
         /// </summary>
         internal static string LabelWebsite {
             get {
@@ -9255,7 +9259,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ようこそ.
+        ///   Looks up a localized string similar to 환영합니다.
         /// </summary>
         internal static string LabelWelcome {
             get {
@@ -9264,7 +9268,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 様、エンワールドをご利用くださりありがとうございます。.
+        ///   Looks up a localized string similar to 반갑습니다.
         /// </summary>
         internal static string LabelWelcomeBack {
             get {
@@ -9273,7 +9277,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to メンバーブロードキャスト.
+        ///   Looks up a localized string similar to 회원 방송에 오신 것을 환영합니다.
         /// </summary>
         internal static string LabelWelcomeBroadcast {
             get {
@@ -9282,7 +9286,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to メンバー登録情報の更新ページ.
+        ///   Looks up a localized string similar to 회원 상세정보 업데이트 페이지에 오신 것을 환영합니다..
         /// </summary>
         internal static string LabelWelcomeMemberEditDetail {
             get {
@@ -9291,7 +9295,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to メンバーのパスワード変更ページ　　現在のパスワードと新しいパスワードを入力してください。.
+        ///   Looks up a localized string similar to 회원 비밀번호 변경 페이지에 오신 것을 환영합니다. 아래 양식에 현재 비밀번호와 새 비밀번호를 입력하십시오..
         /// </summary>
         internal static string LabelWelcomeMemberEditPassword {
             get {
@@ -9300,7 +9304,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ステータス.
+        ///   Looks up a localized string similar to 무엇을 하려고 하시나요?.
         /// </summary>
         internal static string LabelWhatAreYouUpTo {
             get {
@@ -9309,7 +9313,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 転勤は検討可能.
+        ///   Looks up a localized string similar to 이주 의사 있음.
         /// </summary>
         internal static string LabelWillingToRelocate {
             get {
@@ -9318,7 +9322,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 職歴.
+        ///   Looks up a localized string similar to 업무 경력.
         /// </summary>
         internal static string LabelWorkExperience {
             get {
@@ -9327,7 +9331,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 雇用形態.
+        ///   Looks up a localized string similar to 업무 유형.
         /// </summary>
         internal static string LabelWorkType {
             get {
@@ -9336,7 +9340,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 雇用形態　ID.
+        ///   Looks up a localized string similar to 업무 유형 ID.
         /// </summary>
         internal static string LabelWorkTypeIDs {
             get {
@@ -9345,7 +9349,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to カバーレターを書く.
+        ///   Looks up a localized string similar to 여기에서 자기 소개서를 직접 작성하십시오.
         /// </summary>
         internal static string LabelWriteCoverLetter {
             get {
@@ -9354,7 +9358,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to カバーレター.
+        ///   Looks up a localized string similar to 내 자기소개서 작성하기.
         /// </summary>
         internal static string LabelWriteOwnCoverLetter {
             get {
@@ -9363,7 +9367,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 年.
+        ///   Looks up a localized string similar to 년.
         /// </summary>
         internal static string LabelYear {
             get {
@@ -9372,7 +9376,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 年.
+        ///   Looks up a localized string similar to 년.
         /// </summary>
         internal static string LabelYears {
             get {
@@ -9381,7 +9385,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to はい.
+        ///   Looks up a localized string similar to 예.
         /// </summary>
         internal static string LabelYes {
             get {
@@ -9390,7 +9394,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 現在ロゴがありません.
+        ///   Looks up a localized string similar to 현재 로고가 없습니다..
         /// </summary>
         internal static string LabelYouhavenologo {
             get {
@@ -9399,7 +9403,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ご注文完了.
+        ///   Looks up a localized string similar to 주문이 완료되었습니다.
         /// </summary>
         internal static string LabelYouMadeAPayment {
             get {
@@ -9408,7 +9412,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to あなたのメールアドレス.
+        ///   Looks up a localized string similar to 귀하의 이메일.
         /// </summary>
         internal static string LabelYourEmail {
             get {
@@ -9417,7 +9421,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ご友人のメールアドレス.
+        ///   Looks up a localized string similar to 친구의 이메일.
         /// </summary>
         internal static string LabelYourFriendEmail {
             get {
@@ -9426,7 +9430,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ご友人の氏名.
+        ///   Looks up a localized string similar to 친구의 이름.
         /// </summary>
         internal static string LabelYourFriendName {
             get {
@@ -9435,7 +9439,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to あなたの氏名.
+        ///   Looks up a localized string similar to 귀하의 이름.
         /// </summary>
         internal static string LabelYourName {
             get {
@@ -9444,7 +9448,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ご注文.
+        ///   Looks up a localized string similar to 귀하의 주문.
         /// </summary>
         internal static string LabelYourOrder {
             get {
@@ -9453,7 +9457,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your Search Returned.
+        ///   Looks up a localized string similar to 귀하의 검색결과.
         /// </summary>
         internal static string LabelYourSearchReturned {
             get {
@@ -9462,7 +9466,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to スキルセット.
+        ///   Looks up a localized string similar to 귀하의 기술목록.
         /// </summary>
         internal static string LabelYourSkillSets {
             get {
@@ -9480,7 +9484,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 郵便番号.
+        ///   Looks up a localized string similar to 우편번호.
         /// </summary>
         internal static string LabelZipCode {
             get {
@@ -9489,7 +9493,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 郵便番号.
+        ///   Looks up a localized string similar to 우편번호.
         /// </summary>
         internal static string LabelZipCodePlaceholder {
             get {
@@ -9498,7 +9502,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Availability Date From.
+        ///   Looks up a localized string similar to 근무 가능 시작일.
         /// </summary>
         internal static string LabrlAvailableDayFrom {
             get {
@@ -9507,7 +9511,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 掲載者.
+        ///   Looks up a localized string similar to 게시자.
         /// </summary>
         internal static string lblPostedByAdvertiserUser {
             get {
@@ -9516,7 +9520,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ニュースインデックスに戻る.
+        ///   Looks up a localized string similar to 뉴스 색인으로 돌아가기.
         /// </summary>
         internal static string LinkBacktoNewsIndex {
             get {
@@ -9525,7 +9529,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to アカウント登録情報.
+        ///   Looks up a localized string similar to 계정 상세정보.
         /// </summary>
         internal static string LinkButtonAccountDetails {
             get {
@@ -9534,7 +9538,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to メモを付ける.
+        ///   Looks up a localized string similar to 메모 추가.
         /// </summary>
         internal static string LinkButtonAddNote {
             get {
@@ -9543,7 +9547,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to タグを付ける.
+        ///   Looks up a localized string similar to 태그 추가.
         /// </summary>
         internal static string LinkButtonAddTag {
             get {
@@ -9552,7 +9556,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 求人エントリー.
+        ///   Looks up a localized string similar to 지금 지원.
         /// </summary>
         internal static string LinkButtonApplyNow {
             get {
@@ -9561,7 +9565,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 過去のジョブ広告.
+        ///   Looks up a localized string similar to 보관된 채용 공고.
         /// </summary>
         internal static string LinkButtonArchivedJobAds {
             get {
@@ -9570,7 +9574,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 結果に戻る.
+        ///   Looks up a localized string similar to 결과로 돌아가기.
         /// </summary>
         internal static string LinkButtonBackToResult {
             get {
@@ -9579,7 +9583,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブクレジットを購入.
+        ///   Looks up a localized string similar to 구인구직 크레딧 구매하기.
         /// </summary>
         internal static string LinkButtonBuyJobCredits {
             get {
@@ -9588,7 +9592,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 買い物カゴ.
+        ///   Looks up a localized string similar to 장바구니.
         /// </summary>
         internal static string LinkButtonCart {
             get {
@@ -9597,7 +9601,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to テンプレート／ロゴを変更する.
+        ///   Looks up a localized string similar to 채용 공고 템플릿 아트워크.
         /// </summary>
         internal static string LinkButtonChangeTemplateLogo {
             get {
@@ -9606,7 +9610,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 新規のジョブ広告を作成する.
+        ///   Looks up a localized string similar to 새로운 채용 공고 생성하기.
         /// </summary>
         internal static string LinkButtonCreateNewJobAd {
             get {
@@ -9615,7 +9619,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 現在掲載中のジョブ広告.
+        ///   Looks up a localized string similar to 현재 채용 공고.
         /// </summary>
         internal static string LinkButtonCurrentJobAds {
             get {
@@ -9624,7 +9628,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Declined Job Ads.
+        ///   Looks up a localized string similar to 거절된 채용 공고.
         /// </summary>
         internal static string LinkButtonDeclinedJobAds {
             get {
@@ -9633,7 +9637,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 削除.
+        ///   Looks up a localized string similar to 삭제.
         /// </summary>
         internal static string LinkButtonDelete {
             get {
@@ -9642,7 +9646,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ダウンロード.
+        ///   Looks up a localized string similar to 다운로드.
         /// </summary>
         internal static string LinkButtonDownload {
             get {
@@ -9651,7 +9655,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブ広告の下書き.
+        ///   Looks up a localized string similar to 채용 공고 초안작성.
         /// </summary>
         internal static string LinkButtonDraftJobAds {
             get {
@@ -9660,7 +9664,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 編集.
+        ///   Looks up a localized string similar to 편집.
         /// </summary>
         internal static string LinkButtonEdit {
             get {
@@ -9669,7 +9673,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to この求人を友人にメールする.
+        ///   Looks up a localized string similar to 이 채용 건을 이메일로 발송.
         /// </summary>
         internal static string LinkButtonEmailJob {
             get {
@@ -9678,7 +9682,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to この求人をLinkedInでシェアする.
+        ///   Looks up a localized string similar to 이 채용 건을 링크드인에 공유.
         /// </summary>
         internal static string LinkButtonJobLinkedIn {
             get {
@@ -9687,7 +9691,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブレポート.
+        ///   Looks up a localized string similar to 채용 건 보고.
         /// </summary>
         internal static string LinkButtonJobReports {
             get {
@@ -9696,7 +9700,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to RSSフィードを利用する.
+        ///   Looks up a localized string similar to RSS 피드 구독.
         /// </summary>
         internal static string LinkButtonJobRSS {
             get {
@@ -9705,7 +9709,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to この求人をFacebookでシェアする.
+        ///   Looks up a localized string similar to 이 채용 건 페이스북에 공유.
         /// </summary>
         internal static string LinkButtonJobShareFacebook {
             get {
@@ -9714,7 +9718,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to この求人をツィートする.
+        ///   Looks up a localized string similar to 이 채용 건 트윗하기.
         /// </summary>
         internal static string LinkButtonJobShareTwitter {
             get {
@@ -9723,7 +9727,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブの履歴.
+        ///   Looks up a localized string similar to 채용 건 추적기.
         /// </summary>
         internal static string LinkButtonJobTracker {
             get {
@@ -9732,7 +9736,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブの管理.
+        ///   Looks up a localized string similar to 채용 건 관리.
         /// </summary>
         internal static string LinkButtonManageJobs {
             get {
@@ -9741,7 +9745,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 保留中のジョブ広告.
+        ///   Looks up a localized string similar to 보류 중인 채용 건.
         /// </summary>
         internal static string LinkButtonPendingJobAds {
             get {
@@ -9750,7 +9754,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 求職者検索.
+        ///   Looks up a localized string similar to 인재 검색.
         /// </summary>
         internal static string LinkButtonPeopleSearch {
             get {
@@ -9759,7 +9763,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to この求人を印刷する.
+        ///   Looks up a localized string similar to 이 채용 건 인쇄하기.
         /// </summary>
         internal static string LinkButtonPrintJob {
             get {
@@ -9768,7 +9772,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to レポート.
+        ///   Looks up a localized string similar to 보고서.
         /// </summary>
         internal static string LinkButtonReports {
             get {
@@ -9777,7 +9781,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to この求人を保存する.
+        ///   Looks up a localized string similar to 이 채용 건 저장하기.
         /// </summary>
         internal static string LinkButtonSavedJobs {
             get {
@@ -9786,7 +9790,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 求人を保存.
+        ///   Looks up a localized string similar to 채용 건 저장하기.
         /// </summary>
         internal static string LinkButtonSaveJob {
             get {
@@ -9804,7 +9808,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to メールを送る.
+        ///   Looks up a localized string similar to 이메일 발송.
         /// </summary>
         internal static string LinkButtonSendEmail {
             get {
@@ -9813,7 +9817,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 統計データ.
+        ///   Looks up a localized string similar to 통계.
         /// </summary>
         internal static string LinkButtonStatistics {
             get {
@@ -9822,7 +9826,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to サブアカウント.
+        ///   Looks up a localized string similar to 하위 계정.
         /// </summary>
         internal static string LinkButtonSubAccounts {
             get {
@@ -9831,7 +9835,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to View.
+        ///   Looks up a localized string similar to 조회.
         /// </summary>
         internal static string LinkButtonView {
             get {
@@ -9840,7 +9844,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to View / Change Logo.
+        ///   Looks up a localized string similar to 구인자 로고.
         /// </summary>
         internal static string LinkButtonViewChangeLogo {
             get {
@@ -9849,7 +9853,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to View / Change Template Logo.
+        ///   Looks up a localized string similar to 채용 공고 템플릿 아트워크/로고.
         /// </summary>
         internal static string LinkButtonViewChangeTemplateLogo {
             get {
@@ -9858,7 +9862,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ジョブを見る.
+        ///   Looks up a localized string similar to 채용 건 조회.
         /// </summary>
         internal static string LinkButtonViewJobs {
             get {
@@ -9876,7 +9880,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 年収の下限を入力する.
+        ///   Looks up a localized string similar to 최저 연봉 입력.
         /// </summary>
         internal static string PlaceHolderSalaryAnnualFrom {
             get {
@@ -9885,7 +9889,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 年収の上限を入力する.
+        ///   Looks up a localized string similar to 최고 연봉 입력.
         /// </summary>
         internal static string PlaceHolderSalaryAnnualTo {
             get {
@@ -9894,7 +9898,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 時給の下限を入力する.
+        ///   Looks up a localized string similar to 최저 시급 입력.
         /// </summary>
         internal static string PlaceHolderSalaryHourlyFrom {
             get {
@@ -9903,7 +9907,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 時給の上限を入力する.
+        ///   Looks up a localized string similar to 최고 시급 입력.
         /// </summary>
         internal static string PlaceHolderSalaryHourlyTo {
             get {
@@ -9912,7 +9916,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 候補者検索　-　勤務地エリアを選択してください.
+        ///   Looks up a localized string similar to 후보 검색 - 귀하의 위치 및 지역에 따른 관련 조건을 선택하십시오.
         /// </summary>
         internal static string sLabelCandidateSearch {
             get {
@@ -9921,7 +9925,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 公開プロフィール.
+        ///   Looks up a localized string similar to 의 공개 프로필.
         /// </summary>
         internal static string sLabelPublicProfile {
             get {
@@ -9939,7 +9943,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Accepts only numbers, spaces, &apos;+&apos;, &apos;(&apos; and &apos;)&apos;.
+        ///   Looks up a localized string similar to 숫자, 공백, ‘+’ 및 작은 따옴표(‘’)만 입력 가능.
         /// </summary>
         internal static string ValidationPhoneNumbers {
             get {

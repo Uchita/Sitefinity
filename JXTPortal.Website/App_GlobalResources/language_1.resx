@@ -2524,7 +2524,7 @@ Your account has already been validated. Please proceed to &lt;a href="/member/l
     <comment>Declined Jobs</comment>
   </data>
   <data name="LabelJobSaved" xml:space="preserve">
-    <value>Job Saved</value>
+    <value>Unsave Job</value>
     <comment>Job Saved</comment>
   </data>
   <data name="LabelSelectUserLogin" xml:space="preserve">

@@ -156,7 +156,7 @@ namespace JXTPortal.Website.job.ajaxcalls
             SiteCountriesService siteCountriesService = new SiteCountriesService();
             SiteLocationService siteLocationService = new SiteLocationService();
             List<Entities.SiteCountries> siteCountriesList = siteCountriesService.GetTranslatedCountries();
-            if (CountryID != "-1")
+            if (CountryID != "-1" && string.IsNullOrWhiteSpace(CountryID) == false)
             {
                 siteCountriesList = siteCountriesList.Where(x => x.CountryId == Convert.ToInt32(CountryID)).ToList();
             }

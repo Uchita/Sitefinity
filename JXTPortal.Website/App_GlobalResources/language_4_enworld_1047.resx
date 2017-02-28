@@ -559,7 +559,7 @@
   </data>
   <data name="LabelAdvertiserInvalid" xml:space="preserve">
     <value>&lt;h2&gt;広告主各位、&lt;/h2&gt;
-&lt;p&gt;ご使用のアカウントは、既に当社で認証されています。&lt;a href=/advertiser/login.aspx&gt;ログインページ&lt;/a&gt;からアカウントにアクセス可能です。&lt;/p&gt;""</value>
+&lt;p&gt;ご使用のアカウントは、既に当社で認証されています。&lt;a href="/advertiser/login.aspx"&gt;ログインページ&lt;/a&gt;からアカウントにアクセス可能です。&lt;/p&gt;</value>
     <comment>Advertiser validation failed.</comment>
   </data>
   <data name="LabelAdvertiserJobTemplateLogo" xml:space="preserve">

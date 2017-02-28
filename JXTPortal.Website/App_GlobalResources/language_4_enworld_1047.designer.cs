@@ -1052,7 +1052,7 @@ namespace Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;h2&gt;広告主各位、&lt;/h2&gt;
-        ///&lt;p&gt;ご使用のアカウントは、既に当社で認証されています。&lt;a href=/advertiser/login.aspx&gt;ログインページ&lt;/a&gt;からアカウントにアクセス可能です。&lt;/p&gt;&quot;&quot;.
+        ///&lt;p&gt;ご使用のアカウントは、既に当社で認証されています。&lt;a href=&quot;/advertiser/login.aspx&quot;&gt;ログインページ&lt;/a&gt;からアカウントにアクセス可能です。&lt;/p&gt;.
         /// </summary>
         internal static string LabelAdvertiserInvalid {
             get {

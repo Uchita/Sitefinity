@@ -3039,6 +3039,7 @@ namespace JXTPortal.Website.Admin.UserControls
             rfvAdvJobTemplateLogoImage.ErrorMessage = CommonFunction.GetResourceValue("LabelRequiredField1");
             rqStartDate.ErrorMessage = CommonFunction.GetResourceValue("LabelRequiredField1");
             revEmailAddress.ErrorMessage = "Invalid email address";
+            ReqValJobExpiryDate.ErrorMessage = "Job Expiry Date Required";
 
             txtFriendlyUrl.Attributes["placeholder"] = CommonFunction.GetResourceValue("LabelClickToGenerate"); // click to generate ...
             txtSalaryLowerBand.Attributes["placeholder"] = CommonFunction.GetResourceValue("LabelMinimum");
@@ -3298,16 +3299,30 @@ namespace JXTPortal.Website.Admin.UserControls
 
         protected void JobExpiryDateValidator_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            DateTime currentDate = DateTime.Now;
+            string finalJobExpiryDate = string.Empty;
 
-            string dateFormat = "dd/MM/YYYY";
+            DateTime jobExpiryDate = new DateTime();
 
-            DateTime jobExpiryDate = Convert.ToDateTime(txtJobExpiryDate.Text);
+            string currentDate = DateTime.Now.ToString("dd/MM/yyyy");
 
-            var final = jobExpiryDate.ToString(dateFormat);
+            string dateFormat = "dd/MM/yyyy";
 
+            if(DateTime.TryParse(txtJobExpiryDate.Text, out jobExpiryDate))
+            {
+                finalJobExpiryDate = jobExpiryDate.ToString(dateFormat);
 
-            args.IsValid = false;
+                if(Convert.ToDateTime(finalJobExpiryDate) < Convert.ToDateTime(currentDate))
+                {
+                    args.IsValid = false;
+                    JobExpiryDateValidator.ErrorMessage = string.Format("Expiry date cannot be before {0}", currentDate);
+                }
+                else if((Convert.ToDateTime(finalJobExpiryDate) - Convert.ToDateTime(currentDate)).TotalDays > 30)
+                {
+                    args.IsValid = false;
+                    JobExpiryDateValidator.ErrorMessage = "Expirydate cannot be more than 30 days";
+                }
+            }
+            
         }
 
     }

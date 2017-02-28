@@ -2,18 +2,6 @@
     CodeBehind="ForgetPassword.aspx.cs" Inherits="JXTPortal.Website.member.ForgetPassword" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#content-container input').keydown(function (event) {
-                if (event.keyCode == 13) {
-                    $('#ctl00_ContentPlaceHolder1_btnRetrieve').click();
-
-                    event.preventDefault();
-                    return false;
-                }
-            });
-        });
-    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="content">

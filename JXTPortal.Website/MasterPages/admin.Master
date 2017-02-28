@@ -17,6 +17,7 @@
     <!-- MSIE6 -->
     <link rel="stylesheet" media="screen,projection" type="text/css" href="/admin/css/style.css" />
     <link type="text/css" href="~/styles/CalendarControl.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <asp:Literal ID="ltCompatible" runat="server" />
     <script type="text/javascript" src="/admin/js/jquery.js"></script>
@@ -156,6 +157,7 @@
     </script>
     <script type="text/javascript" language="javascript" src="/admin/scripts/JXTAdminScript.js"></script>
     <script type="text/javascript" language="javascript" src="/scripts/CalendarControl.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <asp:Panel ID="pnlAdminStyling" runat="server" Visible="false">
         <style type="text/css">
             #menu

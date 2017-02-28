@@ -109,6 +109,17 @@
                             <asp:TextBox ID="txtRefNo" runat="server" autocomplete="off" />
                         </div>
                     </li>
+
+                    <li class="form-line" id="liJobExpiryDate">
+                        <asp:Label ID="lbJobExpiryDate" runat="server" AssociatedControlID="txtJobExpiryDate">
+                            <JXTControl:ucLanguageLiteral ID="ltJobExpiryDate" runat="server" SetLanguageCode="LabelJobExpiryDate" />
+                            <!-- Job Expiry Date -->
+                        </asp:Label>
+                        <div>
+                            <asp:TextBox ID="txtJobExpiryDate" runat="server" autocomplete="off" />
+                        </div>
+                    </li>
+
                     <script type="text/javascript">
                         $(document).ready(function () {
                             $('ul.new-lang-tabs li').click(function () {
@@ -1005,3 +1016,5 @@
         }
     }    
 </script>
+
+<script type="text/javascript" src="../../Admin/scripts/customscript.js"></script>

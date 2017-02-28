@@ -508,6 +508,9 @@ namespace JXTPortal.Website.Admin.UserControls
             revEmailAddress.ValidationExpression = ConfigurationManager.AppSettings["EmailValidationRegex"];
             cal_tbStartDate.Format = SessionData.Site.DateFormat;
 
+            // pass dateformat as placeholder for the textbox
+            txtJobExpiryDate.Attributes["placeholder"] = returnDateFormat();
+           
             if (!Page.IsPostBack)
             {
                 ltLanguageList.Text = string.Empty;
@@ -3258,6 +3261,24 @@ namespace JXTPortal.Website.Admin.UserControls
             {
                 UpdateButton_Click(sender, e);
             }
+        }
+
+        private string returnDateFormat()
+        {
+            string format = string.Empty;
+
+            Entities.GlobalSettings siteGlobalSettings = GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId).FirstOrDefault();
+
+            if (siteGlobalSettings != null)
+            {
+                format = siteGlobalSettings.GlobalDateFormat;
+            }
+            else
+            {
+                format = "dd/mm/yy";
+            }
+
+            return format;
         }
 
     }

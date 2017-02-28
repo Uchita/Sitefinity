@@ -971,6 +971,7 @@
     <Content Include="Admin\reports\MemberActivity.aspx" />
     <Content Include="Admin\ScreeningQuestionsTemplate.aspx" />
     <Content Include="Admin\ScreeningQuestionsTemplateEdit.aspx" />
+    <Content Include="Admin\scripts\customscript.js" />
     <Content Include="Admin\scripts\images\design\menu-yellow-contributer.gif" />
     <Content Include="Admin\Industry.aspx" />
     <Content Include="Admin\IndustryEdit.aspx" />

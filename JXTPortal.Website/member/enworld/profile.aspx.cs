@@ -928,8 +928,8 @@ namespace JXTPortal.Website.member.enworld
         private List<object> XMLMultiValueListGet(string tagname)
         {
             //TODO: optimize file access
-            List<object> returnModel = new List<object>(); ;
-
+            List<object> returnModel = new List<object>();
+            
             List<string> topValues = XMLPullValue(tagname);
 
             foreach (string tValue in topValues)
@@ -943,6 +943,7 @@ namespace JXTPortal.Website.member.enworld
 
         private List<string> XMLPullValue(string tagname)
         {
+            string langCode = Enum.GetName(typeof(PortalEnums.Languages.URLLanguage), SessionData.Language.LanguageId); 
             List<string> values = new List<string>();
 
             XmlDocument xmldoc = new System.Xml.XmlDocument();
@@ -954,14 +955,20 @@ namespace JXTPortal.Website.member.enworld
             {
                 foreach (XmlNode node in list)
                 {
-                    values.Add(node["name"].InnerText);
+                    if (node["name"].Attributes["Language"] != null && node["name"].Attributes["Language"].InnerText == langCode)
+                    {
+                        values.Add(node["name"].InnerText);
+                    }
                 }
             }
             else
             {
                 foreach (XmlNode node in list)
                 {
-                    values.Add(node.InnerText);
+                    if (node.Attributes["Language"] != null && node.Attributes["Language"].InnerText == langCode)
+                    {
+                        values.Add(node.InnerText);
+                    }
                 }
             }
 

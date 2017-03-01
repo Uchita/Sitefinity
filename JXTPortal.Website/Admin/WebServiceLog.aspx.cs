@@ -315,7 +315,6 @@ namespace JXTPortal.Website.Admin
             DataRow[] siteRows = sites.Tables[0].Select("", "SiteName");
 
             ddlSite.Items.Insert(0, new ListItem("All", "0"));
-
             foreach (var site in siteRows)
             {
                 var id = site["SiteId"].ToString();

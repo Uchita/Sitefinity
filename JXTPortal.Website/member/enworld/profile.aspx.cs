@@ -338,9 +338,9 @@ namespace JXTPortal.Website.member.enworld
                 //if (ddlPrimDesiredCountry.Items.Count == 0)
                 {
                     if (ddlPrimDesiredCountry.SelectedValue == "--None--")
-                        ddlPrimDesiredLocation.Items.Insert(0, new ListItem("- Please select a Primary Desired Country -", "--None--"));
+                        ddlPrimDesiredLocation.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelectPrimaryDesiredCountry"), "--None--"));
                     else
-                        ddlPrimDesiredLocation.Items.Insert(0, new ListItem("- All Areas -", "--None--"));
+                        ddlPrimDesiredLocation.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLAllAreas"), "--None--"));
                 }
 
                 foreach (string desiredLocValue in thisContact.Desired_Locations__c.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries))
@@ -1102,8 +1102,8 @@ namespace JXTPortal.Website.member.enworld
                 if (!Regex.IsMatch(zip, ContentValidationRegex))
                     errors.Add("Zip Code cannot contain invalid content");
 
-                if (zip.Length > 40)
-                    errors.Add("Zip Code cannot exceed 40 characters");
+                if (zip.Length > 20)
+                    errors.Add("Zip Code cannot exceed 20 characters");
             }
 
             if (!string.IsNullOrEmpty(secondEmail))

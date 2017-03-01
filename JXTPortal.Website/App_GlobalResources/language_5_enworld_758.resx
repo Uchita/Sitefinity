@@ -510,7 +510,7 @@
     <comment>Add Reference</comment>
   </data>
   <data name="LabelAddress" xml:space="preserve">
-    <value>주소</value>
+    <value>상세 주소</value>
     <comment>Address</comment>
   </data>
   <data name="LabelAddressFile" xml:space="preserve">
@@ -1588,7 +1588,7 @@
     <comment>Start Date cannot be later than current date or later than End Date</comment>
   </data>
   <data name="LabelEnglishLanguageLevel" xml:space="preserve">
-    <value>English Language Level</value>
+    <value>영어 수준</value>
   </data>
   <data name="LabelEnterCommaSeparated" xml:space="preserve">
     <value>쉼표(,)로 구분하십시오</value>
@@ -1962,7 +1962,7 @@
     <comment>January</comment>
   </data>
   <data name="LabelJapaneseLanguageLevel" xml:space="preserve">
-    <value>Japanese Language Level</value>
+    <value>일본어 수준</value>
   </data>
   <data name="LabelJobAdOptions" xml:space="preserve">
     <value>채용 공고 옵션</value>
@@ -2788,10 +2788,10 @@ purchase credits below.</comment>
     <comment>Other</comment>
   </data>
   <data name="LabelOtherLanguage" xml:space="preserve">
-    <value>Other Language</value>
+    <value>기타 언어</value>
   </data>
   <data name="LabelOtherLanguageLevel" xml:space="preserve">
-    <value>Other Language Level</value>
+    <value>기타 언어 수준</value>
   </data>
   <data name="LabelOtherQualification" xml:space="preserve">
     <value>기타 자격요건</value>

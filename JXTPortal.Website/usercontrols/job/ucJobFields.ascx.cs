@@ -28,6 +28,7 @@ using JXTPortal.Common;
 using JXTPortal.Service.Dapper;
 using JXTPortal.Data.Dapper.Entities.ScreeningQuestions;
 using System.Text.RegularExpressions;
+using System.Globalization;
 #endregion
 
 namespace JXTPortal.Website.Admin.UserControls
@@ -509,7 +510,7 @@ namespace JXTPortal.Website.Admin.UserControls
             cal_tbStartDate.Format = SessionData.Site.DateFormat;
 
             // pass dateformat as placeholder for the textbox
-            txtJobExpiryDate.Attributes["placeholder"] = returnDateFormat();
+            txtJobExpiryDate.Attributes["placeholder"] = placeHolderdateFormat(getGlobalDateFormat());
            
             if (!Page.IsPostBack)
             {
@@ -1174,6 +1175,7 @@ namespace JXTPortal.Website.Admin.UserControls
                             }
                         }
                         txtRefNo.Text = job.RefNo.ToString();
+                        txtJobExpiryDate.Text = job.ExpiryDate.ToString();
                         //chkVisible.Checked = job.Visible;
                         lblDatePosted.Text = job.DatePosted.ToString(SessionData.Site.DateFormat);
                         lblExpiryDate.Text = job.ExpiryDate.ToString(SessionData.Site.DateFormat);
@@ -1809,6 +1811,9 @@ namespace JXTPortal.Website.Admin.UserControls
                         }
 
                         txtRefNo.Text = CommonService.DecodeString(job.RefNo.ToString());
+
+                        txtJobExpiryDate.Text = job.ExpiryDate.ToString(getGlobalDateFormat());
+
                         //chkVisible.Checked = job.Visible;
                         lblDatePosted.Text = job.DatePosted.ToString(SessionData.Site.DateFormat + " hh:mm:ss tt");
                         lblExpiryDate.Text = job.ExpiryDate.ToString(SessionData.Site.DateFormat + " hh:mm:ss tt");
@@ -2267,7 +2272,11 @@ namespace JXTPortal.Website.Admin.UserControls
                     job.FullDescription = ucJobFieldsMultiLingual.FullDescription;
                     job.RefNo = CommonService.EncodeString(txtRefNo.Text);
                     job.DatePosted = DateTime.Now;
-                    job.ExpiryDate = DateTime.Now.AddDays(daysactive);
+
+                    if(string.IsNullOrWhiteSpace(JobExpiryDateValidator.Text))
+                    {
+                        job.ExpiryDate = getExpiryDate();
+                    }
 
                     //job.Expired = chkJobExpired.Checked ? (int) PortalEnums.Jobs.JobStatus.Expired : (int) PortalEnums.Jobs.JobStatus.Live;
                     if (!string.IsNullOrEmpty(txtJobItemPrice.Text))
@@ -2663,7 +2672,11 @@ namespace JXTPortal.Website.Admin.UserControls
                         if (job.Expired != (int)PortalEnums.Jobs.JobStatus.Live)
                         {
                             job.DatePosted = DateTime.Now;
-                            job.ExpiryDate = DateTime.Now.AddDays(30);
+                            job.ExpiryDate = DateTime.Now.AddDays(30);       
+                        }
+                        else
+                        {
+                            job.ExpiryDate = getExpiryDate();
                         }
 
                         // By default the job is in the draft
@@ -3264,34 +3277,30 @@ namespace JXTPortal.Website.Admin.UserControls
             }
         }
 
-        private string returnDateFormat()
+        private string getGlobalDateFormat()
+        {
+            Entities.GlobalSettings siteGlobalSettings = GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId).FirstOrDefault();
+
+            return siteGlobalSettings.GlobalDateFormat;
+        }
+
+        private string placeHolderdateFormat( string globalsettingDateFormat)
         {
             string format = string.Empty;
 
-            Entities.GlobalSettings siteGlobalSettings = GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId).FirstOrDefault();
-
-            if (siteGlobalSettings != null)
+            switch (globalsettingDateFormat)
             {
-                var globalsettingDateFormat = siteGlobalSettings.GlobalDateFormat;
+                case "MM/dd/yyyy":
+                    format = "mm/dd/yy";
+                    break;
 
-                switch (globalsettingDateFormat)
-                {
-                    case "MM/dd/yyyy":
-                        format = "mm/dd/yy";
-                        break;
+                case "yyyy/MM/dd":
+                    format = "yy/mm/dd";
+                    break;
 
-                    case "yyyy/MM/dd":
-                        format = "yy/mm/dd";
-                        break;
-
-                    default:
-                        format = "dd/mm/yy";
-                        break;
-                }
-            }
-            else
-            {
-                format = "dd/mm/yy";
+                default:
+                    format = "dd/mm/yy";
+                    break;
             }
 
             return format;
@@ -3299,30 +3308,38 @@ namespace JXTPortal.Website.Admin.UserControls
 
         protected void JobExpiryDateValidator_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            string finalJobExpiryDate = string.Empty;
 
+            DateTime currentDate = DateTime.Now;
+            DateTime jobExpiryDate = getExpiryDate();
+
+            if (jobExpiryDate < currentDate)
+            {
+                args.IsValid = false;
+                JobExpiryDateValidator.ErrorMessage = string.Format("Expiry date cannot be before {0}", currentDate);
+            }
+            else if ((jobExpiryDate - currentDate).TotalDays > 30)
+            {
+                args.IsValid = false;
+                JobExpiryDateValidator.ErrorMessage = "Expiry Date cannot be more than 30 days";
+            }     
+        }
+
+        private DateTime getExpiryDate()
+        {
             DateTime jobExpiryDate = new DateTime();
 
-            string currentDate = DateTime.Now.ToString("dd/MM/yyyy");
+            string userEntry = txtJobExpiryDate.Text;
 
-            string dateFormat = "dd/MM/yyyy";
+            string currentDateFormat = getGlobalDateFormat();
 
-            if(DateTime.TryParse(txtJobExpiryDate.Text, out jobExpiryDate))
+            if (DateTime.TryParseExact(userEntry, currentDateFormat, null, DateTimeStyles.None, out jobExpiryDate))
             {
-                finalJobExpiryDate = jobExpiryDate.ToString(dateFormat);
-
-                if(Convert.ToDateTime(finalJobExpiryDate) < Convert.ToDateTime(currentDate))
-                {
-                    args.IsValid = false;
-                    JobExpiryDateValidator.ErrorMessage = string.Format("Expiry date cannot be before {0}", currentDate);
-                }
-                else if((Convert.ToDateTime(finalJobExpiryDate) - Convert.ToDateTime(currentDate)).TotalDays > 30)
-                {
-                    args.IsValid = false;
-                    JobExpiryDateValidator.ErrorMessage = "Expirydate cannot be more than 30 days";
-                }
+                return jobExpiryDate;
             }
-            
+            else
+            {
+                return DateTime.Now.AddDays(30);
+            }            
         }
 
     }

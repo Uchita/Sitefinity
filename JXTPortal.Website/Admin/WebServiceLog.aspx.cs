@@ -314,9 +314,6 @@ namespace JXTPortal.Website.Admin
           
             DataRow[] siteRows = sites.Tables[0].Select("", "SiteName");
 
-            //ddlSite.DataSource = siterows.Select(c=> new SiteDDLItems { SiteID = c["SiteID"].ToString(), SiteName = c["SiteName"].ToString()}).ToList(); // sites.Where(s => s.Live == true);
-            //ddlSite.DataBind();
-
             ddlSite.Items.Insert(0, new ListItem("All", "0"));
 
             foreach (var site in siteRows)

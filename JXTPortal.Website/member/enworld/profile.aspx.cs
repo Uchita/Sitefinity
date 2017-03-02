@@ -167,7 +167,7 @@ namespace JXTPortal.Website.member.enworld
 
             #region Country / State
 
-            List<object> countryStates = XMLMultiValueListGet("country");
+            List<object> countryStates = XMLMultiValueListGet("country", "states");
 
             sb.Append("countryData = jQuery.parseJSON('" + ser.Serialize(countryStates).Replace("\\", "\\\\") + "');\n");
 
@@ -175,14 +175,14 @@ namespace JXTPortal.Website.member.enworld
 
             #region Desired Country / Location
 
-            List<object> dCountryLoc = XMLMultiValueListGet("desiredcountry");
+            List<object> dCountryLoc = XMLMultiValueListGet("desiredcountry", "locations");
 
             sb.Append("desiredCountryData = jQuery.parseJSON('" + ser.Serialize(dCountryLoc).Replace("\\", "\\\\") + "');\n");
 
             #endregion
 
             #region Job Category / Job Functions
-            List<object> jobCateFunc = XMLMultiValueListGet("jobcategory");
+            List<object> jobCateFunc = XMLMultiValueListGet("jobcategory", "jobfunctions");
 
             sb.Append("jobFuncData = jQuery.parseJSON('" + ser.Serialize(jobCateFunc).Replace("\\", "\\\\") + "');\n");
             #endregion
@@ -286,7 +286,7 @@ namespace JXTPortal.Website.member.enworld
             {
                 #region setup Job Functions Dropdown
 
-                List<string> jobFuncDDValues = XMLPullMultiValue("jobcategory", thisContact.Job_Category__c);
+                List<string> jobFuncDDValues = XMLPullMultiValue("jobcategory", "jobfunctions", thisContact.Job_Category__c);
 
                 var jobFuncSelectableValues = (from m in jobFuncDDValues select new { text = m, value = m }).ToList();
 
@@ -326,7 +326,7 @@ namespace JXTPortal.Website.member.enworld
             ddlPrimDesiredCountry.SelectedValue = thisContact.Desired_Country__c;
             if (!string.IsNullOrEmpty(thisContact.Desired_Locations__c))
             {
-                List<string> desiredLocDDValues = XMLPullMultiValue("desiredcountry", thisContact.Desired_Country__c);
+                List<string> desiredLocDDValues = XMLPullMultiValue("desiredcountry","locations", thisContact.Desired_Country__c);
 
                 var desiredLocSelectableValues = (from m in desiredLocDDValues select new { text = m, value = m }).ToList();
 
@@ -338,9 +338,9 @@ namespace JXTPortal.Website.member.enworld
                 //if (ddlPrimDesiredCountry.Items.Count == 0)
                 {
                     if (ddlPrimDesiredCountry.SelectedValue == "--None--")
-                        ddlPrimDesiredLocation.Items.Insert(0, new ListItem("- Please select a Primary Desired Country -", "--None--"));
+                        ddlPrimDesiredLocation.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelectPrimaryDesiredCountry"), "--None--"));
                     else
-                        ddlPrimDesiredLocation.Items.Insert(0, new ListItem("- All Areas -", "--None--"));
+                        ddlPrimDesiredLocation.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLAllAreas"), "--None--"));
                 }
 
                 foreach (string desiredLocValue in thisContact.Desired_Locations__c.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries))
@@ -377,7 +377,7 @@ namespace JXTPortal.Website.member.enworld
             //Primary Desired Job Category / Function
             ddlPrimDesiredJobCategory.SelectedValue = thisContact.Desired_Job_Category__c;
 
-            List<string> desiredJobFuncDDValues = XMLPullMultiValue("jobcategory", thisContact.Desired_Job_Category__c);
+            List<string> desiredJobFuncDDValues = XMLPullMultiValue("jobcategory", "jobfunctions", thisContact.Desired_Job_Category__c);
 
             var desiredJobFuncSelectableValues = (from m in desiredJobFuncDDValues select new { text = m, value = m }).ToList();
 
@@ -447,7 +447,7 @@ namespace JXTPortal.Website.member.enworld
 
             if (!string.IsNullOrEmpty(thisContact.MailingCountry))
             {
-                List<string> stateDDValues = XMLPullMultiValue("country", thisContact.MailingCountry);
+                List<string> stateDDValues = XMLPullMultiValue("country", "states", thisContact.MailingCountry);
                 var stateSelectableValues = (from m in stateDDValues select new { text = m, value = m }).ToList();
 
                 ddlState.DataSource = stateSelectableValues;
@@ -595,7 +595,7 @@ namespace JXTPortal.Website.member.enworld
         private void Tab3Setup()
         {
             #region DDL Desired Country / Location
-            IEnumerable<string> desiredCountryDDValues = XMLPullValue("desiredcountry").OrderBy(c=>c);
+            IEnumerable<string> desiredCountryDDValues = XMLPullValue("desiredcountry").OrderBy(c => c);
 
             var dCountrySelectableValues = (from m in desiredCountryDDValues select new { text = m, value = m }).ToList();
 
@@ -698,7 +698,7 @@ namespace JXTPortal.Website.member.enworld
             ddlPrimDesiredLocation.Items.Clear();
 
             //load
-            List<string> desiredLocDDValues = XMLPullMultiValue("desiredcountry", ddlPrimDesiredCountry.SelectedValue);
+            List<string> desiredLocDDValues = XMLPullMultiValue("desiredcountry", "locations", ddlPrimDesiredCountry.SelectedValue);
 
             var dLocSelectableValues = (from m in desiredLocDDValues select new { text = m, value = m }).ToList();
 
@@ -723,7 +723,7 @@ namespace JXTPortal.Website.member.enworld
             ddlPrmDesiredJobFunction.Items.Clear();
 
             //load
-            List<string> desiredFuncDDValues = XMLPullMultiValue("jobcategory", ddlPrimDesiredJobCategory.SelectedValue);
+            List<string> desiredFuncDDValues = XMLPullMultiValue("jobcategory", "jobfunctions", ddlPrimDesiredJobCategory.SelectedValue);
 
             var dFuncSelectableValues = (from m in desiredFuncDDValues select new { text = m, value = m }).ToList();
 
@@ -925,16 +925,16 @@ namespace JXTPortal.Website.member.enworld
 
         #region XML Related
 
-        private List<object> XMLMultiValueListGet(string tagname)
+        private List<object> XMLMultiValueListGet(string tagname, string childNodeName)
         {
             //TODO: optimize file access
             List<object> returnModel = new List<object>();
-            
+
             List<string> topValues = XMLPullValue(tagname);
 
             foreach (string tValue in topValues)
             {
-                List<string> childValues = XMLPullMultiValue(tagname, tValue);
+                List<string> childValues = XMLPullMultiValue(tagname, childNodeName, tValue);
                 returnModel.Add(new { Value = tValue, Childs = childValues });
             }
 
@@ -943,7 +943,7 @@ namespace JXTPortal.Website.member.enworld
 
         private List<string> XMLPullValue(string tagname)
         {
-            string langCode = Enum.GetName(typeof(PortalEnums.Languages.URLLanguage), SessionData.Language.LanguageId); 
+            string langCode = Enum.GetName(typeof(PortalEnums.Languages.URLLanguage), SessionData.Language.LanguageId);
             List<string> values = new List<string>();
 
             XmlDocument xmldoc = new System.Xml.XmlDocument();
@@ -951,32 +951,38 @@ namespace JXTPortal.Website.member.enworld
 
             XmlNodeList list = xmldoc.GetElementsByTagName(tagname);
 
-            if (tagname == "country" || tagname == "desiredcountry" || tagname == "jobcategory")
+            //if (tagname == "country" || tagname == "desiredcountry" || tagname == "jobcategory")
+            //{
+            foreach (XmlNode node in list)
             {
-                foreach (XmlNode node in list)
+                string nodeValue = node.Attributes["Name"].InnerText;
+                foreach (XmlNode innerNode in node.ChildNodes)
                 {
-                    if (node["name"].Attributes["Language"] != null && node["name"].Attributes["Language"].InnerText == langCode)
+                    if (innerNode.Name == "name" && innerNode.Attributes["Language"] != null && innerNode.Attributes["Language"].InnerText == langCode)
                     {
-                        values.Add(node["name"].InnerText);
+                        string nodeDisplayText = innerNode.InnerText;
+                        values.Add(nodeDisplayText);
                     }
                 }
             }
-            else
-            {
-                foreach (XmlNode node in list)
-                {
-                    if (node.Attributes["Language"] != null && node.Attributes["Language"].InnerText == langCode)
-                    {
-                        values.Add(node.InnerText);
-                    }
-                }
-            }
+            //}
+            //else
+            //{
+            //    foreach (XmlNode node in list)
+            //    {
+            //        if (node.Attributes["Language"] != null && node.Attributes["Language"].InnerText == langCode)
+            //        {
+            //            values.Add(node.InnerText);
+            //        }
+            //    }
+            //}
 
             return values;
         }
 
-        private List<string> XMLPullMultiValue(string tagname, string value)
+        private List<string> XMLPullMultiValue(string tagname, string childTagName, string value)
         {
+            string langCode = Enum.GetName(typeof(PortalEnums.Languages.URLLanguage), SessionData.Language.LanguageId);
             List<string> values = new List<string>();
 
             XmlDocument xmldoc = new System.Xml.XmlDocument();
@@ -986,15 +992,16 @@ namespace JXTPortal.Website.member.enworld
 
             foreach (XmlNode node in list)
             {
-                if (node.ChildNodes.Count >= 2)
+                if (node.Attributes["Name"].Value == value)
                 {
-                    if (node.ChildNodes[0].InnerText == value)
+                    foreach (XmlNode child in node[childTagName].ChildNodes)
                     {
-                        XmlNodeList childlist = node.ChildNodes[1].ChildNodes;
-
-                        foreach (XmlNode child in childlist)
+                        foreach (XmlNode childNameNode in child.ChildNodes)
                         {
-                            values.Add(child.InnerText);
+                            if (childNameNode.Name == "name" && childNameNode.Attributes["Language"] != null && childNameNode.Attributes["Language"].Value == langCode)
+                            {
+                                values.Add(childNameNode.InnerText);
+                            }
                         }
                     }
                 }
@@ -1019,9 +1026,9 @@ namespace JXTPortal.Website.member.enworld
             return false;
         }
 
-        private bool XMLValidateValue(string tagname, string value, string childvalue)
+        private bool XMLValidateValue(string tagname, string childNodeName, string value, string childvalue)
         {
-            List<string> values = XMLPullMultiValue(tagname, value);
+            List<string> values = XMLPullMultiValue(tagname, childNodeName, value);
             foreach (string name in values)
             {
                 if (name == childvalue)
@@ -1109,8 +1116,8 @@ namespace JXTPortal.Website.member.enworld
                 if (!Regex.IsMatch(zip, ContentValidationRegex))
                     errors.Add("Zip Code cannot contain invalid content");
 
-                if (zip.Length > 40)
-                    errors.Add("Zip Code cannot exceed 40 characters");
+                if (zip.Length > 20)
+                    errors.Add("Zip Code cannot exceed 20 characters");
             }
 
             if (!string.IsNullOrEmpty(secondEmail))
@@ -1135,7 +1142,7 @@ namespace JXTPortal.Website.member.enworld
 
                     if (dt >= DateTime.Now)
                         errors.Add("Date of birth must be in the past");
-                    else 
+                    else
                         dob = string.Format("{0}-{1}-{2}", int.Parse(dobSplit[2]), int.Parse(dobSplit[1]), int.Parse(dobSplit[0]));
                 }
                 catch (Exception e)

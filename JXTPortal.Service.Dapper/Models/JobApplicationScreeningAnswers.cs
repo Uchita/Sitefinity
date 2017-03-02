@@ -15,6 +15,7 @@ namespace JXTPortal.Service.Dapper.Models
     public class JobApplicationScreeningAnswer
     {
         public int ScreeningQuestionId { get; set; }
+        public int ScreeningQuestionIndex { get; set; }
         public string QuestionTitle { get; set; }
         public string Answer { get; set; }
     }

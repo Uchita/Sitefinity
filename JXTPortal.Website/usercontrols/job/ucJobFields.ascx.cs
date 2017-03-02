@@ -1723,6 +1723,7 @@ namespace JXTPortal.Website.Admin.UserControls
                         if (job.Expired == (int)PortalEnums.Jobs.JobStatus.Live)
                         {
                             ddlJobItemType.Enabled = false;
+                            ddlScreeningQuestionsTemplate.Enabled = false;
 
                             // Set Job Type Drop Down to have selected job type only
                             ddlJobItemType.Items.Clear();
@@ -1912,7 +1913,6 @@ namespace JXTPortal.Website.Admin.UserControls
                         if (job.AdvertiserJobTemplateLogoId.GetValueOrDefault(0) > 0)
                             ddlAdvertiserJobTemplateLogo.SelectedValue = Convert.ToString(job.AdvertiserJobTemplateLogoId);
 
-                        ddlScreeningQuestionsTemplate.Enabled = false;
                         if (job.ScreeningQuestionsTemplateId.HasValue)
                         {
                             ddlScreeningQuestionsTemplate.SelectedValue = Convert.ToString(job.ScreeningQuestionsTemplateId.Value);
@@ -2454,7 +2454,7 @@ namespace JXTPortal.Website.Admin.UserControls
                     if (JobsService.Insert(job))
                     {
                         // Insert Screening Questions into job
-                        if (job.ScreeningQuestionsTemplateId.HasValue)
+                        if (job.ScreeningQuestionsTemplateId.HasValue && !isDraft)
                         {
                             List<ScreeningQuestionsEntity> screeningQuestions = ScreeningQuestionsService.SelectByScreeningQuestionsTemplateId(job.ScreeningQuestionsTemplateId.Value);
                             foreach (ScreeningQuestionsEntity screeningQuestion in screeningQuestions)
@@ -2656,6 +2656,27 @@ namespace JXTPortal.Website.Admin.UserControls
                         else
                             job.Visible = true; // means billed = 1 and not a draft.*/
 
+
+                        // Screening Questions
+
+                        job.ScreeningQuestionsTemplateId = (!string.IsNullOrEmpty(ddlScreeningQuestionsTemplate.SelectedValue)) ? Convert.ToInt32(ddlScreeningQuestionsTemplate.SelectedValue) : (int?)null;
+
+                        if (ddlScreeningQuestionsTemplate.Enabled)
+                        {
+                            if (job.ScreeningQuestionsTemplateId.HasValue)
+                            {
+                                JobScreeningQuestionsService.DeleteByJobID(job.JobId);
+
+                                List<ScreeningQuestionsEntity> screeningQuestions = ScreeningQuestionsService.SelectByScreeningQuestionsTemplateId(job.ScreeningQuestionsTemplateId.Value);
+                                foreach (ScreeningQuestionsEntity screeningQuestion in screeningQuestions)
+                                {
+                                    if (screeningQuestion.Visible)
+                                    {
+                                        JobScreeningQuestionsService.Insert(new JobScreeningQuestionsEntity { JobId = job.JobId, ScreeningQuestionId = screeningQuestion.ScreeningQuestionId });
+                                    }
+                                }
+                            }
+                        }
 
                         if (job.Expired != (int)PortalEnums.Jobs.JobStatus.Live)
                         {

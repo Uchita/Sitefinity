@@ -158,22 +158,8 @@
                             $(target).append("<option value=''>- Not Specified -</option>");
                         }
 
-                        if (cVal.Childs.length > 0) {
-                            $.each(cVal.Childs, function (index, childVal) {
-
-                                if (childVal.indexOf("|") > 0) {
-                                    var otext = childVal.split("|")[0];
-                                    var ovalue = childVal.split("|")[1];
-
-                                    $(target).append("<option value='" + ovalue + "'>" + otext + "</option>");
-                                }
-                                else {
-                                    $(target).append("<option value='" + childVal + "'>" + childVal + "</option>");
-                                }
-                            });
-                        }
-                        else {
-                            $(target).append("<option disabled='disabled'>- All Areas -</option>");
+                        for (var key in cVal.Childs) {
+                            $(target).append("<option value='" + key + "'>" + cVal.Childs[key] + "</option>");
                         }
 
                         if (blnRefreshMultiselect) {

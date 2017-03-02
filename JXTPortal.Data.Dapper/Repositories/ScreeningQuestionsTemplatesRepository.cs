@@ -46,11 +46,16 @@ namespace JXTPortal.Data.Dapper.Repositories
             using (IDbConnection dbConnection = _connectionFactory.Create(_connectionStringName))
             {
                 dbConnection.Open();
-                string columns = "sqt.ScreeningQuestionsTemplateId, " + string.Join(", ", ColumnNames);
+                string columns = "sqt.ScreeningQuestionsTemplateId, " + string.Join(", sqt.", ColumnNames);
                 string whereClause = "AdvertiserId = @AdvertiserId";
-                var query = string.Format(@"SELECT {0} FROM ScreeningQuestionsTemplateOwners sqto WITH (NOLOCK)
+                var query = string.Format(@"SELECT DISTINCT {0} FROM ScreeningQuestionsTemplateOwners sqto WITH (NOLOCK)
                                             INNER JOIN ScreeningQuestionsTemplates sqt WITH (NOLOCK)
-                                            ON sqto.ScreeningQuestionsTemplateId = sqt.ScreeningQuestionsTemplateId WHERE {1}", columns, whereClause);
+                                            ON sqto.ScreeningQuestionsTemplateId = sqt.ScreeningQuestionsTemplateId 
+                                            INNER JOIN ScreeningQuestionsMappings sqm WITH (NOLOCK)
+                                            ON sqm.ScreeningQuestionsTemplateId = sqt.ScreeningQuestionsTemplateId 
+                                            INNER JOIN ScreeningQuestions sq WITH (NOLOCK)
+                                            ON sq.ScreeningQuestionId = sqm.ScreeningQuestionId
+                                            WHERE {1} AND sq.Visible = 1", columns, whereClause);
                 var entity = dbConnection.Query<ScreeningQuestionsTemplatesEntity>(query, new { AdvertiserId = advertiserId}).ToList();
                 return entity as List<ScreeningQuestionsTemplatesEntity>;
             }

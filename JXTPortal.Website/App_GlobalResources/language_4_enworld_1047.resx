@@ -1599,7 +1599,7 @@
     <comment>Start Date cannot be later than current date or later than End Date</comment>
   </data>
   <data name="LabelEnglishLanguageLevel" xml:space="preserve">
-    <value>English Language Level</value>
+    <value>英語の言語レベル</value>
     <comment>English Language Level</comment>
   </data>
   <data name="LabelEnterCommaSeparated" xml:space="preserve">
@@ -1975,7 +1975,7 @@
     <comment>January</comment>
   </data>
   <data name="LabelJapaneseLanguageLevel" xml:space="preserve">
-    <value>Japanese Language Level</value>
+    <value>日本語の言語レベル</value>
     <comment>Japanese Language Level</comment>
   </data>
   <data name="LabelJobAdOptions" xml:space="preserve">
@@ -2510,7 +2510,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>My Account Profile</comment>
   </data>
   <data name="LabelMyApplicationTracker" xml:space="preserve">
-    <value>検討中の求人</value>
+    <value>応募履歴</value>
     <comment>My Application Tracker</comment>
   </data>
   <data name="LabelMyBroadcast" xml:space="preserve">
@@ -2566,7 +2566,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>My Resume / Cover Letter</comment>
   </data>
   <data name="LabelMySavedJobs" xml:space="preserve">
-    <value>検討中のジョブ</value>
+    <value>保存済み求人</value>
     <comment>My Saved Jobs</comment>
   </data>
   <data name="LabelMySearchCriteria" xml:space="preserve">
@@ -2808,11 +2808,11 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Other</comment>
   </data>
   <data name="LabelOtherLanguage" xml:space="preserve">
-    <value>Other Language</value>
+    <value>その他の言語</value>
     <comment>Other Language</comment>
   </data>
   <data name="LabelOtherLanguageLevel" xml:space="preserve">
-    <value>Other Language Level</value>
+    <value>その他の言語レベル</value>
     <comment>Other Language Level</comment>
   </data>
   <data name="LabelOtherQualification" xml:space="preserve">

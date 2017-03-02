@@ -961,7 +961,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 주소.
+        ///   Looks up a localized string similar to 상세 주소.
         /// </summary>
         internal static string LabelAddress {
             get {
@@ -3400,7 +3400,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to English Language Level.
+        ///   Looks up a localized string similar to 영어 수준.
         /// </summary>
         internal static string LabelEnglishLanguageLevel {
             get {
@@ -4246,7 +4246,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Japanese Language Level.
+        ///   Looks up a localized string similar to 일본어 수준.
         /// </summary>
         internal static string LabelJapaneseLanguageLevel {
             get {
@@ -6109,7 +6109,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Other Language.
+        ///   Looks up a localized string similar to 기타 언어.
         /// </summary>
         internal static string LabelOtherLanguage {
             get {
@@ -6118,7 +6118,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Other Language Level.
+        ///   Looks up a localized string similar to 기타 언어 수준.
         /// </summary>
         internal static string LabelOtherLanguageLevel {
             get {

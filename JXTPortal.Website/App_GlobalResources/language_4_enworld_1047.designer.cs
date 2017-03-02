@@ -3392,7 +3392,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to English Language Level.
+        ///   Looks up a localized string similar to 英語の言語レベル.
         /// </summary>
         internal static string LabelEnglishLanguageLevel {
             get {
@@ -4238,7 +4238,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Japanese Language Level.
+        ///   Looks up a localized string similar to 日本語の言語レベル.
         /// </summary>
         internal static string LabelJapaneseLanguageLevel {
             get {
@@ -5437,7 +5437,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 検討中の求人.
+        ///   Looks up a localized string similar to 応募履歴.
         /// </summary>
         internal static string LabelMyApplicationTracker {
             get {
@@ -5563,7 +5563,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 検討中のジョブ.
+        ///   Looks up a localized string similar to 保存済み求人.
         /// </summary>
         internal static string LabelMySavedJobs {
             get {
@@ -6104,7 +6104,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Other Language.
+        ///   Looks up a localized string similar to その他の言語.
         /// </summary>
         internal static string LabelOtherLanguage {
             get {
@@ -6113,7 +6113,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Other Language Level.
+        ///   Looks up a localized string similar to その他の言語レベル.
         /// </summary>
         internal static string LabelOtherLanguageLevel {
             get {

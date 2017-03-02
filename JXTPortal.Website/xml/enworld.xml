@@ -4359,7 +4359,7 @@
 
   </industries>
   <jobcategories>
-    <jobcategory>
+    <jobcategory Name='Accounting &amp; Finance'>
       <name Language='en'><![CDATA[Accounting & Finance]]></name>
       <name Language='ja'><![CDATA[Accounting & Finance]]></name>
       <name Language='ko'><![CDATA[회계 및 재무]]></name>
@@ -4412,7 +4412,7 @@
       </jobfunctions>
     </jobcategory>
 
-    <jobcategory>
+    <jobcategory Name='Automotive / Automotive Parts'>
       <name Language='en'><![CDATA[Automotive / Automotive Parts]]></name>
       <name Language='ja'><![CDATA[Automotive / Automotive Parts]]></name>
       <name Language='ko'><![CDATA[자동차/자동차 부품]]></name>
@@ -4445,7 +4445,7 @@
       </jobfunctions>
     </jobcategory>
 
-    <jobcategory>
+    <jobcategory Name='Banking &amp; Finance'>
       <name Language='en'><![CDATA[Banking & Finance]]></name>
       <name Language='ja'><![CDATA[Banking & Finance]]></name>
       <name Language='ko'><![CDATA[은행 및 금융]]></name>
@@ -4495,7 +4495,7 @@
       </jobfunctions>
     </jobcategory>
 
-    <jobcategory>
+    <jobcategory Name='Chemical / Material'>
       <name Language='en'><![CDATA[Chemical / Material]]></name>
       <name Language='ja'><![CDATA[Chemical / Material]]></name>
       <name Language='ko'><![CDATA[화학/재료]]></name>
@@ -4529,7 +4529,7 @@
       </jobfunctions>
     </jobcategory>
 
-    <jobcategory>
+    <jobcategory Name='Engineering'>
       <name Language='en'><![CDATA[Engineering]]></name>
       <name Language='ja'><![CDATA[Engineering]]></name>
       <name Language='ko'><![CDATA[공학]]></name>
@@ -4604,7 +4604,7 @@
       </jobfunctions>
     </jobcategory>
 
-    <jobcategory>
+    <jobcategory Name='Executive Management'>
       <name Language='en'><![CDATA[Executive Management]]></name>
       <name Language='ja'><![CDATA[Executive Management]]></name>
       <name Language='ko'><![CDATA[임원]]></name>
@@ -4654,7 +4654,7 @@
       </jobfunctions>
     </jobcategory>
 
-    <jobcategory>
+    <jobcategory Name='HR, GA and Facilities'>
       <name Language='en'><![CDATA[HR, GA and Facilities]]></name>
       <name Language='ja'><![CDATA[HR, GA and Facilities]]></name>
       <name Language='ko'><![CDATA[HR, GA 및 공공시설]]></name>
@@ -4744,7 +4744,7 @@
       </jobfunctions>
     </jobcategory>
 
-    <jobcategory>
+    <jobcategory Name='IT &amp; Telecoms'>
       <name Language='en'><![CDATA[IT & Telecoms]]></name>
       <name Language='ja'><![CDATA[IT & Telecoms]]></name>
       <name Language='ko'><![CDATA[IT 및 통신]]></name>
@@ -4823,7 +4823,7 @@
       </jobfunctions>
     </jobcategory>
 
-    <jobcategory>
+    <jobcategory Name='Industrial Equipment / Plant / Parts'>
       <name Language='en'><![CDATA[Industrial Equipment / Plant / Parts]]></name>
       <name Language='ja'><![CDATA[Industrial Equipment / Plant / Parts]]></name>
       <name Language='ko'><![CDATA[산업 장비/공장/부품]]></name>
@@ -4878,7 +4878,7 @@
       </jobfunctions>
     </jobcategory>
 
-    <jobcategory>
+    <jobcategory Name='Legal'>
       <name Language='en'><![CDATA[Legal]]></name>
       <name Language='ja'><![CDATA[Legal]]></name>
       <name Language='ko'><![CDATA[법률]]></name>
@@ -4903,7 +4903,7 @@
       </jobfunctions>
     </jobcategory>
 
-    <jobcategory>
+    <jobcategory Name='Medical Device / Diagnostics / Analytical'>
       <name Language='en'><![CDATA[Medical Device / Diagnostics / Analytical]]></name>
       <name Language='ja'><![CDATA[Medical Device / Diagnostics / Analytical]]></name>
       <name Language='ko'><![CDATA[의료 기기/진단/분석]]></name>
@@ -4978,7 +4978,7 @@
       </jobfunctions>
     </jobcategory>
 
-    <jobcategory>
+    <jobcategory Name='Pharmaceutical / CRO / Reagents / Personal Care'>
       <name Language='en'><![CDATA[Pharmaceutical / CRO / Reagents / Personal Care]]></name>
       <name Language='ja'><![CDATA[Pharmaceutical / CRO / Reagents / Personal Care]]></name>
       <name Language='ko'><![CDATA[제약/CRO/시약/개인용품]]></name>
@@ -5053,7 +5053,7 @@
       </jobfunctions>
     </jobcategory>
 
-    <jobcategory>
+    <jobcategory Name='Real Estate &amp; Insurance'>
       <name Language='en'><![CDATA[Real Estate & Insurance]]></name>
       <name Language='ja'><![CDATA[Real Estate & Insurance]]></name>
       <name Language='ko'><![CDATA[부동산 및 보험]]></name>
@@ -5122,7 +5122,7 @@
       </jobfunctions>
     </jobcategory>
 
-    <jobcategory>
+    <jobcategory Name='Sales &amp; Marketing'>
       <name Language='en'><![CDATA[Sales & Marketing]]></name>
       <name Language='ja'><![CDATA[Sales & Marketing]]></name>
       <name Language='ko'><![CDATA[영업 및 마케팅]]></name>
@@ -5247,7 +5247,7 @@
       </jobfunctions>
     </jobcategory>
 
-    <jobcategory>
+    <jobcategory Name='Semiconductor / Embedded Device'>
       <name Language='en'><![CDATA[Semiconductor / Embedded Device]]></name>
       <name Language='ja'><![CDATA[Semiconductor / Embedded Device]]></name>
       <name Language='ko'><![CDATA[반도체/내장 디바이스]]></name>
@@ -5277,7 +5277,7 @@
       </jobfunctions>
     </jobcategory>
 
-    <jobcategory>
+    <jobcategory Name='Supply Chain Management'>
       <name Language='en'><![CDATA[Supply Chain Management]]></name>
       <name Language='ja'><![CDATA[Supply Chain Management]]></name>
       <name Language='ko'><![CDATA[공급망 관리]]></name>

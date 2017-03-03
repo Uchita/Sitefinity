@@ -152,6 +152,10 @@ namespace JXTPortal.Website.member.enworld
                 PreserveDataToJavascript();
 
                 FormSetup();
+
+                //For some reason the MultiselectInit does not work if put into the aspx page.
+                //That's why this is being init here instead
+                ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), "DocumentReadyMultiSelectInit", "$(document).ready(function() { MultiselectInit(); })", true);
             }
         }
 
@@ -324,25 +328,24 @@ namespace JXTPortal.Website.member.enworld
             #region Tab 3
 
             ddlPrimDesiredCountry.SelectedValue = thisContact.Desired_Country__c;
+            Dictionary<string,string> desiredLocDDValues = XMLPullMultiValue("desiredcountry","locations", thisContact.Desired_Country__c);
+
+            var desiredLocSelectableValues = (from m in desiredLocDDValues select new { text = m.Value, value = m.Key }).ToList();
+
+            ddlPrimDesiredLocation.DataSource = desiredLocSelectableValues;
+            ddlPrimDesiredLocation.DataTextField = "text";
+            ddlPrimDesiredLocation.DataValueField = "value";
+            ddlPrimDesiredLocation.DataBind();
+
+            //if (ddlPrimDesiredCountry.SelectedValue == "--None--")
+            //    ddlPrimDesiredLocation.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelectPrimaryDesiredCountry"), "--None--"));
+            //else
+            //    ddlPrimDesiredLocation.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelect"), "--None--"));
+
+            //ddlPrimDesiredLocation.SelectedIndex = 0;
+
             if (!string.IsNullOrEmpty(thisContact.Desired_Locations__c))
             {
-                Dictionary<string,string> desiredLocDDValues = XMLPullMultiValue("desiredcountry","locations", thisContact.Desired_Country__c);
-
-                var desiredLocSelectableValues = (from m in desiredLocDDValues select new { text = m.Value, value = m.Key }).ToList();
-
-                ddlPrimDesiredLocation.DataSource = desiredLocSelectableValues;
-                ddlPrimDesiredLocation.DataTextField = "text";
-                ddlPrimDesiredLocation.DataValueField = "value";
-                ddlPrimDesiredLocation.DataBind();
-
-                //if (ddlPrimDesiredCountry.Items.Count == 0)
-                {
-                    if (ddlPrimDesiredCountry.SelectedValue == "--None--")
-                        ddlPrimDesiredLocation.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelectPrimaryDesiredCountry"), "--None--"));
-                    else
-                        ddlPrimDesiredLocation.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLAllAreas"), "--None--"));
-                }
-
                 foreach (string desiredLocValue in thisContact.Desired_Locations__c.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries))
                 {
                     foreach (ListItem listitem in ddlPrimDesiredLocation.Items)
@@ -444,6 +447,7 @@ namespace JXTPortal.Website.member.enworld
             //ddlCountry.Items.Insert(0, new ListItem("- Please Select -", "--None--"));
             ddlCountry.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelect"), "--None--"));
 
+            ddlCountry.Attributes["onchange"] = "DataDropdownChanged(this, $('#ddlState'), countryData, '" + CommonFunction.GetResourceValue("DDLPleaseSelectCountry") + "','" + CommonFunction.GetResourceValue("DDLPleaseSelect") + "', false, false);";
 
             if (!string.IsNullOrEmpty(thisContact.MailingCountry))
             {
@@ -566,9 +570,7 @@ namespace JXTPortal.Website.member.enworld
             //ddlJobCategory.Items.Insert(0, new ListItem("- Please select a Job Category -", "--None--"));
             ddlJobCategory.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelectJobCategory"), "--None--"));
 
-            //ddlJobFunctions.Items.Insert(0, new ListItem("- Please select a Job Category -", "--None--"));
-            ddlJobFunctions.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelectJobCategory"), "--None--"));
-
+            ddlJobCategory.Attributes["onchange"] = "DataDropdownChanged(this, $('#ddlJobFunctions'), jobFuncData, '" + CommonFunction.GetResourceValue("DDLPleaseSelectJobCategory") + "','" + CommonFunction.GetResourceValue("DDLPleaseSelect") + "', true, true);";
             #endregion
 
             #region DDL Salary Currency
@@ -707,13 +709,13 @@ namespace JXTPortal.Website.member.enworld
             ddlPrimDesiredLocation.DataValueField = "value";
             ddlPrimDesiredLocation.DataBind();
 
-            if (dLocSelectableValues.Count() == 0)
-            {
-                if (ddlPrimDesiredCountry.SelectedValue == "--None--")
-                    ddlPrimDesiredLocation.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelectJobCategory"), "--None--"));
-                else
-                    ddlPrimDesiredLocation.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLAllAreas"), "--None--"));
-            }
+            //if (dLocSelectableValues.Count() == 0)
+            //{
+            //    if (ddlPrimDesiredCountry.SelectedValue == "--None--")
+            //        ddlPrimDesiredLocation.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelectPrimaryDesiredCountry"), "--None--"));
+            //    else
+            //        ddlPrimDesiredLocation.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelect"), "--None--"));
+            //}
 
             ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), "FileUpload", "$(document).ready(function() {$('#aDesiredPosition').click(); MultiselectInit(); })", true);
         }
@@ -737,7 +739,7 @@ namespace JXTPortal.Website.member.enworld
                 if (ddlPrimDesiredJobCategory.SelectedValue == "--None--")
                     ddlPrmDesiredJobFunction.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelectPrimaryDesiredJobCategory"), "--None--"));
                 else
-                    ddlPrmDesiredJobFunction.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLAllAreas"), "--None--"));
+                    ddlPrmDesiredJobFunction.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelect"), "--None--"));
             }
 
             ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), "FileUpload", "$(document).ready(function() {$('#aDesiredPosition').click(); MultiselectInit(); })", true);

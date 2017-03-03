@@ -71,14 +71,19 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        &nbsp;
+                                        <label>
+                                            Method Invoked</label>
                                     </td>
                                     <td>
-                                        <asp:CheckBox ID="cbShowOnlyFailed" runat="server" Text="Show Only Failed" /><asp:Button
-                                            ID="btnSearch" runat="server" Text="Search" CssClass="jxtadminbutton" OnClick="btnSearch_Click"
-                                            Style="margin-left: 94px" />
+                                        <asp:DropDownList ID="ddlMethodInvoked" runat="server" DataTextField="Text" DataValueField="Value"
+                                                Width="250" AutoPostBack="true" class="form-dropdown" />
                                     </td>
-                                    <td colspan="2">
+                                    <td>
+                                        <asp:CheckBox ID="cbShowOnlyFailed" runat="server" Text="Show Only Failed" />
+                                    </td>
+                                    <td>
+                                        <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="jxtadminbutton"
+                                            OnClick="btnSearch_Click" Style="margin-left: 94px" />
                                         <asp:Button ID="btnDownloadExcel" runat="server" Text="Download Export List" CssClass="jxtadminbutton"
                                             Style="background: #5bb75b" ValidationGroup="DownloadExport" OnClick="btnDownloadExcel_Click" />
                                     </td>

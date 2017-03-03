@@ -13,6 +13,7 @@ using JXTPortal.Website;
 using System.Xml;
 using JXTPortal.Client.Bullhorn;
 using System.Configuration;
+using JXTPortal.Website.ckeditor.Extensions;
 
 namespace JXTPortal.Website.usercontrols.advertiser
 {
@@ -35,6 +36,8 @@ namespace JXTPortal.Website.usercontrols.advertiser
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            txtContent.SetConfigForFTPFolder(FTPFolderLocation);
+            
             if (Entities.SessionData.AdvertiserUser == null)
             {
                 Response.Redirect("~/advertiser/login.aspx?returnurl=" + Server.UrlEncode(Request.Url.OriginalString));
@@ -154,6 +157,10 @@ namespace JXTPortal.Website.usercontrols.advertiser
             }
         }
 
+        private string FTPFolderLocation
+        {
+            get { return GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId)[0].FtpFolderLocation; }
+        }
         #endregion
 
         private void LoadIndustry()
@@ -460,7 +467,19 @@ namespace JXTPortal.Website.usercontrols.advertiser
                         objOutputMemorySTream.Position = 0;
                         objOutputMemorySTream.Read(abytFile, 0, abytFile.Length);
 
-                        advertiser.AdvertiserLogo = abytFile;
+                        FtpClient ftpclient = new FtpClient();
+                        string errormessage = string.Empty;
+                        string extension = Utils.GetImageExtension(objOriginalImage);
+                        ftpclient.Host = ConfigurationManager.AppSettings["FTPFileManager"];
+                        ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                        ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+                        ftpclient.UploadFileFromStream(objOutputMemorySTream, string.Format("{0}/{1}/Advertisers_{2}.{3}", ftpclient.Host, ConfigurationManager.AppSettings["AdvertisersFolder"], advertiser.AdvertiserId, extension), out errormessage);
+
+                        if (string.IsNullOrWhiteSpace(errormessage))
+                        {
+                            advertiser.AdvertiserLogoUrl = string.Format("Advertisers_{0}.{1}", advertiser.AdvertiserId, extension);
+                            litMessage.Text = CommonFunction.GetResourceValue("LabelAdvertiserValidation");
+                        }
                     }
 
                     AdvService.Update(advertiser);

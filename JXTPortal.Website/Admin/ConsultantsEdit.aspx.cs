@@ -15,6 +15,7 @@ using JXTPortal.Common.Extensions;
 using JXTPortal.Web.UI;
 using JXTPortal.Entities;
 using SectionIO;
+using JXTPortal.Website.ckeditor.Extensions;
 #endregion
 
 namespace JXTPortal.Website.Admin
@@ -78,12 +79,37 @@ namespace JXTPortal.Website.Admin
             }
         }
 
+        private GlobalSettingsService _globalsettingsservice;
+        private GlobalSettingsService GlobalSettingsService
+        {
+            get
+            {
+                if (_globalsettingsservice == null)
+                {
+                    _globalsettingsservice = new GlobalSettingsService();
+                }
+                return _globalsettingsservice;
+            }
+        }
+
+        private string FTPFolderLocation
+        {
+            get { return GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId)[0].FtpFolderLocation; }
+        }
+
         #endregion
 
         #region Page Event handlers
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            tbShortDescription.SetConfigForFTPFolder(FTPFolderLocation);
+            tbFullDescription.SetConfigForFTPFolder(FTPFolderLocation);
+            tbTestimonial.SetConfigForFTPFolder(FTPFolderLocation);
+            txtMultiShortDescription.SetConfigForFTPFolder(FTPFolderLocation);
+            txtMultiFullDescription.SetConfigForFTPFolder(FTPFolderLocation);
+            txtMultiTestimonial.SetConfigForFTPFolder(FTPFolderLocation);
+            
             if (!IsPostBack)
             {
                 loadForm();

@@ -45,6 +45,33 @@
                     return date.valueOf() > now.valueOf() ? 'disabled' : '';
                 }
             });
+
+            $('#name-location input').keydown(function (event) {
+                if (event.keyCode == 13) {
+                    $('#name-location button').click();
+
+                    event.preventDefault();
+                    return false;
+                }
+            });
+
+            $('#work-history input').keydown(function (event) {
+                if (event.keyCode == 13) {
+                    $('#work-history button').click();
+
+                    event.preventDefault();
+                    return false;
+                }
+            });
+
+            $('#desired-position input').keydown(function (event) {
+                if (event.keyCode == 13) {
+                    $('#desired-position button').click();
+
+                    event.preventDefault();
+                    return false;
+                }
+            });
         });
 
         function MultiselectInit() {
@@ -371,26 +398,35 @@
                                         </div>
                                         <div class="col-sm-6 form-group-element">
                                             <label>
-                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral101" runat="server" SetLanguageCode="LabelNativeLanguage" />
-                                                <span class="form-required">*</span></label>
-                                            <asp:DropDownList ID="ddlNativeLanguage" ClientIDMode="Static" runat="server" CssClass="form-control">
+                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral101" runat="server" SetLanguageCode="LabelEnglishLanguageLevel" />
+                                                <!--<span class="form-required">*</span>-->
+                                                </label>
+                                            <asp:DropDownList ID="ddlEnglishLanguageLevel" ClientIDMode="Static" runat="server" CssClass="form-control">
                                             </asp:DropDownList>
-                                            <div id="ddlNativeLanguageMsg" class="errormsg">
+                                            <div id="ddlEnglishLanguageLevelMsg" class="errormsg">
                                             </div>
                                         </div>
                                         <div class="col-sm-6 form-group-element">
                                             <label>
-                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral102" runat="server" SetLanguageCode="LabelSecondaryLanguage" />
+                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral102" runat="server" SetLanguageCode="LabelJapaneseLanguageLevel" />
                                             </label>
-                                            <asp:DropDownList ID="ddlSecondaryLanguage" ClientIDMode="Static" runat="server"
+                                            <asp:DropDownList ID="ddlJapaneseLanguageLevel" ClientIDMode="Static" runat="server"
                                                 CssClass="form-control">
                                             </asp:DropDownList>
                                         </div>
                                         <div class="col-sm-6 form-group-element">
                                             <label>
-                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral103" runat="server" SetLanguageCode="LabelSecondaryLanguageLevel" />
+                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral103" runat="server" SetLanguageCode="LabelOtherLanguage" />
                                             </label>
-                                            <asp:DropDownList ID="ddlSecondaryLanguageLevel" ClientIDMode="Static" runat="server"
+                                            <asp:DropDownList ID="ddlOtherLanguage" ClientIDMode="Static" runat="server"
+                                                CssClass="form-control">
+                                            </asp:DropDownList>
+                                        </div>
+                                        <div class="col-sm-6 form-group-element">
+                                            <label>
+                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral38" runat="server" SetLanguageCode="LabelOtherLanguageLevel" />
+                                            </label>
+                                            <asp:DropDownList ID="ddlOtherLanguageLevel" ClientIDMode="Static" runat="server"
                                                 CssClass="form-control">
                                             </asp:DropDownList>
                                         </div>

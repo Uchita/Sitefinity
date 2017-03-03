@@ -4453,4 +4453,21 @@
     <value>Semicolon Separated</value>
     <comment>Semicolon Separated</comment>
   </data>
+  <data name="LabelEnglishLanguageLevel" xml:space="preserve">
+    <value>영어 수준</value>
+    <comment>English Language Level</comment>
+  </data>
+  <data name="LabelJapaneseLanguageLevel" xml:space="preserve">
+    <value>
+일본어 수준</value>
+    <comment>Japanese Language Level</comment>
+  </data>
+  <data name="LabelOtherLanguage" xml:space="preserve">
+    <value>기타 언어</value>
+    <comment>Other Language</comment>
+  </data>
+  <data name="LabelOtherLanguageLevel" xml:space="preserve">
+    <value>기타 언어 수준</value>
+    <comment>Other Language Level</comment>
+  </data>
 </root>

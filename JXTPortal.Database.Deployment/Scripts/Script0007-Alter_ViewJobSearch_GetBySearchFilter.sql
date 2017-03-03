@@ -1,14 +1,10 @@
 ﻿USE [MiniJXT]
 GO
-/****** Object:  StoredProcedure [dbo].[ViewJobSearch_GetBySearchFilter]    Script Date: 08/22/2016 11:46:20 ******/
+/****** Object:  StoredProcedure [dbo].[ViewJobSearch_GetBySearchFilter]    Script Date: 02/01/2017 11:10:40 ******/
 SET ANSI_NULLS ON
 GO
-
 SET QUOTED_IDENTIFIER ON
 GO
-
-
-
 ALTER PROCEDURE [dbo].[ViewJobSearch_GetBySearchFilter]                                   
 	@Keyword NVARCHAR(2500),                                               
 	@SiteId INT,                                               
@@ -56,7 +52,7 @@ BEGIN
 	SET @PageSizelocal = @PageSize
 	
 	-- Set NULL inputs to 0 or '' depending on data type
-	SET @Keywordlocal = CASE WHEN @Keyword IS NULL THEN '""' ELSE @Keyword END
+	SET @Keywordlocal = CASE WHEN @Keyword IS NULL THEN '""' WHEN @Keyword = '' THEN '""' ELSE @Keyword END
 	SET @AdvertiserIdlocal = CASE WHEN @AdvertiserId IS NULL THEN 0 ELSE @AdvertiserId END
 	SET @CurrencyIDlocal = CASE WHEN @CurrencyID IS NULL THEN 0 ELSE @CurrencyID END
 	SET @SalaryLowerBandlocal = CASE WHEN @SalaryLowerBand IS NULL THEN 0 ELSE @SalaryLowerBand END
@@ -230,8 +226,14 @@ BEGIN
 		Jobs.JobLatitude,    
 		Jobs.JobLongitude,    
 		Jobs.AddressStatus,    
-		CASE WHEN Advertisers.AdvertiserLogo IS NULL THEN 0 ELSE 1  END as HasAdvertiserLogo,
-		JobCustomXML.CustomXML    
+		CASE 
+			WHEN ISNULL(Advertisers.AdvertiserLogoUrl, '') <> '' THEN 2
+			WHEN Advertisers.AdvertiserLogo IS NOT NULL THEN 1
+			ELSE 0
+		END as HasAdvertiserLogo,
+		JobCustomXML.CustomXML,
+		Jobs.Address,
+		Jobs.PublicTransport  
 	FROM @tmpJobIdSearch tmpJobIdSearch
 	INNER JOIN Jobs (NOLOCK) ON tmpJobIdSearch.JobID = Jobs.JobID
 	INNER JOIN Advertisers (NOLOCK) ON Jobs.AdvertiserID = Advertisers.AdvertiserID
@@ -257,5 +259,3 @@ BEGIN
 	ORDER BY RowNumber           
 	  
 END
-
-GO

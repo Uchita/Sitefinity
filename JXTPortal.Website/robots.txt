@@ -1,4 +1,4 @@
-# robots.txt 06/05/2016
+# robots.txt 30/01/2017
 
 # Yahoo! will not spider
 User-agent: Slurp
@@ -148,3 +148,19 @@ Allow: /member/register.aspx
 
 user-agent: sitebot
 disallow: /
+
+User-agent: Yandex
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: trovitBot
+Disallow: /
+
+User-agent: Jooblebot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+

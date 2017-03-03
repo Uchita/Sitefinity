@@ -263,7 +263,7 @@ namespace JXTPortal.Website
 
         private void LoadProfessionRoles()
         {
-            List<Entities.SiteProfession> professions = SiteProfessionService.GetTranslatedProfessions(SessionData.Site.UseCustomProfessionRole);
+            List<Entities.SiteProfession> professions = SiteProfessionService.GetTranslatedProfessions(SessionData.Site.SiteId, SessionData.Site.UseCustomProfessionRole);
 
             StringBuilder sbProfessionRoles = new StringBuilder();
             sbProfessionRoles.Append("<select id=\"ddlProfessionsRoles\" class=\"selectpicker\" multiple=\"multiple\">");

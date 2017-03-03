@@ -71,7 +71,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource1.resx</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Seek\oAuthSeek.cs" />
     <Compile Include="SocialMediaHandler.cs" />
@@ -80,12 +79,11 @@
     <Compile Include="WeVideo\WeVideo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resource1.resx">
+    <EmbeddedResource Include="Resource1.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JXTPortal.Common\JXTPortal.Common.csproj">

@@ -18,7 +18,7 @@ public class oAuthFacebook
    
     private string _jobapplyurl;
 
-private string authorize_url = SocialMedia.Resource1.fb_authroize_with_permissions;
+    private string authorize_url = SocialMedia.Resource1.fb_authroize_with_permissions;
     private string access_token_url = SocialMedia.Resource1.fb_access_token;
     private string userinfo_url = SocialMedia.Resource1.fb_userinfo;
     private string checkpermission_url = SocialMedia.Resource1.fb_checkpermission;

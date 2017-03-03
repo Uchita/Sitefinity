@@ -1250,7 +1250,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - 하위 분류 전체 -.
+        ///   Looks up a localized string similar to - 직무분류 -.
         /// </summary>
         internal static string LabelAllSubClassifications {
             get {
@@ -3401,6 +3401,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 영어 수준.
+        /// </summary>
+        internal static string LabelEnglishLanguageLevel {
+            get {
+                return ResourceManager.GetString("LabelEnglishLanguageLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 구분을 위해 콤마 &quot;,&quot;를 입력하시기 바랍니다.
         /// </summary>
         internal static string LabelEnterCommaSeparated {
@@ -4234,6 +4243,15 @@ namespace Resources {
         internal static string LabelJan {
             get {
                 return ResourceManager.GetString("LabelJan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 일본어 수준.
+        /// </summary>
+        internal static string LabelJapaneseLanguageLevel {
+            get {
+                return ResourceManager.GetString("LabelJapaneseLanguageLevel", resourceCulture);
             }
         }
         
@@ -6090,6 +6108,24 @@ namespace Resources {
         internal static string LabelOther {
             get {
                 return ResourceManager.GetString("LabelOther", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 기타 언어.
+        /// </summary>
+        internal static string LabelOtherLanguage {
+            get {
+                return ResourceManager.GetString("LabelOtherLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 기타 언어 수준.
+        /// </summary>
+        internal static string LabelOtherLanguageLevel {
+            get {
+                return ResourceManager.GetString("LabelOtherLanguageLevel", resourceCulture);
             }
         }
         

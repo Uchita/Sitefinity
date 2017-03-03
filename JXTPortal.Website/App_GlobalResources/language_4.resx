@@ -607,7 +607,7 @@
     <comment>- All Salary Type -</comment>
   </data>
   <data name="LabelAllSubClassifications" xml:space="preserve">
-    <value>- All Sub Classifications -</value>
+    <value>先に業種を選んでください。</value>
     <comment>- All Sub Classifications -</comment>
   </data>
   <data name="LabelAllWorkTypes" xml:space="preserve">
@@ -4498,5 +4498,21 @@ Your account has already been validated, you are not required to do this again.<
   <data name="LabelSemicolonSeparated" xml:space="preserve">
     <value>Semicolon Separated</value>
     <comment>Semicolon Separated</comment>
+  </data>
+  <data name="LabelEnglishLanguageLevel" xml:space="preserve">
+    <value>英語の言語レベル</value>
+    <comment>English Language Level</comment>
+  </data>
+  <data name="LabelJapaneseLanguageLevel" xml:space="preserve">
+    <value>日本語の言語レベル</value>
+    <comment>Japanese Language Level</comment>
+  </data>
+  <data name="LabelOtherLanguage" xml:space="preserve">
+    <value>その他の言語</value>
+    <comment>Other Language</comment>
+  </data>
+  <data name="LabelOtherLanguageLevel" xml:space="preserve">
+    <value>その他の言語レベル</value>
+    <comment>Other Language Level</comment>
   </data>
 </root>

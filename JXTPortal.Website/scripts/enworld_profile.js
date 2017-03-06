@@ -298,7 +298,7 @@ function SFObjAdd(type, dependantListObj, dependedListObj, messageObjID) {
 
     $("#" + messageObjID).empty();
     var data = { dependantValue: $(dependantListObj).val(), dependedValue: $(dependedListObj).val(), objType: type };
-    var postResult = $("").sendAjaxWithExpectDataTypeReturn("member/enworld/profile.aspx", "sfobjadd", "POST", "json", data, onSuccess, onFailure);
+    var postResult = $("").sendAjaxWithExpectDataTypeReturn(window.location.pathname.substring(1), "sfobjadd", "POST", "json", data, onSuccess, onFailure);
 
 }
 
@@ -324,7 +324,7 @@ function SFObjDelete(type, ID, messageObjID) {
     };
 
     var data = { sfID: ID, objType: type };
-    var postResult = $("").sendAjaxWithExpectDataTypeReturn("member/enworld/profile.aspx", "sfobjdelete", "POST", "json", data, onSuccess, onFailure);
+    var postResult = $("").sendAjaxWithExpectDataTypeReturn(window.location.pathname.substring(1), "sfobjdelete", "POST", "json", data, onSuccess, onFailure);
 }
 
 function SectorExpReferenceAdd(targetID, sectorExpRefStore, messageObjID, editSaveOnCompleteFunc) {
@@ -379,7 +379,7 @@ function SectorExpReferenceAdd(targetID, sectorExpRefStore, messageObjID, editSa
         };
 
         var data = { SFID: targetID, refName: $("#secExpRefName").val(), refComp: $("#secExpRefComp").val(), refRole: $("#secExpRefRole").val(), refPhone: $("#secExpRefPhone").val(), refEmail: $("#secExpRefEmail").val() };
-        var postResult = $("").sendAjaxWithExpectDataTypeReturn("member/enworld/profile.aspx", "sfsecexprefadd", "POST", "json", data, onSuccess, onFailure);
+        var postResult = $("").sendAjaxWithExpectDataTypeReturn(window.location.pathname.substring(1), "sfsecexprefadd", "POST", "json", data, onSuccess, onFailure);
     }
     else {
         $("#" + messageObjID).append("At least one field is required");
@@ -466,7 +466,7 @@ function SectorExpReferenceDelete(ID, messageObjID) {
     };
 
     var data = { sfID: ID };
-    var postResult = $("").sendAjaxWithExpectDataTypeReturn("member/enworld/profile.aspx", "sfsecexprefdelete", "POST", "json", data, onSuccess, onFailure);
+    var postResult = $("").sendAjaxWithExpectDataTypeReturn(window.location.pathname.substring(1), "sfsecexprefdelete", "POST", "json", data, onSuccess, onFailure);
 }
 
 function SectorExpExperienceAdd(targetID, sectorExpExpStore, messageObjID, editSaveOnCompleteFunc) {
@@ -525,7 +525,7 @@ function SectorExpExperienceAdd(targetID, sectorExpExpStore, messageObjID, editS
         };
 
         var data = { SFID: targetID, expTitle: $("#tbSecExpJobTitle").val(), expCompany: $("#tbSecExpCompanyName").val(), expLocation: $("#tbSecExpJobLocation").val(), expReason: $("#tbSecExpReason").val(), expStart: $("#tbSecExpStart").val(), expEnd: $("#tbSecExpEnd").val() };
-        var postResult = $("").sendAjaxWithExpectDataTypeReturn("member/enworld/profile.aspx", "sfsecexpexperienceadd", "POST", "json", data, onSuccess, onFailure);
+        var postResult = $("").sendAjaxWithExpectDataTypeReturn(window.location.pathname.substring(1), "sfsecexpexperienceadd", "POST", "json", data, onSuccess, onFailure);
     }
     else {
         $("#" + messageObjID).append("At least one field is required");
@@ -612,7 +612,7 @@ function SectorExpExperienceDelete(ID, messageObjID) {
     };
 
     var data = { sfID: ID };
-    var postResult = $("").sendAjaxWithExpectDataTypeReturn("member/enworld/profile.aspx", "sfsecexpexperiencedelete", "POST", "json", data, onSuccess, onFailure);
+    var postResult = $("").sendAjaxWithExpectDataTypeReturn(window.location.pathname.substring(1), "sfsecexpexperiencedelete", "POST", "json", data, onSuccess, onFailure);
 }
 
 
@@ -669,7 +669,7 @@ function EducationAdd(targetID, educationStore, messageObjID, editSaveOnComplete
         };
 
         var data = { SFID: targetID, refInstitution: $("#tbEduInstitution").val(), refDegree: $("#ddlEduDegree").val(), refMajor: $("#tbEduMajor").val(), refYear: $("#ddlEduGradYear").val() };
-        var postResult = $("").sendAjaxWithExpectDataTypeReturn("member/enworld/profile.aspx", "sfeduhistoryadd", "POST", "json", data, onSuccess, onFailure);
+        var postResult = $("").sendAjaxWithExpectDataTypeReturn(window.location.pathname.substring(1), "sfeduhistoryadd", "POST", "json", data, onSuccess, onFailure);
     }
     else {
         $("#" + messageObjID).append("At least one field is required");
@@ -755,7 +755,7 @@ function EducationDelete(ID, messageObjID) {
     };
 
     var data = { sfID: ID };
-    var postResult = $("").sendAjaxWithExpectDataTypeReturn("member/enworld/profile.aspx", "sfeduhistorydelete", "POST", "json", data, onSuccess, onFailure);
+    var postResult = $("").sendAjaxWithExpectDataTypeReturn(window.location.pathname.substring(1), "sfeduhistorydelete", "POST", "json", data, onSuccess, onFailure);
 }
 
 
@@ -793,7 +793,7 @@ function EditCancel(addBtnID, editBtnID, formWrapID, dataTableDisplayID) {
 /* ------------------------------------------------ */
 
 
-function Tab1Save(sender, loader, requestURL) {
+function Tab1Save(sender, loader) {
 
     //clear error msg first
     $(".errormsg").empty();
@@ -846,7 +846,7 @@ function Tab1Save(sender, loader, requestURL) {
         };
 
         var data = { gender: $("#ddlGender").val(), dob: $("#tbDOB").val(), mobile: $("#tbMobilePhone").val(), phone: $("#tbHomePhone").val(), country: $("#ddlCountry").val(), secondEmail: $("#tbSecondEmail").val(), address: $("#tbAddress1").val(), city: $("#tbCity").val(), state: $("#ddlState").val(), zip: $("#tbZip").val(), engLevel: $("#ddlEnglishLanguageLevel").val(), japLevel: $("#ddlJapaneseLanguageLevel").val(), otherLanguage: $("#ddlOtherLanguage").val(), otherLevel: $("#ddlOtherLanguageLevel").val() };
-        var postResult = $("").sendAjaxWithExpectDataTypeReturn(requestURL, "tab1save", "POST", "json", data, onSuccess, onFailure);
+        var postResult = $("").sendAjaxWithExpectDataTypeReturn(window.location.pathname.substring(1), "tab1save", "POST", "json", data, onSuccess, onFailure);
     }
     else {
         var fieldsToCheck = ["ddlCountry", "ddlNativeLanguage"];
@@ -917,7 +917,7 @@ function Tab2Save(sender, loader) {
         };
 
         var data = { company: $("#tbCurrentCompany").val(), jobtitle: $("#tbCurrentJobTitle").val(), industry: $("#ddlIndustry").val(), jobcategory: $("#ddlJobCategory").val(), jobfunctions: $("#ddlJobFunctions").val(), employmenttype: $("#ddlEmploymentType").val(), salaryperiod: $("#ddlSalaryPeriod").val(), fixedsalary: $("#tbFixedSalary").val(), incentivesalary: $("#tbIncentiveSalary").val(), ddlSalaryCurrency: $("#ddlSalaryCurrency").val() };
-        var postResult = $("").sendAjaxWithExpectDataTypeReturn("member/enworld/profile.aspx", "tab2save", "POST", "json", data, onSuccess, onFailure);
+        var postResult = $("").sendAjaxWithExpectDataTypeReturn(window.location.pathname.substring(1), "tab2save", "POST", "json", data, onSuccess, onFailure);
     }
     else {
         var fieldsToCheck = ["tbCurrentCompany", "tbCurrentJobTitle", "ddlIndustry", "ddlJobCategory", "ddlJobFunctions", "ddlEmploymentType" ];
@@ -970,7 +970,7 @@ function Tab3Save(sender, loader) {
         };
 
         var data = { dCountry: $("#ctl00_ContentPlaceHolder1_ddlPrimDesiredCountry").val(), dLocation: $("#ddlPrimDesiredLocation").val(), dEmployType: $("#ddlDesiredEmployType").val(), dIndustry: $("#ddlPrimDesiredIndustry").val(), dJobCate: $("#ctl00_ContentPlaceHolder1_ddlPrimDesiredJobCategory").val(), dJobFunc: $("#ddlPrmDesiredJobFunction").val(), dSecondCountry: $("#ddlSecondDesiredCountry").val() };
-        var postResult = $("").sendAjaxWithExpectDataTypeReturn("member/enworld/profile.aspx", "tab3save", "POST", "json", data, onSuccess, onFailure);
+        var postResult = $("").sendAjaxWithExpectDataTypeReturn(window.location.pathname.substring(1), "tab3save", "POST", "json", data, onSuccess, onFailure);
     }
     else {
         var fieldsToCheck = ["ctl00_ContentPlaceHolder1_ddlPrimDesiredCountry", "ddlPrimDesiredLocation", "ddlDesiredEmployType", "ddlPrimDesiredIndustry", "ctl00_ContentPlaceHolder1_ddlPrimDesiredJobCategory", "ddlPrmDesiredJobFunction"];
@@ -1026,7 +1026,7 @@ function ExperienceAdd(targetID, messageObjID, editSaveOnCompleteFunc) {
         };
 
         var data = { expComp: $("#expCompany").val(), expInd: $("#ddlIndustry").val(), expHireType: $("#ddlDesiredHiringType").val(), expJobFunc: $("#ddlJobFunction").val(), expJobTitle: $("#expJobTitle").val(), expStartDate: $("#expStartDate").val(), expEndDate: $("#expEndDate").val(), expSalaryPeriod: $("#ddlSalaryPeriod").val(), expFixedSalary: $("#expFixedSalary").val(), expIncentive: $("#expIncentiveSalary").val(), expTotalSalary: $("#expTotalSalary").val() };
-        var postResult = $("").sendAjaxWithExpectDataTypeReturn("member/enworld/profile.aspx", "sdexperienceadd", "POST", "json", data, onSuccess, onFailure);
+        var postResult = $("").sendAjaxWithExpectDataTypeReturn(window.location.pathname.substring(1), "sdexperienceadd", "POST", "json", data, onSuccess, onFailure);
     }
     else {
         $("#" + messageObjID).append("At least one field is required");
@@ -1113,7 +1113,7 @@ function ExperienceDelete(ID, messageObjID) {
     };
 
     var data = { sfID: ID };
-    var postResult = $("").sendAjaxWithExpectDataTypeReturn("member/enworld/profile.aspx", "sfsecexpexperiencedelete", "POST", "json", data, onSuccess, onFailure);
+    var postResult = $("").sendAjaxWithExpectDataTypeReturn(window.location.pathname.substring(1), "sfsecexpexperiencedelete", "POST", "json", data, onSuccess, onFailure);
 }
 
 

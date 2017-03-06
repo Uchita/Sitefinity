@@ -565,7 +565,23 @@ namespace JXTPortal.Website.usercontrols.job
                                         divApplyNow.Visible = false;
                                         divApplyNowBottom.Visible = false;
                                         ibApplyWithLinkedIn.Visible = false;
-                                        //lbApplied.Text = "You applied for this job on " + ((DateTime)jobappps[0].ApplicationDate).ToString("dd MMM yyyy");
+
+                                        //Check if its DST in AUS
+                                        DateTime dt = new DateTime(2017,4,1); //STANDARD
+                                        TimeZoneInfo tzi = TimeZoneInfo.FindSystemTimeZoneById("AUS Eastern Standard Time");
+                                        bool isDST = tzi.IsDaylightSavingTime(dt);
+
+                                        DateTime dt2 = new DateTime(2017, 4, 3); //DST
+                                        TimeZoneInfo tzi2 = TimeZoneInfo.FindSystemTimeZoneById("AUS Eastern Standard Time");
+                                        bool isDST2 = tzi2.IsDaylightSavingTime(dt2);
+
+                                        DateTime UtcTime1 = TimeZoneInfo.ConvertTimeToUtc(dt, TimeZoneInfo.FindSystemTimeZoneById("AUS Eastern Standard Time"));
+                                        DateTime UtcTime2 = TimeZoneInfo.ConvertTimeToUtc(dt2, TimeZoneInfo.FindSystemTimeZoneById("AUS Eastern Standard Time"));
+
+                                        DateTime UtcTime = TimeZoneInfo.ConvertTimeToUtc((DateTime)jobApplicationList[0].ApplicationDate, TimeZoneInfo.FindSystemTimeZoneById("AUS Eastern Standard Time"));
+
+                                        AjaxControlToolkit.ToolkitScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), "AppliedDateUTCConverter", "alert('33');", true);
+
                                         lbApplied.Text = String.Format("{0} {1}", CommonFunction.GetResourceValue("LabelJobApplied"),
                                                         ((DateTime)jobApplicationList[0].ApplicationDate).ToString(SessionData.Site.DateFormat));
 

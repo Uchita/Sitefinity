@@ -36,6 +36,7 @@ namespace JXTPortal.Website.member.enworld
 
         protected void Page_Init(object sender, EventArgs e)
         {
+             
             if (SessionData.Member == null)
             {
                 Response.Redirect("~/member/login.aspx?returnurl=" + Server.UrlEncode(Request.Url.PathAndQuery));

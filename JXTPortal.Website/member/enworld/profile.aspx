@@ -434,7 +434,7 @@
                                     <div id="tab1Message" class="col-xs-12 errormsg">
                                     </div>
                                     <div class="col-xs-12">
-                                        <button type="button" class="btn btn-primary" onclick="Tab1Save(this, $('#tab1Loader'));">
+                                        <button type="button" class="btn btn-primary" onclick="Tab1Save(this, $('#tab1Loader'), '<%= Request.Url.AbsolutePath %>');">
                                             <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral11" runat="server" SetLanguageCode="LabelBtnSaveNext" />
                                         </button>
                                         &nbsp;<span id="tab1Loader" class="hide"><i class="fa fa-spinner fa-spin"></i></span>

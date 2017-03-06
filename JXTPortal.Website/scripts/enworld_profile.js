@@ -793,7 +793,7 @@ function EditCancel(addBtnID, editBtnID, formWrapID, dataTableDisplayID) {
 /* ------------------------------------------------ */
 
 
-function Tab1Save(sender, loader) {
+function Tab1Save(sender, loader, requestURL) {
 
     //clear error msg first
     $(".errormsg").empty();
@@ -846,7 +846,7 @@ function Tab1Save(sender, loader) {
         };
 
         var data = { gender: $("#ddlGender").val(), dob: $("#tbDOB").val(), mobile: $("#tbMobilePhone").val(), phone: $("#tbHomePhone").val(), country: $("#ddlCountry").val(), secondEmail: $("#tbSecondEmail").val(), address: $("#tbAddress1").val(), city: $("#tbCity").val(), state: $("#ddlState").val(), zip: $("#tbZip").val(), engLevel: $("#ddlEnglishLanguageLevel").val(), japLevel: $("#ddlJapaneseLanguageLevel").val(), otherLanguage: $("#ddlOtherLanguage").val(), otherLevel: $("#ddlOtherLanguageLevel").val() };
-        var postResult = $("").sendAjaxWithExpectDataTypeReturn("member/enworld/profile.aspx", "tab1save", "POST", "json", data, onSuccess, onFailure);
+        var postResult = $("").sendAjaxWithExpectDataTypeReturn(requestURL, "tab1save", "POST", "json", data, onSuccess, onFailure);
     }
     else {
         var fieldsToCheck = ["ddlCountry", "ddlNativeLanguage"];

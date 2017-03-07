@@ -34,7 +34,8 @@
 
         $(document).ready(function () {
 
-            MultiselectInit();
+            //This has been init in the aspx
+            //MultiselectInit();
 
             var nowTemp = new Date();
             var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
@@ -72,45 +73,43 @@
                     return false;
                 }
             });
+
+
         });
 
         function MultiselectInit() {
-            $('.multiselect').multiselect({
+
+            $('#ddlSecondDesiredCountry, #ddlDesiredEmployType').multiselect({
                 maxHeight: 200,
-                numberDisplayed: 2,
-                buttonClass: 'form-control'
+                buttonClass: 'form-control',
+                nonSelectedText: '<%=JXTPortal.Website.CommonFunction.GetResourceValue("DDLPleaseSelect") %>'
             });
 
             // Desired Location
-            if ($('#ddlPrimDesiredLocation option').size() < 2) {
-                $('#ddlPrimDesiredLocation').val('--None--');
-                $('#ddlPrimDesiredLocation').prop("disabled", true);
+            if ($('#ddlPrimDesiredLocation option').length == 0) {
+                $('#ddlPrimDesiredLocation').attr("disabled", true);
+
                 $('#ddlPrimDesiredLocation').multiselect({
                     maxHeight: 200,
-                    numberDisplayed: 3,
                     buttonClass: 'form-control',
-                    nonSelectedText: '- Please select a Primary Desired Country -'
+                    nonSelectedText: '<%=JXTPortal.Website.CommonFunction.GetResourceValue("DDLPleaseSelectPrimaryDesiredCountry") %>'
                 });
             }
             else {
-
                 $('#ddlPrimDesiredLocation').prop("disabled", false);
                 $('#ddlPrimDesiredLocation').multiselect({
                     maxHeight: 200,
-                    numberDisplayed: 3,
                     buttonClass: 'form-control',
-                    nonSelectedText: 'None selected'
+                    nonSelectedText: '<%=JXTPortal.Website.CommonFunction.GetResourceValue("DDLPleaseSelect") %>'
                 });
             }
 
-
-            if ($('#ddlPrmDesiredJobFunction option').size() < 2) {
+            if ($('#ddlPrmDesiredJobFunction option').length == 0) {
                 $('#ddlPrmDesiredJobFunction').prop("disabled", true);
                 $('#ddlPrmDesiredJobFunction').multiselect({
                     maxHeight: 200,
-                    numberDisplayed: 2,
                     buttonClass: 'form-control',
-                    nonSelectedText: '- Please select a Primary Desired Job Category -'
+                    nonSelectedText: '<%=JXTPortal.Website.CommonFunction.GetResourceValue("DDLPleaseSelectPrimaryDesiredJobCategory") %>'
                 });
             }
             else {
@@ -118,35 +117,51 @@
                 $('#ddlPrmDesiredJobFunction').prop("disabled", false);
                 $('#ddlPrmDesiredJobFunction').multiselect({
                     maxHeight: 200,
-                    numberDisplayed: 2,
                     buttonClass: 'form-control',
-                    nonSelectedText: 'None selected'
+                    nonSelectedText: '<%=JXTPortal.Website.CommonFunction.GetResourceValue("DDLPleaseSelect") %>'
                 });
             }
 
 
-
+            if ($('#ddlJobFunctions option').length == 0) {
+                $('#ddlJobFunctions').prop("disabled", true);
+                $('#ddlJobFunctions').multiselect({
+                    maxHeight: 200,
+                    buttonClass: 'form-control',
+                    nonSelectedText: '<%=JXTPortal.Website.CommonFunction.GetResourceValue("DDLPleaseSelectJobCategory") %>'
+                });
+            }
+            else {
+                $('#ddlJobFunctions').prop("disabled", false);
+                $('#ddlJobFunctions').multiselect({
+                    maxHeight: 200,
+                    buttonClass: 'form-control',
+                    nonSelectedText: '<%=JXTPortal.Website.CommonFunction.GetResourceValue("DDLPleaseSelect") %>'
+                });
+            }
 
         }
 
-        function DataDropdownChanged(caller, target, dataStore, defaultMessage, blnRefreshMultiselect, childFieldRequired) {
-
+        function DataDropdownChanged(caller, target, dataStore, defaultMessage, selectMessage, blnRefreshMultiselect, childFieldRequired) {
             var selectedVal = $(caller).val();
 
             if (selectedVal == "--None--") {
-                $(target).empty().append("<option disabled='disabled'>" + defaultMessage + "</option>");
+
+                $(target).empty().prop("disabled", true);
 
                 if (blnRefreshMultiselect) {
 
                     $(target).multiselect("destroy");
                     $(target).multiselect({
                         maxHeight: 200,
-                        numberDisplayed: 2,
-                        buttonClass: 'form-control'
+                        buttonClass: 'form-control',
+                        nonSelectedText: defaultMessage
                     });
                 }
             }
             else {
+
+                $(target).prop("disabled", false);
 
                 $.each(dataStore, function (index, cVal) {
 
@@ -158,38 +173,20 @@
                             $(target).append("<option value=''>- Not Specified -</option>");
                         }
 
-                        if (cVal.Childs.length > 0) {
-                            $.each(cVal.Childs, function (index, childVal) {
-
-                                if (childVal.indexOf("|") > 0) {
-                                    var otext = childVal.split("|")[0];
-                                    var ovalue = childVal.split("|")[1];
-
-                                    $(target).append("<option value='" + ovalue + "'>" + otext + "</option>");
-                                }
-                                else {
-                                    $(target).append("<option value='" + childVal + "'>" + childVal + "</option>");
-                                }
-                            });
-                        }
-                        else {
-                            $(target).append("<option disabled='disabled'>- All Areas -</option>");
+                        for (var key in cVal.Childs) {
+                            $(target).append("<option value='" + key + "'>" + cVal.Childs[key] + "</option>");
                         }
 
                         if (blnRefreshMultiselect) {
-
                             $(target).multiselect("destroy");
                             $(target).multiselect({
                                 maxHeight: 200,
-                                numberDisplayed: 2,
-                                buttonClass: 'form-control'
+                                buttonClass: 'form-control',
+                                nonSelectedText: selectMessage
                             });
-
                         }
-
                         return;
                     }
-
                 });
             }
         }
@@ -355,8 +352,7 @@
                                             <label>
                                                 <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral5" runat="server" SetLanguageCode="LabelCountry" />
                                                 <span class="form-required">*</span></label>
-                                            <asp:DropDownList ID="ddlCountry" ClientIDMode="Static" runat="server" CssClass="form-control"
-                                                onchange="DataDropdownChanged(this, $('#ddlState'), countryData, '- Please Select A Country -', false, false);">
+                                            <asp:DropDownList ID="ddlCountry" ClientIDMode="Static" runat="server" CssClass="form-control">
                                             </asp:DropDownList>
                                             <div id="ddlCountryMsg" class="errormsg">
                                             </div>
@@ -400,8 +396,9 @@
                                             <label>
                                                 <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral101" runat="server" SetLanguageCode="LabelEnglishLanguageLevel" />
                                                 <!--<span class="form-required">*</span>-->
-                                                </label>
-                                            <asp:DropDownList ID="ddlEnglishLanguageLevel" ClientIDMode="Static" runat="server" CssClass="form-control">
+                                            </label>
+                                            <asp:DropDownList ID="ddlEnglishLanguageLevel" ClientIDMode="Static" runat="server"
+                                                CssClass="form-control">
                                             </asp:DropDownList>
                                             <div id="ddlEnglishLanguageLevelMsg" class="errormsg">
                                             </div>
@@ -418,8 +415,7 @@
                                             <label>
                                                 <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral103" runat="server" SetLanguageCode="LabelOtherLanguage" />
                                             </label>
-                                            <asp:DropDownList ID="ddlOtherLanguage" ClientIDMode="Static" runat="server"
-                                                CssClass="form-control">
+                                            <asp:DropDownList ID="ddlOtherLanguage" ClientIDMode="Static" runat="server" CssClass="form-control">
                                             </asp:DropDownList>
                                         </div>
                                         <div class="col-sm-6 form-group-element">
@@ -481,8 +477,7 @@
                                                 <label>
                                                     <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral132" runat="server" SetLanguageCode="LabelJobCategory" />
                                                     <span class="form-required">*</span></label>
-                                                <asp:DropDownList ID="ddlJobCategory" ClientIDMode="Static" runat="server" CssClass="form-control"
-                                                    onchange="DataDropdownChanged(this, $('#ddlJobFunctions'), jobFuncData, '- Please select a Job Category -', true, true);">
+                                                <asp:DropDownList ID="ddlJobCategory" ClientIDMode="Static" runat="server" CssClass="form-control">
                                                 </asp:DropDownList>
                                                 <div id="ddlJobCategoryMsg" class="errormsg">
                                                 </div>
@@ -492,7 +487,7 @@
                                                     <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral14" runat="server" SetLanguageCode="LabelJobFunction" />
                                                     <span class="form-required">*</span></label>
                                                 <div class="multiselect-drpdn">
-                                                    <asp:ListBox ID="ddlJobFunctions" ClientIDMode="Static" runat="server" CssClass="multiselect form-control"
+                                                    <asp:ListBox ID="ddlJobFunctions" ClientIDMode="Static" runat="server" CssClass="form-control"
                                                         SelectionMode="Multiple"></asp:ListBox>
                                                 </div>
                                                 <div id="ddlJobFunctionsMsg" class="errormsg">
@@ -673,7 +668,7 @@
                                                     <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral28" runat="server" SetLanguageCode="LabelSecondaryDesiredCountries" />
                                                 </label>
                                                 <div class="multiselect-drpdn">
-                                                    <asp:ListBox ID="ddlSecondDesiredCountry" ClientIDMode="Static" runat="server" CssClass="multiselect form-control"
+                                                    <asp:ListBox ID="ddlSecondDesiredCountry" ClientIDMode="Static" runat="server" CssClass="form-control"
                                                         SelectionMode="Multiple"></asp:ListBox>
                                                 </div>
                                             </div>
@@ -715,7 +710,7 @@
                                                     <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral32" runat="server" SetLanguageCode="LabelEmploymentTypes" />
                                                     <span class="form-required">*</span></label>
                                                 <div class="multiselect-drpdn">
-                                                    <asp:ListBox ID="ddlDesiredEmployType" ClientIDMode="Static" runat="server" CssClass="multiselect form-control"
+                                                    <asp:ListBox ID="ddlDesiredEmployType" ClientIDMode="Static" runat="server" CssClass="form-control"
                                                         SelectionMode="Multiple"></asp:ListBox>
                                                 </div>
                                                 <div id="ddlDesiredEmployTypeMsg" class="errormsg">
@@ -740,5 +735,5 @@
                 </div>
             </div>
         </div>
-        </div> </asp:PlaceHolder>
+    </asp:PlaceHolder>
 </asp:Content>

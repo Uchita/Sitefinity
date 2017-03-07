@@ -65,23 +65,10 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
             if (!string.IsNullOrEmpty(MemberUrlExtension))
             {
                 JXTPortal.Entities.Members member = MembersService.GetByMemberId(Convert.ToInt32(MemberUrlExtension));
+
                 if (member != null)
                 {
-                    litMemberName.Text = string.Format("{0} {1}", member.FirstName, member.Surname);
-                    litName.Text = string.Format("{0} {1}", member.FirstName, member.Surname);
-                    litEmail.Text = member.EmailAddress.ToString();
-
-                    string availability = "";
-
-                    if (member.AvailabilityId != null && member.AvailabilityId != 0)
-                    {
-                        JXTPortal.Entities.AvailableStatus avs = AvailableStatusService.GetByAvailableStatusId((int)member.AvailabilityId);
-                        if (avs != null)
-                            availability = avs.AvailableStatusName;
-                    }
-
-                    litStatus.Text = availability;
-                    litPublicProfile.Text = string.Format("http://{0}/members/{1}/", SessionData.Site.SiteUrl, MemberUrlExtension);
+                    LoadMemberInfo(member);
 
                 }
                 else
@@ -93,6 +80,67 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
             {
                 Response.Redirect("~/PeopleSearch.aspx");
             }
+        }
+
+        public void LoadMemberInfo(Entities.Members member)
+        {
+            ltTitle.Text = HttpUtility.HtmlEncode(member.Title);
+            ltFirstName.Text = HttpUtility.HtmlEncode(member.FirstName);
+            ltLastName.Text = HttpUtility.HtmlEncode(member.Surname);
+            ltHeadline.Text = HttpUtility.HtmlEncode(member.PreferredJobTitle);
+            ltlLastModifiedDate.Text = HttpUtility.HtmlEncode(member.LastModifiedDate);
+
+            // Availability Status
+            if (member.AvailabilityId.HasValue && member.AvailabilityId > 0)
+            {
+                ltCurrentSeeking.Text = string.Format(@"<div class='col-sm-6'><h5>{0}:</h5><span class='fa fa-eye highlight'></span><span id='current-status'> {1}</span></div>",
+                                                        CommonFunction.GetResourceValue("LabelSeekingStatus"),
+                                                        HttpUtility.HtmlEncode(CommonFunction.GetResourceValue(CommonFunction.GetEnumDescription((PortalEnums.Members.CurrentlySeeking)member.AvailabilityId))));
+            }
+            else
+            {
+                ltCurrentSeeking.Text = string.Format(@"<div class='col-sm-6'><h5>{0}:</h5><span class='fa fa-eye highlight'></span><span id='current-status missing'> {1}</span></div>",
+                                                CommonFunction.GetResourceValue("LabelSeekingStatus"),
+                                                HttpUtility.HtmlEncode(CommonFunction.GetResourceValue(CommonFunction.GetEnumDescription(PortalEnums.Members.CurrentlySeeking.NotSeeking))));
+            }
+
+            // Availability Date
+            if (member.AvailabilityFromDate.HasValue)
+            {
+                ltAvailableDayFrom.Text = string.Format(@"<div class='col-sm-6'><h5>{0}:</h5><span class='fa fa-clock-o highlight'></span><span id='availability-date'> {1}</span></div>",
+                                                CommonFunction.GetResourceValue("LabelAvailabilityDateFrom"), member.AvailabilityFromDate.Value.ToString(SessionData.Site.DateFormat));
+            }
+
+            loadSummary(member);
+        }
+
+        public void loadSummary(Entities.Members member)
+        {
+            bool summary = checkSummary(member);
+
+            if (summary)
+            {
+                ltSummary.Text = HttpUtility.HtmlEncode(member.ShortBio);
+            }
+            else
+            {
+                phSectionSummary.Visible = false;
+            }
+        }
+
+        public bool checkSummary(Entities.Members member)
+        {
+            string summary = member.ShortBio;
+
+            if (!string.IsNullOrWhiteSpace(summary))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
         }
     }
 }

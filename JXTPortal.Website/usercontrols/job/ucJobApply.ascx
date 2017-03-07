@@ -2,6 +2,7 @@
     Inherits="JXTPortal.Website.usercontrols.job.ucJobApply" %>
 <%@ Register TagPrefix="uc1" TagName="ucApplyWithLinkedIn" Src="~/usercontrols/job/ucApplyWithLinkedIn.ascx" %>
 <div class="job-detail-centre">
+
     <div class="jobdetail-padding">
         <asp:Label ID="lbApplied" runat="server" Visible="false" ForeColor="Red" />
         <asp:Label ID="lblJobSaved" runat="server" Visible="false" ForeColor="Red" />
@@ -299,6 +300,7 @@
             }
 
             $(document).ready(function () {
+
                 var lat = '<%=MapLat %>';
                 var lng = '<%=MapLng %>';
                 var jobaddress = '<%=JobAddress %>';
@@ -318,7 +320,6 @@
                    }
                 }
             });
-
 </script>
 <%
     }

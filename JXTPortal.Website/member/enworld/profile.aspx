@@ -132,7 +132,6 @@
                 });
             }
             else {
-                console.log("bbb");
                 $('#ddlJobFunctions').prop("disabled", false);
                 $('#ddlJobFunctions').multiselect({
                     maxHeight: 200,
@@ -144,7 +143,6 @@
         }
 
         function DataDropdownChanged(caller, target, dataStore, defaultMessage, selectMessage, blnRefreshMultiselect, childFieldRequired) {
-            console.log("dd");
             var selectedVal = $(caller).val();
 
             if (selectedVal == "--None--") {

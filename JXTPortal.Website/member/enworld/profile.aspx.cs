@@ -16,12 +16,12 @@ using System.Xml.Serialization;
 using System.IO;
 using System.Text.RegularExpressions;
 using JXTPortal.Common;
+using JXTPortal.Common.Extensions;
 
 namespace JXTPortal.Website.member.enworld
 {
     public partial class profile : System.Web.UI.Page
     {
-        private static string ContentValidationRegex = ConfigurationManager.AppSettings["ContentValidationRegex"]; //this verifies that no HTML tags are allowed
         private static string EmailValidationRegex = ConfigurationManager.AppSettings["EmailValidationRegex"];
         private string XMLPath = "/xml/enworld.xml";
         private const string ENWORLD_SF_QUERY = @"SELECT Id, FirstName, LastName, First_Name_Local__c, Last_Name_Local__c, Email, 
@@ -788,7 +788,7 @@ namespace JXTPortal.Website.member.enworld
 
                 if (!string.IsNullOrEmpty(fileUploadTitle.Text))
                 {
-                    if (!Regex.IsMatch(fileUploadTitle.Text, ContentValidationRegex))
+                    if (!fileUploadTitle.Text.IsValidContent())
                     {
                         FileUploadMessage.Text = "Resume File Name cannot contain invalid content";
                         ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), "FileUpload", "$(document).ready(function() {$('#aDesiredPosition').click()})", true);
@@ -1069,7 +1069,7 @@ namespace JXTPortal.Website.member.enworld
 
             if (!string.IsNullOrEmpty(dob))
             {
-                if (!Regex.IsMatch(dob, ContentValidationRegex))
+                if (!dob.IsValidContent())
                 {
                     errors.Add(CommonFunction.GetResourceValue("LabelInvalidDate"));
                 }
@@ -1077,7 +1077,7 @@ namespace JXTPortal.Website.member.enworld
 
             if (!string.IsNullOrEmpty(mobile))
             {
-                if (!Regex.IsMatch(mobile, ContentValidationRegex))
+                if (!mobile.IsValidContent())
                     errors.Add("Mobile Phone cannot contain invalid content");
 
                 if (mobile.Length > 40)
@@ -1086,7 +1086,7 @@ namespace JXTPortal.Website.member.enworld
 
             if (!string.IsNullOrEmpty(phone))
             {
-                if (!Regex.IsMatch(phone, ContentValidationRegex))
+                if (!phone.IsValidContent())
                     errors.Add("Home Phone cannot contain invalid content");
 
                 if (phone.Length > 40)
@@ -1095,7 +1095,7 @@ namespace JXTPortal.Website.member.enworld
 
             if (!string.IsNullOrEmpty(address))
             {
-                if (!Regex.IsMatch(address, ContentValidationRegex))
+                if (!address.IsValidContent())
                     errors.Add("Address cannot contain invalid content");
 
                 if (address.Length > 255)
@@ -1104,7 +1104,7 @@ namespace JXTPortal.Website.member.enworld
 
             if (!string.IsNullOrEmpty(city))
             {
-                if (!Regex.IsMatch(city, ContentValidationRegex))
+                if (!city.IsValidContent())
                     errors.Add("City cannot contain invalid content");
 
                 if (city.Length > 40)
@@ -1113,7 +1113,7 @@ namespace JXTPortal.Website.member.enworld
 
             if (!string.IsNullOrEmpty(zip))
             {
-                if (!Regex.IsMatch(zip, ContentValidationRegex))
+                if (!zip.IsValidContent())
                     errors.Add("Zip Code cannot contain invalid content");
 
                 if (zip.Length > 20)
@@ -1245,7 +1245,7 @@ namespace JXTPortal.Website.member.enworld
 
             if (!string.IsNullOrEmpty(company))
             {
-                if (!Regex.IsMatch(company, ContentValidationRegex))
+                if (!company.IsValidContent())
                     errors.Add("Company cannot contain invalid content");
                 if (company.Length > 255)
                     errors.Add("Company cannot exceed 255 characters");
@@ -1253,7 +1253,7 @@ namespace JXTPortal.Website.member.enworld
 
             if (!string.IsNullOrEmpty(jobtitle))
             {
-                if (!Regex.IsMatch(jobtitle, ContentValidationRegex))
+                if (!jobtitle.IsValidContent())
                     errors.Add("Job Title cannot contain invalid content");
                 if (jobtitle.Length > 255)
                     errors.Add("Job Title cannot exceed 255 characters");

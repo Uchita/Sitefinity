@@ -154,7 +154,7 @@
                                                             </span>
                                                             
                                                             <span class="personal-detail-content primary-email">
-                                                                <asp:Literal ID="ltEmail" runat="server" Text="ltEmail" />
+                                                                <asp:Literal ID="ltEmail" runat="server"/>
                                                             </span>
                                                          </div>
 
@@ -274,6 +274,11 @@
                                                 </FooterTemplate>
                                             </asp:Repeater>
                                         </div>
+                                        <div class="info_graphic">
+                                            <span class="fa fa-download">
+                                                <asp:HyperLink ID="HyperLink1" runat="server" CssClass="downloadResume">Download Resume</asp:HyperLink>
+                                            </span>
+                                        </div>
                                     </section>
                                 </ContentTemplate>
                             </asp:UpdatePanel>
@@ -327,6 +332,11 @@
                                                     </ul>
                                                 </FooterTemplate>
                                             </asp:Repeater>
+                                            <div class="info_graphic">
+                                                <span class="fa fa-download">
+                                                    <asp:HyperLink ID="HyperLink2" runat="server" CssClass="downloadResume">Download Resume</asp:HyperLink>
+                                                </span>
+                                            </div>
                                         </div>
                                     </section>
                                 </ContentTemplate>
@@ -395,6 +405,74 @@
                     </section>
                     </asp:PlaceHolder>
 
+                    <!-- Section 5: Educational Qualification -->
+                    <asp:PlaceHolder ID="phSectionEducation" runat="server">
+                        <section class="form-section scroll-point full-width clearfix" id="section-5">
+                            <asp:UpdatePanel ID="upEducation" runat="server" UpdateMode="Conditional" class="form-all">
+                                <ContentTemplate>
+                                    <header class="section-header">
+                                        <div class="col-sm-8">
+                                            <h2 class="section-title">
+                                                <span class="fa fa-pencil">
+                                                    <!-- icon -->
+                                                </span>
+                                                <asp:Literal ID="ltTitleEducation" runat="server" />
+                                                <span id="educationInfo" class="fa fa-info-circle hide headingInfo" runat="server"
+                                                    clientidmode="Static">
+                                                    <!-- icon -->
+                                                </span>
+                                            </h2>
+                                            <span>
+                                                <asp:Literal ID="ltEducationMin" runat="server" /></span>
+                                        </div>
+                                        <div class="pull-right add-btn-holder">
+                                            <a id="hfEducationAdd" runat="server" href="#newEducation" class="btn btn-primary btn-sm add-btn">
+                                                <span class="fa fa-plus">
+                                                    <!-- icon -->
+                                                </span>
+                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral106" runat="server" SetLanguageCode="LabelAdd" />
+                                            </a>
+                                            <asp:PlaceHolder ID="phTickEducation" runat="server"><span class="fa fa-check section_status"
+                                                aria-hidden="true"></span></asp:PlaceHolder>
+                                        </div>
+                                    </header>
+                                    <asp:PlaceHolder runat="server" ID="phAddEntryTextEducation">
+                                        <p class="empty-case_field text-center">
+                                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral2466" runat="server" SetLanguageCode="LabelAddAnEntry" />
+                                        </p>
+                                    </asp:PlaceHolder>
+                                    <asp:Repeater ID="rptEducation" runat="server" OnItemDataBound="rptEducation_ItemDataBound"
+                                        OnItemCommand="rptEducation_ItemCommand">
+                                        <ItemTemplate>
+                                            <div id="acEducation" runat="server" class="section-content">
+                                                <div class="editable-section">
+                                                    <div class="section-entry">
+                                                        <div class="title-container has-edit-icon">
+                                                            <h4>
+                                                                <asp:Literal ID="ltInstitute" runat="server" Text="ltInstitute" /></h4>
+                                                            <a id="aEducationEdit" runat="server" class="fa fa-edit fa-0" data-toggle="collapse">
+                                                                <!-- icon -->
+                                                            </a>
+                                                            <asp:LinkButton ID="lbEducationDelete" runat="server" CssClass="fa fa-trash fa-1"
+                                                                data-toggle="modal" data-target="#deleteConfirm" CommandName="EducationDelete" />
+                                                        </div>
+                                                        <asp:Literal ID="ltEducationLocation" runat="server" />
+                                                        <h3>
+                                                            <asp:Literal ID="ltQualificationName" runat="server" /></h3>
+                                                        <div class="date-field">
+                                                            <asp:Literal ID="ltEducationDate" runat="server" />
+                                                        </div>
+                                                        <p>
+                                                            <asp:Literal ID="ltEducationDescription" runat="server" /></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+                        </section>
+                    </asp:PlaceHolder>
                    
                 </div>
                 <!-- //CV-content -->

@@ -179,6 +179,16 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
 
         public void loadPersonalDetails(Entities.Members member)
         {
+            //Email
+            if (!string.IsNullOrWhiteSpace(member.EmailAddress))
+            {
+                ltEmail.Text = HttpUtility.HtmlEncode(member.EmailAddress);
+            }
+            else
+            {
+                ltEmail.Text = CommonFunction.GetResourceValue("LabelMissingInformation");
+            }  
+          
             //DOB
             if (member.DateOfBirth.HasValue)
             {

@@ -12,6 +12,7 @@
                     <h1 class="CV-Builder-title">
                         <asp:Literal ID="ltTitleProfile" runat="server" />
                     </h1>
+
                     <!-- Basic Details -->
                     <section class="form-section scroll-point scroll-point full-width clearfix" id="section-1">
                         <div class="form-all">
@@ -410,6 +411,7 @@
                         <section class="form-section scroll-point full-width clearfix" id="section-5">
                             <asp:UpdatePanel ID="upEducation" runat="server" UpdateMode="Conditional" class="form-all">
                                 <ContentTemplate>
+                                    <!-- Header -->
                                     <header class="section-header">
                                         <div class="col-sm-8">
                                             <h2 class="section-title">
@@ -425,45 +427,155 @@
                                             <span>
                                                 <asp:Literal ID="ltEducationMin" runat="server" /></span>
                                         </div>
-                                        <div class="pull-right add-btn-holder">
-                                            <a id="hfEducationAdd" runat="server" href="#newEducation" class="btn btn-primary btn-sm add-btn">
-                                                <span class="fa fa-plus">
-                                                    <!-- icon -->
-                                                </span>
-                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral106" runat="server" SetLanguageCode="LabelAdd" />
-                                            </a>
-                                            <asp:PlaceHolder ID="phTickEducation" runat="server"><span class="fa fa-check section_status"
-                                                aria-hidden="true"></span></asp:PlaceHolder>
-                                        </div>
                                     </header>
+
+                                    <!-- Add Entry Wen there are no education history-->
                                     <asp:PlaceHolder runat="server" ID="phAddEntryTextEducation">
                                         <p class="empty-case_field text-center">
                                             <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral2466" runat="server" SetLanguageCode="LabelAddAnEntry" />
                                         </p>
                                     </asp:PlaceHolder>
-                                    <asp:Repeater ID="rptEducation" runat="server" OnItemDataBound="rptEducation_ItemDataBound"
-                                        OnItemCommand="rptEducation_ItemCommand">
+
+                                    <!-- Education Listing -->
+                                    <asp:Repeater ID="rptEducation" runat="server" OnItemDataBound="rptEducation_ItemDataBound">
                                         <ItemTemplate>
                                             <div id="acEducation" runat="server" class="section-content">
                                                 <div class="editable-section">
                                                     <div class="section-entry">
                                                         <div class="title-container has-edit-icon">
                                                             <h4>
-                                                                <asp:Literal ID="ltInstitute" runat="server" Text="ltInstitute" /></h4>
-                                                            <a id="aEducationEdit" runat="server" class="fa fa-edit fa-0" data-toggle="collapse">
-                                                                <!-- icon -->
-                                                            </a>
-                                                            <asp:LinkButton ID="lbEducationDelete" runat="server" CssClass="fa fa-trash fa-1"
-                                                                data-toggle="modal" data-target="#deleteConfirm" CommandName="EducationDelete" />
+                                                                <asp:Literal ID="ltInstitute" runat="server" Text="ltInstitute" />
+                                                            </h4>
                                                         </div>
+
                                                         <asp:Literal ID="ltEducationLocation" runat="server" />
+
                                                         <h3>
-                                                            <asp:Literal ID="ltQualificationName" runat="server" /></h3>
+                                                            <asp:Literal ID="ltQualificationName" runat="server" />
+                                                        </h3>
+
                                                         <div class="date-field">
                                                             <asp:Literal ID="ltEducationDate" runat="server" />
                                                         </div>
+
                                                         <p>
-                                                            <asp:Literal ID="ltEducationDescription" runat="server" /></p>
+                                                            <asp:Literal ID="ltEducationDescription" runat="server" />
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+                        </section>
+                    </asp:PlaceHolder>
+
+                    <!-- Section 6: Skills  -->
+                    <asp:PlaceHolder ID="phSectionSkills" runat="server">
+                        <section class="form-section scroll-point full-width clearfix" id="sec-Skills">
+                            <asp:UpdatePanel ID="upSkills" runat="server" UpdateMode="Conditional" class="form-all">
+                                <ContentTemplate>
+                                    <!-- Heading -->
+                                    <header class="section-header">
+                                        <div class="col-sm-6">
+                                            <h2 class="section-title">
+                                                <span class="fa fa-trophy">
+                                                    <!-- icon -->
+                                                </span>
+                                                <asp:Literal ID="ltTitleSkills" runat="server" />
+                                                <span id="skillsInfo" class="fa fa-info-circle hide headingInfo" runat="server" clientidmode="Static">
+                                                    <!-- icon -->
+                                                </span>
+                                            </h2>
+                                        </div>
+                                    </header>
+
+                                    <!-- Empty skills Placeholder -->
+                                    <asp:PlaceHolder ID="phAddEntryTextSkills" runat="server">
+                                        <p class="empty-case_field text-center">
+                                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral247855" runat="server" SetLanguageCode="LabelAddAnEntry" />
+                                        </p>
+                                    </asp:PlaceHolder>
+
+                                    <!-- Skills Listing -->
+                                    <asp:PlaceHolder ID="phSkillsDisplay" runat="server" Visible="false">
+                                        <div class="section-content no-border clearfix">
+                                            <h4>
+                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral138" runat="server" SetLanguageCode="LabelYourSkillSets" />
+                                            </h4>
+
+                                            <div class="tagsinput">
+                                                <asp:Repeater ID="rptSkills" runat="server" OnItemDataBound="rptSkills_ItemDataBound">
+                                                    <ItemTemplate>
+                                                        <span class="tag"><span>
+                                                            <asp:Literal ID="ltSkill" runat="server" /></span>
+                                                        </span>
+                                                    </ItemTemplate>
+                                                </asp:Repeater>
+                                            </div>
+                                        </div>
+                                    </asp:PlaceHolder>
+
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+                        </section>
+                    </asp:PlaceHolder>
+
+                    <!-- Section 7: Certification -->
+                    <asp:PlaceHolder ID="phSectionCertification" runat="server">
+                        <section class="form-section scroll-point full-width clearfix" id="section-7">
+                            <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional" class="form-all">
+                                <ContentTemplate>
+                                    <!-- Heading -->
+                                    <header class="section-header">
+                                        <div class="col-sm-8">
+                                            <h2 class="section-title">
+                                                <span class="fa fa-user">
+                                                    <!-- icon -->
+                                                </span>
+                                                <asp:Literal ID="ltTitleCertification" runat="server" />
+                                                <span id="certificationInfo" class="fa fa-info-circle hide headingInfo" runat="server"
+                                                    clientidmode="Static">
+                                                    <!-- icon -->
+                                                </span>
+                                            </h2>
+                                        </div>
+                                    </header>
+
+                                    <!-- Empty Placeholder -->
+                                    <asp:PlaceHolder ID="phAddEntryTextCertificates" runat="server">
+                                        <p class="empty-case_field text-center">
+                                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral27554" runat="server" SetLanguageCode="LabelAddAnEntry" />
+                                        </p>
+                                    </asp:PlaceHolder>
+
+                                    <!-- Certification Listing -->
+                                    <asp:Repeater ID="rptCertification" runat="server" OnItemDataBound="rptCertification_ItemDataBound">
+                                        <ItemTemplate>
+                                            <div id="acCertificate" runat="server" class="section-content">
+                                                <div class="editable-section">
+                                                    <div class="section-entry">
+                                                        <div class="title-container has-edit-icon">
+                                                            <h4>
+                                                                <asp:Literal ID="ltAuthority" runat="server" Text="ltAuthority" />
+                                                            </h4>    
+                                                        </div>
+
+                                                        <h3>
+                                                            <asp:Literal ID="ltCertificateMembershipName" runat="server" />
+                                                        </h3>
+
+                                                        <div class="date-field">
+                                                            <asp:Literal ID="ltCertificateMembershipDate" runat="server" />
+                                                        </div>
+
+                                                        <p>
+                                                            <asp:Literal ID="ltCertificateMembershipUrl" runat="server" />
+                                                            <span class="certificate-membership">
+                                                                <asp:Literal ID="ltCertificateMembershipUrlNo" runat="server" />
+                                                            </span>
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -475,6 +587,7 @@
                     </asp:PlaceHolder>
                    
                 </div>
+
                 <!-- //CV-content -->
                 <!-- //content-holder -->
             </div>

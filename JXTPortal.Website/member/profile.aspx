@@ -1235,6 +1235,8 @@
                         </div>
                     </div>
                     <!-- //Section 2: Summary And Personal Details ........ ends -->
+                    
+                    
                     <!-- Section 15: Directorship  -->
                     <!-- Backend need to generate id name according to the section name -->
                     <asp:PlaceHolder ID="phSectionDirectorship" runat="server">
@@ -1670,6 +1672,7 @@
                         </asp:UpdatePanel>
                     </section>
                     </asp:PlaceHolder>
+                    
                     <!-- Section 4: Experience  -->
                     <asp:PlaceHolder ID="phSectionExperience" runat="server">
                         <section class="form-section scroll-point full-width clearfix" id="section-4">
@@ -2031,6 +2034,7 @@
                         </asp:UpdatePanel>
                     </section>
                     </asp:PlaceHolder>
+
                     <!-- Section 5: Educational Qualification -->
                     <asp:PlaceHolder ID="phSectionEducation" runat="server">
                         <section class="form-section scroll-point full-width clearfix" id="section-5">

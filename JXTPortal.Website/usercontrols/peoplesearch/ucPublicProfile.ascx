@@ -585,6 +585,141 @@
                             </asp:UpdatePanel>
                         </section>
                     </asp:PlaceHolder>
+
+                    <!-- Section 8: Licenses -->
+                    <asp:PlaceHolder ID="phSectionLicense" runat="server">
+                        <section class="form-section scroll-point full-width clearfix" id="section-8">
+                            <asp:UpdatePanel ID="upLicense" runat="server" UpdateMode="Conditional" class="form-all">
+                                <ContentTemplate>
+                                    
+                                    <!-- Header Title -->
+                                    <header class="section-header">
+                                        <div class="col-sm-8">
+                                            <h2 class="section-title">
+                                                <span class="fa fa-user">
+                                                    <!-- icon -->
+                                                </span>
+                                                <asp:Literal ID="ltTitleLicenses" runat="server" />
+                                                <span id="licenseInfo" class="fa fa-info-circle hide headingInfo" runat="server"
+                                                    clientidmode="Static">
+                                                    <!-- icon -->
+                                                </span>
+                                            </h2>
+                                        </div>
+                                    </header>
+
+                                    <!-- Empty Licences Placeholder -->
+                                    <asp:PlaceHolder runat="server" ID="phAddEntryTextLicenses">
+                                        <p class="empty-case_field text-center">
+                                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral2475757" runat="server" SetLanguageCode="LabelAddAnEntry" />
+                                        </p>
+                                    </asp:PlaceHolder>
+
+                                    <!-- Licences Listing -->
+                                    <asp:Repeater ID="rptLicenses" runat="server" OnItemDataBound="rptLicenses_ItemDataBound">
+                                        <ItemTemplate>
+                                            <div id="acLicense" runat="server" class="section-content">
+                                                <div class="editable-section">
+                                                    <div class="section-entry">
+
+                                                        <div class="title-container has-edit-icon">
+                                                            <h4>
+                                                                <asp:Literal ID="ltLicenseName" runat="server" Text="ltLicenseName" /></h4>
+                                                        </div>
+
+                                                        <asp:PlaceHolder ID="phLicenseAddress" runat="server" Visible="false">
+                                                            <address class="inline-field">
+                                                                <span class="fa fa-map-marker">
+                                                                    <!-- icon -->
+                                                                </span>
+                                                                <asp:Literal ID="ltLicenseStateCountry" runat="server" Text="" />
+                                                            </address>
+                                                        </asp:PlaceHolder>
+
+                                                        <h3>
+                                                            <asp:Literal ID="ltLicenseType" runat="server" Text="ltLicenseType" />
+                                                        </h3>
+
+                                                        <div class="date-field">
+                                                            <asp:Literal ID="ltLicenseDate" runat="server" Text="ltLicenseDate" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+                        </section>
+                    </asp:PlaceHolder>
+
+                    <!-- Section 9: Role Preference -->
+                    <asp:PlaceHolder ID="phSectionRolePreference" runat="server">
+                        <section class="form-section scroll-point full-width clearfix self-editable" id="section-9">
+                            <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional" class="form-all">
+                                <ContentTemplate>
+                                    <div id="acRolePrefrence" runat="server" class="section-content">
+                                        <div class="editable-section">
+                                            
+                                            <!-- Preferred Roles Heading -->
+                                            <header class="section-header">
+                                                <div class="col-sm-8">
+                                                    <h2 class="section-title">
+                                                        <span class="fa fa-heart-o">
+                                                            <!-- icon -->
+                                                        </span>
+                                                        <asp:Literal ID="ltTitleRolePreferences" runat="server" />
+                                                        <span id="rolePrefenceInfo" class="fa fa-info-circle hide headingInfo" runat="server"
+                                                            clientidmode="Static">
+                                                            <!-- icon -->
+                                                        </span>
+                                                    </h2>
+                                                </div>
+                                            </header>
+
+                                            <!-- Empty Placeholder -->
+                                            <asp:PlaceHolder ID="phAddEntryTextRolePreferences" runat="server">
+                                                <p class="empty-case_field text-center">
+                                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral24475678" runat="server" SetLanguageCode="LabelEditEntry" />
+                                                </p>
+                                            </asp:PlaceHolder>
+
+                                            <div class="section-content-inner">
+                                                <header class="section-body-header">
+                                                    <div class="title-container has-edit-icon">
+                                                        <h4>
+                                                            <asp:Literal ID="ltRolePreferencesSalary" runat="server" Text="ltRolePreferencesSalary" />
+                                                         </h4>
+                                                    </div>
+
+                                                    <asp:Literal ID="ltRolePreferencesLocation" runat="server" />
+                                                </header>
+
+                                                <div class="section-entry">
+                                                    <div class="body-field field">
+                                                        <h3>
+                                                            <asp:Literal ID="ltRolePreferencesProfession" runat="server" />
+                                                        </h3>
+                                                        
+                                                        <h5>
+                                                            <asp:Literal ID="ltRolePreferencesRole" runat="server" />
+                                                        </h5>
+                                                        
+                                                        <asp:Literal ID="ltRolePreferencesWorktype" runat="server" />
+                                                        
+                                                        <p>
+                                                            <asp:Literal ID="ltEligibleToWorkIn" runat="server" />
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+                        </section>
+                    </asp:PlaceHolder>
                    
                 </div>
 

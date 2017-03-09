@@ -23,8 +23,18 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
         private MemberWizardService _memberwizardService;
         private MemberQualificationService _memberqualificationService;
         private MemberCertificateMembershipsService _membercertificatemembershipsService;
+        private MemberLicensesService _memberlicensesService;
+        private LocationService _locationService;
+        private SiteCountriesService _sitecountriesService;
+        private SiteProfessionService _siteprofessionService;
+        private SiteWorkTypeService _siteworktypeService;
+        private SiteSalaryTypeService _sitesalarytypeService;
+        private CountriesService _countriesService;
 
         private List<ListItem> MonthList;
+        private List<Entities.SiteProfession> ProfessionList;
+        private List<Entities.SiteWorkType> WorkTypeList;
+        private List<Entities.SiteSalaryType> SalaryTypeList;
         private int MinExperienceEntry = 0;
         private int MinEducationEntry = 0;
 
@@ -124,6 +134,83 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
             }
         }
 
+        private MemberLicensesService MemberLicensesService
+        {
+            get
+            {
+                if (_memberlicensesService == null)
+                    _memberlicensesService = new MemberLicensesService();
+
+                return _memberlicensesService;
+            }
+        }
+
+        private SiteCountriesService SiteCountriesService
+        {
+            get
+            {
+                if (_sitecountriesService == null)
+                    _sitecountriesService = new SiteCountriesService();
+
+                return _sitecountriesService;
+            }
+        }
+        
+        private LocationService LocationService
+        {
+            get
+            {
+                if (_locationService == null)
+                    _locationService = new LocationService();
+
+                return _locationService;
+            }
+        }
+
+        private SiteProfessionService SiteProfessionService
+        {
+            get
+            {
+                if (_siteprofessionService == null)
+                    _siteprofessionService = new SiteProfessionService();
+
+                return _siteprofessionService;
+            }
+        }
+        
+        private SiteWorkTypeService SiteWorkTypeService
+        {
+            get
+            {
+                if (_siteworktypeService == null)
+                    _siteworktypeService = new SiteWorkTypeService();
+
+                return _siteworktypeService;
+            }
+        }
+        
+        private SiteSalaryTypeService SiteSalaryTypeService
+        {
+            get
+            {
+                if (_sitesalarytypeService == null)
+                    _sitesalarytypeService = new SiteSalaryTypeService();
+
+                return _sitesalarytypeService;
+            }
+        }
+
+        private CountriesService CountriesService
+        {
+            get
+            {
+                if (_countriesService == null)
+                    _countriesService = new CountriesService();
+
+                return _countriesService;
+            }
+        }
+
         #endregion
 
         protected void Page_Load(object sender, EventArgs e)
@@ -142,6 +229,9 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
                     SetEducation(member.MemberId);
                     LoadSkills(member.MemberId);
                     SetCertifications(member.MemberId);
+                    SetLicenses(member.MemberId);
+                    SetRolePreferences(member);
+                    LoadWorkType();
                 }
                 else
                 {
@@ -436,9 +526,16 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
 
             var memberCountry = _sitecountry.GetByCountryId(countryID).FirstOrDefault();
 
-            var countryName = memberCountry.SiteCountryName;
+            if (memberCountry != null)
+            {
+                var countryName = memberCountry.SiteCountryName;
 
-            return countryName;
+                return countryName;
+            }
+            else
+            {
+                return string.Empty;
+            }
         }
 
         private int SetAttachResume(int memberID)
@@ -900,6 +997,241 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
 
         }
 
+        private int SetLicenses(int memberID)
+        {
+            using (TList<Entities.MemberLicenses> memberlicenses = MemberLicensesService.GetByMemberId(memberID))
+            {
+                rptLicenses.DataSource = memberlicenses.OrderByDescending(s => s.IssueDate);
+                rptLicenses.DataBind();
+
+                phAddEntryTextLicenses.Visible = (memberlicenses.Count <= 0);
+            }
+
+            return 0;
+        }
+
+        protected void rptLicenses_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                Literal ltLicenseName = e.Item.FindControl("ltLicenseName") as Literal;
+                Literal ltLicenseType = e.Item.FindControl("ltLicenseType") as Literal;
+                Literal ltLicenseDate = e.Item.FindControl("ltLicenseDate") as Literal;
+                Literal ltLicenseStateCountry = e.Item.FindControl("ltLicenseStateCountry") as Literal;
+
+                MemberLicenses license = e.Item.DataItem as MemberLicenses;
+
+                string licensedate = string.Empty;
+                string startmonth = string.Empty;
+                string endmonth = string.Empty;
+
+                ltLicenseName.Text = HttpUtility.HtmlEncode(license.MemberLicenseName);
+                ltLicenseType.Text = HttpUtility.HtmlEncode(license.LicenseType);
+
+
+                bool hasStateAndCountryDisplay = false;
+
+                List<string> licenseStateAndCountry = new List<string>();
+
+
+                if (!string.IsNullOrWhiteSpace(license.State))
+                {
+                    licenseStateAndCountry.Add(HttpUtility.HtmlEncode(license.State));
+                    hasStateAndCountryDisplay = true;
+                }
+
+                if (license.CountryId.HasValue && license.CountryId != 0)
+                {
+                  
+                    licenseStateAndCountry.Add(HttpUtility.HtmlEncode(getCountryName(Convert.ToInt32(license.CountryId))));
+                    hasStateAndCountryDisplay = true;
+                }
+
+                ltLicenseStateCountry.Text = String.Join(", ", licenseStateAndCountry);
+
+
+                if (license.IssueDate.HasValue)
+                {
+                    foreach (ListItem month in MonthList)
+                    {
+                        if (month.Value == license.IssueDate.Value.Month.ToString())
+                        {
+                            startmonth = CommonFunction.GetResourceValue(month.Text);
+                            break;
+                        }
+                    }
+
+                    licensedate = startmonth + " " + license.IssueDate.Value.Year.ToString();
+                }
+
+                if (license.ExpiryDate.HasValue)
+                {
+                    foreach (ListItem month in MonthList)
+                    {
+                        if (month.Value == license.ExpiryDate.Value.Month.ToString())
+                        {
+                            endmonth = CommonFunction.GetResourceValue(month.Text);
+                            break;
+                        }
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(licensedate))
+                    {
+                        licensedate += " - ";
+                    }
+
+                    licensedate += endmonth + " " + license.ExpiryDate.Value.Year.ToString();
+                }
+
+                ltLicenseDate.Text = licensedate;
+
+            }
+        }
+
+
+        private int SetRolePreferences(Entities.Members member)
+        {
+            string strSalary = string.Empty;
+            string strLocation = string.Empty;
+            string strProfession = string.Empty;
+            string strRole = string.Empty;
+            string strWorkType = string.Empty;
+            string strEligibleToWorkIn = string.Empty;
+            string strCurrency = GetCurrency(member.LocationId);
+
+            ltRolePreferencesSalary.Text = string.Empty;
+
+            //Salary From display
+            if (!string.IsNullOrWhiteSpace(member.PreferredSalaryFrom))
+            {
+                strSalary = strCurrency + member.PreferredSalaryFrom;
+            }
+
+            //Salary To display
+            if (!string.IsNullOrWhiteSpace(member.PreferredSalaryTo))
+            {
+                if (!string.IsNullOrWhiteSpace(strSalary))
+                {
+                    strSalary += " - ";
+                }
+
+                strSalary += strCurrency + member.PreferredSalaryTo;
+            }
+
+            List<Entities.Countries> countryList = CountriesService.GetTranslatedCountries(SessionData.Language.LanguageId);
+
+            if (countryList != null)
+            {
+                countryList = countryList.Where(c => c.Sequence != -1 && c.Abbr != "CC").OrderBy(c => c.CountryName).ToList();
+
+            }
+
+            foreach (string split in member.EligibleToWorkIn.ToString().Split(new char[] { ',' }))
+            {
+                foreach (var country in countryList)
+                {
+                    if (country.CountryId.ToString() == split)
+                    {
+                        strEligibleToWorkIn += country.CountryName.ToString() + ", ";
+                        break;
+                    }
+                }
+            }
+
+
+
+            if (!string.IsNullOrWhiteSpace(member.WorkTypeId))
+            {
+                foreach (string split in member.WorkTypeId.Split(new char[] { ',' }))
+                {
+                    foreach (var worktype in SiteWorkTypeService.GetBySiteId(SessionData.Site.SiteId))
+                    {
+                        if (worktype.WorkTypeId.ToString() == split)
+                        {
+                            strWorkType += worktype.SiteWorkTypeName + ", ";
+                            break;
+                        }
+                    }
+                }
+            }
+
+            ltRolePreferencesSalary.Text = HttpUtility.HtmlEncode(strSalary);
+
+            if (!string.IsNullOrWhiteSpace(strLocation))
+            {
+                ltRolePreferencesLocation.Text = string.Format("<address class='inline-field'><span class='fa fa-map-marker'></span>{0}</address>", HttpUtility.HtmlEncode(strLocation.TrimEnd(new char[] { ',', '-' })));
+            }
+            else
+            {
+                ltRolePreferencesLocation.Text = string.Empty;
+            }
+
+            ltRolePreferencesProfession.Text = HttpUtility.HtmlEncode(strProfession);
+            ltRolePreferencesRole.Text = HttpUtility.HtmlEncode(strRole.TrimEnd(new char[] { ',', ' ' }));
+
+            if (!string.IsNullOrWhiteSpace(strWorkType))
+            {
+                ltRolePreferencesWorktype.Text = string.Format("<p><strong>{0}:</strong><br />{1}</p>", CommonFunction.GetResourceValue("LabelWorkType"), HttpUtility.HtmlEncode(strWorkType.TrimEnd(new char[] { ',', ' ' })));
+            }
+            else
+            {
+                ltRolePreferencesWorktype.Text = string.Empty;
+            }
+
+            if (!string.IsNullOrWhiteSpace(strEligibleToWorkIn))
+            {
+                ltEligibleToWorkIn.Text = string.Format("<strong>{0}:</strong><br />{1}", CommonFunction.GetResourceValue("LabelEligibleToWorkIn"), HttpUtility.HtmlEncode(strEligibleToWorkIn.TrimEnd(new char[] { ',', ' ' })));
+            }
+            else
+            {
+                ltEligibleToWorkIn.Text = string.Empty;
+            }
+
+            //Add An Entry to not show when any one of the things are not empty
+            if (!string.IsNullOrWhiteSpace(ltRolePreferencesLocation.Text)
+                || !string.IsNullOrWhiteSpace(ltRolePreferencesProfession.Text)
+                || !string.IsNullOrWhiteSpace(ltRolePreferencesRole.Text)
+                || !string.IsNullOrWhiteSpace(ltRolePreferencesSalary.Text)
+                || !string.IsNullOrWhiteSpace(strWorkType)
+                || !string.IsNullOrWhiteSpace(strEligibleToWorkIn)
+            )
+            {
+                phAddEntryTextRolePreferences.Visible = false;
+            }
+            else
+            {
+                phAddEntryTextRolePreferences.Visible = true;
+            }
+
+            return 0;
+        }
+
+        private void LoadProfession()
+        {
+            ProfessionList = SiteProfessionService.GetTranslatedProfessions(SessionData.Site.SiteId, SessionData.Site.UseCustomProfessionRole);
+
+        }
+
+        private void LoadWorkType()
+        {
+            WorkTypeList = SiteWorkTypeService.GetTranslatedWorkTypes();
+        }
+
+        private void LoadSalaryType()
+        {
+            SalaryTypeList = new List<Entities.SiteSalaryType>();
+
+            List<Entities.SiteSalaryType> sitesalarytypes = SiteSalaryTypeService.Get_ValidListBySiteID(SessionData.Site.SiteId);
+
+            foreach (Entities.SiteSalaryType sitesalarytype in sitesalarytypes)
+            {
+                if (sitesalarytype.SalaryTypeId != (int)PortalEnums.Search.SalaryType.NA)
+                {
+                    SalaryTypeList.Add(sitesalarytype);
+                }
+            }
+        }
+
         private string JoinText(List<string> texts)
         {
             string result = string.Empty;
@@ -937,6 +1269,27 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
             MonthList.Add(new ListItem(CommonFunction.GetResourceValue("LabelOct"), "10"));
             MonthList.Add(new ListItem(CommonFunction.GetResourceValue("LabelNov"), "11"));
             MonthList.Add(new ListItem(CommonFunction.GetResourceValue("LabelDec"), "12"));
+        }
+
+        protected string GetCurrency(string locationID)
+        {
+            string currency = string.Empty;
+
+            if (!string.IsNullOrWhiteSpace(locationID))
+            {
+                Entities.Location loc = LocationService.GetByLocationId(Convert.ToInt32(locationID));
+                if (loc != null)
+                {
+                    Entities.SiteCountries country = SiteCountriesService.GetBySiteIdCountryId(SessionData.Site.SiteId, loc.CountryId);
+
+                    if (country != null)
+                    {
+                        currency = country.Currency;
+                    }
+                }
+            }
+
+            return currency;
         }
 
         private void AssignSectionTitle(JXTPortal.Entities.MemberWizard memberWizard)
@@ -1234,9 +1587,8 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
             ltTitleEducation.Text = HttpUtility.HtmlEncode(strEducation);
             ltTitleSkills.Text = HttpUtility.HtmlEncode(strSkills);
             ltTitleCertification.Text = HttpUtility.HtmlEncode(strMemberships);
-           // ltTitleLicenses.Text = HttpUtility.HtmlEncode(strLicenses);
-            //ltTitleRolePreferences.Text = HttpUtility.HtmlEncode(strRolePreferences);
-           // ltRolePreferencesEditTitle.Text = HttpUtility.HtmlEncode(strRolePreferences);
+            ltTitleLicenses.Text = HttpUtility.HtmlEncode(strLicenses);
+            ltTitleRolePreferences.Text = HttpUtility.HtmlEncode(strRolePreferences);
             ltTitleResume.Text = HttpUtility.HtmlEncode(strCv);
             ltTitleCoverLetter.Text = HttpUtility.HtmlEncode(strAttachCoverLetter);
            // ltTitleLanguage.Text = HttpUtility.HtmlEncode(strLanguages);
@@ -1244,5 +1596,7 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
            // ltTitleCustomQuestions.Text = HttpUtility.HtmlEncode(strCustomQuestion);
             
         }
+
+
     }
 }

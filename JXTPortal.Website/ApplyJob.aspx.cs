@@ -27,6 +27,7 @@ using NotesFor.HtmlToOpenXml;
 using JXTPortal.Service.Dapper;
 using JXTPortal.Data.Dapper.Entities.ScreeningQuestions;
 using JXTPortal.Website.usercontrols.common;
+using JXTPortal.Common.Extensions;
 
 namespace JXTPortal.Website
 {
@@ -464,8 +465,6 @@ namespace JXTPortal.Website
         public IJobScreeningQuestionsService JobScreeningQuestionsService { get; set; }
         public IScreeningQuestionsService ScreeningQuestionsService { get; set; }
         public IJobApplicationScreeningAnswersService JobApplicationScreeningAnswersService { get; set; }
-
-        private string ContentValidationRegex = ConfigurationManager.AppSettings["ContentValidationRegex"];
 
         private void SetDisplay()
         {
@@ -1207,7 +1206,7 @@ namespace JXTPortal.Website
 
                     if (!string.IsNullOrWhiteSpace(screeningQuestionAnswer))
                     {
-                        if (Regex.IsMatch(screeningQuestionAnswer, ContentValidationRegex) == false)
+                        if (!screeningQuestionAnswer.IsValidContent())
                         {
                             hasError = true;
                             phError.Visible = true;

@@ -42,8 +42,8 @@
       <name Language='ja'>派遣、臨時</name>
       <name Language='ko'>계약직</name>
     </employmenttype>
-    <employmenttype Name="Temp to Perm">
-      <name Language='en'>Temp to Perm</name>
+    <employmenttype Name="Temp-To-Perm">
+      <name Language='en'>Temp-To-Perm</name>
       <name Language='ja'>パートタイム</name>
       <name Language='ko'>아르바이트</name>
     </employmenttype>
@@ -4361,7 +4361,7 @@
   <jobcategories>
     <jobcategory Name='Accounting &amp; Finance'>
       <name Language='en'><![CDATA[Accounting & Finance]]></name>
-      <name Language='ja'><![CDATA[Accounting & Finance]]></name>
+      <name Language='ja'><![CDATA[財務会計]]></name>
       <name Language='ko'><![CDATA[회계 및 재무]]></name>
       <jobfunctions>
         <jobfunction Name='Audit'>
@@ -4414,7 +4414,7 @@
 
     <jobcategory Name='Automotive / Automotive Parts'>
       <name Language='en'><![CDATA[Automotive / Automotive Parts]]></name>
-      <name Language='ja'><![CDATA[Automotive / Automotive Parts]]></name>
+      <name Language='ja'><![CDATA[自動車 / 自動車部品]]></name>
       <name Language='ko'><![CDATA[자동차/자동차 부품]]></name>
       <jobfunctions>
         <jobfunction Name='Application Engineer / Sales Engineer'>
@@ -4447,7 +4447,7 @@
 
     <jobcategory Name='Banking &amp; Finance'>
       <name Language='en'><![CDATA[Banking & Finance]]></name>
-      <name Language='ja'><![CDATA[Banking & Finance]]></name>
+      <name Language='ja'><![CDATA[銀行 / 金融]]></name>
       <name Language='ko'><![CDATA[은행 및 금융]]></name>
 
       <jobfunctions>
@@ -4497,7 +4497,7 @@
 
     <jobcategory Name='Chemical / Material'>
       <name Language='en'><![CDATA[Chemical / Material]]></name>
-      <name Language='ja'><![CDATA[Chemical / Material]]></name>
+      <name Language='ja'><![CDATA[化学製品 / 素材]]></name>
       <name Language='ko'><![CDATA[화학/재료]]></name>
 
       <jobfunctions>
@@ -4531,7 +4531,7 @@
 
     <jobcategory Name='Engineering'>
       <name Language='en'><![CDATA[Engineering]]></name>
-      <name Language='ja'><![CDATA[Engineering]]></name>
+      <name Language='ja'><![CDATA[エンジニアリング]]></name>
       <name Language='ko'><![CDATA[공학]]></name>
 
       <jobfunctions>
@@ -4606,7 +4606,7 @@
 
     <jobcategory Name='Executive Management'>
       <name Language='en'><![CDATA[Executive Management]]></name>
-      <name Language='ja'><![CDATA[Executive Management]]></name>
+      <name Language='ja'><![CDATA[経営管理]]></name>
       <name Language='ko'><![CDATA[임원]]></name>
 
       <jobfunctions>
@@ -4656,7 +4656,7 @@
 
     <jobcategory Name='HR, GA and Facilities'>
       <name Language='en'><![CDATA[HR, GA and Facilities]]></name>
-      <name Language='ja'><![CDATA[HR, GA and Facilities]]></name>
+      <name Language='ja'><![CDATA[人事・総務・施設管理]]></name>
       <name Language='ko'><![CDATA[HR, GA 및 공공시설]]></name>
 
       <jobfunctions>
@@ -4746,7 +4746,7 @@
 
     <jobcategory Name='IT &amp; Telecoms'>
       <name Language='en'><![CDATA[IT & Telecoms]]></name>
-      <name Language='ja'><![CDATA[IT & Telecoms]]></name>
+      <name Language='ja'><![CDATA[IT・電気通信]]></name>
       <name Language='ko'><![CDATA[IT 및 통신]]></name>
 
       <jobfunctions>
@@ -4825,7 +4825,7 @@
 
     <jobcategory Name='Industrial Equipment / Plant / Parts'>
       <name Language='en'><![CDATA[Industrial Equipment / Plant / Parts]]></name>
-      <name Language='ja'><![CDATA[Industrial Equipment / Plant / Parts]]></name>
+      <name Language='ja'><![CDATA[産業機器 / 設備 / 部品]]></name>
       <name Language='ko'><![CDATA[산업 장비/공장/부품]]></name>
 
       <jobfunctions>
@@ -4880,7 +4880,7 @@
 
     <jobcategory Name='Legal'>
       <name Language='en'><![CDATA[Legal]]></name>
-      <name Language='ja'><![CDATA[Legal]]></name>
+      <name Language='ja'><![CDATA[法務]]></name>
       <name Language='ko'><![CDATA[법률]]></name>
 
       <jobfunctions>
@@ -4905,7 +4905,7 @@
 
     <jobcategory Name='Medical Device / Diagnostics / Analytical'>
       <name Language='en'><![CDATA[Medical Device / Diagnostics / Analytical]]></name>
-      <name Language='ja'><![CDATA[Medical Device / Diagnostics / Analytical]]></name>
+      <name Language='ja'><![CDATA[医療機器 / 診断 / 分析]]></name>
       <name Language='ko'><![CDATA[의료 기기/진단/분석]]></name>
 
       <jobfunctions>
@@ -4980,7 +4980,7 @@
 
     <jobcategory Name='Pharmaceutical / CRO / Reagents / Personal Care'>
       <name Language='en'><![CDATA[Pharmaceutical / CRO / Reagents / Personal Care]]></name>
-      <name Language='ja'><![CDATA[Pharmaceutical / CRO / Reagents / Personal Care]]></name>
+      <name Language='ja'><![CDATA[製薬 / CRO / 試薬 / 個人医療]]></name>
       <name Language='ko'><![CDATA[제약/CRO/시약/개인용품]]></name>
 
       <jobfunctions>
@@ -5055,7 +5055,7 @@
 
     <jobcategory Name='Real Estate &amp; Insurance'>
       <name Language='en'><![CDATA[Real Estate & Insurance]]></name>
-      <name Language='ja'><![CDATA[Real Estate & Insurance]]></name>
+      <name Language='ja'><![CDATA[不動産 / 保険]]></name>
       <name Language='ko'><![CDATA[부동산 및 보험]]></name>
 
       <jobfunctions>
@@ -5124,7 +5124,7 @@
 
     <jobcategory Name='Sales &amp; Marketing'>
       <name Language='en'><![CDATA[Sales & Marketing]]></name>
-      <name Language='ja'><![CDATA[Sales & Marketing]]></name>
+      <name Language='ja'><![CDATA[営業 / マーケティング]]></name>
       <name Language='ko'><![CDATA[영업 및 마케팅]]></name>
 
       <jobfunctions>
@@ -5249,7 +5249,7 @@
 
     <jobcategory Name='Semiconductor / Embedded Device'>
       <name Language='en'><![CDATA[Semiconductor / Embedded Device]]></name>
-      <name Language='ja'><![CDATA[Semiconductor / Embedded Device]]></name>
+      <name Language='ja'><![CDATA[半導体 / 組込機器]]></name>
       <name Language='ko'><![CDATA[반도체/내장 디바이스]]></name>
 
       <jobfunctions>
@@ -5279,7 +5279,7 @@
 
     <jobcategory Name='Supply Chain Management'>
       <name Language='en'><![CDATA[Supply Chain Management]]></name>
-      <name Language='ja'><![CDATA[Supply Chain Management]]></name>
+      <name Language='ja'><![CDATA[供給プロセスマネージメント]]></name>
       <name Language='ko'><![CDATA[공급망 관리]]></name>
 
       <jobfunctions>
@@ -5381,8 +5381,8 @@
     </salaryperiod>
     <salaryperiod Name="Bi-Monthly">
       <name Language="en">Bi-Monthly</name>
-      <name Language="ja">Bi-Monthly</name>
-      <name Language="ko">Bi-Monthly</name>
+      <name Language="ja">隔月</name>
+      <name Language="ko">격월</name>
     </salaryperiod>
     <salaryperiod Name="Weekly">
       <name Language="en">Weekly</name>
@@ -5391,8 +5391,8 @@
     </salaryperiod>
     <salaryperiod Name="Bi-Weekly">
       <name Language="en">Bi-Weekly</name>
-      <name Language="ja">Bi-Weekly</name>
-      <name Language="ko">Bi-Weekly</name>
+      <name Language="ja">隔週</name>
+      <name Language="ko">격주</name>
     </salaryperiod>
     <salaryperiod Name="Daily">
       <name Language="en">Daily</name>
@@ -5868,8 +5868,8 @@
     </desiredcountry>
     <desiredcountry Name="Overseas: Other Areas">
       <name Language='en'>Overseas: Other Areas</name>
-      <name Language='ja'>Overseas: Other Areas</name>
-      <name Language='ko'>Overseas: Other Areas</name>
+      <name Language='ja'>海外：その他のエリア</name>
+      <name Language='ko'>해외: 기타 지역</name>
       <locations>
       </locations>
     </desiredcountry>

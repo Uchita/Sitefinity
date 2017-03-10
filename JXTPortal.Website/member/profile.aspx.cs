@@ -8231,7 +8231,7 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
             }
             else
             {
-                if (tbReferencesAddName.Text.IsValidContent())
+                if (!tbReferencesAddName.Text.IsValidContent())
                 {
                     hasError = true;
                     phReferencesAddNameError.Visible = true;

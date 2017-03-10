@@ -380,7 +380,7 @@
                                         </div>
                                         <div class="col-sm-6 form-group-element">
                                             <label>
-                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral9" runat="server" SetLanguageCode="LabelState" />
+                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral9" runat="server" SetLanguageCode="LabelLocation" />
                                             </label>
                                             <asp:DropDownList ID="ddlState" ClientIDMode="Static" runat="server" CssClass="form-control">
                                             </asp:DropDownList>

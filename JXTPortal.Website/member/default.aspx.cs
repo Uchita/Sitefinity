@@ -535,6 +535,7 @@ namespace JXTPortal.Website.members
             hypJobAlertsViewLink.Text = CommonFunction.GetResourceValue("LabelViewMore");
             ltMemberNoJobAlerts.Text = CommonFunction.GetResourceValue("LabelNoJobAlerts");
             hypSavedJobsViewLink.Text = CommonFunction.GetResourceValue("LabelViewMore");
+            hypApplicationTrackerViewLink.Text = CommonFunction.GetResourceValue("LabelViewMore");
             ltMemberNoSaveJobs.Text = CommonFunction.GetResourceValue("LabelNoSavedJob");
             ltMemberNoJobTracker.Text = CommonFunction.GetResourceValue("LabelNoJobTracked");
         }

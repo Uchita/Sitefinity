@@ -212,7 +212,7 @@ $(document).ready(function () {
         });
 
         var ccurrency = $("#countryID option:selected").data('placeholdertag');
-        
+
         if (ccurrency == null || ccurrency == '') {
             ccurrency = $("#locationID option:selected").data('placeholdertag');
             if (ccurrency == null) {
@@ -677,3 +677,18 @@ function initMenu() {
     );
 }
 $(document).ready(function () { initMenu(); });
+
+
+function isNumberKey(evt) {
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+
+    //allow arrows key to pass
+    if (charCode >= 37 && charCode <= 40)
+        return true;
+        
+    if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+        return false;
+
+    return true;
+}

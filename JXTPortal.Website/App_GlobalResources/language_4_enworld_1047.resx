@@ -559,7 +559,7 @@
   </data>
   <data name="LabelAdvertiserInvalid" xml:space="preserve">
     <value>&lt;h2&gt;広告主各位、&lt;/h2&gt;
-&lt;p&gt;ご使用のアカウントは、既に当社で認証されています。&lt;a href="/advertiser/login.aspx"&gt;ログインページ&lt;/a&gt;からアカウントにアクセス可能です。&lt;/p&gt;</value>
+&lt;p&gt;ご使用のアカウントは、既に当社で認証されています。&lt;a href=/advertiser/login.aspx"&gt;ログインページ&lt;/a&gt;からアカウントにアクセス可能です。&lt;/p&gt;"</value>
     <comment>Advertiser validation failed.</comment>
   </data>
   <data name="LabelAdvertiserJobTemplateLogo" xml:space="preserve">
@@ -619,19 +619,19 @@
     <comment>- All Classifications -</comment>
   </data>
   <data name="LabelAllCountries" xml:space="preserve">
-    <value>-All Countries-</value>
+    <value>- 全ての国 -</value>
     <comment>-All Countries-</comment>
   </data>
   <data name="LabelAllCountry" xml:space="preserve">
-    <value>- All Countries -</value>
+    <value>- 全ての国 -</value>
     <comment>- All Countries -</comment>
   </data>
   <data name="LabelAllLocation" xml:space="preserve">
-    <value>- All Locations -</value>
+    <value>- 全ての地域 -</value>
     <comment>- All Locations -</comment>
   </data>
   <data name="LabelAllLocations" xml:space="preserve">
-    <value>-All Locations-</value>
+    <value>- 全ての地域 -</value>
     <comment>-All Locations-</comment>
   </data>
   <data name="LabelAllSalary" xml:space="preserve">
@@ -719,7 +719,7 @@
     <comment>Applied</comment>
   </data>
   <data name="LabelApply" xml:space="preserve">
-    <value>応募</value>
+    <value>応募する</value>
     <comment>Apply</comment>
   </data>
   <data name="LabelApplyFor" xml:space="preserve">
@@ -727,11 +727,11 @@
     <comment>Apply For</comment>
   </data>
   <data name="LabelApplyForPosition" xml:space="preserve">
-    <value>応募する求人</value>
+    <value>応募する求人情報</value>
     <comment>Apply for position</comment>
   </data>
   <data name="LabelApplyWith" xml:space="preserve">
-    <value>以下で応募</value>
+    <value>以下で応募する</value>
     <comment>Apply with</comment>
   </data>
   <data name="LabelApr" xml:space="preserve">
@@ -819,7 +819,7 @@
     <comment>Bachelor Degree</comment>
   </data>
   <data name="LabelBackToJob" xml:space="preserve">
-    <value>求人に戻る</value>
+    <value>戻る</value>
     <comment>Back to Job</comment>
   </data>
   <data name="labelBasicInformation" xml:space="preserve">
@@ -831,11 +831,11 @@
     <comment>Beginner</comment>
   </data>
   <data name="LabelBelow" xml:space="preserve">
-    <value>からご登録ください </value>
+    <value>からご登録ください</value>
     <comment>below</comment>
   </data>
   <data name="LabelBelowListSavedJobs" xml:space="preserve">
-    <value>検討中のジョブリスト</value>
+    <value>検討中の求人リスト</value>
     <comment>Below is a list of your saved jobs</comment>
   </data>
   <data name="LabelBilled" xml:space="preserve">
@@ -851,7 +851,7 @@
     <comment>Browse</comment>
   </data>
   <data name="LabelBtnFinish" xml:space="preserve">
-    <value>フィニッシュ</value>
+    <value>Finish</value>
     <comment>Finish</comment>
   </data>
   <data name="LabelBtnPrevious" xml:space="preserve">
@@ -915,7 +915,7 @@
     <comment>Captcha</comment>
   </data>
   <data name="LabelCaptchaRequired" xml:space="preserve">
-    <value>Please complete the captcha</value>
+    <value>チェックボックスをオンにしてください。</value>
     <comment>Please complete the captcha</comment>
   </data>
   <data name="LabelCartEmpty" xml:space="preserve">
@@ -1011,7 +1011,7 @@
     <comment>Clear</comment>
   </data>
   <data name="LabelClick" xml:space="preserve">
-    <value>クリック</value>
+    <value>Click</value>
     <comment>Click</comment>
   </data>
   <data name="LabelClickHere" xml:space="preserve">
@@ -1079,7 +1079,7 @@
     <comment>Are you sure you want to delete this record?</comment>
   </data>
   <data name="LabelConfirmEmail" xml:space="preserve">
-    <value>メールアドレスを再入力してください。</value>
+    <value>メールアドレス（確認）</value>
     <comment>Confirm Email</comment>
   </data>
   <data name="LabelConfirmEmailNotMatch" xml:space="preserve">
@@ -1099,7 +1099,7 @@
     <comment>Confirm New Password</comment>
   </data>
   <data name="LabelConfirmPassword" xml:space="preserve">
-    <value>パスワードを再入力してください。</value>
+    <value>パスワード（確認）</value>
     <comment>Confirm password</comment>
   </data>
   <data name="LabelConfirmRepost" xml:space="preserve">
@@ -1107,7 +1107,7 @@
     <comment>You are about to repost selected jobs(s), please confirm you want to repost</comment>
   </data>
   <data name="LabelConfirmResetPassword" xml:space="preserve">
-    <value>パスワードのリセットを確認する</value>
+    <value>パスワードの再設定の確認</value>
     <comment>Confirm Reset Password</comment>
   </data>
   <data name="LabelContactDetails" xml:space="preserve">
@@ -1175,7 +1175,7 @@
     <comment>Checkboxes</comment>
   </data>
   <data name="LabelCreateAsAlert" xml:space="preserve">
-    <value>アラートとして作成</value>
+    <value>ジョブジョブアラートを作成</value>
     <comment>Create as alert</comment>
   </data>
   <data name="LabelCreated" xml:space="preserve">
@@ -1191,11 +1191,11 @@
     <comment>Create Job</comment>
   </data>
   <data name="LabelCreateJobAlert" xml:space="preserve">
-    <value>ジョブアラートの登録</value>
+    <value>ジョブジョブアラートの登録</value>
     <comment>Create Job Alert</comment>
   </data>
   <data name="LabelCreateJobAlertNameIsMissing" xml:space="preserve">
-    <value>ジョブアラート名が欠落している作成</value>
+    <value>ジョブジョブアラート名が欠落している作成</value>
     <comment>Create Job Alert Name is missing</comment>
   </data>
   <data name="LabelCreateNewTemplate" xml:space="preserve">
@@ -1475,7 +1475,7 @@
     <comment>Edit Favourite Search</comment>
   </data>
   <data name="LabelEditJobAlert" xml:space="preserve">
-    <value>ジョブアラートを編集する</value>
+    <value>ジョブジョブアラートを編集する</value>
     <comment>Edit Job Alert</comment>
   </data>
   <data name="LabelEditJobApplication" xml:space="preserve">
@@ -1519,7 +1519,7 @@
     <comment>Email Address already exists</comment>
   </data>
   <data name="LabelEmailAddressRequired" xml:space="preserve">
-    <value>メールアドレスを入力してください</value>
+    <value>メールアドレスを入力してください。</value>
     <comment>Email Address is required</comment>
   </data>
   <data name="LabelEmailAlreadyExist" xml:space="preserve">
@@ -1527,7 +1527,7 @@
     <comment>Email already exists. Please proceed to &lt;a href="~/member/login.aspx"&gt;login&lt;/a&gt;</comment>
   </data>
   <data name="LabelEmailExist" xml:space="preserve">
-    <value>このメールアドレスは登録済みです</value>
+    <value>このメールアドレスは登録済みです。</value>
     <comment>Email already exists</comment>
   </data>
   <data name="LabelEmailFormat" xml:space="preserve">
@@ -1547,7 +1547,7 @@
     <comment>Email is invalid.</comment>
   </data>
   <data name="LabelEmailJobToAFriend" xml:space="preserve">
-    <value>この求人を友人にメールする</value>
+    <value>メールする</value>
     <comment>Click here to email this job to a friend</comment>
   </data>
   <data name="LabelEmailMandatory" xml:space="preserve">
@@ -1691,7 +1691,7 @@
     <comment>External Job Application</comment>
   </data>
   <data name="LabelFailedToCreatedYouJobAlert" xml:space="preserve">
-    <value>作成したアラートに失敗しました</value>
+    <value>作成したジョブアラートに失敗しました</value>
     <comment>Failed to created your alert</comment>
   </data>
   <data name="LabelFailedToSavedYourSearch" xml:space="preserve">
@@ -1719,7 +1719,7 @@
     <comment>Favourite Search saved successfully</comment>
   </data>
   <data name="LabelFavouriteThisSearch" xml:space="preserve">
-    <value>この検索条件をお気に入りに保存する</value>
+    <value>この検索条件をお気に入りに追加する</value>
     <comment>Favourite this search</comment>
   </data>
   <data name="LabelFax" xml:space="preserve">
@@ -1847,7 +1847,7 @@
     <comment>Generate</comment>
   </data>
   <data name="LabelGoBackToSearchResults" xml:space="preserve">
-    <value>検索結果に戻ります</value>
+    <value>to go back to your search results.</value>
     <comment>to go back to your search results.</comment>
   </data>
   <data name="LabelGraduated" xml:space="preserve">
@@ -1871,7 +1871,7 @@
     <comment>Headline</comment>
   </data>
   <data name="LabelHere" xml:space="preserve">
-    <value>こちら</value>
+    <value>Here</value>
     <comment>Here</comment>
   </data>
   <data name="LabelHi" xml:space="preserve">
@@ -1879,11 +1879,11 @@
     <comment>Hi</comment>
   </data>
   <data name="LabelHistoricalJobStatistics" xml:space="preserve">
-    <value>過去のジョブの統計データ</value>
+    <value>過去の求人の統計データ</value>
     <comment>Historical Job Statistics</comment>
   </data>
   <data name="LabelHotJob" xml:space="preserve">
-    <value>人気のジョブ</value>
+    <value>人気の求人</value>
     <comment>Hot Job</comment>
   </data>
   <data name="LabelHourlyRange" xml:space="preserve">
@@ -1927,11 +1927,11 @@
     <comment>Institution Name</comment>
   </data>
   <data name="LabelInterestedInThisJob" xml:space="preserve">
-    <value>このジョブを検討リストに入れますか</value>
+    <value>この求人を検討リストに入れますか</value>
     <comment>Interested in this job?</comment>
   </data>
   <data name="LabelInterestedInThisJob1" xml:space="preserve">
-    <value>このジョブを検討リストに入れますか</value>
+    <value>この求人を検討リストに入れますか</value>
     <comment>Interested in this job?</comment>
   </data>
   <data name="LabelIntermediate" xml:space="preserve">
@@ -1955,7 +1955,7 @@
     <comment>Invalid file type. GIF, JPG and JPEG are the only valid images types allowed for upload.</comment>
   </data>
   <data name="LabelInvalidJobAlert" xml:space="preserve">
-    <value>このジョブアラートはお取り扱いできません</value>
+    <value>このジョブジョブアラートはお取り扱いできません</value>
     <comment>Invalid Job Alert</comment>
   </data>
   <data name="LabelInvalidURL" xml:space="preserve">
@@ -1995,11 +1995,11 @@
     <comment>A Job Alert has been created.</comment>
   </data>
   <data name="LabelJobAlertCriteria" xml:space="preserve">
-    <value>アラートの検索条件</value>
+    <value>ジョブアラートの検索条件</value>
     <comment>Job Alert Criteria</comment>
   </data>
   <data name="LabelJobAlertDetail" xml:space="preserve">
-    <value>アラートの詳細</value>
+    <value>ジョブアラートの詳細</value>
     <comment>Job Alert Detail</comment>
   </data>
   <data name="LabelJobAlertEditGUIDFailed" xml:space="preserve">
@@ -2027,7 +2027,7 @@
     <comment>Job Alert View GUID Failed</comment>
   </data>
   <data name="LabelJobAlertYes" xml:space="preserve">
-    <value>新着ジョブ情報を毎日メールで受け取る</value>
+    <value>新着求人情報を毎日メールで受け取る</value>
     <comment>Yes, send me a Daily Job Alert</comment>
   </data>
   <data name="LabelJobApplication" xml:space="preserve">
@@ -2047,11 +2047,11 @@
     <comment>Job Application Note</comment>
   </data>
   <data name="LabelJobApplied" xml:space="preserve">
-    <value>このジョブに応募した日付</value>
+    <value>この求人に応募した日付</value>
     <comment>You applied for this job on</comment>
   </data>
   <data name="LabelJobApplyFailed" xml:space="preserve">
-    <value>ジョブへの申込みができませんでした。もう一度行ってください。</value>
+    <value>求人への申込みができませんでした。もう一度行ってください。</value>
     <comment>Failed to submit job application. Please try again.</comment>
   </data>
   <data name="LabelJobAssignnedTo" xml:space="preserve">
@@ -2063,31 +2063,31 @@
     <comment>Job Category</comment>
   </data>
   <data name="LabelJobClassification" xml:space="preserve">
-    <value>ジョブの分類</value>
+    <value>求人の分類</value>
     <comment>Job Classification</comment>
   </data>
   <data name="LabelJobClassificationDetail" xml:space="preserve">
-    <value>このジョブの職種に関する詳細</value>
+    <value>この求人の職種に関する詳細</value>
     <comment>Job Classification Detail</comment>
   </data>
   <data name="LabelJobContactDetails" xml:space="preserve">
-    <value>このジョブの連絡先</value>
+    <value>この求人の連絡先</value>
     <comment>Job Contact Details</comment>
   </data>
   <data name="LabelJobDescription" xml:space="preserve">
-    <value>ジョブの内容</value>
+    <value>求人の内容</value>
     <comment>Job Description</comment>
   </data>
   <data name="LabelJobExpired" xml:space="preserve">
-    <value>このジョブは終了しました</value>
+    <value>この求人は終了しました</value>
     <comment>Job Expired</comment>
   </data>
   <data name="LabelJobExpiryNotification" xml:space="preserve">
-    <value>ジョブの有効期限通知</value>
+    <value>求人の有効期限通知</value>
     <comment>Job Expiry Notification</comment>
   </data>
   <data name="LabelJobFriendlyName" xml:space="preserve">
-    <value>ジョブ用の名前</value>
+    <value>求人用の名前</value>
     <comment>Job Friendly Name</comment>
   </data>
   <data name="LabelJobFunction" xml:space="preserve">
@@ -2095,51 +2095,51 @@
     <comment>Job Function</comment>
   </data>
   <data name="LabelJobHaveApplied" xml:space="preserve">
-    <value>このジョブに応募済の可能性があります</value>
+    <value>この求人に応募済の可能性があります</value>
     <comment>You might have applied for this job on</comment>
   </data>
   <data name="LabelJobID" xml:space="preserve">
-    <value>ジョブ ID</value>
+    <value>求人 ID</value>
     <comment>Job ID</comment>
   </data>
   <data name="LabelJobIsArchived" xml:space="preserve">
-    <value>このジョブはアーカイブに入っています</value>
+    <value>この求人はアーカイブに入っています</value>
     <comment>This job is archived</comment>
   </data>
   <data name="LabelJobIsExpired" xml:space="preserve">
-    <value>このジョブの掲載は終了しました</value>
+    <value>この求人の掲載は終了しました</value>
     <comment>This job is expired</comment>
   </data>
   <data name="LabelJobItem" xml:space="preserve">
-    <value>ジョブ項目</value>
+    <value>求人項目</value>
     <comment>Job Item</comment>
   </data>
   <data name="LabelJobItemPrice" xml:space="preserve">
-    <value>ジョブ項目の金額</value>
+    <value>求人項目の金額</value>
     <comment>Job Item Price</comment>
   </data>
   <data name="LabelJobItemType" xml:space="preserve">
-    <value>ジョブ項目の種類</value>
+    <value>求人項目の種類</value>
     <comment>Job Item Type</comment>
   </data>
   <data name="LabelJobLocation" xml:space="preserve">
-    <value>ジョブ勤務地</value>
+    <value>求人勤務地</value>
     <comment>Job Location</comment>
   </data>
   <data name="LabelJobName" xml:space="preserve">
-    <value>ジョブ名</value>
+    <value>求人名</value>
     <comment>Job Name</comment>
   </data>
   <data name="LabelJobPreview" xml:space="preserve">
-    <value>ジョブプレビュー</value>
+    <value>求人プレビュー</value>
     <comment>Job Preview</comment>
   </data>
   <data name="LabelJobSalaryDetail" xml:space="preserve">
-    <value>ジョブに関する詳細</value>
+    <value>求人に関する詳細</value>
     <comment>Job Salary Detail</comment>
   </data>
   <data name="LabelJobSaved" xml:space="preserve">
-    <value>ジョブ保存</value>
+    <value>保存を解除</value>
     <comment>Job Saved</comment>
   </data>
   <data name="LabelJobSeeker" xml:space="preserve">
@@ -2151,23 +2151,23 @@
     <comment>job seeker(s)</comment>
   </data>
   <data name="LabelJobsExpiringIn24hrs" xml:space="preserve">
-    <value>24時間以内に終了するジョブ</value>
+    <value>24時間以内に終了する求人</value>
     <comment>Jobs Expiring in 24 hrs</comment>
   </data>
   <data name="LabelJobStartDate" xml:space="preserve">
-    <value>ジョブ開始日</value>
+    <value>求人開始日</value>
     <comment>Job Start Date</comment>
   </data>
   <data name="LabelJobTemplate" xml:space="preserve">
-    <value>ジョブテンプレート</value>
+    <value>求人テンプレート</value>
     <comment>Job Template</comment>
   </data>
   <data name="LabelJobTemplateLogo" xml:space="preserve">
-    <value>ジョブテンプレートのロゴ</value>
+    <value>求人テンプレートのロゴ</value>
     <comment>Job Template Logo</comment>
   </data>
   <data name="LabelJobTemplateSettings" xml:space="preserve">
-    <value>ジョブテンプレート設定</value>
+    <value>求人テンプレート設定</value>
     <comment>Job Template Settings</comment>
   </data>
   <data name="LabelJobTitle" xml:space="preserve">
@@ -2175,11 +2175,11 @@
     <comment>JobTitle</comment>
   </data>
   <data name="LabelJobTitleIsExpired" xml:space="preserve">
-    <value>{0}件のジョブが終了しました</value>
+    <value>{0}件の求人が終了しました</value>
     <comment>The job Title is now Expired</comment>
   </data>
   <data name="LabelJobWorktype" xml:space="preserve">
-    <value>ジョブの職種</value>
+    <value>求人の職種</value>
     <comment>Job Worktype</comment>
   </data>
   <data name="LabelJul" xml:space="preserve">
@@ -2195,7 +2195,7 @@
     <comment>Juris Doctor</comment>
   </data>
   <data name="LabelJustApply" xml:space="preserve">
-    <value>求人エントリー</value>
+    <value>応募する</value>
     <comment>Apply now</comment>
   </data>
   <data name="LabelJustApplyPage" xml:space="preserve">
@@ -2247,7 +2247,7 @@
     <comment>Last Viewed Date</comment>
   </data>
   <data name="LabelLatest" xml:space="preserve">
-    <value>最新</value>
+    <value>新着順</value>
     <comment>Latest</comment>
   </data>
   <data name="LabelLicenseName" xml:space="preserve">
@@ -2267,7 +2267,7 @@
     <comment>Limited working proficiency</comment>
   </data>
   <data name="LabelLiveJobs" xml:space="preserve">
-    <value>進行中のジョブ</value>
+    <value>進行中の求人</value>
     <comment>Live Jobs</comment>
   </data>
   <data name="LabelLocalLanguage" xml:space="preserve">
@@ -2351,7 +2351,7 @@
     <comment>Mailing Suburb</comment>
   </data>
   <data name="LabelMainAlert" xml:space="preserve">
-    <value>メインアラートにしますか？</value>
+    <value>メインジョブアラートにしますか？</value>
     <comment>Main Alert?</comment>
   </data>
   <data name="LabelMakePayment" xml:space="preserve">
@@ -2530,7 +2530,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>My Documents</comment>
   </data>
   <data name="LabelMyFavouriteSearches" xml:space="preserve">
-    <value>お気に入りの検索</value>
+    <value>My favourite search(es)</value>
     <comment>My favourite search(es)</comment>
   </data>
   <data name="LabelMyHome" xml:space="preserve">
@@ -2538,11 +2538,11 @@ Your account has already been validated, you are not required to do this again.<
     <comment>My Home</comment>
   </data>
   <data name="LabelMyJobAlerts" xml:space="preserve">
-    <value>ジョブアラート</value>
+    <value>ジョブジョブアラート</value>
     <comment>My Job Alerts</comment>
   </data>
   <data name="LabelMyJobAlert_s" xml:space="preserve">
-    <value>ジョブアラート</value>
+    <value>My job alert(s)</value>
     <comment>My job alert(s)</comment>
   </data>
   <data name="LabelMyJobTools" xml:space="preserve">
@@ -2582,7 +2582,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Name</comment>
   </data>
   <data name="LabelNameFeedMandatory" xml:space="preserve">
-    <value>フィード名は入力必須項目です</value>
+    <value>ジョブアラート名は入力必須項目です。</value>
     <comment>Name of the alert is mandatory.</comment>
   </data>
   <data name="LabelNameOfAlertRequired" xml:space="preserve">
@@ -2590,7 +2590,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Name of alert is required</comment>
   </data>
   <data name="LabelNameOfFeed" xml:space="preserve">
-    <value>アラート名</value>
+    <value>ジョブアラート名</value>
     <comment>Name of Alert</comment>
   </data>
   <data name="LabelNativeLanguage" xml:space="preserve">
@@ -2750,7 +2750,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>October</comment>
   </data>
   <data name="LabelOldest" xml:space="preserve">
-    <value>最古</value>
+    <value>投稿順</value>
     <comment>Oldest</comment>
   </data>
   <data name="LabelOngoingAccount" xml:space="preserve">
@@ -2931,7 +2931,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Please Login</comment>
   </data>
   <data name="LabelPleaseSeeThe" xml:space="preserve">
-    <value>ご覧ください</value>
+    <value>Please see the</value>
     <comment>Please see the</comment>
   </data>
   <data name="LabelPleaseSelect" xml:space="preserve">
@@ -3031,7 +3031,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Present</comment>
   </data>
   <data name="LabelPrevious" xml:space="preserve">
-    <value>前に戻る</value>
+    <value>戻る</value>
     <comment>Prev</comment>
   </data>
   <data name="LabelPrice" xml:space="preserve">
@@ -3219,7 +3219,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Read more</comment>
   </data>
   <data name="LabelReceiveJobAlert" xml:space="preserve">
-    <value>ジョブアラートを受け取る</value>
+    <value>ジョブジョブアラートを受け取る</value>
     <comment>Receive Job Alert</comment>
   </data>
   <data name="LabelReceiveNewsletter" xml:space="preserve">
@@ -3379,7 +3379,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Reset Failed</comment>
   </data>
   <data name="LabelResetGUIDFailed" xml:space="preserve">
-    <value>&lt;br /&gt;&lt;br /&gt;様、このリンクは一度しか使用出来ません。以前にパスワードのリセットに使用されたようです。&lt;br /&gt;&lt;br /&gt;　もし、一度もクリックしたことがない場合は、ここを &lt;a href="./ForgetPassword.aspx"&gt;クリックして&lt;/a&gt;、新しいパスワードを設定してください。。。 後ほどリセット用のメールが届きます。</value>
+    <value>&lt;br/&gt;&lt;br/&gt;パスワードの再設定用リンクのご使用は一回のみとなります。誠にお手数ですが、改めて&lt;a href="./forgetpassword.aspx"&gt;パスワードの再設定&lt;/a&gt;をお願いいたします。</value>
     <comment>Reset GUID Failed</comment>
   </data>
   <data name="LabelResetPasswordInfo" xml:space="preserve">
@@ -3403,7 +3403,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>results</comment>
   </data>
   <data name="LabelResume" xml:space="preserve">
-    <value>履歴書</value>
+    <value>レジュメ</value>
     <comment>Resume</comment>
   </data>
   <data name="LabelResumeUpload" xml:space="preserve">
@@ -3536,7 +3536,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Search Details</comment>
   </data>
   <data name="LabelSearchedAllJobs" xml:space="preserve">
-    <value>すべてのジョブを探索</value>
+    <value>すべての求人情報を検索</value>
     <comment>Searched all jobs</comment>
   </data>
   <data name="LabelSearchFieldExtension" xml:space="preserve">
@@ -3636,7 +3636,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Select Existing Cover Letter</comment>
   </data>
   <data name="LabelSelectExistingResume" xml:space="preserve">
-    <value>登録済みの履歴書を選択する</value>
+    <value>登録済みのレジュメを選択する</value>
     <comment>Select Existing Resume</comment>
   </data>
   <data name="LabelSelectGrade" xml:space="preserve">
@@ -3684,11 +3684,11 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Semicolon Separated</comment>
   </data>
   <data name="LabelSendaJobAlertNow" xml:space="preserve">
-    <value>ジョブアラートを送信</value>
+    <value>ジョブジョブアラートを送信</value>
     <comment>Send a Job Alert now</comment>
   </data>
   <data name="LabelSendEmailAlerts" xml:space="preserve">
-    <value>アラート</value>
+    <value>ジョブアラート</value>
     <comment>Send Email Alerts</comment>
   </data>
   <data name="LabelSentApplicantEmail" xml:space="preserve">
@@ -3856,7 +3856,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Sub Accounts</comment>
   </data>
   <data name="LabelSubClassification" xml:space="preserve">
-    <value>Sub Classification</value>
+    <value>Sub Specialization</value>
     <comment>Sub Classification</comment>
   </data>
   <data name="LabelSubmitStreetAddress" xml:space="preserve">
@@ -3880,11 +3880,11 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Suburb</comment>
   </data>
   <data name="LabelSuccessfullyCreatedYouJobAlert" xml:space="preserve">
-    <value>アラートの作成に成功しました</value>
+    <value>You have successfully created an alert.</value>
     <comment>You have successfully created an alert.</comment>
   </data>
   <data name="LabelSuccessfullySavedYourSearch" xml:space="preserve">
-    <value>サーチの保存に成功しました</value>
+    <value>You have successfully saved your search.</value>
     <comment>You have successfully saved your search.</comment>
   </data>
   <data name="LabelSummary" xml:space="preserve">
@@ -4028,7 +4028,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Upload a Cover Letter</comment>
   </data>
   <data name="LabelUploadAResume" xml:space="preserve">
-    <value>履歴書をアップロードする</value>
+    <value>レジュメをアップロードする</value>
     <comment>Upload a Resume</comment>
   </data>
   <data name="LabelUploadCoverDesc" xml:space="preserve">
@@ -4076,7 +4076,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Please upload a file with a maximum of 500KB.</comment>
   </data>
   <data name="LabelUploadResume" xml:space="preserve">
-    <value>履歴書選択</value>
+    <value>レジュメ選択</value>
     <comment>Upload Resume</comment>
   </data>
   <data name="LabelUploadResumeUpto" xml:space="preserve">
@@ -4100,7 +4100,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Use existing cover letter file</comment>
   </data>
   <data name="LabelUseExistingResumeFile" xml:space="preserve">
-    <value>既存の履歴書ファイルを使用</value>
+    <value>既存のレジュメファイルを使用</value>
     <comment>Use existing resume file</comment>
   </data>
   <data name="LabelUseMyProfile" xml:space="preserve">
@@ -4208,11 +4208,11 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Website</comment>
   </data>
   <data name="LabelWelcome" xml:space="preserve">
-    <value>ようこそ</value>
+    <value>Welcome</value>
     <comment>Welcome</comment>
   </data>
   <data name="LabelWelcomeBack" xml:space="preserve">
-    <value>様、エンワールドをご利用くださりありがとうございます。</value>
+    <value>エンワールドをご利用くださりありがとうございます。</value>
     <comment>Welcome back</comment>
   </data>
   <data name="LabelWelcomeBroadcast" xml:space="preserve">
@@ -4264,7 +4264,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Years</comment>
   </data>
   <data name="LabelYes" xml:space="preserve">
-    <value>はい</value>
+    <value>Yes</value>
     <comment>Yes</comment>
   </data>
   <data name="LabelYouhavenologo" xml:space="preserve">
@@ -4324,7 +4324,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Posted By</comment>
   </data>
   <data name="LinkBacktoNewsIndex" xml:space="preserve">
-    <value>ニュースインデックスに戻る</value>
+    <value>戻る</value>
     <comment>Back to News Index</comment>
   </data>
   <data name="LinkButtonAccountDetails" xml:space="preserve">
@@ -4340,15 +4340,15 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Add tags</comment>
   </data>
   <data name="LinkButtonApplyNow" xml:space="preserve">
-    <value>求人エントリー</value>
+    <value>応募する</value>
     <comment>Apply now</comment>
   </data>
   <data name="LinkButtonArchivedJobAds" xml:space="preserve">
-    <value>過去のジョブ広告</value>
+    <value>過去の求人広告</value>
     <comment>Archived Job Ads</comment>
   </data>
   <data name="LinkButtonBackToResult" xml:space="preserve">
-    <value>結果に戻る</value>
+    <value>戻る</value>
     <comment>Back to results</comment>
   </data>
   <data name="LinkButtonBuyJobCredits" xml:space="preserve">
@@ -4392,7 +4392,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Edit</comment>
   </data>
   <data name="LinkButtonEmailJob" xml:space="preserve">
-    <value>この求人を友人にメールする</value>
+    <value>メールする</value>
     <comment>Email this Job</comment>
   </data>
   <data name="LinkButtonJobLinkedIn" xml:space="preserve">
@@ -4412,15 +4412,15 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Share this Job on Facebook</comment>
   </data>
   <data name="LinkButtonJobShareTwitter" xml:space="preserve">
-    <value>この求人をツィートする</value>
+    <value>この求人をツイートする</value>
     <comment>Tweet this Job</comment>
   </data>
   <data name="LinkButtonJobTracker" xml:space="preserve">
-    <value>ジョブの履歴</value>
+    <value>求人の履歴</value>
     <comment>Job Tracker</comment>
   </data>
   <data name="LinkButtonManageJobs" xml:space="preserve">
-    <value>ジョブの管理</value>
+    <value>求人の管理</value>
     <comment>Manage Jobs</comment>
   </data>
   <data name="LinkButtonPendingJobAds" xml:space="preserve">
@@ -4444,7 +4444,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Save this Job</comment>
   </data>
   <data name="LinkButtonSaveJob" xml:space="preserve">
-    <value>求人を保存</value>
+    <value>保存する</value>
     <comment>save job</comment>
   </data>
   <data name="LinkButtonScreeningQuestionsTemplate" xml:space="preserve">
@@ -4452,7 +4452,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Screening Questions Template</comment>
   </data>
   <data name="LinkButtonSendEmail" xml:space="preserve">
-    <value>メールを送る</value>
+    <value>メールする</value>
     <comment>send email</comment>
   </data>
   <data name="LinkButtonStatistics" xml:space="preserve">
@@ -4476,7 +4476,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>View / Change Template Logo</comment>
   </data>
   <data name="LinkButtonViewJobs" xml:space="preserve">
-    <value>ジョブを見る</value>
+    <value>求人を見る</value>
     <comment>View Jobs</comment>
   </data>
   <data name="LinkScreeningQuestionsTemplate" xml:space="preserve">

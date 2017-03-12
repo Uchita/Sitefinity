@@ -82,7 +82,7 @@
                     <div class="jobalert-salary-bands">
                         <span class="divSalaryCurrency">
                             <asp:Literal ID="ltlLowerCurrency" runat="server" /></span>
-                        <asp:TextBox ID="txtSalaryLowerBand" runat="server" size="10" CssClass="textInput numbersOnly"></asp:TextBox>
+                        <asp:TextBox ID="txtSalaryLowerBand" runat="server" size="10" CssClass="textInput" onkeypress="return isNumberKey(event);"></asp:TextBox>
                     </div>
                 </li>
                 <li>
@@ -94,7 +94,7 @@
                     <div class="jobalert-salary-bands">
                         <span class="divSalaryCurrency">
                             <asp:Literal ID="ltlUpperCurrency" runat="server" /></span>
-                        <asp:TextBox ID="txtSalaryUpperBand" runat="server" size="10" CssClass="textInput numbersOnly"></asp:TextBox>
+                        <asp:TextBox ID="txtSalaryUpperBand" runat="server" size="10" CssClass="textInput" onkeypress="return isNumberKey(event);"></asp:TextBox>
                     </div>
                 </li>
             </ul>

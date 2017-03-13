@@ -184,30 +184,30 @@ namespace JXTMemberTransfer
                     if (columnText == "Address2") { member.Address2 = data; }
                     if (columnText == "LocationId") { member.LocationId = data; }
                     if (columnText == "AreaId") { member.AreaId = data; }
-                    if (columnText == "CountryId") { member.CountryId = (string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : 1; }
+                    if (columnText == "CountryId") { member.CountryId = (!string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : 1; }
                     if (columnText == "PreferredCategoryId") { member.PreferredCategoryId = data; }
                     if (columnText == "PreferredSubCategoryId") { member.PreferredSubCategoryId = data; }
-                    if (columnText == "PreferredSalaryId") { member.PreferredSalaryId = (string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : (int?)null; }
-                    if (columnText == "Subscribed") { member.Subscribed = (string.IsNullOrWhiteSpace(data)) ? Convert.ToBoolean(data) : false; }
-                    if (columnText == "MonthlyUpdate") { member.MonthlyUpdate = (string.IsNullOrWhiteSpace(data)) ? Convert.ToBoolean(data) : false; }
-                    if (columnText == "ReferringMemberId") { member.ReferringMemberId = (string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : (int?)null; }
-                    if (columnText == "LastModifiedDate") { member.LastModifiedDate = (string.IsNullOrWhiteSpace(data)) ? Convert.ToDateTime(data) : (DateTime?)null; }
-                    if (columnText == "Valid") { member.Valid = (string.IsNullOrWhiteSpace(data)) ? Convert.ToBoolean(data) : false; }
-                    if (columnText == "EmailFormat") { member.EmailFormat = (string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : (int)EmailSender.Format.Html; }
-                    if (columnText == "LastLogon") { member.LastLogon = (string.IsNullOrWhiteSpace(data)) ? Convert.ToDateTime(data) : (DateTime?)null; }
-                    if (columnText == "DateOfBirth") { member.DateOfBirth = (string.IsNullOrWhiteSpace(data)) ? Convert.ToDateTime(data) : (DateTime?)null; }
+                    if (columnText == "PreferredSalaryId") { member.PreferredSalaryId = (!string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : (int?)null; }
+                    if (columnText == "Subscribed") { member.Subscribed = (!string.IsNullOrWhiteSpace(data)) ? Convert.ToBoolean(data) : false; }
+                    if (columnText == "MonthlyUpdate") { member.MonthlyUpdate = (!string.IsNullOrWhiteSpace(data)) ? Convert.ToBoolean(data) : false; }
+                    if (columnText == "ReferringMemberId") { member.ReferringMemberId = (!string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : (int?)null; }
+                    if (columnText == "LastModifiedDate") { member.LastModifiedDate = (!string.IsNullOrWhiteSpace(data)) ? Convert.ToDateTime(data) : (DateTime?)null; }
+                    if (columnText == "Valid") { member.Valid = (!string.IsNullOrWhiteSpace(data)) ? Convert.ToBoolean(data) : false; }
+                    if (columnText == "EmailFormat") { member.EmailFormat = (!string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : (int)EmailSender.Format.Html; }
+                    if (columnText == "LastLogon") { member.LastLogon = (!string.IsNullOrWhiteSpace(data)) ? Convert.ToDateTime(data) : (DateTime?)null; }
+                    if (columnText == "DateOfBirth") { member.DateOfBirth = (!string.IsNullOrWhiteSpace(data)) ? Convert.ToDateTime(data) : (DateTime?)null; }
                     if (columnText == "Gender") { member.Gender = data; }
                     if (columnText == "Tags") { member.Tags = data; }
-                    if (columnText == "Validated") { member.Validated = (string.IsNullOrWhiteSpace(data)) ? Convert.ToBoolean(data) : false; }
+                    if (columnText == "Validated") { member.Validated = (!string.IsNullOrWhiteSpace(data)) ? Convert.ToBoolean(data) : false; }
                     if (columnText == "WebsiteUrl") { member.WebsiteUrl = data; }
-                    if (columnText == "AvailabilityId") { member.AvailabilityId = (string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : (int?)null; }
-                    if (columnText == "AvailabilityFromDate") { member.AvailabilityFromDate = (string.IsNullOrWhiteSpace(data)) ? Convert.ToDateTime(data) : (DateTime?)null; }
+                    if (columnText == "AvailabilityId") { member.AvailabilityId = (!string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : (int?)null; }
+                    if (columnText == "AvailabilityFromDate") { member.AvailabilityFromDate = (!string.IsNullOrWhiteSpace(data)) ? Convert.ToDateTime(data) : (DateTime?)null; }
                     if (columnText == "MySpaceHeading") { member.MySpaceHeading = data; }
                     if (columnText == "MySpaceContent") { member.MySpaceContent = data; }
                     if (columnText == "UrlReferrer") { member.UrlReferrer = data; }
                     if (columnText == "PreferredJobTitle") { member.PreferredJobTitle = data; }
                     if (columnText == "PreferredAvailability") { member.PreferredAvailability = data; }
-                    if (columnText == "PreferredAvailabilityType") { member.PreferredAvailabilityType = (string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : (int?)null; }
+                    if (columnText == "PreferredAvailabilityType") { member.PreferredAvailabilityType = (!string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : (int?)null; }
                     if (columnText == "PreferredSalaryFrom") { member.PreferredSalaryFrom = data; }
                     if (columnText == "PreferredSalaryTo") { member.PreferredSalaryTo = data; }
                     if (columnText == "CurrentSalaryFrom") { member.CurrentSalaryFrom = data; }
@@ -217,8 +217,8 @@ namespace JXTMemberTransfer
                     if (columnText == "Skills") { member.Skills = data; }
                     if (columnText == "Comments") { member.Comments = data; }
                     if (columnText == "ProfileType") { member.ProfileType = data; }
-                    if (columnText == "EducationId") { member.EducationId = (string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : (int?)null; }
-                    if (columnText == "RegisteredDate") { member.RegisteredDate = (string.IsNullOrWhiteSpace(data)) ? Convert.ToDateTime(data) : DateTime.Now; }
+                    if (columnText == "EducationId") { member.EducationId = (!string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : (int?)null; }
+                    if (columnText == "RegisteredDate") { member.RegisteredDate = (!string.IsNullOrWhiteSpace(data)) ? Convert.ToDateTime(data) : DateTime.Now; }
                     if (columnText == "States") { member.States = data; }
                     if (columnText == "Suburb") { member.Suburb = data; }
                     if (columnText == "PostCode") { member.PostCode = data; }
@@ -226,7 +226,7 @@ namespace JXTMemberTransfer
                     if (columnText == "ShortBio") { member.ShortBio = data; }
                     if (columnText == "WorkTypeId") { member.WorkTypeId = data; }
                     if (columnText == "Memberships") { member.Memberships = data; }
-                    if (columnText == "MemberStatusId") { member.MemberStatusId = (string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : (int?)null; }
+                    if (columnText == "MemberStatusId") { member.MemberStatusId = (!string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : (int?)null; }
                     if (columnText == "LinkedInAccessToken") { member.LinkedInAccessToken = data; }
                     if (columnText == "ExternalMemberId") { member.ExternalMemberId = data; }
                     if (columnText == "PassportNo") { member.PassportNo = data; }
@@ -235,25 +235,25 @@ namespace JXTMemberTransfer
                     if (columnText == "MailingStates") { member.MailingStates = data; }
                     if (columnText == "MailingSuburb") { member.MailingSuburb = data; }
                     if (columnText == "MailingPostCode") { member.MailingPostCode = data; }
-                    if (columnText == "MailingCountryId") { member.MailingCountryId = (string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : (int?)null; }
+                    if (columnText == "MailingCountryId") { member.MailingCountryId = (!string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : (int?)null; }
                     if (columnText == "CountryName") { member.CountryName = data; }
                     if (columnText == "MailingCountryName") { member.MailingCountryName = data; }
-                    if (columnText == "LoginAttempts") { member.LoginAttempts = (string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : 0; }
-                    if (columnText == "LastAttemptDate") { member.LastAttemptDate = (string.IsNullOrWhiteSpace(data)) ? Convert.ToDateTime(data) : (DateTime?)null; }
-                    if (columnText == "Status") { member.Status = (string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : (int?)null; }
-                    if (columnText == "LastTermsAndConditionsDate") { member.LastTermsAndConditionsDate = (string.IsNullOrWhiteSpace(data)) ? Convert.ToDateTime(data) : (DateTime?)null; }
-                    if (columnText == "DefaultLanguageId") { member.DefaultLanguageId = (string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : (int?)null; }
-                    if (columnText == "ReferringSiteId") { member.ReferringSiteId = (string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : (int?)null; }
+                    if (columnText == "LoginAttempts") { member.LoginAttempts = (!string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : 0; }
+                    if (columnText == "LastAttemptDate") { member.LastAttemptDate = (!string.IsNullOrWhiteSpace(data)) ? Convert.ToDateTime(data) : (DateTime?)null; }
+                    if (columnText == "Status") { member.Status = (!string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : (int?)null; }
+                    if (columnText == "LastTermsAndConditionsDate") { member.LastTermsAndConditionsDate = (!string.IsNullOrWhiteSpace(data)) ? Convert.ToDateTime(data) : (DateTime?)null; }
+                    if (columnText == "DefaultLanguageId") { member.DefaultLanguageId = (!string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : (int?)null; }
+                    if (columnText == "ReferringSiteId") { member.ReferringSiteId = (!string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : (int?)null; }
                     if (columnText == "MultiLingualFirstName") { member.MultiLingualFirstName = data; }
                     if (columnText == "MultiLingualSurame") { member.MultiLingualSurame = data; }
                     if (columnText == "SecondaryEmail") { member.SecondaryEmail = data; }
                     if (columnText == "CandidateData") { member.CandidateData = data; }
                     if (columnText == "EligibleToWorkIn") { member.EligibleToWorkIn = data; }
-                    if (columnText == "ReferenceUponRequest") { member.ReferenceUponRequest = (string.IsNullOrWhiteSpace(data)) ? Convert.ToBoolean(data) : (bool?)null; ; }
-                    if (columnText == "PreferredLine") { member.PreferredLine = (string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : 1; }
+                    if (columnText == "ReferenceUponRequest") { member.ReferenceUponRequest = (!string.IsNullOrWhiteSpace(data)) ? Convert.ToBoolean(data) : (bool?)null; ; }
+                    if (columnText == "PreferredLine") { member.PreferredLine = (!string.IsNullOrWhiteSpace(data)) ? Convert.ToInt32(data) : 1; }
                     if (columnText == "VideoUrl") { member.VideoUrl = data; }
                     if (columnText == "ProfileDataXml") { member.ProfileDataXml = data; }
-                    if (columnText == "LastProfileSubmittedDate") { member.LastProfileSubmittedDate = (string.IsNullOrWhiteSpace(data)) ? Convert.ToDateTime(data) : (DateTime?)null; }
+                    if (columnText == "LastProfileSubmittedDate") { member.LastProfileSubmittedDate = (!string.IsNullOrWhiteSpace(data)) ? Convert.ToDateTime(data) : (DateTime?)null; }
                 }
             }
 

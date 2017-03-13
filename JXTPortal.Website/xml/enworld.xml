@@ -4213,52 +4213,52 @@
   <industries>
     <industry Name='Advertising/MR/PR/Events'>
       <name Language='en'>Advertising/MR/PR/Events</name>
-      <name Language='ja'>Advertising/MR/PR/Events</name>
+      <name Language='ja'>広告/MR/PR/イベント</name>
       <name Language='ko'>Advertising/MR/PR/Events</name>
     </industry>
     <industry Name='Automobile/Auto Ancillaries'>
       <name Language='en'>Automobile/Auto Ancillaries</name>
-      <name Language='ja'>Automobile/Auto Ancillaries</name>
+      <name Language='ja'>自動車/自動車付属品</name>
       <name Language='ko'>Automobile/Auto Ancillaries</name>
     </industry>
     <industry Name='Aviation/Airline'>
       <name Language='en'>Aviation/Airline</name>
-      <name Language='ja'>Aviation/Airline</name>
+      <name Language='ja'>航空/航空会社</name>
       <name Language='ko'>Aviation/Airline</name>
     </industry>
     <industry Name='Banking/Financial Services'>
       <name Language='en'>Banking/Financial Services</name>
-      <name Language='ja'>Banking/Financial Services</name>
+      <name Language='ja'>銀行/金融</name>
       <name Language='ko'>Banking/Financial Services</name>
     </industry>
     <industry Name='BPO/Call Center'>
       <name Language='en'>BPO/Call Center</name>
-      <name Language='ja'>BPO/Call Center</name>
+      <name Language='ja'>BPO/コールセンター</name>
       <name Language='ko'>BPO/Call Center</name>
     </industry>
     <industry Name='Chemical/Plastic/Rubber/Glass Jobs'>
       <name Language='en'>Chemical/Plastic/Rubber/Glass Jobs</name>
-      <name Language='ja'>Chemical/Plastic/Rubber/Glass Jobs</name>
+      <name Language='ja'>化学/プラスティック/ゴム/ガラス</name>
       <name Language='ko'>Chemical/Plastic/Rubber/Glass Jobs</name>
     </industry>
     <industry Name='Consumer Durables/Electronics'>
       <name Language='en'>Consumer Durables/Electronics</name>
-      <name Language='ja'>Consumer Durables/Electronics</name>
+      <name Language='ja'>耐久消費財/電気</name>
       <name Language='ko'>Consumer Durables/Electronics</name>
     </industry>
     <industry Name='Education/Training'>
       <name Language='en'>Education/Training</name>
-      <name Language='ja'>Education/Training</name>
+      <name Language='ja'>教育/研修</name>
       <name Language='ko'>Education/Training</name>
     </industry>
     <industry Name='Engineering/Construction'>
       <name Language='en'>Engineering/Construction</name>
-      <name Language='ja'>Engineering/Construction</name>
+      <name Language='ja'>エンジニア/建設</name>
       <name Language='ko'>Engineering/Construction</name>
     </industry>
     <industry Name='Export-Import/Trading'>
       <name Language='en'>Export-Import/Trading</name>
-      <name Language='ja'>Export-Import/Trading</name>
+      <name Language='ja'>輸出入/トレーディング</name>
       <name Language='ko'>Export-Import/Trading</name>
     </industry>
     <industry Name='FMCG/F&amp;B'>
@@ -4268,92 +4268,92 @@
     </industry>
     <industry Name='Hotel/Restaurant'>
       <name Language='en'>Hotel/Restaurant</name>
-      <name Language='ja'>Hotel/Restaurant</name>
+      <name Language='ja'>ホテル/レストラン</name>
       <name Language='ko'>Hotel/Restaurant</name>
     </industry>
     <industry Name='Insurance'>
       <name Language='en'>Insurance</name>
-      <name Language='ja'>Insurance</name>
+      <name Language='ja'>保険</name>
       <name Language='ko'>Insurance</name>
     </industry>
     <industry Name='IT-Hardware/Networking'>
       <name Language='en'>IT-Hardware/Networking</name>
-      <name Language='ja'>IT-Hardware/Networking</name>
+      <name Language='ja'>IT-ハードウエア/ネットワーク</name>
       <name Language='ko'>IT-Hardware/Networking</name>
     </industry>
     <industry Name='IT-Software'>
       <name Language='en'>IT-Software</name>
-      <name Language='ja'>IT-Software</name>
+      <name Language='ja'>IT-ソフトウエア</name>
       <name Language='ko'>IT-Software</name>
     </industry>
     <industry Name='KPO/Analytics'>
       <name Language='en'>KPO/Analytics</name>
-      <name Language='ja'>KPO/Analytics</name>
+      <name Language='ja'>KPO/分析</name>
       <name Language='ko'>KPO/Analytics</name>
     </industry>
     <industry Name='Logistics/Courier/Transportation'>
       <name Language='en'>Logistics/Courier/Transportation</name>
-      <name Language='ja'>Logistics/Courier/Transportation</name>
+      <name Language='ja'>ロジスティック/クーリエ/輸送</name>
       <name Language='ko'>Logistics/Courier/Transportation</name>
     </industry>
     <industry Name='Management Consulting/Strategy Jobs'>
       <name Language='en'>Management Consulting/Strategy Jobs</name>
-      <name Language='ja'>Management Consulting/Strategy Jobs</name>
+      <name Language='ja'>経営コンサルティング/戦略</name>
       <name Language='ko'>Management Consulting/Strategy Jobs</name>
     </industry>
     <industry Name='Manufacturing'>
       <name Language='en'>Manufacturing</name>
-      <name Language='ja'>Manufacturing</name>
+      <name Language='ja'>製造業</name>
       <name Language='ko'>Manufacturing</name>
     </industry>
     <industry Name='Media/Entertainment'>
       <name Language='en'>Media/Entertainment</name>
-      <name Language='ja'>Media/Entertainment</name>
+      <name Language='ja'>メディア/エンターテイメント</name>
       <name Language='ko'>Media/Entertainment</name>
     </industry>
     <industry Name='Medical/Healthcare'>
       <name Language='en'>Medical/Healthcare</name>
-      <name Language='ja'>Medical/Healthcare</name>
+      <name Language='ja'>メディカル/へルスケア</name>
       <name Language='ko'>Medical/Healthcare</name>
     </industry>
     <industry Name='Oil &amp; Gas/Petroleum'>
       <name Language='en'>Oil &amp; Gas/Petroleum</name>
-      <name Language='ja'>Oil &amp; Gas/Petroleum</name>
+      <name Language='ja'>オイル＆ガス/石油</name>
       <name Language='ko'>Oil &amp; Gas/Petroleum</name>
     </industry>
     <industry Name='Pharma/Biotech'>
       <name Language='en'>Pharma/Biotech</name>
-      <name Language='ja'>Pharma/Biotech</name>
+      <name Language='ja'>製薬/バイオテック</name>
       <name Language='ko'>Pharma/Biotech</name>
     </industry>
     <industry Name='Real Estate'>
       <name Language='en'>Real Estate</name>
-      <name Language='ja'>Real Estate</name>
+      <name Language='ja'>不動産</name>
       <name Language='ko'>Real Estate</name>
     </industry>
     <industry Name='Recruitment Services'>
       <name Language='en'>Recruitment Services</name>
-      <name Language='ja'>Recruitment Services</name>
+      <name Language='ja'>人材紹介</name>
       <name Language='ko'>Recruitment Services</name>
     </industry>
     <industry Name='Retail'>
       <name Language='en'>Retail</name>
-      <name Language='ja'>Retail</name>
+      <name Language='ja'>小売</name>
       <name Language='ko'>Retail</name>
     </industry>
     <industry Name='Telecom/ISP'>
       <name Language='en'>Telecom/ISP</name>
-      <name Language='ja'>Telecom/ISP</name>
+      <name Language='ja'>テレコム/ISP</name>
       <name Language='ko'>Telecom/ISP</name>
     </industry>
     <industry Name='Textile/Garments/Fashion'>
       <name Language='en'>Textile/Garments/Fashion</name>
-      <name Language='ja'>Textile/Garments/Fashion</name>
+      <name Language='ja'>テキスタイル/服飾/ファッション</name>
       <name Language='ko'>Textile/Garments/Fashion</name>
     </industry>
     <industry Name='Travel/Tourism'>
       <name Language='en'>Travel/Tourism</name>
-      <name Language='ja'>Travel/Tourism</name>
+      <name Language='ja'>旅行/ツーリズム</name>
       <name Language='ko'>Travel/Tourism</name>
     </industry>
 

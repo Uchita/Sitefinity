@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/styles/member/jquery-ui.structure.css" />
     <link rel="stylesheet" href="/styles/member/jquery-ui.theme.css" />
     <link rel="stylesheet" href="/styles/member/jscrollpane.css" />
-    <link rel="stylesheet" href="/styles/member/member_profile.css" />
+    <link rel="stylesheet" href="/styles/member/public_profile.css" />
     <!-- the mousewheel plugin -->
     <script type="text/javascript" src="/scripts/member/jquery.mousewheel.js"></script>
     <!-- the jScrollPane script -->

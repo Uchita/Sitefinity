@@ -8,6 +8,8 @@ using System.Web.UI.WebControls;
 using JXTPortal.Entities;
 using System.Configuration;
 using System.Xml;
+using JXTPortal.Common;
+using System.Text;
 
 namespace JXTPortal.Website.usercontrols.peoplesearch
 {
@@ -49,6 +51,7 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
         private int MinExperienceEntry = 0;
         private int MinEducationEntry = 0;
         private int MinReferenceEntry = 0;
+        private int currentMemberID;
 
         #endregion
 
@@ -266,6 +269,8 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
 
                 if (member != null)
                 {
+                    currentMemberID = member.MemberId;
+
                     LoadCalendar();
                     LoadMemberInfo(member);
                     SetAttachResume(member.MemberId);
@@ -1458,6 +1463,50 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
         private void LoadRelationship()
         {
             RelationshipList = CommonFunction.GetEnumFormattedNames<PortalEnums.Members.ReferencesRelationship>();
+        }
+
+        /// <summary>
+        /// Returns the generated HTML markup for a Control object
+        /// </summary>
+        private string RenderControl(Control control)
+        {
+            StringBuilder sb = new StringBuilder();
+            System.IO.StringWriter sw = new System.IO.StringWriter(sb);
+            HtmlTextWriter writer = new HtmlTextWriter(sw);
+
+            control.RenderControl(writer);
+            return sb.ToString();
+        }
+
+        protected void PDFGetButton_Click(object sender, EventArgs e)
+        {
+            //define full virtual path
+            var fullPath = "~/usercontrols/member/ucCVProfileDownload.ascx";
+
+            //initialize a new page to host the control
+            Page page = new Page();
+            //disable event validation (this is a workaround to handle the "RegisterForEventValidation can only be called during Render()" exception)
+            page.EnableEventValidation = false;
+
+            //load the control and add it to the page's form
+            JXTPortal.Website.usercontrols.member.ucCVProfileDownload control = (JXTPortal.Website.usercontrols.member.ucCVProfileDownload)page.LoadControl(fullPath);
+
+            control.Setup(currentMemberID);
+
+            page.Controls.Add(control);
+
+            //call RenderControl method to get the generated HTML
+            string html = RenderControl(page);
+
+            byte[] file = new PDFCreator().ConvertHTMLToPDF(html);
+
+            Response.AddHeader("content-disposition", @"attachment;filename=""MyFile.pdf""");
+
+            Response.OutputStream.Write(file, 0, file.Length);
+            Response.ContentType = "application/pdf";
+            Response.End();
+
+
         }
 
         private string JoinText(List<string> texts)

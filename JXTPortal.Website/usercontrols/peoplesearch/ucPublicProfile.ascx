@@ -275,9 +275,9 @@
                                                 </FooterTemplate>
                                             </asp:Repeater>
                                         </div>
-                                        <div class="info_graphic">
+                                        <div class="info_graphic downloadAll">
                                             <span class="fa fa-download">
-                                                <asp:HyperLink ID="HyperLink1" runat="server" CssClass="downloadResume">Download Resume</asp:HyperLink>
+                                                <asp:HyperLink ID="hlDownloadAllResume" runat="server" CssClass="downloadResume">Download All</asp:HyperLink>
                                             </span>
                                         </div>
                                     </section>
@@ -333,12 +333,12 @@
                                                     </ul>
                                                 </FooterTemplate>
                                             </asp:Repeater>
-                                            <div class="info_graphic">
+                                        </div>
+                                        <div class="info_graphic downloadAll">
                                                 <span class="fa fa-download">
-                                                    <asp:HyperLink ID="HyperLink2" runat="server" CssClass="downloadResume">Download Resume</asp:HyperLink>
+                                                    <asp:HyperLink ID="hlDownloadAllCoverLetter" runat="server" CssClass="downloadCoverletter">Download All</asp:HyperLink>
                                                 </span>
                                             </div>
-                                        </div>
                                     </section>
                                 </ContentTemplate>
                             </asp:UpdatePanel>
@@ -963,6 +963,15 @@
                             </asp:UpdatePanel>
                         </section>
                     </asp:PlaceHolder>
+
+                    <!-- Section 16: Download Profile btn  -->
+                    <div class="text-center">
+                        <asp:LinkButton ID="lbDownloadPdf" runat="server" CssClass="btn btn-primary" role="button"
+                            OnClick="PDFGetButton_Click">
+                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral264" runat="server" SetLanguageCode="LabelProfileDownloadPDF" />
+                            <span class="fa fa-download" aria-hidden="true"></span>
+                        </asp:LinkButton>
+                    </div>
                    
                 </div>
 

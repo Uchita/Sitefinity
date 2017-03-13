@@ -30,13 +30,25 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
         private SiteWorkTypeService _siteworktypeService;
         private SiteSalaryTypeService _sitesalarytypeService;
         private CountriesService _countriesService;
-
+        private SiteRolesService _siterolesService;
+        private MemberReferencesService _memberreferencesService;
+        private MemberLanguagesService _memberlanguagesService;
+        
         private List<ListItem> MonthList;
+        private List<Entities.SiteRoles> siteroles;
         private List<Entities.SiteProfession> ProfessionList;
         private List<Entities.SiteWorkType> WorkTypeList;
         private List<Entities.SiteSalaryType> SalaryTypeList;
+
+        List<Entities.Countries> countryList;
+        List<Entities.MemberLanguages> Memberlanguages;
+
+        private Dictionary<string, int> ProficiencyList;
+        private Dictionary<string, int> RelationshipList;
+
         private int MinExperienceEntry = 0;
         private int MinEducationEntry = 0;
+        private int MinReferenceEntry = 0;
 
         #endregion
 
@@ -101,6 +113,17 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
             }
         }
 
+        private MemberReferencesService MemberReferencesService
+        {
+            get
+            {
+                if (_memberreferencesService == null)
+                    _memberreferencesService = new MemberReferencesService();
+
+                return _memberreferencesService;
+            }
+        }
+
         private MemberWizardService MemberWizardService
         {
             get
@@ -131,6 +154,17 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
                     _membercertificatemembershipsService = new MemberCertificateMembershipsService();
 
                 return _membercertificatemembershipsService;
+            }
+        }
+
+        private MemberLanguagesService MemberLanguagesService
+        {
+            get
+            {
+                if (_memberlanguagesService == null)
+                    _memberlanguagesService = new MemberLanguagesService();
+
+                return _memberlanguagesService;
             }
         }
 
@@ -211,6 +245,17 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
             }
         }
 
+        private SiteRolesService SiteRolesService
+        {
+            get
+            {
+                if (_siterolesService == null)
+                    _siterolesService = new SiteRolesService();
+
+                return _siterolesService;
+            }
+        }
+
         #endregion
 
         protected void Page_Load(object sender, EventArgs e)
@@ -230,8 +275,12 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
                     LoadSkills(member.MemberId);
                     SetCertifications(member.MemberId);
                     SetLicenses(member.MemberId);
+                    LoadProfession();
+                    LoadSalaryType();
                     SetRolePreferences(member);
                     LoadWorkType();
+                    SetLanguages(member.MemberId);
+                    SetReferences(member.MemberId);
                 }
                 else
                 {
@@ -1088,7 +1137,6 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
             }
         }
 
-
         private int SetRolePreferences(Entities.Members member)
         {
             string strSalary = string.Empty;
@@ -1098,9 +1146,8 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
             string strWorkType = string.Empty;
             string strEligibleToWorkIn = string.Empty;
             string strCurrency = GetCurrency(member.LocationId);
-
             ltRolePreferencesSalary.Text = string.Empty;
-
+            
             //Salary From display
             if (!string.IsNullOrWhiteSpace(member.PreferredSalaryFrom))
             {
@@ -1118,27 +1165,94 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
                 strSalary += strCurrency + member.PreferredSalaryTo;
             }
 
-            List<Entities.Countries> countryList = CountriesService.GetTranslatedCountries(SessionData.Language.LanguageId);
+            // Salary Type
+            if (!string.IsNullOrWhiteSpace(member.PreferredSalaryId.ToString()))
+            {
+                var salaryType = SalaryTypeList.Where(salaryT => salaryT.SalaryTypeId == member.PreferredSalaryId).FirstOrDefault();
+
+                if (salaryType != null)
+                {
+                    strSalary += " " + salaryType.SalaryTypeName;
+                }
+            }
+
+
+            // Preference Location
+            if (member.LocationId != null)
+            {
+                Entities.Location location = LocationService.GetByLocationId(Convert.ToInt32(member.LocationId));
+
+                Entities.Countries country = CountriesService.GetByCountryId(location.CountryId);
+
+                if (location != null && country != null)
+                {
+                    strLocation += country.CountryName + " - " + location.LocationName;
+                }
+            }
+
+            // Preffered Position
+            if (ProfessionList != null)
+            {
+                foreach (string split in member.PreferredCategoryId.ToString().Split(new char[] { ',' }))
+                {
+                    foreach (var role in ProfessionList)
+                    {
+                        if (role.ProfessionId.ToString() == split)
+                        {
+                            strProfession += role.SiteProfessionName.ToString() + ", ";
+                            break;
+                        }
+                    }
+                }
+
+            }
+
+            // Preffered Role
+            if (!string.IsNullOrWhiteSpace(member.PreferredCategoryId))
+            {
+                int memberPreferredRoleId = Convert.ToInt32(member.PreferredCategoryId);
+
+                LoadRolePreferenceRoles(memberPreferredRoleId);
+
+                if (siteroles != null && member.PreferredSubCategoryId != null)
+                {
+                    foreach (string split in member.PreferredSubCategoryId.Split(new char[] { ',' }))
+                    {
+                        foreach (var role in siteroles)
+                        {
+                            if (role.RoleId.ToString() == split)
+                            {
+                                strRole += role.SiteRoleName + ", ";
+                                break;
+                            }
+                        }
+                    }
+
+                }
+            }
+
+            // Eligle to work locations
+            loadCountries();
 
             if (countryList != null)
             {
                 countryList = countryList.Where(c => c.Sequence != -1 && c.Abbr != "CC").OrderBy(c => c.CountryName).ToList();
 
-            }
-
-            foreach (string split in member.EligibleToWorkIn.ToString().Split(new char[] { ',' }))
-            {
-                foreach (var country in countryList)
+                foreach (string split in member.EligibleToWorkIn.ToString().Split(new char[] { ',' }))
                 {
-                    if (country.CountryId.ToString() == split)
+                    foreach (var country in countryList)
                     {
-                        strEligibleToWorkIn += country.CountryName.ToString() + ", ";
-                        break;
+                        if (country.CountryId.ToString() == split)
+                        {
+                            strEligibleToWorkIn += country.CountryName.ToString() + ", ";
+                            break;
+                        }
                     }
                 }
+
             }
 
-
+            // Member Work Types
 
             if (!string.IsNullOrWhiteSpace(member.WorkTypeId))
             {
@@ -1212,6 +1326,11 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
 
         }
 
+        private void LoadRolePreferenceRoles(int professionid)
+        {
+            siteroles = SiteRolesService.GetTranslatedByProfessionID(professionid, SessionData.Site.UseCustomProfessionRole);
+        }
+
         private void LoadWorkType()
         {
             WorkTypeList = SiteWorkTypeService.GetTranslatedWorkTypes();
@@ -1230,6 +1349,115 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
                     SalaryTypeList.Add(sitesalarytype);
                 }
             }
+        }
+
+        private int SetLanguages(int memberID)
+        {
+            using (TList<Entities.MemberLanguages> memberlanguages = MemberLanguagesService.GetByMemberId(memberID))
+            {
+                rptLanguages.DataSource = memberlanguages;
+                rptLanguages.DataBind();
+
+                phAddEntryTextLanguages.Visible = (memberlanguages.Count <= 0);
+            }
+
+            return 0;
+        }
+
+        protected void rptLanguages_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                Literal ltLanguageName = e.Item.FindControl("ltLanguageName") as Literal;
+                Literal ltProficiency = e.Item.FindControl("ltProficiency") as Literal;
+
+                MemberLanguages language = e.Item.DataItem as MemberLanguages;
+
+                ltLanguageName.Text = HttpUtility.HtmlEncode(language.Langauges);
+
+                if (language.Profieciency.HasValue)
+                {
+                    LoadMemberProficiency();
+
+                    foreach (var item in ProficiencyList)
+                    {
+                        if (item.Value == language.Profieciency.Value)
+                        {
+                            ltProficiency.Text = HttpUtility.HtmlEncode(item.Key);
+                            break;
+                        }
+                    }
+
+                }
+            }
+        }
+
+        private int SetReferences(int memberID)
+        {
+            using (TList<Entities.MemberReferences> memberreferences = MemberReferencesService.GetByMemberId(memberID))
+            {
+                rptReferences.DataSource = memberreferences;
+                rptReferences.DataBind();
+
+                phAddEntryTextReferences.Visible = (memberreferences.Count <= MinReferenceEntry);
+            }
+            return 0;
+        }
+
+        protected void rptReferences_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            var relationship = string.Empty;
+
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+
+                Literal ltReferencesCompany = e.Item.FindControl("ltReferencesCompany") as Literal;
+                Literal ltReferencesName = e.Item.FindControl("ltReferencesName") as Literal;
+                Literal ltReferencesJobTitle = e.Item.FindControl("ltReferencesJobTitle") as Literal;
+                Literal ltReferencesRelationship = e.Item.FindControl("ltReferencesRelationship") as Literal;
+                Literal ltReferencePhone = e.Item.FindControl("ltReferencePhone") as Literal;
+                Literal ltReferencesEmailDisplay = e.Item.FindControl("ltReferencesEmailDisplay") as Literal;
+
+                PlaceHolder phReferencesPhone = e.Item.FindControl("phReferencesPhone") as PlaceHolder;
+
+                MemberReferences reference = e.Item.DataItem as MemberReferences;
+
+                ltReferencesCompany.Text = HttpUtility.HtmlEncode(reference.Company);
+                ltReferencesName.Text = HttpUtility.HtmlEncode(reference.MemberReferenceName);
+                ltReferencesJobTitle.Text = HttpUtility.HtmlEncode(reference.JobTitle);
+                ltReferencePhone.Text = HttpUtility.HtmlEncode(reference.Phone);
+
+                if (!string.IsNullOrEmpty(reference.ReferenceEmail))
+                {
+                    ltReferencesEmailDisplay.Text = @"<span class=""fa fa-envelope""><!-- icon --></span> " + HttpUtility.HtmlEncode(reference.ReferenceEmail);
+                }
+
+                if (reference.Relationship.HasValue)
+                {
+                    LoadRelationship();
+
+                    if(RelationshipList != null)
+                    {
+                        foreach (var relationshipItem in RelationshipList)
+                        {
+                            if (relationshipItem.Value == reference.Relationship.Value)
+                            {
+                                ltReferencesRelationship.Text = HttpUtility.HtmlEncode(relationshipItem.Key);
+                            }
+                        }
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(reference.Phone))
+                {
+                    phReferencesPhone.Visible = true;
+                }
+            }
+        }
+
+        private void LoadRelationship()
+        {
+            RelationshipList = CommonFunction.GetEnumFormattedNames<PortalEnums.Members.ReferencesRelationship>();
         }
 
         private string JoinText(List<string> texts)
@@ -1254,6 +1482,11 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
             return result;
         }
 
+        private void loadCountries()
+        {
+            countryList = CountriesService.GetTranslatedCountries(SessionData.Language.LanguageId);
+        }
+
         private void LoadCalendar()
         {
             MonthList = new List<ListItem>();
@@ -1269,6 +1502,11 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
             MonthList.Add(new ListItem(CommonFunction.GetResourceValue("LabelOct"), "10"));
             MonthList.Add(new ListItem(CommonFunction.GetResourceValue("LabelNov"), "11"));
             MonthList.Add(new ListItem(CommonFunction.GetResourceValue("LabelDec"), "12"));
+        }
+
+        private void LoadMemberProficiency()
+        {
+            ProficiencyList = CommonFunction.GetEnumFormattedNames<PortalEnums.Members.LanguagesProfieciency>();
         }
 
         protected string GetCurrency(string locationID)
@@ -1591,8 +1829,8 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
             ltTitleRolePreferences.Text = HttpUtility.HtmlEncode(strRolePreferences);
             ltTitleResume.Text = HttpUtility.HtmlEncode(strCv);
             ltTitleCoverLetter.Text = HttpUtility.HtmlEncode(strAttachCoverLetter);
-           // ltTitleLanguage.Text = HttpUtility.HtmlEncode(strLanguages);
-           // ltTitleReferences.Text = HttpUtility.HtmlEncode(strReferences);
+            ltTitleLanguage.Text = HttpUtility.HtmlEncode(strLanguages);
+            ltTitleReferences.Text = HttpUtility.HtmlEncode(strReferences);
            // ltTitleCustomQuestions.Text = HttpUtility.HtmlEncode(strCustomQuestion);
             
         }

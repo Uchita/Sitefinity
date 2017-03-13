@@ -720,6 +720,249 @@
                             </asp:UpdatePanel>
                         </section>
                     </asp:PlaceHolder>
+
+                    <!-- Section 12: Languages  -->
+                    <asp:PlaceHolder ID="phSectionLanguages" runat="server">
+                        <section class="form-section scroll-point full-width clearfix" id="sec-Languages">
+                            <asp:UpdatePanel ID="upLanguages" runat="server" UpdateMode="Conditional" class="form-all">
+                                <ContentTemplate>
+                                    <!-- Heading -->
+                                    <header class="section-header">
+                                        <div class="col-sm-6">
+                                            <h2 class="section-title">
+                                                <span class="fa fa-commenting-o">
+                                                    <!-- icon -->
+                                                </span>
+                                                <asp:Literal ID="ltTitleLanguage" runat="server" />
+                                                <span id="languageInfo" class="fa fa-info-circle hide headingInfo" runat="server"
+                                                    clientidmode="Static">
+                                                    <!-- icon -->
+                                                </span>
+                                            </h2>
+                                        </div>
+                                    </header>
+
+                                    <!-- Add Entry Placeholder -->
+                                    <asp:PlaceHolder ID="phAddEntryTextLanguages" runat="server">
+                                        <p class="empty-case_field text-center">
+                                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral245656" runat="server" SetLanguageCode="LabelAddAnEntry" />
+                                        </p>
+                                    </asp:PlaceHolder>
+
+                                    <!-- Language Repeater -->
+                                    <div class="section-content no-border">
+                                        <div class="clearfix">
+                                            <asp:Repeater ID="rptLanguages" runat="server" OnItemDataBound="rptLanguages_ItemDataBound">
+                                                <ItemTemplate>
+                                                    <div class="col-lg-3 col-md-4 col-sm-6 col-sx-12">
+                                                        <div class="cancelable-block">
+                                                            <p class="lang-title">
+                                                                <strong>
+                                                                    <asp:Literal ID="ltLanguageName" runat="server" />
+                                                                </strong>
+                                                            </p>
+                                                            <small>
+                                                                <asp:Literal ID="ltProficiency" runat="server" />
+                                                            </small>                    
+                                                        </div>
+                                                    </div>
+                                                </ItemTemplate>
+                                            </asp:Repeater>
+                                        </div>
+                                    </div>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+                        </section>
+                    </asp:PlaceHolder>
+
+                    <!-- Section 13: References  -->
+                    <asp:PlaceHolder ID="phSectionReferences" runat="server">
+                        <section class="form-section scroll-point full-width clearfix" id="section-13">
+                            <asp:UpdatePanel ID="upReferences" runat="server" UpdateMode="Conditional" class="form-all">
+                                <ContentTemplate>
+                                    
+                                    <!-- Header Title -->
+                                    <header class="section-header">
+                                        <div class="col-sm-6">
+                                            <h2 class="section-title">
+                                                <span class="fa fa-user">
+                                                    <!-- icon -->
+                                                </span>
+                                                <asp:Literal ID="ltTitleReferences" runat="server" />
+                                                <span id="referencesInfo" class="fa fa-info-circle hide headingInfo" runat="server"
+                                                    clientidmode="Static">
+                                                    <!-- icon -->
+                                                </span>
+                                            </h2>
+                                            <span>
+                                                <asp:Literal ID="ltReferencesMin" runat="server" /></span>
+                                        </div>
+                                    </header>
+
+                                    <!-- Place Holder Text -->
+                                    <asp:PlaceHolder ID="phAddEntryTextReferences" runat="server">
+                                        <p class="empty-case_field text-center">
+                                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral276764" runat="server" SetLanguageCode="LabelAddAnEntry" />
+                                        </p>
+                                    </asp:PlaceHolder>
+
+                                    <!-- references repeater -->
+                                    <asp:Repeater ID="rptReferences" runat="server" OnItemDataBound="rptReferences_ItemDataBound">
+                                        <ItemTemplate>
+                                            <div id="acReference" runat="server" class="section-content">
+                                                <div class="editable-section">
+                                                    <header class="section-body-header">
+                                                        <div class="title-container has-edit-icon">
+                                                            <h4>
+                                                                <asp:Literal ID="ltReferencesCompany" runat="server" />
+                                                            </h4>
+                                                        </div>
+                                                        <h3>
+                                                            <asp:Literal ID="ltReferencesName" runat="server" /></h3>
+                                                        <h5>
+                                                            <asp:Literal ID="ltReferencesJobTitle" runat="server" /></h5>
+                                                    </header>
+                                                    <div class="section-entry">
+                                                        <div class="body-field field">
+                                                            <p>
+                                                                <asp:PlaceHolder ID="phReferencesPhone" runat="server" Visible="false">
+                                                                <span class="fa fa-phone">
+                                                                    <!-- icon -->
+                                                                </span>
+                                                                
+                                                                <asp:Literal ID="ltReferencePhone" runat="server" />
+                                                                <asp:Literal ID="ltReferenceEmail" runat="server" />
+
+                                                                </asp:PlaceHolder>
+
+                                                                <span class="fa fa-user">
+                                                                    <!-- icon -->
+                                                                </span>
+                                                                <asp:Literal ID="ltReferencesRelationship" runat="server" />
+                                                                <asp:Literal ID="ltReferencesEmailDisplay" runat="server" />
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Edit form section  -->
+                                                <div class="profile-edit collapse" id="edit-Reference<%# Container.ItemIndex + 1 %>">
+                                                    <h2 class="form-title">
+                                                        <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral230" runat="server" SetLanguageCode="LabelEditEntry" />
+                                                    </h2>
+                                                    <a href="#edit-Reference<%# Container.ItemIndex + 1 %>" data-toggle="collapse" class="fa fa-times close-btn">
+                                                        <!-- close -->
+                                                    </a>
+                                                    <div class="row">
+                                                        <div class="col-sm-6 col-xs-12">
+                                                            <asp:Label ID="Label97" runat="server" AssociatedControlID="tbReferencesName">
+                                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral231" runat="server" SetLanguageCode="LabelName" />
+                                                                <span class="form-required">*</span>:</asp:Label>
+                                                            <div class="form-input">
+                                                                <asp:TextBox ID="tbReferencesName" runat="server" CssClass="form-control" placeholder="tbReferencesName"
+                                                                    MaxLength="100" />
+                                                            </div>
+                                                            <asp:PlaceHolder ID="phReferencesNameError" runat="server" Visible="false"><span
+                                                                class="error-message">
+                                                                <JXTControl:ucLanguageLiteral ID="ucReferencesNameError" runat="server" SetLanguageCode="LabelRequiredField1" />
+                                                            </span></asp:PlaceHolder>
+                                                        </div>
+                                                        <div class="col-sm-6 col-xs-12">
+                                                            <asp:Label ID="Label98" runat="server" AssociatedControlID="tbReferencesJobTitle">
+                                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral232" runat="server" SetLanguageCode="LabelJobTitle" />
+                                                                <span class="form-required">*</span>:</asp:Label>
+                                                            <div class="form-input">
+                                                                <asp:TextBox ID="tbReferencesJobTitle" runat="server" CssClass="form-control" placeholder="tbReferencesJobTitle"
+                                                                    MaxLength="100" />
+                                                            </div>
+                                                            <asp:PlaceHolder ID="phReferencesJobTitleError" runat="server" Visible="false"><span
+                                                                class="error-message">
+                                                                <JXTControl:ucLanguageLiteral ID="ucReferencesJobTitleError" runat="server" SetLanguageCode="LabelRequiredField1" />
+                                                            </span></asp:PlaceHolder>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-6 col-xs-12">
+                                                            <asp:Label ID="Label99" runat="server" AssociatedControlID="tbRefernecesCompany">
+                                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral233" runat="server" SetLanguageCode="LabelCompany" />
+                                                                <span class="form-required">*</span>:</asp:Label>
+                                                            <div class="form-input">
+                                                                <asp:TextBox ID="tbRefernecesCompany" runat="server" CssClass="form-control" placeholder="tbRefernecesCompany"
+                                                                    MaxLength="100" />
+                                                            </div>
+                                                            <asp:PlaceHolder ID="phReferencesCompanyError" runat="server" Visible="false"><span
+                                                                class="error-message">
+                                                                <JXTControl:ucLanguageLiteral ID="ucReferencesCompanyError" runat="server" SetLanguageCode="LabelRequiredField1" />
+                                                            </span></asp:PlaceHolder>
+                                                        </div>
+                                                        <div class="col-sm-6 col-xs-12">
+                                                            <asp:Label ID="Label100" runat="server" AssociatedControlID="tbReferencesPhone">
+                                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral234" runat="server" SetLanguageCode="LabelPhone" />
+                                                                <span class="form-required">*</span>:</asp:Label>
+                                                            <div class="form-input">
+                                                                <asp:TextBox ID="tbReferencesPhone" runat="server" CssClass="form-control" placeholder="tbReferencesPhone"
+                                                                    MaxLength="100" />
+                                                            </div>
+                                                            <asp:PlaceHolder ID="phReferencesPhoneError" runat="server" Visible="false"><span
+                                                                class="error-message">
+                                                                <JXTControl:ucLanguageLiteral ID="ucReferencesPhoneError" runat="server" SetLanguageCode="LabelRequiredField1" />
+                                                            </span></asp:PlaceHolder>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-6 col-xs-12">
+                                                            <asp:Label ID="Label101" runat="server" AssociatedControlID="ddlReferencesRelationship">
+                                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral235" runat="server" SetLanguageCode="LabelRelationship" />
+                                                                <span class="form-required">*</span> :</asp:Label>
+                                                            <div class="form-input">
+                                                                <span class="custom-select">
+                                                                    <asp:DropDownList ID="ddlReferencesRelationship" runat="server" CssClass="form-control">
+                                                                    </asp:DropDownList>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6 col-xs-12">
+                                                            <asp:Label ID="Label109" runat="server" AssociatedControlID="tbReferencesEmail">
+                                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral61" runat="server" SetLanguageCode="LabelEmail" />
+                                                                <span class="form-required">*</span>:</asp:Label>
+                                                            <div class="form-input">
+                                                                <asp:TextBox ID="tbReferencesEmail" runat="server" CssClass="form-control" placeholder="tbReferencesEmail"
+                                                                    MaxLength="100" />
+                                                            </div>
+                                                            <asp:PlaceHolder ID="phReferencesEmailRequiredError" runat="server" Visible="false">
+                                                                <span class="error-message">
+                                                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral184" runat="server" SetLanguageCode="LabelRequiredField1" />
+                                                                </span></asp:PlaceHolder>
+                                                            <asp:PlaceHolder ID="phReferencesEmailError" runat="server" Visible="false"><span
+                                                                class="error-message">
+                                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral77" runat="server" SetLanguageCode="LabelEmailInvalid" />
+                                                            </span></asp:PlaceHolder>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-6 col-xs-12">
+                                                            <!-- Save buttton  -->
+                                                            <div class="form-input-wide">
+                                                                <label class="spacer-lbl">
+                                                                    &nbsp;</label>
+                                                                <asp:LinkButton ID="lbReferencesSave" runat="server" CssClass="btn btn-primary btn-sm"
+                                                                    CausesValidation="false">
+                                                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral36" runat="server" SetLanguageCode="LabelSave" />
+                                                                </asp:LinkButton>
+                                                                <a href="#edit-Reference<%# Container.ItemIndex + 1 %>" class="btn btn-primary btn-sm cancel-btn"
+                                                                    data-toggle="collapse">
+                                                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral39" runat="server" SetLanguageCode="LabelCancel" />
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+                        </section>
+                    </asp:PlaceHolder>
                    
                 </div>
 

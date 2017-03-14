@@ -40,6 +40,10 @@ namespace JXTPortal
     public partial class JobApplicationService : JXTPortal.JobApplicationServiceBase
     {
         private ILog _logger;
+        private string resumeFolder;
+        private string customFolder;
+        string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+
         #region Constructors
         /// <summary>
         /// Initializes a new instance of the JobApplicationService class.
@@ -48,6 +52,22 @@ namespace JXTPortal
             : base()
         {
             _logger = LogManager.GetLogger(typeof(MembersService));
+
+            if (!SessionData.Site.IsUsingS3)
+            {
+                resumeFolder = ConfigurationManager.AppSettings["FTPJobApplyResumeUrl"];
+                customFolder = ConfigurationManager.AppSettings["FTPCustomJobApplications"];
+
+                string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
+                string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                string ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+                FileManagerService = new FTPClientFileManager(ftphosturl, ftpusername, ftppassword);
+            }
+            else
+            {
+                resumeFolder = ConfigurationManager.AppSettings["AWSS3ResumePath"];
+                customFolder = ConfigurationManager.AppSettings["AWSS3CustomJobApplicationsPath"];
+            }
         }
         #endregion Constructors
 
@@ -85,6 +105,9 @@ namespace JXTPortal
                 return _memebrsService;
             }
         }
+
+        public IFileManager FileManagerService { get; set; }
+
 
         #endregion
 
@@ -148,10 +171,6 @@ namespace JXTPortal
 
                         Regex r = new Regex("(?:[^a-z0-9.]|(?<=['\"])s)", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Compiled);
                         string errormessage = string.Empty;
-                        string ftpresumepath = ConfigurationManager.AppSettings["FTPJobApplyResumeUrl"];
-                        string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                        string ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-                        FtpClient ftpclient = new FtpClient();
 
                         switch (context.Request.Params["type"])
                         {
@@ -159,10 +178,7 @@ namespace JXTPortal
                                 {
                                     jobapp.MemberResumeFile = string.Format("{0}_Resume_{1}", jobappid, r.Replace(fname, "_"));
 
-                                    ftpclient.Host = ftpresumepath;
-                                    ftpclient.Username = ftpusername;
-                                    ftpclient.Password = ftppassword;
-                                    ftpclient.UploadFileFromStream(file.InputStream, ftpresumepath + jobapp.MemberResumeFile, out errormessage);
+                                    FileManagerService.UploadFile(bucketName, resumeFolder, jobapp.MemberResumeFile, file.InputStream, out errormessage);
 
                                     context.Response.ContentType = "text/plain";
                                     if (string.IsNullOrEmpty(errormessage))
@@ -339,29 +355,19 @@ namespace JXTPortal
                 string ftpcustompath = string.Empty;
 
                 string errormessage = string.Empty;
-                FtpClient ftpclient = new FtpClient();
-                if (useFTP)
+                Stream downloadedfile = null;
+
+                downloadedfile = FileManagerService.DownloadFile(bucketName, customFolder, xmlFileName, out errormessage);
+
+                //CREATE A TXT READER (COULD BE BINARY OR ANY OTHER TYPE YOU NEED)
+                if (downloadedfile != null)
                 {
-                    ftpcustompath = ConfigurationManager.AppSettings["FTPCustomJobApplications"];
-                    ftpclient.Host = ftpcustompath;
-                    ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                    ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
-                    Stream downloadedfile = null;
-
-                    ftpclient.DownloadFileToClient(ftpcustompath + xmlFileName, ref downloadedfile, out errormessage);
-
-                    //CREATE A TXT READER (COULD BE BINARY OR ANY OTHER TYPE YOU NEED)
-                    if (downloadedfile != null)
+                    downloadedfile.Position = 0;
+                    using (System.IO.TextReader tmpReader = new System.IO.StreamReader(downloadedfile))
                     {
-                        downloadedfile.Position = 0;
-                        using (System.IO.TextReader tmpReader = new System.IO.StreamReader(downloadedfile))
-                        {
-                            //STORE THE FILE CONTENTS INTO A STRING
-                            fileContents = tmpReader.ReadToEnd();
-                        }
+                        //STORE THE FILE CONTENTS INTO A STRING
+                        fileContents = tmpReader.ReadToEnd();
                     }
-
                 }
             }
 
@@ -373,88 +379,67 @@ namespace JXTPortal
             string strPDFName = jobApplicationID.ToString() + ".docx";
             string strXMLName = jobApplicationID.ToString() + ".xml";
 
-            bool useFTP = (!string.IsNullOrEmpty(ConfigurationManager.AppSettings["FTPJobApplyResumeUrl"]));
-            string ftpcustompath = string.Empty;
-            string ftpresumepath = string.Empty;
-            string ftpusername = string.Empty;
-            string ftppassword = string.Empty;
-
             string errormessage = string.Empty;
 
             Regex r = new Regex("(?:[^a-z0-9.]|(?<=['\"])s)", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Compiled);
-            FtpClient ftpclient = new FtpClient();
-            if (useFTP)
+            // Upload XML to the App Server
+            byte[] byteArray = Encoding.ASCII.GetBytes(strXML);
+            MemoryStream xmlStream = new MemoryStream(byteArray);
+
+            FileManagerService.UploadFile(bucketName, customFolder, strXMLName, xmlStream, out errormessage);
+
+            if (!string.IsNullOrWhiteSpace(errormessage))
+                return false;
+
+            // When complete Generate the PDF from XML and upload the PDF
+            if (blnGeneratePDF)
             {
-                ftpcustompath = ConfigurationManager.AppSettings["FTPCustomJobApplications"];
-                ftpresumepath = ConfigurationManager.AppSettings["FTPJobApplyResumeUrl"];
-                ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
-
-                ftpclient.Host = ftpcustompath;
-                ftpclient.Username = ftpusername;
-                ftpclient.Password = ftppassword;
-
-                // Upload XML to the App Server
-                byte[] byteArray = Encoding.ASCII.GetBytes(strXML);
-                MemoryStream xmlStream = new MemoryStream(byteArray);
-                ftpclient.UploadFileFromStream(xmlStream, ftpcustompath + strXMLName, out errormessage); // Todo change the path
-
-                if (!string.IsNullOrWhiteSpace(errormessage))
-                    return false;
-
-                // When complete Generate the PDF from XML and upload the PDF
-                if (blnGeneratePDF)
+                try
                 {
-                    try
+                    // Todo - Future - according to the type of Form .. generate the PDF.
+
+                    // Todo - Generate XML to PDF .. get the byte[]
+
+                    System.Net.WebClient client = new System.Net.WebClient();
+                    string html = client.DownloadString(strPDFurl);
+
+                    using (MemoryStream generatedDocument = new MemoryStream())
                     {
-                        // Todo - Future - according to the type of Form .. generate the PDF.
-
-                        // Todo - Generate XML to PDF .. get the byte[]
-
-                        System.Net.WebClient client = new System.Net.WebClient();
-                        string html = client.DownloadString(strPDFurl);
-
-                        using (MemoryStream generatedDocument = new MemoryStream())
+                        using (WordprocessingDocument package = WordprocessingDocument.Create(generatedDocument, WordprocessingDocumentType.Document))
                         {
-                            using (WordprocessingDocument package = WordprocessingDocument.Create(generatedDocument, WordprocessingDocumentType.Document))
+                            MainDocumentPart mainPart = package.MainDocumentPart;
+                            if (mainPart == null)
                             {
-                                MainDocumentPart mainPart = package.MainDocumentPart;
-                                if (mainPart == null)
-                                {
-                                    mainPart = package.AddMainDocumentPart();
-                                    new Document(new Body()).Save(mainPart);
-                                }
-
-                                HtmlConverter converter = new HtmlConverter(mainPart);
-                                Body body = mainPart.Document.Body;
-
-                                var paragraphs = converter.Parse(html);
-                                for (int i = 0; i < paragraphs.Count; i++)
-                                {
-                                    body.Append(paragraphs[i]);
-                                }
-
-                                mainPart.Document.Save();
+                                mainPart = package.AddMainDocumentPart();
+                                new Document(new Body()).Save(mainPart);
                             }
 
-                            byteArray = generatedDocument.ToArray();
+                            HtmlConverter converter = new HtmlConverter(mainPart);
+                            Body body = mainPart.Document.Body;
+
+                            var paragraphs = converter.Parse(html);
+                            for (int i = 0; i < paragraphs.Count; i++)
+                            {
+                                body.Append(paragraphs[i]);
+                            }
+
+                            mainPart.Document.Save();
                         }
 
-                        xmlStream = new MemoryStream(byteArray);
+                        byteArray = generatedDocument.ToArray();
+                    }
 
-                        ftpclient.UploadFileFromStream(xmlStream, ftpcustompath + strPDFName, out errormessage);
-                    }
-                    catch (Exception ex)
-                    {
-                        _logger.Error(ex);
-                    }
+                    xmlStream = new MemoryStream(byteArray);
+
+                    FileManagerService.UploadFile(bucketName, customFolder, strPDFName, xmlStream, out errormessage);
                 }
-
-                return true;
+                catch (Exception ex)
+                {
+                    _logger.Error(ex);
+                }
             }
 
-            return false;
+            return true;
         }
 
 

@@ -31,7 +31,9 @@ using SectionIO;
 public partial class AdvertisersEdit : System.Web.UI.Page
 {
     public ICacheFlusher CacheFlusher { get; set; }
-
+    public IFileManager FileManagerService { get; set; }
+    string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+    string advertiserFolder;
     #region Declarations
 
     private int _advertiserid = 0;
@@ -116,6 +118,20 @@ public partial class AdvertisersEdit : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!SessionData.Site.IsUsingS3)
+        {
+            advertiserFolder = ConfigurationManager.AppSettings["FTPHost"] + "media/" + ConfigurationManager.AppSettings["AdvertisersFolder"] + "/";
+
+            string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
+            string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+            string ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+            FileManagerService = new FTPClientFileManager(ftphosturl, ftpusername, ftppassword);
+        }
+        else
+        {
+            advertiserFolder = ConfigurationManager.AppSettings["AWSS3MediaFolder"] + ConfigurationManager.AppSettings["AWSS3AdvertisersPath"];
+        }
+
         if (!Page.IsPostBack)
         {
             LoadBusinessType();
@@ -569,13 +585,10 @@ public partial class AdvertisersEdit : System.Web.UI.Page
                     objOutputMemorySTream.Position = 0;
                     objOutputMemorySTream.Read(abytFile, 0, abytFile.Length);
 
-                    FtpClient ftpclient = new FtpClient();
                     string errormessage = string.Empty;
                     string extension = Utils.GetImageExtension(objOriginalImage);
-                    ftpclient.Host = ConfigurationManager.AppSettings["FTPFileManager"];
-                    ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                    ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-                    ftpclient.UploadFileFromStream(objOutputMemorySTream, string.Format("{0}/{1}/Advertisers_{2}.{3}", ftpclient.Host, ConfigurationManager.AppSettings["AdvertisersFolder"], advertiser.AdvertiserId, extension), out errormessage);
+
+                    FileManagerService.UploadFile(bucketName, advertiserFolder, string.Format("Advertisers_{0}.{1}", advertiser.AdvertiserId, extension), objOutputMemorySTream, out errormessage);
 
                     if (string.IsNullOrWhiteSpace(errormessage))
                     {
@@ -698,14 +711,11 @@ public partial class AdvertisersEdit : System.Web.UI.Page
                             objOutputMemorySTream.Position = 0;
                             objOutputMemorySTream.Read(abytFile, 0, abytFile.Length);
 
-                            FtpClient ftpclient = new FtpClient();
                             string errormessage = string.Empty;
                             string extension = Utils.GetImageExtension(objOriginalImage);
-                            ftpclient.Host = ConfigurationManager.AppSettings["FTPFileManager"];
-                            ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                            ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-                            ftpclient.UploadFileFromStream(objOutputMemorySTream, string.Format("{0}/{1}/Advertisers_{2}.{3}", ftpclient.Host, ConfigurationManager.AppSettings["AdvertisersFolder"], advertiser.AdvertiserId, extension), out errormessage);
-
+                            
+                            FileManagerService.UploadFile(bucketName, advertiserFolder, string.Format("Advertisers_{0}.{1}", advertiser.AdvertiserId, extension), objOutputMemorySTream, out errormessage);
+                            
                             if (string.IsNullOrWhiteSpace(errormessage))
                             {
                                 advertiser.AdvertiserLogoUrl = string.Format("Advertisers_{0}.{1}", advertiser.AdvertiserId, extension);

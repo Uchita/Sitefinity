@@ -57,7 +57,7 @@ namespace JXTPortal.Website.Admin.UserControls
         {
             get
             {
-                string path = GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId)[0].FtpFolderLocation.Replace("s3://", "");
+                string path = SessionData.Site.FileFolderLocation;
                 if (SessionData.AdminUser != null && SessionData.AdminUser.AdminRoleId != (int)PortalEnums.Admin.AdminRole.Administrator)
                 {
                     path = string.Format("{0}/{1}", path, clientFolder);
@@ -566,7 +566,7 @@ namespace JXTPortal.Website.Admin.UserControls
                 {
                     Uri uri = new Uri(FTPHostUrl);
 
-                    hfFileURL.Value = string.Format("http://{0}{1}{2}/{3}", SiteUrl, uri.AbsolutePath, hfCurrentPath.Value, entry.ShortFileName);
+                    hfFileURL.Value = string.Format("//{0}{1}{2}/{3}", SiteUrl, uri.AbsolutePath, hfCurrentPath.Value, entry.ShortFileName);
                     ltlModified.Text = string.Format("{0} {1}", entry.LastModified.ToString(SessionData.Site.DateFormat), entry.LastModified.ToLongTimeString());
                 }
 

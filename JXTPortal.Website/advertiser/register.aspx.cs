@@ -16,7 +16,12 @@ namespace JXTPortal.Website.advertiser
 {
     public partial class register : System.Web.UI.Page
     {
+        private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+
         #region Properties
+
+        public IFileManager FileManagerService { get; set; }
+        private string advertiserFolder;
 
         private DynamicPagesService _dynamicPagesService = null;
         private DynamicPagesService DynamicPagesService
@@ -152,6 +157,20 @@ namespace JXTPortal.Website.advertiser
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!SessionData.Site.IsUsingS3)
+            {
+                advertiserFolder = ConfigurationManager.AppSettings["FTPHost"] + "media/" + ConfigurationManager.AppSettings["AdvertisersFolder"] + "/";
+
+                string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
+                string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                string ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+                FileManagerService = new FTPClientFileManager(ftphosturl, ftpusername, ftppassword);
+            }
+            else
+            {
+                advertiserFolder = ConfigurationManager.AppSettings["AWSS3MediaFolder"] + ConfigurationManager.AppSettings["AWSS3AdvertisersPath"];
+            }
+
             phMessage.Visible = false;
             if (!this.IsPostBack)
             {
@@ -349,15 +368,11 @@ namespace JXTPortal.Website.advertiser
                             }
 
                             System.Drawing.Image objOriginalImage = System.Drawing.Image.FromStream(ms);
-
-                            FtpClient ftpclient = new FtpClient();
                             string errormessage = string.Empty;
                             string extension = Utils.GetImageExtension(objOriginalImage);
-                            ftpclient.Host = ConfigurationManager.AppSettings["FTPFileManager"];
-                            ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                            ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-                            ftpclient.UploadFileFromStream(ms, string.Format("{0}/{1}/Advertisers_{2}.{3}", ftpclient.Host, ConfigurationManager.AppSettings["AdvertisersFolder"], advertisers.AdvertiserId, extension), out errormessage);
 
+                            FileManagerService.UploadFile(bucketName, advertiserFolder, string.Format("Advertisers_{0}.{1}", advertisers.AdvertiserId, extension, extension), ms, out errormessage);
+                            
                             if (string.IsNullOrWhiteSpace(errormessage))
                             {
                                 advertisers.AdvertiserLogoUrl = string.Format("Advertisers_{0}.{1}", advertisers.AdvertiserId, extension);

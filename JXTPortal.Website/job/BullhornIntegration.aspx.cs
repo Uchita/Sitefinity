@@ -57,10 +57,14 @@ namespace JXTPortal.Website.job
         //ascx variables
         public bool HasAddressInputValue = false;
         public bool HasLatLngInputValues = false;
+
+        private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+        private string advertiserJobTemplateLogoFolder;
         #endregion
 
         #region Properties
 
+        public IFileManager FileManagerService { get; set; }
         private const string ExternalIDPrefix = ""; //Bullhorn
 
         private GlobalSettingsService GlobalSettingsService
@@ -546,6 +550,20 @@ namespace JXTPortal.Website.job
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!SessionData.Site.IsUsingS3)
+            {
+                advertiserJobTemplateLogoFolder = string.Format("{0}{1}/{2}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["RootFolder"], ConfigurationManager.AppSettings["AdvertiserJobTemplateLogoFolder"]);
+
+                string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
+                string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                string ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+                FileManagerService = new FTPClientFileManager(ftphosturl, ftpusername, ftppassword);
+            }
+            else
+            {
+                advertiserJobTemplateLogoFolder = ConfigurationManager.AppSettings["AWSS3MediaFolder"] + ConfigurationManager.AppSettings["AWSS3AdvertiserJobTemplateLogoFolder"];
+            }
+
             revEmailAddress.ValidationExpression = ConfigurationManager.AppSettings["EmailValidationRegex"];
 
             cal_tbStartDate.Format = SessionData.Site.DateFormat;
@@ -1591,13 +1609,10 @@ namespace JXTPortal.Website.job
                                     PortalConstants.THUMBNAIL_WIDTH, PortalConstants.THUMBNAIL_HEIGHT);
 
                                 System.IO.MemoryStream objOutputMemorySTream = new System.IO.MemoryStream();
-                                FtpClient ftpclient = new FtpClient();
+                                
                                 string errormessage = string.Empty;
                                 string extension = Utils.GetImageExtension(objOriginalImage);
-                                ftpclient.Host = ConfigurationManager.AppSettings["FTPFileManager"];
-                                ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                                ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-                                ftpclient.UploadFileFromStream(objOutputMemorySTream, string.Format("{0}/{1}/AdvertiserJobTemplateLogo_{2}.{3}", ftpclient.Host, ConfigurationManager.AppSettings["AdvertiserJobTemplateLogoFolder"], objAdvJobTemplateLogo.AdvertiserJobTemplateLogoId, extension), out errormessage);
+                                FileManagerService.UploadFile(bucketName, advertiserJobTemplateLogoFolder, string.Format("AdvertiserJobTemplateLogo_{0}.{1}", objAdvJobTemplateLogo.AdvertiserJobTemplateLogoId, extension), objOutputMemorySTream, out errormessage);
 
                                 if (string.IsNullOrWhiteSpace(errormessage))
                                 {
@@ -2285,14 +2300,11 @@ namespace JXTPortal.Website.job
                                     PortalConstants.THUMBNAIL_WIDTH, PortalConstants.THUMBNAIL_HEIGHT);
 
                                 System.IO.MemoryStream objOutputMemorySTream = new System.IO.MemoryStream();
-                                FtpClient ftpclient = new FtpClient();
+                                
                                 string errormessage = string.Empty;
                                 string extension = Utils.GetImageExtension(objOriginalImage);
-                                ftpclient.Host = ConfigurationManager.AppSettings["FTPFileManager"];
-                                ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                                ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-                                ftpclient.UploadFileFromStream(objOutputMemorySTream, string.Format("{0}/{1}/AdvertiserJobTemplateLogo_{2}.{3}", ftpclient.Host, ConfigurationManager.AppSettings["AdvertiserJobTemplateLogoFolder"], objAdvJobTemplateLogo.AdvertiserJobTemplateLogoId, extension), out errormessage);
-
+                                
+                                FileManagerService.UploadFile(bucketName, advertiserJobTemplateLogoFolder, string.Format("AdvertiserJobTemplateLogo_{0}.{1}", objAdvJobTemplateLogo.AdvertiserJobTemplateLogoId, extension), objOutputMemorySTream, out errormessage);
                                 if (string.IsNullOrWhiteSpace(errormessage))
                                 {
                                     objAdvJobTemplateLogo.JobTemplateLogoUrl = string.Format("AdvertiserJobTemplateLogo_{0}.{1}", objAdvJobTemplateLogo.AdvertiserJobTemplateLogoId, extension);

@@ -50,7 +50,7 @@ namespace JXTPortal.Website.Admin
         {
             get
             {
-                string path = GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId)[0].FtpFolderLocation.Replace("s3://", "");
+                string path = SessionData.Site.FileFolderLocation;
                 if (SessionData.AdminUser != null && SessionData.AdminUser.AdminRoleId != (int)PortalEnums.Admin.AdminRole.Administrator)
                 {
                     path = string.Format("{0}/{1}", path, clientFolder);

@@ -43,7 +43,7 @@ namespace JXTPortal.Website.Admin
 
         private string FTPFolderLocation
         {
-            get { return GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId)[0].FtpFolderLocation; }
+            get { return SessionData.Site.FileFolderLocation; }
         }
 
         private string UrlPrefix
@@ -65,7 +65,7 @@ namespace JXTPortal.Website.Admin
                 Response.Redirect("/default.aspx");
             }
 
-            if (FTPFolderLocation.StartsWith("s3://"))
+            if (SessionData.Site.IsUsingS3)
             {
                 Response.Redirect("S3FileBrowser.aspx");
             }

@@ -9,11 +9,31 @@ using System.Data;
 using System.Configuration;
 using System.IO;
 using JXTPortal.Common;
+using JXTPortal.Core.FileManagement;
+using JXT.Integration.AWS;
 
 namespace JXTEnworldGaiaExport
 {
     internal class MemberGeneration
     {
+        private static string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+
+        private static string memberFileFolder;
+        public static IFileManager FileManagerService { get; set; }
+
+        private static GlobalSettingsService _GlobalSettingsService = null;
+        private static GlobalSettingsService GlobalSettingsService
+        {
+            get
+            {
+                if (_GlobalSettingsService == null)
+                {
+                    _GlobalSettingsService = new GlobalSettingsService();
+                }
+                return _GlobalSettingsService;
+            }
+        }
+
         public static bool Start(int masterSiteID, string referringSiteIDs, DateTime lastExecutedDate, out List<UploadTracker> memberTrackers)
         {
             memberTrackers = new List<UploadTracker>();
@@ -41,6 +61,27 @@ namespace JXTEnworldGaiaExport
                         Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Generating JSON: Candidate #" + CandidateID);
 
                         Members thisMember = _ms.GetByMemberId(CandidateID);
+
+                        GlobalSettings globalSetting = GlobalSettingsService.GetBySiteId(thisMember.SiteId).FirstOrDefault();
+
+                        if (globalSetting != null)
+                        {
+                            if (globalSetting.FtpFolderLocation.StartsWith("s3://") == false)
+                            {
+                                memberFileFolder = ConfigurationManager.AppSettings["FTPHost"] + ConfigurationManager.AppSettings["MemberRootFolder"] + "/" + ConfigurationManager.AppSettings["MemberFilesFolder"];
+
+                                string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
+                                string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                                string ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+                                FileManagerService = new FTPClientFileManager(ftphosturl, ftpusername, ftppassword);
+                            }
+                            else
+                            {
+                                IAwsS3 s3 = new AwsS3();
+                                FileManagerService = new FileManager(s3);
+                                memberFileFolder = ConfigurationManager.AppSettings["AWSS3MemberRootFolder"] + ConfigurationManager.AppSettings["AWSS3MemberFilesFolder"];
+                            }
+                        }
 
                         //Deserialize member candidate data into a GaiaExportFormat class
                         GaiaExportFormat thisCandidateData = new GaiaExportFormat();
@@ -71,15 +112,8 @@ namespace JXTEnworldGaiaExport
 
                                         if (!string.IsNullOrWhiteSpace(item.MemberFileUrl))
                                         {
-
-                                            FtpClient ftpclient = new FtpClient();
-                                            ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                                            ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                                            ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
-                                            string filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], item.MemberId, item.MemberFileUrl);
                                             Stream ms = null;
-                                            ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
+                                            ms = FileManagerService.DownloadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, item.MemberId), item.MemberFileUrl, out errormessage);
                                             ms.Position = 0;
 
                                             memberfilecontent = ((MemoryStream)ms).ToArray();

@@ -113,7 +113,7 @@ namespace JXTPortal
             sessionSite.SiteAvailableLanguage = (from lang in siteLanguages.Languages select lang.SiteLanguageURL).Distinct().ToList();
 
             GlobalSettingsService globalService = new GlobalSettingsService();
-            TList<GlobalSettings> settings = globalService.GetBySiteId(sessionSite.SiteId);
+            GlobalSettings settings = globalService.GetBySiteId(sessionSite.SiteId).FirstOrDefault();
             
             // Check if current site has a master site
             SiteMappingsService sitemappingsservice = new SiteMappingsService();
@@ -130,20 +130,20 @@ namespace JXTPortal
                 }
             }
 
-            sessionSite.WWWRedirect = settings[0].WwwRedirect;
-            sessionSite.EnableSsl = settings[0].EnableSsl;
-            sessionSite.DateFormat = settings[0].GlobalDateFormat;
-            sessionSite.IsPrivateSite = (settings[0].IsPrivateSite.HasValue ? settings[0].IsPrivateSite.Value : false); //!string.IsNullOrWhiteSpace(settings[0].PrivateRedirectUrl) ? 
-            //if (sessionSite.IsPrivateSite)
-            //    sessionSite.PrivateRedirectUrl = settings[0].PrivateRedirectUrl;
+            sessionSite.WWWRedirect = settings.WwwRedirect;
+            sessionSite.EnableSsl = settings.EnableSsl;
+            sessionSite.DateFormat = settings.GlobalDateFormat;
+            sessionSite.IsPrivateSite = (settings.IsPrivateSite.HasValue ? settings.IsPrivateSite.Value : false); //!string.IsNullOrWhiteSpace(settings[0].PrivateRedirectUrl) ? 
+            sessionSite.FileFolderLocation = settings.FtpFolderLocation.Replace("s3://", "");
+            sessionSite.IsUsingS3 = (settings.FtpFolderLocation.StartsWith("s3://"));
 
-            if (settings[0].MemberRegistrationNotification != null)
+            if (settings.MemberRegistrationNotification != null)
             {
-                sessionSite.MemberRegistrationNotificationEmail = settings[0].MemberRegistrationNotification;
+                sessionSite.MemberRegistrationNotificationEmail = settings.MemberRegistrationNotification;
             }
-            sessionSite.UseCustomProfessionRole = settings[0].UseCustomProfessionRole;
-            sessionSite.IsJobBoard = (settings[0].SiteType == (int)PortalEnums.Admin.SiteType.JobBoard) ? true : false;
-            sessionSite.AdvertiserApprovalProcess = (settings[0].AdvertiserApprovalProcess.HasValue) ? (PortalEnums.Admin.AdvertiserApproval)settings[0].AdvertiserApprovalProcess : PortalEnums.Admin.AdvertiserApproval.AutoApproved;
+            sessionSite.UseCustomProfessionRole = settings.UseCustomProfessionRole;
+            sessionSite.IsJobBoard = (settings.SiteType == (int)PortalEnums.Admin.SiteType.JobBoard) ? true : false;
+            sessionSite.AdvertiserApprovalProcess = (settings.AdvertiserApprovalProcess.HasValue) ? (PortalEnums.Admin.AdvertiserApproval)settings.AdvertiserApprovalProcess : PortalEnums.Admin.AdvertiserApproval.AutoApproved;
             // Set Language
             LanguagesService languageService = new LanguagesService();
             if (System.Web.HttpContext.Current.Session[PortalConstants.Session.SessionLanguage] == null)
@@ -151,9 +151,9 @@ namespace JXTPortal
                 SetLanguage(languageService.GetByLanguageId(sessionSite.DefaultLanguageId));
             }
 
-            if (settings[0].DefaultEmailLanguageId.HasValue)
+            if (settings.DefaultEmailLanguageId.HasValue)
             {
-                sessionSite.DefaultEmailLanguageId = settings[0].DefaultEmailLanguageId.Value;
+                sessionSite.DefaultEmailLanguageId = settings.DefaultEmailLanguageId.Value;
             }
             else
             {
@@ -406,6 +406,9 @@ namespace JXTPortal
 
                 //Language available for this site
                 sessionSite.SiteAvailableLanguage = (from lang in siteLanguages.Languages select lang.SiteLanguageURL).Distinct().ToList();
+
+                sessionSite.FileFolderLocation = GlobalSettings.FtpFolderLocation.Replace("s3://", "");
+                sessionSite.IsUsingS3 = (GlobalSettings.FtpFolderLocation.StartsWith("s3://"));
             }
 
             System.Web.HttpContext.Current.Session[PortalConstants.Session.SessionSite] = sessionSite;

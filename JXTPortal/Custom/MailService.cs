@@ -23,7 +23,35 @@ namespace JXTPortal
 {
     public static class MailService
     {
+        static string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+
         public static IJobApplicationScreeningAnswersService JobApplicationScreeningAnswersService { get; set; }
+        public static IFileManager FileManagerService { get; set; }
+
+        private static string coverLetterFolder;
+        private static string resumeFolder;
+        private static string customFolder;
+
+        static MailService()
+        {
+            if (!SessionData.Site.IsUsingS3)
+            {
+                coverLetterFolder = ConfigurationManager.AppSettings["FTPJobApplyCoverLetterUrl"].TrimEnd(new char[] {'/'});
+                resumeFolder = ConfigurationManager.AppSettings["FTPJobApplyResumeUrl"].TrimEnd(new char[] { '/' });
+                customFolder = ConfigurationManager.AppSettings["FTPCustomJobApplications"].TrimEnd(new char[] { '/' });
+
+                string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
+                string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                string ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+                FileManagerService = new FTPClientFileManager(ftphosturl, ftpusername, ftppassword);
+            }
+            else
+            {
+                coverLetterFolder = ConfigurationManager.AppSettings["AWSS3CoverLetterPath"];
+                resumeFolder = ConfigurationManager.AppSettings["AWSS3ResumePath"];
+                customFolder = ConfigurationManager.AppSettings["AWSS3CustomJobApplicationsPath"];
+            }
+        }
 
         public static void SetJobApplicationScreeningAnswers(IJobApplicationScreeningAnswersService container)
         {
@@ -692,22 +720,8 @@ namespace JXTPortal
             // int languageid = (advertiseruser.DefaultLanguageId.HasValue) ? advertiseruser.DefaultLanguageId.Value : SessionData.Site.DefaultEmailLanguageId;
 
             JXTPortal.Entities.EmailTemplates emailtemplate = GetEmailTemplate("JOBNOTICE4ADT", siteid, languageid);
-            bool useFTP = (!string.IsNullOrEmpty(ConfigurationManager.AppSettings["FTPJobApplyResumeUrl"]));
-            string ftpclpath = string.Empty;
-            string ftpresumepath = string.Empty;
-            string ftpusername = string.Empty;
-            string ftppassword = string.Empty;
-            string ftpcustompath = string.Empty;
-            FtpClient ftpclient = new FtpClient();
 
-            if (useFTP)
-            {
-                ftpclpath = ConfigurationManager.AppSettings["FTPJobApplyCoverLetterUrl"];
-                ftpresumepath = ConfigurationManager.AppSettings["FTPJobApplyResumeUrl"];
-                ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-                ftpcustompath = ConfigurationManager.AppSettings["FTPCustomJobApplications"];
-            }
+            bool useFTP = (!string.IsNullOrEmpty(ConfigurationManager.AppSettings["FTPJobApplyResumeUrl"]));
 
             // Checking if the Email Template Exists - Job Application has Job in it
             if (emailtemplate != null && jobapp.JobId.HasValue)
@@ -777,7 +791,7 @@ namespace JXTPortal
                 colemailfields["SiteName"] = sitename;
                 colemailfields["URLREFERRAL"] = jobapp.UrlReferral;
                 colemailfields["EXTERNALJOBID"] = job.JobExternalId;
-                
+
                 // Replace Custom Fields 
                 if (customEmailFields != null && customEmailFields.Count > 0)
                 {
@@ -787,130 +801,52 @@ namespace JXTPortal
                     }
                 }
 
-                if (useFTP)
+                if (!string.IsNullOrEmpty(jobapp.MemberCoverLetterFile))
                 {
+                    Stream downloadedfile = null;
+                    string errormessage = string.Empty;
 
-                    if (!string.IsNullOrEmpty(jobapp.MemberCoverLetterFile))
+                    downloadedfile = FileManagerService.DownloadFile(bucketName, coverLetterFolder, jobapp.MemberCoverLetterFile, out errormessage);
+
+                    if (string.IsNullOrEmpty(errormessage) && downloadedfile.Length > 0)
                     {
-                        Stream downloadedfile = null;
-                        string errormessage = string.Empty;
+                        string contenttype = MediaTypeNames.Application.Octet;
 
-                        ftpclient.Host = ftpclpath;
-                        ftpclient.Username = ftpusername;
-                        ftpclient.Password = ftppassword;
-
-                        ftpclient.DownloadFileToClient(ftpclpath + jobapp.MemberCoverLetterFile, ref downloadedfile, out errormessage);
-
-                        if (string.IsNullOrEmpty(errormessage) && downloadedfile.Length > 0)
-                        {
-                            string contenttype = MediaTypeNames.Application.Octet;
-                            //FileInfo fi = new FileInfo(jobapp.MemberCoverLetterFile);
-                            //if (fi.Extension == ".pdf")
-                            //{
-                            //    contenttype = MediaTypeNames.Application.Pdf;
-                            //}
-                            //else if (fi.Extension == ".doc")
-                            //{
-                            //    contenttype = "application/msword";
-                            //}
-                            //else if (fi.Extension == ".docx")
-                            //{
-                            //    contenttype = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
-                            //}
-                            //else if (fi.Extension == ".txt")
-                            //{
-                            //    contenttype = "text/plain";
-                            //}
-                            //else if (fi.Extension == ".rtf")
-                            //{
-                            //    contenttype = "application/rtf";
-                            //}
-
-                            MessageAttachment clAttachment = new MessageAttachment(jobapp.MemberCoverLetterFile, contenttype, new MemoryStream(((MemoryStream)downloadedfile).ToArray()));
-                            message.Attachments.Add(clAttachment);
-                            downloadedfile.Dispose();
-                        }
-                    }
-
-                    if (!string.IsNullOrEmpty(jobapp.MemberResumeFile))
-                    {
-                        Stream downloadedfile = null;
-                        string errormessage = string.Empty;
-
-                        ftpclient.Host = ftpresumepath;
-                        ftpclient.Username = ftpusername;
-                        ftpclient.Password = ftppassword;
-
-                        ftpclient.DownloadFileToClient(ftpresumepath + jobapp.MemberResumeFile, ref downloadedfile, out errormessage);
-
-                        if (string.IsNullOrEmpty(errormessage) && downloadedfile.Length > 0)
-                        {
-                            string contenttype = MediaTypeNames.Application.Octet;
-                            //FileInfo fi = new FileInfo(jobapp.MemberResumeFile);
-                            //if (fi.Extension == ".pdf")
-                            //{
-                            //    contenttype = MediaTypeNames.Application.Pdf;
-                            //}
-                            //else if (fi.Extension == ".doc")
-                            //{
-                            //    contenttype = "application/msword";
-                            //}
-                            //else if (fi.Extension == ".docx")
-                            //{
-                            //    contenttype = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
-                            //}
-                            //else if (fi.Extension == ".txt")
-                            //{
-                            //    contenttype = "text/plain";
-                            //}
-                            //else if (fi.Extension == ".rtf")
-                            //{
-                            //    contenttype = "application/rtf";
-                            //}
-
-                            MessageAttachment resumeAttachment = new MessageAttachment(jobapp.MemberResumeFile, contenttype, new MemoryStream(((MemoryStream)downloadedfile).ToArray()));
-                            message.Attachments.Add(resumeAttachment);
-                        }
-                    }
-
-                    // PDF Attachment
-                    if (!string.IsNullOrEmpty(jobapp.ExternalPdfFilename))
-                    {
-                        Stream downloadedfile = null;
-                        string errormessage = string.Empty;
-
-                        ftpclient.Host = ftpcustompath;
-                        ftpclient.Username = ftpusername;
-                        ftpclient.Password = ftppassword;
-
-                        ftpclient.DownloadFileToClient(ftpcustompath + jobapp.ExternalPdfFilename, ref downloadedfile, out errormessage);
-
-                        if (string.IsNullOrEmpty(errormessage) && downloadedfile.Length > 0)
-                        {
-                            MessageAttachment clAttachment = new MessageAttachment(jobapp.ExternalPdfFilename, MediaTypeNames.Application.Pdf, new MemoryStream(((MemoryStream)downloadedfile).ToArray()));
-                            message.Attachments.Add(clAttachment);
-                            downloadedfile.Dispose();
-                        }
+                        MessageAttachment clAttachment = new MessageAttachment(jobapp.MemberCoverLetterFile, contenttype, new MemoryStream(((MemoryStream)downloadedfile).ToArray()));
+                        message.Attachments.Add(clAttachment);
+                        downloadedfile.Dispose();
                     }
                 }
-                else
-                {
-                    if (!string.IsNullOrEmpty(jobapp.MemberCoverLetterFile))
-                    {
-                        string strFileFullPath = coverletteruploadpath + jobapp.MemberCoverLetterFile;
-                        MemoryStream ms = new MemoryStream(Utils.DecryptFile(strFileFullPath));
-                        ms.Position = 0;
-                        MessageAttachment clAttachment = new MessageAttachment(jobapp.MemberCoverLetterFile, MediaTypeNames.Application.Octet, ms);
-                        message.Attachments.Add(clAttachment);
-                    }
 
-                    if (!string.IsNullOrEmpty(jobapp.MemberResumeFile))
+                if (!string.IsNullOrEmpty(jobapp.MemberResumeFile))
+                {
+                    Stream downloadedfile = null;
+                    string errormessage = string.Empty;
+
+                    downloadedfile = FileManagerService.DownloadFile(bucketName, resumeFolder, jobapp.MemberResumeFile, out errormessage);
+
+                    if (string.IsNullOrEmpty(errormessage) && downloadedfile.Length > 0)
                     {
-                        string strFileFullPath = resumeuploadpath + jobapp.MemberResumeFile;
-                        MemoryStream ms = new MemoryStream(Utils.DecryptFile(strFileFullPath));
-                        ms.Position = 0;
-                        MessageAttachment resumeAttachment = new MessageAttachment(jobapp.MemberResumeFile, MediaTypeNames.Application.Octet, ms);
+                        string contenttype = MediaTypeNames.Application.Octet;
+
+                        MessageAttachment resumeAttachment = new MessageAttachment(jobapp.MemberResumeFile, contenttype, new MemoryStream(((MemoryStream)downloadedfile).ToArray()));
                         message.Attachments.Add(resumeAttachment);
+                    }
+                }
+
+                // PDF Attachment
+                if (!string.IsNullOrEmpty(jobapp.ExternalPdfFilename))
+                {
+                    Stream downloadedfile = null;
+                    string errormessage = string.Empty;
+
+                    downloadedfile = FileManagerService.DownloadFile(bucketName, customFolder, jobapp.MemberCoverLetterFile, out errormessage);
+
+                    if (string.IsNullOrEmpty(errormessage) && downloadedfile.Length > 0)
+                    {
+                        MessageAttachment clAttachment = new MessageAttachment(jobapp.ExternalPdfFilename, MediaTypeNames.Application.Pdf, new MemoryStream(((MemoryStream)downloadedfile).ToArray()));
+                        message.Attachments.Add(clAttachment);
+                        downloadedfile.Dispose();
                     }
                 }
 

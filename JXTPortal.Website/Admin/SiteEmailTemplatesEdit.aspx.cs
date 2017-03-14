@@ -100,7 +100,7 @@ namespace JXTPortal.Website.Admin
 
         private string FTPFolderLocation
         {
-            get { return GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId)[0].FtpFolderLocation; }
+            get { return SessionData.Site.FileFolderLocation; }
         }
         #endregion
 
@@ -108,7 +108,7 @@ namespace JXTPortal.Website.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            dataNewEmailBodyHTML.SetConfigForFTPFolder(FTPFolderLocation);
+            dataNewEmailBodyHTML.SetConfigForFTPFolder(SessionData.Site.IsUsingS3);
             
             if (!Page.IsPostBack)
             {

@@ -80,7 +80,7 @@ public partial class NewsEdit : System.Web.UI.Page
 
     private string FTPFolderLocation
     {
-        get { return GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId)[0].FtpFolderLocation; }
+        get { return SessionData.Site.FileFolderLocation; }
     }
     #endregion
 
@@ -88,7 +88,7 @@ public partial class NewsEdit : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        txtPageContent.SetConfigForFTPFolder(FTPFolderLocation);
+        txtPageContent.SetConfigForFTPFolder(SessionData.Site.IsUsingS3);
         
         // To Enable CkFinder
         //txtPageContent.FileBrowserImageBrowseUrl = "/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Images"; //&currentFolder=/files/images/

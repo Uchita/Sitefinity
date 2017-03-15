@@ -222,16 +222,14 @@
                         </ContentTemplate>
                     </asp:UpdatePanel>
                     
-                    <!-- Section 10 & 11: Attach Rsume & Coverletter -->
+                    <!-- Section 10 & 11: Attach Resume & Coverletter -->
                     <div class="row clearfix scroll-point" id="attach-container">
                         <!-- Section 10: Attach Resume  -->
                         <asp:PlaceHolder ID="phSectionResume" runat="server">
-                            <asp:UpdatePanel ID="upResume" runat="server" UpdateMode="Conditional" class="col-md-6">
-                                <ContentTemplate>
-                                    <section class="form-section frm-sec-2" id="sec-AttachResume">
+                                    <section class="form-section frm-sec-2" id="sec-AttachResume">   
+                                        <!-- Resume Heading -->
                                         <header class="section-header">
-                                            <div class="col-sm-8">
-                                                <!-- Resume Heading -->
+                                            <div class="col-sm-8">                                               
                                                 <h2 class="section-title">
                                                     <span class="fa fa-file-text-o">
                                                         <!-- icon -->
@@ -275,23 +273,21 @@
                                                 </FooterTemplate>
                                             </asp:Repeater>
                                         </div>
+
+                                        <!-- Download All Button -->
                                         <div class="info_graphic downloadAll">
                                             <span class="fa fa-download">
-                                                <asp:HyperLink ID="hlDownloadAllResume" runat="server" CssClass="downloadResume">Download All</asp:HyperLink>
+                                                <asp:LinkButton ID="lbDownloadAllResume" CssClass="downloadResume" runat="server" OnClick="lbDownloadAllResume_Click">Download All</asp:LinkButton>
                                             </span>
                                         </div>
                                     </section>
-                                </ContentTemplate>
-                            </asp:UpdatePanel>
                         </asp:PlaceHolder>
 
                         <!-- Section 11: Attach Coverletter  -->
                         <asp:PlaceHolder ID="phSectionCoverLetter" runat="server">
-                            <asp:UpdatePanel ID="upCoverLetter" runat="server" UpdateMode="Conditional" class="col-md-6">
-                                <ContentTemplate>
                                     <section class="form-section frm-sec-2" id="sec-AttachCoverletter">
+                                        <!-- Cover Letter Heading -->
                                         <header class="section-header">
-                                            <!-- Cover Letter Heading -->
                                             <div class="col-sm-8">
                                                 <h2 class="section-title">
                                                     <span class="fa fa-file-text-o">
@@ -334,14 +330,14 @@
                                                 </FooterTemplate>
                                             </asp:Repeater>
                                         </div>
+
+                                        <!-- Download All Button -->
                                         <div class="info_graphic downloadAll">
                                                 <span class="fa fa-download">
-                                                    <asp:HyperLink ID="hlDownloadAllCoverLetter" runat="server" CssClass="downloadCoverletter">Download All</asp:HyperLink>
+                                                    <asp:LinkButton ID="lbDownloadAllCoverLetter" CssClass="downloadCoverletter" OnClick="lbDownloadAllCoverLetter_Click" runat="server">Download All</asp:LinkButton>
                                                 </span>
                                             </div>
                                     </section>
-                                </ContentTemplate>
-                            </asp:UpdatePanel>
                         </asp:PlaceHolder>
                     </div>
 
@@ -502,7 +498,7 @@
                                     <asp:PlaceHolder ID="phSkillsDisplay" runat="server" Visible="false">
                                         <div class="section-content no-border clearfix">
                                             <h4>
-                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral138" runat="server" SetLanguageCode="LabelYourSkillSets" />
+                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral138" runat="server" SetLanguageCode="LabelPublicProfileSkillSets" />
                                             </h4>
 
                                             <div class="tagsinput">

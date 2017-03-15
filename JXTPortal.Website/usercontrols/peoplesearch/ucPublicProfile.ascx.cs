@@ -4,12 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
 using JXTPortal.Entities;
 using System.Configuration;
 using System.Xml;
 using JXTPortal.Common;
 using System.Text;
+using System.IO;
+using log4net;
 
 namespace JXTPortal.Website.usercontrols.peoplesearch
 {
@@ -44,6 +45,7 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
 
         List<Entities.Countries> countryList;
         List<Entities.MemberLanguages> Memberlanguages;
+        Entities.MemberWizard memberWizard = null;
 
         private Dictionary<string, int> ProficiencyList;
         private Dictionary<string, int> RelationshipList;
@@ -53,6 +55,8 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
         private int MinReferenceEntry = 0;
         private int currentMemberID;
 
+        ILog _logger;
+
         #endregion
 
         #region Properties
@@ -61,9 +65,9 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
         {
             get
             {
-                if ((Request.QueryString["memberurlextension"] != null))
+                if ((Request.QueryString["memberid"] != null))
                 {
-                    _memberurlextension = Request.QueryString["memberurlextension"].ToString();
+                    _memberurlextension = Request.QueryString["memberid"].ToString();
                 }
 
                 return _memberurlextension;
@@ -261,6 +265,11 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
 
         #endregion
 
+        public ucPublicProfile()
+        {
+            _logger = LogManager.GetLogger(typeof(ucPublicProfile));
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(MemberUrlExtension))
@@ -273,22 +282,22 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
 
                     LoadCalendar();
                     LoadMemberInfo(member);
-                    SetAttachResume(member.MemberId);
-                    SetAttachCoverletter(member.MemberId);
-                    SetWorkExperience(member.MemberId);
-                    SetEducation(member.MemberId);
-                    LoadSkills(member.MemberId);
-                    SetCertifications(member.MemberId);
-                    SetLicenses(member.MemberId);
+                    SetAttachResume(currentMemberID);
+                    SetAttachCoverletter(currentMemberID);
+                    SetWorkExperience(currentMemberID);
+                    SetEducation(currentMemberID);
+                    LoadSkills(currentMemberID);
+                    SetCertifications(currentMemberID);
+                    SetLicenses(currentMemberID);
                     LoadProfession();
                     LoadSalaryType();
                     SetRolePreferences(member);
                     LoadWorkType();
-                    SetLanguages(member.MemberId);
-                    SetReferences(member.MemberId);
+                    SetLanguages(currentMemberID);
+                    SetReferences(currentMemberID);
                 }
                 else
-                {
+                {  
                     Response.Redirect("~/PeopleSearch.aspx");
                 }
             }
@@ -299,64 +308,77 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
         }
 
         
-
         public void LoadMemberInfo(Entities.Members member)
         {
+            // {0} - Label Name    {1} - Fontawesome class   {2} - missing info status    {3} - Member Availability Status
+            string htmlNotationAvailableStatus = @"<div class='col-sm-6'><h5>{0}:</h5><span class='{1} highlight'></span><span id='current-status {2}'> {3}</span></div>";
+
+            // {0} - Label Name    {1} - Fontawesome class   {2} - Available date
+            string htmlNotationAvailabledate = @"<div class='col-sm-6'><h5>{0}:</h5><span class='{1} highlight'></span><span id='availability-date'>{2}</span></div>";
+
+            // {0} - Label Name    {1} - LastModified Date
+            string htmlNotationLastModifiedDate = @"<div class='col-sm-6'><p class='last-modified-date'><strong>{0}:</strong> {1}</p></div>";
+
+
+            string eyeCssClass = "fa fa-eye";
+            string clockCssclass = "fa fa-clock-o";
+
+
+            // Member Identity Information
             ltTitle.Text = HttpUtility.HtmlEncode(member.Title);
             ltFirstName.Text = HttpUtility.HtmlEncode(member.FirstName);
             ltLastName.Text = HttpUtility.HtmlEncode(member.Surname);
             ltHeadline.Text = HttpUtility.HtmlEncode(member.PreferredJobTitle);
             ltlLastModifiedDate.Text = HttpUtility.HtmlEncode(member.LastModifiedDate);
 
-             
-            JXTPortal.Entities.MemberWizard memberWizard = null;
-
-            using (memberWizard = MemberWizardService.GetAll().Find(s => s.SiteId.Equals(SessionData.Site.SiteId) && s.GlobalTemplate.Equals(false)))
-            {
-                if (memberWizard == null)
-                {
-                    memberWizard = MemberWizardService.GetAll().Find(s => s.GlobalTemplate.Equals(true));
-                }
-            }
-
-            AssignSectionTitle(memberWizard);
+            // Assigning Titles Profile Sections
+            AssignSectionTitle();
 
             // Profile PIcture
             if (!string.IsNullOrWhiteSpace(member.ProfilePicture))
             {
-                profilePic.ImageUrl = string.Format("{0}{1}", ConfigurationManager.AppSettings["MemberUploadPicturePaths"], member.ProfilePicture);
+                profilePic.ImageUrl = string.Format("{0}{1}", 
+                                                    ConfigurationManager.AppSettings["MemberUploadPicturePaths"], 
+                                                    member.ProfilePicture);
             }
 
             // Availability Status
             if (member.AvailabilityId.HasValue && member.AvailabilityId > 0)
             {
-                ltCurrentSeeking.Text = string.Format(@"<div class='col-sm-6'><h5>{0}:</h5><span class='fa fa-eye highlight'></span><span id='current-status'> {1}</span></div>",
-                                                        CommonFunction.GetResourceValue("LabelSeekingStatus"),
-                                                        HttpUtility.HtmlEncode(CommonFunction.GetResourceValue(CommonFunction.GetEnumDescription((PortalEnums.Members.CurrentlySeeking)member.AvailabilityId))));
+                ltCurrentSeeking.Text = string.Format(htmlNotationAvailableStatus,
+                                                      CommonFunction.GetResourceValue("LabelSeekingStatus"),
+                                                      eyeCssClass,
+                                                      string.Empty,
+                                                      HttpUtility.HtmlEncode(CommonFunction.GetResourceValue(CommonFunction.GetEnumDescription((PortalEnums.Members.CurrentlySeeking)member.AvailabilityId))));
             }
             else
             {
-                ltCurrentSeeking.Text = string.Format(@"<div class='col-sm-6'><h5>{0}:</h5><span class='fa fa-eye highlight'></span><span id='current-status missing'> {1}</span></div>",
-                                                CommonFunction.GetResourceValue("LabelSeekingStatus"),
-                                                HttpUtility.HtmlEncode(CommonFunction.GetResourceValue(CommonFunction.GetEnumDescription(PortalEnums.Members.CurrentlySeeking.NotSeeking))));
+                ltCurrentSeeking.Text = string.Format(htmlNotationAvailableStatus,
+                                                        CommonFunction.GetResourceValue("LabelSeekingStatus"),
+                                                        eyeCssClass,
+                                                        "missing",
+                                                        HttpUtility.HtmlEncode(CommonFunction.GetResourceValue(CommonFunction.GetEnumDescription(PortalEnums.Members.CurrentlySeeking.NotSeeking))));
             }
 
             // Availability Date
             if (member.AvailabilityFromDate.HasValue)
             {
-                ltAvailableDayFrom.Text = string.Format(@"<div class='col-sm-6'><h5>{0}:</h5><span class='fa fa-clock-o highlight'></span><span id='availability-date'> {1}</span></div>",
-                                                CommonFunction.GetResourceValue("LabelAvailabilityDateFrom"), member.AvailabilityFromDate.Value.ToString(SessionData.Site.DateFormat));
+                ltAvailableDayFrom.Text = string.Format(htmlNotationAvailabledate,
+                                                        CommonFunction.GetResourceValue("LabelAvailabilityDateFrom"),
+                                                        clockCssclass,
+                                                        member.AvailabilityFromDate.Value.ToString(SessionData.Site.DateFormat));
             }
 
             // Last Modified Date
             if (member.LastModifiedDate.HasValue)
             {
-                ltlLastModifiedDate.Text = string.Format(@"<div class='col-sm-6'><p class='last-modified-date'><strong>{0}:</strong> {1}</p></div>",
-                                                                CommonFunction.GetResourceValue("LabelLastModified"), member.LastModifiedDate.Value.ToString(SessionData.Site.DateFormat));
+                ltlLastModifiedDate.Text = string.Format(htmlNotationLastModifiedDate,
+                                                        CommonFunction.GetResourceValue("LabelLastModified"), 
+                                                        member.LastModifiedDate.Value.ToString(SessionData.Site.DateFormat));
             }
 
             // Load Member Summary
-            loadSummary(member);
+            loadSummary(member.ShortBio);
 
             //Load Member Personal Details
             loadPersonalDetails(member);
@@ -364,13 +386,11 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
 
         }
 
-        public void loadSummary(Entities.Members member)
+        public void loadSummary(string summary)
         {
-            string summary = member.ShortBio;
-
             if (!string.IsNullOrWhiteSpace(summary))
             {
-                ltSummary.Text = HttpUtility.HtmlEncode(member.ShortBio);
+                ltSummary.Text = HttpUtility.HtmlEncode(summary);
             }
             else
             {
@@ -413,50 +433,13 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
             }
 
             //address
-            if (string.IsNullOrWhiteSpace(member.Address1)
-                && string.IsNullOrWhiteSpace(member.Address2)
-                && string.IsNullOrWhiteSpace(member.Suburb)
-                && string.IsNullOrWhiteSpace(member.States)
-                && string.IsNullOrWhiteSpace(member.PostCode)
-                && member.CountryId == 0
-            )
-            {
-                ltAddress1.Text = string.Format("<span class='address1 missing'>{0}</span>", CommonFunction.GetResourceValue("LabelMissingInformation"));
-            }
-            else
-            {
-                if (!string.IsNullOrWhiteSpace(member.Address1))
-                {
-                    ltAddress1.Text = string.Format("<span class='address1'>{0}</span>", HttpUtility.HtmlEncode(member.Address1));
-                }
-
-                if (!string.IsNullOrWhiteSpace(member.Address2))
-                {
-                    ltAddress2.Text = string.Format("<span class='address2'>{0}</span>", HttpUtility.HtmlEncode(member.Address2));
-                }
-
-                if (!string.IsNullOrWhiteSpace(member.Suburb))
-                {
-                    ltCity.Text = string.Format("<span class='addCity'>{0}</span>", HttpUtility.HtmlEncode(member.Suburb));
-                }
-
-                if (!string.IsNullOrWhiteSpace(member.States))
-                {
-                    ltState.Text = string.Format("<span class='addState'>{0}</span>", HttpUtility.HtmlEncode(member.States));
-
-                }
-
-                if (!string.IsNullOrWhiteSpace(member.PostCode))
-                {
-                    ltPostcode.Text = string.Format("<span class='addPostcode'>{0}</span>", HttpUtility.HtmlEncode(member.PostCode));
-                }
-
-
-                if (!string.IsNullOrWhiteSpace(member.CountryId.ToString()))
-                {
-                    ltCountry.Text = string.Format("<span class='addCountry'>{0}</span>", HttpUtility.HtmlEncode(getCountryName(member.CountryId)));
-                }                
-            }
+            getmemberAddress(member.Address1,
+                            member.Address2,
+                            member.Suburb,
+                            member.States,
+                            member.PostCode,
+                            member.CountryId,
+                            "address");
 
             //second email
             if (string.IsNullOrWhiteSpace(member.SecondaryEmail))
@@ -506,49 +489,14 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
             }
 
             //mailing address
-            if (string.IsNullOrWhiteSpace(member.MailingAddress1)
-                && string.IsNullOrWhiteSpace(member.MailingAddress2)
-                && string.IsNullOrWhiteSpace(member.MailingSuburb)
-                && string.IsNullOrWhiteSpace(member.MailingStates)
-                && string.IsNullOrWhiteSpace(member.MailingPostCode)
-            )
-            {
-                ltMailingAddress1.Text = string.Format("<span class='mailing-address1 missing'>{0}</span>", 
-                                                        CommonFunction.GetResourceValue("LabelMissingInformation"));
-            }
-            else
-            {
-                if (!string.IsNullOrWhiteSpace(member.MailingAddress1))
-                {
-                    ltMailingAddress1.Text = string.Format("<span class='mailing-address1'>{0}</span>", HttpUtility.HtmlEncode(member.MailingAddress1));
-                }
-
-                if (!string.IsNullOrWhiteSpace(member.MailingAddress2))
-                {
-                    ltMailingAddress2.Text = string.Format("<span class='mailing-address2'>{0}</span>", HttpUtility.HtmlEncode(member.MailingAddress2));
-                }
-
-                if (!string.IsNullOrWhiteSpace(member.MailingSuburb))
-                {
-                    ltMailingCity.Text = string.Format("<span class='mailing-City'>{0}</span>", HttpUtility.HtmlEncode(member.MailingSuburb));
-                }
-
-                if (!string.IsNullOrWhiteSpace(member.MailingStates))
-                {
-                    ltMailingState.Text = string.Format("<span class='mailing-State'>{0}</span>", HttpUtility.HtmlEncode(member.MailingStates));
-                }
-
-                if (!string.IsNullOrWhiteSpace(member.MailingPostCode))
-                {
-                    ltMailingPostcode.Text = string.Format("<span class='mailing-Postcode'>{0}</span>", HttpUtility.HtmlEncode(member.MailingPostCode));
-                }
-
-                if (member.MailingCountryId.HasValue)
-                {
-                    ltMailingCountry.Text = string.Format("<span class='addCountry'>{0}</span>", HttpUtility.HtmlEncode(getCountryName(member.CountryId)));
-                }
-            }
-
+            getmemberAddress(member.MailingAddress1,
+                            member.MailingAddress2,
+                            member.MailingSuburb,
+                            member.MailingStates,
+                            member.MailingPostCode,
+                            member.CountryId,
+                            "mailing-address");
+            
             //preferred line
             if (member.PreferredLine == 0)
             {
@@ -574,11 +522,120 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
             
         }
 
+        public void getmemberAddress(string address1, string address2, string suburb, string states, string postcode, int countryID, string addressType)
+        {
+            string htmlNotationMissingInformation = "<span class='{0} missing'>{1}</span>";
+            string htmlNotationAddress = "<span class='{0}'>{1}</span>";
+
+
+            if (string.IsNullOrWhiteSpace(address1)
+                && string.IsNullOrWhiteSpace(address2)
+                && string.IsNullOrWhiteSpace(suburb)
+                && string.IsNullOrWhiteSpace(states)
+                && string.IsNullOrWhiteSpace(postcode)
+                && countryID == 0
+            )
+            {
+                if(addressType == "address")
+                {
+                    ltAddress1.Text = string.Format(htmlNotationMissingInformation,
+                                                   "adress1",
+                                                   CommonFunction.GetResourceValue("LabelMissingInformation"));
+                }
+                else
+                {
+                    ltMailingAddress1.Text = string.Format(htmlNotationMissingInformation,
+                                                          "mailing-address1",
+                                                          CommonFunction.GetResourceValue("LabelMissingInformation"));
+                }
+            }
+            else
+            {
+                // Address line 1
+                if (!string.IsNullOrWhiteSpace(address1))
+                {
+                    if (addressType == "address")
+                        ltAddress1.Text = string.Format(htmlNotationAddress,
+                                                        "address1",
+                                                        HttpUtility.HtmlEncode(address1));
+                    else
+                        ltMailingAddress1.Text = string.Format(htmlNotationAddress,
+                                                                "mailing-address1",
+                                                                HttpUtility.HtmlEncode(address1));
+                }
+
+                // Address line 2
+                if (!string.IsNullOrWhiteSpace(address2))
+                {
+                    if (addressType == "address")
+                        ltAddress2.Text = string.Format(htmlNotationAddress,
+                                                        "address2",
+                                                        HttpUtility.HtmlEncode(address1));
+                    else
+                        ltMailingAddress2.Text = string.Format(htmlNotationAddress,
+                                                                "mailing-address2",
+                                                                HttpUtility.HtmlEncode(address1));
+                }
+
+                // Suburb
+                if (!string.IsNullOrWhiteSpace(suburb))
+                {
+                    if (addressType == "address")
+                        ltCity.Text = string.Format(htmlNotationAddress,
+                                                        "addCity",
+                                                        HttpUtility.HtmlEncode(suburb));
+                    else
+                        ltMailingCity.Text = string.Format(htmlNotationAddress,
+                                                                "mailing-City",
+                                                                HttpUtility.HtmlEncode(address1));
+                }
+
+                // State
+                if (!string.IsNullOrWhiteSpace(states))
+                {
+                    if (addressType == "address")
+                        ltState.Text = string.Format(htmlNotationAddress,
+                                                    "addState",
+                                                    HttpUtility.HtmlEncode(states));
+                    else
+                        ltMailingState.Text = string.Format(htmlNotationAddress,
+                                                            "mailing-State", 
+                                                            HttpUtility.HtmlEncode(states));
+                }
+
+                // Postcode
+                if (!string.IsNullOrWhiteSpace(postcode))
+                {
+                    if (addressType == "address") 
+                        ltPostcode.Text = string.Format(htmlNotationAddress,
+                                                        "addPostcode", 
+                                                        HttpUtility.HtmlEncode(postcode));
+                    else
+                        ltMailingPostcode.Text = string.Format(htmlNotationAddress,
+                                                            "mailing-Postcode", 
+                                                            HttpUtility.HtmlEncode(postcode));
+                }
+
+                // Country
+                if (!string.IsNullOrWhiteSpace(countryID.ToString()))
+                {
+                    if (addressType == "address") 
+                        ltCountry.Text = string.Format(htmlNotationAddress,
+                                                    "addCountry", 
+                                                     HttpUtility.HtmlEncode(getCountryName(countryID)));
+                    else
+                        ltMailingCountry.Text = string.Format(htmlNotationAddress,
+                                                    "addCountry",
+                                                     HttpUtility.HtmlEncode(getCountryName(countryID)));
+                }
+            }
+
+           
+        }
+
         public string getCountryName(int countryID)
         {
-            SiteCountriesService _sitecountry = new SiteCountriesService();
-
-            var memberCountry = _sitecountry.GetByCountryId(countryID).FirstOrDefault();
+            var memberCountry = SiteCountriesService.GetByCountryId(countryID).FirstOrDefault();
 
             if (memberCountry != null)
             {
@@ -617,6 +674,7 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
                 MemberFiles resume = e.Item.DataItem as MemberFiles;
 
                 ltResumeFileName.Text = (string.IsNullOrEmpty(resume.MemberFileTitle)) ? HttpUtility.HtmlEncode(resume.MemberFileName) : HttpUtility.HtmlEncode(resume.MemberFileTitle);
+                
                 hlResumeDownload.NavigateUrl = "/download.aspx?type=mf&id=" + resume.MemberFileId.ToString();
             }
         }
@@ -847,13 +905,11 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
 
         private void LoadSkills(int memberID)
         {
-            int currentMemberID = memberID;
-
-            using (JXTPortal.Entities.Members objMembers = MembersService.GetByMemberId(currentMemberID))
+            using (JXTPortal.Entities.Members objMembers = MembersService.GetByMemberId(memberID))
             {
                 if (objMembers != null && objMembers.SiteId == SessionData.Site.SiteId)
                 {
-                    if (!string.IsNullOrEmpty(objMembers.Skills))
+                    if (!string.IsNullOrWhiteSpace(objMembers.Skills))
                     {
                         string[] split = objMembers.Skills.Split(new string[] { "||" }, StringSplitOptions.RemoveEmptyEntries);
                         split = split.OrderBy(c => c).ToArray();
@@ -1196,16 +1252,19 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
             }
 
             // Preffered Position
-            if (ProfessionList != null)
+            if (member.PreferredCategoryId != null)
             {
-                foreach (string split in member.PreferredCategoryId.ToString().Split(new char[] { ',' }))
+                if (ProfessionList != null)
                 {
-                    foreach (var role in ProfessionList)
+                    foreach (string split in member.PreferredCategoryId.ToString().Split(new char[] { ',' }))
                     {
-                        if (role.ProfessionId.ToString() == split)
+                        foreach (var role in ProfessionList)
                         {
-                            strProfession += role.SiteProfessionName.ToString() + ", ";
-                            break;
+                            if (role.ProfessionId.ToString() == split)
+                            {
+                                strProfession += role.SiteProfessionName.ToString() + ", ";
+                                break;
+                            }
                         }
                     }
                 }
@@ -1239,7 +1298,7 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
             // Eligle to work locations
             loadCountries();
 
-            if (countryList != null)
+            if (member.EligibleToWorkIn != null)
             {
                 countryList = countryList.Where(c => c.Sequence != -1 && c.Abbr != "CC").OrderBy(c => c.CountryName).ToList();
 
@@ -1579,292 +1638,24 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
             return currency;
         }
 
-        private void AssignSectionTitle(JXTPortal.Entities.MemberWizard memberWizard)
+        private void AssignSectionTitle()
         {
-            string strProfile = memberWizard.ProfileTitle;
-            string strSummary = memberWizard.SummaryTitle;
-            string strPersonalDetails = memberWizard.PersonalDetailsTitle;
-            string strDirectorship = memberWizard.DirectorshipTitle;
-            string strExperience = memberWizard.ExperienceTitle;
-            string strEducation = memberWizard.EducationTitle;
-            string strSkills = memberWizard.SkillsTitle;
-            string strMemberships = memberWizard.MembershipsTitle;
-            string strLicenses = memberWizard.LicensesTitle;
-            string strRolePreferences = memberWizard.RolePreferencesTitle;
-            string strCv = memberWizard.CvTitle;
-            string strAttachCoverLetter = memberWizard.AttachCoverLetterTitle;
-            string strLanguages = memberWizard.LanguagesTitle;
-            string strReferences = memberWizard.ReferencesTitle;
-            string strCustomQuestion = memberWizard.CustomQuestionTitle;
-            string strSummaryInfo = string.Empty;
-            string strPersonalDetailsInfo = string.Empty;
-            string strDirectorshipInfo = string.Empty;
-            string strExperienceInfo = string.Empty;
-            string strEducationInfo = string.Empty;
-            string strSkillsInfo = string.Empty;
-            string strMembershipsInfo = string.Empty;
-            string strLicensesInfo = string.Empty;
-            string strRolePreferencesInfo = string.Empty;
-            string strCvInfo = string.Empty;
-            string strAttachCoverLetterInfo = string.Empty;
-            string strLanguagesInfo = string.Empty;
-            string strReferencesInfo = string.Empty;
-            string strCustomQuestionInfo = string.Empty;
+            string strProfile = CommonFunction.GetResourceValue("LabelPublicProfile");
+            string strSummary = CommonFunction.GetResourceValue("LabelPublicProfileSummary");
+            string strPersonalDetails = CommonFunction.GetResourceValue("LabelPublicProfilePersonalDetails");
+            string strDirectorship = CommonFunction.GetResourceValue("LabelPublicProfileDirectorship");
+            string strExperience = CommonFunction.GetResourceValue("LabelPublicProfileExperience");
+            string strEducation = CommonFunction.GetResourceValue("LabelPublicProfileEducation");
+            string strSkills = CommonFunction.GetResourceValue("LabelPublicProfileSkills");
+            string strMemberships = CommonFunction.GetResourceValue("LabelPublicProfileCertification");
+            string strLicenses = CommonFunction.GetResourceValue("LabelPublicProfileLicences");
+            string strRolePreferences = CommonFunction.GetResourceValue("LabelPublicProfileRolePreferences");
+            string strCv = CommonFunction.GetResourceValue("LabelPublicProfileResume");
+            string strAttachCoverLetter = CommonFunction.GetResourceValue("LabelPublicProfileCoverLetter");
+            string strLanguages = CommonFunction.GetResourceValue("LabelPublicProfileLanguage");
+            string strReferences = CommonFunction.GetResourceValue("LabelPublicProfileReferences");
+            string strCustomQuestion = CommonFunction.GetResourceValue("LabelPublicProfileCustomQuestions");
 
-
-            if (memberWizard != null)
-            {
-                if (!string.IsNullOrWhiteSpace(memberWizard.WizardLanguageXml))
-                {
-                    XmlDocument xmldoc = new XmlDocument();
-                    xmldoc.LoadXml(memberWizard.WizardLanguageXml);
-
-                    XmlNode infonode = xmldoc.SelectSingleNode("MemberWizards/Info");
-
-                    if (infonode != null)
-                    {
-                        // CV
-                        XmlNode cvnode = infonode.SelectSingleNode("CV");
-
-                        if (cvnode != null && !string.IsNullOrWhiteSpace(cvnode.InnerText))
-                        { 
-                            strCvInfo = cvnode.InnerText; 
-                        }
-
-                        // Preference Roles
-                        XmlNode rolepreferencesnode = infonode.SelectSingleNode("RolePreferences");
-
-                        if (rolepreferencesnode != null && !string.IsNullOrWhiteSpace(rolepreferencesnode.InnerText))
-                        { 
-                            strRolePreferencesInfo = rolepreferencesnode.InnerText; 
-                        }
-
-                        // Education
-                        XmlNode educationnode = infonode.SelectSingleNode("Education");
-
-                        if (educationnode != null && !string.IsNullOrWhiteSpace(educationnode.InnerText))
-                        { 
-                            strEducationInfo = educationnode.InnerText; 
-                        }
-
-                        // Membership
-                        XmlNode membershipsnode = infonode.SelectSingleNode("Memberships");
-
-                        if (membershipsnode != null && !string.IsNullOrWhiteSpace(membershipsnode.InnerText))
-                        { 
-                            strMembershipsInfo = membershipsnode.InnerText; 
-                        }
-
-                        // Experience
-                        XmlNode experiencenode = infonode.SelectSingleNode("Experience");
-
-                        if (experiencenode != null && !string.IsNullOrWhiteSpace(experiencenode.InnerText))
-                        { 
-                            strExperienceInfo = experiencenode.InnerText; 
-                        }
-
-                        // Sills
-                        XmlNode skillsnode = infonode.SelectSingleNode("Skills");
-
-                        if (skillsnode != null && !string.IsNullOrWhiteSpace(skillsnode.InnerText))
-                        { 
-                            strSkillsInfo = skillsnode.InnerText; 
-                        }
-
-                        // Directorship
-                        XmlNode directorshipnode = infonode.SelectSingleNode("Directorship");
-
-                        if (directorshipnode != null && !string.IsNullOrWhiteSpace(directorshipnode.InnerText))
-                        { 
-                            strDirectorshipInfo = directorshipnode.InnerText; 
-                        }
-
-                        // Summary
-                        XmlNode summarynode = infonode.SelectSingleNode("Summary");
-
-                        if (summarynode != null && !string.IsNullOrWhiteSpace(summarynode.InnerText))
-                        { 
-                            strSummaryInfo = summarynode.InnerText; 
-                        }
-
-                        // Personal Details
-                        XmlNode personaldetailsnode = infonode.SelectSingleNode("PersonalDetails");
-
-                        if (personaldetailsnode != null && !string.IsNullOrWhiteSpace(personaldetailsnode.InnerText))
-                        { 
-                            strPersonalDetailsInfo = personaldetailsnode.InnerText; 
-                        }
-
-                        // Licence
-                        XmlNode licensesnode = infonode.SelectSingleNode("Licenses");
-
-                        if (licensesnode != null && !string.IsNullOrWhiteSpace(licensesnode.InnerText))
-                        { 
-                            strLicensesInfo = licensesnode.InnerText; 
-                        }
-
-                        // Cover Letter
-                        XmlNode attachcoverletternode = infonode.SelectSingleNode("AttachCoverLetter");
-
-                        if (attachcoverletternode != null && !string.IsNullOrWhiteSpace(attachcoverletternode.InnerText))
-                        { 
-                            strAttachCoverLetterInfo = attachcoverletternode.InnerText; 
-                        }
-
-                        // Languages
-                        XmlNode languagesnode = infonode.SelectSingleNode("Languages");
-
-                        if (languagesnode != null && !string.IsNullOrWhiteSpace(languagesnode.InnerText))
-                        { 
-                            strLanguagesInfo = languagesnode.InnerText; 
-                        }
-
-                        // References
-                        XmlNode referencesnode = infonode.SelectSingleNode("References");
-
-                        if (referencesnode != null && !string.IsNullOrWhiteSpace(referencesnode.InnerText))
-                        { 
-                            strReferencesInfo = referencesnode.InnerText; 
-                        }
-
-                        // Custom Questions
-                        XmlNode customquestionnode = infonode.SelectSingleNode("CustomQuestion");
-
-                        if (customquestionnode != null && !string.IsNullOrWhiteSpace(customquestionnode.InnerText))
-                        { 
-                            strCustomQuestionInfo = customquestionnode.InnerText; 
-                        }
-                    }
-
-                    foreach (XmlNode xmlnode in xmldoc.SelectNodes("MemberWizards/MemberWizard"))
-                    {
-                        XmlNode langnode = xmlnode.SelectSingleNode("LanguageID");
-
-                        if (langnode != null && SessionData.Language.LanguageId == Convert.ToInt32(langnode.InnerText))
-                        {
-                            // Profile
-                            XmlNode profilenode = xmlnode.SelectSingleNode("Profile");
-
-                            if (profilenode != null && !string.IsNullOrWhiteSpace(profilenode.InnerText))
-                            { 
-                                strProfile = profilenode.InnerText; 
-                            }
-
-                            // CV
-                            XmlNode cvnode = xmlnode.SelectSingleNode("CV");
-
-                            if (cvnode != null && !string.IsNullOrWhiteSpace(cvnode.InnerText))
-                            { 
-                                strCv = cvnode.InnerText; 
-                            }
-
-                            // Role Preferences
-                            XmlNode rolepreferencesnode = xmlnode.SelectSingleNode("RolePreferences");
-
-                            if (rolepreferencesnode != null && !string.IsNullOrWhiteSpace(rolepreferencesnode.InnerText))
-                            { 
-                                strRolePreferences = rolepreferencesnode.InnerText; 
-                            }
-
-                            // Education
-                            XmlNode educationnode = xmlnode.SelectSingleNode("Education");
-
-                            if (educationnode != null && !string.IsNullOrWhiteSpace(educationnode.InnerText))
-                            { 
-                                strEducation = educationnode.InnerText; 
-                            }
-
-                            // Memberships
-                            XmlNode membershipsnode = xmlnode.SelectSingleNode("Memberships");
-
-                            if (membershipsnode != null && !string.IsNullOrWhiteSpace(membershipsnode.InnerText))
-                            { 
-                                strMemberships = membershipsnode.InnerText; 
-                            }
-
-                            // Experience
-                            XmlNode experiencenode = xmlnode.SelectSingleNode("Experience");
-
-                            if (experiencenode != null && !string.IsNullOrWhiteSpace(experiencenode.InnerText))
-                            { 
-                                strExperience = experiencenode.InnerText; 
-                            }
-
-                            // SKills
-                            XmlNode skillsnode = xmlnode.SelectSingleNode("Skills");
-
-                            if (skillsnode != null && !string.IsNullOrWhiteSpace(skillsnode.InnerText))
-                            { 
-                                strSkills = skillsnode.InnerText; 
-                            }
-
-                            // Directorship
-                            XmlNode directorshipnode = xmlnode.SelectSingleNode("Directorship");
-                            
-                            if (directorshipnode != null && !string.IsNullOrWhiteSpace(directorshipnode.InnerText))
-                            { 
-                                strDirectorship = directorshipnode.InnerText; 
-                            }
-
-                            // Summary
-                            XmlNode summarynode = xmlnode.SelectSingleNode("Summary");
-
-                            if (summarynode != null && !string.IsNullOrWhiteSpace(summarynode.InnerText))
-                            { 
-                                strSummary = summarynode.InnerText; 
-                            }
-
-                            // Personal Details
-                            XmlNode personaldetailsnode = xmlnode.SelectSingleNode("PersonalDetails");
-                            
-                            if (personaldetailsnode != null && !string.IsNullOrWhiteSpace(personaldetailsnode.InnerText))
-                            { 
-                                strPersonalDetails = personaldetailsnode.InnerText;
-                            }
-
-                            // Licence Node
-                            XmlNode licensesnode = xmlnode.SelectSingleNode("Licenses");
-
-                            if (licensesnode != null && !string.IsNullOrWhiteSpace(licensesnode.InnerText))
-                            { 
-                                strLicenses = licensesnode.InnerText; 
-                            }
-
-                            // Attach Coverletter
-                            XmlNode attachcoverletternode = xmlnode.SelectSingleNode("AttachCoverLetter");
-                            
-                            if (attachcoverletternode != null && !string.IsNullOrWhiteSpace(attachcoverletternode.InnerText))
-                            { 
-                                strAttachCoverLetter = attachcoverletternode.InnerText;
-                            }
-
-                            // Languages
-                            XmlNode languagesnode = xmlnode.SelectSingleNode("Languages");
-
-                            if (languagesnode != null && !string.IsNullOrWhiteSpace(languagesnode.InnerText))
-                            { 
-                                strLanguages = languagesnode.InnerText;
-                            }
-
-                            // References
-                            XmlNode referencesnode = xmlnode.SelectSingleNode("References");
-
-                            if (referencesnode != null && !string.IsNullOrWhiteSpace(referencesnode.InnerText))
-                            { 
-                                strReferences = referencesnode.InnerText; 
-                            }
-
-                            // Custom Questions
-                            XmlNode customquestionnode = xmlnode.SelectSingleNode("CustomQuestion");
-
-                            if (customquestionnode != null && !string.IsNullOrWhiteSpace(customquestionnode.InnerText))
-                            { 
-                                strCustomQuestion = customquestionnode.InnerText; 
-                            }
-                        }
-                    }
-                }
-            }
 
             ltTitleProfile.Text = HttpUtility.HtmlEncode(strProfile);
             ltTitleSummary.Text = HttpUtility.HtmlEncode(strSummary);
@@ -1880,8 +1671,66 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
             ltTitleCoverLetter.Text = HttpUtility.HtmlEncode(strAttachCoverLetter);
             ltTitleLanguage.Text = HttpUtility.HtmlEncode(strLanguages);
             ltTitleReferences.Text = HttpUtility.HtmlEncode(strReferences);
-           // ltTitleCustomQuestions.Text = HttpUtility.HtmlEncode(strCustomQuestion);
+            //ltTitleCustomQuestions.Text = HttpUtility.HtmlEncode(strCustomQuestion);
             
+        }
+
+        public void lbDownloadAllCoverLetter_Click(object sender, EventArgs e)
+        {
+            var coverLetter = MemberFilesService.GetByMemberId(currentMemberID).Where(file => file.DocumentTypeId == 1);
+
+            foreach (var currentCoverLetter in coverLetter)
+            {
+                downloadFiles(currentCoverLetter.MemberFileId);
+            }   
+        }
+
+        public void lbDownloadAllResume_Click(object sender, EventArgs e)
+        {
+            var resumes = MemberFilesService.GetByMemberId(currentMemberID).Where(file => file.DocumentTypeId == 2);
+            
+            foreach (var currentresume in resumes)
+            {
+                downloadFiles(currentresume.MemberFileId);
+            }
+
+        }
+
+        public void downloadFiles(int memberFileID)
+        {
+            string errormessage = string.Empty;
+
+            Entities.MemberFiles memberFile = MemberFilesService.GetByMemberFileId(memberFileID);
+
+            Response.ContentType = "application/octet-stream";
+            Response.AppendHeader("Content-Disposition", "attachment;filename=" + memberFile.MemberFileName);
+
+            FtpClient ftpclient = new FtpClient();
+            ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
+            ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+            ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+
+            string filepath = string.Format("{0}{1}/{2}/{3}/{4}",
+                ConfigurationManager.AppSettings["FTPHost"],
+                ConfigurationManager.AppSettings["MemberRootFolder"],
+                ConfigurationManager.AppSettings["MemberFilesFolder"],
+                memberFile.MemberId,
+                memberFile.MemberFileUrl);
+
+            Stream ms = null;
+
+            ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
+
+            if (ms != null)
+            {
+                ms.Position = 0;
+
+                if (string.IsNullOrEmpty(errormessage))
+                {
+                    Response.BinaryWrite(((MemoryStream)ms).ToArray());
+
+                }
+            }
         }
 
 

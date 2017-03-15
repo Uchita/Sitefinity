@@ -18,6 +18,7 @@ namespace JXTPortal.Website
     public partial class Download : System.Web.UI.Page
     {
         private int memberID = 0;
+        private int advertiserSiteId = 0;
         private string _type = string.Empty;
         private int _id = -1;
 
@@ -28,7 +29,8 @@ namespace JXTPortal.Website
 
                 if (type.Equals("mf") && id > 0)
                 {
-                    this.doDownload();
+                    advertiserSiteId = getAdvertiserSiteID();
+                    this.doDownload();    
                 }
                 else
                 {
@@ -64,7 +66,10 @@ namespace JXTPortal.Website
 
                                 // Only a member can login his own file 
                                 // OR when logged in Admin - then only download files if you are on that site.
-                                if ((Entities.SessionData.Member != null && memberFile.MemberId == Entities.SessionData.Member.MemberId) || (SessionData.AdminUser != null && (SessionData.AdminUser.SiteId == membersiteid || SessionData.AdminUser.isAdminUser)))
+                                // OR when logged in Advertiser - then only download files if you are on that site.
+                                if ((Entities.SessionData.Member != null && memberFile.MemberId == Entities.SessionData.Member.MemberId) 
+                                    || (SessionData.AdminUser != null && (SessionData.AdminUser.SiteId == membersiteid || SessionData.AdminUser.isAdminUser))
+                                    || (SessionData.AdvertiserUser != null) && (advertiserSiteId == membersiteid || advertiserSiteId > 0))
                                 {
                                     this.Response.ContentType = "application/octet-stream";
                                     this.Response.AppendHeader("Content-Disposition", "attachment;filename=" + memberFile.MemberFileName);
@@ -115,6 +120,22 @@ namespace JXTPortal.Website
 
             }
 
+        }
+
+        public int getAdvertiserSiteID()
+        {
+            AdvertisersService _advertiserservice = new AdvertisersService();
+
+            if (SessionData.AdvertiserUser != null)
+            {
+                JXTPortal.Entities.Advertisers advertiser = _advertiserservice.GetByAdvertiserId(SessionData.AdvertiserUser.AdvertiserId);
+
+                return advertiser.SiteId.Value;
+            }
+            else
+            {
+                return 0;
+            }
         }
 
         #region Properties

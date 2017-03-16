@@ -11,9 +11,11 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Xml;
 using JXTPortal.Common;
+using JXTPortal.Common.Extensions;
 using JXTPortal.Web.UI;
 using JXTPortal.Entities;
 using SectionIO;
+using JXTPortal.Website.ckeditor.Extensions;
 #endregion
 
 namespace JXTPortal.Website.Admin
@@ -77,12 +79,37 @@ namespace JXTPortal.Website.Admin
             }
         }
 
+        private GlobalSettingsService _globalsettingsservice;
+        private GlobalSettingsService GlobalSettingsService
+        {
+            get
+            {
+                if (_globalsettingsservice == null)
+                {
+                    _globalsettingsservice = new GlobalSettingsService();
+                }
+                return _globalsettingsservice;
+            }
+        }
+
+        private string FTPFolderLocation
+        {
+            get { return GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId)[0].FtpFolderLocation; }
+        }
+
         #endregion
 
         #region Page Event handlers
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            tbShortDescription.SetConfigForFTPFolder(FTPFolderLocation);
+            tbFullDescription.SetConfigForFTPFolder(FTPFolderLocation);
+            tbTestimonial.SetConfigForFTPFolder(FTPFolderLocation);
+            txtMultiShortDescription.SetConfigForFTPFolder(FTPFolderLocation);
+            txtMultiFullDescription.SetConfigForFTPFolder(FTPFolderLocation);
+            txtMultiTestimonial.SetConfigForFTPFolder(FTPFolderLocation);
+            
             if (!IsPostBack)
             {
                 loadForm();
@@ -127,7 +154,7 @@ namespace JXTPortal.Website.Admin
 
                         if (!string.IsNullOrWhiteSpace(consultant.ConsultantImageUrl))
                         {
-                            imImage.ImageUrl = string.Format("/media/{0}/{1}", ConfigurationManager.AppSettings["ConsultantsFolder"], consultant.ConsultantImageUrl);
+                            imImage.ImageUrl = string.Format("/media/{0}/{1}?ver={2}", ConfigurationManager.AppSettings["ConsultantsFolder"], consultant.ConsultantImageUrl, consultant.LastModified.ToEpocTimestamp());
                             imImage.Visible = true;
                             cbRemoveImage.Visible = true;
                         }
@@ -135,7 +162,7 @@ namespace JXTPortal.Website.Admin
                         {
                             if (consultant.ImageUrl != null)
                             {
-                                imImage.ImageUrl = "/getfile.aspx?consultantid=" + consultant.ConsultantId;
+                                imImage.ImageUrl = string.Format("/getfile.aspx?consultantid={0}&ver={1}",consultant.ConsultantId,consultant.LastModified.ToEpocTimestamp());
                                 imImage.Visible = true;
                                 cbRemoveImage.Visible = true;
                             }

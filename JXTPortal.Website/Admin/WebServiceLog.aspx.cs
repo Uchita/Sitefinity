@@ -273,26 +273,35 @@ namespace JXTPortal.Website.Admin
 
                 if (!Page.IsPostBack)
                 {
-                    LoadSites();
+                    //load filters
+                    LoadFilterOptions();
 
-                    CurrentPage = SessionData.WebServiceSearch.PageIndex;
-                    if (SessionData.WebServiceSearch.SiteID > 0)
-                        ddlSite.SelectedValue = SessionData.WebServiceSearch.SiteID.ToString();
-                    
-                    LoadAdvertisers();
-                    
-                    if (SessionData.WebServiceSearch.SiteID > 0)
-                    {
-                        ddlAdvertiser.SelectedValue = SessionData.WebServiceSearch.AdvertiserID.ToString();
-                        tbDateFrom.Text = SessionData.WebServiceSearch.DateFrom;
-                        tbDateTo.Text = SessionData.WebServiceSearch.DateTo;
-                        cbShowOnlyFailed.Checked = SessionData.WebServiceSearch.ShowOnlyFails;
-                    }
-
+                    //perform search
                     if (SessionData.AdminUser != null && SessionData.AdminUser.AdminRoleId == (int)PortalEnums.Admin.AdminRole.Administrator)
                         SearchWebServiceLog();
-
                 }
+            }
+
+        }
+
+        private void LoadFilterOptions()
+        {
+            LoadSites();
+
+            LoadMethodInvokedFilter();
+
+            CurrentPage = SessionData.WebServiceSearch.PageIndex;
+            if (SessionData.WebServiceSearch.SiteID > 0)
+                ddlSite.SelectedValue = SessionData.WebServiceSearch.SiteID.ToString();
+
+            LoadAdvertisers();
+
+            if (SessionData.WebServiceSearch.SiteID > 0)
+            {
+                ddlAdvertiser.SelectedValue = SessionData.WebServiceSearch.AdvertiserID.ToString();
+                tbDateFrom.Text = SessionData.WebServiceSearch.DateFrom;
+                tbDateTo.Text = SessionData.WebServiceSearch.DateTo;
+                cbShowOnlyFailed.Checked = SessionData.WebServiceSearch.ShowOnlyFails;
             }
 
         }
@@ -304,16 +313,25 @@ namespace JXTPortal.Website.Admin
             DataSet sites = SitesService.Get_List();
             //SitesService.GetBySiteId(SessionData.Site.SiteId)
             DataRow[] siterows = sites.Tables[0].Select("", "SiteName");
-            
-            ddlSite.DataSource = sites; // sites.Where(s => s.Live == true);
+
+            ddlSite.DataSource = siterows.Select(c=> new SiteDDLItems { SiteID = c["SiteID"].ToString(), SiteName = c["SiteName"].ToString()}).ToList(); // sites.Where(s => s.Live == true);
             ddlSite.DataBind();
 
             ddlSite.Items.Insert(0, new ListItem("All", "0"));
 
-            if (SessionData.AdminUser != null && !SessionData.AdminUser.isAdminUser)
-            {
+            //if (SessionData.AdminUser != null && !SessionData.AdminUser.isAdminUser)
+            //{
                 ddlSite.SelectedValue = SessionData.Site.SiteId.ToString();
-            }
+            //}
+        }
+
+        private void LoadMethodInvokedFilter()
+        {
+            ddlMethodInvoked.Items.Clear();
+
+            ddlMethodInvoked.Items.Insert(0, new ListItem("All", "0"));
+            ddlMethodInvoked.Items.Insert(1, new ListItem("POST", "1"));
+            ddlMethodInvoked.Items.Insert(2, new ListItem("ARCHIVE", "2"));
         }
 
         private void SearchWebServiceLog()
@@ -1195,6 +1213,12 @@ namespace JXTPortal.Website.Admin
             {
                 SiteArea = new TList<JXTPortal.Entities.SiteArea>();
             }
+        }
+
+        private class SiteDDLItems
+        {
+            public string SiteID { get; set; }
+            public string SiteName { get; set; }
         }
 
     }

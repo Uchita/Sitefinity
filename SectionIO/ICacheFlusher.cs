@@ -10,8 +10,8 @@ namespace SectionIO
         /// <summary>
         /// This method build the banexpression that needs to be passed into "API_Proxy_State_Post()" in order to clear cached dynamic pages in Section.IO
         /// </summary>
-        /// <param name="pageUrl">Passes site url</param>
-        void FlushByUrl(string pageUrl);
+        /// <param name="uri">the uri to flush</param>
+        void FlushByUrl(Uri uri);
 
         /// <summary>
         /// This method builds the banexpression that needs to be passed into "API_Proxy_State_Post()"

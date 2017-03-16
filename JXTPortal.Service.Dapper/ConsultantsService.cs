@@ -7,7 +7,7 @@ using JXTPortal.Data.Dapper.Entities.Core;
 
 namespace JXTPortal.Service.Dapper
 {
-    public interface IConsultantsService : IConsultantsRepository
+    public interface IConsultantsService
     {
     }
 

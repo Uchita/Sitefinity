@@ -155,6 +155,7 @@ namespace JXTPortal.Website
         protected void Page_Load(object sender, EventArgs e)
         {
             GlobalSettingsService gservice = new GlobalSettingsService();
+            //Site level flag check
             using (TList<GlobalSettings> gss = gservice.GetBySiteId(SessionData.Site.SiteId))
             {
                 if (gss.Count > 0)
@@ -166,7 +167,8 @@ namespace JXTPortal.Website
                 }
             }
 
-            if (Entities.SessionData.AdvertiserUser == null)
+            //Advertiser level flag check
+            if (Entities.SessionData.AdvertiserUser == null || !Entities.SessionData.AdvertiserUser.AllowedToAccessPeopleSearch)
             {
                 Response.Redirect("~/advertiser/login.aspx?returnurl=" + Server.UrlEncode(Request.Url.OriginalString));
                 return;
@@ -261,7 +263,7 @@ namespace JXTPortal.Website
 
         private void LoadProfessionRoles()
         {
-            List<Entities.SiteProfession> professions = SiteProfessionService.GetTranslatedProfessions(SessionData.Site.UseCustomProfessionRole);
+            List<Entities.SiteProfession> professions = SiteProfessionService.GetTranslatedProfessions(SessionData.Site.SiteId, SessionData.Site.UseCustomProfessionRole);
 
             StringBuilder sbProfessionRoles = new StringBuilder();
             sbProfessionRoles.Append("<select id=\"ddlProfessionsRoles\" class=\"selectpicker\" multiple=\"multiple\">");

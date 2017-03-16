@@ -100,6 +100,7 @@ namespace JXTPortal.Website.usercontrols.navigation
             hlSubAccounts.Text = CommonFunction.GetResourceValue("LinkButtonSubAccounts");
             hlChangePassword.Text = CommonFunction.GetResourceValue("LabelChangePwd");
             hlChangeTemplateLogo.Text = CommonFunction.GetResourceValue("LinkButtonChangeTemplateLogo");
+            hlScreeningQuestionTemplate.Text = CommonFunction.GetResourceValue("LinkButtonScreeningQuestionsTemplate");
             hlViewChangeLogo.Text = CommonFunction.GetResourceValue("LinkButtonViewChangeLogo");
             //hlViewChangeTemplateLogo.Text = CommonFunction.GetResourceValue("LinkButtonViewChangeTemplateLogo");
             //hlPeopleSearch.Text = CommonFunction.GetResourceValue("LinkButtonPeopleSearch");
@@ -126,6 +127,7 @@ namespace JXTPortal.Website.usercontrols.navigation
                             {
                                 Entities.GlobalSettings globalsetting = globalsettings[0];
                                 phPendingJobs.Visible = (globalsetting.JobScreeningProcess.HasValue) ? globalsetting.JobScreeningProcess.Value : false;
+                                phScreeingQuestions.Visible = globalsetting.EnableScreeningQuestions;
                             }
                         }
                     }

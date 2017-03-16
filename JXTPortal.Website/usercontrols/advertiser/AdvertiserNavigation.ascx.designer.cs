@@ -211,6 +211,24 @@ namespace JXTPortal.Website.usercontrols.advertiser {
         protected global::System.Web.UI.WebControls.HyperLink hlPeopleSearch;
         
         /// <summary>
+        /// phScreeningQuestions control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phScreeningQuestions;
+        
+        /// <summary>
+        /// hlScreeningQuestionTemplate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlScreeningQuestionTemplate;
+        
+        /// <summary>
         /// hlJobTracker control.
         /// </summary>
         /// <remarks>

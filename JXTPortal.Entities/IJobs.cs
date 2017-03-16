@@ -298,6 +298,11 @@ namespace JXTPortal.Entities
 		/// JobExternalId : 
 		/// </summary>
 		System.String  JobExternalId  { get; set; }
+		
+		/// <summary>
+		/// ScreeningQuestionsTemplateId : 
+		/// </summary>
+		System.Int32?  ScreeningQuestionsTemplateId  { get; set; }
 			
 		/// <summary>
 		/// Creates a new object that is a copy of the current instance.

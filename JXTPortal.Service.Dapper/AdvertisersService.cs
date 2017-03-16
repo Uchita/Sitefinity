@@ -7,8 +7,11 @@ using JXTPortal.Data.Dapper.Entities.Core;
 
 namespace JXTPortal.Service.Dapper
 {
-    public interface IAdvertisersService : IAdvertisersRepository
+    public interface IAdvertisersService
     {
+        List<AdvertisersEntity> SelectByAdvertiserIDs(List<int> advertiserIds);
+        AdvertisersEntity Select(int id);
+        List<AdvertisersEntity> SelectBySiteId(int siteId);
     }
 
     public class AdvertisersService : IAdvertisersService
@@ -42,6 +45,16 @@ namespace JXTPortal.Service.Dapper
         public List<AdvertisersEntity> SelectAll()
         {
             return advertisersRepository.SelectAll();
+        }
+
+        public List<AdvertisersEntity> SelectByAdvertiserIDs(List<int>advertiserIds)
+        {
+            return advertisersRepository.SelectAdvertiserIDs(advertiserIds);
+        }
+
+        public List<AdvertisersEntity> SelectBySiteId(int siteId)
+        {
+            return advertisersRepository.SelectBySiteId(siteId);
         }
     }
 }

@@ -22,6 +22,12 @@ using System.Linq;
 using System.Xml;
 using JXTPortal.Entities.Models;
 using JXTPortal.Common;
+using JXTPortal.Common.Extensions;
+using JXTPortal.Common;
+
+using JXTPortal.Service.Dapper;
+using JXTPortal.Data.Dapper.Entities.ScreeningQuestions;
+using System.Text.RegularExpressions;
 #endregion
 
 namespace JXTPortal.Website.Admin.UserControls
@@ -485,6 +491,10 @@ namespace JXTPortal.Website.Admin.UserControls
             }
         }
 
+        public IScreeningQuestionsTemplatesService ScreeningQuestionsTemplatesService { get; set; }
+        public IJobScreeningQuestionsService JobScreeningQuestionsService { get; set; }
+        public IScreeningQuestionsService ScreeningQuestionsService { get; set; }
+
         #endregion
 
         #region "User Control Properties"
@@ -655,6 +665,7 @@ namespace JXTPortal.Website.Admin.UserControls
                 LoadRoles(0, ref ddlRole2);
                 LoadRoles(0, ref ddlRole3);
                 LoadJobStatus();
+                LoadScreeningQuesitonsTemplate();
 
                 LoadJob();
                 LoadUI();
@@ -1252,7 +1263,7 @@ namespace JXTPortal.Website.Admin.UserControls
                         if (job.JobTemplateId.HasValue)
                         {
                             ddlJobTemplateID.SelectedValue = job.JobTemplateId.ToString();
-                            imgAdvJobTemplate.ImageUrl = "/getfile.aspx?jobtemplateid=" + job.JobTemplateId.ToString();
+                            imgAdvJobTemplate.ImageUrl = string.Format("/getfile.aspx?jobtemplateid={0}&ver={1}", job.JobTemplateId.ToString(), job.LastModified.ToEpocTimestamp());
 
                             imgAdvJobTemplate.Attributes.Add("style", "display:block");
                         }
@@ -1265,6 +1276,9 @@ namespace JXTPortal.Website.Admin.UserControls
                         //dataAdvertiserJobTemplateLogoID.Text = job.AdvertiserJobTemplateLogoId.ToString();
                         if (job.AdvertiserJobTemplateLogoId.GetValueOrDefault(0) > 0)
                             ddlAdvertiserJobTemplateLogo.SelectedValue = Convert.ToString(job.AdvertiserJobTemplateLogoId);
+
+                        if (job.ScreeningQuestionsTemplateId.HasValue)
+                            ddlScreeningQuestionsTemplate.SelectedValue = Convert.ToString(job.ScreeningQuestionsTemplateId.Value);
                         // chkRequireLogonForExternalApplications.Checked = job.RequireLogonForExternalApplications;
                         chkShowLocationDetails.Checked = (job.ShowLocationDetails == null) ? false : (bool)job.ShowLocationDetails;
                         if (!string.IsNullOrEmpty(job.PublicTransport))
@@ -1416,6 +1430,101 @@ namespace JXTPortal.Website.Admin.UserControls
             ddlStatus.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelPleaseChoose"), ""));
         }
 
+        private void LoadScreeningQuesitonsTemplate()
+        {
+            int advertiserId = (IsAdmin) ? AdvertiserID : SessionData.AdvertiserUser.AdvertiserId;
+            GlobalSettings globalSetting = GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId).FirstOrDefault();
+            ddlScreeningQuestionsTemplate.Items.Clear();
+
+            if (globalSetting.EnableScreeningQuestions)
+            {
+                List<ScreeningQuestionsTemplatesEntity> screeningQuestionsTemplates = ScreeningQuestionsTemplatesService.SelectByAdvertiserId(advertiserId);
+
+                ddlScreeningQuestionsTemplate.DataSource = screeningQuestionsTemplates;
+                ddlScreeningQuestionsTemplate.DataBind();
+
+                phScreeningQuestionsTemplates.Visible = (screeningQuestionsTemplates.Count > 0);
+            }
+            else
+            {
+                phScreeningQuestionsTemplates.Visible = false;
+            }
+
+            ddlScreeningQuestionsTemplate.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelPleaseChoose"), ""));
+        }
+
+        protected void ddlScreeningQuestionsTemplate_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            phScreeningQuestions.Visible = (ddlScreeningQuestionsTemplate.SelectedIndex != 0);
+            if (!string.IsNullOrEmpty(ddlScreeningQuestionsTemplate.SelectedValue))
+            {
+                List<ScreeningQuestionsEntity> screeningQuestions = ScreeningQuestionsService.SelectByScreeningQuestionsTemplateIdLanguageId(Convert.ToInt32(ddlScreeningQuestionsTemplate.SelectedValue), SessionData.Site.DefaultLanguageId);
+                rptScreeningQuestions.DataSource = screeningQuestions;
+                rptScreeningQuestions.DataBind();
+            }
+            else
+            {
+                rptScreeningQuestions.DataSource = null;
+                rptScreeningQuestions.DataBind();
+            }
+        }
+
+        protected void rptScreeningQuestions_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                Literal ltQuestion = e.Item.FindControl("ltQuestion") as Literal;
+                Literal ltOptions = e.Item.FindControl("ltOptions") as Literal;
+
+                ScreeningQuestionsEntity screeningQuestion = e.Item.DataItem as ScreeningQuestionsEntity;
+
+                ltQuestion.Text = HttpUtility.HtmlEncode(screeningQuestion.QuestionTitle);
+
+                StringBuilder options = new StringBuilder();
+                string[] matches = screeningQuestion.Options.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+
+                if (matches == null)
+                    return;
+
+                if (screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.Dropdown)
+                {
+                    ltOptions.Text = CreateDropDown(matches);
+                }
+
+                if (screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.MultiSelect)
+                {
+                    ltOptions.Text = CreateMultiSelect(matches);
+                }
+
+                if (screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.RadioButtons)
+                {
+                    ltOptions.Text = CreateRadioButtons(matches);
+                }
+            }
+        }
+
+        private string CreateDropDown(IEnumerable<string> matches)
+        {
+            var options = matches.Select(m => "<option>" + m + "</option>");
+
+            return string.Format("<select>{0}</select>", string.Join("\n", options.ToList()));
+        }
+
+        private string CreateMultiSelect(IEnumerable<string> matches)
+        {
+            var options = matches.Select(m => string.Format("<input type=\"checkbox\" name=\"\" value=\"\" disabled>{0}", HttpUtility.HtmlEncode(m)));
+
+            return string.Join(" ", options.ToList());
+        }
+
+        private string CreateRadioButtons(IEnumerable<string> matches)
+        {
+            var options = matches.Select(m => string.Format("<input type=\"radio\" name=\"\" value=\"\" disabled>{0}", HttpUtility.HtmlEncode(m)));
+
+            return string.Join(" ", options.ToList());
+        }
+
+
         private void LoadWorkType()
         {
             List<JXTPortal.Entities.SiteWorkType> siteWorkTypes = SiteWorkTypeService.GetTranslatedWorkTypes().OrderBy(siteWorktype => siteWorktype.Sequence).ToList();
@@ -1534,7 +1643,7 @@ namespace JXTPortal.Website.Admin.UserControls
         {
             //we just need to get the data once
             List<JXTPortal.Entities.SiteProfession>
-                siteProfessionList = SiteProfessionService.GetTranslatedProfessions(SessionData.Site.UseCustomProfessionRole).OrderBy(siteProfession => siteProfession.Sequence).ToList();
+                siteProfessionList = SiteProfessionService.GetTranslatedProfessions(SessionData.Site.SiteId, SessionData.Site.UseCustomProfessionRole).OrderBy(siteProfession => siteProfession.Sequence).ToList();
 
             LoadProfession(siteProfessionList, ddlProfession1);
             LoadProfession(siteProfessionList, ddlProfession2);
@@ -1614,6 +1723,7 @@ namespace JXTPortal.Website.Admin.UserControls
                         if (job.Expired == (int)PortalEnums.Jobs.JobStatus.Live)
                         {
                             ddlJobItemType.Enabled = false;
+                            ddlScreeningQuestionsTemplate.Enabled = false;
 
                             // Set Job Type Drop Down to have selected job type only
                             ddlJobItemType.Items.Clear();
@@ -1789,7 +1899,7 @@ namespace JXTPortal.Website.Admin.UserControls
                         if (job.JobTemplateId.HasValue)
                         {
                             ddlJobTemplateID.SelectedValue = job.JobTemplateId.ToString();
-                            imgAdvJobTemplate.ImageUrl = "/getfile.aspx?jobtemplateid=" + job.JobTemplateId.ToString();
+                            imgAdvJobTemplate.ImageUrl = string.Format("/getfile.aspx?jobtemplateid={0}&ver={1}", job.JobTemplateId.ToString(), job.LastModified.ToEpocTimestamp());
 
                             imgAdvJobTemplate.Attributes.Add("style", "display:block");
                         }
@@ -1802,6 +1912,11 @@ namespace JXTPortal.Website.Admin.UserControls
                         //dataAdvertiserJobTemplateLogoID.Text = job.AdvertiserJobTemplateLogoId.ToString();
                         if (job.AdvertiserJobTemplateLogoId.GetValueOrDefault(0) > 0)
                             ddlAdvertiserJobTemplateLogo.SelectedValue = Convert.ToString(job.AdvertiserJobTemplateLogoId);
+
+                        if (job.ScreeningQuestionsTemplateId.HasValue)
+                        {
+                            ddlScreeningQuestionsTemplate.SelectedValue = Convert.ToString(job.ScreeningQuestionsTemplateId.Value);
+                        }
                         //chkRequireLogonForExternalApplications.Checked = job.RequireLogonForExternalApplications;
                         chkShowLocationDetails.Checked = (job.ShowLocationDetails == null) ? false : (bool)job.ShowLocationDetails;
                         if (!string.IsNullOrEmpty(job.PublicTransport))
@@ -2187,6 +2302,9 @@ namespace JXTPortal.Website.Admin.UserControls
                     //    (string.IsNullOrEmpty(dataAdvertiserJobTemplateLogoID.Text)) ? (int?)null : Convert.ToInt32(dataAdvertiserJobTemplateLogoID.Text);
 
                     job.AdvertiserJobTemplateLogoId = Convert.ToInt32(ddlAdvertiserJobTemplateLogo.SelectedValue);
+                    job.ScreeningQuestionsTemplateId = (!string.IsNullOrEmpty(ddlScreeningQuestionsTemplate.SelectedValue)) ? Convert.ToInt32(ddlScreeningQuestionsTemplate.SelectedValue) : (int?)null;
+
+
                     if (docInput.HasFile)
                     {
                         Entities.AdvertiserJobTemplateLogo objAdvJobTemplateLogo = new JXTPortal.Entities.AdvertiserJobTemplateLogo();
@@ -2335,6 +2453,19 @@ namespace JXTPortal.Website.Admin.UserControls
 
                     if (JobsService.Insert(job))
                     {
+                        // Insert Screening Questions into job
+                        if (job.ScreeningQuestionsTemplateId.HasValue && !isDraft)
+                        {
+                            List<ScreeningQuestionsEntity> screeningQuestions = ScreeningQuestionsService.SelectByScreeningQuestionsTemplateId(job.ScreeningQuestionsTemplateId.Value);
+                            foreach (ScreeningQuestionsEntity screeningQuestion in screeningQuestions)
+                            {
+                                if (screeningQuestion.Visible)
+                                {
+                                    JobScreeningQuestionsService.Insert(new JobScreeningQuestionsEntity { JobId = job.JobId, ScreeningQuestionId = screeningQuestion.ScreeningQuestionId });
+                                }
+                            }
+                        }
+
                         // Insert MultiLingual
 
                         if (rptLanguagesPanel.Items.Count > 1)
@@ -2525,6 +2656,27 @@ namespace JXTPortal.Website.Admin.UserControls
                         else
                             job.Visible = true; // means billed = 1 and not a draft.*/
 
+
+                        // Screening Questions
+
+                        job.ScreeningQuestionsTemplateId = (!string.IsNullOrEmpty(ddlScreeningQuestionsTemplate.SelectedValue)) ? Convert.ToInt32(ddlScreeningQuestionsTemplate.SelectedValue) : (int?)null;
+
+                        if (ddlScreeningQuestionsTemplate.Enabled)
+                        {
+                            if (job.ScreeningQuestionsTemplateId.HasValue)
+                            {
+                                JobScreeningQuestionsService.DeleteByJobID(job.JobId);
+
+                                List<ScreeningQuestionsEntity> screeningQuestions = ScreeningQuestionsService.SelectByScreeningQuestionsTemplateId(job.ScreeningQuestionsTemplateId.Value);
+                                foreach (ScreeningQuestionsEntity screeningQuestion in screeningQuestions)
+                                {
+                                    if (screeningQuestion.Visible)
+                                    {
+                                        JobScreeningQuestionsService.Insert(new JobScreeningQuestionsEntity { JobId = job.JobId, ScreeningQuestionId = screeningQuestion.ScreeningQuestionId });
+                                    }
+                                }
+                            }
+                        }
 
                         if (job.Expired != (int)PortalEnums.Jobs.JobStatus.Live)
                         {

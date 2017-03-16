@@ -85,6 +85,24 @@ namespace JXTPortal.Website.usercontrols.job {
         protected global::System.Web.UI.WebControls.Repeater rptSubClassification;
         
         /// <summary>
+        /// ltlCountry control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlCountry;
+        
+        /// <summary>
+        /// rptCountry control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptCountry;
+        
+        /// <summary>
         /// ltlLocation control.
         /// </summary>
         /// <remarks>

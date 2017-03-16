@@ -87,6 +87,12 @@
                 </asp:HyperLink>
             </li>
         </asp:PlaceHolder>
+        <asp:PlaceHolder ID="phScreeningQuestions" runat="server" Visible="false">
+            <li>
+                <asp:HyperLink ID="hlScreeningQuestionTemplate" runat="server" NavigateUrl="~/advertiser/screeningquestionstemplates.aspx">
+                </asp:HyperLink>
+            </li>
+        </asp:PlaceHolder>
         <li>
             <asp:HyperLink ID="hlJobTracker" runat="server" NavigateUrl="~/advertiser/jobtracker.aspx">
             </asp:HyperLink>

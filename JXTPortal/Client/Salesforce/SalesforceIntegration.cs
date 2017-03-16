@@ -978,6 +978,10 @@ namespace JXTPortal.Client.Salesforce
             public string Native_Language__c { get; set; }
             public string Second_Language__c { get; set; }
             public string Second_Language_Proficiency__c { get; set; }
+            public string English_Language_Level__c { get; set; }
+            public string Japanese_Language_Level__c { get; set; }
+            public string Third_Language__c { get; set; }
+            public string Third_Language_Proficiency__c { get; set; }
 
             //tab2
             public string Current_Company__c { get; set; }

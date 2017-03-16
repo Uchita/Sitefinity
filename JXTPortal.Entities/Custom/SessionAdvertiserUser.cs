@@ -19,6 +19,7 @@ namespace JXTPortal.Entities
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
+        public bool AllowedToAccessPeopleSearch { get; set; }
 
         public PortalEnums.Advertiser.AccountType AccountType { get; set; }
         //public string DownloadZipFile { get; set; }

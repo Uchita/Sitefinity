@@ -385,7 +385,7 @@ namespace JXTPortal.Website
         private void IndeedApplyJob(int jobid, string url, string DocumentName, string data)
         {
             // Check if member has applied for the job
-            _logger.Debug(string.Format("IndeedApplyJob: jobId{0}"));
+            _logger.DebugFormat("IndeedApplyJob: jobId - {0}", jobid);
             using (TList<JXTPortal.Entities.JobApplication> jobapp = JobApplicationService.GetByJobId(jobid))
             {
                 if (jobapp != null)
@@ -660,6 +660,7 @@ namespace JXTPortal.Website
         #region Facebook Methods
         private void OAuthCallBackFacebook(PortalEnums.SocialMedia.OAuthCallbackAction callbackAction, string code)
         {
+            _logger.InfoFormat("OAuthCallBack option: {0}", callbackAction);
             switch (callbackAction)
             {
                 case PortalEnums.SocialMedia.OAuthCallbackAction.Login:
@@ -677,7 +678,7 @@ namespace JXTPortal.Website
 
         private void LoginWithFacebook(string code)
         {
-            _logger.DebugFormat("Attempting login with facebook for: {0}", code);
+            _logger.DebugFormat("Attempting login with facebook with: {0}", code);
 
             //Get Integration Details
             AdminIntegrations.Integrations integrations = IntegrationsService.AdminIntegrationsForSiteGet(SessionData.Site.SiteId);
@@ -1238,7 +1239,14 @@ namespace JXTPortal.Website
                 }
 
                 JavaScriptSerializer jss = new JavaScriptSerializer();
+                
                 oAuthIndeed.IndeedContract indeeddata = jss.Deserialize<oAuthIndeed.IndeedContract>(data);
+                if (indeeddata == null)
+                {
+                    _logger.WarnFormat("Failed to deserialize the indeed data: \r\n{0}", data);
+                    Response.Redirect("~/member/login.aspx?oautherror=" + LoginErrorCodeGet("Exception"), false);
+                    return;
+                }
 
                 _logger.Debug(string.Format("Application: {0}; Resume: {1}; file: {2}", indeeddata.applicant != null, (indeeddata.applicant != null && indeeddata.applicant.resume != null), (indeeddata.applicant != null && indeeddata.applicant.resume != null && indeeddata.applicant.resume.file != null)));
                 if (indeeddata.applicant == null || indeeddata.applicant.resume == null || indeeddata.applicant.resume.file == null)
@@ -1291,14 +1299,13 @@ namespace JXTPortal.Website
             }
             catch (Exception ex)
             {
-
+                _logger.Error(ex);
                 if (!string.IsNullOrEmpty(IndeedDataFile))
                 {
                     string fname = Server.MapPath(IndeedDataFile);
 
                     File.AppendAllText(fname, data + "\n" + ex.Message + "\n" + ex.StackTrace);
                 }
-
 
                 //Response.Write(ex.Message);
                 Response.Redirect("~/member/login.aspx?oautherror=" + LoginErrorCodeGet("Exception"), false);
@@ -1450,7 +1457,7 @@ namespace JXTPortal.Website
         {
             if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName))
             {
-                _logger.WarnFormat("User requries Email, firstname and lastname. email: {0}, Firstname{1}, lastname{2}", email, firstName, lastName);
+                _logger.WarnFormat("User requires Email, firstname and lastname. email: {0}, Firstname:{1}, lastname:{2}", email, firstName, lastName);
                 return LoginErrorCodeGet("InputError");
             }
             int loginErrorCode = 0;

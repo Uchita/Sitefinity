@@ -12,6 +12,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using JXTPortal.Entities;
+using JXTPortal.Common.Extensions;
 
 namespace JXTPortal.Website.usercontrols.advertiser
 {
@@ -173,9 +174,9 @@ namespace JXTPortal.Website.usercontrols.advertiser
                         strImage = string.Format(@"<div class='job-rightlinks'>
                     <br />
                     <span class='dateText'>
-                        <img src='/getfile.aspx?advertiserid={0}' />
+                        <img src='/getfile.aspx?advertiserid={0}&ver={1}' />
                     </span>
-                    </div>", advertiser.AdvertiserId);
+                    </div>", advertiser.AdvertiserId, advertiser.LastModified.ToEpocTimestamp());
                     }
                 }
 

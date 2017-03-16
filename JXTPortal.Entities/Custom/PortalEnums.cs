@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Reflection;
-using System.Collections.ObjectModel;
 using JXTPortal.Entities.Custom;
 
 
@@ -614,6 +609,20 @@ namespace JXTPortal.Entities
             {
                 Job = 1
             }
+
+            public enum ScreeningQuestionsType
+            {
+                [Description("LabelTextBox")]
+                TextBox = 1,
+                [Description("LabelTextArea")]
+                TextArea = 2,
+                [Description("LabelDropdown")]
+                Dropdown = 3,
+                [Description("LabelMultiSelect")]
+                MultiSelect = 4,
+                [Description("LabelRadioButtons")]
+                RadioButtons = 5
+            }
         }
 
         public class JobApplications
@@ -685,6 +694,7 @@ namespace JXTPortal.Entities
                 WorkType = 4,
                 Company = 5,
                 Salary = 6,
+                Country = 7
             }
 
             public enum SalaryType

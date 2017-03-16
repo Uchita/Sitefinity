@@ -2524,7 +2524,7 @@ Your account has already been validated. Please proceed to &lt;a href="/member/l
     <comment>Declined Jobs</comment>
   </data>
   <data name="LabelJobSaved" xml:space="preserve">
-    <value>Job Saved</value>
+    <value>Unsave Job</value>
     <comment>Job Saved</comment>
   </data>
   <data name="LabelSelectUserLogin" xml:space="preserve">
@@ -4423,5 +4423,101 @@ Your account has already been validated. Please proceed to &lt;a href="/member/l
   <data name="ValidateNoHTMLContent" xml:space="preserve">
     <value>Cannot contain invalid content</value>
     <comment>Cannot contain invalid content</comment>
+  </data>
+  <data name="LabelAddScreeningQuestions" xml:space="preserve">
+    <value>Add Screening Questions</value>
+    <comment>Add Screening Questions</comment>
+  </data>
+  <data name="LabelCommaSeparated" xml:space="preserve">
+    <value>Comma Separated</value>
+    <comment>Comma Separated</comment>
+  </data>
+  <data name="LabelCreateNewTemplate" xml:space="preserve">
+    <value>Create New Template</value>
+    <comment>Create New Template</comment>
+  </data>
+  <data name="LabelDropdown" xml:space="preserve">
+    <value>Dropdown</value>
+    <comment>Dropdown</comment>
+  </data>
+  <data name="LabelEditScreeningQuestions" xml:space="preserve">
+    <value>Edit Screening Questions</value>
+    <comment>Edit Screening Questions</comment>
+  </data>
+  <data name="LabelMandatory" xml:space="preserve">
+    <value>Mandatory</value>
+    <comment>Mandatory</comment>
+  </data>
+  <data name="LabelMultiSelect" xml:space="preserve">
+    <value>MultiSelect</value>
+    <comment>MultiSelect</comment>
+  </data>
+  <data name="LabelOptions" xml:space="preserve">
+    <value>Options</value>
+    <comment>Options</comment>
+  </data>
+  <data name="LabelQuestionTitle" xml:space="preserve">
+    <value>Question Title</value>
+    <comment>Question Title</comment>
+  </data>
+  <data name="LabelQuestionType" xml:space="preserve">
+    <value>Question Type</value>
+    <comment>Question Type</comment>
+  </data>
+  <data name="LabelRadioButtons" xml:space="preserve">
+    <value>Radio Buttons</value>
+    <comment>Radio Buttons</comment>
+  </data>
+  <data name="LabelSelectScreeningQuestionsTemplate" xml:space="preserve">
+    <value>Select Screening Questions Template</value>
+    <comment>Select Screening Questions Template</comment>
+  </data>
+  <data name="LabelSequence" xml:space="preserve">
+    <value>Sequence</value>
+    <comment>Sequence</comment>
+  </data>
+  <data name="LabelTemplateName" xml:space="preserve">
+    <value>Template Name</value>
+    <comment>Template Name</comment>
+  </data>
+  <data name="LabelTextArea" xml:space="preserve">
+    <value>Text Area</value>
+    <comment>Text Area</comment>
+  </data>
+  <data name="LabelTextBox" xml:space="preserve">
+    <value>Text Box</value>
+    <comment>Text Box</comment>
+  </data>
+  <data name="LinkButtonScreeningQuestionsTemplate" xml:space="preserve">
+    <value>Screening Questions Template</value>
+    <comment>Screening Questions Template</comment>
+  </data>
+  <data name="LinkScreeningQuestionsTemplate" xml:space="preserve">
+    <value>Screening Questions Template</value>
+    <comment>Screening Questions Template</comment>
+  </data>
+  <data name="LabelScreeningQuestions" xml:space="preserve">
+    <value>Screening Questions</value>
+    <comment>Screening Questions</comment>
+  </data>
+  <data name="LabelSemicolonSeparated" xml:space="preserve">
+    <value>Semicolon Separated</value>
+    <comment>Semicolon Separated</comment>
+  </data>
+  <data name="LabelEnglishLanguageLevel" xml:space="preserve">
+    <value>English Language Level</value>
+    <comment>English Language Level</comment>
+  </data>
+  <data name="LabelJapaneseLanguageLevel" xml:space="preserve">
+    <value>Japanese Language Level</value>
+    <comment>Japanese Language Level</comment>
+  </data>
+  <data name="LabelOtherLanguage" xml:space="preserve">
+    <value>Other Language</value>
+    <comment>Other Language</comment>
+  </data>
+  <data name="LabelOtherLanguageLevel" xml:space="preserve">
+    <value>Other Language Level</value>
+    <comment>Other Language Level</comment>
   </data>
 </root>

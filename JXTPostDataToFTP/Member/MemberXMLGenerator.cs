@@ -21,7 +21,7 @@ namespace JXTPostDataToFTP
         private ILog _logger;
 
         IFileUploader _fileUploader;
-        
+
         MembersService _membersService;
         MembersService MembersService
         {
@@ -336,7 +336,7 @@ namespace JXTPostDataToFTP
                     DataTable dtMemberReferences = ds.Tables[9];
 
                     DataRow[] drValidatedMembers = null;
-                    
+
                     if (sitexml.mode == "JobApplication")
                     {
                         dtMembers.Rows.Clear();
@@ -639,6 +639,8 @@ namespace JXTPostDataToFTP
                         //Empty memberfiles if it is PhysicalFile mode
                         if (sitexml.mode == "PhysicalFile" || sitexml.mode == "FullCandidate")
                         {
+                            _logger.DebugFormat("Total Number of Member Files for member({0}: {1}", thisMemberID, thisMemberFiles.Count());
+
                             foreach (DataRow drmemberfile in thisMemberFiles)
                             {
                                 MemberFiles memberfile = new MemberFiles();
@@ -663,8 +665,10 @@ namespace JXTPostDataToFTP
 
                         MembersXML.Add(thisMemberXML);
 
-                        Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] Member XML Processed: " + thisMemberID.ToString());
+                        _logger.InfoFormat("Member XML Processed: {0}", thisMemberID.ToString());
                     }
+
+                    _logger.InfoFormat("Total Number of Member Files To upload: {0}", MembersFilesList.Count());
 
                     //Finally, xml serialize
                     //string xmlString;
@@ -708,28 +712,59 @@ namespace JXTPostDataToFTP
                             fileslist.Add(new FileNames(thisXML.Profile.MemberID.ToString(), memberfilepath, memberfilename));
                         }
 
+                        string errormessage = string.Empty;
+                        FtpClient ftpclient = new FtpClient();
+                        ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
+                        ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                        ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+                        
                         foreach (MemberFiles memberfile in MembersFilesList)
                         {
-                            Console.WriteLine("[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "] About to Write Member File: " + memberfile.MemberFileId.ToString());
-
+                            _logger.InfoFormat("About to Write Member File: {0}", memberfile.MemberFileId.ToString());
 
                             string memberfilename = string.Format("MemberFile_{0}_{1}_{2}", memberfile.MemberId, memberfile.MemberFileId, memberfile.MemberFileName);
 
                             string memberfilepath = string.Format("{0}{1}", ConfigurationManager.AppSettings["MemberXMLExportFolder"], memberfilename);
 
                             MemberFiles mf = MembersFilesService.GetByMemberFileId(memberfile.MemberFileId);
-                            if (mf != null && mf.MemberFileContent != null)
+                            if (mf != null)
                             {
-                                File.WriteAllBytes(memberfilepath, mf.MemberFileContent);
-
+                                _logger.DebugFormat("Has content: {0} ; FileURL {1}", mf.MemberFileContent != null, mf.MemberFileUrl);
+                                if (!string.IsNullOrWhiteSpace(mf.MemberFileUrl))
+                                {
+                                    string filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], mf.MemberId, mf.MemberFileUrl);
+                                    Stream ms = null;
+                                    _logger.DebugFormat("Downloading file: {0}", filepath);
+                                    ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
+                                    ms.Position = 0;
+                                    if (string.IsNullOrEmpty(errormessage))
+                                    {
+                                        _logger.DebugFormat("Writing filecontent to {0}", memberfilepath);
+                                        File.WriteAllBytes(memberfilepath, ((MemoryStream)ms).ToArray());
+                                    }
+                                    else
+                                    {
+                                        _logger.WarnFormat("Failed to download the file: {0}", errormessage);
+                                    }
+                                }
+                                else if (mf.MemberFileContent != null)
+                                {
+                                    _logger.DebugFormat("Writing filecontent to {0}", memberfilepath);
+                                    File.WriteAllBytes(memberfilepath, mf.MemberFileContent);
+                                }
+                                
                                 fileslist.Add(new FileNames(memberfile.MemberFileId.ToString(), memberfilepath, memberfilename));
+                            }
+                            else
+                            {
+                                _logger.WarnFormat("Failed to retrieve file for MemberFileId: {0}", mf.MemberFileId);
                             }
                         }
 
                         string errormsg = string.Empty;
-                        
+
                         bool success = _fileUploader.UploadFiles(sitexml, fileslist);
-                        
+
                         // Only if successful upload then update the LastModifed Date in the XML.
                         // So that when it runs next it runs from the successful Run.
                         if (success)
@@ -751,13 +786,13 @@ namespace JXTPostDataToFTP
                     }
                     catch (Exception ex)
                     {
-                        _logger.Error(string.Format("Failed to generate XML for Member on SiteId:{1}", sitexml.SiteId), ex);
+                        _logger.Error(string.Format("Failed to generate XML for Member on SiteId: {0}", sitexml.SiteId), ex);
                     }
                 }
                 catch (Exception ex)
                 {
-                    _logger.Error(string.Format("Failed to generate XML for Member on SiteId:{1}", sitexml.SiteId), ex);
-                    SaveExceptionToSiteXML(sitexml, 0);
+                    _logger.Error(string.Format("Failed to generate XML for Member on SiteId: {0}", sitexml.SiteId), ex);
+                    SaveExceptionToSiteXML(sitexml.SiteId);
                 }
             }
         }
@@ -1046,6 +1081,23 @@ namespace JXTPostDataToFTP
             }
 
             return value;
+        }
+
+        private void SaveExceptionToSiteXML(int siteId)
+        {
+            // Save the exception id
+            XDocument xmlFile = XDocument.Load(ConfigurationManager.AppSettings["SiteMemberXML"]);
+            var query = from c in xmlFile.Elements("sites").Elements("site")
+                        select c;
+            foreach (XElement site in query)
+            {
+                // Save the Exception ID and the application which has exception in the XML.
+                if (site.Element("SiteId").Value == siteId.ToString())
+                {
+                    site.Element("ExceptionID").Value = "-1";
+                }
+            }
+            xmlFile.Save(ConfigurationManager.AppSettings["SitesXML"]);
         }
     }
 }

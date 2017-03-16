@@ -565,9 +565,19 @@ namespace JXTPortal.Website.usercontrols.job
                                         divApplyNow.Visible = false;
                                         divApplyNowBottom.Visible = false;
                                         ibApplyWithLinkedIn.Visible = false;
+
+                                        DateTime auTime = ((DateTime)jobApplicationList[0].ApplicationDate);
+                                        string userTimeZoneID = "AUS Eastern Standard Time";
+                                        TimeZoneInfo ausTimeZone = TimeZoneInfo.FindSystemTimeZoneById(userTimeZoneID);
+                                        DateTime utcTime = TimeZoneInfo.ConvertTimeToUtc(auTime, ausTimeZone);
+
                                         //lbApplied.Text = "You applied for this job on " + ((DateTime)jobappps[0].ApplicationDate).ToString("dd MMM yyyy");
-                                        lbApplied.Text = String.Format("{0} {1}", CommonFunction.GetResourceValue("LabelJobApplied"),
-                                                        ((DateTime)jobApplicationList[0].ApplicationDate).ToString(SessionData.Site.DateFormat));
+                                        //lbApplied.Text = "AU: " + auTime.ToLongDateString() + " " + auTime.ToLongTimeString() + "|| utc:" + utcTime.ToLongDateString() + " " + utcTime.ToLongTimeString() + "||" + utcTime.ToString("s") + "Z";
+
+                                        //by default display the AU time (ie the system time)
+                                        lbApplied.Text = String.Format("{0} <span data-utctime='{1}' data-dateformat='{2}'>{3}</span>", CommonFunction.GetResourceValue("LabelJobApplied"),
+                                                        utcTime.ToString("s") + "Z", SessionData.Site.DateFormat, auTime.ToString(SessionData.Site.DateFormat));
+                                        //lbApplied.Attributes.Add("data-utctime", utcTime.ToString("s") + "Z");
 
                                         lbApplied.Visible = true; // true
                                     }

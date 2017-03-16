@@ -14,56 +14,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 <asp:ScriptManager ID="scriptManager" runat="server" />
 
-<style type="text/css">
-.dashboard-table {
-    background: #555;
-    color: #fff;
-    height: auto;
-    width: 50%;
-    border-radius: .4em;
-    font:1em/1.5 "arial", sans-serif;
-}
-    
-.dashboard-table table {
-    height: auto;
-    width: 100%;
-    border-radius: .4em;
-}
-    
-.dashboard-table tbody {
-    color: #fff;
-    padding-left: -15px;
-    padding-right: -15px;
-}
-    
-.dashboard-table td a {
-       
-    background: #0085cc;
-    color: #FFF;
-    font-family: helvetica;
-    font-size: 18px;
-    padding-top: 5px;
-    height: 30px;
-    display: block;
-    text-decoration: none;
-    text-align: center;
-    line-height: 1.4em;
-    border-radius: .4em;
-    width: 100%;
-}
-    
-.dashboard-table td.description {
-    padding-left: 30px;
-    width: 50%;
-    font-size:18px;
-}
-
-
-.dashboard-table td.dashboard-download {
-    padding-left: 30px;
-    width: 50%;
-}
-</style>
+<link type="text/stylesheet" rel="stylesheet" href="/admin/styles/dashboard.css" />
 
 
     <%--<blockquote>

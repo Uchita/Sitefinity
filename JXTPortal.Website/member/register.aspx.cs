@@ -205,7 +205,7 @@ namespace JXTPortal.Website.members
         {
             ddlClassification.Items.Clear();
             SiteProfessionService _siteprofessionservice = new SiteProfessionService();
-            List<Entities.SiteProfession> siteprofessions = _siteprofessionservice.GetTranslatedProfessions(SessionData.Site.UseCustomProfessionRole);
+            List<Entities.SiteProfession> siteprofessions = _siteprofessionservice.GetTranslatedProfessions(SessionData.Site.SiteId, SessionData.Site.UseCustomProfessionRole);
 
             ddlClassification.DataTextField = "SiteProfessionName";
             ddlClassification.DataValueField = "ProfessionID";

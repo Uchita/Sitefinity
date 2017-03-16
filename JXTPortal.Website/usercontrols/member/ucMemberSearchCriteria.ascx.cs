@@ -385,7 +385,7 @@ namespace JXTPortal.Website.usercontrols.member
 
         protected void populateProfessions()
         {
-            ddlprefClassification.DataSource = SiteProfessionService.GetTranslatedProfessions(SessionData.Site.UseCustomProfessionRole);
+            ddlprefClassification.DataSource = SiteProfessionService.GetTranslatedProfessions(SessionData.Site.SiteId, SessionData.Site.UseCustomProfessionRole);
             ddlprefClassification.DataTextField = "SiteProfessionName";
             ddlprefClassification.DataValueField = "ProfessionId";
             ddlprefClassification.DataBind();

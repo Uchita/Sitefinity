@@ -975,10 +975,11 @@ Email: Nicky.s@stellarworkforce.co.nz</strong></span><br />
 
         public bool ArchiveRGFJobs(GetAllClientSetupsToRun_Result clientSetup, JXTPosterTransform.Library.Methods.Client.PullJsonFromRGF.RGFJobBoardDataRoot data)
         {
-            if (data == null || data.jobBoards == null || data.jobBoards.jobboardlisting == null || data.jobBoards.jobboardlisting.removedIds == null)
+
+            if (data == null || data.jobBoards == null || data.jobBoards.jobboardlisting == null )
                 return true;
 
-            var listings = (from m in data.jobBoards.jobboardlisting.removedIds select new Job { ReferenceNo = m }).ToList();
+            var listings = data.jobBoards.jobboardlisting.upserted.Where(c => c.status.ToLower() == "unposted").Select(c=> new Job{ ReferenceNo = c.id }).ToList(); //(from m in data.jobBoards.jobboardlisting.removedIds select new Job { ReferenceNo = m }).ToList();
 
             if (!listings.Any())
                 return true;

@@ -54972,7 +54972,8 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 					
@@ -55036,7 +55037,7 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 				EXEC sp_executesql @SQL
 
 				-- Return paged results
-				SELECT O.[GlobalSettingID], O.[SiteID], O.[DefaultLanguageID], O.[DefaultDynamicPageID], O.[PublicJobsSearch], O.[PublicMembersSearch], O.[PublicCompaniesSearch], O.[PublicSponsoredAdverts], O.[PrivateJobs], O.[PrivateMembers], O.[PrivateCompanies], O.[LastModifiedBy], O.[LastModified], O.[PageTitlePrefix], O.[PageTitleSuffix], O.[DefaultTitle], O.[HomeTitle], O.[DefaultDescription], O.[HomeDescription], O.[DefaultKeywords], O.[HomeKeywords], O.[ShowFaceBookButton], O.[UseAdvertiserFilter], O.[MerchantID], O.[ShowTwitterButton], O.[ShowJobAlertButton], O.[ShowLinkedInButton], O.[SiteFavIconID], O.[SiteDocType], O.[CurrencySymbol], O.[FtpFolderLocation], O.[MetaTags], O.[SystemMetaTags], O.[MemberRegistrationNotification], O.[LinkedInAPI], O.[LinkedInLogo], O.[LinkedInCompanyID], O.[LinkedInEmail], O.[PrivacySettings], O.[WWWRedirect], O.[AllowAdvertiser], O.[LinkedInAPISecret], O.[GoogleClientID], O.[GoogleClientSecret], O.[FacebookAppID], O.[FacebookAppSecret], O.[LinkedInButtonSize], O.[DefaultCountryID], O.[PayPalUsername], O.[PayPalPassword], O.[PayPalSignature], O.[SecurePayMerchantID], O.[SecurePayPassword], O.[UsingSSL], O.[UseCustomProfessionRole], O.[GenerateJobXML], O.[IsPrivateSite], O.[PrivateRedirectUrl], O.[EnableJobCustomQuestionnaire], O.[JobApplicationTypeID], O.[JobScreeningProcess], O.[AdvertiserApprovalProcess], O.[SiteType], O.[EnableSSL], O.[GST], O.[GSTLabel], O.[NumberOfPremiumJobs], O.[PremiumJobDays], O.[DisplayPremiumJobsOnResults], O.[JobExpiryNotification], O.[CurrencyID], O.[PayPalClientID], O.[PayPalClientSecret], O.[PaypalUser], O.[PaypalProPassword], O.[PaypalVendor], O.[PaypalPartner], O.[InvoiceSiteInfo], O.[InvoiceSiteFooter], O.[EnableTermsAndConditions], O.[DefaultEmailLanguageId], O.[GoogleTagManager], O.[GoogleAnalytics], O.[GoogleWebMaster], O.[EnablePeopleSearch], O.[GlobalDateFormat], O.[TimeZone], O.[GlobalFolder]
+				SELECT O.[GlobalSettingID], O.[SiteID], O.[DefaultLanguageID], O.[DefaultDynamicPageID], O.[PublicJobsSearch], O.[PublicMembersSearch], O.[PublicCompaniesSearch], O.[PublicSponsoredAdverts], O.[PrivateJobs], O.[PrivateMembers], O.[PrivateCompanies], O.[LastModifiedBy], O.[LastModified], O.[PageTitlePrefix], O.[PageTitleSuffix], O.[DefaultTitle], O.[HomeTitle], O.[DefaultDescription], O.[HomeDescription], O.[DefaultKeywords], O.[HomeKeywords], O.[ShowFaceBookButton], O.[UseAdvertiserFilter], O.[MerchantID], O.[ShowTwitterButton], O.[ShowJobAlertButton], O.[ShowLinkedInButton], O.[SiteFavIconID], O.[SiteDocType], O.[CurrencySymbol], O.[FtpFolderLocation], O.[MetaTags], O.[SystemMetaTags], O.[MemberRegistrationNotification], O.[LinkedInAPI], O.[LinkedInLogo], O.[LinkedInCompanyID], O.[LinkedInEmail], O.[PrivacySettings], O.[WWWRedirect], O.[AllowAdvertiser], O.[LinkedInAPISecret], O.[GoogleClientID], O.[GoogleClientSecret], O.[FacebookAppID], O.[FacebookAppSecret], O.[LinkedInButtonSize], O.[DefaultCountryID], O.[PayPalUsername], O.[PayPalPassword], O.[PayPalSignature], O.[SecurePayMerchantID], O.[SecurePayPassword], O.[UsingSSL], O.[UseCustomProfessionRole], O.[GenerateJobXML], O.[IsPrivateSite], O.[PrivateRedirectUrl], O.[EnableJobCustomQuestionnaire], O.[JobApplicationTypeID], O.[JobScreeningProcess], O.[AdvertiserApprovalProcess], O.[SiteType], O.[EnableSSL], O.[GST], O.[GSTLabel], O.[NumberOfPremiumJobs], O.[PremiumJobDays], O.[DisplayPremiumJobsOnResults], O.[JobExpiryNotification], O.[CurrencyID], O.[PayPalClientID], O.[PayPalClientSecret], O.[PaypalUser], O.[PaypalProPassword], O.[PaypalVendor], O.[PaypalPartner], O.[InvoiceSiteInfo], O.[InvoiceSiteFooter], O.[EnableTermsAndConditions], O.[DefaultEmailLanguageId], O.[GoogleTagManager], O.[GoogleAnalytics], O.[GoogleWebMaster], O.[EnablePeopleSearch], O.[GlobalDateFormat], O.[TimeZone], O.[GlobalFolder], O.[EnableScreeningQuestions]
 				FROM
 				    [dbo].[GlobalSettings] O,
 				    #PageIndex PageIndex
@@ -55157,6 +55158,7 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 				<parameter name="@GlobalDateFormat" type="varchar" direction="Input" size="20" precision="0" scale="0" param="(20)" nulldefault=""/>
 				<parameter name="@TimeZone" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault=""/>
 				<parameter name="@GlobalFolder" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault=""/>
+				<parameter name="@EnableScreeningQuestions" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault=""/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -55249,6 +55251,7 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					,[GlobalDateFormat]
 					,[TimeZone]
 					,[GlobalFolder]
+					,[EnableScreeningQuestions]
 					)
 				VALUES
 					(
@@ -55339,6 +55342,7 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					,@GlobalDateFormat
 					,@TimeZone
 					,@GlobalFolder
+					,@EnableScreeningQuestions
 					)
 				
 				-- Get the identity value
@@ -55445,6 +55449,7 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 				<parameter name="@GlobalDateFormat" type="varchar" direction="Input" size="20" precision="0" scale="0" param="(20)" nulldefault=""/>
 				<parameter name="@TimeZone" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault=""/>
 				<parameter name="@GlobalFolder" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault=""/>
+				<parameter name="@EnableScreeningQuestions" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault=""/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -55540,6 +55545,7 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					,[GlobalDateFormat] = @GlobalDateFormat
 					,[TimeZone] = @TimeZone
 					,[GlobalFolder] = @GlobalFolder
+					,[EnableScreeningQuestions] = @EnableScreeningQuestions
 				WHERE
 [GlobalSettingID] = @GlobalSettingId 
 				
@@ -55667,7 +55673,8 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -55780,7 +55787,8 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -55893,7 +55901,8 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -56006,7 +56015,8 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -56119,7 +56129,8 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -56232,7 +56243,8 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -56344,7 +56356,8 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -56457,7 +56470,8 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -56570,7 +56584,8 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -56684,7 +56699,8 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -56797,7 +56813,8 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -56906,6 +56923,7 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 				<parameter name="@GlobalDateFormat" type="varchar" direction="Input" size="20" precision="0" scale="0" param="(20)" nulldefault="null"/>
 				<parameter name="@TimeZone" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@GlobalFolder" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
+				<parameter name="@EnableScreeningQuestions" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -57000,6 +57018,7 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 	, [GlobalDateFormat]
 	, [TimeZone]
 	, [GlobalFolder]
+	, [EnableScreeningQuestions]
     FROM
 	[dbo].[GlobalSettings]
     WHERE 
@@ -57091,6 +57110,7 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 	AND ([GlobalDateFormat] = @GlobalDateFormat OR @GlobalDateFormat IS NULL)
 	AND ([TimeZone] = @TimeZone OR @TimeZone IS NULL)
 	AND ([GlobalFolder] = @GlobalFolder OR @GlobalFolder IS NULL)
+	AND ([EnableScreeningQuestions] = @EnableScreeningQuestions OR @EnableScreeningQuestions IS NULL)
 						
   END
   ELSE
@@ -57184,6 +57204,7 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 	, [GlobalDateFormat]
 	, [TimeZone]
 	, [GlobalFolder]
+	, [EnableScreeningQuestions]
     FROM
 	[dbo].[GlobalSettings]
     WHERE 
@@ -57275,6 +57296,7 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 	OR ([GlobalDateFormat] = @GlobalDateFormat AND @GlobalDateFormat is not null)
 	OR ([TimeZone] = @TimeZone AND @TimeZone is not null)
 	OR ([GlobalFolder] = @GlobalFolder AND @GlobalFolder is not null)
+	OR ([EnableScreeningQuestions] = @EnableScreeningQuestions AND @EnableScreeningQuestions is not null)
 	SELECT @@ROWCOUNT			
   END
 				]]></body>
@@ -57309,7 +57331,7 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 				ORDER BY {1}
 				
 				-- Return paged results
-				SELECT O.[GlobalSettingID], O.[SiteID], O.[DefaultLanguageID], O.[DefaultDynamicPageID], O.[PublicJobsSearch], O.[PublicMembersSearch], O.[PublicCompaniesSearch], O.[PublicSponsoredAdverts], O.[PrivateJobs], O.[PrivateMembers], O.[PrivateCompanies], O.[LastModifiedBy], O.[LastModified], O.[PageTitlePrefix], O.[PageTitleSuffix], O.[DefaultTitle], O.[HomeTitle], O.[DefaultDescription], O.[HomeDescription], O.[DefaultKeywords], O.[HomeKeywords], O.[ShowFaceBookButton], O.[UseAdvertiserFilter], O.[MerchantID], O.[ShowTwitterButton], O.[ShowJobAlertButton], O.[ShowLinkedInButton], O.[SiteFavIconID], O.[SiteDocType], O.[CurrencySymbol], O.[FtpFolderLocation], O.[MetaTags], O.[SystemMetaTags], O.[MemberRegistrationNotification], O.[LinkedInAPI], O.[LinkedInLogo], O.[LinkedInCompanyID], O.[LinkedInEmail], O.[PrivacySettings], O.[WWWRedirect], O.[AllowAdvertiser], O.[LinkedInAPISecret], O.[GoogleClientID], O.[GoogleClientSecret], O.[FacebookAppID], O.[FacebookAppSecret], O.[LinkedInButtonSize], O.[DefaultCountryID], O.[PayPalUsername], O.[PayPalPassword], O.[PayPalSignature], O.[SecurePayMerchantID], O.[SecurePayPassword], O.[UsingSSL], O.[UseCustomProfessionRole], O.[GenerateJobXML], O.[IsPrivateSite], O.[PrivateRedirectUrl], O.[EnableJobCustomQuestionnaire], O.[JobApplicationTypeID], O.[JobScreeningProcess], O.[AdvertiserApprovalProcess], O.[SiteType], O.[EnableSSL], O.[GST], O.[GSTLabel], O.[NumberOfPremiumJobs], O.[PremiumJobDays], O.[DisplayPremiumJobsOnResults], O.[JobExpiryNotification], O.[CurrencyID], O.[PayPalClientID], O.[PayPalClientSecret], O.[PaypalUser], O.[PaypalProPassword], O.[PaypalVendor], O.[PaypalPartner], O.[InvoiceSiteInfo], O.[InvoiceSiteFooter], O.[EnableTermsAndConditions], O.[DefaultEmailLanguageId], O.[GoogleTagManager], O.[GoogleAnalytics], O.[GoogleWebMaster], O.[EnablePeopleSearch], O.[GlobalDateFormat], O.[TimeZone], O.[GlobalFolder]
+				SELECT O.[GlobalSettingID], O.[SiteID], O.[DefaultLanguageID], O.[DefaultDynamicPageID], O.[PublicJobsSearch], O.[PublicMembersSearch], O.[PublicCompaniesSearch], O.[PublicSponsoredAdverts], O.[PrivateJobs], O.[PrivateMembers], O.[PrivateCompanies], O.[LastModifiedBy], O.[LastModified], O.[PageTitlePrefix], O.[PageTitleSuffix], O.[DefaultTitle], O.[HomeTitle], O.[DefaultDescription], O.[HomeDescription], O.[DefaultKeywords], O.[HomeKeywords], O.[ShowFaceBookButton], O.[UseAdvertiserFilter], O.[MerchantID], O.[ShowTwitterButton], O.[ShowJobAlertButton], O.[ShowLinkedInButton], O.[SiteFavIconID], O.[SiteDocType], O.[CurrencySymbol], O.[FtpFolderLocation], O.[MetaTags], O.[SystemMetaTags], O.[MemberRegistrationNotification], O.[LinkedInAPI], O.[LinkedInLogo], O.[LinkedInCompanyID], O.[LinkedInEmail], O.[PrivacySettings], O.[WWWRedirect], O.[AllowAdvertiser], O.[LinkedInAPISecret], O.[GoogleClientID], O.[GoogleClientSecret], O.[FacebookAppID], O.[FacebookAppSecret], O.[LinkedInButtonSize], O.[DefaultCountryID], O.[PayPalUsername], O.[PayPalPassword], O.[PayPalSignature], O.[SecurePayMerchantID], O.[SecurePayPassword], O.[UsingSSL], O.[UseCustomProfessionRole], O.[GenerateJobXML], O.[IsPrivateSite], O.[PrivateRedirectUrl], O.[EnableJobCustomQuestionnaire], O.[JobApplicationTypeID], O.[JobScreeningProcess], O.[AdvertiserApprovalProcess], O.[SiteType], O.[EnableSSL], O.[GST], O.[GSTLabel], O.[NumberOfPremiumJobs], O.[PremiumJobDays], O.[DisplayPremiumJobsOnResults], O.[JobExpiryNotification], O.[CurrencyID], O.[PayPalClientID], O.[PayPalClientSecret], O.[PaypalUser], O.[PaypalProPassword], O.[PaypalVendor], O.[PaypalPartner], O.[InvoiceSiteInfo], O.[InvoiceSiteFooter], O.[EnableTermsAndConditions], O.[DefaultEmailLanguageId], O.[GoogleTagManager], O.[GoogleAnalytics], O.[GoogleWebMaster], O.[EnablePeopleSearch], O.[GlobalDateFormat], O.[TimeZone], O.[GlobalFolder], O.[EnableScreeningQuestions]
 				FROM
 				    [dbo].[GlobalSettings] O,
 				    #PageIndex PageIndex
@@ -57387,7 +57409,8 @@ ter],
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -57504,6 +57527,7 @@ ter],
 				<parameter name="@GlobalDateFormat" type="varchar" direction="Input" size="20" precision="0" scale="0" param="(20)" nulldefault="null"/>
 				<parameter name="@TimeZone" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@GlobalFolder" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
+				<parameter name="@EnableScreeningQuestions" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -57512,6 +57536,7 @@ ter is not null)
 	OR ([GlobalDateFormat] = @GlobalDateFormat AND @GlobalDateFormat is not null)
 	OR ([TimeZone] = @TimeZone AND @TimeZone is not null)
 	OR ([GlobalFolder] = @GlobalFolder AND @GlobalFolder is not null)
+	OR ([EnableScreeningQuestions] = @EnableScreeningQuestions AND @EnableScreeningQuestions is not null)
 	SELECT @@ROWCOUNT			
   END
 				
@@ -57541,7 +57566,8 @@ ter],
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -57655,6 +57681,7 @@ ter],
 				<parameter name="@GlobalDateFormat" type="varchar" direction="Input" size="20" precision="0" scale="0" param="(20)" nulldefault="null"/>
 				<parameter name="@TimeZone" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@GlobalFolder" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
+				<parameter name="@EnableScreeningQuestions" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -57663,6 +57690,7 @@ ter
 					,[GlobalDateFormat] = @GlobalDateFormat
 					,[TimeZone] = @TimeZone
 					,[GlobalFolder] = @GlobalFolder
+					,[EnableScreeningQuestions] = @EnableScreeningQuestions
 				WHERE
 [GlobalSettingID] = @GlobalSettingId 
 				
@@ -57693,7 +57721,8 @@ ter],
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -57728,7 +57757,8 @@ ter],
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -57843,6 +57873,7 @@ ter],
 				<parameter name="@GlobalDateFormat" type="varchar" direction="Input" size="20" precision="0" scale="0" param="(20)" nulldefault="null"/>
 				<parameter name="@TimeZone" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@GlobalFolder" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
+				<parameter name="@EnableScreeningQuestions" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -57851,6 +57882,7 @@ ter
 					,@GlobalDateFormat
 					,@TimeZone
 					,@GlobalFolder
+					,@EnableScreeningQuestions
 					)
 				
 				-- Get the identity value
@@ -57910,7 +57942,8 @@ ter],
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 					
@@ -57942,7 +57975,8 @@ ter],
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -57957,7 +57991,8 @@ ter],
 					</procedure>
 				
 		<procedure owner="dbo" name="GlobalSettings_CustomGetPaymentDetail"  skip="true">
-			<comment><![CDATA[]]></comment>
+			<comment><![CDATA[
+]]></comment>
 			<parameters>
 				<parameter name="@SiteID" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 			</parameters>
@@ -57993,7 +58028,8 @@ ter],
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -58028,7 +58064,8 @@ ter],
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -58091,7 +58128,8 @@ ter],
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -58127,7 +58165,8 @@ ter],
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -58162,7 +58201,8 @@ ter],
 					[EnablePeopleSearch],
 					[GlobalDateFormat],
 					[TimeZone],
-					[GlobalFolder]
+					[GlobalFolder],
+					[EnableScreeningQuestions]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -65500,7 +65540,8 @@ tModifiedBy
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
 					[PreferredContactMethod],
-					[AdvertiserLogoUrl]
+					[AdvertiserLogoUrl],
+					[AllowPeopleSearchAccess]
 				FROM
 					[dbo].[Advertisers]
 					
@@ -65564,7 +65605,7 @@ tModifiedBy
 				EXEC sp_executesql @SQL
 
 				-- Return paged results
-				SELECT O.[AdvertiserID], O.[SiteID], O.[AdvertiserAccountTypeID], O.[AdvertiserBusinessTypeID], O.[AdvertiserAccountStatusID], O.[CompanyName], O.[BusinessNumber], O.[StreetAddress1], O.[StreetAddress2], O.[LastModified], O.[LastModifiedBy], O.[PostalAddress1], O.[PostalAddress2], O.[WebAddress], O.[NoOfEmployees], O.[FirstApprovedDate], O.[Profile], O.[CharityNumber], O.[SearchField], O.[FreeTrialStartDate], O.[FreeTrialEndDate], O.[AccountsPayableEmail], O.[RequireLogonForExternalApplication], O.[AdvertiserLogo], O.[LinkedInLogo], O.[LinkedInCompanyId], O.[LinkedInEmail], O.[RegisterDate], O.[ExternalAdvertiserID], O.[VideoLink], O.[Industry], O.[NominatedCompanyRole], O.[NominatedCompanyFirstName], O.[NominatedCompanyLastName], O.[NominatedCompanyEmailAddress], O.[NominatedCompanyPhone], O.[PreferredContactMethod], O.[AdvertiserLogoUrl]
+				SELECT O.[AdvertiserID], O.[SiteID], O.[AdvertiserAccountTypeID], O.[AdvertiserBusinessTypeID], O.[AdvertiserAccountStatusID], O.[CompanyName], O.[BusinessNumber], O.[StreetAddress1], O.[StreetAddress2], O.[LastModified], O.[LastModifiedBy], O.[PostalAddress1], O.[PostalAddress2], O.[WebAddress], O.[NoOfEmployees], O.[FirstApprovedDate], O.[Profile], O.[CharityNumber], O.[SearchField], O.[FreeTrialStartDate], O.[FreeTrialEndDate], O.[AccountsPayableEmail], O.[RequireLogonForExternalApplication], O.[AdvertiserLogo], O.[LinkedInLogo], O.[LinkedInCompanyId], O.[LinkedInEmail], O.[RegisterDate], O.[ExternalAdvertiserID], O.[VideoLink], O.[Industry], O.[NominatedCompanyRole], O.[NominatedCompanyFirstName], O.[NominatedCompanyLastName], O.[NominatedCompanyEmailAddress], O.[NominatedCompanyPhone], O.[PreferredContactMethod], O.[AdvertiserLogoUrl], O.[AllowPeopleSearchAccess]
 				FROM
 				    [dbo].[Advertisers] O,
 				    #PageIndex PageIndex
@@ -65635,6 +65676,7 @@ tModifiedBy
 				<parameter name="@NominatedCompanyPhone" type="varchar" direction="Input" size="40" precision="0" scale="0" param="(40)" nulldefault=""/>
 				<parameter name="@PreferredContactMethod" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
 				<parameter name="@AdvertiserLogoUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault=""/>
+				<parameter name="@AllowPeopleSearchAccess" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault=""/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -65677,6 +65719,7 @@ tModifiedBy
 					,[NominatedCompanyPhone]
 					,[PreferredContactMethod]
 					,[AdvertiserLogoUrl]
+					,[AllowPeopleSearchAccess]
 					)
 				VALUES
 					(
@@ -65717,6 +65760,7 @@ tModifiedBy
 					,@NominatedCompanyPhone
 					,@PreferredContactMethod
 					,@AdvertiserLogoUrl
+					,@AllowPeopleSearchAccess
 					)
 				
 				-- Get the identity value
@@ -65773,6 +65817,7 @@ tModifiedBy
 				<parameter name="@NominatedCompanyPhone" type="varchar" direction="Input" size="40" precision="0" scale="0" param="(40)" nulldefault=""/>
 				<parameter name="@PreferredContactMethod" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
 				<parameter name="@AdvertiserLogoUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault=""/>
+				<parameter name="@AllowPeopleSearchAccess" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault=""/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -65818,6 +65863,7 @@ tModifiedBy
 					,[NominatedCompanyPhone] = @NominatedCompanyPhone
 					,[PreferredContactMethod] = @PreferredContactMethod
 					,[AdvertiserLogoUrl] = @AdvertiserLogoUrl
+					,[AllowPeopleSearchAccess] = @AllowPeopleSearchAccess
 				WHERE
 [AdvertiserID] = @AdvertiserId 
 				
@@ -65895,7 +65941,8 @@ tModifiedBy
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
 					[PreferredContactMethod],
-					[AdvertiserLogoUrl]
+					[AdvertiserLogoUrl],
+					[AllowPeopleSearchAccess]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -65958,7 +66005,8 @@ tModifiedBy
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
 					[PreferredContactMethod],
-					[AdvertiserLogoUrl]
+					[AdvertiserLogoUrl],
+					[AllowPeopleSearchAccess]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -66021,7 +66069,8 @@ tModifiedBy
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
 					[PreferredContactMethod],
-					[AdvertiserLogoUrl]
+					[AdvertiserLogoUrl],
+					[AllowPeopleSearchAccess]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -66084,7 +66133,8 @@ tModifiedBy
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
 					[PreferredContactMethod],
-					[AdvertiserLogoUrl]
+					[AdvertiserLogoUrl],
+					[AllowPeopleSearchAccess]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -66147,7 +66197,8 @@ tModifiedBy
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
 					[PreferredContactMethod],
-					[AdvertiserLogoUrl]
+					[AdvertiserLogoUrl],
+					[AllowPeopleSearchAccess]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -66208,7 +66259,8 @@ tModifiedBy
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
 					[PreferredContactMethod],
-					[AdvertiserLogoUrl]
+					[AdvertiserLogoUrl],
+					[AllowPeopleSearchAccess]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -66269,6 +66321,7 @@ SELECT dbo.[Advertisers].[AdvertiserID]
        ,dbo.[Advertisers].[NominatedCompanyPhone]
        ,dbo.[Advertisers].[PreferredContactMethod]
        ,dbo.[Advertisers].[AdvertiserLogoUrl]
+       ,dbo.[Advertisers].[AllowPeopleSearchAccess]
   FROM dbo.[Advertisers]
  WHERE EXISTS (SELECT 1
                  FROM dbo.[AdvertiserJobPricing] 
@@ -66327,6 +66380,7 @@ SELECT dbo.[Advertisers].[AdvertiserID]
 				<parameter name="@NominatedCompanyPhone" type="varchar" direction="Input" size="40" precision="0" scale="0" param="(40)" nulldefault="null"/>
 				<parameter name="@PreferredContactMethod" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@AdvertiserLogoUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
+				<parameter name="@AllowPeopleSearchAccess" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -66371,6 +66425,7 @@ SELECT dbo.[Advertisers].[AdvertiserID]
 	, [NominatedCompanyPhone]
 	, [PreferredContactMethod]
 	, [AdvertiserLogoUrl]
+	, [AllowPeopleSearchAccess]
     FROM
 	[dbo].[Advertisers]
     WHERE 
@@ -66410,6 +66465,7 @@ SELECT dbo.[Advertisers].[AdvertiserID]
 	AND ([NominatedCompanyPhone] = @NominatedCompanyPhone OR @NominatedCompanyPhone IS NULL)
 	AND ([PreferredContactMethod] = @PreferredContactMethod OR @PreferredContactMethod IS NULL)
 	AND ([AdvertiserLogoUrl] = @AdvertiserLogoUrl OR @AdvertiserLogoUrl IS NULL)
+	AND ([AllowPeopleSearchAccess] = @AllowPeopleSearchAccess OR @AllowPeopleSearchAccess IS NULL)
 						
   END
   ELSE
@@ -66453,6 +66509,7 @@ SELECT dbo.[Advertisers].[AdvertiserID]
 	, [NominatedCompanyPhone]
 	, [PreferredContactMethod]
 	, [AdvertiserLogoUrl]
+	, [AllowPeopleSearchAccess]
     FROM
 	[dbo].[Advertisers]
     WHERE 
@@ -66492,6 +66549,7 @@ SELECT dbo.[Advertisers].[AdvertiserID]
 	OR ([NominatedCompanyPhone] = @NominatedCompanyPhone AND @NominatedCompanyPhone is not null)
 	OR ([PreferredContactMethod] = @PreferredContactMethod AND @PreferredContactMethod is not null)
 	OR ([AdvertiserLogoUrl] = @AdvertiserLogoUrl AND @AdvertiserLogoUrl is not null)
+	OR ([AllowPeopleSearchAccess] = @AllowPeopleSearchAccess AND @AllowPeopleSearchAccess is not null)
 	SELECT @@ROWCOUNT			
   END
 				]]></body>
@@ -66526,7 +66584,7 @@ SELECT dbo.[Advertisers].[AdvertiserID]
 				ORDER BY {1}
 				
 				-- Return paged results
-				SELECT O.[AdvertiserID], O.[SiteID], O.[AdvertiserAccountTypeID], O.[AdvertiserBusinessTypeID], O.[AdvertiserAccountStatusID], O.[CompanyName], O.[BusinessNumber], O.[StreetAddress1], O.[StreetAddress2], O.[LastModified], O.[LastModifiedBy], O.[PostalAddress1], O.[PostalAddress2], O.[WebAddress], O.[NoOfEmployees], O.[FirstApprovedDate], O.[Profile], O.[CharityNumber], O.[SearchField], O.[FreeTrialStartDate], O.[FreeTrialEndDate], O.[AccountsPayableEmail], O.[RequireLogonForExternalApplication], O.[AdvertiserLogo], O.[LinkedInLogo], O.[LinkedInCompanyId], O.[LinkedInEmail], O.[RegisterDate], O.[ExternalAdvertiserID], O.[VideoLink], O.[Industry], O.[NominatedCompanyRole], O.[NominatedCompanyFirstName], O.[NominatedCompanyLastName], O.[NominatedCompanyEmailAddress], O.[NominatedCompanyPhone], O.[PreferredContactMethod], O.[AdvertiserLogoUrl]
+				SELECT O.[AdvertiserID], O.[SiteID], O.[AdvertiserAccountTypeID], O.[AdvertiserBusinessTypeID], O.[AdvertiserAccountStatusID], O.[CompanyName], O.[BusinessNumber], O.[StreetAddress1], O.[StreetAddress2], O.[LastModified], O.[LastModifiedBy], O.[PostalAddress1], O.[PostalAddress2], O.[WebAddress], O.[NoOfEmployees], O.[FirstApprovedDate], O.[Profile], O.[CharityNumber], O.[SearchField], O.[FreeTrialStartDate], O.[FreeTrialEndDate], O.[AccountsPayableEmail], O.[RequireLogonForExternalApplication], O.[AdvertiserLogo], O.[LinkedInLogo], O.[LinkedInCompanyId], O.[LinkedInEmail], O.[RegisterDate], O.[ExternalAdvertiserID], O.[VideoLink], O.[Industry], O.[NominatedCompanyRole], O.[NominatedCompanyFirstName], O.[NominatedCompanyLastName], O.[NominatedCompanyEmailAddress], O.[NominatedCompanyPhone], O.[PreferredContactMethod], O.[AdvertiserLogoUrl], O.[AllowPeopleSearchAccess]
 				FROM
 				    [dbo].[Advertisers] O,
 				    #PageIndex PageIndex
@@ -66608,6 +66666,7 @@ tName]
        ,dbo.[Advertisers].[NominatedCompanyPhone]
        ,dbo.[Advertisers].[PreferredContactMethod]
        ,dbo.[Advertisers].[AdvertiserLogoUrl]
+       ,dbo.[Advertisers].[AllowPeopleSearchAccess]
   FROM dbo.[Advertisers]
  WHERE EXISTS (SELECT 1
                  FROM dbo.[AdvertiserJobPricing] 
@@ -66673,6 +66732,7 @@ tName]
 				<parameter name="@NominatedCompanyPhone" type="varchar" direction="Input" size="40" precision="0" scale="0" param="(40)" nulldefault="null"/>
 				<parameter name="@PreferredContactMethod" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@AdvertiserLogoUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
+				<parameter name="@AllowPeopleSearchAccess" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -66681,6 +66741,7 @@ tName is not null)
 	OR ([NominatedCompanyPhone] = @NominatedCompanyPhone AND @NominatedCompanyPhone is not null)
 	OR ([PreferredContactMethod] = @PreferredContactMethod AND @PreferredContactMethod is not null)
 	OR ([AdvertiserLogoUrl] = @AdvertiserLogoUrl AND @AdvertiserLogoUrl is not null)
+	OR ([AllowPeopleSearchAccess] = @AllowPeopleSearchAccess AND @AllowPeopleSearchAccess is not null)
 	SELECT @@ROWCOUNT			
   END
 				
@@ -66740,6 +66801,7 @@ tName is not null)
 				<parameter name="@NominatedCompanyPhone" type="varchar" direction="Input" size="40" precision="0" scale="0" param="(40)" nulldefault="null"/>
 				<parameter name="@PreferredContactMethod" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@AdvertiserLogoUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
+				<parameter name="@AllowPeopleSearchAccess" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -66748,6 +66810,7 @@ tName
 					,[NominatedCompanyPhone] = @NominatedCompanyPhone
 					,[PreferredContactMethod] = @PreferredContactMethod
 					,[AdvertiserLogoUrl] = @AdvertiserLogoUrl
+					,[AllowPeopleSearchAccess] = @AllowPeopleSearchAccess
 				WHERE
 [AdvertiserID] = @AdvertiserId 
 				
@@ -66841,7 +66904,8 @@ tName],
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
 					[PreferredContactMethod],
-					[AdvertiserLogoUrl]
+					[AdvertiserLogoUrl],
+					[AllowPeopleSearchAccess]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -66968,6 +67032,7 @@ DELETE FROM [dbo].[Advertisers] WITH (ROWLOCK)
 				<parameter name="@NominatedCompanyPhone" type="varchar" direction="Input" size="40" precision="0" scale="0" param="(40)" nulldefault="null"/>
 				<parameter name="@PreferredContactMethod" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@AdvertiserLogoUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
+				<parameter name="@AllowPeopleSearchAccess" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -66976,6 +67041,7 @@ tName
 					,@NominatedCompanyPhone
 					,@PreferredContactMethod
 					,@AdvertiserLogoUrl
+					,@AllowPeopleSearchAccess
 					)
 				
 				-- Get the identity value
@@ -67069,7 +67135,8 @@ tName],
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
 					[PreferredContactMethod],
-					[AdvertiserLogoUrl]
+					[AdvertiserLogoUrl],
+					[AllowPeopleSearchAccess]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -67169,7 +67236,8 @@ tName],
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
 					[PreferredContactMethod],
-					[AdvertiserLogoUrl]
+					[AdvertiserLogoUrl],
+					[AllowPeopleSearchAccess]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -67204,7 +67272,8 @@ tName],
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
 					[PreferredContactMethod],
-					[AdvertiserLogoUrl]
+					[AdvertiserLogoUrl],
+					[AllowPeopleSearchAccess]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -67239,7 +67308,8 @@ tName],
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
 					[PreferredContactMethod],
-					[AdvertiserLogoUrl]
+					[AdvertiserLogoUrl],
+					[AllowPeopleSearchAccess]
 				FROM
 					[dbo].[Advertisers]
 				WHERE
@@ -67273,7 +67343,8 @@ tName],
 					[NominatedCompanyEmailAddress],
 					[NominatedCompanyPhone],
 					[PreferredContactMethod],
-					[AdvertiserLogoUrl]
+					[AdvertiserLogoUrl],
+					[AllowPeopleSearchAccess]
 				FROM
 					[dbo].[Advertisers]
 					
@@ -80124,8 +80195,7 @@ SELECT
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 					
@@ -80189,7 +80259,7 @@ SELECT
 				EXEC sp_executesql @SQL
 
 				-- Return paged results
-				SELECT O.[JobID], O.[SiteID], O.[WorkTypeID], O.[JobName], O.[Description], O.[FullDescription], O.[WebServiceProcessed], O.[ApplicationEmailAddress], O.[RefNo], O.[Visible], O.[DatePosted], O.[ExpiryDate], O.[Expired], O.[JobItemPrice], O.[Billed], O.[LastModified], O.[ShowSalaryDetails], O.[SalaryText], O.[AdvertiserID], O.[LastModifiedByAdvertiserUserId], O.[LastModifiedByAdminUserId], O.[JobItemTypeID], O.[ApplicationMethod], O.[ApplicationURL], O.[UploadMethod], O.[Tags], O.[JobTemplateID], O.[SearchFieldExtension], O.[AdvertiserJobTemplateLogoID], O.[CompanyName], O.[HashValue], O.[RequireLogonForExternalApplications], O.[ShowLocationDetails], O.[PublicTransport], O.[Address], O.[ContactDetails], O.[JobContactPhone], O.[JobContactName], O.[QualificationsRecognised], O.[ResidentOnly], O.[DocumentLink], O.[BulletPoint1], O.[BulletPoint2], O.[BulletPoint3], O.[HotJob], O.[JobFriendlyName], O.[SearchField], O.[ShowSalaryRange], O.[SalaryLowerBand], O.[SalaryUpperBand], O.[CurrencyID], O.[SalaryTypeID], O.[EnteredByAdvertiserUserID], O.[JobLatitude], O.[JobLongitude], O.[AddressStatus], O.[JobExternalId], O.[ScreeningQuestionsTemplateId]
+				SELECT O.[JobID], O.[SiteID], O.[WorkTypeID], O.[JobName], O.[Description], O.[FullDescription], O.[WebServiceProcessed], O.[ApplicationEmailAddress], O.[RefNo], O.[Visible], O.[DatePosted], O.[ExpiryDate], O.[Expired], O.[JobItemPrice], O.[Billed], O.[LastModified], O.[ShowSalaryDetails], O.[SalaryText], O.[AdvertiserID], O.[LastModifiedByAdvertiserUserId], O.[LastModifiedByAdminUserId], O.[JobItemTypeID], O.[ApplicationMethod], O.[ApplicationURL], O.[UploadMethod], O.[Tags], O.[JobTemplateID], O.[SearchFieldExtension], O.[AdvertiserJobTemplateLogoID], O.[CompanyName], O.[HashValue], O.[RequireLogonForExternalApplications], O.[ShowLocationDetails], O.[PublicTransport], O.[Address], O.[ContactDetails], O.[JobContactPhone], O.[JobContactName], O.[QualificationsRecognised], O.[ResidentOnly], O.[DocumentLink], O.[BulletPoint1], O.[BulletPoint2], O.[BulletPoint3], O.[HotJob], O.[JobFriendlyName], O.[SearchField], O.[ShowSalaryRange], O.[SalaryLowerBand], O.[SalaryUpperBand], O.[CurrencyID], O.[SalaryTypeID], O.[EnteredByAdvertiserUserID], O.[JobLatitude], O.[JobLongitude], O.[AddressStatus], O.[JobExternalId]
 				FROM
 				    [dbo].[JobsArchive] O,
 				    #PageIndex PageIndex
@@ -80279,7 +80349,6 @@ SELECT
 				<parameter name="@JobLongitude" type="float" direction="Input" size="8" precision="53" scale="0" param="" nulldefault=""/>
 				<parameter name="@AddressStatus" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
 				<parameter name="@JobExternalId" type="varchar" direction="Input" size="50" precision="0" scale="0" param="(50)" nulldefault=""/>
-				<parameter name="@ScreeningQuestionsTemplateId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -80342,7 +80411,6 @@ SELECT
 					,[JobLongitude]
 					,[AddressStatus]
 					,[JobExternalId]
-					,[ScreeningQuestionsTemplateId]
 					)
 				VALUES
 					(
@@ -80403,7 +80471,6 @@ SELECT
 					,@JobLongitude
 					,@AddressStatus
 					,@JobExternalId
-					,@ScreeningQuestionsTemplateId
 					)
 				
 									
@@ -80478,7 +80545,6 @@ SELECT
 				<parameter name="@JobLongitude" type="float" direction="Input" size="8" precision="53" scale="0" param="" nulldefault=""/>
 				<parameter name="@AddressStatus" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
 				<parameter name="@JobExternalId" type="varchar" direction="Input" size="50" precision="0" scale="0" param="(50)" nulldefault=""/>
-				<parameter name="@ScreeningQuestionsTemplateId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -80544,7 +80610,6 @@ SELECT
 					,[JobLongitude] = @JobLongitude
 					,[AddressStatus] = @AddressStatus
 					,[JobExternalId] = @JobExternalId
-					,[ScreeningQuestionsTemplateId] = @ScreeningQuestionsTemplateId
 				WHERE
 [JobID] = @OriginalJobId 
 				
@@ -80641,8 +80706,7 @@ SELECT
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 				WHERE
@@ -80724,8 +80788,7 @@ SELECT
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 				WHERE
@@ -80807,8 +80870,7 @@ SELECT
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 				WHERE
@@ -80890,8 +80952,7 @@ SELECT
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 				WHERE
@@ -80973,8 +81034,7 @@ SELECT
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 				WHERE
@@ -81056,95 +81116,11 @@ SELECT
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 				WHERE
 					[SalaryTypeID] = @SalaryTypeId
-				
-				SELECT @@ROWCOUNT
-				SET ANSI_NULLS ON
-			]]></body>
-		</procedure>
-		<procedure owner="dbo" name="JobsArchive_GetByScreeningQuestionsTemplateId" >
-			<comment><![CDATA[/*
-----------------------------------------------------------------------------------------------------
-
--- Created By:  ()
--- Purpose: Select records from the JobsArchive table through a foreign key
-----------------------------------------------------------------------------------------------------
-*/
-]]></comment>
-			<parameters>
-				<parameter name="@ScreeningQuestionsTemplateId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
-			</parameters>
-			<body><![CDATA[
-				SET ANSI_NULLS OFF
-				
-				SELECT
-					[JobID],
-					[SiteID],
-					[WorkTypeID],
-					[JobName],
-					[Description],
-					[FullDescription],
-					[WebServiceProcessed],
-					[ApplicationEmailAddress],
-					[RefNo],
-					[Visible],
-					[DatePosted],
-					[ExpiryDate],
-					[Expired],
-					[JobItemPrice],
-					[Billed],
-					[LastModified],
-					[ShowSalaryDetails],
-					[SalaryText],
-					[AdvertiserID],
-					[LastModifiedByAdvertiserUserId],
-					[LastModifiedByAdminUserId],
-					[JobItemTypeID],
-					[ApplicationMethod],
-					[ApplicationURL],
-					[UploadMethod],
-					[Tags],
-					[JobTemplateID],
-					[SearchFieldExtension],
-					[AdvertiserJobTemplateLogoID],
-					[CompanyName],
-					[HashValue],
-					[RequireLogonForExternalApplications],
-					[ShowLocationDetails],
-					[PublicTransport],
-					[Address],
-					[ContactDetails],
-					[JobContactPhone],
-					[JobContactName],
-					[QualificationsRecognised],
-					[ResidentOnly],
-					[DocumentLink],
-					[BulletPoint1],
-					[BulletPoint2],
-					[BulletPoint3],
-					[HotJob],
-					[JobFriendlyName],
-					[SearchField],
-					[ShowSalaryRange],
-					[SalaryLowerBand],
-					[SalaryUpperBand],
-					[CurrencyID],
-					[SalaryTypeID],
-					[EnteredByAdvertiserUserID],
-					[JobLatitude],
-					[JobLongitude],
-					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
-				FROM
-					[dbo].[JobsArchive]
-				WHERE
-					[ScreeningQuestionsTemplateId] = @ScreeningQuestionsTemplateId
 				
 				SELECT @@ROWCOUNT
 				SET ANSI_NULLS ON
@@ -81222,8 +81198,7 @@ SELECT
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 				WHERE
@@ -81305,8 +81280,7 @@ SELECT
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 				WHERE
@@ -81386,8 +81360,7 @@ SELECT
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 				WHERE
@@ -81474,8 +81447,7 @@ SELECT
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 				WHERE
@@ -81564,8 +81536,7 @@ SELECT
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 				WHERE
@@ -81650,8 +81621,7 @@ SELECT
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 				WHERE
@@ -81734,8 +81704,7 @@ SELECT
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 				WHERE
@@ -81813,7 +81782,6 @@ SELECT
 				<parameter name="@JobLongitude" type="float" direction="Input" size="8" precision="53" scale="0" param="" nulldefault="null"/>
 				<parameter name="@AddressStatus" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@JobExternalId" type="varchar" direction="Input" size="50" precision="0" scale="0" param="(50)" nulldefault="null"/>
-				<parameter name="@ScreeningQuestionsTemplateId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -81877,7 +81845,6 @@ SELECT
 	, [JobLongitude]
 	, [AddressStatus]
 	, [JobExternalId]
-	, [ScreeningQuestionsTemplateId]
     FROM
 	[dbo].[JobsArchive]
     WHERE 
@@ -81936,7 +81903,6 @@ SELECT
 	AND ([JobLongitude] = @JobLongitude OR @JobLongitude IS NULL)
 	AND ([AddressStatus] = @AddressStatus OR @AddressStatus IS NULL)
 	AND ([JobExternalId] = @JobExternalId OR @JobExternalId IS NULL)
-	AND ([ScreeningQuestionsTemplateId] = @ScreeningQuestionsTemplateId OR @ScreeningQuestionsTemplateId IS NULL)
 						
   END
   ELSE
@@ -81999,7 +81965,6 @@ SELECT
 	, [JobLongitude]
 	, [AddressStatus]
 	, [JobExternalId]
-	, [ScreeningQuestionsTemplateId]
     FROM
 	[dbo].[JobsArchive]
     WHERE 
@@ -82058,7 +82023,6 @@ SELECT
 	OR ([JobLongitude] = @JobLongitude AND @JobLongitude is not null)
 	OR ([AddressStatus] = @AddressStatus AND @AddressStatus is not null)
 	OR ([JobExternalId] = @JobExternalId AND @JobExternalId is not null)
-	OR ([ScreeningQuestionsTemplateId] = @ScreeningQuestionsTemplateId AND @ScreeningQuestionsTemplateId is not null)
 	SELECT @@ROWCOUNT			
   END
 				]]></body>
@@ -82093,7 +82057,7 @@ SELECT
 				ORDER BY {1}
 				
 				-- Return paged results
-				SELECT O.[JobID], O.[SiteID], O.[WorkTypeID], O.[JobName], O.[Description], O.[FullDescription], O.[WebServiceProcessed], O.[ApplicationEmailAddress], O.[RefNo], O.[Visible], O.[DatePosted], O.[ExpiryDate], O.[Expired], O.[JobItemPrice], O.[Billed], O.[LastModified], O.[ShowSalaryDetails], O.[SalaryText], O.[AdvertiserID], O.[LastModifiedByAdvertiserUserId], O.[LastModifiedByAdminUserId], O.[JobItemTypeID], O.[ApplicationMethod], O.[ApplicationURL], O.[UploadMethod], O.[Tags], O.[JobTemplateID], O.[SearchFieldExtension], O.[AdvertiserJobTemplateLogoID], O.[CompanyName], O.[HashValue], O.[RequireLogonForExternalApplications], O.[ShowLocationDetails], O.[PublicTransport], O.[Address], O.[ContactDetails], O.[JobContactPhone], O.[JobContactName], O.[QualificationsRecognised], O.[ResidentOnly], O.[DocumentLink], O.[BulletPoint1], O.[BulletPoint2], O.[BulletPoint3], O.[HotJob], O.[JobFriendlyName], O.[SearchField], O.[ShowSalaryRange], O.[SalaryLowerBand], O.[SalaryUpperBand], O.[CurrencyID], O.[SalaryTypeID], O.[EnteredByAdvertiserUserID], O.[JobLatitude], O.[JobLongitude], O.[AddressStatus], O.[JobExternalId], O.[ScreeningQuestionsTemplateId]
+				SELECT O.[JobID], O.[SiteID], O.[WorkTypeID], O.[JobName], O.[Description], O.[FullDescription], O.[WebServiceProcessed], O.[ApplicationEmailAddress], O.[RefNo], O.[Visible], O.[DatePosted], O.[ExpiryDate], O.[Expired], O.[JobItemPrice], O.[Billed], O.[LastModified], O.[ShowSalaryDetails], O.[SalaryText], O.[AdvertiserID], O.[LastModifiedByAdvertiserUserId], O.[LastModifiedByAdminUserId], O.[JobItemTypeID], O.[ApplicationMethod], O.[ApplicationURL], O.[UploadMethod], O.[Tags], O.[JobTemplateID], O.[SearchFieldExtension], O.[AdvertiserJobTemplateLogoID], O.[CompanyName], O.[HashValue], O.[RequireLogonForExternalApplications], O.[ShowLocationDetails], O.[PublicTransport], O.[Address], O.[ContactDetails], O.[JobContactPhone], O.[JobContactName], O.[QualificationsRecognised], O.[ResidentOnly], O.[DocumentLink], O.[BulletPoint1], O.[BulletPoint2], O.[BulletPoint3], O.[HotJob], O.[JobFriendlyName], O.[SearchField], O.[ShowSalaryRange], O.[SalaryLowerBand], O.[SalaryUpperBand], O.[CurrencyID], O.[SalaryTypeID], O.[EnteredByAdvertiserUserID], O.[JobLatitude], O.[JobLongitude], O.[AddressStatus], O.[JobExternalId]
 				FROM
 				    [dbo].[JobsArchive] O,
 				    #PageIndex PageIndex
@@ -82156,8 +82120,7 @@ hValue],
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 				WHERE
@@ -82217,8 +82180,7 @@ hValue],
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 				WHERE
@@ -82305,7 +82267,6 @@ hValue],
 				<parameter name="@JobLongitude" type="float" direction="Input" size="8" precision="53" scale="0" param="" nulldefault="null"/>
 				<parameter name="@AddressStatus" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@JobExternalId" type="varchar" direction="Input" size="50" precision="0" scale="0" param="(50)" nulldefault="null"/>
-				<parameter name="@ScreeningQuestionsTemplateId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -82336,7 +82297,6 @@ hValue
 					,[JobLongitude] = @JobLongitude
 					,[AddressStatus] = @AddressStatus
 					,[JobExternalId] = @JobExternalId
-					,[ScreeningQuestionsTemplateId] = @ScreeningQuestionsTemplateId
 				WHERE
 [JobID] = @OriginalJobId 
 				
@@ -82417,7 +82377,6 @@ hValue
 				<parameter name="@JobLongitude" type="float" direction="Input" size="8" precision="53" scale="0" param="" nulldefault="null"/>
 				<parameter name="@AddressStatus" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@JobExternalId" type="varchar" direction="Input" size="50" precision="0" scale="0" param="(50)" nulldefault="null"/>
-				<parameter name="@ScreeningQuestionsTemplateId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -82456,7 +82415,6 @@ tModifiedByAdminUserId is not null)
 	OR ([JobLongitude] = @JobLongitude AND @JobLongitude is not null)
 	OR ([AddressStatus] = @AddressStatus AND @AddressStatus is not null)
 	OR ([JobExternalId] = @JobExternalId AND @JobExternalId is not null)
-	OR ([ScreeningQuestionsTemplateId] = @ScreeningQuestionsTemplateId AND @ScreeningQuestionsTemplateId is not null)
 	SELECT @@ROWCOUNT			
   END
 				
@@ -82508,8 +82466,7 @@ hValue],
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 				WHERE
@@ -82565,8 +82522,7 @@ hValue],
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 				WHERE
@@ -82621,8 +82577,7 @@ hValue],
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 					
@@ -82846,8 +82801,7 @@ hValue],
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 				WHERE
@@ -82932,7 +82886,6 @@ hValue],
 				<parameter name="@JobLongitude" type="float" direction="Input" size="8" precision="53" scale="0" param="" nulldefault="null"/>
 				<parameter name="@AddressStatus" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@JobExternalId" type="varchar" direction="Input" size="50" precision="0" scale="0" param="(50)" nulldefault="null"/>
-				<parameter name="@ScreeningQuestionsTemplateId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -82963,7 +82916,6 @@ hValue
 					,@JobLongitude
 					,@AddressStatus
 					,@JobExternalId
-					,@ScreeningQuestionsTemplateId
 					)
 				
 									
@@ -83051,8 +83003,7 @@ hValue],
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 				WHERE
@@ -83166,8 +83117,7 @@ hValue],
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 				WHERE
@@ -83224,8 +83174,7 @@ hValue],
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 				WHERE
@@ -83383,8 +83332,7 @@ hValue],
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 				WHERE
@@ -83441,8 +83389,7 @@ hValue],
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 				WHERE
@@ -83499,8 +83446,7 @@ hValue],
 					[JobLatitude],
 					[JobLongitude],
 					[AddressStatus],
-					[JobExternalId],
-					[ScreeningQuestionsTemplateId]
+					[JobExternalId]
 				FROM
 					[dbo].[JobsArchive]
 				WHERE

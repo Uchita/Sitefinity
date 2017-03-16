@@ -365,10 +365,33 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
                                                       HttpUtility.HtmlEncode(CommonFunction.GetResourceValue(CommonFunction.GetEnumDescription(memberStatus))));
 
             // Availability Date
-            SetLiteralText(member.AvailabilityFromDate.HasValue.ToString(), ltAvailableDayFrom, htmlNotationAvailabledate, "LabelAvailabilityDateFrom");
+            if (member.AvailabilityFromDate.HasValue)
+            {
+                ltAvailableDayFrom.Text = string.Format(htmlNotationAvailabledate,
+                                                        CommonFunction.GetResourceValue("LabelAvailabilityDateFrom"),
+                                                        clockCssclass,
+                                                        "availableDate",
+                                                        member.AvailabilityFromDate.Value.ToString(SessionData.Site.DateFormat));
+
+            }
+            else
+            {
+                ltAvailableDayFrom.Text = string.Format(htmlNotationAvailabledate,
+                                                        CommonFunction.GetResourceValue("LabelAvailabilityDateFrom"),
+                                                        clockCssclass,
+                                                        "missing",
+                                                        missingInformationlabel);
+            }
             
             // Last Modified Date
-            SetLiteralText(member.LastModifiedDate.HasValue.ToString(), ltlLastModifiedDate, htmlNotationLastModifiedDate, "LabelLastModified");
+            if(member.LastModifiedDate.HasValue)
+            {
+                ltlLastModifiedDate.Text = string.Format(htmlNotationLastModifiedDate,
+                                                        CommonFunction.GetResourceValue("LabelLastModified"), 
+                                                        member.LastModifiedDate.Value.ToString(SessionData.Site.DateFormat));
+
+                _logger.DebugFormat("Member Profile Last Modified Date: {0}", ltlLastModifiedDate.Text);
+            }
 
             // Download Resume Button (This Downloads Latest resume)
             var resume = GetLatestResumeID();
@@ -439,7 +462,15 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
             ltEmail.Text = (!string.IsNullOrWhiteSpace(member.EmailAddress)) ? HttpUtility.HtmlEncode(member.EmailAddress) : missingInformationlabel;
           
             //DOB
-            SetLiteralText(member.DateOfBirth.Value.ToString(), ltDateOfBirth, htmlNotationDOB, "LabelDateOfBirth");
+            if (member.DateOfBirth.HasValue)
+            {
+                ltDateOfBirth.Text = string.Format(htmlNotationDOB, CommonFunction.GetResourceValue("LabelDateOfBirth"), string.Empty, member.DateOfBirth.Value.ToString(SessionData.Site.DateFormat));
+            }
+            else
+            {
+                ltDateOfBirth.Text = string.Format(htmlNotationDOB, CommonFunction.GetResourceValue("LabelDateOfBirth"), "missing", missingInformationlabel);
+                _logger.Debug("Member DOB Missing!");
+            }
 
             //gender
             if (!string.IsNullOrWhiteSpace(member.Gender))

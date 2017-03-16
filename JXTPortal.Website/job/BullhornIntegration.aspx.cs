@@ -18,6 +18,7 @@ using System.IO;
 using JXTPortal.Common;
 using JXTPortal.Common.Extensions;
 using System.Configuration;
+using log4net;
 
 namespace JXTPortal.Website.job
 {
@@ -25,7 +26,7 @@ namespace JXTPortal.Website.job
     {
 
         #region Declarations
-
+        private ILog _logger;
         private GlobalSettingsService _globalSettingsService;
         private AdvertiserJobTemplateLogoService _advertiserJobTemplateLogo;
         private SiteWorkTypeService _siteWorkTypeService;
@@ -546,6 +547,7 @@ namespace JXTPortal.Website.job
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            _logger.Debug("Bullhorn Integration Page Load");
             revEmailAddress.ValidationExpression = ConfigurationManager.AppSettings["EmailValidationRegex"];
 
             cal_tbStartDate.Format = SessionData.Site.DateFormat;
@@ -612,6 +614,8 @@ namespace JXTPortal.Website.job
         private void NonPostBackPageLoad()
         {
             //reset
+            _logger.Debug("Entered NonPostBackPageLoad");
+
             phInvalidAccountTypeMessage.Visible = false;
             phInvalidAccountTypeMessage.Visible = false;
             formJobFields.Visible = false;
@@ -645,6 +649,7 @@ namespace JXTPortal.Website.job
             }
             else
             {
+                _logger.Debug("Passed Error Checking");
                 phInvalidAccountTypeMessage.Visible = false;
                 formJobFields.Visible = true;
 
@@ -657,10 +662,10 @@ namespace JXTPortal.Website.job
                 int? JXTjobID, JXTarchivedJobID;
                 //get job from JXT
                 bool hasJobReturned = JobsService.JobGetByExternalID(SessionData.Site.SiteId, BullhornSettingsDefaultAdvertiserID, ExternalIDPrefix + bh_entityID, out JXTjobID, out JXTarchivedJobID);
-
+                _logger.DebugFormat("hasJobReturned: {0}; JXTjobID: {1}; JXTarchivedJobID: {2}", hasJobReturned, JXTjobID, JXTarchivedJobID);
                 BullhornRESTAPI.BHJobOrderRecord bhRecord;
                 bool recordGetSuccess = BullhornJobRecordGet(bh_entityID, out bhRecord, out errorMsg);
-
+                _logger.DebugFormat("recordGetSuccess: {0}", recordGetSuccess);
                 if (recordGetSuccess)
                 {
                     //Load GoogleMap JS
@@ -692,20 +697,25 @@ namespace JXTPortal.Website.job
 
                     if (foundInJXT)
                     {
+                        _logger.Debug("Found In JXT");
                         //if found in JXT Jobs table
                         if (JXTjobID != null)
                         {
                             //get JXT job
+                            _logger.DebugFormat("JXTjobID: {0}; bhRecord.IsPublic: {0}", JXTjobID, bhRecord.IsPublic_Boolean);
                             Entities.Jobs thisJob = JobsService.GetByJobId(JXTjobID.Value);
 
+                            _logger.DebugFormat("JXT Job Found: {0}", (thisJob != null));
                             //bh job record shows isPublic == true (ie LIVE)
                             if (bhRecord.IsPublic_Boolean)
                             {
                                 //JXT job expired
+                                _logger.DebugFormat("JXT Job Expired value: {0}", thisJob.Expired);
                                 if ((thisJob.Expired.HasValue && thisJob.Expired.Value == (int)PortalEnums.Jobs.JobStatus.Expired) || thisJob.ExpiryDate < DateTime.Now)
                                 {
                                     //Update BH isPublic to false, Update JXT, display record
                                     bool updateBHStatusSuccess = BullhornJobStatusUpdate(bhRecord.JobOrderID, true);
+                                    _logger.DebugFormat("BH Update Success: {0}", updateBHStatusSuccess);
                                     jobIsEditable = false;
                                 }
                                 else // JXT job NOT expired
@@ -718,6 +728,8 @@ namespace JXTPortal.Website.job
                                 //only change JXT record to expired IF the JXT job is live
                                 if (thisJob.Expired.HasValue && thisJob.Expired.Value == (int)PortalEnums.Jobs.JobStatus.Live)
                                 {
+                                    _logger.Debug("About to Expire Job");
+
                                     UpdateJobStatusToExpiredToJXT(JXTjobID.Value);
 
                                     //because updating a job status from live to expired will trigger auto move from Jobs table to JobsArchived table
@@ -778,22 +790,27 @@ namespace JXTPortal.Website.job
                         //JXT job expired
                         if ((thisJob.Expired.HasValue && thisJob.Expired.Value == (int)PortalEnums.Jobs.JobStatus.Expired) || thisJob.ExpiryDate < DateTime.Now)
                         {
+                            _logger.Debug("Load Expired Job from Jobs Table");
                             LoadExpiredJob(thisJob, null);
                         }
                         else // JXT job NOT expired
                         {
+                            _logger.Debug("Load Job");
                             LoadJob(thisJob);
                         }
                     }
                     else if (JXTarchivedJobID != null)
                     {
                         Entities.JobsArchive thisJob = JobsArchiveService.GetByJobId(JXTarchivedJobID.Value);
+
+                        _logger.DebugFormat("JobsArchive has value: {0}", (thisJob != null));
                         LoadExpiredJob(null, thisJob);
                     }
                 }
                 else
                 {
                     //load empty form
+                    _logger.Debug("Load Empty Form");
 
                     // For new jobs set the Application email address from the Advertiser User.
                     using (Entities.AdvertiserUsers advertiseruser = AdvertiserUsersService.GetByAdvertiserUserId(BullhornSettings.DefaultAdvertiserUserID))
@@ -1931,8 +1948,8 @@ namespace JXTPortal.Website.job
             ddlSalary.Items.Clear();
 
             foreach (Entities.SiteSalaryType sitesalarytype in sitesalarytypes)
-            {                
-                ddlSalary.Items.Add(new ListItem(sitesalarytype.SalaryTypeName, sitesalarytype.SalaryTypeId.ToString()));                
+            {
+                ddlSalary.Items.Add(new ListItem(sitesalarytype.SalaryTypeName, sitesalarytype.SalaryTypeId.ToString()));
             }
 
             ddlSalary.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelPleaseChoose"), "0"));
@@ -1958,8 +1975,8 @@ namespace JXTPortal.Website.job
 
         private void LoadJobTemplate()
         {
-            
- 
+
+
             int aid = AdvertiserID;
 
             if (aid > 0)
@@ -2163,7 +2180,7 @@ namespace JXTPortal.Website.job
 
         protected void ddlJobTemplateID_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
             if (!string.IsNullOrEmpty(ddlJobTemplateID.SelectedValue))
             {
                 imgAdvJobTemplate.ImageUrl = string.Format("/getfile.aspx?jobtemplateid={0}", ddlJobTemplateID.SelectedValue.ToString());
@@ -2511,7 +2528,7 @@ namespace JXTPortal.Website.job
                                 DataRow advertiserjobpricingrow = ds.Tables[0].Rows[0];
                                 if (advertiserjobpricingrow["StartDate"] != DBNull.Value)
                                 {
-                                    if (dt < Convert.ToDateTime(advertiserjobpricingrow["StartDate"]) || dt >Convert.ToDateTime(advertiserjobpricingrow["ExpiryDate"]))
+                                    if (dt < Convert.ToDateTime(advertiserjobpricingrow["StartDate"]) || dt > Convert.ToDateTime(advertiserjobpricingrow["ExpiryDate"]))
                                     {
                                         cvStartDate.ErrorMessage = "Date out of range.";
 

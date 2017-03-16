@@ -148,6 +148,15 @@ namespace JXTPortal.Website.usercontrols.peoplesearch {
         protected global::System.Web.UI.UpdatePanel UpdatePanel3;
         
         /// <summary>
+        /// phLastestResume control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phLastestResume;
+        
+        /// <summary>
         /// linkDownloadResume control.
         /// </summary>
         /// <remarks>
@@ -454,6 +463,15 @@ namespace JXTPortal.Website.usercontrols.peoplesearch {
         protected global::System.Web.UI.WebControls.PlaceHolder phSectionResume;
         
         /// <summary>
+        /// upResume control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upResume;
+        
+        /// <summary>
         /// ltTitleResume control.
         /// </summary>
         /// <remarks>
@@ -499,15 +517,6 @@ namespace JXTPortal.Website.usercontrols.peoplesearch {
         protected global::System.Web.UI.WebControls.Repeater rptResume;
         
         /// <summary>
-        /// lbDownloadAllResume control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbDownloadAllResume;
-        
-        /// <summary>
         /// phSectionCoverLetter control.
         /// </summary>
         /// <remarks>
@@ -515,6 +524,15 @@ namespace JXTPortal.Website.usercontrols.peoplesearch {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder phSectionCoverLetter;
+        
+        /// <summary>
+        /// upCoverLetter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upCoverLetter;
         
         /// <summary>
         /// ltTitleCoverLetter control.
@@ -560,15 +578,6 @@ namespace JXTPortal.Website.usercontrols.peoplesearch {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptCoverLetter;
-        
-        /// <summary>
-        /// lbDownloadAllCoverLetter control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbDownloadAllCoverLetter;
         
         /// <summary>
         /// phSectionExperience control.

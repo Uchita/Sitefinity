@@ -3,7 +3,7 @@
 
 <%--Register UserControls--%>
 
-<div id="content-container" class="container">
+<div id="content-container" class="container custom-public-profile ">
         <div id="content" style="box-sizing: border-box; width: 100%;" class="col-xs-12">
             <div class="content-holder">
                
@@ -29,7 +29,7 @@
                                 </span>
                                 </asp:PlaceHolder>
                             </div>
-                            <!-- Basic Profile Info & Edit -->
+                            <!-- Basic Profile Info -->
                             <asp:UpdatePanel ID="upProfile" runat="server" UpdateMode="Conditional">
                                 <ContentTemplate>
                                     <div class="col-sm-8 col-md-5 col-xs-12  section-content" id="basicProfile" runat="server" clientidmode="Static">
@@ -80,12 +80,13 @@
                             <!-- DownLoad Resume -->
                            <asp:UpdatePanel ID="UpdatePanel3" runat="server" UpdateMode="Always" class="col-sm-12 col-md-4 col-xs-12">
                                 <ContentTemplate>
-
-                                <div class="info_graphic">
+                                <asp:PlaceHolder ID="phLastestResume" runat="server">
+                                <div class="info_graphic">                   
                                     <span class="fa fa-download">
                                         <asp:HyperLink ID="linkDownloadResume" runat=server CssClass="downloadResume">Download Resume</asp:HyperLink>
                                     </span>      
                                 </div>
+                                </asp:PlaceHolder>
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                         </div>
@@ -226,6 +227,8 @@
                     <div class="row clearfix scroll-point" id="attach-container">
                         <!-- Section 10: Attach Resume  -->
                         <asp:PlaceHolder ID="phSectionResume" runat="server">
+                            <asp:UpdatePanel ID="upResume" runat="server" UpdateMode="Conditional" class="col-md-6">
+                                <ContentTemplate>
                                     <section class="form-section frm-sec-2" id="sec-AttachResume">   
                                         <!-- Resume Heading -->
                                         <header class="section-header">
@@ -247,7 +250,7 @@
                                         <!-- Resume Holder Empty Body Content -->
                                         <asp:PlaceHolder ID="phAddEntryTextResume" runat="server">
                                             <p class="empty-case_field text-center">
-                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral25757554" runat="server" SetLanguageCode="LabelAddAnEntry" />
+                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral25757554" runat="server" SetLanguageCode="LabelPublicProfileNoEntries" />
                                             </p>
                                         </asp:PlaceHolder>
 
@@ -273,18 +276,15 @@
                                                 </FooterTemplate>
                                             </asp:Repeater>
                                         </div>
-
-                                        <!-- Download All Button -->
-                                        <div class="info_graphic downloadAll">
-                                            <span class="fa fa-download">
-                                                <asp:LinkButton ID="lbDownloadAllResume" CssClass="downloadResume" runat="server" OnClick="lbDownloadAllResume_Click">Download All</asp:LinkButton>
-                                            </span>
-                                        </div>
                                     </section>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
                         </asp:PlaceHolder>
 
                         <!-- Section 11: Attach Coverletter  -->
                         <asp:PlaceHolder ID="phSectionCoverLetter" runat="server">
+                            <asp:UpdatePanel ID="upCoverLetter" runat="server" UpdateMode="Conditional" class="col-md-6">
+                                <ContentTemplate>
                                     <section class="form-section frm-sec-2" id="sec-AttachCoverletter">
                                         <!-- Cover Letter Heading -->
                                         <header class="section-header">
@@ -305,7 +305,7 @@
                                         <!-- Cover Letter Empty Placeholder -->
                                         <asp:PlaceHolder ID="phAddEntryTextCoverletter" runat="server">
                                             <p class="empty-case_field text-center">
-                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral2446" runat="server" SetLanguageCode="LabelAddAnEntry" />
+                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral2446" runat="server" SetLanguageCode="LabelPublicProfileNoEntries" />
                                             </p>
                                         </asp:PlaceHolder>
 
@@ -331,13 +331,9 @@
                                             </asp:Repeater>
                                         </div>
 
-                                        <!-- Download All Button -->
-                                        <div class="info_graphic downloadAll">
-                                                <span class="fa fa-download">
-                                                    <asp:LinkButton ID="lbDownloadAllCoverLetter" CssClass="downloadCoverletter" OnClick="lbDownloadAllCoverLetter_Click" runat="server">Download All</asp:LinkButton>
-                                                </span>
-                                            </div>
                                     </section>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
                         </asp:PlaceHolder>
                     </div>
 
@@ -346,6 +342,8 @@
                         <section class="form-section scroll-point full-width clearfix" id="section-4">
                         <asp:UpdatePanel ID="upexperience" runat="server" UpdateMode="Conditional" class="form-all">
                             <ContentTemplate>
+                                
+                                <!-- Header Section -->
                                 <header class="section-header">
                                     <div class="col-sm-8">
                                         <h2 class="section-title">
@@ -364,10 +362,11 @@
                                 <!-- Add an Entry when there are no entries -->
                                 <asp:Placeholder runat="server" ID="phAddEntryTextExperience">
                                     <p class="empty-case_field text-center">
-                                        <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral2456" runat="server" SetLanguageCode="LabelAddAnEntry" />
+                                        <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral2456" runat="server" SetLanguageCode="LabelPublicProfileNoEntries" />
                                     </p>
                                 </asp:PlaceHolder>
 
+                                <!-- Experience Repeater Body -->
                                 <asp:Repeater ID="rptExperience" runat="server" OnItemDataBound="rptExperience_ItemDataBound">
                                     <ItemTemplate>
                                         <article id="acExperience" runat="server" class="section-content">
@@ -428,7 +427,7 @@
                                     <!-- Add Entry Wen there are no education history-->
                                     <asp:PlaceHolder runat="server" ID="phAddEntryTextEducation">
                                         <p class="empty-case_field text-center">
-                                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral2466" runat="server" SetLanguageCode="LabelAddAnEntry" />
+                                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral2466" runat="server" SetLanguageCode="LabelPublicProfileNoEntries" />
                                         </p>
                                     </asp:PlaceHolder>
 
@@ -490,7 +489,7 @@
                                     <!-- Empty skills Placeholder -->
                                     <asp:PlaceHolder ID="phAddEntryTextSkills" runat="server">
                                         <p class="empty-case_field text-center">
-                                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral247855" runat="server" SetLanguageCode="LabelAddAnEntry" />
+                                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral247855" runat="server" SetLanguageCode="LabelPublicProfileNoEntries" />
                                         </p>
                                     </asp:PlaceHolder>
 
@@ -542,7 +541,7 @@
                                     <!-- Empty Placeholder -->
                                     <asp:PlaceHolder ID="phAddEntryTextCertificates" runat="server">
                                         <p class="empty-case_field text-center">
-                                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral27554" runat="server" SetLanguageCode="LabelAddAnEntry" />
+                                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral27554" runat="server" SetLanguageCode="LabelPublicProfileNoEntries" />
                                         </p>
                                     </asp:PlaceHolder>
 
@@ -607,7 +606,7 @@
                                     <!-- Empty Licences Placeholder -->
                                     <asp:PlaceHolder runat="server" ID="phAddEntryTextLicenses">
                                         <p class="empty-case_field text-center">
-                                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral2475757" runat="server" SetLanguageCode="LabelAddAnEntry" />
+                                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral2475757" runat="server" SetLanguageCode="LabelPublicProfileNoEntries" />
                                         </p>
                                     </asp:PlaceHolder>
 
@@ -676,10 +675,11 @@
                                             <!-- Empty Placeholder -->
                                             <asp:PlaceHolder ID="phAddEntryTextRolePreferences" runat="server">
                                                 <p class="empty-case_field text-center">
-                                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral24475678" runat="server" SetLanguageCode="LabelEditEntry" />
+                                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral24475678" runat="server" SetLanguageCode="LabelPublicProfileNoEntries" />
                                                 </p>
                                             </asp:PlaceHolder>
 
+                                            <!-- Roles Inner Content -->
                                             <div class="section-content-inner">
                                                 <header class="section-body-header">
                                                     <div class="title-container has-edit-icon">
@@ -741,7 +741,7 @@
                                     <!-- Add Entry Placeholder -->
                                     <asp:PlaceHolder ID="phAddEntryTextLanguages" runat="server">
                                         <p class="empty-case_field text-center">
-                                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral245656" runat="server" SetLanguageCode="LabelAddAnEntry" />
+                                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral245656" runat="server" SetLanguageCode="LabelPublicProfileNoEntries" />
                                         </p>
                                     </asp:PlaceHolder>
 
@@ -798,7 +798,7 @@
                                     <!-- Place Holder Text -->
                                     <asp:PlaceHolder ID="phAddEntryTextReferences" runat="server">
                                         <p class="empty-case_field text-center">
-                                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral276764" runat="server" SetLanguageCode="LabelAddAnEntry" />
+                                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral276764" runat="server" SetLanguageCode="LabelPublicProfileNoEntries" />
                                         </p>
                                     </asp:PlaceHolder>
 
@@ -807,6 +807,8 @@
                                         <ItemTemplate>
                                             <div id="acReference" runat="server" class="section-content">
                                                 <div class="editable-section">
+                                                    
+                                                    <!-- Header -->
                                                     <header class="section-body-header">
                                                         <div class="title-container has-edit-icon">
                                                             <h4>
@@ -818,6 +820,7 @@
                                                         <h5>
                                                             <asp:Literal ID="ltReferencesJobTitle" runat="server" /></h5>
                                                     </header>
+
                                                     <div class="section-entry">
                                                         <div class="body-field field">
                                                             <p>
@@ -837,118 +840,6 @@
                                                                 <asp:Literal ID="ltReferencesRelationship" runat="server" />
                                                                 <asp:Literal ID="ltReferencesEmailDisplay" runat="server" />
                                                             </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Edit form section  -->
-                                                <div class="profile-edit collapse" id="edit-Reference<%# Container.ItemIndex + 1 %>">
-                                                    <h2 class="form-title">
-                                                        <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral230" runat="server" SetLanguageCode="LabelEditEntry" />
-                                                    </h2>
-                                                    <a href="#edit-Reference<%# Container.ItemIndex + 1 %>" data-toggle="collapse" class="fa fa-times close-btn">
-                                                        <!-- close -->
-                                                    </a>
-                                                    <div class="row">
-                                                        <div class="col-sm-6 col-xs-12">
-                                                            <asp:Label ID="Label97" runat="server" AssociatedControlID="tbReferencesName">
-                                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral231" runat="server" SetLanguageCode="LabelName" />
-                                                                <span class="form-required">*</span>:</asp:Label>
-                                                            <div class="form-input">
-                                                                <asp:TextBox ID="tbReferencesName" runat="server" CssClass="form-control" placeholder="tbReferencesName"
-                                                                    MaxLength="100" />
-                                                            </div>
-                                                            <asp:PlaceHolder ID="phReferencesNameError" runat="server" Visible="false"><span
-                                                                class="error-message">
-                                                                <JXTControl:ucLanguageLiteral ID="ucReferencesNameError" runat="server" SetLanguageCode="LabelRequiredField1" />
-                                                            </span></asp:PlaceHolder>
-                                                        </div>
-                                                        <div class="col-sm-6 col-xs-12">
-                                                            <asp:Label ID="Label98" runat="server" AssociatedControlID="tbReferencesJobTitle">
-                                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral232" runat="server" SetLanguageCode="LabelJobTitle" />
-                                                                <span class="form-required">*</span>:</asp:Label>
-                                                            <div class="form-input">
-                                                                <asp:TextBox ID="tbReferencesJobTitle" runat="server" CssClass="form-control" placeholder="tbReferencesJobTitle"
-                                                                    MaxLength="100" />
-                                                            </div>
-                                                            <asp:PlaceHolder ID="phReferencesJobTitleError" runat="server" Visible="false"><span
-                                                                class="error-message">
-                                                                <JXTControl:ucLanguageLiteral ID="ucReferencesJobTitleError" runat="server" SetLanguageCode="LabelRequiredField1" />
-                                                            </span></asp:PlaceHolder>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-sm-6 col-xs-12">
-                                                            <asp:Label ID="Label99" runat="server" AssociatedControlID="tbRefernecesCompany">
-                                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral233" runat="server" SetLanguageCode="LabelCompany" />
-                                                                <span class="form-required">*</span>:</asp:Label>
-                                                            <div class="form-input">
-                                                                <asp:TextBox ID="tbRefernecesCompany" runat="server" CssClass="form-control" placeholder="tbRefernecesCompany"
-                                                                    MaxLength="100" />
-                                                            </div>
-                                                            <asp:PlaceHolder ID="phReferencesCompanyError" runat="server" Visible="false"><span
-                                                                class="error-message">
-                                                                <JXTControl:ucLanguageLiteral ID="ucReferencesCompanyError" runat="server" SetLanguageCode="LabelRequiredField1" />
-                                                            </span></asp:PlaceHolder>
-                                                        </div>
-                                                        <div class="col-sm-6 col-xs-12">
-                                                            <asp:Label ID="Label100" runat="server" AssociatedControlID="tbReferencesPhone">
-                                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral234" runat="server" SetLanguageCode="LabelPhone" />
-                                                                <span class="form-required">*</span>:</asp:Label>
-                                                            <div class="form-input">
-                                                                <asp:TextBox ID="tbReferencesPhone" runat="server" CssClass="form-control" placeholder="tbReferencesPhone"
-                                                                    MaxLength="100" />
-                                                            </div>
-                                                            <asp:PlaceHolder ID="phReferencesPhoneError" runat="server" Visible="false"><span
-                                                                class="error-message">
-                                                                <JXTControl:ucLanguageLiteral ID="ucReferencesPhoneError" runat="server" SetLanguageCode="LabelRequiredField1" />
-                                                            </span></asp:PlaceHolder>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-sm-6 col-xs-12">
-                                                            <asp:Label ID="Label101" runat="server" AssociatedControlID="ddlReferencesRelationship">
-                                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral235" runat="server" SetLanguageCode="LabelRelationship" />
-                                                                <span class="form-required">*</span> :</asp:Label>
-                                                            <div class="form-input">
-                                                                <span class="custom-select">
-                                                                    <asp:DropDownList ID="ddlReferencesRelationship" runat="server" CssClass="form-control">
-                                                                    </asp:DropDownList>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-6 col-xs-12">
-                                                            <asp:Label ID="Label109" runat="server" AssociatedControlID="tbReferencesEmail">
-                                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral61" runat="server" SetLanguageCode="LabelEmail" />
-                                                                <span class="form-required">*</span>:</asp:Label>
-                                                            <div class="form-input">
-                                                                <asp:TextBox ID="tbReferencesEmail" runat="server" CssClass="form-control" placeholder="tbReferencesEmail"
-                                                                    MaxLength="100" />
-                                                            </div>
-                                                            <asp:PlaceHolder ID="phReferencesEmailRequiredError" runat="server" Visible="false">
-                                                                <span class="error-message">
-                                                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral184" runat="server" SetLanguageCode="LabelRequiredField1" />
-                                                                </span></asp:PlaceHolder>
-                                                            <asp:PlaceHolder ID="phReferencesEmailError" runat="server" Visible="false"><span
-                                                                class="error-message">
-                                                                <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral77" runat="server" SetLanguageCode="LabelEmailInvalid" />
-                                                            </span></asp:PlaceHolder>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-sm-6 col-xs-12">
-                                                            <!-- Save buttton  -->
-                                                            <div class="form-input-wide">
-                                                                <label class="spacer-lbl">
-                                                                    &nbsp;</label>
-                                                                <asp:LinkButton ID="lbReferencesSave" runat="server" CssClass="btn btn-primary btn-sm"
-                                                                    CausesValidation="false">
-                                                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral36" runat="server" SetLanguageCode="LabelSave" />
-                                                                </asp:LinkButton>
-                                                                <a href="#edit-Reference<%# Container.ItemIndex + 1 %>" class="btn btn-primary btn-sm cancel-btn"
-                                                                    data-toggle="collapse">
-                                                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral39" runat="server" SetLanguageCode="LabelCancel" />
-                                                                </a>
-                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>

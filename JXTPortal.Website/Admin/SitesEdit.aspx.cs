@@ -95,7 +95,7 @@ public partial class SitesEdit : System.Web.UI.Page
     {
         if (!SessionData.Site.IsUsingS3)
         {
-            siteFolder = ConfigurationManager.AppSettings["FTPHost"] + "media/" + ConfigurationManager.AppSettings["SitesFolder"] + "/";
+            siteFolder = ConfigurationManager.AppSettings["FTPHost"] + ConfigurationManager.AppSettings["RootFolder"] + "/" + ConfigurationManager.AppSettings["SitesFolder"] + "/";
 
             string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
             string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];

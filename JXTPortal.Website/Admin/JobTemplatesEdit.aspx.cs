@@ -111,7 +111,7 @@ public partial class JobTemplatesEdit : System.Web.UI.Page
     {
         if (!SessionData.Site.IsUsingS3)
         {
-            jobTemplateFolder = ConfigurationManager.AppSettings["FTPHost"] + "media/" + ConfigurationManager.AppSettings["JobTemplatesFolder"] + "/";
+            jobTemplateFolder = ConfigurationManager.AppSettings["FTPHost"] + ConfigurationManager.AppSettings["RootFolder"] + "/" + ConfigurationManager.AppSettings["JobTemplatesFolder"] + "/";
 
             string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
             string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];

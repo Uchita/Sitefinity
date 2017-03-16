@@ -149,10 +149,10 @@ namespace JXTPortal.Website
         {
             if (!SessionData.Site.IsUsingS3)
             {
-                advertiserFolder = string.Format("{0}{1}/{2}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["RootFolder"], ConfigurationManager.AppSettings["AdvertisersFolder"]);
-                jobTemplateFolder = string.Format("{0}{1}/{2}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["RootFolder"], ConfigurationManager.AppSettings["JobTemplatesFolder"]);
-                advertiserJobTemplateLogoFolder = string.Format("{0}{1}/{2}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["RootFolder"], ConfigurationManager.AppSettings["AdvertiserJobTemplateLogoFolder"]);
-                consultantFolder = string.Format("{0}{1}/{2}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["RootFolder"], ConfigurationManager.AppSettings["ConsultantsFolder"]);
+                advertiserFolder = string.Format("{0}{1}/{2}/", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["RootFolder"], ConfigurationManager.AppSettings["AdvertisersFolder"]);
+                jobTemplateFolder = string.Format("{0}{1}/{2}/", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["RootFolder"], ConfigurationManager.AppSettings["JobTemplatesFolder"]);
+                advertiserJobTemplateLogoFolder = string.Format("{0}{1}/{2}/", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["RootFolder"], ConfigurationManager.AppSettings["AdvertiserJobTemplateLogoFolder"]);
+                consultantFolder = string.Format("{0}{1}/{2}/", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["RootFolder"], ConfigurationManager.AppSettings["ConsultantsFolder"]);
 
                 string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
                 string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
@@ -261,9 +261,12 @@ namespace JXTPortal.Website
                             Stream ms = null;
 
                             ms = FileManagerService.DownloadFile(bucketName, advertiserFolder, advertiser.AdvertiserLogoUrl, out errormessage);
-                            ms.Position = 0;
+                            if (string.IsNullOrEmpty(errormessage))
+                            {
+                                ms.Position = 0;
 
-                            advertiserlogo = ((MemoryStream)ms).ToArray();
+                                advertiserlogo = ((MemoryStream)ms).ToArray();
+                            }
                         }
                         else
                         {
@@ -274,9 +277,11 @@ namespace JXTPortal.Website
                         {
                             Response.ContentType = contenttype;
                         }
-
-                        Response.BinaryWrite(advertiserlogo);
-                        Response.End();
+                        if (advertiserlogo != null)
+                        {
+                            Response.BinaryWrite(advertiserlogo);
+                            Response.End();
+                        }
                     }
                     else
                     {
@@ -392,7 +397,7 @@ namespace JXTPortal.Website
                                 string filepath = string.Format("{0}{1}/{2}/{3}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["RootFolder"], ConfigurationManager.AppSettings["JobTemplatesFolder"], jobTemplate.JobTemplateLogoUrl);
                                 Stream ms = null;
 
-                                FileManagerService.DownloadFile(bucketName, jobTemplateFolder, jobTemplate.JobTemplateLogoUrl, out errormessage);
+                                ms = FileManagerService.DownloadFile(bucketName, jobTemplateFolder, jobTemplate.JobTemplateLogoUrl, out errormessage);
 
                                 ms.Position = 0;
 

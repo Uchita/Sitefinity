@@ -36,9 +36,9 @@ namespace JXTPortal
         {
             if (!SessionData.Site.IsUsingS3)
             {
-                coverLetterFolder = ConfigurationManager.AppSettings["FTPJobApplyCoverLetterUrl"].TrimEnd(new char[] {'/'});
-                resumeFolder = ConfigurationManager.AppSettings["FTPJobApplyResumeUrl"].TrimEnd(new char[] { '/' });
-                customFolder = ConfigurationManager.AppSettings["FTPCustomJobApplications"].TrimEnd(new char[] { '/' });
+                coverLetterFolder = ConfigurationManager.AppSettings["FTPJobApplyCoverLetterUrl"];
+                resumeFolder = ConfigurationManager.AppSettings["FTPJobApplyResumeUrl"];
+                customFolder = ConfigurationManager.AppSettings["FTPCustomJobApplications"];
 
                 string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
                 string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];

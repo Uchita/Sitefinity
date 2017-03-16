@@ -350,7 +350,7 @@ namespace JXTPortal.Website.members
                             string extension = string.Empty;
 
                             extension = Path.GetExtension(docInput.PostedFile.FileName);
-                            string filepath = string.Format("MemberFiles_{0}{1}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], memberID, objMemberFiles.MemberFileId, extension);
+                            string filepath = string.Format("MemberFiles_{0}{1}", objMemberFiles.MemberFileId, extension);
                             string errormessage = string.Empty;
 
                             FileManagerService.UploadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, memberID), filepath, docInput.PostedFile.InputStream, out errormessage);

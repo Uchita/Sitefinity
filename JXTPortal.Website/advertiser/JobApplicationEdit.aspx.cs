@@ -116,7 +116,7 @@ namespace JXTPortal.Website.advertiser
         {
             if (!SessionData.Site.IsUsingS3)
             {
-                customFolder = ConfigurationManager.AppSettings["FTPCustomJobApplications"] + "/";
+                customFolder = ConfigurationManager.AppSettings["FTPCustomJobApplications"];
 
                 string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
                 string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];

@@ -1819,9 +1819,9 @@ namespace JXTPortal.Website
                                     string screeningQuestionId = string.Format("ScreeningQuestion_{0}", screeningQuestion.ScreeningQuestionId);
                                     string screeningQuestionAnswer = Request.Params[screeningQuestionId];
 
-                                    if (screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.Dropdown
+                                    if (!string.IsNullOrEmpty(screeningQuestionAnswer) && (screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.Dropdown
                                         || screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.MultiSelect
-                                        || screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.RadioButtons)
+                                        || screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.RadioButtons))
                                     {
                                         string[] matches = screeningQuestion.Options.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
 

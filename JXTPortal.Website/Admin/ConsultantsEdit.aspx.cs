@@ -108,7 +108,7 @@ namespace JXTPortal.Website.Admin
         {
             if (!SessionData.Site.IsUsingS3)
             {
-                consultantFolder = ConfigurationManager.AppSettings["FTPHost"] + "media/" + ConfigurationManager.AppSettings["ConsultantsFolder"] + "/";
+                consultantFolder = ConfigurationManager.AppSettings["FTPHost"] + ConfigurationManager.AppSettings["RootFolder"] + "/" + ConfigurationManager.AppSettings["ConsultantsFolder"] + "/";
 
                 string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
                 string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
@@ -486,6 +486,10 @@ namespace JXTPortal.Website.Admin
                         {
                             consultant.ConsultantImageUrl = string.Format("Consultants_{0}.{1}", consultant.ConsultantId, extension);
                             ConsultantsService.Update(consultant);
+
+                            imImage.ImageUrl = string.Format("/media/{0}/{1}?ver={2}", ConfigurationManager.AppSettings["ConsultantsFolder"], consultant.ConsultantImageUrl, consultant.LastModified.ToEpocTimestamp());
+                            imImage.Visible = true;
+                            cbRemoveImage.Visible = true;
                         }
                     }
 

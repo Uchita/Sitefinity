@@ -120,7 +120,7 @@ public partial class AdvertisersEdit : System.Web.UI.Page
     {
         if (!SessionData.Site.IsUsingS3)
         {
-            advertiserFolder = ConfigurationManager.AppSettings["FTPHost"] + "media/" + ConfigurationManager.AppSettings["AdvertisersFolder"] + "/";
+            advertiserFolder = ConfigurationManager.AppSettings["FTPHost"] + ConfigurationManager.AppSettings["RootFolder"] + "/" + ConfigurationManager.AppSettings["AdvertisersFolder"] + "/";
 
             string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
             string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];

@@ -53,7 +53,7 @@ namespace JXTPortal.Website.advertiser
         {
             if (!SessionData.Site.IsUsingS3)
             {
-                advertiserFolder = ConfigurationManager.AppSettings["FTPHost"] + "media/" + ConfigurationManager.AppSettings["AdvertisersFolder"] + "/";
+                advertiserFolder = ConfigurationManager.AppSettings["FTPHost"] + ConfigurationManager.AppSettings["RootFolder"] + "/"  + ConfigurationManager.AppSettings["AdvertisersFolder"] + "/";
 
                 string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
                 string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
@@ -185,7 +185,7 @@ namespace JXTPortal.Website.advertiser
                         string errormessage = string.Empty;
                         string extension = Utils.GetImageExtension(objOriginalImage);
 
-                        FileManagerService.UploadFile(bucketName, advertiserFolder, string.Format("Advertisers_{0}.{1}", advertiser.AdvertiserId, extension, extension), objOutputMemorySTream, out errormessage);
+                        FileManagerService.UploadFile(bucketName, advertiserFolder, string.Format("Advertisers_{0}.{1}", advertiser.AdvertiserId, extension), objOutputMemorySTream, out errormessage);
                         
                         if (string.IsNullOrWhiteSpace(errormessage))
                         {

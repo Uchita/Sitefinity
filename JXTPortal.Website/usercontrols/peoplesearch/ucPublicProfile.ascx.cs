@@ -8,6 +8,7 @@ using JXTPortal.Entities;
 using System.Configuration;
 using System.Xml;
 using JXTPortal.Common;
+using JXTPortal.Common.Extensions;
 using System.Text;
 using System.IO;
 using log4net;
@@ -54,6 +55,8 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
         private int MinEducationEntry = 0;
         private int MinReferenceEntry = 0;
         private int currentMemberID;
+
+        string missingInformationlabel = CommonFunction.GetResourceValue("LabelMissingInformation");
 
         ILog _logger;
 
@@ -272,7 +275,7 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            _logger.Debug("Public Profile Page loaded\n");
+            _logger.Debug("Public Profile Page loading\n");
 
             if (!string.IsNullOrWhiteSpace(MemberUrlExtension))
             {
@@ -312,8 +315,8 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
             _logger.Debug("End of page Load\n");
         }
 
-        
-        public void LoadMemberInfo(Entities.Members member)
+      
+        private void LoadMemberInfo(Entities.Members member)
         {
             _logger.Debug("LoadMemberInfo() loaded");
 
@@ -352,66 +355,28 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
             }
 
             // Availability Status
-            if (member.AvailabilityId.HasValue && member.AvailabilityId > 0)
-            {
-                ltCurrentSeeking.Text = string.Format(htmlNotationAvailableStatus,
+            bool memberIsAvailable = member.AvailabilityId.HasValue && member.AvailabilityId > 0;
+
+            PortalEnums.Members.CurrentlySeeking memberStatus = memberIsAvailable ? (PortalEnums.Members.CurrentlySeeking)member.AvailabilityId:PortalEnums.Members.CurrentlySeeking.NotSeeking;
+            ltCurrentSeeking.Text = string.Format(htmlNotationAvailableStatus,
                                                       CommonFunction.GetResourceValue("LabelSeekingStatus"),
                                                       eyeCssClass,
-                                                      string.Empty,
-                                                      HttpUtility.HtmlEncode(CommonFunction.GetResourceValue(CommonFunction.GetEnumDescription((PortalEnums.Members.CurrentlySeeking)member.AvailabilityId))));
-
-            }
-            else
-            {
-                ltCurrentSeeking.Text = string.Format(htmlNotationAvailableStatus,
-                                                        CommonFunction.GetResourceValue("LabelSeekingStatus"),
-                                                        eyeCssClass,
-                                                        "missing",
-                                                        HttpUtility.HtmlEncode(CommonFunction.GetResourceValue(CommonFunction.GetEnumDescription(PortalEnums.Members.CurrentlySeeking.NotSeeking))));
-                
-            }
+                                                      memberIsAvailable ? string.Empty : "missing",
+                                                      HttpUtility.HtmlEncode(CommonFunction.GetResourceValue(CommonFunction.GetEnumDescription(memberStatus))));
 
             // Availability Date
-            if (member.AvailabilityFromDate.HasValue)
-            {
-                ltAvailableDayFrom.Text = string.Format(htmlNotationAvailabledate,
-                                                        CommonFunction.GetResourceValue("LabelAvailabilityDateFrom"),
-                                                        clockCssclass,
-                                                        "availableDate",
-                                                        member.AvailabilityFromDate.Value.ToString(SessionData.Site.DateFormat));
-
-            }
-            else
-            {
-                ltAvailableDayFrom.Text = string.Format(htmlNotationAvailabledate,
-                                                        CommonFunction.GetResourceValue("LabelAvailabilityDateFrom"),
-                                                        clockCssclass,
-                                                        "missing",
-                                                        CommonFunction.GetResourceValue("LabelMissingInformation"));
-            }
-
+            SetLiteralText(member.AvailabilityFromDate.HasValue.ToString(), ltAvailableDayFrom, htmlNotationAvailabledate, "LabelAvailabilityDateFrom");
+            
             // Last Modified Date
-            if (member.LastModifiedDate.HasValue)
-            {
-                ltlLastModifiedDate.Text = string.Format(htmlNotationLastModifiedDate,
-                                                        CommonFunction.GetResourceValue("LabelLastModified"), 
-                                                        member.LastModifiedDate.Value.ToString(SessionData.Site.DateFormat));
-
-                _logger.DebugFormat("Member Profile Last Modified Date: {0}", ltlLastModifiedDate.Text);
-            }
+            SetLiteralText(member.LastModifiedDate.HasValue.ToString(), ltlLastModifiedDate, htmlNotationLastModifiedDate, "LabelLastModified");
 
             // Download Resume Button (This Downloads Latest resume)
-            var resume = getLatestResumeID();
+            var resume = GetLatestResumeID();
 
             _logger.DebugFormat("Lastest resume: {0}", resume);
 
             if (resume != 0)
             {
-                if (!phLastestResume.Visible)
-                {
-                    phLastestResume.Visible = true;
-                }
-
                 linkDownloadResume.NavigateUrl = "/download.aspx?type=mf&id=" + resume.ToString();
 
                 _logger.DebugFormat("Lastest resume download URL: {0}", linkDownloadResume.NavigateUrl);
@@ -422,19 +387,19 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
                 _logger.Debug("Lastest resume Not found and download button not visible: {0}");
             }
 
-            // Load Member Summary
-            loadSummary(member.ShortBio);
+            //Render Member Summary
+            RenderMemberSummary(member.ShortBio);
 
-            //Load Member Personal Details
-            loadPersonalDetails(member);
+            //Render Member Personal Details
+            RenderPersonalDetails(member);
 
             _logger.Debug("End of LoadMemberInfo()");
 
         }
 
-        public void loadSummary(string summary)
+        private void RenderMemberSummary(string summary)
         {
-            _logger.Debug("loadSummary() method loaded!");
+            _logger.Debug("RenderMemberSummary() method loaded!");
 
             if (!string.IsNullOrWhiteSpace(summary))
             {
@@ -447,12 +412,12 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
                 ltSummary.Text = CommonFunction.GetResourceValue("LabelMissingInformation");
             }
 
-            _logger.Debug("End of loadSummary() method!");
+            _logger.Debug("End of RenderMemberSummary() method!");
         }
 
-        public void loadPersonalDetails(Entities.Members member)
+        private void RenderPersonalDetails(Entities.Members member)
         {
-            _logger.Debug("loadPersonalDetails() loaded!");
+            _logger.Debug("RenderPersonalDetails() loaded!");
 
             // {0} - LabelName      {1} - Css class (if there is)       {2} - Value
             string htmlNotationDOB = "<span class='highlight dob-heading'>{0}</span><span class='personal-detail-content dob {1}'>{2}</span>";
@@ -469,43 +434,30 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
 
             string htmlNotationPrefferedLine = "<span class='highlight line-heading'>{0}</span><span class='personal-detail-content {1}'><span class='preferred-line'>{2}</span></span>";
 
+            
             //Email
-            if (!string.IsNullOrWhiteSpace(member.EmailAddress))
-            {
-                ltEmail.Text = HttpUtility.HtmlEncode(member.EmailAddress);
-            }
-            else
-            {
-                ltEmail.Text = CommonFunction.GetResourceValue("LabelMissingInformation");
-                _logger.Debug("Member email Missing!");
-            }  
+            ltEmail.Text = (!string.IsNullOrWhiteSpace(member.EmailAddress)) ? HttpUtility.HtmlEncode(member.EmailAddress) : missingInformationlabel;
           
             //DOB
-            if (member.DateOfBirth.HasValue)
-            {
-                ltDateOfBirth.Text = string.Format(htmlNotationDOB, CommonFunction.GetResourceValue("LabelDateOfBirth"), string.Empty, member.DateOfBirth.Value.ToString(SessionData.Site.DateFormat));
-            }
-            else
-            {
-                ltDateOfBirth.Text = string.Format(htmlNotationDOB, CommonFunction.GetResourceValue("LabelDateOfBirth"), "missing", CommonFunction.GetResourceValue("LabelMissingInformation"));
-                _logger.Debug("Member DOB Missing!");
-            }
+            SetLiteralText(member.DateOfBirth.Value.ToString(), ltDateOfBirth, htmlNotationDOB, "LabelDateOfBirth");
 
             //gender
-            if (string.IsNullOrWhiteSpace(member.Gender))
-            {
-                ltGender.Text = string.Format(htmlNotationGender, CommonFunction.GetResourceValue("LabelGender"), "missing", CommonFunction.GetResourceValue("LabelMissingInformation"));
-                _logger.Debug("Member Gender Details Missing!");
-            }
-            else
+            if (!string.IsNullOrWhiteSpace(member.Gender))
             {
                 string genderDisplay = member.Gender == "M" ? CommonFunction.GetResourceValue("LabelMale") : CommonFunction.GetResourceValue("LabelFemale");
 
                 ltGender.Text = string.Format(htmlNotationGender, CommonFunction.GetResourceValue("LabelGender"), string.Empty, genderDisplay);
+  
+            }
+            else
+            {
+                ltGender.Text = string.Format(htmlNotationGender, CommonFunction.GetResourceValue("LabelGender"), "missing", missingInformationlabel);
+
+                _logger.Debug("Member Gender Details Missing!");
             }
 
             //address
-            getmemberAddress(member.Address1,
+            RenderMemberAddress(member.Address1,
                             member.Address2,
                             member.Suburb,
                             member.States,
@@ -514,55 +466,19 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
                             "address");
 
             //second email
-            if (string.IsNullOrWhiteSpace(member.SecondaryEmail))
-            {
-                ltSecondaryEmail.Text = string.Format(htmlNotationSecondEmail, CommonFunction.GetResourceValue("LabelSecondaryEmail"), "missing", CommonFunction.GetResourceValue("LabelMissingInformation"));
-                _logger.Debug("Member Email Details Missing!");
-            }
-            else
-            {
-                ltSecondaryEmail.Text = string.Format(htmlNotationSecondEmail, CommonFunction.GetResourceValue("LabelSecondaryEmail"), string.Empty, HttpUtility.HtmlEncode(member.SecondaryEmail));
-            }
-
+            SetLiteralText(member.SecondaryEmail, ltSecondaryEmail, htmlNotationSecondEmail, "LabelSecondaryEmail");
+  
             //homephone
-            if (string.IsNullOrWhiteSpace(member.HomePhone))
-            {
-                ltPhoneNumber.Text = string.Format(htmlNotationHomePhone, CommonFunction.GetResourceValue("LabelPhoneHome"), "missing", CommonFunction.GetResourceValue("LabelMissingInformation"));
-                _logger.Debug("Member Home Phone Missing");
-            }
-            else
-            {
-                ltPhoneNumber.Text = string.Format(htmlNotationHomePhone, CommonFunction.GetResourceValue("LabelPhoneHome"), string.Empty, HttpUtility.HtmlEncode(member.HomePhone));
-            }
+            SetLiteralText(member.HomePhone, ltPhoneNumber, htmlNotationHomePhone, "LabelPhoneHome");
 
             //mobile
-            if (string.IsNullOrWhiteSpace(member.MobilePhone))
-            {
-                ltMobileNumber.Text = string.Format(htmlNotationMobile,
-                                                        CommonFunction.GetResourceValue("LabelPhoneMobile"), "missing", CommonFunction.GetResourceValue("LabelMissingInformation"));
-                _logger.Debug("Member Mobile Phone Missing");
-            }
-            else
-            {
-                ltMobileNumber.Text = string.Format(htmlNotationMobile,
-                                        CommonFunction.GetResourceValue("LabelPhoneMobile"), string.Empty, HttpUtility.HtmlEncode(member.MobilePhone));
-            }
-
+            SetLiteralText(member.MobilePhone, ltMobileNumber, htmlNotationMobile, "LabelPhoneMobile");
+          
             //passport number
-            if (string.IsNullOrWhiteSpace(member.PassportNo))
-            {
-                ltPassportNumber.Text = string.Format(htmlNotationPassportNo,
-                                                        CommonFunction.GetResourceValue("LabelPassportNumber"), "missing", CommonFunction.GetResourceValue("LabelMissingInformation"));
-                _logger.Debug("Member Passport Number Missing!");
-            }
-            else
-            {
-                ltPassportNumber.Text = string.Format(htmlNotationPassportNo,
-                                        CommonFunction.GetResourceValue("LabelPassportNumber"), string.Empty, HttpUtility.HtmlEncode(member.PassportNo));
-            }
+            SetLiteralText(member.PassportNo, ltPassportNumber, htmlNotationPassportNo, "LabelPassportNumber");
 
             //mailing address
-            getmemberAddress(member.MailingAddress1,
+            RenderMemberAddress(member.MailingAddress1,
                             member.MailingAddress2,
                             member.MailingSuburb,
                             member.MailingStates,
@@ -571,39 +487,55 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
                             "mailing-address");
             
             //preferred line
-            if (member.PreferredLine == 0)
+            if (member.PreferredLine == 1)
+            {
+                ltLineSelected.Text = string.Format(htmlNotationPrefferedLine,
+                                                    CommonFunction.GetResourceValue("LabelPreferredLine"),
+                                                    string.Empty,
+                                                    HttpUtility.HtmlEncode(CommonFunction.GetResourceValue("LabelPhoneHome")));
+            }
+            else if (member.PreferredLine == 2)
+            {
+                ltLineSelected.Text = string.Format(htmlNotationPrefferedLine,
+                                                    CommonFunction.GetResourceValue("LabelPreferredLine"),
+                                                    string.Empty,
+                                                    HttpUtility.HtmlEncode(CommonFunction.GetResourceValue("LabelPhoneMobile")));
+            }
+            else
             {
                 ltLineSelected.Text = string.Format(htmlNotationPrefferedLine,
                                                     CommonFunction.GetResourceValue("LabelPreferredLine"),
                                                     "missing",
-                                                    CommonFunction.GetResourceValue("LabelMissingInformation"));
+                                                    missingInformationlabel);
 
                 _logger.Debug("Member Preffered Line Missing!");
             }
-            else
-            {
-                if (member.PreferredLine == 1)
-                {
-                    ltLineSelected.Text = string.Format(htmlNotationPrefferedLine,
-                                                        CommonFunction.GetResourceValue("LabelPreferredLine"), 
-                                                        string.Empty,
-                                                        HttpUtility.HtmlEncode(CommonFunction.GetResourceValue("LabelPhoneHome")));
-                }
-                else if (member.PreferredLine == 2)
-                {
-                    ltLineSelected.Text = string.Format(htmlNotationPrefferedLine,
-                                                        CommonFunction.GetResourceValue("LabelPreferredLine"),
-                                                        string.Empty,
-                                                        HttpUtility.HtmlEncode(CommonFunction.GetResourceValue("LabelPhoneMobile")));
-                }
-            }
 
-            _logger.Debug("loadPersonalDetails() loaded!");
+            _logger.Debug("RenderPersonalDetails() loaded!");
         }
 
-        public void getmemberAddress(string address1, string address2, string suburb, string states, string postcode, int countryID, string addressType)
+        /// <summary>
+        /// This Method Sets the text that goes into a certain literal
+        /// </summary>
+        /// <param name="content">Member Content <example>member.memberId</example></param>
+        /// <param name="control">Literal ID</param>
+        /// <param name="htmlFormat">Formatted HTML (if there is any)</param>
+        /// <param name="resourceName">Value that needs to be assigned to the literal</param>
+        private void SetLiteralText(string content, Literal control, string htmlFormat, string resourceName)
         {
-            _logger.Debug("getmemberAddress() method loaded!");
+            if (!string.IsNullOrWhiteSpace(content))
+            {
+                control.Text = string.Format(htmlFormat, CommonFunction.GetResourceValue(resourceName), string.Empty, HttpUtility.HtmlEncode(content));             
+            }
+            else
+            {
+                control.Text = string.Format(htmlFormat, CommonFunction.GetResourceValue(resourceName), "missing", missingInformationlabel);
+            }
+        }
+
+        public void RenderMemberAddress(string address1, string address2, string suburb, string states, string postcode, int countryID, string addressType)
+        {
+            _logger.Debug("RenderMemberAddress() method loaded!");
 
             // {0} - field      {1} - Label
             string htmlNotationMissingInformation = "<span class='{0} missing'>{1}</span>";
@@ -619,14 +551,11 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
             _logger.DebugFormat("Member Adress Field {0}: {1}", "poastcode", postcode);
             _logger.DebugFormat("Member Adress Field {0}: {1}", "countryID", countryID);
            
+            bool hasAddress = !(string.IsNullOrWhiteSpace(address1) && string.IsNullOrWhiteSpace(address2)
+                            && string.IsNullOrWhiteSpace(suburb) && string.IsNullOrWhiteSpace(states)
+                            && string.IsNullOrWhiteSpace(postcode) && countryID == 0);
 
-            if (string.IsNullOrWhiteSpace(address1)
-                && string.IsNullOrWhiteSpace(address2)
-                && string.IsNullOrWhiteSpace(suburb)
-                && string.IsNullOrWhiteSpace(states)
-                && string.IsNullOrWhiteSpace(postcode)
-                && countryID == 0
-            )
+            if (!hasAddress)
             {
                 if(addressType == "address")
                 {
@@ -644,97 +573,100 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
                     
                     _logger.Debug("Mailing Adress Information Are Missing!");
                 }
+
+                return;
             }
-            else
+
+
+            // Address line 1
+
+            if (!string.IsNullOrWhiteSpace(address1))
             {
-                // Address line 1
-                if (!string.IsNullOrWhiteSpace(address1))
-                {
-                    if (addressType == "address")
-                        ltAddress1.Text = string.Format(htmlNotationAddress,
-                                                        "address1",
-                                                        HttpUtility.HtmlEncode(address1));
-                    else
-                        ltMailingAddress1.Text = string.Format(htmlNotationAddress,
-                                                                "mailing-address1",
-                                                                HttpUtility.HtmlEncode(address1));
-                }
+                if (addressType == "address")
+                    ltAddress1.Text = string.Format(htmlNotationAddress,
+                                                    "address1",
+                                                    HttpUtility.HtmlEncode(address1));
+                else
+                    ltMailingAddress1.Text = string.Format(htmlNotationAddress,
+                                                            "mailing-address1",
+                                                            HttpUtility.HtmlEncode(address1));
+            }
 
-                // Address line 2
-                if (!string.IsNullOrWhiteSpace(address2))
-                {
-                    if (addressType == "address")
-                        ltAddress2.Text = string.Format(htmlNotationAddress,
-                                                        "address2",
-                                                        HttpUtility.HtmlEncode(address1));
-                    else
-                        ltMailingAddress2.Text = string.Format(htmlNotationAddress,
-                                                                "mailing-address2",
-                                                                HttpUtility.HtmlEncode(address1));
-                }
+            // Address line 2
+            if (!string.IsNullOrWhiteSpace(address2))
+            {
+                if (addressType == "address")
+                    ltAddress2.Text = string.Format(htmlNotationAddress,
+                                                    "address2",
+                                                    HttpUtility.HtmlEncode(address1));
+                else
+                    ltMailingAddress2.Text = string.Format(htmlNotationAddress,
+                                                            "mailing-address2",
+                                                            HttpUtility.HtmlEncode(address1));
+            }
 
-                // Suburb
-                if (!string.IsNullOrWhiteSpace(suburb))
-                {
-                    if (addressType == "address")
-                        ltCity.Text = string.Format(htmlNotationAddress,
-                                                        "addCity",
-                                                        HttpUtility.HtmlEncode(suburb));
-                    else
-                        ltMailingCity.Text = string.Format(htmlNotationAddress,
-                                                                "mailing-City",
-                                                                HttpUtility.HtmlEncode(address1));
-                }
+            // Suburb
+            if (!string.IsNullOrWhiteSpace(suburb))
+            {
+                if (addressType == "address")
+                    ltCity.Text = string.Format(htmlNotationAddress,
+                                                    "addCity",
+                                                    HttpUtility.HtmlEncode(suburb));
+                else
+                    ltMailingCity.Text = string.Format(htmlNotationAddress,
+                                                            "mailing-City",
+                                                            HttpUtility.HtmlEncode(address1));
+            }
 
-                // State
-                if (!string.IsNullOrWhiteSpace(states))
-                {
-                    if (addressType == "address")
-                        ltState.Text = string.Format(htmlNotationAddress,
-                                                    "addState",
-                                                    HttpUtility.HtmlEncode(states));
-                    else
-                        ltMailingState.Text = string.Format(htmlNotationAddress,
-                                                            "mailing-State", 
-                                                            HttpUtility.HtmlEncode(states));
-                }
+            // State
+            if (!string.IsNullOrWhiteSpace(states))
+            {
+                if (addressType == "address")
+                    ltState.Text = string.Format(htmlNotationAddress,
+                                                "addState",
+                                                HttpUtility.HtmlEncode(states));
+                else
+                    ltMailingState.Text = string.Format(htmlNotationAddress,
+                                                        "mailing-State", 
+                                                        HttpUtility.HtmlEncode(states));
+            }
 
-                // Postcode
-                if (!string.IsNullOrWhiteSpace(postcode))
-                {
-                    if (addressType == "address") 
-                        ltPostcode.Text = string.Format(htmlNotationAddress,
-                                                        "addPostcode", 
+            // Postcode
+            if (!string.IsNullOrWhiteSpace(postcode))
+            {
+                if (addressType == "address") 
+                    ltPostcode.Text = string.Format(htmlNotationAddress,
+                                                    "addPostcode", 
+                                                    HttpUtility.HtmlEncode(postcode));
+                else
+                    ltMailingPostcode.Text = string.Format(htmlNotationAddress,
+                                                        "mailing-Postcode", 
                                                         HttpUtility.HtmlEncode(postcode));
-                    else
-                        ltMailingPostcode.Text = string.Format(htmlNotationAddress,
-                                                            "mailing-Postcode", 
-                                                            HttpUtility.HtmlEncode(postcode));
-                }
+            }
 
-                // Country
-                if (!string.IsNullOrWhiteSpace(countryID.ToString()))
+            // Country
+            if (!string.IsNullOrWhiteSpace(countryID.ToString()))
+            {
+                if (addressType == "address")
                 {
-                    if (addressType == "address")
-                    {
-                        ltCountry.Text = string.Format(htmlNotationAddress,
-                                                    "addCountry",
-                                                     HttpUtility.HtmlEncode(getCountryName(countryID)));
+                    ltCountry.Text = string.Format(htmlNotationAddress,
+                                                "addCountry",
+                                                    HttpUtility.HtmlEncode(getCountryName(countryID)));
 
-                        _logger.DebugFormat("Address Country Name: {0}", ltCountry.Text);
-                    }
-                    else
-                    {
-                        ltMailingCountry.Text = string.Format(htmlNotationAddress,
-                                                    "addCountry",
-                                                     HttpUtility.HtmlEncode(getCountryName(countryID)));
+                    _logger.DebugFormat("Address Country Name: {0}", ltCountry.Text);
+                }
+                else
+                {
+                    ltMailingCountry.Text = string.Format(htmlNotationAddress,
+                                                "addCountry",
+                                                    HttpUtility.HtmlEncode(getCountryName(countryID)));
 
-                        _logger.DebugFormat("Mailing-Address Country Name: {0}", ltMailingCountry.Text);
-                    }
+                    _logger.DebugFormat("Mailing-Address Country Name: {0}", ltMailingCountry.Text);
                 }
             }
 
-            _logger.Debug("End of getmemberAddress() method!");
+
+            _logger.Debug("End of RenderMemberAddress() method!");
         }
 
         public string getCountryName(int countryID)
@@ -759,7 +691,7 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
             
         }
 
-        private int SetAttachResume(int memberID)
+        private void SetAttachResume(int memberID)
         {
             _logger.Debug("SetAttachResume() loaded");
 
@@ -772,28 +704,36 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
 
                 phAddEntryTextResume.Visible = (resumes.Count == 0);
             }
-            return 0;
         }
 
         protected void rptResume_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            _logger.Debug("rptResume_ItemDataBound() Loaded");
+            _logger.Debug("Binding resumed data to download");
 
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
                 Literal ltResumeFileName = e.Item.FindControl("ltResumeFileName") as Literal;
                 HyperLink hlResumeDownload = e.Item.FindControl("hlResumeDownload") as HyperLink;
-                
-                MemberFiles resume = e.Item.DataItem as MemberFiles;
 
-                ltResumeFileName.Text = (string.IsNullOrEmpty(resume.MemberFileTitle)) ? HttpUtility.HtmlEncode(resume.MemberFileName) : HttpUtility.HtmlEncode(resume.MemberFileTitle);
+                if (e.Item.DataItem is MemberFiles)
+                {
+                    MemberFiles resume = e.Item.DataItem as MemberFiles;
+                    ltResumeFileName.Text = (string.IsNullOrEmpty(resume.MemberFileTitle)) ? HttpUtility.HtmlEncode(resume.MemberFileName) : HttpUtility.HtmlEncode(resume.MemberFileTitle);
 
-                hlResumeDownload.NavigateUrl = "/download.aspx?type=mf&id=" + resume.MemberFileId.ToString();
-               
-                _logger.DebugFormat("Resume {0}: Download Link = {1}", ltResumeFileName.Text, hlResumeDownload.NavigateUrl);
+                    hlResumeDownload.NavigateUrl = "/download.aspx?type=mf&id=" + resume.MemberFileId.ToString();
+
+                    _logger.DebugFormat("Resume {0}: Download Link = {1}", ltResumeFileName.Text, hlResumeDownload.NavigateUrl);
+                }
+                else
+                {
+                    phAddEntryTextResume.Visible = true;
+
+                    _logger.Debug("Resume DataItem type is not Memberfiles");
+                    return;
+                }
             }
 
-            _logger.Debug("rptResume_ItemDataBound() End");
+            _logger.Debug("End of Binding resumed data to Download");
         }
 
         private void SetAttachCoverletter(int memberID)
@@ -814,27 +754,36 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
 
         protected void rptCoverLetter_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            _logger.Debug("rptCoverLetter_ItemDataBound Loaded");
-
+            _logger.Debug("Binding cover letter data to download");
+            
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
                 Literal ltCoverLetterFileName = e.Item.FindControl("ltCoverLetterFileName") as Literal;
                 HyperLink hlCoverLetterDownload = e.Item.FindControl("hlCoverLetterDownload") as HyperLink;
                 LinkButton lbCoverLetterDelete = e.Item.FindControl("lbCoverLetterDelete") as LinkButton;
 
-                MemberFiles coverletter = e.Item.DataItem as MemberFiles;
+                if (e.Item.DataItem is MemberFiles)
+                {
+                    MemberFiles coverletter = e.Item.DataItem as MemberFiles;
 
-                ltCoverLetterFileName.Text = (string.IsNullOrEmpty(coverletter.MemberFileTitle)) ? HttpUtility.HtmlEncode(coverletter.MemberFileName) : HttpUtility.HtmlEncode(coverletter.MemberFileTitle);
-                hlCoverLetterDownload.NavigateUrl = "/download.aspx?type=mf&id=" + coverletter.MemberFileId.ToString();
+                    ltCoverLetterFileName.Text = (string.IsNullOrEmpty(coverletter.MemberFileTitle)) ? HttpUtility.HtmlEncode(coverletter.MemberFileName) : HttpUtility.HtmlEncode(coverletter.MemberFileTitle);
+                    hlCoverLetterDownload.NavigateUrl = "/download.aspx?type=mf&id=" + coverletter.MemberFileId.ToString();
 
-                _logger.DebugFormat("Resume {0}: Download Link = {1}", ltCoverLetterFileName.Text, hlCoverLetterDownload.NavigateUrl);
+                    _logger.DebugFormat("Cover letter {0}: Download Link = {1}", ltCoverLetterFileName.Text, hlCoverLetterDownload.NavigateUrl);
+                }
+                else
+                {
+                    phAddEntryTextCoverletter.Visible = true;
+                    _logger.Debug("Coverletter DataItem type is not Memberfiles");
+                    return;
+                }
             }
             _logger.Debug("rptCoverLetter_ItemDataBound End");
         }
 
-        private int SetWorkExperience(int memberID)
+        private void SetWorkExperience(int memberID)
         {
-            _logger.Debug("SetWorkExperience() loaded");
+            _logger.Debug("Setting member work experience!");
 
             using (TList<Entities.MemberPositions> memberpositions = MemberPositionsService.GetByMemberId(memberID))
             {
@@ -845,13 +794,11 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
                 phAddEntryTextExperience.Visible = (memberpositions.Count <= MinExperienceEntry);
 
             }
-
-            return 0;
         }
 
         protected void rptExperience_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            _logger.Debug("rptExperience_ItemDataBound() loaded");
+            _logger.Debug("Binding Member Experience data to display");
 
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
@@ -891,14 +838,10 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
                     EndDate = new DateTime(memberposition.EndYear.Value, memberposition.EndMonth.Value, 1);
                 }
 
-                TimeSpan timespan = EndDate.Subtract(StartDate);
-
                 string startmonth = string.Empty;
                 string endmonth = string.Empty;
                 string duration = string.Empty;
-
-                DateTime timespandt = DateTime.MinValue + timespan;
-
+                
                 foreach (ListItem month in MonthList)
                 {
                     if (month.Value == memberposition.StartMonth.Value.ToString())
@@ -920,22 +863,26 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
                     }
                 }
 
-                if (timespandt.Year - 1 > 0)
+                TimeSpan experienceDuration = EndDate.Subtract(StartDate);
+
+                int totalYears = experienceDuration.TotalYears();
+                int totalMonths = experienceDuration.TotalMonths();
+                if (totalYears > 0)
                 {
-                    duration = (timespandt.Year - 1).ToString() + " " + ((timespandt.Year - 1) == 1 ? CommonFunction.GetResourceValue("LabelYear") : CommonFunction.GetResourceValue("LabelYears"));
+                    duration = totalYears.ToString() + " " + (totalYears == 1 ? CommonFunction.GetResourceValue("LabelYear") : CommonFunction.GetResourceValue("LabelYears"));
                 }
 
-                if (timespandt.Month - 1 > 0)
+                if (totalMonths - 1 > 0)
                 {
                     if (!string.IsNullOrWhiteSpace(duration))
                     {
                         duration += ", ";
                     }
 
-                    duration += (timespandt.Month - 1).ToString() + " " + ((timespandt.Month - 1) == 1 ? CommonFunction.GetResourceValue("LabelMonth") : CommonFunction.GetResourceValue("LabelMonths"));
+                    duration += totalMonths.ToString() + " " + ((totalMonths) == 1 ? CommonFunction.GetResourceValue("LabelMonth") : CommonFunction.GetResourceValue("LabelMonths"));
                 }
 
-                if (timespandt.Year == 1 && timespandt.Month == 1)
+                if (totalYears == 1 && totalMonths == 1)
                 {
                     duration += "1 " + CommonFunction.GetResourceValue("LabelMonth");
                 }
@@ -965,7 +912,7 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
 
         private int SetEducation(int memberID)
         {
-            _logger.Debug("SetEducation() loaded");
+            _logger.Debug("Setting Member Education");
 
             using (TList<Entities.MemberQualification> membereducations = MemberQualificationService.GetByMemberId(memberID))
             {
@@ -1002,7 +949,7 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
 
                 Entities.MemberQualification education = e.Item.DataItem as Entities.MemberQualification;
 
-                var educationdate = calculateEducationTimePeriod(education);
+                var educationdate = CalculateEducationTimePeriod(education);
                 
                 ltInstitute.Text = HttpUtility.HtmlEncode(education.SchoolName);
 
@@ -1036,7 +983,7 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
 
         private void LoadSkills(int memberID)
         {
-            _logger.Debug("LoadSkills() loaded");
+            _logger.Debug("Loading member skills");
 
             using (JXTPortal.Entities.Members objMembers = MembersService.GetByMemberId(memberID))
             {
@@ -1059,7 +1006,7 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
 
         protected void rptSkills_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            _logger.Debug("rptSkills_ItemDataBound() loaded");
+            _logger.Debug("Binding member skills to display");
 
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
@@ -1071,7 +1018,7 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
             }
         }
 
-        private string calculateEducationTimePeriod(Entities.MemberQualification education)
+        private string CalculateEducationTimePeriod(Entities.MemberQualification education)
         {
             _logger.Debug("calculateEducationTimePeriod() loaded");
 
@@ -1088,13 +1035,9 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
                     EndDate = new DateTime(education.EndYear.Value, education.EndMonth.Value, 1);
                 }
 
-                TimeSpan timespan = EndDate.Subtract(StartDate);
-
                 string startmonth = string.Empty;
                 string endmonth = string.Empty;
                 string duration = string.Empty;
-
-                DateTime timespandt = DateTime.MinValue + timespan;
 
                 foreach (ListItem month in MonthList)
                 {
@@ -1117,22 +1060,27 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
                     }
                 }
 
-                if (timespandt.Year - 1 > 0)
+                TimeSpan experienceDuration = EndDate.Subtract(StartDate);
+
+                int totalYears = experienceDuration.TotalYears();
+                int totalMonths = experienceDuration.TotalMonths();
+
+                if (totalYears > 0)
                 {
-                    duration = (timespandt.Year - 1).ToString() + " " + ((timespandt.Year - 1) == 1 ? CommonFunction.GetResourceValue("LabelYear") : CommonFunction.GetResourceValue("LabelYears"));
+                    duration = (totalYears).ToString() + " " + ((totalYears - 1) == 1 ? CommonFunction.GetResourceValue("LabelYear") : CommonFunction.GetResourceValue("LabelYears"));
                 }
 
-                if (timespandt.Month - 1 > 0)
+                if (totalMonths - 1 > 0)
                 {
                     if (!string.IsNullOrWhiteSpace(duration))
                     {
                         duration += ", ";
                     }
 
-                    duration += (timespandt.Month - 1).ToString() + " " + ((timespandt.Month - 1) == 1 ? CommonFunction.GetResourceValue("LabelMonth") : CommonFunction.GetResourceValue("LabelMonths"));
+                    duration += (totalMonths - 1).ToString() + " " + ((totalMonths - 1) == 1 ? CommonFunction.GetResourceValue("LabelMonth") : CommonFunction.GetResourceValue("LabelMonths"));
                 }
 
-                if (timespandt.Year == 1 && timespandt.Month == 1)
+                if (totalYears == 1 && totalMonths == 1)
                 {
                     duration += "1 " + CommonFunction.GetResourceValue("LabelMonth");
                 }
@@ -1156,9 +1104,9 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
             return educationdate;
         }
 
-        private int SetCertifications(int memberID)
+        private void SetCertifications(int memberID)
         {
-            _logger.Debug("SetCertifications() loaded");
+            _logger.Debug("Setting Member Certification to Display");
 
             using (TList<Entities.MemberCertificateMemberships> membercertificates = MemberCertificateMembershipsService.GetByMemberId(memberID))
             {
@@ -1167,13 +1115,11 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
 
                 phAddEntryTextCertificates.Visible = (membercertificates.Count <= 0);
             }
-
-            return 0;
         }
 
         protected void rptCertification_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            _logger.Debug("rptCertification_ItemDataBound() loaded");
+            _logger.Debug("Binding Member Certification to Display");
 
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
@@ -1254,9 +1200,9 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
 
         }
 
-        private int SetLicenses(int memberID)
+        private void SetLicenses(int memberID)
         {
-            _logger.Debug("SetLicenses() loaded");
+            _logger.Debug("Setting Member Licences to Display");
 
             using (TList<Entities.MemberLicenses> memberlicenses = MemberLicensesService.GetByMemberId(memberID))
             {
@@ -1265,8 +1211,6 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
 
                 phAddEntryTextLicenses.Visible = (memberlicenses.Count <= 0);
             }
-
-            return 0;
         }
 
         protected void rptLicenses_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -1574,7 +1518,7 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
             }
         }
 
-        private int SetLanguages(int memberID)
+        private void SetLanguages(int memberID)
         {
             _logger.Debug("SetLanguages() loaded");
 
@@ -1586,7 +1530,6 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
                 phAddEntryTextLanguages.Visible = (memberlanguages.Count <= 0);
             }
 
-            return 0;
         }
 
         protected void rptLanguages_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -1620,7 +1563,7 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
             }
         }
 
-        private int SetReferences(int memberID)
+        private void SetReferences(int memberID)
         {
             _logger.Debug("SetReferences() loaded");
 
@@ -1631,7 +1574,6 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
 
                 phAddEntryTextReferences.Visible = (memberreferences.Count <= MinReferenceEntry);
             }
-            return 0;
         }
 
         protected void rptReferences_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -1869,27 +1811,22 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
             _logger.Debug("End of AssignSectionTitle() Method");
         }
 
-        public int getLatestResumeID()
+        private int GetLatestResumeID()
         {
-            _logger.Debug("getLatestResumeID() method loaded");
+            _logger.Debug("GetLatestResumeID() method loaded");
 
-            var latestResume = MemberFilesService.GetByMemberId(currentMemberID).Where(file => file.DocumentTypeId == 2).OrderByDescending(file => file.MemberFileId).FirstOrDefault();
+            var latestResume = MemberFilesService.GetByMemberId(currentMemberID).Where(file => file.DocumentTypeId == 2).OrderByDescending(file => file.LastModifiedDate).FirstOrDefault();
 
             if (latestResume != null)
             {
                 _logger.DebugFormat("Latest resume Found! Returning File ID: {0}", latestResume.MemberFileId);
-                _logger.Debug("End of getLatestResumeID() method");
                 return latestResume.MemberFileId;
             }
             else
             {
-                _logger.Debug("Latest resume NOT Found! Returning 0");
-                _logger.Debug("End of getLatestResumeID() method");
+                _logger.Debug("No resume found! Returning 0");
                 return 0; 
             }
         }
-
-
-
     }
 }

@@ -17,8 +17,6 @@ namespace JXTPortal.Website
 {
     public partial class Download : System.Web.UI.Page
     {
-        private int memberID = 0;
-        private int advertiserSiteId = 0;
         private string _type = string.Empty;
         private int _id = -1;
 
@@ -29,25 +27,18 @@ namespace JXTPortal.Website
 
                 if (type.Equals("mf") && id > 0)
                 {
-                    advertiserSiteId = getAdvertiserSiteID();
-                    this.doDownload();    
-                }
-                else
-                {
-                    //display - not found
+                    DoDownload();    
                 }
             }
 
         }
 
-        private void doDownload()
+        private void DoDownload()
         {
             //MemberFiles Download - mf
             if (this._type == "mf")
             {
                 int MemberFileID = 0;
-                //memberID = Entities.SessionData.Member.MemberId;
-
                 bool blnAuthorised = false;
 
                 try
@@ -67,9 +58,7 @@ namespace JXTPortal.Website
                                 // Only a member can login his own file 
                                 // OR when logged in Admin - then only download files if you are on that site.
                                 // OR when logged in Advertiser - then only download files if you are on that site.
-                                if ((Entities.SessionData.Member != null && memberFile.MemberId == Entities.SessionData.Member.MemberId) 
-                                    || (SessionData.AdminUser != null && (SessionData.AdminUser.SiteId == membersiteid || SessionData.AdminUser.isAdminUser))
-                                    || (SessionData.AdvertiserUser != null) && (advertiserSiteId == membersiteid || advertiserSiteId > 0))
+                                if (CanUserDownload(memberFile.MemberId, membersiteid))
                                 {
                                     this.Response.ContentType = "application/octet-stream";
                                     this.Response.AppendHeader("Content-Disposition", "attachment;filename=" + memberFile.MemberFileName);
@@ -79,23 +68,29 @@ namespace JXTPortal.Website
                                         string errormessage = string.Empty;
 
                                         FtpClient ftpclient = new FtpClient();
+
                                         ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
                                         ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
                                         ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
 
                                         string filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], memberFile.MemberId, memberFile.MemberFileUrl);
+                                      
                                         Stream ms = null;
+                                       
                                         ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
+                                       
                                         ms.Position = 0;
+                                        
                                         if (string.IsNullOrEmpty(errormessage))
                                         {
-                                            this.Response.BinaryWrite(((MemoryStream)ms).ToArray());
+                                            Response.BinaryWrite(((MemoryStream)ms).ToArray());
                                         }
                                     }
                                     else
                                     {
-                                        this.Response.BinaryWrite(memberFile.MemberFileContent);
+                                        Response.BinaryWrite(memberFile.MemberFileContent);
                                     }
+
                                     blnAuthorised = true;
 
                                 }
@@ -104,8 +99,8 @@ namespace JXTPortal.Website
 
                         if (blnAuthorised)
                         {
-                            this.Response.Flush();
-                            this.Response.End();
+                            Response.Flush();
+                            Response.End();
                         }
 
                     }
@@ -116,13 +111,33 @@ namespace JXTPortal.Website
                 }
 
                 Response.Redirect("~/member/login.aspx?returnurl=" + Server.UrlEncode(Request.Url.PathAndQuery));
-                //this.Response.End();
-
             }
 
         }
 
-        public int getAdvertiserSiteID()
+        private bool CanUserDownload(int memberID, int membersiteID)
+        {
+            var advertiserSiteId = GetAdvertiserSiteID();
+
+            if( Entities.SessionData.Member != null && memberID == Entities.SessionData.Member.MemberId )
+            {
+                return true;
+            }
+            else if( SessionData.AdminUser != null && (SessionData.AdminUser.SiteId == membersiteID || SessionData.AdminUser.isAdminUser) )
+            {
+                return true;
+            }
+            else if( SessionData.AdvertiserUser != null && (advertiserSiteId == membersiteID || advertiserSiteId > 0) )
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private int GetAdvertiserSiteID()
         {
             AdvertisersService _advertiserservice = new AdvertisersService();
 

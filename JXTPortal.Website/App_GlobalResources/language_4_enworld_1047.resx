@@ -1175,7 +1175,7 @@
     <comment>Checkboxes</comment>
   </data>
   <data name="LabelCreateAsAlert" xml:space="preserve">
-    <value>ジョブジョブアラートを作成</value>
+    <value>ジョブアラートを作成</value>
     <comment>Create as alert</comment>
   </data>
   <data name="LabelCreated" xml:space="preserve">
@@ -1191,11 +1191,11 @@
     <comment>Create Job</comment>
   </data>
   <data name="LabelCreateJobAlert" xml:space="preserve">
-    <value>ジョブジョブアラートの登録</value>
+    <value>ジョブアラートの登録</value>
     <comment>Create Job Alert</comment>
   </data>
   <data name="LabelCreateJobAlertNameIsMissing" xml:space="preserve">
-    <value>ジョブジョブアラート名が欠落している作成</value>
+    <value>ジョブアラート名が欠落している作成</value>
     <comment>Create Job Alert Name is missing</comment>
   </data>
   <data name="LabelCreateNewTemplate" xml:space="preserve">
@@ -1955,7 +1955,7 @@
     <comment>Invalid file type. GIF, JPG and JPEG are the only valid images types allowed for upload.</comment>
   </data>
   <data name="LabelInvalidJobAlert" xml:space="preserve">
-    <value>このジョブジョブアラートはお取り扱いできません</value>
+    <value>このジョブアラートはお取り扱いできません</value>
     <comment>Invalid Job Alert</comment>
   </data>
   <data name="LabelInvalidURL" xml:space="preserve">
@@ -2538,7 +2538,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>My Home</comment>
   </data>
   <data name="LabelMyJobAlerts" xml:space="preserve">
-    <value>ジョブジョブアラート</value>
+    <value>ジョブアラート</value>
     <comment>My Job Alerts</comment>
   </data>
   <data name="LabelMyJobAlert_s" xml:space="preserve">
@@ -3219,7 +3219,7 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Read more</comment>
   </data>
   <data name="LabelReceiveJobAlert" xml:space="preserve">
-    <value>ジョブジョブアラートを受け取る</value>
+    <value>ジョブアラートを受け取る</value>
     <comment>Receive Job Alert</comment>
   </data>
   <data name="LabelReceiveNewsletter" xml:space="preserve">
@@ -3684,11 +3684,11 @@ Your account has already been validated, you are not required to do this again.<
     <comment>Semicolon Separated</comment>
   </data>
   <data name="LabelSendaJobAlertNow" xml:space="preserve">
-    <value>ジョブジョブアラートを送信</value>
+    <value>ジョブアラートを送信</value>
     <comment>Send a Job Alert now</comment>
   </data>
   <data name="LabelSendEmailAlerts" xml:space="preserve">
-    <value>ジョブアラート</value>
+    <value>ジョブアラートをメールで受けとる</value>
     <comment>Send Email Alerts</comment>
   </data>
   <data name="LabelSentApplicantEmail" xml:space="preserve">

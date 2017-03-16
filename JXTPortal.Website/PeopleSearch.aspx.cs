@@ -547,6 +547,7 @@ namespace JXTPortal.Website
             {
                 System.Data.DataRowView drv = e.Item.DataItem as System.Data.DataRowView;
 
+                HyperLink hlMemberPublicProfileURL = e.Item.FindControl("hlMemberPublicProfileURL") as HyperLink;
                 Literal ltFirstName = e.Item.FindControl("ltFirstName") as Literal;
                 Literal ltLastName = e.Item.FindControl("ltLastName") as Literal;
                 Literal ltMail = e.Item.FindControl("ltMail") as Literal;
@@ -564,6 +565,9 @@ namespace JXTPortal.Website
 
                 int memberid = Convert.ToInt32(drv["MemberID"]);
                 lbDownload.CommandArgument = memberid.ToString();
+
+                // Genrates Member Public Profile URL
+                hlMemberPublicProfileURL.NavigateUrl = string.Format("/member/publicprofile.aspx?memberid={0}", memberid);
 
                 ltFirstName.Text = HttpUtility.HtmlEncode(drv["FirstName"].ToString());
                 ltLastName.Text = HttpUtility.HtmlEncode(drv["Surname"].ToString());

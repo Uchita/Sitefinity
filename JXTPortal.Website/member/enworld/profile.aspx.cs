@@ -544,6 +544,9 @@ namespace JXTPortal.Website.member.enworld
             ddlEmploymentType.DataTextField = "text";
             ddlEmploymentType.DataValueField = "value";
             ddlEmploymentType.DataBind();
+
+            ddlEmploymentType.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelect"), "--None--"));
+            
             #endregion
 
             #region DDL Salary Period
@@ -555,6 +558,8 @@ namespace JXTPortal.Website.member.enworld
             ddlSalaryPeriod.DataTextField = "text";
             ddlSalaryPeriod.DataValueField = "value";
             ddlSalaryPeriod.DataBind();
+
+            ddlSalaryPeriod.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelect"), "--None--"));
 
             #endregion
 

@@ -402,7 +402,9 @@ namespace JXTPortal.Website.job
             {
                 if (_bhSettings == null)
                 {
+                    _logger.InfoFormat("Fetching BH settins for site {0}", SessionData.Site.SiteId);
                     _bhSettings = IntegrationsService.AdminIntegrationsForSiteGet(SessionData.Site.SiteId).Bullhorn;
+                    _logger.InfoFormat("{0} Bullhorn settigns for site", _bhSettings != null? "Found" : "Could not find");
                 }
                 return _bhSettings;
             }
@@ -415,19 +417,22 @@ namespace JXTPortal.Website.job
             {
                 if (_BullhornSettingsDefaultAdvertiserID == null)
                 {
+                    _logger.Info("Getting bullhorn default AdvertiserId");
                     if (BullhornSettings.DefaultAdvertiserUserID > 0)
                     {
                         using (Entities.AdvertiserUsers advUser = AdvertiserUsersService.GetByAdvertiserUserId(BullhornSettings.DefaultAdvertiserUserID))
                         {
+                            _logger.InfoFormat("Default advertiser found with id {0}", advUser.AdvertiserId);
                             _BullhornSettingsDefaultAdvertiserID = advUser.AdvertiserId;
                         }
                     }
+                    else
+                    {
+                        _logger.Info("No default user is set");
+                    }
                 }
-                if (_BullhornSettingsDefaultAdvertiserID.HasValue)
-                    return _BullhornSettingsDefaultAdvertiserID.Value;
-                else
-                    return 0;
 
+                return _BullhornSettingsDefaultAdvertiserID.GetValueOrDefault(0);
             }
         }
 
@@ -580,7 +585,7 @@ namespace JXTPortal.Website.job
                     string redirectBackToJobURL = Session["BHSessionData"].ToString();
                     Session.Remove("BHSessionData");
 
-                    _logger.InfoFormat("Authentication success: Redirecting to {0}",redirectBackToJobURL) 
+                    _logger.InfoFormat("Authentication success: Redirecting to {0}", redirectBackToJobURL);
                     Response.Redirect(redirectBackToJobURL, true);
                 }
                 else
@@ -590,6 +595,7 @@ namespace JXTPortal.Website.job
                 }
             }
 
+            _logger.InfoFormat("Is Postback: {0}", Page.IsPostBack);
             if (!Page.IsPostBack)
             {
                 //set to ViewState for future use
@@ -711,41 +717,23 @@ namespace JXTPortal.Website.job
                         if (JXTjobID != null)
                         {
                             //get JXT job
-                            _logger.DebugFormat("JXTjobID: {0}; bhRecord.IsPublic: {1}", JXTjobID, bhRecord.IsPublic_Boolean);
+                            _logger.DebugFormat("JXTjobID: {0};", JXTjobID);
                             Entities.Jobs thisJob = JobsService.GetByJobId(JXTjobID.Value);
 
                             _logger.DebugFormat("JXT Job Found: {0}", (thisJob != null));
-                            //bh job record shows isPublic == true (ie LIVE)
-                            if (bhRecord.IsPublic_Boolean)
+                           
+                            //JXT job expired
+                            _logger.DebugFormat("JXT Job Expired value: {0}", thisJob.Expired);
+                            if ((thisJob.Expired.HasValue && thisJob.Expired.Value == (int)PortalEnums.Jobs.JobStatus.Expired) || thisJob.ExpiryDate < DateTime.Now)
                             {
-                                //JXT job expired
-                                _logger.DebugFormat("JXT Job Expired value: {0}", thisJob.Expired);
-                                if ((thisJob.Expired.HasValue && thisJob.Expired.Value == (int)PortalEnums.Jobs.JobStatus.Expired) || thisJob.ExpiryDate < DateTime.Now)
-                                {
-                                    //Update BH isPublic to false, Update JXT, display record
-                                    bool updateBHStatusSuccess = BullhornJobStatusUpdate(bhRecord.JobOrderID, true);
-                                    _logger.DebugFormat("BH Update Success: {0}", updateBHStatusSuccess);
-                                    jobIsEditable = false;
-                                }
-                                else // JXT job NOT expired
-                                {
-                                    //leave the expiry flags untouched display record
-                                }
+                                //Update BH isPublic to false, Update JXT, display record
+                                bool updateBHStatusSuccess = BullhornJobStatusUpdate(bhRecord.JobOrderID, true);
+                                _logger.DebugFormat("BH Update Success: {0}", updateBHStatusSuccess);
+                                jobIsEditable = false;
                             }
-                            else //BH record shows isPublic == false 
+                            else // JXT job NOT expired
                             {
-                                //only change JXT record to expired IF the JXT job is live
-                                if (thisJob.Expired.HasValue && thisJob.Expired.Value == (int)PortalEnums.Jobs.JobStatus.Live)
-                                {
-                                    _logger.Debug("About to Expire Job");
-
-                                    UpdateJobStatusToExpiredToJXT(JXTjobID.Value);
-
-                                    //because updating a job status from live to expired will trigger auto move from Jobs table to JobsArchived table
-                                    //we need to update the changes
-                                    JXTarchivedJobID = JXTjobID;
-                                    JXTjobID = null;
-                                }
+                                //leave the expiry flags untouched display record
                             }
                         }
                         else if (JXTarchivedJobID != null)
@@ -1531,17 +1519,6 @@ namespace JXTPortal.Website.job
                 ddlRole1.Enabled = true;
                 ddlRole2.Enabled = true;
                 ddlRole3.Enabled = true;
-            }
-        }
-
-        private void UpdateJobStatusToExpiredToJXT(int JobID)
-        {
-            _logger.InfoFormat("Update Job Status To Expired for JobId {0}", JobID);
-            using (JXTPortal.Entities.Jobs job = JobsService.GetByJobId(JobID))
-            {
-                job.Expired = (int)PortalEnums.Jobs.JobStatus.Expired;
-
-                JobsService.Update(job);
             }
         }
 

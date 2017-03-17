@@ -1252,17 +1252,21 @@ namespace JXTPortal.Website.job
             {
                 _logger.Error("Job is null");
                 DisplayPageLoadError("Invalid job item request");
+                return;
             }
 
             if (job.SiteId == SessionData.Site.SiteId)
             {
                  _logger.Error("Job is not valid on this site");
                 DisplayPageLoadError("Invalid job item request");
+                return;
+
             }
 
             if (job.AdvertiserId != BullhornSettingsDefaultAdvertiserID)
             {
                 DisplayPageLoadError("Invalid advertiser user account");
+                return;
             }
 
             JobValidation(job);
@@ -1287,7 +1291,7 @@ namespace JXTPortal.Website.job
                 plEndFormMessage.Visible = true;
             }
 
-            if (job.Expired != (int)PortalEnums.Jobs.JobStatus.Live || job.Expired != (int)PortalEnums.Jobs.JobStatus.Expired)
+            if (job.Expired != (int)PortalEnums.Jobs.JobStatus.Live && job.Expired != (int)PortalEnums.Jobs.JobStatus.Expired)
             {
                 _logger.Info("Job is neither Live or expired");
                 tbStartDate.Enabled = false;

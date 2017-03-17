@@ -26,6 +26,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using JXTPortal.Website.usercontrols.common;
 using log4net;
+using JXTPortal.Common.Extensions;
 #endregion
 
 namespace JXTPortal.Website.member
@@ -1084,7 +1085,7 @@ namespace JXTPortal.Website.member
             phProfileAvailDateError.Visible = false;
             phProfileFirstNameLocalError.Visible = false;
             phProfileLastNameLocalError.Visible = false;
-
+            
             if (string.IsNullOrWhiteSpace(tbProfileFirstName.Text))
             {
                 hasError = true;
@@ -1097,7 +1098,7 @@ namespace JXTPortal.Website.member
             }
             else
             {
-                if (Regex.IsMatch(tbProfileFirstName.Text, ContentValidationRegex) == false)
+                if (!tbProfileFirstName.Text.IsValidContent())
                 {
                     hasError = true;
                     phProfileFirstNameError.Visible = true;
@@ -1122,7 +1123,7 @@ namespace JXTPortal.Website.member
             }
             else
             {
-                if (Regex.IsMatch(tbProfileLastName.Text, ContentValidationRegex) == false)
+                if (!tbProfileLastName.Text.IsValidContent())
                 {
                     hasError = true;
                     phProfileLastNameError.Visible = true;
@@ -1136,7 +1137,7 @@ namespace JXTPortal.Website.member
 
             if (!string.IsNullOrEmpty(tbProfileFirstNameLocalLanguage.Text))
             {
-                if (Regex.IsMatch(tbProfileFirstNameLocalLanguage.Text, ContentValidationRegex) == false)
+                if (!tbProfileFirstNameLocalLanguage.Text.IsValidContent())
                 {
                     hasError = true;
                     phProfileFirstNameLocalError.Visible = true;
@@ -1150,7 +1151,7 @@ namespace JXTPortal.Website.member
 
             if (!string.IsNullOrEmpty(tbProfileLastNameLocalLanguage.Text))
             {
-                if (Regex.IsMatch(tbProfileLastNameLocalLanguage.Text, ContentValidationRegex) == false)
+                if (!tbProfileLastNameLocalLanguage.Text.IsValidContent())
                 {
                     hasError = true;
                     phProfileLastNameLocalError.Visible = true;
@@ -1175,7 +1176,7 @@ namespace JXTPortal.Website.member
             }
             else
             {
-                if (Regex.IsMatch(tbProfileHeadline.Text, ContentValidationRegex) == false)
+                if (!tbProfileHeadline.Text.IsValidContent())
                 {
                     hasError = true;
                     phProfileHeadlineError.Visible = true;
@@ -1368,7 +1369,7 @@ namespace JXTPortal.Website.member
             }
             else
             {
-                if (Regex.IsMatch(tbSummary.Text.Replace("\n", ""), ContentValidationRegex) == false)
+                if (!tbSummary.Text.IsValidContent(true))
                 {
                     hasError = true;
                     phSummaryError.Visible = true;
@@ -1887,7 +1888,7 @@ namespace JXTPortal.Website.member
                 }
                 else
                 {
-                    if (Regex.IsMatch(tbDirectorshipJobTitle.Text, ContentValidationRegex) == false)
+                    if (!tbDirectorshipJobTitle.Text.IsValidContent())
                     {
                         hasError = true;
                         phDirectorshipJobTitleError.Visible = true;
@@ -1913,7 +1914,7 @@ namespace JXTPortal.Website.member
                 }
                 else
                 {
-                    if (Regex.IsMatch(tbDirectorshipCompanyName.Text, ContentValidationRegex) == false)
+                    if (!tbDirectorshipCompanyName.Text.IsValidContent())
                     {
                         hasError = true;
                         phDirectorshipCompanyNameError.Visible = true;
@@ -1928,7 +1929,7 @@ namespace JXTPortal.Website.member
 
                 if (!string.IsNullOrEmpty(tbDirectorshipWebsite.Text))
                 {
-                    if (Regex.IsMatch(tbDirectorshipWebsite.Text, ContentValidationRegex) == false)
+                    if (!tbDirectorshipWebsite.Text.IsValidContent())
                     {
                         hasError = true;
                         phDirectorshipWebsiteError.Visible = true;
@@ -1943,7 +1944,7 @@ namespace JXTPortal.Website.member
 
                 if (!string.IsNullOrEmpty(tbDirectorshipSummary.Text))
                 {
-                    if (Regex.IsMatch(tbDirectorshipSummary.Text, ContentValidationRegex) == false)
+                    if (!tbDirectorshipSummary.Text.IsValidContent(true))
                     {
                         hasError = true;
                         phDirectorshipSummaryError.Visible = true;
@@ -1958,7 +1959,7 @@ namespace JXTPortal.Website.member
 
                 if (!string.IsNullOrEmpty(tbDirectorshipResponsibilities.Text))
                 {
-                    if (Regex.IsMatch(tbDirectorshipResponsibilities.Text, ContentValidationRegex) == false)
+                    if (!tbDirectorshipResponsibilities.Text.IsValidContent(true))
                     {
                         hasError = true;
                         phDirectorshipResponsibilitiesError.Visible = true;
@@ -2532,7 +2533,7 @@ namespace JXTPortal.Website.member
             }
             else
             {
-                if (Regex.IsMatch(tbDirectorshipAddJobTitle.Text, ContentValidationRegex) == false)
+                if (!tbDirectorshipAddJobTitle.Text.IsValidContent())
                 {
                     hasError = true;
                     phDirectorshipAddJobTitleError.Visible = true;
@@ -2558,22 +2559,7 @@ namespace JXTPortal.Website.member
             }
             else
             {
-                if (Regex.IsMatch(tbDirectorshipAddJobTitle.Text, ContentValidationRegex) == false)
-                {
-                    hasError = true;
-                    phDirectorshipAddJobTitleError.Visible = true;
-                    ltErrorAddDirectorshipJobTitle.SetLanguageCode = "ValidateNoHTMLContent";
-
-                    if (string.IsNullOrWhiteSpace(controltofocus))
-                    {
-                        controltofocus = tbDirectorshipAddJobTitle.ClientID;
-                    }
-                }
-            }
-
-            if (!string.IsNullOrEmpty(tbDirectorshipAddCompanyName.Text))
-            {
-                if (Regex.IsMatch(tbDirectorshipAddCompanyName.Text, ContentValidationRegex) == false)
+                if (!tbDirectorshipAddCompanyName.Text.IsValidContent())
                 {
                     hasError = true;
                     phDirectorshipAddCompanyNameError.Visible = true;
@@ -2588,7 +2574,7 @@ namespace JXTPortal.Website.member
 
             if (!string.IsNullOrEmpty(tbDirectorshipAddWebsite.Text))
             {
-                if (Regex.IsMatch(tbDirectorshipAddWebsite.Text, ContentValidationRegex) == false)
+                if (!tbDirectorshipAddWebsite.Text.IsValidContent())
                 {
                     hasError = true;
                     phDirectorshipAddWebsiteError.Visible = true;
@@ -2603,7 +2589,7 @@ namespace JXTPortal.Website.member
 
             if (!string.IsNullOrEmpty(tbDirectorshipAddSummary.Text))
             {
-                if (Regex.IsMatch(tbDirectorshipAddSummary.Text, ContentValidationRegex) == false)
+                if (!tbDirectorshipAddSummary.Text.IsValidContent(true))
                 {
                     hasError = true;
                     phDirectorshipAddSummaryError.Visible = true;
@@ -2618,7 +2604,7 @@ namespace JXTPortal.Website.member
 
             if (!string.IsNullOrEmpty(tbDirectorshipAddResponsibilities.Text))
             {
-                if (Regex.IsMatch(tbDirectorshipAddResponsibilities.Text, ContentValidationRegex) == false)
+                if (!tbDirectorshipAddResponsibilities.Text.IsValidContent(true))
                 {
                     hasError = true;
                     phDirectorshipAddResponsibilitiesError.Visible = true;
@@ -2876,7 +2862,7 @@ namespace JXTPortal.Website.member
                 }
                 else
                 {
-                    if (Regex.IsMatch(tbExperienceCompanyName.Text, ContentValidationRegex) == false)
+                    if (!tbExperienceCompanyName.Text.IsValidContent())
                     {
                         hasError = true;
                         phExperienceCompanyNameError.Visible = true;
@@ -2902,7 +2888,7 @@ namespace JXTPortal.Website.member
                 }
                 else
                 {
-                    if (Regex.IsMatch(tbExperienceJobTitle.Text, ContentValidationRegex) == false)
+                    if (!tbExperienceJobTitle.Text.IsValidContent())
                     {
                         hasError = true;
                         phExperienceJobTitleError.Visible = true;
@@ -2917,7 +2903,7 @@ namespace JXTPortal.Website.member
 
                 if (!string.IsNullOrEmpty(tbExperienceCity.Text))
                 {
-                    if (Regex.IsMatch(tbExperienceCity.Text, ContentValidationRegex) == false)
+                    if (!tbExperienceCity.Text.IsValidContent())
                     {
                         hasError = true;
                         phExperienceCityError.Visible = true;
@@ -2932,7 +2918,7 @@ namespace JXTPortal.Website.member
 
                 if (!string.IsNullOrEmpty(tbExperienceState.Text))
                 {
-                    if (Regex.IsMatch(tbExperienceState.Text, ContentValidationRegex) == false)
+                    if (!tbExperienceState.Text.IsValidContent())
                     {
                         hasError = true;
                         phExperienceStateError.Visible = true;
@@ -2947,7 +2933,7 @@ namespace JXTPortal.Website.member
 
                 if (!string.IsNullOrEmpty(tbExperienceDescription.Text))
                 {
-                    if (Regex.IsMatch(tbExperienceDescription.Text, ContentValidationRegex) == false)
+                    if (!tbExperienceDescription.Text.IsValidContent(true))
                     {
                         hasError = true;
                         phExperienceDescriptionError.Visible = true;
@@ -3399,7 +3385,7 @@ namespace JXTPortal.Website.member
             }
             else
             {
-                if (Regex.IsMatch(tbExperienceAddCompanyName.Text, ContentValidationRegex) == false)
+                if (!tbExperienceAddCompanyName.Text.IsValidContent())
                 {
                     hasError = true;
                     phExperienceAddCompanyNameError.Visible = true;
@@ -3425,7 +3411,7 @@ namespace JXTPortal.Website.member
             }
             else
             {
-                if (Regex.IsMatch(tbExperienceAddJobTitle.Text, ContentValidationRegex) == false)
+                if (!tbExperienceAddJobTitle.Text.IsValidContent())
                 {
                     hasError = true;
                     phExperienceAddJobTitleError.Visible = true;
@@ -3452,7 +3438,7 @@ namespace JXTPortal.Website.member
 
             if (!string.IsNullOrEmpty(tbExperienceAddCity.Text))
             {
-                if (Regex.IsMatch(tbExperienceAddCity.Text, ContentValidationRegex) == false)
+                if (!tbExperienceAddCity.Text.IsValidContent())
                 {
                     hasError = true;
                     phExperienceAddCityError.Visible = true;
@@ -3467,7 +3453,7 @@ namespace JXTPortal.Website.member
 
             if (!string.IsNullOrEmpty(tbExperienceAddState.Text))
             {
-                if (Regex.IsMatch(tbExperienceAddState.Text, ContentValidationRegex) == false)
+                if (!tbExperienceAddState.Text.IsValidContent())
                 {
                     hasError = true;
                     phExperienceAddStateError.Visible = true;
@@ -3482,7 +3468,7 @@ namespace JXTPortal.Website.member
 
             if (!string.IsNullOrEmpty(tbExperienceAddDescription.Text))
             {
-                if (Regex.IsMatch(tbExperienceAddDescription.Text, ContentValidationRegex) == false)
+                if (!tbExperienceAddDescription.Text.IsValidContent(true))
                 {
                     hasError = true;
                     phExperienceAddDescriptionError.Visible = true;
@@ -3710,7 +3696,7 @@ namespace JXTPortal.Website.member
                 }
                 else
                 {
-                    if (Regex.IsMatch(tbEducationInstitute.Text, ContentValidationRegex) == false)
+                    if (!tbEducationInstitute.Text.IsValidContent())
                     {
                         hasError = true;
                         phEducationInstituteError.Visible = true;
@@ -3747,7 +3733,7 @@ namespace JXTPortal.Website.member
                 }
                 else
                 {
-                    if (Regex.IsMatch(tbEducationQualificationName.Text, ContentValidationRegex) == false)
+                    if (!tbEducationQualificationName.Text.IsValidContent())
                     {
                         hasError = true;
                         phEducationQualificationNameError.Visible = true;
@@ -3762,7 +3748,7 @@ namespace JXTPortal.Website.member
 
                 if (!string.IsNullOrEmpty(tbEducationState.Text))
                 {
-                    if (Regex.IsMatch(tbEducationState.Text, ContentValidationRegex) == false)
+                    if (!tbEducationState.Text.IsValidContent())
                     {
                         hasError = true;
                         phEducationStateError.Visible = true;
@@ -3777,7 +3763,7 @@ namespace JXTPortal.Website.member
 
                 if (!string.IsNullOrEmpty(tbEducationOtherQualification.Text))
                 {
-                    if (Regex.IsMatch(tbEducationOtherQualification.Text, ContentValidationRegex) == false)
+                    if (!tbEducationOtherQualification.Text.IsValidContent())
                     {
                         hasError = true;
                         phEducationOtherQualificationError.Visible = true;
@@ -3792,7 +3778,7 @@ namespace JXTPortal.Website.member
 
                 if (!string.IsNullOrEmpty(tbEducationGraduatedCredits.Text))
                 {
-                    if (Regex.IsMatch(tbEducationGraduatedCredits.Text, ContentValidationRegex) == false)
+                    if (!tbEducationGraduatedCredits.Text.IsValidContent())
                     {
                         hasError = true;
                         phEducationGraduatedCreditsError.Visible = true;
@@ -4354,7 +4340,7 @@ namespace JXTPortal.Website.member
             }
             else
             {
-                if (Regex.IsMatch(tbEducationAddInstitute.Text, ContentValidationRegex) == false)
+                if (!tbEducationAddInstitute.Text.IsValidContent())
                 {
                     hasError = true;
                     phEducationAddInstituteError.Visible = true;
@@ -4392,7 +4378,7 @@ namespace JXTPortal.Website.member
             }
             else
             {
-                if (Regex.IsMatch(tbEducationAddQualificationName.Text, ContentValidationRegex) == false)
+                if (!tbEducationAddQualificationName.Text.IsValidContent())
                 {
                     hasError = true;
                     phEducationAddQualificationNameError.Visible = true;
@@ -4407,7 +4393,7 @@ namespace JXTPortal.Website.member
 
             if (!string.IsNullOrEmpty(tbEducationAddState.Text))
             {
-                if (Regex.IsMatch(tbEducationAddState.Text, ContentValidationRegex) == false)
+                if (!tbEducationAddState.Text.IsValidContent())
                 {
                     hasError = true;
                     phEducationAddStateError.Visible = true;
@@ -4422,7 +4408,7 @@ namespace JXTPortal.Website.member
 
             if (!string.IsNullOrEmpty(tbEducationAddOtherQualification.Text))
             {
-                if (Regex.IsMatch(tbEducationAddOtherQualification.Text, ContentValidationRegex) == false)
+                if (!tbEducationAddOtherQualification.Text.IsValidContent())
                 {
                     hasError = true;
                     phEducationAddOtherQualificationError.Visible = true;
@@ -4437,7 +4423,7 @@ namespace JXTPortal.Website.member
 
             if (!string.IsNullOrEmpty(tbEducationAddGraduatedCredits.Text))
             {
-                if (Regex.IsMatch(tbEducationAddGraduatedCredits.Text, ContentValidationRegex) == false)
+                if (!tbEducationAddGraduatedCredits.Text.IsValidContent())
                 {
                     hasError = true;
                     phEducationAddGraduatedCreditsError.Visible = true;
@@ -4726,7 +4712,7 @@ namespace JXTPortal.Website.member
 
             if (!string.IsNullOrWhiteSpace(tbSkillsAddSkill.Text))
             {
-                if (Regex.IsMatch(tbSkillsAddSkill.Text, ContentValidationRegex) == false)
+                if (!tbSkillsAddSkill.Text.IsValidContent())
                 {
                     ltAddSkillErrorMsgWrapper.Visible = true;
                     ltAddSkillErrorMsg.SetLanguageCode = "ValidateNoHTMLContent";
@@ -4918,7 +4904,7 @@ namespace JXTPortal.Website.member
                 }
                 else
                 {
-                    if (Regex.IsMatch(tbCertificateCertificateMembershipName.Text, ContentValidationRegex) == false)
+                    if (!tbCertificateCertificateMembershipName.Text.IsValidContent())
                     {
                         hasError = true;
                         phCertificateMembershipNameError.Visible = true;
@@ -4944,7 +4930,7 @@ namespace JXTPortal.Website.member
                 }
                 else
                 {
-                    if (Regex.IsMatch(tbCertificateAuthority.Text, ContentValidationRegex) == false)
+                    if (!tbCertificateAuthority.Text.IsValidContent())
                     {
                         hasError = true;
                         phCertificateAuthorityError.Visible = true;
@@ -4959,7 +4945,7 @@ namespace JXTPortal.Website.member
 
                 if (!string.IsNullOrEmpty(tbCertificateMembershipNumber.Text))
                 {
-                    if (Regex.IsMatch(tbCertificateMembershipNumber.Text, ContentValidationRegex) == false)
+                    if (!tbCertificateMembershipNumber.Text.IsValidContent())
                     {
                         hasError = true;
                         phCertificateMembershipNumberError.Visible = true;
@@ -4974,7 +4960,7 @@ namespace JXTPortal.Website.member
 
                 if (!string.IsNullOrEmpty(tbCertificateURL.Text))
                 {
-                    if (Regex.IsMatch(tbCertificateURL.Text, ContentValidationRegex) == false)
+                    if (!tbCertificateURL.Text.IsValidContent())
                     {
                         hasError = true;
                         phCertificateURLError.Visible = true;
@@ -5445,7 +5431,7 @@ namespace JXTPortal.Website.member
             }
             else
             {
-                if (Regex.IsMatch(tbCertificateAddCertificateMembershipName.Text, ContentValidationRegex) == false)
+                if (!tbCertificateAddCertificateMembershipName.Text.IsValidContent())
                 {
                     hasError = true;
                     phCertificateAddNameError.Visible = true;
@@ -5471,7 +5457,7 @@ namespace JXTPortal.Website.member
             }
             else
             {
-                if (Regex.IsMatch(tbCertificateAddAuthority.Text, ContentValidationRegex) == false)
+                if (!tbCertificateAddAuthority.Text.IsValidContent())
                 {
                     hasError = true;
                     phCertificateAddAuthorityError.Visible = true;
@@ -5486,7 +5472,7 @@ namespace JXTPortal.Website.member
 
             if (!string.IsNullOrEmpty(tbCertificateAddMembershipNumber.Text))
             {
-                if (Regex.IsMatch(tbCertificateAddMembershipNumber.Text, ContentValidationRegex) == false)
+                if (!tbCertificateAddMembershipNumber.Text.IsValidContent())
                 {
                     hasError = true;
                     phCertificateAddMembershipNumberError.Visible = true;
@@ -5501,7 +5487,7 @@ namespace JXTPortal.Website.member
 
             if (!string.IsNullOrEmpty(tbCertificateAddURL.Text))
             {
-                if (Regex.IsMatch(tbCertificateAddURL.Text, ContentValidationRegex) == false)
+                if (!tbCertificateAddURL.Text.IsValidContent())
                 {
                     hasError = true;
                     phCertificateAddURLError.Visible = true;
@@ -5777,7 +5763,7 @@ namespace JXTPortal.Website.member
                 }
                 else
                 {
-                    if (Regex.IsMatch(tbLicenseName.Text, ContentValidationRegex) == false)
+                    if (!tbLicenseName.Text.IsValidContent())
                     {
                         hasError = true;
                         phLicenseNameError.Visible = true;
@@ -5803,7 +5789,7 @@ namespace JXTPortal.Website.member
                 }
                 else
                 {
-                    if (Regex.IsMatch(tbLicenseType.Text, ContentValidationRegex) == false)
+                    if (!tbLicenseType.Text.IsValidContent())
                     {
                         hasError = true;
                         phLicenseTypeError.Visible = true;
@@ -5818,7 +5804,7 @@ namespace JXTPortal.Website.member
 
                 if (!string.IsNullOrWhiteSpace(tbLicenseState.Text))
                 {
-                    if (Regex.IsMatch(tbLicenseState.Text, ContentValidationRegex) == false)
+                    if (!tbLicenseState.Text.IsValidContent())
                     {
                         hasError = true;
                         phLicenseStateError.Visible = true;
@@ -6248,7 +6234,7 @@ namespace JXTPortal.Website.member
             }
             else
             {
-                if (Regex.IsMatch(tbLicenseAddName.Text, ContentValidationRegex) == false)
+                if (!tbLicenseAddName.Text.IsValidContent())
                 {
                     hasError = true;
                     phLicenseAddNameError.Visible = true;
@@ -6274,7 +6260,7 @@ namespace JXTPortal.Website.member
             }
             else
             {
-                if (Regex.IsMatch(tbLicenseAddType.Text, ContentValidationRegex) == false)
+                if (!tbLicenseAddType.Text.IsValidContent())
                 {
                     hasError = true;
                     phLicenseAddTypeError.Visible = true;
@@ -6289,7 +6275,7 @@ namespace JXTPortal.Website.member
 
             if (!string.IsNullOrWhiteSpace(tbLicenseAddState.Text))
             {
-                if (Regex.IsMatch(tbLicenseAddState.Text, ContentValidationRegex) == false)
+                if (!tbLicenseAddState.Text.IsValidContent())
                 {
                     hasError = true;
                     phLicenseAddStateError.Visible = true;
@@ -7434,7 +7420,7 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
             }
             else
             {
-                if (Regex.IsMatch(tbCoverLetterTitle.Text, ContentValidationRegex) == false)
+                if (!tbCoverLetterTitle.Text.IsValidContent())
                 {
                     phCoverLetterTitleError.Visible = true;
                     ltErrorCoverLetterTitle.SetLanguageCode = "ValidateNoHTMLContent";
@@ -7640,7 +7626,7 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
             }
             else
             {
-                if (Regex.IsMatch(tbLanguageName.Text, ContentValidationRegex) == false)
+                if (!tbLanguageName.Text.IsValidContent())
                 {
                     hasError = true;
                     phLanguageNameError.Visible = true;
@@ -7888,7 +7874,7 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
                 }
                 else
                 {
-                    if (Regex.IsMatch(tbReferencesPhone.Text, ContentValidationRegex) == false)
+                    if (!tbReferencesPhone.Text.IsValidContent())
                     {
                         hasError = true;
                         phReferencesPhoneError.Visible = true;
@@ -7914,7 +7900,7 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
                 }
                 else
                 {
-                    if (Regex.IsMatch(tbReferencesName.Text, ContentValidationRegex) == false)
+                    if (!tbReferencesName.Text.IsValidContent())
                     {
                         hasError = true;
                         phReferencesNameError.Visible = true;
@@ -7940,7 +7926,7 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
                 }
                 else
                 {
-                    if (Regex.IsMatch(tbReferencesJobTitle.Text, ContentValidationRegex) == false)
+                    if (!tbReferencesJobTitle.Text.IsValidContent())
                     {
                         hasError = true;
                         phReferencesJobTitleError.Visible = true;
@@ -7966,7 +7952,7 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
                 }
                 else
                 {
-                    if (Regex.IsMatch(tbRefernecesCompany.Text, ContentValidationRegex) == false)
+                    if (!tbRefernecesCompany.Text.IsValidContent())
                     {
                         hasError = true;
                         phReferencesCompanyError.Visible = true;
@@ -8229,7 +8215,7 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
             }
             else
             {
-                if (Regex.IsMatch(tbReferencesAddPhone.Text, ContentValidationRegex) == false)
+                if (!tbReferencesAddPhone.Text.IsValidContent())
                 {
                     hasError = true;
                     phReferencesAddPhoneError.Visible = true;
@@ -8255,7 +8241,7 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
             }
             else
             {
-                if (Regex.IsMatch(tbReferencesAddName.Text, ContentValidationRegex) == false)
+                if (!tbReferencesAddName.Text.IsValidContent())
                 {
                     hasError = true;
                     phReferencesAddNameError.Visible = true;
@@ -8292,7 +8278,7 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
             }
             else
             {
-                if (Regex.IsMatch(tbReferencesAddJobTitle.Text, ContentValidationRegex) == false)
+                if (!tbReferencesAddJobTitle.Text.IsValidContent())
                 {
                     hasError = true;
                     phReferencesAddJobTitleError.Visible = true;
@@ -8318,7 +8304,7 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
             }
             else
             {
-                if (Regex.IsMatch(tbRefernecesAddCompany.Text, ContentValidationRegex) == false)
+                if (!tbRefernecesAddCompany.Text.IsValidContent())
                 {
                     hasError = true;
                     phReferencesAddCompany.Visible = true;
@@ -8517,7 +8503,7 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
                                         {
                                             if (question.Type == "textbox" || question.Type == "textarea")
                                             {
-                                                if (Regex.IsMatch(question.TempAnswer, ContentValidationRegex) == false)
+                                                if (!question.TempAnswer.IsValidContent(true))
                                                 {
                                                     hasError = true;
                                                     question.ErrorType = eErrorType.InvalidContent;
@@ -9036,6 +9022,8 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
             validatorMobilePhone.ErrorMessage = CommonFunction.GetResourceValue(validatorMobilePhone.ErrorMessage);
 
             // Content Checking
+            string ContentValidationRegex = ConfigurationManager.AppSettings["ContentValidationRegex"];
+
             revHomePhone.ValidationExpression = ContentValidationRegex;
             revHomePhone.ErrorMessage = CommonFunction.GetResourceValue(revHomePhone.ErrorMessage);
 

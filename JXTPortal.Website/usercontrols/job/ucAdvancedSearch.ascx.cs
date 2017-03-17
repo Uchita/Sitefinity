@@ -329,7 +329,7 @@ namespace JXTPortal.Website.usercontrols.job
                 }
                 strSelectHtml.Append("</select></div>");
                 //strSelectHtml.AppendFormat("<div id='divSalaryFrom" + IsDynamicWidget + "'><select class='form-dropdown' id=\"{0}\" onchange=\"SalaryFromChange" + IsDynamicWidget + "();\">", "salarylowerband" + IsDynamicWidget);
-                strSelectHtml.AppendFormat("<div id='divSalaryFrom" + IsDynamicWidget + "'><label for='{0}' class='divSalaryCurrency" + IsDynamicWidget + "'></label><input type='text' class='form-textbox numbersOnly' id=\"{0}\" placeholder=\"{1}\" />",
+                strSelectHtml.AppendFormat("<div id='divSalaryFrom" + IsDynamicWidget + "'><label for='{0}' class='divSalaryCurrency" + IsDynamicWidget + "'></label><input type='text' class='form-textbox' id=\"{0}\" placeholder=\"{1}\" onkeypress='return isNumberKey(event);' />",
                                                             "salarylowerband" + IsDynamicWidget,
                                                             CommonFunction.GetResourceValue("LabelMinimum"));
 
@@ -354,7 +354,7 @@ namespace JXTPortal.Website.usercontrols.job
                 strSelectHtml.Append("</div>"); //</select>
                 strSelectHtml.Append(string.Format(" <div id=\"divTo\">{0}</div> ", CommonFunction.GetResourceValue("LabelTo")));
 
-                strSelectHtml.AppendFormat("<div id='divSalaryTo" + IsDynamicWidget + "'><label for='{0}' class='divSalaryCurrency" + IsDynamicWidget + "'></label><input type='text' class='form-textbox numbersOnly' id=\"{0}\" placeholder=\"{1}\" />",
+                strSelectHtml.AppendFormat("<div id='divSalaryTo" + IsDynamicWidget + "'><label for='{0}' class='divSalaryCurrency" + IsDynamicWidget + "'></label><input type='text' class='form-textbox' id=\"{0}\" placeholder=\"{1}\" onkeypress='return isNumberKey(event);' />",
                                                             "salaryupperband" + IsDynamicWidget,
                                                             CommonFunction.GetResourceValue("LabelMaximum"));
                 /*if (salaryFromList.Count > 0)

@@ -2,8 +2,9 @@
     Inherits="JXTPortal.Website.usercontrols.job.ucJobApply" %>
 <%@ Register TagPrefix="uc1" TagName="ucApplyWithLinkedIn" Src="~/usercontrols/job/ucApplyWithLinkedIn.ascx" %>
 <div class="job-detail-centre">
+
     <div class="jobdetail-padding">
-        <asp:Label ID="lbApplied" runat="server" Visible="false" ForeColor="Red" />
+        <asp:Label ID="lbApplied" ClientIDMode="Static" runat="server" Visible="false" ForeColor="Red" />
         <asp:Label ID="lblJobSaved" runat="server" Visible="false" ForeColor="Red" />
         <div id="divApplyNow" runat="server" class="apply-now-image">
             <div class="apply-now-link">
@@ -78,22 +79,24 @@
                             js = d.createElement(s); js.id = id; js.async = true;
                             js.src = "https://apply.indeed.com/indeedapply/static/scripts/app/bootstrap.js";
                             iajs.parentNode.insertBefore(js, iajs);
-                        } (document, 'script', 'indeed-apply-js'));
+                        }(document, 'script', 'indeed-apply-js'));
                     </script>
                 </div>
             </div>
         </asp:PlaceHolder>
 
-        
-        
+
+
         <asp:PlaceHolder ID="phSimilarJobs" runat="server" Visible="false">
-        
-        <!-- html that goes at the end of .jobdetail-padding, after where the apply with linkedin button would be. -->
-        <div class="jxt-similar-jobs-container">
-	        <h2><JXTControl:ucLanguageLiteral ID="ltSimilarJobsTitle" runat="server" SetLanguageCode="LabelSimilarJobs" /></h2>
-	        <div class="jxt-similar-jobs-holder">
-                <asp:Literal ID="ltlSimilarJobs" runat="server"></asp:Literal>
-		        <%--<ul>
+
+            <!-- html that goes at the end of .jobdetail-padding, after where the apply with linkedin button would be. -->
+            <div class="jxt-similar-jobs-container">
+                <h2>
+                    <JXTControl:ucLanguageLiteral ID="ltSimilarJobsTitle" runat="server" SetLanguageCode="LabelSimilarJobs" />
+                </h2>
+                <div class="jxt-similar-jobs-holder">
+                    <asp:Literal ID="ltlSimilarJobs" runat="server"></asp:Literal>
+                    <%--<ul>
 			        <li>
 				        <a href="" class="jxt-similar-job">
 					        <span class="jxt-similar-job-title">Project Manager</span>
@@ -154,48 +157,48 @@
 				        </a>
 			        </li>
 		        </ul>--%>
-	        </div>
-        </div>
+                </div>
+            </div>
 
-        
-        <!-- This widget needs jcarousellite. may be a good idea to store this on Boardy so nobody deletes it. -->
-        <script src="//images.jxt.net.au/COMMON/js/jquery.jcarousellite.min.js"></script>
-        
-        <!-- script for similar jobs widget -->
-        <script>
 
-            // In the head, before any JS loads, we should load a global object with settings for this widget. These settings can then be edited in myjs before implemented below.
-            var jxt = {
-                settings: {
-                    similarJobs: {
-                        visible: 3,
-                        auto: 3000,
-                        speed: 1000,
-                        vertical: true
+            <!-- This widget needs jcarousellite. may be a good idea to store this on Boardy so nobody deletes it. -->
+            <script src="//images.jxt.net.au/COMMON/js/jquery.jcarousellite.min.js"></script>
+
+            <!-- script for similar jobs widget -->
+            <script>
+
+                // In the head, before any JS loads, we should load a global object with settings for this widget. These settings can then be edited in myjs before implemented below.
+                var jxt = {
+                    settings: {
+                        similarJobs: {
+                            visible: 3,
+                            auto: 3000,
+                            speed: 1000,
+                            vertical: true
+                        }
                     }
                 }
-            }
-            // This would be good to have for all widgets on the platform, containing different information for different widgets.
+                // This would be good to have for all widgets on the platform, containing different information for different widgets.
 
-            !(function () {
-                $(function () {
-                    // This is why we need the addition of the global object
-                    // with default values at the top of this file.
-                    // these options NEED to be editable. Clients WILL want to change these individually.
+                !(function () {
+                    $(function () {
+                        // This is why we need the addition of the global object
+                        // with default values at the top of this file.
+                        // these options NEED to be editable. Clients WILL want to change these individually.
 
-                    // only run jcarousellite if there are more jobs than visible.
-                    if ($(".jxt-similar-job").length > jxt.settings.similarJobs.visible) {
-                        $(".jxt-similar-jobs-holder").jCarouselLite({
-                            visible: jxt.settings.similarJobs.visible,
-                            auto: jxt.settings.similarJobs.auto,
-                            speed: jxt.settings.similarJobs.speed,
-                            vertical: jxt.settings.similarJobs.vertical
-                            // this won't work with horizontal scrolling, too complicated with all the variables. But I'm keeping the option in the global object anyway.
-                        });
-                    }
-                });
-            })();
-        </script>
+                        // only run jcarousellite if there are more jobs than visible.
+                        if ($(".jxt-similar-job").length > jxt.settings.similarJobs.visible) {
+                            $(".jxt-similar-jobs-holder").jCarouselLite({
+                                visible: jxt.settings.similarJobs.visible,
+                                auto: jxt.settings.similarJobs.auto,
+                                speed: jxt.settings.similarJobs.speed,
+                                vertical: jxt.settings.similarJobs.vertical
+                                // this won't work with horizontal scrolling, too complicated with all the variables. But I'm keeping the option in the global object anyway.
+                            });
+                        }
+                    });
+                })();
+            </script>
         </asp:PlaceHolder>
 
 
@@ -219,22 +222,39 @@
         if (string.IsNullOrEmpty(MapKey))
         {
 %>
-<script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=false&v=3.exp&signed_in=true&libraries=places"></script>
+            <script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=false&v=3.exp&signed_in=true&libraries=places"></script>
 <%
         }
         else
         {
 %>
-<script type="text/javascript" src="//maps.google.com/maps/api/js?key=<%=MapKey %>&sensor=false&v=3.exp&signed_in=true&libraries=places"></script>
+            <script type="text/javascript" src="//maps.google.com/maps/api/js?key=<%=MapKey %>&sensor=false&v=3.exp&signed_in=true&libraries=places"></script>
 <%
         }
 %>
 <script type="text/javascript">
-            var map;
+    var map;
+    $(document).ready(function () {
+
+        var lat = '<%=MapLat %>';
+        var lng = '<%=MapLng %>';
+        var jobaddress = '<%=JobAddress %>';
+
+        if ($("#map").length > 0) {
+            if (lat != '' && lng != '') {
+                initializeGoogleMap();
+            }
+            else {
+                if (jobaddress != '') {
+                    initAddressMap(jobaddress);
+                }
+            }
+        }
+    });
 
 <%
     if (MapLat != null && MapLng != null)
-    {    
+    {
 %>
             function initializeGoogleMap() {
 
@@ -253,73 +273,66 @@
                 });
 
                 var infowindow = new google.maps.InfoWindow({
-                      content: CreateMarkerInfoHtml()
-                  });
-        
-                google.maps.event.addListener(marker, 'click', function() {
-                    infowindow.open(map,marker);
-                  });
+                    content: CreateMarkerInfoHtml()
+                });
+
+                google.maps.event.addListener(marker, 'click', function () {
+                    infowindow.open(map, marker);
+                });
             }
 <%
     }
 %>
-            function initAddressMap(address)
-            {
-                var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 15,
-                center: {lat: -34.397, lng: 150.644},
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-                });
-              var geocoder = new google.maps.Geocoder();
-              geocoder.geocode({'address': address}, function(results, status) {
-                if (status === google.maps.GeocoderStatus.OK) {
-                  map.setCenter(results[0].geometry.location);
-                  var marker = new google.maps.Marker({
+    function initAddressMap(address) {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: { lat: -34.397, lng: 150.644 },
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({ 'address': address }, function (results, status) {
+            if (status === google.maps.GeocoderStatus.OK) {
+                map.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
                     map: map,
                     position: results[0].geometry.location
-                  });
+                });
 
-                  var infowindow = new google.maps.InfoWindow({
-                      content: CreateMarkerInfoHtml()
-                  });
-        
-                google.maps.event.addListener(marker, 'click', function() {
-                    infowindow.open(map,marker);
-                  });
+                var infowindow = new google.maps.InfoWindow({
+                    content: CreateMarkerInfoHtml()
+                });
 
-                } else {
-                  $("#map").hide();
-                }
-              });
+                google.maps.event.addListener(marker, 'click', function () {
+                    infowindow.open(map, marker);
+                });
+
+            } else {
+                $("#map").hide();
             }
+        });
+    }
 
-            function CreateMarkerInfoHtml() {
-                var html = "<div>" + "<%=JobAddress %>" + "</div>";
-                return html;
-            }
-
-            $(document).ready(function () {
-                var lat = '<%=MapLat %>';
-                var lng = '<%=MapLng %>';
-                var jobaddress = '<%=JobAddress %>';
-
-                if ($("#map").length > 0)
-                {
-                   if (lat != '' && lng != '')
-                   {
-                      initializeGoogleMap();
-                   }
-                   else
-                   {
-                      if (jobaddress != '')
-                      {
-                        initAddressMap(jobaddress);
-                      }
-                   }
-                }
-            });
-
+    function CreateMarkerInfoHtml() {
+        var html = "<div>" + "<%=JobAddress %>" + "</div>";
+        return html;
+    }
 </script>
 <%
     }
 %>
+
+<!-- JS section for user's browser timestamp display -->
+<!-- Update applied timestamp to the user's browsers time zone -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        if ($("#lbApplied").length > 0 && typeof MyTimestamp == 'function') {
+
+            var utcTimeStr = $("#lbApplied span").data("utctime");
+            var timeDisplayFormat = $("#lbApplied span").data("dateformat");
+
+            var browserTimeStamp = MyTimestamp(utcTimeStr, timeDisplayFormat)
+
+            $("#lbApplied span").html(browserTimeStamp);
+        }
+    });
+</script>

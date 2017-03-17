@@ -391,7 +391,7 @@ namespace JXTPortal.Website
         private void IndeedApplyJob(int jobid, string url, string DocumentName, string data)
         {
             // Check if member has applied for the job
-            _logger.Debug(string.Format("IndeedApplyJob: jobId{0}"));
+            _logger.DebugFormat("IndeedApplyJob: jobId - {0}", jobid);
             using (TList<JXTPortal.Entities.JobApplication> jobapp = JobApplicationService.GetByJobId(jobid))
             {
                 if (jobapp != null)

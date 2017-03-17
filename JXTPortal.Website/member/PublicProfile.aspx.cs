@@ -22,5 +22,6 @@ namespace JXTPortal.Website.members
                 return;
             }
         }
+
     }
 }

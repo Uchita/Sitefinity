@@ -231,8 +231,11 @@
                                             <div class="jobs-list">
                                                 <h4>
                                                     <span>
+                                                    <asp:HyperLink ID = "hlMemberPublicProfileURL" runat="server" CssClass="profileURL publicProfileURL">
                                                         <asp:Literal ID="ltFirstName" runat="server" />
-                                                        <asp:Literal ID="ltLastName" runat="server" /></span>
+                                                        <asp:Literal ID="ltLastName" runat="server" />
+                                                    </asp:HyperLink>
+                                                    </span>
                                                     <ul class="job-btns">
                                                         <!--  <li><a href="#" class="btn btn-default"><i class="fa fa-plus"></i> </a></li> -->
                                                         <li>

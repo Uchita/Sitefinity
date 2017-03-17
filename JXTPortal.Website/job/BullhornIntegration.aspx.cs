@@ -1255,7 +1255,7 @@ namespace JXTPortal.Website.job
                 return;
             }
 
-            if (job.SiteId == SessionData.Site.SiteId)
+            if (job.SiteId != SessionData.Site.SiteId)
             {
                  _logger.Error("Job is not valid on this site");
                 DisplayPageLoadError("Invalid job item request");

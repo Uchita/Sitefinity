@@ -161,7 +161,14 @@ namespace JXT.Integration.AWS
             }
 
             MemoryStream memory = new MemoryStream();
+
+            if (responseStream == null)
+            {
+                return null;
+            }
+
             responseStream.CopyTo(memory);
+
             memory.Position = 0;
 
             return memory;

@@ -219,19 +219,25 @@ namespace JXTExportSiteData
                                     if (!string.IsNullOrWhiteSpace(resumeFile.MemberFileUrl))
                                     {
                                         Stream ms = null;
-                                        ms = FileManagerService.DownloadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, resumeFile.MemberId), resumeFile.MemberFileUrl, out errormessage); 
-                                        ms.Position = 0;
+                                        ms = FileManagerService.DownloadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, resumeFile.MemberId), resumeFile.MemberFileUrl, out errormessage);
+                                        if (string.IsNullOrEmpty(errormessage))
+                                        {
+                                            ms.Position = 0;
 
-                                        memberfilecontent = ((MemoryStream)ms).ToArray();
+                                            memberfilecontent = ((MemoryStream)ms).ToArray();
+                                        }
                                     }
                                     else
                                     {
                                         memberfilecontent = resumeFile.MemberFileContent;
                                     }
 
-                                    _FileStream.Write(memberfilecontent, 0, resumeFile.MemberFileContent.Length);
-                                    _FileStream.Close();
-                                    thisMemberCSV += "\t" + fileName;
+                                    if (memberfilecontent != null)
+                                    {
+                                        _FileStream.Write(memberfilecontent, 0, resumeFile.MemberFileContent.Length);
+                                        _FileStream.Close();
+                                        thisMemberCSV += "\t" + fileName;
+                                    }
                                 }
                                 else
                                     thisMemberCSV += "\t";

@@ -19,20 +19,18 @@
                             <!-- Profile Image -->
                             <div class="col-sm-4 col-md-3 col-xs-12 " id="imgMemberProfile">
                                 <figure class="noProfileImage profileImageHolder">
-                                    <asp:Image ID="profilePic" runat="server" ImageUrl="/images/member/profile-placeholder.png" AlternateText="profile pic"
-                                        ClientIDMode="Static" />
+                                    <asp:Image ID="profilePic" runat="server" ImageUrl="/images/member/profile-placeholder.png"
+                                        AlternateText="profile pic" ClientIDMode="Static" />
                                 </figure>
-
-                                <asp:PlaceHolder ID="phProfilePicError" runat="server" Visible="false">
-                                <span class="error-message">
+                                <asp:PlaceHolder ID="phProfilePicError" runat="server" Visible="false"><span class="error-message">
                                     <JXTControl:ucLanguageLiteral ID="ucProfilePicError" runat="server" SetLanguageCode="LabelRequiredField1" />
-                                </span>
-                                </asp:PlaceHolder>
+                                </span></asp:PlaceHolder>
                             </div>
                             <!-- Basic Profile Info -->
                             <asp:UpdatePanel ID="upProfile" runat="server" UpdateMode="Conditional">
                                 <ContentTemplate>
-                                    <div class="col-sm-8 col-md-5 col-xs-12  section-content" id="basicProfile" runat="server" clientidmode="Static">
+                                    <div class="col-sm-8 col-md-5 col-xs-12  section-content" id="basicProfile" runat="server"
+                                        clientidmode="Static">
                                         <!-- Profile info Section -->
                                         <div class="profile-data editable-section">
                                             <!-- Candidate Name -->
@@ -41,54 +39,53 @@
                                                     <h3>
                                                         <span class="member-title">
                                                             <asp:Literal ID="ltTitle" runat="server" Text="ltTitle" />
-                                                        </span> 
-                                                        
-                                                        <span class="first-name">
+                                                        </span><span class="first-name">
                                                             <asp:Literal ID="ltFirstName" runat="server" />
-                                                        </span> 
-                                                        
-                                                        <span class="last-name">
+                                                        </span><span class="last-name">
                                                             <asp:Literal ID="ltLastName" runat="server" />
                                                         </span>
-                                                      </h3>
+                                                    </h3>
                                                 </div>
                                             </div>
                                             <asp:Literal ID="ltMultilingualFirstName" runat="server" />
-
                                             <!-- Title -->
                                             <div id="headline">
                                                 <p class="highlight">
                                                     <asp:Literal ID="ltHeadline" runat="server" Text="ltHeadline" />
                                                 </p>
                                             </div>
-
                                             <!-- Seek Status and Availability -->
                                             <div id="profileRow1" class="row">
                                                 <asp:Literal ID="ltCurrentSeeking" runat="server" />
                                                 <asp:Literal ID="ltAvailableDayFrom" runat="server" />
                                             </div>
-
                                             <!-- Last Modified Date -->
                                             <div id="profileRow2" class="row">
-                                                <asp:Literal ID="ltlLastModifiedDate" runat="server" />                                                
+                                                <asp:Literal ID="ltlLastModifiedDate" runat="server" />
                                             </div>
                                         </div>
                                     </div>
                                 </ContentTemplate>
                             </asp:UpdatePanel>
 
-                            <!-- DownLoad Resume -->
-                           <asp:UpdatePanel ID="UpdatePanel3" runat="server" UpdateMode="Always" class="col-sm-12 col-md-4 col-xs-12">
-                                <ContentTemplate>
-                                <asp:PlaceHolder ID="phLastestResume" runat="server">
-                                <div class="info_graphic">                   
-                                    <span class="fa fa-download">
-                                        <asp:HyperLink ID="linkDownloadResume" runat=server CssClass="downloadResume">Download Resume</asp:HyperLink>
-                                    </span>      
-                                </div>
-                                </asp:PlaceHolder>
-                                </ContentTemplate>
-                            </asp:UpdatePanel>
+                            <!-- DownLoad Resources -->
+                            <div id="downloadResources"  class="col-sm-12 col-md-4 col-xs-12">
+                                    <!-- DownLoad Resume -->
+                                    <asp:PlaceHolder ID="phLastestResume" runat="server">
+                                        <asp:HyperLink ID="linkDownloadResume" runat="server" CssClass="btn downloadResources">
+                                            <span class="fa fa-download"></span>
+                                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral2" runat="server" SetLanguageCode="LabelDownloadResume" />
+                                        </asp:HyperLink>
+                                    </asp:PlaceHolder>
+
+                                    <!-- Section 16: Download Profile btn  -->
+                                    <asp:LinkButton ID="downloadProfile" runat="server" CssClass="btn downloadResources" role="button"
+                                        OnClick="PDFGetButton_Click">
+                                        <span class="fa fa-download" aria-hidden="true"></span>
+                                        <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral3" runat="server" SetLanguageCode="LabelDownloadProfile" />
+                                    </asp:LinkButton>
+                            </div>                           
+             
                         </div>
                     </section>
 
@@ -851,15 +848,6 @@
                         </section>
                     </asp:PlaceHolder>
 
-                    <!-- Section 16: Download Profile btn  -->
-                    <div class="text-center">
-                        <asp:LinkButton ID="lbDownloadPdf" runat="server" CssClass="btn btn-primary" role="button"
-                            OnClick="PDFGetButton_Click">
-                            <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral264" runat="server" SetLanguageCode="LabelProfileDownloadPDF" />
-                            <span class="fa fa-download" aria-hidden="true"></span>
-                        </asp:LinkButton>
-                    </div>
-                   
                 </div>
 
                 <!-- //CV-content -->
@@ -867,51 +855,3 @@
             </div>
         </div>
     </div>
-
-
-
-<%--<div class="form-all">
-    <div class="form-header-group">
-        <h2 class="form-header">
-            <asp:Literal ID="litMemberName" runat="server" />
-            <JXTControl:ucLanguageLiteral ID="ltsPublicProfile"
-                runat="server" SetLanguageCode="sLabelPublicProfile" />
-        </h2>
-    </div>
-    <div class="search-sequence">
-        <ul class="form-section">
-            <li class="form-line" id="pp-name-field">
-                <asp:Label ID="lbTitle" runat="server" CssClass="form-label-left">
-                    <JXTControl:ucLanguageLiteral ID="ltName" runat="server" SetLanguageCode="LabelName" />
-                    :</asp:Label>
-                <div class="form-input">
-                    <asp:Literal ID="litName" runat="server" />
-                </div>
-            </li>
-            <li class="form-line" id="pp-email-field">
-                <asp:Label ID="lbEmail" runat="server" CssClass="form-label-left">
-                    <JXTControl:ucLanguageLiteral ID="ltEmail" runat="server" SetLanguageCode="LabelEmail" />
-                    :</asp:Label>
-                <div class="form-input">
-                    <asp:Literal ID="litEmail" runat="server" />
-                </div>
-            </li>
-            <li class="form-line" id="pp-status-field">
-                <asp:Label ID="lbStatus" runat="server" CssClass="form-label-left">
-                    <JXTControl:ucLanguageLiteral ID="ltStatus" runat="server" SetLanguageCode="LabelStatus" />
-                    :</asp:Label>
-                <div class="form-input">
-                    <asp:Literal ID="litStatus" runat="server" />
-                </div>
-            </li>
-            <li class="form-line" id="pp-publicprofile-field">
-                <asp:Label ID="lbPublicProfile" runat="server" CssClass="form-label-left">
-                    <JXTControl:ucLanguageLiteral ID="ltPublicProfile" runat="server" SetLanguageCode="LabelPublicProfile" />
-                    :</asp:Label>
-                <div class="form-input">
-                    <asp:Literal ID="litPublicProfile" runat="server" />
-                </div>
-            </li>
-        </ul>
-    </div>
-</div>--%>

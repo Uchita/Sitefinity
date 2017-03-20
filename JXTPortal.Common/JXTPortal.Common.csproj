@@ -73,6 +73,7 @@
   <ItemGroup>
     <Compile Include="EasyFts.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
+    <Compile Include="Extensions\TimespanExtensions.cs" />
     <Compile Include="FTPClient.cs" />
     <Compile Include="GoogleReCaptcha.cs" />
     <Compile Include="IFtpClient.cs" />

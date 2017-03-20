@@ -279,6 +279,13 @@ namespace JXTPortal.Website.usercontrols.peoplesearch
 
             if (!string.IsNullOrWhiteSpace(MemberUrlExtension))
             {
+                //Advertiser level flag check
+                if (Entities.SessionData.AdvertiserUser == null || !Entities.SessionData.AdvertiserUser.AllowedToAccessPeopleSearch)
+                {
+                    Response.Redirect("~/advertiser/login.aspx?returnurl=" + Server.UrlEncode(Request.Url.OriginalString));
+                    return;
+                }
+
                 JXTPortal.Entities.Members member = MembersService.GetByMemberId(Convert.ToInt32(MemberUrlExtension));
 
                 if (member != null)

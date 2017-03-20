@@ -4451,4 +4451,16 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <value>Semicolon Separated</value>
     <comment>Semicolon Separated</comment>
   </data>
+  <data name="LabelJobExpiryDate" xml:space="preserve">
+    <value>Job Expiry Date</value>
+    <comment>Job Expiry Date</comment>
+  </data>
+  <data name="LabelJobExpiryDateAfterThirtyDays" xml:space="preserve">
+    <value>Expiry Date cannot be more than 30 days</value>
+    <comment>Expiry Date cannot be more than 30 days</comment>
+  </data>
+  <data name="LabelJobExpiryDateBeforeCurrentDate" xml:space="preserve">
+    <value>Expiry date cannot be before {0}</value>
+    <comment>Expiry date cannot be before {0}</comment>
+  </data>
 </root>

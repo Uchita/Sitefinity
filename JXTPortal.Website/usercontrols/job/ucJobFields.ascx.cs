@@ -507,10 +507,20 @@ namespace JXTPortal.Website.Admin.UserControls
         protected void Page_Load(object sender, EventArgs e)
         {
             revEmailAddress.ValidationExpression = ConfigurationManager.AppSettings["EmailValidationRegex"];
+
             cal_tbStartDate.Format = SessionData.Site.DateFormat;
 
-            // pass dateformat as placeholder for the textbox
-            txtJobExpiryDate.Attributes["placeholder"] = placeHolderdateFormat(getGlobalDateFormat());
+            var superAdminRole = SessionData.AdminUser.AdminRoleId;
+
+            if (superAdminRole == 1)
+            {
+                // pass dateformat as placeholder for the textbox
+                txtJobExpiryDate.Attributes["placeholder"] = placeHolderdateFormat(getGlobalDateFormat());
+            }
+            else
+            {
+                phManualJobExpirydate.Visible = false;
+            }
            
             if (!Page.IsPostBack)
             {
@@ -1021,8 +1031,6 @@ namespace JXTPortal.Website.Admin.UserControls
             }
         }
 
-        //#region Method
-
         private int JobCreditCheck()
         {
             int advertiseruserid = 0;
@@ -1397,15 +1405,7 @@ namespace JXTPortal.Website.Admin.UserControls
 
             //ddlJobTemplateID.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelPleaseChoose"), "0"));
         }
-        ///*
-        //protected void ddlJobTemplateID_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    if (ddlJobTemplateID.SelectedIndex > 0)
-        //    {
-        //        imgAdvJobTemplate.ImageUrl = Page.ResolveUrl("~/GetFile.aspx") + "?AdvertiserJobTemplateLogoID=" + Convert.ToString(ddlJobTemplateID.SelectedValue); ;
-        //    }
-        //}
-        //*/
+
         private void LoadAdvertiserJobTemplateLogo()
         {
             if (IsAdmin)
@@ -1529,7 +1529,6 @@ namespace JXTPortal.Website.Admin.UserControls
             return string.Join(" ", options.ToList());
         }
 
-
         private void LoadWorkType()
         {
             List<JXTPortal.Entities.SiteWorkType> siteWorkTypes = SiteWorkTypeService.GetTranslatedWorkTypes().OrderBy(siteWorktype => siteWorktype.Sequence).ToList();
@@ -1551,47 +1550,6 @@ namespace JXTPortal.Website.Admin.UserControls
             ddlSalary.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelPleaseChoose"), "0"));
 
         }
-        ///*
-        //private void LoadSalaryFrom(int salarytypeid)
-        //{
-        //    ddlSalaryFrom.Items.Clear();
-
-        //    VList<ViewSalary> salaryFromList = ViewSalaryService.GetCustomSalaryFrom(SessionData.Site.SiteId, salarytypeid);
-        //    foreach (ViewSalary vs in salaryFromList)
-        //    {
-        //        ListItem li = new ListItem();
-        //        li.Value = string.Format("{0};{1}", vs.CurrencyId, vs.Amount);
-        //        li.Text = vs.SalaryDisplay;
-
-        //        ddlSalaryFrom.Items.Add(li);
-        //    }
-        //}
-
-        //private void LoadSalaryTo(int salarytypeid, int currecnyid, decimal amount)
-        //{
-        //    ddlSalaryTo.Items.Clear();
-
-        //    VList<ViewSalary> salaryToList = ViewSalaryService.GetCustomSalaryTo(SessionData.Site.SiteId, currecnyid, salarytypeid, amount);
-        //    foreach (ViewSalary vs in salaryToList)
-        //    {
-        //        ListItem li = new ListItem();
-        //        li.Value = string.Format("{0};{1}", vs.CurrencyId, vs.Amount);
-        //        li.Text = vs.SalaryDisplay;
-
-        //        ddlSalaryTo.Items.Add(li);
-        //    }
-        //}*/
-
-        ////private void LoadAdvertiser()
-        ////{
-        ////    using (TList<JXTPortal.Entities.Advertisers> advertisers = AdvertisersService.GetBySiteId(SessionData.Site.SiteId))
-        ////    {
-        ////        dataAdvertiserId.DataSource = advertisers;
-        ////        dataAdvertiserId.DataBind();
-        ////        dataAdvertiserId.Items.Insert(0, new ListItem("< Please Choose ...>", "0"));
-        ////    }
-        ////}
-
 
         private void LoadLocation()
         {
@@ -2126,8 +2084,6 @@ namespace JXTPortal.Website.Admin.UserControls
             }
         }
 
-        //#endregion
-
         protected void CusValJobProfessionRole_ServerValidate(object source, ServerValidateEventArgs args)
         {
             bool valid = true;
@@ -2225,21 +2181,6 @@ namespace JXTPortal.Website.Admin.UserControls
             }
         }
 
-        ///*
-        //protected void ddlSalary_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    LoadSalaryFrom(Convert.ToInt32(ddlSalary.SelectedValue));
-        //    LoadSalaryTo(Convert.ToInt32(ddlSalary.SelectedValue), 0, 0);
-        //}
-
-        //protected void ddlSalaryFrom_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    string result = ddlSalaryFrom.SelectedValue;
-        //    string[] parts = result.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-
-        //    LoadSalaryTo(Convert.ToInt32(ddlSalary.SelectedValue), Convert.ToInt32(parts[0]), Convert.ToDecimal(parts[1]));
-        //}*/
-
         protected void InsertButton_Click(object sender, EventArgs e)
         {
             bool isDraft = (((Button)sender) == DraftButton);
@@ -2272,11 +2213,7 @@ namespace JXTPortal.Website.Admin.UserControls
                     job.FullDescription = ucJobFieldsMultiLingual.FullDescription;
                     job.RefNo = CommonService.EncodeString(txtRefNo.Text);
                     job.DatePosted = DateTime.Now;
-
-                    if(string.IsNullOrWhiteSpace(JobExpiryDateValidator.Text))
-                    {
-                        job.ExpiryDate = getExpiryDate();
-                    }
+                    job.ExpiryDate = getExpiryDate();
 
                     //job.Expired = chkJobExpired.Checked ? (int) PortalEnums.Jobs.JobStatus.Expired : (int) PortalEnums.Jobs.JobStatus.Live;
                     if (!string.IsNullOrEmpty(txtJobItemPrice.Text))
@@ -3052,7 +2989,8 @@ namespace JXTPortal.Website.Admin.UserControls
             rfvAdvJobTemplateLogoImage.ErrorMessage = CommonFunction.GetResourceValue("LabelRequiredField1");
             rqStartDate.ErrorMessage = CommonFunction.GetResourceValue("LabelRequiredField1");
             revEmailAddress.ErrorMessage = "Invalid email address";
-            ReqValJobExpiryDate.ErrorMessage = "Job Expiry Date Required";
+            
+           // ReqValJobExpiryDate.ErrorMessage = "Job Expiry Date Required";
 
             txtFriendlyUrl.Attributes["placeholder"] = CommonFunction.GetResourceValue("LabelClickToGenerate"); // click to generate ...
             txtSalaryLowerBand.Attributes["placeholder"] = CommonFunction.GetResourceValue("LabelMinimum");
@@ -3308,19 +3246,18 @@ namespace JXTPortal.Website.Admin.UserControls
 
         protected void JobExpiryDateValidator_ServerValidate(object source, ServerValidateEventArgs args)
         {
-
             DateTime currentDate = DateTime.Now;
             DateTime jobExpiryDate = getExpiryDate();
 
             if (jobExpiryDate < currentDate)
             {
                 args.IsValid = false;
-                JobExpiryDateValidator.ErrorMessage = string.Format("Expiry date cannot be before {0}", currentDate);
+                JobExpiryDateValidator.ErrorMessage = string.Format(CommonFunction.GetResourceValue("LabelJobExpiryDateBeforeCurrentDate"), currentDate.ToShortDateString());
             }
             else if ((jobExpiryDate - currentDate).TotalDays > 30)
             {
                 args.IsValid = false;
-                JobExpiryDateValidator.ErrorMessage = "Expiry Date cannot be more than 30 days";
+                JobExpiryDateValidator.ErrorMessage = CommonFunction.GetResourceValue("LabelJobExpiryDateAfterThirtyDays");
             }     
         }
 
@@ -3328,13 +3265,20 @@ namespace JXTPortal.Website.Admin.UserControls
         {
             DateTime jobExpiryDate = new DateTime();
 
-            string userEntry = txtJobExpiryDate.Text;
+            string userEntry = (!string.IsNullOrWhiteSpace(txtJobExpiryDate.Text)) ? txtJobExpiryDate.Text : string.Empty ;
 
             string currentDateFormat = getGlobalDateFormat();
 
-            if (DateTime.TryParseExact(userEntry, currentDateFormat, null, DateTimeStyles.None, out jobExpiryDate))
+            if (!string.IsNullOrWhiteSpace(userEntry))
             {
-                return jobExpiryDate;
+                if (DateTime.TryParseExact(userEntry, currentDateFormat, null, DateTimeStyles.None, out jobExpiryDate))
+                {
+                    return jobExpiryDate;
+                }
+                else
+                {
+                    return DateTime.Now.AddDays(30);
+                }
             }
             else
             {

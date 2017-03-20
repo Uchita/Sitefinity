@@ -122,9 +122,19 @@ namespace JXTPortal.Website.Admin
         /// </summary>
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (SiteID == 0)
             {
                 SiteID = SessionData.Site.SiteId;
+            }
+
+            if (SessionData.AdminUser.AdminRoleId == 1)
+            {
+                phManualExpiry.Visible = true;
+            }
+            else
+            {
+                phManualExpiry.Visible = false;
             }
 
             cbUseCustomProfessionRoles.Enabled = (SiteID == 0);

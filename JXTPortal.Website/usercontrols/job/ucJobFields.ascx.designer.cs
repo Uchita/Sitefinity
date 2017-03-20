@@ -346,6 +346,15 @@ namespace JXTPortal.Website.Admin.UserControls {
         protected global::System.Web.UI.WebControls.TextBox txtRefNo;
         
         /// <summary>
+        /// phManualJobExpirydate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phManualJobExpirydate;
+        
+        /// <summary>
         /// lbJobExpiryDate control.
         /// </summary>
         /// <remarks>
@@ -371,15 +380,6 @@ namespace JXTPortal.Website.Admin.UserControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtJobExpiryDate;
-        
-        /// <summary>
-        /// ReqValJobExpiryDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator ReqValJobExpiryDate;
         
         /// <summary>
         /// JobExpiryDateValidator control.

@@ -110,19 +110,19 @@
                         </div>
                     </li>
 
-                    <li class="form-line" id="liJobExpiryDate">
-                        <asp:Label ID="lbJobExpiryDate" runat="server" AssociatedControlID="txtJobExpiryDate">
-                            <JXTControl:ucLanguageLiteral ID="ltJobExpiryDate" runat="server" SetLanguageCode="LabelJobExpiryDate" />
-                            <!-- Job Expiry Date -->
-                        </asp:Label>
-                        <div>
-                            <asp:TextBox ID="txtJobExpiryDate" runat="server" autocomplete="off" />
-                            <asp:RequiredFieldValidator ID="ReqValJobExpiryDate" ControlToValidate="txtJobExpiryDate" runat=server></asp:RequiredFieldValidator>
-                            <asp:CustomValidator
-                                ID="JobExpiryDateValidator" ControlToValidate="txtJobExpiryDate" 
-                                runat="server" onservervalidate="JobExpiryDateValidator_ServerValidate"></asp:CustomValidator>
-                        </div>
-                    </li>
+                    <!-- Job Expiry Date -->
+                    <asp:PlaceHolder ID="phManualJobExpirydate" runat="server">
+                        <li class="form-line" id="liJobExpiryDate">
+                            <asp:Label ID="lbJobExpiryDate" runat="server" AssociatedControlID="txtJobExpiryDate">
+                                <JXTControl:ucLanguageLiteral ID="ltJobExpiryDate" runat="server" SetLanguageCode="LabelJobExpiryDate" />
+                            </asp:Label>
+                            <div>
+                                <asp:TextBox ID="txtJobExpiryDate" runat="server" autocomplete="off" />
+                                <asp:CustomValidator ID="JobExpiryDateValidator" ControlToValidate="txtJobExpiryDate"
+                                    runat="server" OnServerValidate="JobExpiryDateValidator_ServerValidate"></asp:CustomValidator>
+                            </div>
+                        </li>
+                    </asp:PlaceHolder>
 
                     <script type="text/javascript">
                         $(document).ready(function () {

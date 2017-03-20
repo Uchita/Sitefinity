@@ -2987,6 +2987,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Download Profile.
+        /// </summary>
+        internal static string LabelDownloadProfile {
+            get {
+                return ResourceManager.GetString("LabelDownloadProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download Resume.
+        /// </summary>
+        internal static string LabelDownloadResume {
+            get {
+                return ResourceManager.GetString("LabelDownloadResume", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Télécharger les candidats sélectionnés.
         /// </summary>
         internal static string LabelDownloadSelectedApplicants {

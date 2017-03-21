@@ -73,24 +73,25 @@ namespace JXTPosterTransform.Library.APIs.Invenias
         public string DatePublished { get; set; }
         public string DateUnpublished { get; set; }
         public string DescriptionFieldId { get; set; }
+        public string AdvertisementDescription { get; set; } //from the DescriptionFieldId of NotesField
         public string EmploymentType { get; set; }
         public string ExternalId1 { get; set; }
         public string ExternalId2 { get; set; }
         public string ExternalId3 { get; set; }
         public string Facebook { get; set; }
         public string Id { get; set; }
-        public string IsBenefitsVisible { get; set; }
-        public string IsCompanyLogoVisible { get; set; }
-        public string IsCompanyProfileVisible { get; set; }
-        public string IsPackagesRatesVisible { get; set; }
-        public string IsPrimaryBusinessPhoneVisible { get; set; }
+        public bool IsBenefitsVisible { get; set; }
+        public bool IsCompanyLogoVisible { get; set; }
+        public bool IsCompanyProfileVisible { get; set; }
+        public bool IsPackagesRatesVisible { get; set; }
+        public bool IsPrimaryBusinessPhoneVisible { get; set; }
         public bool IsPrimaryEmailVisible { get; set; }
-        public string IsPrimaryJobTitleVisible { get; set; }
-        public string IsPrimaryMobilePhoneVisible { get; set; }
-        public string IsSecondaryBusinessPhoneVisible { get; set; }
-        public string IsSecondaryEmailVisible { get; set; }
-        public string IsSecondaryJobTitleVisible { get; set; }
-        public string IsSecondaryMobilePhoneVisible { get; set; }
+        public bool IsPrimaryJobTitleVisible { get; set; }
+        public bool IsPrimaryMobilePhoneVisible { get; set; }
+        public bool IsSecondaryBusinessPhoneVisible { get; set; }
+        public bool IsSecondaryEmailVisible { get; set; }
+        public bool IsSecondaryJobTitleVisible { get; set; }
+        public bool IsSecondaryMobilePhoneVisible { get; set; }
         public string LinkedIn { get; set; }
         public string ModifierId { get; set; }
         public string Name { get; set; }
@@ -283,8 +284,8 @@ namespace JXTPosterTransform.Library.APIs.Invenias
         public string ModifierId { get; set; }
         public string Notes { get; set; }
         public string OrderIndex { get; set; }
-        public double PayAmountFrom { get; set; }
-        public double PayAmountTo { get; set; }
+        public double? PayAmountFrom { get; set; }
+        public double? PayAmountTo { get; set; }
         public string PayCurrency { get; set; }
         public string Period { get; set; }
     }
@@ -402,14 +403,36 @@ namespace JXTPosterTransform.Library.APIs.Invenias
     public class InveniasPTModel
     {
         public InveniasAdvertisementsValue advertisement { get; set; }
-        public string advertisementDescription { get; set; }
         public InveniasAssignmentValue assignment { get; set; }
         public InveniasCompanyValue company { get; set; }
         public JXTCLAModel location { get; set; }
         public List<JXTPRModel> profRole { get; set; }
 
         public double? SalaryBaseOnPackage_Min { get; set; }
-        public double? SalaryBaseOnPackage_Max { get; set; } 
+        public double? SalaryBaseOnPackage_Max { get; set; }
+        public string SalaryBaseOnPackage_Period { get; set; }
+        public string SalaryBaseOnPackage_Period_JxtValue {
+            set { value = ""; } 
+            get
+            {
+                //hard coded values
+                switch(SalaryBaseOnPackage_Period)
+                {
+                    case "PerAnnum":
+                        return "Annual";
+                    case "PerHour":
+                        return "Hourly";
+                    case "PerDay":
+                        return "Daily";
+                    case "PerWeek":
+                        return "Weekly";
+                    case "PerMonth":
+                        return "Monthly";
+                    default:
+                        return null;
+                }
+            }
+        }
 
         //reference only if needed for manipulations
         public InveniaInterimRatesValue interim_rate { get; set; }

@@ -39,7 +39,7 @@ namespace JXTPosterTransform.Library.Methods
 
             //get all advertisements
             _logger.InfoFormat("Retreiving 'published' / 'unpublished' Advertisements data from Invenias");
-            List<InveniasAdvertisementsValue> advertisements = _api.AdvertisementsGet();//"$filter=Status eq AssignmentAdStatus(Published)");
+            List<InveniasAdvertisementsValue> advertisements = _api.AdvertisementsGet(); //this throws error on Invenias "$filter=Status eq Invenias.Model.Enumerations.AssignmentAdStatus'Published'");
             _logger.InfoFormat("[DONE] Retreiving Advertisements data from Invenias - Count(" + advertisements.Count() + ")");
 
             //get all locations
@@ -47,7 +47,8 @@ namespace JXTPosterTransform.Library.Methods
 
             _logger.InfoFormat("Processing each Advertisements");
             List<InveniasPTModel> pt = new List<InveniasPTModel>();
-            foreach (InveniasAdvertisementsValue ad in advertisements)
+            List<string> desiredAdStatusType = new List<string> { "PUBLISHED", "UNPUBLISHED" };
+            foreach (InveniasAdvertisementsValue ad in advertisements.Where(c=> desiredAdStatusType.Contains(c.Status.ToUpper())))
             {
                 _logger.DebugFormat("Advertisement - " + ad.Id);
 
@@ -56,7 +57,7 @@ namespace JXTPosterTransform.Library.Methods
 
                 //get description using (NoteField entity)
                 InveniaNoteFieldValue noteFieldDescription = _api.EntityGet<InveniaNoteFieldValue>("NoteFields", ad.DescriptionFieldId);
-                thisPT.advertisementDescription = noteFieldDescription == null ? string.Empty : noteFieldDescription.TextBody;
+                thisPT.advertisement.AdvertisementDescription = noteFieldDescription == null ? string.Empty : noteFieldDescription.TextBody;
                 
                 //get CategoryListEntries for this Assignment
                 List<InveniaCategoryListEntryValue> categoryEntries = _api.NavigationPropertyGet<InveniaCategoryListEntryValue>("Advertisements", ad.Id, "Categories");
@@ -151,6 +152,7 @@ namespace JXTPosterTransform.Library.Methods
 
                             thisPT.SalaryBaseOnPackage_Min = interim_rates.First().PayAmountFrom;
                             thisPT.SalaryBaseOnPackage_Max = interim_rates.First().PayAmountTo;
+                            thisPT.SalaryBaseOnPackage_Period = interim_rates.First().Period;
                         }
                         break;
 
@@ -162,6 +164,7 @@ namespace JXTPosterTransform.Library.Methods
 
                             thisPT.SalaryBaseOnPackage_Min = non_exec_package.First().AmountFrom;
                             thisPT.SalaryBaseOnPackage_Max = non_exec_package.First().AmountTo;
+                            thisPT.SalaryBaseOnPackage_Period = non_exec_package.First().Period;
                         }
                         break;
 
@@ -173,6 +176,7 @@ namespace JXTPosterTransform.Library.Methods
 
                             thisPT.SalaryBaseOnPackage_Min = perm_package.First().AmountFrom;
                             thisPT.SalaryBaseOnPackage_Max = perm_package.First().AmountTo;
+                            thisPT.SalaryBaseOnPackage_Period = perm_package.First().Period;
                         }
                         break;
 

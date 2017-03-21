@@ -88,7 +88,6 @@ namespace JXTPosterTransform.Website.Logics
 
         }
 
-
         public ClientDisplayModel ClientProfileGet(int clientID)
         {
             Client thisClient = PTClientService.ClientDetailsGet(clientID);

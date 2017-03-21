@@ -54,7 +54,8 @@ namespace JXTPosterTransform.Library.Services
 
             _logger.InfoFormat("Total of {0} Clients Setup found to process", clientSetupsList.Count());
 
-            ResponseClass response = new ResponseClass();
+            ResponseClass JobPostResponse = null;
+            IEnumerable<Job> JobsToArchive = null;
             DateTime dtStartTime = DateTime.Now;
             string fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + "_" + Guid.NewGuid().ToString("N");
 
@@ -68,7 +69,7 @@ namespace JXTPosterTransform.Library.Services
                     dtStartTime = DateTime.Now;     // Set the start time
                     fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + "_" + Guid.NewGuid().ToString("N");   // Set a new file name
 
-                    response = new ResponseClass();
+                    JobPostResponse = new ResponseClass();
 
                     //below are for PullXmlFromRGF ONLY
                     long nextScheduledTimestamp = 0;
@@ -82,29 +83,29 @@ namespace JXTPosterTransform.Library.Services
                         case ((int)PTCommonEnums.ClientSetup.ClientSetupType.PullXmlFromFTP):
                             {
                                 ClientSetupModels.PullXmlFromFTP FTP = jss.Deserialize<ClientSetupModels.PullXmlFromFTP>(thisSetupItem.ClientSetupTypeCredentials);
-                                response = Methods.PullXMLFromFTP.ProcessXML(FTP, fileName);
-                                postRequired = response.blnSuccess;
+                                JobPostResponse = Methods.PullXMLFromFTP.ProcessXML(FTP, fileName);
+                                postRequired = JobPostResponse.blnSuccess;
                                 break;
                             }
                         case ((int)PTCommonEnums.ClientSetup.ClientSetupType.PullXmlFromSFTP):
                             {
                                 ClientSetupModels.PullXmlFromSFTP SFTP = jss.Deserialize<ClientSetupModels.PullXmlFromSFTP>(thisSetupItem.ClientSetupTypeCredentials);
-                                response = Methods.PullXMLFromSFTP.ProcessXML(SFTP, fileName);
-                                postRequired = response.blnSuccess;
+                                JobPostResponse = Methods.PullXMLFromSFTP.ProcessXML(SFTP, fileName);
+                                postRequired = JobPostResponse.blnSuccess;
                                 break;
                             }
                         case ((int)PTCommonEnums.ClientSetup.ClientSetupType.PullXmlFromUrl):
                             {
                                 ClientSetupModels.PullXmlFromUrl URL = jss.Deserialize<ClientSetupModels.PullXmlFromUrl>(thisSetupItem.ClientSetupTypeCredentials);
-                                response = Methods.PullXMLFromURL.ProcessXML(URL.URL, fileName);
-                                postRequired = response.blnSuccess;
+                                JobPostResponse = Methods.PullXMLFromURL.ProcessXML(URL.URL, fileName);
+                                postRequired = JobPostResponse.blnSuccess;
                                 break;
                             }
                         case ((int)PTCommonEnums.ClientSetup.ClientSetupType.PullXmlFromUrlWithAuth):
                             {
                                 ClientSetupModels.PullXmlFromUrlWithAuth XmlAuth = jss.Deserialize<ClientSetupModels.PullXmlFromUrlWithAuth>(thisSetupItem.ClientSetupTypeCredentials);
-                                response = Methods.PullXMLWithWebAuthentication.ProcessXML(XmlAuth, fileName);
-                                postRequired = response.blnSuccess;
+                                JobPostResponse = Methods.PullXMLWithWebAuthentication.ProcessXML(XmlAuth, fileName);
+                                postRequired = JobPostResponse.blnSuccess;
                                 break;
                             }
                         case ((int)PTCommonEnums.ClientSetup.ClientSetupType.PullFromInvenias):
@@ -112,8 +113,9 @@ namespace JXTPosterTransform.Library.Services
                                 ClientSetupModels.PullFromInvenias invAuth = jss.Deserialize<ClientSetupModels.PullFromInvenias>(thisSetupItem.ClientSetupTypeCredentials);
                                 PullFromInvenias inveniaLogic = new PullFromInvenias(invAuth);
                                 List<InveniasPTModel> ptModel = inveniaLogic.PosterTransformModelsGet();
-                                response = inveniaLogic.ProcessInveniaModelToXML(ptModel, fileName);
-                                postRequired = response.blnSuccess;
+                                JobPostResponse = inveniaLogic.ProcessInveniaModelToXML(ptModel.Where(c => c.advertisement.Status.ToUpper() == "PUBLISHED").ToList(), fileName);
+                                JobsToArchive = ptModel.Where(c => c.advertisement.Status.ToUpper() == "UNPUBLISHED").Select(c=> new Job { ReferenceNo = c.advertisement.Id });
+                                postRequired = JobPostResponse.blnSuccess;
                                 break;
                             }
                         case ((int)PTCommonEnums.ClientSetup.ClientSetupType.PullJsonFromUrl):
@@ -121,8 +123,8 @@ namespace JXTPosterTransform.Library.Services
                                 //only enabled for this for now incase it breaks any other things
                                 enableShortDescriptionPullFromFullDescription = true;
                                 ClientSetupModels.PullJsonFromUrl jsonAuth = jss.Deserialize<ClientSetupModels.PullJsonFromUrl>(thisSetupItem.ClientSetupTypeCredentials);
-                                response = Methods.PullJsonFromURL.ProcessJsonToXML(jsonAuth.URL, fileName);
-                                postRequired = response.blnSuccess;
+                                JobPostResponse = Methods.PullJsonFromURL.ProcessJsonToXML(jsonAuth.URL, fileName);
+                                postRequired = JobPostResponse.blnSuccess;
                                 break;
                             }
                         case ((int)PTCommonEnums.ClientSetup.ClientSetupType.PullXmlFromRGF):
@@ -143,16 +145,16 @@ namespace JXTPosterTransform.Library.Services
                                     int count = 0, fileCount = 1;
 
                                     bool postSuccess = true;
-                                    for (count = 0; count < rgfData.jobBoards.jobboardlisting.upserted.Count(); )
+                                    for (count = 0; count < rgfData.jobBoards.jobboardlisting.upserted.Count();)
                                     {
                                         string thisFileName = fileName + "-" + fileCount;
                                         JXTPosterTransform.Library.Methods.Client.PullJsonFromRGF.RGFJobBoardDataRoot currentQueue = DeepClone<JXTPosterTransform.Library.Methods.Client.PullJsonFromRGF.RGFJobBoardDataRoot>(rgfData);
                                         currentQueue.jobBoards.jobboardlisting.upserted = currentQueue.jobBoards.jobboardlisting.upserted.Skip(count).Take(200).ToList();
 
-                                        response = rgfLogic.ProcessRGFModelToXML(currentQueue, thisFileName);
+                                        JobPostResponse = rgfLogic.ProcessRGFModelToXML(currentQueue, thisFileName);
 
                                         // Get the Credentials AND Pull the XML     AND     Post to JXT platform Webservice                            
-                                        bool thisPostSuccess = PostTransformationWithMappings(thisSetupItem, response.ResponseXML, thisFileName, dtStartTime);
+                                        bool thisPostSuccess = PostTransformationWithMappings(thisSetupItem, JobPostResponse.ResponseXML, thisFileName, dtStartTime);
 
                                         if (!thisPostSuccess)
                                             postSuccess = false;
@@ -193,15 +195,41 @@ namespace JXTPosterTransform.Library.Services
                     _logger.DebugFormat("Post to JXT WebServices required: " + postRequired);
                     if (postRequired)
                     {
-                        // Get the Credentials AND Pull the XML     AND     Post to JXT platform Webservice                            
-                        _logger.DebugFormat("[START] Post to JXT WebServices");
-                        PostTransformationWithMappings(thisSetupItem, response.ResponseXML, fileName, dtStartTime);
-                        _logger.DebugFormat("[DONE] Post to JXT WebServices");
+                        #region Process Job Post Requests
+                        if (JobPostResponse == null)
+                        {
+                            _logger.DebugFormat("No job posts data to be processed...");
+                            _logger.DebugFormat("-- Ignoring process");
+                        }
+                        else
+                        {
+                            // Get the Credentials AND Pull the XML     AND     Post to JXT platform Webservice                            
+                            _logger.DebugFormat("[START] Post Job Post request to JXT WebServices");
+                            PostTransformationWithMappings(thisSetupItem, JobPostResponse.ResponseXML, fileName, dtStartTime);
+                            _logger.DebugFormat("[DONE] Post Job Post request to JXT WebServices");
+                        }
+                        #endregion
+
+                        #region Process Job Archive Requests
+                        if (JobsToArchive == null || JobsToArchive.Count() == 0)
+                        {
+                            _logger.DebugFormat("No job archives data to be processed...");
+                            _logger.DebugFormat("-- Ignoring process");
+                        }
+                        else
+                        {
+                            // Get the Credentials AND Pull the XML     AND     Post to JXT platform Webservice                            
+                            _logger.DebugFormat("[START] Post Archive Request to JXT WebServices");
+                            ProcessArchiveJobs(thisSetupItem, JobsToArchive);
+                            _logger.DebugFormat("[DONE] Post Archive Request to JXT WebServices");
+                        }
+                        #endregion
+
                     }
                     else
                     {
                         // Error display
-                        Console.WriteLine(response.strMessage);
+                        Console.WriteLine(JobPostResponse.strMessage);
                     }
                 }
             }
@@ -214,184 +242,8 @@ namespace JXTPosterTransform.Library.Services
             // Save the Response Log
         }
 
-
         public bool PostTransformationWithMappings(GetAllClientSetupsToRun_Result clientSetup, string xml, string fileName, DateTime dtStartTime)
         {
-            #region Temp XML
-
-            /*
-            xml = @"
-<FastLanePlus UploaderID='20144' AgentID='' Version='1.1'>
-<Client ID='20144' MinJobs='0' MaxJobs='9999999'>
-<Job Reference='28777-1' TemplateID='3575' ScreenID=''>
-<Title><![CDATA[Leading Hand Carpenter 1]]></Title>
-<SearchTitle><![CDATA[Leading Hand Carpenter]]></SearchTitle>
-<Description><![CDATA[Competitive Rates and Opportunity for Career Progression!]]></Description>
-<AdDetails><![CDATA[<ul>
-	<li><span style='color:rgb(0, 0, 128)'><strong>Competitive Salary</strong></span></li>
-	<li><span style='color:rgb(0, 0, 128)'><strong>Friendly working team environment</strong></span></li>
-	<li><span style='color:rgb(0, 0, 128)'><strong>Opportunity for career progression</strong></span></li>
-</ul>
-
-<p><br />
-<span style='color:rgb(0, 0, 128)'>Stellar Recruitment are looking for ambitious, capable and energetic people with a good dose of common sense to join our team. We work hard to be the best, we give it our all and we take pride in what we do.<br />
-<br />
-We are actively seeking a <strong>Leading Hand Carpenter</strong> to join with our client to commence work on a new commercial project, with an immediate start. It is essential that applicants for this role have previous experience in the commercial sector, and a proven record of quality workmanship behind them.<br />
-<br />
-<strong>To be successful in this role you will have:</strong><br />
-- 5+ years industry experience<br />
-- Proven ability to manage a team onsite<br />
-- To be confident reading &amp; working from technical specifications &amp; construction plans<br />
-- Hold a current Site Safe Certificate<br />
-- A clean full drivers licence (minimum of class 1)<br />
-- Your own reliable transport in order to get yourself to and from site<br />
-- Excellent communication and interpersonal skills<br />
-- Able to provide your own hand and power tools<br />
-<br />
-Ideally we are looking for a highly health and safety aware, positive and hardworking attitude. We are prepared to wait for the right person for this role.<br />
-<br />
-To apply for this role or for further information please contact <strong>Nicky</strong> at Stellar Workforce.<br />
-<br />
-<strong>Nicky Sutherland<br />
-DDI: 03 974 2440<br />
-Cell phone: 021 224 1496<br />
-Email: Nicky.s@stellarworkforce.co.nz</strong></span><br />
-&nbsp;</p>
-]]></AdDetails>
-<ApplicationEmail>nicky.s@stellarworkforce.co.nz</ApplicationEmail>
-<CONTACTDETAILS><CLASSIFICATION><![CDATA[Nicky Sutherland]]></CLASSIFICATION></CONTACTDETAILS>
-<ApplicationURL><![CDATA[http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1248071&src=WE]]></ApplicationURL>
-<ResidentsOnly>Yes</ResidentsOnly>
-<Items>
-<Item Name='Jobtitle'><![CDATA[Leading Hand Carpenter]]></Item>
-<Item Name='Bullet1'><![CDATA[A]]></Item>
-<Item Name='Bullet2'><![CDATA[B]]></Item>
-<Item Name='Bullet3'><![CDATA[C]]></Item>
-</Items>
-<Listing MarketSegments='Main'>
-<Classification Name='Location'>Canterbury</Classification>
-<Classification Name='Area'>Christchurch</Classification>
-<Classification Name='Classification'>TradesServices</Classification>
-<Classification Name='SubClassification'>CarpentryCabinetMaking</Classification>
-<Classification Name='WorkType'>FullTime</Classification></Listing>
-<Salary Type='HourlyRate' Min='25' Max='34.99' AdditionalText='' />
-<StandOut IsStandOut='false' LogoID='' Bullet1='' Bullet2='' Bullet3='' />
-</Job>
-
-<Job Reference='28777-2' TemplateID='3575' ScreenID=''>
-<Title><![CDATA[Leading Hand Carpenter 2]]></Title>
-<SearchTitle><![CDATA[Leading Hand Carpenter]]></SearchTitle>
-<Description><![CDATA[Competitive Rates and Opportunity for Career Progression!]]></Description>
-<AdDetails><![CDATA[<ul>
-	<li><span style='color:rgb(0, 0, 128)'><strong>Competitive Salary</strong></span></li>
-	<li><span style='color:rgb(0, 0, 128)'><strong>Friendly working team environment</strong></span></li>
-	<li><span style='color:rgb(0, 0, 128)'><strong>Opportunity for career progression</strong></span></li>
-</ul>
-
-<p><br />
-<span style='color:rgb(0, 0, 128)'>Stellar Recruitment are looking for ambitious, capable and energetic people with a good dose of common sense to join our team. We work hard to be the best, we give it our all and we take pride in what we do.<br />
-<br />
-We are actively seeking a <strong>Leading Hand Carpenter</strong> to join with our client to commence work on a new commercial project, with an immediate start. It is essential that applicants for this role have previous experience in the commercial sector, and a proven record of quality workmanship behind them.<br />
-<br />
-<strong>To be successful in this role you will have:</strong><br />
-- 5+ years industry experience<br />
-- Proven ability to manage a team onsite<br />
-- To be confident reading &amp; working from technical specifications &amp; construction plans<br />
-- Hold a current Site Safe Certificate<br />
-- A clean full drivers licence (minimum of class 1)<br />
-- Your own reliable transport in order to get yourself to and from site<br />
-- Excellent communication and interpersonal skills<br />
-- Able to provide your own hand and power tools<br />
-<br />
-Ideally we are looking for a highly health and safety aware, positive and hardworking attitude. We are prepared to wait for the right person for this role.<br />
-<br />
-To apply for this role or for further information please contact <strong>Nicky</strong> at Stellar Workforce.<br />
-<br />
-<strong>Nicky Sutherland<br />
-DDI: 03 974 2440<br />
-Cell phone: 021 224 1496<br />
-Email: Nicky.s@stellarworkforce.co.nz</strong></span><br />
-&nbsp;</p>
-]]></AdDetails>
-<ApplicationEmail>nicky.s@stellarworkforce.co.nz</ApplicationEmail>
-<CONTACTDETAILS><CLASSIFICATION><![CDATA[Nicky Sutherland]]></CLASSIFICATION></CONTACTDETAILS>
-<ApplicationURL><![CDATA[http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1248071&src=WE]]></ApplicationURL>
-<ResidentsOnly>Yes</ResidentsOnly>
-<Items>
-<Item Name='Jobtitle'><![CDATA[Leading Hand Carpenter]]></Item>
-<Item Name='Bullet1'><![CDATA[A]]></Item>
-<Item Name='Bullet2'><![CDATA[B]]></Item>
-<Item Name='Bullet3'><![CDATA[C]]></Item>
-</Items>
-<Listing MarketSegments='Main'>
-<Classification Name='Location'>Canterbury</Classification>
-<Classification Name='Area'>Christchurch</Classification>
-<Classification Name='Classification'>TradesServices</Classification>
-<Classification Name='SubClassification'>CarpentryCabinetMaking</Classification>
-<Classification Name='WorkType'>FullTime</Classification></Listing>
-<Salary Type='HourlyRate' Min='25' Max='34.99' AdditionalText='' />
-<StandOut IsStandOut='false' LogoID='' Bullet1='' Bullet2='' Bullet3='' />
-</Job>
-
-<Job Reference='28777-3' TemplateID='3575' ScreenID=''>
-<Title><![CDATA[Leading Hand Carpenter 3]]></Title>
-<SearchTitle><![CDATA[Leading Hand Carpenter]]></SearchTitle>
-<Description><![CDATA[Competitive Rates and Opportunity for Career Progression!]]></Description>
-<AdDetails><![CDATA[<ul>
-	<li><span style='color:rgb(0, 0, 128)'><strong>Competitive Salary</strong></span></li>
-	<li><span style='color:rgb(0, 0, 128)'><strong>Friendly working team environment</strong></span></li>
-	<li><span style='color:rgb(0, 0, 128)'><strong>Opportunity for career progression</strong></span></li>
-</ul>
-
-<p><br />
-<span style='color:rgb(0, 0, 128)'>Stellar Recruitment are looking for ambitious, capable and energetic people with a good dose of common sense to join our team. We work hard to be the best, we give it our all and we take pride in what we do.<br />
-<br />
-We are actively seeking a <strong>Leading Hand Carpenter</strong> to join with our client to commence work on a new commercial project, with an immediate start. It is essential that applicants for this role have previous experience in the commercial sector, and a proven record of quality workmanship behind them.<br />
-<br />
-<strong>To be successful in this role you will have:</strong><br />
-- 5+ years industry experience<br />
-- Proven ability to manage a team onsite<br />
-- To be confident reading &amp; working from technical specifications &amp; construction plans<br />
-- Hold a current Site Safe Certificate<br />
-- A clean full drivers licence (minimum of class 1)<br />
-- Your own reliable transport in order to get yourself to and from site<br />
-- Excellent communication and interpersonal skills<br />
-- Able to provide your own hand and power tools<br />
-<br />
-Ideally we are looking for a highly health and safety aware, positive and hardworking attitude. We are prepared to wait for the right person for this role.<br />
-<br />
-To apply for this role or for further information please contact <strong>Nicky</strong> at Stellar Workforce.<br />
-<br />
-<strong>Nicky Sutherland<br />
-DDI: 03 974 2440<br />
-Cell phone: 021 224 1496<br />
-Email: Nicky.s@stellarworkforce.co.nz</strong></span><br />
-&nbsp;</p>
-]]></AdDetails>
-<ApplicationEmail>nicky.s@stellarworkforce.co.nz</ApplicationEmail>
-<CONTACTDETAILS><CLASSIFICATION><![CDATA[Nicky Sutherland]]></CLASSIFICATION></CONTACTDETAILS>
-<ApplicationURL><![CDATA[http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1248071&src=WE]]></ApplicationURL>
-<ResidentsOnly>Yes</ResidentsOnly>
-<Items>
-<Item Name='Jobtitle'><![CDATA[Leading Hand Carpenter]]></Item>
-<Item Name='Bullet1'><![CDATA[A]]></Item>
-<Item Name='Bullet2'><![CDATA[B]]></Item>
-<Item Name='Bullet3'><![CDATA[C]]></Item>
-</Items>
-<Listing MarketSegments='Main'>
-<Classification Name='Location'>Canterbury</Classification>
-<Classification Name='Area'>Christchurch</Classification>
-<Classification Name='Classification'>TradesServices</Classification>
-<Classification Name='SubClassification'>CarpentryCabinetMaking</Classification>
-<Classification Name='WorkType'>FullTime</Classification></Listing>
-<Salary Type='HourlyRate' Min='25' Max='34.99' AdditionalText='' />
-<StandOut IsStandOut='false' LogoID='' Bullet1='' Bullet2='' Bullet3='' />
-</Job>
-</Client></FastLanePlus>
-";*/
-
-            #endregion
-
             bool useJXTSiteMapping = clientSetup.UseJXTSiteMappings;
             bool blnSuccess = false;
 
@@ -400,76 +252,6 @@ Email: Nicky.s@stellarworkforce.co.nz</strong></span><br />
             string TransformedXML = Utils.TransformXML(clientSetup.PosterTransformXSL, xml);
             _logger.DebugFormat("============\nTransformed XML:============\n" + TransformedXML);
             _logger.InfoFormat("[DONE] Transforming XML");
-
-            #region Temp transformed xml
-
-            /*TransformedXML = @"
-
-<JobPostRequest xmlns='http://schemas.servicestack.net/types'>
-<UserName>Organisation</UserName>
-<Password>Organisation123</Password>
-<AdvertiserId>8249</AdvertiserId>
-<ArchiveMissingJobs>true</ArchiveMissingJobs>
-<Listings>
-<JobListing>
-	<JobAdType>Normal</JobAdType>
-	<ReferenceNo>JO-1603-5197_145931830618774</ReferenceNo>
-	<JobTitle>Contract Product Manager</JobTitle>
-	<JobUrl>contract-product-manager</JobUrl>
-	<ShortDescription>Join this dynamic financial services organisation and utilise your extensive experience to help drive project delivery across the business.</ShortDescription>
-	<Bulletpoints>
-		<BulletPoint1>Senior Business Analyst position</BulletPoint1>
-		<BulletPoint2>Dynamic financial services organisation</BulletPoint2>
-		<BulletPoint3>Initial 4-month contract role</BulletPoint3>
-	</Bulletpoints>
-	<JobFullDescription><![CDATA[<p><b>Operational Excellence for Monash / Southeast University Partnership</b></p><p><b>Three year fixed-term appointment</b></p><p>Monash University is a world-class, research-intensive, global institution active on four continents. It is the first Australian University to be granted a licence to operate in China and has set up with Southeast University a Joint Graduate School and a Joint Research Institute in Suzhou.</p><p>Outstanding professional leadership will be vital to this higher education enterprise and to Monash University's ambition to raise its stature in China and to improve research and teaching excellence in Australia and China. The General Manager, operating in Suzhou, reports to the Pro Vice-Chancellor and the President of Monash Suzhou and will be expected to participate actively as a key senior member of Monash Suzhou by providing professional expertise on all operational matters. <br /><br />Fluent in written and spoken Mandarin and English, the successful candidate will have a strong general management background and an ability to deal with HR, budgetary, facilities and financial matters in a complex environment. Previous experience in and expertise of Chinese and Australian higher education operating environments will be highly desirable.<br /><br />If you feel you have the skills and experience to make this role a success, your application is encouraged.</p><h3><b>Enquiries</b></h3><p>Janie Fung, Project Manager - China, 03 990 24383</p><h3><b>Position Description</b></h3><p><el><img src='https://az29734.vo.msecnd.net/static/people/icons/icon_file_small.gif' alt='Download File'>&nbsp;<a href='https://secure.dc2.pageuppeople.com/apply/TransferRichTextFile.ashx?sData=Fwg6i4Eli-CvqEttJIIpKM_TBF8QaWpPuT8Df-ERmNbf-aWtPSTS6XBlqvykXGaYQgor794Nwwg%7e'>Mar PD - General Manager, Monash Suzhou Facility .pdf</a></el><br /></p><h3><b>Closing Date</b></h3><p><b></b></p><p>Sunday 10 April 2016, 11:55pm AEST</p>]]></JobFullDescription>
-	<ContactDetails>Emily Casey</ContactDetails>
-	<CompanyName />
-	<ConsultantID />
-	<PublicTransport>JO-1603-5197_145931830618774</PublicTransport>
-	<ResidentsOnly>false</ResidentsOnly>
-	<IsQualificationsRecognised>false</IsQualificationsRecognised>
-	<ShowLocationDetails>true</ShowLocationDetails>
-	<JobTemplateID>846</JobTemplateID>
-	<AdvertiserJobTemplateLogoID />
-	<Categories>
-		<Category>
-			<Classification>21</Classification>
-			<SubClassification>295</SubClassification>
-		</Category>
-	</Categories>
-	<ListingClassification>
-		<WorkType>4</WorkType>
-		<Sector>0</Sector>
-		<StreetAddress />
-		<Tags>0</Tags>
-		<Country>1</Country>
-		<Location>6</Location>
-		<Area>27</Area>
-	</ListingClassification>
-	<Salary>
-		<SalaryType>Annual</SalaryType>
-		<Min>0</Min>
-		<Max>0</Max>
-		<AdditionalText />
-		<ShowSalaryDetails>true</ShowSalaryDetails>
-	</Salary>
-	<ApplicationMethod>
-		<JobApplicationType>Default</JobApplicationType>
-		<ApplicationUrl />
-		<ApplicationEmail>emilyc.18774.7619@globalcareerlink.aplitrak.com</ApplicationEmail>
-	</ApplicationMethod>
-	<Referral>
-		<HasReferralFee>false</HasReferralFee>
-		<Amount>0</Amount>
-		<ReferralUrl />
-	</Referral>
-</JobListing>
-</Listings>
-</JobPostRequest>
-";
-            */
-            #endregion
 
             // Do the mapping 
             _logger.InfoFormat("Use JXT Site Mappings: " + useJXTSiteMapping);
@@ -586,6 +368,13 @@ Email: Nicky.s@stellarworkforce.co.nz</strong></span><br />
                                 {
                                     job.ListingClassification.WorkType = matchingWorkType.WorkTypeID;
                                 }
+
+                                #endregion
+
+                                #region Salary Type match
+
+                                //Salary types are not available in the webservice default request
+                                //therefore no mathcing can be done
 
                                 #endregion
                             }
@@ -849,7 +638,7 @@ Email: Nicky.s@stellarworkforce.co.nz</strong></span><br />
                                 // Need ProfessionID
                                 /*foreach (var item in jobListings.Listings)
                                 {
-                                
+
                                 }*/
                                 /*
                                 jobListings.Listings.Where(w => w.ListingClassification.Country == item.ClientCountryID
@@ -976,19 +765,24 @@ Email: Nicky.s@stellarworkforce.co.nz</strong></span><br />
         public bool ArchiveRGFJobs(GetAllClientSetupsToRun_Result clientSetup, JXTPosterTransform.Library.Methods.Client.PullJsonFromRGF.RGFJobBoardDataRoot data)
         {
 
-            if (data == null || data.jobBoards == null || data.jobBoards.jobboardlisting == null )
+            if (data == null || data.jobBoards == null || data.jobBoards.jobboardlisting == null)
                 return true;
 
-            var listings = data.jobBoards.jobboardlisting.upserted.Where(c => c.status.ToLower() == "unposted").Select(c=> new Job{ ReferenceNo = c.id }).ToList(); //(from m in data.jobBoards.jobboardlisting.removedIds select new Job { ReferenceNo = m }).ToList();
+            var listings = data.jobBoards.jobboardlisting.upserted.Where(c => c.status.ToLower() == "unposted").Select(c => new Job { ReferenceNo = c.id }).ToList(); //(from m in data.jobBoards.jobboardlisting.removedIds select new Job { ReferenceNo = m }).ToList();
 
             if (!listings.Any())
                 return true;
 
+            return ProcessArchiveJobs(clientSetup, listings);
+        }
+
+        public bool ProcessArchiveJobs(GetAllClientSetupsToRun_Result clientSetup, IEnumerable<Job> listings)
+        {
             ArchiveJobRequest archiveJobRequest = new ArchiveJobRequest();
             archiveJobRequest.AdvertiserId = clientSetup.AdvertiserId.Value;
             archiveJobRequest.UserName = clientSetup.AdvertiserUsername;
             archiveJobRequest.Password = clientSetup.AdvertiserPassword;
-            archiveJobRequest.Listings = listings;
+            archiveJobRequest.Listings = listings.ToList();
 
             string xmlToService = null;
             var serializer = new XmlSerializer(typeof(ArchiveJobRequest));
@@ -1014,7 +808,6 @@ Email: Nicky.s@stellarworkforce.co.nz</strong></span><br />
 
             return true;
         }
-
 
         public string Process(string xml, string serviceURL)
         {
@@ -1110,7 +903,7 @@ Email: Nicky.s@stellarworkforce.co.nz</strong></span><br />
 
                 // use the Http client to POST some content ( ‘theContent’ not yet defined). 
                 var response = await aClient.PostAsync(accountDetail.MiniJxtRestApi, new StringContent(payload, Encoding.UTF8, "application/json"));
-   
+
                 string contentResponse = await response.Content.ReadAsStringAsync();
 
                 JobResponse jobResponse = JObject.Parse(contentResponse).ToObject<JobResponse>();
@@ -1152,7 +945,7 @@ Email: Nicky.s@stellarworkforce.co.nz</strong></span><br />
             try
             {
                 string targetPath = ConfigurationManager.AppSettings["WebServiceEndPoint"] + "?format=json";//"http://webservice.mini.jxt.com.au/Get/DefaultList?format={0}";
-                _logger.DebugFormat("Request target path: {0}", targetPath); 
+                _logger.DebugFormat("Request target path: {0}", targetPath);
 
                 // Create a request using a URL that can receive a post. 
                 WebRequest request = WebRequest.Create(targetPath);
@@ -1179,7 +972,7 @@ Email: Nicky.s@stellarworkforce.co.nz</strong></span><br />
                 StreamReader reader = new StreamReader(dataStream);
                 // Read the content.
                 string responseFromServer = reader.ReadToEnd();
-                _logger.DebugFormat("==========Server response==========\n{0}", targetPath);
+                _logger.DebugFormat("==========Server response==========\n{0}", responseFromServer);
 
                 _logger.InfoFormat("Deserializing data");
                 JavaScriptSerializer ser = new JavaScriptSerializer();

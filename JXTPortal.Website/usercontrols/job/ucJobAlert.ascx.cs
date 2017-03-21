@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using JXTPortal.Entities;
+using JXTPortal.Common.Extensions;
 using System.Text.RegularExpressions;
 using System.Configuration;
 
@@ -13,7 +14,6 @@ namespace JXTPortal.Website.usercontrols.job
     public partial class ucJobAlert : System.Web.UI.UserControl
     {
         #region Declare variables
-        private string ContentValidationRegex = ConfigurationManager.AppSettings["ContentValidationRegex"];
         private SiteWorkTypeService _siteWorkTypeService;
         private SiteCountriesService _siteCountriesService;
         private SiteLocationService _siteLocationService;
@@ -439,7 +439,7 @@ namespace JXTPortal.Website.usercontrols.job
 
             if (!string.IsNullOrEmpty(txtKeywords.Text))
             {
-                if (Regex.IsMatch(txtKeywords.Text, ContentValidationRegex) == false)
+                if (!txtKeywords.Text.IsValidContent())
                 {
                     strError = String.Format("<li>{0}</li>", CommonFunction.GetResourceValue("ValidateNoHTMLContent"));
                 }

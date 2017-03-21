@@ -139,15 +139,6 @@ namespace JXTPortal.Website.usercontrols.peoplesearch {
         protected global::System.Web.UI.WebControls.Literal ltlLastModifiedDate;
         
         /// <summary>
-        /// UpdatePanel3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel3;
-        
-        /// <summary>
         /// phLastestResume control.
         /// </summary>
         /// <remarks>
@@ -164,6 +155,33 @@ namespace JXTPortal.Website.usercontrols.peoplesearch {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink linkDownloadResume;
+        
+        /// <summary>
+        /// UcLanguageLiteral2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral2;
+        
+        /// <summary>
+        /// downloadProfile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton downloadProfile;
+        
+        /// <summary>
+        /// UcLanguageLiteral3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral3;
         
         /// <summary>
         /// upSummary control.
@@ -1181,23 +1199,5 @@ namespace JXTPortal.Website.usercontrols.peoplesearch {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptReferences;
-        
-        /// <summary>
-        /// lbDownloadPdf control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbDownloadPdf;
-        
-        /// <summary>
-        /// UcLanguageLiteral264 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::JXTPortal.Website.usercontrols.common.ucLanguageLiteral UcLanguageLiteral264;
     }
 }

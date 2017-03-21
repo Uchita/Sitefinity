@@ -63,6 +63,11 @@ namespace JXTPortal.Website.job
         private string advertiserJobTemplateLogoFolder;
         #endregion
 
+        public BullhornIntegration()
+        {
+            _logger = LogManager.GetLogger(typeof(BullhornIntegration));
+        }
+
         #region Properties
 
         public IFileManager FileManagerService { get; set; }
@@ -392,6 +397,8 @@ namespace JXTPortal.Website.job
 
         #endregion
 
+
+
         private AdminIntegrations.Bullhorn _bhSettings;
         private AdminIntegrations.Bullhorn BullhornSettings
         {
@@ -399,7 +406,9 @@ namespace JXTPortal.Website.job
             {
                 if (_bhSettings == null)
                 {
+                    _logger.InfoFormat("Fetching BH settins for site {0}", SessionData.Site.SiteId);
                     _bhSettings = IntegrationsService.AdminIntegrationsForSiteGet(SessionData.Site.SiteId).Bullhorn;
+                    _logger.InfoFormat("{0} Bullhorn settigns for site", _bhSettings != null? "Found" : "Could not find");
                 }
                 return _bhSettings;
             }
@@ -412,19 +421,22 @@ namespace JXTPortal.Website.job
             {
                 if (_BullhornSettingsDefaultAdvertiserID == null)
                 {
+                    _logger.Info("Getting bullhorn default AdvertiserId");
                     if (BullhornSettings.DefaultAdvertiserUserID > 0)
                     {
                         using (Entities.AdvertiserUsers advUser = AdvertiserUsersService.GetByAdvertiserUserId(BullhornSettings.DefaultAdvertiserUserID))
                         {
+                            _logger.InfoFormat("Default advertiser found with id {0}", advUser.AdvertiserId);
                             _BullhornSettingsDefaultAdvertiserID = advUser.AdvertiserId;
                         }
                     }
+                    else
+                    {
+                        _logger.Info("No default user is set");
+                    }
                 }
-                if (_BullhornSettingsDefaultAdvertiserID.HasValue)
-                    return _BullhornSettingsDefaultAdvertiserID.Value;
-                else
-                    return 0;
 
+                return _BullhornSettingsDefaultAdvertiserID.GetValueOrDefault(0);
             }
         }
 
@@ -574,33 +586,34 @@ namespace JXTPortal.Website.job
             AdvertiserUserID = BullhornSettings.DefaultAdvertiserUserID;
             AdvertiserAccountType = PortalEnums.Advertiser.AccountType.Account; //always account type
 
-            if (Request["code"] != null || Request["error"] != null || Request["error_description"] != null)
+            if (Request["error"] != null || Request["error_description"] != null)
+            { 
+                DisplayPageLoadError(Request["error"] + " - " + Request["error_description"]);
+                return;
+            }
+
+            if (Request["code"] != null)
             {
-                if (Request["error"] != null || Request["error_description"] != null)
+                _logger.Info("Attempting to Authenticate");
+                string errorMsg;
+                bool newAuthSuccess = ProcessBullhornRedirect(out errorMsg);
+
+                if (newAuthSuccess)
                 {
-                    DisplayPageLoadError(Request["error"] + " - " + Request["error_description"]);
-                    return;
+                    string redirectBackToJobURL = Session["BHSessionData"].ToString();
+                    Session.Remove("BHSessionData");
+
+                    _logger.InfoFormat("Authentication success: Redirecting to {0}", redirectBackToJobURL);
+                    Response.Redirect(redirectBackToJobURL, true);
                 }
                 else
                 {
-                    string errorMsg;
-                    bool newAuthSuccess = ProcessBullhornRedirect(out errorMsg);
-
-                    if (newAuthSuccess)
-                    {
-                        string redirectBackToJobURL = Session["BHSessionData"].ToString();
-                        Session.Remove("BHSessionData");
-
-                        Response.Redirect(redirectBackToJobURL, true);
-                    }
-                    else
-                    {
-                        DisplayPageLoadError("Failed to authorize with Bullhorn.");
-                        return;
-                    }
+                    DisplayPageLoadError("Failed to authorize with Bullhorn.");
+                    return;
                 }
             }
 
+            _logger.InfoFormat("Is Postback: {0}", Page.IsPostBack);
             if (!Page.IsPostBack)
             {
                 //set to ViewState for future use
@@ -624,6 +637,8 @@ namespace JXTPortal.Website.job
 
         private void DisplayPageLoadError(string errorMessage)
         {
+            _logger.Warn(errorMessage);
+
             formJobFields.Visible = false;
             phInvalidAccountTypeMessage.Visible = true;
             ErrorMessage.Text = errorMessage;
@@ -720,47 +735,30 @@ namespace JXTPortal.Website.job
                         if (JXTjobID != null)
                         {
                             //get JXT job
-                            _logger.DebugFormat("JXTjobID: {0}; bhRecord.IsPublic: {0}", JXTjobID, bhRecord.IsPublic_Boolean);
+                            _logger.DebugFormat("JXTjobID: {0};", JXTjobID);
                             Entities.Jobs thisJob = JobsService.GetByJobId(JXTjobID.Value);
 
                             _logger.DebugFormat("JXT Job Found: {0}", (thisJob != null));
-                            //bh job record shows isPublic == true (ie LIVE)
-                            if (bhRecord.IsPublic_Boolean)
+                           
+                            //JXT job expired
+                            _logger.DebugFormat("JXT Job Expired value: {0}", thisJob.Expired);
+                            if ((thisJob.Expired.HasValue && thisJob.Expired.Value == (int)PortalEnums.Jobs.JobStatus.Expired) || thisJob.ExpiryDate < DateTime.Now)
                             {
-                                //JXT job expired
-                                _logger.DebugFormat("JXT Job Expired value: {0}", thisJob.Expired);
-                                if ((thisJob.Expired.HasValue && thisJob.Expired.Value == (int)PortalEnums.Jobs.JobStatus.Expired) || thisJob.ExpiryDate < DateTime.Now)
-                                {
-                                    //Update BH isPublic to false, Update JXT, display record
-                                    bool updateBHStatusSuccess = BullhornJobStatusUpdate(bhRecord.JobOrderID, true);
-                                    _logger.DebugFormat("BH Update Success: {0}", updateBHStatusSuccess);
-                                    jobIsEditable = false;
-                                }
-                                else // JXT job NOT expired
-                                {
-                                    //leave the expiry flags untouched display record
-                                }
+                                //Update BH isPublic to false, Update JXT, display record
+                                bool updateBHStatusSuccess = BullhornJobStatusUpdate(bhRecord.JobOrderID, true);
+                                _logger.DebugFormat("BH Update Success: {0}", updateBHStatusSuccess);
+                                jobIsEditable = false;
                             }
-                            else //BH record shows isPublic == false 
+                            else // JXT job NOT expired
                             {
-                                //only change JXT record to expired IF the JXT job is live
-                                if (thisJob.Expired.HasValue && thisJob.Expired.Value == (int)PortalEnums.Jobs.JobStatus.Live)
-                                {
-                                    _logger.Debug("About to Expire Job");
-
-                                    UpdateJobStatusToExpiredToJXT(JXTjobID.Value);
-
-                                    //because updating a job status from live to expired will trigger auto move from Jobs table to JobsArchived table
-                                    //we need to update the changes
-                                    JXTarchivedJobID = JXTjobID;
-                                    JXTjobID = null;
-                                }
+                                //leave the expiry flags untouched display record
                             }
                         }
                         else if (JXTarchivedJobID != null)
                         {
                             //found in JXT jobs archived table
                             bool updateBHStatusSuccess = BullhornJobStatusUpdate(bhRecord.JobOrderID, true);
+                            _logger.DebugFormat("BH Update Success: {0}", updateBHStatusSuccess);
                             jobIsEditable = false;
                         }
                     }
@@ -848,15 +846,22 @@ namespace JXTPortal.Website.job
 
         private bool AdvertiserUserAccountValid()
         {
+            _logger.Debug("Checking AdvertiserUserValidity");
             using (Entities.AdvertiserUsers advertiseruser = AdvertiserUsersService.GetByAdvertiserUserId(BullhornSettings.DefaultAdvertiserUserID))
             {
                 if (advertiseruser == null)
+                {
+                    _logger.Debug("no user");
                     return false;
+                }
 
                 using (Entities.Advertisers advertiser = AdvertisersService.GetByAdvertiserId(advertiseruser.AdvertiserId))
                 {
                     if (advertiser.SiteId != SessionData.Site.SiteId)
+                    {
+                        _logger.Debug("wrong site");
                         return false;
+                    }
                 }
 
                 if (advertiseruser.Validated == true && (advertiseruser.AccountStatus.HasValue && advertiseruser.AccountStatus == (int)PortalEnums.Advertiser.AccountStatus.Approved))
@@ -864,15 +869,18 @@ namespace JXTPortal.Website.job
                     // if locked and attempted within 1 hour - tell user their account has been locked - return
                     if (advertiseruser.Status == (int)PortalEnums.Admin.UserStatus.Locked || advertiseruser.Status == (int)PortalEnums.Admin.UserStatus.Closed)
                     {
+                        _logger.Debug("Account locked or closed");
                         return false;
                     }
                 }
             }
+            _logger.Debug("Advertiser User is valid");
             return true;
         }
 
         private bool BullhornJobRecordGet(int BHJobID, out BullhornRESTAPI.BHJobOrderRecord bhRecord, out string errorMsg)
         {
+            _logger.Debug("Getting bullhorn record");
             if (BullhornSettings == null
                 || string.IsNullOrEmpty(BullhornSettings.ClientKey)
                 || string.IsNullOrEmpty(BullhornSettings.ClientSecret)
@@ -881,6 +889,7 @@ namespace JXTPortal.Website.job
                 )
             {
                 errorMsg = "Incomplete Bullhorn settings: Client Key, Client Secret, Login Username and Login Password is required";
+                _logger.Warn(errorMsg);
                 bhRecord = null;
                 return false;
             }
@@ -890,6 +899,7 @@ namespace JXTPortal.Website.job
 
             if (!tokenGetSuccess)
             {
+                _logger.Warn("Failed to get bullhorn token");
                 bhRecord = null;
                 return false;
             }
@@ -901,17 +911,20 @@ namespace JXTPortal.Website.job
                 {
                     bhRecord = BullhornRESTAPI.BHJobGetByID(BHJobID, restToken);
                     errorMsg = null;
+                    _logger.Info("found record");
                     return true;
                 }
                 catch (Exception e)
                 {
                     bhRecord = null;
                     errorMsg = "Failed to retreive record. Contact JXT to refresh the Bullhorn token.";
+                    _logger.Warn(errorMsg);
                     return false;
                 }
             }
 
             errorMsg = "Failed to login to BullHorn.";
+            _logger.Warn(errorMsg);
             bhRecord = null;
             return false;
         }
@@ -923,43 +936,51 @@ namespace JXTPortal.Website.job
             BullhornRESTAPI.BHRestToken restToken = null;
             string errorMsg2 = null;
             bool tokenGetSuccess = BullhornRestTokenGet(out restToken, out errorMsg2);
+            _logger.InfoFormat("Updating BH Job status: BHId {0}; isExpired {1}", BHJobID, isExpired);
             return BullhornRESTAPI.BHJobUpdateByID(BHJobID, jsonObj, restToken);
         }
 
         private bool BullhornRestTokenGet(out BullhornRESTAPI.BHRestToken RESTToken, out string errorMsg)
         {
+            _logger.Info("Fetching BH Rest Token");
             bool apiLoginSuccess = BullhornRESTAPI.BullHornAPILogin(BullhornSettings.RESTAuthToken, out RESTToken);
 
             if (!apiLoginSuccess)
             {
+                _logger.Info("BH Login failed, Attempting refresh");
+
                 //try refresh token
                 BullhornRESTAPI.AuthorizeToken newAuthToken;
                 bool refreshTokenSuccess = BullhornRESTAPI.BullhornTokenRefresh(BullhornSettings.RESTAuthRefreshToken, out newAuthToken);
 
                 if (refreshTokenSuccess)
                 {
+                    _logger.Info("BH token refresh success");
                     IntegrationsService.BullhornRESTTokenUpdate(SessionData.Site.SiteId, newAuthToken.access_token, newAuthToken.refresh_token);
 
                     //reset variable
                     _bhSettings = null;
-
+                    _logger.Info("Attempting login with new token");
                     apiLoginSuccess = BullhornRESTAPI.BullHornAPILogin(newAuthToken.access_token, out RESTToken);
 
                     if (!apiLoginSuccess) //login with new credentials failed again
                     {
                         errorMsg = "Failed to login using auth access token.";
                         RESTToken = null;
+                        _logger.Warn(errorMsg);
                         return false;
                     }
                 }
                 else
                 {
+                    _logger.Info("BH token refresh failed");
+
                     if (Session["BHSessionData"] == null)
                     {
                         Session["BHSessionData"] = Request.Url;
                         //sends to authorize again
                         string authorizeRedirectURL = BullhornTokenResetURLGet();
-
+                        _logger.Warn("Redirecting back to Auth URL");
                         Response.Redirect(authorizeRedirectURL, true);
                     }
 
@@ -969,16 +990,20 @@ namespace JXTPortal.Website.job
 
                     errorMsg = "Failed to re-authorize for API token.";
                     RESTToken = null;
+                    _logger.Warn(errorMsg);
                     return false;
                 }
             }
 
             errorMsg = null;
+            _logger.Info("Successfully retrieved BH Token");
             return true;
         }
 
         private bool ProcessBullhornRedirect(out string errorMsg)
         {
+            _logger.Info("Processing redirect");
+
             string bhCode = Request["code"];
             string bhError = Request["error"];
             string bhErrorDesc = Request["error_description"];
@@ -986,6 +1011,7 @@ namespace JXTPortal.Website.job
             if (string.IsNullOrEmpty(bhCode))
             {
                 errorMsg = "Authentication failed. No authorization code detected.";
+                _logger.Warn(errorMsg);
                 return false;
             }
 
@@ -999,6 +1025,7 @@ namespace JXTPortal.Website.job
                 )
             {
                 errorMsg = "Incomplete Bullhorn settings: Client Key, Client Secret, Login Username and Login Password is required";
+                _logger.Warn(errorMsg);
                 return false;
             }
 
@@ -1023,6 +1050,7 @@ namespace JXTPortal.Website.job
             if (tokenGetSuccess == false)
             {
                 errorMsg = "Failed to exchange code to token";
+                _logger.Warn(errorMsg);
                 return false;
             }
 
@@ -1034,15 +1062,19 @@ namespace JXTPortal.Website.job
             if (tokenUpdate == false)
             {
                 errorMsg = "Failed to update token details";
+                _logger.Warn(errorMsg);
                 return false;
             }
 
             errorMsg = null;
+            _logger.Info("Successfully processed redirect");
             return true;
         }
 
         public string GenerateJsonFromInputFields()
         {
+            _logger.Info("Generating JSON");
+
             List<Category> categoryListing = new List<Category>();
             #region Pre-Processes
             categoryListing.Add(new Category { Classification = ddlProfession1.SelectedValue, SubClassification = ddlRole1.SelectedValue });
@@ -1082,12 +1114,24 @@ namespace JXTPortal.Website.job
                     JobApplicationType = ddlApplicationMethod.SelectedValue
                 }
             };
-            string json = new JavaScriptSerializer().Serialize(job);
+
+            string json = null;
+
+            try
+            {
+                json = new JavaScriptSerializer().Serialize(job);
+            }
+            catch (Exception e)
+            {
+                _logger.Error(e);
+            }
+
             return json;
         }
 
         private void AssignAddressGeocodes(JXTPortal.Entities.Jobs jobReferenceObj)
         {
+            _logger.Info("Assigninig address GeoCodes");
             AdminIntegrations.Integrations integrations = IntegrationsService.AdminIntegrationsForSiteGet(SessionData.Site.SiteId);
 
             //defaults
@@ -1097,12 +1141,12 @@ namespace JXTPortal.Website.job
 
             if (integrations != null && integrations.GoogleMap != null)
             {
-
                 //only assign anything to the geocode and address status if there is a server key in the integrations of the site
                 if (!string.IsNullOrWhiteSpace(integrations.GoogleMap.ServerKey) && integrations.GoogleMap.Valid)
                 {
                     if (string.IsNullOrWhiteSpace(txtAddress.Text))
                     {
+                        _logger.Info("Empty address, cannot geocode");
                         jobReferenceObj.AddressStatus = (int)JXTPortal.Entities.PortalEnums.Jobs.JobGeocodeStatus.Invalid;
                     }
                     else
@@ -1132,6 +1176,14 @@ namespace JXTPortal.Website.job
                         }
                     }
                 }
+                else
+                {
+                    _logger.Info("GoolgeMaps integration not valid");
+                }
+            }
+            else
+            {
+                _logger.Info("GoolgeMaps integration not enabled");
             }
         }
 
@@ -1147,10 +1199,14 @@ namespace JXTPortal.Website.job
 
         private void LoadExpiredJob(Entities.Jobs job, Entities.JobsArchive jobArchive)
         {
+            _logger.Info("Loading expired job");
+
             if (jobArchive != null)
             {
+                _logger.InfoFormat("Archived jobId: {0}", jobArchive.JobId);
                 expiredTitle.Text = jobArchive.JobName;
                 expiredDatePosted.Text = jobArchive.DatePosted.ToString(SessionData.Site.DateFormat + " hh:mm:ss tt");
+                
                 using (Entities.AdvertiserUsers advertiserusers = AdvertiserUsersService.GetByAdvertiserUserId((int)jobArchive.EnteredByAdvertiserUserId))
                 {
                     if (advertiserusers != null)
@@ -1167,8 +1223,9 @@ namespace JXTPortal.Website.job
                 pnhScripts.Visible = false;
                 formJobFields.Visible = false;
             }
-            else
+            else if (job != null)
             {
+                _logger.InfoFormat("Archived jobId: {0}", job.JobId);
                 expiredTitle.Text = job.JobName;
                 expiredDatePosted.Text = job.DatePosted.ToString(SessionData.Site.DateFormat + " hh:mm:ss tt");
                 using (Entities.AdvertiserUsers advertiserusers = AdvertiserUsersService.GetByAdvertiserUserId((int)job.EnteredByAdvertiserUserId))
@@ -1186,251 +1243,269 @@ namespace JXTPortal.Website.job
                 ExpiredArchivedDisplay.Visible = true;
                 pnhScripts.Visible = false;
                 formJobFields.Visible = false;
+            }
+            else
+            {
+                _logger.Info("Both Job and archived job are null");
+                expiredTitle.Text = string.Empty;
+                expiredDatePosted.Text = string.Empty;
+                expiredPostedBy.Text =string.Empty;
+                lblPostedByAdvertiserUser.Text = string.Empty;
+                expiredLastModified.Text = string.Empty;
+                expiredDescription.Text =  string.Empty;
+                expiredDateExpired.Text =  string.Empty;
+                expiredChkBoxExpired.Text = string.Empty;
 
+                ExpiredArchivedDisplay.Visible = true;
+                pnhScripts.Visible = false;
+                formJobFields.Visible = false;
             }
         }
 
         private void LoadJob(Entities.Jobs job)
         {
-            /*if (SessionData.AdvertiserUser != null)
+            _logger.Info("Loading Job");
+
+            if (job == null)
             {
-                txtApplicationEmailAddress.Text = SessionData.AdvertiserUser.ApplicationEmailAddress;
-            }*/
+                _logger.Error("Job is null");
+                DisplayPageLoadError("Invalid job item request");
+                return;
+            }
+
+            if (job.SiteId != SessionData.Site.SiteId)
+            {
+                 _logger.Error("Job is not valid on this site");
+                DisplayPageLoadError("Invalid job item request");
+                return;
+
+            }
 
             if (job.AdvertiserId != BullhornSettingsDefaultAdvertiserID)
             {
                 DisplayPageLoadError("Invalid advertiser user account");
+                return;
             }
 
-            if (job != null && job.SiteId == SessionData.Site.SiteId)
+            JobValidation(job);
+
+            ddlJobItemType.SelectedValue = job.JobItemTypeId.ToString();
+
+            if (job.Expired == (int)PortalEnums.Jobs.JobStatus.Live)
             {
-                JobValidation(job);
+                _logger.Info("Job is Live");
+                ddlJobItemType.Enabled = false;
 
-                ddlJobItemType.SelectedValue = job.JobItemTypeId.ToString();
-
-                if (job.JobItemTypeId == (int)PortalEnums.Jobs.JobItemType.Premium)
+                // Set Job Type Drop Down to have selected job type only
+                ddlJobItemType.Items.Clear();
+                TList<Entities.JobItemsType> jobitemtypes = JobItemsTypeService.GetBySiteId(SessionData.Site.SiteId);
+                jobitemtypes.Filter = string.Format("JobItemTypeParentId = {0} AND TotalNumberOfJobs = 1", job.JobItemTypeId);
+                if (jobitemtypes.Count > 0)
                 {
-                    // phJobStartDate.Visible = true;
+                    ddlJobItemType.Items.Add(new ListItem(jobitemtypes[0].JobItemTypeDescription, jobitemtypes[0].JobItemTypeParentId.ToString()));
                 }
 
-                if (job.Expired == (int)PortalEnums.Jobs.JobStatus.Live)
+                ltJobLiveMessage.Visible = true;
+                plEndFormMessage.Visible = true;
+            }
+
+            if (job.Expired != (int)PortalEnums.Jobs.JobStatus.Live && job.Expired != (int)PortalEnums.Jobs.JobStatus.Expired)
+            {
+                _logger.Info("Job is neither Live or expired");
+                tbStartDate.Enabled = false;
+                ibStartDate.Enabled = false;
+                rqStartDate.Enabled = false;
+                cvStartDate.Enabled = false;
+            }
+
+            //LoadAdvertiserUser((job.EnteredByAdvertiserUserId.HasValue) ? (int)job.EnteredByAdvertiserUserId : 0);
+            // Disable Friendly Url
+
+            txtFriendlyUrl.Enabled = false;
+
+            txtApplicationEmailAddress.Text = CommonService.DecodeString(job.ApplicationEmailAddress);
+            ddlWorkType.SelectedValue = job.WorkTypeId.ToString();
+            //ddlSalary.SelectedValue = job.SalaryId.ToString();
+            chkShowSalaryRange.Checked = job.ShowSalaryRange;
+            txtJobName.Text = CommonService.DecodeString(job.JobName.ToString());
+            txtDescription.Text = CommonService.DecodeString(job.Description.ToString());
+            txtFullDescription.Text = job.FullDescription.ToString();
+            txtRefNo.Text = CommonService.DecodeString(job.RefNo.ToString());
+            //chkVisible.Checked = job.Visible;
+            lblDatePosted.Text = job.DatePosted.ToString(SessionData.Site.DateFormat + " hh:mm:ss tt");
+            //expiry date display
+            lblExpiryDate.Text = job.ExpiryDate.ToString(SessionData.Site.DateFormat + " hh:mm:ss tt");
+            //expiry date changeable by user
+            tbExpiryDate.Text = string.Format("{0:" + SessionData.Site.DateFormat + "}", job.ExpiryDate);
+
+            chkJobExpired.Checked = (job.Expired.HasValue && job.Expired.Value == (int)PortalEnums.Jobs.JobStatus.Expired) ? true : false;
+            //txtJobItemPrice.Text = (job.JobItemPrice.HasValue) ? job.JobItemPrice.ToString() : string.Empty;
+            //chkBilled.Checked = job.Billed;
+            lblLastModified.Text = job.LastModified.ToString(SessionData.Site.DateFormat + " hh:mm:ss tt");
+            chkShowSalaryDetails.Checked = job.ShowSalaryDetails;
+            txtSalaryText.Text = (!string.IsNullOrEmpty(job.SalaryText)) ? CommonService.DecodeString(job.SalaryText.ToString()) : string.Empty;
+
+            // Set the Friendly Url if it is not Set
+            if (!String.IsNullOrEmpty(txtFriendlyUrl.Text.Trim()))
+                txtFriendlyUrl.Text = Common.Utils.UrlFriendlyName(job.JobName);
+            else
+                txtFriendlyUrl.Text = job.JobFriendlyName;
+            txtCompanyName.Text = CommonService.DecodeString(job.CompanyName);
+
+            //dataAdvertiserId.SelectedValue = job.AdvertiserId.ToString();
+
+            if (job.EnteredByAdvertiserUserId != null)
+            {
+                using (Entities.AdvertiserUsers advertiserusers = AdvertiserUsersService.GetByAdvertiserUserId((int)job.EnteredByAdvertiserUserId))
                 {
-                    ddlJobItemType.Enabled = false;
-
-                    // Set Job Type Drop Down to have selected job type only
-                    ddlJobItemType.Items.Clear();
-                    TList<Entities.JobItemsType> jobitemtypes = JobItemsTypeService.GetBySiteId(SessionData.Site.SiteId);
-                    jobitemtypes.Filter = string.Format("JobItemTypeParentId = {0} AND TotalNumberOfJobs = 1", job.JobItemTypeId);
-                    if (jobitemtypes.Count > 0)
-                    {
-                        ddlJobItemType.Items.Add(new ListItem(jobitemtypes[0].JobItemTypeDescription, jobitemtypes[0].JobItemTypeParentId.ToString()));
-                    }
-
-                    ltJobLiveMessage.Visible = true;
-                    plEndFormMessage.Visible = true;
-                }
-
-                if (job.Expired != (int)PortalEnums.Jobs.JobStatus.Live || job.Expired != (int)PortalEnums.Jobs.JobStatus.Expired)
-                {
-                    tbStartDate.Enabled = false;
-                    ibStartDate.Enabled = false;
-                    rqStartDate.Enabled = false;
-                    cvStartDate.Enabled = false;
-                }
-
-                //LoadAdvertiserUser((job.EnteredByAdvertiserUserId.HasValue) ? (int)job.EnteredByAdvertiserUserId : 0);
-                // Disable Friendly Url
-
-                txtFriendlyUrl.Enabled = false;
-
-                txtApplicationEmailAddress.Text = CommonService.DecodeString(job.ApplicationEmailAddress);
-                ddlWorkType.SelectedValue = job.WorkTypeId.ToString();
-                //ddlSalary.SelectedValue = job.SalaryId.ToString();
-                chkShowSalaryRange.Checked = job.ShowSalaryRange;
-                txtJobName.Text = CommonService.DecodeString(job.JobName.ToString());
-                txtDescription.Text = CommonService.DecodeString(job.Description.ToString());
-                txtFullDescription.Text = job.FullDescription.ToString();
-                txtRefNo.Text = CommonService.DecodeString(job.RefNo.ToString());
-                //chkVisible.Checked = job.Visible;
-                lblDatePosted.Text = job.DatePosted.ToString(SessionData.Site.DateFormat + " hh:mm:ss tt");
-                //expiry date display
-                lblExpiryDate.Text = job.ExpiryDate.ToString(SessionData.Site.DateFormat + " hh:mm:ss tt");
-                //expiry date changeable by user
-                tbExpiryDate.Text = string.Format("{0:" + SessionData.Site.DateFormat + "}", job.ExpiryDate);
-
-                chkJobExpired.Checked = (job.Expired.HasValue && job.Expired.Value == (int)PortalEnums.Jobs.JobStatus.Expired) ? true : false;
-                //txtJobItemPrice.Text = (job.JobItemPrice.HasValue) ? job.JobItemPrice.ToString() : string.Empty;
-                //chkBilled.Checked = job.Billed;
-                lblLastModified.Text = job.LastModified.ToString(SessionData.Site.DateFormat + " hh:mm:ss tt");
-                chkShowSalaryDetails.Checked = job.ShowSalaryDetails;
-                txtSalaryText.Text = (!string.IsNullOrEmpty(job.SalaryText)) ? CommonService.DecodeString(job.SalaryText.ToString()) : string.Empty;
-
-                // Set the Friendly Url if it is not Set
-                if (!String.IsNullOrEmpty(txtFriendlyUrl.Text.Trim()))
-                    txtFriendlyUrl.Text = Common.Utils.UrlFriendlyName(job.JobName);
-                else
-                    txtFriendlyUrl.Text = job.JobFriendlyName;
-                txtCompanyName.Text = CommonService.DecodeString(job.CompanyName);
-
-                //dataAdvertiserId.SelectedValue = job.AdvertiserId.ToString();
-
-                if (job.EnteredByAdvertiserUserId != null)
-                {
-                    using (Entities.AdvertiserUsers advertiserusers = AdvertiserUsersService.GetByAdvertiserUserId((int)job.EnteredByAdvertiserUserId))
-                    {
-                        if (advertiserusers != null)
-                            lblPostedByAdvertiserUser.Text = CommonService.DecodeString(advertiserusers.UserName);
-                        else
-                            lblPostedByAdvertiserUser.Text = "";
-                    }
-                }
-                else
-                {
-                    lblPostedByAdvertiserUser.Text = "";
-                }
-
-                if (job.LastModifiedByAdvertiserUserId != null)
-                {
-                    using (Entities.AdvertiserUsers advertiserusers = AdvertiserUsersService.GetByAdvertiserUserId((int)job.LastModifiedByAdvertiserUserId))
-                    {
-                        if (advertiserusers != null)
-                            lblLastModifiedByAdvertiserUserId.Text = CommonService.DecodeString(advertiserusers.UserName);
-                        else
-                            lblLastModifiedByAdvertiserUserId.Text = "";
-                    }
-                }
-                else
-                {
-                    phlastmodifiedByAdvuserID.Visible = false;
-                }
-
-
-                if (job.JobItemTypeId.HasValue)
-                    ddlJobItemType.SelectedValue = job.JobItemTypeId.ToString();
-
-                ddlApplicationMethod.SelectedValue = job.ApplicationMethod.ToString();
-
-                if (Convert.ToInt32(ddlApplicationMethod.SelectedValue) == 2)
-                    txtApplicationURL.Enabled = true;
-                else
-                    txtApplicationURL.Enabled = false;
-
-                if (job.ApplicationUrl != null)
-                {
-                    txtApplicationURL.Text = CommonService.DecodeString(job.ApplicationUrl.ToString());
-                }
-
-                if (!string.IsNullOrEmpty(job.Tags))
-                    txtTags.Text = CommonService.DecodeString(job.Tags.ToString());
-
-                ddlSalary.SelectedValue = job.SalaryTypeId.ToString();
-                //LoadSalaryFrom(job.SalaryTypeId);
-                txtSalaryLowerBand.Text = job.SalaryLowerBand.ToString();
-                //LoadSalaryTo(job.SalaryTypeId, job.CurrencyId, job.SalaryLowerBand);
-                txtSalaryUpperBand.Text = job.SalaryUpperBand.ToString();
-
-                if (job.JobTemplateId.HasValue)
-                {
-                    ddlJobTemplateID.SelectedValue = job.JobTemplateId.ToString();
-                    imgAdvJobTemplate.ImageUrl = string.Format("/getfile.aspx?jobtemplateid={0}&ver={1}", job.JobTemplateId.ToString(), job.LastModified.ToEpocTimestamp());
-
-                    imgAdvJobTemplate.Attributes.Add("style", "display:block");
-                }
-                else
-                {
-                    imgAdvJobTemplate.Attributes.Add("style", "display:none");
-                }
-
-                //dataSearchFieldExtension.Text = job.SearchFieldExtension.ToString();
-                //dataAdvertiserJobTemplateLogoID.Text = job.AdvertiserJobTemplateLogoId.ToString();
-                if (job.AdvertiserJobTemplateLogoId.GetValueOrDefault(0) > 0)
-                    ddlAdvertiserJobTemplateLogo.SelectedValue = Convert.ToString(job.AdvertiserJobTemplateLogoId);
-                //chkRequireLogonForExternalApplications.Checked = job.RequireLogonForExternalApplications;
-                chkShowLocationDetails.Checked = (job.ShowLocationDetails == null) ? false : (bool)job.ShowLocationDetails;
-                if (!string.IsNullOrEmpty(job.PublicTransport))
-                    txtPublicTransport.Text = CommonService.DecodeString(job.PublicTransport.ToString());
-                if (!string.IsNullOrEmpty(job.Address))
-                {
-                    HasAddressInputValue = true;  //flag for ascx use
-                    txtAddress.Text = CommonService.DecodeString(job.Address.ToString());
-
-                    if (job.JobLatitude != null && job.JobLongitude != null)
-                    {
-                        hfAddressLat.Value = job.JobLatitude.ToString();
-                        hfAddressLng.Value = job.JobLongitude.ToString();
-
-                        HasLatLngInputValues = true; //flag for ascx use
-                    }
-                }
-                txtContactDetails.Text = CommonService.DecodeString(job.ContactDetails.ToString());
-                if (!string.IsNullOrEmpty(job.JobContactPhone))
-                    txtJobContactPhone.Text = CommonService.DecodeString(job.JobContactPhone.ToString());
-                if (!string.IsNullOrEmpty(job.JobContactName))
-                    txtJobContactName.Text = CommonService.DecodeString(job.JobContactName.ToString());
-                chkQualificationsRecognised.Checked = job.QualificationsRecognised;
-                chkResidentOnly.Checked = job.ResidentOnly;
-                //txtDocumentLink.Text = job.DocumentLink.ToString();
-                txtBulletPoint1.Text = (string.IsNullOrEmpty(job.BulletPoint1)) ? "" : CommonService.DecodeString(job.BulletPoint1.ToString());
-                txtBulletPoint2.Text = (string.IsNullOrEmpty(job.BulletPoint2)) ? "" : CommonService.DecodeString(job.BulletPoint2.ToString());
-                txtBulletPoint3.Text = (string.IsNullOrEmpty(job.BulletPoint3)) ? "" : CommonService.DecodeString(job.BulletPoint3.ToString());
-                //chkHotJob.Checked = job.HotJob;
-                //isRepostJob = (job.SearchFieldExtension == "Repost");
-                foreach (JXTPortal.Entities.JobArea jobArea in JobAreaService.GetByJobId(job.JobId))
-                {
-                    using (JXTPortal.Entities.Area area = AreaService.GetByAreaId(jobArea.AreaId))
-                    {
-
-                        LoadLocation();
-                        CommonFunction.SetDropDownByValue(ddlLocation, area.LocationId.ToString());
-
-                        LoadArea();
-                        CommonFunction.SetDropDownByValue(ddlArea, jobArea.AreaId.ToString());
-                    }
-                }
-
-                using (TList<JXTPortal.Entities.JobRoles> jobRoles = JobRolesService.GetByJobId(job.JobId))
-                {
-                    if (jobRoles.Count > 0 && jobRoles[0] != null)
-                    {
-                        using (JXTPortal.Entities.Roles role = RolesService.GetByRoleId(jobRoles[0].RoleId.Value))
-                        {
-                            CommonFunction.SetDropDownByValue(ddlProfession1, role.ProfessionId.ToString());
-                            LoadRoles(role.ProfessionId, ref ddlRole1);
-                            CommonFunction.SetDropDownByValue(ddlRole1, jobRoles[0].RoleId.Value.ToString());
-                        }
-
-                    }
-
-                    if (jobRoles.Count > 1 && jobRoles[1] != null && jobRoles[1].RoleId.HasValue)
-                    {
-                        using (JXTPortal.Entities.Roles role = RolesService.GetByRoleId(jobRoles[1].RoleId.Value))
-                        {
-                            CommonFunction.SetDropDownByValue(ddlProfession2, role.ProfessionId.ToString());
-                            LoadRoles(role.ProfessionId, ref ddlRole2);
-                            CommonFunction.SetDropDownByValue(ddlRole2, jobRoles[1].RoleId.Value.ToString());
-                        }
-                    }
-
-                    if (jobRoles.Count > 2 && jobRoles[2] != null && jobRoles[2].RoleId.HasValue)
-                    {
-                        using (JXTPortal.Entities.Roles role = RolesService.GetByRoleId(jobRoles[2].RoleId.Value))
-                        {
-                            CommonFunction.SetDropDownByValue(ddlProfession3, role.ProfessionId.ToString());
-                            LoadRoles(role.ProfessionId, ref ddlRole3);
-                            CommonFunction.SetDropDownByValue(ddlRole3, jobRoles[2].RoleId.Value.ToString());
-                        }
-                    }
-
+                    if (advertiserusers != null)
+                        lblPostedByAdvertiserUser.Text = CommonService.DecodeString(advertiserusers.UserName);
+                    else
+                        lblPostedByAdvertiserUser.Text = "";
                 }
             }
             else
             {
-                DisplayPageLoadError("Invalid job item request");
+                lblPostedByAdvertiserUser.Text = "";
+            }
+
+            if (job.LastModifiedByAdvertiserUserId != null)
+            {
+                using (Entities.AdvertiserUsers advertiserusers = AdvertiserUsersService.GetByAdvertiserUserId((int)job.LastModifiedByAdvertiserUserId))
+                {
+                    if (advertiserusers != null)
+                        lblLastModifiedByAdvertiserUserId.Text = CommonService.DecodeString(advertiserusers.UserName);
+                    else
+                        lblLastModifiedByAdvertiserUserId.Text = "";
+                }
+            }
+            else
+            {
+                phlastmodifiedByAdvuserID.Visible = false;
+            }
+
+
+            if (job.JobItemTypeId.HasValue)
+                ddlJobItemType.SelectedValue = job.JobItemTypeId.ToString();
+
+            ddlApplicationMethod.SelectedValue = job.ApplicationMethod.ToString();
+
+            if (Convert.ToInt32(ddlApplicationMethod.SelectedValue) == 2)
+                txtApplicationURL.Enabled = true;
+            else
+                txtApplicationURL.Enabled = false;
+
+            if (job.ApplicationUrl != null)
+            {
+                txtApplicationURL.Text = CommonService.DecodeString(job.ApplicationUrl.ToString());
+            }
+
+            if (!string.IsNullOrEmpty(job.Tags))
+                txtTags.Text = CommonService.DecodeString(job.Tags.ToString());
+
+            ddlSalary.SelectedValue = job.SalaryTypeId.ToString();
+            //LoadSalaryFrom(job.SalaryTypeId);
+            txtSalaryLowerBand.Text = job.SalaryLowerBand.ToString();
+            //LoadSalaryTo(job.SalaryTypeId, job.CurrencyId, job.SalaryLowerBand);
+            txtSalaryUpperBand.Text = job.SalaryUpperBand.ToString();
+
+            if (job.JobTemplateId.HasValue)
+            {
+                ddlJobTemplateID.SelectedValue = job.JobTemplateId.ToString();
+                imgAdvJobTemplate.ImageUrl = string.Format("/getfile.aspx?jobtemplateid={0}&ver={1}", job.JobTemplateId.ToString(), job.LastModified.ToEpocTimestamp());
+
+                imgAdvJobTemplate.Attributes.Add("style", "display:block");
+            }
+            else
+            {
+                imgAdvJobTemplate.Attributes.Add("style", "display:none");
+            }
+
+            //dataSearchFieldExtension.Text = job.SearchFieldExtension.ToString();
+            //dataAdvertiserJobTemplateLogoID.Text = job.AdvertiserJobTemplateLogoId.ToString();
+            if (job.AdvertiserJobTemplateLogoId.GetValueOrDefault(0) > 0)
+                ddlAdvertiserJobTemplateLogo.SelectedValue = Convert.ToString(job.AdvertiserJobTemplateLogoId);
+            //chkRequireLogonForExternalApplications.Checked = job.RequireLogonForExternalApplications;
+            chkShowLocationDetails.Checked = (job.ShowLocationDetails == null) ? false : (bool)job.ShowLocationDetails;
+            if (!string.IsNullOrEmpty(job.PublicTransport))
+                txtPublicTransport.Text = CommonService.DecodeString(job.PublicTransport.ToString());
+            if (!string.IsNullOrEmpty(job.Address))
+            {
+                HasAddressInputValue = true;  //flag for ascx use
+                txtAddress.Text = CommonService.DecodeString(job.Address.ToString());
+
+                if (job.JobLatitude != null && job.JobLongitude != null)
+                {
+                    hfAddressLat.Value = job.JobLatitude.ToString();
+                    hfAddressLng.Value = job.JobLongitude.ToString();
+
+                    HasLatLngInputValues = true; //flag for ascx use
+                }
+            }
+            txtContactDetails.Text = CommonService.DecodeString(job.ContactDetails.ToString());
+            if (!string.IsNullOrEmpty(job.JobContactPhone))
+                txtJobContactPhone.Text = CommonService.DecodeString(job.JobContactPhone.ToString());
+            if (!string.IsNullOrEmpty(job.JobContactName))
+                txtJobContactName.Text = CommonService.DecodeString(job.JobContactName.ToString());
+            chkQualificationsRecognised.Checked = job.QualificationsRecognised;
+            chkResidentOnly.Checked = job.ResidentOnly;
+            //txtDocumentLink.Text = job.DocumentLink.ToString();
+            txtBulletPoint1.Text = (string.IsNullOrEmpty(job.BulletPoint1)) ? "" : CommonService.DecodeString(job.BulletPoint1.ToString());
+            txtBulletPoint2.Text = (string.IsNullOrEmpty(job.BulletPoint2)) ? "" : CommonService.DecodeString(job.BulletPoint2.ToString());
+            txtBulletPoint3.Text = (string.IsNullOrEmpty(job.BulletPoint3)) ? "" : CommonService.DecodeString(job.BulletPoint3.ToString());
+            //chkHotJob.Checked = job.HotJob;
+            //isRepostJob = (job.SearchFieldExtension == "Repost");
+            foreach (JXTPortal.Entities.JobArea jobArea in JobAreaService.GetByJobId(job.JobId))
+            {
+                using (JXTPortal.Entities.Area area = AreaService.GetByAreaId(jobArea.AreaId))
+                {
+
+                    LoadLocation();
+                    CommonFunction.SetDropDownByValue(ddlLocation, area.LocationId.ToString());
+
+                    LoadArea();
+                    CommonFunction.SetDropDownByValue(ddlArea, jobArea.AreaId.ToString());
+                }
+            }
+
+            using (TList<JXTPortal.Entities.JobRoles> jobRoles = JobRolesService.GetByJobId(job.JobId))
+            {
+                if (jobRoles.Count > 0 && jobRoles[0] != null)
+                {
+                    using (JXTPortal.Entities.Roles role = RolesService.GetByRoleId(jobRoles[0].RoleId.Value))
+                    {
+                        CommonFunction.SetDropDownByValue(ddlProfession1, role.ProfessionId.ToString());
+                        LoadRoles(role.ProfessionId, ref ddlRole1);
+                        CommonFunction.SetDropDownByValue(ddlRole1, jobRoles[0].RoleId.Value.ToString());
+                    }
+
+                }
+
+                if (jobRoles.Count > 1 && jobRoles[1] != null && jobRoles[1].RoleId.HasValue)
+                {
+                    using (JXTPortal.Entities.Roles role = RolesService.GetByRoleId(jobRoles[1].RoleId.Value))
+                    {
+                        CommonFunction.SetDropDownByValue(ddlProfession2, role.ProfessionId.ToString());
+                        LoadRoles(role.ProfessionId, ref ddlRole2);
+                        CommonFunction.SetDropDownByValue(ddlRole2, jobRoles[1].RoleId.Value.ToString());
+                    }
+                }
+
+                if (jobRoles.Count > 2 && jobRoles[2] != null && jobRoles[2].RoleId.HasValue)
+                {
+                    using (JXTPortal.Entities.Roles role = RolesService.GetByRoleId(jobRoles[2].RoleId.Value))
+                    {
+                        CommonFunction.SetDropDownByValue(ddlProfession3, role.ProfessionId.ToString());
+                        LoadRoles(role.ProfessionId, ref ddlRole3);
+                        CommonFunction.SetDropDownByValue(ddlRole3, jobRoles[2].RoleId.Value.ToString());
+                    }
+                }
             }
         }
 
         private void JobValidation(Entities.Jobs job)
         {
+            _logger.InfoFormat("Validating job : {0}", job.JobId);
             // You can't update the expired job.
             //if ((job.Expired.HasValue && job.Expired.Value == (int)PortalEnums.Jobs.JobStatus.Expired) || (job.Expired != (int)PortalEnums.Jobs.JobStatus.Draft && job.ExpiryDate < DateTime.Now))
             //{
@@ -1467,42 +1542,11 @@ namespace JXTPortal.Website.job
                 ddlRole2.Enabled = true;
                 ddlRole3.Enabled = true;
             }
-
-
-            using (TList<Entities.GlobalSettings> gs = GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId))
-            {
-                if (gs.Count > 0)
-                {
-                    // if Site is using Job Screening Process
-                    // Check if this job is expired/live/pending/suspended 
-                    // then redirect back to advertiser dash board
-                    if (gs[0].JobScreeningProcess.HasValue && gs[0].JobScreeningProcess.Value)
-                    {
-                        // Open if the job is draft
-                        if (job.Expired.HasValue && job.Expired == (int)PortalEnums.Jobs.JobStatus.Draft)
-                        {
-                        }
-                        // When the Job is live .. you can only make the Job Expire and can't change it to pending or suspended.
-                        else if (job.Expired.HasValue && job.Expired == (int)PortalEnums.Jobs.JobStatus.Live)
-                        {
-                        }
-                    }
-                }
-            }
-        }
-
-        private void UpdateJobStatusToExpiredToJXT(int JobID)
-        {
-            using (JXTPortal.Entities.Jobs job = JobsService.GetByJobId(JobID))
-            {
-                job.Expired = (int)PortalEnums.Jobs.JobStatus.Expired;
-
-                JobsService.Update(job);
-            }
         }
 
         private void UpdateJobDetailsToJXT(int JobID, out bool jobExpiredFromLiveStatus)
         {
+            _logger.InfoFormat("Updating Job details for JobId {0}", JobID);
             jobExpiredFromLiveStatus = false;
 
             using (JXTPortal.Entities.Jobs job = JobsService.GetByJobId(JobID))
@@ -1747,6 +1791,7 @@ namespace JXTPortal.Website.job
 
         private string BullhornTokenResetURLGet()
         {
+            
             //get site's integrations
             IntegrationsService iService = new IntegrationsService();
             AdminIntegrations.Integrations integrations = iService.AdminIntegrationsForSiteGet(SessionData.Site.SiteId);

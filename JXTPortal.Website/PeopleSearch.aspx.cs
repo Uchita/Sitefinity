@@ -583,20 +583,17 @@ namespace JXTPortal.Website
                 
                 memberid = Convert.ToInt32(drv["MemberID"]);
 
-                if (memberid != 0 && memberid > 0)
+                phDownloadResume.Visible = false;
+                if (memberid > 0)
                 {
                     memberResumeID = GetLatestResumeID(memberid);
+                    if (memberResumeID > 0)
+                    {
+                       hlDownLoadResume.NavigateUrl = "/download.aspx?type=mf&id=" + memberResumeID;
+                       phDownloadResume.Visible = true;
+                    }
                 }
                 
-                if (memberResumeID != 0 && memberid != 0)
-                {
-                    hlDownLoadResume.NavigateUrl = "/download.aspx?type=mf&id=" + memberResumeID;
-                }
-                else
-                {
-                    phDownloadResume.Visible = false;                    
-                }
-
                 lbDownload.CommandArgument = memberid.ToString();
 
                 // Genrates Member Public Profile URL

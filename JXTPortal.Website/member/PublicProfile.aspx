@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPages/Main.Master" AutoEventWireup="true"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPages/CustomMain.Master" AutoEventWireup="true"
     CodeBehind="PublicProfile.aspx.cs" Inherits="JXTPortal.Website.members.PublicProfile" %>
 
 <%@ Register Src="~/usercontrols/peoplesearch/ucPublicProfile.ascx" TagName="ucPublicProfile"

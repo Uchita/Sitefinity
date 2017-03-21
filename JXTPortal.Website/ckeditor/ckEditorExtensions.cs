@@ -15,9 +15,9 @@ namespace JXTPortal.Website.ckeditor.Extensions
         /// <remarks>
         /// If the ftpFolder starts with s3:// then we use the s3custom_config.js config
         /// </remarks>
-        public static void SetConfigForFTPFolder(this CKEditor.NET.CKEditorControl control, string ftpFolder)
+        public static void SetConfigForFTPFolder(this CKEditor.NET.CKEditorControl control, bool isUsingS3)
         {
-            if (ftpFolder.StartsWith("s3://"))
+            if (isUsingS3)
             {
                 control.CustomConfig = "s3custom_config.js";
             }

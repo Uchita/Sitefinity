@@ -13,13 +13,18 @@ using JXTPortal.Common;
 using JXTPortal.Entities;
 using JXTPostDataToFTP.Models;
 using log4net;
+using JXT.Integration.AWS;
+using JXTPortal.Core.FileManagement;
 
 namespace JXTPostDataToFTP
 {
     public class MemberXMLGenerator
     {
         private ILog _logger;
+        private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+        private string memberFileFolder;
 
+        public IFileManager FileManagerService { get; set; }
         IFileUploader _fileUploader;
 
         MembersService _membersService;
@@ -309,6 +314,28 @@ namespace JXTPostDataToFTP
                 try
                 {
                     int siteID = sitexml.SiteId;
+
+                    GlobalSettings globalSetting = GlobalSettingsService.GetBySiteId(siteID).FirstOrDefault();
+
+                    if (globalSetting != null)
+                    {
+                        if (globalSetting.FtpFolderLocation.StartsWith("s3://") == false)
+                        {
+                            memberFileFolder = ConfigurationManager.AppSettings["FTPHost"] + ConfigurationManager.AppSettings["MemberRootFolder"] + "/" + ConfigurationManager.AppSettings["MemberFilesFolder"];
+
+                            string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
+                            string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                            string ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+                            FileManagerService = new FTPClientFileManager(ftphosturl, ftpusername, ftppassword);
+                        }
+                        else
+                        {
+                            IAwsS3 s3 = new AwsS3();
+                            FileManagerService = new FileManager(s3);
+                            memberFileFolder = ConfigurationManager.AppSettings["AWSS3MemberRootFolder"] + ConfigurationManager.AppSettings["AWSS3MemberFilesFolder"];
+                        }
+                    }
+
                     DateTime lastRun = (string.IsNullOrEmpty(sitexml.LastModifiedDate) ? new DateTime(2012, 1, 1) : Convert.ToDateTime(sitexml.LastModifiedDate));
 
                     string dateformat = "dd/MM/yyyy";
@@ -713,10 +740,6 @@ namespace JXTPostDataToFTP
                         }
 
                         string errormessage = string.Empty;
-                        FtpClient ftpclient = new FtpClient();
-                        ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                        ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                        ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
                         
                         foreach (MemberFiles memberfile in MembersFilesList)
                         {
@@ -735,7 +758,8 @@ namespace JXTPostDataToFTP
                                     string filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], mf.MemberId, mf.MemberFileUrl);
                                     Stream ms = null;
                                     _logger.DebugFormat("Downloading file: {0}", filepath);
-                                    ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
+                                    ms = FileManagerService.DownloadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, mf.MemberId), mf.MemberFileUrl, out errormessage);
+
                                     ms.Position = 0;
                                     if (string.IsNullOrEmpty(errormessage))
                                     {
@@ -947,15 +971,8 @@ namespace JXTPostDataToFTP
 
                         if (!string.IsNullOrWhiteSpace(memberFile.MemberFileUrl))
                         {
-
-                            FtpClient ftpclient = new FtpClient();
-                            ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                            ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                            ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
-                            string filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], memberFile.MemberId, memberFile.MemberFileUrl);
                             Stream ms = null;
-                            ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
+                            ms = FileManagerService.DownloadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, memberFile.MemberId), memberFile.MemberFileUrl, out errormessage);
                             if (ms != null)
                             {
                                 ms.Position = 0;

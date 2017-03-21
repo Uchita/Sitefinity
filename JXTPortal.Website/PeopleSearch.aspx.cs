@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 using JXTPortal;
 using JXTPortal.Entities;
 using JXTPortal.Common;
+using log4net;
 
 namespace JXTPortal.Website
 {
@@ -145,7 +146,14 @@ namespace JXTPortal.Website
 
         }
 
+        ILog _logger;
+
         #endregion
+
+        public PeopleSearch()
+        {
+            _logger = LogManager.GetLogger(typeof(PeopleSearch));
+        }
 
         protected void Page_Init(object sender, EventArgs e)
         {
@@ -450,6 +458,7 @@ namespace JXTPortal.Website
 
         #endregion
 
+        
         protected void lbSearch_Click(object sender, EventArgs e)
         {
             CurrentPage = 0;
@@ -545,6 +554,10 @@ namespace JXTPortal.Website
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
+                int memberResumeID = 0;
+                int memberid = 0;
+                string htmlNotationEmail = "<a href='mailto:{0}' class='btn btn-default' title='Mail {1} {2}'><i class='fa fa-envelope tip'></i> {3} {4} </a>";
+
                 System.Data.DataRowView drv = e.Item.DataItem as System.Data.DataRowView;
 
                 HyperLink hlMemberPublicProfileURL = e.Item.FindControl("hlMemberPublicProfileURL") as HyperLink;
@@ -560,10 +573,27 @@ namespace JXTPortal.Website
                 Literal ltStatus = e.Item.FindControl("ltStatus") as Literal;
                 Literal ltEligibleToWorkIn = e.Item.FindControl("ltEligibleToWorkIn") as Literal;
                 LinkButton lbDownload = e.Item.FindControl("lbDownload") as LinkButton;
+                HyperLink hlDownLoadResume = e.Item.FindControl("hlDownLoadResume") as HyperLink;
+
+                PlaceHolder phDownloadProfile = e.Item.FindControl("phDownloadProfile") as PlaceHolder;
+                PlaceHolder phDownloadResume = e.Item.FindControl("phDownloadResume") as PlaceHolder;
 
                 lbDownload.Attributes.Add("title", CommonFunction.GetResourceValue("LabelDownload"));
 
-                int memberid = Convert.ToInt32(drv["MemberID"]);
+                
+                memberid = Convert.ToInt32(drv["MemberID"]);
+
+                phDownloadResume.Visible = false;
+                if (memberid > 0)
+                {
+                    memberResumeID = GetLatestResumeID(memberid);
+                    if (memberResumeID > 0)
+                    {
+                       hlDownLoadResume.NavigateUrl = "/download.aspx?type=mf&id=" + memberResumeID;
+                       phDownloadResume.Visible = true;
+                    }
+                }
+                
                 lbDownload.CommandArgument = memberid.ToString();
 
                 // Genrates Member Public Profile URL
@@ -572,7 +602,14 @@ namespace JXTPortal.Website
                 ltFirstName.Text = HttpUtility.HtmlEncode(drv["FirstName"].ToString());
                 ltLastName.Text = HttpUtility.HtmlEncode(drv["Surname"].ToString());
 
-                ltMail.Text = string.Format("<a href=\"mailto:{0}\" class=\"btn btn-default\" title=\"Mail {1} {2}\"><i class=\"fa fa-envelope tip\"></i></a>", drv["EmailAddress"], drv["FirstName"].ToString().Replace("\"", ""), drv["Surname"].ToString().Replace("\"", ""));
+                string memberName = HttpUtility.HtmlEncode(string.Format("{0} {1}", drv["FirstName"], drv["Surname"]));
+
+                ltMail.Text = string.Format(htmlNotationEmail, 
+                                            drv["EmailAddress"], 
+                                            drv["FirstName"], 
+                                            drv["Surname"],
+                                            CommonFunction.GetResourceValue("LabelContactEmail"),
+                                            memberName);
 
                 if (!string.IsNullOrWhiteSpace(drv["ShortBio"].ToString()))
                 {
@@ -695,6 +732,26 @@ namespace JXTPortal.Website
             }
 
             return text;
+        }
+
+        private int GetLatestResumeID(int currentMemberID)
+        {
+            _logger.Debug("GetLatestResumeID() method loaded");
+
+            MemberFilesService memberFilesService = new MemberFilesService();
+
+            var latestResume = memberFilesService.GetByMemberId(currentMemberID).Where(file => file.DocumentTypeId == 2).OrderByDescending(file => file.LastModifiedDate).FirstOrDefault();
+
+            if (latestResume != null)
+            {
+                _logger.DebugFormat("Latest resume Found! Returning File ID: {0}", latestResume.MemberFileId);
+                return latestResume.MemberFileId;
+            }
+            else
+            {
+                _logger.Debug("No resume found! Returning 0");
+                return 0;
+            }
         }
 
     }

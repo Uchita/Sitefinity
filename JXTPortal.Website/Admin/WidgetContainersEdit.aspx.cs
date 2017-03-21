@@ -73,7 +73,7 @@ public partial class WidgetContainersEdit : System.Web.UI.Page
 
     private string FTPFolderLocation
     {
-        get { return GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId)[0].FtpFolderLocation; }
+        get { return SessionData.Site.FileFolderLocation; }
     }
 
     #endregion
@@ -82,10 +82,10 @@ public partial class WidgetContainersEdit : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        txtJobHtml.SetConfigForFTPFolder(FTPFolderLocation);
-        txtCompanyHtml.SetConfigForFTPFolder(FTPFolderLocation);
-        txtSiteHtml.SetConfigForFTPFolder(FTPFolderLocation);
-        txtPeopleHtml.SetConfigForFTPFolder(FTPFolderLocation);
+        txtJobHtml.SetConfigForFTPFolder(SessionData.Site.IsUsingS3);
+        txtCompanyHtml.SetConfigForFTPFolder(SessionData.Site.IsUsingS3);
+        txtSiteHtml.SetConfigForFTPFolder(SessionData.Site.IsUsingS3);
+        txtPeopleHtml.SetConfigForFTPFolder(SessionData.Site.IsUsingS3);
 
         if (!Page.IsPostBack)
         {

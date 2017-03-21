@@ -4583,4 +4583,12 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <value>Summary</value>
     <comment>Summary</comment>
   </data>
+  <data name="LabelDownloadProfile" xml:space="preserve">
+    <value>Download Profile</value>
+    <comment>Download Profile</comment>
+  </data>
+  <data name="LabelDownloadResume" xml:space="preserve">
+    <value>Download Resume</value>
+    <comment>Download Resume</comment>
+  </data>
 </root>

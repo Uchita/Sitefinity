@@ -30,8 +30,12 @@ namespace JXTPortal.Website
     public partial class oauthcallback : System.Web.UI.Page
     {
         ILog _logger;
-
+        private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+        private string resumeFolder;
         #region Properties
+
+        public IFileManager FileManagerService { get; set; }
+
         public string ID
         {
             get { return Request.Params["id"]; }
@@ -149,6 +153,21 @@ namespace JXTPortal.Website
         protected void Page_Load(object sender, EventArgs e)
         {
             _logger.Debug("onPageLoad()");
+
+            if (!SessionData.Site.IsUsingS3)
+            {
+                resumeFolder = ConfigurationManager.AppSettings["FTPJobApplyResumeUrl"];
+
+                string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
+                string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                string ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+                FileManagerService = new FTPClientFileManager(ftphosturl, ftpusername, ftppassword);
+            }
+            else
+            {
+                resumeFolder = ConfigurationManager.AppSettings["AWSS3ResumePath"];
+            }
+
             System.Net.ServicePointManager.ServerCertificateValidationCallback = new System.Net.Security.RemoteCertificateValidationCallback(AcceptAllCertifications);
 
             OAuthErrorCheck();
@@ -293,21 +312,8 @@ namespace JXTPortal.Website
                                 }
                             }
 
-                            bool useFTP = (!string.IsNullOrEmpty(ConfigurationManager.AppSettings["FTPJobApplyResumeUrl"]));
-                            string ftpresumepath = string.Empty;
-                            string ftpusername = string.Empty;
-                            string ftppassword = string.Empty;
-
                             Regex r = new Regex("(?:[^a-z0-9.]|(?<=['\"])s)", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Compiled);
-                            FtpClient ftpclient = new FtpClient();
-                            ftpresumepath = ConfigurationManager.AppSettings["FTPJobApplyResumeUrl"];
-                            ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                            ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-                            ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                            ftpclient.Username = ftpusername;
-                            ftpclient.Password = ftppassword;
-
-
+                            
                             MemoryStream generatedDocument = new MemoryStream();
                             if (isHTML)
                             {
@@ -335,7 +341,7 @@ namespace JXTPortal.Website
 
                                 newjobapp.MemberResumeFile = filename;
 
-                                ftpclient.UploadFileFromStream(generatedDocument, ftpresumepath + filename, out errormessage);
+                                FileManagerService.UploadFile(bucketName, resumeFolder, filename, generatedDocument, out errormessage);
                             }
                             else
                             {
@@ -345,7 +351,7 @@ namespace JXTPortal.Website
 
                                 newjobapp.MemberResumeFile = filename;
 
-                                ftpclient.UploadFileFromStream(generatedDocument, ftpresumepath + filename, out errormessage);
+                                FileManagerService.UploadFile(bucketName, resumeFolder, filename, generatedDocument, out errormessage);
                             }
 
                             if (string.IsNullOrEmpty(errormessage))
@@ -439,22 +445,9 @@ namespace JXTPortal.Website
                                 jobapplicationemail = tracking.RetrieveEmail(domain);
                             }
                         }
-
-                      
-                        bool useFTP = (!string.IsNullOrEmpty(ConfigurationManager.AppSettings["FTPJobApplyResumeUrl"]));
-                        string ftpresumepath = string.Empty;
-                        string ftpusername = string.Empty;
-                        string ftppassword = string.Empty;
-
+                        
                         Regex r = new Regex("(?:[^a-z0-9.]|(?<=['\"])s)", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Compiled);
-                        FtpClient ftpclient = new FtpClient();
-                        ftpresumepath = ConfigurationManager.AppSettings["FTPJobApplyResumeUrl"];
-                        ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                        ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-                        ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                        ftpclient.Username = ftpusername;
-                        ftpclient.Password = ftppassword;
-
+                        
                         byte[] bytes = System.Convert.FromBase64String(data);
                         MemoryStream generatedDocument = new MemoryStream(bytes);
 
@@ -462,7 +455,7 @@ namespace JXTPortal.Website
 
                         newjobapp.MemberResumeFile = filename;
                         _logger.Debug(string.Format("FTPing the resume filename {0}", filename));
-                        ftpclient.UploadFileFromStream(generatedDocument, ftpresumepath + filename, out errormessage);
+                        FileManagerService.UploadFile(bucketName, resumeFolder, filename, generatedDocument, out errormessage);
 
                         if (string.IsNullOrEmpty(errormessage))
                         {
@@ -562,21 +555,8 @@ namespace JXTPortal.Website
                             }
                         }
 
-                        bool useFTP = (!string.IsNullOrEmpty(ConfigurationManager.AppSettings["FTPJobApplyResumeUrl"]));
-                        string ftpresumepath = string.Empty;
-                        string ftpusername = string.Empty;
-                        string ftppassword = string.Empty;
-
                         Regex r = new Regex("(?:[^a-z0-9.]|(?<=['\"])s)", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Compiled);
-                        FtpClient ftpclient = new FtpClient();
-                        ftpresumepath = ConfigurationManager.AppSettings["FTPJobApplyResumeUrl"];
-                        ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                        ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-                        ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                        ftpclient.Username = ftpusername;
-                        ftpclient.Password = ftppassword;
-
-
+                        
                         using (MemoryStream generatedDocument = new MemoryStream())
                         {
                             using (WordprocessingDocument package = WordprocessingDocument.Create(generatedDocument, WordprocessingDocumentType.Document))
@@ -602,7 +582,7 @@ namespace JXTPortal.Website
                             string filename = string.Format("{0}_Resume_{1}", newjobapp.JobApplicationId, DocumentName);
 
                             newjobapp.MemberResumeFile = filename;
-                            ftpclient.UploadFileFromStream(generatedDocument, ftpresumepath + filename, out errormessage);
+                            FileManagerService.UploadFile(bucketName, resumeFolder, filename, generatedDocument, out errormessage);
 
                             if (string.IsNullOrEmpty(errormessage))
                             {

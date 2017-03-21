@@ -23,10 +23,13 @@ namespace JXTPortal.Website.Admin
     public partial class ConsultantsEdit : System.Web.UI.Page
     {
         public ICacheFlusher CacheFlusher { get; set; }
+        public IFileManager FileManagerService { get; set; }
+        string consultantFolder;
 
         #region Declare Variables
 
         private int consultantId = 0;
+        private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
 
         #endregion
 
@@ -94,7 +97,7 @@ namespace JXTPortal.Website.Admin
 
         private string FTPFolderLocation
         {
-            get { return GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId)[0].FtpFolderLocation; }
+            get { return SessionData.Site.FileFolderLocation; }
         }
 
         #endregion
@@ -103,13 +106,27 @@ namespace JXTPortal.Website.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            tbShortDescription.SetConfigForFTPFolder(FTPFolderLocation);
-            tbFullDescription.SetConfigForFTPFolder(FTPFolderLocation);
-            tbTestimonial.SetConfigForFTPFolder(FTPFolderLocation);
-            txtMultiShortDescription.SetConfigForFTPFolder(FTPFolderLocation);
-            txtMultiFullDescription.SetConfigForFTPFolder(FTPFolderLocation);
-            txtMultiTestimonial.SetConfigForFTPFolder(FTPFolderLocation);
-            
+            if (!SessionData.Site.IsUsingS3)
+            {
+                consultantFolder = ConfigurationManager.AppSettings["FTPHost"] + ConfigurationManager.AppSettings["RootFolder"] + "/" + ConfigurationManager.AppSettings["ConsultantsFolder"] + "/";
+
+                string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
+                string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                string ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+                FileManagerService = new FTPClientFileManager(ftphosturl, ftpusername, ftppassword);
+            }
+            else
+            {
+                consultantFolder = ConfigurationManager.AppSettings["AWSS3MediaFolder"] + ConfigurationManager.AppSettings["AWSS3ConsultantsPath"];
+            }
+
+            tbShortDescription.SetConfigForFTPFolder(SessionData.Site.IsUsingS3);
+            tbFullDescription.SetConfigForFTPFolder(SessionData.Site.IsUsingS3);
+            tbTestimonial.SetConfigForFTPFolder(SessionData.Site.IsUsingS3);
+            txtMultiShortDescription.SetConfigForFTPFolder(SessionData.Site.IsUsingS3);
+            txtMultiFullDescription.SetConfigForFTPFolder(SessionData.Site.IsUsingS3);
+            txtMultiTestimonial.SetConfigForFTPFolder(SessionData.Site.IsUsingS3);
+
             if (!IsPostBack)
             {
                 loadForm();
@@ -162,7 +179,7 @@ namespace JXTPortal.Website.Admin
                         {
                             if (consultant.ImageUrl != null)
                             {
-                                imImage.ImageUrl = string.Format("/getfile.aspx?consultantid={0}&ver={1}",consultant.ConsultantId,consultant.LastModified.ToEpocTimestamp());
+                                imImage.ImageUrl = string.Format("/getfile.aspx?consultantid={0}&ver={1}", consultant.ConsultantId, consultant.LastModified.ToEpocTimestamp());
                                 imImage.Visible = true;
                                 cbRemoveImage.Visible = true;
                             }
@@ -187,7 +204,7 @@ namespace JXTPortal.Website.Admin
                             }
                         }
 
-                        ltLastModified.Text = (consultant.LastModified.HasValue) ? consultant.LastModified.Value.ToString(SessionData.Site.DateFormat + " hh:mm:ss tt") : string.Empty;  
+                        ltLastModified.Text = (consultant.LastModified.HasValue) ? consultant.LastModified.Value.ToString(SessionData.Site.DateFormat + " hh:mm:ss tt") : string.Empty;
                         tbSequence.Text = consultant.Sequence.ToString();
 
                         LoadLanguages(consultant);
@@ -277,7 +294,7 @@ namespace JXTPortal.Website.Admin
                     {
                         if (langnode.ChildNodes[0].InnerXml == langid.ToString())
                         {
-                            txtMultiTitle.Text =  Server.HtmlDecode(langnode["Title"].InnerXml);
+                            txtMultiTitle.Text = Server.HtmlDecode(langnode["Title"].InnerXml);
                             txtMultiFirstName.Text = HttpUtility.HtmlDecode(langnode["FirstName"].InnerXml);
                             txtMultiLastName.Text = HttpUtility.HtmlDecode(langnode["LastName"].InnerXml);
                             txtMultiPositionTitle.Text = HttpUtility.HtmlDecode(langnode["PositionTitle"].InnerXml);
@@ -460,18 +477,19 @@ namespace JXTPortal.Website.Admin
                     {
                         System.Drawing.Image objOriginalImage = System.Drawing.Image.FromStream(fuImage.FileContent);
 
-                        FtpClient ftpclient = new FtpClient();
                         string errormessage = string.Empty;
                         string extension = Utils.GetImageExtension(objOriginalImage);
-                        ftpclient.Host = ConfigurationManager.AppSettings["FTPFileManager"];
-                        ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                        ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-                        ftpclient.UploadFileFromStream(fuImage.FileContent, string.Format("{0}/{1}/Consultants_{2}.{3}", ftpclient.Host, ConfigurationManager.AppSettings["ConsultantsFolder"], consultant.ConsultantId, extension), out errormessage);
+
+                        FileManagerService.UploadFile(bucketName, consultantFolder, string.Format("Consultants_{0}.{1}", consultant.ConsultantId, extension), fuImage.FileContent, out errormessage);
 
                         if (string.IsNullOrWhiteSpace(errormessage))
                         {
                             consultant.ConsultantImageUrl = string.Format("Consultants_{0}.{1}", consultant.ConsultantId, extension);
                             ConsultantsService.Update(consultant);
+
+                            imImage.ImageUrl = string.Format("/media/{0}/{1}?ver={2}", ConfigurationManager.AppSettings["ConsultantsFolder"], consultant.ConsultantImageUrl, consultant.LastModified.ToEpocTimestamp());
+                            imImage.Visible = true;
+                            cbRemoveImage.Visible = true;
                         }
                     }
 
@@ -495,7 +513,7 @@ namespace JXTPortal.Website.Admin
                 String path = "consultants";
                 String consultantImage = string.Format("Consultant_{0}.jpg", ConsultantId);
 
-                CacheFlusher.FlushImage(siteUrl,path,consultantImage);
+                CacheFlusher.FlushImage(siteUrl, path, consultantImage);
             }
         }
 
@@ -676,7 +694,7 @@ namespace JXTPortal.Website.Admin
                     {
                         if (langnode.ChildNodes[0].InnerXml == langid.ToString())
                         {
-                            langnode["Title"].InnerText =  txtMultiTitle.Text;
+                            langnode["Title"].InnerText = txtMultiTitle.Text;
                             langnode["FirstName"].InnerText = txtMultiFirstName.Text;
                             langnode["LastName"].InnerText = txtMultiLastName.Text;
                             langnode["PositionTitle"].InnerText = txtMultiPositionTitle.Text;

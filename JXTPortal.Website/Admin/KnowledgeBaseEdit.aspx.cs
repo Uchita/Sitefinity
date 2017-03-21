@@ -62,7 +62,7 @@ public partial class KnowledgeBaseEdit : System.Web.UI.Page
 
     private string FTPFolderLocation
     {
-        get { return GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId)[0].FtpFolderLocation; }
+        get { return SessionData.Site.FileFolderLocation; }
     }
     #endregion
 
@@ -70,7 +70,7 @@ public partial class KnowledgeBaseEdit : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        txtKnowledgeBaseContent.SetConfigForFTPFolder(FTPFolderLocation);
+        txtKnowledgeBaseContent.SetConfigForFTPFolder(SessionData.Site.IsUsingS3);
         
         if (SessionData.AdminUser == null)
         {

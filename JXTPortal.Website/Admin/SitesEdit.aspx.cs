@@ -24,8 +24,11 @@ using SectionIO;
 
 public partial class SitesEdit : System.Web.UI.Page
 {
-   
-    public ICacheFlusher CacheFlusher {get;set;}
+
+    public ICacheFlusher CacheFlusher { get; set; }
+    public IFileManager FileManagerService { get; set; }
+    public string siteFolder;
+    private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
 
     public SitesEdit()
     {
@@ -90,6 +93,19 @@ public partial class SitesEdit : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!SessionData.Site.IsUsingS3)
+        {
+            siteFolder = ConfigurationManager.AppSettings["FTPHost"] + ConfigurationManager.AppSettings["RootFolder"] + "/" + ConfigurationManager.AppSettings["SitesFolder"] + "/";
+
+            string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
+            string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+            string ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+            FileManagerService = new FTPClientFileManager(ftphosturl, ftpusername, ftppassword);
+        }
+        else
+        {
+            siteFolder = ConfigurationManager.AppSettings["AWSS3MediaFolder"] + ConfigurationManager.AppSettings["AWSS3SitesFolder"];
+        }
 
         if (!Page.IsPostBack)
         {
@@ -155,14 +171,10 @@ public partial class SitesEdit : System.Web.UI.Page
             if ((flAdminSiteLogo.PostedFile != null) && flAdminSiteLogo.PostedFile.ContentLength > 0)
             {
                 System.Drawing.Image originalImage = System.Drawing.Image.FromStream(flAdminSiteLogo.PostedFile.InputStream);
-
-                FtpClient ftpclient = new FtpClient();
                 string errormessage = string.Empty;
                 string extension = Utils.GetImageExtension(originalImage);
-                ftpclient.Host = ConfigurationManager.AppSettings["FTPFileManager"];
-                ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-                ftpclient.UploadFileFromStream(flAdminSiteLogo.PostedFile.InputStream, string.Format("{0}/{1}/Sites_{2}.{3}", ftpclient.Host, ConfigurationManager.AppSettings["SitesFolder"], site.SiteId, extension), out errormessage);
+
+                FileManagerService.UploadFile(bucketName, siteFolder, string.Format("Sites_{0}.{1}", site.SiteId, extension), flAdminSiteLogo.PostedFile.InputStream, out errormessage);
 
                 if (string.IsNullOrWhiteSpace(errormessage))
                 {
@@ -188,7 +200,7 @@ public partial class SitesEdit : System.Web.UI.Page
         CacheFlusher.FlushImage(siteUrl, path, siteLogoName);
 
         if (String.IsNullOrEmpty(ltlMessage.Text))
-            Response.Redirect("sites.aspx");      
+            Response.Redirect("sites.aspx");
     }
 
     protected void btnReturn_Click(object sender, EventArgs e)
@@ -339,7 +351,7 @@ public partial class SitesEdit : System.Web.UI.Page
 
             Response.OutputStream.Write(file, 0, file.Length);
             Response.ContentType = "application/json";
-            Response.End();            
+            Response.End();
         }
     }
 
@@ -350,7 +362,7 @@ public partial class SitesEdit : System.Web.UI.Page
         using (var siteGlobalSettings = GlobalSettingsService.GetBySiteId(SiteId))
         {
             var siteSettings = siteGlobalSettings.FirstOrDefault();
-            
+
             if (siteSettings == null)
             {
                 Response.Redirect("/admin/sites.aspx");
@@ -396,7 +408,7 @@ public partial class SitesEdit : System.Web.UI.Page
         public string changefreq;
     }
 
-    
+
 }
 
 

@@ -17,9 +17,13 @@ namespace JXTPortal.Website
     {
         #region Declare variables
 
+        private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+        private string advertiserFolder, jobTemplateFolder, advertiserJobTemplateLogoFolder, consultantFolder;
+
         #endregion
 
         #region Properties
+        public IFileManager FileManagerService { get; set; }
 
         private int AdvertiserID
         {
@@ -143,6 +147,26 @@ namespace JXTPortal.Website
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!SessionData.Site.IsUsingS3)
+            {
+                advertiserFolder = string.Format("{0}{1}/{2}/", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["RootFolder"], ConfigurationManager.AppSettings["AdvertisersFolder"]);
+                jobTemplateFolder = string.Format("{0}{1}/{2}/", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["RootFolder"], ConfigurationManager.AppSettings["JobTemplatesFolder"]);
+                advertiserJobTemplateLogoFolder = string.Format("{0}{1}/{2}/", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["RootFolder"], ConfigurationManager.AppSettings["AdvertiserJobTemplateLogoFolder"]);
+                consultantFolder = string.Format("{0}{1}/{2}/", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["RootFolder"], ConfigurationManager.AppSettings["ConsultantsFolder"]);
+
+                string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
+                string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                string ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+                FileManagerService = new FTPClientFileManager(ftphosturl, ftpusername, ftppassword);
+            }
+            else
+            {
+                advertiserFolder = ConfigurationManager.AppSettings["AWSS3MediaFolder"] + ConfigurationManager.AppSettings["AWSS3AdvertisersPath"];
+                jobTemplateFolder = ConfigurationManager.AppSettings["AWSS3MediaFolder"] + ConfigurationManager.AppSettings["AWSS3JobTemplatesFolder"];
+                advertiserJobTemplateLogoFolder = ConfigurationManager.AppSettings["AWSS3MediaFolder"] + ConfigurationManager.AppSettings["AWSS3AdvertiserJobTemplateLogoFolder"];
+                consultantFolder = ConfigurationManager.AppSettings["AWSS3MediaFolder"] + ConfigurationManager.AppSettings["AWSS3ConsultantsPath"];
+            }
+
             if (!Page.IsPostBack)
             {
                 if (FileID > 0)
@@ -234,19 +258,15 @@ namespace JXTPortal.Website
                         if (!string.IsNullOrWhiteSpace(advertiser.AdvertiserLogoUrl))
                         {
                             string errormessage = string.Empty;
-
-                            FtpClient ftpclient = new FtpClient();
-                            ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                            ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                            ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
-                            string filepath = string.Format("{0}{1}/{2}/{3}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["RootFolder"], ConfigurationManager.AppSettings["AdvertisersFolder"], advertiser.AdvertiserLogoUrl);
                             Stream ms = null;
-                            ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
-                            ms.Position = 0;
 
-                            advertiserlogo = ((MemoryStream)ms).ToArray();
+                            ms = FileManagerService.DownloadFile(bucketName, advertiserFolder, advertiser.AdvertiserLogoUrl, out errormessage);
+                            if (string.IsNullOrEmpty(errormessage))
+                            {
+                                ms.Position = 0;
 
+                                advertiserlogo = ((MemoryStream)ms).ToArray();
+                            }
                         }
                         else
                         {
@@ -257,9 +277,11 @@ namespace JXTPortal.Website
                         {
                             Response.ContentType = contenttype;
                         }
-
-                        Response.BinaryWrite(advertiserlogo);
-                        Response.End();
+                        if (advertiserlogo != null)
+                        {
+                            Response.BinaryWrite(advertiserlogo);
+                            Response.End();
+                        }
                     }
                     else
                     {
@@ -321,15 +343,10 @@ namespace JXTPortal.Website
                             if (!string.IsNullOrWhiteSpace(advertiserJobTemplateLogo.JobTemplateLogoUrl))
                             {
                                 string errormessage = string.Empty;
-
-                                FtpClient ftpclient = new FtpClient();
-                                ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                                ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                                ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
-                                string filepath = string.Format("{0}{1}/{2}/{3}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["RootFolder"], ConfigurationManager.AppSettings["AdvertiserJobTemplateLogoFolder"], advertiserJobTemplateLogo.JobTemplateLogoUrl);
                                 Stream ms = null;
-                                ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
+
+                                ms = FileManagerService.DownloadFile(bucketName, advertiserJobTemplateLogoFolder, advertiserJobTemplateLogo.JobTemplateLogoUrl, out errormessage);
+
                                 ms.Position = 0;
 
                                 jobtemplatelogo = ((MemoryStream)ms).ToArray();
@@ -377,15 +394,11 @@ namespace JXTPortal.Website
                             if (!string.IsNullOrWhiteSpace(jobTemplate.JobTemplateLogoUrl))
                             {
                                 string errormessage = string.Empty;
-
-                                FtpClient ftpclient = new FtpClient();
-                                ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                                ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                                ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
                                 string filepath = string.Format("{0}{1}/{2}/{3}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["RootFolder"], ConfigurationManager.AppSettings["JobTemplatesFolder"], jobTemplate.JobTemplateLogoUrl);
                                 Stream ms = null;
-                                ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
+
+                                ms = FileManagerService.DownloadFile(bucketName, jobTemplateFolder, jobTemplate.JobTemplateLogoUrl, out errormessage);
+
                                 ms.Position = 0;
 
                                 jobtemplatelogo = ((MemoryStream)ms).ToArray();
@@ -446,15 +459,9 @@ namespace JXTPortal.Website
                         if (!string.IsNullOrWhiteSpace(consultant.ConsultantImageUrl))
                         {
                             string errormessage = string.Empty;
-
-                            FtpClient ftpclient = new FtpClient();
-                            ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                            ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                            ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
-                            string filepath = string.Format("{0}{1}/{2}/{3}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["RootFolder"], ConfigurationManager.AppSettings["ConsultantsFolder"], consultant.ConsultantImageUrl);
                             Stream ms = null;
-                            ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
+
+                            ms = FileManagerService.DownloadFile(bucketName, consultantFolder, consultant.ConsultantImageUrl, out errormessage);
                             ms.Position = 0;
 
                             consultantimage = ((MemoryStream)ms).ToArray();

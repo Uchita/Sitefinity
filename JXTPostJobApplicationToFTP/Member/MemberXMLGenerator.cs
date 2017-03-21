@@ -17,6 +17,8 @@ using System.Net.Configuration;
 using Tamir.SharpSsh;
 using System.Diagnostics;
 using log4net;
+using JXT.Integration.AWS;
+using JXTPortal.Core.FileManagement;
 
 namespace JXTPostJobApplicationToFTP
 {
@@ -24,6 +26,10 @@ namespace JXTPostJobApplicationToFTP
     {
         ILog _logger;
         IFileUploader _fileUploader;
+        private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+        private string memberFileFolder;
+
+        public IFileManager FileManagerService { get; set; }
 
         private GlobalSettingsService _GlobalSettingsService = null;
         private GlobalSettingsService GlobalSettingsService
@@ -63,7 +69,7 @@ namespace JXTPostJobApplicationToFTP
             MembersService memberService = new MembersService();
             MemberFilesService memberFilesService = new MemberFilesService();
             string memberFilePath = string.Empty;
-           
+
             var xml = XDocument.Load(memberFlePath);
 
             // Query the data and write out a subset of contacts
@@ -82,13 +88,35 @@ namespace JXTPostJobApplicationToFTP
             foreach (SitesXML siteXml in siteXmlList)
             {
                 int siteId = siteXml.SiteId;
+
+                GlobalSettings globalSetting = GlobalSettingsService.GetBySiteId(siteId).FirstOrDefault();
+
+                if (globalSetting != null)
+                {
+                    if (globalSetting.FtpFolderLocation.StartsWith("s3://") == false)
+                    {
+                        memberFileFolder = ConfigurationManager.AppSettings["FTPHost"] + ConfigurationManager.AppSettings["MemberRootFolder"] + "/" + ConfigurationManager.AppSettings["MemberFilesFolder"];
+
+                        string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
+                        string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                        string ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+                        FileManagerService = new FTPClientFileManager(ftphosturl, ftpusername, ftppassword);
+                    }
+                    else
+                    {
+                        IAwsS3 s3 = new AwsS3();
+                        FileManagerService = new FileManager(s3);
+                        memberFileFolder = ConfigurationManager.AppSettings["AWSS3MemberRootFolder"] + ConfigurationManager.AppSettings["AWSS3MemberFilesFolder"];
+                    }
+                }
+
                 DateTime lastRun = (string.IsNullOrEmpty(siteXml.LastJobApplicationId) ? new DateTime(2012, 1, 1) : Convert.ToDateTime(siteXml.LastJobApplicationId));
                 var filesList = new List<FileNames>();
-                
+
                 try
                 {
                     var dataSet = memberService.CustomGetNewValidMembers(siteId, lastRun);
-                    
+
                     var memberFilesDataTable = dataSet.Tables[1];
 
                     string siteUrl = GetUrl(siteId);
@@ -97,14 +125,14 @@ namespace JXTPostJobApplicationToFTP
                     var members = GetValidatedMembers(dataSet, memberIds, siteXml.Mode);
 
                     _logger.InfoFormat("Found {0} members", members.Count());
-                    
+
                     // For each member
                     foreach (DataRow drMember in members)
                     {
                         var memberXml = new StringBuilder();
                         var memberCoverLetterXml = new StringBuilder();
                         var memberResumeXml = new StringBuilder();
-                        
+
                         // Get the member XML
                         memberXml.AppendFormat(@"
 <member>
@@ -182,14 +210,9 @@ namespace JXTPostJobApplicationToFTP
                                         {
                                             string errormessage = string.Empty;
 
-                                            FtpClient ftpclient = new FtpClient();
-                                            ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                                            ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                                            ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
-                                            string filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], memberFile.MemberId, memberFile.MemberFileUrl);
                                             Stream ms = null;
-                                            ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
+                                            ms = FileManagerService.DownloadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, memberFile.MemberId), memberFile.MemberFileUrl, out errormessage);
+
                                             if (ms != null)
                                             {
                                                 ms.Position = 0;
@@ -226,14 +249,8 @@ namespace JXTPostJobApplicationToFTP
                                         {
                                             string errormessage = string.Empty;
 
-                                            FtpClient ftpclient = new FtpClient();
-                                            ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                                            ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                                            ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
-                                            string filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], memberFile.MemberId, memberFile.MemberFileUrl);
                                             Stream ms = null;
-                                            ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
+                                            ms = FileManagerService.DownloadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, memberFile.MemberId), memberFile.MemberFileUrl, out errormessage);
 
                                             if (ms != null)
                                             {
@@ -294,7 +311,7 @@ namespace JXTPostJobApplicationToFTP
 
                     string errormsg = string.Empty;
                     bool uploaded = _fileUploader.UploadFiles(siteXml, filesList);
-                    
+
 
                     // Only if successful upload then update the LastModifed Date in the XML.
                     // So that when it runs next it runs from the successful Run.
@@ -330,13 +347,13 @@ namespace JXTPostJobApplicationToFTP
 
             if (memberIds.Count() > 0)
             {
-                selectClause = string.Format("MemberID IN ({0})",string.Join(",", memberIds));
+                selectClause = string.Format("MemberID IN ({0})", string.Join(",", memberIds));
             }
             else if (exportMode == "FullCandidate")
             {
                 selectClause = "ISNULL(Title, '') <> '' AND ISNULL(FirstName, '') <> '' AND ISNULL(Surname, '') <> '' AND ISNULL(EmailAddress, '') <> '' AND ISNULL(HomePhone, '') <> '' AND ISNULL(Address1, '') <> ''";
             }
-               
+
             return string.IsNullOrWhiteSpace(selectClause) ? membersDataTable.Select() : membersDataTable.Select(selectClause);
         }
 
@@ -354,7 +371,7 @@ namespace JXTPostJobApplicationToFTP
                             if (countries != null)
                             {
                                 string code = countries.Abbr;
-                                _logger.InfoFormat("found the default CountryCode {0} for SiteId {1}", code, siteId); 
+                                _logger.InfoFormat("found the default CountryCode {0} for SiteId {1}", code, siteId);
                                 return code;
                             }
                         }
@@ -362,7 +379,7 @@ namespace JXTPostJobApplicationToFTP
                 }
             }
 
-            _logger.InfoFormat("Failed to find a default CountryCode for SiteId {1}", siteId); 
+            _logger.InfoFormat("Failed to find a default CountryCode for SiteId {1}", siteId);
             return string.Empty;
         }
 

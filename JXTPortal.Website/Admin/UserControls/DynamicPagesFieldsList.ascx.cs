@@ -134,7 +134,7 @@ namespace JXTPortal.Website.Admin.UserControls
 
         private string FTPFolderLocation
         {
-            get { return GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId)[0].FtpFolderLocation; }
+            get { return SessionData.Site.FileFolderLocation; }
         }
         #endregion
 
@@ -145,7 +145,7 @@ namespace JXTPortal.Website.Admin.UserControls
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            txtPageContent.SetConfigForFTPFolder(FTPFolderLocation);
+            txtPageContent.SetConfigForFTPFolder(SessionData.Site.IsUsingS3);
             
             // To Enable CkFinder
             //txtPageContent.FileBrowserImageBrowseUrl = "/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Images"; //&currentFolder=/files/images/

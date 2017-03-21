@@ -24,10 +24,13 @@ namespace JXTPortal.Website.advertiser
         private SitesService _sitesservice;
         private JobsService _jobsService;
         private JobsArchiveService _jobsArchiveService;
-
+        private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+        private string customFolder;
         #endregion
 
         #region Properties
+
+        public IFileManager FileManagerService { get; set; }
 
         private MembersService _membersservice = null;
 
@@ -111,6 +114,20 @@ namespace JXTPortal.Website.advertiser
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!SessionData.Site.IsUsingS3)
+            {
+                customFolder = ConfigurationManager.AppSettings["FTPCustomJobApplications"];
+
+                string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
+                string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                string ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+                FileManagerService = new FTPClientFileManager(ftphosturl, ftpusername, ftppassword);
+            }
+            else
+            {
+                customFolder = ConfigurationManager.AppSettings["AWSS3CustomJobApplicationsPath"];
+            }
+
             if (SessionData.AdvertiserUser == null)
             {
                 Response.Redirect("~/advertiser/login.aspx?returnurl=" + Server.UrlEncode(Request.Url.PathAndQuery));
@@ -342,15 +359,12 @@ namespace JXTPortal.Website.advertiser
 
         protected void dataPDF_Click(object sender, EventArgs e)
         {
-            string FTPFolderLocation = ConfigurationManager.AppSettings["FTPCustomJobApplications"];
             string errormessage = string.Empty;
             Stream downloadedfile = null;
-            FtpClient ftpclient = new FtpClient();
-            ftpclient.Host = ConfigurationManager.AppSettings["FTPFileManager"];
-            ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-            ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
 
-            ftpclient.DownloadFileToClient(FTPFolderLocation + dataPDF.CommandArgument, ref downloadedfile, out errormessage);
+            downloadedfile = FileManagerService.DownloadFile(bucketName, customFolder, dataPDF.CommandArgument, out errormessage);
+
+
             if (string.IsNullOrEmpty(errormessage) && downloadedfile.Length > 0)
             {
                 downloadedfile.Position = 0;

@@ -16,7 +16,12 @@ namespace JXTPortal.Website.member
 {
     public partial class CVBuilder : System.Web.UI.Page
     {
+        private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+        private string candidateFolder, memberFileFolder;
+
         #region Properties
+        public IFileManager FileManagerService { get; set; }
+
         ArrayList wizardlist;
         private DynamicPagesService _dynamicPagesService = null;
 
@@ -248,6 +253,22 @@ namespace JXTPortal.Website.member
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!SessionData.Site.IsUsingS3)
+            {
+                candidateFolder = ConfigurationManager.AppSettings["FTPMemberProfilePicUrl"];
+                memberFileFolder = ConfigurationManager.AppSettings["FTPHost"] + ConfigurationManager.AppSettings["MemberRootFolder"] + "/" + ConfigurationManager.AppSettings["MemberFilesFolder"];
+
+                string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
+                string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                string ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+                FileManagerService = new FTPClientFileManager(ftphosturl, ftpusername, ftppassword);
+            }
+            else
+            {
+                candidateFolder = ConfigurationManager.AppSettings["AWSS3MediaFolder"] + ConfigurationManager.AppSettings["AWSS3CandidateFolder"];
+                memberFileFolder = ConfigurationManager.AppSettings["AWSS3MemberRootFolder"] + ConfigurationManager.AppSettings["AWSS3MemberFilesFolder"];
+            }
+
             shortmonths = new List<string>();
             shortmonths.Add("Jan");
             shortmonths.Add("Jan");
@@ -1986,10 +2007,6 @@ namespace JXTPortal.Website.member
 
                             if (fuProfile.HasFile && fuProfile.PostedFile.ContentLength > 0)
                             {
-                                FtpClient ftpclient = new FtpClient();
-                                ftpclient.Host = ConfigurationManager.AppSettings["FTPMemberProfilePicUrl"];
-                                ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                                ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
                                 string errormsg = string.Empty;
                                 string filename = string.Format("Profile_{0}{1}", SessionData.Member.MemberId, System.IO.Path.GetExtension(fuProfile.PostedFile.FileName));
 
@@ -2019,7 +2036,8 @@ namespace JXTPortal.Website.member
 
                                 if (!hasError)
                                 {
-                                    ftpclient.UploadFileFromStream(fuProfile.PostedFile.InputStream, ConfigurationManager.AppSettings["FTPMemberProfilePicUrl"] + filename, out errormsg);
+                                    FileManagerService.UploadFile(bucketName, candidateFolder, filename, fuProfile.PostedFile.InputStream, out errormsg);
+
                                     if (string.IsNullOrEmpty(errormsg))
                                     {
                                         member.ProfilePicture = filename;
@@ -2089,17 +2107,14 @@ namespace JXTPortal.Website.member
 
                                 if (hasExistingCoverLetter)
                                 {
-                                    FtpClient ftpclient = new FtpClient();
-                                    ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                                    ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                                    ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
                                     string extension = string.Empty;
                                     extension = Path.GetExtension(fuCoverletter.PostedFile.FileName);
 
-                                    string filepath = string.Format("{0}{1}/{2}/{3}/MemberFiles_{4}{5}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], SessionData.Member.MemberId, mf.MemberFileId, mf.MemberFileSearchExtension);
+                                    string filepath = string.Format("MemberFiles_{0}{1}", mf.MemberFileId, mf.MemberFileSearchExtension);
                                     string errormessage = string.Empty;
 
-                                    ftpclient.UploadFileFromStream(fuCoverletter.PostedFile.InputStream, filepath, out errormessage);
+                                    FileManagerService.UploadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, SessionData.Member.MemberId), filepath, fuCoverletter.PostedFile.InputStream, out errormessage);
+
                                     mf.MemberFileUrl = string.Format("MemberFiles_{0}{1}", mf.MemberFileId, extension);
                                 }
 
@@ -2122,15 +2137,10 @@ namespace JXTPortal.Website.member
 
                             if (hasExistingCoverLetter)
                             {
-                                FtpClient ftpclient = new FtpClient();
-                                ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                                ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                                ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
-                                string filepath = string.Format("{0}{1}/{2}/{3}/MemberFiles_{4}{5}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], SessionData.Member.MemberId, mf.MemberFileId, mf.MemberFileSearchExtension);
+                                string filepath = string.Format("MemberFiles_{0}{1}", SessionData.Member.MemberId, mf.MemberFileId, mf.MemberFileSearchExtension);
                                 string errormessage = string.Empty;
 
-                                ftpclient.UploadFileFromStream(new MemoryStream(Encoding.UTF8.GetBytes(tbWriteCoverLetter.Text)), filepath, out errormessage);
+                                FileManagerService.UploadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, SessionData.Member.MemberId), filepath, new MemoryStream(Encoding.UTF8.GetBytes(tbWriteCoverLetter.Text)), out errormessage);
                             }
 
                             mf.MemberFileTitle = "CoverLetter.txt";
@@ -2155,33 +2165,28 @@ namespace JXTPortal.Website.member
                             {
                                 if (MemberFilesService.Insert(mf))
                                 {
-                                    FtpClient ftpclient = new FtpClient();
-                                    ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                                    ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                                    ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
                                     string extension = string.Empty;
 
                                     if (rbUploadCoverLetter.Checked)
                                     {
                                         extension = Path.GetExtension(fuCoverletter.PostedFile.FileName);
-                                        string filepath = string.Format("{0}{1}/{2}/{3}/MemberFiles_{4}{5}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], SessionData.Member.MemberId, mf.MemberFileId, extension);
+                                        string filepath = string.Format("MemberFiles_{0}{1}", mf.MemberFileId, extension);
                                         string errormessage = string.Empty;
 
-                                        ftpclient.UploadFileFromStream(fuCoverletter.PostedFile.InputStream, filepath, out errormessage);
+                                        FileManagerService.UploadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, SessionData.Member.MemberId), filepath, fuCoverletter.PostedFile.InputStream, out errormessage);
                                     }
                                     else
                                     {
                                         if (!string.IsNullOrEmpty(tbWriteCoverLetter.Text))
                                         {
                                             extension = ".txt";
-                                            string filepath = string.Format("{0}{1}/{2}/{3}/MemberFiles_{4}{5}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], SessionData.Member.MemberId, mf.MemberFileId, extension);
+                                            string filepath = string.Format("MemberFiles_{0}{1}", mf.MemberFileId, extension);
                                             string errormessage = string.Empty;
 
-                                            ftpclient.UploadFileFromStream(new MemoryStream(Encoding.UTF8.GetBytes(tbWriteCoverLetter.Text)), filepath, out errormessage);
+                                            FileManagerService.UploadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, SessionData.Member.MemberId), filepath, new MemoryStream(Encoding.UTF8.GetBytes(tbWriteCoverLetter.Text)), out errormessage);
                                         }
                                     }
-                                    mf.MemberFileUrl = string.Format("MemberFiles_{0}.{1}", mf.MemberFileId, extension);
+                                    mf.MemberFileUrl = string.Format("MemberFiles_{0}{1}", mf.MemberFileId, extension);
                                     mf.MemberFileTitle = mf.MemberFileName;
                                     mf.MemberId = SessionData.Member.MemberId;
                                     mf.MemberFileTypeId = MemberFileTypeID(fuCoverletter.PostedFile.FileName);
@@ -2249,20 +2254,16 @@ namespace JXTPortal.Website.member
                         {
                             if (hasExistingResume)
                             {
-                                FtpClient ftpclient = new FtpClient();
-                                ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                                ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                                ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
                                 string extension = string.Empty;
 
                                 if (rbUploadCoverLetter.Checked)
                                 {
                                     extension = Path.GetExtension(fuResume.PostedFile.FileName);
-                                    string filepath = string.Format("{0}{1}/{2}/{3}/MemberFiles_{4}{5}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], SessionData.Member.MemberId, mf.MemberFileId, extension);
+                                    string filepath = string.Format("MemberFiles_{0}{1}", mf.MemberFileId, extension);
                                     string errormessage = string.Empty;
 
-                                    ftpclient.UploadFileFromStream(fuResume.PostedFile.InputStream, filepath, out errormessage);
+                                    FileManagerService.UploadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, SessionData.Member.MemberId), filepath, fuResume.PostedFile.InputStream, out errormessage);
+
                                     mf.MemberFileUrl = string.Format("MemberFiles_{0}{1}", mf.MemberFileId, extension);
                                 }
 
@@ -2275,18 +2276,14 @@ namespace JXTPortal.Website.member
                             {
                                 if (MemberFilesService.Insert(mf))
                                 {
-                                    FtpClient ftpclient = new FtpClient();
-                                    ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                                    ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                                    ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
                                     string extension = string.Empty;
 
                                     extension = Path.GetExtension(fuResume.PostedFile.FileName);
-                                    string filepath = string.Format("{0}{1}/{2}/{3}/MemberFiles_{4}{5}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], SessionData.Member.MemberId, mf.MemberFileId, extension);
+                                    string filepath = string.Format("MemberFiles_{0}{1}", mf.MemberFileId, extension);
                                     string errormessage = string.Empty;
 
-                                    ftpclient.UploadFileFromStream(fuResume.PostedFile.InputStream, filepath, out errormessage);
+                                    FileManagerService.UploadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, SessionData.Member.MemberId), filepath, fuResume.PostedFile.InputStream, out errormessage);
+                                    
                                     mf.MemberFileUrl = string.Format("MemberFiles_{0}{1}", mf.MemberFileId, extension);
 
                                     if (MemberFilesService.Update(mf))

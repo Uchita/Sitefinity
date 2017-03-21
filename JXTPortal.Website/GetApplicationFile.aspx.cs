@@ -18,6 +18,12 @@ namespace JXTPortal.Website
 {
     public partial class GetApplicationFile : System.Web.UI.Page
     {
+        private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+        public IFileManager FileManagerService { get; set; }
+
+        private string coverLetterFolder;
+        private string resumeFolder;
+
         private int JobApplicationID
         {
             get
@@ -64,6 +70,22 @@ namespace JXTPortal.Website
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!SessionData.Site.IsUsingS3)
+            {
+                coverLetterFolder = ConfigurationManager.AppSettings["FTPJobApplyCoverLetterUrl"];
+                resumeFolder = ConfigurationManager.AppSettings["FTPJobApplyResumeUrl"];
+
+                string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
+                string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                string ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+                FileManagerService = new FTPClientFileManager(ftphosturl, ftpusername, ftppassword);
+            }
+            else
+            {
+                coverLetterFolder = ConfigurationManager.AppSettings["AWSS3CoverLetterPath"];
+                resumeFolder = ConfigurationManager.AppSettings["AWSS3ResumePath"];
+            }
+
             GetFile();
         }
 
@@ -96,66 +118,22 @@ namespace JXTPortal.Website
 
                         if (isValid)
                         {
-                            bool useFTP = (!string.IsNullOrEmpty(ConfigurationManager.AppSettings["FTPJobApplyResumeUrl"]));
-                            string ftpclpath = string.Empty;
-                            string ftpresumepath = string.Empty;
-                            string ftpusername = string.Empty;
-                            string ftppassword = string.Empty;
-                            string errormessage = string.Empty;
-                            FtpClient ftpclient = new FtpClient();
-                            if (useFTP)
-                            {
-                                ftpclpath = ConfigurationManager.AppSettings["FTPJobApplyCoverLetterUrl"];
-                                ftpresumepath = ConfigurationManager.AppSettings["FTPJobApplyResumeUrl"];
-                                ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                                ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-                            }
-
-
                             if (DocType == (int)PortalEnums.JobApplications.DocumentType.CoverLetter)
                             {
                                 if (!string.IsNullOrEmpty(jobapp.MemberCoverLetterFile))
                                 {
-                                    if (useFTP)
+                                    Stream downloadedfile = null;
+                                    string errormessage = string.Empty;
+
+                                    downloadedfile = FileManagerService.DownloadFile(bucketName, coverLetterFolder, jobapp.MemberCoverLetterFile, out errormessage);
+
+                                    if (string.IsNullOrEmpty(errormessage) && downloadedfile.Length > 0)
                                     {
-                                        Stream downloadedfile = null;
-
-                                        ftpclient.Host = ftpclpath;
-                                        ftpclient.Username = ftpusername;
-                                        ftpclient.Password = ftppassword;
-
-                                        ftpclient.DownloadFileToClient(ftpclpath + jobapp.MemberCoverLetterFile, ref downloadedfile, out errormessage);
-
-                                        if (string.IsNullOrEmpty(errormessage) && downloadedfile.Length > 0)
-                                        {
-                                            downloadedfile.Position = 0;
-                                            this.Response.ContentType = "application/octet-stream";
-                                            this.Response.AppendHeader("Content-Disposition", "attachment;filename=" + jobapp.MemberCoverLetterFile);
-                                            this.Response.BinaryWrite(((MemoryStream)downloadedfile).ToArray());
-                                            this.Response.End();
-                                        }
-                                    }
-                                    else
-                                    {
-
-                                        string strFilePath = System.Configuration.ConfigurationManager.AppSettings["ApplicationUploadCoverLetterPaths"];
-                                        string strFileFullPath = strFilePath + jobapp.MemberCoverLetterFile;
-                                        string strMimeType = Entities.PortalEnums.MimeTypes.GetMimeType(System.IO.Path.GetExtension(strFileFullPath));
-
-                                        if (System.IO.File.Exists(strFileFullPath))
-                                        {
-                                            // Get the Mime Type of the File
-                                            if (strMimeType.Length > 0)
-                                                this.Response.ContentType = strMimeType;
-                                            else
-                                                this.Response.ContentType = "application/octet-stream";
-
-                                            this.Response.AppendHeader("Content-Disposition", "attachment;filename=" + jobapp.MemberCoverLetterFile);
-                                            this.Response.BinaryWrite(Utils.DecryptFile(strFileFullPath));
-                                            this.Response.End();
-                                            //this.Response.Flush();
-
-                                        }
+                                        downloadedfile.Position = 0;
+                                        this.Response.ContentType = "application/octet-stream";
+                                        this.Response.AppendHeader("Content-Disposition", "attachment;filename=" + jobapp.MemberCoverLetterFile);
+                                        this.Response.BinaryWrite(((MemoryStream)downloadedfile).ToArray());
+                                        this.Response.End();
                                     }
                                 }
                             }
@@ -163,46 +141,18 @@ namespace JXTPortal.Website
                             {
                                 if (!string.IsNullOrEmpty(jobapp.MemberResumeFile))
                                 {
-                                    if (useFTP)
+                                    Stream downloadedfile = null;
+                                    string errormessage = string.Empty;
+
+                                    downloadedfile = FileManagerService.DownloadFile(bucketName, resumeFolder, jobapp.MemberResumeFile, out errormessage);
+
+                                    if (string.IsNullOrEmpty(errormessage) && downloadedfile.Length > 0)
                                     {
-                                        Stream downloadedfile = null;
-
-
-                                        ftpclient.Host = ftpresumepath;
-                                        ftpclient.Username = ftpusername;
-                                        ftpclient.Password = ftppassword;
-
-                                        ftpclient.DownloadFileToClient(ftpresumepath + jobapp.MemberResumeFile, ref downloadedfile, out errormessage);
-
-                                        if (string.IsNullOrEmpty( errormessage) && downloadedfile.Length > 0)
-                                        {
-                                            downloadedfile.Position = 0;
-                                            this.Response.ContentType = "application/octet-stream";
-                                            this.Response.AppendHeader("Content-Disposition", "attachment;filename=" + jobapp.MemberResumeFile);
-                                            this.Response.BinaryWrite(((MemoryStream)downloadedfile).ToArray());
-                                            this.Response.End();
-                                        }
-                                    }
-                                    else
-                                    {
-                                        string strFilePath = Server.MapPath(System.Configuration.ConfigurationManager.AppSettings["ApplicationUploadResumePaths"]);
-                                        string strFileFullPath = strFilePath + jobapp.MemberResumeFile;
-                                        string strMimeType = Entities.PortalEnums.MimeTypes.GetMimeType(System.IO.Path.GetExtension(strFileFullPath));
-
-                                        if (System.IO.File.Exists(strFileFullPath))
-                                        {
-                                            // Get the Mime Type of the File
-                                            if (strMimeType.Length > 0)
-                                                this.Response.ContentType = strMimeType;
-                                            else
-                                                this.Response.ContentType = "application/octet-stream";
-
-                                            this.Response.AppendHeader("Content-Disposition", "attachment;filename=" + jobapp.MemberResumeFile);
-                                            this.Response.BinaryWrite(Utils.DecryptFile(strFileFullPath));
-                                            this.Response.End();
-                                            //this.Response.Flush();
-
-                                        }
+                                        downloadedfile.Position = 0;
+                                        this.Response.ContentType = "application/octet-stream";
+                                        this.Response.AppendHeader("Content-Disposition", "attachment;filename=" + jobapp.MemberResumeFile);
+                                        this.Response.BinaryWrite(((MemoryStream)downloadedfile).ToArray());
+                                        this.Response.End();
                                     }
                                 }
                             }

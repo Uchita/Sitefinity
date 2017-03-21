@@ -20,6 +20,11 @@ namespace JXTPortal.Mobile.Website.Controllers
     [CustomAuthorize]
     public class AccountController : Controller
     {
+        private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+
+        private string memberFileFolder;
+        public IFileManager FileManagerService { get; set; }
+
         public ActionResult Index()
         {
             return View();
@@ -413,6 +418,19 @@ namespace JXTPortal.Mobile.Website.Controllers
         /// <returns></returns>
         public ActionResult Download(int MemberFileID)
         {
+            if (!SessionData.Site.IsUsingS3)
+            {
+                memberFileFolder = ConfigurationManager.AppSettings["FTPHost"] + ConfigurationManager.AppSettings["MemberRootFolder"] + "/" + ConfigurationManager.AppSettings["MemberFilesFolder"];
+
+                string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
+                string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                string ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+                FileManagerService = new FTPClientFileManager(ftphosturl, ftpusername, ftppassword);
+            }
+            else
+            {
+                memberFileFolder = ConfigurationManager.AppSettings["AWSS3MemberRootFolder"] + ConfigurationManager.AppSettings["AWSS3MemberFilesFolder"];
+            }
 
             MemberFilesService memberFileService = new MemberFilesService();
             Entities.MemberFiles memberFile = memberFileService.GetByMemberFileId(MemberFileID);
@@ -424,16 +442,10 @@ namespace JXTPortal.Mobile.Website.Controllers
                 byte[] memberfilecontent = null;
 
                 if (!string.IsNullOrWhiteSpace(memberFile.MemberFileUrl))
-                {
-
-                    FtpClient ftpclient = new FtpClient();
-                    ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                    ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                    ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
-                    string filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], memberFile.MemberId, memberFile.MemberFileUrl);
+                {              
                     Stream ms = null;
-                    ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
+                    ms = FileManagerService.DownloadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, memberFile.MemberId), memberFile.MemberFileUrl, out errormessage);
+
                     ms.Position = 0;
 
                     memberfilecontent = ((MemoryStream)ms).ToArray();

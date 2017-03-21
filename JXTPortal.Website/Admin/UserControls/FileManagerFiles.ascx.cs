@@ -57,7 +57,7 @@ namespace JXTPortal.Website.Admin.UserControls
 
         private string FTPFolderLocation
         {
-            get { return GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId)[0].FtpFolderLocation; }
+            get { return SessionData.Site.FileFolderLocation; }
         }
 
         private string SiteUrl
@@ -710,7 +710,7 @@ namespace JXTPortal.Website.Admin.UserControls
                 {
                     Uri uri = new Uri(FTPHostUrl);
 
-                    hfFileURL.Value = string.Format("http://{0}{1}{2}/{3}", SiteUrl, uri.AbsolutePath, hfCurrentPath.Value, entry.Name);
+                    hfFileURL.Value = string.Format("//{0}{1}{2}/{3}", SiteUrl, uri.AbsolutePath, hfCurrentPath.Value, entry.Name);
                 }
 
                 // ltlModified

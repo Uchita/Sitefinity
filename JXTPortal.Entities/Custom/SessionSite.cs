@@ -38,6 +38,10 @@ namespace JXTPortal.Entities
 
         public bool EnableSsl { get; set; }
 
+        public string FileFolderLocation { get; set; }
+
+        public bool IsUsingS3 { get; set; }
+
         public PortalEnums.Admin.AdvertiserApproval AdvertiserApprovalProcess { get; set; }
 
         public string AuthToken { get; set; }

@@ -26,8 +26,11 @@ using JXTPortal.Website.ckeditor.Extensions;
 public partial class JobTemplatesEdit : System.Web.UI.Page
 {
     public ICacheFlusher CacheFlusher { get; set; }
+    private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+    private string jobTemplateFolder; 
 
     #region "Properties"
+    public IFileManager FileManagerService { get; set; }
 
     private JobTemplatesService _jobTemplatesService;
 
@@ -84,7 +87,7 @@ public partial class JobTemplatesEdit : System.Web.UI.Page
 
     private string FTPFolderLocation
     {
-        get { return GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId)[0].FtpFolderLocation; }
+        get { return SessionData.Site.FileFolderLocation; }
     }
     private int JobTemplateId
     {
@@ -106,7 +109,21 @@ public partial class JobTemplatesEdit : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        txtJobTemplateHTML.SetConfigForFTPFolder(FTPFolderLocation);
+        if (!SessionData.Site.IsUsingS3)
+        {
+            jobTemplateFolder = ConfigurationManager.AppSettings["FTPHost"] + ConfigurationManager.AppSettings["RootFolder"] + "/" + ConfigurationManager.AppSettings["JobTemplatesFolder"] + "/";
+
+            string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
+            string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+            string ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+            FileManagerService = new FTPClientFileManager(ftphosturl, ftpusername, ftppassword);
+        }
+        else
+        {
+            jobTemplateFolder = ConfigurationManager.AppSettings["AWSS3MediaFolder"] + ConfigurationManager.AppSettings["AWSS3JobTemplatesFolder"];
+        }
+
+        txtJobTemplateHTML.SetConfigForFTPFolder(SessionData.Site.IsUsingS3);
        
         ScriptManager.GetCurrent(Page).RegisterPostBackControl(btnUpdate);
         ltlMessage.Text = string.Empty;
@@ -338,14 +355,11 @@ public partial class JobTemplatesEdit : System.Web.UI.Page
                     objOutputMemorySTream.Position = 0;
                     objOutputMemorySTream.Read(abytFile, 0, abytFile.Length);
 
-                    FtpClient ftpclient = new FtpClient();
                     string errormessage = string.Empty;
                     string extension = Utils.GetImageExtension(objOriginalImage);
-                    ftpclient.Host = ConfigurationManager.AppSettings["FTPFileManager"];
-                    ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                    ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-                    ftpclient.UploadFileFromStream(objOutputMemorySTream, string.Format("{0}/{1}/JobTemplates_{2}.{3}", ftpclient.Host, ConfigurationManager.AppSettings["JobTemplatesFolder"], template.JobTemplateId, extension), out errormessage);
 
+                    FileManagerService.UploadFile(bucketName, jobTemplateFolder, string.Format("JobTemplates_{0}.{1}", template.JobTemplateId, extension), objOutputMemorySTream, out errormessage);
+                    
                     if (!string.IsNullOrWhiteSpace(errormessage))
                     {
                         ltlMessage.Text = "Thumbnail image upload failed.";

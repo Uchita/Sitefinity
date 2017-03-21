@@ -160,7 +160,18 @@ namespace JXT.Integration.AWS
                 errorMessage = errorHandling(amazonS3Exception, MethodBase.GetCurrentMethod().Name, paramInfos);
             }
 
-            return responseStream;
+            MemoryStream memory = new MemoryStream();
+
+            if (responseStream == null)
+            {
+                return null;
+            }
+
+            responseStream.CopyTo(memory);
+
+            memory.Position = 0;
+
+            return memory;
         }
 
         public void DeleteObject(string bucketName, string folder, string fileName, out string errorMessage)

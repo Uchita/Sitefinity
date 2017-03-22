@@ -27,6 +27,12 @@ namespace JXTPortal.Mobile.Website.Controllers.Job
 {
     public class JobController : Controller
     {
+        private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+
+        private string resumeFolder;
+
+        public IFileManager FileManagerService { get; set; }
+
         private SitesService _sitesService;
         private SitesService SitesService
         {
@@ -106,6 +112,20 @@ namespace JXTPortal.Mobile.Website.Controllers.Job
 
         public ActionResult oauthcallback()
         {
+            if (!SessionData.Site.IsUsingS3)
+            {
+                resumeFolder = resumeFolder = ConfigurationManager.AppSettings["FTPJobApplyResumeUrl"];
+
+                string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
+                string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                string ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+                FileManagerService = new FTPClientFileManager(ftphosturl, ftpusername, ftppassword);
+            }
+            else
+            {
+                resumeFolder = ConfigurationManager.AppSettings["AWSS3ResumePath"];
+            }
+
             string ID = Request.Params["id"];
             string joburl = Request.Params["joburl"];
             string referrer = Request.Params["referrer"]; 
@@ -222,18 +242,6 @@ namespace JXTPortal.Mobile.Website.Controllers.Job
                             {
                                 string errormessage = string.Empty;
 
-                                string ftpresumepath = string.Empty;
-                                string ftpusername = string.Empty;
-                                string ftppassword = string.Empty;
-
-                                FtpClient ftpclient = new FtpClient();
-                                ftpresumepath = ConfigurationManager.AppSettings["FTPJobApplyResumeUrl"];
-                                ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                                ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-                                ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                                ftpclient.Username = ftpusername;
-                                ftpclient.Password = ftppassword;
-
                                 string strUrl = string.Empty;
 
                                 using (Entities.Sites site = SitesService.GetBySiteId(SessionData.Site.SiteId))
@@ -274,7 +282,8 @@ namespace JXTPortal.Mobile.Website.Controllers.Job
                                     string filename = string.Format("{0}_Resume_{1}", newjobapp.JobApplicationId, "LinkedIn.docx");
 
                                     newjobapp.MemberResumeFile = filename;
-                                    ftpclient.UploadFileFromStream(generatedDocument, ftpresumepath + filename, out errormessage);
+
+                                    FileManagerService.UploadFile(bucketName, resumeFolder, filename, generatedDocument, out errormessage);
 
                                     if (string.IsNullOrEmpty(errormessage))
                                     {

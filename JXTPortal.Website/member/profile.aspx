@@ -686,11 +686,11 @@
                                                             MaxLength="38" />
                                                         <asp:RegularExpressionValidator ID="validatorHomePhone" runat="server" ControlToValidate="tbDetailsHomePhone"
                                                             SetFocusOnError="true" Display="Dynamic" ValidationExpression="^[ \+\(\)\d]*$"
-                                                            ErrorMessage="ValidationPhoneNumbers">  
+                                                            ErrorMessage="ValidationPhoneNumbers" ValidationGroup="Details">  
                                                         </asp:RegularExpressionValidator>
                                                         <asp:RegularExpressionValidator ID="revHomePhone" runat="server" ControlToValidate="tbDetailsHomePhone"
                                                             SetFocusOnError="true" Display="Dynamic"
-                                                            ErrorMessage="ValidateNoHTMLContent">  
+                                                            ErrorMessage="ValidateNoHTMLContent" ValidationGroup="Details">  
                                                         </asp:RegularExpressionValidator>
                                                     </div>
                                                 </div>
@@ -715,11 +715,11 @@
                                                         <asp:TextBox ID="tbDetailsMobilePhone" runat="server" CssClass="form-control" Text="tbDetailsMobilePhone"
                                                             MaxLength="38" />
                                                         <asp:RegularExpressionValidator ID="validatorMobilePhone" runat="server" ControlToValidate="tbDetailsMobilePhone"
-                                                            SetFocusOnError="true" Display="Dynamic" ValidationExpression="^[ \+\(\)\d]*$"
+                                                            SetFocusOnError="true" Display="Dynamic" ValidationExpression="^[ \+\(\)\d]*$" ValidationGroup="Details"
                                                             ErrorMessage="ValidationPhoneNumbers">  
                                                         </asp:RegularExpressionValidator>
                                                         <asp:RegularExpressionValidator ID="revMobilePhone" runat="server" ControlToValidate="tbDetailsMobilePhone"
-                                                            SetFocusOnError="true" Display="Dynamic"
+                                                            SetFocusOnError="true" Display="Dynamic" ValidationGroup="Details"
                                                             ErrorMessage="ValidateNoHTMLContent">
                                                         </asp:RegularExpressionValidator>
 
@@ -745,7 +745,7 @@
                                             <div class="form-input">
                                                 <asp:TextBox ID="tbDetailsAddress1" runat="server" CssClass="form-control" />
                                                 <asp:RegularExpressionValidator ID="revAddress1" runat="server" ControlToValidate="tbDetailsAddress1"
-                                                            SetFocusOnError="true" Display="Dynamic"
+                                                            SetFocusOnError="true" Display="Dynamic" ValidationGroup="Details"
                                                             ErrorMessage="ValidateNoHTMLContent">
                                                         </asp:RegularExpressionValidator>
                                             </div>
@@ -758,7 +758,7 @@
                                                 <asp:TextBox ID="tbDetailsAddress2" runat="server" CssClass="form-control" />
 
                                                 <asp:RegularExpressionValidator ID="revAddress2" runat="server" ControlToValidate="tbDetailsAddress2"
-                                                            SetFocusOnError="true" Display="Dynamic"
+                                                            SetFocusOnError="true" Display="Dynamic" ValidationGroup="Details"
                                                             ErrorMessage="ValidateNoHTMLContent">
                                                         </asp:RegularExpressionValidator>
                                             </div>
@@ -775,7 +775,7 @@
                                                         <asp:TextBox ID="tbDetailsSuburb" runat="server" CssClass="form-control" />
 
                                                         <asp:RegularExpressionValidator ID="revSuburb" runat="server" ControlToValidate="tbDetailsSuburb"
-                                                            SetFocusOnError="true" Display="Dynamic"
+                                                            SetFocusOnError="true" Display="Dynamic" ValidationGroup="Details"
                                                             ErrorMessage="ValidateNoHTMLContent">
                                                         </asp:RegularExpressionValidator>
                                                     </div>
@@ -788,7 +788,7 @@
                                                         <asp:TextBox ID="tbDetailsState" runat="server" CssClass="form-control" />
 
                                                         <asp:RegularExpressionValidator ID="revState" runat="server" ControlToValidate="tbDetailsState"
-                                                            SetFocusOnError="true" Display="Dynamic"
+                                                            SetFocusOnError="true" Display="Dynamic" ValidationGroup="Details"
                                                             ErrorMessage="ValidateNoHTMLContent">
                                                         </asp:RegularExpressionValidator>
                                                     </div>
@@ -805,7 +805,7 @@
                                                         <asp:TextBox ID="tbDetailsPostcode" runat="server" CssClass="form-control" />
 
                                                         <asp:RegularExpressionValidator ID="revPostcode" runat="server" ControlToValidate="tbDetailsPostcode"
-                                                            SetFocusOnError="true" Display="Dynamic"
+                                                            SetFocusOnError="true" Display="Dynamic" ValidationGroup="Details"
                                                             ErrorMessage="ValidateNoHTMLContent">
                                                         </asp:RegularExpressionValidator>
                                                     </div>
@@ -834,7 +834,7 @@
                                                 <asp:TextBox ID="tbDetailsVideoURL" runat="server" CssClass="form-control" />
 
                                                 <asp:RegularExpressionValidator ID="revVideoURL" runat="server" ControlToValidate="tbDetailsVideoURL"
-                                                            SetFocusOnError="true" Display="Dynamic"
+                                                            SetFocusOnError="true" Display="Dynamic" ValidationGroup="Details"
                                                             ErrorMessage="ValidateNoHTMLContent">
                                                         </asp:RegularExpressionValidator>
                                             </div>
@@ -846,7 +846,7 @@
                                             <div class="form-input">
                                                 <asp:TextBox ID="tbDetailsPassportNumber" runat="server" CssClass="form-control" />
                                                 <asp:RegularExpressionValidator ID="revPassportNumber" runat="server" ControlToValidate="tbDetailsPassportNumber"
-                                                            SetFocusOnError="true" Display="Dynamic"
+                                                            SetFocusOnError="true" Display="Dynamic" ValidationGroup="Details"
                                                             ErrorMessage="ValidateNoHTMLContent">
                                                         </asp:RegularExpressionValidator>
                                             </div>
@@ -879,7 +879,7 @@
                                                     <asp:TextBox ID="tbDetailsMailingAddress1" runat="server" CssClass="form-control"
                                                         placeholder="tbDetailsMailingAddress1" />
                                                         <asp:RegularExpressionValidator ID="revMailingAddress1" runat="server" ControlToValidate="tbDetailsMailingAddress1"
-                                                            SetFocusOnError="true" Display="Dynamic"
+                                                            SetFocusOnError="true" Display="Dynamic" ValidationGroup="Details"
                                                             ErrorMessage="ValidateNoHTMLContent">
                                                         </asp:RegularExpressionValidator>
                                                 </div>
@@ -892,7 +892,7 @@
                                                     <asp:TextBox ID="tbDetailsMailingAddress2" runat="server" CssClass="form-control"
                                                         placeholder="tbDetailsMailingAddress2" />
                                                         <asp:RegularExpressionValidator ID="revMailingAddress2" runat="server" ControlToValidate="tbDetailsMailingAddress2"
-                                                            SetFocusOnError="true" Display="Dynamic"
+                                                            SetFocusOnError="true" Display="Dynamic" ValidationGroup="Details"
                                                             ErrorMessage="ValidateNoHTMLContent">
                                                         </asp:RegularExpressionValidator>
                                                 </div>
@@ -908,7 +908,7 @@
                                                         <div class="form-input">
                                                             <asp:TextBox ID="tbDetailsMailingSuburb" runat="server" CssClass="form-control" placeholder="tbDetailsMailingSuburb" />
                                                             <asp:RegularExpressionValidator ID="revMailingSuburb" runat="server" ControlToValidate="tbDetailsMailingSuburb"
-                                                            SetFocusOnError="true" Display="Dynamic"
+                                                            SetFocusOnError="true" Display="Dynamic" ValidationGroup="Details"
                                                             ErrorMessage="ValidateNoHTMLContent">
                                                         </asp:RegularExpressionValidator>
                                                         </div>
@@ -920,7 +920,7 @@
                                                         <div class="form-input">
                                                             <asp:TextBox ID="tbDetailsMailingState" runat="server" CssClass="form-control" placeholder="tbDetailsMailingState" />
                                                             <asp:RegularExpressionValidator ID="revMailingState" runat="server" ControlToValidate="tbDetailsMailingState"
-                                                            SetFocusOnError="true" Display="Dynamic"
+                                                            SetFocusOnError="true" Display="Dynamic" ValidationGroup="Details"
                                                             ErrorMessage="ValidateNoHTMLContent">
                                                         </asp:RegularExpressionValidator>
                                                         </div>
@@ -937,7 +937,7 @@
                                                             <asp:TextBox ID="tbDetailsMailingPostcode" runat="server" CssClass="form-control"
                                                                 placeholder="tbDetailsMailingPostcode" />
                                                                 <asp:RegularExpressionValidator ID="revMailingPostcode" runat="server" ControlToValidate="tbDetailsMailingPostcode"
-                                                            SetFocusOnError="true" Display="Dynamic"
+                                                            SetFocusOnError="true" Display="Dynamic" ValidationGroup="Details"
                                                             ErrorMessage="ValidateNoHTMLContent">
                                                         </asp:RegularExpressionValidator>
                                                         </div>
@@ -1235,6 +1235,8 @@
                         </div>
                     </div>
                     <!-- //Section 2: Summary And Personal Details ........ ends -->
+                    
+                    
                     <!-- Section 15: Directorship  -->
                     <!-- Backend need to generate id name according to the section name -->
                     <asp:PlaceHolder ID="phSectionDirectorship" runat="server">
@@ -1670,6 +1672,7 @@
                         </asp:UpdatePanel>
                     </section>
                     </asp:PlaceHolder>
+                    
                     <!-- Section 4: Experience  -->
                     <asp:PlaceHolder ID="phSectionExperience" runat="server">
                         <section class="form-section scroll-point full-width clearfix" id="section-4">
@@ -2031,6 +2034,7 @@
                         </asp:UpdatePanel>
                     </section>
                     </asp:PlaceHolder>
+
                     <!-- Section 5: Educational Qualification -->
                     <asp:PlaceHolder ID="phSectionEducation" runat="server">
                         <section class="form-section scroll-point full-width clearfix" id="section-5">

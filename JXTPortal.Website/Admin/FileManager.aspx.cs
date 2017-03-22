@@ -47,7 +47,7 @@ namespace JXTPortal.Website.Admin
 
         private string FTPFolderLocation
         {
-            get { return GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId)[0].FtpFolderLocation; }
+            get { return SessionData.Site.FileFolderLocation; }
         }
 
         private string UrlPrefix
@@ -61,6 +61,11 @@ namespace JXTPortal.Website.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (SessionData.Site.IsUsingS3)
+            {
+                Response.Redirect("S3FileManager.aspx");
+            }
+
             Page.ClientIDMode = System.Web.UI.ClientIDMode.AutoID;
 
             if (!Page.IsPostBack)

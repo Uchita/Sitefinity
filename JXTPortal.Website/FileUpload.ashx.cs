@@ -18,6 +18,11 @@ namespace JXTPortal.Website
     /// </summary>
     public class FileUploadTest : IHttpHandler, IRequiresSessionState
     {
+        private string resumeFolder;
+
+        private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+        public IFileManager FileManagerService { get; set; }
+        
         private JobApplicationService _jobApplicationService;
         private JobApplicationService JobApplicationService
         {
@@ -47,8 +52,21 @@ namespace JXTPortal.Website
 
         public void ProcessRequest(HttpContext context)
         {
-            context.Response.ContentType = "text/plain";//"application/json";
+            if (!SessionData.Site.IsUsingS3)
+            {
+                resumeFolder = ConfigurationManager.AppSettings["FTPJobApplyResumeUrl"];
 
+                string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
+                string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                string ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+                FileManagerService = new FTPClientFileManager(ftphosturl, ftpusername, ftppassword);
+            }
+            else
+            {
+                resumeFolder = ConfigurationManager.AppSettings["AWSS3ResumePath"];
+            }
+
+            context.Response.ContentType = "text/plain";//"application/json";
 
             int jobappid = 0;
             int jobid = 0;
@@ -139,22 +157,15 @@ namespace JXTPortal.Website
 
                         Regex r = new Regex("(?:[^a-z0-9.]|(?<=['\"])s)", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Compiled);
                         string errormessage = string.Empty;
-                        string ftpresumepath = ConfigurationManager.AppSettings["FTPJobApplyResumeUrl"];
-                        string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                        string ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-                        FtpClient ftpclient = new FtpClient();
 
                         switch (context.Request.Params["type"])
                         {
                             case "resume":
                                 {
                                     jobapp.MemberResumeFile = string.Format("{0}_Resume_{1}", jobappid, r.Replace(fname, "_"));
-
-                                    ftpclient.Host = ftpresumepath;
-                                    ftpclient.Username = ftpusername;
-                                    ftpclient.Password = ftppassword;
-                                    ftpclient.UploadFileFromStream(file.InputStream, ftpresumepath + jobapp.MemberResumeFile, out errormessage);
-
+                                    
+                                    FileManagerService.UploadFile(bucketName, resumeFolder, jobapp.MemberResumeFile, file.InputStream, out errormessage);
+                                    
                                     if (string.IsNullOrEmpty(errormessage))
                                     {
                                         if (JobApplicationService.Update(jobapp))

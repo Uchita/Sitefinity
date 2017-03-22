@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using JXTPortal.Entities;
 using JXTPortal.Common;
+using JXTPortal.Common.Extensions;
 using System.Text.RegularExpressions;
 
 namespace JXTPortal.Website.members
@@ -14,7 +15,6 @@ namespace JXTPortal.Website.members
     public partial class CreateJobAlert : System.Web.UI.Page
     {
         #region Declare variables
-        private string ContentValidationRegex = ConfigurationManager.AppSettings["ContentValidationRegex"];
 
         private JobAlertsService _jobAlertsService;
         private MembersService _membersService = null;
@@ -328,7 +328,7 @@ namespace JXTPortal.Website.members
                 }
                 else
                 {
-                    if (Regex.IsMatch(tbFirstName.Text, ContentValidationRegex) == false)
+                    if (!tbFirstName.Text.IsValidContent())
                     {
                         ltlMessage.Text = String.Format("{0}<li>{1}</li>", ltlMessage.Text, CommonFunction.GetResourceValue("ValidateNoHTMLContent"));
                     }
@@ -340,7 +340,7 @@ namespace JXTPortal.Website.members
                 }
                 else
                 {
-                    if (Regex.IsMatch(tbSurname.Text, ContentValidationRegex) == false)
+                    if (!tbSurname.Text.IsValidContent())
                     {
                         ltlMessage.Text = String.Format("{0}<li>{1}</li>", ltlMessage.Text, CommonFunction.GetResourceValue("ValidateNoHTMLContent"));
                     }
@@ -386,7 +386,7 @@ namespace JXTPortal.Website.members
             }
             else
             {
-                if (Regex.IsMatch(txtNameOfTheFeed.Text, ContentValidationRegex) == false)
+                if (!txtNameOfTheFeed.Text.IsValidContent())
                 {
                     ltlMessage.Text = String.Format("{0}<li>{1}</li>", ltlMessage.Text, CommonFunction.GetResourceValue("ValidateNoHTMLContent"));
                 }

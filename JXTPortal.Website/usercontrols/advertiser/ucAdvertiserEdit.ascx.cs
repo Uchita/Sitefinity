@@ -13,6 +13,7 @@ using JXTPortal.Website;
 using System.Xml;
 using JXTPortal.Client.Bullhorn;
 using System.Configuration;
+using JXTPortal.Website.ckeditor.Extensions;
 
 namespace JXTPortal.Website.usercontrols.advertiser
 {
@@ -23,6 +24,9 @@ namespace JXTPortal.Website.usercontrols.advertiser
         private int AdvertiserUserId = 0;
         private int AdvertiserId = 0;
         private byte[] _abytFile;
+        public IFileManager FileManagerService { get; set; }
+        string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+        string advertiserFolder;
 
         #endregion
 
@@ -35,6 +39,22 @@ namespace JXTPortal.Website.usercontrols.advertiser
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!SessionData.Site.IsUsingS3)
+            {
+                advertiserFolder = ConfigurationManager.AppSettings["FTPHost"] + ConfigurationManager.AppSettings["RootFolder"] + "/" + ConfigurationManager.AppSettings["AdvertisersFolder"] + "/";
+
+                string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
+                string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                string ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+                FileManagerService = new FTPClientFileManager(ftphosturl, ftpusername, ftppassword);
+            }
+            else
+            {
+                advertiserFolder = ConfigurationManager.AppSettings["AWSS3MediaFolder"] + ConfigurationManager.AppSettings["AWSS3AdvertisersPath"];
+            }
+
+            txtContent.SetConfigForFTPFolder(SessionData.Site.IsUsingS3);
+            
             if (Entities.SessionData.AdvertiserUser == null)
             {
                 Response.Redirect("~/advertiser/login.aspx?returnurl=" + Server.UrlEncode(Request.Url.OriginalString));
@@ -154,6 +174,10 @@ namespace JXTPortal.Website.usercontrols.advertiser
             }
         }
 
+        private string FTPFolderLocation
+        {
+            get { return SessionData.Site.FileFolderLocation; }
+        }
         #endregion
 
         private void LoadIndustry()
@@ -460,13 +484,10 @@ namespace JXTPortal.Website.usercontrols.advertiser
                         objOutputMemorySTream.Position = 0;
                         objOutputMemorySTream.Read(abytFile, 0, abytFile.Length);
 
-                        FtpClient ftpclient = new FtpClient();
                         string errormessage = string.Empty;
                         string extension = Utils.GetImageExtension(objOriginalImage);
-                        ftpclient.Host = ConfigurationManager.AppSettings["FTPFileManager"];
-                        ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                        ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-                        ftpclient.UploadFileFromStream(objOutputMemorySTream, string.Format("{0}/{1}/Advertisers_{2}.{3}", ftpclient.Host, ConfigurationManager.AppSettings["AdvertisersFolder"], advertiser.AdvertiserId, extension), out errormessage);
+                        
+                        FileManagerService.UploadFile(bucketName, advertiserFolder, string.Format("Advertisers_{0}.{1}", advertiser.AdvertiserId, extension), objOutputMemorySTream, out errormessage);
 
                         if (string.IsNullOrWhiteSpace(errormessage))
                         {

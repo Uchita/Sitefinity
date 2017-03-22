@@ -110,6 +110,14 @@
     <ApplicationManifest>scripts\bootstrap.min.js</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FileManagement\JXTPortal.Core.FileManagement.csproj">
+      <Project>{96CD486D-4BA8-433E-9878-0C2B05F20672}</Project>
+      <Name>JXTPortal.Core.FileManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JXT.Integration.AWS\JXT.Integration.AWS.csproj">
+      <Project>{431019B0-217A-4038-BCF2-DDEFCC2097FD}</Project>
+      <Name>JXT.Integration.AWS</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JXTPortal.Data.Dapper\JXTPortal.Data.Dapper.csproj">
       <Project>{32EEE44E-E778-4F22-BDFF-7787D2F97E70}</Project>
       <Name>JXTPortal.Data.Dapper</Name>
@@ -140,14 +148,13 @@
     <Reference Include="Autofac.Integration.Web">
       <HintPath>..\packages\Autofac.Web.3.2.0\lib\net40\Autofac.Integration.Web.dll</HintPath>
     </Reference>
-    <Reference Include="AWS.SessionProvider">
-      <HintPath>..\packages\AWS.SessionProvider.3.1.0.2\lib\net35\AWS.SessionProvider.dll</HintPath>
+    <Reference Include="AWS.SessionProvider, Version=3.1.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
+      <HintPath>..\packages\AWS.SessionProvider.3.1.1\lib\net35\AWS.SessionProvider.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="AWSSDK.Core">
-      <HintPath>..\packages\AWSSDK.Core.3.1.9.1\lib\net35\AWSSDK.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="AWSSDK.DynamoDBv2">
-      <HintPath>..\packages\AWSSDK.DynamoDBv2.3.1.5.2\lib\net35\AWSSDK.DynamoDBv2.dll</HintPath>
+    <Reference Include="AWSSDK.DynamoDBv2, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
+      <HintPath>..\packages\AWSSDK.DynamoDBv2.3.3.0\lib\net35\AWSSDK.DynamoDBv2.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="CKEditor.NET">
       <HintPath>References\CKEditor.NET.dll</HintPath>
@@ -463,6 +470,20 @@
     <Compile Include="Admin\reports\MemberActivity.aspx.designer.cs">
       <DependentUpon>MemberActivity.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\S3FileBrowser.aspx.cs">
+      <DependentUpon>S3FileBrowser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\S3FileBrowser.aspx.designer.cs">
+      <DependentUpon>S3FileBrowser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\S3FileManager.aspx.cs">
+      <DependentUpon>S3FileManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\S3FileManager.aspx.designer.cs">
+      <DependentUpon>S3FileManager.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\ScreeningQuestionsTemplate.aspx.cs">
       <DependentUpon>ScreeningQuestionsTemplate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -743,6 +764,13 @@
     <Compile Include="Admin\CustomQuestions.aspx.designer.cs">
       <DependentUpon>CustomQuestions.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\UserControls\S3FileManagerFiles.ascx.cs">
+      <DependentUpon>S3FileManagerFiles.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\UserControls\S3FileManagerFiles.ascx.designer.cs">
+      <DependentUpon>S3FileManagerFiles.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\WebServiceLog.aspx.cs">
       <DependentUpon>WebServiceLog.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -969,6 +997,8 @@
     <Content Include="Admin\DynamicPageRev.aspx" />
     <Content Include="Admin\DynamicPageRevisions.aspx" />
     <Content Include="Admin\reports\MemberActivity.aspx" />
+    <Content Include="Admin\S3FileBrowser.aspx" />
+    <Content Include="Admin\S3FileManager.aspx" />
     <Content Include="Admin\ScreeningQuestionsTemplate.aspx" />
     <Content Include="Admin\ScreeningQuestionsTemplateEdit.aspx" />
     <Content Include="Admin\scripts\customscript.js" />
@@ -1120,6 +1150,7 @@
     <Content Include="Admin\UserControls\FileTypesFields.ascx" />
     <Content Include="Admin\UserControls\FoldersFields.ascx" />
     <Content Include="Admin\UserControls\LanguagesFields.ascx" />
+    <Content Include="Admin\UserControls\S3FileManagerFiles.ascx" />
     <Content Include="Admin\UserControls\SiteWebPartsFields.ascx" />
     <Content Include="Admin\UserControls\SiteWebPartTypesFields.ascx" />
     <Content Include="Admin\CustomQuestions.aspx" />
@@ -1374,6 +1405,7 @@
     <Content Include="ckeditor\plugins\uicolor\lang\zh-cn.js" />
     <Content Include="ckeditor\plugins\uicolor\lang\_translationstatus.txt" />
     <Content Include="ckeditor\plugins\xml\plugin.js" />
+    <Content Include="ckeditor\s3custom_config.js" />
     <Content Include="ckeditor\skins\kama\dialog.css" />
     <Content Include="ckeditor\skins\kama\editor.css" />
     <Content Include="ckeditor\skins\kama\icons.png" />
@@ -2763,6 +2795,16 @@
     <Compile Include="advertiser\validate.aspx.designer.cs">
       <DependentUpon>validate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App_GlobalResources\language_5_enworld_758.designer.cs">
+      <DependentUpon>language_5_enworld_758.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="App_GlobalResources\language_4_enworld_1047.designer.cs">
+      <DependentUpon>language_4_enworld_1047.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="App_GlobalResources\language_3_dalta_tgroup_973.designer.cs">
       <DependentUpon>language_3_dalta_tgroup_973.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -2843,6 +2885,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>language_9.resx</DependentUpon>
     </Compile>
+    <Compile Include="ckeditor\ckEditorExtensions.cs" />
     <Compile Include="CompanySearch.aspx.cs">
       <DependentUpon>CompanySearch.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3857,6 +3900,7 @@
     <Compile Include="usercontrols\peoplesearch\ucPublicProfile.ascx.designer.cs">
       <DependentUpon>ucPublicProfile.ascx</DependentUpon>
     </Compile>
+    <Compile Include="usercontrols\validators\ContentValidator.cs" />
     <Compile Include="widgets\WidgetSiteSearch.aspx.cs">
       <DependentUpon>WidgetSiteSearch.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4709,6 +4753,20 @@
     <Content Include="App_GlobalResources\language_3_dalta_tgroup_973.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>language_3_dalta_tgroup_973.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\language_4_enworld_1047.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>language_4_enworld_1047.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\language_5_enworld_758.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>language_5_enworld_758.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>

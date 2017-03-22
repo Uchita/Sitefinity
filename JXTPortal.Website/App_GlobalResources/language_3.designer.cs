@@ -2997,6 +2997,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Download Profile.
+        /// </summary>
+        internal static string LabelDownloadProfile {
+            get {
+                return ResourceManager.GetString("LabelDownloadProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download Resume.
+        /// </summary>
+        internal static string LabelDownloadResume {
+            get {
+                return ResourceManager.GetString("LabelDownloadResume", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Download Selected Applicants.
         /// </summary>
         internal static string LabelDownloadSelectedApplicants {
@@ -3389,6 +3407,15 @@ namespace Resources {
         internal static string LabelEndDateError {
             get {
                 return ResourceManager.GetString("LabelEndDateError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to English Language Level.
+        /// </summary>
+        internal static string LabelEnglishLanguageLevel {
+            get {
+                return ResourceManager.GetString("LabelEnglishLanguageLevel", resourceCulture);
             }
         }
         
@@ -4239,6 +4266,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Japanese Language Level.
+        /// </summary>
+        internal static string LabelJapaneseLanguageLevel {
+            get {
+                return ResourceManager.GetString("LabelJapaneseLanguageLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Job Advertisement Option.
         /// </summary>
         internal static string LabelJobAdOptions {
@@ -4626,7 +4662,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job Saved.
+        ///   Looks up a localized string similar to Unsave Job.
         /// </summary>
         internal static string LabelJobSaved {
             get {
@@ -6123,6 +6159,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Other Language.
+        /// </summary>
+        internal static string LabelOtherLanguage {
+            get {
+                return ResourceManager.GetString("LabelOtherLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other Language Level.
+        /// </summary>
+        internal static string LabelOtherLanguageLevel {
+            get {
+                return ResourceManager.GetString("LabelOtherLanguageLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Other Qualification.
         /// </summary>
         internal static string LabelOtherQualification {
@@ -6884,6 +6938,159 @@ namespace Resources {
         internal static string LabelPublicProfile {
             get {
                 return ResourceManager.GetString("LabelPublicProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Public Profile.
+        /// </summary>
+        internal static string LabelPublicProfile1 {
+            get {
+                return ResourceManager.GetString("LabelPublicProfile1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Certification.
+        /// </summary>
+        internal static string LabelPublicProfileCertification {
+            get {
+                return ResourceManager.GetString("LabelPublicProfileCertification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cover Letter.
+        /// </summary>
+        internal static string LabelPublicProfileCoverLetter {
+            get {
+                return ResourceManager.GetString("LabelPublicProfileCoverLetter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Custom Questions.
+        /// </summary>
+        internal static string LabelPublicProfileCustomQuestions {
+            get {
+                return ResourceManager.GetString("LabelPublicProfileCustomQuestions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Directorship.
+        /// </summary>
+        internal static string LabelPublicProfileDirectorship {
+            get {
+                return ResourceManager.GetString("LabelPublicProfileDirectorship", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Education.
+        /// </summary>
+        internal static string LabelPublicProfileEducation {
+            get {
+                return ResourceManager.GetString("LabelPublicProfileEducation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Experience.
+        /// </summary>
+        internal static string LabelPublicProfileExperience {
+            get {
+                return ResourceManager.GetString("LabelPublicProfileExperience", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        internal static string LabelPublicProfileLanguage {
+            get {
+                return ResourceManager.GetString("LabelPublicProfileLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Licences.
+        /// </summary>
+        internal static string LabelPublicProfileLicences {
+            get {
+                return ResourceManager.GetString("LabelPublicProfileLicences", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Entries.
+        /// </summary>
+        internal static string LabelPublicProfileNoEntries {
+            get {
+                return ResourceManager.GetString("LabelPublicProfileNoEntries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Personal Details.
+        /// </summary>
+        internal static string LabelPublicProfilePersonalDetails {
+            get {
+                return ResourceManager.GetString("LabelPublicProfilePersonalDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to References.
+        /// </summary>
+        internal static string LabelPublicProfileReferences {
+            get {
+                return ResourceManager.GetString("LabelPublicProfileReferences", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resume.
+        /// </summary>
+        internal static string LabelPublicProfileResume {
+            get {
+                return ResourceManager.GetString("LabelPublicProfileResume", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Role Preference.
+        /// </summary>
+        internal static string LabelPublicProfileRolePreferences {
+            get {
+                return ResourceManager.GetString("LabelPublicProfileRolePreferences", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Skills.
+        /// </summary>
+        internal static string LabelPublicProfileSkills {
+            get {
+                return ResourceManager.GetString("LabelPublicProfileSkills", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Skill Set.
+        /// </summary>
+        internal static string LabelPublicProfileSkillSets {
+            get {
+                return ResourceManager.GetString("LabelPublicProfileSkillSets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Summary.
+        /// </summary>
+        internal static string LabelPublicProfileSummary {
+            get {
+                return ResourceManager.GetString("LabelPublicProfileSummary", resourceCulture);
             }
         }
         

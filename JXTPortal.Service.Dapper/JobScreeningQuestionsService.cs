@@ -11,6 +11,7 @@ namespace JXTPortal.Service.Dapper
     {
         List<JobScreeningQuestionsEntity> SelectByJobID(int jobId);
         int Insert(JobScreeningQuestionsEntity entity);
+        void DeleteByJobID(int jobId);
     }
 
     public class JobScreeningQuestionsService : IJobScreeningQuestionsService
@@ -29,6 +30,11 @@ namespace JXTPortal.Service.Dapper
         public List<JobScreeningQuestionsEntity> SelectByJobID(int jobId)
         {
             return jobScreeningQuestionsRepository.SelectByJobID(jobId);
+        }
+
+        public void DeleteByJobID(int jobId)
+        {
+            jobScreeningQuestionsRepository.DeleteByJobID(jobId);
         }
     }
 }

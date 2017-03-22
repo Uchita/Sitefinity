@@ -56,6 +56,21 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Content Include="RollbackScripts\Script0014-JobTemplateCurrencyDisplayBugFix.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Script0014-JobTemplateCurrencyDisplayBugFix.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Script0013-EnworldIssue.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Script0009-UpdateEmailFields.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\DO-NOT-DEPLOY-Script0009-WebServiceSPUpdate.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\Script0012-UpdateJobCustomPostXML.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -77,6 +92,7 @@
     <Content Include="Scripts\Script0011-ArchivingJobsUpdate.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\Script0015-EnableExpiryDate.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

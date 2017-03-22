@@ -708,6 +708,75 @@ namespace JXTPortal.Common
 
     }
 
+
+    public class FTPClientFileManager : IFileManager
+    {
+        private string  _host;
+        private string  _username;
+        private string  _password;
+        public FTPClientFileManager(string host, string username, string password)
+        {
+            _host = host;
+            _username = username;
+            _password = password;
+        }
+
+        public IEnumerable<Models.FileManagerFile> ListFiles(string directoryName, string folder, out string errorMessage)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CreateFolder(string directoryName, string folder, out string errorMessage)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UploadFile(string directoryName, string folder, string fileName, Stream inputStream, out string errorMessage)
+        {
+            FtpClient client = new FtpClient();
+            client.Host = _host;
+            client.Username = _username;
+            client.Password = _password;
+            client.UploadFileFromStream(inputStream, folder + fileName, out errorMessage);
+        }
+
+        public void DeleteFile(string directoryName, string folder, string fileName, out string errorMessage)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Stream DownloadFile(string directoryName, string folder, string fileName, out string errorMessage)
+        {
+            Stream stream = null;
+            FtpClient client = new FtpClient();
+            client.Host = _host;
+            client.Username = _username;
+            client.Password = _password;
+            client.DownloadFileToClient(folder + fileName, ref stream, out errorMessage);
+
+            return stream;
+        }
+
+        public void CopyObject(string directoryName, string sourceFolder, string sourceName, string destinationFolder, string destinationName, out string errorMessage)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void MoveObject(string directoryName, string sourceFolder, string sourceName, string destinationFolder, string destinationName, out string errorMessage)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RenameFolder(string bucketName, string sourceFolder, string destinationFolder, out string errorMessage)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteFolder(string bucketName, string sourceFolder, out string errorMessage)
+        {
+            throw new NotImplementedException();
+        }
+    }
     /// <summary>
     /// Helper class for managing current FTP directory.
     /// </summary>

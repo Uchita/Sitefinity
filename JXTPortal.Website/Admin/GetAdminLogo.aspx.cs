@@ -3,6 +3,7 @@ using System.Configuration;
 using System.IO;
 using System.Web.UI;
 using JXTPortal.Common;
+using JXTPortal.Entities;
 using log4net;
 using System.Drawing;
 
@@ -10,6 +11,10 @@ namespace JXTPortal.Website.Admin
 {
     public partial class GetAdminLogo : System.Web.UI.Page
     {
+        private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+
+        public IFileManager FileManagerService { get; set; }
+        string siteFolder;
         private ILog _logger;
 
         public GetAdminLogo()
@@ -20,6 +25,20 @@ namespace JXTPortal.Website.Admin
         // ToDo - Move to Root - And do caching
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!SessionData.Site.IsUsingS3)
+            {
+                siteFolder = ConfigurationManager.AppSettings["FTPHost"] + ConfigurationManager.AppSettings["RootFolder"] + "/" + ConfigurationManager.AppSettings["SitesFolder"] + "/";
+
+                string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
+                string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                string ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+                FileManagerService = new FTPClientFileManager(ftphosturl, ftpusername, ftppassword);
+            }
+            else
+            {
+                siteFolder = ConfigurationManager.AppSettings["AWSS3MediaFolder"] + ConfigurationManager.AppSettings["AWSS3SitesFolder"];
+            }
+
             if (!Page.IsPostBack)
                 CreateImage();
         }
@@ -80,17 +99,9 @@ namespace JXTPortal.Website.Admin
                 return logo;
 
             string errormessage = string.Empty;
-
-            FtpClient ftpclient = new FtpClient();
-            ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-            ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-            ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-            
-            string filepath = string.Format("{0}{1}/{2}/{3}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["RootFolder"], ConfigurationManager.AppSettings["SitesFolder"], logoUrl);
-
-            _logger.DebugFormat("Attempting to fetch logo for siteId {0}, from {1}", siteId, filepath);
             Stream ms = null;
-            ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
+            _logger.DebugFormat("Attempting to fetch logo for siteId {0}, from {1}", siteId, string.Format("{0}{1}{2}", bucketName, siteFolder, logoUrl));
+            ms = FileManagerService.DownloadFile(bucketName, siteFolder, logoUrl, out errormessage);
             
             if (!string.IsNullOrWhiteSpace(errormessage))
             {

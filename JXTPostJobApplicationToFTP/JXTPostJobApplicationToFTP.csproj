@@ -92,6 +92,14 @@
       <Project>{F728C4BD-8EEB-476D-AC0B-D4BCFA98F975}</Project>
       <Name>EmailSender</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FileManagement\JXTPortal.Core.FileManagement.csproj">
+      <Project>{96CD486D-4BA8-433E-9878-0C2B05F20672}</Project>
+      <Name>JXTPortal.Core.FileManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JXT.Integration.AWS\JXT.Integration.AWS.csproj">
+      <Project>{431019B0-217A-4038-BCF2-DDEFCC2097FD}</Project>
+      <Name>JXT.Integration.AWS</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JXTPortal.Common\JXTPortal.Common.csproj">
       <Project>{E41704D8-FFB8-462F-8FF9-DF315D39251A}</Project>
       <Name>JXTPortal.Common</Name>

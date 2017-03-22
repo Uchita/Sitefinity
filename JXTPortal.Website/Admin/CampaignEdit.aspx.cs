@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using JXTPortal.Entities;
+using JXTPortal.Website.ckeditor.Extensions;
 
 namespace JXTPortal.Website.Admin
 {
@@ -37,12 +38,31 @@ namespace JXTPortal.Website.Admin
             }
         }
 
+        private GlobalSettingsService _globalsettingsservice;
+        private GlobalSettingsService GlobalSettingsService
+        {
+            get
+            {
+                if (_globalsettingsservice == null)
+                {
+                    _globalsettingsservice = new GlobalSettingsService();
+                }
+                return _globalsettingsservice;
+            }
+        }
+
+        private string FTPFolderLocation
+        {
+            get { return SessionData.Site.FileFolderLocation; }
+        }
 
         #endregion
 
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            txtPageContent.SetConfigForFTPFolder(SessionData.Site.IsUsingS3);
+            
             if (!Page.IsPostBack)
             {
                 LoadDynamicPage();

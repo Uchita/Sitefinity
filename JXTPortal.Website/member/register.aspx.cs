@@ -15,7 +15,11 @@ namespace JXTPortal.Website.members
 {
     public partial class register : System.Web.UI.Page
     {
+        private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+        private string memberFileFolder;
+
         #region Properties
+        public IFileManager FileManagerService { get; set; }
 
         private string ContentValidationRegex = ConfigurationManager.AppSettings["ContentValidationRegex"];
 
@@ -102,6 +106,20 @@ namespace JXTPortal.Website.members
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!SessionData.Site.IsUsingS3)
+            {
+                memberFileFolder = ConfigurationManager.AppSettings["FTPHost"] + ConfigurationManager.AppSettings["MemberRootFolder"] + "/" + ConfigurationManager.AppSettings["MemberFilesFolder"];
+
+                string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
+                string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                string ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+                FileManagerService = new FTPClientFileManager(ftphosturl, ftpusername, ftppassword);
+            }
+            else
+            {
+                memberFileFolder = ConfigurationManager.AppSettings["AWSS3MemberRootFolder"] + ConfigurationManager.AppSettings["AWSS3MemberFilesFolder"];
+            }
+
             revEmailAddress.ValidationExpression = ConfigurationManager.AppSettings["EmailValidationRegex"];
 
             if (!IsPostBack)
@@ -205,7 +223,7 @@ namespace JXTPortal.Website.members
         {
             ddlClassification.Items.Clear();
             SiteProfessionService _siteprofessionservice = new SiteProfessionService();
-            List<Entities.SiteProfession> siteprofessions = _siteprofessionservice.GetTranslatedProfessions(SessionData.Site.UseCustomProfessionRole);
+            List<Entities.SiteProfession> siteprofessions = _siteprofessionservice.GetTranslatedProfessions(SessionData.Site.SiteId, SessionData.Site.UseCustomProfessionRole);
 
             ddlClassification.DataTextField = "SiteProfessionName";
             ddlClassification.DataValueField = "ProfessionID";
@@ -329,19 +347,14 @@ namespace JXTPortal.Website.members
                             MemberFilesService mfs = new MemberFilesService();
                             mfs.Insert(objMemberFiles);
 
-
-                            FtpClient ftpclient = new FtpClient();
-                            ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                            ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                            ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
                             string extension = string.Empty;
 
                             extension = Path.GetExtension(docInput.PostedFile.FileName);
-                            string filepath = string.Format("{0}{1}/{2}/{3}/MemberFiles_{4}{5}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], memberID, objMemberFiles.MemberFileId, extension);
+                            string filepath = string.Format("MemberFiles_{0}{1}", objMemberFiles.MemberFileId, extension);
                             string errormessage = string.Empty;
 
-                            ftpclient.UploadFileFromStream(docInput.PostedFile.InputStream, filepath, out errormessage);
+                            FileManagerService.UploadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, memberID), filepath, docInput.PostedFile.InputStream, out errormessage);
+
                             objMemberFiles.MemberFileUrl = string.Format("MemberFiles_{0}{1}", objMemberFiles.MemberFileId, extension);
 
                             mfs.Update(objMemberFiles);
@@ -380,20 +393,13 @@ namespace JXTPortal.Website.members
 
                             MemberFilesService mfs = new MemberFilesService();
                             mfs.Insert(objMemberFiles);
-
-
-                            FtpClient ftpclient = new FtpClient();
-                            ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                            ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                            ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
                             string extension = string.Empty;
 
                             extension = Path.GetExtension(fuCoverLetter.PostedFile.FileName);
-                            string filepath = string.Format("{0}{1}/{2}/{3}/MemberFiles_{4}{5}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], memberID, objMemberFiles.MemberFileId, extension);
+                            string filepath = string.Format("MemberFiles_{0}{1}", objMemberFiles.MemberFileId, extension);
                             string errormessage = string.Empty;
 
-                            ftpclient.UploadFileFromStream(fuCoverLetter.PostedFile.InputStream, filepath, out errormessage);
+                            FileManagerService.UploadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, memberID), filepath, fuCoverLetter.PostedFile.InputStream, out errormessage);
                             objMemberFiles.MemberFileUrl = string.Format("MemberFiles_{0}{1}", objMemberFiles.MemberFileId, extension);
 
                             mfs.Update(objMemberFiles);

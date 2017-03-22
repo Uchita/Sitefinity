@@ -38,6 +38,8 @@ namespace JXTPortal.Website.Admin.UserControls
         #region Declaration
 
         public string MapKey = null;
+        private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+        private string advertiserJobTemplateLogoFolder;
 
         private int _jobID;
         private int _advertiserid = 0;
@@ -78,6 +80,8 @@ namespace JXTPortal.Website.Admin.UserControls
         #endregion
 
         #region Properties
+
+        public IFileManager FileManagerService { get; set; }
 
         public string DefaultLangJobNameID
         {
@@ -506,6 +510,20 @@ namespace JXTPortal.Website.Admin.UserControls
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!SessionData.Site.IsUsingS3)
+            {
+                advertiserJobTemplateLogoFolder = string.Format("{0}{1}/{2}/", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["RootFolder"], ConfigurationManager.AppSettings["AdvertiserJobTemplateLogoFolder"]);
+
+                string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
+                string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                string ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+                FileManagerService = new FTPClientFileManager(ftphosturl, ftpusername, ftppassword);
+            }
+            else
+            {
+                advertiserJobTemplateLogoFolder = ConfigurationManager.AppSettings["AWSS3MediaFolder"] + ConfigurationManager.AppSettings["AWSS3AdvertiserJobTemplateLogoFolder"];
+            }
+
             revEmailAddress.ValidationExpression = ConfigurationManager.AppSettings["EmailValidationRegex"];
 
             cal_tbStartDate.Format = SessionData.Site.DateFormat;
@@ -1606,7 +1624,7 @@ namespace JXTPortal.Website.Admin.UserControls
         {
             //we just need to get the data once
             List<JXTPortal.Entities.SiteProfession>
-                siteProfessionList = SiteProfessionService.GetTranslatedProfessions(SessionData.Site.UseCustomProfessionRole).OrderBy(siteProfession => siteProfession.Sequence).ToList();
+                siteProfessionList = SiteProfessionService.GetTranslatedProfessions(SessionData.Site.SiteId, SessionData.Site.UseCustomProfessionRole).OrderBy(siteProfession => siteProfession.Sequence).ToList();
 
             LoadProfession(siteProfessionList, ddlProfession1);
             LoadProfession(siteProfessionList, ddlProfession2);
@@ -1686,6 +1704,7 @@ namespace JXTPortal.Website.Admin.UserControls
                         if (job.Expired == (int)PortalEnums.Jobs.JobStatus.Live)
                         {
                             ddlJobItemType.Enabled = false;
+                            ddlScreeningQuestionsTemplate.Enabled = false;
 
                             // Set Job Type Drop Down to have selected job type only
                             ddlJobItemType.Items.Clear();
@@ -1878,7 +1897,6 @@ namespace JXTPortal.Website.Admin.UserControls
                         if (job.AdvertiserJobTemplateLogoId.GetValueOrDefault(0) > 0)
                             ddlAdvertiserJobTemplateLogo.SelectedValue = Convert.ToString(job.AdvertiserJobTemplateLogoId);
 
-                        ddlScreeningQuestionsTemplate.Enabled = false;
                         if (job.ScreeningQuestionsTemplateId.HasValue)
                         {
                             ddlScreeningQuestionsTemplate.SelectedValue = Convert.ToString(job.ScreeningQuestionsTemplateId.Value);
@@ -2280,14 +2298,11 @@ namespace JXTPortal.Website.Admin.UserControls
                                 byte[] abytFile = new byte[Convert.ToInt32(objOutputMemorySTream.Length)];
                                 objOutputMemorySTream.Position = 0;
                                 objOutputMemorySTream.Read(abytFile, 0, abytFile.Length);
-
-                                FtpClient ftpclient = new FtpClient();
+                                
                                 string errormessage = string.Empty;
                                 string extension = Utils.GetImageExtension(objOriginalImage);
-                                ftpclient.Host = ConfigurationManager.AppSettings["FTPFileManager"];
-                                ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                                ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-                                ftpclient.UploadFileFromStream(objOutputMemorySTream, string.Format("{0}/{1}/AdvertiserJobTemplateLogo_{2}.{3}", ftpclient.Host, ConfigurationManager.AppSettings["AdvertiserJobTemplateLogoFolder"], objAdvJobTemplateLogo.AdvertiserJobTemplateLogoId, extension), out errormessage);
+
+                                FileManagerService.UploadFile(bucketName, advertiserJobTemplateLogoFolder, string.Format("AdvertiserJobTemplateLogo_{0}.{1}", objAdvJobTemplateLogo.AdvertiserJobTemplateLogoId, extension), objOutputMemorySTream, out errormessage);
 
                                 if (string.IsNullOrWhiteSpace(errormessage))
                                 {
@@ -2403,7 +2418,7 @@ namespace JXTPortal.Website.Admin.UserControls
                     if (JobsService.Insert(job))
                     {
                         // Insert Screening Questions into job
-                        if (job.ScreeningQuestionsTemplateId.HasValue)
+                        if (job.ScreeningQuestionsTemplateId.HasValue && !isDraft)
                         {
                             List<ScreeningQuestionsEntity> screeningQuestions = ScreeningQuestionsService.SelectByScreeningQuestionsTemplateId(job.ScreeningQuestionsTemplateId.Value);
                             foreach (ScreeningQuestionsEntity screeningQuestion in screeningQuestions)
@@ -2606,6 +2621,27 @@ namespace JXTPortal.Website.Admin.UserControls
                             job.Visible = true; // means billed = 1 and not a draft.*/
 
 
+                        // Screening Questions
+
+                        job.ScreeningQuestionsTemplateId = (!string.IsNullOrEmpty(ddlScreeningQuestionsTemplate.SelectedValue)) ? Convert.ToInt32(ddlScreeningQuestionsTemplate.SelectedValue) : (int?)null;
+
+                        if (ddlScreeningQuestionsTemplate.Enabled)
+                        {
+                            if (job.ScreeningQuestionsTemplateId.HasValue)
+                            {
+                                JobScreeningQuestionsService.DeleteByJobID(job.JobId);
+
+                                List<ScreeningQuestionsEntity> screeningQuestions = ScreeningQuestionsService.SelectByScreeningQuestionsTemplateId(job.ScreeningQuestionsTemplateId.Value);
+                                foreach (ScreeningQuestionsEntity screeningQuestion in screeningQuestions)
+                                {
+                                    if (screeningQuestion.Visible)
+                                    {
+                                        JobScreeningQuestionsService.Insert(new JobScreeningQuestionsEntity { JobId = job.JobId, ScreeningQuestionId = screeningQuestion.ScreeningQuestionId });
+                                    }
+                                }
+                            }
+                        }
+
                         if (job.Expired != (int)PortalEnums.Jobs.JobStatus.Live)
                         {
                             job.DatePosted = DateTime.Now;
@@ -2703,13 +2739,10 @@ namespace JXTPortal.Website.Admin.UserControls
                                     objOutputMemorySTream.Position = 0;
                                     objOutputMemorySTream.Read(abytFile, 0, abytFile.Length);
 
-                                    FtpClient ftpclient = new FtpClient();
                                     string errormessage = string.Empty;
                                     string extension = Utils.GetImageExtension(objOriginalImage);
-                                    ftpclient.Host = ConfigurationManager.AppSettings["FTPFileManager"];
-                                    ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                                    ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-                                    ftpclient.UploadFileFromStream(objOutputMemorySTream, string.Format("{0}/{1}/AdvertiserJobTemplateLogo_{2}.{3}", ftpclient.Host, ConfigurationManager.AppSettings["AdvertiserJobTemplateLogoFolder"], objAdvJobTemplateLogo.AdvertiserJobTemplateLogoId, extension), out errormessage);
+
+                                    FileManagerService.UploadFile(bucketName, advertiserJobTemplateLogoFolder, string.Format("AdvertiserJobTemplateLogo_{0}.{1}", objAdvJobTemplateLogo.AdvertiserJobTemplateLogoId, extension), objOutputMemorySTream, out errormessage);
 
                                     if (string.IsNullOrWhiteSpace(errormessage))
                                     {

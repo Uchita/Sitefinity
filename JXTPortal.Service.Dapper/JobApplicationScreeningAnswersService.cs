@@ -45,9 +45,10 @@ namespace JXTPortal.Service.Dapper
             var answersToAdd = answers.Join(screeningQuestions, a => a.ScreeningQuestionId, q => q.ScreeningQuestionId, (a, q) => new JobApplicationScreeningAnswer
                     {
                         ScreeningQuestionId = q.ScreeningQuestionId,
+                        ScreeningQuestionIndex = q.ScreeningQuestionIndex,
                         QuestionTitle = q.QuestionTitle,
                         Answer = a.Answer
-                    });
+                    }).OrderBy(a => a.ScreeningQuestionIndex);
 
             jobApplicationScreeningAnswerDetail.JobApplicationScreeningAnswers = answersToAdd.ToList();
 

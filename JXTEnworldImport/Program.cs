@@ -10,12 +10,18 @@ using JXTPortal;
 using JXTPortal.Data;
 using JXTPortal.Entities;
 using JXTPortal.Common;
+using JXT.Integration.AWS;
+using JXTPortal.Core.FileManagement;
 
 namespace JXTEnworldImport
 {
     class Program
     {
         private static string _TARGETFOLDER = ConfigurationManager.AppSettings["WorkingPath"];
+        private static string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+
+        private static string memberFileFolder;
+        public static IFileManager FileManagerService { get; set; }
 
         private static MembersService _membersservice;
         private static MembersService MembersService
@@ -58,6 +64,17 @@ namespace JXTEnworldImport
                 if (_memberfiletypesservice == null)
                     _memberfiletypesservice = new MemberFileTypesService();
                 return _memberfiletypesservice;
+            }
+        }
+
+        private static GlobalSettingsService _globalsettingsservice;
+        private static GlobalSettingsService GlobalSettingsService
+        {
+            get
+            {
+                if (_globalsettingsservice == null)
+                    _globalsettingsservice = new GlobalSettingsService();
+                return _globalsettingsservice;
             }
         }
 
@@ -225,7 +242,27 @@ namespace JXTEnworldImport
             EnworldJson.RootObject[] enworldEntity = new JavaScriptSerializer().Deserialize<EnworldJson.RootObject[]>(text);
             int referringsiteid = Convert.ToInt32(ConfigurationManager.AppSettings["MasterSiteID"]);
             int childsiteid = Convert.ToInt32(ConfigurationManager.AppSettings["ChildSiteID"]);
-            
+
+            GlobalSettings globalSetting = GlobalSettingsService.GetBySiteId(childsiteid).FirstOrDefault();
+
+            if (globalSetting != null)
+            {
+                if (globalSetting.FtpFolderLocation.StartsWith("s3://") == false)
+                {
+                    memberFileFolder = ConfigurationManager.AppSettings["FTPHost"] + ConfigurationManager.AppSettings["MemberRootFolder"] + "/" + ConfigurationManager.AppSettings["MemberFilesFolder"];
+
+                    string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
+                    string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                    string ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+                    FileManagerService = new FTPClientFileManager(ftphosturl, ftpusername, ftppassword);
+                }
+                else
+                {
+                    IAwsS3 s3 = new AwsS3();
+                    FileManagerService = new FileManager(s3);
+                    memberFileFolder = ConfigurationManager.AppSettings["AWSS3MemberRootFolder"] + ConfigurationManager.AppSettings["AWSS3MemberFilesFolder"];
+                }
+            }
             foreach (EnworldJson.RootObject memberObj in enworldEntity)
             {
                 JXTPortal.Client.Salesforce.SalesforceIntegration.SObjRecord jxtmember = new JXTPortal.Client.Salesforce.SalesforceIntegration.SObjRecord();
@@ -491,18 +528,13 @@ namespace JXTEnworldImport
 
                                         MemberFilesService.Insert(objMemberFiles);
 
-                                        FtpClient ftpclient = new FtpClient();
-                                        ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                                        ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                                        ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
                                         string extension = string.Empty;
 
                                         extension = objMemberFiles.MemberFileSearchExtension;
-                                        string filepath = string.Format("{0}{1}/{2}/{3}/MemberFiles_{4}{5}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], objMemberFiles.MemberId, objMemberFiles.MemberFileId, extension);
+                                        string filepath = string.Format("MemberFiles_{0}{1}", objMemberFiles.MemberFileId, extension);
                                         string errormessage = string.Empty;
 
-                                        ftpclient.UploadFileFromStream(new MemoryStream(bytes), filepath, out errormessage);
+                                        FileManagerService.UploadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, objMemberFiles.MemberId), filepath, new MemoryStream(bytes), out errormessage);
 
                                         MemberFilesService.Update(objMemberFiles);
 

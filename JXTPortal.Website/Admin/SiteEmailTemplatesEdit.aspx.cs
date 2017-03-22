@@ -13,6 +13,7 @@ using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
 using JXTPortal;
 using JXTPortal.Entities;
+using JXTPortal.Website.ckeditor.Extensions;
 
 namespace JXTPortal.Website.Admin
 {
@@ -84,12 +85,31 @@ namespace JXTPortal.Website.Admin
             }
         }
 
+        private GlobalSettingsService _globalsettingsservice;
+        private GlobalSettingsService GlobalSettingsService
+        {
+            get
+            {
+                if (_globalsettingsservice == null)
+                {
+                    _globalsettingsservice = new GlobalSettingsService();
+                }
+                return _globalsettingsservice;
+            }
+        }
+
+        private string FTPFolderLocation
+        {
+            get { return SessionData.Site.FileFolderLocation; }
+        }
         #endregion
 
         #region Page
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            dataNewEmailBodyHTML.SetConfigForFTPFolder(SessionData.Site.IsUsingS3);
+            
             if (!Page.IsPostBack)
             {
                 if (ParentEmailTemplateID > 0)
@@ -263,7 +283,7 @@ namespace JXTPortal.Website.Admin
                 {
                     JXTPortal.Entities.EmailTemplates emailTemplate = emailTemplates[0];
 
-                    lbCurrentLastModified.Text = emailTemplate.LastModified.ToString(SessionData.Site.DateFormat +" hh:mm:ss tt");
+                    lbCurrentLastModified.Text = emailTemplate.LastModified.ToString(SessionData.Site.DateFormat + " hh:mm:ss tt");
                     AdminUsersService aus = new AdminUsersService();
                     using (JXTPortal.Entities.AdminUsers adminuser = aus.GetByAdminUserId(emailTemplate.LastModifiedBy))
                     {

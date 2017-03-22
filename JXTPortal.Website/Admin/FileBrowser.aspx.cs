@@ -14,6 +14,7 @@ using System.Xml.Linq;
 using JXTPortal.Entities;
 using JXTPortal.Common;
 
+
 namespace JXTPortal.Website.Admin
 {
     public partial class FileBrowser : System.Web.UI.Page
@@ -42,7 +43,7 @@ namespace JXTPortal.Website.Admin
 
         private string FTPFolderLocation
         {
-            get { return GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId)[0].FtpFolderLocation; }
+            get { return SessionData.Site.FileFolderLocation; }
         }
 
         private string UrlPrefix
@@ -62,6 +63,11 @@ namespace JXTPortal.Website.Admin
             if (SessionData.AdminUser == null)
             {
                 Response.Redirect("/default.aspx");
+            }
+
+            if (SessionData.Site.IsUsingS3)
+            {
+                Response.Redirect("S3FileBrowser.aspx");
             }
 
             if (!Page.IsPostBack)

@@ -21,10 +21,12 @@ namespace JXTPortal.Website.members
         private MembersService _membersService;
         private MemberFilesService _memberFilesService;
         private DynamicPagesService _dynamicPagesService = null;
-
+        private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+        private string memberFileFolder;
         #endregion
 
         #region Properties
+        public IFileManager FileManagerService { get; set; }
 
         private MembersService MembersService
         {
@@ -73,6 +75,20 @@ namespace JXTPortal.Website.members
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!SessionData.Site.IsUsingS3)
+            {
+                memberFileFolder = ConfigurationManager.AppSettings["FTPHost"] + ConfigurationManager.AppSettings["MemberRootFolder"] + "/" + ConfigurationManager.AppSettings["MemberFilesFolder"];
+
+                string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
+                string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                string ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+                FileManagerService = new FTPClientFileManager(ftphosturl, ftpusername, ftppassword);
+            }
+            else
+            {
+                memberFileFolder = ConfigurationManager.AppSettings["AWSS3MemberRootFolder"] + ConfigurationManager.AppSettings["AWSS3MemberFilesFolder"];
+            }
+
             ltMemberValidation.Text = CommonFunction.GetResourceValue("LabelMemberValidation");
 
             if (!Page.IsPostBack)
@@ -131,11 +147,7 @@ namespace JXTPortal.Website.members
                             MemberFiles thisCoverLetter = memberFiles.Where(c => c.DocumentTypeId.HasValue && c.DocumentTypeId == 1).SingleOrDefault();
 
                             string errormessage = string.Empty;
-                            FtpClient ftpclient = new FtpClient();
-                            ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                            ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                            ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
+                            
                             byte[] resumecontent = null;
                             byte[] coverlettercontent = null; 
                             string filepath = string.Empty;
@@ -145,8 +157,7 @@ namespace JXTPortal.Website.members
                             {
                                 if (!string.IsNullOrEmpty(thisResume.MemberFileUrl))
                                 {
-                                    filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], thisResume.MemberId, thisResume.MemberFileUrl);
-                                    ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
+                                    ms = FileManagerService.DownloadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, thisResume.MemberId), thisResume.MemberFileUrl, out errormessage);
 
                                     resumecontent = ((MemoryStream)ms).ToArray();
                                 }
@@ -160,9 +171,8 @@ namespace JXTPortal.Website.members
                             {
                                 if (!string.IsNullOrWhiteSpace(thisCoverLetter.MemberFileUrl))
                                 {
-                                    filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], thisCoverLetter.MemberId, thisCoverLetter.MemberFileUrl);
                                     ms = null;
-                                    ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
+                                    ms = FileManagerService.DownloadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, thisResume.MemberId), thisCoverLetter.MemberFileUrl, out errormessage);
                                     coverlettercontent = ((MemoryStream)ms).ToArray();
                                 }
                                 else

@@ -4465,4 +4465,96 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <value>Expiry date cannot be before {0}</value>
     <comment>Expiry date cannot be before {0}</comment>
   </data>
+  <data name="LabelEnglishLanguageLevel" xml:space="preserve">
+    <value>English Language Level</value>
+    <comment>English Language Level</comment>
+  </data>
+  <data name="LabelJapaneseLanguageLevel" xml:space="preserve">
+    <value>Japanese Language Level</value>
+    <comment>Japanese Language Level</comment>
+  </data>
+  <data name="LabelOtherLanguage" xml:space="preserve">
+    <value>Other Language</value>
+    <comment>Other Language</comment>
+  </data>
+  <data name="LabelOtherLanguageLevel" xml:space="preserve">
+    <value>Other Language Level</value>
+    <comment>Other Language Level</comment>
+  </data>
+  <data name="LabelPublicProfile1" xml:space="preserve">
+    <value>Public Profile</value>
+    <comment>Public Profile</comment>
+  </data>
+  <data name="LabelPublicProfileCertification" xml:space="preserve">
+    <value>Certification</value>
+    <comment>Certification</comment>
+  </data>
+  <data name="LabelPublicProfileCoverLetter" xml:space="preserve">
+    <value>Cover Letter</value>
+    <comment>Cover Letter</comment>
+  </data>
+  <data name="LabelPublicProfileCustomQuestions" xml:space="preserve">
+    <value>Custom Questions</value>
+    <comment>Custom Questions</comment>
+  </data>
+  <data name="LabelPublicProfileDirectorship" xml:space="preserve">
+    <value>Directorship</value>
+    <comment>Directorship</comment>
+  </data>
+  <data name="LabelPublicProfileEducation" xml:space="preserve">
+    <value>Education</value>
+    <comment>Education</comment>
+  </data>
+  <data name="LabelPublicProfileExperience" xml:space="preserve">
+    <value>Experience</value>
+    <comment>Experience</comment>
+  </data>
+  <data name="LabelPublicProfileLanguage" xml:space="preserve">
+    <value>Language</value>
+    <comment>Language</comment>
+  </data>
+  <data name="LabelPublicProfileLicences" xml:space="preserve">
+    <value>Licences</value>
+    <comment>Licences</comment>
+  </data>
+  <data name="LabelPublicProfileNoEntries" xml:space="preserve">
+    <value>No Entries</value>
+    <comment>No Entries</comment>
+  </data>
+  <data name="LabelPublicProfilePersonalDetails" xml:space="preserve">
+    <value>Personal Details</value>
+    <comment>Personal Details</comment>
+  </data>
+  <data name="LabelPublicProfileReferences" xml:space="preserve">
+    <value>References</value>
+    <comment>Referemces</comment>
+  </data>
+  <data name="LabelPublicProfileResume" xml:space="preserve">
+    <value>Resume</value>
+    <comment>Resume</comment>
+  </data>
+  <data name="LabelPublicProfileRolePreferences" xml:space="preserve">
+    <value>Role Preference</value>
+    <comment>Role Preference</comment>
+  </data>
+  <data name="LabelPublicProfileSkills" xml:space="preserve">
+    <value>Skills</value>
+    <comment>Skills</comment>
+  </data>
+  <data name="LabelPublicProfileSkillSets" xml:space="preserve">
+    <value>Skill Set</value>
+    <comment>Skill Set</comment>
+  </data>
+  <data name="LabelPublicProfileSummary" xml:space="preserve">
+    <value>Summary</value>
+    <comment>Summary</comment>
+  </data>
+  <data name="LabelDownloadProfile" xml:space="preserve">
+    <value>Download Profile</value>
+    <comment>Download Profile</comment>
+  </data>
+  <data name="LabelDownloadResume" xml:space="preserve">
+    <value>Download Resume</value>
+    <comment>Download Resume</comment>
+  </data>
 </root>

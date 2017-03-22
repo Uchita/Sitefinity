@@ -148,13 +148,18 @@ namespace JXTPortal.Website.job.ajaxcalls
         }
 
         [WebMethod(EnableSession = true)]
-        public string GetLocations(string DefaultLocationID, [Optional] string IsDynamicWidget)
+
+        public string GetLocations(string DefaultLocationID, [Optional] string IsDynamicWidget, [Optional] string CountryID)
         {
             StringBuilder strSelectHtml = new StringBuilder();
             strSelectHtml.AppendFormat("<div id='divLocation{1}'><select class='form-dropdown' id=\"{0}{1}\">", "locationID", IsDynamicWidget);
             SiteCountriesService siteCountriesService = new SiteCountriesService();
             SiteLocationService siteLocationService = new SiteLocationService();
             List<Entities.SiteCountries> siteCountriesList = siteCountriesService.GetTranslatedCountries();
+            if (CountryID != "-1" && string.IsNullOrWhiteSpace(CountryID) == false)
+            {
+                siteCountriesList = siteCountriesList.Where(x => x.CountryId == Convert.ToInt32(CountryID)).ToList();
+            }
 
             strSelectHtml.AppendFormat("<option value=\"-1\" SELECTED data-placeholdertag=''>" + CommonFunction.GetResourceValue("LabelAllLocation") + "</option>");
 

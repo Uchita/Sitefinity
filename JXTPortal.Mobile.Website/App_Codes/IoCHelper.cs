@@ -8,6 +8,8 @@ using JXTPortal.Data.Dapper.Factories;
 using JXTPortal.Data.Dapper.Repositories;
 using JXTPortal.Service.Dapper;
 using JXTPortal.Data.SqlClient;
+using JXT.Integration.AWS;
+using JXTPortal.Core.FileManagement;
 
 namespace JXTPortal.Website.App_Codes
 {
@@ -24,6 +26,10 @@ namespace JXTPortal.Website.App_Codes
           
             builder.RegisterType<SiteLanguageRepository>().WithParameter(new Autofac.NamedParameter("connectionStringName", DEFAULT_CONNECTIONSTRING_KEY)).AsImplementedInterfaces();
             builder.RegisterType<SiteLanguageService>().AsImplementedInterfaces();
+
+            //FileManager
+            builder.RegisterType<AwsS3>().AsImplementedInterfaces();
+            builder.RegisterType<FileManager>().AsImplementedInterfaces();
 
             return builder.Build();
         }

@@ -16,16 +16,19 @@ using System.Xml.Serialization;
 using System.IO;
 using System.Text.RegularExpressions;
 using JXTPortal.Common;
+using JXTPortal.Common.Extensions;
 
 namespace JXTPortal.Website.member.enworld
 {
     public partial class profile : System.Web.UI.Page
     {
-        private static string ContentValidationRegex = ConfigurationManager.AppSettings["ContentValidationRegex"];
+        private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+        private string memberFileFolder;
+        private static string ContentValidationRegex = ConfigurationManager.AppSettings["ContentValidationRegex"]; //this verifies that no HTML tags are allowed
         private static string EmailValidationRegex = ConfigurationManager.AppSettings["EmailValidationRegex"];
         private string XMLPath = "/xml/enworld.xml";
         private const string ENWORLD_SF_QUERY = @"SELECT Id, FirstName, LastName, First_Name_Local__c, Last_Name_Local__c, Email, 
-                                                    RecordTypeId, ts2__EEO_Gender__c, Birthdate, MobilePhone, Phone, Secondary_Email__c ,MailingStreet, MailingCity, MailingPostalCode, MailingState, MailingCountry,Native_Language__c,Second_Language__c, Second_Language_Proficiency__c, 
+                                                    RecordTypeId, ts2__EEO_Gender__c, Birthdate, MobilePhone, Phone, Secondary_Email__c ,MailingStreet, MailingCity, MailingPostalCode, MailingState, MailingCountry,English_Language_Level__c,Japanese_Language_Level__c,Third_Language__c,Third_Language_Proficiency__c,
                                                     Current_Company__c, Current_Position__c, Industry__c, Job_Category__c, Job_Functions__c, Employment_Type__c, Salary_Period__c, Current_Fixed_Salary__c, Annual_Variable_Salary__c, 
                                                     Desired_Country__c, Desired_Locations__c, Employment_Preference__c, Desired_Industry__c, Desired_Job_Category__c, Desired_Job_Functions__c, Desired_Other_Countries__c, CurrencyIsoCode
                                                     FROM CONTACT where Id = '{0}'";
@@ -34,8 +37,11 @@ namespace JXTPortal.Website.member.enworld
         private SalesforceIntegration.SObjDescribeResponse _SFFormModel;
         private SalesforceIntegration.SObjBatchObject _SFContactModel;
 
+        public IFileManager FileManagerService { get; set; }
+
         protected void Page_Init(object sender, EventArgs e)
         {
+             
             if (SessionData.Member == null)
             {
                 Response.Redirect("~/member/login.aspx?returnurl=" + Server.UrlEncode(Request.Url.PathAndQuery));
@@ -56,6 +62,20 @@ namespace JXTPortal.Website.member.enworld
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!SessionData.Site.IsUsingS3)
+            {
+                memberFileFolder = ConfigurationManager.AppSettings["FTPHost"] + ConfigurationManager.AppSettings["MemberRootFolder"] + "/" + ConfigurationManager.AppSettings["MemberFilesFolder"];
+
+                string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
+                string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
+                string ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
+                FileManagerService = new FTPClientFileManager(ftphosturl, ftpusername, ftppassword);
+            }
+            else
+            {
+                memberFileFolder = ConfigurationManager.AppSettings["AWSS3MemberRootFolder"] + ConfigurationManager.AppSettings["AWSS3MemberFilesFolder"];
+            }
+
             _SFContactID = SFContactIDGetFromSessionMember();
             tbDOB.Attributes.Add("placeholder", SessionData.Site.DateFormat.ToLower());
 
@@ -93,14 +113,8 @@ namespace JXTPortal.Website.member.enworld
                                 {
                                     string errormessage = string.Empty;
 
-                                    FtpClient ftpclient = new FtpClient();
-                                    ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                                    ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                                    ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
-                                    string filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], f.MemberId, f.MemberFileUrl);
                                     Stream ms = null;
-                                    ftpclient.DownloadFileToClient(filepath, ref ms, out errormessage);
+                                    ms = FileManagerService.DownloadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, f.MemberId), f.MemberFileUrl, out errormessage);
 
                                     if (string.IsNullOrEmpty(errormessage))
                                     {
@@ -152,6 +166,10 @@ namespace JXTPortal.Website.member.enworld
                 PreserveDataToJavascript();
 
                 FormSetup();
+
+                //For some reason the MultiselectInit does not work if put into the aspx page.
+                //That's why this is being init here instead
+                ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), "DocumentReadyMultiSelectInit", "$(document).ready(function() { MultiselectInit(); })", true);
             }
         }
 
@@ -167,7 +185,7 @@ namespace JXTPortal.Website.member.enworld
 
             #region Country / State
 
-            List<object> countryStates = XMLMultiValueListGet("country");
+            List<object> countryStates = XMLMultiValueListGet("country", "states");
 
             sb.Append("countryData = jQuery.parseJSON('" + ser.Serialize(countryStates).Replace("\\", "\\\\") + "');\n");
 
@@ -175,14 +193,14 @@ namespace JXTPortal.Website.member.enworld
 
             #region Desired Country / Location
 
-            List<object> dCountryLoc = XMLMultiValueListGet("desiredcountry");
+            List<object> dCountryLoc = XMLMultiValueListGet("desiredcountry", "locations");
 
             sb.Append("desiredCountryData = jQuery.parseJSON('" + ser.Serialize(dCountryLoc).Replace("\\", "\\\\") + "');\n");
 
             #endregion
 
             #region Job Category / Job Functions
-            List<object> jobCateFunc = XMLMultiValueListGet("jobcategory");
+            List<object> jobCateFunc = XMLMultiValueListGet("jobcategory", "jobfunctions");
 
             sb.Append("jobFuncData = jQuery.parseJSON('" + ser.Serialize(jobCateFunc).Replace("\\", "\\\\") + "');\n");
             #endregion
@@ -269,9 +287,11 @@ namespace JXTPortal.Website.member.enworld
             tbCity.Text = thisContact.MailingCity;
             ddlState.SelectedValue = thisContact.MailingState;
             tbZip.Text = thisContact.MailingPostalCode;
-            ddlNativeLanguage.SelectedValue = thisContact.Native_Language__c;
-            ddlSecondaryLanguage.SelectedValue = thisContact.Second_Language__c;
-            ddlSecondaryLanguageLevel.SelectedValue = thisContact.Second_Language_Proficiency__c;
+            //TODO:
+            ddlEnglishLanguageLevel.SelectedValue = thisContact.English_Language_Level__c;
+            ddlJapaneseLanguageLevel.SelectedValue = thisContact.Japanese_Language_Level__c;
+            ddlOtherLanguage.SelectedValue = thisContact.Third_Language__c;
+            ddlOtherLanguageLevel.SelectedValue = thisContact.Third_Language_Proficiency__c;
             #endregion
 
             #region Tab 2
@@ -284,9 +304,9 @@ namespace JXTPortal.Website.member.enworld
             {
                 #region setup Job Functions Dropdown
 
-                List<string> jobFuncDDValues = XMLPullMultiValue("jobcategory", thisContact.Job_Category__c);
+                Dictionary<string,string> jobFuncDDValues = XMLPullMultiValue("jobcategory", "jobfunctions", thisContact.Job_Category__c);
 
-                var jobFuncSelectableValues = (from m in jobFuncDDValues select new { text = m, value = m }).ToList();
+                var jobFuncSelectableValues = (from m in jobFuncDDValues select new { text = m.Value, value = m.Key }).ToList();
 
                 ddlJobFunctions.DataSource = jobFuncSelectableValues;
                 ddlJobFunctions.DataTextField = "text";
@@ -322,25 +342,24 @@ namespace JXTPortal.Website.member.enworld
             #region Tab 3
 
             ddlPrimDesiredCountry.SelectedValue = thisContact.Desired_Country__c;
+            Dictionary<string,string> desiredLocDDValues = XMLPullMultiValue("desiredcountry","locations", thisContact.Desired_Country__c);
+
+            var desiredLocSelectableValues = (from m in desiredLocDDValues select new { text = m.Value, value = m.Key }).ToList();
+
+            ddlPrimDesiredLocation.DataSource = desiredLocSelectableValues;
+            ddlPrimDesiredLocation.DataTextField = "text";
+            ddlPrimDesiredLocation.DataValueField = "value";
+            ddlPrimDesiredLocation.DataBind();
+
+            //if (ddlPrimDesiredCountry.SelectedValue == "--None--")
+            //    ddlPrimDesiredLocation.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelectPrimaryDesiredCountry"), "--None--"));
+            //else
+            //    ddlPrimDesiredLocation.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelect"), "--None--"));
+
+            //ddlPrimDesiredLocation.SelectedIndex = 0;
+
             if (!string.IsNullOrEmpty(thisContact.Desired_Locations__c))
             {
-                List<string> desiredLocDDValues = XMLPullMultiValue("desiredcountry", thisContact.Desired_Country__c);
-
-                var desiredLocSelectableValues = (from m in desiredLocDDValues select new { text = m, value = m }).ToList();
-
-                ddlPrimDesiredLocation.DataSource = desiredLocSelectableValues;
-                ddlPrimDesiredLocation.DataTextField = "text";
-                ddlPrimDesiredLocation.DataValueField = "value";
-                ddlPrimDesiredLocation.DataBind();
-
-                //if (ddlPrimDesiredCountry.Items.Count == 0)
-                {
-                    if (ddlPrimDesiredCountry.SelectedValue == "--None--")
-                        ddlPrimDesiredLocation.Items.Insert(0, new ListItem("- Please select a Primary Desired Country -", "--None--"));
-                    else
-                        ddlPrimDesiredLocation.Items.Insert(0, new ListItem("- All Areas -", "--None--"));
-                }
-
                 foreach (string desiredLocValue in thisContact.Desired_Locations__c.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries))
                 {
                     foreach (ListItem listitem in ddlPrimDesiredLocation.Items)
@@ -375,9 +394,9 @@ namespace JXTPortal.Website.member.enworld
             //Primary Desired Job Category / Function
             ddlPrimDesiredJobCategory.SelectedValue = thisContact.Desired_Job_Category__c;
 
-            List<string> desiredJobFuncDDValues = XMLPullMultiValue("jobcategory", thisContact.Desired_Job_Category__c);
+            Dictionary<string,string> desiredJobFuncDDValues = XMLPullMultiValue("jobcategory", "jobfunctions", thisContact.Desired_Job_Category__c);
 
-            var desiredJobFuncSelectableValues = (from m in desiredJobFuncDDValues select new { text = m, value = m }).ToList();
+            var desiredJobFuncSelectableValues = (from m in desiredJobFuncDDValues select new { text = m.Value, value = m.Key }).ToList();
 
             ddlPrmDesiredJobFunction.DataSource = desiredJobFuncSelectableValues;
             ddlPrmDesiredJobFunction.DataTextField = "text";
@@ -417,9 +436,9 @@ namespace JXTPortal.Website.member.enworld
             SalesforceIntegration.SObjRecord thisContact = _SFContactModel.results[0].result.records[0];
 
             #region DDL Gender
-            List<string> genderDDValues = XMLPullValue("gender");
+            Dictionary<string, string> genderDDValues = XMLPullValue("gender");
 
-            var genderSelectableValues = (from m in genderDDValues select new { text = m, value = m }).ToList();
+            var genderSelectableValues = (from m in genderDDValues select new { text = m.Value, value = m.Key }).ToList();
 
             ddlGender.DataSource = genderSelectableValues;
             ddlGender.DataTextField = "text";
@@ -431,9 +450,9 @@ namespace JXTPortal.Website.member.enworld
             #endregion
 
             #region DDL Country / State
-            List<string> countryDDValues = XMLPullValue("country");
+            Dictionary<string, string> countryDDValues = XMLPullValue("country");
 
-            var countrySelectableValues = (from m in countryDDValues select new { text = m, value = m }).ToList();
+            var countrySelectableValues = (from m in countryDDValues select new { text = m.Value, value = m.Key }).ToList();
 
             ddlCountry.DataSource = countrySelectableValues;
             ddlCountry.DataTextField = "text";
@@ -442,11 +461,12 @@ namespace JXTPortal.Website.member.enworld
             //ddlCountry.Items.Insert(0, new ListItem("- Please Select -", "--None--"));
             ddlCountry.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelect"), "--None--"));
 
-            
+            ddlCountry.Attributes["onchange"] = "DataDropdownChanged(this, $('#ddlState'), countryData, '" + CommonFunction.GetResourceValue("DDLPleaseSelectCountry") + "','" + CommonFunction.GetResourceValue("DDLPleaseSelect") + "', false, false);";
+
             if (!string.IsNullOrEmpty(thisContact.MailingCountry))
             {
-                List<string> stateDDValues = XMLPullMultiValue("country", thisContact.MailingCountry);
-                var stateSelectableValues = (from m in stateDDValues select new { text = m, value = m }).ToList();
+                Dictionary<string, string> stateDDValues = XMLPullMultiValue("country", "states", thisContact.MailingCountry);
+                var stateSelectableValues = (from m in stateDDValues select new { text = m.Value, value = m.Key }).ToList();
 
                 ddlState.DataSource = stateSelectableValues;
                 // Code to fix the country dropdown not working 
@@ -472,36 +492,43 @@ namespace JXTPortal.Website.member.enworld
             //state default display
             //ddlState.Items.Insert(0, new ListItem("- Not Specified -", ""));
             ddlState.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLNotSpecified"), ""));
-            
+
             #endregion
 
             #region DDL Languages
-            List<string> languagesDDValues = XMLPullValue("language");
-            var languagesSelectableValues = (from m in languagesDDValues select new { text = m, value = m }).ToList();
+            Dictionary<string, string> languagesDDValues = XMLPullValue("language");
+            var languagesSelectableValues = (from m in languagesDDValues select new { text = m.Value, value = m.Key }).ToList();
 
-            ddlNativeLanguage.DataSource = languagesSelectableValues;
-            ddlNativeLanguage.DataTextField = "text";
-            ddlNativeLanguage.DataValueField = "value";
-            ddlNativeLanguage.DataBind();
-            //ddlNativeLanguage.Items.Insert(0, new ListItem("- Please Select -", "--None--"));
-            ddlNativeLanguage.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelect"), "--None--"));
+            ddlOtherLanguage.DataSource = languagesSelectableValues;
+            ddlOtherLanguage.DataTextField = "text";
+            ddlOtherLanguage.DataValueField = "value";
+            ddlOtherLanguage.DataBind();
+            //ddlOtherLanguage.Items.Insert(0, new ListItem("- Please Select -", "--None--"));
+            ddlOtherLanguage.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLNotSpecified"), "--None--"));
 
-            ddlSecondaryLanguage.DataSource = languagesSelectableValues;
-            ddlSecondaryLanguage.DataTextField = "text";
-            ddlSecondaryLanguage.DataValueField = "value";
-            ddlSecondaryLanguage.DataBind();
-            //ddlSecondaryLanguage.Items.Insert(0, new ListItem("- Not Specified -", "--None--"));
-            ddlSecondaryLanguage.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLNotSpecified"), "--None--"));
+            Dictionary<string, string> languageLevelsDDValues = XMLPullValue("languagelevel");
+            var languageLevelsSelectableDDValues = (from m in languageLevelsDDValues select new { text = m.Value, value = m.Key }).ToList();
 
-            List<string> languageLevelsDDValues = XMLPullValue("languagelevel");
-            var languageLevelsSelectableDDValues = (from m in languageLevelsDDValues select new { text = m, value = m }).ToList();
+            ddlEnglishLanguageLevel.DataSource = languageLevelsSelectableDDValues;
+            ddlEnglishLanguageLevel.DataTextField = "text";
+            ddlEnglishLanguageLevel.DataValueField = "value";
+            ddlEnglishLanguageLevel.DataBind();
+            //ddlEnglishLanguageLevel.Items.Insert(0, new ListItem("- Please Select -", "--None--"));
+            ddlEnglishLanguageLevel.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLNotSpecified"), "--None--"));
 
-            ddlSecondaryLanguageLevel.DataSource = languageLevelsSelectableDDValues;
-            ddlSecondaryLanguageLevel.DataTextField = "text";
-            ddlSecondaryLanguageLevel.DataValueField = "value";
-            ddlSecondaryLanguageLevel.DataBind();
-            //ddlSecondaryLanguageLevel.Items.Insert(0, new ListItem("- Not Specified -", "--None--"));
-            ddlSecondaryLanguageLevel.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLNotSpecified"), "--None--"));
+            ddlJapaneseLanguageLevel.DataSource = languageLevelsSelectableDDValues;
+            ddlJapaneseLanguageLevel.DataTextField = "text";
+            ddlJapaneseLanguageLevel.DataValueField = "value";
+            ddlJapaneseLanguageLevel.DataBind();
+            //ddlJapaneseLanguageLevel.Items.Insert(0, new ListItem("- Not Specified -", "--None--"));
+            ddlJapaneseLanguageLevel.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLNotSpecified"), "--None--"));
+
+            ddlOtherLanguageLevel.DataSource = languageLevelsSelectableDDValues;
+            ddlOtherLanguageLevel.DataTextField = "text";
+            ddlOtherLanguageLevel.DataValueField = "value";
+            ddlOtherLanguageLevel.DataBind();
+            //ddlOtherLanguageLevel.Items.Insert(0, new ListItem("- Not Specified -", "--None--"));
+            ddlOtherLanguageLevel.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLNotSpecified"), "--None--"));
 
             #endregion
         }
@@ -509,9 +536,9 @@ namespace JXTPortal.Website.member.enworld
         private void Tab2Setup()
         {
             #region DDL Industry
-            List<string> industryDDValues = XMLPullValue("industry");
+            Dictionary<string, string> industryDDValues = XMLPullValue("industry");
 
-            var industrySelectableValues = (from m in industryDDValues select new { text = m, value = m }).ToList();
+            var industrySelectableValues = (from m in industryDDValues select new { text = m.Value, value = m.Key }).ToList();
 
             ddlIndustry.DataSource = industrySelectableValues;
             ddlIndustry.DataTextField = "text";
@@ -522,32 +549,37 @@ namespace JXTPortal.Website.member.enworld
             #endregion
 
             #region DDL Employment Type
-            List<string> employmentTypeDDValues = XMLPullValue("employmenttype");
+            Dictionary<string, string> employmentTypeDDValues = XMLPullValue("employmenttype");
 
-            var employmentTypeSelectableValues = (from m in employmentTypeDDValues select new { text = m, value = m }).ToList();
+            var employmentTypeSelectableValues = (from m in employmentTypeDDValues select new { text = m.Value, value = m.Key }).ToList();
 
             ddlEmploymentType.DataSource = employmentTypeSelectableValues;
             ddlEmploymentType.DataTextField = "text";
             ddlEmploymentType.DataValueField = "value";
             ddlEmploymentType.DataBind();
+
+            ddlEmploymentType.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelect"), "--None--"));
+            
             #endregion
 
             #region DDL Salary Period
-            List<string> salaryDDValues = XMLPullValue("salaryperiod");
+            Dictionary<string,string> salaryDDValues = XMLPullValue("salaryperiod");
 
-            var salarySelectableValues = (from m in salaryDDValues select new { text = m, value = m }).ToList();
+            var salarySelectableValues = (from m in salaryDDValues select new { text = m.Value, value = m.Key }).ToList();
 
             ddlSalaryPeriod.DataSource = salarySelectableValues;
             ddlSalaryPeriod.DataTextField = "text";
             ddlSalaryPeriod.DataValueField = "value";
             ddlSalaryPeriod.DataBind();
 
+            ddlSalaryPeriod.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelect"), "--None--"));
+
             #endregion
 
             #region DDL Job Category / Job Functions
-            List<string> jobCateDDValues = XMLPullValue("jobcategory");
+            Dictionary<string, string> jobCateDDValues = XMLPullValue("jobcategory");
 
-            var jobCateSelectableValues = (from m in jobCateDDValues select new { text = m, value = m }).ToList();
+            var jobCateSelectableValues = (from m in jobCateDDValues select new { text = m.Value, value = m.Key }).ToList();
 
             ddlJobCategory.DataSource = jobCateSelectableValues;
             ddlJobCategory.DataTextField = "text";
@@ -557,12 +589,10 @@ namespace JXTPortal.Website.member.enworld
             //ddlJobCategory.Items.Insert(0, new ListItem("- Please select a Job Category -", "--None--"));
             ddlJobCategory.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelectJobCategory"), "--None--"));
 
-            //ddlJobFunctions.Items.Insert(0, new ListItem("- Please select a Job Category -", "--None--"));
-            ddlJobFunctions.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelectJobCategory"), "--None--"));
-
+            ddlJobCategory.Attributes["onchange"] = "DataDropdownChanged(this, $('#ddlJobFunctions'), jobFuncData, '" + CommonFunction.GetResourceValue("DDLPleaseSelectJobCategory") + "','" + CommonFunction.GetResourceValue("DDLPleaseSelect") + "', true, true);";
             #endregion
 
-            #region DDL Salary Currency 
+            #region DDL Salary Currency
             string errorMsg;
             SalesforceIntegration.SObjDescribeResponse descResp;
             bool contactGetSuccess = new SalesforceIntegration(SessionData.Site.SiteId)
@@ -572,10 +602,10 @@ namespace JXTPortal.Website.member.enworld
                                         }, out descResp, out errorMsg);
             if (contactGetSuccess)
             {
-                SalesforceIntegration.SObjField currencyField = descResp.results.First().result.fields.Where(c => c.name.Equals("CurrencyIsoCode")).FirstOrDefault();
+                SalesforceIntegration.SObjField currencyField = descResp.results.First().result.fields.Where(c => c.name.Equals("Salary_Currency__c")).FirstOrDefault();
 
                 ddlSalaryCurrency.DataSource = currencyField.picklistValues;
-                ddlSalaryCurrency.DataTextField = "FullFieldDisplay";
+                ddlSalaryCurrency.DataTextField = "label";
                 ddlSalaryCurrency.DataValueField = "value";
                 ddlSalaryCurrency.DataBind();
 
@@ -586,15 +616,15 @@ namespace JXTPortal.Website.member.enworld
         private void Tab3Setup()
         {
             #region DDL Desired Country / Location
-            List<string> desiredCountryDDValues = XMLPullValue("desiredcountry");
+            Dictionary<string,string> desiredCountryDDValues = XMLPullValue("desiredcountry").OrderBy(c=>c.Key).ToDictionary(c=>c.Key, c=>c.Value);
 
-            var dCountrySelectableValues = (from m in desiredCountryDDValues select new { text = m, value = m }).ToList();
+            var dCountrySelectableValues = (from m in desiredCountryDDValues select new { text = m.Value, value = m.Key }).ToList();
 
             ddlPrimDesiredCountry.DataSource = dCountrySelectableValues;
             ddlPrimDesiredCountry.DataTextField = "text";
             ddlPrimDesiredCountry.DataValueField = "value";
             ddlPrimDesiredCountry.DataBind();
-            
+
             //ddlPrimDesiredCountry.Items.Insert(0, new ListItem("- Please select a Country -", "--None--"));
             ddlPrimDesiredCountry.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelectCountry"), "--None--"));
 
@@ -605,9 +635,9 @@ namespace JXTPortal.Website.member.enworld
             #endregion
 
             #region DDL Employment Type
-            List<string> employmentTypeDDValues = XMLPullValue("employmenttype");
+            Dictionary<string, string> employmentTypeDDValues = XMLPullValue("employmenttype");
 
-            var employmentTypeSelectableValues = (from m in employmentTypeDDValues select new { text = m, value = m }).ToList();
+            var employmentTypeSelectableValues = (from m in employmentTypeDDValues select new { text = m.Value, value = m.Key }).ToList();
 
             ddlDesiredEmployType.DataSource = employmentTypeSelectableValues;
             ddlDesiredEmployType.DataTextField = "text";
@@ -616,9 +646,9 @@ namespace JXTPortal.Website.member.enworld
             #endregion
 
             #region DDL Desired Industry
-            List<string> industryDDValues = XMLPullValue("industry");
+            Dictionary<string, string> industryDDValues = XMLPullValue("industry");
 
-            var industrySelectableValues = (from m in industryDDValues select new { text = m, value = m }).ToList();
+            var industrySelectableValues = (from m in industryDDValues select new { text = m.Value, value = m.Key }).ToList();
 
             ddlPrimDesiredIndustry.DataSource = industrySelectableValues;
             ddlPrimDesiredIndustry.DataTextField = "text";
@@ -630,9 +660,9 @@ namespace JXTPortal.Website.member.enworld
             #endregion
 
             #region DDL Desired Job Category / Job Functions
-            List<string> jobCateDDValues = XMLPullValue("jobcategory");
+            Dictionary<string, string> jobCateDDValues = XMLPullValue("jobcategory");
 
-            var jobCateSelectableValues = (from m in jobCateDDValues select new { text = m, value = m }).ToList();
+            var jobCateSelectableValues = (from m in jobCateDDValues select new { text = m.Value, value = m.Key }).ToList();
 
             ddlPrimDesiredJobCategory.DataSource = jobCateSelectableValues;
             ddlPrimDesiredJobCategory.DataTextField = "text";
@@ -689,22 +719,22 @@ namespace JXTPortal.Website.member.enworld
             ddlPrimDesiredLocation.Items.Clear();
 
             //load
-            List<string> desiredLocDDValues = XMLPullMultiValue("desiredcountry", ddlPrimDesiredCountry.SelectedValue);
+            Dictionary<string, string> desiredLocDDValues = XMLPullMultiValue("desiredcountry", "locations", ddlPrimDesiredCountry.SelectedValue);
 
-            var dLocSelectableValues = (from m in desiredLocDDValues select new { text = m, value = m }).ToList();
+            var dLocSelectableValues = (from m in desiredLocDDValues select new { text = m.Value, value = m.Key }).ToList();
 
             ddlPrimDesiredLocation.DataSource = dLocSelectableValues;
             ddlPrimDesiredLocation.DataTextField = "text";
             ddlPrimDesiredLocation.DataValueField = "value";
             ddlPrimDesiredLocation.DataBind();
 
-            if (dLocSelectableValues.Count() == 0)
-            {
-                if (ddlPrimDesiredCountry.SelectedValue == "--None--")
-                    ddlPrimDesiredLocation.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelectJobCategory"), "--None--"));
-                else
-                    ddlPrimDesiredLocation.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLAllAreas"), "--None--"));
-            }
+            //if (dLocSelectableValues.Count() == 0)
+            //{
+            //    if (ddlPrimDesiredCountry.SelectedValue == "--None--")
+            //        ddlPrimDesiredLocation.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelectPrimaryDesiredCountry"), "--None--"));
+            //    else
+            //        ddlPrimDesiredLocation.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelect"), "--None--"));
+            //}
 
             ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), "FileUpload", "$(document).ready(function() {$('#aDesiredPosition').click(); MultiselectInit(); })", true);
         }
@@ -714,9 +744,9 @@ namespace JXTPortal.Website.member.enworld
             ddlPrmDesiredJobFunction.Items.Clear();
 
             //load
-            List<string> desiredFuncDDValues = XMLPullMultiValue("jobcategory", ddlPrimDesiredJobCategory.SelectedValue);
+            Dictionary<string,string> desiredFuncDDValues = XMLPullMultiValue("jobcategory", "jobfunctions", ddlPrimDesiredJobCategory.SelectedValue);
 
-            var dFuncSelectableValues = (from m in desiredFuncDDValues select new { text = m, value = m }).ToList();
+            var dFuncSelectableValues = (from m in desiredFuncDDValues select new { text = m.Value, value = m.Key }).ToList();
 
             ddlPrmDesiredJobFunction.DataSource = dFuncSelectableValues;
             ddlPrmDesiredJobFunction.DataTextField = "text";
@@ -728,7 +758,7 @@ namespace JXTPortal.Website.member.enworld
                 if (ddlPrimDesiredJobCategory.SelectedValue == "--None--")
                     ddlPrmDesiredJobFunction.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelectPrimaryDesiredJobCategory"), "--None--"));
                 else
-                    ddlPrmDesiredJobFunction.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLAllAreas"), "--None--"));
+                    ddlPrmDesiredJobFunction.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("DDLPleaseSelect"), "--None--"));
             }
 
             ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), "FileUpload", "$(document).ready(function() {$('#aDesiredPosition').click(); MultiselectInit(); })", true);
@@ -779,7 +809,7 @@ namespace JXTPortal.Website.member.enworld
 
                 if (!string.IsNullOrEmpty(fileUploadTitle.Text))
                 {
-                    if (!Regex.IsMatch(fileUploadTitle.Text, ContentValidationRegex))
+                    if (!fileUploadTitle.Text.IsValidContent())
                     {
                         FileUploadMessage.Text = "Resume File Name cannot contain invalid content";
                         ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), "FileUpload", "$(document).ready(function() {$('#aDesiredPosition').click()})", true);
@@ -835,20 +865,15 @@ namespace JXTPortal.Website.member.enworld
 
                         _mfs.Insert(mf);
 
-                        FtpClient ftpclient = new FtpClient();
-                        ftpclient.Host = ConfigurationManager.AppSettings["FTPHost"];
-                        ftpclient.Username = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
-                        ftpclient.Password = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
-
                         string extension = string.Empty;
 
                         extension = Path.GetExtension(fuTest.PostedFile.FileName);
-                        string filepath = string.Format("{0}{1}/{2}/{3}/MemberFiles_{4}{5}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], SessionData.Member.MemberId, mf.MemberFileId, extension);
+                        string filepath = string.Format("MemberFiles_{0}{1}", mf.MemberFileId, extension);
                         string errormessage = string.Empty;
 
-                        ftpclient.UploadFileFromStream(fuTest.PostedFile.InputStream, filepath, out errormessage);
+                        FileManagerService.UploadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, mf.MemberId), filepath, fuTest.PostedFile.InputStream, out errormessage);
 
-                        mf.MemberFileUrl = string.Format("MemberFiles_{0}.{1}", mf.MemberFileId, extension);
+                        mf.MemberFileUrl = string.Format("MemberFiles_{0}{1}", mf.MemberFileId, extension);
                         mf.MemberFileTitle = mf.MemberFileName;
                         mf.MemberId = SessionData.Member.MemberId;
                         mf.MemberFileTypeId = MemberFileTypeID(fuTest.PostedFile.FileName);
@@ -916,52 +941,26 @@ namespace JXTPortal.Website.member.enworld
 
         #region XML Related
 
-        private List<object> XMLMultiValueListGet(string tagname)
+        private List<object> XMLMultiValueListGet(string tagname, string childNodeName)
         {
             //TODO: optimize file access
-            List<object> returnModel = new List<object>(); ;
+            List<object> returnModel = new List<object>();
 
-            List<string> topValues = XMLPullValue(tagname);
+            Dictionary<string, string> topValues = XMLPullValue(tagname);
 
-            foreach (string tValue in topValues)
+            foreach (string tValueKey in topValues.Keys)
             {
-                List<string> childValues = XMLPullMultiValue(tagname, tValue);
-                returnModel.Add(new { Value = tValue, Childs = childValues });
+                Dictionary<string, string> childValues = XMLPullMultiValue(tagname, childNodeName, tValueKey);
+                returnModel.Add(new { Value = tValueKey, Childs = childValues });
             }
 
             return returnModel;
         }
 
-        private List<string> XMLPullValue(string tagname)
+        private Dictionary<string, string> XMLPullValue(string tagname)
         {
-            List<string> values = new List<string>();
-
-            XmlDocument xmldoc = new System.Xml.XmlDocument();
-            xmldoc.Load(Server.MapPath(XMLPath));
-
-            XmlNodeList list = xmldoc.GetElementsByTagName(tagname);
-
-            if (tagname == "country" || tagname == "desiredcountry" || tagname == "jobcategory")
-            {
-                foreach (XmlNode node in list)
-                {
-                    values.Add(node["name"].InnerText);
-                }
-            }
-            else
-            {
-                foreach (XmlNode node in list)
-                {
-                    values.Add(node.InnerText);
-                }
-            }
-
-            return values;
-        }
-
-        private List<string> XMLPullMultiValue(string tagname, string value)
-        {
-            List<string> values = new List<string>();
+            string langCode = Enum.GetName(typeof(PortalEnums.Languages.URLLanguage), SessionData.Language.LanguageId);
+            Dictionary<string, string> values = new Dictionary<string, string>();
 
             XmlDocument xmldoc = new System.Xml.XmlDocument();
             xmldoc.Load(Server.MapPath(XMLPath));
@@ -970,31 +969,59 @@ namespace JXTPortal.Website.member.enworld
 
             foreach (XmlNode node in list)
             {
-                if (node.ChildNodes.Count >= 2)
+                string nodeValue = node.Attributes["Name"].InnerText;
+                foreach (XmlNode innerNode in node.ChildNodes)
                 {
-                    if (node.ChildNodes[0].InnerText == value)
+                    if (innerNode.Name == "name" && innerNode.Attributes["Language"] != null && innerNode.Attributes["Language"].InnerText == langCode)
                     {
-                        XmlNodeList childlist = node.ChildNodes[1].ChildNodes;
-
-                        foreach (XmlNode child in childlist)
-                        {
-                            values.Add(child.InnerText);
-                        }
+                        string nodeDisplayText = innerNode.InnerText;
+                        values.Add(nodeValue, nodeDisplayText);
                     }
                 }
             }
 
+            return values;
+        }
+
+        private Dictionary<string, string> XMLPullMultiValue(string tagname, string childTagName, string value)
+        {
+            string langCode = Enum.GetName(typeof(PortalEnums.Languages.URLLanguage), SessionData.Language.LanguageId);
+            Dictionary<string, string> values = new Dictionary<string, string>();
+
+            XmlDocument xmldoc = new System.Xml.XmlDocument();
+            xmldoc.Load(Server.MapPath(XMLPath));
+
+            XmlNodeList list = xmldoc.GetElementsByTagName(tagname);
+
+            foreach (XmlNode node in list)
+            {
+                if (node.Attributes["Name"].Value == value)
+                {
+                    foreach (XmlNode child in node[childTagName].ChildNodes)
+                    {
+                        string nodeValue = child.Attributes["Name"].Value;
+                        foreach (XmlNode childNameNode in child.ChildNodes)
+                        {
+                            if (childNameNode.Name == "name" && childNameNode.Attributes["Language"] != null && childNameNode.Attributes["Language"].Value == langCode)
+                            {
+                                values.Add(nodeValue, childNameNode.InnerText);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
 
             return values;
         }
 
         private bool XMLValidateValue(string tagname, string value)
         {
-            List<string> values = XMLPullValue(tagname);
+            Dictionary<string,string> values = XMLPullValue(tagname);
 
-            foreach (string name in values)
+            foreach (string key in values.Keys)
             {
-                if (name == value)
+                if (values[key] == value)
                 {
                     return true;
                 }
@@ -1003,12 +1030,12 @@ namespace JXTPortal.Website.member.enworld
             return false;
         }
 
-        private bool XMLValidateValue(string tagname, string value, string childvalue)
+        private bool XMLValidateValue(string tagname, string childNodeName, string value, string childvalue)
         {
-            List<string> values = XMLPullMultiValue(tagname, value);
-            foreach (string name in values)
+            Dictionary<string, string> values = XMLPullMultiValue(tagname, childNodeName, value);
+            foreach (string key in values.Keys)
             {
-                if (name == childvalue)
+                if (values[key] == childvalue)
                 {
                     return true;
                 }
@@ -1032,7 +1059,7 @@ namespace JXTPortal.Website.member.enworld
         #region WebMethod
 
         [WebMethod(EnableSession = true)]
-        public static object Tab1Save(string gender, string dob, string mobile, string phone, string country, string secondEmail, string address, string city, string state, string zip, string nativeLang, string secondLanguage, string secondLanguageLevel)
+        public static object Tab1Save(string gender, string dob, string mobile, string phone, string country, string secondEmail, string address, string city, string state, string zip, string engLevel, string japLevel, string otherLanguage, string otherLevel)
         {
             string sfContactID = SFContactIDGetFromSessionMember();
 
@@ -1040,60 +1067,61 @@ namespace JXTPortal.Website.member.enworld
             List<string> errors = new List<string>();
 
             if (string.IsNullOrEmpty(country) || country == "--None--")
-                errors.Add("You must select a Country");
-
-            if (string.IsNullOrEmpty(nativeLang) || nativeLang == "--None--")
-                errors.Add("You must select a Native Language");
-
-            if (!string.IsNullOrEmpty(secondLanguage) && secondLanguage != "--None--" && (string.IsNullOrEmpty(secondLanguageLevel) || secondLanguageLevel == "--None--"))
-                errors.Add("You must select a language level for your Secondary Language");
+            {
+                errors.Add(CommonFunction.GetResourceValue("LabelCountryMandatory"));
+            }
 
             if (!string.IsNullOrEmpty(dob))
             {
-                if (!Regex.IsMatch(dob, ContentValidationRegex))
+                if (!dob.IsValidContent())
                 {
-                    errors.Add("DOB cannot contain invalid content");
+                    errors.Add(CommonFunction.GetResourceValue("LabelInvalidDate"));
                 }
             }
 
             if (!string.IsNullOrEmpty(mobile))
             {
-                if (!Regex.IsMatch(mobile, ContentValidationRegex))
-                {
+                if (!mobile.IsValidContent())
                     errors.Add("Mobile Phone cannot contain invalid content");
-                }
+
+                if (mobile.Length > 40)
+                    errors.Add("Mobile Phone cannot exceed 40 characters");
             }
 
             if (!string.IsNullOrEmpty(phone))
             {
-                if (!Regex.IsMatch(phone, ContentValidationRegex))
-                {
+                if (!phone.IsValidContent())
                     errors.Add("Home Phone cannot contain invalid content");
-                }
+
+                if (phone.Length > 40)
+                    errors.Add("Home Phone cannot exceed 40 characters");
             }
 
             if (!string.IsNullOrEmpty(address))
             {
-                if (!Regex.IsMatch(address, ContentValidationRegex))
-                {
+                if (!address.IsValidContent())
                     errors.Add("Address cannot contain invalid content");
-                }
+
+                if (address.Length > 255)
+                    errors.Add("Address cannot exceed 255 characters");
             }
 
             if (!string.IsNullOrEmpty(city))
             {
-                if (!Regex.IsMatch(city, ContentValidationRegex))
-                {
+                if (!city.IsValidContent())
                     errors.Add("City cannot contain invalid content");
-                }
+
+                if (city.Length > 40)
+                    errors.Add("City cannot exceed 40 characters");
             }
 
             if (!string.IsNullOrEmpty(zip))
             {
-                if (!Regex.IsMatch(zip, ContentValidationRegex))
-                {
+                if (!zip.IsValidContent())
                     errors.Add("Zip Code cannot contain invalid content");
-                }
+
+                if (zip.Length > 20)
+                    errors.Add("Zip Code cannot exceed 20 characters");
             }
 
             if (!string.IsNullOrEmpty(secondEmail))
@@ -1103,7 +1131,10 @@ namespace JXTPortal.Website.member.enworld
                 Match m = r.Match(secondEmail);
 
                 if (!m.Success)
-                    errors.Add("Invalid Secondary Email Address format");
+                {
+                    errors.Add(CommonFunction.GetResourceValue("LabelEmailInvalid"));
+                    //errors.Add("Invalid Secondary Email Address format");
+                }
             }
 
             if (!string.IsNullOrEmpty(dob))
@@ -1112,11 +1143,15 @@ namespace JXTPortal.Website.member.enworld
                 try
                 {
                     DateTime dt = new DateTime(int.Parse(dobSplit[2]), int.Parse(dobSplit[1]), int.Parse(dobSplit[0]));
-                    dob = string.Format("{0}-{1}-{2}", int.Parse(dobSplit[2]), int.Parse(dobSplit[1]), int.Parse(dobSplit[0]));
+
+                    if (dt >= DateTime.Now)
+                        errors.Add("Date of birth must be in the past");
+                    else
+                        dob = string.Format("{0}-{1}-{2}", int.Parse(dobSplit[2]), int.Parse(dobSplit[1]), int.Parse(dobSplit[0]));
                 }
                 catch (Exception e)
                 {
-                    errors.Add("Invalid Date of Birth format");
+                    errors.Add(CommonFunction.GetResourceValue("LabelInvalidDate"));
                 }
             }
 
@@ -1147,9 +1182,12 @@ namespace JXTPortal.Website.member.enworld
                         MailingCity = city,
                         MailingState = state == "--None--" ? null : state,
                         MailingPostalCode = zip,
-                        Native_Language__c = nativeLang == "--None--" ? null : nativeLang,
-                        Second_Language__c = secondLanguage == "--None--" ? null : secondLanguage,
-                        Second_Language_Proficiency__c = secondLanguageLevel == "--None--" ? null : secondLanguageLevel
+
+                        English_Language_Level__c = engLevel == "--None--" ? null : engLevel,
+                        Japanese_Language_Level__c = japLevel == "--None--" ? null : japLevel,
+                        Third_Language__c = otherLanguage == "--None--" ? null : otherLanguage,
+                        Third_Language_Proficiency__c = otherLevel == "--None--" ? null : otherLevel
+
                     }, out sfEntityID, out errorMsgs);
 
                 if (postSuccess)
@@ -1168,9 +1206,10 @@ namespace JXTPortal.Website.member.enworld
                     thisCandData.MailingCity = city;
                     thisCandData.MailingState = state == "--None--" ? null : state;
                     thisCandData.MailingPostalCode = zip;
-                    thisCandData.Native_Language__c = nativeLang == "--None--" ? null : nativeLang;
-                    thisCandData.Second_Language__c = secondLanguage == "--None--" ? null : secondLanguage;
-                    thisCandData.Second_Language_Proficiency__c = secondLanguageLevel == "--None--" ? null : secondLanguageLevel;
+                    thisCandData.English_Language_Level__c = engLevel == "--None--" ? null : engLevel;
+                    thisCandData.Japanese_Language_Level__c = japLevel == "--None--" ? null : japLevel;
+                    thisCandData.Third_Language__c = otherLanguage == "--None--" ? null : otherLanguage;
+                    thisCandData.Third_Language_Proficiency__c = otherLevel == "--None--" ? null : otherLevel;
 
                     _ms.CandidateDataUpdate(SessionData.Member.MemberId, SessionData.Site.SiteId, thisCandData);
 
@@ -1201,6 +1240,7 @@ namespace JXTPortal.Website.member.enworld
 
             if (string.IsNullOrEmpty(industry) || industry == "--None--")
                 errors.Add("You must select an Industry");
+
             if (string.IsNullOrEmpty(jobcategory) || jobcategory == "--None--")
                 errors.Add("You must select a Job Category");
 
@@ -1209,18 +1249,18 @@ namespace JXTPortal.Website.member.enworld
 
             if (!string.IsNullOrEmpty(company))
             {
-                if (!Regex.IsMatch(company, ContentValidationRegex))
-                {
+                if (!company.IsValidContent())
                     errors.Add("Company cannot contain invalid content");
-                }
+                if (company.Length > 255)
+                    errors.Add("Company cannot exceed 255 characters");
             }
 
             if (!string.IsNullOrEmpty(jobtitle))
             {
-                if (!Regex.IsMatch(jobtitle, ContentValidationRegex))
-                {
+                if (!jobtitle.IsValidContent())
                     errors.Add("Job Title cannot contain invalid content");
-                }
+                if (jobtitle.Length > 255)
+                    errors.Add("Job Title cannot exceed 255 characters");
             }
 
             try
@@ -1269,7 +1309,7 @@ namespace JXTPortal.Website.member.enworld
                         Salary_Period__c = salaryperiod,
                         Current_Fixed_Salary__c = fixedsalary,
                         Annual_Variable_Salary__c = incentivesalary,
-                        CurrencyIsoCode = ddlSalaryCurrency
+                        Salary_Currency__c = ddlSalaryCurrency
                     }, out sfEntityID, out errorMsgs);
 
                 if (postSuccess)

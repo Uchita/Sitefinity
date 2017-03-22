@@ -196,7 +196,8 @@ BEGIN TRY
     WarningMessage NVARCHAR(MAX),              
     JobID INT NULL,              
     UpdateJob BIT,  
-    AddressStatus INT              
+    AddressStatus INT,
+	ExpiryDate DATE NULL
      )              
                
  INSERT INTO #FlatXML(ReferenceNo,               
@@ -207,8 +208,8 @@ BEGIN TRY
     FullDescription,              
     ApplicationEmailAddress,              
     ContactDetails,              
-    CompanyName,              
-ConsultantID,              
+    CompanyName,
+	ConsultantID,
     ConsultantName,              
     PublicTransport,              
     ResidentsOnly,              
@@ -246,7 +247,8 @@ ConsultantID,
     Warning,                  
     WarningMessage,              
     JobID,              
-    UpdateJob)              
+    UpdateJob,
+	ExpiryDate)
  SELECT               
      LTRIM(RTRIM(Element.value('ReferenceNo[1]', 'VARCHAR(255)'))) AS RefNo,              
      Element.value('JobAdType[1]', 'INT') AS JobAdType,              
@@ -297,7 +299,8 @@ ConsultantID,
      0,  -- By default no warnings              
      '',  -- By default No Warnings              
      NULL, -- By default Job ID is NULL              
-     0  -- By default the Job is Inserted              
+     0,  -- By default the Job is Inserted	
+	 Element.value('ExpiryDate[1]', 'DATE') AS ExpiryDate
     FROM   @XMLFeed_New.nodes('/JobPostRequest/Listings/JobListing') Datalist(Element)              
     --OPTION ( OPTIMIZE FOR ( @XMLFeed_New = NULL ) )              
                   
@@ -527,8 +530,7 @@ ConsultantID,
    #FlatXML.ErrorMessage = ISNULL(#FlatXML.ErrorMessage,'') +  ' -> JobAdType not allowed on this site - ' + Cast(#FlatXML.JobAdType as varchar(10))               
   FROM               
    #FlatXML WHERE JobAdType NOT IN (SELECT JobItemTypeParentID FROM JobItemsType (NOLOCK) WHERE JobItemsType.SiteID = @SiteID AND Valid = 1 AND TotalNumberOfJobs = 1)           
-                 
-                  
+               
  -- *************** INSERT / UPDATE / Archive Jobs *********************              
                
  -- Update temp table with the Consultant names              
@@ -543,7 +545,8 @@ ConsultantID,
   UPDATE #FlatXML SET UpdateJob = 1, #FlatXML.JobID = Jobs.JobID              
   FROM               
    #FlatXML INNER JOIN Jobs (NOLOCK) ON #FlatXML.ReferenceNo = Jobs.RefNo AND           
-   Jobs.SiteID = @SiteID -- AND Jobs.Expired = 0 AND Jobs.ExpiryDate >= GETDATE()              
+   Jobs.SiteID = @SiteID
+    -- AND Jobs.Expired = 0 AND Jobs.ExpiryDate >= GETDATE() -- 2017-02-21 Removed to ensure that jobs can be unexpired
   WHERE               
    Valid = 1               
                       
@@ -563,8 +566,10 @@ ConsultantID,
    1, -- WebServiceProcessed              
    ISNULL(ApplicationEmailAddress,''),               
    1, -- Visible              
-   GETDATE(), -- DatePosted              
-   CASE WHEN (#FlatXML.JobAdType = @JobTypeID_Premium) THEN DATEADD(DAY,@PremiumExpiryDays,GETDATE()) ELSE DATEADD(DAY,30,GETDATE()) END,           
+   GETDATE(), -- DatePosted
+   CASE WHEN (#FlatXML.ExpiryDate IS NOT NULL AND #FlatXML.ExpiryDate > '1900-01-01')
+   THEN #FlatXML.ExpiryDate              
+   ELSE CASE WHEN (#FlatXML.JobAdType = @JobTypeID_Premium) THEN DATEADD(DAY,@PremiumExpiryDays,GETDATE()) ELSE DATEADD(DAY,30,GETDATE()) END END,           
     -- If Premium set from the JobItemType table else default for Normal/Stand out          
    1, -- Billed              
    GETDATE(), -- LastModified              
@@ -628,10 +633,11 @@ ConsultantID,
       SalaryUpperBand = #FlatXML.SalaryUpperBand, SalaryLowerBand = #FlatXML.SalaryLowerBand, SalaryTypeID = #FlatXML.SalaryTypeID,               
       CurrencyID = 1, EnteredByAdvertiserUserID = @AdvertiserUserId,
       Expired = CASE WHEN ISNULL(#FlatXML.ExpiryDate, CAST('2001-01-01' AS DATE)) > GETDATE() THEN 0 ELSE Expired END, 
-	  ExpiryDate = CASE WHEN ISNULL(#FlatXML.ExpiryDate, 'EMPTY') ='EMPTY' THEN ExpiryDate  ELSE #FlatXML.ExpiryDate  END
+	  ExpiryDate = CASE WHEN ISNULL(#FlatXML.ExpiryDate, CAST('2001-01-01' AS DATE)) = CAST('2001-01-01' AS DATE) THEN Jobs.ExpiryDate ELSE #FlatXML.ExpiryDate END
  FROM               
   #FlatXML INNER JOIN Jobs (NOLOCK) ON       
-   Jobs.JobID = #FlatXML.JobID-- AND Jobs.Expired = 0 AND Jobs.ExpiryDate >= GETDATE()              
+   Jobs.JobID = #FlatXML.JobID
+   -- AND Jobs.Expired = 0 AND Jobs.ExpiryDate >= GETDATE()  -- 2017-02-21 Removed to ensure that jobs can be unexpired             
  WHERE               
   UpdateJob = 1 AND Valid = 1              
                
@@ -667,7 +673,7 @@ ConsultantID,
  )              
                
  INSERT INTO JobArea(JobID, AreaID) SELECT JobID, Area FROM #FlatXML WHERE UpdateJob = 0 AND Valid = 1              
-          
+      
  -- Create Invoices only for New jobs and if the site is a JOB BOARD        
  IF (EXISTS(SELECT 1 FROM #FlatXML WHERE UpdateJob = 0 AND Valid = 1) AND @SiteType = 2)           
  BEGIN          
@@ -960,7 +966,10 @@ ConsultantID,
                 
                 
     SELECT JobID, * FROM #FlatXML               
-                  
+
+	SELECT * FROM Jobs j
+	Join #FlatXML f
+	ON j.JobID = f.JobID
                 
  -- *************** Drop the temporary table *********************              
     DROP TABLE #FlatXML              

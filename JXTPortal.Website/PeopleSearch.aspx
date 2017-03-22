@@ -172,8 +172,12 @@
                                     </div>
                                     <div class="col-xs-12 text-center">
                                         <asp:LinkButton ID="lbSearch" runat="server" CssClass="btn btn-primary btn-sm" Text="Search"
-                                            OnClick="lbSearch_Click" OnClientClick="$('#hfAnnualRange').val($('#ex2').val());$('#hfHourlyRange').val($('#ex3').val()); " ClientIDMode="Static" />
-                                        <a class="btn btn-primary btn-sm cancel-btn" href="#basicProfileEdit" data-toggle="collapse" onclick="PeopleSearchReset(); return false;"><JXTControl:ucLanguageLiteral ID="ltReset" runat="server" SetLanguageCode="LabelReset" /></a>
+                                            OnClick="lbSearch_Click" OnClientClick="$('#hfAnnualRange').val($('#ex2').val());$('#hfHourlyRange').val($('#ex3').val()); "
+                                            ClientIDMode="Static" />
+                                        <a class="btn btn-primary btn-sm cancel-btn" href="#basicProfileEdit" data-toggle="collapse"
+                                            onclick="PeopleSearchReset(); return false;">
+                                            <JXTControl:ucLanguageLiteral ID="ltReset" runat="server" SetLanguageCode="LabelReset" />
+                                        </a>
                                     </div>
                                     <div class="clearfix">
                                     </div>
@@ -214,7 +218,8 @@
                                             </div>
                                             <asp:PlaceHolder ID="phPage" runat="server">
                                                 <ul class="pagination-sm pull-right pagination-demo pagination">
-                                                    <asp:Repeater ID="rptPage" runat="server" OnItemDataBound="rptPage_ItemDataBound" OnItemCommand="rptPage_ItemCommand">
+                                                    <asp:Repeater ID="rptPage" runat="server" OnItemDataBound="rptPage_ItemDataBound"
+                                                        OnItemCommand="rptPage_ItemCommand">
                                                         <ItemTemplate>
                                                             <asp:Literal ID="ltHead" runat="server" />
                                                             <asp:LinkButton ID="lbPage" runat="server" CommandName="Page" />
@@ -231,8 +236,11 @@
                                             <div class="jobs-list">
                                                 <h4>
                                                     <span>
-                                                        <asp:Literal ID="ltFirstName" runat="server" />
-                                                        <asp:Literal ID="ltLastName" runat="server" /></span>
+                                                        <asp:HyperLink ID="hlMemberPublicProfileURL" runat="server" CssClass="profileURL publicProfileURL">
+                                                            <asp:Literal ID="ltFirstName" runat="server" />
+                                                            <asp:Literal ID="ltLastName" runat="server" />
+                                                        </asp:HyperLink>
+                                                    </span>
                                                     <ul class="job-btns">
                                                         <!--  <li><a href="#" class="btn btn-default"><i class="fa fa-plus"></i> </a></li> -->
                                                         <li>
@@ -241,8 +249,23 @@
                                                         <!-- <li><a href="#" class="btn btn-default"><i class="fa fa-user tip"></i> </a></li> -->
                                                         <!-- <li class="custom-fileUpload"><a href="#" class="btn btn-default">
     <span class="upload-lbl"></span><input type="file" id="attach-Resume1" class="form-control"></a></li> -->
-                                                        <li><asp:LinkButton ID="lbDownload" runat="server" CommandName="Download" CssClass="btn btn-default"><span class="fa fa-download"
-                                                            aria-hidden="true"></span></asp:LinkButton></li>
+                                                        <asp:PlaceHolder ID="phDownloadProfile" runat="server">
+                                                            <li>
+                                                                <asp:LinkButton ID="lbDownload" runat="server" CommandName="Download" CssClass="btn btn-default">
+                                                                    <span class="fa fa-download" aria-hidden="true"></span>
+                                                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral3" runat="server" SetLanguageCode="LabelDownloadProfile" />
+                                                                </asp:LinkButton>
+                                                            </li>
+                                                        </asp:PlaceHolder>
+
+                                                        <asp:PlaceHolder ID="phDownloadResume" runat="server">
+                                                            <li>
+                                                                <asp:HyperLink ID="hlDownLoadResume" CssClass="btn btn-default" runat="server">
+                                                                    <span class="fa fa-download" aria-hidden="true"></span>
+                                                                    <JXTControl:ucLanguageLiteral ID="UcLanguageLiteral2" runat="server" SetLanguageCode="LabelDownloadResume" />
+                                                                </asp:HyperLink>
+                                                            </li>
+                                                        </asp:PlaceHolder>
                                                     </ul>
                                                 </h4>
                                                 <asp:Literal ID="ltShortBio" runat="server" />

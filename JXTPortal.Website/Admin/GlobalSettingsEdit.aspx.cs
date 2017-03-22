@@ -128,13 +128,21 @@ namespace JXTPortal.Website.Admin
                 SiteID = SessionData.Site.SiteId;
             }
 
-            if (SessionData.AdminUser.AdminRoleId == 1)
+
+            if (SessionData.AdminUser != null)
             {
-                phManualExpiry.Visible = true;
+                if (SessionData.AdminUser.AdminRoleId == 1)
+                {
+                    phManualExpiry.Visible = true;
+                }
+                else
+                {
+                    phManualExpiry.Visible = false;
+                }
             }
             else
             {
-                phManualExpiry.Visible = false;
+                Response.Redirect("~/admin/login.aspx?returnurl=" + Server.UrlEncode(Request.Url.OriginalString));
             }
 
             cbUseCustomProfessionRoles.Enabled = (SiteID == 0);
@@ -235,8 +243,17 @@ namespace JXTPortal.Website.Admin
                 globalSetting.DefaultKeywords = dataDefaultKeywords.Text;
                 globalSetting.HomeKeywords = dataHomeKeywords.Text;
                 globalSetting.FtpFolderLocation = dataFTPFolder.Text.TrimStart(new char[] {'/'}).TrimEnd(new char[] {'/'});
+                
                 // Adding Global FTPFolder
                 globalSetting.GlobalFolder = dataGlobalFTPFolder.Text.TrimStart(new char[] { '/' }).TrimEnd(new char[] { '/' });
+
+                // Adding Manal Expiry Date
+                if (phManualExpiry.Visible == true)
+                {
+                    globalSetting.EnableExpiryDate = cbManualJobExpiry.Checked;
+                }
+
+
                 globalSetting.ShowFaceBookButton = false;
                 globalSetting.PrivacySettings = dataPrivacySettings.Text;
                 globalSetting.UseCustomProfessionRole = cbUseCustomProfessionRoles.Checked;
@@ -465,6 +482,9 @@ namespace JXTPortal.Website.Admin
                         chkPrivateSite.Checked = globalSetting.IsPrivateSite.HasValue ? globalSetting.IsPrivateSite.Value : false;
                 if (chkPrivateSite.Checked)
                             txtPrivateRedirectUrl.Text = globalSetting.PrivateRedirectUrl;
+                
+                // Manual JobExpiry Date Settings
+                cbManualJobExpiry.Checked = globalSetting.EnableExpiryDate;
 
                 //People Search Settings
                         cbPeopleSearchCB.Checked = globalSetting.EnablePeopleSearch;

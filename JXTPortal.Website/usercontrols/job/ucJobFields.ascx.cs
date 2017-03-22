@@ -528,17 +528,8 @@ namespace JXTPortal.Website.Admin.UserControls
 
             cal_tbStartDate.Format = SessionData.Site.DateFormat;
 
-            var superAdminRole = SessionData.AdminUser.AdminRoleId;
-
-            if (superAdminRole == 1)
-            {
-                // pass dateformat as placeholder for the textbox
-                txtJobExpiryDate.Attributes["placeholder"] = placeHolderdateFormat(getGlobalDateFormat());
-            }
-            else
-            {
-                phManualJobExpirydate.Visible = false;
-            }
+            // Manual Expiry Date
+            DisplayManualExpiryDate();
            
             if (!Page.IsPostBack)
             {
@@ -3317,6 +3308,21 @@ namespace JXTPortal.Website.Admin.UserControls
             {
                 return DateTime.Now.AddDays(30);
             }            
+        }
+
+        private void DisplayManualExpiryDate()
+        {
+            Entities.GlobalSettings globalsetting = GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId).FirstOrDefault();
+
+            if (globalsetting.EnableExpiryDate)
+            {
+                // pass dateformat as placeholder for the textbox
+                txtJobExpiryDate.Attributes["placeholder"] = placeHolderdateFormat(getGlobalDateFormat());
+            }
+            else
+            {
+                phManualJobExpirydate.Visible = false;
+            }
         }
 
     }

@@ -66,7 +66,7 @@
                             &nbsp;
                         </th>
                         <th scope="col">
-                            First Name
+                            <asp:LinkButton ID="lbSortFirstName" runat="server" CommandName="FirstName">First Name</asp:LinkButton>
                         </th>
                         <th scope="col">
                             Last Name

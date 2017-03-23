@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Configuration;
 using System.Web;
+using System.Data.Linq;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -48,22 +49,25 @@ namespace JXTPortal.Website.Admin
             }
 
         }
+        public string defaultSortOrder = "ConsultantID";
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (!Page.IsPostBack)
             {
-                LoadConsultants();
+                LoadConsultants(defaultSortOrder);
             }
         }
 
-        private void LoadConsultants()
+        private void LoadConsultants(String sortingOrder)
         {
             int totalCount = 0;
             int pageCount = 0;
             int sitePageCount = JXTPortal.Common.Utils.GetAppSettingsInt("SitePaging");
 
             string filter = string.Empty;
+
             if (!string.IsNullOrWhiteSpace(tbName.Text))
             {
                 filter += " AND (FirstName LIKE '%" + tbName.Text.Replace("'", "''") + "%' OR LastName LIKE '%" + tbName.Text.Replace("'", "''") + "%')";
@@ -80,7 +84,7 @@ namespace JXTPortal.Website.Admin
             }
 
 
-            TList<JXTPortal.Entities.Consultants> consultants = ConsultantsService.GetPaged("SiteId = " + SessionData.Site.SiteId.ToString() + filter, "ConsultantID", CurrentPage, sitePageCount, out totalCount);
+            TList<JXTPortal.Entities.Consultants> consultants = ConsultantsService.GetPaged("SiteId = " + SessionData.Site.SiteId.ToString() + filter, sortingOrder, CurrentPage, sitePageCount, out totalCount);
 
             if (totalCount > 0)
             {
@@ -197,13 +201,18 @@ namespace JXTPortal.Website.Admin
                     if (consultant != null && consultant.SiteId == SessionData.Site.SiteId)
                     {
                         ConsultantsService.Delete(consultant);
-                        LoadConsultants();
+                        LoadConsultants(defaultSortOrder);
                     }
                     else
                     {
                         Response.Redirect("/admin/consultants.aspx");
                     }
                 }
+            }
+
+            if(e.CommandName == "FirstName")
+            {
+                LoadConsultants("FirstName");
             }
         }
 
@@ -239,6 +248,8 @@ namespace JXTPortal.Website.Admin
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             LoadConsultants();
+        }
+
         }
     }
 }

@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.4
+VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NetTiers", "NetTiers", "{F3A10C8D-3227-449F-A2CB-014DE2D7F415}"
 EndProject
@@ -234,6 +234,7 @@ Global
 		{F728C4BD-8EEB-476D-AC0B-D4BCFA98F975}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F728C4BD-8EEB-476D-AC0B-D4BCFA98F975}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F728C4BD-8EEB-476D-AC0B-D4BCFA98F975}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{F728C4BD-8EEB-476D-AC0B-D4BCFA98F975}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{F728C4BD-8EEB-476D-AC0B-D4BCFA98F975}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{F728C4BD-8EEB-476D-AC0B-D4BCFA98F975}.GenerateDebug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F728C4BD-8EEB-476D-AC0B-D4BCFA98F975}.GenerateDebug|Any CPU.Build.0 = Debug|Any CPU

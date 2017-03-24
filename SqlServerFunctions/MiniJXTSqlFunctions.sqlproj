@@ -30,7 +30,7 @@
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
     <Name>MiniJXTSqlFunctions</Name>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{2cdbc72f-8e33-4c86-9be5-54fedaa64291}</ProjectGuid>
+    <ProjectGuid>{f17c7d22-4829-46a5-89a0-bdf8bd939f0f}</ProjectGuid>
     <IncludeSchemaNameInFileName>False</IncludeSchemaNameInFileName>
     <GenerateDatabaseFile>False</GenerateDatabaseFile>
     <GenerateCreateScript>False</GenerateCreateScript>

@@ -25,7 +25,8 @@
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <StartupObject>
     </StartupObject>
-    <FileUpgradeFlags>40</FileUpgradeFlags>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
     <SccProjectName>
     </SccProjectName>
     <SccLocalPath>
@@ -35,7 +36,8 @@
     <SccProvider>
     </SccProvider>
     <OldToolsVersion>4.0</OldToolsVersion>
-    <UpgradeBackupLocation>C:\dev\MiniJXT\Backup2\</UpgradeBackupLocation>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
     <TargetFrameworkProfile />
     <UseIISExpress>true</UseIISExpress>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -4644,9 +4646,7 @@
     </Content>
     <None Include="App_GlobalResources\CustomLocationArea.xlsx" />
     <None Include="App_GlobalResources\CustomLocationArea_1.xlsx" />
-    <None Include="Boardy.PublishSettings" />
     <None Include="ckeditor\.htaccess" />
-    <None Include="ClassDiagram1.cd" />
     <Content Include="MasterPages\CustomMain.Master" />
     <Content Include="FileUpload.ashx" />
     <None Include="FolderProfile.pubxml" />

@@ -53,7 +53,7 @@ namespace JXTPortal.Website.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
             if (!Page.IsPostBack)
             {
                 LoadConsultants(defaultSortOrder);
@@ -150,7 +150,8 @@ namespace JXTPortal.Website.Admin
                 {
                     CurrentPage = Convert.ToInt32(e.CommandArgument);
                 }
-                LoadConsultants();
+
+                LoadConsultants(defaultSortOrder);
             }
         }
 
@@ -210,7 +211,7 @@ namespace JXTPortal.Website.Admin
                 }
             }
 
-            if(e.CommandName == "FirstName")
+            if (e.CommandName == "FirstName")
             {
                 LoadConsultants("FirstName");
             }
@@ -282,6 +283,5 @@ namespace JXTPortal.Website.Admin
             LoadConsultants(defaultSortOrder);
         }
 
-        }
     }
 }

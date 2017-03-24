@@ -188,6 +188,14 @@ namespace JXTPortal.Website.Admin
 
         protected void rptConsultants_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
+            string OrderByFirstName = "FirstName";
+            string OrderByLastName = "LastName";
+            string OrderByEmail = "Email";
+            string OrderByPositionTitle = "PositionTitle";
+            string OrderByStatus = "Valid";
+            string OrderByLastModified = "LastModified";
+
+
             if (e.CommandName == "Select")
             {
                 Response.Redirect("~/Admin/ConsultantsEdit.aspx?ConsultantID=" + e.CommandArgument.ToString());
@@ -213,32 +221,32 @@ namespace JXTPortal.Website.Admin
 
             if (e.CommandName == "FirstName")
             {
-                LoadConsultants("FirstName");
+                LoadConsultants(OrderByFirstName);
             }
 
             if (e.CommandName == "LastName")
             {
-                LoadConsultants("LastName");
+                LoadConsultants(OrderByLastName);
             }
 
             if (e.CommandName == "Email")
             {
-                LoadConsultants("Email");
+                LoadConsultants(OrderByEmail);
             }
 
             if (e.CommandName == "PositionTitle")
             {
-                LoadConsultants("PositionTitle");
+                LoadConsultants(OrderByPositionTitle);
             }
 
             if (e.CommandName == "Status")
             {
-                LoadConsultants("Valid");
+                LoadConsultants(OrderByStatus);
             }
 
             if (e.CommandName == "LastModified")
             {
-                LoadConsultants("LastModified");
+                LoadConsultants(OrderByLastModified);
             }
         }
 

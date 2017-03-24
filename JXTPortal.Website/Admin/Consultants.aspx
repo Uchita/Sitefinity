@@ -69,19 +69,19 @@
                             <asp:LinkButton ID="lbSortFirstName" runat="server" CommandName="FirstName">First Name</asp:LinkButton>
                         </th>
                         <th scope="col">
-                            Last Name
+                            <asp:LinkButton ID="lbSortLastName" runat="server" CommandName="LastName">Last Name</asp:LinkButton>
                         </th>
                         <th scope="col">
-                            Email
+                            <asp:LinkButton ID="lbSortEmail" runat="server" CommandName="Email">Email</asp:LinkButton>
                         </th>
                         <th scope="col">
-                            Position Title
+                            <asp:LinkButton ID="lbSortPositionTitle" runat="server" CommandName="PositionTitle">Position Title</asp:LinkButton>
                         </th>
                         <th scope="col">
-                            Status
+                            <asp:LinkButton ID="lbSortStatus" runat="server" CommandName="Status">Status</asp:LinkButton>
                         </th>
                         <th scope="col">
-                            Last Modified
+                            <asp:LinkButton ID="lbSortLastModified" runat="server" CommandName="LastModified">Last Modified</asp:LinkButton>
                         </th>
                     </tr>
                 </thead>

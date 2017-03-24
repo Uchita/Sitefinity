@@ -214,6 +214,31 @@ namespace JXTPortal.Website.Admin
             {
                 LoadConsultants("FirstName");
             }
+
+            if (e.CommandName == "LastName")
+            {
+                LoadConsultants("LastName");
+            }
+
+            if (e.CommandName == "Email")
+            {
+                LoadConsultants("Email");
+            }
+
+            if (e.CommandName == "PositionTitle")
+            {
+                LoadConsultants("PositionTitle");
+            }
+
+            if (e.CommandName == "Status")
+            {
+                LoadConsultants("Valid");
+            }
+
+            if (e.CommandName == "LastModified")
+            {
+                LoadConsultants("LastModified");
+            }
         }
 
         protected void rptConsultants_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -228,6 +253,13 @@ namespace JXTPortal.Website.Admin
                 Literal ltPositionTitle = e.Item.FindControl("ltPositionTitle") as Literal;
                 Literal ltStatus = e.Item.FindControl("ltStatus") as Literal;
                 Literal ltLastModified = e.Item.FindControl("ltLastModified") as Literal;
+
+                LinkButton lbSortFirstName = e.Item.FindControl("lbSortFirstName") as LinkButton;
+                LinkButton lbSortLastName = e.Item.FindControl("lbSortLastName") as LinkButton;
+                LinkButton lbSortEmail = e.Item.FindControl("lbSortEmail") as LinkButton;
+                LinkButton lbSortPositionTitle = e.Item.FindControl("lbSortPositionTitle") as LinkButton;
+                LinkButton lbSortStatus = e.Item.FindControl("lbSortStatus") as LinkButton;
+                LinkButton lbSortLastModified = e.Item.FindControl("lbSortLastModified") as LinkButton;
 
                 JXTPortal.Entities.Consultants consultant = e.Item.DataItem as JXTPortal.Entities.Consultants;
 
@@ -247,7 +279,7 @@ namespace JXTPortal.Website.Admin
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            LoadConsultants();
+            LoadConsultants(defaultSortOrder);
         }
 
         }

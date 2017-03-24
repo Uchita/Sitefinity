@@ -78,23 +78,23 @@ namespace JXTJobsExport
                         indeedIntegration = GetIndeedIntegration(site);
 
                         var viewJobSearchList = new ViewJobSearchService().GetBySearchFilter(string.Empty,
-                                                                                              site.SiteId,
-                                                                                              null,
-                                                                                              null,
-                                                                                              null,
-                                                                                              null,
-                                                                                              null,
-                                                                                              null,
-                                                                                              null,
-                                                                                              string.Empty,
-                                                                                              null,
-                                                                                              null,
-                                                                                              string.Empty,
-                                                                                              null,
-                                                                                              0,
-                                                                                              Int16.MaxValue,
-                                                                                              string.Empty,
-                                                                                              null);
+                                                                              site.SiteId,
+                                                                              null,
+                                                                              null,
+                                                                              null,
+                                                                              null,
+                                                                              null,
+                                                                              null,
+                                                                              null,
+                                                                              string.Empty,
+                                                                              null,
+                                                                              null,
+                                                                              string.Empty,
+                                                                              null,
+                                                                              0,
+                                                                              Int16.MaxValue,
+                                                                              string.Empty,
+                                                                              null);
 
                         GenerateXmlForJobs(jobsExportFolder, viewJobSearchList, globalSettings, indeedIntegration, site);
                         GenerateXmlForAdvertisers(jobsExportFolder, viewJobSearchList, globalSettings, indeedIntegration, site);

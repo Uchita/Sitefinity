@@ -413,12 +413,34 @@ namespace JXTJobScienceIntegration
                 int jobApplicationIDInt = int.Parse(JobApplicationID);
 
                 JobApplicationSyncResponse syncResponse = JobApplicationSyncWithSalesForce(jobApplicationIDInt, filesToUpload);
+                continueToNextApplication = syncResponse.continueToNextApplication;
 
-                if( syncResponse.continueToNextApplication )
+                //   Success   |    continueToNextApplication |     Action 
+                //====================================================================
+                //     YES     |             YES              |  Update last ran job application ID   
+                //     YES     |             NO               |  Should not happen 
+                //     NO      |             YES              |  Add to error log, continue
+                //     NO      |             NO               |  Do nothing and let it retry the next schedule
+
+
+                if ( syncResponse.success )
                 { 
                     _logger.InfoFormat("Application Completed: {0}", JobApplicationID);
                     // Update the XML file of the last successful Job application ID
                     UpdateXMLwithJobApplication(siteXML, JobApplicationID);
+                }
+                else
+                {
+                    if (syncResponse.continueToNextApplication)
+                    {
+                        //log failure - Add to error log
+                        UpdateXMLwithJobApplicationSyncError(siteXML, JobApplicationID, syncResponse.errorLevel, syncResponse.errorMessage);
+                        //continue
+                    }
+                    else
+                    { 
+                        //UpdateXMLwithJobApplicationSyncError(siteXML, JobApplicationID, syncResponse.errorLevel, syncResponse.errorMessage);
+                    }
                 }
 
                 _logger.InfoFormat("Send Completed: ", JobApplicationID);
@@ -427,6 +449,7 @@ namespace JXTJobScienceIntegration
             {
                 continueToNextApplication = false;
                 _logger.Error(ex);
+                UpdateXMLwithJobApplicationSyncError(siteXML, JobApplicationID, ErrorLevel.Error, ex.Message);
             }
 
             return continueToNextApplication;
@@ -452,11 +475,20 @@ namespace JXTJobScienceIntegration
             //create new element
             XElement newErrorElement = new XElement("ErrorLog");
             newErrorElement.Add(new XAttribute("jobApplicationID", jobApplicationID));
-            newErrorElement.Add(new XAttribute("date", string.Format("{dd-MM-yyyy H:mm:ss}", DateTime.Now)));
+            newErrorElement.Add(new XAttribute("date", string.Format("{0:dd-MM-yyyy H:mm:ss}", DateTime.Now)));
             newErrorElement.Add(new XAttribute("level", errorLevel.ToString()));
             newErrorElement.SetValue(errorMessage);
 
-
+            //find the related site config
+            var query = from c in xmlFile.Elements("sites").ElementAt(0).Elements("site") select c;
+            foreach (XElement site in query)
+            {
+                if (site.Element("SiteId").Value == siteXML.SiteId.ToString())
+                {
+                    site.Add(newErrorElement);
+                    break;
+                }
+            }
 
             xmlFile.Save(ConfigurationManager.AppSettings["SitesXML"]);
         }

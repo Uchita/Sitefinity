@@ -361,10 +361,18 @@ namespace JXTJobScienceIntegration
             {
                 _logger.InfoFormat("Number of Job Applications: {0}", dt.Rows.Count);
 
+                List<string> errorJobAppIDs = GetErrorLogJobApplicationIDFromXML(siteXML);
+
                 // If there is an error it will stop at the Job application 
                 foreach (DataRow drApplication in dt.Rows)
                 {
                     string applicationID = drApplication["JobApplicationID"].ToString();
+
+                    if (errorJobAppIDs.Contains(applicationID))
+                    {
+                        _logger.InfoFormat("Skipping job application with ID: {0}. Application found in error log.", applicationID);
+                        continue;
+                    }
                     _logger.DebugFormat("Application ID about to be uploaded: {0}", applicationID);
 
                     List<FileNames> filesToUpload = new List<FileNames>();
@@ -493,11 +501,35 @@ namespace JXTJobScienceIntegration
             xmlFile.Save(ConfigurationManager.AppSettings["SitesXML"]);
         }
 
+        protected static List<string> GetErrorLogJobApplicationIDFromXML(SitesXML siteXML)
+        {
+            List<string> errorJobApplicationIDs = new List<string>();
+
+            XDocument xmlFile = XDocument.Load(ConfigurationManager.AppSettings["SitesXML"]);
+            //find the related site config
+            var query = from c in xmlFile.Elements("sites").ElementAt(0).Elements("site") select c;
+            foreach (XElement site in query)
+            {
+                if (site.Element("SiteId").Value == siteXML.SiteId.ToString())
+                {
+                    foreach (XElement errorLogElement in site.Elements("ErrorLog"))
+                    {
+                        XAttribute jobAppIDAttri = errorLogElement.Attribute("jobApplicationID");
+                        if(jobAppIDAttri != null)
+                        { 
+                            errorJobApplicationIDs.Add(jobAppIDAttri.Value);
+                        }
+                    }
+                    break;
+                }
+            }
+            return errorJobApplicationIDs;
+        }
     }
 
-    #region Classes
+        #region Classes
 
-    public class SitesXML
+        public class SitesXML
     {
         public int SiteId;
         public string LastJobApplicationId;

@@ -1373,7 +1373,6 @@ namespace JXTPortal.Data.Bases
 		
 		#region JobAlerts_GetBySalaryTypeId 
 		
-		
 		/// <summary>
 		///	This method wrap the 'JobAlerts_GetBySalaryTypeId' stored procedure. 
 		/// </summary>
@@ -1386,7 +1385,6 @@ namespace JXTPortal.Data.Bases
 		{
 			return GetBySalaryTypeId(null, start, pageLength , salaryTypeId);
 		}
-				
 		
 		/// <summary>
 		///	This method wrap the 'JobAlerts_GetBySalaryTypeId' stored procedure. 
@@ -1636,7 +1634,6 @@ namespace JXTPortal.Data.Bases
 		#endregion
 		
 		#region JobAlerts_GetByCurrencyId 
-		
 		
 		/// <summary>
 		///	This method wrap the 'JobAlerts_GetByCurrencyId' stored procedure. 

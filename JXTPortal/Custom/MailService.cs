@@ -489,7 +489,7 @@ namespace JXTPortal
                 message.Subject = emailtemplate.EmailSubject;
                 message.To = new MailAddress(strTo.Split(new char[] { ';' })[0]);
 
-                if (files.Count > 0)
+                if (files != null && files.Count > 0)
                 {
                     foreach (HttpPostedFile file in files)
                     {

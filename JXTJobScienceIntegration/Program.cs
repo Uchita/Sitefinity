@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using JXTPortal;
+﻿using JXTPortal;
 using JXTPortal.Client.Salesforce;
-using System.Net;
-using System.Net.Mail;
-using System.Xml.Linq;
-using System.IO;
+using JXTPortal.Entities;
+using log4net;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Diagnostics;
-using System.Configuration;
-using System.Net.Configuration;
-using JXTPortal.EmailSender;
-using JXTPortal.Entities;
+using System.IO;
+using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Script.Serialization;
-using log4net;
+using System.Xml.Linq;
 
 namespace JXTJobScienceIntegration
 {
@@ -108,13 +104,14 @@ namespace JXTJobScienceIntegration
 
         private static bool JobApplicationSyncWithSalesForce(int jxtJobApplicationID, List<FileNames> filesToUpload)
         {
-            _logger.InfoFormat("Syncing application {0}, with {1}files", jxtJobApplicationID, filesToUpload.Count);
+            _logger.InfoFormat("Syncing application {0}, with {1} files", jxtJobApplicationID, filesToUpload.Count);
 
             JobApplication thisApplication;
             Members thisMember;
             string strReferenceNumber = string.Empty;
-            
+
             #region Data Retrieval
+            _logger.Info("Fetching application from Database");
             thisApplication = JobApplicationService.GetByJobApplicationId(jxtJobApplicationID);
             if (thisApplication == null)
             {
@@ -126,11 +123,17 @@ namespace JXTJobScienceIntegration
             // Get the reference number from the jobs or job archive table
             if (thisApplication.JobId.HasValue)
             {
-                using (Jobs thisJob = JobsService.GetByJobId(thisApplication.JobId.Value))
+                _logger.Info("Finding associated Job");
+                using (Jobs job = JobsService.GetByJobId(thisApplication.JobId.Value))
                 {
-                    if (thisJob != null)
+                    if (job != null)
                     {
-                        strReferenceNumber = thisJob.RefNo;
+                        _logger.InfoFormat("Found job with RefNo:  {0}", job.RefNo);
+                        strReferenceNumber = job.RefNo;
+                    }
+                    else
+                    {
+                        _logger.WarnFormat("Couldn't find job:  {0}", thisApplication.JobId);
                     }
                 }
             }
@@ -138,11 +141,17 @@ namespace JXTJobScienceIntegration
             {
                 JobsArchiveService JobsArchiveService = new JXTPortal.JobsArchiveService();
 
-                using (JobsArchive thisJobArchive = JobsArchiveService.GetByJobId(thisApplication.JobArchiveId.Value))
+                _logger.Info("Finding associated Archived Job");
+                using (JobsArchive job = JobsArchiveService.GetByJobId(thisApplication.JobArchiveId.Value))
                 {
-                    if (thisJobArchive != null)
+                    if (job != null)
                     {
-                        strReferenceNumber = thisJobArchive.RefNo;
+                        _logger.InfoFormat("Found job with RefNo:  {0}", job.RefNo);
+                        strReferenceNumber = job.RefNo;
+                    }
+                    else
+                    {
+                        _logger.WarnFormat("Couldn't find job:  {0}", thisApplication.JobId);
                     }
                 }
             }
@@ -162,7 +171,6 @@ namespace JXTJobScienceIntegration
                 _logger.WarnFormat("Member record could not be found");
                 return false;
             }
-
             #endregion
 
             #region IMPORTANT - ENWORLD - CHECK if they should not be synced to Jobscience
@@ -175,135 +183,126 @@ namespace JXTJobScienceIntegration
             }
 
             #endregion
-            
+
             string SFContactID;
             SalesforceMemberSync memberSync = new SalesforceMemberSync(thisMember.SiteId);
             //Calling this will ensure the member's record will be available on the SalesForce, true flag denotes no check on member's account is validated or not
+            _logger.Info("Confirming member is sync'd to Jobscience");
             bool contactSyncSuccess = memberSync.CheckContactAndSaveInSalesForce(thisMember, thisMember.SiteId, true, out SFContactID);
-            
-            if (contactSyncSuccess && !string.IsNullOrEmpty(SFContactID))
-            {
-                SalesforceIntegration sfInt = new SalesforceIntegration(thisMember.SiteId);
 
-                #region Check Application Exists
-                {
-                    //check if the application exist
-                    string query = "SELECT ID FROM ts2__Application__c WHERE ts2__Candidate_Contact__c='" + SFContactID + "' AND ts2__Job__c='" + strReferenceNumber + "'";
-                    _logger.DebugFormat("Checking Salesforce for application: {0}", query);
-
-                    try
-                    {
-                        string qResult = sfInt.EntityGet(HttpUtility.UrlEncode(query));
-
-                        if (!string.IsNullOrEmpty(qResult))
-                        {
-                            JavaScriptSerializer serializer = new JavaScriptSerializer();
-                            dynamic json = serializer.Deserialize(qResult, typeof(object)) as dynamic;
-
-                            if (json["totalSize"] > 0)
-                            {
-                                _logger.Info("Application already exists.");
-                                return true;
-                            }
-                        }
-                        else
-                        {
-                            _logger.Warn("Failed to request for application existence.");
-                            return false;
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        _logger.Error(ex);
-                        if (ex.Message.Contains("invalid ID field"))
-                        {   
-                            //continue to process the next application
-                            return true;
-                        }
-                        else
-                            throw ex;
-                    }
-                }
-                #endregion
-
-                #region Upload Attachement to SF
-                {
-                    //upload attachement
-                    bool attachmentUploaded = false;
-                    foreach (FileNames fileNames in filesToUpload)
-                    {
-                        _logger.InfoFormat("Attempting to upload file {0}", fileNames.fromFilename);
-                        string filePath = fileNames.fromFilename;
-
-                        // Check if the file exists
-                        if (File.Exists(filePath))
-                        {
-                            // ENWORLD - condition - that when the PROFILE option is selected NOT to send to JS.
-                            if (!filePath.Contains("_Resume_Profile_"))
-                            {
-                                if (!string.IsNullOrEmpty(filePath))
-                                {
-                                    byte[] fileByte = File.ReadAllBytes(filePath);
-
-                                    if (fileByte != null)
-                                    {
-                                        String file64String = Convert.ToBase64String(fileByte);
-                                        string jsonString = @"{ ""ContactId"" : """ + SFContactID + @""", ""Name"" : """ + fileNames.toFilename + @""", ""ContentType"":""application/octet-stream"", ""Body"": """ + file64String + @""" }";
-                                        string entityID, error;
-                                        bool uploadFileSuccess = sfInt.EntityPost("ParseResume", jsonString, out entityID, out error);
-                                        if (uploadFileSuccess)
-                                        {
-                                            attachmentUploaded = true;
-                                           _logger.DebugFormat("Attachment: ", entityID);
-                                        }
-                                        else
-                                        {
-                                            _logger.ErrorFormat("File Upload Failed: {0} - {1}", fileNames.toFilename, error);
-                                        }
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                _logger.InfoFormat("Member used PROFILE ignoring to upload file: ", fileNames.toFilename);
-                            }
-                        }
-                        else
-                        {
-                            _logger.ErrorFormat("File Not Found: {0}", fileNames.toFilename);
-                        }
-                    }
-
-                    if (!attachmentUploaded)
-                        _logger.Info("No attachment");
-                }
-                #endregion
-
-                #region Create Application Record in SF
-                {
-                    //create application
-                    string jsonString = @"{ ""ts2__Candidate_Contact__c"" : """ + SFContactID + @""", ""ts2__Job__c"" : """ + strReferenceNumber + @"""}";
-                    string SFApplicationID, errorMsg;
-                    bool postSuccess = sfInt.EntityPost("ts2__Application__c", jsonString, out SFApplicationID, out errorMsg);
-                    if (postSuccess)
-                    {
-                        _logger.InfoFormat("Application created successfully: ", SFApplicationID);
-                        return true;
-                    }
-                    else
-                    {
-                        _logger.WarnFormat("Failed to create application. - ",errorMsg);
-                        return false;
-                    }
-                }
-                #endregion
-            }
-            else
+            if (!contactSyncSuccess || string.IsNullOrWhiteSpace(SFContactID))
             {
                 _logger.Warn("Failed to perform Member Sync.");
                 return false;
             }
 
+            SalesforceIntegration sfInt = new SalesforceIntegration(thisMember.SiteId);
+
+            //check if the application exist
+            string query = "SELECT ID FROM ts2__Application__c WHERE ts2__Candidate_Contact__c='" + SFContactID + "' AND ts2__Job__c='" + strReferenceNumber + "'";
+            _logger.DebugFormat("Checking Salesforce for application: {0}", query);
+
+            try
+            {
+                string qResult = sfInt.EntityGet(HttpUtility.UrlEncode(query));
+
+                if (!string.IsNullOrEmpty(qResult))
+                {
+                    JavaScriptSerializer serializer = new JavaScriptSerializer();
+                    dynamic json = serializer.Deserialize(qResult, typeof(object)) as dynamic;
+
+                    if (json["totalSize"] > 0)
+                    {
+                        _logger.Info("Application already exists.");
+                        return true;
+                    }
+                }
+                else
+                {
+                    _logger.Warn("Failed to request for application existence.");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex);
+                if (ex.Message.Contains("invalid ID field"))
+                {
+                    //continue to process the next application
+                    return true;
+                }
+                else
+                    throw ex;
+            }
+
+            uploadFiles(filesToUpload, SFContactID, sfInt);
+
+            //create application
+            string jsonString = @"{ ""ts2__Candidate_Contact__c"" : """ + SFContactID + @""", ""ts2__Job__c"" : """ + strReferenceNumber + @"""}";
+            string SFApplicationID, errorMsg;
+            bool postSuccess = sfInt.EntityPost("ts2__Application__c", jsonString, out SFApplicationID, out errorMsg);
+            if (postSuccess)
+            {
+                _logger.InfoFormat("Application created successfully: ", SFApplicationID);
+                return true;
+            }
+            else
+            {
+                _logger.WarnFormat("Failed to create application: ", errorMsg);
+                return true;
+            }
+        }
+
+        private static void uploadFiles(List<FileNames> filesToUpload, string SFContactID, SalesforceIntegration sfInt)
+        {
+            //upload attachement
+            bool attachmentUploaded = false;
+            foreach (FileNames fileNames in filesToUpload)
+            {
+                _logger.InfoFormat("Attempting to upload file {0}", fileNames.fromFilename);
+                string filePath = fileNames.fromFilename;
+
+                // Check if the file exists
+                if (File.Exists(filePath))
+                {
+                    // ENWORLD - condition - that when the PROFILE option is selected NOT to send to JS.
+                    if (!filePath.Contains("_Resume_Profile_"))
+                    {
+                        if (!string.IsNullOrEmpty(filePath))
+                        {
+                            byte[] fileByte = File.ReadAllBytes(filePath);
+
+                            if (fileByte != null)
+                            {
+                                String file64String = Convert.ToBase64String(fileByte);
+                                string jsonString = @"{ ""ContactId"" : """ + SFContactID + @""", ""Name"" : """ + fileNames.toFilename + @""", ""ContentType"":""application/octet-stream"", ""Body"": """ + file64String + @""" }";
+                                string entityID, error;
+                                bool uploadFileSuccess = sfInt.EntityPost("ParseResume", jsonString, out entityID, out error);
+                                if (uploadFileSuccess)
+                                {
+                                    attachmentUploaded = true;
+                                    _logger.DebugFormat("File upload success: ", entityID);
+                                }
+                                else
+                                {
+                                    _logger.ErrorFormat("File Upload Failed: {0} - {1}", fileNames.toFilename, error);
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        _logger.InfoFormat("Member used PROFILE ignoring to upload file: ", fileNames.toFilename);
+                    }
+                }
+                else
+                {
+                    _logger.ErrorFormat("File Not Found: {0}", fileNames.toFilename);
+                }
+            }
+
+            if (!attachmentUploaded)
+                _logger.Info("No attachment");
         }
 
         protected static void SendJobApplicationsToSalesForce()
@@ -408,7 +407,6 @@ namespace JXTJobScienceIntegration
                 continueToNextApplication = JobApplicationSyncWithSalesForce(jobApplicationIDInt, filesToUpload);
 
                 _logger.InfoFormat("Send Completed: ", JobApplicationID);
-
             }
             catch (Exception ex)
             {

@@ -1,20 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Net;
-using System.IO;
-using System.Runtime.InteropServices;
-using JXTPortal;
-using JXTPortal.Entities;
-using System.Web.Script.Serialization;
-using System.Configuration;
+﻿using JXTPortal.Entities;
 using JXTPortal.Entities.Models;
+using log4net;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Text;
+using System.Web.Script.Serialization;
 
 namespace JXTPortal.Client.Salesforce
 {
     public class SalesforceIntegration : IDisposable
     {
+        ILog _logger;
+
         private IntegrationsService _integrationsService;
         private IntegrationsService IntegrationsService
         {
@@ -118,6 +119,8 @@ namespace JXTPortal.Client.Salesforce
 
         public SalesforceIntegration(int siteID)
         {
+            _logger = LogManager.GetLogger(typeof(SalesforceIntegration));
+
             //Get Integration Details
             integrations = IntegrationsService.AdminIntegrationsForSiteGet(siteID);
 
@@ -155,10 +158,6 @@ namespace JXTPortal.Client.Salesforce
                 token = ser.Deserialize<TokenResponse>(result);
 
             }
-
-            // Read the REST resources
-            //string s = HttpGet(token.instance_url + @"/services/data/v25.0/", "");
-
         }
 
         public bool PostSObjectBatchRequest(string[] sObjNames, out SObjBatchObject result, out string errorMsg)
@@ -322,8 +321,7 @@ namespace JXTPortal.Client.Salesforce
             WebRequest webRequest = null;
             StreamReader responseStreamReader = null;
             string strTokenResponse = "";
-
-
+            
             string restContactsQuery = token.instance_url + "/services/data/v34.0/query?q=" + query; // LIMIT 1000 OFFSET 0
 
             webRequest = (HttpWebRequest)System.Net.WebRequest.Create(restContactsQuery);
@@ -341,7 +339,6 @@ namespace JXTPortal.Client.Salesforce
                 strTokenResponse = responseStreamReader.ReadToEnd();
 
                 return strTokenResponse;
-
             }
             catch (WebException ex)
             {
@@ -355,12 +352,13 @@ namespace JXTPortal.Client.Salesforce
                 //Literal1.Text = msg;
                 Console.WriteLine(msg);
                 throw ex;
-
             }
         }
 
         public bool EntityPost(string entityName, string jsonContent, out string entityID, out string errorMsg)
         {
+            _logger.InfoFormat("Posting entity to Salesforce: {0}", entityName);
+
             // Get Token without authorization
             GetTokenWithOutAuthorize();
 
@@ -402,20 +400,27 @@ namespace JXTPortal.Client.Salesforce
 
                     salesForceResponse = new JavaScriptSerializer().Deserialize<SalesForceTransactionResponse>(strTokenResponse);
 
+                    _logger.InfoFormat("Salesforce POST completed:{0} Id = {1}", salesForceResponse.success, salesForceResponse.id);
                     if (salesForceResponse.success)
-                    {
+                    {   
                         entityID = salesForceResponse.id;
                         errorMsg = null;
                         return true;
                     }
                     else
                     {
+                        if (_logger.IsWarnEnabled)
+                        {
+                            foreach(var error in salesForceResponse.errors)
+                            {
+                                _logger.Warn(error.ToString());
+                            }
+                        }
+                        
                         entityID = null;
-                        errorMsg = salesForceResponse.errors.First().ToString();
+                        errorMsg = string.Join(" | ", salesForceResponse.errors);
                         return false;
                     }
-
-
                 }
                 catch (WebException ex)
                 {
@@ -426,19 +431,17 @@ namespace JXTPortal.Client.Salesforce
                     errorMsg = "WebException: " + ex.Message;
                     if (ex.Status == WebExceptionStatus.ProtocolError)
                     {
-                        httpResponse = ex.Response;
-                        msg = new System.IO.StreamReader(httpResponse.GetResponseStream()).ReadToEnd().Trim();
-
-                        entityID = null;
+                        msg = new StreamReader(ex.Response.GetResponseStream()).ReadToEnd().Trim();
                         errorMsg = errorMsg + " - " + msg;
-                        return false;
                     }
 
+                    _logger.WarnFormat("Failed to Post to salesforce: {0}", errorMsg);
                     entityID = null;
                     return false;
                 }
             }
         }
+
         public bool EntityPatch(string targetEntityID, string entityName, string jsonContent, out string entityID, out List<ErrorMessage> errorMsgs)
         {
             // Get Token without authorization

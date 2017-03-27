@@ -65,10 +65,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EmailSender\EmailSender.csproj">
-      <Project>{F728C4BD-8EEB-476D-AC0B-D4BCFA98F975}</Project>
-      <Name>EmailSender</Name>
-    </ProjectReference>
     <ProjectReference Include="..\JXTPortal.Data.SqlClient\JXTPortal.Data.SqlClient.csproj">
       <Project>{8996A7B4-57D3-440B-A545-A701844B8C4A}</Project>
       <Name>JXTPortal.Data.SqlClient</Name>
@@ -95,12 +91,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="SitesWithConfiguration.xml">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="enworld.xml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>

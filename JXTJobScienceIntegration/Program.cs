@@ -106,14 +106,14 @@ namespace JXTJobScienceIntegration
             Trace.Flush();
         }
 
-        private static bool JobApplicationSyncWithSalesForce(int jxtJobApplicationID, List<FileNames> filesToUpload)
+        private static JobApplicationSyncResponse JobApplicationSyncWithSalesForce(int jxtJobApplicationID, List<FileNames> filesToUpload)
         {
-            _logger.InfoFormat("Syncing application {0}, with {1}files", jxtJobApplicationID, filesToUpload.Count);
+            _logger.InfoFormat("Syncing application {0}, with {1} files", jxtJobApplicationID, filesToUpload.Count);
 
             JobApplication thisApplication;
             Members thisMember;
             string strReferenceNumber = string.Empty;
-            
+
             #region Data Retrieval
             thisApplication = JobApplicationService.GetByJobApplicationId(jxtJobApplicationID);
             if (thisApplication == null)
@@ -175,12 +175,12 @@ namespace JXTJobScienceIntegration
             }
 
             #endregion
-            
+
             string SFContactID;
             SalesforceMemberSync memberSync = new SalesforceMemberSync(thisMember.SiteId);
             //Calling this will ensure the member's record will be available on the SalesForce, true flag denotes no check on member's account is validated or not
             bool contactSyncSuccess = memberSync.CheckContactAndSaveInSalesForce(thisMember, thisMember.SiteId, true, out SFContactID);
-            
+
             if (contactSyncSuccess && !string.IsNullOrEmpty(SFContactID))
             {
                 SalesforceIntegration sfInt = new SalesforceIntegration(thisMember.SiteId);
@@ -202,23 +202,27 @@ namespace JXTJobScienceIntegration
 
                             if (json["totalSize"] > 0)
                             {
-                                _logger.Info("Application already exists.");
-                                return true;
+                                string errorNotice = "Application already exists. - { ts2__Candidate_Contact__c='" + SFContactID + "' AND ts2__Job__c='" + strReferenceNumber + "' }";
+                                _logger.Info(errorNotice);
+
+                                return new JobApplicationSyncResponse { continueToNextApplication = true, success = false, errorMessage = errorNotice, errorLevel = ErrorLevel.Warning };
                             }
                         }
                         else
                         {
-                            _logger.Warn("Failed to request for application existence.");
-                            return false;
+                            string errorNotice = "Failed to request for application existence. - { ts2__Candidate_Contact__c='" + SFContactID + "' AND ts2__Job__c='" + strReferenceNumber + "' }";
+                            _logger.Warn(errorNotice);
+                            //Do not continue, wait for next trigger to retry
+                            return new JobApplicationSyncResponse { continueToNextApplication = false, success = false, errorMessage = errorNotice, errorLevel = ErrorLevel.Warning };
                         }
                     }
                     catch (Exception ex)
                     {
                         _logger.Error(ex);
                         if (ex.Message.Contains("invalid ID field"))
-                        {   
+                        {
                             //continue to process the next application
-                            return true;
+                            return new JobApplicationSyncResponse { continueToNextApplication = true, success = false, errorMessage = ex.Message, errorLevel = ErrorLevel.Error };
                         }
                         else
                             throw ex;
@@ -254,7 +258,7 @@ namespace JXTJobScienceIntegration
                                         if (uploadFileSuccess)
                                         {
                                             attachmentUploaded = true;
-                                           _logger.DebugFormat("Attachment: ", entityID);
+                                            _logger.DebugFormat("Attachment: ", entityID);
                                         }
                                         else
                                         {
@@ -287,21 +291,32 @@ namespace JXTJobScienceIntegration
                     bool postSuccess = sfInt.EntityPost("ts2__Application__c", jsonString, out SFApplicationID, out errorMsg);
                     if (postSuccess)
                     {
-                        _logger.InfoFormat("Application created successfully: ", SFApplicationID);
-                        return true;
+                        _logger.InfoFormat("Application created successfully: {0}", SFApplicationID);
+                        return new JobApplicationSyncResponse { continueToNextApplication = true, success = true, errorMessage = null, errorLevel = ErrorLevel.None };
                     }
                     else
                     {
-                        _logger.WarnFormat("Failed to create application. - ",errorMsg);
-                        return false;
+                        //bypass this error for this application and continue to the next
+                        if (errorMsg.ToUpper().Contains("INVALID_CROSS_REFERENCE_KEY"))
+                        {
+                            _logger.WarnFormat("Failed to create application. {0}", errorMsg);
+                            _logger.WarnFormat("***Error contains INVALID_CROSS_REFERENCE_KEY, code determined bypass***");
+                            return new JobApplicationSyncResponse { continueToNextApplication = true, success = false, errorMessage = errorMsg, errorLevel = ErrorLevel.Warning };
+                        }
+                        else
+                        {
+                            _logger.WarnFormat("Failed to create application. {0}", errorMsg);
+                            return new JobApplicationSyncResponse { continueToNextApplication = false, success = false, errorMessage = errorMsg, errorLevel = ErrorLevel.Error };
+                        }
                     }
                 }
                 #endregion
             }
             else
             {
-                _logger.Warn("Failed to perform Member Sync.");
-                return false;
+                string errorNotice = "Failed to perform Member Sync.";
+                _logger.Warn(errorNotice);
+                return new JobApplicationSyncResponse { continueToNextApplication = false, success = false, errorMessage = errorNotice, errorLevel = ErrorLevel.Error };
             }
 
         }
@@ -337,11 +352,11 @@ namespace JXTJobScienceIntegration
                 jobApplicationDS = jobApplicationService.CustomGetNewJobApplications(siteXML.SiteId, null, null);
 
             DataTable dt = jobApplicationDS.Tables[0];
-            
+
             if (dt.Rows != null)
             {
                 _logger.InfoFormat("Number of Job Applications: {0}", dt.Rows.Count);
-                
+
                 // If there is an error it will stop at the Job application 
                 foreach (DataRow drApplication in dt.Rows)
                 {
@@ -366,21 +381,10 @@ namespace JXTJobScienceIntegration
                             filesToUpload.Add(new FileNames(drApplication["JobApplicationID"].ToString(), ConfigurationManager.AppSettings["ResumeFolder"] + drApplication["MemberResumeFile"].ToString(), resumeFileName));
                         }
 
-                        // Upload files to FTP / SFTP
-                        string errorMessage;
-                        var blnContinue = SyncToSalesForce(siteXML, filesToUpload, drApplication["JobApplicationID"].ToString(), out errorMessage);
+                        bool continueToNextApplication = SyncToSalesForce(siteXML, filesToUpload, drApplication["JobApplicationID"].ToString());
 
-                        if (!blnContinue)
-                        {
-                            _logger.Info("Finished");
+                        if (!continueToNextApplication)
                             return;
-                        }
-                        else
-                        {
-                            _logger.InfoFormat("Application Completed: {0}", drApplication["JobApplicationID"]);
-                            // Update the XML file of the last successful Job application ID
-                            UpdateXMLwithJobApplication(siteXML, drApplication["JobApplicationID"].ToString());
-                        }
                     }
                     catch (Exception ex)
                     {
@@ -394,21 +398,26 @@ namespace JXTJobScienceIntegration
             }
         }
 
-        protected static bool SyncToSalesForce(SitesXML siteXML, List<FileNames> filesToUpload, string JobApplicationID, out string errormessage)
+        protected static bool SyncToSalesForce(SitesXML siteXML, List<FileNames> filesToUpload, string JobApplicationID)
         {
-            errormessage = string.Empty;
             bool continueToNextApplication = true;
-
             try
             {
                 _logger.InfoFormat("Sending Application: {0}", JobApplicationID);
 
                 // Upload a file
                 int jobApplicationIDInt = int.Parse(JobApplicationID);
-                continueToNextApplication = JobApplicationSyncWithSalesForce(jobApplicationIDInt, filesToUpload);
+
+                JobApplicationSyncResponse syncResponse = JobApplicationSyncWithSalesForce(jobApplicationIDInt, filesToUpload);
+
+                if( syncResponse.continueToNextApplication )
+                { 
+                    _logger.InfoFormat("Application Completed: {0}", JobApplicationID);
+                    // Update the XML file of the last successful Job application ID
+                    UpdateXMLwithJobApplication(siteXML, JobApplicationID);
+                }
 
                 _logger.InfoFormat("Send Completed: ", JobApplicationID);
-
             }
             catch (Exception ex)
             {
@@ -431,6 +440,23 @@ namespace JXTJobScienceIntegration
 
             xmlFile.Save(ConfigurationManager.AppSettings["SitesXML"]);
         }
+
+        protected static void UpdateXMLwithJobApplicationSyncError(SitesXML siteXML, string jobApplicationID, ErrorLevel errorLevel, string errorMessage)
+        {
+            XDocument xmlFile = XDocument.Load(ConfigurationManager.AppSettings["SitesXML"]);
+
+            //create new element
+            XElement newErrorElement = new XElement("ErrorLog");
+            newErrorElement.Add(new XAttribute("jobApplicationID", jobApplicationID));
+            newErrorElement.Add(new XAttribute("date", string.Format("{dd-MM-yyyy H:mm:ss}", DateTime.Now)));
+            newErrorElement.Add(new XAttribute("level", errorLevel.ToString()));
+            newErrorElement.SetValue(errorMessage);
+
+
+
+            xmlFile.Save(ConfigurationManager.AppSettings["SitesXML"]);
+        }
+
     }
 
     #region Classes
@@ -455,6 +481,21 @@ namespace JXTJobScienceIntegration
             fromFilename = _fromFilenames;
             toFilename = _toFilename;
         }
+    }
+
+    public class JobApplicationSyncResponse
+    {
+        public bool success { get; set; }
+        public bool continueToNextApplication { get; set; }
+        public string errorMessage { get; set; }
+        public ErrorLevel errorLevel { get; set; }
+    }
+
+    public enum ErrorLevel
+    {
+        None,
+        Warning,
+        Error
     }
 
     #endregion

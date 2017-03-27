@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Web;
 
 namespace JXTPortal.Entities
@@ -13,14 +10,17 @@ namespace JXTPortal.Entities
         {
             get
             {
-                if (HttpContext.Current.Session != null && HttpContext.Current.Session[PortalConstants.Session.SessionSite] != null)
-                {
-                    return (SessionSite)HttpContext.Current.Session[PortalConstants.Session.SessionSite];
-                }
-                else
+                if (HttpContext.Current == null || HttpContext.Current.Session == null)
                 {
                     return null;
                 }
+
+                if (HttpContext.Current.Session[PortalConstants.Session.SessionSite] != null)
+                {
+                    return (SessionSite)HttpContext.Current.Session[PortalConstants.Session.SessionSite];
+                }
+
+                return null;
             }
         }
 

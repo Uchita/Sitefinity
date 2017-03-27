@@ -34,7 +34,7 @@ namespace JXTPortal
 
         static MailService()
         {
-            if (!SessionData.Site.IsUsingS3)
+            if (SessionData.Site == null || !SessionData.Site.IsUsingS3)
             {
                 coverLetterFolder = ConfigurationManager.AppSettings["FTPJobApplyCoverLetterUrl"];
                 resumeFolder = ConfigurationManager.AppSettings["FTPJobApplyResumeUrl"];

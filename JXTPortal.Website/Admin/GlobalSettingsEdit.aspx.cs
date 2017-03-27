@@ -131,14 +131,9 @@ namespace JXTPortal.Website.Admin
 
             if (SessionData.AdminUser != null)
             {
-                if (SessionData.AdminUser.AdminRoleId == 1)
-                {
-                    phManualExpiry.Visible = true;
-                }
-                else
-                {
-                    phManualExpiry.Visible = false;
-                }
+
+                phManualExpiry.Visible = SessionData.AdminUser.AdminRoleId == 1;
+
             }
             else
             {
@@ -248,7 +243,7 @@ namespace JXTPortal.Website.Admin
                 globalSetting.GlobalFolder = dataGlobalFTPFolder.Text.TrimStart(new char[] { '/' }).TrimEnd(new char[] { '/' });
 
                 // Adding Manal Expiry Date
-                if (phManualExpiry.Visible == true)
+                if (phManualExpiry.Visible)
                 {
                     globalSetting.EnableExpiryDate = cbManualJobExpiry.Checked;
                 }

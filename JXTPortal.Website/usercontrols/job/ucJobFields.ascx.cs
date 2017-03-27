@@ -1192,7 +1192,7 @@ namespace JXTPortal.Website.Admin.UserControls
                             }
                         }
                         txtRefNo.Text = job.RefNo.ToString();
-                        txtJobExpiryDate.Text = job.ExpiryDate.ToString();
+                        txtJobExpiryDate.Text = job.ExpiryDate.ToString(getGlobalDateFormat());
                         //chkVisible.Checked = job.Visible;
                         lblDatePosted.Text = job.DatePosted.ToString(SessionData.Site.DateFormat);
                         lblExpiryDate.Text = job.ExpiryDate.ToString(SessionData.Site.DateFormat);

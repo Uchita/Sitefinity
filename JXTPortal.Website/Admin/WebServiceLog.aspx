@@ -25,8 +25,7 @@
                                                 Site</label>
                                         </td>
                                         <td>
-                                            <asp:DropDownList ID="ddlSite" runat="server" DataValueField="SiteID"
-                                                Width="250" AutoPostBack="true" class="form-dropdown" OnSelectedIndexChanged="ddlSite_SelectedIndexChanged">
+                                            <asp:DropDownList ID="ddlSite" runat="server" Width="250" AutoPostBack="true" class="form-dropdown" OnSelectedIndexChanged="ddlSite_SelectedIndexChanged">
                                                 </asp:DropDownList>
                                             <asp:RequiredFieldValidator ID="rfvSite" runat="server" ControlToValidate="ddlSite"
                                                 InitialValue="0" ErrorMessage="Please select a Site" ValidationGroup="DownloadExport" />

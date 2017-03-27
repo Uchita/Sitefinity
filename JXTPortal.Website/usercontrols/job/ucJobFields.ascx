@@ -4,6 +4,8 @@
 <%@ Register Src="~/usercontrols/job/ucJobFieldsMultiLingual.ascx" TagName="JobFieldsMultiLingual"
     TagPrefix="uc1" %>
 <%@ Register TagPrefix="uc1" Namespace="JXTPortal.Website.usercontrols.common" Assembly="JXTPortal.WebSite" %>
+<script type="text/javascript" src="../../Admin/scripts/customscript.js"></script>
+
 <asp:HiddenField ID="hfFileCheck" runat="server" Value="" ClientIDMode="Static" />
 <asp:HiddenField ID="hfFileError" runat="server" Value="" ClientIDMode="Static" />
 <div id="content-container">
@@ -1021,4 +1023,4 @@
     }    
 </script>
 
-<script type="text/javascript" src="../../Admin/scripts/customscript.js"></script>
+

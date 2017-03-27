@@ -1,32 +1,17 @@
-﻿
-
-#region Using Directives
-using System;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Collections;
-using System.Xml.Serialization;
-using System.Data;
-
-using JXTPortal.Entities;
-using JXTPortal.Entities.Validation;
-
-using JXTPortal.Data;
-using Microsoft.Practices.EnterpriseLibrary.Logging;
-using System.Text.RegularExpressions;
-using JXTPortal.Common;
-using System.Configuration;
-using System.Web;
-using System.IO;
-using System.Text;
-
-using DocumentFormat.OpenXml;
+﻿using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
-using NotesFor.HtmlToOpenXml;
+using JXTPortal.Common;
+using JXTPortal.Entities;
 using log4net;
-
-#endregion
+using NotesFor.HtmlToOpenXml;
+using System;
+using System.Collections.Specialized;
+using System.Configuration;
+using System.IO;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Web;
 
 namespace JXTPortal
 {
@@ -53,7 +38,7 @@ namespace JXTPortal
         {
             _logger = LogManager.GetLogger(typeof(MembersService));
 
-            if (!SessionData.Site.IsUsingS3)
+            if (SessionData.Site == null || !SessionData.Site.IsUsingS3)
             {
                 resumeFolder = ConfigurationManager.AppSettings["FTPJobApplyResumeUrl"];
                 customFolder = ConfigurationManager.AppSettings["FTPCustomJobApplications"];

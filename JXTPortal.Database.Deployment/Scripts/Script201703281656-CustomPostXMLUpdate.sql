@@ -1,11 +1,4 @@
-﻿USE [MiniJXT]
-GO
-/****** Object:  StoredProcedure [dbo].[Jobs_CustomPostXML]    Script Date: 03/28/2017 15:52:56 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-ALTER PROCEDURE [dbo].[Jobs_CustomPostXML]              
+﻿ALTER PROCEDURE [dbo].[Jobs_CustomPostXML]              
 (              
     @AdvertiserId INT,              
     @AdvertiserUserName VARCHAR(255),              

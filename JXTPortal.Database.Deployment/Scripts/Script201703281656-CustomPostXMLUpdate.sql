@@ -1,4 +1,60 @@
-﻿ALTER PROCEDURE [dbo].[Jobs_CustomPostXML]              
+﻿ALTER PROCEDURE [dbo].[WebServiceLog_CustomGetExportList]    
+(    
+ @SiteID INT,    
+ @AdvertiserID INT = 0    
+)    
+AS    
+BEGIN    
+     
+-- JobTemplates 
+-- Get only Advertiser Job Templates ELSE Get the Global Templates of the Site
+IF @AdvertiserID > 0 AND EXISTS (SELECT * FROM [JobTemplates] (NOLOCK) WHERE [SiteID] = @SiteId AND [AdvertiserID] = @AdvertiserId)
+    SELECT JobTemplateID, JobTemplateDescription FROM JobTemplates WITH (NOLOCK) WHERE SiteID = @SiteID AND [AdvertiserID] = @AdvertiserId
+ELSE
+    SELECT JobTemplateID, JobTemplateDescription FROM JobTemplates WITH (NOLOCK) WHERE SiteID = @SiteID AND [GlobalTemplate] = 1  
+     
+    
+-- AdvertiserJobTemplateLogo        
+SELECT AdvertiserJobTemplateLogoID, JobLogoName FROM AdvertiserJobTemplateLogo ajtl WITH (NOLOCK)    
+INNER JOIN Advertisers a WITH (NOLOCK) ON ajtl.AdvertiserID = a.AdvertiserID    
+WHERE a.SiteID = @SiteID AND a.AdvertiserAccountTypeID = 1 AND a.AdvertiserAccountStatusID = 2 AND ((@AdvertiserID = 0) OR a.AdvertiserID = @AdvertiserID)    
+    
+    
+-- Profession / SubClassification    
+DECLARE @IsCustomClassification INT = 1    
+SELECT @IsCustomClassification = ISNULL(UseCustomProfessionRole, 0) FROM Globalsettings (NOLOCK) WHERE SiteID = @SiteID    
+    
+SELECT sp.ProfessionID, sp.SiteProfessionName, sr.RoleID, sr.SiteRoleName From SiteRoles sr WITH (NOLOCK)    
+INNER JOIN Roles r WITH (NOLOCK) ON sr.RoleID = r.RoleID    
+INNER JOIN Profession p WITH (NOLOCK) on r.ProfessionID = p.ProfessionID    
+INNER JOIN SiteProfession sp WITH (NOLOCK) on p.ProfessionID = sp.ProfessionID    
+WHERE ((@IsCustomClassification = 1 AND p.ReferredSiteID = @SiteID AND sp.SiteID = @SiteID AND sr.SiteID = @SiteID)     
+   OR (@IsCustomClassification = 0 AND p.ReferredSiteID IS NULL AND sp.SiteID = @SiteID AND sr.SiteID = @SiteID))    
+    
+-- WorkType    
+SELECT WorkTypeID, SiteWorkTypeName FROM  SiteWorkType WITH (NOLOCK)     
+WHERE SiteID = @SiteID AND Valid = 1    
+    
+-- Country    
+-- Location    
+-- Area     
+    
+SELECT sc.CountryID, sc.SiteCountryName, sl.LocationID, sl.SiteLocationName, sa.AreaID, sa.SiteAreaName FROM SiteCountries sc WITH (NOLOCK)    
+INNER JOIN Location l WITH (NOLOCK) ON sc.CountryID = l.CountryID    
+INNER JOIN SiteLocation sl WITH (NOLOCK) ON l.LocationID = sl.LocationID     
+INNER JOIN Area a WITH (NOLOCK) ON sl.LocationID = a.LocationID    
+INNER JOIN SiteArea sa WITH (NOLOCK) ON a.AreaID = sa.AreaID    
+WHERE sc.SiteID = @SiteID AND sl.SiteID = @SiteID AND sa.SiteID = @SiteID    
+
+SELECT sqto.ScreeningQuestionsTemplateId, sqt.TemplateName FROM ScreeningQuestionsTemplateOwners sqto WITH (NOLOCK)
+INNER JOIN ScreeningQuestionsTemplates sqt WITH (NOLOCK)
+ON sqto.ScreeningQuestionsTemplateId = sqt.ScreeningQuestionsTemplateId
+WHERE AdvertiserID = @AdvertiserId
+
+END    
+GO
+
+ALTER PROCEDURE [dbo].[Jobs_CustomPostXML]              
 (              
     @AdvertiserId INT,              
     @AdvertiserUserName VARCHAR(255),              
@@ -197,7 +253,7 @@ BEGIN TRY
     UpdateJob BIT,  
     AddressStatus INT,
 	ExpiryDate DATE NULL,
-    ScreeningQuestionsTemplateID INT NULL
+    ScreeningQuestionsTemplateID INT NULL         
      )              
                
  INSERT INTO #FlatXML(ReferenceNo,               
@@ -249,7 +305,7 @@ BEGIN TRY
     JobID,              
     UpdateJob,
 	ExpiryDate,
-	ScreeningQuestionsTemplateID) 
+	ScreeningQuestionsTemplateID)
  SELECT               
      LTRIM(RTRIM(Element.value('ReferenceNo[1]', 'VARCHAR(255)'))) AS RefNo,              
      Element.value('JobAdType[1]', 'INT') AS JobAdType,              
@@ -301,8 +357,8 @@ BEGIN TRY
      '',  -- By default No Warnings              
      NULL, -- By default Job ID is NULL              
      0,  -- By default the Job is Inserted	
-	 Element.value('ExpiryDate[1]', 'DATE') AS ExpiryDate,
-	 Element.value('ScreeningQuestionsTemplateID[1]', 'INT') AS ScreeningQuestionsTemplateID
+	 Element.value('ExpiryDate[1]', 'DATE') AS ExpiryDate,  
+     Element.value('ScreeningQuestionsTemplateID[1]', 'INT') AS ScreeningQuestionsTemplateID
     FROM   @XMLFeed_New.nodes('/JobPostRequest/Listings/JobListing') Datalist(Element)              
     --OPTION ( OPTIMIZE FOR ( @XMLFeed_New = NULL ) )              
                   
@@ -532,20 +588,20 @@ BEGIN TRY
    #FlatXML.ErrorMessage = ISNULL(#FlatXML.ErrorMessage,'') +  ' -> JobAdType not allowed on this site - ' + Cast(#FlatXML.JobAdType as varchar(10))               
   FROM               
    #FlatXML WHERE JobAdType NOT IN (SELECT JobItemTypeParentID FROM JobItemsType (NOLOCK) WHERE JobItemsType.SiteID = @SiteID AND Valid = 1 AND TotalNumberOfJobs = 1)           
-   
- -- ERROR - Check if ScreeeningQuestionsTemplateID are valid                  
+               
+-- ERROR - Check if SceeeningQuestionsTemplateID are valid                  
  UPDATE #FlatXML                  
   SET                     
    #FlatXML.Valid = 0,                  
-   #FlatXML.ErrorMessage = ISNULL(#FlatXML.ErrorMessage,'') +  ' -> ScreeeningQuestionsTemplateID doesn''t exists - ' + Cast(#FlatXML.ScreeeningQuestionsTemplateID as varchar(10))                   
+   #FlatXML.ErrorMessage = ISNULL(#FlatXML.ErrorMessage,'') +  ' -> ScreeningQuestionsTemplateID doesn''t exists - ' + Cast(#FlatXML.ScreeningQuestionsTemplateID as varchar(10))                   
   FROM                   
-   #FlatXML WHERE ScreeeningQuestionsTemplateID IS NOT NULL AND
-				  ScreeeningQuestionsTemplateID NOT IN 
+   #FlatXML WHERE ScreeningQuestionsTemplateID IS NOT NULL AND
+				  ScreeningQuestionsTemplateID NOT IN 
 				  (
 					SELECT ScreeningQuestionsTemplateId FROM ScreeningQuestionsTemplateOwners (NOLOCK)
 					WHERE AdvertiserId = @AdvertiserUserId
-				  )                                    
-               
+				  )                  
+                     
  -- *************** INSERT / UPDATE / Archive Jobs *********************              
                
  -- Update temp table with the Consultant names              
@@ -688,7 +744,7 @@ BEGIN TRY
  )              
                
  INSERT INTO JobArea(JobID, AreaID) SELECT JobID, Area FROM #FlatXML WHERE UpdateJob = 0 AND Valid = 1              
- 
+
  -- Screening Questions
  INSERT INTO JobScreeningQuestions (JobId, ScreeningQuestionId)
  (
@@ -1013,11 +1069,16 @@ BEGIN CATCH
  --END              
                
  -- Raise an error with the details of the exception              
- DECLARE @ErrMsg nvarchar(4000), @ErrSeverity INT              
+ DECLARE @ErrMsg nvarchar(4000), @ErrSeverity INT, @ErrorSeverity INT, @ErrorMessage VARCHAR(MAX), @ErrorState INT;            
  SELECT @ErrMsg = ERROR_MESSAGE(),              
- @ErrSeverity = ERROR_SEVERITY()              
+ @ErrSeverity = ERROR_SEVERITY()    
+  
+ SELECT @ErrorMessage = 'SPR Jobs_CustomPostXML has failed. AdvertiserID='+CONVERT(varchar,@AdvertiserId)+'  Error Message: '+@ErrMsg, 
+	@ErrSeverity = ERROR_SEVERITY(), 
+	@ErrorState = ERROR_STATE(); 
+	
+ RAISERROR (@ErrorMessage, @ErrorSeverity, @ErrorState) WITH LOG          
               
-RAISERROR(@ErrMsg, @ErrSeverity, 1) WITH LOG
  -- Update the WebserviceLog there was an error.              
  UPDATE WebServiceLog               
   SET               

@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Configuration;
 using System.Web;
+using System.Data.Linq;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -48,22 +49,25 @@ namespace JXTPortal.Website.Admin
             }
 
         }
+        public string defaultSortOrder = "ConsultantID";
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (!Page.IsPostBack)
             {
-                LoadConsultants();
+                LoadConsultants(defaultSortOrder);
             }
         }
 
-        private void LoadConsultants()
+        private void LoadConsultants(String sortingOrder)
         {
             int totalCount = 0;
             int pageCount = 0;
             int sitePageCount = JXTPortal.Common.Utils.GetAppSettingsInt("SitePaging");
 
             string filter = string.Empty;
+
             if (!string.IsNullOrWhiteSpace(tbName.Text))
             {
                 filter += " AND (FirstName LIKE '%" + tbName.Text.Replace("'", "''") + "%' OR LastName LIKE '%" + tbName.Text.Replace("'", "''") + "%')";
@@ -80,7 +84,7 @@ namespace JXTPortal.Website.Admin
             }
 
 
-            TList<JXTPortal.Entities.Consultants> consultants = ConsultantsService.GetPaged("SiteId = " + SessionData.Site.SiteId.ToString() + filter, "ConsultantID", CurrentPage, sitePageCount, out totalCount);
+            TList<JXTPortal.Entities.Consultants> consultants = ConsultantsService.GetPaged("SiteId = " + SessionData.Site.SiteId.ToString() + filter, sortingOrder, CurrentPage, sitePageCount, out totalCount);
 
             if (totalCount > 0)
             {
@@ -146,7 +150,8 @@ namespace JXTPortal.Website.Admin
                 {
                     CurrentPage = Convert.ToInt32(e.CommandArgument);
                 }
-                LoadConsultants();
+
+                LoadConsultants(defaultSortOrder);
             }
         }
 
@@ -183,6 +188,14 @@ namespace JXTPortal.Website.Admin
 
         protected void rptConsultants_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
+            string OrderByFirstName = "FirstName";
+            string OrderByLastName = "LastName";
+            string OrderByEmail = "Email";
+            string OrderByPositionTitle = "PositionTitle";
+            string OrderByStatus = "Valid";
+            string OrderByLastModified = "LastModified";
+
+
             if (e.CommandName == "Select")
             {
                 Response.Redirect("~/Admin/ConsultantsEdit.aspx?ConsultantID=" + e.CommandArgument.ToString());
@@ -197,13 +210,43 @@ namespace JXTPortal.Website.Admin
                     if (consultant != null && consultant.SiteId == SessionData.Site.SiteId)
                     {
                         ConsultantsService.Delete(consultant);
-                        LoadConsultants();
+                        LoadConsultants(defaultSortOrder);
                     }
                     else
                     {
                         Response.Redirect("/admin/consultants.aspx");
                     }
                 }
+            }
+
+            if (e.CommandName == "FirstName")
+            {
+                LoadConsultants(OrderByFirstName);
+            }
+
+            if (e.CommandName == "LastName")
+            {
+                LoadConsultants(OrderByLastName);
+            }
+
+            if (e.CommandName == "Email")
+            {
+                LoadConsultants(OrderByEmail);
+            }
+
+            if (e.CommandName == "PositionTitle")
+            {
+                LoadConsultants(OrderByPositionTitle);
+            }
+
+            if (e.CommandName == "Status")
+            {
+                LoadConsultants(OrderByStatus);
+            }
+
+            if (e.CommandName == "LastModified")
+            {
+                LoadConsultants(OrderByLastModified);
             }
         }
 
@@ -219,6 +262,13 @@ namespace JXTPortal.Website.Admin
                 Literal ltPositionTitle = e.Item.FindControl("ltPositionTitle") as Literal;
                 Literal ltStatus = e.Item.FindControl("ltStatus") as Literal;
                 Literal ltLastModified = e.Item.FindControl("ltLastModified") as Literal;
+
+                LinkButton lbSortFirstName = e.Item.FindControl("lbSortFirstName") as LinkButton;
+                LinkButton lbSortLastName = e.Item.FindControl("lbSortLastName") as LinkButton;
+                LinkButton lbSortEmail = e.Item.FindControl("lbSortEmail") as LinkButton;
+                LinkButton lbSortPositionTitle = e.Item.FindControl("lbSortPositionTitle") as LinkButton;
+                LinkButton lbSortStatus = e.Item.FindControl("lbSortStatus") as LinkButton;
+                LinkButton lbSortLastModified = e.Item.FindControl("lbSortLastModified") as LinkButton;
 
                 JXTPortal.Entities.Consultants consultant = e.Item.DataItem as JXTPortal.Entities.Consultants;
 
@@ -238,7 +288,8 @@ namespace JXTPortal.Website.Admin
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            LoadConsultants();
+            LoadConsultants(defaultSortOrder);
         }
+
     }
 }

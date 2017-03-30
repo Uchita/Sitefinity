@@ -94,6 +94,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Scripts\Script0015-EnableExpiryDate.sql" />
+    <Content Include="Scripts\Script201703281656-CustomPostXMLUpdate.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

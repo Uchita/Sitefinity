@@ -602,13 +602,14 @@ namespace JXTPortal.Website.Admin
                 if (siteid > 0)
                 {
                     WebServiceLogService service = new WebServiceLogService();
-                    DataSet ds = service.CustomGetExportList(Convert.ToInt32(ddlSite.SelectedValue), 9999);
+                    DataSet ds = service.CustomGetExportList(Convert.ToInt32(ddlSite.SelectedValue), Convert.ToInt32(ddlAdvertiser.SelectedValue));
 
                     DataTable dtJobTemplates = ds.Tables[0];
                     DataTable dtAdvertiserJobTemplateLogo = ds.Tables[1];
                     DataTable dtProfessionRoles = ds.Tables[2];
                     DataTable dtSiteWorkType = ds.Tables[3];
                     DataTable dtCountryLocationArea = ds.Tables[4];
+                    DataTable dtScreeningQuestionsTemplate = ds.Tables[5];
 
                     // Create Excel for downlaod
                     string filepath = string.Format("{0}uploads\\files\\Webservice_{1}.xlsx", Server.MapPath("~/"), siteid);
@@ -626,6 +627,7 @@ namespace JXTPortal.Website.Admin
                     WorksheetPart worksheetPart3 = workbookpart.AddNewPart<WorksheetPart>();
                     WorksheetPart worksheetPart4 = workbookpart.AddNewPart<WorksheetPart>();
                     WorksheetPart worksheetPart5 = workbookpart.AddNewPart<WorksheetPart>();
+                    WorksheetPart worksheetPart6 = workbookpart.AddNewPart<WorksheetPart>();
 
 
                     worksheetPart.Worksheet = new Worksheet(new SheetData());
@@ -633,6 +635,7 @@ namespace JXTPortal.Website.Admin
                     worksheetPart3.Worksheet = new Worksheet(new SheetData());
                     worksheetPart4.Worksheet = new Worksheet(new SheetData());
                     worksheetPart5.Worksheet = new Worksheet(new SheetData());
+                    worksheetPart6.Worksheet = new Worksheet(new SheetData());
 
                     Row row;
                     Cell newCell;
@@ -1074,6 +1077,71 @@ namespace JXTPortal.Website.Admin
                         inlineString = new InlineString();
                         t = new Text();
                         t.Text = countrylocationarearow["SiteAreaName"].ToString();
+                        inlineString.Append(t);
+                        newCell.AppendChild(inlineString);
+                        row.AppendChild(newCell);
+
+                        sheetData.AppendChild(row);
+                    }
+
+                    Sheet screeningquestionstemplate = new Sheet()
+                    {
+                        Id = spreadsheetDocument.WorkbookPart.
+                            GetIdOfPart(worksheetPart6),
+                        SheetId = 6,
+                        Name = "Screening Questions Template"
+                    };
+                    sheets.Append(screeningquestionstemplate);
+
+                    sheetData = worksheetPart6.Worksheet.GetFirstChild<SheetData>();
+
+                    row = new Row() { RowIndex = 1 };
+                    newCell = new Cell();
+                    newCell.DataType = CellValues.InlineString;
+                    newCell.CellReference = "A1";
+                    inlineString = new InlineString();
+                    t = new Text();
+                    t.Text = "ScreeningQuestionsTemplateID";
+                    inlineString.Append(t);
+                    newCell.AppendChild(inlineString);
+                    row.AppendChild(newCell);
+
+                    newCell = new Cell();
+                    newCell.DataType = CellValues.InlineString;
+                    newCell.CellReference = "B1";
+                    inlineString = new InlineString();
+                    t = new Text();
+                    t.Text = "TemplateName";
+                    inlineString.Append(t);
+                    newCell.AppendChild(inlineString);
+                    row.AppendChild(newCell);
+
+                    sheetData.AppendChild(row);
+
+                    for (int i = 0; i < dtScreeningQuestionsTemplate.Rows.Count; i++)
+                    {
+                        // ScreeningQuestionsTemplateID, TemplateName
+
+                        UInt32Value excelindex = Convert.ToUInt32(i + 2);
+                        DataRow screeningQuestionsTemplateRow = dtScreeningQuestionsTemplate.Rows[i];
+
+                        row = new Row() { RowIndex = DocumentFormat.OpenXml.UInt32Value.ToUInt32(excelindex) };
+                        newCell = new Cell();
+                        newCell.DataType = CellValues.InlineString;
+                        newCell.CellReference = "A" + excelindex.ToString();
+                        inlineString = new InlineString();
+                        t = new Text();
+                        t.Text = screeningQuestionsTemplateRow["ScreeningQuestionsTemplateID"].ToString();
+                        inlineString.Append(t);
+                        newCell.AppendChild(inlineString);
+                        row.AppendChild(newCell);
+
+                        newCell = new Cell();
+                        newCell.DataType = CellValues.InlineString;
+                        newCell.CellReference = "B" + excelindex.ToString();
+                        inlineString = new InlineString();
+                        t = new Text();
+                        t.Text = screeningQuestionsTemplateRow["TemplateName"].ToString();
                         inlineString.Append(t);
                         newCell.AppendChild(inlineString);
                         row.AppendChild(newCell);

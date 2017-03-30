@@ -153,6 +153,21 @@ namespace JXTPortal.Entities
 		/// ScreeningQuestionsGuid : 
 		/// </summary>
 		System.Guid?  ScreeningQuestionsGuid  { get; set; }
+		
+		/// <summary>
+		/// ProcessDate : 
+		/// </summary>
+		System.DateTime?  ProcessDate  { get; set; }
+		
+		/// <summary>
+		/// ProcessException : 
+		/// </summary>
+		System.String  ProcessException  { get; set; }
+		
+		/// <summary>
+		/// ExternalID : 
+		/// </summary>
+		System.String  ExternalId  { get; set; }
 			
 		/// <summary>
 		/// Creates a new object that is a copy of the current instance.

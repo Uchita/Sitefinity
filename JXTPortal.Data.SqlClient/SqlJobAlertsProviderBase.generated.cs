@@ -178,7 +178,7 @@ namespace JXTPortal.Data.SqlClient
 		database.AddInParameter(commandWrapper, "@JobAlertId", DbType.Int32, DBNull.Value);
 		database.AddInParameter(commandWrapper, "@JobAlertName", DbType.String, DBNull.Value);
 		database.AddInParameter(commandWrapper, "@LastModified", DbType.DateTime, DBNull.Value);
-		database.AddInParameter(commandWrapper, "@SearchKeywords", DbType.AnsiString, DBNull.Value);
+		database.AddInParameter(commandWrapper, "@SearchKeywords", DbType.String, DBNull.Value);
 		database.AddInParameter(commandWrapper, "@RecurrenceType", DbType.Int32, DBNull.Value);
 		database.AddInParameter(commandWrapper, "@DailyFrequency", DbType.Int32, DBNull.Value);
 		database.AddInParameter(commandWrapper, "@WeeklyFrequency", DbType.Int32, DBNull.Value);
@@ -1305,7 +1305,7 @@ namespace JXTPortal.Data.SqlClient
 			database.AddOutParameter(commandWrapper, "@JobAlertId", DbType.Int32, 4);
 			database.AddInParameter(commandWrapper, "@JobAlertName", DbType.String, entity.JobAlertName );
 			database.AddInParameter(commandWrapper, "@LastModified", DbType.DateTime, entity.LastModified );
-			database.AddInParameter(commandWrapper, "@SearchKeywords", DbType.AnsiString, entity.SearchKeywords );
+			database.AddInParameter(commandWrapper, "@SearchKeywords", DbType.String, entity.SearchKeywords );
 			database.AddInParameter(commandWrapper, "@RecurrenceType", DbType.Int32, (entity.RecurrenceType.HasValue ? (object) entity.RecurrenceType  : System.DBNull.Value));
 			database.AddInParameter(commandWrapper, "@DailyFrequency", DbType.Int32, (entity.DailyFrequency.HasValue ? (object) entity.DailyFrequency  : System.DBNull.Value));
 			database.AddInParameter(commandWrapper, "@WeeklyFrequency", DbType.Int32, (entity.WeeklyFrequency.HasValue ? (object) entity.WeeklyFrequency  : System.DBNull.Value));
@@ -1386,7 +1386,7 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@JobAlertId", DbType.Int32, entity.JobAlertId );
 			database.AddInParameter(commandWrapper, "@JobAlertName", DbType.String, entity.JobAlertName );
 			database.AddInParameter(commandWrapper, "@LastModified", DbType.DateTime, entity.LastModified );
-			database.AddInParameter(commandWrapper, "@SearchKeywords", DbType.AnsiString, entity.SearchKeywords );
+			database.AddInParameter(commandWrapper, "@SearchKeywords", DbType.String, entity.SearchKeywords );
 			database.AddInParameter(commandWrapper, "@RecurrenceType", DbType.Int32, (entity.RecurrenceType.HasValue ? (object) entity.RecurrenceType : System.DBNull.Value) );
 			database.AddInParameter(commandWrapper, "@DailyFrequency", DbType.Int32, (entity.DailyFrequency.HasValue ? (object) entity.DailyFrequency : System.DBNull.Value) );
 			database.AddInParameter(commandWrapper, "@WeeklyFrequency", DbType.Int32, (entity.WeeklyFrequency.HasValue ? (object) entity.WeeklyFrequency : System.DBNull.Value) );
@@ -1584,7 +1584,7 @@ namespace JXTPortal.Data.SqlClient
 			
 			database.AddInParameter(commandWrapper, "@JobAlertName", DbType.String,  jobAlertName );
 			database.AddInParameter(commandWrapper, "@LastModified", DbType.DateTime,  lastModified );
-			database.AddInParameter(commandWrapper, "@SearchKeywords", DbType.AnsiString,  searchKeywords );
+			database.AddInParameter(commandWrapper, "@SearchKeywords", DbType.String,  searchKeywords );
 			database.AddInParameter(commandWrapper, "@RecurrenceType", DbType.Int32,  recurrenceType );
 			database.AddInParameter(commandWrapper, "@DailyFrequency", DbType.Int32,  dailyFrequency );
 			database.AddInParameter(commandWrapper, "@WeeklyFrequency", DbType.Int32,  weeklyFrequency );
@@ -2185,7 +2185,7 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@JobAlertId", DbType.Int32,  jobAlertId );
 			database.AddInParameter(commandWrapper, "@JobAlertName", DbType.String,  jobAlertName );
 			database.AddInParameter(commandWrapper, "@LastModified", DbType.DateTime,  lastModified );
-			database.AddInParameter(commandWrapper, "@SearchKeywords", DbType.AnsiString,  searchKeywords );
+			database.AddInParameter(commandWrapper, "@SearchKeywords", DbType.String,  searchKeywords );
 			database.AddInParameter(commandWrapper, "@RecurrenceType", DbType.Int32,  recurrenceType );
 			database.AddInParameter(commandWrapper, "@DailyFrequency", DbType.Int32,  dailyFrequency );
 			database.AddInParameter(commandWrapper, "@WeeklyFrequency", DbType.Int32,  weeklyFrequency );

@@ -203,6 +203,9 @@ namespace JXTPortal.Data.SqlClient
 		database.AddInParameter(commandWrapper, "@AppliedWith", DbType.AnsiString, DBNull.Value);
 		database.AddInParameter(commandWrapper, "@ScreeningQuestionaireXml", DbType.String, DBNull.Value);
 		database.AddInParameter(commandWrapper, "@ScreeningQuestionsGuid", DbType.Guid, DBNull.Value);
+		database.AddInParameter(commandWrapper, "@ProcessDate", DbType.DateTime, DBNull.Value);
+		database.AddInParameter(commandWrapper, "@ProcessException", DbType.AnsiString, DBNull.Value);
+		database.AddInParameter(commandWrapper, "@ExternalId", DbType.AnsiString, DBNull.Value);
 	
 			// replace all instances of 'AND' and 'OR' because we already set searchUsingOR
 			whereClause = whereClause.Replace(" AND ", "|").Replace(" OR ", "|") ; 
@@ -383,6 +386,24 @@ namespace JXTPortal.Data.SqlClient
 				{
 					database.SetParameterValue(commandWrapper, "@ScreeningQuestionsGuid", new Guid(
 						clause.Trim().Remove(0,22).Trim().TrimStart(equalSign).Trim().Trim(singleQuote)));
+					continue;
+				}
+				if (clause.Trim().StartsWith("processdate ") || clause.Trim().StartsWith("processdate="))
+				{
+					database.SetParameterValue(commandWrapper, "@ProcessDate", 
+						clause.Trim().Remove(0,11).Trim().TrimStart(equalSign).Trim().Trim(singleQuote));
+					continue;
+				}
+				if (clause.Trim().StartsWith("processexception ") || clause.Trim().StartsWith("processexception="))
+				{
+					database.SetParameterValue(commandWrapper, "@ProcessException", 
+						clause.Trim().Remove(0,16).Trim().TrimStart(equalSign).Trim().Trim(singleQuote));
+					continue;
+				}
+				if (clause.Trim().StartsWith("externalid ") || clause.Trim().StartsWith("externalid="))
+				{
+					database.SetParameterValue(commandWrapper, "@ExternalId", 
+						clause.Trim().Remove(0,10).Trim().TrimStart(equalSign).Trim().Trim(singleQuote));
 					continue;
 				}
 	
@@ -1094,6 +1115,12 @@ namespace JXTPortal.Data.SqlClient
 			col26.AllowDBNull = true;		
 			DataColumn col27 = dataTable.Columns.Add("ScreeningQuestionsGuid", typeof(System.Guid));
 			col27.AllowDBNull = true;		
+			DataColumn col28 = dataTable.Columns.Add("ProcessDate", typeof(System.DateTime));
+			col28.AllowDBNull = true;		
+			DataColumn col29 = dataTable.Columns.Add("ProcessException", typeof(System.String));
+			col29.AllowDBNull = true;		
+			DataColumn col30 = dataTable.Columns.Add("ExternalID", typeof(System.String));
+			col30.AllowDBNull = true;		
 			
 			bulkCopy.ColumnMappings.Add("JobApplicationID", "JobApplicationID");
 			bulkCopy.ColumnMappings.Add("ApplicationDate", "ApplicationDate");
@@ -1123,6 +1150,9 @@ namespace JXTPortal.Data.SqlClient
 			bulkCopy.ColumnMappings.Add("AppliedWith", "AppliedWith");
 			bulkCopy.ColumnMappings.Add("ScreeningQuestionaireXML", "ScreeningQuestionaireXML");
 			bulkCopy.ColumnMappings.Add("ScreeningQuestionsGuid", "ScreeningQuestionsGuid");
+			bulkCopy.ColumnMappings.Add("ProcessDate", "ProcessDate");
+			bulkCopy.ColumnMappings.Add("ProcessException", "ProcessException");
+			bulkCopy.ColumnMappings.Add("ExternalID", "ExternalID");
 			
 			foreach(JXTPortal.Entities.JobApplication entity in entities)
 			{
@@ -1215,6 +1245,15 @@ namespace JXTPortal.Data.SqlClient
 					row["ScreeningQuestionsGuid"] = entity.ScreeningQuestionsGuid.HasValue ? (object) entity.ScreeningQuestionsGuid  : System.DBNull.Value;
 							
 				
+					row["ProcessDate"] = entity.ProcessDate.HasValue ? (object) entity.ProcessDate  : System.DBNull.Value;
+							
+				
+					row["ProcessException"] = entity.ProcessException;
+							
+				
+					row["ExternalID"] = entity.ExternalId;
+							
+				
 				dataTable.Rows.Add(row);
 			}		
 			
@@ -1277,6 +1316,9 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@AppliedWith", DbType.AnsiString, entity.AppliedWith );
 			database.AddInParameter(commandWrapper, "@ScreeningQuestionaireXml", DbType.String, entity.ScreeningQuestionaireXml );
 			database.AddInParameter(commandWrapper, "@ScreeningQuestionsGuid", DbType.Guid, (entity.ScreeningQuestionsGuid.HasValue ? (object) entity.ScreeningQuestionsGuid  : System.DBNull.Value));
+			database.AddInParameter(commandWrapper, "@ProcessDate", DbType.DateTime, (entity.ProcessDate.HasValue ? (object) entity.ProcessDate  : System.DBNull.Value));
+			database.AddInParameter(commandWrapper, "@ProcessException", DbType.AnsiString, entity.ProcessException );
+			database.AddInParameter(commandWrapper, "@ExternalId", DbType.AnsiString, entity.ExternalId );
 			
 			int results = 0;
 			
@@ -1353,6 +1395,9 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@AppliedWith", DbType.AnsiString, entity.AppliedWith );
 			database.AddInParameter(commandWrapper, "@ScreeningQuestionaireXml", DbType.String, entity.ScreeningQuestionaireXml );
 			database.AddInParameter(commandWrapper, "@ScreeningQuestionsGuid", DbType.Guid, (entity.ScreeningQuestionsGuid.HasValue ? (object) entity.ScreeningQuestionsGuid : System.DBNull.Value) );
+			database.AddInParameter(commandWrapper, "@ProcessDate", DbType.DateTime, (entity.ProcessDate.HasValue ? (object) entity.ProcessDate : System.DBNull.Value) );
+			database.AddInParameter(commandWrapper, "@ProcessException", DbType.AnsiString, entity.ProcessException );
+			database.AddInParameter(commandWrapper, "@ExternalId", DbType.AnsiString, entity.ExternalId );
 			
 			int results = 0;
 			
@@ -1567,12 +1612,15 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="appliedWith"> A <c>System.String</c> instance.</param>
 		/// <param name="screeningQuestionaireXml"> A <c>System.String</c> instance.</param>
 		/// <param name="screeningQuestionsGuid"> A <c>System.Guid?</c> instance.</param>
+		/// <param name="processDate"> A <c>System.DateTime?</c> instance.</param>
+		/// <param name="processException"> A <c>System.String</c> instance.</param>
+		/// <param name="externalId"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
 		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public override DataSet Find(TransactionManager transactionManager, int start, int pageLength , System.Boolean? searchUsingOr, System.Int32? jobApplicationId, System.DateTime? applicationDate, System.Int32? jobId, System.Int32? memberId, System.String memberResumeFile, System.String memberCoverLetterFile, System.Int32? applicationStatus, System.Guid? jobAppValidateId, System.Int32? siteIdReferral, System.String urlReferral, System.Int32? applicantGrade, System.DateTime? lastViewedDate, System.String firstName, System.String surname, System.String emailAddress, System.String mobilePhone, System.String memberNote, System.String advertiserNote, System.Int32? jobArchiveId, System.Boolean? draft, System.Int32? jobApplicationTypeId, System.String externalXmlFilename, System.String customQuestionnaireXml, System.String externalPdfFilename, System.Boolean? fileDownloaded, System.String appliedWith, System.String screeningQuestionaireXml, System.Guid? screeningQuestionsGuid)
+		public override DataSet Find(TransactionManager transactionManager, int start, int pageLength , System.Boolean? searchUsingOr, System.Int32? jobApplicationId, System.DateTime? applicationDate, System.Int32? jobId, System.Int32? memberId, System.String memberResumeFile, System.String memberCoverLetterFile, System.Int32? applicationStatus, System.Guid? jobAppValidateId, System.Int32? siteIdReferral, System.String urlReferral, System.Int32? applicantGrade, System.DateTime? lastViewedDate, System.String firstName, System.String surname, System.String emailAddress, System.String mobilePhone, System.String memberNote, System.String advertiserNote, System.Int32? jobArchiveId, System.Boolean? draft, System.Int32? jobApplicationTypeId, System.String externalXmlFilename, System.String customQuestionnaireXml, System.String externalPdfFilename, System.Boolean? fileDownloaded, System.String appliedWith, System.String screeningQuestionaireXml, System.Guid? screeningQuestionsGuid, System.DateTime? processDate, System.String processException, System.String externalId)
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.JobApplication_Find", true);
@@ -1606,6 +1654,9 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@AppliedWith", DbType.AnsiString,  appliedWith );
 			database.AddInParameter(commandWrapper, "@ScreeningQuestionaireXml", DbType.String,  screeningQuestionaireXml );
 			database.AddInParameter(commandWrapper, "@ScreeningQuestionsGuid", DbType.Guid,  screeningQuestionsGuid );
+			database.AddInParameter(commandWrapper, "@ProcessDate", DbType.DateTime,  processDate );
+			database.AddInParameter(commandWrapper, "@ProcessException", DbType.AnsiString,  processException );
+			database.AddInParameter(commandWrapper, "@ExternalId", DbType.AnsiString,  externalId );
 	
 			
 			DataSet ds = null;
@@ -1665,11 +1716,14 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="appliedWith"> A <c>System.String</c> instance.</param>
 		/// <param name="screeningQuestionaireXml"> A <c>System.String</c> instance.</param>
 		/// <param name="screeningQuestionsGuid"> A <c>System.Guid?</c> instance.</param>
+		/// <param name="processDate"> A <c>System.DateTime?</c> instance.</param>
+		/// <param name="processException"> A <c>System.String</c> instance.</param>
+		/// <param name="externalId"> A <c>System.String</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
-		public override void Update(TransactionManager transactionManager, int start, int pageLength , System.Int32? jobApplicationId, System.DateTime? applicationDate, System.Int32? jobId, System.Int32? memberId, System.String memberResumeFile, System.String memberCoverLetterFile, System.Int32? applicationStatus, System.Guid? jobAppValidateId, System.Int32? siteIdReferral, System.String urlReferral, System.Int32? applicantGrade, System.DateTime? lastViewedDate, System.String firstName, System.String surname, System.String emailAddress, System.String mobilePhone, System.String memberNote, System.String advertiserNote, System.Int32? jobArchiveId, System.Boolean? draft, System.Int32? jobApplicationTypeId, System.String externalXmlFilename, System.String customQuestionnaireXml, System.String externalPdfFilename, System.Boolean? fileDownloaded, System.String appliedWith, System.String screeningQuestionaireXml, System.Guid? screeningQuestionsGuid)
+		public override void Update(TransactionManager transactionManager, int start, int pageLength , System.Int32? jobApplicationId, System.DateTime? applicationDate, System.Int32? jobId, System.Int32? memberId, System.String memberResumeFile, System.String memberCoverLetterFile, System.Int32? applicationStatus, System.Guid? jobAppValidateId, System.Int32? siteIdReferral, System.String urlReferral, System.Int32? applicantGrade, System.DateTime? lastViewedDate, System.String firstName, System.String surname, System.String emailAddress, System.String mobilePhone, System.String memberNote, System.String advertiserNote, System.Int32? jobArchiveId, System.Boolean? draft, System.Int32? jobApplicationTypeId, System.String externalXmlFilename, System.String customQuestionnaireXml, System.String externalPdfFilename, System.Boolean? fileDownloaded, System.String appliedWith, System.String screeningQuestionaireXml, System.Guid? screeningQuestionsGuid, System.DateTime? processDate, System.String processException, System.String externalId)
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.JobApplication_Update", true);
@@ -1702,6 +1756,9 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@AppliedWith", DbType.AnsiString,  appliedWith );
 			database.AddInParameter(commandWrapper, "@ScreeningQuestionaireXml", DbType.String,  screeningQuestionaireXml );
 			database.AddInParameter(commandWrapper, "@ScreeningQuestionsGuid", DbType.Guid,  screeningQuestionsGuid );
+			database.AddInParameter(commandWrapper, "@ProcessDate", DbType.DateTime,  processDate );
+			database.AddInParameter(commandWrapper, "@ProcessException", DbType.AnsiString,  processException );
+			database.AddInParameter(commandWrapper, "@ExternalId", DbType.AnsiString,  externalId );
 	
 			
 			//Provider Data Requesting Command Event
@@ -2022,13 +2079,16 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="appliedWith"> A <c>System.String</c> instance.</param>
 		/// <param name="screeningQuestionaireXml"> A <c>System.String</c> instance.</param>
 		/// <param name="screeningQuestionsGuid"> A <c>System.Guid?</c> instance.</param>
+		/// <param name="processDate"> A <c>System.DateTime?</c> instance.</param>
+		/// <param name="processException"> A <c>System.String</c> instance.</param>
+		/// <param name="externalId"> A <c>System.String</c> instance.</param>
 			/// <param name="jobApplicationId"> A <c>System.Int32?</c> instance.</param>
 			/// <param name="jobAppValidateId"> A <c>System.Guid?</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
-		public override void Insert(TransactionManager transactionManager, int start, int pageLength , System.DateTime? applicationDate, System.Int32? jobId, System.Int32? memberId, System.String memberResumeFile, System.String memberCoverLetterFile, System.Int32? applicationStatus, System.Int32? siteIdReferral, System.String urlReferral, System.Int32? applicantGrade, System.DateTime? lastViewedDate, System.String firstName, System.String surname, System.String emailAddress, System.String mobilePhone, System.String memberNote, System.String advertiserNote, System.Int32? jobArchiveId, System.Boolean? draft, System.Int32? jobApplicationTypeId, System.String externalXmlFilename, System.String customQuestionnaireXml, System.String externalPdfFilename, System.Boolean? fileDownloaded, System.String appliedWith, System.String screeningQuestionaireXml, System.Guid? screeningQuestionsGuid, ref System.Int32? jobApplicationId, ref System.Guid? jobAppValidateId)
+		public override void Insert(TransactionManager transactionManager, int start, int pageLength , System.DateTime? applicationDate, System.Int32? jobId, System.Int32? memberId, System.String memberResumeFile, System.String memberCoverLetterFile, System.Int32? applicationStatus, System.Int32? siteIdReferral, System.String urlReferral, System.Int32? applicantGrade, System.DateTime? lastViewedDate, System.String firstName, System.String surname, System.String emailAddress, System.String mobilePhone, System.String memberNote, System.String advertiserNote, System.Int32? jobArchiveId, System.Boolean? draft, System.Int32? jobApplicationTypeId, System.String externalXmlFilename, System.String customQuestionnaireXml, System.String externalPdfFilename, System.Boolean? fileDownloaded, System.String appliedWith, System.String screeningQuestionaireXml, System.Guid? screeningQuestionsGuid, System.DateTime? processDate, System.String processException, System.String externalId, ref System.Int32? jobApplicationId, ref System.Guid? jobAppValidateId)
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.JobApplication_Insert", true);
@@ -2059,6 +2119,9 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@AppliedWith", DbType.AnsiString,  appliedWith );
 			database.AddInParameter(commandWrapper, "@ScreeningQuestionaireXml", DbType.String,  screeningQuestionaireXml );
 			database.AddInParameter(commandWrapper, "@ScreeningQuestionsGuid", DbType.Guid,  screeningQuestionsGuid );
+			database.AddInParameter(commandWrapper, "@ProcessDate", DbType.DateTime,  processDate );
+			database.AddInParameter(commandWrapper, "@ProcessException", DbType.AnsiString,  processException );
+			database.AddInParameter(commandWrapper, "@ExternalId", DbType.AnsiString,  externalId );
 	
 			database.AddParameter(commandWrapper, "@JobApplicationId", DbType.Int32, 4, ParameterDirection.InputOutput, true, 10, 0, string.Empty, DataRowVersion.Current, jobApplicationId);
 			database.AddParameter(commandWrapper, "@JobAppValidateId", DbType.Guid, 16, ParameterDirection.InputOutput, true, 0, 0, string.Empty, DataRowVersion.Current, jobAppValidateId);

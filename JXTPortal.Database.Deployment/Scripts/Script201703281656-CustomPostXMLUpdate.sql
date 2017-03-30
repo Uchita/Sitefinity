@@ -1,4 +1,167 @@
-﻿ALTER PROCEDURE [dbo].[WebServiceLog_CustomGetExportList]    
+﻿DROP XML SCHEMA COLLECTION [dbo].[MiniJobXMLSchema]
+GO
+
+CREATE XML SCHEMA COLLECTION [dbo].[MiniJobXMLSchema] AS N'<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <xsd:element name="JobPostRequest">
+      <xsd:complexType>
+         <xsd:complexContent>
+            <xsd:restriction base="xsd:anyType">
+               <xsd:sequence>
+                  <xsd:element name="UserName" type="xsd:string" minOccurs="0" />
+                  <xsd:element name="Password" type="xsd:string" minOccurs="0" />
+                  <xsd:element name="AdvertiserId" type="xsd:string" minOccurs="0" />
+                  <xsd:element name="ArchiveMissingJobs" type="xsd:string" minOccurs="0" />
+                  <xsd:element name="Listings" minOccurs="0" maxOccurs="unbounded">
+                     <xsd:complexType>
+                        <xsd:complexContent>
+                           <xsd:restriction base="xsd:anyType">
+                              <xsd:sequence>
+                                 <xsd:element name="JobListing" minOccurs="0" maxOccurs="unbounded">
+                                    <xsd:complexType>
+                                       <xsd:complexContent>
+                                          <xsd:restriction base="xsd:anyType">
+                                             <xsd:sequence>
+                                                <xsd:element name="JobAdType" type="xsd:string" minOccurs="0" />
+                                                <xsd:element name="ReferenceNo" type="xsd:string" minOccurs="0" />
+                                                <xsd:element name="JobTitle" type="xsd:string" minOccurs="0" />
+                                                <xsd:element name="JobUrl" type="xsd:string" minOccurs="0" />
+                                                <xsd:element name="ShortDescription" type="xsd:string" minOccurs="0" />
+                                                <xsd:element name="Bulletpoints" minOccurs="0" maxOccurs="unbounded">
+                                                   <xsd:complexType>
+                                                      <xsd:complexContent>
+                                                         <xsd:restriction base="xsd:anyType">
+                                                            <xsd:sequence>
+                                                               <xsd:element name="BulletPoint1" type="xsd:string" minOccurs="0" />
+                                                               <xsd:element name="BulletPoint2" type="xsd:string" minOccurs="0" />
+                                                               <xsd:element name="BulletPoint3" type="xsd:string" minOccurs="0" />
+                                                            </xsd:sequence>
+                                                         </xsd:restriction>
+                                                      </xsd:complexContent>
+                                                   </xsd:complexType>
+                                                </xsd:element>
+                                                <xsd:element name="JobFullDescription" type="xsd:string" minOccurs="0" />
+                                                <xsd:element name="ContactDetails" type="xsd:string" minOccurs="0" />
+                                                <xsd:element name="CompanyName" type="xsd:string" minOccurs="0" />
+                                                <xsd:element name="ConsultantID" type="xsd:string" minOccurs="0" nillable="true" />
+                                                <xsd:element name="ConsultantName" type="xsd:string" minOccurs="0" />
+                                                <xsd:element name="PublicTransport" type="xsd:string" minOccurs="0" />
+                                                <xsd:element name="ResidentsOnly" type="xsd:string" minOccurs="0" />
+                                                <xsd:element name="IsQualificationsRecognised" type="xsd:string" minOccurs="0" />
+                                                <xsd:element name="ShowLocationDetails" type="xsd:string" minOccurs="0" />
+                                                <xsd:element name="JobTemplateID" type="xsd:string" minOccurs="0" />
+                                                <xsd:element name="AdvertiserJobTemplateLogoID" type="xsd:string" minOccurs="0" />
+                                                <xsd:element name="Categories" minOccurs="0" maxOccurs="unbounded">
+                                                   <xsd:complexType>
+                                                      <xsd:complexContent>
+                                                         <xsd:restriction base="xsd:anyType">
+                                                            <xsd:sequence>
+                                                               <xsd:element name="Category" minOccurs="0" maxOccurs="unbounded">
+                                                                  <xsd:complexType>
+                                                                     <xsd:complexContent>
+                                                                        <xsd:restriction base="xsd:anyType">
+                                                                           <xsd:sequence>
+                                                                              <xsd:element name="Classification" type="xsd:string" minOccurs="0" />
+                                                                              <xsd:element name="SubClassification" type="xsd:string" minOccurs="0" />
+                                                                           </xsd:sequence>
+                                                                        </xsd:restriction>
+                                                                     </xsd:complexContent>
+                                                                  </xsd:complexType>
+                                                               </xsd:element>
+                                                            </xsd:sequence>
+                                                         </xsd:restriction>
+                                                      </xsd:complexContent>
+                                                   </xsd:complexType>
+                                                </xsd:element>
+                                                <xsd:element name="ListingClassification" minOccurs="0" maxOccurs="unbounded">
+                                                   <xsd:complexType>
+                                                      <xsd:complexContent>
+                                                         <xsd:restriction base="xsd:anyType">
+                                                            <xsd:sequence>
+                                                               <xsd:element name="WorkType" type="xsd:string" minOccurs="0" />
+                                                               <xsd:element name="Sector" type="xsd:string" minOccurs="0" />
+                                                               <xsd:element name="StreetAddress" type="xsd:string" minOccurs="0" />
+                                                               <xsd:element name="Tags" type="xsd:string" minOccurs="0" />
+                                                               <xsd:element name="Country" type="xsd:string" minOccurs="0" />
+                                                               <xsd:element name="Location" type="xsd:string" minOccurs="0" />
+                                                               <xsd:element name="Area" type="xsd:string" minOccurs="0" />
+                                                            </xsd:sequence>
+                                                         </xsd:restriction>
+                                                      </xsd:complexContent>
+                                                   </xsd:complexType>
+                                                </xsd:element>
+                                                <xsd:element name="Salary" minOccurs="0" maxOccurs="unbounded">
+                                                   <xsd:complexType>
+                                                      <xsd:complexContent>
+                                                         <xsd:restriction base="xsd:anyType">
+                                                            <xsd:sequence>
+                                                               <xsd:element name="SalaryType" type="xsd:string" minOccurs="0" />
+                                                               <xsd:element name="Min" type="xsd:string" minOccurs="0" />
+                                                               <xsd:element name="Max" type="xsd:string" minOccurs="0" />
+                                                               <xsd:element name="AdditionalText" type="xsd:string" minOccurs="0" />
+                                                               <xsd:element name="ShowSalaryDetails" type="xsd:string" minOccurs="0" />
+                                                            </xsd:sequence>
+                                                         </xsd:restriction>
+                                                      </xsd:complexContent>
+                                                   </xsd:complexType>
+                                                </xsd:element>
+                                                <xsd:element name="ApplicationMethod" minOccurs="0" maxOccurs="unbounded">
+                                                   <xsd:complexType>
+                                                      <xsd:complexContent>
+                                                         <xsd:restriction base="xsd:anyType">
+                                                            <xsd:sequence>
+                                                               <xsd:element name="JobApplicationType" type="xsd:string" minOccurs="0" />
+                                                               <xsd:element name="ApplicationUrl" type="xsd:string" minOccurs="0" />
+                                                               <xsd:element name="ApplicationEmail" type="xsd:string" minOccurs="0" />
+                                                            </xsd:sequence>
+                                                         </xsd:restriction>
+                                                      </xsd:complexContent>
+                                                   </xsd:complexType>
+                                                </xsd:element>
+                                                <xsd:element name="Referral" minOccurs="0" maxOccurs="unbounded">
+                                                   <xsd:complexType>
+                                                      <xsd:complexContent>
+                                                         <xsd:restriction base="xsd:anyType">
+                                                            <xsd:sequence>
+                                                               <xsd:element name="HasReferralFee" type="xsd:string" minOccurs="0" />
+                                                               <xsd:element name="Amount" type="xsd:string" minOccurs="0" />
+                                                               <xsd:element name="ReferralUrl" type="xsd:string" minOccurs="0" />
+                                                            </xsd:sequence>
+                                                         </xsd:restriction>
+                                                      </xsd:complexContent>
+                                                   </xsd:complexType>
+                                                </xsd:element>
+                                                <xsd:element name="ExpiryDate" type="xsd:string" minOccurs="0" />
+                                                <xsd:element name="ScreeningQuestionsTemplateID" type="xsd:string" minOccurs="0" />
+                                             </xsd:sequence>
+                                          </xsd:restriction>
+                                       </xsd:complexContent>
+                                    </xsd:complexType>
+                                 </xsd:element>
+                              </xsd:sequence>
+                           </xsd:restriction>
+                        </xsd:complexContent>
+                     </xsd:complexType>
+                  </xsd:element>
+               </xsd:sequence>
+            </xsd:restriction>
+         </xsd:complexContent>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="NewDataSet">
+      <xsd:complexType>
+         <xsd:complexContent>
+            <xsd:restriction base="xsd:anyType">
+               <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                  <xsd:element ref="JobPostRequest" />
+               </xsd:choice>
+            </xsd:restriction>
+         </xsd:complexContent>
+      </xsd:complexType>
+   </xsd:element>
+</xsd:schema>'
+GO
+
+ALTER PROCEDURE [dbo].[WebServiceLog_CustomGetExportList]    
 (    
  @SiteID INT,    
  @AdvertiserID INT = 0    
@@ -599,7 +762,7 @@ BEGIN TRY
 				  ScreeningQuestionsTemplateID NOT IN 
 				  (
 					SELECT ScreeningQuestionsTemplateId FROM ScreeningQuestionsTemplateOwners (NOLOCK)
-					WHERE AdvertiserId = @AdvertiserUserId
+					WHERE AdvertiserId = @AdvertiserId
 				  )                  
                      
  -- *************** INSERT / UPDATE / Archive Jobs *********************              
@@ -631,7 +794,7 @@ BEGIN TRY
       ContactDetails, QualificationsRecognised, ResidentOnly, HotJob, RefNo, SalaryText, AdvertiserID, ApplicationMethod,                       
       ApplicationURL, UploadMethod, JobContactName, ShowLocationDetails, [Address], AdvertiserJobTemplateLogoID, CompanyName,               
       PublicTransport, BulletPoint1, BulletPoint2, BulletPoint3, Tags, JobFriendlyName, JobTemplateID, LastModifiedByAdminUserId,                     
-      Expired, ShowSalaryRange, SalaryUpperBand, SalaryLowerBand, SalaryTypeID, CurrencyID, EnteredByAdvertiserUserID, AddressStatus)                  
+      Expired, ShowSalaryRange, SalaryUpperBand, SalaryLowerBand, SalaryTypeID, CurrencyID, EnteredByAdvertiserUserID, AddressStatus, ScreeningQuestionsTemplateID)                  
  Select #FlatXML.JobAdType, -- JobAdType NOT IMPLEMENTED YET              
    @SiteID, WorkType, Title, ShortDescription, FullDescription,               
    1, -- WebServiceProcessed              
@@ -663,7 +826,8 @@ BEGIN TRY
    1, --CurrencyID              
    @AdvertiserUserId,   
    CASE WHEN   
- (@GoogleMapIntegration > 0 AND ISNULL(StreetAddress,'') <> '') THEN 2 ELSE NULL END -- Add to the Google map queue if site has integration & ADDRESS not empty  
+ (@GoogleMapIntegration > 0 AND ISNULL(StreetAddress,'') <> '') THEN 2 ELSE NULL END, -- Add to the Google map queue if site has integration & ADDRESS not empty  
+  #FlatXML.ScreeningQuestionsTemplateID
  FROM               
   #FlatXML              
  WHERE              

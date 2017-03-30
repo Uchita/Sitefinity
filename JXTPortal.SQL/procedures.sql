@@ -39982,7 +39982,8 @@ AS
 					[GlobalDateFormat],
 					[TimeZone],
 					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[EnableScreeningQuestions],
+					[EnableExpiryDate]
 				FROM
 					[dbo].[GlobalSettings]
 					
@@ -40066,7 +40067,7 @@ AS
 				EXEC sp_executesql @SQL
 
 				-- Return paged results
-				SELECT O.[GlobalSettingID], O.[SiteID], O.[DefaultLanguageID], O.[DefaultDynamicPageID], O.[PublicJobsSearch], O.[PublicMembersSearch], O.[PublicCompaniesSearch], O.[PublicSponsoredAdverts], O.[PrivateJobs], O.[PrivateMembers], O.[PrivateCompanies], O.[LastModifiedBy], O.[LastModified], O.[PageTitlePrefix], O.[PageTitleSuffix], O.[DefaultTitle], O.[HomeTitle], O.[DefaultDescription], O.[HomeDescription], O.[DefaultKeywords], O.[HomeKeywords], O.[ShowFaceBookButton], O.[UseAdvertiserFilter], O.[MerchantID], O.[ShowTwitterButton], O.[ShowJobAlertButton], O.[ShowLinkedInButton], O.[SiteFavIconID], O.[SiteDocType], O.[CurrencySymbol], O.[FtpFolderLocation], O.[MetaTags], O.[SystemMetaTags], O.[MemberRegistrationNotification], O.[LinkedInAPI], O.[LinkedInLogo], O.[LinkedInCompanyID], O.[LinkedInEmail], O.[PrivacySettings], O.[WWWRedirect], O.[AllowAdvertiser], O.[LinkedInAPISecret], O.[GoogleClientID], O.[GoogleClientSecret], O.[FacebookAppID], O.[FacebookAppSecret], O.[LinkedInButtonSize], O.[DefaultCountryID], O.[PayPalUsername], O.[PayPalPassword], O.[PayPalSignature], O.[SecurePayMerchantID], O.[SecurePayPassword], O.[UsingSSL], O.[UseCustomProfessionRole], O.[GenerateJobXML], O.[IsPrivateSite], O.[PrivateRedirectUrl], O.[EnableJobCustomQuestionnaire], O.[JobApplicationTypeID], O.[JobScreeningProcess], O.[AdvertiserApprovalProcess], O.[SiteType], O.[EnableSSL], O.[GST], O.[GSTLabel], O.[NumberOfPremiumJobs], O.[PremiumJobDays], O.[DisplayPremiumJobsOnResults], O.[JobExpiryNotification], O.[CurrencyID], O.[PayPalClientID], O.[PayPalClientSecret], O.[PaypalUser], O.[PaypalProPassword], O.[PaypalVendor], O.[PaypalPartner], O.[InvoiceSiteInfo], O.[InvoiceSiteFooter], O.[EnableTermsAndConditions], O.[DefaultEmailLanguageId], O.[GoogleTagManager], O.[GoogleAnalytics], O.[GoogleWebMaster], O.[EnablePeopleSearch], O.[GlobalDateFormat], O.[TimeZone], O.[GlobalFolder], O.[EnableScreeningQuestions]
+				SELECT O.[GlobalSettingID], O.[SiteID], O.[DefaultLanguageID], O.[DefaultDynamicPageID], O.[PublicJobsSearch], O.[PublicMembersSearch], O.[PublicCompaniesSearch], O.[PublicSponsoredAdverts], O.[PrivateJobs], O.[PrivateMembers], O.[PrivateCompanies], O.[LastModifiedBy], O.[LastModified], O.[PageTitlePrefix], O.[PageTitleSuffix], O.[DefaultTitle], O.[HomeTitle], O.[DefaultDescription], O.[HomeDescription], O.[DefaultKeywords], O.[HomeKeywords], O.[ShowFaceBookButton], O.[UseAdvertiserFilter], O.[MerchantID], O.[ShowTwitterButton], O.[ShowJobAlertButton], O.[ShowLinkedInButton], O.[SiteFavIconID], O.[SiteDocType], O.[CurrencySymbol], O.[FtpFolderLocation], O.[MetaTags], O.[SystemMetaTags], O.[MemberRegistrationNotification], O.[LinkedInAPI], O.[LinkedInLogo], O.[LinkedInCompanyID], O.[LinkedInEmail], O.[PrivacySettings], O.[WWWRedirect], O.[AllowAdvertiser], O.[LinkedInAPISecret], O.[GoogleClientID], O.[GoogleClientSecret], O.[FacebookAppID], O.[FacebookAppSecret], O.[LinkedInButtonSize], O.[DefaultCountryID], O.[PayPalUsername], O.[PayPalPassword], O.[PayPalSignature], O.[SecurePayMerchantID], O.[SecurePayPassword], O.[UsingSSL], O.[UseCustomProfessionRole], O.[GenerateJobXML], O.[IsPrivateSite], O.[PrivateRedirectUrl], O.[EnableJobCustomQuestionnaire], O.[JobApplicationTypeID], O.[JobScreeningProcess], O.[AdvertiserApprovalProcess], O.[SiteType], O.[EnableSSL], O.[GST], O.[GSTLabel], O.[NumberOfPremiumJobs], O.[PremiumJobDays], O.[DisplayPremiumJobsOnResults], O.[JobExpiryNotification], O.[CurrencyID], O.[PayPalClientID], O.[PayPalClientSecret], O.[PaypalUser], O.[PaypalProPassword], O.[PaypalVendor], O.[PaypalPartner], O.[InvoiceSiteInfo], O.[InvoiceSiteFooter], O.[EnableTermsAndConditions], O.[DefaultEmailLanguageId], O.[GoogleTagManager], O.[GoogleAnalytics], O.[GoogleWebMaster], O.[EnablePeopleSearch], O.[GlobalDateFormat], O.[TimeZone], O.[GlobalFolder], O.[EnableScreeningQuestions], O.[EnableExpiryDate]
 				FROM
 				    [dbo].[GlobalSettings] O,
 				    #PageIndex PageIndex
@@ -40291,7 +40292,9 @@ CREATE PROCEDURE dbo.GlobalSettings_Insert
 
 	@GlobalFolder varchar (255)  ,
 
-	@EnableScreeningQuestions bit   
+	@EnableScreeningQuestions bit   ,
+
+	@EnableExpiryDate bit   
 )
 AS
 
@@ -40387,6 +40390,7 @@ AS
 					,[TimeZone]
 					,[GlobalFolder]
 					,[EnableScreeningQuestions]
+					,[EnableExpiryDate]
 					)
 				VALUES
 					(
@@ -40478,6 +40482,7 @@ AS
 					,@TimeZone
 					,@GlobalFolder
 					,@EnableScreeningQuestions
+					,@EnableExpiryDate
 					)
 				
 				-- Get the identity value
@@ -40689,7 +40694,9 @@ CREATE PROCEDURE dbo.GlobalSettings_Update
 
 	@GlobalFolder varchar (255)  ,
 
-	@EnableScreeningQuestions bit   
+	@EnableScreeningQuestions bit   ,
+
+	@EnableExpiryDate bit   
 )
 AS
 
@@ -40788,6 +40795,7 @@ AS
 					,[TimeZone] = @TimeZone
 					,[GlobalFolder] = @GlobalFolder
 					,[EnableScreeningQuestions] = @EnableScreeningQuestions
+					,[EnableExpiryDate] = @EnableExpiryDate
 				WHERE
 [GlobalSettingID] = @GlobalSettingId 
 				
@@ -40954,7 +40962,8 @@ AS
 					[GlobalDateFormat],
 					[TimeZone],
 					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[EnableScreeningQuestions],
+					[EnableExpiryDate]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -41087,7 +41096,8 @@ AS
 					[GlobalDateFormat],
 					[TimeZone],
 					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[EnableScreeningQuestions],
+					[EnableExpiryDate]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -41220,7 +41230,8 @@ AS
 					[GlobalDateFormat],
 					[TimeZone],
 					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[EnableScreeningQuestions],
+					[EnableExpiryDate]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -41353,7 +41364,8 @@ AS
 					[GlobalDateFormat],
 					[TimeZone],
 					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[EnableScreeningQuestions],
+					[EnableExpiryDate]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -41486,7 +41498,8 @@ AS
 					[GlobalDateFormat],
 					[TimeZone],
 					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[EnableScreeningQuestions],
+					[EnableExpiryDate]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -41619,7 +41632,8 @@ AS
 					[GlobalDateFormat],
 					[TimeZone],
 					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[EnableScreeningQuestions],
+					[EnableExpiryDate]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -41752,7 +41766,8 @@ AS
 					[GlobalDateFormat],
 					[TimeZone],
 					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[EnableScreeningQuestions],
+					[EnableExpiryDate]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -41885,7 +41900,8 @@ AS
 					[GlobalDateFormat],
 					[TimeZone],
 					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[EnableScreeningQuestions],
+					[EnableExpiryDate]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -42018,7 +42034,8 @@ AS
 					[GlobalDateFormat],
 					[TimeZone],
 					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[EnableScreeningQuestions],
+					[EnableExpiryDate]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -42153,7 +42170,8 @@ AS
 					[GlobalDateFormat],
 					[TimeZone],
 					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[EnableScreeningQuestions],
+					[EnableExpiryDate]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -42285,7 +42303,8 @@ AS
 					[GlobalDateFormat],
 					[TimeZone],
 					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[EnableScreeningQuestions],
+					[EnableExpiryDate]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -42499,7 +42518,9 @@ CREATE PROCEDURE dbo.GlobalSettings_Find
 
 	@GlobalFolder varchar (255)  = null ,
 
-	@EnableScreeningQuestions bit   = null 
+	@EnableScreeningQuestions bit   = null ,
+
+	@EnableExpiryDate bit   = null 
 )
 AS
 
@@ -42597,6 +42618,7 @@ AS
 	, [TimeZone]
 	, [GlobalFolder]
 	, [EnableScreeningQuestions]
+	, [EnableExpiryDate]
     FROM
 	[dbo].[GlobalSettings]
     WHERE 
@@ -42689,6 +42711,7 @@ AS
 	AND ([TimeZone] = @TimeZone OR @TimeZone IS NULL)
 	AND ([GlobalFolder] = @GlobalFolder OR @GlobalFolder IS NULL)
 	AND ([EnableScreeningQuestions] = @EnableScreeningQuestions OR @EnableScreeningQuestions IS NULL)
+	AND ([EnableExpiryDate] = @EnableExpiryDate OR @EnableExpiryDate IS NULL)
 						
   END
   ELSE
@@ -42783,6 +42806,7 @@ AS
 	, [TimeZone]
 	, [GlobalFolder]
 	, [EnableScreeningQuestions]
+	, [EnableExpiryDate]
     FROM
 	[dbo].[GlobalSettings]
     WHERE 
@@ -42875,6 +42899,7 @@ AS
 	OR ([TimeZone] = @TimeZone AND @TimeZone is not null)
 	OR ([GlobalFolder] = @GlobalFolder AND @GlobalFolder is not null)
 	OR ([EnableScreeningQuestions] = @EnableScreeningQuestions AND @EnableScreeningQuestions is not null)
+	OR ([EnableExpiryDate] = @EnableExpiryDate AND @EnableExpiryDate is not null)
 	SELECT @@ROWCOUNT			
   END
 				
@@ -64822,7 +64847,7 @@ CREATE PROCEDURE dbo.JobAlerts_Insert
 
 	@LastModified datetime   ,
 
-	@SearchKeywords varchar (1000)  ,
+	@SearchKeywords nvarchar (1000)  ,
 
 	@RecurrenceType int   ,
 
@@ -64996,7 +65021,7 @@ CREATE PROCEDURE dbo.JobAlerts_Update
 
 	@LastModified datetime   ,
 
-	@SearchKeywords varchar (1000)  ,
+	@SearchKeywords nvarchar (1000)  ,
 
 	@RecurrenceType int   ,
 
@@ -65557,7 +65582,7 @@ CREATE PROCEDURE dbo.JobAlerts_Find
 
 	@LastModified datetime   = null ,
 
-	@SearchKeywords varchar (1000)  = null ,
+	@SearchKeywords nvarchar (1000)  = null ,
 
 	@RecurrenceType int   = null ,
 
@@ -66467,7 +66492,10 @@ AS
 					[FileDownloaded],
 					[AppliedWith],
 					[ScreeningQuestionaireXML],
-					[ScreeningQuestionsGuid]
+					[ScreeningQuestionsGuid],
+					[ProcessDate],
+					[ProcessException],
+					[ExternalID]
 				FROM
 					[dbo].[JobApplication]
 					
@@ -66551,7 +66579,7 @@ AS
 				EXEC sp_executesql @SQL
 
 				-- Return paged results
-				SELECT O.[JobApplicationID], O.[ApplicationDate], O.[JobID], O.[MemberID], O.[MemberResumeFile], O.[MemberCoverLetterFile], O.[ApplicationStatus], O.[JobAppValidateID], O.[SiteID_Referral], O.[URL_Referral], O.[ApplicantGrade], O.[LastViewedDate], O.[FirstName], O.[Surname], O.[EmailAddress], O.[MobilePhone], O.[MemberNote], O.[AdvertiserNote], O.[JobArchiveID], O.[Draft], O.[JobApplicationTypeID], O.[ExternalXMLFilename], O.[CustomQuestionnaireXML], O.[ExternalPDFFilename], O.[FileDownloaded], O.[AppliedWith], O.[ScreeningQuestionaireXML], O.[ScreeningQuestionsGuid]
+				SELECT O.[JobApplicationID], O.[ApplicationDate], O.[JobID], O.[MemberID], O.[MemberResumeFile], O.[MemberCoverLetterFile], O.[ApplicationStatus], O.[JobAppValidateID], O.[SiteID_Referral], O.[URL_Referral], O.[ApplicantGrade], O.[LastViewedDate], O.[FirstName], O.[Surname], O.[EmailAddress], O.[MobilePhone], O.[MemberNote], O.[AdvertiserNote], O.[JobArchiveID], O.[Draft], O.[JobApplicationTypeID], O.[ExternalXMLFilename], O.[CustomQuestionnaireXML], O.[ExternalPDFFilename], O.[FileDownloaded], O.[AppliedWith], O.[ScreeningQuestionaireXML], O.[ScreeningQuestionsGuid], O.[ProcessDate], O.[ProcessException], O.[ExternalID]
 				FROM
 				    [dbo].[JobApplication] O,
 				    #PageIndex PageIndex
@@ -66654,7 +66682,13 @@ CREATE PROCEDURE dbo.JobApplication_Insert
 
 	@ScreeningQuestionaireXml nvarchar (MAX)  ,
 
-	@ScreeningQuestionsGuid uniqueidentifier   
+	@ScreeningQuestionsGuid uniqueidentifier   ,
+
+	@ProcessDate datetime   ,
+
+	@ProcessException varchar (500)  ,
+
+	@ExternalId varchar (50)  
 )
 AS
 
@@ -66689,6 +66723,9 @@ AS
 					,[AppliedWith]
 					,[ScreeningQuestionaireXML]
 					,[ScreeningQuestionsGuid]
+					,[ProcessDate]
+					,[ProcessException]
+					,[ExternalID]
 					)
 				VALUES
 					(
@@ -66719,6 +66756,9 @@ AS
 					,@AppliedWith
 					,@ScreeningQuestionaireXml
 					,@ScreeningQuestionsGuid
+					,@ProcessDate
+					,@ProcessException
+					,@ExternalId
 					)
 				
 				-- Get the identity value
@@ -66808,7 +66848,13 @@ CREATE PROCEDURE dbo.JobApplication_Update
 
 	@ScreeningQuestionaireXml nvarchar (MAX)  ,
 
-	@ScreeningQuestionsGuid uniqueidentifier   
+	@ScreeningQuestionsGuid uniqueidentifier   ,
+
+	@ProcessDate datetime   ,
+
+	@ProcessException varchar (500)  ,
+
+	@ExternalId varchar (50)  
 )
 AS
 
@@ -66846,6 +66892,9 @@ AS
 					,[AppliedWith] = @AppliedWith
 					,[ScreeningQuestionaireXML] = @ScreeningQuestionaireXml
 					,[ScreeningQuestionsGuid] = @ScreeningQuestionsGuid
+					,[ProcessDate] = @ProcessDate
+					,[ProcessException] = @ProcessException
+					,[ExternalID] = @ExternalId
 				WHERE
 [JobApplicationID] = @JobApplicationId 
 				
@@ -66951,7 +67000,10 @@ AS
 					[FileDownloaded],
 					[AppliedWith],
 					[ScreeningQuestionaireXML],
-					[ScreeningQuestionsGuid]
+					[ScreeningQuestionsGuid],
+					[ProcessDate],
+					[ProcessException],
+					[ExternalID]
 				FROM
 					[dbo].[JobApplication]
 				WHERE
@@ -67021,7 +67073,10 @@ AS
 					[FileDownloaded],
 					[AppliedWith],
 					[ScreeningQuestionaireXML],
-					[ScreeningQuestionsGuid]
+					[ScreeningQuestionsGuid],
+					[ProcessDate],
+					[ProcessException],
+					[ExternalID]
 				FROM
 					[dbo].[JobApplication]
 				WHERE
@@ -67090,7 +67145,10 @@ AS
 					[FileDownloaded],
 					[AppliedWith],
 					[ScreeningQuestionaireXML],
-					[ScreeningQuestionsGuid]
+					[ScreeningQuestionsGuid],
+					[ProcessDate],
+					[ProcessException],
+					[ExternalID]
 				FROM
 					[dbo].[JobApplication]
 				WHERE
@@ -67159,7 +67217,10 @@ AS
 					[FileDownloaded],
 					[AppliedWith],
 					[ScreeningQuestionaireXML],
-					[ScreeningQuestionsGuid]
+					[ScreeningQuestionsGuid],
+					[ProcessDate],
+					[ProcessException],
+					[ExternalID]
 				FROM
 					[dbo].[JobApplication]
 				WHERE
@@ -67228,7 +67289,10 @@ AS
 					[FileDownloaded],
 					[AppliedWith],
 					[ScreeningQuestionaireXML],
-					[ScreeningQuestionsGuid]
+					[ScreeningQuestionsGuid],
+					[ProcessDate],
+					[ProcessException],
+					[ExternalID]
 				FROM
 					[dbo].[JobApplication]
 				WHERE
@@ -67320,7 +67384,13 @@ CREATE PROCEDURE dbo.JobApplication_Find
 
 	@ScreeningQuestionaireXml nvarchar (MAX)  = null ,
 
-	@ScreeningQuestionsGuid uniqueidentifier   = null 
+	@ScreeningQuestionsGuid uniqueidentifier   = null ,
+
+	@ProcessDate datetime   = null ,
+
+	@ProcessException varchar (500)  = null ,
+
+	@ExternalId varchar (50)  = null 
 )
 AS
 
@@ -67357,6 +67427,9 @@ AS
 	, [AppliedWith]
 	, [ScreeningQuestionaireXML]
 	, [ScreeningQuestionsGuid]
+	, [ProcessDate]
+	, [ProcessException]
+	, [ExternalID]
     FROM
 	[dbo].[JobApplication]
     WHERE 
@@ -67388,6 +67461,9 @@ AS
 	AND ([AppliedWith] = @AppliedWith OR @AppliedWith IS NULL)
 	AND ([ScreeningQuestionaireXML] = @ScreeningQuestionaireXml OR @ScreeningQuestionaireXml IS NULL)
 	AND ([ScreeningQuestionsGuid] = @ScreeningQuestionsGuid OR @ScreeningQuestionsGuid IS NULL)
+	AND ([ProcessDate] = @ProcessDate OR @ProcessDate IS NULL)
+	AND ([ProcessException] = @ProcessException OR @ProcessException IS NULL)
+	AND ([ExternalID] = @ExternalId OR @ExternalId IS NULL)
 						
   END
   ELSE
@@ -67421,6 +67497,9 @@ AS
 	, [AppliedWith]
 	, [ScreeningQuestionaireXML]
 	, [ScreeningQuestionsGuid]
+	, [ProcessDate]
+	, [ProcessException]
+	, [ExternalID]
     FROM
 	[dbo].[JobApplication]
     WHERE 
@@ -67452,6 +67531,9 @@ AS
 	OR ([AppliedWith] = @AppliedWith AND @AppliedWith is not null)
 	OR ([ScreeningQuestionaireXML] = @ScreeningQuestionaireXml AND @ScreeningQuestionaireXml is not null)
 	OR ([ScreeningQuestionsGuid] = @ScreeningQuestionsGuid AND @ScreeningQuestionsGuid is not null)
+	OR ([ProcessDate] = @ProcessDate AND @ProcessDate is not null)
+	OR ([ProcessException] = @ProcessException AND @ProcessException is not null)
+	OR ([ExternalID] = @ExternalId AND @ExternalId is not null)
 	SELECT @@ROWCOUNT			
   END
 				

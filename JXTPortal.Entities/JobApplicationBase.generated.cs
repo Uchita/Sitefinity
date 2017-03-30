@@ -108,6 +108,9 @@ namespace JXTPortal.Entities
 		///<param name="_appliedWith"></param>
 		///<param name="_screeningQuestionaireXml"></param>
 		///<param name="_screeningQuestionsGuid"></param>
+		///<param name="_processDate"></param>
+		///<param name="_processException"></param>
+		///<param name="_externalId"></param>
 		public JobApplicationBase(System.DateTime? _applicationDate, System.Int32? _jobId, 
 			System.Int32? _memberId, System.String _memberResumeFile, System.String _memberCoverLetterFile, 
 			System.Int32? _applicationStatus, System.Guid _jobAppValidateId, System.Int32? _siteIdReferral, 
@@ -117,7 +120,8 @@ namespace JXTPortal.Entities
 			System.Int32? _jobArchiveId, System.Boolean? _draft, System.Int32? _jobApplicationTypeId, 
 			System.String _externalXmlFilename, System.String _customQuestionnaireXml, System.String _externalPdfFilename, 
 			System.Boolean? _fileDownloaded, System.String _appliedWith, System.String _screeningQuestionaireXml, 
-			System.Guid? _screeningQuestionsGuid)
+			System.Guid? _screeningQuestionsGuid, System.DateTime? _processDate, System.String _processException, 
+			System.String _externalId)
 		{
 			this.entityData = new JobApplicationEntityData();
 			this.backupData = null;
@@ -149,6 +153,9 @@ namespace JXTPortal.Entities
 			this.AppliedWith = _appliedWith;
 			this.ScreeningQuestionaireXml = _screeningQuestionaireXml;
 			this.ScreeningQuestionsGuid = _screeningQuestionsGuid;
+			this.ProcessDate = _processDate;
+			this.ProcessException = _processException;
+			this.ExternalId = _externalId;
 		}
 		
 		///<summary>
@@ -181,6 +188,9 @@ namespace JXTPortal.Entities
 		///<param name="_appliedWith"></param>
 		///<param name="_screeningQuestionaireXml"></param>
 		///<param name="_screeningQuestionsGuid"></param>
+		///<param name="_processDate"></param>
+		///<param name="_processException"></param>
+		///<param name="_externalId"></param>
 		public static JobApplication CreateJobApplication(System.DateTime? _applicationDate, System.Int32? _jobId, 
 			System.Int32? _memberId, System.String _memberResumeFile, System.String _memberCoverLetterFile, 
 			System.Int32? _applicationStatus, System.Guid _jobAppValidateId, System.Int32? _siteIdReferral, 
@@ -190,7 +200,8 @@ namespace JXTPortal.Entities
 			System.Int32? _jobArchiveId, System.Boolean? _draft, System.Int32? _jobApplicationTypeId, 
 			System.String _externalXmlFilename, System.String _customQuestionnaireXml, System.String _externalPdfFilename, 
 			System.Boolean? _fileDownloaded, System.String _appliedWith, System.String _screeningQuestionaireXml, 
-			System.Guid? _screeningQuestionsGuid)
+			System.Guid? _screeningQuestionsGuid, System.DateTime? _processDate, System.String _processException, 
+			System.String _externalId)
 		{
 			JobApplication newJobApplication = new JobApplication();
 			newJobApplication.ApplicationDate = _applicationDate;
@@ -220,6 +231,9 @@ namespace JXTPortal.Entities
 			newJobApplication.AppliedWith = _appliedWith;
 			newJobApplication.ScreeningQuestionaireXml = _screeningQuestionaireXml;
 			newJobApplication.ScreeningQuestionsGuid = _screeningQuestionsGuid;
+			newJobApplication.ProcessDate = _processDate;
+			newJobApplication.ProcessException = _processException;
+			newJobApplication.ExternalId = _externalId;
 			return newJobApplication;
 		}
 				
@@ -1236,6 +1250,113 @@ namespace JXTPortal.Entities
 			}
 		}
 		
+		/// <summary>
+		/// 	Gets or sets the ProcessDate property. 
+		///		
+		/// </summary>
+		/// <value>This type is datetime.</value>
+		/// <remarks>
+		/// This property can be set to null. 
+		/// If this column is null, this property will return DateTime.MinValue. It is up to the developer
+		/// to check the value of IsProcessDateNull() and perform business logic appropriately.
+		/// </remarks>
+
+
+
+
+		[DescriptionAttribute(@""), System.ComponentModel.Bindable( System.ComponentModel.BindableSupport.Yes)]
+		[DataObjectField(false, false, true)]
+		public virtual System.DateTime? ProcessDate
+		{
+			get
+			{
+				return this.entityData.ProcessDate; 
+			}
+			
+			set
+			{
+				if (this.entityData.ProcessDate == value)
+					return;
+					
+				OnColumnChanging(JobApplicationColumn.ProcessDate, this.entityData.ProcessDate);
+				this.entityData.ProcessDate = value;
+				if (this.EntityState == EntityState.Unchanged)
+					this.EntityState = EntityState.Changed;
+				OnColumnChanged(JobApplicationColumn.ProcessDate, this.entityData.ProcessDate);
+				OnPropertyChanged("ProcessDate");
+			}
+		}
+		
+		/// <summary>
+		/// 	Gets or sets the ProcessException property. 
+		///		
+		/// </summary>
+		/// <value>This type is varchar.</value>
+		/// <remarks>
+		/// This property can be set to null. 
+		/// </remarks>
+
+
+
+
+		[DescriptionAttribute(@""), System.ComponentModel.Bindable( System.ComponentModel.BindableSupport.Yes)]
+		[DataObjectField(false, false, true, 500)]
+		public virtual System.String ProcessException
+		{
+			get
+			{
+				return this.entityData.ProcessException; 
+			}
+			
+			set
+			{
+				if (this.entityData.ProcessException == value)
+					return;
+					
+				OnColumnChanging(JobApplicationColumn.ProcessException, this.entityData.ProcessException);
+				this.entityData.ProcessException = value;
+				if (this.EntityState == EntityState.Unchanged)
+					this.EntityState = EntityState.Changed;
+				OnColumnChanged(JobApplicationColumn.ProcessException, this.entityData.ProcessException);
+				OnPropertyChanged("ProcessException");
+			}
+		}
+		
+		/// <summary>
+		/// 	Gets or sets the ExternalId property. 
+		///		
+		/// </summary>
+		/// <value>This type is varchar.</value>
+		/// <remarks>
+		/// This property can be set to null. 
+		/// </remarks>
+
+
+
+
+		[DescriptionAttribute(@""), System.ComponentModel.Bindable( System.ComponentModel.BindableSupport.Yes)]
+		[DataObjectField(false, false, true, 50)]
+		public virtual System.String ExternalId
+		{
+			get
+			{
+				return this.entityData.ExternalId; 
+			}
+			
+			set
+			{
+				if (this.entityData.ExternalId == value)
+					return;
+					
+				OnColumnChanging(JobApplicationColumn.ExternalId, this.entityData.ExternalId);
+				this.entityData.ExternalId = value;
+				if (this.EntityState == EntityState.Unchanged)
+					this.EntityState = EntityState.Changed;
+				OnColumnChanged(JobApplicationColumn.ExternalId, this.entityData.ExternalId);
+				OnPropertyChanged("ExternalId");
+			}
+		}
+		
 		#endregion Data Properties		
 
 		#region Source Foreign Key Property
@@ -1336,6 +1457,10 @@ namespace JXTPortal.Entities
 				new CommonRules.MaxLengthRuleArgs("ExternalPdfFilename", "External Pdf Filename", 255));
 			ValidationRules.AddRule( CommonRules.StringMaxLength, 
 				new CommonRules.MaxLengthRuleArgs("AppliedWith", "Applied With", 255));
+			ValidationRules.AddRule( CommonRules.StringMaxLength, 
+				new CommonRules.MaxLengthRuleArgs("ProcessException", "Process Exception", 500));
+			ValidationRules.AddRule( CommonRules.StringMaxLength, 
+				new CommonRules.MaxLengthRuleArgs("ExternalId", "External Id", 50));
 		}
    		#endregion
 		
@@ -1357,7 +1482,7 @@ namespace JXTPortal.Entities
 		{
 			get
 			{
-				return new string[] {"JobApplicationID", "ApplicationDate", "JobID", "MemberID", "MemberResumeFile", "MemberCoverLetterFile", "ApplicationStatus", "JobAppValidateID", "SiteID_Referral", "URL_Referral", "ApplicantGrade", "LastViewedDate", "FirstName", "Surname", "EmailAddress", "MobilePhone", "MemberNote", "AdvertiserNote", "JobArchiveID", "Draft", "JobApplicationTypeID", "ExternalXMLFilename", "CustomQuestionnaireXML", "ExternalPDFFilename", "FileDownloaded", "AppliedWith", "ScreeningQuestionaireXML", "ScreeningQuestionsGuid"};
+				return new string[] {"JobApplicationID", "ApplicationDate", "JobID", "MemberID", "MemberResumeFile", "MemberCoverLetterFile", "ApplicationStatus", "JobAppValidateID", "SiteID_Referral", "URL_Referral", "ApplicantGrade", "LastViewedDate", "FirstName", "Surname", "EmailAddress", "MobilePhone", "MemberNote", "AdvertiserNote", "JobArchiveID", "Draft", "JobApplicationTypeID", "ExternalXMLFilename", "CustomQuestionnaireXML", "ExternalPDFFilename", "FileDownloaded", "AppliedWith", "ScreeningQuestionaireXML", "ScreeningQuestionsGuid", "ProcessDate", "ProcessException", "ExternalID"};
 			}
 		}
 		#endregion 
@@ -1533,6 +1658,9 @@ namespace JXTPortal.Entities
 				copy.AppliedWith = this.AppliedWith;
 				copy.ScreeningQuestionaireXml = this.ScreeningQuestionaireXml;
 				copy.ScreeningQuestionsGuid = this.ScreeningQuestionsGuid;
+				copy.ProcessDate = this.ProcessDate;
+				copy.ProcessException = this.ProcessException;
+				copy.ExternalId = this.ExternalId;
 			
 			if (this.JobArchiveIdSource != null && existingCopies.Contains(this.JobArchiveIdSource))
 				copy.JobArchiveIdSource = existingCopies[this.JobArchiveIdSource] as JobsArchive;
@@ -1739,6 +1867,12 @@ namespace JXTPortal.Entities
 					return entityData.ScreeningQuestionaireXml != _originalData.ScreeningQuestionaireXml;
 					case JobApplicationColumn.ScreeningQuestionsGuid:
 					return entityData.ScreeningQuestionsGuid != _originalData.ScreeningQuestionsGuid;
+					case JobApplicationColumn.ProcessDate:
+					return entityData.ProcessDate != _originalData.ProcessDate;
+					case JobApplicationColumn.ProcessException:
+					return entityData.ProcessException != _originalData.ProcessException;
+					case JobApplicationColumn.ExternalId:
+					return entityData.ExternalId != _originalData.ExternalId;
 			
 				default:
 					return false;
@@ -1794,6 +1928,9 @@ namespace JXTPortal.Entities
 			result = result || entityData.AppliedWith != _originalData.AppliedWith;
 			result = result || entityData.ScreeningQuestionaireXml != _originalData.ScreeningQuestionaireXml;
 			result = result || entityData.ScreeningQuestionsGuid != _originalData.ScreeningQuestionsGuid;
+			result = result || entityData.ProcessDate != _originalData.ProcessDate;
+			result = result || entityData.ProcessException != _originalData.ProcessException;
+			result = result || entityData.ExternalId != _originalData.ExternalId;
 			return result;
 		}	
 		
@@ -1830,7 +1967,10 @@ namespace JXTPortal.Entities
 				_originalData.FileDownloaded,
 				_originalData.AppliedWith,
 				_originalData.ScreeningQuestionaireXml,
-				_originalData.ScreeningQuestionsGuid
+				_originalData.ScreeningQuestionsGuid,
+				_originalData.ProcessDate,
+				_originalData.ProcessException,
+				_originalData.ExternalId
 				);
 				
 			return (JobApplication)this.Clone();
@@ -1887,7 +2027,10 @@ namespace JXTPortal.Entities
 					((this.FileDownloaded == null) ? string.Empty : this.FileDownloaded.ToString()).GetHashCode() ^ 
 					((this.AppliedWith == null) ? string.Empty : this.AppliedWith.ToString()).GetHashCode() ^ 
 					((this.ScreeningQuestionaireXml == null) ? string.Empty : this.ScreeningQuestionaireXml.ToString()).GetHashCode() ^ 
-					((this.ScreeningQuestionsGuid == null) ? string.Empty : this.ScreeningQuestionsGuid.ToString()).GetHashCode();
+					((this.ScreeningQuestionsGuid == null) ? string.Empty : this.ScreeningQuestionsGuid.ToString()).GetHashCode() ^ 
+					((this.ProcessDate == null) ? string.Empty : this.ProcessDate.ToString()).GetHashCode() ^ 
+					((this.ProcessException == null) ? string.Empty : this.ProcessException.ToString()).GetHashCode() ^ 
+					((this.ExternalId == null) ? string.Empty : this.ExternalId.ToString()).GetHashCode();
         }
 		
 		///<summary>
@@ -2137,6 +2280,33 @@ namespace JXTPortal.Entities
 			{
 				equal = false;
 			}
+			if ( Object1.ProcessDate != null && Object2.ProcessDate != null )
+			{
+				if (Object1.ProcessDate != Object2.ProcessDate)
+					equal = false;
+			}
+			else if (Object1.ProcessDate == null ^ Object2.ProcessDate == null )
+			{
+				equal = false;
+			}
+			if ( Object1.ProcessException != null && Object2.ProcessException != null )
+			{
+				if (Object1.ProcessException != Object2.ProcessException)
+					equal = false;
+			}
+			else if (Object1.ProcessException == null ^ Object2.ProcessException == null )
+			{
+				equal = false;
+			}
+			if ( Object1.ExternalId != null && Object2.ExternalId != null )
+			{
+				if (Object1.ExternalId != Object2.ExternalId)
+					equal = false;
+			}
+			else if (Object1.ExternalId == null ^ Object2.ExternalId == null )
+			{
+				equal = false;
+			}
 					
 			return equal;
 		}
@@ -2347,6 +2517,24 @@ namespace JXTPortal.Entities
             		return this.ScreeningQuestionsGuid.Value.CompareTo(rhs.ScreeningQuestionsGuid.Value);
             		
             		                 
+            	
+            	
+            	case JobApplicationColumn.ProcessDate:
+            		return this.ProcessDate.Value.CompareTo(rhs.ProcessDate.Value);
+            		
+            		                 
+            	
+            	
+            	case JobApplicationColumn.ProcessException:
+            		return this.ProcessException.CompareTo(rhs.ProcessException);
+            		
+            		                 
+            	
+            	
+            	case JobApplicationColumn.ExternalId:
+            		return this.ExternalId.CompareTo(rhs.ExternalId);
+            		
+            		                 
             }
             return 0;
         }
@@ -2481,7 +2669,7 @@ namespace JXTPortal.Entities
 		public override string ToString()
 		{
 			return string.Format(System.Globalization.CultureInfo.InvariantCulture,
-				"{29}{28}- JobApplicationId: {0}{28}- ApplicationDate: {1}{28}- JobId: {2}{28}- MemberId: {3}{28}- MemberResumeFile: {4}{28}- MemberCoverLetterFile: {5}{28}- ApplicationStatus: {6}{28}- JobAppValidateId: {7}{28}- SiteIdReferral: {8}{28}- UrlReferral: {9}{28}- ApplicantGrade: {10}{28}- LastViewedDate: {11}{28}- FirstName: {12}{28}- Surname: {13}{28}- EmailAddress: {14}{28}- MobilePhone: {15}{28}- MemberNote: {16}{28}- AdvertiserNote: {17}{28}- JobArchiveId: {18}{28}- Draft: {19}{28}- JobApplicationTypeId: {20}{28}- ExternalXmlFilename: {21}{28}- CustomQuestionnaireXml: {22}{28}- ExternalPdfFilename: {23}{28}- FileDownloaded: {24}{28}- AppliedWith: {25}{28}- ScreeningQuestionaireXml: {26}{28}- ScreeningQuestionsGuid: {27}{28}{30}", 
+				"{32}{31}- JobApplicationId: {0}{31}- ApplicationDate: {1}{31}- JobId: {2}{31}- MemberId: {3}{31}- MemberResumeFile: {4}{31}- MemberCoverLetterFile: {5}{31}- ApplicationStatus: {6}{31}- JobAppValidateId: {7}{31}- SiteIdReferral: {8}{31}- UrlReferral: {9}{31}- ApplicantGrade: {10}{31}- LastViewedDate: {11}{31}- FirstName: {12}{31}- Surname: {13}{31}- EmailAddress: {14}{31}- MobilePhone: {15}{31}- MemberNote: {16}{31}- AdvertiserNote: {17}{31}- JobArchiveId: {18}{31}- Draft: {19}{31}- JobApplicationTypeId: {20}{31}- ExternalXmlFilename: {21}{31}- CustomQuestionnaireXml: {22}{31}- ExternalPdfFilename: {23}{31}- FileDownloaded: {24}{31}- AppliedWith: {25}{31}- ScreeningQuestionaireXml: {26}{31}- ScreeningQuestionsGuid: {27}{31}- ProcessDate: {28}{31}- ProcessException: {29}{31}- ExternalId: {30}{31}{33}", 
 				this.JobApplicationId,
 				(this.ApplicationDate == null) ? string.Empty : this.ApplicationDate.ToString(),
 				(this.JobId == null) ? string.Empty : this.JobId.ToString(),
@@ -2510,6 +2698,9 @@ namespace JXTPortal.Entities
 				(this.AppliedWith == null) ? string.Empty : this.AppliedWith.ToString(),
 				(this.ScreeningQuestionaireXml == null) ? string.Empty : this.ScreeningQuestionaireXml.ToString(),
 				(this.ScreeningQuestionsGuid == null) ? string.Empty : this.ScreeningQuestionsGuid.ToString(),
+				(this.ProcessDate == null) ? string.Empty : this.ProcessDate.ToString(),
+				(this.ProcessException == null) ? string.Empty : this.ProcessException.ToString(),
+				(this.ExternalId == null) ? string.Empty : this.ExternalId.ToString(),
 				System.Environment.NewLine, 
 				this.GetType(),
 				this.Error.Length == 0 ? string.Empty : string.Format("- Error: {0}\n",this.Error));
@@ -2678,6 +2869,21 @@ namespace JXTPortal.Entities
 		/// ScreeningQuestionsGuid : 
 		/// </summary>
 		public System.Guid?		  ScreeningQuestionsGuid = null;
+		
+		/// <summary>
+		/// ProcessDate : 
+		/// </summary>
+		public System.DateTime?		  ProcessDate = null;
+		
+		/// <summary>
+		/// ProcessException : 
+		/// </summary>
+		public System.String		  ProcessException = null;
+		
+		/// <summary>
+		/// ExternalID : 
+		/// </summary>
+		public System.String		  ExternalId = null;
 		#endregion
 			
 		#region Source Foreign Key Property
@@ -2805,6 +3011,9 @@ namespace JXTPortal.Entities
 			_tmp.AppliedWith = this.AppliedWith;
 			_tmp.ScreeningQuestionaireXml = this.ScreeningQuestionaireXml;
 			_tmp.ScreeningQuestionsGuid = this.ScreeningQuestionsGuid;
+			_tmp.ProcessDate = this.ProcessDate;
+			_tmp.ProcessException = this.ProcessException;
+			_tmp.ExternalId = this.ExternalId;
 			
 			#region Source Parent Composite Entities
 			if (this.JobArchiveIdSource != null)
@@ -2869,6 +3078,9 @@ namespace JXTPortal.Entities
 			_tmp.AppliedWith = this.AppliedWith;
 			_tmp.ScreeningQuestionaireXml = this.ScreeningQuestionaireXml;
 			_tmp.ScreeningQuestionsGuid = this.ScreeningQuestionsGuid;
+			_tmp.ProcessDate = this.ProcessDate;
+			_tmp.ProcessException = this.ProcessException;
+			_tmp.ExternalId = this.ExternalId;
 			
 			#region Source Parent Composite Entities
 			if (this.JobArchiveIdSource != null && existingCopies.Contains(this.JobArchiveIdSource))
@@ -3427,7 +3639,25 @@ namespace JXTPortal.Entities
 		/// </summary>
 		[EnumTextValue("ScreeningQuestionsGuid")]
 		[ColumnEnum("ScreeningQuestionsGuid", typeof(System.Guid), System.Data.DbType.Guid, false, false, true)]
-		ScreeningQuestionsGuid = 28
+		ScreeningQuestionsGuid = 28,
+		/// <summary>
+		/// ProcessDate : 
+		/// </summary>
+		[EnumTextValue("ProcessDate")]
+		[ColumnEnum("ProcessDate", typeof(System.DateTime), System.Data.DbType.DateTime, false, false, true)]
+		ProcessDate = 29,
+		/// <summary>
+		/// ProcessException : 
+		/// </summary>
+		[EnumTextValue("ProcessException")]
+		[ColumnEnum("ProcessException", typeof(System.String), System.Data.DbType.AnsiString, false, false, true, 500)]
+		ProcessException = 30,
+		/// <summary>
+		/// ExternalId : 
+		/// </summary>
+		[EnumTextValue("ExternalID")]
+		[ColumnEnum("ExternalID", typeof(System.String), System.Data.DbType.AnsiString, false, false, true, 50)]
+		ExternalId = 31
 	}//End enum
 
 	#endregion JobApplicationColumn Enum

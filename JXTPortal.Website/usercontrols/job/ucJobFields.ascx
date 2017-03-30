@@ -4,6 +4,8 @@
 <%@ Register Src="~/usercontrols/job/ucJobFieldsMultiLingual.ascx" TagName="JobFieldsMultiLingual"
     TagPrefix="uc1" %>
 <%@ Register TagPrefix="uc1" Namespace="JXTPortal.Website.usercontrols.common" Assembly="JXTPortal.WebSite" %>
+<script type="text/javascript" src="../../Admin/scripts/customscript.js"></script>
+
 <asp:HiddenField ID="hfFileCheck" runat="server" Value="" ClientIDMode="Static" />
 <asp:HiddenField ID="hfFileError" runat="server" Value="" ClientIDMode="Static" />
 <div id="content-container">
@@ -109,6 +111,21 @@
                             <asp:TextBox ID="txtRefNo" runat="server" autocomplete="off" />
                         </div>
                     </li>
+
+                    <!-- Job Expiry Date -->
+                    <asp:PlaceHolder ID="phManualJobExpirydate" runat="server">
+                        <li class="form-line" id="liJobExpiryDate">
+                            <asp:Label ID="lbJobExpiryDate" runat="server" AssociatedControlID="txtJobExpiryDate">
+                                <JXTControl:ucLanguageLiteral ID="ltJobExpiryDate" runat="server" SetLanguageCode="LabelJobExpiryDate" />
+                            </asp:Label>
+                            <div>
+                                <asp:TextBox ID="txtJobExpiryDate" runat="server" autocomplete="off" />
+                                <asp:CustomValidator ID="JobExpiryDateValidator" ControlToValidate="txtJobExpiryDate"
+                                    runat="server" OnServerValidate="JobExpiryDateValidator_ServerValidate"></asp:CustomValidator>
+                            </div>
+                        </li>
+                    </asp:PlaceHolder>
+
                     <script type="text/javascript">
                         $(document).ready(function () {
                             $('ul.new-lang-tabs li').click(function () {
@@ -1005,3 +1022,5 @@
         }
     }    
 </script>
+
+

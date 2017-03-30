@@ -153,13 +153,19 @@ public partial class JobTemplatesEdit : System.Web.UI.Page
     private void LoadAdvertiser()
     {
         TList<JXTPortal.Entities.Advertisers> advertisers;
+        
         advertisers = AdvertisersService.GetBySiteId(SessionData.Site.SiteId);
+        
         ddlAdvertiser.Items.Clear();
 
-        ddlAdvertiser.DataSource = advertisers;
-        ddlAdvertiser.DataTextField = "CompanyName";
-        ddlAdvertiser.DataValueField = "AdvertiserID";
-        ddlAdvertiser.DataBind();
+        advertisers.Sort("CompanyName");
+
+        foreach (JXTPortal.Entities.Advertisers advertiserListItems in advertisers)
+        {
+            string listItemText = string.Format("{0} ({1})", advertiserListItems.CompanyName, advertiserListItems.AdvertiserId);
+
+            ddlAdvertiser.Items.Add(new ListItem(listItemText, advertiserListItems.AdvertiserId.ToString()));
+        }
 
         ddlAdvertiser.Items.Insert(0, new ListItem(" Please Choose ...", "0"));
     }

@@ -4499,6 +4499,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Job Expiry Date.
+        /// </summary>
+        internal static string LabelJobExpiryDate {
+            get {
+                return ResourceManager.GetString("LabelJobExpiryDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expiry Date cannot be more than 30 days.
+        /// </summary>
+        internal static string LabelJobExpiryDateAfterThirtyDays {
+            get {
+                return ResourceManager.GetString("LabelJobExpiryDateAfterThirtyDays", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expiry date cannot be before {0}.
+        /// </summary>
+        internal static string LabelJobExpiryDateBeforeCurrentDate {
+            get {
+                return ResourceManager.GetString("LabelJobExpiryDateBeforeCurrentDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Notification d&apos;expiration du poste.
         /// </summary>
         internal static string LabelJobExpiryNotification {

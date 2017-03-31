@@ -311,18 +311,19 @@ namespace JXTPortal.Website.Admin
             ddlSite.Items.Clear();
 
             DataSet sites = SitesService.Get_List();
-            //SitesService.GetBySiteId(SessionData.Site.SiteId)
-            DataRow[] siterows = sites.Tables[0].Select("", "SiteName");
-
-            ddlSite.DataSource = siterows.Select(c=> new SiteDDLItems { SiteID = c["SiteID"].ToString(), SiteName = c["SiteName"].ToString()}).ToList(); // sites.Where(s => s.Live == true);
-            ddlSite.DataBind();
+          
+            DataRow[] siteRows = sites.Tables[0].Select("", "SiteName");
 
             ddlSite.Items.Insert(0, new ListItem("All", "0"));
+            foreach (var site in siteRows)
+            {
+                var id = site["SiteId"].ToString();
+                var name = site["SiteName"].ToString();
+                string fullName = string.Format("{0} ({1})", name, id);
+                ddlSite.Items.Add(new ListItem(fullName, id));
+            }
 
-            //if (SessionData.AdminUser != null && !SessionData.AdminUser.isAdminUser)
-            //{
-                ddlSite.SelectedValue = SessionData.Site.SiteId.ToString();
-            //}
+            ddlSite.SelectedValue = SessionData.Site.SiteId.ToString();
         }
 
         private void LoadMethodInvokedFilter()
@@ -601,13 +602,14 @@ namespace JXTPortal.Website.Admin
                 if (siteid > 0)
                 {
                     WebServiceLogService service = new WebServiceLogService();
-                    DataSet ds = service.CustomGetExportList(Convert.ToInt32(ddlSite.SelectedValue), 9999);
+                    DataSet ds = service.CustomGetExportList(Convert.ToInt32(ddlSite.SelectedValue), Convert.ToInt32(ddlAdvertiser.SelectedValue));
 
                     DataTable dtJobTemplates = ds.Tables[0];
                     DataTable dtAdvertiserJobTemplateLogo = ds.Tables[1];
                     DataTable dtProfessionRoles = ds.Tables[2];
                     DataTable dtSiteWorkType = ds.Tables[3];
                     DataTable dtCountryLocationArea = ds.Tables[4];
+                    DataTable dtScreeningQuestionsTemplate = ds.Tables[5];
 
                     // Create Excel for downlaod
                     string filepath = string.Format("{0}uploads\\files\\Webservice_{1}.xlsx", Server.MapPath("~/"), siteid);
@@ -625,6 +627,7 @@ namespace JXTPortal.Website.Admin
                     WorksheetPart worksheetPart3 = workbookpart.AddNewPart<WorksheetPart>();
                     WorksheetPart worksheetPart4 = workbookpart.AddNewPart<WorksheetPart>();
                     WorksheetPart worksheetPart5 = workbookpart.AddNewPart<WorksheetPart>();
+                    WorksheetPart worksheetPart6 = workbookpart.AddNewPart<WorksheetPart>();
 
 
                     worksheetPart.Worksheet = new Worksheet(new SheetData());
@@ -632,6 +635,7 @@ namespace JXTPortal.Website.Admin
                     worksheetPart3.Worksheet = new Worksheet(new SheetData());
                     worksheetPart4.Worksheet = new Worksheet(new SheetData());
                     worksheetPart5.Worksheet = new Worksheet(new SheetData());
+                    worksheetPart6.Worksheet = new Worksheet(new SheetData());
 
                     Row row;
                     Cell newCell;
@@ -1080,6 +1084,71 @@ namespace JXTPortal.Website.Admin
                         sheetData.AppendChild(row);
                     }
 
+                    Sheet screeningquestionstemplate = new Sheet()
+                    {
+                        Id = spreadsheetDocument.WorkbookPart.
+                            GetIdOfPart(worksheetPart6),
+                        SheetId = 6,
+                        Name = "Screening Questions Template"
+                    };
+                    sheets.Append(screeningquestionstemplate);
+
+                    sheetData = worksheetPart6.Worksheet.GetFirstChild<SheetData>();
+
+                    row = new Row() { RowIndex = 1 };
+                    newCell = new Cell();
+                    newCell.DataType = CellValues.InlineString;
+                    newCell.CellReference = "A1";
+                    inlineString = new InlineString();
+                    t = new Text();
+                    t.Text = "ScreeningQuestionsTemplateID";
+                    inlineString.Append(t);
+                    newCell.AppendChild(inlineString);
+                    row.AppendChild(newCell);
+
+                    newCell = new Cell();
+                    newCell.DataType = CellValues.InlineString;
+                    newCell.CellReference = "B1";
+                    inlineString = new InlineString();
+                    t = new Text();
+                    t.Text = "TemplateName";
+                    inlineString.Append(t);
+                    newCell.AppendChild(inlineString);
+                    row.AppendChild(newCell);
+
+                    sheetData.AppendChild(row);
+
+                    for (int i = 0; i < dtScreeningQuestionsTemplate.Rows.Count; i++)
+                    {
+                        // ScreeningQuestionsTemplateID, TemplateName
+
+                        UInt32Value excelindex = Convert.ToUInt32(i + 2);
+                        DataRow screeningQuestionsTemplateRow = dtScreeningQuestionsTemplate.Rows[i];
+
+                        row = new Row() { RowIndex = DocumentFormat.OpenXml.UInt32Value.ToUInt32(excelindex) };
+                        newCell = new Cell();
+                        newCell.DataType = CellValues.InlineString;
+                        newCell.CellReference = "A" + excelindex.ToString();
+                        inlineString = new InlineString();
+                        t = new Text();
+                        t.Text = screeningQuestionsTemplateRow["ScreeningQuestionsTemplateID"].ToString();
+                        inlineString.Append(t);
+                        newCell.AppendChild(inlineString);
+                        row.AppendChild(newCell);
+
+                        newCell = new Cell();
+                        newCell.DataType = CellValues.InlineString;
+                        newCell.CellReference = "B" + excelindex.ToString();
+                        inlineString = new InlineString();
+                        t = new Text();
+                        t.Text = screeningQuestionsTemplateRow["TemplateName"].ToString();
+                        inlineString.Append(t);
+                        newCell.AppendChild(inlineString);
+                        row.AppendChild(newCell);
+
+                        sheetData.AppendChild(row);
+                    }
+
                     workbookpart.Workbook.Save();
 
                     // Close the document.
@@ -1164,8 +1233,11 @@ namespace JXTPortal.Website.Admin
                 foreach (Entities.Advertisers advertiser in advertisers)
                 {
                     // Only approved advertisers
-                    if (advertiser.AdvertiserAccountStatusId == (int)PortalEnums.Advertiser.AccountStatus.Approved) 
-                        ddlAdvertiser.Items.Add(new ListItem(advertiser.CompanyName, advertiser.AdvertiserId.ToString()));
+                    if (advertiser.AdvertiserAccountStatusId == (int)PortalEnums.Advertiser.AccountStatus.Approved)
+                    {
+                        string advertiserListItem = string.Format("{0} ({1})", advertiser.CompanyName, advertiser.AdvertiserId);
+                        ddlAdvertiser.Items.Add(new ListItem(advertiserListItem, advertiser.AdvertiserId.ToString()));
+                    }
                 }
                 ddlAdvertiser.Items.Insert(0, new ListItem("Select an Advertiser", "0"));
             }
@@ -1219,7 +1291,11 @@ namespace JXTPortal.Website.Admin
         {
             public string SiteID { get; set; }
             public string SiteName { get; set; }
-        }
 
+            public override string ToString()
+            {
+                return string.Format("{0} ({1})", SiteName, SiteID);
+            }
+        }
     }
 }

@@ -397,10 +397,12 @@ public partial class Advertisers : System.Web.UI.Page
             sites.Add(SitesService.GetBySiteId(SessionData.Site.SiteId));
         }
 
-        ddlSite.DataSource = sites;
-        ddlSite.DataTextField = "SiteName";
-        ddlSite.DataValueField = "SiteID";
-        ddlSite.DataBind();
+        foreach (JXTPortal.Entities.Sites siteListItems in sites)
+        {
+            string listItemText = string.Format("{0} ({1})", siteListItems.SiteName, siteListItems.SiteId);
+
+            ddlSite.Items.Add(new ListItem(listItemText, siteListItems.SiteId.ToString()));
+        }
 
         if (SessionData.AdminUser != null && SessionData.AdminUser.isAdminUser)
             ddlSite.Items.Insert(0, new ListItem("-All-", "0"));

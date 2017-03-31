@@ -3277,11 +3277,6 @@ namespace JXTPortal.Website.Admin.UserControls
             {
                 args.IsValid = false;
                 JobExpiryDateValidator.ErrorMessage = string.Format(CommonFunction.GetResourceValue("LabelJobExpiryDateBeforeCurrentDate"), currentDate.ToShortDateString());
-            }
-            else if ((jobExpiryDate - currentDate).TotalDays > 30)
-            {
-                args.IsValid = false;
-                JobExpiryDateValidator.ErrorMessage = CommonFunction.GetResourceValue("LabelJobExpiryDateAfterThirtyDays");
             }     
         }
 

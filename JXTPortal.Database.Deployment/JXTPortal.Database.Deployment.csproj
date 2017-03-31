@@ -56,14 +56,16 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Content Include="RollbackScripts\201703281500-EnworldIssue.sql" />
+    <Content Include="RollbackScripts\201703301215-JobsArchiveUpdate.sql" />
+    <Content Include="RollbackScripts\201703281656-CustomPostXMLUpdate.sql" />
+    <Content Include="Scripts\201703281500-EnworldIssue.sql" />
+    <Content Include="Scripts\201703301215-JobsArchiveUpdate.sql" />
     <Content Include="Scripts\Script0016-Fix Job Alert Multilingual Added Job App Fields.sql" />
     <Content Include="RollbackScripts\Script0014-JobTemplateCurrencyDisplayBugFix.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Scripts\Script0014-JobTemplateCurrencyDisplayBugFix.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\Script0013-EnworldIssue.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Scripts\Script0009-UpdateEmailFields.sql">
@@ -94,7 +96,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Scripts\Script0015-EnableExpiryDate.sql" />
-    <Content Include="Scripts\Script201703281656-CustomPostXMLUpdate.sql" />
+    <Content Include="Scripts\201703281656-CustomPostXMLUpdate.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

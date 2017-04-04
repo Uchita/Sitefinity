@@ -211,7 +211,7 @@ namespace JXTPostJobApplicationToFTP
                                             string errormessage = string.Empty;
 
                                             Stream ms = null;
-                                            ms = FileManagerService.DownloadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, memberFile.MemberId), memberFile.MemberFileUrl, out errormessage);
+                                            ms = FileManagerService.DownloadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, memberFile.MemberId), memberFile.MemberFileUrl, out errormessage);
 
                                             if (ms != null)
                                             {
@@ -250,7 +250,7 @@ namespace JXTPostJobApplicationToFTP
                                             string errormessage = string.Empty;
 
                                             Stream ms = null;
-                                            ms = FileManagerService.DownloadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, memberFile.MemberId), memberFile.MemberFileUrl, out errormessage);
+                                            ms = FileManagerService.DownloadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, memberFile.MemberId), memberFile.MemberFileUrl, out errormessage);
 
                                             if (ms != null)
                                             {

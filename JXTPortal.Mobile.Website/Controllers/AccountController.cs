@@ -22,7 +22,7 @@ namespace JXTPortal.Mobile.Website.Controllers
     {
         private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
 
-        private string memberFileFolder;
+        private string memberFileFolder, memberFileFolderFormat;
         public IFileManager FileManagerService { get; set; }
 
         public ActionResult Index()
@@ -421,7 +421,7 @@ namespace JXTPortal.Mobile.Website.Controllers
             if (!SessionData.Site.IsUsingS3)
             {
                 memberFileFolder = ConfigurationManager.AppSettings["FTPHost"] + ConfigurationManager.AppSettings["MemberRootFolder"] + "/" + ConfigurationManager.AppSettings["MemberFilesFolder"];
-
+                memberFileFolderFormat = "{0}/{1}/";
                 string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
                 string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
                 string ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
@@ -430,6 +430,7 @@ namespace JXTPortal.Mobile.Website.Controllers
             else
             {
                 memberFileFolder = ConfigurationManager.AppSettings["AWSS3MemberRootFolder"] + ConfigurationManager.AppSettings["AWSS3MemberFilesFolder"];
+                memberFileFolderFormat = "{0}/{1}";
             }
 
             MemberFilesService memberFileService = new MemberFilesService();
@@ -444,7 +445,7 @@ namespace JXTPortal.Mobile.Website.Controllers
                 if (!string.IsNullOrWhiteSpace(memberFile.MemberFileUrl))
                 {              
                     Stream ms = null;
-                    ms = FileManagerService.DownloadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, memberFile.MemberId), memberFile.MemberFileUrl, out errormessage);
+                    ms = FileManagerService.DownloadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, memberFile.MemberId), memberFile.MemberFileUrl, out errormessage);
 
                     ms.Position = 0;
 

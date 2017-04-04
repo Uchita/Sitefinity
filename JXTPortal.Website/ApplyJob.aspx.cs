@@ -38,7 +38,7 @@ namespace JXTPortal.Website
         #region Properties
 
         public IFileManager FileManagerService { get; set; }
-        private string memberFileFolder;
+        private string memberFileFolder, memberFileFolderFormat;
         private string coverLetterFolder;
         private string resumeFolder;
 
@@ -729,6 +729,7 @@ namespace JXTPortal.Website
             if (!SessionData.Site.IsUsingS3)
             {
                 memberFileFolder = ConfigurationManager.AppSettings["FTPHost"] + ConfigurationManager.AppSettings["MemberRootFolder"] + "/" + ConfigurationManager.AppSettings["MemberFilesFolder"];
+                memberFileFolderFormat = "{0}/{1}/";
                 coverLetterFolder = ConfigurationManager.AppSettings["FTPJobApplyCoverLetterUrl"];
                 resumeFolder = ConfigurationManager.AppSettings["FTPJobApplyResumeUrl"];
 
@@ -740,6 +741,7 @@ namespace JXTPortal.Website
             else
             {
                 memberFileFolder = ConfigurationManager.AppSettings["AWSS3MemberRootFolder"] + ConfigurationManager.AppSettings["AWSS3MemberFilesFolder"];
+                memberFileFolderFormat = "{0}/{1}";
                 coverLetterFolder = ConfigurationManager.AppSettings["AWSS3CoverLetterPath"];
                 resumeFolder = ConfigurationManager.AppSettings["AWSS3ResumePath"];
             }
@@ -1542,7 +1544,7 @@ namespace JXTPortal.Website
 
                                 jobapp.MemberCoverLetterFile = string.Format("{0}_Coverletter_{1}", jobappid, r.Replace(coverletter.MemberFileName, "_"));
 
-                                ms = FileManagerService.DownloadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, coverletter.MemberId), coverletter.MemberFileUrl, out errormessage);
+                                ms = FileManagerService.DownloadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, coverletter.MemberId), coverletter.MemberFileUrl, out errormessage);
                                 if (string.IsNullOrWhiteSpace(errormessage))
                                 {
                                     FileManagerService.UploadFile(bucketName, coverLetterFolder, jobapp.MemberCoverLetterFile, ms, out errormessage);
@@ -1613,7 +1615,7 @@ namespace JXTPortal.Website
 
                                     Stream ms = null;
 
-                                    ms = FileManagerService.DownloadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, resume.MemberId), resume.MemberFileUrl, out errormessage);
+                                    ms = FileManagerService.DownloadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, resume.MemberId), resume.MemberFileUrl, out errormessage);
                                     if (string.IsNullOrWhiteSpace(errormessage))
                                     {
                                         FileManagerService.UploadFile(bucketName, resumeFolder, jobapp.MemberResumeFile, ms, out errormessage);

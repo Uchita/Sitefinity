@@ -22,7 +22,7 @@ namespace JXTPostDataToFTP
     {
         private ILog _logger;
         private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
-        private string memberFileFolder;
+        private string memberFileFolder, memberFileFolderFormat;
 
         public IFileManager FileManagerService { get; set; }
         IFileUploader _fileUploader;
@@ -322,7 +322,7 @@ namespace JXTPostDataToFTP
                         if (globalSetting.FtpFolderLocation.StartsWith("s3://") == false)
                         {
                             memberFileFolder = ConfigurationManager.AppSettings["FTPHost"] + ConfigurationManager.AppSettings["MemberRootFolder"] + "/" + ConfigurationManager.AppSettings["MemberFilesFolder"];
-
+                            memberFileFolderFormat = "{0}/{1}/";
                             string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
                             string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
                             string ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
@@ -333,6 +333,7 @@ namespace JXTPostDataToFTP
                             IAwsS3 s3 = new AwsS3();
                             FileManagerService = new FileManager(s3);
                             memberFileFolder = ConfigurationManager.AppSettings["AWSS3MemberRootFolder"] + ConfigurationManager.AppSettings["AWSS3MemberFilesFolder"];
+                            memberFileFolderFormat = "{0}/{1}";
                         }
                     }
 
@@ -758,7 +759,7 @@ namespace JXTPostDataToFTP
                                     string filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], mf.MemberId, mf.MemberFileUrl);
                                     Stream ms = null;
                                     _logger.DebugFormat("Downloading file: {0}", filepath);
-                                    ms = FileManagerService.DownloadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, mf.MemberId), mf.MemberFileUrl, out errormessage);
+                                    ms = FileManagerService.DownloadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, mf.MemberId), mf.MemberFileUrl, out errormessage);
                                     
                                     if (ms != null && string.IsNullOrEmpty(errormessage))
                                     {
@@ -972,7 +973,7 @@ namespace JXTPostDataToFTP
                         if (!string.IsNullOrWhiteSpace(memberFile.MemberFileUrl))
                         {
                             Stream ms = null;
-                            ms = FileManagerService.DownloadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, memberFile.MemberId), memberFile.MemberFileUrl, out errormessage);
+                            ms = FileManagerService.DownloadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, memberFile.MemberId), memberFile.MemberFileUrl, out errormessage);
                             if (ms != null)
                             {
                                 ms.Position = 0;

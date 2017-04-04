@@ -17,7 +17,7 @@ namespace JXTPortal.Website.member
     public partial class CVBuilder : System.Web.UI.Page
     {
         private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
-        private string candidateFolder, memberFileFolder;
+        private string candidateFolder, memberFileFolder, memberFileFolderFormat;
 
         #region Properties
         public IFileManager FileManagerService { get; set; }
@@ -257,6 +257,7 @@ namespace JXTPortal.Website.member
             {
                 candidateFolder = ConfigurationManager.AppSettings["FTPMemberProfilePicUrl"];
                 memberFileFolder = ConfigurationManager.AppSettings["FTPHost"] + ConfigurationManager.AppSettings["MemberRootFolder"] + "/" + ConfigurationManager.AppSettings["MemberFilesFolder"];
+                memberFileFolderFormat = "{0}/{1}/";
 
                 string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
                 string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
@@ -267,6 +268,7 @@ namespace JXTPortal.Website.member
             {
                 candidateFolder = ConfigurationManager.AppSettings["AWSS3MediaFolder"] + ConfigurationManager.AppSettings["AWSS3CandidateFolder"];
                 memberFileFolder = ConfigurationManager.AppSettings["AWSS3MemberRootFolder"] + ConfigurationManager.AppSettings["AWSS3MemberFilesFolder"];
+                memberFileFolderFormat = "{0}/{1}";
             }
 
             shortmonths = new List<string>();
@@ -2113,7 +2115,7 @@ namespace JXTPortal.Website.member
                                     string filepath = string.Format("MemberFiles_{0}{1}", mf.MemberFileId, mf.MemberFileSearchExtension);
                                     string errormessage = string.Empty;
 
-                                    FileManagerService.UploadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, SessionData.Member.MemberId), filepath, fuCoverletter.PostedFile.InputStream, out errormessage);
+                                    FileManagerService.UploadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, SessionData.Member.MemberId), filepath, fuCoverletter.PostedFile.InputStream, out errormessage);
 
                                     mf.MemberFileUrl = string.Format("MemberFiles_{0}{1}", mf.MemberFileId, extension);
                                 }
@@ -2140,7 +2142,7 @@ namespace JXTPortal.Website.member
                                 string filepath = string.Format("MemberFiles_{0}{1}", SessionData.Member.MemberId, mf.MemberFileId, mf.MemberFileSearchExtension);
                                 string errormessage = string.Empty;
 
-                                FileManagerService.UploadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, SessionData.Member.MemberId), filepath, new MemoryStream(Encoding.UTF8.GetBytes(tbWriteCoverLetter.Text)), out errormessage);
+                                FileManagerService.UploadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, SessionData.Member.MemberId), filepath, new MemoryStream(Encoding.UTF8.GetBytes(tbWriteCoverLetter.Text)), out errormessage);
                             }
 
                             mf.MemberFileTitle = "CoverLetter.txt";
@@ -2173,7 +2175,7 @@ namespace JXTPortal.Website.member
                                         string filepath = string.Format("MemberFiles_{0}{1}", mf.MemberFileId, extension);
                                         string errormessage = string.Empty;
 
-                                        FileManagerService.UploadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, SessionData.Member.MemberId), filepath, fuCoverletter.PostedFile.InputStream, out errormessage);
+                                        FileManagerService.UploadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, SessionData.Member.MemberId), filepath, fuCoverletter.PostedFile.InputStream, out errormessage);
                                     }
                                     else
                                     {
@@ -2183,7 +2185,7 @@ namespace JXTPortal.Website.member
                                             string filepath = string.Format("MemberFiles_{0}{1}", mf.MemberFileId, extension);
                                             string errormessage = string.Empty;
 
-                                            FileManagerService.UploadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, SessionData.Member.MemberId), filepath, new MemoryStream(Encoding.UTF8.GetBytes(tbWriteCoverLetter.Text)), out errormessage);
+                                            FileManagerService.UploadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, SessionData.Member.MemberId), filepath, new MemoryStream(Encoding.UTF8.GetBytes(tbWriteCoverLetter.Text)), out errormessage);
                                         }
                                     }
                                     mf.MemberFileUrl = string.Format("MemberFiles_{0}{1}", mf.MemberFileId, extension);
@@ -2262,7 +2264,7 @@ namespace JXTPortal.Website.member
                                     string filepath = string.Format("MemberFiles_{0}{1}", mf.MemberFileId, extension);
                                     string errormessage = string.Empty;
 
-                                    FileManagerService.UploadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, SessionData.Member.MemberId), filepath, fuResume.PostedFile.InputStream, out errormessage);
+                                    FileManagerService.UploadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, SessionData.Member.MemberId), filepath, fuResume.PostedFile.InputStream, out errormessage);
 
                                     mf.MemberFileUrl = string.Format("MemberFiles_{0}{1}", mf.MemberFileId, extension);
                                 }
@@ -2282,7 +2284,7 @@ namespace JXTPortal.Website.member
                                     string filepath = string.Format("MemberFiles_{0}{1}", mf.MemberFileId, extension);
                                     string errormessage = string.Empty;
 
-                                    FileManagerService.UploadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, SessionData.Member.MemberId), filepath, fuResume.PostedFile.InputStream, out errormessage);
+                                    FileManagerService.UploadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, SessionData.Member.MemberId), filepath, fuResume.PostedFile.InputStream, out errormessage);
                                     
                                     mf.MemberFileUrl = string.Format("MemberFiles_{0}{1}", mf.MemberFileId, extension);
 

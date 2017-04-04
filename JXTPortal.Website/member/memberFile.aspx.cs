@@ -23,6 +23,7 @@ namespace JXTPortal.Website.members
         private int memberID = 0;
         private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
         private string memberFileFolder;
+        private string memberFileFolderFormat;
 
         #endregion
 
@@ -72,6 +73,7 @@ namespace JXTPortal.Website.members
             if (!SessionData.Site.IsUsingS3)
             {
                 memberFileFolder = ConfigurationManager.AppSettings["FTPHost"] + ConfigurationManager.AppSettings["MemberRootFolder"] + "/" + ConfigurationManager.AppSettings["MemberFilesFolder"];
+                memberFileFolderFormat = "{0}/{1}/";
 
                 string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
                 string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
@@ -80,6 +82,7 @@ namespace JXTPortal.Website.members
             }
             else
             {
+                memberFileFolderFormat = "{0}/{1}";
                 memberFileFolder = ConfigurationManager.AppSettings["AWSS3MemberRootFolder"] + ConfigurationManager.AppSettings["AWSS3MemberFilesFolder"];
             }
 
@@ -243,7 +246,7 @@ namespace JXTPortal.Website.members
                                 string filepath = string.Format("MemberFiles_{0}{1}", objMemberFiles.MemberFileId, extension);
                                 string errormessage = string.Empty;
 
-                                FileManagerService.UploadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, memberID), filepath, docInput.PostedFile.InputStream, out errormessage);
+                                FileManagerService.UploadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, memberID), filepath, docInput.PostedFile.InputStream, out errormessage);
                                 objMemberFiles.MemberFileUrl = string.Format("MemberFiles_{0}{1}", objMemberFiles.MemberFileId, extension);
 
                                 mfs.Update(objMemberFiles);

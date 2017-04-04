@@ -116,7 +116,7 @@ namespace JXTPortal.Website.member.enworld
                                     string errormessage = string.Empty;
 
                                     Stream ms = null;
-                                    ms = FileManagerService.DownloadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, f.MemberId), f.MemberFileUrl, out errormessage);
+                                    ms = FileManagerService.DownloadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, f.MemberId), f.MemberFileUrl, out errormessage);
 
                                     if (string.IsNullOrEmpty(errormessage))
                                     {

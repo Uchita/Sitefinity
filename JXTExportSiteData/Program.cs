@@ -18,7 +18,7 @@ namespace JXTExportSiteData
         #region Properties
         private static string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
 
-        private static string memberFileFolder;
+        private static string memberFileFolder, memberFileFolderFormat;
         public static IFileManager FileManagerService { get; set; }
 
         private static GlobalSettingsService _globalsettingsservice;
@@ -77,7 +77,7 @@ namespace JXTExportSiteData
                 if (globalSetting.FtpFolderLocation.StartsWith("s3://") == false)
                 {
                     memberFileFolder = ConfigurationManager.AppSettings["FTPHost"] + ConfigurationManager.AppSettings["MemberRootFolder"] + "/" + ConfigurationManager.AppSettings["MemberFilesFolder"];
-
+                    memberFileFolderFormat = "{0}/{1}/";
                     string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
                     string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
                     string ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
@@ -88,6 +88,7 @@ namespace JXTExportSiteData
                     IAwsS3 s3 = new AwsS3();
                     FileManagerService = new FileManager(s3);
                     memberFileFolder = ConfigurationManager.AppSettings["AWSS3MemberRootFolder"] + ConfigurationManager.AppSettings["AWSS3MemberFilesFolder"];
+                    memberFileFolderFormat = "{0}/{1}";
                 }
             }
 
@@ -219,7 +220,7 @@ namespace JXTExportSiteData
                                     if (!string.IsNullOrWhiteSpace(resumeFile.MemberFileUrl))
                                     {
                                         Stream ms = null;
-                                        ms = FileManagerService.DownloadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, resumeFile.MemberId), resumeFile.MemberFileUrl, out errormessage);
+                                        ms = FileManagerService.DownloadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, resumeFile.MemberId), resumeFile.MemberFileUrl, out errormessage);
                                         if (string.IsNullOrEmpty(errormessage))
                                         {
                                             ms.Position = 0;
@@ -258,7 +259,7 @@ namespace JXTExportSiteData
                                     if (!string.IsNullOrWhiteSpace(coverFile.MemberFileUrl))
                                     {
                                         Stream ms = null;
-                                        ms = FileManagerService.DownloadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, coverFile.MemberId), coverFile.MemberFileUrl, out errormessage); 
+                                        ms = FileManagerService.DownloadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, coverFile.MemberId), coverFile.MemberFileUrl, out errormessage); 
                                         ms.Position = 0;
 
                                         memberfilecontent = ((MemoryStream)ms).ToArray();

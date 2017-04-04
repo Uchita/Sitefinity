@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Net;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Globalization;
+using log4net;
 
 namespace JXTPortal.Common
 {
@@ -52,6 +52,7 @@ namespace JXTPortal.Common
     /// </summary>
     public class FtpClient : JXTPortal.Common.IFtpClient
     {
+        private ILog _logger;
         protected FtpDirectory _host;
 
         /// <summary>
@@ -86,6 +87,7 @@ namespace JXTPortal.Common
         // Construction
         public FtpClient()
         {
+            _logger = LogManager.GetLogger(typeof(FtpClient));
             _host = new FtpDirectory();
         }
 
@@ -134,6 +136,7 @@ namespace JXTPortal.Common
             catch (Exception ex)
             {
                 errormessage = ex.Message;
+                _logger.Error(ex);
                 return null;
             }
         }
@@ -154,6 +157,7 @@ namespace JXTPortal.Common
             catch (Exception ex)
             {
                 errormessage = ex.Message;
+                _logger.Error(ex);
             }
         }
 
@@ -184,6 +188,7 @@ namespace JXTPortal.Common
             catch (Exception ex)
             {
                 errormessage = ex.Message;
+                _logger.Error(ex);
             }
             return false;
         }
@@ -249,6 +254,7 @@ namespace JXTPortal.Common
             catch (Exception ex)
             {
                 errormessage = ex.Message;
+                _logger.Error(ex);
             }
         }
 
@@ -270,6 +276,7 @@ namespace JXTPortal.Common
                 errormessage = ex.Message + string.Format("<input type='hidden' value='{0}' />", request.RequestUri.Host);
                 errormessage = errormessage + string.Format("<input type='hidden' value='{0}' />", oldname);
                 errormessage = errormessage + string.Format("<input type='hidden' value='{0}' />", newname);
+                _logger.Error(ex);
             }
         }
 
@@ -293,6 +300,7 @@ namespace JXTPortal.Common
             catch (Exception ex)
             {
                 errormessage = ex.Message;
+                _logger.Error(ex);
             }
         }
 
@@ -311,6 +319,7 @@ namespace JXTPortal.Common
             catch (Exception ex)
             {
                 errormessage = ex.Message;
+                _logger.Error(ex);
             }
         }
 
@@ -360,16 +369,18 @@ namespace JXTPortal.Common
             catch (Exception ex)
             {
                 errormessage = ex.Message;
+                _logger.Error(ex);
             }
         }
 
-        public void UploadFileFromStream(Stream streamFileToUpload, string strHostWithFilename, out string errormessage)
+        public void UploadFileFromStream(Stream streamFileToUpload, string hostWithFilename, out string errorMessage)
         {
-            errormessage = string.Empty;
+            _logger.InfoFormat("Uploading File {0}", hostWithFilename);
+            errorMessage = string.Empty;
 
             try
             {
-                Uri filenameuri = new Uri(strHostWithFilename);
+                Uri filenameuri = new Uri(hostWithFilename);
                 string directory = string.Empty;
 
                 for (int i = 0; i < filenameuri.Segments.Length - 1; i++)
@@ -377,12 +388,13 @@ namespace JXTPortal.Common
                     directory += filenameuri.Segments[i];
                 }
 
-                if (!DirectoryExists(directory, out errormessage))
+                if (!DirectoryExists(directory, out errorMessage))
                 {
-                    CreateDirectory(directory, out errormessage);
+                    _logger.DebugFormat("Directory doesn't exist, Creating directory: {0}", directory);
+                    CreateDirectory(directory, out errorMessage);
                 }
 
-                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(strHostWithFilename);
+                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(hostWithFilename);
                 request.Method = WebRequestMethods.Ftp.UploadFile;
 
                 // This example assumes the FTP site uses anonymous logon.
@@ -402,7 +414,11 @@ namespace JXTPortal.Common
 
                 response.Close();
             }
-            catch (Exception ex) { errormessage = ex.Message; }
+            catch (Exception ex)
+            {
+                _logger.Error(ex);
+                errorMessage = ex.Message;
+            }
         }
 
         /// <summary>
@@ -445,6 +461,7 @@ namespace JXTPortal.Common
             catch (Exception ex)
             {
                 errormessage = ex.Message;
+                _logger.Error(ex);
             }
         }
 
@@ -454,6 +471,8 @@ namespace JXTPortal.Common
         /// <param name="path"></param>
         public void DownloadFileToClient(string filepath, ref Stream downloadedfile, out string errormessage)
         {
+            _logger.InfoFormat("Downloading file: {0}", filepath);
+
             errormessage = string.Empty;
             try
             {
@@ -472,7 +491,10 @@ namespace JXTPortal.Common
 
                 response.Close();
             }
-            catch (Exception ex) { errormessage = ex.Message; }
+            catch (Exception ex) {
+                errormessage = ex.Message;
+                _logger.Error(ex);
+            }
         }
 
         /// <summary>
@@ -495,6 +517,7 @@ namespace JXTPortal.Common
             catch (Exception ex)
             {
                 errormessage = ex.Message;
+                _logger.Error(ex);
             }
         }
 
@@ -516,6 +539,7 @@ namespace JXTPortal.Common
             catch (Exception ex)
             {
                 errormessage = ex.Message;
+                _logger.Error(ex);
             }
         }
 
@@ -711,11 +735,13 @@ namespace JXTPortal.Common
 
     public class FTPClientFileManager : IFileManager
     {
+        private ILog _logger;
         private string  _host;
         private string  _username;
         private string  _password;
         public FTPClientFileManager(string host, string username, string password)
         {
+            _logger = LogManager.GetLogger(typeof(FTPClientFileManager));
             _host = host;
             _username = username;
             _password = password;
@@ -733,11 +759,30 @@ namespace JXTPortal.Common
 
         public void UploadFile(string directoryName, string folder, string fileName, Stream inputStream, out string errorMessage)
         {
+            _logger.InfoFormat("Uploading ifle: {0}", fileName);
             FtpClient client = new FtpClient();
             client.Host = _host;
             client.Username = _username;
             client.Password = _password;
-            client.UploadFileFromStream(inputStream, folder + fileName, out errorMessage);
+            try
+            {
+                if (!folder.EndsWith("/"))
+                {
+                    folder += "/";
+                }
+                client.UploadFileFromStream(inputStream, folder + fileName, out errorMessage);
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex);
+                errorMessage = ex.Message;
+                return;
+            }
+
+            if (!string.IsNullOrWhiteSpace(errorMessage))
+            {
+                _logger.Warn(errorMessage);
+            }
         }
 
         public void DeleteFile(string directoryName, string folder, string fileName, out string errorMessage)
@@ -747,12 +792,31 @@ namespace JXTPortal.Common
 
         public Stream DownloadFile(string directoryName, string folder, string fileName, out string errorMessage)
         {
+            _logger.InfoFormat("Downloading file: {0}", fileName);
             Stream stream = null;
             FtpClient client = new FtpClient();
             client.Host = _host;
             client.Username = _username;
             client.Password = _password;
-            client.DownloadFileToClient(folder + fileName, ref stream, out errorMessage);
+            try
+            {
+                if (!folder.EndsWith("/"))
+                {
+                    folder += "/";
+                }
+
+                client.DownloadFileToClient(folder + fileName, ref stream, out errorMessage);
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex);
+                errorMessage = ex.Message;
+            }
+
+            if (!string.IsNullOrWhiteSpace(errorMessage))
+            {
+                _logger.Warn(errorMessage);
+            }
 
             return stream;
         }

@@ -759,10 +759,10 @@ namespace JXTPostDataToFTP
                                     Stream ms = null;
                                     _logger.DebugFormat("Downloading file: {0}", filepath);
                                     ms = FileManagerService.DownloadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, mf.MemberId), mf.MemberFileUrl, out errormessage);
-
-                                    ms.Position = 0;
-                                    if (string.IsNullOrEmpty(errormessage))
+                                    
+                                    if (ms != null && string.IsNullOrEmpty(errormessage))
                                     {
+                                        ms.Position = 0;
                                         _logger.DebugFormat("Writing filecontent to {0}", memberfilepath);
                                         File.WriteAllBytes(memberfilepath, ((MemoryStream)ms).ToArray());
                                     }

@@ -510,24 +510,24 @@ namespace JXTPortal.Website.members
                     }
 
                     objMembers.SiteId = SessionData.Site.MasterSiteId;
-                    objMembers.Username = CommonService.EncodeString(txtUsername.Text);
+                    objMembers.Username = CommonService.EncodeString(txtUsername.Text, false);
                     objMembers.Password = CommonService.EncryptMD5(txtPassword.Text);
-                    objMembers.EmailAddress = CommonService.EncodeString(txtEmailAddress.Text);
-                    objMembers.Title = CommonService.EncodeString(ddlTitle.SelectedValue);
-                    objMembers.FirstName = CommonService.EncodeString(txtFirstName.Text);
-                    objMembers.Surname = CommonService.EncodeString(txtSurname.Text);
-                    objMembers.MultiLingualFirstName = CommonService.EncodeString(txtMultiLingualFirstname.Text);
-                    objMembers.MultiLingualSurame = CommonService.EncodeString(txtMultiLingualSurname.Text);
+                    objMembers.EmailAddress = CommonService.EncodeString(txtEmailAddress.Text, false);
+                    objMembers.Title = CommonService.EncodeString(ddlTitle.SelectedValue, false);
+                    objMembers.FirstName = CommonService.EncodeString(txtFirstName.Text, false);
+                    objMembers.Surname = CommonService.EncodeString(txtSurname.Text, false);
+                    objMembers.MultiLingualFirstName = CommonService.EncodeString(txtMultiLingualFirstname.Text, false);
+                    objMembers.MultiLingualSurame = CommonService.EncodeString(txtMultiLingualSurname.Text,false);
                     objMembers.DateOfBirth = (!string.IsNullOrWhiteSpace(tbDOB.Text)) ? dob : (DateTime?)null;
-                    objMembers.HomePhone = CommonService.EncodeString(txtTel.Text);
-                    objMembers.Address1 = CommonService.EncodeString(txtAddress.Text);
-                    objMembers.Suburb = CommonService.EncodeString(txtSuburb.Text);
-                    objMembers.PostCode = CommonService.EncodeString(txtPostcode.Text);
-                    objMembers.States = CommonService.EncodeString(txtState.Text);
+                    objMembers.HomePhone = CommonService.EncodeString(txtTel.Text, false);
+                    objMembers.Address1 = CommonService.EncodeString(txtAddress.Text, false);
+                    objMembers.Suburb = CommonService.EncodeString(txtSuburb.Text, false);
+                    objMembers.PostCode = CommonService.EncodeString(txtPostcode.Text, false);
+                    objMembers.States = CommonService.EncodeString(txtState.Text, false);
 
                     objMembers.PreferredCategoryId = ddlClassification.SelectedValue;
                     objMembers.PreferredSubCategoryId = ddlSubClassification.SelectedValue;
-                    objMembers.PassportNo = CommonService.EncodeString(txtPassport.Text);
+                    objMembers.PassportNo = CommonService.EncodeString(txtPassport.Text, false);
                     objMembers.DefaultLanguageId = Convert.ToInt32(ddlLanguage.SelectedValue);
                     //Set default country to Australia if nothing is selected
                     if (Convert.ToInt32(ddlCountry.SelectedValue) > 0)
@@ -541,15 +541,14 @@ namespace JXTPortal.Website.members
                             if (gslist[0].DefaultCountryId.HasValue)
                                 objMembers.CountryId = gslist[0].DefaultCountryId.Value;
                         }
-
                     }
 
                     if (ckAddMailingAddress.Checked)
                     {
-                        objMembers.MailingAddress1 = CommonService.EncodeString(tbMailingAddress.Text);
-                        objMembers.MailingSuburb = CommonService.EncodeString(tbMailingSuburb.Text);
-                        objMembers.MailingPostCode = CommonService.EncodeString(tbMailingPostcode.Text);
-                        objMembers.MailingStates = CommonService.EncodeString(tbMailingState.Text);
+                        objMembers.MailingAddress1 = CommonService.EncodeString(tbMailingAddress.Text, false);
+                        objMembers.MailingSuburb = CommonService.EncodeString(tbMailingSuburb.Text, false);
+                        objMembers.MailingPostCode = CommonService.EncodeString(tbMailingPostcode.Text, false);
+                        objMembers.MailingStates = CommonService.EncodeString(tbMailingState.Text,false);
                         objMembers.MailingCountryId = 1;
                         //Set default country to Australia if nothing is selected
                         if (Convert.ToInt32(ddlMailingCountry.SelectedValue) > 0)
@@ -561,8 +560,7 @@ namespace JXTPortal.Website.members
                             objMembers.MailingCountryId = (int?)null;
                         }
                     }
-
-
+                    
                     objMembers.EmailFormat = Convert.ToInt32(radlEmailFormat.SelectedValue);
                     objMembers.ValidateGuid = Guid.NewGuid();
                     objMembers.SearchField = String.Format("{0} {1} {2}",
@@ -605,7 +603,6 @@ namespace JXTPortal.Website.members
                     // SalesforceMemberSync memberSync = new SalesforceMemberSync(objMembers);
 
                     Response.Redirect(DynamicPagesService.GetDynamicPageUrl(JXTPortal.SystemPages.MEMBER_REGISTRATION_SUCCESS, "", "", ""));
-
                 }
             }
         }

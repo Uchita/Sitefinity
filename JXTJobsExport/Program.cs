@@ -81,8 +81,6 @@ namespace JXTJobsExport
                         GenerateXmlForAdvertisers(jobsExportFolder, globalSettings, indeedIntegration, site);
                         GenerateXmlForProfessions(jobsExportFolder, globalSettings, indeedIntegration, site);
                     }
-
-                    break;
                 }
 
                 // Generate the the list of all WL's index.

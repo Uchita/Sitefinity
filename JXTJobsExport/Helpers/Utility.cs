@@ -18,18 +18,16 @@ namespace JXTJobsExport.Helpers
         /// <summary>
         ///	This method remove all invalids characters for a file path. 
         /// </summary>
-        /// <param name="path"><c>System.String</c> instance.</param>
+        /// <param name="pathSiteUrl"><c>System.String</c> instance.</param>
         /// <remark>Use to remove characters invalids from a path.</remark>
-        public static string RemoveIvalidChars(string path)
+        public static void RemoveIvalidChars(ref string pathSiteUrl)
         {
             foreach (char c in Path.GetInvalidFileNameChars())
             {
-                path = path.Replace(c.ToString(), "_");
+                pathSiteUrl = pathSiteUrl.Replace(c.ToString(), "_");
             }
 
-            path = path.Replace(" ", "_");
-
-            return path;
+            pathSiteUrl = pathSiteUrl.Replace(" ", "_");
         }
 
         /// <summary>

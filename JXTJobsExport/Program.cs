@@ -6,7 +6,7 @@ using JXTPortal.Entities.Models;
 using log4net;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -22,35 +22,42 @@ namespace JXTJobsExport
         static TList<GlobalSettings> globalSettingsList = new TList<GlobalSettings>();
         static int qtFilesGenerated = 0;
         static XmlConfigurationFile xmlConfigurationFile;
+        static string jobsExportFolder;
 
         static void Main(string[] args)
         {
-            ILog _logger = LogManager.GetLogger("PostDataToFTP");
-
-            if (args == null)
+            try
             {
-                _logger.Warn("Cannot run application without config files passed in as a parameter");
-                return;
+#if DEBUG
+                xmlConfigurationFile = new XmlConfigurationFile("Configuration.xml");
+#else
+                if (args == null || args.Length == 0)
+                    throw new Exception("Cannot run application without config files passed in as a parameter");
+
+                foreach (string configFilePath in args)
+                {
+                    if (!File.Exists(configFilePath))
+                    {
+                        _logger.ErrorFormat("Cannot find config file. {0}", configFilePath);
+                        continue;
+                    }
+                    else
+                        xmlConfigurationFile = new XmlConfigurationFile(configFilePath);
+                }
+#endif
+            }
+            catch (Exception ex)
+            {
+                _logger.Error("An error has occurred in main program method.", ex);
             }
 
-#if DEBUG
-            xmlConfigurationFile = new XmlConfigurationFile("Configuration.xml");
-#else
-            foreach (string configFilePath in args)
-            {
+            //Execute all the process of exportation
+            if (xmlConfigurationFile != null)
+                GenerateJobXML();
 
-                if (!File.Exists(configFilePath))
-                {
-                    _logger.ErrorFormat("Cannot find config file. {0}", configFilePath);
-                    continue;
-                }
-                else
-                    xmlConfigurationFile = new XmlConfigurationFile(configFilePath);
-
-        }
-#endif
-
-            GenerateJobXML();
+            //The log4net-loggly library is asynchronous so there needs to be time for the threads the complete logging before the application exits.
+            //https://www.loggly.com/docs/net-logs/
+            Thread.Sleep(10000);//Wait 10 seconds to wait until loggly finished
         }
 
         /// <summary>
@@ -59,11 +66,14 @@ namespace JXTJobsExport
         /// <remark>Export all jobs to a .ZIP file per site.</remark>
         private static void GenerateJobXML()
         {
-            _logger.InfoFormat("Started. Configuration: Jobs = {0}, Advertisers = {1}, Professions = {2}, Indeed Integration = {3}",
-                xmlConfigurationFile.AllJobs, xmlConfigurationFile.JobsByAdvertiser, xmlConfigurationFile.JobsByProfession, xmlConfigurationFile.IncludeIndeedIntegration);
-
             try
             {
+                _logger.InfoFormat("Started. Configuration: Jobs = {0}, Advertisers = {1}, Professions = {2}, Indeed Integration = {3}",
+                 xmlConfigurationFile.AllJobs, xmlConfigurationFile.JobsByAdvertiser, xmlConfigurationFile.JobsByProfession, xmlConfigurationFile.IncludeIndeedIntegration);
+
+                //Set to the global variable to reuse whithin all methods.
+                jobsExportFolder = xmlConfigurationFile.OutputPath;
+
                 //Get all sites from database
                 List<Sites> siteList = new SitesService().GetAll()
                      .Where(s => s.Live == true)//Always true
@@ -109,15 +119,15 @@ namespace JXTJobsExport
 
                         //Generate Jobs files only if it's configured to do so in the configuration file.
                         if (xmlConfigurationFile.AllJobs)
-                            GenerateXmlForJobs(xmlConfigurationFile.OutputPath, viewJobSearchList, globalSettings, indeedIntegration, site);
+                            GenerateXmlForJobs(viewJobSearchList, globalSettings, indeedIntegration, site);
 
                         //Generate Advertisers files only if it's configured to do so in the configuration file.
                         if (xmlConfigurationFile.JobsByAdvertiser)
-                            GenerateXmlForAdvertisers(xmlConfigurationFile.OutputPath, viewJobSearchList, globalSettings, indeedIntegration, site);
+                            GenerateXmlForAdvertisers(viewJobSearchList, globalSettings, indeedIntegration, site);
 
                         //Generate Professions files only if it's configured to do so in the configuration file.
                         if (xmlConfigurationFile.JobsByProfession)
-                            GenerateXmlForProfessions(xmlConfigurationFile.OutputPath, viewJobSearchList, globalSettings, indeedIntegration, site);
+                            GenerateXmlForProfessions(viewJobSearchList, globalSettings, indeedIntegration, site);
                     }
                 }
 
@@ -129,22 +139,17 @@ namespace JXTJobsExport
                 _logger.Error("An error has occurred in main GenerateJobXML method", ex);
             }
 
-            _logger.InfoFormat("Finished with {0} files generated.");
-
-            //The log4net-loggly library is asynchronous so there needs to be time for the threads the complete logging before the application exits.
-            //https://www.loggly.com/docs/net-logs/
-            Thread.Sleep(10000);//Wait 10 seconds to wait until loggly finished
+            _logger.InfoFormat("Finished with {0} files generated.", qtFilesGenerated);
         }
 
         /// <summary>
         ///	This method generate a XML file which contains all jobs per site. 
         /// </summary>
-        /// <param name="jobsExportFolder"><c>System.String</c> folder where xml file must be create.</param>
         /// <param name="globalSettings"><c>GlobalSettings</c> global settings.</param>
         /// <param name="indeedIntegration"><c>AdminIntegrations.Indeed</c> Indeed integration information.</param>
         /// <param name="site"><c>Sites</c> site object.</param>
         /// <remark>Generate XML jobs by Site.</remark>
-        private static void GenerateXmlForJobs(string jobsExportFolder, VList<ViewJobSearch> viewJobSearchList, GlobalSettings globalSettings, AdminIntegrations.Indeed indeedIntegration, Sites site)
+        private static void GenerateXmlForJobs(VList<ViewJobSearch> viewJobSearchList, GlobalSettings globalSettings, AdminIntegrations.Indeed indeedIntegration, Sites site)
         {
             try
             {
@@ -188,12 +193,11 @@ namespace JXTJobsExport
         /// <summary>
         ///	This method generate a XML file which contains all jobs per site. 
         /// </summary>
-        /// <param name="jobsExportFolder"><c>System.String</c> folder where xml file must be create.</param>
         /// <param name="globalSettings"><c>GlobalSettings</c> global settings.</param>
         /// <param name="indeedIntegration"><c>AdminIntegrations.Indeed</c> Indeed integration information.</param>
         /// <param name="site"><c>Sites</c> site object.</param>
         /// <remark>Generate XML jobs by Advertisers.</remark>
-        private static void GenerateXmlForAdvertisers(string jobsExportFolder, VList<ViewJobSearch> viewJobSearchList, GlobalSettings globalSettings, AdminIntegrations.Indeed indeedIntegration, Sites site)
+        private static void GenerateXmlForAdvertisers(VList<ViewJobSearch> viewJobSearchList, GlobalSettings globalSettings, AdminIntegrations.Indeed indeedIntegration, Sites site)
         {
             try
             {
@@ -231,7 +235,7 @@ namespace JXTJobsExport
                     Thread jobThreadAdvertiser = new Thread(threadParametersAdvertiser);
 
                     //Remove all caracters which are invalids as a file path
-                    string fileName = Helpers.Utility.RemoveIvalidChars(string.Format("{0}_{1}", site.SiteUrl, advertiser.CompanyName));
+                    string fileName = Utility.RemoveIvalidChars(string.Format("{0}_{1}", site.SiteUrl, advertiser.CompanyName));
 
                     if (Utility.FindDuplicateStringPath(fileName, fileNames))
                     {
@@ -247,7 +251,7 @@ namespace JXTJobsExport
                     //Add counter
                     qtFilesGenerated++;
 
-                    jobThreadAdvertiser.Start(new Helpers.XmlSaveType(xmlDocumentJobAdvertiser, jobsExportFolder + "\\" + fileName + ".xml"));
+                    jobThreadAdvertiser.Start(new XmlSaveType(xmlDocumentJobAdvertiser, jobsExportFolder + "\\" + fileName + ".xml"));
                 }
             }
             catch (Exception ex)
@@ -259,12 +263,11 @@ namespace JXTJobsExport
         /// <summary>
         ///	This method generate a XML file which contains all jobs per site. 
         /// </summary>
-        /// <param name="jobsExportFolder"><c>System.String</c> folder where xml file must be create.</param>
         /// <param name="globalSettings"><c>GlobalSettings</c> global setting.</param>
         /// <param name="indeedIntegration"><c>AdminIntegrations.Indeed</c> Indeed integration information.</param>
         /// <param name="site"><c>Sites</c> site object.</param>
         /// <remark>Generate XML jobs by Professions.</remark>
-        private static void GenerateXmlForProfessions(string jobsExportFolder, VList<ViewJobSearch> viewJobSearchList, GlobalSettings globalSettings, AdminIntegrations.Indeed indeedIntegration, Sites site)
+        private static void GenerateXmlForProfessions(VList<ViewJobSearch> viewJobSearchList, GlobalSettings globalSettings, AdminIntegrations.Indeed indeedIntegration, Sites site)
         {
             try
             {
@@ -301,9 +304,9 @@ namespace JXTJobsExport
                     Thread jobThreadProfession = new Thread(threadParametersProfession);
 
                     //Remove all caracters which are invalids for a file path
-                    string fileName = Helpers.Utility.RemoveIvalidChars(string.Format("{0}_{1}", site.SiteUrl, siteProfession.SiteProfessionFriendlyUrl));
+                    string fileName = Utility.RemoveIvalidChars(string.Format("{0}_{1}", site.SiteUrl, siteProfession.SiteProfessionFriendlyUrl));
 
-                    if (Helpers.Utility.FindDuplicateStringPath(fileName, fileNames))
+                    if (Utility.FindDuplicateStringPath(fileName, fileNames))
                     {
                         fileName = string.Format("{0}_{1}", fileName, siteProfession.ProfessionId);
 
@@ -317,7 +320,7 @@ namespace JXTJobsExport
                     //Add counter
                     qtFilesGenerated++;
 
-                    jobThreadProfession.Start(new Helpers.XmlSaveType(xmlDocumentJobProfession, jobsExportFolder + "\\" + fileName + ".xml"));
+                    jobThreadProfession.Start(new XmlSaveType(xmlDocumentJobProfession, jobsExportFolder + "\\" + fileName + ".xml"));
                 }
             }
             catch (Exception ex)
@@ -498,7 +501,7 @@ namespace JXTJobsExport
                 XmlDocument document = new XmlDocument();
 
                 document.LoadXml(xmlWhiteList.ToString());
-                document.Save(ConfigurationManager.AppSettings["JobsExportFolder"] + "\\index.xml");
+                document.Save(jobsExportFolder + "\\index.xml");
             }
             catch (Exception ex)
             {

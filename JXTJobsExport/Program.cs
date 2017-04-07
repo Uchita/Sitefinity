@@ -9,7 +9,6 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Timers;
 using System.Web;
 using System.Web.Script.Serialization;
 using System.Xml;
@@ -20,6 +19,7 @@ namespace JXTJobsExport
     {
         static ILog _logger = LogManager.GetLogger("JobsExport");
         static TList<GlobalSettings> globalSettingsList = new TList<GlobalSettings>();
+        static int qtFilesGenerated = 0;
 
         static void Main(string[] args)
         {
@@ -46,7 +46,7 @@ namespace JXTJobsExport
         /// <remark>Export all jobs to a .ZIP file per site.</remark>
         private static void GenerateJobXML(int siteId)
         {
-            _logger.Info("Started");
+            _logger.InfoFormat("Started for SiteId: {0}", siteId);
 
             // Retrieve all valid site
             string jobsExportFolder = ConfigurationManager.AppSettings["JobsExportFolder"];
@@ -70,16 +70,35 @@ namespace JXTJobsExport
             {
                 foreach (Sites site in siteList)
                 {
-                    globalSettings = globalSettingsList.Where(g => g.SiteId == site.SiteId).FirstOrDefault();
+                    globalSettings = globalSettingsList.FirstOrDefault(g => g.SiteId == site.SiteId);
 
                     if (globalSettings != null && globalSettings.GenerateJobXml)
                     {
                         // Get Indeed integration
                         indeedIntegration = GetIndeedIntegration(site);
 
-                        GenerateXmlForJobs(jobsExportFolder, globalSettings, indeedIntegration, site);
-                        GenerateXmlForAdvertisers(jobsExportFolder, globalSettings, indeedIntegration, site);
-                        GenerateXmlForProfessions(jobsExportFolder, globalSettings, indeedIntegration, site);
+                        var viewJobSearchList = new ViewJobSearchService().GetBySearchFilter(string.Empty,
+                                                                              site.SiteId,
+                                                                              null,
+                                                                              null,
+                                                                              null,
+                                                                              null,
+                                                                              null,
+                                                                              null,
+                                                                              null,
+                                                                              string.Empty,
+                                                                              null,
+                                                                              null,
+                                                                              string.Empty,
+                                                                              null,
+                                                                              0,
+                                                                              Int16.MaxValue,
+                                                                              string.Empty,
+                                                                              null);
+
+                        GenerateXmlForJobs(jobsExportFolder, viewJobSearchList, globalSettings, indeedIntegration, site);
+                        GenerateXmlForAdvertisers(jobsExportFolder, viewJobSearchList, globalSettings, indeedIntegration, site);
+                        GenerateXmlForProfessions(jobsExportFolder, viewJobSearchList, globalSettings, indeedIntegration, site);
                     }
                 }
 
@@ -88,10 +107,10 @@ namespace JXTJobsExport
             }
             catch (Exception ex)
             {
-                _logger.Error("An error has occurred in main GenareteJobXML method", ex);
+                _logger.Error("An error has occurred in main GenerateJobXML method", ex);
             }
 
-            _logger.Info("Finished");
+            _logger.InfoFormat("Finished with {0} files generated.");
 
             //The log4net-loggly library is asynchronous so there needs to be time for the threads the complete logging before the application exits.
             //https://www.loggly.com/docs/net-logs/
@@ -106,39 +125,17 @@ namespace JXTJobsExport
         /// <param name="indeedIntegration"><c>AdminIntegrations.Indeed</c> Indeed integration information.</param>
         /// <param name="site"><c>Sites</c> site object.</param>
         /// <remark>Generate XML jobs by Site.</remark>
-        private static void GenerateXmlForJobs(string jobsExportFolder, GlobalSettings globalSettings, AdminIntegrations.Indeed indeedIntegration, Sites site)
+        private static void GenerateXmlForJobs(string jobsExportFolder, VList<ViewJobSearch> viewJobSearchList, GlobalSettings globalSettings, AdminIntegrations.Indeed indeedIntegration, Sites site)
         {
             try
             {
-                ViewJobSearchService viewJobSearchService = new ViewJobSearchService();
-
-                // WL all jobs XML's
-                var viewJobSearchList = viewJobSearchService.GetBySearchFilter(string.Empty,
-                                                                               site.SiteId,
-                                                                               null,
-                                                                               null,
-                                                                               null,
-                                                                               null,
-                                                                               null,
-                                                                               null,
-                                                                               null,
-                                                                               string.Empty,
-                                                                               null,
-                                                                               null,
-                                                                               string.Empty,
-                                                                               null,
-                                                                               0,
-                                                                               Int16.MaxValue,
-                                                                               string.Empty,
-                                                                               null);
-
                 _logger.DebugFormat("Found {0} jobs for site {1} url: {2}", viewJobSearchList.Count(), site.SiteId, site.SiteUrl);
 
                 StringBuilder sbXmlJobs = new StringBuilder();
 
                 sbXmlJobs.AppendLine("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
                 sbXmlJobs.AppendLine("<JOBS version=\"1.0\">");
-                sbXmlJobs.AppendLine(string.Format("<CLIENT SiteName=\"{0}\">", site.SiteName));
+                sbXmlJobs.AppendLine(string.Format("<CLIENT SiteName=\"{0}\">", System.Security.SecurityElement.Escape(site.SiteName)));
 
                 foreach (ViewJobSearch viewJobSearch in viewJobSearchList)
                 {
@@ -155,16 +152,17 @@ namespace JXTJobsExport
 
                 Thread jobThreadSite = new Thread(threadParametersSite);
 
-                string fileName = string.Format("{0}_Jobs.xml", site.SiteUrl);
-
                 //Remove all caracters which are invalids for a file path
-                Helpers.Utility.RemoveIvalidChars(ref fileName);
+                string fileName = Helpers.Utility.RemoveIvalidChars(string.Format("{0}_Jobs", site.SiteUrl));
 
-                jobThreadSite.Start(new Helpers.XmlSaveType(xmlDocumentSite, jobsExportFolder + "\\" + fileName));
+                //Add counter
+                qtFilesGenerated++;
+
+                jobThreadSite.Start(new Helpers.XmlSaveType(xmlDocumentSite, jobsExportFolder + "\\" + fileName + ".xml"));
             }
             catch (Exception ex)
             {
-                _logger.Error(string.Format("An error has occurred during the genarete od Jobs XML file int siteId {0}", site.SiteId), ex);
+                _logger.Error(string.Format("An error has occurred during the generate of Jobs XML file in siteId {0}", site.SiteId), ex);
             }
         }
 
@@ -176,7 +174,7 @@ namespace JXTJobsExport
         /// <param name="indeedIntegration"><c>AdminIntegrations.Indeed</c> Indeed integration information.</param>
         /// <param name="site"><c>Sites</c> site object.</param>
         /// <remark>Generate XML jobs by Advertisers.</remark>
-        private static void GenerateXmlForAdvertisers(string jobsExportFolder, GlobalSettings globalSettings, AdminIntegrations.Indeed indeedIntegration, Sites site)
+        private static void GenerateXmlForAdvertisers(string jobsExportFolder, VList<ViewJobSearch> viewJobSearchList, GlobalSettings globalSettings, AdminIntegrations.Indeed indeedIntegration, Sites site)
         {
             try
             {
@@ -186,28 +184,12 @@ namespace JXTJobsExport
                 advertisersList.Filter = string.Format("AdvertiserAccountStatusID = {0}", (int)PortalEnums.Advertiser.AccountStatus.Approved);
 
                 List<string> fileNames = new List<string>();
+
                 foreach (Advertisers advertiser in advertisersList)
                 {
-                    var viewJobSearchList = new ViewJobSearchService().GetBySearchFilter(string.Empty,
-                                                                                         site.SiteId,
-                                                                                         advertiser.AdvertiserId,
-                                                                                         null,
-                                                                                         null,
-                                                                                         null,
-                                                                                         null,
-                                                                                         null,
-                                                                                         null,
-                                                                                         string.Empty,
-                                                                                         null,
-                                                                                         null,
-                                                                                         string.Empty,
-                                                                                         null,
-                                                                                         0,
-                                                                                         Int16.MaxValue,
-                                                                                         string.Empty,
-                                                                                         null);
+                    var viewJobSearchAdverList = viewJobSearchList.Where(j => j.AdvertiserId == advertiser.AdvertiserId).ToList();
 
-                    _logger.DebugFormat("Found {0} jobs for site {1} Adveriser: {2}", viewJobSearchList.Count(), site.SiteId, advertiser.CompanyName);
+                    _logger.DebugFormat("Found {0} jobs for site {1} advertiser {2} and advertiserId {3}", viewJobSearchAdverList.Count(), site.SiteId, advertiser.CompanyName, advertiser.AdvertiserId);
 
                     StringBuilder sbAdvertiser = new StringBuilder();
 
@@ -215,7 +197,7 @@ namespace JXTJobsExport
                     sbAdvertiser.AppendLine("<JOBS version=\"1.0\">");
                     sbAdvertiser.AppendLine(string.Format("<CLIENT AdvertiserID=\"{0}\">", advertiser.AdvertiserId));
 
-                    foreach (ViewJobSearch viewJobSearch in viewJobSearchList)
+                    foreach (ViewJobSearch viewJobSearch in viewJobSearchAdverList)
                     {
                         sbAdvertiser.AppendLine(WriteJobXML(site.SiteUrl, viewJobSearch, globalSettings, indeedIntegration));
                     }
@@ -229,17 +211,12 @@ namespace JXTJobsExport
 
                     Thread jobThreadAdvertiser = new Thread(threadParametersAdvertiser);
 
-                    string fileName = string.Format("{0}_{1}.xml", site.SiteUrl, advertiser.CompanyName);
-
                     //Remove all caracters which are invalids as a file path
-                    Helpers.Utility.RemoveIvalidChars(ref fileName);
+                    string fileName = Helpers.Utility.RemoveIvalidChars(string.Format("{0}_{1}", site.SiteUrl, advertiser.CompanyName));
 
                     if (Helpers.Utility.FindDuplicateStringPath(fileName, fileNames))
                     {
-                        fileName = string.Format("{0}_{1}_{2}.xml", site.SiteUrl, advertiser.CompanyName, advertiser.AdvertiserId);
-
-                        //Remove all caracters which are invalids for a file path
-                        Helpers.Utility.RemoveIvalidChars(ref fileName);
+                        fileName = string.Format("{0}_{1}", fileName, advertiser.AdvertiserId);
 
                         fileNames.Add(fileName);
                     }
@@ -248,12 +225,15 @@ namespace JXTJobsExport
                         fileNames.Add(fileName);
                     }
 
-                    jobThreadAdvertiser.Start(new Helpers.XmlSaveType(xmlDocumentJobAdvertiser, jobsExportFolder + "\\" + fileName));
+                    //Add counter
+                    qtFilesGenerated++;
+
+                    jobThreadAdvertiser.Start(new Helpers.XmlSaveType(xmlDocumentJobAdvertiser, jobsExportFolder + "\\" + fileName + ".xml"));
                 }
             }
             catch (Exception ex)
             {
-                _logger.Error(string.Format("An error has occurred during the genarete od Advertisers XML file int siteId {0}", site.SiteId), ex);
+                _logger.Error(string.Format("An error has occurred during the generate of Advertisers XML file in siteId {0}", site.SiteId), ex);
             }
         }
 
@@ -265,7 +245,7 @@ namespace JXTJobsExport
         /// <param name="indeedIntegration"><c>AdminIntegrations.Indeed</c> Indeed integration information.</param>
         /// <param name="site"><c>Sites</c> site object.</param>
         /// <remark>Generate XML jobs by Professions.</remark>
-        private static void GenerateXmlForProfessions(string jobsExportFolder, GlobalSettings globalSettings, AdminIntegrations.Indeed indeedIntegration, Sites site)
+        private static void GenerateXmlForProfessions(string jobsExportFolder, VList<ViewJobSearch> viewJobSearchList, GlobalSettings globalSettings, AdminIntegrations.Indeed indeedIntegration, Sites site)
         {
             try
             {
@@ -277,26 +257,9 @@ namespace JXTJobsExport
 
                 foreach (SiteProfession siteProfession in siteProfessionList)
                 {
-                    var viewJobSearchList = new ViewJobSearchService().GetBySearchFilter(string.Empty,
-                                                                                         site.SiteId,
-                                                                                         null,
-                                                                                         null,
-                                                                                         null,
-                                                                                         null,
-                                                                                         null,
-                                                                                         null,
-                                                                                         siteProfession.ProfessionId,
-                                                                                         string.Empty,
-                                                                                         null,
-                                                                                         null,
-                                                                                         string.Empty,
-                                                                                         null,
-                                                                                         0,
-                                                                                         Int16.MaxValue,
-                                                                                         string.Empty,
-                                                                                         null);
+                    var viewJobSearchProfessionList = viewJobSearchList.Where(j => j.ProfessionId == siteProfession.ProfessionId).ToList();
 
-                    _logger.DebugFormat("Found {0} jobs for site {1} profession: {2}", viewJobSearchList.Count(), site.SiteId, siteProfession.SiteProfessionName);
+                    _logger.DebugFormat("Found {0} jobs for site {1} profession {2} and professionId {3}", viewJobSearchProfessionList.Count(), site.SiteId, siteProfession.SiteProfessionName, siteProfession.ProfessionId);
 
                     StringBuilder sbProfession = new StringBuilder();
 
@@ -304,7 +267,7 @@ namespace JXTJobsExport
                     sbProfession.AppendLine("<JOBS version=\"1.0\">");
                     sbProfession.AppendLine(string.Format("<CLIENT ProfessionID=\"{0}\">", siteProfession.ProfessionId));
 
-                    foreach (ViewJobSearch viewJobSearch in viewJobSearchList)
+                    foreach (ViewJobSearch viewJobSearch in viewJobSearchProfessionList)
                     {
                         sbProfession.AppendLine(WriteJobXML(site.SiteUrl, viewJobSearch, globalSettings, indeedIntegration));
                     }
@@ -318,17 +281,12 @@ namespace JXTJobsExport
 
                     Thread jobThreadProfession = new Thread(threadParametersProfession);
 
-                    string fileName = string.Format("{0}_{1}.xml", site.SiteUrl, siteProfession.SiteProfessionFriendlyUrl);
-
                     //Remove all caracters which are invalids for a file path
-                    Helpers.Utility.RemoveIvalidChars(ref fileName);
+                    string fileName = Helpers.Utility.RemoveIvalidChars(string.Format("{0}_{1}", site.SiteUrl, siteProfession.SiteProfessionFriendlyUrl));
 
                     if (Helpers.Utility.FindDuplicateStringPath(fileName, fileNames))
                     {
-                        fileName = string.Format("{0}_{1}_{2}.xml", site.SiteUrl, siteProfession.SiteProfessionFriendlyUrl, siteProfession.ProfessionId);
-
-                        //Remove all caracters which are invalids for a file path
-                        Helpers.Utility.RemoveIvalidChars(ref fileName);
+                        fileName = string.Format("{0}_{1}", fileName, siteProfession.ProfessionId);
 
                         fileNames.Add(fileName);
                     }
@@ -337,12 +295,15 @@ namespace JXTJobsExport
                         fileNames.Add(fileName);
                     }
 
-                    jobThreadProfession.Start(new Helpers.XmlSaveType(xmlDocumentJobProfession, jobsExportFolder + "\\" + fileName));
+                    //Add counter
+                    qtFilesGenerated++;
+
+                    jobThreadProfession.Start(new Helpers.XmlSaveType(xmlDocumentJobProfession, jobsExportFolder + "\\" + fileName + ".xml"));
                 }
             }
             catch (Exception ex)
             {
-                _logger.Error(string.Format("An error has occurred during the genarete od Profession XML file int siteId {0}", site.SiteId), ex);
+                _logger.Error(string.Format("An error has occurred during the generate of Profession XML file in siteId {0}", site.SiteId), ex);
             }
         }
 
@@ -443,7 +404,7 @@ namespace JXTJobsExport
                                 <JOBURL>{25}</JOBURL>
                                 <LATITUDE>{27}</LATITUDE>
                                 <LONGITUDE>{28}</LONGITUDE>
-                                <STREETADDRESS>{29}</STREETADDRESS>
+                                <STREETADDRESS><![CDATA[{29}]]></STREETADDRESS>
                                 <WORKTYPE><![CDATA[{22}]]></WORKTYPE>
                                 <LOCATION><![CDATA[{23}]]></LOCATION>
                                 <AREA><![CDATA[{24}]]></AREA>
@@ -500,7 +461,7 @@ namespace JXTJobsExport
 
                 foreach (Sites site in siteList)
                 {
-                    globalSetting = globalSettingsList.Where(g => g.SiteId == site.SiteId).FirstOrDefault();
+                    globalSetting = globalSettingsList.FirstOrDefault(g => g.SiteId == site.SiteId);
 
                     // Only valid and no-mobile sites.
                     if (globalSetting != null && globalSetting.GenerateJobXml)

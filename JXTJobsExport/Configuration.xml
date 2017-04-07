@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Configuration>
+  <!--Folder where all xml files will be generated-->
+  <OutputPath>C:\Temp\JXTJobsExport\JobsExported</OutputPath>
+  <!--Include sites. Sites Id separated per comma (,)-->
+  <Sites></Sites>
+  <!--Excludes sites. Sites Id separated per comma (,)-->
+  <ExcludedSites>47,48</ExcludedSites>
+  <!--Generate all jobs-->
+  <AllJobs>True</AllJobs>
+  <!--Generate all jobs by Profession-->
+  <JobsByProfession>False</JobsByProfession>
+  <!--Generate all jobs by Advertisers-->
+  <JobsByAdvertiser>False</JobsByAdvertiser>
+  <!--Enable Indeed Integration-->
+  <IncludeIndeedIntegration>False</IncludeIndeedIntegration>
+</Configuration>

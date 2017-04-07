@@ -89,6 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\Utility.cs" />
+    <Compile Include="Helpers\XmlConfigurationFile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -120,6 +121,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Configuration.xml" />
     <Content Include="reference\ICSharpCode.SharpZipLib.dll" />
   </ItemGroup>
   <ItemGroup>

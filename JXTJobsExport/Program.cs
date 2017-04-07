@@ -1,4 +1,5 @@
-﻿using JXTPortal;
+﻿using JXTJobsExport.Helpers;
+using JXTPortal;
 using JXTPortal.Common;
 using JXTPortal.Entities;
 using JXTPortal.Entities.Models;
@@ -20,54 +21,64 @@ namespace JXTJobsExport
         static ILog _logger = LogManager.GetLogger("JobsExport");
         static TList<GlobalSettings> globalSettingsList = new TList<GlobalSettings>();
         static int qtFilesGenerated = 0;
+        static XmlConfigurationFile xmlConfigurationFile;
 
         static void Main(string[] args)
         {
-            int siteid = 0;
+            ILog _logger = LogManager.GetLogger("PostDataToFTP");
 
-            if (args != null)
+            if (args == null)
             {
-                for (int i = 0; i < args.Length; i++)
-                {
-                    if (int.TryParse(args[i], out siteid))
-                    {
-                    }
-                }
+                _logger.Warn("Cannot run application without config files passed in as a parameter");
+                return;
             }
 
-            //Call method to export jobs.
-            GenerateJobXML(siteid);
+#if DEBUG
+            xmlConfigurationFile = new XmlConfigurationFile("Configuration.xml");
+#else
+            foreach (string configFilePath in args)
+            {
+
+                if (!File.Exists(configFilePath))
+                {
+                    _logger.ErrorFormat("Cannot find config file. {0}", configFilePath);
+                    continue;
+                }
+                else
+                    xmlConfigurationFile = new XmlConfigurationFile(configFilePath);
+
+        }
+#endif
+
+            GenerateJobXML();
         }
 
         /// <summary>
         ///	Main method to export all jobs. 
         /// </summary>
-        /// <param name="siteId"><c>int</c> identify site.</param>
         /// <remark>Export all jobs to a .ZIP file per site.</remark>
-        private static void GenerateJobXML(int siteId)
+        private static void GenerateJobXML()
         {
-            _logger.InfoFormat("Started for SiteId: {0}", siteId);
-
-            // Retrieve all valid site
-            string jobsExportFolder = ConfigurationManager.AppSettings["JobsExportFolder"];
-
-            //Get all sites from database
-            TList<Sites> siteList = new SitesService().GetAll();
-
-            if (siteId > 0)
-                siteList.Filter = "Live = true AND SiteId = " + siteId.ToString();
-            else
-                siteList.Filter = "Live = true";
-
-            //Get all global settings
-            globalSettingsList = new GlobalSettingsService().GetAll();
-
-            GlobalSettings globalSettings = new GlobalSettings();
-
-            AdminIntegrations.Indeed indeedIntegration;
+            _logger.InfoFormat("Started. Configuration: Jobs = {0}, Advertisers = {1}, Professions = {2}, Indeed Integration = {3}",
+                xmlConfigurationFile.AllJobs, xmlConfigurationFile.JobsByAdvertiser, xmlConfigurationFile.JobsByProfession, xmlConfigurationFile.IncludeIndeedIntegration);
 
             try
             {
+                //Get all sites from database
+                List<Sites> siteList = new SitesService().GetAll()
+                     .Where(s => s.Live == true)//Always true
+                     .Where(s => xmlConfigurationFile.Sites.Length > 0 ? xmlConfigurationFile.Sites.Contains(s.SiteId) : s.SiteId > 0)//Retrieve only sites whereas it was informed in configuration .
+                     .Where(s => xmlConfigurationFile.ExcludedSites.Length > 0 ? !xmlConfigurationFile.ExcludedSites.Contains(s.SiteId) : s.SiteId > 0)//Exclude sites whereas it was informed in configuration .
+                     .ToList();
+
+                //Get all global settings
+                globalSettingsList = new GlobalSettingsService().GetAll();
+
+                GlobalSettings globalSettings = new GlobalSettings();
+
+                AdminIntegrations.Indeed indeedIntegration;
+
+
                 foreach (Sites site in siteList)
                 {
                     globalSettings = globalSettingsList.FirstOrDefault(g => g.SiteId == site.SiteId);
@@ -96,9 +107,17 @@ namespace JXTJobsExport
                                                                               string.Empty,
                                                                               null);
 
-                        GenerateXmlForJobs(jobsExportFolder, viewJobSearchList, globalSettings, indeedIntegration, site);
-                        GenerateXmlForAdvertisers(jobsExportFolder, viewJobSearchList, globalSettings, indeedIntegration, site);
-                        GenerateXmlForProfessions(jobsExportFolder, viewJobSearchList, globalSettings, indeedIntegration, site);
+                        //Generate Jobs files only if it's configured to do so in the configuration file.
+                        if (xmlConfigurationFile.AllJobs)
+                            GenerateXmlForJobs(xmlConfigurationFile.OutputPath, viewJobSearchList, globalSettings, indeedIntegration, site);
+
+                        //Generate Advertisers files only if it's configured to do so in the configuration file.
+                        if (xmlConfigurationFile.JobsByAdvertiser)
+                            GenerateXmlForAdvertisers(xmlConfigurationFile.OutputPath, viewJobSearchList, globalSettings, indeedIntegration, site);
+
+                        //Generate Professions files only if it's configured to do so in the configuration file.
+                        if (xmlConfigurationFile.JobsByProfession)
+                            GenerateXmlForProfessions(xmlConfigurationFile.OutputPath, viewJobSearchList, globalSettings, indeedIntegration, site);
                     }
                 }
 
@@ -153,12 +172,12 @@ namespace JXTJobsExport
                 Thread jobThreadSite = new Thread(threadParametersSite);
 
                 //Remove all caracters which are invalids for a file path
-                string fileName = Helpers.Utility.RemoveIvalidChars(string.Format("{0}_Jobs", site.SiteUrl));
+                string fileName = Utility.RemoveIvalidChars(string.Format("{0}_Jobs", site.SiteUrl));
 
                 //Add counter
                 qtFilesGenerated++;
 
-                jobThreadSite.Start(new Helpers.XmlSaveType(xmlDocumentSite, jobsExportFolder + "\\" + fileName + ".xml"));
+                jobThreadSite.Start(new XmlSaveType(xmlDocumentSite, jobsExportFolder + "\\" + fileName + ".xml"));
             }
             catch (Exception ex)
             {
@@ -214,7 +233,7 @@ namespace JXTJobsExport
                     //Remove all caracters which are invalids as a file path
                     string fileName = Helpers.Utility.RemoveIvalidChars(string.Format("{0}_{1}", site.SiteUrl, advertiser.CompanyName));
 
-                    if (Helpers.Utility.FindDuplicateStringPath(fileName, fileNames))
+                    if (Utility.FindDuplicateStringPath(fileName, fileNames))
                     {
                         fileName = string.Format("{0}_{1}", fileName, advertiser.AdvertiserId);
 
@@ -316,6 +335,10 @@ namespace JXTJobsExport
         private static AdminIntegrations.Indeed GetIndeedIntegration(Sites site)
         {
             AdminIntegrations.Indeed indeedIntegration = null;
+
+            //Return null in cases where Indeed integration is not necessary
+            if (xmlConfigurationFile.IncludeIndeedIntegration)
+                return indeedIntegration;
 
             // Get all the valid Indeed Integrations
             List<Integrations> integrationList = new IntegrationsService().GetAll()
@@ -446,9 +469,9 @@ namespace JXTJobsExport
         /// <summary>
         ///	This method generate the Index.xml file which contains a list of all zip/xml files generated. 
         /// </summary>
-        /// <param name="siteList"><c>TList<Sites></c> list of sites generated.</param>
+        /// <param name="siteList"><c>List<Sites></c> list of sites generated.</param>
         /// <remark>Use to create Index.xml file with a list of all files generated.</remark>
-        private static void GenerateWhitelabelXMLList(TList<Sites> siteList)
+        private static void GenerateWhitelabelXMLList(List<Sites> siteList)
         {
             try
             {

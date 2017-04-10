@@ -3285,7 +3285,7 @@ namespace JXTPortal.Website.Admin.UserControls
             string currentDateFormat = getGlobalDateFormat();
 
             DateTime jobExpiryDate = DateTime.Now.AddDays(30);
-            DateTime.TryParseExact(txtJobExpiryDate.Text, currentDateFormat, null, DateTimeStyles.None, out jobExpiryDate))
+            DateTime.TryParseExact(txtJobExpiryDate.Text, currentDateFormat, null, DateTimeStyles.None, out jobExpiryDate);
             return jobExpiryDate;
         }
 

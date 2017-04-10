@@ -1229,7 +1229,8 @@ namespace JXTPortal.Website
 
                     if (!string.IsNullOrWhiteSpace(screeningQuestionAnswer))
                     {
-                        if (!screeningQuestionAnswer.IsValidContent())
+                        bool acceptNewLine = ltOptions.Text.ToLower().StartsWith("<textarea");
+                        if (!screeningQuestionAnswer.IsValidContent(acceptNewLine))
                         {
                             hasError = true;
                             phError.Visible = true;
@@ -1859,7 +1860,7 @@ namespace JXTPortal.Website
                             // People Bank Custom Fields
                             if (pnlPeopleBankLeft.Visible && pnlPeopleBankRight.Visible)
                             {
-                                customEmailFields.Add("CUSTOM_LANDLINE", CommonService.EncodeString(tbLandLine.Text,false));
+                                customEmailFields.Add("CUSTOM_LANDLINE", CommonService.EncodeString(tbLandLine.Text, false));
                                 customEmailFields.Add("CUSTOM_STATE", ddlState.SelectedValue);
                                 customEmailFields.Add("CUSTOM_RESIDENCYSTATUS", ddlResidencyStatus.SelectedValue);
                             }

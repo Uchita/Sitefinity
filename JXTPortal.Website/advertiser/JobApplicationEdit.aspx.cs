@@ -184,7 +184,7 @@ namespace JXTPortal.Website.advertiser
                 JobApplicationScreeningAnswer answer = e.Item.DataItem as JobApplicationScreeningAnswer;
 
                 ltQuestion.Text = HttpUtility.HtmlEncode(answer.QuestionTitle);
-                ltAnswer.Text = HttpUtility.HtmlEncode(answer.Answer);
+                ltAnswer.Text = HttpUtility.HtmlEncode(answer.Answer).Replace("\n", "<br />");
             }
         }
 

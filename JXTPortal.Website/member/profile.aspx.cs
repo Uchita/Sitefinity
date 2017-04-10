@@ -8576,7 +8576,7 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
                 ltQuestion.Text = HttpUtility.HtmlEncode(question.Title);
                 if (question.Type == "textbox" || question.Type == "textarea")
                 {
-                    ltAnswer.Text = "<p>" + HttpUtility.HtmlEncode(question.Answer).Trim() + "</p>";
+                    ltAnswer.Text = "<p>" + HttpUtility.HtmlEncode(question.Answer).Trim().Replace("\n", "<br />") + "</p>";
                 }
 
                 if (question.Type == "dropdown" || question.Type == "radio")

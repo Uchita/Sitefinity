@@ -754,7 +754,7 @@ namespace JXTPortal
                         screeingQuestionsAttachment.AppendLine(string.Format("A. {0}\n", answer.Answer));
 
                         screeingQuestionsContent.AppendLine(string.Format("<strong>Q. {0}</strong><br />", HttpUtility.HtmlEncode(answer.QuestionTitle)));
-                        screeingQuestionsContent.AppendLine(string.Format("A. {0}<br /><br />", HttpUtility.HtmlEncode(answer.Answer)));
+                        screeingQuestionsContent.AppendLine(string.Format("A. {0}<br /><br />", HttpUtility.HtmlEncode(answer.Answer).Replace("\n", "<br />")));
                     }
                 }
 

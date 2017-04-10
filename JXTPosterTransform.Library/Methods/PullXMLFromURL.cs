@@ -6,23 +6,27 @@ using System.Xml.Linq;
 using System.Xml;
 using JXTPosterTransform.Library.Common;
 using System.Configuration;
+using log4net;
 
 namespace JXTPosterTransform.Library.Methods
 {
     public class PullXMLFromURL
     {
+        static ILog _logger;
         public static ResponseClass ProcessXML(string source, string fileName)
         {
-            ResponseClass responseClass = new ResponseClass();
+            _logger = LogManager.GetLogger(typeof(PullXMLFromFTP));
 
+            _logger.DebugFormat("Attempting to data from source:");
+            _logger.DebugFormat("\t- Source => " + source + ", Filename " +  fileName);
+            
+            ResponseClass responseClass = new ResponseClass();
             Console.WriteLine("Loading the XML - " + source);
 
             try
             {
                 responseClass.ResponseXML = Utils.GetXMLFromUrl(source);
-
-                //responseClass.ResponseXML = System.IO.File.ReadAllText(@"C:\Users\naveen\Desktop\JXT\Projects\JIP\Stellar.xml");
-                
+              
                 // Save the Raw XML
                 System.IO.File.WriteAllText(ConfigurationManager.AppSettings["FTPTempStorage"] + fileName + "_Raw.xml", responseClass.ResponseXML);
 
@@ -35,6 +39,8 @@ namespace JXTPosterTransform.Library.Methods
                 Console.WriteLine(responseClass.strMessage);
             }
 
+            _logger.DebugFormat("Source responded: " + responseClass.blnSuccess + " - " + responseClass.strMessage);
+            
             return responseClass;
 
 

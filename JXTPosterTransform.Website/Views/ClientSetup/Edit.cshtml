@@ -116,6 +116,15 @@
         </div>
         <div class="form-group col-md-6">
             <label class="control-label">
+                Use JXT Platform for Mappings</label>
+            <select class="form-control" name="useJXTSiteMappings">
+                <option value="false" @(new MvcHtmlString(Model.useJXTSiteMappings == false ? @"selected=""selected""" : string.Empty))>No</option>
+                <option value="true" @(new MvcHtmlString(Model.useJXTSiteMappings == true ? @"selected=""selected""" : string.Empty))>Yes</option>
+            </select>
+            @Html.ValidationMessageFor(c => c.useJXTSiteMappings)
+        </div>
+        <div class="form-group col-md-6">
+            <label class="control-label">
                 Status</label>
             <select class="form-control" name="validStatus">
                 @foreach (PTCommonEnums.ClientSetup.Valid v in Enum.GetValues(typeof(PTCommonEnums.ClientSetup.Valid)))
@@ -377,6 +386,19 @@
                     <input type="text" id="PullFromInvenias.Password" class="form-control" name="PullFromInvenias.Password"
                         textmode="SingleLine" autocomplete="off" value="@Model.PullFromInvenias.Password" />
                 </div>
+                <div class="form-group col-md-6">
+                    <label class="control-label">
+                        Class/SubClass Invenias Category List ID <a href="javascript:void(0)" class="btn btn-info"  onclick="GetInveniasClassSubClassJson();">Generate Class/SubClass</a></label>
+                    <input type="text" id="PullFromInvenias.ProfRoleCategoryListID" class="form-control" name="PullFromInvenias.ProfRoleCategoryListID"
+                        textmode="SingleLine" autocomplete="off" value="@Model.PullFromInvenias.ProfRoleCategoryListID" />
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label class="control-label">
+                        Locations Invenias Category List ID <a href="javascript:void(0)" class="btn btn-info" onclick="GetInveniasLocationJson();">Generate Locations</a></label>
+                    <input type="text" id="PullFromInvenias.LocationCategoryListID" class="form-control" name="PullFromInvenias.LocationCategoryListID"
+                        textmode="SingleLine" autocomplete="off" value="@Model.PullFromInvenias.LocationCategoryListID" />
+                </div>
             </div>
             <div class="typeForm hide" id="type@(PTCommonEnums.ClientSetup.ClientSetupType.PullJsonFromUrl)">
                 <h3>
@@ -424,7 +446,46 @@
 
         }
 
+        function GetInveniasClassSubClassJson() {
+            $.ajax({
+                method: "GET",
+                url: "/ClientSetup/GenerateJXTPRsForInveniasImport",
+                data: { setupID: "@Model.setupID" },
+                success: function (data) {
 
-    
+                    if (data.Success) {
+                        var w = window.open();
+                        var html = data.Message;
+
+                        $(w.document.body).html(html);
+                    }
+                    else
+                        alert(data.Message);
+
+                }
+            });
+        }
+
+        function GetInveniasLocationJson() {
+            $.ajax({
+                method: "GET",
+                url: "/ClientSetup/GenerateJXTLocationsForInveniasImport",
+                data: { setupID: "@Model.setupID" },
+                success: function (data) {
+
+                    if (data.Success) {
+                        var w = window.open();
+                        var html = data.Message;
+
+                        $(w.document.body).html(html);
+                    }
+                    else
+                        alert(data.Message);
+
+                }
+            });
+        }
+
+
     </script>
 }

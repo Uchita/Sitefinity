@@ -11,11 +11,14 @@ using JXTPosterTransform.Library.Models;
 using System.Configuration;
 using System.Reflection;
 using System.Web;
+using log4net;
 
 namespace JXTPosterTransform.Library.Methods.Client
 {
     public class PullJsonFromRGF
     {
+        ILog _logger; 
+
         #region Common Functions
 
         // Consumer Key from SFDC account
@@ -36,6 +39,7 @@ namespace JXTPosterTransform.Library.Methods.Client
 
         public PullJsonFromRGF(ClientSetupModels.PullXmlFromSalesforceRGF rgfDetails)
         {
+            _logger = LogManager.GetLogger(typeof(PullJsonFromRGF));
             clientID = rgfDetails.SFClientID;
             clientSecret = rgfDetails.SFClientSecret;
             clientUsername = rgfDetails.Username;
@@ -46,9 +50,12 @@ namespace JXTPosterTransform.Library.Methods.Client
 
         private bool GetTokenWithOutAuthorize(out string errorMsg)
         {
+            _logger.InfoFormat("Attempting to authorize");
             // Todo check token
             if (token == null)
             {
+                _logger.InfoFormat("Requesting for token from SalesForce");
+
                 // Create the message used to request a token
 
                 StringBuilder body = new StringBuilder();
@@ -60,12 +67,12 @@ namespace JXTPosterTransform.Library.Methods.Client
                 if (!string.IsNullOrEmpty(redirectURL))
                     body.Append("&redirect_uri=" + redirectURL);
 
-
                 string result = Utils.HttpPost(TokenURL, body.ToString());
 
                 if (string.IsNullOrEmpty(result))
                 {
                     errorMsg = "Failed to authenticate with SalesForce credentials.";
+                    _logger.InfoFormat(errorMsg);
                     return false;
                 }
 
@@ -73,10 +80,12 @@ namespace JXTPosterTransform.Library.Methods.Client
                 JavaScriptSerializer ser = new JavaScriptSerializer();
                 token = ser.Deserialize<TokenResponse>(result);
 
+                _logger.InfoFormat("Authorized successfully");
                 errorMsg = null;
                 return true;
             }
 
+            _logger.InfoFormat("Token already exists, already authorized");
             errorMsg = null;
             return true;
             // Read the REST resources
@@ -90,6 +99,7 @@ namespace JXTPosterTransform.Library.Methods.Client
 
         public RGFJobBoardDataRoot ProcessXML(string jobBoardName, string requestHost, long epochTimestampInSeconds, string jobApplicationURL, bool stripJobTitle)
         {
+            _logger.InfoFormat("Start processing Pull Json From RGF...");
             RGFJobBoardDataRoot rgfData = null;
 
             WebRequest webRequest = null;
@@ -112,6 +122,7 @@ namespace JXTPosterTransform.Library.Methods.Client
             restContactsQuery = token.instance_url + string.Format(requestHost + "?jobBoardNames={0}&timestamp={1}", jobBoardName, epochTime);
 
             // 4. Use the access token to Request for the Member profile 
+            _logger.InfoFormat("Creating request: " + restContactsQuery);
             webRequest = (HttpWebRequest)System.Net.WebRequest.Create(restContactsQuery);
             webRequest.Method = "GET";
             webRequest.Headers.Add("Authorization", "Bearer " + token.access_token);
@@ -121,12 +132,14 @@ namespace JXTPosterTransform.Library.Methods.Client
             System.Net.WebResponse response = null;
             try
             {
+                _logger.InfoFormat("Awaiting response");
                 response = webRequest.GetResponse();
                 // Get the response of the Member Profile.
                 Stream postStream = response.GetResponseStream();
                 responseStreamReader = new StreamReader(postStream);
 
                 strTokenResponse = responseStreamReader.ReadToEnd();
+                _logger.DebugFormat("Response received: " + strTokenResponse);
 
                 //replace the job board name returned in the json to a generic string 
                 //this allows a generic serialization/deserialization of the data @ the model level
@@ -138,14 +151,17 @@ namespace JXTPosterTransform.Library.Methods.Client
                 rgfData = jss.Deserialize<RGFJobBoardDataRoot>(strTokenResponse);
 
                 // CUSTOM 
+                _logger.InfoFormat("[START] Custom processing for each job");
                 if (rgfData != null && rgfData.jobBoards != null && rgfData.jobBoards.jobboardlisting != null)
                 {
                     int trimLength = 1000; // Short Description maximum 1000 characters
-
                     String strContent = string.Empty;
 
+                    _logger.InfoFormat("Total jobs to process - " + rgfData.jobBoards.jobboardlisting.upserted.Count());
                     foreach (Upserted d in rgfData.jobBoards.jobboardlisting.upserted)
                     {
+                        _logger.DebugFormat("Custom processing - id(" + d.id + ")");
+
                         #region Application URL replace
                         if (!string.IsNullOrEmpty(jobApplicationURL))
                         {
@@ -232,6 +248,8 @@ namespace JXTPosterTransform.Library.Methods.Client
                         }
                     }
                 }
+                _logger.InfoFormat("[DONE] Custom processing for each job");
+
                 response.Close();
                 webRequest = null;
 
@@ -239,6 +257,9 @@ namespace JXTPosterTransform.Library.Methods.Client
             catch (WebException ex)
             {
                 string msg = "";
+
+                _logger.InfoFormat("[ERROR] Custom processing for each job - WebException");
+                _logger.Debug(ex);
 
                 if (ex.Status == WebExceptionStatus.ProtocolError)
                 {
@@ -248,9 +269,8 @@ namespace JXTPosterTransform.Library.Methods.Client
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error - " + ex.Message); // TODO
-                Console.WriteLine("Error - " + ex.StackTrace); // TODO
-                Console.WriteLine("Error - " + ex.InnerException); // TODO
+                _logger.InfoFormat("[ERROR] Custom processing for each job - Exception");
+                _logger.Debug(ex);
             }
 
 

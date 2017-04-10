@@ -8,18 +8,28 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Net;
 using JXTPosterTransform.Library.Methods;
+using log4net;
+using log4net.Core;
 
 namespace JXTPosterTransform.ConsoleApp
 {
     class Program
     {
+        static ILog _logger;
+
         static void Main(string[] args)
         {
+            _logger = LogManager.GetLogger(typeof(Program));
+
+            if( args.Count() == 0)
+                _logger.Debug("Application started with no arguments");
+            else
+                _logger.DebugFormat("Application started with arguments: {0}", String.Join(" ", args));
+
             //Add 3072 (TLS1.2) for this application
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | (SecurityProtocolType)3072;
 
             int setupId = 0;
-
             if (args != null)
             {
                 for (int i = 0; i < args.Length; i++) // Loop through array
@@ -41,7 +51,11 @@ namespace JXTPosterTransform.ConsoleApp
             //PullWithAuthenticationTest();
 
             //PullXMLFromUrlTest();
+
+            _logger.DebugFormat("Application finished with arguments: {0}", String.Join(" ", args));            
             Console.WriteLine("Done");
+
+            
             //Console.ReadKey();
         }
 

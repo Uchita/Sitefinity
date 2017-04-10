@@ -10,15 +10,13 @@ using System.Xml;
 using System.Xml.Linq;
 using JXTPosterTransform.Library.Common;
 using JXTPosterTransform.Library.Models;
+using log4net;
 
 namespace JXTPosterTransform.Library.Methods
 {
     public class PullXMLWithWebAuthentication
     {
-
-        public PullXMLWithWebAuthentication()
-        {
-        }
+        static ILog _logger;
 
         /// <summary>
         /// Parsing the directory listing
@@ -27,6 +25,12 @@ namespace JXTPosterTransform.Library.Methods
         /// <returns></returns>
         public static ResponseClass ProcessXML(ClientSetupModels.PullXmlFromUrlWithAuth XMLwithAuth, string fileName)
         {
+            _logger = LogManager.GetLogger(typeof(PullXMLFromFTP));
+
+            _logger.DebugFormat("Attempting to retreive XML data with authentication:");
+            _logger.DebugFormat("\t- Host => " + XMLwithAuth.Host + ", Username => " + XMLwithAuth.Username);
+            _logger.DebugFormat("\t- Params => Filename(" + XMLwithAuth.Filename + "), FileStartsWith(" + XMLwithAuth.FileStartsWith + ")");
+
             ResponseClass responseClass = new ResponseClass();
 
             string strFileName = string.Empty;
@@ -38,23 +42,30 @@ namespace JXTPosterTransform.Library.Methods
             }
             else if (!string.IsNullOrWhiteSpace(XMLwithAuth.FileStartsWith))
             {
+                _logger.DebugFormat("Creating web request...");
+
                 WebRequest request = WebRequest.Create(XMLwithAuth.Host);
                 request.AuthenticationLevel = System.Net.Security.AuthenticationLevel.MutualAuthRequested;
                 request.Credentials = new NetworkCredential(XMLwithAuth.Username, XMLwithAuth.Password);
+
+                _logger.DebugFormat("Awaiting response from request...");
                 WebResponse response = request.GetResponse();
-                string standardPattern = "<a.*?href=[\"'](?<url>.*?)[\"'].*?>(?<name>.*?)</a>";
 
-                Regex regex = new Regex(standardPattern);
 
+                _logger.DebugFormat("Processing response...");
                 using (var reader = new StreamReader(response.GetResponseStream()))
                 {
                     string result = reader.ReadToEnd();
                     Dictionary<string, DateTime> datasourcefiles = new Dictionary<string, DateTime>();
 
+                    string standardPattern = "<a.*?href=[\"'](?<url>.*?)[\"'].*?>(?<name>.*?)</a>";
+                    Regex regex = new Regex(standardPattern);
+
                     MatchCollection matches = regex.Matches(result);
                     if (matches.Count == 0)
                     {
                         responseClass.strMessage = "Parse failed." + XMLwithAuth.Host;
+                        _logger.DebugFormat("Processing FAILED: " + responseClass.strMessage);
                         Console.WriteLine(responseClass.strMessage);
                         return responseClass;
                     }
@@ -85,6 +96,7 @@ namespace JXTPosterTransform.Library.Methods
                     //Pick the latest file based on its timestamp
                     strFileName = datasourcefiles.OrderByDescending(f => f.Value).FirstOrDefault().Key;
                 }
+                _logger.DebugFormat("Response processed.");
             }
             
 
@@ -112,6 +124,8 @@ namespace JXTPosterTransform.Library.Methods
                 responseClass.strMessage = "Can't find the file from URL - " + XMLwithAuth.Host;
                 Console.WriteLine(responseClass.strMessage);
             }
+
+            _logger.DebugFormat("Request responded: " + responseClass.blnSuccess + " - " + responseClass.strMessage);
 
             return responseClass;
         }

@@ -180,6 +180,39 @@ namespace JXTPortal.Client.Invenias
             return true;
         }
 
+        public object AssignmentLocationsGet(string assignmentID)
+        {
+            string targetURL = "https://publicapi.invenias.com/v1/Assignments(" + assignmentID + ")/Location";
+
+            string locations = HttpGet(targetURL, true);
+
+            if (!string.IsNullOrEmpty(locations))
+            {
+                JavaScriptSerializer ser = new JavaScriptSerializer();
+                InveniasLocationRoot token = (InveniasLocationRoot)ser.Deserialize(locations, typeof(InveniasLocationRoot));
+
+                return token.value;
+            }
+            return null;
+
+        }
+
+        public object AdvertisementCategoryEntriesGet(string advertisementID)
+        {
+            string targetURL = "https://publicapi.invenias.com/v1/Advertisement(" + advertisementID + ")/Categories";
+
+            string locations = HttpGet(targetURL, true);
+
+            if (!string.IsNullOrEmpty(locations))
+            {
+                JavaScriptSerializer ser = new JavaScriptSerializer();
+                InveniaCategoryListRoot token = (InveniaCategoryListRoot)ser.Deserialize(locations, typeof(InveniaCategoryListRoot));
+
+                return token.value;
+            }
+            return null;
+        }
+
         public bool LocationCreate(InveniasLocationValue loc)
         {
             JsonSerializer ser2 = new JsonSerializer { NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore };

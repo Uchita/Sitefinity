@@ -15,22 +15,27 @@ using System.Configuration;
 using System.Runtime.Serialization.Formatters.Binary;
 using JXTPosterTransform.Library.Methods;
 using JXTPosterTransform.Library.APIs.Invenias;
+using log4net;
+using log4net.Core;
 
 namespace JXTPosterTransform.Library.Services
 {
     public class TransformationService : IDisposable
     {
+        ILog _logger;
         private PosterTransformEntities _context = new PosterTransformEntities();
         JavaScriptSerializer jss = new JavaScriptSerializer();
 
         bool enableShortDescriptionPullFromFullDescription = false;
 
+        public TransformationService()
+        {
+            _logger = LogManager.GetLogger(typeof(TransformationService));
+        }
+
         public void DoTransformationWithMappings(int setupId)
         {
-            // Gets only the results which needs to run.
-            //List<GetAllClientSetupsToRun_Result> clientSetupsList = _context.GetAllClientSetupsToRun().ToList();
-
-            //TODO NAVEEN / HIMMY - REMOVE
+            _logger.InfoFormat("Transformation Service Started with setupId " + setupId);
             List<GetAllClientSetupsToRun_Result> clientSetupsList = null;
 
             if (setupId > 0)
@@ -38,732 +43,712 @@ namespace JXTPosterTransform.Library.Services
             else
                 clientSetupsList = _context.GetAllClientSetupsToRun().ToList();
 
-            if (clientSetupsList != null && clientSetupsList.Count > 0)
+            if (clientSetupsList == null || clientSetupsList.Count() == 0)
             {
+                _logger.InfoFormat("No Clients Setup found to process. Exiting.", clientSetupsList.Count());
+                return;
+            }
 
-                ResponseClass response = new ResponseClass();
+            _logger.InfoFormat("Total of {0} Clients Setup found to process", clientSetupsList.Count());
 
-                DateTime dtStartTime = DateTime.Now;
-                string fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + "_" + Guid.NewGuid().ToString("N");
+            ResponseClass JobPostResponse = null;
+            IEnumerable<Job> JobsToArchive = null;
+            DateTime dtStartTime = DateTime.Now;
+            string fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + "_" + Guid.NewGuid().ToString("N");
 
-                try
+            try
+            {
+                foreach (GetAllClientSetupsToRun_Result thisSetupItem in clientSetupsList)
                 {
-                    foreach (GetAllClientSetupsToRun_Result thisSetupItem in clientSetupsList)
+                    Console.WriteLine("Process started for Client - {0}, Client Setup - {1}, Setup Type - {2}", thisSetupItem.ClientName, thisSetupItem.ClientSetupName, thisSetupItem.ClientSetupType.ToString());
+                    _logger.InfoFormat("Process started for Client - {0}, Client Setup - {1}, Setup Type - {2}", thisSetupItem.ClientName, thisSetupItem.ClientSetupName, thisSetupItem.ClientSetupType.ToString());
+
+                    dtStartTime = DateTime.Now;     // Set the start time
+                    fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + "_" + Guid.NewGuid().ToString("N");   // Set a new file name
+
+                    JobPostResponse = new ResponseClass();
+
+                    //below are for PullXmlFromRGF ONLY
+                    long nextScheduledTimestamp = 0;
+                    JXTPosterTransform.Library.Methods.Client.PullJsonFromRGF.RGFJobBoardDataRoot rgfData = null;
+
+                    bool postRequired = false;
+                    // Find the type of Client setup Type and get credentials                    
+                    _logger.InfoFormat("[START] Data retreival");
+                    switch (thisSetupItem.ClientSetupType)
                     {
-                        dtStartTime = DateTime.Now;     // Set the start time
-                        fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + "_" + Guid.NewGuid().ToString("N");   // Set a new file name
+                        case ((int)PTCommonEnums.ClientSetup.ClientSetupType.PullXmlFromFTP):
+                            {
+                                ClientSetupModels.PullXmlFromFTP FTP = jss.Deserialize<ClientSetupModels.PullXmlFromFTP>(thisSetupItem.ClientSetupTypeCredentials);
+                                JobPostResponse = Methods.PullXMLFromFTP.ProcessXML(FTP, fileName);
+                                postRequired = JobPostResponse.blnSuccess;
+                                break;
+                            }
+                        case ((int)PTCommonEnums.ClientSetup.ClientSetupType.PullXmlFromSFTP):
+                            {
+                                ClientSetupModels.PullXmlFromSFTP SFTP = jss.Deserialize<ClientSetupModels.PullXmlFromSFTP>(thisSetupItem.ClientSetupTypeCredentials);
+                                JobPostResponse = Methods.PullXMLFromSFTP.ProcessXML(SFTP, fileName);
+                                postRequired = JobPostResponse.blnSuccess;
+                                break;
+                            }
+                        case ((int)PTCommonEnums.ClientSetup.ClientSetupType.PullXmlFromUrl):
+                            {
+                                ClientSetupModels.PullXmlFromUrl URL = jss.Deserialize<ClientSetupModels.PullXmlFromUrl>(thisSetupItem.ClientSetupTypeCredentials);
+                                JobPostResponse = Methods.PullXMLFromURL.ProcessXML(URL.URL, fileName);
+                                postRequired = JobPostResponse.blnSuccess;
+                                break;
+                            }
+                        case ((int)PTCommonEnums.ClientSetup.ClientSetupType.PullXmlFromUrlWithAuth):
+                            {
+                                ClientSetupModels.PullXmlFromUrlWithAuth XmlAuth = jss.Deserialize<ClientSetupModels.PullXmlFromUrlWithAuth>(thisSetupItem.ClientSetupTypeCredentials);
+                                JobPostResponse = Methods.PullXMLWithWebAuthentication.ProcessXML(XmlAuth, fileName);
+                                postRequired = JobPostResponse.blnSuccess;
+                                break;
+                            }
+                        case ((int)PTCommonEnums.ClientSetup.ClientSetupType.PullFromInvenias):
+                            {
+                                ClientSetupModels.PullFromInvenias invAuth = jss.Deserialize<ClientSetupModels.PullFromInvenias>(thisSetupItem.ClientSetupTypeCredentials);
+                                PullFromInvenias inveniaLogic = new PullFromInvenias(invAuth);
+                                List<InveniasPTModel> ptModel = inveniaLogic.PosterTransformModelsGet();
+                                JobPostResponse = inveniaLogic.ProcessInveniaModelToXML(ptModel.Where(c => c.advertisement.Status.ToUpper() == "PUBLISHED").ToList(), fileName);
+                                JobsToArchive = ptModel.Where(c => c.advertisement.Status.ToUpper() == "UNPUBLISHED").Select(c=> new Job { ReferenceNo = c.advertisement.Id });
+                                postRequired = JobPostResponse.blnSuccess;
+                                break;
+                            }
+                        case ((int)PTCommonEnums.ClientSetup.ClientSetupType.PullJsonFromUrl):
+                            {
+                                //only enabled for this for now incase it breaks any other things
+                                enableShortDescriptionPullFromFullDescription = true;
+                                ClientSetupModels.PullJsonFromUrl jsonAuth = jss.Deserialize<ClientSetupModels.PullJsonFromUrl>(thisSetupItem.ClientSetupTypeCredentials);
+                                JobPostResponse = Methods.PullJsonFromURL.ProcessJsonToXML(jsonAuth.URL, fileName);
+                                postRequired = JobPostResponse.blnSuccess;
+                                break;
+                            }
+                        case ((int)PTCommonEnums.ClientSetup.ClientSetupType.PullXmlFromRGF):
+                            {
+                                #region RGF (SF)
+                                ClientSetupModels.PullXmlFromSalesforceRGF XmlAuthRGF = jss.Deserialize<ClientSetupModels.PullXmlFromSalesforceRGF>(thisSetupItem.ClientSetupTypeCredentials);
+                                long epochTime = ((long)((new DateTime(2016, 01, 01, 11, 0, 0)).ToUniversalTime() - new DateTime(1970, 1, 1)).TotalSeconds);
 
-                        Console.WriteLine("Client - {0}, Client Setup - {1}", thisSetupItem.ClientName, thisSetupItem.ClientSetupName);
-                        response = new ResponseClass();
+                                //set this value for update later
+                                nextScheduledTimestamp = ((long)((DateTime.UtcNow.AddMinutes(-5)) - new DateTime(1970, 1, 1)).TotalSeconds);
 
-                        //below are for PullXmlFromRGF ONLY
-                        long nextScheduledTimestamp = 0;
-                        JXTPosterTransform.Library.Methods.Client.PullJsonFromRGF.RGFJobBoardDataRoot rgfData = null;
+                                Methods.Client.PullJsonFromRGF rgfLogic = new Methods.Client.PullJsonFromRGF(XmlAuthRGF);
 
+                                rgfData = rgfLogic.ProcessXML(XmlAuthRGF.JobBoardName, XmlAuthRGF.Host, XmlAuthRGF.Timestamp ?? epochTime, XmlAuthRGF.ApplicationURL, XmlAuthRGF.StripJobTitle);
 
-                        bool postRequired = false;
-                        // Find the type of Client setup Type and get credentials                    
-                        switch (thisSetupItem.ClientSetupType)
-                        {
-                            case ((int)PTCommonEnums.ClientSetup.ClientSetupType.PullXmlFromFTP):
+                                if (rgfData.success)
                                 {
-                                    ClientSetupModels.PullXmlFromFTP FTP = jss.Deserialize<ClientSetupModels.PullXmlFromFTP>(thisSetupItem.ClientSetupTypeCredentials);
-                                    response = Methods.PullXMLFromFTP.ProcessXML(FTP, fileName);
-                                    postRequired = response.blnSuccess;
-                                    break;
-                                }
-                            case ((int)PTCommonEnums.ClientSetup.ClientSetupType.PullXmlFromSFTP):
-                                {
-                                    ClientSetupModels.PullXmlFromSFTP SFTP = jss.Deserialize<ClientSetupModels.PullXmlFromSFTP>(thisSetupItem.ClientSetupTypeCredentials);
-                                    response = Methods.PullXMLFromSFTP.ProcessXML(SFTP, fileName);
-                                    postRequired = response.blnSuccess;
-                                    break;
-                                }
-                            case ((int)PTCommonEnums.ClientSetup.ClientSetupType.PullXmlFromUrl):
-                                {
-                                    ClientSetupModels.PullXmlFromUrl URL = jss.Deserialize<ClientSetupModels.PullXmlFromUrl>(thisSetupItem.ClientSetupTypeCredentials);
-                                    response = Methods.PullXMLFromURL.ProcessXML(URL.URL, fileName);
-                                    postRequired = response.blnSuccess;
-                                    break;
-                                }
-                            case ((int)PTCommonEnums.ClientSetup.ClientSetupType.PullXmlFromUrlWithAuth):
-                                {
-                                    ClientSetupModels.PullXmlFromUrlWithAuth XmlAuth = jss.Deserialize<ClientSetupModels.PullXmlFromUrlWithAuth>(thisSetupItem.ClientSetupTypeCredentials);
-                                    response = Methods.PullXMLWithWebAuthentication.ProcessXML(XmlAuth, fileName);
-                                    postRequired = response.blnSuccess;
-                                    break;
-                                }
-                            case ((int)PTCommonEnums.ClientSetup.ClientSetupType.PullFromInvenias):
-                                {
-                                    ClientSetupModels.PullFromInvenias invAuth = jss.Deserialize<ClientSetupModels.PullFromInvenias>(thisSetupItem.ClientSetupTypeCredentials);
-                                    PullFromInvenias inveniaLogic = new PullFromInvenias(invAuth);
-                                    List<InveniasPTModel> ptModel = inveniaLogic.PosterTransformModelsGet();
-                                    response = inveniaLogic.ProcessInveniaModelToXML(ptModel, fileName);
-                                    postRequired = response.blnSuccess;
-                                    break;
-                                }
-                            case ((int)PTCommonEnums.ClientSetup.ClientSetupType.PullJsonFromUrl):
-                                {
-                                    //only enabled for this for now incase it breaks any other things
-                                    enableShortDescriptionPullFromFullDescription = true;
-                                    ClientSetupModels.PullJsonFromUrl jsonAuth = jss.Deserialize<ClientSetupModels.PullJsonFromUrl>(thisSetupItem.ClientSetupTypeCredentials);
-                                    response = Methods.PullJsonFromURL.ProcessJsonToXML(jsonAuth.URL, fileName);
-                                    postRequired = response.blnSuccess;
-                                    break;
-                                }
-                            case ((int)PTCommonEnums.ClientSetup.ClientSetupType.PullXmlFromRGF):
-                                {
-                                    ClientSetupModels.PullXmlFromSalesforceRGF XmlAuthRGF = jss.Deserialize<ClientSetupModels.PullXmlFromSalesforceRGF>(thisSetupItem.ClientSetupTypeCredentials);
-                                    long epochTime = ((long)((new DateTime(2016, 01, 01, 11, 0, 0)).ToUniversalTime() - new DateTime(1970, 1, 1)).TotalSeconds);
+                                    int count = 0, fileCount = 1;
 
-                                    //set this value for update later
-                                    nextScheduledTimestamp = ((long)((DateTime.UtcNow.AddMinutes(-5)) - new DateTime(1970, 1, 1)).TotalSeconds);
-
-                                    Methods.Client.PullJsonFromRGF rgfLogic = new Methods.Client.PullJsonFromRGF(XmlAuthRGF);
-
-                                    rgfData = rgfLogic.ProcessXML(XmlAuthRGF.JobBoardName, XmlAuthRGF.Host, XmlAuthRGF.Timestamp ?? epochTime, XmlAuthRGF.ApplicationURL, XmlAuthRGF.StripJobTitle);
-
-                                    if (rgfData.success)
+                                    bool postSuccess = true;
+                                    for (count = 0; count < rgfData.jobBoards.jobboardlisting.upserted.Count();)
                                     {
-                                        int count = 0, fileCount = 1;
+                                        string thisFileName = fileName + "-" + fileCount;
+                                        JXTPosterTransform.Library.Methods.Client.PullJsonFromRGF.RGFJobBoardDataRoot currentQueue = DeepClone<JXTPosterTransform.Library.Methods.Client.PullJsonFromRGF.RGFJobBoardDataRoot>(rgfData);
+                                        currentQueue.jobBoards.jobboardlisting.upserted = currentQueue.jobBoards.jobboardlisting.upserted.Skip(count).Take(200).ToList();
 
-                                        bool postSuccess = true;
-                                        for (count = 0; count < rgfData.jobBoards.jobboardlisting.upserted.Count(); )
+                                        JobPostResponse = rgfLogic.ProcessRGFModelToXML(currentQueue, thisFileName);
+
+                                        // Get the Credentials AND Pull the XML     AND     Post to JXT platform Webservice                            
+                                        bool thisPostSuccess = PostTransformationWithMappings(thisSetupItem, JobPostResponse.ResponseXML, thisFileName, dtStartTime);
+
+                                        if (!thisPostSuccess)
+                                            postSuccess = false;
+
+                                        count += currentQueue.jobBoards.jobboardlisting.upserted.Count();
+                                        fileCount++;
+                                    }
+
+                                    bool jobsArchiveSuccess = ArchiveRGFJobs(thisSetupItem, rgfData);
+
+                                    // Set the values - TODO move to a seperate function
+                                    if (postSuccess && jobsArchiveSuccess)
+                                    {
+                                        // update the timestamp
+                                        PT_ClientService clientService = new PT_ClientService();
+                                        ClientSetup thisSetupToBeUpdated = clientService.ClientSetupGetBySetupID(thisSetupItem.ClientSetupId);
+                                        if (thisSetupToBeUpdated != null)
                                         {
-                                            string thisFileName = fileName + "-" + fileCount;
-                                            JXTPosterTransform.Library.Methods.Client.PullJsonFromRGF.RGFJobBoardDataRoot currentQueue = DeepClone<JXTPosterTransform.Library.Methods.Client.PullJsonFromRGF.RGFJobBoardDataRoot>(rgfData);
-                                            currentQueue.jobBoards.jobboardlisting.upserted = currentQueue.jobBoards.jobboardlisting.upserted.Skip(count).Take(200).ToList();
-
-                                            response = rgfLogic.ProcessRGFModelToXML(currentQueue, thisFileName);
-
-                                            // Get the Credentials AND Pull the XML     AND     Post to JXT platform Webservice                            
-                                            bool thisPostSuccess = PostTransformationWithMappings(thisSetupItem, response.ResponseXML, thisFileName, dtStartTime);
-
-                                            if (!thisPostSuccess)
-                                                postSuccess = false;
-
-                                            count += currentQueue.jobBoards.jobboardlisting.upserted.Count();
-                                            fileCount++;
-                                        }
-
-                                        bool jobsArchiveSuccess = ArchiveRGFJobs(thisSetupItem, rgfData);
-
-                                        // Set the values - TODO move to a seperate function
-                                        if (postSuccess && jobsArchiveSuccess)
-                                        {
-                                            // update the timestamp
-                                            PT_ClientService clientService = new PT_ClientService();
-                                            ClientSetup thisSetupToBeUpdated = clientService.ClientSetupGetBySetupID(thisSetupItem.ClientSetupId);
-                                            if (thisSetupToBeUpdated != null)
-                                            {
-                                                //get setup credentials from json
-                                                ClientSetupModels.PullXmlFromSalesforceRGF thisSetupCredentials = jss.Deserialize<ClientSetupModels.PullXmlFromSalesforceRGF>(thisSetupToBeUpdated.ClientSetupTypeCredentials);
-                                                //assign new timestamp
-                                                thisSetupCredentials.Timestamp = nextScheduledTimestamp;
-                                                //serialize back to json again
-                                                string newSetupCredentials = jss.Serialize(thisSetupCredentials);
-                                                //update
-                                                clientService.ClientSetupSetupCredentialsUpdate(thisSetupItem.ClientSetupId, newSetupCredentials);
-                                            }
+                                            //get setup credentials from json
+                                            ClientSetupModels.PullXmlFromSalesforceRGF thisSetupCredentials = jss.Deserialize<ClientSetupModels.PullXmlFromSalesforceRGF>(thisSetupToBeUpdated.ClientSetupTypeCredentials);
+                                            //assign new timestamp
+                                            thisSetupCredentials.Timestamp = nextScheduledTimestamp;
+                                            //serialize back to json again
+                                            string newSetupCredentials = jss.Serialize(thisSetupCredentials);
+                                            //update
+                                            clientService.ClientSetupSetupCredentialsUpdate(thisSetupItem.ClientSetupId, newSetupCredentials);
                                         }
                                     }
-                                    postRequired = false;
-                                    break;
                                 }
-                            default:
+                                postRequired = false;
+                                #endregion
                                 break;
-                        }
-
-                        if (postRequired)
+                            }
+                        default:
+                            break;
+                    }
+                    _logger.InfoFormat("[DONE] Data retreival");
+                    _logger.DebugFormat("Post to JXT WebServices required: " + postRequired);
+                    if (postRequired)
+                    {
+                        #region Process Job Post Requests
+                        if (JobPostResponse == null)
                         {
-                            // Get the Credentials AND Pull the XML     AND     Post to JXT platform Webservice                            
-                            PostTransformationWithMappings(thisSetupItem, response.ResponseXML, fileName, dtStartTime);
+                            _logger.DebugFormat("No job posts data to be processed...");
+                            _logger.DebugFormat("-- Ignoring process");
                         }
                         else
                         {
-                            // Error display
-                            Console.WriteLine(response.strMessage);
+                            // Get the Credentials AND Pull the XML     AND     Post to JXT platform Webservice                            
+                            _logger.DebugFormat("[START] Post Job Post request to JXT WebServices");
+                            PostTransformationWithMappings(thisSetupItem, JobPostResponse.ResponseXML, fileName, dtStartTime);
+                            _logger.DebugFormat("[DONE] Post Job Post request to JXT WebServices");
                         }
+                        #endregion
+
+                        #region Process Job Archive Requests
+                        if (JobsToArchive == null || JobsToArchive.Count() == 0)
+                        {
+                            _logger.DebugFormat("No job archives data to be processed...");
+                            _logger.DebugFormat("-- Ignoring process");
+                        }
+                        else
+                        {
+                            // Get the Credentials AND Pull the XML     AND     Post to JXT platform Webservice                            
+                            _logger.DebugFormat("[START] Post Archive Request to JXT WebServices");
+                            ProcessArchiveJobs(thisSetupItem, JobsToArchive);
+                            _logger.DebugFormat("[DONE] Post Archive Request to JXT WebServices");
+                        }
+                        #endregion
+
+                    }
+                    else
+                    {
+                        // Error display
+                        Console.WriteLine(JobPostResponse.strMessage);
                     }
                 }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Error - " + ex.Message); // TODO
-                    Console.WriteLine("Error - " + ex.StackTrace); // TODO
-                    Console.WriteLine("Error - " + ex.InnerException); // TODO
-                }
-                // Save the Response Log
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error - " + ex.Message); // TODO
+                Console.WriteLine("Error - " + ex.StackTrace); // TODO
+                Console.WriteLine("Error - " + ex.InnerException); // TODO
+            }
+            // Save the Response Log
         }
 
         public bool PostTransformationWithMappings(GetAllClientSetupsToRun_Result clientSetup, string xml, string fileName, DateTime dtStartTime)
         {
-            #region Temp XML
-
-            /*
-            xml = @"
-<FastLanePlus UploaderID='20144' AgentID='' Version='1.1'>
-<Client ID='20144' MinJobs='0' MaxJobs='9999999'>
-<Job Reference='28777-1' TemplateID='3575' ScreenID=''>
-<Title><![CDATA[Leading Hand Carpenter 1]]></Title>
-<SearchTitle><![CDATA[Leading Hand Carpenter]]></SearchTitle>
-<Description><![CDATA[Competitive Rates and Opportunity for Career Progression!]]></Description>
-<AdDetails><![CDATA[<ul>
-	<li><span style='color:rgb(0, 0, 128)'><strong>Competitive Salary</strong></span></li>
-	<li><span style='color:rgb(0, 0, 128)'><strong>Friendly working team environment</strong></span></li>
-	<li><span style='color:rgb(0, 0, 128)'><strong>Opportunity for career progression</strong></span></li>
-</ul>
-
-<p><br />
-<span style='color:rgb(0, 0, 128)'>Stellar Recruitment are looking for ambitious, capable and energetic people with a good dose of common sense to join our team. We work hard to be the best, we give it our all and we take pride in what we do.<br />
-<br />
-We are actively seeking a <strong>Leading Hand Carpenter</strong> to join with our client to commence work on a new commercial project, with an immediate start. It is essential that applicants for this role have previous experience in the commercial sector, and a proven record of quality workmanship behind them.<br />
-<br />
-<strong>To be successful in this role you will have:</strong><br />
-- 5+ years industry experience<br />
-- Proven ability to manage a team onsite<br />
-- To be confident reading &amp; working from technical specifications &amp; construction plans<br />
-- Hold a current Site Safe Certificate<br />
-- A clean full drivers licence (minimum of class 1)<br />
-- Your own reliable transport in order to get yourself to and from site<br />
-- Excellent communication and interpersonal skills<br />
-- Able to provide your own hand and power tools<br />
-<br />
-Ideally we are looking for a highly health and safety aware, positive and hardworking attitude. We are prepared to wait for the right person for this role.<br />
-<br />
-To apply for this role or for further information please contact <strong>Nicky</strong> at Stellar Workforce.<br />
-<br />
-<strong>Nicky Sutherland<br />
-DDI: 03 974 2440<br />
-Cell phone: 021 224 1496<br />
-Email: Nicky.s@stellarworkforce.co.nz</strong></span><br />
-&nbsp;</p>
-]]></AdDetails>
-<ApplicationEmail>nicky.s@stellarworkforce.co.nz</ApplicationEmail>
-<CONTACTDETAILS><CLASSIFICATION><![CDATA[Nicky Sutherland]]></CLASSIFICATION></CONTACTDETAILS>
-<ApplicationURL><![CDATA[http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1248071&src=WE]]></ApplicationURL>
-<ResidentsOnly>Yes</ResidentsOnly>
-<Items>
-<Item Name='Jobtitle'><![CDATA[Leading Hand Carpenter]]></Item>
-<Item Name='Bullet1'><![CDATA[A]]></Item>
-<Item Name='Bullet2'><![CDATA[B]]></Item>
-<Item Name='Bullet3'><![CDATA[C]]></Item>
-</Items>
-<Listing MarketSegments='Main'>
-<Classification Name='Location'>Canterbury</Classification>
-<Classification Name='Area'>Christchurch</Classification>
-<Classification Name='Classification'>TradesServices</Classification>
-<Classification Name='SubClassification'>CarpentryCabinetMaking</Classification>
-<Classification Name='WorkType'>FullTime</Classification></Listing>
-<Salary Type='HourlyRate' Min='25' Max='34.99' AdditionalText='' />
-<StandOut IsStandOut='false' LogoID='' Bullet1='' Bullet2='' Bullet3='' />
-</Job>
-
-<Job Reference='28777-2' TemplateID='3575' ScreenID=''>
-<Title><![CDATA[Leading Hand Carpenter 2]]></Title>
-<SearchTitle><![CDATA[Leading Hand Carpenter]]></SearchTitle>
-<Description><![CDATA[Competitive Rates and Opportunity for Career Progression!]]></Description>
-<AdDetails><![CDATA[<ul>
-	<li><span style='color:rgb(0, 0, 128)'><strong>Competitive Salary</strong></span></li>
-	<li><span style='color:rgb(0, 0, 128)'><strong>Friendly working team environment</strong></span></li>
-	<li><span style='color:rgb(0, 0, 128)'><strong>Opportunity for career progression</strong></span></li>
-</ul>
-
-<p><br />
-<span style='color:rgb(0, 0, 128)'>Stellar Recruitment are looking for ambitious, capable and energetic people with a good dose of common sense to join our team. We work hard to be the best, we give it our all and we take pride in what we do.<br />
-<br />
-We are actively seeking a <strong>Leading Hand Carpenter</strong> to join with our client to commence work on a new commercial project, with an immediate start. It is essential that applicants for this role have previous experience in the commercial sector, and a proven record of quality workmanship behind them.<br />
-<br />
-<strong>To be successful in this role you will have:</strong><br />
-- 5+ years industry experience<br />
-- Proven ability to manage a team onsite<br />
-- To be confident reading &amp; working from technical specifications &amp; construction plans<br />
-- Hold a current Site Safe Certificate<br />
-- A clean full drivers licence (minimum of class 1)<br />
-- Your own reliable transport in order to get yourself to and from site<br />
-- Excellent communication and interpersonal skills<br />
-- Able to provide your own hand and power tools<br />
-<br />
-Ideally we are looking for a highly health and safety aware, positive and hardworking attitude. We are prepared to wait for the right person for this role.<br />
-<br />
-To apply for this role or for further information please contact <strong>Nicky</strong> at Stellar Workforce.<br />
-<br />
-<strong>Nicky Sutherland<br />
-DDI: 03 974 2440<br />
-Cell phone: 021 224 1496<br />
-Email: Nicky.s@stellarworkforce.co.nz</strong></span><br />
-&nbsp;</p>
-]]></AdDetails>
-<ApplicationEmail>nicky.s@stellarworkforce.co.nz</ApplicationEmail>
-<CONTACTDETAILS><CLASSIFICATION><![CDATA[Nicky Sutherland]]></CLASSIFICATION></CONTACTDETAILS>
-<ApplicationURL><![CDATA[http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1248071&src=WE]]></ApplicationURL>
-<ResidentsOnly>Yes</ResidentsOnly>
-<Items>
-<Item Name='Jobtitle'><![CDATA[Leading Hand Carpenter]]></Item>
-<Item Name='Bullet1'><![CDATA[A]]></Item>
-<Item Name='Bullet2'><![CDATA[B]]></Item>
-<Item Name='Bullet3'><![CDATA[C]]></Item>
-</Items>
-<Listing MarketSegments='Main'>
-<Classification Name='Location'>Canterbury</Classification>
-<Classification Name='Area'>Christchurch</Classification>
-<Classification Name='Classification'>TradesServices</Classification>
-<Classification Name='SubClassification'>CarpentryCabinetMaking</Classification>
-<Classification Name='WorkType'>FullTime</Classification></Listing>
-<Salary Type='HourlyRate' Min='25' Max='34.99' AdditionalText='' />
-<StandOut IsStandOut='false' LogoID='' Bullet1='' Bullet2='' Bullet3='' />
-</Job>
-
-<Job Reference='28777-3' TemplateID='3575' ScreenID=''>
-<Title><![CDATA[Leading Hand Carpenter 3]]></Title>
-<SearchTitle><![CDATA[Leading Hand Carpenter]]></SearchTitle>
-<Description><![CDATA[Competitive Rates and Opportunity for Career Progression!]]></Description>
-<AdDetails><![CDATA[<ul>
-	<li><span style='color:rgb(0, 0, 128)'><strong>Competitive Salary</strong></span></li>
-	<li><span style='color:rgb(0, 0, 128)'><strong>Friendly working team environment</strong></span></li>
-	<li><span style='color:rgb(0, 0, 128)'><strong>Opportunity for career progression</strong></span></li>
-</ul>
-
-<p><br />
-<span style='color:rgb(0, 0, 128)'>Stellar Recruitment are looking for ambitious, capable and energetic people with a good dose of common sense to join our team. We work hard to be the best, we give it our all and we take pride in what we do.<br />
-<br />
-We are actively seeking a <strong>Leading Hand Carpenter</strong> to join with our client to commence work on a new commercial project, with an immediate start. It is essential that applicants for this role have previous experience in the commercial sector, and a proven record of quality workmanship behind them.<br />
-<br />
-<strong>To be successful in this role you will have:</strong><br />
-- 5+ years industry experience<br />
-- Proven ability to manage a team onsite<br />
-- To be confident reading &amp; working from technical specifications &amp; construction plans<br />
-- Hold a current Site Safe Certificate<br />
-- A clean full drivers licence (minimum of class 1)<br />
-- Your own reliable transport in order to get yourself to and from site<br />
-- Excellent communication and interpersonal skills<br />
-- Able to provide your own hand and power tools<br />
-<br />
-Ideally we are looking for a highly health and safety aware, positive and hardworking attitude. We are prepared to wait for the right person for this role.<br />
-<br />
-To apply for this role or for further information please contact <strong>Nicky</strong> at Stellar Workforce.<br />
-<br />
-<strong>Nicky Sutherland<br />
-DDI: 03 974 2440<br />
-Cell phone: 021 224 1496<br />
-Email: Nicky.s@stellarworkforce.co.nz</strong></span><br />
-&nbsp;</p>
-]]></AdDetails>
-<ApplicationEmail>nicky.s@stellarworkforce.co.nz</ApplicationEmail>
-<CONTACTDETAILS><CLASSIFICATION><![CDATA[Nicky Sutherland]]></CLASSIFICATION></CONTACTDETAILS>
-<ApplicationURL><![CDATA[http://candidateportal.stellarrecruitment.com.au/adaptstellar/login/?jobref=1248071&src=WE]]></ApplicationURL>
-<ResidentsOnly>Yes</ResidentsOnly>
-<Items>
-<Item Name='Jobtitle'><![CDATA[Leading Hand Carpenter]]></Item>
-<Item Name='Bullet1'><![CDATA[A]]></Item>
-<Item Name='Bullet2'><![CDATA[B]]></Item>
-<Item Name='Bullet3'><![CDATA[C]]></Item>
-</Items>
-<Listing MarketSegments='Main'>
-<Classification Name='Location'>Canterbury</Classification>
-<Classification Name='Area'>Christchurch</Classification>
-<Classification Name='Classification'>TradesServices</Classification>
-<Classification Name='SubClassification'>CarpentryCabinetMaking</Classification>
-<Classification Name='WorkType'>FullTime</Classification></Listing>
-<Salary Type='HourlyRate' Min='25' Max='34.99' AdditionalText='' />
-<StandOut IsStandOut='false' LogoID='' Bullet1='' Bullet2='' Bullet3='' />
-</Job>
-</Client></FastLanePlus>
-";*/
-
-            #endregion
-
+            bool useJXTSiteMapping = clientSetup.UseJXTSiteMappings;
             bool blnSuccess = false;
 
+            _logger.InfoFormat("[START] Transforming XML");
+            _logger.DebugFormat("============\nOriginal XML:============\n" + xml);
             string TransformedXML = Utils.TransformXML(clientSetup.PosterTransformXSL, xml);
-
-            #region Temp transformed xml
-
-            /*TransformedXML = @"
-
-<JobPostRequest xmlns='http://schemas.servicestack.net/types'>
-<UserName>Organisation</UserName>
-<Password>Organisation123</Password>
-<AdvertiserId>8249</AdvertiserId>
-<ArchiveMissingJobs>true</ArchiveMissingJobs>
-<Listings>
-<JobListing>
-	<JobAdType>Normal</JobAdType>
-	<ReferenceNo>JO-1603-5197_145931830618774</ReferenceNo>
-	<JobTitle>Contract Product Manager</JobTitle>
-	<JobUrl>contract-product-manager</JobUrl>
-	<ShortDescription>Join this dynamic financial services organisation and utilise your extensive experience to help drive project delivery across the business.</ShortDescription>
-	<Bulletpoints>
-		<BulletPoint1>Senior Business Analyst position</BulletPoint1>
-		<BulletPoint2>Dynamic financial services organisation</BulletPoint2>
-		<BulletPoint3>Initial 4-month contract role</BulletPoint3>
-	</Bulletpoints>
-	<JobFullDescription><![CDATA[<p><b>Operational Excellence for Monash / Southeast University Partnership</b></p><p><b>Three year fixed-term appointment</b></p><p>Monash University is a world-class, research-intensive, global institution active on four continents. It is the first Australian University to be granted a licence to operate in China and has set up with Southeast University a Joint Graduate School and a Joint Research Institute in Suzhou.</p><p>Outstanding professional leadership will be vital to this higher education enterprise and to Monash University's ambition to raise its stature in China and to improve research and teaching excellence in Australia and China. The General Manager, operating in Suzhou, reports to the Pro Vice-Chancellor and the President of Monash Suzhou and will be expected to participate actively as a key senior member of Monash Suzhou by providing professional expertise on all operational matters. <br /><br />Fluent in written and spoken Mandarin and English, the successful candidate will have a strong general management background and an ability to deal with HR, budgetary, facilities and financial matters in a complex environment. Previous experience in and expertise of Chinese and Australian higher education operating environments will be highly desirable.<br /><br />If you feel you have the skills and experience to make this role a success, your application is encouraged.</p><h3><b>Enquiries</b></h3><p>Janie Fung, Project Manager - China, 03 990 24383</p><h3><b>Position Description</b></h3><p><el><img src='https://az29734.vo.msecnd.net/static/people/icons/icon_file_small.gif' alt='Download File'>&nbsp;<a href='https://secure.dc2.pageuppeople.com/apply/TransferRichTextFile.ashx?sData=Fwg6i4Eli-CvqEttJIIpKM_TBF8QaWpPuT8Df-ERmNbf-aWtPSTS6XBlqvykXGaYQgor794Nwwg%7e'>Mar PD - General Manager, Monash Suzhou Facility .pdf</a></el><br /></p><h3><b>Closing Date</b></h3><p><b></b></p><p>Sunday 10 April 2016, 11:55pm AEST</p>]]></JobFullDescription>
-	<ContactDetails>Emily Casey</ContactDetails>
-	<CompanyName />
-	<ConsultantID />
-	<PublicTransport>JO-1603-5197_145931830618774</PublicTransport>
-	<ResidentsOnly>false</ResidentsOnly>
-	<IsQualificationsRecognised>false</IsQualificationsRecognised>
-	<ShowLocationDetails>true</ShowLocationDetails>
-	<JobTemplateID>846</JobTemplateID>
-	<AdvertiserJobTemplateLogoID />
-	<Categories>
-		<Category>
-			<Classification>21</Classification>
-			<SubClassification>295</SubClassification>
-		</Category>
-	</Categories>
-	<ListingClassification>
-		<WorkType>4</WorkType>
-		<Sector>0</Sector>
-		<StreetAddress />
-		<Tags>0</Tags>
-		<Country>1</Country>
-		<Location>6</Location>
-		<Area>27</Area>
-	</ListingClassification>
-	<Salary>
-		<SalaryType>Annual</SalaryType>
-		<Min>0</Min>
-		<Max>0</Max>
-		<AdditionalText />
-		<ShowSalaryDetails>true</ShowSalaryDetails>
-	</Salary>
-	<ApplicationMethod>
-		<JobApplicationType>Default</JobApplicationType>
-		<ApplicationUrl />
-		<ApplicationEmail>emilyc.18774.7619@globalcareerlink.aplitrak.com</ApplicationEmail>
-	</ApplicationMethod>
-	<Referral>
-		<HasReferralFee>false</HasReferralFee>
-		<Amount>0</Amount>
-		<ReferralUrl />
-	</Referral>
-</JobListing>
-</Listings>
-</JobPostRequest>
-";
-            */
-            #endregion
+            _logger.DebugFormat("============\nTransformed XML:============\n" + TransformedXML);
+            _logger.InfoFormat("[DONE] Transforming XML");
 
             // Do the mapping 
-            var serializer = new XmlSerializer(typeof(JobPostRequest));
-            using (var reader = new StringReader(TransformedXML))
+            _logger.InfoFormat("Use JXT Site Mappings: " + useJXTSiteMapping);
+            if (useJXTSiteMapping)
             {
-                try
+                #region use JXT platform and directly mappings
+                _logger.InfoFormat("[START] Requesting mapping data from JXT site");
+                _logger.InfoFormat("\t- AdvertiserUsername(" + clientSetup.AdvertiserUsername + "), AdvertiserId(" + clientSetup.AdvertiserId + ")");
+                DefaultResponse defaults = AvailableDataJXTPlatformGet(clientSetup.AdvertiserUsername, clientSetup.AdvertiserPassword, clientSetup.AdvertiserId.ToString());
+                _logger.InfoFormat("[DONE] Requesting mapping data from JXT site");
+
+                var serializer = new XmlSerializer(typeof(JobPostRequest));
+                using (var reader = new StringReader(TransformedXML))
                 {
-                    JobPostRequest jobListings = (JobPostRequest)serializer.Deserialize(reader);
-                    if (jobListings != null)
+                    try
                     {
-                        jobListings.AdvertiserId = clientSetup.AdvertiserId.Value;
-                        jobListings.UserName = clientSetup.AdvertiserUsername;
-                        jobListings.Password = clientSetup.AdvertiserPassword;
-                        jobListings.ArchiveMissingJobs = clientSetup.ArchiveMissingJobs;
-
-                        if (enableShortDescriptionPullFromFullDescription)
+                        JobPostRequest jobListings = (JobPostRequest)serializer.Deserialize(reader);
+                        if (jobListings != null)
                         {
-                            int trimLength = 1000; //shortDescription max length is 1000
-                            foreach (JobListing job in jobListings.Listings.Where(c=> string.IsNullOrEmpty(c.ShortDescription) ))
+                            jobListings.AdvertiserId = clientSetup.AdvertiserId.Value;
+                            jobListings.UserName = clientSetup.AdvertiserUsername;
+                            jobListings.Password = clientSetup.AdvertiserPassword;
+                            jobListings.ArchiveMissingJobs = clientSetup.ArchiveMissingJobs;
+
+                            if (enableShortDescriptionPullFromFullDescription)
                             {
-                                if (!string.IsNullOrEmpty(job.JobFullDescription))
+                                int trimLength = 1000; //shortDescription max length is 1000
+                                foreach (JobListing job in jobListings.Listings.Where(c => string.IsNullOrEmpty(c.ShortDescription)))
                                 {
-                                    string strContent = Common.Utils.StripHTML(job.JobFullDescription);
-                                    if (strContent.Length > trimLength)
+                                    if (!string.IsNullOrEmpty(job.JobFullDescription))
                                     {
-                                        strContent = strContent.Substring(0, trimLength - 3) + "...";
+                                        string strContent = Common.Utils.StripHTML(job.JobFullDescription);
+                                        if (strContent.Length > trimLength)
+                                        {
+                                            strContent = strContent.Substring(0, trimLength - 3) + "...";
+                                        }
+                                        job.ShortDescription = strContent;
                                     }
-                                    job.ShortDescription = strContent;
-                                }
-                            }
-                        }
-
-                        // Mappings
-                        MappingsLogic MappingsLogic = new MappingsLogic();
-                        string errorMsg = string.Empty;
-                        MappingsXMLModel MappingsXMLModel = MappingsLogic.ClientMappingsGet(clientSetup.ClientId, clientSetup.ClientSetupId, out errorMsg);
-                        if (!string.IsNullOrWhiteSpace(errorMsg))
-                        {
-                            Console.WriteLine(errorMsg);
-                            return false;
-                        }
-
-                        foreach (var item in MappingsXMLModel.CLAMaps)
-                        {
-
-                            if (!string.IsNullOrWhiteSpace(item.ClientCountryID) && !string.IsNullOrWhiteSpace(item.ClientLocationID) && !string.IsNullOrWhiteSpace(item.ClientAreaID))
-                            {
-                                foreach (var job in jobListings.Listings)
-                                {
-
-                                    if (job.ListingClassification.Country == item.ClientCountryID
-                                                                    && job.ListingClassification.Location == item.ClientLocationID
-                                                                    && job.ListingClassification.Area == item.ClientAreaID)
-                                    {
-                                        job.ListingClassification.Country = item.MapToCountryID.ToString();
-                                        job.ListingClassification.Location = item.MapToLocationID.ToString();
-                                        job.ListingClassification.Area = item.MapToAreaID.ToString();
-                                    }
-
-                                }
-                                /*
-                                jobListings.Listings.Where(w => w.ListingClassification.Country == item.ClientCountryID
-                                                                && w.ListingClassification.Location == item.ClientLocationID
-                                                                && w.ListingClassification.Area == item.ClientAreaID).ToList()
-                                                        .ForEach(i => i.ListingClassification.Country = item.MapToCountryID.ToString());
-
-                                jobListings.Listings.Where(w => w.ListingClassification.Country == item.ClientCountryID
-                                                                && w.ListingClassification.Location == item.ClientLocationID
-                                                                && w.ListingClassification.Area == item.ClientAreaID).ToList()
-                                                        .ForEach(i => i.ListingClassification.Location = item.MapToLocationID.ToString());
-
-                                jobListings.Listings.Where(w => w.ListingClassification.Country == item.ClientCountryID
-                                                                && w.ListingClassification.Location == item.ClientLocationID
-                                                                && w.ListingClassification.Area == item.ClientAreaID).ToList()
-                                                         .ForEach(i => i.ListingClassification.Area = item.MapToAreaID.ToString());*/
-                                //.ForEach(i => i.ListingClassification.Country = item.MapToCountryID.ToString());
-                            }
-                            else if (!string.IsNullOrWhiteSpace(item.ClientLocationID) && !string.IsNullOrWhiteSpace(item.ClientAreaID))
-                            {
-                                foreach (var job in jobListings.Listings)
-                                {
-
-                                    if (job.ListingClassification.Location == item.ClientLocationID
-                                                                    && job.ListingClassification.Area == item.ClientAreaID)
-                                    {
-                                        job.ListingClassification.Country = item.MapToCountryID.ToString();
-                                        job.ListingClassification.Location = item.MapToLocationID.ToString();
-                                        job.ListingClassification.Area = item.MapToAreaID.ToString();
-                                    }
-
-                                }
-                                /*
-                                jobListings.Listings.Where(w => w.ListingClassification.Location == item.ClientLocationID
-                                                                && w.ListingClassification.Area == item.ClientAreaID).ToList()
-                                                    .ForEach(i => i.ListingClassification.Country = item.MapToCountryID.ToString());
-
-                                jobListings.Listings.Where(w => w.ListingClassification.Location == item.ClientLocationID
-                                                                && w.ListingClassification.Area == item.ClientAreaID).ToList()
-                                                    .ForEach(i => i.ListingClassification.Location = item.MapToLocationID.ToString());
-
-                                jobListings.Listings.Where(w => w.ListingClassification.Location == item.ClientLocationID
-                                                                && w.ListingClassification.Area == item.ClientAreaID).ToList()
-                                                    .ForEach(i => i.ListingClassification.Area = item.MapToAreaID.ToString());*/
-                            }
-                            else if (!string.IsNullOrWhiteSpace(item.ClientCountryID) && !string.IsNullOrWhiteSpace(item.ClientLocationID))
-                            {
-                                foreach (var job in jobListings.Listings)
-                                {
-
-                                    if (job.ListingClassification.Location == item.ClientLocationID
-                                                                    && job.ListingClassification.Country == item.ClientCountryID)
-                                    {
-                                        job.ListingClassification.Country = item.MapToCountryID.ToString();
-                                        job.ListingClassification.Location = item.MapToLocationID.ToString();
-                                        job.ListingClassification.Area = item.MapToAreaID.ToString();
-                                    }
-
-                                }
-
-                            }
-                            else if (!string.IsNullOrWhiteSpace(item.ClientAreaID))
-                            {
-                                foreach (var job in jobListings.Listings)
-                                {
-
-                                    if (job.ListingClassification.Area == item.ClientAreaID)
-                                    {
-                                        job.ListingClassification.Country = item.MapToCountryID.ToString();
-                                        job.ListingClassification.Location = item.MapToLocationID.ToString();
-                                        job.ListingClassification.Area = item.MapToAreaID.ToString();
-                                    }
-
-                                }
-                                /*
-                                jobListings.Listings.Where(w => w.ListingClassification.Area == item.ClientAreaID).ToList()
-                                                    .ForEach(i => i.ListingClassification.Country = item.MapToCountryID.ToString());
-                                jobListings.Listings.Where(w => w.ListingClassification.Area == item.ClientAreaID).ToList()
-                                                     .ForEach(i => i.ListingClassification.Location = item.MapToLocationID.ToString());
-                                jobListings.Listings.Where(w => w.ListingClassification.Area == item.ClientAreaID).ToList()
-                                                    .ForEach(i => i.ListingClassification.Area = item.MapToAreaID.ToString());*/
-                                //.ForEach(i => i.ListingClassification.Country = item.MapToCountryID.ToString());
-                            }
-                            else if (!string.IsNullOrWhiteSpace(item.ClientLocationID))
-                            {
-                                foreach (var job in jobListings.Listings)
-                                {
-
-                                    if (job.ListingClassification.Location == item.ClientLocationID)
-                                    {
-                                        job.ListingClassification.Country = item.MapToCountryID.ToString();
-                                        job.ListingClassification.Location = item.MapToLocationID.ToString();
-                                        job.ListingClassification.Area = item.MapToAreaID.ToString();
-                                    }
-
-                                }
-                            }
-                            else if (!string.IsNullOrWhiteSpace(item.ClientCountryID))
-                            {
-                                foreach (var job in jobListings.Listings)
-                                {
-
-                                    if (job.ListingClassification.Country == item.ClientCountryID)
-                                    {
-                                        job.ListingClassification.Country = item.MapToCountryID.ToString();
-                                        job.ListingClassification.Location = item.MapToLocationID.ToString();
-                                        job.ListingClassification.Area = item.MapToAreaID.ToString();
-                                    }
-
                                 }
                             }
 
-                        }
-                        if (MappingsXMLModel.JobTemplateLogoMaps != null)
-                        {
-                            foreach (var item in MappingsXMLModel.JobTemplateLogoMaps)
+                            _logger.InfoFormat("[START] Process mappings with JXT site mapping data");
+                            // Mappings
+                            MappingsLogic MappingsLogic = new MappingsLogic();
+                            foreach (JobListing job in jobListings.Listings)
                             {
-                                jobListings.Listings.Where(w => w.AdvertiserJobTemplateLogoID == item.ClientJobTemplateLogoID).ToList()
-                                                        .ForEach(i => i.AdvertiserJobTemplateLogoID = item.MapToJobTemplateLogoID.ToString());
-                            }
-                        }
+                                _logger.DebugFormat("JobListing - ReferenceNo({0})", job.ReferenceNo);
 
-                        /*
-                        // Default mappings
-                        JobTemplateMap jobTemplateDefaultMapping = MappingsXMLModel.JobTemplateMaps.Where(s => s.isDefaultSetting == true).FirstOrDefault();
-                        if (jobTemplateDefaultMapping != null)
-                        {
-                            jobListings.Listings.Where(w => w.JobTemplateID.Contains != item.ClientJobTemplateID).ToList()
-                                                .ForEach(i => i.JobTemplateID = item.MapToJobTemplateID.ToString());
-                        }
-                        */
+                                #region CLA Maps
+                                DefaultList.CountryLocationArea matchingLocationArea = defaults.DefaultList.CountryLocationAreas.Where(c =>
+                                                    c.AreaName == job.ListingClassification.Area
+                                                    && c.LocationName == job.ListingClassification.Location
+                                                    && c.CountryName == job.ListingClassification.Country).FirstOrDefault();
 
-                        if (MappingsXMLModel.JobTemplateMaps != null)
-                        {
-                            foreach (var item in MappingsXMLModel.JobTemplateMaps)
-                            {
+                                if (matchingLocationArea != null)
+                                {
+                                    job.ListingClassification.Country = matchingLocationArea.CountryID;
+                                    job.ListingClassification.Location = matchingLocationArea.LocationID;
+                                    job.ListingClassification.Area = matchingLocationArea.AreaID;
+                                }
+                                #endregion
 
-                                jobListings.Listings.Where(w => w.JobTemplateID == item.ClientJobTemplateID).ToList()
-                                                        .ForEach(i => i.JobTemplateID = item.MapToJobTemplateID.ToString());
-                            }
-                        }
-                        foreach (var item in MappingsXMLModel.ProfRoleMaps)
-                        {
-                            // Need ProfessionID
-                            /*foreach (var item in jobListings.Listings)
-                            {
-                                
-                            }*/
-                            /*
-                            jobListings.Listings.Where(w => w.ListingClassification.Country == item.ClientCountryID
-                                                            && w.ListingClassification.Location == item.ClientLocationID
-                                                            && w.ListingClassification.Area == item.ClientAreaID).ToList()
-                                                    .Select(c => { c.ListingClassification.Country = item.MapToCountryID.ToString(); return c; })
-                                                    .Select(c => { c.ListingClassification.Location = item.MapToLocationID.ToString(); return c; })
-                                                    .Select(c => { c.ListingClassification.Area = item.MapToAreaID.ToString(); return c; });*/
+                                #region Job Template Logo
 
+                                DefaultList.AdvertiserJobTemplateLogo matchingJobTemplateLogo = defaults.DefaultList.AdvertiserJobTemplateLogos.Where(c =>
+                                                    c.AdvertiserJobTemplateLogoID == job.AdvertiserJobTemplateLogoID).FirstOrDefault();
 
+                                if (matchingJobTemplateLogo != null)
+                                {
+                                    job.AdvertiserJobTemplateLogoID = matchingJobTemplateLogo.AdvertiserJobTemplateLogoID;
+                                }
 
-                            foreach (var job in jobListings.Listings)
-                            {
+                                #endregion
+
+                                #region Job Template
+
+                                DefaultList.JobTemplate matchingJobTemplate = defaults.DefaultList.JobTemplates.Where(c =>
+                                                    c.JobTemplateID == job.JobTemplateID).FirstOrDefault();
+
+                                if (matchingJobTemplateLogo != null)
+                                {
+                                    job.JobTemplateID = matchingJobTemplate.JobTemplateID;
+                                }
+
+                                #endregion
+
+                                #region Prof Role match
+
                                 if (job.Categories != null)
                                 {
                                     for (int i = 0; i < job.Categories.Count; i++)
                                     {
-                                        if (!string.IsNullOrWhiteSpace(job.Categories[i].Classification) &&
-                                            !string.IsNullOrWhiteSpace(job.Categories[i].SubClassification) &&
-                                            job.Categories[i].Classification == item.ClientProfessionID
-                                                                && job.Categories[i].SubClassification == item.ClientRoleID)
+                                        Category thisCate = job.Categories[i];
+                                        DefaultList.ProfessionRole matchingProfRole = defaults.DefaultList.ProfessionRoles.Where(c =>
+                                                                            c.ProfessionName == thisCate.Classification
+                                                                            && c.RoleName == thisCate.SubClassification).FirstOrDefault();
+
+                                        if (matchingProfRole != null)
                                         {
-                                            job.Categories[i].Classification = item.MapToProfessionID.ToString();
-                                            job.Categories[i].SubClassification = item.MapToRoleID.ToString();
+                                            thisCate.Classification = matchingProfRole.ProfessionID;
+                                            thisCate.SubClassification = matchingProfRole.RoleID;
                                         }
-                                        else if (!string.IsNullOrWhiteSpace(job.Categories[i].Classification) &&
-                                            job.Categories[i].Classification == item.ClientProfessionID)
+                                    }
+                                }
+
+                                #endregion
+
+                                #region Work Type match
+
+                                DefaultList.WorkType matchingWorkType = defaults.DefaultList.WorkTypes.Where(c =>
+                                                                            c.WorkTypeName == job.ListingClassification.WorkType).FirstOrDefault();
+
+                                if (matchingWorkType != null)
+                                {
+                                    job.ListingClassification.WorkType = matchingWorkType.WorkTypeID;
+                                }
+
+                                #endregion
+
+                                #region Salary Type match
+
+                                //Salary types are not available in the webservice default request
+                                //therefore no mathcing can be done
+
+                                #endregion
+                            }
+                            _logger.InfoFormat("[DONE] Process mappings with JXT site mapping data");
+
+
+                            _logger.DebugFormat("[START] Serializing processed xml");
+                            serializer = new XmlSerializer(typeof(JobPostRequest));
+                            using (Utf8StringWriter sww = new Utf8StringWriter())
+                            using (XmlWriter writer = XmlWriter.Create(sww))
+                            {
+                                serializer.Serialize(writer, jobListings); //, ns
+
+                                TransformedXML = sww.ToString(); // Your XML
+                            }
+                            _logger.DebugFormat("[DONE] Serializing processed xml");
+
+                            // Save the transformed XML
+                            System.IO.File.WriteAllText(ConfigurationManager.AppSettings["FTPTempStorage"] + fileName + "_Request.xml", TransformedXML);
+
+                            string jobResponse = string.Empty;
+
+                            // Only post when they are jobs - if not don't post.
+                            if (jobListings != null && jobListings.Listings != null && jobListings.Listings.Count > 0)
+                            {
+                                _logger.InfoFormat("[START] Posting to JXT WebServices @ {0}", ConfigurationManager.AppSettings["WebserviceURL"]);
+                                jobResponse = Process(TransformedXML, ConfigurationManager.AppSettings["WebserviceURL"]);
+                                _logger.InfoFormat("[DONE] Posting to JXT WebServices @ {0}", ConfigurationManager.AppSettings["WebserviceURL"]);
+                            }
+                            else
+                            {
+                                _logger.InfoFormat("No jobs to post to JXT WebServices");
+                                jobResponse = "No jobs to post";
+                            }
+
+                            // Save the response XML
+                            System.IO.File.WriteAllText(ConfigurationManager.AppSettings["FTPTempStorage"] + fileName + "_Response.xml", jobResponse);
+
+                            blnSuccess = true;
+
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.InfoFormat("[ERROR] Exception");
+                        _logger.Debug(ex);
+
+                        Console.WriteLine("Error - " + ex.Message); // TODO
+                        Console.WriteLine("Error - " + ex.StackTrace); // TODO
+                        Console.WriteLine("Error - " + ex.InnerException); // TODO
+                    }
+                }
+
+                #endregion
+            }
+            else
+            {
+                #region Use JIP defined Mappings
+                _logger.InfoFormat("[START] Process mappings with JIP defined mappings");
+
+                var serializer = new XmlSerializer(typeof(JobPostRequest));
+                using (var reader = new StringReader(TransformedXML))
+                {
+                    try
+                    {
+                        JobPostRequest jobListings = (JobPostRequest)serializer.Deserialize(reader);
+                        if (jobListings != null)
+                        {
+                            jobListings.AdvertiserId = clientSetup.AdvertiserId.Value;
+                            jobListings.UserName = clientSetup.AdvertiserUsername;
+                            jobListings.Password = clientSetup.AdvertiserPassword;
+                            jobListings.ArchiveMissingJobs = clientSetup.ArchiveMissingJobs;
+
+                            if (enableShortDescriptionPullFromFullDescription)
+                            {
+                                int trimLength = 1000; //shortDescription max length is 1000
+                                foreach (JobListing job in jobListings.Listings.Where(c => string.IsNullOrEmpty(c.ShortDescription)))
+                                {
+                                    if (!string.IsNullOrEmpty(job.JobFullDescription))
+                                    {
+                                        string strContent = Common.Utils.StripHTML(job.JobFullDescription);
+                                        if (strContent.Length > trimLength)
                                         {
-                                            job.Categories[i].Classification = item.MapToProfessionID.ToString();
-                                            job.Categories[i].SubClassification = item.MapToRoleID.ToString();
+                                            strContent = strContent.Substring(0, trimLength - 3) + "...";
                                         }
-                                        else if (!string.IsNullOrWhiteSpace(job.Categories[i].SubClassification) &&
-                                                job.Categories[i].SubClassification == item.ClientRoleID)
+                                        job.ShortDescription = strContent;
+                                    }
+                                }
+                            }
+
+                            // Mappings
+                            MappingsLogic MappingsLogic = new MappingsLogic();
+                            string errorMsg = string.Empty;
+                            MappingsXMLModel MappingsXMLModel = MappingsLogic.ClientMappingsGet(clientSetup.ClientId, clientSetup.ClientSetupId, out errorMsg);
+                            if (!string.IsNullOrWhiteSpace(errorMsg))
+                            {
+                                Console.WriteLine(errorMsg);
+                                return false;
+                            }
+
+                            foreach (var item in MappingsXMLModel.CLAMaps)
+                            {
+
+                                if (!string.IsNullOrWhiteSpace(item.ClientCountryID) && !string.IsNullOrWhiteSpace(item.ClientLocationID) && !string.IsNullOrWhiteSpace(item.ClientAreaID))
+                                {
+                                    foreach (var job in jobListings.Listings)
+                                    {
+
+                                        if (job.ListingClassification.Country == item.ClientCountryID
+                                                                        && job.ListingClassification.Location == item.ClientLocationID
+                                                                        && job.ListingClassification.Area == item.ClientAreaID)
                                         {
-                                            job.Categories[i].Classification = item.MapToProfessionID.ToString();
-                                            job.Categories[i].SubClassification = item.MapToRoleID.ToString();
+                                            job.ListingClassification.Country = item.MapToCountryID.ToString();
+                                            job.ListingClassification.Location = item.MapToLocationID.ToString();
+                                            job.ListingClassification.Area = item.MapToAreaID.ToString();
                                         }
+
+                                    }
+                                    /*
+                                    jobListings.Listings.Where(w => w.ListingClassification.Country == item.ClientCountryID
+                                                                    && w.ListingClassification.Location == item.ClientLocationID
+                                                                    && w.ListingClassification.Area == item.ClientAreaID).ToList()
+                                                            .ForEach(i => i.ListingClassification.Country = item.MapToCountryID.ToString());
+
+                                    jobListings.Listings.Where(w => w.ListingClassification.Country == item.ClientCountryID
+                                                                    && w.ListingClassification.Location == item.ClientLocationID
+                                                                    && w.ListingClassification.Area == item.ClientAreaID).ToList()
+                                                            .ForEach(i => i.ListingClassification.Location = item.MapToLocationID.ToString());
+
+                                    jobListings.Listings.Where(w => w.ListingClassification.Country == item.ClientCountryID
+                                                                    && w.ListingClassification.Location == item.ClientLocationID
+                                                                    && w.ListingClassification.Area == item.ClientAreaID).ToList()
+                                                             .ForEach(i => i.ListingClassification.Area = item.MapToAreaID.ToString());*/
+                                    //.ForEach(i => i.ListingClassification.Country = item.MapToCountryID.ToString());
+                                }
+                                else if (!string.IsNullOrWhiteSpace(item.ClientLocationID) && !string.IsNullOrWhiteSpace(item.ClientAreaID))
+                                {
+                                    foreach (var job in jobListings.Listings)
+                                    {
+
+                                        if (job.ListingClassification.Location == item.ClientLocationID
+                                                                        && job.ListingClassification.Area == item.ClientAreaID)
+                                        {
+                                            job.ListingClassification.Country = item.MapToCountryID.ToString();
+                                            job.ListingClassification.Location = item.MapToLocationID.ToString();
+                                            job.ListingClassification.Area = item.MapToAreaID.ToString();
+                                        }
+
+                                    }
+                                    /*
+                                    jobListings.Listings.Where(w => w.ListingClassification.Location == item.ClientLocationID
+                                                                    && w.ListingClassification.Area == item.ClientAreaID).ToList()
+                                                        .ForEach(i => i.ListingClassification.Country = item.MapToCountryID.ToString());
+
+                                    jobListings.Listings.Where(w => w.ListingClassification.Location == item.ClientLocationID
+                                                                    && w.ListingClassification.Area == item.ClientAreaID).ToList()
+                                                        .ForEach(i => i.ListingClassification.Location = item.MapToLocationID.ToString());
+
+                                    jobListings.Listings.Where(w => w.ListingClassification.Location == item.ClientLocationID
+                                                                    && w.ListingClassification.Area == item.ClientAreaID).ToList()
+                                                        .ForEach(i => i.ListingClassification.Area = item.MapToAreaID.ToString());*/
+                                }
+                                else if (!string.IsNullOrWhiteSpace(item.ClientCountryID) && !string.IsNullOrWhiteSpace(item.ClientLocationID))
+                                {
+                                    foreach (var job in jobListings.Listings)
+                                    {
+
+                                        if (job.ListingClassification.Location == item.ClientLocationID
+                                                                        && job.ListingClassification.Country == item.ClientCountryID)
+                                        {
+                                            job.ListingClassification.Country = item.MapToCountryID.ToString();
+                                            job.ListingClassification.Location = item.MapToLocationID.ToString();
+                                            job.ListingClassification.Area = item.MapToAreaID.ToString();
+                                        }
+
                                     }
 
                                 }
+                                else if (!string.IsNullOrWhiteSpace(item.ClientAreaID))
+                                {
+                                    foreach (var job in jobListings.Listings)
+                                    {
 
-                                /*
-                                job.Categories.Where(w => w.Classification == item.ClientProfessionID
-                                                                && w.SubClassification == item.ClientRoleID).ToList()
-                                                    .ForEach(i => i.Classification = item.MapToProfessionID.ToString());
+                                        if (job.ListingClassification.Area == item.ClientAreaID)
+                                        {
+                                            job.ListingClassification.Country = item.MapToCountryID.ToString();
+                                            job.ListingClassification.Location = item.MapToLocationID.ToString();
+                                            job.ListingClassification.Area = item.MapToAreaID.ToString();
+                                        }
 
-                                job.Categories.Where(w => w.Classification == item.ClientProfessionID
-                                                                && w.SubClassification == item.ClientRoleID).ToList()
-                                                    .ForEach(i => i.SubClassification = item.MapToRoleID.ToString());*/
+                                    }
+                                    /*
+                                    jobListings.Listings.Where(w => w.ListingClassification.Area == item.ClientAreaID).ToList()
+                                                        .ForEach(i => i.ListingClassification.Country = item.MapToCountryID.ToString());
+                                    jobListings.Listings.Where(w => w.ListingClassification.Area == item.ClientAreaID).ToList()
+                                                         .ForEach(i => i.ListingClassification.Location = item.MapToLocationID.ToString());
+                                    jobListings.Listings.Where(w => w.ListingClassification.Area == item.ClientAreaID).ToList()
+                                                        .ForEach(i => i.ListingClassification.Area = item.MapToAreaID.ToString());*/
+                                    //.ForEach(i => i.ListingClassification.Country = item.MapToCountryID.ToString());
+                                }
+                                else if (!string.IsNullOrWhiteSpace(item.ClientLocationID))
+                                {
+                                    foreach (var job in jobListings.Listings)
+                                    {
+
+                                        if (job.ListingClassification.Location == item.ClientLocationID)
+                                        {
+                                            job.ListingClassification.Country = item.MapToCountryID.ToString();
+                                            job.ListingClassification.Location = item.MapToLocationID.ToString();
+                                            job.ListingClassification.Area = item.MapToAreaID.ToString();
+                                        }
+
+                                    }
+                                }
+                                else if (!string.IsNullOrWhiteSpace(item.ClientCountryID))
+                                {
+                                    foreach (var job in jobListings.Listings)
+                                    {
+
+                                        if (job.ListingClassification.Country == item.ClientCountryID)
+                                        {
+                                            job.ListingClassification.Country = item.MapToCountryID.ToString();
+                                            job.ListingClassification.Location = item.MapToLocationID.ToString();
+                                            job.ListingClassification.Area = item.MapToAreaID.ToString();
+                                        }
+
+                                    }
+                                }
+
                             }
-                        }
-                        foreach (var item in MappingsXMLModel.WorkTypeMaps)
-                        {
-                            jobListings.Listings.Where(w => w.ListingClassification.WorkType == item.ClientWorkTypeID).ToList()
-                                                    .ForEach(i => i.ListingClassification.WorkType = item.MapToWorkTypeID.ToString());
+                            if (MappingsXMLModel.JobTemplateLogoMaps != null)
+                            {
+                                foreach (var item in MappingsXMLModel.JobTemplateLogoMaps)
+                                {
+                                    jobListings.Listings.Where(w => w.AdvertiserJobTemplateLogoID == item.ClientJobTemplateLogoID).ToList()
+                                                            .ForEach(i => i.AdvertiserJobTemplateLogoID = item.MapToJobTemplateLogoID.ToString());
+                                }
+                            }
+
+                            /*
+                            // Default mappings
+                            JobTemplateMap jobTemplateDefaultMapping = MappingsXMLModel.JobTemplateMaps.Where(s => s.isDefaultSetting == true).FirstOrDefault();
+                            if (jobTemplateDefaultMapping != null)
+                            {
+                                jobListings.Listings.Where(w => w.JobTemplateID.Contains != item.ClientJobTemplateID).ToList()
+                                                    .ForEach(i => i.JobTemplateID = item.MapToJobTemplateID.ToString());
+                            }
+                            */
+
+                            if (MappingsXMLModel.JobTemplateMaps != null)
+                            {
+                                foreach (var item in MappingsXMLModel.JobTemplateMaps)
+                                {
+
+                                    jobListings.Listings.Where(w => w.JobTemplateID == item.ClientJobTemplateID).ToList()
+                                                            .ForEach(i => i.JobTemplateID = item.MapToJobTemplateID.ToString());
+                                }
+                            }
+                            foreach (var item in MappingsXMLModel.ProfRoleMaps)
+                            {
+                                // Need ProfessionID
+                                /*foreach (var item in jobListings.Listings)
+                                {
+
+                                }*/
+                                /*
+                                jobListings.Listings.Where(w => w.ListingClassification.Country == item.ClientCountryID
+                                                                && w.ListingClassification.Location == item.ClientLocationID
+                                                                && w.ListingClassification.Area == item.ClientAreaID).ToList()
+                                                        .Select(c => { c.ListingClassification.Country = item.MapToCountryID.ToString(); return c; })
+                                                        .Select(c => { c.ListingClassification.Location = item.MapToLocationID.ToString(); return c; })
+                                                        .Select(c => { c.ListingClassification.Area = item.MapToAreaID.ToString(); return c; });*/
+
+
+
+                                foreach (var job in jobListings.Listings)
+                                {
+                                    if (job.Categories != null)
+                                    {
+                                        for (int i = 0; i < job.Categories.Count; i++)
+                                        {
+                                            if (!string.IsNullOrWhiteSpace(job.Categories[i].Classification) &&
+                                                !string.IsNullOrWhiteSpace(job.Categories[i].SubClassification) &&
+                                                job.Categories[i].Classification == item.ClientProfessionID
+                                                                    && job.Categories[i].SubClassification == item.ClientRoleID)
+                                            {
+                                                job.Categories[i].Classification = item.MapToProfessionID.ToString();
+                                                job.Categories[i].SubClassification = item.MapToRoleID.ToString();
+                                            }
+                                            else if (!string.IsNullOrWhiteSpace(job.Categories[i].Classification) &&
+                                                job.Categories[i].Classification == item.ClientProfessionID)
+                                            {
+                                                job.Categories[i].Classification = item.MapToProfessionID.ToString();
+                                                job.Categories[i].SubClassification = item.MapToRoleID.ToString();
+                                            }
+                                            else if (!string.IsNullOrWhiteSpace(job.Categories[i].SubClassification) &&
+                                                    job.Categories[i].SubClassification == item.ClientRoleID)
+                                            {
+                                                job.Categories[i].Classification = item.MapToProfessionID.ToString();
+                                                job.Categories[i].SubClassification = item.MapToRoleID.ToString();
+                                            }
+                                        }
+
+                                    }
+
+                                    /*
+                                    job.Categories.Where(w => w.Classification == item.ClientProfessionID
+                                                                    && w.SubClassification == item.ClientRoleID).ToList()
+                                                        .ForEach(i => i.Classification = item.MapToProfessionID.ToString());
+
+                                    job.Categories.Where(w => w.Classification == item.ClientProfessionID
+                                                                    && w.SubClassification == item.ClientRoleID).ToList()
+                                                        .ForEach(i => i.SubClassification = item.MapToRoleID.ToString());*/
+                                }
+                            }
+                            foreach (var item in MappingsXMLModel.WorkTypeMaps)
+                            {
+                                jobListings.Listings.Where(w => w.ListingClassification.WorkType == item.ClientWorkTypeID).ToList()
+                                                        .ForEach(i => i.ListingClassification.WorkType = item.MapToWorkTypeID.ToString());
+
+                            }
+
+                            //foreach (var job in jobListings.Listings)
+                            //{
+                            //    job.ListingClassification.Country = "265";
+                            //    job.ListingClassification.Location = "465";
+                            //    job.ListingClassification.Area = "2235";
+
+                            //    job.Categories.First().Classification = "3";
+                            //    job.Categories.First().SubClassification = "1";
+                            //}
+
+                            // TODO Salary Types
+
+                            // TODO LOW - Job Ad Type
+                            // TODO LOW - Job application Type
+
+                            serializer = new XmlSerializer(typeof(JobPostRequest));
+                            //string transformedXML = string.Empty;
+
+                            using (Utf8StringWriter sww = new Utf8StringWriter())
+                            using (XmlWriter writer = XmlWriter.Create(sww))
+                            {
+                                serializer.Serialize(writer, jobListings); //, ns
+
+                                TransformedXML = sww.ToString(); // Your XML
+                            }
+
+                            // Save the transformed XML
+                            System.IO.File.WriteAllText(ConfigurationManager.AppSettings["FTPTempStorage"] + fileName + "_Request.xml", TransformedXML);
+
+                            string jobResponse = string.Empty;
+
+                            // Only post when they are jobs - if not don't post.
+                            if (jobListings != null && jobListings.Listings != null && jobListings.Listings.Count > 0)
+                                jobResponse = Process(TransformedXML, ConfigurationManager.AppSettings["WebserviceURL"]);
+                            else
+                                jobResponse = "No jobs to post";
+
+                            // Save the response XML
+                            System.IO.File.WriteAllText(ConfigurationManager.AppSettings["FTPTempStorage"] + fileName + "_Response.xml", jobResponse);
+
+                            blnSuccess = true;
 
                         }
-
-                        //foreach (var job in jobListings.Listings)
-                        //{
-                        //    job.ListingClassification.Country = "265";
-                        //    job.ListingClassification.Location = "465";
-                        //    job.ListingClassification.Area = "2235";
-
-                        //    job.Categories.First().Classification = "3";
-                        //    job.Categories.First().SubClassification = "1";
-                        //}
-
-                        // TODO Salary Types
-
-                        // TODO LOW - Job Ad Type
-                        // TODO LOW - Job application Type
-
-                        serializer = new XmlSerializer(typeof(JobPostRequest));
-                        //string transformedXML = string.Empty;
-
-                        using (Utf8StringWriter sww = new Utf8StringWriter())
-                        using (XmlWriter writer = XmlWriter.Create(sww))
-                        {
-                            serializer.Serialize(writer, jobListings); //, ns
-
-                            TransformedXML = sww.ToString(); // Your XML
-                        }
-
-                        // Save the transformed XML
-                        System.IO.File.WriteAllText(ConfigurationManager.AppSettings["FTPTempStorage"] + fileName + "_Request.xml", TransformedXML);
-
-                        string jobResponse = string.Empty;
-
-                        // Only post when they are jobs - if not don't post.
-                        if (jobListings != null && jobListings.Listings != null && jobListings.Listings.Count > 0)
-                            jobResponse = Process(TransformedXML, ConfigurationManager.AppSettings["WebserviceURL"]);
-                        else
-                            jobResponse = "No jobs to post";
-
-                        // Save the response XML
-                        System.IO.File.WriteAllText(ConfigurationManager.AppSettings["FTPTempStorage"] + fileName + "_Response.xml", jobResponse);
-
-                        blnSuccess = true;
-
                     }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Error - " + ex.Message); // TODO
-                    Console.WriteLine("Error - " + ex.StackTrace); // TODO
-                    Console.WriteLine("Error - " + ex.InnerException); // TODO
-                }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error - " + ex.Message); // TODO
+                        Console.WriteLine("Error - " + ex.StackTrace); // TODO
+                        Console.WriteLine("Error - " + ex.InnerException); // TODO
+                    }
 
+                }
+                _logger.InfoFormat("[DONE] Process mappings with JIP defined mappings");
+                #endregion
             }
-
-
 
             // Save the POST XML.
             using (ClientSetupLogService _service = new ClientSetupLogService())
@@ -777,31 +762,36 @@ Email: Nicky.s@stellarworkforce.co.nz</strong></span><br />
         public bool ArchiveRGFJobs(GetAllClientSetupsToRun_Result clientSetup, JXTPosterTransform.Library.Methods.Client.PullJsonFromRGF.RGFJobBoardDataRoot data)
         {
 
-            if (data == null || data.jobBoards == null || data.jobBoards.jobboardlisting == null )
+            if (data == null || data.jobBoards == null || data.jobBoards.jobboardlisting == null)
                 return true;
 
-            var listings = data.jobBoards.jobboardlisting.upserted.Where(c => c.status.ToLower() == "unposted").Select(c=> new Job{ ReferenceNo = c.id }).ToList(); //(from m in data.jobBoards.jobboardlisting.removedIds select new Job { ReferenceNo = m }).ToList();
+            var listings = data.jobBoards.jobboardlisting.upserted.Where(c => c.status.ToLower() == "unposted").Select(c => new Job { ReferenceNo = c.id }).ToList(); //(from m in data.jobBoards.jobboardlisting.removedIds select new Job { ReferenceNo = m }).ToList();
 
             if (!listings.Any())
                 return true;
 
+            return ProcessArchiveJobs(clientSetup, listings);
+        }
+
+        public bool ProcessArchiveJobs(GetAllClientSetupsToRun_Result clientSetup, IEnumerable<Job> listings)
+        {
             ArchiveJobRequest archiveJobRequest = new ArchiveJobRequest();
             archiveJobRequest.AdvertiserId = clientSetup.AdvertiserId.Value;
             archiveJobRequest.UserName = clientSetup.AdvertiserUsername;
             archiveJobRequest.Password = clientSetup.AdvertiserPassword;
-            archiveJobRequest.Listings = listings; 
-            
+            archiveJobRequest.Listings = listings.ToList();
+
             string xmlToService = null;
             var serializer = new XmlSerializer(typeof(ArchiveJobRequest));
             try
             {
                 using (Utf8StringWriter sww = new Utf8StringWriter())
-                    using (XmlWriter writer = XmlWriter.Create(sww))
-                    {
-                        serializer.Serialize(writer, archiveJobRequest); //, ns
+                using (XmlWriter writer = XmlWriter.Create(sww))
+                {
+                    serializer.Serialize(writer, archiveJobRequest); //, ns
 
-                        xmlToService = sww.ToString(); // Your XML
-                    }
+                    xmlToService = sww.ToString(); // Your XML
+                }
 
                 Process(xmlToService, ConfigurationManager.AppSettings["WebserviceArchiveURL"]);
             }
@@ -815,7 +805,6 @@ Email: Nicky.s@stellarworkforce.co.nz</strong></span><br />
 
             return true;
         }
-
 
         public string Process(string xml, string serviceURL)
         {
@@ -911,7 +900,7 @@ Email: Nicky.s@stellarworkforce.co.nz</strong></span><br />
 
                 // use the Http client to POST some content ( ‘theContent’ not yet defined). 
                 var response = await aClient.PostAsync(accountDetail.MiniJxtRestApi, new StringContent(payload, Encoding.UTF8, "application/json"));
-   
+
                 string contentResponse = await response.Content.ReadAsStringAsync();
 
                 JobResponse jobResponse = JObject.Parse(contentResponse).ToObject<JobResponse>();
@@ -947,5 +936,58 @@ Email: Nicky.s@stellarworkforce.co.nz</strong></span><br />
         {
             public override Encoding Encoding { get { return Encoding.UTF8; } }
         }
+
+        public DefaultResponse AvailableDataJXTPlatformGet(string username, string password, string advertiserID)
+        {
+            try
+            {
+                string targetPath = ConfigurationManager.AppSettings["WebServiceEndPoint"] + "?format=json";//"http://webservice.mini.jxt.com.au/Get/DefaultList?format={0}";
+                _logger.DebugFormat("Request target path: {0}", targetPath);
+
+                // Create a request using a URL that can receive a post. 
+                WebRequest request = WebRequest.Create(targetPath);
+                // Set the Method property of the request to POST.
+                request.Method = "POST";
+                // Create POST data and convert it to a byte array.
+                string postData = string.Format(@"<DefaultRequest xmlns:i=""http://www.w3.org/2001/XMLSchema-instance"" xmlns=""http://schemas.servicestack.net/types""><UserName xmlns=""http://schemas.datacontract.org/2004/07/JXTPlatform.DTO.Base"">{0}</UserName><Password xmlns=""http://schemas.datacontract.org/2004/07/JXTPlatform.DTO.Base"">{1}</Password><AdvertiserId>{2}</AdvertiserId></DefaultRequest>", username, password, advertiserID);
+                byte[] byteArray = Encoding.UTF8.GetBytes(postData);
+                // Set the ContentType property of the WebRequest.
+                request.ContentType = "application/xml";
+                // Set the ContentLength property of the WebRequest.
+                request.ContentLength = byteArray.Length;
+                // Get the request stream.
+                Stream dataStream = request.GetRequestStream();
+                // Write the data to the request stream.
+                dataStream.Write(byteArray, 0, byteArray.Length);
+                // Close the Stream object.
+                dataStream.Close();
+                // Get the response.
+                WebResponse response = request.GetResponse();
+                // Get the stream containing content returned by the server.
+                dataStream = response.GetResponseStream();
+                // Open the stream using a StreamReader for easy access.
+                StreamReader reader = new StreamReader(dataStream);
+                // Read the content.
+                string responseFromServer = reader.ReadToEnd();
+                _logger.DebugFormat("==========Server response==========\n{0}", responseFromServer);
+
+                _logger.InfoFormat("Deserializing data");
+                JavaScriptSerializer ser = new JavaScriptSerializer();
+                DefaultResponse resultList = (DefaultResponse)ser.Deserialize<DefaultResponse>(responseFromServer);
+                _logger.InfoFormat("Deserializing data completed");
+
+                // Clean up the streams.
+                reader.Close();
+                dataStream.Close();
+                response.Close();
+
+                return resultList;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
     }
 }

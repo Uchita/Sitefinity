@@ -47,6 +47,7 @@ namespace JXTPosterTransform.Website.Models
         public string setupTypeText { get; set; }
 
         public string setupTypeCredentials { get; set; }
+        public bool useJXTSiteMappings { get; set; }
         [Required]
         public int timeslot { get; set; }
         [Required]

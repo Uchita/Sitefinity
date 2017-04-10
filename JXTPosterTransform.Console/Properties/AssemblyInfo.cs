@@ -34,3 +34,5 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+//ensure Log4Net monitors the config file to allow log config changes
+[assembly: log4net.Config.XmlConfigurator(Watch = true)]

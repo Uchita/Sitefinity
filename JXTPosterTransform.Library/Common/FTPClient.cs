@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using WinSCP;
 using System.Configuration;
 using JXTPosterTransform.Library.Models;
+using log4net;
 
 namespace JXTPosterTransform.Library.Common
 {
@@ -22,7 +23,6 @@ namespace JXTPosterTransform.Library.Common
         public ResponseClass Pull(ClientSetupModels.PullXmlFromFTP FTP, string strFilename) //, string strRemotePath, string strFilename, string strFileStartsWith)
         {
             ResponseClass responseClass = new ResponseClass();
-
             if (!string.IsNullOrWhiteSpace(FTP.Host))
             {
                 // Remote XML file - is not an XML throw error

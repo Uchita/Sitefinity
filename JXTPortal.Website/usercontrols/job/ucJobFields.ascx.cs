@@ -2633,14 +2633,14 @@ namespace JXTPortal.Website.Admin.UserControls
                             }
                         }
 
-                        if (job.Expired != (int)PortalEnums.Jobs.JobStatus.Live)
+                        if (job.Expired.GetValueOrDefault(0) == (int)PortalEnums.Jobs.JobStatus.Live)
                         {
-                            job.DatePosted = DateTime.Now;
-                            job.ExpiryDate = DateTime.Now.AddDays(30);       
+                            job.ExpiryDate = getExpiryDate();
                         }
                         else
                         {
-                            job.ExpiryDate = getExpiryDate();
+                            job.DatePosted = DateTime.Now;
+                            job.ExpiryDate = DateTime.Now.AddDays(30);
                         }
 
                         // By default the job is in the draft
@@ -3282,27 +3282,11 @@ namespace JXTPortal.Website.Admin.UserControls
 
         private DateTime getExpiryDate()
         {
-            DateTime jobExpiryDate = new DateTime();
-
-            string userEntry = (!string.IsNullOrWhiteSpace(txtJobExpiryDate.Text)) ? txtJobExpiryDate.Text : string.Empty ;
-
             string currentDateFormat = getGlobalDateFormat();
 
-            if (!string.IsNullOrWhiteSpace(userEntry))
-            {
-                if (DateTime.TryParseExact(userEntry, currentDateFormat, null, DateTimeStyles.None, out jobExpiryDate))
-                {
-                    return jobExpiryDate;
-                }
-                else
-                {
-                    return DateTime.Now.AddDays(30);
-                }
-            }
-            else
-            {
-                return DateTime.Now.AddDays(30);
-            }            
+            DateTime jobExpiryDate = DateTime.Now.AddDays(30);
+            DateTime.TryParseExact(txtJobExpiryDate.Text, currentDateFormat, null, DateTimeStyles.None, out jobExpiryDate);
+            return jobExpiryDate;
         }
 
         private void DisplayManualExpiryDate()

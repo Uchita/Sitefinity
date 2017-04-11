@@ -1,24 +1,17 @@
-﻿using System;
+﻿using JXT.Integration.AWS;
+using JXTPortal;
+using JXTPortal.Common;
+using JXTPortal.Core.FileManagement;
+using JXTPortal.Entities;
+using log4net;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using JXTPortal.Entities;
-using JXTPortal.Data;
-using System.Xml.Linq;
-using JXTPortal.Common;
-using JXTPortal;
 using System.Data;
 using System.IO;
-using System.Net;
-using JXTPortal.EmailSender;
-using System.Net.Mail;
-using System.Net.Configuration;
-using Tamir.SharpSsh;
-using System.Diagnostics;
-using log4net;
-using JXT.Integration.AWS;
-using JXTPortal.Core.FileManagement;
+using System.Linq;
+using System.Text;
+using System.Xml.Linq;
 
 namespace JXTPostJobApplicationToFTP
 {
@@ -27,7 +20,7 @@ namespace JXTPostJobApplicationToFTP
         ILog _logger;
         IFileUploader _fileUploader;
         private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
-        private string memberFileFolder;
+        private string memberFileFolder, memberFileFolderFormat;
 
         public IFileManager FileManagerService { get; set; }
 
@@ -101,12 +94,14 @@ namespace JXTPostJobApplicationToFTP
                         string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
                         string ftppassword = ConfigurationManager.AppSettings["FTPJobApplyPassword"];
                         FileManagerService = new FTPClientFileManager(ftphosturl, ftpusername, ftppassword);
+                        memberFileFolderFormat = "{0}/{1}/";
                     }
                     else
                     {
                         IAwsS3 s3 = new AwsS3();
                         FileManagerService = new FileManager(s3);
                         memberFileFolder = ConfigurationManager.AppSettings["AWSS3MemberRootFolder"] + ConfigurationManager.AppSettings["AWSS3MemberFilesFolder"];
+                        memberFileFolderFormat = "{0}/{1}";
                     }
                 }
 

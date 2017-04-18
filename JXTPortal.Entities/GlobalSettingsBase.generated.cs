@@ -170,6 +170,7 @@ namespace JXTPortal.Entities
 		///<param name="_globalFolder"></param>
 		///<param name="_enableScreeningQuestions"></param>
 		///<param name="_enableExpiryDate"></param>
+		///<param name="_memberRegisterPageId"></param>
 		public GlobalSettingsBase(System.Int32 _siteId, System.Int32 _defaultLanguageId, 
 			System.Int32? _defaultDynamicPageId, System.Boolean _publicJobsSearch, System.Boolean _publicMembersSearch, 
 			System.Boolean _publicCompaniesSearch, System.Boolean _publicSponsoredAdverts, System.Boolean _privateJobs, 
@@ -199,7 +200,7 @@ namespace JXTPortal.Entities
 			System.Boolean _enableTermsAndConditions, System.Int32? _defaultEmailLanguageId, System.String _googleTagManager, 
 			System.String _googleAnalytics, System.String _googleWebMaster, System.Boolean _enablePeopleSearch, 
 			System.String _globalDateFormat, System.String _timeZone, System.String _globalFolder, 
-			System.Boolean _enableScreeningQuestions, System.Boolean _enableExpiryDate)
+			System.Boolean _enableScreeningQuestions, System.Boolean _enableExpiryDate, System.Int32? _memberRegisterPageId)
 		{
 			this.entityData = new GlobalSettingsEntityData();
 			this.backupData = null;
@@ -293,6 +294,7 @@ namespace JXTPortal.Entities
 			this.GlobalFolder = _globalFolder;
 			this.EnableScreeningQuestions = _enableScreeningQuestions;
 			this.EnableExpiryDate = _enableExpiryDate;
+			this.MemberRegisterPageId = _memberRegisterPageId;
 		}
 		
 		///<summary>
@@ -387,6 +389,7 @@ namespace JXTPortal.Entities
 		///<param name="_globalFolder"></param>
 		///<param name="_enableScreeningQuestions"></param>
 		///<param name="_enableExpiryDate"></param>
+		///<param name="_memberRegisterPageId"></param>
 		public static GlobalSettings CreateGlobalSettings(System.Int32 _siteId, System.Int32 _defaultLanguageId, 
 			System.Int32? _defaultDynamicPageId, System.Boolean _publicJobsSearch, System.Boolean _publicMembersSearch, 
 			System.Boolean _publicCompaniesSearch, System.Boolean _publicSponsoredAdverts, System.Boolean _privateJobs, 
@@ -416,7 +419,7 @@ namespace JXTPortal.Entities
 			System.Boolean _enableTermsAndConditions, System.Int32? _defaultEmailLanguageId, System.String _googleTagManager, 
 			System.String _googleAnalytics, System.String _googleWebMaster, System.Boolean _enablePeopleSearch, 
 			System.String _globalDateFormat, System.String _timeZone, System.String _globalFolder, 
-			System.Boolean _enableScreeningQuestions, System.Boolean _enableExpiryDate)
+			System.Boolean _enableScreeningQuestions, System.Boolean _enableExpiryDate, System.Int32? _memberRegisterPageId)
 		{
 			GlobalSettings newGlobalSettings = new GlobalSettings();
 			newGlobalSettings.SiteId = _siteId;
@@ -508,6 +511,7 @@ namespace JXTPortal.Entities
 			newGlobalSettings.GlobalFolder = _globalFolder;
 			newGlobalSettings.EnableScreeningQuestions = _enableScreeningQuestions;
 			newGlobalSettings.EnableExpiryDate = _enableExpiryDate;
+			newGlobalSettings.MemberRegisterPageId = _memberRegisterPageId;
 			return newGlobalSettings;
 		}
 				
@@ -3693,6 +3697,43 @@ namespace JXTPortal.Entities
 			}
 		}
 		
+		/// <summary>
+		/// 	Gets or sets the MemberRegisterPageId property. 
+		///		
+		/// </summary>
+		/// <value>This type is int.</value>
+		/// <remarks>
+		/// This property can be set to null. 
+		/// If this column is null, this property will return (int)0. It is up to the developer
+		/// to check the value of IsMemberRegisterPageIdNull() and perform business logic appropriately.
+		/// </remarks>
+
+
+
+
+		[DescriptionAttribute(@""), System.ComponentModel.Bindable( System.ComponentModel.BindableSupport.Yes)]
+		[DataObjectField(false, false, true)]
+		public virtual System.Int32? MemberRegisterPageId
+		{
+			get
+			{
+				return this.entityData.MemberRegisterPageId; 
+			}
+			
+			set
+			{
+				if (this.entityData.MemberRegisterPageId == value)
+					return;
+					
+				OnColumnChanging(GlobalSettingsColumn.MemberRegisterPageId, this.entityData.MemberRegisterPageId);
+				this.entityData.MemberRegisterPageId = value;
+				if (this.EntityState == EntityState.Unchanged)
+					this.EntityState = EntityState.Changed;
+				OnColumnChanged(GlobalSettingsColumn.MemberRegisterPageId, this.entityData.MemberRegisterPageId);
+				OnPropertyChanged("MemberRegisterPageId");
+			}
+		}
+		
 		#endregion Data Properties		
 
 		#region Source Foreign Key Property
@@ -3740,6 +3781,17 @@ namespace JXTPortal.Entities
       	{
             get { return entityData.LastModifiedBySource; }
             set { entityData.LastModifiedBySource = value; }
+      	}
+		/// <summary>
+		/// Gets or sets the source <see cref="DynamicPages"/>.
+		/// </summary>
+		/// <value>The source DynamicPages for MemberRegisterPageId.</value>
+        [XmlIgnore()]
+		[Browsable(false), System.ComponentModel.Bindable(System.ComponentModel.BindableSupport.Yes)]
+		public virtual DynamicPages MemberRegisterPageIdSource
+      	{
+            get { return entityData.MemberRegisterPageIdSource; }
+            set { entityData.MemberRegisterPageIdSource = value; }
       	}
 		/// <summary>
 		/// Gets or sets the source <see cref="Files"/>.
@@ -3889,7 +3941,7 @@ namespace JXTPortal.Entities
 		{
 			get
 			{
-				return new string[] {"GlobalSettingID", "SiteID", "DefaultLanguageID", "DefaultDynamicPageID", "PublicJobsSearch", "PublicMembersSearch", "PublicCompaniesSearch", "PublicSponsoredAdverts", "PrivateJobs", "PrivateMembers", "PrivateCompanies", "LastModifiedBy", "LastModified", "PageTitlePrefix", "PageTitleSuffix", "DefaultTitle", "HomeTitle", "DefaultDescription", "HomeDescription", "DefaultKeywords", "HomeKeywords", "ShowFaceBookButton", "UseAdvertiserFilter", "MerchantID", "ShowTwitterButton", "ShowJobAlertButton", "ShowLinkedInButton", "SiteFavIconID", "SiteDocType", "CurrencySymbol", "FtpFolderLocation", "MetaTags", "SystemMetaTags", "MemberRegistrationNotification", "LinkedInAPI", "LinkedInLogo", "LinkedInCompanyID", "LinkedInEmail", "PrivacySettings", "WWWRedirect", "AllowAdvertiser", "LinkedInAPISecret", "GoogleClientID", "GoogleClientSecret", "FacebookAppID", "FacebookAppSecret", "LinkedInButtonSize", "DefaultCountryID", "PayPalUsername", "PayPalPassword", "PayPalSignature", "SecurePayMerchantID", "SecurePayPassword", "UsingSSL", "UseCustomProfessionRole", "GenerateJobXML", "IsPrivateSite", "PrivateRedirectUrl", "EnableJobCustomQuestionnaire", "JobApplicationTypeID", "JobScreeningProcess", "AdvertiserApprovalProcess", "SiteType", "EnableSSL", "GST", "GSTLabel", "NumberOfPremiumJobs", "PremiumJobDays", "DisplayPremiumJobsOnResults", "JobExpiryNotification", "CurrencyID", "PayPalClientID", "PayPalClientSecret", "PaypalUser", "PaypalProPassword", "PaypalVendor", "PaypalPartner", "InvoiceSiteInfo", "InvoiceSiteFooter", "EnableTermsAndConditions", "DefaultEmailLanguageId", "GoogleTagManager", "GoogleAnalytics", "GoogleWebMaster", "EnablePeopleSearch", "GlobalDateFormat", "TimeZone", "GlobalFolder", "EnableScreeningQuestions", "EnableExpiryDate"};
+				return new string[] {"GlobalSettingID", "SiteID", "DefaultLanguageID", "DefaultDynamicPageID", "PublicJobsSearch", "PublicMembersSearch", "PublicCompaniesSearch", "PublicSponsoredAdverts", "PrivateJobs", "PrivateMembers", "PrivateCompanies", "LastModifiedBy", "LastModified", "PageTitlePrefix", "PageTitleSuffix", "DefaultTitle", "HomeTitle", "DefaultDescription", "HomeDescription", "DefaultKeywords", "HomeKeywords", "ShowFaceBookButton", "UseAdvertiserFilter", "MerchantID", "ShowTwitterButton", "ShowJobAlertButton", "ShowLinkedInButton", "SiteFavIconID", "SiteDocType", "CurrencySymbol", "FtpFolderLocation", "MetaTags", "SystemMetaTags", "MemberRegistrationNotification", "LinkedInAPI", "LinkedInLogo", "LinkedInCompanyID", "LinkedInEmail", "PrivacySettings", "WWWRedirect", "AllowAdvertiser", "LinkedInAPISecret", "GoogleClientID", "GoogleClientSecret", "FacebookAppID", "FacebookAppSecret", "LinkedInButtonSize", "DefaultCountryID", "PayPalUsername", "PayPalPassword", "PayPalSignature", "SecurePayMerchantID", "SecurePayPassword", "UsingSSL", "UseCustomProfessionRole", "GenerateJobXML", "IsPrivateSite", "PrivateRedirectUrl", "EnableJobCustomQuestionnaire", "JobApplicationTypeID", "JobScreeningProcess", "AdvertiserApprovalProcess", "SiteType", "EnableSSL", "GST", "GSTLabel", "NumberOfPremiumJobs", "PremiumJobDays", "DisplayPremiumJobsOnResults", "JobExpiryNotification", "CurrencyID", "PayPalClientID", "PayPalClientSecret", "PaypalUser", "PaypalProPassword", "PaypalVendor", "PaypalPartner", "InvoiceSiteInfo", "InvoiceSiteFooter", "EnableTermsAndConditions", "DefaultEmailLanguageId", "GoogleTagManager", "GoogleAnalytics", "GoogleWebMaster", "EnablePeopleSearch", "GlobalDateFormat", "TimeZone", "GlobalFolder", "EnableScreeningQuestions", "EnableExpiryDate", "MemberRegisterPageID"};
 			}
 		}
 		#endregion 
@@ -4127,6 +4179,7 @@ namespace JXTPortal.Entities
 				copy.GlobalFolder = this.GlobalFolder;
 				copy.EnableScreeningQuestions = this.EnableScreeningQuestions;
 				copy.EnableExpiryDate = this.EnableExpiryDate;
+				copy.MemberRegisterPageId = this.MemberRegisterPageId;
 			
 			if (this.DefaultCountryIdSource != null && existingCopies.Contains(this.DefaultCountryIdSource))
 				copy.DefaultCountryIdSource = existingCopies[this.DefaultCountryIdSource] as Countries;
@@ -4144,6 +4197,10 @@ namespace JXTPortal.Entities
 				copy.LastModifiedBySource = existingCopies[this.LastModifiedBySource] as AdminUsers;
 			else
 				copy.LastModifiedBySource = MakeCopyOf(this.LastModifiedBySource, existingCopies) as AdminUsers;
+			if (this.MemberRegisterPageIdSource != null && existingCopies.Contains(this.MemberRegisterPageIdSource))
+				copy.MemberRegisterPageIdSource = existingCopies[this.MemberRegisterPageIdSource] as DynamicPages;
+			else
+				copy.MemberRegisterPageIdSource = MakeCopyOf(this.MemberRegisterPageIdSource, existingCopies) as DynamicPages;
 			if (this.SiteFavIconIdSource != null && existingCopies.Contains(this.SiteFavIconIdSource))
 				copy.SiteFavIconIdSource = existingCopies[this.SiteFavIconIdSource] as Files;
 			else
@@ -4463,6 +4520,8 @@ namespace JXTPortal.Entities
 					return entityData.EnableScreeningQuestions != _originalData.EnableScreeningQuestions;
 					case GlobalSettingsColumn.EnableExpiryDate:
 					return entityData.EnableExpiryDate != _originalData.EnableExpiryDate;
+					case GlobalSettingsColumn.MemberRegisterPageId:
+					return entityData.MemberRegisterPageId != _originalData.MemberRegisterPageId;
 			
 				default:
 					return false;
@@ -4580,6 +4639,7 @@ namespace JXTPortal.Entities
 			result = result || entityData.GlobalFolder != _originalData.GlobalFolder;
 			result = result || entityData.EnableScreeningQuestions != _originalData.EnableScreeningQuestions;
 			result = result || entityData.EnableExpiryDate != _originalData.EnableExpiryDate;
+			result = result || entityData.MemberRegisterPageId != _originalData.MemberRegisterPageId;
 			return result;
 		}	
 		
@@ -4678,7 +4738,8 @@ namespace JXTPortal.Entities
 				_originalData.TimeZone,
 				_originalData.GlobalFolder,
 				_originalData.EnableScreeningQuestions,
-				_originalData.EnableExpiryDate
+				_originalData.EnableExpiryDate,
+				_originalData.MemberRegisterPageId
 				);
 				
 			return (GlobalSettings)this.Clone();
@@ -4797,7 +4858,8 @@ namespace JXTPortal.Entities
 					this.TimeZone.GetHashCode() ^ 
 					((this.GlobalFolder == null) ? string.Empty : this.GlobalFolder.ToString()).GetHashCode() ^ 
 					this.EnableScreeningQuestions.GetHashCode() ^ 
-					this.EnableExpiryDate.GetHashCode();
+					this.EnableExpiryDate.GetHashCode() ^ 
+					((this.MemberRegisterPageId == null) ? string.Empty : this.MemberRegisterPageId.ToString()).GetHashCode();
         }
 		
 		///<summary>
@@ -5388,6 +5450,15 @@ namespace JXTPortal.Entities
 				equal = false;
 			if (Object1.EnableExpiryDate != Object2.EnableExpiryDate)
 				equal = false;
+			if ( Object1.MemberRegisterPageId != null && Object2.MemberRegisterPageId != null )
+			{
+				if (Object1.MemberRegisterPageId != Object2.MemberRegisterPageId)
+					equal = false;
+			}
+			else if (Object1.MemberRegisterPageId == null ^ Object2.MemberRegisterPageId == null )
+			{
+				equal = false;
+			}
 					
 			return equal;
 		}
@@ -5970,6 +6041,12 @@ namespace JXTPortal.Entities
             		return this.EnableExpiryDate.CompareTo(rhs.EnableExpiryDate);
             		
             		                 
+            	
+            	
+            	case GlobalSettingsColumn.MemberRegisterPageId:
+            		return this.MemberRegisterPageId.Value.CompareTo(rhs.MemberRegisterPageId.Value);
+            		
+            		                 
             }
             return 0;
         }
@@ -6104,7 +6181,7 @@ namespace JXTPortal.Entities
 		public override string ToString()
 		{
 			return string.Format(System.Globalization.CultureInfo.InvariantCulture,
-				"{91}{90}- GlobalSettingId: {0}{90}- SiteId: {1}{90}- DefaultLanguageId: {2}{90}- DefaultDynamicPageId: {3}{90}- PublicJobsSearch: {4}{90}- PublicMembersSearch: {5}{90}- PublicCompaniesSearch: {6}{90}- PublicSponsoredAdverts: {7}{90}- PrivateJobs: {8}{90}- PrivateMembers: {9}{90}- PrivateCompanies: {10}{90}- LastModifiedBy: {11}{90}- LastModified: {12}{90}- PageTitlePrefix: {13}{90}- PageTitleSuffix: {14}{90}- DefaultTitle: {15}{90}- HomeTitle: {16}{90}- DefaultDescription: {17}{90}- HomeDescription: {18}{90}- DefaultKeywords: {19}{90}- HomeKeywords: {20}{90}- ShowFaceBookButton: {21}{90}- UseAdvertiserFilter: {22}{90}- MerchantId: {23}{90}- ShowTwitterButton: {24}{90}- ShowJobAlertButton: {25}{90}- ShowLinkedInButton: {26}{90}- SiteFavIconId: {27}{90}- SiteDocType: {28}{90}- CurrencySymbol: {29}{90}- FtpFolderLocation: {30}{90}- MetaTags: {31}{90}- SystemMetaTags: {32}{90}- MemberRegistrationNotification: {33}{90}- LinkedInApi: {34}{90}- LinkedInLogo: {35}{90}- LinkedInCompanyId: {36}{90}- LinkedInEmail: {37}{90}- PrivacySettings: {38}{90}- WwwRedirect: {39}{90}- AllowAdvertiser: {40}{90}- LinkedInApiSecret: {41}{90}- GoogleClientId: {42}{90}- GoogleClientSecret: {43}{90}- FacebookAppId: {44}{90}- FacebookAppSecret: {45}{90}- LinkedInButtonSize: {46}{90}- DefaultCountryId: {47}{90}- PayPalUsername: {48}{90}- PayPalPassword: {49}{90}- PayPalSignature: {50}{90}- SecurePayMerchantId: {51}{90}- SecurePayPassword: {52}{90}- UsingSsl: {53}{90}- UseCustomProfessionRole: {54}{90}- GenerateJobXml: {55}{90}- IsPrivateSite: {56}{90}- PrivateRedirectUrl: {57}{90}- EnableJobCustomQuestionnaire: {58}{90}- JobApplicationTypeId: {59}{90}- JobScreeningProcess: {60}{90}- AdvertiserApprovalProcess: {61}{90}- SiteType: {62}{90}- EnableSsl: {63}{90}- Gst: {64}{90}- GstLabel: {65}{90}- NumberOfPremiumJobs: {66}{90}- PremiumJobDays: {67}{90}- DisplayPremiumJobsOnResults: {68}{90}- JobExpiryNotification: {69}{90}- CurrencyId: {70}{90}- PayPalClientId: {71}{90}- PayPalClientSecret: {72}{90}- PaypalUser: {73}{90}- PaypalProPassword: {74}{90}- PaypalVendor: {75}{90}- PaypalPartner: {76}{90}- InvoiceSiteInfo: {77}{90}- InvoiceSiteFooter: {78}{90}- EnableTermsAndConditions: {79}{90}- DefaultEmailLanguageId: {80}{90}- GoogleTagManager: {81}{90}- GoogleAnalytics: {82}{90}- GoogleWebMaster: {83}{90}- EnablePeopleSearch: {84}{90}- GlobalDateFormat: {85}{90}- TimeZone: {86}{90}- GlobalFolder: {87}{90}- EnableScreeningQuestions: {88}{90}- EnableExpiryDate: {89}{90}{92}", 
+				"{92}{91}- GlobalSettingId: {0}{91}- SiteId: {1}{91}- DefaultLanguageId: {2}{91}- DefaultDynamicPageId: {3}{91}- PublicJobsSearch: {4}{91}- PublicMembersSearch: {5}{91}- PublicCompaniesSearch: {6}{91}- PublicSponsoredAdverts: {7}{91}- PrivateJobs: {8}{91}- PrivateMembers: {9}{91}- PrivateCompanies: {10}{91}- LastModifiedBy: {11}{91}- LastModified: {12}{91}- PageTitlePrefix: {13}{91}- PageTitleSuffix: {14}{91}- DefaultTitle: {15}{91}- HomeTitle: {16}{91}- DefaultDescription: {17}{91}- HomeDescription: {18}{91}- DefaultKeywords: {19}{91}- HomeKeywords: {20}{91}- ShowFaceBookButton: {21}{91}- UseAdvertiserFilter: {22}{91}- MerchantId: {23}{91}- ShowTwitterButton: {24}{91}- ShowJobAlertButton: {25}{91}- ShowLinkedInButton: {26}{91}- SiteFavIconId: {27}{91}- SiteDocType: {28}{91}- CurrencySymbol: {29}{91}- FtpFolderLocation: {30}{91}- MetaTags: {31}{91}- SystemMetaTags: {32}{91}- MemberRegistrationNotification: {33}{91}- LinkedInApi: {34}{91}- LinkedInLogo: {35}{91}- LinkedInCompanyId: {36}{91}- LinkedInEmail: {37}{91}- PrivacySettings: {38}{91}- WwwRedirect: {39}{91}- AllowAdvertiser: {40}{91}- LinkedInApiSecret: {41}{91}- GoogleClientId: {42}{91}- GoogleClientSecret: {43}{91}- FacebookAppId: {44}{91}- FacebookAppSecret: {45}{91}- LinkedInButtonSize: {46}{91}- DefaultCountryId: {47}{91}- PayPalUsername: {48}{91}- PayPalPassword: {49}{91}- PayPalSignature: {50}{91}- SecurePayMerchantId: {51}{91}- SecurePayPassword: {52}{91}- UsingSsl: {53}{91}- UseCustomProfessionRole: {54}{91}- GenerateJobXml: {55}{91}- IsPrivateSite: {56}{91}- PrivateRedirectUrl: {57}{91}- EnableJobCustomQuestionnaire: {58}{91}- JobApplicationTypeId: {59}{91}- JobScreeningProcess: {60}{91}- AdvertiserApprovalProcess: {61}{91}- SiteType: {62}{91}- EnableSsl: {63}{91}- Gst: {64}{91}- GstLabel: {65}{91}- NumberOfPremiumJobs: {66}{91}- PremiumJobDays: {67}{91}- DisplayPremiumJobsOnResults: {68}{91}- JobExpiryNotification: {69}{91}- CurrencyId: {70}{91}- PayPalClientId: {71}{91}- PayPalClientSecret: {72}{91}- PaypalUser: {73}{91}- PaypalProPassword: {74}{91}- PaypalVendor: {75}{91}- PaypalPartner: {76}{91}- InvoiceSiteInfo: {77}{91}- InvoiceSiteFooter: {78}{91}- EnableTermsAndConditions: {79}{91}- DefaultEmailLanguageId: {80}{91}- GoogleTagManager: {81}{91}- GoogleAnalytics: {82}{91}- GoogleWebMaster: {83}{91}- EnablePeopleSearch: {84}{91}- GlobalDateFormat: {85}{91}- TimeZone: {86}{91}- GlobalFolder: {87}{91}- EnableScreeningQuestions: {88}{91}- EnableExpiryDate: {89}{91}- MemberRegisterPageId: {90}{91}{93}", 
 				this.GlobalSettingId,
 				this.SiteId,
 				this.DefaultLanguageId,
@@ -6195,6 +6272,7 @@ namespace JXTPortal.Entities
 				(this.GlobalFolder == null) ? string.Empty : this.GlobalFolder.ToString(),
 				this.EnableScreeningQuestions,
 				this.EnableExpiryDate,
+				(this.MemberRegisterPageId == null) ? string.Empty : this.MemberRegisterPageId.ToString(),
 				System.Environment.NewLine, 
 				this.GetType(),
 				this.Error.Length == 0 ? string.Empty : string.Format("- Error: {0}\n",this.Error));
@@ -6673,6 +6751,11 @@ namespace JXTPortal.Entities
 		/// EnableExpiryDate : 
 		/// </summary>
 		public System.Boolean		  EnableExpiryDate = false;
+		
+		/// <summary>
+		/// MemberRegisterPageID : 
+		/// </summary>
+		public System.Int32?		  MemberRegisterPageId = null;
 		#endregion
 			
 		#region Source Foreign Key Property
@@ -6728,6 +6811,19 @@ namespace JXTPortal.Entities
       	{
             get { return this._lastModifiedBySource; }
             set { this._lastModifiedBySource = value; }
+      	}
+		private DynamicPages _memberRegisterPageIdSource = null;
+		
+		/// <summary>
+		/// Gets or sets the source <see cref="DynamicPages"/>.
+		/// </summary>
+		/// <value>The source DynamicPages for MemberRegisterPageId.</value>
+		[XmlIgnore()]
+		[Browsable(false)]
+		public virtual DynamicPages MemberRegisterPageIdSource
+      	{
+            get { return this._memberRegisterPageIdSource; }
+            set { this._memberRegisterPageIdSource = value; }
       	}
 		private Files _siteFavIconIdSource = null;
 		
@@ -6863,6 +6959,7 @@ namespace JXTPortal.Entities
 			_tmp.GlobalFolder = this.GlobalFolder;
 			_tmp.EnableScreeningQuestions = this.EnableScreeningQuestions;
 			_tmp.EnableExpiryDate = this.EnableExpiryDate;
+			_tmp.MemberRegisterPageId = this.MemberRegisterPageId;
 			
 			#region Source Parent Composite Entities
 			if (this.DefaultCountryIdSource != null)
@@ -6873,6 +6970,8 @@ namespace JXTPortal.Entities
 				_tmp.DefaultDynamicPageIdSource = MakeCopyOf(this.DefaultDynamicPageIdSource) as DynamicPages;
 			if (this.LastModifiedBySource != null)
 				_tmp.LastModifiedBySource = MakeCopyOf(this.LastModifiedBySource) as AdminUsers;
+			if (this.MemberRegisterPageIdSource != null)
+				_tmp.MemberRegisterPageIdSource = MakeCopyOf(this.MemberRegisterPageIdSource) as DynamicPages;
 			if (this.SiteFavIconIdSource != null)
 				_tmp.SiteFavIconIdSource = MakeCopyOf(this.SiteFavIconIdSource) as Files;
 			if (this.SiteIdSource != null)
@@ -6990,6 +7089,7 @@ namespace JXTPortal.Entities
 			_tmp.GlobalFolder = this.GlobalFolder;
 			_tmp.EnableScreeningQuestions = this.EnableScreeningQuestions;
 			_tmp.EnableExpiryDate = this.EnableExpiryDate;
+			_tmp.MemberRegisterPageId = this.MemberRegisterPageId;
 			
 			#region Source Parent Composite Entities
 			if (this.DefaultCountryIdSource != null && existingCopies.Contains(this.DefaultCountryIdSource))
@@ -7008,6 +7108,10 @@ namespace JXTPortal.Entities
 				_tmp.LastModifiedBySource = existingCopies[this.LastModifiedBySource] as AdminUsers;
 			else
 				_tmp.LastModifiedBySource = MakeCopyOf(this.LastModifiedBySource, existingCopies) as AdminUsers;
+			if (this.MemberRegisterPageIdSource != null && existingCopies.Contains(this.MemberRegisterPageIdSource))
+				_tmp.MemberRegisterPageIdSource = existingCopies[this.MemberRegisterPageIdSource] as DynamicPages;
+			else
+				_tmp.MemberRegisterPageIdSource = MakeCopyOf(this.MemberRegisterPageIdSource, existingCopies) as DynamicPages;
 			if (this.SiteFavIconIdSource != null && existingCopies.Contains(this.SiteFavIconIdSource))
 				_tmp.SiteFavIconIdSource = existingCopies[this.SiteFavIconIdSource] as Files;
 			else
@@ -7926,7 +8030,13 @@ namespace JXTPortal.Entities
 		/// </summary>
 		[EnumTextValue("EnableExpiryDate")]
 		[ColumnEnum("EnableExpiryDate", typeof(System.Boolean), System.Data.DbType.Boolean, false, false, false)]
-		EnableExpiryDate = 90
+		EnableExpiryDate = 90,
+		/// <summary>
+		/// MemberRegisterPageId : 
+		/// </summary>
+		[EnumTextValue("MemberRegisterPageID")]
+		[ColumnEnum("MemberRegisterPageID", typeof(System.Int32), System.Data.DbType.Int32, false, false, true)]
+		MemberRegisterPageId = 91
 	}//End enum
 
 	#endregion GlobalSettingsColumn Enum

@@ -458,6 +458,16 @@ namespace JXTPortal.Entities
 		/// EnableScreeningQuestions : 
 		/// </summary>
 		System.Boolean  EnableScreeningQuestions  { get; set; }
+		
+		/// <summary>
+		/// EnableExpiryDate : 
+		/// </summary>
+		System.Boolean  EnableExpiryDate  { get; set; }
+		
+		/// <summary>
+		/// MemberRegisterPageID : 
+		/// </summary>
+		System.Int32?  MemberRegisterPageId  { get; set; }
 			
 		/// <summary>
 		/// Creates a new object that is a copy of the current instance.

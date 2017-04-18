@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using JXTPosterTransform.Library.Common;
-using System.IO;
-using System.Xml.Serialization;
-using JXTPosterTransform.Library.Models;
-using JXTPosterTransform.Data;
-using System.Web.Script.Serialization;
-using JXTPosterTransform.Website.Logics;
-using System.Net;
-using System.Xml;
-using System.Configuration;
-using System.Runtime.Serialization.Formatters.Binary;
-using JXTPosterTransform.Library.Methods;
+﻿using JXTPosterTransform.Data;
 using JXTPosterTransform.Library.APIs.Invenias;
+using JXTPosterTransform.Library.Common;
+using JXTPosterTransform.Library.Methods;
+using JXTPosterTransform.Library.Models;
+using JXTPosterTransform.Website.Logics;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
+using System.Web.Script.Serialization;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace JXTPosterTransform.Library.Services
 {
@@ -40,7 +40,6 @@ namespace JXTPosterTransform.Library.Services
 
             if (clientSetupsList != null && clientSetupsList.Count > 0)
             {
-
                 ResponseClass response = new ResponseClass();
 
                 DateTime dtStartTime = DateTime.Now;
@@ -128,7 +127,7 @@ namespace JXTPosterTransform.Library.Services
                                         int count = 0, fileCount = 1;
 
                                         bool postSuccess = true;
-                                        for (count = 0; count < rgfData.jobBoards.jobboardlisting.upserted.Count(); )
+                                        for (count = 0; count < rgfData.jobBoards.jobboardlisting.upserted.Count();)
                                         {
                                             string thisFileName = fileName + "-" + fileCount;
                                             JXTPosterTransform.Library.Methods.Client.PullJsonFromRGF.RGFJobBoardDataRoot currentQueue = DeepClone<JXTPosterTransform.Library.Methods.Client.PullJsonFromRGF.RGFJobBoardDataRoot>(rgfData);
@@ -176,8 +175,22 @@ namespace JXTPosterTransform.Library.Services
 
                         if (postRequired)
                         {
-                            // Get the Credentials AND Pull the XML     AND     Post to JXT platform Webservice                            
-                            PostTransformationWithMappings(thisSetupItem, response.ResponseXML, fileName, dtStartTime);
+                            //use only for xml files on FTP server.
+                            if (response.ResponseClassFtpItemList.Count > 0)
+                            {
+                                foreach (var item in response.ResponseClassFtpItemList)
+                                {
+                                    fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + "_" + Guid.NewGuid().ToString("N");// Set a new file name
+
+                                    // Get the Credentials AND Pull the XML AND Post to JXT platform Webservice
+                                    PostTransformationWithMappings(thisSetupItem, item.ResponseXML, fileName, dtStartTime);
+                                }
+                            }
+                            else
+                            {
+                                // Get the Credentials AND Pull the XML AND Post to JXT platform Webservice
+                                PostTransformationWithMappings(thisSetupItem, response.ResponseXML, fileName, dtStartTime);
+                            }
                         }
                         else
                         {
@@ -464,7 +477,7 @@ Email: Nicky.s@stellarworkforce.co.nz</strong></span><br />
                         if (enableShortDescriptionPullFromFullDescription)
                         {
                             int trimLength = 1000; //shortDescription max length is 1000
-                            foreach (JobListing job in jobListings.Listings.Where(c=> string.IsNullOrEmpty(c.ShortDescription) ))
+                            foreach (JobListing job in jobListings.Listings.Where(c => string.IsNullOrEmpty(c.ShortDescription)))
                             {
                                 if (!string.IsNullOrEmpty(job.JobFullDescription))
                                 {
@@ -777,10 +790,10 @@ Email: Nicky.s@stellarworkforce.co.nz</strong></span><br />
         public bool ArchiveRGFJobs(GetAllClientSetupsToRun_Result clientSetup, JXTPosterTransform.Library.Methods.Client.PullJsonFromRGF.RGFJobBoardDataRoot data)
         {
 
-            if (data == null || data.jobBoards == null || data.jobBoards.jobboardlisting == null )
+            if (data == null || data.jobBoards == null || data.jobBoards.jobboardlisting == null)
                 return true;
 
-            var listings = data.jobBoards.jobboardlisting.upserted.Where(c => c.status.ToLower() == "unposted").Select(c=> new Job{ ReferenceNo = c.id }).ToList(); //(from m in data.jobBoards.jobboardlisting.removedIds select new Job { ReferenceNo = m }).ToList();
+            var listings = data.jobBoards.jobboardlisting.upserted.Where(c => c.status.ToLower() == "unposted").Select(c => new Job { ReferenceNo = c.id }).ToList(); //(from m in data.jobBoards.jobboardlisting.removedIds select new Job { ReferenceNo = m }).ToList();
 
             if (!listings.Any())
                 return true;
@@ -789,19 +802,19 @@ Email: Nicky.s@stellarworkforce.co.nz</strong></span><br />
             archiveJobRequest.AdvertiserId = clientSetup.AdvertiserId.Value;
             archiveJobRequest.UserName = clientSetup.AdvertiserUsername;
             archiveJobRequest.Password = clientSetup.AdvertiserPassword;
-            archiveJobRequest.Listings = listings; 
-            
+            archiveJobRequest.Listings = listings;
+
             string xmlToService = null;
             var serializer = new XmlSerializer(typeof(ArchiveJobRequest));
             try
             {
                 using (Utf8StringWriter sww = new Utf8StringWriter())
-                    using (XmlWriter writer = XmlWriter.Create(sww))
-                    {
-                        serializer.Serialize(writer, archiveJobRequest); //, ns
+                using (XmlWriter writer = XmlWriter.Create(sww))
+                {
+                    serializer.Serialize(writer, archiveJobRequest); //, ns
 
-                        xmlToService = sww.ToString(); // Your XML
-                    }
+                    xmlToService = sww.ToString(); // Your XML
+                }
 
                 Process(xmlToService, ConfigurationManager.AppSettings["WebserviceArchiveURL"]);
             }

@@ -279,7 +279,7 @@ namespace JXTPortal.Website
             {
                 if (title != "Mr" && title != "Mrs" && title != "Ms" && title != "Miss" && title != "Dr" && title != "Professor" && title != "Other")
                 {
-                    response.Error.Add(new WebResponseError { Name = "title", Message = CommonFunction.GetResourceValue("Invalid Title") });
+                    response.Error.Add(new WebResponseError { Name = "title", Message = CommonFunction.GetResourceValue("LabelInvalidTitle") });
                 }
             }
 
@@ -371,7 +371,7 @@ namespace JXTPortal.Website
             {
                 if (emailFormat != ((int)PortalEnums.Email.EmailFormat.HTML).ToString() && emailFormat != ((int)PortalEnums.Email.EmailFormat.Text).ToString())
                 {
-                    response.Error.Add(new WebResponseError { Name = "emailformat", Message = CommonFunction.GetResourceValue("Invalid Email Format") });
+                    response.Error.Add(new WebResponseError { Name = "emailformat", Message = CommonFunction.GetResourceValue("LabelInvalidEmailFormat") });
                 }
             }
 
@@ -398,7 +398,7 @@ namespace JXTPortal.Website
             {
                 if (address.Length > 1500)
                 {
-                    response.Error.Add(new WebResponseError { Name = "address", Message = CommonFunction.GetResourceValue("Please enter maximum 1500 characters for Address") });
+                    response.Error.Add(new WebResponseError { Name = "address", Message = CommonFunction.GetResourceValue("LabelEnterMaxAddress") });
                 }
             }
 
@@ -410,7 +410,7 @@ namespace JXTPortal.Website
             {
                 if (suburb.Length > 20)
                 {
-                    response.Error.Add(new WebResponseError { Name = "suburb", Message = CommonFunction.GetResourceValue("Please enter maximum 20 characters for Suburb") });
+                    response.Error.Add(new WebResponseError { Name = "suburb", Message = CommonFunction.GetResourceValue("LabelEnterMaxSuburb") });
                 }
             }
 
@@ -422,7 +422,7 @@ namespace JXTPortal.Website
             {
                 if (postcode.Length > 10)
                 {
-                    response.Error.Add(new WebResponseError { Name = "postcode", Message = CommonFunction.GetResourceValue("Please enter maximum 10 characters for Postcode") });
+                    response.Error.Add(new WebResponseError { Name = "postcode", Message = CommonFunction.GetResourceValue("LabelEnterMaxPostcode") });
                 }
             }
 
@@ -434,7 +434,7 @@ namespace JXTPortal.Website
             {
                 if (state.Length > 10)
                 {
-                    response.Error.Add(new WebResponseError { Name = "state", Message = CommonFunction.GetResourceValue("Please enter maximum 10 characters for State") });
+                    response.Error.Add(new WebResponseError { Name = "state", Message = CommonFunction.GetResourceValue("LabelEnterMaxState") });
                 }
             }
 
@@ -446,7 +446,7 @@ namespace JXTPortal.Website
             {
                 if (mailingAddress.Length > 1500)
                 {
-                    response.Error.Add(new WebResponseError { Name = "mailingaddress", Message = CommonFunction.GetResourceValue("Please enter maximum 1500 characters for Mailing Address") });
+                    response.Error.Add(new WebResponseError { Name = "mailingaddress", Message = CommonFunction.GetResourceValue("LabelEnterMaxMailingAddress") });
                 }
             }
 
@@ -458,7 +458,7 @@ namespace JXTPortal.Website
             {
                 if (mailingPostcode.Length > 10)
                 {
-                    response.Error.Add(new WebResponseError { Name = "mailingpostcode", Message = CommonFunction.GetResourceValue("Please enter maximum 10 characters for Mailing Postcode") });
+                    response.Error.Add(new WebResponseError { Name = "mailingpostcode", Message = CommonFunction.GetResourceValue("LabelEnterMaxPostcode") });
                 }
             }
 
@@ -470,7 +470,7 @@ namespace JXTPortal.Website
             {
                 if (mailingState.Length > 10)
                 {
-                    response.Error.Add(new WebResponseError { Name = "mailingstate", Message = CommonFunction.GetResourceValue("Please enter maximum 10 characters for Mailing State") });
+                    response.Error.Add(new WebResponseError { Name = "mailingstate", Message = CommonFunction.GetResourceValue("LabelEnterMaxMailingState") });
                 }
             }
 
@@ -482,14 +482,14 @@ namespace JXTPortal.Website
             {
                 if (mailingSuburb.Length > 20)
                 {
-                    response.Error.Add(new WebResponseError { Name = "mailingsuburb", Message = CommonFunction.GetResourceValue("Please enter maximum 20 characters for Mailing Suburb") });
+                    response.Error.Add(new WebResponseError { Name = "mailingsuburb", Message = CommonFunction.GetResourceValue("LabelEnterMaxMailingSuburb") });
                 }
             }
 
             SiteLanguages sitelanguage = SiteLanguagesService.GetBySiteId(SessionData.Site.SiteId).Where(x => x.LanguageId.ToString() == language).FirstOrDefault();
             if (sitelanguage == null)
             {
-                response.Error.Add(new WebResponseError { Name = "language", Message = CommonFunction.GetResourceValue("Invalid language") });
+                response.Error.Add(new WebResponseError { Name = "language", Message = CommonFunction.GetResourceValue("LabelInvalidLanguage") });
             }
 
             if (!string.IsNullOrEmpty(country))
@@ -497,7 +497,7 @@ namespace JXTPortal.Website
                 Countries selectedCountry = CountriesService.GetTranslatedCountries(SessionData.Language.LanguageId).Where(c => c.Sequence != -1 && c.CountryId.ToString() == country).FirstOrDefault();
                 if (selectedCountry == null)
                 {
-                    response.Error.Add(new WebResponseError { Name = "country", Message = CommonFunction.GetResourceValue("Invalid country") });
+                    response.Error.Add(new WebResponseError { Name = "country", Message = CommonFunction.GetResourceValue("LabelInvalidCountry") });
                 }
             }
 
@@ -506,7 +506,7 @@ namespace JXTPortal.Website
                 Entities.SiteProfession selectedProfession = SiteProfessionService.GetTranslatedProfessions(SessionData.Site.SiteId, SessionData.Site.UseCustomProfessionRole).Where(p => p.ProfessionId.ToString() == profession).FirstOrDefault();
                 if (selectedProfession == null)
                 {
-                    response.Error.Add(new WebResponseError { Name = "profession", Message = CommonFunction.GetResourceValue("Invalid profession") });
+                    response.Error.Add(new WebResponseError { Name = "profession", Message = CommonFunction.GetResourceValue("LabelInvalidProfession") });
                 }
                 else
                 {
@@ -515,7 +515,7 @@ namespace JXTPortal.Website
                         Entities.SiteRoles selectedRole = SiteRolesService.GetTranslatedByProfessionID(Convert.ToInt32(profession), SessionData.Site.UseCustomProfessionRole).Where(p => p.RoleId.ToString() == role).FirstOrDefault();
                         if (selectedRole == null)
                         {
-                            response.Error.Add(new WebResponseError { Name = "role", Message = CommonFunction.GetResourceValue("Invalid role") });
+                            response.Error.Add(new WebResponseError { Name = "role", Message = CommonFunction.GetResourceValue("LabelInvalidRole") });
                         }
                     }
                 }
@@ -649,7 +649,7 @@ namespace JXTPortal.Website
                             }
                             else
                             {
-                                response.Error.Add(new WebResponseError { Name = key, Message = CommonFunction.GetResourceValue("Invalid Custom Question") });
+                                response.Error.Add(new WebResponseError { Name = key, Message = CommonFunction.GetResourceValue("LabelInvalidCustomQuestion") });
                             }
                         }
                     }

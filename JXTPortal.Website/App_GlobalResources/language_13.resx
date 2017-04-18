@@ -4555,4 +4555,64 @@ Your account has already been validated. Please proceed to &lt;a href=/member/lo
     <value>Download Resume</value>
     <comment>Download Resume</comment>
   </data>
+  <data name="LabelEnterMaxAddress" xml:space="preserve">
+    <value>Please enter maximum 1500 characters for Address</value>
+    <comment>Please enter maximum 1500 characters for Address</comment>
+  </data>
+  <data name="LabelEnterMaxMailingAddress" xml:space="preserve">
+    <value>Please enter maximum 1500 characters for Address</value>
+    <comment>Please enter maximum 1500 characters for Address</comment>
+  </data>
+  <data name="LabelEnterMaxMailingPostcode" xml:space="preserve">
+    <value>Please enter maximum 10 characters for Postcode</value>
+    <comment>Please enter maximum 10 characters for Postcode</comment>
+  </data>
+  <data name="LabelEnterMaxMailingState" xml:space="preserve">
+    <value>Please enter maximum 10 characters for State</value>
+    <comment>Please enter maximum 10 characters for State</comment>
+  </data>
+  <data name="LabelEnterMaxMailingSuburb" xml:space="preserve">
+    <value>Please enter maximum 20 characters for Suburb</value>
+    <comment>Please enter maximum 20 characters for Suburb</comment>
+  </data>
+  <data name="LabelEnterMaxPostcode" xml:space="preserve">
+    <value>Please enter maximum 10 characters for Postcode</value>
+    <comment>Please enter maximum 10 characters for Postcode</comment>
+  </data>
+  <data name="LabelEnterMaxState" xml:space="preserve">
+    <value>Please enter maximum 10 characters for State</value>
+    <comment>Please enter maximum 10 characters for State</comment>
+  </data>
+  <data name="LabelEnterMaxSuburb" xml:space="preserve">
+    <value>Please enter maximum 20 characters for Suburb</value>
+    <comment>Please enter maximum 20 characters for Suburb</comment>
+  </data>
+  <data name="LabelInvalidCountry" xml:space="preserve">
+    <value>Invalid Country</value>
+    <comment>Invalid Country</comment>
+  </data>
+  <data name="LabelInvalidCustomQuestion" xml:space="preserve">
+    <value>Invalid Custom Question</value>
+    <comment>Invalid Custom Question</comment>
+  </data>
+  <data name="LabelInvalidEmailFormat" xml:space="preserve">
+    <value>Invalid Email Format</value>
+    <comment>Invalid Email Format</comment>
+  </data>
+  <data name="LabelInvalidLanguage" xml:space="preserve">
+    <value>Invalid Language</value>
+    <comment>Invalid Language</comment>
+  </data>
+  <data name="LabelInvalidProfession" xml:space="preserve">
+    <value>Invalid Profession</value>
+    <comment>Invalid Profession</comment>
+  </data>
+  <data name="LabelInvalidRole" xml:space="preserve">
+    <value>Invalid Role</value>
+    <comment>Invalid Role</comment>
+  </data>
+  <data name="LabelInvalidTitle" xml:space="preserve">
+    <value>Invalid Title</value>
+    <comment>Invalid Title</comment>
+  </data>
 </root>

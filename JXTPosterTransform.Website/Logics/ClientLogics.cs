@@ -88,7 +88,6 @@ namespace JXTPosterTransform.Website.Logics
 
         }
 
-
         public ClientDisplayModel ClientProfileGet(int clientID)
         {
             Client thisClient = PTClientService.ClientDetailsGet(clientID);
@@ -226,6 +225,8 @@ namespace JXTPosterTransform.Website.Logics
                             clientID = setup.ClientId,
                             clientName = setup.Client.ClientName,
 
+                            useJXTSiteMappings = setup.UseJXTSiteMappings,
+
                             posterTransformID = setup.PosterTransformId,
                             available_PT = (from m in pt
                                             where (PTCommonEnums.PosterTransform.Valid)m.Valid == PTCommonEnums.PosterTransform.Valid.Valid
@@ -340,6 +341,7 @@ namespace JXTPosterTransform.Website.Logics
                                     setupDetails.advertiserPassword,
                                     setupDetails.ArchiveMissingJobs,
                                     (int)setupDetails.validStatus,
+                                    setupDetails.useJXTSiteMappings,
                                     0);
             }
             else
@@ -357,6 +359,7 @@ namespace JXTPosterTransform.Website.Logics
                                     setupDetails.advertiserPassword,
                                     setupDetails.ArchiveMissingJobs,
                                     (int)setupDetails.validStatus,
+                                    setupDetails.useJXTSiteMappings,
                                     0);
             }
 

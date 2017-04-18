@@ -20,7 +20,7 @@ namespace JXTEnworldImport
         private static string _TARGETFOLDER = ConfigurationManager.AppSettings["WorkingPath"];
         private static string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
 
-        private static string memberFileFolder;
+        private static string memberFileFolder, memberFileFolderFormat;
         public static IFileManager FileManagerService { get; set; }
 
         private static MembersService _membersservice;
@@ -250,6 +250,7 @@ namespace JXTEnworldImport
                 if (globalSetting.FtpFolderLocation.StartsWith("s3://") == false)
                 {
                     memberFileFolder = ConfigurationManager.AppSettings["FTPHost"] + ConfigurationManager.AppSettings["MemberRootFolder"] + "/" + ConfigurationManager.AppSettings["MemberFilesFolder"];
+                    memberFileFolderFormat = "{0}/{1}/";
 
                     string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
                     string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
@@ -261,6 +262,7 @@ namespace JXTEnworldImport
                     IAwsS3 s3 = new AwsS3();
                     FileManagerService = new FileManager(s3);
                     memberFileFolder = ConfigurationManager.AppSettings["AWSS3MemberRootFolder"] + ConfigurationManager.AppSettings["AWSS3MemberFilesFolder"];
+                    memberFileFolderFormat = "{0}/{1}";
                 }
             }
             foreach (EnworldJson.RootObject memberObj in enworldEntity)
@@ -534,7 +536,7 @@ namespace JXTEnworldImport
                                         string filepath = string.Format("MemberFiles_{0}{1}", objMemberFiles.MemberFileId, extension);
                                         string errormessage = string.Empty;
 
-                                        FileManagerService.UploadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, objMemberFiles.MemberId), filepath, new MemoryStream(bytes), out errormessage);
+                                        FileManagerService.UploadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, objMemberFiles.MemberId), filepath, new MemoryStream(bytes), out errormessage);
 
                                         MemberFilesService.Update(objMemberFiles);
 

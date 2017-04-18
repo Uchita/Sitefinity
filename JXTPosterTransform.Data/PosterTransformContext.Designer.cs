@@ -495,7 +495,8 @@ namespace JXTPosterTransform.Data
         /// <param name="valid">Initial value of the Valid property.</param>
         /// <param name="createdDate">Initial value of the CreatedDate property.</param>
         /// <param name="archiveMissingJobs">Initial value of the ArchiveMissingJobs property.</param>
-        public static ClientSetup CreateClientSetup(global::System.Int32 clientSetupId, global::System.String clientSetupName, global::System.Int32 clientId, global::System.Int32 clientSetupType, global::System.Int32 timeSlot, global::System.Int32 valid, global::System.DateTime createdDate, global::System.Boolean archiveMissingJobs)
+        /// <param name="useJXTSiteMappings">Initial value of the UseJXTSiteMappings property.</param>
+        public static ClientSetup CreateClientSetup(global::System.Int32 clientSetupId, global::System.String clientSetupName, global::System.Int32 clientId, global::System.Int32 clientSetupType, global::System.Int32 timeSlot, global::System.Int32 valid, global::System.DateTime createdDate, global::System.Boolean archiveMissingJobs, global::System.Boolean useJXTSiteMappings)
         {
             ClientSetup clientSetup = new ClientSetup();
             clientSetup.ClientSetupId = clientSetupId;
@@ -506,6 +507,7 @@ namespace JXTPosterTransform.Data
             clientSetup.Valid = valid;
             clientSetup.CreatedDate = createdDate;
             clientSetup.ArchiveMissingJobs = archiveMissingJobs;
+            clientSetup.UseJXTSiteMappings = useJXTSiteMappings;
             return clientSetup;
         }
 
@@ -899,6 +901,30 @@ namespace JXTPosterTransform.Data
         private global::System.Boolean _ArchiveMissingJobs;
         partial void OnArchiveMissingJobsChanging(global::System.Boolean value);
         partial void OnArchiveMissingJobsChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean UseJXTSiteMappings
+        {
+            get
+            {
+                return _UseJXTSiteMappings;
+            }
+            set
+            {
+                OnUseJXTSiteMappingsChanging(value);
+                ReportPropertyChanging("UseJXTSiteMappings");
+                _UseJXTSiteMappings = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("UseJXTSiteMappings");
+                OnUseJXTSiteMappingsChanged();
+            }
+        }
+        private global::System.Boolean _UseJXTSiteMappings;
+        partial void OnUseJXTSiteMappingsChanging(global::System.Boolean value);
+        partial void OnUseJXTSiteMappingsChanged();
 
         #endregion
 
@@ -1735,7 +1761,8 @@ namespace JXTPosterTransform.Data
         /// <param name="archiveMissingJobs">Initial value of the ArchiveMissingJobs property.</param>
         /// <param name="clientId">Initial value of the ClientId property.</param>
         /// <param name="clientSetupId">Initial value of the ClientSetupId property.</param>
-        public static GetAllClientSetupsToRun_Result CreateGetAllClientSetupsToRun_Result(global::System.String clientName, global::System.String clientSetupName, global::System.Int32 clientSetupType, global::System.Int32 timeSlot, global::System.Boolean archiveMissingJobs, global::System.Int32 clientId, global::System.Int32 clientSetupId)
+        /// <param name="useJXTSiteMappings">Initial value of the UseJXTSiteMappings property.</param>
+        public static GetAllClientSetupsToRun_Result CreateGetAllClientSetupsToRun_Result(global::System.String clientName, global::System.String clientSetupName, global::System.Int32 clientSetupType, global::System.Int32 timeSlot, global::System.Boolean archiveMissingJobs, global::System.Int32 clientId, global::System.Int32 clientSetupId, global::System.Boolean useJXTSiteMappings)
         {
             GetAllClientSetupsToRun_Result getAllClientSetupsToRun_Result = new GetAllClientSetupsToRun_Result();
             getAllClientSetupsToRun_Result.ClientName = clientName;
@@ -1745,6 +1772,7 @@ namespace JXTPosterTransform.Data
             getAllClientSetupsToRun_Result.ArchiveMissingJobs = archiveMissingJobs;
             getAllClientSetupsToRun_Result.ClientId = clientId;
             getAllClientSetupsToRun_Result.ClientSetupId = clientSetupId;
+            getAllClientSetupsToRun_Result.UseJXTSiteMappings = useJXTSiteMappings;
             return getAllClientSetupsToRun_Result;
         }
 
@@ -2111,6 +2139,30 @@ namespace JXTPosterTransform.Data
         private global::System.Int32 _ClientSetupId;
         partial void OnClientSetupIdChanging(global::System.Int32 value);
         partial void OnClientSetupIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean UseJXTSiteMappings
+        {
+            get
+            {
+                return _UseJXTSiteMappings;
+            }
+            set
+            {
+                OnUseJXTSiteMappingsChanging(value);
+                ReportPropertyChanging("UseJXTSiteMappings");
+                _UseJXTSiteMappings = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("UseJXTSiteMappings");
+                OnUseJXTSiteMappingsChanged();
+            }
+        }
+        private global::System.Boolean _UseJXTSiteMappings;
+        partial void OnUseJXTSiteMappingsChanging(global::System.Boolean value);
+        partial void OnUseJXTSiteMappingsChanged();
 
         #endregion
 

@@ -1,33 +1,28 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Wordprocessing;
+using JXTPortal.Client.Salesforce;
+using JXTPortal.Common;
+using JXTPortal.Common.Extensions;
+using JXTPortal.Data.Dapper.Entities.ScreeningQuestions;
+using JXTPortal.Entities;
+using JXTPortal.Entities.Models;
+using JXTPortal.Service.Dapper;
+using JXTPortal.Website.usercontrols.common;
+using NotesFor.HtmlToOpenXml;
+using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Configuration;
+using System.Data;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
-using System.Data;
-using System.Net;
-using System.IO;
-using System.Configuration;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Collections.Specialized;
-using JXTPortal.Common;
-using JXTPortal.Entities;
-
-using JXTPortal.Client.Salesforce;
-using JXTPortal.Entities.Models;
-using SocialMedia;
-
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Wordprocessing;
-using NotesFor.HtmlToOpenXml;
-
-using JXTPortal.Service.Dapper;
-using JXTPortal.Data.Dapper.Entities.ScreeningQuestions;
-using JXTPortal.Website.usercontrols.common;
-using JXTPortal.Common.Extensions;
 
 namespace JXTPortal.Website
 {
@@ -38,7 +33,7 @@ namespace JXTPortal.Website
         #region Properties
 
         public IFileManager FileManagerService { get; set; }
-        private string memberFileFolder;
+        private string memberFileFolder, memberFileFolderFormat;
         private string coverLetterFolder;
         private string resumeFolder;
 
@@ -729,6 +724,7 @@ namespace JXTPortal.Website
             if (!SessionData.Site.IsUsingS3)
             {
                 memberFileFolder = ConfigurationManager.AppSettings["FTPHost"] + ConfigurationManager.AppSettings["MemberRootFolder"] + "/" + ConfigurationManager.AppSettings["MemberFilesFolder"];
+                memberFileFolderFormat = "{0}/{1}/";
                 coverLetterFolder = ConfigurationManager.AppSettings["FTPJobApplyCoverLetterUrl"];
                 resumeFolder = ConfigurationManager.AppSettings["FTPJobApplyResumeUrl"];
 
@@ -740,6 +736,7 @@ namespace JXTPortal.Website
             else
             {
                 memberFileFolder = ConfigurationManager.AppSettings["AWSS3MemberRootFolder"] + ConfigurationManager.AppSettings["AWSS3MemberFilesFolder"];
+                memberFileFolderFormat = "{0}/{1}";
                 coverLetterFolder = ConfigurationManager.AppSettings["AWSS3CoverLetterPath"];
                 resumeFolder = ConfigurationManager.AppSettings["AWSS3ResumePath"];
             }
@@ -1232,7 +1229,8 @@ namespace JXTPortal.Website
 
                     if (!string.IsNullOrWhiteSpace(screeningQuestionAnswer))
                     {
-                        if (!screeningQuestionAnswer.IsValidContent())
+                        bool acceptNewLine = ltOptions.Text.ToLower().StartsWith("<textarea");
+                        if (!screeningQuestionAnswer.IsValidContent(acceptNewLine))
                         {
                             hasError = true;
                             phError.Visible = true;
@@ -1410,11 +1408,11 @@ namespace JXTPortal.Website
                     {
                         member = new JXTPortal.Entities.Members();
                         string newpassword = tbNewPassword.Text;
-                        member.FirstName = CommonService.EncodeString(tbFirstName.Text.Trim());
-                        member.Surname = CommonService.EncodeString(tbLastName.Text.Trim());
-                        member.Username = CommonService.EncodeString(tbEmail.Text.Trim());
+                        member.FirstName = CommonService.EncodeString(tbFirstName.Text.Trim(), false);
+                        member.Surname = CommonService.EncodeString(tbLastName.Text.Trim(), false);
+                        member.Username = CommonService.EncodeString(tbEmail.Text.Trim(), false);
                         member.EmailAddress = CommonService.EncodeString(tbEmail.Text.Trim());
-                        member.MobilePhone = CommonService.EncodeString(tbPhone.Text.Trim());
+                        member.MobilePhone = CommonService.EncodeString(tbPhone.Text.Trim(), false);
                         member.EmailFormat = 1;
                         member.CountryId = 1;
                         TList<GlobalSettings> service = GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId);
@@ -1542,7 +1540,7 @@ namespace JXTPortal.Website
 
                                 jobapp.MemberCoverLetterFile = string.Format("{0}_Coverletter_{1}", jobappid, r.Replace(coverletter.MemberFileName, "_"));
 
-                                ms = FileManagerService.DownloadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, coverletter.MemberId), coverletter.MemberFileUrl, out errormessage);
+                                ms = FileManagerService.DownloadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, coverletter.MemberId), coverletter.MemberFileUrl, out errormessage);
                                 if (string.IsNullOrWhiteSpace(errormessage))
                                 {
                                     FileManagerService.UploadFile(bucketName, coverLetterFolder, jobapp.MemberCoverLetterFile, ms, out errormessage);
@@ -1613,7 +1611,7 @@ namespace JXTPortal.Website
 
                                     Stream ms = null;
 
-                                    ms = FileManagerService.DownloadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, resume.MemberId), resume.MemberFileUrl, out errormessage);
+                                    ms = FileManagerService.DownloadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, resume.MemberId), resume.MemberFileUrl, out errormessage);
                                     if (string.IsNullOrWhiteSpace(errormessage))
                                     {
                                         FileManagerService.UploadFile(bucketName, resumeFolder, jobapp.MemberResumeFile, ms, out errormessage);
@@ -1862,7 +1860,7 @@ namespace JXTPortal.Website
                             // People Bank Custom Fields
                             if (pnlPeopleBankLeft.Visible && pnlPeopleBankRight.Visible)
                             {
-                                customEmailFields.Add("CUSTOM_LANDLINE", CommonService.EncodeString(tbLandLine.Text));
+                                customEmailFields.Add("CUSTOM_LANDLINE", CommonService.EncodeString(tbLandLine.Text, false));
                                 customEmailFields.Add("CUSTOM_STATE", ddlState.SelectedValue);
                                 customEmailFields.Add("CUSTOM_RESIDENCYSTATUS", ddlResidencyStatus.SelectedValue);
                             }
@@ -1870,10 +1868,10 @@ namespace JXTPortal.Website
                             // Custom Safe Search Fields
                             if (pnlSafeSearchLeft.Visible && pnlSafeSearchRight.Visible)
                             {
-                                customEmailFields.Add("CUSTOM_ADDRESS", CommonService.EncodeString(tbAddress.Text));
-                                customEmailFields.Add("CUSTOM_COUNTRY", CommonService.EncodeString(tbCountry.Text));
-                                customEmailFields.Add("CUSTOM_POSTCODE", CommonService.EncodeString(tbPostcode.Text));
-                                customEmailFields.Add("CUSTOM_CONTACTNO", CommonService.EncodeString(tbContactNumber.Text));
+                                customEmailFields.Add("CUSTOM_ADDRESS", CommonService.EncodeString(tbAddress.Text, false));
+                                customEmailFields.Add("CUSTOM_COUNTRY", CommonService.EncodeString(tbCountry.Text, false));
+                                customEmailFields.Add("CUSTOM_POSTCODE", CommonService.EncodeString(tbPostcode.Text, false));
+                                customEmailFields.Add("CUSTOM_CONTACTNO", CommonService.EncodeString(tbContactNumber.Text, false));
                                 customEmailFields.Add("CUSTOM_WILLINGTORELOCATE", ddlWillingToRelocate.SelectedItem.Text);
                                 customEmailFields.Add("CUSTOM_PREFERREDEMPLOYMENT", ddlPreferredEmployment.SelectedItem.Text);
                                 customEmailFields.Add("CUSTOM_SALARY", ddlSalary.SelectedItem.Text);

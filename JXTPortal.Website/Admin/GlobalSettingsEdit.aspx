@@ -230,6 +230,24 @@
                             </div>
                         </li>
                     </asp:PlaceHolder>
+
+                    <!-- Manual Job Expiry -->
+                    <asp:PlaceHolder ID="phManualExpiry" runat="server">
+                        <li class="form-line" id="Li14">
+                            <h3>
+                                Manual Job Expiry</h3>
+                        </li>
+                        <li class="form-line">
+                            <label class="form-label-left">
+                                Enable Manual Job Expiry:
+                            </label>
+                            <div class="form-input">
+                                <asp:CheckBox ID="cbManualJobExpiry" runat="server" />
+                            </div>
+                        </li>
+                    </asp:PlaceHolder>
+                    <!-- Manual Expiry Ends -->
+
                     <li class="form-line" id="Li12">
                         <h3>
                             People Search Settings</h3>

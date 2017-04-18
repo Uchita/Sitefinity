@@ -54973,7 +54973,8 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					[GlobalDateFormat],
 					[TimeZone],
 					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[EnableScreeningQuestions],
+					[EnableExpiryDate]
 				FROM
 					[dbo].[GlobalSettings]
 					
@@ -55037,7 +55038,7 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 				EXEC sp_executesql @SQL
 
 				-- Return paged results
-				SELECT O.[GlobalSettingID], O.[SiteID], O.[DefaultLanguageID], O.[DefaultDynamicPageID], O.[PublicJobsSearch], O.[PublicMembersSearch], O.[PublicCompaniesSearch], O.[PublicSponsoredAdverts], O.[PrivateJobs], O.[PrivateMembers], O.[PrivateCompanies], O.[LastModifiedBy], O.[LastModified], O.[PageTitlePrefix], O.[PageTitleSuffix], O.[DefaultTitle], O.[HomeTitle], O.[DefaultDescription], O.[HomeDescription], O.[DefaultKeywords], O.[HomeKeywords], O.[ShowFaceBookButton], O.[UseAdvertiserFilter], O.[MerchantID], O.[ShowTwitterButton], O.[ShowJobAlertButton], O.[ShowLinkedInButton], O.[SiteFavIconID], O.[SiteDocType], O.[CurrencySymbol], O.[FtpFolderLocation], O.[MetaTags], O.[SystemMetaTags], O.[MemberRegistrationNotification], O.[LinkedInAPI], O.[LinkedInLogo], O.[LinkedInCompanyID], O.[LinkedInEmail], O.[PrivacySettings], O.[WWWRedirect], O.[AllowAdvertiser], O.[LinkedInAPISecret], O.[GoogleClientID], O.[GoogleClientSecret], O.[FacebookAppID], O.[FacebookAppSecret], O.[LinkedInButtonSize], O.[DefaultCountryID], O.[PayPalUsername], O.[PayPalPassword], O.[PayPalSignature], O.[SecurePayMerchantID], O.[SecurePayPassword], O.[UsingSSL], O.[UseCustomProfessionRole], O.[GenerateJobXML], O.[IsPrivateSite], O.[PrivateRedirectUrl], O.[EnableJobCustomQuestionnaire], O.[JobApplicationTypeID], O.[JobScreeningProcess], O.[AdvertiserApprovalProcess], O.[SiteType], O.[EnableSSL], O.[GST], O.[GSTLabel], O.[NumberOfPremiumJobs], O.[PremiumJobDays], O.[DisplayPremiumJobsOnResults], O.[JobExpiryNotification], O.[CurrencyID], O.[PayPalClientID], O.[PayPalClientSecret], O.[PaypalUser], O.[PaypalProPassword], O.[PaypalVendor], O.[PaypalPartner], O.[InvoiceSiteInfo], O.[InvoiceSiteFooter], O.[EnableTermsAndConditions], O.[DefaultEmailLanguageId], O.[GoogleTagManager], O.[GoogleAnalytics], O.[GoogleWebMaster], O.[EnablePeopleSearch], O.[GlobalDateFormat], O.[TimeZone], O.[GlobalFolder], O.[EnableScreeningQuestions]
+				SELECT O.[GlobalSettingID], O.[SiteID], O.[DefaultLanguageID], O.[DefaultDynamicPageID], O.[PublicJobsSearch], O.[PublicMembersSearch], O.[PublicCompaniesSearch], O.[PublicSponsoredAdverts], O.[PrivateJobs], O.[PrivateMembers], O.[PrivateCompanies], O.[LastModifiedBy], O.[LastModified], O.[PageTitlePrefix], O.[PageTitleSuffix], O.[DefaultTitle], O.[HomeTitle], O.[DefaultDescription], O.[HomeDescription], O.[DefaultKeywords], O.[HomeKeywords], O.[ShowFaceBookButton], O.[UseAdvertiserFilter], O.[MerchantID], O.[ShowTwitterButton], O.[ShowJobAlertButton], O.[ShowLinkedInButton], O.[SiteFavIconID], O.[SiteDocType], O.[CurrencySymbol], O.[FtpFolderLocation], O.[MetaTags], O.[SystemMetaTags], O.[MemberRegistrationNotification], O.[LinkedInAPI], O.[LinkedInLogo], O.[LinkedInCompanyID], O.[LinkedInEmail], O.[PrivacySettings], O.[WWWRedirect], O.[AllowAdvertiser], O.[LinkedInAPISecret], O.[GoogleClientID], O.[GoogleClientSecret], O.[FacebookAppID], O.[FacebookAppSecret], O.[LinkedInButtonSize], O.[DefaultCountryID], O.[PayPalUsername], O.[PayPalPassword], O.[PayPalSignature], O.[SecurePayMerchantID], O.[SecurePayPassword], O.[UsingSSL], O.[UseCustomProfessionRole], O.[GenerateJobXML], O.[IsPrivateSite], O.[PrivateRedirectUrl], O.[EnableJobCustomQuestionnaire], O.[JobApplicationTypeID], O.[JobScreeningProcess], O.[AdvertiserApprovalProcess], O.[SiteType], O.[EnableSSL], O.[GST], O.[GSTLabel], O.[NumberOfPremiumJobs], O.[PremiumJobDays], O.[DisplayPremiumJobsOnResults], O.[JobExpiryNotification], O.[CurrencyID], O.[PayPalClientID], O.[PayPalClientSecret], O.[PaypalUser], O.[PaypalProPassword], O.[PaypalVendor], O.[PaypalPartner], O.[InvoiceSiteInfo], O.[InvoiceSiteFooter], O.[EnableTermsAndConditions], O.[DefaultEmailLanguageId], O.[GoogleTagManager], O.[GoogleAnalytics], O.[GoogleWebMaster], O.[EnablePeopleSearch], O.[GlobalDateFormat], O.[TimeZone], O.[GlobalFolder], O.[EnableScreeningQuestions], O.[EnableExpiryDate]
 				FROM
 				    [dbo].[GlobalSettings] O,
 				    #PageIndex PageIndex
@@ -55159,6 +55160,7 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 				<parameter name="@TimeZone" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault=""/>
 				<parameter name="@GlobalFolder" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault=""/>
 				<parameter name="@EnableScreeningQuestions" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault=""/>
+				<parameter name="@EnableExpiryDate" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault=""/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -55252,6 +55254,7 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					,[TimeZone]
 					,[GlobalFolder]
 					,[EnableScreeningQuestions]
+					,[EnableExpiryDate]
 					)
 				VALUES
 					(
@@ -55343,6 +55346,7 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					,@TimeZone
 					,@GlobalFolder
 					,@EnableScreeningQuestions
+					,@EnableExpiryDate
 					)
 				
 				-- Get the identity value
@@ -55450,6 +55454,7 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 				<parameter name="@TimeZone" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault=""/>
 				<parameter name="@GlobalFolder" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault=""/>
 				<parameter name="@EnableScreeningQuestions" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault=""/>
+				<parameter name="@EnableExpiryDate" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault=""/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -55546,6 +55551,7 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					,[TimeZone] = @TimeZone
 					,[GlobalFolder] = @GlobalFolder
 					,[EnableScreeningQuestions] = @EnableScreeningQuestions
+					,[EnableExpiryDate] = @EnableExpiryDate
 				WHERE
 [GlobalSettingID] = @GlobalSettingId 
 				
@@ -55674,7 +55680,8 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					[GlobalDateFormat],
 					[TimeZone],
 					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[EnableScreeningQuestions],
+					[EnableExpiryDate]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -55788,7 +55795,8 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					[GlobalDateFormat],
 					[TimeZone],
 					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[EnableScreeningQuestions],
+					[EnableExpiryDate]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -55902,7 +55910,8 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					[GlobalDateFormat],
 					[TimeZone],
 					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[EnableScreeningQuestions],
+					[EnableExpiryDate]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -56016,7 +56025,8 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					[GlobalDateFormat],
 					[TimeZone],
 					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[EnableScreeningQuestions],
+					[EnableExpiryDate]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -56130,7 +56140,8 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					[GlobalDateFormat],
 					[TimeZone],
 					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[EnableScreeningQuestions],
+					[EnableExpiryDate]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -56244,7 +56255,8 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					[GlobalDateFormat],
 					[TimeZone],
 					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[EnableScreeningQuestions],
+					[EnableExpiryDate]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -56357,7 +56369,8 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					[GlobalDateFormat],
 					[TimeZone],
 					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[EnableScreeningQuestions],
+					[EnableExpiryDate]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -56471,7 +56484,8 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					[GlobalDateFormat],
 					[TimeZone],
 					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[EnableScreeningQuestions],
+					[EnableExpiryDate]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -56585,7 +56599,8 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					[GlobalDateFormat],
 					[TimeZone],
 					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[EnableScreeningQuestions],
+					[EnableExpiryDate]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -56700,7 +56715,8 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					[GlobalDateFormat],
 					[TimeZone],
 					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[EnableScreeningQuestions],
+					[EnableExpiryDate]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -56814,7 +56830,8 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 					[GlobalDateFormat],
 					[TimeZone],
 					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[EnableScreeningQuestions],
+					[EnableExpiryDate]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -56924,6 +56941,7 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 				<parameter name="@TimeZone" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@GlobalFolder" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@EnableScreeningQuestions" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
+				<parameter name="@EnableExpiryDate" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -57019,6 +57037,7 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 	, [TimeZone]
 	, [GlobalFolder]
 	, [EnableScreeningQuestions]
+	, [EnableExpiryDate]
     FROM
 	[dbo].[GlobalSettings]
     WHERE 
@@ -57111,6 +57130,7 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 	AND ([TimeZone] = @TimeZone OR @TimeZone IS NULL)
 	AND ([GlobalFolder] = @GlobalFolder OR @GlobalFolder IS NULL)
 	AND ([EnableScreeningQuestions] = @EnableScreeningQuestions OR @EnableScreeningQuestions IS NULL)
+	AND ([EnableExpiryDate] = @EnableExpiryDate OR @EnableExpiryDate IS NULL)
 						
   END
   ELSE
@@ -57205,6 +57225,7 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 	, [TimeZone]
 	, [GlobalFolder]
 	, [EnableScreeningQuestions]
+	, [EnableExpiryDate]
     FROM
 	[dbo].[GlobalSettings]
     WHERE 
@@ -57297,6 +57318,7 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 	OR ([TimeZone] = @TimeZone AND @TimeZone is not null)
 	OR ([GlobalFolder] = @GlobalFolder AND @GlobalFolder is not null)
 	OR ([EnableScreeningQuestions] = @EnableScreeningQuestions AND @EnableScreeningQuestions is not null)
+	OR ([EnableExpiryDate] = @EnableExpiryDate AND @EnableExpiryDate is not null)
 	SELECT @@ROWCOUNT			
   END
 				]]></body>
@@ -57331,7 +57353,7 @@ DELETE FROM [dbo].[Folders] WITH (ROWLOCK)
 				ORDER BY {1}
 				
 				-- Return paged results
-				SELECT O.[GlobalSettingID], O.[SiteID], O.[DefaultLanguageID], O.[DefaultDynamicPageID], O.[PublicJobsSearch], O.[PublicMembersSearch], O.[PublicCompaniesSearch], O.[PublicSponsoredAdverts], O.[PrivateJobs], O.[PrivateMembers], O.[PrivateCompanies], O.[LastModifiedBy], O.[LastModified], O.[PageTitlePrefix], O.[PageTitleSuffix], O.[DefaultTitle], O.[HomeTitle], O.[DefaultDescription], O.[HomeDescription], O.[DefaultKeywords], O.[HomeKeywords], O.[ShowFaceBookButton], O.[UseAdvertiserFilter], O.[MerchantID], O.[ShowTwitterButton], O.[ShowJobAlertButton], O.[ShowLinkedInButton], O.[SiteFavIconID], O.[SiteDocType], O.[CurrencySymbol], O.[FtpFolderLocation], O.[MetaTags], O.[SystemMetaTags], O.[MemberRegistrationNotification], O.[LinkedInAPI], O.[LinkedInLogo], O.[LinkedInCompanyID], O.[LinkedInEmail], O.[PrivacySettings], O.[WWWRedirect], O.[AllowAdvertiser], O.[LinkedInAPISecret], O.[GoogleClientID], O.[GoogleClientSecret], O.[FacebookAppID], O.[FacebookAppSecret], O.[LinkedInButtonSize], O.[DefaultCountryID], O.[PayPalUsername], O.[PayPalPassword], O.[PayPalSignature], O.[SecurePayMerchantID], O.[SecurePayPassword], O.[UsingSSL], O.[UseCustomProfessionRole], O.[GenerateJobXML], O.[IsPrivateSite], O.[PrivateRedirectUrl], O.[EnableJobCustomQuestionnaire], O.[JobApplicationTypeID], O.[JobScreeningProcess], O.[AdvertiserApprovalProcess], O.[SiteType], O.[EnableSSL], O.[GST], O.[GSTLabel], O.[NumberOfPremiumJobs], O.[PremiumJobDays], O.[DisplayPremiumJobsOnResults], O.[JobExpiryNotification], O.[CurrencyID], O.[PayPalClientID], O.[PayPalClientSecret], O.[PaypalUser], O.[PaypalProPassword], O.[PaypalVendor], O.[PaypalPartner], O.[InvoiceSiteInfo], O.[InvoiceSiteFooter], O.[EnableTermsAndConditions], O.[DefaultEmailLanguageId], O.[GoogleTagManager], O.[GoogleAnalytics], O.[GoogleWebMaster], O.[EnablePeopleSearch], O.[GlobalDateFormat], O.[TimeZone], O.[GlobalFolder], O.[EnableScreeningQuestions]
+				SELECT O.[GlobalSettingID], O.[SiteID], O.[DefaultLanguageID], O.[DefaultDynamicPageID], O.[PublicJobsSearch], O.[PublicMembersSearch], O.[PublicCompaniesSearch], O.[PublicSponsoredAdverts], O.[PrivateJobs], O.[PrivateMembers], O.[PrivateCompanies], O.[LastModifiedBy], O.[LastModified], O.[PageTitlePrefix], O.[PageTitleSuffix], O.[DefaultTitle], O.[HomeTitle], O.[DefaultDescription], O.[HomeDescription], O.[DefaultKeywords], O.[HomeKeywords], O.[ShowFaceBookButton], O.[UseAdvertiserFilter], O.[MerchantID], O.[ShowTwitterButton], O.[ShowJobAlertButton], O.[ShowLinkedInButton], O.[SiteFavIconID], O.[SiteDocType], O.[CurrencySymbol], O.[FtpFolderLocation], O.[MetaTags], O.[SystemMetaTags], O.[MemberRegistrationNotification], O.[LinkedInAPI], O.[LinkedInLogo], O.[LinkedInCompanyID], O.[LinkedInEmail], O.[PrivacySettings], O.[WWWRedirect], O.[AllowAdvertiser], O.[LinkedInAPISecret], O.[GoogleClientID], O.[GoogleClientSecret], O.[FacebookAppID], O.[FacebookAppSecret], O.[LinkedInButtonSize], O.[DefaultCountryID], O.[PayPalUsername], O.[PayPalPassword], O.[PayPalSignature], O.[SecurePayMerchantID], O.[SecurePayPassword], O.[UsingSSL], O.[UseCustomProfessionRole], O.[GenerateJobXML], O.[IsPrivateSite], O.[PrivateRedirectUrl], O.[EnableJobCustomQuestionnaire], O.[JobApplicationTypeID], O.[JobScreeningProcess], O.[AdvertiserApprovalProcess], O.[SiteType], O.[EnableSSL], O.[GST], O.[GSTLabel], O.[NumberOfPremiumJobs], O.[PremiumJobDays], O.[DisplayPremiumJobsOnResults], O.[JobExpiryNotification], O.[CurrencyID], O.[PayPalClientID], O.[PayPalClientSecret], O.[PaypalUser], O.[PaypalProPassword], O.[PaypalVendor], O.[PaypalPartner], O.[InvoiceSiteInfo], O.[InvoiceSiteFooter], O.[EnableTermsAndConditions], O.[DefaultEmailLanguageId], O.[GoogleTagManager], O.[GoogleAnalytics], O.[GoogleWebMaster], O.[EnablePeopleSearch], O.[GlobalDateFormat], O.[TimeZone], O.[GlobalFolder], O.[EnableScreeningQuestions], O.[EnableExpiryDate]
 				FROM
 				    [dbo].[GlobalSettings] O,
 				    #PageIndex PageIndex
@@ -57410,7 +57432,8 @@ ter],
 					[GlobalDateFormat],
 					[TimeZone],
 					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[EnableScreeningQuestions],
+					[EnableExpiryDate]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -57528,6 +57551,7 @@ ter],
 				<parameter name="@TimeZone" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@GlobalFolder" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@EnableScreeningQuestions" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
+				<parameter name="@EnableExpiryDate" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -57537,6 +57561,7 @@ ter is not null)
 	OR ([TimeZone] = @TimeZone AND @TimeZone is not null)
 	OR ([GlobalFolder] = @GlobalFolder AND @GlobalFolder is not null)
 	OR ([EnableScreeningQuestions] = @EnableScreeningQuestions AND @EnableScreeningQuestions is not null)
+	OR ([EnableExpiryDate] = @EnableExpiryDate AND @EnableExpiryDate is not null)
 	SELECT @@ROWCOUNT			
   END
 				
@@ -57567,7 +57592,8 @@ ter],
 					[GlobalDateFormat],
 					[TimeZone],
 					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[EnableScreeningQuestions],
+					[EnableExpiryDate]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -57682,6 +57708,7 @@ ter],
 				<parameter name="@TimeZone" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@GlobalFolder" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@EnableScreeningQuestions" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
+				<parameter name="@EnableExpiryDate" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -57691,6 +57718,7 @@ ter
 					,[TimeZone] = @TimeZone
 					,[GlobalFolder] = @GlobalFolder
 					,[EnableScreeningQuestions] = @EnableScreeningQuestions
+					,[EnableExpiryDate] = @EnableExpiryDate
 				WHERE
 [GlobalSettingID] = @GlobalSettingId 
 				
@@ -57722,7 +57750,8 @@ ter],
 					[GlobalDateFormat],
 					[TimeZone],
 					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[EnableScreeningQuestions],
+					[EnableExpiryDate]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -57758,7 +57787,8 @@ ter],
 					[GlobalDateFormat],
 					[TimeZone],
 					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[EnableScreeningQuestions],
+					[EnableExpiryDate]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -57874,6 +57904,7 @@ ter],
 				<parameter name="@TimeZone" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@GlobalFolder" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@EnableScreeningQuestions" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
+				<parameter name="@EnableExpiryDate" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -57883,6 +57914,7 @@ ter
 					,@TimeZone
 					,@GlobalFolder
 					,@EnableScreeningQuestions
+					,@EnableExpiryDate
 					)
 				
 				-- Get the identity value
@@ -57943,7 +57975,8 @@ ter],
 					[GlobalDateFormat],
 					[TimeZone],
 					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[EnableScreeningQuestions],
+					[EnableExpiryDate]
 				FROM
 					[dbo].[GlobalSettings]
 					
@@ -57976,7 +58009,8 @@ ter],
 					[GlobalDateFormat],
 					[TimeZone],
 					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[EnableScreeningQuestions],
+					[EnableExpiryDate]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -58029,7 +58063,8 @@ ter],
 					[GlobalDateFormat],
 					[TimeZone],
 					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[EnableScreeningQuestions],
+					[EnableExpiryDate]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -58065,7 +58100,8 @@ ter],
 					[GlobalDateFormat],
 					[TimeZone],
 					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[EnableScreeningQuestions],
+					[EnableExpiryDate]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -58129,7 +58165,8 @@ ter],
 					[GlobalDateFormat],
 					[TimeZone],
 					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[EnableScreeningQuestions],
+					[EnableExpiryDate]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -58166,7 +58203,8 @@ ter],
 					[GlobalDateFormat],
 					[TimeZone],
 					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[EnableScreeningQuestions],
+					[EnableExpiryDate]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -58202,7 +58240,8 @@ ter],
 					[GlobalDateFormat],
 					[TimeZone],
 					[GlobalFolder],
-					[EnableScreeningQuestions]
+					[EnableScreeningQuestions],
+					[EnableExpiryDate]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -88834,7 +88873,7 @@ END
 				<parameter name="@JobAlertId" type="int" direction="Output" size="4" precision="10" scale="0" param="" nulldefault=""/>
 				<parameter name="@JobAlertName" type="nvarchar" direction="Input" size="510" precision="0" scale="0" param="(510)" nulldefault=""/>
 				<parameter name="@LastModified" type="datetime" direction="Input" size="8" precision="23" scale="3" param="" nulldefault=""/>
-				<parameter name="@SearchKeywords" type="varchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault=""/>
+				<parameter name="@SearchKeywords" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault=""/>
 				<parameter name="@RecurrenceType" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
 				<parameter name="@DailyFrequency" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
 				<parameter name="@WeeklyFrequency" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
@@ -88957,7 +88996,7 @@ END
 				<parameter name="@JobAlertId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
 				<parameter name="@JobAlertName" type="nvarchar" direction="Input" size="510" precision="0" scale="0" param="(510)" nulldefault=""/>
 				<parameter name="@LastModified" type="datetime" direction="Input" size="8" precision="23" scale="3" param="" nulldefault=""/>
-				<parameter name="@SearchKeywords" type="varchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault=""/>
+				<parameter name="@SearchKeywords" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault=""/>
 				<parameter name="@RecurrenceType" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
 				<parameter name="@DailyFrequency" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
 				<parameter name="@WeeklyFrequency" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
@@ -89353,7 +89392,7 @@ END
 				<parameter name="@JobAlertId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@JobAlertName" type="nvarchar" direction="Input" size="510" precision="0" scale="0" param="(510)" nulldefault="null"/>
 				<parameter name="@LastModified" type="datetime" direction="Input" size="8" precision="23" scale="3" param="" nulldefault="null"/>
-				<parameter name="@SearchKeywords" type="varchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
+				<parameter name="@SearchKeywords" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
 				<parameter name="@RecurrenceType" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@DailyFrequency" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@WeeklyFrequency" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
@@ -89587,7 +89626,8 @@ END
 		
 				
 		<procedure owner="dbo" name="JobAlerts_GetByProfessionId"  skip="true">
-			<comment><![CDATA[]]></comment>
+			<comment><![CDATA[
+]]></comment>
 			<parameters>
 				<parameter name="@ProfessionId" type="varchar" direction="Input" size="500" precision="0" scale="0" param="(500)" nulldefault="null"/>
 			</parameters>
@@ -89625,14 +89665,6 @@ tResultCount],
 				
 		<procedure owner="dbo" name="JobAlerts_GetByJobAlertId"  skip="true">
 			<comment><![CDATA[
-/*
-----------------------------------------------------------------------------------------------------
-
--- Created By:  ()
--- Purpose: Select records from the JobAlerts table through an index
-----------------------------------------------------------------------------------------------------
-*/
-
 
 ]]></comment>
 			<parameters>
@@ -89664,30 +89696,18 @@ tResultCount],
 				WHERE
 					[JobAlertID] = @JobAlertId
 				SELECT @@ROWCOUNT
-					
-			
-
 
 			]]></body>
 					</procedure>
 				
 		<procedure owner="dbo" name="JobAlerts_Insert"  skip="true">
 			<comment><![CDATA[
-/*
-----------------------------------------------------------------------------------------------------
-
--- Created By:  ()
--- Purpose: Inserts a record into the JobAlerts table
-----------------------------------------------------------------------------------------------------
-*/
-
-
 ]]></comment>
 			<parameters>
 				<parameter name="@JobAlertId" type="int" direction="InputOutput" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@JobAlertName" type="nvarchar" direction="Input" size="510" precision="0" scale="0" param="(510)" nulldefault="null"/>
 				<parameter name="@LastModified" type="datetime" direction="Input" size="8" precision="23" scale="3" param="" nulldefault="null"/>
-				<parameter name="@SearchKeywords" type="varchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
+				<parameter name="@SearchKeywords" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
 				<parameter name="@RecurrenceType" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@DailyFrequency" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@WeeklyFrequency" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
@@ -89743,24 +89763,12 @@ tResultCount
 				
 				-- Get the identity value
 				SET @JobAlertId = SCOPE_IDENTITY()
-									
-							
-			
-
 
 			]]></body>
 					</procedure>
 				
 		<procedure owner="dbo" name="JobAlerts_GetByMemberId"  skip="true">
 			<comment><![CDATA[
-/*
-----------------------------------------------------------------------------------------------------
-
--- Created By:  ()
--- Purpose: Select records from the JobAlerts table through a foreign key
-----------------------------------------------------------------------------------------------------
-*/
-
 
 ]]></comment>
 			<parameters>
@@ -89794,14 +89802,13 @@ tResultCount],
 				
 				SELECT @@ROWCOUNT
 				SET ANSI_NULLS ON
-			
-
 
 			]]></body>
 					</procedure>
 				
 		<procedure owner="dbo" name="JobAlerts_GetByLocationId"  skip="true">
-			<comment><![CDATA[]]></comment>
+			<comment><![CDATA[
+]]></comment>
 			<parameters>
 				<parameter name="@LocationId" type="varchar" direction="Input" size="500" precision="0" scale="0" param="(500)" nulldefault="null"/>
 			</parameters>
@@ -89839,15 +89846,6 @@ tResultCount],
 				
 		<procedure owner="dbo" name="JobAlerts_Get_List"  skip="true">
 			<comment><![CDATA[
-/*
-----------------------------------------------------------------------------------------------------
-
--- Created By:  ()
--- Purpose: Gets all records from the JobAlerts table
-----------------------------------------------------------------------------------------------------
-*/
-
-
 ]]></comment>
 			<parameters>
 			</parameters>
@@ -89876,23 +89874,12 @@ tResultCount],
 					[dbo].[JobAlerts]
 					
 				SELECT @@ROWCOUNT
-			
-
 
 			]]></body>
 					</procedure>
 				
 		<procedure owner="dbo" name="JobAlerts_GetPaged"  skip="true">
 			<comment><![CDATA[
-/*
-----------------------------------------------------------------------------------------------------
-
--- Created By:  ()
--- Purpose: Gets records from the JobAlerts table passing page index and page count parameters
-----------------------------------------------------------------------------------------------------
-*/
-
-
 ]]></comment>
 			<parameters>
 				<parameter name="@WhereClause" type="varchar" direction="Input" size="2000" precision="0" scale="0" param="(2000)" nulldefault="null"/>
@@ -89911,23 +89898,12 @@ TotalRowCount'
 				EXEC sp_executesql @SQL
 			
 				END
-			
-
 
 			]]></body>
 					</procedure>
 				
 		<procedure owner="dbo" name="JobAlerts_GetBySiteId"  skip="true">
 			<comment><![CDATA[
-/*
-----------------------------------------------------------------------------------------------------
-
--- Created By:  ()
--- Purpose: Select records from the JobAlerts table through a foreign key
-----------------------------------------------------------------------------------------------------
-*/
-
-
 ]]></comment>
 			<parameters>
 				<parameter name="@SiteId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
@@ -89960,14 +89936,13 @@ tResultCount],
 				
 				SELECT @@ROWCOUNT
 				SET ANSI_NULLS ON
-			
-
 
 			]]></body>
 					</procedure>
 				
 		<procedure owner="dbo" name="JobAlerts_GetByCountryId"  skip="true">
-			<comment><![CDATA[]]></comment>
+			<comment><![CDATA[
+]]></comment>
 			<parameters>
 				<parameter name="@CountryId" type="varchar" direction="Input" size="500" precision="0" scale="0" param="(500)" nulldefault="null"/>
 			</parameters>
@@ -90004,8 +89979,7 @@ tResultCount],
 					</procedure>
 				
 		<procedure owner="dbo" name="JobAlerts_GetAllAlertsToRunToday"  skip="true">
-			<comment><![CDATA[  
-  
+			<comment><![CDATA[
 ]]></comment>
 			<parameters>
 				<parameter name="@SiteID" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
@@ -90041,29 +90015,20 @@ FROM JobAlerts ja WITH (NOLOCK)
 INNER JOIN Members m  WITH (NOLOCK)              
 ON ja.MemberID = m.MemberID              
 WHERE (CONVERT(date, DateNextRun) <= @today OR DateNextRun IS NULL) AND AlertActive = 1 AND ja.SiteID = @SiteID AND m.Valid = 1 AND m.Validated = 1          
-END   
+END
 
 			]]></body>
 					</procedure>
 				
 		<procedure owner="dbo" name="JobAlerts_Find"  skip="true">
 			<comment><![CDATA[
-/*
-----------------------------------------------------------------------------------------------------
-
--- Created By:  ()
--- Purpose: Finds records in the JobAlerts table passing nullable parameters
-----------------------------------------------------------------------------------------------------
-*/
-
-
 ]]></comment>
 			<parameters>
 				<parameter name="@SearchUsingOR" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 				<parameter name="@JobAlertId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@JobAlertName" type="nvarchar" direction="Input" size="510" precision="0" scale="0" param="(510)" nulldefault="null"/>
 				<parameter name="@LastModified" type="datetime" direction="Input" size="8" precision="23" scale="3" param="" nulldefault="null"/>
-				<parameter name="@SearchKeywords" type="varchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
+				<parameter name="@SearchKeywords" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
 				<parameter name="@RecurrenceType" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@DailyFrequency" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@WeeklyFrequency" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
@@ -90117,23 +90082,12 @@ tResultCount is not null)
 	OR ([CountryID] = @CountryId AND @CountryId is not null)
 	SELECT @@ROWCOUNT			
   END
-				
-
 
 			]]></body>
 					</procedure>
 				
 		<procedure owner="dbo" name="JobAlerts_Delete"  skip="true">
 			<comment><![CDATA[
-/*
-----------------------------------------------------------------------------------------------------
-
--- Created By:  ()
--- Purpose: Deletes a record in the JobAlerts table
-----------------------------------------------------------------------------------------------------
-*/
-
-
 ]]></comment>
 			<parameters>
 				<parameter name="@JobAlertId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
@@ -90143,24 +90097,12 @@ tResultCount is not null)
 DELETE FROM [dbo].[JobAlerts] WITH (ROWLOCK) 
 				WHERE
 					[JobAlertID] = @JobAlertId
-					
-			
-
 
 			]]></body>
 					</procedure>
 				
 		<procedure owner="dbo" name="JobAlerts_GetBySalaryTypeId"  skip="true">
 			<comment><![CDATA[
-/*
-----------------------------------------------------------------------------------------------------
-
--- Created By:  ()
--- Purpose: Select records from the JobAlerts table through a foreign key
-----------------------------------------------------------------------------------------------------
-*/
-
-
 ]]></comment>
 			<parameters>
 				<parameter name="@SalaryTypeId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
@@ -90193,29 +90135,18 @@ tResultCount],
 				
 				SELECT @@ROWCOUNT
 				SET ANSI_NULLS ON
-			
-
 
 			]]></body>
 					</procedure>
 				
 		<procedure owner="dbo" name="JobAlerts_Update"  skip="true">
 			<comment><![CDATA[
-/*
-----------------------------------------------------------------------------------------------------
-
--- Created By:  ()
--- Purpose: Updates a record in the JobAlerts table
-----------------------------------------------------------------------------------------------------
-*/
-
-
 ]]></comment>
 			<parameters>
 				<parameter name="@JobAlertId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@JobAlertName" type="nvarchar" direction="Input" size="510" precision="0" scale="0" param="(510)" nulldefault="null"/>
 				<parameter name="@LastModified" type="datetime" direction="Input" size="8" precision="23" scale="3" param="" nulldefault="null"/>
-				<parameter name="@SearchKeywords" type="varchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
+				<parameter name="@SearchKeywords" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
 				<parameter name="@RecurrenceType" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@DailyFrequency" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@WeeklyFrequency" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
@@ -90268,16 +90199,14 @@ tResultCount
 					,[SalaryTypeID] = @SalaryTypeId
 					,[CountryID] = @CountryId
 				WHERE
-[JobAlertID] = @JobAlertId 
-				
-			
-
+[JobAlertID] = @JobAlertId
 
 			]]></body>
 					</procedure>
 				
 		<procedure owner="dbo" name="JobAlerts_CustomGetMemberReport"  skip="true">
-			<comment><![CDATA[]]></comment>
+			<comment><![CDATA[
+]]></comment>
 			<parameters>
 				<parameter name="@siteid" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@datefrom" type="date" direction="Input" size="3" precision="10" scale="0" param="" nulldefault="null"/>
@@ -90295,14 +90224,6 @@ END
 				
 		<procedure owner="dbo" name="JobAlerts_GetByCurrencyId"  skip="true">
 			<comment><![CDATA[
-/*
-----------------------------------------------------------------------------------------------------
-
--- Created By:  ()
--- Purpose: Select records from the JobAlerts table through a foreign key
-----------------------------------------------------------------------------------------------------
-*/
-
 
 ]]></comment>
 			<parameters>
@@ -90336,8 +90257,6 @@ tResultCount],
 				
 				SELECT @@ROWCOUNT
 				SET ANSI_NULLS ON
-			
-
 
 			]]></body>
 					</procedure>
@@ -91422,7 +91341,10 @@ END
 					[FileDownloaded],
 					[AppliedWith],
 					[ScreeningQuestionaireXML],
-					[ScreeningQuestionsGuid]
+					[ScreeningQuestionsGuid],
+					[ProcessDate],
+					[ProcessException],
+					[ExternalID]
 				FROM
 					[dbo].[JobApplication]
 					
@@ -91486,7 +91408,7 @@ END
 				EXEC sp_executesql @SQL
 
 				-- Return paged results
-				SELECT O.[JobApplicationID], O.[ApplicationDate], O.[JobID], O.[MemberID], O.[MemberResumeFile], O.[MemberCoverLetterFile], O.[ApplicationStatus], O.[JobAppValidateID], O.[SiteID_Referral], O.[URL_Referral], O.[ApplicantGrade], O.[LastViewedDate], O.[FirstName], O.[Surname], O.[EmailAddress], O.[MobilePhone], O.[MemberNote], O.[AdvertiserNote], O.[JobArchiveID], O.[Draft], O.[JobApplicationTypeID], O.[ExternalXMLFilename], O.[CustomQuestionnaireXML], O.[ExternalPDFFilename], O.[FileDownloaded], O.[AppliedWith], O.[ScreeningQuestionaireXML], O.[ScreeningQuestionsGuid]
+				SELECT O.[JobApplicationID], O.[ApplicationDate], O.[JobID], O.[MemberID], O.[MemberResumeFile], O.[MemberCoverLetterFile], O.[ApplicationStatus], O.[JobAppValidateID], O.[SiteID_Referral], O.[URL_Referral], O.[ApplicantGrade], O.[LastViewedDate], O.[FirstName], O.[Surname], O.[EmailAddress], O.[MobilePhone], O.[MemberNote], O.[AdvertiserNote], O.[JobArchiveID], O.[Draft], O.[JobApplicationTypeID], O.[ExternalXMLFilename], O.[CustomQuestionnaireXML], O.[ExternalPDFFilename], O.[FileDownloaded], O.[AppliedWith], O.[ScreeningQuestionaireXML], O.[ScreeningQuestionsGuid], O.[ProcessDate], O.[ProcessException], O.[ExternalID]
 				FROM
 				    [dbo].[JobApplication] O,
 				    #PageIndex PageIndex
@@ -91547,6 +91469,9 @@ END
 				<parameter name="@AppliedWith" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault=""/>
 				<parameter name="@ScreeningQuestionaireXml" type="nvarchar" direction="Input" size="-1" precision="0" scale="0" param="(MAX)" nulldefault=""/>
 				<parameter name="@ScreeningQuestionsGuid" type="uniqueidentifier" direction="Input" size="16" precision="0" scale="0" param="" nulldefault=""/>
+				<parameter name="@ProcessDate" type="datetime" direction="Input" size="8" precision="23" scale="3" param="" nulldefault=""/>
+				<parameter name="@ProcessException" type="varchar" direction="Input" size="500" precision="0" scale="0" param="(500)" nulldefault=""/>
+				<parameter name="@ExternalId" type="varchar" direction="Input" size="50" precision="0" scale="0" param="(50)" nulldefault=""/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -91579,6 +91504,9 @@ END
 					,[AppliedWith]
 					,[ScreeningQuestionaireXML]
 					,[ScreeningQuestionsGuid]
+					,[ProcessDate]
+					,[ProcessException]
+					,[ExternalID]
 					)
 				VALUES
 					(
@@ -91609,6 +91537,9 @@ END
 					,@AppliedWith
 					,@ScreeningQuestionaireXml
 					,@ScreeningQuestionsGuid
+					,@ProcessDate
+					,@ProcessException
+					,@ExternalId
 					)
 				
 				-- Get the identity value
@@ -91655,6 +91586,9 @@ END
 				<parameter name="@AppliedWith" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault=""/>
 				<parameter name="@ScreeningQuestionaireXml" type="nvarchar" direction="Input" size="-1" precision="0" scale="0" param="(MAX)" nulldefault=""/>
 				<parameter name="@ScreeningQuestionsGuid" type="uniqueidentifier" direction="Input" size="16" precision="0" scale="0" param="" nulldefault=""/>
+				<parameter name="@ProcessDate" type="datetime" direction="Input" size="8" precision="23" scale="3" param="" nulldefault=""/>
+				<parameter name="@ProcessException" type="varchar" direction="Input" size="500" precision="0" scale="0" param="(500)" nulldefault=""/>
+				<parameter name="@ExternalId" type="varchar" direction="Input" size="50" precision="0" scale="0" param="(50)" nulldefault=""/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -91690,6 +91624,9 @@ END
 					,[AppliedWith] = @AppliedWith
 					,[ScreeningQuestionaireXML] = @ScreeningQuestionaireXml
 					,[ScreeningQuestionsGuid] = @ScreeningQuestionsGuid
+					,[ProcessDate] = @ProcessDate
+					,[ProcessException] = @ProcessException
+					,[ExternalID] = @ExternalId
 				WHERE
 [JobApplicationID] = @JobApplicationId 
 				
@@ -91757,7 +91694,10 @@ END
 					[FileDownloaded],
 					[AppliedWith],
 					[ScreeningQuestionaireXML],
-					[ScreeningQuestionsGuid]
+					[ScreeningQuestionsGuid],
+					[ProcessDate],
+					[ProcessException],
+					[ExternalID]
 				FROM
 					[dbo].[JobApplication]
 				WHERE
@@ -91808,7 +91748,10 @@ END
 					[FileDownloaded],
 					[AppliedWith],
 					[ScreeningQuestionaireXML],
-					[ScreeningQuestionsGuid]
+					[ScreeningQuestionsGuid],
+					[ProcessDate],
+					[ProcessException],
+					[ExternalID]
 				FROM
 					[dbo].[JobApplication]
 				WHERE
@@ -91859,7 +91802,10 @@ END
 					[FileDownloaded],
 					[AppliedWith],
 					[ScreeningQuestionaireXML],
-					[ScreeningQuestionsGuid]
+					[ScreeningQuestionsGuid],
+					[ProcessDate],
+					[ProcessException],
+					[ExternalID]
 				FROM
 					[dbo].[JobApplication]
 				WHERE
@@ -91910,7 +91856,10 @@ END
 					[FileDownloaded],
 					[AppliedWith],
 					[ScreeningQuestionaireXML],
-					[ScreeningQuestionsGuid]
+					[ScreeningQuestionsGuid],
+					[ProcessDate],
+					[ProcessException],
+					[ExternalID]
 				FROM
 					[dbo].[JobApplication]
 				WHERE
@@ -91961,7 +91910,10 @@ END
 					[FileDownloaded],
 					[AppliedWith],
 					[ScreeningQuestionaireXML],
-					[ScreeningQuestionsGuid]
+					[ScreeningQuestionsGuid],
+					[ProcessDate],
+					[ProcessException],
+					[ExternalID]
 				FROM
 					[dbo].[JobApplication]
 				WHERE
@@ -92010,6 +91962,9 @@ END
 				<parameter name="@AppliedWith" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@ScreeningQuestionaireXml" type="nvarchar" direction="Input" size="-1" precision="0" scale="0" param="(MAX)" nulldefault="null"/>
 				<parameter name="@ScreeningQuestionsGuid" type="uniqueidentifier" direction="Input" size="16" precision="0" scale="0" param="" nulldefault="null"/>
+				<parameter name="@ProcessDate" type="datetime" direction="Input" size="8" precision="23" scale="3" param="" nulldefault="null"/>
+				<parameter name="@ProcessException" type="varchar" direction="Input" size="500" precision="0" scale="0" param="(500)" nulldefault="null"/>
+				<parameter name="@ExternalId" type="varchar" direction="Input" size="50" precision="0" scale="0" param="(50)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -92044,6 +91999,9 @@ END
 	, [AppliedWith]
 	, [ScreeningQuestionaireXML]
 	, [ScreeningQuestionsGuid]
+	, [ProcessDate]
+	, [ProcessException]
+	, [ExternalID]
     FROM
 	[dbo].[JobApplication]
     WHERE 
@@ -92075,6 +92033,9 @@ END
 	AND ([AppliedWith] = @AppliedWith OR @AppliedWith IS NULL)
 	AND ([ScreeningQuestionaireXML] = @ScreeningQuestionaireXml OR @ScreeningQuestionaireXml IS NULL)
 	AND ([ScreeningQuestionsGuid] = @ScreeningQuestionsGuid OR @ScreeningQuestionsGuid IS NULL)
+	AND ([ProcessDate] = @ProcessDate OR @ProcessDate IS NULL)
+	AND ([ProcessException] = @ProcessException OR @ProcessException IS NULL)
+	AND ([ExternalID] = @ExternalId OR @ExternalId IS NULL)
 						
   END
   ELSE
@@ -92108,6 +92069,9 @@ END
 	, [AppliedWith]
 	, [ScreeningQuestionaireXML]
 	, [ScreeningQuestionsGuid]
+	, [ProcessDate]
+	, [ProcessException]
+	, [ExternalID]
     FROM
 	[dbo].[JobApplication]
     WHERE 
@@ -92139,6 +92103,9 @@ END
 	OR ([AppliedWith] = @AppliedWith AND @AppliedWith is not null)
 	OR ([ScreeningQuestionaireXML] = @ScreeningQuestionaireXml AND @ScreeningQuestionaireXml is not null)
 	OR ([ScreeningQuestionsGuid] = @ScreeningQuestionsGuid AND @ScreeningQuestionsGuid is not null)
+	OR ([ProcessDate] = @ProcessDate AND @ProcessDate is not null)
+	OR ([ProcessException] = @ProcessException AND @ProcessException is not null)
+	OR ([ExternalID] = @ExternalId AND @ExternalId is not null)
 	SELECT @@ROWCOUNT			
   END
 				]]></body>
@@ -92173,7 +92140,7 @@ END
 				ORDER BY {1}
 				
 				-- Return paged results
-				SELECT O.[JobApplicationID], O.[ApplicationDate], O.[JobID], O.[MemberID], O.[MemberResumeFile], O.[MemberCoverLetterFile], O.[ApplicationStatus], O.[JobAppValidateID], O.[SiteID_Referral], O.[URL_Referral], O.[ApplicantGrade], O.[LastViewedDate], O.[FirstName], O.[Surname], O.[EmailAddress], O.[MobilePhone], O.[MemberNote], O.[AdvertiserNote], O.[JobArchiveID], O.[Draft], O.[JobApplicationTypeID], O.[ExternalXMLFilename], O.[CustomQuestionnaireXML], O.[ExternalPDFFilename], O.[FileDownloaded], O.[AppliedWith], O.[ScreeningQuestionaireXML], O.[ScreeningQuestionsGuid]
+				SELECT O.[JobApplicationID], O.[ApplicationDate], O.[JobID], O.[MemberID], O.[MemberResumeFile], O.[MemberCoverLetterFile], O.[ApplicationStatus], O.[JobAppValidateID], O.[SiteID_Referral], O.[URL_Referral], O.[ApplicantGrade], O.[LastViewedDate], O.[FirstName], O.[Surname], O.[EmailAddress], O.[MobilePhone], O.[MemberNote], O.[AdvertiserNote], O.[JobArchiveID], O.[Draft], O.[JobApplicationTypeID], O.[ExternalXMLFilename], O.[CustomQuestionnaireXML], O.[ExternalPDFFilename], O.[FileDownloaded], O.[AppliedWith], O.[ScreeningQuestionaireXML], O.[ScreeningQuestionsGuid], O.[ProcessDate], O.[ProcessException], O.[ExternalID]
 				FROM
 				    [dbo].[JobApplication] O,
 				    #PageIndex PageIndex
@@ -92194,7 +92161,8 @@ END
 		
 				
 		<procedure owner="dbo" name="JobApplication_GetByAdvertiserIdJobId"  skip="true">
-			<comment><![CDATA[]]></comment>
+			<comment><![CDATA[
+]]></comment>
 			<parameters>
 				<parameter name="@AdvertiserId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@JobId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
@@ -92209,23 +92177,13 @@ TotalCount
      AND RowIndex <= @PageEnd                        
      ORDER BY RowIndex                   
                      
-    END  
-    
+    END
 
 			]]></body>
 					</procedure>
 				
 		<procedure owner="dbo" name="JobApplication_GetByMemberId"  skip="true">
 			<comment><![CDATA[
-/*
-----------------------------------------------------------------------------------------------------
-
--- Created By:  ()
--- Purpose: Select records from the JobApplication table through an index
-----------------------------------------------------------------------------------------------------
-*/
-
-
 ]]></comment>
 			<parameters>
 				<parameter name="@MemberId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
@@ -92248,21 +92206,22 @@ tViewedDate],
 					[FileDownloaded],
 					[AppliedWith],
 					[ScreeningQuestionaireXML],
-					[ScreeningQuestionsGuid]
+					[ScreeningQuestionsGuid],
+					[ProcessDate],
+					[ProcessException],
+					[ExternalID]
 				FROM
 					[dbo].[JobApplication]
 				WHERE
 					[MemberID] = @MemberId
 				SELECT @@ROWCOUNT
-					
-			
-
 
 			]]></body>
 					</procedure>
 				
 		<procedure owner="dbo" name="JobApplication_CustomGetByJobIdMemberId"  skip="true">
-			<comment><![CDATA[]]></comment>
+			<comment><![CDATA[
+]]></comment>
 			<parameters>
 				<parameter name="@JobID" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@MemberID" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
@@ -92285,23 +92244,19 @@ tViewedDate],
 [FileDownloaded],
 AppliedWith,
 ScreeningQuestionaireXML,
-ScreeningQuestionsGuid
+ScreeningQuestionsGuid,
+ProcessDate,
+ProcessException,
+ExternalID
 FROM JobApplication WITH (NOLOCK)          
 WHERE JobID = @JobID AND MemberID = @MemberID          
 END
+
 			]]></body>
 					</procedure>
 				
 		<procedure owner="dbo" name="JobApplication_Find"  skip="true">
 			<comment><![CDATA[
-/*
-----------------------------------------------------------------------------------------------------
-
--- Created By:  ()
--- Purpose: Finds records in the JobApplication table passing nullable parameters
-----------------------------------------------------------------------------------------------------
-*/
-
 
 ]]></comment>
 			<parameters>
@@ -92334,6 +92289,9 @@ END
 				<parameter name="@AppliedWith" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@ScreeningQuestionaireXml" type="nvarchar" direction="Input" size="-1" precision="0" scale="0" param="(MAX)" nulldefault="null"/>
 				<parameter name="@ScreeningQuestionsGuid" type="uniqueidentifier" direction="Input" size="16" precision="0" scale="0" param="" nulldefault="null"/>
+				<parameter name="@ProcessDate" type="datetime" direction="Input" size="8" precision="23" scale="3" param="" nulldefault="null"/>
+				<parameter name="@ProcessException" type="varchar" direction="Input" size="500" precision="0" scale="0" param="(500)" nulldefault="null"/>
+				<parameter name="@ExternalId" type="varchar" direction="Input" size="50" precision="0" scale="0" param="(50)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -92354,25 +92312,17 @@ tViewedDate is not null)
 	OR ([AppliedWith] = @AppliedWith AND @AppliedWith is not null)
 	OR ([ScreeningQuestionaireXML] = @ScreeningQuestionaireXml AND @ScreeningQuestionaireXml is not null)
 	OR ([ScreeningQuestionsGuid] = @ScreeningQuestionsGuid AND @ScreeningQuestionsGuid is not null)
+	OR ([ProcessDate] = @ProcessDate AND @ProcessDate is not null)
+	OR ([ProcessException] = @ProcessException AND @ProcessException is not null)
+	OR ([ExternalID] = @ExternalId AND @ExternalId is not null)
 	SELECT @@ROWCOUNT			
   END
-				
-
 
 			]]></body>
 					</procedure>
 				
 		<procedure owner="dbo" name="JobApplication_Update"  skip="true">
 			<comment><![CDATA[
-/*
-----------------------------------------------------------------------------------------------------
-
--- Created By:  ()
--- Purpose: Updates a record in the JobApplication table
-----------------------------------------------------------------------------------------------------
-*/
-
-
 ]]></comment>
 			<parameters>
 				<parameter name="@JobApplicationId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
@@ -92403,6 +92353,9 @@ tViewedDate is not null)
 				<parameter name="@AppliedWith" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@ScreeningQuestionaireXml" type="nvarchar" direction="Input" size="-1" precision="0" scale="0" param="(MAX)" nulldefault="null"/>
 				<parameter name="@ScreeningQuestionsGuid" type="uniqueidentifier" direction="Input" size="16" precision="0" scale="0" param="" nulldefault="null"/>
+				<parameter name="@ProcessDate" type="datetime" direction="Input" size="8" precision="23" scale="3" param="" nulldefault="null"/>
+				<parameter name="@ProcessException" type="varchar" direction="Input" size="500" precision="0" scale="0" param="(500)" nulldefault="null"/>
+				<parameter name="@ExternalId" type="varchar" direction="Input" size="50" precision="0" scale="0" param="(50)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -92423,26 +92376,17 @@ tViewedDate
 					,[AppliedWith] = @AppliedWith
 					,[ScreeningQuestionaireXML] = @ScreeningQuestionaireXml
 					,[ScreeningQuestionsGuid] = @ScreeningQuestionsGuid
+					,[ProcessDate] = @ProcessDate
+					,[ProcessException] = @ProcessException
+					,[ExternalID] = @ExternalId
 				WHERE
-[JobApplicationID] = @JobApplicationId 
-				
-			
-
+[JobApplicationID] = @JobApplicationId
 
 			]]></body>
 					</procedure>
 				
 		<procedure owner="dbo" name="JobApplication_GetByJobId"  skip="true">
 			<comment><![CDATA[
-/*
-----------------------------------------------------------------------------------------------------
-
--- Created By:  ()
--- Purpose: Select records from the JobApplication table through an index
-----------------------------------------------------------------------------------------------------
-*/
-
-
 ]]></comment>
 			<parameters>
 				<parameter name="@JobId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
@@ -92465,30 +92409,21 @@ tViewedDate],
 					[FileDownloaded],
 					[AppliedWith],
 					[ScreeningQuestionaireXML],
-					[ScreeningQuestionsGuid]
+					[ScreeningQuestionsGuid],
+					[ProcessDate],
+					[ProcessException],
+					[ExternalID]
 				FROM
 					[dbo].[JobApplication]
 				WHERE
 					[JobID] = @JobId
 				SELECT @@ROWCOUNT
-					
-			
-
 
 			]]></body>
 					</procedure>
 				
 		<procedure owner="dbo" name="JobApplication_GetByJobApplicationId"  skip="true">
 			<comment><![CDATA[
-/*
-----------------------------------------------------------------------------------------------------
-
--- Created By:  ()
--- Purpose: Select records from the JobApplication table through an index
-----------------------------------------------------------------------------------------------------
-*/
-
-
 ]]></comment>
 			<parameters>
 				<parameter name="@JobApplicationId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
@@ -92511,15 +92446,15 @@ tViewedDate],
 					[FileDownloaded],
 					[AppliedWith],
 					[ScreeningQuestionaireXML],
-					[ScreeningQuestionsGuid]
+					[ScreeningQuestionsGuid],
+					[ProcessDate],
+					[ProcessException],
+					[ExternalID]
 				FROM
 					[dbo].[JobApplication]
 				WHERE
 					[JobApplicationID] = @JobApplicationId
 				SELECT @@ROWCOUNT
-					
-			
-
 
 			]]></body>
 					</procedure>
@@ -92542,21 +92477,11 @@ ApplicationDate
 	
 END
 
-
 			]]></body>
 					</procedure>
 				
 		<procedure owner="dbo" name="JobApplication_Delete"  skip="true">
 			<comment><![CDATA[
-/*
-----------------------------------------------------------------------------------------------------
-
--- Created By:  ()
--- Purpose: Deletes a record in the JobApplication table
-----------------------------------------------------------------------------------------------------
-*/
-
-
 ]]></comment>
 			<parameters>
 				<parameter name="@JobApplicationId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
@@ -92566,9 +92491,6 @@ END
 DELETE FROM [dbo].[JobApplication] WITH (ROWLOCK) 
 				WHERE
 					[JobApplicationID] = @JobApplicationId
-					
-			
-
 
 			]]></body>
 					</procedure>
@@ -92590,13 +92512,14 @@ TotalCount
      AND RowIndex <= @PageEnd                  
      ORDER BY RowIndex             
                
-    END  
+    END
 
 			]]></body>
 					</procedure>
 				
 		<procedure owner="dbo" name="JobApplication_GetJobsNameByMemberId"  skip="true">
-			<comment><![CDATA[]]></comment>
+			<comment><![CDATA[
+]]></comment>
 			<parameters>
 				<parameter name="@MemberID" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@PageSize" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
@@ -92611,23 +92534,13 @@ WHERE   MemberID = @MemberID
  AND RowNumber <= @PageEnd                        
 ORDER BY RowNumber                  
                   
-END   
-
+END
 
 			]]></body>
 					</procedure>
 				
 		<procedure owner="dbo" name="JobApplication_Insert"  skip="true">
 			<comment><![CDATA[
-/*
-----------------------------------------------------------------------------------------------------
-
--- Created By:  ()
--- Purpose: Inserts a record into the JobApplication table
-----------------------------------------------------------------------------------------------------
-*/
-
-
 ]]></comment>
 			<parameters>
 				<parameter name="@JobApplicationId" type="int" direction="InputOutput" size="4" precision="10" scale="0" param="" nulldefault="null"/>
@@ -92658,6 +92571,9 @@ END
 				<parameter name="@AppliedWith" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@ScreeningQuestionaireXml" type="nvarchar" direction="Input" size="-1" precision="0" scale="0" param="(MAX)" nulldefault="null"/>
 				<parameter name="@ScreeningQuestionsGuid" type="uniqueidentifier" direction="Input" size="16" precision="0" scale="0" param="" nulldefault="null"/>
+				<parameter name="@ProcessDate" type="datetime" direction="Input" size="8" precision="23" scale="3" param="" nulldefault="null"/>
+				<parameter name="@ProcessException" type="varchar" direction="Input" size="500" precision="0" scale="0" param="(500)" nulldefault="null"/>
+				<parameter name="@ExternalId" type="varchar" direction="Input" size="50" precision="0" scale="0" param="(50)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -92678,29 +92594,19 @@ tViewedDate
 					,@AppliedWith
 					,@ScreeningQuestionaireXml
 					,@ScreeningQuestionsGuid
+					,@ProcessDate
+					,@ProcessException
+					,@ExternalId
 					)
 				
 				-- Get the identity value
 				SET @JobApplicationId = SCOPE_IDENTITY()
-									
-							
-			
-
 
 			]]></body>
 					</procedure>
 				
 		<procedure owner="dbo" name="JobApplication_GetBySiteIdReferral"  skip="true">
 			<comment><![CDATA[
-/*
-----------------------------------------------------------------------------------------------------
-
--- Created By:  ()
--- Purpose: Select records from the JobApplication table through a foreign key
-----------------------------------------------------------------------------------------------------
-*/
-
-
 ]]></comment>
 			<parameters>
 				<parameter name="@SiteIdReferral" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
@@ -92723,7 +92629,10 @@ tViewedDate],
 					[FileDownloaded],
 					[AppliedWith],
 					[ScreeningQuestionaireXML],
-					[ScreeningQuestionsGuid]
+					[ScreeningQuestionsGuid],
+					[ProcessDate],
+					[ProcessException],
+					[ExternalID]
 				FROM
 					[dbo].[JobApplication]
 				WHERE
@@ -92731,14 +92640,13 @@ tViewedDate],
 				
 				SELECT @@ROWCOUNT
 				SET ANSI_NULLS ON
-			
-
 
 			]]></body>
 					</procedure>
 				
 		<procedure owner="dbo" name="JobApplication_GetByAdvertiserId"  skip="true">
-			<comment><![CDATA[]]></comment>
+			<comment><![CDATA[
+]]></comment>
 			<parameters>
 				<parameter name="@AdvertiserId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@PageNumber" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
@@ -92759,15 +92667,6 @@ TotalCount
 				
 		<procedure owner="dbo" name="JobApplication_GetByJobArchiveId"  skip="true">
 			<comment><![CDATA[
-/*
-----------------------------------------------------------------------------------------------------
-
--- Created By:  ()
--- Purpose: Select records from the JobApplication table through an index
-----------------------------------------------------------------------------------------------------
-*/
-
-
 ]]></comment>
 			<parameters>
 				<parameter name="@JobArchiveId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
@@ -92790,30 +92689,21 @@ tViewedDate],
 					[FileDownloaded],
 					[AppliedWith],
 					[ScreeningQuestionaireXML],
-					[ScreeningQuestionsGuid]
+					[ScreeningQuestionsGuid],
+					[ProcessDate],
+					[ProcessException],
+					[ExternalID]
 				FROM
 					[dbo].[JobApplication]
 				WHERE
 					[JobArchiveID] = @JobArchiveId
 				SELECT @@ROWCOUNT
-					
-			
-
 
 			]]></body>
 					</procedure>
 				
 		<procedure owner="dbo" name="JobApplication_GetPaged"  skip="true">
 			<comment><![CDATA[
-/*
-----------------------------------------------------------------------------------------------------
-
--- Created By:  ()
--- Purpose: Gets records from the JobApplication table passing page index and page count parameters
-----------------------------------------------------------------------------------------------------
-*/
-
-
 ]]></comment>
 			<parameters>
 				<parameter name="@WhereClause" type="varchar" direction="Input" size="2000" precision="0" scale="0" param="(2000)" nulldefault="null"/>
@@ -92832,14 +92722,13 @@ TotalRowCount'
 				EXEC sp_executesql @SQL
 			
 				END
-			
-
 
 			]]></body>
 					</procedure>
 				
 		<procedure owner="dbo" name="JobApplication_CustomGetDraftJobsByMemberId"  skip="true">
-			<comment><![CDATA[]]></comment>
+			<comment><![CDATA[
+]]></comment>
 			<parameters>
 				<parameter name="@MemberID" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@PageSize" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
@@ -92860,7 +92749,8 @@ END
 					</procedure>
 				
 		<procedure owner="dbo" name="JobApplication_CustomGetNewJobApplications"  skip="true">
-			<comment><![CDATA[]]></comment>
+			<comment><![CDATA[
+]]></comment>
 			<parameters>
 				<parameter name="@SiteID" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 				<parameter name="@JobApplicationID" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
@@ -92875,23 +92765,16 @@ tViewedDate, ja.MemberID
  INNER JOIN Members m WITH (NOLOCK) ON m.MemberID = ja.MemberID      
  INNER JOIN @tmpJobApplicationAbbr c      
  ON c.JobID = ja.JobID    or c.JobID = ja.JobArchiveID         
-       
+
  ORDER BY ja.JobApplicationID        
       
 END
+
 			]]></body>
 					</procedure>
 				
 		<procedure owner="dbo" name="JobApplication_Get_List"  skip="true">
 			<comment><![CDATA[
-/*
-----------------------------------------------------------------------------------------------------
-
--- Created By:  ()
--- Purpose: Gets all records from the JobApplication table
-----------------------------------------------------------------------------------------------------
-*/
-
 
 ]]></comment>
 			<parameters>
@@ -92914,19 +92797,21 @@ tViewedDate],
 					[FileDownloaded],
 					[AppliedWith],
 					[ScreeningQuestionaireXML],
-					[ScreeningQuestionsGuid]
+					[ScreeningQuestionsGuid],
+					[ProcessDate],
+					[ProcessException],
+					[ExternalID]
 				FROM
 					[dbo].[JobApplication]
 					
 				SELECT @@ROWCOUNT
-			
-
 
 			]]></body>
 					</procedure>
 				
 		<procedure owner="dbo" name="JobApplication_CustomUpdateDownloadedFileStatus"  skip="true">
-			<comment><![CDATA[]]></comment>
+			<comment><![CDATA[
+]]></comment>
 			<parameters>
 				<parameter name="@jobappids" type="ntext" direction="Input" size="16" precision="0" scale="0" param="" nulldefault="null"/>
 			</parameters>

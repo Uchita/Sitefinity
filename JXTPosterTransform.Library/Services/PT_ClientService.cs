@@ -101,7 +101,7 @@ namespace JXTPosterTransform.Library.Services
 
         public bool ClientSetupRecordCreate(string name, string desc, int clientID,
             int ptID, int setupType, string jsonCredentials, int timeslot, int advertiserID, string advertiserUsername, string advertiserPassword, bool archiveMissingJobs,
-            int valid, int modifiedBy)
+            int valid, bool useJXTMappings, int modifiedBy)
         {
             ClientSetup thisSetup = new ClientSetup();
 
@@ -117,6 +117,7 @@ namespace JXTPosterTransform.Library.Services
             thisSetup.AdvertiserPassword = advertiserPassword;
             thisSetup.ArchiveMissingJobs = archiveMissingJobs;
             thisSetup.Valid = valid;
+            thisSetup.UseJXTSiteMappings = useJXTMappings;
             thisSetup.LastModifiedBy = modifiedBy;
             thisSetup.LastModifiedDate = DateTime.Now;
             thisSetup.CreatedDate = DateTime.Now;
@@ -129,7 +130,7 @@ namespace JXTPosterTransform.Library.Services
 
         public bool ClientSetupRecordUpdate(int setupID, string name, string desc,
             int ptID, int setupType, string jsonCredentials, int timeslot, int advertiserID, string advertiserUsername, string advertiserPassword, bool archiveMissingJobs,
-            int valid, int modifiedBy)
+            int valid, bool useJXTMappings, int modifiedBy)
         {
             ClientSetup thisSetup = (from m in _context.ClientSetups where m.ClientSetupId == setupID select m).FirstOrDefault();
 
@@ -149,6 +150,7 @@ namespace JXTPosterTransform.Library.Services
 
                 thisSetup.ArchiveMissingJobs = archiveMissingJobs;
 
+                thisSetup.UseJXTSiteMappings = useJXTMappings;
                 thisSetup.Valid = valid;
                 thisSetup.LastModifiedBy = modifiedBy;
                 thisSetup.LastModifiedDate = DateTime.Now;

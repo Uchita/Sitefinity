@@ -1,18 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using JXTPortal.Entities;
-using JXTPortal;
-
-using SocialMedia.Client.AICD;
+﻿using JXTPortal.Client.Bullhorn;
 using JXTPortal.Client.Salesforce;
-using JXTPortal.Entities.Models;
-using JXTPortal.Common;
-using System.Web.SessionState;
-using JXTPortal.Client.Bullhorn;
+using JXTPortal.Entities;
+using System;
 
 namespace JXTPortal.Website.members
 {

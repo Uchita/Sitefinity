@@ -2940,7 +2940,6 @@ namespace JXTPortal
 		#endregion 
 		
 		#region JobAlerts_GetBySalaryTypeId
-		
 	
 		/// <summary>
 		///	This method wrap the 'JobAlerts_GetBySalaryTypeId' stored procedure. 
@@ -3247,7 +3246,6 @@ namespace JXTPortal
 		#endregion 
 		
 		#region JobAlerts_GetByCurrencyId
-		
 	
 		/// <summary>
 		///	This method wrap the 'JobAlerts_GetByCurrencyId' stored procedure. 

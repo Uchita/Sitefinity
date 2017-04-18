@@ -356,7 +356,7 @@ namespace JXTPortal.Entities
 		/// 	Gets or sets the SearchKeywords property. 
 		///		
 		/// </summary>
-		/// <value>This type is varchar.</value>
+		/// <value>This type is nvarchar.</value>
 		/// <remarks>
 		/// This property can be set to null. 
 		/// </remarks>
@@ -3589,7 +3589,7 @@ namespace JXTPortal.Entities
 		/// SearchKeywords : 
 		/// </summary>
 		[EnumTextValue("SearchKeywords")]
-		[ColumnEnum("SearchKeywords", typeof(System.String), System.Data.DbType.AnsiString, false, false, true, 1000)]
+		[ColumnEnum("SearchKeywords", typeof(System.String), System.Data.DbType.String, false, false, true, 1000)]
 		SearchKeywords = 4,
 		/// <summary>
 		/// RecurrenceType : 

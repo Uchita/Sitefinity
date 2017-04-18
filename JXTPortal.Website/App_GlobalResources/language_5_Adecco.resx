@@ -522,7 +522,8 @@
     <comment>Advertiser Full Register</comment>
   </data>
   <data name="LabelAdvertiserInvalid" xml:space="preserve">
-    <value>&lt;h2&gt;광고주님께,&lt;/h2&gt; &lt;p&gt;귀하의 계정은 이미 되었습니다. &lt;a href='/advertiser/login.aspx'&gt;로그인 페이지&lt;/a&gt;를 통해 계정에 접속할 수 있습니다.&lt;/p&gt;</value>
+    <value>&lt;h2&gt;광고주님께,&lt;/h2&gt;
+ &lt;p&gt;귀하의 계정은 이미 되었습니다. &lt;a href='/advertiser/login.aspx'&gt;로그인 페이지&lt;/a&gt;를 통해 계정에 접속할 수 있습니다.&lt;/p&gt;</value>
     <comment>Advertiser validation failed.</comment>
   </data>
   <data name="LabelAdvertiserJobTemplateLogo" xml:space="preserve">
@@ -4452,6 +4453,18 @@
   <data name="LabelSemicolonSeparated" xml:space="preserve">
     <value>Semicolon Separated</value>
     <comment>Semicolon Separated</comment>
+  </data>
+  <data name="LabelJobExpiryDate" xml:space="preserve">
+    <value>Job Expiry Date</value>
+    <comment>Job Expiry Date</comment>
+  </data>
+  <data name="LabelJobExpiryDateAfterThirtyDays" xml:space="preserve">
+    <value>Expiry Date cannot be more than 30 days</value>
+    <comment>Expiry Date cannot be more than 30 days</comment>
+  </data>
+  <data name="LabelJobExpiryDateBeforeCurrentDate" xml:space="preserve">
+    <value>Expiry date cannot be before {0}</value>
+    <comment>Expiry date cannot be before {0}</comment>
   </data>
   <data name="LabelEnglishLanguageLevel" xml:space="preserve">
     <value>영어 수준</value>

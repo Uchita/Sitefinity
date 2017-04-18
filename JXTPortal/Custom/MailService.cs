@@ -34,7 +34,7 @@ namespace JXTPortal
 
         static MailService()
         {
-            if (!SessionData.Site.IsUsingS3)
+            if (SessionData.Site == null || !SessionData.Site.IsUsingS3)
             {
                 coverLetterFolder = ConfigurationManager.AppSettings["FTPJobApplyCoverLetterUrl"];
                 resumeFolder = ConfigurationManager.AppSettings["FTPJobApplyResumeUrl"];
@@ -489,7 +489,7 @@ namespace JXTPortal
                 message.Subject = emailtemplate.EmailSubject;
                 message.To = new MailAddress(strTo.Split(new char[] { ';' })[0]);
 
-                if (files.Count > 0)
+                if (files != null && files.Count > 0)
                 {
                     foreach (HttpPostedFile file in files)
                     {
@@ -754,7 +754,7 @@ namespace JXTPortal
                         screeingQuestionsAttachment.AppendLine(string.Format("A. {0}\n", answer.Answer));
 
                         screeingQuestionsContent.AppendLine(string.Format("<strong>Q. {0}</strong><br />", HttpUtility.HtmlEncode(answer.QuestionTitle)));
-                        screeingQuestionsContent.AppendLine(string.Format("A. {0}<br /><br />", HttpUtility.HtmlEncode(answer.Answer)));
+                        screeingQuestionsContent.AppendLine(string.Format("A. {0}<br /><br />", HttpUtility.HtmlEncode(answer.Answer).Replace("\n", "<br />")));
                     }
                 }
 

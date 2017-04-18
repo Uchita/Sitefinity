@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using WinSCP;
+using log4net;
 
 namespace JXTPosterTransform.Library.Common
 {
@@ -16,7 +17,6 @@ namespace JXTPosterTransform.Library.Common
         public ResponseClass Pull(ClientSetupModels.PullXmlFromFTP FTP, string strFilename) //, string strRemotePath, string strFilename, string strFileStartsWith)
         {
             ResponseClass responseClass = new ResponseClass();
-
             if (!string.IsNullOrWhiteSpace(FTP.Host))
             {
                 // Remote XML file - is not an XML throw error

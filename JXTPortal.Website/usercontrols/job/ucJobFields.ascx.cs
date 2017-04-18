@@ -28,6 +28,7 @@ using JXTPortal.Common;
 using JXTPortal.Service.Dapper;
 using JXTPortal.Data.Dapper.Entities.ScreeningQuestions;
 using System.Text.RegularExpressions;
+using System.Globalization;
 #endregion
 
 namespace JXTPortal.Website.Admin.UserControls
@@ -524,8 +525,12 @@ namespace JXTPortal.Website.Admin.UserControls
             }
 
             revEmailAddress.ValidationExpression = ConfigurationManager.AppSettings["EmailValidationRegex"];
+
             cal_tbStartDate.Format = SessionData.Site.DateFormat;
 
+            // Manual Expiry Date
+            DisplayManualExpiryDate();
+           
             if (!Page.IsPostBack)
             {
                 ltLanguageList.Text = string.Empty;
@@ -1035,8 +1040,6 @@ namespace JXTPortal.Website.Admin.UserControls
             }
         }
 
-        //#region Method
-
         private int JobCreditCheck()
         {
             int advertiseruserid = 0;
@@ -1189,6 +1192,7 @@ namespace JXTPortal.Website.Admin.UserControls
                             }
                         }
                         txtRefNo.Text = job.RefNo.ToString();
+                        txtJobExpiryDate.Text = job.ExpiryDate.ToString(getGlobalDateFormat());
                         //chkVisible.Checked = job.Visible;
                         lblDatePosted.Text = job.DatePosted.ToString(SessionData.Site.DateFormat);
                         lblExpiryDate.Text = job.ExpiryDate.ToString(SessionData.Site.DateFormat);
@@ -1410,15 +1414,7 @@ namespace JXTPortal.Website.Admin.UserControls
 
             //ddlJobTemplateID.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelPleaseChoose"), "0"));
         }
-        ///*
-        //protected void ddlJobTemplateID_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    if (ddlJobTemplateID.SelectedIndex > 0)
-        //    {
-        //        imgAdvJobTemplate.ImageUrl = Page.ResolveUrl("~/GetFile.aspx") + "?AdvertiserJobTemplateLogoID=" + Convert.ToString(ddlJobTemplateID.SelectedValue); ;
-        //    }
-        //}
-        //*/
+
         private void LoadAdvertiserJobTemplateLogo()
         {
             if (IsAdmin)
@@ -1542,7 +1538,6 @@ namespace JXTPortal.Website.Admin.UserControls
             return string.Join(" ", options.ToList());
         }
 
-
         private void LoadWorkType()
         {
             List<JXTPortal.Entities.SiteWorkType> siteWorkTypes = SiteWorkTypeService.GetTranslatedWorkTypes().OrderBy(siteWorktype => siteWorktype.Sequence).ToList();
@@ -1564,47 +1559,6 @@ namespace JXTPortal.Website.Admin.UserControls
             ddlSalary.Items.Insert(0, new ListItem(CommonFunction.GetResourceValue("LabelPleaseChoose"), "0"));
 
         }
-        ///*
-        //private void LoadSalaryFrom(int salarytypeid)
-        //{
-        //    ddlSalaryFrom.Items.Clear();
-
-        //    VList<ViewSalary> salaryFromList = ViewSalaryService.GetCustomSalaryFrom(SessionData.Site.SiteId, salarytypeid);
-        //    foreach (ViewSalary vs in salaryFromList)
-        //    {
-        //        ListItem li = new ListItem();
-        //        li.Value = string.Format("{0};{1}", vs.CurrencyId, vs.Amount);
-        //        li.Text = vs.SalaryDisplay;
-
-        //        ddlSalaryFrom.Items.Add(li);
-        //    }
-        //}
-
-        //private void LoadSalaryTo(int salarytypeid, int currecnyid, decimal amount)
-        //{
-        //    ddlSalaryTo.Items.Clear();
-
-        //    VList<ViewSalary> salaryToList = ViewSalaryService.GetCustomSalaryTo(SessionData.Site.SiteId, currecnyid, salarytypeid, amount);
-        //    foreach (ViewSalary vs in salaryToList)
-        //    {
-        //        ListItem li = new ListItem();
-        //        li.Value = string.Format("{0};{1}", vs.CurrencyId, vs.Amount);
-        //        li.Text = vs.SalaryDisplay;
-
-        //        ddlSalaryTo.Items.Add(li);
-        //    }
-        //}*/
-
-        ////private void LoadAdvertiser()
-        ////{
-        ////    using (TList<JXTPortal.Entities.Advertisers> advertisers = AdvertisersService.GetBySiteId(SessionData.Site.SiteId))
-        ////    {
-        ////        dataAdvertiserId.DataSource = advertisers;
-        ////        dataAdvertiserId.DataBind();
-        ////        dataAdvertiserId.Items.Insert(0, new ListItem("< Please Choose ...>", "0"));
-        ////    }
-        ////}
-
 
         private void LoadLocation()
         {
@@ -1825,6 +1779,9 @@ namespace JXTPortal.Website.Admin.UserControls
                         }
 
                         txtRefNo.Text = CommonService.DecodeString(job.RefNo.ToString());
+
+                        txtJobExpiryDate.Text = job.ExpiryDate.ToString(getGlobalDateFormat());
+
                         //chkVisible.Checked = job.Visible;
                         lblDatePosted.Text = job.DatePosted.ToString(SessionData.Site.DateFormat + " hh:mm:ss tt");
                         lblExpiryDate.Text = job.ExpiryDate.ToString(SessionData.Site.DateFormat + " hh:mm:ss tt");
@@ -2136,8 +2093,6 @@ namespace JXTPortal.Website.Admin.UserControls
             }
         }
 
-        //#endregion
-
         protected void CusValJobProfessionRole_ServerValidate(object source, ServerValidateEventArgs args)
         {
             bool valid = true;
@@ -2235,21 +2190,6 @@ namespace JXTPortal.Website.Admin.UserControls
             }
         }
 
-        ///*
-        //protected void ddlSalary_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    LoadSalaryFrom(Convert.ToInt32(ddlSalary.SelectedValue));
-        //    LoadSalaryTo(Convert.ToInt32(ddlSalary.SelectedValue), 0, 0);
-        //}
-
-        //protected void ddlSalaryFrom_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    string result = ddlSalaryFrom.SelectedValue;
-        //    string[] parts = result.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-
-        //    LoadSalaryTo(Convert.ToInt32(ddlSalary.SelectedValue), Convert.ToInt32(parts[0]), Convert.ToDecimal(parts[1]));
-        //}*/
-
         protected void InsertButton_Click(object sender, EventArgs e)
         {
             bool isDraft = (((Button)sender) == DraftButton);
@@ -2282,7 +2222,7 @@ namespace JXTPortal.Website.Admin.UserControls
                     job.FullDescription = ucJobFieldsMultiLingual.FullDescription;
                     job.RefNo = CommonService.EncodeString(txtRefNo.Text);
                     job.DatePosted = DateTime.Now;
-                    job.ExpiryDate = DateTime.Now.AddDays(daysactive);
+                    job.ExpiryDate = getExpiryDate();
 
                     //job.Expired = chkJobExpired.Checked ? (int) PortalEnums.Jobs.JobStatus.Expired : (int) PortalEnums.Jobs.JobStatus.Live;
                     if (!string.IsNullOrEmpty(txtJobItemPrice.Text))
@@ -2693,7 +2633,11 @@ namespace JXTPortal.Website.Admin.UserControls
                             }
                         }
 
-                        if (job.Expired != (int)PortalEnums.Jobs.JobStatus.Live)
+                        if (job.Expired.GetValueOrDefault(0) == (int)PortalEnums.Jobs.JobStatus.Live)
+                        {
+                            job.ExpiryDate = getExpiryDate();
+                        }
+                        else
                         {
                             job.DatePosted = DateTime.Now;
                             job.ExpiryDate = DateTime.Now.AddDays(30);
@@ -3069,6 +3013,8 @@ namespace JXTPortal.Website.Admin.UserControls
             rfvAdvJobTemplateLogoImage.ErrorMessage = CommonFunction.GetResourceValue("LabelRequiredField1");
             rqStartDate.ErrorMessage = CommonFunction.GetResourceValue("LabelRequiredField1");
             revEmailAddress.ErrorMessage = "Invalid email address";
+            
+           // ReqValJobExpiryDate.ErrorMessage = "Job Expiry Date Required";
 
             txtFriendlyUrl.Attributes["placeholder"] = CommonFunction.GetResourceValue("LabelClickToGenerate"); // click to generate ...
             txtSalaryLowerBand.Attributes["placeholder"] = CommonFunction.GetResourceValue("LabelMinimum");
@@ -3290,6 +3236,75 @@ namespace JXTPortal.Website.Admin.UserControls
             else
             {
                 UpdateButton_Click(sender, e);
+            }
+        }
+
+        private string getGlobalDateFormat()
+        {
+            Entities.GlobalSettings siteGlobalSettings = GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId).FirstOrDefault();
+
+            return siteGlobalSettings.GlobalDateFormat;
+        }
+
+        private string placeHolderdateFormat( string globalsettingDateFormat)
+        {
+            string format = string.Empty;
+
+            switch (globalsettingDateFormat)
+            {
+                case "MM/dd/yyyy":
+                    format = "mm/dd/yy";
+                    break;
+
+                case "yyyy/MM/dd":
+                    format = "yy/mm/dd";
+                    break;
+
+                default:
+                    format = "dd/mm/yy";
+                    break;
+            }
+
+            return format;
+        }
+
+        protected void JobExpiryDateValidator_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            DateTime currentDate = DateTime.Now;
+            DateTime jobExpiryDate = getExpiryDate();
+
+            if (jobExpiryDate < currentDate)
+            {
+                args.IsValid = false;
+                JobExpiryDateValidator.ErrorMessage = string.Format(CommonFunction.GetResourceValue("LabelJobExpiryDateBeforeCurrentDate"), currentDate.ToShortDateString());
+            }     
+        }
+
+        private DateTime getExpiryDate()
+        {
+            string currentDateFormat = getGlobalDateFormat();
+
+            DateTime jobExpiryDate = DateTime.Now.AddDays(30);
+            if (!string.IsNullOrWhiteSpace(txtJobExpiryDate.Text))
+            {
+                DateTime.TryParseExact(txtJobExpiryDate.Text, currentDateFormat, null, DateTimeStyles.None, out jobExpiryDate);
+            }
+
+            return jobExpiryDate;
+        }
+
+        private void DisplayManualExpiryDate()
+        {
+            Entities.GlobalSettings globalsetting = GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId).FirstOrDefault();
+
+            if (globalsetting.EnableExpiryDate)
+            {
+                // pass dateformat as placeholder for the textbox
+                txtJobExpiryDate.Attributes["placeholder"] = placeHolderdateFormat(getGlobalDateFormat());
+            }
+            else
+            {
+                phManualJobExpirydate.Visible = false;
             }
         }
 

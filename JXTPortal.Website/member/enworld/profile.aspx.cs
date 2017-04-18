@@ -23,7 +23,7 @@ namespace JXTPortal.Website.member.enworld
     public partial class profile : System.Web.UI.Page
     {
         private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
-        private string memberFileFolder;
+        private string memberFileFolder, memberFileFolderFormat;
         private static string ContentValidationRegex = ConfigurationManager.AppSettings["ContentValidationRegex"]; //this verifies that no HTML tags are allowed
         private static string EmailValidationRegex = ConfigurationManager.AppSettings["EmailValidationRegex"];
         private string XMLPath = "/xml/enworld.xml";
@@ -65,6 +65,7 @@ namespace JXTPortal.Website.member.enworld
             if (!SessionData.Site.IsUsingS3)
             {
                 memberFileFolder = ConfigurationManager.AppSettings["FTPHost"] + ConfigurationManager.AppSettings["MemberRootFolder"] + "/" + ConfigurationManager.AppSettings["MemberFilesFolder"];
+                memberFileFolderFormat = "{0}/{1}/";
 
                 string ftphosturl = ConfigurationManager.AppSettings["FTPHost"];
                 string ftpusername = ConfigurationManager.AppSettings["FTPJobApplyUsername"];
@@ -74,6 +75,7 @@ namespace JXTPortal.Website.member.enworld
             else
             {
                 memberFileFolder = ConfigurationManager.AppSettings["AWSS3MemberRootFolder"] + ConfigurationManager.AppSettings["AWSS3MemberFilesFolder"];
+                memberFileFolderFormat = "{0}/{1}";
             }
 
             _SFContactID = SFContactIDGetFromSessionMember();
@@ -114,7 +116,7 @@ namespace JXTPortal.Website.member.enworld
                                     string errormessage = string.Empty;
 
                                     Stream ms = null;
-                                    ms = FileManagerService.DownloadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, f.MemberId), f.MemberFileUrl, out errormessage);
+                                    ms = FileManagerService.DownloadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, f.MemberId), f.MemberFileUrl, out errormessage);
 
                                     if (string.IsNullOrEmpty(errormessage))
                                     {
@@ -871,7 +873,7 @@ namespace JXTPortal.Website.member.enworld
                         string filepath = string.Format("MemberFiles_{0}{1}", mf.MemberFileId, extension);
                         string errormessage = string.Empty;
 
-                        FileManagerService.UploadFile(bucketName, string.Format("{0}/{1}", memberFileFolder, mf.MemberId), filepath, fuTest.PostedFile.InputStream, out errormessage);
+                        FileManagerService.UploadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, mf.MemberId), filepath, fuTest.PostedFile.InputStream, out errormessage);
 
                         mf.MemberFileUrl = string.Format("MemberFiles_{0}{1}", mf.MemberFileId, extension);
                         mf.MemberFileTitle = mf.MemberFileName;

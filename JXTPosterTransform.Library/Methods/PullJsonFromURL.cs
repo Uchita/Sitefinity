@@ -8,17 +8,20 @@ using JXTPosterTransform.Library.Common;
 using System.Configuration;
 using Newtonsoft.Json;
 using System.IO;
+using log4net;
 
 namespace JXTPosterTransform.Library.Methods
 {
     public class PullJsonFromURL
     {
+        static ILog _logger; 
+
         public static ResponseClass ProcessJsonToXML(string sourceURL, string fileName)
         {
+            _logger.Info("Begin processing Json to XML:");
+            _logger.Info("\t- Source: " + sourceURL + ", Filename: " + fileName); 
+
             ResponseClass responseClass = new ResponseClass();
-
-            Console.WriteLine("Loading the Json - " + sourceURL);
-
             try
             {
                 string jsonFromURL = Utils.GetJsonFromUrl(sourceURL);
@@ -46,17 +49,17 @@ namespace JXTPosterTransform.Library.Methods
 
                 // Success to get the XML.
                 responseClass.blnSuccess = true;
+
+                _logger.InfoFormat("[DONE] Process Json to XML");
             }
             catch(Exception ex)
             {
                 responseClass.strMessage = "Can't find the downloaded file from URL - " + sourceURL;
-                Console.WriteLine(responseClass.strMessage);
-                Console.WriteLine(ex.Message + " - " + ex.InnerException);
+                _logger.InfoFormat("[ERROR] " + responseClass.strMessage);
+                _logger.Debug(ex);
             }
-
+            
             return responseClass;
-
-
 
             //XDocument xDocument = XDocument.Load(XmlReader.Create(source));
 

@@ -110,6 +110,14 @@
                                         ErrorMessage="Required" InitialValue="0" SetFocusOnError="true"></asp:RequiredFieldValidator>
                                 </div>
                             </li>
+                            <li class="form-line" id="gse-memberregisrationpage-field">
+                                <label class="form-label-left">
+                                    Member Registration Page:</label>
+                                <div class="form-input">
+                                    <asp:DropDownList ID="ddlMemberRegistrationPage" runat="server" CssClass="form-multiple-column">
+                                    </asp:DropDownList>
+                                </div>
+                            </li>
                         </ContentTemplate>
                     </asp:UpdatePanel>
                     <li class="form-line" id="gse-sitedoctype-field">

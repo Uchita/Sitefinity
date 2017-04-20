@@ -107,6 +107,18 @@ namespace JXTPortal.Website.members
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            GlobalSettings gs = GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId).FirstOrDefault();
+            if (gs != null && gs.MemberRegisterPageId.HasValue)
+            {
+                JXTPortal.Entities.DynamicPages page = DynamicPagesService.GetByDynamicPageId(gs.MemberRegisterPageId.Value);
+                if (page != null)
+                {
+                    string url = DynamicPagesService.GetDynamicPageFullUrl(SessionData.Site.SiteUrl, page, gs.WwwRedirect, gs.UsingSsl);
+                    Response.Redirect(url);
+                }
+            }
+
+
             if (!SessionData.Site.IsUsingS3)
             {
                 memberFileFolder = ConfigurationManager.AppSettings["FTPHost"] + ConfigurationManager.AppSettings["MemberRootFolder"] + "/" + ConfigurationManager.AppSettings["MemberFilesFolder"];
@@ -341,7 +353,7 @@ namespace JXTPortal.Website.members
                                 objMemberFiles.MemberFileName = System.IO.Path.GetFileName(docInput.PostedFile.FileName).Trim().Replace(c.ToString(), "");
                             }
                             objMemberFiles.MemberFileSearchExtension = System.IO.Path.GetExtension(docInput.PostedFile.FileName).Trim();
-                            
+
                             objMemberFiles.MemberFileTitle = objMemberFiles.MemberFileName;
                             objMemberFiles.MemberId = memberID;
                             objMemberFiles.MemberFileTypeId = memberFileTypeID;
@@ -517,7 +529,7 @@ namespace JXTPortal.Website.members
                     objMembers.FirstName = CommonService.EncodeString(txtFirstName.Text, false);
                     objMembers.Surname = CommonService.EncodeString(txtSurname.Text, false);
                     objMembers.MultiLingualFirstName = CommonService.EncodeString(txtMultiLingualFirstname.Text, false);
-                    objMembers.MultiLingualSurame = CommonService.EncodeString(txtMultiLingualSurname.Text,false);
+                    objMembers.MultiLingualSurame = CommonService.EncodeString(txtMultiLingualSurname.Text, false);
                     objMembers.DateOfBirth = (!string.IsNullOrWhiteSpace(tbDOB.Text)) ? dob : (DateTime?)null;
                     objMembers.HomePhone = CommonService.EncodeString(txtTel.Text, false);
                     objMembers.Address1 = CommonService.EncodeString(txtAddress.Text, false);
@@ -548,7 +560,7 @@ namespace JXTPortal.Website.members
                         objMembers.MailingAddress1 = CommonService.EncodeString(tbMailingAddress.Text, false);
                         objMembers.MailingSuburb = CommonService.EncodeString(tbMailingSuburb.Text, false);
                         objMembers.MailingPostCode = CommonService.EncodeString(tbMailingPostcode.Text, false);
-                        objMembers.MailingStates = CommonService.EncodeString(tbMailingState.Text,false);
+                        objMembers.MailingStates = CommonService.EncodeString(tbMailingState.Text, false);
                         objMembers.MailingCountryId = 1;
                         //Set default country to Australia if nothing is selected
                         if (Convert.ToInt32(ddlMailingCountry.SelectedValue) > 0)
@@ -560,7 +572,7 @@ namespace JXTPortal.Website.members
                             objMembers.MailingCountryId = (int?)null;
                         }
                     }
-                    
+
                     objMembers.EmailFormat = Convert.ToInt32(radlEmailFormat.SelectedValue);
                     objMembers.ValidateGuid = Guid.NewGuid();
                     objMembers.SearchField = String.Format("{0} {1} {2}",

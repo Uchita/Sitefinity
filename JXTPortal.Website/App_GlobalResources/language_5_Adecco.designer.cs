@@ -979,7 +979,8 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;h2&gt;광고주님께,&lt;/h2&gt;        /// &lt;p&gt;귀하의 계정은 이미 되었습니다. &lt;a href=&apos;/advertiser/login.aspx&apos;&gt;로그인 페이지&lt;/a&gt;를 통해 계정에 접속할 수 있습니다.&lt;/p&gt;.
+        ///   Looks up a localized string similar to &lt;h2&gt;광고주님께,&lt;/h2&gt;
+        /// &lt;p&gt;귀하의 계정은 이미 되었습니다. &lt;a href=&apos;/advertiser/login.aspx&apos;&gt;로그인 페이지&lt;/a&gt;를 통해 계정에 접속할 수 있습니다.&lt;/p&gt;.
         /// </summary>
         internal static string LabelAdvertiserInvalid {
             get {
@@ -3400,6 +3401,78 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please enter maximum 1500 characters for Address.
+        /// </summary>
+        internal static string LabelEnterMaxAddress {
+            get {
+                return ResourceManager.GetString("LabelEnterMaxAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter maximum 1500 characters for Address.
+        /// </summary>
+        internal static string LabelEnterMaxMailingAddress {
+            get {
+                return ResourceManager.GetString("LabelEnterMaxMailingAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter maximum 10 characters for Postcode.
+        /// </summary>
+        internal static string LabelEnterMaxMailingPostcode {
+            get {
+                return ResourceManager.GetString("LabelEnterMaxMailingPostcode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter maximum 10 characters for State.
+        /// </summary>
+        internal static string LabelEnterMaxMailingState {
+            get {
+                return ResourceManager.GetString("LabelEnterMaxMailingState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter maximum 20 characters for Suburb.
+        /// </summary>
+        internal static string LabelEnterMaxMailingSuburb {
+            get {
+                return ResourceManager.GetString("LabelEnterMaxMailingSuburb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter maximum 10 characters for Postcode.
+        /// </summary>
+        internal static string LabelEnterMaxPostcode {
+            get {
+                return ResourceManager.GetString("LabelEnterMaxPostcode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter maximum 10 characters for State.
+        /// </summary>
+        internal static string LabelEnterMaxState {
+            get {
+                return ResourceManager.GetString("LabelEnterMaxState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter maximum 20 characters for Suburb.
+        /// </summary>
+        internal static string LabelEnterMaxSuburb {
+            get {
+                return ResourceManager.GetString("LabelEnterMaxSuburb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 비밀번호.
         /// </summary>
         internal static string LabelEnterPassword {
@@ -4111,6 +4184,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid Country.
+        /// </summary>
+        internal static string LabelInvalidCountry {
+            get {
+                return ResourceManager.GetString("LabelInvalidCountry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Custom Question.
+        /// </summary>
+        internal static string LabelInvalidCustomQuestion {
+            get {
+                return ResourceManager.GetString("LabelInvalidCustomQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 유효하지 않은 날짜.
         /// </summary>
         internal static string LabelInvalidDate {
@@ -4129,6 +4220,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid Email Format.
+        /// </summary>
+        internal static string LabelInvalidEmailFormat {
+            get {
+                return ResourceManager.GetString("LabelInvalidEmailFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 파일 유형이 잘못되었습니다. GIF, JPG, JPEG .
         /// </summary>
         internal static string LabelInvalidImage {
@@ -4143,6 +4243,42 @@ namespace Resources {
         internal static string LabelInvalidJobAlert {
             get {
                 return ResourceManager.GetString("LabelInvalidJobAlert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Language.
+        /// </summary>
+        internal static string LabelInvalidLanguage {
+            get {
+                return ResourceManager.GetString("LabelInvalidLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Profession.
+        /// </summary>
+        internal static string LabelInvalidProfession {
+            get {
+                return ResourceManager.GetString("LabelInvalidProfession", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Role.
+        /// </summary>
+        internal static string LabelInvalidRole {
+            get {
+                return ResourceManager.GetString("LabelInvalidRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Title.
+        /// </summary>
+        internal static string LabelInvalidTitle {
+            get {
+                return ResourceManager.GetString("LabelInvalidTitle", resourceCulture);
             }
         }
         

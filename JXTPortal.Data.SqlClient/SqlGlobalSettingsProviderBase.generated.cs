@@ -265,6 +265,8 @@ namespace JXTPortal.Data.SqlClient
 		database.AddInParameter(commandWrapper, "@GlobalFolder", DbType.AnsiString, DBNull.Value);
 		database.AddInParameter(commandWrapper, "@EnableScreeningQuestions", DbType.Boolean, DBNull.Value);
 		database.AddInParameter(commandWrapper, "@EnableExpiryDate", DbType.Boolean, DBNull.Value);
+		database.AddInParameter(commandWrapper, "@MemberRegisterPageId", DbType.Int32, DBNull.Value);
+		database.AddInParameter(commandWrapper, "@JobApplicationPageId", DbType.Int32, DBNull.Value);
 	
 			// replace all instances of 'AND' and 'OR' because we already set searchUsingOR
 			whereClause = whereClause.Replace(" AND ", "|").Replace(" OR ", "|") ; 
@@ -819,6 +821,18 @@ namespace JXTPortal.Data.SqlClient
 						clause.Trim().Remove(0,16).Trim().TrimStart(equalSign).Trim().Trim(singleQuote));
 					continue;
 				}
+				if (clause.Trim().StartsWith("memberregisterpageid ") || clause.Trim().StartsWith("memberregisterpageid="))
+				{
+					database.SetParameterValue(commandWrapper, "@MemberRegisterPageId", 
+						clause.Trim().Remove(0,20).Trim().TrimStart(equalSign).Trim().Trim(singleQuote));
+					continue;
+				}
+				if (clause.Trim().StartsWith("jobapplicationpageid ") || clause.Trim().StartsWith("jobapplicationpageid="))
+				{
+					database.SetParameterValue(commandWrapper, "@JobApplicationPageId", 
+						clause.Trim().Remove(0,20).Trim().TrimStart(equalSign).Trim().Trim(singleQuote));
+					continue;
+				}
 	
 				throw new ArgumentException("Unable to use this part of the where clause in this version of Find: " + clause);
 			}
@@ -1282,6 +1296,70 @@ namespace JXTPortal.Data.SqlClient
 		#endregion
 	
 
+		#region GetByJobApplicationPageId
+		/// <summary>
+		/// 	Gets rows from the datasource based on the FK__GlobalSet__JobAp__355AB93A key.
+		///		FK__GlobalSet__JobAp__355AB93A Description: 
+		/// </summary>
+		/// <param name="start">Row number at which to start reading.</param>
+		/// <param name="pageLength">Number of rows to return.</param>
+		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
+		/// <param name="_jobApplicationPageId"></param>
+		/// <param name="count">out parameter to get total records for query</param>
+		/// <remarks></remarks>
+		/// <returns>Returns a typed collection of JXTPortal.Entities.GlobalSettings objects.</returns>
+        /// <exception cref="System.Exception">The command could not be executed.</exception>
+        /// <exception cref="System.Data.DataException">The <paramref name="transactionManager"/> is not open.</exception>
+        /// <exception cref="System.Data.Common.DbException">The command could not be executed.</exception>
+		public override TList<GlobalSettings> GetByJobApplicationPageId(TransactionManager transactionManager, System.Int32? _jobApplicationPageId, int start, int pageLength, out int count)
+		{
+			SqlDatabase database = new SqlDatabase(this._connectionString);
+			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.GlobalSettings_GetByJobApplicationPageId", _useStoredProcedure);
+			
+				database.AddInParameter(commandWrapper, "@JobApplicationPageId", DbType.Int32, _jobApplicationPageId);
+			
+			IDataReader reader = null;
+			TList<GlobalSettings> rows = new TList<GlobalSettings>();
+			try
+			{
+				//Provider Data Requesting Command Event
+				OnDataRequesting(new CommandEventArgs(commandWrapper, "GetByJobApplicationPageId", rows)); 
+
+				if (transactionManager != null)
+				{
+					reader = Utility.ExecuteReader(transactionManager, commandWrapper);
+				}
+				else
+				{
+					reader = Utility.ExecuteReader(database, commandWrapper);
+				}
+			
+				//Create Collection
+				Fill(reader, rows, start, pageLength);
+				count = -1;
+				if(reader.NextResult())
+				{
+					if(reader.Read())
+					{
+						count = reader.GetInt32(0);
+					}
+				}
+				
+				//Provider Data Requested Command Event
+				OnDataRequested(new CommandEventArgs(commandWrapper, "GetByJobApplicationPageId", rows)); 
+			}
+			finally
+			{
+				if (reader != null) 
+					reader.Close();
+					
+				commandWrapper = null;
+			}
+			return rows;
+		}	
+		#endregion
+	
+
 		#region GetByLastModifiedBy
 		/// <summary>
 		/// 	Gets rows from the datasource based on the FK__GlobalSet__LastM__5A4F643B key.
@@ -1333,6 +1411,70 @@ namespace JXTPortal.Data.SqlClient
 				
 				//Provider Data Requested Command Event
 				OnDataRequested(new CommandEventArgs(commandWrapper, "GetByLastModifiedBy", rows)); 
+			}
+			finally
+			{
+				if (reader != null) 
+					reader.Close();
+					
+				commandWrapper = null;
+			}
+			return rows;
+		}	
+		#endregion
+	
+
+		#region GetByMemberRegisterPageId
+		/// <summary>
+		/// 	Gets rows from the datasource based on the FK__GlobalSet__Membe__1A26D4BA key.
+		///		FK__GlobalSet__Membe__1A26D4BA Description: 
+		/// </summary>
+		/// <param name="start">Row number at which to start reading.</param>
+		/// <param name="pageLength">Number of rows to return.</param>
+		/// <param name="transactionManager"><see cref="TransactionManager"/> object</param>
+		/// <param name="_memberRegisterPageId"></param>
+		/// <param name="count">out parameter to get total records for query</param>
+		/// <remarks></remarks>
+		/// <returns>Returns a typed collection of JXTPortal.Entities.GlobalSettings objects.</returns>
+        /// <exception cref="System.Exception">The command could not be executed.</exception>
+        /// <exception cref="System.Data.DataException">The <paramref name="transactionManager"/> is not open.</exception>
+        /// <exception cref="System.Data.Common.DbException">The command could not be executed.</exception>
+		public override TList<GlobalSettings> GetByMemberRegisterPageId(TransactionManager transactionManager, System.Int32? _memberRegisterPageId, int start, int pageLength, out int count)
+		{
+			SqlDatabase database = new SqlDatabase(this._connectionString);
+			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.GlobalSettings_GetByMemberRegisterPageId", _useStoredProcedure);
+			
+				database.AddInParameter(commandWrapper, "@MemberRegisterPageId", DbType.Int32, _memberRegisterPageId);
+			
+			IDataReader reader = null;
+			TList<GlobalSettings> rows = new TList<GlobalSettings>();
+			try
+			{
+				//Provider Data Requesting Command Event
+				OnDataRequesting(new CommandEventArgs(commandWrapper, "GetByMemberRegisterPageId", rows)); 
+
+				if (transactionManager != null)
+				{
+					reader = Utility.ExecuteReader(transactionManager, commandWrapper);
+				}
+				else
+				{
+					reader = Utility.ExecuteReader(database, commandWrapper);
+				}
+			
+				//Create Collection
+				Fill(reader, rows, start, pageLength);
+				count = -1;
+				if(reader.NextResult())
+				{
+					if(reader.Read())
+					{
+						count = reader.GetInt32(0);
+					}
+				}
+				
+				//Provider Data Requested Command Event
+				OnDataRequested(new CommandEventArgs(commandWrapper, "GetByMemberRegisterPageId", rows)); 
 			}
 			finally
 			{
@@ -2050,6 +2192,10 @@ namespace JXTPortal.Data.SqlClient
 			col88.AllowDBNull = false;		
 			DataColumn col89 = dataTable.Columns.Add("EnableExpiryDate", typeof(System.Boolean));
 			col89.AllowDBNull = false;		
+			DataColumn col90 = dataTable.Columns.Add("MemberRegisterPageID", typeof(System.Int32));
+			col90.AllowDBNull = true;		
+			DataColumn col91 = dataTable.Columns.Add("JobApplicationPageID", typeof(System.Int32));
+			col91.AllowDBNull = true;		
 			
 			bulkCopy.ColumnMappings.Add("GlobalSettingID", "GlobalSettingID");
 			bulkCopy.ColumnMappings.Add("SiteID", "SiteID");
@@ -2141,6 +2287,8 @@ namespace JXTPortal.Data.SqlClient
 			bulkCopy.ColumnMappings.Add("GlobalFolder", "GlobalFolder");
 			bulkCopy.ColumnMappings.Add("EnableScreeningQuestions", "EnableScreeningQuestions");
 			bulkCopy.ColumnMappings.Add("EnableExpiryDate", "EnableExpiryDate");
+			bulkCopy.ColumnMappings.Add("MemberRegisterPageID", "MemberRegisterPageID");
+			bulkCopy.ColumnMappings.Add("JobApplicationPageID", "JobApplicationPageID");
 			
 			foreach(JXTPortal.Entities.GlobalSettings entity in entities)
 			{
@@ -2419,6 +2567,12 @@ namespace JXTPortal.Data.SqlClient
 					row["EnableExpiryDate"] = entity.EnableExpiryDate;
 							
 				
+					row["MemberRegisterPageID"] = entity.MemberRegisterPageId.HasValue ? (object) entity.MemberRegisterPageId  : System.DBNull.Value;
+							
+				
+					row["JobApplicationPageID"] = entity.JobApplicationPageId.HasValue ? (object) entity.JobApplicationPageId  : System.DBNull.Value;
+							
+				
 				dataTable.Rows.Add(row);
 			}		
 			
@@ -2543,6 +2697,8 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@GlobalFolder", DbType.AnsiString, entity.GlobalFolder );
 			database.AddInParameter(commandWrapper, "@EnableScreeningQuestions", DbType.Boolean, entity.EnableScreeningQuestions );
 			database.AddInParameter(commandWrapper, "@EnableExpiryDate", DbType.Boolean, entity.EnableExpiryDate );
+			database.AddInParameter(commandWrapper, "@MemberRegisterPageId", DbType.Int32, (entity.MemberRegisterPageId.HasValue ? (object) entity.MemberRegisterPageId  : System.DBNull.Value));
+			database.AddInParameter(commandWrapper, "@JobApplicationPageId", DbType.Int32, (entity.JobApplicationPageId.HasValue ? (object) entity.JobApplicationPageId  : System.DBNull.Value));
 			
 			int results = 0;
 			
@@ -2681,6 +2837,8 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@GlobalFolder", DbType.AnsiString, entity.GlobalFolder );
 			database.AddInParameter(commandWrapper, "@EnableScreeningQuestions", DbType.Boolean, entity.EnableScreeningQuestions );
 			database.AddInParameter(commandWrapper, "@EnableExpiryDate", DbType.Boolean, entity.EnableExpiryDate );
+			database.AddInParameter(commandWrapper, "@MemberRegisterPageId", DbType.Int32, (entity.MemberRegisterPageId.HasValue ? (object) entity.MemberRegisterPageId : System.DBNull.Value) );
+			database.AddInParameter(commandWrapper, "@JobApplicationPageId", DbType.Int32, (entity.JobApplicationPageId.HasValue ? (object) entity.JobApplicationPageId : System.DBNull.Value) );
 			
 			int results = 0;
 			
@@ -2905,12 +3063,15 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="timeZone"> A <c>System.String</c> instance.</param>
 		/// <param name="globalFolder"> A <c>System.String</c> instance.</param>
 		/// <param name="enableScreeningQuestions"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="enableExpiryDate"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="memberRegisterPageId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="jobApplicationPageId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
 		/// <returns>A <see cref="DataSet"/> instance.</returns>
-		public override DataSet Find(TransactionManager transactionManager, int start, int pageLength , System.Boolean? searchUsingOr, System.Int32? globalSettingId, System.Int32? siteId, System.Int32? defaultLanguageId, System.Int32? defaultDynamicPageId, System.Boolean? publicJobsSearch, System.Boolean? publicMembersSearch, System.Boolean? publicCompaniesSearch, System.Boolean? publicSponsoredAdverts, System.Boolean? privateJobs, System.Boolean? privateMembers, System.Boolean? privateCompanies, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.String pageTitlePrefix, System.String pageTitleSuffix, System.String defaultTitle, System.String homeTitle, System.String defaultDescription, System.String homeDescription, System.String defaultKeywords, System.String homeKeywords, System.Boolean? showFaceBookButton, System.Int32? useAdvertiserFilter, System.Int32? merchantId, System.Boolean? showTwitterButton, System.Boolean? showJobAlertButton, System.Boolean? showLinkedInButton, System.Int32? siteFavIconId, System.String siteDocType, System.String currencySymbol, System.String ftpFolderLocation, System.String metaTags, System.String systemMetaTags, System.String memberRegistrationNotification, System.String linkedInApi, System.String linkedInLogo, System.Int32? linkedInCompanyId, System.String linkedInEmail, System.String privacySettings, System.Boolean? wwwRedirect, System.Boolean? allowAdvertiser, System.String linkedInApiSecret, System.String googleClientId, System.String googleClientSecret, System.String facebookAppId, System.String facebookAppSecret, System.Int32? linkedInButtonSize, System.Int32? defaultCountryId, System.String payPalUsername, System.String payPalPassword, System.String payPalSignature, System.String securePayMerchantId, System.String securePayPassword, System.Boolean? usingSsl, System.Boolean? useCustomProfessionRole, System.Boolean? generateJobXml, System.Boolean? isPrivateSite, System.String privateRedirectUrl, System.Boolean? enableJobCustomQuestionnaire, System.Int32? jobApplicationTypeId, System.Boolean? jobScreeningProcess, System.Int32? advertiserApprovalProcess, System.Int32? siteType, System.Boolean? enableSsl, System.Decimal? gst, System.String gstLabel, System.Int32? numberOfPremiumJobs, System.Int32? premiumJobDays, System.Boolean? displayPremiumJobsOnResults, System.Boolean? jobExpiryNotification, System.Int32? currencyId, System.String payPalClientId, System.String payPalClientSecret, System.String paypalUser, System.String paypalProPassword, System.String paypalVendor, System.String paypalPartner, System.String invoiceSiteInfo, System.String invoiceSiteFooter, System.Boolean? enableTermsAndConditions, System.Int32? defaultEmailLanguageId, System.String googleTagManager, System.String googleAnalytics, System.String googleWebMaster, System.Boolean? enablePeopleSearch, System.String globalDateFormat, System.String timeZone, System.String globalFolder, System.Boolean? enableScreeningQuestions)
+		public override DataSet Find(TransactionManager transactionManager, int start, int pageLength , System.Boolean? searchUsingOr, System.Int32? globalSettingId, System.Int32? siteId, System.Int32? defaultLanguageId, System.Int32? defaultDynamicPageId, System.Boolean? publicJobsSearch, System.Boolean? publicMembersSearch, System.Boolean? publicCompaniesSearch, System.Boolean? publicSponsoredAdverts, System.Boolean? privateJobs, System.Boolean? privateMembers, System.Boolean? privateCompanies, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.String pageTitlePrefix, System.String pageTitleSuffix, System.String defaultTitle, System.String homeTitle, System.String defaultDescription, System.String homeDescription, System.String defaultKeywords, System.String homeKeywords, System.Boolean? showFaceBookButton, System.Int32? useAdvertiserFilter, System.Int32? merchantId, System.Boolean? showTwitterButton, System.Boolean? showJobAlertButton, System.Boolean? showLinkedInButton, System.Int32? siteFavIconId, System.String siteDocType, System.String currencySymbol, System.String ftpFolderLocation, System.String metaTags, System.String systemMetaTags, System.String memberRegistrationNotification, System.String linkedInApi, System.String linkedInLogo, System.Int32? linkedInCompanyId, System.String linkedInEmail, System.String privacySettings, System.Boolean? wwwRedirect, System.Boolean? allowAdvertiser, System.String linkedInApiSecret, System.String googleClientId, System.String googleClientSecret, System.String facebookAppId, System.String facebookAppSecret, System.Int32? linkedInButtonSize, System.Int32? defaultCountryId, System.String payPalUsername, System.String payPalPassword, System.String payPalSignature, System.String securePayMerchantId, System.String securePayPassword, System.Boolean? usingSsl, System.Boolean? useCustomProfessionRole, System.Boolean? generateJobXml, System.Boolean? isPrivateSite, System.String privateRedirectUrl, System.Boolean? enableJobCustomQuestionnaire, System.Int32? jobApplicationTypeId, System.Boolean? jobScreeningProcess, System.Int32? advertiserApprovalProcess, System.Int32? siteType, System.Boolean? enableSsl, System.Decimal? gst, System.String gstLabel, System.Int32? numberOfPremiumJobs, System.Int32? premiumJobDays, System.Boolean? displayPremiumJobsOnResults, System.Boolean? jobExpiryNotification, System.Int32? currencyId, System.String payPalClientId, System.String payPalClientSecret, System.String paypalUser, System.String paypalProPassword, System.String paypalVendor, System.String paypalPartner, System.String invoiceSiteInfo, System.String invoiceSiteFooter, System.Boolean? enableTermsAndConditions, System.Int32? defaultEmailLanguageId, System.String googleTagManager, System.String googleAnalytics, System.String googleWebMaster, System.Boolean? enablePeopleSearch, System.String globalDateFormat, System.String timeZone, System.String globalFolder, System.Boolean? enableScreeningQuestions, System.Boolean? enableExpiryDate, System.Int32? memberRegisterPageId, System.Int32? jobApplicationPageId)
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.GlobalSettings_Find", true);
@@ -3005,6 +3166,9 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@TimeZone", DbType.AnsiString,  timeZone );
 			database.AddInParameter(commandWrapper, "@GlobalFolder", DbType.AnsiString,  globalFolder );
 			database.AddInParameter(commandWrapper, "@EnableScreeningQuestions", DbType.Boolean,  enableScreeningQuestions );
+			database.AddInParameter(commandWrapper, "@EnableExpiryDate", DbType.Boolean,  enableExpiryDate );
+			database.AddInParameter(commandWrapper, "@MemberRegisterPageId", DbType.Int32,  memberRegisterPageId );
+			database.AddInParameter(commandWrapper, "@JobApplicationPageId", DbType.Int32,  jobApplicationPageId );
 	
 			
 			DataSet ds = null;
@@ -3168,11 +3332,14 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="timeZone"> A <c>System.String</c> instance.</param>
 		/// <param name="globalFolder"> A <c>System.String</c> instance.</param>
 		/// <param name="enableScreeningQuestions"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="enableExpiryDate"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="memberRegisterPageId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="jobApplicationPageId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
-		public override void Update(TransactionManager transactionManager, int start, int pageLength , System.Int32? globalSettingId, System.Int32? siteId, System.Int32? defaultLanguageId, System.Int32? defaultDynamicPageId, System.Boolean? publicJobsSearch, System.Boolean? publicMembersSearch, System.Boolean? publicCompaniesSearch, System.Boolean? publicSponsoredAdverts, System.Boolean? privateJobs, System.Boolean? privateMembers, System.Boolean? privateCompanies, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.String pageTitlePrefix, System.String pageTitleSuffix, System.String defaultTitle, System.String homeTitle, System.String defaultDescription, System.String homeDescription, System.String defaultKeywords, System.String homeKeywords, System.Boolean? showFaceBookButton, System.Int32? useAdvertiserFilter, System.Int32? merchantId, System.Boolean? showTwitterButton, System.Boolean? showJobAlertButton, System.Boolean? showLinkedInButton, System.Int32? siteFavIconId, System.String siteDocType, System.String currencySymbol, System.String ftpFolderLocation, System.String metaTags, System.String systemMetaTags, System.String memberRegistrationNotification, System.String linkedInApi, System.String linkedInLogo, System.Int32? linkedInCompanyId, System.String linkedInEmail, System.String privacySettings, System.Boolean? wwwRedirect, System.Boolean? allowAdvertiser, System.String linkedInApiSecret, System.String googleClientId, System.String googleClientSecret, System.String facebookAppId, System.String facebookAppSecret, System.Int32? linkedInButtonSize, System.Int32? defaultCountryId, System.String payPalUsername, System.String payPalPassword, System.String payPalSignature, System.String securePayMerchantId, System.String securePayPassword, System.Boolean? usingSsl, System.Boolean? useCustomProfessionRole, System.Boolean? generateJobXml, System.Boolean? isPrivateSite, System.String privateRedirectUrl, System.Boolean? enableJobCustomQuestionnaire, System.Int32? jobApplicationTypeId, System.Boolean? jobScreeningProcess, System.Int32? advertiserApprovalProcess, System.Int32? siteType, System.Boolean? enableSsl, System.Decimal? gst, System.String gstLabel, System.Int32? numberOfPremiumJobs, System.Int32? premiumJobDays, System.Boolean? displayPremiumJobsOnResults, System.Boolean? jobExpiryNotification, System.Int32? currencyId, System.String payPalClientId, System.String payPalClientSecret, System.String paypalUser, System.String paypalProPassword, System.String paypalVendor, System.String paypalPartner, System.String invoiceSiteInfo, System.String invoiceSiteFooter, System.Boolean? enableTermsAndConditions, System.Int32? defaultEmailLanguageId, System.String googleTagManager, System.String googleAnalytics, System.String googleWebMaster, System.Boolean? enablePeopleSearch, System.String globalDateFormat, System.String timeZone, System.String globalFolder, System.Boolean? enableScreeningQuestions)
+		public override void Update(TransactionManager transactionManager, int start, int pageLength , System.Int32? globalSettingId, System.Int32? siteId, System.Int32? defaultLanguageId, System.Int32? defaultDynamicPageId, System.Boolean? publicJobsSearch, System.Boolean? publicMembersSearch, System.Boolean? publicCompaniesSearch, System.Boolean? publicSponsoredAdverts, System.Boolean? privateJobs, System.Boolean? privateMembers, System.Boolean? privateCompanies, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.String pageTitlePrefix, System.String pageTitleSuffix, System.String defaultTitle, System.String homeTitle, System.String defaultDescription, System.String homeDescription, System.String defaultKeywords, System.String homeKeywords, System.Boolean? showFaceBookButton, System.Int32? useAdvertiserFilter, System.Int32? merchantId, System.Boolean? showTwitterButton, System.Boolean? showJobAlertButton, System.Boolean? showLinkedInButton, System.Int32? siteFavIconId, System.String siteDocType, System.String currencySymbol, System.String ftpFolderLocation, System.String metaTags, System.String systemMetaTags, System.String memberRegistrationNotification, System.String linkedInApi, System.String linkedInLogo, System.Int32? linkedInCompanyId, System.String linkedInEmail, System.String privacySettings, System.Boolean? wwwRedirect, System.Boolean? allowAdvertiser, System.String linkedInApiSecret, System.String googleClientId, System.String googleClientSecret, System.String facebookAppId, System.String facebookAppSecret, System.Int32? linkedInButtonSize, System.Int32? defaultCountryId, System.String payPalUsername, System.String payPalPassword, System.String payPalSignature, System.String securePayMerchantId, System.String securePayPassword, System.Boolean? usingSsl, System.Boolean? useCustomProfessionRole, System.Boolean? generateJobXml, System.Boolean? isPrivateSite, System.String privateRedirectUrl, System.Boolean? enableJobCustomQuestionnaire, System.Int32? jobApplicationTypeId, System.Boolean? jobScreeningProcess, System.Int32? advertiserApprovalProcess, System.Int32? siteType, System.Boolean? enableSsl, System.Decimal? gst, System.String gstLabel, System.Int32? numberOfPremiumJobs, System.Int32? premiumJobDays, System.Boolean? displayPremiumJobsOnResults, System.Boolean? jobExpiryNotification, System.Int32? currencyId, System.String payPalClientId, System.String payPalClientSecret, System.String paypalUser, System.String paypalProPassword, System.String paypalVendor, System.String paypalPartner, System.String invoiceSiteInfo, System.String invoiceSiteFooter, System.Boolean? enableTermsAndConditions, System.Int32? defaultEmailLanguageId, System.String googleTagManager, System.String googleAnalytics, System.String googleWebMaster, System.Boolean? enablePeopleSearch, System.String globalDateFormat, System.String timeZone, System.String globalFolder, System.Boolean? enableScreeningQuestions, System.Boolean? enableExpiryDate, System.Int32? memberRegisterPageId, System.Int32? jobApplicationPageId)
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.GlobalSettings_Update", true);
@@ -3266,6 +3433,9 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@TimeZone", DbType.AnsiString,  timeZone );
 			database.AddInParameter(commandWrapper, "@GlobalFolder", DbType.AnsiString,  globalFolder );
 			database.AddInParameter(commandWrapper, "@EnableScreeningQuestions", DbType.Boolean,  enableScreeningQuestions );
+			database.AddInParameter(commandWrapper, "@EnableExpiryDate", DbType.Boolean,  enableExpiryDate );
+			database.AddInParameter(commandWrapper, "@MemberRegisterPageId", DbType.Int32,  memberRegisterPageId );
+			database.AddInParameter(commandWrapper, "@JobApplicationPageId", DbType.Int32,  jobApplicationPageId );
 	
 			
 			//Provider Data Requesting Command Event
@@ -3324,6 +3494,49 @@ namespace JXTPortal.Data.SqlClient
 			
 			//Provider Data Requested Command Event
 			OnDataRequested(new CommandEventArgs(commandWrapper, "GetByDefaultCountryId", (IEntity)null));
+
+			
+
+			
+			return ds;	
+		}
+		#endregion
+
+		#region GlobalSettings_GetByMemberRegisterPageId
+					
+		/// <summary>
+		///	This method wraps the 'GlobalSettings_GetByMemberRegisterPageId' stored procedure. 
+		/// </summary>	
+		/// <param name="memberRegisterPageId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="start">Row number at which to start reading.</param>
+		/// <param name="pageLength">Number of rows to return.</param>
+		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
+		/// <remark>This method is generated from a stored procedure.</remark>
+		/// <returns>A <see cref="DataSet"/> instance.</returns>
+		public override DataSet GetByMemberRegisterPageId(TransactionManager transactionManager, int start, int pageLength , System.Int32? memberRegisterPageId)
+		{
+			SqlDatabase database = new SqlDatabase(this._connectionString);
+			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.GlobalSettings_GetByMemberRegisterPageId", true);
+			
+			database.AddInParameter(commandWrapper, "@MemberRegisterPageId", DbType.Int32,  memberRegisterPageId );
+	
+			
+			DataSet ds = null;
+			
+			//Provider Data Requesting Command Event
+			OnDataRequesting(new CommandEventArgs(commandWrapper, "GetByMemberRegisterPageId", (IEntity)null));
+
+			if (transactionManager != null)
+			{	
+				ds = Utility.ExecuteDataSet(transactionManager, commandWrapper);
+			}
+			else
+			{
+				ds = Utility.ExecuteDataSet(database, commandWrapper);
+			}
+			
+			//Provider Data Requested Command Event
+			OnDataRequested(new CommandEventArgs(commandWrapper, "GetByMemberRegisterPageId", (IEntity)null));
 
 			
 
@@ -3468,12 +3681,15 @@ namespace JXTPortal.Data.SqlClient
 		/// <param name="timeZone"> A <c>System.String</c> instance.</param>
 		/// <param name="globalFolder"> A <c>System.String</c> instance.</param>
 		/// <param name="enableScreeningQuestions"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="enableExpiryDate"> A <c>System.Boolean?</c> instance.</param>
+		/// <param name="memberRegisterPageId"> A <c>System.Int32?</c> instance.</param>
+		/// <param name="jobApplicationPageId"> A <c>System.Int32?</c> instance.</param>
 			/// <param name="globalSettingId"> A <c>System.Int32?</c> instance.</param>
 		/// <param name="start">Row number at which to start reading.</param>
 		/// <param name="pageLength">Number of rows to return.</param>
 		/// <param name="transactionManager"><see cref="TransactionManager"/> object.</param>
 		/// <remark>This method is generated from a stored procedure.</remark>
-		public override void Insert(TransactionManager transactionManager, int start, int pageLength , System.Int32? siteId, System.Int32? defaultLanguageId, System.Int32? defaultDynamicPageId, System.Boolean? publicJobsSearch, System.Boolean? publicMembersSearch, System.Boolean? publicCompaniesSearch, System.Boolean? publicSponsoredAdverts, System.Boolean? privateJobs, System.Boolean? privateMembers, System.Boolean? privateCompanies, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.String pageTitlePrefix, System.String pageTitleSuffix, System.String defaultTitle, System.String homeTitle, System.String defaultDescription, System.String homeDescription, System.String defaultKeywords, System.String homeKeywords, System.Boolean? showFaceBookButton, System.Int32? useAdvertiserFilter, System.Int32? merchantId, System.Boolean? showTwitterButton, System.Boolean? showJobAlertButton, System.Boolean? showLinkedInButton, System.Int32? siteFavIconId, System.String siteDocType, System.String currencySymbol, System.String ftpFolderLocation, System.String metaTags, System.String systemMetaTags, System.String memberRegistrationNotification, System.String linkedInApi, System.String linkedInLogo, System.Int32? linkedInCompanyId, System.String linkedInEmail, System.String privacySettings, System.Boolean? wwwRedirect, System.Boolean? allowAdvertiser, System.String linkedInApiSecret, System.String googleClientId, System.String googleClientSecret, System.String facebookAppId, System.String facebookAppSecret, System.Int32? linkedInButtonSize, System.Int32? defaultCountryId, System.String payPalUsername, System.String payPalPassword, System.String payPalSignature, System.String securePayMerchantId, System.String securePayPassword, System.Boolean? usingSsl, System.Boolean? useCustomProfessionRole, System.Boolean? generateJobXml, System.Boolean? isPrivateSite, System.String privateRedirectUrl, System.Boolean? enableJobCustomQuestionnaire, System.Int32? jobApplicationTypeId, System.Boolean? jobScreeningProcess, System.Int32? advertiserApprovalProcess, System.Int32? siteType, System.Boolean? enableSsl, System.Decimal? gst, System.String gstLabel, System.Int32? numberOfPremiumJobs, System.Int32? premiumJobDays, System.Boolean? displayPremiumJobsOnResults, System.Boolean? jobExpiryNotification, System.Int32? currencyId, System.String payPalClientId, System.String payPalClientSecret, System.String paypalUser, System.String paypalProPassword, System.String paypalVendor, System.String paypalPartner, System.String invoiceSiteInfo, System.String invoiceSiteFooter, System.Boolean? enableTermsAndConditions, System.Int32? defaultEmailLanguageId, System.String googleTagManager, System.String googleAnalytics, System.String googleWebMaster, System.Boolean? enablePeopleSearch, System.String globalDateFormat, System.String timeZone, System.String globalFolder, System.Boolean? enableScreeningQuestions, ref System.Int32? globalSettingId)
+		public override void Insert(TransactionManager transactionManager, int start, int pageLength , System.Int32? siteId, System.Int32? defaultLanguageId, System.Int32? defaultDynamicPageId, System.Boolean? publicJobsSearch, System.Boolean? publicMembersSearch, System.Boolean? publicCompaniesSearch, System.Boolean? publicSponsoredAdverts, System.Boolean? privateJobs, System.Boolean? privateMembers, System.Boolean? privateCompanies, System.Int32? lastModifiedBy, System.DateTime? lastModified, System.String pageTitlePrefix, System.String pageTitleSuffix, System.String defaultTitle, System.String homeTitle, System.String defaultDescription, System.String homeDescription, System.String defaultKeywords, System.String homeKeywords, System.Boolean? showFaceBookButton, System.Int32? useAdvertiserFilter, System.Int32? merchantId, System.Boolean? showTwitterButton, System.Boolean? showJobAlertButton, System.Boolean? showLinkedInButton, System.Int32? siteFavIconId, System.String siteDocType, System.String currencySymbol, System.String ftpFolderLocation, System.String metaTags, System.String systemMetaTags, System.String memberRegistrationNotification, System.String linkedInApi, System.String linkedInLogo, System.Int32? linkedInCompanyId, System.String linkedInEmail, System.String privacySettings, System.Boolean? wwwRedirect, System.Boolean? allowAdvertiser, System.String linkedInApiSecret, System.String googleClientId, System.String googleClientSecret, System.String facebookAppId, System.String facebookAppSecret, System.Int32? linkedInButtonSize, System.Int32? defaultCountryId, System.String payPalUsername, System.String payPalPassword, System.String payPalSignature, System.String securePayMerchantId, System.String securePayPassword, System.Boolean? usingSsl, System.Boolean? useCustomProfessionRole, System.Boolean? generateJobXml, System.Boolean? isPrivateSite, System.String privateRedirectUrl, System.Boolean? enableJobCustomQuestionnaire, System.Int32? jobApplicationTypeId, System.Boolean? jobScreeningProcess, System.Int32? advertiserApprovalProcess, System.Int32? siteType, System.Boolean? enableSsl, System.Decimal? gst, System.String gstLabel, System.Int32? numberOfPremiumJobs, System.Int32? premiumJobDays, System.Boolean? displayPremiumJobsOnResults, System.Boolean? jobExpiryNotification, System.Int32? currencyId, System.String payPalClientId, System.String payPalClientSecret, System.String paypalUser, System.String paypalProPassword, System.String paypalVendor, System.String paypalPartner, System.String invoiceSiteInfo, System.String invoiceSiteFooter, System.Boolean? enableTermsAndConditions, System.Int32? defaultEmailLanguageId, System.String googleTagManager, System.String googleAnalytics, System.String googleWebMaster, System.Boolean? enablePeopleSearch, System.String globalDateFormat, System.String timeZone, System.String globalFolder, System.Boolean? enableScreeningQuestions, System.Boolean? enableExpiryDate, System.Int32? memberRegisterPageId, System.Int32? jobApplicationPageId, ref System.Int32? globalSettingId)
 		{
 			SqlDatabase database = new SqlDatabase(this._connectionString);
 			DbCommand commandWrapper = StoredProcedureProvider.GetCommandWrapper(database, "dbo.GlobalSettings_Insert", true);
@@ -3566,6 +3782,9 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@TimeZone", DbType.AnsiString,  timeZone );
 			database.AddInParameter(commandWrapper, "@GlobalFolder", DbType.AnsiString,  globalFolder );
 			database.AddInParameter(commandWrapper, "@EnableScreeningQuestions", DbType.Boolean,  enableScreeningQuestions );
+			database.AddInParameter(commandWrapper, "@EnableExpiryDate", DbType.Boolean,  enableExpiryDate );
+			database.AddInParameter(commandWrapper, "@MemberRegisterPageId", DbType.Int32,  memberRegisterPageId );
+			database.AddInParameter(commandWrapper, "@JobApplicationPageId", DbType.Int32,  jobApplicationPageId );
 	
 			database.AddParameter(commandWrapper, "@GlobalSettingId", DbType.Int32, 4, ParameterDirection.InputOutput, true, 10, 0, string.Empty, DataRowVersion.Current, globalSettingId);
 			

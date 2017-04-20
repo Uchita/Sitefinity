@@ -404,6 +404,8 @@
     <Compile Include="JobAlertsServiceBase.generated.cs" />
     <Compile Include="JobApplicationNotesService.cs" />
     <Compile Include="JobApplicationNotesServiceBase.generated.cs" />
+    <Compile Include="JobApplicationScreeningAnswersService.cs" />
+    <Compile Include="JobApplicationScreeningAnswersServiceBase.generated.cs" />
     <Compile Include="JobApplicationService.cs" />
     <Compile Include="JobApplicationServiceBase.generated.cs" />
     <Compile Include="JobApplications\AICDScholarship\AicdSponsorshipFrontEndHelper.cs" />
@@ -424,6 +426,8 @@
     <Compile Include="JobRolesServiceBase.generated.cs" />
     <Compile Include="JobsArchiveService.cs" />
     <Compile Include="JobsArchiveServiceBase.generated.cs" />
+    <Compile Include="JobScreeningQuestionsService.cs" />
+    <Compile Include="JobScreeningQuestionsServiceBase.generated.cs" />
     <Compile Include="JobsSavedService.cs" />
     <Compile Include="JobsSavedServiceBase.generated.cs" />
     <Compile Include="JobsService.cs" />
@@ -432,6 +436,10 @@
     <Compile Include="JobTemplatesServiceBase.generated.cs" />
     <Compile Include="JobViewsService.cs" />
     <Compile Include="JobViewsServiceBase.generated.cs" />
+    <Compile Include="KnowledgeBaseCategoriesService.cs" />
+    <Compile Include="KnowledgeBaseCategoriesServiceBase.generated.cs" />
+    <Compile Include="KnowledgeBaseService.cs" />
+    <Compile Include="KnowledgeBaseServiceBase.generated.cs" />
     <Compile Include="LanguagesService.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -510,6 +518,16 @@
     <Compile Include="SalaryServiceBase.generated.cs" />
     <Compile Include="SalaryTypeService.cs" />
     <Compile Include="SalaryTypeServiceBase.generated.cs" />
+    <Compile Include="SchemaVersionsService.cs" />
+    <Compile Include="SchemaVersionsServiceBase.generated.cs" />
+    <Compile Include="ScreeningQuestionsMappingsService.cs" />
+    <Compile Include="ScreeningQuestionsMappingsServiceBase.generated.cs" />
+    <Compile Include="ScreeningQuestionsService.cs" />
+    <Compile Include="ScreeningQuestionsServiceBase.generated.cs" />
+    <Compile Include="ScreeningQuestionsTemplateOwnersService.cs" />
+    <Compile Include="ScreeningQuestionsTemplateOwnersServiceBase.generated.cs" />
+    <Compile Include="ScreeningQuestionsTemplatesService.cs" />
+    <Compile Include="ScreeningQuestionsTemplatesServiceBase.generated.cs" />
     <Compile Include="SiteAdvertiserFilterService.cs" />
     <Compile Include="SiteAdvertiserFilterServiceBase.generated.cs" />
     <Compile Include="SiteAreaService.cs" />

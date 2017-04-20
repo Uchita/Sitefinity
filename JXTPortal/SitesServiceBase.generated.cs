@@ -62,7 +62,8 @@ namespace JXTPortal
 		///<param name="_mobileEnabled"></param>
 		///<param name="_mobileUrl"></param>
 		///<param name="_siteAdminLogoUrl"></param>
-		public static Sites CreateSites(System.String _siteName, System.String _siteUrl, System.String _siteDescription, System.Byte[] _siteAdminLogo, System.DateTime _lastModified, System.Int32? _lastModifiedBy, System.Boolean? _live, System.Boolean _mobileEnabled, System.String _mobileUrl, System.String _siteAdminLogoUrl)
+		///<param name="_siteUrlAlias"></param>
+		public static Sites CreateSites(System.String _siteName, System.String _siteUrl, System.String _siteDescription, System.Byte[] _siteAdminLogo, System.DateTime _lastModified, System.Int32? _lastModifiedBy, System.Boolean? _live, System.Boolean _mobileEnabled, System.String _mobileUrl, System.String _siteAdminLogoUrl, System.String _siteUrlAlias)
 		{
 			Sites newEntitySites = new Sites();
 			newEntitySites.SiteName  = _siteName;
@@ -75,6 +76,7 @@ namespace JXTPortal
 			newEntitySites.MobileEnabled  = _mobileEnabled;
 			newEntitySites.MobileUrl  = _mobileUrl;
 			newEntitySites.SiteAdminLogoUrl  = _siteAdminLogoUrl;
+			newEntitySites.SiteUrlAlias  = _siteUrlAlias;
 			return newEntitySites;
 		}
 		#endregion Constructors

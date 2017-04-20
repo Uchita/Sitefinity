@@ -317,6 +317,8 @@
     <Compile Include="SqlJobApplicationNotesProviderBase.generated.cs" />
     <Compile Include="SqlJobApplicationProvider.cs" />
     <Compile Include="SqlJobApplicationProviderBase.generated.cs" />
+    <Compile Include="SqlJobApplicationScreeningAnswersProvider.cs" />
+    <Compile Include="SqlJobApplicationScreeningAnswersProviderBase.generated.cs" />
     <Compile Include="SqlJobApplicationTypeProvider.cs" />
     <Compile Include="SqlJobApplicationTypeProviderBase.generated.cs" />
     <Compile Include="SqlJobAreaProvider.cs" />
@@ -331,6 +333,8 @@
     <Compile Include="SqlJobRolesProviderBase.generated.cs" />
     <Compile Include="SqlJobsArchiveProvider.cs" />
     <Compile Include="SqlJobsArchiveProviderBase.generated.cs" />
+    <Compile Include="SqlJobScreeningQuestionsProvider.cs" />
+    <Compile Include="SqlJobScreeningQuestionsProviderBase.generated.cs" />
     <Compile Include="SqlJobsProvider.cs" />
     <Compile Include="SqlJobsProviderBase.generated.cs" />
     <Compile Include="SqlJobsSavedProvider.cs" />
@@ -339,6 +343,10 @@
     <Compile Include="SqlJobTemplatesProviderBase.generated.cs" />
     <Compile Include="SqlJobViewsProvider.cs" />
     <Compile Include="SqlJobViewsProviderBase.generated.cs" />
+    <Compile Include="SqlKnowledgeBaseCategoriesProvider.cs" />
+    <Compile Include="SqlKnowledgeBaseCategoriesProviderBase.generated.cs" />
+    <Compile Include="SqlKnowledgeBaseProvider.cs" />
+    <Compile Include="SqlKnowledgeBaseProviderBase.generated.cs" />
     <Compile Include="SqlLanguagesProvider.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -415,6 +423,16 @@
     <Compile Include="SqlSalaryProviderBase.generated.cs" />
     <Compile Include="SqlSalaryTypeProvider.cs" />
     <Compile Include="SqlSalaryTypeProviderBase.generated.cs" />
+    <Compile Include="SqlSchemaVersionsProvider.cs" />
+    <Compile Include="SqlSchemaVersionsProviderBase.generated.cs" />
+    <Compile Include="SqlScreeningQuestionsMappingsProvider.cs" />
+    <Compile Include="SqlScreeningQuestionsMappingsProviderBase.generated.cs" />
+    <Compile Include="SqlScreeningQuestionsProvider.cs" />
+    <Compile Include="SqlScreeningQuestionsProviderBase.generated.cs" />
+    <Compile Include="SqlScreeningQuestionsTemplateOwnersProvider.cs" />
+    <Compile Include="SqlScreeningQuestionsTemplateOwnersProviderBase.generated.cs" />
+    <Compile Include="SqlScreeningQuestionsTemplatesProvider.cs" />
+    <Compile Include="SqlScreeningQuestionsTemplatesProviderBase.generated.cs" />
     <Compile Include="SqlSiteAdvertiserFilterProvider.cs" />
     <Compile Include="SqlSiteAdvertiserFilterProviderBase.generated.cs" />
     <Compile Include="SqlSiteAreaProvider.cs" />

@@ -399,6 +399,7 @@
     <Compile Include="IJobAlerts.cs" />
     <Compile Include="IJobApplication.cs" />
     <Compile Include="IJobApplicationNotes.cs" />
+    <Compile Include="IJobApplicationScreeningAnswers.cs" />
     <Compile Include="IJobApplicationType.cs" />
     <Compile Include="IJobArea.cs" />
     <Compile Include="IJobCustomQuestionnaire.cs" />
@@ -407,9 +408,12 @@
     <Compile Include="IJobRoles.cs" />
     <Compile Include="IJobs.cs" />
     <Compile Include="IJobsArchive.cs" />
+    <Compile Include="IJobScreeningQuestions.cs" />
     <Compile Include="IJobsSaved.cs" />
     <Compile Include="IJobTemplates.cs" />
     <Compile Include="IJobViews.cs" />
+    <Compile Include="IKnowledgeBase.cs" />
+    <Compile Include="IKnowledgeBaseCategories.cs" />
     <Compile Include="ILocation.cs" />
     <Compile Include="IMemberCertificateMemberships.cs" />
     <Compile Include="IMemberLanguages.cs" />
@@ -439,6 +443,11 @@
     <Compile Include="IRoles.cs" />
     <Compile Include="ISalary.cs" />
     <Compile Include="ISalaryType.cs" />
+    <Compile Include="ISchemaVersions.cs" />
+    <Compile Include="IScreeningQuestions.cs" />
+    <Compile Include="IScreeningQuestionsMappings.cs" />
+    <Compile Include="IScreeningQuestionsTemplateOwners.cs" />
+    <Compile Include="IScreeningQuestionsTemplates.cs" />
     <Compile Include="ISiteAdvertiserFilter.cs" />
     <Compile Include="ISiteArea.cs" />
     <Compile Include="ISiteCountries.cs" />
@@ -463,6 +472,8 @@
     <Compile Include="JobApplicationBase.generated.cs" />
     <Compile Include="JobApplicationNotes.cs" />
     <Compile Include="JobApplicationNotesBase.generated.cs" />
+    <Compile Include="JobApplicationScreeningAnswers.cs" />
+    <Compile Include="JobApplicationScreeningAnswersBase.generated.cs" />
     <Compile Include="JobApplicationType.cs" />
     <Compile Include="JobApplicationTypeBase.generated.cs" />
     <Compile Include="JobArea.cs" />
@@ -479,12 +490,18 @@
     <Compile Include="JobsArchive.cs" />
     <Compile Include="JobsArchiveBase.generated.cs" />
     <Compile Include="JobsBase.generated.cs" />
+    <Compile Include="JobScreeningQuestions.cs" />
+    <Compile Include="JobScreeningQuestionsBase.generated.cs" />
     <Compile Include="JobsSaved.cs" />
     <Compile Include="JobsSavedBase.generated.cs" />
     <Compile Include="JobTemplates.cs" />
     <Compile Include="JobTemplatesBase.generated.cs" />
     <Compile Include="JobViews.cs" />
     <Compile Include="JobViewsBase.generated.cs" />
+    <Compile Include="KnowledgeBase.cs" />
+    <Compile Include="KnowledgeBaseBase.generated.cs" />
+    <Compile Include="KnowledgeBaseCategories.cs" />
+    <Compile Include="KnowledgeBaseCategoriesBase.generated.cs" />
     <Compile Include="Languages.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -588,6 +605,16 @@
     <Compile Include="SalaryType.cs" />
     <Compile Include="SalaryTypeBase.generated.cs" />
     <Compile Include="Custom\SessionData.cs" />
+    <Compile Include="SchemaVersions.cs" />
+    <Compile Include="SchemaVersionsBase.generated.cs" />
+    <Compile Include="ScreeningQuestions.cs" />
+    <Compile Include="ScreeningQuestionsBase.generated.cs" />
+    <Compile Include="ScreeningQuestionsMappings.cs" />
+    <Compile Include="ScreeningQuestionsMappingsBase.generated.cs" />
+    <Compile Include="ScreeningQuestionsTemplateOwners.cs" />
+    <Compile Include="ScreeningQuestionsTemplateOwnersBase.generated.cs" />
+    <Compile Include="ScreeningQuestionsTemplates.cs" />
+    <Compile Include="ScreeningQuestionsTemplatesBase.generated.cs" />
     <Compile Include="SiteAdvertiserFilter.cs" />
     <Compile Include="SiteAdvertiserFilterBase.generated.cs" />
     <Compile Include="SiteArea.cs" />

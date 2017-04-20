@@ -581,7 +581,6 @@ namespace JXTPortal.Data.Bases
 		
 		#region Sites_GetByMobileUrl 
 		
-		
 		/// <summary>
 		///	This method wrap the 'Sites_GetByMobileUrl' stored procedure. 
 		/// </summary>
@@ -1299,6 +1298,7 @@ namespace JXTPortal.Data.Bases
 					c.MobileEnabled = (System.Boolean)reader[((int)SitesColumn.MobileEnabled - 1)];
 					c.MobileUrl = (System.String)reader[((int)SitesColumn.MobileUrl - 1)];
 					c.SiteAdminLogoUrl = (reader.IsDBNull(((int)SitesColumn.SiteAdminLogoUrl - 1)))?null:(System.String)reader[((int)SitesColumn.SiteAdminLogoUrl - 1)];
+					c.SiteUrlAlias = (reader.IsDBNull(((int)SitesColumn.SiteUrlAlias - 1)))?null:(System.String)reader[((int)SitesColumn.SiteUrlAlias - 1)];
 					c.EntityTrackingKey = key;
 					c.AcceptChanges();
 					c.SuppressEntityEvents = false;
@@ -1327,6 +1327,7 @@ namespace JXTPortal.Data.Bases
 			entity.MobileEnabled = (System.Boolean)reader[((int)SitesColumn.MobileEnabled - 1)];
 			entity.MobileUrl = (System.String)reader[((int)SitesColumn.MobileUrl - 1)];
 			entity.SiteAdminLogoUrl = (reader.IsDBNull(((int)SitesColumn.SiteAdminLogoUrl - 1)))?null:(System.String)reader[((int)SitesColumn.SiteAdminLogoUrl - 1)];
+			entity.SiteUrlAlias = (reader.IsDBNull(((int)SitesColumn.SiteUrlAlias - 1)))?null:(System.String)reader[((int)SitesColumn.SiteUrlAlias - 1)];
 			entity.AcceptChanges();
 		}
 		
@@ -1350,6 +1351,7 @@ namespace JXTPortal.Data.Bases
 			entity.MobileEnabled = (System.Boolean)dataRow["MobileEnabled"];
 			entity.MobileUrl = (System.String)dataRow["MobileUrl"];
 			entity.SiteAdminLogoUrl = Convert.IsDBNull(dataRow["SiteAdminLogoUrl"]) ? null : (System.String)dataRow["SiteAdminLogoUrl"];
+			entity.SiteUrlAlias = Convert.IsDBNull(dataRow["SiteURLAlias"]) ? null : (System.String)dataRow["SiteURLAlias"];
 			entity.AcceptChanges();
 		}
 		#endregion 
@@ -2476,21 +2478,21 @@ namespace JXTPortal.Data.Bases
 			#endregion 
 			
 			
-			#region GlobalSettingsCollection
+			#region ScreeningQuestionsTemplatesCollection
 			//Relationship Type One : Many
-			if (CanDeepLoad(entity, "List<GlobalSettings>|GlobalSettingsCollection", deepLoadType, innerList)) 
+			if (CanDeepLoad(entity, "List<ScreeningQuestionsTemplates>|ScreeningQuestionsTemplatesCollection", deepLoadType, innerList)) 
 			{
 				#if NETTIERS_DEBUG
-				System.Diagnostics.Debug.WriteLine("- property 'GlobalSettingsCollection' loaded. key " + entity.EntityTrackingKey);
+				System.Diagnostics.Debug.WriteLine("- property 'ScreeningQuestionsTemplatesCollection' loaded. key " + entity.EntityTrackingKey);
 				#endif 
 
-				entity.GlobalSettingsCollection = DataRepository.GlobalSettingsProvider.GetBySiteId(transactionManager, entity.SiteId);
+				entity.ScreeningQuestionsTemplatesCollection = DataRepository.ScreeningQuestionsTemplatesProvider.GetBySiteId(transactionManager, entity.SiteId);
 
-				if (deep && entity.GlobalSettingsCollection.Count > 0)
+				if (deep && entity.ScreeningQuestionsTemplatesCollection.Count > 0)
 				{
-					deepHandles.Add("GlobalSettingsCollection",
-						new KeyValuePair<Delegate, object>((DeepLoadHandle<GlobalSettings>) DataRepository.GlobalSettingsProvider.DeepLoad,
-						new object[] { transactionManager, entity.GlobalSettingsCollection, deep, deepLoadType, childTypes, innerList }
+					deepHandles.Add("ScreeningQuestionsTemplatesCollection",
+						new KeyValuePair<Delegate, object>((DeepLoadHandle<ScreeningQuestionsTemplates>) DataRepository.ScreeningQuestionsTemplatesProvider.DeepLoad,
+						new object[] { transactionManager, entity.ScreeningQuestionsTemplatesCollection, deep, deepLoadType, childTypes, innerList }
 					));
 				}
 			}		
@@ -2575,6 +2577,27 @@ namespace JXTPortal.Data.Bases
 					deepHandles.Add("EducationsCollection",
 						new KeyValuePair<Delegate, object>((DeepLoadHandle<Educations>) DataRepository.EducationsProvider.DeepLoad,
 						new object[] { transactionManager, entity.EducationsCollection, deep, deepLoadType, childTypes, innerList }
+					));
+				}
+			}		
+			#endregion 
+			
+			
+			#region GlobalSettingsCollection
+			//Relationship Type One : Many
+			if (CanDeepLoad(entity, "List<GlobalSettings>|GlobalSettingsCollection", deepLoadType, innerList)) 
+			{
+				#if NETTIERS_DEBUG
+				System.Diagnostics.Debug.WriteLine("- property 'GlobalSettingsCollection' loaded. key " + entity.EntityTrackingKey);
+				#endif 
+
+				entity.GlobalSettingsCollection = DataRepository.GlobalSettingsProvider.GetBySiteId(transactionManager, entity.SiteId);
+
+				if (deep && entity.GlobalSettingsCollection.Count > 0)
+				{
+					deepHandles.Add("GlobalSettingsCollection",
+						new KeyValuePair<Delegate, object>((DeepLoadHandle<GlobalSettings>) DataRepository.GlobalSettingsProvider.DeepLoad,
+						new object[] { transactionManager, entity.GlobalSettingsCollection, deep, deepLoadType, childTypes, innerList }
 					));
 				}
 			}		
@@ -4158,11 +4181,11 @@ namespace JXTPortal.Data.Bases
 			#endregion 
 				
 	
-			#region List<GlobalSettings>
-				if (CanDeepSave(entity.GlobalSettingsCollection, "List<GlobalSettings>|GlobalSettingsCollection", deepSaveType, innerList)) 
+			#region List<ScreeningQuestionsTemplates>
+				if (CanDeepSave(entity.ScreeningQuestionsTemplatesCollection, "List<ScreeningQuestionsTemplates>|ScreeningQuestionsTemplatesCollection", deepSaveType, innerList)) 
 				{	
 					// update each child parent id with the real parent id (mostly used on insert)
-					foreach(GlobalSettings child in entity.GlobalSettingsCollection)
+					foreach(ScreeningQuestionsTemplates child in entity.ScreeningQuestionsTemplatesCollection)
 					{
 						if(child.SiteIdSource != null)
 						{
@@ -4175,13 +4198,13 @@ namespace JXTPortal.Data.Bases
 
 					}
 
-					if (entity.GlobalSettingsCollection.Count > 0 || entity.GlobalSettingsCollection.DeletedItems.Count > 0)
+					if (entity.ScreeningQuestionsTemplatesCollection.Count > 0 || entity.ScreeningQuestionsTemplatesCollection.DeletedItems.Count > 0)
 					{
-						//DataRepository.GlobalSettingsProvider.Save(transactionManager, entity.GlobalSettingsCollection);
+						//DataRepository.ScreeningQuestionsTemplatesProvider.Save(transactionManager, entity.ScreeningQuestionsTemplatesCollection);
 						
-						deepHandles.Add("GlobalSettingsCollection",
-						new KeyValuePair<Delegate, object>((DeepSaveHandle< GlobalSettings >) DataRepository.GlobalSettingsProvider.DeepSave,
-							new object[] { transactionManager, entity.GlobalSettingsCollection, deepSaveType, childTypes, innerList }
+						deepHandles.Add("ScreeningQuestionsTemplatesCollection",
+						new KeyValuePair<Delegate, object>((DeepSaveHandle< ScreeningQuestionsTemplates >) DataRepository.ScreeningQuestionsTemplatesProvider.DeepSave,
+							new object[] { transactionManager, entity.ScreeningQuestionsTemplatesCollection, deepSaveType, childTypes, innerList }
 						));
 					}
 				} 
@@ -4302,6 +4325,36 @@ namespace JXTPortal.Data.Bases
 						deepHandles.Add("EducationsCollection",
 						new KeyValuePair<Delegate, object>((DeepSaveHandle< Educations >) DataRepository.EducationsProvider.DeepSave,
 							new object[] { transactionManager, entity.EducationsCollection, deepSaveType, childTypes, innerList }
+						));
+					}
+				} 
+			#endregion 
+				
+	
+			#region List<GlobalSettings>
+				if (CanDeepSave(entity.GlobalSettingsCollection, "List<GlobalSettings>|GlobalSettingsCollection", deepSaveType, innerList)) 
+				{	
+					// update each child parent id with the real parent id (mostly used on insert)
+					foreach(GlobalSettings child in entity.GlobalSettingsCollection)
+					{
+						if(child.SiteIdSource != null)
+						{
+							child.SiteId = child.SiteIdSource.SiteId;
+						}
+						else
+						{
+							child.SiteId = entity.SiteId;
+						}
+
+					}
+
+					if (entity.GlobalSettingsCollection.Count > 0 || entity.GlobalSettingsCollection.DeletedItems.Count > 0)
+					{
+						//DataRepository.GlobalSettingsProvider.Save(transactionManager, entity.GlobalSettingsCollection);
+						
+						deepHandles.Add("GlobalSettingsCollection",
+						new KeyValuePair<Delegate, object>((DeepSaveHandle< GlobalSettings >) DataRepository.GlobalSettingsProvider.DeepSave,
+							new object[] { transactionManager, entity.GlobalSettingsCollection, deepSaveType, childTypes, innerList }
 						));
 					}
 				} 
@@ -4635,10 +4688,10 @@ namespace JXTPortal.Data.Bases
 		SiteSalaryTypeCollection,
 
 		///<summary>
-		/// Collection of <c>Sites</c> as OneToMany for GlobalSettingsCollection
+		/// Collection of <c>Sites</c> as OneToMany for ScreeningQuestionsTemplatesCollection
 		///</summary>
-		[ChildEntityType(typeof(TList<GlobalSettings>))]
-		GlobalSettingsCollection,
+		[ChildEntityType(typeof(TList<ScreeningQuestionsTemplates>))]
+		ScreeningQuestionsTemplatesCollection,
 
 		///<summary>
 		/// Collection of <c>Sites</c> as OneToMany for JobsArchiveCollection
@@ -4663,6 +4716,12 @@ namespace JXTPortal.Data.Bases
 		///</summary>
 		[ChildEntityType(typeof(TList<Educations>))]
 		EducationsCollection,
+
+		///<summary>
+		/// Collection of <c>Sites</c> as OneToMany for GlobalSettingsCollection
+		///</summary>
+		[ChildEntityType(typeof(TList<GlobalSettings>))]
+		GlobalSettingsCollection,
 	}
 	
 	#endregion SitesChildEntityTypes

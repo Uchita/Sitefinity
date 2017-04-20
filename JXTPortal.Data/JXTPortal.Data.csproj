@@ -315,6 +315,8 @@
     <Compile Include="Bases\JobAlertsProviderBase.generatedCore.cs" />
     <Compile Include="Bases\JobApplicationNotesProviderBase.cs" />
     <Compile Include="Bases\JobApplicationNotesProviderBase.generatedCore.cs" />
+    <Compile Include="Bases\JobApplicationScreeningAnswersProviderBase.cs" />
+    <Compile Include="Bases\JobApplicationScreeningAnswersProviderBase.generatedCore.cs" />
     <Compile Include="Bases\JobApplicationTypeProviderBase.cs" />
     <Compile Include="Bases\JobApplicationTypeProviderBase.generatedCore.cs" />
     <Compile Include="Bases\JobAreaProviderBase.cs" />
@@ -329,6 +331,8 @@
     <Compile Include="Bases\JobRolesProviderBase.generatedCore.cs" />
     <Compile Include="Bases\JobsArchiveProviderBase.cs" />
     <Compile Include="Bases\JobsArchiveProviderBase.generatedCore.cs" />
+    <Compile Include="Bases\JobScreeningQuestionsProviderBase.cs" />
+    <Compile Include="Bases\JobScreeningQuestionsProviderBase.generatedCore.cs" />
     <Compile Include="Bases\JobsProviderBase.cs" />
     <Compile Include="Bases\JobsProviderBase.generatedCore.cs" />
     <Compile Include="Bases\JobsSavedProviderBase.cs" />
@@ -337,6 +341,10 @@
     <Compile Include="Bases\JobTemplatesProviderBase.generatedCore.cs" />
     <Compile Include="Bases\JobViewsProviderBase.cs" />
     <Compile Include="Bases\JobViewsProviderBase.generatedCore.cs" />
+    <Compile Include="Bases\KnowledgeBaseCategoriesProviderBase.cs" />
+    <Compile Include="Bases\KnowledgeBaseCategoriesProviderBase.generatedCore.cs" />
+    <Compile Include="Bases\KnowledgeBaseProviderBase.cs" />
+    <Compile Include="Bases\KnowledgeBaseProviderBase.generatedCore.cs" />
     <Compile Include="Bases\LanguagesProviderBase.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -413,6 +421,16 @@
     <Compile Include="Bases\SalaryProviderBase.generatedCore.cs" />
     <Compile Include="Bases\SalaryTypeProviderBase.cs" />
     <Compile Include="Bases\SalaryTypeProviderBase.generatedCore.cs" />
+    <Compile Include="Bases\SchemaVersionsProviderBase.cs" />
+    <Compile Include="Bases\SchemaVersionsProviderBase.generatedCore.cs" />
+    <Compile Include="Bases\ScreeningQuestionsMappingsProviderBase.cs" />
+    <Compile Include="Bases\ScreeningQuestionsMappingsProviderBase.generatedCore.cs" />
+    <Compile Include="Bases\ScreeningQuestionsProviderBase.cs" />
+    <Compile Include="Bases\ScreeningQuestionsProviderBase.generatedCore.cs" />
+    <Compile Include="Bases\ScreeningQuestionsTemplateOwnersProviderBase.cs" />
+    <Compile Include="Bases\ScreeningQuestionsTemplateOwnersProviderBase.generatedCore.cs" />
+    <Compile Include="Bases\ScreeningQuestionsTemplatesProviderBase.cs" />
+    <Compile Include="Bases\ScreeningQuestionsTemplatesProviderBase.generatedCore.cs" />
     <Compile Include="Bases\SiteAdvertiserFilterProviderBase.cs" />
     <Compile Include="Bases\SiteAdvertiserFilterProviderBase.generatedCore.cs" />
     <Compile Include="Bases\SiteAreaProviderBase.cs" />

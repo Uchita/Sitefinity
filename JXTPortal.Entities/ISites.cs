@@ -68,6 +68,11 @@ namespace JXTPortal.Entities
 		/// SiteAdminLogoUrl : 
 		/// </summary>
 		System.String  SiteAdminLogoUrl  { get; set; }
+		
+		/// <summary>
+		/// SiteURLAlias : 
+		/// </summary>
+		System.String  SiteUrlAlias  { get; set; }
 			
 		/// <summary>
 		/// Creates a new object that is a copy of the current instance.
@@ -423,9 +428,9 @@ namespace JXTPortal.Entities
 
 		/// <summary>
 		///	Holds a collection of entity objects
-		///	which are related to this object through the relation _globalSettingsSiteId
+		///	which are related to this object through the relation _screeningQuestionsTemplatesSiteId
 		/// </summary>	
-		TList<GlobalSettings> GlobalSettingsCollection {  get;  set;}	
+		TList<ScreeningQuestionsTemplates> ScreeningQuestionsTemplatesCollection {  get;  set;}	
 
 
 		/// <summary>
@@ -454,6 +459,13 @@ namespace JXTPortal.Entities
 		///	which are related to this object through the relation _educationsSiteId
 		/// </summary>	
 		TList<Educations> EducationsCollection {  get;  set;}	
+
+
+		/// <summary>
+		///	Holds a collection of entity objects
+		///	which are related to this object through the relation _globalSettingsSiteId
+		/// </summary>	
+		TList<GlobalSettings> GlobalSettingsCollection {  get;  set;}	
 
 		#endregion Data Properties
 

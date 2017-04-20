@@ -354,6 +354,13 @@ namespace JXTPortal.Entities
 		/// </summary>	
 		TList<JobArea> JobAreaCollection {  get;  set;}	
 
+
+		/// <summary>
+		///	Holds a collection of entity objects
+		///	which are related to this object through the relation _jobScreeningQuestionsJobId
+		/// </summary>	
+		TList<JobScreeningQuestions> JobScreeningQuestionsCollection {  get;  set;}	
+
 		#endregion Data Properties
 
 	}

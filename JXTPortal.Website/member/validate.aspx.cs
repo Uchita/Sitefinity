@@ -22,6 +22,7 @@ namespace JXTPortal.Website.members
         private MemberFilesService _memberFilesService;
         private DynamicPagesService _dynamicPagesService = null;
         private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+        private string privateBucketName = ConfigurationManager.AppSettings["AWSS3PrivateBucketName"];
         private string memberFileFolder, memberFileFolderFormat;
         #endregion
 
@@ -158,7 +159,7 @@ namespace JXTPortal.Website.members
                             {
                                 if (!string.IsNullOrEmpty(thisResume.MemberFileUrl))
                                 {
-                                    ms = FileManagerService.DownloadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, thisResume.MemberId), thisResume.MemberFileUrl, out errormessage);
+                                    ms = FileManagerService.DownloadFile(privateBucketName, string.Format(memberFileFolderFormat, memberFileFolder, thisResume.MemberId), thisResume.MemberFileUrl, out errormessage);
 
                                     resumecontent = ((MemoryStream)ms).ToArray();
                                 }
@@ -173,7 +174,7 @@ namespace JXTPortal.Website.members
                                 if (!string.IsNullOrWhiteSpace(thisCoverLetter.MemberFileUrl))
                                 {
                                     ms = null;
-                                    ms = FileManagerService.DownloadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, thisResume.MemberId), thisCoverLetter.MemberFileUrl, out errormessage);
+                                    ms = FileManagerService.DownloadFile(privateBucketName, string.Format(memberFileFolderFormat, memberFileFolder, thisResume.MemberId), thisCoverLetter.MemberFileUrl, out errormessage);
                                     coverlettercontent = ((MemoryStream)ms).ToArray();
                                 }
                                 else

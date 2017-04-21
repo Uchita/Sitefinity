@@ -16,6 +16,7 @@ namespace JXTPortal.Website.members
     public partial class register : System.Web.UI.Page
     {
         private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+        private string privateBucketName = ConfigurationManager.AppSettings["AWSS3PrivateBucketName"];
         private string memberFileFolder;
         private string memberFileFolderFormat;
 
@@ -356,7 +357,7 @@ namespace JXTPortal.Website.members
                             string filepath = string.Format("MemberFiles_{0}{1}", objMemberFiles.MemberFileId, extension);
                             string errormessage = string.Empty;
 
-                            FileManagerService.UploadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, memberID), filepath, docInput.PostedFile.InputStream, out errormessage);
+                            FileManagerService.UploadFile(privateBucketName, string.Format(memberFileFolderFormat, memberFileFolder, memberID), filepath, docInput.PostedFile.InputStream, out errormessage);
 
                             objMemberFiles.MemberFileUrl = string.Format("MemberFiles_{0}{1}", objMemberFiles.MemberFileId, extension);
 
@@ -402,7 +403,7 @@ namespace JXTPortal.Website.members
                             string filepath = string.Format("MemberFiles_{0}{1}", objMemberFiles.MemberFileId, extension);
                             string errormessage = string.Empty;
 
-                            FileManagerService.UploadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, memberID), filepath, fuCoverLetter.PostedFile.InputStream, out errormessage);
+                            FileManagerService.UploadFile(privateBucketName, string.Format(memberFileFolderFormat, memberFileFolder, memberID), filepath, fuCoverLetter.PostedFile.InputStream, out errormessage);
                             objMemberFiles.MemberFileUrl = string.Format("MemberFiles_{0}{1}", objMemberFiles.MemberFileId, extension);
 
                             mfs.Update(objMemberFiles);

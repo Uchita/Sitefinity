@@ -29,6 +29,7 @@ namespace JXTPortal.Website
     public partial class NewApplyPage : System.Web.UI.Page
     {
         private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+        private string privateBucketName = ConfigurationManager.AppSettings["AWSS3PrivateBucketName"];
 
         #region Properties
 
@@ -39,7 +40,7 @@ namespace JXTPortal.Website
 
         private int _jobid = 0;
         private string _profession = "";
-
+        
         private GlobalSettingsService _globalSettingsService = null;
         private GlobalSettingsService GlobalSettingsService
         {
@@ -1540,10 +1541,10 @@ namespace JXTPortal.Website
 
                                 jobapp.MemberCoverLetterFile = string.Format("{0}_Coverletter_{1}", jobappid, r.Replace(coverletter.MemberFileName, "_"));
 
-                                ms = FileManagerService.DownloadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, coverletter.MemberId), coverletter.MemberFileUrl, out errormessage);
+                                ms = FileManagerService.DownloadFile(privateBucketName, string.Format(memberFileFolderFormat, memberFileFolder, coverletter.MemberId), coverletter.MemberFileUrl, out errormessage);
                                 if (string.IsNullOrWhiteSpace(errormessage))
                                 {
-                                    FileManagerService.UploadFile(bucketName, coverLetterFolder, jobapp.MemberCoverLetterFile, ms, out errormessage);
+                                    FileManagerService.UploadFile(privateBucketName, coverLetterFolder, jobapp.MemberCoverLetterFile, ms, out errormessage);
                                 }
 
                             }
@@ -1554,7 +1555,7 @@ namespace JXTPortal.Website
                                 {
                                     jobapp.MemberCoverLetterFile = string.Format("{0}_Coverletter_{1}", jobappid, r.Replace(fileUploadCV.PostedFile.FileName, "_"));
 
-                                    FileManagerService.UploadFile(bucketName, coverLetterFolder, jobapp.MemberCoverLetterFile, fileUploadCV.PostedFile.InputStream, out errormessage);
+                                    FileManagerService.UploadFile(privateBucketName, coverLetterFolder, jobapp.MemberCoverLetterFile, fileUploadCV.PostedFile.InputStream, out errormessage);
                                 }
                                 else
                                 {
@@ -1593,7 +1594,7 @@ namespace JXTPortal.Website
                                         {
                                             filestream.CopyTo(writestream);
 
-                                            FileManagerService.UploadFile(bucketName, coverLetterFolder, jobapp.MemberCoverLetterFile, writestream, out errormessage);
+                                            FileManagerService.UploadFile(privateBucketName, coverLetterFolder, jobapp.MemberCoverLetterFile, writestream, out errormessage);
                                         }
                                     }
                                 }
@@ -1611,10 +1612,10 @@ namespace JXTPortal.Website
 
                                     Stream ms = null;
 
-                                    ms = FileManagerService.DownloadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, resume.MemberId), resume.MemberFileUrl, out errormessage);
+                                    ms = FileManagerService.DownloadFile(privateBucketName, string.Format(memberFileFolderFormat, memberFileFolder, resume.MemberId), resume.MemberFileUrl, out errormessage);
                                     if (string.IsNullOrWhiteSpace(errormessage))
                                     {
-                                        FileManagerService.UploadFile(bucketName, resumeFolder, jobapp.MemberResumeFile, ms, out errormessage);
+                                        FileManagerService.UploadFile(privateBucketName, resumeFolder, jobapp.MemberResumeFile, ms, out errormessage);
                                     }
 
                                 }
@@ -1625,7 +1626,7 @@ namespace JXTPortal.Website
                                     {
                                         jobapp.MemberResumeFile = string.Format("{0}_Resume_{1}", jobappid, r.Replace(fileUploadResume.PostedFile.FileName, "_"));
 
-                                        FileManagerService.UploadFile(bucketName, resumeFolder, jobapp.MemberResumeFile, fileUploadResume.PostedFile.InputStream, out errormessage);
+                                        FileManagerService.UploadFile(privateBucketName, resumeFolder, jobapp.MemberResumeFile, fileUploadResume.PostedFile.InputStream, out errormessage);
                                     }
                                     else
                                     {
@@ -1662,7 +1663,7 @@ namespace JXTPortal.Website
                                             {
                                                 filestream.CopyTo(writestream);
 
-                                                FileManagerService.UploadFile(bucketName, resumeFolder, resume.MemberFileUrl, writestream, out errormessage);
+                                                FileManagerService.UploadFile(privateBucketName, resumeFolder, resume.MemberFileUrl, writestream, out errormessage);
 
                                             }
                                         }
@@ -1739,7 +1740,7 @@ namespace JXTPortal.Website
                                         jobapp.MemberResumeFile = string.Format("{0}_Resume_{1}", jobappid, r.Replace(filename, "_"));
                                         jobapp.AppliedWith = "Seek";
 
-                                        FileManagerService.UploadFile(bucketName, resumeFolder, jobapp.MemberResumeFile, stream, out errormessage);
+                                        FileManagerService.UploadFile(privateBucketName, resumeFolder, jobapp.MemberResumeFile, stream, out errormessage);
 
                                         if (string.IsNullOrEmpty(errormessage))
                                         {
@@ -1773,7 +1774,7 @@ namespace JXTPortal.Website
                                 MemoryStream stream = new MemoryStream(byteArray);
                                 jobapp.MemberCoverLetterFile = string.Format("{0}_Coverletter.txt", jobappid);
 
-                                FileManagerService.UploadFile(bucketName, coverLetterFolder, jobapp.MemberCoverLetterFile, stream, out errormessage);
+                                FileManagerService.UploadFile(privateBucketName, coverLetterFolder, jobapp.MemberCoverLetterFile, stream, out errormessage);
 
                             }
 
@@ -1802,7 +1803,7 @@ namespace JXTPortal.Website
                                 jobapp.MemberResumeFile = string.Format("{0}_Resume_Profile_{1}.pdf", jobappid, SessionData.Member.MemberId); // using memberid is as suffix of file name
                                 jobapp.AppliedWith = "Profile";
 
-                                FileManagerService.UploadFile(bucketName, resumeFolder, jobapp.MemberResumeFile, new MemoryStream(file), out errormessage);
+                                FileManagerService.UploadFile(privateBucketName, resumeFolder, jobapp.MemberResumeFile, new MemoryStream(file), out errormessage);
 
                             }
 

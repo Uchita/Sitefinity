@@ -42,10 +42,18 @@ namespace JXT.Integration.AWS
 
         public AwsS3()
         {
-            string profile = ConfigurationManager.AppSettings["AWSProfileName"];
-            AWSCredentials credentials = new Amazon.Runtime.StoredProfileAWSCredentials(profile);
+            string profile = ConfigurationManager.AppSettings["AWSPrivateProfileName"];
+            AWSCredentials credentials = IsEC2Instance ? (AWSCredentials)new InstanceProfileAWSCredentials() : (AWSCredentials)new StoredProfileAWSCredentials(profile);
             _client = new AmazonS3Client(credentials, RegionEndpoint.GetBySystemName(Region));
             _logger = LogManager.GetLogger(typeof(AwsS3));
+        }
+
+        private bool IsEC2Instance
+        {
+            get
+            {
+                return !string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("MACHINE_TYPE")) && Environment.GetEnvironmentVariable("MACHINE_TYPE") == "EC2";
+            }
         }
 
         private string errorHandling(AmazonS3Exception exception, string action, List<ParamInfo> paramInfos)
@@ -81,7 +89,7 @@ namespace JXT.Integration.AWS
             _logger.InfoFormat("Fetching objects from folder: {0}, in bucket: {1}", folder, bucketName);
             errorMessage = string.Empty;
             IEnumerable<S3Object> s3Objects = null;
-            
+
             try
             {
                 ListObjectsRequest request = new ListObjectsRequest();
@@ -116,18 +124,18 @@ namespace JXT.Integration.AWS
             errorMessage = string.Empty;
 
             IEnumerable<S3Object> s3Objects = ListingObjects(bucketName, folder, out errorMessage);
-            
+
             if (string.IsNullOrEmpty(errorMessage))
             {
                 files = s3Objects.Select(x => new FileManagerFile
-                                              {
-                                                  IsFolder = false,
-                                                  BucketName = x.BucketName,
-                                                  ETag = x.ETag,
-                                                  FileName = x.Key,
-                                                  LastModified = x.LastModified,
-                                                  Size = x.Size
-                                              }).ToList();
+                {
+                    IsFolder = false,
+                    BucketName = x.BucketName,
+                    ETag = x.ETag,
+                    FileName = x.Key,
+                    LastModified = x.LastModified,
+                    Size = x.Size
+                }).ToList();
             }
 
             _logger.DebugFormat("Found {0} files", files.Count());
@@ -312,7 +320,7 @@ namespace JXT.Integration.AWS
                 IEnumerable<S3Object> s3Objects = ListingObjects(bucketName, sourceFolder, out errorMessage);
                 if (!string.IsNullOrEmpty(errorMessage))
                 {
-                    _logger.WarnFormat("Failed to list objects {0}",errorMessage);
+                    _logger.WarnFormat("Failed to list objects {0}", errorMessage);
                     return;
                 }
 

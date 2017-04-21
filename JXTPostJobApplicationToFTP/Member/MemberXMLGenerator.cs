@@ -20,6 +20,7 @@ namespace JXTPostJobApplicationToFTP
         ILog _logger;
         IFileUploader _fileUploader;
         private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+        private string privateBucketName = ConfigurationManager.AppSettings["AWSS3PrivateBucketName"];
         private string memberFileFolder, memberFileFolderFormat;
 
         public IFileManager FileManagerService { get; set; }
@@ -206,7 +207,7 @@ namespace JXTPostJobApplicationToFTP
                                             string errormessage = string.Empty;
 
                                             Stream ms = null;
-                                            ms = FileManagerService.DownloadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, memberFile.MemberId), memberFile.MemberFileUrl, out errormessage);
+                                            ms = FileManagerService.DownloadFile(privateBucketName, string.Format(memberFileFolderFormat, memberFileFolder, memberFile.MemberId), memberFile.MemberFileUrl, out errormessage);
 
                                             if (ms != null)
                                             {
@@ -245,7 +246,7 @@ namespace JXTPostJobApplicationToFTP
                                             string errormessage = string.Empty;
 
                                             Stream ms = null;
-                                            ms = FileManagerService.DownloadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, memberFile.MemberId), memberFile.MemberFileUrl, out errormessage);
+                                            ms = FileManagerService.DownloadFile(privateBucketName, string.Format(memberFileFolderFormat, memberFileFolder, memberFile.MemberId), memberFile.MemberFileUrl, out errormessage);
 
                                             if (ms != null)
                                             {

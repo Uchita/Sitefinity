@@ -20,6 +20,7 @@ namespace JXTPortal.Website
         private string _type = string.Empty;
         private int _id = -1;
         private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+        private string privateBucketName = ConfigurationManager.AppSettings["AWSS3PrivateBucketName"];
         public IFileManager FileManagerService { get; set; }
         private string memberFileFolder, memberFileFolderFormat;
 
@@ -86,7 +87,7 @@ namespace JXTPortal.Website
                                         string errormessage = string.Empty;
                                         Stream ms = null;
 
-                                        ms = FileManagerService.DownloadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, memberFile.MemberId), memberFile.MemberFileUrl, out errormessage);
+                                        ms = FileManagerService.DownloadFile(privateBucketName, string.Format(memberFileFolderFormat, memberFileFolder, memberFile.MemberId), memberFile.MemberFileUrl, out errormessage);
 
                                         ms.Position = 0;
                                         if (string.IsNullOrEmpty(errormessage))

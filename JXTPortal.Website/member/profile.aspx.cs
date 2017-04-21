@@ -35,6 +35,8 @@ namespace JXTPortal.Website.member
     {
         ILog _logger;
         private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+        private string privateBucketName = ConfigurationManager.AppSettings["AWSS3PrivateBucketName"];
+
         private string candidateFolder, memberFileFolder, memberFileFolderFormat;
 
         #region "Properties"
@@ -7245,7 +7247,7 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
                             string filepath = string.Format("MemberFiles_{0}{1}", mf.MemberFileId, extension);
                             string errormessage = string.Empty;
 
-                            FileManagerService.UploadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, SessionData.Member.MemberId), filepath, fuResume.PostedFile.InputStream, out errormessage);
+                            FileManagerService.UploadFile(privateBucketName, string.Format(memberFileFolderFormat, memberFileFolder, SessionData.Member.MemberId), filepath, fuResume.PostedFile.InputStream, out errormessage);
                             
                             mf.MemberFileUrl = string.Format("MemberFiles_{0}{1}", mf.MemberFileId, extension);
 
@@ -7531,7 +7533,7 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
                 ms = new MemoryStream(GetBytes(tbCustomCoverLetter.Text));
             }
 
-            FileManagerService.UploadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, SessionData.Member.MemberId), filepath, ms, out errormessage);
+            FileManagerService.UploadFile(privateBucketName, string.Format(memberFileFolderFormat, memberFileFolder, SessionData.Member.MemberId), filepath, ms, out errormessage);
 
             mf.MemberFileUrl = string.Format("MemberFiles_{0}{1}", mf.MemberFileId, extension);
 

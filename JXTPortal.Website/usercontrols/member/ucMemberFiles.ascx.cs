@@ -21,6 +21,7 @@ namespace JXTPortal.Website.usercontrols.member
     {
         #region Declare Variables
         private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+        private string privateBucketName = ConfigurationManager.AppSettings["AWSS3PrivateBucketName"];
         #endregion
 
         #region Properties
@@ -470,7 +471,7 @@ namespace JXTPortal.Website.usercontrols.member
                             string filepath = string.Format("MemberFiles_{0}{1}", objMemberFiles.MemberFileId, extension);
                             string errormessage = string.Empty;
 
-                            FileManagerService.UploadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, memberID), filepath, docInput.PostedFile.InputStream, out errormessage);
+                            FileManagerService.UploadFile(privateBucketName, string.Format(memberFileFolderFormat, memberFileFolder, memberID), filepath, docInput.PostedFile.InputStream, out errormessage);
 
                             objMemberFiles.MemberFileUrl = string.Format("MemberFiles_{0}{1}", objMemberFiles.MemberFileId, extension);
 

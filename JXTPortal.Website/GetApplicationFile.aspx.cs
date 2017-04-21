@@ -19,6 +19,8 @@ namespace JXTPortal.Website
     public partial class GetApplicationFile : System.Web.UI.Page
     {
         private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+        private string privateBucketName = ConfigurationManager.AppSettings["AWSS3PrivateBucketName"];
+
         public IFileManager FileManagerService { get; set; }
 
         private string coverLetterFolder;
@@ -125,7 +127,7 @@ namespace JXTPortal.Website
                                     Stream downloadedfile = null;
                                     string errormessage = string.Empty;
 
-                                    downloadedfile = FileManagerService.DownloadFile(bucketName, coverLetterFolder, jobapp.MemberCoverLetterFile, out errormessage);
+                                    downloadedfile = FileManagerService.DownloadFile(privateBucketName, coverLetterFolder, jobapp.MemberCoverLetterFile, out errormessage);
 
                                     if (string.IsNullOrEmpty(errormessage) && downloadedfile.Length > 0)
                                     {
@@ -144,7 +146,7 @@ namespace JXTPortal.Website
                                     Stream downloadedfile = null;
                                     string errormessage = string.Empty;
 
-                                    downloadedfile = FileManagerService.DownloadFile(bucketName, resumeFolder, jobapp.MemberResumeFile, out errormessage);
+                                    downloadedfile = FileManagerService.DownloadFile(privateBucketName, resumeFolder, jobapp.MemberResumeFile, out errormessage);
 
                                     if (string.IsNullOrEmpty(errormessage) && downloadedfile.Length > 0)
                                     {

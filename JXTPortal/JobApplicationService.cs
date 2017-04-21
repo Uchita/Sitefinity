@@ -28,6 +28,7 @@ namespace JXTPortal
         private string resumeFolder;
         private string customFolder;
         string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+        string privateBucketName = ConfigurationManager.AppSettings["AWSS3PrivateBucketName"];
 
         #region Constructors
         /// <summary>
@@ -163,7 +164,7 @@ namespace JXTPortal
                                 {
                                     jobapp.MemberResumeFile = string.Format("{0}_Resume_{1}", jobappid, r.Replace(fname, "_"));
 
-                                    FileManagerService.UploadFile(bucketName, resumeFolder, jobapp.MemberResumeFile, file.InputStream, out errormessage);
+                                    FileManagerService.UploadFile(privateBucketName, resumeFolder, jobapp.MemberResumeFile, file.InputStream, out errormessage);
 
                                     context.Response.ContentType = "text/plain";
                                     if (string.IsNullOrEmpty(errormessage))
@@ -342,7 +343,7 @@ namespace JXTPortal
                 string errormessage = string.Empty;
                 Stream downloadedfile = null;
 
-                downloadedfile = FileManagerService.DownloadFile(bucketName, customFolder, xmlFileName, out errormessage);
+                downloadedfile = FileManagerService.DownloadFile(privateBucketName, customFolder, xmlFileName, out errormessage);
 
                 //CREATE A TXT READER (COULD BE BINARY OR ANY OTHER TYPE YOU NEED)
                 if (downloadedfile != null)
@@ -371,7 +372,7 @@ namespace JXTPortal
             byte[] byteArray = Encoding.ASCII.GetBytes(strXML);
             MemoryStream xmlStream = new MemoryStream(byteArray);
 
-            FileManagerService.UploadFile(bucketName, customFolder, strXMLName, xmlStream, out errormessage);
+            FileManagerService.UploadFile(privateBucketName, customFolder, strXMLName, xmlStream, out errormessage);
 
             if (!string.IsNullOrWhiteSpace(errormessage))
                 return false;
@@ -416,7 +417,7 @@ namespace JXTPortal
 
                     xmlStream = new MemoryStream(byteArray);
 
-                    FileManagerService.UploadFile(bucketName, customFolder, strPDFName, xmlStream, out errormessage);
+                    FileManagerService.UploadFile(privateBucketName, customFolder, strPDFName, xmlStream, out errormessage);
                 }
                 catch (Exception ex)
                 {

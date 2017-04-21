@@ -31,6 +31,8 @@ namespace JXTPortal.Website
     {
         ILog _logger;
         private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+        private string privateBucketName = ConfigurationManager.AppSettings["AWSS3PrivateBucketName"];
+
         private string resumeFolder;
         #region Properties
 
@@ -341,7 +343,7 @@ namespace JXTPortal.Website
 
                                 newjobapp.MemberResumeFile = filename;
 
-                                FileManagerService.UploadFile(bucketName, resumeFolder, filename, generatedDocument, out errormessage);
+                                FileManagerService.UploadFile(privateBucketName, resumeFolder, filename, generatedDocument, out errormessage);
                             }
                             else
                             {
@@ -351,7 +353,7 @@ namespace JXTPortal.Website
 
                                 newjobapp.MemberResumeFile = filename;
 
-                                FileManagerService.UploadFile(bucketName, resumeFolder, filename, generatedDocument, out errormessage);
+                                FileManagerService.UploadFile(privateBucketName, resumeFolder, filename, generatedDocument, out errormessage);
                             }
 
                             if (string.IsNullOrEmpty(errormessage))
@@ -455,7 +457,7 @@ namespace JXTPortal.Website
 
                         newjobapp.MemberResumeFile = filename;
                         _logger.Debug(string.Format("FTPing the resume filename {0}", filename));
-                        FileManagerService.UploadFile(bucketName, resumeFolder, filename, generatedDocument, out errormessage);
+                        FileManagerService.UploadFile(privateBucketName, resumeFolder, filename, generatedDocument, out errormessage);
 
                         if (string.IsNullOrEmpty(errormessage))
                         {
@@ -582,7 +584,7 @@ namespace JXTPortal.Website
                             string filename = string.Format("{0}_Resume_{1}", newjobapp.JobApplicationId, DocumentName);
 
                             newjobapp.MemberResumeFile = filename;
-                            FileManagerService.UploadFile(bucketName, resumeFolder, filename, generatedDocument, out errormessage);
+                            FileManagerService.UploadFile(privateBucketName, resumeFolder, filename, generatedDocument, out errormessage);
 
                             if (string.IsNullOrEmpty(errormessage))
                             {

@@ -1143,6 +1143,44 @@ namespace JXTPortal.Website
             HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(response));
         }
 
+        [WebMethod(EnableSession = true)]
+        [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
+        public void IsMemberLoggedIn()
+        {
+            _logger.Debug("Start Is Member Logged IN");
+
+            WebResponse response = new WebResponse { Success = false, Data = new List<WebResponseData>(), Error = new List<WebResponseError>() };
+            if (SessionData.Member != null)
+            {
+                _logger.Debug("Member logged In");
+                try
+                {
+                    response.Success = true;
+                    response.Data.Add(new WebResponseData { Value = "memberid", Text = SessionData.Member.MemberId.ToString() });
+                    response.Data.Add(new WebResponseData { Value = "firstname", Text = SessionData.Member.FirstName });
+                    response.Data.Add(new WebResponseData { Value = "surname", Text = SessionData.Member.Surname });
+                }
+                catch (Exception ex)
+                {
+                    _logger.Debug("Exception thrown in Member Login", ex);
+
+                    response.Error.Add(new WebResponseError { Name = "exception", Message = ex.Message });
+                }
+            }
+            else
+            {
+                response.Error.Add(new WebResponseError { Name = "member", Message = "Member is not logged in" });
+            }
+            HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(response));
+        }
+
+        [WebMethod(EnableSession = true)]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public void MemberLogin()
+        {
+
+        }
+
         [DataContract]
         private class WebResponse
         {

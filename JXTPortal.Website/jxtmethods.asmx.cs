@@ -279,7 +279,7 @@ namespace JXTPortal.Website
             {
                 if (title != "Mr" && title != "Mrs" && title != "Ms" && title != "Miss" && title != "Dr" && title != "Professor" && title != "Other")
                 {
-                    response.Error.Add(new WebResponseError { Name = "title", Message = CommonFunction.GetResourceValue("LabelInvalidTitle") });
+                    response.Error.Add(new WebResponseError { Name = "title", Message = CommonFunction.GetResourceValue("LabelRequiredField1") });
                 }
             }
 
@@ -568,6 +568,60 @@ namespace JXTPortal.Website
                 }
             }
 
+
+            // Custom Questions
+            List<CustomQuestionsData> customQuestions = new List<CustomQuestionsData>();
+            Entities.MemberWizard memberWizard = MemberWizardService.GetBySiteId(SessionData.Site.SiteId).Where(m => m.GlobalTemplate == false).FirstOrDefault();
+            if (memberWizard != null)
+            {
+                string customQuestionXml = memberWizard.CustomQuestionsXml;
+
+
+                XmlDocument customquestions = new XmlDocument();
+                customquestions.LoadXml(customQuestionXml);
+
+                foreach (XmlNode questionNode in customquestions.SelectNodes("CustomQuestions/Question"))
+                {
+                    if (questionNode["Status"].InnerXml == "1")
+                    {
+                        customQuestions.Add(new CustomQuestionsData { Id = questionNode["Id"].InnerXml, Type = questionNode["Type"].InnerXml, Mandatory = Convert.ToBoolean(questionNode["Mandatory"].InnerXml) });
+                    }
+                }
+            }
+
+            if (customQuestions.Count > 0)
+            {
+                foreach (string key in HttpContext.Current.Request.Params.AllKeys)
+                {
+                    if (key != null && key.Contains("customquestion_"))
+                    {
+                        string answer = HttpContext.Current.Request.Params[key];
+                        string[] keysplit = key.Split(new char[] { '_' }, StringSplitOptions.RemoveEmptyEntries);
+                        string questionid = keysplit[keysplit.Length - 1];
+
+                        CustomQuestionsData customQuestionData = customQuestions.Where(c => c.Id.ToString() == questionid).FirstOrDefault();
+                        if (customQuestionData != null)
+                        {
+                            if (!answer.IsValidContent())
+                            {
+                                response.Error.Add(new WebResponseError { Name = key, Message = CommonFunction.GetResourceValue("ValidateNoHTMLContent") });
+                            }
+                            else
+                            {
+                                if (customQuestionData.Mandatory && string.IsNullOrWhiteSpace(answer))
+                                {
+                                    response.Error.Add(new WebResponseError { Name = key, Message = CommonFunction.GetResourceValue("LabelRequiredField1") });
+                                }
+                            }
+                        }
+                        else
+                        {
+                            response.Error.Add(new WebResponseError { Name = key, Message = CommonFunction.GetResourceValue("LabelInvalidCustomQuestion") });
+                        }
+                    }
+                }
+            }
+
             // Shouldn't go further if error already exisits
             _logger.DebugFormat("Error Count on Frontend: {0}", response.Error.Count);
 
@@ -598,59 +652,6 @@ namespace JXTPortal.Website
                         if (memberSync.GetContactFromSalesForceAndSave(email, string.Empty, SessionData.Site.MasterSiteId, ref memberid, ref errormsg))
                         {
                             response.Error.Add(new WebResponseError { Name = "email", Message = CommonFunction.GetResourceValue("LabelEmailAddressExist") });
-                        }
-                    }
-                }
-
-                // Custom Questions
-                List<CustomQuestionsData> customQuestions = new List<CustomQuestionsData>();
-                Entities.MemberWizard memberWizard = MemberWizardService.GetBySiteId(SessionData.Site.SiteId).Where(m => m.GlobalTemplate == false).FirstOrDefault();
-                if (memberWizard != null)
-                {
-                    string customQuestionXml = memberWizard.CustomQuestionsXml;
-
-
-                    XmlDocument customquestions = new XmlDocument();
-                    customquestions.LoadXml(customQuestionXml);
-
-                    foreach (XmlNode questionNode in customquestions.SelectNodes("CustomQuestions/Question"))
-                    {
-                        if (questionNode["Status"].InnerXml == "1")
-                        {
-                            customQuestions.Add(new CustomQuestionsData { Id = questionNode["Id"].InnerXml, Type = questionNode["Type"].InnerXml, Mandatory = Convert.ToBoolean(questionNode["Mandatory"].InnerXml) });
-                        }
-                    }
-                }
-
-                if (customQuestions.Count > 0)
-                {
-                    foreach (string key in HttpContext.Current.Request.Params.AllKeys)
-                    {
-                        if (key != null && key.Contains("customquestion_"))
-                        {
-                            string answer = HttpContext.Current.Request.Params[key];
-                            string[] keysplit = key.Split(new char[] { '_' }, StringSplitOptions.RemoveEmptyEntries);
-                            string questionid = keysplit[keysplit.Length - 1];
-
-                            CustomQuestionsData customQuestionData = customQuestions.Where(c => c.Id.ToString() == questionid).FirstOrDefault();
-                            if (customQuestionData != null)
-                            {
-                                if (!answer.IsValidContent())
-                                {
-                                    response.Error.Add(new WebResponseError { Name = key, Message = CommonFunction.GetResourceValue("ValidateNoHTMLContent") });
-                                }
-                                else
-                                {
-                                    if (customQuestionData.Mandatory && string.IsNullOrWhiteSpace(answer))
-                                    {
-                                        response.Error.Add(new WebResponseError { Name = key, Message = CommonFunction.GetResourceValue("LabelRequiredField1") });
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                response.Error.Add(new WebResponseError { Name = key, Message = CommonFunction.GetResourceValue("LabelInvalidCustomQuestion") });
-                            }
                         }
                     }
                 }

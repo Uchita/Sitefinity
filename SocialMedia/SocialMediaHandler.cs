@@ -42,11 +42,14 @@ namespace SocialMedia
         }
         #endregion
 
+        public int SiteId { get; private set; }
+
         internal AdminIntegrations.Integrations integrations;
 
         public SocialMediaHandlerBase(int siteID)
         {
             integrations = IntegrationsService.AdminIntegrationsForSiteGet(siteID);
+            SiteId = siteID;
         }
     }
 
@@ -115,12 +118,9 @@ namespace SocialMedia
 
     public class LinkedInMethods : SocialMediaHandlerBase
     {
-        int _siteID;
-
         public LinkedInMethods(int siteID)
             : base(siteID)
         {
-            _siteID = siteID;
         }
 
         /// <summary>
@@ -132,7 +132,7 @@ namespace SocialMedia
             string LinkedinAPI = string.Empty;
             string urlsuffix = string.Empty;
 
-            using (TList<JXTPortal.Entities.GlobalSettings> tgs = GlobalSettingsService.GetBySiteId(_siteID))
+            using (TList<JXTPortal.Entities.GlobalSettings> tgs = GlobalSettingsService.GetBySiteId(SiteId))
             {
                 if (tgs.Count > 0)
                 {
@@ -167,7 +167,7 @@ namespace SocialMedia
             string LinkedinAPI = string.Empty;
             string urlsuffix = string.Empty;
 
-            using (TList<JXTPortal.Entities.GlobalSettings> tgs = GlobalSettingsService.GetBySiteId(_siteID))
+            using (TList<JXTPortal.Entities.GlobalSettings> tgs = GlobalSettingsService.GetBySiteId(SiteId))
             {
                 if (tgs.Count > 0)
                 {
@@ -200,12 +200,9 @@ namespace SocialMedia
 
     public class GoogleMethods : SocialMediaHandlerBase
     {
-        int _siteID;
-
         public GoogleMethods(int siteID)
             : base(siteID)
         {
-            _siteID = siteID;
         }
 
         /// <summary>

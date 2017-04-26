@@ -42,7 +42,7 @@ namespace JXT.Integration.AWS
 
         public AwsS3()
         {
-            string profile = ConfigurationManager.AppSettings["AWSPrivateProfileName"];
+            string profile = ConfigurationManager.AppSettings["AWSProfileName"];
             AWSCredentials credentials = IsEC2Instance ? (AWSCredentials)new InstanceProfileAWSCredentials() : (AWSCredentials)new StoredProfileAWSCredentials(profile);
             _client = new AmazonS3Client(credentials, RegionEndpoint.GetBySystemName(Region));
             _logger = LogManager.GetLogger(typeof(AwsS3));

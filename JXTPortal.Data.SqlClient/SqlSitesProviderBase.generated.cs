@@ -186,6 +186,7 @@ namespace JXTPortal.Data.SqlClient
 		database.AddInParameter(commandWrapper, "@MobileEnabled", DbType.Boolean, DBNull.Value);
 		database.AddInParameter(commandWrapper, "@MobileUrl", DbType.AnsiString, DBNull.Value);
 		database.AddInParameter(commandWrapper, "@SiteAdminLogoUrl", DbType.String, DBNull.Value);
+		database.AddInParameter(commandWrapper, "@SiteUrlAlias", DbType.AnsiString, DBNull.Value);
 	
 			// replace all instances of 'AND' and 'OR' because we already set searchUsingOR
 			whereClause = whereClause.Replace(" AND ", "|").Replace(" OR ", "|") ; 
@@ -264,6 +265,12 @@ namespace JXTPortal.Data.SqlClient
 				{
 					database.SetParameterValue(commandWrapper, "@SiteAdminLogoUrl", 
 						clause.Trim().Remove(0,16).Trim().TrimStart(equalSign).Trim().Trim(singleQuote));
+					continue;
+				}
+				if (clause.Trim().StartsWith("siteurlalias ") || clause.Trim().StartsWith("siteurlalias="))
+				{
+					database.SetParameterValue(commandWrapper, "@SiteUrlAlias", 
+						clause.Trim().Remove(0,12).Trim().TrimStart(equalSign).Trim().Trim(singleQuote));
 					continue;
 				}
 	
@@ -816,6 +823,8 @@ namespace JXTPortal.Data.SqlClient
 			col9.AllowDBNull = false;		
 			DataColumn col10 = dataTable.Columns.Add("SiteAdminLogoUrl", typeof(System.String));
 			col10.AllowDBNull = true;		
+			DataColumn col11 = dataTable.Columns.Add("SiteURLAlias", typeof(System.String));
+			col11.AllowDBNull = true;		
 			
 			bulkCopy.ColumnMappings.Add("SiteID", "SiteID");
 			bulkCopy.ColumnMappings.Add("SiteName", "SiteName");
@@ -828,6 +837,7 @@ namespace JXTPortal.Data.SqlClient
 			bulkCopy.ColumnMappings.Add("MobileEnabled", "MobileEnabled");
 			bulkCopy.ColumnMappings.Add("MobileUrl", "MobileUrl");
 			bulkCopy.ColumnMappings.Add("SiteAdminLogoUrl", "SiteAdminLogoUrl");
+			bulkCopy.ColumnMappings.Add("SiteURLAlias", "SiteURLAlias");
 			
 			foreach(JXTPortal.Entities.Sites entity in entities)
 			{
@@ -867,6 +877,9 @@ namespace JXTPortal.Data.SqlClient
 							
 				
 					row["SiteAdminLogoUrl"] = entity.SiteAdminLogoUrl;
+							
+				
+					row["SiteURLAlias"] = entity.SiteUrlAlias;
 							
 				
 				dataTable.Rows.Add(row);
@@ -914,6 +927,7 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@MobileEnabled", DbType.Boolean, entity.MobileEnabled );
 			database.AddInParameter(commandWrapper, "@MobileUrl", DbType.AnsiString, entity.MobileUrl );
 			database.AddInParameter(commandWrapper, "@SiteAdminLogoUrl", DbType.String, entity.SiteAdminLogoUrl );
+			database.AddInParameter(commandWrapper, "@SiteUrlAlias", DbType.AnsiString, entity.SiteUrlAlias );
 			
 			int results = 0;
 			
@@ -973,6 +987,7 @@ namespace JXTPortal.Data.SqlClient
 			database.AddInParameter(commandWrapper, "@MobileEnabled", DbType.Boolean, entity.MobileEnabled );
 			database.AddInParameter(commandWrapper, "@MobileUrl", DbType.AnsiString, entity.MobileUrl );
 			database.AddInParameter(commandWrapper, "@SiteAdminLogoUrl", DbType.String, entity.SiteAdminLogoUrl );
+			database.AddInParameter(commandWrapper, "@SiteUrlAlias", DbType.AnsiString, entity.SiteUrlAlias );
 			
 			int results = 0;
 			

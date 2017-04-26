@@ -15387,7 +15387,8 @@ IF ISNULL(@SearchUsingOR, 0) <> 1
 					[Live],
 					[MobileEnabled],
 					[MobileUrl],
-					[SiteAdminLogoUrl]
+					[SiteAdminLogoUrl],
+					[SiteURLAlias]
 				FROM
 					[dbo].[Sites]
 					
@@ -15451,7 +15452,7 @@ IF ISNULL(@SearchUsingOR, 0) <> 1
 				EXEC sp_executesql @SQL
 
 				-- Return paged results
-				SELECT O.[SiteID], O.[SiteName], O.[SiteURL], O.[SiteDescription], O.[SiteAdminLogo], O.[LastModified], O.[LastModifiedBy], O.[Live], O.[MobileEnabled], O.[MobileUrl], O.[SiteAdminLogoUrl]
+				SELECT O.[SiteID], O.[SiteName], O.[SiteURL], O.[SiteDescription], O.[SiteAdminLogo], O.[LastModified], O.[LastModifiedBy], O.[Live], O.[MobileEnabled], O.[MobileUrl], O.[SiteAdminLogoUrl], O.[SiteURLAlias]
 				FROM
 				    [dbo].[Sites] O,
 				    #PageIndex PageIndex
@@ -15495,6 +15496,7 @@ IF ISNULL(@SearchUsingOR, 0) <> 1
 				<parameter name="@MobileEnabled" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault=""/>
 				<parameter name="@MobileUrl" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault=""/>
 				<parameter name="@SiteAdminLogoUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault=""/>
+				<parameter name="@SiteUrlAlias" type="varchar" direction="Input" size="500" precision="0" scale="0" param="(500)" nulldefault=""/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -15510,6 +15512,7 @@ IF ISNULL(@SearchUsingOR, 0) <> 1
 					,[MobileEnabled]
 					,[MobileUrl]
 					,[SiteAdminLogoUrl]
+					,[SiteURLAlias]
 					)
 				VALUES
 					(
@@ -15523,6 +15526,7 @@ IF ISNULL(@SearchUsingOR, 0) <> 1
 					,@MobileEnabled
 					,@MobileUrl
 					,@SiteAdminLogoUrl
+					,@SiteUrlAlias
 					)
 				
 				-- Get the identity value
@@ -15552,6 +15556,7 @@ IF ISNULL(@SearchUsingOR, 0) <> 1
 				<parameter name="@MobileEnabled" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault=""/>
 				<parameter name="@MobileUrl" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault=""/>
 				<parameter name="@SiteAdminLogoUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault=""/>
+				<parameter name="@SiteUrlAlias" type="varchar" direction="Input" size="500" precision="0" scale="0" param="(500)" nulldefault=""/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -15570,6 +15575,7 @@ IF ISNULL(@SearchUsingOR, 0) <> 1
 					,[MobileEnabled] = @MobileEnabled
 					,[MobileUrl] = @MobileUrl
 					,[SiteAdminLogoUrl] = @SiteAdminLogoUrl
+					,[SiteURLAlias] = @SiteUrlAlias
 				WHERE
 [SiteID] = @SiteId 
 				
@@ -15620,7 +15626,8 @@ IF ISNULL(@SearchUsingOR, 0) <> 1
 					[Live],
 					[MobileEnabled],
 					[MobileUrl],
-					[SiteAdminLogoUrl]
+					[SiteAdminLogoUrl],
+					[SiteURLAlias]
 				FROM
 					[dbo].[Sites]
 				WHERE
@@ -15654,7 +15661,8 @@ IF ISNULL(@SearchUsingOR, 0) <> 1
 					[Live],
 					[MobileEnabled],
 					[MobileUrl],
-					[SiteAdminLogoUrl]
+					[SiteAdminLogoUrl],
+					[SiteURLAlias]
 				FROM
 					[dbo].[Sites]
 				WHERE
@@ -15688,7 +15696,8 @@ IF ISNULL(@SearchUsingOR, 0) <> 1
 					[Live],
 					[MobileEnabled],
 					[MobileUrl],
-					[SiteAdminLogoUrl]
+					[SiteAdminLogoUrl],
+					[SiteURLAlias]
 				FROM
 					[dbo].[Sites]
 				WHERE
@@ -15720,6 +15729,7 @@ IF ISNULL(@SearchUsingOR, 0) <> 1
 				<parameter name="@MobileEnabled" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 				<parameter name="@MobileUrl" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@SiteAdminLogoUrl" type="nvarchar" direction="Input" size="1000" precision="0" scale="0" param="(1000)" nulldefault="null"/>
+				<parameter name="@SiteUrlAlias" type="varchar" direction="Input" size="500" precision="0" scale="0" param="(500)" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -15737,6 +15747,7 @@ IF ISNULL(@SearchUsingOR, 0) <> 1
 	, [MobileEnabled]
 	, [MobileUrl]
 	, [SiteAdminLogoUrl]
+	, [SiteURLAlias]
     FROM
 	[dbo].[Sites]
     WHERE 
@@ -15750,6 +15761,7 @@ IF ISNULL(@SearchUsingOR, 0) <> 1
 	AND ([MobileEnabled] = @MobileEnabled OR @MobileEnabled IS NULL)
 	AND ([MobileUrl] = @MobileUrl OR @MobileUrl IS NULL)
 	AND ([SiteAdminLogoUrl] = @SiteAdminLogoUrl OR @SiteAdminLogoUrl IS NULL)
+	AND ([SiteURLAlias] = @SiteUrlAlias OR @SiteUrlAlias IS NULL)
 						
   END
   ELSE
@@ -15766,6 +15778,7 @@ IF ISNULL(@SearchUsingOR, 0) <> 1
 	, [MobileEnabled]
 	, [MobileUrl]
 	, [SiteAdminLogoUrl]
+	, [SiteURLAlias]
     FROM
 	[dbo].[Sites]
     WHERE 
@@ -15779,6 +15792,7 @@ IF ISNULL(@SearchUsingOR, 0) <> 1
 	OR ([MobileEnabled] = @MobileEnabled AND @MobileEnabled is not null)
 	OR ([MobileUrl] = @MobileUrl AND @MobileUrl is not null)
 	OR ([SiteAdminLogoUrl] = @SiteAdminLogoUrl AND @SiteAdminLogoUrl is not null)
+	OR ([SiteURLAlias] = @SiteUrlAlias AND @SiteUrlAlias is not null)
 	SELECT @@ROWCOUNT			
   END
 				]]></body>
@@ -15813,7 +15827,7 @@ IF ISNULL(@SearchUsingOR, 0) <> 1
 				ORDER BY {1}
 				
 				-- Return paged results
-				SELECT O.[SiteID], O.[SiteName], O.[SiteURL], O.[SiteDescription], O.[SiteAdminLogo], O.[LastModified], O.[LastModifiedBy], O.[Live], O.[MobileEnabled], O.[MobileUrl], O.[SiteAdminLogoUrl]
+				SELECT O.[SiteID], O.[SiteName], O.[SiteURL], O.[SiteDescription], O.[SiteAdminLogo], O.[LastModified], O.[LastModifiedBy], O.[Live], O.[MobileEnabled], O.[MobileUrl], O.[SiteAdminLogoUrl], O.[SiteURLAlias]
 				FROM
 				    [dbo].[Sites] O,
 				    #PageIndex PageIndex
@@ -73512,7 +73526,8 @@ DELETE FROM [dbo].[DynamicpagesCustomWidget] WITH (ROWLOCK)
 					[GlobalFolder],
 					[EnableScreeningQuestions],
 					[EnableExpiryDate],
-					[MemberRegisterPageID]
+					[MemberRegisterPageID],
+					[JobApplicationPageID]
 				FROM
 					[dbo].[GlobalSettings]
 					
@@ -73576,7 +73591,7 @@ DELETE FROM [dbo].[DynamicpagesCustomWidget] WITH (ROWLOCK)
 				EXEC sp_executesql @SQL
 
 				-- Return paged results
-				SELECT O.[GlobalSettingID], O.[SiteID], O.[DefaultLanguageID], O.[DefaultDynamicPageID], O.[PublicJobsSearch], O.[PublicMembersSearch], O.[PublicCompaniesSearch], O.[PublicSponsoredAdverts], O.[PrivateJobs], O.[PrivateMembers], O.[PrivateCompanies], O.[LastModifiedBy], O.[LastModified], O.[PageTitlePrefix], O.[PageTitleSuffix], O.[DefaultTitle], O.[HomeTitle], O.[DefaultDescription], O.[HomeDescription], O.[DefaultKeywords], O.[HomeKeywords], O.[ShowFaceBookButton], O.[UseAdvertiserFilter], O.[MerchantID], O.[ShowTwitterButton], O.[ShowJobAlertButton], O.[ShowLinkedInButton], O.[SiteFavIconID], O.[SiteDocType], O.[CurrencySymbol], O.[FtpFolderLocation], O.[MetaTags], O.[SystemMetaTags], O.[MemberRegistrationNotification], O.[LinkedInAPI], O.[LinkedInLogo], O.[LinkedInCompanyID], O.[LinkedInEmail], O.[PrivacySettings], O.[WWWRedirect], O.[AllowAdvertiser], O.[LinkedInAPISecret], O.[GoogleClientID], O.[GoogleClientSecret], O.[FacebookAppID], O.[FacebookAppSecret], O.[LinkedInButtonSize], O.[DefaultCountryID], O.[PayPalUsername], O.[PayPalPassword], O.[PayPalSignature], O.[SecurePayMerchantID], O.[SecurePayPassword], O.[UsingSSL], O.[UseCustomProfessionRole], O.[GenerateJobXML], O.[IsPrivateSite], O.[PrivateRedirectUrl], O.[EnableJobCustomQuestionnaire], O.[JobApplicationTypeID], O.[JobScreeningProcess], O.[AdvertiserApprovalProcess], O.[SiteType], O.[EnableSSL], O.[GST], O.[GSTLabel], O.[NumberOfPremiumJobs], O.[PremiumJobDays], O.[DisplayPremiumJobsOnResults], O.[JobExpiryNotification], O.[CurrencyID], O.[PayPalClientID], O.[PayPalClientSecret], O.[PaypalUser], O.[PaypalProPassword], O.[PaypalVendor], O.[PaypalPartner], O.[InvoiceSiteInfo], O.[InvoiceSiteFooter], O.[EnableTermsAndConditions], O.[DefaultEmailLanguageId], O.[GoogleTagManager], O.[GoogleAnalytics], O.[GoogleWebMaster], O.[EnablePeopleSearch], O.[GlobalDateFormat], O.[TimeZone], O.[GlobalFolder], O.[EnableScreeningQuestions], O.[EnableExpiryDate], O.[MemberRegisterPageID]
+				SELECT O.[GlobalSettingID], O.[SiteID], O.[DefaultLanguageID], O.[DefaultDynamicPageID], O.[PublicJobsSearch], O.[PublicMembersSearch], O.[PublicCompaniesSearch], O.[PublicSponsoredAdverts], O.[PrivateJobs], O.[PrivateMembers], O.[PrivateCompanies], O.[LastModifiedBy], O.[LastModified], O.[PageTitlePrefix], O.[PageTitleSuffix], O.[DefaultTitle], O.[HomeTitle], O.[DefaultDescription], O.[HomeDescription], O.[DefaultKeywords], O.[HomeKeywords], O.[ShowFaceBookButton], O.[UseAdvertiserFilter], O.[MerchantID], O.[ShowTwitterButton], O.[ShowJobAlertButton], O.[ShowLinkedInButton], O.[SiteFavIconID], O.[SiteDocType], O.[CurrencySymbol], O.[FtpFolderLocation], O.[MetaTags], O.[SystemMetaTags], O.[MemberRegistrationNotification], O.[LinkedInAPI], O.[LinkedInLogo], O.[LinkedInCompanyID], O.[LinkedInEmail], O.[PrivacySettings], O.[WWWRedirect], O.[AllowAdvertiser], O.[LinkedInAPISecret], O.[GoogleClientID], O.[GoogleClientSecret], O.[FacebookAppID], O.[FacebookAppSecret], O.[LinkedInButtonSize], O.[DefaultCountryID], O.[PayPalUsername], O.[PayPalPassword], O.[PayPalSignature], O.[SecurePayMerchantID], O.[SecurePayPassword], O.[UsingSSL], O.[UseCustomProfessionRole], O.[GenerateJobXML], O.[IsPrivateSite], O.[PrivateRedirectUrl], O.[EnableJobCustomQuestionnaire], O.[JobApplicationTypeID], O.[JobScreeningProcess], O.[AdvertiserApprovalProcess], O.[SiteType], O.[EnableSSL], O.[GST], O.[GSTLabel], O.[NumberOfPremiumJobs], O.[PremiumJobDays], O.[DisplayPremiumJobsOnResults], O.[JobExpiryNotification], O.[CurrencyID], O.[PayPalClientID], O.[PayPalClientSecret], O.[PaypalUser], O.[PaypalProPassword], O.[PaypalVendor], O.[PaypalPartner], O.[InvoiceSiteInfo], O.[InvoiceSiteFooter], O.[EnableTermsAndConditions], O.[DefaultEmailLanguageId], O.[GoogleTagManager], O.[GoogleAnalytics], O.[GoogleWebMaster], O.[EnablePeopleSearch], O.[GlobalDateFormat], O.[TimeZone], O.[GlobalFolder], O.[EnableScreeningQuestions], O.[EnableExpiryDate], O.[MemberRegisterPageID], O.[JobApplicationPageID]
 				FROM
 				    [dbo].[GlobalSettings] O,
 				    #PageIndex PageIndex
@@ -73700,6 +73715,7 @@ DELETE FROM [dbo].[DynamicpagesCustomWidget] WITH (ROWLOCK)
 				<parameter name="@EnableScreeningQuestions" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault=""/>
 				<parameter name="@EnableExpiryDate" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault=""/>
 				<parameter name="@MemberRegisterPageId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
+				<parameter name="@JobApplicationPageId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -73795,6 +73811,7 @@ DELETE FROM [dbo].[DynamicpagesCustomWidget] WITH (ROWLOCK)
 					,[EnableScreeningQuestions]
 					,[EnableExpiryDate]
 					,[MemberRegisterPageID]
+					,[JobApplicationPageID]
 					)
 				VALUES
 					(
@@ -73888,6 +73905,7 @@ DELETE FROM [dbo].[DynamicpagesCustomWidget] WITH (ROWLOCK)
 					,@EnableScreeningQuestions
 					,@EnableExpiryDate
 					,@MemberRegisterPageId
+					,@JobApplicationPageId
 					)
 				
 				-- Get the identity value
@@ -73997,6 +74015,7 @@ DELETE FROM [dbo].[DynamicpagesCustomWidget] WITH (ROWLOCK)
 				<parameter name="@EnableScreeningQuestions" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault=""/>
 				<parameter name="@EnableExpiryDate" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault=""/>
 				<parameter name="@MemberRegisterPageId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
+				<parameter name="@JobApplicationPageId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault=""/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -74095,6 +74114,7 @@ DELETE FROM [dbo].[DynamicpagesCustomWidget] WITH (ROWLOCK)
 					,[EnableScreeningQuestions] = @EnableScreeningQuestions
 					,[EnableExpiryDate] = @EnableExpiryDate
 					,[MemberRegisterPageID] = @MemberRegisterPageId
+					,[JobApplicationPageID] = @JobApplicationPageId
 				WHERE
 [GlobalSettingID] = @GlobalSettingId 
 				
@@ -74225,7 +74245,8 @@ DELETE FROM [dbo].[DynamicpagesCustomWidget] WITH (ROWLOCK)
 					[GlobalFolder],
 					[EnableScreeningQuestions],
 					[EnableExpiryDate],
-					[MemberRegisterPageID]
+					[MemberRegisterPageID],
+					[JobApplicationPageID]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -74341,7 +74362,8 @@ DELETE FROM [dbo].[DynamicpagesCustomWidget] WITH (ROWLOCK)
 					[GlobalFolder],
 					[EnableScreeningQuestions],
 					[EnableExpiryDate],
-					[MemberRegisterPageID]
+					[MemberRegisterPageID],
+					[JobApplicationPageID]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -74457,7 +74479,8 @@ DELETE FROM [dbo].[DynamicpagesCustomWidget] WITH (ROWLOCK)
 					[GlobalFolder],
 					[EnableScreeningQuestions],
 					[EnableExpiryDate],
-					[MemberRegisterPageID]
+					[MemberRegisterPageID],
+					[JobApplicationPageID]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -74573,7 +74596,8 @@ DELETE FROM [dbo].[DynamicpagesCustomWidget] WITH (ROWLOCK)
 					[GlobalFolder],
 					[EnableScreeningQuestions],
 					[EnableExpiryDate],
-					[MemberRegisterPageID]
+					[MemberRegisterPageID],
+					[JobApplicationPageID]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -74689,7 +74713,8 @@ DELETE FROM [dbo].[DynamicpagesCustomWidget] WITH (ROWLOCK)
 					[GlobalFolder],
 					[EnableScreeningQuestions],
 					[EnableExpiryDate],
-					[MemberRegisterPageID]
+					[MemberRegisterPageID],
+					[JobApplicationPageID]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -74805,7 +74830,8 @@ DELETE FROM [dbo].[DynamicpagesCustomWidget] WITH (ROWLOCK)
 					[GlobalFolder],
 					[EnableScreeningQuestions],
 					[EnableExpiryDate],
-					[MemberRegisterPageID]
+					[MemberRegisterPageID],
+					[JobApplicationPageID]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -74921,7 +74947,8 @@ DELETE FROM [dbo].[DynamicpagesCustomWidget] WITH (ROWLOCK)
 					[GlobalFolder],
 					[EnableScreeningQuestions],
 					[EnableExpiryDate],
-					[MemberRegisterPageID]
+					[MemberRegisterPageID],
+					[JobApplicationPageID]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -75036,7 +75063,8 @@ DELETE FROM [dbo].[DynamicpagesCustomWidget] WITH (ROWLOCK)
 					[GlobalFolder],
 					[EnableScreeningQuestions],
 					[EnableExpiryDate],
-					[MemberRegisterPageID]
+					[MemberRegisterPageID],
+					[JobApplicationPageID]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -75152,7 +75180,8 @@ DELETE FROM [dbo].[DynamicpagesCustomWidget] WITH (ROWLOCK)
 					[GlobalFolder],
 					[EnableScreeningQuestions],
 					[EnableExpiryDate],
-					[MemberRegisterPageID]
+					[MemberRegisterPageID],
+					[JobApplicationPageID]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -75268,7 +75297,8 @@ DELETE FROM [dbo].[DynamicpagesCustomWidget] WITH (ROWLOCK)
 					[GlobalFolder],
 					[EnableScreeningQuestions],
 					[EnableExpiryDate],
-					[MemberRegisterPageID]
+					[MemberRegisterPageID],
+					[JobApplicationPageID]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -75385,7 +75415,8 @@ DELETE FROM [dbo].[DynamicpagesCustomWidget] WITH (ROWLOCK)
 					[GlobalFolder],
 					[EnableScreeningQuestions],
 					[EnableExpiryDate],
-					[MemberRegisterPageID]
+					[MemberRegisterPageID],
+					[JobApplicationPageID]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -75501,7 +75532,8 @@ DELETE FROM [dbo].[DynamicpagesCustomWidget] WITH (ROWLOCK)
 					[GlobalFolder],
 					[EnableScreeningQuestions],
 					[EnableExpiryDate],
-					[MemberRegisterPageID]
+					[MemberRegisterPageID],
+					[JobApplicationPageID]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -75613,6 +75645,7 @@ DELETE FROM [dbo].[DynamicpagesCustomWidget] WITH (ROWLOCK)
 				<parameter name="@EnableScreeningQuestions" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 				<parameter name="@EnableExpiryDate" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 				<parameter name="@MemberRegisterPageId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
+				<parameter name="@JobApplicationPageId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -75710,6 +75743,7 @@ DELETE FROM [dbo].[DynamicpagesCustomWidget] WITH (ROWLOCK)
 	, [EnableScreeningQuestions]
 	, [EnableExpiryDate]
 	, [MemberRegisterPageID]
+	, [JobApplicationPageID]
     FROM
 	[dbo].[GlobalSettings]
     WHERE 
@@ -75804,6 +75838,7 @@ DELETE FROM [dbo].[DynamicpagesCustomWidget] WITH (ROWLOCK)
 	AND ([EnableScreeningQuestions] = @EnableScreeningQuestions OR @EnableScreeningQuestions IS NULL)
 	AND ([EnableExpiryDate] = @EnableExpiryDate OR @EnableExpiryDate IS NULL)
 	AND ([MemberRegisterPageID] = @MemberRegisterPageId OR @MemberRegisterPageId IS NULL)
+	AND ([JobApplicationPageID] = @JobApplicationPageId OR @JobApplicationPageId IS NULL)
 						
   END
   ELSE
@@ -75900,6 +75935,7 @@ DELETE FROM [dbo].[DynamicpagesCustomWidget] WITH (ROWLOCK)
 	, [EnableScreeningQuestions]
 	, [EnableExpiryDate]
 	, [MemberRegisterPageID]
+	, [JobApplicationPageID]
     FROM
 	[dbo].[GlobalSettings]
     WHERE 
@@ -75994,6 +76030,7 @@ DELETE FROM [dbo].[DynamicpagesCustomWidget] WITH (ROWLOCK)
 	OR ([EnableScreeningQuestions] = @EnableScreeningQuestions AND @EnableScreeningQuestions is not null)
 	OR ([EnableExpiryDate] = @EnableExpiryDate AND @EnableExpiryDate is not null)
 	OR ([MemberRegisterPageID] = @MemberRegisterPageId AND @MemberRegisterPageId is not null)
+	OR ([JobApplicationPageID] = @JobApplicationPageId AND @JobApplicationPageId is not null)
 	SELECT @@ROWCOUNT			
   END
 				]]></body>
@@ -76028,7 +76065,7 @@ DELETE FROM [dbo].[DynamicpagesCustomWidget] WITH (ROWLOCK)
 				ORDER BY {1}
 				
 				-- Return paged results
-				SELECT O.[GlobalSettingID], O.[SiteID], O.[DefaultLanguageID], O.[DefaultDynamicPageID], O.[PublicJobsSearch], O.[PublicMembersSearch], O.[PublicCompaniesSearch], O.[PublicSponsoredAdverts], O.[PrivateJobs], O.[PrivateMembers], O.[PrivateCompanies], O.[LastModifiedBy], O.[LastModified], O.[PageTitlePrefix], O.[PageTitleSuffix], O.[DefaultTitle], O.[HomeTitle], O.[DefaultDescription], O.[HomeDescription], O.[DefaultKeywords], O.[HomeKeywords], O.[ShowFaceBookButton], O.[UseAdvertiserFilter], O.[MerchantID], O.[ShowTwitterButton], O.[ShowJobAlertButton], O.[ShowLinkedInButton], O.[SiteFavIconID], O.[SiteDocType], O.[CurrencySymbol], O.[FtpFolderLocation], O.[MetaTags], O.[SystemMetaTags], O.[MemberRegistrationNotification], O.[LinkedInAPI], O.[LinkedInLogo], O.[LinkedInCompanyID], O.[LinkedInEmail], O.[PrivacySettings], O.[WWWRedirect], O.[AllowAdvertiser], O.[LinkedInAPISecret], O.[GoogleClientID], O.[GoogleClientSecret], O.[FacebookAppID], O.[FacebookAppSecret], O.[LinkedInButtonSize], O.[DefaultCountryID], O.[PayPalUsername], O.[PayPalPassword], O.[PayPalSignature], O.[SecurePayMerchantID], O.[SecurePayPassword], O.[UsingSSL], O.[UseCustomProfessionRole], O.[GenerateJobXML], O.[IsPrivateSite], O.[PrivateRedirectUrl], O.[EnableJobCustomQuestionnaire], O.[JobApplicationTypeID], O.[JobScreeningProcess], O.[AdvertiserApprovalProcess], O.[SiteType], O.[EnableSSL], O.[GST], O.[GSTLabel], O.[NumberOfPremiumJobs], O.[PremiumJobDays], O.[DisplayPremiumJobsOnResults], O.[JobExpiryNotification], O.[CurrencyID], O.[PayPalClientID], O.[PayPalClientSecret], O.[PaypalUser], O.[PaypalProPassword], O.[PaypalVendor], O.[PaypalPartner], O.[InvoiceSiteInfo], O.[InvoiceSiteFooter], O.[EnableTermsAndConditions], O.[DefaultEmailLanguageId], O.[GoogleTagManager], O.[GoogleAnalytics], O.[GoogleWebMaster], O.[EnablePeopleSearch], O.[GlobalDateFormat], O.[TimeZone], O.[GlobalFolder], O.[EnableScreeningQuestions], O.[EnableExpiryDate], O.[MemberRegisterPageID]
+				SELECT O.[GlobalSettingID], O.[SiteID], O.[DefaultLanguageID], O.[DefaultDynamicPageID], O.[PublicJobsSearch], O.[PublicMembersSearch], O.[PublicCompaniesSearch], O.[PublicSponsoredAdverts], O.[PrivateJobs], O.[PrivateMembers], O.[PrivateCompanies], O.[LastModifiedBy], O.[LastModified], O.[PageTitlePrefix], O.[PageTitleSuffix], O.[DefaultTitle], O.[HomeTitle], O.[DefaultDescription], O.[HomeDescription], O.[DefaultKeywords], O.[HomeKeywords], O.[ShowFaceBookButton], O.[UseAdvertiserFilter], O.[MerchantID], O.[ShowTwitterButton], O.[ShowJobAlertButton], O.[ShowLinkedInButton], O.[SiteFavIconID], O.[SiteDocType], O.[CurrencySymbol], O.[FtpFolderLocation], O.[MetaTags], O.[SystemMetaTags], O.[MemberRegistrationNotification], O.[LinkedInAPI], O.[LinkedInLogo], O.[LinkedInCompanyID], O.[LinkedInEmail], O.[PrivacySettings], O.[WWWRedirect], O.[AllowAdvertiser], O.[LinkedInAPISecret], O.[GoogleClientID], O.[GoogleClientSecret], O.[FacebookAppID], O.[FacebookAppSecret], O.[LinkedInButtonSize], O.[DefaultCountryID], O.[PayPalUsername], O.[PayPalPassword], O.[PayPalSignature], O.[SecurePayMerchantID], O.[SecurePayPassword], O.[UsingSSL], O.[UseCustomProfessionRole], O.[GenerateJobXML], O.[IsPrivateSite], O.[PrivateRedirectUrl], O.[EnableJobCustomQuestionnaire], O.[JobApplicationTypeID], O.[JobScreeningProcess], O.[AdvertiserApprovalProcess], O.[SiteType], O.[EnableSSL], O.[GST], O.[GSTLabel], O.[NumberOfPremiumJobs], O.[PremiumJobDays], O.[DisplayPremiumJobsOnResults], O.[JobExpiryNotification], O.[CurrencyID], O.[PayPalClientID], O.[PayPalClientSecret], O.[PaypalUser], O.[PaypalProPassword], O.[PaypalVendor], O.[PaypalPartner], O.[InvoiceSiteInfo], O.[InvoiceSiteFooter], O.[EnableTermsAndConditions], O.[DefaultEmailLanguageId], O.[GoogleTagManager], O.[GoogleAnalytics], O.[GoogleWebMaster], O.[EnablePeopleSearch], O.[GlobalDateFormat], O.[TimeZone], O.[GlobalFolder], O.[EnableScreeningQuestions], O.[EnableExpiryDate], O.[MemberRegisterPageID], O.[JobApplicationPageID]
 				FROM
 				    [dbo].[GlobalSettings] O,
 				    #PageIndex PageIndex
@@ -76108,7 +76145,8 @@ ter],
 					[TimeZone],
 					[GlobalFolder],
 					[EnableScreeningQuestions],
-					[EnableExpiryDate]
+					[EnableExpiryDate],
+					[MemberRegisterPageID]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -76227,6 +76265,7 @@ ter],
 				<parameter name="@GlobalFolder" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@EnableScreeningQuestions" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 				<parameter name="@EnableExpiryDate" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
+				<parameter name="@MemberRegisterPageId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -76237,6 +76276,7 @@ ter is not null)
 	OR ([GlobalFolder] = @GlobalFolder AND @GlobalFolder is not null)
 	OR ([EnableScreeningQuestions] = @EnableScreeningQuestions AND @EnableScreeningQuestions is not null)
 	OR ([EnableExpiryDate] = @EnableExpiryDate AND @EnableExpiryDate is not null)
+	OR ([MemberRegisterPageID] = @MemberRegisterPageId AND @MemberRegisterPageId is not null)
 	SELECT @@ROWCOUNT			
   END
 				
@@ -76268,7 +76308,8 @@ ter],
 					[TimeZone],
 					[GlobalFolder],
 					[EnableScreeningQuestions],
-					[EnableExpiryDate]
+					[EnableExpiryDate],
+					[MemberRegisterPageID]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -76384,6 +76425,7 @@ ter],
 				<parameter name="@GlobalFolder" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@EnableScreeningQuestions" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 				<parameter name="@EnableExpiryDate" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
+				<parameter name="@MemberRegisterPageId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -76394,6 +76436,7 @@ ter
 					,[GlobalFolder] = @GlobalFolder
 					,[EnableScreeningQuestions] = @EnableScreeningQuestions
 					,[EnableExpiryDate] = @EnableExpiryDate
+					,[MemberRegisterPageID] = @MemberRegisterPageId
 				WHERE
 [GlobalSettingID] = @GlobalSettingId 
 				
@@ -76426,11 +76469,50 @@ ter],
 					[TimeZone],
 					[GlobalFolder],
 					[EnableScreeningQuestions],
-					[EnableExpiryDate]
+					[EnableExpiryDate],
+					[MemberRegisterPageID]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
 					[DefaultCountryID] = @DefaultCountryId
+				
+				SELECT @@ROWCOUNT
+				SET ANSI_NULLS ON
+			
+
+
+			]]></body>
+					</procedure>
+				
+		<procedure owner="dbo" name="GlobalSettings_GetByMemberRegisterPageId"  skip="true">
+			<comment><![CDATA[
+/*
+----------------------------------------------------------------------------------------------------
+
+-- Created By:  ()
+-- Purpose: Select records from the GlobalSettings table through a foreign key
+----------------------------------------------------------------------------------------------------
+*/
+
+
+]]></comment>
+			<parameters>
+				<parameter name="@MemberRegisterPageId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
+			</parameters>
+			<body><![CDATA[
+				
+ter],
+					[EnablePeopleSearch],
+					[GlobalDateFormat],
+					[TimeZone],
+					[GlobalFolder],
+					[EnableScreeningQuestions],
+					[EnableExpiryDate],
+					[MemberRegisterPageID]
+				FROM
+					[dbo].[GlobalSettings]
+				WHERE
+					[MemberRegisterPageID] = @MemberRegisterPageId
 				
 				SELECT @@ROWCOUNT
 				SET ANSI_NULLS ON
@@ -76463,7 +76545,8 @@ ter],
 					[TimeZone],
 					[GlobalFolder],
 					[EnableScreeningQuestions],
-					[EnableExpiryDate]
+					[EnableExpiryDate],
+					[MemberRegisterPageID]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -76580,6 +76663,7 @@ ter],
 				<parameter name="@GlobalFolder" type="varchar" direction="Input" size="255" precision="0" scale="0" param="(255)" nulldefault="null"/>
 				<parameter name="@EnableScreeningQuestions" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
 				<parameter name="@EnableExpiryDate" type="bit" direction="Input" size="1" precision="1" scale="0" param="" nulldefault="null"/>
+				<parameter name="@MemberRegisterPageId" type="int" direction="Input" size="4" precision="10" scale="0" param="" nulldefault="null"/>
 			</parameters>
 			<body><![CDATA[
 				
@@ -76590,6 +76674,7 @@ ter
 					,@GlobalFolder
 					,@EnableScreeningQuestions
 					,@EnableExpiryDate
+					,@MemberRegisterPageId
 					)
 				
 				-- Get the identity value
@@ -76651,7 +76736,8 @@ ter],
 					[TimeZone],
 					[GlobalFolder],
 					[EnableScreeningQuestions],
-					[EnableExpiryDate]
+					[EnableExpiryDate],
+					[MemberRegisterPageID]
 				FROM
 					[dbo].[GlobalSettings]
 					
@@ -76685,7 +76771,8 @@ ter],
 					[TimeZone],
 					[GlobalFolder],
 					[EnableScreeningQuestions],
-					[EnableExpiryDate]
+					[EnableExpiryDate],
+					[MemberRegisterPageID]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -76739,7 +76826,8 @@ ter],
 					[TimeZone],
 					[GlobalFolder],
 					[EnableScreeningQuestions],
-					[EnableExpiryDate]
+					[EnableExpiryDate],
+					[MemberRegisterPageID]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -76776,7 +76864,8 @@ ter],
 					[TimeZone],
 					[GlobalFolder],
 					[EnableScreeningQuestions],
-					[EnableExpiryDate]
+					[EnableExpiryDate],
+					[MemberRegisterPageID]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -76841,7 +76930,8 @@ ter],
 					[TimeZone],
 					[GlobalFolder],
 					[EnableScreeningQuestions],
-					[EnableExpiryDate]
+					[EnableExpiryDate],
+					[MemberRegisterPageID]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -76879,7 +76969,8 @@ ter],
 					[TimeZone],
 					[GlobalFolder],
 					[EnableScreeningQuestions],
-					[EnableExpiryDate]
+					[EnableExpiryDate],
+					[MemberRegisterPageID]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -76916,7 +77007,8 @@ ter],
 					[TimeZone],
 					[GlobalFolder],
 					[EnableScreeningQuestions],
-					[EnableExpiryDate]
+					[EnableExpiryDate],
+					[MemberRegisterPageID]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE

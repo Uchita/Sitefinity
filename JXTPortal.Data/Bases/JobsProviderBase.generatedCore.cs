@@ -2551,7 +2551,7 @@ namespace JXTPortal.Data.Bases
 		
 		#endregion
 		
-		#region Jobs_GetByJobTemplateId
+		#region Jobs_GetByJobTemplateId 
 		
 		/// <summary>
 		///	This method wrap the 'Jobs_GetByJobTemplateId' stored procedure. 
@@ -3264,7 +3264,6 @@ namespace JXTPortal.Data.Bases
 		#endregion
 		
 		#region Jobs_GetByLastModifiedByAdminUserId 
-		
 		
 		/// <summary>
 		///	This method wrap the 'Jobs_GetByLastModifiedByAdminUserId' stored procedure. 
@@ -5069,6 +5068,32 @@ namespace JXTPortal.Data.Bases
 			}
 			#endregion SalaryTypeIdSource
 
+			#region ScreeningQuestionsTemplateIdSource	
+			if (CanDeepLoad(entity, "ScreeningQuestionsTemplates|ScreeningQuestionsTemplateIdSource", deepLoadType, innerList) 
+				&& entity.ScreeningQuestionsTemplateIdSource == null)
+			{
+				object[] pkItems = new object[1];
+				pkItems[0] = (entity.ScreeningQuestionsTemplateId ?? (int)0);
+				ScreeningQuestionsTemplates tmpEntity = EntityManager.LocateEntity<ScreeningQuestionsTemplates>(EntityLocator.ConstructKeyFromPkItems(typeof(ScreeningQuestionsTemplates), pkItems), DataRepository.Provider.EnableEntityTracking);
+				if (tmpEntity != null)
+					entity.ScreeningQuestionsTemplateIdSource = tmpEntity;
+				else
+					entity.ScreeningQuestionsTemplateIdSource = DataRepository.ScreeningQuestionsTemplatesProvider.GetByScreeningQuestionsTemplateId(transactionManager, (entity.ScreeningQuestionsTemplateId ?? (int)0));		
+				
+				#if NETTIERS_DEBUG
+				System.Diagnostics.Debug.WriteLine("- property 'ScreeningQuestionsTemplateIdSource' loaded. key " + entity.EntityTrackingKey);
+				#endif 
+				
+				if (deep && entity.ScreeningQuestionsTemplateIdSource != null)
+				{
+					innerList.SkipChildren = true;
+					DataRepository.ScreeningQuestionsTemplatesProvider.DeepLoad(transactionManager, entity.ScreeningQuestionsTemplateIdSource, deep, deepLoadType, childTypes, innerList);
+					innerList.SkipChildren = false;
+				}
+					
+			}
+			#endregion ScreeningQuestionsTemplateIdSource
+
 			#region SiteIdSource	
 			if (CanDeepLoad(entity, "Sites|SiteIdSource", deepLoadType, innerList) 
 				&& entity.SiteIdSource == null)
@@ -5251,6 +5276,27 @@ namespace JXTPortal.Data.Bases
 			#endregion 
 			
 			
+			#region JobScreeningQuestionsCollection
+			//Relationship Type One : Many
+			if (CanDeepLoad(entity, "List<JobScreeningQuestions>|JobScreeningQuestionsCollection", deepLoadType, innerList)) 
+			{
+				#if NETTIERS_DEBUG
+				System.Diagnostics.Debug.WriteLine("- property 'JobScreeningQuestionsCollection' loaded. key " + entity.EntityTrackingKey);
+				#endif 
+
+				entity.JobScreeningQuestionsCollection = DataRepository.JobScreeningQuestionsProvider.GetByJobId(transactionManager, entity.JobId);
+
+				if (deep && entity.JobScreeningQuestionsCollection.Count > 0)
+				{
+					deepHandles.Add("JobScreeningQuestionsCollection",
+						new KeyValuePair<Delegate, object>((DeepLoadHandle<JobScreeningQuestions>) DataRepository.JobScreeningQuestionsProvider.DeepLoad,
+						new object[] { transactionManager, entity.JobScreeningQuestionsCollection, deep, deepLoadType, childTypes, innerList }
+					));
+				}
+			}		
+			#endregion 
+			
+			
 			//Fire all DeepLoad Items
 			foreach(KeyValuePair<Delegate, object> pair in deepHandles.Values)
 		    {
@@ -5332,6 +5378,15 @@ namespace JXTPortal.Data.Bases
 			{
 				DataRepository.SalaryTypeProvider.Save(transactionManager, entity.SalaryTypeIdSource);
 				entity.SalaryTypeId = entity.SalaryTypeIdSource.SalaryTypeId;
+			}
+			#endregion 
+			
+			#region ScreeningQuestionsTemplateIdSource
+			if (CanDeepSave(entity, "ScreeningQuestionsTemplates|ScreeningQuestionsTemplateIdSource", deepSaveType, innerList) 
+				&& entity.ScreeningQuestionsTemplateIdSource != null)
+			{
+				DataRepository.ScreeningQuestionsTemplatesProvider.Save(transactionManager, entity.ScreeningQuestionsTemplateIdSource);
+				entity.ScreeningQuestionsTemplateId = entity.ScreeningQuestionsTemplateIdSource.ScreeningQuestionsTemplateId;
 			}
 			#endregion 
 			
@@ -5540,6 +5595,36 @@ namespace JXTPortal.Data.Bases
 				} 
 			#endregion 
 				
+	
+			#region List<JobScreeningQuestions>
+				if (CanDeepSave(entity.JobScreeningQuestionsCollection, "List<JobScreeningQuestions>|JobScreeningQuestionsCollection", deepSaveType, innerList)) 
+				{	
+					// update each child parent id with the real parent id (mostly used on insert)
+					foreach(JobScreeningQuestions child in entity.JobScreeningQuestionsCollection)
+					{
+						if(child.JobIdSource != null)
+						{
+							child.JobId = child.JobIdSource.JobId;
+						}
+						else
+						{
+							child.JobId = entity.JobId;
+						}
+
+					}
+
+					if (entity.JobScreeningQuestionsCollection.Count > 0 || entity.JobScreeningQuestionsCollection.DeletedItems.Count > 0)
+					{
+						//DataRepository.JobScreeningQuestionsProvider.Save(transactionManager, entity.JobScreeningQuestionsCollection);
+						
+						deepHandles.Add("JobScreeningQuestionsCollection",
+						new KeyValuePair<Delegate, object>((DeepSaveHandle< JobScreeningQuestions >) DataRepository.JobScreeningQuestionsProvider.DeepSave,
+							new object[] { transactionManager, entity.JobScreeningQuestionsCollection, deepSaveType, childTypes, innerList }
+						));
+					}
+				} 
+			#endregion 
+				
 			//Fire all DeepSave Items
 			foreach(KeyValuePair<Delegate, object> pair in deepHandles.Values)
 		    {
@@ -5604,6 +5689,12 @@ namespace JXTPortal.Data.Bases
 		SalaryType,
 			
 		///<summary>
+		/// Composite Property for <c>ScreeningQuestionsTemplates</c> at ScreeningQuestionsTemplateIdSource
+		///</summary>
+		[ChildEntityType(typeof(ScreeningQuestionsTemplates))]
+		ScreeningQuestionsTemplates,
+			
+		///<summary>
 		/// Composite Property for <c>Sites</c> at SiteIdSource
 		///</summary>
 		[ChildEntityType(typeof(Sites))]
@@ -5650,6 +5741,12 @@ namespace JXTPortal.Data.Bases
 		///</summary>
 		[ChildEntityType(typeof(TList<JobArea>))]
 		JobAreaCollection,
+
+		///<summary>
+		/// Collection of <c>Jobs</c> as OneToMany for JobScreeningQuestionsCollection
+		///</summary>
+		[ChildEntityType(typeof(TList<JobScreeningQuestions>))]
+		JobScreeningQuestionsCollection,
 	}
 	
 	#endregion JobsChildEntityTypes

@@ -11262,7 +11262,8 @@ AS
 					[Live],
 					[MobileEnabled],
 					[MobileUrl],
-					[SiteAdminLogoUrl]
+					[SiteAdminLogoUrl],
+					[SiteURLAlias]
 				FROM
 					[dbo].[Sites]
 					
@@ -11346,7 +11347,7 @@ AS
 				EXEC sp_executesql @SQL
 
 				-- Return paged results
-				SELECT O.[SiteID], O.[SiteName], O.[SiteURL], O.[SiteDescription], O.[SiteAdminLogo], O.[LastModified], O.[LastModifiedBy], O.[Live], O.[MobileEnabled], O.[MobileUrl], O.[SiteAdminLogoUrl]
+				SELECT O.[SiteID], O.[SiteName], O.[SiteURL], O.[SiteDescription], O.[SiteAdminLogo], O.[LastModified], O.[LastModifiedBy], O.[Live], O.[MobileEnabled], O.[MobileUrl], O.[SiteAdminLogoUrl], O.[SiteURLAlias]
 				FROM
 				    [dbo].[Sites] O,
 				    #PageIndex PageIndex
@@ -11415,7 +11416,9 @@ CREATE PROCEDURE dbo.Sites_Insert
 
 	@MobileUrl varchar (255)  ,
 
-	@SiteAdminLogoUrl nvarchar (1000)  
+	@SiteAdminLogoUrl nvarchar (1000)  ,
+
+	@SiteUrlAlias varchar (500)  
 )
 AS
 
@@ -11433,6 +11436,7 @@ AS
 					,[MobileEnabled]
 					,[MobileUrl]
 					,[SiteAdminLogoUrl]
+					,[SiteURLAlias]
 					)
 				VALUES
 					(
@@ -11446,6 +11450,7 @@ AS
 					,@MobileEnabled
 					,@MobileUrl
 					,@SiteAdminLogoUrl
+					,@SiteUrlAlias
 					)
 				
 				-- Get the identity value
@@ -11501,7 +11506,9 @@ CREATE PROCEDURE dbo.Sites_Update
 
 	@MobileUrl varchar (255)  ,
 
-	@SiteAdminLogoUrl nvarchar (1000)  
+	@SiteAdminLogoUrl nvarchar (1000)  ,
+
+	@SiteUrlAlias varchar (500)  
 )
 AS
 
@@ -11522,6 +11529,7 @@ AS
 					,[MobileEnabled] = @MobileEnabled
 					,[MobileUrl] = @MobileUrl
 					,[SiteAdminLogoUrl] = @SiteAdminLogoUrl
+					,[SiteURLAlias] = @SiteUrlAlias
 				WHERE
 [SiteID] = @SiteId 
 				
@@ -11610,7 +11618,8 @@ AS
 					[Live],
 					[MobileEnabled],
 					[MobileUrl],
-					[SiteAdminLogoUrl]
+					[SiteAdminLogoUrl],
+					[SiteURLAlias]
 				FROM
 					[dbo].[Sites]
 				WHERE
@@ -11663,7 +11672,8 @@ AS
 					[Live],
 					[MobileEnabled],
 					[MobileUrl],
-					[SiteAdminLogoUrl]
+					[SiteAdminLogoUrl],
+					[SiteURLAlias]
 				FROM
 					[dbo].[Sites]
 				WHERE
@@ -11715,7 +11725,8 @@ AS
 					[Live],
 					[MobileEnabled],
 					[MobileUrl],
-					[SiteAdminLogoUrl]
+					[SiteAdminLogoUrl],
+					[SiteURLAlias]
 				FROM
 					[dbo].[Sites]
 				WHERE
@@ -11773,7 +11784,9 @@ CREATE PROCEDURE dbo.Sites_Find
 
 	@MobileUrl varchar (255)  = null ,
 
-	@SiteAdminLogoUrl nvarchar (1000)  = null 
+	@SiteAdminLogoUrl nvarchar (1000)  = null ,
+
+	@SiteUrlAlias varchar (500)  = null 
 )
 AS
 
@@ -11793,6 +11806,7 @@ AS
 	, [MobileEnabled]
 	, [MobileUrl]
 	, [SiteAdminLogoUrl]
+	, [SiteURLAlias]
     FROM
 	[dbo].[Sites]
     WHERE 
@@ -11806,6 +11820,7 @@ AS
 	AND ([MobileEnabled] = @MobileEnabled OR @MobileEnabled IS NULL)
 	AND ([MobileUrl] = @MobileUrl OR @MobileUrl IS NULL)
 	AND ([SiteAdminLogoUrl] = @SiteAdminLogoUrl OR @SiteAdminLogoUrl IS NULL)
+	AND ([SiteURLAlias] = @SiteUrlAlias OR @SiteUrlAlias IS NULL)
 						
   END
   ELSE
@@ -11822,6 +11837,7 @@ AS
 	, [MobileEnabled]
 	, [MobileUrl]
 	, [SiteAdminLogoUrl]
+	, [SiteURLAlias]
     FROM
 	[dbo].[Sites]
     WHERE 
@@ -11835,6 +11851,7 @@ AS
 	OR ([MobileEnabled] = @MobileEnabled AND @MobileEnabled is not null)
 	OR ([MobileUrl] = @MobileUrl AND @MobileUrl is not null)
 	OR ([SiteAdminLogoUrl] = @SiteAdminLogoUrl AND @SiteAdminLogoUrl is not null)
+	OR ([SiteURLAlias] = @SiteUrlAlias AND @SiteUrlAlias is not null)
 	SELECT @@ROWCOUNT			
   END
 				
@@ -53359,7 +53376,8 @@ AS
 					[GlobalFolder],
 					[EnableScreeningQuestions],
 					[EnableExpiryDate],
-					[MemberRegisterPageID]
+					[MemberRegisterPageID],
+					[JobApplicationPageID]
 				FROM
 					[dbo].[GlobalSettings]
 					
@@ -53443,7 +53461,7 @@ AS
 				EXEC sp_executesql @SQL
 
 				-- Return paged results
-				SELECT O.[GlobalSettingID], O.[SiteID], O.[DefaultLanguageID], O.[DefaultDynamicPageID], O.[PublicJobsSearch], O.[PublicMembersSearch], O.[PublicCompaniesSearch], O.[PublicSponsoredAdverts], O.[PrivateJobs], O.[PrivateMembers], O.[PrivateCompanies], O.[LastModifiedBy], O.[LastModified], O.[PageTitlePrefix], O.[PageTitleSuffix], O.[DefaultTitle], O.[HomeTitle], O.[DefaultDescription], O.[HomeDescription], O.[DefaultKeywords], O.[HomeKeywords], O.[ShowFaceBookButton], O.[UseAdvertiserFilter], O.[MerchantID], O.[ShowTwitterButton], O.[ShowJobAlertButton], O.[ShowLinkedInButton], O.[SiteFavIconID], O.[SiteDocType], O.[CurrencySymbol], O.[FtpFolderLocation], O.[MetaTags], O.[SystemMetaTags], O.[MemberRegistrationNotification], O.[LinkedInAPI], O.[LinkedInLogo], O.[LinkedInCompanyID], O.[LinkedInEmail], O.[PrivacySettings], O.[WWWRedirect], O.[AllowAdvertiser], O.[LinkedInAPISecret], O.[GoogleClientID], O.[GoogleClientSecret], O.[FacebookAppID], O.[FacebookAppSecret], O.[LinkedInButtonSize], O.[DefaultCountryID], O.[PayPalUsername], O.[PayPalPassword], O.[PayPalSignature], O.[SecurePayMerchantID], O.[SecurePayPassword], O.[UsingSSL], O.[UseCustomProfessionRole], O.[GenerateJobXML], O.[IsPrivateSite], O.[PrivateRedirectUrl], O.[EnableJobCustomQuestionnaire], O.[JobApplicationTypeID], O.[JobScreeningProcess], O.[AdvertiserApprovalProcess], O.[SiteType], O.[EnableSSL], O.[GST], O.[GSTLabel], O.[NumberOfPremiumJobs], O.[PremiumJobDays], O.[DisplayPremiumJobsOnResults], O.[JobExpiryNotification], O.[CurrencyID], O.[PayPalClientID], O.[PayPalClientSecret], O.[PaypalUser], O.[PaypalProPassword], O.[PaypalVendor], O.[PaypalPartner], O.[InvoiceSiteInfo], O.[InvoiceSiteFooter], O.[EnableTermsAndConditions], O.[DefaultEmailLanguageId], O.[GoogleTagManager], O.[GoogleAnalytics], O.[GoogleWebMaster], O.[EnablePeopleSearch], O.[GlobalDateFormat], O.[TimeZone], O.[GlobalFolder], O.[EnableScreeningQuestions], O.[EnableExpiryDate], O.[MemberRegisterPageID]
+				SELECT O.[GlobalSettingID], O.[SiteID], O.[DefaultLanguageID], O.[DefaultDynamicPageID], O.[PublicJobsSearch], O.[PublicMembersSearch], O.[PublicCompaniesSearch], O.[PublicSponsoredAdverts], O.[PrivateJobs], O.[PrivateMembers], O.[PrivateCompanies], O.[LastModifiedBy], O.[LastModified], O.[PageTitlePrefix], O.[PageTitleSuffix], O.[DefaultTitle], O.[HomeTitle], O.[DefaultDescription], O.[HomeDescription], O.[DefaultKeywords], O.[HomeKeywords], O.[ShowFaceBookButton], O.[UseAdvertiserFilter], O.[MerchantID], O.[ShowTwitterButton], O.[ShowJobAlertButton], O.[ShowLinkedInButton], O.[SiteFavIconID], O.[SiteDocType], O.[CurrencySymbol], O.[FtpFolderLocation], O.[MetaTags], O.[SystemMetaTags], O.[MemberRegistrationNotification], O.[LinkedInAPI], O.[LinkedInLogo], O.[LinkedInCompanyID], O.[LinkedInEmail], O.[PrivacySettings], O.[WWWRedirect], O.[AllowAdvertiser], O.[LinkedInAPISecret], O.[GoogleClientID], O.[GoogleClientSecret], O.[FacebookAppID], O.[FacebookAppSecret], O.[LinkedInButtonSize], O.[DefaultCountryID], O.[PayPalUsername], O.[PayPalPassword], O.[PayPalSignature], O.[SecurePayMerchantID], O.[SecurePayPassword], O.[UsingSSL], O.[UseCustomProfessionRole], O.[GenerateJobXML], O.[IsPrivateSite], O.[PrivateRedirectUrl], O.[EnableJobCustomQuestionnaire], O.[JobApplicationTypeID], O.[JobScreeningProcess], O.[AdvertiserApprovalProcess], O.[SiteType], O.[EnableSSL], O.[GST], O.[GSTLabel], O.[NumberOfPremiumJobs], O.[PremiumJobDays], O.[DisplayPremiumJobsOnResults], O.[JobExpiryNotification], O.[CurrencyID], O.[PayPalClientID], O.[PayPalClientSecret], O.[PaypalUser], O.[PaypalProPassword], O.[PaypalVendor], O.[PaypalPartner], O.[InvoiceSiteInfo], O.[InvoiceSiteFooter], O.[EnableTermsAndConditions], O.[DefaultEmailLanguageId], O.[GoogleTagManager], O.[GoogleAnalytics], O.[GoogleWebMaster], O.[EnablePeopleSearch], O.[GlobalDateFormat], O.[TimeZone], O.[GlobalFolder], O.[EnableScreeningQuestions], O.[EnableExpiryDate], O.[MemberRegisterPageID], O.[JobApplicationPageID]
 				FROM
 				    [dbo].[GlobalSettings] O,
 				    #PageIndex PageIndex
@@ -53672,7 +53690,9 @@ CREATE PROCEDURE dbo.GlobalSettings_Insert
 
 	@EnableExpiryDate bit   ,
 
-	@MemberRegisterPageId int   
+	@MemberRegisterPageId int   ,
+
+	@JobApplicationPageId int   
 )
 AS
 
@@ -53770,6 +53790,7 @@ AS
 					,[EnableScreeningQuestions]
 					,[EnableExpiryDate]
 					,[MemberRegisterPageID]
+					,[JobApplicationPageID]
 					)
 				VALUES
 					(
@@ -53863,6 +53884,7 @@ AS
 					,@EnableScreeningQuestions
 					,@EnableExpiryDate
 					,@MemberRegisterPageId
+					,@JobApplicationPageId
 					)
 				
 				-- Get the identity value
@@ -54078,7 +54100,9 @@ CREATE PROCEDURE dbo.GlobalSettings_Update
 
 	@EnableExpiryDate bit   ,
 
-	@MemberRegisterPageId int   
+	@MemberRegisterPageId int   ,
+
+	@JobApplicationPageId int   
 )
 AS
 
@@ -54179,6 +54203,7 @@ AS
 					,[EnableScreeningQuestions] = @EnableScreeningQuestions
 					,[EnableExpiryDate] = @EnableExpiryDate
 					,[MemberRegisterPageID] = @MemberRegisterPageId
+					,[JobApplicationPageID] = @JobApplicationPageId
 				WHERE
 [GlobalSettingID] = @GlobalSettingId 
 				
@@ -54347,7 +54372,8 @@ AS
 					[GlobalFolder],
 					[EnableScreeningQuestions],
 					[EnableExpiryDate],
-					[MemberRegisterPageID]
+					[MemberRegisterPageID],
+					[JobApplicationPageID]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -54482,7 +54508,8 @@ AS
 					[GlobalFolder],
 					[EnableScreeningQuestions],
 					[EnableExpiryDate],
-					[MemberRegisterPageID]
+					[MemberRegisterPageID],
+					[JobApplicationPageID]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -54617,7 +54644,8 @@ AS
 					[GlobalFolder],
 					[EnableScreeningQuestions],
 					[EnableExpiryDate],
-					[MemberRegisterPageID]
+					[MemberRegisterPageID],
+					[JobApplicationPageID]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -54752,7 +54780,8 @@ AS
 					[GlobalFolder],
 					[EnableScreeningQuestions],
 					[EnableExpiryDate],
-					[MemberRegisterPageID]
+					[MemberRegisterPageID],
+					[JobApplicationPageID]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -54887,7 +54916,8 @@ AS
 					[GlobalFolder],
 					[EnableScreeningQuestions],
 					[EnableExpiryDate],
-					[MemberRegisterPageID]
+					[MemberRegisterPageID],
+					[JobApplicationPageID]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -55022,7 +55052,8 @@ AS
 					[GlobalFolder],
 					[EnableScreeningQuestions],
 					[EnableExpiryDate],
-					[MemberRegisterPageID]
+					[MemberRegisterPageID],
+					[JobApplicationPageID]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -55157,7 +55188,8 @@ AS
 					[GlobalFolder],
 					[EnableScreeningQuestions],
 					[EnableExpiryDate],
-					[MemberRegisterPageID]
+					[MemberRegisterPageID],
+					[JobApplicationPageID]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -55292,7 +55324,8 @@ AS
 					[GlobalFolder],
 					[EnableScreeningQuestions],
 					[EnableExpiryDate],
-					[MemberRegisterPageID]
+					[MemberRegisterPageID],
+					[JobApplicationPageID]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -55427,7 +55460,8 @@ AS
 					[GlobalFolder],
 					[EnableScreeningQuestions],
 					[EnableExpiryDate],
-					[MemberRegisterPageID]
+					[MemberRegisterPageID],
+					[JobApplicationPageID]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -55562,7 +55596,8 @@ AS
 					[GlobalFolder],
 					[EnableScreeningQuestions],
 					[EnableExpiryDate],
-					[MemberRegisterPageID]
+					[MemberRegisterPageID],
+					[JobApplicationPageID]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -55699,7 +55734,8 @@ AS
 					[GlobalFolder],
 					[EnableScreeningQuestions],
 					[EnableExpiryDate],
-					[MemberRegisterPageID]
+					[MemberRegisterPageID],
+					[JobApplicationPageID]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -55833,7 +55869,8 @@ AS
 					[GlobalFolder],
 					[EnableScreeningQuestions],
 					[EnableExpiryDate],
-					[MemberRegisterPageID]
+					[MemberRegisterPageID],
+					[JobApplicationPageID]
 				FROM
 					[dbo].[GlobalSettings]
 				WHERE
@@ -56051,7 +56088,9 @@ CREATE PROCEDURE dbo.GlobalSettings_Find
 
 	@EnableExpiryDate bit   = null ,
 
-	@MemberRegisterPageId int   = null 
+	@MemberRegisterPageId int   = null ,
+
+	@JobApplicationPageId int   = null 
 )
 AS
 
@@ -56151,6 +56190,7 @@ AS
 	, [EnableScreeningQuestions]
 	, [EnableExpiryDate]
 	, [MemberRegisterPageID]
+	, [JobApplicationPageID]
     FROM
 	[dbo].[GlobalSettings]
     WHERE 
@@ -56245,6 +56285,7 @@ AS
 	AND ([EnableScreeningQuestions] = @EnableScreeningQuestions OR @EnableScreeningQuestions IS NULL)
 	AND ([EnableExpiryDate] = @EnableExpiryDate OR @EnableExpiryDate IS NULL)
 	AND ([MemberRegisterPageID] = @MemberRegisterPageId OR @MemberRegisterPageId IS NULL)
+	AND ([JobApplicationPageID] = @JobApplicationPageId OR @JobApplicationPageId IS NULL)
 						
   END
   ELSE
@@ -56341,6 +56382,7 @@ AS
 	, [EnableScreeningQuestions]
 	, [EnableExpiryDate]
 	, [MemberRegisterPageID]
+	, [JobApplicationPageID]
     FROM
 	[dbo].[GlobalSettings]
     WHERE 
@@ -56435,6 +56477,7 @@ AS
 	OR ([EnableScreeningQuestions] = @EnableScreeningQuestions AND @EnableScreeningQuestions is not null)
 	OR ([EnableExpiryDate] = @EnableExpiryDate AND @EnableExpiryDate is not null)
 	OR ([MemberRegisterPageID] = @MemberRegisterPageId AND @MemberRegisterPageId is not null)
+	OR ([JobApplicationPageID] = @JobApplicationPageId AND @JobApplicationPageId is not null)
 	SELECT @@ROWCOUNT			
   END
 				

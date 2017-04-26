@@ -24,7 +24,7 @@ namespace JXTPortal.Website.App_Codes
             builder.Register(c => new SectionIO_API(1295, 2227)).As<ICacheFlusher>();
 
 
-            builder.Register(c => new KnowledgeBaseService(c.Resolve<IKnowledgeBaseRepository>())).As<IKnowledgeBaseService>();
+            builder.Register(c => new JXTPortal.Service.Dapper.KnowledgeBaseService(c.Resolve<IKnowledgeBaseRepository>())).As<IKnowledgeBaseService>();
             builder.Register(c => new KnowledgeBaseCategoryService(c.Resolve<IKnowledgeBaseCategoryRepository>())).As<IKnowledgeBaseCategoryService>();
 
             builder.RegisterType<AdvertisersRepository>().WithParameter(new Autofac.NamedParameter("connectionStringName", DEFAULT_CONNECTIONSTRING_KEY)).AsImplementedInterfaces();
@@ -40,12 +40,12 @@ namespace JXTPortal.Website.App_Codes
 
             builder.RegisterType<JXTPortal.Service.Dapper.AdvertisersService>().AsImplementedInterfaces();
             builder.RegisterType<SiteLanguageService>().AsImplementedInterfaces();
-            builder.RegisterType<ScreeningQuestionsService>().AsImplementedInterfaces();
-            builder.RegisterType<ScreeningQuestionsTemplatesService>().AsImplementedInterfaces();
-            builder.RegisterType<ScreeningQuestionsMappingsService>().AsImplementedInterfaces();
-            builder.RegisterType<ScreeningQuestionsTemplateOwnersService>().AsImplementedInterfaces();
-            builder.RegisterType<JobScreeningQuestionsService>().AsImplementedInterfaces();
-            builder.RegisterType<JobApplicationScreeningAnswersService>().AsImplementedInterfaces();
+            builder.RegisterType<JXTPortal.Service.Dapper.ScreeningQuestionsService>().AsImplementedInterfaces();
+            builder.RegisterType<JXTPortal.Service.Dapper.ScreeningQuestionsTemplatesService>().AsImplementedInterfaces();
+            builder.RegisterType<JXTPortal.Service.Dapper.ScreeningQuestionsMappingsService>().AsImplementedInterfaces();
+            builder.RegisterType<JXTPortal.Service.Dapper.ScreeningQuestionsTemplateOwnersService>().AsImplementedInterfaces();
+            builder.RegisterType<JXTPortal.Service.Dapper.JobScreeningQuestionsService>().AsImplementedInterfaces();
+            builder.RegisterType<JXTPortal.Service.Dapper.JobApplicationScreeningAnswersService>().AsImplementedInterfaces();
 
             //FileManager
             builder.RegisterType<AwsS3>().AsImplementedInterfaces();

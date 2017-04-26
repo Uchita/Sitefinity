@@ -2498,6 +2498,17 @@ namespace JXTPortal.Entities
             set { entityData.SalaryTypeIdSource = value; }
       	}
 		/// <summary>
+		/// Gets or sets the source <see cref="ScreeningQuestionsTemplates"/>.
+		/// </summary>
+		/// <value>The source ScreeningQuestionsTemplates for ScreeningQuestionsTemplateId.</value>
+        [XmlIgnore()]
+		[Browsable(false), System.ComponentModel.Bindable(System.ComponentModel.BindableSupport.Yes)]
+		public virtual ScreeningQuestionsTemplates ScreeningQuestionsTemplateIdSource
+      	{
+            get { return entityData.ScreeningQuestionsTemplateIdSource; }
+            set { entityData.ScreeningQuestionsTemplateIdSource = value; }
+      	}
+		/// <summary>
 		/// Gets or sets the source <see cref="Sites"/>.
 		/// </summary>
 		/// <value>The source Sites for SiteId.</value>
@@ -2587,6 +2598,17 @@ namespace JXTPortal.Entities
 		{
 			get { return entityData.JobAreaCollection; }
 			set { entityData.JobAreaCollection = value; }	
+		}
+	
+		/// <summary>
+		///	Holds a collection of JobScreeningQuestions objects
+		///	which are related to this object through the relation FK__JobScreen__JobId__07A69B1E
+		/// </summary>	
+		[System.ComponentModel.Bindable(System.ComponentModel.BindableSupport.Yes)]
+		public virtual TList<JobScreeningQuestions> JobScreeningQuestionsCollection
+		{
+			get { return entityData.JobScreeningQuestionsCollection; }
+			set { entityData.JobScreeningQuestionsCollection = value; }	
 		}
 		#endregion Children Collections
 		
@@ -2902,6 +2924,10 @@ namespace JXTPortal.Entities
 				copy.SalaryTypeIdSource = existingCopies[this.SalaryTypeIdSource] as SalaryType;
 			else
 				copy.SalaryTypeIdSource = MakeCopyOf(this.SalaryTypeIdSource, existingCopies) as SalaryType;
+			if (this.ScreeningQuestionsTemplateIdSource != null && existingCopies.Contains(this.ScreeningQuestionsTemplateIdSource))
+				copy.ScreeningQuestionsTemplateIdSource = existingCopies[this.ScreeningQuestionsTemplateIdSource] as ScreeningQuestionsTemplates;
+			else
+				copy.ScreeningQuestionsTemplateIdSource = MakeCopyOf(this.ScreeningQuestionsTemplateIdSource, existingCopies) as ScreeningQuestionsTemplates;
 			if (this.SiteIdSource != null && existingCopies.Contains(this.SiteIdSource))
 				copy.SiteIdSource = existingCopies[this.SiteIdSource] as Sites;
 			else
@@ -2918,6 +2944,7 @@ namespace JXTPortal.Entities
 			copy.JobViewsCollection = (TList<JobViews>) MakeCopyOf(this.JobViewsCollection, existingCopies); 
 			copy.JobRolesCollection = (TList<JobRoles>) MakeCopyOf(this.JobRolesCollection, existingCopies); 
 			copy.JobAreaCollection = (TList<JobArea>) MakeCopyOf(this.JobAreaCollection, existingCopies); 
+			copy.JobScreeningQuestionsCollection = (TList<JobScreeningQuestions>) MakeCopyOf(this.JobScreeningQuestionsCollection, existingCopies); 
 			copy.EntityState = this.EntityState;
 			copy.SuppressEntityEvents = false;
 			return copy;
@@ -4761,6 +4788,19 @@ namespace JXTPortal.Entities
             get { return this._salaryTypeIdSource; }
             set { this._salaryTypeIdSource = value; }
       	}
+		private ScreeningQuestionsTemplates _screeningQuestionsTemplateIdSource = null;
+		
+		/// <summary>
+		/// Gets or sets the source <see cref="ScreeningQuestionsTemplates"/>.
+		/// </summary>
+		/// <value>The source ScreeningQuestionsTemplates for ScreeningQuestionsTemplateId.</value>
+		[XmlIgnore()]
+		[Browsable(false)]
+		public virtual ScreeningQuestionsTemplates ScreeningQuestionsTemplateIdSource
+      	{
+            get { return this._screeningQuestionsTemplateIdSource; }
+            set { this._screeningQuestionsTemplateIdSource = value; }
+      	}
 		private Sites _siteIdSource = null;
 		
 		/// <summary>
@@ -4942,6 +4982,31 @@ namespace JXTPortal.Entities
 		
 		#endregion
 
+		#region JobScreeningQuestionsCollection
+		
+		private TList<JobScreeningQuestions> _jobScreeningQuestionsJobId;
+		
+		/// <summary>
+		///	Holds a collection of entity objects
+		///	which are related to this object through the relation _jobScreeningQuestionsJobId
+		/// </summary>
+		
+		public TList<JobScreeningQuestions> JobScreeningQuestionsCollection
+		{
+			get
+			{
+				if (_jobScreeningQuestionsJobId == null)
+				{
+				_jobScreeningQuestionsJobId = new TList<JobScreeningQuestions>();
+				}
+	
+				return _jobScreeningQuestionsJobId;
+			}
+			set { _jobScreeningQuestionsJobId = value; }
+		}
+		
+		#endregion
+
 		#endregion Data Properties
 		
 		#region Clone Method
@@ -5027,6 +5092,8 @@ namespace JXTPortal.Entities
 				_tmp.LastModifiedByAdminUserIdSource = MakeCopyOf(this.LastModifiedByAdminUserIdSource) as AdminUsers;
 			if (this.SalaryTypeIdSource != null)
 				_tmp.SalaryTypeIdSource = MakeCopyOf(this.SalaryTypeIdSource) as SalaryType;
+			if (this.ScreeningQuestionsTemplateIdSource != null)
+				_tmp.ScreeningQuestionsTemplateIdSource = MakeCopyOf(this.ScreeningQuestionsTemplateIdSource) as ScreeningQuestionsTemplates;
 			if (this.SiteIdSource != null)
 				_tmp.SiteIdSource = MakeCopyOf(this.SiteIdSource) as Sites;
 			if (this.WorkTypeIdSource != null)
@@ -5047,6 +5114,8 @@ namespace JXTPortal.Entities
 				_tmp.JobRolesCollection = (TList<JobRoles>) MakeCopyOf(this.JobRolesCollection); 
 			if (this._jobAreaJobId != null)
 				_tmp.JobAreaCollection = (TList<JobArea>) MakeCopyOf(this.JobAreaCollection); 
+			if (this._jobScreeningQuestionsJobId != null)
+				_tmp.JobScreeningQuestionsCollection = (TList<JobScreeningQuestions>) MakeCopyOf(this.JobScreeningQuestionsCollection); 
 			#endregion Child Collections
 			
 			//EntityState
@@ -5151,6 +5220,10 @@ namespace JXTPortal.Entities
 				_tmp.SalaryTypeIdSource = existingCopies[this.SalaryTypeIdSource] as SalaryType;
 			else
 				_tmp.SalaryTypeIdSource = MakeCopyOf(this.SalaryTypeIdSource, existingCopies) as SalaryType;
+			if (this.ScreeningQuestionsTemplateIdSource != null && existingCopies.Contains(this.ScreeningQuestionsTemplateIdSource))
+				_tmp.ScreeningQuestionsTemplateIdSource = existingCopies[this.ScreeningQuestionsTemplateIdSource] as ScreeningQuestionsTemplates;
+			else
+				_tmp.ScreeningQuestionsTemplateIdSource = MakeCopyOf(this.ScreeningQuestionsTemplateIdSource, existingCopies) as ScreeningQuestionsTemplates;
 			if (this.SiteIdSource != null && existingCopies.Contains(this.SiteIdSource))
 				_tmp.SiteIdSource = existingCopies[this.SiteIdSource] as Sites;
 			else
@@ -5169,6 +5242,7 @@ namespace JXTPortal.Entities
 			_tmp.JobViewsCollection = (TList<JobViews>) MakeCopyOf(this.JobViewsCollection, existingCopies); 
 			_tmp.JobRolesCollection = (TList<JobRoles>) MakeCopyOf(this.JobRolesCollection, existingCopies); 
 			_tmp.JobAreaCollection = (TList<JobArea>) MakeCopyOf(this.JobAreaCollection, existingCopies); 
+			_tmp.JobScreeningQuestionsCollection = (TList<JobScreeningQuestions>) MakeCopyOf(this.JobScreeningQuestionsCollection, existingCopies); 
 			#endregion Child Collections
 			
 			//EntityState

@@ -468,6 +468,11 @@ namespace JXTPortal.Entities
 		/// MemberRegisterPageID : 
 		/// </summary>
 		System.Int32?  MemberRegisterPageId  { get; set; }
+		
+		/// <summary>
+		/// JobApplicationPageID : 
+		/// </summary>
+		System.Int32?  JobApplicationPageId  { get; set; }
 			
 		/// <summary>
 		/// Creates a new object that is a copy of the current instance.

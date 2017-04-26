@@ -91,9 +91,10 @@ namespace JXTPortal.Entities
 		///<param name="_mobileEnabled"></param>
 		///<param name="_mobileUrl"></param>
 		///<param name="_siteAdminLogoUrl"></param>
+		///<param name="_siteUrlAlias"></param>
 		public SitesBase(System.String _siteName, System.String _siteUrl, System.String _siteDescription, 
 			System.Byte[] _siteAdminLogo, System.DateTime _lastModified, System.Int32? _lastModifiedBy, System.Boolean? _live, 
-			System.Boolean _mobileEnabled, System.String _mobileUrl, System.String _siteAdminLogoUrl)
+			System.Boolean _mobileEnabled, System.String _mobileUrl, System.String _siteAdminLogoUrl, System.String _siteUrlAlias)
 		{
 			this.entityData = new SitesEntityData();
 			this.backupData = null;
@@ -108,6 +109,7 @@ namespace JXTPortal.Entities
 			this.MobileEnabled = _mobileEnabled;
 			this.MobileUrl = _mobileUrl;
 			this.SiteAdminLogoUrl = _siteAdminLogoUrl;
+			this.SiteUrlAlias = _siteUrlAlias;
 		}
 		
 		///<summary>
@@ -123,9 +125,10 @@ namespace JXTPortal.Entities
 		///<param name="_mobileEnabled"></param>
 		///<param name="_mobileUrl"></param>
 		///<param name="_siteAdminLogoUrl"></param>
+		///<param name="_siteUrlAlias"></param>
 		public static Sites CreateSites(System.String _siteName, System.String _siteUrl, System.String _siteDescription, 
 			System.Byte[] _siteAdminLogo, System.DateTime _lastModified, System.Int32? _lastModifiedBy, System.Boolean? _live, 
-			System.Boolean _mobileEnabled, System.String _mobileUrl, System.String _siteAdminLogoUrl)
+			System.Boolean _mobileEnabled, System.String _mobileUrl, System.String _siteAdminLogoUrl, System.String _siteUrlAlias)
 		{
 			Sites newSites = new Sites();
 			newSites.SiteName = _siteName;
@@ -138,6 +141,7 @@ namespace JXTPortal.Entities
 			newSites.MobileEnabled = _mobileEnabled;
 			newSites.MobileUrl = _mobileUrl;
 			newSites.SiteAdminLogoUrl = _siteAdminLogoUrl;
+			newSites.SiteUrlAlias = _siteUrlAlias;
 			return newSites;
 		}
 				
@@ -534,6 +538,41 @@ namespace JXTPortal.Entities
 					this.EntityState = EntityState.Changed;
 				OnColumnChanged(SitesColumn.SiteAdminLogoUrl, this.entityData.SiteAdminLogoUrl);
 				OnPropertyChanged("SiteAdminLogoUrl");
+			}
+		}
+		
+		/// <summary>
+		/// 	Gets or sets the SiteUrlAlias property. 
+		///		
+		/// </summary>
+		/// <value>This type is varchar.</value>
+		/// <remarks>
+		/// This property can be set to null. 
+		/// </remarks>
+
+
+
+
+		[DescriptionAttribute(@""), System.ComponentModel.Bindable( System.ComponentModel.BindableSupport.Yes)]
+		[DataObjectField(false, false, true, 500)]
+		public virtual System.String SiteUrlAlias
+		{
+			get
+			{
+				return this.entityData.SiteUrlAlias; 
+			}
+			
+			set
+			{
+				if (this.entityData.SiteUrlAlias == value)
+					return;
+					
+				OnColumnChanging(SitesColumn.SiteUrlAlias, this.entityData.SiteUrlAlias);
+				this.entityData.SiteUrlAlias = value;
+				if (this.EntityState == EntityState.Unchanged)
+					this.EntityState = EntityState.Changed;
+				OnColumnChanged(SitesColumn.SiteUrlAlias, this.entityData.SiteUrlAlias);
+				OnPropertyChanged("SiteUrlAlias");
 			}
 		}
 		
@@ -1096,14 +1135,14 @@ namespace JXTPortal.Entities
 		}
 	
 		/// <summary>
-		///	Holds a collection of GlobalSettings objects
-		///	which are related to this object through the relation FK__GlobalSet__SiteI__125EB334
+		///	Holds a collection of ScreeningQuestionsTemplates objects
+		///	which are related to this object through the relation FK__Screening__SiteI__25549791
 		/// </summary>	
 		[System.ComponentModel.Bindable(System.ComponentModel.BindableSupport.Yes)]
-		public virtual TList<GlobalSettings> GlobalSettingsCollection
+		public virtual TList<ScreeningQuestionsTemplates> ScreeningQuestionsTemplatesCollection
 		{
-			get { return entityData.GlobalSettingsCollection; }
-			set { entityData.GlobalSettingsCollection = value; }	
+			get { return entityData.ScreeningQuestionsTemplatesCollection; }
+			set { entityData.ScreeningQuestionsTemplatesCollection = value; }	
 		}
 	
 		/// <summary>
@@ -1149,6 +1188,17 @@ namespace JXTPortal.Entities
 			get { return entityData.EducationsCollection; }
 			set { entityData.EducationsCollection = value; }	
 		}
+	
+		/// <summary>
+		///	Holds a collection of GlobalSettings objects
+		///	which are related to this object through the relation FK__GlobalSet__SiteI__125EB334
+		/// </summary>	
+		[System.ComponentModel.Bindable(System.ComponentModel.BindableSupport.Yes)]
+		public virtual TList<GlobalSettings> GlobalSettingsCollection
+		{
+			get { return entityData.GlobalSettingsCollection; }
+			set { entityData.GlobalSettingsCollection = value; }	
+		}
 		#endregion Children Collections
 		
 		#endregion
@@ -1171,6 +1221,8 @@ namespace JXTPortal.Entities
 				new CommonRules.MaxLengthRuleArgs("MobileUrl", "Mobile Url", 255));
 			ValidationRules.AddRule( CommonRules.StringMaxLength, 
 				new CommonRules.MaxLengthRuleArgs("SiteAdminLogoUrl", "Site Admin Logo Url", 1000));
+			ValidationRules.AddRule( CommonRules.StringMaxLength, 
+				new CommonRules.MaxLengthRuleArgs("SiteUrlAlias", "Site Url Alias", 500));
 		}
    		#endregion
 		
@@ -1192,7 +1244,7 @@ namespace JXTPortal.Entities
 		{
 			get
 			{
-				return new string[] {"SiteID", "SiteName", "SiteURL", "SiteDescription", "SiteAdminLogo", "LastModified", "LastModifiedBy", "Live", "MobileEnabled", "MobileUrl", "SiteAdminLogoUrl"};
+				return new string[] {"SiteID", "SiteName", "SiteURL", "SiteDescription", "SiteAdminLogo", "LastModified", "LastModifiedBy", "Live", "MobileEnabled", "MobileUrl", "SiteAdminLogoUrl", "SiteURLAlias"};
 			}
 		}
 		#endregion 
@@ -1351,6 +1403,7 @@ namespace JXTPortal.Entities
 				copy.MobileEnabled = this.MobileEnabled;
 				copy.MobileUrl = this.MobileUrl;
 				copy.SiteAdminLogoUrl = this.SiteAdminLogoUrl;
+				copy.SiteUrlAlias = this.SiteUrlAlias;
 			
 			if (this.LastModifiedBySource != null && existingCopies.Contains(this.LastModifiedBySource))
 				copy.LastModifiedBySource = existingCopies[this.LastModifiedBySource] as AdminUsers;
@@ -1409,11 +1462,12 @@ namespace JXTPortal.Entities
 			copy.DynamicContentCollection = (TList<DynamicContent>) MakeCopyOf(this.DynamicContentCollection, existingCopies); 
 			copy.JobItemsTypeCollection = (TList<JobItemsType>) MakeCopyOf(this.JobItemsTypeCollection, existingCopies); 
 			copy.SiteSalaryTypeCollection = (TList<SiteSalaryType>) MakeCopyOf(this.SiteSalaryTypeCollection, existingCopies); 
-			copy.GlobalSettingsCollection = (TList<GlobalSettings>) MakeCopyOf(this.GlobalSettingsCollection, existingCopies); 
+			copy.ScreeningQuestionsTemplatesCollection = (TList<ScreeningQuestionsTemplates>) MakeCopyOf(this.ScreeningQuestionsTemplatesCollection, existingCopies); 
 			copy.JobsArchiveCollection = (TList<JobsArchive>) MakeCopyOf(this.JobsArchiveCollection, existingCopies); 
 			copy.SiteLanguagesCollection = (TList<SiteLanguages>) MakeCopyOf(this.SiteLanguagesCollection, existingCopies); 
 			copy.CustomWidgetCssSelectorCollection = (TList<CustomWidgetCssSelector>) MakeCopyOf(this.CustomWidgetCssSelectorCollection, existingCopies); 
 			copy.EducationsCollection = (TList<Educations>) MakeCopyOf(this.EducationsCollection, existingCopies); 
+			copy.GlobalSettingsCollection = (TList<GlobalSettings>) MakeCopyOf(this.GlobalSettingsCollection, existingCopies); 
 			copy.EntityState = this.EntityState;
 			copy.SuppressEntityEvents = false;
 			return copy;
@@ -1566,6 +1620,8 @@ namespace JXTPortal.Entities
 					return entityData.MobileUrl != _originalData.MobileUrl;
 					case SitesColumn.SiteAdminLogoUrl:
 					return entityData.SiteAdminLogoUrl != _originalData.SiteAdminLogoUrl;
+					case SitesColumn.SiteUrlAlias:
+					return entityData.SiteUrlAlias != _originalData.SiteUrlAlias;
 			
 				default:
 					return false;
@@ -1604,6 +1660,7 @@ namespace JXTPortal.Entities
 			result = result || entityData.MobileEnabled != _originalData.MobileEnabled;
 			result = result || entityData.MobileUrl != _originalData.MobileUrl;
 			result = result || entityData.SiteAdminLogoUrl != _originalData.SiteAdminLogoUrl;
+			result = result || entityData.SiteUrlAlias != _originalData.SiteUrlAlias;
 			return result;
 		}	
 		
@@ -1623,7 +1680,8 @@ namespace JXTPortal.Entities
 				_originalData.Live,
 				_originalData.MobileEnabled,
 				_originalData.MobileUrl,
-				_originalData.SiteAdminLogoUrl
+				_originalData.SiteAdminLogoUrl,
+				_originalData.SiteUrlAlias
 				);
 				
 			return (Sites)this.Clone();
@@ -1663,7 +1721,8 @@ namespace JXTPortal.Entities
 					((this.Live == null) ? string.Empty : this.Live.ToString()).GetHashCode() ^ 
 					this.MobileEnabled.GetHashCode() ^ 
 					this.MobileUrl.GetHashCode() ^ 
-					((this.SiteAdminLogoUrl == null) ? string.Empty : this.SiteAdminLogoUrl.ToString()).GetHashCode();
+					((this.SiteAdminLogoUrl == null) ? string.Empty : this.SiteAdminLogoUrl.ToString()).GetHashCode() ^ 
+					((this.SiteUrlAlias == null) ? string.Empty : this.SiteUrlAlias.ToString()).GetHashCode();
         }
 		
 		///<summary>
@@ -1764,6 +1823,15 @@ namespace JXTPortal.Entities
 					equal = false;
 			}
 			else if (Object1.SiteAdminLogoUrl == null ^ Object2.SiteAdminLogoUrl == null )
+			{
+				equal = false;
+			}
+			if ( Object1.SiteUrlAlias != null && Object2.SiteUrlAlias != null )
+			{
+				if (Object1.SiteUrlAlias != Object2.SiteUrlAlias)
+					equal = false;
+			}
+			else if (Object1.SiteUrlAlias == null ^ Object2.SiteUrlAlias == null )
 			{
 				equal = false;
 			}
@@ -1869,6 +1937,12 @@ namespace JXTPortal.Entities
             	
             	case SitesColumn.SiteAdminLogoUrl:
             		return this.SiteAdminLogoUrl.CompareTo(rhs.SiteAdminLogoUrl);
+            		
+            		                 
+            	
+            	
+            	case SitesColumn.SiteUrlAlias:
+            		return this.SiteUrlAlias.CompareTo(rhs.SiteUrlAlias);
             		
             		                 
             }
@@ -2005,7 +2079,7 @@ namespace JXTPortal.Entities
 		public override string ToString()
 		{
 			return string.Format(System.Globalization.CultureInfo.InvariantCulture,
-				"{12}{11}- SiteId: {0}{11}- SiteName: {1}{11}- SiteUrl: {2}{11}- SiteDescription: {3}{11}- SiteAdminLogo: {4}{11}- LastModified: {5}{11}- LastModifiedBy: {6}{11}- Live: {7}{11}- MobileEnabled: {8}{11}- MobileUrl: {9}{11}- SiteAdminLogoUrl: {10}{11}{13}", 
+				"{13}{12}- SiteId: {0}{12}- SiteName: {1}{12}- SiteUrl: {2}{12}- SiteDescription: {3}{12}- SiteAdminLogo: {4}{12}- LastModified: {5}{12}- LastModifiedBy: {6}{12}- Live: {7}{12}- MobileEnabled: {8}{12}- MobileUrl: {9}{12}- SiteAdminLogoUrl: {10}{12}- SiteUrlAlias: {11}{12}{14}", 
 				this.SiteId,
 				(this.SiteName == null) ? string.Empty : this.SiteName.ToString(),
 				(this.SiteUrl == null) ? string.Empty : this.SiteUrl.ToString(),
@@ -2017,6 +2091,7 @@ namespace JXTPortal.Entities
 				this.MobileEnabled,
 				this.MobileUrl,
 				(this.SiteAdminLogoUrl == null) ? string.Empty : this.SiteAdminLogoUrl.ToString(),
+				(this.SiteUrlAlias == null) ? string.Empty : this.SiteUrlAlias.ToString(),
 				System.Environment.NewLine, 
 				this.GetType(),
 				this.Error.Length == 0 ? string.Empty : string.Format("- Error: {0}\n",this.Error));
@@ -2100,6 +2175,11 @@ namespace JXTPortal.Entities
 		/// SiteAdminLogoUrl : 
 		/// </summary>
 		public System.String		  SiteAdminLogoUrl = null;
+		
+		/// <summary>
+		/// SiteURLAlias : 
+		/// </summary>
+		public System.String		  SiteUrlAlias = null;
 		#endregion
 			
 		#region Source Foreign Key Property
@@ -3072,9 +3152,6 @@ namespace JXTPortal.Entities
 		
 		#endregion
 
-		#region SiteWebPartsCollectionGetBySiteId
-		#endregion
-
 		#region SiteRolesCollection
 		
 		private TList<SiteRoles> _siteRolesSiteId;
@@ -3350,27 +3427,27 @@ namespace JXTPortal.Entities
 		
 		#endregion
 
-		#region GlobalSettingsCollection
+		#region ScreeningQuestionsTemplatesCollection
 		
-		private TList<GlobalSettings> _globalSettingsSiteId;
+		private TList<ScreeningQuestionsTemplates> _screeningQuestionsTemplatesSiteId;
 		
 		/// <summary>
 		///	Holds a collection of entity objects
-		///	which are related to this object through the relation _globalSettingsSiteId
+		///	which are related to this object through the relation _screeningQuestionsTemplatesSiteId
 		/// </summary>
 		
-		public TList<GlobalSettings> GlobalSettingsCollection
+		public TList<ScreeningQuestionsTemplates> ScreeningQuestionsTemplatesCollection
 		{
 			get
 			{
-				if (_globalSettingsSiteId == null)
+				if (_screeningQuestionsTemplatesSiteId == null)
 				{
-				_globalSettingsSiteId = new TList<GlobalSettings>();
+				_screeningQuestionsTemplatesSiteId = new TList<ScreeningQuestionsTemplates>();
 				}
 	
-				return _globalSettingsSiteId;
+				return _screeningQuestionsTemplatesSiteId;
 			}
-			set { _globalSettingsSiteId = value; }
+			set { _screeningQuestionsTemplatesSiteId = value; }
 		}
 		
 		#endregion
@@ -3475,6 +3552,31 @@ namespace JXTPortal.Entities
 		
 		#endregion
 
+		#region GlobalSettingsCollection
+		
+		private TList<GlobalSettings> _globalSettingsSiteId;
+		
+		/// <summary>
+		///	Holds a collection of entity objects
+		///	which are related to this object through the relation _globalSettingsSiteId
+		/// </summary>
+		
+		public TList<GlobalSettings> GlobalSettingsCollection
+		{
+			get
+			{
+				if (_globalSettingsSiteId == null)
+				{
+				_globalSettingsSiteId = new TList<GlobalSettings>();
+				}
+	
+				return _globalSettingsSiteId;
+			}
+			set { _globalSettingsSiteId = value; }
+		}
+		
+		#endregion
+
 		#endregion Data Properties
 		
 		#region Clone Method
@@ -3499,6 +3601,7 @@ namespace JXTPortal.Entities
 			_tmp.MobileEnabled = this.MobileEnabled;
 			_tmp.MobileUrl = this.MobileUrl;
 			_tmp.SiteAdminLogoUrl = this.SiteAdminLogoUrl;
+			_tmp.SiteUrlAlias = this.SiteUrlAlias;
 			
 			#region Source Parent Composite Entities
 			if (this.LastModifiedBySource != null)
@@ -3609,8 +3712,8 @@ namespace JXTPortal.Entities
 				_tmp.JobItemsTypeCollection = (TList<JobItemsType>) MakeCopyOf(this.JobItemsTypeCollection); 
 			if (this._siteSalaryTypeSiteId != null)
 				_tmp.SiteSalaryTypeCollection = (TList<SiteSalaryType>) MakeCopyOf(this.SiteSalaryTypeCollection); 
-			if (this._globalSettingsSiteId != null)
-				_tmp.GlobalSettingsCollection = (TList<GlobalSettings>) MakeCopyOf(this.GlobalSettingsCollection); 
+			if (this._screeningQuestionsTemplatesSiteId != null)
+				_tmp.ScreeningQuestionsTemplatesCollection = (TList<ScreeningQuestionsTemplates>) MakeCopyOf(this.ScreeningQuestionsTemplatesCollection); 
 			if (this._jobsArchiveSiteId != null)
 				_tmp.JobsArchiveCollection = (TList<JobsArchive>) MakeCopyOf(this.JobsArchiveCollection); 
 			if (this._siteLanguagesSiteId != null)
@@ -3619,6 +3722,8 @@ namespace JXTPortal.Entities
 				_tmp.CustomWidgetCssSelectorCollection = (TList<CustomWidgetCssSelector>) MakeCopyOf(this.CustomWidgetCssSelectorCollection); 
 			if (this._educationsSiteId != null)
 				_tmp.EducationsCollection = (TList<Educations>) MakeCopyOf(this.EducationsCollection); 
+			if (this._globalSettingsSiteId != null)
+				_tmp.GlobalSettingsCollection = (TList<GlobalSettings>) MakeCopyOf(this.GlobalSettingsCollection); 
 			#endregion Child Collections
 			
 			//EntityState
@@ -3650,6 +3755,7 @@ namespace JXTPortal.Entities
 			_tmp.MobileEnabled = this.MobileEnabled;
 			_tmp.MobileUrl = this.MobileUrl;
 			_tmp.SiteAdminLogoUrl = this.SiteAdminLogoUrl;
+			_tmp.SiteUrlAlias = this.SiteUrlAlias;
 			
 			#region Source Parent Composite Entities
 			if (this.LastModifiedBySource != null && existingCopies.Contains(this.LastModifiedBySource))
@@ -3698,6 +3804,7 @@ namespace JXTPortal.Entities
 			_tmp.JobApplicationTypeCollection = (TList<JobApplicationType>) MakeCopyOf(this.JobApplicationTypeCollection, existingCopies); 
 			_tmp.CustomWidgetCollection = (TList<CustomWidget>) MakeCopyOf(this.CustomWidgetCollection, existingCopies); 
 			_tmp.SiteMappingsCollectionGetBySiteId = (TList<SiteMappings>) MakeCopyOf(this.SiteMappingsCollectionGetBySiteId, existingCopies); 
+			_tmp.SiteWebPartsCollectionGetBySiteId = (TList<SiteWebParts>) MakeCopyOf(this.SiteWebPartsCollectionGetBySiteId, existingCopies); 
 			_tmp.SiteRolesCollection = (TList<SiteRoles>) MakeCopyOf(this.SiteRolesCollection, existingCopies); 
 			_tmp.CustomPaymentCollection = (TList<CustomPayment>) MakeCopyOf(this.CustomPaymentCollection, existingCopies); 
 			_tmp.IntegrationsCollection = (TList<Integrations>) MakeCopyOf(this.IntegrationsCollection, existingCopies); 
@@ -3710,11 +3817,12 @@ namespace JXTPortal.Entities
 			_tmp.DynamicContentCollection = (TList<DynamicContent>) MakeCopyOf(this.DynamicContentCollection, existingCopies); 
 			_tmp.JobItemsTypeCollection = (TList<JobItemsType>) MakeCopyOf(this.JobItemsTypeCollection, existingCopies); 
 			_tmp.SiteSalaryTypeCollection = (TList<SiteSalaryType>) MakeCopyOf(this.SiteSalaryTypeCollection, existingCopies); 
-			_tmp.GlobalSettingsCollection = (TList<GlobalSettings>) MakeCopyOf(this.GlobalSettingsCollection, existingCopies); 
+			_tmp.ScreeningQuestionsTemplatesCollection = (TList<ScreeningQuestionsTemplates>) MakeCopyOf(this.ScreeningQuestionsTemplatesCollection, existingCopies); 
 			_tmp.JobsArchiveCollection = (TList<JobsArchive>) MakeCopyOf(this.JobsArchiveCollection, existingCopies); 
 			_tmp.SiteLanguagesCollection = (TList<SiteLanguages>) MakeCopyOf(this.SiteLanguagesCollection, existingCopies); 
 			_tmp.CustomWidgetCssSelectorCollection = (TList<CustomWidgetCssSelector>) MakeCopyOf(this.CustomWidgetCssSelectorCollection, existingCopies); 
 			_tmp.EducationsCollection = (TList<Educations>) MakeCopyOf(this.EducationsCollection, existingCopies); 
+			_tmp.GlobalSettingsCollection = (TList<GlobalSettings>) MakeCopyOf(this.GlobalSettingsCollection, existingCopies); 
 			#endregion Child Collections
 			
 			//EntityState
@@ -4148,7 +4256,13 @@ namespace JXTPortal.Entities
 		/// </summary>
 		[EnumTextValue("SiteAdminLogoUrl")]
 		[ColumnEnum("SiteAdminLogoUrl", typeof(System.String), System.Data.DbType.String, false, false, true, 1000)]
-		SiteAdminLogoUrl = 11
+		SiteAdminLogoUrl = 11,
+		/// <summary>
+		/// SiteUrlAlias : 
+		/// </summary>
+		[EnumTextValue("SiteURLAlias")]
+		[ColumnEnum("SiteURLAlias", typeof(System.String), System.Data.DbType.AnsiString, false, false, true, 500)]
+		SiteUrlAlias = 12
 	}//End enum
 
 	#endregion SitesColumn Enum

@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml;
-using System.Xml.Xsl;
-using System.Net;
 using System.IO;
-using System.Xml.Linq;
+using System.Net;
 using System.Text.RegularExpressions;
+using System.Xml;
+using System.Xml.Linq;
+using System.Xml.Xsl;
 
 namespace JXTPosterTransform.Library.Common
 {
@@ -108,9 +105,16 @@ namespace JXTPosterTransform.Library.Common
 
         public static string GetXMLFromFileSystem(string strXML)
         {
-            XDocument xDocument = XDocument.Load(XmlReader.Create(strXML));
+            //Make sure it closes the file after read it
+            using (var doc = XmlReader.Create(strXML))
+            {
+                XDocument xDocument = XDocument.Load(doc);
 
-            return xDocument.ToString();
+                //Release the file
+                doc.Close();
+
+                return xDocument.ToString();
+            }
         }
 
         public static bool RenameFile(string strFrom, string strTo)

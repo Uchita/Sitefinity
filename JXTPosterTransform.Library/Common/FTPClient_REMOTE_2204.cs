@@ -1,16 +1,22 @@
-﻿using JXTPosterTransform.Library.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
+using System.Text;
+using System.Net;
+using System.IO;
+using System.Text.RegularExpressions;
 using WinSCP;
+using System.Configuration;
+using JXTPosterTransform.Library.Models;
 using log4net;
 
 namespace JXTPosterTransform.Library.Common
 {
+
     /*
      FULL Path of the file, File Starts with, FTP hostname, FTP username, FTP password.
-     Path of the folder, File Starts with, FTP hostname, FTP username, FTP password.     
+     Path of the folder, File Starts with, FTP hostname, FTP username, FTP password.
+     
      */
     public class FTPClient
     {
@@ -54,71 +60,64 @@ namespace JXTPosterTransform.Library.Common
                         RemoteDirectoryInfo directoryInfo = session.ListDirectory(FTP.RemotePath);
 
                         // Select the most recent file
-                        List<RemoteFileInfo> remoteFilesList = null;
+                        RemoteFileInfo latest = null;
 
                         if (!string.IsNullOrWhiteSpace(FTP.FileStartsWith))
                         {
-                            remoteFilesList = directoryInfo.Files
-                                                           .Where(file => !file.IsDirectory &&
-                                                                           file.Name.ToLower().Contains(".xml") &&
-                                                                           file.Name.StartsWith(FTP.FileStartsWith))
-                                                           .OrderByDescending(file => file.LastWriteTime)
-                                                           .ToList();
+                            latest =
+                                directoryInfo.Files
+                                    .Where(file => !file.IsDirectory && file.Name.ToLower().Contains(".xml") && file.Name.ToLower().StartsWith(FTP.FileStartsWith))
+                                    .OrderByDescending(file => file.LastWriteTime)
+                                    .FirstOrDefault();
+                            /*directoryInfo.Files
+                                .Where(file => !file.IsDirectory && file.Name.ToLower().Contains(".xml") && file.Name.ToLower().StartsWith("zenergy"))
+                                .OrderByDescending(file => file.LastWriteTime)
+                                .FirstOrDefault();*/
+
+
                             // Any file at all?
-                            if (remoteFilesList == null)
+                            if (latest == null)
                             {
                                 responseClass.strMessage = string.Format("No file found in the path {0} which starts with - {1}", FTP.RemotePath, FTP.FileStartsWith);
                                 return responseClass;
                             }
+
                         }
                         else
                         {
-                            remoteFilesList = directoryInfo.Files
-                                                           .Where(file => !file.IsDirectory &&
-                                                                           file.Name.Equals(FTP.Filename))
-                                                           .ToList();
+
+                            latest =
+                                directoryInfo.Files
+                                    .Where(file => !file.IsDirectory && file.Name.Equals(FTP.Filename))
+                                    //.OrderByDescending(file => file.LastWriteTime)
+                                    .FirstOrDefault();
+
+
                             // Any file at all?
-                            if (remoteFilesList == null)
+                            if (latest == null)
                             {
                                 responseClass.strMessage = string.Format("No file found in the path {0} with filename - {1}", FTP.RemotePath, FTP.Filename);
                                 return responseClass;
                             }
+
+
                         }
 
-                        List<ResponseClassFtpItem> listResponse = new List<ResponseClassFtpItem>();
+                        // Download the selected file
+                         session.GetFiles(session.EscapeFileMask(FTP.RemotePath + latest.Name), localPath).Check();
 
-                        for (int i = 0; i < remoteFilesList.Count; i++)
-                        {
-                            ResponseClassFtpItem fileItem = new ResponseClassFtpItem();
-                            fileItem.FullFilePath = ConfigurationManager.AppSettings["FTPTempStorage"] + strFilename + i + "_Raw.xml";
-                            listResponse.Add(fileItem);
+                        responseClass.blnSuccess = true;
+                        responseClass.FullFilePath = ConfigurationManager.AppSettings["FTPTempStorage"] + strFilename + "_Raw.xml";
 
-                            session.GetFiles(session.EscapeFileMask(FTP.RemotePath + remoteFilesList[i].Name), localPath).Check();
-
-                            // Rename the file                          
-                            Utils.RenameFile(localPath + remoteFilesList[i].Name, fileItem.FullFilePath);
-
-                            //Remove the file from the FTP remote directory after load to the memory
-                            session.RemoveFiles(session.EscapeFileMask(FTP.RemotePath + remoteFilesList[i].Name));
-                        }
-
-                        //Success only when there is at least one file to process
-                        if (remoteFilesList.Count > 0)
-                        {
-                            responseClass.blnSuccess = true;
-                        }
-                        else
-                        {
-                            responseClass.strMessage = string.Format("No files found for the query '{0}' ", FTP.Filename);
-                            responseClass.blnSuccess = false;
-                        }
-
-                        responseClass.ResponseClassFtpItemList = listResponse;
+                        // Rename the file
+                        Utils.RenameFile(localPath + latest.Name, responseClass.FullFilePath);
+                        
                     }
+
                 }
                 catch (Exception e)
                 {
-                    responseClass.strMessage = string.Format("Error while Pulling the file({0}): {1}", FTP.Filename, e);
+                    responseClass.strMessage = string.Format("Error while Pulling the file({0}): {1}", FTP.Filename, e);                
                 }
             }
             else

@@ -1111,25 +1111,18 @@ namespace JXTPortal
 
         private static string GetSiteUrl()
         {
-
-            if (HttpContext.Current.Request.Url.Host.StartsWith("www.m.") || HttpContext.Current.Request.Url.Host.StartsWith("m."))
+            string url = string.Empty;
+            using (Sites site = _SitesService().GetBySiteId(SessionData.Site.SiteId))
             {
-                // mobile site
-                string url = string.Empty;
-                using (Sites site = _SitesService().GetBySiteId(SessionData.Site.SiteId))
+                if (site != null)
                 {
-                    if (site != null)
-                    {
+                    if (string.IsNullOrWhiteSpace(site.SiteUrlAlias))
                         url = site.SiteUrl;
-                    }
+                    else
+                        url = site.SiteUrlAlias;
                 }
-
-                return url;
             }
-            else
-            {
-                return HttpContext.Current.Request.Url.Host;
-            }
+            return url;
         }
 
         public static SmtpSender EmailSender()

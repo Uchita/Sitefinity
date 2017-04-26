@@ -14,6 +14,8 @@ namespace JXTPortal.Entities
 
         public string SiteUrl { get; set; }
 
+        public string SiteUrlAlias { get; set; }
+
         public string SiteDescription { get; set; }
 
         public int SiteIdAlias { get; set; }

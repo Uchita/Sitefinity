@@ -2,19 +2,19 @@
     Inherits="SitesEdit" Title="Sites Edit" CodeBehind="SitesEdit.aspx.cs" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-    Sites - Add/Edit</asp:Content>
+    Sites - Add/Edit
+</asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <asp:ScriptManager ID="scriptManager" runat="server" />
     <script type="text/javascript">
-    function SetStagingUrl(tbid, stbid)
-    {
-        var tb = document.getElementById(tbid);
-        var stb = document.getElementById(stbid);
+        function SetStagingUrl(tbid, stbid) {
+            var tb = document.getElementById(tbid);
+            var stb = document.getElementById(stbid);
 
-        if (tb && stb) {
-            stb.value = tb.value + "<%=URLPOSTFIX %>";
+            if (tb && stb) {
+                stb.value = tb.value + "<%=URLPOSTFIX %>";
+            }
         }
-    }
     </script>
 
     <div class="form-all">
@@ -41,6 +41,17 @@
                     <asp:TextBox ID="txtSiteURL" runat="server" Width="300px" />
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" Display="Dynamic"
                         ControlToValidate="txtSiteURL" ErrorMessage="Required"></asp:RequiredFieldValidator><br />
+                </div>
+            </li>
+            <li class="form-line">
+                <label class="form-label-left">
+                    Alias Site URL:
+                    <br />
+                    (Remove http://www.)
+                </label>
+                <div class="form-input">
+                    <asp:TextBox ID="txtSiteURLAlias" runat="server" Width="300px" />
+                    <br />
                 </div>
             </li>
             <li class="form-line">
@@ -86,8 +97,7 @@
                         Global Settings:
                     </label>
                     <div class="form-input">
-                        <a href='/admin/GlobalSettingsEdit.aspx?SiteID=<%=Request.QueryString["SiteId"] %>'>
-                            Click Here</a>
+                        <a href='/admin/GlobalSettingsEdit.aspx?SiteID=<%=Request.QueryString["SiteId"] %>'>Click Here</a>
                     </div>
                 </li>
             </asp:Panel>
@@ -96,8 +106,8 @@
                     <div class="form-buttons-wrapper">
                         <asp:Button ID="btnEditSave" runat="server" Text="Update" OnClick="btnEditSave_Click"
                             CssClass="form-submit-button" />
-                       <asp:Button ID="btnExportAsJSON" runat="server" Text="Export as JSON"
-                            CssClass="form-submit-button" onclick="btnExportAsJSON_Click" />
+                        <asp:Button ID="btnExportAsJSON" runat="server" Text="Export as JSON"
+                            CssClass="form-submit-button" OnClick="btnExportAsJSON_Click" />
                         <asp:Button ID="btnReturn" runat="server" Text="Return" OnClick="btnReturn_Click"
                             CssClass="form-submit-button" CausesValidation="false" />
                     </div>

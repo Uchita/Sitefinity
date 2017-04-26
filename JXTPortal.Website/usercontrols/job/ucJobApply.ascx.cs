@@ -341,7 +341,7 @@ namespace JXTPortal.Website.usercontrols.job
                             if (string.IsNullOrWhiteSpace(gs.LinkedInApi) || string.IsNullOrWhiteSpace(gs.LinkedInApiSecret))
                             {
                                 ibApplyWithLinkedIn.Visible = false;
-                                
+
                             }
                         }
                         else
@@ -443,7 +443,7 @@ namespace JXTPortal.Website.usercontrols.job
                                 if (area != null)
                                 {
                                     Entities.Location location = LocationService.GetByLocationId(area.LocationId);
-                                    SiteLocation siteloc =  SiteLocationService.GetTranslatedLocation(location.LocationId, location.CountryId);
+                                    SiteLocation siteloc = SiteLocationService.GetTranslatedLocation(location.LocationId, location.CountryId);
                                     SiteArea sitearea = SiteAreaService.GetTranslatedArea(area.AreaId, location.LocationId, SessionData.Site.SiteId);
                                     if (siteloc != null)
                                     {
@@ -466,7 +466,7 @@ namespace JXTPortal.Website.usercontrols.job
                             {
                                 ibApplyWithLinkedIn.Visible = false;
                             }
-                            
+
                             if (IsSimpleExternalLogon(job)) // If it is external job, makes the job apply link target to _blank
                             {
                                 string strApplicationUrl = string.Empty;
@@ -475,7 +475,7 @@ namespace JXTPortal.Website.usercontrols.job
 
                                 // Append the UTM source tag for the third party application.
                                 strApplicationUrl = Utils.GetTrackingUtmTags(strApplicationUrl);
-   
+
 
                                 // TODO - HARDCODED for PeopleProfiler - ServiceDott
                                 if (SessionData.Member != null) //logged in user
@@ -787,7 +787,10 @@ namespace JXTPortal.Website.usercontrols.job
         {
             if (Entities.SessionData.Member == null)
             {
-                Response.Redirect("~/member/login.aspx?returnurl=" + Server.UrlEncode(Request.Url.OriginalString));
+                string urlProtocol = SessionData.Site.EnableSsl ? "https://" : "http://";
+
+                Response.Redirect("~/member/login.aspx?returnurl=" + Server.UrlEncode(urlProtocol + SessionData.Site.SiteUrlAlias + "/jobdetail.aspx" + Request.Url.PathAndQuery));
+
                 return;
             }
 
@@ -815,7 +818,7 @@ namespace JXTPortal.Website.usercontrols.job
                 }
 
                 // ToDO: Add Friendly Job Url
-                if(SessionData.Site.EnableSsl)
+                if (SessionData.Site.EnableSsl)
                     strJobURL = "https://" + Request.ServerVariables["HTTP_HOST"] + string.Format("/p/{0}/j/{1}", ProfessionId, JobID);
                 else
                     strJobURL = "http://" + Request.ServerVariables["HTTP_HOST"] + string.Format("/p/{0}/j/{1}", ProfessionId, JobID);

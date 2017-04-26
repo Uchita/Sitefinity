@@ -56,6 +56,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Content Include="RollbackScripts\201704111126-MemberRegisterForm.sql" />
     <Content Include="RollbackScripts\201710041530-SalarySearchBugFix.sql" />
     <Content Include="RollbackScripts\201703281500-EnworldIssue.sql" />
     <Content Include="RollbackScripts\201703301215-JobsArchiveUpdate.sql" />
@@ -63,6 +64,7 @@
     <Content Include="RollbackScripts\201707041400-FixAdvertiserJobsStats.sql" />
     <Content Include="Scripts\201703281500-EnworldIssue.sql" />
     <Content Include="Scripts\201703301215-JobsArchiveUpdate.sql" />
+    <Content Include="Scripts\201704111126-MemberRegisterForm.sql" />
     <Content Include="Scripts\201707041400-FixAdvertiserJobsStats.sql" />
     <Content Include="Scripts\201710041530-SalarySearchBugFix.sql" />
     <Content Include="Scripts\Script0016-Fix Job Alert Multilingual Added Job App Fields.sql" />

@@ -213,7 +213,7 @@ namespace JXTPortal.Website.Admin
                     globalSetting.DefaultDynamicPageId = null;
                 else
                     globalSetting.DefaultDynamicPageId = Convert.ToInt32(dataDynamicPage.SelectedValue);
-
+                globalSetting.MemberRegisterPageId = (ddlMemberRegistrationPage.SelectedIndex == 0) ? (int?)null : Convert.ToInt32(ddlMemberRegistrationPage.SelectedValue);
                 globalSetting.PublicJobsSearch = dataPublicJobSearch.Checked;
                 //globalSetting.PublicMembersSearch = dataPublicMembersSearch.Checked;
                 //globalSetting.PublicCompaniesSearch = dataPublicCompaniesSearch.Checked;
@@ -385,6 +385,7 @@ namespace JXTPortal.Website.Admin
         private void LoadDynamicPages()
         {
             dataDynamicPage.Items.Clear();
+            ddlMemberRegistrationPage.Items.Clear();
 
             TList<JXTPortal.Entities.DynamicPages> siteDynamicPages = DynamicPagesService.GetHierarchy(SiteID > 0 ? SiteID : SessionData.Site.SiteId,
                                                                                             Convert.ToInt32(dataLanguage.SelectedValue), 0, null, true, false);
@@ -396,6 +397,13 @@ namespace JXTPortal.Website.Admin
             dataDynamicPage.DataValueField = "DynamicPageID";
             dataDynamicPage.DataBind();
             dataDynamicPage.Items.Insert(0, new ListItem(" Please Choose ...", "0"));
+
+            ddlMemberRegistrationPage.AppendDataBoundItems = true;
+            ddlMemberRegistrationPage.DataSource = siteDynamicPages;
+            ddlMemberRegistrationPage.DataTextField = "PageTitle";
+            ddlMemberRegistrationPage.DataValueField = "DynamicPageID";
+            ddlMemberRegistrationPage.DataBind();
+            ddlMemberRegistrationPage.Items.Insert(0, new ListItem("Default", "0"));
         }
 
         private void SecruityCheck()
@@ -436,9 +444,15 @@ namespace JXTPortal.Website.Admin
                 SetAdvertiserApprovalProcess();
                 LoadDynamicPages();
 
-                        CommonFunction.SetDropDownByValue(dataDynamicPage, globalSetting.DefaultDynamicPageId.ToString());
+                CommonFunction.SetDropDownByValue(dataDynamicPage, globalSetting.DefaultDynamicPageId.ToString());
 
-                        dataPublicJobSearch.Checked = globalSetting.PublicJobsSearch;
+                if (globalSetting.MemberRegisterPageId.HasValue)
+                {
+                    CommonFunction.SetDropDownByValue(ddlMemberRegistrationPage, globalSetting.MemberRegisterPageId.Value.ToString());
+                }
+
+
+                dataPublicJobSearch.Checked = globalSetting.PublicJobsSearch;
                         dataPrivateJobs.Checked = globalSetting.PrivateJobs;
                 AdminUsersService aus = new AdminUsersService();
                         using (Entities.AdminUsers adminuser = aus.GetByAdminUserId(globalSetting.LastModifiedBy))
@@ -508,6 +522,7 @@ namespace JXTPortal.Website.Admin
                 if (SessionData.AdminUser != null && SessionData.AdminUser.AdminRoleId != (int)PortalEnums.Admin.AdminRole.Administrator)
                 {
                     dataDynamicPage.Enabled = false;
+                    ddlMemberRegistrationPage.Enabled = false;
                     dataLanguage.Enabled = false;
                     dataPrivateJobs.Enabled = false;
                     dataPublicJobSearch.Enabled = false;

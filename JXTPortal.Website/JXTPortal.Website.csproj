@@ -1565,6 +1565,7 @@
     <Content Include="Web.Developer.sitemap">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="jxtmethods.asmx" />
     <Content Include="xml\AICD_Sponsorships.xml" />
     <Content Include="App_Readme\glimpse.readme.txt" />
     <Content Include="App_Themes\Default\Default.css" />
@@ -3908,6 +3909,10 @@
       <DependentUpon>ucPublicProfile.ascx</DependentUpon>
     </Compile>
     <Compile Include="usercontrols\validators\ContentValidator.cs" />
+    <Compile Include="jxtmethods.asmx.cs">
+      <DependentUpon>jxtmethods.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="widgets\WidgetSiteSearch.aspx.cs">
       <DependentUpon>WidgetSiteSearch.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

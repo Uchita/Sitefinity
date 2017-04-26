@@ -69,12 +69,9 @@ namespace SocialMedia
 
     public class FacebookMethods : SocialMediaHandlerBase
     {
-        int _siteID;
-
         public FacebookMethods(int siteID)
             : base(siteID)
         {
-            _siteID = siteID;
         }
 
         /// <summary>
@@ -84,7 +81,7 @@ namespace SocialMedia
         {
             if (integrations.Facebook != null && !string.IsNullOrEmpty(integrations.Facebook.ApplicationID))
             {
-                Sites site = SiteService.GetBySiteId(_siteID);
+                Sites site = SiteService.GetBySiteId(SiteId);
 
                 string http = "http://";
                 if (isSecureConnection)
@@ -111,7 +108,7 @@ namespace SocialMedia
         {
             if (integrations.Facebook != null && !string.IsNullOrEmpty(integrations.Facebook.ApplicationID))
             {
-                Sites site = SiteService.GetBySiteId(_siteID);
+                Sites site = SiteService.GetBySiteId(SiteId);
 
                 string http = "http://";
                 if (isSecureConnection)
@@ -161,7 +158,7 @@ namespace SocialMedia
                     {
                         LinkedinAPI = gs.LinkedInApi;
 
-                        Sites site = SiteService.GetBySiteId(_siteID);
+                        Sites site = SiteService.GetBySiteId(SiteId);
 
                         string http = "http://";
                         if (isSecureConnection)
@@ -200,7 +197,7 @@ namespace SocialMedia
                     {
                         LinkedinAPI = gs.LinkedInApi;
 
-                        Sites site = SiteService.GetBySiteId(_siteID);
+                        Sites site = SiteService.GetBySiteId(SiteId);
 
                         string http = "http://";
                         if (isSecureConnection)
@@ -245,7 +242,7 @@ namespace SocialMedia
                 string googleappid = string.Empty;
                 string googleuri = string.Empty;
 
-                Sites site = SiteService.GetBySiteId(_siteID);
+                Sites site = SiteService.GetBySiteId(SiteId);
 
                 string http = "http://";
                 if (isSecureConnection)
@@ -280,7 +277,7 @@ namespace SocialMedia
                 string googleappid = string.Empty;
                 string googleuri = string.Empty;
 
-                Sites site = SiteService.GetBySiteId(_siteID);
+                Sites site = SiteService.GetBySiteId(SiteId);
 
                 string http = "http://";
                 if (isSecureConnection)

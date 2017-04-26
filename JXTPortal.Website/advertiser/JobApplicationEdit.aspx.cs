@@ -25,6 +25,7 @@ namespace JXTPortal.Website.advertiser
         private JobsService _jobsService;
         private JobsArchiveService _jobsArchiveService;
         private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+        private string privateBucketName = ConfigurationManager.AppSettings["AWSS3PrivateBucketName"];
         private string customFolder;
         #endregion
 
@@ -362,7 +363,7 @@ namespace JXTPortal.Website.advertiser
             string errormessage = string.Empty;
             Stream downloadedfile = null;
 
-            downloadedfile = FileManagerService.DownloadFile(bucketName, customFolder, dataPDF.CommandArgument, out errormessage);
+            downloadedfile = FileManagerService.DownloadFile(privateBucketName, customFolder, dataPDF.CommandArgument, out errormessage);
 
 
             if (string.IsNullOrEmpty(errormessage) && downloadedfile.Length > 0)

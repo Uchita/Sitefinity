@@ -22,6 +22,7 @@ namespace JXTPostDataToFTP
     {
         private ILog _logger;
         private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+        private string privateBucketName = ConfigurationManager.AppSettings["AWSS3PrivateBucketName"];
         private string memberFileFolder, memberFileFolderFormat;
 
         public IFileManager FileManagerService { get; set; }
@@ -759,7 +760,7 @@ namespace JXTPostDataToFTP
                                     string filepath = string.Format("{0}{1}/{2}/{3}/{4}", ConfigurationManager.AppSettings["FTPHost"], ConfigurationManager.AppSettings["MemberRootFolder"], ConfigurationManager.AppSettings["MemberFilesFolder"], mf.MemberId, mf.MemberFileUrl);
                                     Stream ms = null;
                                     _logger.DebugFormat("Downloading file: {0}", filepath);
-                                    ms = FileManagerService.DownloadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, mf.MemberId), mf.MemberFileUrl, out errormessage);
+                                    ms = FileManagerService.DownloadFile(privateBucketName, string.Format(memberFileFolderFormat, memberFileFolder, mf.MemberId), mf.MemberFileUrl, out errormessage);
                                     
                                     if (ms != null && string.IsNullOrEmpty(errormessage))
                                     {
@@ -973,7 +974,7 @@ namespace JXTPostDataToFTP
                         if (!string.IsNullOrWhiteSpace(memberFile.MemberFileUrl))
                         {
                             Stream ms = null;
-                            ms = FileManagerService.DownloadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, memberFile.MemberId), memberFile.MemberFileUrl, out errormessage);
+                            ms = FileManagerService.DownloadFile(privateBucketName, string.Format(memberFileFolderFormat, memberFileFolder, memberFile.MemberId), memberFile.MemberFileUrl, out errormessage);
                             if (ms != null)
                             {
                                 ms.Position = 0;

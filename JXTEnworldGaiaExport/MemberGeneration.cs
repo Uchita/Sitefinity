@@ -17,6 +17,7 @@ namespace JXTEnworldGaiaExport
     internal class MemberGeneration
     {
         private static string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+        private static string privateBucketName = ConfigurationManager.AppSettings["AWSS3PrivateBucketName"];
 
         private static string memberFileFolder, memberFileFolderFormat;
         public static IFileManager FileManagerService { get; set; }
@@ -114,7 +115,7 @@ namespace JXTEnworldGaiaExport
                                         if (!string.IsNullOrWhiteSpace(item.MemberFileUrl))
                                         {
                                             Stream ms = null;
-                                            ms = FileManagerService.DownloadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, item.MemberId), item.MemberFileUrl, out errormessage);
+                                            ms = FileManagerService.DownloadFile(privateBucketName, string.Format(memberFileFolderFormat, memberFileFolder, item.MemberId), item.MemberFileUrl, out errormessage);
                                             ms.Position = 0;
 
                                             memberfilecontent = ((MemoryStream)ms).ToArray();

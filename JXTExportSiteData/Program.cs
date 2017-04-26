@@ -17,6 +17,7 @@ namespace JXTExportSiteData
     {
         #region Properties
         private static string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+        private static string privateBucketName = ConfigurationManager.AppSettings["AWSS3PrivateBucketName"];
 
         private static string memberFileFolder, memberFileFolderFormat;
         public static IFileManager FileManagerService { get; set; }
@@ -220,7 +221,7 @@ namespace JXTExportSiteData
                                     if (!string.IsNullOrWhiteSpace(resumeFile.MemberFileUrl))
                                     {
                                         Stream ms = null;
-                                        ms = FileManagerService.DownloadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, resumeFile.MemberId), resumeFile.MemberFileUrl, out errormessage);
+                                        ms = FileManagerService.DownloadFile(privateBucketName, string.Format(memberFileFolderFormat, memberFileFolder, resumeFile.MemberId), resumeFile.MemberFileUrl, out errormessage);
                                         if (string.IsNullOrEmpty(errormessage))
                                         {
                                             ms.Position = 0;
@@ -259,7 +260,7 @@ namespace JXTExportSiteData
                                     if (!string.IsNullOrWhiteSpace(coverFile.MemberFileUrl))
                                     {
                                         Stream ms = null;
-                                        ms = FileManagerService.DownloadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, coverFile.MemberId), coverFile.MemberFileUrl, out errormessage); 
+                                        ms = FileManagerService.DownloadFile(privateBucketName, string.Format(memberFileFolderFormat, memberFileFolder, coverFile.MemberId), coverFile.MemberFileUrl, out errormessage); 
                                         ms.Position = 0;
 
                                         memberfilecontent = ((MemoryStream)ms).ToArray();

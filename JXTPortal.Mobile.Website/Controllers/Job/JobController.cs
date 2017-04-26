@@ -28,6 +28,7 @@ namespace JXTPortal.Mobile.Website.Controllers.Job
     public class JobController : Controller
     {
         private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+        private string privateBucketName = ConfigurationManager.AppSettings["AWSS3PrivateBucketName"];
 
         private string resumeFolder;
 
@@ -283,7 +284,7 @@ namespace JXTPortal.Mobile.Website.Controllers.Job
 
                                     newjobapp.MemberResumeFile = filename;
 
-                                    FileManagerService.UploadFile(bucketName, resumeFolder, filename, generatedDocument, out errormessage);
+                                    FileManagerService.UploadFile(privateBucketName, resumeFolder, filename, generatedDocument, out errormessage);
 
                                     if (string.IsNullOrEmpty(errormessage))
                                     {

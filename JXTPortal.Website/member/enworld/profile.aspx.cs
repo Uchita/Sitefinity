@@ -23,6 +23,7 @@ namespace JXTPortal.Website.member.enworld
     public partial class profile : System.Web.UI.Page
     {
         private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+        private string privateBucketName = ConfigurationManager.AppSettings["AWSS3PrivateBucketName"];
         private string memberFileFolder, memberFileFolderFormat;
         private static string ContentValidationRegex = ConfigurationManager.AppSettings["ContentValidationRegex"]; //this verifies that no HTML tags are allowed
         private static string EmailValidationRegex = ConfigurationManager.AppSettings["EmailValidationRegex"];
@@ -116,7 +117,7 @@ namespace JXTPortal.Website.member.enworld
                                     string errormessage = string.Empty;
 
                                     Stream ms = null;
-                                    ms = FileManagerService.DownloadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, f.MemberId), f.MemberFileUrl, out errormessage);
+                                    ms = FileManagerService.DownloadFile(privateBucketName, string.Format(memberFileFolderFormat, memberFileFolder, f.MemberId), f.MemberFileUrl, out errormessage);
 
                                     if (string.IsNullOrEmpty(errormessage))
                                     {
@@ -873,7 +874,7 @@ namespace JXTPortal.Website.member.enworld
                         string filepath = string.Format("MemberFiles_{0}{1}", mf.MemberFileId, extension);
                         string errormessage = string.Empty;
 
-                        FileManagerService.UploadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, mf.MemberId), filepath, fuTest.PostedFile.InputStream, out errormessage);
+                        FileManagerService.UploadFile(privateBucketName, string.Format(memberFileFolderFormat, memberFileFolder, mf.MemberId), filepath, fuTest.PostedFile.InputStream, out errormessage);
 
                         mf.MemberFileUrl = string.Format("MemberFiles_{0}{1}", mf.MemberFileId, extension);
                         mf.MemberFileTitle = mf.MemberFileName;

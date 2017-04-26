@@ -24,6 +24,7 @@ namespace JXTPortal
     public static class MailService
     {
         static string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+        static string privateBucketName = ConfigurationManager.AppSettings["AWSS3PrivateBucketName"];
 
         public static IJobApplicationScreeningAnswersService JobApplicationScreeningAnswersService { get; set; }
         public static IFileManager FileManagerService { get; set; }
@@ -806,7 +807,7 @@ namespace JXTPortal
                     Stream downloadedfile = null;
                     string errormessage = string.Empty;
 
-                    downloadedfile = FileManagerService.DownloadFile(bucketName, coverLetterFolder, jobapp.MemberCoverLetterFile, out errormessage);
+                    downloadedfile = FileManagerService.DownloadFile(privateBucketName, coverLetterFolder, jobapp.MemberCoverLetterFile, out errormessage);
 
                     if (string.IsNullOrEmpty(errormessage) && downloadedfile.Length > 0)
                     {
@@ -823,7 +824,7 @@ namespace JXTPortal
                     Stream downloadedfile = null;
                     string errormessage = string.Empty;
 
-                    downloadedfile = FileManagerService.DownloadFile(bucketName, resumeFolder, jobapp.MemberResumeFile, out errormessage);
+                    downloadedfile = FileManagerService.DownloadFile(privateBucketName, resumeFolder, jobapp.MemberResumeFile, out errormessage);
 
                     if (string.IsNullOrEmpty(errormessage) && downloadedfile.Length > 0)
                     {
@@ -840,7 +841,7 @@ namespace JXTPortal
                     Stream downloadedfile = null;
                     string errormessage = string.Empty;
 
-                    downloadedfile = FileManagerService.DownloadFile(bucketName, customFolder, jobapp.MemberCoverLetterFile, out errormessage);
+                    downloadedfile = FileManagerService.DownloadFile(privateBucketName, customFolder, jobapp.MemberCoverLetterFile, out errormessage);
 
                     if (string.IsNullOrEmpty(errormessage) && downloadedfile.Length > 0)
                     {

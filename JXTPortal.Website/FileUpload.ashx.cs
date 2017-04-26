@@ -21,6 +21,8 @@ namespace JXTPortal.Website
         private string resumeFolder;
 
         private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+        private string privateBucketName = ConfigurationManager.AppSettings["AWSS3PrivateBucketName"];
+
         public IFileManager FileManagerService { get; set; }
         
         private JobApplicationService _jobApplicationService;
@@ -164,7 +166,7 @@ namespace JXTPortal.Website
                                 {
                                     jobapp.MemberResumeFile = string.Format("{0}_Resume_{1}", jobappid, r.Replace(fname, "_"));
                                     
-                                    FileManagerService.UploadFile(bucketName, resumeFolder, jobapp.MemberResumeFile, file.InputStream, out errormessage);
+                                    FileManagerService.UploadFile(privateBucketName, resumeFolder, jobapp.MemberResumeFile, file.InputStream, out errormessage);
                                     
                                     if (string.IsNullOrEmpty(errormessage))
                                     {

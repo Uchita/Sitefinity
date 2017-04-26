@@ -21,6 +21,7 @@ namespace JXTPortal.Mobile.Website.Controllers
     public class AccountController : Controller
     {
         private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+        private string privateBucketName = ConfigurationManager.AppSettings["AWSS3PrivateBucketName"];
 
         private string memberFileFolder, memberFileFolderFormat;
         public IFileManager FileManagerService { get; set; }
@@ -445,7 +446,7 @@ namespace JXTPortal.Mobile.Website.Controllers
                 if (!string.IsNullOrWhiteSpace(memberFile.MemberFileUrl))
                 {              
                     Stream ms = null;
-                    ms = FileManagerService.DownloadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, memberFile.MemberId), memberFile.MemberFileUrl, out errormessage);
+                    ms = FileManagerService.DownloadFile(privateBucketName, string.Format(memberFileFolderFormat, memberFileFolder, memberFile.MemberId), memberFile.MemberFileUrl, out errormessage);
 
                     ms.Position = 0;
 

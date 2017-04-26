@@ -143,6 +143,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JXT.Integration.AWS", "JXT.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwsS3Sample1", "AwsS3Sample1\AwsS3Sample1.csproj", "{37E4F547-74B7-4216-A2B0-9326259731DA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JXTPortal.Web.Services", "JXTPortal.Web.Services\JXTPortal.Web.Services.csproj", "{19DDDDD9-416A-4E43-876B-0A57E13DC388}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -813,6 +815,24 @@ Global
 		{37E4F547-74B7-4216-A2B0-9326259731DA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{37E4F547-74B7-4216-A2B0-9326259731DA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{37E4F547-74B7-4216-A2B0-9326259731DA}.Release|x86.ActiveCfg = Release|Any CPU
+		{19DDDDD9-416A-4E43-876B-0A57E13DC388}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19DDDDD9-416A-4E43-876B-0A57E13DC388}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19DDDDD9-416A-4E43-876B-0A57E13DC388}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{19DDDDD9-416A-4E43-876B-0A57E13DC388}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{19DDDDD9-416A-4E43-876B-0A57E13DC388}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{19DDDDD9-416A-4E43-876B-0A57E13DC388}.Debug|x86.Build.0 = Debug|Any CPU
+		{19DDDDD9-416A-4E43-876B-0A57E13DC388}.GenerateDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19DDDDD9-416A-4E43-876B-0A57E13DC388}.GenerateDebug|Any CPU.Build.0 = Debug|Any CPU
+		{19DDDDD9-416A-4E43-876B-0A57E13DC388}.GenerateDebug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{19DDDDD9-416A-4E43-876B-0A57E13DC388}.GenerateDebug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{19DDDDD9-416A-4E43-876B-0A57E13DC388}.GenerateDebug|x86.ActiveCfg = Debug|Any CPU
+		{19DDDDD9-416A-4E43-876B-0A57E13DC388}.GenerateDebug|x86.Build.0 = Debug|Any CPU
+		{19DDDDD9-416A-4E43-876B-0A57E13DC388}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19DDDDD9-416A-4E43-876B-0A57E13DC388}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19DDDDD9-416A-4E43-876B-0A57E13DC388}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{19DDDDD9-416A-4E43-876B-0A57E13DC388}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{19DDDDD9-416A-4E43-876B-0A57E13DC388}.Release|x86.ActiveCfg = Release|Any CPU
+		{19DDDDD9-416A-4E43-876B-0A57E13DC388}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -863,6 +883,7 @@ Global
 		{96CD486D-4BA8-433E-9878-0C2B05F20672} = {06164622-3B6F-427E-BA84-9072B6245849}
 		{431019B0-217A-4038-BCF2-DDEFCC2097FD} = {41677C1B-46FB-4451-AA7D-164F270121FB}
 		{37E4F547-74B7-4216-A2B0-9326259731DA} = {41677C1B-46FB-4451-AA7D-164F270121FB}
+		{19DDDDD9-416A-4E43-876B-0A57E13DC388} = {F3A10C8D-3227-449F-A2CB-014DE2D7F415}
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = JXTPortal.vsmdi

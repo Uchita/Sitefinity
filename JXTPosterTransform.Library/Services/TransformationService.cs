@@ -1,22 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using JXTPosterTransform.Library.Common;
-using System.IO;
-using System.Xml.Serialization;
-using JXTPosterTransform.Library.Models;
-using JXTPosterTransform.Data;
-using System.Web.Script.Serialization;
-using JXTPosterTransform.Website.Logics;
-using System.Net;
-using System.Xml;
-using System.Configuration;
-using System.Runtime.Serialization.Formatters.Binary;
-using JXTPosterTransform.Library.Methods;
+﻿using JXTPosterTransform.Data;
 using JXTPosterTransform.Library.APIs.Invenias;
+using JXTPosterTransform.Library.Common;
+using JXTPosterTransform.Library.Methods;
+using JXTPosterTransform.Library.Models;
+using JXTPosterTransform.Website.Logics;
 using log4net;
-using log4net.Core;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
+using System.Web.Script.Serialization;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace JXTPosterTransform.Library.Services
 {
@@ -202,9 +201,24 @@ namespace JXTPosterTransform.Library.Services
                         {
                             // Get the Credentials AND Pull the XML     AND     Post to JXT platform Webservice                            
                             _logger.DebugFormat("[START] Post Job Post request to JXT WebServices");
-                            PostTransformationWithMappings(thisSetupItem, JobPostResponse.ResponseXML, fileName, dtStartTime);
+                            //use only for xml files on FTP server.
+                            if (JobPostResponse.ResponseClassFtpItemList.Count > 0)
+                            {
+                                foreach (var item in JobPostResponse.ResponseClassFtpItemList)
+                                {
+                                    fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + "_" + Guid.NewGuid().ToString("N");// Set a new file name
+
+                                    // Get the Credentials AND Pull the XML AND Post to JXT platform Webservice
+                                    PostTransformationWithMappings(thisSetupItem, item.ResponseXML, fileName, dtStartTime);
+                                }
+                            }
+                            else
+                            {
+                                // Get the Credentials AND Pull the XML AND Post to JXT platform Webservice
+                                PostTransformationWithMappings(thisSetupItem, JobPostResponse.ResponseXML, fileName, dtStartTime);
+                            }
                             _logger.DebugFormat("[DONE] Post Job Post request to JXT WebServices");
-                        }
+                        }                        
                         #endregion
 
                         #region Process Job Archive Requests

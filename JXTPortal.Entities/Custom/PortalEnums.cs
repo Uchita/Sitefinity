@@ -483,7 +483,9 @@ namespace JXTPortal.Entities
                 [Description("Stand Out")]
                 StandOut = 2,
                 [Description("Premium")]
-                Premium = 3
+                Premium = 3,
+                [Description("Blind")]
+                Blind = 4
             }
 
             public enum JobGeocodeStatus

@@ -56,6 +56,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Content Include="RollbackScripts\201704261340-ChangeFindSiteProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\201704261340-ChangeFindSiteProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="RollbackScripts\201704191548-SiteAliasApplicationForm.sql" />
     <Content Include="RollbackScripts\201704111126-MemberRegisterForm.sql" />
     <Content Include="RollbackScripts\201710041530-SalarySearchBugFix.sql" />

@@ -142,9 +142,9 @@ namespace JXTPortal.Website.usercontrols.member
 
             string domainToPassToRedirectURI = Request.Url.Host;
             if (Request.IsLocal)
-                domainToPassToRedirectURI += ":" + Request.Url.Port; 
+                domainToPassToRedirectURI += ":" + Request.Url.Port;
 
-            if (lowerURL.Contains("/member/login.aspx") || lowerURL.Contains("/member/register.aspx") )
+            if (lowerURL.Contains("/member/login.aspx") || lowerURL.Contains("/member/register.aspx"))
                 oauthURL = fb.OAuthMemberLoginRedirectURLGet(Request.IsSecureConnection, domainToPassToRedirectURI);
             else if (Request.Url.ToString().ToLower().Contains("/applyjob"))
                 oauthURL = fb.OAuthApplyLoginRedirectURLGet(Request.IsSecureConnection, domainToPassToRedirectURI, Profession, JobName, JobID);
@@ -223,9 +223,9 @@ namespace JXTPortal.Website.usercontrols.member
             string lowerURL = Request.Url.ToString().ToLower();
 
             if (lowerURL.Contains("/member/login.aspx") || lowerURL.Contains("/member/register.aspx"))
-                oauthURL = gg.OAuthMemberLoginRedirectURLGet(Request.IsSecureConnection, HttpContext.Current.Request.Url.Host, HttpContext.Current.Request.RawUrl);
+                oauthURL = gg.OAuthMemberLoginRedirectURLGet(Request.IsSecureConnection, HttpContext.Current.Request.RawUrl);
             else if (Request.Url.ToString().ToLower().Contains("/applyjob"))
-                oauthURL = gg.OAuthApplyLoginRedirectURLGet(Request.IsSecureConnection, HttpContext.Current.Request.Url.Host, HttpContext.Current.Request.RawUrl);
+                oauthURL = gg.OAuthApplyLoginRedirectURLGet(Request.IsSecureConnection, HttpContext.Current.Request.RawUrl);
 
 
 

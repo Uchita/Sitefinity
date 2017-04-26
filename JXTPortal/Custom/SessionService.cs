@@ -90,10 +90,11 @@ namespace JXTPortal
             sessionSite.DateFormat = "dd/MM/yyyy";
             int thisSiteID = int.Parse(dsSite.Tables[0].Rows[0]["SiteId"].ToString());
 
-            sessionSite.SiteId = thisSiteID; 
+            sessionSite.SiteId = thisSiteID;
             sessionSite.SiteName = dsSite.Tables[0].Rows[0]["SiteName"].ToString();
             sessionSite.SiteDescription = dsSite.Tables[0].Rows[0]["SiteDescription"].ToString();
             sessionSite.SiteUrl = dsSite.Tables[0].Rows[0]["SiteUrl"].ToString();
+            sessionSite.SiteUrlAlias = string.IsNullOrWhiteSpace(dsSite.Tables[0].Rows[0]["SiteUrlAlias"].ToString()) ? dsSite.Tables[0].Rows[0]["SiteUrl"].ToString() : dsSite.Tables[0].Rows[0]["SiteUrlAlias"].ToString();
             sessionSite.HasAdminLogo = (dsSite.Tables[0].Rows[0]["SiteAdminLogo"] != null || string.IsNullOrWhiteSpace(dsSite.Tables[0].Rows[0]["SiteAdminLogoUrl"].ToString()) == false);
             sessionSite.IsLive = Convert.ToBoolean(dsSite.Tables[0].Rows[0]["Live"]);
             if (dsSite.Tables[0].Rows[0]["DefaultLanguageId"] != null)
@@ -114,7 +115,7 @@ namespace JXTPortal
 
             GlobalSettingsService globalService = new GlobalSettingsService();
             GlobalSettings settings = globalService.GetBySiteId(sessionSite.SiteId).FirstOrDefault();
-            
+
             // Check if current site has a master site
             SiteMappingsService sitemappingsservice = new SiteMappingsService();
             using (TList<SiteMappings> sitemappingslist = sitemappingsservice.GetBySiteId(thisSiteID))
@@ -165,7 +166,7 @@ namespace JXTPortal
 
             //set into session
             System.Web.HttpContext.Current.Session[PortalConstants.Session.SessionSite] = sessionSite;
-            
+
             // Dispose object
             languageService = null;
             globalService = null;
@@ -177,13 +178,13 @@ namespace JXTPortal
         /// get current whitelabel url - replace the staging fix
         /// </summary>
         /// <returns></returns>
-        public  string GetCurrentWhitelabelUrl()
+        public string GetCurrentWhitelabelUrl()
         {
             string siteURL = HttpContext.Current.Request.Url.Host.ToString();
             return siteURL.Replace("dev.", "").Replace("www.", "").Replace(ConfigurationManager.AppSettings[PortalConstants.WebConfigurationKeys.WEBSITEURLPOSTFIX], string.Empty);
         }
 
-        public  void SetMember(Members member)
+        public void SetMember(Members member)
         {
             SessionMember sessionMember = new SessionMember();
 
@@ -205,7 +206,7 @@ namespace JXTPortal
 
         }
 
-        public  void RemoveMemberAndAdvertiser()
+        public void RemoveMemberAndAdvertiser()
         {
             System.Web.HttpContext.Current.Session.Remove(PortalConstants.Session.SessionMember);
             System.Web.HttpContext.Current.Session.Remove(PortalConstants.Session.SessionAdvertiserUser);
@@ -230,7 +231,7 @@ namespace JXTPortal
             System.Web.HttpContext.Current.Session.Remove(PortalConstants.Session.SESSION_FORMDATA_KEY);
         }
 
-        public  void RemoveMember()
+        public void RemoveMember()
         {
             System.Web.HttpContext.Current.Session.Remove(PortalConstants.Session.SessionMember);
             // Remove stored cookie
@@ -242,12 +243,12 @@ namespace JXTPortal
             }
         }
 
-        public  void SetLanguage(Languages language)
+        public void SetLanguage(Languages language)
         {
             System.Web.HttpContext.Current.Session[PortalConstants.Session.SessionLanguage] = language;
         }
 
-        public  void SetAdminUser(AdminUsers adminUser)
+        public void SetAdminUser(AdminUsers adminUser)
         {
             SessionAdminUser sessionAdminUser = new SessionAdminUser();
             sessionAdminUser.AdminUserId = adminUser.AdminUserId;
@@ -259,7 +260,7 @@ namespace JXTPortal
             sessionAdminUser = null;
         }
 
-        public  void RemoveAdminUser()
+        public void RemoveAdminUser()
         {
             System.Web.HttpContext.Current.Session.Remove(PortalConstants.Session.SessionAdminUser);
         }
@@ -290,7 +291,7 @@ namespace JXTPortal
             sessionAdvertiserUser = null;
         }
 
-        public  void RemoveAdvertiserUser()
+        public void RemoveAdvertiserUser()
         {
             System.Web.HttpContext.Current.Session.Remove(PortalConstants.Session.SessionAdvertiserUser);
             // Remove stored cookie
@@ -507,5 +508,5 @@ namespace JXTPortal
         {
             InnerService.SetSite(dsSite);
         }
-    }    
+    }
 }

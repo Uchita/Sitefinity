@@ -148,6 +148,13 @@ public partial class SitesEdit : System.Web.UI.Page
             site.SiteName = txtSiteName.Text;
             site.SiteDescription = txtSiteDescription.Text;
             site.SiteUrl = txtSiteURL.Text.ToLower().Replace("http://", string.Empty).Replace("www.", string.Empty);
+
+            //Alias Site Url is set with the same value of Site Url in case its not informed.
+            if (string.IsNullOrWhiteSpace(txtSiteURLAlias.Text))
+                site.SiteUrlAlias = site.SiteUrl;
+            else
+                site.SiteUrlAlias = txtSiteURLAlias.Text.ToLower().Replace("http://", string.Empty).Replace("www.", string.Empty);
+
             site.MobileUrl = txtSiteURL.Text.ToLower().Replace("http://", string.Empty).Replace("www.", string.Empty);
 
             site.Live = chkLive.Checked;
@@ -231,6 +238,7 @@ public partial class SitesEdit : System.Web.UI.Page
                     txtSiteName.Text = site.SiteName;
                     txtSiteDescription.Text = site.SiteDescription;
                     txtSiteURL.Text = site.SiteUrl.ToLower();
+                    txtSiteURLAlias.Text = site.SiteUrlAlias == null ? string.Empty : site.SiteUrlAlias.ToLower();
                     //txtMobileUrl.Text = site.MobileUrl.ToLower();
                     txtStagingSiteUrl.Text = String.Format("{0}{1}", site.SiteUrl.ToLower(), URLPOSTFIX);
                     chkLive.Checked = site.Live.Value;

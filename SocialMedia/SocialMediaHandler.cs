@@ -40,6 +40,20 @@ namespace SocialMedia
                 return _integrationsService;
             }
         }
+
+        internal SitesService _sitesService;
+        internal SitesService SiteService
+        {
+            get
+            {
+                if (_sitesService == null)
+                {
+                    _sitesService = new SitesService();
+                }
+
+                return _sitesService;
+            }
+        }
         #endregion
 
         public int SiteId { get; private set; }
@@ -55,10 +69,12 @@ namespace SocialMedia
 
     public class FacebookMethods : SocialMediaHandlerBase
     {
+        int _siteID;
+
         public FacebookMethods(int siteID)
             : base(siteID)
         {
-           
+            _siteID = siteID;
         }
 
         /// <summary>
@@ -68,11 +84,13 @@ namespace SocialMedia
         {
             if (integrations.Facebook != null && !string.IsNullOrEmpty(integrations.Facebook.ApplicationID))
             {
+                Sites site = SiteService.GetBySiteId(_siteID);
+
                 string http = "http://";
                 if (isSecureConnection)
                     http = "https://";
 
-                string urlsuffix = http + urlAuthority;
+                string urlsuffix = http + site.SiteUrlAlias;
 
                 oAuthFacebook _oauth = new oAuthFacebook();
                 _oauth.ClientID = integrations.Facebook.ApplicationID;
@@ -93,11 +111,13 @@ namespace SocialMedia
         {
             if (integrations.Facebook != null && !string.IsNullOrEmpty(integrations.Facebook.ApplicationID))
             {
+                Sites site = SiteService.GetBySiteId(_siteID);
+
                 string http = "http://";
                 if (isSecureConnection)
                     http = "https://";
 
-                string urlsuffix = http + urlAuthority;
+                string urlsuffix = http + site.SiteUrlAlias;
 
                 oAuthFacebook _oauth = new oAuthFacebook();
                 _oauth.ClientID = integrations.Facebook.ApplicationID;
@@ -140,10 +160,14 @@ namespace SocialMedia
                     if (!string.IsNullOrEmpty(gs.LinkedInApi))
                     {
                         LinkedinAPI = gs.LinkedInApi;
+
+                        Sites site = SiteService.GetBySiteId(_siteID);
+
                         string http = "http://";
                         if (isSecureConnection)
                             http = "https://";
-                        urlsuffix = http + urlAuthority;
+
+                        urlsuffix = http + site.SiteUrlAlias;
                     }
                 }
             }
@@ -175,13 +199,19 @@ namespace SocialMedia
                     if (!string.IsNullOrEmpty(gs.LinkedInApi))
                     {
                         LinkedinAPI = gs.LinkedInApi;
+
+                        Sites site = SiteService.GetBySiteId(_siteID);
+
                         string http = "http://";
                         if (isSecureConnection)
                             http = "https://";
-                        urlsuffix = http + urlAuthority;
+
+                        urlsuffix = http + site.SiteUrlAlias;
                     }
                 }
             }
+
+
 
             string redirectURLForLinkedIn = urlsuffix + "/oauthcallback.aspx?cbtype=linkedin&cbaction=login";
             HttpContext.Current.Session["SocialRequestedURL"] = redirectURLForLinkedIn;
@@ -195,7 +225,7 @@ namespace SocialMedia
             return null;
 
         }
-            
+
     }
 
     public class GoogleMethods : SocialMediaHandlerBase
@@ -208,15 +238,23 @@ namespace SocialMedia
         /// <summary>
         /// Use this method for Jobs Apply Page
         /// </summary>
-        public string OAuthApplyLoginRedirectURLGet(bool isSecureConnection, string urlAuthority, string urlRaw)
+        public string OAuthApplyLoginRedirectURLGet(bool isSecureConnection, string urlRaw)
         {
             if (integrations.Google != null && !string.IsNullOrEmpty(integrations.Google.ClientID))
             {
                 string googleappid = string.Empty;
                 string googleuri = string.Empty;
 
+                Sites site = SiteService.GetBySiteId(_siteID);
+
+                string http = "http://";
+                if (isSecureConnection)
+                    http = "https://";
+
+                string urlsuffix = http + site.SiteUrlAlias;
+
                 googleappid = integrations.Google.ClientID;
-                googleuri = string.Format("{1}://{0}/oauthcallback.aspx?cbtype=google&cbaction=applylogin", urlAuthority, (isSecureConnection) ? "https" : "http");
+                googleuri = string.Format("{0}/oauthcallback.aspx?cbtype=google&cbaction=applylogin", urlsuffix);
 
                 oAuthGoogle gmodule = new oAuthGoogle(googleappid, string.Empty, googleuri);
 
@@ -235,15 +273,23 @@ namespace SocialMedia
         /// <summary>
         /// Use this method for Member Login/Register page
         /// </summary>
-        public string OAuthMemberLoginRedirectURLGet(bool isSecureConnection, string urlAuthority, string urlRaw)
+        public string OAuthMemberLoginRedirectURLGet(bool isSecureConnection, string urlRaw)
         {
             if (integrations.Google != null && !string.IsNullOrEmpty(integrations.Google.ClientID))
             {
                 string googleappid = string.Empty;
                 string googleuri = string.Empty;
 
+                Sites site = SiteService.GetBySiteId(_siteID);
+
+                string http = "http://";
+                if (isSecureConnection)
+                    http = "https://";
+
+                string urlsuffix = http + site.SiteUrlAlias;
+
                 googleappid = integrations.Google.ClientID;
-                googleuri = string.Format("{1}://{0}/oauthcallback.aspx?cbtype=google&cbaction=login", urlAuthority, (isSecureConnection) ? "https" : "http");
+                googleuri = string.Format("{0}/oauthcallback.aspx?cbtype=google&cbaction=login", urlsuffix);
 
                 oAuthGoogle gmodule = new oAuthGoogle(googleappid, string.Empty, googleuri);
                 HttpContext.Current.Session["ApplyURL"] = urlRaw;

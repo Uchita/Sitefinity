@@ -22,7 +22,7 @@ namespace JXTPortal.Website.usercontrols.job
         public double? MapLng = null;
         public string MapKey = null;
         public string JobAddress = string.Empty;
-
+        string strApplicationUrl = string.Empty;
 
         private int memberID = 0;
         private int _jobid = 0;
@@ -469,7 +469,7 @@ namespace JXTPortal.Website.usercontrols.job
                             
                             if (IsSimpleExternalLogon(job)) // If it is external job, makes the job apply link target to _blank
                             {
-                                string strApplicationUrl = string.Empty;
+
 
                                 strApplicationUrl = string.Format("/jobtracking.aspx?jobid={0}", job.JobId);
 
@@ -512,8 +512,6 @@ namespace JXTPortal.Website.usercontrols.job
                                 }
                                 else
                                 {
-                                    string strApplicationUrl = string.Empty;
-
 
                                     // Check if there is any CUSTOM APPLICATION FORM 
                                     JobApplicationTypeService JobApplicationTypeService = new JobApplicationTypeService();
@@ -614,6 +612,8 @@ namespace JXTPortal.Website.usercontrols.job
                         }
                     }
 
+                    //Verify and redirect if apply parameter is equals to "1"
+                    RedirectToApplyPage();
                 }
             }
         }
@@ -621,6 +621,26 @@ namespace JXTPortal.Website.usercontrols.job
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Use this method for checking whether its requests came from other sites with tracking parameters
+        /// </summary>
+        private void RedirectToApplyPage()
+        {
+            if (!string.IsNullOrWhiteSpace(Request.QueryString["apply"]))
+            {
+                if (Request.QueryString["apply"].Equals("1"))
+                {
+                    string jobApplyUr = string.Format("{0}?ref={1}&source={2}&aplitrakemail={3}",
+                                                        strApplicationUrl,
+                                                        Request.QueryString["ref"],
+                                                        Request.QueryString["source"],
+                                                        Request.QueryString["aplitrakemail"]);
+
+                    Response.Redirect(jobApplyUr, true);
+                }
+            }
+        }
 
         private void SimilarJobs(int jobid, int professionId, int roleId)
         {

@@ -67,6 +67,21 @@ namespace JXTPortal.Website
             get { return Request.Params["referrer"]; }
         }
 
+        public string parRef
+        {
+            get { return Request.Params["ref"]; }
+        }
+
+        public string parSource
+        {
+            get { return Request.Params["source"]; }
+        }
+
+        public string parApliTrakEmail
+        {
+            get { return Request.Params["aplitrakemail"]; }
+        }
+
         private JobsService _jobService;
         private JobsService JobsService
         {
@@ -179,7 +194,7 @@ namespace JXTPortal.Website
             if (!string.IsNullOrEmpty(hfGoogleAccessDenied.Value))
             {
                 _logger.Debug(string.Format("hfGoogleAccessDenied.Value = {0}", hfGoogleAccessDenied.Value));
-                
+
                 if (Session["ApplyURL"] != null)
                 {
                     var url = Session["ApplyURL"].ToString();
@@ -201,7 +216,7 @@ namespace JXTPortal.Website
             PortalEnums.SocialMedia.OAuthCallbackAction callbackAction;
             bool actionParseOK = Enum.TryParse<PortalEnums.SocialMedia.OAuthCallbackAction>(Request["cbaction"], true, out callbackAction);
             _logger.Debug(string.Format("typeParseOk = {0}, callbackAction = {1}", actionParseOK, callbackAction));
-            
+
             //other special cases due to restriction on callback urls
             if (!actionParseOK)
             {
@@ -313,7 +328,7 @@ namespace JXTPortal.Website
                             }
 
                             Regex r = new Regex("(?:[^a-z0-9.]|(?<=['\"])s)", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Compiled);
-                            
+
                             MemoryStream generatedDocument = new MemoryStream();
                             if (isHTML)
                             {
@@ -445,9 +460,9 @@ namespace JXTPortal.Website
                                 jobapplicationemail = tracking.RetrieveEmail(domain);
                             }
                         }
-                        
+
                         Regex r = new Regex("(?:[^a-z0-9.]|(?<=['\"])s)", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Compiled);
-                        
+
                         byte[] bytes = System.Convert.FromBase64String(data);
                         MemoryStream generatedDocument = new MemoryStream(bytes);
 
@@ -528,7 +543,15 @@ namespace JXTPortal.Website
 
                     newjobapp.JobAppValidateId = new Guid();
                     newjobapp.SiteIdReferral = SessionData.Site.MasterSiteId;
-                    newjobapp.UrlReferral = strUrlReferral;
+
+                    if (!string.IsNullOrWhiteSpace(parSource))
+                        newjobapp.UrlReferral = parSource;
+                    else
+                        newjobapp.UrlReferral = strUrlReferral;
+
+                    if (string.IsNullOrWhiteSpace(parRef))
+                        newjobapp.ExternalId = parRef;
+
                     newjobapp.AppliedWith = AppliedWith;
                     newjobapp.FirstName = SessionData.Member.FirstName;
                     newjobapp.Surname = SessionData.Member.Surname;
@@ -544,19 +567,24 @@ namespace JXTPortal.Website
                         // Retrieve value from JobsViewed Cookie, the format is {JobID}|{Domain},...
                         string domain = Utils.GetCookieDomain(Request.Cookies["JobsViewed"], newjobapp.JobId.Value);
 
-                        using (Entities.Jobs job = JobsService.GetByJobId(newjobapp.JobId.Value))
+                        if (!string.IsNullOrWhiteSpace(parApliTrakEmail))
+                            jobapplicationemail = parApliTrakEmail;
+                        else
                         {
-                            if (job != null)
+                            using (Entities.Jobs job = JobsService.GetByJobId(newjobapp.JobId.Value))
                             {
-                                jobapplicationemail = job.ApplicationEmailAddress;
-                                // call JobClientTracking to retrieve job application email if matches criteria (for Broadbean atm) 
-                                JobClientTracking tracking = new JobClientTracking(jobapplicationemail);
-                                jobapplicationemail = tracking.RetrieveEmail(domain);
+                                if (job != null)
+                                {
+                                    jobapplicationemail = job.ApplicationEmailAddress;
+                                    // call JobClientTracking to retrieve job application email if matches criteria (for Broadbean atm) 
+                                    JobClientTracking tracking = new JobClientTracking(jobapplicationemail);
+                                    jobapplicationemail = tracking.RetrieveEmail(domain);
+                                }
                             }
                         }
 
                         Regex r = new Regex("(?:[^a-z0-9.]|(?<=['\"])s)", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Compiled);
-                        
+
                         using (MemoryStream generatedDocument = new MemoryStream())
                         {
                             using (WordprocessingDocument package = WordprocessingDocument.Create(generatedDocument, WordprocessingDocumentType.Document))
@@ -740,6 +768,12 @@ namespace JXTPortal.Website
                     {
                         _oauth.RedirectURI += "&jobname=" + HttpUtility.UrlEncode(jobname);
                     }
+
+                    string inegrationLogParameters = string.Empty;
+
+                    if (string.IsNullOrWhiteSpace(parRef) == false && string.IsNullOrWhiteSpace(parSource) == false && string.IsNullOrWhiteSpace(parApliTrakEmail) == false)
+                        inegrationLogParameters = string.Format("?ref={0}&source={1}&aplitrakemail={2}", parRef, parSource, parApliTrakEmail);
+
                     string accesstoken = string.Empty;
                     string userinfo = _oauth.GetUserInfo(out accesstoken);
 
@@ -760,7 +794,7 @@ namespace JXTPortal.Website
                         {
                             if (Request.Params["cbaction"].ToLower() == "applylogin" || Request.Params["cbaction"].ToLower() == "apply")
                             {
-                                Response.Redirect(http + Request.Url.Host + "/applyjob/" + profession + "-jobs/" + jobname + "/" + ID + "#error=permission", false);
+                                Response.Redirect(http + Request.Url.Host + "/applyjob/" + profession + "-jobs/" + jobname + "/" + ID + inegrationLogParameters + "#error=permission", false);
                             }
                             else
                             {
@@ -804,7 +838,7 @@ namespace JXTPortal.Website
                             LoginFromAPI(gam, "Facebook", false, string.Empty);
                             if (Request.Params["cbaction"].ToLower() == "applylogin")
                             {
-                                Response.Redirect(http + Request.Url.Host + "/applyjob/" + profession + "-jobs/" + jobname + "/" + ID, false);
+                                Response.Redirect(http + Request.Url.Host + "/applyjob/" + profession + "-jobs/" + jobname + "/" + ID + inegrationLogParameters, false);
                                 return;
                             }
                             else if (Request.Params["cbaction"].ToLower() == "apply")
@@ -1186,7 +1220,7 @@ namespace JXTPortal.Website
 
         private void OAuthCallBackIndeed(PortalEnums.SocialMedia.OAuthCallbackAction callbackAction, string code)
         {
-          
+
             switch (callbackAction)
             {
                 case PortalEnums.SocialMedia.OAuthCallbackAction.Apply:
@@ -1198,7 +1232,7 @@ namespace JXTPortal.Website
         }
 
         private void ApplyWithIndeed()
-        { 
+        {
             _logger.Debug("Handling apply with Indeed Callback");
             //Indeed Methods
             string IndeedDataFile = ConfigurationManager.AppSettings["IndeedDataFile"];
@@ -1219,7 +1253,7 @@ namespace JXTPortal.Website
                 }
 
                 JavaScriptSerializer jss = new JavaScriptSerializer();
-                
+
                 oAuthIndeed.IndeedContract indeeddata = jss.Deserialize<oAuthIndeed.IndeedContract>(data);
                 if (indeeddata == null)
                 {
@@ -1441,9 +1475,9 @@ namespace JXTPortal.Website
                 return LoginErrorCodeGet("InputError");
             }
             int loginErrorCode = 0;
-            
+
             try
-            { 
+            {
                 bool newMemberCreated = false;
                 string newMemberPassword = null;
                 using (Entities.Members member = MembersService.SocialMediaUserHandler(externalUserID, email, firstName, lastName, out newMemberCreated, out newMemberPassword))
@@ -1470,7 +1504,7 @@ namespace JXTPortal.Website
                         //Send confirmation email to new member
                         MailService.SendNewJobApplicationAccount(member, newMemberPassword);
                     }
-                    
+
                 }
             }
             catch (Exception e)

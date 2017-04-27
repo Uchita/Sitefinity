@@ -617,7 +617,7 @@ namespace JXTPortal.Website
                 string screeningQuestionId = string.Format("ScreeningQuestion_{0}", hfScreeningQuestionId.Value);
                 string screeningQuestionAnswer = Request.Params[screeningQuestionId];
 
-                string[] splits = new string[0]();
+                string[] splits = new string[0];
                 if (screeningQuestion.Options != null)
                 {
                     screeningQuestion.Options.Replace("\n", "").Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);

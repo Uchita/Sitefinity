@@ -1471,8 +1471,6 @@ namespace JXTPortal.Website
 
                 if (member != null)
                 {
-                    string strUrlReferral = Utils.GetCookieDomain(Request.Cookies["JobsViewed"], JobID);
-
                     // [TODO] Member Apply for job sp
                     using (JXTPortal.Entities.JobApplication jobapp = new JXTPortal.Entities.JobApplication())
                     {
@@ -1482,37 +1480,51 @@ namespace JXTPortal.Website
 
                         jobapp.JobAppValidateId = new Guid();
                         jobapp.SiteIdReferral = SessionData.Site.SiteId;
-                        jobapp.UrlReferral = strUrlReferral;
+
+                        if (!string.IsNullOrWhiteSpace(Request.QueryString["source"]))
+                            jobapp.UrlReferral = Request.QueryString["source"];
+                        else
+                            jobapp.UrlReferral = Utils.GetCookieDomain(Request.Cookies["JobsViewed"], JobID);
+
                         jobapp.FirstName = member.FirstName;
                         jobapp.Surname = member.Surname;
                         jobapp.EmailAddress = member.EmailAddress;
                         jobapp.MobilePhone = member.MobilePhone;
                         jobapp.ApplicationStatus = (int)PortalEnums.JobApplications.ApplicationStatus.Applied;
                         jobapp.Draft = false;
+
+                        if (!string.IsNullOrWhiteSpace(Request.QueryString["ref"]))
+                            jobapp.ExternalId = Request.QueryString["ref"];
+
                         JobApplicationService.Insert(jobapp);
+
                         jobappid = jobapp.JobApplicationId;
 
                         // Disable the Apply Button
                         apply.Enabled = false;
 
-                        using (Entities.Jobs job = JobsService.GetByJobId(jobapp.JobId.Value))
+                        if (!string.IsNullOrWhiteSpace(Request.QueryString["aplitrakemail"]))
+                            jobapplicationemail = Request.QueryString["aplitrakemail"];
+                        else
                         {
-                            if (job != null)
+                            using (Entities.Jobs job = JobsService.GetByJobId(jobapp.JobId.Value))
                             {
-                                jobapplicationemail = job.ApplicationEmailAddress;
-                                string domain = string.Empty;
-                                ltReferrer.Text = domain;
+                                if (job != null)
+                                {
+                                    jobapplicationemail = job.ApplicationEmailAddress;
 
-                                // Retrieve value from JobsViewed Cookie, the format is {JobID}|{Domain},...
-                                domain = Utils.GetCookieDomain(Request.Cookies["JobsViewed"], JobID);
+                                    string domain = string.Empty;
+                                    ltReferrer.Text = domain;
 
-                                // call JobClientTracking to retrieve job application email if matches criteria (for Broadbean atm) 
-                                JobClientTracking tracking = new JobClientTracking(jobapplicationemail);
-                                jobapplicationemail = tracking.RetrieveEmail(domain);
+                                    // Retrieve value from JobsViewed Cookie, the format is {JobID}|{Domain},...
+                                    domain = Utils.GetCookieDomain(Request.Cookies["JobsViewed"], JobID);
 
+                                    // call JobClientTracking to retrieve job application email if matches criteria (for Broadbean atm) 
+                                    JobClientTracking tracking = new JobClientTracking(jobapplicationemail);
+                                    jobapplicationemail = tracking.RetrieveEmail(domain);
+                                }
                             }
                         }
-
                     }
 
                     if (cbSubscribeJobAlert.Checked)
@@ -1957,7 +1969,20 @@ namespace JXTPortal.Website
 
                 }
 
-                Response.Redirect(string.Format("/applyjob/{0}-jobs/{1}/{2}", Profession, JobName, JobID));
+                if (string.IsNullOrWhiteSpace(Request.QueryString["ref"]) == false &&
+                    string.IsNullOrWhiteSpace(Request.QueryString["source"]) == false &&
+                    string.IsNullOrWhiteSpace(Request.QueryString["aplitrakemail"]) == false)
+                {
+                    Response.Redirect(string.Format("/applyjob/{0}-jobs/{1}/{2}?ref={3}&source={4}&aplitrakemail={5}",
+                                                     Profession,
+                                                     JobName,
+                                                     JobID,
+                                                     Request.QueryString["ref"],
+                                                     Request.QueryString["source"],
+                                                     Request.QueryString["aplitrakemail"]));
+                }
+                else
+                    Response.Redirect(string.Format("/applyjob/{0}-jobs/{1}/{2}", Profession, JobName, JobID));
 
                 LoadResume();
                 LoadCoverLetter();

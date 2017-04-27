@@ -65,6 +65,26 @@ namespace SocialMedia
             integrations = IntegrationsService.AdminIntegrationsForSiteGet(siteID);
             SiteId = siteID;
         }
+
+        /// <summary>
+        /// This method is responsible for add source parameters when its necessary
+        /// </summary>
+        public string VerifySourceParameters(string currentReturnUri)
+        {
+            //Verify if user came from another source and adds all parameters necessary
+            if (string.IsNullOrWhiteSpace(HttpContext.Current.Request.QueryString["ref"]) == false &&
+                string.IsNullOrWhiteSpace(HttpContext.Current.Request.QueryString["source"]) == false &&
+                string.IsNullOrWhiteSpace(HttpContext.Current.Request.QueryString["aplitrakemail"]) == false)
+            {
+                currentReturnUri = string.Format("{0}&ref={1}&source={2}&aplitrakemail={3}",
+                                                    currentReturnUri,
+                                                    HttpContext.Current.Request.QueryString["ref"],
+                                                    HttpContext.Current.Request.QueryString["source"],
+                                                    HttpContext.Current.Request.QueryString["aplitrakemail"]);
+            }
+
+            return currentReturnUri;
+        }
     }
 
     public class FacebookMethods : SocialMediaHandlerBase
@@ -94,6 +114,10 @@ namespace SocialMedia
                 string p = (!string.IsNullOrWhiteSpace(profession)) ? "&profession=" + HttpUtility.UrlEncode(profession) : string.Empty;
                 string jobname = (!string.IsNullOrWhiteSpace(jobName)) ? "&jobname=" + HttpUtility.UrlEncode(jobName) : string.Empty;
                 _oauth.RedirectURI = urlsuffix + "/oauthcallback.aspx?cbtype=facebook&cbaction=applylogin&id=" + jobID.ToString() + p + jobname;
+
+                //Add source parameters when its necessary
+                _oauth.RedirectURI = VerifySourceParameters(_oauth.RedirectURI);
+
                 string token = _oauth.GetAuthorizationUrl();
                 return token;
             }
@@ -175,7 +199,6 @@ namespace SocialMedia
                 return redirectURL;
 
             return null;
-
         }
 
 
@@ -262,6 +285,7 @@ namespace SocialMedia
 
                 if (!string.IsNullOrWhiteSpace(googleURL))
                     return googleURL;
+
             }
             return null;
         }

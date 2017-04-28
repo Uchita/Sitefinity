@@ -22,6 +22,7 @@ using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using NotesFor.HtmlToOpenXml;
+using JXTPortal.Service.Dapper;
 
 namespace JXTPortal.Mobile.Website.Controllers.Job
 {
@@ -32,6 +33,7 @@ namespace JXTPortal.Mobile.Website.Controllers.Job
         private string resumeFolder;
 
         public IFileManager FileManagerService { get; set; }
+        public IJobApplicationScreeningAnswersService JobApplicationScreeningAnswersService { get; set; }
 
         private SitesService _sitesService;
         private SitesService SitesService
@@ -300,6 +302,8 @@ namespace JXTPortal.Mobile.Website.Controllers.Job
                                                 }
                                             }
 
+                                            MailService.SetJobApplicationScreeningAnswers(JobApplicationScreeningAnswersService);
+                                            MailService.SetFileManager(FileManagerService);
                                             MailService.SendMemberJobApplicationEmail(member);
                                             MailService.SendAdvertiserJobApplicationEmail(member, newjobapp, new HybridDictionary(), siteid);
                                             return RedirectToAction("ApplySuccess");

@@ -11,6 +11,8 @@ using System.Data;
 using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.Core;
 using System.IO;
+using JXTPortal.Common;
+using JXTPortal.Service.Dapper;
 
 namespace JXTPortal.Website.advertiser
 {
@@ -29,6 +31,9 @@ namespace JXTPortal.Website.advertiser
         #endregion
 
         #region Properties
+
+        public IFileManager FileManagerService { get; set; }
+        public IJobApplicationScreeningAnswersService JobApplicationScreeningAnswersService { get; set; }
 
         protected int JobID
         {
@@ -413,7 +418,8 @@ namespace JXTPortal.Website.advertiser
                                         siteid = job.SiteId;
                                     }
                                 }
-
+                                MailService.SetJobApplicationScreeningAnswers(JobApplicationScreeningAnswersService);
+                                MailService.SetFileManager(FileManagerService);
                                 MailService.SendAdvertiserJobApplicationEmail(member, jobapp, new HybridDictionary(), siteid);
                                 plhSuccess.Visible = true;
                             }

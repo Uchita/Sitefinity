@@ -3,6 +3,7 @@ using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using JXTPortal.Common;
 using JXTPortal.Entities;
+using JXTPortal.Service.Dapper;
 using log4net;
 using NotesFor.HtmlToOpenXml;
 using System;
@@ -92,6 +93,7 @@ namespace JXTPortal
         }
 
         public IFileManager FileManagerService { get; set; }
+        public IJobApplicationScreeningAnswersService JobApplicationScreeningAnswersService { get; set; }
 
 
         #endregion
@@ -310,6 +312,8 @@ namespace JXTPortal
                                 }
 
                                 // Todo - Send the PDF in the email also also
+                                MailService.SetJobApplicationScreeningAnswers(JobApplicationScreeningAnswersService);
+                                MailService.SetFileManager(FileManagerService);
                                 MailService.SendMemberJobApplicationEmail(member);
                                 MailService.SendAdvertiserJobApplicationEmail(member, jobApplication, new HybridDictionary(), siteid);
                             }

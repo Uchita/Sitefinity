@@ -16,6 +16,8 @@ using System.IO;
 using JXTPortal.Common;
 using System.Xml;
 using System.Text;
+using JXTPortal.Entities.Models;
+using SocialMedia;
 
 namespace JXTPortal.Website
 {
@@ -31,6 +33,7 @@ namespace JXTPortal.Website
     public class jxtMethods : System.Web.Services.WebService
     {
         private string bucketName = ConfigurationManager.AppSettings["AWSS3BucketName"];
+        private string privateBucketName = ConfigurationManager.AppSettings["AWSS3PrivateBucketName"];
         private string memberFileFolder;
         private string memberFileFolderFormat;
 
@@ -140,6 +143,58 @@ namespace JXTPortal.Website
             }
         }
 
+        private JobApplicationService _jobApplicationService;
+        private JobApplicationService JobApplicationService
+        {
+            get
+            {
+                if (_jobApplicationService == null)
+                {
+                    _jobApplicationService = new JobApplicationService();
+                }
+                return _jobApplicationService;
+            }
+        }
+
+        private JobsService _jobsService;
+        private JobsService JobsService
+        {
+            get
+            {
+                if (_jobsService == null)
+                {
+                    _jobsService = new JobsService();
+                }
+                return _jobsService;
+            }
+        }
+
+        private ViewJobsService _viewJobsService;
+        private ViewJobsService ViewJobsService
+        {
+            get
+            {
+                if (_viewJobsService == null)
+                {
+                    _viewJobsService = new ViewJobsService();
+                }
+                return _viewJobsService;
+            }
+        }
+
+        private IntegrationsService _integrationsService;
+        private IntegrationsService IntegrationsService
+        {
+            get
+            {
+                if (_integrationsService == null)
+                {
+                    _integrationsService = new IntegrationsService();
+                }
+
+                return _integrationsService;
+            }
+        }
         #endregion 
 
         public jxtMethods()
@@ -829,7 +884,7 @@ namespace JXTPortal.Website
                     //Insert into Members
                     MembersService.Insert(member);
                     _logger.DebugFormat("Member Inserted. MemberId: {0}", member.MemberId);
-                    
+
 
                     // If user uploaded Resume then Upload file.
                     List<HttpPostedFile> filesposted = new List<HttpPostedFile>();
@@ -1147,7 +1202,7 @@ namespace JXTPortal.Website
         [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
         public void IsMemberLoggedIn()
         {
-            _logger.Debug("Start Is Member Logged IN");
+            _logger.Debug("Start Is Member Logged In");
 
             WebResponse response = new WebResponse { Success = false, Data = new List<WebResponseData>(), Error = new List<WebResponseError>() };
             if (SessionData.Member != null)
@@ -1178,8 +1233,365 @@ namespace JXTPortal.Website
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public void MemberLogin()
         {
+            _logger.Debug("Start Member Login");
 
+            string username = HttpContext.Current.Request["username"];
+            string password = HttpContext.Current.Request["password"];
+
+            WebResponse response = new WebResponse { Success = false, Data = new List<WebResponseData>(), Error = new List<WebResponseError>() };
+            try
+            {
+                JXTPortal.Entities.Members member = MembersService.GetBySiteIdUsername(SessionData.Site.MasterSiteId, username);
+                if (member != null && member.Valid && member.Validated && member.Password == CommonService.EncryptMD5(password))
+                {
+                    _logger.Debug("Credentials Correct. Start Retrieving info from SalesForce");
+                    // SALESFORCE - Update the details from Sales force
+                    if (GetFromSalesforceAndSave(member.EmailAddress, member.ExternalMemberId))
+                    {
+                        member = MembersService.GetByMemberId(member.MemberId);
+                    }
+
+                    SessionService.RemoveAdvertiserUser();
+                    SessionService.SetMember(member);
+
+                    // Update Last Login Date of the Member
+                    _logger.Debug("Updating Member Last Login");
+                    member.LastLogon = DateTime.Now;
+                    MembersService.Update(member);
+
+                    response.Success = true;
+                    response.Data.Add(new WebResponseData { Value = "memberid", Text = SessionData.Member.MemberId.ToString() });
+                    response.Data.Add(new WebResponseData { Value = "firstname", Text = SessionData.Member.FirstName });
+                    response.Data.Add(new WebResponseData { Value = "surname", Text = SessionData.Member.Surname });
+                    response.Data.Add(new WebResponseData { Value = "cname", Text = PortalConstants.SiteCookie.MemberCookie });
+                    response.Data.Add(new WebResponseData { Value = "cvalue", Text = Common.Utils.Encrypt(SessionData.Member.MemberId.ToString() + "-" + SessionData.Site.AuthToken, true) });
+
+                    _logger.Debug("Login Succeed");
+                }
+                else
+                {
+                    response.Error.Add(new WebResponseError { Name = "memberlogin", Message = CommonFunction.GetResourceValue("LabelAccessDenied") });
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Debug("Error in member login", ex);
+                response.Error.Add(new WebResponseError { Name = "exception", Message = ex.Message });
+            }
+
+            HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(response));
         }
+
+        [WebMethod(EnableSession = true)]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public void CanApplyJob()
+        {
+            int memberId = 0;
+            int jobId = 0;
+
+            WebResponse response = new WebResponse { Success = false, Data = new List<WebResponseData>(), Error = new List<WebResponseError>() };
+
+            int.TryParse(HttpContext.Current.Request["jobid"], out jobId);
+            try
+            {
+                if (jobId <= 0)
+                {
+                    response.Error.Add(new WebResponseError { Name = "jobid", Message = CommonFunction.GetResourceValue("LabelRequiredField1") });
+
+                    HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(response));
+                    return;
+                }
+                else
+                {
+                    Entities.Jobs job = JobsService.GetByJobId(jobId);
+                    if (job == null || job.SiteId != SessionData.Site.SiteId)
+                    {
+                        response.Error.Add(new WebResponseError { Name = "jobid", Message = CommonFunction.GetResourceValue("Invalid Job Id") });
+
+                        HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(response));
+                        return;
+                    }
+                }
+
+                if (SessionData.Member != null)
+                {
+                    memberId = SessionData.Member.MemberId;
+                }
+
+                if (CheckMemberApplied(jobId, memberId))
+                {
+                    response.Error.Add(new WebResponseError { Name = "member", Message = CommonFunction.GetResourceValue("LabelJobApplied") });
+                }
+                else
+                {
+                    response.Success = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Debug("Error in checking member can ApplyJob", ex);
+                response.Error.Add(new WebResponseError { Name = "exception", Message = ex.Message });
+            }
+
+            HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(response));
+        }
+
+        private bool CheckMemberApplied(int jobId, int memberId)
+        {
+            if (memberId == 0) return false;
+
+            using (TList<JobApplication> jobApplicationList = JobApplicationService.CustomGetByJobIdMemberId(jobId, memberId))
+            {
+                if (jobApplicationList != null && jobApplicationList.Count > 0 &&
+                        memberId == jobApplicationList[0].MemberId &&
+                        jobApplicationList[0].Draft == false)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        [WebMethod(EnableSession = true)]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public void GetApplicationSocialMediaLogin()
+        {
+            _logger.Debug("Start Getting Application Social Media Details");
+
+            WebResponse response = new WebResponse { Success = false, Data = new List<WebResponseData>(), Error = new List<WebResponseError>() };
+
+            string profession = HttpContext.Current.Request["profession"];
+            string jobName = HttpContext.Current.Request["jobname"];
+            int jobId = 0;
+
+            if (string.IsNullOrWhiteSpace(profession))
+            {
+                response.Error.Add(new WebResponseError { Name = "profession", Message = CommonFunction.GetResourceValue("LabelRequiredField1") });
+            }
+
+            if (string.IsNullOrWhiteSpace(jobName))
+            {
+                response.Error.Add(new WebResponseError { Name = "jobname", Message = CommonFunction.GetResourceValue("LabelRequiredField1") });
+            }
+
+            int.TryParse(HttpContext.Current.Request["jobid"], out jobId);
+
+            if (jobId <= 0)
+            {
+                response.Error.Add(new WebResponseError { Name = "jobid", Message = CommonFunction.GetResourceValue("LabelRequiredField1") });
+            }
+            else
+            {
+                Entities.Jobs job = JobsService.GetByJobId(jobId);
+                if (job == null || job.SiteId != SessionData.Site.SiteId)
+                {
+                    response.Error.Add(new WebResponseError { Name = "jobid", Message = CommonFunction.GetResourceValue("Invalid Job Id") });
+                }
+            }
+
+            if (response.Error.Count == 0)
+            {
+                string domainToPassToRedirectURI = HttpContext.Current.Request.Url.Host;
+                if (HttpContext.Current.Request.IsLocal)
+                    domainToPassToRedirectURI += ":" + HttpContext.Current.Request.Url.Port;
+
+                string rawUrl = string.Format("/applyjob/{0}/{1}/{2}", profession, jobName, jobId);
+
+                //Get Integration Details
+                AdminIntegrations.Integrations integrations = IntegrationsService.AdminIntegrationsForSiteGet(SessionData.Site.SiteId);
+                if (integrations != null)
+                {
+                    //Google login button
+                    if (integrations.Google != null && !string.IsNullOrWhiteSpace(integrations.Google.ClientID) && !string.IsNullOrWhiteSpace(integrations.Google.ClientSecret) && integrations.Google.Valid)
+                    {
+                        GoogleMethods gg = new GoogleMethods(SessionData.Site.SiteId);
+
+                        string oauthURL = string.Empty;
+
+                        oauthURL = gg.OAuthApplyLoginRedirectURLGet(HttpContext.Current.Request.IsSecureConnection, domainToPassToRedirectURI, rawUrl);
+
+                        response.Data.Add(new WebResponseData { Value = "google", Text = oauthURL });
+                    }
+
+                    //Facebook login button
+                    if (integrations.Facebook != null && !string.IsNullOrWhiteSpace(integrations.Facebook.ApplicationID) && !string.IsNullOrWhiteSpace(integrations.Facebook.ApplicationSecret) && integrations.Facebook.Valid)
+                    {
+                        FacebookMethods fb = new FacebookMethods(SessionData.Site.SiteId);
+
+                        string oauthURL = string.Empty;
+                        string lowerURL = HttpContext.Current.Request.Url.ToString().ToLower();
+
+                        oauthURL = fb.OAuthApplyLoginRedirectURLGet(HttpContext.Current.Request.IsSecureConnection, domainToPassToRedirectURI, profession, jobName, jobId);
+
+                        response.Data.Add(new WebResponseData { Value = "facebook", Text = oauthURL });
+                    }
+                }
+
+                //linkedin login button
+                string linkedinapi = string.Empty;
+                using (TList<JXTPortal.Entities.GlobalSettings> tgs = GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId))
+                {
+                    if (tgs.Count > 0)
+                    {
+                        JXTPortal.Entities.GlobalSettings gs = tgs[0];
+                        if (!string.IsNullOrEmpty(gs.LinkedInApi))
+                        {
+                            LinkedInMethods li = new LinkedInMethods(SessionData.Site.SiteId);
+
+                            string oauthURL = li.OAuthApplyLoginRedirectURLGet(HttpContext.Current.Request.IsSecureConnection, domainToPassToRedirectURI, rawUrl, jobId);
+
+                            response.Data.Add(new WebResponseData { Value = "linkedin", Text = oauthURL });
+                        }
+                    }
+                }
+
+                response.Success = (response.Data.Count > 0);
+            }
+
+            HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(response));
+        }
+
+        [WebMethod(EnableSession = true)]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public void GetSocialMediaApplyWith()
+        {
+            _logger.Debug("Start Getting Social Media Apply With");
+
+            WebResponse response = new WebResponse { Success = false, Data = new List<WebResponseData>(), Error = new List<WebResponseError>() };
+            JXTPortal.Entities.ViewJobs job = null;
+
+            string profession = HttpContext.Current.Request["profession"];
+            string jobName = HttpContext.Current.Request["jobname"];
+            int jobId = 0;
+
+            if (string.IsNullOrWhiteSpace(profession))
+            {
+                response.Error.Add(new WebResponseError { Name = "profession", Message = CommonFunction.GetResourceValue("LabelRequiredField1") });
+            }
+
+            if (string.IsNullOrWhiteSpace(jobName))
+            {
+                response.Error.Add(new WebResponseError { Name = "jobname", Message = CommonFunction.GetResourceValue("LabelRequiredField1") });
+            }
+
+            int.TryParse(HttpContext.Current.Request["jobid"], out jobId);
+
+            if (jobId <= 0)
+            {
+                response.Error.Add(new WebResponseError { Name = "jobid", Message = CommonFunction.GetResourceValue("LabelRequiredField1") });
+            }
+            else
+            {
+                job = ViewJobsService.GetByID(jobId, SessionData.Site.SiteId).FirstOrDefault();
+                if (job == null || job.SiteId != SessionData.Site.SiteId)
+                {
+                    response.Error.Add(new WebResponseError { Name = "jobid", Message = CommonFunction.GetResourceValue("Invalid Job Id") });
+                }
+            }
+
+            if (response.Error.Count == 0)
+            {
+                string domainToPassToRedirectURI = HttpContext.Current.Request.Url.Host;
+                if (HttpContext.Current.Request.IsLocal)
+                    domainToPassToRedirectURI += ":" + HttpContext.Current.Request.Url.Port;
+
+                string rawUrl = string.Format("/applyjob/{0}/{1}/{2}", profession, jobName, jobId);
+                string host = ((HttpContext.Current.Request.IsSecureConnection) ? "https://" : "http://") + domainToPassToRedirectURI;
+
+                //Get Integration Details
+                AdminIntegrations.Integrations integrations = IntegrationsService.AdminIntegrationsForSiteGet(SessionData.Site.SiteId);
+                if (integrations != null)
+                {
+                    if (integrations != null && integrations.Seek != null)
+                    {
+                        AdminIntegrations.Seek seek = integrations.Seek;
+                        if (seek.Valid)
+                        {
+                            string seekurl = (ConfigurationManager.AppSettings["IsSeekLive"].ToString() == "1") ? "https://www.seek.com.au" : "https://www.seek.com.au.sandbox-qa";
+
+                            if (seek.Valid)
+                            {
+                                string jobUrl = string.Format("{0}{1}", host, rawUrl);
+
+                                string seekUrl = string.Format("{0}/api/iam/oauth2/authorize?client_id={1}&redirect_uri={2}oauthcallback.aspx%3Fcbtype%3Dseek%26cbaction%3Dapply&scope=r_profile_apply&response_type=code&state={3}",
+                                                                seekurl, seek.ClientID, Server.UrlEncode(host + "/"), Server.UrlEncode(string.Format("{0}|{1}", jobId, jobUrl)));
+
+                                response.Data.Add(new WebResponseData { Value = "seek", Text = seekUrl });
+                            }
+                        }
+                    }
+
+                    if (integrations != null && integrations.Indeed != null)
+                    {
+                        AdminIntegrations.Indeed indeed = integrations.Indeed;
+                        if (indeed.Valid)
+                        {
+                            string indeedSpan = string.Format(@"<span class=""indeed-apply-widget""
+                             data-indeed-apply-apiToken=""{0}""
+                             data-indeed-apply-jobId=""{1}""
+                             data-indeed-apply-jobLocation=""{2}""
+                             data-indeed-apply-jobCompanyName=""{3}""
+                             data-indeed-apply-jobTitle=""{4}""
+                             data-indeed-apply-jobUrl=""{5}""
+                             data-indeed-apply-postUrl=""{5}""
+                             data-indeed-apply-onapplied=""OnIndeedCompleted""
+                             ></span>", indeed.APIToken, jobId, job.SiteAreaName + ", " + job.SiteLocationName, job.CompanyName,
+                             string.Format("{0}://{1}{2}", (HttpContext.Current.Request.IsSecureConnection) ? "https" : "http", domainToPassToRedirectURI, JobsService.GetJobUrl(profession, jobName, jobId)),
+                             string.Format("{0}://{1}{2}", (HttpContext.Current.Request.IsSecureConnection) ? "https" : "http", domainToPassToRedirectURI,
+                                "/oauthcallback.aspx?cbtype=indeed&cbaction=apply&jobid=" + jobId.ToString() +
+                                "&profession=" + profession + "&jobname=" + jobName)
+                             );
+
+                            response.Data.Add(new WebResponseData { Value = "indeed", Text = indeedSpan });
+                        }
+                    }
+                }
+
+                //linkedin login button
+                oAuthLinkedIn _oauth = new oAuthLinkedIn();
+                string linkedinapi = string.Empty;
+                using (TList<JXTPortal.Entities.GlobalSettings> tgs = GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId))
+                {
+                    if (tgs.Count > 0)
+                    {
+                        JXTPortal.Entities.GlobalSettings gs = tgs[0];
+                        if (!string.IsNullOrEmpty(gs.LinkedInApi))
+                        {
+                            string linkedinUrl =  _oauth.RequestToken(gs.LinkedInApi, host, jobId.ToString(), HttpContext.Current.Request.RawUrl, Utils.GetUrlReferrerDomain(), new List<string> { "cbtype=linkedin", "cbaction=Apply" });
+                            response.Data.Add(new WebResponseData { Value = "linkedin", Text = linkedinUrl });
+                        }
+                    }
+                }
+
+                response.Success = (response.Data.Count > 0);
+            }
+
+            HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(response));
+        }
+
+        #region SALESFORCE
+
+        /// <summary>
+        /// SALESFORCE - If Member doesn't exist in Platform check if exist in SALESFORCE and grab the details from Salesforce AND send reset password email to member.
+        /// </summary>
+        /// <param name="strEmail"></param>
+        private bool GetFromSalesforceAndSave(string strEmail, string SalesForceContactID)
+        {
+            SalesforceMemberSync memberSync = new SalesforceMemberSync();
+            int memberid = 0; string errormsg = string.Empty;
+
+            // Get Candidate from Salesforce by email
+            // And If candidate exists in Sales force, save in Boardy platform.
+            if (memberSync.GetContactFromSalesForceAndSave(strEmail, SalesForceContactID, SessionData.Site.MasterSiteId, ref memberid, ref errormsg) && memberid > 0)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        #endregion
 
         [DataContract]
         private class WebResponse

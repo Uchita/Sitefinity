@@ -59,6 +59,11 @@ namespace JXTPortal
             JobApplicationScreeningAnswersService = container;
         }
 
+        public static void SetFileManager(IFileManager container)
+        {
+            FileManagerService = container;
+        }
+
         public static void Send(string fromTo, string to, string subject, string message)
         {
             EmailSender().Send(fromTo, to, subject, message);

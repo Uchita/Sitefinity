@@ -24,6 +24,7 @@ using DocumentFormat.OpenXml.Wordprocessing;
 using NotesFor.HtmlToOpenXml;
 using JXTPortal.Entities.Models;
 using log4net;
+using JXTPortal.Service.Dapper;
 
 namespace JXTPortal.Website
 {
@@ -35,7 +36,7 @@ namespace JXTPortal.Website
 
         private string resumeFolder;
         #region Properties
-
+        public IJobApplicationScreeningAnswersService JobApplicationScreeningAnswersService { get; set; }
         public IFileManager FileManagerService { get; set; }
 
         public string ID
@@ -82,6 +83,17 @@ namespace JXTPortal.Website
         public string parApliTrakEmail
         {
             get { return Request.Params["aplitrakemail"]; }
+		}
+		
+        private string HostUrl
+        {
+            get
+            {
+                string hostUrl = Request.Url.Host;
+                if (Request.IsLocal) hostUrl = string.Format("{0}:{1}", Request.Url.Host, Request.Url.Port);
+
+                return hostUrl;
+            }
         }
 
         private JobsService _jobService;
@@ -386,6 +398,8 @@ namespace JXTPortal.Website
                                         }
                                     }
 
+                                    MailService.SetJobApplicationScreeningAnswers(JobApplicationScreeningAnswersService);
+                                    MailService.SetFileManager(FileManagerService);
                                     MailService.SendMemberJobApplicationEmail(member);
                                     MailService.SendAdvertiserJobApplicationEmail(member, newjobapp, new HybridDictionary(), siteid, jobapplicationemail);
                                     success = true;
@@ -490,6 +504,8 @@ namespace JXTPortal.Website
                                     }
                                 }
 
+                                MailService.SetJobApplicationScreeningAnswers(JobApplicationScreeningAnswersService);
+                                MailService.SetFileManager(FileManagerService);
                                 MailService.SendMemberJobApplicationEmail(member);
                                 MailService.SendAdvertiserJobApplicationEmail(member, newjobapp, new HybridDictionary(), siteid, jobapplicationemail);
                                 // Response.Redirect(DynamicPagesService.GetDynamicPageUrl(JXTPortal.SystemPages.JOBAPPLY_SUCCESS, "", "", ""), false);
@@ -628,7 +644,8 @@ namespace JXTPortal.Website
                                             siteid = job.SiteId;
                                         }
                                     }
-
+                                    MailService.SetJobApplicationScreeningAnswers(JobApplicationScreeningAnswersService);
+                                    MailService.SetFileManager(FileManagerService);
                                     MailService.SendMemberJobApplicationEmail(member);
                                     MailService.SendAdvertiserJobApplicationEmail(member, newjobapp, new HybridDictionary(), siteid, jobapplicationemail);
                                     Response.Redirect(DynamicPagesService.GetDynamicPageUrl(JXTPortal.SystemPages.JOBAPPLY_SUCCESS, "", "", ""), false);
@@ -760,7 +777,7 @@ namespace JXTPortal.Website
                     _oauth.ClientID = integrations.Facebook.ApplicationID;
                     _oauth.ClientSecret = integrations.Facebook.ApplicationSecret;
                     string http = (Request.IsSecureConnection) ? "https://" : "http://";
-                    string urlsuffix = http + HttpContext.Current.Request.Url.Host;
+                    string urlsuffix = http + HostUrl;
                     _oauth.RedirectURI = urlsuffix + "/oauthcallback.aspx?cbtype=" + Request.Params["cbtype"] + "&cbaction=" + Request.Params["cbaction"] + "&id=" + ID;
                     if (!string.IsNullOrEmpty(profession))
                     {
@@ -771,10 +788,10 @@ namespace JXTPortal.Website
                         _oauth.RedirectURI += "&jobname=" + HttpUtility.UrlEncode(jobname);
                     }
 
-                    string inegrationLogParameters = string.Empty;
+                    string integrationLogParameters = string.Empty;
 
                     if (string.IsNullOrWhiteSpace(parRef) == false && string.IsNullOrWhiteSpace(parSource) == false && string.IsNullOrWhiteSpace(parApliTrakEmail) == false)
-                        inegrationLogParameters = string.Format("?ref={0}&source={1}&aplitrakemail={2}", parRef, parSource, parApliTrakEmail);
+                        integrationLogParameters = string.Format("?ref={0}&source={1}&aplitrakemail={2}", parRef, parSource, parApliTrakEmail);
 
                     string accesstoken = string.Empty;
                     string userinfo = _oauth.GetUserInfo(out accesstoken);
@@ -796,7 +813,7 @@ namespace JXTPortal.Website
                         {
                             if (Request.Params["cbaction"].ToLower() == "applylogin" || Request.Params["cbaction"].ToLower() == "apply")
                             {
-                                Response.Redirect(http + Request.Url.Host + "/applyjob/" + profession + "-jobs/" + jobname + "/" + ID + inegrationLogParameters + "#error=permission", false);
+                                Response.Redirect(http + HostUrl + "/applyjob/" + profession + "-jobs/" + jobname + "/" + ID + integrationLogParameters + "#error=permission", false);
                             }
                             else
                             {
@@ -810,27 +827,7 @@ namespace JXTPortal.Website
                         gam.FirstName = oAuthResult.first_name;
                         gam.Surname = oAuthResult.last_name;
                         gam.EmailAddress = oAuthResult.email;
-
-                        //if (string.IsNullOrWhiteSpace(gam.EmailAddress))
-                        //{
-                        //    if (integrations.Facebook != null && !string.IsNullOrEmpty(integrations.Facebook.ApplicationID))
-                        //    {
-                        //        string strhttp = "http://";
-                        //        if (Request.IsSecureConnection)
-                        //            strhttp = "https://";
-
-                        //        string strurlsuffix = strhttp + HttpContext.Current.Request.Url.Authority;
-
-                        //        _oauth.ClientID = integrations.Facebook.ApplicationID;
-                        //        string p = (!string.IsNullOrWhiteSpace(profession)) ? "&profession=" + HttpUtility.UrlEncode(profession) : string.Empty;
-                        //        string strjobname = (!string.IsNullOrWhiteSpace(jobname)) ? "&jobname=" + HttpUtility.UrlEncode(jobname) : string.Empty;
-                        //        _oauth.RedirectURI = strurlsuffix + "/oauthcallback.aspx?cbtype=facebook&cbaction=" + Request["cbaction"] + "&id=" + ID.ToString() + p + strjobname;
-                        //        string token = _oauth.Authorize();
-                        //        Response.Redirect(token);
-                        //        return;
-                        //    }
-                        //}
-
+                        
                         if (string.IsNullOrWhiteSpace(ID))
                         {
                             LoginFromAPI(gam, "Facebook", true, string.Empty);
@@ -840,7 +837,7 @@ namespace JXTPortal.Website
                             LoginFromAPI(gam, "Facebook", false, string.Empty);
                             if (Request.Params["cbaction"].ToLower() == "applylogin")
                             {
-                                Response.Redirect(http + Request.Url.Host + "/applyjob/" + profession + "-jobs/" + jobname + "/" + ID + inegrationLogParameters, false);
+                                Response.Redirect(http + HostUrl + "/applyjob/" + profession + "-jobs/" + jobname + "/" + ID + integrationLogParameters, false);
                                 return;
                             }
                             else if (Request.Params["cbaction"].ToLower() == "apply")
@@ -1120,7 +1117,7 @@ namespace JXTPortal.Website
                 strReferrer += (string.IsNullOrWhiteSpace(profession)) ? string.Empty : HttpUtility.UrlEncode("&profession=" + HttpUtility.UrlEncode(profession));
                 strReferrer += (string.IsNullOrWhiteSpace(jobname)) ? string.Empty : HttpUtility.UrlEncode("&jobname=" + HttpUtility.UrlEncode(jobname));
                 strReferrer += HttpUtility.UrlEncode("&cbtype=linkedin&cbaction=" + Request["cbaction"]);
-                string s = _oauth.oAuth2AccessToken(code, String.Format("{4}%3a%2f%2f{0}%2foauthcallback.aspx{1}{2}{3}", HttpUtility.UrlEncode(Request.Url.Host), strId, strJobUrl, strReferrer, http), linkedinconsumerkey, linkedinconsumersecret);
+                string s = _oauth.oAuth2AccessToken(code, String.Format("{4}%3a%2f%2f{0}%2foauthcallback.aspx{1}{2}{3}", HttpUtility.UrlEncode(HostUrl), strId, strJobUrl, strReferrer, http), linkedinconsumerkey, linkedinconsumersecret);
                 JavaScriptSerializer jss = new JavaScriptSerializer();
                 Dictionary<string, string> oAuthResult = jss.Deserialize<Dictionary<string, string>>(s);
                 string accessToken = oAuthResult["access_token"];

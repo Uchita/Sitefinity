@@ -513,15 +513,14 @@ namespace JXTPortal.Website
             {
                 List<JobScreeningQuestionsEntity> jobScreeningQuestions = JobScreeningQuestionsService.SelectByJobID(JobID);
                 var screeningQuestionIds = jobScreeningQuestions.Select(q => q.ScreeningQuestionId).ToList();
-
-
+                
                 if (screeningQuestionIds.Count > 0)
                 {
                     List<ScreeningQuestionsEntity> screeningQuestions = ScreeningQuestionsService.SelectByIds(screeningQuestionIds);
 
-                    List<ScreeningQuestionsEntity> visibleScreeningQuestions = screeningQuestions.Where(q => q.Visible = true).OrderBy(q => q.ScreeningQuestionIndex).ToList<ScreeningQuestionsEntity>();
+                    List<ScreeningQuestionsEntity> visibleScreeningQuestions = screeningQuestions.Where(q => q.Visible).OrderBy(q => q.ScreeningQuestionIndex).ToList<ScreeningQuestionsEntity>();
 
-                    if (screeningQuestions.Count > 0)
+                    if (visibleScreeningQuestions.Count > 0)
                     {
                         phScreeningQuestions.Visible = true;
                         rptScreeningQuestions.DataSource = visibleScreeningQuestions;
@@ -617,7 +616,11 @@ namespace JXTPortal.Website
                 string screeningQuestionId = string.Format("ScreeningQuestion_{0}", hfScreeningQuestionId.Value);
                 string screeningQuestionAnswer = Request.Params[screeningQuestionId];
 
-                string[] splits = screeningQuestion.Options.Replace("\n", "").Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] splits = new string[0];
+                if (screeningQuestion.Options != null)
+                {
+                    splits = screeningQuestion.Options.Replace("\n", "").Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                }
 
                 if (screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.TextBox)
                 {
@@ -1894,6 +1897,8 @@ namespace JXTPortal.Website
                                 if (!string.IsNullOrWhiteSpace(ConfigurationManager.AppSettings["EnworldSiteID"]) &&
                                         !ConfigurationManager.AppSettings["EnworldSiteID"].Contains(" " + SessionData.Site.MasterSiteId + " "))
                                 {
+                                    MailService.SetJobApplicationScreeningAnswers(JobApplicationScreeningAnswersService);
+                                    MailService.SetFileManager(FileManagerService);
                                     MailService.SetJobApplicationScreeningAnswers(JobApplicationScreeningAnswersService);
                                     MailService.SendAdvertiserJobApplicationEmail(member, jobapp, customEmailFields, siteid, jobapplicationemail);
                                 }

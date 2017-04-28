@@ -1,6 +1,9 @@
 ﻿ALTER TABLE Sites ADD SiteURLAlias VARCHAR(500) NULL
 GO
 
+UPDATE sites SET SiteURLAlias = SiteURL
+GO
+
 ALTER TABLE GlobalSettings ADD JobApplicationPageID INT NULL
 GO
 

@@ -69,7 +69,7 @@ namespace JXT.Integration.AWS
                 errorMessage = string.Format("{0}: An error occurred with the message '{1}'", action, exception.Message);
             }
 
-            _logger.ErrorFormat("{0}. {1}", string.Join(", ", paramInfos.Select(x => x.Name + ": " + x.Value)));
+            _logger.ErrorFormat("{0}", string.Join(", ", paramInfos.Select(x => x.Name + ": " + x.Value)));
             _logger.Error(exception);
 
             return errorMessage;
@@ -235,7 +235,7 @@ namespace JXT.Integration.AWS
 
         public void CopyObject(string bucketName, string sourceFolder, string sourceName, string destinationFolder, string destinationName, out string errorMessage)
         {
-            _logger.InfoFormat("Copying object from: {0}/{1} to: {2}/{3}; In bucket: {2}", sourceName, sourceFolder, destinationName, destinationFolder, bucketName);
+            _logger.InfoFormat("Copying object from: {0}/{1} to: {2}/{3}; In bucket: {4}", sourceName, sourceFolder, destinationName, destinationFolder, bucketName);
             errorMessage = string.Empty;
             List<ParamInfo> paramInfos = new List<ParamInfo>();
 
@@ -266,7 +266,7 @@ namespace JXT.Integration.AWS
 
         public void MoveObject(string bucketName, string sourceFolder, string sourceName, string destinationFolder, string destinationName, out string errorMessage)
         {
-            _logger.InfoFormat("Moving object from: {0}/{1} to: {2}/{3}; In bucket: {2}", sourceName, sourceFolder, destinationName, destinationFolder, bucketName);
+            _logger.InfoFormat("Moving object from: {0}/{1} to: {2}/{3}; In bucket: {4}", sourceName, sourceFolder, destinationName, destinationFolder, bucketName);
             errorMessage = string.Empty;
 
             CopyObject(bucketName, sourceFolder, sourceName, destinationFolder, destinationName, out errorMessage);
@@ -311,7 +311,7 @@ namespace JXT.Integration.AWS
 
         public void DeleteFolder(string bucketName, string sourceFolder, out string errorMessage)
         {
-            _logger.InfoFormat("Deleting folder from: {0}; In bucket: {2}", sourceFolder, bucketName);
+            _logger.InfoFormat("Deleting folder from: {0}; In bucket: {1}", sourceFolder, bucketName);
             errorMessage = string.Empty;
             List<ParamInfo> paramInfos = new List<ParamInfo>();
 

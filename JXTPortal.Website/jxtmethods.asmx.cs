@@ -18,6 +18,13 @@ using System.Xml;
 using System.Text;
 using JXTPortal.Entities.Models;
 using SocialMedia;
+using JXTPortal.Data.Dapper.Entities.ScreeningQuestions;
+using JXTPortal.Service.Dapper;
+using JXT.Integration.AWS;
+using JXTPortal.Core.FileManagement;
+using JXTPortal.Data.Dapper.Repositories;
+using JXTPortal.Data.Dapper.Factories;
+using JXTPortal.Data.Dapper.Configuration;
 
 namespace JXTPortal.Website
 {
@@ -36,9 +43,14 @@ namespace JXTPortal.Website
         private string privateBucketName = ConfigurationManager.AppSettings["AWSS3PrivateBucketName"];
         private string memberFileFolder;
         private string memberFileFolderFormat;
+        private const string DEFAULT_CONNECTIONSTRING_KEY = "JXTPortal.Data.ConnectionString";
 
         ILog _logger;
         public IFileManager FileManagerService { get; set; }
+        
+        public IJobScreeningQuestionsService JobScreeningQuestionsService { get; set; }
+        public IScreeningQuestionsService ScreeningQuestionsService { get; set; }
+        public IJobApplicationScreeningAnswersService JobApplicationScreeningAnswersService { get; set; }
 
         #region Properties
         private MembersService _membersService = null;
@@ -195,11 +207,21 @@ namespace JXTPortal.Website
                 return _integrationsService;
             }
         }
-        #endregion 
+
+        #endregion
 
         public jxtMethods()
         {
             _logger = LogManager.GetLogger(typeof(jxtMethods));
+            IApplicationConfiguration ApplicationConfiguration = new DefaultApplicationConfiguration();
+            IConnectionFactory ConnectionFactory = new SqlServerConnectionFactory(ApplicationConfiguration);
+            IJobScreeningQuestionsRepository jobScreeningQuestionsRepository = new JobScreeningQuestionsRepository(ConnectionFactory, DEFAULT_CONNECTIONSTRING_KEY);
+            IScreeningQuestionsRepository screeningQuestionsRepository = new ScreeningQuestionsRepository(ConnectionFactory, DEFAULT_CONNECTIONSTRING_KEY);
+            IJobApplicationScreeningAnswersRepository jobApplicationScreeningAnswersRepository = new JobApplicationScreeningAnswersRepository(ConnectionFactory, DEFAULT_CONNECTIONSTRING_KEY);
+
+            JobScreeningQuestionsService = new JXTPortal.Service.Dapper.JobScreeningQuestionsService(jobScreeningQuestionsRepository);
+            ScreeningQuestionsService = new JXTPortal.Service.Dapper.ScreeningQuestionsService(screeningQuestionsRepository, jobScreeningQuestionsRepository);
+            JobApplicationScreeningAnswersService = new JXTPortal.Service.Dapper.JobApplicationScreeningAnswersService(jobApplicationScreeningAnswersRepository, screeningQuestionsRepository);
 
             if (!SessionData.Site.IsUsingS3)
             {
@@ -213,6 +235,8 @@ namespace JXTPortal.Website
             }
             else
             {
+                IAwsS3 s3 = new AwsS3();
+                FileManagerService = new FileManager(s3);
                 memberFileFolderFormat = "{0}/{1}";
                 memberFileFolder = ConfigurationManager.AppSettings["AWSS3MemberRootFolder"] + ConfigurationManager.AppSettings["AWSS3MemberFilesFolder"];
             }
@@ -1214,6 +1238,20 @@ namespace JXTPortal.Website
                     response.Data.Add(new WebResponseData { Value = "memberid", Text = SessionData.Member.MemberId.ToString() });
                     response.Data.Add(new WebResponseData { Value = "firstname", Text = SessionData.Member.FirstName });
                     response.Data.Add(new WebResponseData { Value = "surname", Text = SessionData.Member.Surname });
+
+                    using (TList<JXTPortal.Entities.MemberFiles> memberFiles = MemberFilesService.GetByMemberId(SessionData.Member.MemberId))
+                    {
+                        // Cover Letter
+                        var coverletters = memberFiles.Where(f => f.DocumentTypeId.HasValue && f.DocumentTypeId.Value == (int)PortalEnums.JobApplications.DocumentType.CoverLetter).Select(f => new WebResponseData { Value = f.MemberFileId.ToString(), Text = f.MemberFileTitle });
+
+                        response.Data.Add(new WebResponseData { Value = "coverletter", Text = new JavaScriptSerializer().Serialize(coverletters) });
+
+                        // Resume
+                        var resumes = memberFiles.Where(f => f.DocumentTypeId.HasValue && f.DocumentTypeId.Value == (int)PortalEnums.JobApplications.DocumentType.Resume).Select(f => new WebResponseData { Value = f.MemberFileId.ToString(), Text = f.MemberFileName });
+
+                        response.Data.Add(new WebResponseData { Value = "resume", Text = new JavaScriptSerializer().Serialize(resumes) });
+
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -1558,13 +1596,88 @@ namespace JXTPortal.Website
                         JXTPortal.Entities.GlobalSettings gs = tgs[0];
                         if (!string.IsNullOrEmpty(gs.LinkedInApi))
                         {
-                            string linkedinUrl =  _oauth.RequestToken(gs.LinkedInApi, host, jobId.ToString(), HttpContext.Current.Request.RawUrl, Utils.GetUrlReferrerDomain(), new List<string> { "cbtype=linkedin", "cbaction=Apply" });
+                            string linkedinUrl = _oauth.RequestToken(gs.LinkedInApi, host, jobId.ToString(), HttpContext.Current.Request.RawUrl, Utils.GetUrlReferrerDomain(), new List<string> { "cbtype=linkedin", "cbaction=Apply" });
                             response.Data.Add(new WebResponseData { Value = "linkedin", Text = linkedinUrl });
                         }
                     }
                 }
 
                 response.Success = (response.Data.Count > 0);
+            }
+
+            HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(response));
+        }
+
+        [WebMethod(EnableSession = true)]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public void GetScreeningQuestions()
+        {
+            int jobId = 0;
+
+            WebResponse response = new WebResponse { Success = false, Data = new List<WebResponseData>(), Error = new List<WebResponseError>() };
+
+            int.TryParse(HttpContext.Current.Request["jobid"], out jobId);
+            try
+            {
+                if (jobId <= 0)
+                {
+                    response.Error.Add(new WebResponseError { Name = "jobid", Message = CommonFunction.GetResourceValue("LabelRequiredField1") });
+
+                    HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(response));
+                    return;
+                }
+                else
+                {
+                    Entities.Jobs job = JobsService.GetByJobId(jobId);
+                    if (job == null || job.SiteId != SessionData.Site.SiteId)
+                    {
+                        response.Error.Add(new WebResponseError { Name = "jobid", Message = CommonFunction.GetResourceValue("Invalid Job Id") });
+
+                        HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(response));
+                        return;
+                    }
+                }
+
+                GlobalSettings globalSetting = GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId).FirstOrDefault();
+
+                if (globalSetting.EnableScreeningQuestions)
+                {
+                    List<JobScreeningQuestionsEntity> jobScreeningQuestions = JobScreeningQuestionsService.SelectByJobID(jobId);
+                    var screeningQuestionIds = jobScreeningQuestions.Select(q => q.ScreeningQuestionId).ToList();
+
+                    if (screeningQuestionIds.Count > 0)
+                    {
+                        List<ScreeningQuestionsEntity> screeningQuestions = ScreeningQuestionsService.SelectByIds(screeningQuestionIds);
+
+                        List<ScreeningQuestionsEntity> visibleScreeningQuestions = screeningQuestions.Where(q => q.Visible).OrderBy(q => q.ScreeningQuestionIndex).ToList<ScreeningQuestionsEntity>();
+
+                        foreach (ScreeningQuestionsEntity screeningQuestion in visibleScreeningQuestions)
+                        {
+                            ScreeningQuestionsData screeningQuestionData = new ScreeningQuestionsData
+                            {
+                                Id = screeningQuestion.ScreeningQuestionId.ToString(),
+                                Title = screeningQuestion.QuestionTitle,
+                                Type = Enum.GetName(typeof(PortalEnums.Jobs.ScreeningQuestionsType), screeningQuestion.QuestionType),
+                                Sequence = screeningQuestion.ScreeningQuestionIndex,
+                                Mandatory = screeningQuestion.Mandatory,
+                                Parameters = (!string.IsNullOrWhiteSpace(screeningQuestion.Options) ? screeningQuestion.Options.Replace("\n", "").Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries) : new string[0])
+                            };
+
+                            response.Data.Add(new WebResponseData { Value = "screeningquestion_" + screeningQuestionData.Id, Text = new JavaScriptSerializer().Serialize(screeningQuestionData) });
+                        }
+                    }
+
+                    response.Success = (response.Data.Count > 0);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Debug("Error in getting screening questions", ex);
+                response.Error.Add(new WebResponseError
+                {
+                    Name = "exception",
+                    Message = ex.Message
+                });
             }
 
             HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(response));
@@ -1627,6 +1740,24 @@ namespace JXTPortal.Website
         }
 
         internal class CustomQuestionAnswer
+        {
+            public int Id { get; set; }
+            public string Type { get; set; }
+            public string Value { get; set; }
+        }
+
+        [DataContract]
+        private class ScreeningQuestionsData
+        {
+            public string Id { get; set; }
+            public string Title { get; set; }
+            public string Type { get; set; }
+            public int Sequence { get; set; }
+            public bool Mandatory { get; set; }
+            public IEnumerable<string> Parameters { get; set; }
+        }
+
+        internal class ScreeningQuestionAnswer
         {
             public int Id { get; set; }
             public string Type { get; set; }

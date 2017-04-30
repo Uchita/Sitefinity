@@ -16,6 +16,8 @@ using System.IO;
 using JXTPortal.Common;
 using System.Xml;
 using System.Text;
+using JXT.Integration.AWS;
+using JXTPortal.Core.FileManagement;
 
 namespace JXTPortal.Website
 {
@@ -158,6 +160,8 @@ namespace JXTPortal.Website
             }
             else
             {
+                IAwsS3 s3 = new AwsS3();
+                FileManagerService = new FileManager(s3);
                 memberFileFolderFormat = "{0}/{1}";
                 memberFileFolder = ConfigurationManager.AppSettings["AWSS3MemberRootFolder"] + ConfigurationManager.AppSettings["AWSS3MemberFilesFolder"];
             }

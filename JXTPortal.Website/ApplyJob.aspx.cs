@@ -617,7 +617,13 @@ namespace JXTPortal.Website
                 string screeningQuestionId = string.Format("ScreeningQuestion_{0}", hfScreeningQuestionId.Value);
                 string screeningQuestionAnswer = Request.Params[screeningQuestionId];
 
-                string[] splits = screeningQuestion.Options.Replace("\n", "").Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] splits = new string[0];
+                if (screeningQuestion.Options != null)
+                {
+                    screeningQuestion.Options.Replace("\n", "").Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                    splits = screeningQuestion.Options.Replace("\n", "").Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                }
+
 
                 if (screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.TextBox)
                 {

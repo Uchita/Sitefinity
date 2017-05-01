@@ -1281,7 +1281,7 @@ namespace JXTPortal.Website
 
                 // Resume
 
-                if (string.IsNullOrEmpty(hfSeekResumeURL.Value))
+                if (SessionData.Site.SiteId != 1052 && string.IsNullOrEmpty(hfSeekResumeURL.Value))
                 {
                     if (rbUploadResume.Checked)
                     {

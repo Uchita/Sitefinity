@@ -620,8 +620,10 @@ namespace JXTPortal.Website
                 string[] splits = new string[0];
                 if (screeningQuestion.Options != null)
                 {
+                    screeningQuestion.Options.Replace("\n", "").Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
                     splits = screeningQuestion.Options.Replace("\n", "").Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
                 }
+
 
                 if (screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.TextBox)
                 {
@@ -1278,8 +1280,9 @@ namespace JXTPortal.Website
                 }
 
                 // Resume
-
-                if (string.IsNullOrEmpty(hfSeekResumeURL.Value))
+				//Temporary Workaround to all for non mandatory resumes on Tradestaff site.
+				//This will be a good test to see how temporary, Temporary really is
+                if (SessionData.Site.SiteId != 1052 && string.IsNullOrEmpty(hfSeekResumeURL.Value))
                 {
                     if (rbUploadResume.Checked)
                     {

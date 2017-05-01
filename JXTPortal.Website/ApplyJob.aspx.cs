@@ -1280,9 +1280,10 @@ namespace JXTPortal.Website
                 }
 
                 // Resume
-				//Temporary Workaround to all for non mandatory resumes on Tradestaff site.
-				//This will be a good test to see how temporary, Temporary really is
-                if (SessionData.Site.SiteId != 1052 && string.IsNullOrEmpty(hfSeekResumeURL.Value))
+                //Temporary Workaround to all for non mandatory resumes on Tradestaff site.
+                //This will be a good test to see how temporary, Temporary really is
+                bool isTradestaffSite = SessionData.Site.SiteId == 1052 || SessionData.Site.SiteId == 1117;
+                if (!isTradestaffSite && string.IsNullOrEmpty(hfSeekResumeURL.Value))
                 {
                     if (rbUploadResume.Checked)
                     {

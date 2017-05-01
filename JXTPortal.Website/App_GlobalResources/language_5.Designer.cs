@@ -3509,7 +3509,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please enter maximum 10 characters for State.
+        ///   Looks up a localized string similar to Please enter maximum 20 characters for State.
         /// </summary>
         internal static string LabelEnterMaxMailingState {
             get {
@@ -3536,7 +3536,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please enter maximum 10 characters for State.
+        ///   Looks up a localized string similar to Please enter maximum 20 characters for State.
         /// </summary>
         internal static string LabelEnterMaxState {
             get {
@@ -4306,6 +4306,15 @@ namespace Resources {
         internal static string LabelInvalidEmailFormat {
             get {
                 return ResourceManager.GetString("LabelInvalidEmailFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Gender.
+        /// </summary>
+        internal static string LabelInvalidGender {
+            get {
+                return ResourceManager.GetString("LabelInvalidGender", resourceCulture);
             }
         }
         

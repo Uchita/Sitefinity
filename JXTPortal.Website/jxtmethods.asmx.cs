@@ -47,7 +47,7 @@ namespace JXTPortal.Website
 
         ILog _logger;
         public IFileManager FileManagerService { get; set; }
-        
+
         public IJobScreeningQuestionsService JobScreeningQuestionsService { get; set; }
         public IScreeningQuestionsService ScreeningQuestionsService { get; set; }
         public IJobApplicationScreeningAnswersService JobApplicationScreeningAnswersService { get; set; }
@@ -1430,10 +1430,6 @@ namespace JXTPortal.Website
 
             if (response.Error.Count == 0)
             {
-                string domainToPassToRedirectURI = HttpContext.Current.Request.Url.Host;
-                if (HttpContext.Current.Request.IsLocal)
-                    domainToPassToRedirectURI += ":" + HttpContext.Current.Request.Url.Port;
-
                 string rawUrl = string.Format("/applyjob/{0}/{1}/{2}", profession, jobName, jobId);
 
                 //Get Integration Details
@@ -1447,7 +1443,7 @@ namespace JXTPortal.Website
 
                         string oauthURL = string.Empty;
 
-                        oauthURL = gg.OAuthApplyLoginRedirectURLGet(HttpContext.Current.Request.IsSecureConnection, domainToPassToRedirectURI, rawUrl);
+                        oauthURL = gg.OAuthApplyLoginRedirectURLGet(HttpContext.Current.Request.IsSecureConnection, rawUrl);
 
                         response.Data.Add(new WebResponseData { Value = "google", Text = oauthURL });
                     }
@@ -1460,7 +1456,7 @@ namespace JXTPortal.Website
                         string oauthURL = string.Empty;
                         string lowerURL = HttpContext.Current.Request.Url.ToString().ToLower();
 
-                        oauthURL = fb.OAuthApplyLoginRedirectURLGet(HttpContext.Current.Request.IsSecureConnection, domainToPassToRedirectURI, profession, jobName, jobId);
+                        oauthURL = fb.OAuthApplyLoginRedirectURLGet(HttpContext.Current.Request.IsSecureConnection, profession, jobName, jobId);
 
                         response.Data.Add(new WebResponseData { Value = "facebook", Text = oauthURL });
                     }
@@ -1477,7 +1473,7 @@ namespace JXTPortal.Website
                         {
                             LinkedInMethods li = new LinkedInMethods(SessionData.Site.SiteId);
 
-                            string oauthURL = li.OAuthApplyLoginRedirectURLGet(HttpContext.Current.Request.IsSecureConnection, domainToPassToRedirectURI, rawUrl, jobId);
+                            string oauthURL = li.OAuthApplyLoginRedirectURLGet(HttpContext.Current.Request.IsSecureConnection,rawUrl, jobId);
 
                             response.Data.Add(new WebResponseData { Value = "linkedin", Text = oauthURL });
                         }

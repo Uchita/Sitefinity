@@ -97,7 +97,7 @@ namespace SocialMedia
         /// <summary>
         /// Use this method for Jobs Apply Page
         /// </summary>
-        public string OAuthApplyLoginRedirectURLGet(bool isSecureConnection, string urlAuthority, string profession, string jobName, int jobID)
+        public string OAuthApplyLoginRedirectURLGet(bool isSecureConnection, string profession, string jobName, int jobID)
         {
             if (integrations.Facebook != null && !string.IsNullOrEmpty(integrations.Facebook.ApplicationID))
             {
@@ -128,7 +128,7 @@ namespace SocialMedia
         /// <summary>
         /// Use this method for Member Login/Register page
         /// </summary>
-        public string OAuthMemberLoginRedirectURLGet(bool isSecureConnection, string urlAuthority)
+        public string OAuthMemberLoginRedirectURLGet(bool isSecureConnection)
         {
             if (integrations.Facebook != null && !string.IsNullOrEmpty(integrations.Facebook.ApplicationID))
             {
@@ -167,7 +167,7 @@ namespace SocialMedia
         /// <summary>
         /// Use this method for Jobs Apply Page
         /// </summary>
-        public string OAuthApplyLoginRedirectURLGet(bool isSecureConnection, string urlAuthority, string urlRaw, int jobID)
+        public string OAuthApplyLoginRedirectURLGet(bool isSecureConnection, string urlRaw, int jobID)
         {
             oAuthLinkedIn _oauth = new oAuthLinkedIn();
             string LinkedinAPI = string.Empty;
@@ -205,7 +205,7 @@ namespace SocialMedia
         /// <summary>
         /// Use this method for Member Login/Register page
         /// </summary>
-        public string OAuthMemberLoginRedirectURLGet(bool isSecureConnection, string urlAuthority)
+        public string OAuthMemberLoginRedirectURLGet(bool isSecureConnection)
         {
             oAuthLinkedIn _oauth = new oAuthLinkedIn();
             string LinkedinAPI = string.Empty;

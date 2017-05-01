@@ -140,39 +140,13 @@ namespace JXTPortal.Website.usercontrols.member
             string oauthURL = string.Empty;
             string lowerURL = Request.Url.ToString().ToLower();
 
-            string domainToPassToRedirectURI = Request.Url.Host;
-            if (Request.IsLocal)
-                domainToPassToRedirectURI += ":" + Request.Url.Port;
-
             if (lowerURL.Contains("/member/login.aspx") || lowerURL.Contains("/member/register.aspx"))
-                oauthURL = fb.OAuthMemberLoginRedirectURLGet(Request.IsSecureConnection, domainToPassToRedirectURI);
+                oauthURL = fb.OAuthMemberLoginRedirectURLGet(Request.IsSecureConnection);
             else if (Request.Url.ToString().ToLower().Contains("/applyjob"))
-                oauthURL = fb.OAuthApplyLoginRedirectURLGet(Request.IsSecureConnection, domainToPassToRedirectURI, Profession, JobName, JobID);
-
+                oauthURL = fb.OAuthApplyLoginRedirectURLGet(Request.IsSecureConnection, Profession, JobName, JobID);
 
             if (!string.IsNullOrEmpty(oauthURL))
                 Response.Redirect(oauthURL);
-
-            ////Get Integration Details
-            //AdminIntegrations.Integrations integrations = IntegrationsService.AdminIntegrationsForSiteGet(SessionData.Site.SiteId);
-
-            //if (integrations.Facebook != null && !string.IsNullOrEmpty(integrations.Facebook.ApplicationID))
-            //{
-            //    string http = "http://";
-            //    if (Request.IsSecureConnection)
-            //        http = "https://";
-
-            //    string urlsuffix = http + HttpContext.Current.Request.Url.Authority;
-
-            //    oAuthFacebook _oauth = new oAuthFacebook();
-            //    _oauth.ClientID = integrations.Facebook.ApplicationID;
-            //    string p = (!string.IsNullOrWhiteSpace(Profession)) ? "&profession=" + HttpUtility.UrlEncode(Profession) : string.Empty;
-            //    string jobname = (!string.IsNullOrWhiteSpace(JobName)) ? "&jobname=" + HttpUtility.UrlEncode(JobName) : string.Empty;
-            //    _oauth.RedirectURI = urlsuffix + "/oauthcallback.aspx?cbtype=facebook&cbaction=applylogin&id=" + JobID.ToString() + p + jobname;
-            //    string token = _oauth.Authorize();
-            //    Response.Redirect(token);
-
-            //}
         }
 
         protected void lbSignInLinkedIn_Click(object sender, EventArgs e)
@@ -184,35 +158,12 @@ namespace JXTPortal.Website.usercontrols.member
             string lowerURL = Request.Url.ToString().ToLower();
 
             if (lowerURL.Contains("/member/login.aspx") || lowerURL.Contains("/member/register.aspx"))
-                oauthURL = li.OAuthMemberLoginRedirectURLGet(Request.IsSecureConnection, HttpContext.Current.Request.Url.Host);
+                oauthURL = li.OAuthMemberLoginRedirectURLGet(Request.IsSecureConnection);
             else if (Request.Url.ToString().ToLower().Contains("/applyjob"))
-                oauthURL = li.OAuthApplyLoginRedirectURLGet(Request.IsSecureConnection, HttpContext.Current.Request.Url.Host, HttpContext.Current.Request.RawUrl, JobID);
+                oauthURL = li.OAuthApplyLoginRedirectURLGet(Request.IsSecureConnection, HttpContext.Current.Request.RawUrl, JobID);
 
             if (!string.IsNullOrEmpty(oauthURL))
                 Response.Redirect(oauthURL);
-
-            //oAuthLinkedIn _oauth = new oAuthLinkedIn();
-            //string LinkedInAPI = string.Empty;
-            //string urlsuffix = string.Empty;
-
-            //using (TList<JXTPortal.Entities.GlobalSettings> tgs = GlobalSettingsService.GetBySiteId(SessionData.Site.SiteId))
-            //{
-            //    if (tgs.Count > 0)
-            //    {
-            //        JXTPortal.Entities.GlobalSettings gs = tgs[0];
-            //        if (!string.IsNullOrEmpty(gs.LinkedInApi))
-            //        {
-            //            LinkedInAPI = gs.LinkedInApi;
-            //            string http = "http://";
-            //            if (Request.IsSecureConnection)
-            //                http = "https://";
-            //            urlsuffix = http + HttpContext.Current.Request.Url.Authority;
-            //        }
-            //    }
-            //}
-
-            //if (!string.IsNullOrWhiteSpace(LinkedInAPI))
-            //    Response.Redirect(_oauth.RequestToken(LinkedInAPI, urlsuffix, JobID.ToString(), HttpContext.Current.Request.RawUrl, Utils.GetUrlReferrerDomain(), new List<string> { "cbtype=linkedin", "cbaction=ApplyLogin" }));
         }
 
         protected void lbSignInGoogle_Click(object sender, EventArgs e)
@@ -227,27 +178,8 @@ namespace JXTPortal.Website.usercontrols.member
             else if (Request.Url.ToString().ToLower().Contains("/applyjob"))
                 oauthURL = gg.OAuthApplyLoginRedirectURLGet(Request.IsSecureConnection, HttpContext.Current.Request.RawUrl);
 
-
-
             if (!string.IsNullOrEmpty(oauthURL))
                 Response.Redirect(oauthURL);
-
-            //string googleappid = string.Empty;
-            //string googleuri = string.Empty;
-
-            ////Get Integration Details
-            //AdminIntegrations.Integrations integrations = IntegrationsService.AdminIntegrationsForSiteGet(SessionData.Site.SiteId);
-
-            //if (integrations.Google != null && !string.IsNullOrEmpty(integrations.Google.ClientID))
-            //{
-            //    googleappid = integrations.Google.ClientID;
-            //}
-
-            //googleuri = string.Format("{1}://{0}/oauthcallback.aspx?cbtype=google&cbaction=applylogin", Request.Url.Authority, (Request.IsSecureConnection) ? "https" : "http");
-
-            //oAuthGoogle gmodule = new oAuthGoogle(googleappid, string.Empty, googleuri);
-            //Session["ApplyURL"] = Request.RawUrl;
-            //Response.Redirect(gmodule.Authorize());
         }
 
         #endregion

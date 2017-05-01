@@ -225,6 +225,9 @@ namespace JXTPortal.Website.members
                 {
                     if (member != null)
                     {
+                        //Use in front-end to communicate with another service
+                        hfExternalMemberID.Value = member.ExternalMemberId;
+
                         if (member.RequiredPasswordChange.HasValue)
                         {
                             blnRequiredPasswordChange = member.RequiredPasswordChange.Value;
@@ -417,7 +420,7 @@ namespace JXTPortal.Website.members
             if (memberWizard.SkillsPoints >= 0)
             {
                 bool hasSkills = !string.IsNullOrEmpty(member.Skills) && member.Skills.Split(new string[] { "||" }, StringSplitOptions.RemoveEmptyEntries).Count() > 0;
-                if( !hasSkills )
+                if (!hasSkills)
                     statusWidgetHtml.Append(@"<span id=""skillsIcon"" class=""jxt_profile-sec-icon""><a href=""/member/profile.aspx#section-Skills"" class=""fa fa-trophy"" title=""" + memberWizard.SkillsTitle + @"""></a></span>");
             }
 
@@ -804,7 +807,7 @@ namespace JXTPortal.Website.members
                 //Literal ltExpiryDate = e.Item.FindControl("ltExpiryDate") as Literal;
                 //Literal ltRefNo = e.Item.FindControl("ltRefNo") as Literal;
                 HyperLink hlViewSavedJobs = e.Item.FindControl("hlViewSavedJobs") as HyperLink;
-                
+
 
                 //lnkSavedJobsDelete.Text = CommonFunction.GetResourceValue("LinkButtonDelete");
                 string message = CommonFunction.GetResourceValue("LabelConfirmDeleteRecord");

@@ -139,15 +139,11 @@ namespace JXTPortal.Website.usercontrols.member
 
             string oauthURL = string.Empty;
             string lowerURL = Request.Url.ToString().ToLower();
-
-            string domainToPassToRedirectURI = Request.Url.Host;
-            if (Request.IsLocal)
-                domainToPassToRedirectURI += ":" + Request.Url.Port;
-
+            
             if (lowerURL.Contains("/member/login.aspx") || lowerURL.Contains("/member/register.aspx"))
-                oauthURL = fb.OAuthMemberLoginRedirectURLGet(Request.IsSecureConnection, domainToPassToRedirectURI);
+                oauthURL = fb.OAuthMemberLoginRedirectURLGet(Request.IsSecureConnection);
             else if (Request.Url.ToString().ToLower().Contains("/applyjob"))
-                oauthURL = fb.OAuthApplyLoginRedirectURLGet(Request.IsSecureConnection, domainToPassToRedirectURI, Profession, JobName, JobID);
+                oauthURL = fb.OAuthApplyLoginRedirectURLGet(Request.IsSecureConnection, Profession, JobName, JobID);
 
 
             if (!string.IsNullOrEmpty(oauthURL))
@@ -184,9 +180,9 @@ namespace JXTPortal.Website.usercontrols.member
             string lowerURL = Request.Url.ToString().ToLower();
 
             if (lowerURL.Contains("/member/login.aspx") || lowerURL.Contains("/member/register.aspx"))
-                oauthURL = li.OAuthMemberLoginRedirectURLGet(Request.IsSecureConnection, HttpContext.Current.Request.Url.Host);
+                oauthURL = li.OAuthMemberLoginRedirectURLGet(Request.IsSecureConnection);
             else if (Request.Url.ToString().ToLower().Contains("/applyjob"))
-                oauthURL = li.OAuthApplyLoginRedirectURLGet(Request.IsSecureConnection, HttpContext.Current.Request.Url.Host, HttpContext.Current.Request.RawUrl, JobID);
+                oauthURL = li.OAuthApplyLoginRedirectURLGet(Request.IsSecureConnection, HttpContext.Current.Request.RawUrl, JobID);
 
             if (!string.IsNullOrEmpty(oauthURL))
                 Response.Redirect(oauthURL);

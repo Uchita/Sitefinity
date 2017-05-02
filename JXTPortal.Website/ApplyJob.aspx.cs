@@ -620,10 +620,8 @@ namespace JXTPortal.Website
                 string[] splits = new string[0];
                 if (screeningQuestion.Options != null)
                 {
-                    screeningQuestion.Options.Replace("\n", "").Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
                     splits = screeningQuestion.Options.Replace("\n", "").Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
                 }
-
 
                 if (screeningQuestion.QuestionType == (int)PortalEnums.Jobs.ScreeningQuestionsType.TextBox)
                 {

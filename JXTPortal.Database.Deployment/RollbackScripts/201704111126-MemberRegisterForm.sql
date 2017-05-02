@@ -4,9 +4,6 @@ GO
 ALTER TABLE GlobalSettings DROP COLUMN MemberRegisterPageID
 GO
 
-DROP PROCEDURE [dbo].[GlobalSettings_GetByMemberRegisterPageId]
-GO
-
 /****** Object:  StoredProcedure [dbo].[GlobalSettings_Update]    Script Date: 04/19/2017 13:53:24 ******/
 SET ANSI_NULLS OFF
 GO

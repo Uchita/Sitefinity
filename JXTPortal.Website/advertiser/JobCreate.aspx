@@ -104,6 +104,6 @@
 
     function BeginRequestHandler(sender, args) { var oControl = args.get_postBackElement(); oControl.disabled = true; }
 </script>
-
+<script src='/scripts/member/jquery-ui.js'></script>
 
 </asp:Content>

@@ -1542,7 +1542,7 @@ GO
 */
 
 
-ALTER PROCEDURE [dbo].[GlobalSettings_GetByMemberRegisterPageId]
+CREATE PROCEDURE [dbo].[GlobalSettings_GetByMemberRegisterPageId]
 (
 
 	@MemberRegisterPageId int   

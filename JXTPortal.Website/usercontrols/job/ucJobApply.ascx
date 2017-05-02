@@ -46,18 +46,16 @@
                 </h2>
                 <ul>
                     <li class="facebook-image">
-                        <asp:HyperLink ID="hypFacebookJob" runat="server" NavigateUrl="http://www.facebook.com/share.php?u=window.location"
-                            onclick="javascript:u=location.href;t=document.title;window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(u)+'&amp;t='+ encodeURIComponent(t),'sharer','toolbar=0,status=0,width=626,height=436');return false;" />
+                        <asp:HyperLink ID="hypFacebookJob" runat="server" />
                     </li>
                     <li class="twitter-image">
                         <asp:HyperLink ID="hypTwitterJob" runat="server" />
                     </li>
                     <li class="linked-in-image">
-                        <asp:HyperLink ID="hypLinkedInJob" runat="server" NavigateUrl="javascript:function%20liSub(_LIN_sU){_LIN_t=document.title;_LIN_sT=%27%27;try{_LIN_sT=((window.getSelection%20&amp;&amp;%20window.getSelection())%20||%20(document.getSelection%20&amp;&amp;%20document.getSelection())%20||%20(document.selection%20&amp;&amp;%20document.selection.createRange%20&amp;&amp;%20document.selection.createRange().text));}catch(e){_LIN_sT=%27%27;};_LIN_sU+=%27&amp;summary=%27+encodeURIComponent(_LIN_sT)+%27&amp;title=%27+encodeURIComponent(_LIN_t)+%27&amp;url=%27+encodeURIComponent(location.href);_LIN_w=window.open(_LIN_sU,%27News%27,%27width=650,height=700,toolbar=0,location=0,status=0,scrollbars=yes%27);};void(liSub(%27http://www.linkedin.com/shareArticle?mini=true%27));" />
+                        <asp:HyperLink ID="hypLinkedInJob" runat="server" />
                     </li>
                     <li class="googleplus-in-image">
-                        <asp:HyperLink ID="hypGooglePlusJob" runat="server" NavigateUrl="https://plus.google.com/share?url=window.location"
-                            onclick="javascript:u=location.href;window.open('https://plus.google.com/share?url='+encodeURIComponent(u),'sharer','toolbar=0,status=0,width=626,height=436');return false;" />
+                        <asp:HyperLink ID="hypGooglePlusJob" runat="server" />
                     </li>
                 </ul>
             </div>
@@ -222,98 +220,98 @@
         if (string.IsNullOrEmpty(MapKey))
         {
 %>
-            <script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=false&v=3.exp&signed_in=true&libraries=places"></script>
+<script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=false&v=3.exp&signed_in=true&libraries=places"></script>
 <%
-        }
-        else
-        {
+    }
+    else
+    {
 %>
-            <script type="text/javascript" src="//maps.google.com/maps/api/js?key=<%=MapKey %>&sensor=false&v=3.exp&signed_in=true&libraries=places"></script>
+<script type="text/javascript" src="//maps.google.com/maps/api/js?key=<%=MapKey %>&sensor=false&v=3.exp&signed_in=true&libraries=places"></script>
 <%
-        }
+    }
 %>
 <script type="text/javascript">
-    var map;
-    $(document).ready(function () {
+                var map;
+                $(document).ready(function () {
 
-        var lat = '<%=MapLat %>';
-        var lng = '<%=MapLng %>';
-        var jobaddress = '<%=JobAddress %>';
+                    var lat = '<%=MapLat %>';
+                    var lng = '<%=MapLng %>';
+                    var jobaddress = '<%=JobAddress %>';
 
-        if ($("#map").length > 0) {
-            if (lat != '' && lng != '') {
-                initializeGoogleMap();
-            }
-            else {
-                if (jobaddress != '') {
-                    initAddressMap(jobaddress);
-                }
-            }
-        }
-    });
+                    if ($("#map").length > 0) {
+                        if (lat != '' && lng != '') {
+                            initializeGoogleMap();
+                        }
+                        else {
+                            if (jobaddress != '') {
+                                initAddressMap(jobaddress);
+                            }
+                        }
+                    }
+                });
 
 <%
     if (MapLat != null && MapLng != null)
     {
 %>
-            function initializeGoogleMap() {
+                function initializeGoogleMap() {
 
-                var targetPin = new google.maps.LatLng(<%=MapLat %>, <%=MapLng %>);
+                    var targetPin = new google.maps.LatLng(<%=MapLat %>, <%=MapLng %>);
 
-                var options = {
-                    zoom: 15,
-                    center: targetPin,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
-                };
-                map = new google.maps.Map(document.getElementById('map'), options);
+                    var options = {
+                        zoom: 15,
+                        center: targetPin,
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                    };
+                    map = new google.maps.Map(document.getElementById('map'), options);
 
-                var marker = new google.maps.Marker({
-                    position: targetPin,
-                    map: map
-                });
+                    var marker = new google.maps.Marker({
+                        position: targetPin,
+                        map: map
+                    });
 
-                var infowindow = new google.maps.InfoWindow({
-                    content: CreateMarkerInfoHtml()
-                });
+                    var infowindow = new google.maps.InfoWindow({
+                        content: CreateMarkerInfoHtml()
+                    });
 
-                google.maps.event.addListener(marker, 'click', function () {
-                    infowindow.open(map, marker);
-                });
-            }
+                    google.maps.event.addListener(marker, 'click', function () {
+                        infowindow.open(map, marker);
+                    });
+                }
 <%
     }
 %>
-    function initAddressMap(address) {
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 15,
-            center: { lat: -34.397, lng: 150.644 },
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        });
-        var geocoder = new google.maps.Geocoder();
-        geocoder.geocode({ 'address': address }, function (results, status) {
-            if (status === google.maps.GeocoderStatus.OK) {
-                map.setCenter(results[0].geometry.location);
-                var marker = new google.maps.Marker({
-                    map: map,
-                    position: results[0].geometry.location
-                });
+                function initAddressMap(address) {
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 15,
+                        center: { lat: -34.397, lng: 150.644 },
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                    });
+                    var geocoder = new google.maps.Geocoder();
+                    geocoder.geocode({ 'address': address }, function (results, status) {
+                        if (status === google.maps.GeocoderStatus.OK) {
+                            map.setCenter(results[0].geometry.location);
+                            var marker = new google.maps.Marker({
+                                map: map,
+                                position: results[0].geometry.location
+                            });
 
-                var infowindow = new google.maps.InfoWindow({
-                    content: CreateMarkerInfoHtml()
-                });
+                            var infowindow = new google.maps.InfoWindow({
+                                content: CreateMarkerInfoHtml()
+                            });
 
-                google.maps.event.addListener(marker, 'click', function () {
-                    infowindow.open(map, marker);
-                });
+                            google.maps.event.addListener(marker, 'click', function () {
+                                infowindow.open(map, marker);
+                            });
 
-            } else {
-                $("#map").hide();
-            }
-        });
-    }
+                        } else {
+                            $("#map").hide();
+                        }
+                    });
+                }
 
-    function CreateMarkerInfoHtml() {
-        var html = "<div>" + "<%=JobAddress %>" + "</div>";
+                function CreateMarkerInfoHtml() {
+                    var html = "<div>" + "<%=JobAddress %>" + "</div>";
         return html;
     }
 </script>

@@ -18,6 +18,8 @@ namespace JXTPortal.Website.usercontrols.job
     {
         #region Declaration
 
+        private string jobUrlWithAlias = string.Format("http{0}://{1}{2}", SessionData.Site.EnableSsl ? "s" : "", SessionData.Site.SiteUrlAlias, HttpContext.Current.Request.RawUrl);
+
         public double? MapLat = null;
         public double? MapLng = null;
         public string MapKey = null;
@@ -362,7 +364,8 @@ namespace JXTPortal.Website.usercontrols.job
                                 }
                                 else
                                 {
-                                    TwitterArchivedJob();
+                                    //Attributes
+                                    FillControlAttributes(job);
 
                                     lbApplied.Text = CommonFunction.GetResourceValue("LabelJobIsArchived");
                                     lbApplied.Visible = false; // true
@@ -417,7 +420,10 @@ namespace JXTPortal.Website.usercontrols.job
 
                             DateTime timenow = DateTime.Now;
 
-                            TwitterJob();
+
+
+                            //Attributes
+                            FillControlAttributes(job);
 
                             hypEmailJob.NavigateUrl = Utils.GetEmailFriendUrl(Profession, job.JobId);
                             //hypRssJob.NavigateUrl = JobsService.GetRSSFeedUrl(null, null, null, null, null);
@@ -759,8 +765,8 @@ namespace JXTPortal.Website.usercontrols.job
                     JobLocation = areaname + ", " + locationame;
                     CompanyName = companyname;
                     JobTitle = jobname.Replace("\"", "'"); ;
-                    JobURL = string.Format("{0}://{1}{2}", (Request.IsSecureConnection) ? "https" : "http", Request.Url.Host, JobsService.GetJobUrl(Profession, jobname, jobid));
-                    PostURL = string.Format("{0}://{1}{2}", (Request.IsSecureConnection) ? "https" : "http", Request.Url.Host,
+
+                    PostURL = string.Format("{0}://{1}{2}", (Request.IsSecureConnection) ? "https" : "http", SessionData.Site.SiteUrlAlias,
                         "/oauthcallback.aspx?cbtype=indeed&cbaction=apply&jobid=" + JobID.ToString() +
                         "&profession=" + Profession + "&jobname=" + HttpUtility.UrlEncode(jobname)
                         );
@@ -823,65 +829,50 @@ namespace JXTPortal.Website.usercontrols.job
 
         }
 
-        protected void TwitterJob()
+
+
+        protected void FillControlAttributes(Entities.Jobs jobs)
         {
-            using (Entities.Jobs jobs = JobsService.GetByJobId(JobID))
-            {
+            Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "openExternalWindow", "function openExternalWindow(url){ window.open(url,'sharer','toolbar=0,status=0,width=626,height=436'); return false;}", true);
 
-                string twitterLink = "https://twitter.com/intent/tweet?text=[JobTitle]+in+[JobURL]";
-                string strJobURL = string.Empty;
-                string strJobName = string.Empty;
+            hiddenMobiJobName.Value = jobs.JobName;
+            hiddenMobiJobURL.Value = jobUrlWithAlias;
 
-                if (!string.IsNullOrEmpty(jobs.JobName))
-                {
-                    strJobName = jobs.JobName;
-                }
+            #region FaceBook
 
-                // ToDO: Add Friendly Job Url
-                if (SessionData.Site.EnableSsl)
-                    strJobURL = "https://" + Request.ServerVariables["HTTP_HOST"] + string.Format("/p/{0}/j/{1}", ProfessionId, JobID);
-                else
-                    strJobURL = "http://" + Request.ServerVariables["HTTP_HOST"] + string.Format("/p/{0}/j/{1}", ProfessionId, JobID);
+            string faceBookLink = string.Format("javascript:openExternalWindow('http://www.facebook.com/sharer.php?u='+encodeURIComponent('{0}')+'&t='+encodeURIComponent('{1}'))", jobUrlWithAlias, jobs.JobName);
 
-                twitterLink = twitterLink.Replace("[JobTitle]", HttpUtility.UrlEncode(strJobName));
-                twitterLink = twitterLink.Replace("[JobURL]", strJobURL);
-                hypTwitterJob.Attributes.Add("target", "_blank");
-                hypTwitterJob.Attributes.Add("href", twitterLink);
+            hypFacebookJob.Attributes.Add("target", "_blank");
+            hypFacebookJob.Attributes.Add("href", faceBookLink);
 
-                hiddenMobiJobName.Value = strJobName;
-                hiddenMobiJobURL.Value = strJobURL;
+            #endregion
 
-            }
-        }
+            #region Twitter
 
-        protected void TwitterArchivedJob()
-        {
-            using (Entities.JobsArchive jobs = JobsArchiveService.GetByJobId(JobID))
-            {
+            string twitterLink = string.Format("https://twitter.com/intent/tweet?text={0}+in+{1}", HttpUtility.UrlEncode(jobs.JobName), jobUrlWithAlias);
 
-                string twitterLink = "https://twitter.com/intent/tweet?text=[JobTitle]+in+[JobURL]";
-                string strJobURL = string.Empty;
-                string strJobName = string.Empty;
+            hypTwitterJob.Attributes.Add("target", "_blank");
+            hypTwitterJob.Attributes.Add("href", twitterLink);
 
-                if (!string.IsNullOrEmpty(jobs.JobName))
-                {
-                    strJobName = jobs.JobName;
-                }
+            #endregion
 
-                // ToDO: Add Friendly Job Url
-                if (SessionData.Site.EnableSsl)
-                    strJobURL = "https://" + Request.ServerVariables["HTTP_HOST"] + string.Format("/p/{0}/j/{1}", ProfessionId, JobID);
-                else
-                    strJobURL = "http://" + Request.ServerVariables["HTTP_HOST"] + string.Format("/p/{0}/j/{1}", ProfessionId, JobID);
+            #region LinkedIn
 
-                twitterLink = twitterLink.Replace("[JobTitle]", HttpUtility.UrlEncode(strJobName));
-                twitterLink = twitterLink.Replace("[JobURL]", strJobURL);
-                hypTwitterJob.Attributes.Add("target", "_blank");
-                hypTwitterJob.Attributes.Add("href", twitterLink);
+            string linkedInLink = "javascript:function%20liSub(_LIN_sU){_LIN_t='" + jobs.JobName + "';_LIN_sT=%27%27;try{_LIN_sT=((window.getSelection%20&&%20window.getSelection())%20||%20(document.getSelection%20&&%20document.getSelection())%20||%20(document.selection%20&&%20document.selection.createRange%20&&%20document.selection.createRange().text));}catch(e){_LIN_sT=%27%27;};_LIN_sU+=%27&summary=%27+encodeURIComponent(_LIN_sT)+%27&title=%27+encodeURIComponent(_LIN_t)+%27&url=%27+encodeURIComponent('" + jobUrlWithAlias + "');_LIN_w=window.open(_LIN_sU,%27News%27,%27width=650,height=700,toolbar=0,location=0,status=0,scrollbars=yes%27);};void(liSub(%27http://www.linkedin.com/shareArticle?mini=true%27));";
 
-                hiddenMobiJobName.Value = strJobName;
-                hiddenMobiJobURL.Value = strJobURL;
-            }
+            hypLinkedInJob.Attributes.Add("target", "_blank");
+            hypLinkedInJob.Attributes.Add("href", linkedInLink);
+
+            #endregion
+
+            #region GooglePlus
+
+            string googlePlusLink = string.Format("javascript:openExternalWindow('https://plus.google.com/share?url='+encodeURIComponent('{0}')+'&t='+encodeURIComponent('{1}'))", jobUrlWithAlias, jobs.JobName);
+
+            hypGooglePlusJob.Attributes.Add("target", "_blank");
+            hypGooglePlusJob.Attributes.Add("href", googlePlusLink);
+
+            #endregion                             
         }
 
         #endregion
@@ -902,7 +893,7 @@ namespace JXTPortal.Website.usercontrols.job
                         LinkedInAPI = gs.LinkedInApi;
                         string http = (HttpContext.Current.Request.IsSecureConnection) ? "https://" : "http://";
 
-                        urlsuffix = http + HttpContext.Current.Request.Url.Host;
+                        urlsuffix = http + SessionData.Site.SiteUrlAlias;
                     }
                 }
             }

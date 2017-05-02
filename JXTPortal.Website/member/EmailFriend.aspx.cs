@@ -133,9 +133,12 @@ namespace JXTPortal.Website.member
 
         protected void Page_Init(object sender, EventArgs e)
         {
-            CommonPage.SetBrowserPageTitle(Page, "Email Friend");
-            plGooleReCaptcha.Attributes.Add("data-sitekey", GoogleReCaptcha.SiteKey);
-            plGooleReCaptcha.Attributes.Add("data-stoken", GoogleReCaptcha.SecureTokenGet());
+            if (!Page.IsPostBack)
+            {
+                CommonPage.SetBrowserPageTitle(Page, "Email Friend");
+                plGooleReCaptcha.Attributes.Add("data-sitekey", GoogleReCaptcha.SiteKey);
+                plGooleReCaptcha.Attributes.Add("data-stoken", GoogleReCaptcha.SecureTokenGet());
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)

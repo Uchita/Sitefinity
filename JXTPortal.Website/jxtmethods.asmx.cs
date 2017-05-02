@@ -908,6 +908,17 @@ namespace JXTPortal.Website
                         {
                             _logger.DebugFormat("Resume Upload Failed");
                             response.Error.Add(new WebResponseError { Name = "resume", Message = "Failed to upload resume" });
+
+                            TList<MemberFiles> memberFiles = MemberFilesService.GetByMemberId(member.MemberId);
+                            if (memberFiles != null && memberFiles.Count > 0)
+                            {
+                                foreach (MemberFiles memberFile in memberFiles)
+                                {
+                                    MemberFilesService.Delete(memberFile);
+                                    _logger.Debug("Member File Deleted");
+                                }
+                            }
+
                             MembersService.Delete(member);
                             _logger.DebugFormat("Member Deleted");
                             HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(response));
@@ -927,10 +938,14 @@ namespace JXTPortal.Website
                             _logger.Debug("Cover Letter Upload Failed");
                             response.Error.Add(new WebResponseError { Name = "coverletter", Message = "Failed to upload coverletter" });
 
-                            if (resumeFileId > 0)
+                            TList<MemberFiles> memberFiles = MemberFilesService.GetByMemberId(member.MemberId);
+                            if (memberFiles != null && memberFiles.Count > 0)
                             {
-                                MemberFilesService.Delete(resumeFileId);
-                                _logger.Debug("Resume Deleted");
+                                foreach (MemberFiles memberFile in memberFiles)
+                                {
+                                    MemberFilesService.Delete(memberFile);
+                                    _logger.Debug("Member File Deleted");
+                                }
                             }
 
                             MembersService.Delete(member);

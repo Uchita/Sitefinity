@@ -4621,8 +4621,8 @@ Your account has already been validated. Please proceed to &lt;a href="/member/l
     <comment>Please enter maximum 10 characters for Postcode</comment>
   </data>
   <data name="LabelEnterMaxMailingState" xml:space="preserve">
-    <value>Please enter maximum 10 characters for State</value>
-    <comment>Please enter maximum 10 characters for State</comment>
+    <value>Please enter maximum 20 characters for State</value>
+    <comment>Please enter maximum 20 characters for State</comment>
   </data>
   <data name="LabelEnterMaxMailingSuburb" xml:space="preserve">
     <value>Please enter maximum 20 characters for Suburb</value>
@@ -4633,8 +4633,8 @@ Your account has already been validated. Please proceed to &lt;a href="/member/l
     <comment>Please enter maximum 10 characters for Postcode</comment>
   </data>
   <data name="LabelEnterMaxState" xml:space="preserve">
-    <value>Please enter maximum 10 characters for State</value>
-    <comment>Please enter maximum 10 characters for State</comment>
+    <value>Please enter maximum 20 characters for State</value>
+    <comment>Please enter maximum 20 characters for State</comment>
   </data>
   <data name="LabelEnterMaxSuburb" xml:space="preserve">
     <value>Please enter maximum 20 characters for Suburb</value>
@@ -4667,5 +4667,9 @@ Your account has already been validated. Please proceed to &lt;a href="/member/l
   <data name="LabelInvalidTitle" xml:space="preserve">
     <value>Invalid Title</value>
     <comment>Invalid Title</comment>
+  </data>
+  <data name="LabelInvalidGender" xml:space="preserve">
+    <value>Invalid Gender</value>
+    <comment>Invalid Gender</comment>
   </data>
 </root>

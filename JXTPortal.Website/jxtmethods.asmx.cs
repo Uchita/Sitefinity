@@ -261,7 +261,7 @@ namespace JXTPortal.Website
             return _memberFileTypeID;
         }
 
-        protected bool uploadFile(int memberID, HttpPostedFile file, out int memberFileId)
+        protected bool uploadFile(int memberID, PortalEnums.Members.MemberFileTypes documentType, HttpPostedFile file, out int memberFileId)
         {
             _logger.Debug("Start uploading Member File");
             bool hasUploadedFile = false;
@@ -281,7 +281,7 @@ namespace JXTPortal.Website
                     objMemberFiles.MemberFileTitle = objMemberFiles.MemberFileName;
                     objMemberFiles.MemberId = memberID;
                     objMemberFiles.MemberFileTypeId = memberFileTypeID;
-                    objMemberFiles.DocumentTypeId = (int)PortalEnums.Members.MemberFileTypes.Resume;  // Document type is Resume 
+                    objMemberFiles.DocumentTypeId = (int)documentType;
 
                     MemberFilesService.Insert(objMemberFiles);
                     memberFileId = objMemberFiles.MemberFileId;
@@ -292,7 +292,7 @@ namespace JXTPortal.Website
                     string filepath = string.Format("MemberFiles_{0}{1}", objMemberFiles.MemberFileId, extension);
                     string errormessage = string.Empty;
 
-                    FileManagerService.UploadFile(bucketName, string.Format(memberFileFolderFormat, memberFileFolder, memberID), filepath, file.InputStream, out errormessage);
+                    FileManagerService.UploadFile(privateBucketName, string.Format(memberFileFolderFormat, memberFileFolder, memberID), filepath, file.InputStream, out errormessage);
                     _logger.DebugFormat("{0} Upload Reponse: {1}", filepath, errormessage);
 
                     if (string.IsNullOrEmpty(errormessage))
@@ -334,11 +334,13 @@ namespace JXTPortal.Website
             string workPhone = HttpContext.Current.Request["workphone"];
             string mobilePhone = HttpContext.Current.Request["mobilephone"];
             string address = HttpContext.Current.Request["address"];
+            string address2 = HttpContext.Current.Request["address2"];
             string suburb = HttpContext.Current.Request["suburb"];
             string postcode = HttpContext.Current.Request["postcode"];
             string state = HttpContext.Current.Request["state"];
             string country = HttpContext.Current.Request["country"];
             string mailingAddress = HttpContext.Current.Request["mailingaddress"];
+            string mailingAddress2 = HttpContext.Current.Request["mailingaddress2"];
             string mailingPostcode = HttpContext.Current.Request["mailingpostcode"];
             string mailingState = HttpContext.Current.Request["mailingstate"];
             string mailingSuburb = HttpContext.Current.Request["mailingsuburb"];
@@ -347,6 +349,7 @@ namespace JXTPortal.Website
             string role = HttpContext.Current.Request["role"];
             string passport = HttpContext.Current.Request["passport"];
             string language = HttpContext.Current.Request["language"];
+            string gender = HttpContext.Current.Request["gender"];
             HttpPostedFile coverletter = HttpContext.Current.Request.Files["coverletter"];
             HttpPostedFile resume = HttpContext.Current.Request.Files["resume"];
 
@@ -358,7 +361,7 @@ namespace JXTPortal.Website
             {
                 if (title != "Mr" && title != "Mrs" && title != "Ms" && title != "Miss" && title != "Dr" && title != "Professor" && title != "Other")
                 {
-                    response.Error.Add(new WebResponseError { Name = "title", Message = CommonFunction.GetResourceValue("LabelInvalidTitle") });
+                    response.Error.Add(new WebResponseError { Name = "title", Message = CommonFunction.GetResourceValue("LabelRequiredField1") });
                 }
             }
 
@@ -396,6 +399,11 @@ namespace JXTPortal.Website
                 {
                     response.Error.Add(new WebResponseError { Name = "username", Message = CommonFunction.GetResourceValue("ValidateNoHTMLContent") });
                 }
+            }
+
+            if (string.IsNullOrEmpty(gender) == false && gender != "M" && gender != "F")
+            {
+                response.Error.Add(new WebResponseError { Name = "gender", Message = CommonFunction.GetResourceValue("LabelInvalidGender") });
             }
 
             if (string.IsNullOrEmpty(password))
@@ -475,9 +483,21 @@ namespace JXTPortal.Website
             }
             else
             {
-                if (address.Length > 1500)
+                if (!string.IsNullOrEmpty(address) && address.Length > 1500)
                 {
                     response.Error.Add(new WebResponseError { Name = "address", Message = CommonFunction.GetResourceValue("LabelEnterMaxAddress") });
+                }
+            }
+
+            if (!address2.IsValidContent(true))
+            {
+                response.Error.Add(new WebResponseError { Name = "address2", Message = CommonFunction.GetResourceValue("ValidateNoHTMLContent") });
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(address2) && address2.Length > 1500)
+                {
+                    response.Error.Add(new WebResponseError { Name = "address2", Message = CommonFunction.GetResourceValue("LabelEnterMaxAddress") });
                 }
             }
 
@@ -487,7 +507,7 @@ namespace JXTPortal.Website
             }
             else
             {
-                if (suburb.Length > 20)
+                if (!string.IsNullOrEmpty(suburb) && suburb.Length > 20)
                 {
                     response.Error.Add(new WebResponseError { Name = "suburb", Message = CommonFunction.GetResourceValue("LabelEnterMaxSuburb") });
                 }
@@ -499,7 +519,7 @@ namespace JXTPortal.Website
             }
             else
             {
-                if (postcode.Length > 10)
+                if (!string.IsNullOrEmpty(postcode) && postcode.Length > 10)
                 {
                     response.Error.Add(new WebResponseError { Name = "postcode", Message = CommonFunction.GetResourceValue("LabelEnterMaxPostcode") });
                 }
@@ -511,7 +531,7 @@ namespace JXTPortal.Website
             }
             else
             {
-                if (state.Length > 10)
+                if (!string.IsNullOrEmpty(state) && state.Length > 20)
                 {
                     response.Error.Add(new WebResponseError { Name = "state", Message = CommonFunction.GetResourceValue("LabelEnterMaxState") });
                 }
@@ -523,9 +543,21 @@ namespace JXTPortal.Website
             }
             else
             {
-                if (mailingAddress.Length > 1500)
+                if (!string.IsNullOrEmpty(mailingAddress) && mailingAddress.Length > 1500)
                 {
                     response.Error.Add(new WebResponseError { Name = "mailingaddress", Message = CommonFunction.GetResourceValue("LabelEnterMaxMailingAddress") });
+                }
+            }
+
+            if (!mailingAddress2.IsValidContent(true))
+            {
+                response.Error.Add(new WebResponseError { Name = "mailingaddress2", Message = CommonFunction.GetResourceValue("ValidateNoHTMLContent") });
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(mailingAddress2) && mailingAddress2.Length > 1500)
+                {
+                    response.Error.Add(new WebResponseError { Name = "mailingaddress2", Message = CommonFunction.GetResourceValue("LabelEnterMaxMailingAddress") });
                 }
             }
 
@@ -535,7 +567,7 @@ namespace JXTPortal.Website
             }
             else
             {
-                if (mailingPostcode.Length > 10)
+                if (!string.IsNullOrEmpty(mailingPostcode) && mailingPostcode.Length > 10)
                 {
                     response.Error.Add(new WebResponseError { Name = "mailingpostcode", Message = CommonFunction.GetResourceValue("LabelEnterMaxPostcode") });
                 }
@@ -547,7 +579,7 @@ namespace JXTPortal.Website
             }
             else
             {
-                if (mailingState.Length > 10)
+                if (!string.IsNullOrEmpty(mailingState) && mailingState.Length > 10)
                 {
                     response.Error.Add(new WebResponseError { Name = "mailingstate", Message = CommonFunction.GetResourceValue("LabelEnterMaxMailingState") });
                 }
@@ -559,7 +591,7 @@ namespace JXTPortal.Website
             }
             else
             {
-                if (mailingSuburb.Length > 20)
+                if (!string.IsNullOrEmpty(mailingSuburb) && mailingSuburb.Length > 20)
                 {
                     response.Error.Add(new WebResponseError { Name = "mailingsuburb", Message = CommonFunction.GetResourceValue("LabelEnterMaxMailingSuburb") });
                 }
@@ -647,6 +679,60 @@ namespace JXTPortal.Website
                 }
             }
 
+
+            // Custom Questions
+            List<CustomQuestionsData> customQuestions = new List<CustomQuestionsData>();
+            Entities.MemberWizard memberWizard = MemberWizardService.GetBySiteId(SessionData.Site.SiteId).Where(m => m.GlobalTemplate == false).FirstOrDefault();
+            if (memberWizard != null)
+            {
+                string customQuestionXml = memberWizard.CustomQuestionsXml;
+
+
+                XmlDocument customquestions = new XmlDocument();
+                customquestions.LoadXml(customQuestionXml);
+
+                foreach (XmlNode questionNode in customquestions.SelectNodes("CustomQuestions/Question"))
+                {
+                    if (questionNode["Status"].InnerXml == "1")
+                    {
+                        customQuestions.Add(new CustomQuestionsData { Id = questionNode["Id"].InnerXml, Type = questionNode["Type"].InnerXml, Mandatory = Convert.ToBoolean(questionNode["Mandatory"].InnerXml) });
+                    }
+                }
+            }
+
+            if (customQuestions.Count > 0)
+            {
+                foreach (string key in HttpContext.Current.Request.Params.AllKeys)
+                {
+                    if (key != null && key.Contains("customquestion_"))
+                    {
+                        string answer = HttpContext.Current.Request.Params[key];
+                        string[] keysplit = key.Split(new char[] { '_' }, StringSplitOptions.RemoveEmptyEntries);
+                        string questionid = keysplit[keysplit.Length - 1];
+
+                        CustomQuestionsData customQuestionData = customQuestions.Where(c => c.Id.ToString() == questionid).FirstOrDefault();
+                        if (customQuestionData != null)
+                        {
+                            if (!answer.IsValidContent())
+                            {
+                                response.Error.Add(new WebResponseError { Name = key, Message = CommonFunction.GetResourceValue("ValidateNoHTMLContent") });
+                            }
+                            else
+                            {
+                                if (customQuestionData.Mandatory && string.IsNullOrWhiteSpace(answer))
+                                {
+                                    response.Error.Add(new WebResponseError { Name = key, Message = CommonFunction.GetResourceValue("LabelRequiredField1") });
+                                }
+                            }
+                        }
+                        else
+                        {
+                            response.Error.Add(new WebResponseError { Name = key, Message = CommonFunction.GetResourceValue("LabelInvalidCustomQuestion") });
+                        }
+                    }
+                }
+            }
+
             // Shouldn't go further if error already exisits
             _logger.DebugFormat("Error Count on Frontend: {0}", response.Error.Count);
 
@@ -677,59 +763,6 @@ namespace JXTPortal.Website
                         if (memberSync.GetContactFromSalesForceAndSave(email, string.Empty, SessionData.Site.MasterSiteId, ref memberid, ref errormsg))
                         {
                             response.Error.Add(new WebResponseError { Name = "email", Message = CommonFunction.GetResourceValue("LabelEmailAddressExist") });
-                        }
-                    }
-                }
-
-                // Custom Questions
-                List<CustomQuestionsData> customQuestions = new List<CustomQuestionsData>();
-                Entities.MemberWizard memberWizard = MemberWizardService.GetBySiteId(SessionData.Site.SiteId).Where(m => m.GlobalTemplate == false).FirstOrDefault();
-                if (memberWizard != null)
-                {
-                    string customQuestionXml = memberWizard.CustomQuestionsXml;
-
-
-                    XmlDocument customquestions = new XmlDocument();
-                    customquestions.LoadXml(customQuestionXml);
-
-                    foreach (XmlNode questionNode in customquestions.SelectNodes("CustomQuestions/Question"))
-                    {
-                        if (questionNode["Status"].InnerXml == "1")
-                        {
-                            customQuestions.Add(new CustomQuestionsData { Id = questionNode["Id"].InnerXml, Type = questionNode["Type"].InnerXml, Mandatory = Convert.ToBoolean(questionNode["Mandatory"].InnerXml) });
-                        }
-                    }
-                }
-
-                if (customQuestions.Count > 0)
-                {
-                    foreach (string key in HttpContext.Current.Request.Params.AllKeys)
-                    {
-                        if (key != null && key.Contains("customquestion_"))
-                        {
-                            string answer = HttpContext.Current.Request.Params[key];
-                            string[] keysplit = key.Split(new char[] { '_' }, StringSplitOptions.RemoveEmptyEntries);
-                            string questionid = keysplit[keysplit.Length - 1];
-
-                            CustomQuestionsData customQuestionData = customQuestions.Where(c => c.Id.ToString() == questionid).FirstOrDefault();
-                            if (customQuestionData != null)
-                            {
-                                if (!answer.IsValidContent())
-                                {
-                                    response.Error.Add(new WebResponseError { Name = key, Message = CommonFunction.GetResourceValue("ValidateNoHTMLContent") });
-                                }
-                                else
-                                {
-                                    if (customQuestionData.Mandatory && string.IsNullOrWhiteSpace(answer))
-                                    {
-                                        response.Error.Add(new WebResponseError { Name = key, Message = CommonFunction.GetResourceValue("LabelRequiredField1") });
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                response.Error.Add(new WebResponseError { Name = key, Message = CommonFunction.GetResourceValue("LabelInvalidCustomQuestion") });
-                            }
                         }
                     }
                 }
@@ -766,11 +799,13 @@ namespace JXTPortal.Website
             string email = HttpContext.Current.Request["email"];
             string confirmEmail = HttpContext.Current.Request["confirmemail"];
             string address = HttpContext.Current.Request["address"];
+            string address2 = HttpContext.Current.Request["address2"];
             string suburb = HttpContext.Current.Request["suburb"];
             string postcode = HttpContext.Current.Request["postcode"];
             string state = HttpContext.Current.Request["state"];
             string country = HttpContext.Current.Request["country"];
             string mailingAddress = HttpContext.Current.Request["mailingaddress"];
+            string mailingAddress2 = HttpContext.Current.Request["mailingaddress2"];
             string mailingPostcode = HttpContext.Current.Request["mailingpostcode"];
             string mailingState = HttpContext.Current.Request["mailingstate"];
             string mailingSuburb = HttpContext.Current.Request["mailingsuburb"];
@@ -781,6 +816,7 @@ namespace JXTPortal.Website
             string roleText = HttpContext.Current.Request["roletext"];
             string passport = HttpContext.Current.Request["passport"];
             string language = HttpContext.Current.Request["language"];
+            string gender = HttpContext.Current.Request["gender"];
             HttpPostedFile coverletter = HttpContext.Current.Request.Files["coverletter"];
             HttpPostedFile resume = HttpContext.Current.Request.Files["resume"];
 
@@ -800,6 +836,7 @@ namespace JXTPortal.Website
                     }
                     _logger.Debug("Start assigning value into member entity");
                     member.SiteId = SessionData.Site.MasterSiteId;
+                    member.Gender = gender;
                     member.Username = userName;
                     member.Password = CommonService.EncryptMD5(password);
                     member.EmailAddress = email;
@@ -813,6 +850,7 @@ namespace JXTPortal.Website
                     member.WorkPhone = workPhone;
                     member.MobilePhone = mobilePhone;
                     member.Address1 = address;
+                    member.Address2 = address2;
                     member.Suburb = suburb;
                     member.PostCode = postcode;
                     member.States = state;
@@ -836,6 +874,7 @@ namespace JXTPortal.Website
                     }
 
                     member.MailingAddress1 = mailingAddress;
+                    member.MailingAddress2 = mailingAddress2;
                     member.MailingSuburb = mailingSuburb;
                     member.MailingPostCode = mailingPostcode;
                     member.MailingStates = mailingState;
@@ -915,7 +954,7 @@ namespace JXTPortal.Website
 
                     if (resume != null)
                     {
-                        if (uploadFile(member.MemberId, resume, out resumeFileId))
+                        if (uploadFile(member.MemberId, PortalEnums.Members.MemberFileTypes.Resume, resume, out resumeFileId))
                         {
                             filesposted.Add(resume);
                         }
@@ -933,7 +972,7 @@ namespace JXTPortal.Website
 
                     if (coverletter != null)
                     {
-                        if (uploadFile(member.MemberId, coverletter, out coverletterFileId))
+                        if (uploadFile(member.MemberId, PortalEnums.Members.MemberFileTypes.CoverLetter, coverletter, out coverletterFileId))
                         {
                             filesposted.Add(coverletter);
                         }

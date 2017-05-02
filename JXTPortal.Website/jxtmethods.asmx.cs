@@ -47,7 +47,7 @@ namespace JXTPortal.Website
 
         ILog _logger;
         public IFileManager FileManagerService { get; set; }
-        
+
         public IJobScreeningQuestionsService JobScreeningQuestionsService { get; set; }
         public IScreeningQuestionsService ScreeningQuestionsService { get; set; }
         public IJobApplicationScreeningAnswersService JobApplicationScreeningAnswersService { get; set; }
@@ -1712,6 +1712,45 @@ namespace JXTPortal.Website
             catch (Exception ex)
             {
                 _logger.Debug("Error in getting screening questions", ex);
+                response.Error.Add(new WebResponseError { Name = "exception", Message = ex.Message });
+            }
+
+            HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(response));
+        }
+
+        [WebMethod(EnableSession = true)]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public void GetFileUploadTools()
+        {
+            WebResponse response = new WebResponse { Success = false, Data = new List<WebResponseData>(), Error = new List<WebResponseError>() };
+            try
+            {
+                //Get Integration Details
+                AdminIntegrations.Integrations integrations = IntegrationsService.AdminIntegrationsForSiteGet(SessionData.Site.SiteId);
+                if (integrations != null && integrations.GoogleDrive != null)
+                {
+                    AdminIntegrations.GoogleDrive googledrive = integrations.GoogleDrive;
+                    if (googledrive.Valid)
+                    {
+                        response.Data.Add(new WebResponseData { Value = "googledrivekey", Text = googledrive.ApplicationSecret });
+                        response.Data.Add(new WebResponseData { Value = "googledriveclientid", Text = googledrive.ApplicationID });
+                    }
+                }
+
+                if (integrations != null && integrations.Dropbox != null)
+                {
+                    AdminIntegrations.Dropbox dropboxdrive = integrations.Dropbox;
+                    if (dropboxdrive.Valid)
+                    {
+                        response.Data.Add(new WebResponseData { Value = "dropboxkey", Text = dropboxdrive.ApplicationID });
+                    }
+                }
+
+                response.Success = (response.Data.Count > 0);
+            }
+            catch (Exception ex)
+            {
+                _logger.Debug("Error in getting File Upload Tools", ex);
                 response.Error.Add(new WebResponseError
                 {
                     Name = "exception",

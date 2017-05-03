@@ -1595,7 +1595,7 @@ namespace JXTPortal.Website.member
             tbDetailsAddress2.Text = member.Address2;
             tbDetailsSuburb.Text = member.Suburb;
             tbDetailsState.Text = member.States;
-            tbDetailsPostcode.Text = member.MailingPostCode;
+            tbDetailsPostcode.Text = member.PostCode;
             if (member.CountryId > 0)
             {
                 ddlDetailsCountry.SelectedValue = member.CountryId.ToString();

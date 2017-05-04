@@ -9724,21 +9724,12 @@ $('#" + ddlRolePreferenceEligibleToWorkIn.ClientID + @"').multiselect('refresh')
     /* Quick links view more btn*/
 	if($(""#ctl00_ContentPlaceHolder1_upNavigation"").length && $("".quick-links"").length){
 		var wrap_height = 1 * $("".quick-links"").outerHeight() + 1 * $("".quick-links"").css(""marginBottom"").replace('px', '');
-            wrap_height += 22;
-            var autoHeight = $(""#ctl00_ContentPlaceHolder1_upNavigation"").css('height', 'auto').height(); //get auto height
-                                                                                                          //only if no. is greater than 4, add height
-            if ( $("".quick-links"").length > 4 ){
-            $(""#ctl00_ContentPlaceHolder1_upNavigation"").css({ ""height"":wrap_height,""opacity"":1});
-            }
-		
-		$("".viewmore_btn"").on('click', function(){
-			$(this).toggleClass(""viewless"");
-			$(""#ctl00_ContentPlaceHolder1_upNavigation"").toggleClass(""full"").toggleClass(""small"");
-			$("".full"").css({ height: autoHeight });
-			$("".small"").css({ height: wrap_height });
-                /*$("".full"").stop().animate({ height: autoHeight });
-                $("".small"").stop().animate({ height: wrap_height });*/
-        });
+        wrap_height += 22;
+        var autoHeight = $(""#ctl00_ContentPlaceHolder1_upNavigation"").css('height', 'auto').height(); //get auto height
+                                                                                                        //only if no. is greater than 4, add height
+        if ( $("".quick-links"").length > 4 ){
+        $(""#ctl00_ContentPlaceHolder1_upNavigation"").css({ ""height"":wrap_height,""opacity"":1});
+        }
     }
     if( $("".quick-links"").length< 5 ){
         $("".viewmore_btn"").addClass('hidden');

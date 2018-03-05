@@ -1,0 +1,93 @@
+----------------------------------------
+ActivityId: 80134a71-1ae3-44dc-a472-33c9fc9c86ae
+
+Timestamp: 2/22/2018 5:31:36 AM
+
+Message: Identity Server: NoSignInCookie
+
+Category: Authentication
+
+Priority: -1
+
+EventId: 1
+
+Severity: Information
+
+Title:
+
+Machine: DESKTOP-PHAVKR4
+
+App Domain: /LM/W3SVC/2/ROOT-1-131637507032481211
+
+ProcessId: 1096
+
+Process Name: C:\Program Files (x86)\IIS Express\iisexpress.exe
+
+Thread Name: 
+
+Win32 ThreadId:16780
+
+Extended Properties: 
+----------------------------------------
+----------------------------------------
+ActivityId: 64cebebf-10c8-4052-b464-0ab06cce72e3
+
+Timestamp: 2/22/2018 5:31:53 AM
+
+Message: Identity Server: NoSignInCookie
+
+Category: Authentication
+
+Priority: -1
+
+EventId: 1
+
+Severity: Information
+
+Title:
+
+Machine: DESKTOP-PHAVKR4
+
+App Domain: /LM/W3SVC/2/ROOT-1-131637507032481211
+
+ProcessId: 1096
+
+Process Name: C:\Program Files (x86)\IIS Express\iisexpress.exe
+
+Thread Name: 
+
+Win32 ThreadId:18460
+
+Extended Properties: 
+----------------------------------------
+----------------------------------------
+ActivityId: 5b5852bb-b05d-483c-8156-435766d845e8
+
+Timestamp: 2/22/2018 5:31:53 AM
+
+Message: Identity Server: NoSignInCookie
+
+Category: Authentication
+
+Priority: -1
+
+EventId: 1
+
+Severity: Information
+
+Title:
+
+Machine: DESKTOP-PHAVKR4
+
+App Domain: /LM/W3SVC/2/ROOT-1-131637507032481211
+
+ProcessId: 1096
+
+Process Name: C:\Program Files (x86)\IIS Express\iisexpress.exe
+
+Thread Name: 
+
+Win32 ThreadId:20332
+
+Extended Properties: 
+----------------------------------------

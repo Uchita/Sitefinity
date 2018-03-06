@@ -1,0 +1,4 @@
+.vs/
+bin/
+App_Data/Sitefinity/Logs/Error.log
+SitefinityWebApp.csproj.user

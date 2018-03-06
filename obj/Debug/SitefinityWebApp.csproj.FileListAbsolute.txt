@@ -224,8 +224,6 @@ C:\Developments\JXTNext\sitefinity\bin\WindowsAzureTelemetryEvents.dll
 C:\Developments\JXTNext\sitefinity\bin\EnvDTE.dll
 C:\Developments\JXTNext\sitefinity\bin\WindowsAzureEventSource.dll
 C:\Developments\JXTNext\sitefinity\bin\stdole.dll
-C:\Developments\JXTNext\sitefinity\obj\Debug\SitefinityWebApp.csprojResolveAssemblyReference.cache
 C:\Developments\JXTNext\sitefinity\obj\Debug\SitefinityWebApp.csproj.CoreCompileInputs.cache
 C:\Developments\JXTNext\sitefinity\obj\Debug\SitefinityWebApp.dll
 C:\Developments\JXTNext\sitefinity\obj\Debug\SitefinityWebApp.pdb
-C:\Developments\JXTNext\sitefinity\bin\System.IO.dll

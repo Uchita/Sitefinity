@@ -44,39 +44,39 @@ namespace SitefinityWebApp.ResourcePackages.Bootstrap.MVC.Views.Card
         {
 WriteLiteral("<div");
 
-WriteAttribute("class", Tuple.Create(" class=\"", 121), Tuple.Create("\"", 154)
+WriteAttribute("class", Tuple.Create(" class=\"", 123), Tuple.Create("\"", 156)
             
             #line 3 "..\..MVC\Views\Card\Card.Hero.cshtml"
-, Tuple.Create(Tuple.Create("", 129), Tuple.Create<System.Object, System.Int32>(Model.CssClass
+, Tuple.Create(Tuple.Create("", 131), Tuple.Create<System.Object, System.Int32>(Model.CssClass
             
             #line default
             #line hidden
-, 129), false)
-, Tuple.Create(Tuple.Create(" ", 144), Tuple.Create("container", 145), true)
+, 131), false)
+, Tuple.Create(Tuple.Create(" ", 146), Tuple.Create("container", 147), true)
 );
 
-WriteLiteral(">\n    <div");
+WriteLiteral(">\r\n    <div");
 
 WriteLiteral(" class=\"jumbotron\"");
 
-WriteAttribute("style", Tuple.Create(" style=\"", 183), Tuple.Create("\"", 271)
-, Tuple.Create(Tuple.Create("", 191), Tuple.Create("background:", 191), true)
-, Tuple.Create(Tuple.Create(" ", 202), Tuple.Create("url(\'", 203), true)
+WriteAttribute("style", Tuple.Create(" style=\"", 186), Tuple.Create("\"", 274)
+, Tuple.Create(Tuple.Create("", 194), Tuple.Create("background:", 194), true)
+, Tuple.Create(Tuple.Create(" ", 205), Tuple.Create("url(\'", 206), true)
             
             #line 4 "..\..MVC\Views\Card\Card.Hero.cshtml"
-, Tuple.Create(Tuple.Create("", 208), Tuple.Create<System.Object, System.Int32>(Model.SelectedSizeUrl
+, Tuple.Create(Tuple.Create("", 211), Tuple.Create<System.Object, System.Int32>(Model.SelectedSizeUrl
             
             #line default
             #line hidden
-, 208), false)
-, Tuple.Create(Tuple.Create("", 230), Tuple.Create("\')", 230), true)
-, Tuple.Create(Tuple.Create(" ", 232), Tuple.Create("center", 233), true)
-, Tuple.Create(Tuple.Create(" ", 239), Tuple.Create("center;", 240), true)
-, Tuple.Create(Tuple.Create(" ", 247), Tuple.Create("background-size:", 248), true)
-, Tuple.Create(Tuple.Create(" ", 264), Tuple.Create("cover;", 265), true)
+, 211), false)
+, Tuple.Create(Tuple.Create("", 233), Tuple.Create("\')", 233), true)
+, Tuple.Create(Tuple.Create(" ", 235), Tuple.Create("center", 236), true)
+, Tuple.Create(Tuple.Create(" ", 242), Tuple.Create("center;", 243), true)
+, Tuple.Create(Tuple.Create(" ", 250), Tuple.Create("background-size:", 251), true)
+, Tuple.Create(Tuple.Create(" ", 267), Tuple.Create("cover;", 268), true)
 );
 
-WriteLiteral(">\n        <h1>");
+WriteLiteral(">\r\n        <h1>");
 
             
             #line 5 "..\..MVC\Views\Card\Card.Hero.cshtml"
@@ -85,7 +85,7 @@ WriteLiteral(">\n        <h1>");
             
             #line default
             #line hidden
-WriteLiteral("</h1>\n        <p>");
+WriteLiteral("</h1>\r\n        <p>");
 
             
             #line 6 "..\..MVC\Views\Card\Card.Hero.cshtml"
@@ -94,7 +94,7 @@ WriteLiteral("</h1>\n        <p>");
             
             #line default
             #line hidden
-WriteLiteral("</p>\n");
+WriteLiteral("</p>\r\n");
 
             
             #line 7 "..\..MVC\Views\Card\Card.Hero.cshtml"
@@ -112,14 +112,14 @@ WriteLiteral("</p>\n");
             #line hidden
 WriteLiteral("            <p><a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 459), Tuple.Create("\"", 500)
+WriteAttribute("href", Tuple.Create(" href=\"", 467), Tuple.Create("\"", 508)
             
             #line 9 "..\..MVC\Views\Card\Card.Hero.cshtml"
-, Tuple.Create(Tuple.Create("", 466), Tuple.Create<System.Object, System.Int32>(Html.UrlSanitize(Model.ActionUrl)
+, Tuple.Create(Tuple.Create("", 474), Tuple.Create<System.Object, System.Int32>(Html.UrlSanitize(Model.ActionUrl)
             
             #line default
             #line hidden
-, 466), false)
+, 474), false)
 );
 
 WriteLiteral(" class=\"btn btn-primary btn-lg\"");
@@ -135,7 +135,7 @@ WriteLiteral(" >");
             
             #line default
             #line hidden
-WriteLiteral("</a></p>\n");
+WriteLiteral("</a></p>\r\n");
 
             
             #line 10 "..\..MVC\Views\Card\Card.Hero.cshtml"
@@ -144,7 +144,7 @@ WriteLiteral("</a></p>\n");
             
             #line default
             #line hidden
-WriteLiteral("    </div>\n</div>");
+WriteLiteral("    </div>\r\n</div>");
 
         }
     }

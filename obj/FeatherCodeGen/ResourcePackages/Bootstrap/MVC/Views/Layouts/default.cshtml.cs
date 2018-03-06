@@ -65,7 +65,7 @@ namespace SitefinityWebApp.ResourcePackages.Bootstrap.MVC.Views.Layouts
         }
         public override void Execute()
         {
-WriteLiteral("\n<!DOCTYPE html>\n<html ");
+WriteLiteral("\r\n<!DOCTYPE html>\r\n<html ");
 
             
             #line 8 "..\..MVC\Views\Layouts\default.cshtml"
@@ -74,17 +74,17 @@ WriteLiteral("\n<!DOCTYPE html>\n<html ");
             
             #line default
             #line hidden
-WriteLiteral(">\n<head>\n    <meta");
+WriteLiteral(">\r\n<head>\r\n    <meta");
 
 WriteLiteral(" http-equiv=\"X-UA-Compatible\"");
 
 WriteLiteral(" content=\"IE=edge,chrome=1\"");
 
-WriteLiteral(" />\n    <meta");
+WriteLiteral(" />\r\n    <meta");
 
 WriteLiteral(" charset=\"utf-8\"");
 
-WriteLiteral(" />\n    <title></title>\n\n");
+WriteLiteral(" />\r\n    <title></title>\r\n\r\n");
 
 WriteLiteral("    ");
 
@@ -95,7 +95,7 @@ Write(Html.Section("head"));
             
             #line default
             #line hidden
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
 WriteLiteral("    ");
 
@@ -106,7 +106,7 @@ Write(Html.StyleSheet(Url.Content("~/ResourcePackages/Bootstrap/assets/dist/css/
             
             #line default
             #line hidden
-WriteLiteral("\n</head>\n\n<body>\n");
+WriteLiteral("\r\n</head>\r\n\r\n<body>\r\n");
 
 WriteLiteral("    ");
 
@@ -117,7 +117,7 @@ Write(Html.Section("top"));
             
             #line default
             #line hidden
-WriteLiteral("\n\n    <div>\n");
+WriteLiteral("\r\n\r\n    <div>\r\n");
 
 WriteLiteral("        ");
 
@@ -128,9 +128,9 @@ WriteLiteral("        ");
             
             #line default
             #line hidden
-WriteLiteral("\n    </div>\n\n    ");
+WriteLiteral("\r\n    </div>\r\n\r\n    ");
 
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
             
             #line 26 "..\..MVC\Views\Layouts\default.cshtml"
@@ -260,7 +260,7 @@ WriteLiteral("\n");
             
             #line default
             #line hidden
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
 WriteLiteral("    ");
 
@@ -271,7 +271,7 @@ Write(Html.Section("bottom"));
             
             #line default
             #line hidden
-WriteLiteral("\n</body>\n</html>");
+WriteLiteral("\r\n</body>\r\n</html>");
 
         }
     }

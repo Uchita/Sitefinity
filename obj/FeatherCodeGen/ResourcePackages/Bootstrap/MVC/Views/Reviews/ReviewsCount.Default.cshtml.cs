@@ -48,7 +48,7 @@ namespace SitefinityWebApp.ResourcePackages.Bootstrap.MVC.Views.Reviews
         }
         public override void Execute()
         {
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
             
             #line 6 "..\..MVC\Views\Reviews\ReviewsCount.Default.cshtml"
@@ -57,7 +57,7 @@ Write(Html.Script(ScriptRef.JQuery, "top", true));
             
             #line default
             #line hidden
-WriteLiteral("\n\n<div");
+WriteLiteral("\r\n\r\n<div");
 
 WriteLiteral(" data-sf-role=\"comments-count-wrapper\"");
 
@@ -74,118 +74,118 @@ WriteLiteral("\"");
 
 WriteLiteral(" class=\"sf-Review-count\"");
 
-WriteLiteral(">\n\n    <span");
+WriteLiteral(">\r\n\r\n    <span");
 
 WriteLiteral(" data-sf-role=\"list-rating-wrapper\"");
 
 WriteLiteral(" class=\"sf-Ratings\"");
 
-WriteLiteral(">\n        <span");
+WriteLiteral(">\r\n        <span");
 
 WriteLiteral(" data-sf-role=\"list-rating-container\"");
 
 WriteLiteral(" class=\"sf-Ratings-stars sf-Ratings-stars--ronly\"");
 
-WriteLiteral("></span>\n        <span");
+WriteLiteral("></span>\r\n        <span");
 
 WriteLiteral(" class=\"text-muted sf-Ratings-average\"");
 
-WriteLiteral(">\n            (<span");
+WriteLiteral(">\r\n            (<span");
 
 WriteLiteral(" data-sf-role=\"list-rating-value\"");
 
-WriteLiteral("></span>)\n        </span>\n    </span>\n     <a");
+WriteLiteral("></span>)\r\n        </span>\r\n    </span>\r\n     <a");
 
 WriteLiteral(" data-sf-role=\"comments-count-anchor\"");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 680), Tuple.Create("\"", 705)
+WriteAttribute("href", Tuple.Create(" href=\"", 695), Tuple.Create("\"", 720)
             
             #line 16 "..\..MVC\Views\Reviews\ReviewsCount.Default.cshtml"
-, Tuple.Create(Tuple.Create("", 687), Tuple.Create<System.Object, System.Int32>(Model.NavigateUrl
+, Tuple.Create(Tuple.Create("", 702), Tuple.Create<System.Object, System.Int32>(Model.NavigateUrl
             
             #line default
             #line hidden
-, 687), false)
+, 702), false)
 );
 
 WriteLiteral(" class=\"sf-Ratings-count\"");
 
-WriteLiteral(">\t\t\n          <span");
+WriteLiteral(">\t\t\r\n          <span");
 
 WriteLiteral(" data-sf-role=\"comments-count-anchor-text\"");
 
-WriteLiteral("></span>\t\t\n     </a>\n    <input");
+WriteLiteral("></span>\t\t\r\n     </a>\r\n    <input");
 
 WriteLiteral(" type=\"hidden\"");
 
 WriteLiteral(" data-sf-role=\"service-url\"");
 
-WriteAttribute("value", Tuple.Create(" value=\"", 864), Tuple.Create("\"", 891)
+WriteAttribute("value", Tuple.Create(" value=\"", 882), Tuple.Create("\"", 909)
             
             #line 19 "..\..MVC\Views\Reviews\ReviewsCount.Default.cshtml"
-, Tuple.Create(Tuple.Create("", 872), Tuple.Create<System.Object, System.Int32>(ViewBag.ServiceUrl
+, Tuple.Create(Tuple.Create("", 890), Tuple.Create<System.Object, System.Int32>(ViewBag.ServiceUrl
             
             #line default
             #line hidden
-, 872), false)
+, 890), false)
 );
 
-WriteLiteral(" />\n    <input");
+WriteLiteral(" />\r\n    <input");
 
 WriteLiteral(" type=\"hidden\"");
 
 WriteLiteral(" data-sf-role=\"comments-count-resources\"");
 
-WriteAttribute("value", Tuple.Create(" value=\'", 960), Tuple.Create("\'", 1159)
-, Tuple.Create(Tuple.Create("", 968), Tuple.Create("{\"commentsPlural\":", 968), true)
-, Tuple.Create(Tuple.Create(" ", 986), Tuple.Create("\"", 987), true)
+WriteAttribute("value", Tuple.Create(" value=\'", 979), Tuple.Create("\'", 1178)
+, Tuple.Create(Tuple.Create("", 987), Tuple.Create("{\"commentsPlural\":", 987), true)
+, Tuple.Create(Tuple.Create(" ", 1005), Tuple.Create("\"", 1006), true)
             
             #line 20 "..\..MVC\Views\Reviews\ReviewsCount.Default.cshtml"
-             , Tuple.Create(Tuple.Create("", 988), Tuple.Create<System.Object, System.Int32>(Html.Resource("ReviewsPlural")
+            , Tuple.Create(Tuple.Create("", 1007), Tuple.Create<System.Object, System.Int32>(Html.Resource("ReviewsPlural")
             
             #line default
             #line hidden
-, 988), false)
-, Tuple.Create(Tuple.Create("", 1019), Tuple.Create("\",", 1019), true)
-, Tuple.Create(Tuple.Create(" ", 1021), Tuple.Create("\"leaveComment\":\"", 1022), true)
+, 1007), false)
+, Tuple.Create(Tuple.Create("", 1038), Tuple.Create("\",", 1038), true)
+, Tuple.Create(Tuple.Create(" ", 1040), Tuple.Create("\"leaveComment\":\"", 1041), true)
             
             #line 20 "..\..MVC\Views\Reviews\ReviewsCount.Default.cshtml"
-                                                              , Tuple.Create(Tuple.Create("", 1038), Tuple.Create<System.Object, System.Int32>(Html.Resource("WriteReview")
+                                                              , Tuple.Create(Tuple.Create("", 1057), Tuple.Create<System.Object, System.Int32>(Html.Resource("WriteReview")
             
             #line default
             #line hidden
-, 1038), false)
-, Tuple.Create(Tuple.Create("", 1067), Tuple.Create("\",", 1067), true)
-, Tuple.Create(Tuple.Create(" ", 1069), Tuple.Create("\"comment\":\"", 1070), true)
+, 1057), false)
+, Tuple.Create(Tuple.Create("", 1086), Tuple.Create("\",", 1086), true)
+, Tuple.Create(Tuple.Create(" ", 1088), Tuple.Create("\"comment\":\"", 1089), true)
             
             #line 20 "..\..MVC\Views\Reviews\ReviewsCount.Default.cshtml"
-                                                                                                         , Tuple.Create(Tuple.Create("", 1081), Tuple.Create<System.Object, System.Int32>(Html.Resource("Review")
+                                                                                                         , Tuple.Create(Tuple.Create("", 1100), Tuple.Create<System.Object, System.Int32>(Html.Resource("Review")
             
             #line default
             #line hidden
-, 1081), false)
-, Tuple.Create(Tuple.Create("", 1105), Tuple.Create("\",", 1105), true)
-, Tuple.Create(Tuple.Create(" ", 1107), Tuple.Create("\"averageRating\":\"", 1108), true)
+, 1100), false)
+, Tuple.Create(Tuple.Create("", 1124), Tuple.Create("\",", 1124), true)
+, Tuple.Create(Tuple.Create(" ", 1126), Tuple.Create("\"averageRating\":\"", 1127), true)
             
             #line 20 "..\..MVC\Views\Reviews\ReviewsCount.Default.cshtml"
-                                                                                                                                                     , Tuple.Create(Tuple.Create("", 1125), Tuple.Create<System.Object, System.Int32>(Html.Resource("AverageRating")
+                                                                                                                                                     , Tuple.Create(Tuple.Create("", 1144), Tuple.Create<System.Object, System.Int32>(Html.Resource("AverageRating")
             
             #line default
             #line hidden
-, 1125), false)
-, Tuple.Create(Tuple.Create("", 1156), Tuple.Create("\"", 1156), true)
-, Tuple.Create(Tuple.Create(" ", 1157), Tuple.Create("}", 1158), true)
+, 1144), false)
+, Tuple.Create(Tuple.Create("", 1175), Tuple.Create("\"", 1175), true)
+, Tuple.Create(Tuple.Create(" ", 1176), Tuple.Create("}", 1177), true)
 );
 
-WriteLiteral(" />\n</div>\n\n");
+WriteLiteral(" />\r\n</div>\r\n\r\n");
 
-WriteLiteral("\n<div");
+WriteLiteral("\r\n<div");
 
 WriteLiteral(" data-sf-role=\"rating-template\"");
 
 WriteLiteral("  style=\"display:none;\"");
 
-WriteLiteral("><span>&#9733;</span></div>\n\n");
+WriteLiteral("><span>&#9733;</span></div>\r\n\r\n");
 
             
             #line 26 "..\..MVC\Views\Reviews\ReviewsCount.Default.cshtml"
@@ -194,7 +194,7 @@ Write(Html.Script(Url.WidgetContent("Mvc/Scripts/Reviews/rating.js"), "bottom", 
             
             #line default
             #line hidden
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
             
             #line 27 "..\..MVC\Views\Reviews\ReviewsCount.Default.cshtml"

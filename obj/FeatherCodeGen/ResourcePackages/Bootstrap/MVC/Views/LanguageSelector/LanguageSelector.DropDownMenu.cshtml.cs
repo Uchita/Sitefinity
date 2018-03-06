@@ -54,7 +54,7 @@ namespace SitefinityWebApp.ResourcePackages.Bootstrap.MVC.Views.LanguageSelector
         }
         public override void Execute()
         {
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
             
             #line 7 "..\..MVC\Views\LanguageSelector\LanguageSelector.DropDownMenu.cshtml"
@@ -63,20 +63,20 @@ Write(Html.Script(ScriptRef.JQuery, "top", false));
             
             #line default
             #line hidden
-WriteLiteral("\n\n<div");
+WriteLiteral("\r\n\r\n<div");
 
-WriteAttribute("class", Tuple.Create(" class=\"", 277), Tuple.Create("\"", 317)
+WriteAttribute("class", Tuple.Create(" class=\"", 285), Tuple.Create("\"", 325)
             
             #line 9 "..\..MVC\Views\LanguageSelector\LanguageSelector.DropDownMenu.cshtml"
-, Tuple.Create(Tuple.Create("", 285), Tuple.Create<System.Object, System.Int32>(Model.CssClass
+, Tuple.Create(Tuple.Create("", 293), Tuple.Create<System.Object, System.Int32>(Model.CssClass
             
             #line default
             #line hidden
-, 285), false)
-, Tuple.Create(Tuple.Create(" ", 300), Tuple.Create("sf-lang-selector", 301), true)
+, 293), false)
+, Tuple.Create(Tuple.Create(" ", 308), Tuple.Create("sf-lang-selector", 309), true)
 );
 
-WriteLiteral(">\n    <label>\n");
+WriteLiteral(">\r\n    <label>\r\n");
 
 WriteLiteral("        ");
 
@@ -87,7 +87,7 @@ WriteLiteral("        ");
             
             #line default
             #line hidden
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
             
             #line 12 "..\..MVC\Views\LanguageSelector\LanguageSelector.DropDownMenu.cshtml"
@@ -105,7 +105,7 @@ WriteLiteral("\n");
             #line hidden
 WriteLiteral("            ");
 
-WriteLiteral("<select>\n");
+WriteLiteral("<select>\r\n");
 
             
             #line 15 "..\..MVC\Views\LanguageSelector\LanguageSelector.DropDownMenu.cshtml"
@@ -118,7 +118,7 @@ WriteLiteral("<select>\n");
             #line hidden
 WriteLiteral("            ");
 
-WriteLiteral("<select onChange=\"openLink(value)\">\n");
+WriteLiteral("<select onChange=\"openLink(value)\">\r\n");
 
             
             #line 19 "..\..MVC\Views\LanguageSelector\LanguageSelector.DropDownMenu.cshtml"
@@ -127,7 +127,7 @@ WriteLiteral("<select onChange=\"openLink(value)\">\n");
             
             #line default
             #line hidden
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
             
             #line 21 "..\..MVC\Views\LanguageSelector\LanguageSelector.DropDownMenu.cshtml"
@@ -158,7 +158,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</option>\n");
+WriteLiteral("</option>\r\n");
 
             
             #line 24 "..\..MVC\Views\LanguageSelector\LanguageSelector.DropDownMenu.cshtml"
@@ -167,7 +167,7 @@ WriteLiteral("</option>\n");
             
             #line default
             #line hidden
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
             
             #line 26 "..\..MVC\Views\LanguageSelector\LanguageSelector.DropDownMenu.cshtml"
@@ -185,14 +185,14 @@ WriteLiteral("\n");
             #line hidden
 WriteLiteral("                <option");
 
-WriteAttribute("value", Tuple.Create(" value=\"", 813), Tuple.Create("\"", 838)
+WriteAttribute("value", Tuple.Create(" value=\"", 840), Tuple.Create("\"", 865)
             
             #line 28 "..\..MVC\Views\LanguageSelector\LanguageSelector.DropDownMenu.cshtml"
-, Tuple.Create(Tuple.Create("", 821), Tuple.Create<System.Object, System.Int32>(language.Culture
+, Tuple.Create(Tuple.Create("", 848), Tuple.Create<System.Object, System.Int32>(language.Culture
             
             #line default
             #line hidden
-, 821), false)
+, 848), false)
 );
 
 WriteLiteral(" ");
@@ -213,7 +213,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</option>\n");
+WriteLiteral("</option>\r\n");
 
             
             #line 29 "..\..MVC\Views\LanguageSelector\LanguageSelector.DropDownMenu.cshtml"
@@ -222,7 +222,7 @@ WriteLiteral("</option>\n");
             
             #line default
             #line hidden
-WriteLiteral("        </select>\n    </label>\n</div>\n\n");
+WriteLiteral("        </select>\r\n    </label>\r\n</div>\r\n\r\n");
 
             
             #line 34 "..\..MVC\Views\LanguageSelector\LanguageSelector.DropDownMenu.cshtml"

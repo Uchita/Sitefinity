@@ -69,7 +69,7 @@ WriteLiteralTo(__razor_helper_writer, "        <li");
 
 WriteLiteralTo(__razor_helper_writer, " class=\"dropdown\"");
 
-WriteLiteralTo(__razor_helper_writer, ">\n            <a");
+WriteLiteralTo(__razor_helper_writer, ">\r\n            <a");
 
 WriteLiteralTo(__razor_helper_writer, " href=\"#\"");
 
@@ -86,15 +86,15 @@ WriteLiteralTo(__razor_helper_writer, ">");
 
 #line default
 #line hidden
-WriteLiteralTo(__razor_helper_writer, "\n                <span");
+WriteLiteralTo(__razor_helper_writer, "\r\n                <span");
 
 WriteLiteralTo(__razor_helper_writer, " class=\"caret\"");
 
-WriteLiteralTo(__razor_helper_writer, "></span>\n            </a>\n            <ul");
+WriteLiteralTo(__razor_helper_writer, "></span>\r\n            </a>\r\n            <ul");
 
 WriteLiteralTo(__razor_helper_writer, " class=\"dropdown-menu\"");
 
-WriteLiteralTo(__razor_helper_writer, ">\n");
+WriteLiteralTo(__razor_helper_writer, ">\r\n");
 
 WriteLiteralTo(__razor_helper_writer, "                ");
 
@@ -105,7 +105,7 @@ WriteTo(__razor_helper_writer, RenderSubLevelsRecursive(node));
 
 #line default
 #line hidden
-WriteLiteralTo(__razor_helper_writer, "\n            </ul>\n        </li>\n");
+WriteLiteralTo(__razor_helper_writer, "\r\n            </ul>\r\n        </li>\r\n");
 
 
 #line 52 "..\..MVC\Views\Navigation\NavigationView.Horizontal.cshtml"
@@ -118,36 +118,36 @@ WriteLiteralTo(__razor_helper_writer, "\n            </ul>\n        </li>\n");
 #line hidden
 WriteLiteralTo(__razor_helper_writer, "        <li");
 
-WriteAttributeTo(__razor_helper_writer, "class", Tuple.Create(" class=\"", 1939), Tuple.Create("\"", 1962)
+WriteAttributeTo(__razor_helper_writer, "class", Tuple.Create(" class=\"", 1993), Tuple.Create("\"", 2016)
 
 #line 55 "..\..MVC\Views\Navigation\NavigationView.Horizontal.cshtml"
-, Tuple.Create(Tuple.Create("", 1947), Tuple.Create<System.Object, System.Int32>(GetClass(node)
+, Tuple.Create(Tuple.Create("", 2001), Tuple.Create<System.Object, System.Int32>(GetClass(node)
 
 #line default
 #line hidden
-, 1947), false)
+, 2001), false)
 );
 
 WriteLiteralTo(__razor_helper_writer, "><a");
 
-WriteAttributeTo(__razor_helper_writer, "href", Tuple.Create(" href=\"", 1966), Tuple.Create("\"", 1982)
+WriteAttributeTo(__razor_helper_writer, "href", Tuple.Create(" href=\"", 2020), Tuple.Create("\"", 2036)
 
 #line 55 "..\..MVC\Views\Navigation\NavigationView.Horizontal.cshtml"
-, Tuple.Create(Tuple.Create("", 1973), Tuple.Create<System.Object, System.Int32>(node.Url
+, Tuple.Create(Tuple.Create("", 2027), Tuple.Create<System.Object, System.Int32>(node.Url
 
 #line default
 #line hidden
-, 1973), false)
+, 2027), false)
 );
 
-WriteAttributeTo(__razor_helper_writer, "target", Tuple.Create(" target=\"", 1983), Tuple.Create("\"", 2008)
+WriteAttributeTo(__razor_helper_writer, "target", Tuple.Create(" target=\"", 2037), Tuple.Create("\"", 2062)
 
 #line 55 "..\..MVC\Views\Navigation\NavigationView.Horizontal.cshtml"
-, Tuple.Create(Tuple.Create("", 1992), Tuple.Create<System.Object, System.Int32>(node.LinkTarget
+, Tuple.Create(Tuple.Create("", 2046), Tuple.Create<System.Object, System.Int32>(node.LinkTarget
 
 #line default
 #line hidden
-, 1992), false)
+, 2046), false)
 );
 
 WriteLiteralTo(__razor_helper_writer, ">");
@@ -159,7 +159,7 @@ WriteLiteralTo(__razor_helper_writer, ">");
 
 #line default
 #line hidden
-WriteLiteralTo(__razor_helper_writer, "</a></li>\n");
+WriteLiteralTo(__razor_helper_writer, "</a></li>\r\n");
 
 
 #line 56 "..\..MVC\Views\Navigation\NavigationView.Horizontal.cshtml"
@@ -196,26 +196,26 @@ WriteLiteralTo(__razor_helper_writer, "             <li");
 
 WriteLiteralTo(__razor_helper_writer, " class=\"dropdown-submenu\"");
 
-WriteLiteralTo(__razor_helper_writer, ">\n                <a");
+WriteLiteralTo(__razor_helper_writer, ">\r\n                <a");
 
-WriteAttributeTo(__razor_helper_writer, "href", Tuple.Create(" href=\"", 2319), Tuple.Create("\"", 2340)
+WriteAttributeTo(__razor_helper_writer, "href", Tuple.Create(" href=\"", 2385), Tuple.Create("\"", 2406)
 
 #line 67 "..\..MVC\Views\Navigation\NavigationView.Horizontal.cshtml"
-, Tuple.Create(Tuple.Create("", 2326), Tuple.Create<System.Object, System.Int32>(childNode.Url
+, Tuple.Create(Tuple.Create("", 2392), Tuple.Create<System.Object, System.Int32>(childNode.Url
 
 #line default
 #line hidden
-, 2326), false)
+, 2392), false)
 );
 
-WriteAttributeTo(__razor_helper_writer, "target", Tuple.Create(" target=\"", 2341), Tuple.Create("\"", 2371)
+WriteAttributeTo(__razor_helper_writer, "target", Tuple.Create(" target=\"", 2407), Tuple.Create("\"", 2437)
 
 #line 67 "..\..MVC\Views\Navigation\NavigationView.Horizontal.cshtml"
-, Tuple.Create(Tuple.Create("", 2350), Tuple.Create<System.Object, System.Int32>(childNode.LinkTarget
+, Tuple.Create(Tuple.Create("", 2416), Tuple.Create<System.Object, System.Int32>(childNode.LinkTarget
 
 #line default
 #line hidden
-, 2350), false)
+, 2416), false)
 );
 
 WriteLiteralTo(__razor_helper_writer, ">");
@@ -227,15 +227,15 @@ WriteLiteralTo(__razor_helper_writer, ">");
 
 #line default
 #line hidden
-WriteLiteralTo(__razor_helper_writer, "\n                    <span");
+WriteLiteralTo(__razor_helper_writer, "\r\n                    <span");
 
 WriteLiteralTo(__razor_helper_writer, " class=\"right-caret\"");
 
-WriteLiteralTo(__razor_helper_writer, "></span>\n                </a>\n                <ul");
+WriteLiteralTo(__razor_helper_writer, "></span>\r\n                </a>\r\n                <ul");
 
 WriteLiteralTo(__razor_helper_writer, " class=\"dropdown-menu\"");
 
-WriteLiteralTo(__razor_helper_writer, ">\n");
+WriteLiteralTo(__razor_helper_writer, ">\r\n");
 
 WriteLiteralTo(__razor_helper_writer, "                    ");
 
@@ -246,7 +246,7 @@ WriteTo(__razor_helper_writer, RenderSubLevelsRecursive(childNode));
 
 #line default
 #line hidden
-WriteLiteralTo(__razor_helper_writer, "\n                </ul>\n            </li>\n");
+WriteLiteralTo(__razor_helper_writer, "\r\n                </ul>\r\n            </li>\r\n");
 
 
 #line 74 "..\..MVC\Views\Navigation\NavigationView.Horizontal.cshtml"
@@ -259,36 +259,36 @@ WriteLiteralTo(__razor_helper_writer, "\n                </ul>\n            </li
 #line hidden
 WriteLiteralTo(__razor_helper_writer, "            <li");
 
-WriteAttributeTo(__razor_helper_writer, "class", Tuple.Create(" class=\"", 2653), Tuple.Create("\"", 2681)
+WriteAttributeTo(__razor_helper_writer, "class", Tuple.Create(" class=\"", 2729), Tuple.Create("\"", 2757)
 
 #line 77 "..\..MVC\Views\Navigation\NavigationView.Horizontal.cshtml"
-, Tuple.Create(Tuple.Create("", 2661), Tuple.Create<System.Object, System.Int32>(GetClass(childNode)
+, Tuple.Create(Tuple.Create("", 2737), Tuple.Create<System.Object, System.Int32>(GetClass(childNode)
 
 #line default
 #line hidden
-, 2661), false)
+, 2737), false)
 );
 
-WriteLiteralTo(__razor_helper_writer, ">\n                <a");
+WriteLiteralTo(__razor_helper_writer, ">\r\n                <a");
 
-WriteAttributeTo(__razor_helper_writer, "href", Tuple.Create(" href=\"", 2702), Tuple.Create("\"", 2723)
+WriteAttributeTo(__razor_helper_writer, "href", Tuple.Create(" href=\"", 2779), Tuple.Create("\"", 2800)
 
 #line 78 "..\..MVC\Views\Navigation\NavigationView.Horizontal.cshtml"
-, Tuple.Create(Tuple.Create("", 2709), Tuple.Create<System.Object, System.Int32>(childNode.Url
+, Tuple.Create(Tuple.Create("", 2786), Tuple.Create<System.Object, System.Int32>(childNode.Url
 
 #line default
 #line hidden
-, 2709), false)
+, 2786), false)
 );
 
-WriteAttributeTo(__razor_helper_writer, "target", Tuple.Create(" target=\"", 2724), Tuple.Create("\"", 2754)
+WriteAttributeTo(__razor_helper_writer, "target", Tuple.Create(" target=\"", 2801), Tuple.Create("\"", 2831)
 
 #line 78 "..\..MVC\Views\Navigation\NavigationView.Horizontal.cshtml"
-, Tuple.Create(Tuple.Create("", 2733), Tuple.Create<System.Object, System.Int32>(childNode.LinkTarget
+, Tuple.Create(Tuple.Create("", 2810), Tuple.Create<System.Object, System.Int32>(childNode.LinkTarget
 
 #line default
 #line hidden
-, 2733), false)
+, 2810), false)
 );
 
 WriteLiteralTo(__razor_helper_writer, ">");
@@ -300,7 +300,7 @@ WriteLiteralTo(__razor_helper_writer, ">");
 
 #line default
 #line hidden
-WriteLiteralTo(__razor_helper_writer, "</a>\n            </li>\n");
+WriteLiteralTo(__razor_helper_writer, "</a>\r\n            </li>\r\n");
 
 
 #line 80 "..\..MVC\Views\Navigation\NavigationView.Horizontal.cshtml"
@@ -377,9 +377,9 @@ WriteTo(__razor_helper_writer, Html.Raw("active"));
         }
         public override void Execute()
         {
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
             
             #line 8 "..\..MVC\Views\Navigation\NavigationView.Horizontal.cshtml"
@@ -388,7 +388,7 @@ Write(Html.Script(ScriptRef.JQuery, "top"));
             
             #line default
             #line hidden
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
             
             #line 9 "..\..MVC\Views\Navigation\NavigationView.Horizontal.cshtml"
@@ -397,35 +397,35 @@ Write(Html.Script(Url.WidgetContent("Mvc/Scripts/Bootstrap/js/bootstrap.min.js")
             
             #line default
             #line hidden
-WriteLiteral("\n\n<div");
+WriteLiteral("\r\n\r\n<div");
 
-WriteAttribute("class", Tuple.Create(" class=\"", 389), Tuple.Create("\"", 412)
+WriteAttribute("class", Tuple.Create(" class=\"", 399), Tuple.Create("\"", 422)
             
             #line 11 "..\..MVC\Views\Navigation\NavigationView.Horizontal.cshtml"
-, Tuple.Create(Tuple.Create("", 397), Tuple.Create<System.Object, System.Int32>(Model.CssClass
+, Tuple.Create(Tuple.Create("", 407), Tuple.Create<System.Object, System.Int32>(Model.CssClass
             
             #line default
             #line hidden
-, 397), false)
+, 407), false)
 );
 
-WriteLiteral(">\n    ");
+WriteLiteral(">\r\n    ");
 
-WriteLiteral("\n\n    <nav");
+WriteLiteral("\r\n\r\n    <nav");
 
 WriteLiteral(" class=\"navbar navbar-default\"");
 
 WriteLiteral(" role=\"navigation\"");
 
-WriteLiteral(">\n\n        <div");
+WriteLiteral(">\r\n\r\n        <div");
 
 WriteLiteral(" class=\"container-fluid\"");
 
-WriteLiteral(">\n            <div");
+WriteLiteral(">\r\n            <div");
 
 WriteLiteral(" class=\"navbar-header\"");
 
-WriteLiteral(">\n              <button");
+WriteLiteral(">\r\n              <button");
 
 WriteLiteral(" type=\"button\"");
 
@@ -435,39 +435,39 @@ WriteLiteral(" data-toggle=\"collapse\"");
 
 WriteLiteral(" data-target=\"#bs-example-navbar-collapse-1\"");
 
-WriteLiteral(">\n                <span");
+WriteLiteral(">\r\n                <span");
 
 WriteLiteral(" class=\"sr-only\"");
 
-WriteLiteral(">Toggle navigation</span>\n                <span");
+WriteLiteral(">Toggle navigation</span>\r\n                <span");
 
 WriteLiteral(" class=\"icon-bar\"");
 
-WriteLiteral("></span>\n                <span");
+WriteLiteral("></span>\r\n                <span");
 
 WriteLiteral(" class=\"icon-bar\"");
 
-WriteLiteral("></span>\n                <span");
+WriteLiteral("></span>\r\n                <span");
 
 WriteLiteral(" class=\"icon-bar\"");
 
-WriteLiteral("></span>\n              </button>\n              <a");
+WriteLiteral("></span>\r\n              </button>\r\n              <a");
 
 WriteLiteral(" class=\"navbar-brand\"");
 
 WriteLiteral(" href=\"#\"");
 
-WriteLiteral(">Brand</a>\n            </div>\n\n            <div");
+WriteLiteral(">Brand</a>\r\n            </div>\r\n\r\n            <div");
 
 WriteLiteral(" class=\"collapse navbar-collapse\"");
 
 WriteLiteral(" id=\"bs-example-navbar-collapse-1\"");
 
-WriteLiteral(">\n                <ul");
+WriteLiteral(">\r\n                <ul");
 
 WriteLiteral(" class=\"nav navbar-nav\"");
 
-WriteLiteral(">\n");
+WriteLiteral(">\r\n");
 
             
             #line 29 "..\..MVC\Views\Navigation\NavigationView.Horizontal.cshtml"
@@ -498,18 +498,18 @@ WriteLiteral(">\n");
             
             #line default
             #line hidden
-WriteLiteral("              </ul>\n            </div><!-- /.navbar-collapse -->\n        </div><!" +
-"-- /.container-fluid -->\n    </nav>\n</div>\n\n");
+WriteLiteral("              </ul>\r\n            </div><!-- /.navbar-collapse -->\r\n        </div>" +
+"<!-- /.container-fluid -->\r\n    </nav>\r\n</div>\r\n\r\n");
 
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
         }
     }

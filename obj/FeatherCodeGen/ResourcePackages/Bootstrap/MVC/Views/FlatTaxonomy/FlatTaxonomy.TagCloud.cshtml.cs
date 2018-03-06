@@ -38,20 +38,20 @@ namespace SitefinityWebApp.ResourcePackages.Bootstrap.MVC.Views.FlatTaxonomy
         {
 WriteLiteral("<ul");
 
-WriteAttribute("class", Tuple.Create(" class=\"", 79), Tuple.Create("\"", 136)
+WriteAttribute("class", Tuple.Create(" class=\"", 81), Tuple.Create("\"", 138)
             
             #line 3 "..\..MVC\Views\FlatTaxonomy\FlatTaxonomy.TagCloud.cshtml"
-, Tuple.Create(Tuple.Create("", 87), Tuple.Create<System.Object, System.Int32>(Model.CssClass
+, Tuple.Create(Tuple.Create("", 89), Tuple.Create<System.Object, System.Int32>(Model.CssClass
             
             #line default
             #line hidden
-, 87), false)
-, Tuple.Create(Tuple.Create(" ", 102), Tuple.Create("sf-Tags", 103), true)
-, Tuple.Create(Tuple.Create(" ", 110), Tuple.Create("list-unstyled", 111), true)
-, Tuple.Create(Tuple.Create(" ", 124), Tuple.Create("list-inline", 125), true)
+, 89), false)
+, Tuple.Create(Tuple.Create(" ", 104), Tuple.Create("sf-Tags", 105), true)
+, Tuple.Create(Tuple.Create(" ", 112), Tuple.Create("list-unstyled", 113), true)
+, Tuple.Create(Tuple.Create(" ", 126), Tuple.Create("list-inline", 127), true)
 );
 
-WriteLiteral(">\n");
+WriteLiteral(">\r\n");
 
             
             #line 4 "..\..MVC\Views\FlatTaxonomy\FlatTaxonomy.TagCloud.cshtml"
@@ -69,26 +69,26 @@ WriteLiteral(">\n");
             
             #line default
             #line hidden
-WriteLiteral("<li>\n            <a");
+WriteLiteral("<li>\r\n            <a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 278), Tuple.Create("\"", 294)
+WriteAttribute("href", Tuple.Create(" href=\"", 286), Tuple.Create("\"", 302)
             
             #line 9 "..\..MVC\Views\FlatTaxonomy\FlatTaxonomy.TagCloud.cshtml"
-, Tuple.Create(Tuple.Create("", 285), Tuple.Create<System.Object, System.Int32>(taxa.Url
+, Tuple.Create(Tuple.Create("", 293), Tuple.Create<System.Object, System.Int32>(taxa.Url
             
             #line default
             #line hidden
-, 285), false)
+, 293), false)
 );
 
-WriteAttribute("class", Tuple.Create(" class=\"", 295), Tuple.Create("\"", 318)
+WriteAttribute("class", Tuple.Create(" class=\"", 303), Tuple.Create("\"", 326)
             
             #line 9 "..\..MVC\Views\FlatTaxonomy\FlatTaxonomy.TagCloud.cshtml"
-, Tuple.Create(Tuple.Create("", 303), Tuple.Create<System.Object, System.Int32>(cloudSizeClass
+, Tuple.Create(Tuple.Create("", 311), Tuple.Create<System.Object, System.Int32>(cloudSizeClass
             
             #line default
             #line hidden
-, 303), false)
+, 311), false)
 );
 
 WriteLiteral(">");
@@ -100,11 +100,11 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</a>\n            <span");
+WriteLiteral("</a>\r\n            <span");
 
 WriteLiteral(" class=\"small text-muted\"");
 
-WriteLiteral(">\n");
+WriteLiteral(">\r\n");
 
             
             #line 11 "..\..MVC\Views\FlatTaxonomy\FlatTaxonomy.TagCloud.cshtml"
@@ -131,7 +131,7 @@ WriteLiteral("(");
             
             #line default
             #line hidden
-WriteLiteral(")\n");
+WriteLiteral(")\r\n");
 
             
             #line 14 "..\..MVC\Views\FlatTaxonomy\FlatTaxonomy.TagCloud.cshtml"
@@ -140,7 +140,7 @@ WriteLiteral(")\n");
             
             #line default
             #line hidden
-WriteLiteral("            </span>\n        </li>\n");
+WriteLiteral("            </span>\r\n        </li>\r\n");
 
             
             #line 17 "..\..MVC\Views\FlatTaxonomy\FlatTaxonomy.TagCloud.cshtml"

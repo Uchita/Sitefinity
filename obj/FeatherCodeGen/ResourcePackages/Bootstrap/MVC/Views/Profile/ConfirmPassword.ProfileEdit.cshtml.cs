@@ -66,7 +66,7 @@ namespace SitefinityWebApp.ResourcePackages.Bootstrap.MVC.Views.Profile
         }
         public override void Execute()
         {
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
             
             #line 9 "..\..MVC\Views\Profile\ConfirmPassword.ProfileEdit.cshtml"
@@ -75,7 +75,7 @@ Write(Html.Script(ScriptRef.JQuery, "top", false));
             
             #line default
             #line hidden
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
             
             #line 10 "..\..MVC\Views\Profile\ConfirmPassword.ProfileEdit.cshtml"
@@ -84,7 +84,7 @@ Write(Html.Script("//ajax.aspnetcdn.com/ajax/jquery.validate/1.8.1/jquery.valida
             
             #line default
             #line hidden
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
             
             #line 11 "..\..MVC\Views\Profile\ConfirmPassword.ProfileEdit.cshtml"
@@ -93,7 +93,7 @@ Write(Html.Script("//ajax.aspnetcdn.com/ajax/mvc/4.0/jquery.validate.unobtrusive
             
             #line default
             #line hidden
-WriteLiteral("\n\n<div>\n");
+WriteLiteral("\r\n\r\n<div>\r\n");
 
             
             #line 14 "..\..MVC\Views\Profile\ConfirmPassword.ProfileEdit.cshtml"
@@ -122,7 +122,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</div>\n");
+WriteLiteral("</div>\r\n");
 
             
             #line 17 "..\..MVC\Views\Profile\ConfirmPassword.ProfileEdit.cshtml"
@@ -131,7 +131,7 @@ WriteLiteral("</div>\n");
             
             #line default
             #line hidden
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
             
             #line 19 "..\..MVC\Views\Profile\ConfirmPassword.ProfileEdit.cshtml"
@@ -147,7 +147,7 @@ WriteLiteral("\n");
             
             #line default
             #line hidden
-WriteLiteral("        <div>\n");
+WriteLiteral("        <div>\r\n");
 
 WriteLiteral("            ");
 
@@ -158,7 +158,7 @@ WriteLiteral("            ");
             
             #line default
             #line hidden
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
 WriteLiteral("            ");
 
@@ -169,7 +169,7 @@ WriteLiteral("            ");
             
             #line default
             #line hidden
-WriteLiteral("                     \n        </div>\n");
+WriteLiteral("                     \r\n        </div>\r\n");
 
             
             #line 25 "..\..MVC\Views\Profile\ConfirmPassword.ProfileEdit.cshtml"
@@ -187,7 +187,7 @@ WriteLiteral("        <h3>");
             
             #line default
             #line hidden
-WriteLiteral("</h3>\n");
+WriteLiteral("</h3>\r\n");
 
             
             #line 27 "..\..MVC\Views\Profile\ConfirmPassword.ProfileEdit.cshtml"
@@ -205,7 +205,7 @@ WriteLiteral("        <p>");
             
             #line default
             #line hidden
-WriteLiteral("</p>\n");
+WriteLiteral("</p>\r\n");
 
             
             #line 29 "..\..MVC\Views\Profile\ConfirmPassword.ProfileEdit.cshtml"
@@ -231,7 +231,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</div>\n");
+WriteLiteral("</div>\r\n");
 
             
             #line 33 "..\..MVC\Views\Profile\ConfirmPassword.ProfileEdit.cshtml"
@@ -245,7 +245,7 @@ WriteLiteral("        <div");
 
 WriteLiteral(" class=\"form-group\"");
 
-WriteLiteral(">\n            <label>\n");
+WriteLiteral(">\r\n            <label>\r\n");
 
 WriteLiteral("                ");
 
@@ -256,7 +256,7 @@ WriteLiteral("                ");
             
             #line default
             #line hidden
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
 WriteLiteral("                ");
 
@@ -267,7 +267,7 @@ WriteLiteral("                ");
             
             #line default
             #line hidden
-WriteLiteral("\n            </label>\n");
+WriteLiteral("\r\n            </label>\r\n");
 
 WriteLiteral("            ");
 
@@ -278,7 +278,7 @@ WriteLiteral("            ");
             
             #line default
             #line hidden
-WriteLiteral("\n        </div>\n");
+WriteLiteral("\r\n        </div>\r\n");
 
             
             #line 42 "..\..MVC\Views\Profile\ConfirmPassword.ProfileEdit.cshtml"
@@ -287,7 +287,7 @@ WriteLiteral("\n        </div>\n");
             
             #line default
             #line hidden
-WriteLiteral("        <div>\n            <input");
+WriteLiteral("        <div>\r\n            <input");
 
 WriteLiteral(" class=\"btn btn-primary\"");
 
@@ -295,17 +295,17 @@ WriteLiteral(" data-sf-role=\"profile-submit\"");
 
 WriteLiteral(" type=\"submit\"");
 
-WriteAttribute("value", Tuple.Create(" value=\'", 1716), Tuple.Create("\'", 1757)
+WriteAttribute("value", Tuple.Create(" value=\'", 1759), Tuple.Create("\'", 1800)
             
             #line 44 "..\..MVC\Views\Profile\ConfirmPassword.ProfileEdit.cshtml"
-              , Tuple.Create(Tuple.Create("", 1724), Tuple.Create<System.Object, System.Int32>(Html.Resource("EditProfileSave")
+              , Tuple.Create(Tuple.Create("", 1767), Tuple.Create<System.Object, System.Int32>(Html.Resource("EditProfileSave")
             
             #line default
             #line hidden
-, 1724), false)
+, 1767), false)
 );
 
-WriteLiteral(" />   \n        </div>\n");
+WriteLiteral(" />   \r\n        </div>\r\n");
 
             
             #line 46 "..\..MVC\Views\Profile\ConfirmPassword.ProfileEdit.cshtml"

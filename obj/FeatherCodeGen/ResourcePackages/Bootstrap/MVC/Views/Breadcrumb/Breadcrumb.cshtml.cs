@@ -48,11 +48,11 @@ WriteAttribute("class", Tuple.Create(" class=\"", 4), Tuple.Create("\"", 27)
 , 12), false)
 );
 
-WriteLiteral(">\n    <ul");
+WriteLiteral(">\r\n    <ul");
 
 WriteLiteral(" class=\"sf-breadscrumb breadcrumb\"");
 
-WriteLiteral(">\n");
+WriteLiteral(">\r\n");
 
             
             #line 3 "..\..MVC\Views\Breadcrumb\Breadcrumb.cshtml"
@@ -85,7 +85,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</li>\n");
+WriteLiteral("</li>\r\n");
 
             
             #line 10 "..\..MVC\Views\Breadcrumb\Breadcrumb.cshtml"
@@ -98,14 +98,14 @@ WriteLiteral("</li>\n");
             #line hidden
 WriteLiteral("                <li><a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 419), Tuple.Create("\"", 435)
+WriteAttribute("href", Tuple.Create(" href=\"", 431), Tuple.Create("\"", 447)
             
             #line 13 "..\..MVC\Views\Breadcrumb\Breadcrumb.cshtml"
-, Tuple.Create(Tuple.Create("", 426), Tuple.Create<System.Object, System.Int32>(node.Url
+, Tuple.Create(Tuple.Create("", 438), Tuple.Create<System.Object, System.Int32>(node.Url
             
             #line default
             #line hidden
-, 426), false)
+, 438), false)
 );
 
 WriteLiteral(">");
@@ -117,7 +117,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral(" </a></li>\n");
+WriteLiteral(" </a></li>\r\n");
 
             
             #line 14 "..\..MVC\Views\Breadcrumb\Breadcrumb.cshtml"
@@ -127,7 +127,7 @@ WriteLiteral(" </a></li>\n");
             
             #line default
             #line hidden
-WriteLiteral("    </ul>\n</div>");
+WriteLiteral("    </ul>\r\n</div>");
 
         }
     }

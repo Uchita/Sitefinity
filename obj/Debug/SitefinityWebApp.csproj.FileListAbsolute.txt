@@ -227,3 +227,11 @@ C:\Developments\JXTNext\sitefinity\bin\stdole.dll
 C:\Developments\JXTNext\sitefinity\obj\Debug\SitefinityWebApp.csproj.CoreCompileInputs.cache
 C:\Developments\JXTNext\sitefinity\obj\Debug\SitefinityWebApp.dll
 C:\Developments\JXTNext\sitefinity\obj\Debug\SitefinityWebApp.pdb
+C:\Developments\JXTNext\sitefinity\bin\System.Activities.dll
+C:\Developments\JXTNext\sitefinity\bin\System.IO.dll
+C:\Developments\JXTNext\sitefinity\bin\System.Runtime.dll
+C:\Developments\JXTNext\sitefinity\bin\System.ServiceModel.Activities.dll
+C:\Developments\JXTNext\sitefinity\bin\System.ServiceModel.Channels.dll
+C:\Developments\JXTNext\sitefinity\bin\System.Threading.Tasks.dll
+C:\Developments\JXTNext\sitefinity\bin\System.Web.Entity.dll
+C:\Developments\JXTNext\sitefinity\obj\Debug\SitefinityWebApp.csprojResolveAssemblyReference.cache

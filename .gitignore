@@ -1,1 +1,10 @@
 .vs/
+bin/
+App_Data/Sitefinity/Logs/Error.log
+SitefinityWebApp.csproj.user
+obj/Debug/SitefinityWebApp.pdb
+obj/Debug/SitefinityWebApp.dll
+obj/Debug/SitefinityWebApp.csprojResolveAssemblyReference.cache
+obj/Debug/SitefinityWebApp.csproj.FileListAbsolute.txt
+obj/Debug/SitefinityWebApp.csproj.CoreCompileInputs.cache
+obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache

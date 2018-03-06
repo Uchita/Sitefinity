@@ -420,7 +420,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Activities">
-      <HintPath>Mac_Dlls\System.Activities.dll</HintPath>
+      <HintPath>JXTInternal_Dependencies\System.Activities.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -434,36 +435,41 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.IO">
-      <HintPath>Mac_Dlls\System.IO.dll</HintPath>
+      <HintPath>JXTInternal_Dependencies\System.IO.dll</HintPath>
     </Reference>
     <Reference Include="System.Net" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.WebRequest" />
-    <Reference Include="System.Runtime">
-      <HintPath>Mac_Dlls\System.Runtime.dll</HintPath>
-    </Reference>
     <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime">
+      <HintPath>JXTInternal_Dependencies\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Activities">
-      <HintPath>Mac_Dlls\System.ServiceModel.Activities.dll</HintPath>
+      <HintPath>JXTInternal_Dependencies\System.ServiceModel.Activities.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.ServiceModel.Channels">
-      <HintPath>Mac_Dlls\System.ServiceModel.Channels.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Threading.Tasks">
-      <HintPath>Mac_Dlls\System.Threading.Tasks.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Entity">
-      <HintPath>Mac_Dlls\System.Web.Entity.dll</HintPath>
+      <HintPath>JXTInternal_Dependencies\System.ServiceModel.Channels.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Threading.Tasks">
+      <HintPath>JXTInternal_Dependencies\System.Threading.Tasks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity">
+      <HintPath>JXTInternal_Dependencies\System.Web.Entity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Extensions.Design" />
     <Reference Include="System.Spatial">
@@ -1105,24 +1111,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Build\RazorGenerator.MsBuild\tools\RazorGenerator.Core.dll" />
-    <Content Include="Build\RazorGenerator.MsBuild\tools\RazorGenerator.MsBuild.dll" />
-    <Content Include="Build\RazorGenerator.MsBuild\tools\v1\RazorGenerator.Core.v1.dll" />
-    <Content Include="Build\RazorGenerator.MsBuild\tools\v1\System.Web.Mvc.dll" />
-    <Content Include="Build\RazorGenerator.MsBuild\tools\v1\System.Web.Razor.dll" />
-    <Content Include="Build\RazorGenerator.MsBuild\tools\v1\System.Web.WebPages.dll" />
-    <Content Include="Build\RazorGenerator.MsBuild\tools\v1\System.Web.WebPages.Razor.dll" />
-    <Content Include="Build\RazorGenerator.MsBuild\tools\v2\RazorGenerator.Core.V2.dll" />
-    <Content Include="Build\RazorGenerator.MsBuild\tools\v2\System.Web.Mvc.dll" />
-    <Content Include="Build\RazorGenerator.MsBuild\tools\v2\System.Web.Razor.dll" />
-    <Content Include="Build\RazorGenerator.MsBuild\tools\v2\System.Web.WebPages.dll" />
-    <Content Include="Build\RazorGenerator.MsBuild\tools\v2\System.Web.WebPages.Razor.dll" />
-    <Content Include="Build\RazorGenerator.MsBuild\tools\v3\RazorGenerator.Core.V3.dll" />
-    <Content Include="Build\RazorGenerator.MsBuild\tools\v3\System.Web.Mvc.dll" />
-    <Content Include="Build\RazorGenerator.MsBuild\tools\v3\System.Web.Razor.dll" />
-    <Content Include="Build\RazorGenerator.MsBuild\tools\v3\System.Web.WebPages.Deployment.dll" />
-    <Content Include="Build\RazorGenerator.MsBuild\tools\v3\System.Web.WebPages.dll" />
-    <Content Include="Build\RazorGenerator.MsBuild\tools\v3\System.Web.WebPages.Razor.dll" />
     <Content Include="Default.aspx" />
     <Content Include="ResourcePackages\Bootstrap\assets\dist\css\main.css" />
     <Content Include="ResourcePackages\Bootstrap\assets\dist\css\main.min.css" />
@@ -1289,9 +1277,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App_Data\GeoLocation\GeoLiteCity.dat" />
-    <Content Include="Build\FeatherPrecompilation.targets" />
-    <Content Include="Build\RazorGenerator.MsBuild\build\RazorGenerator.MsBuild.targets" />
-    <Content Include="Build\RazorGenerator.MsBuild\RazorGenerator.MsBuild.2.4.1.nupkg" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="ResourcePackages\Bootstrap\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.eot" />
     <Content Include="ResourcePackages\Bootstrap\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.ttf" />

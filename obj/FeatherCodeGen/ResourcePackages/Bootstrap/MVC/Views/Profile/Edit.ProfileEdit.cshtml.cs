@@ -66,7 +66,7 @@ namespace SitefinityWebApp.ResourcePackages.Bootstrap.MVC.Views.Profile
         }
         public override void Execute()
         {
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
             
             #line 9 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -75,7 +75,7 @@ Write(Html.Script(ScriptRef.JQuery, "top"));
             
             #line default
             #line hidden
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
             
             #line 10 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -84,7 +84,7 @@ Write(Html.Script("//ajax.aspnetcdn.com/ajax/jquery.validate/1.8.1/jquery.valida
             
             #line default
             #line hidden
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
             
             #line 11 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -93,19 +93,19 @@ Write(Html.Script("//ajax.aspnetcdn.com/ajax/mvc/4.0/jquery.validate.unobtrusive
             
             #line default
             #line hidden
-WriteLiteral("\n\n<div");
+WriteLiteral("\r\n\r\n<div");
 
-WriteAttribute("class", Tuple.Create(" class=\"", 507), Tuple.Create("\"", 530)
+WriteAttribute("class", Tuple.Create(" class=\"", 519), Tuple.Create("\"", 542)
             
             #line 13 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
-, Tuple.Create(Tuple.Create("", 515), Tuple.Create<System.Object, System.Int32>(Model.CssClass
+, Tuple.Create(Tuple.Create("", 527), Tuple.Create<System.Object, System.Int32>(Model.CssClass
             
             #line default
             #line hidden
-, 515), false)
+, 527), false)
 );
 
-WriteLiteral(">\n\n\t<h3>");
+WriteLiteral(">\r\n\r\n\t<h3>");
 
             
             #line 15 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -114,7 +114,7 @@ WriteLiteral(">\n\n\t<h3>");
             
             #line default
             #line hidden
-WriteLiteral("</h3>\n\n");
+WriteLiteral("</h3>\r\n\r\n");
 
             
             #line 17 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -143,7 +143,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</div>\n");
+WriteLiteral("</div>\r\n");
 
             
             #line 20 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -152,7 +152,7 @@ WriteLiteral("</div>\n");
             
             #line default
             #line hidden
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
             
             #line 22 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -173,11 +173,11 @@ WriteLiteral("    <div");
 
 WriteLiteral(" class=\"media sf-profile\"");
 
-WriteLiteral(">\n        <div");
+WriteLiteral(">\r\n        <div");
 
 WriteLiteral(" class=\"media-left sf-pr-xl\"");
 
-WriteLiteral(">\n");
+WriteLiteral(">\r\n");
 
 WriteLiteral("            ");
 
@@ -188,7 +188,7 @@ WriteLiteral("            ");
             
             #line default
             #line hidden
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
 WriteLiteral("            ");
 
@@ -199,45 +199,45 @@ WriteLiteral("            ");
             
             #line default
             #line hidden
-WriteLiteral("\n            <div");
+WriteLiteral("\r\n            <div");
 
 WriteLiteral(" class=\"media-object\"");
 
-WriteLiteral(">\n            \t<div");
+WriteLiteral(">\r\n            \t<div");
 
 WriteLiteral(" class=\"sf-profile-avatar\"");
 
-WriteLiteral(">\n\t                <img");
+WriteLiteral(">\r\n\t                <img");
 
 WriteLiteral(" data-sf-role=\"edit-profile-user-image\"");
 
-WriteAttribute("src", Tuple.Create(" src=\"", 1354), Tuple.Create("\"", 1381)
+WriteAttribute("src", Tuple.Create(" src=\"", 1384), Tuple.Create("\"", 1411)
             
             #line 31 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
-, Tuple.Create(Tuple.Create("", 1360), Tuple.Create<System.Object, System.Int32>(Model.AvatarImageUrl
+, Tuple.Create(Tuple.Create("", 1390), Tuple.Create<System.Object, System.Int32>(Model.AvatarImageUrl
             
             #line default
             #line hidden
-, 1360), false)
+, 1390), false)
 );
 
-WriteAttribute("alt", Tuple.Create(" alt=\"", 1382), Tuple.Create("\"", 1403)
+WriteAttribute("alt", Tuple.Create(" alt=\"", 1412), Tuple.Create("\"", 1433)
             
             #line 31 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
-                 , Tuple.Create(Tuple.Create("", 1388), Tuple.Create<System.Object, System.Int32>(Model.UserName
+                 , Tuple.Create(Tuple.Create("", 1418), Tuple.Create<System.Object, System.Int32>(Model.UserName
             
             #line default
             #line hidden
-, 1388), false)
+, 1418), false)
 );
 
 WriteLiteral(" width=\"100\"");
 
 WriteLiteral(" height=\"100\"");
 
-WriteLiteral("/>\n\t                ");
+WriteLiteral("/>\r\n\t                ");
 
-WriteLiteral("\n\t            </div>\n\n\t            <div>\n\t                <input");
+WriteLiteral("\r\n\t            </div>\r\n\r\n\t            <div>\r\n\t                <input");
 
 WriteLiteral(" type=\"file\"");
 
@@ -247,7 +247,7 @@ WriteLiteral(" name=\"UploadedImage\"");
 
 WriteLiteral(" style=\"display: none;\"");
 
-WriteLiteral(" />\n\t                <a");
+WriteLiteral(" />\r\n\t                <a");
 
 WriteLiteral(" href=\"javascript:void(0)\"");
 
@@ -262,11 +262,12 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</a>\n\t            </div>\n            </div>\n\n        </div> \n\t\t\n        <div");
+WriteLiteral("</a>\r\n\t            </div>\r\n            </div>\r\n\r\n        </div> \r\n\t\t\r\n        <di" +
+"v");
 
 WriteLiteral(" class=\"media-body\"");
 
-WriteLiteral(">\n");
+WriteLiteral(">\r\n");
 
             
             #line 44 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -287,7 +288,7 @@ WriteLiteral("                <div");
 
 WriteLiteral(" class=\"alert alert-danger\"");
 
-WriteLiteral(">\n");
+WriteLiteral(">\r\n");
 
 WriteLiteral("                    ");
 
@@ -298,7 +299,7 @@ WriteLiteral("                    ");
             
             #line default
             #line hidden
-WriteLiteral("\n                </div>\n");
+WriteLiteral("\r\n                </div>\r\n");
 
             
             #line 50 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -312,7 +313,7 @@ WriteLiteral("            <div");
 
 WriteLiteral(" class=\"form-group\"");
 
-WriteLiteral(">\n                <label>\n");
+WriteLiteral(">\r\n                <label>\r\n");
 
 WriteLiteral("                    ");
 
@@ -323,7 +324,7 @@ WriteLiteral("                    ");
             
             #line default
             #line hidden
-WriteLiteral("\n                </label>\n");
+WriteLiteral("\r\n                </label>\r\n");
 
 WriteLiteral("                ");
 
@@ -334,7 +335,7 @@ WriteLiteral("                ");
             
             #line default
             #line hidden
-WriteLiteral("\n                \n");
+WriteLiteral("\r\n                \r\n");
 
             
             #line 58 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -354,7 +355,7 @@ WriteLiteral("                    <div");
 
 WriteLiteral(" class=\"has-error\"");
 
-WriteLiteral(">\n                        <span");
+WriteLiteral(">\r\n                        <span");
 
 WriteLiteral(" class=\"help-block\"");
 
@@ -367,7 +368,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</span>\n                    </div>\n");
+WriteLiteral("</span>\r\n                    </div>\r\n");
 
             
             #line 63 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -376,11 +377,11 @@ WriteLiteral("</span>\n                    </div>\n");
             
             #line default
             #line hidden
-WriteLiteral("            </div>\n        \n            <div");
+WriteLiteral("            </div>\r\n        \r\n            <div");
 
 WriteLiteral(" class=\"form-group\"");
 
-WriteLiteral(">\n                <label>\n");
+WriteLiteral(">\r\n                <label>\r\n");
 
 WriteLiteral("                    ");
 
@@ -391,7 +392,7 @@ WriteLiteral("                    ");
             
             #line default
             #line hidden
-WriteLiteral("\n                </label>\n");
+WriteLiteral("\r\n                </label>\r\n");
 
 WriteLiteral("                ");
 
@@ -402,7 +403,7 @@ WriteLiteral("                ");
             
             #line default
             #line hidden
-WriteLiteral("\n                \n");
+WriteLiteral("\r\n                \r\n");
 
             
             #line 72 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -422,7 +423,7 @@ WriteLiteral("                    <div");
 
 WriteLiteral(" class=\"has-error\"");
 
-WriteLiteral(">\n                        <span");
+WriteLiteral(">\r\n                        <span");
 
 WriteLiteral(" class=\"help-block\"");
 
@@ -435,7 +436,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</span>\n                    </div>\n");
+WriteLiteral("</span>\r\n                    </div>\r\n");
 
             
             #line 77 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -444,11 +445,11 @@ WriteLiteral("</span>\n                    </div>\n");
             
             #line default
             #line hidden
-WriteLiteral("            </div>\t\t\n\t\t\t\n            <div");
+WriteLiteral("            </div>\t\t\r\n\t\t\t\r\n            <div");
 
 WriteLiteral(" class=\"form-group\"");
 
-WriteLiteral(">\n                <label>\n");
+WriteLiteral(">\r\n                <label>\r\n");
 
 WriteLiteral("                    ");
 
@@ -459,7 +460,7 @@ WriteLiteral("                    ");
             
             #line default
             #line hidden
-WriteLiteral("\n                </label>\n");
+WriteLiteral("\r\n                </label>\r\n");
 
 WriteLiteral("                ");
 
@@ -470,7 +471,7 @@ WriteLiteral("                ");
             
             #line default
             #line hidden
-WriteLiteral("\n                \n");
+WriteLiteral("\r\n                \r\n");
 
             
             #line 86 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -490,7 +491,7 @@ WriteLiteral("                    <div");
 
 WriteLiteral(" class=\"has-error\"");
 
-WriteLiteral(">\n                        <span");
+WriteLiteral(">\r\n                        <span");
 
 WriteLiteral(" class=\"help-block\"");
 
@@ -503,7 +504,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</span>\n                    </div>\n");
+WriteLiteral("</span>\r\n                    </div>\r\n");
 
             
             #line 91 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -512,11 +513,11 @@ WriteLiteral("</span>\n                    </div>\n");
             
             #line default
             #line hidden
-WriteLiteral("            </div>\n\n            <div");
+WriteLiteral("            </div>\r\n\r\n            <div");
 
 WriteLiteral(" class=\"form-group\"");
 
-WriteLiteral(">\n                <label>\n");
+WriteLiteral(">\r\n                <label>\r\n");
 
 WriteLiteral("                    ");
 
@@ -527,7 +528,7 @@ WriteLiteral("                    ");
             
             #line default
             #line hidden
-WriteLiteral("\n                </label>\n");
+WriteLiteral("\r\n                </label>\r\n");
 
 WriteLiteral("               ");
 
@@ -538,7 +539,7 @@ WriteLiteral("               ");
             
             #line default
             #line hidden
-WriteLiteral("\n\n            </div>\n        \n\t\t\n");
+WriteLiteral("\r\n\r\n            </div>\r\n        \r\n\t\t\r\n");
 
             
             #line 103 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -558,7 +559,7 @@ WriteLiteral("\t\t\t\t<div");
 
 WriteLiteral(" class=\"form-group\"");
 
-WriteLiteral(">\n\t\t\t\t\t<label>\n");
+WriteLiteral(">\r\n\t\t\t\t\t<label>\r\n");
 
 WriteLiteral("\t\t\t\t\t\t");
 
@@ -569,7 +570,7 @@ WriteLiteral("\t\t\t\t\t\t");
             
             #line default
             #line hidden
-WriteLiteral("\n\t\t\t\t\t</label>\n");
+WriteLiteral("\r\n\t\t\t\t\t</label>\r\n");
 
 WriteLiteral("\t\t\t\t\t");
 
@@ -580,7 +581,7 @@ WriteLiteral("\t\t\t\t\t");
             
             #line default
             #line hidden
-WriteLiteral("\n\t\t\t\t\t\n");
+WriteLiteral("\r\n\t\t\t\t\t\r\n");
 
             
             #line 111 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -600,7 +601,7 @@ WriteLiteral("\t\t\t\t\t\t<div");
 
 WriteLiteral(" class=\"has-error\"");
 
-WriteLiteral(">\n\t\t\t\t\t\t\t<span");
+WriteLiteral(">\r\n\t\t\t\t\t\t\t<span");
 
 WriteLiteral(" class=\"help-block\"");
 
@@ -613,7 +614,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</span>\n\t\t\t\t\t\t</div>\n");
+WriteLiteral("</span>\r\n\t\t\t\t\t\t</div>\r\n");
 
             
             #line 116 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -622,7 +623,7 @@ WriteLiteral("</span>\n\t\t\t\t\t\t</div>\n");
             
             #line default
             #line hidden
-WriteLiteral("\t\t\t\t</div>\n");
+WriteLiteral("\t\t\t\t</div>\r\n");
 
             
             #line 118 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -650,7 +651,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</a></div>\n");
+WriteLiteral("</a></div>\r\n");
 
             
             #line 120 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -665,7 +666,7 @@ WriteLiteral(" data-sf-role=\"edit-profile-change-password-holder\"");
 
 WriteLiteral(" style=\"display:none\"");
 
-WriteLiteral(">\n\n\t\t\t\t\t<h4>");
+WriteLiteral(">\r\n\r\n\t\t\t\t\t<h4>");
 
             
             #line 123 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -674,11 +675,11 @@ WriteLiteral(">\n\n\t\t\t\t\t<h4>");
             
             #line default
             #line hidden
-WriteLiteral("</h4>\n\t\t\t\t\n\t\t\t\t\t<div");
+WriteLiteral("</h4>\r\n\t\t\t\t\r\n\t\t\t\t\t<div");
 
 WriteLiteral(" class=\"form-group\"");
 
-WriteLiteral(">\n\t\t\t\t\t\t<label>\n");
+WriteLiteral(">\r\n\t\t\t\t\t\t<label>\r\n");
 
 WriteLiteral("\t\t\t\t\t\t\t");
 
@@ -689,7 +690,7 @@ WriteLiteral("\t\t\t\t\t\t\t");
             
             #line default
             #line hidden
-WriteLiteral("\n\t\t\t\t\t\t</label>\n\n");
+WriteLiteral("\r\n\t\t\t\t\t\t</label>\r\n\r\n");
 
 WriteLiteral("\t\t\t\t\t\t");
 
@@ -700,7 +701,7 @@ WriteLiteral("\t\t\t\t\t\t");
             
             #line default
             #line hidden
-WriteLiteral("\n\n");
+WriteLiteral("\r\n\r\n");
 
             
             #line 132 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -720,7 +721,7 @@ WriteLiteral("\t\t\t\t\t\t\t<div");
 
 WriteLiteral(" class=\"has-error\"");
 
-WriteLiteral(">\n\t\t\t\t\t\t\t\t<span");
+WriteLiteral(">\r\n\t\t\t\t\t\t\t\t<span");
 
 WriteLiteral(" class=\"help-block\"");
 
@@ -733,7 +734,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</span>\n\t\t\t\t\t\t\t</div>\n");
+WriteLiteral("</span>\r\n\t\t\t\t\t\t\t</div>\r\n");
 
             
             #line 137 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -742,11 +743,11 @@ WriteLiteral("</span>\n\t\t\t\t\t\t\t</div>\n");
             
             #line default
             #line hidden
-WriteLiteral("\t\t\t\t\t</div>\n\n\t\t\t\t\t<div");
+WriteLiteral("\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t<div");
 
 WriteLiteral(" class=\"form-group\"");
 
-WriteLiteral(">\n\t\t\t\t\t\t<label>\n");
+WriteLiteral(">\r\n\t\t\t\t\t\t<label>\r\n");
 
 WriteLiteral("\t\t\t\t\t\t\t");
 
@@ -757,7 +758,7 @@ WriteLiteral("\t\t\t\t\t\t\t");
             
             #line default
             #line hidden
-WriteLiteral("\n\t\t\t\t\t\t</label>\n");
+WriteLiteral("\r\n\t\t\t\t\t\t</label>\r\n");
 
 WriteLiteral("\t\t\t\t\t\t");
 
@@ -768,7 +769,7 @@ WriteLiteral("\t\t\t\t\t\t");
             
             #line default
             #line hidden
-WriteLiteral("\n\n");
+WriteLiteral("\r\n\r\n");
 
             
             #line 146 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -788,7 +789,7 @@ WriteLiteral("\t\t\t\t\t\t\t<div");
 
 WriteLiteral(" class=\"has-error\"");
 
-WriteLiteral(">\n\t\t\t\t\t\t\t\t<span");
+WriteLiteral(">\r\n\t\t\t\t\t\t\t\t<span");
 
 WriteLiteral(" class=\"help-block\"");
 
@@ -801,7 +802,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</span>\n\t\t\t\t\t\t\t</div>\n");
+WriteLiteral("</span>\r\n\t\t\t\t\t\t\t</div>\r\n");
 
             
             #line 151 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -810,11 +811,11 @@ WriteLiteral("</span>\n\t\t\t\t\t\t\t</div>\n");
             
             #line default
             #line hidden
-WriteLiteral("\t\t\t\t\t</div>\n\n\t\t\t\t\t<div");
+WriteLiteral("\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t<div");
 
 WriteLiteral(" class=\"form-group\"");
 
-WriteLiteral(">\n\t\t\t\t\t\t<label>\n");
+WriteLiteral(">\r\n\t\t\t\t\t\t<label>\r\n");
 
 WriteLiteral("\t\t\t\t\t\t\t");
 
@@ -825,7 +826,7 @@ WriteLiteral("\t\t\t\t\t\t\t");
             
             #line default
             #line hidden
-WriteLiteral("\n\t\t\t\t\t\t</label>\n");
+WriteLiteral("\r\n\t\t\t\t\t\t</label>\r\n");
 
 WriteLiteral("\t\t\t\t\t\t");
 
@@ -836,7 +837,7 @@ WriteLiteral("\t\t\t\t\t\t");
             
             #line default
             #line hidden
-WriteLiteral("\n\t\t\t\t\t\t\n");
+WriteLiteral("\r\n\t\t\t\t\t\t\r\n");
 
             
             #line 160 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -856,7 +857,7 @@ WriteLiteral("\t\t\t\t\t\t\t<div");
 
 WriteLiteral(" class=\"has-error\"");
 
-WriteLiteral(">\n\t\t\t\t\t\t\t\t<span");
+WriteLiteral(">\r\n\t\t\t\t\t\t\t\t<span");
 
 WriteLiteral(" class=\"help-block\"");
 
@@ -869,7 +870,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</span>\n\t\t\t\t\t\t\t</div>\n");
+WriteLiteral("</span>\r\n\t\t\t\t\t\t\t</div>\r\n");
 
             
             #line 165 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -878,7 +879,7 @@ WriteLiteral("</span>\n\t\t\t\t\t\t\t</div>\n");
             
             #line default
             #line hidden
-WriteLiteral("\t\t\t\t\t</div>\n\t\t\t\t</div>\n");
+WriteLiteral("\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n");
 
             
             #line 168 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -898,7 +899,7 @@ WriteLiteral("\t\t\t\t<h4>");
             
             #line default
             #line hidden
-WriteLiteral("</h4>\n");
+WriteLiteral("</h4>\r\n");
 
             
             #line 172 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -911,7 +912,7 @@ WriteLiteral("\t\t\t\t<div");
 
 WriteLiteral(" class=\"form-group\"");
 
-WriteLiteral(">\n\t\t\t\t\t<label>\n");
+WriteLiteral(">\r\n\t\t\t\t\t<label>\r\n");
 
 WriteLiteral("\t\t\t\t\t\t");
 
@@ -922,7 +923,7 @@ WriteLiteral("\t\t\t\t\t\t");
             
             #line default
             #line hidden
-WriteLiteral("\n\t\t\t\t\t</label>\n\t\t\t\t\t<div>\n");
+WriteLiteral("\r\n\t\t\t\t\t</label>\r\n\t\t\t\t\t<div>\r\n");
 
 WriteLiteral("\t\t\t\t\t\t");
 
@@ -933,7 +934,7 @@ WriteLiteral("\t\t\t\t\t\t");
             
             #line default
             #line hidden
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
 WriteLiteral("\t\t\t\t\t\t");
 
@@ -944,7 +945,7 @@ WriteLiteral("\t\t\t\t\t\t");
             
             #line default
             #line hidden
-WriteLiteral("\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n");
+WriteLiteral("\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n");
 
             
             #line 182 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -957,7 +958,7 @@ WriteLiteral("\t\t\t\t<div");
 
 WriteLiteral(" class=\"form-group\"");
 
-WriteLiteral(">\n\t\t\t\t\t<label>\n");
+WriteLiteral(">\r\n\t\t\t\t\t<label>\r\n");
 
 WriteLiteral("\t\t\t\t\t\t");
 
@@ -968,7 +969,7 @@ WriteLiteral("\t\t\t\t\t\t");
             
             #line default
             #line hidden
-WriteLiteral("\n\t\t\t\t\t</label>\n\t\t\t\t\t<div>\n");
+WriteLiteral("\r\n\t\t\t\t\t</label>\r\n\t\t\t\t\t<div>\r\n");
 
 WriteLiteral("\t\t\t\t\t\t");
 
@@ -979,7 +980,7 @@ WriteLiteral("\t\t\t\t\t\t");
             
             #line default
             #line hidden
-WriteLiteral("\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n");
+WriteLiteral("\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n");
 
             
             #line 191 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -988,7 +989,7 @@ WriteLiteral("\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n");
             
             #line default
             #line hidden
-WriteLiteral("\t\t\n");
+WriteLiteral("\t\t\r\n");
 
             
             #line 193 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -1021,7 +1022,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</button>\n");
+WriteLiteral("</button>\r\n");
 
             
             #line 196 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -1049,7 +1050,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</button>\n");
+WriteLiteral("</button>\r\n");
 
             
             #line 200 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -1058,7 +1059,7 @@ WriteLiteral("</button>\n");
             
             #line default
             #line hidden
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
             
             #line 202 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -1082,7 +1083,7 @@ WriteLiteral(" data-sf-role=\"profile-submit-preview-message\"");
 
 WriteLiteral(" style=\"display:none\"");
 
-WriteLiteral(">\n                    <span");
+WriteLiteral(">\r\n                    <span");
 
 WriteLiteral(" class=\"help-block\"");
 
@@ -1099,7 +1100,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</span></span>\n                </div>\n");
+WriteLiteral("</span></span>\r\n                </div>\r\n");
 
             
             #line 207 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -1108,7 +1109,7 @@ WriteLiteral("</span></span>\n                </div>\n");
             
             #line default
             #line hidden
-WriteLiteral("        </div>\n     </div>\n");
+WriteLiteral("        </div>\r\n     </div>\r\n");
 
             
             #line 210 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -1117,7 +1118,7 @@ WriteLiteral("        </div>\n     </div>\n");
             
             #line default
             #line hidden
-WriteLiteral("</div>\n\n");
+WriteLiteral("</div>\r\n\r\n");
 
             
             #line 213 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -1127,23 +1128,23 @@ WriteLiteral("</div>\n\n");
             
             #line default
             #line hidden
-WriteLiteral("\n\n<input");
+WriteLiteral("\r\n\r\n<input");
 
 WriteLiteral(" type=\"hidden\"");
 
 WriteLiteral(" data-sf-role=\"has-password-errors\"");
 
-WriteAttribute("value", Tuple.Create(" value=\"", 7733), Tuple.Create("\"", 7789)
+WriteAttribute("value", Tuple.Create(" value=\"", 7949), Tuple.Create("\"", 8005)
             
             #line 217 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
-, Tuple.Create(Tuple.Create("", 7741), Tuple.Create<System.Object, System.Int32>(hasPasswordErrors.ToString().ToLowerInvariant()
+, Tuple.Create(Tuple.Create("", 7957), Tuple.Create<System.Object, System.Int32>(hasPasswordErrors.ToString().ToLowerInvariant()
             
             #line default
             #line hidden
-, 7741), false)
+, 7957), false)
 );
 
-WriteLiteral(" />\n \n");
+WriteLiteral(" />\r\n \r\n");
 
             
             #line 219 "..\..MVC\Views\Profile\Edit.ProfileEdit.cshtml"
@@ -1152,7 +1153,7 @@ Write(Html.Script(Url.WidgetContent("Mvc/Scripts/Profile/profile-edit.js"), "bot
             
             #line default
             #line hidden
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
         }
     }

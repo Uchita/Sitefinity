@@ -54,7 +54,7 @@ namespace SitefinityWebApp.ResourcePackages.Bootstrap.MVC.Views.FileField
         }
         public override void Execute()
         {
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
             
             #line 7 "..\..MVC\Views\FileField\Write.Default.cshtml"
@@ -63,18 +63,18 @@ Write(Html.Script(ScriptRef.JQuery, "top", false));
             
             #line default
             #line hidden
-WriteLiteral("\n\n<div");
+WriteLiteral("\r\n\r\n<div");
 
-WriteAttribute("class", Tuple.Create(" class=\"", 265), Tuple.Create("\"", 312)
+WriteAttribute("class", Tuple.Create(" class=\"", 273), Tuple.Create("\"", 320)
             
             #line 9 "..\..MVC\Views\FileField\Write.Default.cshtml"
-, Tuple.Create(Tuple.Create("", 273), Tuple.Create<System.Object, System.Int32>(Model.CssClass
+, Tuple.Create(Tuple.Create("", 281), Tuple.Create<System.Object, System.Int32>(Model.CssClass
             
             #line default
             #line hidden
-, 273), false)
-, Tuple.Create(Tuple.Create(" ", 288), Tuple.Create("sf-FileField", 289), true)
-, Tuple.Create(Tuple.Create(" ", 301), Tuple.Create("form-group", 302), true)
+, 281), false)
+, Tuple.Create(Tuple.Create(" ", 296), Tuple.Create("sf-FileField", 297), true)
+, Tuple.Create(Tuple.Create(" ", 309), Tuple.Create("form-group", 310), true)
 );
 
 WriteLiteral(" data-sf-role=\"file-field-container\"");
@@ -90,7 +90,7 @@ WriteLiteral(" data-sf-config=\"");
             #line hidden
 WriteLiteral("\"");
 
-WriteLiteral(">\n    <strong>");
+WriteLiteral(">\r\n    <strong>");
 
             
             #line 10 "..\..MVC\Views\FileField\Write.Default.cshtml"
@@ -99,7 +99,7 @@ WriteLiteral(">\n    <strong>");
             
             #line default
             #line hidden
-WriteLiteral("</strong>\n    <p");
+WriteLiteral("</strong>\r\n    <p");
 
 WriteLiteral(" class=\"text-danger\"");
 
@@ -116,7 +116,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</p>\n");
+WriteLiteral("</p>\r\n");
 
             
             #line 12 "..\..MVC\Views\FileField\Write.Default.cshtml"
@@ -145,7 +145,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</p>\n");
+WriteLiteral("</p>\r\n");
 
             
             #line 15 "..\..MVC\Views\FileField\Write.Default.cshtml"
@@ -158,7 +158,7 @@ WriteLiteral("    <div");
 
 WriteLiteral(" data-sf-role=\"file-field-inputs\"");
 
-WriteLiteral(">\n");
+WriteLiteral(">\r\n");
 
             
             #line 17 "..\..MVC\Views\FileField\Write.Default.cshtml"
@@ -176,7 +176,7 @@ WriteLiteral(">\n");
             #line hidden
 WriteLiteral("            ");
 
-WriteLiteral("<script type=\"text/template\" data-sf-role=\"file-input-template\">\n");
+WriteLiteral("<script type=\"text/template\" data-sf-role=\"file-input-template\">\r\n");
 
             
             #line 20 "..\..MVC\Views\FileField\Write.Default.cshtml"
@@ -189,20 +189,20 @@ WriteLiteral("            <div");
 
 WriteLiteral(" data-sf-role=\"single-file-input\"");
 
-WriteLiteral(">\n                <input");
+WriteLiteral(">\r\n                <input");
 
 WriteLiteral(" title=\"file\"");
 
 WriteLiteral(" type=\"file\"");
 
-WriteAttribute("name", Tuple.Create(" name=\"", 1002), Tuple.Create("\"", 1037)
+WriteAttribute("name", Tuple.Create(" name=\"", 1023), Tuple.Create("\"", 1058)
             
             #line 22 "..\..MVC\Views\FileField\Write.Default.cshtml"
-, Tuple.Create(Tuple.Create("", 1009), Tuple.Create<System.Object, System.Int32>(Model.MetaField.FieldName
+, Tuple.Create(Tuple.Create("", 1030), Tuple.Create<System.Object, System.Int32>(Model.MetaField.FieldName
             
             #line default
             #line hidden
-, 1009), false)
+, 1030), false)
 );
 
 WriteLiteral(" ");
@@ -214,7 +214,7 @@ WriteLiteral(" ");
             
             #line default
             #line hidden
-WriteLiteral(" class=\"sf-FileField-input\"/>\n");
+WriteLiteral(" class=\"sf-FileField-input\"/>\r\n");
 
             
             #line 23 "..\..MVC\Views\FileField\Write.Default.cshtml"
@@ -238,7 +238,7 @@ WriteLiteral(" data-sf-role=\"remove-input\"");
 
 WriteLiteral(" class=\"sf-icon-remove\"");
 
-WriteLiteral("></span>\n");
+WriteLiteral("></span>\r\n");
 
             
             #line 26 "..\..MVC\Views\FileField\Write.Default.cshtml"
@@ -247,7 +247,7 @@ WriteLiteral("></span>\n");
             
             #line default
             #line hidden
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
             
             #line 28 "..\..MVC\Views\FileField\Write.Default.cshtml"
@@ -280,7 +280,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</p>\n");
+WriteLiteral("</p>\r\n");
 
             
             #line 31 "..\..MVC\Views\FileField\Write.Default.cshtml"
@@ -316,7 +316,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</p>\n");
+WriteLiteral("</p>\r\n");
 
             
             #line 35 "..\..MVC\Views\FileField\Write.Default.cshtml"
@@ -325,7 +325,7 @@ WriteLiteral("</p>\n");
             
             #line default
             #line hidden
-WriteLiteral("            </div>\n");
+WriteLiteral("            </div>\r\n");
 
             
             #line 37 "..\..MVC\Views\FileField\Write.Default.cshtml"
@@ -343,7 +343,7 @@ WriteLiteral("            </div>\n");
             #line hidden
 WriteLiteral("            ");
 
-WriteLiteral("</script>\n");
+WriteLiteral("</script>\r\n");
 
             
             #line 40 "..\..MVC\Views\FileField\Write.Default.cshtml"
@@ -360,7 +360,7 @@ WriteLiteral("</script>\n");
             
             #line default
             #line hidden
-WriteLiteral("    </div>\n\n");
+WriteLiteral("    </div>\r\n\r\n");
 
             
             #line 45 "..\..MVC\Views\FileField\Write.Default.cshtml"
@@ -391,7 +391,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</a>\n");
+WriteLiteral("</a>\r\n");
 
             
             #line 48 "..\..MVC\Views\FileField\Write.Default.cshtml"
@@ -400,7 +400,7 @@ WriteLiteral("</a>\n");
             
             #line default
             #line hidden
-WriteLiteral("</div>\n\n");
+WriteLiteral("</div>\r\n\r\n");
 
             
             #line 51 "..\..MVC\Views\FileField\Write.Default.cshtml"

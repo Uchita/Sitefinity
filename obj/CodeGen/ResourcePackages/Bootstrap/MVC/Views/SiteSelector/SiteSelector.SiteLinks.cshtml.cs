@@ -55,20 +55,20 @@ namespace SitefinityWebApp.ResourcePackages.Bootstrap.MVC.Views.SiteSelector
         }
         public override void Execute()
         {
-WriteLiteral("\n<div");
+WriteLiteral("\r\n<div");
 
-WriteAttribute("class", Tuple.Create(" class=\"", 252), Tuple.Create("\"", 292)
+WriteAttribute("class", Tuple.Create(" class=\"", 258), Tuple.Create("\"", 298)
             
             #line 7 "..\..\ResourcePackages\Bootstrap\MVC\Views\SiteSelector\SiteSelector.SiteLinks.cshtml"
-, Tuple.Create(Tuple.Create("", 260), Tuple.Create<System.Object, System.Int32>(Model.CssClass
+, Tuple.Create(Tuple.Create("", 266), Tuple.Create<System.Object, System.Int32>(Model.CssClass
             
             #line default
             #line hidden
-, 260), false)
-, Tuple.Create(Tuple.Create(" ", 275), Tuple.Create("sf-site-selector", 276), true)
+, 266), false)
+, Tuple.Create(Tuple.Create(" ", 281), Tuple.Create("sf-site-selector", 282), true)
 );
 
-WriteLiteral(">\n\n    <h3>");
+WriteLiteral(">\r\n\r\n    <h3>");
 
             
             #line 9 "..\..\ResourcePackages\Bootstrap\MVC\Views\SiteSelector\SiteSelector.SiteLinks.cshtml"
@@ -77,11 +77,11 @@ WriteLiteral(">\n\n    <h3>");
             
             #line default
             #line hidden
-WriteLiteral("</h3>\n   \n    <ul");
+WriteLiteral("</h3>\r\n   \r\n    <ul");
 
 WriteLiteral(" class=\"list-unstyled\"");
 
-WriteLiteral(">\n");
+WriteLiteral(">\r\n");
 
             
             #line 12 "..\..\ResourcePackages\Bootstrap\MVC\Views\SiteSelector\SiteSelector.SiteLinks.cshtml"
@@ -97,7 +97,7 @@ WriteLiteral(">\n");
             
             #line default
             #line hidden
-WriteLiteral("\n\n");
+WriteLiteral("\r\n\r\n");
 
             
             #line 16 "..\..\ResourcePackages\Bootstrap\MVC\Views\SiteSelector\SiteSelector.SiteLinks.cshtml"
@@ -130,7 +130,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</span></li>\n");
+WriteLiteral("</span></li>\r\n");
 
             
             #line 23 "..\..\ResourcePackages\Bootstrap\MVC\Views\SiteSelector\SiteSelector.SiteLinks.cshtml"
@@ -149,7 +149,7 @@ WriteLiteral("   <li><a>");
             
             #line default
             #line hidden
-WriteLiteral("</a></li>\n");
+WriteLiteral("</a></li>\r\n");
 
             
             #line 26 "..\..\ResourcePackages\Bootstrap\MVC\Views\SiteSelector\SiteSelector.SiteLinks.cshtml"
@@ -162,14 +162,14 @@ WriteLiteral("</a></li>\n");
             #line hidden
 WriteLiteral("                <li><a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 812), Tuple.Create("\"", 828)
+WriteAttribute("href", Tuple.Create(" href=\"", 840), Tuple.Create("\"", 856)
             
             #line 29 "..\..\ResourcePackages\Bootstrap\MVC\Views\SiteSelector\SiteSelector.SiteLinks.cshtml"
-, Tuple.Create(Tuple.Create("", 819), Tuple.Create<System.Object, System.Int32>(site.Url
+, Tuple.Create(Tuple.Create("", 847), Tuple.Create<System.Object, System.Int32>(site.Url
             
             #line default
             #line hidden
-, 819), false)
+, 847), false)
 );
 
 WriteLiteral(">");
@@ -181,7 +181,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</a></li>\n");
+WriteLiteral("</a></li>\r\n");
 
             
             #line 30 "..\..\ResourcePackages\Bootstrap\MVC\Views\SiteSelector\SiteSelector.SiteLinks.cshtml"
@@ -217,7 +217,7 @@ WriteLiteral(" - ");
             
             #line default
             #line hidden
-WriteLiteral("</span></li>\n");
+WriteLiteral("</span></li>\r\n");
 
             
             #line 37 "..\..\ResourcePackages\Bootstrap\MVC\Views\SiteSelector\SiteSelector.SiteLinks.cshtml"
@@ -246,7 +246,7 @@ WriteLiteral(" - ");
             
             #line default
             #line hidden
-WriteLiteral("</a></li>\n");
+WriteLiteral("</a></li>\r\n");
 
             
             #line 41 "..\..\ResourcePackages\Bootstrap\MVC\Views\SiteSelector\SiteSelector.SiteLinks.cshtml"
@@ -259,14 +259,14 @@ WriteLiteral("</a></li>\n");
             #line hidden
 WriteLiteral("                <li><a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 1386), Tuple.Create("\"", 1402)
+WriteAttribute("href", Tuple.Create(" href=\"", 1429), Tuple.Create("\"", 1445)
             
             #line 44 "..\..\ResourcePackages\Bootstrap\MVC\Views\SiteSelector\SiteSelector.SiteLinks.cshtml"
-, Tuple.Create(Tuple.Create("", 1393), Tuple.Create<System.Object, System.Int32>(site.Url
+, Tuple.Create(Tuple.Create("", 1436), Tuple.Create<System.Object, System.Int32>(site.Url
             
             #line default
             #line hidden
-, 1393), false)
+, 1436), false)
 );
 
 WriteLiteral(">");
@@ -287,7 +287,7 @@ WriteLiteral(" - ");
             
             #line default
             #line hidden
-WriteLiteral("</a></li>\n");
+WriteLiteral("</a></li>\r\n");
 
             
             #line 45 "..\..\ResourcePackages\Bootstrap\MVC\Views\SiteSelector\SiteSelector.SiteLinks.cshtml"
@@ -310,7 +310,7 @@ WriteLiteral("                <li><strong>");
             
             #line default
             #line hidden
-WriteLiteral("</strong></li>\n");
+WriteLiteral("</strong></li>\r\n");
 
             
             #line 52 "..\..\ResourcePackages\Bootstrap\MVC\Views\SiteSelector\SiteSelector.SiteLinks.cshtml"
@@ -336,7 +336,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</span></li>\n");
+WriteLiteral("</span></li>\r\n");
 
             
             #line 58 "..\..\ResourcePackages\Bootstrap\MVC\Views\SiteSelector\SiteSelector.SiteLinks.cshtml"
@@ -356,7 +356,7 @@ WriteLiteral("                <li><a>");
             
             #line default
             #line hidden
-WriteLiteral("</a></li>\n");
+WriteLiteral("</a></li>\r\n");
 
             
             #line 62 "..\..\ResourcePackages\Bootstrap\MVC\Views\SiteSelector\SiteSelector.SiteLinks.cshtml"
@@ -370,14 +370,14 @@ WriteLiteral("</a></li>\n");
             #line hidden
 WriteLiteral("                <li><a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 2065), Tuple.Create("\"", 2081)
+WriteAttribute("href", Tuple.Create(" href=\"", 2130), Tuple.Create("\"", 2146)
             
             #line 66 "..\..\ResourcePackages\Bootstrap\MVC\Views\SiteSelector\SiteSelector.SiteLinks.cshtml"
-, Tuple.Create(Tuple.Create("", 2072), Tuple.Create<System.Object, System.Int32>(site.Url
+, Tuple.Create(Tuple.Create("", 2137), Tuple.Create<System.Object, System.Int32>(site.Url
             
             #line default
             #line hidden
-, 2072), false)
+, 2137), false)
 );
 
 WriteLiteral(">");
@@ -389,7 +389,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</a></li>\n");
+WriteLiteral("</a></li>\r\n");
 
             
             #line 67 "..\..\ResourcePackages\Bootstrap\MVC\Views\SiteSelector\SiteSelector.SiteLinks.cshtml"
@@ -400,7 +400,7 @@ WriteLiteral("</a></li>\n");
             
             #line default
             #line hidden
-WriteLiteral("    </ul>\n</div>");
+WriteLiteral("    </ul>\r\n</div>");
 
         }
     }

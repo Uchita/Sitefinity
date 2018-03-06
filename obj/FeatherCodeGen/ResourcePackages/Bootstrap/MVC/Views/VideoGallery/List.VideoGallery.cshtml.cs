@@ -60,7 +60,7 @@ namespace SitefinityWebApp.ResourcePackages.Bootstrap.MVC.Views.VideoGallery
         }
         public override void Execute()
         {
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
             
             #line 8 "..\..MVC\Views\VideoGallery\List.VideoGallery.cshtml"
@@ -69,26 +69,26 @@ Write(Html.Script(ScriptRef.JQuery, "top"));
             
             #line default
             #line hidden
-WriteLiteral("\n\n<div");
+WriteLiteral("\r\n\r\n<div");
 
 WriteLiteral(" class=\"sf-Gallery-thumbs-container\"");
 
-WriteLiteral(">\n    <div");
+WriteLiteral(">\r\n    <div");
 
-WriteAttribute("class", Tuple.Create(" class=\"", 340), Tuple.Create("\"", 415)
+WriteAttribute("class", Tuple.Create(" class=\"", 350), Tuple.Create("\"", 425)
             
             #line 11 "..\..MVC\Views\VideoGallery\List.VideoGallery.cshtml"
-, Tuple.Create(Tuple.Create("", 348), Tuple.Create<System.Object, System.Int32>(Model.CssClass
+, Tuple.Create(Tuple.Create("", 358), Tuple.Create<System.Object, System.Int32>(Model.CssClass
             
             #line default
             #line hidden
-, 348), false)
-, Tuple.Create(Tuple.Create(" ", 363), Tuple.Create("sf-Gallery-thumbs", 364), true)
-, Tuple.Create(Tuple.Create(" ", 381), Tuple.Create("sf-Gallery-thumbs--video", 382), true)
-, Tuple.Create(Tuple.Create(" ", 406), Tuple.Create("clearfix", 407), true)
+, 358), false)
+, Tuple.Create(Tuple.Create(" ", 373), Tuple.Create("sf-Gallery-thumbs", 374), true)
+, Tuple.Create(Tuple.Create(" ", 391), Tuple.Create("sf-Gallery-thumbs--video", 392), true)
+, Tuple.Create(Tuple.Create(" ", 416), Tuple.Create("clearfix", 417), true)
 );
 
-WriteLiteral(">\n\n");
+WriteLiteral(">\r\n\r\n");
 
             
             #line 13 "..\..MVC\Views\VideoGallery\List.VideoGallery.cshtml"
@@ -112,7 +112,7 @@ WriteLiteral("            <div");
 
 WriteLiteral(" class=\"pull-left\"");
 
-WriteLiteral(">\n\t\t        <a\n               href=\"");
+WriteLiteral(">\r\n\t\t        <a\r\n               href=\"");
 
             
             #line 21 "..\..MVC\Views\VideoGallery\List.VideoGallery.cshtml"
@@ -121,7 +121,7 @@ WriteLiteral(">\n\t\t        <a\n               href=\"");
             
             #line default
             #line hidden
-WriteLiteral("\"\n               title=\"");
+WriteLiteral("\"\r\n               title=\"");
 
             
             #line 22 "..\..MVC\Views\VideoGallery\List.VideoGallery.cshtml"
@@ -130,29 +130,29 @@ WriteLiteral("\"\n               title=\"");
             
             #line default
             #line hidden
-WriteLiteral("\">\n\t\t\t        <img");
+WriteLiteral("\">\r\n\t\t\t        <img");
 
-WriteAttribute("src", Tuple.Create(" src=\"", 1138), Tuple.Create("\"", 1191)
+WriteAttribute("src", Tuple.Create(" src=\"", 1160), Tuple.Create("\"", 1213)
             
             #line 23 "..\..MVC\Views\VideoGallery\List.VideoGallery.cshtml"
-, Tuple.Create(Tuple.Create("", 1144), Tuple.Create<System.Object, System.Int32>(((VideoThumbnailViewModel)item).ThumbnailUrl
+, Tuple.Create(Tuple.Create("", 1166), Tuple.Create<System.Object, System.Int32>(((VideoThumbnailViewModel)item).ThumbnailUrl
             
             #line default
             #line hidden
-, 1144), false)
+, 1166), false)
 );
 
-WriteAttribute("alt", Tuple.Create(" alt=\'", 1192), Tuple.Create("\'", 1280)
+WriteAttribute("alt", Tuple.Create(" alt=\'", 1214), Tuple.Create("\'", 1302)
             
             #line 23 "..\..MVC\Views\VideoGallery\List.VideoGallery.cshtml"
-    , Tuple.Create(Tuple.Create("", 1198), Tuple.Create<System.Object, System.Int32>(System.Text.RegularExpressions.Regex.Replace(item.Fields.Title, @"[^\w\d_-]", "")
+    , Tuple.Create(Tuple.Create("", 1220), Tuple.Create<System.Object, System.Int32>(System.Text.RegularExpressions.Regex.Replace(item.Fields.Title, @"[^\w\d_-]", "")
             
             #line default
             #line hidden
-, 1198), false)
+, 1220), false)
 );
 
-WriteLiteral(" />\n                </a>\n                <h3>");
+WriteLiteral(" />\r\n                </a>\r\n                <h3>");
 
             
             #line 25 "..\..MVC\Views\VideoGallery\List.VideoGallery.cshtml"
@@ -161,7 +161,7 @@ WriteLiteral(" />\n                </a>\n                <h3>");
             
             #line default
             #line hidden
-WriteLiteral("</h3>\n            </div>\n");
+WriteLiteral("</h3>\r\n            </div>\r\n");
 
             
             #line 27 "..\..MVC\Views\VideoGallery\List.VideoGallery.cshtml"
@@ -170,7 +170,7 @@ WriteLiteral("</h3>\n            </div>\n");
             
             #line default
             #line hidden
-WriteLiteral("\n    </div>\n</div>\n");
+WriteLiteral("\r\n    </div>\r\n</div>\r\n");
 
             
             #line 31 "..\..MVC\Views\VideoGallery\List.VideoGallery.cshtml"
@@ -206,7 +206,7 @@ WriteLiteral("\n    </div>\n</div>\n");
             
             #line default
             #line hidden
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
         }
     }

@@ -48,7 +48,7 @@ namespace SitefinityWebApp.ResourcePackages.Bootstrap.MVC.Views.PageBreak
         }
         public override void Execute()
         {
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
             
             #line 6 "..\..MVC\Views\PageBreak\Read.Default.cshtml"
@@ -57,20 +57,20 @@ Write(Html.Script(ScriptRef.JQuery, "top", false));
             
             #line default
             #line hidden
-WriteLiteral("\n\n<div");
+WriteLiteral("\r\n\r\n<div");
 
-WriteAttribute("class", Tuple.Create(" class=\"", 229), Tuple.Create("\"", 263)
+WriteAttribute("class", Tuple.Create(" class=\"", 236), Tuple.Create("\"", 270)
             
             #line 8 "..\..MVC\Views\PageBreak\Read.Default.cshtml"
-, Tuple.Create(Tuple.Create("", 237), Tuple.Create<System.Object, System.Int32>(Model.CssClass
+, Tuple.Create(Tuple.Create("", 244), Tuple.Create<System.Object, System.Int32>(Model.CssClass
             
             #line default
             #line hidden
-, 237), false)
-, Tuple.Create(Tuple.Create(" ", 252), Tuple.Create("form-group", 253), true)
+, 244), false)
+, Tuple.Create(Tuple.Create(" ", 259), Tuple.Create("form-group", 260), true)
 );
 
-WriteLiteral(">\n    <button");
+WriteLiteral(">\r\n    <button");
 
 WriteLiteral(" data-sf-btn-role=\"next\"");
 
@@ -87,7 +87,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</button>\n");
+WriteLiteral("</button>\r\n");
 
             
             #line 10 "..\..MVC\Views\PageBreak\Read.Default.cshtml"
@@ -118,7 +118,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</a>\n");
+WriteLiteral("</a>\r\n");
 
             
             #line 13 "..\..MVC\Views\PageBreak\Read.Default.cshtml"
@@ -127,7 +127,7 @@ WriteLiteral("</a>\n");
             
             #line default
             #line hidden
-WriteLiteral("</div>\n");
+WriteLiteral("</div>\r\n");
 
             
             #line 15 "..\..MVC\Views\PageBreak\Read.Default.cshtml"
@@ -136,7 +136,7 @@ Write(Html.Script(Url.WidgetContent("Mvc/Scripts/PageBreak/page-break.js"), "bot
             
             #line default
             #line hidden
-WriteLiteral("\n\n");
+WriteLiteral("\r\n\r\n");
 
         }
     }

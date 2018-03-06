@@ -60,7 +60,7 @@ namespace SitefinityWebApp.ResourcePackages.Bootstrap.MVC.Views.MultipleChoiceFi
         }
         public override void Execute()
         {
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
             
             #line 8 "..\..MVC\Views\MultipleChoiceField\Write.Default.cshtml"
@@ -69,7 +69,7 @@ Write(Html.Script(ScriptRef.JQuery, "top", false));
             
             #line default
             #line hidden
-WriteLiteral("\n\n");
+WriteLiteral("\r\n\r\n");
 
             
             #line 10 "..\..MVC\Views\MultipleChoiceField\Write.Default.cshtml"
@@ -80,42 +80,42 @@ WriteLiteral("\n\n");
             
             #line default
             #line hidden
-WriteLiteral("\n\n<div");
+WriteLiteral("\r\n\r\n<div");
 
-WriteAttribute("class", Tuple.Create(" class=\"", 550), Tuple.Create("\"", 584)
+WriteAttribute("class", Tuple.Create(" class=\"", 564), Tuple.Create("\"", 598)
             
             #line 15 "..\..MVC\Views\MultipleChoiceField\Write.Default.cshtml"
-, Tuple.Create(Tuple.Create("", 558), Tuple.Create<System.Object, System.Int32>(Model.CssClass
+, Tuple.Create(Tuple.Create("", 572), Tuple.Create<System.Object, System.Int32>(Model.CssClass
             
             #line default
             #line hidden
-, 558), false)
-, Tuple.Create(Tuple.Create(" ", 573), Tuple.Create("form-group", 574), true)
+, 572), false)
+, Tuple.Create(Tuple.Create(" ", 587), Tuple.Create("form-group", 588), true)
 );
 
 WriteLiteral(" data-sf-role=\"multiple-choice-field-container\"");
 
-WriteLiteral(">\n    <input");
+WriteLiteral(">\r\n    <input");
 
 WriteLiteral(" type=\"hidden\"");
 
 WriteLiteral(" data-sf-role=\"violation-messages\"");
 
-WriteAttribute("value", Tuple.Create(" value=\'", 692), Tuple.Create("\'", 748)
-, Tuple.Create(Tuple.Create("", 700), Tuple.Create("{", 700), true)
-, Tuple.Create(Tuple.Create(" ", 701), Tuple.Create("\"required\":", 702), true)
-, Tuple.Create(Tuple.Create(" ", 713), Tuple.Create("\"", 714), true)
+WriteAttribute("value", Tuple.Create(" value=\'", 707), Tuple.Create("\'", 763)
+, Tuple.Create(Tuple.Create("", 715), Tuple.Create("{", 715), true)
+, Tuple.Create(Tuple.Create(" ", 716), Tuple.Create("\"required\":", 717), true)
+, Tuple.Create(Tuple.Create(" ", 728), Tuple.Create("\"", 729), true)
             
             #line 16 "..\..MVC\Views\MultipleChoiceField\Write.Default.cshtml"
-  , Tuple.Create(Tuple.Create("", 715), Tuple.Create<System.Object, System.Int32>(Model.RequiredViolationMessage
+  , Tuple.Create(Tuple.Create("", 730), Tuple.Create<System.Object, System.Int32>(Model.RequiredViolationMessage
             
             #line default
             #line hidden
-, 715), false)
-, Tuple.Create(Tuple.Create("", 746), Tuple.Create("\"}", 746), true)
+, 730), false)
+, Tuple.Create(Tuple.Create("", 761), Tuple.Create("\"}", 761), true)
 );
 
-WriteLiteral(" />\n\n        <strong>");
+WriteLiteral(" />\r\n\r\n        <strong>");
 
             
             #line 18 "..\..MVC\Views\MultipleChoiceField\Write.Default.cshtml"
@@ -124,7 +124,7 @@ WriteLiteral(" />\n\n        <strong>");
             
             #line default
             #line hidden
-WriteLiteral("</strong>\n");
+WriteLiteral("</strong>\r\n");
 
             
             #line 19 "..\..MVC\Views\MultipleChoiceField\Write.Default.cshtml"
@@ -153,7 +153,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</p>\n");
+WriteLiteral("</p>\r\n");
 
             
             #line 22 "..\..MVC\Views\MultipleChoiceField\Write.Default.cshtml"
@@ -181,28 +181,28 @@ WriteLiteral("            <div");
 
 WriteLiteral(" class=\"radio\"");
 
-WriteLiteral(">\n                <label>\n                  <input");
+WriteLiteral(">\r\n                <label>\r\n                  <input");
 
 WriteLiteral(" type=\"radio\"");
 
-WriteAttribute("name", Tuple.Create(" name=\"", 1515), Tuple.Create("\"", 1532)
+WriteAttribute("name", Tuple.Create(" name=\"", 1542), Tuple.Create("\"", 1559)
             
             #line 32 "..\..MVC\Views\MultipleChoiceField\Write.Default.cshtml"
-, Tuple.Create(Tuple.Create("", 1522), Tuple.Create<System.Object, System.Int32>(fieldName
+, Tuple.Create(Tuple.Create("", 1549), Tuple.Create<System.Object, System.Int32>(fieldName
             
             #line default
             #line hidden
-, 1522), false)
+, 1549), false)
 );
 
-WriteAttribute("value", Tuple.Create(" value=\"", 1533), Tuple.Create("\"", 1548)
+WriteAttribute("value", Tuple.Create(" value=\"", 1560), Tuple.Create("\"", 1575)
             
             #line 32 "..\..MVC\Views\MultipleChoiceField\Write.Default.cshtml"
-, Tuple.Create(Tuple.Create("", 1541), Tuple.Create<System.Object, System.Int32>(choice
+, Tuple.Create(Tuple.Create("", 1568), Tuple.Create<System.Object, System.Int32>(choice
             
             #line default
             #line hidden
-, 1541), false)
+, 1568), false)
 );
 
 WriteLiteral(" data-sf-role=\"multiple-choice-field-input\"");
@@ -225,7 +225,7 @@ WriteLiteral(" ");
             
             #line default
             #line hidden
-WriteLiteral(" />\n");
+WriteLiteral(" />\r\n");
 
 WriteLiteral("                    ");
 
@@ -236,7 +236,7 @@ WriteLiteral("                    ");
             
             #line default
             #line hidden
-WriteLiteral("\n                </label>\n            </div>\n");
+WriteLiteral("\r\n                </label>\r\n            </div>\r\n");
 
             
             #line 36 "..\..MVC\Views\MultipleChoiceField\Write.Default.cshtml"
@@ -245,7 +245,7 @@ WriteLiteral("\n                </label>\n            </div>\n");
             
             #line default
             #line hidden
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
             
             #line 38 "..\..MVC\Views\MultipleChoiceField\Write.Default.cshtml"
@@ -265,25 +265,25 @@ WriteLiteral("           <div");
 
 WriteLiteral(" class=\"radio\"");
 
-WriteLiteral(">\n               <label>\n                    <input");
+WriteLiteral(">\r\n               <label>\r\n                    <input");
 
 WriteLiteral(" type=\"radio\"");
 
-WriteAttribute("name", Tuple.Create(" name=\"", 1855), Tuple.Create("\"", 1872)
+WriteAttribute("name", Tuple.Create(" name=\"", 1892), Tuple.Create("\"", 1909)
             
             #line 42 "..\..MVC\Views\MultipleChoiceField\Write.Default.cshtml"
-, Tuple.Create(Tuple.Create("", 1862), Tuple.Create<System.Object, System.Int32>(fieldName
+, Tuple.Create(Tuple.Create("", 1899), Tuple.Create<System.Object, System.Int32>(fieldName
             
             #line default
             #line hidden
-, 1862), false)
+, 1899), false)
 );
 
 WriteLiteral(" data-sf-multiple-choice-role=\"other-choice-radio\"");
 
 WriteLiteral(" data-sf-role=\"multiple-choice-field-input\"");
 
-WriteLiteral("/>\n");
+WriteLiteral("/>\r\n");
 
 WriteLiteral("                    ");
 
@@ -294,13 +294,13 @@ WriteLiteral("                    ");
             
             #line default
             #line hidden
-WriteLiteral("\n               </label>\n               <input");
+WriteLiteral("\r\n               </label>\r\n               <input");
 
 WriteLiteral(" type=\"hidden\"");
 
 WriteLiteral(" data-sf-multiple-choice-role=\"other-choice-text\"");
 
-WriteLiteral(" />\n           </div>\n");
+WriteLiteral(" />\r\n           </div>\r\n");
 
             
             #line 47 "..\..MVC\Views\MultipleChoiceField\Write.Default.cshtml"
@@ -310,7 +310,7 @@ WriteLiteral(" />\n           </div>\n");
             
             #line default
             #line hidden
-WriteLiteral("\n\n</div>\n\n");
+WriteLiteral("\r\n\r\n</div>\r\n\r\n");
 
             
             #line 53 "..\..MVC\Views\MultipleChoiceField\Write.Default.cshtml"

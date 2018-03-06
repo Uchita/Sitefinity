@@ -65,36 +65,36 @@ return new System.Web.WebPages.HelperResult(__razor_helper_writer => {
 #line hidden
 WriteLiteralTo(__razor_helper_writer, "     <li");
 
-WriteAttributeTo(__razor_helper_writer, "class", Tuple.Create(" class=\"", 655), Tuple.Create("\"", 678)
+WriteAttributeTo(__razor_helper_writer, "class", Tuple.Create(" class=\"", 677), Tuple.Create("\"", 700)
 
 #line 23 "..\..MVC\Views\Navigation\NavigationView.Vertical.cshtml"
-, Tuple.Create(Tuple.Create("", 663), Tuple.Create<System.Object, System.Int32>(GetClass(node)
+, Tuple.Create(Tuple.Create("", 685), Tuple.Create<System.Object, System.Int32>(GetClass(node)
 
 #line default
 #line hidden
-, 663), false)
+, 685), false)
 );
 
-WriteLiteralTo(__razor_helper_writer, ">\n        <a");
+WriteLiteralTo(__razor_helper_writer, ">\r\n        <a");
 
-WriteAttributeTo(__razor_helper_writer, "href", Tuple.Create(" href=\"", 691), Tuple.Create("\"", 707)
+WriteAttributeTo(__razor_helper_writer, "href", Tuple.Create(" href=\"", 714), Tuple.Create("\"", 730)
 
 #line 24 "..\..MVC\Views\Navigation\NavigationView.Vertical.cshtml"
-, Tuple.Create(Tuple.Create("", 698), Tuple.Create<System.Object, System.Int32>(node.Url
+, Tuple.Create(Tuple.Create("", 721), Tuple.Create<System.Object, System.Int32>(node.Url
 
 #line default
 #line hidden
-, 698), false)
+, 721), false)
 );
 
-WriteAttributeTo(__razor_helper_writer, "target", Tuple.Create(" target=\"", 708), Tuple.Create("\"", 733)
+WriteAttributeTo(__razor_helper_writer, "target", Tuple.Create(" target=\"", 731), Tuple.Create("\"", 756)
 
 #line 24 "..\..MVC\Views\Navigation\NavigationView.Vertical.cshtml"
-, Tuple.Create(Tuple.Create("", 717), Tuple.Create<System.Object, System.Int32>(node.LinkTarget
+, Tuple.Create(Tuple.Create("", 740), Tuple.Create<System.Object, System.Int32>(node.LinkTarget
 
 #line default
 #line hidden
-, 717), false)
+, 740), false)
 );
 
 WriteLiteralTo(__razor_helper_writer, ">");
@@ -106,7 +106,7 @@ WriteLiteralTo(__razor_helper_writer, ">");
 
 #line default
 #line hidden
-WriteLiteralTo(__razor_helper_writer, "</a>\n\n");
+WriteLiteralTo(__razor_helper_writer, "</a>\r\n\r\n");
 
 
 #line 26 "..\..MVC\Views\Navigation\NavigationView.Vertical.cshtml"
@@ -126,7 +126,7 @@ WriteLiteralTo(__razor_helper_writer, "            <ul");
 
 WriteLiteralTo(__razor_helper_writer, " class=\"group nav nav-pills nav-stacked\"");
 
-WriteLiteralTo(__razor_helper_writer, " >\n");
+WriteLiteralTo(__razor_helper_writer, " >\r\n");
 
 
 #line 29 "..\..MVC\Views\Navigation\NavigationView.Vertical.cshtml"
@@ -157,7 +157,7 @@ WriteTo(__razor_helper_writer, RenderSubLevelsRecursive(childNode));
 
 #line default
 #line hidden
-WriteLiteralTo(__razor_helper_writer, "            </ul>\n");
+WriteLiteralTo(__razor_helper_writer, "            </ul>\r\n");
 
 
 #line 34 "..\..MVC\Views\Navigation\NavigationView.Vertical.cshtml"
@@ -166,7 +166,7 @@ WriteLiteralTo(__razor_helper_writer, "            </ul>\n");
 
 #line default
 #line hidden
-WriteLiteralTo(__razor_helper_writer, "    </li>\n");
+WriteLiteralTo(__razor_helper_writer, "    </li>\r\n");
 
 
 #line 36 "..\..MVC\Views\Navigation\NavigationView.Vertical.cshtml"
@@ -240,27 +240,27 @@ WriteTo(__razor_helper_writer, Html.Raw("active"));
         }
         public override void Execute()
         {
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
-WriteLiteral("\n\n<div");
+WriteLiteral("\r\n\r\n<div");
 
-WriteAttribute("class", Tuple.Create(" class=\"", 260), Tuple.Create("\"", 283)
+WriteAttribute("class", Tuple.Create(" class=\"", 268), Tuple.Create("\"", 291)
             
             #line 9 "..\..MVC\Views\Navigation\NavigationView.Vertical.cshtml"
-, Tuple.Create(Tuple.Create("", 268), Tuple.Create<System.Object, System.Int32>(Model.CssClass
+, Tuple.Create(Tuple.Create("", 276), Tuple.Create<System.Object, System.Int32>(Model.CssClass
             
             #line default
             #line hidden
-, 268), false)
+, 276), false)
 );
 
-WriteLiteral(">\n    ");
+WriteLiteral(">\r\n    ");
 
-WriteLiteral("\n\n      <ul");
+WriteLiteral("\r\n\r\n      <ul");
 
 WriteLiteral(" class=\"nav nav-pills nav-stacked\"");
 
-WriteLiteral(">\n");
+WriteLiteral(">\r\n");
 
             
             #line 13 "..\..MVC\Views\Navigation\NavigationView.Vertical.cshtml"
@@ -291,13 +291,13 @@ WriteLiteral(">\n");
             
             #line default
             #line hidden
-WriteLiteral("    </ul>\n</div>\n\n");
+WriteLiteral("    </ul>\r\n</div>\r\n\r\n");
 
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
         }
     }

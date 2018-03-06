@@ -48,7 +48,7 @@ namespace SitefinityWebApp.ResourcePackages.Bootstrap.MVC.Views.NavigationField
         }
         public override void Execute()
         {
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
             
             #line 6 "..\..MVC\Views\NavigationField\Read.Default.cshtml"
@@ -57,26 +57,26 @@ Write(Html.Script(ScriptRef.JQuery, "top", false));
             
             #line default
             #line hidden
-WriteLiteral("\n\n\n<div");
+WriteLiteral("\r\n\r\n\r\n<div");
 
-WriteAttribute("class", Tuple.Create(" class=\"", 242), Tuple.Create("\"", 276)
+WriteAttribute("class", Tuple.Create(" class=\"", 250), Tuple.Create("\"", 284)
             
             #line 9 "..\..MVC\Views\NavigationField\Read.Default.cshtml"
-, Tuple.Create(Tuple.Create("", 250), Tuple.Create<System.Object, System.Int32>(Model.CssClass
+, Tuple.Create(Tuple.Create("", 258), Tuple.Create<System.Object, System.Int32>(Model.CssClass
             
             #line default
             #line hidden
-, 250), false)
-, Tuple.Create(Tuple.Create(" ", 265), Tuple.Create("form-group", 266), true)
+, 258), false)
+, Tuple.Create(Tuple.Create(" ", 273), Tuple.Create("form-group", 274), true)
 );
 
 WriteLiteral(" data-sf-role=\"navigation-field-container\"");
 
-WriteLiteral(">\n     <ul");
+WriteLiteral(">\r\n     <ul");
 
 WriteLiteral(" class=\"sf-FormNav\"");
 
-WriteLiteral(">\n");
+WriteLiteral(">\r\n");
 
             
             #line 11 "..\..MVC\Views\NavigationField\Read.Default.cshtml"
@@ -108,11 +108,11 @@ WriteLiteral(" data-sf-navigation-index=\"");
             #line hidden
 WriteLiteral("\"");
 
-WriteLiteral(">\n               <span");
+WriteLiteral(">\r\n               <span");
 
 WriteLiteral(" class=\"sf-FormNav-page\"");
 
-WriteLiteral(">\n                    <span");
+WriteLiteral(">\r\n                    <span");
 
 WriteLiteral(" class=\"sf-FormNav-page-number\"");
 
@@ -125,7 +125,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral(" </span>\n               </span>");
+WriteLiteral(" </span>\r\n               </span>");
 
             
             #line 19 "..\..MVC\Views\NavigationField\Read.Default.cshtml"
@@ -134,7 +134,7 @@ WriteLiteral(" </span>\n               </span>");
             
             #line default
             #line hidden
-WriteLiteral("\n            </li>\n");
+WriteLiteral("\r\n            </li>\r\n");
 
             
             #line 21 "..\..MVC\Views\NavigationField\Read.Default.cshtml"
@@ -143,7 +143,7 @@ WriteLiteral("\n            </li>\n");
             
             #line default
             #line hidden
-WriteLiteral("\n    </ul>\n</div>\n\n");
+WriteLiteral("\r\n    </ul>\r\n</div>\r\n\r\n");
 
             
             #line 26 "..\..MVC\Views\NavigationField\Read.Default.cshtml"
@@ -152,7 +152,7 @@ Write(Html.Script(Url.WidgetContent("Mvc/Scripts/NavigationField/navigation-fiel
             
             #line default
             #line hidden
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
         }
     }

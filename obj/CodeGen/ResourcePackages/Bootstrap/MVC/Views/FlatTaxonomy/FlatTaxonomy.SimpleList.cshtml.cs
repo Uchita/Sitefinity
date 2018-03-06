@@ -39,19 +39,19 @@ namespace SitefinityWebApp.ResourcePackages.Bootstrap.MVC.Views.FlatTaxonomy
         {
 WriteLiteral("<ul");
 
-WriteAttribute("class", Tuple.Create(" class=\"", 79), Tuple.Create("\"", 124)
+WriteAttribute("class", Tuple.Create(" class=\"", 81), Tuple.Create("\"", 126)
             
             #line 3 "..\..\ResourcePackages\Bootstrap\MVC\Views\FlatTaxonomy\FlatTaxonomy.SimpleList.cshtml"
-, Tuple.Create(Tuple.Create("", 87), Tuple.Create<System.Object, System.Int32>(Model.CssClass
+, Tuple.Create(Tuple.Create("", 89), Tuple.Create<System.Object, System.Int32>(Model.CssClass
             
             #line default
             #line hidden
-, 87), false)
-, Tuple.Create(Tuple.Create(" ", 102), Tuple.Create("sf-Tags", 103), true)
-, Tuple.Create(Tuple.Create(" ", 110), Tuple.Create("list-unstyled", 111), true)
+, 89), false)
+, Tuple.Create(Tuple.Create(" ", 104), Tuple.Create("sf-Tags", 105), true)
+, Tuple.Create(Tuple.Create(" ", 112), Tuple.Create("list-unstyled", 113), true)
 );
 
-WriteLiteral(">\n");
+WriteLiteral(">\r\n");
 
             
             #line 4 "..\..\ResourcePackages\Bootstrap\MVC\Views\FlatTaxonomy\FlatTaxonomy.SimpleList.cshtml"
@@ -67,16 +67,16 @@ WriteLiteral(">\n");
             
             #line default
             #line hidden
-WriteLiteral("        <li>\n            <a");
+WriteLiteral("        <li>\r\n            <a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 198), Tuple.Create("\"", 214)
+WriteAttribute("href", Tuple.Create(" href=\"", 204), Tuple.Create("\"", 220)
             
             #line 7 "..\..\ResourcePackages\Bootstrap\MVC\Views\FlatTaxonomy\FlatTaxonomy.SimpleList.cshtml"
-, Tuple.Create(Tuple.Create("", 205), Tuple.Create<System.Object, System.Int32>(taxa.Url
+, Tuple.Create(Tuple.Create("", 211), Tuple.Create<System.Object, System.Int32>(taxa.Url
             
             #line default
             #line hidden
-, 205), false)
+, 211), false)
 );
 
 WriteLiteral(">");
@@ -88,11 +88,11 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</a>\n            <span");
+WriteLiteral("</a>\r\n            <span");
 
 WriteLiteral(" class=\"text-muted\"");
 
-WriteLiteral(">\n");
+WriteLiteral(">\r\n");
 
             
             #line 9 "..\..\ResourcePackages\Bootstrap\MVC\Views\FlatTaxonomy\FlatTaxonomy.SimpleList.cshtml"
@@ -119,7 +119,7 @@ WriteLiteral("(");
             
             #line default
             #line hidden
-WriteLiteral(")\n");
+WriteLiteral(")\r\n");
 
             
             #line 12 "..\..\ResourcePackages\Bootstrap\MVC\Views\FlatTaxonomy\FlatTaxonomy.SimpleList.cshtml"
@@ -128,7 +128,7 @@ WriteLiteral(")\n");
             
             #line default
             #line hidden
-WriteLiteral("            </span>\n        </li>\n");
+WriteLiteral("            </span>\r\n        </li>\r\n");
 
             
             #line 15 "..\..\ResourcePackages\Bootstrap\MVC\Views\FlatTaxonomy\FlatTaxonomy.SimpleList.cshtml"

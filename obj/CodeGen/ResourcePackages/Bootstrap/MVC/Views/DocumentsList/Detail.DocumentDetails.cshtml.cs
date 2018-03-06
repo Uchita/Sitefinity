@@ -49,19 +49,19 @@ namespace SitefinityWebApp.ResourcePackages.Bootstrap.MVC.Views.DocumentsList
         }
         public override void Execute()
         {
-WriteLiteral("\n<div");
+WriteLiteral("\r\n<div");
 
-WriteAttribute("class", Tuple.Create(" class=\"", 190), Tuple.Create("\"", 213)
+WriteAttribute("class", Tuple.Create(" class=\"", 195), Tuple.Create("\"", 218)
             
             #line 6 "..\..\ResourcePackages\Bootstrap\MVC\Views\DocumentsList\Detail.DocumentDetails.cshtml"
-, Tuple.Create(Tuple.Create("", 198), Tuple.Create<System.Object, System.Int32>(Model.CssClass
+, Tuple.Create(Tuple.Create("", 203), Tuple.Create<System.Object, System.Int32>(Model.CssClass
             
             #line default
             #line hidden
-, 198), false)
+, 203), false)
 );
 
-WriteLiteral(">\n\n    <h1>\n");
+WriteLiteral(">\r\n\r\n    <h1>\r\n");
 
 WriteLiteral("        ");
 
@@ -72,11 +72,11 @@ WriteLiteral("        ");
             
             #line default
             #line hidden
-WriteLiteral("\n    </h1>\n\n    <div");
+WriteLiteral("\r\n    </h1>\r\n\r\n    <div");
 
 WriteLiteral(" class=\"text-muted\"");
 
-WriteLiteral(">\n");
+WriteLiteral(">\r\n");
 
 WriteLiteral("        ");
 
@@ -87,7 +87,7 @@ WriteLiteral("        ");
             
             #line default
             #line hidden
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
 WriteLiteral("        ");
 
@@ -98,7 +98,7 @@ WriteLiteral("        ");
             
             #line default
             #line hidden
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
 WriteLiteral("        ");
 
@@ -109,7 +109,7 @@ WriteLiteral("        ");
             
             #line default
             #line hidden
-WriteLiteral("\n    </div>\n\n    <div>\n");
+WriteLiteral("\r\n    </div>\r\n\r\n    <div>\r\n");
 
 WriteLiteral("        ");
 
@@ -120,21 +120,21 @@ WriteLiteral("        ");
             
             #line default
             #line hidden
-WriteLiteral("\n    </div>\n\n    <div>\n        <a");
+WriteLiteral("\r\n    </div>\r\n\r\n    <div>\r\n        <a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 565), Tuple.Create("\"", 599)
+WriteAttribute("href", Tuple.Create(" href=\"", 587), Tuple.Create("\"", 621)
             
             #line 23 "..\..\ResourcePackages\Bootstrap\MVC\Views\DocumentsList\Detail.DocumentDetails.cshtml"
-, Tuple.Create(Tuple.Create("", 572), Tuple.Create<System.Object, System.Int32>(Model.Item.Fields.MediaUrl
+, Tuple.Create(Tuple.Create("", 594), Tuple.Create<System.Object, System.Int32>(Model.Item.Fields.MediaUrl
             
             #line default
             #line hidden
-, 572), false)
+, 594), false)
 );
 
 WriteLiteral(" target=\"_blank\"");
 
-WriteLiteral(">Download</a>\n        (");
+WriteLiteral(">Download</a>\r\n        (");
 
             
             #line 24 "..\..\ResourcePackages\Bootstrap\MVC\Views\DocumentsList\Detail.DocumentDetails.cshtml"
@@ -143,7 +143,7 @@ WriteLiteral(">Download</a>\n        (");
             
             #line default
             #line hidden
-WriteLiteral(")\n        <span>");
+WriteLiteral(")\r\n        <span>");
 
             
             #line 25 "..\..\ResourcePackages\Bootstrap\MVC\Views\DocumentsList\Detail.DocumentDetails.cshtml"
@@ -152,7 +152,7 @@ WriteLiteral(")\n        <span>");
             
             #line default
             #line hidden
-WriteLiteral("</span>\n    </div>    \n    \n");
+WriteLiteral("</span>\r\n    </div>    \r\n    \r\n");
 
             
             #line 28 "..\..\ResourcePackages\Bootstrap\MVC\Views\DocumentsList\Detail.DocumentDetails.cshtml"
@@ -185,7 +185,7 @@ WriteLiteral("</span>\n    </div>    \n    \n");
             
             #line default
             #line hidden
-WriteLiteral("\n</div>");
+WriteLiteral("\r\n</div>");
 
         }
     }

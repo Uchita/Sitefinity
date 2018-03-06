@@ -215,3 +215,16 @@ C:\Program Files (x86)\Progress\Sitefinity\Projects\JXTNext.Sitefinity\obj\Debug
 C:\Program Files (x86)\Progress\Sitefinity\Projects\JXTNext.Sitefinity\obj\Debug\SitefinityWebApp.csproj.CoreCompileInputs.cache
 C:\Program Files (x86)\Progress\Sitefinity\Projects\JXTNext.Sitefinity\obj\Debug\SitefinityWebApp.dll
 C:\Program Files (x86)\Progress\Sitefinity\Projects\JXTNext.Sitefinity\obj\Debug\SitefinityWebApp.pdb
+C:\Developments\JXTNext\sitefinity\bin\SitefinityWebApp.ResourcePackages.Bootstrap.dll
+C:\Developments\JXTNext\sitefinity\bin\SitefinityWebApp.ResourcePackages.Bootstrap.pdb
+C:\Developments\JXTNext\sitefinity\bin\SitefinityWebApp.dll.config
+C:\Developments\JXTNext\sitefinity\bin\SitefinityWebApp.dll
+C:\Developments\JXTNext\sitefinity\bin\SitefinityWebApp.pdb
+C:\Developments\JXTNext\sitefinity\bin\WindowsAzureTelemetryEvents.dll
+C:\Developments\JXTNext\sitefinity\bin\EnvDTE.dll
+C:\Developments\JXTNext\sitefinity\bin\WindowsAzureEventSource.dll
+C:\Developments\JXTNext\sitefinity\bin\stdole.dll
+C:\Developments\JXTNext\sitefinity\obj\Debug\SitefinityWebApp.csprojResolveAssemblyReference.cache
+C:\Developments\JXTNext\sitefinity\obj\Debug\SitefinityWebApp.csproj.CoreCompileInputs.cache
+C:\Developments\JXTNext\sitefinity\obj\Debug\SitefinityWebApp.dll
+C:\Developments\JXTNext\sitefinity\obj\Debug\SitefinityWebApp.pdb

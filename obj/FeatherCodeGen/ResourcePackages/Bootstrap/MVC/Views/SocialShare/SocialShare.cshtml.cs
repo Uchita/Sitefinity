@@ -54,7 +54,7 @@ namespace SitefinityWebApp.ResourcePackages.Bootstrap.MVC.Views.SocialShare
         }
         public override void Execute()
         {
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
             
             #line 6 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
@@ -66,7 +66,7 @@ WriteLiteral("\n");
             
             #line default
             #line hidden
-WriteLiteral("\n\n");
+WriteLiteral("\r\n\r\n");
 
             
             #line 12 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
@@ -75,7 +75,7 @@ Write(Html.StyleSheet(Url.WidgetContent("assets/dist/css/sf-social-share.min.css
             
             #line default
             #line hidden
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
             
             #line 13 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
@@ -84,23 +84,23 @@ Write(Html.Script(ScriptRef.JQuery, "head", false));
             
             #line default
             #line hidden
-WriteLiteral("\n\n<div");
+WriteLiteral("\r\n\r\n<div");
 
-WriteAttribute("class", Tuple.Create(" class=\"", 595), Tuple.Create("\"", 618)
+WriteAttribute("class", Tuple.Create(" class=\"", 609), Tuple.Create("\"", 632)
             
             #line 15 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
-, Tuple.Create(Tuple.Create("", 603), Tuple.Create<System.Object, System.Int32>(Model.CssClass
+, Tuple.Create(Tuple.Create("", 617), Tuple.Create<System.Object, System.Int32>(Model.CssClass
             
             #line default
             #line hidden
-, 603), false)
+, 617), false)
 );
 
-WriteLiteral(">\n    <ul");
+WriteLiteral(">\r\n    <ul");
 
 WriteLiteral(" class=\"list-inline sf-social-share\"");
 
-WriteLiteral(">\n");
+WriteLiteral(">\r\n");
 
             
             #line 17 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
@@ -134,31 +134,31 @@ WriteLiteral(" data-sf-socialshareoption=\"");
             #line hidden
 WriteLiteral("\"");
 
-WriteLiteral(">\n                <a");
+WriteLiteral(">\r\n                <a");
 
 WriteLiteral(" href=\"#\"");
 
-WriteAttribute("onclick", Tuple.Create(" onclick=\"", 933), Tuple.Create("\"", 1145)
-, Tuple.Create(Tuple.Create("", 943), Tuple.Create("window.open(\'https://www.facebook.com/sharer/sharer.php?app_id=309437425817038&am" +
-"p;sdk=joey&amp;u=", 943), true)
+WriteAttribute("onclick", Tuple.Create(" onclick=\"", 955), Tuple.Create("\"", 1167)
+, Tuple.Create(Tuple.Create("", 965), Tuple.Create("window.open(\'https://www.facebook.com/sharer/sharer.php?app_id=309437425817038&am" +
+"p;sdk=joey&amp;u=", 965), true)
             
             #line 23 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
-                                                       , Tuple.Create(Tuple.Create("", 1041), Tuple.Create<System.Object, System.Int32>(shareUrl
+                                                       , Tuple.Create(Tuple.Create("", 1063), Tuple.Create<System.Object, System.Int32>(shareUrl
             
             #line default
             #line hidden
-, 1041), false)
-, Tuple.Create(Tuple.Create("", 1050), Tuple.Create("&amp;display=popup&amp;ref=plugin\',", 1050), true)
-, Tuple.Create(Tuple.Create(" ", 1085), Tuple.Create("\'Facebook\',\'toolbar=no,width=550,height=180\');", 1086), true)
-, Tuple.Create(Tuple.Create(" ", 1132), Tuple.Create("return", 1133), true)
-, Tuple.Create(Tuple.Create(" ", 1139), Tuple.Create("false", 1140), true)
+, 1063), false)
+, Tuple.Create(Tuple.Create("", 1072), Tuple.Create("&amp;display=popup&amp;ref=plugin\',", 1072), true)
+, Tuple.Create(Tuple.Create(" ", 1107), Tuple.Create("\'Facebook\',\'toolbar=no,width=550,height=180\');", 1108), true)
+, Tuple.Create(Tuple.Create(" ", 1154), Tuple.Create("return", 1155), true)
+, Tuple.Create(Tuple.Create(" ", 1161), Tuple.Create("false", 1162), true)
 );
 
-WriteLiteral(">\n                    <span");
+WriteLiteral(">\r\n                    <span");
 
 WriteLiteral(" class=\"sf-icon-facebook\"");
 
-WriteLiteral("></span>\n                </a>\n            </li>\n");
+WriteLiteral("></span>\r\n                </a>\r\n            </li>\r\n");
 
             
             #line 27 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
@@ -183,31 +183,31 @@ WriteLiteral(" data-sf-socialshareoption=\"");
             #line hidden
 WriteLiteral("\"");
 
-WriteLiteral(">\n                <a");
+WriteLiteral(">\r\n                <a");
 
 WriteLiteral(" href=\"#\"");
 
-WriteAttribute("onclick", Tuple.Create(" onclick=\"", 1423), Tuple.Create("\"", 1546)
-, Tuple.Create(Tuple.Create("", 1433), Tuple.Create("window.open(\'http://twitter.com/share?url=", 1433), true)
+WriteAttribute("onclick", Tuple.Create(" onclick=\"", 1452), Tuple.Create("\"", 1575)
+, Tuple.Create(Tuple.Create("", 1462), Tuple.Create("window.open(\'http://twitter.com/share?url=", 1462), true)
             
             #line 30 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
-, Tuple.Create(Tuple.Create("", 1475), Tuple.Create<System.Object, System.Int32>(shareUrl
+, Tuple.Create(Tuple.Create("", 1504), Tuple.Create<System.Object, System.Int32>(shareUrl
             
             #line default
             #line hidden
-, 1475), false)
-, Tuple.Create(Tuple.Create("", 1484), Tuple.Create("\',", 1484), true)
-, Tuple.Create(Tuple.Create(" ", 1486), Tuple.Create("\'Twitter\',", 1487), true)
-, Tuple.Create(Tuple.Create(" ", 1497), Tuple.Create("\'toolbar=no,width=550,height=450\');", 1498), true)
-, Tuple.Create(Tuple.Create(" ", 1533), Tuple.Create("return", 1534), true)
-, Tuple.Create(Tuple.Create(" ", 1540), Tuple.Create("false", 1541), true)
+, 1504), false)
+, Tuple.Create(Tuple.Create("", 1513), Tuple.Create("\',", 1513), true)
+, Tuple.Create(Tuple.Create(" ", 1515), Tuple.Create("\'Twitter\',", 1516), true)
+, Tuple.Create(Tuple.Create(" ", 1526), Tuple.Create("\'toolbar=no,width=550,height=450\');", 1527), true)
+, Tuple.Create(Tuple.Create(" ", 1562), Tuple.Create("return", 1563), true)
+, Tuple.Create(Tuple.Create(" ", 1569), Tuple.Create("false", 1570), true)
 );
 
 WriteLiteral(" ><span");
 
 WriteLiteral(" class=\"sf-icon-twitter\"");
 
-WriteLiteral("></span></a>\n            </li>\n");
+WriteLiteral("></span></a>\r\n            </li>\r\n");
 
             
             #line 32 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
@@ -232,41 +232,41 @@ WriteLiteral(" data-sf-socialshareoption=\"");
             #line hidden
 WriteLiteral("\"");
 
-WriteLiteral(">\n                <a");
+WriteLiteral(">\r\n                <a");
 
 WriteLiteral(" href=\"#\"");
 
-WriteAttribute("onclick", Tuple.Create(" onclick=\"", 1787), Tuple.Create("\"", 1975)
-, Tuple.Create(Tuple.Create("", 1797), Tuple.Create("window.open(\'http://www.linkedin.com/shareArticle?mini=true&amp;url=", 1797), true)
+WriteAttribute("onclick", Tuple.Create(" onclick=\"", 1821), Tuple.Create("\"", 2009)
+, Tuple.Create(Tuple.Create("", 1831), Tuple.Create("window.open(\'http://www.linkedin.com/shareArticle?mini=true&amp;url=", 1831), true)
             
             #line 35 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
-                         , Tuple.Create(Tuple.Create("", 1865), Tuple.Create<System.Object, System.Int32>(shareUrl
+                         , Tuple.Create(Tuple.Create("", 1899), Tuple.Create<System.Object, System.Int32>(shareUrl
             
             #line default
             #line hidden
-, 1865), false)
-, Tuple.Create(Tuple.Create("", 1874), Tuple.Create("&amp;title=", 1874), true)
+, 1899), false)
+, Tuple.Create(Tuple.Create("", 1908), Tuple.Create("&amp;title=", 1908), true)
             
             #line 35 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
-                                             , Tuple.Create(Tuple.Create("", 1885), Tuple.Create<System.Object, System.Int32>(pageTitle
+                                             , Tuple.Create(Tuple.Create("", 1919), Tuple.Create<System.Object, System.Int32>(pageTitle
             
             #line default
             #line hidden
-, 1885), false)
-, Tuple.Create(Tuple.Create("", 1895), Tuple.Create("\',", 1895), true)
-, Tuple.Create(Tuple.Create(" ", 1897), Tuple.Create("\'LinkedIn\',", 1898), true)
-, Tuple.Create(Tuple.Create(" ", 1909), Tuple.Create("\'toolbar=no,width=550,height=450\',", 1910), true)
-, Tuple.Create(Tuple.Create(" ", 1944), Tuple.Create("\'yes\',", 1945), true)
-, Tuple.Create(Tuple.Create(" ", 1951), Tuple.Create("\'center\');", 1952), true)
-, Tuple.Create(Tuple.Create(" ", 1962), Tuple.Create("return", 1963), true)
-, Tuple.Create(Tuple.Create(" ", 1969), Tuple.Create("false", 1970), true)
+, 1919), false)
+, Tuple.Create(Tuple.Create("", 1929), Tuple.Create("\',", 1929), true)
+, Tuple.Create(Tuple.Create(" ", 1931), Tuple.Create("\'LinkedIn\',", 1932), true)
+, Tuple.Create(Tuple.Create(" ", 1943), Tuple.Create("\'toolbar=no,width=550,height=450\',", 1944), true)
+, Tuple.Create(Tuple.Create(" ", 1978), Tuple.Create("\'yes\',", 1979), true)
+, Tuple.Create(Tuple.Create(" ", 1985), Tuple.Create("\'center\');", 1986), true)
+, Tuple.Create(Tuple.Create(" ", 1996), Tuple.Create("return", 1997), true)
+, Tuple.Create(Tuple.Create(" ", 2003), Tuple.Create("false", 2004), true)
 );
 
-WriteLiteral(">\n                    <span");
+WriteLiteral(">\r\n                    <span");
 
 WriteLiteral(" class=\"sf-icon-linkedin\"");
 
-WriteLiteral("></span>\n                </a>\n            </li>\n");
+WriteLiteral("></span>\r\n                </a>\r\n            </li>\r\n");
 
             
             #line 39 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
@@ -291,7 +291,7 @@ WriteLiteral(" data-sf-socialshareoption=\"");
             #line hidden
 WriteLiteral("\"");
 
-WriteLiteral(">\n\t\t\t<div");
+WriteLiteral(">\r\n\t\t\t<div");
 
 WriteLiteral(" class=\'g-plusone\'");
 
@@ -301,7 +301,7 @@ WriteLiteral(" data-annotation=\'none\'");
 
 WriteLiteral(" data-callback=\"googleShareCallback\"");
 
-WriteLiteral("></div>\n\t\t\t<script");
+WriteLiteral("></div>\r\n\t\t\t<script");
 
 WriteLiteral(" type=\'text/javascript\'");
 
@@ -334,40 +334,40 @@ WriteLiteral(" data-sf-socialshareoption=\"");
             #line hidden
 WriteLiteral("\"");
 
-WriteLiteral(">\n                <a");
+WriteLiteral(">\r\n                <a");
 
 WriteLiteral(" href=\"#\"");
 
-WriteAttribute("onclick", Tuple.Create(" onclick=\"", 2836), Tuple.Create("\"", 2980)
-, Tuple.Create(Tuple.Create("", 2846), Tuple.Create("window.open(\'https://www.blogger.com/blogger.g?t&u=", 2846), true)
+WriteAttribute("onclick", Tuple.Create(" onclick=\"", 2885), Tuple.Create("\"", 3029)
+, Tuple.Create(Tuple.Create("", 2895), Tuple.Create("window.open(\'https://www.blogger.com/blogger.g?t&u=", 2895), true)
             
             #line 50 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
-        , Tuple.Create(Tuple.Create("", 2897), Tuple.Create<System.Object, System.Int32>(shareUrl
+        , Tuple.Create(Tuple.Create("", 2946), Tuple.Create<System.Object, System.Int32>(shareUrl
             
             #line default
             #line hidden
-, 2897), false)
-, Tuple.Create(Tuple.Create("", 2906), Tuple.Create("&n=", 2906), true)
+, 2946), false)
+, Tuple.Create(Tuple.Create("", 2955), Tuple.Create("&n=", 2955), true)
             
             #line 50 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
-                    , Tuple.Create(Tuple.Create("", 2909), Tuple.Create<System.Object, System.Int32>(pageTitle
+                    , Tuple.Create(Tuple.Create("", 2958), Tuple.Create<System.Object, System.Int32>(pageTitle
             
             #line default
             #line hidden
-, 2909), false)
-, Tuple.Create(Tuple.Create("", 2919), Tuple.Create("\',", 2919), true)
-, Tuple.Create(Tuple.Create(" ", 2921), Tuple.Create("\'Blogger\',\'toolbar=no,width=550,height=550\');", 2922), true)
-, Tuple.Create(Tuple.Create(" ", 2967), Tuple.Create("return", 2968), true)
-, Tuple.Create(Tuple.Create(" ", 2974), Tuple.Create("false", 2975), true)
+, 2958), false)
+, Tuple.Create(Tuple.Create("", 2968), Tuple.Create("\',", 2968), true)
+, Tuple.Create(Tuple.Create(" ", 2970), Tuple.Create("\'Blogger\',\'toolbar=no,width=550,height=550\');", 2971), true)
+, Tuple.Create(Tuple.Create(" ", 3016), Tuple.Create("return", 3017), true)
+, Tuple.Create(Tuple.Create(" ", 3023), Tuple.Create("false", 3024), true)
 );
 
 WriteLiteral(" title=\"Share on Blogger\"");
 
-WriteLiteral(">\n                    <span");
+WriteLiteral(">\r\n                    <span");
 
 WriteLiteral(" class=\"sf-icon-blogger\"");
 
-WriteLiteral("></span>\n                </a>\n            </li>\n");
+WriteLiteral("></span>\r\n                </a>\r\n            </li>\r\n");
 
             
             #line 54 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
@@ -392,38 +392,38 @@ WriteLiteral(" data-sf-socialshareoption=\"");
             #line hidden
 WriteLiteral("\"");
 
-WriteLiteral(">\n                <a");
+WriteLiteral(">\r\n                <a");
 
 WriteLiteral(" href=\"#\"");
 
-WriteAttribute("onclick", Tuple.Create(" onclick=\"", 3284), Tuple.Create("\"", 3452)
-, Tuple.Create(Tuple.Create("", 3294), Tuple.Create("window.open(\'https://delicious.com/save?v=5&noui&jump=close&url=", 3294), true)
+WriteAttribute("onclick", Tuple.Create(" onclick=\"", 3340), Tuple.Create("\"", 3508)
+, Tuple.Create(Tuple.Create("", 3350), Tuple.Create("window.open(\'https://delicious.com/save?v=5&noui&jump=close&url=", 3350), true)
             
             #line 57 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
-                     , Tuple.Create(Tuple.Create("", 3358), Tuple.Create<System.Object, System.Int32>(shareUrl
+                     , Tuple.Create(Tuple.Create("", 3414), Tuple.Create<System.Object, System.Int32>(shareUrl
             
             #line default
             #line hidden
-, 3358), false)
-, Tuple.Create(Tuple.Create("", 3367), Tuple.Create("&amp;title=", 3367), true)
+, 3414), false)
+, Tuple.Create(Tuple.Create("", 3423), Tuple.Create("&amp;title=", 3423), true)
             
             #line 57 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
-                                         , Tuple.Create(Tuple.Create("", 3378), Tuple.Create<System.Object, System.Int32>(pageTitle
+                                         , Tuple.Create(Tuple.Create("", 3434), Tuple.Create<System.Object, System.Int32>(pageTitle
             
             #line default
             #line hidden
-, 3378), false)
-, Tuple.Create(Tuple.Create("", 3388), Tuple.Create("\',", 3388), true)
-, Tuple.Create(Tuple.Create(" ", 3390), Tuple.Create("\'delicious\',\'toolbar=no,width=550,height=550\');", 3391), true)
-, Tuple.Create(Tuple.Create(" ", 3438), Tuple.Create("return", 3439), true)
-, Tuple.Create(Tuple.Create(" ", 3445), Tuple.Create("false;", 3446), true)
+, 3434), false)
+, Tuple.Create(Tuple.Create("", 3444), Tuple.Create("\',", 3444), true)
+, Tuple.Create(Tuple.Create(" ", 3446), Tuple.Create("\'delicious\',\'toolbar=no,width=550,height=550\');", 3447), true)
+, Tuple.Create(Tuple.Create(" ", 3494), Tuple.Create("return", 3495), true)
+, Tuple.Create(Tuple.Create(" ", 3501), Tuple.Create("false;", 3502), true)
 );
 
-WriteLiteral(">\n                    <span");
+WriteLiteral(">\r\n                    <span");
 
 WriteLiteral(" class=\"sf-icon-delicious\"");
 
-WriteLiteral("></span>\n                </a>\n            </li>\n");
+WriteLiteral("></span>\r\n                </a>\r\n            </li>\r\n");
 
             
             #line 61 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
@@ -448,7 +448,7 @@ WriteLiteral(" data-sf-socialshareoption=\"");
             #line hidden
 WriteLiteral("\"");
 
-WriteLiteral(">\n                <a");
+WriteLiteral(">\r\n                <a");
 
 WriteLiteral(" href=\"#\"");
 
@@ -463,7 +463,7 @@ WriteLiteral(" style=\"display: inline-block; text-indent: -9999px; overflow: hi
 "x; height: 16px; background: url(\'https://platform.tumblr.com/v1/share_4.png\') t" +
 "op left no-repeat transparent;\"");
 
-WriteLiteral(">Share on Tumblr</a>\n            </li>\n");
+WriteLiteral(">Share on Tumblr</a>\r\n            </li>\r\n");
 
             
             #line 66 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
@@ -488,41 +488,41 @@ WriteLiteral(" data-sf-socialshareoption=\"");
             #line hidden
 WriteLiteral("\"");
 
-WriteLiteral(">\n                <a");
+WriteLiteral(">\r\n                <a");
 
 WriteLiteral(" href=\"#\"");
 
-WriteAttribute("onclick", Tuple.Create(" onclick=\"", 4268), Tuple.Create("\"", 4437)
-, Tuple.Create(Tuple.Create("", 4278), Tuple.Create("window.open(\'https://www.google.com/bookmarks/mark?op=add&bkmk=", 4278), true)
+WriteAttribute("onclick", Tuple.Create(" onclick=\"", 4336), Tuple.Create("\"", 4505)
+, Tuple.Create(Tuple.Create("", 4346), Tuple.Create("window.open(\'https://www.google.com/bookmarks/mark?op=add&bkmk=", 4346), true)
             
             #line 69 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
-                    , Tuple.Create(Tuple.Create("", 4341), Tuple.Create<System.Object, System.Int32>(shareUrl
+                    , Tuple.Create(Tuple.Create("", 4409), Tuple.Create<System.Object, System.Int32>(shareUrl
             
             #line default
             #line hidden
-, 4341), false)
-, Tuple.Create(Tuple.Create("", 4350), Tuple.Create("&title=", 4350), true)
+, 4409), false)
+, Tuple.Create(Tuple.Create("", 4418), Tuple.Create("&title=", 4418), true)
             
             #line 69 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
-                                    , Tuple.Create(Tuple.Create("", 4357), Tuple.Create<System.Object, System.Int32>(pageTitle
+                                    , Tuple.Create(Tuple.Create("", 4425), Tuple.Create<System.Object, System.Int32>(pageTitle
             
             #line default
             #line hidden
-, 4357), false)
-, Tuple.Create(Tuple.Create("", 4367), Tuple.Create("\',", 4367), true)
-, Tuple.Create(Tuple.Create(" ", 4369), Tuple.Create("\'Google", 4370), true)
-, Tuple.Create(Tuple.Create(" ", 4377), Tuple.Create("bookmarks\',\'toolbar=no,width=900,height=550\');", 4378), true)
-, Tuple.Create(Tuple.Create(" ", 4424), Tuple.Create("return", 4425), true)
-, Tuple.Create(Tuple.Create(" ", 4431), Tuple.Create("false", 4432), true)
+, 4425), false)
+, Tuple.Create(Tuple.Create("", 4435), Tuple.Create("\',", 4435), true)
+, Tuple.Create(Tuple.Create(" ", 4437), Tuple.Create("\'Google", 4438), true)
+, Tuple.Create(Tuple.Create(" ", 4445), Tuple.Create("bookmarks\',\'toolbar=no,width=900,height=550\');", 4446), true)
+, Tuple.Create(Tuple.Create(" ", 4492), Tuple.Create("return", 4493), true)
+, Tuple.Create(Tuple.Create(" ", 4499), Tuple.Create("false", 4500), true)
 );
 
 WriteLiteral(" title=\"Share on GoogleBookmarks\"");
 
-WriteLiteral(">\n                    <span");
+WriteLiteral(">\r\n                    <span");
 
 WriteLiteral(" class=\"sf-icon-google\"");
 
-WriteLiteral("></span>\n                </a>\n            </li>\n");
+WriteLiteral("></span>\r\n                </a>\r\n            </li>\r\n");
 
             
             #line 73 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
@@ -547,40 +547,40 @@ WriteLiteral(" data-sf-socialshareoption=\"");
             #line hidden
 WriteLiteral("\"");
 
-WriteLiteral(">\n                <a");
+WriteLiteral(">\r\n                <a");
 
 WriteLiteral(" href=\"#\"");
 
-WriteAttribute("onclick", Tuple.Create(" onclick=\"", 4743), Tuple.Create("\"", 4877)
-, Tuple.Create(Tuple.Create("", 4753), Tuple.Create("window.open(\'http://digg.com/submit?url=", 4753), true)
+WriteAttribute("onclick", Tuple.Create(" onclick=\"", 4818), Tuple.Create("\"", 4952)
+, Tuple.Create(Tuple.Create("", 4828), Tuple.Create("window.open(\'http://digg.com/submit?url=", 4828), true)
             
             #line 76 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
-, Tuple.Create(Tuple.Create("", 4793), Tuple.Create<System.Object, System.Int32>(shareUrl
+, Tuple.Create(Tuple.Create("", 4868), Tuple.Create<System.Object, System.Int32>(shareUrl
             
             #line default
             #line hidden
-, 4793), false)
-, Tuple.Create(Tuple.Create("", 4802), Tuple.Create("&title=", 4802), true)
+, 4868), false)
+, Tuple.Create(Tuple.Create("", 4877), Tuple.Create("&title=", 4877), true)
             
             #line 76 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
-             , Tuple.Create(Tuple.Create("", 4809), Tuple.Create<System.Object, System.Int32>(pageTitle
+             , Tuple.Create(Tuple.Create("", 4884), Tuple.Create<System.Object, System.Int32>(pageTitle
             
             #line default
             #line hidden
-, 4809), false)
-, Tuple.Create(Tuple.Create("", 4819), Tuple.Create("\',", 4819), true)
-, Tuple.Create(Tuple.Create(" ", 4821), Tuple.Create("\'Digg\',\'toolbar=no,width=550,height=550\');", 4822), true)
-, Tuple.Create(Tuple.Create(" ", 4864), Tuple.Create("return", 4865), true)
-, Tuple.Create(Tuple.Create(" ", 4871), Tuple.Create("false", 4872), true)
+, 4884), false)
+, Tuple.Create(Tuple.Create("", 4894), Tuple.Create("\',", 4894), true)
+, Tuple.Create(Tuple.Create(" ", 4896), Tuple.Create("\'Digg\',\'toolbar=no,width=550,height=550\');", 4897), true)
+, Tuple.Create(Tuple.Create(" ", 4939), Tuple.Create("return", 4940), true)
+, Tuple.Create(Tuple.Create(" ", 4946), Tuple.Create("false", 4947), true)
 );
 
 WriteLiteral(" title=\"Share on Digg\"");
 
-WriteLiteral(">\n                    <span");
+WriteLiteral(">\r\n                    <span");
 
 WriteLiteral(" class=\"sf-icon-digg\"");
 
-WriteLiteral("></span>\n                </a>\n            </li>\n");
+WriteLiteral("></span>\r\n                </a>\r\n            </li>\r\n");
 
             
             #line 80 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
@@ -605,41 +605,41 @@ WriteLiteral(" data-sf-socialshareoption=\"");
             #line hidden
 WriteLiteral("\"");
 
-WriteLiteral(">\n                <a");
+WriteLiteral(">\r\n                <a");
 
 WriteLiteral(" href=\"#\"");
 
-WriteAttribute("onclick", Tuple.Create(" onclick=\"", 5173), Tuple.Create("\"", 5323)
-, Tuple.Create(Tuple.Create("", 5183), Tuple.Create("window.open(\'http://myspace.com/Modules/PostTo/Pages/?u=", 5183), true)
+WriteAttribute("onclick", Tuple.Create(" onclick=\"", 5255), Tuple.Create("\"", 5405)
+, Tuple.Create(Tuple.Create("", 5265), Tuple.Create("window.open(\'http://myspace.com/Modules/PostTo/Pages/?u=", 5265), true)
             
             #line 83 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
-             , Tuple.Create(Tuple.Create("", 5239), Tuple.Create<System.Object, System.Int32>(shareUrl
+             , Tuple.Create(Tuple.Create("", 5321), Tuple.Create<System.Object, System.Int32>(shareUrl
             
             #line default
             #line hidden
-, 5239), false)
-, Tuple.Create(Tuple.Create("", 5248), Tuple.Create("&t=", 5248), true)
+, 5321), false)
+, Tuple.Create(Tuple.Create("", 5330), Tuple.Create("&t=", 5330), true)
             
             #line 83 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
-                         , Tuple.Create(Tuple.Create("", 5251), Tuple.Create<System.Object, System.Int32>(pageTitle
+                         , Tuple.Create(Tuple.Create("", 5333), Tuple.Create<System.Object, System.Int32>(pageTitle
             
             #line default
             #line hidden
-, 5251), false)
-, Tuple.Create(Tuple.Create("", 5261), Tuple.Create("\',", 5261), true)
-, Tuple.Create(Tuple.Create(" ", 5263), Tuple.Create("\'My", 5264), true)
-, Tuple.Create(Tuple.Create(" ", 5267), Tuple.Create("Space\',\'toolbar=no,width=550,height=550\');", 5268), true)
-, Tuple.Create(Tuple.Create(" ", 5310), Tuple.Create("return", 5311), true)
-, Tuple.Create(Tuple.Create(" ", 5317), Tuple.Create("false", 5318), true)
+, 5333), false)
+, Tuple.Create(Tuple.Create("", 5343), Tuple.Create("\',", 5343), true)
+, Tuple.Create(Tuple.Create(" ", 5345), Tuple.Create("\'My", 5346), true)
+, Tuple.Create(Tuple.Create(" ", 5349), Tuple.Create("Space\',\'toolbar=no,width=550,height=550\');", 5350), true)
+, Tuple.Create(Tuple.Create(" ", 5392), Tuple.Create("return", 5393), true)
+, Tuple.Create(Tuple.Create(" ", 5399), Tuple.Create("false", 5400), true)
 );
 
 WriteLiteral(" title=\"Share on MySpace\"");
 
-WriteLiteral(">\n                    <span");
+WriteLiteral(">\r\n                    <span");
 
 WriteLiteral(" class=\"sf-icon-myspace\"");
 
-WriteLiteral("></span>\n                </a>\n            </li>\n");
+WriteLiteral("></span>\r\n                </a>\r\n            </li>\r\n");
 
             
             #line 87 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
@@ -664,41 +664,41 @@ WriteLiteral(" data-sf-socialshareoption=\"");
             #line hidden
 WriteLiteral("\"");
 
-WriteLiteral(">\n                <a");
+WriteLiteral(">\r\n                <a");
 
 WriteLiteral(" href=\"#\"");
 
-WriteAttribute("onclick", Tuple.Create(" onclick=\"", 5629), Tuple.Create("\"", 5778)
-, Tuple.Create(Tuple.Create("", 5639), Tuple.Create("window.open(\'http://stumbleupon.com/submit?url=", 5639), true)
+WriteAttribute("onclick", Tuple.Create(" onclick=\"", 5718), Tuple.Create("\"", 5867)
+, Tuple.Create(Tuple.Create("", 5728), Tuple.Create("window.open(\'http://stumbleupon.com/submit?url=", 5728), true)
             
             #line 90 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
-    , Tuple.Create(Tuple.Create("", 5686), Tuple.Create<System.Object, System.Int32>(shareUrl
+    , Tuple.Create(Tuple.Create("", 5775), Tuple.Create<System.Object, System.Int32>(shareUrl
             
             #line default
             #line hidden
-, 5686), false)
-, Tuple.Create(Tuple.Create("", 5695), Tuple.Create("&title=", 5695), true)
+, 5775), false)
+, Tuple.Create(Tuple.Create("", 5784), Tuple.Create("&title=", 5784), true)
             
             #line 90 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
-                    , Tuple.Create(Tuple.Create("", 5702), Tuple.Create<System.Object, System.Int32>(pageTitle
+                    , Tuple.Create(Tuple.Create("", 5791), Tuple.Create<System.Object, System.Int32>(pageTitle
             
             #line default
             #line hidden
-, 5702), false)
-, Tuple.Create(Tuple.Create("", 5712), Tuple.Create("\',", 5712), true)
-, Tuple.Create(Tuple.Create(" ", 5714), Tuple.Create("\'Stumble", 5715), true)
-, Tuple.Create(Tuple.Create(" ", 5723), Tuple.Create("upon\',\'toolbar=no,width=550,height=550\');", 5724), true)
-, Tuple.Create(Tuple.Create(" ", 5765), Tuple.Create("return", 5766), true)
-, Tuple.Create(Tuple.Create(" ", 5772), Tuple.Create("false", 5773), true)
+, 5791), false)
+, Tuple.Create(Tuple.Create("", 5801), Tuple.Create("\',", 5801), true)
+, Tuple.Create(Tuple.Create(" ", 5803), Tuple.Create("\'Stumble", 5804), true)
+, Tuple.Create(Tuple.Create(" ", 5812), Tuple.Create("upon\',\'toolbar=no,width=550,height=550\');", 5813), true)
+, Tuple.Create(Tuple.Create(" ", 5854), Tuple.Create("return", 5855), true)
+, Tuple.Create(Tuple.Create(" ", 5861), Tuple.Create("false", 5862), true)
 );
 
 WriteLiteral(" title=\"Share on StumbleUpon\"");
 
-WriteLiteral(">\n                    <span");
+WriteLiteral(">\r\n                    <span");
 
 WriteLiteral(" class=\"sf-icon-stumble-upon\"");
 
-WriteLiteral("></span>\n                </a>\n            </li>\n");
+WriteLiteral("></span>\r\n                </a>\r\n            </li>\r\n");
 
             
             #line 94 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
@@ -723,40 +723,40 @@ WriteLiteral(" data-sf-socialshareoption=\"");
             #line hidden
 WriteLiteral("\"");
 
-WriteLiteral(">\n                <a");
+WriteLiteral(">\r\n                <a");
 
 WriteLiteral(" href=\"#\"");
 
-WriteAttribute("onclick", Tuple.Create(" onclick=\"", 6088), Tuple.Create("\"", 6242)
-, Tuple.Create(Tuple.Create("", 6098), Tuple.Create("window.open(\'http://www.reddit.com/submit?newwindow=1&url=", 6098), true)
+WriteAttribute("onclick", Tuple.Create(" onclick=\"", 6184), Tuple.Create("\"", 6338)
+, Tuple.Create(Tuple.Create("", 6194), Tuple.Create("window.open(\'http://www.reddit.com/submit?newwindow=1&url=", 6194), true)
             
             #line 97 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
-               , Tuple.Create(Tuple.Create("", 6156), Tuple.Create<System.Object, System.Int32>(shareUrl
+               , Tuple.Create(Tuple.Create("", 6252), Tuple.Create<System.Object, System.Int32>(shareUrl
             
             #line default
             #line hidden
-, 6156), false)
-, Tuple.Create(Tuple.Create("", 6165), Tuple.Create("&title=", 6165), true)
+, 6252), false)
+, Tuple.Create(Tuple.Create("", 6261), Tuple.Create("&title=", 6261), true)
             
             #line 97 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
-                               , Tuple.Create(Tuple.Create("", 6172), Tuple.Create<System.Object, System.Int32>(pageTitle
+                               , Tuple.Create(Tuple.Create("", 6268), Tuple.Create<System.Object, System.Int32>(pageTitle
             
             #line default
             #line hidden
-, 6172), false)
-, Tuple.Create(Tuple.Create("", 6182), Tuple.Create("\',", 6182), true)
-, Tuple.Create(Tuple.Create(" ", 6184), Tuple.Create("\'Reddit\',\'toolbar=no,width=870,height=550\');", 6185), true)
-, Tuple.Create(Tuple.Create(" ", 6229), Tuple.Create("return", 6230), true)
-, Tuple.Create(Tuple.Create(" ", 6236), Tuple.Create("false", 6237), true)
+, 6268), false)
+, Tuple.Create(Tuple.Create("", 6278), Tuple.Create("\',", 6278), true)
+, Tuple.Create(Tuple.Create(" ", 6280), Tuple.Create("\'Reddit\',\'toolbar=no,width=870,height=550\');", 6281), true)
+, Tuple.Create(Tuple.Create(" ", 6325), Tuple.Create("return", 6326), true)
+, Tuple.Create(Tuple.Create(" ", 6332), Tuple.Create("false", 6333), true)
 );
 
 WriteLiteral(" title=\"Share on Reddit\"");
 
-WriteLiteral(">\n                    <span");
+WriteLiteral(">\r\n                    <span");
 
 WriteLiteral(" class=\"sf-icon-reddit\"");
 
-WriteLiteral("></span>\n                </a>\n            </li>\n");
+WriteLiteral("></span>\r\n                </a>\r\n            </li>\r\n");
 
             
             #line 101 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
@@ -782,39 +782,39 @@ WriteLiteral(" data-sf-socialshareoption=\"");
             #line hidden
 WriteLiteral("\"");
 
-WriteLiteral(">\n                <a");
+WriteLiteral(">\r\n                <a");
 
-WriteAttribute("onclick", Tuple.Create(" onclick=\"", 6533), Tuple.Create("\"", 6658)
-, Tuple.Create(Tuple.Create("", 6543), Tuple.Create("window.open(\'mailto:?body=", 6543), true)
+WriteAttribute("onclick", Tuple.Create(" onclick=\"", 6637), Tuple.Create("\"", 6762)
+, Tuple.Create(Tuple.Create("", 6647), Tuple.Create("window.open(\'mailto:?body=", 6647), true)
             
             #line 105 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
-, Tuple.Create(Tuple.Create("", 6569), Tuple.Create<System.Object, System.Int32>(shareUrl
+, Tuple.Create(Tuple.Create("", 6673), Tuple.Create<System.Object, System.Int32>(shareUrl
             
             #line default
             #line hidden
-, 6569), false)
-, Tuple.Create(Tuple.Create("", 6578), Tuple.Create("&subject=", 6578), true)
+, 6673), false)
+, Tuple.Create(Tuple.Create("", 6682), Tuple.Create("&subject=", 6682), true)
             
             #line 105 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
-, Tuple.Create(Tuple.Create("", 6587), Tuple.Create<System.Object, System.Int32>(pageTitle
+, Tuple.Create(Tuple.Create("", 6691), Tuple.Create<System.Object, System.Int32>(pageTitle
             
             #line default
             #line hidden
-, 6587), false)
-, Tuple.Create(Tuple.Create("", 6597), Tuple.Create("\',", 6597), true)
-, Tuple.Create(Tuple.Create(" ", 6599), Tuple.Create("\'MailTo\',", 6600), true)
-, Tuple.Create(Tuple.Create(" ", 6609), Tuple.Create("\'toolbar=no,width=550,height=550\');", 6610), true)
-, Tuple.Create(Tuple.Create(" ", 6645), Tuple.Create("return", 6646), true)
-, Tuple.Create(Tuple.Create(" ", 6652), Tuple.Create("false", 6653), true)
+, 6691), false)
+, Tuple.Create(Tuple.Create("", 6701), Tuple.Create("\',", 6701), true)
+, Tuple.Create(Tuple.Create(" ", 6703), Tuple.Create("\'MailTo\',", 6704), true)
+, Tuple.Create(Tuple.Create(" ", 6713), Tuple.Create("\'toolbar=no,width=550,height=550\');", 6714), true)
+, Tuple.Create(Tuple.Create(" ", 6749), Tuple.Create("return", 6750), true)
+, Tuple.Create(Tuple.Create(" ", 6756), Tuple.Create("false", 6757), true)
 );
 
 WriteLiteral(" title=\"Tell a friend\"");
 
-WriteLiteral(">\n                    <span");
+WriteLiteral(">\r\n                    <span");
 
 WriteLiteral(" class=\"sf-icon-mailto\"");
 
-WriteLiteral("></span>\n                </a>\n            </li>\n");
+WriteLiteral("></span>\r\n                </a>\r\n            </li>\r\n");
 
             
             #line 109 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
@@ -828,7 +828,7 @@ WriteLiteral("></span>\n                </a>\n            </li>\n");
             
             #line default
             #line hidden
-WriteLiteral("    </ul>\n</div>\n\n");
+WriteLiteral("    </ul>\r\n</div>\r\n\r\n");
 
             
             #line 118 "..\..MVC\Views\SocialShare\SocialShare.cshtml"
@@ -837,7 +837,7 @@ Write(Html.Script(Url.WidgetContent("Mvc/Scripts/SocialShare/social-share.js"), 
             
             #line default
             #line hidden
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
         }
     }

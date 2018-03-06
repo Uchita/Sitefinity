@@ -42,19 +42,19 @@ namespace SitefinityWebApp.ResourcePackages.Bootstrap.MVC.Views.Feed
         }
         public override void Execute()
         {
-WriteLiteral("\n<div");
+WriteLiteral("\r\n<div");
 
-WriteAttribute("class", Tuple.Create(" class=\"", 135), Tuple.Create("\"", 158)
+WriteAttribute("class", Tuple.Create(" class=\"", 139), Tuple.Create("\"", 162)
             
             #line 5 "..\..MVC\Views\Feed\Feed.FeedLink.cshtml"
-, Tuple.Create(Tuple.Create("", 143), Tuple.Create<System.Object, System.Int32>(Model.CssClass
+, Tuple.Create(Tuple.Create("", 147), Tuple.Create<System.Object, System.Int32>(Model.CssClass
             
             #line default
             #line hidden
-, 143), false)
+, 147), false)
 );
 
-WriteLiteral(">\n");
+WriteLiteral(">\r\n");
 
             
             #line 6 "..\..MVC\Views\Feed\Feed.FeedLink.cshtml"
@@ -66,24 +66,24 @@ WriteLiteral(">\n");
             #line hidden
 WriteLiteral("    <a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 333), Tuple.Create("\"", 350)
+WriteAttribute("href", Tuple.Create(" href=\"", 340), Tuple.Create("\"", 357)
             
             #line 8 "..\..MVC\Views\Feed\Feed.FeedLink.cshtml"
-, Tuple.Create(Tuple.Create("", 340), Tuple.Create<System.Object, System.Int32>(Model.Url
+, Tuple.Create(Tuple.Create("", 347), Tuple.Create<System.Object, System.Int32>(Model.Url
             
             #line default
             #line hidden
-, 340), false)
+, 347), false)
 );
 
-WriteAttribute("title", Tuple.Create(" title=\"", 351), Tuple.Create("\"", 373)
+WriteAttribute("title", Tuple.Create(" title=\"", 358), Tuple.Create("\"", 380)
             
             #line 8 "..\..MVC\Views\Feed\Feed.FeedLink.cshtml"
-, Tuple.Create(Tuple.Create("", 359), Tuple.Create<System.Object, System.Int32>(Model.Tooltip
+, Tuple.Create(Tuple.Create("", 366), Tuple.Create<System.Object, System.Int32>(Model.Tooltip
             
             #line default
             #line hidden
-, 359), false)
+, 366), false)
 );
 
 WriteLiteral(" ");
@@ -108,7 +108,7 @@ WriteLiteral("></span>");
             
             #line default
             #line hidden
-WriteLiteral("</a>\n");
+WriteLiteral("</a>\r\n");
 
             
             #line 9 "..\..MVC\Views\Feed\Feed.FeedLink.cshtml"

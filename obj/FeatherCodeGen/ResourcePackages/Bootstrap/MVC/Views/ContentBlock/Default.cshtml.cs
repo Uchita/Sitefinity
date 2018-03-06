@@ -42,16 +42,16 @@ namespace SitefinityWebApp.ResourcePackages.Bootstrap.MVC.Views.ContentBlock
         }
         public override void Execute()
         {
-WriteLiteral("\n<div");
+WriteLiteral("\r\n<div");
 
-WriteAttribute("class", Tuple.Create(" class=\"", 131), Tuple.Create("\"", 161)
+WriteAttribute("class", Tuple.Create(" class=\"", 135), Tuple.Create("\"", 165)
             
             #line 5 "..\..MVC\Views\ContentBlock\Default.cshtml"
-, Tuple.Create(Tuple.Create("", 139), Tuple.Create<System.Object, System.Int32>(Model.WrapperCssClass
+, Tuple.Create(Tuple.Create("", 143), Tuple.Create<System.Object, System.Int32>(Model.WrapperCssClass
             
             #line default
             #line hidden
-, 139), false)
+, 143), false)
 );
 
 WriteLiteral(" ");
@@ -63,7 +63,7 @@ WriteLiteral(" ");
             
             #line default
             #line hidden
-WriteLiteral(">\n    <div ");
+WriteLiteral(">\r\n    <div ");
 
             
             #line 6 "..\..MVC\Views\ContentBlock\Default.cshtml"
@@ -81,7 +81,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</div>    \n");
+WriteLiteral("</div>    \r\n");
 
             
             #line 7 "..\..MVC\Views\ContentBlock\Default.cshtml"
@@ -113,7 +113,7 @@ WriteLiteral("</div>    \n");
             
             #line default
             #line hidden
-WriteLiteral("\n</div>");
+WriteLiteral("\r\n</div>");
 
         }
     }

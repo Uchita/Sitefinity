@@ -55,19 +55,19 @@ namespace SitefinityWebApp.ResourcePackages.Bootstrap.MVC.Views.SiteSelector
         }
         public override void Execute()
         {
-WriteLiteral("\n<div");
+WriteLiteral("\r\n<div");
 
-WriteAttribute("class", Tuple.Create(" class=\"", 253), Tuple.Create("\"", 276)
+WriteAttribute("class", Tuple.Create(" class=\"", 259), Tuple.Create("\"", 282)
             
             #line 7 "..\..\ResourcePackages\Bootstrap\MVC\Views\SiteSelector\SiteSelector.DropDownMenu.cshtml"
-, Tuple.Create(Tuple.Create("", 261), Tuple.Create<System.Object, System.Int32>(Model.CssClass
+, Tuple.Create(Tuple.Create("", 267), Tuple.Create<System.Object, System.Int32>(Model.CssClass
             
             #line default
             #line hidden
-, 261), false)
+, 267), false)
 );
 
-WriteLiteral(">\n\n    <h3>");
+WriteLiteral(">\r\n\r\n    <h3>");
 
             
             #line 9 "..\..\ResourcePackages\Bootstrap\MVC\Views\SiteSelector\SiteSelector.DropDownMenu.cshtml"
@@ -76,7 +76,7 @@ WriteLiteral(">\n\n    <h3>");
             
             #line default
             #line hidden
-WriteLiteral("</h3>\n\n    <label");
+WriteLiteral("</h3>\r\n\r\n    <label");
 
 WriteLiteral(" class=\"sr-only\"");
 
@@ -89,7 +89,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</label>\n");
+WriteLiteral("</label>\r\n");
 
             
             #line 12 "..\..\ResourcePackages\Bootstrap\MVC\Views\SiteSelector\SiteSelector.DropDownMenu.cshtml"
@@ -107,7 +107,7 @@ WriteLiteral("</label>\n");
             #line hidden
 WriteLiteral("        ");
 
-WriteLiteral("<select>\n");
+WriteLiteral("<select>\r\n");
 
             
             #line 15 "..\..\ResourcePackages\Bootstrap\MVC\Views\SiteSelector\SiteSelector.DropDownMenu.cshtml"
@@ -120,7 +120,7 @@ WriteLiteral("<select>\n");
             #line hidden
 WriteLiteral("        ");
 
-WriteLiteral("<select onchange=\"document.location.href = this.value\">\n");
+WriteLiteral("<select onchange=\"document.location.href = this.value\">\r\n");
 
             
             #line 19 "..\..\ResourcePackages\Bootstrap\MVC\Views\SiteSelector\SiteSelector.DropDownMenu.cshtml"
@@ -148,7 +148,7 @@ WriteLiteral("                <option>");
             
             #line default
             #line hidden
-WriteLiteral("</option>\n");
+WriteLiteral("</option>\r\n");
 
             
             #line 23 "..\..\ResourcePackages\Bootstrap\MVC\Views\SiteSelector\SiteSelector.DropDownMenu.cshtml"
@@ -157,7 +157,7 @@ WriteLiteral("</option>\n");
             
             #line default
             #line hidden
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
             
             #line 25 "..\..\ResourcePackages\Bootstrap\MVC\Views\SiteSelector\SiteSelector.DropDownMenu.cshtml"
@@ -173,7 +173,7 @@ WriteLiteral("\n");
             
             #line default
             #line hidden
-WriteLiteral("\n\n");
+WriteLiteral("\r\n\r\n");
 
             
             #line 29 "..\..\ResourcePackages\Bootstrap\MVC\Views\SiteSelector\SiteSelector.DropDownMenu.cshtml"
@@ -193,14 +193,14 @@ WriteLiteral("\n\n");
             #line hidden
 WriteLiteral("                     <option");
 
-WriteAttribute("value", Tuple.Create(" value=\"", 998), Tuple.Create("\"", 1015)
+WriteAttribute("value", Tuple.Create(" value=\"", 1030), Tuple.Create("\"", 1047)
             
             #line 33 "..\..\ResourcePackages\Bootstrap\MVC\Views\SiteSelector\SiteSelector.DropDownMenu.cshtml"
-, Tuple.Create(Tuple.Create("", 1006), Tuple.Create<System.Object, System.Int32>(site.Url
+, Tuple.Create(Tuple.Create("", 1038), Tuple.Create<System.Object, System.Int32>(site.Url
             
             #line default
             #line hidden
-, 1006), false)
+, 1038), false)
 );
 
 WriteLiteral(" ");
@@ -221,7 +221,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</option>\n");
+WriteLiteral("</option>\r\n");
 
             
             #line 34 "..\..\ResourcePackages\Bootstrap\MVC\Views\SiteSelector\SiteSelector.DropDownMenu.cshtml"
@@ -234,14 +234,14 @@ WriteLiteral("</option>\n");
             #line hidden
 WriteLiteral("                    <option");
 
-WriteAttribute("value", Tuple.Create(" value=\"", 1252), Tuple.Create("\"", 1269)
+WriteAttribute("value", Tuple.Create(" value=\"", 1288), Tuple.Create("\"", 1305)
             
             #line 37 "..\..\ResourcePackages\Bootstrap\MVC\Views\SiteSelector\SiteSelector.DropDownMenu.cshtml"
-, Tuple.Create(Tuple.Create("", 1260), Tuple.Create<System.Object, System.Int32>(site.Url
+, Tuple.Create(Tuple.Create("", 1296), Tuple.Create<System.Object, System.Int32>(site.Url
             
             #line default
             #line hidden
-, 1260), false)
+, 1296), false)
 );
 
 WriteLiteral(" ");
@@ -271,7 +271,7 @@ WriteLiteral(" - ");
             
             #line default
             #line hidden
-WriteLiteral("</option>\n");
+WriteLiteral("</option>\r\n");
 
             
             #line 38 "..\..\ResourcePackages\Bootstrap\MVC\Views\SiteSelector\SiteSelector.DropDownMenu.cshtml"
@@ -297,7 +297,7 @@ WriteLiteral(">- ");
             
             #line default
             #line hidden
-WriteLiteral(" -</option>\n");
+WriteLiteral(" -</option>\r\n");
 
             
             #line 44 "..\..\ResourcePackages\Bootstrap\MVC\Views\SiteSelector\SiteSelector.DropDownMenu.cshtml"
@@ -309,14 +309,14 @@ WriteLiteral(" -</option>\n");
             #line hidden
 WriteLiteral("                    <option");
 
-WriteAttribute("value", Tuple.Create(" value=\"", 1644), Tuple.Create("\"", 1661)
+WriteAttribute("value", Tuple.Create(" value=\"", 1689), Tuple.Create("\"", 1706)
             
             #line 46 "..\..\ResourcePackages\Bootstrap\MVC\Views\SiteSelector\SiteSelector.DropDownMenu.cshtml"
-, Tuple.Create(Tuple.Create("", 1652), Tuple.Create<System.Object, System.Int32>(site.Url
+, Tuple.Create(Tuple.Create("", 1697), Tuple.Create<System.Object, System.Int32>(site.Url
             
             #line default
             #line hidden
-, 1652), false)
+, 1697), false)
 );
 
 WriteLiteral(" ");
@@ -337,7 +337,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</option>\n");
+WriteLiteral("</option>\r\n");
 
             
             #line 47 "..\..\ResourcePackages\Bootstrap\MVC\Views\SiteSelector\SiteSelector.DropDownMenu.cshtml"
@@ -347,7 +347,7 @@ WriteLiteral("</option>\n");
             
             #line default
             #line hidden
-WriteLiteral("        </select>\n   \n</div>");
+WriteLiteral("        </select>\r\n   \r\n</div>");
 
         }
     }

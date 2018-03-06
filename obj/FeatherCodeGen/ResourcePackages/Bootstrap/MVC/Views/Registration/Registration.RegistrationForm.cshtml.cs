@@ -66,9 +66,9 @@ namespace SitefinityWebApp.ResourcePackages.Bootstrap.MVC.Views.Registration
         }
         public override void Execute()
         {
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
             
             #line 10 "..\..MVC\Views\Registration\Registration.RegistrationForm.cshtml"
@@ -77,7 +77,7 @@ Write(Html.Script(ScriptRef.JQuery, "top"));
             
             #line default
             #line hidden
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
             
             #line 11 "..\..MVC\Views\Registration\Registration.RegistrationForm.cshtml"
@@ -86,7 +86,7 @@ Write(Html.Script("//ajax.aspnetcdn.com/ajax/jquery.validate/1.8.1/jquery.valida
             
             #line default
             #line hidden
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
             
             #line 12 "..\..MVC\Views\Registration\Registration.RegistrationForm.cshtml"
@@ -95,7 +95,7 @@ Write(Html.Script("//ajax.aspnetcdn.com/ajax/mvc/4.0/jquery.validate.unobtrusive
             
             #line default
             #line hidden
-WriteLiteral("\n\n");
+WriteLiteral("\r\n\r\n");
 
             
             #line 14 "..\..MVC\Views\Registration\Registration.RegistrationForm.cshtml"
@@ -105,21 +105,21 @@ WriteLiteral("\n\n");
             
             #line default
             #line hidden
-WriteLiteral("\n\n<div");
+WriteLiteral("\r\n\r\n<div");
 
-WriteAttribute("class", Tuple.Create(" class=\"", 663), Tuple.Create("\"", 699)
+WriteAttribute("class", Tuple.Create(" class=\"", 680), Tuple.Create("\"", 716)
             
             #line 18 "..\..MVC\Views\Registration\Registration.RegistrationForm.cshtml"
-, Tuple.Create(Tuple.Create("", 671), Tuple.Create<System.Object, System.Int32>(Model.CssClass
+, Tuple.Create(Tuple.Create("", 688), Tuple.Create<System.Object, System.Int32>(Model.CssClass
             
             #line default
             #line hidden
-, 671), false)
-, Tuple.Create(Tuple.Create(" ", 686), Tuple.Create("row", 687), true)
-, Tuple.Create(Tuple.Create(" ", 690), Tuple.Create("sf-m-xxs", 691), true)
+, 688), false)
+, Tuple.Create(Tuple.Create(" ", 703), Tuple.Create("row", 704), true)
+, Tuple.Create(Tuple.Create(" ", 707), Tuple.Create("sf-m-xxs", 708), true)
 );
 
-WriteLiteral(">\n");
+WriteLiteral(">\r\n");
 
             
             #line 19 "..\..MVC\Views\Registration\Registration.RegistrationForm.cshtml"
@@ -136,7 +136,7 @@ WriteLiteral(">\n");
             
             #line default
             #line hidden
-WriteLiteral("        <h3>\n");
+WriteLiteral("        <h3>\r\n");
 
 WriteLiteral("            ");
 
@@ -147,7 +147,7 @@ WriteLiteral("            ");
             
             #line default
             #line hidden
-WriteLiteral("\n        </h3>\n");
+WriteLiteral("\r\n        </h3>\r\n");
 
             
             #line 25 "..\..MVC\Views\Registration\Registration.RegistrationForm.cshtml"
@@ -165,7 +165,7 @@ WriteLiteral("        <p>");
             
             #line default
             #line hidden
-WriteLiteral("</p>\n");
+WriteLiteral("</p>\r\n");
 
 WriteLiteral("        <a");
 
@@ -184,7 +184,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</a>\n");
+WriteLiteral("</a>\r\n");
 
             
             #line 28 "..\..MVC\Views\Registration\Registration.RegistrationForm.cshtml"
@@ -199,7 +199,7 @@ WriteLiteral(" data-sf-role=\"confirmationResendInfo\"");
 
 WriteLiteral(" style=\"display:none;\"");
 
-WriteLiteral(">\n");
+WriteLiteral(">\r\n");
 
 WriteLiteral("            ");
 
@@ -210,7 +210,7 @@ WriteLiteral("            ");
             
             #line default
             #line hidden
-WriteLiteral("\n            <a");
+WriteLiteral("\r\n            <a");
 
 WriteLiteral(" href=\"javascript:void(0)\"");
 
@@ -227,7 +227,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</a>\n        </div>\n");
+WriteLiteral("</a>\r\n        </div>\r\n");
 
             
             #line 33 "..\..MVC\Views\Registration\Registration.RegistrationForm.cshtml"
@@ -242,17 +242,17 @@ WriteLiteral(" type=\"hidden\"");
 
 WriteLiteral(" data-sf-role=\"sf-resend-confirmation-endpoint-url\"");
 
-WriteAttribute("value", Tuple.Create(" value=\"", 1505), Tuple.Create("\"", 1579)
+WriteAttribute("value", Tuple.Create(" value=\"", 1538), Tuple.Create("\"", 1612)
             
             #line 34 "..\..MVC\Views\Registration\Registration.RegistrationForm.cshtml"
-       , Tuple.Create(Tuple.Create("", 1513), Tuple.Create<System.Object, System.Int32>(Url.Action("ResendConfirmationEmail", new { email = Model.Email})
+       , Tuple.Create(Tuple.Create("", 1546), Tuple.Create<System.Object, System.Int32>(Url.Action("ResendConfirmationEmail", new { email = Model.Email})
             
             #line default
             #line hidden
-, 1513), false)
+, 1546), false)
 );
 
-WriteLiteral(" />\n");
+WriteLiteral(" />\r\n");
 
             
             #line 35 "..\..MVC\Views\Registration\Registration.RegistrationForm.cshtml"
@@ -273,7 +273,7 @@ WriteLiteral("        <h3>");
             
             #line default
             #line hidden
-WriteLiteral("</h3>\n");
+WriteLiteral("</h3>\r\n");
 
 WriteLiteral("        <p>");
 
@@ -284,7 +284,7 @@ WriteLiteral("        <p>");
             
             #line default
             #line hidden
-WriteLiteral("</p>\n");
+WriteLiteral("</p>\r\n");
 
             
             #line 41 "..\..MVC\Views\Registration\Registration.RegistrationForm.cshtml"
@@ -314,17 +314,17 @@ WriteLiteral("</p>\n");
             #line hidden
 WriteLiteral("          <div");
 
-WriteAttribute("class", Tuple.Create(" class=\"", 2028), Tuple.Create("\"", 2046)
+WriteAttribute("class", Tuple.Create(" class=\"", 2075), Tuple.Create("\"", 2093)
             
             #line 48 "..\..MVC\Views\Registration\Registration.RegistrationForm.cshtml"
-, Tuple.Create(Tuple.Create("", 2036), Tuple.Create<System.Object, System.Int32>(isTwoCols
+, Tuple.Create(Tuple.Create("", 2083), Tuple.Create<System.Object, System.Int32>(isTwoCols
             
             #line default
             #line hidden
-, 2036), false)
+, 2083), false)
 );
 
-WriteLiteral(">\n               <h3");
+WriteLiteral(">\r\n               <h3");
 
 WriteLiteral(" class=\"sf-mb-xl\"");
 
@@ -337,7 +337,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</h3>\n");
+WriteLiteral("</h3>\r\n");
 
             
             #line 50 "..\..MVC\Views\Registration\Registration.RegistrationForm.cshtml"
@@ -357,7 +357,7 @@ WriteLiteral("                    <div");
 
 WriteLiteral(" class=\"alert alert-danger\"");
 
-WriteLiteral(">\n");
+WriteLiteral(">\r\n");
 
 WriteLiteral("                        ");
 
@@ -368,7 +368,7 @@ WriteLiteral("                        ");
             
             #line default
             #line hidden
-WriteLiteral("\n                    </div>\n");
+WriteLiteral("\r\n                    </div>\r\n");
 
             
             #line 55 "..\..MVC\Views\Registration\Registration.RegistrationForm.cshtml"
@@ -377,7 +377,7 @@ WriteLiteral("\n                    </div>\n");
             
             #line default
             #line hidden
-WriteLiteral("                \n");
+WriteLiteral("                \r\n");
 
 WriteLiteral("\t\t\t   ");
 
@@ -388,11 +388,11 @@ WriteLiteral("\t\t\t   ");
             
             #line default
             #line hidden
-WriteLiteral("\n\t\t\t\t\n               <div");
+WriteLiteral("\r\n\t\t\t\t\r\n               <div");
 
 WriteLiteral(" class=\"form-group\"");
 
-WriteLiteral(">\n                    <label>\n");
+WriteLiteral(">\r\n                    <label>\r\n");
 
 WriteLiteral("                        ");
 
@@ -403,7 +403,7 @@ WriteLiteral("                        ");
             
             #line default
             #line hidden
-WriteLiteral("\n                    </label>\n\n");
+WriteLiteral("\r\n                    </label>\r\n\r\n");
 
 WriteLiteral("                    ");
 
@@ -414,11 +414,11 @@ WriteLiteral("                    ");
             
             #line default
             #line hidden
-WriteLiteral("\n\n                </div>\n            \n                <div");
+WriteLiteral("\r\n\r\n                </div>\r\n            \r\n                <div");
 
 WriteLiteral(" class=\"form-group\"");
 
-WriteLiteral(">\n                    <label>\n");
+WriteLiteral(">\r\n                    <label>\r\n");
 
 WriteLiteral("                        ");
 
@@ -429,7 +429,7 @@ WriteLiteral("                        ");
             
             #line default
             #line hidden
-WriteLiteral("\n                    </label>\n\n");
+WriteLiteral("\r\n                    </label>\r\n\r\n");
 
 WriteLiteral("                    ");
 
@@ -440,11 +440,11 @@ WriteLiteral("                    ");
             
             #line default
             #line hidden
-WriteLiteral("\n\n                </div>\n            \n                <div");
+WriteLiteral("\r\n\r\n                </div>\r\n            \r\n                <div");
 
 WriteLiteral(" class=\"form-group\"");
 
-WriteLiteral(">\n                    <label>\n");
+WriteLiteral(">\r\n                    <label>\r\n");
 
 WriteLiteral("                        ");
 
@@ -455,7 +455,7 @@ WriteLiteral("                        ");
             
             #line default
             #line hidden
-WriteLiteral("\n                    </label>\n\n");
+WriteLiteral("\r\n                    </label>\r\n\r\n");
 
 WriteLiteral("                    ");
 
@@ -466,7 +466,7 @@ WriteLiteral("                    ");
             
             #line default
             #line hidden
-WriteLiteral("\n                          \n");
+WriteLiteral("\r\n                          \r\n");
 
             
             #line 84 "..\..MVC\Views\Registration\Registration.RegistrationForm.cshtml"
@@ -486,7 +486,7 @@ WriteLiteral("                        <div");
 
 WriteLiteral(" class=\"has-error\"");
 
-WriteLiteral(">\n                            <span");
+WriteLiteral(">\r\n                            <span");
 
 WriteLiteral(" class=\"help-block\"");
 
@@ -499,7 +499,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</span>\n                        </div>\n");
+WriteLiteral("</span>\r\n                        </div>\r\n");
 
             
             #line 89 "..\..MVC\Views\Registration\Registration.RegistrationForm.cshtml"
@@ -508,11 +508,11 @@ WriteLiteral("</span>\n                        </div>\n");
             
             #line default
             #line hidden
-WriteLiteral("\n                </div>\n       \n                <div");
+WriteLiteral("\r\n                </div>\r\n       \r\n                <div");
 
 WriteLiteral(" class=\"form-group\"");
 
-WriteLiteral(">\n                    <label>\n");
+WriteLiteral(">\r\n                    <label>\r\n");
 
 WriteLiteral("                        ");
 
@@ -523,7 +523,7 @@ WriteLiteral("                        ");
             
             #line default
             #line hidden
-WriteLiteral("\n                    </label>\n\n");
+WriteLiteral("\r\n                    </label>\r\n\r\n");
 
 WriteLiteral("                    ");
 
@@ -534,7 +534,7 @@ WriteLiteral("                    ");
             
             #line default
             #line hidden
-WriteLiteral("\n\n");
+WriteLiteral("\r\n\r\n");
 
             
             #line 100 "..\..MVC\Views\Registration\Registration.RegistrationForm.cshtml"
@@ -554,7 +554,7 @@ WriteLiteral("                        <div");
 
 WriteLiteral(" class=\"has-error\"");
 
-WriteLiteral(">\n                            <span");
+WriteLiteral(">\r\n                            <span");
 
 WriteLiteral(" class=\"help-block\"");
 
@@ -567,7 +567,7 @@ WriteLiteral("> ");
             
             #line default
             #line hidden
-WriteLiteral("</span>\n                        </div>\n");
+WriteLiteral("</span>\r\n                        </div>\r\n");
 
             
             #line 105 "..\..MVC\Views\Registration\Registration.RegistrationForm.cshtml"
@@ -576,11 +576,11 @@ WriteLiteral("</span>\n                        </div>\n");
             
             #line default
             #line hidden
-WriteLiteral("\n                </div>\n            \n               <div");
+WriteLiteral("\r\n                </div>\r\n            \r\n               <div");
 
 WriteLiteral(" class=\"form-group\"");
 
-WriteLiteral(">\n                    <label>\n");
+WriteLiteral(">\r\n                    <label>\r\n");
 
 WriteLiteral("                        ");
 
@@ -591,7 +591,7 @@ WriteLiteral("                        ");
             
             #line default
             #line hidden
-WriteLiteral("\n                    </label>\n\n");
+WriteLiteral("\r\n                    </label>\r\n\r\n");
 
 WriteLiteral("                    ");
 
@@ -602,7 +602,7 @@ WriteLiteral("                    ");
             
             #line default
             #line hidden
-WriteLiteral("\n                            \n");
+WriteLiteral("\r\n                            \r\n");
 
             
             #line 116 "..\..MVC\Views\Registration\Registration.RegistrationForm.cshtml"
@@ -622,7 +622,7 @@ WriteLiteral("                        <div");
 
 WriteLiteral(" class=\"has-error\"");
 
-WriteLiteral(">\n                            <span");
+WriteLiteral(">\r\n                            <span");
 
 WriteLiteral(" class=\"help-block\"");
 
@@ -635,7 +635,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</span>\n                        </div>\n");
+WriteLiteral("</span>\r\n                        </div>\r\n");
 
             
             #line 121 "..\..MVC\Views\Registration\Registration.RegistrationForm.cshtml"
@@ -644,7 +644,7 @@ WriteLiteral("</span>\n                        </div>\n");
             
             #line default
             #line hidden
-WriteLiteral("\n                </div>\n    \t\t\t\n");
+WriteLiteral("\r\n                </div>\r\n    \t\t\t\r\n");
 
             
             #line 125 "..\..MVC\Views\Registration\Registration.RegistrationForm.cshtml"
@@ -665,7 +665,7 @@ WriteLiteral("    \t\t\t\t<div");
 
 WriteLiteral(" class=\"form-group\"");
 
-WriteLiteral(">\n    \t\t\t\t\t<label>\n");
+WriteLiteral(">\r\n    \t\t\t\t\t<label>\r\n");
 
 WriteLiteral("    \t\t\t\t\t\t");
 
@@ -676,7 +676,7 @@ WriteLiteral("    \t\t\t\t\t\t");
             
             #line default
             #line hidden
-WriteLiteral("\n    \t\t\t\t\t</label>\n\n");
+WriteLiteral("\r\n    \t\t\t\t\t</label>\r\n\r\n");
 
 WriteLiteral("    \t\t\t\t\t");
 
@@ -687,7 +687,7 @@ WriteLiteral("    \t\t\t\t\t");
             
             #line default
             #line hidden
-WriteLiteral("\n\n");
+WriteLiteral("\r\n\r\n");
 
             
             #line 135 "..\..MVC\Views\Registration\Registration.RegistrationForm.cshtml"
@@ -707,7 +707,7 @@ WriteLiteral("    \t\t\t\t\t\t<div");
 
 WriteLiteral(" class=\"has-error\"");
 
-WriteLiteral(">\n    \t\t\t\t\t\t\t<span");
+WriteLiteral(">\r\n    \t\t\t\t\t\t\t<span");
 
 WriteLiteral(" class=\"help-block\"");
 
@@ -720,7 +720,7 @@ WriteLiteral("> ");
             
             #line default
             #line hidden
-WriteLiteral("</span>\n    \t\t\t\t\t\t</div>\n");
+WriteLiteral("</span>\r\n    \t\t\t\t\t\t</div>\r\n");
 
             
             #line 140 "..\..MVC\Views\Registration\Registration.RegistrationForm.cshtml"
@@ -729,7 +729,7 @@ WriteLiteral("</span>\n    \t\t\t\t\t\t</div>\n");
             
             #line default
             #line hidden
-WriteLiteral("    \t\t\t\t</div>\n");
+WriteLiteral("    \t\t\t\t</div>\r\n");
 
             
             #line 142 "..\..MVC\Views\Registration\Registration.RegistrationForm.cshtml"
@@ -742,7 +742,7 @@ WriteLiteral("    \t\t\t\t<div");
 
 WriteLiteral(" class=\"form-group\"");
 
-WriteLiteral(">\n    \t\t\t\t\t<label>\n");
+WriteLiteral(">\r\n    \t\t\t\t\t<label>\r\n");
 
 WriteLiteral("    \t\t\t\t\t\t");
 
@@ -753,7 +753,7 @@ WriteLiteral("    \t\t\t\t\t\t");
             
             #line default
             #line hidden
-WriteLiteral("\n    \t\t\t\t\t</label>\n\n");
+WriteLiteral("\r\n    \t\t\t\t\t</label>\r\n\r\n");
 
 WriteLiteral("    \t\t\t\t\t");
 
@@ -764,7 +764,7 @@ WriteLiteral("    \t\t\t\t\t");
             
             #line default
             #line hidden
-WriteLiteral("\n\n");
+WriteLiteral("\r\n\r\n");
 
             
             #line 150 "..\..MVC\Views\Registration\Registration.RegistrationForm.cshtml"
@@ -784,7 +784,7 @@ WriteLiteral("    \t\t\t\t\t\t<div");
 
 WriteLiteral(" class=\"has-error\"");
 
-WriteLiteral(">\n    \t\t\t\t\t\t\t<span");
+WriteLiteral(">\r\n    \t\t\t\t\t\t\t<span");
 
 WriteLiteral(" class=\"help-block\"");
 
@@ -797,7 +797,7 @@ WriteLiteral("> ");
             
             #line default
             #line hidden
-WriteLiteral("</span>\n    \t\t\t\t\t\t</div>\n");
+WriteLiteral("</span>\r\n    \t\t\t\t\t\t</div>\r\n");
 
             
             #line 155 "..\..MVC\Views\Registration\Registration.RegistrationForm.cshtml"
@@ -806,7 +806,7 @@ WriteLiteral("</span>\n    \t\t\t\t\t\t</div>\n");
             
             #line default
             #line hidden
-WriteLiteral("    \t\t\t\t</div>\n");
+WriteLiteral("    \t\t\t\t</div>\r\n");
 
             
             #line 157 "..\..MVC\Views\Registration\Registration.RegistrationForm.cshtml"
@@ -815,7 +815,7 @@ WriteLiteral("    \t\t\t\t</div>\n");
             
             #line default
             #line hidden
-WriteLiteral("\n\n");
+WriteLiteral("\r\n\r\n");
 
             
             #line 160 "..\..MVC\Views\Registration\Registration.RegistrationForm.cshtml"
@@ -846,7 +846,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</button>\n");
+WriteLiteral("</button>\r\n");
 
             
             #line 163 "..\..MVC\Views\Registration\Registration.RegistrationForm.cshtml"
@@ -872,7 +872,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</button>\n");
+WriteLiteral("</button>\r\n");
 
             
             #line 167 "..\..MVC\Views\Registration\Registration.RegistrationForm.cshtml"
@@ -881,20 +881,20 @@ WriteLiteral("</button>\n");
             
             #line default
             #line hidden
-WriteLiteral("\n                <div");
+WriteLiteral("\r\n                <div");
 
 WriteLiteral(" class=\"sf-mt-l\"");
 
-WriteLiteral(">\n                    <div>Already registered?</div>\n                    <a");
+WriteLiteral(">\r\n                    <div>Already registered?</div>\r\n                    <a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 6222), Tuple.Create("\"", 6248)
+WriteAttribute("href", Tuple.Create(" href=\"", 6392), Tuple.Create("\"", 6418)
             
             #line 171 "..\..MVC\Views\Registration\Registration.RegistrationForm.cshtml"
-, Tuple.Create(Tuple.Create("", 6229), Tuple.Create<System.Object, System.Int32>(Model.LoginPageUrl
+, Tuple.Create(Tuple.Create("", 6399), Tuple.Create<System.Object, System.Int32>(Model.LoginPageUrl
             
             #line default
             #line hidden
-, 6229), false)
+, 6399), false)
 );
 
 WriteLiteral(">");
@@ -906,7 +906,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</a>\n                </div>\n            </div>\n");
+WriteLiteral("</a>\r\n                </div>\r\n            </div>\r\n");
 
             
             #line 174 "..\..MVC\Views\Registration\Registration.RegistrationForm.cshtml"
@@ -921,7 +921,7 @@ WriteLiteral("            <div");
 
 WriteLiteral(" class=\"col-md-6\"");
 
-WriteLiteral(">    \n                <h3");
+WriteLiteral(">    \r\n                <h3");
 
 WriteLiteral(" class=\"sf-mb-xl\"");
 
@@ -934,7 +934,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</h3>\n\n");
+WriteLiteral("</h3>\r\n\r\n");
 
             
             #line 180 "..\..MVC\Views\Registration\Registration.RegistrationForm.cshtml"
@@ -955,7 +955,7 @@ WriteLiteral("<div");
 
 WriteLiteral(" class=\"sf-mb-xs\"");
 
-WriteLiteral(">\n");
+WriteLiteral(">\r\n");
 
 WriteLiteral("                        ");
 
@@ -966,7 +966,7 @@ WriteLiteral("                        ");
             
             #line default
             #line hidden
-WriteLiteral("\n                    </div>\n");
+WriteLiteral("\r\n                    </div>\r\n");
 
             
             #line 186 "..\..MVC\Views\Registration\Registration.RegistrationForm.cshtml"
@@ -975,7 +975,7 @@ WriteLiteral("\n                    </div>\n");
             
             #line default
             #line hidden
-WriteLiteral("            </div>\n");
+WriteLiteral("            </div>\r\n");
 
             
             #line 188 "..\..MVC\Views\Registration\Registration.RegistrationForm.cshtml"
@@ -986,7 +986,7 @@ WriteLiteral("            </div>\n");
             
             #line default
             #line hidden
-WriteLiteral("</div>\n");
+WriteLiteral("</div>\r\n");
 
             
             #line 192 "..\..MVC\Views\Registration\Registration.RegistrationForm.cshtml"

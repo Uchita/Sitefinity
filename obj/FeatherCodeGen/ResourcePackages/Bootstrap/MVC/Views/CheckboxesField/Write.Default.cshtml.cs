@@ -60,7 +60,7 @@ namespace SitefinityWebApp.ResourcePackages.Bootstrap.MVC.Views.CheckboxesField
         }
         public override void Execute()
         {
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
             
             #line 8 "..\..MVC\Views\CheckboxesField\Write.Default.cshtml"
@@ -69,7 +69,7 @@ Write(Html.Script(ScriptRef.JQuery, "top", false));
             
             #line default
             #line hidden
-WriteLiteral("\n\n");
+WriteLiteral("\r\n\r\n");
 
             
             #line 10 "..\..MVC\Views\CheckboxesField\Write.Default.cshtml"
@@ -80,58 +80,58 @@ WriteLiteral("\n\n");
             
             #line default
             #line hidden
-WriteLiteral("\n\n<div");
+WriteLiteral("\r\n\r\n<div");
 
-WriteAttribute("class", Tuple.Create(" class=\"", 461), Tuple.Create("\"", 495)
+WriteAttribute("class", Tuple.Create(" class=\"", 475), Tuple.Create("\"", 509)
             
             #line 15 "..\..MVC\Views\CheckboxesField\Write.Default.cshtml"
-, Tuple.Create(Tuple.Create("", 469), Tuple.Create<System.Object, System.Int32>(Model.CssClass
+, Tuple.Create(Tuple.Create("", 483), Tuple.Create<System.Object, System.Int32>(Model.CssClass
             
             #line default
             #line hidden
-, 469), false)
-, Tuple.Create(Tuple.Create(" ", 484), Tuple.Create("form-group", 485), true)
+, 483), false)
+, Tuple.Create(Tuple.Create(" ", 498), Tuple.Create("form-group", 499), true)
 );
 
 WriteLiteral(" data-sf-role=\"checkboxes-field-container\"");
 
-WriteLiteral(">\n    <input");
+WriteLiteral(">\r\n    <input");
 
 WriteLiteral(" type=\"hidden\"");
 
 WriteLiteral(" data-sf-role=\"violation-messages\"");
 
-WriteAttribute("value", Tuple.Create(" value=\'", 598), Tuple.Create("\'", 654)
-, Tuple.Create(Tuple.Create("", 606), Tuple.Create("{", 606), true)
-, Tuple.Create(Tuple.Create(" ", 607), Tuple.Create("\"required\":", 608), true)
-, Tuple.Create(Tuple.Create(" ", 619), Tuple.Create("\"", 620), true)
+WriteAttribute("value", Tuple.Create(" value=\'", 613), Tuple.Create("\'", 669)
+, Tuple.Create(Tuple.Create("", 621), Tuple.Create("{", 621), true)
+, Tuple.Create(Tuple.Create(" ", 622), Tuple.Create("\"required\":", 623), true)
+, Tuple.Create(Tuple.Create(" ", 634), Tuple.Create("\"", 635), true)
             
             #line 16 "..\..MVC\Views\CheckboxesField\Write.Default.cshtml"
-  , Tuple.Create(Tuple.Create("", 621), Tuple.Create<System.Object, System.Int32>(Model.RequiredViolationMessage
+  , Tuple.Create(Tuple.Create("", 636), Tuple.Create<System.Object, System.Int32>(Model.RequiredViolationMessage
             
             #line default
             #line hidden
-, 621), false)
-, Tuple.Create(Tuple.Create("", 652), Tuple.Create("\"}", 652), true)
+, 636), false)
+, Tuple.Create(Tuple.Create("", 667), Tuple.Create("\"}", 667), true)
 );
 
-WriteLiteral(" />\n\t<input");
+WriteLiteral(" />\r\n\t<input");
 
 WriteLiteral(" type=\"hidden\"");
 
 WriteLiteral(" data-sf-role=\"required-validator\"");
 
-WriteAttribute("value", Tuple.Create(" value=\'", 714), Tuple.Create("\'", 750)
+WriteAttribute("value", Tuple.Create(" value=\'", 730), Tuple.Create("\'", 766)
             
             #line 17 "..\..MVC\Views\CheckboxesField\Write.Default.cshtml"
-, Tuple.Create(Tuple.Create("", 722), Tuple.Create<System.Object, System.Int32>(Model.IsRequired.ToString()
+, Tuple.Create(Tuple.Create("", 738), Tuple.Create<System.Object, System.Int32>(Model.IsRequired.ToString()
             
             #line default
             #line hidden
-, 722), false)
+, 738), false)
 );
 
-WriteLiteral(" />\n   \n    <strong>");
+WriteLiteral(" />\r\n   \r\n    <strong>");
 
             
             #line 19 "..\..MVC\Views\CheckboxesField\Write.Default.cshtml"
@@ -140,7 +140,7 @@ WriteLiteral(" />\n   \n    <strong>");
             
             #line default
             #line hidden
-WriteLiteral("</strong>\n");
+WriteLiteral("</strong>\r\n");
 
             
             #line 20 "..\..MVC\Views\CheckboxesField\Write.Default.cshtml"
@@ -169,7 +169,7 @@ WriteLiteral(">");
             
             #line default
             #line hidden
-WriteLiteral("</p>\n");
+WriteLiteral("</p>\r\n");
 
             
             #line 23 "..\..MVC\Views\CheckboxesField\Write.Default.cshtml"
@@ -195,28 +195,28 @@ WriteLiteral("        <div");
 
 WriteLiteral(" class=\"checkbox\"");
 
-WriteLiteral(">\n            <label>\n                <input");
+WriteLiteral(">\r\n            <label>\r\n                <input");
 
 WriteLiteral(" type=\"checkbox\"");
 
-WriteAttribute("name", Tuple.Create(" name=\"", 1430), Tuple.Create("\"", 1447)
+WriteAttribute("name", Tuple.Create(" name=\"", 1457), Tuple.Create("\"", 1474)
             
             #line 31 "..\..MVC\Views\CheckboxesField\Write.Default.cshtml"
-, Tuple.Create(Tuple.Create("", 1437), Tuple.Create<System.Object, System.Int32>(fieldName
+, Tuple.Create(Tuple.Create("", 1464), Tuple.Create<System.Object, System.Int32>(fieldName
             
             #line default
             #line hidden
-, 1437), false)
+, 1464), false)
 );
 
-WriteAttribute("value", Tuple.Create(" value=\"", 1448), Tuple.Create("\"", 1463)
+WriteAttribute("value", Tuple.Create(" value=\"", 1475), Tuple.Create("\"", 1490)
             
             #line 31 "..\..MVC\Views\CheckboxesField\Write.Default.cshtml"
-, Tuple.Create(Tuple.Create("", 1456), Tuple.Create<System.Object, System.Int32>(choice
+, Tuple.Create(Tuple.Create("", 1483), Tuple.Create<System.Object, System.Int32>(choice
             
             #line default
             #line hidden
-, 1456), false)
+, 1483), false)
 );
 
 WriteLiteral(" data-sf-role=\"checkboxes-field-input\"");
@@ -230,7 +230,7 @@ WriteLiteral(" ");
             
             #line default
             #line hidden
-WriteLiteral(" />\n");
+WriteLiteral(" />\r\n");
 
 WriteLiteral("                ");
 
@@ -241,7 +241,7 @@ WriteLiteral("                ");
             
             #line default
             #line hidden
-WriteLiteral("\n            </label>\n        </div>\n");
+WriteLiteral("\r\n            </label>\r\n        </div>\r\n");
 
             
             #line 35 "..\..MVC\Views\CheckboxesField\Write.Default.cshtml"
@@ -250,7 +250,7 @@ WriteLiteral("\n            </label>\n        </div>\n");
             
             #line default
             #line hidden
-WriteLiteral("\n");
+WriteLiteral("\r\n");
 
             
             #line 37 "..\..MVC\Views\CheckboxesField\Write.Default.cshtml"
@@ -270,25 +270,25 @@ WriteLiteral("        <div");
 
 WriteLiteral(" class=\"checkbox\"");
 
-WriteLiteral(">\n            <label>\n                <input");
+WriteLiteral(">\r\n            <label>\r\n                <input");
 
 WriteLiteral(" type=\"checkbox\"");
 
-WriteAttribute("name", Tuple.Create(" name=\"", 1717), Tuple.Create("\"", 1734)
+WriteAttribute("name", Tuple.Create(" name=\"", 1754), Tuple.Create("\"", 1771)
             
             #line 41 "..\..MVC\Views\CheckboxesField\Write.Default.cshtml"
-, Tuple.Create(Tuple.Create("", 1724), Tuple.Create<System.Object, System.Int32>(fieldName
+, Tuple.Create(Tuple.Create("", 1761), Tuple.Create<System.Object, System.Int32>(fieldName
             
             #line default
             #line hidden
-, 1724), false)
+, 1761), false)
 );
 
 WriteLiteral(" data-sf-checkboxes-role=\"other-choice-checkbox\"");
 
 WriteLiteral(" data-sf-role=\"checkboxes-field-input\"");
 
-WriteLiteral("/>\n");
+WriteLiteral("/>\r\n");
 
 WriteLiteral("                ");
 
@@ -299,13 +299,13 @@ WriteLiteral("                ");
             
             #line default
             #line hidden
-WriteLiteral("\n                <input");
+WriteLiteral("\r\n                <input");
 
 WriteLiteral(" type=\"hidden\"");
 
 WriteLiteral(" data-sf-checkboxes-role=\"other-choice-text\"");
 
-WriteLiteral(" />\n            </label>\n        </div>\n");
+WriteLiteral(" />\r\n            </label>\r\n        </div>\r\n");
 
             
             #line 46 "..\..MVC\Views\CheckboxesField\Write.Default.cshtml"
@@ -314,7 +314,7 @@ WriteLiteral(" />\n            </label>\n        </div>\n");
             
             #line default
             #line hidden
-WriteLiteral("    \n</div>\n\n");
+WriteLiteral("    \r\n</div>\r\n\r\n");
 
             
             #line 50 "..\..MVC\Views\CheckboxesField\Write.Default.cshtml"

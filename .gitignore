@@ -8,3 +8,5 @@ obj/Debug/SitefinityWebApp.csprojResolveAssemblyReference.cache
 obj/Debug/SitefinityWebApp.csproj.FileListAbsolute.txt
 obj/Debug/SitefinityWebApp.csproj.CoreCompileInputs.cache
 obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+packages/
+obj/

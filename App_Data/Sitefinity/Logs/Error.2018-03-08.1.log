@@ -1,0 +1,391 @@
+----------------------------------------
+ActivityId: 00000000-0000-0000-0000-000000000000
+
+Timestamp: 3/6/2018 3:20:32 AM
+
+Message: HandlingInstanceID: 7058f84a-12c0-485a-82d5-3e071fc4cfae
+An exception of type 'Telerik.Microsoft.Practices.Unity.ResolutionFailedException' occurred and was caught.
+-----------------------------------------------------------------------------------------------------------
+03/06/2018 14:20:32
+Type : Telerik.Microsoft.Practices.Unity.ResolutionFailedException, Telerik.Sitefinity.Utilities, Version=10.2.6602.0, Culture=neutral, PublicKeyToken=b28c218413bdf563
+Message : Resolution of the dependency failed, type = "Telerik.Sitefinity.Authentication.IdentityServer.Data.OpenAccessIdentityServerDataProvider", name = "(none)".
+Exception occurred while: while resolving.
+Exception is: ThreadAbortException - Thread was being aborted.
+-----------------------------------------------
+At the time of the exception, the container was:
+
+  Resolving Telerik.Sitefinity.Authentication.IdentityServer.Data.OpenAccessIdentityServerDataProvider,(none)
+
+Source : Telerik.Sitefinity.Utilities
+Help link : 
+TypeRequested : OpenAccessIdentityServerDataProvider
+NameRequested : 
+Data : System.Collections.ListDictionaryInternal
+TargetSite : System.Object DoBuildUp(System.Type, System.Object, System.String, System.Collections.Generic.IEnumerable`1[Telerik.Microsoft.Practices.Unity.ResolverOverride])
+HResult : -2146233088
+Stack Trace :    at Telerik.Microsoft.Practices.Unity.UnityContainer.DoBuildUp(Type t, Object existing, String name, IEnumerable`1 resolverOverrides)
+   at Telerik.Microsoft.Practices.Unity.UnityContainer.Resolve(Type t, String name, ResolverOverride[] resolverOverrides)
+   at Telerik.Sitefinity.Abstractions.ObjectFactory.Resolve(Type type)
+   at Telerik.Sitefinity.Data.ManagerBase`1.ResolveProvider(Type type)
+   at Telerik.Sitefinity.Data.ManagerBase`1.InstantiateProvider(IDataProviderSettings providerSettings, Type providerType, ExceptionPolicyName policy, Type managerType)
+
+Additional Info:
+
+MachineName : DESKTOP-PHAVKR4
+TimeStamp : 3/6/2018 3:20:32 AM
+FullName : Telerik.Sitefinity.Utilities, Version=10.2.6602.0, Culture=neutral, PublicKeyToken=b28c218413bdf563
+AppDomainName : /LM/W3SVC/2/ROOT-1-131647800063722557
+ThreadIdentity : 
+WindowsIdentity : DESKTOP-PHAVKR4\Himmy
+	Inner Exception
+	---------------
+	Type : System.Threading.ThreadAbortException, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+	Message : Thread was being aborted.
+	Source : mscorlib
+	Help link : 
+	ExceptionState : 
+	Data : System.Collections.ListDictionaryInternal
+	TargetSite : Int32 GetTypeRef(System.Reflection.RuntimeModule, System.String, System.Reflection.RuntimeModule, System.String, Int32)
+	HResult : -2146233040
+	Stack Trace :    at System.Reflection.Emit.ModuleBuilder.GetTypeRef(RuntimeModule module, String strFullName, RuntimeModule refedModule, String strRefedModuleFileName, Int32 tkResolution)
+	   at System.Reflection.Emit.ModuleBuilder.GetTypeRefNested(Type type, Module refedModule, String strRefedModuleFileName)
+	   at System.Reflection.Emit.ModuleBuilder.GetTypeTokenWorkerNoLock(Type type, Boolean getGenericDefinition)
+	   at System.Reflection.Emit.ModuleBuilder.GetTypeTokenInternal(Type type, Boolean getGenericDefinition)
+	   at System.Reflection.Emit.ModuleBuilder.GetMethodTokenNoLock(MethodInfo method, Boolean getGenericTypeDefinition)
+	   at System.Reflection.Emit.ModuleBuilder.GetMethodTokenInternal(MethodInfo method)
+	   at System.Reflection.Emit.ModuleBuilder.GetMethodTokenInternal(MethodBase method, IEnumerable`1 optionalParameterTypes, Boolean useMethodDef)
+	   at System.Reflection.Emit.ILGenerator.GetMethodToken(MethodBase method, Type[] optionalParameterTypes, Boolean useMethodDef)
+	   at System.Reflection.Emit.ILGenerator.EmitCall(OpCode opcode, MethodInfo methodInfo, Type[] optionalParameterTypes)
+	   at System.Reflection.Emit.ILGenerator.Emit(OpCode opcode, MethodInfo meth)
+	   at Telerik.Microsoft.Practices.Unity.InterceptionExtension.MethodOverride.CreateMethodOverride(MethodBuilder delegateMethod)
+	   at Telerik.Microsoft.Practices.Unity.InterceptionExtension.InterceptingClassGenerator.AddMethods()
+	   at Telerik.Microsoft.Practices.Unity.InterceptionExtension.InterceptingClassGenerator.GenerateType()
+	   at Telerik.Microsoft.Practices.Unity.InterceptionExtension.VirtualMethodInterceptor.CreateProxyType(Type t, Type[] additionalInterfaces)
+	   at Telerik.Microsoft.Practices.Unity.InterceptionExtension.TypeInterceptionStrategy.PreBuildUp(IBuilderContext context)
+	   at Telerik.Microsoft.Practices.ObjectBuilder2.StrategyChain.ExecuteBuildUp(IBuilderContext context)
+	   at Telerik.Microsoft.Practices.Unity.UnityContainer.DoBuildUp(Type t, Object existing, String name, IEnumerable`1 resolverOverrides)
+
+
+
+Category: ErrorLog
+
+Priority: 0
+
+EventId: 9010
+
+Severity: Warning
+
+Title:Enterprise Library Exception Handling
+
+Machine: DESKTOP-PHAVKR4
+
+App Domain: /LM/W3SVC/2/ROOT-1-131647800063722557
+
+ProcessId: 12056
+
+Process Name: C:\Program Files (x86)\IIS Express\iisexpress.exe
+
+Thread Name: 
+
+Win32 ThreadId:21992
+
+Extended Properties: 
+----------------------------------------
+----------------------------------------
+ActivityId: 00000000-0000-0000-0000-000000000000
+
+Timestamp: 3/6/2018 3:20:32 AM
+
+Message: HandlingInstanceID: 1c2f6281-ace2-4dcf-a307-2189d92b8325
+An exception of type 'System.Threading.ThreadAbortException' occurred and was caught.
+-------------------------------------------------------------------------------------
+03/06/2018 14:20:32
+Type : System.Threading.ThreadAbortException, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+Message : Thread was being aborted.
+Source : Telerik.Sitefinity
+Help link : 
+ExceptionState : 
+Data : System.Collections.ListDictionaryInternal
+TargetSite : TProviderBase InstantiateProvider(Telerik.Sitefinity.Configuration.IDataProviderSettings, System.Type, Telerik.Sitefinity.Abstractions.ExceptionPolicyName, System.Type)
+HResult : -2146233040
+Stack Trace :    at Telerik.Sitefinity.Data.ManagerBase`1.InstantiateProvider(IDataProviderSettings providerSettings, Type providerType, ExceptionPolicyName policy, Type managerType)
+   at Telerik.Sitefinity.Data.ManagerBase`1.InstantiateProvider(IDataProviderSettings providerSettings, ExceptionPolicyName policy, Type managerType)
+   at Telerik.Sitefinity.Data.ManagerBase`1.InstantiateProviders(IEnumerable`1 configProviders, ManagerBase`1 manager)
+   at Telerik.Sitefinity.Data.ManagerBase`1.Initialize()
+
+Additional Info:
+
+MachineName : DESKTOP-PHAVKR4
+TimeStamp : 3/6/2018 3:20:32 AM
+FullName : Telerik.Sitefinity.Utilities, Version=10.2.6602.0, Culture=neutral, PublicKeyToken=b28c218413bdf563
+AppDomainName : /LM/W3SVC/2/ROOT-1-131647800063722557
+ThreadIdentity : 
+WindowsIdentity : DESKTOP-PHAVKR4\Himmy
+
+
+Category: ErrorLog
+
+Priority: 0
+
+EventId: 90030
+
+Severity: Error
+
+Title:Enterprise Library Exception Handling
+
+Machine: DESKTOP-PHAVKR4
+
+App Domain: /LM/W3SVC/2/ROOT-1-131647800063722557
+
+ProcessId: 12056
+
+Process Name: C:\Program Files (x86)\IIS Express\iisexpress.exe
+
+Thread Name: 
+
+Win32 ThreadId:21992
+
+Extended Properties: 
+----------------------------------------
+----------------------------------------
+ActivityId: 80000088-0003-f900-b63f-84710c7967bb
+
+Timestamp: 3/6/2018 7:04:35 AM
+
+Message: HandlingInstanceID: bf57361d-4c9a-464b-9b9b-ba4eae5dd792
+An exception of type 'System.Runtime.Serialization.SerializationException' occurred and was caught.
+---------------------------------------------------------------------------------------------------
+03/06/2018 18:04:35
+Type : System.Runtime.Serialization.SerializationException, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+Message : There was an error deserializing the object of type Telerik.Sitefinity.Modules.Pages.Web.Services.Model.WcfPageContext. The value '' cannot be parsed as the type 'float'.
+Source : System.Runtime.Serialization
+Help link : 
+Data : System.Collections.ListDictionaryInternal
+TargetSite : System.Object ReadObjectHandleExceptions(System.Runtime.Serialization.XmlReaderDelegator, Boolean, System.Runtime.Serialization.DataContractResolver)
+HResult : -2146233076
+Stack Trace :    at System.Runtime.Serialization.XmlObjectSerializer.ReadObjectHandleExceptions(XmlReaderDelegator reader, Boolean verifyObjectName, DataContractResolver dataContractResolver)
+   at System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(XmlDictionaryReader reader, Boolean verifyObjectName)
+   at System.ServiceModel.Dispatcher.SingleBodyParameterMessageFormatter.ReadObject(Message message)
+   at System.ServiceModel.Dispatcher.SingleBodyParameterDataContractMessageFormatter.ReadObject(Message message)
+   at System.ServiceModel.Dispatcher.SingleBodyParameterMessageFormatter.DeserializeRequest(Message message, Object[] parameters)
+   at System.ServiceModel.Dispatcher.DemultiplexingDispatchMessageFormatter.DeserializeRequest(Message message, Object[] parameters)
+   at System.ServiceModel.Dispatcher.UriTemplateDispatchFormatter.DeserializeRequest(Message message, Object[] parameters)
+   at Telerik.Sitefinity.Utilities.MS.ServiceModel.Web.FormsPostDispatchMessageFormatter.DeserializeRequest(Message message, Object[] parameters)
+   at System.ServiceModel.Dispatcher.CompositeDispatchFormatter.DeserializeRequest(Message message, Object[] parameters)
+   at System.ServiceModel.Dispatcher.DispatchOperationRuntime.DeserializeInputs(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.DispatchOperationRuntime.InvokeBegin(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage5(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage41(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage4(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage31(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage3(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage2(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage11(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage1(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.MessageRpc.Process(Boolean isOperationContextSet)
+
+Additional Info:
+
+MachineName : DESKTOP-PHAVKR4
+TimeStamp : 3/6/2018 7:04:35 AM
+FullName : Telerik.Sitefinity.Utilities, Version=10.2.6602.0, Culture=neutral, PublicKeyToken=b28c218413bdf563
+AppDomainName : /LM/W3SVC/2/ROOT-6-131647934115346413
+ThreadIdentity : 
+WindowsIdentity : DESKTOP-PHAVKR4\Himmy
+Requested URL : http://localhost:60876/Sitefinity/Services/Pages/PagesService.svc/00000000-0000-0000-0000-000000000000/?itemType=Telerik.Sitefinity.Pages.Model.PageNode&providerName=&managerType=&workflowOperation=
+	Inner Exception
+	---------------
+	Type : System.Xml.XmlException, System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+	Message : The value '' cannot be parsed as the type 'float'.
+	Source : System.Runtime.Serialization
+	Help link : 
+	LineNumber : 0
+	LinePosition : 0
+	SourceUri : 
+	Data : System.Collections.ListDictionaryInternal
+	TargetSite : Single ToSingle(System.String)
+	HResult : -2146232000
+	Stack Trace :    at System.Xml.XmlConverter.ToSingle(String value)
+	   at System.Xml.XmlConverter.ToSingle(Byte[] buffer, Int32 offset, Int32 count)
+	   at System.Xml.ValueHandle.ToSingle()
+	   at System.Xml.XmlBaseReader.ReadContentAsFloat()
+	   at System.Xml.XmlDictionaryReader.ReadElementContentAsFloat()
+	   at System.Runtime.Serialization.XmlReaderDelegator.ReadElementContentAsFloat()
+	   at ReadWcfPageFromJson(XmlReaderDelegator , XmlObjectSerializerReadContextComplexJson , XmlDictionaryString , XmlDictionaryString[] )
+	   at System.Runtime.Serialization.Json.JsonClassDataContract.ReadJsonValueCore(XmlReaderDelegator jsonReader, XmlObjectSerializerReadContextComplexJson context)
+	   at System.Runtime.Serialization.Json.JsonDataContract.ReadJsonValue(XmlReaderDelegator jsonReader, XmlObjectSerializerReadContextComplexJson context)
+	   at System.Runtime.Serialization.Json.XmlObjectSerializerReadContextComplexJson.ReadDataContractValue(DataContract dataContract, XmlReaderDelegator reader)
+	   at System.Runtime.Serialization.XmlObjectSerializerReadContext.InternalDeserialize(XmlReaderDelegator reader, String name, String ns, Type declaredType, DataContract& dataContract)
+	   at System.Runtime.Serialization.XmlObjectSerializerReadContextComplex.InternalDeserializeWithSurrogate(XmlReaderDelegator xmlReader, Type declaredType, DataContract surrogateDataContract, String name, String ns)
+	   at System.Runtime.Serialization.XmlObjectSerializerReadContextComplex.InternalDeserialize(XmlReaderDelegator xmlReader, Int32 declaredTypeID, RuntimeTypeHandle declaredTypeHandle, String name, String ns)
+	   at ReadWcfPageContextFromJson(XmlReaderDelegator , XmlObjectSerializerReadContextComplexJson , XmlDictionaryString , XmlDictionaryString[] )
+	   at System.Runtime.Serialization.Json.JsonClassDataContract.ReadJsonValueCore(XmlReaderDelegator jsonReader, XmlObjectSerializerReadContextComplexJson context)
+	   at System.Runtime.Serialization.Json.JsonDataContract.ReadJsonValue(XmlReaderDelegator jsonReader, XmlObjectSerializerReadContextComplexJson context)
+	   at System.Runtime.Serialization.Json.XmlObjectSerializerReadContextComplexJson.ReadDataContractValue(DataContract dataContract, XmlReaderDelegator reader)
+	   at System.Runtime.Serialization.XmlObjectSerializerReadContext.InternalDeserialize(XmlReaderDelegator reader, String name, String ns, Type declaredType, DataContract& dataContract)
+	   at System.Runtime.Serialization.XmlObjectSerializerReadContextComplex.InternalDeserializeWithSurrogate(XmlReaderDelegator xmlReader, Type declaredType, DataContract surrogateDataContract, String name, String ns)
+	   at System.Runtime.Serialization.XmlObjectSerializerReadContextComplex.InternalDeserialize(XmlReaderDelegator xmlReader, Type declaredType, DataContract dataContract, String name, String ns)
+	   at System.Runtime.Serialization.Json.DataContractJsonSerializer.InternalReadObject(XmlReaderDelegator xmlReader, Boolean verifyObjectName)
+	   at System.Runtime.Serialization.XmlObjectSerializer.InternalReadObject(XmlReaderDelegator reader, Boolean verifyObjectName, DataContractResolver dataContractResolver)
+	   at System.Runtime.Serialization.XmlObjectSerializer.ReadObjectHandleExceptions(XmlReaderDelegator reader, Boolean verifyObjectName, DataContractResolver dataContractResolver)
+
+		Inner Exception
+		---------------
+		Type : System.FormatException, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+		Message : Input string was not in a correct format.
+		Source : mscorlib
+		Help link : 
+		Data : System.Collections.ListDictionaryInternal
+		TargetSite : Single ParseSingle(System.String, System.Globalization.NumberStyles, System.Globalization.NumberFormatInfo)
+		HResult : -2146233033
+		Stack Trace :    at System.Number.ParseSingle(String value, NumberStyles options, NumberFormatInfo numfmt)
+		   at System.Xml.XmlConvert.ToSingle(String s)
+		   at System.Xml.XmlConverter.ToSingle(String value)
+
+
+
+Category: ErrorLog
+
+Priority: 0
+
+EventId: 90000
+
+Severity: Error
+
+Title:Enterprise Library Exception Handling
+
+Machine: DESKTOP-PHAVKR4
+
+App Domain: /LM/W3SVC/2/ROOT-6-131647934115346413
+
+ProcessId: 12056
+
+Process Name: C:\Program Files (x86)\IIS Express\iisexpress.exe
+
+Thread Name: 
+
+Win32 ThreadId:12112
+
+Extended Properties: 
+----------------------------------------
+----------------------------------------
+ActivityId: 8000008a-0003-f900-b63f-84710c7967bb
+
+Timestamp: 3/6/2018 7:04:49 AM
+
+Message: HandlingInstanceID: 004b53e0-176f-470a-b9f9-3755151d638b
+An exception of type 'System.Runtime.Serialization.SerializationException' occurred and was caught.
+---------------------------------------------------------------------------------------------------
+03/06/2018 18:04:49
+Type : System.Runtime.Serialization.SerializationException, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+Message : There was an error deserializing the object of type Telerik.Sitefinity.Modules.Pages.Web.Services.Model.WcfPageContext. The value '' cannot be parsed as the type 'float'.
+Source : System.Runtime.Serialization
+Help link : 
+Data : System.Collections.ListDictionaryInternal
+TargetSite : System.Object ReadObjectHandleExceptions(System.Runtime.Serialization.XmlReaderDelegator, Boolean, System.Runtime.Serialization.DataContractResolver)
+HResult : -2146233076
+Stack Trace :    at System.Runtime.Serialization.XmlObjectSerializer.ReadObjectHandleExceptions(XmlReaderDelegator reader, Boolean verifyObjectName, DataContractResolver dataContractResolver)
+   at System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(XmlDictionaryReader reader, Boolean verifyObjectName)
+   at System.ServiceModel.Dispatcher.SingleBodyParameterMessageFormatter.ReadObject(Message message)
+   at System.ServiceModel.Dispatcher.SingleBodyParameterDataContractMessageFormatter.ReadObject(Message message)
+   at System.ServiceModel.Dispatcher.SingleBodyParameterMessageFormatter.DeserializeRequest(Message message, Object[] parameters)
+   at System.ServiceModel.Dispatcher.DemultiplexingDispatchMessageFormatter.DeserializeRequest(Message message, Object[] parameters)
+   at System.ServiceModel.Dispatcher.UriTemplateDispatchFormatter.DeserializeRequest(Message message, Object[] parameters)
+   at Telerik.Sitefinity.Utilities.MS.ServiceModel.Web.FormsPostDispatchMessageFormatter.DeserializeRequest(Message message, Object[] parameters)
+   at System.ServiceModel.Dispatcher.CompositeDispatchFormatter.DeserializeRequest(Message message, Object[] parameters)
+   at System.ServiceModel.Dispatcher.DispatchOperationRuntime.DeserializeInputs(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.DispatchOperationRuntime.InvokeBegin(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage5(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage41(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage4(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage31(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage3(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage2(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage11(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage1(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.MessageRpc.Process(Boolean isOperationContextSet)
+
+Additional Info:
+
+MachineName : DESKTOP-PHAVKR4
+TimeStamp : 3/6/2018 7:04:49 AM
+FullName : Telerik.Sitefinity.Utilities, Version=10.2.6602.0, Culture=neutral, PublicKeyToken=b28c218413bdf563
+AppDomainName : /LM/W3SVC/2/ROOT-6-131647934115346413
+ThreadIdentity : 
+WindowsIdentity : DESKTOP-PHAVKR4\Himmy
+Requested URL : http://localhost:60876/Sitefinity/Services/Pages/PagesService.svc/00000000-0000-0000-0000-000000000000/?itemType=Telerik.Sitefinity.Pages.Model.PageNode&providerName=&managerType=&workflowOperation=
+	Inner Exception
+	---------------
+	Type : System.Xml.XmlException, System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+	Message : The value '' cannot be parsed as the type 'float'.
+	Source : System.Runtime.Serialization
+	Help link : 
+	LineNumber : 0
+	LinePosition : 0
+	SourceUri : 
+	Data : System.Collections.ListDictionaryInternal
+	TargetSite : Single ToSingle(System.String)
+	HResult : -2146232000
+	Stack Trace :    at System.Xml.XmlConverter.ToSingle(String value)
+	   at System.Xml.XmlConverter.ToSingle(Byte[] buffer, Int32 offset, Int32 count)
+	   at System.Xml.ValueHandle.ToSingle()
+	   at System.Xml.XmlBaseReader.ReadContentAsFloat()
+	   at System.Xml.XmlDictionaryReader.ReadElementContentAsFloat()
+	   at System.Runtime.Serialization.XmlReaderDelegator.ReadElementContentAsFloat()
+	   at ReadWcfPageFromJson(XmlReaderDelegator , XmlObjectSerializerReadContextComplexJson , XmlDictionaryString , XmlDictionaryString[] )
+	   at System.Runtime.Serialization.Json.JsonClassDataContract.ReadJsonValueCore(XmlReaderDelegator jsonReader, XmlObjectSerializerReadContextComplexJson context)
+	   at System.Runtime.Serialization.Json.JsonDataContract.ReadJsonValue(XmlReaderDelegator jsonReader, XmlObjectSerializerReadContextComplexJson context)
+	   at System.Runtime.Serialization.Json.XmlObjectSerializerReadContextComplexJson.ReadDataContractValue(DataContract dataContract, XmlReaderDelegator reader)
+	   at System.Runtime.Serialization.XmlObjectSerializerReadContext.InternalDeserialize(XmlReaderDelegator reader, String name, String ns, Type declaredType, DataContract& dataContract)
+	   at System.Runtime.Serialization.XmlObjectSerializerReadContextComplex.InternalDeserializeWithSurrogate(XmlReaderDelegator xmlReader, Type declaredType, DataContract surrogateDataContract, String name, String ns)
+	   at System.Runtime.Serialization.XmlObjectSerializerReadContextComplex.InternalDeserialize(XmlReaderDelegator xmlReader, Int32 declaredTypeID, RuntimeTypeHandle declaredTypeHandle, String name, String ns)
+	   at ReadWcfPageContextFromJson(XmlReaderDelegator , XmlObjectSerializerReadContextComplexJson , XmlDictionaryString , XmlDictionaryString[] )
+	   at System.Runtime.Serialization.Json.JsonClassDataContract.ReadJsonValueCore(XmlReaderDelegator jsonReader, XmlObjectSerializerReadContextComplexJson context)
+	   at System.Runtime.Serialization.Json.JsonDataContract.ReadJsonValue(XmlReaderDelegator jsonReader, XmlObjectSerializerReadContextComplexJson context)
+	   at System.Runtime.Serialization.Json.XmlObjectSerializerReadContextComplexJson.ReadDataContractValue(DataContract dataContract, XmlReaderDelegator reader)
+	   at System.Runtime.Serialization.XmlObjectSerializerReadContext.InternalDeserialize(XmlReaderDelegator reader, String name, String ns, Type declaredType, DataContract& dataContract)
+	   at System.Runtime.Serialization.XmlObjectSerializerReadContextComplex.InternalDeserializeWithSurrogate(XmlReaderDelegator xmlReader, Type declaredType, DataContract surrogateDataContract, String name, String ns)
+	   at System.Runtime.Serialization.XmlObjectSerializerReadContextComplex.InternalDeserialize(XmlReaderDelegator xmlReader, Type declaredType, DataContract dataContract, String name, String ns)
+	   at System.Runtime.Serialization.Json.DataContractJsonSerializer.InternalReadObject(XmlReaderDelegator xmlReader, Boolean verifyObjectName)
+	   at System.Runtime.Serialization.XmlObjectSerializer.InternalReadObject(XmlReaderDelegator reader, Boolean verifyObjectName, DataContractResolver dataContractResolver)
+	   at System.Runtime.Serialization.XmlObjectSerializer.ReadObjectHandleExceptions(XmlReaderDelegator reader, Boolean verifyObjectName, DataContractResolver dataContractResolver)
+
+		Inner Exception
+		---------------
+		Type : System.FormatException, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+		Message : Input string was not in a correct format.
+		Source : mscorlib
+		Help link : 
+		Data : System.Collections.ListDictionaryInternal
+		TargetSite : Single ParseSingle(System.String, System.Globalization.NumberStyles, System.Globalization.NumberFormatInfo)
+		HResult : -2146233033
+		Stack Trace :    at System.Number.ParseSingle(String value, NumberStyles options, NumberFormatInfo numfmt)
+		   at System.Xml.XmlConvert.ToSingle(String s)
+		   at System.Xml.XmlConverter.ToSingle(String value)
+
+
+
+Category: ErrorLog
+
+Priority: 0
+
+EventId: 90000
+
+Severity: Error
+
+Title:Enterprise Library Exception Handling
+
+Machine: DESKTOP-PHAVKR4
+
+App Domain: /LM/W3SVC/2/ROOT-6-131647934115346413
+
+ProcessId: 12056
+
+Process Name: C:\Program Files (x86)\IIS Express\iisexpress.exe
+
+Thread Name: 
+
+Win32 ThreadId:12112
+
+Extended Properties: 
+----------------------------------------

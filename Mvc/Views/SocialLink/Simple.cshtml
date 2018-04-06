@@ -1,0 +1,10 @@
+﻿@model List<SitefinityWebApp.Mvc.Models.SocialLinkModel>
+
+<div class="@ViewData["CssClass"]">
+    <ul class="list-inline">
+        @foreach (var item in Model)
+        {
+            <li><a href=@item.UrlPath target="_blank" title="@item.DisplayName"><em class="@item.EMCssClass"></em></a></li>
+        }
+    </ul>
+</div>

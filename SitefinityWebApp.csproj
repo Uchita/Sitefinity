@@ -1100,10 +1100,13 @@
     <Compile Include="BlobStorage\AmazonBlobStorageProvider.cs" />
     <Compile Include="Mvc\Controllers\BaseLayout2Controller.cs" />
     <Compile Include="Mvc\Controllers\BaseLayoutController.cs" />
+    <Compile Include="Mvc\Controllers\SocialLinkController.cs" />
+    <Compile Include="Mvc\Models\SocialLinkModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.aspx" />
+    <Content Include="Mvc\Scripts\SocialLink\designerview-simple.js" />
     <Content Include="ResourcePackages\Bootstrap\assets\dist\css\main.css" />
     <Content Include="ResourcePackages\Bootstrap\assets\dist\css\main.min.css" />
     <Content Include="ResourcePackages\Bootstrap\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.svg" />
@@ -1275,6 +1278,8 @@
     <Content Include="Mvc\Views\BaseLayout\MvcLayout2.cshtml" />
     <Content Include="Mvc\Views\BaseLayout2\MvcLayout1.cshtml" />
     <Content Include="Mvc\Views\BaseLayout2\MvcLayout2.cshtml" />
+    <Content Include="Mvc\Views\SocialLink\DesignerView.Simple.cshtml" />
+    <Content Include="Mvc\Views\SocialLink\Simple.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="ResourcePackages\Bootstrap\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.eot" />

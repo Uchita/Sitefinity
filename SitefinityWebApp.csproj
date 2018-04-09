@@ -1102,6 +1102,7 @@
     <Compile Include="Mvc\Controllers\BaseLayoutController.cs" />
     <Compile Include="Mvc\Controllers\SocialLinkController.cs" />
     <Compile Include="Mvc\Models\SocialLinkModel.cs" />
+    <Compile Include="Mvc\Models\SocialViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

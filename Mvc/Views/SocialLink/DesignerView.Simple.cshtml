@@ -1,100 +1,28 @@
-﻿
-<label>Which social link options you want to use?</label><br/>
-<p>Please select the checkbox and enter full path in corresponding text box</p> <br/><br />
+﻿<label>Which social link options you want to use?</label><br />
+<p>Please select the checkbox and enter full path in corresponding text box</p> <br /><br />
 
-<div class="form-group">
+<div ng-controller="SimpleCtrl" class="list-group list-group-endless" kendo-sortable k-options="sortableOptions" k-on-change="sortItems(kendoEvent)" k-ignore="'input'">
+    <div class="list-group-item"
+         ng-repeat="item in list track by item.Id"
+         ng-class="list-group-item-draggable">
 
-    <div class="row">
-        <div class="col-xs-2">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" id="twitterIsEnabled" ng-model="properties.IsTwitterEnabled.PropertyValue" ng-true-value="'True'" ng-false-value="'False'" ng-checked="properties.IsTwitterEnabled.PropertyValue === 'True'">Twitter
-                </label>
+        <div class="row">
+            <div class="col-xs-1">
+                <span class="handler list-group-item-drag"></span>
+            </div>
+            <div class="col-xs-2">
+                <div class="checkbox">
+                    <span><label><input type="checkbox" ng-model="item.Selected" />{{item.Title}}</label></span>
+                    @*<span sf-shrinked-breadcrumb="{{item.Title}}" sf-max-length="60"></span>*@
+                </div>
+            </div>
+            <div class="col-xs-9">
+                <span><input class="form-control" type="text" ng-model="item.Url" ng-disabled="item.Selected == false" /></span>
             </div>
         </div>
-        <div class="col-xs-10">
-            <input class="form-control" type="text" id="twitterUrl" ng-disabled="properties.IsTwitterEnabled.PropertyValue != 'True'" ng-model="properties.TwitterUrl.PropertyValue" /> <br /><br />
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-xs-2">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" id="fbIsEnabled" ng-model="properties.IsFbEnabled.PropertyValue" ng-true-value="'True'" ng-false-value="'False'" ng-checked="properties.IsFbEnabled.PropertyValue === 'True'">Facebook
-                </label>
-            </div>
-        </div>
-        <div class="col-xs-10">
-            <input class="form-control" type="text" id="fbUrl" ng-disabled="properties.IsFbEnabled.PropertyValue != 'True'" ng-model="properties.FbUrl.PropertyValue" /> <br /><br />
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-xs-2">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" id="linkedInIsEnabled" ng-model="properties.IsLinkedInEnabled.PropertyValue" ng-true-value="'True'" ng-false-value="'False'" ng-checked="properties.IsLinkedInEnabled.PropertyValue === 'True'" />LinkedIn
-                </label>
-            </div>
-        </div>
-        <div class="col-xs-10">
-            <input class="form-control" type="text" id="linkedInUrl" ng-disabled="properties.IsLinkedInEnabled.PropertyValue != 'True'" ng-model="properties.LinkedInUrl.PropertyValue" /> <br /><br />
-        </div>
     </div>
-
-    <div class="row">
-        <div class="col-xs-2">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" id="googlePlusIsEnabled" ng-model="properties.IsGooglePlusEnabled.PropertyValue" ng-true-value="'True'" ng-false-value="'False'" ng-checked="properties.IsGooglePlusEnabled.PropertyValue === 'True'">Google+
-                </label>
-            </div>
-        </div>
-        <div class="col-xs-10">
-            <input class="form-control" type="text" id="googlePlusUrl" ng-disabled="properties.IsGooglePlusEnabled.PropertyValue != 'True'" ng-model="properties.GooglePlusUrl.PropertyValue" /> <br /><br />
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-2">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" id="youTubeIsEnabled" ng-model="properties.IsYouTubeEnabled.PropertyValue" ng-true-value="'True'" ng-false-value="'False'" ng-checked="properties.IsYouTubeEnabled.PropertyValue === 'True'">YouTube
-                </label>
-            </div>
-        </div>
-        <div class="col-xs-10">
-            <input class="form-control" type="text" id="youTubeUrl" ng-disabled="properties.IsYouTubeEnabled.PropertyValue != 'True'" ng-model="properties.YouTubeUrl.PropertyValue" /> <br /><br />
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-2">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" id="instagramIsEnabled" ng-model="properties.IsInstagramEnabled.PropertyValue" ng-true-value="'True'" ng-false-value="'False'" ng-checked="properties.IsInstagramEnabled.PropertyValue === 'True'">Instagram
-                </label>
-            </div>
-        </div>
-        <div class="col-xs-10">
-            <input class="form-control" type="text" id="instagramUrl" ng-disabled="properties.IsInstagramEnabled.PropertyValue != 'True'" ng-model="properties.InstagramUrl.PropertyValue" /> <br /><br />
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-2">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" id="mailToIsEnabled" ng-model="properties.IsMailToEnabled.PropertyValue" ng-true-value="'True'" ng-false-value="'False'" ng-checked="properties.IsMailToEnabled.PropertyValue === 'True'">MailTo
-                </label>
-            </div>
-        </div>
-        <div class="col-xs-10">
-            <input class="form-control" type="text" id="mailToUrl" ng-disabled="properties.IsMailToEnabled.PropertyValue != 'True'" ng-model="properties.MailToUrl.PropertyValue" />
-        </div>
-    </div>
-
 </div>
 
 <expander expander-title="More Options">
@@ -105,4 +33,3 @@
         <input type="text" id="navCssClass" ng-model="properties.CssClass.PropertyValue" class="form-control" />
     </div>
 </expander>
-

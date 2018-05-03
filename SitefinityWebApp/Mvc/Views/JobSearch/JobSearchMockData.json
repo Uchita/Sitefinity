@@ -1,0 +1,151 @@
+﻿{
+  "JobSearchParams": [
+    {
+      "Label": "Professions",
+      "Data": [
+        {
+          "Label": "Accountant",
+          "Data": [
+            {
+              "Label": "Accountant-Insolvency"
+            },
+            {
+              "Label": "Accountants Clerk/Administration"
+            },
+            {
+              "Label": "Bookkeeper"
+            }
+          ]
+        },
+        {
+          "Label": "IT Department",
+          "Data": [
+            {
+              "Label": "Programmer",
+              "Data": [
+                {
+                  "Label": "Analyst Programmer",
+                  "Data": [
+                    {
+                      "Label": "C#.NET"
+                    },
+                    {
+                      "Label": "JavaScript"
+                    },
+                    {
+                      "Label": "ASP.NET WEB API"
+                    }
+                  ]
+                },
+                {
+                  "Label": "Developer Programmer"
+                }
+              ]
+            },
+            {
+              "Label": "Quality Assurance",
+              "Data": [
+                {
+                  "Label": "Manual"
+                },
+                {
+                  "Label": "Automation",
+                  "Data": [
+                    {
+                      "Label": "HP QTP"
+                    },
+                    {
+                      "Label": "Coded UI"
+                    },
+                    {
+                      "Label": "Selenium"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Label": "Project Manager"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Label": "WorkTypes",
+      "Data": [
+        {
+          "Label": "Full Time"
+        },
+        {
+          "Label": "Part Time"
+        },
+        {
+          "Label": "Contractual"
+        },
+        {
+          "Label": "Full Time Permanent"
+        }
+      ]
+    },
+    {
+      "Label": "Locations",
+      "Data": [
+        {
+          "Label": "Australia",
+          "Data": [
+            {
+              "Label": "Sydney",
+              "Data": [
+                {
+                  "Label": "Town Hall"
+                },
+                {
+                  "Label": "Central"
+                }
+              ]
+            },
+            {
+              "Label": "Melbourne",
+              "Data": [
+                {
+                  "Label": "Parramatta"
+                },
+                {
+                  "Label": "Pendle Hill"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Label": "India",
+          "Data": [
+            {
+              "Label": "Hyderabad",
+              "Data": [
+                {
+                  "Label": "Hi-Tech City"
+                },
+                {
+                  "Label": "Kukatpally"
+                }
+              ]
+            },
+            {
+              "Label": "Banglore",
+              "Data": [
+                {
+                  "Label": "Majestick"
+                },
+                {
+                  "Label": "Electronic City"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

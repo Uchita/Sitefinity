@@ -956,7 +956,9 @@
     <Compile Include="BlobStorage\AmazonBlobStorageProvider.cs" />
     <Compile Include="Mvc\Controllers\BaseLayout2Controller.cs" />
     <Compile Include="Mvc\Controllers\BaseLayoutController.cs" />
+    <Compile Include="Mvc\Controllers\JobSearchController.cs" />
     <Compile Include="Mvc\Controllers\SocialLinkController.cs" />
+    <Compile Include="Mvc\Models\JobSearchModel.cs" />
     <Compile Include="Mvc\Models\SocialLinkModel.cs" />
     <Compile Include="Mvc\Models\SocialViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -964,6 +966,7 @@
   <ItemGroup>
     <Content Include="Content\Pages\login.html" />
     <Content Include="Default.aspx" />
+    <Content Include="Mvc\Scripts\JobSearch\designerview-simple.js" />
     <Content Include="Mvc\Scripts\SocialLink\designerview-simple.js" />
     <Content Include="ResourcePackages\Bootstrap\assets\dist\css\main.css" />
     <Content Include="ResourcePackages\Bootstrap\assets\dist\css\main.min.css" />
@@ -1139,6 +1142,9 @@
     <Content Include="Mvc\Views\SocialLink\DesignerView.Simple.cshtml" />
     <Content Include="Mvc\Views\SocialLink\Simple.cshtml" />
     <Content Include="OpenAccessNuGet.targets" />
+    <Content Include="Mvc\Views\JobSearch\DesignerView.Simple.cshtml" />
+    <Content Include="Mvc\Views\JobSearch\JobSearchMockData.json" />
+    <Content Include="Mvc\Views\JobSearch\Simple.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="ResourcePackages\Bootstrap\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.eot" />

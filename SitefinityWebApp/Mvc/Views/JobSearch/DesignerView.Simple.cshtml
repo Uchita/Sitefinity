@@ -1,0 +1,70 @@
+﻿
+
+<h1>Hello</h1>
+
+<label>Which job search options you want to use?</label><br />
+<p>Please click Add button and add job search parameters</p> <br /><br />
+
+<div ng-controller="SimpleCtrl">
+    <script type="text/ng-template" id="categoryTree">
+        <a ng-click="clickEvent(category,$event)"><span class="glyphicon glyphicon-ok" ng-show="category.Selected == true"></span>{{ category.Label }}</a>
+        <ul ng-if="category.Data">
+            <li ng-repeat="category in category.Data|filter:searchtext" ng-include="'categoryTree'">
+            </li>
+        </ul>
+    </script>
+
+    <div class="form-group" data-ng-repeat="row in rows">
+        <div class="row">
+            <div>
+                <select class="form-control" ng-model="row.ControlType" ng-options="x for x in componentTypeList" ng-change="onControlTypeChange(row)">
+                    <option value="" disabled selected ng-show="!row.ControlType">-- Select Control Type --</option>
+                </select>
+            </div>
+            <div>
+                <select class="form-control" ng-model="row.FilterType" ng-options="x for x in FilterTypes" ng-change="onFilterChange(row)" ng-disabled="row.ControlType == 'Map Search' || row.ControlType == 'TextBox'"></select>
+            </div>
+
+            <div>
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle form-control text-left" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" ng-disabled="row.ControlType == 'Map Search' || row.ControlType == 'TextBox'">
+                        --- Select Values ---
+                        <span class="caret pull-right"></span>
+                    </button>
+                    <ul class="dropdown-menu" style="max-height: 200px;overflow-y: scroll;min-width:550px;">
+                        <input type="text" class="form-control" ng-model="searchtext" ng-click="filterClick()" />
+                        <li ng-repeat="category in row.Data" ng-include="'categoryTree'" ng-click="clickValuesMulti(category, $event)"></li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <select class="form-control" ng-model="row.DefaultValue" ng-options="x for x in row.ddlList" ng-change="onDefaultValueChange()" ng-disabled="row.ControlType == 'Map Search' || row.ControlType == 'TextBox'"></select>
+            </div>
+            <div>
+                <input type="text" ng-model="row.PlaceholderText" class="form-control" placeholder="Enter Placeholder text" ng-disabled="row.ControlType == 'Map Search'" />
+            </div>
+
+            <div>
+                <button class="btn btn-danger" id="row.id" ng-click="removeRow(row.RowId)">
+                    Delete
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <br />
+    <br />
+    <div class="btn btn-primary" ng-click="addNewRow()">Add</div>
+
+</div>
+
+
+<expander expander-title="More Options">
+    <style-dropdown selected-class="properties.CssClass.PropertyValue"></style-dropdown>
+
+    <div class="form-group">
+        <label for="navCssClass">CSS classes</label>
+        <input type="text" id="navCssClass" ng-model="properties.CssClass.PropertyValue" class="form-control" />
+    </div>
+</expander>
+

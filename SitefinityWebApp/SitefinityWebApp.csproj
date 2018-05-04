@@ -973,8 +973,6 @@
     <Content Include="ResourcePackages\Bootstrap\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.svg" />
     <Content Include="ResourcePackages\Bootstrap\assets\dist\fonts\sf-icon-font.svg" />
     <Content Include="ResourcePackages\Bootstrap\assets\dist\images\sprite.png" />
-    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\icons\file.svg" />
-    <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\icons\no-image.svg" />
     <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\images\sprite.png" />
     <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\images\sprite\blogger.png" />
     <Content Include="ResourcePackages\Bootstrap\assets\src\sitefinity\images\sprite\comment.png" />
@@ -1131,6 +1129,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Sitefinity\" />
+    <Folder Include="ResourcePackages\Bootstrap\assets\src\sitefinity\icons\" />
     <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,5 @@
 ﻿
 
-<h1>Hello</h1>
-
 <label>Which job search options you want to use?</label><br />
 <p>Please click Add button and add job search parameters</p> <br /><br />
 
@@ -22,7 +20,9 @@
                 </select>
             </div>
             <div>
-                <select class="form-control" ng-model="row.FilterType" ng-options="x for x in FilterTypes" ng-change="onFilterChange(row)" ng-disabled="row.ControlType == 'Map Search' || row.ControlType == 'TextBox'"></select>
+                <select class="form-control" ng-model="row.FilterType" ng-options="x for x in FilterTypes" ng-change="onFilterChange(row)" ng-disabled="row.ControlType == 'Map Search' || row.ControlType == 'TextBox'">
+                    <option value="" disabled selected ng-show="!row.FilterType">-- Select Filter Type --</option>
+                </select>
             </div>
 
             <div>
@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div>
-                <select class="form-control" ng-model="row.DefaultValue" ng-options="x for x in row.ddlList" ng-change="onDefaultValueChange()" ng-disabled="row.ControlType == 'Map Search' || row.ControlType == 'TextBox'"></select>
+                <select class="form-control" ng-model="row.DefaultValue" ng-options="x for x in row.ddlList" ng-change="onDefaultValueChange()" ng-show="false" ng-disabled="row.ControlType == 'Map Search' || row.ControlType == 'TextBox'"></select>
             </div>
             <div>
                 <input type="text" ng-model="row.PlaceholderText" class="form-control" placeholder="Enter Placeholder text" ng-disabled="row.ControlType == 'Map Search'" />

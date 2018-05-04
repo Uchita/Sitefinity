@@ -1,9 +1,6 @@
 ﻿@model List<SitefinityWebApp.Mvc.Models.JobSearchModel>
 @using SitefinityWebApp.Mvc.Models
 
-<br />
-
-
 @functions {
     List<string> _itemsList = new List<string>();
     Dictionary<string, dynamic> _idNamesLevelsPair = new Dictionary<string, dynamic>();
@@ -46,6 +43,7 @@
                             GetValuesList(item.Data);
                             <li>
                                 <select class="form-control">
+                                    <option value="" disabled selected>@item.PlaceholderText</option>
                                     @foreach (dynamic itemName in _idNamesLevelsPair)
                                     {
                                         <option>@itemName.Value.name</option>
@@ -64,7 +62,7 @@
                             break;
                     }
                 }
-                <li><button class="btn btn-primary">Job Search</button></li>
+                <li><button class="btn btn-primary">Browse Jobs</button></li>
             }
         </ul>
     </div>

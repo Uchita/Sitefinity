@@ -5,8 +5,8 @@
 
 
 @functions {
-    List<string> _itemslist = new List<string>();
-    Dictionary<int, string> _idNamesValuePair = new Dictionary<int, string>();
+    List<string> _itemsList = new List<string>();
+    Dictionary<string, dynamic> _idNamesLevelsPair = new Dictionary<string, dynamic>();
 
     public List<string> GetValuesList(List<JobSearchItem> searchItemsList)
     {
@@ -15,15 +15,14 @@
         {
             if (!string.IsNullOrEmpty(item.Label) && item.Selected == true)
             {
-                _itemslist.Add(item.Label);
-                // Future we may use it
-                //_idNamesValuePair.Add(item.Id, item.Label);
+                _itemsList.Add(item.Label);
+                _idNamesLevelsPair.Add(item.Id, new { name = item.Label, level = item.Level });
             }
             if (item.Data != null)
                 GetValuesList(item.Data);
         }
 
-        return _itemslist;
+        return _itemsList;
     }
 }
 <div class="container">
@@ -41,14 +40,15 @@
 
                         case "DropDown Single":
                             // Makre sure that clear the list
-                            _itemslist.Clear();
+                            _itemsList.Clear();
+                            _idNamesLevelsPair.Clear();
 
                             GetValuesList(item.Data);
                             <li>
                                 <select class="form-control">
-                                    @foreach (var itemName in _itemslist)
+                                    @foreach (dynamic itemName in _idNamesLevelsPair)
                                     {
-                                        <option>@itemName</option>
+                                        <option>@itemName.Value.name</option>
                                     }
                                 </select>
                             </li>

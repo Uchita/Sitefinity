@@ -25,9 +25,8 @@
 
         $scope.addNewRow = function () {
             var newRowId = $scope.rows.length + 1;
-            var newRow = { 'RowId': newRowId, 'ControlType': '', 'FilterType': $scope.FilterTypes[0], DefaultValue: '', PlaceholderText: '', Data: $scope.DataValues[0] };
+            var newRow = { 'RowId': newRowId, 'ControlType': '', 'FilterType': '', DefaultValue: '', PlaceholderText: '', Data: [] };
             $scope.rows.push(newRow);
-            //$scope.processLevels(0, newItemNo);
             $scope.properties.SerializedJobSearchParams.PropertyValue = angular.toJson($scope.rows);
         };
 
@@ -110,16 +109,15 @@
 
             $scope.processLevelsIds();
 
-            $scope.ddl2Value = $scope.FilterTypes[0];
             if ($scope.rows.length == 0) {
                 $scope.rows = [
                     {
                         RowId: 1,
                         ControlType: '',
-                        FilterType: $scope.FilterTypes[0],
+                        FilterType: '',
                         DefaultValue: '',
                         PlaceholderText: '',
-                        Data: $scope.DataValues[0]
+                        Data: []
                     }
                 ];
             }

@@ -50,18 +50,19 @@
             }
         };
 
-        $scope.processSubLevelsIds = function (items, level) {
+        $scope.processSubLevelsIds = function (items, level, parentId) {
             for (var j = 0; j < items.length; j++) {
                 items[j].Level = "level_" + level;
                 items[j].Selected = false;
+                items[j].ParentId = parentId;
                 if (items[j]["Data"] != null || items[j]["Data"] != undefined)
-                    $scope.processSubLevelsIds(items[j]["Data"], level + 1);
+                    $scope.processSubLevelsIds(items[j]["Data"], level + 1, items[j].Id);
             }
         };
 
         $scope.processLevelsIds = function () {
             for (var i = 0; i < $scope.DataValues.length;i++) {
-                $scope.processSubLevelsIds($scope.DataValues[i], 1);
+                $scope.processSubLevelsIds($scope.DataValues[i], 1, "");
             }
          };
 

@@ -18,6 +18,7 @@ namespace SitefinityWebApp.Mvc.Models
     public class JobSearchItem
     {
         public string Id { get; set; }
+        public string ParentId { get; set; }
         public string Label { get; set; }
         public bool Selected { get; set; }
         public string Level { get; set; }

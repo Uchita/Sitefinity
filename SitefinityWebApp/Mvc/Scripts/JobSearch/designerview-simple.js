@@ -50,6 +50,21 @@
             }
         };
 
+        $scope.processSubLevelsIds = function (items, level) {
+            for (var j = 0; j < items.length; j++) {
+                items[j].Level = "level_" + level;
+                items[j].Selected = false;
+                if (items[j]["Data"] != null || items[j]["Data"] != undefined)
+                    $scope.processSubLevelsIds(items[j]["Data"], level + 1);
+            }
+        };
+
+        $scope.processLevelsIds = function () {
+            for (var i = 0; i < $scope.DataValues.length;i++) {
+                $scope.processSubLevelsIds($scope.DataValues[i], 1);
+            }
+         };
+
         $scope.onFilterChange = function (row) {
             if (row.FilterType != null && row.FilterType != undefined) {
                 $scope.rows[$scope.rows.findIndex(item => item.RowId === row.RowId)].Data = [];
@@ -92,6 +107,7 @@
                 $scope.DataValues.push($scope.jobSearchList.JobSearchParams[k].Data);
             }
 
+            $scope.processLevelsIds();
 
             $scope.ddl2Value = $scope.FilterTypes[0];
             if ($scope.rows.length == 0) {
@@ -105,10 +121,6 @@
                         Data: $scope.DataValues[0]
                     }
                 ];
-
-                $scope.categories = [];
-                $scope.categories = $scope.jobSearchList.JobSearchParams[0].Data;
-
             }
         });
     }]);

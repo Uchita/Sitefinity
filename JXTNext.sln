@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SitefinityWebApp", "Sitefin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JXTNext.Sitefinity.Connector", "JXTNext.Sitefinity.Connector\JXTNext.Sitefinity.Connector.csproj", "{BF418B44-EBCE-499F-BBD3-6BA98A24E144}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jxt.Sitefinity.Jobs", "Jxt.Sitefinity.Jobs\Jxt.Sitefinity.Jobs.csproj", "{CFECB7D6-84E5-4076-BF9A-C967AFDEBEE4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,12 @@ Global
 		{BF418B44-EBCE-499F-BBD3-6BA98A24E144}.Release Pro|Any CPU.Build.0 = Release|Any CPU
 		{BF418B44-EBCE-499F-BBD3-6BA98A24E144}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF418B44-EBCE-499F-BBD3-6BA98A24E144}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFECB7D6-84E5-4076-BF9A-C967AFDEBEE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFECB7D6-84E5-4076-BF9A-C967AFDEBEE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFECB7D6-84E5-4076-BF9A-C967AFDEBEE4}.Release Pro|Any CPU.ActiveCfg = Release|Any CPU
+		{CFECB7D6-84E5-4076-BF9A-C967AFDEBEE4}.Release Pro|Any CPU.Build.0 = Release|Any CPU
+		{CFECB7D6-84E5-4076-BF9A-C967AFDEBEE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFECB7D6-84E5-4076-BF9A-C967AFDEBEE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

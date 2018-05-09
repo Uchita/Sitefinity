@@ -74,6 +74,27 @@
             }
         };
 
+        var resolveIsSelected = function (item) {
+            if (item.Selected) {
+                return true;
+            }
+            else if (item.Data != undefined) {
+                var flag = false;
+                for (var i = 0; i < item.Data.length; i++) {
+                    flag = resolveIsSelected(item.Data[i]);
+                    if (flag)
+                        return flag;
+                }
+            }
+            else {
+                return false;
+            }
+        };
+
+        $scope.isSelected = function (item) {
+                 return resolveIsSelected(item);
+        };
+
         $scope.clickValuesMulti = function (t, event) {
             event.stopImmediatePropagation();
         };

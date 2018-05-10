@@ -62,6 +62,9 @@ namespace SitefinityWebApp
             var factory = ObjectFactory.Resolve<ISitefinityControllerFactory>();
             ControllerBuilder.Current.SetControllerFactory(factory);
 
+
+
+
             //IEnumerable<IBusinessLogicsConnector> _businessLogicsConnectors;
             //IEnumerable<IOptionsConnector> _optionsConnectors;
 

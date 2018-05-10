@@ -11,6 +11,11 @@ namespace JXTNext.Sitefinity.Connector
 {
     public class ConnectorModule : NinjectModule
     {
+        public ConnectorModule()
+        {
+
+        }
+
         public override void Load()
         {
             Bind<IBusinessLogicsConnector>().To<JXTNextBusinessLogicsConnector>();

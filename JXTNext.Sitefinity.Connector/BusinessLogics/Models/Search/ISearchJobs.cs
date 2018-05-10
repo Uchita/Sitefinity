@@ -4,7 +4,7 @@ using System.Text;
 
 namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search
 {
-    public interface ISearchJobs
+    public interface ISearchJobsRequest
     {
     }
 

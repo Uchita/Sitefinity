@@ -6,6 +6,8 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
 {
     public interface IBusinessLogicsConnector
     {
+        IntegrationConnectorType ConnectorType { get; }
+
         void MemberRegister();
         void MemberApplyJob();
 
@@ -14,7 +16,6 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
         IGetJobListingResponse AdvertiserGetJob(IGetJobListing jobDetails);
         void AdvertiserUpdateJob();
 
-        ISearchJobsResponse SearchJobs(ISearchJobs search);
-        void SearchJob();
+        ISearchJobsResponse SearchJobs(ISearchJobsRequest search);
     }
 }

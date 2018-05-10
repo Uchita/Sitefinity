@@ -954,6 +954,9 @@
     <Compile Include="App_Start\RazorGeneratorMvcStart.cs" />
     <Compile Include="AzureWebRole.cs" />
     <Compile Include="BlobStorage\AmazonBlobStorageProvider.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Mvc\Controllers\BaseLayout2Controller.cs" />
     <Compile Include="Mvc\Controllers\BaseLayoutController.cs" />
     <Compile Include="Mvc\Controllers\JobSearchController.cs" />
@@ -966,6 +969,7 @@
   <ItemGroup>
     <Content Include="Content\Pages\login.html" />
     <Content Include="Default.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="Mvc\Scripts\JobSearch\designerview-simple.js" />
     <Content Include="Mvc\Scripts\JobSearch\dropdowntree.css" />
     <Content Include="Mvc\Scripts\JobSearch\dropdowntree.js" />
@@ -1147,7 +1151,6 @@
     <Content Include="Mvc\Views\JobSearch\DesignerView.Simple.cshtml" />
     <Content Include="Mvc\Views\JobSearch\JobSearchMockData.json" />
     <Content Include="Mvc\Views\JobSearch\Simple.cshtml" />
-    <Content Include="Mvc\Views\JobSearch\DesignerView.Simple.json" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="ResourcePackages\Bootstrap\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.eot" />

@@ -1,6 +1,7 @@
 ﻿using JXTNext.Common.JXTAPI.Models;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Mappers;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers;
+using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Job;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search;
 using Newtonsoft.Json.Linq;
 using System;
@@ -16,9 +17,11 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
         int API_Operation_MaxWaitTimeMs;
         IJobListingMapper _jobMapper;
 
-        public JXTNextBusinessLogicsConnector(IJobListingMapper jobMapper)
+        public IntegrationConnectorType ConnectorType => IntegrationConnectorType.JXTNext;
+
+        public JXTNextBusinessLogicsConnector(IEnumerable<IJobListingMapper> jobMappers)
         {
-            _jobMapper = jobMapper;
+            _jobMapper = jobMappers.Where(c=>c.mapperType == IntegrationMapperType.JXTNext).FirstOrDefault();
 
             bool parseWaitTimeSuccess = int.TryParse(ConfigurationManager.AppSettings["JXTNextAPI_WaitTimeMs"], out API_Operation_MaxWaitTimeMs);
             if (!parseWaitTimeSuccess)
@@ -31,7 +34,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
 
             ConnectorPostRequest connectorRequest = new ConnectorPostRequest(API_Operation_MaxWaitTimeMs)
             {
-                Data = _jobMapper.To(jobDetails.JobData),
+                Data = _jobMapper.ConvertToAPIEntity(jobDetails.JobData),
                 TargetUri = new Uri(API_TARGET_PATH + $"/api/advertiser/job")
             };
             ConnectorResponse response = JXTNext.Common.JXTAPI.Connector.Post(connectorRequest);
@@ -41,9 +44,9 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
             dynamic data = JObject.Parse(response.Response);
 
             if( actionSuccessful)
-                return new JXTNext_CreateJobListingResponse { Success = actionSuccessful, Message = response.Response };
+                return new JXTNext_CreateJobListingResponse { Success = actionSuccessful, JobId = data["JobId"] };
             else
-                return new JXTNext_CreateJobListingResponse { Success = actionSuccessful, Message = ((List<string>)data["errors"]).FirstOrDefault()};
+                return new JXTNext_CreateJobListingResponse { Success = actionSuccessful, Messages = (List<string>)data["errors"]};
         }
 
         public IGetJobListingResponse AdvertiserGetJob(IGetJobListing jobDetails)
@@ -61,9 +64,9 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
             dynamic data = JObject.Parse(response.Response);
 
             if (actionSuccessful)
-                return new JXTNext_GetJobListingResponse { Success = actionSuccessful, Message = response.Response };
+                return new JXTNext_GetJobListingResponse { Success = actionSuccessful, Job = _jobMapper.ConvertToLocalEntity<JobDetailsModel>(data) };
             else
-                return new JXTNext_GetJobListingResponse { Success = actionSuccessful, Message = ((List<string>)data["errors"]).FirstOrDefault() };
+                return new JXTNext_GetJobListingResponse { Success = actionSuccessful, Messages = (List<string>)data["errors"] };
         }
 
         public void AdvertiserRegister()
@@ -86,12 +89,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
             throw new NotImplementedException();
         }
 
-        public void SearchJob()
-        {
-            throw new NotImplementedException();
-        }
-
-        public ISearchJobsResponse SearchJobs(ISearchJobs search)
+        public ISearchJobsResponse SearchJobs(ISearchJobsRequest search)
         {
             throw new NotImplementedException();
         }

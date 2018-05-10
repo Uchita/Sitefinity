@@ -1,6 +1,11 @@
 ﻿@model List<SitefinityWebApp.Mvc.Models.JobSearchModel>
 @using SitefinityWebApp.Mvc.Models
 
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+
+@Html.StyleSheet(Url.Content("~/Mvc/Scripts/JobSearch/dropdowntree.css"), "bottom")
+@Html.Script(Url.Content("~/Mvc/Scripts/JobSearch/dropdowntree.js"), "bottom")
+
 @functions {
     List<string> _itemsList = new List<string>();
     Dictionary<string, dynamic> _idNamesLevelsPair = new Dictionary<string, dynamic>();
@@ -22,54 +27,85 @@
         return _itemsList;
     }
 }
-<div class="container">
-    <div class="row">
-        <ul class="form-group list-inline">
-            @if (Model != null)
-            {
-                foreach (var item in Model)
-                {
-                    switch (item.ControlType)
+
+@if (Model != null)
+{
+<form action="/jobsearchresults" name="JobSearchResults" method="post">
+    @{
+        int counter = 0;
+    }
+    @foreach (var item in Model)
+    {
+        switch (item.ControlType)
+        {
+            case "TextBox":
+                <input type="hidden" name="Filters[@counter].searchTarget" value="Keywords" />
+                <input type="text" class="form-control" placeholder="@item.PlaceholderText" name="Filters[@counter].values" />
+                break;
+
+            case "DropDown Single":
+                _itemsList.Clear();
+                _idNamesLevelsPair.Clear();
+                GetValuesList(item.Data);
+
+                <select class="form-control" name="Filters[@counter].values">
+                    <option value="" disabled selected>@item.PlaceholderText</option>
+                    @foreach (dynamic itemName in _idNamesLevelsPair)
                     {
-                        case "TextBox":
-                            <li><input type="text" class="form-control" placeholder="@item.PlaceholderText" /></li>
-                            break;
-
-                        case "DropDown Single":
-                            // Makre sure that clear the list
-                            _itemsList.Clear();
-                            _idNamesLevelsPair.Clear();
-
-                            GetValuesList(item.Data);
-                            <li>
-                                <select class="form-control">
-                                    <option value="" disabled selected>@item.PlaceholderText</option>
-                                    @foreach (dynamic itemName in _idNamesLevelsPair)
-                                    {
-                                        <option>@itemName.Value.name</option>
-                                    }
-                                </select>
-                            </li>
-                            break;
-
-                        case "DropDown Multi":
-                            break;
-
-                        case "Map Search":
-                            break;
-
-                        default:
-                            break;
+                        <option value="@itemName.Key">@itemName.Value.name</option>
                     }
-                }
-                <li><button class="btn btn-primary">Browse Jobs</button></li>
-            }
-        </ul>
-    </div>
-</div>
+                </select>
+
+                break;
+
+            case "DropDown Multi":
+                <div class="dropdown dropdown-tree" name="Filters[@counter].values" id="Locations"></div>
+                break;
+
+            case "Map Search":
+                break;
+
+            default:
+                break;
+
+        }
+        counter++;
+    }
+    <input class="btn btn-primary" type="submit" value="Browse Jobs" />
+</form>
+}
 
 <br />
 <br />
 
 
+<script type="text/javascript">
+    $(document).ready(function () {
+         @{
+                var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+                var json = serializer.Serialize(Model);
+          }
+
+        var model = @Html.Raw(json);
+        if (model != null && @Html.Raw(json) != "undefined") {
+            var locArr = JSON.parse('@Html.Raw(Json.Encode(Model))');
+            var index = locArr.findIndex(item => item.FilterType === "Locations");
+            var dataArr = [];
+            if (index >=0 && locArr[index].Data != "undefined")
+                dataArr = locArr[index].Data;
+
+            var options = {
+                title: "Select Location",
+                data: dataArr,
+                maxHeight: 500,
+                closedArrow: '<i class="fa fa-caret-right" aria-hidden="true"></i>',
+                openedArrow: '<i class="fa fa-caret-down" aria-hidden="true"></i>',
+                multiSelect: true,
+                selectChildren: true
+            };
+
+            $("#Locations").DropDownTree(options);
+        }
+   });
+</script>
 

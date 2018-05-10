@@ -971,6 +971,8 @@
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Mvc\Scripts\JobSearch\designerview-simple.js" />
+    <Content Include="Mvc\Scripts\JobSearch\dropdowntree.css" />
+    <Content Include="Mvc\Scripts\JobSearch\dropdowntree.js" />
     <Content Include="Mvc\Scripts\SocialLink\designerview-simple.js" />
     <Content Include="ResourcePackages\Bootstrap\assets\dist\css\main.css" />
     <Content Include="ResourcePackages\Bootstrap\assets\dist\css\main.min.css" />

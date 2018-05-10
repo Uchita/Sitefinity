@@ -8,12 +8,24 @@ using Telerik.Sitefinity.Web;
 using SitefinityWebApp.Mvc.Models;
 using System.ComponentModel;
 using ServiceStack.Text;
+using JXTNext.Sitefinity.Connector.BusinessLogics;
+using JXTNext.Sitefinity.Connector.Options;
+using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search;
+using JXTNext.Sitefinity.Connector.Options.Models.Job;
 
 namespace SitefinityWebApp.Mvc.Controllers
 {
     [ControllerToolboxItem(Name = "JobSearch_MVC", Title = "Job Search", SectionName = "Search", CssClass = JobSearchController.WidgetIconCssClass)]
     public class JobSearchController : Controller
     {
+        IBusinessLogicsConnector _testBLConnector;
+        IOptionsConnector _testOConnector;
+        public JobSearchController(IEnumerable<IBusinessLogicsConnector> _bConnectors, IEnumerable<IOptionsConnector> _oConnectors)
+        {
+            _testBLConnector = _bConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.Test).FirstOrDefault();
+            _testOConnector = _oConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.Test).FirstOrDefault();
+        }
+
         public string CssClass { get; set; }
         public string ResultsPageId { get; set; }
 
@@ -32,6 +44,17 @@ namespace SitefinityWebApp.Mvc.Controllers
         // GET: JobSearch
         public ActionResult Index()
         {
+
+            //Execute - Get available filter options from the server
+            IGetJobFiltersResponse filtersResponse = _testOConnector.JobFilters<Test_GetJobFiltersRequest, Test_GetJobFiltersResponse>(new Test_GetJobFiltersRequest());
+
+            //Execute - Try perform a dummy search
+            ISearchJobsRequest request = new Test_SearchJobsRequest { Page = 0, PageSize = 2, FiltersSearch = new List<FiltersSearchRoot> { new FiltersSearchRoot { RootID = "AE-1234", Filters = new List<FiltersSearchElement> { new FiltersSearchElement { ID = "DD-3123" } } } } };
+            ISearchJobsResponse response = _testBLConnector.SearchJobs(request);
+
+
+
+
             // This is the CSS classes enter from More Options
             ViewData["CssClass"] = this.CssClass;
         

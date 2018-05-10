@@ -951,6 +951,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\NinjectControllerFactory.cs" />
     <Compile Include="App_Start\RazorGeneratorMvcStart.cs" />
     <Compile Include="AzureWebRole.cs" />
     <Compile Include="BlobStorage\AmazonBlobStorageProvider.cs" />

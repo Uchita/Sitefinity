@@ -36,7 +36,32 @@ namespace SitefinityWebApp.Mvc.Controllers
             ViewData["CssClass"] = this.CssClass;
         
             var jobSearchComponents = JsonSerializer.DeserializeFromString<List<JobSearchModel>>(this.SerializedJobSearchParams);
+            if(jobSearchComponents != null)
+            {
+                foreach (JobSearchModel item in jobSearchComponents)
+                {
+                    FilterData(item.Data);
+                    item.Data = item.Data.Where(d => d.Selected == true || d.Data?.Count > 0).ToList();
+                }
+            }
             return View("Simple", jobSearchComponents);
+        }
+
+        static void FilterData(List<JobSearchItem> data)
+        {
+            if (data == null || data.Count == 0)
+                return;
+
+            foreach (JobSearchItem item in data)
+            {
+                if (item.Data != null && item.Data.Count > 0)
+                {
+                    FilterData(item.Data);
+                    item.Data = item.Data.Where(d => d.Selected == true || d.Data?.Count > 0).ToList();
+                }
+            }
+
+            data = data.Where(d => d.Selected == true || d.Data?.Count > 0).ToList();
         }
 
         protected override void HandleUnknownAction(string actionName)

@@ -81,7 +81,7 @@ var globalTreeIdCounter=0;
 		var a = [];
 		a = $.extend(true,a,options.data);		
 		a = filterOptions(a,$(this).val());
-		console.log(a);
+		
 		RenderData(a,$(options.element).find("ul").first());
 		if($(this).val().length > 0){
 			$(options.element).children("ul").find("ul").css('display','block');
@@ -92,7 +92,7 @@ var globalTreeIdCounter=0;
 	
 	function filterOptions(data,text)
 	{	
-		console.log(data,text);
+		
 		if(text == '' || text == undefined)
 			return data;
 		text = text.toUpperCase();
@@ -106,8 +106,6 @@ var globalTreeIdCounter=0;
             if ((data[i].Data != undefined && data[i].Data.length > 0) || data[i].Label.toUpperCase().startsWith(text))
 					filteredOptions.push(data[i]);
 		}
-		//console.log(filteredOptions);
-		console.log(filteredOptions,text);
 		return filteredOptions;
 	};
 

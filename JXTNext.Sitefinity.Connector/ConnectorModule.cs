@@ -1,6 +1,6 @@
-﻿using Autofac;
-using JXTNext.Sitefinity.Connector.BusinessLogics;
+﻿using JXTNext.Sitefinity.Connector.BusinessLogics;
 using JXTNext.Sitefinity.Connector.Options;
+using Ninject.Modules;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,17 +9,15 @@ using System.Threading.Tasks;
 
 namespace JXTNext.Sitefinity.Connector
 {
-    public class ConnectorModule : Module
+    public class ConnectorModule : NinjectModule
     {
-        protected override void Load(ContainerBuilder builder)
+        public override void Load()
         {
-            builder.RegisterType<JXTNextBusinessLogicsConnector>().AsImplementedInterfaces();
-            builder.RegisterType<TestBusinessLogicsConnector>().AsImplementedInterfaces();
+            Bind<IBusinessLogicsConnector>().To<JXTNextBusinessLogicsConnector>();
+            Bind<IBusinessLogicsConnector>().To<TestBusinessLogicsConnector>();
 
-            builder.RegisterType<JXTNextOptionsConnector>().AsImplementedInterfaces();
-            builder.RegisterType<TestOptionsConnector>().AsImplementedInterfaces();
-
-            base.Load(builder);
+            Bind<IOptionsConnector>().To<JXTNextOptionsConnector>();
+            Bind<IOptionsConnector>().To<TestOptionsConnector>();
         }
     }
 }

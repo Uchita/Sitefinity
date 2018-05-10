@@ -20,9 +20,9 @@ namespace JXTNext.Sitefinity.Connector.Options.Models.Job
 
         public bool ContainsID(string targetID)
         {
-            foreach(JobFilter f in Filters)
+            foreach (JobFilter f in Filters)
             {
-                if (f.ContainsID(ID))
+                if (f.ContainsID(targetID))
                     return true;
             }
             return false;
@@ -40,9 +40,12 @@ namespace JXTNext.Sitefinity.Connector.Options.Models.Job
             if (targetID == ID)
                 return true;
 
-            foreach(JobFilter f in Filters)
+            if (Filters != null)
             {
-                return f.ContainsID(ID);
+                foreach (JobFilter f in Filters)
+                {
+                    return f.ContainsID(targetID);
+                }
             }
             return false;
         }

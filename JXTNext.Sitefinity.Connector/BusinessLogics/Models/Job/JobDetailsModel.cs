@@ -21,7 +21,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Job
 
         public bool FakeSearch(string rootID, string ID)
         {
-            JobFilterRoot targetRoot = Filters.Where(c => ID == rootID).FirstOrDefault();
+            JobFilterRoot targetRoot = Filters.Where(c => c.ID == rootID).FirstOrDefault();
 
             if (targetRoot == null)
                 return false;

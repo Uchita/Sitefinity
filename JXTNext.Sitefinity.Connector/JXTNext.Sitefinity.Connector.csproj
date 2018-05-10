@@ -30,11 +30,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JXTNext.Common.API, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Common.API.1.2.1\lib\netstandard1.1\JXTNext.Common.API.dll</HintPath>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="JXTNext.Common.API, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXT.JXTNext.Common.API.1.4.0\lib\netstandard1.1\JXTNext.Common.API.dll</HintPath>
+    </Reference>
+    <Reference Include="JXTNext.Common.Web, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXT.JXTNext.Common.Web.1.1.0\lib\netstandard1.1\JXTNext.Common.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -70,6 +76,7 @@
     <Compile Include="BusinessLogics\Models\Job\JobDetailsModel.cs" />
     <Compile Include="BusinessLogics\Models\Search\ISearchJobs.cs" />
     <Compile Include="BusinessLogics\Models\Search\JXTNext_SearchJobs.cs" />
+    <Compile Include="ConnectorModule.cs" />
     <Compile Include="ConnectorType.cs" />
     <Compile Include="Options\IOptionsConnector.cs" />
     <Compile Include="Options\Models\Job\Test_GetJobFiltersRequest.cs" />

@@ -1,4 +1,4 @@
-﻿using JXTNext.Common.JXTAPI.Models;
+﻿using JXTNext.Common.API.Models;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Mappers;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Job;
@@ -37,7 +37,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
                 Data = _jobMapper.ConvertToAPIEntity(jobDetails.JobData),
                 TargetUri = new Uri(API_TARGET_PATH + $"/api/advertiser/job")
             };
-            ConnectorResponse response = JXTNext.Common.JXTAPI.Connector.Post(connectorRequest);
+            ConnectorResponse response = JXTNext.Common.API.Connector.Post(connectorRequest);
 
             //parse the response
             bool actionSuccessful = response.Success;
@@ -57,7 +57,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
             {
                 TargetUri = new Uri(API_TARGET_PATH + $"/api/advertiser/job/{jobRequest.JobID}")
             };
-            ConnectorResponse response = JXTNext.Common.JXTAPI.Connector.Get(connectorRequest);
+            ConnectorResponse response = JXTNext.Common.API.Connector.Get(connectorRequest);
 
             //parse the response
             bool actionSuccessful = response.Success;

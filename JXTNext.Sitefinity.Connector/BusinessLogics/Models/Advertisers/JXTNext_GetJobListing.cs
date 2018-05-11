@@ -6,14 +6,14 @@ using System.Text;
 namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers
 {
 
-    public class JXTNext_GetJobListing : ConnectorBaseRequest, IGetJobListing
+    public class JXTNext_GetJobListing : ConnectorBaseRequest, IGetJobListingRequest
     {
         public string JobID { get; set; }
     }
 
     public class JXTNext_GetJobListingResponse : ConnectorBaseResponse, IGetJobListingResponse
     {
-        public JobDetailsModel Job { get; set; }
+        public JobDetailsFullModel Job { get; set; }
     }
 
 }

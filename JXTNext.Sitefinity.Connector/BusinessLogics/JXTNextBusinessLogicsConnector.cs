@@ -49,7 +49,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
                 return new JXTNext_CreateJobListingResponse { Success = actionSuccessful, Messages = (List<string>)data["errors"]};
         }
 
-        public IGetJobListingResponse AdvertiserGetJob(IGetJobListing jobDetails)
+        public IGetJobListingResponse AdvertiserGetJob(IGetJobListingRequest jobDetails)
         {
             JXTNext_GetJobListing jobRequest = jobDetails as JXTNext_GetJobListing;
 

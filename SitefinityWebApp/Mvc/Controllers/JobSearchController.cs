@@ -12,6 +12,7 @@ using JXTNext.Sitefinity.Connector.BusinessLogics;
 using JXTNext.Sitefinity.Connector.Options;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search;
 using JXTNext.Sitefinity.Connector.Options.Models.Job;
+using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers;
 
 namespace SitefinityWebApp.Mvc.Controllers
 {
@@ -52,6 +53,8 @@ namespace SitefinityWebApp.Mvc.Controllers
             ISearchJobsRequest request = new Test_SearchJobsRequest { Page = 0, PageSize = 2, FiltersSearch = new List<FiltersSearchRoot> { new FiltersSearchRoot { RootID = "AE-1234", Filters = new List<FiltersSearchElement> { new FiltersSearchElement { ID = "DD-3123" } } } } };
             ISearchJobsResponse response = _testBLConnector.SearchJobs(request);
 
+            IGetJobListingRequest jobListingRequest = new Test_GetJobListingRequest { JobID = "8A" };
+            IGetJobListingResponse jobListingResponse = _testBLConnector.AdvertiserGetJob(jobListingRequest);
 
 
 

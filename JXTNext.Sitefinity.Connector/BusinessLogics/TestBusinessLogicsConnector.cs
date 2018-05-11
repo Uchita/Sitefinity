@@ -47,7 +47,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
                 new JobDetailsFullModel { JobID = "1B", Title = "Job Title 1B", Description = "Job Description 1B", ShortDescription = "Short Description 1B", Filters = new List<JobFilterRoot> { Australia_Sydney_Central_TownHall, Accounting_AccountantCost_AccountantFinancial } },
                 new JobDetailsFullModel { JobID = "3B", Title = "Job Title 3B", Description = "Job Description 3B", ShortDescription = "Short Description 3B", Filters = new List<JobFilterRoot> { NZ_Auckland, Accounting_AccountantTax } },
                 new JobDetailsFullModel { JobID = "5B", Title = "Job Title 5B", Description = "Job Description 5B", ShortDescription = "Short Description 5B", Filters = new List<JobFilterRoot> { Australia_Melbourne_George, Accounting_AccountantCost_AccountantFinancial } },
-                new JobDetailsFullModel { JobID = "7B", Title = "Job Title 7B", Description = "Job Description 7B", ShortDescription = "Short Description 7B", Filters = new List<JobFilterRoot> { Australia_Sydney_Central_TownHall, Accounting_AccountantCost_AccountantFinancial } },
+                new JobDetailsFullModel { JobID = "7B", Title = "Job Title 7B", Description = "Job Description 7B", ShortDescription = "Short Description 7B", Filters = new List<JobFilterRoot> { Australia_Sydney_Central_TownHall, Sales_Analyst_Telesales_Causal } },
                 new JobDetailsFullModel { JobID = "8B", Title = "Job Title 9B", Description = "Job Description 9B", ShortDescription = "Short Description 9B", Filters = new List<JobFilterRoot> { NZ_Auckland, Sales_Analyst_Telesales_Causal } }
             };
         }
@@ -76,7 +76,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
             throw new NotImplementedException();
         }
 
-        public IGetJobListingResponse AdvertiserGetJob(IGetJobListing jobDetails)
+        public IGetJobListingResponse AdvertiserGetJob(IGetJobListingRequest jobDetails)
         {
             Test_GetJobListingRequest jobRequest = jobDetails as Test_GetJobListingRequest;
 

@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace SitefinityWebApp.Mvc.Models
+{
+    public class JobSearchResultsFilterModel
+    {
+        public List<JobSearchFilterReceiver> Filters { get; set; }
+    }
+
+    public class JobSearchFilterReceiver
+    {
+        public string searchTarget { get; set; }
+        public string values { get; set; }
+    }
+}

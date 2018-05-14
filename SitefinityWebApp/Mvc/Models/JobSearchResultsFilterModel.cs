@@ -13,6 +13,7 @@ namespace SitefinityWebApp.Mvc.Models
     public class JobSearchFilterReceiver
     {
         public string searchTarget { get; set; }
-        public string values { get; set; }
+        public string rootId { get; set; }
+        public List<string> values { get; set; }
     }
 }

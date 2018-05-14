@@ -961,8 +961,10 @@
     <Compile Include="Mvc\Controllers\BaseLayout2Controller.cs" />
     <Compile Include="Mvc\Controllers\BaseLayoutController.cs" />
     <Compile Include="Mvc\Controllers\JobSearchController.cs" />
+    <Compile Include="Mvc\Controllers\JobSearchResultsController.cs" />
     <Compile Include="Mvc\Controllers\SocialLinkController.cs" />
     <Compile Include="Mvc\Models\JobSearchModel.cs" />
+    <Compile Include="Mvc\Models\JobSearchResultsFilterModel.cs" />
     <Compile Include="Mvc\Models\SocialLinkModel.cs" />
     <Compile Include="Mvc\Models\SocialViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -971,6 +973,7 @@
     <Content Include="Content\Pages\login.html" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Mvc\Scripts\JobSearchResults\designerview-simple.js" />
     <Content Include="Mvc\Scripts\JobSearch\designerview-simple.js" />
     <Content Include="Mvc\Scripts\JobSearch\dropdowntree.css" />
     <Content Include="Mvc\Scripts\JobSearch\dropdowntree.js" />
@@ -1138,7 +1141,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Sitefinity\" />
-    <Folder Include="Views\" />
+    <Folder Include="Views\JobSearchResults\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_Data\GeoLocation\GeoLiteCity.dat" />
@@ -1152,6 +1155,8 @@
     <Content Include="Mvc\Views\JobSearch\DesignerView.Simple.cshtml" />
     <Content Include="Mvc\Views\JobSearch\JobSearchMockData.json" />
     <Content Include="Mvc\Views\JobSearch\Simple.cshtml" />
+    <Content Include="Mvc\Views\JobSearchResults\Simple.cshtml" />
+    <Content Include="Mvc\Views\JobSearchResults\DesignerView.Simple.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="ResourcePackages\Bootstrap\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.eot" />

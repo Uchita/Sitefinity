@@ -21,10 +21,16 @@ namespace SitefinityWebApp.Mvc.Controllers
     {
         IBusinessLogicsConnector _testBLConnector;
         IOptionsConnector _testOConnector;
+        IGetJobFiltersResponse filtersResponse;
+
         public JobSearchController(IEnumerable<IBusinessLogicsConnector> _bConnectors, IEnumerable<IOptionsConnector> _oConnectors)
         {
             _testBLConnector = _bConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.Test).FirstOrDefault();
             _testOConnector = _oConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.Test).FirstOrDefault();
+          
+            //Execute - Get available filter options from the server
+            filtersResponse = _testOConnector.JobFilters<Test_GetJobFiltersRequest, Test_GetJobFiltersResponse>(new Test_GetJobFiltersRequest());
+            this.SerializedFilterData = JsonSerializer.SerializeToString(filtersResponse.Filters.Data);
         }
 
         public string CssClass { get; set; }
@@ -41,13 +47,11 @@ namespace SitefinityWebApp.Mvc.Controllers
                 return this.model;
             }
         }
-
         // GET: JobSearch
         public ActionResult Index()
         {
-
-            //Execute - Get available filter options from the server
-            IGetJobFiltersResponse filtersResponse = _testOConnector.JobFilters<Test_GetJobFiltersRequest, Test_GetJobFiltersResponse>(new Test_GetJobFiltersRequest());
+            filtersResponse = _testOConnector.JobFilters<Test_GetJobFiltersRequest, Test_GetJobFiltersResponse>(new Test_GetJobFiltersRequest());
+            this.SerializedFilterData = JsonSerializer.SerializeToString(filtersResponse.Filters.Data);
 
             //Execute - Try perform a dummy search
             ISearchJobsRequest request = new Test_SearchJobsRequest { Page = 0, PageSize = 2, FiltersSearch = new List<FiltersSearchRoot> { new FiltersSearchRoot { RootID = "AE-1234", Filters = new List<FiltersSearchElement> { new FiltersSearchElement { ID = "DD-3123" } } } } };
@@ -55,8 +59,6 @@ namespace SitefinityWebApp.Mvc.Controllers
 
             IGetJobListingRequest jobListingRequest = new Test_GetJobListingRequest { JobID = "8A" };
             IGetJobListingResponse jobListingResponse = _testBLConnector.AdvertiserGetJob(jobListingRequest);
-
-
 
             // This is the CSS classes enter from More Options
             ViewData["CssClass"] = this.CssClass;
@@ -66,8 +68,8 @@ namespace SitefinityWebApp.Mvc.Controllers
             {
                 foreach (JobSearchModel item in jobSearchComponents)
                 {
-                    FilterData(item.Data);
-                    item.Data = item.Data.Where(d => d.Selected == true || d.Data?.Count > 0).ToList();
+                    FilterData(item.Filters);
+                    item.Filters = item.Filters.Where(d => d.Selected == true || d.Filters?.Count > 0).ToList();
                 }
             }
             return View("Simple", jobSearchComponents);
@@ -80,14 +82,14 @@ namespace SitefinityWebApp.Mvc.Controllers
 
             foreach (JobSearchItem item in data)
             {
-                if (item.Data != null && item.Data.Count > 0)
+                if (item.Filters != null && item.Filters.Count > 0)
                 {
-                    FilterData(item.Data);
-                    item.Data = item.Data.Where(d => d.Selected == true || d.Data?.Count > 0).ToList();
+                    FilterData(item.Filters);
+                    item.Filters = item.Filters.Where(d => d.Selected == true || d.Filters?.Count > 0).ToList();
                 }
             }
 
-            data = data.Where(d => d.Selected == true || d.Data?.Count > 0).ToList();
+            data = data.Where(d => d.Selected == true || d.Filters?.Count > 0).ToList();
         }
 
         protected override void HandleUnknownAction(string actionName)
@@ -152,8 +154,10 @@ namespace SitefinityWebApp.Mvc.Controllers
         #endregion
 
         public string SerializedJobSearchParams { get; set; }
+        public string SerializedFilterData { get; set; }
         internal const string WidgetIconCssClass = "sfMvcIcn";
         private JobSearchModel model;
+        
 
         private string resultsUrl;
         public string SiteRootName { get; set; }

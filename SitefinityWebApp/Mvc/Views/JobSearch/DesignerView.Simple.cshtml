@@ -13,8 +13,8 @@
 <div ng-controller="SimpleCtrl">
     <script type="text/ng-template" id="categoryTree">
         <a ng-click="clickEvent(category,$event)"><span class="glyphicon glyphicon-ok" ng-show="isSelected(category)"></span>{{ category.Label }}</a>
-        <ul ng-if="category.Data">
-            <li ng-repeat="category in category.Data|filter:searchtext" ng-include="'categoryTree'">
+        <ul ng-if="category.Filters">
+            <li ng-repeat="category in category.Filters|filter:searchtext" ng-include="'categoryTree'">
             </li>
         </ul>
     </script>
@@ -40,7 +40,7 @@
                     </button>
                     <ul class="dropdown-menu" style="max-height: 200px;overflow-y: scroll;min-width:550px;">
                         <input type="text" class="form-control" ng-model="searchtext" ng-click="filterClick()" />
-                        <li ng-repeat="category in row.Data" ng-include="'categoryTree'" ng-click="clickValuesMulti(category, $event)"></li>
+                        <li ng-repeat="category in row.Filters" ng-include="'categoryTree'" ng-click="clickValuesMulti(category, $event)"></li>
                     </ul>
                 </div>
             </div>
@@ -52,7 +52,7 @@
             </div>
 
             <div>
-                <button class="btn btn-danger" id="row.id" ng-click="removeRow(row.RowId)">
+                <button class="btn btn-danger" id="row.ID" ng-click="removeRow(row.RowId)">
                     Delete
                 </button>
             </div>

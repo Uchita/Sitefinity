@@ -18,10 +18,10 @@
             if (!string.IsNullOrEmpty(item.Label) && item.Selected == true)
             {
                 _itemsList.Add(item.Label);
-                _idNamesLevelsPair.Add(item.Id, new { name = item.Label, level = item.Level });
+                _idNamesLevelsPair.Add(item.ID, new { name = item.Label, level = item.Level });
             }
-            if (item.Data != null)
-                GetValuesList(item.Data);
+            if (item.Filters != null)
+                GetValuesList(item.Filters);
         }
 
         return _itemsList;
@@ -46,7 +46,7 @@
             case "DropDown Single":
                 _itemsList.Clear();
                 _idNamesLevelsPair.Clear();
-                GetValuesList(item.Data);
+                GetValuesList(item.Filters);
 
                 <select class="form-control" name="Filters[@counter].values">
                     <option value="" disabled selected>@item.PlaceholderText</option>
@@ -91,8 +91,8 @@
             var locArr = JSON.parse('@Html.Raw(Json.Encode(Model))');
             var index = locArr.findIndex(item => item.FilterType === "Locations");
             var dataArr = [];
-            if (index >=0 && locArr[index].Data != "undefined")
-                dataArr = locArr[index].Data;
+            if (index >= 0 && locArr[index].Filters != "undefined")
+                dataArr = locArr[index].Filters;
 
             var options = {
                 title: "Select Location",

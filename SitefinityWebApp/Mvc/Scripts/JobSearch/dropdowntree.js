@@ -28,25 +28,25 @@ var globalTreeIdCounter=0;
             var dataAttrs = "";
             if(typeof data[i].dataAttrs != "undefined" && data[i].dataAttrs != null){
                 for(var d = 0 ; d<data[i].dataAttrs.length ; d++){
-                    dataAttrs += " data-"+data[i].dataAttrs[d].Label+"='"+data[i].dataAttrs[d].Data+"' ";
+                    dataAttrs += " data-" + data[i].dataAttrs[d].Label + "='" + data[i].dataAttrs[d].Filters+"' ";
                 }
             }
             if(!element.is("li")){
                 element.append('<li id="TreeElement' + globalTreeIdCounter + '"' + dataAttrs + '>' + (options.multiSelect ? '<i class="fa fa-square-o select-box" aria-hidden="true"></i>' : '') + '<a href="' + ((typeof data[i].href != "undefined" && data[i].href != null) ? data[i].href : '#') + '">' + data[i].Label+'</a></li>');
-                if(data[i].Data != null && typeof data[i].Data !="undefined"){					
+                if (data[i].Filters != null && typeof data[i].Filters != "undefined" && data[i].Filters.length > 0){					
                     $("#TreeElement"+globalTreeIdCounter).append("<ul style='display:none'></ul>");
                     $("#TreeElement"+globalTreeIdCounter).find("a").first().prepend('<span class="arrow">'+options.closedArrow+'</span>');
-                    RenderData(data[i].Data, $("#TreeElement"+globalTreeIdCounter).find("ul").first());
+                    RenderData(data[i].Filters, $("#TreeElement"+globalTreeIdCounter).find("ul").first());
                  }else if(options.addChildren){
                     $("#TreeElement"+globalTreeIdCounter).find("a").first().prepend('<span class="arrow">'+options.closedArrow+'</span>');
                 }
             }
             else{
                 element.find("ul").append('<li id="TreeElement' + globalTreeIdCounter + '"' + dataAttrs + '>' + (options.multiSelect ? '<i class="fa fa-square-o select-box" aria-hidden="true"></i>' : '') + '<a href="' + ((typeof data[i].href != "undefined" && data[i].href != null) ? data[i].href : '#') + '">' + data[i].Label+'</a></li>');
-                if(data[i].Data != null && typeof data[i].Data !="undefined"){					
+                if (data[i].Filters != null && typeof data[i].Filters !="undefined"){					
                     $("#TreeElement"+globalTreeIdCounter).append("<ul style='display:none'></ul>");
                     $("#TreeElement"+globalTreeIdCounter).find("a").first().prepend('<span class="arrow">'+options.closedArrow+'</span>');
-                    RenderData(data[i].Data, $("#TreeElement"+globalTreeIdCounter).find("ul").first());
+                    RenderData(data[i].Filters, $("#TreeElement"+globalTreeIdCounter).find("ul").first());
                 }else if(options.addChildren){
                     $("#TreeElement"+globalTreeIdCounter).find("a").first().prepend('<span class="arrow">'+options.closedArrow+'</span>');
                 }
@@ -99,11 +99,11 @@ var globalTreeIdCounter=0;
 		var filteredOptions = [];		
 		for(var i = 0; i < data.length; i++)
 		{			
-			if(data[i].Data != undefined && data[i].Data.length > 0)
+            if (data[i].Filters != undefined && data[i].Filters.length > 0)
 			{
-				data[i].Data = filterOptions(data[i].Data,text);
+                data[i].Filters = filterOptions(data[i].Filters,text);
 			}
-            if ((data[i].Data != undefined && data[i].Data.length > 0) || data[i].Label.toUpperCase().startsWith(text))
+            if ((data[i].Filters != undefined && data[i].Filters.length > 0) || data[i].Label.toUpperCase().startsWith(text))
 					filteredOptions.push(data[i]);
 		}
 		return filteredOptions;

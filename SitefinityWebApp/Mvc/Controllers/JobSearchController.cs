@@ -7,6 +7,8 @@ using Telerik.Sitefinity.Mvc;
 using Telerik.Sitefinity.Web;
 using SitefinityWebApp.Mvc.Models;
 using System.ComponentModel;
+using Telerik.Sitefinity.Modules.Pages;
+using Telerik.Sitefinity.Pages.Model;
 using ServiceStack.Text;
 using JXTNext.Sitefinity.Connector.BusinessLogics;
 using JXTNext.Sitefinity.Connector.Options;
@@ -62,7 +64,21 @@ namespace SitefinityWebApp.Mvc.Controllers
 
             // This is the CSS classes enter from More Options
             ViewData["CssClass"] = this.CssClass;
-        
+
+            PageManager pageManager = PageManager.GetManager();
+            if (pageManager != null)
+            {
+                if (!this.ResultsPageId.IsNullOrEmpty())
+                {
+                    Guid pageNodeId = new Guid(this.ResultsPageId);
+                    PageNode node = pageManager.GetPageNodes().Where(n => n.Id == pageNodeId).FirstOrDefault();
+                    // we will get the url as ~/resultspage
+                    // So removing the first character
+                    if (node != null)
+                        ViewData["JobResultsPageUrl"] = node.GetUrl().Substring(1);
+                }
+            }
+
             var jobSearchComponents = JsonSerializer.DeserializeFromString<List<JobSearchModel>>(this.SerializedJobSearchParams);
             if(jobSearchComponents != null)
             {
@@ -97,84 +113,9 @@ namespace SitefinityWebApp.Mvc.Controllers
             this.Index().ExecuteResult(this.ControllerContext);
         }
 
-        #region Private methods
-        private SiteMapProvider GetSiteMapProvider()
-        {
-            SiteMapProvider provider;
-            try
-            {
-                if (string.IsNullOrEmpty(this.SiteRootName))
-                    provider = SiteMapBase.GetSiteMapProvider(SiteMapBase.DefaultSiteMapProviderName);
-                else
-                    provider = SiteMapBase.GetSiteMapProvider(this.SiteRootName);
-
-                return provider;
-            }
-            catch (Exception)
-            {
-                provider = null;
-            }
-            return provider;
-        }
-
-        private string GetResultsUrl(string resultsPageId)
-        {
-            var resultsUrl = string.Empty;
-
-            if (resultsPageId.IsGuid())
-            {
-                var provider = this.GetSiteMapProvider();
-                if (provider != null)
-                {
-                    var node = provider.FindSiteMapNodeFromKey(resultsPageId);
-                    if (node != null)
-                    {
-                        resultsUrl = node.Url;
-                    }
-                }
-            }
-
-            if (string.IsNullOrEmpty(resultsUrl))
-            {
-                var node = SiteMapBase.GetActualCurrentNode();
-                if (node != null)
-                    resultsUrl = node.Url;
-            }
-
-            // If ML is using different domains, the url does not need to be resolved
-            if (!RouteHelper.IsCompleteUrl(resultsUrl))
-            {
-                return RouteHelper.ResolveUrl(resultsUrl, UrlResolveOptions.Rooted);
-            }
-            else
-            {
-                return resultsUrl;
-            }
-        }
-        #endregion
-
         public string SerializedJobSearchParams { get; set; }
         public string SerializedFilterData { get; set; }
         internal const string WidgetIconCssClass = "sfMvcIcn";
         private JobSearchModel model;
-        
-
-        private string resultsUrl;
-        public string SiteRootName { get; set; }
-        public string ResultsUrl
-        {
-            get
-            {
-                if (String.IsNullOrEmpty(this.resultsUrl))
-                {
-                    this.resultsUrl = this.GetResultsUrl(this.ResultsPageId);
-                }
-
-                return this.resultsUrl;
-            }
-            set
-            {
-            }
-        }
     }
 }

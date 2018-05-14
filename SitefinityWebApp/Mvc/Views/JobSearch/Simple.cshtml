@@ -30,7 +30,7 @@
 
 @if (Model != null)
 {
-<form action="/jobsearchresults" name="JobSearchResults" method="post">
+<form action="@ViewData["JobResultsPageUrl"]" name="JobSearchResults" method="get" onsubmit="return preventSubmit();">
     @{
         int counter = 0;
     }
@@ -59,7 +59,11 @@
                 break;
 
             case "DropDown Multi":
-                <div class="dropdown dropdown-tree" name="Filters[@counter].values" id="Locations"></div>
+
+                <input type="hidden" name="Filters[@counter].searchTarget" value='@item.FilterType' />
+                <input type="hidden" name="Filters[@counter].rootId" value='@item.ID' />
+                <select id=@string.Format("selected-{0}",item.ID) name="Filters[@counter].values" style="display:none" multiple></select>
+                <div class="dropdown dropdown-tree" id=@item.ID></div>
                 break;
 
             case "Map Search":
@@ -75,11 +79,19 @@
 </form>
 }
 
-<br />
-<br />
-
-
 <script type="text/javascript">
+    var optionsArray = {};
+
+    function preventSubmit() {
+         $.each(optionsArray,function (id, item) {
+            $($("#" + id).GetSelectedElementIds()).each(function (index, value) {
+                $("#selected-" + id).append('<option value="' + value + '" selected="true">' + value + '</option>')
+            });
+        });
+
+        return true;
+    };
+
     $(document).ready(function () {
          @{
                 var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
@@ -88,23 +100,32 @@
 
         var model = @Html.Raw(json);
         if (model != null && @Html.Raw(json) != "undefined") {
-            var locArr = JSON.parse('@Html.Raw(Json.Encode(Model))');
-            var index = locArr.findIndex(item => item.FilterType === "Locations");
-            var dataArr = [];
-            if (index >= 0 && locArr[index].Filters != "undefined")
-                dataArr = locArr[index].Filters;
+            var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
 
-            var options = {
-                title: "Select Location",
-                data: dataArr,
-                maxHeight: 500,
-                closedArrow: '<i class="fa fa-caret-right" aria-hidden="true"></i>',
-                openedArrow: '<i class="fa fa-caret-down" aria-hidden="true"></i>',
-                multiSelect: true,
-                selectChildren: true
-            };
+            console.log(filterData);
+            
+            for (var item of filterData) {
+                switch (item.ControlType) {
+                    case 'TextBox':
+                        break;
 
-            $("#Locations").DropDownTree(options);
+                    case 'DropDown Multi':
+                        optionsArray[item.ID] = {
+                            title: item.PlaceholderText,
+                            data: item.Filters,
+                            maxHeight: 500,
+                            closedArrow: '<i class="fa fa-caret-right" aria-hidden="true"></i>',
+                            openedArrow: '<i class="fa fa-caret-down" aria-hidden="true"></i>',
+                            multiSelect: true,
+                            selectChildren: true,
+                        };
+                        $("#" + item.ID).DropDownTree(optionsArray[item.ID]);
+                        break;
+
+                    default:
+                        break;
+                }
+            }
         }
    });
 </script>

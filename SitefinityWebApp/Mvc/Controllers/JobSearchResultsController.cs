@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Telerik.Sitefinity.Mvc;
 using Telerik.Sitefinity.Web;
+using SitefinityWebApp.Mvc.Models;
 
 namespace SitefinityWebApp.Mvc.Controllers
 {
@@ -12,7 +13,7 @@ namespace SitefinityWebApp.Mvc.Controllers
     public class JobSearchResultsController : Controller
     {
         // GET: JobSearchResults
-        public ActionResult Index()
+        public ActionResult Index(JobSearchResultsFilterModel filterModel)
         {
             return View("Simple");
         }

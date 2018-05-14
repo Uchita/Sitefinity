@@ -32,23 +32,23 @@ var globalTreeIdCounter=0;
                 }
             }
             if(!element.is("li")){
-                element.append('<li id="TreeElement' + globalTreeIdCounter + '"' + dataAttrs + '>' + (options.multiSelect ? '<i class="fa fa-square-o select-box" aria-hidden="true"></i>' : '') + '<a href="' + ((typeof data[i].href != "undefined" && data[i].href != null) ? data[i].href : '#') + '">' + data[i].Label+'</a></li>');
+                element.append('<li id=' + data[i].ID + dataAttrs + '>' + (options.multiSelect ? '<i class="fa fa-square-o select-box" aria-hidden="true"></i>' : '') + '<a href="' + ((typeof data[i].href != "undefined" && data[i].href != null) ? data[i].href : '#') + '">' + data[i].Label+'</a></li>');
                 if (data[i].Filters != null && typeof data[i].Filters != "undefined" && data[i].Filters.length > 0){					
-                    $("#TreeElement"+globalTreeIdCounter).append("<ul style='display:none'></ul>");
-                    $("#TreeElement"+globalTreeIdCounter).find("a").first().prepend('<span class="arrow">'+options.closedArrow+'</span>');
-                    RenderData(data[i].Filters, $("#TreeElement"+globalTreeIdCounter).find("ul").first());
+                    $("#" + data[i].ID).append("<ul style='display:none'></ul>");
+                    $("#" + data[i].ID).find("a").first().prepend('<span class="arrow">'+options.closedArrow+'</span>');
+                    RenderData(data[i].Filters, $("#" + data[i].ID).find("ul").first());
                  }else if(options.addChildren){
-                    $("#TreeElement"+globalTreeIdCounter).find("a").first().prepend('<span class="arrow">'+options.closedArrow+'</span>');
+                    $("#" + data[i].ID).find("a").first().prepend('<span class="arrow">'+options.closedArrow+'</span>');
                 }
             }
             else{
-                element.find("ul").append('<li id="TreeElement' + globalTreeIdCounter + '"' + dataAttrs + '>' + (options.multiSelect ? '<i class="fa fa-square-o select-box" aria-hidden="true"></i>' : '') + '<a href="' + ((typeof data[i].href != "undefined" && data[i].href != null) ? data[i].href : '#') + '">' + data[i].Label+'</a></li>');
+                element.find("ul").append('<li id=' + data[i].ID + dataAttrs + '>' + (options.multiSelect ? '<i class="fa fa-square-o select-box" aria-hidden="true"></i>' : '') + '<a href="' + ((typeof data[i].href != "undefined" && data[i].href != null) ? data[i].href : '#') + '">' + data[i].Label+'</a></li>');
                 if (data[i].Filters != null && typeof data[i].Filters !="undefined"){					
-                    $("#TreeElement"+globalTreeIdCounter).append("<ul style='display:none'></ul>");
-                    $("#TreeElement"+globalTreeIdCounter).find("a").first().prepend('<span class="arrow">'+options.closedArrow+'</span>');
-                    RenderData(data[i].Filters, $("#TreeElement"+globalTreeIdCounter).find("ul").first());
+                    $("#" + data[i].ID).append("<ul style='display:none'></ul>");
+                    $("#" + data[i].ID).find("a").first().prepend('<span class="arrow">'+options.closedArrow+'</span>');
+                    RenderData(data[i].Filters, $("#" + data[i].ID).find("ul").first());
                 }else if(options.addChildren){
-                    $("#TreeElement"+globalTreeIdCounter).find("a").first().prepend('<span class="arrow">'+options.closedArrow+'</span>');
+                    $("#" + data[i].ID).find("a").first().prepend('<span class="arrow">'+options.closedArrow+'</span>');
                 }
             }
         }

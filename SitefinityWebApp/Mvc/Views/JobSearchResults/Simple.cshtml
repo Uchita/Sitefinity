@@ -1,3 +1,14 @@
-﻿
+﻿@model dynamic
 
-<h3>Job Search Results View under construction</h3>
+@if (Model != null)
+{
+    foreach (var jobItem in Model.SearchResults)
+    {
+        <div>
+            <a href="/jobdetails">@jobItem.Title</a>
+        </div>
+        <div>
+            <p>@jobItem.Description</p>
+        </div>
+    }
+}

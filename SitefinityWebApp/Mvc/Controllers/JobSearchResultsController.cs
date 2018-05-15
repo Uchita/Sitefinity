@@ -29,19 +29,27 @@ namespace SitefinityWebApp.Mvc.Controllers
         public ActionResult Index(JobSearchResultsFilterModel filterModel)
         {
             dynamic dynamicJobResultsList = null;
-            if (filterModel != null && filterModel.Filters != null)
+            if (filterModel != null)
             {
+                List<FiltersSearchRoot> filtersSearch = null;
                 // Loop through all the filters and form a filters search request
-                var filtersSearch = new List<FiltersSearchRoot>();
-                foreach (var item in filterModel.Filters ?? Enumerable.Empty<JobSearchFilterReceiver>())
+                if (filterModel.Filters != null && filterModel.Filters.Count > 0)
                 {
-                    var filters = new List<FiltersSearchElement>();
-                    foreach (var filterId in item.values ?? Enumerable.Empty<string>())
+                    filtersSearch = new List<FiltersSearchRoot>();
+                    foreach (var item in filterModel.Filters)
                     {
-                        filters.Add(new FiltersSearchElement { ID = filterId });
-                    }
+                        if (item.values != null && item.values.Count() > 0)
+                        {
+                            var filters = new List<FiltersSearchElement>();
+                            foreach (var filterId in item.values)
+                            {
+                                filters.Add(new FiltersSearchElement { ID = filterId });
+                            }
 
-                    filtersSearch.Add(new FiltersSearchRoot { RootID = item.rootId, Filters = filters });
+                            if (filters.Count > 0)
+                                filtersSearch.Add(new FiltersSearchRoot { RootID = item.rootId, Filters = filters });
+                        }
+                    }
                 }
 
                 //Execute - Try perform search
@@ -52,7 +60,7 @@ namespace SitefinityWebApp.Mvc.Controllers
                 ViewData["JobDetailsPageUrl"] = filterModel.JobDetailsPageUrl;
             }
 
-          return View("Simple", dynamicJobResultsList);
+            return View("Simple", dynamicJobResultsList);
         }
 
         internal const string WidgetIconCssClass = "sfMvcIcn";

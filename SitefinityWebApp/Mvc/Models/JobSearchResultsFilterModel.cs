@@ -9,6 +9,7 @@ namespace SitefinityWebApp.Mvc.Models
     {
         public List<JobSearchFilterReceiver> Filters { get; set; }
         public string Keywords { get; set; }
+        public string JobDetailsPageUrl { get; set; }
     }
 
     public class JobSearchFilterReceiver

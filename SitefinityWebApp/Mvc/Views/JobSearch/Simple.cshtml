@@ -34,6 +34,7 @@
     @{
         int counter = 0;
     }
+    <input type="hidden" class="form-control" name="JobDetailsPageUrl" value=@ViewData["JobDetailsPageUrl"]  />
     @foreach (var item in Model)
     {
         switch (item.ControlType)

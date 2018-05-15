@@ -1,3 +1,8 @@
-﻿
+﻿@model dynamic
 
-<h3>Job Details Page under construction</h3>
+@if (Model != null)
+{
+    <div>@Model.Title</div>
+    <div>@Model.Description</div>
+}
+

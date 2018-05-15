@@ -170,7 +170,7 @@ var globalTreeIdCounter=0;
         } 
     }	
     $(options.element).append('<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="dropdowntree-name">'+options.title+'</span><span class="caret"></span></button>');		
-    $(options.element).append('<ul style="max-height: '+options.maxHeight+'px" class="dropdown-menu" aria-labelledby="dropdownMenu1"><input type="text" class="form-control"></input></ul>');
+    $(options.element).append('<ul style="max-height: '+options.maxHeight+'px" class="dropdown-menu" aria-labelledby="dropdownMenu1"><input type="text" class="form-control" placeholder="Type here to filter..." /></ul>');
 
     RenderData(options.data,$(options.element).find("ul").first());
 	

@@ -2,7 +2,14 @@
 
 @if (Model != null)
 {
-    <div>@Model.Title</div>
-    <div>@Model.Description</div>
+    if (Model.Success == true)
+    {
+        <div>@Model.Job.Title</div>
+        <div>@Model.Job.Description</div>
+    }
+    else
+    {
+        <div>@Model.Message</div>
+    }
 }
 

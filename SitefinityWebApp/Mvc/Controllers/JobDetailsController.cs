@@ -33,7 +33,7 @@ namespace SitefinityWebApp.Mvc.Controllers
             IGetJobListingResponse jobListingResponse = _testBLConnector.AdvertiserGetJob(jobListingRequest);
 
             if(jobListingRequest != null)
-                dynamicJobDetails = jobListingResponse.Job as dynamic;
+                dynamicJobDetails = jobListingResponse as dynamic;
 
             return View("Simple", dynamicJobDetails);
         }

@@ -25,7 +25,7 @@ var globalTreeIdCounter=0;
     function RenderData(data, element){		
         for(var i = 0 ; i< data.length ; i++){
             globalTreeIdCounter++;
-            var dataAttrs = "";
+            var dataAttrs = " data-title='" + data[i].Label.toUpperCase() + "'";
             if(typeof data[i].dataAttrs != "undefined" && data[i].dataAttrs != null){
                 for(var d = 0 ; d<data[i].dataAttrs.length ; d++){
                     dataAttrs += " data-" + data[i].dataAttrs[d].Label + "='" + data[i].dataAttrs[d].Filters+"' ";
@@ -77,17 +77,27 @@ var globalTreeIdCounter=0;
     });
 	
 	$(options.element).on("keyup","input",function(o){
-    	$(options.element).children("ul").children("li").remove();		
-		var a = [];
-		a = $.extend(true,a,options.data);		
-		a = filterOptions(a,$(this).val());
+       	
+        var text = $(this).val().toUpperCase();
+        $(options.element).find("li").css("display", "block");
+        $($(options.element).find("li")).each(function (i, el) {
+            if (text != '' && $(el).attr("data-title").startsWith(text)) {
+               $(el).addClass("filtered");
+            }
+            else if (text != '') {
+                $(el).removeClass("filtered");
+                $(el).css("display", "none");
+            }
+        });
+        $($(options.element).find("li").filter(".filtered")).each(function (i, t) {
+            $(t).parents("li").css("display", "block");
+        });
 		
-		RenderData(a,$(options.element).find("ul").first());
-		if($(this).val().length > 0){
-			$(options.element).children("ul").find("ul").css('display','block');
-			$(options.element).children("ul").find('span').children('i').removeClass('fa-caret-right');
-			$(options.element).children("ul").find('span').children('i').addClass('fa-caret-down');
-		}
+        if ($(this).val().length > 0) {
+            $(options.element).children("ul").find("ul").css('display', 'block');
+            $(options.element).children("ul").find('span').children('i').removeClass('fa-caret-right');
+            $(options.element).children("ul").find('span').children('i').addClass('fa-caret-down');
+        }
     });
 	
 	function filterOptions(data,text)
@@ -148,10 +158,6 @@ var globalTreeIdCounter=0;
             if(options.selectChildren){
                 $(this).parents("li").first().find(".select-box").addClass("fa-square-o");
                 $(this).parents("li").first().find(".select-box").removeClass("fa-check-square-o");
-                $(this).parents("li").each(function(){
-                    $(this).find(".select-box").first().removeClass("fa-check-square-o");
-                    $(this).find(".select-box").first().addClass("fa-square-o");
-                });
             }
         }
         options.checkHandler($(this).parents("li").first(), e, checked);

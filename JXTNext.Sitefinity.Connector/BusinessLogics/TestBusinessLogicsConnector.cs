@@ -25,7 +25,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
             JobFilterRoot Australia_Melbourne_George = new JobFilterRoot { ID = "AE-1234", Filters = new List<JobFilter> { new JobFilter { ID = "DD-3123", Filters = new List<JobFilter> { new JobFilter { ID = "EG-1573223", Filters = new List<JobFilter> { new JobFilter { ID = "FG-1393" } } } } } } };
             JobFilterRoot Australia_Melbourne_George_Pitt_Central = new JobFilterRoot { ID = "AE-1234", Filters = new List<JobFilter> { new JobFilter { ID = "DD-3123", Filters = new List<JobFilter> { new JobFilter { ID = "EG-1573223", Filters = new List<JobFilter> { new JobFilter { ID = "FG-1393" }, new JobFilter { ID = "BX-1373" }, new JobFilter { ID = "LG-9a233" } } } } } } };
 
-            JobFilterRoot NZ_Auckland = new JobFilterRoot { ID = "HD-345", Filters = new List<JobFilter> { new JobFilter { ID = "AF-0f34" } } };
+            JobFilterRoot NZ_Auckland = new JobFilterRoot { ID = "AE-1234", Filters = new List<JobFilter> { new JobFilter { ID = "HD-345", Filters = new List<JobFilter> { new JobFilter { ID = "AF-0f34" } } } } };
 
 
             JobFilterRoot Accounting_AccountantCost_AccountantFinancial = new JobFilterRoot { ID = "AE-8654", Filters = new List<JobFilter> { new JobFilter { ID = "KJ-3755", Filters = new List<JobFilter> { new JobFilter { ID = "EG-1223" }, new JobFilter { ID = "AB-gg3223" } } } } };

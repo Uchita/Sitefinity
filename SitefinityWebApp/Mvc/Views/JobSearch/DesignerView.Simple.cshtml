@@ -7,8 +7,16 @@
     <sf-list-selector sf-page-selector sf-selected-item-id="properties.ResultsPageId.PropertyValue" sf-select-button-text="Select a page"></sf-list-selector>
 </div>
 
-<label>Which job search options you want to use?</label><br />
-<p>Please click Add button and add job search parameters</p> <br /><br />
+<label>Where to display job details?</label>
+
+<div class="form-group">
+    <p class="description-note">
+        This is the page where you have dropped job details widget
+    </p>
+    <sf-list-selector sf-page-selector sf-selected-item-id="properties.DetailsPageId.PropertyValue" sf-select-button-text="Select a page"></sf-list-selector>
+</div>
+
+<br />
 
 <div ng-controller="SimpleCtrl">
     <script type="text/ng-template" id="categoryTree">

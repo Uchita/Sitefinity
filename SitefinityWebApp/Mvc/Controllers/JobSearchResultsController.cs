@@ -48,9 +48,11 @@ namespace SitefinityWebApp.Mvc.Controllers
                 ISearchJobsRequest request = new Test_SearchJobsRequest { Page = 0, PageSize = 20, Keywords = filterModel.Keywords, FiltersSearch = filtersSearch };
                 ISearchJobsResponse response = _testBLConnector.SearchJobs(request);
                 dynamicJobResultsList = response as dynamic;
+
+                ViewData["JobDetailsPageUrl"] = filterModel.JobDetailsPageUrl;
             }
 
-            return View("Simple", dynamicJobResultsList);
+          return View("Simple", dynamicJobResultsList);
         }
 
         internal const string WidgetIconCssClass = "sfMvcIcn";

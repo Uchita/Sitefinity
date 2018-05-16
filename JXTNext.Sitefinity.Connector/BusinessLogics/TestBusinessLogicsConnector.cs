@@ -113,8 +113,10 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
             Test_SearchJobsRequest searchDetails = (Test_SearchJobsRequest)search;
             int page = searchDetails.Page;
             int pageSize = searchDetails.PageSize;
+            bool hasAnySearchElements = false;
 
-            bool hasAnySearchElements = searchDetails.FiltersSearch.Where(c => c.HasSearchElements).Any();
+            if(searchDetails != null && searchDetails.FiltersSearch != null)
+                hasAnySearchElements = searchDetails.FiltersSearch.Where(c => c.HasSearchElements).Any();
 
             if (string.IsNullOrEmpty(searchDetails.Keywords) && (searchDetails.FiltersSearch == null || !hasAnySearchElements))
                 return new Test_SearchJobsResponse { SearchResults = AvailablJobs.Skip(page * pageSize).Take(pageSize).ToList() };

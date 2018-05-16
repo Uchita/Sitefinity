@@ -111,32 +111,47 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
         public ISearchJobsResponse SearchJobs(ISearchJobsRequest search)
         {
             Test_SearchJobsRequest searchDetails = (Test_SearchJobsRequest)search;
-
-            List<JobDetailsFullModel> jobsMatched = new List<JobDetailsFullModel>();
-
-            searchDetails.FiltersSearch.ForEach(filterRoot => {
-
-                string rootID = filterRoot.RootID;
-                string targetID = filterRoot.Filters.FirstOrDefault().ID;
-
-                //this is not the actual search logic, just a quick and dirty search will do
-                //for now, we will just search the first level ID, if its found then its valid                            
-                foreach (JobDetailsFullModel job in AvailablJobs)
-                {
-                    bool searchMatch = job.FakeSearch(filterRoot.RootID, targetID);
-
-                    if (searchMatch && !jobsMatched.Where(c => c.JobID == job.JobID).Any())
-                        jobsMatched.Add(job);
-                }
-
-            });
-
-            //next filter by keywords
-            if( !string.IsNullOrWhiteSpace(searchDetails.Keywords ))
-                jobsMatched = jobsMatched.Where(c => c.Title.Contains(searchDetails.Keywords) || c.Description.Contains(searchDetails.Keywords) || c.ShortDescription.Contains(searchDetails.Keywords)).ToList();
-
             int page = searchDetails.Page;
             int pageSize = searchDetails.PageSize;
+
+            bool hasAnySearchElements = searchDetails.FiltersSearch.Where(c => c.HasSearchElements).Any();
+
+            if (string.IsNullOrEmpty(searchDetails.Keywords) && (searchDetails.FiltersSearch == null || !hasAnySearchElements))
+                return new Test_SearchJobsResponse { SearchResults = AvailablJobs.Skip(page * pageSize).Take(pageSize).ToList() };
+
+            List<JobDetailsFullModel> jobsMatched;
+            
+            if(hasAnySearchElements)
+            { 
+                jobsMatched = new List<JobDetailsFullModel>();
+
+                searchDetails.FiltersSearch.ForEach(filterRoot => {
+
+                    string rootID = filterRoot.RootID;
+                    string targetID = filterRoot.Filters.FirstOrDefault().ID;
+
+                    //this is not the actual search logic, just a quick and dirty search will do
+                    //for now, we will just search the first level ID, if its found then its valid                            
+                    foreach (JobDetailsFullModel job in AvailablJobs)
+                    {
+                        bool searchMatch = job.FakeSearch(filterRoot.RootID, targetID);
+
+                        if (searchMatch && !jobsMatched.Where(c => c.JobID == job.JobID).Any())
+                            jobsMatched.Add(job);
+                    }
+
+                });
+            }
+            else
+            {
+                //return the full list of jobs
+                jobsMatched = AvailablJobs;
+            }
+
+            //next filter by keywords
+            if ( !string.IsNullOrWhiteSpace(searchDetails.Keywords ))
+                jobsMatched = jobsMatched.Where(c => c.Title.Contains(searchDetails.Keywords) || c.Description.Contains(searchDetails.Keywords) || c.ShortDescription.Contains(searchDetails.Keywords)).ToList();
+
 
             Test_SearchJobsResponse response = new Test_SearchJobsResponse {  SearchResults = jobsMatched.Skip(page * pageSize).Take(pageSize).ToList() };
             return response;

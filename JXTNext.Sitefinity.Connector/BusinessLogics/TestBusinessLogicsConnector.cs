@@ -119,7 +119,10 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
                 hasAnySearchElements = searchDetails.FiltersSearch.Where(c => c.HasSearchElements).Any();
 
             if (string.IsNullOrEmpty(searchDetails.Keywords) && (searchDetails.FiltersSearch == null || !hasAnySearchElements))
-                return new Test_SearchJobsResponse { SearchResults = AvailablJobs.Skip(page * pageSize).Take(pageSize).ToList() };
+            {
+                List<JobDetailsFullModel> availablJobssToReturn = AvailablJobs.Skip(page * pageSize).Take(pageSize).ToList();
+                return new Test_SearchJobsResponse { Total = AvailablJobs.Count(), Count = availablJobssToReturn.Count(), SearchResults = availablJobssToReturn };
+            }
 
             List<JobDetailsFullModel> jobsMatched;
             
@@ -154,8 +157,8 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
             if ( !string.IsNullOrWhiteSpace(searchDetails.Keywords ))
                 jobsMatched = jobsMatched.Where(c => c.Title.Contains(searchDetails.Keywords) || c.Description.Contains(searchDetails.Keywords) || c.ShortDescription.Contains(searchDetails.Keywords)).ToList();
 
-
-            Test_SearchJobsResponse response = new Test_SearchJobsResponse {  SearchResults = jobsMatched.Skip(page * pageSize).Take(pageSize).ToList() };
+            List<JobDetailsFullModel> jobsToReturn = jobsMatched.Skip(page * pageSize).Take(pageSize).ToList();
+            Test_SearchJobsResponse response = new Test_SearchJobsResponse { Total = jobsMatched.Count(), Count = jobsToReturn.Count(), SearchResults = jobsToReturn };
             return response;
         }
     }

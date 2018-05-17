@@ -15,6 +15,8 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search
 
     public class Test_SearchJobsResponse : ISearchJobsResponse
     {
+        public int Total { get; set; } //amount of jobs in total that met the search request
+        public int Count { get; set; } //amount of jobs returned in this search
         public List<JobDetailsFullModel> SearchResults { get; set; } 
     }
 

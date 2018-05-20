@@ -40,7 +40,7 @@ export class JobService {
 		);
   }
   
-  getJob(id: number): Observable<Job>{
+  getJob(id: string): Observable<Job>{
 	  const url = this.baseUrl + '/${id}';
 	  return this.http.get<Job>(url)
 		.pipe(

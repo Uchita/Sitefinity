@@ -15,26 +15,27 @@ export class JobDetailComponent implements OnInit {
   isNew: boolean
 
   constructor(
-	private route: ActivatedRoute,
-	private jobService: JobService,
-	private location: Location
+	  private route: ActivatedRoute,
+	  private jobService: JobService,
+	  private location: Location
 	) 
 	{	
 	  this.isNew = true;
 	}
 
   ngOnInit() {
-	  const id = +this.route.snapshot.paramMap.get('id');
+
+    let id : string = this.route.snapshot.paramMap.get('id');
 	  if(id){
-		this.isNew = false;
-		this.fetchJob(id);
+		  this.isNew = false;
+		  this.fetchJob(id);
 	  }
 	  else{
 		  this.job = new Job();
 	  }
   }
   
-  fetchJob(id: number): void{
+  fetchJob(id: string): void{
 	  this.jobService.getJob(id)
 	    .subscribe(job => this.job = job);
   }

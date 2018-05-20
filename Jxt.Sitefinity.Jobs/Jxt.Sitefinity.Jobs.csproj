@@ -265,16 +265,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="app\" />
     <Folder Include="Mvc\Scripts\JobsBakend\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="app\dist\3rdpartylicenses.txt" />
-    <Content Include="app\dist\favicon.ico" />
-    <Content Include="app\dist\index.html" />
-    <EmbeddedResource Include="app\dist\main.3b4b59a192e730d55715.js" />
-    <EmbeddedResource Include="app\dist\polyfills.2d976f42c1abc2acac30.js" />
-    <EmbeddedResource Include="app\dist\runtime.6afe30102d8fe7337431.js" />
-    <EmbeddedResource Include="app\dist\styles.e6abd70190b7cf9a3831.css" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

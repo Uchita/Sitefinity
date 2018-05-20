@@ -1,0 +1,15 @@
+﻿@model dynamic
+
+@if (Model != null)
+{
+    if (Model.Success == true)
+    {
+        <div>@Model.Job.Title</div>
+        <div>@Model.Job.Description</div>
+    }
+    else
+    {
+        <div>@Model.Message</div>
+    }
+}
+

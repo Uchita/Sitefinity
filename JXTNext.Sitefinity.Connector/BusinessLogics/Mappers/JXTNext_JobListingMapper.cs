@@ -9,9 +9,16 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
 {
     public class JXTNext_JobListingMapper : IJobListingMapper
     {
-        public object To(JobDetailsModel jobDetails)
+        public IntegrationMapperType mapperType => IntegrationMapperType.JXTNext;
+
+        public object ConvertToAPIEntity(JobDetailsModel jobDetails)
         {
             return jobDetails;
+        }
+
+        public T ConvertToLocalEntity<T>(dynamic data)
+        {
+            throw new NotImplementedException();
         }
     }
 }

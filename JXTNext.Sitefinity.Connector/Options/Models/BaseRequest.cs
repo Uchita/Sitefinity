@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models
+namespace JXTNext.Sitefinity.Connector.Options.Models
 {
     public class ConnectorBaseRequest
     {

@@ -30,11 +30,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JXTNext.Common.API, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXTNext.Common.API.1.2.1\lib\netstandard1.1\JXTNext.Common.API.dll</HintPath>
+    <Reference Include="JXTNext.Common.API, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXT.JXTNext.Common.API.1.4.0\lib\netstandard1.1\JXTNext.Common.API.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="JXTNext.Common.Web, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXT.JXTNext.Common.Web.1.1.0\lib\netstandard1.1\JXTNext.Common.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.3.2.0.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -54,8 +63,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLogics\IBusinessLogicsConnector.cs" />
+    <Compile Include="BusinessLogics\Models\Advertisers\Test_CreateJobListing.cs" />
+    <Compile Include="BusinessLogics\Models\Advertisers\Test_GetJobListing.cs" />
+    <Compile Include="BusinessLogics\Models\Search\Test_SearchJobs.cs" />
+    <Compile Include="BusinessLogics\TestBusinessLogicsConnector.cs" />
     <Compile Include="BusinessLogics\JXTNextBusinessLogicsConnector.cs" />
     <Compile Include="BusinessLogics\Mappers\IJobListingMapper.cs" />
+    <Compile Include="BusinessLogics\Mappers\IntegrationMapperType.cs" />
     <Compile Include="BusinessLogics\Mappers\JXTNext_JobListingMapper.cs" />
     <Compile Include="BusinessLogics\Models\Advertisers\ICreateJobListing.cs" />
     <Compile Include="BusinessLogics\Models\Advertisers\IGetJobListing.cs" />
@@ -65,6 +79,16 @@
     <Compile Include="BusinessLogics\Models\Job\JobDetailsModel.cs" />
     <Compile Include="BusinessLogics\Models\Search\ISearchJobs.cs" />
     <Compile Include="BusinessLogics\Models\Search\JXTNext_SearchJobs.cs" />
+    <Compile Include="ConnectorModule.cs" />
+    <Compile Include="ConnectorType.cs" />
+    <Compile Include="Options\IOptionsConnector.cs" />
+    <Compile Include="Options\Models\Job\Test_GetJobFiltersRequest.cs" />
+    <Compile Include="Options\TestOptionsConnector.cs" />
+    <Compile Include="Options\JXTNextOptionsConnector.cs" />
+    <Compile Include="Options\Models\BaseRequest.cs" />
+    <Compile Include="Options\Models\Job\IGetJobFilters.cs" />
+    <Compile Include="Options\Models\Job\JobFilters.cs" />
+    <Compile Include="Options\Models\Job\JXTNext_GetJobFiltersRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

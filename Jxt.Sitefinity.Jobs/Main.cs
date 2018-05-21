@@ -16,26 +16,25 @@ namespace Jxt.Sitefinity.Jobs
         public static void PreApplicationStart()
         {
             Bootstrapper.Initialized += Bootstrapper_Initialized;
+            Bootstrapper.Bootstrapped += Bootstrapper_Bootstrapped;
         }
-
+        
         private static void Bootstrapper_Initialized(object sender, ExecutedEventArgs e)
         {
             if (e.CommandName == "RegisterRoutes")
-                RegisterModule();
-
-            else if (e.CommandName == "Bootstrapped")
             {
-                var config = GlobalConfiguration.Configuration;
-
-                //config.MapHttpAttributeRoutes();
-
-                //config.Routes.MapHttpRoute("jobs-jxt",
-                //    "jxt/{controller}",
-                //    new
-                //    {
-                //        controller = "JobsApi"
-                //    });
+                RegisterModule();
             }
+        }
+
+        private static void Bootstrapper_Bootstrapped(object sender, EventArgs e)
+        {
+            //GlobalConfiguration.Configuration.Routes.MapHttpRoute(
+            //      "jxtapi",
+            //      "jxtapi/{controller}/{id}",
+            //      new { id = RouteParameter.Optional });
+
+            //GlobalConfiguration.Configuration.EnsureInitialized();
         }
 
         private static void RegisterModule()

@@ -1,10 +1,16 @@
-﻿using System;
+﻿using Jxt.Sitefinity.Jobs.Model;
+using Jxt.Sitefinity.Jobs.ViewModel;
+using Jxt.Sitefinity.Jobs.ViewModel.Serialization;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Http.Results;
 using System.Web.Mvc;
 using System.Web.UI;
+using Telerik.Sitefinity.Mvc;
 using Telerik.Sitefinity.Web;
 using Telerik.Sitefinity.Web.Utilities;
 

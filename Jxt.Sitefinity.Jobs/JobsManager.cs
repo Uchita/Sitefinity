@@ -43,21 +43,6 @@ namespace Jxt.Sitefinity.Jobs
             get { return () => Config.Get<JobsConfig>().DefaultProvider; }
         }
 
-        public IQueryable<T> GetRelatedItems<T>(string itemType, string itemProviderName, Guid itemId, string fieldName, ContentLifecycleStatus? status, string filterExpression, string orderExpression, int? skip, int? take, ref int? totalCount, RelationDirection relationDirection = RelationDirection.Child) where T : IDataItem
-        {
-            return null;
-        }
-
-        public IQueryable GetRelatedItems(string itemType, string itemProviderName, Guid itemId, string fieldName, Type relatedItemsType, ContentLifecycleStatus? status, string filterExpression, string orderExpression, int? skip, int? take, ref int? totalCount, RelationDirection relationDirection = RelationDirection.Child)
-        {
-            return null;
-        }
-
-        public Dictionary<Guid, List<IDataItem>> GetRelatedItems(string itemType, string itemProviderName, List<Guid> parentItemIds, string fieldName, Type relatedItemsType, ContentLifecycleStatus? status)
-        {
-            return null;
-        }
-
         public static JobsManager GetManager()
         {
             return new JobsManager();
@@ -67,7 +52,7 @@ namespace Jxt.Sitefinity.Jobs
         {
             return new JobsManager(providerName);
         }
-
+        
         public IQueryable<JobListing> GetJobListings()
         {
             return this.Provider.GetJobListings();
@@ -76,6 +61,31 @@ namespace Jxt.Sitefinity.Jobs
         public JobListing GetJobListing(Guid id)
         {
             return this.Provider.GetJobListing(id);
+        }
+
+        public IQueryable<T> GetRelatedItems<T>(string itemType, string itemProviderName, Guid itemId, string fieldName, ContentLifecycleStatus? status, string filterExpression, string orderExpression, int? skip, int? take, ref int? totalCount, RelationDirection relationDirection = RelationDirection.Child) where T : IDataItem
+        {
+            throw new NotSupportedException();
+        }
+
+        public IQueryable GetRelatedItems(string itemType, string itemProviderName, Guid itemId, string fieldName, Type relatedItemsType, ContentLifecycleStatus? status, string filterExpression, string orderExpression, int? skip, int? take, ref int? totalCount, RelationDirection relationDirection = RelationDirection.Child)
+        {
+            throw new NotSupportedException();
+        }
+
+        public Dictionary<Guid, List<IDataItem>> GetRelatedItems(string itemType, string itemProviderName, List<Guid> parentItemIds, string fieldName, Type relatedItemsType, ContentLifecycleStatus? status)
+        {
+            throw new NotSupportedException();
+        }
+        
+        public override void SaveChanges()
+        {
+            throw new NotSupportedException();
+        }
+
+        public override void SaveChanges(string eventOrigin)
+        {
+            throw new NotSupportedException();
         }
     }
 }

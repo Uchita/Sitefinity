@@ -10,7 +10,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 @Injectable()
 export class JobService {
 
-  baseUrl = 'http://localhost:8099/jxt/jobsapi';
+  baseUrl = '/jxt/jobsapi';
   
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -41,7 +41,7 @@ export class JobService {
   }
   
   getJob(id: string): Observable<Job>{
-	  const url = this.baseUrl + '/${id}';
+	  const url = this.baseUrl + '/' + id;
 	  return this.http.get<Job>(url)
 		.pipe(
 		  tap(_ => this.log('fetched job id=${id}')),
@@ -66,7 +66,7 @@ export class JobService {
   }
   
   deleteJob(job: Job): Observable<Job>{
-	  return this.http.delete<Job>(this.baseUrl+'/delete', this.httpOptions)
+	  return this.http.delete<Job>(this.baseUrl+'/delete/' + job.id, this.httpOptions)
 			.pipe(
 				tap(_ => this.log('deleteJob')),
 				catchError(this.handleError<Job>('deleteDob failed'))

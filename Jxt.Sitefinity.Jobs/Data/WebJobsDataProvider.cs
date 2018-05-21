@@ -16,47 +16,31 @@ namespace Jxt.Sitefinity.Jobs.Data
         public WebJobsDataProvider()
             :base()
         {
-            this.SuppressSecurityChecks = true;
         }
         
         public override JobListing CreateJobListing()
         {
-            return new JobListing();
+            throw new NotSupportedException();
         }
 
         public override JobListing CreateJobListing(Guid id)
         {
-            return new JobListing() { Id = 1, Title = "Software Developer", Description = "test" };
+            throw new NotSupportedException();
         }
 
         public override void DeleteJobListing(JobListing listing)
         {
-            //Call JXT NEXT Business Layer
+            throw new NotSupportedException();
         }
 
         public override JobListing GetJobListing(Guid id)
         {
-            return new JobListing() { Id = 1, Title = "Software Developer", Description = "test" };
+            throw new NotSupportedException();
         }
 
         public override IQueryable<JobListing> GetJobListings()
         {
-            return new List<JobListing>()
-            {
-                new JobListing() { Id = 1, Title = "Software Developer", Description = "test" },
-                new JobListing() { Id = 2, Title = "UX Architect", Description = "test" },
-                new JobListing() { Id = 3, Title = "QA Engineer", Description = "test" }
-            }.AsQueryable<JobListing>();
-        }
-
-        public override ISecuredObject GetSecurityRoot()
-        {
-            return this.providerDecorator.GetSecurityRoot();
-        }
-
-        public override ISecuredObject GetSecurityRoot(bool create)
-        {
-            return this.providerDecorator.GetSecurityRoot(create);
+            throw new NotSupportedException();
         }
     }
 }

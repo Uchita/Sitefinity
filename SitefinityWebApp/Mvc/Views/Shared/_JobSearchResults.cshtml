@@ -80,8 +80,11 @@
         };
 
         function pageChange(pageObj) {
-            PageNumber = $(pageObj).attr('data-page') - 1;
-            bindJobs(PageNumber);
+           var currPageNumber = $(pageObj).attr('data-page') - 1;
+            if (currPageNumber != PageNumber) {
+                PageNumber = currPageNumber;
+                bindJobs(PageNumber);
+            }
         };
     }
 

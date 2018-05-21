@@ -10,7 +10,7 @@
 
 <script type="text/x-kendo-template" id="template">
     <div>
-        <a href="/jobdetails?jobId=#:JobID#">#:Title#</a>
+        <a href="@ViewBag.JobDetailsPageUrl?jobId=#:JobID#">#:Title#</a>
         <p>#:Description#</p>
     </div>
 </script>
@@ -39,11 +39,14 @@
     {
         highestPage = totalCount / pageSize;
         highestPage = Math.ceil(totalCount / pageSize);
-        var lis = '';
-        for (var i = 1; i <= highestPage; i++) {
-            lis += '<li><a tabindex="-1" href="#" onclick="pageChange(this);" class="k-link" data-page="'+i+'">'+i+'</a></li>';
+      
+        if (highestPage > 1) {
+            var lis = '';
+            for (var i = 1; i <= highestPage; i++) {
+                lis += '<li><a tabindex="-1" href="#" onclick="pageChange(this);" class="k-link" data-page="' + i + '">' + i + '</a></li>';
+            }
+            $('#pager ul').html(lis);
         }
-        $('#pager ul').html(lis);
     };
 
         function bindJobs(PageNumber) {

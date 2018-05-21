@@ -1,14 +1,13 @@
 ﻿@model dynamic
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
 
-@if (Model != null)
-{
-    foreach (var jobItem in Model.SearchResults)
-    {
-        <div>
-            <a href=@string.Format("{0}?jobId={1}",ViewData["JobDetailsPageUrl"], jobItem.JobID)>@jobItem.Title</a>
-        </div>
-        <div>
-            <p>@jobItem.Description</p>
-        </div>
-    }
-}
+@Html.StyleSheet(Url.WidgetContent("/Mvc/Styles/kendo.common.min.css"), "bottom")
+@Html.StyleSheet(Url.WidgetContent("/Mvc/Styles/kendo.default.min.css"), "bottom")
+@Html.StyleSheet(Url.WidgetContent("/Mvc/Styles/kendo.default.mobile.min.css"), "bottom")
+
+@Html.Script(Url.WidgetContent("/Mvc/Scripts/kendo.all.min.js"), "bottom")
+
+
+<div id="resultsPagePartialContent">
+    @Html.Partial("_JobSearchResults", (object)Model)
+</div>

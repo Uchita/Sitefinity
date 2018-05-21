@@ -1,1 +1,73 @@
-﻿<div>Filter Widget under construction</div>
+﻿@model dynamic
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+
+@Html.StyleSheet(Url.WidgetContent("/Mvc/Scripts/JobSearch/dropdowntree.css"), "bottom")
+@Html.Script(Url.WidgetContent("/Mvc/Scripts/JobSearch/dropdowntree.js"), "bottom")
+
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        <p>@item.Name</p>
+        <div class="dropdown dropdown-tree" id=@item.ID></div>
+    }
+
+    <button id="refine-results" class="btn btn-primary">REFINE RESULTS</button>
+}
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+
+         @{
+                var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+                var json = serializer.Serialize(Model);
+          }
+        var optionsArray = {};
+      
+        var model = @Html.Raw(json);
+        if (model != null && model != "undefined") {
+            var filterModel = JSON.parse('@Html.Raw(@ViewBag.FilterModel)');
+            var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
+           
+            for (var item of filterData) {
+                optionsArray[item.ID] = {
+                    title: item.PlaceholderText,
+                    data: item.Filters,
+                    maxHeight: 500,
+                    closedArrow: '<i class="fa fa-caret-right" aria-hidden="true"></i>',
+                    openedArrow: '<i class="fa fa-caret-down" aria-hidden="true"></i>',
+                    multiSelect: true,
+                    selectChildren: true,
+                    expandChildren: true,
+                };
+                $("#" + item.ID).DropDownTree(optionsArray[item.ID]);
+            }
+
+            $("#refine-results").click(function (event) {
+                if (filterModel.Filters == null || filterModel.Filters == "undefined") {
+                    filterModel.Filters = [];
+                }
+                $.each(optionsArray, function (id, item) {
+                    filterModel.Filters.push({ rootId: id, values: $("#" + id).GetSelectedElementIds() });
+                });
+
+                var data = { filterModel: filterModel }
+                var urlPath = $(location).attr('pathname') + "/GetFilterSearchResultsPartial";
+
+                $.ajax({
+                    type: "POST",
+                    cache: false,
+                    url: urlPath,
+                    data: data,
+                    dataType: 'html',
+                    success: function (response) {
+                        $("#resultsPagePartialContent").empty().html(response);
+                    },
+                    error: function (response) {
+                       console.log("Job Filters Error: " + response);
+                    }
+                });
+            });
+        }
+    });
+    </script>

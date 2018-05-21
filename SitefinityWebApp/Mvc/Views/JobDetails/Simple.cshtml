@@ -6,10 +6,13 @@
     {
         <div>@Model.Job.Title</div>
         <div>@Model.Job.Description</div>
-    }
+   }
     else
     {
-        <div>@Model.Message</div>
+        foreach (var message in @Model.Messages)
+        {
+            <div>@message</div>
+        }
     }
 }
 

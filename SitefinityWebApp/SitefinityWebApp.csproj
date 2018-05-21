@@ -980,7 +980,11 @@
     <Content Include="Mvc\Scripts\JobSearch\designerview-simple.js" />
     <Content Include="Mvc\Scripts\JobSearch\dropdowntree.css" />
     <Content Include="Mvc\Scripts\JobSearch\dropdowntree.js" />
+    <Content Include="Mvc\Scripts\kendo.all.min.js" />
     <Content Include="Mvc\Scripts\SocialLink\designerview-simple.js" />
+    <Content Include="Mvc\Styles\kendo.common.min.css" />
+    <Content Include="Mvc\Styles\kendo.default.min.css" />
+    <Content Include="Mvc\Styles\kendo.default.mobile.min.css" />
     <Content Include="ResourcePackages\Bootstrap\assets\dist\css\main.css" />
     <Content Include="ResourcePackages\Bootstrap\assets\dist\css\main.min.css" />
     <Content Include="ResourcePackages\Bootstrap\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.svg" />
@@ -1163,6 +1167,7 @@
     <Content Include="Mvc\Views\JobDetails\Simple.cshtml" />
     <Content Include="Mvc\Views\JobFilters\Simple.cshtml" />
     <Content Include="Mvc\Views\JobFilters\DesignerView.Simple.cshtml" />
+    <Content Include="Mvc\Views\Shared\_JobSearchResults.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="ResourcePackages\Bootstrap\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.eot" />

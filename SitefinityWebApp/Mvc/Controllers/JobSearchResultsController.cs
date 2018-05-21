@@ -10,6 +10,9 @@ using JXTNext.Sitefinity.Connector.BusinessLogics;
 using JXTNext.Sitefinity.Connector.Options;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search;
 using JXTNext.Sitefinity.Connector.Options.Models.Job;
+using ServiceStack.Text;
+using Newtonsoft.Json;
+using Telerik.Sitefinity.Mvc.ActionFilters;
 
 namespace SitefinityWebApp.Mvc.Controllers
 {
@@ -29,6 +32,52 @@ namespace SitefinityWebApp.Mvc.Controllers
         public ActionResult Index(JobSearchResultsFilterModel filterModel)
         {
             dynamic dynamicJobResultsList = null;
+
+            if(filterModel != null)
+            {
+                ISearchJobsResponse response = GetJobSearchResultsResponse(filterModel);
+                dynamicJobResultsList = response as dynamic;
+            }
+
+           return View("Simple", dynamicJobResultsList);
+        }
+
+
+        [HttpPost]
+        public JsonResult GetSearchResults(string jobRequest, int PageNumber)
+        {
+            JsonResult response = new JsonResult();
+            Test_SearchJobsRequest request = JsonConvert.DeserializeObject<Test_SearchJobsRequest>(jobRequest);
+            if (request != null)
+                request.Page = PageNumber;
+
+            Test_SearchJobsResponse jobResponse = (Test_SearchJobsResponse)_testBLConnector.SearchJobs(request);
+
+            if (jobResponse != null)
+                response.Data = JsonConvert.SerializeObject(jobResponse.SearchResults);
+
+            return response;
+        }
+
+        [HttpPost]
+        [StandaloneResponseFilter]
+        public PartialViewResult GetFilterSearchResultsPartial(JobSearchResultsFilterModel filterModel)
+        {
+            dynamic dynamicJobResultsList = null;
+
+            if (filterModel != null)
+            {
+                ISearchJobsResponse response = GetJobSearchResultsResponse(filterModel);
+                dynamicJobResultsList = response as dynamic;
+            }
+
+           return PartialView("_JobSearchResults", dynamicJobResultsList);
+        }
+
+        private ISearchJobsResponse GetJobSearchResultsResponse(JobSearchResultsFilterModel filterModel)
+        {
+            ISearchJobsResponse response = null;
+
             if (filterModel != null)
             {
                 List<FiltersSearchRoot> filtersSearch = null;
@@ -52,17 +101,27 @@ namespace SitefinityWebApp.Mvc.Controllers
                     }
                 }
 
-                //Execute - Try perform search
-                ISearchJobsRequest request = new Test_SearchJobsRequest { Page = 0, PageSize = 20, Keywords = filterModel.Keywords, FiltersSearch = filtersSearch };
-                ISearchJobsResponse response = _testBLConnector.SearchJobs(request);
-                dynamicJobResultsList = response as dynamic;
+                if (this.PageSize == null || this.PageSize <= 0)
+                    this.PageSize = PageSizeDefaultValue;
 
-                ViewData["JobDetailsPageUrl"] = filterModel.JobDetailsPageUrl;
+                //Execute - Try perform search
+                ISearchJobsRequest request = new Test_SearchJobsRequest { Page = 0, PageSize = (int)this.PageSize, Keywords = filterModel.Keywords, FiltersSearch = filtersSearch };
+                response = _testBLConnector.SearchJobs(request);
+                Test_SearchJobsResponse jobResultsList = response as Test_SearchJobsResponse;
+
+                ViewBag.Request = JsonConvert.SerializeObject(request);
+                ViewBag.PageSize = (int)this.PageSize;
+                ViewBag.JobDetailsPageUrl = filterModel.JobDetailsPageUrl;
+                if (jobResultsList != null)
+                    ViewBag.TotalCount = jobResultsList.Total;
             }
 
-            return View("Simple", dynamicJobResultsList);
+            return response;
         }
 
+        public int? PageSize { get; set; }
+        public string CssClass { get; set; }
         internal const string WidgetIconCssClass = "sfMvcIcn";
+        private const int PageSizeDefaultValue = 5;
     }
 }

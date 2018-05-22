@@ -8,7 +8,6 @@
 {
     foreach (var item in Model)
     {
-        <p>@item.Name</p>
         <div class="dropdown dropdown-tree" id=@item.ID></div>
     }
 
@@ -23,6 +22,36 @@
                 var json = serializer.Serialize(Model);
           }
         var optionsArray = {};
+        var queryStringArr = [];
+
+
+        function makeQueryString(obj, prefix, isArray) {
+          
+            for (var p in obj) {
+                if (obj.hasOwnProperty(p)) {
+                    var k, v;
+                    if (isArray)
+                        k = prefix ? prefix + "[" + p + "]" : p, v = obj[p];
+                    else
+                        k = prefix ? prefix + "." + p + "" : p, v = obj[p];
+
+                    if (v !== null && typeof v === "object") {
+                        if (Array.isArray(v)) {
+                            makeQueryString(v, k, true);
+                        } else {
+                            makeQueryString(v, k, false);
+                        }
+                    } else {
+                        if (v === null || v === "undefined")
+                            v = "";
+
+                        var query = k + "=" + v;
+                        queryStringArr.push(query);
+                    }
+                }
+            }
+            return queryStringArr.join("&");
+        };
       
         var model = @Html.Raw(json);
         if (model != null && model != "undefined") {
@@ -31,7 +60,7 @@
            
             for (var item of filterData) {
                 optionsArray[item.ID] = {
-                    title: item.PlaceholderText,
+                    title: item.Name,
                     data: item.Filters,
                     maxHeight: 500,
                     closedArrow: '<i class="fa fa-caret-right" aria-hidden="true"></i>',
@@ -53,7 +82,9 @@
 
                 var data = { filterModel: filterModel }
                 var urlPath = $(location).attr('pathname') + "/GetFilterSearchResultsPartial";
-
+                var pushStateUrl = $(location).attr('pathname') + "?" + makeQueryString(filterModel, "", false);
+                window.history.pushState(data, "", pushStateUrl);
+                queryStringArr.length = 0;
                 $.ajax({
                     type: "POST",
                     cache: false,

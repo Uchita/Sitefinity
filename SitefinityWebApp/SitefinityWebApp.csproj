@@ -960,6 +960,7 @@
     </Compile>
     <Compile Include="Mvc\Controllers\BaseLayout2Controller.cs" />
     <Compile Include="Mvc\Controllers\BaseLayoutController.cs" />
+    <Compile Include="Mvc\Controllers\JobApplicationController.cs" />
     <Compile Include="Mvc\Controllers\JobDetailsController.cs" />
     <Compile Include="Mvc\Controllers\JobFiltersController.cs" />
     <Compile Include="Mvc\Controllers\JobSearchController.cs" />
@@ -1169,6 +1170,7 @@
     <Content Include="Mvc\Views\JobFilters\Simple.cshtml" />
     <Content Include="Mvc\Views\JobFilters\DesignerView.Simple.cshtml" />
     <Content Include="Mvc\Views\Shared\_JobSearchResults.cshtml" />
+    <Content Include="Mvc\Views\JobApplication\Simple.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="ResourcePackages\Bootstrap\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.eot" />

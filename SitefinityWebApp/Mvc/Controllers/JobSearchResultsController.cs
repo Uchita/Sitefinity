@@ -92,11 +92,15 @@ namespace SitefinityWebApp.Mvc.Controllers
                             var filters = new List<FiltersSearchElement>();
                             foreach (var filterId in item.values)
                             {
-                                filters.Add(new FiltersSearchElement { ID = filterId });
+                                if(!filterId.IsNullOrEmpty())
+                                    filters.Add(new FiltersSearchElement { ID = filterId });
                             }
 
                             if (filters.Count > 0)
-                                filtersSearch.Add(new FiltersSearchRoot { RootID = item.rootId, Filters = filters });
+                            {
+                                if (!item.rootId.IsNullOrEmpty())
+                                    filtersSearch.Add(new FiltersSearchRoot { RootID = item.rootId, Filters = filters });
+                            }
                         }
                     }
                 }

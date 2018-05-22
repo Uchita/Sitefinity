@@ -4,6 +4,20 @@
     <input ng-model="properties.PageSize.PropertyValue" type="text" class="form-control" />
 </div>
 
+<br/>
+
+<div>
+    <label>Sort Order</label>
+    <select id="sortOrder" ng-model="properties.Sorting.PropertyValue" class="form-control">
+        <option selected="selected" value="">Sort by – Recent Posts</option>
+        <option value="Old">Sort by – Oldest Posts</option>
+        <option value="AZ">Sort by – Alphabetical A-Z</option>
+        <option value="ZA">Sort by – Alphabetical Z-A</option>
+        <option value="SalaryHighToLow">Sort by – Salary high to low</option>
+        <option value="SalaryLowToHigh">Sort by – Salary low to high</option>
+    </select>
+</div>
+
 <expander expander-title="More Options">
     <style-dropdown selected-class="properties.CssClass.PropertyValue"></style-dropdown>
 

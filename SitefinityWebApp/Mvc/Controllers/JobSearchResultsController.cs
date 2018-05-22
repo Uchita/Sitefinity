@@ -115,6 +115,7 @@ namespace SitefinityWebApp.Mvc.Controllers
 
                 ViewBag.Request = JsonConvert.SerializeObject(request);
                 ViewBag.PageSize = (int)this.PageSize;
+                ViewBag.SortOrder = this.Sorting;
                 ViewBag.JobDetailsPageUrl = filterModel.JobDetailsPageUrl;
                 if (jobResultsList != null)
                     ViewBag.TotalCount = jobResultsList.Total;
@@ -124,6 +125,7 @@ namespace SitefinityWebApp.Mvc.Controllers
         }
 
         public int? PageSize { get; set; }
+        public string Sorting { get; set; }
         public string CssClass { get; set; }
         internal const string WidgetIconCssClass = "sfMvcIcn";
         private const int PageSizeDefaultValue = 5;

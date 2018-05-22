@@ -4,6 +4,7 @@ using JXTNext.Sitefinity.Connector.BusinessLogics;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search;
 using JXTNext.Sitefinity.Connector.Options;
 using JXTNext.Sitefinity.Connector.Options.Models.Job;
+using JXTNext.Sitefinity.Frontend.Mvc.StringResources;
 using SitefinityWebApp.App_Start;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,8 @@ using System.Web.Security;
 using System.Web.SessionState;
 using Telerik.Microsoft.Practices.Unity;
 using Telerik.Sitefinity.Abstractions;
+using Telerik.Sitefinity.Data;
+using Telerik.Sitefinity.Localization;
 using Telerik.Sitefinity.Mvc;
 
 namespace SitefinityWebApp
@@ -24,6 +27,13 @@ namespace SitefinityWebApp
         protected void Application_Start(object sender, EventArgs e)
         {
             Bootstrapper.Bootstrapped += Bootstrapper_Bootstrapped;
+            Bootstrapper.Initialized += new EventHandler<ExecutedEventArgs>(Bootstrapper_Initialized);
+        }
+
+        void Bootstrapper_Initialized(object sender, ExecutedEventArgs e)
+        {
+            // Register any Resource classes
+            Res.RegisterResource<SocialLinkResources>();
         }
 
         protected void Session_Start(object sender, EventArgs e)

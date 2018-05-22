@@ -1,5 +1,7 @@
-﻿<label>Which social link options you want to use?</label><br />
-<p>Please select the checkbox and enter full path in corresponding text box</p> <br /><br />
+﻿@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+
+<label>@Html.Resource("SocialLinkOptions", "SocialLinkResources")</label><br />
+<p>@Html.Resource("SocialLinkSelectCheckbox", "SocialLinkResources")</p> <br /><br />
 
 <div ng-controller="SimpleCtrl" class="list-group list-group-endless" kendo-sortable k-options="sortableOptions" k-on-change="sortItems(kendoEvent)" k-ignore="'input'">
     <div class="list-group-item"
@@ -25,7 +27,7 @@
     </div>
 </div>
 
-<expander expander-title="More Options">
+<expander expander-title="@Html.Resource("MoreOptions", "SocialLinkResources")">
     <style-dropdown selected-class="properties.CssClass.PropertyValue"></style-dropdown>
 
     <div class="form-group">

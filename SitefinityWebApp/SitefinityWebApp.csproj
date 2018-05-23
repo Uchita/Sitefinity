@@ -971,6 +971,7 @@
     <Compile Include="Mvc\Models\SocialLinkModel.cs" />
     <Compile Include="Mvc\Models\SocialViewModel.cs" />
     <Compile Include="Mvc\StringResources\JobSearchResources.cs" />
+    <Compile Include="Mvc\StringResources\JobSearchResultsResources.cs" />
     <Compile Include="Mvc\StringResources\SocialLinkResources.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,1 +1,12 @@
-﻿<div>Job Application widget is under construction</div>
+﻿
+@using (Html.BeginForm("ApplyJob", "JobApplication", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="container">
+        <label>Resume</label>
+        <input type="file" name="Resume" /> <br />
+        <label>Cover Letter</label>
+        <input type="file" name="Cover Letter" /> <br />
+
+        <input type="submit" value="Apply" />
+    </div>
+}  

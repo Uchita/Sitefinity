@@ -117,6 +117,7 @@ namespace SitefinityWebApp.Mvc.Controllers
                 ViewBag.PageSize = (int)this.PageSize;
                 ViewBag.SortOrder = this.Sorting;
                 ViewBag.JobDetailsPageUrl = filterModel.JobDetailsPageUrl;
+                ViewBag.CssClass = this.CssClass;
                 if (jobResultsList != null)
                     ViewBag.TotalCount = jobResultsList.Total;
             }

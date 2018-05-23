@@ -35,6 +35,7 @@ namespace SitefinityWebApp
             // Register any Resource classes
             Res.RegisterResource<SocialLinkResources>();
             Res.RegisterResource<JobSearchResources>();
+            Res.RegisterResource<JobSearchResultsResources>();
         }
 
         protected void Session_Start(object sender, EventArgs e)

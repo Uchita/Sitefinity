@@ -45,8 +45,10 @@
     if (model != null && model != "undefined" && !isDesignMode) {
         var pageSize = @ViewBag.PageSize;
         var totalCount = @ViewBag.TotalCount;
-        var PageNumber = 0;
+        var filterModel = JSON.parse('@Html.Raw(@ViewBag.FilterModel)');
+        var PageNumber = filterModel.Page;
         var dataSource;
+        var queryStringArr = [];
 
         $("#sortOrder").val('@ViewBag.SortOrder');
         bindJobs(PageNumber);
@@ -55,6 +57,42 @@
         $("#sortOrder").change(function () {
             bindJobs(PageNumber);
         });
+
+
+        function makeQueryString(obj, prefix, isArray) {
+
+            for (var p in obj) {
+                if (obj.hasOwnProperty(p)) {
+                    var k, v;
+                    if (isArray)
+                        k = prefix ? prefix + "%5B" + p + "%5D" : p, v = obj[p];
+                    else {
+                        if (prefix.match(".values$"))
+                            k = prefix ? prefix : p, v = obj[p];
+                        else
+                            k = prefix ? prefix + "." + p + "" : p, v = obj[p];
+                    }
+
+                    if (v !== null && typeof v === "object") {
+                        if (Array.isArray(v)) {
+                            if (k.match(".values$"))
+                                makeQueryString(v, k, false);
+                            else
+                                makeQueryString(v, k, true);
+                        } else {
+                            makeQueryString(v, k, false);
+                        }
+                    } else {
+                        if (v === null || v === "undefined")
+                            v = "";
+
+                        var query = k + "=" + v;
+                        queryStringArr.push(query);
+                    }
+                }
+            }
+            return queryStringArr.join("&");
+        };
 
     function bindJobsPages()
     {
@@ -74,7 +112,12 @@
 
            var parm = { jobRequest: @Html.Raw(Json.Encode(@ViewBag.Request)), PageNumber: PageNumber };
             var urlPath = $(location).attr('pathname') + "/GetSearchResults";
-            
+            queryStringArr.length = 0;
+            filterModel.Page = PageNumber;
+            var pushStateUrl = $(location).attr('pathname') + "?" + makeQueryString(filterModel, "", false);
+            var data = { filterModel: filterModel }
+            window.history.pushState(data, "", pushStateUrl);
+                          
             $.ajax({
                 type: 'POST',
                 cache: false,
@@ -106,7 +149,7 @@
         };
 
         function pageChange(pageObj) {
-           var currPageNumber = $(pageObj).attr('data-page') - 1;
+           var currPageNumber = $(pageObj).attr('data-page');
             if (currPageNumber != PageNumber) {
                 PageNumber = currPageNumber;
                 bindJobs(PageNumber);

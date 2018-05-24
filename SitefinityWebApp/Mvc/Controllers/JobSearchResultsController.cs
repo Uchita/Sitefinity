@@ -49,7 +49,14 @@ namespace SitefinityWebApp.Mvc.Controllers
             JsonResult response = new JsonResult();
             Test_SearchJobsRequest request = JsonConvert.DeserializeObject<Test_SearchJobsRequest>(jobRequest);
             if (request != null)
-                request.Page = PageNumber;
+            {
+                if (PageNumber <= 0)
+                    PageNumber = 1;
+
+                // Page index is starting at zero
+                // So subtracting one from it
+                request.Page = PageNumber - 1;
+            }
 
             Test_SearchJobsResponse jobResponse = (Test_SearchJobsResponse)_testBLConnector.SearchJobs(request);
 
@@ -108,12 +115,16 @@ namespace SitefinityWebApp.Mvc.Controllers
                 if (this.PageSize == null || this.PageSize <= 0)
                     this.PageSize = PageSizeDefaultValue;
 
+                if (filterModel.Page <= 0)
+                    filterModel.Page = 1;
+
                 //Execute - Try perform search
-                ISearchJobsRequest request = new Test_SearchJobsRequest { Page = 0, PageSize = (int)this.PageSize, Keywords = filterModel.Keywords, FiltersSearch = filtersSearch };
+                ISearchJobsRequest request = new Test_SearchJobsRequest { Page = filterModel.Page - 1, PageSize = (int)this.PageSize, Keywords = filterModel.Keywords, FiltersSearch = filtersSearch };
                 response = _testBLConnector.SearchJobs(request);
                 Test_SearchJobsResponse jobResultsList = response as Test_SearchJobsResponse;
 
                 ViewBag.Request = JsonConvert.SerializeObject(request);
+                ViewBag.FilterModel = JsonConvert.SerializeObject(filterModel);
                 ViewBag.PageSize = (int)this.PageSize;
                 ViewBag.SortOrder = this.Sorting;
                 ViewBag.JobDetailsPageUrl = filterModel.JobDetailsPageUrl;

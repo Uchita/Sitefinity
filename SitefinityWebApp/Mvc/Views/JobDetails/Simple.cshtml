@@ -21,26 +21,9 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        var previousUrl = document.referrer;
-        $("#back-to-results").attr("href", getUrlPath(previousUrl));
-
-        function getUrlPath(backUrl) {
-            var index = nthIndex(backUrl, '/', 3);
-            var urlPath = "#";
-            if (index !== -1)
-                urlPath = backUrl.substr(index);
-
-            return urlPath;
-        };
-
-        function nthIndex(url, pat, n) {
-            var index = -1;
-            while (n-- && index++ < url.length) {
-                index = url.indexOf(pat, index);
-                if (index < 0) break;
-            }
-            return index;
-        };
+        var previousUrl = new URL(document.referrer);
+        var urlPath = previousUrl.pathname + previousUrl.search
+        $("#back-to-results").attr("href", urlPath);
     });
 </script>
 

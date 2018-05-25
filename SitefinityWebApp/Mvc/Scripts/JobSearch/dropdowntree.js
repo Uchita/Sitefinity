@@ -14,6 +14,7 @@ var dropDownOptions = {
     expandChildren: false,
     enableSearch: true,
     rtl: false,
+    displayCount: false,
 };
 
 var globalTreeIdCounter=0;
@@ -33,7 +34,7 @@ var globalTreeIdCounter=0;
                 }
             }
             if(!element.is("li")){
-                element.append('<li id=' + data[i].ID + dataAttrs + '>' + (options.multiSelect ? '<i class="fa fa-square-o select-box" aria-hidden="true"></i>' : '') + '<a href="' + ((typeof data[i].href != "undefined" && data[i].href != null) ? data[i].href : '#') + '">' + data[i].Label+'</a></li>');
+                element.append('<li id=' + data[i].ID + dataAttrs + '>' + (options.multiSelect ? '<i class="fa fa-square-o select-box" aria-hidden="true"></i>' : '') + '<a href="' + ((typeof data[i].href != "undefined" && data[i].href != null) ? data[i].href : '#') + '">' + data[i].Label + '</a>' + (options.displayCount == true && data[i].Count != undefined ? '(' + data[i].Count + ')' : '') + '</li>');
                 if (data[i].Filters != null && typeof data[i].Filters != "undefined" && data[i].Filters.length > 0){					
                     $("#" + data[i].ID).append("<ul style='display:none'></ul>");
                     $("#" + data[i].ID).find("a").first().prepend('<span class="arrow">'+options.closedArrow+'</span>');

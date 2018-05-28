@@ -31,13 +31,20 @@
                 if (obj.hasOwnProperty(p)) {
                     var k, v;
                     if (isArray)
-                        k = prefix ? prefix + "[" + p + "]" : p, v = obj[p];
-                    else
-                        k = prefix ? prefix + "." + p + "" : p, v = obj[p];
+                        k = prefix ? prefix + "%5B" + p + "%5D" : p, v = obj[p];
+                    else {
+                        if (prefix.match(".values$"))
+                            k = prefix ? prefix : p, v = obj[p];
+                        else
+                            k = prefix ? prefix + "." + p + "" : p, v = obj[p];
+                    }
 
                     if (v !== null && typeof v === "object") {
                         if (Array.isArray(v)) {
-                            makeQueryString(v, k, true);
+                            if (k.match(".values$"))
+                                makeQueryString(v, k, false);
+                            else
+                                makeQueryString(v, k, true);
                         } else {
                             makeQueryString(v, k, false);
                         }

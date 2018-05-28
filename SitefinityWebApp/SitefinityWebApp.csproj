@@ -960,6 +960,7 @@
     </Compile>
     <Compile Include="Mvc\Controllers\BaseLayout2Controller.cs" />
     <Compile Include="Mvc\Controllers\BaseLayoutController.cs" />
+    <Compile Include="Mvc\Controllers\JobAlertController.cs" />
     <Compile Include="Mvc\Controllers\JobApplicationController.cs" />
     <Compile Include="Mvc\Controllers\JobDetailsController.cs" />
     <Compile Include="Mvc\Controllers\JobFiltersController.cs" />
@@ -1179,6 +1180,7 @@
     <Content Include="Mvc\Styles\fonts\glyphs\WebComponentsIcons.woff" />
     <Content Include="Mvc\Styles\images\kendoui.ttf" />
     <Content Include="Mvc\Styles\images\kendoui.woff" />
+    <Content Include="Mvc\Views\JobAlert\Simple.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="ResourcePackages\Bootstrap\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.eot" />

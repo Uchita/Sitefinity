@@ -1,0 +1,80 @@
+﻿@model dynamic
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+
+@Html.StyleSheet(Url.WidgetContent("/Mvc/Scripts/JobSearch/dropdowntree.css"), "bottom")
+@Html.Script(Url.WidgetContent("/Mvc/Scripts/JobSearch/dropdowntree.js"), "bottom")
+
+@if (Model != null)
+{
+    <h3>Create job Alert</h3> <br />
+    <h4>Alert Details</h4> <br />
+<form action="/JobAlert/Create" method="post" enctype="multipart/form-data" onsubmit="return preventSubmit();">
+    @{
+        int counter = 0;
+    }
+
+    <label>Name</label><br />
+    <input type="text" name="Name" required/><br />
+    <input type="checkbox" name="EmailAlerts" value="true" /> <label>Send Email Alerts</label> <br />
+
+    <label>Keywords</label><br />
+    <input type="text" name="Keywords" /> <br /><br />
+
+    @foreach (var item in Model)
+    {
+        <input type="hidden" name="Filters[@counter].RootId" value='@item.ID' />
+        <select id=@string.Format("selected-{0}",item.ID) name="Filters[@counter].Values" style="display:none" multiple></select>
+        <div class="dropdown dropdown-tree" id=@item.ID></div> <br />
+        counter++;
+    }
+
+    <input type="submit" value="SAVE" />
+
+</form>
+}
+
+
+<script type="text/javascript">
+    var optionsArray = {};
+
+    function preventSubmit() {
+        $.each(optionsArray, function (id, item) {
+            $($("#" + id).GetSelectedElementIds()).each(function (index, value) {
+                $("#selected-" + id).append('<option value="' + value + '" selected="true">' + value + '</option>')
+            });
+        });
+
+        return true;
+    }
+
+    $(document).ready(function () {
+          @{
+                var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+                var json = serializer.Serialize(Model);
+          }
+
+        var model = @Html.Raw(json);
+        if (model != null && model != "undefined") {
+            var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
+
+            for (var item of filterData) {
+                optionsArray[item.ID] = {
+                    title: item.Name,
+                    data: item.Filters,
+                    maxHeight: 500,
+                    closedArrow: '<i class="fa fa-caret-right" aria-hidden="true"></i>',
+                    openedArrow: '<i class="fa fa-caret-down" aria-hidden="true"></i>',
+                    multiSelect: true,
+                    selectChildren: true,
+                    expandChildren: true,
+                };
+                $("#" + item.ID).DropDownTree(optionsArray[item.ID]);
+            }
+        }
+
+
+
+    });
+</script>
+
+

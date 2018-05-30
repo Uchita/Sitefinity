@@ -967,6 +967,7 @@
     <Compile Include="Mvc\Controllers\JobSearchController.cs" />
     <Compile Include="Mvc\Controllers\JobSearchResultsController.cs" />
     <Compile Include="Mvc\Controllers\SocialLinkController.cs" />
+    <Compile Include="Mvc\Models\JobAlertModel.cs" />
     <Compile Include="Mvc\Models\JobSearchModel.cs" />
     <Compile Include="Mvc\Models\JobSearchResultsFilterModel.cs" />
     <Compile Include="Mvc\Models\SocialLinkModel.cs" />
@@ -1181,6 +1182,8 @@
     <Content Include="Mvc\Styles\images\kendoui.ttf" />
     <Content Include="Mvc\Styles\images\kendoui.woff" />
     <Content Include="Mvc\Views\JobAlert\Simple.cshtml" />
+    <Content Include="Mvc\Views\JobAlert\Create.cshtml" />
+    <Content Include="Mvc\Views\JobAlert\Edit.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="ResourcePackages\Bootstrap\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.eot" />

@@ -31,9 +31,9 @@ namespace SitefinityWebApp.Mvc.Controllers
         {
             List<JobAlertViewModel> jobAlertData = new List<JobAlertViewModel>();
 
-            jobAlertData.Add(new JobAlertViewModel() { Id = "1", Name="One", EmailAlert=true,LastModified= "19/05/2017"});
-            jobAlertData.Add(new JobAlertViewModel() { Id = "2", Name = "Two", EmailAlert = false, LastModified = "19/05/2018" });
-            jobAlertData.Add(new JobAlertViewModel() { Id = "3", Name = "Three", EmailAlert = true, LastModified = "19/05/2016" });
+            jobAlertData.Add(new JobAlertViewModel() { Id = "1", Name="One", EmailAlerts=true,LastModified= "19/05/2017"});
+            jobAlertData.Add(new JobAlertViewModel() { Id = "2", Name = "Two", EmailAlerts = false, LastModified = "19/05/2018" });
+            jobAlertData.Add(new JobAlertViewModel() { Id = "3", Name = "Three", EmailAlerts = true, LastModified = "19/05/2016" });
            
             return View("Simple", jobAlertData);
         }
@@ -85,7 +85,7 @@ namespace SitefinityWebApp.Mvc.Controllers
             JobAlertViewModel model = new JobAlertViewModel() { Filters = new List<JobAlertFilters>() };
             model.Id = "HD-123";
             model.Name = "Test";
-            model.EmailAlert = true;
+            model.EmailAlerts = true;
             model.LastModified = "12/05/2016";
             model.Keywords = "Job";
 

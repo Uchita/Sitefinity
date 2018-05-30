@@ -1,2 +1,59 @@
-﻿
-<div>Job Alert widget is under construction</div>
+﻿@model List<SitefinityWebApp.Mvc.Models.JobAlertViewModel>
+
+<br />
+<br />
+
+
+@Html.ActionLink("Create Job Alert", "Create", "JobAlert")
+
+<br />
+<br />
+@if (Model != null && Model.Count > 0)
+{
+
+<table class="table table-bordered">
+    <tr>
+        <th>Name</th>
+        <th>Send Email Alerts</th>
+        <th>Last Modified</th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.Name
+            </td>
+
+            <td>
+
+                @if (item.EmailAlert == true)
+                {
+                    @Html.Raw("Yes")
+                }
+                else
+                {
+                    @Html.Raw("No")
+                }
+
+            </td>
+            <td>
+                @item.LastModified
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "JobAlert", new { id = item.Id }, null)
+                @Html.ActionLink("ViewResults", "ViewResults", "JobAlert", new { id = item.Id }, null)
+                @Html.ActionLink("Delete", "Delete", "JobAlert", new { id = item.Id }, null)
+            </td>
+        </tr>
+    }
+
+</table>
+}
+
+else
+{
+    <div>You currently don't have any job alerts.</div>
+}
+

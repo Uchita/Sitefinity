@@ -125,10 +125,8 @@ namespace SitefinityWebApp.Mvc.Controllers
         static string ToQueryString(JobAlertViewModel jobAlertDetails)
         {
             List<string> queryParamsStringList = new List<string>();
-
             queryParamsStringList.Add("Keywords=" + jobAlertDetails.Keywords);
-            queryParamsStringList.Add("JobDetailsPageUrl=/jobdetails");
-            
+                       
             if (jobAlertDetails.Filters != null)
             {
                 for (int i = 0; i < jobAlertDetails.Filters.Count; i++)

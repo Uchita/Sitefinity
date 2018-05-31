@@ -13,6 +13,8 @@ using JXTNext.Sitefinity.Connector.Options.Models.Job;
 using ServiceStack.Text;
 using Newtonsoft.Json;
 using Telerik.Sitefinity.Mvc.ActionFilters;
+using Telerik.Sitefinity.Modules.Pages;
+using Telerik.Sitefinity.Pages.Model;
 
 namespace SitefinityWebApp.Mvc.Controllers
 {
@@ -127,16 +129,28 @@ namespace SitefinityWebApp.Mvc.Controllers
                 ViewBag.FilterModel = JsonConvert.SerializeObject(filterModel);
                 ViewBag.PageSize = (int)this.PageSize;
                 ViewBag.SortOrder = this.Sorting;
-                ViewBag.JobDetailsPageUrl = filterModel.JobDetailsPageUrl;
                 ViewBag.CssClass = this.CssClass;
                 if (jobResultsList != null)
                     ViewBag.TotalCount = jobResultsList.Total;
+
+                PageManager pageManager = PageManager.GetManager();
+
+                if (!this.DetailsPageId.IsNullOrEmpty())
+                {
+                    Guid detailsPageNodeId = new Guid(this.DetailsPageId);
+                    PageNode detailsPageNode = pageManager.GetPageNodes().Where(n => n.Id == detailsPageNodeId).FirstOrDefault();
+                    // we will get the url as ~/resultspage
+                    // So removing the first character
+                    if (detailsPageNode != null)
+                        ViewBag.JobDetailsPageUrl = detailsPageNode.GetUrl().Substring(1);
+                }
             }
 
             return response;
         }
 
         public int? PageSize { get; set; }
+        public string DetailsPageId { get; set; }
         public string Sorting { get; set; }
         public string CssClass { get; set; }
         internal const string WidgetIconCssClass = "sfMvcIcn";

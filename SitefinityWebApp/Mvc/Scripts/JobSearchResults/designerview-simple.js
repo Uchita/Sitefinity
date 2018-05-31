@@ -3,7 +3,7 @@
     // This module is required for using the Expander in our designer form 
     // To accpet the CSS Classes from More Options
     // sfSelectors will be used for drag and drop select
-    angular.module('designer').requires.push('expander');
+    angular.module('designer').requires.push('expander', 'sfSelectors');
 
     angular.module('designer').controller('SimpleCtrl', ['$scope', 'propertyService', function ($scope, propertyService) {
 
@@ -15,6 +15,13 @@
         );
 
         $scope.$watch('properties.Sorting.PropertyValue',
+            function (newVal, oldVal) {
+                if (newVal)
+                    $scope.properties.Sorting.PropertyValue = newVal;
+            }
+        );
+
+        $scope.$watch('properties.DetailsPageId.PropertyValue',
             function (newVal, oldVal) {
                 if (newVal)
                     $scope.properties.Sorting.PropertyValue = newVal;

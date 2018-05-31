@@ -1,5 +1,14 @@
 ﻿@using Telerik.Sitefinity.Frontend.Mvc.Helpers
 
+<label>@Html.Resource("DisplayJobDetails", "JobSearchResultsResources")</label>
+
+<div class="form-group">
+    <p class="description-note">
+        @Html.Resource("DropJobDetails", "JobSearchResultsResources")
+    </p>
+    <sf-list-selector sf-page-selector sf-selected-item-id="properties.DetailsPageId.PropertyValue" sf-select-button-text="Select a page"></sf-list-selector>
+</div>
+
 <div>
     <label>@Html.Resource("PageSize", "JobSearchResultsResources")</label>
     <input ng-model="properties.PageSize.PropertyValue" type="text" class="form-control" />

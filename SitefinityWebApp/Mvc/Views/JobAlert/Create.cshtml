@@ -13,7 +13,7 @@
         int counter = 0;
     }
 
-    <label>Name</label><br />
+    <label>Name<span style="color:red">*</span></label><br />
     <input type="text" name="Name" required/><br />
     <input type="checkbox" name="EmailAlerts" value="true" /> <label>Send Email Alerts</label> <br />
 
@@ -28,7 +28,7 @@
         counter++;
     }
 
-    <input type="submit" value="SAVE" />
+    <input type="submit" value="SAVE" class="btn btn-primary"/>
 
 </form>
 }

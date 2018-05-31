@@ -86,8 +86,32 @@ namespace SitefinityWebApp.Mvc.Controllers
             var serializeFilterData = JsonConvert.SerializeObject(fitersData);
             var filtersVMList = JsonConvert.DeserializeObject<List<JobAlertEditFilterRootItem>>(serializeFilterData);
 
-            // TODO: Merge the selected values with the total filters
-           
+            if (jobAlertDetails.Filters != null && jobAlertDetails.Filters.Count > 0)
+            {
+                foreach (var rootItem in jobAlertDetails.Filters)
+                {
+                    if (rootItem != null)
+                    {
+                        if (filtersVMList != null && filtersVMList.Count > 0)
+                        {
+                            foreach (var filterVMRootItem in filtersVMList)
+                            {
+                                if (filterVMRootItem.ID == rootItem.RootId)
+                                {
+                                    if (filterVMRootItem.Filters != null && filterVMRootItem.Filters.Count > 0)
+                                    {
+                                        foreach (var filterItem in filterVMRootItem.Filters)
+                                        {
+                                            MergeFilters(filterItem, rootItem.Values);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
             JobAlertEditViewModel editVM = new JobAlertEditViewModel() { Data = filtersVMList };
             editVM.Id = jobAlertDetails.Id;
             editVM.Name = jobAlertDetails.Name;
@@ -159,7 +183,7 @@ namespace SitefinityWebApp.Mvc.Controllers
             model.LastModified = "12/05/2016";
             model.Keywords = "Job";
 
-            model.Filters.Add(new JobAlertFilters() { RootId = "AE-1234", Values = new List<string>() { "HD-345", "AF-of34", "EH-sf355" } });
+            model.Filters.Add(new JobAlertFilters() { RootId = "AE-1234", Values = new List<string>() { "HD-345", "AF-0f34", "EH-sf355" } });
 
             return model;
         }
@@ -183,6 +207,29 @@ namespace SitefinityWebApp.Mvc.Controllers
             }
 
            return String.Join("&", queryParamsStringList);
+        }
+
+        static void MergeFilters(JobAlertEditFilterItem filterItem, List<string> values)
+        {
+            if (filterItem != null)
+            {
+                if (values != null && values.Count > 0)
+                {
+                    if (values.Contains(filterItem.ID))
+                    {
+                        filterItem.Selected = true;
+                        values.Remove(filterItem.ID);
+                    }
+
+                    if (filterItem.Filters != null && filterItem.Filters.Count > 0)
+                    {
+                        foreach (var item in filterItem.Filters)
+                        {
+                            MergeFilters(item, values);
+                        }
+                    }
+                }
+            }
         }
 
         internal const string WidgetIconCssClass = "sfMvcIcn";

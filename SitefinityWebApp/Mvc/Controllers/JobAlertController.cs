@@ -62,8 +62,14 @@ namespace SitefinityWebApp.Mvc.Controllers
             // TODO: When the Backend API is ready,
             // We need to pass this model to it
 
+            TempData["DeleteMessage"] = null;
             TempData["CreateMessage"] = "A Job Alert has been created successfully.";
-            return RedirectToAction("Index");
+
+            // Why action name is empty?
+            // Here we need to call Index action, if we are providing action name as Index here
+            // It is appending in the URL, but we dont want to show that in URL. So, sending it as empty
+            // Will definity call defaut action i,.e Index
+            return RedirectToAction("");
         }
 
         [HttpGet]
@@ -97,7 +103,11 @@ namespace SitefinityWebApp.Mvc.Controllers
             // TODO: When the Backend API is ready,
             // We need to pass this model to it
 
-            return RedirectToAction("Index");
+            // Why action name is empty?
+            // Here we need to call Index action, if we are providing action name as Index here
+            // It is appending in the URL, but we dont want to show that in URL. So, sending it as empty
+            // Will definity call defaut action i,.e Index
+            return RedirectToAction("");
         }
 
         [HttpGet]
@@ -130,8 +140,14 @@ namespace SitefinityWebApp.Mvc.Controllers
             // TODO: When the Backend API is ready,
             // We need to pass this job alert id to it
 
+            TempData["CreateMessage"] = null;
             TempData["DeleteMessage"] = "A Job Alert has been deleted successfully.";
-            return RedirectToAction("Index");
+            
+            // Why action name is empty?
+            // Here we need to call Index action, if we are providing action name as Index here
+            // It is appending in the URL, but we dont want to show that in URL. So, sending it as empty
+            // Will definity call defaut action i,.e Index
+            return RedirectToAction("");
         }
 
         private JobAlertViewModel GetJobAlertDetailsMock(string jobAlertId)

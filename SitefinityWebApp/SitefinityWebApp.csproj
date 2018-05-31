@@ -973,6 +973,7 @@
     <Compile Include="Mvc\Models\SocialLinkModel.cs" />
     <Compile Include="Mvc\Models\SocialViewModel.cs" />
     <Compile Include="Mvc\StringResources\JobAlertResources.cs" />
+    <Compile Include="Mvc\StringResources\JobDetailsResources.cs" />
     <Compile Include="Mvc\StringResources\JobSearchResources.cs" />
     <Compile Include="Mvc\StringResources\JobSearchResultsResources.cs" />
     <Compile Include="Mvc\StringResources\SocialLinkResources.cs" />
@@ -983,6 +984,7 @@
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Mvc\Scripts\JobAlert\designerview-simple.js" />
+    <Content Include="Mvc\Scripts\JobDetails\designerview-simple.js" />
     <Content Include="Mvc\Scripts\JobFilters\designerview-simple.js" />
     <Content Include="Mvc\Scripts\JobSearchResults\designerview-simple.js" />
     <Content Include="Mvc\Scripts\JobSearch\designerview-simple.js" />
@@ -1187,6 +1189,7 @@
     <Content Include="Mvc\Views\JobAlert\Create.cshtml" />
     <Content Include="Mvc\Views\JobAlert\Edit.cshtml" />
     <Content Include="Mvc\Views\JobAlert\DesignerView.Simple.cshtml" />
+    <Content Include="Mvc\Views\JobDetails\DesignerView.Simple.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="ResourcePackages\Bootstrap\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.eot" />

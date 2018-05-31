@@ -36,7 +36,9 @@ namespace SitefinityWebApp.Mvc.Controllers
             jobAlertData.Add(new JobAlertViewModel() { Id = "1", Name="One", EmailAlerts=true,LastModified= "19/05/2017"});
             jobAlertData.Add(new JobAlertViewModel() { Id = "2", Name = "Two", EmailAlerts = false, LastModified = "19/05/2018" });
             jobAlertData.Add(new JobAlertViewModel() { Id = "3", Name = "Three", EmailAlerts = true, LastModified = "19/05/2016" });
-           
+
+            ViewBag.CssClass = this.CssClass;
+
             return View("Simple", jobAlertData);
         }
 

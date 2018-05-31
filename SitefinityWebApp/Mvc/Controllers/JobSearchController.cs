@@ -37,8 +37,7 @@ namespace SitefinityWebApp.Mvc.Controllers
 
         public string CssClass { get; set; }
         public string ResultsPageId { get; set; }
-        public string DetailsPageId { get; set; }
-
+        
         [TypeConverter(typeof(ExpandableObjectConverter))]
         public JobSearchModel Model
         {
@@ -77,16 +76,6 @@ namespace SitefinityWebApp.Mvc.Controllers
                     // So removing the first character
                     if (resultsPageNode != null)
                         ViewData["JobResultsPageUrl"] = resultsPageNode.GetUrl().Substring(1);
-                }
-
-                if (!this.DetailsPageId.IsNullOrEmpty())
-                {
-                    Guid detailsPageNodeId = new Guid(this.DetailsPageId);
-                    PageNode detailsPageNode = pageManager.GetPageNodes().Where(n => n.Id == detailsPageNodeId).FirstOrDefault();
-                    // we will get the url as ~/resultspage
-                    // So removing the first character
-                    if (detailsPageNode != null)
-                        ViewData["JobDetailsPageUrl"] = detailsPageNode.GetUrl().Substring(1);
                 }
             }
 

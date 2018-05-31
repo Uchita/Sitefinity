@@ -19,7 +19,7 @@ namespace SitefinityWebApp.Mvc.Controllers
     {
         IBusinessLogicsConnector _testBLConnector;
         IOptionsConnector _testOConnector;
- 
+       
         public JobAlertController(IEnumerable<IBusinessLogicsConnector> _bConnectors, IEnumerable<IOptionsConnector> _oConnectors)
         {
             _testBLConnector = _bConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.Test).FirstOrDefault();
@@ -62,7 +62,35 @@ namespace SitefinityWebApp.Mvc.Controllers
         [HttpGet]
         public ActionResult Edit(string id)
         {
-            return View("Edit");
+            JobAlertViewModel jobAlertDetails = GetJobAlertDetailsMock(id);
+            IGetJobFiltersResponse filtersResponse = _testOConnector.JobFilters<Test_GetJobFiltersRequest, Test_GetJobFiltersResponse>(new Test_GetJobFiltersRequest());
+
+            List<JobFilterRoot> fitersData = null;
+            if (filtersResponse != null && filtersResponse.Filters != null
+                && filtersResponse.Filters.Data != null)
+                fitersData = filtersResponse.Filters.Data;
+
+            var serializeFilterData = JsonConvert.SerializeObject(fitersData);
+            var filtersVMList = JsonConvert.DeserializeObject<List<JobAlertEditFilterRootItem>>(serializeFilterData);
+
+            // TODO: Merge the selected values with the total filters
+           
+            JobAlertEditViewModel editVM = new JobAlertEditViewModel() { Data = filtersVMList };
+            editVM.Id = jobAlertDetails.Id;
+            editVM.Name = jobAlertDetails.Name;
+            editVM.Keywords = jobAlertDetails.Keywords;
+            editVM.EmailAlerts = jobAlertDetails.EmailAlerts;
+
+            return View("Edit", editVM);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(JobAlertViewModel model)
+        {
+            // TODO: When the Backend API is ready,
+            // We need to pass this model to it
+
+            return RedirectToAction("Index");
         }
 
         [HttpGet]

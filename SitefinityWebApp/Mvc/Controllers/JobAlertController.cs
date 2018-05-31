@@ -11,6 +11,8 @@ using JXTNext.Sitefinity.Connector.Options.Models.Job;
 using Newtonsoft.Json;
 using System.Web.Routing;
 using System.Collections;
+using Telerik.Sitefinity.Modules.Pages;
+using Telerik.Sitefinity.Pages.Model;
 
 namespace SitefinityWebApp.Mvc.Controllers
 {
@@ -97,7 +99,24 @@ namespace SitefinityWebApp.Mvc.Controllers
         public ActionResult ViewResults(string id)
         {
             JobAlertViewModel jobAlertDetails = GetJobAlertDetailsMock(id);
-            return Redirect("/jobsearchresults?" + ToQueryString(jobAlertDetails));
+            string resultsPageUrl = String.Empty;
+            
+            // Getting the results page url
+            PageManager pageManager = PageManager.GetManager();
+            if (pageManager != null)
+            {
+                if (!this.ResultsPageId.IsNullOrEmpty())
+                {
+                    Guid resultsPageNodeId = new Guid(this.ResultsPageId);
+                    PageNode resultsPageNode = pageManager.GetPageNodes().Where(n => n.Id == resultsPageNodeId).FirstOrDefault();
+                    // we will get the url as ~/resultspage
+                    // So removing the first character
+                    if (resultsPageNode != null)
+                        resultsPageUrl = resultsPageNode.GetUrl().Substring(1);
+                }
+            }
+
+            return Redirect(resultsPageUrl + "?" + ToQueryString(jobAlertDetails));
         }
 
         [HttpGet]
@@ -144,5 +163,7 @@ namespace SitefinityWebApp.Mvc.Controllers
         }
 
         internal const string WidgetIconCssClass = "sfMvcIcn";
-      }
+        public string CssClass { get; set; }
+        public string ResultsPageId { get; set; }
+    }
 }

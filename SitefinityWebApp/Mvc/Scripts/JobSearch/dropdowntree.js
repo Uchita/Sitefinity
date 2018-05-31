@@ -34,7 +34,7 @@ var globalTreeIdCounter=0;
                 }
             }
             if(!element.is("li")){
-                element.append('<li id=' + data[i].ID + dataAttrs + '>' + (options.multiSelect ? '<i class="fa fa-square-o select-box" aria-hidden="true"></i>' : '') + '<a href="' + ((typeof data[i].href != "undefined" && data[i].href != null) ? data[i].href : '#') + '">' + data[i].Label + '</a>' + (options.displayCount == true && data[i].Count != undefined ? '(' + data[i].Count + ')' : '') + '</li>');
+                element.append('<li id=' + data[i].ID + dataAttrs + '>' + ((options.multiSelect && data[i].Selected != true) ? '<i class="fa fa-square-o select-box" aria-hidden="true"></i>' : (!options.multiSelect ? '' : '<i class="fa fa-check-square-o select-box" aria-hidden="true"></i>')) + '<a href="' + ((typeof data[i].href != "undefined" && data[i].href != null) ? data[i].href : '#') + '">' + data[i].Label + '</a>' + (options.displayCount == true && data[i].Count != undefined ? '(' + data[i].Count + ')' : '') + '</li>');
                 if (data[i].Filters != null && typeof data[i].Filters != "undefined" && data[i].Filters.length > 0){					
                     $("#" + data[i].ID).append("<ul style='display:none'></ul>");
                     $("#" + data[i].ID).find("a").first().prepend('<span class="arrow">'+options.closedArrow+'</span>');
@@ -162,15 +162,7 @@ var globalTreeIdCounter=0;
                 $(this).parents("li").first().find(".select-box").removeClass("fa-check-square-o");
             }
         }
-        var selectedElementText = $(options.element).GetSelectedElementsText();
-        var titleText = options.title;
-        if (selectedElementText.length > 3) {
-            titleText = selectedElementText.length + " selected";
-        }
-        else if (selectedElementText.length > 0) {
-            titleText = selectedElementText.join(' & ');
-        }
-        $(options.element).SetTitle(titleText);
+        $(options.element).SetSelectedElementsTitle();
         options.checkHandler($(this).parents("li").first(), e, checked);
     });
 
@@ -231,6 +223,21 @@ var globalTreeIdCounter=0;
         if(element.find("li").length==0)
             RenderData(arrOfElements, element);
     };
+
+    (options.element).init.prototype.SetSelectedElementsTitle = function () {
+         var selectedElementText = $(options.element).GetSelectedElementsText();
+         var titleText = options.title;
+         if (selectedElementText.length > 3) {
+             titleText = selectedElementText.length + " selected";
+         }
+         else if (selectedElementText.length > 0) {
+             titleText = selectedElementText.join(' & ');
+         }
+
+         $(options.element).SetTitle(titleText);
+    };
+
+    $(options.element).SetSelectedElementsTitle();
 
 };
 })(jQuery);

@@ -53,7 +53,7 @@
                 <td>
                     @Html.ActionLink("Edit", "Edit", "JobAlert", new { id = item.Id }, null)
                     @Html.ActionLink("ViewResults", "ViewResults", "JobAlert", new { id = item.Id }, null)
-                    @Html.ActionLink("Delete", "Delete", "JobAlert", new { id = item.Id }, null)
+                    @Html.ActionLink("Delete", "Delete", "JobAlert", new { id = item.Id }, new { onclick = "return confirmDelete();" })
                 </td>
             </tr>
         }
@@ -65,4 +65,17 @@ else
 {
     <div>You currently don't have any job alerts.</div>
 }
+
+<script type="text/javascript">
+
+    function confirmDelete() {
+          if (confirm("Are you sure you want to delete this record?")) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+</script>
 

@@ -15,7 +15,7 @@
             int counter = 0;
         }
 
-        <label>Name</label><br />
+        <label>Name<span style="color:red">*</span></label><br />
         <input type="text" name="Name" required value="@Model.Name" /><br />
         <input type="checkbox" name="EmailAlerts" value="true" checked="@Model.EmailAlerts"/> <label>Send Email Alerts</label> <br />
 
@@ -31,8 +31,8 @@
         }
 
         <input type="submit" value="SAVE" class="btn btn-primary"/>
-        @Html.ActionLink("ViewResults", "ViewResults", "JobAlert", new { id = Model.Id }, null)
-        @Html.ActionLink("Delete", "Delete", "JobAlert", new { id = Model.Id }, null)
+        @Html.ActionLink("SEARCH", "ViewResults", "JobAlert", new { id = Model.Id }, null)
+        @Html.ActionLink("DELETE", "Delete", "JobAlert", new { id = Model.Id }, new { onclick = "return confirmDelete();" })
     </form>
 }
 
@@ -48,7 +48,16 @@
         });
 
         return true;
-    }
+    };
+
+    function confirmDelete() {
+        if (confirm("Are you sure you want to delete this record?")) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
 
     $(document).ready(function () {
           @{

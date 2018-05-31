@@ -12,6 +12,8 @@ using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Job;
 using Telerik.Sitefinity.Security.Claims;
 using Newtonsoft.Json;
+using Telerik.Sitefinity.Modules.Pages;
+using Telerik.Sitefinity.Pages.Model;
 
 namespace SitefinityWebApp.Mvc.Controllers
 {
@@ -43,6 +45,22 @@ namespace SitefinityWebApp.Mvc.Controllers
 
             ViewBag.UserName = userName;
             ViewBag.Roles = JsonConvert.SerializeObject(roles);
+            ViewBag.CssClass = this.CssClass;
+
+            // Getting the job application page url
+            PageManager pageManager = PageManager.GetManager();
+            if (pageManager != null)
+            {
+                if (!this.JobApplicationPageId.IsNullOrEmpty())
+                {
+                    Guid jobAppPageNodeId = new Guid(this.JobApplicationPageId);
+                    PageNode jobAppPageNode = pageManager.GetPageNodes().Where(n => n.Id == jobAppPageNodeId).FirstOrDefault();
+                    // we will get the url as ~/resultspage
+                    // So removing the first character
+                    if (jobAppPageNode != null)
+                        ViewBag.JobApplicationPageUrl = jobAppPageNode.GetUrl().Substring(1);
+                }
+            }
 
             return View("Simple", dynamicJobDetails);
         }
@@ -64,5 +82,7 @@ namespace SitefinityWebApp.Mvc.Controllers
         }
 
         internal const string WidgetIconCssClass = "sfMvcIcn";
+        public string CssClass { get; set; }
+        public string JobApplicationPageId { get; set; }
     }
 }

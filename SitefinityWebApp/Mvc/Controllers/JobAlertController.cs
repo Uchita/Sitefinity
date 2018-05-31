@@ -38,6 +38,8 @@ namespace SitefinityWebApp.Mvc.Controllers
             jobAlertData.Add(new JobAlertViewModel() { Id = "3", Name = "Three", EmailAlerts = true, LastModified = "19/05/2016" });
 
             ViewBag.CssClass = this.CssClass;
+            ViewBag.CreateMessage = TempData["CreateMessage"];
+            ViewBag.DeleteMessage = TempData["DeleteMessage"];
 
             return View("Simple", jobAlertData);
         }
@@ -60,6 +62,7 @@ namespace SitefinityWebApp.Mvc.Controllers
             // TODO: When the Backend API is ready,
             // We need to pass this model to it
 
+            TempData["CreateMessage"] = "A Job Alert has been created successfully.";
             return RedirectToAction("Index");
         }
 
@@ -126,6 +129,8 @@ namespace SitefinityWebApp.Mvc.Controllers
         {
             // TODO: When the Backend API is ready,
             // We need to pass this job alert id to it
+
+            TempData["DeleteMessage"] = "A Job Alert has been deleted successfully.";
             return RedirectToAction("Index");
         }
 

@@ -24,7 +24,7 @@
         $scope.$watch('properties.DetailsPageId.PropertyValue',
             function (newVal, oldVal) {
                 if (newVal)
-                    $scope.properties.Sorting.PropertyValue = newVal;
+                    $scope.properties.DetailsPageId.PropertyValue = newVal;
             }
         );
 

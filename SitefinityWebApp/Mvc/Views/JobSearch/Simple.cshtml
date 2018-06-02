@@ -15,7 +15,7 @@
 
         foreach (var item in searchItemsList)
         {
-            if (!string.IsNullOrEmpty(item.Label) && item.Selected == true)
+            if (!string.IsNullOrEmpty(item.Label) && item.Show == true)
             {
                 _itemsList.Add(item.Label);
                 _idNamesLevelsPair.Add(item.ID, new { name = item.Label, level = item.Level });

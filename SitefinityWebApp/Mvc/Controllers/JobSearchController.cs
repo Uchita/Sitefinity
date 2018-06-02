@@ -85,7 +85,7 @@ namespace SitefinityWebApp.Mvc.Controllers
                 foreach (JobSearchModel item in jobSearchComponents)
                 {
                     FilterData(item.Filters);
-                    item.Filters = item.Filters.Where(d => d.Selected == true || d.Filters?.Count > 0).ToList();
+                    item.Filters = item.Filters.Where(d => d.Show == true || d.Filters?.Count > 0).ToList();
                 }
             }
             return View("Simple", jobSearchComponents);
@@ -101,11 +101,11 @@ namespace SitefinityWebApp.Mvc.Controllers
                 if (item.Filters != null && item.Filters.Count > 0)
                 {
                     FilterData(item.Filters);
-                    item.Filters = item.Filters.Where(d => d.Selected == true || d.Filters?.Count > 0).ToList();
+                    item.Filters = item.Filters.Where(d => d.Show == true || d.Filters?.Count > 0).ToList();
                 }
             }
 
-            data = data.Where(d => d.Selected == true || d.Filters?.Count > 0).ToList();
+            data = data.Where(d => d.Show == true || d.Filters?.Count > 0).ToList();
         }
 
         protected override void HandleUnknownAction(string actionName)

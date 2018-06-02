@@ -52,7 +52,7 @@
         $scope.processSubLevelsIds = function (items, level, parentId) {
             for (var j = 0; j < items.length; j++) {
                 items[j].Level = "level_" + level;
-                items[j].Selected = false;
+                items[j].Show = false;
                 items[j].ParentId = parentId;
                 if (items[j]["Filters"] != null || items[j]["Filters"] != undefined)
                     $scope.processSubLevelsIds(items[j]["Filters"], level + 1, items[j].ID);
@@ -76,7 +76,7 @@
         };
 
         var resolveIsSelected = function (item) {
-            if (item.Selected) {
+            if (item.Show) {
                 return true;
             }
             else if (item.Filters != undefined) {
@@ -100,11 +100,11 @@
             event.stopImmediatePropagation();
         };
         $scope.clickEvent = function (t, e) {
-            if (t.Selected) {
-                t.Selected = false;
+            if (t.Show) {
+                t.Show = false;
             }
             else {
-                t.Selected = true;
+                t.Show = true;
 
             }
             e.stopPropagation();

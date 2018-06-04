@@ -14,6 +14,7 @@ using System.Collections;
 using Telerik.Sitefinity.Modules.Pages;
 using Telerik.Sitefinity.Pages.Model;
 using Telerik.Sitefinity.Services;
+using Telerik.Sitefinity.Security;
 
 namespace SitefinityWebApp.Mvc.Controllers
 {
@@ -245,10 +246,13 @@ namespace SitefinityWebApp.Mvc.Controllers
         static DateTime GetSitefinityAppTime()
         {
             var sitefinityTimeZoneSettings = Telerik.Sitefinity.Configuration.Config.Get<SystemConfig>().UITimeZoneSettings.CurrentTimeZoneInfo;
+            if (sitefinityTimeZoneSettings == null && UserManager.GetManager() != null)
+                sitefinityTimeZoneSettings = UserManager.GetManager().GetUserTimeZone();
+         
             var sitefinityAppTime = DateTime.Now;
             if(sitefinityTimeZoneSettings != null)
                 sitefinityAppTime = TimeZoneInfo.ConvertTime(DateTime.Now, sitefinityTimeZoneSettings);
-
+           
             return sitefinityAppTime;
         }
 

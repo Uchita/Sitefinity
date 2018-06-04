@@ -47,8 +47,8 @@
                     }
 
                 </td>
-                <td>
-                    @item.LastModified
+                <td id="@item.Id">
+                   
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", "JobAlert", new { id = item.Id }, null)
@@ -75,7 +75,43 @@ else
         else {
             return false;
         }
-    }
+    };
+
+    $(document).ready(function () {
+         @{
+                var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+                var json = serializer.Serialize(Model);
+          }
+
+        var model = @Html.Raw(json);
+        if (model != null && model != "undefined") {
+            for (var item of model) {
+                var dateTime = EpochToDate(item.LastModifiedTime);
+                var formattedTime = formattedDate(dateTime);
+                $('#' + item.Id).html(formattedTime);
+            }
+        }
+
+        // Epoch To Date
+        function EpochToDate(epoch) {
+            if (epoch < 10000000000)
+                epoch *= 1000; // Convert to milliseconds (Epoch is usually expressed in seconds, but Javascript uses Milliseconds)
+            var epoch = epoch + (new Date().getTimezoneOffset() * -1); //for timeZone        
+            return new Date(epoch);
+        };
+
+        // Form date to DD/MM/YYYY
+        function formattedDate(date) {
+            var month = String(date.getMonth() + 1);
+            var day = String(date.getDate());
+            var year = String(date.getFullYear());
+
+            if (month.length < 2) month = '0' + month;
+            if (day.length < 2) day = '0' + day;
+
+            return `${day}/${month}/${year}`;
+        };
+    });
 
 </script>
 

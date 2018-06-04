@@ -1173,7 +1173,7 @@
     <Content Include="Mvc\Views\JobSearch\DesignerView.Simple.cshtml" />
     <Content Include="Mvc\Views\JobSearch\JobSearchMockData.json" />
     <Content Include="Mvc\Views\JobSearch\Simple.cshtml" />
-    <Content Include="Mvc\Views\JobSearchResults\Simple.cshtml" />
+    <Content Include="Mvc\Views\JobSearchResults\JobsAll.cshtml" />
     <Content Include="Mvc\Views\JobSearchResults\DesignerView.Simple.cshtml" />
     <Content Include="Mvc\Views\JobDetails\Simple.cshtml" />
     <Content Include="Mvc\Views\JobFilters\Simple.cshtml" />
@@ -1190,6 +1190,7 @@
     <Content Include="Mvc\Views\JobAlert\Edit.cshtml" />
     <Content Include="Mvc\Views\JobAlert\DesignerView.Simple.cshtml" />
     <Content Include="Mvc\Views\JobDetails\DesignerView.Simple.cshtml" />
+    <Content Include="Mvc\Views\JobSearchResults\JobsLatest.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="ResourcePackages\Bootstrap\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.eot" />

@@ -172,6 +172,91 @@ namespace JXTNext.Sitefinity.Frontend.Mvc.StringResources
         }
 
         /// <summary>
+        /// Gets phrase: Please select jobs display type
+        /// </summary>
+        [ResourceEntry("JobsDisplayType",
+            Value = "Please select jobs display type",
+            Description = "phrase : This Please select jobs display type")]
+        public string JobsDisplayType
+        {
+            get
+            {
+                return this["JobsDisplayType"];
+            }
+        }
+
+        /// <summary>
+        /// Gets phrase: All Jobs
+        /// </summary>
+        [ResourceEntry("AllJobs",
+            Value = "All Jobs ",
+            Description = "phrase : Display all jobs results")]
+        public string AllJobs
+        {
+            get
+            {
+                return this["AllJobs"];
+            }
+        }
+
+        /// <summary>
+        /// Gets phrase: Premium Jobs
+        /// </summary>
+        [ResourceEntry("PremiumJobs",
+            Value = "Premium Jobs ",
+            Description = "phrase : Display premium jobs results")]
+        public string PremiumJobs
+        {
+            get
+            {
+                return this["PremiumJobs"];
+            }
+        }
+
+        /// <summary>
+        /// Gets phrase: Standout Jobs
+        /// </summary>
+        [ResourceEntry("StandoutJobs",
+            Value = "Standout Jobs ",
+            Description = "phrase : Display standout jobs results")]
+        public string StandoutJobs
+        {
+            get
+            {
+                return this["StandoutJobs"];
+            }
+        }
+
+        /// <summary>
+        /// Gets phrase: Please select jobs display type
+        /// </summary>
+        [ResourceEntry("OR",
+            Value = "OR",
+            Description = "phrase : OR")]
+        public string OR
+        {
+            get
+            {
+                return this["OR"];
+            }
+        }
+
+        /// <summary>
+        /// word: Template
+        /// </summary>
+        /// <value>Template</value>
+        [ResourceEntry("Template",
+            Value = "Template",
+            Description = " word: Template")]
+        public string Template
+        {
+            get
+            {
+                return this["Template"];
+            }
+        }
+
+        /// <summary>
         /// Gets phrase: More options
         /// </summary>
         [ResourceEntry("MoreOptions",

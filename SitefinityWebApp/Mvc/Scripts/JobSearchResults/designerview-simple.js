@@ -28,11 +28,47 @@
             }
         );
 
+        $scope.allJobsChange = function () {
+            if ($scope.properties.IsAllJobs.PropertyValue == true) {
+                $scope.properties.IsPremiumJobs.PropertyValue = false;
+                $scope.properties.IsStandoutJobs.PropertyValue = false;
+            }
+            else {
+                $scope.properties.IsPremiumJobs.PropertyValue = true;
+            }
+        };
+
+        $scope.premiumJobsChange = function () {
+            if ($scope.properties.IsPremiumJobs.PropertyValue == true)
+                $scope.properties.IsAllJobs.PropertyValue = false;
+            else if ($scope.properties.IsStandoutJobs.PropertyValue == false)
+                $scope.properties.IsAllJobs.PropertyValue = true;
+        };
+
+        $scope.standoutJobsChange = function () {
+            if ($scope.properties.IsStandoutJobs.PropertyValue == true)
+                $scope.properties.IsAllJobs.PropertyValue = false;
+            else if ($scope.properties.IsPremiumJobs.PropertyValue == false)
+                $scope.properties.IsAllJobs.PropertyValue = true;
+        };
+
         propertyService.get()
             .then(function (data) {
                 $scope.properties = propertyService.toAssociativeArray(data.Items);
                 if ($scope.properties.PageSize.PropertyValue === null || $scope.properties.PageSize.PropertyValue === 'undefined' || $scope.properties.PageSize.PropertyValue === '')
                     $scope.properties.PageSize.PropertyValue = 5;
+
+                if ($scope.properties.IsAllJobs.PropertyValue != "True" && $scope.properties.IsPremiumJobs.PropertyValue != "True" && $scope.properties.IsStandoutJobs.PropertyValue != "True")
+                    $scope.properties.IsAllJobs.PropertyValue = true;
+
+                if ($scope.properties.IsAllJobs.PropertyValue == "True")
+                    $scope.properties.IsAllJobs.PropertyValue = true;
+
+                if ($scope.properties.IsPremiumJobs.PropertyValue == "True")
+                    $scope.properties.IsPremiumJobs.PropertyValue = true;
+
+                if ($scope.properties.IsStandoutJobs.PropertyValue == "True")
+                    $scope.properties.IsStandoutJobs.PropertyValue = true;
             });
     }]);
 })(jQuery);

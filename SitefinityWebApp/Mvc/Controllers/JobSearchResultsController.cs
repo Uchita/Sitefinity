@@ -24,6 +24,23 @@ namespace SitefinityWebApp.Mvc.Controllers
         IBusinessLogicsConnector _testBLConnector;
         IOptionsConnector _testOConnector;
 
+        /// <summary>
+        /// Gets or sets the name of the template that widget will be displayed.
+        /// </summary>
+        /// <value></value>
+        public string TemplateName
+        {
+            get
+            {
+                return this.templateName;
+            }
+
+            set
+            {
+                this.templateName = value;
+            }
+        }
+
         public JobSearchResultsController(IEnumerable<IBusinessLogicsConnector> _bConnectors, IEnumerable<IOptionsConnector> _oConnectors)
         {
             _testBLConnector = _bConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.Test).FirstOrDefault();
@@ -41,7 +58,7 @@ namespace SitefinityWebApp.Mvc.Controllers
                 dynamicJobResultsList = response as dynamic;
             }
 
-           return View("Simple", dynamicJobResultsList);
+           return View(this.TemplateName, dynamicJobResultsList);
         }
 
 
@@ -152,8 +169,12 @@ namespace SitefinityWebApp.Mvc.Controllers
         public int? PageSize { get; set; }
         public string DetailsPageId { get; set; }
         public string Sorting { get; set; }
+        public bool IsAllJobs { get; set; }
+        public bool IsPremiumJobs { get; set; }
+        public bool IsStandoutJobs { get; set; }
         public string CssClass { get; set; }
         internal const string WidgetIconCssClass = "sfMvcIcn";
         private const int PageSizeDefaultValue = 5;
+        private string templateName = "JobsAll";
     }
 }

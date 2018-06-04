@@ -10,7 +10,7 @@ namespace SitefinityWebApp.Mvc.Models
         public string Id { get; set; }
         public string Name { get; set; }
         public bool EmailAlerts { get; set; }
-        public string LastModified { get; set; }
+        public int LastModifiedTime { get; set; }
         public string Keywords { get; set; }
         public List<JobAlertFilters> Filters { get; set; }
     }

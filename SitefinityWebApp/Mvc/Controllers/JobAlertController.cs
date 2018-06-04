@@ -13,6 +13,7 @@ using System.Web.Routing;
 using System.Collections;
 using Telerik.Sitefinity.Modules.Pages;
 using Telerik.Sitefinity.Pages.Model;
+using Telerik.Sitefinity.Services;
 
 namespace SitefinityWebApp.Mvc.Controllers
 {
@@ -33,9 +34,9 @@ namespace SitefinityWebApp.Mvc.Controllers
         {
             List<JobAlertViewModel> jobAlertData = new List<JobAlertViewModel>();
 
-            jobAlertData.Add(new JobAlertViewModel() { Id = "1", Name="One", EmailAlerts=true,LastModified= "19/05/2017"});
-            jobAlertData.Add(new JobAlertViewModel() { Id = "2", Name = "Two", EmailAlerts = false, LastModified = "19/05/2018" });
-            jobAlertData.Add(new JobAlertViewModel() { Id = "3", Name = "Three", EmailAlerts = true, LastModified = "19/05/2016" });
+            jobAlertData.Add(new JobAlertViewModel() { Id = "1", Name="One", EmailAlerts=true, LastModifiedTime = 1528085914 });
+            jobAlertData.Add(new JobAlertViewModel() { Id = "2", Name = "Two", EmailAlerts = false, LastModifiedTime = 1528085914 });
+            jobAlertData.Add(new JobAlertViewModel() { Id = "3", Name = "Three", EmailAlerts = true, LastModifiedTime = 1528085914 });
 
             ViewBag.CssClass = this.CssClass;
             ViewBag.CreateMessage = TempData["CreateMessage"];
@@ -61,6 +62,8 @@ namespace SitefinityWebApp.Mvc.Controllers
         {
             // TODO: When the Backend API is ready,
             // We need to pass this model to it
+
+            var epochTime = ConvertToUnixTimestamp(GetSitefinityAppTime());
 
             TempData["DeleteMessage"] = null;
             TempData["CreateMessage"] = "A Job Alert has been created successfully.";
@@ -180,7 +183,7 @@ namespace SitefinityWebApp.Mvc.Controllers
             model.Id = "HD-123";
             model.Name = "Test";
             model.EmailAlerts = true;
-            model.LastModified = "12/05/2016";
+            model.LastModifiedTime = 1528086432;
             model.Keywords = "Job";
 
             model.Filters.Add(new JobAlertFilters() { RootId = "AE-1234", Values = new List<string>() { "HD-345", "AF-0f34", "EH-sf355" } });
@@ -230,6 +233,23 @@ namespace SitefinityWebApp.Mvc.Controllers
                     }
                 }
             }
+        }
+
+        static double ConvertToUnixTimestamp(DateTime date)
+        {
+            DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+            TimeSpan diff = date.ToUniversalTime() - origin;
+            return Math.Floor(diff.TotalSeconds);
+        }
+
+        static DateTime GetSitefinityAppTime()
+        {
+            var sitefinityTimeZoneSettings = Telerik.Sitefinity.Configuration.Config.Get<SystemConfig>().UITimeZoneSettings.CurrentTimeZoneInfo;
+            var sitefinityAppTime = DateTime.Now;
+            if(sitefinityTimeZoneSettings != null)
+                sitefinityAppTime = TimeZoneInfo.ConvertTime(DateTime.Now, sitefinityTimeZoneSettings);
+
+            return sitefinityAppTime;
         }
 
         internal const string WidgetIconCssClass = "sfMvcIcn";

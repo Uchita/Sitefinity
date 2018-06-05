@@ -113,19 +113,22 @@ namespace SitefinityWebApp.Mvc.Controllers
                     filtersSearch = new List<FiltersSearchRoot>();
                     foreach (var item in filterModel.Filters)
                     {
-                        if (item.values != null && item.values.Count() > 0)
+                        if (item != null)
                         {
-                            var filters = new List<FiltersSearchElement>();
-                            foreach (var filterId in item.values)
+                            if (item.values != null && item.values.Count() > 0)
                             {
-                                if(!filterId.IsNullOrEmpty())
-                                    filters.Add(new FiltersSearchElement { ID = filterId });
-                            }
+                                var filters = new List<FiltersSearchElement>();
+                                foreach (var filterId in item.values)
+                                {
+                                    if (!filterId.IsNullOrEmpty())
+                                        filters.Add(new FiltersSearchElement { ID = filterId });
+                                }
 
-                            if (filters.Count > 0)
-                            {
-                                if (!item.rootId.IsNullOrEmpty())
-                                    filtersSearch.Add(new FiltersSearchRoot { RootID = item.rootId, Filters = filters });
+                                if (filters.Count > 0)
+                                {
+                                    if (!item.rootId.IsNullOrEmpty())
+                                        filtersSearch.Add(new FiltersSearchRoot { RootID = item.rootId, Filters = filters });
+                                }
                             }
                         }
                     }
@@ -161,6 +164,16 @@ namespace SitefinityWebApp.Mvc.Controllers
                     if (detailsPageNode != null)
                         ViewBag.JobDetailsPageUrl = detailsPageNode.GetUrl().Substring(1);
                 }
+
+                if (!this.ResultsPageId.IsNullOrEmpty())
+                {
+                    Guid resultsPageNodeId = new Guid(this.ResultsPageId);
+                    PageNode resultsPageNode = pageManager.GetPageNodes().Where(n => n.Id == resultsPageNodeId).FirstOrDefault();
+                    // we will get the url as ~/resultspage
+                    // So removing the first character
+                    if (resultsPageNode != null)
+                        ViewBag.JobResultsPageUrl = resultsPageNode.GetUrl().Substring(1);
+                }
             }
 
             return response;
@@ -168,6 +181,7 @@ namespace SitefinityWebApp.Mvc.Controllers
 
         public int? PageSize { get; set; }
         public string DetailsPageId { get; set; }
+        public string ResultsPageId { get; set; }
         public string Sorting { get; set; }
         public bool IsAllJobs { get; set; }
         public bool IsPremiumJobs { get; set; }

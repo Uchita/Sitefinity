@@ -32,6 +32,34 @@ namespace JXTNext.Sitefinity.Frontend.Mvc.StringResources
         #region Properties
 
         /// <summary>
+        /// Gets phrase: Where to display search results?
+        /// </summary>
+        [ResourceEntry("DisplayJobSearchResults",
+            Value = "Where to display search results?",
+            Description = "phrase : Where to display search results?")]
+        public string DisplayJobSearchResults
+        {
+            get
+            {
+                return this["DisplayJobSearchResults"];
+            }
+        }
+
+        /// <summary>
+        /// Gets phrase: This is the page where you have dropped search results widget
+        /// </summary>
+        [ResourceEntry("DropJobSearchResults",
+            Value = "This is the page where you have dropped search results widget",
+            Description = "phrase : This is the page where you have dropped search results widget")]
+        public string DropJobSearchResults
+        {
+            get
+            {
+                return this["DropJobSearchResults"];
+            }
+        }
+
+        /// <summary>
         /// Gets phrase: Where to display job details?s
         /// </summary>
         [ResourceEntry("DisplayJobDetails",

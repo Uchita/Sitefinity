@@ -94,8 +94,9 @@ else
 
         // Epoch To Date
         function EpochToDate(epoch) {
-            if (epoch < 10000000000)
-                epoch *= 1000; // Convert to milliseconds (Epoch is usually expressed in seconds, but Javascript uses Milliseconds)
+            // why we are not converting it to Milliseconds?
+            // Here we are getting the time in Milliseconds from backend
+            // We are storing epoch time in Milliseconds to our database
             var epoch = epoch + (new Date().getTimezoneOffset() * -1); //for timeZone        
             return new Date(epoch);
         };

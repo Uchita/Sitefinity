@@ -35,9 +35,9 @@ namespace SitefinityWebApp.Mvc.Controllers
         {
             List<JobAlertViewModel> jobAlertData = new List<JobAlertViewModel>();
 
-            jobAlertData.Add(new JobAlertViewModel() { Id = "1", Name="One", EmailAlerts=true, LastModifiedTime = 1528085914 });
-            jobAlertData.Add(new JobAlertViewModel() { Id = "2", Name = "Two", EmailAlerts = false, LastModifiedTime = 1528085914 });
-            jobAlertData.Add(new JobAlertViewModel() { Id = "3", Name = "Three", EmailAlerts = true, LastModifiedTime = 1528085914 });
+            jobAlertData.Add(new JobAlertViewModel() { Id = "1", Name="One", EmailAlerts=true, LastModifiedTime = 1528169738127 });
+            jobAlertData.Add(new JobAlertViewModel() { Id = "2", Name = "Two", EmailAlerts = false, LastModifiedTime = 1528169753835 });
+            jobAlertData.Add(new JobAlertViewModel() { Id = "3", Name = "Three", EmailAlerts = true, LastModifiedTime = 1528169753835 });
 
             ViewBag.CssClass = this.CssClass;
             ViewBag.CreateMessage = TempData["CreateMessage"];
@@ -184,7 +184,7 @@ namespace SitefinityWebApp.Mvc.Controllers
             model.Id = "HD-123";
             model.Name = "Test";
             model.EmailAlerts = true;
-            model.LastModifiedTime = 1528086432;
+            model.LastModifiedTime = 1528169767960;
             model.Keywords = "Job";
 
             model.Filters.Add(new JobAlertFilters() { RootId = "AE-1234", Values = new List<string>() { "HD-345", "AF-0f34", "EH-sf355" } });
@@ -240,7 +240,7 @@ namespace SitefinityWebApp.Mvc.Controllers
         {
             DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
             TimeSpan diff = date.ToUniversalTime() - origin;
-            return Math.Floor(diff.TotalSeconds);
+            return Math.Floor(diff.TotalMilliseconds);
         }
 
         static DateTime GetSitefinityAppTime()

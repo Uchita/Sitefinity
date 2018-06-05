@@ -23,6 +23,8 @@ namespace SitefinityWebApp.Mvc.Controllers
     {
         IBusinessLogicsConnector _testBLConnector;
         IOptionsConnector _testOConnector;
+        IGetJobFiltersResponse _filtersResponse;
+        JobFilterRoot _jobTypes;
 
         /// <summary>
         /// Gets or sets the name of the template that widget will be displayed.
@@ -45,11 +47,22 @@ namespace SitefinityWebApp.Mvc.Controllers
         {
             _testBLConnector = _bConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.Test).FirstOrDefault();
             _testOConnector = _oConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.Test).FirstOrDefault();
+
+            //Execute - Get available filter options from the server
+            _filtersResponse = _testOConnector.JobFilters<Test_GetJobFiltersRequest, Test_GetJobFiltersResponse>(new Test_GetJobFiltersRequest());
+            _jobTypes = _filtersResponse.Filters.Data.Where(item => item.Name == "Job Types").FirstOrDefault();
+            if (_jobTypes != null)
+                this.SerializedTotalJobTypes = JsonConvert.SerializeObject(_jobTypes.Filters);
         }
 
         // GET: JobSearchResults
         public ActionResult Index(JobSearchResultsFilterModel filterModel)
         {
+            _filtersResponse = _testOConnector.JobFilters<Test_GetJobFiltersRequest, Test_GetJobFiltersResponse>(new Test_GetJobFiltersRequest());
+            _jobTypes = _filtersResponse.Filters.Data.Where(item => item.Name == "Job Types").FirstOrDefault();
+            if (_jobTypes != null)
+                this.SerializedTotalJobTypes = JsonConvert.SerializeObject(_jobTypes.Filters);
+
             dynamic dynamicJobResultsList = null;
 
             if(filterModel != null)
@@ -134,6 +147,32 @@ namespace SitefinityWebApp.Mvc.Controllers
                     }
                 }
 
+                if (!this.SerializedJobTypes.IsNullOrEmpty())
+                {
+                    var jobTypes = JsonConvert.DeserializeObject<List<JobTypesDesignerViewModel>>(this.SerializedJobTypes);
+                    if (jobTypes != null && jobTypes.Count > 0)
+                    {
+                        var selectedJobTypes = jobTypes.Where(item => item.Selected == true).ToList();
+                        if (selectedJobTypes != null && selectedJobTypes.Count > 0)
+                        {
+                            if (filtersSearch == null)
+                                filtersSearch = new List<FiltersSearchRoot>();
+
+                            var filters = new List<FiltersSearchElement>();
+                            foreach (var jobType in selectedJobTypes)
+                            {
+                                if (!jobType.ID.IsNullOrEmpty())
+                                    filters.Add(new FiltersSearchElement { ID = jobType.ID });
+                            }
+                            if (filters.Count > 0)
+                            {
+                                if (!_jobTypes.ID.IsNullOrEmpty())
+                                    filtersSearch.Add(new FiltersSearchRoot { RootID = _jobTypes.ID, Filters = filters });
+                            }
+                        }
+                    }
+                }
+
                 if (this.PageSize == null || this.PageSize <= 0)
                     this.PageSize = PageSizeDefaultValue;
 
@@ -184,9 +223,9 @@ namespace SitefinityWebApp.Mvc.Controllers
         public string ResultsPageId { get; set; }
         public string Sorting { get; set; }
         public bool IsAllJobs { get; set; }
-        public bool IsPremiumJobs { get; set; }
-        public bool IsStandoutJobs { get; set; }
         public string CssClass { get; set; }
+        public string SerializedJobTypes { get; set; }
+        public string SerializedTotalJobTypes { get; set; }
         internal const string WidgetIconCssClass = "sfMvcIcn";
         private const int PageSizeDefaultValue = 5;
         private string templateName = "JobsAll";

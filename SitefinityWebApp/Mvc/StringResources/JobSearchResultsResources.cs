@@ -228,34 +228,6 @@ namespace JXTNext.Sitefinity.Frontend.Mvc.StringResources
         }
 
         /// <summary>
-        /// Gets phrase: Premium Jobs
-        /// </summary>
-        [ResourceEntry("PremiumJobs",
-            Value = "Premium Jobs ",
-            Description = "phrase : Display premium jobs results")]
-        public string PremiumJobs
-        {
-            get
-            {
-                return this["PremiumJobs"];
-            }
-        }
-
-        /// <summary>
-        /// Gets phrase: Standout Jobs
-        /// </summary>
-        [ResourceEntry("StandoutJobs",
-            Value = "Standout Jobs ",
-            Description = "phrase : Display standout jobs results")]
-        public string StandoutJobs
-        {
-            get
-            {
-                return this["StandoutJobs"];
-            }
-        }
-
-        /// <summary>
         /// Gets phrase: Please select jobs display type
         /// </summary>
         [ResourceEntry("OR",

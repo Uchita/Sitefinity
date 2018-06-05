@@ -63,12 +63,18 @@
 
                 if ($scope.properties.IsAllJobs.PropertyValue == "True")
                     $scope.properties.IsAllJobs.PropertyValue = true;
+                else
+                    $scope.properties.IsAllJobs.PropertyValue = false;
 
                 if ($scope.properties.IsPremiumJobs.PropertyValue == "True")
                     $scope.properties.IsPremiumJobs.PropertyValue = true;
+                else
+                    $scope.properties.IsPremiumJobs.PropertyValue = false;
 
                 if ($scope.properties.IsStandoutJobs.PropertyValue == "True")
                     $scope.properties.IsStandoutJobs.PropertyValue = true;
+                else
+                    $scope.properties.IsStandoutJobs.PropertyValue = false;
             });
     }]);
 })(jQuery);

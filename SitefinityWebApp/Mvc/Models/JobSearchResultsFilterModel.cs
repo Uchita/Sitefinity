@@ -18,4 +18,11 @@ namespace SitefinityWebApp.Mvc.Models
         public string rootId { get; set; }
         public List<string> values { get; set; }
     }
+
+    public class JobTypesDesignerViewModel
+    {
+        public string ID { get; set; }
+        public string Label { get; set; }
+        public bool Selected { get; set; }
+    }
 }

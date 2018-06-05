@@ -6,6 +6,15 @@
     angular.module('designer').requires.push('expander', 'sfSelectors');
 
     angular.module('designer').controller('SimpleCtrl', ['$scope', 'propertyService', function ($scope, propertyService) {
+        $scope.jobTypes = [];
+        $scope.totalJobTypes = [];
+        $scope.$watch('jobTypes',
+            function (newVal, oldVal) {
+                if ($scope.properties != undefined)
+                    $scope.properties.SerializedJobTypes.PropertyValue = angular.toJson(newVal, true);
+            },
+            true
+        );
 
         $scope.$watch('properties.CssClass.PropertyValue',
             function (newVal, oldVal) {
@@ -30,51 +39,62 @@
 
         $scope.allJobsChange = function () {
             if ($scope.properties.IsAllJobs.PropertyValue == true) {
-                $scope.properties.IsPremiumJobs.PropertyValue = false;
-                $scope.properties.IsStandoutJobs.PropertyValue = false;
+                for (var i = 0; i < $scope.jobTypes.length; i++) {
+                    $scope.jobTypes[i].Selected = false;
+                }
             }
             else {
-                $scope.properties.IsPremiumJobs.PropertyValue = true;
+              $scope.jobTypes[0].Selected = true;
             }
         };
 
-        $scope.premiumJobsChange = function () {
-            if ($scope.properties.IsPremiumJobs.PropertyValue == true)
-                $scope.properties.IsAllJobs.PropertyValue = false;
-            else if ($scope.properties.IsStandoutJobs.PropertyValue == false)
+       $scope.jobTypeChange = function (jobType) {
+            if (!$scope.isJobTypeSelected())
                 $scope.properties.IsAllJobs.PropertyValue = true;
         };
 
-        $scope.standoutJobsChange = function () {
-            if ($scope.properties.IsStandoutJobs.PropertyValue == true)
-                $scope.properties.IsAllJobs.PropertyValue = false;
-            else if ($scope.properties.IsPremiumJobs.PropertyValue == false)
-                $scope.properties.IsAllJobs.PropertyValue = true;
+        $scope.isJobTypeSelected = function () {
+            var isSelected = false;
+            for (var i = 0; i < $scope.jobTypes.length; i++) {
+                if ($scope.jobTypes[i].Selected == true) {
+                    isSelected = true;
+                    break;
+                }
+            }
+            return isSelected;
         };
 
+      
         propertyService.get()
             .then(function (data) {
                 $scope.properties = propertyService.toAssociativeArray(data.Items);
                 if ($scope.properties.PageSize.PropertyValue === null || $scope.properties.PageSize.PropertyValue === 'undefined' || $scope.properties.PageSize.PropertyValue === '')
                     $scope.properties.PageSize.PropertyValue = 5;
 
-                if ($scope.properties.IsAllJobs.PropertyValue != "True" && $scope.properties.IsPremiumJobs.PropertyValue != "True" && $scope.properties.IsStandoutJobs.PropertyValue != "True")
-                    $scope.properties.IsAllJobs.PropertyValue = true;
+                if ($scope.properties.SerializedJobTypes.PropertyValue != '' && $scope.properties.SerializedJobTypes.PropertyValue != 'undefined') {
+                    $scope.jobTypes = $.parseJSON($scope.properties.SerializedJobTypes.PropertyValue);
+                }
+                if ($scope.properties.SerializedTotalJobTypes.PropertyValue != '' && $scope.properties.SerializedTotalJobTypes.PropertyValue != 'undefined') {
+                    $scope.totalJobTypes = $.parseJSON($scope.properties.SerializedTotalJobTypes.PropertyValue);
+                }
 
-                if ($scope.properties.IsAllJobs.PropertyValue == "True")
+                if ($scope.jobTypes == 'null' || $scope.jobTypes == 'undefined' || $scope.jobTypes.length == 0) {
+                    for (var i = 0; i < $scope.totalJobTypes.length; i++) {
+                        $scope.jobTypes.push({ ID: $scope.totalJobTypes[i].ID, Label: $scope.totalJobTypes[i].Label, Selected: false });
+                    }
+                    if (!$scope.isJobTypeSelected())
+                        $scope.properties.IsAllJobs.PropertyValue = true;
+                }
+
+                 if ($scope.properties.IsAllJobs.PropertyValue == "True")
                     $scope.properties.IsAllJobs.PropertyValue = true;
                 else
                     $scope.properties.IsAllJobs.PropertyValue = false;
 
-                if ($scope.properties.IsPremiumJobs.PropertyValue == "True")
-                    $scope.properties.IsPremiumJobs.PropertyValue = true;
-                else
-                    $scope.properties.IsPremiumJobs.PropertyValue = false;
-
-                if ($scope.properties.IsStandoutJobs.PropertyValue == "True")
-                    $scope.properties.IsStandoutJobs.PropertyValue = true;
-                else
-                    $scope.properties.IsStandoutJobs.PropertyValue = false;
+                if ($scope.totalJobTypes == 'null' || $scope.totalJobTypes == 'undefined' || $scope.totalJobTypes.length == 0) {
+                    $scope.properties.IsAllJobs.PropertyValue = true;
+                    $scope.jobTypes = [];
+                }
             });
     }]);
 })(jQuery);

@@ -39,13 +39,14 @@
     </select>
 </div>
 <br />
-<br />
-<label>@Html.Resource("JobsDisplayType", "JobSearchResultsResources")</label>
-<div>
-    <div>@Html.Resource("AllJobs", "JobSearchResultsResources")<input type="checkbox" id="all-jobs" required ng-change="allJobsChange()" ng-model="properties.IsAllJobs.PropertyValue" ng-disabled="properties.IsPremiumJobs.PropertyValue == true || properties.IsStandoutJobs.PropertyValue == true" /></div><br />
+
+<div ng-if="jobTypes.length > 0">
+    <label>@Html.Resource("JobsDisplayType", "JobSearchResultsResources")</label>
+    <div>@Html.Resource("AllJobs", "JobSearchResultsResources")<input type="checkbox" id="all-jobs" required ng-change="allJobsChange()" ng-model="properties.IsAllJobs.PropertyValue" ng-disabled="isJobTypeSelected()" /></div><br />
     <label>@Html.Resource("OR", "JobSearchResultsResources")</label><br />
-    <div>@Html.Resource("PremiumJobs", "JobSearchResultsResources")<input type="checkbox" id="premium-jobs" ng-change="premiumJobsChange()" ng-model="properties.IsPremiumJobs.PropertyValue" ng-disabled="properties.IsAllJobs.PropertyValue == true"/></div><br />
-    <div>@Html.Resource("StandoutJobs", "JobSearchResultsResources")<input type="checkbox" id="standout-jobs" ng-change="standoutJobsChange()" ng-model="properties.IsStandoutJobs.PropertyValue" ng-disabled="properties.IsAllJobs.PropertyValue == true"/></div>
+    <div class="form-group" data-ng-repeat="job in jobTypes">
+        <div>{{job.Label}} <input type="checkbox" id="{{job.ID}}" ng-model="job.Selected" ng-change="jobTypeChange(job)" ng-disabled="properties.IsAllJobs.PropertyValue == true" /></div>
+    </div>
 </div>
 
 <expander expander-title="@Html.Resource("MoreOptions", "JobSearchResultsResources")">

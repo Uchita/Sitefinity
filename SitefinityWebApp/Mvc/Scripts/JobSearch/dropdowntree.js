@@ -162,7 +162,7 @@ var globalTreeIdCounter=0;
                 $(this).parents("li").first().find(".select-box").removeClass("fa-check-square-o");
             }
         }
-        $(options.element).SetSelectedElementsTitle();
+        SetSelectedElementsTitle();
         options.checkHandler($(this).parents("li").first(), e, checked);
     });
 
@@ -224,7 +224,7 @@ var globalTreeIdCounter=0;
             RenderData(arrOfElements, element);
     };
 
-    (options.element).init.prototype.SetSelectedElementsTitle = function () {
+    function SetSelectedElementsTitle() {
          var selectedElementText = $(options.element).GetSelectedElementsText();
          var titleText = options.title;
          if (selectedElementText.length > 3) {
@@ -237,7 +237,7 @@ var globalTreeIdCounter=0;
          $(options.element).SetTitle(titleText);
     };
 
-    $(options.element).SetSelectedElementsTitle();
+    SetSelectedElementsTitle();
 
 };
 })(jQuery);

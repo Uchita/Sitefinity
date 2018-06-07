@@ -11,8 +11,10 @@ var dropDownOptions = {
     clickHandler : function(target){},
     expandHandler : function(target,expanded){},
     checkHandler : function(target,checked){},
-	expandChildren: false,
+    expandChildren: false,
+    enableSearch: true,
     rtl: false,
+    displayCount: false,
 };
 
 var globalTreeIdCounter=0;
@@ -32,7 +34,7 @@ var globalTreeIdCounter=0;
                 }
             }
             if(!element.is("li")){
-                element.append('<li id=' + data[i].ID + dataAttrs + '>' + (options.multiSelect ? '<i class="fa fa-square-o select-box" aria-hidden="true"></i>' : '') + '<a href="' + ((typeof data[i].href != "undefined" && data[i].href != null) ? data[i].href : '#') + '">' + data[i].Label+'</a></li>');
+                element.append('<li id=' + data[i].ID + dataAttrs + '>' + ((options.multiSelect && data[i].Selected != true) ? '<i class="fa fa-square-o select-box" aria-hidden="true"></i>' : (!options.multiSelect ? '' : '<i class="fa fa-check-square-o select-box" aria-hidden="true"></i>')) + '<a href="' + ((typeof data[i].href != "undefined" && data[i].href != null) ? data[i].href : '#') + '">' + data[i].Label + '</a>' + (options.displayCount == true && data[i].Count != undefined ? '(' + data[i].Count + ')' : '') + '</li>');
                 if (data[i].Filters != null && typeof data[i].Filters != "undefined" && data[i].Filters.length > 0){					
                     $("#" + data[i].ID).append("<ul style='display:none'></ul>");
                     $("#" + data[i].ID).find("a").first().prepend('<span class="arrow">'+options.closedArrow+'</span>');
@@ -160,15 +162,7 @@ var globalTreeIdCounter=0;
                 $(this).parents("li").first().find(".select-box").removeClass("fa-check-square-o");
             }
         }
-        var selectedElementText = $(options.element).GetSelectedElementsText();
-        var titleText = options.title;
-        if (selectedElementText.length > 3) {
-            titleText = selectedElementText.length + " selected";
-        }
-        else if (selectedElementText.length > 0) {
-            titleText = selectedElementText.join(' & ');
-        }
-        $(options.element).SetTitle(titleText);
+        SetSelectedElementsTitle();
         options.checkHandler($(this).parents("li").first(), e, checked);
     });
 
@@ -179,7 +173,10 @@ var globalTreeIdCounter=0;
         } 
     }	
     $(options.element).append('<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="dropdowntree-name">'+options.title+'</span><span class="caret"></span></button>');		
-    $(options.element).append('<ul style="max-height: '+options.maxHeight+'px" class="dropdown-menu" aria-labelledby="dropdownMenu1"><input type="text" class="form-control" placeholder="Type here to filter..." /></ul>');
+    $(options.element).append('<ul style="max-height: '+options.maxHeight+'px" class="dropdown-menu" aria-labelledby="dropdownMenu1"></ul>');
+    if (options.enableSearch == true) {
+        $(options.element).find("ul").first().append('<input type="text" class="form-control" placeholder="Type here to filter..." />');
+    }
 
     RenderData(options.data,$(options.element).find("ul").first());
 	
@@ -226,6 +223,21 @@ var globalTreeIdCounter=0;
         if(element.find("li").length==0)
             RenderData(arrOfElements, element);
     };
+
+    function SetSelectedElementsTitle() {
+         var selectedElementText = $(options.element).GetSelectedElementsText();
+         var titleText = options.title;
+         if (selectedElementText.length > 3) {
+             titleText = selectedElementText.length + " selected";
+         }
+         else if (selectedElementText.length > 0) {
+             titleText = selectedElementText.join(' & ');
+         }
+
+         $(options.element).SetTitle(titleText);
+    };
+
+    SetSelectedElementsTitle();
 
 };
 })(jQuery);

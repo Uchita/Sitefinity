@@ -7,14 +7,13 @@ using Telerik.Sitefinity.Mvc;
 using Telerik.Sitefinity.Web;
 using SitefinityWebApp.Mvc.Models;
 using System.ComponentModel;
-using Telerik.Sitefinity.Modules.Pages;
-using Telerik.Sitefinity.Pages.Model;
 using ServiceStack.Text;
 using JXTNext.Sitefinity.Connector.BusinessLogics;
 using JXTNext.Sitefinity.Connector.Options;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search;
 using JXTNext.Sitefinity.Connector.Options.Models.Job;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers;
+using JXTNext.Sitefinity.Mvc.Helpers;
 
 namespace SitefinityWebApp.Mvc.Controllers
 {
@@ -37,8 +36,7 @@ namespace SitefinityWebApp.Mvc.Controllers
 
         public string CssClass { get; set; }
         public string ResultsPageId { get; set; }
-        public string DetailsPageId { get; set; }
-
+        
         [TypeConverter(typeof(ExpandableObjectConverter))]
         public JobSearchModel Model
         {
@@ -65,30 +63,7 @@ namespace SitefinityWebApp.Mvc.Controllers
 
             // This is the CSS classes enter from More Options
             ViewData["CssClass"] = this.CssClass;
-
-            PageManager pageManager = PageManager.GetManager();
-            if (pageManager != null)
-            {
-                if (!this.ResultsPageId.IsNullOrEmpty())
-                {
-                    Guid resultsPageNodeId = new Guid(this.ResultsPageId);
-                    PageNode resultsPageNode = pageManager.GetPageNodes().Where(n => n.Id == resultsPageNodeId).FirstOrDefault();
-                    // we will get the url as ~/resultspage
-                    // So removing the first character
-                    if (resultsPageNode != null)
-                        ViewData["JobResultsPageUrl"] = resultsPageNode.GetUrl().Substring(1);
-                }
-
-                if (!this.DetailsPageId.IsNullOrEmpty())
-                {
-                    Guid detailsPageNodeId = new Guid(this.DetailsPageId);
-                    PageNode detailsPageNode = pageManager.GetPageNodes().Where(n => n.Id == detailsPageNodeId).FirstOrDefault();
-                    // we will get the url as ~/resultspage
-                    // So removing the first character
-                    if (detailsPageNode != null)
-                        ViewData["JobDetailsPageUrl"] = detailsPageNode.GetUrl().Substring(1);
-                }
-            }
+            ViewData["JobResultsPageUrl"] = SitefinityHelper.GetPageUrl(this.ResultsPageId);
 
             var jobSearchComponents = JsonSerializer.DeserializeFromString<List<JobSearchModel>>(this.SerializedJobSearchParams);
             if(jobSearchComponents != null)
@@ -96,7 +71,7 @@ namespace SitefinityWebApp.Mvc.Controllers
                 foreach (JobSearchModel item in jobSearchComponents)
                 {
                     FilterData(item.Filters);
-                    item.Filters = item.Filters.Where(d => d.Selected == true || d.Filters?.Count > 0).ToList();
+                    item.Filters = item.Filters.Where(d => d.Show == true || d.Filters?.Count > 0).ToList();
                 }
             }
             return View("Simple", jobSearchComponents);
@@ -112,11 +87,11 @@ namespace SitefinityWebApp.Mvc.Controllers
                 if (item.Filters != null && item.Filters.Count > 0)
                 {
                     FilterData(item.Filters);
-                    item.Filters = item.Filters.Where(d => d.Selected == true || d.Filters?.Count > 0).ToList();
+                    item.Filters = item.Filters.Where(d => d.Show == true || d.Filters?.Count > 0).ToList();
                 }
             }
 
-            data = data.Where(d => d.Selected == true || d.Filters?.Count > 0).ToList();
+            data = data.Where(d => d.Show == true || d.Filters?.Count > 0).ToList();
         }
 
         protected override void HandleUnknownAction(string actionName)

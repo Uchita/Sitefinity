@@ -10,6 +10,8 @@ using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search;
 using JXTNext.Sitefinity.Connector.Options.Models.Job;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Job;
+using Newtonsoft.Json;
+using JXTNext.Sitefinity.Mvc.Helpers;
 
 namespace SitefinityWebApp.Mvc.Controllers
 {
@@ -35,9 +37,20 @@ namespace SitefinityWebApp.Mvc.Controllers
             if(jobListingRequest != null)
                 dynamicJobDetails = jobListingResponse as dynamic;
 
+            string userName = String.Empty;
+            List<string> roles = new List<string>();
+            SitefinityHelper.GetCurrentUserInfo(ref userName, ref roles);
+   
+            ViewBag.UserName = userName;
+            ViewBag.Roles = JsonConvert.SerializeObject(roles);
+            ViewBag.CssClass = this.CssClass;
+            ViewBag.JobApplicationPageUrl = SitefinityHelper.GetPageUrl(this.JobApplicationPageId);
+
             return View("Simple", dynamicJobDetails);
         }
 
         internal const string WidgetIconCssClass = "sfMvcIcn";
+        public string CssClass { get; set; }
+        public string JobApplicationPageId { get; set; }
     }
 }

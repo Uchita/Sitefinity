@@ -15,7 +15,7 @@
 
         foreach (var item in searchItemsList)
         {
-            if (!string.IsNullOrEmpty(item.Label) && item.Selected == true)
+            if (!string.IsNullOrEmpty(item.Label) && item.Show == true)
             {
                 _itemsList.Add(item.Label);
                 _idNamesLevelsPair.Add(item.ID, new { name = item.Label, level = item.Level });
@@ -34,7 +34,7 @@
     @{
         int counter = 0;
     }
-    <input type="hidden" class="form-control" name="JobDetailsPageUrl" value=@ViewData["JobDetailsPageUrl"]  />
+    
     @foreach (var item in Model)
     {
         switch (item.ControlType)

@@ -13,8 +13,7 @@ using JXTNext.Sitefinity.Connector.Options.Models.Job;
 using ServiceStack.Text;
 using Newtonsoft.Json;
 using Telerik.Sitefinity.Mvc.ActionFilters;
-using Telerik.Sitefinity.Modules.Pages;
-using Telerik.Sitefinity.Pages.Model;
+using JXTNext.Sitefinity.Mvc.Helpers;
 
 namespace SitefinityWebApp.Mvc.Controllers
 {
@@ -192,27 +191,8 @@ namespace SitefinityWebApp.Mvc.Controllers
                 if (jobResultsList != null)
                     ViewBag.TotalCount = jobResultsList.Total;
 
-                PageManager pageManager = PageManager.GetManager();
-
-                if (!this.DetailsPageId.IsNullOrEmpty())
-                {
-                    Guid detailsPageNodeId = new Guid(this.DetailsPageId);
-                    PageNode detailsPageNode = pageManager.GetPageNodes().Where(n => n.Id == detailsPageNodeId).FirstOrDefault();
-                    // we will get the url as ~/resultspage
-                    // So removing the first character
-                    if (detailsPageNode != null)
-                        ViewBag.JobDetailsPageUrl = detailsPageNode.GetUrl().Substring(1);
-                }
-
-                if (!this.ResultsPageId.IsNullOrEmpty())
-                {
-                    Guid resultsPageNodeId = new Guid(this.ResultsPageId);
-                    PageNode resultsPageNode = pageManager.GetPageNodes().Where(n => n.Id == resultsPageNodeId).FirstOrDefault();
-                    // we will get the url as ~/resultspage
-                    // So removing the first character
-                    if (resultsPageNode != null)
-                        ViewBag.JobResultsPageUrl = resultsPageNode.GetUrl().Substring(1);
-                }
+                ViewBag.JobResultsPageUrl = SitefinityHelper.GetPageUrl(this.ResultsPageId);
+                ViewBag.JobDetailsPageUrl = SitefinityHelper.GetPageUrl(this.DetailsPageId);
             }
 
             return response;

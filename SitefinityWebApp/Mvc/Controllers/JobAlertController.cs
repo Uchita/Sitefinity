@@ -11,10 +11,7 @@ using JXTNext.Sitefinity.Connector.Options.Models.Job;
 using Newtonsoft.Json;
 using System.Web.Routing;
 using System.Collections;
-using Telerik.Sitefinity.Modules.Pages;
-using Telerik.Sitefinity.Pages.Model;
-using Telerik.Sitefinity.Services;
-using Telerik.Sitefinity.Security;
+using JXTNext.Sitefinity.Mvc.Helpers;
 
 namespace SitefinityWebApp.Mvc.Controllers
 {
@@ -63,8 +60,8 @@ namespace SitefinityWebApp.Mvc.Controllers
         {
             // TODO: When the Backend API is ready,
             // We need to pass this model to it
-
-            var epochTime = ConvertToUnixTimestamp(GetSitefinityAppTime());
+            
+            var epochTime = ConversionHelper.GetUnixTimestamp(SitefinityHelper.GetSitefinityApplicationTime(), true);
 
             TempData["DeleteMessage"] = null;
             TempData["CreateMessage"] = "A Job Alert has been created successfully.";
@@ -142,22 +139,7 @@ namespace SitefinityWebApp.Mvc.Controllers
         public ActionResult ViewResults(string id)
         {
             JobAlertViewModel jobAlertDetails = GetJobAlertDetailsMock(id);
-            string resultsPageUrl = String.Empty;
-            
-            // Getting the results page url
-            PageManager pageManager = PageManager.GetManager();
-            if (pageManager != null)
-            {
-                if (!this.ResultsPageId.IsNullOrEmpty())
-                {
-                    Guid resultsPageNodeId = new Guid(this.ResultsPageId);
-                    PageNode resultsPageNode = pageManager.GetPageNodes().Where(n => n.Id == resultsPageNodeId).FirstOrDefault();
-                    // we will get the url as ~/resultspage
-                    // So removing the first character
-                    if (resultsPageNode != null)
-                        resultsPageUrl = resultsPageNode.GetUrl().Substring(1);
-                }
-            }
+            string resultsPageUrl = SitefinityHelper.GetPageUrl(this.ResultsPageId);
 
             return Redirect(resultsPageUrl + "?" + ToQueryString(jobAlertDetails));
         }
@@ -234,26 +216,6 @@ namespace SitefinityWebApp.Mvc.Controllers
                     }
                 }
             }
-        }
-
-        static double ConvertToUnixTimestamp(DateTime date)
-        {
-            DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
-            TimeSpan diff = date.ToUniversalTime() - origin;
-            return Math.Floor(diff.TotalMilliseconds);
-        }
-
-        static DateTime GetSitefinityAppTime()
-        {
-            var sitefinityTimeZoneSettings = Telerik.Sitefinity.Configuration.Config.Get<SystemConfig>().UITimeZoneSettings.CurrentTimeZoneInfo;
-            if (sitefinityTimeZoneSettings == null && UserManager.GetManager() != null)
-                sitefinityTimeZoneSettings = UserManager.GetManager().GetUserTimeZone();
-         
-            var sitefinityAppTime = DateTime.Now;
-            if(sitefinityTimeZoneSettings != null)
-                sitefinityAppTime = TimeZoneInfo.ConvertTime(DateTime.Now, sitefinityTimeZoneSettings);
-           
-            return sitefinityAppTime;
         }
 
         internal const string WidgetIconCssClass = "sfMvcIcn";

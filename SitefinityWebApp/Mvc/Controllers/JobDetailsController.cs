@@ -10,10 +10,8 @@ using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search;
 using JXTNext.Sitefinity.Connector.Options.Models.Job;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Job;
-using Telerik.Sitefinity.Security.Claims;
 using Newtonsoft.Json;
-using Telerik.Sitefinity.Modules.Pages;
-using Telerik.Sitefinity.Pages.Model;
+using JXTNext.Sitefinity.Mvc.Helpers;
 
 namespace SitefinityWebApp.Mvc.Controllers
 {
@@ -41,44 +39,14 @@ namespace SitefinityWebApp.Mvc.Controllers
 
             string userName = String.Empty;
             List<string> roles = new List<string>();
-            GetCurrentUserInfo(ref userName, ref roles);
-
+            SitefinityHelper.GetCurrentUserInfo(ref userName, ref roles);
+   
             ViewBag.UserName = userName;
             ViewBag.Roles = JsonConvert.SerializeObject(roles);
             ViewBag.CssClass = this.CssClass;
-
-            // Getting the job application page url
-            PageManager pageManager = PageManager.GetManager();
-            if (pageManager != null)
-            {
-                if (!this.JobApplicationPageId.IsNullOrEmpty())
-                {
-                    Guid jobAppPageNodeId = new Guid(this.JobApplicationPageId);
-                    PageNode jobAppPageNode = pageManager.GetPageNodes().Where(n => n.Id == jobAppPageNodeId).FirstOrDefault();
-                    // we will get the url as ~/resultspage
-                    // So removing the first character
-                    if (jobAppPageNode != null)
-                        ViewBag.JobApplicationPageUrl = jobAppPageNode.GetUrl().Substring(1);
-                }
-            }
+            ViewBag.JobApplicationPageUrl = SitefinityHelper.GetPageUrl(this.JobApplicationPageId);
 
             return View("Simple", dynamicJobDetails);
-        }
-
-        static void GetCurrentUserInfo(ref string userName, ref List<string> roles)
-        {
-            // Get the current identity 
-            var identity = ClaimsManager.GetCurrentIdentity();
-
-            // Get information about the user from the properties of the ClaimsIdentityProxy object
-            if (identity != null)
-            {
-                userName = identity.Name;
-                foreach (var rolesInfo in identity.Roles)
-                {
-                    roles.Add(rolesInfo.Name);
-                }
-            }
         }
 
         internal const string WidgetIconCssClass = "sfMvcIcn";

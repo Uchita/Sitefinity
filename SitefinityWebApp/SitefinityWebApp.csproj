@@ -958,6 +958,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ConversionHelper.cs" />
+    <Compile Include="Helpers\SitefinityHelper.cs" />
     <Compile Include="Mvc\Controllers\BaseLayout2Controller.cs" />
     <Compile Include="Mvc\Controllers\BaseLayoutController.cs" />
     <Compile Include="Mvc\Controllers\JobAlertController.cs" />

@@ -7,14 +7,13 @@ using Telerik.Sitefinity.Mvc;
 using Telerik.Sitefinity.Web;
 using SitefinityWebApp.Mvc.Models;
 using System.ComponentModel;
-using Telerik.Sitefinity.Modules.Pages;
-using Telerik.Sitefinity.Pages.Model;
 using ServiceStack.Text;
 using JXTNext.Sitefinity.Connector.BusinessLogics;
 using JXTNext.Sitefinity.Connector.Options;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search;
 using JXTNext.Sitefinity.Connector.Options.Models.Job;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers;
+using JXTNext.Sitefinity.Mvc.Helpers;
 
 namespace SitefinityWebApp.Mvc.Controllers
 {
@@ -64,20 +63,7 @@ namespace SitefinityWebApp.Mvc.Controllers
 
             // This is the CSS classes enter from More Options
             ViewData["CssClass"] = this.CssClass;
-
-            PageManager pageManager = PageManager.GetManager();
-            if (pageManager != null)
-            {
-                if (!this.ResultsPageId.IsNullOrEmpty())
-                {
-                    Guid resultsPageNodeId = new Guid(this.ResultsPageId);
-                    PageNode resultsPageNode = pageManager.GetPageNodes().Where(n => n.Id == resultsPageNodeId).FirstOrDefault();
-                    // we will get the url as ~/resultspage
-                    // So removing the first character
-                    if (resultsPageNode != null)
-                        ViewData["JobResultsPageUrl"] = resultsPageNode.GetUrl().Substring(1);
-                }
-            }
+            ViewData["JobResultsPageUrl"] = SitefinityHelper.GetPageUrl(this.ResultsPageId);
 
             var jobSearchComponents = JsonSerializer.DeserializeFromString<List<JobSearchModel>>(this.SerializedJobSearchParams);
             if(jobSearchComponents != null)

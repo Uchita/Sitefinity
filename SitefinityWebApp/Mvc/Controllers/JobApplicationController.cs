@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JXTNext.Sitefinity.Mvc.Helpers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -27,25 +28,13 @@ namespace SitefinityWebApp.Mvc.Controllers
                 HttpPostedFileBase fileContent = Request.Files[key];
                 if (fileContent != null && fileContent.ContentLength > 0)
                 {
-                    var byteArr = ReadAllBytes(fileContent.InputStream);
+                    var byteArr = ConversionHelper.StreamToBytes(fileContent.InputStream);
                     //var stringStream = Encoding.Default.GetString(byteArr);
                     fileStreamKeyValue.Add(fileContent.FileName, byteArr);
                 }
             }
 
             return View("Simple");
-        }
-
-        static byte[] ReadAllBytes(Stream inStream)
-        {
-            if (inStream is MemoryStream)
-                return ((MemoryStream)inStream).ToArray();
-
-            using (var memoryStream = new MemoryStream())
-            {
-                inStream.CopyTo(memoryStream);
-                return memoryStream.ToArray();
-            }
         }
 
         internal const string WidgetIconCssClass = "sfMvcIcn";

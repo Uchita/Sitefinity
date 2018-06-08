@@ -24,22 +24,30 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        @{
+                var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+                var json = serializer.Serialize(Model);
+          }
+
         var previousUrl = new URL(document.referrer);
         var urlPath = previousUrl.pathname + previousUrl.search
         $("#back-to-results").attr("href", urlPath);
 
        // Show the 'Apply' button only to Member type users
         $("#apply-job").hide();
-        var roles = JSON.parse('@Html.Raw(@ViewBag.Roles)');
-        var userName = @Html.Raw(Json.Encode(@ViewBag.UserName));
-        if (userName !== "Anonymous" && roles !== 'undefined' && roles.length > 0) {
-            for (var role of roles) {
-                 if (role === "Administrators") {
-                    $("#apply-job").show();
-                    break;
+        var model = @Html.Raw(json);
+        if (model != null && model != "undefined" && model.Success == true) {
+            var roles = JSON.parse('@Html.Raw(@ViewBag.Roles)');
+            var userName = @Html.Raw(Json.Encode(@ViewBag.UserName));
+            if (userName !== "Anonymous" && roles !== 'undefined' && roles.length > 0) {
+                for (var role of roles) {
+                    if (role === "Administrators") {
+                        $("#apply-job").show();
+                        break;
+                    }
                 }
-            }
 
+            }
         }
     });
 </script>

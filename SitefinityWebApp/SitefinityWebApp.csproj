@@ -1352,6 +1352,10 @@
       <Project>{bf418b44-ebce-499f-bbd3-6ba98a24e144}</Project>
       <Name>JXTNext.Sitefinity.Connector</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JXTNext.Sitefinity.LoginStatusExtended\JXTNext.Sitefinity.LoginStatusExtended.csproj">
+      <Project>{9a208d8f-aa97-4ce5-a42b-71bde987124c}</Project>
+      <Name>JXTNext.Sitefinity.LoginStatusExtended</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="OpenAccessNuget.targets" />

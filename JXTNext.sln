@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SitefinityWebApp", "Sitefin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JXTNext.Sitefinity.Connector", "JXTNext.Sitefinity.Connector\JXTNext.Sitefinity.Connector.csproj", "{BF418B44-EBCE-499F-BBD3-6BA98A24E144}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JXTNext.Sitefinity.LoginStatusExtended", "JXTNext.Sitefinity.LoginStatusExtended\JXTNext.Sitefinity.LoginStatusExtended.csproj", "{9A208D8F-AA97-4CE5-A42B-71BDE987124C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JXTNext.Sitefinity.Identity", "JXTNext.Sitefinity.Identity\JXTNext.Sitefinity.Identity.csproj", "{9A208D8F-AA97-4CE5-A42B-71BDE987124C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

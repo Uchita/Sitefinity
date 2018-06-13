@@ -19,7 +19,7 @@ using Telerik.Sitefinity.Abstractions;
 using Telerik.Sitefinity.Data;
 using Telerik.Sitefinity.Localization;
 using Telerik.Sitefinity.Mvc;
-using JXTNext.Sitefinity.LoginStatusExtended.Mvc.StringResources;
+using JXTNext.Sitefinity.Identity.LoginStatusExtended.Mvc.StringResources;
 
 namespace SitefinityWebApp
 {

@@ -24,6 +24,7 @@ namespace SitefinityWebApp.Mvc.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            ViewBag.ShowFilesUploadMessage = null;
             return View("Simple");
         }
 
@@ -46,6 +47,7 @@ namespace SitefinityWebApp.Mvc.Controllers
                         libName = "applications-coverletters";
 
                     UploadToAmazonS3(Guid.NewGuid(), "private-amazon-s3-provider", libName, fileName, fileContent.InputStream, fileExtension);
+                    ViewBag.ShowFilesUploadMessage = "File(s) Uploaded successfully";
                 }
             }
 

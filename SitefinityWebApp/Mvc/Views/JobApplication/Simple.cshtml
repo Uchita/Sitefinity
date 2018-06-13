@@ -1,4 +1,9 @@
 ﻿
+@if (ViewBag.ShowFilesUploadMessage != null)
+{
+    <div class="alert alert-success">@ViewBag.ShowFilesUploadMessage</div>
+}
+
 @using (Html.BeginForm("ApplyJob", "JobApplication", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="container">

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JXTNext.Sitefinity.Connecto
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jxt.Sitefinity.Jobs", "Jxt.Sitefinity.Jobs\Jxt.Sitefinity.Jobs.csproj", "{CFECB7D6-84E5-4076-BF9A-C967AFDEBEE4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JXTNext.Sitefinity.Identity", "JXTNext.Sitefinity.Identity\JXTNext.Sitefinity.Identity.csproj", "{9A208D8F-AA97-4CE5-A42B-71BDE987124C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

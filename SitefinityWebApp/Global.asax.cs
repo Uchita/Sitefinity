@@ -21,6 +21,7 @@ using Telerik.Sitefinity.Abstractions;
 using Telerik.Sitefinity.Data;
 using Telerik.Sitefinity.Localization;
 using Telerik.Sitefinity.Mvc;
+using JXTNext.Sitefinity.Identity.LoginStatusExtended.Mvc.StringResources;
 
 namespace SitefinityWebApp
 {
@@ -40,6 +41,7 @@ namespace SitefinityWebApp
             Res.RegisterResource<JobSearchResultsResources>();
             Res.RegisterResource<JobAlertResources>();
             Res.RegisterResource<JobDetailsResources>();
+            Res.RegisterResource<LoginStatusExtendedResources>();
         }
 
         protected void Session_Start(object sender, EventArgs e)

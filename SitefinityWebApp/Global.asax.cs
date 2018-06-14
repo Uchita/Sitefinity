@@ -11,7 +11,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
+using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
 using Telerik.Microsoft.Practices.Unity;
@@ -77,7 +79,11 @@ namespace SitefinityWebApp
             ObjectFactory.Container.RegisterType<ISitefinityControllerFactory, NinjectControllerFactory>(new ContainerControlledLifetimeManager());
             var factory = ObjectFactory.Resolve<ISitefinityControllerFactory>();
             ControllerBuilder.Current.SetControllerFactory(factory);
-
+            
+            GlobalConfiguration.Configuration.Routes.MapHttpRoute(
+                "jxt",
+                "jxt/{controller}/{id}",
+                new { id = RouteParameter.Optional });
         }
 
     }

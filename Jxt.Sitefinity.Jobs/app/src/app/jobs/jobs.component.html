@@ -1,0 +1,16 @@
+
+<nav>
+  <a routerLink="/create">Create</a>
+</nav>
+
+<ul class="jobs">
+	<li *ngFor="let j of jobs">
+		<div>
+			<span>{{j.title}}</span>
+			<span>{{j.description}}</span>
+			<button routerLink="/edit/{{j.id}}">edit</button>
+		</div>
+	</li>
+</ul>
+	
+

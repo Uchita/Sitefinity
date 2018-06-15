@@ -30,55 +30,67 @@
 
 @if (Model != null)
 {
-<form action="@ViewData["JobResultsPageUrl"]" name="JobSearchResults" method="get" onsubmit="return preventSubmit();">
-    @{
-        int counter = 0;
-    }
-    
-    @foreach (var item in Model)
-    {
-        switch (item.ControlType)
-        {
-            case "TextBox":
-                <input type="text" class="form-control" placeholder="@item.PlaceholderText" name="Keywords" />
-                break;
-
-            case "DropDown Single":
-                _itemsList.Clear();
-                _idNamesLevelsPair.Clear();
-                GetValuesList(item.Filters);
-
-                <select class="form-control" name="Filters[@counter].values">
-                    <option value="" disabled selected>@item.PlaceholderText</option>
-                    @foreach (dynamic itemName in _idNamesLevelsPair)
-                    {
-                        <option value="@itemName.Key">@itemName.Value.name</option>
-                    }
-                </select>
-
-                counter++;
-                break;
-
-            case "DropDown Multi":
-
-                <input type="hidden" name="Filters[@counter].searchTarget" value='@item.FilterType' />
-                <input type="hidden" name="Filters[@counter].rootId" value='@item.ID' />
-                <select id=@string.Format("selected-{0}",item.ID) name="Filters[@counter].values" style="display:none" multiple></select>
-                <div class="dropdown dropdown-tree" id=@item.ID></div>
-
-                counter++;
-                break;
-
-            case "Map Search":
-                break;
-
-            default:
-                break;
-
+    <form action="@ViewData["JobResultsPageUrl"]" name="JobSearchResults" method="get" onsubmit="return preventSubmit();">
+        @{
+            int counter = 0;
         }
-    }
-    <input class="btn btn-primary" type="submit" value="Browse Jobs" />
-</form>
+
+        @foreach (var item in Model)
+        {
+            switch (item.ControlType)
+            {
+                case "TextBox":
+                    <input type="text" class="form-control" placeholder="@item.PlaceholderText" name="Keywords" />
+                    break;
+
+                case "DropDown Single":
+                    _itemsList.Clear();
+                    _idNamesLevelsPair.Clear();
+                    GetValuesList(item.Filters);
+
+                    <select class="form-control" name="Filters[@counter].values">
+                        <option value="" disabled selected>@item.PlaceholderText</option>
+                        @foreach (dynamic itemName in _idNamesLevelsPair)
+                        {
+                            <option value="@itemName.Key">@itemName.Value.name</option>
+                        }
+                    </select>
+
+                    counter++;
+                    break;
+
+                case "DropDown Multi":
+
+                    <input type="hidden" name="Filters[@counter].searchTarget" value='@item.FilterType' />
+                    <input type="hidden" name="Filters[@counter].rootId" value='@item.ID' />
+                    <select id=@string.Format("selected-{0}",item.ID) name="Filters[@counter].values" style="display:none" multiple></select>
+                    <div class="dropdown dropdown-tree" id=@item.ID></div>
+
+                    counter++;
+                    break;
+
+                case "List":
+                    _itemsList.Clear();
+                    _idNamesLevelsPair.Clear();
+                    GetValuesList(item.Filters);
+                    foreach (dynamic itemName in _idNamesLevelsPair)
+                    {
+                        string hrefLink = string.Format("{0}?Filters[0].rootId={1}&Filters[0].values={2}", @ViewData["JobResultsPageUrl"], item.ID, itemName.Key);
+                        <a href=@hrefLink>@itemName.Value.name</a>
+                    }
+
+                    break;
+
+                case "Map Search":
+                    break;
+
+                default:
+                    break;
+
+            }
+        }
+        <input class="btn btn-primary" type="submit" value="Browse Jobs" />
+    </form>
 }
 
 <script type="text/javascript">

@@ -1174,7 +1174,7 @@
     <Content Include="OpenAccessNuGet.targets" />
     <Content Include="Mvc\Views\JobSearch\DesignerView.Simple.cshtml" />
     <Content Include="Mvc\Views\JobSearch\JobSearchMockData.json" />
-    <Content Include="Mvc\Views\JobSearch\Simple.cshtml" />
+    <Content Include="Mvc\Views\JobSearch\JobSearch.Simple.cshtml" />
     <Content Include="Mvc\Views\JobSearchResults\JobsAll.cshtml" />
     <Content Include="Mvc\Views\JobSearchResults\DesignerView.Simple.cshtml" />
     <Content Include="Mvc\Views\JobDetails\Simple.cshtml" />

@@ -36,7 +36,24 @@ namespace SitefinityWebApp.Mvc.Controllers
 
         public string CssClass { get; set; }
         public string ResultsPageId { get; set; }
-        
+
+        /// <summary>
+        /// Gets or sets the name of the template that widget will be displayed.
+        /// </summary>
+        /// <value></value>
+        public string TemplateName
+        {
+            get
+            {
+                return this.templateName;
+            }
+
+            set
+            {
+                this.templateName = value;
+            }
+        }
+
         [TypeConverter(typeof(ExpandableObjectConverter))]
         public JobSearchModel Model
         {
@@ -74,7 +91,10 @@ namespace SitefinityWebApp.Mvc.Controllers
                     item.Filters = item.Filters.Where(d => d.Show == true || d.Filters?.Count > 0).ToList();
                 }
             }
-            return View("Simple", jobSearchComponents);
+
+            var fullTemplateName = this.templateNamePrefix + this.TemplateName;
+
+            return View(fullTemplateName, jobSearchComponents);
         }
 
         static void FilterData(List<JobSearchItem> data)
@@ -103,5 +123,7 @@ namespace SitefinityWebApp.Mvc.Controllers
         public string SerializedFilterData { get; set; }
         internal const string WidgetIconCssClass = "sfMvcIcn";
         private JobSearchModel model;
+        private string templateName = "Simple";
+        private string templateNamePrefix = "JobSearch.";
     }
 }

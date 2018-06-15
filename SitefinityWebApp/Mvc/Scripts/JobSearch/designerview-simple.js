@@ -120,7 +120,7 @@
                     $scope.filterDataList = $.parseJSON($scope.properties.SerializedFilterData.PropertyValue);
                 }
 
-                $scope.componentTypeList = ["TextBox", "DropDown Single", "DropDown Multi", "Map Search"];
+                $scope.componentTypeList = ["TextBox", "DropDown Single", "DropDown Multi", "Map Search", "List"];
                 $scope.FilterTypes = [];
                 $scope.RootIdValues = [];
                 $scope.DataValues = [];

@@ -1,0 +1,43 @@
+﻿@model List<SitefinityWebApp.Mvc.Models.SocialViewModel>
+
+<div class="jn_social-links @ViewData["CssClass"]">
+    <ul class="soc_share">
+        @foreach (var item in Model)
+        {
+            switch (item.Title)
+            {
+                case "Facebook":
+                    <li><a href=@item.Url target="_blank" title=@item.Title><span class="fa fa-facebook"></span></a></li>
+                    break;
+
+                case "Twitter":
+                    <li><a href=@item.Url target="_blank" title=@item.Title><span class="fa fa-twitter"></span></a></li>
+                    break;
+
+                case "LinkedIn":
+                    <li><a href=@item.Url target="_blank" title=@item.Title><span class="fa fa-linkedin"></span></a></li>
+                    break;
+
+                case "Google+":
+                    <li><a href=@item.Url target="_blank" title=@item.Title><span class="fa fa-google-plus"></span></a></li>
+                    break;
+
+                case "YouTube":
+                    <li><a href=@item.Url target="_blank" title=@item.Title><span class="fa fa-youtube"></span></a></li>
+                    break;
+
+                case "Instagram":
+                    <li><a href=@item.Url target="_blank" title=@item.Title><span class="fa fa-instagram"></span></a></li>
+                    break;
+
+                case "MailTo":
+                    <li><a href=@item.Url target="_blank" title=@item.Title><span class="fa fa-envelope"></span></a></li>
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+    </ul>
+</div>

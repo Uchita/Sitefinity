@@ -1,0 +1,180 @@
+﻿@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.UI.MVC;
+@using SquishIt.Framework
+@using SquishIt.Mvc
+@using System
+@using Telerik.Sitefinity.Web
+@using Telerik.Sitefinity.Libraries.Model;
+@using Telerik.Sitefinity.Modules.Libraries;
+@using Telerik.Sitefinity.DynamicModules.Model;
+@using Telerik.Sitefinity.Services;
+
+<!DOCTYPE html>
+<html @Html.RenderLangAttribute()>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800|Lato:100,300,400,400i,700,700i,900,900i" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    @(Bundle.Css()
+    .Add("~/ResourcePackages/JXT/assets/dist/css/main.css")
+    //.ForceRelease()
+    .WithMinifier(new SquishIt.Framework.Minifiers.CSS.NullMinifier())
+    .MvcRender("/ResourcePackages/JXT/assets/dist/min/combined_#.css"))
+
+    @Html.Section("head")
+    @{
+        var node = SiteMapBase.GetActualCurrentNode();
+        var bodyClass = String.Empty;
+        var bannerImgUrl = String.Empty;
+        var bannerVid = new Video();
+        if (node != null)
+        {
+            bodyClass = node.IsHomePage() ? "sf_homepage" : String.Empty;
+            if (!node.Theme.IsNullOrEmpty())
+            {
+                bodyClass += " " + node.Theme.ToLower();
+            }
+            var bannerImg = (Image)node.GetCustomFieldValue("BannerImage");
+            bannerVid = (Video)node.GetCustomFieldValue("BannerVideo");
+
+            if (bannerImg != null)
+            {
+                bannerImgUrl = bannerImg.ResolveThumbnailUrl("bannerimg", true);
+            }
+            else
+            {
+                var currentNode = node.ParentNode as PageSiteNode;
+
+                while (bannerImg == null && currentNode.ParentKey != null)
+                {
+                    bannerImg = (Image)currentNode.GetCustomFieldValue("BannerImage");
+                    currentNode = currentNode.ParentNode as PageSiteNode;
+                }
+
+                if (bannerImg != null)
+                {
+                    bannerImgUrl = bannerImg.ResolveThumbnailUrl("bannerimg", true);
+                }
+            }
+
+            if (bannerVid == null)
+            {
+                var currentNode = node.ParentNode as PageSiteNode;
+
+                while (bannerVid == null && currentNode.ParentKey != null)
+                {
+                    bannerVid = (Video)currentNode.GetCustomFieldValue("BannerVideo");
+                    currentNode = currentNode.ParentNode as PageSiteNode;
+                }
+            }
+
+            if (node.GetCustomFieldValue("Theme") != null)
+            {
+                var theme = (ChoiceOption)node.GetCustomFieldValue("Theme");
+                if (theme != null)
+                {
+                    bodyClass += " " + theme.PersistedValue;
+                }
+            }
+        }
+    }
+    <style type="text/css">
+        .pg_hdr-banner {
+            background-image: url('@bannerImgUrl');
+        }
+    </style>
+</head>
+<body class='@bodyClass.Trim()'>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-47449181-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+    @Html.Section("top")
+    <div class="off-canvas-wrapper">
+        <div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas>
+            <button class="close-button" aria-label="Close menu" type="button" data-close>
+                <span aria-hidden="true">&times;</span>
+            </button>
+            @Html.SfPlaceHolder("OffCanvasLeftPlaceholder")
+        </div>
+        <div class="off-canvas-content" data-off-canvas-content>
+            <header class="pg_hdr">
+                <div data-sticky-container>
+                    <div data-sticky data-options="marginTop:0;" style="width:100%">
+                        <div class="title-bar align-justify hide-for-large">
+                            <div class="title-bar-left flex-child-shrink"><button type="button" class="menu-icon" data-toggle="offCanvasLeft"><span class="show-for-sr">Open Menu</span></button></div>
+                            <div class="title-bar-title flex-child-shrink">@Html.SfPlaceHolder("TitlebarTitlePlaceholder")</div>
+                            <div class="title-bar-right flex-child-shrink">@Html.SfPlaceHolder("TitlebarPlaceholder")</div>
+                        </div>
+                        <div class="nav-bar show-for-large">
+                            <div class="grid-container">
+                                <div class="grid-x grid-padding-x align-justify align-middle">
+                                    <div class="nav-bar-left cell shrink">
+                                        @Html.SfPlaceHolder("TopbarLeftPlaceholder")
+                                    </div>
+                                    <div class="nav-bar-right cell shrink">
+                                        <div class="grid-x align-right">
+                                            @Html.SfPlaceHolder("TopbarRightPlaceholder")
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pg_hdr-banner">
+                    @if (bannerVid != null && SystemManager.IsDesignMode != true)
+                    {
+                        <video loop muted autoplay poster="@bannerImgUrl" class="bkg-video">
+                            <source src="@bannerVid.ResolveMediaUrl()" type="@bannerVid.MimeType">
+                        </video>
+                    }
+                    <div class="pg_hdr-banner-con grid-x grid-padding-x align-center-middle text-center">
+                        @Html.SfPlaceHolder("HeaderPlaceholder")
+                    </div>
+                </div>
+            </header>
+            <main class="pg_main">
+                @Html.SfPlaceHolder("Contentplaceholder1")
+            </main>
+            <footer class="pg_ft">
+                @Html.SfPlaceHolder("FooterPlaceholder")
+            </footer>
+        </div>
+    </div>
+
+    @* Inline editing scripts and helpers. They should be available only when inline editing is possible. *@
+    @if (Html.ShouldRenderInlineEditing())
+    {
+        @Html.Script(ScriptRef.MicrosoftAjax, "top")
+        @Html.Script(ScriptRef.MicrosoftAjaxCore, "top")
+        @Html.Script(ScriptRef.JQuery, "top")
+
+        @Html.Script(Url.EmbeddedResource("Telerik.Sitefinity.Resources.Reference", "Telerik.Sitefinity.Resources.Scripts.jquery.ba-outside-events.min.js"), "top")
+        @Html.Script(ScriptRef.KendoAll, "top")
+        @Html.Script(ScriptRef.KendoTimezones, "top")
+        @Html.Script(Url.EmbeddedResource("Telerik.Sitefinity.Resources.Reference", "Telerik.Sitefinity.Resources.Scripts.RequireJS.require.min.js"), "top")
+        @Html.InlineEditingManager(false)
+    }
+
+    @Html.Section("bottom")
+    @if (!SystemManager.IsDesignMode)
+    {
+        @Html.Script(ScriptRef.JQuery, "top")
+    }
+    @Html.Script(Url.Content("~/ResourcePackages/JXT/assets/dist/js/project.min.js"), "bottom")
+</body>
+</html>

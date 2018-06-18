@@ -22,16 +22,16 @@ namespace SitefinityWebApp.Mvc.Controllers
     {
         IBusinessLogicsConnector _testBLConnector;
         IOptionsConnector _testOConnector;
-        IGetJobFiltersResponse filtersResponse;
 
         public JobSearchController(IEnumerable<IBusinessLogicsConnector> _bConnectors, IEnumerable<IOptionsConnector> _oConnectors)
         {
             _testBLConnector = _bConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.Test).FirstOrDefault();
-            _testOConnector = _oConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.Test).FirstOrDefault();
-          
+            _testOConnector = _oConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.JXTNext).FirstOrDefault();
+
             //Execute - Get available filter options from the server
-            filtersResponse = _testOConnector.JobFilters<Test_GetJobFiltersRequest, Test_GetJobFiltersResponse>(new Test_GetJobFiltersRequest());
-            this.SerializedFilterData = JsonSerializer.SerializeToString(filtersResponse.Filters.Data);
+            //JXTNext_GetJobFiltersRequest request = new JXTNext_GetJobFiltersRequest { SiteId = 1 };
+            //filtersResponse = _testOConnector.JobFilters<JXTNext_GetJobFiltersRequest, JXTNext_GetJobFiltersResponse>(request);
+            //this.SerializedFilterData = JsonSerializer.SerializeToString(filtersResponse.Filters.Data);
         }
 
         public string CssClass { get; set; }
@@ -68,9 +68,6 @@ namespace SitefinityWebApp.Mvc.Controllers
         // GET: JobSearch
         public ActionResult Index()
         {
-            filtersResponse = _testOConnector.JobFilters<Test_GetJobFiltersRequest, Test_GetJobFiltersResponse>(new Test_GetJobFiltersRequest());
-            this.SerializedFilterData = JsonSerializer.SerializeToString(filtersResponse.Filters.Data);
-
             //Execute - Try perform a dummy search
             ISearchJobsRequest request = new Test_SearchJobsRequest { Page = 0, PageSize = 2, FiltersSearch = new List<FiltersSearchRoot> { new FiltersSearchRoot { RootID = "AE-1234", Filters = new List<FiltersSearchElement> { new FiltersSearchElement { ID = "DD-3123" } } } } };
             ISearchJobsResponse response = _testBLConnector.SearchJobs(request);
@@ -120,7 +117,22 @@ namespace SitefinityWebApp.Mvc.Controllers
         }
 
         public string SerializedJobSearchParams { get; set; }
-        public string SerializedFilterData { get; set; }
+
+        private string _serializedFilterData;
+        public string SerializedFilterData {
+            get
+            {
+                if( string.IsNullOrEmpty(_serializedFilterData))
+                {
+                    JXTNext_GetJobFiltersRequest filterOptionRequest = new JXTNext_GetJobFiltersRequest { SiteId = 1 };
+                    IGetJobFiltersResponse filtersResponse = _testOConnector.JobFilters<JXTNext_GetJobFiltersRequest, JXTNext_GetJobFiltersResponse>(filterOptionRequest);
+                    _serializedFilterData = JsonSerializer.SerializeToString(filtersResponse.Filters.Data);
+                }
+                return _serializedFilterData;
+            }
+        }
+
+
         internal const string WidgetIconCssClass = "sfMvcIcn";
         private JobSearchModel model;
         private string templateName = "Simple";

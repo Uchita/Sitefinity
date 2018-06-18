@@ -11,31 +11,25 @@ using System.Linq;
 
 namespace JXTNext.Sitefinity.Connector.BusinessLogics
 {
-    public class JXTNextBusinessLogicsConnector : IBusinessLogicsConnector
+    public class JXTNextBusinessLogicsConnector : ConnectorBase, IBusinessLogicsConnector
     {
-        string API_TARGET_PATH = ConfigurationManager.AppSettings["JXTNextAPI_Path"];
-        int API_Operation_MaxWaitTimeMs;
         IJobListingMapper _jobMapper;
 
         public IntegrationConnectorType ConnectorType => IntegrationConnectorType.JXTNext;
 
-        public JXTNextBusinessLogicsConnector(IEnumerable<IJobListingMapper> jobMappers)
+        public JXTNextBusinessLogicsConnector(IEnumerable<IJobListingMapper> jobMappers) : base()
         {
             _jobMapper = jobMappers.Where(c=>c.mapperType == IntegrationMapperType.JXTNext).FirstOrDefault();
-
-            bool parseWaitTimeSuccess = int.TryParse(ConfigurationManager.AppSettings["JXTNextAPI_WaitTimeMs"], out API_Operation_MaxWaitTimeMs);
-            if (!parseWaitTimeSuccess)
-                API_Operation_MaxWaitTimeMs = 10000; //set default
         }
 
         public ICreateJobListingResponse AdvertiserCreateJob(ICreateJobListing jobDetails)
         {
             JXTNext_CreateJobListing jobRequest = jobDetails as JXTNext_CreateJobListing;
 
-            ConnectorPostRequest connectorRequest = new ConnectorPostRequest(API_Operation_MaxWaitTimeMs)
+            ConnectorPostRequest connectorRequest = new ConnectorPostRequest(HTTP_Requests_MaxWaitTime)
             {
                 Data = _jobMapper.ConvertToAPIEntity(jobDetails.JobData),
-                TargetUri = new Uri(API_TARGET_PATH + $"/api/advertiser/job")
+                TargetUri = new Uri(CONFIG_DataAccessTarget + $"/api/advertiser/job")
             };
             ConnectorResponse response = JXTNext.Common.API.Connector.Post(connectorRequest);
 
@@ -53,9 +47,9 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
         {
             JXTNext_GetJobListing jobRequest = jobDetails as JXTNext_GetJobListing;
 
-            ConnectorGetRequest connectorRequest = new ConnectorGetRequest(API_Operation_MaxWaitTimeMs)
+            ConnectorGetRequest connectorRequest = new ConnectorGetRequest(HTTP_Requests_MaxWaitTime)
             {
-                TargetUri = new Uri(API_TARGET_PATH + $"/api/advertiser/job/{jobRequest.JobID}")
+                TargetUri = new Uri(CONFIG_DataAccessTarget + $"/api/advertiser/job/{jobRequest.JobID}")
             };
             ConnectorResponse response = JXTNext.Common.API.Connector.Get(connectorRequest);
 

@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace JXTNext.Sitefinity.Connector
 {
-    public enum IntegrationConnectorType
+    public interface IConnector
     {
-        Test = 0,
-        JXTNext = 1,
-        Base = 2
+        string CONFIG_DataAccessTarget { get; }
+        int HTTP_Requests_MaxWaitTime { get; }
     }
 }

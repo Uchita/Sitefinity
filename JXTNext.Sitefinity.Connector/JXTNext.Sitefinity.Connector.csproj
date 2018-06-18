@@ -79,9 +79,12 @@
     <Compile Include="BusinessLogics\Models\Job\JobDetailsModel.cs" />
     <Compile Include="BusinessLogics\Models\Search\ISearchJobs.cs" />
     <Compile Include="BusinessLogics\Models\Search\JXTNext_SearchJobs.cs" />
+    <Compile Include="Base\ConnectorBase.cs" />
     <Compile Include="ConnectorModule.cs" />
     <Compile Include="ConnectorType.cs" />
+    <Compile Include="Base\IConnector.cs" />
     <Compile Include="Options\IOptionsConnector.cs" />
+    <Compile Include="Options\Models\IBaseRequest.cs" />
     <Compile Include="Options\Models\Job\Test_GetJobFiltersRequest.cs" />
     <Compile Include="Options\TestOptionsConnector.cs" />
     <Compile Include="Options\JXTNextOptionsConnector.cs" />

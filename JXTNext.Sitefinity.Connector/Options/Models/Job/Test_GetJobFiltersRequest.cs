@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace JXTNext.Sitefinity.Connector.Options.Models.Job
 {
-    public class Test_GetJobFiltersRequest : IGetJobFiltersRequest
+    public class Test_GetJobFiltersRequest : ConnectorBaseRequest, IGetJobFiltersRequest
     {
     }
 
-    public class Test_GetJobFiltersResponse : IGetJobFiltersResponse
+    public class Test_GetJobFiltersResponse : ConnectorBaseResponse, IGetJobFiltersResponse
     {
         public JobFiltersData Filters { get; set; }
     }

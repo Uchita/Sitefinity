@@ -6,6 +6,7 @@
 @Html.StyleSheet(Url.Content("~/Mvc/Scripts/JobSearch/dropdowntree.css"), "bottom")
 @Html.Script(Url.Content("~/Mvc/Scripts/JobSearch/dropdowntree.js"), "bottom")
 
+
 @functions {
     List<string> _itemsList = new List<string>();
     Dictionary<string, dynamic> _idNamesLevelsPair = new Dictionary<string, dynamic>();
@@ -27,6 +28,8 @@
         return _itemsList;
     }
 }
+
+<h1>lala</h1>
 
 @if (Model != null)
 {

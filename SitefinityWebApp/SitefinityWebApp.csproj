@@ -16,7 +16,6 @@
     </NuGetPackageImportStamp>
     <EnhancerAssembly>$(SolutionDir)\packages\Telerik.DataAccess.Fluent.2016.2.822.1\tools\enhancer\enhancer.exe</EnhancerAssembly>
   </PropertyGroup>
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -344,9 +343,8 @@
       <HintPath>..\packages\Sitefinity.RazorEngine.3.0.8.0\lib\net40\RazorEngine.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="RazorGenerator.Mvc">
+    <Reference Include="RazorGenerator.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
       <HintPath>..\packages\RazorGenerator.Mvc.2.3.12\lib\net40\RazorGenerator.Mvc.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="RazorGenerator.Templating">
       <HintPath>..\packages\RazorGenerator.Templating.2.1.1\lib\net40\RazorGenerator.Templating.dll</HintPath>
@@ -461,9 +459,8 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Tracing.5.2.3\lib\net45\System.Web.Http.Tracing.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.Http.WebHost">
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Mvc">
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
@@ -940,11 +937,6 @@
 	     The module also requires references to Elasticsearch.Net.dll and NEST.dll
 		 The source and additional info of the module can be found on the following Git repository:
 		 https://github.com/Sitefinity/ElasticsearchAuditLogger -->
-    <Reference Include="RazorGenerator.Mvc">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\RazorGenerator.Mvc.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="WebActivatorEx">
       <HintPath>..\packages\WebActivatorEx.2.0.3\lib\net40\WebActivatorEx.dll</HintPath>
       <Private>True</Private>
@@ -1245,7 +1237,9 @@
     <Content Include="Mvc\Views\JobAlert\DesignerView.Simple.cshtml" />
     <Content Include="Mvc\Views\JobDetails\DesignerView.Simple.cshtml" />
     <Content Include="Mvc\Views\JobSearchResults\JobsLatest.cshtml" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="ResourcePackages\Bootstrap\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.eot" />
     <Content Include="ResourcePackages\Bootstrap\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.ttf" />
@@ -1470,77 +1464,17 @@
     <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\sass\widgets\taxonomies\_sf-tags.scss" />
     <Content Include="ResourcePackages\JXTdemo\client-components\fields\html-field\sf-html-field.sf-cshtml" />
     <Content Include="ResourcePackages\JXTdemo\Layouts\default.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\AccountActivation\AccountActivation.AccountActivation.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\BlogPost\Detail.DetailPage.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\BlogPost\List.BlogPostList.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Blog\Detail.DetailPage.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Blog\List.BlogList.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Breadcrumb\Breadcrumb.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Captcha\Write.Default.cshtml" />
     <Content Include="ResourcePackages\JXTdemo\MVC\Views\Card\Card.cshtml" />
     <Content Include="ResourcePackages\JXTdemo\MVC\Views\Card\Card.cta.cshtml" />
     <Content Include="ResourcePackages\JXTdemo\MVC\Views\Card\Card.HeaderBanner.cshtml" />
     <Content Include="ResourcePackages\JXTdemo\MVC\Views\Card\Card.Hero.cshtml" />
     <Content Include="ResourcePackages\JXTdemo\MVC\Views\Card\Card.Simple.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\ChangePassword\ChangePassword.ChangePassword.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\CheckboxesField\Read.Default.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\CheckboxesField\Write.Default.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\CheckboxesField\Write.Default_Inline.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Comments\Comments.Default.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Comments\CommentsCount.Default.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\ContentBlock\Default.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\DocumentsList\Detail.DocumentDetails.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\DocumentsList\List.DocumentsList.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\DocumentsList\List.DocumentsTable.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Document\DocumentLink.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\DropdownListField\Read.Default.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\DropdownListField\Write.Default.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\EmbedCode\Index.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\EventScheduler\Detail.EventDetails.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\EventScheduler\List.Calendar.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Event\Detail.EventDetails.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Event\List.EventsList.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Feed\Feed.FeedLink.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\FileField\Write.Default.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\FlatTaxonomy\FlatTaxonomy.CloudList.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\FlatTaxonomy\FlatTaxonomy.SimpleList.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\FlatTaxonomy\FlatTaxonomy.TagCloud.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Form\Index.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\HierarchicalTaxonomy\HierarchicalTaxonomy.CategoriesList.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\ImageGallery\Detail.DetailPage.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\ImageGallery\List.ImageGallery.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\ImageGallery\List.OverlayGallery.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\ImageGallery\List.SimpleList.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\ImageGallery\List.ThumbnailStrip.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Image\Image.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Image\ImageBackground.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\JavaScript\Index.cshtml" />
     <Content Include="ResourcePackages\JXTdemo\MVC\Views\JobSearch\JobSearch.Simple.cshtml" />
     <Content Include="ResourcePackages\JXTdemo\MVC\Views\JobSearch\JobSearch.WordScroller.cshtml" />
     <Content Include="ResourcePackages\JXTdemo\MVC\Views\JobSearch\Simple.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\LanguageSelector\LanguageSelector.DropDownMenu.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\LanguageSelector\LanguageSelector.LanguageLinks.cshtml" />
     <Content Include="ResourcePackages\JXTdemo\MVC\Views\Layouts\default.cshtml" />
     <Content Include="ResourcePackages\JXTdemo\MVC\Views\Layouts\default2.cshtml" />
     <Content Include="ResourcePackages\JXTdemo\MVC\Views\Layouts\default3.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Layouts\off-canvas.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Lists\Detail.DetailPage.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Lists\List.AnchorList.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Lists\List.ExpandableList.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Lists\List.ExpandedList.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Lists\List.PagesList.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Lists\List.SimpleList.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\LoginForm\ForgotPassword.ForgottenPassword.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\LoginForm\LoginForm.LoginForm.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\LoginForm\ResetPassword.ResetPassword.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\LoginStatusExtended\LoginStatusExtended.LoginButton.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\LoginStatus\LoginStatus.LoginButton.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\LoginStatus\LoginStatus.LoginName.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\MultipleChoiceField\Read.Default.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\MultipleChoiceField\Write.Default.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\MultipleChoiceField\Write.Default_Inline.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\NavigationField\Read.Default.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\NavigationField\Read.ProgressBar.cshtml" />
     <Content Include="ResourcePackages\JXTdemo\MVC\Views\Navigation\Dropdown.cshtml" />
     <Content Include="ResourcePackages\JXTdemo\MVC\Views\Navigation\NavigationView.AccordianMenu.cshtml" />
     <Content Include="ResourcePackages\JXTdemo\MVC\Views\Navigation\NavigationView.Horizontal.cshtml" />
@@ -1550,44 +1484,15 @@
     <Content Include="ResourcePackages\JXTdemo\MVC\Views\Navigation\NavigationView.Sitemap.cshtml" />
     <Content Include="ResourcePackages\JXTdemo\MVC\Views\Navigation\NavigationView.Tabs.cshtml" />
     <Content Include="ResourcePackages\JXTdemo\MVC\Views\Navigation\NavigationView.Vertical.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\News\Detail.DetailPage.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\News\List.NewsList.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\PageBreak\Read.Default.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\ParagraphTextField\Read.Default.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\ParagraphTextField\Write.Default.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Position\Detail.Position.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Position\List.Position.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Profile\ConfirmPassword.ProfileEdit.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Profile\Edit.ProfileEdit.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Profile\Read.ProfilePreview.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Registration\Registration.RegistrationForm.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Reviews\Reviews.Default.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Reviews\ReviewsCount.Default.cshtml" />
     <Content Include="ResourcePackages\JXTdemo\MVC\Views\SearchBox\SearchBox.cshtml" />
     <Content Include="ResourcePackages\JXTdemo\MVC\Views\SearchResults\InputValidationError.cshtml" />
     <Content Include="ResourcePackages\JXTdemo\MVC\Views\SearchResults\SearchResults.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\SectionHeader\Read.Default.cshtml" />
     <Content Include="ResourcePackages\JXTdemo\MVC\Views\Shared\_JobSearchResults.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\SiteSelector\SiteSelector.DropDownMenu.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\SiteSelector\SiteSelector.SiteLinks.cshtml" />
     <Content Include="ResourcePackages\JXTdemo\MVC\Views\SocialLink\Simple.cshtml" />
     <Content Include="ResourcePackages\JXTdemo\MVC\Views\SocialShare\SocialShare.cshtml" />
     <Content Include="ResourcePackages\JXTdemo\MVC\Views\SocialShare\SocialShareIconsWithText.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\StyleSheet\Index.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\SubmitButton\Write.Default.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\SubscribeForm\SubscribeForm.SubscribeForm.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\TextField\Read.Default.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\TextField\Write.Default.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\UnsubscribeForm\UnsubscribeFormByEmailAddress.UnsubscribeForm.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\UnsubscribeForm\UnsubscribeFormByLink.UnsubscribeMessage.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\UsersList\Detail.UserDetails.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\UsersList\List.UsersList.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\UsersList\List.UsersListConsultant.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\VideoGallery\Detail.Default.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\VideoGallery\List.OverlayGallery.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\VideoGallery\List.VideoGallery.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Video\Video.Default.cshtml" />
     <Content Include="ResourcePackages\JXTdemo\package.json" />
+    <Content Include="ResourcePackages\JXTdemo\razorgenerator.directives" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Jxt.Sitefinity.Jobs\Jxt.Sitefinity.Jobs.csproj">

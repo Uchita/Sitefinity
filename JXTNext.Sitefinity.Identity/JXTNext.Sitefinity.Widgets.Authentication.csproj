@@ -251,10 +251,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <EmbeddedResource Include="Mvc\Views\LoginStatusExtended\LoginStatusExtended.LoginButton.cshtml" />
-    <EmbeddedResource Include="Mvc\Views\LoginStatusExtended\DesignerView.Simple.cshtml" />
+    <None Include="Mvc\Views\LoginStatusExtended\LoginStatusExtended.LoginButton.cshtml" />
+    <None Include="Mvc\Views\LoginStatusExtended\DesignerView.Simple.cshtml" />
     <EmbeddedResource Include="Mvc\Views\LoginStatusExtended\DesignerView.Simple.json" />
-    <EmbeddedResource Include="Mvc\Views\LoginStatusExtended\LoginStatusExtended.LoginName.cshtml" />
+    <None Include="Mvc\Views\LoginStatusExtended\LoginStatusExtended.LoginName.cshtml" />
     <None Include="OpenAccessNuGet.targets" />
     <None Include="packages.config" />
   </ItemGroup>

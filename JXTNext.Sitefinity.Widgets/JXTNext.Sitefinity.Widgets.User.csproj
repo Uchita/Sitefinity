@@ -325,6 +325,8 @@
     <None Include="Mvc\Styles\images\kendoui.woff" />
     <None Include="OpenAccessNuGet.targets" />
     <None Include="packages.config" />
+    <EmbeddedResource Include="ResourcePackages\JXTDemo\MVC\Views\Registration\Registration.JXTNext_RegistrationModel.cshtml" />
+    <Content Include="ResourcePackages\JXTDemo\razorgenerator.directives" />
     <None Include="web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -337,7 +339,6 @@
     <Folder Include="Mvc\Controllers\" />
     <Folder Include="Mvc\StringResources\" />
     <Folder Include="Mvc\Views\" />
-    <Folder Include="ResourcePackages\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Mvc\Scripts\kendo.all.min.js" />

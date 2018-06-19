@@ -1115,14 +1115,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Sitefinity\" />
+    <Folder Include="Mvc\" />
     <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_Data\GeoLocation\GeoLiteCity.dat" />
     <Content Include="OpenAccessNuGet.targets" />
-    <Content Include="Mvc\Views\Registration\Registration.JXTNext_RegistrationModel.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

@@ -1,4 +1,4 @@
-﻿using JXTNext.Sitefinity.Identity.LoginStatusExtended.Mvc.Models;
+﻿using JXTNext.Sitefinity.Widgets.Authentication.Mvc.Models.LoginStatusExtended;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +15,7 @@ using SecConfig = Telerik.Sitefinity.Security.Configuration;
 using Telerik.Sitefinity.Security;
 using System.Web;
 
-namespace JXTNext.Sitefinity.Identity.Mvc.Controllers
+namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
 {
     [ControllerToolboxItem(Name = "LoginStatusExtended_MVC", Title = "Login Status Extended", SectionName = "Login", CssClass = LoginStatusExtendedController.WidgetIconCssClass)]
     public class LoginStatusExtendedController : Controller

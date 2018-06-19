@@ -1,27 +1,19 @@
-﻿using Autofac;
-using JXTNext.Sitefinity.Connector;
-using JXTNext.Sitefinity.Connector.BusinessLogics;
-using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search;
-using JXTNext.Sitefinity.Connector.Options;
-using JXTNext.Sitefinity.Connector.Options.Models.Job;
-using JXTNext.Sitefinity.Frontend.Mvc.StringResources;
+﻿using JXTNext.Sitefinity.Widgets.Authentication.Mvc.StringResources;
+using JXTNext.Sitefinity.Widgets.Job.Mvc.StringResources;
+using JXTNext.Sitefinity.Widgets.JobAlert.Mvc.StringResources;
+using JXTNext.Sitefinity.Widgets.Social.Mvc.StringResources;
+using JXTNext.Sitefinity.Widgets.User.Mvc.Models;
 using SitefinityWebApp.App_Start;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
-using System.Web.Routing;
-using System.Web.Security;
-using System.Web.SessionState;
 using Telerik.Microsoft.Practices.Unity;
 using Telerik.Sitefinity.Abstractions;
 using Telerik.Sitefinity.Data;
+using Telerik.Sitefinity.Frontend;
+using Telerik.Sitefinity.Frontend.Identity.Mvc.Models.Registration;
 using Telerik.Sitefinity.Localization;
 using Telerik.Sitefinity.Mvc;
-using JXTNext.Sitefinity.Identity.LoginStatusExtended.Mvc.StringResources;
 
 namespace SitefinityWebApp
 {
@@ -84,6 +76,9 @@ namespace SitefinityWebApp
                 "jxt",
                 "jxt/{controller}/{id}",
                 new { id = RouteParameter.Optional });
+
+
+            FrontendModule.Current.DependencyResolver.Rebind<IRegistrationModel>().To<JXTNext_RegistrationModel>();
         }
 
     }

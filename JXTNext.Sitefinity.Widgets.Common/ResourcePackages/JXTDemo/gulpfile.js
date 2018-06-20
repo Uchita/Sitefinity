@@ -16,7 +16,7 @@ var sassOptions = {
 //     dest: './dist/sassdoc'
 //   };
 
-function style(){
+/*function style(){
   return gulp
     .src(input)
     // Initialize sourcemaps before compilation starts
@@ -31,8 +31,29 @@ function style(){
 }
 function watch(){
   gulp.watch(input, style);
-}
+}*/
 
+gulp.task('sass', function () {
+    return gulp
+        .src(input)
+        // Initialize sourcemaps before compilation starts
+        .pipe(sourcemaps.init())
+        .pipe(sass(sassOptions).on('error', sass.logError))
+        .pipe(mq({
+            log: true
+        }))
+        // Now add/write the sourcemaps
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest(output));
+});
+
+// Gulp watch syntax
+gulp.task('watch', function () {
+    gulp.watch(input, ['sass']);
+    // Other watchers
+});
+
+gulp.task('default', ['sass', 'watch']);
 
 // gulp.task('sassdoc', function(){
 //     return gulp
@@ -41,4 +62,4 @@ function watch(){
 //     .resume();
 // });
 
-exports.watch = watch;
+//exports.watch = watch;

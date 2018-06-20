@@ -1,72 +1,92 @@
-.jn_search.cs-layout{
+.jn_search.cs-layout {
     position: relative;
     z-index: 1;
-    >.row{
+
+    > .row {
         margin-right: 0;
         margin-left: 0;
     }
-    .form-fields-group{
+
+    .form-fields-group {
         background: $brightColor;
-        border-radius:40px 0 0 40px;
+        border-radius: 40px 0 0 40px;
         height: 80px;
         padding: 10px 20px;
         width: calc(100% - 210px);
         margin-right: 10px;
         //input text box
-        input{
-            border:0;        
+        input {
+            border: 0;
             padding: 20px 25px;
             font-size: 1.6rem;
             font-weight: 300;
             line-height: 1.3;
             width: 100%;
         }
-        @include bp-max(sm){
+
+        @include bp-max(sm) {
             width: 100%;
-            border-radius:30px 30px 0 0;
-            
+            border-radius: 30px 30px 0 0;
             box-shadow: 5px 10px 30px 3px rgba(0, 0, 0, 0.18);
             margin-bottom: 10px;
             margin-right: 0;
         }
     }
-    .button-wrapper{
-        @include bp-max(sm){
+
+    .button-wrapper {
+        @include bp-max(sm) {
             width: 100%;
-            .btn{
+
+            .btn {
                 box-shadow: 5px 10px 30px 3px rgba(0, 0, 0, 0.18);
             }
         }
     }
-    .btn{
+
+    .btn {
         border-radius: 0 40px 40px 0;
         height: 80px;
-        @include bp-max(sm){
+
+        @include bp-max(sm) {
             border-radius: 0 0px 30px 30px;
             width: 100%;
         }
     }
-
     //dropdown select box
-    label{
+    label {
         margin-bottom: 0;
     }
-    label[for="location"]{
+
+    label[for="location"] {
         max-width: 245px;
         padding-right: 0;
     }
-    .bootstrap-select{
+
+    .bootstrap-select {
         padding-left: 15px;
     }
-    .dropdown-toggle{
+
+    .dropdown-toggle {
         height: 60px;
         position: relative;
-        padding-left: 35px;
+        padding-left: 37px;
         font-size: 1.6rem;
         font-weight: 300;
         border: none;
         border-radius: 0;
-        &::before{
+        width: 100%;
+        text-align: left;
+
+        .dropdowntree-name {
+            display: inline-block;
+            overflow: hidden;
+            text-overflow:ellipsis;
+            width: 100%;
+            text-align: left;
+            line-height:1;
+        }
+
+        &::before {
             content: '\e902';
             font: 3rem/1 "jn-icon";
             color: $p1Color;
@@ -74,9 +94,18 @@
             top: 14px;
             left: 0;
         }
-        
+
+        &::after {
+            content: '\e908';
+            font: 0.5rem/1 "jn-icon";
+            color: $baseColor;
+            border: none;
+            margin-left: 0.6em;
+            vertical-align: 0.655em;
+        }
     }
-    &::after{
+
+    &::after {
         content: '';
         box-shadow: 5px 16px 80px 7px rgba(0, 0, 0, 1);
         position: absolute;
@@ -85,20 +114,68 @@
         height: 0;
         z-index: -1;
         left: 0;
-        @include bp-max(sm){
+
+        @include bp-max(sm) {
             display: none;
         }
     }
 }
 
-.jn_jobSearch.cs-layout{
-    [data-id="location"]{
-        &::before{
+.jn_jobSearch.cs-layout {
+    label[rel*="location"] .dropdown-toggle {
+        &::before {
             content: '\e912';
         }
     }
-    &::after{
+
+    &::after {
         box-shadow: 5px 30px 110px 7px rgba(0, 0, 0, 0.9);
+    }
+    //dropdown tree
+    .dropdown-tree {
+        ul {
+            font-size: 1.4rem;
+            width: 100%;
+
+            input {
+                padding: 10px 20px;
+                font-size: 1.4rem;
+                border: none;
+                border-bottom: 1px solid lighten($fontColor,40%);
+            }
+            ul{
+                padding-left:0;
+            }
+        }
+
+        li {
+            position: relative;
+            padding: 2px 10px;
+
+            i {
+                position: absolute;
+                left: 0;
+                top: 10px;
+            }
+        }
+
+        a {
+            display: block !important;
+            position: relative;
+            padding:5px 20px;
+
+            .arrow {
+                position: absolute;
+                right: 0;
+                top: 13px;
+                width:20px;
+                margin-right:0;
+                text-align: center;
+                i{
+                    position:static;
+                }
+            }
+        }
     }
 }
 

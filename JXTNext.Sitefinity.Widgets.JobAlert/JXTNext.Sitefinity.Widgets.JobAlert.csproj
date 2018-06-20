@@ -309,18 +309,10 @@
     <None Include="Mvc\Styles\fonts\glyphs\WebComponentsIcons.woff" />
     <None Include="Mvc\Styles\images\kendoui.ttf" />
     <None Include="Mvc\Styles\images\kendoui.woff" />
-    <EmbeddedResource Include="Mvc\Views\JobAlert\Create.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mvc\Views\JobAlert\DesignerView.Simple.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mvc\Views\JobAlert\Edit.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mvc\Views\JobAlert\Simple.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    <EmbeddedResource Include="Mvc\Views\JobAlert\Create.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\JobAlert\DesignerView.Simple.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\JobAlert\Edit.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\JobAlert\Simple.cshtml" />
     <None Include="OpenAccessNuGet.targets" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -333,9 +325,7 @@
     <Content Include="Mvc\Styles\kendo.default.mobile.min.css" />
     <Content Include="Mvc\Views\readme.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ResourcePackages\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\JXTNext.Sitefinity.Common\JXTNext.Sitefinity.Common.csproj">
       <Project>{9ccdbc01-ef02-4d74-9385-5c0f1da2eb7a}</Project>

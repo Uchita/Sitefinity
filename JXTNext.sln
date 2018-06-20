@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JXTNext.Sitefinity.Widgets.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JXTNext.Sitefinity.Widgets.Social", "JXTNext.Sitefinity.Widgets.Social\JXTNext.Sitefinity.Widgets.Social.csproj", "{21A841B2-6B3A-46CD-B0C0-7F40CA812686}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JXTNext.Sitefinity.Widgets.Common", "JXTNext.Sitefinity.Widgets.Common\JXTNext.Sitefinity.Widgets.Common.csproj", "{3AFCCBDC-A395-48E5-AA1C-8FE9CFDD16DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -90,6 +92,12 @@ Global
 		{21A841B2-6B3A-46CD-B0C0-7F40CA812686}.Release Pro|Any CPU.Build.0 = Release|Any CPU
 		{21A841B2-6B3A-46CD-B0C0-7F40CA812686}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21A841B2-6B3A-46CD-B0C0-7F40CA812686}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AFCCBDC-A395-48E5-AA1C-8FE9CFDD16DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AFCCBDC-A395-48E5-AA1C-8FE9CFDD16DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AFCCBDC-A395-48E5-AA1C-8FE9CFDD16DB}.Release Pro|Any CPU.ActiveCfg = Release|Any CPU
+		{3AFCCBDC-A395-48E5-AA1C-8FE9CFDD16DB}.Release Pro|Any CPU.Build.0 = Release|Any CPU
+		{3AFCCBDC-A395-48E5-AA1C-8FE9CFDD16DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AFCCBDC-A395-48E5-AA1C-8FE9CFDD16DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

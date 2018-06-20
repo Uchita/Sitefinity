@@ -1,0 +1,29 @@
+// Home banner
+// posible widget to be use: jn_banner widget
+#jn_banner{
+    clear: both;
+    text-align: center;
+    h1{
+       font-size: 12rem;
+       @include bp-max(md){
+            font-size: 8rem;
+        }
+        @include bp-max(xs){
+            font-size: 4rem;
+        } 
+    }
+    .row{
+        min-height: 90vh;
+    }
+}
+.banner-bg{
+    background-repeat: no-repeat;
+    background-position: center top;
+}
+.bg-cover{
+    background-size: cover;
+}
+
+.banner-wrapper{
+    position: relative;
+}

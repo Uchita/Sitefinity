@@ -1115,12 +1115,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Sitefinity\" />
-    <Folder Include="Mvc\" />
     <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_Data\GeoLocation\GeoLiteCity.dat" />
     <Content Include="OpenAccessNuGet.targets" />
+    <Content Include="Mvc\Views\Registration\Registration.RegistrationModel.cshtml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -1284,6 +1284,10 @@
     <ProjectReference Include="..\JXTNext.Sitefinity.Identity\JXTNext.Sitefinity.Widgets.Authentication.csproj">
       <Project>{9a208d8f-aa97-4ce5-a42b-71bde987124c}</Project>
       <Name>JXTNext.Sitefinity.Widgets.Authentication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JXTNext.Sitefinity.Widgets.Common\JXTNext.Sitefinity.Widgets.Common.csproj">
+      <Project>{3afccbdc-a395-48e5-aa1c-8fe9cfdd16db}</Project>
+      <Name>JXTNext.Sitefinity.Widgets.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\JXTNext.Sitefinity.Widgets.JobAlert\JXTNext.Sitefinity.Widgets.JobAlert.csproj">
       <Project>{3c241adf-92c1-4cf4-8b45-a6563f78cc50}</Project>

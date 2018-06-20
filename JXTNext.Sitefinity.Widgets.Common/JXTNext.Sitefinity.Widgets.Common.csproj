@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3AFCCBDC-A395-48E5-AA1C-8FE9CFDD16DB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JXTNext.Sitefinity.Widgets.Common</RootNamespace>
+    <AssemblyName>JXTNext.Sitefinity.Widgets.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\SitefinityWebApp\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\css\sitefinity.css" />
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\css\style.css" />
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\fonts\jn_icons.svg" />
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\banner-bg.jpg" />
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\body-bg.jpg" />
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\curve-divider.png" />
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\footer-bg.jpg" />
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\job-feed.jpg" />
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\links-graphics.png" />
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\links-graphics_left.png" />
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\links-graphics_right.png" />
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\logo-footer.png" />
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\logo.png" />
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\quote-open.png" />
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\quote.png" />
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\star-chain.jpg" />
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\ticker-bg.jpg" />
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\js\bootstrap-slider.js" />
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\js\myjs.js" />
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\js\owl.carousel.min.js" />
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\min\combined_C2867A207C6E04B4D461591E185C002D.css" />
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\min\combined_FD4DF930D2C529EEFAE1371E6D2EEE48.css" />
+    <Content Include="ResourcePackages\JXTDemo\assets\src\project\js\main.js" />
+    <Content Include="ResourcePackages\JXTDemo\assets\src\sitefinity\images\sprite.png" />
+    <Content Include="ResourcePackages\JXTDemo\assets\src\sitefinity\images\sprite\blogger.png" />
+    <Content Include="ResourcePackages\JXTDemo\assets\src\sitefinity\images\sprite\comment.png" />
+    <Content Include="ResourcePackages\JXTDemo\assets\src\sitefinity\images\sprite\delicious.png" />
+    <Content Include="ResourcePackages\JXTDemo\assets\src\sitefinity\images\sprite\digg.png" />
+    <Content Include="ResourcePackages\JXTDemo\assets\src\sitefinity\images\sprite\email.png" />
+    <Content Include="ResourcePackages\JXTDemo\assets\src\sitefinity\images\sprite\facebook.png" />
+    <Content Include="ResourcePackages\JXTDemo\assets\src\sitefinity\images\sprite\feed.png" />
+    <Content Include="ResourcePackages\JXTDemo\assets\src\sitefinity\images\sprite\google.png" />
+    <Content Include="ResourcePackages\JXTDemo\assets\src\sitefinity\images\sprite\linkedin.png" />
+    <Content Include="ResourcePackages\JXTDemo\assets\src\sitefinity\images\sprite\mailto.png" />
+    <Content Include="ResourcePackages\JXTDemo\assets\src\sitefinity\images\sprite\myspace.png" />
+    <Content Include="ResourcePackages\JXTDemo\assets\src\sitefinity\images\sprite\reddit.png" />
+    <Content Include="ResourcePackages\JXTDemo\assets\src\sitefinity\images\sprite\remove.png" />
+    <Content Include="ResourcePackages\JXTDemo\assets\src\sitefinity\images\sprite\stumble-upon.png" />
+    <Content Include="ResourcePackages\JXTDemo\assets\src\sitefinity\images\sprite\tumblr.png" />
+    <Content Include="ResourcePackages\JXTDemo\assets\src\sitefinity\images\sprite\twitter.png" />
+    <Content Include="ResourcePackages\JXTDemo\GridSystem\Templates\container.html" />
+    <Content Include="ResourcePackages\JXTDemo\GridSystem\Templates\grid-12.html" />
+    <Content Include="ResourcePackages\JXTDemo\GridSystem\Templates\grid-2+3+2+3+2.html" />
+    <Content Include="ResourcePackages\JXTDemo\GridSystem\Templates\grid-3+3+3+3.html" />
+    <Content Include="ResourcePackages\JXTDemo\GridSystem\Templates\grid-3+6+3.html" />
+    <Content Include="ResourcePackages\JXTDemo\GridSystem\Templates\grid-3+9.html" />
+    <Content Include="ResourcePackages\JXTDemo\GridSystem\Templates\grid-4+4+4.html" />
+    <Content Include="ResourcePackages\JXTDemo\GridSystem\Templates\grid-4+8.html" />
+    <Content Include="ResourcePackages\JXTDemo\GridSystem\Templates\grid-6+6.html" />
+    <Content Include="ResourcePackages\JXTDemo\GridSystem\Templates\grid-8+4.html" />
+    <Content Include="ResourcePackages\JXTDemo\GridSystem\Templates\grid-9+3.html" />
+    <Content Include="ResourcePackages\JXTDemo\gulpfile.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\jn_icons.eot" />
+    <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\jn_icons.ttf" />
+    <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\jn_icons.woff" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\components\_banner.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\components\_footer.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\components\_forms.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\components\_header.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\components\_navigation.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\helper\_color-theme.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\helper\_common.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\helper\_icons.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\helper\_mixin.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\helper\_variables.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\pages\_blog.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\pages\_homepage.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\pages\_jobresult.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\plugins\_bootstrap-select.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\plugins\_bootstrap-slider.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\plugins\_owl.carousel.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\style.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_candidate-blocklist.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_card-cta.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_gridBox.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_image-scroller.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_innerbanner.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_jobSearch-scroller.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_jobSearch.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_jobsFeed.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_multicard.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_social-links.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_teamFeed.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_testimonialFeed.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_timeline.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_word-scroller.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\base\_pre.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\components\loading\_loading.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\settings\_variables.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\sitefinity.bootstrap.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\sitefinity.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\tools\_bootstrap-mixins.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\tools\_mixins.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\utilities\_spacing.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\utilities\_text.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\widgets\code\_sf-code.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\widgets\comments\_sf-comments.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\widgets\comments\_sf-ratings.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\widgets\contentBlock\_sf-content-block.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\widgets\documentList\_sf-document-list.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\widgets\event\_sf-event.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\widgets\feed\_sf-feed.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\widgets\fileField\sf-file-field.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\widgets\formNavigation\sf-form-nav.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\widgets\gallery\_gallery.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\widgets\languageSelector\_sf-language-selector.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\widgets\list\_sf-list.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\widgets\login\_sf-login.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\widgets\media\_sf-media.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\widgets\navigation\_navbar.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\widgets\navigation\_sitemap.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\widgets\navigation\_stacked.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\widgets\profile\_sf-profile.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\widgets\searchBox\_sf-search-box.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\widgets\searchResults\_sf-search-results.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\widgets\siteSelector\_sf-site-selector.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\widgets\socialShare\sf-sprite.mustache" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\widgets\socialShare\_sf-social-share.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\widgets\socialShare\_sf-sprite.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\widgets\taxonomies\_sf-tags.scss" />
+    <None Include="ResourcePackages\JXTDemo\client-components\fields\html-field\sf-html-field.sf-cshtml" />
+    <None Include="ResourcePackages\JXTDemo\Layouts\JXTDemo_Layout.cshtml" />
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\Card\Card.cshtml" />
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\Card\Card.cta.cshtml" />
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\Card\Card.HeaderBanner.cshtml" />
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\Card\Card.Hero.cshtml" />
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\Card\Card.Simple.cshtml" />
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\JobSearch\JobSearch.Simple.cshtml" />
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\JobSearch\JobSearch.WordScroller.cshtml" />
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\JobSearch\Simple.cshtml" />
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\Layouts\JXTDemo_default.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\Layouts\JXTDemo_default2.cshtml" />
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\Layouts\JXTDemo_default3.cshtml" />
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\Navigation\Dropdown.cshtml" />
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\Navigation\NavigationView.AccordianMenu.cshtml" />
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\Navigation\NavigationView.Horizontal.cshtml" />
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\Navigation\NavigationView.HorizontalSuraj.cshtml" />
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\Navigation\NavigationView.Icons.cshtml" />
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\Navigation\NavigationView.Simple.cshtml" />
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\Navigation\NavigationView.Sitemap.cshtml" />
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\Navigation\NavigationView.Tabs.cshtml" />
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\Navigation\NavigationView.Vertical.cshtml" />
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\Registration\Registration.JXTNext_RegistrationModel.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\SearchBox\SearchBox.cshtml" />
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\SearchResults\InputValidationError.cshtml" />
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\SearchResults\SearchResults.cshtml" />
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\Shared\_JobSearchResults.cshtml" />
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\SocialLink\Simple.cshtml" />
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\SocialShare\SocialShare.cshtml" />
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\SocialShare\SocialShareIconsWithText.cshtml" />
+    <None Include="ResourcePackages\JXTDemo\package.json" />
+    <None Include="ResourcePackages\JXTDemo\razorgenerator.directives">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

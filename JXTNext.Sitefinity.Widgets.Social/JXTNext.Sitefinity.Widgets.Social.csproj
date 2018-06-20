@@ -318,18 +318,12 @@
     <None Include="Mvc\Styles\fonts\glyphs\WebComponentsIcons.woff" />
     <None Include="Mvc\Styles\images\kendoui.ttf" />
     <None Include="Mvc\Styles\images\kendoui.woff" />
-    <EmbeddedResource Include="Mvc\Views\SocialLink\DesignerView.Simple.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mvc\Views\SocialLink\Simple.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    <EmbeddedResource Include="Mvc\Views\SocialLink\DesignerView.Simple.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\SocialLink\Simple.cshtml" />
     <None Include="OpenAccessNuGet.targets" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ResourcePackages\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="OpenAccessNuget.targets" />
   <Import Project="..\packages\RazorGenerator.MsBuild.2.4.1\build\RazorGenerator.MsBuild.targets" Condition="Exists('..\packages\RazorGenerator.MsBuild.2.4.1\build\RazorGenerator.MsBuild.targets')" />

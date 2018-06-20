@@ -7,7 +7,7 @@
 @*Add scripts and stylesheets*@
 @Html.Script(Url.WidgetContent("Mvc/Scripts/Navigation.js"), "bottom")
 
-<select class="nav-select form-control">
+<select class="nav-select form-control testclass">
     @foreach (var node in Model.Nodes)
     {
         @RenderSubLevelsRecursive(node, "");

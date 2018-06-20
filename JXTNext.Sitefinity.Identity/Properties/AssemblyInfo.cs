@@ -6,11 +6,11 @@ using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("JXTNext.Sitefinity.Identity")]
+[assembly: AssemblyTitle("JXTNext.Sitefinity.Widgets.Authentication")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("JXTNext.Sitefinity.Identity")]
+[assembly: AssemblyProduct("JXTNext.Sitefinity.Widgets.Authentication")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

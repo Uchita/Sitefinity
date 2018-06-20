@@ -3,9 +3,10 @@ using System.Web.Mvc;
 using System.Web.WebPages;
 using RazorGenerator.Mvc;
 
-[assembly: WebActivatorEx.PostApplicationStartMethod(typeof(JXTNext.Sitefinity.Identity.RazorGeneratorMvcStart), "Start")]
+[assembly: WebActivatorEx.PostApplicationStartMethod(typeof(JXTNext.Sitefinity.Widgets.Authentication.RazorGeneratorMvcStart), "Start")]
 
-namespace JXTNext.Sitefinity.Identity {
+namespace JXTNext.Sitefinity.Widgets.Authentication
+{
     public static class RazorGeneratorMvcStart {
         public static void Start() {
             var engine = new PrecompiledMvcEngine(typeof(RazorGeneratorMvcStart).Assembly) {

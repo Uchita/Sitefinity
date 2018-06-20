@@ -950,46 +950,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\ConversionHelper.cs" />
-    <Compile Include="Helpers\SitefinityHelper.cs" />
-    <Compile Include="Mvc\Controllers\BaseLayout2Controller.cs" />
-    <Compile Include="Mvc\Controllers\BaseLayoutController.cs" />
-    <Compile Include="Mvc\Controllers\JobAlertController.cs" />
-    <Compile Include="Mvc\Controllers\JobApplicationController.cs" />
-    <Compile Include="Mvc\Controllers\JobDetailsController.cs" />
-    <Compile Include="Mvc\Controllers\JobFiltersController.cs" />
-    <Compile Include="Mvc\Controllers\JobSearchController.cs" />
-    <Compile Include="Mvc\Controllers\JobSearchResultsController.cs" />
-    <Compile Include="Mvc\Controllers\SocialLinkController.cs" />
-    <Compile Include="Mvc\Models\JobAlertModel.cs" />
-    <Compile Include="Mvc\Models\JobSearchModel.cs" />
-    <Compile Include="Mvc\Models\JobSearchResultsFilterModel.cs" />
-    <Compile Include="Mvc\Models\SocialLinkModel.cs" />
-    <Compile Include="Mvc\Models\SocialViewModel.cs" />
-    <Compile Include="Mvc\StringResources\JobAlertResources.cs" />
-    <Compile Include="Mvc\StringResources\JobDetailsResources.cs" />
-    <Compile Include="Mvc\StringResources\JobSearchResources.cs" />
-    <Compile Include="Mvc\StringResources\JobSearchResultsResources.cs" />
-    <Compile Include="Mvc\StringResources\SocialLinkResources.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Pages\login.html" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="Mvc\Scripts\JobAlert\designerview-simple.js" />
-    <Content Include="Mvc\Scripts\JobDetails\designerview-simple.js" />
-    <Content Include="Mvc\Scripts\JobFilters\designerview-simple.js" />
-    <Content Include="Mvc\Scripts\JobSearchResults\designerview-simple.js" />
-    <Content Include="Mvc\Scripts\JobSearch\designerview-simple.js" />
-    <Content Include="Mvc\Scripts\JobSearch\dropdowntree.css" />
-    <Content Include="Mvc\Scripts\JobSearch\dropdowntree.js" />
-    <Content Include="Mvc\Scripts\kendo.all.min.js" />
-    <Content Include="Mvc\Scripts\SocialLink\designerview-simple.js" />
-    <Content Include="Mvc\Styles\fonts\glyphs\WebComponentsIcons.svg" />
-    <Content Include="Mvc\Styles\kendo.common.min.css" />
-    <Content Include="Mvc\Styles\kendo.default.min.css" />
-    <Content Include="Mvc\Styles\kendo.default.mobile.min.css" />
     <Content Include="ResourcePackages\Bootstrap\assets\dist\css\main.css" />
     <Content Include="ResourcePackages\Bootstrap\assets\dist\css\main.min.css" />
     <Content Include="ResourcePackages\Bootstrap\assets\dist\fonts\bootstrap\glyphicons-halflings-regular.svg" />
@@ -1030,58 +996,6 @@
     <Content Include="ResourcePackages\Bootstrap\GridSystem\Templates\grid-9+3.html" />
     <Content Include="ResourcePackages\Bootstrap\gruntfile.js" />
     <Content Include="ResourcePackages\Bootstrap\MVC\Scripts\Navigation\pills.js" />
-    <Content Include="ResourcePackages\JXTdemo\assets\dist\css\sitefinity.css" />
-    <Content Include="ResourcePackages\JXTdemo\assets\dist\css\style.css" />
-    <Content Include="ResourcePackages\JXTdemo\assets\dist\fonts\jn_icons.svg" />
-    <Content Include="ResourcePackages\JXTdemo\assets\dist\images\banner-bg.jpg" />
-    <Content Include="ResourcePackages\JXTdemo\assets\dist\images\body-bg.jpg" />
-    <Content Include="ResourcePackages\JXTdemo\assets\dist\images\curve-divider.png" />
-    <Content Include="ResourcePackages\JXTdemo\assets\dist\images\footer-bg.jpg" />
-    <Content Include="ResourcePackages\JXTdemo\assets\dist\images\job-feed.jpg" />
-    <Content Include="ResourcePackages\JXTdemo\assets\dist\images\links-graphics.png" />
-    <Content Include="ResourcePackages\JXTdemo\assets\dist\images\links-graphics_left.png" />
-    <Content Include="ResourcePackages\JXTdemo\assets\dist\images\links-graphics_right.png" />
-    <Content Include="ResourcePackages\JXTdemo\assets\dist\images\logo-footer.png" />
-    <Content Include="ResourcePackages\JXTdemo\assets\dist\images\logo.png" />
-    <Content Include="ResourcePackages\JXTdemo\assets\dist\images\quote-open.png" />
-    <Content Include="ResourcePackages\JXTdemo\assets\dist\images\quote.png" />
-    <Content Include="ResourcePackages\JXTdemo\assets\dist\images\star-chain.jpg" />
-    <Content Include="ResourcePackages\JXTdemo\assets\dist\images\ticker-bg.jpg" />
-    <Content Include="ResourcePackages\JXTdemo\assets\dist\js\bootstrap-slider.js" />
-    <Content Include="ResourcePackages\JXTdemo\assets\dist\js\myjs.js" />
-    <Content Include="ResourcePackages\JXTdemo\assets\dist\js\owl.carousel.min.js" />
-    <Content Include="ResourcePackages\JXTdemo\assets\dist\min\combined_C2867A207C6E04B4D461591E185C002D.css" />
-    <Content Include="ResourcePackages\JXTdemo\assets\dist\min\combined_FD4DF930D2C529EEFAE1371E6D2EEE48.css" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\project\js\main.js" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\images\sprite.png" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\images\sprite\blogger.png" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\images\sprite\comment.png" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\images\sprite\delicious.png" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\images\sprite\digg.png" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\images\sprite\email.png" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\images\sprite\facebook.png" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\images\sprite\feed.png" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\images\sprite\google.png" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\images\sprite\linkedin.png" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\images\sprite\mailto.png" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\images\sprite\myspace.png" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\images\sprite\reddit.png" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\images\sprite\remove.png" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\images\sprite\stumble-upon.png" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\images\sprite\tumblr.png" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\images\sprite\twitter.png" />
-    <Content Include="ResourcePackages\JXTdemo\GridSystem\Templates\container.html" />
-    <Content Include="ResourcePackages\JXTdemo\GridSystem\Templates\grid-12.html" />
-    <Content Include="ResourcePackages\JXTdemo\GridSystem\Templates\grid-2+3+2+3+2.html" />
-    <Content Include="ResourcePackages\JXTdemo\GridSystem\Templates\grid-3+3+3+3.html" />
-    <Content Include="ResourcePackages\JXTdemo\GridSystem\Templates\grid-3+6+3.html" />
-    <Content Include="ResourcePackages\JXTdemo\GridSystem\Templates\grid-3+9.html" />
-    <Content Include="ResourcePackages\JXTdemo\GridSystem\Templates\grid-4+4+4.html" />
-    <Content Include="ResourcePackages\JXTdemo\GridSystem\Templates\grid-4+8.html" />
-    <Content Include="ResourcePackages\JXTdemo\GridSystem\Templates\grid-6+6.html" />
-    <Content Include="ResourcePackages\JXTdemo\GridSystem\Templates\grid-8+4.html" />
-    <Content Include="ResourcePackages\JXTdemo\GridSystem\Templates\grid-9+3.html" />
-    <Content Include="ResourcePackages\JXTdemo\gulpfile.js" />
     <Content Include="Sitefinity\Default.aspx" />
     <Content Include="Sitefinity\Public\Services\Thunder\ThunderService.svc" />
     <Content Include="Sitefinity\Services\Analytics\AnalyticsPermissionsService.svc" />
@@ -1193,10 +1107,6 @@
     <Content Include="web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Mvc\Controllers\readme.txt" />
-    <Content Include="Mvc\Models\readme.txt" />
-    <Content Include="Mvc\Views\readme.txt" />
-    <Content Include="Mvc\Views\Shared\readme.txt" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\RadSpell\de-DE.tdf" />
@@ -1209,34 +1119,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App_Data\GeoLocation\GeoLiteCity.dat" />
-    <Content Include="Mvc\Views\Shared\_Layout.cshtml" />
-    <Content Include="Mvc\Views\BaseLayout\MvcLayout2.cshtml" />
-    <Content Include="Mvc\Views\BaseLayout2\MvcLayout1.cshtml" />
-    <Content Include="Mvc\Views\BaseLayout2\MvcLayout2.cshtml" />
-    <Content Include="Mvc\Views\SocialLink\DesignerView.Simple.cshtml" />
-    <Content Include="Mvc\Views\SocialLink\Simple.cshtml" />
     <Content Include="OpenAccessNuGet.targets" />
-    <Content Include="Mvc\Views\JobSearch\DesignerView.Simple.cshtml" />
-    <Content Include="Mvc\Views\JobSearch\JobSearchMockData.json" />
-    <Content Include="Mvc\Views\JobSearch\JobSearch.Simple.cshtml" />
-    <Content Include="Mvc\Views\JobSearchResults\JobsAll.cshtml" />
-    <Content Include="Mvc\Views\JobSearchResults\DesignerView.Simple.cshtml" />
-    <Content Include="Mvc\Views\JobDetails\Simple.cshtml" />
-    <Content Include="Mvc\Views\JobFilters\Simple.cshtml" />
-    <Content Include="Mvc\Views\JobFilters\DesignerView.Simple.cshtml" />
-    <Content Include="Mvc\Views\Shared\_JobSearchResults.cshtml" />
-    <Content Include="Mvc\Views\JobApplication\Simple.cshtml" />
-    <Content Include="Mvc\Styles\fonts\glyphs\WebComponentsIcons.eot" />
-    <Content Include="Mvc\Styles\fonts\glyphs\WebComponentsIcons.ttf" />
-    <Content Include="Mvc\Styles\fonts\glyphs\WebComponentsIcons.woff" />
-    <Content Include="Mvc\Styles\images\kendoui.ttf" />
-    <Content Include="Mvc\Styles\images\kendoui.woff" />
-    <Content Include="Mvc\Views\JobAlert\Simple.cshtml" />
-    <Content Include="Mvc\Views\JobAlert\Create.cshtml" />
-    <Content Include="Mvc\Views\JobAlert\Edit.cshtml" />
-    <Content Include="Mvc\Views\JobAlert\DesignerView.Simple.cshtml" />
-    <Content Include="Mvc\Views\JobDetails\DesignerView.Simple.cshtml" />
-    <Content Include="Mvc\Views\JobSearchResults\JobsLatest.cshtml" />
+    <Content Include="Mvc\Views\Registration\Registration.RegistrationModel.cshtml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -1387,125 +1271,43 @@
     <Content Include="ResourcePackages\Bootstrap\MVC\Views\VideoGallery\List.VideoGallery.cshtml" />
     <Content Include="ResourcePackages\Bootstrap\package.json" />
     <Content Include="ResourcePackages\Bootstrap\razorgenerator.directives" />
-    <Content Include="Mvc\Views\BaseLayout\Index.cshtml" />
     <Content Include="SampleTemplate.cshtml">
       <Generator>RazorGenerator</Generator>
     </Content>
     <Content Include="ResourcePackages\Bootstrap\README.md" />
-    <Content Include="ResourcePackages\Bootstrap\MVC\Views\LoginStatusExtended\LoginStatusExtended.LoginButton.cshtml" />
-    <Content Include="ResourcePackages\Bootstrap\MVC\Views\LoginStatusExtended\LoginStatusExtended.LoginName.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\assets\dist\fonts\jn_icons.eot" />
-    <Content Include="ResourcePackages\JXTdemo\assets\dist\fonts\jn_icons.ttf" />
-    <Content Include="ResourcePackages\JXTdemo\assets\dist\fonts\jn_icons.woff" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\project\sass\components\_banner.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\project\sass\components\_footer.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\project\sass\components\_forms.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\project\sass\components\_header.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\project\sass\components\_navigation.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\project\sass\helper\_color-theme.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\project\sass\helper\_common.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\project\sass\helper\_icons.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\project\sass\helper\_mixin.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\project\sass\helper\_variables.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\project\sass\pages\_blog.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\project\sass\pages\_homepage.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\project\sass\pages\_jobresult.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\project\sass\plugins\_bootstrap-select.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\project\sass\plugins\_bootstrap-slider.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\project\sass\plugins\_owl.carousel.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\project\sass\style.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\project\sass\widgets\_candidate-blocklist.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\project\sass\widgets\_card-cta.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\project\sass\widgets\_gridBox.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\project\sass\widgets\_image-scroller.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\project\sass\widgets\_innerbanner.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\project\sass\widgets\_jobSearch-scroller.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\project\sass\widgets\_jobSearch.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\project\sass\widgets\_jobsFeed.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\project\sass\widgets\_multicard.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\project\sass\widgets\_social-links.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\project\sass\widgets\_teamFeed.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\project\sass\widgets\_testimonialFeed.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\project\sass\widgets\_timeline.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\project\sass\widgets\_word-scroller.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\sass\base\_pre.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\sass\components\loading\_loading.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\sass\settings\_variables.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\sass\sitefinity.bootstrap.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\sass\sitefinity.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\sass\tools\_bootstrap-mixins.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\sass\tools\_mixins.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\sass\utilities\_spacing.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\sass\utilities\_text.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\sass\widgets\code\_sf-code.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\sass\widgets\comments\_sf-comments.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\sass\widgets\comments\_sf-ratings.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\sass\widgets\contentBlock\_sf-content-block.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\sass\widgets\documentList\_sf-document-list.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\sass\widgets\event\_sf-event.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\sass\widgets\feed\_sf-feed.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\sass\widgets\fileField\sf-file-field.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\sass\widgets\formNavigation\sf-form-nav.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\sass\widgets\gallery\_gallery.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\sass\widgets\languageSelector\_sf-language-selector.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\sass\widgets\list\_sf-list.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\sass\widgets\login\_sf-login.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\sass\widgets\media\_sf-media.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\sass\widgets\navigation\_navbar.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\sass\widgets\navigation\_sitemap.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\sass\widgets\navigation\_stacked.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\sass\widgets\profile\_sf-profile.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\sass\widgets\searchBox\_sf-search-box.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\sass\widgets\searchResults\_sf-search-results.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\sass\widgets\siteSelector\_sf-site-selector.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\sass\widgets\socialShare\sf-sprite.mustache" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\sass\widgets\socialShare\_sf-social-share.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\sass\widgets\socialShare\_sf-sprite.scss" />
-    <Content Include="ResourcePackages\JXTdemo\assets\src\sitefinity\sass\widgets\taxonomies\_sf-tags.scss" />
-    <Content Include="ResourcePackages\JXTdemo\client-components\fields\html-field\sf-html-field.sf-cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\Layouts\default.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Card\Card.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Card\Card.cta.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Card\Card.HeaderBanner.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Card\Card.Hero.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Card\Card.Simple.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\JobSearch\JobSearch.Simple.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\JobSearch\JobSearch.WordScroller.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\JobSearch\Simple.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Layouts\default.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Layouts\default2.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Layouts\default3.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Navigation\Dropdown.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Navigation\NavigationView.AccordianMenu.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Navigation\NavigationView.Horizontal.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Navigation\NavigationView.HorizontalSuraj.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Navigation\NavigationView.Icons.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Navigation\NavigationView.Simple.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Navigation\NavigationView.Sitemap.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Navigation\NavigationView.Tabs.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Navigation\NavigationView.Vertical.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\SearchBox\SearchBox.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\SearchResults\InputValidationError.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\SearchResults\SearchResults.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\Shared\_JobSearchResults.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\SocialLink\Simple.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\SocialShare\SocialShare.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\MVC\Views\SocialShare\SocialShareIconsWithText.cshtml" />
-    <Content Include="ResourcePackages\JXTdemo\package.json" />
-    <Content Include="ResourcePackages\JXTdemo\razorgenerator.directives" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Jxt.Sitefinity.Jobs\Jxt.Sitefinity.Jobs.csproj">
       <Project>{cfecb7d6-84e5-4076-bf9a-c967afdebee4}</Project>
       <Name>Jxt.Sitefinity.Jobs</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JXTNext.Sitefinity.Connector\JXTNext.Sitefinity.Connector.csproj">
-      <Project>{bf418b44-ebce-499f-bbd3-6ba98a24e144}</Project>
-      <Name>JXTNext.Sitefinity.Connector</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JXTNext.Sitefinity.Identity\JXTNext.Sitefinity.Identity.csproj">
+    <ProjectReference Include="..\JXTNext.Sitefinity.Identity\JXTNext.Sitefinity.Widgets.Authentication.csproj">
       <Project>{9a208d8f-aa97-4ce5-a42b-71bde987124c}</Project>
-      <Name>JXTNext.Sitefinity.Identity</Name>
+      <Name>JXTNext.Sitefinity.Widgets.Authentication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JXTNext.Sitefinity.Widgets.Common\JXTNext.Sitefinity.Widgets.Common.csproj">
+      <Project>{3afccbdc-a395-48e5-aa1c-8fe9cfdd16db}</Project>
+      <Name>JXTNext.Sitefinity.Widgets.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JXTNext.Sitefinity.Widgets.JobAlert\JXTNext.Sitefinity.Widgets.JobAlert.csproj">
+      <Project>{3c241adf-92c1-4cf4-8b45-a6563f78cc50}</Project>
+      <Name>JXTNext.Sitefinity.Widgets.JobAlert</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JXTNext.Sitefinity.Widgets.JobApplication\JXTNext.Sitefinity.Widgets.JobApplication.csproj">
+      <Project>{a65da3a7-0613-4253-b396-933f3853c451}</Project>
+      <Name>JXTNext.Sitefinity.Widgets.JobApplication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JXTNext.Sitefinity.Widgets.Job\JXTNext.Sitefinity.Widgets.Job.csproj">
+      <Project>{f2b8e604-8768-4bb1-b34f-ea4bafdbd567}</Project>
+      <Name>JXTNext.Sitefinity.Widgets.Job</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JXTNext.Sitefinity.Widgets.Social\JXTNext.Sitefinity.Widgets.Social.csproj">
+      <Project>{21a841b2-6b3a-46cd-b0c0-7f40ca812686}</Project>
+      <Name>JXTNext.Sitefinity.Widgets.Social</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JXTNext.Sitefinity.Widgets\JXTNext.Sitefinity.Widgets.User.csproj">
+      <Project>{676b052f-ef99-420d-bb22-16b287818a60}</Project>
+      <Name>JXTNext.Sitefinity.Widgets.User</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

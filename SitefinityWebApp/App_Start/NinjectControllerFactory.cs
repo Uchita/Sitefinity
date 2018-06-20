@@ -1,5 +1,4 @@
-﻿using JXTNext.Sitefinity.Connector;
-using Ninject;
+﻿using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +18,7 @@ namespace SitefinityWebApp.App_Start
         /// </summary>
         public NinjectControllerFactory()
         {
-            this.ninjectKernel = new StandardKernel(new InterfaceMappings(), new ConnectorModule() );
+            this.ninjectKernel = new StandardKernel(new InterfaceMappings());
         }
 
         protected override IController GetControllerInstance(System.Web.Routing.RequestContext requestContext, Type controllerType)

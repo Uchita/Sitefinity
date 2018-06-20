@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Telerik.Sitefinity.Localization;
 using Telerik.Sitefinity.Localization.Data;
 
-namespace JXTNext.Sitefinity.Identity.LoginStatusExtended.Mvc.StringResources
+namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.StringResources
 {
     [ObjectInfo(typeof(LoginStatusExtendedResources), ResourceClassId = "LoginStatusExtendedResources", Title = "LoginStatusExtendedResourcesTitle", Description = "LoginStatusExtendedResourcesDescription")]
     public class LoginStatusExtendedResources : Resource

@@ -1,0 +1,88 @@
+﻿@model JobAlertEditViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+@using JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Models
+
+@Html.StyleSheet(Url.WidgetContent("/Mvc/Scripts/JobSearch/dropdowntree.css"), "bottom")
+@Html.Script(Url.WidgetContent("/Mvc/Scripts/JobSearch/dropdowntree.js"), "bottom")
+
+<h2>Edit Job Alert</h2>
+
+<h3>Alert Details</h3>
+
+@if (Model != null)
+{
+    <form method="post" enctype="multipart/form-data" onsubmit="return preventSubmit();">
+        @{
+            int counter = 0;
+        }
+
+        <label>Name<span style="color:red">*</span></label><br />
+        <input type="text" name="Name" required value="@Model.Name" /><br />
+        <input type="checkbox" name="EmailAlerts" value="true" checked="@Model.EmailAlerts"/> <label>Send Email Alerts</label> <br />
+
+        <label>Keywords</label><br />
+        <input type="text" name="Keywords" value="@Model.Keywords" /> <br /><br />
+
+        @foreach (var item in Model.Data)
+        {
+            <input type="hidden" name="Filters[@counter].RootId" value='@item.ID' />
+            <select id=@string.Format("selected-{0}", item.ID) name="Filters[@counter].Values" style="display:none" multiple></select>
+            <div class="dropdown dropdown-tree" id=@item.ID></div> <br />
+            counter++;
+        }
+
+        <input type="submit" value="SAVE" class="btn btn-primary"/>
+        @Html.ActionLink("SEARCH", "ViewResults", "JobAlert", new { id = Model.Id }, null)
+        @Html.ActionLink("DELETE", "Delete", "JobAlert", new { id = Model.Id }, new { onclick = "return confirmDelete();" })
+    </form>
+}
+
+
+<script type="text/javascript">
+    var optionsArray = {};
+
+    function preventSubmit() {
+        $.each(optionsArray, function (id, item) {
+            $($("#" + id).GetSelectedElementIds()).each(function (index, value) {
+                $("#selected-" + id).append('<option value="' + value + '" selected="true">' + value + '</option>')
+            });
+        });
+
+        return true;
+    };
+
+    function confirmDelete() {
+        if (confirm("Are you sure you want to delete this record?")) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
+
+    $(document).ready(function () {
+          @{
+                var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+                var json = serializer.Serialize(Model);
+          }
+
+        var model = @Html.Raw(json);
+        if (model != null && model != "undefined") {
+            var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
+
+            for (var item of filterData.Data) {
+                optionsArray[item.ID] = {
+                    title: item.Name,
+                    data: item.Filters,
+                    maxHeight: 500,
+                    closedArrow: '<i class="fa fa-caret-right" aria-hidden="true"></i>',
+                    openedArrow: '<i class="fa fa-caret-down" aria-hidden="true"></i>',
+                    multiSelect: true,
+                    selectChildren: true,
+                    expandChildren: true,
+                };
+                $("#" + item.ID).DropDownTree(optionsArray[item.ID]);
+            }
+        }
+    });
+</script>

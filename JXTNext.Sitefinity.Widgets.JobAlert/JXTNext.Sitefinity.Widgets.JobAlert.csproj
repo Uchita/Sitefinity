@@ -323,7 +323,6 @@
     <Content Include="Mvc\Styles\kendo.common.min.css" />
     <Content Include="Mvc\Styles\kendo.default.min.css" />
     <Content Include="Mvc\Styles\kendo.default.mobile.min.css" />
-    <Content Include="Mvc\Views\readme.txt" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

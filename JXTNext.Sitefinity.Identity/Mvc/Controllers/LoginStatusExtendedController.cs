@@ -17,7 +17,7 @@ using System.Web;
 
 namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
 {
-    [ControllerToolboxItem(Name = "LoginStatusExtended_MVC", Title = "Login Status Extended", SectionName = "Login", CssClass = LoginStatusExtendedController.WidgetIconCssClass)]
+    [ControllerToolboxItem(Name = "LoginStatusExtended_MVC", Title = "Login Status", SectionName = "JXTNext.Authentication", CssClass = LoginStatusExtendedController.WidgetIconCssClass)]
     public class LoginStatusExtendedController : Controller
     {
         #region Properties

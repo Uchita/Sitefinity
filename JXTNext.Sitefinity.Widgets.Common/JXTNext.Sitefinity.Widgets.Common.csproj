@@ -293,11 +293,26 @@
     <None Include="ResourcePackages\JXTDemo\MVC\Views\Card\Card.Simple.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\JobSearch\JobSearch.Simple.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\JobSearch\JobSearch.WordScroller.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\JobSearch\Simple.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ResourcePackages\JXTDemo\MVC\Views\Layouts\JXTDemo_Layout_1.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ResourcePackages\JXTDemo\MVC\Views\Layouts\default2.cshtml" />
     <None Include="ResourcePackages\JXTDemo\MVC\Views\Layouts\default3.cshtml" />
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\LoginStatusExtended\LoginStatusExtended.LoginButton.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\LoginStatusExtended\LoginStatusExtended.LoginName.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ResourcePackages\JXTDemo\MVC\Views\Navigation\Dropdown.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -335,6 +350,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ResourcePackages\JXTDemo\MVC\Views\Shared\_JobSearchResults.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\SocialLink\Simple.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ResourcePackages\JXTDemo\MVC\Views\SocialShare\SocialShare.cshtml">

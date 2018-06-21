@@ -187,17 +187,29 @@ input.text-field{
 .sfPageEditor.modal-open .modal.fade.in{
     opacity: 1;
 }
-.sfPageEditor .modal-dialog{
-    max-width: 98%;
-}
-//if any element is fixed::header fixed
-.sfPageEditor .site-header {
-    position: relative;
+.sfPageEditor {
+    .modal-dialog {
+        max-width: 98%;
+
+        select.form-control {
+            height:auto;
+        }
+    }
+    //if any element is fixed::header fixed
+    .site-header {
+        position: relative;
+    }
+    .modal-header {
+        display: block;
+    }
 }
 
-.multi-widget-wrapper{
+
+
+.multi-widget-wrapper {
     padding-bottom: $vrt-gap + 2rem;
-    .jn_multiCard{
+
+    .jn_multiCard {
         padding-bottom: 1rem;
     }
 }

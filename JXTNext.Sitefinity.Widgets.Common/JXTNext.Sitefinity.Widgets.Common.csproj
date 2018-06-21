@@ -43,28 +43,72 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ResourcePackages\JXTDemo\assets\dist\css\sitefinity.css" />
-    <Content Include="ResourcePackages\JXTDemo\assets\dist\css\style.css" />
-    <Content Include="ResourcePackages\JXTDemo\assets\dist\fonts\jn_icons.svg" />
-    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\banner-bg.jpg" />
-    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\body-bg.jpg" />
-    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\curve-divider.png" />
-    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\footer-bg.jpg" />
-    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\job-feed.jpg" />
-    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\links-graphics.png" />
-    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\links-graphics_left.png" />
-    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\links-graphics_right.png" />
-    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\logo-footer.png" />
-    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\logo.png" />
-    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\quote-open.png" />
-    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\quote.png" />
-    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\star-chain.jpg" />
-    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\ticker-bg.jpg" />
-    <Content Include="ResourcePackages\JXTDemo\assets\dist\js\bootstrap-slider.js" />
-    <Content Include="ResourcePackages\JXTDemo\assets\dist\js\myjs.js" />
-    <Content Include="ResourcePackages\JXTDemo\assets\dist\js\owl.carousel.min.js" />
-    <Content Include="ResourcePackages\JXTDemo\assets\dist\min\combined_C2867A207C6E04B4D461591E185C002D.css" />
-    <Content Include="ResourcePackages\JXTDemo\assets\dist\min\combined_FD4DF930D2C529EEFAE1371E6D2EEE48.css" />
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\css\sitefinity.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\css\style.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\fonts\jn_icons.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\banner-bg.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\body-bg.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\curve-divider.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\footer-bg.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\job-feed.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\links-graphics.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\links-graphics_left.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\links-graphics_right.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\logo-footer.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\quote-open.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\quote.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\star-chain.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\ticker-bg.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\js\bootstrap-slider.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\js\myjs.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\js\owl.carousel.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\min\combined_C2867A207C6E04B4D461591E185C002D.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\min\combined_FD4DF930D2C529EEFAE1371E6D2EEE48.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\JXTDemo\assets\src\project\js\main.js" />
     <Content Include="ResourcePackages\JXTDemo\assets\src\sitefinity\images\sprite.png" />
     <Content Include="ResourcePackages\JXTDemo\assets\src\sitefinity\images\sprite\blogger.png" />
@@ -97,40 +141,108 @@
     <Content Include="ResourcePackages\JXTDemo\gulpfile.js" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\jn_icons.eot" />
-    <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\jn_icons.ttf" />
-    <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\jn_icons.woff" />
-    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\components\_banner.scss" />
-    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\components\_footer.scss" />
-    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\components\_forms.scss" />
-    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\components\_header.scss" />
-    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\components\_navigation.scss" />
-    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\helper\_color-theme.scss" />
-    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\helper\_common.scss" />
-    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\helper\_icons.scss" />
-    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\helper\_mixin.scss" />
-    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\helper\_variables.scss" />
-    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\pages\_blog.scss" />
-    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\pages\_homepage.scss" />
-    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\pages\_jobresult.scss" />
-    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\plugins\_bootstrap-select.scss" />
-    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\plugins\_bootstrap-slider.scss" />
-    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\plugins\_owl.carousel.scss" />
-    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\style.scss" />
-    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_candidate-blocklist.scss" />
-    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_card-cta.scss" />
-    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_gridBox.scss" />
-    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_image-scroller.scss" />
-    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_innerbanner.scss" />
-    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_jobSearch-scroller.scss" />
-    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_jobSearch.scss" />
-    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_jobsFeed.scss" />
-    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_multicard.scss" />
-    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_social-links.scss" />
-    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_teamFeed.scss" />
-    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_testimonialFeed.scss" />
-    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_timeline.scss" />
-    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_word-scroller.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\jn_icons.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\jn_icons.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\jn_icons.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\components\_banner.scss">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\components\_footer.scss">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\components\_forms.scss">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\components\_header.scss">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\components\_navigation.scss">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\helper\_color-theme.scss">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\helper\_common.scss">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\helper\_icons.scss">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\helper\_mixin.scss">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\helper\_variables.scss">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\pages\_blog.scss">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\pages\_homepage.scss">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\pages\_jobresult.scss">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\plugins\_bootstrap-select.scss">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\plugins\_bootstrap-slider.scss">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\plugins\_owl.carousel.scss">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\style.scss">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_candidate-blocklist.scss">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_card-cta.scss">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_gridBox.scss">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_image-scroller.scss">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_innerbanner.scss">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_jobSearch-scroller.scss">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_jobSearch.scss">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_jobsFeed.scss">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_multicard.scss">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_social-links.scss">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_teamFeed.scss">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_testimonialFeed.scss">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_timeline.scss">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\widgets\_word-scroller.scss">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\base\_pre.scss" />
     <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\components\loading\_loading.scss" />
     <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\settings\_variables.scss" />

@@ -301,19 +301,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Mvc\Scripts\kendo.all.min.js" />
-    <Content Include="Mvc\Styles\fonts\glyphs\WebComponentsIcons.svg" />
-    <Content Include="Mvc\Styles\kendo.common.min.css" />
-    <Content Include="Mvc\Styles\kendo.default.min.css" />
-    <Content Include="Mvc\Styles\kendo.default.mobile.min.css" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
-    <None Include="Mvc\Styles\fonts\glyphs\WebComponentsIcons.eot" />
-    <None Include="Mvc\Styles\fonts\glyphs\WebComponentsIcons.ttf" />
-    <None Include="Mvc\Styles\fonts\glyphs\WebComponentsIcons.woff" />
-    <None Include="Mvc\Styles\images\kendoui.ttf" />
-    <None Include="Mvc\Styles\images\kendoui.woff" />
     <EmbeddedResource Include="Mvc\Views\JobApplication\Simple.cshtml" />
     <None Include="OpenAccessNuGet.targets" />
     <None Include="packages.config" />

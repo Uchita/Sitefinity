@@ -76,7 +76,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             ViewData["CssClass"] = this.CssClass;
             ViewData["JobResultsPageUrl"] = SitefinityHelper.GetPageUrl(this.ResultsPageId);
 
-            var jobSearchComponents = JsonConvert.DeserializeObject<List<JobSearchModel>>(this.SerializedJobSearchParams);
+            var jobSearchComponents = this.SerializedJobSearchParams == null ? null : JsonConvert.DeserializeObject<List<JobSearchModel>>(this.SerializedJobSearchParams);
             if(jobSearchComponents != null)
             {
                 foreach (JobSearchModel item in jobSearchComponents)

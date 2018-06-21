@@ -24,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.2</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -325,21 +326,21 @@
     <None Include="Mvc\Styles\fonts\glyphs\WebComponentsIcons.woff" />
     <None Include="Mvc\Styles\images\kendoui.ttf" />
     <None Include="Mvc\Styles\images\kendoui.woff" />
-    <None Include="Mvc\Views\JobDetails\DesignerView.Simple.cshtml" />
-    <None Include="Mvc\Views\JobDetails\Simple.cshtml" />
-    <None Include="Mvc\Views\JobFilters\DesignerView.Simple.cshtml" />
-    <None Include="Mvc\Views\JobFilters\Simple.cshtml" />
-    <None Include="Mvc\Views\JobSearchResults\DesignerView.Simple.cshtml" />
-    <None Include="Mvc\Views\JobSearchResults\JobsAll.cshtml" />
-    <None Include="Mvc\Views\JobSearchResults\JobsLatest.cshtml" />
-    <None Include="Mvc\Views\JobSearchResults\Simple.cshtml" />
-    <None Include="Mvc\Views\JobSearch\DesignerView.Simple.cshtml" />
-    <None Include="Mvc\Views\JobSearch\DesignerView.Simple.json" />
-    <None Include="Mvc\Views\JobSearch\JobSearch.Simple.cshtml" />
-    <None Include="Mvc\Views\JobSearch\JobSearchMockData.json" />
-    <None Include="Mvc\Views\JobSearch\Simple.cshtml" />
-    <None Include="Mvc\Views\Shared\_JobSearchResults.cshtml" />
-    <None Include="Mvc\Views\Shared\_Layout.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\JobDetails\DesignerView.Simple.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\JobDetails\Simple.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\JobFilters\DesignerView.Simple.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\JobFilters\Simple.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\JobSearchResults\DesignerView.Simple.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\JobSearchResults\JobsAll.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\JobSearchResults\JobsLatest.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\JobSearchResults\Simple.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\JobSearch\DesignerView.Simple.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\JobSearch\DesignerView.Simple.json" />
+    <EmbeddedResource Include="Mvc\Views\JobSearch\JobSearch.Simple.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\JobSearch\JobSearchMockData.json" />
+    <EmbeddedResource Include="Mvc\Views\JobSearch\Simple.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\Shared\_JobSearchResults.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\Shared\_Layout.cshtml" />
     <None Include="OpenAccessNuGet.targets" />
     <None Include="packages.config" />
   </ItemGroup>

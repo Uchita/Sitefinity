@@ -1,5 +1,5 @@
-﻿@model List<SitefinityWebApp.Mvc.Models.JobSearchModel>
-@using SitefinityWebApp.Mvc.Models
+﻿@model List<JobSearchModel>
+@using JXTNext.Sitefinity.Widgets.Job.Mvc.Models
 
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
 
@@ -31,66 +31,70 @@
 @if (Model != null)
 {
     <form action="@ViewData["JobResultsPageUrl"]" name="JobSearchResults" method="get" onsubmit="return preventSubmit();" class="jn_jobSearch jn_search hz-listing cs-layout">
-        <div class="row"><div class="form-fields-group ">
-        @{
-            int counter = 0;
-        }
+        <div class="row">
+            <div class="form-fields-group ">
+                @{
+                    int counter = 0;
+                }
 
-        @foreach (var item in Model)
-        {
-            switch (item.ControlType)
-            {
-                case "TextBox":
-                    <label class="col" for="Keywords"><input type="text" class="text-field" placeholder="@item.PlaceholderText" name="Keywords" /></label>
-                    break;
-
-                case "DropDown Single":
-                    _itemsList.Clear();
-                    _idNamesLevelsPair.Clear();
-                    GetValuesList(item.Filters);
-                    <label class="col-4" for="Filters[@counter].values">
-                    <select class="form-control" name="Filters[@counter].values">
-                        <option value="" disabled selected>@item.PlaceholderText</option>
-                        @foreach (dynamic itemName in _idNamesLevelsPair)
-                        {
-                            <option value="@itemName.Key">@itemName.Value.name</option>
-                        }
-                    </select></label>
-
-                    counter++;
-                    break;
-
-                case "DropDown Multi":
-
-                    <input type="hidden" name="Filters[@counter].searchTarget" value='@item.FilterType' />
-                    <input type="hidden" name="Filters[@counter].rootId" value='@item.ID' />
-                    <label class="col-4" for="@string.Format("selected-{0}",item.ID)" rel="@item.FilterType"><select id=@string.Format("selected-{0}",item.ID) name="Filters[@counter].values" style="display:none" multiple></select>
-                    <div class="dropdown dropdown-tree" id=@item.ID></div></label>
-
-                    counter++;
-                    break;
-
-                case "List":
-                    _itemsList.Clear();
-                    _idNamesLevelsPair.Clear();
-                    GetValuesList(item.Filters);
-                    foreach (dynamic itemName in _idNamesLevelsPair)
+                @foreach (var item in Model)
+                {
+                    switch (item.ControlType)
                     {
-                        string hrefLink = string.Format("{0}?Filters[0].rootId={1}&Filters[0].values={2}", @ViewData["JobResultsPageUrl"], item.ID, itemName.Key);
-                        <a href=@hrefLink>@itemName.Value.name</a>
+                        case "TextBox":
+                            <label class="col" for="Keywords"><input type="text" class="text-field" placeholder="@item.PlaceholderText" name="Keywords" /></label>
+                            break;
+
+                        case "DropDown Single":
+                            _itemsList.Clear();
+                            _idNamesLevelsPair.Clear();
+                            GetValuesList(item.Filters);
+                            <label class="col-4" for="Filters[@counter].values">
+                                <select class="form-control" name="Filters[@counter].values">
+                                    <option value="" disabled selected>@item.PlaceholderText</option>
+                                    @foreach (dynamic itemName in _idNamesLevelsPair)
+                                    {
+                                        <option value="@itemName.Key">@itemName.Value.name</option>
+                                    }
+                                </select>
+                            </label>
+
+                            counter++;
+                            break;
+
+                        case "DropDown Multi":
+
+                            <input type="hidden" name="Filters[@counter].searchTarget" value='@item.FilterType' />
+                            <input type="hidden" name="Filters[@counter].rootId" value='@item.ID' />
+                            <label class="col-4" for="@string.Format("selected-{0}",item.ID)" rel="@item.FilterType">
+                                <select id=@string.Format("selected-{0}",item.ID) name="Filters[@counter].values" style="display:none" multiple></select>
+                                <div class="dropdown dropdown-tree" id=@item.ID></div>
+                            </label>
+
+                            counter++;
+                            break;
+
+                        case "List":
+                            _itemsList.Clear();
+                            _idNamesLevelsPair.Clear();
+                            GetValuesList(item.Filters);
+                            foreach (dynamic itemName in _idNamesLevelsPair)
+                            {
+                                string hrefLink = string.Format("{0}?Filters[0].rootId={1}&Filters[0].values={2}", @ViewData["JobResultsPageUrl"], item.ID, itemName.Key);
+                                <a href=@hrefLink>@itemName.Value.name</a>
+                            }
+
+                            break;
+
+                        case "Map Search":
+                            break;
+
+                        default:
+                            break;
+
                     }
-
-                    break;
-
-                case "Map Search":
-                    break;
-
-                default:
-                    break;
-
-            }
-        }
-        </div>
+                }
+            </div>
             <div class="button-wrapper">
                 <input class="btn btn-primary" type="submit" value="Browse Jobs" />
             </div>
@@ -121,7 +125,7 @@
         if (model != null && @Html.Raw(json) != "undefined") {
             var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
 
-      
+
             for (var item of filterData) {
                 switch (item.ControlType) {
                     case 'TextBox':

@@ -208,3 +208,5 @@ project.lock.json
 #####
 # End of core ignore list, below put you custom 'per project' settings (patterns or path)
 #####
+SitefinityWebApp/JXTNext.Sitefinity.Widgets.Common.dll
+SitefinityWebApp/ResourcePackages/JXTDemo/

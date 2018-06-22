@@ -8,9 +8,11 @@ using System.Linq;
 using System.Web.Mvc;
 using Telerik.Sitefinity.Mvc;
 using JXTNext.Sitefinity.Common.Helpers;
+using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
+    [EnhanceViewEngines]
     [ControllerToolboxItem(Name = "JobDetails_MVC", Title = "Details", SectionName = "JXTNext.Job", CssClass = JobDetailsController.WidgetIconCssClass)]
     public class JobDetailsController : Controller
     {

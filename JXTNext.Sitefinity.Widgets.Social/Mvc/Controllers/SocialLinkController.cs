@@ -6,9 +6,11 @@ using System.Web.Mvc;
 using Telerik.Sitefinity.Mvc;
 using JXTNext.Sitefinity.Widgets.Social.Mvc.Models;
 using System.ComponentModel;
+using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
+    [EnhanceViewEngines]
     [ControllerToolboxItem(Name = "SocialLink_MVC", Title = "Social link", SectionName = "JXTNext.Social", CssClass = SocialLinkController.WidgetIconCssClass)]
     public class SocialLinkController : Controller
     {

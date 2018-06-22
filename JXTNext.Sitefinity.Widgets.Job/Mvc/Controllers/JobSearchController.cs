@@ -11,9 +11,11 @@ using System.Web.Mvc;
 using Telerik.Sitefinity.Mvc;
 using JXTNext.Sitefinity.Common.Helpers;
 using Newtonsoft.Json;
+using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
+    [EnhanceViewEngines]
     [ControllerToolboxItem(Name = "JobSearch_MVC", Title = "Search", SectionName = "JXTNext.Job", CssClass = JobSearchController.WidgetIconCssClass)]
     public class JobSearchController : Controller
     {

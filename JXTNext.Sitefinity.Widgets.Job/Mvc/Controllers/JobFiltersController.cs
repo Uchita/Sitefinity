@@ -10,9 +10,11 @@ using JXTNext.Sitefinity.Connector.Options;
 using System.Dynamic;
 using JXTNext.Sitefinity.Connector.Options.Models.Job;
 using Newtonsoft.Json;
+using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
+    [EnhanceViewEngines]
     [ControllerToolboxItem(Name = "JobFilters_MVC", Title = "Filters Listing", SectionName = "JXTNext.Job", CssClass = JobFiltersController.WidgetIconCssClass)]
     public class JobFiltersController : Controller
     {

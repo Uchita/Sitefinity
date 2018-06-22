@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
+using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
 using Telerik.Sitefinity.Libraries.Model;
 using Telerik.Sitefinity.Modules.Libraries;
 using Telerik.Sitefinity.Mvc;
@@ -12,6 +13,7 @@ using Telerik.Sitefinity.Workflow;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
+    [EnhanceViewEngines]
     [ControllerToolboxItem(Name = "JobApplication_MVC", Title = "Job Application", SectionName = "JXTNext.JobApplication", CssClass = JobApplicationController.WidgetIconCssClass)]
     public class JobApplicationController : Controller
     {

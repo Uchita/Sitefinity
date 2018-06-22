@@ -1,4 +1,5 @@
 ﻿using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers;
+using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search;
 using System;
 
@@ -8,7 +9,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
     {
         IntegrationConnectorType ConnectorType { get; }
 
-        void MemberRegister();
+        void MemberRegister(IMemberRegister memberDetails);
         void MemberApplyJob();
 
         void AdvertiserRegister();

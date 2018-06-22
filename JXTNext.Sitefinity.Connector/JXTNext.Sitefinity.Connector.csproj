@@ -63,8 +63,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLogics\IBusinessLogicsConnector.cs" />
+    <Compile Include="BusinessLogics\Mappers\IMemberMapper.cs" />
+    <Compile Include="BusinessLogics\Mappers\JXTNext_MemberMapper.cs" />
     <Compile Include="BusinessLogics\Models\Advertisers\Test_CreateJobListing.cs" />
     <Compile Include="BusinessLogics\Models\Advertisers\Test_GetJobListing.cs" />
+    <Compile Include="BusinessLogics\Models\Member\IMemberRegister.cs" />
+    <Compile Include="BusinessLogics\Models\Member\JXTNext_MemberRegister.cs" />
     <Compile Include="BusinessLogics\Models\Search\Test_SearchJobs.cs" />
     <Compile Include="BusinessLogics\TestBusinessLogicsConnector.cs" />
     <Compile Include="BusinessLogics\JXTNextBusinessLogicsConnector.cs" />

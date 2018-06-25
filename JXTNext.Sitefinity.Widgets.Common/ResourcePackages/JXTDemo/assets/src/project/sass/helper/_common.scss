@@ -195,6 +195,7 @@ input.text-field{
             height:auto;
         }
     }
+
     //if any element is fixed::header fixed
     .site-header {
         position: relative;
@@ -214,26 +215,7 @@ input.text-field{
     }
 }
 
-// ====================================
-// inner page common styles
-// ====================================
 
-.jn_innerpage{
-    padding-top: 17rem;
-}
-.page-title{
-    text-align: center;
-    margin-top: 3rem;
-    margin-bottom: 5rem;
-}
-.page-intro{
-    font-size: 2.4rem;
-    padding-bottom: 8rem;
-    text-align: center;
-    @include bp-max(sm){
-        font-size: 1.8rem;
-    }
-}
 .intro-text{
     text-align: center;
     max-width: 850px;
@@ -255,6 +237,15 @@ input.text-field{
 }
 
 //two column layout
-.sidebar{
-    max-width: 230px;   
+@include bp-min(lg){
+    .sidebar{
+        max-width: 230px;   
+        float: left;
+        margin-right: 40px;
+    }
+
+    .content-holder{
+        float: left;
+        width: calc(100% - 270px);
+    }
 }

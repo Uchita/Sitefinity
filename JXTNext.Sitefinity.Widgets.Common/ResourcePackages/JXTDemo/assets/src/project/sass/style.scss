@@ -16,12 +16,14 @@
 @import 'components/banner';
 @import 'components/footer';
 @import 'components/forms';
+@import 'components/sidebar';
 
 //Widgets
 @import 'widgets/social-links';
 @import 'widgets/word-scroller';
-@import 'widgets/jobSearch';
 @import 'widgets/multicard';
+@import 'widgets/jobSearch';
+@import 'widgets/jobResult';
 @import 'widgets/jobsFeed';
 @import 'widgets/teamFeed';
 @import 'widgets/testimonialFeed';

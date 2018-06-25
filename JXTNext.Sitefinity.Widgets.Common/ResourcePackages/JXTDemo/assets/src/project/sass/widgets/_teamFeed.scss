@@ -10,24 +10,33 @@
 // .jn_scroller-fullwidth{}
 
 //on the base of flipper
-.card-flipper{
-    .pos{
+.card-flipper {
+    .pos {
         margin: 25px 0 15px;
         text-align: center;
     }
-    .card-flip{
+
+    .card-flip {
         position: relative;
     }
-    .sc-item{
+
+    .owl-stage-outer{
+        padding-bottom: 60px;
+    }
+
+    .sc-item {
         padding-top: 5px;
         padding-bottom: 10px;
         position: relative;
         margin: 0 15px;
-        .front{
+
+        .front {
             background-color: $p2Color;
             position: relative;
             border-radius: 5px;
-            > h3{
+            overflow:hidden;
+
+            > h3 {
                 position: absolute;
                 bottom: 1.5rem;
                 left: 0;
@@ -38,7 +47,12 @@
                 text-shadow: 0 5px 20px $baseColor;
             }
         }
-        .overlay{
+        .sf-img-thmb{
+            min-height:410px;
+            min-width:330px;
+        }
+
+        .overlay {
             opacity: 0;
             z-index: 1;
             position: absolute;
@@ -51,16 +65,18 @@
             border-radius: 5px;
             box-shadow: 0 10px 30px 2px rgba(0,0,0,0.2);
             @include transition(opacity,0.6s,ease);
-            
-            h3{
+
+            h3 {
                 margin-bottom: 1.5rem;
             }
-            h4{
+
+            h4 {
                 color: $p1Color;
                 font-weight: 400;
                 margin-bottom: 2.5rem;
             }
-            .footer-meta{
+
+            .footer-meta {
                 position: absolute;
                 bottom: -6.3rem;
                 left: 0;
@@ -68,51 +84,63 @@
                 height: 8rem;
                 text-align: center;
                 font-size: 3rem;
-                a{
+
+                a {
                     background-color: $p2Color;
                     @include mkrDiamond;
                     text-decoration: none;
                     margin: 0 15px;
                     box-shadow: 0 15px 25px rgba(0,0,0,0.1);
-                    &.icon-phone{
+
+                    &.icon-phone {
                         font-size: 115%;
                     }
-                    &.icon-mail{
-                        font-size:90%;
+
+                    &.icon-mail {
+                        font-size: 90%;
                     }
                 }
             }
         }
-        .pos{
+
+        .pos {
             @include transition(opacity,0.2s,ease);
         }
-        &:hover, &:focus{
-            .overlay{
+
+        &:hover, &:focus {
+            .overlay {
                 opacity: 1;
             }
-            .pos{
+
+            .pos {
                 opacity: 0;
             }
         }
-        @include bp-max(md){
-            .front{
-                > h3{
+
+        @include bp-max(md) {
+            .front {
+                > h3 {
                     font-size: 4rem;
                 }
             }
         }
-        @include bp-max(sm){
+
+        @include bp-max(sm) {
             max-width: 240px;
-            .overlay{
-                .footer-meta{
+
+            .overlay {
+                .footer-meta {
                     font-size: 2.3rem;
-                    a{
+
+                    a {
                         margin: 0 10px;
-                        &.icon-mail::after{
+
+                        &.icon-mail::after {
                             left: -3px;
                             top: 2px;
                         }
-                        &.icon-linkedin::after{
+
+                        &.icon-linkedin::after {
                             top: -5px;
                             left: -2px;
                         }
@@ -122,24 +150,28 @@
         }
     }
 
-    &.row{
-        .sc-item{
+    &.row {
+        .sc-item {
             padding: 0;
             margin-bottom: 6rem;
         }
-        .col{
+
+        .col {
             flex-grow: 0;
         }
-        .card-flip{
+
+        .card-flip {
             min-width: 330px;
         }
-        @include bp-max(sm){
-            .sc-item{
+
+        @include bp-max(sm) {
+            .sc-item {
                 max-width: 100%;
                 margin-right: auto;
                 margin-left: auto;
             }
-            .card-flip{
+
+            .card-flip {
                 min-width: 240px;
             }
         }

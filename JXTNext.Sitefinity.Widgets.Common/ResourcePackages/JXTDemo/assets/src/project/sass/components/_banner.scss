@@ -27,3 +27,25 @@
 .banner-wrapper{
     position: relative;
 }
+
+
+// ====================================
+// inner page common styles
+// ====================================
+
+.jn_innerpage{
+    padding-top: 17rem;
+}
+.page-title{
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 5rem;
+}
+.page-intro{
+    font-size: 2.4rem;
+    padding-bottom: 8rem;
+    text-align: center;
+    @include bp-max(sm){
+        font-size: 1.8rem;
+    }
+}

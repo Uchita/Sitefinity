@@ -1,5 +1,8 @@
 ﻿using Jxt.Sitefinity.Jobs.Data.Model;
 using Jxt.Sitefinity.Jobs.ViewModel;
+using JXTNext.Sitefinity.Connector.BusinessLogics;
+using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers;
+using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Job;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,20 +13,28 @@ namespace Jxt.Sitefinity.Jobs.Model
 {
     public class JobsModel
     {
+        IBusinessLogicsConnector _jxtBLConnector;
+        IJobsConverter _jxtJobsConverter;
+
         static JobsModel()
         {
-            jobs = new List<JobListing>()
+            jobs = new List<JobDetailsFullModel>()
             {
-                new JobListing() { Id = Guid.NewGuid(), Title = "Software Developer - default", Description = "test" },
-                new JobListing() { Id = Guid.NewGuid(), Title = "UX Architect - default", Description = "test" },
-                new JobListing() { Id = Guid.NewGuid(), Title = "QA Engineer - default", Description = "test" }
+                new JobDetailsFullModel() { JobID = 123, Title = "Software Developer - default", Description = "test" },
+                new JobDetailsFullModel() { JobID = 456, Title = "UX Architect - default", Description = "test" },
+                new JobDetailsFullModel() { JobID = 789, Title = "QA Engineer - default", Description = "test" }
             };
         }
         
-        public JobViewModel GetSingleViewModel(Guid id)
+        public JobViewModel GetSingleViewModel(int id)
         {
-            var jl = jobs.Single(j => j.Id == id);
-            return new JobViewModel() { Id = jl.Id, Title = jl.Title, Description = jl.Description };
+            IGetJobListingRequest jobListingRequest = new JXTNext_GetJobListingRequest { JobID = id };
+            IGetJobListingResponse jobListingResponse = _jxtBLConnector.AdvertiserGetJob(jobListingRequest);
+
+            if (jobListingResponse.Job == null)
+                return null;
+
+            return this.GetVM(jobListingResponse.Job);
         }
         
         public List<JobViewModel> GetListViewModel()
@@ -44,32 +55,32 @@ namespace Jxt.Sitefinity.Jobs.Model
             jl.Title = job.Title;
             jl.Description = job.Description;
 
-            if (job.Id == Guid.Empty)
-                jl.Id = Guid.NewGuid();
-            else
-                jl.Id = job.Id;
+            ICreateJobListingRequest jobCreateRequest = new JXTNext_CreateJobListingRequest {  JobData = _jxtJobsConverter.Convert(job) };
+            ICreateJobListingResponse jobCreateResponse = _jxtBLConnector.AdvertiserCreateJob(jobCreateRequest);
 
-            jobs.Add(jl);
-            return this.GetVM(jl);
+            if (jobCreateResponse.JobId.HasValue)
+                return GetSingleViewModel(jobCreateResponse.JobId.Value);
+            else
+                return null;
         }
         
         public JobViewModel Update(JobViewModel job)
         {
-            this.Delete(job.Id);
-            this.Create(job);
+            //this.Delete(job.Id);
+            //this.Create(job);
             return job;
         }
 
         public void Delete(Guid id)
         {
-            jobs.Remove(jobs.Single(j => j.Id == id));
+            //jobs.Remove(jobs.Single(j => j.Id == id));
         }
 
-        private JobViewModel GetVM(JobListing jl)
+        private JobViewModel GetVM(JobDetailsFullModel jl)
         {
-            return new JobViewModel() { Id = jl.Id, Title = jl.Title, Description = jl.Description };
+            return _jxtJobsConverter.Convert(jl);
         }
 
-        static volatile List<JobListing> jobs;
+        static volatile List<JobDetailsFullModel> jobs;
     }
 }

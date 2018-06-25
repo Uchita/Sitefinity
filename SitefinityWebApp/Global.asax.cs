@@ -1,9 +1,12 @@
-﻿using JXTNext.Sitefinity.Widgets.Authentication.Mvc.StringResources;
+﻿using JXTNext.Sitefinity.Common.Models;
+using JXTNext.Sitefinity.Connector.BusinessLogics;
+using JXTNext.Sitefinity.Widgets.Authentication.Mvc.StringResources;
 using JXTNext.Sitefinity.Widgets.Job.Mvc.StringResources;
 using JXTNext.Sitefinity.Widgets.JobAlert.Mvc.StringResources;
 using JXTNext.Sitefinity.Widgets.Social.Mvc.StringResources;
 using JXTNext.Sitefinity.Widgets.User.Mvc.Models;
 using SitefinityWebApp.App_Start;
+using SitefinityWebApp.Models;
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -68,17 +71,18 @@ namespace SitefinityWebApp
 
         void Bootstrapper_Bootstrapped(object sender, EventArgs e)
         {
+            
             ObjectFactory.Container.RegisterType<ISitefinityControllerFactory, NinjectControllerFactory>(new ContainerControlledLifetimeManager());
             var factory = ObjectFactory.Resolve<ISitefinityControllerFactory>();
             ControllerBuilder.Current.SetControllerFactory(factory);
-            
+
             GlobalConfiguration.Configuration.Routes.MapHttpRoute(
                 "jxt",
                 "jxt/{controller}/{id}",
                 new { id = RouteParameter.Optional });
 
 
-            FrontendModule.Current.DependencyResolver.Rebind<IRegistrationModel>().To<JXTNext_RegistrationModel>();
+            FrontendModule.Current.DependencyResolver.Rebind<IRegistrationModel>().To<JXTNext_MemberRegistrationModel>();
         }
 
     }

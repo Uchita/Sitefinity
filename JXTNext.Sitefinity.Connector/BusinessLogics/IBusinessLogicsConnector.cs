@@ -13,7 +13,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
         void MemberApplyJob();
 
         void AdvertiserRegister();
-        ICreateJobListingResponse AdvertiserCreateJob(ICreateJobListing jobDetails);
+        ICreateJobListingResponse AdvertiserCreateJob(ICreateJobListingRequest jobDetails);
         IGetJobListingResponse AdvertiserGetJob(IGetJobListingRequest jobDetails);
         void AdvertiserUpdateJob();
 

@@ -249,6 +249,8 @@
     <Compile Include="Configuration\JobsConfig.cs" />
     <Compile Include="Controllers\JobsApiController.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="Model\IJobsConverter.cs" />
+    <Compile Include="Model\JobsConverter.cs" />
     <Compile Include="Mvc\Controllers\JobsBackendController.cs" />
     <Compile Include="Data\JobsDataProviderBase.cs" />
     <Compile Include="Data\WebJobsDataProvider.cs" />
@@ -271,6 +273,12 @@
   <ItemGroup>
     <Folder Include="app\" />
     <Folder Include="Mvc\Scripts\JobsBakend\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JXTNext.Sitefinity.Connector\JXTNext.Sitefinity.Connector.csproj">
+      <Project>{bf418b44-ebce-499f-bbd3-6ba98a24e144}</Project>
+      <Name>JXTNext.Sitefinity.Connector</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

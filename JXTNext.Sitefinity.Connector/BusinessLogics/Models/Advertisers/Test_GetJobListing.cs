@@ -8,7 +8,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers
 
     public class Test_GetJobListingRequest : ConnectorBaseRequest, IGetJobListingRequest
     {
-        public string JobID { get; set; }
+        public int JobID { get; set; }
     }
 
     public class Test_GetJobListingResponse : ConnectorBaseResponse, IGetJobListingResponse

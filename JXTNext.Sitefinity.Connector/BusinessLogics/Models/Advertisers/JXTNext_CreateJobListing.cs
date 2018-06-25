@@ -6,14 +6,27 @@ using System.Text;
 namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers
 {
 
-    public class JXTNext_CreateJobListing : ConnectorBaseRequest, ICreateJobListing
+    public class JXTNext_CreateJobListingRequest : ConnectorBaseRequest, ICreateJobListingRequest
     {
-        public JobDetailsModel JobData { get; set; }
+        public JobDetailsFullModel JobData { get; set; }
     }
 
     public class JXTNext_CreateJobListingResponse : ConnectorBaseResponse, ICreateJobListingResponse
     {
-        public string JobId { get; set; }
+        public JXTNext_CreateJobListingResponse(bool success, int? jobId)
+        {
+            Success = success;
+            _jobId = jobId;
+        }
+
+        public JXTNext_CreateJobListingResponse(bool success, List<string> errors)
+        {
+            Success = success;
+            Messages = errors;
+        }
+
+        int? _jobId;
+        public int? JobId { get { return _jobId; } }
     }
 
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using JXTNext.Common.API.Models;
+using JXTNext.Sitefinity.Common.Models;
 using JXTNext.Sitefinity.Connector.Options.Models.Job;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -13,6 +14,9 @@ namespace JXTNext.Sitefinity.Connector.Options
     public class JXTNextOptionsConnector : ConnectorBase, IOptionsConnector
     {
         public IntegrationConnectorType ConnectorType => IntegrationConnectorType.JXTNext;
+
+        public JXTNextOptionsConnector(IRequestSession session) : base(session)
+        {}
 
         public TRes JobFilters<TReq, TRes>(TReq request) where TReq : class, IGetJobFiltersRequest where TRes : class, IGetJobFiltersResponse
         {

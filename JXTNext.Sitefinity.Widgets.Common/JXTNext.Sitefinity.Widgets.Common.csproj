@@ -210,7 +210,9 @@
     <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\components\_navigation.scss">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\components\_sidebar.scss" />
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\components\_sidebar.scss">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\helper\_color-theme.scss">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

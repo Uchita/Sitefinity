@@ -71,7 +71,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             ISearchJobsRequest request = new Test_SearchJobsRequest { Page = 0, PageSize = 2, FiltersSearch = new List<FiltersSearchRoot> { new FiltersSearchRoot { RootID = "AE-1234", Filters = new List<FiltersSearchElement> { new FiltersSearchElement { ID = "DD-3123" } } } } };
             ISearchJobsResponse response = _testBLConnector.SearchJobs(request);
 
-            IGetJobListingRequest jobListingRequest = new Test_GetJobListingRequest { JobID = "8A" };
+            IGetJobListingRequest jobListingRequest = new Test_GetJobListingRequest { JobID = 85 };
             IGetJobListingResponse jobListingResponse = _testBLConnector.AdvertiserGetJob(jobListingRequest);
 
             // This is the CSS classes enter from More Options

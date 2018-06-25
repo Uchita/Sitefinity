@@ -312,24 +312,31 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\NinjectFactory.cs" />
     <Compile Include="App_Start\RazorGeneratorMvcStart.cs" />
-    <Compile Include="Mvc\Models\JXTNext_RegistrationModel.cs" />
+    <Compile Include="Mvc\Controllers\TestController.cs" />
+    <Compile Include="Mvc\Models\JXTNext_MemberRegistrationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="OpenAccessNuGet.targets" />
     <None Include="packages.config" />
     <None Include="web.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\JXTNext.Sitefinity.Common\JXTNext.Sitefinity.Common.csproj">
+      <Project>{9CCDBC01-EF02-4D74-9385-5C0F1DA2EB7A}</Project>
+      <Name>JXTNext.Sitefinity.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JXTNext.Sitefinity.Connector\JXTNext.Sitefinity.Connector.csproj">
       <Project>{bf418b44-ebce-499f-bbd3-6ba98a24e144}</Project>
       <Name>JXTNext.Sitefinity.Connector</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Mvc\Controllers\" />
     <Folder Include="Mvc\StringResources\" />
     <Folder Include="Mvc\Views\" />
   </ItemGroup>

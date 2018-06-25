@@ -1,4 +1,5 @@
 ﻿using JXTNext.Common.API.Models;
+using JXTNext.Sitefinity.Common.Models;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Mappers;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Job;
@@ -20,15 +21,15 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
 
         public IntegrationConnectorType ConnectorType => IntegrationConnectorType.JXTNext;
 
-        public JXTNextBusinessLogicsConnector(IEnumerable<IJobListingMapper> jobMappers, IEnumerable<IMemberMapper> memberMapper) : base()
+        public JXTNextBusinessLogicsConnector(IEnumerable<IJobListingMapper> jobMappers, IEnumerable<IMemberMapper> memberMapper, IRequestSession session) : base(session)
         {
             _jobMapper = jobMappers.Where(c=>c.mapperType == IntegrationMapperType.JXTNext).FirstOrDefault();
             _memberMapper = memberMapper.Where(c => c.mapperType == IntegrationMapperType.JXTNext).FirstOrDefault();
         }
 
-        public ICreateJobListingResponse AdvertiserCreateJob(ICreateJobListing jobDetails)
+        public ICreateJobListingResponse AdvertiserCreateJob(ICreateJobListingRequest jobDetails)
         {
-            JXTNext_CreateJobListing jobRequest = jobDetails as JXTNext_CreateJobListing;
+            JXTNext_CreateJobListingRequest jobRequest = jobDetails as JXTNext_CreateJobListingRequest;
 
             ConnectorPostRequest connectorRequest = new ConnectorPostRequest(HTTP_Requests_MaxWaitTime)
             {
@@ -42,14 +43,14 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
             dynamic data = JObject.Parse(response.Response);
 
             if( actionSuccessful)
-                return new JXTNext_CreateJobListingResponse { Success = actionSuccessful, JobId = data["JobId"] };
+                return new JXTNext_CreateJobListingResponse(true, data["JobId"] as int?);
             else
-                return new JXTNext_CreateJobListingResponse { Success = actionSuccessful, Messages = (List<string>)data["errors"]};
+                return new JXTNext_CreateJobListingResponse(false, (List<string>)data["errors"]);
         }
 
         public IGetJobListingResponse AdvertiserGetJob(IGetJobListingRequest jobDetails)
         {
-            JXTNext_GetJobListing jobRequest = jobDetails as JXTNext_GetJobListing;
+            JXTNext_GetJobListingRequest jobRequest = jobDetails as JXTNext_GetJobListingRequest;
 
             ConnectorGetRequest connectorRequest = new ConnectorGetRequest(HTTP_Requests_MaxWaitTime)
             {
@@ -91,8 +92,9 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
 
             ConnectorPostRequest connectorRequest = new ConnectorPostRequest(HTTP_Requests_MaxWaitTime)
             {
+                HeaderValues = base.HTTP_Request_HeaderValues,
                 Data = JsonConvert.SerializeObject(apiObj),
-                TargetUri = new Uri(CONFIG_DataAccessTarget + $"/api/advertiser/job")
+                TargetUri = new Uri(CONFIG_DataAccessTarget + $"/api/member/register")
             };
             ConnectorResponse response = JXTNext.Common.API.Connector.Post(connectorRequest);
 

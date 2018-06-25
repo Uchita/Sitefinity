@@ -24,10 +24,17 @@ namespace Jxt.Sitefinity.Jobs.Controllers
         }
 
         [System.Web.Mvc.HttpGet]
-        public JsonResult<JobViewModel> Get(Guid id)
+        public JsonResult<JobViewModel> Get(int id)
         {
             var model = this.GetModel();
             var vm = model.GetSingleViewModel(id);
+
+            if( vm == null )
+            {
+                //error
+                return null;
+            }
+
             return this.Json<JobViewModel>(vm, new JsonSerializerSettings() { ContractResolver = new LowercaseContractResolver(), Formatting = Formatting.Indented });
         }
 

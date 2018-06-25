@@ -212,6 +212,7 @@
   <ItemGroup>
     <Compile Include="Helpers\ConversionHelper.cs" />
     <Compile Include="Helpers\SitefinityHelper.cs" />
+    <Compile Include="Models\IRequestSession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -950,6 +950,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\RequestSession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1299,6 +1300,10 @@
     <ProjectReference Include="..\Jxt.Sitefinity.Jobs\Jxt.Sitefinity.Jobs.csproj">
       <Project>{cfecb7d6-84e5-4076-bf9a-c967afdebee4}</Project>
       <Name>Jxt.Sitefinity.Jobs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JXTNext.Sitefinity.Common\JXTNext.Sitefinity.Common.csproj">
+      <Project>{9CCDBC01-EF02-4D74-9385-5C0F1DA2EB7A}</Project>
+      <Name>JXTNext.Sitefinity.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\JXTNext.Sitefinity.Connector\JXTNext.Sitefinity.Connector.csproj">
       <Project>{bf418b44-ebce-499f-bbd3-6ba98a24e144}</Project>

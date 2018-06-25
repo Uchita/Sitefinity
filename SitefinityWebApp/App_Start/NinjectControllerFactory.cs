@@ -1,7 +1,9 @@
-﻿using JXTNext.Sitefinity.Connector;
+﻿using JXTNext.Sitefinity.Common.Models;
+using JXTNext.Sitefinity.Connector;
 using JXTNext.Sitefinity.Widgets.Authentication;
 using JXTNext.Sitefinity.Widgets.Job;
 using Ninject;
+using SitefinityWebApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +29,8 @@ namespace SitefinityWebApp.App_Start
                 , new Widgets_AuthenticationModule()
                 , new Widgets_JobModule()
                 );
+
+            BindInjectionModels();
         }
 
         protected override IController GetControllerInstance(System.Web.Routing.RequestContext requestContext, Type controllerType)
@@ -41,5 +45,11 @@ namespace SitefinityWebApp.App_Start
 
             return controller;
         }
+
+        private void BindInjectionModels()
+        {
+            ninjectKernel.Bind<IRequestSession>().To<SFRequestSession>();
+        }
+
     }
 }

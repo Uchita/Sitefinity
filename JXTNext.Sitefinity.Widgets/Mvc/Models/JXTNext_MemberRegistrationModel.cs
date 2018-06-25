@@ -1,18 +1,26 @@
-﻿using JXTNext.Sitefinity.Connector.BusinessLogics;
+﻿using JXTNext.Sitefinity.Common.Models;
+using JXTNext.Sitefinity.Connector.BusinessLogics;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member;
+using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 using System.Web.Security;
 using Telerik.Sitefinity.Frontend.Identity.Mvc.Models.Registration;
 
 namespace JXTNext.Sitefinity.Widgets.User.Mvc.Models
 {
-    public class JXTNext_RegistrationModel : RegistrationModel, IRegistrationModel
+    public class JXTNext_MemberRegistrationModel : RegistrationModel, IRegistrationModel
     {
         IBusinessLogicsConnector _businessLogicsConnector;
+
+        public JXTNext_MemberRegistrationModel(IEnumerable<IBusinessLogicsConnector> businessLogicsConnectors) : base()
+        {
+            _businessLogicsConnector = businessLogicsConnectors.Where(c => c.ConnectorType == Connector.IntegrationConnectorType.JXTNext).FirstOrDefault();
+        }
 
         public override MembershipCreateStatus RegisterUser(RegistrationViewModel viewModel)
         {

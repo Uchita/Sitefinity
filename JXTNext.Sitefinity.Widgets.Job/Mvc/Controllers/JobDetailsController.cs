@@ -8,9 +8,11 @@ using System.Linq;
 using System.Web.Mvc;
 using Telerik.Sitefinity.Mvc;
 using JXTNext.Sitefinity.Common.Helpers;
+using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
+    [EnhanceViewEngines]
     [ControllerToolboxItem(Name = "JobDetails_MVC", Title = "Details", SectionName = "JXTNext.Job", CssClass = JobDetailsController.WidgetIconCssClass)]
     public class JobDetailsController : Controller
     {
@@ -24,25 +26,30 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         }
 
         // GET: JobDetails
-        public ActionResult Index(string jobId)
+        public ActionResult Index(int? jobId)
         {
-            dynamic dynamicJobDetails = null;
-            IGetJobListingRequest jobListingRequest = new Test_GetJobListingRequest { JobID = jobId };
-            IGetJobListingResponse jobListingResponse = _testBLConnector.AdvertiserGetJob(jobListingRequest);
+            if (jobId.HasValue)
+            {
+                dynamic dynamicJobDetails = null;
+                IGetJobListingRequest jobListingRequest = new Test_GetJobListingRequest { JobID = jobId.Value };
+                IGetJobListingResponse jobListingResponse = _testBLConnector.AdvertiserGetJob(jobListingRequest);
 
-            if(jobListingRequest != null)
-                dynamicJobDetails = jobListingResponse as dynamic;
+                if (jobListingRequest != null)
+                    dynamicJobDetails = jobListingResponse as dynamic;
 
-            string userName = String.Empty;
-            List<string> roles = new List<string>();
-            SitefinityHelper.GetCurrentUserInfo(ref userName, ref roles);
-   
-            ViewBag.UserName = userName;
-            ViewBag.Roles = JsonConvert.SerializeObject(roles);
-            ViewBag.CssClass = this.CssClass;
-            ViewBag.JobApplicationPageUrl = SitefinityHelper.GetPageUrl(this.JobApplicationPageId);
+                string userName = String.Empty;
+                List<string> roles = new List<string>();
+                SitefinityHelper.GetCurrentUserInfo(ref userName, ref roles);
 
-            return View("Simple", dynamicJobDetails);
+                ViewBag.UserName = userName;
+                ViewBag.Roles = JsonConvert.SerializeObject(roles);
+                ViewBag.CssClass = this.CssClass;
+                ViewBag.JobApplicationPageUrl = SitefinityHelper.GetPageUrl(this.JobApplicationPageId);
+
+                return View("Simple", dynamicJobDetails);
+            }
+
+            return Content("No job has been selected");
         }
 
         internal const string WidgetIconCssClass = "sfMvcIcn";

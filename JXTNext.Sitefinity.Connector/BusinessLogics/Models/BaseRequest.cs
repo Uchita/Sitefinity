@@ -8,12 +8,13 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models
 {
     public class ConnectorBaseRequest
     {
-        public string AuthenticationToken { get; set; }
+        public string SiteDomain { get; set; }
+        public string UserEmail { get; set; }
     }
 
     public class ConnectorBaseResponse
     {
         public bool Success { get; set; }
-        public List<string> Messages { get; set; }
+        public List<string> Errors { get; set; }
     }
 }

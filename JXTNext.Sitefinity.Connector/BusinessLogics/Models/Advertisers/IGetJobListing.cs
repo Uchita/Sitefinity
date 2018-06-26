@@ -7,7 +7,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers
 {
     public interface IGetJobListingRequest
     {
-        string JobID { get; set; }        
+        int JobID { get; set; }        
     }
 
     public interface IGetJobListingResponse

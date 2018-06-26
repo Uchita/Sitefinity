@@ -1,1 +1,18 @@
-﻿
+﻿@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+
+<expander expander-title="@Html.Resource("MoreOptions", "JobSearchResources")">
+
+    <div class="form-group">
+        <label for="templateName">Template</label>
+        <div class="row">
+            <div class="col-xs-6">
+                <select id="templateName" ng-model="properties.TemplateName.PropertyValue" class="form-control">
+                    @foreach (var viewName in Html.GetViewNames("JobFilters", @"(?<viewName>^T_.*)$"))
+                    {
+                        <option value="@viewName">@viewName.Replace("T_", "")</option>
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+</expander>

@@ -52,6 +52,21 @@
     <Content Include="ResourcePackages\JXTDemo\assets\dist\fonts\jn_icons.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\fonts\Sen-Bold.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\fonts\Sen-ExtraBold.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\fonts\Sen-Regular.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\apple-touch-icon-114x114.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\apple-touch-icon-72x72.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\JXTDemo\assets\dist\images\banner-bg.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -59,6 +74,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\JXTDemo\assets\dist\images\curve-divider.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\favicon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\favicon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\JXTDemo\assets\dist\images\footer-bg.jpg">
@@ -150,6 +171,30 @@
     <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\jn_icons.woff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\Sen-Bold.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\Sen-Bold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\Sen-Bold.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\Sen-ExtraBold.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\Sen-ExtraBold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\Sen-ExtraBold.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\Sen-Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\Sen-Regular.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\components\_banner.scss">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -163,6 +208,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\components\_navigation.scss">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\components\_sidebar.scss">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ResourcePackages\JXTDemo\assets\src\project\sass\helper\_color-theme.scss">
@@ -293,6 +341,12 @@
     <None Include="ResourcePackages\JXTDemo\MVC\Views\Card\Card.Simple.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <EmbeddedResource Include="ResourcePackages\JXTDemo\MVC\Views\JobFilters\T_FullTree.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourcePackages\JXTDemo\MVC\Views\JobFilters\T_Simple.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <None Include="ResourcePackages\JXTDemo\MVC\Views\JobSearch\JobSearch.Simple.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -343,15 +397,6 @@
     <None Include="ResourcePackages\JXTDemo\MVC\Views\SearchBox\SearchBox.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="ResourcePackages\JXTDemo\MVC\Views\SearchResults\InputValidationError.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="ResourcePackages\JXTDemo\MVC\Views\SearchResults\SearchResults.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="ResourcePackages\JXTDemo\MVC\Views\Shared\_JobSearchResults.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="ResourcePackages\JXTDemo\MVC\Views\SocialLink\Simple.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -361,6 +406,12 @@
     <None Include="ResourcePackages\JXTDemo\MVC\Views\SocialShare\SocialShareIconsWithText.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\UsersList\Detail.UserDetails.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\UsersList\List.ConsultantList.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="ResourcePackages\JXTDemo\package-lock.json" />
     <None Include="ResourcePackages\JXTDemo\package.json" />
     <None Include="ResourcePackages\JXTDemo\razorgenerator.directives">

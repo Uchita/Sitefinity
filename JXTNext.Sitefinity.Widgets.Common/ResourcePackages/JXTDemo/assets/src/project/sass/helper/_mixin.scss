@@ -188,3 +188,8 @@
 			 url($font-url + '/' + $font-name + '.svg#' + $font-name) format('svg');
 	}
 }
+
+//custom font
+@include fontface('Sen', '../fonts', 'Sen-Regular');
+@include fontface('Sen Bold', '../fonts', 'Sen-Bold');
+@include fontface('Sen ExtraBold', '../fonts', 'Sen-ExtraBold');

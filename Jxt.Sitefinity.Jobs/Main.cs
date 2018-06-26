@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Http;
-using Telerik.Sitefinity.Abstractions;
 using Telerik.Sitefinity.Configuration;
 using Telerik.Sitefinity.Data;
 using Telerik.Sitefinity.Services;
@@ -15,8 +10,8 @@ namespace Jxt.Sitefinity.Jobs
     {
         public static void PreApplicationStart()
         {
-            Bootstrapper.Initialized += Bootstrapper_Initialized;
-            Bootstrapper.Bootstrapped += Bootstrapper_Bootstrapped;
+            Telerik.Sitefinity.Abstractions.Bootstrapper.Initialized += Bootstrapper_Initialized;
+            Telerik.Sitefinity.Abstractions.Bootstrapper.Bootstrapped += Bootstrapper_Bootstrapped;
         }
         
         private static void Bootstrapper_Initialized(object sender, ExecutedEventArgs e)

@@ -10,12 +10,29 @@ using JXTNext.Sitefinity.Connector.Options;
 using System.Dynamic;
 using JXTNext.Sitefinity.Connector.Options.Models.Job;
 using Newtonsoft.Json;
+using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
+    [EnhanceViewEngines]
     [ControllerToolboxItem(Name = "JobFilters_MVC", Title = "Filters Listing", SectionName = "JXTNext.Job", CssClass = JobFiltersController.WidgetIconCssClass)]
     public class JobFiltersController : Controller
     {
+        /// <summary>
+        /// Gets or sets the name of the template that widget will be displayed.
+        /// </summary>
+        /// <value></value>
+        private string _templateName;
+        public string TemplateName
+        {
+            get {
+                if (string.IsNullOrEmpty(_templateName))
+                    _templateName = "T_Simple";
+                return _templateName;
+            }
+            set { _templateName = value; }
+        }
+
         IBusinessLogicsConnector _testBLConnector;
         IOptionsConnector _testOConnector;
 
@@ -35,7 +52,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 dynamicFilterResponse = filtersResponse.Filters.Data as dynamic;
 
             ViewBag.FilterModel = JsonConvert.SerializeObject(filterModel);
-            return View("Simple", dynamicFilterResponse);
+
+            return View(this.TemplateName, dynamicFilterResponse);
         }
 
         internal const string WidgetIconCssClass = "sfMvcIcn";

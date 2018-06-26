@@ -30,11 +30,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JXTNext.Common.API, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXT.JXTNext.Common.API.1.4.0\lib\netstandard1.1\JXTNext.Common.API.dll</HintPath>
+    <Reference Include="JXTNext.Common.API, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXT.JXTNext.Common.API.1.6.0\lib\netstandard1.1\JXTNext.Common.API.dll</HintPath>
     </Reference>
-    <Reference Include="JXTNext.Common.Web, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXT.JXTNext.Common.Web.1.1.0\lib\netstandard1.1\JXTNext.Common.Web.dll</HintPath>
+    <Reference Include="JXTNext.Common.Web, Version=1.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXT.JXTNext.Common.Web.1.3.1\lib\netstandard1.1\JXTNext.Common.Web.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -63,8 +63,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLogics\IBusinessLogicsConnector.cs" />
+    <Compile Include="BusinessLogics\Mappers\IMemberMapper.cs" />
+    <Compile Include="BusinessLogics\Mappers\JXTNext_MemberMapper.cs" />
     <Compile Include="BusinessLogics\Models\Advertisers\Test_CreateJobListing.cs" />
     <Compile Include="BusinessLogics\Models\Advertisers\Test_GetJobListing.cs" />
+    <Compile Include="BusinessLogics\Models\Member\IMemberRegister.cs" />
+    <Compile Include="BusinessLogics\Models\Member\JXTNext_MemberRegister.cs" />
     <Compile Include="BusinessLogics\Models\Search\Test_SearchJobs.cs" />
     <Compile Include="BusinessLogics\TestBusinessLogicsConnector.cs" />
     <Compile Include="BusinessLogics\JXTNextBusinessLogicsConnector.cs" />
@@ -94,7 +98,12 @@
     <Compile Include="Options\Models\Job\JXTNext_GetJobFiltersRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\JXTNext.Sitefinity.Common\JXTNext.Sitefinity.Common.csproj">
+      <Project>{9CCDBC01-EF02-4D74-9385-5C0F1DA2EB7A}</Project>
+      <Name>JXTNext.Sitefinity.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

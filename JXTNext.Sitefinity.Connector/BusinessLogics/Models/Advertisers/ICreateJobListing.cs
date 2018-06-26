@@ -5,13 +5,13 @@ using System.Text;
 
 namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers
 {
-    public interface ICreateJobListing
+    public interface ICreateJobListingRequest
     {
-        JobDetailsModel JobData { get; set; }
+        JobDetailsFullModel JobData { get; set; }
     }
 
     public interface ICreateJobListingResponse
     {
-
+        int? JobId { get; }
     }
 }

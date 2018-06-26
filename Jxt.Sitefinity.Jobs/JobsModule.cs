@@ -2,15 +2,7 @@
 using Jxt.Sitefinity.Jobs.Localization;
 using Jxt.Sitefinity.Jobs.Mvc.Controllers;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Http;
-using System.Web.Routing;
 using Telerik.Sitefinity.Abstractions;
-using Telerik.Sitefinity.Abstractions.VirtualPath;
-using Telerik.Sitefinity.Abstractions.VirtualPath.Configuration;
 using Telerik.Sitefinity.Configuration;
 using Telerik.Sitefinity.Fluent.Modules;
 using Telerik.Sitefinity.Localization;
@@ -63,7 +55,6 @@ namespace Jxt.Sitefinity.Jobs
 
         private void Bootstrapper_Bootstrapped(object sender, EventArgs e)
         {
-          
         }
 
         public override void Install(SiteInitializer initializer)

@@ -9,7 +9,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Job
 {
     public class JobDetailsModel
     {
-        public string JobID { get; set; }
+        public int JobID { get; set; }
         public string Title { get; set; }
         public string ShortDescription { get; set; }
     }

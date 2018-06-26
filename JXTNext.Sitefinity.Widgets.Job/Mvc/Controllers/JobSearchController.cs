@@ -11,9 +11,11 @@ using System.Web.Mvc;
 using Telerik.Sitefinity.Mvc;
 using JXTNext.Sitefinity.Common.Helpers;
 using Newtonsoft.Json;
+using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
+    [EnhanceViewEngines]
     [ControllerToolboxItem(Name = "JobSearch_MVC", Title = "Search", SectionName = "JXTNext.Job", CssClass = JobSearchController.WidgetIconCssClass)]
     public class JobSearchController : Controller
     {
@@ -69,14 +71,14 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             ISearchJobsRequest request = new Test_SearchJobsRequest { Page = 0, PageSize = 2, FiltersSearch = new List<FiltersSearchRoot> { new FiltersSearchRoot { RootID = "AE-1234", Filters = new List<FiltersSearchElement> { new FiltersSearchElement { ID = "DD-3123" } } } } };
             ISearchJobsResponse response = _testBLConnector.SearchJobs(request);
 
-            IGetJobListingRequest jobListingRequest = new Test_GetJobListingRequest { JobID = "8A" };
+            IGetJobListingRequest jobListingRequest = new Test_GetJobListingRequest { JobID = 85 };
             IGetJobListingResponse jobListingResponse = _testBLConnector.AdvertiserGetJob(jobListingRequest);
 
             // This is the CSS classes enter from More Options
             ViewData["CssClass"] = this.CssClass;
             ViewData["JobResultsPageUrl"] = SitefinityHelper.GetPageUrl(this.ResultsPageId);
 
-            var jobSearchComponents = JsonConvert.DeserializeObject<List<JobSearchModel>>(this.SerializedJobSearchParams);
+            var jobSearchComponents = this.SerializedJobSearchParams == null ? null : JsonConvert.DeserializeObject<List<JobSearchModel>>(this.SerializedJobSearchParams);
             if(jobSearchComponents != null)
             {
                 foreach (JobSearchModel item in jobSearchComponents)

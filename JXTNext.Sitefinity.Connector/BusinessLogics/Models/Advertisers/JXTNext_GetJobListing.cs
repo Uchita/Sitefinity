@@ -6,9 +6,9 @@ using System.Text;
 namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers
 {
 
-    public class JXTNext_GetJobListing : ConnectorBaseRequest, IGetJobListingRequest
+    public class JXTNext_GetJobListingRequest : ConnectorBaseRequest, IGetJobListingRequest
     {
-        public string JobID { get; set; }
+        public int JobID { get; set; }
     }
 
     public class JXTNext_GetJobListingResponse : ConnectorBaseResponse, IGetJobListingResponse

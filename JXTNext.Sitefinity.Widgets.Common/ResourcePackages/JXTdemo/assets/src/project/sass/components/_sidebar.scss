@@ -1,0 +1,66 @@
+.sidebar{
+    margin-top: 6rem;
+    margin-bottom: 4rem;
+    ul{
+        list-style: none;
+        padding-left: 0;
+        li{
+            a{
+                display: block;
+                position: relative;
+                padding: 4px 10px 4px 20px;
+                color: lighten($fontColor,40%);
+                &::before{
+                    content: '';
+                    border-radius: 50%;
+                    position: absolute;
+                    left: 0;
+                    top: 17px;
+                    height: 7px;
+                    width: 7px;
+                    background: lighten($fontColor,40%);
+                }
+                &:hover{
+                    text-decoration: none;
+                    color: $baseColor;   
+                    &::before{
+                        background: $p1Color;
+                    }
+                }
+            }
+            &.active > a, a.active{
+                color: $baseColor;   
+                &::before{
+                    background: $p1Color;
+                }
+            }
+        }
+    }
+    
+        > ul{
+            > li{
+                padding-bottom: 10px;
+                > a{
+                    color: $baseColor;
+                    font-size: 12px;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    padding-left: 0;
+                    &::before{
+                        display: none;
+                    }
+                }
+                >ul{
+                    margin-top: 10px;
+                    margin-bottom: 20px;
+                }
+            }
+        }
+        .btn{
+            display: block;
+            margin: 0 auto;
+        }
+    
+    
+}

@@ -14,9 +14,11 @@ using Telerik.Sitefinity.Security.Configuration;
 using SecConfig = Telerik.Sitefinity.Security.Configuration;
 using Telerik.Sitefinity.Security;
 using System.Web;
+using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
 
 namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
 {
+    [EnhanceViewEngines]
     [ControllerToolboxItem(Name = "LoginStatusExtended_MVC", Title = "Login Status", SectionName = "JXTNext.Authentication", CssClass = LoginStatusExtendedController.WidgetIconCssClass)]
     public class LoginStatusExtendedController : Controller
     {

@@ -1,23 +1,24 @@
 ﻿using Jxt.Sitefinity.Jobs.Data.Model;
 using Jxt.Sitefinity.Jobs.ViewModel;
+using JXTNext.Sitefinity.Common.Models;
 using JXTNext.Sitefinity.Connector.BusinessLogics;
+using JXTNext.Sitefinity.Connector.BusinessLogics.Mappers;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Job;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Jxt.Sitefinity.Jobs.Model
 {
-    public class JobsModel
+    public class JobsModel : IJobsModel
     {
         IBusinessLogicsConnector _jxtBLConnector;
         IJobsConverter _jxtJobsConverter;
 
-        static JobsModel()
+        public JobsModel()
         {
+            DrawDependencies();
+
             jobs = new List<JobDetailsFullModel>()
             {
                 new JobDetailsFullModel() { JobID = 123, Title = "Software Developer - default", Description = "test" },
@@ -82,5 +83,19 @@ namespace Jxt.Sitefinity.Jobs.Model
         }
 
         static volatile List<JobDetailsFullModel> jobs;
+
+
+        private void DrawDependencies()
+        {
+            _jxtJobsConverter = new JXTNext_JobsConverter();
+
+            IJobListingMapper jobMapper = new JXTNext_JobListingMapper();
+            IMemberMapper memberMapper = new JXTNext_MemberMapper();
+            IRequestSession session = new SFRequestSession();
+
+            _jxtBLConnector = new JXTNextBusinessLogicsConnector(
+                new List<IJobListingMapper> { jobMapper }, new List<IMemberMapper> { memberMapper }, session);
+
+        }
     }
 }

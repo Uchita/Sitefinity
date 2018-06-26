@@ -1,11 +1,9 @@
-﻿using JXTNext.Common.API.Models;
-using JXTNext.Sitefinity.Connector.BusinessLogics.Mappers;
+﻿using JXTNext.Sitefinity.Connector.BusinessLogics.Mappers;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Job;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search;
 using JXTNext.Sitefinity.Connector.Options.Models.Job;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -90,7 +88,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
             if (jobSearchResults != null)
                 return new Test_GetJobListingResponse { Success = true, Job = jobSearchResults };
             else
-                return new Test_GetJobListingResponse { Success = false, Messages = new List<string> { "Requested job was not found" } };
+                return new Test_GetJobListingResponse { Success = false, Errors = new List<string> { "Requested job was not found" } };
         }
 
         public void AdvertiserRegister()

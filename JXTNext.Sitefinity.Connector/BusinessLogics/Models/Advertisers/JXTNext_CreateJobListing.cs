@@ -22,7 +22,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers
         public JXTNext_CreateJobListingResponse(bool success, List<string> errors)
         {
             Success = success;
-            Messages = errors;
+            Errors = errors;
         }
 
         int? _jobId;

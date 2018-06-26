@@ -15,19 +15,24 @@ namespace Jxt.Sitefinity.Jobs.Controllers
 {
     public class JobsApiController: ApiController
     {
+        IJobsModel _jobsModel;
+
+        public JobsApiController()
+        {
+            DrawDependencies();
+        }
+
         [System.Web.Mvc.HttpGet]
         public JsonResult<List<JobViewModel>> Get()
         {
-            var model = this.GetModel();
-            var vms = model.GetListViewModel();
+            var vms = _jobsModel.GetListViewModel();
             return this.Json<List<JobViewModel>>(vms, new JsonSerializerSettings() { ContractResolver = new LowercaseContractResolver(), Formatting = Formatting.Indented });
         }
 
         [System.Web.Mvc.HttpGet]
         public JsonResult<JobViewModel> Get(int id)
         {
-            var model = this.GetModel();
-            var vm = model.GetSingleViewModel(id);
+            var vm = _jobsModel.GetSingleViewModel(id);
 
             if( vm == null )
             {
@@ -41,30 +46,28 @@ namespace Jxt.Sitefinity.Jobs.Controllers
         [System.Web.Mvc.HttpPost]
         public JsonResult<JobViewModel> Post(JobViewModel vm)
         {
-            var model = this.GetModel();
-            var createdJob = model.Create(vm);
+            var createdJob = _jobsModel.Create(vm);
             return this.Json<JobViewModel>(vm, new JsonSerializerSettings() { ContractResolver = new LowercaseContractResolver(), Formatting = Formatting.Indented });
         }
 
         [System.Web.Mvc.HttpPut]
         public JsonResult<JobViewModel> Put(JobViewModel vm)
         {
-            var model = this.GetModel();
-            var updatedJob = model.Update(vm);
+            var updatedJob = _jobsModel.Update(vm);
             return this.Json<JobViewModel>(vm, new JsonSerializerSettings() { ContractResolver = new LowercaseContractResolver(), Formatting = Formatting.Indented });
         }
         
         [System.Web.Mvc.HttpDelete]
         public bool Delete(Guid id)
         {
-            var model = this.GetModel();
-            model.Delete(id);
+            _jobsModel.Delete(id);
             return true;
         }
         
-        private JobsModel GetModel()
+        private void DrawDependencies()
         {
-            return new JobsModel();
+            _jobsModel = new JobsModel();
         }
+
     }
 }

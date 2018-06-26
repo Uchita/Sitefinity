@@ -33,8 +33,9 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
 
             ConnectorPostRequest connectorRequest = new ConnectorPostRequest(HTTP_Requests_MaxWaitTime)
             {
+                HeaderValues = HTTP_Request_HeaderValues,
                 Data = _jobMapper.ConvertToAPIEntity(jobDetails.JobData),
-                TargetUri = new Uri(CONFIG_DataAccessTarget + $"/api/advertiser/job")
+                TargetUri = new Uri(CONFIG_DataAccessTarget + $"/api/advertiseruser/job")
             };
             ConnectorResponse response = JXTNext.Common.API.Connector.Post(connectorRequest);
 
@@ -54,18 +55,21 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
 
             ConnectorGetRequest connectorRequest = new ConnectorGetRequest(HTTP_Requests_MaxWaitTime)
             {
-                TargetUri = new Uri(CONFIG_DataAccessTarget + $"/api/advertiser/job/{jobRequest.JobID}")
+                HeaderValues = HTTP_Request_HeaderValues,
+                TargetUri = new Uri(CONFIG_DataAccessTarget + $"/api/advertiseruser/job/{jobRequest.JobID}")
             };
             ConnectorResponse response = JXTNext.Common.API.Connector.Get(connectorRequest);
 
             //parse the response
             bool actionSuccessful = response.Success;
-            dynamic data = JObject.Parse(response.Response);
 
             if (actionSuccessful)
-                return new JXTNext_GetJobListingResponse { Success = actionSuccessful, Job = _jobMapper.ConvertToLocalEntity<JobDetailsModel>(data) };
+            {
+                dynamic responseObj = JObject.Parse(response.Response);
+                return new JXTNext_GetJobListingResponse { Success = true, Job = _jobMapper.ConvertToLocalEntity<JobDetailsModel>(responseObj) };
+            }
             else
-                return new JXTNext_GetJobListingResponse { Success = actionSuccessful, Messages = (List<string>)data["errors"] };
+                return new JXTNext_GetJobListingResponse { Success = false, Errors = new List<string> { response.Response } };
         }
 
         public void AdvertiserRegister()

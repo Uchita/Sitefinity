@@ -9,6 +9,7 @@ using SitefinityWebApp.App_Start;
 using SitefinityWebApp.Models;
 using System;
 using System.Web.Http;
+using System.Web.Http.Controllers;
 using System.Web.Mvc;
 using Telerik.Microsoft.Practices.Unity;
 using Telerik.Sitefinity.Abstractions;

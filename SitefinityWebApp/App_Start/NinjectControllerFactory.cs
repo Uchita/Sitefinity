@@ -1,4 +1,5 @@
-﻿using JXTNext.Sitefinity.Common.Models;
+﻿using Jxt.Sitefinity.Jobs;
+using JXTNext.Sitefinity.Common.Models;
 using JXTNext.Sitefinity.Connector;
 using JXTNext.Sitefinity.Widgets.Authentication;
 using JXTNext.Sitefinity.Widgets.Job;

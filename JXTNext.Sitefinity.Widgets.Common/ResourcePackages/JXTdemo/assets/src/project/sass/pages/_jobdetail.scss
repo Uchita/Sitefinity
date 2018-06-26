@@ -1,0 +1,216 @@
+//Job Detail page specific 
+.backtoresult{
+    margin-bottom: 9rem;
+    font-size: 2.4rem;
+    a{
+        color: lighten($fontColor,46.5%);
+        &:hover, &:focus{
+            text-decoration: none;
+            color: $fontColor;
+            .prev-btn{
+                background: darken($p2Color,10%);
+            }
+        }
+    }
+}
+.prev-btn{
+    margin-right:0.8rem;
+    position: relative;
+    top: -6px;
+    @include mkrDiamond;
+    &::after{
+        content: '\f104';
+        left: 2px;
+        top: -10px;
+    }
+}
+.job-mini{
+    margin-bottom: 12rem;
+    .job-topbar{
+        text-align: left;
+        max-width: 400px;
+    }
+    .job-header{
+        padding: 0;
+        .highlight{
+            font-size: 3rem;
+        }
+    }
+    .page-title{
+        font-size: 6.3rem;
+        line-height: 1.2;
+        text-align: left;
+        margin-bottom: 20px;
+    }
+    .sc-job-meta-group{
+        display: flex;
+        flex-wrap: wrap;
+        dd{
+            width: auto;
+            flex-grow: 1;
+        }
+    } 
+    .job-copy{
+        padding: 3rem 3rem 2rem 0;
+    }
+    .job-ref{
+        font-size: 3.2rem;
+        margin-bottom: 2rem;
+        .meta-key{
+            color: $fontColor;
+            margin-right: 5px;
+        }
+        .meta-value{
+            color: $p4Color;
+            font-weight: bold;
+        }
+    }
+    aside{
+        margin-top: 3.5rem;
+        h4{
+            font-size: 1.2rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 3rem;
+        }
+    }
+    .sidebar{
+        max-width: initial;
+        margin-right: 0;
+        float: none;
+    }
+    @include bp-max(md){
+        margin-bottom: 3rem;
+        .page-title{
+            font-size: 4rem;
+        }
+        .job-header{         
+            .highlight{
+                font-size: 2.5rem;
+            }
+        }
+        .job-copy{
+            padding-right: 0;
+        } 
+        .sidebar{
+            margin-top: 7rem;
+        }
+    }
+}
+.job-sec2{
+    float: right;
+    text-align: center;
+    margin-bottom: 7rem;
+    @include bp-max(md){
+        float: none;
+        margin: 0 auto 2rem;
+        .job-ref{
+            float: left;
+        }
+        .job-image{
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+            border-radius: 50%;
+            float: right;
+            margin-bottom: 0;
+        }
+        a.link{
+            clear: left;
+            display: block;
+            text-align: left;
+        }
+    }
+
+}
+
+.side-widget{
+    margin-bottom: 6rem;
+    &:last-of-type{
+        margin-bottom: 5rem;
+    }
+}
+.vrt-list{
+    li{
+        margin-bottom: 1rem;
+    }
+}
+
+
+// Related blog post
+.form-widget{
+    padding: 15rem 20px;
+    color: $brightColor;
+    h2{
+        color: $brightColor;
+        flex-grow: 1;
+        margin-bottom: 6rem;
+    }
+}
+
+.post-list{
+    border-top: 2px solid $p2Color;
+    padding-top: 7rem;
+    margin-bottom: 5rem;
+    .sc-item{
+        margin-right: 30px;    
+        @include bp-max(sm){
+            margin-right: 0;
+        }
+    }
+    h2{
+        margin-bottom: 4rem;
+    }
+    .img-holder{
+        border-radius: 5px;
+        overflow: hidden;
+        display: block;
+    }
+    .post-wrap{
+        padding: 25px 30px;
+        @include bp-max(sm){
+            padding: 15px 10px;
+        }
+    }
+    .post-date{
+        font-size: 1.4rem;
+        [class*="icon-"]{
+            color: $p1Color;
+            font-size: 1.8rem;
+            margin-right: 12px;
+        }
+        &:hover, &:focus{
+            text-decoration: none;
+        }
+    }
+    
+    //control overriding for this widget
+    .control-rt{
+        .owl-nav {
+            button{
+                width: 4rem;
+                height: 4rem;
+                font-size: 2.2rem;
+            }
+            .owl-prev{
+                top: -7rem;
+                right: 6.5rem;
+            }
+            .owl-next{
+                top: -12rem;
+            }
+
+            @include bp-max(sm){
+                .owl-prev{
+                    right: 2.5rem;
+                }
+                .owl-next{
+                    right: 1rem;
+                }
+            }
+        }
+        
+      
+    }
+}

@@ -4,6 +4,8 @@
 @import 'helper/common';
 @import 'helper/icons';
 @import 'helper/color-theme';
+//Sitefinity admin fix due to conflict between the classes used
+@import 'helper/sitefinity-admin-fixes';
 
 //plugin css
 @import 'plugins/owl.carousel';
@@ -36,3 +38,7 @@
 @import 'pages/homepage';
 @import 'pages/blog';
 @import 'pages/jobresult';
+@import 'pages/jobdetail';
+
+
+

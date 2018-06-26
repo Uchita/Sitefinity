@@ -138,12 +138,16 @@
     width: $dim;
     height: $dim;
     font: 4rem/1 FontAwesome;
+    text-indent: -99em;
+    overflow: hidden;
+    display: inline-block;
     @include rotate(45deg);
     @if $arrow = true{
         &::after{
             display: block;
             @include rotate(-45deg);
             position: relative;
+            text-indent: 0;
         }
     }
     &:hover, &:focus{

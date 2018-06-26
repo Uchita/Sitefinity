@@ -103,33 +103,25 @@
     //     }
     // }
     //slider nav
-    .owl-controls .owl-prev{
-        top: 9rem;
-        left: auto;
-        right: 8rem;
-    }
-    .owl-controls .owl-next{
-        top: 3rem;
-        right: 4.5rem;
-    }
+    
     @include bp-max(md){
-        .owl-controls .owl-prev{
+        .owl-nav .owl-prev{
             top: auto;
             bottom: 5rem;
         }
-        .owl-controls .owl-next{
+        .owl-nav .owl-next{
             top: auto;
             bottom: 11rem;
         }
-    }
-    @include bp-max(sm){
-        .owl-controls .owl-prev{
-            bottom: 4.6rem;
-            right: 3rem;
-        }
-        .owl-controls .owl-next{
-            bottom: 9rem;
-            right: 0;
-        }
-    }
+      }
+      @include bp-max(sm){
+          .owl-nav .owl-prev{
+              bottom: 4.6rem;
+              right: 3rem;
+          }
+          .owl-nav .owl-next{
+              bottom: 9rem;
+              right: 0;
+          }
+      }
 }

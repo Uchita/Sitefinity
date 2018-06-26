@@ -27,10 +27,10 @@
     margin-bottom: 7rem;
     .job-topbar{
         color: $p5Color;
-        font:bold 12px/1 $boldFont;
+        font:700 12px/1 $boldFont;
         text-align: center;
-        letter-spacing: 1px;
         padding-bottom: 2.3rem;
+        border-bottom: 8px solid $p2Color;
         a{
             color: $p5Color;
             text-transform: uppercase;
@@ -81,7 +81,7 @@
     .job-header{
         padding: 0 100px 30px 15px;
         position: relative;
-        border-top: 8px solid $p2Color;
+        
         padding-top: 2rem;
         h3{
             margin-bottom: 10px;

@@ -44,24 +44,7 @@
 .newsletter-form{
     max-width: 850px;
 }
-.hz-listing.cs-layout{
-    @extend .jn_search.cs-layout;
-    margin-bottom: 4rem;
-    .form-fields-group{
-        height: 60px;
-        input{
-            padding: 10px;
-        }
-    }
-    .btn{
-        height: 60px;
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-    &::after{
-        box-shadow: 0px 3px 80px 3px rgba(0, 0, 0, 1);
-    }
-}
+
 
 .side-triangle{
     position: relative;

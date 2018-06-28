@@ -1,6 +1,7 @@
 .sidebar{
     margin-top: 6rem;
     margin-bottom: 4rem;
+    flex-grow: 1;
     ul{
         list-style: none;
         padding-left: 0;
@@ -16,9 +17,9 @@
                     border-radius: 50%;
                     position: absolute;
                     left: 0;
-                    top: 17px;
-                    height: 7px;
-                    width: 7px;
+                    top: 14px;
+                    height: 8px;
+                    width: 8px;
                     background: lighten($fontColor,40%);
                 }
                 &:hover{
@@ -29,6 +30,9 @@
                     }
                 }
             }
+            h4 a::before{
+                top: 17px;
+            }
             &.active > a, a.active{
                 color: $baseColor;   
                 &::before{
@@ -38,7 +42,7 @@
         }
     }
     
-        > ul{
+        > ul.filter-multilevel{
             > li{
                 padding-bottom: 10px;
                 > a{
@@ -62,6 +66,25 @@
             display: block;
             margin: 0 auto;
         }
-    
-    
+       
+}
+h4.aside-title{
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+}
+
+
+.side-widget{
+    margin-bottom: 6rem;
+    &:last-of-type{
+        margin-bottom: 5rem;
+    }
+}
+.vrt-list{
+    li{
+        margin-bottom: 1.5rem;
+    }
 }

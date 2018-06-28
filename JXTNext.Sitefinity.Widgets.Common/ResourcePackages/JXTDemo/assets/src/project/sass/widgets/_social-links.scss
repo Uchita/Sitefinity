@@ -50,7 +50,7 @@
         margin: 5px 7px 0;
     }
 }
-@include bp-max(sm){
+@include bp-max(md){
     #header .jn_social-links{
         display: none;
     }

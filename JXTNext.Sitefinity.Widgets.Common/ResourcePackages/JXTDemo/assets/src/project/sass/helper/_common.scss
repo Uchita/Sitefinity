@@ -121,6 +121,9 @@ p,ul,ol{
         text-transform: none;
         font-weight: normal;
         padding: initial;
+        &:active{
+            background-color: none!important;
+        }
     }
 }
 
@@ -157,16 +160,16 @@ input.text-field{
         max-width: 1170px;
     }
 }
-@include bp-max(sm){
-    .container{
-        padding-left: 40px;
-        padding-right: 40px;
-        >.row{
-            margin-left: -40px;
-            margin-right: -40px;
-        }
-    }
-}
+// @include bp-max(sm){
+//     .container{
+//         padding-left: 40px;
+//         padding-right: 40px;
+//         >.row{
+//             margin-left: -40px;
+//             margin-right: -40px;
+//         }
+//     }
+// }
 @include bp-max(xs){
     .container{
         padding-left: 15px;
@@ -244,6 +247,10 @@ input.text-field{
     margin-bottom: 0!important;
 }
 
+.content-holder{
+    max-width: 100%;
+    flex-grow: 1;
+}
 //two column layout
 @include bp-min(md){
     .sidebar{
@@ -255,5 +262,11 @@ input.text-field{
     .content-holder{
         float: left;
         width: calc(100% - 270px);
+
+    }
+}
+@include bp-max(sm){
+    .sidebar, .content-holder{
+        flex-basis: auto;
     }
 }

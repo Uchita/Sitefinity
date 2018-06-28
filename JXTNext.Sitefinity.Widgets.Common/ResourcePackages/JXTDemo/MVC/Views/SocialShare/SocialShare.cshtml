@@ -7,8 +7,9 @@
     var pageTitle = SocialShareButtons.PageTitle;
 }
 
-<div class="@Model.CssClass">
-    <ul class="soc_share">
+<div class="jn_social-links side-widget">
+    <h4>Share on social media</h4>
+    <ul class="soc_share @Model.CssClass">
         @foreach (var button in Model.SocialButtons)
         {
             switch (button.ButtonName)

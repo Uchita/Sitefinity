@@ -2,9 +2,10 @@
 .blog-metadata{
     padding: 2rem 0;
     .meta-data{
-        max-width: 150px;
         font-size: 1.4rem;
         color: $baseColor;
+        padding-left: 0;
+        max-width: 100px;
         .jn_ico{
             color: $p1Color;
             font-size: 1.9rem;
@@ -24,10 +25,100 @@
             text-decoration: none;
         }
     }
+    .data-content{
+        .avatar{
+            width: 70px;
+            font-size: 1.2rem;
+            text-align: right;
+            .img-holder{
+                display: block;
+                figure{
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    float: right;
+                }
+                span{
+                    clear: both;
+                    display: block;
+                }
+            }
+        }
+    }
+}
+.list-view{
+ 
+    .data-content{
+        position: relative;
+        padding-right: 90px;
+        .avatar{
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: 1;
+        }
+    }
+}
+.grid-view{
+    .h-section{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+    }
+    .article{
+        width: 47%;
+    }
+    .meta-data, .data-content{
+        max-width: 100%;
+        width: 100%;
+        flex-basis: auto;
+        padding: 0;
+    }
+    .avatar{
+        float: right;
+    }
+    .tags{
+        float: left;
+        width: calc(100% - 100px);
+    }
 }
 
 .blog-wrapper{
     padding: 14rem 0 7rem;
+    .list-head{
+        padding-right: 100px;
+        position: relative;
+        .layout-switch {
+            position: absolute;
+            right: 0;
+            top: 8px;
+            z-index: 1;
+            width: 85px;
+            height: 100%;
+            > span{
+                margin-left: 10px;
+                font-size: 2.4rem;
+                line-height: 1.2;
+                height: 28px;
+                width: 28px;
+                overflow: visible;
+                cursor: pointer;
+                &:hover, &:focus, &.active{
+                    color: $p1Color;
+                }
+            }
+        }
+    }
+    .article{
+        margin-bottom: 2rem;
+    }
+}
+.article{
+    figure{
+        border-radius: 10px;
+        overflow: hidden;
+    }
 }
 .tags{
     a{
@@ -56,4 +147,77 @@
             background-color: darken($bgColor,10%);
         }
     }
+}
+
+
+//post scroller widget template with multiple item: 2 for now
+.post-list{
+    border-top: 2px solid $p2Color;
+    padding-top: 7rem;
+    margin-bottom: 5rem;
+    .sc-item{
+        margin-right: 30px;    
+        @include bp-max(sm){
+            margin-right: 0;
+        }
+    }
+    h2{
+        margin-bottom: 4rem;
+    }
+    .img-holder{
+        border-radius: 10px;
+        overflow: hidden;
+        display: block;
+    }
+    .post-wrap{
+        padding: 25px 30px;
+        @include bp-max(sm){
+            padding: 15px 10px;
+        }
+    }
+    .post-date{
+        font-size: 1.4rem;
+        [class*="icon-"]{
+            color: $p1Color;
+            font-size: 1.8rem;
+            margin-right: 12px;
+        }
+        &:hover, &:focus{
+            text-decoration: none;
+        }
+    }
+    
+    //control overriding for this widget
+    .control-rt{
+        .owl-nav {
+            button{
+                width: 4rem;
+                height: 4rem;
+                font-size: 2.2rem;
+            }
+            .owl-prev{
+                top: -7rem;
+                right: 6.5rem;
+            }
+            .owl-next{
+                top: -12rem;
+            }
+
+            @include bp-max(sm){
+                .owl-prev{
+                    right: 2.5rem;
+                }
+                .owl-next{
+                    right: 1rem;
+                }
+            }
+        }
+        
+      
+    }
+}
+
+//banner scroller widget template
+.jn_scroller-full{
+
 }

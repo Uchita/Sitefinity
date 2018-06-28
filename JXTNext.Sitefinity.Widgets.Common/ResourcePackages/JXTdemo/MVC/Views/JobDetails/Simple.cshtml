@@ -2,28 +2,51 @@
 
 @if (Model != null)
 {
-<div class="row">
-    <div class="col-lg-8">
-        <div class="backtoresult">
-            <a href="#" id="back-to-results" role="button" title="Back to Results"><span class="prev-btn"></span>Back To Results</a>
-        </div>
-        @if (Model.Success == true)
+
+
+        if (Model.Success == true)
         {
-            <div class="job-holder">
-                <div class="job-topbar">
-                    @*<a href="/save-job" title="Save job">Save Job</a>
-                    <a href="/share-job" title="share job">Share Job</a>
-                    <a href="/Apply-now" title="Apply Now">Apply Now</a>*@
+            <div class="col-lg-8">
+                <div class="backtoresult">
+                    <a href="#" id="back-to-results" role="button" title="Back to Results"><span class="prev-btn"></span>Back To Results</a>
                 </div>
-                <div class="job-header">
-                    <h1 class="page-title">@Model.Job.Title</h1>
-                    @*<div class="highlight"></div>*@
+                <div class="job-holder">
+                    <div class="job-topbar">
+                        <a href="/save-job" title="Save job">Save Job</a>
+                        <a href="/share-job" title="share job">Share Job</a>
+                        <a href="/Apply-now" title="Apply Now">Apply Now</a>
+                    </div>
+                    <div class="job-header">
+                        <h1 class="page-title">@Model.Job.Title</h1>
+                        <div class="highlight">Tag goes here</div>
+                    </div>
+                    <dl class="sc-job-meta-group clearfix">
+                        <dt class="sc-job-meta-name meta-cat hidden">Director</dt>
+                        <dd class="sc-job-meta-value meta-cat">
+                            <span class="jn_ico icon-time">icon</span>Director
+                        </dd>
+                        <dt class="sc-job-meta-name meta-location hidden">Location</dt>
+                        <dd class="sc-job-meta-value meta-location">
+                            <a href="" title="Jobs in Sydney">
+                                <span class="jn_ico icon-pin">icon</span>Sydney
+                            </a>
+                        </dd>
+                        <dt class="sc-job-meta-name meta-salary hidden">Salary</dt>
+                        <dd class="sc-job-meta-value meta-salary">
+                            <span class="jn_ico icon-value">icon</span>65,000 - 75,000 per annum
+                        </dd>
+                        <dt class="sc-job-meta-name meta-worktype hidden">Worktype</dt>
+                        <dd class="sc-job-meta-value meta-worktype">
+                            <span class="jn_ico icon-time">icon</span>Permanent
+                        </dd>
+                    </dl>
                 </div>
             </div>
-
             <div class="col-lg-4">
                 <div class="job-sec2">
-
+                    <div class="job-ref"><span class="meta-key">Ref:</span><span class="meta-value">2F9775SD90IB</span></div>
+                    <figure class="job-image"><img src="~/ResourcePackages/JXTdemo/assets/dist/images/team-1.jpg" alt="Team name"></figure>
+                    <a href="mailto:emailaddress" class="link" title="Consultant email">Email</a>
                 </div>
             </div>
 
@@ -31,8 +54,11 @@
                 <div class="job-copy">
                     @Model.Job.Description
                 </div>
+                <div class="buttons-wrapper">
+                    <a href="@ViewBag.JobApplicationPageUrl" id="apply-job" role="button" class="btn btn-sm">Apply</a>
+                    <a href="/refer-friend" class="btn btn-sm btn-1" title="Refer this job to your friend">Refer Friend</a>
+                </div>
             </div>
-                
 
         }
         else
@@ -42,13 +68,10 @@
         <div>@message</div>
         }
         }
-    </div>
-</div>
-    
+       
 
-    <div class="buttons-wrapper">
-        <a href="@ViewBag.JobApplicationPageUrl" id="apply-job" role="button" class="btn btn-sm">Apply</a>
-    </div>
+
+    
 }
 
 

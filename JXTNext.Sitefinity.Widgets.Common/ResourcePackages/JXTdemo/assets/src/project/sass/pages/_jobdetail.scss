@@ -31,7 +31,7 @@
         max-width: 400px;
     }
     .job-header{
-        padding: 0;
+        padding: 0 0 3rem;
         .highlight{
             font-size: 3rem;
         }
@@ -65,7 +65,7 @@
             font-weight: bold;
         }
     }
-    aside{
+    .aside{
         margin-top: 3.5rem;
         h4{
             font-size: 1.2rem;
@@ -125,18 +125,6 @@
 
 }
 
-.side-widget{
-    margin-bottom: 6rem;
-    &:last-of-type{
-        margin-bottom: 5rem;
-    }
-}
-.vrt-list{
-    li{
-        margin-bottom: 1rem;
-    }
-}
-
 
 // Related blog post
 .form-widget{
@@ -146,71 +134,5 @@
         color: $brightColor;
         flex-grow: 1;
         margin-bottom: 6rem;
-    }
-}
-
-.post-list{
-    border-top: 2px solid $p2Color;
-    padding-top: 7rem;
-    margin-bottom: 5rem;
-    .sc-item{
-        margin-right: 30px;    
-        @include bp-max(sm){
-            margin-right: 0;
-        }
-    }
-    h2{
-        margin-bottom: 4rem;
-    }
-    .img-holder{
-        border-radius: 5px;
-        overflow: hidden;
-        display: block;
-    }
-    .post-wrap{
-        padding: 25px 30px;
-        @include bp-max(sm){
-            padding: 15px 10px;
-        }
-    }
-    .post-date{
-        font-size: 1.4rem;
-        [class*="icon-"]{
-            color: $p1Color;
-            font-size: 1.8rem;
-            margin-right: 12px;
-        }
-        &:hover, &:focus{
-            text-decoration: none;
-        }
-    }
-    
-    //control overriding for this widget
-    .control-rt{
-        .owl-nav {
-            button{
-                width: 4rem;
-                height: 4rem;
-                font-size: 2.2rem;
-            }
-            .owl-prev{
-                top: -7rem;
-                right: 6.5rem;
-            }
-            .owl-next{
-                top: -12rem;
-            }
-
-            @include bp-max(sm){
-                .owl-prev{
-                    right: 2.5rem;
-                }
-                .owl-next{
-                    right: 1rem;
-                }
-            }
-        }
-        
-      
     }
 }

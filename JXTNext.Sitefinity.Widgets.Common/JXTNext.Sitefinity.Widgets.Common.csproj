@@ -70,6 +70,9 @@
     <Content Include="ResourcePackages\JXTDemo\assets\dist\images\banner-bg.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\bg-1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\JXTDemo\assets\dist\images\body-bg.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -112,6 +115,9 @@
     <Content Include="ResourcePackages\JXTDemo\assets\dist\images\star-chain.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\JXTDemo\assets\dist\images\team-1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\JXTDemo\assets\dist\images\ticker-bg.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -148,17 +154,39 @@
     <Content Include="ResourcePackages\JXTDemo\assets\src\sitefinity\images\sprite\stumble-upon.png" />
     <Content Include="ResourcePackages\JXTDemo\assets\src\sitefinity\images\sprite\tumblr.png" />
     <Content Include="ResourcePackages\JXTDemo\assets\src\sitefinity\images\sprite\twitter.png" />
-    <Content Include="ResourcePackages\JXTDemo\GridSystem\Templates\container.html" />
-    <Content Include="ResourcePackages\JXTDemo\GridSystem\Templates\grid-12.html" />
-    <Content Include="ResourcePackages\JXTDemo\GridSystem\Templates\grid-2+3+2+3+2.html" />
-    <Content Include="ResourcePackages\JXTDemo\GridSystem\Templates\grid-3+3+3+3.html" />
-    <Content Include="ResourcePackages\JXTDemo\GridSystem\Templates\grid-3+6+3.html" />
-    <Content Include="ResourcePackages\JXTDemo\GridSystem\Templates\grid-3+9.html" />
-    <Content Include="ResourcePackages\JXTDemo\GridSystem\Templates\grid-4+4+4.html" />
-    <Content Include="ResourcePackages\JXTDemo\GridSystem\Templates\grid-4+8.html" />
-    <Content Include="ResourcePackages\JXTDemo\GridSystem\Templates\grid-6+6.html" />
-    <Content Include="ResourcePackages\JXTDemo\GridSystem\Templates\grid-8+4.html" />
-    <Content Include="ResourcePackages\JXTDemo\GridSystem\Templates\grid-9+3.html" />
+    <Content Include="ResourcePackages\JXTDemo\GridSystem\Templates\container.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\GridSystem\Templates\grid-12.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\GridSystem\Templates\grid-2+3+2+3+2.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\GridSystem\Templates\grid-3+3+3+3.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\GridSystem\Templates\grid-3+6+3.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\GridSystem\Templates\grid-3+9.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\GridSystem\Templates\grid-4+4+4.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\GridSystem\Templates\grid-4+8.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\GridSystem\Templates\grid-6+6.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\GridSystem\Templates\grid-8+4.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\GridSystem\Templates\grid-9+3.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\JXTDemo\gulpfile.js" />
   </ItemGroup>
   <ItemGroup>
@@ -362,6 +390,13 @@
     <EmbeddedResource Include="ResourcePackages\JXTDemo\MVC\Views\JobDetails\Simple.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\ImageGallery\Detail.DetailPage.cshtml" />
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\ImageGallery\List.ImageGallery.cshtml" />
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\ImageGallery\List.OverlayGallery.cshtml" />
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\ImageGallery\List.SimpleList.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\ImageGallery\List.ThumbnailStrip.cshtml" />
     <None Include="ResourcePackages\JXTDemo\MVC\Views\JobSearch\JobSearch.Simple.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -376,6 +411,15 @@
     </None>
     <None Include="ResourcePackages\JXTDemo\MVC\Views\Layouts\default2.cshtml" />
     <None Include="ResourcePackages\JXTDemo\MVC\Views\Layouts\default3.cshtml" />
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\LoginForm\ForgotPassword.ForgottenPassword.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\LoginForm\LoginForm.LoginForm.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\LoginForm\ResetPassword.ResetPassword.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="ResourcePackages\JXTDemo\MVC\Views\LoginStatusExtended\LoginStatusExtended.LoginButton.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -409,6 +453,24 @@
     <None Include="ResourcePackages\JXTDemo\MVC\Views\Navigation\NavigationView.Vertical.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\Registration\Registration.RegistrationForm.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\News\Detail.DetailPage.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\News\List.NewsList.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\News\List.NewsListTitlesOnly.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\News\List.NewsListScroller.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\News\List.NewsListBanner.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="ResourcePackages\JXTDemo\MVC\Views\SearchBox\SearchBox.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -428,6 +490,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\JXTDemo\MVC\Views\UsersList\List.ConsultantList.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\UsersList\List.ConsultantListSimple.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="ResourcePackages\JXTDemo\package-lock.json" />

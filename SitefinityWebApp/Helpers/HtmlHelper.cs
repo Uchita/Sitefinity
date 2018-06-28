@@ -24,7 +24,9 @@ namespace JXTNext.Sitefinity.Common.Helpers
 
         public static string GetItemThumbnailImageUrl(this ItemViewModel dataItem, string targetField, int imageIndex)
         {
-            if (dataItem.Fields == null || dataItem.Fields.Image == null || dataItem.Fields.Image[imageIndex] == null)
+            if (dataItem.Fields == null || dataItem.Fields.Image == null
+                  || dataItem.Fields.Image.Length == 0 || dataItem.Fields.Image.Length < imageIndex
+                  || dataItem.Fields.Image[imageIndex] == null)
                 return string.Empty;
 
             var imageDataItem = dataItem.Fields.Image[imageIndex].DataItem;

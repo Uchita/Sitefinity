@@ -347,9 +347,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Mvc\Views\readme.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\JXTNext.Sitefinity.Common\JXTNext.Sitefinity.Common.csproj">
       <Project>{9ccdbc01-ef02-4d74-9385-5c0f1da2eb7a}</Project>
       <Name>JXTNext.Sitefinity.Common</Name>

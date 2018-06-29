@@ -30,8 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JXTNext.Common.API, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JXT.JXTNext.Common.API.1.6.0\lib\netstandard1.1\JXTNext.Common.API.dll</HintPath>
+    <Reference Include="JXTNext.Common.API, Version=1.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JXT.JXTNext.Common.API.1.7.0\lib\netstandard1.1\JXTNext.Common.API.dll</HintPath>
     </Reference>
     <Reference Include="JXTNext.Common.Web, Version=1.3.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JXT.JXTNext.Common.Web.1.3.2\lib\netstandard1.1\JXTNext.Common.Web.dll</HintPath>
@@ -65,10 +65,13 @@
     <Compile Include="BusinessLogics\IBusinessLogicsConnector.cs" />
     <Compile Include="BusinessLogics\Mappers\IMemberMapper.cs" />
     <Compile Include="BusinessLogics\Mappers\JXTNext_MemberMapper.cs" />
+    <Compile Include="BusinessLogics\Models\Advertisers\IDeleteJobListing.cs" />
+    <Compile Include="BusinessLogics\Models\Advertisers\JXTNext_DeleteJobListing.cs" />
     <Compile Include="BusinessLogics\Models\Advertisers\Test_CreateJobListing.cs" />
     <Compile Include="BusinessLogics\Models\Advertisers\Test_GetJobListing.cs" />
     <Compile Include="BusinessLogics\Models\Member\IMemberRegister.cs" />
     <Compile Include="BusinessLogics\Models\Member\JXTNext_MemberRegister.cs" />
+    <Compile Include="BusinessLogics\Models\Search\FiltersSearchRoot.cs" />
     <Compile Include="BusinessLogics\Models\Search\Test_SearchJobs.cs" />
     <Compile Include="BusinessLogics\TestBusinessLogicsConnector.cs" />
     <Compile Include="BusinessLogics\JXTNextBusinessLogicsConnector.cs" />

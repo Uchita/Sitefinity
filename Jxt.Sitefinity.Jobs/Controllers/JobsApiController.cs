@@ -58,7 +58,7 @@ namespace Jxt.Sitefinity.Jobs.Controllers
         }
         
         [System.Web.Mvc.HttpDelete]
-        public bool Delete(Guid id)
+        public bool Delete(int id)
         {
             _jobsModel.Delete(id);
             return true;

@@ -11,6 +11,8 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
     {
         IntegrationMapperType mapperType { get; }
         object ConvertToAPIEntity(JobDetailsModel jobDetails);
-        T ConvertToLocalEntity<T>(dynamic data);
+        T ConvertToLocalEntity<T>(dynamic data) where T : class;
+
+        List<T> ConvertSearchResultsToLocal<T>(dynamic data) where T : class;
     }
 }

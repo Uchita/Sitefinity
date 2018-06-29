@@ -19,10 +19,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
     [ControllerToolboxItem(Name = "JobSearchResults_MVC", Title = "Search Results", SectionName = "JXTNext.Job", CssClass = JobSearchResultsController.WidgetIconCssClass)]
     public class JobSearchResultsController : Controller
     {
-        IBusinessLogicsConnector _testBLConnector;
-        IOptionsConnector _testOConnector;
+        IBusinessLogicsConnector _BLConnector;
+        IOptionsConnector _OptionsConnector;
         IGetJobFiltersResponse _filtersResponse;
-        JobFilterRoot _jobTypes;
 
         /// <summary>
         /// Gets or sets the name of the template that widget will be displayed.
@@ -43,24 +42,19 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
         public JobSearchResultsController(IEnumerable<IBusinessLogicsConnector> _bConnectors, IEnumerable<IOptionsConnector> _oConnectors)
         {
-            _testBLConnector = _bConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.Test).FirstOrDefault();
-            _testOConnector = _oConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.Test).FirstOrDefault();
+            _BLConnector = _bConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.JXTNext).FirstOrDefault();
+            _OptionsConnector = _oConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.JXTNext).FirstOrDefault();
 
             //Execute - Get available filter options from the server
-            _filtersResponse = _testOConnector.JobFilters<Test_GetJobFiltersRequest, Test_GetJobFiltersResponse>(new Test_GetJobFiltersRequest());
-            _jobTypes = _filtersResponse.Filters.Data.Where(item => item.Name == "Job Types").FirstOrDefault();
-            if (_jobTypes != null)
-                this.SerializedTotalJobTypes = JsonConvert.SerializeObject(_jobTypes.Filters);
+            //_filtersResponse = _OptionsConnector.JobFilters<JXTNext_GetJobFiltersRequest, JXTNext_GetJobFiltersResponse>(new JXTNext_GetJobFiltersRequest());
+            //_jobTypes = _filtersResponse.Filters.Data.Where(item => item.Name == "Job Types").FirstOrDefault();
+            //if (_jobTypes != null)
+            //    this.SerializedTotalJobTypes = JsonConvert.SerializeObject(_jobTypes.Filters);
         }
 
         // GET: JobSearchResults
         public ActionResult Index(JobSearchResultsFilterModel filterModel)
         {
-            _filtersResponse = _testOConnector.JobFilters<Test_GetJobFiltersRequest, Test_GetJobFiltersResponse>(new Test_GetJobFiltersRequest());
-            _jobTypes = _filtersResponse.Filters.Data.Where(item => item.Name == "Job Types").FirstOrDefault();
-            if (_jobTypes != null)
-                this.SerializedTotalJobTypes = JsonConvert.SerializeObject(_jobTypes.Filters);
-
             dynamic dynamicJobResultsList = null;
 
             if(filterModel != null)
@@ -88,7 +82,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 request.Page = PageNumber - 1;
             }
 
-            Test_SearchJobsResponse jobResponse = (Test_SearchJobsResponse)_testBLConnector.SearchJobs(request);
+            Test_SearchJobsResponse jobResponse = (Test_SearchJobsResponse)_BLConnector.SearchJobs(request);
 
             if (jobResponse != null)
                 response.Data = JsonConvert.SerializeObject(jobResponse.SearchResults);
@@ -145,31 +139,31 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     }
                 }
 
-                if (!String.IsNullOrEmpty(this.SerializedJobTypes))
-                {
-                    var jobTypes = JsonConvert.DeserializeObject<List<JobTypesDesignerViewModel>>(this.SerializedJobTypes);
-                    if (jobTypes != null && jobTypes.Count > 0)
-                    {
-                        var selectedJobTypes = jobTypes.Where(item => item.Selected == true).ToList();
-                        if (selectedJobTypes != null && selectedJobTypes.Count > 0)
-                        {
-                            if (filtersSearch == null)
-                                filtersSearch = new List<FiltersSearchRoot>();
+                //if (!String.IsNullOrEmpty(this.SerializedJobTypes))
+                //{
+                //    var jobTypes = JsonConvert.DeserializeObject<List<JobTypesDesignerViewModel>>(this.SerializedJobTypes);
+                //    if (jobTypes != null && jobTypes.Count > 0)
+                //    {
+                //        var selectedJobTypes = jobTypes.Where(item => item.Selected == true).ToList();
+                //        if (selectedJobTypes != null && selectedJobTypes.Count > 0)
+                //        {
+                //            if (filtersSearch == null)
+                //                filtersSearch = new List<FiltersSearchRoot>();
 
-                            var filters = new List<FiltersSearchElement>();
-                            foreach (var jobType in selectedJobTypes)
-                            {
-                                if (!String.IsNullOrEmpty(jobType.ID))
-                                    filters.Add(new FiltersSearchElement { ID = jobType.ID });
-                            }
-                            if (filters.Count > 0)
-                            {
-                                if (!String.IsNullOrEmpty(_jobTypes.ID))
-                                    filtersSearch.Add(new FiltersSearchRoot { RootID = _jobTypes.ID, Filters = filters });
-                            }
-                        }
-                    }
-                }
+                //            var filters = new List<FiltersSearchElement>();
+                //            foreach (var jobType in selectedJobTypes)
+                //            {
+                //                if (!String.IsNullOrEmpty(jobType.ID))
+                //                    filters.Add(new FiltersSearchElement { ID = jobType.ID });
+                //            }
+                //            if (filters.Count > 0)
+                //            {
+                //                if (!String.IsNullOrEmpty(_jobTypes.ID))
+                //                    filtersSearch.Add(new FiltersSearchRoot { RootID = _jobTypes.ID, Filters = filters });
+                //            }
+                //        }
+                //    }
+                //}
 
                 if (this.PageSize == null || this.PageSize <= 0)
                     this.PageSize = PageSizeDefaultValue;
@@ -178,8 +172,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     filterModel.Page = 1;
 
                 //Execute - Try perform search
-                ISearchJobsRequest request = new Test_SearchJobsRequest { Page = filterModel.Page - 1, PageSize = (int)this.PageSize, Keywords = filterModel.Keywords, FiltersSearch = filtersSearch };
-                response = _testBLConnector.SearchJobs(request);
+                ISearchJobsRequest request = new JXTNext_SearchJobsRequest { Page = filterModel.Page - 1, PageSize = (int)this.PageSize, Keywords = filterModel.Keywords, FiltersSearch = filtersSearch };
+                response = _BLConnector.SearchJobs(request);
                 Test_SearchJobsResponse jobResultsList = response as Test_SearchJobsResponse;
 
                 ViewBag.Request = JsonConvert.SerializeObject(request);
@@ -193,8 +187,26 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 ViewBag.JobResultsPageUrl = SitefinityHelper.GetPageUrl(this.ResultsPageId);
                 ViewBag.JobDetailsPageUrl = SitefinityHelper.GetPageUrl(this.DetailsPageId);
             }
-
+            
             return response;
+        }
+
+        private JobFiltersData _jobFiltersData;
+        private JobFiltersData JobFiltersData
+        {
+            get {
+                if (_jobFiltersData == null)
+                {
+                    IGetJobFiltersResponse filtersResponse = _OptionsConnector.JobFilters<JXTNext_GetJobFiltersRequest, JXTNext_GetJobFiltersResponse>(new JXTNext_GetJobFiltersRequest());
+                    if (filtersResponse.Success)
+                        _jobFiltersData = filtersResponse.Filters;
+                    else
+                    {
+                        //something is wrong, handle me!
+                    }
+                }
+                return _jobFiltersData;
+            }
         }
 
         public int? PageSize { get; set; }
@@ -204,7 +216,19 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public bool IsAllJobs { get; set; }
         public string CssClass { get; set; }
         public string SerializedJobTypes { get; set; }
-        public string SerializedTotalJobTypes { get; set; }
+       
+        public string SerializedTotalJobTypes
+        {
+            get
+            {
+                JobFilterRoot _jobTypes = JobFiltersData.Data.Where(item => item.Name == "Job Types").FirstOrDefault();
+                if (_jobTypes != null)
+                    return JsonConvert.SerializeObject(_jobTypes.Filters);
+                else
+                    return null;
+            }
+        }
+
         internal const string WidgetIconCssClass = "sfMvcIcn";
         private const int PageSizeDefaultValue = 5;
         private string templateName = "JobsAll";

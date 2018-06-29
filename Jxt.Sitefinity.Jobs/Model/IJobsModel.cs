@@ -7,7 +7,7 @@ namespace Jxt.Sitefinity.Jobs.Model
     public interface IJobsModel
     {
         JobViewModel Create(JobViewModel job);
-        void Delete(Guid id);
+        void Delete(int id);
         List<JobViewModel> GetListViewModel();
         JobViewModel GetSingleViewModel(int id);
         JobViewModel Update(JobViewModel job);

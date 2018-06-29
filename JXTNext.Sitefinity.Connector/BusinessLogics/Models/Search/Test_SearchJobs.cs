@@ -19,18 +19,4 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search
         public int Count { get; set; } //amount of jobs returned in this search
         public List<JobDetailsFullModel> SearchResults { get; set; } 
     }
-
-    public class FiltersSearchRoot
-    {
-        public bool HasSearchElements { get { return Filters != null && Filters.Count > 0; } }
-        public string RootID { get; set; }
-        public List<FiltersSearchElement> Filters { get; set; }
-    }
-
-    public class FiltersSearchElement
-    {
-        public string ID { get; set; }
-        public List<FiltersSearchElement> Filters { get; set; }
-    }
-
 }

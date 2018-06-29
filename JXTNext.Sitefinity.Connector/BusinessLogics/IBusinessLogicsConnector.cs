@@ -9,13 +9,14 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
     {
         IntegrationConnectorType ConnectorType { get; }
 
-        void MemberRegister(IMemberRegister memberDetails);
+        bool MemberRegister(IMemberRegister memberDetails, out string errorMessage);
         void MemberApplyJob();
 
         void AdvertiserRegister();
         ICreateJobListingResponse AdvertiserCreateJob(ICreateJobListingRequest jobDetails);
         IGetJobListingResponse AdvertiserGetJob(IGetJobListingRequest jobDetails);
         void AdvertiserUpdateJob();
+        IDeleteJobListingResponse AdvertiserDeleteJob(IDeleteJobListingRequest jobDetails);
 
         ISearchJobsResponse SearchJobs(ISearchJobsRequest search);
     }

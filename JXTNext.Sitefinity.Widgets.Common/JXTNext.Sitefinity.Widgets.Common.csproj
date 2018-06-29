@@ -397,6 +397,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\JXTDemo\MVC\Views\ImageGallery\List.ThumbnailStrip.cshtml" />
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\Form\Index.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="ResourcePackages\JXTDemo\MVC\Views\JobSearch\JobSearch.Simple.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -493,6 +496,11 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\JXTDemo\MVC\Views\UsersList\List.ConsultantListSimple.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\TextField\Read.Default.cshtml" />
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\TextField\Write.Default.cshtml" />
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\SubmitButton\Write.Default.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="ResourcePackages\JXTDemo\package-lock.json" />

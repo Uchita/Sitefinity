@@ -80,7 +80,7 @@ p,ul,ol{
 }
 
 // buttons
-.btn{
+.btn, button[data-sf-role="comments-new-submit-button"]{
     font: 700 1.2rem $boldFont;
     text-transform: uppercase;
     letter-spacing: 0.2rem;
@@ -191,6 +191,9 @@ input.text-field{
 .section-intro{
     padding-top: 2rem;
     padding-bottom: 2rem;
+}
+.section-header{
+    margin-bottom: 3rem;
 }
 
 .block-title{

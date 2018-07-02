@@ -316,6 +316,7 @@
     <Compile Include="App_Start\RazorGeneratorMvcStart.cs" />
     <Compile Include="Mvc\Controllers\TestController.cs" />
     <Compile Include="Mvc\Models\JXTNext_MemberRegistrationModel.cs" />
+    <Compile Include="Mvc\Models\SFRequestSession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

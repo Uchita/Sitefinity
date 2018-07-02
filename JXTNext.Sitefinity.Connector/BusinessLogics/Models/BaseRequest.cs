@@ -8,8 +8,6 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models
 {
     public class ConnectorBaseRequest
     {
-        public string SiteDomain { get; set; }
-        public string UserEmail { get; set; }
     }
 
     public class ConnectorBaseResponse

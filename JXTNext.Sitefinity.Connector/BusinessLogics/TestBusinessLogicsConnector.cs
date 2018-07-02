@@ -106,7 +106,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
             throw new NotImplementedException();
         }
 
-        public void MemberRegister(IMemberRegister memberRegister)
+        public bool MemberRegister(IMemberRegister memberRegister, out string errors)
         {
             throw new NotImplementedException();
         }
@@ -163,6 +163,11 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
             List<JobDetailsFullModel> jobsToReturn = jobsMatched.Skip(page * pageSize).Take(pageSize).ToList();
             Test_SearchJobsResponse response = new Test_SearchJobsResponse { Total = jobsMatched.Count(), Count = jobsToReturn.Count(), SearchResults = jobsToReturn };
             return response;
+        }
+
+        public IDeleteJobListingResponse AdvertiserDeleteJob(IDeleteJobListingRequest jobDetails)
+        {
+            throw new NotImplementedException();
         }
     }
 }

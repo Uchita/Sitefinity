@@ -67,6 +67,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         // GET: JobSearch
         public ActionResult Index()
         {
+            
+
+
             //Execute - Try perform a dummy search
             ISearchJobsRequest request = new Test_SearchJobsRequest { Page = 0, PageSize = 2, FiltersSearch = new List<FiltersSearchRoot> { new FiltersSearchRoot { RootID = "AE-1234", Filters = new List<FiltersSearchElement> { new FiltersSearchElement { ID = "DD-3123" } } } } };
             ISearchJobsResponse response = _testBLConnector.SearchJobs(request);

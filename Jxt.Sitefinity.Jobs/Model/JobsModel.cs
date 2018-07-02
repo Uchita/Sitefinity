@@ -5,6 +5,7 @@ using JXTNext.Sitefinity.Connector.BusinessLogics;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Mappers;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Job;
+using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search;
 using System;
 using System.Collections.Generic;
 
@@ -42,9 +43,15 @@ namespace Jxt.Sitefinity.Jobs.Model
         {
             var vmList = new List<JobViewModel>();
 
-            foreach (var jl in jobs)
-            {
-                vmList.Add(this.GetVM(jl));
+            ISearchJobsRequest jobListingRequest = new JXTNext_SearchJobsRequest { };
+            JXTNext_SearchJobsResponse jobListingResponse = (JXTNext_SearchJobsResponse) _jxtBLConnector.SearchJobs(jobListingRequest);
+
+            if(jobListingResponse.Success)
+            { 
+                foreach (var jl in jobListingResponse.SearchResults)
+                {
+                    vmList.Add(this.GetVM(jl));
+                }
             }
 
             return vmList;
@@ -72,18 +79,16 @@ namespace Jxt.Sitefinity.Jobs.Model
             return job;
         }
 
-        public void Delete(Guid id)
+        public void Delete(int id)
         {
-            //jobs.Remove(jobs.Single(j => j.Id == id));
+            IDeleteJobListingRequest jobDeleteRequest = new JXTNext_DeleteJobListingRequest { JobID = id };
+            IDeleteJobListingResponse jobDeleteResponse = _jxtBLConnector.AdvertiserDeleteJob(jobDeleteRequest);
         }
 
         private JobViewModel GetVM(JobDetailsFullModel jl)
         {
             return _jxtJobsConverter.Convert(jl);
         }
-
-        static volatile List<JobDetailsFullModel> jobs;
-
 
         private void DrawDependencies()
         {
@@ -97,5 +102,7 @@ namespace Jxt.Sitefinity.Jobs.Model
                 new List<IJobListingMapper> { jobMapper }, new List<IMemberMapper> { memberMapper }, session);
 
         }
+
+        static volatile List<JobDetailsFullModel> jobs;
     }
 }

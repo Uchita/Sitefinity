@@ -9,6 +9,9 @@ textarea{
     -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     box-sizing: border-box;
+    &:focus{
+        outline: none;
+    }
 }
 textarea{
     min-height: 100px;
@@ -24,4 +27,38 @@ textarea{
 }
 .no-label label {
     display: none;
+}
+
+
+//default layout
+.form-group{
+    margin-bottom: 2rem;
+    input[type="text"], input[type="email"], input[type="tel"], input[type="password"],
+    textarea, input[type="file"]{
+        border-bottom: 2px solid $fontColor;
+        font-size: 1.6rem;
+        box-shadow: 0 0 1px rgba(0,0,0,0.1);
+        &:focus, &:active{
+            border-color: #000;
+            box-shadow: -1px -1px 1px 0px rgba(0,0,0,0.15);
+            outline: none;
+        }
+    } 
+    input[type="file"], input[type="radio"], input[type="checkbox"]{
+        display: block;
+    }
+    input[type="file"]{
+        padding: 10px;
+        background: $brightColor;
+    }
+  
+
+    label{
+        text-transform: uppercase;
+        font-size: 1.2rem;
+    } 
+    &.button-wrapper{
+        margin-top: 2rem;
+        margin-bottom: 4rem;
+    }
 }

@@ -35,6 +35,9 @@
 
 .jn_innerpage{
     padding-top: 17rem;
+    @include bp-max(sm){
+        padding-top: 13rem;
+    }
 }
 .page-title{
     text-align: center;

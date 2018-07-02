@@ -5,9 +5,33 @@
         @include listReset;
         li{
             display: inline-block;
-            margin:0 5px;
+            margin:0 3px;
             a{
                 font-size: 1.9rem;
+                padding: 0;
+                &::before{
+                    display: none;
+                }
+            }
+        }
+    }
+    .cirular-bg{
+        a{
+            background-color: lighten($fontColor, 40%);
+            color: $brightColor;
+            border-radius: 50%;
+            text-align: center;
+            width: 40px;
+            height: 40px;
+            display: block;
+            line-height: 2;
+            &.facebook{ background-color: #3b5998; }
+            &.twitter{ background-color: #00adf2; }
+            &.linkedin{ background-color: #0077b5; }
+            &.googleplus{ background-color: #f75002; }
+
+            &:hover, &:focus{
+                opacity: 0.8;
             }
         }
     }
@@ -26,7 +50,7 @@
         margin: 5px 7px 0;
     }
 }
-@include bp-max(sm){
+@include bp-max(md){
     #header .jn_social-links{
         display: none;
     }

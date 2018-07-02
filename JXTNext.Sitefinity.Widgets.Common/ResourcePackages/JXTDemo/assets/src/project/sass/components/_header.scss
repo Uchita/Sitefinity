@@ -17,10 +17,6 @@
         padding: 20px 0;
     }
 }
-//never make fixed or absolute position in cms editor
-.sfPageEditor #header{
-    position: static;
-}
 
 .navbar-default{
     background:none;
@@ -45,6 +41,9 @@
     margin-top: 5px;
     @include bp-max(sm){
         margin-top: 0;
+        .profile-name{
+            display: none;
+        }
         .button a.btn{
             position: relative;
             text-indent: -99em;
@@ -111,6 +110,10 @@
         margin-left: 5px;
         padding: 10px 5px;
         cursor: pointer;
+        @include bp-max(sm){
+            margin-left: 0;
+            padding: 10px 2px;
+        }
     }
 
     .avatar-wrap {
@@ -118,6 +121,7 @@
         border-radius: 50%;
         overflow: hidden;
         margin-right: 7px;
+        padding: 0;
         float: left;
     }
 

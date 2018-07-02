@@ -26,7 +26,7 @@
 
                     <div class="overlay sf-media-body">
                         <h3>
-                            <a href="/hhh/@UsersHelper.EncodeUrlUsername(HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage), item as SitefinityProfileItemViewModel)">
+                            <a href="@UsersHelper.EncodeUrlUsername(HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage), item as SitefinityProfileItemViewModel)">
                                 @(((SitefinityProfile)item.DataItem).GetUserDisplayName())
                             </a>
                         </h3>

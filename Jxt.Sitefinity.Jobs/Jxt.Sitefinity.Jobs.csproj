@@ -259,7 +259,7 @@
     <Compile Include="Model\IJobsConverter.cs" />
     <Compile Include="Model\IJobsModel.cs" />
     <Compile Include="Model\JXTNext_JobsConverter.cs" />
-    <Compile Include="Model\RequestSession.cs" />
+    <Compile Include="Model\SFRequestSession.cs" />
     <Compile Include="Mvc\Controllers\JobsBackendController.cs" />
     <Compile Include="Data\JobsDataProviderBase.cs" />
     <Compile Include="Data\WebJobsDataProvider.cs" />

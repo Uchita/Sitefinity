@@ -1,0 +1,27 @@
+// Bootstrap override for sitefinity cms
+
+//popup
+.sfPageEditor.modal-open .modal.fade.in{
+    opacity: 1;
+}
+.sfPageEditor {
+    //never make fixed or absolute position in cms editor
+    #header{
+        position: static;
+    }
+    .modal-dialog {
+        max-width: 98%;
+
+        select.form-control {
+            height:auto;
+        }
+    }
+
+    //if any element is fixed::header fixed
+    .site-header {
+        position: relative;
+    }
+    .modal-header {
+        display: block;
+    }
+}

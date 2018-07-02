@@ -16,13 +16,19 @@ namespace Jxt.Sitefinity.Jobs.Model
             {
                 Id = data.JobID,
                 Title = data.Title,
-                Description = data.Description
+                Description = data.Description,                
             };
         }
 
         public JobDetailsFullModel Convert(JobViewModel viewData)
         {
-            throw new NotImplementedException();
+            return new JobDetailsFullModel
+            {
+                JobID = viewData.Id,
+                Title = viewData.Title,
+                Description = viewData.Description,
+                ShortDescription = viewData.Description
+            };
         }
     }
 }

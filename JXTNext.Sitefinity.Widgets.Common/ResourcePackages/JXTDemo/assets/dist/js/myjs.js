@@ -63,6 +63,18 @@ $(document).ready(function() {
             });
         }
 
+        // jobFeed scroller
+        if( $('.jn_scroller-full').length ){
+            $('.jn_scroller-full').addClass('owl-carousel').owlCarousel({
+                dots:false,
+                nav:true,
+                navText:'',
+                items: 1,
+                slideBy: 1
+            });
+        }
+        
+
         // card icon horizontal list: convert to scroller if more
         if( $('.multi-card-1').length & $('.multi-card-1 .card-copy').length > 3 ){
             $('.multi-card-1 .jn_cards').addClass('owl-carousel').owlCarousel({

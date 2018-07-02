@@ -176,6 +176,18 @@
     }
   }
 }
+
+.control-rt{
+  .owl-nav .owl-prev{
+    top: 9rem;
+    left: auto;
+    right: 8rem;
+  }
+  .owl-nav .owl-next{
+    top: 3rem;
+    right: 4.5rem;
+  }
+}
 .owl-carousel .owl-carousel .owl-nav .owl-prev,
 .owl-carousel .owl-carousel .owl-nav .owl-next,
 .owl-carousel .owl-carousel .owl-dot {

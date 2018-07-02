@@ -25,6 +25,8 @@ namespace SitefinityWebApp
     {
         protected void Application_Start(object sender, EventArgs e)
         {
+            ViewEngines.Engines.Add(new SFViewEngine());
+
             Bootstrapper.Bootstrapped += Bootstrapper_Bootstrapped;
             Bootstrapper.Initialized += new EventHandler<ExecutedEventArgs>(Bootstrapper_Initialized);
         }

@@ -75,9 +75,12 @@ p,ul,ol{
     clip-path: inset(50%);
     border: 0;
 }
+.clear{
+    clear: both;
+}
 
 // buttons
-.btn{
+.btn, button[data-sf-role="comments-new-submit-button"]{
     font: 700 1.2rem $boldFont;
     text-transform: uppercase;
     letter-spacing: 0.2rem;
@@ -92,10 +95,23 @@ p,ul,ol{
         color: $brightColor;
         box-shadow: none;
     }
+    &:active{
+        background-color: darken($p1Color, 15%)!important;
+    }
     &.btn-sm{
         font-size: 1.2rem;
         padding: 13px 30px;
         min-width: 150px;
+    }
+    &.btn-1{
+        background-color: $p2Color;
+        color: $baseColor;
+        &:hover, &:focus{
+            background-color: darken($p2Color, 10%);
+        }
+        &:active{
+            background-color: darken($p2Color, 15%)!important;
+        }
     }
     //dropdown button
     &.dropdown-toggle{
@@ -105,6 +121,19 @@ p,ul,ol{
         text-transform: none;
         font-weight: normal;
         padding: initial;
+        &:active{
+            background-color: none!important;
+        }
+    }
+}
+
+.buttons-wrapper{
+    .btn{
+        margin-right: 10px;
+    }
+    @include bp-max(sm){
+        margin-right: 0;
+        margin-bottom:5px;
     }
 }
 
@@ -131,16 +160,16 @@ input.text-field{
         max-width: 1170px;
     }
 }
-@include bp-max(sm){
-    .container{
-        padding-left: 40px;
-        padding-right: 40px;
-        >.row{
-            margin-left: -40px;
-            margin-right: -40px;
-        }
-    }
-}
+// @include bp-max(sm){
+//     .container{
+//         padding-left: 40px;
+//         padding-right: 40px;
+//         >.row{
+//             margin-left: -40px;
+//             margin-right: -40px;
+//         }
+//     }
+// }
 @include bp-max(xs){
     .container{
         padding-left: 15px;
@@ -163,6 +192,9 @@ input.text-field{
     padding-top: 2rem;
     padding-bottom: 2rem;
 }
+.section-header{
+    margin-bottom: 3rem;
+}
 
 .block-title{
     text-align: center;
@@ -174,6 +206,7 @@ input.text-field{
     padding-bottom: 3rem;
 }
 
+//background
 //widget which has background image
 .has-bgImg{
     background-repeat: no-repeat;
@@ -181,31 +214,9 @@ input.text-field{
     background-position: center top;
 }
 
-
-// Bootstrap override for sitefinity cms
-//popup
-.sfPageEditor.modal-open .modal.fade.in{
-    opacity: 1;
+.bg-1{
+    background-image: url('../images/bg-1.jpg');
 }
-.sfPageEditor {
-    .modal-dialog {
-        max-width: 98%;
-
-        select.form-control {
-            height:auto;
-        }
-    }
-
-    //if any element is fixed::header fixed
-    .site-header {
-        position: relative;
-    }
-    .modal-header {
-        display: block;
-    }
-}
-
-
 
 .multi-widget-wrapper {
     padding-bottom: $vrt-gap + 2rem;
@@ -235,9 +246,16 @@ input.text-field{
 .flex-wrap{
     display: flex;
 }
+.no-marg-btm{
+    margin-bottom: 0!important;
+}
 
+.content-holder{
+    max-width: 100%;
+    flex-grow: 1;
+}
 //two column layout
-@include bp-min(lg){
+@include bp-min(md){
     .sidebar{
         max-width: 230px;   
         float: left;
@@ -247,5 +265,11 @@ input.text-field{
     .content-holder{
         float: left;
         width: calc(100% - 270px);
+
+    }
+}
+@include bp-max(sm){
+    .sidebar, .content-holder{
+        flex-basis: auto;
     }
 }

@@ -1,0 +1,91 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentListViewModel
+
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Web.DataResolving;
+@using JXTNext.Sitefinity.Common.Helpers
+
+<div class="@Model.CssClass list-view">
+    <div class="list-head">
+        <h2>Latest From Us</h2>
+        <div class="layout-switch">
+            <span class="jn_ico icon-grid-view"></span>
+            <span class="jn_ico icon-list-view active"></span>
+        </div>
+    </div>
+    <div class="h-section">
+        @{
+            string defaultImageUrl = "/ResourcePackages/JXTdemo/assets/dist/images/banner-bg.jpg";
+        }
+
+        @foreach (var item in Model.Items)
+        {
+            string imageURL = ((Telerik.Sitefinity.Frontend.Mvc.Models.ItemViewModel)item).GetItemImageUrl("Image", 0);
+            //string imageThumbnailUrl = ((Telerik.Sitefinity.Frontend.Mvc.Models.ItemViewModel)item).GetItemThumbnailImageUrl("Image", 0);
+
+            var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+
+            <article class="article" @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)item.Fields.Id)>
+                <figure>
+                    <img src="@(String.IsNullOrEmpty(imageURL) ? defaultImageUrl : imageURL)" alt="@item.Fields.Title" />
+                </figure>
+                <section class="blog-metadata flex-wrap">
+                    <div class="meta-data col">
+                        <div class="data-date">
+                            <span class="jn_ico icon-calendar"></span>
+                            <span class="data-dateValue"><span class="data-month">@item.GetDateTime("PublicationDate", "MMM")</span> <span class="data-day">@item.GetDateTime("PublicationDate", "dd")</span></span>
+                        </div>
+                        @*<div class="data-save">
+                            <a href="">
+                                <span class="jn_ico icon-heart"></span>
+                                <span class="data-saveValue">Save Blog</span>
+                            </a>
+                        </div>*@
+                    </div>
+                    <div class="data-content col">
+                        <h3>
+                            <a @Html.InlineEditingFieldAttributes("Title", "ShortText") href="@navigateUrl">@item.Fields.Title</a>
+                        </h3>
+                        <div class="tags">
+                            <a>Tag 1<span class="jn_ico icon-close"></span></a><a>Tag 2<span class="jn_ico icon-close"></span></a>
+                        </div>
+                        <div class="avatar">
+                            <div class="img-holder">
+                                <figure>
+                                    <img src="~/ResourcePackages/JXTdemo/assets/dist/images/apple-touch-icon-72x72.png" alt="Avatar" />
+                                </figure>
+                                <span class="avatar-name">@DataResolver.Resolve(item.DataItem, "Author", null)</span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </section>
+
+            </article>
+        }
+    </div>
+
+    @if (Model.ShowPager)
+    {
+        @Html.Action("Index", "ContentPager", new { currentPage = Model.CurrentPage,
+                        totalPagesCount = Model.TotalPagesCount.Value,
+                        redirectUrlTemplate = ViewBag.RedirectPageUrlTemplate })
+    }
+
+</div>
+<script>
+    $(document).ready(function () {
+        if ($('.layout-switch').length) {
+            $('.layout-switch span.jn_ico').click(function () {
+                $(this).siblings().removeClass('active');
+                $(this).addClass('active');
+                if ($(this).hasClass('icon-grid-view')) {
+                    $('.list-head').parent().removeClass('list-view').addClass('grid-view');
+                } else {
+                    $('.list-head').parent().removeClass('grid-view').addClass('list-view');
+                }
+            });
+        }
+    });
+</script>

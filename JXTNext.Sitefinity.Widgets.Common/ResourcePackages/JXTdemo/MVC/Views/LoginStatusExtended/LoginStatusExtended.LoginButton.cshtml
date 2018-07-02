@@ -8,8 +8,8 @@
 
 <div class="@Model.CssClass">
     <div data-sf-role="sf-logged-in-view" style="display: none" class="login-wrap status-login">
-        <div class="avatar-wrap"><img data-sf-role="sf-logged-in-avatar" width="25" height="25" /></div>
-        <a href="@(Model.ProfilePageUrl ?? "#")" data-sf-role="sf-logged-in-name"></a>
+        <a href="@(Model.ProfilePageUrl ?? "#")" class="avatar-wrap"><img data-sf-role="sf-logged-in-avatar" width="25" height="25" /></a>
+        <a href="@(Model.ProfilePageUrl ?? "#")" class="profile-name" data-sf-role="sf-logged-in-name"></a>
         <span class="icon-down collapsed" data-toggle="collapse" data-target=".login-dropdown"></span>
         <div class="login-dropdown collapse">
             <p data-sf-role="sf-logged-in-email"></p>

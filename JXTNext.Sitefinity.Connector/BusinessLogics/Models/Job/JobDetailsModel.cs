@@ -10,6 +10,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Job
 {
     public class JobDetailsModel
     {
+        [JsonProperty(PropertyName = "id")]
         public int JobID { get; set; }
         [JsonProperty(PropertyName = "title")]
         public string Title { get; set; }

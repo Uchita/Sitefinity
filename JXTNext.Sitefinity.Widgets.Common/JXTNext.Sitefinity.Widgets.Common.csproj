@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewEngineRoutesConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ResourcePackages\JXTDemo\assets\dist\css\sitefinity.css">

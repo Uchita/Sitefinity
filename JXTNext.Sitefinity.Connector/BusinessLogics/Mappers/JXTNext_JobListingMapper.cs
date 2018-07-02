@@ -33,11 +33,11 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
             return local as T;
         }
 
-        public List<T> ConvertSearchResultsToLocal<T>(dynamic data) where T : class
+        public List<T> ConvertSearchResultsToLocal<T>(dynamic searchData) where T : class
         {
             List<JobDetailsFullModel> jobFullDetails = new List<JobDetailsFullModel>();
 
-            foreach (dynamic jobItem in JArray.Parse((data.data as JValue).Value.ToString()))
+            foreach (dynamic jobItem in searchData)
             { 
                 //target: JobDetailsFullModel
                 JobDetailsFullModel local = new JobDetailsFullModel

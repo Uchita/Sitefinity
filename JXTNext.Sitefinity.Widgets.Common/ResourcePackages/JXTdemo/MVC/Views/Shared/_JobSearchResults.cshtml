@@ -128,11 +128,12 @@
                 data: parm,
                 dataType: 'Json',
                 success: function (response) {
-                    var jobs = JSON.parse(response);
                      dataSource = new kendo.data.DataSource({
-                        data: jobs,
-                        total: totalCount,
+                         data: response.SearchResults,
+                         total: response.Total,
                     });
+
+                    $(".count-num").html(response.Total);
 
                     var sorttext = getSortOrder();
                     var token = sorttext.split(':');

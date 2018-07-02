@@ -71,7 +71,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public JsonResult GetSearchResults(string jobRequest, int PageNumber)
         {
             JsonResult response = new JsonResult();
-            Test_SearchJobsRequest request = JsonConvert.DeserializeObject<Test_SearchJobsRequest>(jobRequest);
+            JXTNext_SearchJobsRequest request = JsonConvert.DeserializeObject<JXTNext_SearchJobsRequest>(jobRequest);
             if (request != null)
             {
                 if (PageNumber <= 0)
@@ -82,12 +82,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 request.Page = PageNumber - 1;
             }
 
-            Test_SearchJobsResponse jobResponse = (Test_SearchJobsResponse)_BLConnector.SearchJobs(request);
+            JXTNext_SearchJobsResponse jobResponse = (JXTNext_SearchJobsResponse)_BLConnector.SearchJobs(request);
 
-            if (jobResponse != null)
-                response.Data = JsonConvert.SerializeObject(jobResponse.SearchResults);
-
-            return response;
+            return new JsonResult { Data = jobResponse };
         }
 
         [HttpPost]
@@ -174,7 +171,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 //Execute - Try perform search
                 ISearchJobsRequest request = new JXTNext_SearchJobsRequest { Page = filterModel.Page - 1, PageSize = (int)this.PageSize, Keywords = filterModel.Keywords, FiltersSearch = filtersSearch };
                 response = _BLConnector.SearchJobs(request);
-                Test_SearchJobsResponse jobResultsList = response as Test_SearchJobsResponse;
+                JXTNext_SearchJobsResponse jobResultsList = response as JXTNext_SearchJobsResponse;
 
                 ViewBag.Request = JsonConvert.SerializeObject(request);
                 ViewBag.FilterModel = JsonConvert.SerializeObject(filterModel);

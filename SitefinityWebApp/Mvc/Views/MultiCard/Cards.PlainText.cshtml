@@ -1,0 +1,60 @@
+@model SitefinityWebApp.Mvc.Models.MultiCard.MultiCardViewModel
+
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+
+@Html.StyleSheet(Url.WidgetContent("assets/css/bootstrap.min.css"), "head", false)
+@Html.StyleSheet(Url.WidgetContent("assets/css/bootstrap-theme.min.css"), "head", false)
+@Html.StyleSheet(Url.WidgetContent("assets/css/mc-styles.css"), "head", false)
+
+<div class="@Model.CssClass">
+
+    @if (!string.IsNullOrEmpty(Model.GroupHeader))
+    {
+        <h2>@Model.GroupHeader</h2>
+    }
+
+    @foreach (var card in Model.Cards)
+    {
+        <div class="multicard mc-plain-text-wrapper jumbotron container-fluid content-padding" style="background-color: @Model.BackgroundColor!important">
+
+            @if (!string.IsNullOrEmpty(card.Heading))
+            {
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="heading">@Html.HtmlSanitize(card.Heading)</h3>
+                    </div>
+                </div>
+            }
+
+            @if (!string.IsNullOrEmpty(card.Description))
+            {
+                <div class="row content-padding">
+                    <div class="col-md-8 col-md-offset-2">
+                        <p class="content">
+                            @Html.HtmlSanitize(card.Description)
+                        </p>
+                    </div>
+                </div>
+            }
+
+            @if (!string.IsNullOrEmpty(card.ActionName))
+            {
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4">
+                        <a class="btn btn-lg action-btn" href="@Html.UrlSanitize(card.ActionUrl)" role="button">
+                            <span class="action-text">@card.ActionName</span>
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.GroupActionName) && !string.IsNullOrEmpty(Model.GroupActionUrl))
+    {
+        <a href="@Html.UrlSanitize(Model.GroupActionUrl)">
+            <span>@Model.GroupActionName</span>
+        </a>
+    }
+
+</div>

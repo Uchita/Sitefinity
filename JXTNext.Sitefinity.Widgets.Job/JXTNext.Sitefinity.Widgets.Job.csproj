@@ -328,7 +328,7 @@
     <None Include="web.config" />
     <None Include="app.config" />
     <EmbeddedResource Include="Mvc\Views\JobDetails\DesignerView.Simple.cshtml" />
-    <EmbeddedResource Include="Mvc\Views\JobDetails\Simple.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\JobDetails\JobDetails.Simple.cshtml" />
     <EmbeddedResource Include="Mvc\Views\JobFilters\DesignerView.Simple.cshtml" />
     <EmbeddedResource Include="Mvc\Views\JobSearchResults\DesignerView.Simple.cshtml" />
     <EmbeddedResource Include="Mvc\Views\JobSearchResults\JobsAll.cshtml" />

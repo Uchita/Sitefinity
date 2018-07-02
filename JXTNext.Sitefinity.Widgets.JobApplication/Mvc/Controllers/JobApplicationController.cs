@@ -17,6 +17,23 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
     [ControllerToolboxItem(Name = "JobApplication_MVC", Title = "Job Application", SectionName = "JXTNext.JobApplication", CssClass = JobApplicationController.WidgetIconCssClass)]
     public class JobApplicationController : Controller
     {
+        /// <summary>
+        /// Gets or sets the name of the template that widget will be displayed.
+        /// </summary>
+        /// <value></value>
+        public string TemplateName
+        {
+            get
+            {
+                return this.templateName;
+            }
+
+            set
+            {
+                this.templateName = value;
+            }
+        }
+
         // GET: JobApplication
         [HttpGet]
         public ActionResult Index()
@@ -47,8 +64,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     ViewBag.ShowFilesUploadMessage = "File(s) Uploaded successfully";
                 }
             }
-
-            return View("Simple");
+            var fullTemplateName = this.templateNamePrefix + this.TemplateName;
+            return View(fullTemplateName);
         }
 
         private void FetchFromAmazonS3(string providerName, string libraryName, string itemTitle)
@@ -107,5 +124,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         }
 
         internal const string WidgetIconCssClass = "sfMvcIcn";
+        private string templateName = "Simple";
+        private string templateNamePrefix = "JobApplication.";
     }
 }

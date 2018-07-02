@@ -150,7 +150,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
             ConnectorPostRequest connectorRequest = new ConnectorPostRequest(HTTP_Requests_MaxWaitTime)
             {
                 HeaderValues = HTTP_Request_HeaderValues,
-                TargetUri = new Uri(CONFIG_DataAccessTarget + $"/api/advertiseruser/job/search")
+                TargetUri = new Uri(CONFIG_DataAccessTarget + $"/api/guest/job/search")
             };
             ConnectorResponse response = JXTNext.Common.API.Connector.Post(connectorRequest);
 

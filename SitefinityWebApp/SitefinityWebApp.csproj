@@ -1331,6 +1331,10 @@
       <Project>{f2b8e604-8768-4bb1-b34f-ea4bafdbd567}</Project>
       <Name>JXTNext.Sitefinity.Widgets.Job</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JXTNext.Sitefinity.Widgets.PageTitle\JXTNext.Sitefinity.Widgets.PageTitle.csproj">
+      <Project>{84c57321-d20d-48a2-957d-4511a984f836}</Project>
+      <Name>JXTNext.Sitefinity.Widgets.PageTitle</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JXTNext.Sitefinity.Widgets.Social\JXTNext.Sitefinity.Widgets.Social.csproj">
       <Project>{21a841b2-6b3a-46cd-b0c0-7f40ca812686}</Project>
       <Name>JXTNext.Sitefinity.Widgets.Social</Name>

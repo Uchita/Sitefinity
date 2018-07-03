@@ -148,3 +148,23 @@
 #sortOrder{
     margin-bottom: 3rem;
 }
+
+#resultsPagePartialContent{
+    .custom-select{
+        border-radius:25px;
+        overflow: hidden;
+        margin-bottom: 5rem;
+        select{
+            padding: 10px 20px;
+            font-size: 1.6rem;
+            border-radius: 25px;
+            position: relative;
+            z-index: 1;
+            background: none;
+            border: none;
+            &:focus{
+                background: none;
+            }
+        }
+    }
+}

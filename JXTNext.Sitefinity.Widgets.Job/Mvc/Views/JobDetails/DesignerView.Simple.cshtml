@@ -10,6 +10,22 @@
 </div>
 
 <expander expander-title="@Html.Resource("MoreOptions", "JobDetailsResources")">
+
+    <div class="form-group">
+        <label for="templateName">Template</label>
+        <div class="row">
+            <div class="col-xs-6">
+                <select id="templateName" ng-model="properties.TemplateName.PropertyValue" class="form-control">
+                    @foreach (var viewName in Html.GetViewNames("JobDetails", @"JobDetails\.(?<viewName>\w*)$"))
+                    {
+                        < option value = "@viewName" > @viewName.SplitCamelCase() </ option >
+                    }
+
+                </select>
+            </div>
+        </div>
+    </div>
+
     <style-dropdown selected-class="properties.CssClass.PropertyValue"></style-dropdown>
 
     <div class="form-group">

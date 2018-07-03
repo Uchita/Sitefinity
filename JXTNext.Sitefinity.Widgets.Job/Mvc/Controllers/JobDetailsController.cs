@@ -19,6 +19,23 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         IBusinessLogicsConnector _testBLConnector;
         IOptionsConnector _testOConnector;
 
+         /// <summary>
+        /// Gets or sets the name of the template that widget will be displayed.
+        /// </summary>
+        /// <value></value>
+        public string TemplateName
+        {
+            get
+            {
+                return this.templateName;
+            }
+
+            set
+            {
+                this.templateName = value;
+            }
+        }
+
         public JobDetailsController(IEnumerable<IBusinessLogicsConnector> _bConnectors, IEnumerable<IOptionsConnector> _oConnectors)
         {
             _testBLConnector = _bConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.Test).FirstOrDefault();
@@ -45,8 +62,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 ViewBag.Roles = JsonConvert.SerializeObject(roles);
                 ViewBag.CssClass = this.CssClass;
                 ViewBag.JobApplicationPageUrl = SitefinityHelper.GetPageUrl(this.JobApplicationPageId);
-
-                return View("Simple", dynamicJobDetails);
+                var fullTemplateName = this.templateNamePrefix + this.TemplateName;
+                return View(fullTemplateName, dynamicJobDetails);
             }
 
             return Content("No job has been selected");
@@ -55,5 +72,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         internal const string WidgetIconCssClass = "sfMvcIcn";
         public string CssClass { get; set; }
         public string JobApplicationPageId { get; set; }
+        private string templateName = "Simple";
+        private string templateNamePrefix = "JobDetails.";
     }
 }

@@ -128,6 +128,9 @@
             margin-left: 0.6em;
             vertical-align: 0.655em;
         }
+        &:active{
+            background: none;
+        }
     }
 
     &::after {
@@ -229,5 +232,14 @@
 .jn_innerpage{
     .jobSearch-container{
         margin-top: 11rem;
+    }
+}
+
+//newsletter form
+.newsletter-form{
+    @extend .hz-listing.cs-layout;
+    > form{
+        display: flex;
+        flex-wrap: wrap;
     }
 }

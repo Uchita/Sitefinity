@@ -302,7 +302,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <EmbeddedResource Include="Mvc\Views\JobApplication\Simple.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\JobApplication\JobApplication.Simple.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\JobApplication\DesignerView.Simple.cshtml" />
     <None Include="OpenAccessNuGet.targets" />
     <None Include="packages.config" />
   </ItemGroup>

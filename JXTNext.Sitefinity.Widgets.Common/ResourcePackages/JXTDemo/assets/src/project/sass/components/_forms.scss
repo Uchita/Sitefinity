@@ -1,5 +1,9 @@
 // General form styles
+form{
+    margin-bottom: 5rem;
+}
 input[type="text"], input[type="email"], input[type="tel"], input[type="password"],
+input[type="file"], input[type="date"],
 textarea{
     padding: 10px;
     width: 100%;
@@ -31,10 +35,10 @@ textarea{
 
 
 //default layout
-.form-group{
+.form-group, .sf-fieldWrp{
     margin-bottom: 2rem;
     input[type="text"], input[type="email"], input[type="tel"], input[type="password"],
-    textarea, input[type="file"]{
+    textarea, input[type="file"], input[type="date"]{
         border-bottom: 2px solid $fontColor;
         font-size: 1.6rem;
         box-shadow: 0 0 1px rgba(0,0,0,0.1);
@@ -44,11 +48,12 @@ textarea{
             outline: none;
         }
     } 
-    input[type="file"], input[type="radio"], input[type="checkbox"]{
+    input[type="file"], input[type="radio"], input[type="checkbox"],
+    input[type="date"]{
         display: block;
     }
     input[type="file"]{
-        padding: 10px;
+        padding: 7px 10px;
         background: $brightColor;
     }
   
@@ -60,5 +65,31 @@ textarea{
     &.button-wrapper{
         margin-top: 2rem;
         margin-bottom: 4rem;
+    }
+    p{
+        font-size: 1.4rem;
+        margin-bottom: 5px;
+    }
+}
+
+.custom-select{
+    background: $brightColor;
+    height: auto;
+    padding: 0;
+    position: relative;
+    &::before{
+        content: '\e908';
+        font: 0.5rem/1 "jn-icon";
+        color: #1e2022;
+        position: absolute;
+        top: 20px;
+        right: 17px;
+    }
+    select{
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        height: auto!important;
+        margin-bottom: 0!important;
     }
 }

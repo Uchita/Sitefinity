@@ -404,6 +404,9 @@
     <Content Include="ResourcePackages\JXTDemo\MVC\Views\FileField\Write.Default.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="ResourcePackages\JXTDemo\MVC\Views\JobDetails\JobDetails.AppPage.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <None Include="ResourcePackages\JXTDemo\MVC\Views\JobSearch\JobSearch.Simple.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

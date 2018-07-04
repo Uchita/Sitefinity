@@ -18,10 +18,8 @@ namespace JXTNext.Sitefinity.Connector
             Bind<IMemberMapper>().To<JXTNext_MemberMapper>();
 
             Bind<IBusinessLogicsConnector>().To<JXTNextBusinessLogicsConnector>();
-            Bind<IBusinessLogicsConnector>().To<TestBusinessLogicsConnector>();
-
-            Bind<IOptionsConnector>().To<JXTNextOptionsConnector>();
-            Bind<IOptionsConnector>().To<TestOptionsConnector>();
+            
+            Bind<IOptionsConnector>().To<JXTNextOptionsConnector>();            
         }
     }
 }

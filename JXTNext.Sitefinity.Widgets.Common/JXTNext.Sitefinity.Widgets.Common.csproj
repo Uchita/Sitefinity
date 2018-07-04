@@ -388,7 +388,7 @@
     <EmbeddedResource Include="ResourcePackages\JXTDemo\MVC\Views\JobApplication\Simple.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="ResourcePackages\JXTDemo\MVC\Views\JobDetails\Simple.cshtml">
+    <EmbeddedResource Include="ResourcePackages\JXTDemo\MVC\Views\JobDetails\JobDetails.Simple.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <Content Include="ResourcePackages\JXTDemo\MVC\Views\ImageGallery\Detail.DetailPage.cshtml" />
@@ -404,6 +404,9 @@
     <Content Include="ResourcePackages\JXTDemo\MVC\Views\FileField\Write.Default.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="ResourcePackages\JXTDemo\MVC\Views\JobDetails\JobDetails.AppPage.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <None Include="ResourcePackages\JXTDemo\MVC\Views\JobSearch\JobSearch.Simple.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -481,9 +484,6 @@
     <None Include="ResourcePackages\JXTDemo\MVC\Views\SearchBox\SearchBox.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <EmbeddedResource Include="ResourcePackages\JXTDemo\MVC\Views\Shared\_JobSearchResults.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
     <None Include="ResourcePackages\JXTDemo\MVC\Views\SocialLink\Simple.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

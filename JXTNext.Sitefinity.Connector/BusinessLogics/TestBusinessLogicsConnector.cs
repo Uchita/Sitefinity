@@ -169,5 +169,10 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
         {
             throw new NotImplementedException();
         }
+
+        public IGetJobListingResponse GuestGetJob(IGetJobListingRequest jobDetails)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

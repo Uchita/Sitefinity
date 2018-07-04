@@ -143,6 +143,35 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
             return response.Success;
         }
 
+        public IGetJobListingResponse GuestGetJob(IGetJobListingRequest jobDetails)
+        {
+            JXTNext_GetJobListingRequest jobRequest = jobDetails as JXTNext_GetJobListingRequest;
+
+            ConnectorGetRequest connectorRequest = new ConnectorGetRequest(HTTP_Requests_MaxWaitTime)
+            {
+                HeaderValues = HTTP_Request_HeaderValues,
+                TargetUri = new Uri(CONFIG_DataAccessTarget + $"/api/guest/job/{jobRequest.JobID}")
+            };
+            ConnectorResponse response = JXTNext.Common.API.Connector.Get(connectorRequest);
+
+            //parse the response
+            bool actionSuccessful = response.Success;
+
+            if (actionSuccessful)
+            {
+                dynamic responseObj = JObject.Parse(response.Response);
+
+                if (responseObj["status"] == 200)
+                    return new JXTNext_GetJobListingResponse { Success = true, Job = _jobMapper.ConvertToLocalEntity<JobDetailsFullModel>(JObject.Parse(responseObj["data"].Value)) };
+                else
+                    return new JXTNext_GetJobListingResponse { Success = false, Errors = JsonConvert.DeserializeObject<List<string>>(responseObj["errors"].ToString()) };
+            }
+            else
+                return new JXTNext_GetJobListingResponse { Success = false, Errors = new List<string> { response.Response } };
+        }
+
+
+
         public ISearchJobsResponse SearchJobs(ISearchJobsRequest search)
         {
             JXTNext_SearchJobsRequest jobSearch = search as JXTNext_SearchJobsRequest;

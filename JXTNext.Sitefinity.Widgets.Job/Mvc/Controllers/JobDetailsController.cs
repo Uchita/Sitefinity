@@ -16,8 +16,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
     [ControllerToolboxItem(Name = "JobDetails_MVC", Title = "Details", SectionName = "JXTNext.Job", CssClass = JobDetailsController.WidgetIconCssClass)]
     public class JobDetailsController : Controller
     {
-        IBusinessLogicsConnector _testBLConnector;
-        IOptionsConnector _testOConnector;
+        IBusinessLogicsConnector _BLConnector;
+        IOptionsConnector _OConnector;
 
          /// <summary>
         /// Gets or sets the name of the template that widget will be displayed.
@@ -38,8 +38,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
         public JobDetailsController(IEnumerable<IBusinessLogicsConnector> _bConnectors, IEnumerable<IOptionsConnector> _oConnectors)
         {
-            _testBLConnector = _bConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.Test).FirstOrDefault();
-            _testOConnector = _oConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.Test).FirstOrDefault();
+            _BLConnector = _bConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.JXTNext).FirstOrDefault();
+            _OConnector = _oConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.JXTNext).FirstOrDefault();
         }
 
         // GET: JobDetails
@@ -48,8 +48,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             if (jobId.HasValue)
             {
                 dynamic dynamicJobDetails = null;
-                IGetJobListingRequest jobListingRequest = new Test_GetJobListingRequest { JobID = jobId.Value };
-                IGetJobListingResponse jobListingResponse = _testBLConnector.AdvertiserGetJob(jobListingRequest);
+                IGetJobListingRequest jobListingRequest = new JXTNext_GetJobListingRequest { JobID = jobId.Value };
+                IGetJobListingResponse jobListingResponse = _BLConnector.GuestGetJob(jobListingRequest);
 
                 if (jobListingRequest != null)
                     dynamicJobDetails = jobListingResponse as dynamic;

@@ -46,36 +46,54 @@ namespace SitefinityWebApp
             }
         }
 
-        //protected static readonly string[] baseLocationFormats = new string[] {
-        //    "~/ResourcePackages/JXTDemo/Mvc/Views/{1}/{0}.cshtml",
-        //    "~/ResourcePackages/JXTDemo/Mvc/Views/Shared/{0}.cshtml"
-
-        //};
-
         protected string[] baseLocationFormats {
             get {
 
                 List<string> locationFormats = new List<string>();
 
-                List<string> packages = GetResourcePackagesName();
-                
-                foreach(string p in packages)
-                {
-                    locationFormats.Add("~/ResourcePackages/" + p + "/Mvc/Views/{1}/{0}.cshtml");
-                    locationFormats.Add("~/ResourcePackages/" + p + "/Mvc/Views/Shared/{0}.cshtml");
-                }
+                //paths for resource packages
+                locationFormats.AddRange(GetResourcePackagesNameViewsRendering());
+
+                //paths for external frontend assemblies
+                locationFormats.AddRange(GetAssemblyNamesForPartialViewsRendering());
 
                 return locationFormats.ToArray();
             }
         }
 
-        private List<string> GetResourcePackagesName()
+        private List<string> GetResourcePackagesNameViewsRendering()
         {
-            List<string> packages = new List<string>();
+            List<string> viewPaths = new List<string>();
 
+            List<string> packages = new List<string>();
             packages.AddRange(new ViewEngineRoutesConfig().ResoucePackages);
 
-            return packages;
+            foreach (string p in packages)
+            {
+                viewPaths.Add("~/ResourcePackages/" + p + "/Mvc/Views/{1}/{0}.cshtml");
+                viewPaths.Add("~/ResourcePackages/" + p + "/Mvc/Views/Shared/{0}.cshtml");
+            }
+
+            return viewPaths;
+        }
+
+        /// <summary>
+        /// This is required for any Partial views rendering in external frontend assemblies
+        /// Reference: https://knowledgebase.progress.com/articles/Article/Cannot-find-partial-view-from-external-assembly
+        /// </summary>
+        /// <returns></returns>
+        private List<string> GetAssemblyNamesForPartialViewsRendering()
+        {
+            List<string> viewPaths = new List<string>();
+            List<string> assemblyNames = new List<string> { "JXTNext.Sitefinity.Widgets.Job" };
+
+            foreach (string name in assemblyNames)
+            {
+                viewPaths.Add("~/Frontend-Assembly/" + name + "/Mvc/Views/{1}/{0}.cshtml");
+                viewPaths.Add("~/Frontend-Assembly/" + name + "/Mvc/Views/Shared/{0}.cshtml");
+            }
+
+            return viewPaths;
         }
 
     }

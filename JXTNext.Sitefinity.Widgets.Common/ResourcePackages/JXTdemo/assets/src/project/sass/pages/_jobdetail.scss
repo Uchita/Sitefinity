@@ -142,4 +142,13 @@
     .job-topbar{
         max-width: 200px;
     }
+    .page-title small{
+        font-size: 1.6rem;
+        color: lighten($fontColor,30%);
+        display: block;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-family: 'Sen';
+        margin-bottom: 2rem;
+    }
 }

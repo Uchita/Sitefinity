@@ -75,9 +75,23 @@ a.card-copy:focus{
         }
     }
 }
-
+//multicard with noContainer
+.multicard-fullwidth{
+    .container{
+        width: auto;
+        max-width: none;
+        padding: 0;
+    }
+    .row{
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
 // multi-card-2
-.multi-card-2{
+.multi-card-2{    
+    .heading{
+        text-align: center;
+    }
     .jn_cards{
         .card-copy{
             padding-left: 60px;

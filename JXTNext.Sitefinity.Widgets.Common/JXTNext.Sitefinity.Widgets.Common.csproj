@@ -433,6 +433,15 @@
     <None Include="ResourcePackages\JXTDemo\MVC\Views\LoginStatusExtended\LoginStatusExtended.LoginName.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\MultiCard\Cards.Icons.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\MultiCard\Cards.IconsOverImage.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\MultiCard\Cards.PlainText.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="ResourcePackages\JXTDemo\MVC\Views\Navigation\Dropdown.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

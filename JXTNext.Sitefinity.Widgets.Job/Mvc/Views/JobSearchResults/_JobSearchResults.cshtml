@@ -2,11 +2,11 @@
 @using Telerik.Sitefinity.Services;
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
 
-<div>
-    Your search resulted in: <span style="color: mediumvioletred;font-weight: bold;">@ViewBag.TotalCount</span> position(s)
+<div class="result-meta">
+    <span class="cur-search-count"><span class="count-num">@ViewBag.TotalCount</span> new job(s) found</span>|<span class="total-search-count"><span class="count-num">@ViewBag.TotalCount</span> total jobs</span>|<a href="/advancedsearch" title="New job search">New Search</a>
 </div>
 
-<div>
+<div class="custom-select">
     <select id="sortOrder" class="form-control">
         <option selected="selected" value="">@Html.Resource("SortByRecent", "JobSearchResultsResources")</option>
         <option value="Old">@Html.Resource("SortByOldest", "JobSearchResultsResources")</option>
@@ -17,17 +17,20 @@
     </select>
 </div>
 
-<div>
-    <div id="listView"></div>
-    <div id="pager" class="k-pager-wrap k-widget k-floatwrap" data-role="]">
-        <ul class="k-pager-numbers k-reset"></ul>
-    </div>
+
+<div id="listView" class="job-result row"></div>
+<div id="pager" class="k-pager-wrap k-widget k-floatwrap" data-role="]">
+    <ul class="k-pager-numbers k-reset"></ul>
 </div>
 
+
 <script type="text/x-kendo-template" id="template">
-    <div>
-        <a href="@ViewBag.JobDetailsPageUrl?jobId=#:JobID#">#:Title#</a>
-        <p>#:Description#</p>
+    <div class="job-holder col-sm-6">
+        <div class="job-header">
+            <h3><a href="@ViewBag.JobDetailsPageUrl?jobId=#:JobID#">#:Title#</a></h3>
+        </div>
+        <div class="job-desc">#:Description#</div>
+        <a href="@ViewBag.JobDetailsPageUrl?jobId=#:JobID#" class="btn btn-sm" title="Read more">Read more</a>
     </div>
 </script>
 
@@ -98,7 +101,7 @@
     {
         highestPage = totalCount / pageSize;
         highestPage = Math.ceil(totalCount / pageSize);
-      
+
         if (highestPage > 1) {
             var lis = '';
             for (var i = 1; i <= highestPage; i++) {
@@ -117,7 +120,7 @@
             var pushStateUrl = $(location).attr('pathname') + "?" + makeQueryString(filterModel, "", false);
             var data = { filterModel: filterModel }
             window.history.pushState(data, "", pushStateUrl);
-                          
+
             $.ajax({
                 type: 'POST',
                 cache: false,
@@ -125,11 +128,12 @@
                 data: parm,
                 dataType: 'Json',
                 success: function (response) {
-                    var jobs = JSON.parse(response);
                      dataSource = new kendo.data.DataSource({
-                        data: jobs,
-                        total: totalCount,
+                         data: response.SearchResults,
+                         total: response.Total,
                     });
+
+                    $(".count-num").html(response.Total);
 
                     var sorttext = getSortOrder();
                     var token = sorttext.split(':');
@@ -185,12 +189,14 @@
 
 <style>
     #listView {
-        padding: 10px 5px;
-        margin-bottom: -1px;
-        min-height: 510px;
-        /* Avoid cutout if font or line is bigger */
-        font: inherit;
+        border: none;
     }
+
+        #listView, #listView * {
+            -webkit-box-sizing: inherit;
+            -moz-box-sizing: inherit;
+            box-sizing: inherit;
+        }
 
     .product {
         float: left;

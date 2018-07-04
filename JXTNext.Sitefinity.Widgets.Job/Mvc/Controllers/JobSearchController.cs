@@ -19,13 +19,13 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
     [ControllerToolboxItem(Name = "JobSearch_MVC", Title = "Search", SectionName = "JXTNext.Job", CssClass = JobSearchController.WidgetIconCssClass)]
     public class JobSearchController : Controller
     {
-        IBusinessLogicsConnector _testBLConnector;
-        IOptionsConnector _testOConnector;
+        IBusinessLogicsConnector _BLConnector;
+        IOptionsConnector _OConnector;
 
         public JobSearchController(IEnumerable<IBusinessLogicsConnector> _bConnectors, IEnumerable<IOptionsConnector> _oConnectors)
         {
-            _testBLConnector = _bConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.Test).FirstOrDefault();
-            _testOConnector = _oConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.JXTNext).FirstOrDefault();
+            _BLConnector = _bConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.JXTNext).FirstOrDefault();
+            _OConnector = _oConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.JXTNext).FirstOrDefault();
 
             //Execute - Get available filter options from the server
             //JXTNext_GetJobFiltersRequest request = new JXTNext_GetJobFiltersRequest { SiteId = 1 };
@@ -68,15 +68,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public ActionResult Index()
         {
             
-
-
-            //Execute - Try perform a dummy search
-            ISearchJobsRequest request = new Test_SearchJobsRequest { Page = 0, PageSize = 2, FiltersSearch = new List<FiltersSearchRoot> { new FiltersSearchRoot { RootID = "AE-1234", Filters = new List<FiltersSearchElement> { new FiltersSearchElement { ID = "DD-3123" } } } } };
-            ISearchJobsResponse response = _testBLConnector.SearchJobs(request);
-
-            IGetJobListingRequest jobListingRequest = new Test_GetJobListingRequest { JobID = 85 };
-            IGetJobListingResponse jobListingResponse = _testBLConnector.AdvertiserGetJob(jobListingRequest);
-
             // This is the CSS classes enter from More Options
             ViewData["CssClass"] = this.CssClass;
             ViewData["JobResultsPageUrl"] = SitefinityHelper.GetPageUrl(this.ResultsPageId);
@@ -127,7 +118,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 if( string.IsNullOrEmpty(_serializedFilterData))
                 {
                     JXTNext_GetJobFiltersRequest filterOptionRequest = new JXTNext_GetJobFiltersRequest { SiteId = 1 };
-                    IGetJobFiltersResponse filtersResponse = _testOConnector.JobFilters<JXTNext_GetJobFiltersRequest, JXTNext_GetJobFiltersResponse>(filterOptionRequest);
+                    IGetJobFiltersResponse filtersResponse = _OConnector.JobFilters<JXTNext_GetJobFiltersRequest, JXTNext_GetJobFiltersResponse>(filterOptionRequest);
                     _serializedFilterData = JsonConvert.SerializeObject(filtersResponse.Filters.Data);
                 }
                 return _serializedFilterData;

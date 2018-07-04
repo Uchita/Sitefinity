@@ -12,6 +12,10 @@
     }
 }
 
+.jn_card{
+    @extend .jn_multiCard;
+}
+
 //for multiple cards template
 .card-wrapper{
     padding-top: 15px;

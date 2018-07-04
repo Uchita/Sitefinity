@@ -367,6 +367,9 @@
     <None Include="ResourcePackages\JXTDemo\MVC\Views\Card\Card.Hero.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\Card\Card.FullwidthCTA.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ResourcePackages\JXTDemo\MVC\Views\Card\Card.Simple.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

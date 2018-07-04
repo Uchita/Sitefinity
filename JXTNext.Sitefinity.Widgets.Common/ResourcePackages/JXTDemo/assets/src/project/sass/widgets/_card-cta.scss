@@ -40,3 +40,7 @@
         text-transform: uppercase;
     }
 }
+
+.jn_card{
+    @extend .jn_multiCard;
+}

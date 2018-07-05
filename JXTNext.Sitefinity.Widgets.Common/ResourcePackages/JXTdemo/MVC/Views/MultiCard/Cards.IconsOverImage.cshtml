@@ -1,0 +1,55 @@
+@model SitefinityWebApp.Mvc.Models.MultiCard.MultiCardViewModel
+
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+
+<div class="jn_multiCard multi-card @Model.CssClass" style="background-color: @Model.BackgroundColor; background-image:url('@Model.SelectedSizeUrl')">
+
+    <div class="container">
+        <div class="card-wrapper">
+            <div class="row jn_cards">
+            @for (int i = 0; i < Model.Cards.Count; i++)
+            {
+                <div class="col-md card-copy">
+                    @if (!string.IsNullOrEmpty(Model.Cards[i].SelectedSizeUrl))
+                    {
+                        <img class="icons" src="@Model.Cards[i].SelectedSizeUrl" title="@Model.Cards[i].ImageTitle" alt="@Model.Cards[i].ImageAlternativeText">
+
+                        if (!string.IsNullOrEmpty(Model.Cards[i].Heading))
+                        {
+                            <h3 class="card-title">@Model.Cards[i].Heading</h3>
+                        }
+
+                        if (!string.IsNullOrEmpty(Model.Cards[i].Description))
+                        {
+                            <p class="content">@Model.Cards[i].Description</p>
+                        }
+
+                        if (!string.IsNullOrEmpty(Model.Cards[i].ActionUrl))
+                        {
+                            <a class="btn btn-md" href="@Model.Cards[i].ActionUrl" title="@Model.Cards[i].ActionName">@Model.Cards[i].ActionName</a>
+                        }
+                    }
+                    else
+                    {
+                        if (!string.IsNullOrEmpty(Model.Cards[i].Description))
+                        {
+                            @Html.Raw(Model.Cards[i].Description)
+                        }
+
+                        if (!string.IsNullOrEmpty(Model.Cards[i].Heading))
+                        {
+                            <h3 class="card-title">@Model.Cards[i].Heading</h3>
+                        }
+
+                        if (!string.IsNullOrEmpty(Model.Cards[i].ActionName))
+                        {
+                            <p>@Model.Cards[i].ActionName</p>
+                        }
+                    }
+
+                </div>
+            }
+            </div>
+        </div>
+    </div>
+</div>

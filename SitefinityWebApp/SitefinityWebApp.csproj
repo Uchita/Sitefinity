@@ -951,11 +951,22 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\HtmlHelper.cs" />
+    <Compile Include="Libraries\SfImageHelper.cs" />
     <Compile Include="Models\RequestSession.cs" />
+    <Compile Include="Mvc\Controllers\MultiCardController.cs" />
+    <Compile Include="Mvc\Models\MultiCard\CardDetails.cs" />
+    <Compile Include="Mvc\Models\MultiCard\CardDetailsView.cs" />
+    <Compile Include="Mvc\Models\MultiCard\MultiCardModel.cs" />
+    <Compile Include="Mvc\Models\MultiCard\MultiCardViewModel.cs" />
+    <Compile Include="Mvc\StringResources\CardsWidgetResources.cs" />
+    <Compile Include="Pages\SfPagesHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SFViewEngine.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\css\bootstrap-theme.min.css" />
+    <Content Include="assets\css\bootstrap.min.css" />
+    <Content Include="assets\css\mc-styles.css" />
     <Content Include="Content\Pages\login.html" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
@@ -969,6 +980,7 @@
     <Content Include="Mvc\Scripts\JobSearch\dropdowntree.js" />
     <Content Include="Mvc\Scripts\JobSearchResults\designerview-simple.js" />
     <Content Include="Mvc\Scripts\kendo.all.min.js" />
+    <EmbeddedResource Include="Mvc\Scripts\MultiCard\designerview-simple.js" />
     <Content Include="Mvc\Scripts\SocialLink\designerview-simple.js" />
     <Content Include="Mvc\Styles\fonts\glyphs\WebComponentsIcons.svg" />
     <Content Include="Mvc\Styles\kendo.common.min.css" />
@@ -1143,6 +1155,10 @@
     <Content Include="Mvc\Styles\fonts\glyphs\WebComponentsIcons.woff" />
     <Content Include="Mvc\Styles\images\kendoui.ttf" />
     <Content Include="Mvc\Styles\images\kendoui.woff" />
+    <Content Include="Mvc\Views\MultiCard\Cards.Icons.cshtml" />
+    <Content Include="Mvc\Views\MultiCard\Cards.IconsOverImage.cshtml" />
+    <Content Include="Mvc\Views\MultiCard\Cards.PlainText.cshtml" />
+    <Content Include="Mvc\Views\MultiCard\DesignerView.Simple.cshtml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

@@ -10,5 +10,8 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
     {
         IntegrationMapperType mapperType { get; }
         dynamic Register_ConvertToAPIEntity<T>(T registerDetails);
+
+        dynamic Application_ConvertToAPIEntity<T>(T applyDetails);
+
     }
 }

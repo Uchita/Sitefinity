@@ -113,7 +113,36 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
             throw new NotImplementedException();
         }
 
-        public void MemberApplyJob()
+        public IMemberApplicationResponse MemberCreateJobApplication(IMemberApplication memberApplication)
+        {
+            JXTNext_MemberApplicationRequest application = memberApplication as JXTNext_MemberApplicationRequest;
+            dynamic applyDetails = _memberMapper.Application_ConvertToAPIEntity(application);
+
+            ConnectorPostRequest connectorRequest = new ConnectorPostRequest(HTTP_Requests_MaxWaitTime)
+            {
+                HeaderValues = base.HTTP_Request_HeaderValues,
+                Data = applyDetails,
+                TargetUri = new Uri(CONFIG_DataAccessTarget + $"/api/member/apply/job/{application.ApplyResourceID}")
+            };
+            ConnectorResponse response = JXTNext.Common.API.Connector.Post(connectorRequest);
+
+            //parse the response
+            bool actionSuccessful = response.Success;
+
+            if (actionSuccessful)
+            { 
+                dynamic responseObj = JObject.Parse(response.Response);
+
+                if (responseObj["status"] == 200)
+                    return new JXTNext_MemberApplicationResponse { Success = true, ApplicationID = (int?)responseObj["id"] };
+                else
+                    return new JXTNext_MemberApplicationResponse { Success = false, Errors = JsonConvert.DeserializeObject<List<string>>(responseObj["errors"].ToString()) };
+            }
+            else
+                return new JXTNext_MemberApplicationResponse { Success = false, Errors = new List<string> { response.Response } };
+        }
+
+        public IMemberApplicationResponse MemberCreateJobApplication_FileUploadUpdate(IMemberApplication memberApplication)
         {
             throw new NotImplementedException();
         }
@@ -169,8 +198,6 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
             else
                 return new JXTNext_GetJobListingResponse { Success = false, Errors = new List<string> { response.Response } };
         }
-
-
 
         public ISearchJobsResponse SearchJobs(ISearchJobsRequest search)
         {

@@ -270,7 +270,18 @@ a.card-copy:focus{
                 &:hover, &:focus{
                     color: $baseColor;
                 }
-                &.active{
+            }
+            &.tab-label{
+                padding-left: 2.4rem;
+                text-transform: uppercase;
+                font-size: 1.2rem;
+                letter-spacing: 2px;
+                margin-bottom: 2rem;
+                display: block;
+                color: $baseColor;
+            }
+            &.active{
+                a{
                     color: $baseColor;
                     position: relative;
                     &::before{
@@ -284,15 +295,6 @@ a.card-copy:focus{
                         border-radius: 50%;
                     }
                 }
-            }
-            &.tab-label{
-                padding-left: 2.4rem;
-                text-transform: uppercase;
-                font-size: 1.2rem;
-                letter-spacing: 2px;
-                margin-bottom: 2rem;
-                display: block;
-                color: $baseColor;
             }
         }
         @include bp-max(md){
@@ -332,6 +334,9 @@ a.card-copy:focus{
         overflow: hidden;
         .tab-pane{
             max-width: 490px;
+            &.in{
+                opacity: 1;
+            }
             a.btn{
                 margin-top: 2rem;
             }
@@ -341,5 +346,9 @@ a.card-copy:focus{
         font-size: 10rem;
         width: 10rem;
         margin-bottom: 2rem;
+    }
+    figure{
+        margin-bottom: 2rem;
+        min-height: 60px;
     }
 }

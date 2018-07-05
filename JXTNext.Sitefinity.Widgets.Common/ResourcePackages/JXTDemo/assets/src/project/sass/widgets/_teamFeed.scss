@@ -4,6 +4,9 @@
 .jn_teamFeed{
     background: $brightColor url('../images/star-chain.jpg') no-repeat center center;
     padding: $vrt-gap+2 0;
+    h2{
+        text-align: center;
+    }
 }
 
 //on the base of fullwidth scrolling

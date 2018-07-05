@@ -85,8 +85,16 @@
 //image-grid-scroller
 //rows based grid layout image scroller
 .image-grid-scroller{
+    .two-rows{
+        max-width: 550px;
+    }
     img{
         display: block;
         margin-bottom: 2rem;
+    }
+    @include bp-max(md){
+        .two-rows{
+            max-width: 350px;
+        }
     }
 }

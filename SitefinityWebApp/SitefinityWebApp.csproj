@@ -1319,6 +1319,10 @@
       <Project>{3afccbdc-a395-48e5-aa1c-8fe9cfdd16db}</Project>
       <Name>JXTNext.Sitefinity.Widgets.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JXTNext.Sitefinity.Widgets.Content\JXTNext.Sitefinity.Widgets.Content.csproj">
+      <Project>{84c57321-d20d-48a2-957d-4511a984f836}</Project>
+      <Name>JXTNext.Sitefinity.Widgets.Content</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JXTNext.Sitefinity.Widgets.JobAlert\JXTNext.Sitefinity.Widgets.JobAlert.csproj">
       <Project>{3c241adf-92c1-4cf4-8b45-a6563f78cc50}</Project>
       <Name>JXTNext.Sitefinity.Widgets.JobAlert</Name>

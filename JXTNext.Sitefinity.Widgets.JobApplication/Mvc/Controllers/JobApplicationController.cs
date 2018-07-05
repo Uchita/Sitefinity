@@ -1,4 +1,7 @@
-﻿using System;
+﻿using JXTNext.Sitefinity.Connector.BusinessLogics;
+using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member;
+using JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models.JobApplication;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,6 +20,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
     [ControllerToolboxItem(Name = "JobApplication_MVC", Title = "Job Application", SectionName = "JXTNext.JobApplication", CssClass = JobApplicationController.WidgetIconCssClass)]
     public class JobApplicationController : Controller
     {
+        IBusinessLogicsConnector _blConnector;
+
         /// <summary>
         /// Gets or sets the name of the template that widget will be displayed.
         /// </summary>
@@ -34,38 +39,56 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
         }
 
+        public JobApplicationController(IBusinessLogicsConnector blConnector)
+        {
+            _blConnector = blConnector;
+        }
+
         // GET: JobApplication
         [HttpGet]
         public ActionResult Index()
         {
-            ViewBag.ShowFilesUploadMessage = null;
-            return View("Simple");
+            JobApplicationViewModel jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.Available, "Upload your files to Apply");
+
+            return View("JobApplication.Simple", jobApplicationViewModel);
         }
 
         [HttpPost]
         public ActionResult ApplyJob()
         {
-            Dictionary<string, byte[]> fileStreamKeyValue = new Dictionary<string, byte[]>();
-            foreach (string key in Request.Files)
+            int applicationResultID = 1;
+            int memberID = 2;
+
+            JobApplicationViewModel jobApplicationViewModel;
+            List<JobApplicationAttachmentUploadItem> attachments = GatherAttachments();
+
+            string resumeAttachmentPath = GetAttachmentPath(attachments, JobApplicationAttachmentType.Resume);
+            string coverletterAttachmentPath = GetAttachmentPath(attachments, JobApplicationAttachmentType.Coverletter);
+
+            //Create Application 
+            IMemberApplicationResponse response = _blConnector.MemberCreateJobApplication(new JXTNext_MemberApplicationRequest { ApplyResourceID = applicationResultID, MemberID = memberID, ResumePath = resumeAttachmentPath, CoverletterPath = coverletterAttachmentPath });
+
+            if( response.Success && response.ApplicationID.HasValue)
             {
-                HttpPostedFileBase fileContent = Request.Files[key];
+                //FileUploads
+                attachments.ForEach(c => ProcessFileUpload(ref c));
 
-                if (fileContent != null && fileContent.ContentLength > 0)
-                {
-                    string fullFileName = fileContent.FileName;
-                    var fileExtIndex = fileContent.FileName.LastIndexOf(".");
-                    var fileName = fileContent.FileName.Substring(0, fileExtIndex);
-                    var fileExtension = fileContent.FileName.Substring(fileExtIndex);
-                    var libName = "applications-resume";
-                    if (key.ToLower() == "coverletter")
-                        libName = "applications-coverletters";
+                bool hasFailedUpload = attachments.Where(c => c.Status != "Completed").Any();
 
-                    UploadToAmazonS3(Guid.NewGuid(), "private-amazon-s3-provider", libName, fileName, fileContent.InputStream, fileExtension);
-                    ViewBag.ShowFilesUploadMessage = "File(s) Uploaded successfully";
-                }
+                if (hasFailedUpload)
+                    //prompt error message for contact
+                    jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.Technical_Issue, "Unable to attach files to application");
+                else
+                    jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.Applied_Successful, "Your application was successfully processed");
+
             }
+            else
+            {
+                jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.NotAvailable, response.Errors.First() );
+            }
+
             var fullTemplateName = this.templateNamePrefix + this.TemplateName;
-            return View(fullTemplateName);
+            return View("JobApplication.Simple", jobApplicationViewModel);
         }
 
         private void FetchFromAmazonS3(string providerName, string libraryName, string itemTitle)
@@ -83,8 +106,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
         }
 
-     
-        private void UploadToAmazonS3(Guid masterDocumentId, string providerName, string parentAlbumTitle, string documentTitle, Stream documentStream, string documentExtension)
+        private void UploadToAmazonS3(Guid masterDocumentId, string providerName, string libName, string fileName, Stream fileStream)
         {
             LibrariesManager librariesManager = LibrariesManager.GetManager(providerName);
             Document document = librariesManager.GetDocuments().Where(i => i.Id == masterDocumentId).FirstOrDefault();
@@ -95,10 +117,11 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 document = librariesManager.CreateDocument(masterDocumentId);
 
                 //Set the parent document library.
-                DocumentLibrary documentLibrary = librariesManager.GetDocumentLibraries().Where(d => d.Title == parentAlbumTitle).SingleOrDefault();
+                DocumentLibrary documentLibrary = librariesManager.GetDocumentLibraries().Where(d => d.Title == libName).SingleOrDefault();
                 document.Parent = documentLibrary;
 
                 //Set the properties of the document.
+                string documentTitle = masterDocumentId.ToString() + "_" + fileName;
                 document.Title = documentTitle;
                 document.DateCreated = DateTime.UtcNow;
                 document.PublicationDate = DateTime.UtcNow;
@@ -108,7 +131,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 document.ApprovalWorkflowState = "Published";
 
                 //Upload the document file.
-                librariesManager.Upload(document, documentStream, documentExtension);
+                string fileExtension = fileName.Split(new string[] { "." }, StringSplitOptions.RemoveEmptyEntries).Last();
+                librariesManager.Upload(document, fileStream, fileExtension ?? string.Empty);
 
                 //Recompiles and validates the url of the document.
                 librariesManager.RecompileAndValidateUrls(document);
@@ -120,6 +144,115 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 var bag = new Dictionary<string, string>();
                 bag.Add("ContentType", typeof(Document).FullName);
                 WorkflowManager.MessageWorkflow(masterDocumentId, typeof(Document), null, "Publish", false, bag);
+            }
+        }
+
+        private JobApplicationViewModel GetJobApplicationConfigurations(JobApplicationStatus status, string message)
+        {
+            return new JobApplicationViewModel
+            {
+                ApplicationTitle = message,
+                ApplicationStatus = status,
+                ApplicationAttachments = new List<JobApplicationAttachmentItem>
+                {
+                    //Resume
+                    new JobApplicationAttachmentItem
+                    {
+                        AttachementType = JobApplicationAttachmentType.Resume,
+                        Title = "Resume",
+                        Enabled = true,
+                        AttachementFileUploadKey = JobApplicationAttachmentSettings.APPLICATION_RESUME_UPLOAD_KEY,
+                        Integrations = null
+                    },
+                    //Coverletter
+                    new JobApplicationAttachmentItem
+                    {
+                        AttachementType = JobApplicationAttachmentType.Coverletter,
+                        Title = "Cover Letter",
+                        Enabled = true,
+                        AttachementFileUploadKey = JobApplicationAttachmentSettings.APPLICATION_COVERLETTER_UPLOAD_KEY,
+                        Integrations = null
+                    }
+                },
+                ApplicationMessage = null
+            };
+        }
+
+        private List<JobApplicationAttachmentUploadItem> GatherAttachments()
+        {
+            List<JobApplicationAttachmentUploadItem> attachmentItems = new List<JobApplicationAttachmentUploadItem>();
+
+            bool hasResumeUpload = Request.Files.AllKeys.Contains(JobApplicationAttachmentSettings.APPLICATION_RESUME_UPLOAD_KEY);
+            if (hasResumeUpload)
+            {
+                JobApplicationAttachmentUploadItem item = GatherAttachmentDetails(JobApplicationAttachmentType.Resume, Request.Files[JobApplicationAttachmentSettings.APPLICATION_RESUME_UPLOAD_KEY]);
+                if (item != null)
+                    attachmentItems.Add(item);
+            }
+
+            bool hasCoverletterUpload = Request.Files.AllKeys.Contains(JobApplicationAttachmentSettings.APPLICATION_COVERLETTER_UPLOAD_KEY);
+            if (hasCoverletterUpload)
+            {
+                JobApplicationAttachmentUploadItem item = GatherAttachmentDetails(JobApplicationAttachmentType.Coverletter, Request.Files[JobApplicationAttachmentSettings.APPLICATION_COVERLETTER_UPLOAD_KEY]);
+                if (item != null)
+                    attachmentItems.Add(item);
+            }
+
+            return attachmentItems;
+        }
+
+        private string GetAttachmentPath(List<JobApplicationAttachmentUploadItem> attachmentItems, JobApplicationAttachmentType attachmentType)
+        {
+            JobApplicationAttachmentUploadItem item = attachmentItems.Where(c => c.AttachmentType == attachmentType).FirstOrDefault();
+            if (item == null)
+                return null;
+            return item.PathToAttachment;
+        }
+
+        private JobApplicationAttachmentUploadItem GatherAttachmentDetails(JobApplicationAttachmentType attachmentType, HttpPostedFileBase file)
+        {
+            if (file != null && file.ContentLength > 0)
+            {
+                Guid identifier = Guid.NewGuid();
+                return new JobApplicationAttachmentUploadItem
+                {
+                    Id = identifier.ToString(),
+                    AttachmentType = attachmentType,
+                    FileName = file.FileName,
+                    FileStream = file.InputStream,
+                    PathToAttachment = identifier.ToString() + "_" + file.FileName,
+                    Status = "Ready"
+                };
+            }
+            return null;
+        }
+
+        private void ProcessFileUpload(ref JobApplicationAttachmentUploadItem uploadItem)
+        {
+            var libName = FileUploadLibraryGet(uploadItem.AttachmentType);
+
+            try
+            {
+                UploadToAmazonS3(Guid.Parse(uploadItem.Id), "private-amazon-s3-provider", libName, uploadItem.PathToAttachment, uploadItem.FileStream);
+                uploadItem.Status = "Completed";
+            }
+            catch (Exception ex)
+            {
+                uploadItem.Status = "Failed";
+                uploadItem.Message = ex.Message;
+            }
+        }
+
+        private string FileUploadLibraryGet(JobApplicationAttachmentType attachmentType)
+        {
+            switch (attachmentType)
+            {
+                case JobApplicationAttachmentType.Resume:
+                    return JobApplicationAttachmentSettings.APPLICATION_RESUME_UPLOAD_LIBRARY;
+                case JobApplicationAttachmentType.Coverletter:
+                    return JobApplicationAttachmentSettings.APPLICATION_COVERLETTER_UPLOAD_LIBRARY;
+                default:
+                    return null;
             }
         }
 

@@ -21,7 +21,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
     {
         IBusinessLogicsConnector _BLConnector;
         IOptionsConnector _OptionsConnector;
-        IGetJobFiltersResponse _filtersResponse;
 
         /// <summary>
         /// Gets or sets the name of the template that widget will be displayed.
@@ -44,12 +43,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         {
             _BLConnector = _bConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.JXTNext).FirstOrDefault();
             _OptionsConnector = _oConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.JXTNext).FirstOrDefault();
-
-            //Execute - Get available filter options from the server
-            //_filtersResponse = _OptionsConnector.JobFilters<JXTNext_GetJobFiltersRequest, JXTNext_GetJobFiltersResponse>(new JXTNext_GetJobFiltersRequest());
-            //_jobTypes = _filtersResponse.Filters.Data.Where(item => item.Name == "Job Types").FirstOrDefault();
-            //if (_jobTypes != null)
-            //    this.SerializedTotalJobTypes = JsonConvert.SerializeObject(_jobTypes.Filters);
         }
 
         // GET: JobSearchResults

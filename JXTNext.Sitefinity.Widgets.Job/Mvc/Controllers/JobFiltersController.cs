@@ -33,20 +33,21 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             set { _templateName = value; }
         }
 
-        IBusinessLogicsConnector _testBLConnector;
-        IOptionsConnector _testOConnector;
+        IBusinessLogicsConnector _BLConnector;
+        IOptionsConnector _OConnector;
 
         public JobFiltersController(IEnumerable<IBusinessLogicsConnector> _bConnectors, IEnumerable<IOptionsConnector> _oConnectors)
         {
-            _testBLConnector = _bConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.Test).FirstOrDefault();
-            _testOConnector = _oConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.Test).FirstOrDefault();
+            _BLConnector = _bConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.JXTNext).FirstOrDefault();
+            _OConnector = _oConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.JXTNext).FirstOrDefault();
         }
 
         // GET: JobFilters
         public ActionResult Index(JobSearchResultsFilterModel filterModel)
         {
             dynamic dynamicFilterResponse = null;
-            IGetJobFiltersResponse filtersResponse = _testOConnector.JobFilters<Test_GetJobFiltersRequest, Test_GetJobFiltersResponse>(new Test_GetJobFiltersRequest());
+            JXTNext_GetJobFiltersRequest request = new JXTNext_GetJobFiltersRequest();
+            IGetJobFiltersResponse filtersResponse = _OConnector.JobFilters<JXTNext_GetJobFiltersRequest, JXTNext_GetJobFiltersResponse>(request);
             if (filtersResponse != null && filtersResponse.Filters != null
                 && filtersResponse.Filters.Data != null)
                 dynamicFilterResponse = filtersResponse.Filters.Data as dynamic;

@@ -7,8 +7,8 @@
     <ProjectGuid>{84C57321-D20D-48A2-957D-4511A984F836}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JXTNext.Sitefinity.Widgets.PageTitle</RootNamespace>
-    <AssemblyName>JXTNext.Sitefinity.Widgets.PageTitle</AssemblyName>
+    <RootNamespace>JXTNext.Sitefinity.Widgets.Content</RootNamespace>
+    <AssemblyName>JXTNext.Sitefinity.Widgets.Content</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <EnhancerAssembly>$(SolutionDir)\packages\Telerik.DataAccess.Fluent.2016.2.822.1\tools\enhancer\enhancer.exe</EnhancerAssembly>

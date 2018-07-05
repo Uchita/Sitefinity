@@ -8,12 +8,12 @@ using Telerik.Sitefinity.Mvc;
 using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
 using Telerik.Sitefinity.Web;
 using Telerik.Sitefinity.Modules.Pages;
-using JXTNext.Sitefinity.Widgets.PageTitle.Mvc.Models;
+using JXTNext.Sitefinity.Widgets.Content.Mvc.Models;
 
-namespace JXTNext.Sitefinity.Widgets.PageTitle.Mvc.Controllers
+namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Controllers
 {
     [EnhanceViewEngines]
-    [ControllerToolboxItem(Name = "PageTitle_MVC", Title = "Page Title", SectionName = "JXTNext.PageTitle", CssClass = PageTitleController.WidgetIconCssClass)]
+    [ControllerToolboxItem(Name = "PageTitle_MVC", Title = "Page Title", SectionName = "JXTNext.Content", CssClass = PageTitleController.WidgetIconCssClass)]
     public class PageTitleController : Controller
     {
         public ActionResult Index()

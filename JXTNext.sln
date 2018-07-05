@@ -25,7 +25,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JXTNext.Sitefinity.Widgets.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JXTNext.Sitefinity.Widgets.Common", "JXTNext.Sitefinity.Widgets.Common\JXTNext.Sitefinity.Widgets.Common.csproj", "{3AFCCBDC-A395-48E5-AA1C-8FE9CFDD16DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JXTNext.Sitefinity.Widgets.PageTitle", "JXTNext.Sitefinity.Widgets.PageTitle\JXTNext.Sitefinity.Widgets.PageTitle.csproj", "{84C57321-D20D-48A2-957D-4511A984F836}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JXTNext.Sitefinity.Widgets.Content", "JXTNext.Sitefinity.Widgets.Content\JXTNext.Sitefinity.Widgets.Content.csproj", "{84C57321-D20D-48A2-957D-4511A984F836}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

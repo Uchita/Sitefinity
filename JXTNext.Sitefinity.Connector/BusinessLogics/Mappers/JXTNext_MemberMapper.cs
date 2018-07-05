@@ -26,5 +26,21 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
 
             return apiObj;
         }
+
+        public dynamic Application_ConvertToAPIEntity<T>(T applyDetails)
+        {
+            JXTNext_MemberApplicationRequest jxtAppDetails = applyDetails as JXTNext_MemberApplicationRequest;
+
+            //do the assignment from the local register model to API
+            dynamic apiObj = new
+            {
+                jobId = jxtAppDetails.ApplyResourceID,
+                resumePath = jxtAppDetails.ResumePath,
+                coverletterPath = jxtAppDetails.CoverletterPath
+            };
+
+            return apiObj;
+        }
+
     }
 }

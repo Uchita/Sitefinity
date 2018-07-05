@@ -101,7 +101,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
             throw new NotImplementedException();
         }
 
-        public void MemberApplyJob()
+        public IMemberApplicationResponse MemberCreateJobApplication(IMemberApplication memberApplication)
         {
             throw new NotImplementedException();
         }
@@ -171,6 +171,11 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
         }
 
         public IGetJobListingResponse GuestGetJob(IGetJobListingRequest jobDetails)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IMemberApplicationResponse MemberCreateJobApplication_FileUploadUpdate(IMemberApplication memberApplication)
         {
             throw new NotImplementedException();
         }

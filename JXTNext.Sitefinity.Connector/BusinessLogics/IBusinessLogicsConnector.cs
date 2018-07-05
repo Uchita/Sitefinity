@@ -11,7 +11,8 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
 
         #region Member Calls
         bool MemberRegister(IMemberRegister memberDetails, out string errorMessage);
-        void MemberApplyJob();
+        IMemberApplicationResponse MemberCreateJobApplication(IMemberApplication memberApplication);
+        IMemberApplicationResponse MemberCreateJobApplication_FileUploadUpdate(IMemberApplication memberApplication);
         #endregion
 
         #region Advertiser User Calls

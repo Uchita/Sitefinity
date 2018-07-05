@@ -391,9 +391,6 @@
     <EmbeddedResource Include="ResourcePackages\JXTDemo\MVC\Views\JobSearchResults\JobsLatest.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="ResourcePackages\JXTDemo\MVC\Views\JobApplication\Simple.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
     <EmbeddedResource Include="ResourcePackages\JXTDemo\MVC\Views\JobDetails\JobDetails.Simple.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>

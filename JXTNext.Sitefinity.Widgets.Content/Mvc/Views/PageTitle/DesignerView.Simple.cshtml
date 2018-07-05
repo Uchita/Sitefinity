@@ -1,0 +1,16 @@
+﻿@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+
+
+<div><input type="radio" name="title" ng-model="properties.IsDefaultTitle.PropertyValue" ng-change="defaultChange()" ng-checked="properties.IsDefaultTitle.PropertyValue == true"/>Default Title</div>
+<div><input type="radio" name="title" ng-model="properties.IsDefaultTitle.PropertyValue" ng-checked="properties.IsDefaultTitle.PropertyValue != true" ng-change="customChange()"/>Custom Title</div>
+
+<input type="text" ng-model="properties.CustomPageTitle.PropertyValue" id="custom-text"/>
+
+<expander expander-title="More Options">
+    <style-dropdown selected-class="properties.CssClass.PropertyValue"></style-dropdown>
+
+    <div class="form-group">
+        <label for="navCssClass">CSS classes</label>
+        <input type="text" id="navCssClass" ng-model="properties.CssClass.PropertyValue" class="form-control" />
+    </div>
+</expander>

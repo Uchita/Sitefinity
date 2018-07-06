@@ -534,6 +534,9 @@
     <Content Include="ResourcePackages\JXTDemo\MVC\Views\SubscribeForm\SubscribeForm.SubscribeForm.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\Testimonial\List.Scroller.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="ResourcePackages\JXTDemo\package-lock.json" />
     <None Include="ResourcePackages\JXTDemo\package.json" />
     <None Include="ResourcePackages\JXTDemo\razorgenerator.directives">

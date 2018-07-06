@@ -1,0 +1,45 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentListViewModel
+
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Web.DataResolving;
+@using JXTNext.Sitefinity.Common.Helpers
+
+<div class="@Model.CssClass testimonial-slider control-rt">
+    
+        @{
+            string defaultImageUrl = "/ResourcePackages/JXTdemo/assets/dist/images/banner-bg.jpg";
+        }
+
+        @foreach (var item in Model.Items)
+        {
+            string imageURLlogo = ((Telerik.Sitefinity.Frontend.Mvc.Models.ItemViewModel)item).GetItemImageUrl("Photo", 1);
+            string imageThumbnailUrl = ((Telerik.Sitefinity.Frontend.Mvc.Models.ItemViewModel)item).GetItemThumbnailImageUrl("Photo",0);
+
+           // var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+
+            <div class="slide-item">
+                <figure>
+                    <span class="circular-wrap"><img src="@(String.IsNullOrEmpty(imageThumbnailUrl) ? defaultImageUrl : imageThumbnailUrl)" alt="@item.Fields.Title" /></span>
+                    @if (!String.IsNullOrEmpty(imageURLlogo))
+                    {
+                        <span class="logo-wrap"><img src="@imageURLlogo" alt="@item.Fields.Title" /></span>
+                    }
+                </figure>
+                
+                <div class="slide-content">
+                    <div class="slide-copy">
+                        <h4>@item.Fields.Title</h4>
+
+                        <p>@item.Fields.Content</p>
+                        <div class="slide-header">
+                            <h3>@item.Fields.By</h3>
+                            <p class="pos">@item.Fields.Position</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        }
+  
+</div>

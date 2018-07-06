@@ -21,18 +21,17 @@
                 <div class="card-flip">
                     <div class="front sf-img-thmb">
                         <img class="media-object" src="@((item as SitefinityProfileItemViewModel).AvatarImageUrl)" alt="@item.Fields.FirstName" width="330" height="410" />
-                        <h3>@(((SitefinityProfile)item.DataItem).GetUserDisplayName())</h3>
+                        <h3>@item.Fields.FirstName</h3>
                     </div>
 
                     <div class="overlay sf-media-body">
-                        <h3>
-                            <a href="@UsersHelper.EncodeUrlUsername(HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage), item as SitefinityProfileItemViewModel)">
-                                @(((SitefinityProfile)item.DataItem).GetUserDisplayName())
-                            </a>
-                        </h3>
-                        <p>
-                            @Html.HtmlSanitize((((SitefinityProfileItemViewModel)item).About))
-                        </p>
+                        <a class="block-wrap" href="@UsersHelper.EncodeUrlUsername(HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage), item as SitefinityProfileItemViewModel)">
+                            <h3>@(((SitefinityProfile)item.DataItem).GetUserDisplayName())</h3>
+                            <p>
+                                @Html.HtmlSanitize((((SitefinityProfileItemViewModel)item).About))
+                            </p>
+                        </a>
+                        
                         <div class="footer-meta">
                             <a href="#" title="Phone" class="jn_ico icon-phone"></a>
                             <a href="mailto:@(((SitefinityProfile)item.DataItem).User.Email)" title="Email" class="jn_ico icon-mail"></a>

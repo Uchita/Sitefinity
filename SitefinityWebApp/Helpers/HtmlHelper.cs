@@ -12,26 +12,39 @@ namespace JXTNext.Sitefinity.Common.Helpers
     {
         public static string GetItemImageUrl(this ItemViewModel dataItem, string targetField, int imageIndex)
         {
-            if (dataItem.Fields == null || dataItem.Fields.Image == null 
-                || dataItem.Fields.Image.Length == 0 || dataItem.Fields.Image.Length < imageIndex 
-                || dataItem.Fields.Image[imageIndex] == null)
-                return string.Empty;
+            if (dataItem.Fields != null)
+            {
+                DynamicDataItemFieldAccessor accessor = dataItem.Fields;
+                ItemViewModel[] targetFieldValue = accessor.GetMemberValue(targetField) as ItemViewModel[];
 
-            var imageDataItem = dataItem.Fields.Image[imageIndex].DataItem;
+                if (targetFieldValue == null
+                        || targetFieldValue.Length == 0 || targetFieldValue.Length < imageIndex
+                        || targetFieldValue[imageIndex] == null)
+                    return string.Empty;
 
-            return imageDataItem.Url;
+                Telerik.Sitefinity.Libraries.Model.Image imageDataItem = targetFieldValue[imageIndex].DataItem as Telerik.Sitefinity.Libraries.Model.Image;
+                return imageDataItem.Url;
+            }
+            return string.Empty;
         }
 
         public static string GetItemThumbnailImageUrl(this ItemViewModel dataItem, string targetField, int imageIndex)
         {
-            if (dataItem.Fields == null || dataItem.Fields.Image == null
-                  || dataItem.Fields.Image.Length == 0 || dataItem.Fields.Image.Length < imageIndex
-                  || dataItem.Fields.Image[imageIndex] == null)
-                return string.Empty;
 
-            var imageDataItem = dataItem.Fields.Image[imageIndex].DataItem;
+            if (dataItem.Fields != null)
+            {
+                DynamicDataItemFieldAccessor accessor = dataItem.Fields;
+                ItemViewModel[] targetFieldValue = accessor.GetMemberValue(targetField) as ItemViewModel[];
 
-            return imageDataItem.ThumbnailUrl;
+                if (targetFieldValue == null
+                        || targetFieldValue.Length == 0 || targetFieldValue.Length < imageIndex
+                        || targetFieldValue[imageIndex] == null)
+                    return string.Empty;
+
+                Telerik.Sitefinity.Libraries.Model.Image imageDataItem = targetFieldValue[imageIndex].DataItem as Telerik.Sitefinity.Libraries.Model.Image;
+                return imageDataItem.ThumbnailUrl;
+            }
+            return string.Empty;
         }
 
     }

@@ -1,11 +1,14 @@
 // Testimonial Feed widget
 .jn_testimonialFeed{
     padding: $vrt-gap+2rem 0;
+    h2{
+        text-align: center;
+    }
 }
 .testimonial-slider{
     .slide-item{
         position: relative;
-        padding: 9rem 18rem 9rem 39.5rem;
+        padding: 9rem 18rem 4rem 39.5rem;
         figure{
             position: absolute;
             max-width: 256px;
@@ -39,16 +42,46 @@
                     left: -15px;
                 }
             }
+            .circular-wrap{
+                display: block;
+                height: 235px;
+                width: 235px;
+                overflow: hidden;
+                border-radius: 50%;
+            }
             img{
                 position: relative;
                 z-index: 1;
-                border-radius: 50%;
             }
+            .logo-wrap {
+                position: absolute;
+                background: $brightColor;
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                overflow: hidden;
+                box-shadow: 1px 5px 15px 1px rgba(0,0,0,0.1);
+                bottom: -5rem;
+                z-index: 1;
+                right: 0;
+                text-align: center;
+                display: block;
+                img{
+                    position: absolute;
+                    width: auto;
+                    top: 50%;
+                    left: 50%;
+                    margin-left: -37px;
+                    margin-top: -15px;
+                    max-width: 75px;
+                    max-height: 60px;
+                }
+            }
+
         }
         .slide-copy{
             position: relative;
-            padding-top: 7rem;
-            padding-bottom: 4rem;
+            padding-top: 3rem;
             &::before{
                 content: '';
                 position: absolute;
@@ -56,8 +89,11 @@
                 background:url('../images/quote.png') no-repeat;
                 width: 65px;
                 height: 50px;
-                top: 0;
+                top: -4.5rem;
                 right: -1.5rem;
+            }
+            .slide-header{
+                padding-top: 2rem;
             }
         }
         h3{
@@ -65,10 +101,14 @@
         }
         .pos{
             color: $p1Color;
+            margin-bottom: 0;
         }
         
         @include bp-max(md){
             padding: 4.5rem;
+            .slide-content{
+                padding-top: 5rem;
+            }
             figure{
                 position: relative;
                 left: 0;
@@ -80,8 +120,13 @@
         }
         @include bp-max(sm){
             padding: 4.2rem 0;
+            .slide-content{
+                padding-top: 9rem;
+            }
             .slide-copy::before{
                 right: 0;
+                background-size: 45px auto;
+                top: -1.6rem;
             }
         }
     }
@@ -117,11 +162,11 @@
       @include bp-max(sm){
           .owl-nav .owl-prev{
               bottom: 4.6rem;
-              right: 3rem;
+              right: 5rem;
           }
           .owl-nav .owl-next{
               bottom: 9rem;
-              right: 0;
+              right: 2rem;
           }
       }
 }

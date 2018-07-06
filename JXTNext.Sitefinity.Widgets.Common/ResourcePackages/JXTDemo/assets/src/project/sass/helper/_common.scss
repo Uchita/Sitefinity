@@ -262,6 +262,13 @@ p,ul,ol{
     max-width: 100%;
     flex-grow: 1;
 }
+
+//login page
+.sf-registration-link{
+    border-top: 1px solid lighten($baseColor,80%);
+    padding: 3rem 0;
+}
+
 //two column layout
 @include bp-min(md){
     .sidebar{

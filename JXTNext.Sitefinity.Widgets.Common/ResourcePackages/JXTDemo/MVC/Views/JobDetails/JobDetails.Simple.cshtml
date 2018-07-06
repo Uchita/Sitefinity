@@ -52,7 +52,7 @@
 
             <div class="col-lg-9">
                 <div class="job-copy">
-                    @Model.Job.Description
+                    @Html.Raw(Model.Job.Description)
                 </div>
                 <div class="buttons-wrapper">
                     <a href="@ViewBag.JobApplicationPageUrl" id="apply-job" role="button" class="btn btn-sm">Apply</a>

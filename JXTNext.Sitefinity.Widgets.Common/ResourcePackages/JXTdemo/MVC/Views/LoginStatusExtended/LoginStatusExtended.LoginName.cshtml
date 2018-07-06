@@ -4,6 +4,7 @@
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
 @using Telerik.Sitefinity.Modules.Pages;
 @Html.Script(ScriptRef.JQuery, "top", false)
+
 <div class="@Model.CssClass">
     <div data-sf-role="sf-logged-in-view" style="display: none">
         <span>@Html.Resource("LoggedAs", "LoginStatusExtendedResources") </span>
@@ -19,4 +20,4 @@
 <input type="hidden" data-sf-role="sf-allow-windows-sts-login" value="@Model.AllowWindowsStsLogin.ToString()" />
 <input type="hidden" data-sf-role="sf-logout-redirect-url" value="@Model.LogoutPageUrl" />
 <input type="hidden" data-sf-role="sf-is-design-mode-value" value="@ViewBag.IsDesignMode.ToString()" />
-@Html.Script(Url.WidgetContent("Mvc/Scripts/LoginStatus/login-status.js"), "bottom", false)
+@Html.Script(Url.EmbeddedResource("JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers.LoginStatusExtendedController", "JXTNext.Sitefinity.Widgets.Authentication.Mvc.Scripts.LoginStatusExtended.login-status.js"), "bottom")

@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Web.UI;
 using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
 
 // General Information about an assembly is controlled through the following
@@ -36,3 +37,6 @@ using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: ControllerContainer]
+
+[assembly: WebResource("JXTNext.Sitefinity.Widgets.Authentication.Mvc.Scripts.LoginStatusExtended.designerview-simple.js", "application/x-javascript")]
+[assembly: WebResource("JXTNext.Sitefinity.Widgets.Authentication.Mvc.Scripts.LoginStatusExtended.login-status.js", "application/x-javascript")]

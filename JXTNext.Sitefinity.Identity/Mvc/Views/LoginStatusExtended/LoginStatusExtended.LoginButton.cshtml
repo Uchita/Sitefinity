@@ -24,4 +24,4 @@
 <input type="hidden" data-sf-role="sf-allow-windows-sts-login" value="@Model.AllowWindowsStsLogin.ToString()" />
 <input type="hidden" data-sf-role="sf-login-redirect-url" value="@Model.LoginPageUrl" />
 <input type="hidden" data-sf-role="sf-is-design-mode-value" value="@ViewBag.IsDesignMode.ToString()" />
-@Html.Script(Url.WidgetContent("Mvc/Scripts/LoginStatusExtended/login-status.js"), "bottom", false)
+@Html.Script(Url.EmbeddedResource("JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers.LoginStatusExtendedController", "JXTNext.Sitefinity.Widgets.Authentication.Mvc.Scripts.LoginStatusExtended.login-status.js"), "bottom")

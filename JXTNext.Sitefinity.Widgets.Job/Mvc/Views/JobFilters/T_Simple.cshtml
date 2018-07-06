@@ -1,8 +1,8 @@
 ﻿@model dynamic
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
 
-@Html.StyleSheet(Url.WidgetContent("/Mvc/Scripts/JobSearch/dropdowntree.css"), "bottom")
-@Html.Script(Url.WidgetContent("/Mvc/Scripts/JobSearch/dropdowntree.js"), "bottom")
+@Html.StyleSheet(Url.EmbeddedResource("JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers.JobSearchController", "JXTNext.Sitefinity.Widgets.Job.Mvc.Scripts.JobSearch.dropdowntree.css"), "bottom")
+@Html.Script(Url.EmbeddedResource("JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers.JobSearchController", "JXTNext.Sitefinity.Widgets.Job.Mvc.Scripts.JobSearch.dropdowntree.js"), "bottom")
 
 @if (Model != null)
 {
@@ -14,7 +14,7 @@
     <button id="refine-results" class="btn btn-primary">REFINE RESULTS</button>
 }
 
-    <script type="text/javascript">
+<script type="text/javascript">
     $(document).ready(function () {
 
          @{
@@ -26,7 +26,7 @@
 
 
         function makeQueryString(obj, prefix, isArray) {
-          
+
             for (var p in obj) {
                 if (obj.hasOwnProperty(p)) {
                     var k, v;
@@ -59,12 +59,12 @@
             }
             return queryStringArr.join("&");
         };
-      
+
         var model = @Html.Raw(json);
         if (model != null && model != "undefined") {
             var filterModel = JSON.parse('@Html.Raw(@ViewBag.FilterModel)');
             var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
-           
+
             for (var item of filterData) {
                 optionsArray[item.ID] = {
                     title: item.Name,
@@ -108,4 +108,4 @@
             });
         }
     });
-    </script>
+</script>

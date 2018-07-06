@@ -26,6 +26,8 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Controllers
 
             var viewModel = new PageTitleViewModel() { PageTitle = pageTitle };
 
+            ViewBag.CssClass = CssClass;
+
             return View("Simple", viewModel);
         }
 

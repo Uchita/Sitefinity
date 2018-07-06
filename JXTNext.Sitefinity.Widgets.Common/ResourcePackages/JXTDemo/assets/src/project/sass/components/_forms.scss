@@ -2,10 +2,8 @@
 input[type="text"], input[type="email"], input[type="tel"], input[type="password"],
 input[type="file"], input[type="date"],
 textarea{
-    padding: 10px;
-    width: 100%;
-    border:none;
     color: lighten($baseColor,13.5%);
+    width: 100%;
     border-radius: 0;
     -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
@@ -45,12 +43,31 @@ textarea{
     display: none;
 }
 
+//checkbox
+.checkbox{
+    label input[type="checkbox"]{
+        display: inline;
+        margin-right: 5px;
+        position: relative;
+        top: 2px;
+    }
+}
+.radio{
+    label input[type="radio"]{
+        display: inline;
+        margin-right: 5px;
+        position: relative;
+        top: 2px;
+    }
+}
 
 //default layout
 .form-group, .sf-fieldWrp{
     margin-bottom: 2rem;
     input[type="text"], input[type="email"], input[type="tel"], input[type="password"],
     textarea, input[type="file"], input[type="date"]{
+        padding: 10px;
+        border:none;
         border-bottom: 2px solid $fontColor;
         font-size: 1.6rem;
         box-shadow: 0 0 1px rgba(0,0,0,0.1);
@@ -106,4 +123,20 @@ textarea{
         height: auto!important;
         margin-bottom: 0!important;
     }
+}
+
+//help block
+.help-block{
+    color: $fontColor;
+    font-size: 80%;
+}
+
+//error block
+.has-error{
+    .help-block{
+        color: $p1Color;
+    }
+}
+.input-validation-error{
+    border-bottom-color:$p1Color!important;
 }

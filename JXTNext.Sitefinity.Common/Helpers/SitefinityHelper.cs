@@ -51,20 +51,22 @@ namespace JXTNext.Sitefinity.Common.Helpers
             return pageUrl;
         }
 
-        public static void GetCurrentUserInfo(ref string UserName, ref List<string> Roles)
+        public static List<string> GetCurrentUserRoles()
         {
+            List<string> roles = new List<string>();
+
             // Get the current identity 
             var identity = ClaimsManager.GetCurrentIdentity();
 
             // Get information about the user from the properties of the ClaimsIdentityProxy object
             if (identity != null)
             {
-                UserName = identity.Name;
                 foreach (var rolesInfo in identity.Roles)
                 {
-                    Roles.Add(rolesInfo.Name);
+                    roles.Add(rolesInfo.Name);
                 }
             }
+            return roles;
         }
     }
 }

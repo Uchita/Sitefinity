@@ -316,6 +316,7 @@
     <Compile Include="Mvc\Controllers\JobFiltersController.cs" />
     <Compile Include="Mvc\Controllers\JobSearchController.cs" />
     <Compile Include="Mvc\Controllers\JobSearchResultsController.cs" />
+    <Compile Include="Mvc\Models\JobDetailsModel.cs" />
     <Compile Include="Mvc\Models\JobSearchModel.cs" />
     <Compile Include="Mvc\Models\JobSearchResultsFilterModel.cs" />
     <Compile Include="Mvc\StringResources\JobDetailsResources.cs" />

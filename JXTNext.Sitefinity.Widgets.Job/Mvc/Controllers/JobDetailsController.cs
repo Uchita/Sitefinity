@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Telerik.Sitefinity.Mvc;
 using JXTNext.Sitefinity.Common.Helpers;
 using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
+using JXTNext.Sitefinity.Widgets.Job.Mvc.Models;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -45,25 +46,25 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         // GET: JobDetails
         public ActionResult Index(int? jobId)
         {
+            JobDetailsViewModel viewModel = new JobDetailsViewModel();
             if (jobId.HasValue)
             {
-                dynamic dynamicJobDetails = null;
                 IGetJobListingRequest jobListingRequest = new JXTNext_GetJobListingRequest { JobID = jobId.Value };
                 IGetJobListingResponse jobListingResponse = _BLConnector.GuestGetJob(jobListingRequest);
 
-                if (jobListingRequest != null)
-                    dynamicJobDetails = jobListingResponse as dynamic;
+                viewModel.JobDetails = jobListingResponse.Job;
 
-                string userName = String.Empty;
-                List<string> roles = new List<string>();
-                SitefinityHelper.GetCurrentUserInfo(ref userName, ref roles);
+                List<string> roles = SitefinityHelper.GetCurrentUserRoles();
 
-                ViewBag.UserName = userName;
-                ViewBag.Roles = JsonConvert.SerializeObject(roles);
+                bool hasMemberRole = roles.Where(c => c.ToUpper() == "MEMBER").Any();
+                if (hasMemberRole)
+                    viewModel.JobApplyAvailable = true;
+
                 ViewBag.CssClass = this.CssClass;
                 ViewBag.JobApplicationPageUrl = SitefinityHelper.GetPageUrl(this.JobApplicationPageId);
+
                 var fullTemplateName = this.templateNamePrefix + this.TemplateName;
-                return View(fullTemplateName, dynamicJobDetails);
+                return View(fullTemplateName, viewModel);
             }
 
             return Content("No job has been selected");

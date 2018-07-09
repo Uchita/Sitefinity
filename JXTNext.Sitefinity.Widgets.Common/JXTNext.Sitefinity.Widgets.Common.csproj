@@ -391,9 +391,6 @@
     <EmbeddedResource Include="ResourcePackages\JXTDemo\MVC\Views\JobSearchResults\JobsLatest.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="ResourcePackages\JXTDemo\MVC\Views\JobDetails\JobDetails.Simple.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
     <Content Include="ResourcePackages\JXTDemo\MVC\Views\ImageGallery\Detail.DetailPage.cshtml" />
     <Content Include="ResourcePackages\JXTDemo\MVC\Views\ImageGallery\List.ImageGallery.cshtml" />
     <Content Include="ResourcePackages\JXTDemo\MVC\Views\ImageGallery\List.OverlayGallery.cshtml" />
@@ -407,9 +404,6 @@
     <Content Include="ResourcePackages\JXTDemo\MVC\Views\FileField\Write.Default.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <EmbeddedResource Include="ResourcePackages\JXTDemo\MVC\Views\JobDetails\JobDetails.AppPage.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
     <Content Include="ResourcePackages\JXTDemo\MVC\Views\ImageGallery\List.ImageScroller.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -524,9 +518,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\JXTDemo\MVC\Views\UsersList\List.ConsultantList.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\JXTDemo\MVC\Views\UsersList\List.ConsultantListSimple.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\JXTDemo\MVC\Views\TextField\Read.Default.cshtml" />

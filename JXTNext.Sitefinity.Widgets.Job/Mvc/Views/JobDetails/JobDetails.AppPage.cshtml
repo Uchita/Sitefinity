@@ -1,7 +1,7 @@
 ﻿@using JXTNext.Sitefinity.Widgets.Job.Mvc.Models
 @model JobDetailsViewModel
 
-<div class="col-lg-8">
+<div class="col-lg-12">
     <div class="backtoresult">
         <a href="#" id="back-to-results" role="button" title="Back to Results"><span class="prev-btn"></span>Back To Results</a>
     </div>
@@ -9,10 +9,9 @@
         <div class="job-topbar">
             <a href="/save-job" title="Save job">Save Job</a>
             <a href="/share-job" title="share job">Share Job</a>
-            <a href="/Apply-now" title="Apply Now">Apply Now</a>
         </div>
         <div class="job-header">
-            <h1 class="page-title">@Model.JobDetails.Title</h1>
+            <h1 class="page-title"><small>Apply for this position:</small>@Model.JobDetails.Title</h1>
             <div class="highlight">Tag goes here</div>
         </div>
         <dl class="sc-job-meta-group clearfix">
@@ -37,27 +36,6 @@
         </dl>
     </div>
 </div>
-<div class="col-lg-4">
-    <div class="job-sec2">
-        <div class="job-ref"><span class="meta-key">Ref:</span><span class="meta-value">2F9775SD90IB</span></div>
-        <figure class="job-image"><img src="~/ResourcePackages/JXTdemo/assets/dist/images/team-1.jpg" alt="Team name"></figure>
-        <a href="mailto:emailaddress" class="link" title="Consultant email">Email</a>
-    </div>
-</div>
-
-<div class="col-lg-9">
-    <div class="job-copy">
-        @Html.Raw(Model.JobDetails.Description)
-    </div>
-    <div class="buttons-wrapper">
-        @if (Model.JobApplyAvailable)
-        {
-            <a href="@ViewBag.JobApplicationPageUrl" id="apply-job" role="button" class="btn btn-sm">Apply</a>
-        }
-        <a href="/refer-friend" class="btn btn-sm btn-1" title="Refer this job to your friend">Refer Friend</a>
-    </div>
-</div>
-
 
 <script type="text/javascript">
     $(document).ready(function () {

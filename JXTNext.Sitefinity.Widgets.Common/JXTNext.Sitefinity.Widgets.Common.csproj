@@ -382,15 +382,15 @@
     <EmbeddedResource Include="ResourcePackages\JXTDemo\MVC\Views\JobFilters\T_Simple.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="ResourcePackages\JXTDemo\MVC\Views\JobSearchResults\JobsAll.cshtml">
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\JobSearchResults\JobsAll.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ResourcePackages\JXTDemo\MVC\Views\JobSearchResults\Simple.cshtml">
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\JobSearchResults\Simple.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ResourcePackages\JXTDemo\MVC\Views\JobSearchResults\JobsLatest.cshtml">
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\JobSearchResults\JobsLatest.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Content>
     <EmbeddedResource Include="ResourcePackages\JXTDemo\MVC\Views\JobDetails\JobDetails.Simple.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -414,6 +414,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\JXTDemo\MVC\Views\ImageGallery\List.ImageGalleryGridScroller.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\JobSearchResults\_JobSearchResults_Short.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\JobSearchResults\JobsLatest_TitleOnly.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="ResourcePackages\JXTDemo\MVC\Views\JobSearch\JobSearch.Simple.cshtml">
@@ -508,6 +514,11 @@
     <EmbeddedResource Include="ResourcePackages\JXTDemo\MVC\Views\PageTitle\Simple.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\Profile\ConfirmPassword.ProfileEdit.cshtml" />
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\Profile\Edit.ProfileEdit.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\Profile\Read.ProfilePreview.cshtml" />
     <None Include="ResourcePackages\JXTDemo\MVC\Views\SearchBox\SearchBox.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

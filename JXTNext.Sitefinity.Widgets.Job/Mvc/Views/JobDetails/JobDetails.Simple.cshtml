@@ -52,7 +52,7 @@
     <div class="buttons-wrapper">
         @if (Model.JobApplyAvailable)
         {
-            <a href="@ViewBag.JobApplicationPageUrl" id="apply-job" role="button" class="btn btn-sm">Apply</a>
+            <a href="@ViewBag.JobApplicationPageUrl?jobid=@Model.JobDetails.JobID" id="apply-job" role="button" class="btn btn-sm">Apply</a>
         }
         <a href="/refer-friend" class="btn btn-sm btn-1" title="Refer this job to your friend">Refer Friend</a>
     </div>

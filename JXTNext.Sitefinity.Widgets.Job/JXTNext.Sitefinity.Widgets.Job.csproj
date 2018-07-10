@@ -326,6 +326,7 @@
     <Compile Include="Widgets_JobModule.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Mvc\Views\JobDetails\JobDetails.AppPage.cshtml" />
     <None Include="web.config" />
     <None Include="app.config" />
     <EmbeddedResource Include="Mvc\Views\JobDetails\DesignerView.Simple.cshtml" />

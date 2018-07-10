@@ -1,0 +1,171 @@
+﻿@model dynamic
+@using Telerik.Sitefinity.Services;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+
+
+<div id="listView" class="job-result jn_scroller"></div>
+
+
+<script type="text/x-kendo-template" id="template">
+    <div class="sc-item">
+        <div class="job-header">
+            <h3><a href="@ViewBag.JobDetailsPageUrl?jobId=#:JobID#">#:Title#</a></h3>
+        </div>
+        <div class="sc-desc">#:Description#</div>
+        <dl class="sc-job-meta-group"><dt class="sc-job-meta-name meta-location hidden">Location</dt><dd class="sc-job-meta-value meta-location"><a href="" title="Jobs in Sydney"><span class="jn_ico icon-pin">icon</span>Sydney</a></dd><dt class="sc-job-meta-name meta-salary hidden">Salary</dt><dd class="sc-job-meta-value meta-salary"><span class="jn_ico icon-value">icon</span>65K p.a.</dd><dt class="sc-job-meta-name meta-worktype hidden">Worktype</dt><dd class="sc-job-meta-value meta-worktype"><span class="jn_ico icon-time">icon</span>Permanent</dd></dl>
+        <a href="@ViewBag.JobDetailsPageUrl?jobId=#:JobID#" class="btn btn-sm" title="Read more">Read more</a>
+    </div>
+</script>
+
+
+<script type="text/javascript">
+
+     @{
+          var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+          var json = serializer.Serialize(Model);
+      }
+
+    var model = @Html.Raw(json);
+    var isDesignMode = @Html.Raw(Json.Encode(@SystemManager.IsDesignMode));
+
+    if (model != null && model != "undefined" && !isDesignMode) {
+        var pageSize = @ViewBag.PageSize;
+        var totalCount = @ViewBag.TotalCount;
+        var filterModel = JSON.parse('@Html.Raw(@ViewBag.FilterModel)');
+        var PageNumber = filterModel.Page;
+        var dataSource;
+        var queryStringArr = [];
+
+        $("#sortOrder").val('@ViewBag.SortOrder');
+        bindJobs(PageNumber);
+        bindJobsPages();
+
+        $("#sortOrder").change(function () {
+            bindJobs(PageNumber);
+        });
+
+
+        function makeQueryString(obj, prefix, isArray) {
+
+            for (var p in obj) {
+                if (obj.hasOwnProperty(p)) {
+                    var k, v;
+                    if (isArray)
+                        k = prefix ? prefix + "%5B" + p + "%5D" : p, v = obj[p];
+                    else {
+                        if (prefix.match(".values$"))
+                            k = prefix ? prefix : p, v = obj[p];
+                        else
+                            k = prefix ? prefix + "." + p + "" : p, v = obj[p];
+                    }
+
+                    if (v !== null && typeof v === "object") {
+                        if (Array.isArray(v)) {
+                            if (k.match(".values$"))
+                                makeQueryString(v, k, false);
+                            else
+                                makeQueryString(v, k, true);
+                        } else {
+                            makeQueryString(v, k, false);
+                        }
+                    } else {
+                        if (v === null || v === "undefined")
+                            v = "";
+
+                        var query = k + "=" + v;
+                        queryStringArr.push(query);
+                    }
+                }
+            }
+            return queryStringArr.join("&");
+        };
+
+    function bindJobsPages()
+    {
+        highestPage = totalCount / pageSize;
+        highestPage = Math.ceil(totalCount / pageSize);
+
+        if (highestPage > 1) {
+            var lis = '';
+            for (var i = 1; i <= highestPage; i++) {
+                lis += '<li><a tabindex="-1" href="#" onclick="pageChange(this);" class="k-link" data-page="' + i + '">' + i + '</a></li>';
+            }
+            $('#pager ul').html(lis);
+        }
+    };
+
+        function bindJobs(PageNumber) {
+
+           var parm = { jobRequest: @Html.Raw(Json.Encode(@ViewBag.Request)), PageNumber: PageNumber };
+            var urlPath = $(location).attr('pathname') + "/GetSearchResults";
+            queryStringArr.length = 0;
+            filterModel.Page = PageNumber;
+            var pushStateUrl = $(location).attr('pathname') + "?" + makeQueryString(filterModel, "", false);
+            var data = { filterModel: filterModel }
+            window.history.pushState(data, "", pushStateUrl);
+
+            $.ajax({
+                type: 'POST',
+                cache: false,
+                url: urlPath,
+                data: parm,
+                dataType: 'Json',
+                success: function (response) {
+                     dataSource = new kendo.data.DataSource({
+                         data: response.SearchResults,
+                         total: response.Total,
+                    });
+
+                    $(".count-num").html(response.Total);
+
+                    var sorttext = getSortOrder();
+                    var token = sorttext.split(':');
+
+                    dataSource.sort({ field: token[0], dir: token[1] });
+
+                    $("#listView").kendoListView({
+                        dataSource: dataSource,
+                        template: kendo.template($("#template").html()),
+
+                    });
+                },
+                error: function (response) {
+                    console.log('error response: '+response);
+                }
+            });
+        };
+
+        function pageChange(pageObj) {
+           var currPageNumber = $(pageObj).attr('data-page');
+            if (currPageNumber != PageNumber) {
+                PageNumber = currPageNumber;
+                bindJobs(PageNumber);
+            }
+        };
+
+        function getSortOrder() {
+            var sortValue = $("#sortOrder").val();
+            switch (sortValue) {
+                case 'Old':
+                    return 'DatePosted:desc';
+                    break;
+                case 'AZ':
+                    return 'Title:asc';
+                    break;
+                case 'ZA':
+                    return 'Title:desc';
+                    break;
+                case 'SalaryHighToLow':
+                    return 'SalaryLowerBand:desc';
+                    break;
+                case 'SalaryLowToHigh':
+                    return 'SalaryLowerBand:asc';
+                    break;
+                default:
+                    return 'DatePosted:asc';
+                    break;
+            }
+        };
+    }
+
+</script>

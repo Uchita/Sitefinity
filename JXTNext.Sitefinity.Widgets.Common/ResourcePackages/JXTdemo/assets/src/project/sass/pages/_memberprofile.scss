@@ -1,0 +1,19 @@
+//Member profile
+.sf-profile{
+    .sf-profile-avatar{
+        display: block;
+        max-width: 400px;
+        margin: 35px auto 10px;
+        img{
+            width: 100%;
+        }
+    }
+    .media-object{
+        margin-bottom: 5rem;
+        .btn{
+            max-width: 200px;
+            margin: 0 auto;
+            display: block;
+        }
+    }
+}

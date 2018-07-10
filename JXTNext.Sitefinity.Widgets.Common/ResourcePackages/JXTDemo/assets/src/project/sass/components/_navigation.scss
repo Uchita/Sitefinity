@@ -157,7 +157,9 @@
             >a{
                 font-size: 4rem;
                 font-weight: 900;
-                line-height: 1;
+                line-height: 1.1;
+                display: block;
+                padding: 4px 0;
             }
             ul{
                 position: static;
@@ -167,6 +169,26 @@
                     &:hover, &:focus{
                         background: none;
                         color: $p1Color;
+                    }
+                }
+            }
+            &:hover{
+                ul{
+                    display: none;
+                }
+            }
+            &.active{
+                border-bottom: 1px solid $baseColor;
+                padding-bottom: 5px;
+                margin-bottom: 5px;
+                ul{
+                    display: block;
+                }
+            }
+            ul.menu{
+                li{
+                    a{
+                        font-size: 1.7rem;
                     }
                 }
             }

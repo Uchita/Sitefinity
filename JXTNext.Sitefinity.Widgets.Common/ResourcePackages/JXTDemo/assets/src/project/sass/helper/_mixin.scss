@@ -141,6 +141,8 @@
     text-indent: -99em;
     overflow: hidden;
     display: inline-block;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     @include rotate(45deg);
     @if $arrow = true{
         &::after{

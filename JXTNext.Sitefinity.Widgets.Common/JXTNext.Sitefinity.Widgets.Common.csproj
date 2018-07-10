@@ -513,6 +513,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\JXTDemo\MVC\Views\Profile\Read.ProfilePreview.cshtml" />
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\News\List.NewsListGrid.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="ResourcePackages\JXTDemo\MVC\Views\SearchBox\SearchBox.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

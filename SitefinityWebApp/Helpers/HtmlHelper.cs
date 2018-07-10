@@ -18,7 +18,7 @@ namespace JXTNext.Sitefinity.Common.Helpers
                 ItemViewModel[] targetFieldValue = accessor.GetMemberValue(targetField) as ItemViewModel[];
 
                 if (targetFieldValue == null
-                        || targetFieldValue.Length == 0 || targetFieldValue.Length < imageIndex
+                        || targetFieldValue.Length == 0 || targetFieldValue.Length <= imageIndex
                         || targetFieldValue[imageIndex] == null)
                     return string.Empty;
 

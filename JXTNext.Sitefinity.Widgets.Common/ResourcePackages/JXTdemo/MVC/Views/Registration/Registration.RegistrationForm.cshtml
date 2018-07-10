@@ -50,9 +50,11 @@
             <div class="row">
                 @if (!string.IsNullOrEmpty(ViewBag.Error))
                 {
+                <div class="col-md-12">
                     <div class="alert alert-danger">
-                        @ViewBag.Error
+                        <small>@ViewBag.Error</small>
                     </div>
+                </div>
                 }
                 
 			   @Html.HiddenFor(m => m.RequiresQuestionAndAnswer)

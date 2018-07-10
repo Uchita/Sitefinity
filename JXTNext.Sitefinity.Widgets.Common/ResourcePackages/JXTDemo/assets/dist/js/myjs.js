@@ -14,9 +14,12 @@ $(document).ready(function() {
             }
         });
 
+        // $('.navbar-close').on('click', function(){
+        //     $('.navbar-toggle').removeClass('active');
+        //     $('body').removeClass('menu-opened');
+        // });
         $('.navbar-close').on('click', function(){
-            $('.navbar-toggle').removeClass('active');
-            $('body').removeClass('menu-opened');
+            $('.navbar-toggle').trigger('click');
         });
     }
 

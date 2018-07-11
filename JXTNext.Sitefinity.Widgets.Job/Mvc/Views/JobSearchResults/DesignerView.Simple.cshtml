@@ -49,6 +49,13 @@
     </div>
 </div>
 
+<div class="checkbox">
+    <label>
+        <input type="checkbox" ng-model="properties.HidePushStateUrl.PropertyValue" ng-true-value="'True'" ng-false-value="'False'" ng-checked="properties.HidePushStateUrl.PropertyValue === 'True'" />
+        @Html.Resource("HideUrl", "JobSearchResultsResources")
+    </label>
+</div>
+
 <expander expander-title="@Html.Resource("MoreOptions", "JobSearchResultsResources")">
 
     <div class="form-group">

@@ -280,6 +280,20 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.StringResources
             }
         }
 
+        /// <summary>
+        /// Gets phrase : CSS classes
+        /// </summary>
+        [ResourceEntry("HideUrl",
+            Value = "Hide Push State Url",
+            Description = "phrase : Hide Push State Url")]
+        public string HideUrl
+        {
+            get
+            {
+                return this["HideUrl"];
+            }
+        }
+
         #endregion
     }
 }

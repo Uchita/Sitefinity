@@ -176,6 +176,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
                 ViewBag.JobResultsPageUrl = SitefinityHelper.GetPageUrl(this.ResultsPageId);
                 ViewBag.JobDetailsPageUrl = SitefinityHelper.GetPageUrl(this.DetailsPageId);
+                ViewBag.HidePushStateUrl = this.HidePushStateUrl;
             }
             
             return response;
@@ -206,7 +207,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public bool IsAllJobs { get; set; }
         public string CssClass { get; set; }
         public string SerializedJobTypes { get; set; }
-       
+        public bool HidePushStateUrl { get; set; }
+
         public string SerializedTotalJobTypes
         {
             get

@@ -1,0 +1,46 @@
+//Consultant Profile
+.profile-image-holder{
+    position: relative;
+    margin-bottom: 4rem;
+    text-align: center;
+    h1{
+        color: $brightColor;
+        font-size: 6rem;
+        position: absolute;
+        width: 100%;
+        bottom: 10px;
+    }
+}
+
+.profile-header-meta{
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    h2{
+        font: 3.2rem 'Sen',Arial;
+        color: $fontColor;
+        margin-bottom: 2rem;
+    }      
+    .profile-meta{
+        border-top: 2px solid $p2Color;
+        display: flex;
+        dd{
+            width: 21%;
+            flex-grow: 1;
+        }
+        .jn_ico{
+            color: $p1Color;
+        }
+    }
+}
+
+.profile-body{
+    padding: 5rem 0;
+    background-color: $bgColor;
+    h4{
+        color: $p1Color;
+        text-transform: uppercase;
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+}

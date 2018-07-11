@@ -11,6 +11,9 @@ using Telerik.Sitefinity.Mvc;
 using Telerik.Sitefinity.Personalization;
 using Telerik.Sitefinity.Services;
 using Telerik.Sitefinity.Web.UI;
+using System.Linq;
+using Telerik.Sitefinity.Data.ContentLinks;
+using Telerik.Sitefinity.Modules.Libraries;
 
 namespace SitefinityWebApp.Mvc.Controllers
 {
@@ -84,7 +87,15 @@ namespace SitefinityWebApp.Mvc.Controllers
 
         public ActionResult Index()
         {
-            if(this.IsEmpty)
+            //Telerik.Sitefinity.Security.UserManager userManager = Telerik.Sitefinity.Security.UserManager.GetManager();
+            //Telerik.Sitefinity.Security.UserProfileManager userProfileManager = Telerik.Sitefinity.Security.UserProfileManager.GetManager();
+            //Telerik.Sitefinity.Security.Model.User user = userManager.GetUserByEmail("careers@nzme.co.nz");
+            //var consultantProfile = userProfileManager.GetUserProfiles(user).Where(c => c.GetType().FullName.ToUpper().Contains("CONSULTANTPROFILE")).FirstOrDefault();
+            //Telerik.Sitefinity.Model.ContentLinks.ContentLink contentLink = (Telerik.Sitefinity.Model.ContentLinks.ContentLink) (Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "Banner"));
+            
+            //var image = LibrariesManager.GetManager().GetImage(contentLink.ChildItemId);
+
+            if (this.IsEmpty)
             {
                 return new EmptyResult();
             }

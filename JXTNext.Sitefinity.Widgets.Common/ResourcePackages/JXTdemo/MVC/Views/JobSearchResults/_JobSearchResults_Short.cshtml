@@ -96,14 +96,22 @@
 
         function bindJobs(PageNumber) {
 
-           var parm = { jobRequest: @Html.Raw(Json.Encode(@ViewBag.Request)), PageNumber: PageNumber };
-            var urlPath = $(location).attr('pathname') + "/GetSearchResults";
+            var parm = { jobRequest: @Html.Raw(Json.Encode(@ViewBag.Request)), PageNumber: PageNumber };
+
+            var pathName = $(location).attr('pathname');
+            if (!pathName || pathName.length <= 0 || pathName === '/')
+                pathName = '@ViewBag.JobResultsPageUrl';
+
+            var urlPath = pathName + "/GetSearchResults";
+           
             queryStringArr.length = 0;
             filterModel.Page = PageNumber;
-            var pushStateUrl = $(location).attr('pathname') + "?" + makeQueryString(filterModel, "", false);
-            var data = { filterModel: filterModel }
-            window.history.pushState(data, "", pushStateUrl);
-
+            if ('@ViewBag.HidePushStateUrl' != 'True') {
+                var pushStateUrl = pathName + "?" + makeQueryString(filterModel, "", false);
+                var data = { filterModel: filterModel }
+                window.history.pushState(data, "", pushStateUrl);
+            }
+            
             $.ajax({
                 type: 'POST',
                 cache: false,

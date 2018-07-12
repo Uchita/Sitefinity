@@ -15,8 +15,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
     public class JobSearchFilterReceiver
     {
         public string searchTarget { get; set; }
-        public string rootId { get; set; }
-        public List<string> values { get; set; }
+        public int rootId { get; set; }
+        public List<int> values { get; set; }
     }
 
     public class JobTypesDesignerViewModel

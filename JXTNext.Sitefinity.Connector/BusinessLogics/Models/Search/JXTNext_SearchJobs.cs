@@ -9,9 +9,12 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search
     public class JXTNext_SearchJobsRequest : ConnectorBaseRequest, ISearchJobsRequest
     {
         public int PageSize { get; set; }
-        public int Page { get; set; }
-        public string Keywords { get; set; }
-        public List<FiltersSearchRoot> FiltersSearch { get; set; }
+        public int PageNumber { get; set; }
+
+        public List<KeywordSearch> KeywordsSearchCriteria { get; set; }
+        public List<IClassificationSearch> ClassificationsSearchCriteria { get; set; }
+
+        public SearchSortBy SortBy { get; set; }
     }
 
     public class JXTNext_SearchJobsResponse : ConnectorBaseResponse, ISearchJobsResponse
@@ -22,6 +25,49 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search
         public int Count { get; set; } //amount of jobs returned in this search
         [JsonProperty(PropertyName = "searchResults")]
         public List<JobDetailsFullModel> SearchResults { get; set; }
-
     }
+
+    public enum SearchSortBy
+    {
+        Recent,
+        Oldest,
+        A_to_Z,
+        Z_to_A,
+        Salary_High_to_Low,
+        Salary_Low_to_High
+    }
+
+    public class KeywordSearch
+    {
+        public string Keyword { get; set; }
+    }
+
+    public enum ClassificationSearchType
+    {
+        Undefined,
+        Categories,
+        Range
+    }
+
+    public interface IClassificationSearch
+    {
+        ClassificationSearchType SearchType { get; }
+        int ClassificationRootID { get; set; }
+    }
+
+    public class Classification_CategorySearch : IClassificationSearch
+    {
+        public ClassificationSearchType SearchType => ClassificationSearchType.Categories;
+        public int ClassificationRootID { get; set; }
+        public List<int> TargetClassificationIDs { get; set; }
+    }
+
+    public class Classification_RangeSearch : IClassificationSearch
+    {
+        public ClassificationSearchType SearchType => ClassificationSearchType.Range;
+        public int ClassificationRootID { get; set; }
+        public int? UpperRange { get; set; }
+        public int? LowerRange { get; set; }
+    }
+
 }

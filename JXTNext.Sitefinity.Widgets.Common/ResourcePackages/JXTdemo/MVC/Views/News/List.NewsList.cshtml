@@ -3,6 +3,7 @@
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers;
 @using Telerik.Sitefinity.Modules.Pages;
 @using Telerik.Sitefinity.Web.DataResolving;
+@using Telerik.Sitefinity.Web;
 @using JXTNext.Sitefinity.Common.Helpers
 
 <div class="@Model.CssClass list-view">
@@ -46,6 +47,32 @@
                         <h3>
                             <a @Html.InlineEditingFieldAttributes("Title", "ShortText") href="@navigateUrl">@item.Fields.Title</a>
                         </h3>
+
+                        <div>
+                            
+                            @if (item.Fields.Tags != null)
+                            {
+                                <ul @Html.InlineEditingFieldAttributes("Tags", "FlatTaxon")>
+                                    @foreach (var taxon in item.GetFlatTaxons("Tags"))
+                                    {
+                                        <li><a href="/@SiteMapBase.GetActualCurrentNode().UrlName/-in-tags/tags/@taxon.UrlName.ToString()">@taxon.Title.ToString()</a></li>
+                                    }
+                                </ul>
+                            }
+                        </div>
+
+                        <div>
+                            
+                            @if (item.Fields.Category != null)
+                            {
+                                <ul @Html.InlineEditingFieldAttributes("Category", "HierarchicalTaxon")>
+                                    @foreach (var taxon in item.GetHierarchicalTaxons("Category"))
+                                    {
+                                        <li><a href="/@SiteMapBase.GetActualCurrentNode().UrlName/-in-category/categories/@taxon.UrlName.ToString()">@taxon.Title.ToString()</a></li>
+                                    }
+                                </ul>
+                            }
+                        </div>
                         <div class="tags">
                             <a>Tag 1<span class="jn_ico icon-close"></span></a><a>Tag 2<span class="jn_ico icon-close"></span></a>
                         </div>

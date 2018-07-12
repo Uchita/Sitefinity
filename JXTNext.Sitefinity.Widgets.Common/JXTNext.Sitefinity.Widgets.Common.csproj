@@ -548,6 +548,9 @@
     <Content Include="ResourcePackages\JXTDemo\MVC\Views\UsersList\List.ConsultantListSimple.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\UsersList\Detail.ConsultantDetails.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="ResourcePackages\JXTDemo\package-lock.json" />
     <None Include="ResourcePackages\JXTDemo\package.json" />
     <None Include="ResourcePackages\JXTDemo\razorgenerator.directives">

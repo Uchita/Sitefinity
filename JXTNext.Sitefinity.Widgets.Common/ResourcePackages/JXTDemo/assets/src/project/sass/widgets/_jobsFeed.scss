@@ -140,6 +140,10 @@
         position: relative;
         top: 4px;
         margin-right: 10px;
+        &.icon-mail{
+            font-size: 1.7rem;
+            top: 7px;
+        }
     }
     dd{
         margin-right: 2%;

@@ -51,6 +51,23 @@ namespace JXTNext.Sitefinity.Common.Helpers
             return pageUrl;
         }
 
+        public static string GetPageFullUrl(Guid pageId)
+        {
+            string pageFullUrl = String.Empty;
+
+            PageManager pageManager = PageManager.GetManager();
+            if (pageManager != null)
+            {
+                PageNode pageNode = pageManager.GetPageNodes().Where(n => n.Id == pageId).FirstOrDefault();
+                // We will get the url as ~/homepage
+                // So removing the first character
+                if (pageNode != null)
+                    pageFullUrl = pageNode.GetFullUrl().Substring(1);
+            }
+
+            return pageFullUrl;
+        }
+
         public static List<string> GetCurrentUserRoles()
         {
             List<string> roles = new List<string>();

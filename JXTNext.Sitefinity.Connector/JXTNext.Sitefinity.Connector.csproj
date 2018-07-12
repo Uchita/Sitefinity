@@ -74,8 +74,6 @@
     <Compile Include="BusinessLogics\Models\Member\JXTNext_MemberApplication.cs" />
     <Compile Include="BusinessLogics\Models\Member\JXTNext_MemberRegister.cs" />
     <Compile Include="BusinessLogics\Models\Search\FiltersSearchRoot.cs" />
-    <Compile Include="BusinessLogics\Models\Search\Test_SearchJobs.cs" />
-    <Compile Include="BusinessLogics\TestBusinessLogicsConnector.cs" />
     <Compile Include="BusinessLogics\JXTNextBusinessLogicsConnector.cs" />
     <Compile Include="BusinessLogics\Mappers\IJobListingMapper.cs" />
     <Compile Include="BusinessLogics\Mappers\IntegrationMapperType.cs" />

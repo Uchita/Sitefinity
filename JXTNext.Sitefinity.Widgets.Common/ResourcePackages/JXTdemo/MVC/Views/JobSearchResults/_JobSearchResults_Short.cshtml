@@ -98,10 +98,7 @@
 
             var parm = { jobRequest: @Html.Raw(Json.Encode(@ViewBag.Request)), PageNumber: PageNumber };
 
-            var pathName = $(location).attr('pathname');
-            if (!pathName || pathName.length <= 0 || pathName === '/')
-                pathName = '@ViewBag.JobResultsPageUrl';
-
+            var pathName = '@ViewBag.PageFullUrl';
             var urlPath = pathName + "/GetSearchResults";
            
             queryStringArr.length = 0;

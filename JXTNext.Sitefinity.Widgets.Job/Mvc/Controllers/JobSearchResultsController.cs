@@ -62,33 +62,24 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
 
         [HttpPost]
-        public ActionResult GetSearchResults(JobSearchResultsFilterModel filterModel)
+        public JsonResult GetSearchResults(string jobRequest, int PageNumber)
         {
-            dynamic dynamicJobResultsList = null;
-
-            if (filterModel != null)
+            JsonResult response = new JsonResult();
+            JXTNext_SearchJobsRequest request = JsonConvert.DeserializeObject<JXTNext_SearchJobsRequest>(jobRequest);
+            if (request != null)
             {
-                ISearchJobsResponse response = GetJobSearchResultsResponse(filterModel);
-                dynamicJobResultsList = response as dynamic;
+                if (PageNumber <= 0)
+                    PageNumber = 1;
+
+                // Page index is starting at zero
+                // So subtracting one from it
+                request.PageNumber = PageNumber - 1;
+                request.PageSize = (int)this.PageSize;
             }
+           
+            JXTNext_SearchJobsResponse jobResponse = (JXTNext_SearchJobsResponse)_BLConnector.SearchJobs(request);
 
-            return PartialView("_JobSearchResults", dynamicJobResultsList);
-
-            //JsonResult response = new JsonResult();
-            //JXTNext_SearchJobsRequest request = JsonConvert.DeserializeObject<JXTNext_SearchJobsRequest>(jobRequest);
-            //if (request != null)
-            //{
-            //    if (PageNumber <= 0)
-            //        PageNumber = 1;
-
-            //    // Page index is starting at zero
-            //    // So subtracting one from it
-            //    request.Page = PageNumber - 1;
-            //}
-
-            //JXTNext_SearchJobsResponse jobResponse = (JXTNext_SearchJobsResponse)_BLConnector.SearchJobs(request);
-
-            //return new JsonResult { Data = string.Empty };
+            return new JsonResult { Data = jobResponse };
         }
 
         [HttpPost]

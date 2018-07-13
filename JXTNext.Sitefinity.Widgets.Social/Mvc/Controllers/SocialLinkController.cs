@@ -40,6 +40,11 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             return View("Simple", this.Model.GetViewModel());
         }
 
+        protected override void HandleUnknownAction(string actionName)
+        {
+            this.ActionInvoker.InvokeAction(this.ControllerContext, "Index");
+        }
+
         private SocialLinkModel model;
         internal const string WidgetIconCssClass = "sfMvcIcn";
     }

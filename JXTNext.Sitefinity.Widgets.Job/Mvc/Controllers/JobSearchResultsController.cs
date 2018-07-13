@@ -97,6 +97,11 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             return PartialView("_JobSearchResults", dynamicJobResultsList);
         }
 
+        protected override void HandleUnknownAction(string actionName)
+        {
+            this.ActionInvoker.InvokeAction(this.ControllerContext, "Index");
+        }
+
         private ISearchJobsResponse GetJobSearchResultsResponse(JobSearchResultsFilterModel filterModel)
         {
             JXTNext_SearchJobsRequest request = new JXTNext_SearchJobsRequest();

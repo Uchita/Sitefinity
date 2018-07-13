@@ -70,6 +70,11 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             return Content("No job has been selected");
         }
 
+        protected override void HandleUnknownAction(string actionName)
+        {
+            this.ActionInvoker.InvokeAction(this.ControllerContext, "Index");
+        }
+
         internal const string WidgetIconCssClass = "sfMvcIcn";
         public string CssClass { get; set; }
         public string JobApplicationPageId { get; set; }

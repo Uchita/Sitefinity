@@ -57,6 +57,11 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             return View(this.TemplateName, dynamicFilterResponse);
         }
 
+        protected override void HandleUnknownAction(string actionName)
+        {
+            this.ActionInvoker.InvokeAction(this.ControllerContext, "Index");
+        }
+
         internal const string WidgetIconCssClass = "sfMvcIcn";
     }
 }

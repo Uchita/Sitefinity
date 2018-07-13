@@ -159,6 +159,11 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             return RedirectToAction("");
         }
 
+        protected override void HandleUnknownAction(string actionName)
+        {
+            this.ActionInvoker.InvokeAction(this.ControllerContext, "Index");
+        }
+
         private JobAlertViewModel GetJobAlertDetailsMock(string jobAlertId)
         {
             JobAlertViewModel model = new JobAlertViewModel() { Filters = new List<JobAlertFilters>() };

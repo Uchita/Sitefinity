@@ -140,7 +140,7 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Controllers
         /// <inheritDocs/>
         protected override void HandleUnknownAction(string actionName)
         {
-            this.ActionInvoker.InvokeAction(this.ControllerContext, "Index");
+            this.Index().ExecuteResult(this.ControllerContext);
         }
 
         #region Private methods

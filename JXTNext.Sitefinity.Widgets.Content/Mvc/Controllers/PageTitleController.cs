@@ -31,6 +31,11 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Controllers
             return View("Simple", viewModel);
         }
 
+        protected override void HandleUnknownAction(string actionName)
+        {
+            this.ActionInvoker.InvokeAction(this.ControllerContext, "Index");
+        }
+
         public string CssClass { get; set; }
         public string CustomPageTitle { get; set; }
         public bool IsDefaultTitle { get; set; }

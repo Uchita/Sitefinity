@@ -91,6 +91,11 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             return View("JobApplication.Simple", jobApplicationViewModel);
         }
 
+        protected override void HandleUnknownAction(string actionName)
+        {
+            this.ActionInvoker.InvokeAction(this.ControllerContext, "Index");
+        }
+
         private void FetchFromAmazonS3(string providerName, string libraryName, string itemTitle)
         {
             LibrariesManager librariesManager = LibrariesManager.GetManager(providerName);

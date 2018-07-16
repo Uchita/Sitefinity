@@ -1,4 +1,4 @@
-$(document).ready(function() {
+jQuery(document).ready(function($) {
     //main top navigation
     if( $('.navbar-toggle').length ){
         $('.navbar-toggle').on('click',function(e){
@@ -193,4 +193,11 @@ $(document).ready(function() {
     if( $('.rangeSlider').length ){
         $('.rangeSlider').slider({});
     }
+
+
+    //prevent from jumping to the top for link with #
+    $('a[href="#"]').on('click', function(e){
+        e.preventDefault();
+    });
+
 });

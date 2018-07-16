@@ -156,6 +156,7 @@
 .jobSearch-container{
     position: relative;
     top: 40px;
+    z-index: 1000;
     @include bp-max(sm){
         top: 80px;
     }

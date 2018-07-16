@@ -31,6 +31,12 @@
     }
   }
 
+  .icon-alert:after {
+    content: "\e900";
+  }
+  .icon-calendar:after {
+    content: "\e901";
+  }
   .icon-filter:after {
     content: "\e902";
   }
@@ -42,12 +48,6 @@
   }
   .icon-heart:after {
     content: "\e905";
-  }
-  .icon-alert:after {
-    content: "\e900";
-  }
-  .icon-calendar:after {
-    content: "\e901";
   }
   .icon-close:after {
     content: "\e906";
@@ -135,4 +135,43 @@
   }
   .icon-comment:after {
     content: "\e91d";
+  }
+  .icon-pop-out:after {
+    content: "\e91e";
+  }
+  .icon-pop-up:after {
+    content: "\e91e";
+  }
+  .icon-out:after {
+    content: "\e91e";
+  }
+  .icon-link:after {
+    content: "\e91f";
+  }
+  .icon-wechat:after {
+    content: "\e920";
+  }
+  .icon-weixin:after {
+    content: "\e920";
+  }
+  .icon-earth:after {
+    content: "\e9ca";
+  }
+  .icon-bookmark:after {
+    content: "\e9d2";
+  }
+  .icon-star:after {
+    content: "\e9d9";
+  }
+  .icon-play:after {
+    content: "\ea1c";
+  }
+  .icon-google-drive:after {
+    content: "\ea8f";
+  }
+  .icon-vimeo:after {
+    content: "\eaa0";
+  }
+  .icon-dropbox:after {
+    content: "\eaae";
   }

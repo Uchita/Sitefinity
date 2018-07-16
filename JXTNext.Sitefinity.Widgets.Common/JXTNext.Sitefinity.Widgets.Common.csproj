@@ -355,6 +355,9 @@
     <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\widgets\socialShare\_sf-sprite.scss" />
     <None Include="ResourcePackages\JXTDemo\assets\src\sitefinity\sass\widgets\taxonomies\_sf-tags.scss" />
     <None Include="ResourcePackages\JXTDemo\client-components\fields\html-field\sf-html-field.sf-cshtml" />
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\Banner\List.HomeBanner.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="ResourcePackages\JXTDemo\MVC\Views\Card\Card.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -549,6 +552,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\JXTDemo\MVC\Views\UsersList\Detail.ConsultantDetails.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\UsersList\List.ConsultantGridView.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="ResourcePackages\JXTDemo\package-lock.json" />

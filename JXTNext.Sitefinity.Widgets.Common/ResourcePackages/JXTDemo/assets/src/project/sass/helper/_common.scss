@@ -136,6 +136,15 @@ p,ul,ol{
         margin-bottom:5px;
     }
 }
+.video-wrapper{
+    margin-bottom: 30px;
+}
+.video-wrapper.pull-right {
+    margin-left: 30px;
+}
+.video-wrapper.pull-left {
+    margin-right: 30px;
+}
 
 
 //common structural styles
@@ -212,6 +221,9 @@ p,ul,ol{
 
 .bg-1{
     background-image: url('../images/bg-1.jpg');
+}
+.bg-2{
+    background-color: $bgColor;
 }
 .no-bg{
     background: none!important;

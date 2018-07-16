@@ -13,6 +13,10 @@
 // .jn_scroller-fullwidth{}
 
 //on the base of flipper
+.jn_scroller-fullwidth{
+    max-height: 580px;
+    overflow: hidden;
+}
 .card-flipper {
     .pos {
         margin: 25px 0 15px;
@@ -195,4 +199,17 @@
             }
         }
     }
+
+    //meet the team page
+    //listing page for the user
+    &.grid-view{
+        .sc-item{
+            
+        }
+    }
 }
+
+.team-wrapper{
+    padding: 7rem 0;
+}
+

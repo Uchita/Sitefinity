@@ -10,6 +10,7 @@ using Telerik.Sitefinity.Mvc;
 using JXTNext.Sitefinity.Common.Helpers;
 using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
 using JXTNext.Sitefinity.Widgets.Job.Mvc.Models;
+using System.ComponentModel;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -17,6 +18,20 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
     [ControllerToolboxItem(Name = "JobDetails_MVC", Title = "Details", SectionName = "JXTNext.Job", CssClass = JobDetailsController.WidgetIconCssClass)]
     public class JobDetailsController : Controller
     {
+        // All these properties are bind to the designer form 
+        // Same will be displayed in the Advanced section of the designer form as text boxes
+        [TypeConverter(typeof(ExpandableObjectConverter))]
+        public JobDetailsRolesModel Model
+        {
+            get
+            {
+                if (this.model == null)
+                    this.model = new JobDetailsRolesModel();
+
+                return this.model;
+            }
+        }
+
         IBusinessLogicsConnector _BLConnector;
         IOptionsConnector _OConnector;
 
@@ -54,10 +69,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
                 viewModel.JobDetails = jobListingResponse.Job;
 
-                List<string> roles = SitefinityHelper.GetCurrentUserRoles();
-
-                bool hasMemberRole = roles.Where(c => c.ToUpper() == "MEMBER").Any();
-                if (hasMemberRole)
+                if (this.Model.IsJobApplyAvailable())
                     viewModel.JobApplyAvailable = true;
 
                 ViewBag.CssClass = this.CssClass;
@@ -77,6 +89,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
         internal const string WidgetIconCssClass = "sfMvcIcn";
         public string CssClass { get; set; }
+        private JobDetailsRolesModel model;
         public string JobApplicationPageId { get; set; }
         private string templateName = "Simple";
         private string templateNamePrefix = "JobDetails.";

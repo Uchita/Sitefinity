@@ -85,5 +85,11 @@ namespace JXTNext.Sitefinity.Common.Helpers
             }
             return roles;
         }
+
+        public static List<string> GetAllRoleNames()
+        {
+            RoleManager roleManager = RoleManager.GetManager();
+            return roleManager.GetRoleNames().ToList();
+        }
     }
 }

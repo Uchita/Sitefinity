@@ -1,20 +1,44 @@
 //Consultant Profile
 .profile-image-holder{
     position: relative;
-    margin-bottom: 4rem;
+    margin: 0 auto 4rem;
     text-align: center;
+    max-width: 1200px;
     h1{
         color: $brightColor;
         font-size: 6rem;
         position: absolute;
         width: 100%;
-        bottom: 10px;
+        bottom: 20px;
+        margin-bottom: 0;
+    }
+    .fav-flag{
+        font-size: 3rem;
+        color: $p1Color;
+        position: absolute;
+        top: 0;
+        right: 4%;
+        height: 30px;
+        width: 25px;
+        z-index: 1;
+    }
+    @include bp-max(sm){
+        h1{
+            font-size: 4rem;
+        }
+    }
+    @include bp-max(xs){
+        h1{
+            position: static;
+            color: $baseColor;
+            padding: 2rem 15px 0;
+        }
     }
 }
 
 .profile-header-meta{
     max-width: 700px;
-    margin: 0 auto;
+    margin: 0 auto 5rem;
     text-align: center;
     h2{
         font: 3.2rem 'Sen',Arial;
@@ -24,12 +48,29 @@
     .profile-meta{
         border-top: 2px solid $p2Color;
         display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 0;
+        padding-bottom: 15px;
         dd{
-            width: 21%;
+            width: auto;
+            max-width: 35%;
             flex-grow: 1;
         }
         .jn_ico{
             color: $p1Color;
+            &.icon-google-plus{
+                font-size: 1.7rem;
+                top: 4px;
+                width: 25px;
+            }
+            &.icon-wechat{
+                font-size: 1.7rem;
+            }
+        }
+        @include bp-max(xs){
+            dd{
+                max-width: 100%;
+            }
         }
     }
 }

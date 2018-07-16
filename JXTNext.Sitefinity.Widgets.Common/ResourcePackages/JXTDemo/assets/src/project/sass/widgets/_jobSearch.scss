@@ -138,6 +138,12 @@
     }
 }
 
+.dropdown-tree{
+  button:active{
+      background: none!important;
+  }   
+}
+
 .jn_jobSearch.cs-layout {
     label[rel*="location"] .dropdown-toggle {
         &::before {
@@ -153,7 +159,6 @@
         ul {
             font-size: 1.4rem;
             width: 100%;
-
             input {
                 padding: 10px 20px;
                 font-size: 1.4rem;

@@ -2,7 +2,8 @@
 
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers;
 @using Telerik.Sitefinity.Web.DataResolving;
-@using JXTNext.Sitefinity.Common.Helpers
+@using JXTNext.Sitefinity.Common.Helpers;
+@using Telerik.Sitefinity.Web;
 
 
 @{
@@ -17,48 +18,16 @@
     </figure>
 }
 
-    <div class="col-md-3">
-        <div class="blog-metadata">
-            <div class="meta-data">
-                <div class="data-date">
-                    <span class="jn_ico icon-calendar"></span>
-                    <span class="data-dateValue"><span class="data-month">@Model.Item.GetDateTime("PublicationDate", "MMM")</span> <span class="data-day">@Model.Item.GetDateTime("PublicationDate", "dd")</span></span>
-                </div>
-                <div class="data-share">
-                    <span class="jn_ico icon-share"></span>
-                    <span class="data-dateValue">Quick Share</span>
-                </div>
-                <div class="data-email">
-                    <span class="jn_ico icon-mail"></span>
-                    <span class="data-dateValue">Email to Friend</span>
-                </div>
-
-                <div class="bio-pick">
-                    <figure>
-                        <img src="~/ResourcePackages/JXTdemo/assets/dist/images/apple-touch-icon-72x72.png" alt="Avatar" />
-                    </figure>
-                    <div class="bio-desc">
-                        <small>About the author</small>
-                        <p><strong>@DataResolver.Resolve(Model.Item.DataItem, "Author", null)</strong></p>
-                    </div>
-                        
-                </div>
+<div class="col-md-3">
+    <div class="blog-metadata">
+        <div class="meta-data">
+            <div class="data-date">
+                <span class="jn_ico icon-calendar"></span>
+                <span class="data-dateValue"><span class="data-month">@Model.Item.GetDateTime("PublicationDate", "MMM")</span> <span class="data-day">@Model.Item.GetDateTime("PublicationDate", "dd")</span></span>
             </div>
-        </div>
-    </div>
-
-    <div class="col-md-9">
-        <div class="h-section">
-            <div class="section-header">
-                <h3 @Html.InlineEditingFieldAttributes("Title", "ShortText")>@Model.Item.Fields.Title</h3>
-                <div class="tags">
-                    <a>Tag 1<span class="jn_ico icon-close"></span></a><a>Tag 2<span class="jn_ico icon-close"></span></a>
-                </div>
-            </div>
-            <div class="post-content">
-                <div class="post-summary" @Html.InlineEditingFieldAttributes("Summary", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Summary)</div>
-
-                <div class="full-desc" @Html.InlineEditingFieldAttributes("Content", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Content)</div>
+            <div class="data-share">
+                <span class="jn_ico icon-share"></span>
+                <span class="data-dateValue">Quick Share</span>
                 @{
                     if (Model.EnableSocialSharing)
                     {
@@ -67,15 +36,54 @@
                     }
                 }
             </div>
+            <div class="data-email">
+                <span class="jn_ico icon-mail"></span>
+                <span class="data-dateValue">Email to Friend</span>
+            </div>
 
-        </div>
+            <div class="bio-pick">
+                <figure>
+                    <img src="~/ResourcePackages/JXTdemo/assets/dist/images/apple-touch-icon-72x72.png" alt="Avatar" />
+                </figure>
+                <div class="bio-desc">
+                    <small>About the author</small>
+                    <p><strong>@DataResolver.Resolve(Model.Item.DataItem, "Author", null)</strong></p>
+                </div>
 
-        <div class="comment-wrapper">
-            @Html.CommentsList(@Model.Item.DataItem)
+            </div>
         </div>
     </div>
+</div>
 
-    
+<div class="col-md-9">
+    <div class="h-section">
+        <div class="section-header">
+            <h3 @Html.InlineEditingFieldAttributes("Title", "ShortText")>@Model.Item.Fields.Title</h3>
+
+            @if (Model.Item.Fields.Tags != null && Model.Item.Fields.Tags.Count > 0)
+            {
+                <div class="tags">
+                    @foreach (var taxon in Model.Item.GetFlatTaxons("Tags"))
+                    {
+                        <a href="/@SiteMapBase.GetActualCurrentNode().UrlName/-in-tags/tags/@taxon.UrlName.ToString()">@taxon.Title.ToString()</a>
+                    }
+                </div>
+            }
+        </div>
+        <div class="post-content">
+            <div class="post-summary" @Html.InlineEditingFieldAttributes("Summary", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Summary)</div>
+
+            <div class="full-desc" @Html.InlineEditingFieldAttributes("Content", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Content)</div>
+            
+        </div>
+
+    </div>
+
+    <div class="comment-wrapper">
+        @Html.CommentsList(@Model.Item.DataItem)
+    </div>
+</div>
+
+
 @*</article>*@
 
-    

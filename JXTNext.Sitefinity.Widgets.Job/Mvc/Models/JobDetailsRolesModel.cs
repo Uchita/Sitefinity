@@ -22,7 +22,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
                     roleOptions.Add(new JobDetailsRolesOptions() { RoleName= roleName, IsChecked = false});
                 }
 
-                roleOptions.Add(new JobDetailsRolesOptions() { RoleName = "Anonymous", IsChecked = false });
+              if(!roleNames.Contains("Anonymous"))
+                    roleOptions.Add(new JobDetailsRolesOptions() { RoleName = "Anonymous", IsChecked = false });
 
                 this.SerializedJobDetailsRoles = JsonConvert.SerializeObject(roleOptions);
             }

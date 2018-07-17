@@ -115,14 +115,19 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 if (filterModel.Filters != null && filterModel.Filters.Count() > 0)
                 {
                     List<IClassificationSearch> classificationSearches = new List<IClassificationSearch>();
-                    foreach(JobSearchFilterReceiver filter in filterModel.Filters)
+                    for (int i = 0; i < filterModel.Filters.Count(); i++)
                     {
-                        Classification_CategorySearch cateSearch = new Classification_CategorySearch
+                        var filter = filterModel.Filters[i];
+                        if (filter != null && filter.values != null && filter.values.Count > 0)
                         {
-                            ClassificationRootID = filter.rootId,
-                            TargetClassificationIDs = filter.values
-                        };
-                        classificationSearches.Add(cateSearch);
+                            Classification_CategorySearch cateSearch = new Classification_CategorySearch
+                            {
+                                ClassificationRootID = filter.rootId,
+                                TargetClassificationIDs = filter.values
+                            };
+
+                            classificationSearches.Add(cateSearch);
+                        }
                     }
                     request.ClassificationsSearchCriteria = classificationSearches;
                 }

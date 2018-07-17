@@ -318,6 +318,7 @@
     <Compile Include="Mvc\Controllers\JobSearchController.cs" />
     <Compile Include="Mvc\Controllers\JobSearchResultsController.cs" />
     <Compile Include="Mvc\Models\JobDetailsModel.cs" />
+    <Compile Include="Mvc\Models\JobDetailsRolesModel.cs" />
     <Compile Include="Mvc\Models\JobSearchModel.cs" />
     <Compile Include="Mvc\Models\JobSearchResultsFilterModel.cs" />
     <Compile Include="Mvc\StringResources\JobDetailsResources.cs" />
@@ -360,7 +361,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Mvc\Scripts\JobDetails\designerview-simple.js" />
+    <EmbeddedResource Include="Mvc\Scripts\JobDetails\designerview-simple.js" />
     <Content Include="Mvc\Scripts\JobFilters\designerview-simple.js" />
     <Content Include="Mvc\Scripts\JobSearchResults\designerview-simple.js" />
     <EmbeddedResource Include="Mvc\Scripts\JobSearch\designerview-simple.js" />

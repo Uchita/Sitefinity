@@ -11,4 +11,10 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
         public dynamic JobDetails { get; set; }
         public bool JobApplyAvailable { get; set; }
     }
+
+    public class JobDetailsRolesOptions
+    {
+        public string RoleName { get; set; }
+        public bool IsChecked { get; set; }
+    }
 }

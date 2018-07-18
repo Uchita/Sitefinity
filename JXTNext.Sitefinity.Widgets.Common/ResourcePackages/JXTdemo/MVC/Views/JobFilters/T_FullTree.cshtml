@@ -25,7 +25,7 @@
                     <ul>
                         @foreach (var filters in item.Filters)
                         {
-                            @PrintFilters(filters)
+                            @PrintFirstLevelFiltersOnly(filters)
                         }
                     </ul>
                 }
@@ -39,18 +39,9 @@
 @Html.Partial("_SimpleJS_Partial", (object)Model)
 
 
-@helper PrintFilters(dynamic node)
+@helper PrintFirstLevelFiltersOnly(dynamic node)
     {
         <li>
-            <a href="#">@node.Label</a>
-            @if (node.Filters != null)
-            {
-                <ul>
-                    @foreach (var filters in node.Filters)
-                    {
-                        @PrintFilters(filters)
-                    }
-                </ul>
-            }
+            <a href="#">@(HttpUtility.HtmlDecode(node.Label)) (@node.Count)</a>
         </li>
 }

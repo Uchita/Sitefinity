@@ -1,8 +1,18 @@
 ﻿@model dynamic
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
 
+@Html.StyleSheet(Url.EmbeddedResource("JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers.JobSearchController", "JXTNext.Sitefinity.Widgets.Job.Mvc.Scripts.JobSearch.dropdowntree.css"), "bottom")
+@Html.Script(Url.EmbeddedResource("JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers.JobSearchController", "JXTNext.Sitefinity.Widgets.Job.Mvc.Scripts.JobSearch.dropdowntree.js"), "bottom")
+
+
 @if (Model != null)
 {
+
+    foreach (var item in Model)
+    {
+        <div class="dropdown dropdown-tree" id=@item.ID></div>
+    }
+
 
     foreach (var item in Model)
     {
@@ -15,7 +25,7 @@
                     <ul>
                         @foreach (var filters in item.Filters)
                         {
-                            @PrintFilters(filters)
+                            @PrintFirstLevelFiltersOnly(filters)
                         }
                     </ul>
                 }
@@ -26,18 +36,12 @@
     <button id="refine-results" class="btn btn-primary">REFINE RESULTS</button>
 }
 
-@helper PrintFilters(dynamic node)
-{
-    <li>
-        <a href="#">@node.Label</a>
-        @if (node.Filters != null)
-        {
-            <ul>
-                @foreach (var filters in node.Filters)
-                {
-                    @PrintFilters(filters)
-                }
-            </ul>
-        }
-    </li>
+@Html.Partial("_SimpleJS_Partial", (object)Model)
+
+
+@helper PrintFirstLevelFiltersOnly(dynamic node)
+    {
+        <li>
+            <a href="#">@(HttpUtility.HtmlDecode(node.Label)) (@node.Count)</a>
+        </li>
 }

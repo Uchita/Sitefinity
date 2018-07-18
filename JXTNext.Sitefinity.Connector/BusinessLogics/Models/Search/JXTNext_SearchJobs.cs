@@ -52,20 +52,20 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search
     public interface IClassificationSearch
     {
         ClassificationSearchType SearchType { get; }
-        int ClassificationRootID { get; set; }
+        string ClassificationRootID { get; set; }
     }
 
     public class Classification_CategorySearch : IClassificationSearch
     {
         public ClassificationSearchType SearchType => ClassificationSearchType.Categories;
-        public int ClassificationRootID { get; set; }
-        public List<int> TargetClassificationIDs { get; set; }
+        public string ClassificationRootID { get; set; }
+        public List<string> TargetClassificationIDs { get; set; }
     }
 
     public class Classification_RangeSearch : IClassificationSearch
     {
         public ClassificationSearchType SearchType => ClassificationSearchType.Range;
-        public int ClassificationRootID { get; set; }
+        public string ClassificationRootID { get; set; }
         public int? UpperRange { get; set; }
         public int? LowerRange { get; set; }
     }

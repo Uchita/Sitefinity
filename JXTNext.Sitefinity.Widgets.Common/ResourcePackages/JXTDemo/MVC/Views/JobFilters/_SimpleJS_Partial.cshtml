@@ -1,0 +1,98 @@
+﻿@model dynamic
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+         @{
+                var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+                var json = serializer.Serialize(Model);
+          }
+        var optionsArray = {};
+        var queryStringArr = [];
+
+
+        function makeQueryString(obj, prefix, isArray) {
+
+            for (var p in obj) {
+                if (obj.hasOwnProperty(p)) {
+                    var k, v;
+                    if (isArray)
+                        k = prefix ? prefix + "%5B" + p + "%5D" : p, v = obj[p];
+                    else {
+                        if (prefix.match(".values$"))
+                            k = prefix ? prefix : p, v = obj[p];
+                        else
+                            k = prefix ? prefix + "." + p + "" : p, v = obj[p];
+                    }
+
+                    if (v !== null && typeof v === "object") {
+                        if (Array.isArray(v)) {
+                            if (k.match(".values$"))
+                                makeQueryString(v, k, false);
+                            else
+                                makeQueryString(v, k, true);
+                        } else {
+                            makeQueryString(v, k, false);
+                        }
+                    } else {
+                        if (v === null || v === "undefined")
+                            v = "";
+
+                        var query = k + "=" + v;
+                        queryStringArr.push(query);
+                    }
+                }
+            }
+            return queryStringArr.join("&");
+        };
+
+        var model = @Html.Raw(json);
+        if (model != null && model != "undefined") {
+            var filterModel = JSON.parse('@Html.Raw(@ViewBag.FilterModel)');
+            var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
+
+            for (var item of filterData) {
+                optionsArray[item.Name] = {
+                    title: item.Name,
+                    data: item.Filters,
+                    maxHeight: 500,
+                    closedArrow: '<i class="fa fa-caret-right" aria-hidden="true"></i>',
+                    openedArrow: '<i class="fa fa-caret-down" aria-hidden="true"></i>',
+                    multiSelect: true,
+                    selectChildren: true,
+                    expandChildren: true,
+                };
+                $("#" + item.Name).DropDownTree(optionsArray[item.Name]);
+            }
+
+            $("#refine-results").click(function (event) {
+                if (filterModel.Filters == null || filterModel.Filters == "undefined") {
+                    filterModel.Filters = [];
+                }
+                $.each(optionsArray, function (id, item) {
+                    filterModel.Filters.push({ rootId: id, values: $("#" + id).GetSelectedElementIds() });
+                });
+
+                var data = { filterModel: filterModel }
+                var urlPath = $(location).attr('pathname') + "/GetFilterSearchResultsPartial";
+                var pushStateUrl = $(location).attr('pathname') + "?" + makeQueryString(filterModel, "", false);
+                window.history.pushState(data, "", pushStateUrl);
+                queryStringArr.length = 0;
+                $.ajax({
+                    type: "POST",
+                    cache: false,
+                    url: urlPath,
+                    data: data,
+                    dataType: 'html',
+                    success: function (response) {
+                        $("#resultsPagePartialContent").empty().html(response);
+                    },
+                    error: function (response) {
+                       console.log("Job Filters Error: " + response);
+                    }
+                });
+            });
+        }
+    });
+</script>

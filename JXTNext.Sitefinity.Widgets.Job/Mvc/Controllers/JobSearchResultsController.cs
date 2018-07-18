@@ -133,6 +133,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 }
             }
 
+
             if (this.PageSize == null || this.PageSize <= 0)
                 this.PageSize = PageSizeDefaultValue;
 

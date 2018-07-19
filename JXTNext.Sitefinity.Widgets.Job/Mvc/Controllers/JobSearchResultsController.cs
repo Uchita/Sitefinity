@@ -64,8 +64,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         [HttpPost]
         public JsonResult GetSearchResults(string jobRequest, int PageNumber)
         {
-            JsonResult response = new JsonResult();
-            JXTNext_SearchJobsRequest request = JsonConvert.DeserializeObject<JXTNext_SearchJobsRequest>(jobRequest);
+            //Use preconfigured search config from widget settings if available
+            string searchRequest = SearchConfig ?? jobRequest;
+            JXTNext_SearchJobsRequest request = JsonConvert.DeserializeObject<JXTNext_SearchJobsRequest>(searchRequest);
             if (request != null)
             {
                 if (PageNumber <= 0)

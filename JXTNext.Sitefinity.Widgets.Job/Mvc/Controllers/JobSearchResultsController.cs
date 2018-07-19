@@ -147,7 +147,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             response = _BLConnector.SearchJobs(request);
             JXTNext_SearchJobsResponse jobResultsList = response as JXTNext_SearchJobsResponse;
 
-            ViewBag.Request = JsonConvert.SerializeObject(request);
+            ViewBag.Request = JsonConvert.SerializeObject(filterModel);
             ViewBag.FilterModel = JsonConvert.SerializeObject(filterModel);
             ViewBag.PageSize = (int)this.PageSize;
             ViewBag.SortOrder = this.Sorting;
@@ -190,6 +190,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public string CssClass { get; set; }
         public string SerializedJobTypes { get; set; }
         public bool HidePushStateUrl { get; set; }
+        public string SearchConfig { get; set; }
 
         public string SerializedTotalJobTypes
         {

@@ -1,1 +1,73 @@
 //Job filter listing
+.sidebar{
+    .dropdown-tree{
+        margin-bottom: 3rem;
+        .dropdown-toggle{
+            text-align: left;
+            width: 230px;
+            padding-right: 10px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-weight: bold;
+            position: relative;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            &::after{
+                content: '\e908';
+                font: 0.5rem/1 "jn-icon";
+                position: absolute;
+                top: 5px;
+                right: 0.5rem;
+                border: none;
+                width: auto;
+            }
+        }
+        ul{
+            transform: none!important;
+            position: relative!important;
+            font-size: 1.6rem;
+            max-height: none!important;
+            
+            border: none;
+            float: none;
+            white-space: inherit;
+            li{
+                position: relative;
+                > i{
+                    position: absolute;
+                    right: 0;
+                    top: 7px;
+                }
+                &:hover{
+                    background: none!important;
+                }
+                a{
+                    display: block!important;
+                    white-space: inherit;
+                    padding-right: 30px;
+                }
+            }
+            ul{
+                margin-left: 15px;
+                a{
+                    font-size: 1.4rem;
+                }
+            }
+        }
+
+        input[type="text"].form-control{
+            border: 1px solid #eee;
+            border-bottom: 2px solid $fontColor;
+            margin-bottom: 5px;
+            line-height: 1;
+            padding: 10px;
+        }
+
+        .arrow{
+            top: 5px;
+            transform: none;
+            right: 18px;
+        }
+    }
+
+}

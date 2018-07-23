@@ -20,6 +20,7 @@
             font-weight: 300;
             line-height: 1.3;
             width: 100%;
+            box-shadow: none;
         }
         @include bp-max(sm) {
             width: 100%;

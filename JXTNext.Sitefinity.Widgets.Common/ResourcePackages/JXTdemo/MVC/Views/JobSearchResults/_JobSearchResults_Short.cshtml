@@ -96,7 +96,7 @@
 
         function bindJobs(PageNumber) {
 
-            var parm = { jobRequest: @Html.Raw(Json.Encode(@ViewBag.Request)), PageNumber: PageNumber };
+            var parm = { jobRequest: @Html.Raw(Json.Encode(@ViewBag.Request)), pageNumber: PageNumber };
 
             var pathName = '@ViewBag.PageFullUrl';
             var urlPath = pathName + "/GetSearchResults";

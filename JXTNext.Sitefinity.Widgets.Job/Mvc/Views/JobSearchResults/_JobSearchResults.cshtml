@@ -113,7 +113,7 @@
 
         function bindJobs(PageNumber) {
 
-           var parm = { jobRequest: @Html.Raw(Json.Encode(@ViewBag.Request)), PageNumber: PageNumber };
+           var parm = { jobRequest: @Html.Raw(Json.Encode(@ViewBag.Request)), pageNumber: PageNumber };
             var urlPath = $(location).attr('pathname') + "/GetSearchResults";
             queryStringArr.length = 0;
             filterModel.Page = PageNumber;

@@ -442,6 +442,14 @@
     <Content Include="ResourcePackages\JXTDemo\MVC\Views\LoginForm\ResetPassword.ResetPassword.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\Lists\Detail.DetailPage.cshtml" />
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\Lists\List.Grid.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\Lists\List.ExpandableList.cshtml" />
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\Lists\List.ExpandedList.cshtml" />
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\Lists\List.PagesList.cshtml" />
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\Lists\List.SimpleList.cshtml" />
     <None Include="ResourcePackages\JXTDemo\MVC\Views\LoginStatusExtended\LoginStatusExtended.LoginButton.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

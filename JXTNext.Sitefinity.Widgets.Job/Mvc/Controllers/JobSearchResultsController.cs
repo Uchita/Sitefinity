@@ -140,8 +140,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                         {
                             Classification_CategorySearch cateSearch = new Classification_CategorySearch
                             {
-                                ClassificationRootID = filter.rootId,
-                                TargetClassificationIDs = filter.values
+                                ClassificationRootName = filter.rootId,
+                                TargetClassifications = filter.values.Select(c => new Classification_CategorySearchTarget { TargetValue = c }).ToList()
                             };
 
                             classificationSearches.Add(cateSearch);

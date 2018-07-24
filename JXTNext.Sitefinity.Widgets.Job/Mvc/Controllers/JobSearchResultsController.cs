@@ -47,7 +47,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         }
 
         // GET: JobSearchResults
-        public ActionResult Index(JobSearchResultsFilterModel filterModel)
+        public ActionResult Index([ModelBinder(typeof(JobSearchResultsFilterBinder))] JobSearchResultsFilterModel filterModel)
         {
             dynamic dynamicJobResultsList = null;
 
@@ -141,8 +141,15 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                             Classification_CategorySearch cateSearch = new Classification_CategorySearch
                             {
                                 ClassificationRootName = filter.rootId,
-                                TargetClassifications = filter.values.Select(c => new Classification_CategorySearchTarget { TargetValue = c }).ToList()
+                                TargetClassifications = new List<Classification_CategorySearchTarget>()
                             };
+
+                            foreach(var filterItem in filter.values)
+                            {
+                                var targetCategory = new Classification_CategorySearchTarget() { SubTargets = new List<Classification_CategorySearchTarget>() };
+                                ProcessFilterLevels(targetCategory, filterItem);
+                                cateSearch.TargetClassifications.Add(targetCategory);
+                            }
 
                             classificationSearches.Add(cateSearch);
                         }
@@ -161,6 +168,23 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
 
             return request;
+        }
+
+        private static void ProcessFilterLevels(Classification_CategorySearchTarget catTarget, JobSearchFilterReceiverItem filterItem)
+        {
+            if (catTarget != null && filterItem != null)
+            {
+                catTarget.TargetValue = filterItem.ItemID;
+                if(filterItem.SubTargets != null && filterItem.SubTargets.Count > 0)
+                {
+                    Classification_CategorySearchTarget catSubTarget = new Classification_CategorySearchTarget() { SubTargets = new List<Classification_CategorySearchTarget>() };
+                    foreach (var subItem in filterItem.SubTargets)
+                    {
+                        ProcessFilterLevels(catSubTarget, subItem);
+                    }
+                    catTarget.SubTargets.Add(catSubTarget);
+                }
+            }
         }
 
         private JobFiltersData _jobFiltersData;
@@ -191,18 +215,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public string SerializedJobTypes { get; set; }
         public bool HidePushStateUrl { get; set; }
         public string SearchConfig { get; set; }
-
-        public string SerializedTotalJobTypes
-        {
-            get
-            {
-                JobFilterRoot _jobTypes = JobFiltersData.Data.Where(item => item.Name == "Job Types").FirstOrDefault();
-                if (_jobTypes != null)
-                    return JsonConvert.SerializeObject(_jobTypes.Filters);
-                else
-                    return null;
-            }
-        }
 
         internal const string WidgetIconCssClass = "sfMvcIcn";
         private const int PageSizeDefaultValue = 5;

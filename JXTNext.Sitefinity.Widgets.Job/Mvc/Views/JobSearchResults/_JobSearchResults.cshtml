@@ -19,6 +19,7 @@
 
 
 <div id="listView" class="job-result row"></div>
+<div class="h-section hidden info-block"><p class="alert alert-warning">Sorry! The jobs you are searching for did not match. Please try with different search criteria.</p></div>
 <div id="pager" class="k-pager-wrap k-widget k-floatwrap" data-role="]">
     <ul class="k-pager-numbers k-reset"></ul>
 </div>
@@ -50,12 +51,13 @@
         var totalCount = @ViewBag.TotalCount;
         var filterModel = JSON.parse('@Html.Raw(@ViewBag.FilterModel)');
         var PageNumber = filterModel.Page;
+        var highestPage = Math.ceil(totalCount / pageSize);
         var dataSource;
         var queryStringArr = [];
 
         $("#sortOrder").val('@ViewBag.SortOrder');
+        bindJobsPages(PageNumber);
         bindJobs(PageNumber);
-        bindJobsPages();
 
         $("#sortOrder").change(function () {
             bindJobs(PageNumber);
@@ -97,23 +99,41 @@
             return queryStringArr.join("&");
         };
 
-    function bindJobsPages()
-    {
-        highestPage = totalCount / pageSize;
-        highestPage = Math.ceil(totalCount / pageSize);
+        function bindJobsPages(PageNumber)
+        {
+            if (highestPage > 1) {
+                var lis = '';
+                var pageJumpNext = false;
+                var pageJumpVal = 5;
+                var startPage = (parseInt(PageNumber) / pageJumpVal) > 1 ? pageJumpVal * (Math.ceil(parseInt(PageNumber) / pageJumpVal) - 1) + 1 : 1;
 
-        if (highestPage > 1) {
-            var lis = '';
-            for (var i = 1; i <= highestPage; i++) {
-                lis += '<li><a tabindex="-1" href="#" onclick="pageChange(this);" class="k-link" data-page="' + i + '">' + i + '</a></li>';
+                lis += '<li class="pagePrev pageController"><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this)" class="k-link" disabled data-page="0">Previous</a></li>';
+
+                //dot page jump previous
+                if (startPage > 1) {
+                    lis += '<li><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this);" class="k-link" data-page="' + (startPage - 1) + '">...</a></li>';
+                }
+
+                for (var i = startPage; i <= highestPage; i++) {
+                    if (i < (startPage + pageJumpVal) && highestPage >= parseInt(PageNumber)) {
+                        lis += '<li><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this);" class="k-link" data-page="' + i + '">' + i + '</a></li>';
+                        pageJumpNext = true;
+                    }
+                }
+
+                //dot page jump next
+                if (highestPage >= parseInt(PageNumber) + 1 && highestPage >= (startPage + pageJumpVal)) {
+                    lis += '<li><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this);" class="k-link" data-page="' + (startPage + pageJumpVal) + '">...</a></li>';
+                }
+
+                lis += '<li class="pageNext pageController"><a tabindex="-1" href="javascript:void(0);" onclick="pageChange(this)" class="k-link" data-page="2">Next</a></li>';
+                $('#pager ul').html(lis);
             }
-            $('#pager ul').html(lis);
-        }
-    };
+        };
 
         function bindJobs(PageNumber) {
 
-           var parm = { jobRequest: @Html.Raw(Json.Encode(@ViewBag.Request)), PageNumber: PageNumber };
+            var parm = { jobRequest: @Html.Raw(Json.Encode(@ViewBag.Request)), PageNumber: PageNumber };
             var urlPath = $(location).attr('pathname') + "/GetSearchResults";
             queryStringArr.length = 0;
             filterModel.Page = PageNumber;
@@ -121,6 +141,25 @@
             var data = { filterModel: filterModel }
             window.history.pushState(data, "", pushStateUrl);
 
+            //pager status
+            $('#pager li:not(.pageController) a').removeClass('active');
+            $('#pager li:not(.pageController) a[data-page="' + (PageNumber == 0 ? 1 : PageNumber) + '"]').addClass('active');
+            //prev next status
+            if (PageNumber <= 1) {
+                $('#pager li.pagePrev a').attr('disabled', true);
+            } else {
+                $('#pager li.pagePrev a').removeAttr('disabled');
+                $('#pager li.pagePrev a').attr('data-page', parseInt(PageNumber) - 1);
+            }
+
+            if (parseInt(PageNumber) + 1 <= highestPage) {
+                $('#pager li.pageNext a').attr('data-page', parseInt(PageNumber) + 1);
+            }
+            if (parseInt(PageNumber) >= highestPage) {
+                $('#pager li.pageNext a').attr('disabled', true);
+            } else {
+                $('#pager li.pageNext a').removeAttr('disabled');
+            }
             $.ajax({
                 type: 'POST',
                 cache: false,
@@ -128,23 +167,29 @@
                 data: parm,
                 dataType: 'Json',
                 success: function (response) {
-                     dataSource = new kendo.data.DataSource({
-                         data: response.SearchResults,
-                         total: response.Total,
-                    });
 
-                    $(".count-num").html(response.Total);
+                    if (response.Total > 0) {
+                        dataSource = new kendo.data.DataSource({
+                            data: response.SearchResults,
+                            total: response.Total,
+                        });
+                        $(".count-num").html(response.Total);
 
-                    var sorttext = getSortOrder();
-                    var token = sorttext.split(':');
+                        var sorttext = getSortOrder();
+                        var token = sorttext.split(':');
 
-                    dataSource.sort({ field: token[0], dir: token[1] });
+                        dataSource.sort({ field: token[0], dir: token[1] });
 
-                    $("#listView").kendoListView({
-                        dataSource: dataSource,
-                        template: kendo.template($("#template").html()),
+                        $("#listView").kendoListView({
+                            dataSource: dataSource,
+                            template: kendo.template($("#template").html()),
 
-                    });
+                        });
+                    } else {
+
+                        $(".info-block").removeClass('hidden');
+                        $("#sortOrder").parent().hide();
+                    }
                 },
                 error: function (response) {
                     console.log('error response: '+response);
@@ -153,11 +198,23 @@
         };
 
         function pageChange(pageObj) {
-           var currPageNumber = $(pageObj).attr('data-page');
-            if (currPageNumber != PageNumber) {
-                PageNumber = currPageNumber;
-                bindJobs(PageNumber);
+            var currPageNumber = $(pageObj).attr('data-page');
+            var disableFlag = $(pageObj).attr('disabled');
+            if (disableFlag == "disabled") {
+                return false;
             }
+
+            bindJobsPages(currPageNumber);
+            if (currPageNumber != PageNumber) {
+                PageNumber = parseInt(currPageNumber);
+                bindJobs(PageNumber);
+                //changing the prev & next page number attribute
+                $('.pagePrev a').attr('data-page', PageNumber - 1);
+                if (PageNumber + 1 <= highestPage ) {
+                    $('.pageNext a').attr('data-page', PageNumber + 1);
+                }
+            }
+
         };
 
         function getSortOrder() {

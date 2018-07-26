@@ -35,8 +35,12 @@
                 position: relative;
                 > i{
                     position: absolute;
-                    right: 0;
+                    left: -9px;
                     top: 7px;
+                    color: $fontColor;
+                    &.fa-check-square-o{
+                        color: $p1Color;
+                    }
                 }
                 &:hover{
                     background: none!important;
@@ -45,6 +49,9 @@
                     display: block!important;
                     white-space: inherit;
                     padding-right: 30px;
+                    &::before{
+                        display: none;
+                    }
                 }
             }
             ul{
@@ -66,7 +73,7 @@
         .arrow{
             top: 5px;
             transform: none;
-            right: 18px;
+            right: 5px;
         }
     }
 

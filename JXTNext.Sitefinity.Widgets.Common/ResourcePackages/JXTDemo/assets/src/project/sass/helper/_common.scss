@@ -303,6 +303,7 @@ p,ul,ol{
                 border-radius: 50%;
                 font-size: 1.4rem;
                 margin: 0 6px;
+                min-width: 2em;
                 &.active{
                     background-color: $p1Color;
                     color: $brightColor;

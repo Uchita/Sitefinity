@@ -1,0 +1,28 @@
+@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentListViewModel
+
+@using Telerik.Sitefinity.Frontend.Lists.Mvc.Models;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using System.Linq;
+
+<div class="grid-view @Model.CssClass">
+
+    @foreach (var item in Model.Items)
+    {
+        <h2 class="block-title">@item.Fields.Title</h2>
+
+        <div class="h-section grid-2col">
+        @foreach (var listItem in ((ListViewModel)item).ListItemViewModel.Items)
+        {
+            <article class="article list-item">
+
+                <div class="list-content">@Html.HtmlSanitize((string)listItem.Fields.Content)</div>
+
+                <h4 id="@listItem.Fields.Id" class="text-center">
+                    @listItem.Fields.Title
+                </h4>
+            </article>
+        }
+        </div>
+    }
+
+</div>

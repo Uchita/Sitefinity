@@ -41,3 +41,22 @@
         overflow: hidden;
     }
 }
+
+.list-item{
+    margin-bottom: 7rem;
+    h4{
+        color: $fontColor;
+        padding-top: 2rem;
+        font-family: $baseFont;
+        font-weight: normal;
+    }
+    @include bp-max(md){
+        margin-bottom: 4rem;
+        .list-content{
+            text-align: center;
+            p{
+                text-align: left;
+            }
+        }
+    }
+}

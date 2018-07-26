@@ -312,6 +312,36 @@ p,ul,ol{
     }
 }
 
+.pagination{
+    -webkit-box-pack: center!important;
+    -ms-flex-pack: center!important;
+    justify-content: center!important;
+    li{
+        float: none;
+        display: inline;
+        a{
+            background: #dddd;
+            border-radius: 50%;
+            font-size: 1.4rem;
+            margin: 0 6px;
+            display: block;
+            width: 30px;
+            text-align: center;
+            line-height: 2.2;
+            &.active{
+                background-color: $p1Color;
+                color: $brightColor;
+            }
+        }
+        &.active{
+            a{
+                background: $p1Color;
+                color: $brightColor;
+            }
+        }
+    }
+}
+
 //two column layout
 @include bp-min(md){
     .sidebar{

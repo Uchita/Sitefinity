@@ -16,6 +16,7 @@ var dropDownOptions = {
     rtl: false,
     displayCount: false,
     clickTextSelect: true,
+    selectParent: true,
 };
 
 var globalTreeIdCounter=0;
@@ -153,6 +154,9 @@ var globalTreeIdCounter=0;
                 $(this).parents("li").first().find(".select-box").removeClass("fa-square-o");
                 $(this).parents("li").first().find(".select-box").addClass("fa-check-square-o");
             }
+            if (options.selectParent) {
+                selectParent($(this));
+            }
         }else{
             //will unselect
             checked=false;
@@ -240,6 +244,15 @@ var globalTreeIdCounter=0;
          }
 
          $(options.element).SetTitle(titleText);
+    };
+
+    function selectParent(ele) {
+        var parent = ele.parent("li").first().parent("ul").first().parent("li").first();
+        if (parent != undefined && parent.length > 0) {
+            parent.children("i").removeClass("fa-square-o");
+            parent.children("i").addClass("fa-check-square-o");
+            selectParent(parent.children("i").first());
+        }
     };
 
     SetSelectedElementsTitle();

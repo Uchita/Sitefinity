@@ -47,7 +47,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         }
 
         // GET: JobSearchResults
-        public ActionResult Index(JobSearchResultsFilterModel filterModel)
+        public ActionResult Index([ModelBinder(typeof(JobSearchResultsFilterBinder))] JobSearchResultsFilterModel filterModel)
         {
             dynamic dynamicJobResultsList = null;
 
@@ -62,22 +62,19 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
 
         [HttpPost]
-        public JsonResult GetSearchResults(string jobRequest, int PageNumber)
+        public JsonResult GetSearchResults(string jobRequest, int pageNumber)
         {
-            JsonResult response = new JsonResult();
-            JXTNext_SearchJobsRequest request = JsonConvert.DeserializeObject<JXTNext_SearchJobsRequest>(jobRequest);
-            if (request != null)
-            {
-                if (PageNumber <= 0)
-                    PageNumber = 1;
+            //Use preconfigured search config from widget settings if available
+            JobSearchResultsFilterModel searchInputs;
 
-                // Page index is starting at zero
-                // So subtracting one from it
-                request.PageNumber = PageNumber - 1;
-                request.PageSize = (int)this.PageSize;
-            }
-           
-            JXTNext_SearchJobsResponse jobResponse = (JXTNext_SearchJobsResponse)_BLConnector.SearchJobs(request);
+            if (SearchConfig != null)
+                searchInputs = JsonConvert.DeserializeObject<JobSearchResultsFilterModel>(SearchConfig);
+            else
+                searchInputs = JsonConvert.DeserializeObject<JobSearchResultsFilterModel>(jobRequest);
+
+            JXTNext_SearchJobsRequest searchRequest = ProcessInputToSearchRequest(searchInputs);
+
+            JXTNext_SearchJobsResponse jobResponse = (JXTNext_SearchJobsResponse)_BLConnector.SearchJobs(searchRequest);
 
             return new JsonResult { Data = jobResponse };
         }
@@ -104,9 +101,30 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
         private ISearchJobsResponse GetJobSearchResultsResponse(JobSearchResultsFilterModel filterModel)
         {
-            JXTNext_SearchJobsRequest request = new JXTNext_SearchJobsRequest();
-            ISearchJobsResponse response = null;
+            JXTNext_SearchJobsRequest request = ProcessInputToSearchRequest(filterModel);
+            ISearchJobsResponse response = _BLConnector.SearchJobs(request);
 
+            JXTNext_SearchJobsResponse jobResultsList = response as JXTNext_SearchJobsResponse;
+
+            ViewBag.Request = JsonConvert.SerializeObject(filterModel);
+            ViewBag.FilterModel = JsonConvert.SerializeObject(filterModel);
+            ViewBag.PageSize = (int)this.PageSize;
+            ViewBag.SortOrder = this.Sorting;
+            ViewBag.CssClass = this.CssClass;
+            if (jobResultsList != null)
+                ViewBag.TotalCount = jobResultsList.Total;
+
+            ViewBag.JobResultsPageUrl = SitefinityHelper.GetPageUrl(this.ResultsPageId);
+            ViewBag.JobDetailsPageUrl = SitefinityHelper.GetPageUrl(this.DetailsPageId);
+            ViewBag.HidePushStateUrl = this.HidePushStateUrl;
+            ViewBag.PageFullUrl = SitefinityHelper.GetPageFullUrl(SiteMapBase.GetActualCurrentNode().Id);
+
+            return response;
+        }
+
+        private JXTNext_SearchJobsRequest ProcessInputToSearchRequest(JobSearchResultsFilterModel filterModel)
+        {
+            JXTNext_SearchJobsRequest request = new JXTNext_SearchJobsRequest();
             if (filterModel != null)
             {
                 if (!string.IsNullOrEmpty(filterModel.Keywords))
@@ -122,45 +140,51 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                         {
                             Classification_CategorySearch cateSearch = new Classification_CategorySearch
                             {
-                                ClassificationRootID = filter.rootId,
-                                TargetClassificationIDs = filter.values
+                                ClassificationRootName = filter.rootId,
+                                TargetClassifications = new List<Classification_CategorySearchTarget>()
                             };
+
+                            foreach(var filterItem in filter.values)
+                            {
+                                var targetCategory = new Classification_CategorySearchTarget() { SubTargets = new List<Classification_CategorySearchTarget>() };
+                                ProcessFilterLevels(targetCategory, filterItem);
+                                cateSearch.TargetClassifications.Add(targetCategory);
+                            }
 
                             classificationSearches.Add(cateSearch);
                         }
                     }
                     request.ClassificationsSearchCriteria = classificationSearches;
                 }
+
+                if (this.PageSize == null || this.PageSize <= 0)
+                    this.PageSize = PageSizeDefaultValue;
+
+                if (filterModel.Page <= 0)
+                    filterModel.Page = 1;
+
+                request.PageNumber = filterModel.Page - 1;
+                request.PageSize = (int)this.PageSize;
             }
 
+            return request;
+        }
 
-            if (this.PageSize == null || this.PageSize <= 0)
-                this.PageSize = PageSizeDefaultValue;
-
-            if (filterModel.Page <= 0)
-                filterModel.Page = 1;
-
-            //Execute - Try perform search
-            request.PageNumber = filterModel.Page - 1;
-            request.PageSize = (int)this.PageSize;
-
-            response = _BLConnector.SearchJobs(request);
-            JXTNext_SearchJobsResponse jobResultsList = response as JXTNext_SearchJobsResponse;
-
-            ViewBag.Request = JsonConvert.SerializeObject(request);
-            ViewBag.FilterModel = JsonConvert.SerializeObject(filterModel);
-            ViewBag.PageSize = (int)this.PageSize;
-            ViewBag.SortOrder = this.Sorting;
-            ViewBag.CssClass = this.CssClass;
-            if (jobResultsList != null)
-                ViewBag.TotalCount = jobResultsList.Total;
-
-            ViewBag.JobResultsPageUrl = SitefinityHelper.GetPageUrl(this.ResultsPageId);
-            ViewBag.JobDetailsPageUrl = SitefinityHelper.GetPageUrl(this.DetailsPageId);
-            ViewBag.HidePushStateUrl = this.HidePushStateUrl;
-            ViewBag.PageFullUrl = SitefinityHelper.GetPageFullUrl(SiteMapBase.GetActualCurrentNode().Id);
-
-            return response;
+        private static void ProcessFilterLevels(Classification_CategorySearchTarget catTarget, JobSearchFilterReceiverItem filterItem)
+        {
+            if (catTarget != null && filterItem != null)
+            {
+                catTarget.TargetValue = filterItem.ItemID;
+                if(filterItem.SubTargets != null && filterItem.SubTargets.Count > 0)
+                {
+                    Classification_CategorySearchTarget catSubTarget = new Classification_CategorySearchTarget() { SubTargets = new List<Classification_CategorySearchTarget>() };
+                    foreach (var subItem in filterItem.SubTargets)
+                    {
+                        ProcessFilterLevels(catSubTarget, subItem);
+                    }
+                    catTarget.SubTargets.Add(catSubTarget);
+                }
+            }
         }
 
         private JobFiltersData _jobFiltersData;
@@ -190,18 +214,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public string CssClass { get; set; }
         public string SerializedJobTypes { get; set; }
         public bool HidePushStateUrl { get; set; }
-
-        public string SerializedTotalJobTypes
-        {
-            get
-            {
-                JobFilterRoot _jobTypes = JobFiltersData.Data.Where(item => item.Name == "Job Types").FirstOrDefault();
-                if (_jobTypes != null)
-                    return JsonConvert.SerializeObject(_jobTypes.Filters);
-                else
-                    return null;
-            }
-        }
+        public string SearchConfig { get; set; }
 
         internal const string WidgetIconCssClass = "sfMvcIcn";
         private const int PageSizeDefaultValue = 5;

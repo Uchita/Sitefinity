@@ -71,7 +71,21 @@
                     filterModel.Filters = [];
                 }
                 $.each(optionsArray, function (id, item) {
-                    filterModel.Filters.push({ rootId: id, values: $("#" + id).GetSelectedElementIds() });
+                    if (filterModel.Filters.length > 0) {
+                        let flag = false;
+                        for (var item of filterModel.Filters) {
+                            if (item.rootId === id) {
+                                item.values = $("#" + id).GetSelectedElementIds();
+                                flag = true;
+                                break;
+                            }
+                        }
+                        if (flag == false)
+                            filterModel.Filters.push({ rootId: id, values: $("#" + id).GetSelectedElementIds() });
+                    }
+                    else {
+                        filterModel.Filters.push({ rootId: id, values: $("#" + id).GetSelectedElementIds() });
+                    }
                 });
 
                 var data = { filterModel: filterModel }

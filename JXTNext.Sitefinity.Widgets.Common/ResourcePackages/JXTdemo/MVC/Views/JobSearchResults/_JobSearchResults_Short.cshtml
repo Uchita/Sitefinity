@@ -4,6 +4,7 @@
 
 
 <div id="listView" class="job-result jn_scroller"></div>
+<div class="h-section info-block hidden"><p class="alert alert-warning">Sorry! The jobs you are searching for did not match. Please try with different search criteria.</p></div>
 
 
 <script type="text/x-kendo-template" id="template">
@@ -36,15 +37,8 @@
         var dataSource;
         var queryStringArr = [];
 
-        $("#sortOrder").val('@ViewBag.SortOrder');
         bindJobs(PageNumber);
-        bindJobsPages();
-
-        $("#sortOrder").change(function () {
-            bindJobs(PageNumber);
-        });
-
-
+       
         function makeQueryString(obj, prefix, isArray) {
 
             for (var p in obj) {
@@ -80,19 +74,6 @@
             return queryStringArr.join("&");
         };
 
-    function bindJobsPages()
-    {
-        highestPage = totalCount / pageSize;
-        highestPage = Math.ceil(totalCount / pageSize);
-
-        if (highestPage > 1) {
-            var lis = '';
-            for (var i = 1; i <= highestPage; i++) {
-                lis += '<li><a tabindex="-1" href="#" onclick="pageChange(this);" class="k-link" data-page="' + i + '">' + i + '</a></li>';
-            }
-            $('#pager ul').html(lis);
-        }
-    };
 
         function bindJobs(PageNumber) {
 
@@ -116,36 +97,50 @@
                 data: parm,
                 dataType: 'Json',
                 success: function (response) {
-                     dataSource = new kendo.data.DataSource({
-                         data: response.SearchResults,
-                         total: response.Total,
-                    });
+                    if (response.Total > 0) {
+                        dataSource = new kendo.data.DataSource({
+                            data: response.SearchResults,
+                            total: response.Total,
+                        });
 
-                    $(".count-num").html(response.Total);
+                        $(".count-num").html(response.Total);
 
-                    var sorttext = getSortOrder();
-                    var token = sorttext.split(':');
+                        var sorttext = getSortOrder();
+                        var token = sorttext.split(':');
 
-                    dataSource.sort({ field: token[0], dir: token[1] });
+                        dataSource.sort({ field: token[0], dir: token[1] });
 
-                    $("#listView").kendoListView({
-                        dataSource: dataSource,
-                        template: kendo.template($("#template").html()),
+                        $("#listView").kendoListView({
+                            dataSource: dataSource,
+                            template: kendo.template($("#template").html()),
 
-                    });
+                        });
+
+                        if ($('.jn_scroller').length) {
+                            $('.jn_scroller').addClass('owl-carousel').owlCarousel({
+                                dots: false,
+                                nav: true,
+                                navText: '',
+                                items: 2,
+                                slideBy: 1,
+                                responsive: {
+                                    0: {
+                                        items: 1
+                                    },
+                                    767: {
+                                        items: 2
+                                    }
+                                }
+                            });
+                        }
+                    } else {
+                        $('.info-block').removeClass('hidden').appendTo($('#listView'));
+                    }
                 },
                 error: function (response) {
                     console.log('error response: '+response);
                 }
             });
-        };
-
-        function pageChange(pageObj) {
-           var currPageNumber = $(pageObj).attr('data-page');
-            if (currPageNumber != PageNumber) {
-                PageNumber = currPageNumber;
-                bindJobs(PageNumber);
-            }
         };
 
         function getSortOrder() {
@@ -171,6 +166,8 @@
                     break;
             }
         };
+
+      
     }
 
 </script>

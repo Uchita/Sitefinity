@@ -367,11 +367,64 @@ button[data-sf-role="comments-new-submit-button"].dropdown-toggle:active {
 	border-radius: 50%;
 	font-size: 1.4rem;
 	margin: 0 6px;
+	min-width: 2em;
 }
 
 #pager .k-pager-numbers li a.active {
 	background-color: #FF0042;
 	color: #fff;
+}
+
+#pager .k-pager-numbers li.pageController a {
+	background: #FEE43D;
+	color: #1e2022;
+	border: none;
+	padding: 1.5rem;
+	width: 2.5rem;
+	height: 2.5rem;
+	text-indent: -99em;
+	overflow: hidden;
+	display: inline-block;
+	border-radius: 0;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+}
+
+#pager .k-pager-numbers li.pageController a::after {
+	font: 4rem/1 FontAwesome;
+	display: block;
+	transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	position: relative;
+	text-indent: 0;
+}
+
+#pager .k-pager-numbers li.pageController a:hover,
+#pager .k-pager-numbers li.pageController a:focus {
+	background: #fedd0a;
+}
+
+#pager .k-pager-numbers li.pageController a::after {
+	font-size: 2rem;
+	font-weight: bold;
+	top: -3.6rem;
+	left: -0.2rem;
+}
+
+#pager .k-pager-numbers li.pagePrev a::after {
+	content: '\f104';
+}
+
+#pager .k-pager-numbers li.pageNext a::after {
+	content: '\f105';
 }
 
 .pagination {
@@ -865,10 +918,10 @@ button[data-sf-role="comments-new-submit-button"].dropdown-toggle:active {
 	padding: 1.5rem;
 	width: 6rem;
 	height: 6rem;
-	font: 4rem/1 FontAwesome;
 	text-indent: -99em;
 	overflow: hidden;
 	display: inline-block;
+	border-radius: 0;
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	transform: rotate(45deg);
@@ -880,6 +933,7 @@ button[data-sf-role="comments-new-submit-button"].dropdown-toggle:active {
 
 .owl-carousel .owl-nav > div::after,
 .owl-carousel .owl-nav > button::after {
+	font: 4rem/1 FontAwesome;
 	display: block;
 	transform: rotate(-45deg);
 	-webkit-transform: rotate(-45deg);
@@ -3384,8 +3438,13 @@ a.card-copy:focus .card-title {
 
 .sidebar .dropdown-tree ul li > i {
 	position: absolute;
-	right: 0;
+	left: -9px;
 	top: 7px;
+	color: #606263;
+}
+
+.sidebar .dropdown-tree ul li > i.fa-check-square-o {
+	color: #FF0042;
 }
 
 .sidebar .dropdown-tree ul li:hover {
@@ -3396,6 +3455,10 @@ a.card-copy:focus .card-title {
 	display: block !important;
 	white-space: inherit;
 	padding-right: 30px;
+}
+
+.sidebar .dropdown-tree ul li a::before {
+	display: none;
 }
 
 .sidebar .dropdown-tree ul ul {
@@ -3417,7 +3480,7 @@ a.card-copy:focus .card-title {
 .sidebar .dropdown-tree .arrow {
 	top: 5px;
 	transform: none;
-	right: 18px;
+	right: 5px;
 }
 
 .jn_jobsFeed {
@@ -3466,6 +3529,8 @@ a.card-copy:focus .card-title {
 	max-height: 120px;
 	overflow: hidden;
 	margin-bottom: 30px;
+	color: #606263;
+	line-height: 1.667;
 }
 
 .jn_jobsFeed.simple-layout .feed-item {
@@ -3639,10 +3704,10 @@ a.card-copy:focus .card-title {
 	padding: 1.5rem;
 	width: 6rem;
 	height: 6rem;
-	font: 4rem/1 FontAwesome;
 	text-indent: -99em;
 	overflow: hidden;
 	display: inline-block;
+	border-radius: 0;
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	transform: rotate(45deg);
@@ -3656,6 +3721,7 @@ a.card-copy:focus .card-title {
 }
 
 .card-flipper .sc-item .overlay .footer-meta a::after {
+	font: 4rem/1 FontAwesome;
 	display: block;
 	transform: rotate(-45deg);
 	-webkit-transform: rotate(-45deg);
@@ -4092,10 +4158,10 @@ a.card-copy:focus .card-title {
 	padding: 1.5rem;
 	width: 2.7rem;
 	height: 2.7rem;
-	font: 4rem/1 FontAwesome;
 	text-indent: -99em;
 	overflow: hidden;
 	display: inline-block;
+	border-radius: 0;
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	transform: rotate(45deg);
@@ -4109,6 +4175,7 @@ a.card-copy:focus .card-title {
 }
 
 .jn_timeline .tl-item .tl-card::before::after {
+	font: 4rem/1 FontAwesome;
 	display: block;
 	transform: rotate(-45deg);
 	-webkit-transform: rotate(-45deg);
@@ -4740,6 +4807,8 @@ button[data-sf-role="comments-new-submit-button"] {
 	max-height: 120px;
 	overflow: hidden;
 	margin-bottom: 35px;
+	color: #606263;
+	line-height: 1.667;
 }
 
 .job-holder .sc-job-meta-group .jn_ico {
@@ -4792,6 +4861,11 @@ button[data-sf-role="comments-new-submit-button"] {
 	background: none;
 }
 
+.pageController a[disabled] {
+	cursor: not-allowed;
+	opacity: 0.3;
+}
+
 .backtoresult {
 	margin-bottom: 9rem;
 	font-size: 2.4rem;
@@ -4822,10 +4896,10 @@ button[data-sf-role="comments-new-submit-button"] {
 	padding: 1.5rem;
 	width: 6rem;
 	height: 6rem;
-	font: 4rem/1 FontAwesome;
 	text-indent: -99em;
 	overflow: hidden;
 	display: inline-block;
+	border-radius: 0;
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	transform: rotate(45deg);
@@ -4836,6 +4910,7 @@ button[data-sf-role="comments-new-submit-button"] {
 }
 
 .prev-btn::after {
+	font: 4rem/1 FontAwesome;
 	display: block;
 	transform: rotate(-45deg);
 	-webkit-transform: rotate(-45deg);
@@ -5808,6 +5883,12 @@ h1 {
 .l-section {
 	padding-top: 4rem;
 	padding-bottom: 4rem;
+}
+
+#pager .k-pager-numbers li.pageController a {
+	width: 1.875rem;
+	height: 1.875rem;
+	font-size: 2.6rem;
 }
 
 .sidebar,

@@ -137,15 +137,16 @@
     padding: 1.5rem;
     width: $dim;
     height: $dim;
-    font: 4rem/1 FontAwesome;
     text-indent: -99em;
     overflow: hidden;
     display: inline-block;
+    border-radius: 0;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     @include rotate(45deg);
     @if $arrow = true{
         &::after{
+            font: 4rem/1 FontAwesome;
             display: block;
             @include rotate(-45deg);
             position: relative;

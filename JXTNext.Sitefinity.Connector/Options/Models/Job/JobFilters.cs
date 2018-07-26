@@ -33,6 +33,8 @@ namespace JXTNext.Sitefinity.Connector.Options.Models.Job
     {
         public string ID { get; set; }
         public string Label { get; set; }
+        public int Count { get; set; }
+        public bool Selected { get; set; }
         public List<JobFilter> Filters { get; set; }
 
         public bool ContainsID(string targetID)

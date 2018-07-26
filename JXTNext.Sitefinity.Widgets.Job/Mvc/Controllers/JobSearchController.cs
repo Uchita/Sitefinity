@@ -12,6 +12,7 @@ using Telerik.Sitefinity.Mvc;
 using JXTNext.Sitefinity.Common.Helpers;
 using Newtonsoft.Json;
 using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
+using Telerik.Sitefinity.Taxonomies.Model;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -104,6 +105,52 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             data = data.Where(d => d.Show == true || d.Filters?.Count > 0).ToList();
         }
 
+        public static void ProcessCategories(HierarchicalTaxon category, JobFilter jobFilter)
+        {
+            if (category != null && jobFilter != null)
+            {
+                jobFilter.ID = category.Id.ToString();
+                jobFilter.Label = category.Title;
+                if (category.Subtaxa != null && category.Subtaxa.Count > 0)
+                {
+                    var subFilter = new JobFilter() { Filters = new List<JobFilter>() };
+                    foreach (var subTaxon in category.Subtaxa)
+                    {
+                        jobFilter.Filters.Add(subFilter);
+                        ProcessCategories(subTaxon, subFilter);
+                    }
+                }
+            }
+        }
+
+        public static JobFiltersData GetFiltersData()
+        {
+            JobFiltersData filtersData = new JobFiltersData() { Data = new List<JobFilterRoot>() };
+            var topLovelCategories = SitefinityHelper.GetTopLevelCategories();
+
+            foreach (var taxon in topLovelCategories)
+            {
+                JobFilterRoot filterRoot = new JobFilterRoot() { Filters = new List<JobFilter>() };
+                filterRoot.ID = taxon.Id.ToString();
+                filterRoot.Name = taxon.Title;
+
+                var hierarchicalTaxon = taxon as HierarchicalTaxon;
+                if (hierarchicalTaxon != null)
+                {
+                    foreach (var childTaxon in hierarchicalTaxon.Subtaxa)
+                    {
+                        var jobFilter = new JobFilter() { Filters = new List<JobFilter>() };
+                        ProcessCategories(childTaxon, jobFilter);
+                        filterRoot.Filters.Add(jobFilter);
+                    }
+                }
+
+                filtersData.Data.Add(filterRoot);
+            }
+
+            return filtersData;
+        }
+
         protected override void HandleUnknownAction(string actionName)
         {
             this.Index().ExecuteResult(this.ControllerContext);
@@ -117,9 +164,10 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             {
                 if( string.IsNullOrEmpty(_serializedFilterData))
                 {
-                    JXTNext_GetJobFiltersRequest filterOptionRequest = new JXTNext_GetJobFiltersRequest { SiteId = 1 };
-                    IGetJobFiltersResponse filtersResponse = _OConnector.JobFilters<JXTNext_GetJobFiltersRequest, JXTNext_GetJobFiltersResponse>(filterOptionRequest);
-                    _serializedFilterData = JsonConvert.SerializeObject(filtersResponse.Filters.Data);
+                    //JXTNext_GetJobFiltersRequest filterOptionRequest = new JXTNext_GetJobFiltersRequest { SiteId = 1 };
+                    //IGetJobFiltersResponse filtersResponse = _OConnector.JobFilters<JXTNext_GetJobFiltersRequest, JXTNext_GetJobFiltersResponse>(filterOptionRequest);
+                    var filtersData = GetFiltersData();
+                    _serializedFilterData = JsonConvert.SerializeObject(filtersData.Data);
                 }
                 return _serializedFilterData;
             }

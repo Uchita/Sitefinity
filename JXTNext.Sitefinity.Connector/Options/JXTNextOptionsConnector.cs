@@ -24,6 +24,7 @@ namespace JXTNext.Sitefinity.Connector.Options
 
             ConnectorGetRequest connectorRequest = new ConnectorGetRequest(HTTP_Requests_MaxWaitTime)
             {
+                HeaderValues = HTTP_Request_HeaderValues,
                 TargetUri = new Uri(CONFIG_DataAccessTarget + $"/api/options/JobFilters")
             };
             ConnectorResponse response = JXTNext.Common.API.Connector.Get(connectorRequest);

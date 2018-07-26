@@ -6,6 +6,9 @@
     angular.module('designer').requires.push('expander', 'sfSelectors');
 
     angular.module('designer').controller('SimpleCtrl', ['$scope', 'propertyService', function ($scope, propertyService) {
+        $scope.$watch('roleList', function (roleList) {
+            $scope.properties.SerializedJobDetailsRoles.PropertyValue = angular.toJson(roleList, true);
+        }, true);
 
         $scope.$watch('properties.CssClass.PropertyValue',
             function (newVal, oldVal) {
@@ -17,6 +20,7 @@
         propertyService.get()
             .then(function (data) {
                 $scope.properties = propertyService.toAssociativeArray(data.Items);
+                $scope.roleList = $.parseJSON($scope.properties.SerializedJobDetailsRoles.PropertyValue);
             });
     }]);
 })(jQuery);

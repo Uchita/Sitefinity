@@ -6,6 +6,8 @@ using Telerik.Sitefinity.Pages.Model;
 using Telerik.Sitefinity.Security;
 using Telerik.Sitefinity.Security.Claims;
 using Telerik.Sitefinity.Services;
+using Telerik.Sitefinity.Taxonomies;
+using Telerik.Sitefinity.Taxonomies.Model;
 
 namespace JXTNext.Sitefinity.Common.Helpers
 {
@@ -84,6 +86,37 @@ namespace JXTNext.Sitefinity.Common.Helpers
                 }
             }
             return roles;
+        }
+
+        public static List<string> GetAllRoleNames()
+        {
+            RoleManager roleManager = RoleManager.GetManager();
+            List<string> roleNames = new List<string>();
+            foreach (var provider in roleManager.Providers)
+            {
+                roleManager = RoleManager.GetManager(provider.Name);
+                foreach (var role in roleManager.GetRoleNames())
+                {
+                    roleNames.Add(role);
+                }
+            }
+
+            return roleNames;
+        }
+
+        public static List<Taxon> GetTopLevelCategories()
+        {
+            var manager = TaxonomyManager.GetManager();
+            var categoriesTaxonomy = manager.GetTaxonomy<HierarchicalTaxonomy>(TaxonomyManager.CategoriesTaxonomyId);
+
+            List<Taxon> topLovelTaxa = new List<Taxon>();
+            foreach (var taxon in categoriesTaxonomy.Taxa)
+            {
+                if (taxon.Parent == null)
+                    topLovelTaxa.Add(taxon);
+            }
+
+            return topLovelTaxa;
         }
     }
 }

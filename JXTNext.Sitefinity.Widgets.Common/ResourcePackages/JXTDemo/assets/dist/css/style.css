@@ -2404,6 +2404,10 @@ textarea {
 	-webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 	transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 	box-sizing: border-box;
+	font-size: 1.4rem;
+	border: none;
+	border-bottom: 2px solid #606263;
+	box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
 }
 
 input[type="text"]:focus,
@@ -2504,10 +2508,7 @@ textarea {
 .sf-fieldWrp input[type="file"],
 .sf-fieldWrp input[type="date"] {
 	padding: 10px;
-	border: none;
-	border-bottom: 2px solid #606263;
 	font-size: 1.6rem;
-	box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
 }
 
 .form-group input[type="text"]:focus,
@@ -2639,7 +2640,7 @@ textarea {
 	border-radius: 50%;
 	position: absolute;
 	left: 0;
-	top: 14px;
+	top: 11px;
 	height: 8px;
 	width: 8px;
 	background: #c7c8c8;
@@ -3161,6 +3162,7 @@ a.card-copy:focus .card-title {
 	font-weight: 300;
 	line-height: 1.3;
 	width: 100%;
+	box-shadow: none;
 }
 
 .hz-listing.cs-layout .btn,
@@ -3338,6 +3340,84 @@ a.card-copy:focus .card-title {
 .newsletter-form > form {
 	display: flex;
 	flex-wrap: wrap;
+}
+
+.sidebar .dropdown-tree {
+	margin-bottom: 3rem;
+}
+
+.sidebar .dropdown-tree .dropdown-toggle {
+	text-align: left;
+	width: 230px;
+	padding-right: 10px;
+	margin-bottom: 15px;
+	text-transform: uppercase;
+	font-weight: bold;
+	position: relative;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.sidebar .dropdown-tree .dropdown-toggle::after {
+	content: '\e908';
+	font: 0.5rem/1 "jn-icon";
+	position: absolute;
+	top: 5px;
+	right: 0.5rem;
+	border: none;
+	width: auto;
+}
+
+.sidebar .dropdown-tree ul {
+	transform: none !important;
+	position: relative !important;
+	font-size: 1.6rem;
+	max-height: none !important;
+	border: none;
+	float: none;
+	white-space: inherit;
+}
+
+.sidebar .dropdown-tree ul li {
+	position: relative;
+}
+
+.sidebar .dropdown-tree ul li > i {
+	position: absolute;
+	right: 0;
+	top: 7px;
+}
+
+.sidebar .dropdown-tree ul li:hover {
+	background: none !important;
+}
+
+.sidebar .dropdown-tree ul li a {
+	display: block !important;
+	white-space: inherit;
+	padding-right: 30px;
+}
+
+.sidebar .dropdown-tree ul ul {
+	margin-left: 15px;
+}
+
+.sidebar .dropdown-tree ul ul a {
+	font-size: 1.4rem;
+}
+
+.sidebar .dropdown-tree input[type="text"].form-control {
+	border: 1px solid #eee;
+	border-bottom: 2px solid #606263;
+	margin-bottom: 5px;
+	line-height: 1;
+	padding: 10px;
+}
+
+.sidebar .dropdown-tree .arrow {
+	top: 5px;
+	transform: none;
+	right: 18px;
 }
 
 .jn_jobsFeed {

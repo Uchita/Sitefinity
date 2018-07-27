@@ -64,10 +64,44 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
      
             ViewBag.FilterModel = JsonConvert.SerializeObject(filterModel);
             ViewBag.Keywords = filterModel.Keywords;
-    
+
+            AppendParentIds(filtersVMList);
+
             dynamicFilterResponse = filtersVMList as dynamic;
 
             return View(this.TemplateName, dynamicFilterResponse);
+        }
+
+        static void ProcessFiltersIds(List<JobFilter> filters, string parentId)
+        {
+            if(filters != null && filters.Count > 0)
+            {
+                foreach(var filter in filters)
+                {
+                    filter.ID = parentId + "_" + filter.ID;
+                    if(filter.Filters != null && filter.Filters.Count > 0)
+                    {
+                        ProcessFiltersIds(filter.Filters, filter.ID);
+                    }
+                }
+            }
+        }
+
+        static void AppendParentIds(List<JobFilterRoot> filtersVMList)
+        {
+            if (filtersVMList != null && filtersVMList.Count > 0)
+            {
+                foreach(var filterRoot in filtersVMList)
+                {
+                    if(filterRoot.Filters != null && filterRoot.Filters.Count > 0)
+                    {
+                        foreach(var filter in filterRoot.Filters)
+                        {
+                            ProcessFiltersIds(filter.Filters, filter.ID);
+                        }
+                    }
+                }
+            }
         }
 
         static void ProcessFilters(List<JobSearchFilterReceiver> selectedFilters, List<JobFilterRoot> filtersVMList)
@@ -159,11 +193,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     }
                 }
             }
-        }
-
-        protected override void HandleUnknownAction(string actionName)
-        {
-            this.ActionInvoker.InvokeAction(this.ControllerContext, "Index");
         }
 
         internal const string WidgetIconCssClass = "sfMvcIcn";

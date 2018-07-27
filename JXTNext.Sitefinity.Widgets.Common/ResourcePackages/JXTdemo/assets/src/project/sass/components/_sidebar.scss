@@ -17,7 +17,7 @@
                     border-radius: 50%;
                     position: absolute;
                     left: 0;
-                    top: 14px;
+                    top: 11px;
                     height: 8px;
                     width: 8px;
                     background: lighten($fontColor,40%);
@@ -39,6 +39,9 @@
                     background: $p1Color;
                 }
             }
+        }
+        ul ul{
+            margin-left: 15px;
         }
     }
     

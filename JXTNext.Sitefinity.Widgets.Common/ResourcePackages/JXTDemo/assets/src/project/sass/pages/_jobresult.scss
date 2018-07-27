@@ -113,6 +113,8 @@
         max-height: 120px;
         overflow: hidden;
         margin-bottom: 35px;
+        color: $fontColor;
+        line-height: 1.667;
     }
 
     //override default job card style
@@ -167,4 +169,9 @@
             }
         }
     }
+}
+
+.pageController a[disabled]{
+    cursor:not-allowed;
+    opacity:0.3;
 }

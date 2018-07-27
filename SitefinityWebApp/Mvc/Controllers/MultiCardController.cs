@@ -23,7 +23,6 @@ namespace SitefinityWebApp.Mvc.Controllers
     public class MultiCardController : Controller, ICustomWidgetVisualizationExtended, IPersonalizable
     {
 
-        ContentListViewModel
         #region Properties
 
         [TypeConverter(typeof(ExpandableObjectConverter))]

@@ -59,8 +59,9 @@
                     closedArrow: '<i class="fa fa-caret-right" aria-hidden="true"></i>',
                     openedArrow: '<i class="fa fa-caret-down" aria-hidden="true"></i>',
                     multiSelect: true,
-                    selectChildren: true,
-                    expandChildren: true,
+                    selectChildren: false,
+                    expandChildren: false,
+                    enableSearch: false,
                 };
                 $("#" + item.Name).DropDownTree(optionsArray[item.Name]);
             }

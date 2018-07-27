@@ -143,15 +143,16 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         {
             if (category != null && jobFilter != null)
             {
-                jobFilter.ID = category.Id.ToString();
+                jobFilter.ID = category.Id.ToString().ToUpper();
                 jobFilter.Label = category.Title;
                 if (category.Subtaxa != null && category.Subtaxa.Count > 0)
                 {
-                    var subFilter = new JobFilter() { Filters = new List<JobFilter>() };
+                    //var subFilter = new JobFilter() { Filters = new List<JobFilter>() };
                     foreach (var subTaxon in category.Subtaxa)
                     {
-                        jobFilter.Filters.Add(subFilter);
+                        var subFilter = new JobFilter() { Filters = new List<JobFilter>() };
                         ProcessCategories(subTaxon, subFilter);
+                        jobFilter.Filters.Add(subFilter);
                     }
                 }
             }
@@ -165,7 +166,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             foreach (var taxon in topLovelCategories)
             {
                 JobFilterRoot filterRoot = new JobFilterRoot() { Filters = new List<JobFilter>() };
-                filterRoot.ID = taxon.Id.ToString();
+                filterRoot.ID = taxon.Id.ToString().ToUpper();
                 filterRoot.Name = taxon.Title;
 
                 var hierarchicalTaxon = taxon as HierarchicalTaxon;

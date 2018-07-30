@@ -14,6 +14,7 @@ using Telerik.Sitefinity.Web.UI;
 using System.Linq;
 using Telerik.Sitefinity.Data.ContentLinks;
 using Telerik.Sitefinity.Modules.Libraries;
+using Telerik.Sitefinity.Frontend.Mvc.Models;
 
 namespace SitefinityWebApp.Mvc.Controllers
 {
@@ -21,6 +22,7 @@ namespace SitefinityWebApp.Mvc.Controllers
     [ControllerToolboxItem(Name = "MultiCard_Mvc", Title = "Multi Card", SectionName = ToolboxesConfig.ContentToolboxSectionName, CssClass = MultiCardController.WidgetIconCssClass)]
     public class MultiCardController : Controller, ICustomWidgetVisualizationExtended, IPersonalizable
     {
+
         #region Properties
 
         [TypeConverter(typeof(ExpandableObjectConverter))]
@@ -30,7 +32,7 @@ namespace SitefinityWebApp.Mvc.Controllers
             {
                 if (this.model == null)
                     this.model = ControllerModelFactory.GetModel<MultiCardModel>(this.GetType());
-
+                
                 return this.model;
             }
         }
@@ -80,7 +82,7 @@ namespace SitefinityWebApp.Mvc.Controllers
                 return SystemManager.IsDesignMode;
             }
         }
-
+        
         #endregion
 
         #region Actions
@@ -92,7 +94,7 @@ namespace SitefinityWebApp.Mvc.Controllers
             //Telerik.Sitefinity.Security.Model.User user = userManager.GetUserByEmail("careers@nzme.co.nz");
             //var consultantProfile = userProfileManager.GetUserProfiles(user).Where(c => c.GetType().FullName.ToUpper().Contains("CONSULTANTPROFILE")).FirstOrDefault();
             //Telerik.Sitefinity.Model.ContentLinks.ContentLink contentLink = (Telerik.Sitefinity.Model.ContentLinks.ContentLink) (Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "Banner"));
-
+            
             //var image = LibrariesManager.GetManager().GetImage(contentLink.ChildItemId);
 
             if (this.IsEmpty)
@@ -110,7 +112,7 @@ namespace SitefinityWebApp.Mvc.Controllers
         protected override void HandleUnknownAction(string actionName)
         {
             this.ActionInvoker.InvokeAction(this.ControllerContext, "Index");
-        }
+        } 
 
         #endregion
 

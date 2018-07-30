@@ -10,93 +10,154 @@
 @using Telerik.Sitefinity.Frontend.Identity.Mvc.Models.UsersList;
 @using Telerik.Sitefinity.Services;
 @using Telerik.Sitefinity.Modules.UserProfiles;
+@using Telerik.Sitefinity.Taxonomies;
+@using Telerik.Sitefinity.Taxonomies.Model;
 
 @Html.Script(ScriptRef.JQuery, "top", false)
 
 
-<div class="@Model.CssClass">
+@if (Model.ContentType == typeof(SitefinityProfile))
+{
+    Telerik.Sitefinity.Security.UserManager userManager = Telerik.Sitefinity.Security.UserManager.GetManager();
+    Telerik.Sitefinity.Security.UserProfileManager userProfileManager = Telerik.Sitefinity.Security.UserProfileManager.GetManager();
+    <div class="container">
+        <div class="jn_word-scroller">
 
-    <div class="bg-2 team-wrapper">
-        <div class="container">
-            <h2 class="block-title">The expert team</h2>
-            <div class="@Model.CssClass row card-flipper grid-view justify-content-center">
-                @if (Model.ContentType == typeof(SitefinityProfile))
-                {
-                    Telerik.Sitefinity.Security.UserManager userManager = Telerik.Sitefinity.Security.UserManager.GetManager();
-                    Telerik.Sitefinity.Security.UserProfileManager userProfileManager = Telerik.Sitefinity.Security.UserProfileManager.GetManager();
-                    int i = 0;
-                    foreach (var item in Model.Items)
+            <label>Select Team:</label>
+            <ul class="owl-carousel owl-loaded owl-drag">
+                <li><a href="javascript:void(0);" rel="All">All</a></li>
+                @{
+                    var manager = TaxonomyManager.GetManager();
+                    var categoriesTaxonomy = manager.GetTaxonomy<HierarchicalTaxonomy>(TaxonomyManager.CategoriesTaxonomyId);
+                    var industryTaxon = categoriesTaxonomy.Taxa.Where(t => t.Title == "Industry").FirstOrDefault() as HierarchicalTaxon;
+
+
+                    if (industryTaxon != null)
+                    {
+
+                        foreach (var taxon in industryTaxon.Subtaxa)
+                        {
+                            <li><a href="javascript:void(0);" data-filter="@taxon.Title">@taxon.Title</a></li>
+
+                        }
+                    }
+
+                }
+
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="@Model.CssClass">
+
+        <div class="bg-2 team-wrapper">
+            <div class="container">
+                <h2 class="block-title">The expert team</h2>
+                <div class="@Model.CssClass row card-flipper grid-view justify-content-center">
+
+                    @{
+                        int i = 0;
+                    }
+                    @foreach (var item in Model.Items)
                     {
                         var consultantProfile = userProfileManager.GetUserProfiles((item.DataItem as SitefinityProfile).User).Where(c => c.GetType().FullName.ToUpper().Contains("CONSULTANTPROFILE")).FirstOrDefault();
 
-                <div class="sc-item">
-                    <div class="card-flip">
-                        <div class="front sf-img-thmb">
-                            <img class="media-object" src="@((item as SitefinityProfileItemViewModel).AvatarImageUrl)" alt="@item.Fields.FirstName" width="330" height="410" />
-                            <h3>@item.Fields.FirstName</h3>
-                        </div>
+                        <div class="sc-item">
+                            <div class="card-flip">
+                                <div class="front sf-img-thmb">
+                                    <img class="media-object" src="@((item as SitefinityProfileItemViewModel).AvatarImageUrl)" alt="@item.Fields.FirstName" width="330" height="410" />
+                                    <h3>@item.Fields.FirstName</h3>
+                                </div>
 
-                        <div class="overlay sf-media-body">
-                            <a class="block-wrap" href="@UsersHelper.EncodeUrlUsername(HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage), item as SitefinityProfileItemViewModel)">
-                                <h3>@(((SitefinityProfile)item.DataItem).GetUserDisplayName())</h3>
-                                <p>
-                                    @Html.HtmlSanitize((((SitefinityProfileItemViewModel)item).About))
-                                </p>
-                            </a>
+                                <div class="overlay sf-media-body">
+                                    <a class="block-wrap" href="@UsersHelper.EncodeUrlUsername(HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage), item as SitefinityProfileItemViewModel)">
+                                        <h3>@(((SitefinityProfile)item.DataItem).GetUserDisplayName())</h3>
+                                        <p>
+                                            @Html.HtmlSanitize((((SitefinityProfileItemViewModel)item).About))
+                                        </p>
+                                    </a>
 
-                            <div class="footer-meta">
-                                @if (consultantProfile != null && !String.IsNullOrEmpty((string)Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "Phone")))
-                                {
-                                    <a href="@(Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "Phone"))" title="Phone" class="jn_ico icon-phone"></a>
-                                }
 
-                                <a href="mailto:@(((SitefinityProfile)item.DataItem).User.Email)" title="Email" class="jn_ico icon-mail"></a>
-                                @if (consultantProfile != null && !String.IsNullOrEmpty((string)Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "url_linkedin")))
-                                {
-                                    <a href="@Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "url_linkedin")" title="Linked-in" class="jn_ico icon-linkedin" target="_blank"></a>
-                                }
+                                    @*@if (consultantProfile != null && (Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "Category")))
+                                    {*@
+                                        <span>@(Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "Category"))</span>
+                                    @*}*@
+
+                                    @{ 
+                                        
+
+                                        
+                                    }
+
+                                        @*@if (item.Fields.Category != null)
+                                        {
+                                            <ul @Html.InlineEditingFieldAttributes("Category", "HierarchicalTaxon")>
+                                                @foreach (var taxon in item.GetHierarchicalTaxons("Category"))
+                                                {
+                                                    <li><a href="/@SiteMapBase.GetActualCurrentNode().UrlName/-in-category/categories/@taxon.UrlName.ToString()">@taxon.Title.ToString()</a></li>
+                                                }
+                                            </ul>
+                                        }*@
+
+
+
+
+                                        <div class="footer-meta">
+                                            @if (consultantProfile != null && !String.IsNullOrEmpty((string)Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "Phone")))
+                                            {
+                                                <a href="@(Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "Phone"))" title="Phone" class="jn_ico icon-phone"></a>
+                                            }
+
+                                            <a href="mailto:@(((SitefinityProfile)item.DataItem).User.Email)" title="Email" class="jn_ico icon-mail"></a>
+                                            @if (consultantProfile != null && !String.IsNullOrEmpty((string)Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "url_linkedin")))
+                                            {
+                                                <a href="@Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "url_linkedin")" title="Linked-in" class="jn_ico icon-linkedin" target="_blank"></a>
+                                            }
+
+                                        </div>
+                                    </div>
 
                             </div>
+                            @if (consultantProfile != null)
+                            {
+                                <p class="pos">@(Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "Position"))</p>
+                            }
                         </div>
+                    }
 
-                    </div>
-                    @if (consultantProfile != null)
+
+                    @if (Model.ShowPager)
                     {
-                        <p class="pos">@(Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "Position"))</p>
+                        @Html.Action("Index", "ContentPager", new
+                           {
+                               currentPage = Model.CurrentPage,
+                               totalPagesCount = Model.TotalPagesCount.Value,
+                               redirectUrlTemplate = ViewBag.RedirectPageUrlTemplate
+                           })
                     }
                 </div>
-                    }
-                }
-                else
-                {
-                    if (SystemManager.IsDesignMode)
-                    {
-                        @Html.Resource("TheSelectedTemplateCannotBeUsed")
-                    }
-                    else
-                    {
-                        foreach (var item in Model.Items)
-                        {
-                            <h3>
-                                <a href="@HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage)">
-                                    @UserProfilesHelper.GetUserDisplayName(item.Fields.Owner)
-                                </a>
-                            </h3>
-                        }
-                    }
-                }
 
-                @if (Model.ShowPager)
-                {
-                    @Html.Action("Index", "ContentPager", new
-                       {
-                           currentPage = Model.CurrentPage,
-                           totalPagesCount = Model.TotalPagesCount.Value,
-                           redirectUrlTemplate = ViewBag.RedirectPageUrlTemplate
-                       })
-                }
             </div>
-
         </div>
     </div>
-</div>
+
+}
+else
+{
+    if (SystemManager.IsDesignMode)
+    {
+        @Html.Resource("TheSelectedTemplateCannotBeUsed")
+    }
+    else
+    {
+        foreach (var item in Model.Items)
+        {
+            <h3>
+                <a href="@HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage)">
+                    @UserProfilesHelper.GetUserDisplayName(item.Fields.Owner)
+                </a>
+            </h3>
+        }
+    }
+}

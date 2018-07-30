@@ -108,7 +108,7 @@ namespace JXTNext.Sitefinity.Common.Helpers
         {
             var manager = TaxonomyManager.GetManager();
             var categoriesTaxonomy = manager.GetTaxonomy<HierarchicalTaxonomy>(TaxonomyManager.CategoriesTaxonomyId);
-
+            var ind = categoriesTaxonomy.Taxa.Where(t => t.Name == "Inustry").FirstOrDefault() as HierarchicalTaxon;
             List<Taxon> topLovelTaxa = new List<Taxon>();
             foreach (var taxon in categoriesTaxonomy.Taxa)
             {

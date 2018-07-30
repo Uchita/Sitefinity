@@ -144,9 +144,9 @@
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     @include rotate(45deg);
+    font: 4rem/1 FontAwesome;
     @if $arrow = true{
         &::after{
-            font: 4rem/1 FontAwesome;
             display: block;
             @include rotate(-45deg);
             position: relative;

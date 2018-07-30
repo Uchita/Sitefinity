@@ -3,6 +3,9 @@
 #jn_banner{
     clear: both;
     text-align: center;
+    max-height: 852px;
+    margin-bottom: 0;
+    overflow: hidden;
     h1{
        font-size: 12rem;
        @include bp-max(md){
@@ -14,6 +17,13 @@
     }
     .row{
         min-height: 90vh;
+    }
+
+    .owl-dots{
+        position: absolute;
+        padding-top: 0;
+        width: 100%;
+        bottom: 18rem;
     }
 }
 .banner-bg{
@@ -30,6 +40,8 @@
 .banner-single{
     position: relative;
     overflow: hidden;
+    float: left;
+    width: 100%;
     .bg-video{
         position: absolute;
         top: 0;
@@ -46,6 +58,7 @@
 
 .jn_innerpage{
     padding-top: 17rem;
+    position: relative;
     @include bp-max(sm){
         padding-top: 13rem;
     }
@@ -55,6 +68,14 @@
     margin-top: 3rem;
     margin-bottom: 5rem;
     font-weight: 900;
+}
+.overlay-title{
+    position: absolute;
+    bottom: 20px;
+    color: $brightColor;
+    width: 100%;
+    z-index: 11;
+    margin: 0;
 }
 .page-intro{
     font-size: 2.4rem;

@@ -40,6 +40,7 @@
 
     var model = @Html.Raw(json);
     var isDesignMode = @Html.Raw(Json.Encode(@SystemManager.IsDesignMode));
+    var jobContainer = $("#listView");
 
     if (model != null && model != "undefined" && !isDesignMode) {
         var pageSize = @ViewBag.PageSize;
@@ -155,6 +156,10 @@
             } else {
                 $('#pager li.pageNext a').removeAttr('disabled');
             }
+
+            //adding loader
+            jobContainer.addClass('loading');
+
             $.ajax({
                 type: 'POST',
                 cache: false,
@@ -175,7 +180,7 @@
 
                         dataSource.sort({ field: token[0], dir: token[1] });
 
-                        $("#listView").kendoListView({
+                        jobContainer.kendoListView({
                             dataSource: dataSource,
                             template: kendo.template($("#template").html()),
 
@@ -185,6 +190,7 @@
                         $(".info-block").removeClass('hidden');
                         $("#sortOrder").parent().hide();
                     }
+                    jobContainer.removeClass('loading');
                 },
                 error: function (response) {
                     console.log('error response: '+response);

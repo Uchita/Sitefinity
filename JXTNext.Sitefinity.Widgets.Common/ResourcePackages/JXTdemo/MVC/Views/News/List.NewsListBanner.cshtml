@@ -39,6 +39,7 @@
                     <h3>
                         <a @Html.InlineEditingFieldAttributes("Title", "ShortText") href="@navigateUrl">@item.Fields.Title</a>
                     </h3>
+                    <div class="sc-desc"><p>@Html.HtmlSanitize((string)item.Fields.Summary)</p></div>
                 </div>
 
             </section>

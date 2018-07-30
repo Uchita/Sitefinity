@@ -7,6 +7,7 @@ using JXTNext.Sitefinity.Widgets.Social.Mvc.StringResources;
 using JXTNext.Sitefinity.Widgets.User.Mvc.Models;
 using SitefinityWebApp.App_Start;
 using SitefinityWebApp.Models;
+using SitefinityWebApp.Mvc.Attributes;
 using System;
 using System.Web.Http;
 using System.Web.Http.Controllers;
@@ -40,6 +41,11 @@ namespace SitefinityWebApp
             Res.RegisterResource<JobAlertResources>();
             Res.RegisterResource<JobDetailsResources>();
             Res.RegisterResource<LoginStatusExtendedResources>();
+
+            if (e.CommandName == "Bootstrapped")
+            {
+                GlobalFilters.Filters.Add(new SocialShareAttribute());
+            }
         }
 
         protected void Session_Start(object sender, EventArgs e)

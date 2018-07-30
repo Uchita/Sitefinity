@@ -536,6 +536,9 @@
     <None Include="ResourcePackages\JXTDemo\MVC\Views\SocialLink\Simple.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\SocialShare\SocialShareInCode.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ResourcePackages\JXTDemo\MVC\Views\SocialShare\SocialShare.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

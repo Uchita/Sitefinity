@@ -66,7 +66,6 @@
 
                         case "DropDown Multi":
 
-                            <input type="hidden" name="Filters[@counter].searchTarget" value='@item.FilterType' />
                             <input type="hidden" name="Filters[@counter].rootId" value='@item.FilterType' />
                             <label class="col-4" for="@string.Format("selected-{0}",item.ID)" rel="@item.FilterType">
                                 <select id=@string.Format("selected-{0}",item.ID) name="Filters[@counter].values" style="display:none" multiple></select>

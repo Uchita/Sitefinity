@@ -1,18 +1,42 @@
 ﻿@using Telerik.Sitefinity.Frontend.Mvc.Helpers
 
-<expander expander-title="@Html.Resource("MoreOptions", "JobSearchResources")">
+<uib-tabset class="nav-tabs-wrapper">
 
-    <div class="form-group">
-        <label for="templateName">Template</label>
-        <div class="row">
-            <div class="col-xs-6">
-                <select id="templateName" ng-model="properties.TemplateName.PropertyValue" class="form-control">
-                    @foreach (var viewName in Html.GetViewNames("JobFilters", @"(?<viewName>^T_.*)$"))
-                    {
-                        <option value="@viewName">@viewName.Replace("T_", "")</option>
-                    }
-                </select>
+    <uib-tab heading="Content">
+        <div class="form-group">
+            <label for="templateName">Template</label>
+            <div class="row">
+                <div class="col-xs-6">
+                    <select id="templateName" ng-model="properties.TemplateName.PropertyValue" class="form-control">
+                        @foreach (var viewName in Html.GetViewNames("JobFilters", @"(?<viewName>^T_.*)$"))
+                        {
+                            <option value="@viewName">@viewName.Replace("T_", "")</option>
+                        }
+                    </select>
+                </div>
             </div>
         </div>
-    </div>
-</expander>
+    </uib-tab>
+
+    <uib-tab heading="Select Filters">
+        <div ng-controller="SimpleCtrl" class="list-group list-group-endless" kendo-sortable k-options="sortableOptions" k-on-change="sortItems(kendoEvent)" k-ignore="'input'">
+            <div class="list-group-item"
+                 ng-repeat="item in list track by item.TrackId"
+                 ng-class="list-group-item-draggable">
+
+                <div class="row">
+                    <div class="col-xs-1">
+                        <span class="handler list-group-item-drag"></span>
+                    </div>
+                    <div class="col-xs-2">
+                        <div class="checkbox">
+                            <span><label><input type="checkbox" ng-model="item.Selected" />{{item.TaxonamyName}}</label></span>
+                            @*<span sf-shrinked-breadcrumb="{{item.TaxonamyName}}" sf-max-length="60"></span>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </uib-tab>
+
+</uib-tabset>

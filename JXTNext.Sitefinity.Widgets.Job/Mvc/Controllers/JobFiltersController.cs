@@ -11,6 +11,7 @@ using System.Dynamic;
 using JXTNext.Sitefinity.Connector.Options.Models.Job;
 using Newtonsoft.Json;
 using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
+using System.ComponentModel;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -18,6 +19,18 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
     [ControllerToolboxItem(Name = "JobFilters_MVC", Title = "Filters Listing", SectionName = "JXTNext.Job", CssClass = JobFiltersController.WidgetIconCssClass)]
     public class JobFiltersController : Controller
     {
+        [TypeConverter(typeof(ExpandableObjectConverter))]
+        public JobFiltersDesignerViewModel Model
+        {
+            get
+            {
+                if (this.model == null)
+                    this.model = new JobFiltersDesignerViewModel();
+
+                return this.model;
+            }
+        }
+
         /// <summary>
         /// Gets or sets the name of the template that widget will be displayed.
         /// </summary>
@@ -64,10 +77,64 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
      
             ViewBag.FilterModel = JsonConvert.SerializeObject(filterModel);
             ViewBag.Keywords = filterModel.Keywords;
-    
-            dynamicFilterResponse = filtersVMList as dynamic;
+
+            var selectedConfigFilters = GetSelecctedFiltersFromConfig(filtersVMList);
+            AppendParentIds(selectedConfigFilters);
+            dynamicFilterResponse = selectedConfigFilters as dynamic;
 
             return View(this.TemplateName, dynamicFilterResponse);
+        }
+
+        private List<JobFilterRoot> GetSelecctedFiltersFromConfig(List<JobFilterRoot> filtersVMList)
+        {
+            var designerViewModel = this.Model.GetViewDesignerModel();
+            List<JobFilterRoot> selectedConfigFilters = new List<JobFilterRoot>();
+
+            foreach (var item in designerViewModel)
+            {
+                foreach (var filter in filtersVMList)
+                {
+                    if (item.TaxonamyName.Equals(filter.Name, StringComparison.OrdinalIgnoreCase))
+                    {
+                        selectedConfigFilters.Add(filter);
+                        break;
+                    }
+                }
+            }
+
+            return selectedConfigFilters;
+        }
+
+        static void ProcessFiltersIds(List<JobFilter> filters, string parentId)
+        {
+            if (filters != null && filters.Count > 0)
+            {
+                foreach (var filter in filters)
+                {
+                    filter.ID = parentId + "_" + filter.ID;
+                    if (filter.Filters != null && filter.Filters.Count > 0)
+                    {
+                        ProcessFiltersIds(filter.Filters, filter.ID);
+                    }
+                }
+            }
+        }
+
+        static void AppendParentIds(List<JobFilterRoot> filtersVMList)
+        {
+            if (filtersVMList != null && filtersVMList.Count > 0)
+            {
+                foreach (var filterRoot in filtersVMList)
+                {
+                    if (filterRoot.Filters != null && filterRoot.Filters.Count > 0)
+                    {
+                        foreach (var filter in filterRoot.Filters)
+                        {
+                            ProcessFiltersIds(filter.Filters, filter.ID);
+                        }
+                    }
+                }
+            }
         }
 
         static void ProcessFilters(List<JobSearchFilterReceiver> selectedFilters, List<JobFilterRoot> filtersVMList)
@@ -161,11 +228,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
         }
 
-        protected override void HandleUnknownAction(string actionName)
-        {
-            this.ActionInvoker.InvokeAction(this.ControllerContext, "Index");
-        }
-
         internal const string WidgetIconCssClass = "sfMvcIcn";
+        private JobFiltersDesignerViewModel model;
     }
 }

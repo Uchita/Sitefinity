@@ -48,28 +48,28 @@
                             <a @Html.InlineEditingFieldAttributes("Title", "ShortText") href="@navigateUrl">@item.Fields.Title</a>
                         </h3>
 
+                        <div class="sc-desc"><p>@Html.HtmlSanitize((string)item.Fields.Summary)</p></div>
 
                         @if (item.Fields.Tags != null && item.Fields.Tags.Count > 0)
                         {
                             <div class="tags" @Html.InlineEditingFieldAttributes("Tags", "FlatTaxon")>
                                 @foreach (var taxon in item.GetFlatTaxons("Tags"))
                                 {
-                                <a href="/@SiteMapBase.GetActualCurrentNode().UrlName/-in-tags/tags/@taxon.UrlName.ToString()">@taxon.Title.ToString()</a>
+                                    <a href="/@SiteMapBase.GetActualCurrentNode().UrlName/-in-tags/tags/@taxon.UrlName.ToString()">@taxon.Title.ToString()</a>
                                 }
                             </div>
                         }
-                      
 
                         @*@if (item.Fields.Category != null)
-                        {
-                            <ul @Html.InlineEditingFieldAttributes("Category", "HierarchicalTaxon")>
-                                @foreach (var taxon in item.GetHierarchicalTaxons("Category"))
-                                {
-                                    <li><a href="/@SiteMapBase.GetActualCurrentNode().UrlName/-in-category/categories/@taxon.UrlName.ToString()">@taxon.Title.ToString()</a></li>
-                                }
-                            </ul>
-                        }*@
-                        
+        {
+            <ul @Html.InlineEditingFieldAttributes("Category", "HierarchicalTaxon")>
+                @foreach (var taxon in item.GetHierarchicalTaxons("Category"))
+                {
+                    <li><a href="/@SiteMapBase.GetActualCurrentNode().UrlName/-in-category/categories/@taxon.UrlName.ToString()">@taxon.Title.ToString()</a></li>
+                }
+            </ul>
+        }*@
+
 
                         <div class="avatar">
                             <div class="img-holder">

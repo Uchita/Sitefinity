@@ -1,5 +1,6 @@
 @model Telerik.Sitefinity.Frontend.Mvc.Models.ContentListViewModel
 
+@using Telerik.Sitefinity.Frontend.Mvc.Models;
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers;
 @using Telerik.Sitefinity.Modules.Pages;
 @using Telerik.Sitefinity.Web.DataResolving;
@@ -10,7 +11,7 @@
     @foreach (var item in Model.Items)
     {
         string bannerImg = ((Telerik.Sitefinity.Frontend.Mvc.Models.ItemViewModel)item).GetItemImageUrl("Image", 0);
-    <div class="banner-bg banner-single bg-cover" style="background-image:url(@(bannerImg))">
+    <div class="banner-bg banner-single bg-cover" style="background-image:url('@(bannerImg)')">
         @if (!String.IsNullOrEmpty(item.Fields.Video_url))
         {
             <div class="bg-video video-area">
@@ -34,3 +35,20 @@
     }
 
 </div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        // jobFeed scroller
+        if ($('#jn_banner .banner-item').length > 1) {
+            $('#jn_banner').addClass('owl-carousel').owlCarousel({
+                dots: true,
+                nav: false,
+                navText: '',
+                items: 1,
+                slideBy: 1
+            });
+        }
+    });
+    
+    
+</script>

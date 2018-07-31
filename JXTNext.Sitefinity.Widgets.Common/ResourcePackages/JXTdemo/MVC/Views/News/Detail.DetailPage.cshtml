@@ -4,6 +4,7 @@
 @using Telerik.Sitefinity.Web.DataResolving;
 @using JXTNext.Sitefinity.Common.Helpers;
 @using Telerik.Sitefinity.Web;
+@using SitefinityWebApp.Mvc.Attributes
 
 
 @{
@@ -25,22 +26,16 @@
                 <span class="jn_ico icon-calendar"></span>
                 <span class="data-dateValue"><span class="data-month">@Model.Item.GetDateTime("PublicationDate", "MMM")</span> <span class="data-day">@Model.Item.GetDateTime("PublicationDate", "dd")</span></span>
             </div>
-            <div class="data-share">
-                <span class="jn_ico icon-share"></span>
-                <span class="data-dateValue">Quick Share</span>
-                @{
-                    if (Model.EnableSocialSharing)
-                    {
-                        var item = Model.Item.DataItem as Telerik.Sitefinity.Model.IHasTitle;
-                        @Html.SocialShareOptions(item);
-                    }
+                
+            @{
+                if (Model.EnableSocialSharing)
+                {
+                    var item = Model.Item.DataItem as Telerik.Sitefinity.Model.IHasTitle;
+                    @Html.SocialShareOptions(item, "SocialShareInCode");
                 }
-            </div>
-            <div class="data-email">
-                <span class="jn_ico icon-mail"></span>
-                <span class="data-dateValue">Email to Friend</span>
-            </div>
-
+            }
+          
+            
             <div class="bio-pick">
                 <figure>
                     <img src="~/ResourcePackages/JXTdemo/assets/dist/images/apple-touch-icon-72x72.png" alt="Avatar" />
@@ -74,14 +69,18 @@
             <div class="post-summary" @Html.InlineEditingFieldAttributes("Summary", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Summary)</div>
 
             <div class="full-desc" @Html.InlineEditingFieldAttributes("Content", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Content)</div>
-            
+
         </div>
 
     </div>
-
+    @if (Model.Item.Fields.AllowComments)
+    {
     <div class="comment-wrapper">
+        
         @Html.CommentsList(@Model.Item.DataItem)
+        
     </div>
+    }
 </div>
 
 

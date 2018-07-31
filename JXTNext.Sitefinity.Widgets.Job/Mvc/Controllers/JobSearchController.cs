@@ -85,8 +85,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
             var fullTemplateName = this.templateNamePrefix + this.TemplateName;
 
-            AppendParentIds(jobSearchComponents);
-
             return View(fullTemplateName, jobSearchComponents);
         }
 
@@ -107,52 +105,19 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             data = data.Where(d => d.Show == true || d.Filters?.Count > 0).ToList();
         }
 
-        static void ProcessFiltersIds(List<JobSearchItem> filters, string parentId)
-        {
-            if (filters != null && filters.Count > 0)
-            {
-                foreach (var filter in filters)
-                {
-                    filter.ID = parentId + "_" + filter.ID;
-                    if (filter.Filters != null && filter.Filters.Count > 0)
-                    {
-                        ProcessFiltersIds(filter.Filters, filter.ID);
-                    }
-                }
-            }
-        }
-
-        static void AppendParentIds(List<JobSearchModel> filtersVMList)
-        {
-            if (filtersVMList != null && filtersVMList.Count > 0)
-            {
-                foreach (var filterRoot in filtersVMList)
-                {
-                    if (filterRoot.Filters != null && filterRoot.Filters.Count > 0)
-                    {
-                        foreach (var filter in filterRoot.Filters)
-                        {
-                            ProcessFiltersIds(filter.Filters, filter.ID);
-                        }
-                    }
-                }
-            }
-        }
-
         public static void ProcessCategories(HierarchicalTaxon category, JobFilter jobFilter)
         {
             if (category != null && jobFilter != null)
             {
-                jobFilter.ID = category.Id.ToString().ToUpper();
+                jobFilter.ID = category.Id.ToString();
                 jobFilter.Label = category.Title;
                 if (category.Subtaxa != null && category.Subtaxa.Count > 0)
                 {
-                    //var subFilter = new JobFilter() { Filters = new List<JobFilter>() };
+                    var subFilter = new JobFilter() { Filters = new List<JobFilter>() };
                     foreach (var subTaxon in category.Subtaxa)
                     {
-                        var subFilter = new JobFilter() { Filters = new List<JobFilter>() };
-                        ProcessCategories(subTaxon, subFilter);
                         jobFilter.Filters.Add(subFilter);
+                        ProcessCategories(subTaxon, subFilter);
                     }
                 }
             }
@@ -166,7 +131,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             foreach (var taxon in topLovelCategories)
             {
                 JobFilterRoot filterRoot = new JobFilterRoot() { Filters = new List<JobFilter>() };
-                filterRoot.ID = taxon.Id.ToString().ToUpper();
+                filterRoot.ID = taxon.Id.ToString();
                 filterRoot.Name = taxon.Title;
 
                 var hierarchicalTaxon = taxon as HierarchicalTaxon;

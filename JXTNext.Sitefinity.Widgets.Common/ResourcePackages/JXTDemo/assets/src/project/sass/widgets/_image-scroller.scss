@@ -24,10 +24,13 @@
 .jn_scroller-full{
     @include listReset;
     margin-bottom: 5rem;
-    max-height: 410px;
+    // max-height: 410px;
     overflow: hidden;
     &.owl-carousel{
         overflow: visible;
+    }
+    img{
+        width: 100%;
     }
     .owl-nav{
         button{

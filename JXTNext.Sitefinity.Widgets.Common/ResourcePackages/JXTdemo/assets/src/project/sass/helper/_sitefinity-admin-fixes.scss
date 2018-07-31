@@ -24,4 +24,19 @@
     .modal-header {
         display: block;
     }
+
+    .dropdown-toggle::after{
+        display: none;
+    }
+    .sf-backend-wrp .caret{
+        margin-top: 8px
+    }
+    .modal-dialog .form-control,
+    .form-group input[type="text"]{
+        margin-bottom: 5px;
+        padding: 7px 5px;
+    }
+    .rdTitleBar li a:before{
+        display: none;
+    }
 }

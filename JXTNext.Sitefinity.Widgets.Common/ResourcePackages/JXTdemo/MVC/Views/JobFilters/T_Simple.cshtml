@@ -6,6 +6,8 @@
 
 @if (Model != null)
 {
+    <input id="selectedkeywordsfilter" type="text" value="@ViewBag.Keywords" /><br /><br />
+
     foreach (var item in Model)
     {
         <div class="dropdown dropdown-tree" id=@item.Name></div>

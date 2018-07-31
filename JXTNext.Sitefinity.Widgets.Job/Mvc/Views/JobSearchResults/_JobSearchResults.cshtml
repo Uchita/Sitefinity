@@ -131,22 +131,9 @@
 
             var parm = { jobRequest: @Html.Raw(Json.Encode(@ViewBag.Request)), PageNumber: PageNumber };
             var urlPath = $(location).attr('pathname') + "/GetSearchResults";
-            var searchPath = $(location).attr('search');
-            if (searchPath == null || searchPath == "") {
-                searchPath += ("?" + "&Page=" + PageNumber);
-            }
-            else if (searchPath.includes("&Page=")) {
-                let pageIndex = searchPath.indexOf("&Page=");
-                searchPath = searchPath.slice(0, pageIndex);
-                searchPath += ("&Page=" + PageNumber);
-            }
-            else {
-                searchPath += ("&Page=" + PageNumber);
-            }
-
             queryStringArr.length = 0;
             filterModel.Page = PageNumber;
-            var pushStateUrl = $(location).attr('pathname') + searchPath;
+            var pushStateUrl = $(location).attr('pathname') + "?" + makeQueryString(filterModel, "", false);
             var data = { filterModel: filterModel }
             window.history.pushState(data, "", pushStateUrl);
 

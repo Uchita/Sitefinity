@@ -49,6 +49,7 @@
 
         var model = @Html.Raw(json);
         if (model != null && model != "undefined") {
+            var filterModel = JSON.parse('@Html.Raw(@ViewBag.FilterModel)');
             var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
 
             for (var item of filterData) {
@@ -59,19 +60,17 @@
                     closedArrow: '<i class="fa fa-caret-right" aria-hidden="true"></i>',
                     openedArrow: '<i class="fa fa-caret-down" aria-hidden="true"></i>',
                     multiSelect: true,
-                    selectChildren: false,
-                    expandChildren: false,
-                    enableSearch: false,
+                    selectChildren: true,
+                    expandChildren: true,
                 };
                 $("#" + item.Name).DropDownTree(optionsArray[item.Name]);
             }
 
             $("#refine-results").click(function (event) {
-                var filterModel = {};
-                filterModel.Filters = [];
-
+                if (filterModel.Filters == null || filterModel.Filters == "undefined") {
+                    filterModel.Filters = [];
+                }
                 $.each(optionsArray, function (id, item) {
-                    var selectedIdsCount = $("#" + id).GetSelectedElementIds().length;
                     if (filterModel.Filters.length > 0) {
                         let flag = false;
                         for (var item of filterModel.Filters) {
@@ -81,26 +80,24 @@
                                 break;
                             }
                         }
-                        if (flag == false && selectedIdsCount > 0)
+                        if (flag == false)
                             filterModel.Filters.push({ rootId: id, values: $("#" + id).GetSelectedElementIds() });
                     }
-                    else if (selectedIdsCount > 0) {
+                    else {
                         filterModel.Filters.push({ rootId: id, values: $("#" + id).GetSelectedElementIds() });
                     }
                 });
 
-                filterModel.Keywords = $("#selectedkeywordsfilter").val();
                 var data = { filterModel: filterModel }
                 var urlPath = $(location).attr('pathname') + "/GetFilterSearchResultsPartial";
-                var queryStringData = makeQueryString(filterModel, "", false);
-                var pushStateUrl = $(location).attr('pathname') + "?" + queryStringData;
+                var pushStateUrl = $(location).attr('pathname') + "?" + makeQueryString(filterModel, "", false);
                 window.history.pushState(data, "", pushStateUrl);
                 queryStringArr.length = 0;
                 $.ajax({
                     type: "POST",
                     cache: false,
                     url: urlPath,
-                    data: queryStringData,
+                    data: data,
                     dataType: 'html',
                     success: function (response) {
                         $("#resultsPagePartialContent").empty().html(response);

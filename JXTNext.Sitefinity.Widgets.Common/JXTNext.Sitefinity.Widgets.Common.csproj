@@ -422,12 +422,12 @@
     <EmbeddedResource Include="ResourcePackages\JXTDemo\MVC\Views\JobFilters\_SimpleJS_Partial.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <Content Include="ResourcePackages\JXTDemo\MVC\Views\JobSearch\JobSearch.Simple.cshtml">
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\JobSearch\JobSearch.Simple.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ResourcePackages\JXTDemo\MVC\Views\JobSearch\JobSearch.WordScroller.cshtml">
+    </None>
+    <None Include="ResourcePackages\JXTDemo\MVC\Views\JobSearch\JobSearch.WordScroller.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </None>
     <None Include="ResourcePackages\JXTDemo\MVC\Views\JobSearch\Simple.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -72,6 +72,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             else
                 searchInputs = JsonConvert.DeserializeObject<JobSearchResultsFilterModel>(jobRequest);
 
+            searchInputs.Page = pageNumber;
+
             JXTNext_SearchJobsRequest searchRequest = ProcessInputToSearchRequest(searchInputs);
 
             JXTNext_SearchJobsResponse jobResponse = (JXTNext_SearchJobsResponse)_BLConnector.SearchJobs(searchRequest);
@@ -81,7 +83,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
         [HttpPost]
         [StandaloneResponseFilter]
-        public PartialViewResult GetFilterSearchResultsPartial(JobSearchResultsFilterModel filterModel)
+        public PartialViewResult GetFilterSearchResultsPartial([ModelBinder(typeof(JobSearchResultsFilterBinder))] JobSearchResultsFilterModel filterModel)
         {
             dynamic dynamicJobResultsList = null;
 

@@ -42,6 +42,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
      
             HttpRequestBase request = controllerContext.HttpContext.Request;
             string keywords = request.Params["Keywords"];
+            int page = 1;
+            if (request.Params["Page"] != null)
+                page = Int32.Parse(request.Params["Page"]);
 
             /*
              * Input samples 
@@ -54,7 +57,14 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
             Dictionary<string, FilterNode> tracker = new Dictionary<string, FilterNode>();
 
             List<string> filterKeys = request.QueryString.AllKeys.Where(c => c.ToUpper().Contains("FILTERS")).OrderBy(c=>c).ToList();
-            foreach(string k in filterKeys)
+            var reqParams = request.QueryString;
+            if (filterKeys == null || filterKeys.Count <= 0)
+            {
+                filterKeys = request.Params.AllKeys.Where(c => c.ToUpper().Contains("FILTER")).OrderBy(c => c).ToList();
+                reqParams = request.Params;
+            }
+
+            foreach (string k in filterKeys)
             {
                 string thisFilterKey = ExtractFilterNodeID(k);
                 if (thisFilterKey != null)
@@ -63,17 +73,17 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
                     {
                         FilterNode thisNode = tracker[thisFilterKey];
                         if (k.ToUpper().Contains("ROOTID"))
-                            thisNode.RootId = request.QueryString[k];
+                            thisNode.RootId = reqParams[k];
                         else if (k.ToUpper().Contains("VALUES"))
-                            thisNode.Values = request.QueryString[k].Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                            thisNode.Values = reqParams[k].Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).ToList();
                     }
                     else
                     {
                         FilterNode newNode = new FilterNode();
                         if (k.ToUpper().Contains("ROOTID"))
-                            newNode.RootId = request.QueryString[k];
+                            newNode.RootId = reqParams[k];
                         else if (k.ToUpper().Contains("VALUES"))
-                            newNode.Values = request.QueryString[k].Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                            newNode.Values = reqParams[k].Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).ToList();
 
                         tracker.Add(thisFilterKey, newNode);
                     }
@@ -89,7 +99,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
              */
 
             //process tracker into target model
-            JobSearchResultsFilterModel targetModel = new JobSearchResultsFilterModel() { Keywords = keywords, Filters = new List<JobSearchFilterReceiver>()};
+            JobSearchResultsFilterModel targetModel = new JobSearchResultsFilterModel() { Keywords = keywords, Page = page, Filters = new List<JobSearchFilterReceiver>()};
 
             foreach(string trackerKey in tracker.Keys)
             {

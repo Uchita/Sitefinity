@@ -58,6 +58,9 @@
   .icon-down:after {
     content: "\e908";
   }
+  .icon-up:after {
+    content: "\e923";
+  }
   .icon-globe-pin:after {
     content: "\e909";
   }
@@ -174,4 +177,13 @@
   }
   .icon-dropbox:after {
     content: "\eaae";
+  }
+  .icon-file:after {
+    content: "\e92d";
+  }
+  .icon-user-md:after {
+    content: "\e921";
+  }
+  .icon-transport:after {
+    content: "\e922";
   }

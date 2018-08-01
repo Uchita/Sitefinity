@@ -24,6 +24,9 @@
         display: inline;
         a{
             text-decoration: none;
+            &.active{
+                color: $p1Color;
+            }
         }
     }
     .owl-nav{

@@ -3,10 +3,19 @@
 .jn_timeline{
     background: $bgColor;
     padding: 7rem 0;
+   
+    .timeline-scroller{
+        position: absolute;
+        width: 100%;
+        left: 0;
+        overflow: hidden;
+        height: 600px;
+    }
     .timeline-wrapper{
         max-width: 900px;
         margin: 0 auto;
         position: relative;
+        height: 700px;
         &::before, &::after{
             content: '';
             position: absolute;

@@ -11,12 +11,15 @@ var dropDownOptions = {
     clickHandler : function(target){},
     expandHandler : function(target,expanded){},
     checkHandler : function(target,checked){},
+    expandElement: false,
     expandChildren: false,
     enableSearch: true,
     rtl: false,
     displayCount: false,
     clickTextSelect: true,
     selectParent: true,
+    dropdownType: "dropdown", //dropdown,collapse
+    ariaLabelId: 'dropdownMenu'
 };
 
 var globalTreeIdCounter=0;
@@ -150,9 +153,11 @@ var globalTreeIdCounter=0;
             checked=true;
             $(this).removeClass("fa-square-o");
             $(this).addClass("fa-check-square-o");
+            $(this).parent("li").find("a").addClass("active");
             if(options.selectChildren){
                 $(this).parents("li").first().find(".select-box").removeClass("fa-square-o");
                 $(this).parents("li").first().find(".select-box").addClass("fa-check-square-o");
+                $(this).parents("li").first().find("a").addClass("active");
             }
             if (options.selectParent) {
                 selectParent($(this));
@@ -162,9 +167,11 @@ var globalTreeIdCounter=0;
             checked=false;
             $(this).addClass("fa-square-o");
             $(this).removeClass("fa-check-square-o");
+            $(this).parent("li").find("a").removeClass("active");
             if(options.selectChildren){
                 $(this).parents("li").first().find(".select-box").addClass("fa-square-o");
                 $(this).parents("li").first().find(".select-box").removeClass("fa-check-square-o");
+                $(this).parents("li").first().find("a").removeClass("active");
             }
         }
         SetSelectedElementsTitle();
@@ -180,9 +187,26 @@ var globalTreeIdCounter=0;
         if(options.closedArrow.indexOf("fa-caret-right")>-1){
             options.closedArrow = options.closedArrow.replace("fa-caret-right","fa-caret-left");
         } 
-    }	
-    $(options.element).append('<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="dropdowntree-name">'+options.title+'</span><span class="caret"></span></button>');		
-    $(options.element).append('<ul style="max-height: '+options.maxHeight+'px" class="dropdown-menu" aria-labelledby="dropdownMenu1"></ul>');
+    }
+
+    var triggeringCls = '';
+    var targetCls = '';
+    if (options.dropdownType == "collapse") {
+        if (options.expandElement == true) {
+            targetCls = 'show in';
+        } else {
+            triggeringCls = 'collapsed';
+        }
+        $(options.element).append('<a class="btn btn-default dropdown-toggle ' + triggeringCls + '" href="#' + options.ariaLabelId + '" data-toggle="collapse" aria-haspopup="true" aria-expanded="true" aria-controls="' + options.ariaLabelId + '"><span class="dropdowntree-name">' + options.title + '</span><span class="caret"></span></a>');
+        $(options.element).append('<ul style="max-height: ' + options.maxHeight + 'px" class="collapse ' + targetCls + '" id="' + options.ariaLabelId + '"></ul>');
+    } else {
+        if (options.expandElement == true) {
+            targetCls = 'show';
+        }
+        $(options.element).append('<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="dropdowntree-name">' + options.title + '</span><span class="caret"></span></button>');
+        $(options.element).append('<ul style="max-height: ' + options.maxHeight + 'px" class="dropdown-menu ' + targetCls + '" aria-labelledby="' + options.ariaLabelId + '"></ul>');
+    }
+
     if (options.enableSearch == true) {
         $(options.element).find("ul").first().append('<input type="text" class="form-control" placeholder="Type here to filter..." />');
     }
@@ -251,6 +275,7 @@ var globalTreeIdCounter=0;
         if (parent != undefined && parent.length > 0) {
             parent.children("i").removeClass("fa-square-o");
             parent.children("i").addClass("fa-check-square-o");
+            parent.children("a").addClass("active");
             selectParent(parent.children("i").first());
         }
     };

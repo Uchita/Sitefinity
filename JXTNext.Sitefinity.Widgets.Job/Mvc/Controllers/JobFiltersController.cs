@@ -12,6 +12,8 @@ using JXTNext.Sitefinity.Connector.Options.Models.Job;
 using Newtonsoft.Json;
 using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
 using System.ComponentModel;
+using Telerik.Sitefinity.Taxonomies.Model;
+using JXTNext.Sitefinity.Common.Helpers;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -20,12 +22,12 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
     public class JobFiltersController : Controller
     {
         [TypeConverter(typeof(ExpandableObjectConverter))]
-        public JobFiltersDesignerViewModel Model
+        public JobSearchModel Model
         {
             get
             {
                 if (this.model == null)
-                    this.model = new JobFiltersDesignerViewModel();
+                    this.model = new JobSearchModel();
 
                 return this.model;
             }
@@ -78,32 +80,108 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             ViewBag.FilterModel = JsonConvert.SerializeObject(filterModel);
             ViewBag.Keywords = filterModel.Keywords;
 
-            var selectedConfigFilters = GetSelecctedFiltersFromConfig(filtersVMList);
-            AppendParentIds(selectedConfigFilters);
-            dynamicFilterResponse = selectedConfigFilters as dynamic;
+            var jobFilterComponents = this.SerializedJobSearchParams == null ? null : JsonConvert.DeserializeObject<List<JobSearchModel>>(this.SerializedJobSearchParams);
+
+            if (jobFilterComponents != null)
+            {
+                foreach (JobSearchModel item in jobFilterComponents)
+                {
+                    FilterData(item.Filters);
+                    item.Filters = item.Filters.Where(d => d.Show == true || d.Filters?.Count > 0).ToList();
+                }
+
+                var selectedConfigFilters = GetSelecctedFiltersFromConfig(filtersVMList, jobFilterComponents);
+                AppendParentIds(selectedConfigFilters);
+                dynamicFilterResponse = selectedConfigFilters as dynamic;
+            }
 
             return View(this.TemplateName, dynamicFilterResponse);
         }
 
-        private List<JobFilterRoot> GetSelecctedFiltersFromConfig(List<JobFilterRoot> filtersVMList)
+        private void ProcessConfigSubFilters(JobSearchItem configFilterItem, JobFilter newFilter, List<JobFilter> backendJobFilters)
         {
-            var designerViewModel = this.Model.GetViewDesignerModel();
-            List<JobFilterRoot> selectedConfigFilters = new List<JobFilterRoot>();
+            if (configFilterItem != null && newFilter != null && backendJobFilters != null)
+            {
+                foreach (var backendFilterItem in backendJobFilters)
+                {
+                    if(configFilterItem.ID.Equals(backendFilterItem.ID, StringComparison.OrdinalIgnoreCase))
+                    {
+                        newFilter.ID = backendFilterItem.ID;
+                        newFilter.Label = backendFilterItem.Label;
+                        newFilter.Count = backendFilterItem.Count;
+                        newFilter.Selected = backendFilterItem.Selected;
 
+                        foreach (var configSubFilterItem in configFilterItem.Filters)
+                        {
+                            if (backendFilterItem.Filters != null && backendFilterItem.Filters.Count > 0)
+                            {
+                                var newSubFilter = new JobFilter() { Filters = new List<JobFilter>() };
+                                ProcessConfigSubFilters(configSubFilterItem, newSubFilter, backendFilterItem.Filters);
+                                newFilter.Filters.Add(newSubFilter);
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+
+        private List<JobFilterRoot> GetSelecctedFiltersFromConfig(List<JobFilterRoot> filtersVMList, List<JobSearchModel> designerViewModel)
+        {
+            List<JobFilterRoot> selectedConfigFilters = new List<JobFilterRoot>();
             foreach (var item in designerViewModel)
             {
-                foreach (var filter in filtersVMList)
+                foreach (var filterRoot in filtersVMList)
                 {
-                    if (item.TaxonamyName.Equals(filter.Name, StringComparison.OrdinalIgnoreCase))
+                    if(item.FilterType.Equals(filterRoot.Name, StringComparison.OrdinalIgnoreCase))
                     {
-                        selectedConfigFilters.Add(filter);
-                        break;
+                        if(item.Filters == null || item.Filters.Count <= 0)
+                        {
+                            selectedConfigFilters.Add(filterRoot);
+                            break;
+                        }
+                        else
+                        {
+                            JobFilterRoot rootItem = new JobFilterRoot() { Filters = new List<JobFilter>() };
+                            rootItem.ID = filterRoot.ID;
+                            rootItem.Name = filterRoot.Name;
+                            rootItem.Type = filterRoot.Type;
+                           foreach (var configFilterItem in item.Filters)
+                            {
+                                var newSubFilter = new JobFilter() { Filters = new List<JobFilter>(), Label = null };
+                                ProcessConfigSubFilters(configFilterItem, newSubFilter, filterRoot.Filters);
+                                if(newSubFilter.Label != null)
+                                    rootItem.Filters.Add(newSubFilter);
+                            }
+
+                            selectedConfigFilters.Add(rootItem);
+                        }
                     }
                 }
             }
 
             return selectedConfigFilters;
+
         }
+
+        static void FilterData(List<JobSearchItem> data)
+        {
+            if (data == null || data.Count == 0)
+                return;
+
+            foreach (JobSearchItem item in data)
+            {
+                if (item.Filters != null && item.Filters.Count > 0)
+                {
+                    FilterData(item.Filters);
+                    item.Filters = item.Filters.Where(d => d.Show == true || d.Filters?.Count > 0).ToList();
+                }
+            }
+
+            data = data.Where(d => d.Show == true || d.Filters?.Count > 0).ToList();
+        }
+
+
 
         static void ProcessFiltersIds(List<JobFilter> filters, string parentId)
         {
@@ -190,6 +268,52 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             return false;
         }
 
+        public static void ProcessCategories(HierarchicalTaxon category, JobFilter jobFilter)
+        {
+            if (category != null && jobFilter != null)
+            {
+                jobFilter.ID = category.Id.ToString().ToUpper();
+                jobFilter.Label = category.Title;
+                if (category.Subtaxa != null && category.Subtaxa.Count > 0)
+                {
+                    foreach (var subTaxon in category.Subtaxa)
+                    {
+                        var subFilter = new JobFilter() { Filters = new List<JobFilter>() };
+                        ProcessCategories(subTaxon, subFilter);
+                        jobFilter.Filters.Add(subFilter);
+                    }
+                }
+            }
+        }
+
+        public static JobFiltersData GetFiltersData()
+        {
+            JobFiltersData filtersData = new JobFiltersData() { Data = new List<JobFilterRoot>() };
+            var topLovelCategories = SitefinityHelper.GetTopLevelCategories();
+
+            foreach (var taxon in topLovelCategories)
+            {
+                JobFilterRoot filterRoot = new JobFilterRoot() { Filters = new List<JobFilter>() };
+                filterRoot.ID = taxon.Id.ToString().ToUpper();
+                filterRoot.Name = taxon.Title;
+
+                var hierarchicalTaxon = taxon as HierarchicalTaxon;
+                if (hierarchicalTaxon != null)
+                {
+                    foreach (var childTaxon in hierarchicalTaxon.Subtaxa)
+                    {
+                        var jobFilter = new JobFilter() { Filters = new List<JobFilter>() };
+                        ProcessCategories(childTaxon, jobFilter);
+                        filterRoot.Filters.Add(jobFilter);
+                    }
+                }
+
+                filtersData.Data.Add(filterRoot);
+            }
+
+            return filtersData;
+        }
+
         static void MergeFilters(JobFilter filterItem, List<JobSearchFilterReceiverItem> values)
         {
             if(filterItem != null)
@@ -228,7 +352,25 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
         }
 
+        public string SerializedJobSearchParams { get; set; }
+
+        private string _serializedFilterData;
+        public string SerializedFilterData
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_serializedFilterData))
+                {
+                    //JXTNext_GetJobFiltersRequest filterOptionRequest = new JXTNext_GetJobFiltersRequest { SiteId = 1 };
+                    //IGetJobFiltersResponse filtersResponse = _OConnector.JobFilters<JXTNext_GetJobFiltersRequest, JXTNext_GetJobFiltersResponse>(filterOptionRequest);
+                    var filtersData = GetFiltersData();
+                    _serializedFilterData = JsonConvert.SerializeObject(filtersData.Data);
+                }
+                return _serializedFilterData;
+            }
+        }
+
         internal const string WidgetIconCssClass = "sfMvcIcn";
-        private JobFiltersDesignerViewModel model;
+        private JobSearchModel model;
     }
 }

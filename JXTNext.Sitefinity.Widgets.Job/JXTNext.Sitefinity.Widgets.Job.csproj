@@ -365,7 +365,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Mvc\Scripts\JobDetails\designerview-simple.js" />
     <EmbeddedResource Include="Mvc\Scripts\JobFilters\designerview-simple.js" />
-    <Content Include="Mvc\Scripts\JobSearchResults\designerview-simple.js" />
+    <EmbeddedResource Include="Mvc\Scripts\JobSearchResults\designerview-simple.js" />
     <EmbeddedResource Include="Mvc\Scripts\JobSearch\designerview-simple.js" />
     <EmbeddedResource Include="Mvc\Scripts\JobSearch\dropdowntree.css" />
     <EmbeddedResource Include="Mvc\Scripts\JobSearch\dropdowntree.js" />

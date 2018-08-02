@@ -59,9 +59,12 @@
                     closedArrow: '<i class="fa fa-caret-right" aria-hidden="true"></i>',
                     openedArrow: '<i class="fa fa-caret-down" aria-hidden="true"></i>',
                     multiSelect: true,
-                    selectChildren: false,
-                    expandChildren: true,
                     enableSearch: false,
+                    selectChildren: true,
+                    expandChildren: true,
+                    expandElement: true,
+                    dropdownType: "collapse", //dropdown,collapse
+                    ariaLabelId: 'lbl-'+item.Name,
                 };
                 $("#" + item.Name).DropDownTree(optionsArray[item.Name]);
             }
@@ -111,5 +114,6 @@
                 });
             });
         }
+       
     });
 </script>

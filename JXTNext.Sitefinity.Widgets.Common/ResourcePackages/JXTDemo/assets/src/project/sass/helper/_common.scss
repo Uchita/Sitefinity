@@ -279,6 +279,10 @@ p,ul,ol{
     flex-grow: 1;
 }
 
+.collapse.in{
+    display: block;
+}
+
 //login page
 .sf-registration-link{
     border-top: 1px solid lighten($baseColor,80%);

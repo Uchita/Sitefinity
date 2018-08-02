@@ -12,14 +12,21 @@
             position: relative;
             text-overflow: ellipsis;
             overflow: hidden;
+            border-radius: 0;
             &::after{
-                content: '\e908';
+                content: '\e923';
                 font: 0.5rem/1 "jn-icon";
                 position: absolute;
                 top: 5px;
                 right: 0.5rem;
                 border: none;
                 width: auto;
+            }
+            &.collapsed::after{
+                content: '\e908';
+            }
+            &:focus, &:active{
+                background: none!important;
             }
         }
         ul{

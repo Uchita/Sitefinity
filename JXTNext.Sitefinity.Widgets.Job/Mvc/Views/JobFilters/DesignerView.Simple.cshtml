@@ -1,42 +1,68 @@
 ﻿@using Telerik.Sitefinity.Frontend.Mvc.Helpers
 
-<uib-tabset class="nav-tabs-wrapper">
-
-    <uib-tab heading="Content">
-        <div class="form-group">
-            <label for="templateName">Template</label>
-            <div class="row">
-                <div class="col-xs-6">
-                    <select id="templateName" ng-model="properties.TemplateName.PropertyValue" class="form-control">
-                        @foreach (var viewName in Html.GetViewNames("JobFilters", @"(?<viewName>^T_.*)$"))
-                        {
-                            <option value="@viewName">@viewName.Replace("T_", "")</option>
-                        }
-                    </select>
+<div ng-controller="SimpleCtrl">
+    <uib-tabset class="nav-tabs-wrapper">
+        <uib-tab heading="General">
+            <div class="form-group">
+                <label for="templateName">Template</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <select id="templateName" ng-model="properties.TemplateName.PropertyValue" class="form-control">
+                            @foreach (var viewName in Html.GetViewNames("JobFilters", @"(?<viewName>^T_.*)$"))
+                            {
+                                <option value="@viewName">@viewName.Replace("T_", "")</option>
+                            }
+                        </select>
+                    </div>
                 </div>
             </div>
-        </div>
-    </uib-tab>
+        </uib-tab>
 
-    <uib-tab heading="Select Filters">
-        <div ng-controller="SimpleCtrl" class="list-group list-group-endless" kendo-sortable k-options="sortableOptions" k-on-change="sortItems(kendoEvent)" k-ignore="'input'">
-            <div class="list-group-item"
-                 ng-repeat="item in list track by item.TrackId"
-                 ng-class="list-group-item-draggable">
+        <uib-tab heading="Select Filters">
+            <script type="text/ng-template" id="categoryTree">
+                <a ng-click="clickEvent(category,$event)"><span class="glyphicon glyphicon-ok" ng-show="isSelected(category)"></span>{{ category.Label }}</a>
+                <ul ng-if="category.Filters">
+                    <li ng-repeat="category in category.Filters|filter:searchtext" ng-include="'categoryTree'">
+                    </li>
+                </ul>
+            </script>
 
+            <div>
+                <p><strong>Note:</strong> If no filter values selected means will treat it as whole filter</p>
+            </div> <br/>
+
+            <div class="form-group" data-ng-repeat="row in rows">
                 <div class="row">
-                    <div class="col-xs-1">
-                        <span class="handler list-group-item-drag"></span>
+                    <div>
+                        <select class="form-control" ng-model="row.FilterType" ng-options="x for x in FilterTypes" ng-change="onFilterChange(row)" ng-disabled="row.ControlType == 'Map Search' || row.ControlType == 'TextBox'">
+                            <option value="" disabled selected ng-show="!row.FilterType">-- Select Filter Type --</option>
+                        </select>
                     </div>
-                    <div class="col-xs-2">
-                        <div class="checkbox">
-                            <span><label><input type="checkbox" ng-model="item.Selected" />{{item.TaxonamyName}}</label></span>
-                            @*<span sf-shrinked-breadcrumb="{{item.TaxonamyName}}" sf-max-length="60"></span>*@
+
+                    <div>
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle form-control text-left" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" ng-disabled="row.ControlType == 'Map Search' || row.ControlType == 'TextBox'">
+                                --- Select Values ---
+                                <span class="caret pull-right"></span>
+                            </button>
+                            <ul class="dropdown-menu" style="max-height: 200px;overflow-y: scroll;min-width:550px;">
+                                <input type="text" class="form-control" ng-model="searchtext" ng-click="filterClick()" />
+                                <li ng-repeat="category in row.Filters" ng-include="'categoryTree'" ng-click="clickValuesMulti(category, $event)"></li>
+                            </ul>
                         </div>
                     </div>
+                    <div>
+                        <button class="btn btn-danger" id="row.ID" ng-click="removeRow(row.RowId)">
+                            @Html.Resource("JobParamDelete", "JobSearchResources")
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </uib-tab>
 
-</uib-tabset>
+            <br />
+            <br />
+            <div class="btn btn-primary" ng-click="addNewRow()">@Html.Resource("JobParamAdd", "JobSearchResources")</div>
+        </uib-tab>
+</div>
+
+

@@ -6,12 +6,15 @@
 @using Telerik.Sitefinity.Web;
 @using SitefinityWebApp.Mvc.Attributes
 
+@using Telerik.Sitefinity.Security;
+@using Telerik.Sitefinity.Security.Model;
+@using Telerik.Sitefinity.Model.ContentLinks;
+@using Telerik.Sitefinity.Modules.Libraries;
 
 @{
     string imageURL = ((Telerik.Sitefinity.Frontend.Mvc.Models.ItemViewModel)Model.Item).GetItemImageUrl("Image", 0);
 }
 
-@*<article class="@Model.CssClass post-single article" @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)Model.Item.Fields.Id)>*@
 @if (String.IsNullOrEmpty(imageURL) == false)
 {
     <figure>
@@ -26,7 +29,7 @@
                 <span class="jn_ico icon-calendar"></span>
                 <span class="data-dateValue"><span class="data-month">@Model.Item.GetDateTime("PublicationDate", "MMM")</span> <span class="data-day">@Model.Item.GetDateTime("PublicationDate", "dd")</span></span>
             </div>
-                
+
             @{
                 if (Model.EnableSocialSharing)
                 {
@@ -34,13 +37,39 @@
                     @Html.SocialShareOptions(item, "SocialShareInCode");
                 }
             }
-          
-            
+
+
             <div class="bio-pick">
-                <figure>
-                    <img src="~/ResourcePackages/JXTdemo/assets/dist/images/apple-touch-icon-72x72.png" alt="Avatar AvatarImageUrl" />
-                </figure>
-                <div class="bio-desc">
+                @{
+                    if (string.IsNullOrEmpty(Model.Item.Fields.Author))
+                    {
+                        UserManager userManager = UserManager.GetManager();
+                        UserProfileManager profileManager = UserProfileManager.GetManager();
+                        Telerik.Sitefinity.Security.Model.User user = userManager.GetUser(Model.Item.Fields.Owner);
+                        if (user != null)
+                        {
+                            SitefinityProfile profile = profileManager.GetUserProfile<SitefinityProfile>(user);
+
+                            if (profile != null)
+                            {
+                                ContentLink avatarLink = profile.Avatar;
+                                if (avatarLink != null)
+                                {
+                                    var librariesManager = LibrariesManager.GetManager(avatarLink.ChildItemProviderName);
+                                    // returns Live item
+                                    var avatarImage = librariesManager.GetImage(avatarLink.ChildItemId);
+
+                                    var avatarThumbnailUrl = avatarImage.ThumbnailUrl;
+                                    <figure>
+                                        <img src="@avatarThumbnailUrl" alt="avatar" />
+                                    </figure>
+                                }
+                            }
+                        }
+                    }
+                }
+
+                <div class="bio-desc" rel="@Model.Item.Fields.Author">
                     <small>About the author</small>
                     <p><strong>@DataResolver.Resolve(Model.Item.DataItem, "Author", null)</strong></p>
                 </div>
@@ -75,14 +104,10 @@
     </div>
     @if (Model.Item.Fields.AllowComments)
     {
-    <div class="comment-wrapper">
-        
-        @Html.CommentsList(@Model.Item.DataItem)
-        
-    </div>
+        <div class="comment-wrapper">
+
+            @Html.CommentsList(@Model.Item.DataItem)
+
+        </div>
     }
 </div>
-
-
-@*</article>*@
-

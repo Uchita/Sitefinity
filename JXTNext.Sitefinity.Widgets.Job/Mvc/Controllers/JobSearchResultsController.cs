@@ -243,12 +243,12 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 catTarget.TargetValue = filterItem.ItemID;
                 if(filterItem.SubTargets != null && filterItem.SubTargets.Count > 0)
                 {
-                    Classification_CategorySearchTarget catSubTarget = new Classification_CategorySearchTarget() { SubTargets = new List<Classification_CategorySearchTarget>() };
                     foreach (var subItem in filterItem.SubTargets)
                     {
+                        Classification_CategorySearchTarget catSubTarget = new Classification_CategorySearchTarget() { SubTargets = new List<Classification_CategorySearchTarget>() };
                         ProcessFilterLevels(catSubTarget, subItem);
+                        catTarget.SubTargets.Add(catSubTarget);
                     }
-                    catTarget.SubTargets.Add(catSubTarget);
                 }
             }
         }

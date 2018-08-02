@@ -94,6 +94,11 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 AppendParentIds(selectedConfigFilters);
                 dynamicFilterResponse = selectedConfigFilters as dynamic;
             }
+            else
+            {
+                AppendParentIds(filtersVMList);
+                dynamicFilterResponse = filtersVMList as dynamic;
+            }
 
             return View(this.TemplateName, dynamicFilterResponse);
         }

@@ -94,13 +94,8 @@
             event.stopImmediatePropagation();
         };
         $scope.clickEvent = function (t, e) {
-            if (t.Show) {
-                t.Show = false;
-            }
-            else {
-                t.Show = true;
 
-            }
+            t.Show = !t.Show;
             e.stopPropagation();
         };
 

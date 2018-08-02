@@ -281,7 +281,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.StringResources
         }
 
         /// <summary>
-        /// Gets phrase : CSS classes
+        /// Gets phrase : HideUrl
         /// </summary>
         [ResourceEntry("HideUrl",
             Value = "Hide Push State Url",
@@ -291,6 +291,48 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.StringResources
             get
             {
                 return this["HideUrl"];
+            }
+        }
+
+        /// <summary>
+        /// Gets phrase : GeneralTab
+        /// </summary>
+        [ResourceEntry("GeneralTab",
+            Value = "General",
+            Description = "phrase : General Tab")]
+        public string GeneralTab
+        {
+            get
+            {
+                return this["GeneralTab"];
+            }
+        }
+
+        /// <summary>
+        /// Gets phrase : FiltersTab
+        /// </summary>
+        [ResourceEntry("FiltersTab",
+            Value = "Select Filters",
+            Description = "phrase : Select Filters Tab")]
+        public string FiltersTab
+        {
+            get
+            {
+                return this["FiltersTab"];
+            }
+        }
+
+        /// <summary>
+        /// Gets phrase : UseTheseFilters
+        /// </summary>
+        [ResourceEntry("UseTheseFilters",
+            Value = "Use these filters",
+            Description = "phrase : Use these filters")]
+        public string UseTheseFilters
+        {
+            get
+            {
+                return this["UseTheseFilters"];
             }
         }
 

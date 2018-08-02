@@ -13,6 +13,8 @@ using System;
 using JXTNext.Sitefinity.Common.Helpers;
 using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
 using Telerik.Sitefinity.Web;
+using Telerik.Sitefinity.Taxonomies.Model;
+using System.ComponentModel;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -60,7 +62,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             return View(this.TemplateName, dynamicJobResultsList);
         }
 
-
         [HttpPost]
         public JsonResult GetSearchResults(string jobRequest, int pageNumber)
         {
@@ -71,6 +72,36 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 searchInputs = JsonConvert.DeserializeObject<JobSearchResultsFilterModel>(SearchConfig);
             else
                 searchInputs = JsonConvert.DeserializeObject<JobSearchResultsFilterModel>(jobRequest);
+
+            if (this.UseConfigFilters)
+            {
+                var jobFilterComponents = this.SerializedJobSearchParams == null ? null : JsonConvert.DeserializeObject<List<JobSearchModel>>(this.SerializedJobSearchParams);
+
+                if (jobFilterComponents != null)
+                {
+                    searchInputs = new JobSearchResultsFilterModel() {Keywords =this.KeywordsSelectedJobs, Filters = new List<JobSearchFilterReceiver>() };
+                    foreach (JobSearchModel item in jobFilterComponents)
+                    {
+                        FilterData(item.Filters);
+                        item.Filters = item.Filters.Where(d => d.Show == true || d.Filters?.Count > 0).ToList();
+                    }
+
+                    foreach (var configItem in jobFilterComponents)
+                    {
+                        var rootFilterItem = new JobSearchFilterReceiver() { values = new List<JobSearchFilterReceiverItem>() };
+                        rootFilterItem.rootId = configItem.FilterType;
+
+                        foreach (var subFilItem in configItem.Filters)
+                        {
+                            var targetFilterItem = new JobSearchFilterReceiverItem() { SubTargets = new List<JobSearchFilterReceiverItem>() };
+                            ProcessConfigFilterItems(targetFilterItem, subFilItem);
+                            rootFilterItem.values.Add(targetFilterItem);
+                        }
+
+                        searchInputs.Filters.Add(rootFilterItem);
+                    }
+                }
+            }
 
             searchInputs.Page = pageNumber;
 
@@ -98,7 +129,40 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
         protected override void HandleUnknownAction(string actionName)
         {
-            this.ActionInvoker.InvokeAction(this.ControllerContext, "Index");
+            this.Index(null).ExecuteResult(this.ControllerContext);
+        }
+
+        static void ProcessConfigFilterItems(JobSearchFilterReceiverItem targetFilterItem, JobSearchItem sourceFilterItem)
+        {
+            if (targetFilterItem != null && sourceFilterItem != null)
+            {
+                targetFilterItem.ItemID = sourceFilterItem.ID;
+
+                foreach (var subFilterItem in sourceFilterItem.Filters)
+                {
+                    var subTargetFilter = new JobSearchFilterReceiverItem() { SubTargets = new List<JobSearchFilterReceiverItem>() };
+                    ProcessConfigFilterItems(subTargetFilter, subFilterItem);
+                    targetFilterItem.SubTargets.Add(subTargetFilter);
+                }
+            }
+        }
+
+
+        static void FilterData(List<JobSearchItem> data)
+        {
+            if (data == null || data.Count == 0)
+                return;
+
+            foreach (JobSearchItem item in data)
+            {
+                if (item.Filters != null && item.Filters.Count > 0)
+                {
+                    FilterData(item.Filters);
+                    item.Filters = item.Filters.Where(d => d.Show == true || d.Filters?.Count > 0).ToList();
+                }
+            }
+
+            data = data.Where(d => d.Show == true || d.Filters?.Count > 0).ToList();
         }
 
         private ISearchJobsResponse GetJobSearchResultsResponse(JobSearchResultsFilterModel filterModel)
@@ -208,6 +272,66 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
         }
 
+        public static void ProcessCategories(HierarchicalTaxon category, JobFilter jobFilter)
+        {
+            if (category != null && jobFilter != null)
+            {
+                jobFilter.ID = category.Id.ToString().ToUpper();
+                jobFilter.Label = category.Title;
+                if (category.Subtaxa != null && category.Subtaxa.Count > 0)
+                {
+                    foreach (var subTaxon in category.Subtaxa)
+                    {
+                        var subFilter = new JobFilter() { Filters = new List<JobFilter>() };
+                        ProcessCategories(subTaxon, subFilter);
+                        jobFilter.Filters.Add(subFilter);
+                    }
+                }
+            }
+        }
+
+        public static JobFiltersData GetFiltersData()
+        {
+            JobFiltersData filtersData = new JobFiltersData() { Data = new List<JobFilterRoot>() };
+            var topLovelCategories = SitefinityHelper.GetTopLevelCategories();
+
+            foreach (var taxon in topLovelCategories)
+            {
+                JobFilterRoot filterRoot = new JobFilterRoot() { Filters = new List<JobFilter>() };
+                filterRoot.ID = taxon.Id.ToString().ToUpper();
+                filterRoot.Name = taxon.Title;
+
+                var hierarchicalTaxon = taxon as HierarchicalTaxon;
+                if (hierarchicalTaxon != null)
+                {
+                    foreach (var childTaxon in hierarchicalTaxon.Subtaxa)
+                    {
+                        var jobFilter = new JobFilter() { Filters = new List<JobFilter>() };
+                        ProcessCategories(childTaxon, jobFilter);
+                        filterRoot.Filters.Add(jobFilter);
+                    }
+                }
+
+                filtersData.Data.Add(filterRoot);
+            }
+
+            return filtersData;
+        }
+
+        private string _serializedFilterData;
+        public string SerializedFilterData
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_serializedFilterData))
+                {
+                    var filtersData = GetFiltersData();
+                    _serializedFilterData = JsonConvert.SerializeObject(filtersData.Data);
+                }
+                return _serializedFilterData;
+            }
+        }
+
         public int? PageSize { get; set; }
         public string DetailsPageId { get; set; }
         public string ResultsPageId { get; set; }
@@ -215,8 +339,12 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public bool IsAllJobs { get; set; }
         public string CssClass { get; set; }
         public string SerializedJobTypes { get; set; }
+        public string SerializedTotalJobTypes { get; set; }
         public bool HidePushStateUrl { get; set; }
         public string SearchConfig { get; set; }
+        public string SerializedJobSearchParams { get; set; }
+        public string KeywordsSelectedJobs { get; set; }
+        public bool UseConfigFilters { get; set; }
 
         internal const string WidgetIconCssClass = "sfMvcIcn";
         private const int PageSizeDefaultValue = 5;

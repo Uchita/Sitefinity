@@ -6,6 +6,11 @@
 @using Telerik.Sitefinity.Web;
 @using JXTNext.Sitefinity.Common.Helpers
 
+@using Telerik.Sitefinity.Security;
+@using Telerik.Sitefinity.Security.Model;
+@using Telerik.Sitefinity.Model.ContentLinks;
+@using Telerik.Sitefinity.Modules.Libraries;
+
 <div class="@Model.CssClass list-view">
     <div class="list-head">
         <h2>Latest From Us</h2>
@@ -37,11 +42,11 @@
                             <span class="data-dateValue"><span class="data-month">@item.GetDateTime("PublicationDate", "MMM")</span> <span class="data-day">@item.GetDateTime("PublicationDate", "dd")</span></span>
                         </div>
                         @*<div class="data-save">
-                            <a href="">
-                                <span class="jn_ico icon-heart"></span>
-                                <span class="data-saveValue">Save Blog</span>
-                            </a>
-                        </div>*@
+                                <a href="">
+                                    <span class="jn_ico icon-heart"></span>
+                                    <span class="data-saveValue">Save Blog</span>
+                                </a>
+                            </div>*@
                     </div>
                     <div class="data-content col">
                         <h3>
@@ -61,22 +66,48 @@
                         }
 
                         @*@if (item.Fields.Category != null)
-        {
-            <ul @Html.InlineEditingFieldAttributes("Category", "HierarchicalTaxon")>
-                @foreach (var taxon in item.GetHierarchicalTaxons("Category"))
-                {
-                    <li><a href="/@SiteMapBase.GetActualCurrentNode().UrlName/-in-category/categories/@taxon.UrlName.ToString()">@taxon.Title.ToString()</a></li>
-                }
-            </ul>
-        }*@
+                            {
+                                <ul @Html.InlineEditingFieldAttributes("Category", "HierarchicalTaxon")>
+                                    @foreach (var taxon in item.GetHierarchicalTaxons("Category"))
+                                    {
+                                        <li><a href="/@SiteMapBase.GetActualCurrentNode().UrlName/-in-category/categories/@taxon.UrlName.ToString()">@taxon.Title.ToString()</a></li>
+                                    }
+                                </ul>
+                            }*@
 
 
                         <div class="avatar">
                             <div class="img-holder">
-                                <figure>
-                                    <img src="~/ResourcePackages/JXTdemo/assets/dist/images/apple-touch-icon-72x72.png" alt="Avatar" />
-                                </figure>
-                                <span class="avatar-name">@DataResolver.Resolve(item.DataItem, "Author", null)</span>
+                                @{
+                                    if (string.IsNullOrEmpty(item.Fields.Author))
+                                    {
+                                        UserManager userManager = UserManager.GetManager();
+                                        UserProfileManager profileManager = UserProfileManager.GetManager();
+                                        Telerik.Sitefinity.Security.Model.User user = userManager.GetUser(item.Fields.Owner);
+                                        if (user != null)
+                                        {
+                                            SitefinityProfile profile = profileManager.GetUserProfile<SitefinityProfile>(user);
+
+                                            if (profile != null)
+                                            {
+                                                ContentLink avatarLink = profile.Avatar;
+                                                if (avatarLink != null)
+                                                {
+                                                    var librariesManager = LibrariesManager.GetManager(avatarLink.ChildItemProviderName);
+                                                    // returns Live item
+                                                    var avatarImage = librariesManager.GetImage(avatarLink.ChildItemId);
+
+                                                    var avatarThumbnailUrl = avatarImage.ThumbnailUrl;
+                                                    <figure>
+                                                        <img src="@avatarThumbnailUrl" alt="avatar" />
+                                                    </figure>
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                                <span class="avatar-name" rel="@item.Fields.Author">@DataResolver.Resolve(item.DataItem, "Author", null)</span>
                             </div>
 
                         </div>

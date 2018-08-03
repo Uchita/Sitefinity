@@ -66,11 +66,14 @@
                     dropdownType: "collapse", //dropdown,collapse
                     ariaLabelId: 'lbl-' + item.Name,
                     displayCount: true,
+                    checkHandler: function (target, checked) {
+                        eachClickFilter();
+                    }
                 };
                 $("#" + item.Name).DropDownTree(optionsArray[item.Name]);
             }
 
-            $("#refine-results").click(function (event) {
+            function eachClickFilter() {
                 var filterModel = {};
                 filterModel.Filters = [];
 
@@ -113,7 +116,7 @@
                        console.log("Job Filters Error: " + response);
                     }
                 });
-            });
+            }
         }
        
     });

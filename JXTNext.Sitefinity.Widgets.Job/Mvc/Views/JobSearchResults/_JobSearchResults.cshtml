@@ -4,7 +4,11 @@
 <div class="result-meta">
     <span class="cur-search-count"><span class="count-num">@ViewBag.TotalCount</span> new job(s) found</span>|<span class="total-search-count"><span class="count-num">@ViewBag.TotalCount</span> total jobs</span>|<a href="/advancedsearch" title="New job search">New Search</a>
 </div>
-<div class="custom-select">
+<div class="layout-switch">
+    <span class="jn_ico icon-grid-view"></span>
+    <span class="jn_ico icon-list-view active"></span>
+</div>
+<div class="custom-select button-sort">
     <select id="sortOrder" class="form-control">
         <option selected="selected" value="">@Html.Resource("SortByRecent", "JobSearchResultsResources")</option>
         <option value="Old">@Html.Resource("SortByOldest", "JobSearchResultsResources")</option>
@@ -22,7 +26,7 @@
 </div>
 
 <script type="text/x-kendo-template" id="template">
-    <div class="job-holder col-sm-6">
+    <div class="job-holder">
         <div class="job-header">
             <h3><a href="@ViewBag.JobDetailsPageUrl?jobId=#:JobID#">#:Title#</a></h3>
         </div>
@@ -171,7 +175,9 @@
             }
 
             //adding loader
-            jobContainer.addClass('loading');
+            if (!jobContainer.hasClass('loading')) {
+                jobContainer.addClass('loading');
+            }
 
             $.ajax({
                 type: 'POST',
@@ -256,6 +262,23 @@
         };
     }
 
+</script>
+<script>
+    $(document).ready(function () {
+        if ($('.layout-switch').length) {
+            $('.layout-switch span.jn_ico').click(function () {
+                $(this).siblings().removeClass('active');
+                $(this).addClass('active');
+                if ($(this).hasClass('icon-grid-view')) {
+                    $('.list-view').removeClass('list-view').addClass('grid-view');
+                    $('.job-holder').addClass('col-lg-6');
+                } else {
+                    $('.grid-view').removeClass('grid-view').addClass('list-view');
+                    $('.job-holder').removeClass('col-lg-6');
+                }
+            });
+        }
+    });
 </script>
 <style>
 

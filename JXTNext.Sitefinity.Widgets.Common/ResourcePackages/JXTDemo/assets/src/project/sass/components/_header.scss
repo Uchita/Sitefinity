@@ -158,12 +158,21 @@
     top: 40px;
     z-index: 1000;
     @include bp-max(sm){
-        top: 80px;
+        top: 90px;
+    }
+    @include bp-max(xs){
+        top: 90px;
     }
 }
 .banner-wrapper {
     .jobSearch-container{
         margin-top: -135px;
+        @include bp-max(sm){
+            margin-top: -225px;
+        }
+        @include bp-max(xs){
+            margin-top: -286px;
+        }
     }
 }
 @include bp-min(lg) {

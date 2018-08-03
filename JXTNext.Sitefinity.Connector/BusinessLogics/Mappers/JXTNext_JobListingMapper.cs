@@ -27,7 +27,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
                 JobID = data["Id"],
                 Title = data["Name"],
                 ShortDescription = data["ShortDescription"],
-                Description = data["FullDescription"],                
+                Description = data["FullDescription"],
             };
 
             return local as T;
@@ -38,7 +38,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
             List<JobDetailsFullModel> jobFullDetails = new List<JobDetailsFullModel>();
 
             foreach (dynamic jobItem in searchData)
-            { 
+            {
                 //target: JobDetailsFullModel
                 JobDetailsFullModel local = new JobDetailsFullModel
                 {
@@ -46,10 +46,24 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
                     Title = jobItem["Name"],
                     ShortDescription = jobItem["ShortDescription"],
                     Description = jobItem["FullDescription"],
-                };
+                    CustomData = (jobItem["CustomData"] != null)? FlattenJson(new JObject(jobItem["CustomData"])) : null
+            };
                 jobFullDetails.Add(local);
             }
             return jobFullDetails as List<T>;
+        }
+
+        private Dictionary<string, string> FlattenJson(JObject jObject)
+        {
+            return jObject.Descendants()
+                .Where(j => j.Children().Count() == 0)
+                .Aggregate(
+                    new Dictionary<string, string>(),
+                    (props, jtoken) =>
+                    {
+                        props.Add(jtoken.Path, jtoken.ToString());
+                        return props;
+                    });
         }
 
     }

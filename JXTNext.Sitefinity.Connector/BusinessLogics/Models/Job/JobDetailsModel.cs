@@ -23,6 +23,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Job
         [JsonProperty(PropertyName = "description")]
         public string Description { get; set; }
         public List<JobFilterRoot> Filters { get; set; }
+        public Dictionary<string, string> CustomData { get; set; }
 
         public bool FakeSearch(string rootID, string ID)
         {

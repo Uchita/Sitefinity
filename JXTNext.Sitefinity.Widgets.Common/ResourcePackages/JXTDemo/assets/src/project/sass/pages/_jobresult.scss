@@ -79,7 +79,7 @@
         }
     }
     .job-header{
-        padding: 0 100px 30px 15px;
+        padding: 0 100px 15px 15px;
         position: relative;
         
         padding-top: 2rem;
@@ -125,6 +125,14 @@
     }
 }
 
+.list-view{
+    .job-header{
+        h3{
+           min-height: 0;
+        }
+    }
+}
+
 .sub-link{
     color: $p1Color;
 }
@@ -152,6 +160,9 @@
 }
 
 #resultsPagePartialContent{
+    .button-sort{
+        width: calc(100% - 120px);
+    }
     .custom-select{
         border-radius:25px;
         overflow: hidden;
@@ -169,6 +180,10 @@
             }
         }
     }
+    .layout-switch{
+        top: 83px;
+    }
+    
 }
 
 .pageController a[disabled]{

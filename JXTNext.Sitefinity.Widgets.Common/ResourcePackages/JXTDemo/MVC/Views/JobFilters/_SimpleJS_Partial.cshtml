@@ -60,11 +60,12 @@
                     openedArrow: '<i class="fa fa-caret-down" aria-hidden="true"></i>',
                     multiSelect: true,
                     enableSearch: false,
-                    selectChildren: true,
+                    selectChildren: false,
                     expandChildren: true,
                     expandElement: true,
                     dropdownType: "collapse", //dropdown,collapse
-                    ariaLabelId: 'lbl-'+item.Name,
+                    ariaLabelId: 'lbl-' + item.Name,
+                    displayCount: true,
                 };
                 $("#" + item.Name).DropDownTree(optionsArray[item.Name]);
             }

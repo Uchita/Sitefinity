@@ -38,6 +38,7 @@
             border: none;
             float: none;
             white-space: inherit;
+            overflow: hidden;
             li{
                 position: relative;
                 > i{
@@ -58,6 +59,9 @@
                     padding-right: 30px;
                     &::before{
                         display: none;
+                    }
+                    .count{
+                        margin-left: 5px;
                     }
                 }
             }

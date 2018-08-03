@@ -9,6 +9,6 @@
 @Html.Script(ScriptRef.KendoAll, "top", false)
 
 
-<div id="resultsPagePartialContent">
+<div id="resultsPagePartialContent" class="@ViewBag.CssClass">
     @Html.Partial("_JobSearchResults", (object)Model)
 </div>

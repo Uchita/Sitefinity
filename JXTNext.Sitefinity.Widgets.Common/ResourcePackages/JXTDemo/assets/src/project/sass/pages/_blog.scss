@@ -102,6 +102,9 @@
         }
     }
 }
+.list-view, .grid-view{
+    position: relative;
+}
 .grid-view{
     .h-section{
         display: flex;
@@ -137,26 +140,7 @@
     .list-head{
         padding-right: 100px;
         position: relative;
-        .layout-switch {
-            position: absolute;
-            right: 0;
-            top: 8px;
-            z-index: 1;
-            width: 85px;
-            height: 100%;
-            > span{
-                margin-left: 10px;
-                font-size: 2.4rem;
-                line-height: 1.2;
-                height: 28px;
-                width: 28px;
-                overflow: visible;
-                cursor: pointer;
-                &:hover, &:focus, &.active{
-                    color: $p1Color;
-                }
-            }
-        }
+        
     }
     .article{
         margin-bottom: 7rem;
@@ -169,12 +153,32 @@
         .list-head{
             padding-right: 0;
         }
-        .layout-switch{
-            display: none;
-        }
         .article{
             margin-bottom: 4rem;
         }
+    }
+}
+
+.layout-switch {
+    position: absolute;
+    right: 0;
+    top: 8px;
+    z-index: 1;
+    width: 85px;
+    > span{
+        margin-left: 10px;
+        font-size: 2.4rem;
+        line-height: 1.2;
+        height: 28px;
+        width: 28px;
+        overflow: visible;
+        cursor: pointer;
+        &:hover, &:focus, &.active{
+            color: $p1Color;
+        }
+    }
+    @include bp-max(md){
+        display: none;
     }
 }
 

@@ -50,9 +50,10 @@
         var model = @Html.Raw(json);
         if (model != null && model != "undefined") {
             var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
-
+            var prefixIdText = @Html.Raw(Json.Encode(ViewBag.PrefixIdsText));
+            
             for (var item of filterData) {
-                optionsArray[item.Name] = {
+                optionsArray[prefixIdText+item.Name] = {
                     title: item.Name,
                     data: item.Filters,
                     maxHeight: 500,
@@ -64,13 +65,14 @@
                     expandChildren: true,
                     expandElement: true,
                     dropdownType: "collapse", //dropdown,collapse
-                    ariaLabelId: 'lbl-' + item.Name,
+                    ariaLabelId: 'lbl-' + prefixIdText + item.Name,
                     displayCount: true,
+                    prefixIdText: prefixIdText,
                     checkHandler: function (target, checked) {
                         eachClickFilter();
                     }
                 };
-                $("#" + item.Name).DropDownTree(optionsArray[item.Name]);
+                $("#" + prefixIdText + item.Name).DropDownTree(optionsArray[prefixIdText+item.Name]);
             }
 
             function eachClickFilter() {

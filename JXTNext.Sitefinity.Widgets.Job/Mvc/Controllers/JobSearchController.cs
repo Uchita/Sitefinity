@@ -36,6 +36,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
         public string CssClass { get; set; }
         public string ResultsPageId { get; set; }
+        public string PrefixIdText { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the template that widget will be displayed.
@@ -85,6 +86,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
             var fullTemplateName = this.templateNamePrefix + this.TemplateName;
             AppendParentIds(jobSearchComponents);
+            ViewData["PrefixIdsText"] = this.PrefixIdText == null?"":this.PrefixIdText;
 
             return View(fullTemplateName, jobSearchComponents);
         }

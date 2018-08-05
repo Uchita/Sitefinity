@@ -68,8 +68,8 @@
 
                             <input type="hidden" name="Filters[@counter].rootId" value='@item.FilterType' />
                             <label class="col-4" for="@string.Format("selected-{0}",item.ID)" rel="@item.FilterType">
-                                <select id=@string.Format("selected-{0}",item.ID) name="Filters[@counter].values" style="display:none" multiple></select>
-                                <div class="dropdown dropdown-tree" id=@item.ID></div>
+                                <select id=@string.Format("selected-{0}{1}",ViewData["PrefixIdsText"],item.ID) name="Filters[@counter].values" style="display:none" multiple></select>
+                                <div class="dropdown dropdown-tree" id=@string.Format("{0}{1}",ViewData["PrefixIdsText"],item.ID)></div>
                             </label>
 
                             counter++;
@@ -125,15 +125,15 @@
         var model = @Html.Raw(json);
         if (model != null && @Html.Raw(json) != "undefined") {
             var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
-
-
+            var prefixIdText = @Html.Raw(Json.Encode(ViewData["PrefixIdsText"]));
+            
             for (var item of filterData) {
                 switch (item.ControlType) {
                     case 'TextBox':
                         break;
 
                     case 'DropDown Multi':
-                        optionsArray[item.ID] = {
+                        optionsArray[prefixIdText+item.ID] = {
                             title: item.PlaceholderText,
                             data: item.Filters,
                             maxHeight: 500,
@@ -142,8 +142,9 @@
                             multiSelect: true,
                             selectChildren: false,
                             expandChildren: true,
+                            prefixIdText: prefixIdText,
                         };
-                        $("#" + item.ID).DropDownTree(optionsArray[item.ID]);
+                        $("#" + prefixIdText + item.ID).DropDownTree(optionsArray[prefixIdText+item.ID]);
                         break;
 
                     default:

@@ -10,6 +10,7 @@
           }
         var optionsArray = {};
         var queryStringArr = [];
+        var prefixIdText = '';
 
 
         function makeQueryString(obj, prefix, isArray) {
@@ -50,7 +51,7 @@
         var model = @Html.Raw(json);
         if (model != null && model != "undefined") {
             var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
-            var prefixIdText = @Html.Raw(Json.Encode(ViewBag.PrefixIdsText));
+            prefixIdText = @Html.Raw(Json.Encode(ViewBag.PrefixIdsText));
             
             for (var item of filterData) {
                 optionsArray[prefixIdText+item.Name] = {
@@ -81,20 +82,21 @@
 
                 $.each(optionsArray, function (id, item) {
                     var selectedIdsCount = $("#" + id).GetSelectedElementIds().length;
+                    var trimmedId = id.slice(prefixIdText.length);
                     if (filterModel.Filters.length > 0) {
                         let flag = false;
                         for (var item of filterModel.Filters) {
-                            if (item.rootId === id) {
+                            if (item.rootId == trimmedId) {
                                 item.values = $("#" + id).GetSelectedElementIds();
                                 flag = true;
                                 break;
                             }
                         }
                         if (flag == false && selectedIdsCount > 0)
-                            filterModel.Filters.push({ rootId: id, values: $("#" + id).GetSelectedElementIds() });
+                            filterModel.Filters.push({ rootId: trimmedId, values: $("#" + id).GetSelectedElementIds() });
                     }
                     else if (selectedIdsCount > 0){
-                        filterModel.Filters.push({ rootId: id, values: $("#" + id).GetSelectedElementIds() });
+                        filterModel.Filters.push({ rootId: trimmedId, values: $("#" + id).GetSelectedElementIds() });
                     }
                 });
 
@@ -103,6 +105,7 @@
                 var urlPath = $(location).attr('pathname') + "/GetFilterSearchResultsPartial";
                 var queryStringData = makeQueryString(filterModel, "", false);
                 var pushStateUrl = $(location).attr('pathname') + "?" + queryStringData;
+                alert(pushStateUrl);
                 window.history.pushState(data, "", pushStateUrl);
                 queryStringArr.length = 0;
                 $.ajax({

@@ -111,6 +111,20 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.StringResources
             }
         }
 
+        /// <summary>
+        /// Gets phrase : Prefix text for id
+        /// </summary>
+        [ResourceEntry("PrefixIdText",
+            Value = "Prefix text for id",
+            Description = "phrase : Prefix text for id")]
+        public string PrefixIdText
+        {
+            get
+            {
+                return this["PrefixIdText"];
+            }
+        }
+
         #endregion
     }
 }

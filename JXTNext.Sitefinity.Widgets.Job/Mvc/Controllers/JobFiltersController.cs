@@ -33,6 +33,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
         }
 
+
+        public string PrefixIdText { get; set; }
         /// <summary>
         /// Gets or sets the name of the template that widget will be displayed.
         /// </summary>
@@ -99,6 +101,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 AppendParentIds(filtersVMList);
                 dynamicFilterResponse = filtersVMList as dynamic;
             }
+
+            ViewBag.PrefixIdsText = this.PrefixIdText == null ? "" : this.PrefixIdText;
 
             return View(this.TemplateName, dynamicFilterResponse);
         }

@@ -105,7 +105,6 @@
                 var urlPath = $(location).attr('pathname') + "/GetFilterSearchResultsPartial";
                 var queryStringData = makeQueryString(filterModel, "", false);
                 var pushStateUrl = $(location).attr('pathname') + "?" + queryStringData;
-                alert(pushStateUrl);
                 window.history.pushState(data, "", pushStateUrl);
                 queryStringArr.length = 0;
                 $.ajax({

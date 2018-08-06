@@ -19,7 +19,8 @@ var dropDownOptions = {
     clickTextSelect: true,
     selectParent: true,
     dropdownType: "dropdown", //dropdown,collapse
-    ariaLabelId: 'dropdownMenu'
+    ariaLabelId: 'dropdownMenu',
+    prefixIdText: ''
 };
 
 var globalTreeIdCounter=0;
@@ -29,6 +30,8 @@ var globalTreeIdCounter=0;
     //data inits from options
     $.fn.DropDownTree = function(options){
     //helpers
+        $(this).attr("data-prefixidtext", options.prefixIdText);
+
     function RenderData(data, element){		
         for(var i = 0 ; i< data.length ; i++){
             globalTreeIdCounter++;
@@ -42,23 +45,23 @@ var globalTreeIdCounter=0;
                 var activeCls = (data[i].Selected == true) ? 'active' : '';
                 var clickTxtSelCls = options.clickTextSelect ? 'drop-down-item' : '';
 
-                element.append('<li id=' + data[i].ID + dataAttrs + '>' + ((options.multiSelect && data[i].Selected != true) ? '<i class="fa fa-square-o select-box" aria-hidden="true"></i>' : (!options.multiSelect ? '' : '<i class="fa fa-check-square-o select-box" aria-hidden="true"></i>')) + '<a href="' + ((typeof data[i].href != "undefined" && data[i].href != null) ? data[i].href : '#') + '" class="' + activeCls + " " + clickTxtSelCls + '">' + data[i].Label + '<small class="count">' + (options.displayCount == true && data[i].Count != undefined ? '(' + data[i].Count + ')' : '') +'</small></a></li>');
+                element.append('<li id=' + options.prefixIdText + data[i].ID + dataAttrs + '>' + ((options.multiSelect && data[i].Selected != true) ? '<i class="fa fa-square-o select-box" aria-hidden="true"></i>' : (!options.multiSelect ? '' : '<i class="fa fa-check-square-o select-box" aria-hidden="true"></i>')) + '<a href="' + ((typeof data[i].href != "undefined" && data[i].href != null) ? data[i].href : '#') + '" class="' + activeCls + " " + clickTxtSelCls + '">' + data[i].Label + '<small class="count">' + (options.displayCount == true && data[i].Count != undefined ? '(' + data[i].Count + ')' : '') +'</small></a></li>');
                 if (data[i].Filters != null && typeof data[i].Filters != "undefined" && data[i].Filters.length > 0){					
-                    $("#" + data[i].ID).append("<ul style='display:none'></ul>");
-                    $("#" + data[i].ID).find("a").first().prepend('<span class="arrow">'+options.closedArrow+'</span>');
-                    RenderData(data[i].Filters, $("#" + data[i].ID).find("ul").first());
+                    $("#" + options.prefixIdText + data[i].ID).append("<ul style='display:none'></ul>");
+                    $("#" + options.prefixIdText + data[i].ID).find("a").first().prepend('<span class="arrow">'+options.closedArrow+'</span>');
+                    RenderData(data[i].Filters, $("#" + options.prefixIdText + data[i].ID).find("ul").first());
                  }else if(options.addChildren){
-                    $("#" + data[i].ID).find("a").first().prepend('<span class="arrow">'+options.closedArrow+'</span>');
+                    $("#" + options.prefixIdText + data[i].ID).find("a").first().prepend('<span class="arrow">'+options.closedArrow+'</span>');
                 }
             }
             else{
-                element.find("ul").append('<li id=' + data[i].ID + dataAttrs + '>' + (options.multiSelect ? '<i class="fa fa-square-o select-box" aria-hidden="true"></i>' : '') + '<a href="' + ((typeof data[i].href != "undefined" && data[i].href != null) ? data[i].href : '#') + (options.clickTextSelect ? '"class=drop-down-item' : '"') + '>' + data[i].Label+'</a></li>');
+                element.find("ul").append('<li id=' + options.prefixIdText + data[i].ID + dataAttrs + '>' + (options.multiSelect ? '<i class="fa fa-square-o select-box" aria-hidden="true"></i>' : '') + '<a href="' + ((typeof data[i].href != "undefined" && data[i].href != null) ? data[i].href : '#') + (options.clickTextSelect ? '"class=drop-down-item' : '"') + '>' + data[i].Label+'</a></li>');
                 if (data[i].Filters != null && typeof data[i].Filters !="undefined"){					
-                    $("#" + data[i].ID).append("<ul style='display:none'></ul>");
-                    $("#" + data[i].ID).find("a").first().prepend('<span class="arrow">'+options.closedArrow+'</span>');
-                    RenderData(data[i].Filters, $("#" + data[i].ID).find("ul").first());
+                    $("#" + options.prefixIdText + data[i].ID).append("<ul style='display:none'></ul>");
+                    $("#" + options.prefixIdText + data[i].ID).find("a").first().prepend('<span class="arrow">'+options.closedArrow+'</span>');
+                    RenderData(data[i].Filters, $("#" + options.prefixIdText + data[i].ID).find("ul").first());
                 }else if(options.addChildren){
-                    $("#" + data[i].ID).find("a").first().prepend('<span class="arrow">'+options.closedArrow+'</span>');
+                    $("#" + options.prefixIdText + data[i].ID).find("a").first().prepend('<span class="arrow">'+options.closedArrow+'</span>');
                 }
             }
         }
@@ -238,8 +241,11 @@ var globalTreeIdCounter=0;
 
     $(options.element).init.prototype.GetSelectedElementIds = function(title){
         var selectedElementIds = [];
+        var prefixIdText = $(this).attr("data-prefixidtext");
+        
         $.each($(this).GetSelected(), function (i, element) {
-            selectedElementIds.push($(element).attr("id"));
+            var trimmedId = $(element).attr("id").slice(prefixIdText.length);
+            selectedElementIds.push(trimmedId);
         });
         return selectedElementIds;
     };

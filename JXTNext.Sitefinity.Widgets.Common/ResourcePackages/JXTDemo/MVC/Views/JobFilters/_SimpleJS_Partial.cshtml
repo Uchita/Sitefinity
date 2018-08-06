@@ -10,6 +10,7 @@
           }
         var optionsArray = {};
         var queryStringArr = [];
+        var prefixIdText = '';
 
 
         function makeQueryString(obj, prefix, isArray) {
@@ -50,9 +51,10 @@
         var model = @Html.Raw(json);
         if (model != null && model != "undefined") {
             var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
-
+            prefixIdText = @Html.Raw(Json.Encode(ViewBag.PrefixIdsText));
+            
             for (var item of filterData) {
-                optionsArray[item.Name] = {
+                optionsArray[prefixIdText+item.Name] = {
                     title: item.Name,
                     data: item.Filters,
                     maxHeight: 500,
@@ -64,13 +66,14 @@
                     expandChildren: true,
                     expandElement: true,
                     dropdownType: "collapse", //dropdown,collapse
-                    ariaLabelId: 'lbl-' + item.Name,
+                    ariaLabelId: 'lbl-' + prefixIdText + item.Name,
                     displayCount: true,
+                    prefixIdText: prefixIdText,
                     checkHandler: function (target, checked) {
                         eachClickFilter();
                     }
                 };
-                $("#" + item.Name).DropDownTree(optionsArray[item.Name]);
+                $("#" + prefixIdText + item.Name).DropDownTree(optionsArray[prefixIdText+item.Name]);
             }
 
             function eachClickFilter() {
@@ -79,20 +82,21 @@
 
                 $.each(optionsArray, function (id, item) {
                     var selectedIdsCount = $("#" + id).GetSelectedElementIds().length;
+                    var trimmedId = id.slice(prefixIdText.length);
                     if (filterModel.Filters.length > 0) {
                         let flag = false;
                         for (var item of filterModel.Filters) {
-                            if (item.rootId === id) {
+                            if (item.rootId == trimmedId) {
                                 item.values = $("#" + id).GetSelectedElementIds();
                                 flag = true;
                                 break;
                             }
                         }
                         if (flag == false && selectedIdsCount > 0)
-                            filterModel.Filters.push({ rootId: id, values: $("#" + id).GetSelectedElementIds() });
+                            filterModel.Filters.push({ rootId: trimmedId, values: $("#" + id).GetSelectedElementIds() });
                     }
                     else if (selectedIdsCount > 0){
-                        filterModel.Filters.push({ rootId: id, values: $("#" + id).GetSelectedElementIds() });
+                        filterModel.Filters.push({ rootId: trimmedId, values: $("#" + id).GetSelectedElementIds() });
                     }
                 });
 

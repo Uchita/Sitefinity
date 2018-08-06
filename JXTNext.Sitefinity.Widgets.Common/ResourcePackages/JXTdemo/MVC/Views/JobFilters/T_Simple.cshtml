@@ -10,7 +10,7 @@
 
     foreach (var item in Model)
     {
-        <div class="dropdown dropdown-tree" id=@item.Name></div>
+        <div class="dropdown dropdown-tree" id=@string.Format("{0}{1}",ViewBag.PrefixIdsText,item.Name)></div>
     }
 }
 

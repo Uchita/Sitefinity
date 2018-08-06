@@ -8,7 +8,9 @@
     .container{
         position: relative;
     }
-    
+    .row{
+        min-height: 80px;
+    }
     a{
         color: $brightColor;
         text-decoration: none;

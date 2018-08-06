@@ -1,4 +1,10 @@
-﻿@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+﻿@using Telerik.Sitefinity.Taxonomies.Model
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+@using JXTNext.Sitefinity.Common.Helpers
+@{
+    List<Taxon> taxons = JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.GetTopLevelCategories();
+}
+
 
 <div class="form-group">
     <label>@Html.Resource("SelectJobApplication", "JobDetailsResources")</label>
@@ -11,14 +17,25 @@
 <div class="form-group">
     <div class="row">
         <div class="col-xs-4" ng-repeat="role in roleList">
-            
+
             <label>
                 <input type='checkbox' ng-model="role.IsChecked">{{::role.RoleName}}
             </label>
-            
+
         </div>
     </div>
 </div>
+
+<div>
+    <label>Display Slot 1</label>
+    <select id="sortOrder" ng-model="properties.Sorting.PropertyValue" class="form-control">
+        @foreach (Taxon t in taxons)
+        {
+            <option value="@t.Id">@t.Name</option>
+        }
+    </select>
+</div>
+
 
 <expander expander-title="@Html.Resource("MoreOptions", "JobDetailsResources")">
 
@@ -44,3 +61,5 @@
         <input type="text" id="navCssClass" ng-model="properties.CssClass.PropertyValue" class="form-control" />
     </div>
 </expander>
+
+

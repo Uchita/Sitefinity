@@ -12,6 +12,9 @@
 @using Telerik.Sitefinity.Modules.UserProfiles;
 @using Telerik.Sitefinity.Taxonomies;
 @using Telerik.Sitefinity.Taxonomies.Model;
+@using Telerik.Sitefinity.Model;
+@using Telerik.OpenAccess;
+
 
 @Html.Script(ScriptRef.JQuery, "top", false)
 
@@ -28,7 +31,7 @@
                 <li><a href="javascript:void(0);" data-filter="All" class="active">All</a></li>
                 @{
                     var manager = TaxonomyManager.GetManager();
-                    
+
                     var departmentsTaxonomy = manager.GetTaxonomies<HierarchicalTaxonomy>().Where(t => t.Name == "Departments").SingleOrDefault();
 
 
@@ -78,31 +81,18 @@
                                         </p>
                                     </a>
 
-
-                                    @*@if (consultantProfile != null && (Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "Category")))
-                            {*@
-                                    <span>@(Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "Departments"))</span>
-                                    @*}*@
-
                                     @{
-
-
-
+                                        var departmentsTaxa = Telerik.Sitefinity.Model.DataExtensions.GetValue<TrackedList<Guid>>(consultantProfile, "Departments");
+                                        foreach (var taxonItem in departmentsTaxa)
+                                        {
+                                            Guid categoryID = new Guid(taxonItem.ToString());
+                                            var taxonManager = TaxonomyManager.GetManager();
+                                            var taxon = taxonManager.GetTaxa<HierarchicalTaxon>().Where(t => t.Id == categoryID).ToList().FirstOrDefault();
+                                            <span>@taxon.Name</span>
+                                        }
                                     }
 
-                                    @*@if (item.Fields.Category != null)
-                            {
-                                <ul @Html.InlineEditingFieldAttributes("Category", "HierarchicalTaxon")> 
-                                    @foreach (var taxon in item.GetHierarchicalTaxons("Category"))
-                                    {
-                                        <li><a href="/@SiteMapBase.GetActualCurrentNode().UrlName/-in-category/categories/@taxon.UrlName.ToString()">@taxon.Title.ToString()</a></li>
-                                    }
-                                </ul>
-                            }*@
-
-
-
-
+                                  
                                     <div class="footer-meta">
                                         @if (consultantProfile != null && !String.IsNullOrEmpty((string)Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "Phone")))
                                         {
@@ -142,7 +132,7 @@
 
             </div>
         </div>
-        
+
     </div>
 
 }
@@ -188,7 +178,7 @@ else
             } else {
                 $('.alert').addClass('hidden');
             }
-            
+
         });
     });
 </script>

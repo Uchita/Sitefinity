@@ -82,6 +82,7 @@
             border-radius: 4px;
             box-shadow: 0 6px 12px rgba(0,0,0,0.175);
             background-clip: padding-box;
+            
             li{
                 display: block;
             }
@@ -100,6 +101,13 @@
             li.active a{
                 background: darken($baseColor, 20%);
                 color: $brightColor;
+            }
+            ul{
+                position: static;
+                border-radius: 0;
+                li a{
+                    padding-left: 25px;
+                }
             }
            }
            &:hover{

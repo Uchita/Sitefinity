@@ -222,7 +222,6 @@
 
                     //check the layout on the base of active
                     //or Retrieve from local storage for checking too
-                    
                     if ($('.layout-switch .jn_ico.active').hasClass('icon-grid-view')) {
                         $('#resultsPagePartialContent').removeClass('list-view').addClass('grid-view');
                         $('.job-holder').addClass('col-lg-6');
@@ -230,6 +229,8 @@
                     //in case of taking from local storage, when data is loaded on filter selection
                     else if (typeof (Storage) !== "undefined" && localStorage.getItem("resultLayout") == 'grid') {
                         $('#resultsPagePartialContent').removeClass('list-view').addClass('grid-view');
+                        $('.layout-switch .jn_ico').removeClass('active');
+                        $('.layout-switch .icon-grid-view').addClass('active');
                         $('.job-holder').addClass('col-lg-6');
                     }
 
@@ -295,13 +296,13 @@
                     if ($(this).hasClass('icon-grid-view')) {
                         //browser local Store
                         if (typeof (Storage) !== "undefined") {
-                            localStorage.setItem("resultLayout", "list");
+                            localStorage.setItem("resultLayout", "grid");
                         }
                         $('.list-view').removeClass('list-view').addClass('grid-view');
                         $('.job-holder').addClass('col-lg-6');
                     } else {
                         if (typeof (Storage) !== "undefined") {
-                            localStorage.setItem("resultLayout", "grid");
+                            localStorage.setItem("resultLayout", "list");
                         }
                         $('.grid-view').removeClass('grid-view').addClass('list-view');
                         $('.job-holder').removeClass('col-lg-6');

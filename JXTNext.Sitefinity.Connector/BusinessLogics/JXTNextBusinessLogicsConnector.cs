@@ -189,9 +189,10 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
             if (actionSuccessful)
             {
                 dynamic responseObj = JObject.Parse(response.Response);
+                JObject jobItem = JObject.Parse(responseObj["data"].Value);
 
                 if (responseObj["status"] == 200)
-                    return new JXTNext_GetJobListingResponse { Success = true, Job = _jobMapper.ConvertToLocalEntity<JobDetailsFullModel>(JObject.Parse(responseObj["data"].Value)) };
+                    return new JXTNext_GetJobListingResponse { Success = true, Job = _jobMapper.ConvertToLocalEntity<JobDetailsFullModel>(jobItem) };
                 else
                     return new JXTNext_GetJobListingResponse { Success = false, Errors = JsonConvert.DeserializeObject<List<string>>(responseObj["errors"].ToString()) };
             }
@@ -231,6 +232,5 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
             else
                 return new JXTNext_SearchJobsResponse { Success = false, Errors = new List<string> { response.Response } };
         }
-
     }
 }

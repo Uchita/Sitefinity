@@ -20,12 +20,12 @@
     text-indent: -99em;
     position: relative;
     display: inline-block;
-    width: 20px;
+    width: 21px;
     min-height: 21px;
     &::after{
       position: absolute;
       top: 0;
-      left: 0;
+      left: 1px;
       text-indent: 0;
       width: 100%;
     }

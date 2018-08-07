@@ -31,9 +31,15 @@
             <h3><a href="@ViewBag.JobDetailsPageUrl?jobId=#:JobID#">#:Title#</a></h3>
         </div>
         <div class="job-desc">#:ShortDescription#</div>
-        <div>#:CustomData["ListingClassification.WorkTypeName"]#</div>
-        <div>#:CustomData["Salary.SalaryName"]#</div>
-        <div>#:CustomData["CountryLocationArea[0].Filters[0].Value"]#</div>
+        
+        <dl class="sc-job-meta-group clearfix">
+            <dt class="sc-job-meta-name meta-location hidden">Location</dt>
+            <dd class="sc-job-meta-value meta-location"><span class="jn_ico icon-pin">icon</span>#:CustomData["CountryLocationArea[0].Filters[0].Value"]#</dd>
+            <dt class="sc-job-meta-name meta-salary hidden">Salary</dt>
+            <dd class="sc-job-meta-value meta-salary"><span class="jn_ico icon-value">icon</span>#:CustomData["Salary.SalaryName"]#</dd>
+            <dt class="sc-job-meta-name meta-worktype hidden">Worktype</dt>
+            <dd class="sc-job-meta-value meta-worktype"><span class="jn_ico icon-time">icon</span>#:CustomData["ListingClassification.WorkTypeName"]#</dd>
+        </dl>
         <a href="@ViewBag.JobDetailsPageUrl?jobId=#:JobID#" class="btn btn-sm" title="Read more">Read more</a>
     </div>
 </script>
@@ -66,6 +72,7 @@
             bindJobs(PageNumber);
         });
 
+        layoutSwitch();
 
         function makeQueryString(obj, prefix, isArray) {
 
@@ -212,6 +219,21 @@
                         $(".info-block").removeClass('hidden');
                         $("#sortOrder").parent().hide();
                     }
+
+                    //check the layout on the base of active
+                    //or Retrieve from local storage for checking too
+                    if ($('.layout-switch .jn_ico.active').hasClass('icon-grid-view')) {
+                        $('#resultsPagePartialContent').removeClass('list-view').addClass('grid-view');
+                        $('.job-holder').addClass('col-lg-6');
+                    }
+                    //in case of taking from local storage, when data is loaded on filter selection
+                    else if (typeof (Storage) !== "undefined" && localStorage.getItem("resultLayout") == 'grid') {
+                        $('#resultsPagePartialContent').removeClass('list-view').addClass('grid-view');
+                        $('.layout-switch .jn_ico').removeClass('active');
+                        $('.layout-switch .icon-grid-view').addClass('active');
+                        $('.job-holder').addClass('col-lg-6');
+                    }
+
                     jobContainer.removeClass('loading');
                 },
                 error: function (response) {
@@ -228,6 +250,7 @@
             }
 
             bindJobsPages(currPageNumber);
+            
             if (currPageNumber != PageNumber) {
                 PageNumber = parseInt(currPageNumber);
                 bindJobs(PageNumber);
@@ -263,25 +286,32 @@
                     break;
             }
         };
+
+        function layoutSwitch() {
+            if ($('.layout-switch').length) {
+                $('.layout-switch span.jn_ico').click(function () {
+                    $(this).siblings().removeClass('active');
+                    $(this).addClass('active');
+
+                    if ($(this).hasClass('icon-grid-view')) {
+                        //browser local Store
+                        if (typeof (Storage) !== "undefined") {
+                            localStorage.setItem("resultLayout", "grid");
+                        }
+                        $('.list-view').removeClass('list-view').addClass('grid-view');
+                        $('.job-holder').addClass('col-lg-6');
+                    } else {
+                        if (typeof (Storage) !== "undefined") {
+                            localStorage.setItem("resultLayout", "list");
+                        }
+                        $('.grid-view').removeClass('grid-view').addClass('list-view');
+                        $('.job-holder').removeClass('col-lg-6');
+                    }
+                });
+            }
+        }
     }
 
-</script>
-<script>
-    $(document).ready(function () {
-        if ($('.layout-switch').length) {
-            $('.layout-switch span.jn_ico').click(function () {
-                $(this).siblings().removeClass('active');
-                $(this).addClass('active');
-                if ($(this).hasClass('icon-grid-view')) {
-                    $('.list-view').removeClass('list-view').addClass('grid-view');
-                    $('.job-holder').addClass('col-lg-6');
-                } else {
-                    $('.grid-view').removeClass('grid-view').addClass('list-view');
-                    $('.job-holder').removeClass('col-lg-6');
-                }
-            });
-        }
-    });
 </script>
 <style>
 

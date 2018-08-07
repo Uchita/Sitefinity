@@ -129,7 +129,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
         protected override void HandleUnknownAction(string actionName)
         {
-            this.Index(null).ExecuteResult(this.ControllerContext);
+            this.ActionInvoker.InvokeAction(this.ControllerContext, "Index");
         }
 
         static void ProcessConfigFilterItems(JobSearchFilterReceiverItem targetFilterItem, JobSearchItem sourceFilterItem)

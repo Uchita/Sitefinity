@@ -96,6 +96,9 @@
                 var filterModel = {};
                 filterModel.Filters = [];
 
+                //getting the loader while the job search is working
+                $("#selectedkeywordsfilter").parent().addClass('loader');
+
                 $.each(optionsArray, function (id, item) {
                     var selectedIdsCount = $("#" + id).GetSelectedElementIds().length;
                     var trimmedId = id.slice(prefixIdText.length);

@@ -20,7 +20,7 @@
 </div>
 
 <div id="listView" class="job-result row"></div>
-<div class="h-section hidden info-block"><p class="alert alert-warning">Sorry! The jobs you are searching for did not match. Please try with different search criteria.</p></div>
+<div class="l-section hidden info-block"><p class="alert alert-warning">Sorry! The jobs you are searching for did not match. Please try with different search criteria.</p></div>
 <div id="pager" class="k-pager-wrap k-widget k-floatwrap" data-role="]">
     <ul class="k-pager-numbers k-reset"></ul>
 </div>
@@ -234,7 +234,10 @@
                         $('.job-holder').addClass('col-lg-6');
                     }
 
+                    //removing the loader in the job result widget
                     jobContainer.removeClass('loading');
+                    //removing the loader in the search keyword - job filter widget
+                    $("#selectedkeywordsfilter").parent().removeClass('loader');
                 },
                 error: function (response) {
                     console.log('error response: '+response);

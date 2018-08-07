@@ -34,7 +34,14 @@
 
             <div>
                 <p><strong>Note:</strong> If no filter values selected means will treat it as whole filter</p>
-            </div> <br/>
+            </div> <br />
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="properties.DisplayCompanyName.PropertyValue" ng-true-value="'True'" ng-false-value="'False'" ng-checked="properties.HidePushStateUrl.PropertyValue === 'True'" />
+                    Display Company Name
+                </label>
+            </div><br />
 
             <div class="form-group" data-ng-repeat="row in rows">
                 <div class="row">

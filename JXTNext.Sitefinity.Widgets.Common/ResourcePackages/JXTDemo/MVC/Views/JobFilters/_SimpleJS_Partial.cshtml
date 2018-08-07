@@ -11,6 +11,22 @@
         var optionsArray = {};
         var queryStringArr = [];
         var prefixIdText = '';
+        var typingTimer;
+        var doneTypingInterval = 500;
+
+        $('#selectedkeywordsfilter').on('keyup', function (e) {
+            clearTimeout(typingTimer);
+            if ($(this).val) {
+                typingTimer = setTimeout(function () {
+                    eachClickFilter();
+                }, doneTypingInterval);
+            }
+        });
+
+        $("#selectedkeywordsfilter").on("search", function (input) {
+            if ($(this).val() == "")
+                eachClickFilter();
+        });
 
 
         function makeQueryString(obj, prefix, isArray) {

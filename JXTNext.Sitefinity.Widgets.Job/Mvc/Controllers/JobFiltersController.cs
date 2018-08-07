@@ -84,15 +84,18 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
             var jobFilterComponents = this.SerializedJobSearchParams == null ? null : JsonConvert.DeserializeObject<List<JobSearchModel>>(this.SerializedJobSearchParams);
 
-            if (jobFilterComponents != null)
+            if (jobFilterComponents != null || this.DisplayCompanyName)
             {
-                foreach (JobSearchModel item in jobFilterComponents)
+                if (jobFilterComponents != null)
                 {
-                    FilterData(item.Filters);
-                    item.Filters = item.Filters.Where(d => d.Show == true || d.Filters?.Count > 0).ToList();
+                    foreach (JobSearchModel item in jobFilterComponents)
+                    {
+                        FilterData(item.Filters);
+                        item.Filters = item.Filters.Where(d => d.Show == true || d.Filters?.Count > 0).ToList();
+                    }
                 }
 
-                var selectedConfigFilters = GetSelecctedFiltersFromConfig(filtersVMList, jobFilterComponents);
+                var selectedConfigFilters = GetSelecctedFiltersFromConfig(filtersVMList, jobFilterComponents, this.DisplayCompanyName);
                 AppendParentIds(selectedConfigFilters);
                 dynamicFilterResponse = selectedConfigFilters as dynamic;
             }
@@ -135,38 +138,48 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
         }
 
-        private List<JobFilterRoot> GetSelecctedFiltersFromConfig(List<JobFilterRoot> filtersVMList, List<JobSearchModel> designerViewModel)
+        private List<JobFilterRoot> GetSelecctedFiltersFromConfig(List<JobFilterRoot> filtersVMList, List<JobSearchModel> designerViewModel, bool displayCompanyName)
         {
             List<JobFilterRoot> selectedConfigFilters = new List<JobFilterRoot>();
-            foreach (var item in designerViewModel)
+            if (designerViewModel != null && filtersVMList != null)
             {
-                foreach (var filterRoot in filtersVMList)
+                foreach (var item in designerViewModel)
                 {
-                    if(item.FilterType.Equals(filterRoot.Name, StringComparison.OrdinalIgnoreCase))
+                    foreach (var filterRoot in filtersVMList)
                     {
-                        if(item.Filters == null || item.Filters.Count <= 0)
+                        if (item.FilterType.Equals(filterRoot.Name, StringComparison.OrdinalIgnoreCase))
                         {
-                            selectedConfigFilters.Add(filterRoot);
-                            break;
-                        }
-                        else
-                        {
-                            JobFilterRoot rootItem = new JobFilterRoot() { Filters = new List<JobFilter>() };
-                            rootItem.ID = filterRoot.ID;
-                            rootItem.Name = filterRoot.Name;
-                            rootItem.Type = filterRoot.Type;
-                           foreach (var configFilterItem in item.Filters)
+                            if (item.Filters == null || item.Filters.Count <= 0)
                             {
-                                var newSubFilter = new JobFilter() { Filters = new List<JobFilter>(), Label = null };
-                                ProcessConfigSubFilters(configFilterItem, newSubFilter, filterRoot.Filters);
-                                if(newSubFilter.Label != null)
-                                    rootItem.Filters.Add(newSubFilter);
+                                selectedConfigFilters.Add(filterRoot);
+                                break;
                             }
+                            else
+                            {
+                                JobFilterRoot rootItem = new JobFilterRoot() { Filters = new List<JobFilter>() };
+                                rootItem.ID = filterRoot.ID;
+                                rootItem.Name = filterRoot.Name;
+                                rootItem.Type = filterRoot.Type;
+                                foreach (var configFilterItem in item.Filters)
+                                {
+                                    var newSubFilter = new JobFilter() { Filters = new List<JobFilter>(), Label = null };
+                                    ProcessConfigSubFilters(configFilterItem, newSubFilter, filterRoot.Filters);
+                                    if (newSubFilter.Label != null)
+                                        rootItem.Filters.Add(newSubFilter);
+                                }
 
-                            selectedConfigFilters.Add(rootItem);
+                                selectedConfigFilters.Add(rootItem);
+                            }
                         }
                     }
                 }
+            }
+
+            if(displayCompanyName)
+            {
+                var companyFilter = filtersVMList.Where(item => item.Name == "CompanyName").FirstOrDefault();
+                if (companyFilter != null)
+                    selectedConfigFilters.Add(companyFilter);
             }
 
             return selectedConfigFilters;
@@ -362,6 +375,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         }
 
         public string SerializedJobSearchParams { get; set; }
+        public bool DisplayCompanyName { get; set; }
 
         private string _serializedFilterData;
         public string SerializedFilterData

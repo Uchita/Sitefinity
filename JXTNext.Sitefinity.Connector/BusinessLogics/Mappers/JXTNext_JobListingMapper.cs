@@ -21,13 +21,13 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
 
         public T ConvertToLocalEntity<T>(dynamic data) where T : class
         {
-            //target: JobDetailsFullModel
             JobDetailsFullModel local = new JobDetailsFullModel
             {
                 JobID = data["Id"],
                 Title = data["Name"],
                 ShortDescription = data["ShortDescription"],
                 Description = data["FullDescription"],
+                CustomData = (data["CustomData"] != null) ? FlattenJson(JObject.Parse((data["CustomData"]).Value)) : null
             };
 
             return local as T;

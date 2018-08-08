@@ -3,7 +3,12 @@
 
 @if (Model != null)
 {
-   
+
+    <div class="form-group">
+        <label><strong>Keywords:</strong></label>
+        <div class="search-wrap"><input id="selectedkeywordsfilter" type="search" value="@ViewBag.Keywords" /></div>
+    </div>
+
     foreach (var item in Model)
     {
         //item is JobFilterRoot
@@ -36,13 +41,13 @@
 }
 
 @helper PrintFirstLevelFiltersOnly(dynamic node, string rootId)
-    {
-        <li>
-            <a href="#" id="@node.ID" data-rootid="@rootId" class="filterElement">@(HttpUtility.HtmlDecode(node.Label)) (@node.Count)</a>
-        </li>
+{
+    <li>
+        <a href="#" id="@node.ID" data-rootid="@rootId" class="filterElement">@(HttpUtility.HtmlDecode(node.Label)) (@node.Count)</a>
+    </li>
 }
 
-        <script type="text/javascript">
+<script type="text/javascript">
     $(document).ready(function () {
          @{
                 var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
@@ -250,5 +255,5 @@
         }
         $('.sidebar .dropdown-tree .dropdown-toggle').dropdown('toggle');
     });
-            
-        </script>
+
+</script>

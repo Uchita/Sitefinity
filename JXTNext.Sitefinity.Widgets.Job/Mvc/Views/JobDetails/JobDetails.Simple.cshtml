@@ -13,7 +13,7 @@
         </div>
         <div class="job-header">
             <h1 class="page-title">@Model.JobDetails.Title</h1>
-            <div class="highlight">Tag goes here</div>
+            <div class="highlight">@Model.JobDetails.CustomData["Classifications[0].Filters[0].Value"]</div>
         </div>
         <dl class="sc-job-meta-group clearfix">
             <dt class="sc-job-meta-name meta-location hidden">Location</dt>

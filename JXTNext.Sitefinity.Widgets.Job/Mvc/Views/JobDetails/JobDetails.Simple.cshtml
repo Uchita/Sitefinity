@@ -33,9 +33,9 @@
 </div>
 <div class="col-lg-4">
     <div class="job-sec2">
-        <div class="job-ref"><span class="meta-key">Ref:</span><span class="meta-value">2F9775SD90IB</span></div>
-        <figure class="job-image"><img src="~/ResourcePackages/JXTdemo/assets/dist/images/team-1.jpg" alt="Team name"></figure>
-        <a href="mailto:emailaddress" class="link" title="Consultant email">Email</a>
+        <div class="job-ref"><span class="meta-key">Ref:</span><span class="meta-value">@Model.JobDetails.ReferenceNo</span></div>
+        <figure class="job-image"><img src="@Model.ApplicationAvatarImageUrl" alt="Team name"></figure>
+        <a href="mailto:emailaddress" class="link" title="Consultant email">@Model.JobDetails.CustomData["ApplicationMethod.ApplicationEmail"]</a>
     </div>
 </div>
 

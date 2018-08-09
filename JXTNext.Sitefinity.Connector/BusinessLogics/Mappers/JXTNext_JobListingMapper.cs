@@ -27,6 +27,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
                 Title = data["Name"],
                 ShortDescription = data["ShortDescription"],
                 Description = data["FullDescription"],
+                ReferenceNo = data["RefNo"],
                 CustomData = (data["CustomData"] != null) ? FlattenJson(JObject.Parse((data["CustomData"]).Value)) : null
             };
 
@@ -46,6 +47,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
                     Title = jobItem["Name"],
                     ShortDescription = jobItem["ShortDescription"],
                     Description = jobItem["FullDescription"],
+                    ReferenceNo = jobItem["RefNo"],
                     CustomData = (jobItem["CustomData"] != null)? FlattenJson(new JObject(jobItem["CustomData"])) : null
             };
                 jobFullDetails.Add(local);

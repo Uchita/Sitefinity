@@ -20,7 +20,8 @@ var dropDownOptions = {
     selectParent: true,
     dropdownType: "dropdown", //dropdown,collapse
     ariaLabelId: 'dropdownMenu',
-    prefixIdText: ''
+    prefixIdText: '',
+    setSelectedElementsTitle: true
 };
 
 var globalTreeIdCounter=0;
@@ -180,7 +181,10 @@ var globalTreeIdCounter=0;
                 $(this).parents("li").first().find("a").removeClass("active");
             }
         }
-        SetSelectedElementsTitle();
+
+        if (options.setSelectedElementsTitle)
+            SetSelectedElementsTitle();
+
         options.checkHandler($(this).parents("li").first(), e, checked);
      });
 
@@ -287,9 +291,10 @@ var globalTreeIdCounter=0;
             parent.children("a").addClass("active");
             selectParent(parent.children("i").first());
         }
-    };
+        };
 
-    SetSelectedElementsTitle();
+     if (options.setSelectedElementsTitle)
+         SetSelectedElementsTitle();
 
 };
 })(jQuery);

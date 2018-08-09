@@ -10,6 +10,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
     {
         public dynamic JobDetails { get; set; }
         public bool JobApplyAvailable { get; set; }
+        public string ApplicationAvatarImageUrl { get; set; }
     }
 
     public class JobDetailsRolesOptions

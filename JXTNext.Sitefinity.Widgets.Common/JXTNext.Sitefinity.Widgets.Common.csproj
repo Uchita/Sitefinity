@@ -536,6 +536,9 @@
     <Content Include="ResourcePackages\JXTDemo\MVC\Views\News\List.NewsListGrid.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\Registration\Registration.RegistrationForm2Col.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="ResourcePackages\JXTDemo\MVC\Views\SearchBox\SearchBox.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -575,6 +578,16 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\JXTDemo\MVC\Views\UsersList\List.ConsultantGridView.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="ResourcePackages\JXTDemo\MVC\Views\UsersListExtended\DesignerView.Simple.cshtml" />
+    <EmbeddedResource Include="ResourcePackages\JXTDemo\MVC\Views\UsersListExtended\DesignerView.Simple.json" />
+    <EmbeddedResource Include="ResourcePackages\JXTDemo\MVC\Views\UsersListExtended\Detail.UserDetails.cshtml" />
+    <EmbeddedResource Include="ResourcePackages\JXTDemo\MVC\Views\UsersListExtended\List.UsersList.cshtml" />
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\UsersListExtended\List.ConsultantGridView.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\UsersListExtended\Detail.ConsultantDetails.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="ResourcePackages\JXTDemo\package-lock.json" />

@@ -193,6 +193,13 @@ jQuery(document).ready(function($) {
      * *input must have class form-control
     */
     if ($('.animate-label input.form-control').length) {
+        //onload: in case of form error
+        $('.animate-label input.form-control').each(function () {
+            if ($(this).val() != "") {
+                $(this).addClass('hasValue');
+            }
+        });
+
         $('.animate-label input.form-control').on('focus', function () {
             $(this).addClass('hasValue');
         });

@@ -11,6 +11,7 @@ using JXTNext.Sitefinity.Common.Helpers;
 using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
 using JXTNext.Sitefinity.Widgets.Job.Mvc.Models;
 using System.ComponentModel;
+using System.Collections.Specialized;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -77,8 +78,27 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 if (this.Model.IsJobApplyAvailable())
                     viewModel.JobApplyAvailable = true;
 
+                // Processing Classifications
+                OrderedDictionary classifOrdDict = new OrderedDictionary();
+                classifOrdDict.Add(jobListingResponse.Job.CustomData["Classifications[0].Filters[0].ExternalReference"], jobListingResponse.Job.CustomData["Classifications[0].Filters[0].Value"]);
+                string parentClassificationsKey = "Classifications[0].Filters[0].SubLevel[0]";
+                JobDetailsViewModel.ProcessCustomData(parentClassificationsKey, jobListingResponse.Job.CustomData, classifOrdDict);
+                OrderedDictionary classifParentIdsOrdDict = new OrderedDictionary();
+                JobDetailsViewModel.AppendParentIds(classifOrdDict, classifParentIdsOrdDict);
+
+                // Processing Locations
+                OrderedDictionary locOrdDict = new OrderedDictionary();
+                classifOrdDict.Add(jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].ExternalReference"], jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].Value"]);
+                string parentLocKey = "CountryLocationArea[0].Filters[0].SubLevel[0]";
+                JobDetailsViewModel.ProcessCustomData(parentLocKey, jobListingResponse.Job.CustomData, locOrdDict);
+                
+                viewModel.Classifications = classifParentIdsOrdDict;
+                viewModel.Locations = locOrdDict;
+                viewModel.ClassificationsRootName = "Classifications";
+               
                 ViewBag.CssClass = this.CssClass;
                 ViewBag.JobApplicationPageUrl = SitefinityHelper.GetPageUrl(this.JobApplicationPageId);
+                ViewBag.JobResultsPageUrl = SitefinityHelper.GetPageUrl(this.JobResultsPageId);
 
                 var fullTemplateName = this.templateNamePrefix + this.TemplateName;
                 return View(fullTemplateName, viewModel);
@@ -96,6 +116,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public string CssClass { get; set; }
         private JobDetailsRolesModel model;
         public string JobApplicationPageId { get; set; }
+        public string JobResultsPageId { get; set; }
         private string templateName = "Simple";
         private string templateNamePrefix = "JobDetails.";
     }

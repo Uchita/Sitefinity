@@ -45,6 +45,7 @@
         height: 60px;
         padding-left: 20px;
         padding-right: 20px;
+        margin: 0;
         @include bp-max(sm) {
             border-radius: 0 0px 30px 30px;
             width: 100%;

@@ -84,6 +84,20 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.StringResources
         }
 
         /// <summary>
+        /// Gets phrase: This is the page where you have dropped search results widget
+        /// </summary>
+        [ResourceEntry("ApplyButtonShow",
+            Value = "Please select users type to display Apply button",
+            Description = "phrase : Please select users type to display Apply button")]
+        public string ApplyButtonShow
+        {
+            get
+            {
+                return this["ApplyButtonShow"];
+            }
+        }
+
+        /// <summary>
         /// Gets phrase: More options
         /// </summary>
         [ResourceEntry("MoreOptions",

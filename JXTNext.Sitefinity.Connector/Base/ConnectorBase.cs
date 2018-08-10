@@ -15,7 +15,9 @@ namespace JXTNext.Sitefinity.Connector
 
         public string CONFIG_DataAccessTarget => _accessTargetPath;
         public int HTTP_Requests_MaxWaitTime => _maxWaitTime;
-        public Dictionary<string, string> HTTP_Request_HeaderValues => _headerValues; 
+        public Dictionary<string, string> HTTP_Request_HeaderValues => _headerValues;
+
+        internal bool Settings_LegacyJobSource = true;
 
         string _accessTargetPath;
         int _maxWaitTime;

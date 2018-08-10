@@ -580,10 +580,6 @@
     <Content Include="ResourcePackages\JXTDemo\MVC\Views\UsersList\List.ConsultantGridView.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <EmbeddedResource Include="ResourcePackages\JXTDemo\MVC\Views\UsersListExtended\DesignerView.Simple.cshtml" />
-    <EmbeddedResource Include="ResourcePackages\JXTDemo\MVC\Views\UsersListExtended\DesignerView.Simple.json" />
-    <EmbeddedResource Include="ResourcePackages\JXTDemo\MVC\Views\UsersListExtended\Detail.UserDetails.cshtml" />
-    <EmbeddedResource Include="ResourcePackages\JXTDemo\MVC\Views\UsersListExtended\List.UsersList.cshtml" />
     <Content Include="ResourcePackages\JXTDemo\MVC\Views\UsersListExtended\List.ConsultantGridView.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

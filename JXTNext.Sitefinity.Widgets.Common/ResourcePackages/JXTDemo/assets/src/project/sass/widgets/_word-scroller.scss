@@ -24,6 +24,7 @@
         display: inline;
         a{
             text-decoration: none;
+            color: $baseColor;
             &.active{
                 color: $p1Color;
             }

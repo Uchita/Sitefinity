@@ -1,13 +1,14 @@
-@model Telerik.Sitefinity.Frontend.Identity.Mvc.Models.UsersList.UserDetailsViewModel
+@model JXTNext.Sitefinity.Widgets.Authentication.Mvc.Models.UsersListExtended.UserDetailsExtendedViewModel
 
 @using Telerik.Sitefinity;
 @using Telerik.Sitefinity.Security.Model;
 @using Telerik.Sitefinity.Security.Claims;
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers;
-@using Telerik.Sitefinity.Frontend.Identity.Mvc.Models.UsersList;
+@using JXTNext.Sitefinity.Widgets.Authentication.Mvc.Models.UsersListExtended;
+@using Telerik.Sitefinity.Security;
 
 @{
-    bool isAuthenticated = true;
+    bool isAuthenticated = false;
 
     var user = ClaimsManager.GetCurrentIdentity();
     if (user != null)
@@ -18,6 +19,7 @@
     Telerik.Sitefinity.Security.UserManager userManager = Telerik.Sitefinity.Security.UserManager.GetManager();
     Telerik.Sitefinity.Security.UserProfileManager userProfileManager = Telerik.Sitefinity.Security.UserProfileManager.GetManager();
     var consultantProfile = userProfileManager.GetUserProfiles((Model.Item.DataItem as SitefinityProfile).User).Where(c => c.GetType().FullName.ToUpper().Contains("CONSULTANTPROFILE")).FirstOrDefault();
+
     Telerik.Sitefinity.Libraries.Model.Image image = null;
     if (consultantProfile != null)
     {
@@ -31,12 +33,10 @@
     }
 
 }
-
 <div class="@Model.CssClass">
-
     @if (consultantProfile != null)
     {
-        <div class="profile-image-holder">
+         <div class="profile-image-holder">
             @if (image != null)
             { //getting banner image
                 <img src="/@image.FilePath" alt="@Model.Item.Fields.FirstName" />
@@ -44,11 +44,11 @@
             else
             { //getting profile image
                 <div class="profile-photo">
-                    <img src="@(((SitefinityProfileItemViewModel)Model.Item).AvatarImageUrl)" alt="@Model.Item.Fields.FirstName" />
+                    <img src="@(((SitefinityProfileItemExtendedViewModel)Model.Item).AvatarImageUrl)" alt="@((Model.Item.DataItem as UserProfile).GetUserDisplayName())" />
                 </div>
             }
 
-            <h1>@((Model.Item.DataItem as SitefinityProfile).GetUserDisplayName())</h1>
+            <h1>@((Model.Item.DataItem as UserProfile).GetUserDisplayName())</h1>
             @if ((bool)Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "Featured"))
             {
                 <span class="jn_ico icon-bookmark fav-flag"></span>
@@ -102,6 +102,7 @@
             </dl>
         </div>
 
+
         <div class="profile-body media-body sf-media-body">
             <div class="container">
                 <h4>About @Model.Item.Fields.FirstName</h4>
@@ -113,7 +114,7 @@
                     </div>
                 }
 
-                <p>@Html.HtmlSanitize((((SitefinityProfileItemViewModel)Model.Item).About))</p>
+                <p>@Html.HtmlSanitize((((SitefinityProfileItemExtendedViewModel)Model.Item).About))</p>
 
 
                 <div class="h-section">
@@ -122,5 +123,6 @@
             </div>
 
         </div>
+
     }
 </div>

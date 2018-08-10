@@ -6,6 +6,17 @@
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers;
 @using JXTNext.Sitefinity.Widgets.Authentication.Mvc.Models.UsersListExtended;
 @using Telerik.Sitefinity.Security;
+@using Telerik.Sitefinity.Services;
+@using Telerik.Sitefinity.Modules.UserProfiles;
+@using JXTNext.Sitefinity.Widgets.Authentication.Mvc.HelpersExtended;
+@using Telerik.Sitefinity.Frontend.Mvc.Models;
+@using Telerik.Sitefinity.Security.Model;
+@using Telerik.Sitefinity.Taxonomies;
+@using Telerik.Sitefinity.Taxonomies.Model;
+@using Telerik.Sitefinity.Model;
+@using Telerik.OpenAccess;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Web.DataResolving;
 
 @{
     bool isAuthenticated = false;
@@ -16,15 +27,114 @@
         isAuthenticated = user.IsAuthenticated;
     }
 }
+
 <div class="@Model.CssClass sdf">
     @if (isAuthenticated)
     {
-        <img src="@(((SitefinityProfileItemExtendedViewModel)Model.Item).AvatarImageUrl)" alt="@((Model.Item.DataItem as UserProfile).GetUserDisplayName())" width="100" height="100" />
-        <h3>@((Model.Item.DataItem as UserProfile).GetUserDisplayName())</h3>
-        <p>@((Model.Item.DataItem as UserProfile).User.Email)</p>
-        <p>@Html.HtmlSanitize((((SitefinityProfileItemExtendedViewModel)Model.Item).About))</p>
+        Telerik.Sitefinity.Security.UserManager userManager = Telerik.Sitefinity.Security.UserManager.GetManager();
+        Telerik.Sitefinity.Security.UserProfileManager userProfileManager = Telerik.Sitefinity.Security.UserProfileManager.GetManager();
+        var consultantProfile = userProfileManager.GetUserProfiles((Model.Item.DataItem as UserProfile).User).Where(c => c.GetType().FullName.ToUpper().Contains("CONSULTANTPROFILE")).FirstOrDefault();
 
-     }
+        Telerik.Sitefinity.Libraries.Model.Image image = null;
+        if (consultantProfile != null)
+        {
+            Telerik.Sitefinity.Model.ContentLinks.ContentLink contentLink = (Telerik.Sitefinity.Model.ContentLinks.ContentLink)(Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "Banner"));
+
+
+            if (contentLink != null)
+            {
+                image = Telerik.Sitefinity.Modules.Libraries.LibrariesManager.GetManager().GetImage(contentLink.ChildItemId);
+            }
+        }
+
+        <div class="profile-image-holder">
+            @if (image != null)
+            { //getting banner image
+                <img src="/@image.FilePath" alt="@((Model.Item.DataItem as UserProfile).GetUserDisplayName())" />
+            }
+            else
+            { //getting profile image
+                <div class="profile-photo">
+                    <img src="@(((SitefinityProfileItemExtendedViewModel)Model.Item).AvatarImageUrl)" alt="@((Model.Item.DataItem as UserProfile).GetUserDisplayName())" />
+                </div>
+            }
+
+            <h1>@((Model.Item.DataItem as UserProfile).GetUserDisplayName())</h1>
+            @if ((bool)Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "Featured"))
+            {
+                <span class="jn_ico icon-bookmark fav-flag"></span>
+            }
+
+        </div>
+
+        <div class="profile-header-meta">
+            <h2>@(Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "Position"))</h2>
+            <dl class="profile-meta sc-job-meta-group">
+                @if (!String.IsNullOrEmpty((string)Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "Address")))
+                {
+                    <dd><span class="jn_ico icon-pin"></span>@(Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "Address"))</dd>
+                }
+                @if (!String.IsNullOrEmpty((string)Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "Phone")))
+                {
+                    <dd>
+                        <a href="tel:@(Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "Phone"))" title="Call me at @(Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "Phone"))"><span class="jn_ico icon-phone"></span>@(Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "Phone"))</a>
+                    </dd>
+                }
+                <dd>
+                    <a href="mailto:@((Model.Item.DataItem as UserProfile).User.Email)" title="Email: @((Model.Item.DataItem as UserProfile).User.Email)" target="_blank"><span class="jn_ico icon-mail"></span>@((Model.Item.DataItem as UserProfile).User.Email)</a>
+                </dd>
+
+            </dl>
+            <dl class="profile-meta sc-job-meta-group">
+                @if (!String.IsNullOrEmpty((string)Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "url_linkedin")))
+                {
+                    <dd><a href="@(Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "url_linkedin"))" title="Linkedin: @(Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "url_linkedin"))" target="_blank"><span class="jn_ico icon-linkedin"></span></a></dd>
+                }
+                @if (!String.IsNullOrEmpty((string)Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "url_facebook")))
+                {
+                    <dd><a href="@(Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "url_facebook"))" title="Facebook: @(Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "url_facebook"))" target="_blank"><span class="jn_ico icon-facebook"></span></a></dd>
+                }
+                @if (!String.IsNullOrEmpty((string)Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "url_twitter")))
+                {
+                    <dd><a href="@(Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "url_twitter"))" title="Twitter: @(Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "url_twitter"))" target="_blank"><span class="jn_ico icon-twitter"></span></a></dd>
+                }
+                @if (!String.IsNullOrEmpty((string)Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "url_google")))
+                {
+                    <dd><a href="@(Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "url_google"))" title="Google Plus: @(Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "url_google"))" target="_blank"><span class="jn_ico icon-google-plus"></span></a></dd>
+                }
+                @if (!String.IsNullOrEmpty((string)Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "url_wechat")))
+                {
+                    <dd><a href="@(Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "url_wechat"))" title="WeChat: @(Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "url_wechat"))" target="_blank"><span class="jn_ico icon-wechat"></span></a></dd>
+                }
+                @if (!String.IsNullOrEmpty((string)Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "Link")))
+                {
+                    <dd><a href="@(Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "Link"))" title="Link: @(Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "Link"))" target="_blank"><span class="jn_ico icon-link"></span></a></dd>
+                }
+            </dl>
+        </div>
+
+        <div class="profile-body media-body sf-media-body">
+            <div class="container">
+                <h4>About @((Model.Item.DataItem as UserProfile).GetUserDisplayName())</h4>
+
+                @if (!String.IsNullOrEmpty((string)Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "VideoUrl")))
+                {
+                    <div class="video-wrapper pull-right">
+                        @Html.Raw(Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "VideoUrl"))
+                    </div>
+                }
+
+                <p>@Html.HtmlSanitize((((SitefinityProfileItemExtendedViewModel)Model.Item).About))</p>
+
+
+                <div class="h-section">
+                    @Html.Raw(Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "full_bio"))
+                </div>
+            </div>
+
+        </div>
+
+    }
     else
     {
         <p>@Html.Resource("NotLoggedInUser")</p>

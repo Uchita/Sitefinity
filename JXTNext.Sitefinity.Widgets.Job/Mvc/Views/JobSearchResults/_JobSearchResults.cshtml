@@ -36,9 +36,9 @@
             <dt class="sc-job-meta-name meta-location hidden">Location</dt>
             <dd class="sc-job-meta-value meta-location"><span class="jn_ico icon-pin">icon</span>#:CustomData["CountryLocationArea[0].Filters[0].Value"]#</dd>
             <dt class="sc-job-meta-name meta-salary hidden">Salary</dt>
-            <dd class="sc-job-meta-value meta-salary"><span class="jn_ico icon-value">icon</span>#:CustomData["Salary.SalaryName"]#</dd>
+            <dd class="sc-job-meta-value meta-salary"><span class="jn_ico icon-value">icon</span>#:CustomData["Salary.Filters[0].Value"]#</dd>
             <dt class="sc-job-meta-name meta-worktype hidden">Worktype</dt>
-            <dd class="sc-job-meta-value meta-worktype"><span class="jn_ico icon-time">icon</span>#:CustomData["ListingClassification.WorkTypeName"]#</dd>
+            <dd class="sc-job-meta-value meta-worktype"><span class="jn_ico icon-time">icon</span>#:CustomData["WorkType.Filters[0].Value"]#</dd>
         </dl>
         <a href="@ViewBag.JobDetailsPageUrl?jobId=#:JobID#" class="btn btn-sm" title="Read more">Read more</a>
     </div>

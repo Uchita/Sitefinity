@@ -21,7 +21,9 @@
         @Html.Resource("DropJobSearchResults", "JobDetailsResources")
     </p>
     <sf-list-selector sf-page-selector sf-selected-item-id="properties.JobResultsPageId.PropertyValue" sf-select-button-text="Select a page"></sf-list-selector>
-</div>
+</div><br />
+
+<label>@Html.Resource("ApplyButtonShow", "JobDetailsResources")</label>
 <div class="form-group">
     <div class="row">
         <div class="col-xs-4" ng-repeat="role in roleList">
@@ -33,7 +35,7 @@
         </div>
     </div>
 </div>
-
+<br />
 <div>
     <label>Display Slot 1</label>
     <select id="sortOrder" ng-model="properties.Sorting.PropertyValue" class="form-control">

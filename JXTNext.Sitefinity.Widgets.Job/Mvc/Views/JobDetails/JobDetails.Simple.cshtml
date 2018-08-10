@@ -13,12 +13,29 @@
         </div>
         <div class="job-header">
             <h1 class="page-title">@Model.JobDetails.Title</h1>
-            <div class="highlight">@Model.JobDetails.CustomData["Classifications[0].Filters[0].Value"]</div>
+            @{
+                List<string> classificationsDisplay = new List<string>();
+                foreach (var item in @Model.Classifications.Keys)
+                {
+                    string hrefLink = string.Format("{0}?Filters[0].rootId={1}&Filters[0].values={2}", @ViewBag.JobResultsPageUrl, @Model.ClassificationsRootName, @item.ToString());
+
+                    classificationsDisplay.Add(@"<a href=""" + hrefLink + @""" title=""" + Model.Classifications[item] + @""">" + Model.Classifications[item] + @"</a>");
+                }
+            }
+            @Html.Raw(String.Join("&nbsp;<span>&gt;</span>&nbsp;", classificationsDisplay))
         </div>
         <dl class="sc-job-meta-group clearfix">
             <dt class="sc-job-meta-name meta-location hidden">Location</dt>
             <dd class="sc-job-meta-value meta-location">
-                <span class="jn_ico icon-pin">icon</span>@Model.JobDetails.CustomData["CountryLocationArea[0].Filters[0].Value"]
+                <span class="jn_ico icon-pin">icon</span>
+                @{
+                    List<string> locationsDisplay = new List<string>();
+                    foreach (var item in @Model.Locations.Keys)
+                    {
+                        locationsDisplay.Add(Model.Locations[item].ToString());
+                    }
+                }
+                <span>@Html.Raw(String.Join("&nbsp;<span>&gt;</span>&nbsp;", locationsDisplay))</span>
             </dd>
             <dt class="sc-job-meta-name meta-salary hidden">Salary</dt>
             <dd class="sc-job-meta-value meta-salary">
@@ -26,7 +43,7 @@
             </dd>
             <dt class="sc-job-meta-name meta-worktype hidden">Worktype</dt>
             <dd class="sc-job-meta-value meta-worktype">
-                <span class="jn_ico icon-time">icon</span>@Model.JobDetails.CustomData["ListingClassification.WorkTypeName"]
+                <span class="jn_ico icon-time">icon</span>@Model.JobDetails.CustomData["WorkType.Filters[0].Value"]
             </dd>
         </dl>
     </div>

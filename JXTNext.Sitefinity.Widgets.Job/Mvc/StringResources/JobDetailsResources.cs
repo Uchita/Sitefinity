@@ -56,6 +56,34 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.StringResources
         }
 
         /// <summary>
+        /// Gets phrase: Where to display search results?
+        /// </summary>
+        [ResourceEntry("SelectJobSearchResults",
+            Value = "Please select Job Search Results Page",
+            Description = "phrase : Please select Job Search Results Page")]
+        public string SelectJobSearchResults
+        {
+            get
+            {
+                return this["SelectJobSearchResults"];
+            }
+        }
+
+        /// <summary>
+        /// Gets phrase: This is the page where you have dropped search results widget
+        /// </summary>
+        [ResourceEntry("DropJobSearchResults",
+            Value = "This is the page where you have dropped job search results widget",
+            Description = "phrase : This is the page where you have dropped job search results widget")]
+        public string DropJobSearchResults
+        {
+            get
+            {
+                return this["DropJobSearchResults"];
+            }
+        }
+
+        /// <summary>
         /// Gets phrase: More options
         /// </summary>
         [ResourceEntry("MoreOptions",

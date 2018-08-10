@@ -11,9 +11,13 @@ textarea{
     font-size: 1.4rem;
     border:none;
     border-bottom: 2px solid $fontColor;
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
-    &:focus{
+    // box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+    background: none;
+    &:focus, &:active{
         outline: none;
+        background: none;
+        border-color:$p4LColor;
+        -webkit-box-shadow: none;
         box-shadow: none;
     }
     
@@ -70,13 +74,8 @@ textarea{
     margin-bottom: 2rem;
     input[type="text"], input[type="email"], input[type="tel"], input[type="password"],
     textarea, input[type="file"], input[type="date"]{
-        padding: 10px;
+        padding: 5px 0;
         font-size: 1.6rem;
-        &:focus, &:active{
-            border-color: #000;
-            box-shadow: -1px -1px 1px 0px rgba(0,0,0,0.15);
-            outline: none;
-        }
     } 
     input[type="file"], input[type="radio"], input[type="checkbox"],
     input[type="date"]{
@@ -90,11 +89,11 @@ textarea{
 
     label{
         text-transform: uppercase;
-        font-size: 1.2rem;
+        font-size: 1.4rem;
     } 
     &.button-wrapper{
         margin-top: 2rem;
-        margin-bottom: 4rem;
+        margin-bottom: 2rem;
     }
     p{
         font-size: 1.4rem;
@@ -140,4 +139,48 @@ textarea{
 }
 .input-validation-error{
     border-bottom-color:$p1Color!important;
+}
+
+
+//
+.adj-form-wrap{
+    max-width: 900px;
+    margin: 0rem auto 0;
+}
+
+///animate-label
+.animate-label{
+    .form-group{
+        position: relative;
+        overflow: hidden;
+        .form-control{
+            margin-top: 3rem;
+        }
+        .form-control + label{
+            position: absolute;
+            top: 3rem;
+            z-index: -1;
+            opacity: 0.8;
+            -webkit-transition: top 0.2s ease, opacity 0.2s ease;
+            transition: top 0.2s ease, opacity 0.2s ease;
+        }
+        .form-control:focus + label,
+        .form-control.hasValue + label,
+        .form-control:active + label{
+            top: 0;
+            opacity: 1;
+        }
+    }
+}
+
+//two column form
+//login, registration & job application
+.two-col{
+    .row{
+        margin-bottom: 4rem;
+        >.col-md-6, >.col-md-5{
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+        }
+    }
 }

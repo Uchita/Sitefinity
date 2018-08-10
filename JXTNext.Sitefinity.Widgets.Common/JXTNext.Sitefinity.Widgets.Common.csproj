@@ -456,6 +456,9 @@
     <Content Include="ResourcePackages\JXTDemo\MVC\Views\Lists\List.ExpandedList.cshtml" />
     <Content Include="ResourcePackages\JXTDemo\MVC\Views\Lists\List.PagesList.cshtml" />
     <Content Include="ResourcePackages\JXTDemo\MVC\Views\Lists\List.SimpleList.cshtml" />
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\LoginForm\LoginForm.LoginForm2col.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="ResourcePackages\JXTDemo\MVC\Views\LoginStatusExtended\LoginStatusExtended.LoginButton.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -14,15 +14,14 @@
     var isTwoCols = (Model.ExternalProviders != null && Model.ExternalProviders.Count() > 0) ? "col-md-12" : "";
 }
 
-<div class="@Model.CssClass">
+<div class="@Model.CssClass animate-label">
     @if (Telerik.Sitefinity.Security.SecurityManager.GetCurrentUserId() == Guid.Empty || SystemManager.IsInlineEditingMode || SystemManager.IsDesignMode)
     {
         using (Html.BeginFormSitefinity(@Request.Url.Query, null, null, FormMethod.Post, null, true))
         {
-            <div class="@isTwoCols">
+            <div class="@isTwoCols adj-form-wrap">
                 @Html.ValidationSummary(true)
 
-                <h3>@Html.Resource("LoginFormLogInLegendHeader")</h3>
                 <div class="row">
                     @if (Request.Url.Query.Contains("err=true") || Model.LoginError)
                     {
@@ -34,11 +33,12 @@
                     }
 
                     <div class="form-group col-md-6">
+                        
+                        @Html.TextBoxFor(u => u.UserName, new { @class = "form-control" })
                         <label>
                             @Html.Resource("UserName")
                         </label>
 
-                        @Html.TextBoxFor(u => u.UserName, new { @class = "form-control" })
                         @if (Html.ValidationMessage("UserName") != null)
                         {
                             <div class="has-error">
@@ -49,11 +49,12 @@
                     </div>
 
                     <div class="form-group col-md-6">
+
+                        @Html.PasswordFor(u => u.Password, new { @class = "form-control" })
                         <label>
                             @Html.Resource("Password")
                         </label>
 
-                        @Html.PasswordFor(u => u.Password, new { @class = "form-control" })
                         @if (Html.ValidationMessage("Password") != null)
                         {
                             <div class="has-error">
@@ -89,28 +90,28 @@
                     </div>
                 }
 
-                <div class="form-group button-wrapper">
-                    <button type="submit" class="btn">@Html.Resource("LoginFormLogInButton")</button>
+                <div class="form-group button-wrapper text-center">
+                    <button type="submit" class="btn btn-sm">@Html.Resource("LoginFormLogInButton")</button>
                 </div>
 
                 @if (Model.ShowRegistrationLink)
                 {
                     <div class="sf-registration-link">
-                        <div class="section-header"><strong>@Html.Resource("NotRegisteredYet")</strong></div>
-                        <div class="form-group button-wrapper"><a class="btn btn-1" href="@Model.RegisterPageUrl">@Html.Resource("LoginFormRegisterNow")</a></div>
+                        <label>@Html.Resource("DontHaveAnAccount")</label> <a href="@Model.RegisterPageUrl" title="Register Now">@Html.Resource("LoginFormRegisterNow")</a>
                     </div>
                 }
             </div>
 
             if (Model.ExternalProviders != null && Model.ExternalProviders.Count() > 0)
             {
-                <div class="col-md-12">
-                    <h3>@Html.Resource("UseAccountIn")</h3>
-                    <div class="form-group button-wrapper">
+            <hr class="spacer" />
+                <div class="col-md-12 social-wrap">
+                    <h3 class="text-center">@Html.Resource("UseAccountIn")</h3>
+                    <div class="form-group button-wrapper text-center">
                         @foreach (var provider in Model.ExternalProviders)
                         {
-                            var classToBeAdd = "btn btn-default " + @provider.Value;
-                            <span>
+                            var classToBeAdd = "btn btn-sm social-btn " + @provider.Value;
+                            <span class="btn-wrap-@provider.Key.ToLower()">
                                 @Html.ActionLink(provider.Key, "LoginExternalProvider", new { model = provider.Key }, new { @class = classToBeAdd })
                             </span>
                         }

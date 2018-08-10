@@ -66,7 +66,22 @@
                     {
                         var consultantProfile = userProfileManager.GetUserProfiles((item.DataItem as SitefinityProfile).User).Where(c => c.GetType().FullName.ToUpper().Contains("CONSULTANTPROFILE")).FirstOrDefault();
 
-                        <div class="sc-item" data-filterval="IT">
+
+
+                        //Getting the Dynamic Classification: Department associated with
+                        //each consultant for filtering
+                        List<string> filterValues = new List<string>();
+                        var departmentsTaxa = Telerik.Sitefinity.Model.DataExtensions.GetValue<TrackedList<Guid>>(consultantProfile, "Departments");
+                        foreach (var taxonItem in departmentsTaxa)
+                        {
+                            Guid categoryID = new Guid(taxonItem.ToString());
+                            var taxonManager = TaxonomyManager.GetManager();
+                            var taxon = taxonManager.GetTaxa<HierarchicalTaxon>().Where(t => t.Id == categoryID).ToList().FirstOrDefault();
+                            filterValues.Add(taxon.Name);
+                        }
+
+
+                        <div class="sc-item" data-filterval="@(string.Join(",",filterValues))">
                             <div class="card-flip">
                                 <div class="front sf-img-thmb">
                                     <img class="media-object" src="@((item as SitefinityProfileItemViewModel).AvatarImageUrl)" alt="@item.Fields.FirstName" width="330" height="410" />
@@ -81,18 +96,9 @@
                                         </p>
                                     </a>
 
-                                    @{
-                                        var departmentsTaxa = Telerik.Sitefinity.Model.DataExtensions.GetValue<TrackedList<Guid>>(consultantProfile, "Departments");
-                                        foreach (var taxonItem in departmentsTaxa)
-                                        {
-                                            Guid categoryID = new Guid(taxonItem.ToString());
-                                            var taxonManager = TaxonomyManager.GetManager();
-                                            var taxon = taxonManager.GetTaxa<HierarchicalTaxon>().Where(t => t.Id == categoryID).ToList().FirstOrDefault();
-                                            <span>@taxon.Name</span>
-                                        }
-                                    }
 
-                                  
+
+
                                     <div class="footer-meta">
                                         @if (consultantProfile != null && !String.IsNullOrEmpty((string)Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "Phone")))
                                         {
@@ -159,7 +165,7 @@ else
     jQuery(document).ready(function ($) {
         $('.item-filters li a').on('click', function () {
             var item = $(this);
-            var filterValue = item.data('filter');
+            var filterValue = item.data('filter').toLowerCase();
 
             //making all inactive first
             $('.item-filters li a').removeClass('active');
@@ -168,17 +174,44 @@ else
 
             //except for all add hidden class to unmatched item
             $('.team-wrapper .card-flipper .sc-item').removeClass('hidden');
-            if (filterValue != "All") {
-                $('.team-wrapper .card-flipper .sc-item[data-filterval!="' + filterValue + '"]').addClass('hidden');
-            }
+            if (filterValue != "all") {
+                $('.team-wrapper .card-flipper .sc-item').each(function () {
+                    if (!checkFilter($(this).data('filterval'), filterValue)) {
+                        $(this).addClass('hidden');
+                    }
+                });
+            } 
 
             //checking if there are matched items
-            if ($('.team-wrapper .card-flipper .sc-item[data-filterval="' + filterValue + '"]').length < 1) {
+            if ($('.team-wrapper .card-flipper .sc-item[data-filterval*="' + filterValue + '"]').length < 1 ) {
                 $('.alert').removeClass('hidden');
+                if (filterValue == "all") {
+                    $('.alert').addClass('hidden');
+                }
             } else {
                 $('.alert').addClass('hidden');
             }
 
-        });
+        }); //end of click function
+
+        //function to check the filter match
+        function checkFilter(curVal, filterVal) {
+            var curVal = curVal.split(',');
+            if (curVal.length) {
+                var flag = false;
+                for (i = 0; i < curVal.length; i++) {
+                    if (curVal[i].toLowerCase() == filterVal) {
+                        flag = true;
+                        return true;
+                    } else {
+                        flag = false;
+                    }
+                }
+                if (flag === false) {
+                    return false;
+                }
+            }
+        }
+
     });
 </script>

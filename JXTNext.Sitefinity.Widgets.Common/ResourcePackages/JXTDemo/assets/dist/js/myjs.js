@@ -32,6 +32,7 @@ jQuery(document).ready(function($) {
             });
         }
     }
+    
 
     //quick job search scroller
     if( jQuery().owlCarousel ){
@@ -101,11 +102,11 @@ jQuery(document).ready(function($) {
         //Image scroller
         if( $('.image-scroller').length && $('.image-scroller img').length > 2 ){
             $('.image-scroller').addClass('owl-carousel').owlCarousel({
-                dots:true,
-                nav:false,
+                dots: true,
+                nav: false,
                 autoWidth: true,
                 slideBy: 2,
-                margin:30,
+                margin: 30
             });
         }
 
@@ -121,6 +122,7 @@ jQuery(document).ready(function($) {
             });
         }
 
+        
         
         //jxt next plugin
         (function ($){
@@ -181,5 +183,24 @@ jQuery(document).ready(function($) {
     $('a[href="#"]').on('click', function(e){
         e.preventDefault();
     });
+
+    //for the form input & label element
+    //if need label as placeholder & move up when focus and has value
+    /* Requirement
+     * *animate-label is parent class required for this to work
+     * *label should be just after the input field
+     * *label input should be wrap with div class form-group
+     * *input must have class form-control
+    */
+    if ($('.animate-label input.form-control').length) {
+        $('.animate-label input.form-control').on('focus', function () {
+            $(this).addClass('hasValue');
+        });
+        $('.animate-label input.form-control').on('blur', function () {
+            if ($(this).val() == "") {
+                $(this).removeClass('hasValue');
+            }
+        });
+    }
 
 });

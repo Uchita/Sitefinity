@@ -71,13 +71,15 @@
                         //Getting the Dynamic Classification: Department associated with
                         //each consultant for filtering
                         List<string> filterValues = new List<string>();
-                        var departmentsTaxa = Telerik.Sitefinity.Model.DataExtensions.GetValue<TrackedList<Guid>>(consultantProfile, "Departments");
-                        foreach (var taxonItem in departmentsTaxa)
-                        {
-                            Guid categoryID = new Guid(taxonItem.ToString());
-                            var taxonManager = TaxonomyManager.GetManager();
-                            var taxon = taxonManager.GetTaxa<HierarchicalTaxon>().Where(t => t.Id == categoryID).ToList().FirstOrDefault();
-                            filterValues.Add(taxon.Name);
+                        if (consultantProfile != null) {
+                            var departmentsTaxa = Telerik.Sitefinity.Model.DataExtensions.GetValue<TrackedList<Guid>>(consultantProfile, "Departments");
+                            foreach (var taxonItem in departmentsTaxa)
+                            {
+                                Guid categoryID = new Guid(taxonItem.ToString());
+                                var taxonManager = TaxonomyManager.GetManager();
+                                var taxon = taxonManager.GetTaxa<HierarchicalTaxon>().Where(t => t.Id == categoryID).ToList().FirstOrDefault();
+                                filterValues.Add(taxon.Name);
+                            }
                         }
 
 

@@ -16,7 +16,7 @@
         isAuthenticated = user.IsAuthenticated;
     }
 }
-<div class="@Model.CssClass">
+<div class="@Model.CssClass sdf">
     @if (isAuthenticated)
     {
         <img src="@(((SitefinityProfileItemExtendedViewModel)Model.Item).AvatarImageUrl)" alt="@((Model.Item.DataItem as UserProfile).GetUserDisplayName())" width="100" height="100" />

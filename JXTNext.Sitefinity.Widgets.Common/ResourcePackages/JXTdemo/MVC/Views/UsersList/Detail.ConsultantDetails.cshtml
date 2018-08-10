@@ -18,12 +18,12 @@
     Telerik.Sitefinity.Security.UserManager userManager = Telerik.Sitefinity.Security.UserManager.GetManager();
     Telerik.Sitefinity.Security.UserProfileManager userProfileManager = Telerik.Sitefinity.Security.UserProfileManager.GetManager();
     var consultantProfile = userProfileManager.GetUserProfiles((Model.Item.DataItem as SitefinityProfile).User).Where(c => c.GetType().FullName.ToUpper().Contains("CONSULTANTPROFILE")).FirstOrDefault();
-
+    Telerik.Sitefinity.Libraries.Model.Image image = null;
     if (consultantProfile != null)
     {
         Telerik.Sitefinity.Model.ContentLinks.ContentLink contentLink = (Telerik.Sitefinity.Model.ContentLinks.ContentLink)(Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "Banner"));
 
-        Telerik.Sitefinity.Libraries.Model.Image image = null;
+
         if (contentLink != null)
         {
             image = Telerik.Sitefinity.Modules.Libraries.LibrariesManager.GetManager().GetImage(contentLink.ChildItemId);

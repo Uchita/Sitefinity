@@ -15,6 +15,7 @@ using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
 using Telerik.Sitefinity.Web;
 using Telerik.Sitefinity.Taxonomies.Model;
 using System.ComponentModel;
+using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -49,11 +50,29 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         }
 
         // GET: JobSearchResults
-        public ActionResult Index([ModelBinder(typeof(JobSearchResultsFilterBinder))] JobSearchResultsFilterModel filterModel)
+        public ActionResult Index([ModelBinder(typeof(JobSearchResultsFilterBinder))] JobSearchResultsFilterModel filterModel, int?jobId)
         {
             dynamic dynamicJobResultsList = null;
 
-            if (filterModel != null)
+            if (jobId.HasValue)
+            {
+                IGetJobListingRequest jobListingRequest = new JXTNext_GetJobListingRequest { JobID = jobId.Value };
+                IGetJobListingResponse jobListingResponse = _BLConnector.GuestGetJob(jobListingRequest);
+                var jobDetails = jobListingResponse.Job;
+                var classificationTopLevelId = jobListingResponse.Job.CustomData["Classifications[0].Filters[0].ExternalReference"];
+
+                JobSearchResultsFilterModel filterModelNew = new JobSearchResultsFilterModel() { Filters = new List<JobSearchFilterReceiver>()};
+                JobSearchFilterReceiverItem filterReceiverItem = new JobSearchFilterReceiverItem() { ItemID = classificationTopLevelId };
+                JobSearchFilterReceiver filterReceiver = new JobSearchFilterReceiver() { rootId = "Classifications", values = new List<JobSearchFilterReceiverItem>() };
+                filterReceiver.values.Add(filterReceiverItem);
+                filterModelNew.Filters.Add(filterReceiver);
+
+                ISearchJobsResponse response = GetJobSearchResultsResponse(filterModelNew);
+                JXTNext_SearchJobsResponse jobResultsList = response as JXTNext_SearchJobsResponse;
+                jobResultsList.SearchResults.RemoveAll(item => item.JobID == jobId.Value);
+                dynamicJobResultsList = jobResultsList as dynamic;
+            }
+            else if (filterModel != null)
             {
                 ISearchJobsResponse response = GetJobSearchResultsResponse(filterModel);
                 dynamicJobResultsList = response as dynamic;

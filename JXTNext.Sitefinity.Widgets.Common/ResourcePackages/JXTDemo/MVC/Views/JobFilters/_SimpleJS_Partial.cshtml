@@ -85,6 +85,7 @@
                     ariaLabelId: 'lbl-' + prefixIdText + item.Name,
                     displayCount: true,
                     prefixIdText: prefixIdText,
+                    setSelectedElementsTitle: false,
                     checkHandler: function (target, checked) {
                         eachClickFilter();
                     }
@@ -95,6 +96,9 @@
             function eachClickFilter() {
                 var filterModel = {};
                 filterModel.Filters = [];
+
+                //getting the loader while the job search is working
+                $("#selectedkeywordsfilter").parent().addClass('loader');
 
                 $.each(optionsArray, function (id, item) {
                     var selectedIdsCount = $("#" + id).GetSelectedElementIds().length;

@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using Telerik.Sitefinity.Modules.Pages;
+using Telerik.Sitefinity.Modules.UserProfiles;
 using Telerik.Sitefinity.Pages.Model;
 using Telerik.Sitefinity.Security;
 using Telerik.Sitefinity.Security.Claims;
+using Telerik.Sitefinity.Security.Model;
 using Telerik.Sitefinity.Services;
 using Telerik.Sitefinity.Taxonomies;
 using Telerik.Sitefinity.Taxonomies.Model;
@@ -117,6 +119,20 @@ namespace JXTNext.Sitefinity.Common.Helpers
             }
 
             return topLovelTaxa;
+        }
+
+        public static User GetUserByEmail(string Email)
+        {
+            var userManager = UserManager.GetManager();
+            var user = userManager.GetUsers().FirstOrDefault(u => u.Email == Email);
+            return user;
+        }
+
+        public static string GetUserAvatarUrlById(Guid userId)
+        {
+            Telerik.Sitefinity.Libraries.Model.Image image;
+            var imageUrl = UserProfilesHelper.GetAvatarImageUrl(userId, out image);
+            return imageUrl;
         }
     }
 }

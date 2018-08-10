@@ -41,6 +41,7 @@ namespace SitefinityWebApp
             Res.RegisterResource<JobAlertResources>();
             Res.RegisterResource<JobDetailsResources>();
             Res.RegisterResource<LoginStatusExtendedResources>();
+            Res.RegisterResource<UsersListExtendedResources>();
 
             if (e.CommandName == "Bootstrapped")
             {

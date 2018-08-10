@@ -242,6 +242,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RazorGeneratorMvcStart.cs" />
+    <Compile Include="Mvc\Controllers\UsersListExtendedController.cs" />
+    <Compile Include="Mvc\Helpers\UsersHelperExtended.cs" />
+    <Compile Include="Mvc\Models\UsersListExtended\IUsersListExtendedModel.cs" />
+    <Compile Include="Mvc\Models\UsersListExtended\SelectionModeExtended.cs" />
+    <Compile Include="Mvc\Models\UsersListExtended\SitefinityProfileItemExtendedViewModel.cs" />
+    <Compile Include="Mvc\Models\UsersListExtended\UserDetailsExtendedViewModel.cs" />
+    <Compile Include="Mvc\Models\UsersListExtended\UsersListExtendedModel.cs" />
+    <Compile Include="Mvc\Models\UsersListExtended\UsersListExtendedViewModel.cs" />
+    <Compile Include="Mvc\StringResources\UsersListExtendedResources.cs" />
     <Compile Include="Widgets_AuthenticationModule.cs" />
     <Compile Include="Mvc\Controllers\LoginStatusExtendedController.cs" />
     <Compile Include="Mvc\Models\LoginStatusExtended\ILoginStatusExtendedModel.cs" />
@@ -257,6 +266,10 @@
     <EmbeddedResource Include="Mvc\Views\LoginStatusExtended\DesignerView.Simple.cshtml" />
     <EmbeddedResource Include="Mvc\Views\LoginStatusExtended\DesignerView.Simple.json" />
     <EmbeddedResource Include="Mvc\Views\LoginStatusExtended\LoginStatusExtended.LoginName.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\UsersListExtended\DesignerView.Simple.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\UsersListExtended\DesignerView.Simple.json" />
+    <EmbeddedResource Include="Mvc\Views\UsersListExtended\Detail.UserDetails.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\UsersListExtended\List.UsersList.cshtml" />
     <None Include="OpenAccessNuGet.targets" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -265,6 +278,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mvc\Scripts\LoginStatusExtended\login-status.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mvc\Scripts\UsersListExtended\designerview-simple.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="OpenAccessNuget.targets" />

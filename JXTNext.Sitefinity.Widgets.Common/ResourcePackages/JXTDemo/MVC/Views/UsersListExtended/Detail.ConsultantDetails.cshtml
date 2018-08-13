@@ -41,16 +41,16 @@
         <div class="profile-image-holder">
             @if (image != null)
             { //getting banner image
-                <img src="/@image.FilePath" alt="@((userProfile).GetUserDisplayName())" />
+                <img src="/@image.FilePath" alt="@(((SitefinityProfileItemExtendedViewModel)Model.Item).FirstName)" />
             }
             else
             { //getting profile image
                 <div class="profile-photo">
-                    <img src="@(((SitefinityProfileItemExtendedViewModel)Model.Item).AvatarImageUrl)" alt="@((userProfile).GetUserDisplayName())" />
+                    <img src="@(((SitefinityProfileItemExtendedViewModel)Model.Item).AvatarImageUrl)" alt="@(((SitefinityProfileItemExtendedViewModel)Model.Item).FirstName)" />
                 </div>
             }
 
-            <h1>@((userProfile).GetUserDisplayName())</h1>
+                <h1>@(((SitefinityProfileItemExtendedViewModel)Model.Item).FirstName)</h1>
             @if ((bool)Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "Featured"))
             {
                 <span class="jn_ico icon-bookmark fav-flag"></span>

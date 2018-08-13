@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JXTNext.Sitefinity.Common.Helpers;
+using System;
 using System.Linq;
 using System.Reflection;
 using Telerik.Sitefinity.Frontend.Mvc.Models;
@@ -24,6 +25,7 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Models.UsersListExtended
             var displayNameBuilder = new SitefinityUserDisplayNameBuilder();
             Telerik.Sitefinity.Libraries.Model.Image avatarImage;
             this.AvatarImageUrl = displayNameBuilder.GetAvatarImageUrl(sfProfile.User.Id, out avatarImage);
+            this.FirstName = SitefinityHelper.GetUserFirstNameById(sfProfile.User.Id);
 
             dynamic profile = sfProfile as dynamic;
 
@@ -44,5 +46,11 @@ namespace JXTNext.Sitefinity.Widgets.Authentication.Mvc.Models.UsersListExtended
         /// </summary>
         /// <value>The about.</value>
         public string About { get; private set; }
+
+        /// <summary>
+        /// Gets or sets the Firs tName.
+        /// </summary>
+        /// <value>The FirstName.</value>
+        public string FirstName { get; private set; }
     }
 }

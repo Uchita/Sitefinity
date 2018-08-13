@@ -282,6 +282,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Mvc\Scripts\UsersListExtended\designerview-simple.js" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JXTNext.Sitefinity.Common\JXTNext.Sitefinity.Common.csproj">
+      <Project>{9ccdbc01-ef02-4d74-9385-5c0f1da2eb7a}</Project>
+      <Name>JXTNext.Sitefinity.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="OpenAccessNuget.targets" />
 </Project>

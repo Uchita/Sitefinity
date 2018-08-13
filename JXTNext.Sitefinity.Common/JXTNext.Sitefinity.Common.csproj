@@ -214,6 +214,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\SiteSettingsHelper.cs" />
     <Compile Include="Models\CustomSiteSettings\CustomSiteSettings.cs" />
     <Compile Include="Models\CustomSiteSettings\CustomSiteSettingsConfig.cs" />
     <Compile Include="Models\CustomSiteSettings\CustomSiteSettingsContract.cs" />

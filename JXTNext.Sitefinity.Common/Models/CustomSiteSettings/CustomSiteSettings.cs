@@ -54,6 +54,46 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
             }
         }
 
+        protected virtual TextField GoogleClientId
+        {
+            get
+            {
+                return this.Container.GetControl<TextField>("googleClientId", true);
+            }
+        }
+
+        protected virtual TextField GoogleClientSecret
+        {
+            get
+            {
+                return this.Container.GetControl<TextField>("googleClientSecret", true);
+            }
+        }
+
+        protected virtual TextField GoogleClientAPIKey
+        {
+            get
+            {
+                return this.Container.GetControl<TextField>("googleClientAPIKey", true);
+            }
+        }
+
+        protected virtual TextField DropboxAppId
+        {
+            get
+            {
+                return this.Container.GetControl<TextField>("dropboxAppId", true);
+            }
+        }
+
+        protected virtual TextField DropboxAppSecret
+        {
+            get
+            {
+                return this.Container.GetControl<TextField>("dropboxAppSecret", true);
+            }
+        }
+
         #endregion
 
         #region Methods

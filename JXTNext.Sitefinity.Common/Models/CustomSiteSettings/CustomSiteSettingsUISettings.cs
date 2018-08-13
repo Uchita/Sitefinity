@@ -35,5 +35,105 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
                 this["googleAPIKey"] = value;
             }
         }
+
+        /// <summary>
+        /// Gets or sets the Google Client ID
+        /// </summary>
+        /// <value>The name of the time zone.</value>
+        [ConfigurationProperty("googleClientId")]
+        [DescriptionResource(typeof(ConfigDescriptions), "GoogleClientId")]
+
+        [DataMember]
+        public virtual String CurrentGoogleClientId
+        {
+            get
+            {
+                return (String)this["googleClientId"];
+            }
+            set
+            {
+                this["googleClientId"] = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the Google Client Secret
+        /// </summary>
+        /// <value>The name of the time zone.</value>
+        [ConfigurationProperty("googleClientSecret")]
+        [DescriptionResource(typeof(ConfigDescriptions), "GoogleClientSecret")]
+
+        [DataMember]
+        public virtual String CurrentGoogleClientSecret
+        {
+            get
+            {
+                return (String)this["googleClientSecret"];
+            }
+            set
+            {
+                this["googleClientSecret"] = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the Google Client API Key
+        /// </summary>
+        /// <value>The name of the time zone.</value>
+        [ConfigurationProperty("googleClientAPIKey")]
+        [DescriptionResource(typeof(ConfigDescriptions), "GoogleClientAPIKey")]
+
+        [DataMember]
+        public virtual String CurrentGoogleClientAPIKey
+        {
+            get
+            {
+                return (String)this["googleClientAPIKey"];
+            }
+            set
+            {
+                this["googleClientAPIKey"] = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the Dropbox Client ID
+        /// </summary>
+        /// <value>The name of the time zone.</value>
+        [ConfigurationProperty("dropboxAppId")]
+        [DescriptionResource(typeof(ConfigDescriptions), "DropboxAppId")]
+
+        [DataMember]
+        public virtual String CurrentDropboxAppId
+        {
+            get
+            {
+                return (String)this["dropboxAppId"];
+            }
+            set
+            {
+                this["dropboxAppId"] = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the Google Client Secret
+        /// </summary>
+        /// <value>The name of the time zone.</value>
+        [ConfigurationProperty("dropboxAppSecret")]
+        [DescriptionResource(typeof(ConfigDescriptions), "DropboxAppSecret")]
+
+        [DataMember]
+        public virtual String CurrentDropboxAppSecret
+        {
+            get
+            {
+                return (String)this["dropboxAppSecret"];
+            }
+            set
+            {
+                this["dropboxAppSecret"] = value;
+            }
+        }
     }
 }

@@ -10,9 +10,6 @@ using Telerik.Sitefinity.Security.Model;
 using Telerik.Sitefinity.Services;
 using Telerik.Sitefinity.Taxonomies;
 using Telerik.Sitefinity.Taxonomies.Model;
-using JXTNext.Sitefinity.Common.Models.CustomSiteSettings;
-using Telerik.Sitefinity.SiteSettings.Web.Services;
-using Telerik.Sitefinity.Multisite;
 
 namespace JXTNext.Sitefinity.Common.Helpers
 {
@@ -149,25 +146,6 @@ namespace JXTNext.Sitefinity.Common.Helpers
                 firstName = profile.FirstName;
 
             return firstName;
-        }
-
-        public static string GetCurrentSiteGoogleMapsAPIKey()
-        {
-            var basicSettingsSerivce = new BasicSettingsService();
-            var itemType = "JXTNext.Sitefinity.Common.Models.CustomSiteSettings.CustomSiteSettingsContract";
-            var multiSiteContext = new MultisiteContext();
-            var currSite = multiSiteContext.CurrentSite;
-            SettingsItemContext siteSetting = null;
-            SystemManager.RunWithElevatedPrivilege(d => { siteSetting = basicSettingsSerivce.GetSettings(itemType, currSite.Id.ToString()); });
-            string googleMapsAPIKey = "";
-            if (siteSetting != null)
-            {
-                var siteSettingsContract = (CustomSiteSettingsContract)siteSetting.Item;
-                if (siteSettingsContract != null)
-                    googleMapsAPIKey = siteSettingsContract.GoogleAPIKey;
-            }
-
-            return googleMapsAPIKey;
         }
     }
 }

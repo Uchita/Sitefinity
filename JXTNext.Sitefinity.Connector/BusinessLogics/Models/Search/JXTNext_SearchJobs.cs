@@ -11,6 +11,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search
         public int PageSize { get; set; }
         public int PageNumber { get; set; }
 
+        public ConsultantIdentitySearch ConsultantSearchIdentity { get; set; }
         public List<KeywordSearch> KeywordsSearchCriteria { get; set; }
         public List<IClassificationSearch> ClassificationsSearchCriteria { get; set; }
 
@@ -40,6 +41,11 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search
     public class KeywordSearch
     {
         public string Keyword { get; set; }
+    }
+
+    public class ConsultantIdentitySearch
+    {
+        public string Email { get; set; }
     }
 
     public enum ClassificationSearchType

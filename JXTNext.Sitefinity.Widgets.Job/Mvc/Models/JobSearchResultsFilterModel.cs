@@ -11,6 +11,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
     {
         public List<JobSearchFilterReceiver> Filters { get; set; }
         public string Keywords { get; set; }
+        public Consultant ConsultantSearch { get; set; }
         public int Page { get; set; }
     }
 
@@ -26,6 +27,13 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
         public string ItemID { get; set; }
         public List<JobSearchFilterReceiverItem> SubTargets { get; set; }
 
+    }
+
+    public class Consultant
+    {
+        public string Email { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
     }
 
 

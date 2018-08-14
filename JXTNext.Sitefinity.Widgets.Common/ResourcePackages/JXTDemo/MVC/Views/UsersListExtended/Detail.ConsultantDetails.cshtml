@@ -18,7 +18,8 @@
 
     Telerik.Sitefinity.Security.UserManager userManager = Telerik.Sitefinity.Security.UserManager.GetManager();
     Telerik.Sitefinity.Security.UserProfileManager userProfileManager = Telerik.Sitefinity.Security.UserProfileManager.GetManager();
-    var consultantProfile = userProfileManager.GetUserProfiles((Model.Item.DataItem as SitefinityProfile).User).Where(c => c.GetType().FullName.ToUpper().Contains("CONSULTANTPROFILE")).FirstOrDefault();
+    UserProfile userProfile = Model.Item.DataItem as UserProfile;
+    var consultantProfile = userProfileManager.GetUserProfiles((userProfile).User).Where(c => c.GetType().FullName.ToUpper().Contains("CONSULTANTPROFILE")).FirstOrDefault();
 
     Telerik.Sitefinity.Libraries.Model.Image image = null;
     if (consultantProfile != null)
@@ -33,22 +34,23 @@
     }
 
 }
+
 <div class="@Model.CssClass">
     @if (consultantProfile != null)
     {
-         <div class="profile-image-holder">
+        <div class="profile-image-holder">
             @if (image != null)
             { //getting banner image
-                <img src="/@image.FilePath" alt="@Model.Item.Fields.FirstName" />
+                <img src="/@image.FilePath" alt="@(((SitefinityProfileItemExtendedViewModel)Model.Item).FirstName)" />
             }
             else
             { //getting profile image
                 <div class="profile-photo">
-                    <img src="@(((SitefinityProfileItemExtendedViewModel)Model.Item).AvatarImageUrl)" alt="@((Model.Item.DataItem as UserProfile).GetUserDisplayName())" />
+                    <img src="@(((SitefinityProfileItemExtendedViewModel)Model.Item).AvatarImageUrl)" alt="@(((SitefinityProfileItemExtendedViewModel)Model.Item).FirstName)" />
                 </div>
             }
 
-            <h1>@((Model.Item.DataItem as UserProfile).GetUserDisplayName())</h1>
+                <h1>@(((SitefinityProfileItemExtendedViewModel)Model.Item).FirstName)</h1>
             @if ((bool)Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "Featured"))
             {
                 <span class="jn_ico icon-bookmark fav-flag"></span>
@@ -70,7 +72,7 @@
                     </dd>
                 }
                 <dd>
-                    <a href="mailto:@((Model.Item.DataItem as SitefinityProfile).User.Email)" title="Email: @((Model.Item.DataItem as SitefinityProfile).User.Email)" target="_blank"><span class="jn_ico icon-mail"></span>@((Model.Item.DataItem as SitefinityProfile).User.Email)</a>
+                    <a href="mailto:@((userProfile).User.Email)" title="Email: @((userProfile).User.Email)" target="_blank"><span class="jn_ico icon-mail"></span>@(userProfile.User.Email)</a>
                 </dd>
 
             </dl>
@@ -105,7 +107,7 @@
 
         <div class="profile-body media-body sf-media-body">
             <div class="container">
-                <h4>About @Model.Item.Fields.FirstName</h4>
+                <h4>About @((userProfile).GetUserDisplayName())</h4>
 
                 @if (!String.IsNullOrEmpty((string)Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "VideoUrl")))
                 {

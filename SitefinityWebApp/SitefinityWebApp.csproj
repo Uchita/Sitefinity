@@ -979,6 +979,9 @@
     <Content Include="assets\css\bootstrap.min.css" />
     <Content Include="assets\css\mc-styles.css" />
     <Content Include="Content\Pages\login.html" />
+    <Content Include="Views\CustomSiteSettings\CustomSiteSettings.ascx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Default.aspx" />
     <Content Include="extensions.bundle.js" />
     <Content Include="Global.asax" />
@@ -1149,7 +1152,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Sitefinity\" />
-    <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminApp\assets\js\kendo-editor\kendo.custom.min.js.map" />

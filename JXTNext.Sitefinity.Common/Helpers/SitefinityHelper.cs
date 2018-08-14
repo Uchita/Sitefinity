@@ -134,5 +134,18 @@ namespace JXTNext.Sitefinity.Common.Helpers
             var imageUrl = UserProfilesHelper.GetAvatarImageUrl(userId, out image);
             return imageUrl;
         }
+
+        public static string GetUserFirstNameById(Guid userId )
+        {
+            var userManager = UserManager.GetManager();
+            User user = userManager.GetUser(userId);
+            UserProfileManager profileManager = UserProfileManager.GetManager();
+            SitefinityProfile profile = profileManager.GetUserProfile<SitefinityProfile>(user);
+            string firstName = "";
+            if (profile != null)
+                firstName = profile.FirstName;
+
+            return firstName;
+        }
     }
 }

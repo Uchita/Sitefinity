@@ -3,6 +3,8 @@
 
 @using Telerik.Sitefinity.Modules.UserProfiles;
 @using Telerik.Sitefinity.Security.Model;
+@using Telerik.Sitefinity.Taxonomies;
+@using Telerik.Sitefinity.Taxonomies.Model;
 
 @Html.QueryBuilderScriptReferences()
 
@@ -50,13 +52,24 @@
                     @Html.Resource("ByDepartment")
                 </label>
 
-                <sf-list-selector sf-hierarchical-taxon-selector sf-multiselect="true" sf-sortable="true"
-                                  sf-provider="properties.ProviderName.PropertyValue"
-                                  sf-selected-ids="taxaSelector.selectedItemsIds"
-                                  ng-show="properties.SelectionMode.PropertyValue=='TaxonomyItems'"
-                                  sf-selected-items="taxaSelector.selectedItems"
-                                  sf-dialog-header="Departments" sf-taxonomy-id="D7831091-E7B1-41B8-9E75-DFF32D6A7837"></sf-list-selector>
-            </div>
+                @{
+                    var manager = TaxonomyManager.GetManager();
+
+                    var departmentsTaxonomy = manager.GetTaxonomies<HierarchicalTaxonomy>().Where(t => t.Name == "Departments").SingleOrDefault();
+                    string departmentsId = "";
+                    if (departmentsTaxonomy != null)
+                    {
+                        departmentsId = departmentsTaxonomy.Id.ToString();
+                    }
+                }
+
+                    <sf-list-selector sf-hierarchical-taxon-selector sf-multiselect="true" sf-sortable="true"
+                                      sf-provider="properties.ProviderName.PropertyValue"
+                                      sf-selected-ids="taxaSelector.selectedItemsIds"
+                                      ng-show="properties.SelectionMode.PropertyValue=='TaxonomyItems'"
+                                      sf-selected-items="taxaSelector.selectedItems"
+                                      sf-dialog-header="Departments" sf-taxonomy-id=@departmentsId></sf-list-selector>
+                </div>
         </div>
 
 

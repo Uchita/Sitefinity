@@ -94,6 +94,19 @@ hr.vrt{
     clear: both;
 }
 
+.mobile-visible{
+    display: none;
+    @include bp-max(sm){
+        display: block!important;
+    }
+}
+
+.mobile-hidden{
+    @include bp-max(sm){
+        display: none!important;
+    }
+}
+
 // buttons
 .btn, button[data-sf-role="comments-new-submit-button"]{
     font: 700 1.2rem $boldFont;
@@ -514,6 +527,23 @@ hr.vrt{
         margin: -10px 0 0 -10px;
         -webkit-animation: spin 2s linear infinite;
         animation: spin 2s linear infinite;
+    }
+}
+
+.lockoverlay{
+    position: relative;
+    cursor: not-allowed;
+    &:after {
+        content: '';
+        position: absolute;
+        width: 100%!important;
+        height: 100%!important;
+        background: rgba(255,255,255,0.8);
+        z-index: 1;
+        top: 0;
+        left: 0;
+        visibility: visible!important;
+        display: block!important;
     }
 }
 

@@ -6,15 +6,17 @@
 
 @if (Model != null)
 {
+<div class="filter-outer-wrapper">
     <div class="form-group">
         <label><strong>Keywords:</strong></label>
         <div class="search-wrap"><input id="selectedkeywordsfilter" type="search" value="@ViewBag.Keywords" /></div>
     </div>
 
-    foreach (var item in Model)
+    @foreach (var item in Model)
     {
-        <div class="dropdown dropdown-tree" id=@string.Format("{0}{1}",ViewBag.PrefixIdsText,item.Name)></div>
+    <div class="dropdown dropdown-tree" id=@string.Format("{0}{1}",ViewBag.PrefixIdsText,item.Name)></div>
     }
+</div>
 }
 
 @Html.Partial("_SimpleJS_Partial", (object)Model)

@@ -385,7 +385,7 @@
     <EmbeddedResource Include="ResourcePackages\JXTDemo\MVC\Views\JobFilters\T_FullTree.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="ResourcePackages\JXTDemo\MVC\Views\JobFilters\T_Simple.cshtml">
+    <EmbeddedResource Include="ResourcePackages\JXTDemo\MVC\Views\JobFilters\T_MultiSelect.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <Content Include="ResourcePackages\JXTDemo\MVC\Views\JobSearchResults\JobsAll.cshtml">

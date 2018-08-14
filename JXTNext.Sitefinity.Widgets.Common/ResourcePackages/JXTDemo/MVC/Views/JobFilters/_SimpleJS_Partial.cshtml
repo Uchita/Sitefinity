@@ -18,14 +18,20 @@
             clearTimeout(typingTimer);
             if ($(this).val) {
                 typingTimer = setTimeout(function () {
+                    //getting the loader while the job search is working
+                    $("#selectedkeywordsfilter").parent().addClass('loader');
                     eachClickFilter();
                 }, doneTypingInterval);
             }
         });
 
         $("#selectedkeywordsfilter").on("search", function (input) {
-            if ($(this).val() == "")
+            if ($(this).val() == "") {
+                //getting the loader while the job search is working
+                $("#selectedkeywordsfilter").parent().addClass('loader');
                 eachClickFilter();
+            }
+                
         });
 
 
@@ -97,8 +103,8 @@
                 var filterModel = {};
                 filterModel.Filters = [];
 
-                //getting the loader while the job search is working
-                $("#selectedkeywordsfilter").parent().addClass('loader');
+                //locking the filter till the result loads
+                $('.filter-outer-wrapper').addClass('lockoverlay');
 
                 $.each(optionsArray, function (id, item) {
                     var selectedIdsCount = $("#" + id).GetSelectedElementIds().length;

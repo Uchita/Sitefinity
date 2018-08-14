@@ -1,0 +1,34 @@
+﻿@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+
+<div ng-controller="SimpleCtrl">
+    <div>
+        <label>Please Enter Location</label>
+        <input type="text" class="form-control" ng-autocomplete ng-model="properties.Address.PropertyValue" />
+    </div>
+
+    <div class="form-group">
+        <label for="templateName">Template</label>
+        <div class="row">
+            <div class="col-xs-6">
+                <select id="templateName" ng-model="properties.TemplateName.PropertyValue" class="form-control">
+                    @foreach (var viewName in Html.GetViewNames("Maps", @"Maps\.(?<viewName>\w*)$"))
+                    {
+                        <option value="@viewName"> @viewName.SplitCamelCase()</option>
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="navCssClass">@Html.Resource("CssClasses", "JobSearchResources")</label>
+        <input type="text" id="navCssClass" ng-model="properties.CssClass.PropertyValue" class="form-control" />
+    </div>
+</div>
+
+<style>
+    .pac-container {
+        z-index: 11000;
+    }
+</style>
+

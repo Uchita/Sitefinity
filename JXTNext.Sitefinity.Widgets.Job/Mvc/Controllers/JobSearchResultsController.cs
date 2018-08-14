@@ -16,6 +16,7 @@ using Telerik.Sitefinity.Web;
 using Telerik.Sitefinity.Taxonomies.Model;
 using System.ComponentModel;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers;
+using Telerik.Sitefinity.Security.Model;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -146,6 +147,26 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             return PartialView("_JobSearchResults", dynamicJobResultsList);
         }
 
+        /// <summary>
+        /// Renders appropriate list view depending on the <see cref="DetailTemplateName"/>
+        /// </summary>
+        /// <returns>
+        /// The <see cref="ActionResult"/>.
+        /// This is going to give the serarch results based on the User. User will come from Uses Widget
+        /// </returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters")]
+        public ActionResult Details(UserProfile user)
+        {
+            dynamic dynamicJobResultsList = null;
+
+            JobSearchResultsFilterModel filterModelNew = new JobSearchResultsFilterModel() { ConsultantSearch = new Consultant() {Email = user.User.Email } };
+            ISearchJobsResponse response = GetJobSearchResultsResponse(filterModelNew);
+            JXTNext_SearchJobsResponse jobResultsList = response as JXTNext_SearchJobsResponse;
+            dynamicJobResultsList = jobResultsList as dynamic;
+
+            return this.View(this.TemplateName, dynamicJobResultsList);
+        }
+
         protected override void HandleUnknownAction(string actionName)
         {
             this.ActionInvoker.InvokeAction(this.ControllerContext, "Index");
@@ -214,6 +235,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             {
                 if (!string.IsNullOrEmpty(filterModel.Keywords))
                     request.KeywordsSearchCriteria = new List<KeywordSearch> { new KeywordSearch { Keyword = filterModel.Keywords } };
+
+                if (filterModel.ConsultantSearch != null && !string.IsNullOrEmpty(filterModel.ConsultantSearch.Email))
+                    request.ConsultantSearchCriteria = new ConsultantSearch() { Email = filterModel.ConsultantSearch.Email, FirstName = filterModel.ConsultantSearch.FirstName, LastName = filterModel.ConsultantSearch.LastName };
 
                 if (filterModel.Filters != null && filterModel.Filters.Count() > 0)
                 {

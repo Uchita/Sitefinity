@@ -13,6 +13,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search
 
         public List<KeywordSearch> KeywordsSearchCriteria { get; set; }
         public List<IClassificationSearch> ClassificationsSearchCriteria { get; set; }
+        public ConsultantSearch ConsultantSearchCriteria { get; set; }
 
         public SearchSortBy SortBy { get; set; }
     }
@@ -47,6 +48,13 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search
         Undefined,
         Categories,
         Range
+    }
+
+    public class ConsultantSearch
+    {
+        public string Email { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
     }
 
     public interface IClassificationSearch

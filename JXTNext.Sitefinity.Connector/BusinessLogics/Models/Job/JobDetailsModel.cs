@@ -20,6 +20,16 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Job
 
     public class JobDetailsFullModel : JobDetailsModel
     {
+        public int CompanyId { get; set; }
+        public int UserId { get; set; }
+        public int AdvertiserUserId { get; set; }
+        public long DateCreated { get; set; }
+        public long? ExpiryDate { get; set; }
+        public int Status { get; set; }
+        public string Address { get; set; }
+        public float AddressLatitude { get; set; }
+        public float AddressLongtitude { get; set; }
+
         [JsonProperty(PropertyName = "description")]
         public string Description { get; set; }
         public List<JobFilterRoot> Filters { get; set; }

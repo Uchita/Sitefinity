@@ -25,6 +25,17 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
             {
                 JobID = data["Id"],
                 Title = data["Name"],
+
+                CompanyId = data["CompanyId"],
+                UserId = data["UserId"],
+                AdvertiserUserId = data["AdvertiserUserId"],
+                DateCreated = data["DateCreated"],
+                ExpiryDate = data["ExpiryDate"],
+                Status = data["Status"],
+                Address = data["Address"],
+                AddressLatitude = data["AddressLatitude"],
+                AddressLongtitude = data["AddressLongtitude"],
+
                 ShortDescription = data["ShortDescription"],
                 Description = data["FullDescription"],
                 ReferenceNo = data["RefNo"],
@@ -48,8 +59,8 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
                     ShortDescription = jobItem["ShortDescription"],
                     Description = jobItem["FullDescription"],
                     ReferenceNo = jobItem["RefNo"],
-                    CustomData = (jobItem["CustomData"] != null)? FlattenJson(new JObject(jobItem["CustomData"])) : null
-            };
+                    CustomData = (jobItem["CustomData"] != null) ? FlattenJson(new JObject(jobItem["CustomData"])) : null
+                };
                 jobFullDetails.Add(local);
             }
             return jobFullDetails as List<T>;

@@ -1,0 +1,7 @@
+﻿{
+  "priority": 1,
+  "scripts": [
+    "Mvc/Scripts/Maps/ngAutocomplete.js",
+    "http://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAX5V8ID1z9af2UrAhfE2R_urfsnl83dl0"
+  ]
+}

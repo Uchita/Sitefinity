@@ -70,8 +70,9 @@
     padding: 8px 10px;
     border-radius: 25px;
     font-size: 1.2rem;
+    position: relative;
 
-    > a {
+    &.status-logout a {
         line-height: 1.4;
         color: $brightColor;
         padding-top: 4px;
@@ -128,8 +129,13 @@
     .login-dropdown {
         clear: both;
         text-align: left;
-        padding: 5px 6px 5px;
-
+        padding: 5px 10px;
+        background: $p1Color;
+        position: absolute;
+        border-radius: 8px;
+        top: 102%;
+        min-width: 165px;
+        right: 0;
         p {
             margin-bottom: 0;
         }
@@ -147,6 +153,22 @@
         display: block;
     }
 }
+.login-wrap.status-logout{
+    padding: 6px;
+}
+.login-wrap.status-logout .mobile-visible button{
+    border: none;
+    line-height: 1;
+    font-size: 2.1rem;
+    min-width: 30px;
+    padding: 0;
+    position: relative;
+    top: 2px;
+    left: -1px;
+    letter-spacing: 0;
+}
+
+
 #header .login{
     float: right;
 }

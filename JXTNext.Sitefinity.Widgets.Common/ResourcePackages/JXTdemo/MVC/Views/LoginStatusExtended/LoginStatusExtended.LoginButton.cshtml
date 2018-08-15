@@ -18,8 +18,13 @@
         </div>
     </div>
     <div data-sf-role="sf-logged-out-view" style="display: none" class="login-wrap status-logout">
-        <button data-sf-role="login-status-button">@Html.Resource("Login", "LoginStatusExtendedResources")</button>
-        <a href="@(Model.RegistrationPageUrl ?? "#")">@Html.Resource("RegisterNow", "LoginStatusExtendedResources")</a>
+        <div class="mobile-visible">
+            <button data-sf-role="login-status-button"><span class="jn_ico icon-user"></button>
+        </div>
+        <div class="mobile-hidden">
+            <button data-sf-role="login-status-button">@Html.Resource("Login", "LoginStatusExtendedResources")</button>
+            <a href="@(Model.RegistrationPageUrl ?? "#")">@Html.Resource("RegisterNow", "LoginStatusExtendedResources")</a>
+        </div>
     </div>
 </div>
 <input type="hidden" data-sf-role="sf-status-json-endpoint-url" value="@Model.StatusServiceUrl" />

@@ -3,7 +3,7 @@
 
 @if (Model != null)
 {
-
+   
     <div class="form-group">
         <label><strong>Keywords:</strong></label>
         <div class="search-wrap"><input id="selectedkeywordsfilter" type="search" value="@ViewBag.Keywords" /></div>
@@ -38,6 +38,7 @@
     <br />
 
     <button id="refine-results" class="btn btn-primary">REFINE RESULTS</button>
+    
 }
 
 @helper PrintFirstLevelFiltersOnly(dynamic node, string rootId)

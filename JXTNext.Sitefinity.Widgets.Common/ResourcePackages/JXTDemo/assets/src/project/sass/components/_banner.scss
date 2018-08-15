@@ -4,6 +4,7 @@
     clear: both;
     text-align: center;
     max-height: 852px;
+    min-height: 450px;
     margin-bottom: 0;
     overflow: hidden;
     h1{
@@ -12,7 +13,7 @@
             font-size: 8rem;
         }
         @include bp-max(xs){
-            font-size: 4rem;
+            font-size: 3rem;
         } 
     }
     .row{
@@ -24,6 +25,9 @@
         padding-top: 0;
         width: 100%;
         bottom: 18rem;
+        @include bp-max(xs){
+            display: none;
+        }
     }
     video{
         min-width: 100%;

@@ -1,0 +1,50 @@
+﻿@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentDetailsViewModel
+
+@using System.Collections;
+@using System.Linq;
+@using Telerik.Sitefinity.Frontend.DynamicContent.WidgetTemplates.Fields.Helpers;
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Data.ContentLinks;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Libraries.Model;
+@using Telerik.Sitefinity.Localization;
+@using Telerik.Sitefinity.Model;
+@using Telerik.Sitefinity.Model.ContentLinks;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Pages.Model;
+
+@if (FieldExtensions.IsApiKeyValid())
+{
+    @Html.Script(ScriptRef.JQuery, "top", false)
+    @Html.Script("http://maps.googleapis.com/maps/api/js?key=" + FieldExtensions.GetApiKey() + "&sensor=false", "top", false)
+    @Html.Script(Url.EmbeddedResource("Telerik.Sitefinity.Resources.Reference", "Telerik.Sitefinity.Resources.Scripts.jquery.ui.map.js"), "top", false)
+    @Html.Script(Url.WidgetContent("WidgetTemplates/Fields/Scripts/address-field.js", "Telerik.Sitefinity.Frontend.DynamicContent"), "bottom", false)
+}
+
+<img class="full-width" src="/images/default-source/default-album/brisbane-map.jpg?sfvrsn=ae1458f1_6" title="brisbane map" alt="brisbane map">
+
+@if (Model.Item.Fields.GalleryImages != null)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="owl-carousel owl-theme owl-contact-gallery">
+                    @foreach (var relatedItem in Model.Item.Fields.GalleryImages)
+                    {
+                        <div class="item">
+                            <div class="contact-gallery-image" style="background-image:url('@relatedItem.Fields.MediaUrl');"></div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+<style>
+    .owl-contact-gallery {
+        margin-top: 70px;
+        margin-bottom: 0;
+    }
+</style>

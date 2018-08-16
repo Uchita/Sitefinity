@@ -14,7 +14,8 @@ namespace JXTNext.Sitefinity.Widgets.Common
             {
                 return new List<string>
                 {
-                    "JXTDemo"
+                    "JXTDemo",
+                     "Hudson"
                 };
             }
         }

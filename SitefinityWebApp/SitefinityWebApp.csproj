@@ -950,11 +950,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ContentHelper.cs" />
     <Compile Include="Helpers\HtmlHelper.cs" />
     <Compile Include="Libraries\SfImageHelper.cs" />
     <Compile Include="Models\RequestSession.cs" />
     <Compile Include="Mvc\Attributes\SocialShareAttribute.cs" />
     <Compile Include="Mvc\Controllers\MultiCardController.cs" />
+    <Compile Include="Mvc\Models\CustomDynamicContent\CustomDynamicContentModel.cs" />
     <Compile Include="Mvc\Models\MultiCard\CardDetails.cs" />
     <Compile Include="Mvc\Models\MultiCard\CardDetailsView.cs" />
     <Compile Include="Mvc\Models\MultiCard\MultiCardModel.cs" />

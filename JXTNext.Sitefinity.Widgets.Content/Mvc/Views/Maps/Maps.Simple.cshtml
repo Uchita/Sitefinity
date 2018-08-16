@@ -1,63 +1,87 @@
 ﻿@model JXTNext.Sitefinity.Widgets.Content.Mvc.Models.MapsViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+@using JXTNext.Sitefinity.Common.Helpers
+@using System.Web;
 
-<div>Maps in construction</div>
-<div>@Model.Address</div>
+@{
+    var mapsAPIKey = new SiteSettingsHelper().GetCurrentSiteGoogleMapsAPIKey();
+    var srcMap = "https://maps.googleapis.com/maps/api/js?key=" + mapsAPIKey;
+    string domainName = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
+    var srcPlugin = domainName + "/Frontend-Assembly/JXTNext.Sitefinity.Widgets.Content/Mvc/Scripts/Maps/jquery.googlemap.js";
+}
 
-<div id="map" data-address= @Model.GoogleMapsAPIKey></div>
+@Html.Script(Url.Content(srcMap), "bottom")
+@Html.Script(Url.Content(srcPlugin), "bottom")
+
+<div class="map-placeholder" data-called=false style="width: 500px; height: 500px;">
+    <span data-address="@Model.Address"></span>
+</div>
 
 <script type="text/javascript">
 
-    @{
-          var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
-          var json = serializer.Serialize(Model);
-     }
-
-    var model = @Html.Raw(json);
-    var latlngFromAdd = {};
-    
     // Initialize and add the map
+
     function initMap() {
 
-        if (model.Address != null && model.Address != 'undefined' && model.Address.length > 0)
-            getLatitudeLongitude(model.Address);
+        // Iterate throgh all the elemetns having class map-placeholder in the page
+        // And it will place the map inside it
+        $(".map-placeholder").each(function (index) {
 
-        // The location of Uluru
-        var uluru = { lat: -25.344, lng: 131.036 };
-        // The map, centered at Uluru
-        var map = new google.maps.Map(
-            document.getElementById('map'), { zoom: 4, center: uluru });
-        // The marker, positioned at Uluru
-        var marker = new google.maps.Marker({ position: uluru, map: map });
-    }
+            if ($(this).children().length > 0) {
+                var markers = [];
+                $(this).children().each(function (index) {
+                    var addresslat = $(this).data('addresslat');
+                    var addresslng = $(this).data('addresslng');
+                    var address = $(this).data('address');
 
-     function getLatitudeLongitude(address) {
-        // If adress is not supplied, use default value 'Ferrol, Galicia, Spain'
-        address = address || 'Sydney';
-   
-        // Initialize the Geocoder
-        geocoder = new google.maps.Geocoder();
-        if (geocoder) {
-            geocoder.geocode({
-                'address': address
-            }, function (results, status) {
-                if (status == google.maps.GeocoderStatus.OK) {
-                    latlngFromAdd.lat = results[0].geometry.location.lat();
-                    latlngFromAdd.lng = results[0].geometry.location.lng();
-                  
+                    if (addresslat != 'undefined' && addresslng != 'undefined' && typeof addresslat != 'undefined' && typeof addresslng != 'undefined' && addresslat != '' && addresslng != '') {
+                        markers.push({ isLatLng: true, lat: Number(addresslat), lng: Number(addresslng) });
+                    }
+                    else if (address != null && typeof address != 'undefined' && address != 'undefined' && address.length > 0) {
+                        markers.push({ isLatLng: false, address: address });
+                    }
+                });
+
+                if (markers.length > 0) {
+                    $(this).googleMap({
+                        zoom: 10 // Initial zoom level (optional)
+                    });
+
+                    for (var item of markers) {
+                        if (item.isLatLng) {
+                             $(this).addMarker({
+                                coords: [item.lat, item.lng]
+                            });
+                        }
+                        else {
+                            $(this).addMarker({
+                                address: item.address
+                            });
+                        }
+                    }
                 }
-            });
-        }
+            }
+        });
     }
 
-    function loadScript() {
-        var script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.setAttribute("async", "");
-        script.setAttribute("defer", "");
-        var key = document.getElementById("map").getAttribute("data-address");
-        script.src = "https://maps.googleapis.com/maps/api/js?key=" + key +"&callback=initMap";
-        document.body.appendChild(script);
-    }
-    window.onload = loadScript; 
+    $(window).on('load', function () {
+        var isLoaded = false;
+        $(".map-placeholder").each(function (index) {
+            var isCalled = $(this).data("called");
+            if (isCalled == false || typeof isCalled == 'undefined') {
+                $(this).data("called", true);
+            }
+            else {
+                isLoaded = true;
+                return false;
+            }
+        });
+
+        if (!isLoaded) {
+            initMap();
+        }
+    });
+
 </script>
+
 

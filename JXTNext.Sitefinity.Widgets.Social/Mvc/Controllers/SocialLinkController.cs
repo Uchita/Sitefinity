@@ -31,13 +31,20 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         [Category("CSS Class")]
         public string CssClass { get; set; }
 
+        public string TemplateName { get; set; }
+
         // GET: SocialLink
         public ActionResult Index()
         {
             // This is the CSS classes enter from More Options
             ViewData["CssClass"] = this.CssClass;
 
-            return View("Simple", this.Model.GetViewModel());
+            if (string.IsNullOrWhiteSpace(this.TemplateName))
+            {
+                this.TemplateName = "Simple";
+            }
+
+            return View(this.TemplateName, this.Model.GetViewModel());
         }
 
         protected override void HandleUnknownAction(string actionName)

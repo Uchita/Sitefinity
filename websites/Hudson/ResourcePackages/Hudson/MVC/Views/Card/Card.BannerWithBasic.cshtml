@@ -1,0 +1,26 @@
+@model Telerik.Sitefinity.Frontend.Card.Mvc.Models.Card.CardViewModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+
+
+<div class="page-section banner-with-basic @Model.CssClass" style="background-image: url('@Model.SelectedSizeUrl')">
+    <div class="container">
+        <div class="row ">
+            <div class="col-lg-6 col-md-8 col-xs-12">
+                <div class="thumbnail card-basic ">
+                    <div class="caption">
+                        @if (!string.IsNullOrEmpty(Model.ActionUrl))
+                        {
+                            <p class="color-light text-uppercase font-medium "><small>@Model.ActionName</small></p>
+                        }
+                        <h1>@Html.HtmlSanitize(Model.Heading)</h1>
+                        <p class="banner-with-basic-summary">@Html.HtmlSanitize(Model.Description)</p>
+                        @if (!string.IsNullOrEmpty(Model.ActionUrl))
+                        {
+                            <a href="@Html.UrlSanitize(Model.ActionUrl)" class="btn btn-more" role="button"></a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

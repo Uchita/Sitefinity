@@ -20,6 +20,8 @@ using Telerik.Sitefinity.Localization;
 using Telerik.Sitefinity.Mvc;
 using Telerik.Sitefinity.Services;
 using JXTNext.Sitefinity.Common.Models.CustomSiteSettings;
+using Telerik.Sitefinity.Frontend.DynamicContent.Mvc.Models;
+using SitefinityWebApp.Mvc.Models.CustomDynamicContent;
 
 namespace SitefinityWebApp
 {
@@ -28,7 +30,6 @@ namespace SitefinityWebApp
         protected void Application_Start(object sender, EventArgs e)
         {
             ViewEngines.Engines.Add(new SFViewEngine());
-
             Bootstrapper.Bootstrapped += Bootstrapper_Bootstrapped;
             Bootstrapper.Initialized += new EventHandler<ExecutedEventArgs>(Bootstrapper_Initialized);
         }
@@ -48,8 +49,8 @@ namespace SitefinityWebApp
             {
                 GlobalFilters.Filters.Add(new SocialShareAttribute());
                 SystemManager.RegisterBasicSettings<GenericBasicSettingsView<CustomSiteSettings, CustomSiteSettingsContract>>("CustomSiteSettingsConfig", "Custom Site Settings", "", true);
+                FrontendModule.Current.DependencyResolver.Rebind<IDynamicContentModel>().To<CustomDynamicContentModel>();
             }
-
         }
 
         protected void Session_Start(object sender, EventArgs e)
@@ -84,19 +85,15 @@ namespace SitefinityWebApp
 
         void Bootstrapper_Bootstrapped(object sender, EventArgs e)
         {
-            
             ObjectFactory.Container.RegisterType<ISitefinityControllerFactory, NinjectControllerFactory>(new ContainerControlledLifetimeManager());
             var factory = ObjectFactory.Resolve<ISitefinityControllerFactory>();
             ControllerBuilder.Current.SetControllerFactory(factory);
-
             GlobalConfiguration.Configuration.Routes.MapHttpRoute(
                 "jxt",
                 "jxt/{controller}/{id}",
                 new { id = RouteParameter.Optional });
-
-
             FrontendModule.Current.DependencyResolver.Rebind<IRegistrationModel>().To<JXTNext_MemberRegistrationModel>();
         }
-
     }
+
 }

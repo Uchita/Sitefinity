@@ -1,0 +1,77 @@
+﻿@using JXTNext.Sitefinity.Widgets.Job.Mvc.Models
+@model JobDetailsViewModel
+
+<div class="job-offer-details">
+    <div class="row job-offer-title"><div class="col-md-8">
+        <h1>@Model.JobDetails.Title</h1></div><div class="col-md-4">
+        <img alt="westpac-small" src="/images/default-source/clients/westpac-small.png?sfvrsn=cc5d3f6d_2" title="westpac-small"></div></div><div class="row job-offer-summary">
+        <div class="col-md-12">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <strong>Location</strong><strong>:</strong>
+                        </td>
+                        <td>Brisbane CBD &amp; Inner Suburbs<br></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Work type:</strong>
+                        </td>
+                        <td>Full Time</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Salary:</strong>
+                        </td>
+                        <td>$ 40000 to $ 78000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div><div class="row job-offer-advantages"><div class="col-md-12"><ul><li>Special Marketing Job</li><li>Best Marketing job in town</li><li>Great team to join</li></ul></div></div><div class="row job-offer-summary">
+        <div class="col-md-12">
+            <h2>Subtitle goes here</h2><p>
+                <br>Our client is seeking a Marketing and Communications Officer on a temporary basis to assist with the development, implementation and management of a range of innovative, effective and customer-centric marketing and communications
+                initiatives in line with the business objectives of the department. The successful candidate will work as part of a small team that provides expertise and support to the department in the areas of marketing, communications, stakeholder engagement,
+                media relations and digital capability.<br><br>Supporting and directly reporting to the Director of Marketing and Communications, you will be responsible for the delivery of the department’s branding, marketing and communications campaigns.
+                You will support various teams across the office by creating, editing and improving their marketing materials. You will continuously assess existing marketing initiatives and conduct post implementation reviews to ensure continual improvement of marketing
+                activities. You will develop proactive and reactive media communications, produce key messages and facilitate approvals for all media material. You will also manage and update the department’s social media aspect and maintain the corporate Intranet
+                in ensuring it is kept up-to-date at all times.<br><br>The successful candidate will be experienced in managing and coordinating marketing and communications campaigns and will have demonstrated abilities in delivering cost-effective marketing
+                strategies to organisations. The candidate will have exceptional verbal and written communication skills and will be adept in liaising and communicating with a diverse range of individuals. They will work well both independently and within a team
+                and will take direction constructively. They will demonstrative innovative abilities to find solutions by displaying high levels of problem solving, multi-tasking and adaptability skills. The candidate will also have a tertiary qualification in marketing
+                and communications or related discipline.<br><br>The be considered for this role, please select the ‘apply’ option. Alternatively, to discuss this position further or to assess alternative opportunity.
+            </p>
+        </div>
+    </div><div class="row job-offer-contacts">
+        <div class="col-md-12">
+            <table>
+                <tbody>
+                    <tr>
+                        <td><strong>Reference Number:</strong></td>
+                        <td>
+                            3536346363
+                        </td>
+                    </tr>
+                    <tr><td><strong>Contact Details:</strong></td><td>email@hudson.com.au</td></tr>
+                    <tr><td><strong>Profession:&nbsp; </strong></td><td>Marketing &gt; Communications</td></tr>
+                    <tr><td><strong>Company:</strong></td><td>Hudson</td></tr>
+                    <tr><td><strong>Date:</strong></td><td>18/09/2016&nbsp; -&nbsp; 5:34pm</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div><div class="row job-offer-apply">
+        <div class="col-md-12">
+            <a class="btn btn-primary btn-block" href="@ViewBag.JobApplicationPageUrl?jobid=@Model.JobDetails.JobID">APPLY NOW</a>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var previousUrl = new URL(document.referrer);
+        var urlPath = previousUrl.pathname + previousUrl.search
+        $("#back-to-results").attr("href", urlPath);
+    });
+</script>
+

@@ -1,0 +1,45 @@
+﻿@model List<SocialViewModel>
+@using JXTNext.Sitefinity.Widgets.Social.Mvc.Models
+
+<div class="header-top-social @ViewData["CssClass"]">
+    <ul class="list-inline">
+        @foreach (var item in Model)
+        {
+            switch (item.Title)
+            {
+                case "Facebook":
+                    <li><a href=@item.Url target="_blank" title=@item.Title><span class="fab fa-facebook-f"></span></a></li>
+                    break;
+
+                case "Twitter":
+                    <li><a href=@item.Url target="_blank" title=@item.Title><span class="fab fa-twitter"></span></a></li>
+                    break;
+
+                case "LinkedIn":
+                    <li><a href=@item.Url target="_blank" title=@item.Title><span class="fab fa-linkedin-in"></span></a></li>
+                    break;
+
+                case "Google+":
+                    <li><a href=@item.Url target="_blank" title=@item.Title><span class="fab fa-google-plus"></span></a></li>
+                    break;
+
+                case "YouTube":
+                    <li><a href=@item.Url target="_blank" title=@item.Title><span class="fab fa-youtube"></span></a></li>
+                    break;
+
+                case "Instagram":
+                    <li><a href=@item.Url target="_blank" title=@item.Title><span class="fab fa-instagram"></span></a></li>
+                    break;
+
+                case "MailTo":
+                    <li><a href=@item.Url target="_blank" title=@item.Title><span class="fas fa-envelope"></span></a></li>
+                    break;
+                case "Snapchat":
+                    <li><a href=@item.Url target="_blank" title=@item.Title><span class="fab fa-snapchat-ghost"></span></a></li>
+                    break;
+                default:
+                    break;
+            }
+        }
+    </ul>
+</div>

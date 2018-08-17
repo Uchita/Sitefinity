@@ -1,4 +1,4 @@
-﻿using JXTNext.Sitefinity.Connector.BusinessLogics;
+﻿using JXTNext.Sitefinity.Common.Models.CustomSiteSettings;
 using JXTNext.Sitefinity.Widgets.Authentication.Mvc.StringResources;
 using JXTNext.Sitefinity.Widgets.Job.Mvc.StringResources;
 using JXTNext.Sitefinity.Widgets.JobAlert.Mvc.StringResources;
@@ -6,22 +6,20 @@ using JXTNext.Sitefinity.Widgets.Social.Mvc.StringResources;
 using JXTNext.Sitefinity.Widgets.User.Mvc.Models;
 using SitefinityWebApp.App_Start;
 using SitefinityWebApp.Mvc.Attributes;
+using SitefinityWebApp.Mvc.Models.CustomDynamicContent;
 using System;
 using System.Web.Http;
-using System.Web.Http.Controllers;
 using System.Web.Mvc;
 using Telerik.Microsoft.Practices.Unity;
 using Telerik.Sitefinity.Abstractions;
 using Telerik.Sitefinity.Configuration.Web.UI.Basic;
 using Telerik.Sitefinity.Data;
 using Telerik.Sitefinity.Frontend;
+using Telerik.Sitefinity.Frontend.DynamicContent.Mvc.Models;
 using Telerik.Sitefinity.Frontend.Identity.Mvc.Models.Registration;
 using Telerik.Sitefinity.Localization;
 using Telerik.Sitefinity.Mvc;
 using Telerik.Sitefinity.Services;
-using JXTNext.Sitefinity.Common.Models.CustomSiteSettings;
-using Telerik.Sitefinity.Frontend.DynamicContent.Mvc.Models;
-using SitefinityWebApp.Mvc.Models.CustomDynamicContent;
 
 namespace SitefinityWebApp
 {

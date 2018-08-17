@@ -20,6 +20,7 @@ using Telerik.Sitefinity.Localization;
 using Telerik.Sitefinity.Mvc;
 using Telerik.Sitefinity.Services;
 using JXTNext.Sitefinity.Common.Models.CustomSiteSettings;
+using JXTNext.Sitefinity.Widgets.Content.Mvc.StringResources;
 
 namespace SitefinityWebApp
 {
@@ -43,6 +44,7 @@ namespace SitefinityWebApp
             Res.RegisterResource<JobDetailsResources>();
             Res.RegisterResource<LoginStatusExtendedResources>();
             Res.RegisterResource<UsersListExtendedResources>();
+            Res.RegisterResource<MapsResources>();
 
             if (e.CommandName == "Bootstrapped")
             {

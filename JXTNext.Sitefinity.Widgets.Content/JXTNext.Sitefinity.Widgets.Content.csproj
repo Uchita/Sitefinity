@@ -246,6 +246,7 @@
     <Compile Include="Mvc\Controllers\PageTitleController.cs" />
     <Compile Include="Mvc\Models\MapsViewModel.cs" />
     <Compile Include="Mvc\Models\PageTitleViewModel.cs" />
+    <Compile Include="Mvc\StringResources\MapsResources.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

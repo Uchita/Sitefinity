@@ -55,6 +55,12 @@
             width: auto;
             max-width: 35%;
             flex-grow: 1;
+            a{
+                color: $baseColor;
+                &:hover, &:focus{
+                    color: $p1Color;
+                }
+            }
         }
         .jn_ico{
             color: $p1Color;

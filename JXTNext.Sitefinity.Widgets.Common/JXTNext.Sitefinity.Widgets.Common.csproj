@@ -48,7 +48,9 @@
     <Content Include="ResourcePackages\Hudson\assets\dist\css\fontawesome.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ResourcePackages\Hudson\assets\dist\css\fontawesome.min.css" />
+    <Content Include="ResourcePackages\Hudson\assets\dist\css\fontawesome.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\Hudson\assets\dist\css\main.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

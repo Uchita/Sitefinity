@@ -233,15 +233,15 @@ module.exports = function(grunt) {
 
     // Default task
     grunt.registerTask('default', ' ', function() {
-        grunt.task.run('clean:all');
-        grunt.task.run('newer:sprite');
+        //grunt.task.run('clean:all');
+        //grunt.task.run('newer:sprite');
         // grunt.task.run('webfont');
         grunt.task.run('copy');
         grunt.task.run('sass');
         grunt.task.run('uglify');
         grunt.task.run('csslint:dev');
         grunt.task.run('cssmin');
-        grunt.task.run('newer:imagemin');
+       // grunt.task.run('newer:imagemin');
         grunt.task.run('concurrent');
 
     });

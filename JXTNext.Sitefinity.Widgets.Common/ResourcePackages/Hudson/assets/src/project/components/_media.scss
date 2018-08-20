@@ -320,7 +320,7 @@
     header {
 
         .brand-logo {
-            height: 80px;
+            height: 78px;
 
             a {
 
@@ -603,8 +603,8 @@
     header {
 
         .brand-logo {
-            position: static !important;
-            height: 100px;
+            position: relative !important;
+            top: 15px;
 
             a {
                 position: absolute;

@@ -142,6 +142,10 @@ hr.vrt{
             background-color: darken($p2Color, 15%)!important;
         }
     }
+    &.btn-lg-fz{
+        font-size: 1.8rem;
+        padding: 1.1rem;
+    }
     //dropdown button
     &.dropdown-toggle{
         background: none;
@@ -207,6 +211,14 @@ hr.vrt{
         }
     }
 }
+.buttons-wrapper-fullwidth{
+    margin-bottom: 1rem;
+    .btn{
+        margin-bottom: 5px;
+        width: 100%;
+    }
+}
+
 .text-center.btn{
     margin: 0 4px;
 }

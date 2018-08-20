@@ -145,6 +145,7 @@
     -webkit-box-sizing: border-box;
     @include rotate(45deg);
     font: 4rem/1 FontAwesome;
+    cursor: pointer;
     @if $arrow = true{
         &::after{
             display: block;

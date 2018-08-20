@@ -26,6 +26,13 @@
 }
 .job-mini{
     margin-bottom: 12rem;
+    .job-holder{
+        margin-bottom: 1rem;
+        padding-right: 5rem;
+        @include bp-max(md){
+            padding-right: 0;
+        }
+    }
     .job-topbar{
         text-align: left;
         max-width: 400px;
@@ -45,6 +52,7 @@
     .sc-job-meta-group{
         display: flex;
         flex-wrap: wrap;
+        margin-bottom: 2rem;
         dd{
             width: auto;
             flex-grow: 1;

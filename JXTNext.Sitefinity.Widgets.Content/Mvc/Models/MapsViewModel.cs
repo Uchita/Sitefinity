@@ -8,7 +8,13 @@ namespace JXTNext.Sitefinity.Widgets.Content.Mvc.Models
 {
     public class MapsViewModel
     {
+        public List<MapsMarkerModel> MapsMarkers { get; set; }
+        public int ZoomLevel { get; set; }
+    }
+
+    public class MapsMarkerModel
+    {
         public string Address { get; set; }
-        public string GoogleMapsAPIKey { get; set; }
+        public string MarkerIconPath { get; set; }
     }
 }

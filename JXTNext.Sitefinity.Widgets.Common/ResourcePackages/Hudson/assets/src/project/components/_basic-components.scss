@@ -1,4 +1,7 @@
 /*#region General */
+blockquote{
+    border-left-width: 1px;
+}
 
 .page-wrapper {
     //page wrapper class will prevent general styles leaking into page designer styles when not needed
@@ -86,7 +89,7 @@
         background: $btn-secondary-bg;
         color: $btn-secondary-color;
 
-        &:hover {
+        &:hover, &:focus {
             border-color: $btn-secondary-hover-bg;
             background: $btn-secondary-hover-bg;
             color: $btn-secondary-hover-color;
@@ -160,7 +163,7 @@
             text-transform: none;
             min-width: 220px;
 
-            &, &:hover, &:focus {
+            &:hover, &:focus {
                 color: #fff;
             }
         }
@@ -177,7 +180,7 @@
         background: $btn-primary-bg;
         color: $btn-primary-color;
 
-        &:hover {
+        &:hover, &:focus {
             background: $btn-primary-hover-bg;
             color: $btn-primary-hover-color;
         }
@@ -208,7 +211,7 @@
             color: #fff;
         }
 
-        &:hover {
+        &:hover, &:focus {
             background: $btn-more-hover-bg;
 
 
@@ -441,7 +444,7 @@
     .text-muted {
         font-size: 14px;
         font-size: 1.4rem;
-        color: #c5c5c5;
+        color: #aaa;
     }
 
     .font-light {
@@ -506,7 +509,7 @@
     }
 
     .link-default {
-        &, &:hover, &:focus {
+        &:hover, &:focus {
             color: $global-highlight-color;
             text-decoration: none;
         }
@@ -521,6 +524,9 @@
             color: #fff;
             border-color: #fff;
             margin-top: 30px;
+            &:hover, &:focus{
+                border-color: transparent;
+            }
         }
     }
 
@@ -626,7 +632,7 @@ img, iframe {
             }
         }
 
-        a:hover {
+        a:hover, &:focus {
             color: $header-top-hover-color;
         }
 
@@ -643,7 +649,7 @@ img, iframe {
 
     &-links {
 
-        a:hover {
+        a:hover, &:focus {
             text-decoration: none;
             color: $header-top-hover-color;
         }
@@ -711,7 +717,7 @@ header {
     .main-nav {
         position: relative;
         display: block;
-        margin-top: -12px;
+        top: -12px;
         width: 100%;
         z-index: 9;
 
@@ -738,7 +744,7 @@ header {
             float: none;
             display: inline-block;
 
-            &:hover {
+            &:hover, &:focus {
 
                 a:after {
                     content: '';
@@ -844,13 +850,18 @@ header {
                     color: $navigation-sublink-hover-color;
                 }
             }
+            &.active{
+                a{
+                    color: $navigation-sublink-hover-color;
+                }
+            }
         }
 
         .dropdown-submenu {
             position: static;
             padding-right: 30px;
 
-            &:hover > ul {
+            &:hover > ul, &:focus > ul, &.active > ul {
                 display: block;
                 left: 25%;
                 top: 0;
@@ -901,6 +912,7 @@ header {
                 }
 
                 &:hover,
+                &:focus,
                 &.active {
 
                     .decoration {
@@ -1007,98 +1019,7 @@ header {
         }
     }
 
-    .quick-links {
-        position: fixed;
-        left: 0;
-        top: 200px;
-        font-family: $font-family-regular;
-        color: $quick-links-color;
-        z-index: 999;
-
-        a {
-            text-transform: uppercase;
-            color: inherit;
-
-            &:hover {
-                text-decoration: none;
-                color: $quick-links-hover-color;
-            }
-        }
-
-        .list-unstyled {
-            padding: 0;
-            margin-bottom: 0;
-
-            li {
-                position: relative;
-                padding-left: 20px;
-            }
-        }
-
-        &-toggle {
-            position: fixed;
-            top: 350px;
-            left: 0;
-            padding: 7px 20px 10px 10px;
-            white-space: nowrap;
-            cursor: pointer;
-            visibility: hidden;
-            opacity: 0;
-            filter: alpha(opacity = 0);
-            -webkit-transition: 0s opacity 0s, 0s filter 0s;
-            transition: 0s opacity 0s, 0s filter 0s;
-            -webkit-transform: rotate(-90deg);
-            transform: rotate(-90deg);
-            -webkit-transform-origin: right top;
-            transform-origin: left top;
-            background: $quick-links-bg;
-
-            .fas {
-                margin-left: 10px;
-            }
-
-            &.active {
-                visibility: visible;
-                opacity: 1;
-                filter: alpha(opacity = 100);
-                -webkit-transition: 0.1s opacity .4s, 0.1s filter .4s;
-                transition: 0.1s opacity .4s, 0.1s filter .4s;
-            }
-        }
-
-        &-content {
-            /*position: relative;*/
-            left: -100%;
-            padding: 10px 20px 10px 10px;
-            width: 180px;
-            font-size: 14px;
-            font-size: 1.4rem;
-            background: $quick-links-bg;
-            -webkit-transition: left .4s;
-            transition: left .4s;
-
-            .far, .fas {
-                position: absolute;
-                top: 4px;
-                left: 0;
-            }
-
-            &.active {
-                left: 0;
-            }
-        }
-
-        &-close {
-            position: absolute;
-            top: 0;
-            right: 15px;
-            cursor: pointer;
-
-            .far, .fas {
-                margin-right: 0;
-            }
-        }
-    }
+    
 }
 /*#endregion Header */
 
@@ -1263,7 +1184,7 @@ main {
             & > span {
                 color: $sidebar-default-color;
 
-                &:hover {
+                &:hover, &:focus {
                     color: $sidebar-link-color;
                     cursor: pointer;
                 }
@@ -1434,8 +1355,11 @@ ul.vertical-ul {
 
 /*#region Footer*/
 .page-wrapper {
+    
     footer {
-
+        .brand-logo{
+            max-width: 165px;
+        }
         .page-section {
             padding: 35px 0 50px;
             font-size: 14px;
@@ -1451,13 +1375,14 @@ ul.vertical-ul {
             /*font-family: $font-family-medium;*/
             color: $footer-nav-links;
 
-            &:hover {
+            &:hover, &:focus {
                 text-decoration: none;
                 color: $footer-nav-links-hover;
             }
         }
 
         h3 {
+            margin-top: 30px;
             margin-bottom: 15px;
         }
 
@@ -1467,14 +1392,14 @@ ul.vertical-ul {
 
         .footer-social {
             display: block;
-            margin-top: 50px;
+            margin-top: 42px;
 
             .fab {
                 font-size: 18px;
                 font-size: 1.8rem;
                 margin: 0 10px;
 
-                &:hover {
+                &:hover, &:focus {
                     color: $footer-nav-links-hover;
                 }
             }
@@ -1535,9 +1460,107 @@ ul.vertical-ul {
                     padding-left: 10px;
                 }
 
-                &:hover {
+                &:hover, &:focus {
                     color: $footer-nav-links;
                 }
+            }
+        }
+    }
+
+    .quick-links {
+        position: fixed;
+        left: 0;
+        top: 200px;
+        font-family: $font-family-regular;
+        color: $quick-links-color;
+        z-index: 999;
+    
+        a {
+            color: $quick-links-color;;
+    
+            &:hover, &:focus {
+                text-decoration: none;
+                color: $quick-links-hover-color;
+            }
+        }
+    
+        .list-unstyled {
+            padding: 0;
+            margin-bottom: 0;
+    
+            li {
+                position: relative;
+                padding-left: 27px;
+                margin-bottom: 12px;
+                line-height: 1.1;
+            }
+        }
+    
+        &-toggle {
+            position: fixed;
+            top: 365px;
+            left: 0;
+            padding: 7px 30px 10px 30px;
+            font-size: 1.4rem;
+            white-space: nowrap;
+            cursor: pointer;
+            visibility: hidden;
+            opacity: 0;
+            filter: alpha(opacity = 0);
+            -webkit-transition: 0s opacity 0s, 0s filter 0s;
+            transition: 0s opacity 0s, 0s filter 0s;
+            -webkit-transform: rotate(-90deg);
+            transform: rotate(-90deg);
+            -webkit-transform-origin: right top;
+            transform-origin: left top;
+            background: $quick-links-bg;
+    
+            .fas {
+                margin-left: 12px;
+                -webkit-transform: rotate(90deg);
+                transform: rotate(90deg);
+                font-size: 1.3rem;
+            }
+    
+            &.active {
+                visibility: visible;
+                opacity: 1;
+                filter: alpha(opacity = 100);
+                -webkit-transition: 0.1s opacity .4s, 0.1s filter .4s;
+                transition: 0.1s opacity .4s, 0.1s filter .4s;
+            }
+        }
+    
+        &-content {
+            /*position: relative;*/
+            left: -100%;
+            padding: 20px 35px 10px 12px;
+            width: 140px;
+            font-size: 1.4rem;
+            background: $quick-links-bg;
+            -webkit-transition: left .4s;
+            transition: left .4s;
+    
+            .far, .fas {
+                position: absolute;
+                top: 4px;
+                left: 0;
+            }
+    
+            &.active {
+                left: 0;
+            }
+        }
+    
+        &-close {
+            position: absolute;
+            top: 3px;
+            right: 20px;
+            cursor: pointer;
+            font-size: 1.5rem;
+    
+            .far, .fas {
+                margin-right: 0;
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member
     {
         int MemberID { get; set; }
         int ApplyResourceID { get; set; }
+        EmailNotificationSettings EmailNotification { get; set; }
     }
 
     public interface IMemberApplicationResponse

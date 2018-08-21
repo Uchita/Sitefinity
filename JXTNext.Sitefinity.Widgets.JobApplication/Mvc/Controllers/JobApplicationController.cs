@@ -1,4 +1,5 @@
 ﻿using JXTNext.Sitefinity.Connector.BusinessLogics;
+using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Common;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member;
 using JXTNext.Sitefinity.Widgets.Job.Mvc.StringResources;
 using JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models.JobApplication;
@@ -71,8 +72,16 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             string resumeAttachmentPath = GetAttachmentPath(attachments, JobApplicationAttachmentType.Resume);
             string coverletterAttachmentPath = GetAttachmentPath(attachments, JobApplicationAttachmentType.Coverletter);
 
+            // Email Notification Settings
+            // In the desinger form those are going to be provided by separator as semicolon(;)
+            List<string> ccEmails = this.EmailTemplateCC.Split(';').ToList();
+            List<string> bccEmails = this.EmailTemplateBCC.Split(';').ToList();
+            string htmlEmailContent = this.GetHtmlEmailContent();
+            EmailNotificationSettings emailNotificationSettings = new EmailNotificationSettings(this.EmailTemplateFromName, ccEmails, bccEmails, htmlEmailContent);
+           
             //Create Application 
-            IMemberApplicationResponse response = _blConnector.MemberCreateJobApplication(new JXTNext_MemberApplicationRequest { ApplyResourceID = applicationResultID, MemberID = memberID, ResumePath = resumeAttachmentPath, CoverletterPath = coverletterAttachmentPath });
+            IMemberApplicationResponse response = _blConnector.MemberCreateJobApplication(
+                new JXTNext_MemberApplicationRequest { ApplyResourceID = applicationResultID, MemberID = memberID, ResumePath = resumeAttachmentPath, CoverletterPath = coverletterAttachmentPath, EmailNotification = emailNotificationSettings });
 
             if( response.Success && response.ApplicationID.HasValue)
             {

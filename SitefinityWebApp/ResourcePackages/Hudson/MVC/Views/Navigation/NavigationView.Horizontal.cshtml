@@ -132,7 +132,7 @@
     {
         if (childNode.ChildNodes.Count > 0 && dept > 0)
         {
-            <li class="dropdown-submenu" data-self-id="@childNode.OriginalSiteMapNode.Key.ToLower()">
+            <li class="dropdown-submenu @GetClass(childNode)" data-self-id="@childNode.OriginalSiteMapNode.Key.ToLower()">
                 <a href="@childNode.Url" target="@childNode.LinkTarget">
                     @childNode.Title
                     <span class="right-caret"></span>

@@ -1,3 +1,319 @@
+/*#region Tablet*/
+@media (min-width:768px) {
+    header {
+
+        .brand-logo {
+            height: 55px;
+            position: relative !important;
+            top: 15px;
+
+            a {
+
+                img {
+                    margin-top: 20px;
+                    height: 60px;
+                }
+            }
+        }
+
+        .main-nav .collapse.navbar-collapse,
+        .main-nav .dropdown-menu-container .dropdown-menu-columns {
+            width: 750px;
+        }
+
+        .mobile-nav {
+            .navbar-collapse.collapse {
+                display: none !important;
+            }
+        }
+    }
+
+    .page-section {
+
+        .right-bottom-img img {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            max-width: 38%;
+            width:auto;
+        }
+    } 
+    .white-box-single .white-box .white-box-ul li {
+        width: 50%;
+        float:left;
+        padding: 0 30px 0 0;
+    }
+}
+@media (min-width:768px) and (max-width: 1199px) {
+
+    header {
+
+        .navbar {
+
+            &.navbar-default {
+
+                .navbar-nav > li > a {
+                    padding: 0 5px;
+                }
+
+                .navbar-nav > li > a,
+                .navbar-nav > .active > a,
+                .navbar-nav > .active > a:focus,
+                .navbar-nav > .active > a:hover {
+                    font-size: 12px;
+                    font-size: 1.2rem;
+                }
+            }
+        }
+    }
+
+    .thumbnail {
+
+        &.card-rollover-bg .card-description {
+            padding: 15px;
+        }
+    }
+
+    .risk-measurement .risk-wrapper {
+        width: 50%;
+    }
+    .list-featured-articles{
+        font-size: 1.4rem;
+        line-height: 1.4;
+        .featured-article{
+            min-height: 155px;
+            padding: 20px 10px 20px 30px;
+            .btn.btn-more {
+                width: 20px;
+                height: 20px;
+
+                &:after {
+                    font-size: 14px;
+                    font-size: 1.4rem;
+                    line-height: 20px;
+                }
+            }
+        }
+        h3{
+            font-size: 1.6rem;
+            margin-top: 7px;
+            margin-bottom: 7px;
+        }
+    }
+
+}
+@media (max-width: 991px) {
+
+    .page-wrapper {
+        font-size: 14px;
+        font-size: 1.4rem;
+        line-height: normal;
+
+        .h1, h1 {
+            font-size: 30px;
+            font-size: 3rem;
+        }
+
+        .h2, h2 {
+            font-size: 20px;
+            font-size: 2rem;
+        }
+
+        .h3, h3 {
+            font-size: 16px;
+            font-size: 1.6rem;
+        }
+
+        .btn {
+            font-size: 14px;
+            font-size: 1.4rem;
+        }
+
+        .basic-form .form-label {
+            text-align: left;
+        }
+    }
+
+    header {
+        .navbar.navbar-default .navbar-nav{
+            width: 77%;
+            > li{
+                padding-left: 3px;
+                padding-right: 3px;
+            }
+            > li + li > a:before{
+                left: -6px;
+            }
+        }
+        .main-nav .navbar-nav > li.dropdown:hover {
+
+            .dropdown-menu {
+                padding: 10px;
+                width: 50%;
+
+                &:nth-child(3), &:nth-child(4) {
+                    display: none;
+                }
+
+                & + .dropdown-menu {
+                    padding-left: 10px;
+                }
+            }
+        }
+    }
+
+    footer {
+
+        a img {
+            max-width: 200px;
+        }
+    }
+
+    .testimonials-slider {
+        padding: 50px 0;
+
+        .owl-dots {
+            bottom: 25px;
+        }
+
+        .owl-item {
+            padding: 30px 45px;
+            min-height: 240px;
+        }
+
+        .quote {
+            height: 33px;
+            font-size: 123px;
+            font-size: 12.3rem;
+
+            span {
+                top: 10px;
+            }
+        }
+
+        .testimonial {
+            padding-top: 20px;
+            padding-bottom: 10px;
+            font-size: 16px;
+            font-size: 1.6rem;
+        }
+
+        .testimonial-title {
+            font-size: 24px;
+            font-size: 2.4rem;
+            padding: 0 50px;
+        }
+
+        .testimonial-author {
+            font-size: 11px;
+            font-size: 1.1rem;
+        }
+    }
+
+    .thumbnail {
+
+        &.card-basic {
+
+            .caption {
+                padding: 20px 50px 40px;
+
+            }
+        }
+
+        &.card-rollover .card-description {
+            font-size: 16px;
+            font-size: 1.6rem;
+        }
+    }
+
+    .process-card-holder .display-cell {
+        display: block;
+        margin-top: 20px;
+
+        .process-card {
+            background-color: #fff;
+            padding: 20px;
+        }
+    }
+
+    .customer-logo {
+        height: 120px;
+    }
+
+    .list-featured-articles {
+        margin-bottom: 45px;
+
+        li + li {
+            margin-top: 55px;
+        }
+
+        .featured-article {
+            margin-right: 35%;
+            min-height: 140px;
+
+            &-image {
+                width: 35%;
+            }
+
+            .btn.btn-more {
+                width: 20px;
+                height: 20px;
+
+                &:after {
+                    font-size: 14px;
+                    font-size: 1.4rem;
+                    line-height: 20px;
+                }
+            }
+        }
+
+        .text-muted {
+            font-size: 10px;
+            font-size: 1rem;
+        }
+
+        .h3, h3 {
+            margin-top: 5px;
+        }
+
+        h3 + div {
+            height: 35px;
+            overflow: hidden;
+            position: relative;
+
+            &:after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                height: 30px;
+                width: 100%;
+                background: -webkit-linear-gradient(#fff, #fff);
+                background: linear-gradient(rgba(0,0,0,0), rgba(255, 255, 255, 1));
+            }
+        }
+    }
+
+    .consultant-images img {
+        margin-bottom: 10px;
+    }
+
+    .testimonials-slider .testimonial-title {
+        margin: 0 auto;
+    }
+
+    .center-bottom-img{
+        text-align: center;
+        [class*="col-sm"]{
+            width: auto;
+            float: none;
+        }
+    }
+}
+
+
+/*#endregion Tablet*/
+
 /*#region Phones*/
 @media (max-width: 767px) {
     header {
@@ -13,13 +329,16 @@
             background: #007077;
             background: rgba(0,112,119,.8);
         }
+        .navbar-fixed-top{
+            .brand-logo {
+                height: 40px;
+                display: block;
+                margin: 10px auto;
+                text-align: center;
 
-        .brand-logo {
-            margin: 10px 0;
-            text-align: center;
-
-            img {
-                height: 60px;
+                img {
+                    height: 60px;
+                }
             }
         }
 
@@ -33,6 +352,8 @@
             .navbar-default .navbar-toggle {
                 float: left;
                 border: 0;
+                margin: 0;
+                padding: 7px 10px;
 
                 .icon-bar {
                     background-color: $btn-primary-color;
@@ -47,41 +368,7 @@
                 }
             }
         }
-
-        .quick-links {
-
-            &-toggle,
-            &-toggle.active {
-                display: none;
-            }
-
-            &-content {
-                top: auto;
-                left: 0;
-                bottom: 0;
-                width: 100%;
-            }
-
-            .list-unstyled li {
-                float: left;
-                width: 25%;
-                text-align: center;
-            }
-
-            .quick-links-close {
-                display: none;
-            }
-
-            a {
-                font-size: 0;
-
-                .far, .fas {
-                    position: static;
-                    font-size: 21px;
-                    font-size: 2.1rem;
-                }
-            }
-        }
+        
     }
 
     .mobile-owl-carousel {
@@ -134,7 +421,7 @@
                 .h3, h3 {
                     font-size: 18px;
                     font-size: 1.8rem;
-                    color: #000;
+                    color: $global-text-color;
                 }
             }
 
@@ -148,7 +435,7 @@
                 -webkit-transition: none;
                 transition: none;
                 background: none;
-                color: #b8b8b8;
+                color: $global-text-color;
             }
         }
     }
@@ -240,6 +527,74 @@
             right:0;
         }
     }
+    .page-wrapper{
+        position: relative;
+        padding-bottom: 50px;
+        .quick-links {
+
+            &-toggle,
+            &-toggle.active {
+                display: none;
+            }
+    
+            &-content {
+                top: auto;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                position: absolute;
+                padding: 15px;
+            }
+    
+            .list-unstyled {
+                display: flex;
+                li {
+                    width: 25%;
+                    text-align: center;
+                    flex-grow: 1;
+                    padding: 0 10px;
+                    margin-bottom: 0;
+                }
+            }
+    
+            .quick-links-close {
+                display: none;
+            }
+    
+            a {
+                font-size: 0;
+    
+                .far, .fas {
+                    position: static;
+                    font-size: 21px;
+                    font-size: 2.1rem;
+                }
+            }
+        }
+        footer{
+            .page-section{
+                padding: 15px 0;
+            }
+            .footer-social{
+                margin-top: 18px;
+            }
+        }
+    }
+
+    .testimonials-slider {
+        .quote{
+            height: 33px;
+            &.text-right{
+                top: 20px;
+            }
+        }
+        .owl-item{
+            padding-bottom: 30px
+        }
+        .owl-dots{
+            bottom: 43px;
+        }
+    }
 }
 
 @media screen and (max-width: 767px) {
@@ -270,7 +625,23 @@
     }
 
     .page-wrapper {
-        padding-bottom: 42px;
+        footer{
+            .col-xs-3, .col-xs-9{
+                float: left;
+                width: auto;
+            }
+            .brand-logo{
+                height: 45px;
+            }
+            .footer-social{
+                .fab{
+                    margin: 0 3px;
+                }
+            }
+            .postfooter-links a{
+                font-size: 1.3rem;
+            }
+        }
     }
 
     header {   
@@ -311,308 +682,30 @@
             margin-left: 0;
         }
     }
+
+    .owl-carousel.owl-drag{
+        .owl-item, .testimonial{
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+    }
 }
 
 /*#endregion Phones*/
 
-/*#region Tablet*/
-@media (min-width:768px) {
-    header {
 
-        .brand-logo {
-            height: 78px;
-
-            a {
-
-                img {
-                    margin-top: 20px;
-                    height: 60px;
-                }
-            }
-        }
-
-        .main-nav .collapse.navbar-collapse,
-        .main-nav .dropdown-menu-container .dropdown-menu-columns {
-            width: 750px;
-        }
-
-        .mobile-nav {
-            .navbar-collapse.collapse {
-                display: none !important;
-            }
-        }
-    }
-
-    .page-section {
-
-        .right-bottom-img img {
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            max-width: 38%;
-            width:auto;
-        }
-    } 
-    .white-box-single .white-box .white-box-ul li {
-        width: 50%;
-        float:left;
-        padding: 0 30px 0 0;
-    }
-}
-
-@media (max-width: 991px) {
-
-    .page-wrapper {
-        font-size: 14px;
-        font-size: 1.4rem;
-        line-height: normal;
-
-        .h1, h1 {
-            font-size: 30px;
-            font-size: 3rem;
-        }
-
-        .h2, h2 {
-            font-size: 20px;
-            font-size: 2rem;
-        }
-
-        .h3, h3 {
-            font-size: 16px;
-            font-size: 1.6rem;
-        }
-
-        .btn {
-            font-size: 14px;
-            font-size: 1.4rem;
-        }
-
-        .basic-form .form-label {
-            text-align: left;
-        }
-    }
-
-    header {
-
-        .main-nav .navbar-nav > li.dropdown:hover {
-
-            .dropdown-menu {
-                padding: 10px;
-                width: 50%;
-
-                &:nth-child(3), &:nth-child(4) {
-                    display: none;
-                }
-
-                & + .dropdown-menu {
-                    padding-left: 10px;
-                }
-            }
-        }
-    }
-
-    footer {
-
-        a img {
-            max-width: 200px;
-        }
-    }
-
-    .testimonials-slider {
-        padding: 50px 0;
-
-        .owl-dots {
-            bottom: 25px;
-        }
-
-        .owl-item {
-            padding: 30px 45px;
-            min-height: 240px;
-        }
-
-        .quote {
-            height: 10px;
-            font-size: 123px;
-            font-size: 12.3rem;
-
-            span {
-                top: 10px;
-            }
-        }
-
-        .testimonial {
-            padding-bottom: 10px;
-            font-size: 16px;
-            font-size: 1.6rem;
-        }
-
-        .testimonial-title {
-            font-size: 24px;
-            font-size: 2.4rem;
-            padding: 0 50px;
-        }
-
-        .testimonial-author {
-            font-size: 11px;
-            font-size: 1.1rem;
-        }
-    }
-
-    .thumbnail {
-
-        &.card-basic {
-
-            .caption {
-                padding: 20px 50px 40px;
-
-                .btn.btn-more {
-                    width: 20px;
-                    height: 20px;
-
-                    &:after {
-                        font-size: 14px;
-                        font-size: 1.4rem;
-                        line-height: 20px;
-                    }
-                }
-            }
-        }
-
-        &.card-rollover .card-description {
-            font-size: 16px;
-            font-size: 1.6rem;
-        }
-    }
-
-    .process-card-holder .display-cell {
-        display: block;
-        margin-top: 20px;
-
-        .process-card {
-            background-color: #fff;
-            padding: 20px;
-        }
-    }
-
-    .customer-logo {
-        height: 120px;
-    }
-
-    .list-featured-articles {
-        margin-bottom: 45px;
-
-        li + li {
-            margin-top: 55px;
-        }
-
-        .featured-article {
-            margin-right: 35%;
-            padding: 20px 30px;
-            min-height: 140px;
-
-            &-image {
-                width: 35%;
-            }
-
-            .btn.btn-more {
-                width: 20px;
-                height: 20px;
-
-                &:after {
-                    font-size: 14px;
-                    font-size: 1.4rem;
-                    line-height: 20px;
-                }
-            }
-        }
-
-        .text-muted {
-            font-size: 10px;
-            font-size: 1rem;
-        }
-
-        .h3, h3 {
-            margin-top: 5px;
-        }
-
-        h3 + div {
-            height: 35px;
-            overflow: hidden;
-            position: relative;
-
-            &:after {
-                content: "";
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                height: 30px;
-                width: 100%;
-                background: -webkit-linear-gradient(#fff, #fff);
-                background: linear-gradient(rgba(0,0,0,0), rgba(255, 255, 255, 1));
-            }
-        }
-    }
-
-    .consultant-images img {
-        margin-bottom: 10px;
-    }
-
-    .testimonials-slider .testimonial-title {
-        margin: 0 auto;
-    }
-}
-
-@media (min-width:768px) and (max-width: 1199px) {
-
-    header {
-
-        .navbar {
-
-            &.navbar-default {
-
-                .navbar-nav > li > a {
-                    padding: 0 5px;
-                }
-
-                .navbar-nav > li > a,
-                .navbar-nav > .active > a,
-                .navbar-nav > .active > a:focus,
-                .navbar-nav > .active > a:hover {
-                    font-size: 12px;
-                    font-size: 1.2rem;
-                }
-            }
-        }
-    }
-
-    .thumbnail {
-
-        &.card-rollover-bg .card-description {
-            padding: 15px;
-        }
-    }
-
-    .risk-measurement .risk-wrapper {
-        width: 50%;
-    }
-}
-/*#endregion Tablet*/
 
 /*#region Small desktop*/
 @media (min-width:992px) {
     header {
 
         .brand-logo {
-            position: relative !important;
-            top: 15px;
+            height: 78px;
 
             a {
                 position: absolute;
                 z-index: 10;
 
-                img {
-                    height: 80px;
-                }
             }
         }
 

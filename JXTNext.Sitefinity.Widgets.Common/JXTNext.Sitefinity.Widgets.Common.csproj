@@ -555,6 +555,9 @@
     <Content Include="ResourcePackages\JXTDemo\MVC\Views\Registration\Registration.RegistrationForm2Col.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\JXTDemo\MVC\Views\Profile\Edit.ConsultantProfileEdit.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="ResourcePackages\JXTDemo\MVC\Views\SearchBox\SearchBox.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

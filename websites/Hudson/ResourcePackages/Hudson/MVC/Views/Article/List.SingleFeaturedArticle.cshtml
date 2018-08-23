@@ -1,0 +1,35 @@
+﻿@model Telerik.Sitefinity.Frontend.DynamicContent.Mvc.Models.DynamicContentListViewModel
+@using Telerik.Sitefinity.Frontend.DynamicContent.WidgetTemplates.Fields.Helpers;
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Data.ContentLinks;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Frontend.Mvc.Models;
+@using Telerik.Sitefinity.Web.DataResolving;
+@using Telerik.Sitefinity.Model.ContentLinks;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.RelatedData
+@using Telerik.Sitefinity.Web.DataResolving;
+@{
+    var featuredArticle = Model.Items.FirstOrDefault();
+}
+@if (featuredArticle != null && featuredArticle.Fields.HeaderImage != null && featuredArticle.Fields.Category != null)
+{
+
+    var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(featuredArticle, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+    var taxon = featuredArticle.GetHierarchicalTaxons("Category").First();
+    <div class="@Model.CssClass">
+        <h1 class="text-center">@taxon.Title.ToString()</h1>
+        <br />
+        <div class="thumbnail card-basic small-caption">
+            <a href="@navigateUrl">
+                <img alt="@featuredArticle.Fields.HeaderImage.Fields.Title" src="@featuredArticle.Fields.HeaderImage.Fields.MediaUrl" />
+            </a>
+            <div class="caption">
+                <p class="color-light text-uppercase font-medium "><small>@taxon.Title.ToString()</small></p>
+                <h3>@Html.HtmlSanitize((string)featuredArticle.Fields.Title)</h3>
+                <p>@Html.HtmlSanitize((string)featuredArticle.Fields.Summary)</p>
+                <a class="btn btn-more" href="@navigateUrl"></a>
+            </div>
+        </div>
+    </div>
+}

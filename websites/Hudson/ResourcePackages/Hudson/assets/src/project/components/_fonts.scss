@@ -1,0 +1,39 @@
+@font-face {
+    font-family: 'AkzidGroProLig';
+    src: url('../fonts/AkzidGroProLig.eot');
+    src: url('../fonts/AkzidGroProLig.eot') format('embedded-opentype'), 
+         url('../fonts/AkzidGroProLig.woff2') format('woff2'), 
+         url('../fonts/AkzidGroProLig.woff') format('woff'), 
+         url('../fonts/AkzidGroProLig.ttf') format('truetype'), 
+         url('../fonts/AkzidGroProLig.svg#AkzidGroProLig') format('svg');
+}
+
+@font-face {
+    font-family: 'AkzidGroProReg';
+    src: url('../fonts/AkzidGroProReg.eot');
+    src: url('../fonts/AkzidGroProReg.eot') format('embedded-opentype'), 
+         url('../fonts/AkzidGroProReg.woff2') format('woff2'), 
+         url('../fonts/AkzidGroProReg.woff') format('woff'), 
+         url('../fonts/AkzidGroProReg.ttf') format('truetype'), 
+         url('../fonts/AkzidGroProReg.svg#AkzidGroProReg') format('svg');
+}
+
+@font-face {
+    font-family: 'AkzidGroProMed';
+    src: url('../fonts/AkzidGroProMed.eot');
+    src: url('../fonts/AkzidGroProMed.eot') format('embedded-opentype'), 
+         url('../fonts/AkzidGroProMed.woff2') format('woff2'), 
+         url('../fonts/AkzidGroProMed.woff') format('woff'), 
+         url('../fonts/AkzidGroProMed.ttf') format('truetype'), 
+         url('../fonts/AkzidGroProMed.svg#AkzidGroProMed') format('svg');
+}
+
+@font-face {
+    font-family: 'AkzidGroProBol';
+    src: url('../fonts/AkzidGroProBol.eot');
+    src: url('../fonts/AkzidGroProBol.eot') format('embedded-opentype'), 
+         url('../fonts/AkzidGroProBol.woff2') format('woff2'), 
+         url('../fonts/AkzidGroProBol.woff') format('woff'), 
+         url('../fonts/AkzidGroProBol.ttf') format('truetype'), 
+         url('../fonts/AkzidGroProBol.svg#AkzidGroProBol') format('svg');
+}

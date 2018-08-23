@@ -9,6 +9,7 @@ using SitefinityWebApp.Mvc.Attributes;
 using SitefinityWebApp.Mvc.Models.CustomDynamicContent;
 using System;
 using System.Web.Http;
+using System.Web.Http.Controllers;
 using System.Web.Mvc;
 using Telerik.Microsoft.Practices.Unity;
 using Telerik.Sitefinity.Abstractions;
@@ -20,6 +21,8 @@ using Telerik.Sitefinity.Frontend.Identity.Mvc.Models.Registration;
 using Telerik.Sitefinity.Localization;
 using Telerik.Sitefinity.Mvc;
 using Telerik.Sitefinity.Services;
+using JXTNext.Sitefinity.Common.Models.CustomSiteSettings;
+using JXTNext.Sitefinity.Widgets.Content.Mvc.StringResources;
 
 namespace SitefinityWebApp
 {
@@ -42,6 +45,8 @@ namespace SitefinityWebApp
             Res.RegisterResource<JobDetailsResources>();
             Res.RegisterResource<LoginStatusExtendedResources>();
             Res.RegisterResource<UsersListExtendedResources>();
+            Res.RegisterResource<MapsResources>();
+            Res.RegisterResource<JobApplicationResources>();
 
             if (e.CommandName == "Bootstrapped")
             {

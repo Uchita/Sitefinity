@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Common;
 
 namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member
 {
@@ -13,6 +14,8 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member
 
         public string ResumePath { get; set; }
         public string CoverletterPath { get; set; }
+
+        public EmailNotificationSettings EmailNotification { get; set; }
     }
 
     public class JXTNext_MemberApplicationResponse : ConnectorBaseResponse, IMemberApplicationResponse

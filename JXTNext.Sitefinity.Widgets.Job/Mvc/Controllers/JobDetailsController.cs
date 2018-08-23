@@ -101,6 +101,11 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 ViewBag.JobResultsPageUrl = SitefinityHelper.GetPageUrl(this.JobResultsPageId);
 
                 var fullTemplateName = this.templateNamePrefix + this.TemplateName;
+                // If it is null make sure that pass empty string , because html attrubutes will not work properly.
+                viewModel.JobDetails.Address = viewModel.JobDetails.Address == null ? "" : viewModel.JobDetails.Address;
+                viewModel.JobDetails.AddressLatitude = viewModel.JobDetails.AddressLatitude == null ? "" : viewModel.JobDetails.AddressLatitude;
+                viewModel.JobDetails.AddressLongtitude = viewModel.JobDetails.AddressLongtitude == null ? "" : viewModel.JobDetails.AddressLongtitude;
+
                 return View(fullTemplateName, viewModel);
             }
 

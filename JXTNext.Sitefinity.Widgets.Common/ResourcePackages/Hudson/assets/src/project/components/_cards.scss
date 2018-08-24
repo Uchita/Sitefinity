@@ -425,3 +425,19 @@
         }
     }
 }
+
+//blockquote-format - parallax bg
+.blockquote-format{
+    blockquote{
+        margin-bottom: 0;
+    }
+}
+
+.paralax-image{
+    padding: 7rem 0;
+    color: $brightColor;
+    h3{
+        color: $brightColor;
+        margin-bottom: 20px;
+    }
+}

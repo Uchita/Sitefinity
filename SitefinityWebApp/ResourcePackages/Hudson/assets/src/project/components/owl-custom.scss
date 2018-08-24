@@ -18,6 +18,9 @@
     }
 }
 
+.owl-nav button {
+    top: 20px!important;
+}
 
 /*#region Mobile slider*/
 
@@ -43,8 +46,8 @@
 .testimonials-slider {
     display: block;
     padding: 75px 0;
-    width: 100%;
-
+    width: 100%;    
+    color: $global-text-color!important;
     .owl-stage-outer {
         background: rgb(255,255,255);
         background: rgba(255,255,255,.9);
@@ -104,6 +107,7 @@
         font-size: 24px;
         font-size: 2.4rem;
         line-height: 1.3;
+        color: $global-text-color;
         /*font-family: $font-family-regular;*/
     }
 

@@ -168,7 +168,9 @@
             max-width: 200px;
         }
     }
-
+    .paralax-image{
+        background-position: center!important;
+    }
     .testimonials-slider {
         padding: 50px 0;
 
@@ -436,6 +438,9 @@
                 transition: none;
                 background: none;
                 color: $global-text-color;
+                .card-description-content{
+                    padding: 0;
+                }
             }
         }
     }
@@ -622,6 +627,27 @@
 
     .hide-sub-xs {
         display: none !important;
+    }
+
+    .thumbnail.card-rollover {
+        margin-top: 5px;
+        padding: 10px;
+        display: tablet;
+        .card-rollover-image{
+            display: table-cell;
+            padding-right: 20px;
+            width: 100px;
+            vertical-align: middle;
+        }
+        .caption{
+            display: table-cell;
+            vertical-align: middle;
+            h3{
+                margin-top: 0;
+                margin-bottom: 5px;
+            }
+        }
+
     }
 
     .page-wrapper {

@@ -235,6 +235,9 @@
 .owl-theme .owl-dots .owl-dot:hover span {
   background: #464646; }
 
+.owl-nav button {
+  top: 20px !important; }
+
 /*#region Mobile slider*/
 .mobile-owl-carousel.owl-loaded {
   margin-left: 0;
@@ -251,7 +254,8 @@
 .testimonials-slider {
   display: block;
   padding: 75px 0;
-  width: 100%; }
+  width: 100%;
+  color: #000 !important; }
   .testimonials-slider .owl-stage-outer {
     background: white;
     background: rgba(255, 255, 255, 0.9);
@@ -294,6 +298,7 @@
     font-size: 24px;
     font-size: 2.4rem;
     line-height: 1.3;
+    color: #000;
     /*font-family: $font-family-regular;*/ }
   .testimonials-slider .testimonial-author {
     padding: 10px 40px;

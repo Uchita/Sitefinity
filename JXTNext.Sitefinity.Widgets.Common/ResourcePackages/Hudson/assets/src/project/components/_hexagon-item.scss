@@ -1,0 +1,194 @@
+.blue-1-bg{
+    background: $blue-1;
+}
+
+.hexagon-container{
+    padding: 80px 20px;
+    text-align: center;
+    .long-text{
+        font-size: 1.4rem;
+        line-height: 1.12;
+        padding: 0 10px;
+        p{
+            margin-top: -5px;
+        }
+    }
+    .hexagon-text-wrap{
+        display: table-cell;
+        vertical-align: middle;
+        line-height: 1.3;
+        position: relative;
+        z-index: 1;
+        p{
+            margin-bottom: 0;
+        }
+    }
+    @media (max-width:767px){
+        padding: 30px 20px;
+    }
+}
+
+@mixin hexagon($width, $height, $bgColor, $fontColor, $gap ){
+    $tipHt: $width/4;
+    text-align: center;
+    background-color: $bgColor;
+    color: $brightColor;
+    padding: 0 20px;
+    width: $width;
+    height: $height;
+    position: relative;
+    display: inline-block;
+    margin: 0 $gap 5px;
+    &::before, &::after{
+        content: '';
+        display: block;
+        border-left: $width/2 solid transparent;
+        border-right: $width/2 solid transparent;
+        position: absolute;
+        left: 0;
+    }
+    &::before{
+        border-bottom: $tipHt solid $bgColor;
+        top: -$tipHt;
+    }
+    &::after{
+        border-top: $tipHt solid $bgColor;
+        bottom: -$tipHt;
+    }
+    .hexagon-text-wrap{
+        height: $height;
+    }
+    &:nth-child(n+6){
+        left: -$width/2 - $gap - 2;
+        margin-top: $height/2 ;
+    }
+    &:nth-child(n+11){
+        left: 0;
+        margin-top: $height/2 - 3;
+    }
+
+    
+    @media (max-width:992px){
+        &:nth-child(n+6){
+            left: auto;
+            margin-top: 0;
+        }
+        &:nth-child(n+4){
+            left: -$width/2 - $gap - 2;
+            margin-top: $height/2 ;
+        }
+        &:nth-child(n+7){
+            left: 0;
+            margin-top: $height/2 - 3;
+        }
+    }
+    @media (max-width:767px){
+        width: 100%;
+        height: auto;
+        &:nth-child(n+4){
+            left: auto;
+            margin-top: 0;
+        }
+        &::before,  &::after{
+            display: none;
+        }
+        .hexagon-text-wrap{
+            height: auto;
+            padding: 15px 0;
+            display: block;
+        }
+    }
+}
+@mixin hexagonSet( $itemInRow, $width, $height, $gap ){
+    $m: 4;
+    @if $itemInRow == 3{
+        $m: 4;
+    }
+    @else if $itemInRow == 2{
+        $m: 3;
+    }
+    &:nth-child(n + #{$m}){
+        left: 0;
+        margin-top: $height/2 ;
+    }
+    @media (max-width:992px){
+        &:nth-child(n + #{$m}){
+            left: 0;
+        }
+    }
+    @media (max-width:767px){
+        &:nth-child(n + #{$m}){
+            left: auto;
+            margin-top: 0;
+        }
+    }
+}
+@mixin hexagon-colors($bgColor, $fontColor ){
+    background-color: $bgColor;
+    color: $brightColor;
+    &::before{
+        border-bottom-color: $bgColor;
+    }
+    &::after{
+        border-top-color: $bgColor;
+    }
+}
+
+
+
+.hexagon-card{
+    @include hexagon(166px, 96px, $blue-1, $brightColor, 10px);
+}
+.hexagon-card-lg{
+    @include hexagon(265px, 155px, $green-1, $brightColor, 5px);
+    @media (max-width:992px){
+        width: 100%;
+        &::before, &::after{
+            display: none;
+        }
+        &:nth-child(n + 2){
+            margin-top: 0!important;
+        }
+    }
+}
+.blue-2-bg{
+    @include hexagon-colors( $blue-2, $brightColor);
+}
+.blue-3-bg{
+    @include hexagon-colors( $blue-3, $brightColor);
+}
+.blue-4-bg{
+    @include hexagon-colors( $blue-4, $brightColor);
+}
+.green-1-bg{
+    @include hexagon-colors( $green-1, $brightColor);
+}
+.green-2-bg{
+    @include hexagon-colors( $green-2, $brightColor);
+}
+.grey-1-bg{
+    @include hexagon-colors( $grey-1, $brightColor);
+}
+.blue-5-bg{
+    @include hexagon-colors( $blue-5, $brightColor);
+}
+.orange-1-bg{
+    @include hexagon-colors( $orange-1, $brightColor);
+}
+
+
+.three-in-row{
+    .hexagon-card{
+        @include hexagonSet(3, 166px, 96px, 10px);
+    }
+}
+.two-in-row{
+    &.hexagon-container{
+        width: 600px;
+        margin: 0 auto;
+        float: none;
+    }
+    .hexagon-card{
+        @include hexagonSet(2, 265px, 135px, 5px);
+    }
+}

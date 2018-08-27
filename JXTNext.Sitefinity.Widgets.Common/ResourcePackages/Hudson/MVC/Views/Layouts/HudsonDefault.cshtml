@@ -16,9 +16,12 @@
     @Html.StyleSheet(Url.Content("~/ResourcePackages/Hudson/assets/dist/css/fontawesome.min.css"), "head")
     @Html.StyleSheet(Url.Content("~/ResourcePackages/Hudson/assets/dist/css/owl.min.css"), "head")
     @Html.StyleSheet(Url.Content("~/ResourcePackages/Hudson/assets/dist/css/main.min.css"), "head")
+
+    @Html.Partial("~/ResourcePackages/Hudson/MVC/partial/TagManagerHead.cshtml")
 </head>
 
 <body>
+    @Html.Partial("~/ResourcePackages/Hudson/MVC/partial/TagManagerBody.cshtml")
     @Html.Section("top")
     <div class="page-wrapper">
         <header id="header">
@@ -52,6 +55,6 @@
 
     @Html.Section("bottom")
     @Html.Script("/ResourcePackages/Hudson/assets/dist/js/project.min.js", "bottom")
-	<script src="//cdn.trackduck.com/toolbar/prod/td.js" async data-trackduck-id="5b76043624e663210ead6f40" type="text/javascript"></script>
+    <script src="//cdn.trackduck.com/toolbar/prod/td.js" async data-trackduck-id="5b76043624e663210ead6f40" type="text/javascript"></script>
 </body>
 </html>

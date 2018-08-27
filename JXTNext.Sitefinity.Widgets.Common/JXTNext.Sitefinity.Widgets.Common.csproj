@@ -1400,6 +1400,15 @@
     <Content Include="ResourcePackages\Hudson\MVC\Views\Card\Card.BgParallax.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\Hudson\MVC\Views\MultiCard\Cards.ChevronShapList.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Hudson\MVC\partial\TagManagerHead.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Hudson\MVC\partial\TagManagerBody.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\jn_icons.eot">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -1802,6 +1811,11 @@
     <None Include="ResourcePackages\JXTDemo\package.json" />
     <None Include="ResourcePackages\JXTDemo\razorgenerator.directives" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\JXTNext.Sitefinity.Common\JXTNext.Sitefinity.Common.csproj">
+      <Project>{9ccdbc01-ef02-4d74-9385-5c0f1da2eb7a}</Project>
+      <Name>JXTNext.Sitefinity.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

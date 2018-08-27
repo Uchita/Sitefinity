@@ -97,6 +97,26 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
         }
 
         /// <summary>
+        /// Gets or sets the Google TagManager Key
+        /// </summary>
+        /// <value>The name of the time zone.</value>
+        [ConfigurationProperty("googleTagManagerKey")]
+        [DescriptionResource(typeof(ConfigDescriptions), "GoogleTagManagerKey")]
+
+        [DataMember]
+        public virtual String CurrentGoogleTagManagerKey
+        {
+            get
+            {
+                return (String)this["googleTagManagerKey"];
+            }
+            set
+            {
+                this["googleTagManagerKey"] = value;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the Dropbox Client ID
         /// </summary>
         /// <value>The name of the time zone.</value>

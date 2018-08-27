@@ -7253,6 +7253,10 @@ div.k-event {
 blockquote {
   border-left-width: 1px; }
 
+.flex {
+  display: flex;
+  flex-wrap: wrap; }
+
 .page-wrapper {
   font-size: 16px;
   font-size: 1.6rem;
@@ -8521,9 +8525,12 @@ ul.vertical-ul {
     margin-top: 0; } }
 
 .two-in-row.hexagon-container {
-  width: 600px;
+  max-width: 600px;
   margin: 0 auto;
   float: none; }
+  .two-in-row.hexagon-container:nth-child(n+2) {
+    padding-top: 0;
+    margin-top: -10px; }
 
 .two-in-row .hexagon-card:nth-child(n + 3) {
   left: 0;
@@ -8537,6 +8544,46 @@ ul.vertical-ul {
   .two-in-row .hexagon-card:nth-child(n + 3) {
     left: auto;
     margin-top: 0; } }
+
+.chevron-list {
+  max-width: 200px;
+  margin: 0 auto;
+  background: none; }
+  .chevron-list ul {
+    list-style: none; }
+    .chevron-list ul li {
+      position: relative;
+      padding: 20px 0;
+      margin-bottom: 10px; }
+      .chevron-list ul li::before, .chevron-list ul li::after {
+        position: absolute;
+        content: '';
+        top: 0;
+        height: 100%;
+        width: 50%; }
+      .chevron-list ul li::before {
+        left: 0;
+        -webkit-transform: skew(0deg, 6deg);
+        -moz-transform: skew(0deg, 6deg);
+        -ms-transform: skew(0deg, 6deg);
+        -o-transform: skew(0deg, 6deg);
+        transform: skew(0deg, 6deg); }
+      .chevron-list ul li::after {
+        right: 0;
+        -webkit-transform: skew(0deg, -6deg);
+        -moz-transform: skew(0deg, -6deg);
+        -ms-transform: skew(0deg, -6deg);
+        -o-transform: skew(0deg, -6deg);
+        transform: skew(0deg, -6deg); }
+      .chevron-list ul li span {
+        position: relative;
+        z-index: 1; }
+  .chevron-list.blue-5-bg li::before, .chevron-list.blue-5-bg li::after {
+    background: #0abde3; }
+  .chevron-list.grey-1-bg li::before, .chevron-list.grey-1-bg li::after {
+    background: #ccc; }
+  .chevron-list.green-1-bg li::before, .chevron-list.green-1-bg li::after {
+    background: #007077; }
 
 /*#endregion Basic components */
 /*#region Breadcrumbs */
@@ -8583,7 +8630,8 @@ ul.breadcrumb {
       z-index: 9; }
     .jumbotron-container .jumbotron .jumbotron-content {
       position: relative;
-      z-index: 10; }
+      z-index: 10;
+      padding: 0 40px; }
     .jumbotron-container .jumbotron .h1, .jumbotron-container .jumbotron h1 {
       font-size: 48px;
       font-size: 4.8rem;
@@ -8604,7 +8652,10 @@ ul.breadcrumb {
     width: 100%; }
   .thumbnail.card-basic .caption {
     position: relative;
-    padding: 30px 55px 55px; }
+    padding: 25px;
+    min-height: 200px;
+    font-size: 1.4rem;
+    line-height: 1.3; }
     .thumbnail.card-basic .caption h3 {
       margin-top: 0;
       margin-bottom: 20px; }
@@ -8767,6 +8818,11 @@ ul.breadcrumb {
 .long-card-basic-list .thumbnail {
   margin-bottom: 0;
   margin-top: 50px; }
+  .long-card-basic-list .thumbnail .img-wrap {
+    display: block;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-height: 255px;
+    overflow: hidden; }
 
 .banner-with-basic {
   background-color: #116368; }
@@ -9346,7 +9402,8 @@ ul.breadcrumb {
       .board-members-item-image:hover .link-overlay {
         visibility: visible;
         opacity: 1;
-        filter: alpha(opacity=100); }
+        filter: alpha(opacity=100);
+        color: #fff; }
   .board-members-item + .board-members-item {
     margin-left: 30px; }
 
@@ -9736,6 +9793,8 @@ ul.breadcrumb {
     width: 750px; }
   header .mobile-nav .navbar-collapse.collapse {
     display: none !important; }
+  .page-section .col-sm-8, .page-section .col-md-9 {
+    padding-left: 35px; }
   .page-section .right-bottom-img img {
     position: absolute;
     right: 0;
@@ -9779,6 +9838,10 @@ ul.breadcrumb {
       margin-bottom: 7px; } }
 
 @media (max-width: 991px) {
+  .flex {
+    display: block; }
+  .sm-text-center {
+    text-align: center !important; }
   .page-wrapper {
     font-size: 14px;
     font-size: 1.4rem;
@@ -9840,11 +9903,15 @@ ul.breadcrumb {
     .testimonials-slider .testimonial-author {
       font-size: 11px;
       font-size: 1.1rem; }
-  .thumbnail.card-basic .caption {
-    padding: 20px 50px 40px; }
   .thumbnail.card-rollover .card-description {
     font-size: 16px;
     font-size: 1.6rem; }
+  .long-card-basic-list .thumbnail {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto; }
+    .long-card-basic-list .thumbnail .img-wrap {
+      max-height: none; }
   .process-card-holder .display-cell {
     display: block;
     margin-top: 20px; }

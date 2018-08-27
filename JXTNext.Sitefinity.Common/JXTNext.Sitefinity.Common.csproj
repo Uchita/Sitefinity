@@ -219,6 +219,7 @@
     <Compile Include="Models\CustomSiteSettings\CustomSiteSettingsConfig.cs" />
     <Compile Include="Models\CustomSiteSettings\CustomSiteSettingsContract.cs" />
     <Compile Include="Models\CustomSiteSettings\CustomSiteSettingsUISettings.cs" />
+    <Compile Include="Constants\DynamicTypeConstants.cs" />
     <Compile Include="Helpers\ConversionHelper.cs" />
     <Compile Include="Helpers\SitefinityHelper.cs" />
     <Compile Include="Models\IRequestSession.cs" />

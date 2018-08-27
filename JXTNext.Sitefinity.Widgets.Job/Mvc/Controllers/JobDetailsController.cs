@@ -122,6 +122,11 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     DatePosted = string.Format("|{0}+{1}|", utcTime.ToString("yyyy-MM-ddThh:mm:ss"), offset.Hours.ToString("00") + ":" + offset.Minutes.ToString("00"))
                 }));
                 var fullTemplateName = this.templateNamePrefix + this.TemplateName;
+                // If it is null make sure that pass empty string , because html attrubutes will not work properly.
+                viewModel.JobDetails.Address = viewModel.JobDetails.Address == null ? "" : viewModel.JobDetails.Address;
+                viewModel.JobDetails.AddressLatitude = viewModel.JobDetails.AddressLatitude == null ? "" : viewModel.JobDetails.AddressLatitude;
+                viewModel.JobDetails.AddressLongtitude = viewModel.JobDetails.AddressLongtitude == null ? "" : viewModel.JobDetails.AddressLongtitude;
+
                 return View(fullTemplateName, viewModel);
             }
 

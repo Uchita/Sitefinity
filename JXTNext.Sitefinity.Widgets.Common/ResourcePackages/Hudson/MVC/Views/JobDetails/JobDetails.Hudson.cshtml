@@ -1,0 +1,87 @@
+﻿@using JXTNext.Sitefinity.Widgets.Job.Mvc.Models
+@model JobDetailsViewModel
+
+<div class="job-offer-details">
+    <div class="row job-offer-title"><div class="col-md-8">
+        <h1>@Model.JobDetails.Title</h1></div><div class="col-md-4">
+        <img alt="westpac-small" src="/images/default-source/clients/westpac-small.png?sfvrsn=cc5d3f6d_2" title="westpac-small"></div></div><div class="row job-offer-summary">
+        <div class="col-md-12">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <strong>Location</strong><strong>:</strong>
+                        </td>
+                        <td>
+                            @{
+                                List<string> locationsDisplay = new List<string>();
+                                foreach (var item in @Model.Locations.Keys)
+                                {
+                                    locationsDisplay.Add(Model.Locations[item].ToString());
+                                }
+                                                }
+                                                <span>@Html.Raw(String.Join("&nbsp;<span>&gt;</span>&nbsp;", locationsDisplay))</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Work type:</strong>
+                        </td>
+                        <td>@Model.JobDetails.CustomData["WorkType.Filters[0].Value"]</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Salary:</strong>
+                        </td>
+                        <td>$ @Model.JobDetails.CustomData["WorkType.Filters[0].Value"] to $ @Model.JobDetails.CustomData["Salary.Max"]</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div><div class="row job-offer-advantages"><div class="col-md-12"><ul><li>Special Marketing Job</li><li>Best Marketing job in town</li><li>Great team to join</li></ul></div></div><div class="row job-offer-summary">
+        <div class="col-md-12">
+            @Html.Raw(Model.JobDetails.Description)
+        </div>
+    </div><div class="row job-offer-contacts">
+        <div class="col-md-12">
+            <table>
+                <tbody>
+                    <tr>
+                        <td><strong>Reference Number:</strong></td>
+                        <td>
+                            @Model.JobDetails.ReferenceNo
+                        </td>
+                    </tr>
+                    <tr><td><strong>Contact Details:</strong></td><td>@Model.JobDetails.CustomData["ApplicationMethod.ApplicationEmail"]</td></tr>
+                    <tr><td><strong>Profession:&nbsp; </strong></td><td>
+                        @{
+                            List<string> classificationsDisplay = new List<string>();
+                            foreach (var item in @Model.Classifications.Keys)
+                            {
+                                string hrefLink = string.Format("{0}?Filters[0].rootId={1}&Filters[0].values={2}", @ViewBag.JobResultsPageUrl, @Model.ClassificationsRootName, @item.ToString());
+
+                                classificationsDisplay.Add(@"<a href=""" + hrefLink + @""" title=""" + Model.Classifications[item] + @""">" + Model.Classifications[item] + @"</a>");
+                            }
+                    }
+                    @Html.Raw(String.Join("&nbsp;<span>&gt;</span>&nbsp;", classificationsDisplay))
+                    </td></tr>
+                    <tr><td><strong>Company:</strong></td><td>Hudson</td></tr>
+                    <tr><td><strong>Date:</strong></td><td>18/09/2016&nbsp; -&nbsp; 5:34pm</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div><div class="row job-offer-apply">
+        <div class="col-md-12">
+            <a class="btn btn-primary btn-block" href="@ViewBag.JobApplicationPageUrl?jobid=@Model.JobDetails.JobID">APPLY NOW</a>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var previousUrl = new URL(document.referrer);
+        var urlPath = previousUrl.pathname + previousUrl.search
+        $("#back-to-results").attr("href", urlPath);
+    });
+</script>
+

@@ -25,34 +25,7 @@
 
 .job-holder{
     margin-bottom: 7rem;
-    .job-topbar{
-        color: $p5Color;
-        font:700 12px/1 $boldFont;
-        text-align: center;
-        padding-bottom: 2.3rem;
-        border-bottom: 8px solid $p2Color;
-        a{
-            color: $p5Color;
-            text-transform: uppercase;
-            padding: 0 7%;
-            position: relative;
-            &::after{
-                content: '|';
-                position: absolute;
-                right: -2px;
-                top: 1px;
-            }
-            &:last-child{
-                &::after{
-                    display: none;
-                }
-            }
-            &:hover, &:focus{
-                color: darken($p5Color,10%);
-                text-decoration: none;
-            }
-        }
-    } 
+     
     .job-links{
         text-align: center;
         border-bottom: 8px solid $p2Color;
@@ -121,6 +94,38 @@
     .sc-job-meta-group{
         .jn_ico{
             color: $p1Color;
+        }
+    }
+}
+
+.job-topbar{
+    color: $p5Color;
+    font:700 12px/1 $boldFont;
+    text-align: center;
+    padding: 1.8rem 0;
+    border-bottom: 8px solid $p2Color;
+    display: flex;
+    a{
+        color: $p5Color;
+        text-transform: uppercase;
+        padding: 0 7%;
+        position: relative;
+        flex-grow: 1;
+        text-align: center;
+        &::after{
+            content: '|';
+            position: absolute;
+            right: -2px;
+            top: 1px;
+        }
+        &:last-child{
+            &::after{
+                display: none;
+            }
+        }
+        &:hover, &:focus{
+            color: darken($p5Color,10%);
+            text-decoration: none;
         }
     }
 }

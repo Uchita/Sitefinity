@@ -1,0 +1,140 @@
+// General(fonts, sizes in em/rem, etc.) - fill in later?
+$global-font-size: 1.6rem;
+$global-font-size-px: 16px;
+$global-line-height: 22px;
+$global-font-family: AkzidGroProLig, sans-serif;
+$font-family-light: AkzidGroProLig, sans-serif;
+$font-family-regular: AkzidGroProReg, sans-serif;
+$font-family-medium: AkzidGroProMed, sans-serif;
+$font-family-bold: AkzidGroProBol, sans-serif;
+
+$global-text-color: #000;
+$global-headings-color: #2e2e2e;
+$highlighted-headings-color: #219fa3;
+$brightColor: #fff;
+
+$global-highlight-color: #01a3a4;
+$global-links-color: #01a3a4;
+
+$btn-primary-bg: #ff9000;
+$btn-primary-color: #fff;
+$btn-primary-hover-bg: #ffa700;
+$btn-primary-hover-color: #fff;
+$btn-primary-active-bg: #ff9000;
+$btn-primary-active-color: #ffa400;
+
+$btn-secondary-bg: transparent;
+$btn-secondary-color: #007077;
+$btn-secondary-hover-bg: #007077;
+$btn-secondary-hover-color: #fff;
+$btn-secondary-active-bg: #007077;
+$btn-secondary-active-color: #01a3a4;
+
+$btn-more-bg: #01a3a4;
+$btn-more-color: #fff;
+$btn-more-hover-bg: #007077;
+$btn-more-hover-color: #fff;
+$btn-more-active-bg: #007077;
+$btn-more-active-color: #01a3a4;
+
+$btn-banner-bg: transparent;
+$btn-banner-color: #fff;
+$btn-banner-hover-bg: #007077;
+$btn-banner-hover-color: #fff;
+$btn-banner-active-bg: #007077;
+$btn-banner-active-color: #01a3a4;
+
+// Header
+$header-top-bg: #2e2e2e;
+$header-top-color: #fff;
+$header-top-hover-color: #01a3a4;
+
+$header-overlay-fallback: rgb(0,0,0);
+$header-overlay: rgba(0,0,0,.8);
+
+$navigation-link-color: #fff;
+$navigation-sublink-color: #808080;
+$navigation-sublink-hover-color: #0abde3;
+
+$quick-links-bg: rgba(0,112,119,.9); 
+$quick-links-color: #fff;
+$quick-links-hover-color: #80cbc4;
+
+// Banner
+$banner-overlay-fallback: rgb(37, 37, 37);
+$banner-overlay: rgba(37, 37, 37, 0.6);
+$banner-color: #fff;
+
+// Page sections 
+$page-section-bg-base: #fff;
+$page-section-bg-base-color: inherit;
+$page-section-bg-lighter: #f0f0f0;
+$page-section-bg-lighter-color: inherit; 
+$page-section-bg-light: #ababab;
+$page-section-bg-light-color: inherit;
+$page-section-bg-dark: #2e2e2e;
+$page-section-bg-dark-color: #fff;
+$page-section-bg-highlight: #01A3A4;
+$page-section-bg-highlight-color: #fff;
+$page-section-bg-highlight-light: #01A3A4; /*was: #7cccbf*/
+$page-section-bg-highlight-light-color: #fff;
+
+//Breadcrumbs
+$breadcrubms-link-color: #01a3a4;
+$breadcrubms-link-separator: #2e2e2e;
+
+// Forms
+$forms-placeholder-color: #b5b5b5;
+$forms-element-border: #01a3a4;
+
+$forms-negative-placeholder-color: #fff;
+$forms-negative-element-border: #fff;
+
+$forms-label-size: 1.4rem;
+$forms-label-size-px: 14px;
+//Slideshows
+$testimonial-quote-color: #84d2d3;
+$testimonial-dot-color: #d7d7d7;
+$testimonial-dot-active-color: #464646;
+
+// Footer
+$footer-nav-links: #2e2e2e;
+$footer-nav-links-hover: #01a3a4;
+$postfooter-bg: #E0E0E0;
+$postfooter-links-color: #777;
+
+//Left sidebar
+$sidebar-link-color: #01a3a4;
+$sidebar-font-size: 1.4rem;
+$sidebar-font-size-px: 14px;
+$sidebar-default-color: #808080;
+
+//Job details sidebar
+$job-sidebar-link-color: #2e2e2e;
+$job-sidebar-icon-color: #01a3a4;
+
+//Press releases
+$press-filters-color: #a3a3a3;
+$press-filters-active-color: #01a3a4;
+$press-filters-separator-color: #2e2e2e;
+$press-table-links-color: #2e2e2e;
+
+//Article details
+$article-detail-text-color: #2e2e2e;
+$article-detail-highlight-color: #01a3a4;
+$article-detail-advice-background: #2e2e2e;
+$article-detail-advice-color: #fff;
+$article-detail-social-link: #197e84;
+
+
+//background colors
+//used in hexagon items
+$blue-1: #14b3f2;
+$blue-2: #46c2f5;
+$blue-3: #75d2f8;
+$blue-4: #a3e1fa;
+$blue-5: #0abde3;
+$green-1: #007077;
+$green-2: #1ad5a7;
+$grey-1: #ccc;
+$orange-1: #ff8f00;

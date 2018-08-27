@@ -38,6 +38,13 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
         }
 
         [DataMember]
+        public string GoogleTagManagerKey
+        {
+            get;
+            set;
+        }
+
+        [DataMember]
         public string DropboxAppId
         {
             get;
@@ -65,6 +72,7 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
             this.GoogleClientId = section.UICustomSiteSettings.CurrentGoogleClientId;
             this.GoogleClientSecret = section.UICustomSiteSettings.CurrentGoogleClientSecret;
             this.GoogleClientAPIKey = section.UICustomSiteSettings.CurrentGoogleClientAPIKey;
+            this.GoogleTagManagerKey = section.UICustomSiteSettings.CurrentGoogleTagManagerKey;
 
             this.DropboxAppId = section.UICustomSiteSettings.CurrentDropboxAppId;
             this.DropboxAppSecret = section.UICustomSiteSettings.CurrentDropboxAppSecret;
@@ -79,6 +87,7 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
             section.UICustomSiteSettings.CurrentGoogleClientId = this.GoogleClientId;
             section.UICustomSiteSettings.CurrentGoogleClientSecret = this.GoogleClientSecret;
             section.UICustomSiteSettings.CurrentGoogleClientAPIKey = this.GoogleClientAPIKey;
+            section.UICustomSiteSettings.CurrentGoogleTagManagerKey = this.GoogleTagManagerKey;
 
             section.UICustomSiteSettings.CurrentDropboxAppId = this.DropboxAppId;
             section.UICustomSiteSettings.CurrentDropboxAppSecret = this.DropboxAppSecret;

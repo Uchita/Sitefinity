@@ -1,0 +1,302 @@
+.job-search {
+    position: relative;
+    margin-top: -60px;
+    z-index: 9;
+
+    & > .container {
+        padding: 12px 20px;
+        background: #007077;
+
+        &.filter-job-classification {
+            position: relative;
+            left: 0;
+            right: 0;
+            display: none;
+            box-shadow: 0 3px 9px 0 rgba(0,0,0,.14);
+            margin-bottom: 10px;
+            padding: 20px;
+            background: #ebebeb;
+            z-index: 9;
+        }
+
+        .row-filters {
+            border-top: 1px solid #fff;
+            padding-top: 10px;
+        }
+    }
+
+    .form-control {
+        /*font-style: italic;*/
+        color: $global-text-color;
+    }
+
+    .form-control::-moz-placeholder,
+    input::-moz-placeholder,
+    select::-moz-placeholder,
+    textarea::-moz-placeholder {
+        color: $global-text-color;
+        opacity: 1;
+    }
+
+    .form-control::-webkit-input-placeholder,
+    input::-webkit-input-placeholder,
+    select::-webkit-input-placeholder,
+    textarea::-webkit-input-placeholder {
+        color: $global-text-color;
+    }
+
+    .form-control:-ms-input-placeholder,
+    input:-ms-input-placeholder,
+    select:-ms-input-placeholder,
+    textarea:-ms-input-placeholder {
+        color: $global-text-color;
+    }
+
+    a {
+        position: relative;
+        margin-left: 7px;
+        font-family: $font-family-regular;
+        cursor: pointer;
+        color: #fff;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    .fa-angle-up {
+        display: none;
+        color: #fff;
+    }
+
+    .filter-active {
+        position: relative;
+
+        a {
+            font-family: $font-family-medium;
+        }
+
+        a:after {
+            content: '';
+            position: absolute;
+            left: 48%;
+            bottom: -15px;
+            display: block;
+            border: 10px solid transparent;
+            border-bottom-color: #ebebeb;
+        }
+
+        .fa-angle-down {
+            display: none;
+        }
+
+        .fa-angle-up {
+            display: inline-block;
+            cursor: pointer;
+        }
+    }
+
+    .filter-job-close {
+        display: none;
+    }
+
+    .filter-job-classification {
+
+        .row + .row {
+            margin-top: 5px;
+        }
+
+        a {
+            display: block;
+            color: $global-text-color;
+        }
+    }
+}
+
+.featured-job-offer {
+    position: relative;
+    margin: 12px 0;
+    padding: 30px 35px 60px 60px;
+    background: #fff;
+
+    .job-offer-company {
+        margin-bottom: 20px;
+
+        img {
+            max-width: 150px;
+        }
+    }
+
+    .job-offer {
+
+        h3 {
+            margin-bottom: 0;
+            /*font-family: $font-family-medium;*/
+        }
+
+        .text-muted {
+            line-height: 1;
+            font-family: $font-family-regular;
+        }
+        /*p {
+            font-family: $font-family-regular;
+        }*/
+    }
+
+    .btn-more {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+
+    .job-offer-sum {
+        height: 110px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .job-offer-sum:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 30px;
+        width: 100%;
+        background: -webkit-linear-gradient(#fff, #fff);
+        background: linear-gradient(rgba(0,0,0,0), rgba(255, 255, 255, 1));
+    }
+}
+
+.job-offer {
+
+    &-details {
+
+        table {
+            margin: 30px 0;
+            width: 100%;
+        }
+    }
+
+    &-title {
+
+        h1 {
+            margin-top: 0;
+        }
+    }
+
+    &-sidebar {
+        
+        h4 {
+            margin-top: 30px;
+            font-size: 16px;
+            font-size: 1.6rem;
+        }
+
+        .list-unstyled {
+            padding-left: 0;
+        }
+    }
+
+    &-actions {
+        padding-left: 0 !important;
+
+        &.sf-social-share li {
+            display: block;
+        }
+
+        a {
+            position: relative;
+            padding-left: 27px;
+            color: $job-sidebar-link-color;
+
+            .far, .fas, .fab {
+                position: absolute;
+                top: 3px;
+                left: 0;
+                color: $job-sidebar-icon-color;
+            }
+        }
+    }
+}
+
+.page-wrapper {
+    .search-top {
+        margin: 10px 0 30px 0;
+
+        &, .btn {
+            font-size: 14px;
+            font-size: 1.4rem;
+        }
+
+        .btn {
+            margin-right: 20px;
+        }
+
+        .select {
+            margin-top: 10px;
+            min-width: 250px;
+            display: inline-block;
+
+            select {
+                display: block;
+                width: 100%;
+            }
+        }
+
+        .btn {
+            margin-top: 10px;
+            float: left;
+        }
+    }
+
+    .search-results {
+        .search-result {
+            border: 1px solid $global-highlight-color;
+            margin-top: 15px;
+            transition: .2s;
+            -webkit-transition: .2s;
+
+            .search-result-top {
+                padding: 10px 15px;
+                -webkit-transition: .2s;
+                transition: .2s;
+
+                .search-result-title {
+                    font-size: 24px;
+                    font-size: 2.4rem;
+                    margin: 10px 0;
+                }
+
+                a {
+                    font-size: 14px;
+                    font-size: 1.4rem;
+
+                    &, &:hover, &:focus {
+                        color: inherit;
+                    }
+                }
+            }
+
+            .search-result-description {
+                padding: 15px;
+                .link-default{
+                    font-size: 1.4rem;
+                }   
+            }
+
+            &:hover {
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.42);
+
+                .search-result-top {
+                    color: #fff;
+                    background-color: $global-highlight-color;
+
+                    a, a:hover, a:focus {
+                        color: #fff;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -36,7 +36,8 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
             {
                 jobId = jxtAppDetails.ApplyResourceID,
                 resumePath = jxtAppDetails.ResumePath,
-                coverletterPath = jxtAppDetails.CoverletterPath
+                coverletterPath = jxtAppDetails.CoverletterPath,
+                emailNotification = jxtAppDetails.EmailNotification
             };
 
             return apiObj;

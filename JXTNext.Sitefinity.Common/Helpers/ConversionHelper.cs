@@ -16,6 +16,28 @@ namespace JXTNext.Sitefinity.Common.Helpers
             return (IsMilliSeconds ? Math.Floor(diff.TotalMilliseconds) : Math.Floor(diff.TotalSeconds));
         }
 
+        public static DateTime GetDateTimeFromUnix(double unixTimeStamp, string timeZoneId = "")
+        {
+            DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+
+            try
+            {
+                dtDateTime = dtDateTime.AddMilliseconds(unixTimeStamp);
+
+                if (!string.IsNullOrWhiteSpace(timeZoneId))
+                {
+                    TimeZoneInfo zone = TimeZoneInfo.FindSystemTimeZoneById(timeZoneId);
+                    return TimeZoneInfo.ConvertTimeFromUtc(dtDateTime, zone);
+                }
+
+                return dtDateTime;
+            }
+            catch (Exception ex)
+            {
+                return dtDateTime;
+            }
+        }
+
         public static byte[] StreamToBytes(Stream InStream)
         {
             if (InStream is MemoryStream)

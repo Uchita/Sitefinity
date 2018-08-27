@@ -43,7 +43,7 @@
                 text-decoration: none;
                 background: rgb(1, 163,164);
                 background: rgba(1, 163,164, .9);
-                color: #fff;
+                color: $brightColor;
                 z-index: 1;
             }
 
@@ -51,6 +51,7 @@
                 visibility: visible;
                 opacity: 1;
                 filter: alpha(opacity = 100);
+                color: $brightColor;
             }
         }
     }

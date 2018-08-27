@@ -12,36 +12,35 @@
                         <td>
                             <strong>Location</strong><strong>:</strong>
                         </td>
-                        <td>Brisbane CBD &amp; Inner Suburbs<br></td>
+                        <td>
+                            @{
+                                List<string> locationsDisplay = new List<string>();
+                                foreach (var item in @Model.Locations.Keys)
+                                {
+                                    locationsDisplay.Add(Model.Locations[item].ToString());
+                                }
+                                                }
+                                                <span>@Html.Raw(String.Join("&nbsp;<span>&gt;</span>&nbsp;", locationsDisplay))</span>
+                        </td>
                     </tr>
                     <tr>
                         <td>
                             <strong>Work type:</strong>
                         </td>
-                        <td>Full Time</td>
+                        <td>@Model.JobDetails.CustomData["WorkType.Filters[0].Value"]</td>
                     </tr>
                     <tr>
                         <td>
                             <strong>Salary:</strong>
                         </td>
-                        <td>$ 40000 to $ 78000</td>
+                        <td>$ @Model.JobDetails.CustomData["WorkType.Filters[0].Value"] to $ @Model.JobDetails.CustomData["Salary.Max"]</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div><div class="row job-offer-advantages"><div class="col-md-12"><ul><li>Special Marketing Job</li><li>Best Marketing job in town</li><li>Great team to join</li></ul></div></div><div class="row job-offer-summary">
         <div class="col-md-12">
-            <h2>Subtitle goes here</h2><p>
-                <br>Our client is seeking a Marketing and Communications Officer on a temporary basis to assist with the development, implementation and management of a range of innovative, effective and customer-centric marketing and communications
-                initiatives in line with the business objectives of the department. The successful candidate will work as part of a small team that provides expertise and support to the department in the areas of marketing, communications, stakeholder engagement,
-                media relations and digital capability.<br><br>Supporting and directly reporting to the Director of Marketing and Communications, you will be responsible for the delivery of the department’s branding, marketing and communications campaigns.
-                You will support various teams across the office by creating, editing and improving their marketing materials. You will continuously assess existing marketing initiatives and conduct post implementation reviews to ensure continual improvement of marketing
-                activities. You will develop proactive and reactive media communications, produce key messages and facilitate approvals for all media material. You will also manage and update the department’s social media aspect and maintain the corporate Intranet
-                in ensuring it is kept up-to-date at all times.<br><br>The successful candidate will be experienced in managing and coordinating marketing and communications campaigns and will have demonstrated abilities in delivering cost-effective marketing
-                strategies to organisations. The candidate will have exceptional verbal and written communication skills and will be adept in liaising and communicating with a diverse range of individuals. They will work well both independently and within a team
-                and will take direction constructively. They will demonstrative innovative abilities to find solutions by displaying high levels of problem solving, multi-tasking and adaptability skills. The candidate will also have a tertiary qualification in marketing
-                and communications or related discipline.<br><br>The be considered for this role, please select the ‘apply’ option. Alternatively, to discuss this position further or to assess alternative opportunity.
-            </p>
+            @Html.Raw(Model.JobDetails.Description)
         </div>
     </div><div class="row job-offer-contacts">
         <div class="col-md-12">
@@ -50,11 +49,22 @@
                     <tr>
                         <td><strong>Reference Number:</strong></td>
                         <td>
-                            3536346363
+                            @Model.JobDetails.ReferenceNo
                         </td>
                     </tr>
-                    <tr><td><strong>Contact Details:</strong></td><td>email@hudson.com.au</td></tr>
-                    <tr><td><strong>Profession:&nbsp; </strong></td><td>Marketing &gt; Communications</td></tr>
+                    <tr><td><strong>Contact Details:</strong></td><td>@Model.JobDetails.CustomData["ApplicationMethod.ApplicationEmail"]</td></tr>
+                    <tr><td><strong>Profession:&nbsp; </strong></td><td>
+                        @{
+                            List<string> classificationsDisplay = new List<string>();
+                            foreach (var item in @Model.Classifications.Keys)
+                            {
+                                string hrefLink = string.Format("{0}?Filters[0].rootId={1}&Filters[0].values={2}", @ViewBag.JobResultsPageUrl, @Model.ClassificationsRootName, @item.ToString());
+
+                                classificationsDisplay.Add(@"<a href=""" + hrefLink + @""" title=""" + Model.Classifications[item] + @""">" + Model.Classifications[item] + @"</a>");
+                            }
+                    }
+                    @Html.Raw(String.Join("&nbsp;<span>&gt;</span>&nbsp;", classificationsDisplay))
+                    </td></tr>
                     <tr><td><strong>Company:</strong></td><td>Hudson</td></tr>
                     <tr><td><strong>Date:</strong></td><td>18/09/2016&nbsp; -&nbsp; 5:34pm</td></tr>
                 </tbody>

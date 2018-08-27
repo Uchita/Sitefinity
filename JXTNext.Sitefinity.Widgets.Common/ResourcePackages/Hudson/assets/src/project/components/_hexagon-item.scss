@@ -184,9 +184,13 @@
 }
 .two-in-row{
     &.hexagon-container{
-        width: 600px;
+        max-width: 600px;
         margin: 0 auto;
         float: none;
+        &:nth-child(n+2){
+            padding-top: 0;
+            margin-top: -10px;
+        }
     }
     .hexagon-card{
         @include hexagonSet(2, 265px, 135px, 5px);

@@ -29,7 +29,9 @@
     }
 
     .page-section {
-
+        .col-sm-8, .col-md-9{
+            padding-left: 35px;
+        }
         .right-bottom-img img {
             position: absolute;
             right: 0;
@@ -103,7 +105,12 @@
 
 }
 @media (max-width: 991px) {
-
+    .flex{
+        display: block;
+    }
+    .sm-text-center{
+        text-align: center!important;
+    }
     .page-wrapper {
         font-size: 14px;
         font-size: 1.4rem;
@@ -217,7 +224,7 @@
         &.card-basic {
 
             .caption {
-                padding: 20px 50px 40px;
+                // padding: 20px 50px 40px;
 
             }
         }
@@ -227,7 +234,17 @@
             font-size: 1.6rem;
         }
     }
-
+    .long-card-basic-list{
+        .thumbnail{
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            .img-wrap{
+                max-height: none;
+            }
+        }
+    }
+    
     .process-card-holder .display-cell {
         display: block;
         margin-top: 20px;
@@ -318,6 +335,7 @@
 
 /*#region Phones*/
 @media (max-width: 767px) {
+    
     header {
 
         .navbar-fixed-top:before {
@@ -532,6 +550,7 @@
             right:0;
         }
     }
+    
     .page-wrapper{
         position: relative;
         padding-bottom: 50px;

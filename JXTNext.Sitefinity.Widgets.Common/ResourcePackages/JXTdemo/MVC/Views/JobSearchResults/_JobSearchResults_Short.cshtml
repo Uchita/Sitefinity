@@ -7,20 +7,31 @@
 
     @if (Model != null)
     {
+        //if (Model.SearchResults != null )
+        //{
+        var flag = false;
         foreach (var item in Model.SearchResults)
         {
-            <div class="sc-item">
-                <div class="job-header">
-                    <h3><a href="@ViewBag.JobDetailsPageUrl?jobId=@item.JobID">@item.Title</a></h3>
+            flag = true;
+            
+                <div class="sc-item">
+                    <div class="job-header">
+                        <h3><a href="@ViewBag.JobDetailsPageUrl?jobId=@item.JobID">@item.Title</a></h3>
+                    </div>
+                    <div class="sc-desc">@item.ShortDescription</div>
+                    <dl class="sc-job-meta-group"><dt class="sc-job-meta-name meta-location hidden">Location</dt><dd class="sc-job-meta-value meta-location"><span class="jn_ico icon-pin">icon</span>@item.CustomData["CountryLocationArea[0].Filters[0].Value"]</dd>@*<dt class="sc-job-meta-name meta-salary hidden">Salary</dt><dd class="sc-job-meta-value meta-salary"><span class="jn_ico icon-value">icon</span>@item.CustomData["Salary.Filters[0].Value"]</dd>*@<dt class="sc-job-meta-name meta-worktype hidden">Worktype</dt><dd class="sc-job-meta-value meta-worktype"><span class="jn_ico icon-time">icon</span>@item.CustomData["WorkType.Filters[0].Value"]</dd></dl>
+                    <a href="@ViewBag.JobDetailsPageUrl?jobId=@item.JobID" class="btn btn-sm" title="Read more">Read more</a>
                 </div>
-                <div class="sc-desc">@item.ShortDescription</div>
-                <dl class="sc-job-meta-group"><dt class="sc-job-meta-name meta-location hidden">Location</dt><dd class="sc-job-meta-value meta-location"><span class="jn_ico icon-pin">icon</span>@item.CustomData["CountryLocationArea[0].Filters[0].Value"]</dd><dt class="sc-job-meta-name meta-salary hidden">Salary</dt><dd class="sc-job-meta-value meta-salary"><span class="jn_ico icon-value">icon</span>@item.CustomData["Salary.Filters[0].Value"]</dd><dt class="sc-job-meta-name meta-worktype hidden">Worktype</dt><dd class="sc-job-meta-value meta-worktype"><span class="jn_ico icon-time">icon</span>@item.CustomData["WorkType.Filters[0].Value"]</dd></dl>
-                <a href="@ViewBag.JobDetailsPageUrl?jobId=@item.JobID" class="btn btn-sm" title="Read more">Read more</a>
+        } //end of foreach loop
+          //} //end of count check
+    if(!flag)
+        {
+            <div class="l-section info-block">
+                <p class="alert alert-warning">Sorry! The jobs you are searching for did not match. Please try with different search criteria.</p>
             </div>
         }
     }
 </div>
-<div class="h-section info-block hidden"><p class="alert alert-warning">Sorry! The jobs you are searching for did not match. Please try with different search criteria.</p></div>
 
 <script type="text/javascript">
 
@@ -29,38 +40,5 @@
           var json = serializer.Serialize(Model);
       }
 
-    $(document).ready(function () {
-         var model = @Html.Raw(json);
-         var jobContainer = $("#listView");
-
-        if (model != null && model != "undefined") {
-
-            //adding loader
-            jobContainer.addClass('loading');
-
-            if ($('#listView.jn_scroller').length && $('#listView.jn_scroller .sc-item').length > 1) {
-                $('#listView.jn_scroller').addClass('owl-carousel').owlCarousel({
-                    dots: false,
-                    nav: true,
-                    navText: '',
-                    items: 2,
-                    slideBy: 1,
-                    responsive: {
-                        0: {
-                            items: 1
-                        },
-                        767: {
-                            items: 2
-                        }
-                    }
-                });
-
-            }
-            jobContainer.removeClass('loading');
-        }
-        else {
-            $('.info-block').removeClass('hidden').appendTo($('#listView'));
-        }
-    });
 
 </script>

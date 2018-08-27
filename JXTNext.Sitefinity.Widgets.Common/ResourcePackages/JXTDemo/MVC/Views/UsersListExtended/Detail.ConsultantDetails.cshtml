@@ -50,7 +50,7 @@
                 </div>
             }
 
-                <h1>@(((SitefinityProfileItemExtendedViewModel)Model.Item).FirstName)</h1>
+                
             @if ((bool)Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "Featured"))
             {
                 <span class="jn_ico icon-bookmark fav-flag"></span>
@@ -59,6 +59,7 @@
         </div>
 
         <div class="profile-header-meta">
+            <h1>@((userProfile).GetUserDisplayName())</h1>
             <h2>@(Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "Position"))</h2>
             <dl class="profile-meta sc-job-meta-group">
                 @if (!String.IsNullOrEmpty((string)Telerik.Sitefinity.Model.DataExtensions.GetValue(consultantProfile, "Address")))

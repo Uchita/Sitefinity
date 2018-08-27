@@ -48,6 +48,24 @@ jQuery(document).ready(function($) {
             });
         }
 
+        if ($('.jn_scroller').length && $('.jn_scroller .sc-item').length > 0) {
+            $('.jn_scroller').addClass('owl-carousel').owlCarousel({
+                dots: false,
+                nav: true,
+                navText: '',
+                items: 2,
+                slideBy: 1,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    767: {
+                        items: 2
+                    }
+                }
+            });
+
+        }
 
         // jobFeed scroller
         if( $('.jn_scroller-full').length ){

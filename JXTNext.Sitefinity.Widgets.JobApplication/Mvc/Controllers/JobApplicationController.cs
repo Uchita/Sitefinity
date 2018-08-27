@@ -1,5 +1,7 @@
 ﻿using JXTNext.Sitefinity.Connector.BusinessLogics;
+using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Common;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member;
+using JXTNext.Sitefinity.Widgets.Job.Mvc.StringResources;
 using JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models.JobApplication;
 using System;
 using System.Collections.Generic;
@@ -8,15 +10,19 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
+using Telerik.Sitefinity.DynamicModules;
 using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
 using Telerik.Sitefinity.Libraries.Model;
+using Telerik.Sitefinity.Model;
 using Telerik.Sitefinity.Modules.Libraries;
 using Telerik.Sitefinity.Mvc;
+using Telerik.Sitefinity.Utilities.TypeConverters;
 using Telerik.Sitefinity.Workflow;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
     [EnhanceViewEngines]
+    [Localization(typeof(JobApplicationResources))]
     [ControllerToolboxItem(Name = "JobApplication_MVC", Title = "Job Application", SectionName = "JXTNext.JobApplication", CssClass = JobApplicationController.WidgetIconCssClass)]
     public class JobApplicationController : Controller
     {
@@ -49,8 +55,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public ActionResult Index()
         {
             JobApplicationViewModel jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.Available, "Upload your files to Apply");
-
-            return View("JobApplication.Simple", jobApplicationViewModel);
+            ViewBag.CssClass = this.CssClass;
+            var fullTemplateName = this.templateNamePrefix + this.TemplateName;
+            return View(fullTemplateName, jobApplicationViewModel);
         }
 
         [HttpPost]
@@ -65,8 +72,16 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             string resumeAttachmentPath = GetAttachmentPath(attachments, JobApplicationAttachmentType.Resume);
             string coverletterAttachmentPath = GetAttachmentPath(attachments, JobApplicationAttachmentType.Coverletter);
 
+            // Email Notification Settings
+            // In the desinger form those are going to be provided by separator as semicolon(;)
+            List<string> ccEmails = this.EmailTemplateCC.Split(';').ToList();
+            List<string> bccEmails = this.EmailTemplateBCC.Split(';').ToList();
+            string htmlEmailContent = this.GetHtmlEmailContent();
+            EmailNotificationSettings emailNotificationSettings = new EmailNotificationSettings(this.EmailTemplateFromName, ccEmails, bccEmails, htmlEmailContent);
+           
             //Create Application 
-            IMemberApplicationResponse response = _blConnector.MemberCreateJobApplication(new JXTNext_MemberApplicationRequest { ApplyResourceID = applicationResultID, MemberID = memberID, ResumePath = resumeAttachmentPath, CoverletterPath = coverletterAttachmentPath });
+            IMemberApplicationResponse response = _blConnector.MemberCreateJobApplication(
+                new JXTNext_MemberApplicationRequest { ApplyResourceID = applicationResultID, MemberID = memberID, ResumePath = resumeAttachmentPath, CoverletterPath = coverletterAttachmentPath, EmailNotification = emailNotificationSettings });
 
             if( response.Success && response.ApplicationID.HasValue)
             {
@@ -94,6 +109,20 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         protected override void HandleUnknownAction(string actionName)
         {
             this.ActionInvoker.InvokeAction(this.ControllerContext, "Index");
+        }
+
+        private string GetHtmlEmailContent()
+        {
+            string htmlEmailContent = String.Empty;
+            if (!String.IsNullOrEmpty(this.EmailTemplateId))
+            {
+                var dynamicModuleManager = DynamicModuleManager.GetManager(this._emailTemplateProviderName);
+                var emailTemplateType = TypeResolutionService.ResolveType(this._itemType);
+                var emailTemplateItem = dynamicModuleManager.GetDataItem(emailTemplateType, new Guid(this.EmailTemplateId.ToUpper()));
+                htmlEmailContent = emailTemplateItem.GetValue("htmlEmailContent").ToString();
+            }
+
+            return htmlEmailContent;
         }
 
         private void FetchFromAmazonS3(string providerName, string libraryName, string itemTitle)
@@ -261,8 +290,27 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
         }
 
+        public string ItemType
+        {
+            get { return this._itemType; }
+            set { this._itemType = value; }
+        }
+        public string EmailTemplateProviderName
+        {
+            get { return _emailTemplateProviderName; }
+            set { this._emailTemplateProviderName = value; }
+        }
+        public string EmailTemplateId { get; set; }
+        public string EmailTemplateName { get; set; }
+        public string EmailTemplateCC { get; set; }
+        public string EmailTemplateBCC { get; set; }
+        public string EmailTemplateFromName { get; set; }
+        public string CssClass { get; set; }
+
         internal const string WidgetIconCssClass = "sfMvcIcn";
         private string templateName = "Simple";
         private string templateNamePrefix = "JobApplication.";
+        private string _itemType = "Telerik.Sitefinity.DynamicTypes.Model.StandardEmailTemplate.EmailTemplate";
+        private string _emailTemplateProviderName = "OpenAccessProvider";
     }
 }

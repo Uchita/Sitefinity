@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,6 +30,8 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Job
         public string Address { get; set; }
         public float AddressLatitude { get; set; }
         public float AddressLongtitude { get; set; }
+        public OrderedDictionary Classifications { get; set; }
+        public string ClassificationsRootName { get; set; }
 
         [JsonProperty(PropertyName = "description")]
         public string Description { get; set; }

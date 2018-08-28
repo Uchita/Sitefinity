@@ -40,6 +40,16 @@
             <dt class="sc-job-meta-name meta-worktype hidden">Worktype</dt>
             <dd class="sc-job-meta-value meta-worktype"><span class="jn_ico icon-time">icon</span>#:CustomData["WorkType.Filters[0].Value"]#</dd>
         </dl>
+
+        # for (var key in Classifications) {#
+        # if(key.length >= 32){#
+        # var hrefLink = '';#
+        # hrefLink = '@ViewBag.JobResultsPageUrl' + '?Filters[0].rootId=' + ClassificationsRootName + '&Filters[0].values=' + key;#
+        <a href=#:hrefLink#>#:Classifications[key]#</a>
+        #}#
+        #}#
+
+
         <a href="@ViewBag.JobDetailsPageUrl?jobId=#:JobID#" class="btn btn-sm" title="Read more">Read more</a>
     </div>
 </script>

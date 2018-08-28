@@ -17,6 +17,7 @@ using Telerik.Sitefinity.Taxonomies.Model;
 using System.ComponentModel;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers;
 using Telerik.Sitefinity.Security.Model;
+using System.Collections.Specialized;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -129,6 +130,20 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
             JXTNext_SearchJobsResponse jobResponse = (JXTNext_SearchJobsResponse)_BLConnector.SearchJobs(searchRequest);
 
+            foreach(var item in jobResponse.SearchResults)
+            {
+                // Processing Classifications
+                OrderedDictionary classifOrdDict = new OrderedDictionary();
+                classifOrdDict.Add(item.CustomData["Classifications[0].Filters[0].ExternalReference"], item.CustomData["Classifications[0].Filters[0].Value"]);
+                string parentClassificationsKey = "Classifications[0].Filters[0].SubLevel[0]";
+                JobDetailsViewModel.ProcessCustomData(parentClassificationsKey, item.CustomData, classifOrdDict);
+                OrderedDictionary classifParentIdsOrdDict = new OrderedDictionary();
+                JobDetailsViewModel.AppendParentIds(classifOrdDict, classifParentIdsOrdDict);
+
+                item.Classifications = classifParentIdsOrdDict;
+                item.ClassificationsRootName = "Classifications";
+            }
+
             return new JsonResult { Data = jobResponse };
         }
 
@@ -221,6 +236,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 ViewBag.TotalCount = jobResultsList.Total;
 
             ViewBag.JobResultsPageUrl = SitefinityHelper.GetPageUrl(this.ResultsPageId);
+            ViewBag.CurrentPageUrl = SitefinityHelper.GetPageUrl(SiteMapBase.GetActualCurrentNode().Id.ToString());
             ViewBag.JobDetailsPageUrl = SitefinityHelper.GetPageUrl(this.DetailsPageId);
             ViewBag.HidePushStateUrl = this.HidePushStateUrl;
             ViewBag.PageFullUrl = SitefinityHelper.GetPageFullUrl(SiteMapBase.GetActualCurrentNode().Id);

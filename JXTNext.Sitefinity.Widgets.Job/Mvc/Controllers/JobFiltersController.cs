@@ -44,7 +44,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         {
             get {
                 if (string.IsNullOrEmpty(_templateName))
-                    _templateName = "T_Simple";
+                    _templateName = "T_MultiSelect";
                 return _templateName;
             }
             set { _templateName = value; }

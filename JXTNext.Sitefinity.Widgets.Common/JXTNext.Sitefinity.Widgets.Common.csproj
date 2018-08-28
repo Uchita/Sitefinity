@@ -1420,6 +1420,12 @@
     </Content>
     <EmbeddedResource Include="ResourcePackages\Hudson\MVC\Views\JobFilters\T_FullTree.cshtml" />
     <EmbeddedResource Include="ResourcePackages\Hudson\MVC\Views\JobFilters\T_Simple.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\JobFilters\T_MultiSelect.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Hudson\MVC\Views\LoginForm\LoginForm.LoginFormJobApply.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\jn_icons.eot">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

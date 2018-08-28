@@ -1146,6 +1146,16 @@ main {
 /*#endregion Page sections */
 
 /*#region Left sidebar*/
+.left-sidebar{
+    .form-group{
+        margin-bottom: 20px;
+    }
+    .search-wrap{
+        input{
+            width: 100%;
+        }
+    }
+}
 .left-sidebar .container-fluid, .left-sidebar .navbar-collapse {
     font-size: $sidebar-font-size;
     font-size: $sidebar-font-size-px;
@@ -1155,17 +1165,25 @@ main {
     & + .navbar-collapse {
         margin-top: 15px;
     }
-
-    & > a {
+    
+    > a {
         font-family: $font-family-bold;
         color: $sidebar-link-color;
         text-transform: uppercase;
-        display: block;
-        border-bottom: 2px solid $sidebar-link-color;
-        padding-bottom: 5px;
+        display: block!important;
+        border: none;
+        border-bottom: 2px solid #01a3a4;
+        padding: 0 0 5px;
+        text-align: left;
+        margin-top: 0!important;
 
         &:hover, &:focus {
             text-decoration: none;
+        }
+        .caret{
+            position: absolute;
+            right: 0;
+            top: 10px;
         }
     }
 
@@ -1265,7 +1283,57 @@ main {
     .btn {
         margin-top: 25px;
     }
-
+    &.dropdown-tree{
+        >ul{
+            white-space: normal;
+            padding-left: 0;
+            li{
+                white-space: normal;
+                position: relative;
+                padding-left: 20px;
+                > i {
+                    position: absolute;
+                    left: -9px;
+                    top: 7px;
+                    color: #606263;
+                    font-weight: normal;
+                    &.fa-square-o{
+                        &::before{
+                            content: '\f0c8';
+                        }
+                    }
+                    &.fa-check-square-o{
+                        &::before{
+                            content: '\f14a';
+                        }
+                    }
+                }
+                a{
+                    white-space: normal;
+                    display: block!important;
+                    font-family: AkzidGroProMed,sans-serif;
+                    color: grey;
+                    .count{
+                        margin-left: 3px;   
+                    }
+                }
+                .drop-down-item{
+                    padding: 4px 20px 4px 0;
+                    right: 0;
+                    .arrow{
+                        right: 0;
+                        font-size: 1.2rem;
+                    }
+                }
+                &:hover{
+                    background: none;
+                    a{
+                        color: $highlighted-headings-color;
+                    }
+                }
+            }
+        }
+    }
     .left-sidebar-section {
         padding-right: 15px;
         margin-top: 15px;

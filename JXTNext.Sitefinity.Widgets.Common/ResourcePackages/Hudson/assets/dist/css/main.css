@@ -7670,6 +7670,15 @@ img, iframe {
 .m-0 {
   margin: 0; }
 
+.mb-20 {
+  margin-bottom: 20px; }
+
+.mb-30 {
+  margin-bottom: 30px; }
+
+.mb-40 {
+  margin-bottom: 40px; }
+
 .section-title {
   margin-bottom: 20px; }
 
@@ -8305,7 +8314,44 @@ ul.vertical-ul {
     .page-wrapper .quick-links-close .far, .page-wrapper .quick-links-close .fas {
       margin-right: 0; }
 
+.loading {
+  position: relative;
+  min-height: 200px; }
+  .loading::before {
+    content: '';
+    display: inline-block;
+    border: 3px solid #01a3a4;
+    border-radius: 50%;
+    border-top: 3px solid transparent;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 11;
+    margin: -26px 0 0 -26px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite; }
+
 /*#endregion Footer*/
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg); } }
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
+
+@-moz-keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg); }
+  100% {
+    -moz-transform: rotate(360deg); } }
+
 .blue-1-bg {
   background: #14b3f2; }
 
@@ -8897,7 +8943,8 @@ ul.breadcrumb {
 
 .paralax-image {
   padding: 7rem 0;
-  color: #fff; }
+  color: #fff;
+  background-attachment: fixed !important; }
   .paralax-image h3 {
     color: #fff;
     margin-bottom: 20px; }
@@ -9156,7 +9203,7 @@ ul.breadcrumb {
             font-family: $font-family-regular;
         }*/ }
     .featured-job-offer .job-offer h3 {
-      margin-bottom: 0;
+      margin-bottom: 10px;
       /*font-family: $font-family-medium;*/ }
     .featured-job-offer .job-offer .text-muted {
       line-height: 1;
@@ -9195,10 +9242,14 @@ ul.breadcrumb {
   padding-left: 0; }
 
 .job-offer-actions {
-  padding-left: 0 !important; }
+  padding-left: 0 !important;
+  margin-bottom: 0; }
+  .job-offer-actions li {
+    margin-bottom: 4px; }
   .job-offer-actions.sf-social-share li {
     display: block; }
   .job-offer-actions a {
+    font-size: 1.5rem;
     position: relative;
     padding-left: 27px;
     color: #2e2e2e; }
@@ -9235,6 +9286,8 @@ ul.breadcrumb {
     padding: 10px 15px;
     -webkit-transition: .2s;
     transition: .2s; }
+    .page-wrapper .search-results .search-result .search-result-top h3 {
+      margin: 5px 0; }
     .page-wrapper .search-results .search-result .search-result-top .search-result-title {
       font-size: 24px;
       font-size: 2.4rem;
@@ -9256,6 +9309,45 @@ ul.breadcrumb {
       .page-wrapper .search-results .search-result:hover .search-result-top a, .page-wrapper .search-results .search-result:hover .search-result-top a:hover, .page-wrapper .search-results .search-result:hover .search-result-top a:focus {
         color: #fff;
         text-decoration: none; }
+
+.upload-section .box {
+  border: 1px solid #01a3a4;
+  padding: 10px; }
+
+.upload-section .uploadfield-wrap {
+  padding: 15px 0 5px;
+  position: relative;
+  color: #01a3a4;
+  text-align: center;
+  width: 33%;
+  overflow: hidden; }
+  .upload-section .uploadfield-wrap::before {
+    content: "\f07c";
+    color: #2e2e2e;
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    font-size: 3rem;
+    position: absolute;
+    top: 15px;
+    z-index: 0;
+    width: 100%;
+    left: 0; }
+  .upload-section .uploadfield-wrap:hover::before, .upload-section .uploadfield-wrap:focus::before {
+    color: #01a3a4; }
+  .upload-section .uploadfield-wrap input[type="file"] {
+    opacity: 0;
+    height: 50px;
+    position: relative;
+    z-index: 1;
+    cursor: pointer; }
+  .upload-section .uploadfield-wrap .lbl {
+    display: block;
+    margin-top: -20px;
+    color: #01a3a4; }
+
+.note {
+  color: #b5b5b5;
+  font-size: 1.4rem; }
 
 /*#endregion Job offers */
 /*#region Articles/Insights */
@@ -9793,7 +9885,7 @@ ul.breadcrumb {
     width: 750px; }
   header .mobile-nav .navbar-collapse.collapse {
     display: none !important; }
-  .page-section .col-sm-8, .page-section .col-md-9 {
+  .page-section .gap-extra {
     padding-left: 35px; }
   .page-section .right-bottom-img img {
     position: absolute;
@@ -10317,3 +10409,26 @@ ul.breadcrumb {
 
 /*#endregion Large desktop*/
 /*#endregion Media*/
+/*#print media*/
+@media print {
+  #header,
+  #footer,
+  .breadcrumb,
+  .job-offer-actions,
+  .jobdetail-sidebar,
+  .prefooter-content {
+    display: none !important; }
+  .page-wrapper main {
+    padding-top: 0 !important; }
+    .page-wrapper main .page-section {
+      padding: 0; }
+  .main-content {
+    min-height: 0; }
+  .container {
+    width: 100% !important; }
+  .page-title {
+    height: 60px !important;
+    padding-top: 10px !important;
+    display: none !important; } }
+
+/*#end print media*/

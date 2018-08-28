@@ -88,6 +88,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 OrderedDictionary classifParentIdsOrdDict = new OrderedDictionary();
                 JobDetailsViewModel.AppendParentIds(classifOrdDict, classifParentIdsOrdDict);
 
+                var bull = jobListingResponse.Job.CustomData["Bulletpoints.BulletPoint1"];
+
                 // Processing Locations
                 OrderedDictionary locOrdDict = new OrderedDictionary();
                 classifOrdDict.Add(jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].ExternalReference"], jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].Value"]);

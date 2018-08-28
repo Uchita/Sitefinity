@@ -114,7 +114,7 @@ $(document).ready(function () {
 
     window.addEventListener('scroll', function () {
         ThemeGlobal.HeaderToggleFixed();
-        requestAnimationFrame(ThemeGlobal.ParalaxInit);
+        //requestAnimationFrame(ThemeGlobal.ParalaxInit);
     }, false);
 
     $("[data-filter-trigger]").on("click", function () {

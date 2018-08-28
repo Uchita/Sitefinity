@@ -347,7 +347,7 @@
     <EmbeddedResource Include="Mvc\Views\JobSearch\JobSearch.Simple.cshtml" />
     <EmbeddedResource Include="Mvc\Views\JobSearch\JobSearchMockData.json" />
     <EmbeddedResource Include="Mvc\Views\JobSearch\Simple.cshtml" />
-    <EmbeddedResource Include="Mvc\Views\JobSearchResults\_JobSearchResults.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\Shared\_JobSearchResults.cshtml" />
     <EmbeddedResource Include="Mvc\Views\Shared\_Layout.cshtml" />
     <EmbeddedResource Include="Mvc\Views\JobFilters\T_FullTree.cshtml" />
     <EmbeddedResource Include="Mvc\Views\JobFilters\T_Simple.cshtml" />

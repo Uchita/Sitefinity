@@ -1,0 +1,22 @@
+﻿@model dynamic
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers
+
+@Html.StyleSheet(Url.EmbeddedResource("JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers.JobSearchController", "JXTNext.Sitefinity.Widgets.Job.Mvc.Scripts.JobSearch.dropdowntree.css"), "bottom")
+@Html.Script(Url.EmbeddedResource("JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers.JobSearchController", "JXTNext.Sitefinity.Widgets.Job.Mvc.Scripts.JobSearch.dropdowntree.js"), "bottom")
+
+@if (Model != null)
+{
+<div class="filter-outer-wrapper left-sidebar">
+    <div class="form-group">
+        <label><strong>Keywords:</strong></label>
+        <div class="search-wrap"><input id="selectedkeywordsfilter" type="search" value="@ViewBag.Keywords" /></div>
+    </div>
+
+    @foreach (var item in Model)
+    {
+    <div class="dropdown dropdown-tree navbar-collapse" id=@string.Format("{0}{1}",ViewBag.PrefixIdsText,item.Name)></div>
+    }
+</div>
+}
+
+@Html.Partial("_SimpleJS_Partial", (object)Model)

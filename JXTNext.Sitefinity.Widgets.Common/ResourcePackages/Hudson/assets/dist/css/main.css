@@ -8023,6 +8023,12 @@ main {
 
 /*#endregion Page sections */
 /*#region Left sidebar*/
+.left-sidebar .form-group {
+  margin-bottom: 20px; }
+
+.left-sidebar .search-wrap input {
+  width: 100%; }
+
 .left-sidebar .container-fluid, .left-sidebar .navbar-collapse {
   font-size: 1.4rem;
   font-size: 14px;
@@ -8034,11 +8040,18 @@ main {
     font-family: AkzidGroProBol, sans-serif;
     color: #01a3a4;
     text-transform: uppercase;
-    display: block;
+    display: block !important;
+    border: none;
     border-bottom: 2px solid #01a3a4;
-    padding-bottom: 5px; }
+    padding: 0 0 5px;
+    text-align: left;
+    margin-top: 0 !important; }
     .left-sidebar .container-fluid > a:hover, .left-sidebar .container-fluid > a:focus, .left-sidebar .navbar-collapse > a:hover, .left-sidebar .navbar-collapse > a:focus {
       text-decoration: none; }
+    .left-sidebar .container-fluid > a .caret, .left-sidebar .navbar-collapse > a .caret {
+      position: absolute;
+      right: 0;
+      top: 10px; }
   .left-sidebar .container-fluid .nav, .left-sidebar .navbar-collapse .nav {
     width: 100%; }
     .left-sidebar .container-fluid .nav li, .left-sidebar .navbar-collapse .nav li {
@@ -8098,6 +8111,40 @@ main {
     background-color: transparent; }
   .left-sidebar .container-fluid .btn, .left-sidebar .navbar-collapse .btn {
     margin-top: 25px; }
+  .left-sidebar .container-fluid.dropdown-tree > ul, .left-sidebar .navbar-collapse.dropdown-tree > ul {
+    white-space: normal;
+    padding-left: 0; }
+    .left-sidebar .container-fluid.dropdown-tree > ul li, .left-sidebar .navbar-collapse.dropdown-tree > ul li {
+      white-space: normal;
+      position: relative;
+      padding-left: 20px; }
+      .left-sidebar .container-fluid.dropdown-tree > ul li > i, .left-sidebar .navbar-collapse.dropdown-tree > ul li > i {
+        position: absolute;
+        left: -9px;
+        top: 7px;
+        color: #606263;
+        font-weight: normal; }
+        .left-sidebar .container-fluid.dropdown-tree > ul li > i.fa-square-o::before, .left-sidebar .navbar-collapse.dropdown-tree > ul li > i.fa-square-o::before {
+          content: '\f0c8'; }
+        .left-sidebar .container-fluid.dropdown-tree > ul li > i.fa-check-square-o::before, .left-sidebar .navbar-collapse.dropdown-tree > ul li > i.fa-check-square-o::before {
+          content: '\f14a'; }
+      .left-sidebar .container-fluid.dropdown-tree > ul li a, .left-sidebar .navbar-collapse.dropdown-tree > ul li a {
+        white-space: normal;
+        display: block !important;
+        font-family: AkzidGroProMed,sans-serif;
+        color: grey; }
+        .left-sidebar .container-fluid.dropdown-tree > ul li a .count, .left-sidebar .navbar-collapse.dropdown-tree > ul li a .count {
+          margin-left: 3px; }
+      .left-sidebar .container-fluid.dropdown-tree > ul li .drop-down-item, .left-sidebar .navbar-collapse.dropdown-tree > ul li .drop-down-item {
+        padding: 4px 20px 4px 0;
+        right: 0; }
+        .left-sidebar .container-fluid.dropdown-tree > ul li .drop-down-item .arrow, .left-sidebar .navbar-collapse.dropdown-tree > ul li .drop-down-item .arrow {
+          right: 0;
+          font-size: 1.2rem; }
+      .left-sidebar .container-fluid.dropdown-tree > ul li:hover, .left-sidebar .navbar-collapse.dropdown-tree > ul li:hover {
+        background: none; }
+        .left-sidebar .container-fluid.dropdown-tree > ul li:hover a, .left-sidebar .navbar-collapse.dropdown-tree > ul li:hover a {
+          color: #219fa3; }
   .left-sidebar .container-fluid .left-sidebar-section, .left-sidebar .navbar-collapse .left-sidebar-section {
     padding-right: 15px;
     margin-top: 15px; }
@@ -9349,6 +9396,10 @@ ul.breadcrumb {
   color: #b5b5b5;
   font-size: 1.4rem; }
 
+#pager {
+  border: none;
+  background: none; }
+
 /*#endregion Job offers */
 /*#region Articles/Insights */
 .list-featured-articles {
@@ -9397,11 +9448,14 @@ ul.breadcrumb {
   .article-details .h2, .article-details h2,
   .article-details .h3, .article-details h3,
   .article-details .h4, .article-details h4 {
-    margin-bottom: 15px;
-    color: #01a3a4; }
+    margin-bottom: 15px; }
   .article-details h1.article-detail-title {
     margin: 20px 0;
-    color: #2e2e2e; }
+    color: #000; }
+  .article-details .h2, .article-details h2 {
+    color: #000; }
+  .article-details .h3, .article-details h3 {
+    color: #219fa3; }
   .article-details img {
     margin: 30px 0; }
 

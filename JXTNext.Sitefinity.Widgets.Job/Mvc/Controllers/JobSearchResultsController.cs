@@ -17,6 +17,7 @@ using Telerik.Sitefinity.Taxonomies.Model;
 using System.ComponentModel;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers;
 using Telerik.Sitefinity.Security.Model;
+using System.Collections.Specialized;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -128,6 +129,20 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             JXTNext_SearchJobsRequest searchRequest = ProcessInputToSearchRequest(searchInputs);
 
             JXTNext_SearchJobsResponse jobResponse = (JXTNext_SearchJobsResponse)_BLConnector.SearchJobs(searchRequest);
+
+            foreach(var item in jobResponse.SearchResults)
+            {
+                // Processing Classifications
+                OrderedDictionary classifOrdDict = new OrderedDictionary();
+                classifOrdDict.Add(item.CustomData["Classifications[0].Filters[0].ExternalReference"], item.CustomData["Classifications[0].Filters[0].Value"]);
+                string parentClassificationsKey = "Classifications[0].Filters[0].SubLevel[0]";
+                JobDetailsViewModel.ProcessCustomData(parentClassificationsKey, item.CustomData, classifOrdDict);
+                OrderedDictionary classifParentIdsOrdDict = new OrderedDictionary();
+                JobDetailsViewModel.AppendParentIds(classifOrdDict, classifParentIdsOrdDict);
+
+                item.Classifications = classifParentIdsOrdDict;
+                item.ClassificationsRootName = "Classifications";
+            }
 
             return new JsonResult { Data = jobResponse };
         }

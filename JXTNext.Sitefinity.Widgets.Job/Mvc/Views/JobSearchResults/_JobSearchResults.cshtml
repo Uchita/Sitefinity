@@ -44,7 +44,7 @@
         # for (var key in Classifications) {#
         # if(key.length >= 32){#
         # var hrefLink = '';#
-        # hrefLink = '@ViewBag.JobResultsPageUrl' + '?Filters[0].rootId=' + ClassificationsRootName + '&Filters[0].values=' + key;#
+        # hrefLink = '@ViewBag.CurrentPageUrl' + '?Filters[0].rootId=' + ClassificationsRootName + '&Filters[0].values=' + key;#
         <a href=#:hrefLink#>#:Classifications[key]#</a>
         #}#
         #}#

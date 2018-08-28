@@ -598,6 +598,17 @@ img, iframe {
     margin: 0;
 }
 
+
+.mb-20{
+    margin-bottom: 20px;
+}
+.mb-30{
+    margin-bottom: 30px;
+}
+.mb-40{
+    margin-bottom: 40px;
+}
+
 .section-title {
     margin-bottom: 20px;
 }
@@ -1573,8 +1584,56 @@ ul.vertical-ul {
     }
 }
 
+.loading {
+    position: relative;
+    min-height: 200px;
+    &::before {
+        content: '';
+        display: inline-block;
+        border: 3px solid $global-highlight-color;
+        border-radius: 50%;
+        border-top: 3px solid transparent;
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 11;
+        margin: -26px 0 0 -26px;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+    }
+}
 
 /*#endregion Footer*/
+
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@-moz-keyframes spin {
+    0% {
+        -moz-transform: rotate(0deg);
+    }
+    100% {
+        -moz-transform: rotate(360deg);
+    }
+}
 
 
 @import 'hexagon-item';

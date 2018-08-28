@@ -276,6 +276,9 @@
     <Content Include="ResourcePackages\Hudson\GridSystem\Templates\header.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\Hudson\GridSystem\Templates\jobdetail-sidebar.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ResourcePackages\Hudson\GridSystem\Templates\page-section-dark.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1127,9 +1130,6 @@
     <Content Include="ResourcePackages\Hudson\MVC\Views\JobApplication\JobApplication.Simple.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ResourcePackages\Hudson\MVC\Views\JobDetails\JobDetails.ApplyButton.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="ResourcePackages\Hudson\MVC\Views\JobDetails\JobDetails.Hudson.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1407,6 +1407,23 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\Hudson\MVC\partial\TagManagerBody.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Hudson\MVC\Views\JobDetails\JobDetails.AppPage.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Hudson\MVC\Views\JobSearchResults\JobsAll.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Shared\_JobSearchResults.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="ResourcePackages\Hudson\MVC\Views\JobFilters\T_FullTree.cshtml" />
+    <EmbeddedResource Include="ResourcePackages\Hudson\MVC\Views\JobFilters\T_Simple.cshtml" />
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Shared\LoginForm.LoginForm.JobApply.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Hudson\MVC\Views\LoginForm\LoginForm.LoginForm.JobApply.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\jn_icons.eot">
@@ -1774,7 +1791,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\JXTDemo\MVC\Views\Profile\Edit.ConsultantProfileEdit.cshtml">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\JXTDemo\MVC\Views\razorgenerator.directives">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

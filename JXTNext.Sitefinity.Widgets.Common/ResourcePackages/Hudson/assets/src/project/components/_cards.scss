@@ -446,6 +446,8 @@
 .paralax-image{
     padding: 7rem 0;
     color: $brightColor;
+    background-attachment: fixed!important;
+    
     h3{
         color: $brightColor;
         margin-bottom: 20px;

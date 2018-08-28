@@ -1,0 +1,31 @@
+@media print {
+    #header,
+    #footer,
+    .breadcrumb,
+    .job-offer-actions,
+    .jobdetail-sidebar,
+    .prefooter-content {
+        display: none!important;
+    }
+    .page-wrapper{
+        main{
+            padding-top: 0!important;
+            .page-section{
+                padding: 0;
+            }
+        }
+    }
+    .main-content{
+        min-height: 0;
+    }
+    
+    .container {
+        width: 100%!important;
+    }
+    .page-title {
+        height: 60px!important;
+        padding-top: 10px!important;
+        display: none!important;
+    }
+    
+}

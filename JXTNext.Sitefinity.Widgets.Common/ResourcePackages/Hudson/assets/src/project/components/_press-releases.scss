@@ -18,6 +18,7 @@
 
         li {
             float: left;
+            position: relative;
 
             & + li {
                 margin-left: 20px;
@@ -45,7 +46,7 @@
         }
     }
 
-    .dropdown {
+    li, li.dropdown {
         a {
             &:hover, &:focus {
                 text-decoration: none;
@@ -56,11 +57,12 @@
             border-radius: 0;
             z-index: 1;
             border: 0;
-
+            margin: 0;
             li {
                 list-style: none;
-
+                float: none;
                 a {
+                    display: block;
                     text-transform: none;
                     font-family: $font-family-light;
                     color: $global-headings-color;
@@ -76,6 +78,12 @@
 
         &.open > a {
             color: $global-highlight-color;
+        }
+    }
+
+    li:hover{
+        .dropdown-menu{
+            display: block;
         }
     }
 }

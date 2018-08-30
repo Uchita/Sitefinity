@@ -68,12 +68,17 @@
     .h3, h3,
     .h4, h4 {
         margin-bottom: 15px;
-        color: $article-detail-highlight-color;
     }
 
     h1.article-detail-title {
         margin: 20px 0;
-        color: $article-detail-text-color;
+        color: $global-text-color;
+    }
+    .h2, h2{
+        color: $global-text-color;
+    }
+    .h3, h3{
+        color: $highlighted-headings-color;
     }
 
     img {

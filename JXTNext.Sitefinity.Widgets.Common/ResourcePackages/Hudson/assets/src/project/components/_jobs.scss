@@ -307,7 +307,22 @@
     }
 }
 
+//job detail
+.job-mini{
+ .breadcrumb{
+     padding-left: 15px;
+ }   
+}
+.jobdetail-sidebar{
+    @media (min-width:1024){
+        padding-left: 40px;
+    }
+}
+
+
+
 //appilication apge
+
 .upload-section{
     .box{
         border: 1px solid $global-highlight-color;
@@ -355,8 +370,15 @@
     color: $forms-placeholder-color;
     font-size: 1.4rem;
 }
+.bdr-right{
+    border-right: 1px solid #000;
+    padding-right: 30px;
+}
+.pad-left-30{ padding-left: 30px;  }
+.pad-right-30{ padding-right: 30px;  }
 
 #pager{
     border: none;
     background:none;
 }
+

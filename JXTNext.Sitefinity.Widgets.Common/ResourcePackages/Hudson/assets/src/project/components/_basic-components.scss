@@ -1177,8 +1177,11 @@ main {
         text-align: left;
         margin-top: 0!important;
 
-        &:hover, &:focus {
+        &:hover, &:focus, &:active {
             text-decoration: none;
+            color: darken($sidebar-link-color,5%);
+            -webkit-box-shadow: none;
+            box-shadow: none;
         }
         .caret{
             position: absolute;
@@ -1312,7 +1315,7 @@ main {
                     white-space: normal;
                     display: block!important;
                     font-family: AkzidGroProMed,sans-serif;
-                    color: grey;
+                    color: $sidebar-default-color;
                     .count{
                         margin-left: 3px;   
                     }
@@ -1438,6 +1441,25 @@ ul.vertical-ul {
     }
 }
 /*#endregion Vertical navigation*/
+
+// Pagination
+.pagination{
+    display: block;
+    text-align: center;
+    li{
+        display: inline-block;
+        a{
+            border-color: $highlighted-headings-color;
+            color: $highlighted-headings-color;
+            border-radius: 0!important;
+        }
+        &.active a, &.active a:hover, &.active a:focus, a:hover, a:focus{
+            background: $highlighted-headings-color;
+            color: $brightColor;
+            border-color: $highlighted-headings-color;
+        }
+    }
+}
 
 /*#region Footer*/
 .page-wrapper {
@@ -1651,6 +1673,8 @@ ul.vertical-ul {
         }
     }
 }
+/*#endregion Footer*/
+
 
 .loading {
     position: relative;
@@ -1673,7 +1697,7 @@ ul.vertical-ul {
     }
 }
 
-/*#endregion Footer*/
+
 
 
 @-webkit-keyframes spin {

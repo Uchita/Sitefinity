@@ -1426,6 +1426,9 @@
     <Content Include="ResourcePackages\Hudson\MVC\Views\LoginForm\LoginForm.LoginFormJobApply.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Profile\Edit.ConsultantProfileEdit.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\jn_icons.eot">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

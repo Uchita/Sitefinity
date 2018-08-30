@@ -1,0 +1,58 @@
+@model Telerik.Sitefinity.Frontend.Identity.Mvc.Models.LoginForm.LoginFormViewModel
+
+@using Telerik.Sitefinity.UI.MVC;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Services;
+
+@*Add scripts and stylesheets*@
+@Html.Script(ScriptRef.JQuery, "top")
+@Html.Script("//ajax.aspnetcdn.com/ajax/jquery.validate/1.8.1/jquery.validate.js",  "top")
+@Html.Script("//ajax.aspnetcdn.com/ajax/mvc/4.0/jquery.validate.unobtrusive.min.js", "top")
+
+<div class="@Model.CssClass row sf-m-xxs login-form">
+    @if (Telerik.Sitefinity.Security.SecurityManager.GetCurrentUserId() == Guid.Empty || SystemManager.IsInlineEditingMode || SystemManager.IsDesignMode)
+    {
+        using (Html.BeginFormSitefinity(@Request.Url.Query, null, null, FormMethod.Post, null, true))
+        {
+            <div class="">
+                @Html.ValidationSummary(true)
+
+                <h1>@Html.Resource("LoginFormLogInLegendHeader")</h1>
+                <div class="basic-form">
+
+
+                    @if (Request.Url.Query.Contains("err=true") || Model.LoginError)
+                    {
+                        <div class="alert alert-danger">
+                            @Html.Resource("IncorrectCredentialsMessage")
+                        </div>
+                    }
+                    
+
+                    @if (Model.ExternalProviders != null && Model.ExternalProviders.Count() > 0)
+                    {
+                        <div class="col-md-6">
+                            <h3>@Html.Resource("UseAccountIn")</h3>
+
+                            @foreach (var provider in Model.ExternalProviders)
+                            {
+                                var classToBeAdd = "btn btn-default btn-lg btn-block " + @provider.Value;
+                                <div class="sf-mb-xs">
+                                    @Html.ActionLink(provider.Key, "LoginExternalProvider", new { model = provider.Key }, new { @class = classToBeAdd })
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    }
+
+    else
+    {
+        <h1 class="color-highlight">@Html.Resource("AlreadyLoggedIn")</h1>
+    }
+</div>
+
+@Html.Script(Url.WidgetContent("Mvc/Scripts/LoginForm/login-form.js"), "bottom")

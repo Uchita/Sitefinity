@@ -7356,6 +7356,8 @@ blockquote {
         height: 27px;
         vertical-align: middle;
         background: url("../images/seek.png") 50% 50%/contain no-repeat; }
+    .page-wrapper .btn.btn-gplus, .page-wrapper .btn.btn-facebook {
+      color: #fff; }
     .page-wrapper .btn.btn-gplus, .page-wrapper .btn.btn-gplus:hover, .page-wrapper .btn.btn-gplus:focus {
       background: #d54634; }
     .page-wrapper .btn.btn-facebook, .page-wrapper .btn.btn-facebook:hover, .page-wrapper .btn.btn-facebook:focus {
@@ -7368,6 +7370,13 @@ blockquote {
       min-width: 220px; }
       .page-wrapper .btn.btn-gplus:hover, .page-wrapper .btn.btn-gplus:focus, .page-wrapper .btn.btn-facebook:hover, .page-wrapper .btn.btn-facebook:focus {
         color: #fff; }
+  .page-wrapper .sign-in-with {
+    clear: both; }
+    .page-wrapper .sign-in-with li {
+      float: left;
+      margin-right: 15px; }
+      .page-wrapper .sign-in-with li a:hover, .page-wrapper .sign-in-with li a:focus {
+        opacity: 0.9; }
   .page-wrapper .btn-block .btn {
     display: block;
     width: 100%; }
@@ -7854,6 +7863,10 @@ header {
           color: #0abde3; }
       header .main-nav .dropdown-menu li.active a {
         color: #0abde3; }
+    header .main-nav .dropdown-menu a:hover, header .main-nav .dropdown-menu a:focus {
+      text-decoration: none; }
+      header .main-nav .dropdown-menu a:hover h5, header .main-nav .dropdown-menu a:focus h5 {
+        color: #0abde3 !important; }
     header .main-nav .dropdown-submenu {
       position: static;
       padding-right: 30px; }
@@ -8859,11 +8872,11 @@ ul.breadcrumb {
       background: rgba(33, 159, 163, 0.9); }
 
 .page-banner .h2, .page-banner h2, .page-banner .h3, .page-banner h3 {
-  font-size: 36px;
-  font-size: 3.6rem;
   color: #fff; }
 
 .page-banner .h2, .page-banner h2 {
+  font-size: 36px;
+  font-size: 3.6rem;
   margin-bottom: 0; }
 
 .page-banner .h3, .page-banner h3 {
@@ -8944,7 +8957,8 @@ ul.breadcrumb {
   background-color: #116368; }
   .banner-with-basic .thumbnail {
     background-color: rgba(255, 255, 255, 0.9);
-    background-size: 100% auto; }
+    background-size: 100% auto;
+    margin-bottom: 0; }
     .banner-with-basic .thumbnail .banner-with-basic-summary {
       font-size: 24px;
       font-size: 2.4rem; }
@@ -9077,6 +9091,8 @@ ul.breadcrumb {
       line-height: 19px; }
     .page-wrapper .basic-form .checkbox input[type="checkbox"]:hover {
       cursor: pointer; }
+  .page-wrapper .basic-form .sf-FileField {
+    margin-top: 5px; }
   .page-wrapper .basic-form .form-group {
     margin-bottom: 10px; }
   .page-wrapper .basic-form .upload-section {
@@ -9654,6 +9670,17 @@ ul.breadcrumb {
           color: #01a3a4; }
       .press-release-filter ul li.filter-active a {
         color: #01a3a4; }
+  .press-release-filter li.dropdown > a {
+    position: relative;
+    padding-right: 10px; }
+    .press-release-filter li.dropdown > a::after {
+      content: '\f078';
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+      position: absolute;
+      bottom: -2px;
+      right: -11px;
+      display: block; }
   .press-release-filter li a:hover, .press-release-filter li a:focus, .press-release-filter li.dropdown a:hover, .press-release-filter li.dropdown a:focus {
     text-decoration: none; }
   .press-release-filter li .dropdown-menu, .press-release-filter li.dropdown .dropdown-menu {
@@ -10131,7 +10158,15 @@ ul.breadcrumb {
   .long-card-basic-list .thumbnail .img-wrap {
     height: 200px; }
   .thumbnail.card-basic .caption {
-    min-height: 230px; } }
+    min-height: 230px; }
+  .press-release-filter ul li a {
+    font-size: 1.4rem; }
+  .press-release-filter ul li.dropdown > a::after {
+    font-size: 1.1rem;
+    right: -5px; }
+  .press-release-filter ul li + li {
+    margin-left: 10px;
+    padding-left: 10px; } }
 
 @media (max-width: 991px) {
   .flex {
@@ -10252,6 +10287,14 @@ ul.breadcrumb {
         width: 100%;
         background: -webkit-linear-gradient(#fff, #fff);
         background: linear-gradient(rgba(0, 0, 0, 0), white); }
+  .press-release-filter {
+    text-align: center; }
+    .press-release-filter ul li {
+      display: inline-block;
+      float: none;
+      margin-bottom: 5px; }
+      .press-release-filter ul li.dropdown > a::after {
+        bottom: 2px; }
   .consultant-images img {
     margin-bottom: 10px; }
   .testimonials-slider .testimonial-title {

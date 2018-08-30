@@ -290,6 +290,27 @@
             min-height: 230px;
         }
     }
+    .press-release-filter{
+        ul{
+            li{
+                a{
+                    font-size: 1.4rem;
+                }
+                &.dropdown{
+                    > a{
+                        &::after{
+                            font-size: 1.1rem;
+                            right: -5px;
+                        }
+                    }
+                }
+            }
+            li + li{
+                margin-left: 10px;
+                padding-left: 10px;
+            }
+        }
+    }
 }
 
 @media (max-width: 991px) {
@@ -497,6 +518,22 @@
                 width: 100%;
                 background: -webkit-linear-gradient(#fff, #fff);
                 background: linear-gradient(rgba(0,0,0,0), rgba(255, 255, 255, 1));
+            }
+        }
+    }
+
+    .press-release-filter{
+        text-align: center;
+        ul li{
+            display: inline-block;
+            float: none;
+            margin-bottom: 5px;
+            &.dropdown{
+                > a{
+                    &::after{
+                        bottom:2px; 
+                    }
+                }
             }
         }
     }

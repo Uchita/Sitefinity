@@ -151,7 +151,9 @@ blockquote{
                 background: url('../images/seek.png') 50% 50% / contain no-repeat;
             }
         }
-
+        &.btn-gplus, &.btn-facebook {
+            color: $brightColor;
+        }
         &.btn-gplus, &.btn-gplus:hover, &.btn-gplus:focus {
             background: #d54634;
         }
@@ -169,6 +171,18 @@ blockquote{
 
             &:hover, &:focus {
                 color: #fff;
+            }
+        }
+    }
+    .sign-in-with{
+        clear: both;
+        li{
+            float: left;
+            margin-right: 15px;
+            a{
+                &:hover, &:focus{
+                    opacity: 0.9;
+                }
             }
         }
     }
@@ -850,6 +864,7 @@ header {
                         max-width: 100%;
                     }
                 }
+                
             }
         }
 
@@ -874,7 +889,14 @@ header {
                 }
             }
         }
-
+        .dropdown-menu{
+            a:hover, a:focus{
+                text-decoration: none;
+                h5{
+                    color: $navigation-sublink-hover-color!important;
+                }
+            }
+        }
         .dropdown-submenu {
             position: static;
             padding-right: 30px;

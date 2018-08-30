@@ -6,6 +6,21 @@
 
 @if (Model != null)
 {
+    @{
+        List<string> classificationsDisplay = new List<string>();
+        foreach (var item in @Model.Classifications.Keys)
+        {
+            string hrefLink = string.Format("{0}?Filters[0].rootId={1}&Filters[0].values={2}", @ViewBag.JobResultsPageUrl, @Model.ClassificationsRootName, @item.ToString());
+
+            classificationsDisplay.Add(@"<a href=""" + hrefLink + @""" title=""" + Model.Classifications[item] + @""">" + Model.Classifications[item] + @"</a>");
+        }
+    }
+
+<div class="backtoresult">
+    @Html.Raw(String.Join("&nbsp;<span>&gt;</span>&nbsp;", classificationsDisplay))
+     | <a href="#" id="back-to-results" role="button" title="Back to Results"><span class="prev-btn"></span>Back To Results</a>
+</div>
+
     <div class="col-md-8">
         <div class="job-offer-details">
             <div class="row job-offer-title">
@@ -20,7 +35,7 @@
                     <table>
                         <tbody>
                             <tr>
-                                <td>
+                                <td width="160">
                                     <strong>Location</strong><strong>:</strong>
                                 </td>
                                 <td>
@@ -106,7 +121,7 @@
                     <table>
                         <tbody>
                             <tr>
-                                <td><strong>Reference Number:</strong></td>
+                                <td width="160"><strong>Reference Number:</strong></td>
                                 <td>
                                     @Model.JobDetails.ReferenceNo
                                 </td>
@@ -115,15 +130,7 @@
                             <tr>
                                 <td><strong>Profession:&nbsp; </strong></td>
                                 <td>
-                                    @{
-                                        List<string> classificationsDisplay = new List<string>();
-                                        foreach (var item in @Model.Classifications.Keys)
-                                        {
-                                            string hrefLink = string.Format("{0}?Filters[0].rootId={1}&Filters[0].values={2}", @ViewBag.JobResultsPageUrl, @Model.ClassificationsRootName, @item.ToString());
 
-                                            classificationsDisplay.Add(@"<a href=""" + hrefLink + @""" title=""" + Model.Classifications[item] + @""">" + Model.Classifications[item] + @"</a>");
-                                        }
-                                    }
                                     @Html.Raw(String.Join("&nbsp;<span>&gt;</span>&nbsp;", classificationsDisplay))
                                 </td>
                             </tr>
@@ -160,10 +167,12 @@
         <ul class="list-unstyled job-offer-actions">
             @*<li><a href="#"><em class="far fa-save"></em>Save this job</a></li>*@
             <li><a href="javascript:window.print();"><em class="fas fa-print"></em>Print this job</a></li>
-            <li><a href="javascript:void(0);" onclick="window.open('mailto:?body=@shareUrl&subject=@pageTitle', 'MailTo', 'toolbar=no,width=550,height=550'); return false" title="Tell a friend">
-                <em class="fas fa-envelope"></em>Email this job
-            </a></li>
-           
+            <li>
+                <a href="javascript:void(0);" onclick="window.open('mailto:?body=@shareUrl&subject=@pageTitle', 'MailTo', 'toolbar=no,width=550,height=550'); return false" title="Tell a friend">
+                    <em class="fas fa-envelope"></em>Email this job
+                </a>
+            </li>
+
         </ul>
 
     </div>

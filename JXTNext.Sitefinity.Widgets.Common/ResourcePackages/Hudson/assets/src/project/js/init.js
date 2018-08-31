@@ -173,21 +173,25 @@ $(document).ready(function () {
         }
     });
     $('.owl-card-basic').each(function (i, obj) {
-        $(this).owlCarousel({
-            loop: true,
-            margin: 15,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                768: {
-                    items: 2
-                },
-                1200: {
-                    items: 3
+        if ($(this).children().length > 1) {
+            $(this).owlCarousel({
+                loop: true,
+                margin: 15,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    768: {
+                        items: 2
+                    },
+                    1200: {
+                        items: 3
+                    }
                 }
-            }
-        });
+            });
+        } else {
+            $(this).show().addClass('flex flex-center');
+        }
     });
     $('.owl-carousel-jumbotron').owlCarousel({
         items: 1,

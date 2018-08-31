@@ -1,0 +1,80 @@
+﻿@model Telerik.Sitefinity.Frontend.DynamicContent.Mvc.Models.DynamicContentListViewModel
+
+@using Telerik.Sitefinity.Frontend.DynamicContent.WidgetTemplates.Fields.Helpers;
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Data.ContentLinks;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Frontend.Mvc.Models;
+@using Telerik.Sitefinity.Web.DataResolving;
+@using Telerik.Sitefinity.Model.ContentLinks;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.RelatedData;
+@using Telerik.Sitefinity.Web.DataResolving;
+@using System;
+@using Newtonsoft.Json;
+@using Telerik.Sitefinity.DynamicModules;
+@using Telerik.Sitefinity.DynamicModules.Model;
+
+@using Telerik.Sitefinity.Services;
+@using Telerik.Sitefinity.Security.Model;
+@using Telerik.Sitefinity.Taxonomies;
+@using Telerik.Sitefinity.Taxonomies.Model;
+@using Telerik.Sitefinity.Model;
+@using Telerik.OpenAccess;
+@using Telerik.Sitefinity.Web;
+
+
+<div class="@Model.CssClass">
+
+    <div class="row long-card-basic-list flex">
+        @foreach (var item in Model.Items)
+        {
+            var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+
+            <div class="col-md-4">
+                <div class="thumbnail card-basic small-caption">
+                    @if (item.Fields.HeaderImage != null)
+                    {
+                        <a href="@navigateUrl" class="img-wrap" title="@item.Fields.HeaderImage.Fields.Title"><img alt="@item.Fields.HeaderImage.Fields.Title" src="@item.Fields.HeaderImage.Fields.ThumbnailUrl" /></a>
+                    }
+
+                    <div class="caption">
+                        <p class="color-light text-uppercase font-medium ">
+                            @{
+                                List<string> filterValues = new List<string>();
+                                var articleIds = item.Fields.articles;
+                                foreach (var taxonItem in articleIds)
+                                {
+                                    Guid articleID = new Guid(taxonItem.ToString());
+                                    var taxonManager = TaxonomyManager.GetManager();
+                                    var taxon = taxonManager.GetTaxa<HierarchicalTaxon>().Where(t => t.Id == articleID).ToList().FirstOrDefault();
+                                    filterValues.Add(taxon.Title);
+                                }
+                            }
+                            <small>
+                                @(string.Join(", ", filterValues))
+                            </small>
+                        </p>
+                        <h4>@Html.HtmlSanitize((string)item.Fields.Title)</h4>
+                        @{
+                            var summary = Html.HtmlSanitize((string)item.Fields.Summary).ToString();
+                            string trimSummary = !String.IsNullOrWhiteSpace(summary) && summary.Length >= 120 ? summary.Substring(0, 120) + "..." : summary;
+                        }
+                        <p>@trimSummary</p>
+                        <a class="btn btn-more" href="@navigateUrl"></a>
+                    </div>
+
+                </div>
+            </div>
+        }
+
+    </div>
+
+    @if (Model.ShowPager)
+    {
+        @Html.Action("Index", "ContentPager", new { currentPage = Model.CurrentPage,
+                        totalPagesCount = Model.TotalPagesCount.Value,
+                        redirectUrlTemplate = ViewBag.RedirectPageUrlTemplate })
+    }
+
+</div>

@@ -10,16 +10,12 @@
 @Html.Script("//ajax.aspnetcdn.com/ajax/jquery.validate/1.8.1/jquery.validate.js",  "top")
 @Html.Script("//ajax.aspnetcdn.com/ajax/mvc/4.0/jquery.validate.unobtrusive.min.js", "top")
 
-@{
-    var isTwoCols = (Model.ExternalProviders != null && Model.ExternalProviders.Count() > 0) ? "col-md-6" : "";
-}
-
 <div class="@Model.CssClass row sf-m-xxs login-form">
     @if (Telerik.Sitefinity.Security.SecurityManager.GetCurrentUserId() == Guid.Empty || SystemManager.IsInlineEditingMode || SystemManager.IsDesignMode)
     {
         using (Html.BeginFormSitefinity(@Request.Url.Query, null, null, FormMethod.Post, null, true))
         {
-            <div class="@isTwoCols">
+            <div>
                 @Html.ValidationSummary(true)
 
                 <h1>@Html.Resource("LoginFormLogInLegendHeader")</h1>
@@ -37,7 +33,7 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-4 text-right">
-                                    <p class="form-label">@Html.Resource("UserName")</p>
+                                    <p class="form-label">@Html.Resource("UserName")*</p>
                                 </div>
                                 <div class="col-md-8">
                                     @Html.TextBoxFor(u => u.UserName, new { @class = "form-control", @placeholder = "Enter your email address" })
@@ -55,7 +51,7 @@
                             <div class="row">
                                 <div class="col-md-4 text-right">
                                     <p class="form-label">
-                                        @Html.Resource("Password")
+                                        @Html.Resource("Password")*
                                     </p>
                                 </div>
                                 <div class="col-md-8">
@@ -73,32 +69,23 @@
                         <div class="row">
                             <div class="col-md-4"></div>
                             <div class="col-md-8">
-                                @if (Model.ShowRememberMe || Model.ShowForgotPasswordLink)
-                            {
-                            var isPulledRight = Model.ShowRememberMe ? "" : "pull-right";
-
-                                    <div class="@isPulledRight">
-                                        @if (Model.ShowForgotPasswordLink)
-                                    {
-                                            <div class="form-group sf-pr-l forgot-password">
-                                                @Html.ActionLink(Html.Resource("ForgottenPasword"), "ForgotPassword")
-                                            </div>
-                                        }
-                                        @if (Model.ShowRememberMe)
-                                    {
-
-                                            <div class="form-group">
-                                                <div class="checkbox clearfix">
-                                                    @Html.CheckBoxFor(u => u.RememberMe)
-                                                    <span class="checkbox-icon fas fa-check"></span>
-                                                    @Html.Resource("RememberMe")
-                                                </div>
-                                            </div>
-                                    }
-
-
+                                @if (Model.ShowForgotPasswordLink)
+                                {
+                                    <div class="form-group forgot-password"><em>
+                                        @Html.ActionLink(Html.Resource("ForgottenPasword"), "ForgotPassword")</em>
                                     </div>
-                            }
+                                }
+                                @if (Model.ShowRememberMe)
+                                {
+                                    <div class="form-group">
+                                        <div class="checkbox clearfix">
+                                            @Html.CheckBoxFor(u => u.RememberMe)
+                                            <span class="checkbox-icon fas fa-check"></span>
+                                            @Html.Resource("RememberMe")
+                                        </div>
+                                    </div>
+                                 }
+
                                 <div class="btn-block">
                                     <button type="submit" class="btn btn-primary">@Html.Resource("LoginFormLogInButton")</button>
                                 </div>
@@ -124,20 +111,7 @@
                         </div>
                     </div>
 
-                    @if (Model.ExternalProviders != null && Model.ExternalProviders.Count() > 0)
-                    {
-                        <div class="col-md-6">
-                            <h3>@Html.Resource("UseAccountIn")</h3>
-
-                            @foreach (var provider in Model.ExternalProviders)
-                            {
-                                var classToBeAdd = "btn btn-default btn-lg btn-block " + @provider.Value;
-                                <div class="sf-mb-xs">
-                                    @Html.ActionLink(provider.Key, "LoginExternalProvider", new { model = provider.Key }, new { @class = classToBeAdd })
-                                </div>
-                            }
-                        </div>
-                    }
+                    
                 </div>
             </div>
         }

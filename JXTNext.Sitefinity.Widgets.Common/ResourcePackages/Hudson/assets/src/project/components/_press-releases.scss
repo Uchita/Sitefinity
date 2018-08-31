@@ -45,9 +45,24 @@
             }
         }
     }
-
+    li.dropdown{
+        > a{
+            position: relative;
+            padding-right: 10px;
+            &::after {
+                content: '\f078';
+                font-family: 'Font Awesome 5 Free';
+                font-weight: 900;
+                position: absolute;
+                bottom: -2px;
+                right: -11px;
+                display: block;
+            }
+        }
+    }
     li, li.dropdown {
         a {
+            
             &:hover, &:focus {
                 text-decoration: none;
             }

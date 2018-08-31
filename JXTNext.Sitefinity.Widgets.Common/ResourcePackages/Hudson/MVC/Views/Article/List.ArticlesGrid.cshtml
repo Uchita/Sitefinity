@@ -29,7 +29,8 @@
 
 @Html.Script(ScriptRef.KendoAll, "top", false)
 
-@helper ProcessCategoriesTest(HierarchicalTaxon taxon)
+@*Recursive function to get the classification "Article" list as a Filter*@
+@helper ProcessCategories(HierarchicalTaxon taxon)
 {
     if (taxon != null)
     {
@@ -41,30 +42,14 @@
         {
             foreach (var subTaxon in taxon.Subtaxa)
             {
-                ProcessCategoriesTest(subTaxon);
+                //Recursive call
+                ProcessCategories(subTaxon);
             }
         }
-        
     }
 }
 
 @functions{
-
-    public void ProcessCategories(HierarchicalTaxon taxon)
-    {
-        if (taxon != null)
-        {
-            var title = taxon.Title;
-
-            if (taxon.Subtaxa != null && taxon.Subtaxa.Count > 0)
-            {
-                foreach (var subTaxon in taxon.Subtaxa)
-                {
-                    ProcessCategories(subTaxon);
-                }
-            }
-        }
-    }
 
     public class ArticlesModel
     {
@@ -90,10 +75,20 @@
         string taxonTitle = "";
         bool isHeaderImage = false;
 
-        foreach (var taxon in item.GetHierarchicalTaxons("Category"))
+        //foreach (var taxon in item.GetHierarchicalTaxons("Category"))
+        //{
+        //    taxonTitle = @Html.HtmlSanitize(taxon.Title.ToString()).ToString();
+        //    break;
+        //}
+        List<string> filterValues = new List<string>();
+        var articleIds = item.Fields.articles;
+        foreach (var taxonItem in articleIds)
         {
-            taxonTitle = @Html.HtmlSanitize(taxon.Title.ToString()).ToString();
-            break;
+            Guid articleID = new Guid(taxonItem.ToString());
+            var taxonManager = TaxonomyManager.GetManager();
+            var taxon = taxonManager.GetTaxa<HierarchicalTaxon>().Where(t => t.Id == articleID).ToList().FirstOrDefault();
+            filterValues.Add(taxon.Name);
+            taxonTitle = string.Join(", ", filterValues);
         }
 
         var summary = Html.HtmlSanitize((string)item.Fields.Summary).ToString();
@@ -135,7 +130,7 @@
     <div class="articles-top">
         <div class="press-release-filter">
             <ul class="list-unstyled clearfix">
-                
+
                 @{
 
                     var managerArticle = TaxonomyManager.GetManager();
@@ -154,23 +149,30 @@
 
                         foreach (var taxon in topLovelTaxa)
                         {
-                            <li><a href="@SiteMapBase.GetActualCurrentNode().Url.ToString().Substring(1)/-in-article/articles/@taxon.UrlName.ToString()" data-filter="@taxon.Title">@taxon.Title</a>
-                            @{ 
-                                var hierarchicalTaxon = taxon as HierarchicalTaxon; 
-                            }
-                            @if (hierarchicalTaxon != null)
+                            
+                            var hierarchicalTaxon = taxon as HierarchicalTaxon;
+                            
+                            var dropCls = "";
+                            if (hierarchicalTaxon.Subtaxa != null && hierarchicalTaxon.Subtaxa.Count > 0)
                             {
-                                if (hierarchicalTaxon.Subtaxa != null && hierarchicalTaxon.Subtaxa.Count > 0)
-                                {
-                                <ul class="dropdown-menu">
-                                    @foreach (var childTaxon in hierarchicalTaxon.Subtaxa)
-                                    {
-                                    @ProcessCategoriesTest(childTaxon)
-                                    }
-                                    
-                                </ul>
-                                }
+                                dropCls = "dropdown";
                             }
+                            <li class="@dropCls">
+                                <a href="@SiteMapBase.GetActualCurrentNode().Url.ToString().Substring(1)/-in-article/articles/@taxon.UrlName.ToString()" data-filter="@taxon.Title">@taxon.Title</a>
+
+                                @if (hierarchicalTaxon != null)
+                                {
+                                    if (hierarchicalTaxon.Subtaxa != null && hierarchicalTaxon.Subtaxa.Count > 0)
+                                    {
+                                        <ul class="dropdown-menu">
+                                            @foreach (var childTaxon in hierarchicalTaxon.Subtaxa)
+                                            {
+                                                @ProcessCategories(childTaxon)
+                                            }
+
+                                        </ul>
+                                    }
+                                }
                             </li>
 
                         }

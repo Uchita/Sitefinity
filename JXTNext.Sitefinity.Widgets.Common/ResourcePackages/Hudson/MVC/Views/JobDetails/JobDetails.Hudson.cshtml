@@ -6,139 +6,144 @@
 
 @if (Model != null)
 {
-    <div class="col-md-8">
-        <div class="job-offer-details">
-            <div class="row job-offer-title">
-                <div class="col-md-12">
-                    <h1>@Model.JobDetails.Title</h1>
-                </div>
-                @*<div class="col-md-4">
-                        <img alt="westpac-small" src="/images/default-source/clients/westpac-small.png?sfvrsn=cc5d3f6d_2" title="westpac-small">
-                    </div>*@
-            </div><div class="row job-offer-summary">
-                <div class="col-md-12">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <strong>Location</strong><strong>:</strong>
-                                </td>
-                                <td>
-                                    @{
-                                        List<string> locationsDisplay = new List<string>();
-                                        foreach (var item in @Model.Locations.Keys)
-                                        {
-                                            locationsDisplay.Add(Model.Locations[item].ToString());
-                                        }
+    
+    List<string> classificationsDisplay = new List<string>();
+    foreach (var item in @Model.Classifications.Keys)
+    {
+        string hrefLink = string.Format("{0}?Filters[0].rootId={1}&Filters[0].values={2}", @ViewBag.JobResultsPageUrl, @Model.ClassificationsRootName, @item.ToString());
+
+        classificationsDisplay.Add(@"<a href=""" + hrefLink + @""" title=""" + Model.Classifications[item] + @""">" + Model.Classifications[item] + @"</a>");
+    }
+    
+    
+<div class="col-md-8">
+    <div class="backtoresult">
+        @Html.Raw(String.Join("&nbsp;<span>&gt;</span>&nbsp;", classificationsDisplay))<span class="spt">|</span><a href="#" id="back-to-results" role="button" title="Back to Results"><span class="prev-btn"></span>Back To Results</a>
+    </div>
+    <div class="job-offer-details">
+        <div class="row job-offer-title">
+            <div class="col-md-12">
+                <h1>@Model.JobDetails.Title</h1>
+            </div>
+            @*<div class="col-md-4">
+                    <img alt="westpac-small" src="/images/default-source/clients/westpac-small.png?sfvrsn=cc5d3f6d_2" title="westpac-small">
+                </div>*@
+        </div><div class="row job-offer-summary">
+            <div class="col-md-12">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td width="160">
+                                <strong>Location</strong><strong>:</strong>
+                            </td>
+                            <td>
+                                @{
+                                    List<string> locationsDisplay = new List<string>();
+                                    foreach (var item in @Model.Locations.Keys)
+                                    {
+                                        locationsDisplay.Add(Model.Locations[item].ToString());
                                     }
-                                    <span>@Html.Raw(String.Join("&nbsp;<span>&gt;</span>&nbsp;", locationsDisplay))</span>
-                                </td>
-                            </tr>
+                                }
+                                <span>@Html.Raw(String.Join("&nbsp;<span>&gt;</span>&nbsp;", locationsDisplay))</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Work type:</strong>
+                            </td>
+                            <td>@Model.JobDetails.CustomData["WorkType.Filters[0].Value"]</td>
+                        </tr>
+
+                        @{
+                            var minSal = int.Parse(Model.JobDetails.CustomData["Salary.Filters[0].Min"]);
+                            var maxSal = int.Parse(Model.JobDetails.CustomData["Salary.Filters[0].Max"]);
+                        }
+
+                        @if (minSal > 0 || maxSal > 0)
+                        {
                             <tr>
                                 <td>
-                                    <strong>Work type:</strong>
+                                    <strong>Salary:</strong>
                                 </td>
-                                <td>@Model.JobDetails.CustomData["WorkType.Filters[0].Value"]</td>
-                            </tr>
+                                <td>
+                                    @if (minSal == maxSal)
+                                    {
 
-                            @{
-                                var minSal = int.Parse(Model.JobDetails.CustomData["Salary.Filters[0].Min"]);
-                                var maxSal = int.Parse(Model.JobDetails.CustomData["Salary.Filters[0].Max"]);
-                            }
-
-                            @if (minSal > 0 || maxSal > 0)
-                            {
-                                <tr>
-                                    <td>
-                                        <strong>Salary:</strong>
-                                    </td>
-                                    <td>
-                                        @if (minSal == maxSal)
+                                        <span class="max-sal">$@maxSal</span>
+                                    }
+                                    else
+                                    {
+                                        if (minSal > 0)
                                         {
-
+                                            <span class="min-sal">$@minSal</span>
+                                        }
+                                        if (maxSal > 0)
+                                        {
+                                            <span class="range-sep">to</span>
                                             <span class="max-sal">$@maxSal</span>
                                         }
-                                        else
-                                        {
-                                            if (minSal > 0)
-                                            {
-                                                <span class="min-sal">$@minSal</span>
-                                            }
-                                            if (maxSal > 0)
-                                            {
-                                                <span class="range-sep">to</span>
-                                                <span class="max-sal">$@maxSal</span>
-                                            }
-                                        }
-                                    </td>
-                                </tr>
-                            }
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="row job-offer-advantages">
-                <div class="col-md-12">
-                    <ul>
-
-                        @if (!string.IsNullOrEmpty(Model.JobDetails.CustomData["Bulletpoints.BulletPoint1"]))
-                        {
-                            <li>@Model.JobDetails.CustomData["Bulletpoints.BulletPoint1"]</li>
-                        }
-                        @if (!string.IsNullOrEmpty(Model.JobDetails.CustomData["Bulletpoints.BulletPoint2"]))
-                        {
-                            <li>@Model.JobDetails.CustomData["Bulletpoints.BulletPoint2"]</li>
-                        }
-                        @if (!string.IsNullOrEmpty(Model.JobDetails.CustomData["Bulletpoints.BulletPoint3"]))
-                        {
-                            <li>@Model.JobDetails.CustomData["Bulletpoints.BulletPoint3"]</li>
-                        }
-                    </ul>
-                </div>
-            </div>
-            <div class="row job-offer-summary">
-                <div class="col-md-12">
-                    @Html.Raw(Model.JobDetails.Description)
-                </div>
-            </div><div class="row job-offer-contacts">
-                <div class="col-md-12">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td><strong>Reference Number:</strong></td>
-                                <td>
-                                    @Model.JobDetails.ReferenceNo
-                                </td>
-                            </tr>
-                            <tr><td><strong>Contact Details:</strong></td><td>@Model.JobDetails.CustomData["ApplicationMethod.ApplicationEmail"]</td></tr>
-                            <tr>
-                                <td><strong>Profession:&nbsp; </strong></td>
-                                <td>
-                                    @{
-                                        List<string> classificationsDisplay = new List<string>();
-                                        foreach (var item in @Model.Classifications.Keys)
-                                        {
-                                            string hrefLink = string.Format("{0}?Filters[0].rootId={1}&Filters[0].values={2}", @ViewBag.JobResultsPageUrl, @Model.ClassificationsRootName, @item.ToString());
-
-                                            classificationsDisplay.Add(@"<a href=""" + hrefLink + @""" title=""" + Model.Classifications[item] + @""">" + Model.Classifications[item] + @"</a>");
-                                        }
                                     }
-                                    @Html.Raw(String.Join("&nbsp;<span>&gt;</span>&nbsp;", classificationsDisplay))
                                 </td>
                             </tr>
-                            <tr><td><strong>Company:</strong></td><td>@Model.JobDetails.CustomData["CompanyName"]</td></tr>
-                            @*<tr><td><strong>Date:</strong></td><td>18/09/2016&nbsp; -&nbsp; 5:34pm</td></tr>*@
-                        </tbody>
-                    </table>
-                </div>
-            </div><div class="row job-offer-apply">
-                <div class="col-md-12">
-                    <a class="btn btn-primary btn-block" href="@ViewBag.JobApplicationPageUrl?jobid=@Model.JobDetails.JobID">APPLY NOW</a>
-                </div>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row job-offer-advantages">
+            <div class="col-md-12">
+                <ul>
+
+                    @if (!string.IsNullOrEmpty(Model.JobDetails.CustomData["Bulletpoints.BulletPoint1"]))
+                    {
+                        <li>@Model.JobDetails.CustomData["Bulletpoints.BulletPoint1"]</li>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.JobDetails.CustomData["Bulletpoints.BulletPoint2"]))
+                    {
+                        <li>@Model.JobDetails.CustomData["Bulletpoints.BulletPoint2"]</li>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.JobDetails.CustomData["Bulletpoints.BulletPoint3"]))
+                    {
+                        <li>@Model.JobDetails.CustomData["Bulletpoints.BulletPoint3"]</li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="row job-offer-summary">
+            <div class="col-md-12">
+                @Html.Raw(Model.JobDetails.Description)
+            </div>
+        </div><div class="row job-offer-contacts">
+            <div class="col-md-12">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td width="160"><strong>Reference Number:</strong></td>
+                            <td>
+                                @Model.JobDetails.ReferenceNo
+                            </td>
+                        </tr>
+                        <tr><td><strong>Contact Details:</strong></td><td>@Model.JobDetails.CustomData["ApplicationMethod.ApplicationEmail"]</td></tr>
+                        <tr>
+                            <td><strong>Profession:&nbsp; </strong></td>
+                            <td>
+
+                                @Html.Raw(String.Join("&nbsp;<span>&gt;</span>&nbsp;", classificationsDisplay))
+                            </td>
+                        </tr>
+                        <tr><td><strong>Company:</strong></td><td>@Model.JobDetails.CustomData["CompanyName"]</td></tr>
+                        @*<tr><td><strong>Date:</strong></td><td>18/09/2016&nbsp; -&nbsp; 5:34pm</td></tr>*@
+                    </tbody>
+                </table>
+            </div>
+        </div><div class="row job-offer-apply">
+            <div class="col-md-12">
+                <a class="btn btn-primary btn-block" href="@ViewBag.JobApplicationPageUrl?jobid=@Model.JobDetails.JobID">APPLY NOW</a>
             </div>
         </div>
     </div>
+</div>
 
     <div class="col-md-4 mb-30 jobdetail-sidebar">
 
@@ -160,10 +165,12 @@
         <ul class="list-unstyled job-offer-actions">
             @*<li><a href="#"><em class="far fa-save"></em>Save this job</a></li>*@
             <li><a href="javascript:window.print();"><em class="fas fa-print"></em>Print this job</a></li>
-            <li><a href="javascript:void(0);" onclick="window.open('mailto:?body=@shareUrl&subject=@pageTitle', 'MailTo', 'toolbar=no,width=550,height=550'); return false" title="Tell a friend">
-                <em class="fas fa-envelope"></em>Email this job
-            </a></li>
-           
+            <li>
+                <a href="javascript:void(0);" onclick="window.open('mailto:?body=@shareUrl&subject=@pageTitle', 'MailTo', 'toolbar=no,width=550,height=550'); return false" title="Tell a friend">
+                    <em class="fas fa-envelope"></em>Email this job
+                </a>
+            </li>
+
         </ul>
 
     </div>

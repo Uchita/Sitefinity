@@ -7,6 +7,10 @@ blockquote{
     display: flex;
     flex-wrap: wrap;
 }
+
+.width-limit{
+    max-width: 450px;
+}
 .page-wrapper {
     //page wrapper class will prevent general styles leaking into page designer styles when not needed
     font-size: $global-font-size-px;
@@ -151,7 +155,9 @@ blockquote{
                 background: url('../images/seek.png') 50% 50% / contain no-repeat;
             }
         }
-
+        &.btn-gplus, &.btn-facebook {
+            color: $brightColor;
+        }
         &.btn-gplus, &.btn-gplus:hover, &.btn-gplus:focus {
             background: #d54634;
         }
@@ -172,6 +178,7 @@ blockquote{
             }
         }
     }
+    
 
     .btn-block .btn {
         display: block;
@@ -586,6 +593,10 @@ blockquote{
     }
 }
 
+.btn-linkedin::before{ content: "\f0e1"; }
+.btn-facebook::before{ content: "\f39e"; }
+.btn-google-plus::before{ content: "\f0d5"; }
+
 img, iframe {
     max-width: 100%;
 }
@@ -611,6 +622,29 @@ img, iframe {
 
 .section-title {
     margin-bottom: 20px;
+}
+
+.box{
+    padding: 2rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    &.box-pad-5{
+        padding: 5rem;
+        @media (max-width:767px) {
+            padding: 3rem;
+        }
+    } 
+    p:last-child{
+        margin-bottom: 0;
+    }
+}
+.green-3-bg{ 
+    background: $green-3; color: $brightColor; 
+    >*{ color: $brightColor!important;} 
+}
+.black-2-bg{ 
+    background: $black-2; color: $brightColor; 
+    >*{ color: $brightColor!important;} 
 }
 
 /*#endregion General */
@@ -850,6 +884,7 @@ header {
                         max-width: 100%;
                     }
                 }
+                
             }
         }
 
@@ -874,7 +909,14 @@ header {
                 }
             }
         }
-
+        .dropdown-menu{
+            a:hover, a:focus{
+                text-decoration: none;
+                h5{
+                    color: $navigation-sublink-hover-color!important;
+                }
+            }
+        }
         .dropdown-submenu {
             position: static;
             padding-right: 30px;

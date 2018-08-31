@@ -13,14 +13,28 @@
 @using Telerik.Sitefinity.Modules.Pages;
 @using Telerik.Sitefinity.Pages.Model;
 
+@using Telerik.Sitefinity.Services;
+@using Telerik.Sitefinity.Security.Model;
+@using Telerik.Sitefinity.Taxonomies;
+@using Telerik.Sitefinity.Taxonomies.Model;
+@using Telerik.OpenAccess;
+@using Telerik.Sitefinity.Web;
+
 @{
-    var categories = Model.Item.GetHierarchicalTaxons("Category");
-    var category = categories.FirstOrDefault();
-    var categoryTitle = category == null ? "No category" : category.Title.ToString();
+    List<string> filterValues = new List<string>();
+    var articleIds = Model.Item.Fields.articles;
+    foreach (var taxonItem in articleIds)
+    {
+        Guid articleID = new Guid(taxonItem.ToString());
+        var taxonManager = TaxonomyManager.GetManager();
+        var taxon = taxonManager.GetTaxa<HierarchicalTaxon>().Where(t => t.Id == articleID).ToList().FirstOrDefault();
+        filterValues.Add(taxon.Title);
+    }
+
 }
 
-<div class="@Model.CssClass" @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)Model.Item.Fields.Id)>
-    <p class="article-detail-category text-center">@categoryTitle</p>
+<div class="@Model.CssClass article-container" @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)Model.Item.Fields.Id)>
+    <p class="article-detail-category text-center">@(string.Join(", ", filterValues))</p>
     <h1 class="article-detail-title text-center" @Html.InlineEditingFieldAttributes("Title", "ShortText")>
         @Model.Item.Fields.Title
     </h1>
@@ -30,23 +44,23 @@
     {
         <img data-displaymode="Original" style="display: block; margin-left: auto; margin-right: auto; margin-bottom: 50px; margin-top: 50px; width:100%;" src='@Model.Item.Fields.HeaderImage.Fields.MediaUrl' alt='@Model.Item.Fields.HeaderImage.Fields.AlternativeText' title='@Model.Item.Fields.HeaderImage.Fields.Title' />
     }
-        <div>
-            @{
-                if (Model.EnableSocialSharing)
-                {
-                    var item = Model.Item.DataItem as Telerik.Sitefinity.Model.IHasTitle;
-                    @Html.SocialShareOptions(item);
-                }
+    <div>
+        @{
+            if (Model.EnableSocialSharing)
+            {
+                var item = Model.Item.DataItem as Telerik.Sitefinity.Model.IHasTitle;
+                @Html.SocialShareOptions(item);
             }
+        }
 
-            <div @Html.InlineEditingFieldAttributes("Content", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Content)</div>
+        <div class="article-description" @Html.InlineEditingFieldAttributes("Content", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Content)</div>
 
-            @{
-                if (Model.EnableSocialSharing)
-                {
-                    var item = Model.Item.DataItem as Telerik.Sitefinity.Model.IHasTitle;
-                    @Html.SocialShareOptions(item);
-                }
+        @{
+            if (Model.EnableSocialSharing)
+            {
+                var item = Model.Item.DataItem as Telerik.Sitefinity.Model.IHasTitle;
+                @Html.SocialShareOptions(item);
             }
-        </div>
+        }
+    </div>
 </div>

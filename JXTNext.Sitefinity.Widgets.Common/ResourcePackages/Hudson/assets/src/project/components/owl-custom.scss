@@ -193,10 +193,12 @@
 
     .quote {
         position: absolute;
-        top: 35px;
+        top: 15px;
 
         &.text-right {
             right: 0;
+            top: auto;
+            bottom: 0;
         }
     }
 
@@ -212,6 +214,16 @@
         font-family: $font-family-medium;
     }
 }
+.section-highlight{
+    .testimonials-slider {
+        color: $brightColor!important;
+        .testimonial{
+            color: $brightColor;
+        }
+    }
+    
+}
+
 /*#endregion Testimonials slider*/
 
 /*#region Life at hudson*/
@@ -240,6 +252,16 @@
 
 .owl-card-basic {
     margin: 40px 0;
+    &.flex{
+        display: flex!important;
+    }
+    &.flex-center{
+        align-items: center;
+        justify-content: center;
+        .item{
+            max-width: 370px;
+        }
+    }
 }
 /*#endregion Life at hudson*/
 

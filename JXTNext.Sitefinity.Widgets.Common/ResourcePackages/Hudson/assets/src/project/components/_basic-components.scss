@@ -627,6 +627,29 @@ img, iframe {
     margin-bottom: 20px;
 }
 
+.box{
+    padding: 2rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    &.box-pad-5{
+        padding: 5rem;
+        @media (max-width:767px) {
+            padding: 3rem;
+        }
+    } 
+    p:last-child{
+        margin-bottom: 0;
+    }
+}
+.green-3-bg{ 
+    background: $green-3; color: $brightColor; 
+    >*{ color: $brightColor!important;} 
+}
+.black-2-bg{ 
+    background: $black-2; color: $brightColor; 
+    >*{ color: $brightColor!important;} 
+}
+
 /*#endregion General */
 
 /*#region Header */

@@ -181,7 +181,11 @@
 
         h1 {
             margin-top: 0;
+            margin-bottom: 0;
         }
+    }
+    &-advantages{
+        margin-bottom: 15px;
     }
 
     &-sidebar {
@@ -319,7 +323,13 @@
     }
 }
 
+.backtoresult{
+    margin-bottom: 25px;
+} 
 
+.spt{
+    margin: 0 10px;
+}
 
 //appilication apge
 

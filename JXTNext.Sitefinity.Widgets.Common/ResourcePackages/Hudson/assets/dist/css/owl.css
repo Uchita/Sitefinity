@@ -353,9 +353,11 @@
     position: static; }
   .testimonials-slider.testimonials-simple .quote {
     position: absolute;
-    top: 35px; }
+    top: 15px; }
     .testimonials-slider.testimonials-simple .quote.text-right {
-      right: 0; }
+      right: 0;
+      top: auto;
+      bottom: 0; }
   .testimonials-slider.testimonials-simple .testimonial {
     padding: 40px 100px 10px;
     font-size: 16px;
@@ -364,6 +366,11 @@
   .testimonials-slider.testimonials-simple .testimonial-author {
     padding: 10px 100px;
     font-family: AkzidGroProMed, sans-serif; }
+
+.section-highlight .testimonials-slider {
+  color: #fff !important; }
+  .section-highlight .testimonials-slider .testimonial {
+    color: #fff; }
 
 /*#endregion Testimonials slider*/
 /*#region Life at hudson*/
@@ -385,6 +392,13 @@
 
 .owl-card-basic {
   margin: 40px 0; }
+  .owl-card-basic.flex {
+    display: flex !important; }
+  .owl-card-basic.flex-center {
+    align-items: center;
+    justify-content: center; }
+    .owl-card-basic.flex-center .item {
+      max-width: 370px; }
 
 /*#endregion Life at hudson*/
 /*#region Contact us*/

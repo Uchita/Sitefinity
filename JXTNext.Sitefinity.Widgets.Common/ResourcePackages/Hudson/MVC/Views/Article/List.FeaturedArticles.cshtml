@@ -20,11 +20,11 @@
 			<li>
 				<div class="featured-article">
 						
-						@if (item.Fields.Category != null)
+						@if (item.Fields.articles != null)
 						  {
 						  
 							<div class="text-muted">
-								@foreach (var taxon in item.GetHierarchicalTaxons("Category"))
+								@foreach (var taxon in item.GetHierarchicalTaxons("Articles"))
 								{
 									 @Html.HtmlSanitize(taxon.Title.ToString())
 									 break;

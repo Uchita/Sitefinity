@@ -7691,6 +7691,30 @@ img, iframe {
 .section-title {
   margin-bottom: 20px; }
 
+.box {
+  padding: 2rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem; }
+  .box.box-pad-5 {
+    padding: 5rem; }
+    @media (max-width: 767px) {
+      .box.box-pad-5 {
+        padding: 3rem; } }
+  .box p:last-child {
+    margin-bottom: 0; }
+
+.green-3-bg {
+  background: #01A3A4;
+  color: #fff; }
+  .green-3-bg > * {
+    color: #fff !important; }
+
+.black-2-bg {
+  background: #232323;
+  color: #fff; }
+  .black-2-bg > * {
+    color: #fff !important; }
+
 /*#endregion General */
 /*#region Header */
 .header-top {
@@ -8940,8 +8964,7 @@ ul.breadcrumb {
 
 .long-card-basic-list .thumbnail {
   margin-bottom: 0;
-  margin-top: 50px;
-  overflow: hidden; }
+  margin-top: 50px; }
   .long-card-basic-list .thumbnail .img-wrap {
     display: block;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -9317,7 +9340,11 @@ ul.breadcrumb {
   width: 100%; }
 
 .job-offer-title h1 {
-  margin-top: 0; }
+  margin-top: 0;
+  margin-bottom: 0; }
+
+.job-offer-advantages {
+  margin-bottom: 15px; }
 
 .job-offer-sidebar h4 {
   margin-top: 30px;
@@ -9402,6 +9429,12 @@ ul.breadcrumb {
 @media (min-width: 1024) {
   .jobdetail-sidebar {
     padding-left: 40px; } }
+
+.backtoresult {
+  margin-bottom: 25px; }
+
+.spt {
+  margin: 0 10px; }
 
 .upload-section .box {
   border: 1px solid #01a3a4;
@@ -9503,8 +9536,10 @@ ul.breadcrumb {
   .article-details .h1, .article-details h1,
   .article-details .h2, .article-details h2,
   .article-details .h3, .article-details h3,
-  .article-details .h4, .article-details h4 {
-    margin-bottom: 15px; }
+  .article-details .h4, .article-details h4,
+  .article-details p, .article-details div, .article-details ul, .article-details ol {
+    margin-top: 0;
+    margin-bottom: 30px; }
   .article-details h1.article-detail-title {
     margin: 20px 0;
     color: #000; }
@@ -9514,6 +9549,11 @@ ul.breadcrumb {
     color: #219fa3; }
   .article-details img {
     margin: 30px 0; }
+  .article-details .article-description {
+    font-size: 1.8rem;
+    line-height: 1.4; }
+    .article-details .article-description .box {
+      margin: 4rem 0; }
 
 .article-detail {
   color: #2e2e2e; }

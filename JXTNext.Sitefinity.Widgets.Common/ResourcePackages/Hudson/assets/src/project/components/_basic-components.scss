@@ -7,6 +7,10 @@ blockquote{
     display: flex;
     flex-wrap: wrap;
 }
+
+.width-limit{
+    max-width: 450px;
+}
 .page-wrapper {
     //page wrapper class will prevent general styles leaking into page designer styles when not needed
     font-size: $global-font-size-px;
@@ -174,18 +178,7 @@ blockquote{
             }
         }
     }
-    .sign-in-with{
-        clear: both;
-        li{
-            float: left;
-            margin-right: 15px;
-            a{
-                &:hover, &:focus{
-                    opacity: 0.9;
-                }
-            }
-        }
-    }
+    
 
     .btn-block .btn {
         display: block;
@@ -599,6 +592,10 @@ blockquote{
         padding-bottom: 50px;
     }
 }
+
+.btn-linkedin::before{ content: "\f0e1"; }
+.btn-facebook::before{ content: "\f39e"; }
+.btn-google-plus::before{ content: "\f0d5"; }
 
 img, iframe {
     max-width: 100%;

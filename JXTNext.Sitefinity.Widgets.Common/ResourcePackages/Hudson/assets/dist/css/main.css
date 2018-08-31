@@ -7257,6 +7257,9 @@ blockquote {
   display: flex;
   flex-wrap: wrap; }
 
+.width-limit {
+  max-width: 450px; }
+
 .page-wrapper {
   font-size: 16px;
   font-size: 1.6rem;
@@ -7370,13 +7373,6 @@ blockquote {
       min-width: 220px; }
       .page-wrapper .btn.btn-gplus:hover, .page-wrapper .btn.btn-gplus:focus, .page-wrapper .btn.btn-facebook:hover, .page-wrapper .btn.btn-facebook:focus {
         color: #fff; }
-  .page-wrapper .sign-in-with {
-    clear: both; }
-    .page-wrapper .sign-in-with li {
-      float: left;
-      margin-right: 15px; }
-      .page-wrapper .sign-in-with li a:hover, .page-wrapper .sign-in-with li a:focus {
-        opacity: 0.9; }
   .page-wrapper .btn-block .btn {
     display: block;
     width: 100%; }
@@ -7669,6 +7665,15 @@ blockquote {
     padding-top: 50px; }
   .page-wrapper .section-space-bottom {
     padding-bottom: 50px; }
+
+.btn-linkedin::before {
+  content: "\f0e1"; }
+
+.btn-facebook::before {
+  content: "\f39e"; }
+
+.btn-google-plus::before {
+  content: "\f0d5"; }
 
 img, iframe {
   max-width: 100%; }
@@ -9128,11 +9133,17 @@ ul.breadcrumb {
   /*#endregion Forms*/
   /*#region Social*/
   /*#endregion Social*/ }
-  .page-wrapper .login-form .forgot-password a {
-    font-style: italic; }
-    .page-wrapper .login-form .forgot-password a, .page-wrapper .login-form .forgot-password a:hover, .page-wrapper .login-form .forgot-password a:focus {
-      color: #8e8e8e;
-      text-decoration: none; }
+  .page-wrapper .login-form .forgot-password {
+    padding-left: 10px; }
+    .page-wrapper .login-form .forgot-password a {
+      font-size: 1.4rem;
+      font-style: italic;
+      color: #b5b5b5; }
+      .page-wrapper .login-form .forgot-password a:hover, .page-wrapper .login-form .forgot-password a:focus {
+        color: #858585;
+        text-decoration: none; }
+  .page-wrapper .login-form .btn-block {
+    margin-top: 10px; }
   .page-wrapper .login-form .basic-form .checkbox {
     margin-left: 0;
     margin-top: 0; }
@@ -9181,13 +9192,29 @@ ul.breadcrumb {
   .page-wrapper .login-form .text-muted {
     margin-top: 10px;
     display: block; }
-  .page-wrapper .sign-in-with ul {
-    margin-top: 50px; }
-    .page-wrapper .sign-in-with ul li .btn {
-      text-align: left;
-      padding: 10px; }
-      .page-wrapper .sign-in-with ul li .btn em {
+  .page-wrapper .sf-registration-link {
+    font-size: 1.4rem; }
+  .page-wrapper .login-form h1 {
+    margin-bottom: 2rem; }
+  .page-wrapper .sign-in-with {
+    clear: both; }
+    .page-wrapper .sign-in-with h2 {
+      font-size: 3.2rem;
+      margin-bottom: 2rem; }
+    .page-wrapper .sign-in-with ul {
+      padding-top: 34px; }
+      .page-wrapper .sign-in-with ul li a::before {
+        font-family: 'Font Awesome 5 Brands';
         margin-right: 10px; }
+      .page-wrapper .sign-in-with ul li a:hover, .page-wrapper .sign-in-with ul li a:focus {
+        opacity: 0.9; }
+      .page-wrapper .sign-in-with ul li .btn {
+        text-align: left;
+        margin-bottom: 0; }
+        .page-wrapper .sign-in-with ul li .btn em {
+          margin-right: 10px; }
+  .page-wrapper .field-wrapper {
+    padding-top: 30px; }
   .page-wrapper .apply-with .btn.btn-indeed {
     background: #f85402 url(../images/indeedBtn.png) no-repeat 50% 50%; }
   .page-wrapper .apply-with .btn.btn-linkedin {
@@ -9199,8 +9226,9 @@ ul.breadcrumb {
     .page-wrapper .apply-with ul li, .page-wrapper .sign-in-with ul li {
       margin-bottom: 5px; }
       .page-wrapper .apply-with ul li .btn, .page-wrapper .sign-in-with ul li .btn {
-        height: 42px;
-        min-width: 120px; }
+        height: 35px;
+        min-width: 120px;
+        padding: 6px 10px; }
   .page-wrapper .apply-with.job-application-social ul, .page-wrapper .sign-in-with.job-application-social ul {
     margin-top: 20px; }
     .page-wrapper .apply-with.job-application-social ul:before, .page-wrapper .apply-with.job-application-social ul:after, .page-wrapper .sign-in-with.job-application-social ul:before, .page-wrapper .sign-in-with.job-application-social ul:after {
@@ -10119,7 +10147,12 @@ ul.breadcrumb {
       margin-bottom: 10px;
       border-right: 1px solid #01a3a4; }
     .page-wrapper .login-form .basic-form .registration-link {
+      margin-top: 20px;
       padding-right: 30px; }
+  .page-wrapper .reg-form .basic-form {
+    margin-top: 0; }
+    .page-wrapper .reg-form .basic-form .login-border {
+      padding-top: 0; }
   .page-section .right-bottom-img img {
     max-width: 43%; }
   .page-section .center-bottom-img img {

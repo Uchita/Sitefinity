@@ -15,36 +15,22 @@
     {
         using (Html.BeginFormSitefinity(@Request.Url.Query, null, null, FormMethod.Post, null, true))
         {
-            <div class="">
-                @Html.ValidationSummary(true)
+            <div class="sign-in-with">
+                <h2>Sign in with</h2>
+                @if (Model.ExternalProviders != null && Model.ExternalProviders.Count() > 0)
+                { 
+                    <ul class="list-unstyled">
 
-                <h1>@Html.Resource("LoginFormLogInLegendHeader")</h1>
-                <div class="basic-form">
-
-
-                    @if (Request.Url.Query.Contains("err=true") || Model.LoginError)
-                    {
-                        <div class="alert alert-danger">
-                            @Html.Resource("IncorrectCredentialsMessage")
-                        </div>
+                    @foreach (var provider in Model.ExternalProviders)
+                    {   
+                        var classToBeAdd = "btn btn-" + @provider.Key.ToLower().ToString();
+                        <li>
+                            @Html.ActionLink(provider.Key, "LoginExternalProvider", new { model = provider.Key }, new { @class = classToBeAdd })
+                        </li>
                     }
-                    
 
-                    @if (Model.ExternalProviders != null && Model.ExternalProviders.Count() > 0)
-                    {
-                        <div class="col-md-6">
-                            <h3>@Html.Resource("UseAccountIn")</h3>
-
-                            @foreach (var provider in Model.ExternalProviders)
-                            {
-                                var classToBeAdd = "btn btn-default btn-lg btn-block " + @provider.Value;
-                                <div class="sf-mb-xs">
-                                    @Html.ActionLink(provider.Key, "LoginExternalProvider", new { model = provider.Key }, new { @class = classToBeAdd })
-                                </div>
-                            }
-                        </div>
-                    }
-                </div>
+                    </ul>
+                }
             </div>
         }
     }

@@ -137,7 +137,16 @@
             }
 
             .registration-link {
+                margin-top: 20px;
                 padding-right: 30px;
+            }
+        }
+        .reg-form{
+            .basic-form{
+                margin-top: 0;
+                .login-border{
+                    padding-top: 0;
+                }
             }
         }
     }

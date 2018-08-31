@@ -26,12 +26,12 @@
 
 <div class="@Model.CssClass">
 
-    <div class="owl-carousel owl-card-basic owl-theme">
+    <div class="row long-card-basic-list flex">
         @foreach (var item in Model.Items)
         {
             var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
 
-            <div class="item">
+            <div class="col-md-4">
                 <div class="thumbnail card-basic small-caption">
                     @if (item.Fields.HeaderImage != null)
                     {
@@ -70,6 +70,11 @@
 
     </div>
 
-    <div class="text-center"><a class="btn btn-default" href="@SiteMapBase.GetActualCurrentNode().Url.ToString().Substring(1)/-in-article/articles/">VIEW ALL COVER LETTERS</a></div>
+    @if (Model.ShowPager)
+    {
+        @Html.Action("Index", "ContentPager", new { currentPage = Model.CurrentPage,
+                        totalPagesCount = Model.TotalPagesCount.Value,
+                        redirectUrlTemplate = ViewBag.RedirectPageUrlTemplate })
+    }
 
 </div>

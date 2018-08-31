@@ -5,13 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="JXTNext.FileHandler" Version="1.0.0" />
     <PackageReference Include="Telerik.Sitefinity.Core" Version="11.0.6726" />
     <PackageReference Include="Telerik.Sitefinity.Feather.Core" Version="11.0.6726" />
     <PackageReference Include="Telerik.Sitefinity.OpenAccess" Version="2016.2.822.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\common-library\JXTNext.FileHandler\JXTNext.FileHandler.csproj" />
   </ItemGroup>
 
 </Project>

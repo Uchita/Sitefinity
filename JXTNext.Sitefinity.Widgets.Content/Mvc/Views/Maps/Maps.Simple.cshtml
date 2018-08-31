@@ -10,15 +10,22 @@
     var srcPlugin = domainName + "/Frontend-Assembly/JXTNext.Sitefinity.Widgets.Content/Mvc/Scripts/Maps/jquery.googlemap.js";
 }
 
-@Html.Script(Url.Content(srcMap), "bottom")
-@Html.Script(Url.Content(srcPlugin), "bottom")
+@if (!mapsAPIKey.IsNullOrEmpty())
+{
+    @Html.Script(Url.Content(srcMap), "bottom")
+    @Html.Script(Url.Content(srcPlugin), "bottom")
 
-<div class="map-placeholder" data-zoom="@Model.ZoomLevel" data-called=false style="width: 500px; height: 500px;">
-    @foreach (var marker in Model.MapsMarkers)
-    {
-        <span data-address="@marker.Address" data-icon="@marker.MarkerIconPath"></span>
-    }
-</div>
+    <div class="map-placeholder hidden" data-zoom="@Model.ZoomLevel" data-called=false style="width: 500px; height: 500px;">
+        @foreach (var marker in Model.MapsMarkers)
+        {
+            <span data-address="@marker.Address" data-icon="@marker.MarkerIconPath"></span>
+        }
+    </div>
+}
+else
+{
+    <div class="alert alert-danger">Google Maps API key is not set. Please set at "Administration->Settings->Custom Site Settings"</div>
+}
 
 <script type="text/javascript">
 
@@ -57,6 +64,7 @@
                 });
 
                 if (markers.length > 0) {
+                    $(this).removeClass('hidden');
                     $(this).googleMap({
                         zoom: zoomLevel // Initial zoom level (optional)
                     });

@@ -59,6 +59,15 @@ namespace JXTNext.Sitefinity.Common.Helpers
             return googleMapsAPIKey;
         }
 
+        public string GetCurrentSiteGoogleTagManagerKey()
+        {
+            string googleTagManagerKey = "";
+            if (this._siteSettingsContract != null)
+                googleTagManagerKey = this._siteSettingsContract.GoogleTagManagerKey;
+
+            return googleTagManagerKey;
+        }
+
         public string GetCurrentSiteDropboxAppId()
         {
             string dropboxAppId = "";

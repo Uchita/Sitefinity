@@ -1,0 +1,43 @@
+﻿@model Telerik.Sitefinity.Frontend.DynamicContent.Mvc.Models.DynamicContentListViewModel
+
+@using Telerik.Sitefinity.Frontend.DynamicContent.WidgetTemplates.Fields.Helpers;
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Data.ContentLinks;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Frontend.Mvc.Models;
+@using Telerik.Sitefinity.Web.DataResolving;
+@using Telerik.Sitefinity.Model.ContentLinks;
+@using Telerik.Sitefinity.Modules.Pages;
+
+@{ var countOfMembers = 0; }
+
+<div class="board-members @Model.CssClass">
+    @foreach (var member in Model.Items)
+    {
+        var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(member, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+        
+        if (countOfMembers % 3 == 0)
+        {
+            @: <div class="board-members-row">
+        }
+
+        <div class="board-members-item">
+            <div class="board-members-item-image">
+                @if (member.Fields.Image != null)
+                {
+                    <img src='@member.Fields.Image.Fields.MediaUrl' alt='@member.Fields.Image.Fields.AlternativeText' title='@member.Fields.Image.Fields.Title' />
+                }
+                <a class="link-overlay" href="@navigateUrl">View Profile</a>
+            </div>
+            <h3 class="highlighted-heading">@member.Fields.Name</h3>
+            <h4>@member.Fields.Position</h4>
+        </div>
+
+        if (countOfMembers % 3 == 2 || countOfMembers == (Model.Items.Count() - 1))
+        {
+        @: </div>
+        }
+
+        countOfMembers++;
+    }
+</div>

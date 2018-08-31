@@ -1,0 +1,24 @@
+ul.breadcrumb {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.breadcrumb {
+    border: 0;
+    border-radius: 0;
+    background: none;
+
+    & > li + li:before {
+        content: '> ';
+        padding: 0;
+        color: $breadcrubms-link-separator;
+    }
+
+    .active {
+        color: $breadcrubms-link-separator;
+    }
+
+    a {
+        color: $breadcrubms-link-color;
+    }
+}

@@ -1,0 +1,46 @@
+@model Telerik.Sitefinity.Frontend.Navigation.Mvc.Models.INavigationModel
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Frontend.Navigation.Mvc.Models;
+@using Telerik.Sitefinity.Modules.Pages;
+
+<div class="quick-links quick-links-toggle active" data-quick-links-toggle="">QUICK LINKS<em class="fas fa-chevron-right"></em></div>
+<div class="quick-links quick-links-content" data-quick-links-content="">
+    <div class="quick-links-close" data-quick-links-close=""><em class="fas fa-times"></em></div>
+    <ul class="list-unstyled">
+        @foreach (var node in Model.Nodes)
+        {
+            @RenderRootLevelNode(node);
+        }
+    </ul>
+</div>
+
+@helper RenderRootLevelNode(NodeViewModel node)
+{
+    <li><a href="@node.Url"><em class="@GetClass(node)"></em>@node.Title</a></li>
+}
+
+@helper GetClass(NodeViewModel node)
+{
+    var cssClass = "far ";
+
+    switch (node.Title.ToLower())
+    {
+        case "submit an inquiry":
+            cssClass += "fa-paper-plane";
+            break;
+        case "job seekers":
+            cssClass = "fas fa-search";
+            break;
+        case "submit your cv":
+            cssClass += "fa-edit";
+            break;
+        case "job application":
+            cssClass += "fa-bell";
+            break;
+        default:
+            cssClass = "fas fa-link";
+            break;
+    }
+
+    @Html.Raw(cssClass);
+}

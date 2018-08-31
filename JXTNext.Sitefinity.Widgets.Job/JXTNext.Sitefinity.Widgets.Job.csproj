@@ -332,6 +332,8 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mvc\Views\JobDetails\JobDetails.AppPage.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\JobFilters\T_MultiSelect.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\JobFilters\_SimpleJS_Partial.cshtml" />
     <None Include="web.config" />
     <None Include="app.config" />
     <EmbeddedResource Include="Mvc\Views\JobDetails\DesignerView.Simple.cshtml" />
@@ -346,7 +348,7 @@
     <EmbeddedResource Include="Mvc\Views\JobSearch\JobSearch.Simple.cshtml" />
     <EmbeddedResource Include="Mvc\Views\JobSearch\JobSearchMockData.json" />
     <EmbeddedResource Include="Mvc\Views\JobSearch\Simple.cshtml" />
-    <EmbeddedResource Include="Mvc\Views\JobSearchResults\_JobSearchResults.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\Shared\_JobSearchResults.cshtml" />
     <EmbeddedResource Include="Mvc\Views\Shared\_Layout.cshtml" />
     <EmbeddedResource Include="Mvc\Views\JobFilters\T_FullTree.cshtml" />
     <EmbeddedResource Include="Mvc\Views\JobFilters\T_Simple.cshtml" />

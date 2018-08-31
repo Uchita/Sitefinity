@@ -1,0 +1,106 @@
+.risk-measurement {
+    @extend .clearfix;
+    color: #fff;
+    text-align: center;
+
+    .risk-wrapper {
+        float: left;
+        padding: 0 20px;
+        overflow: hidden;
+        margin-top: 20px;
+        position: relative;
+
+        .risk {
+            height: 345px;
+            position: relative;
+
+            .risk-title {
+                font-size: 24px;
+                font-size: 2.4rem;
+                padding: 20px;
+                position: relative;
+
+                &:after {
+                    content: '';
+                    border-left: 25px solid transparent;
+                    border-right: 25px solid transparent;
+                    border-top: 12px solid #fff;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    margin: auto;
+                    width: 0;
+                    height: 0;
+                }
+            }
+
+            .risk-sum {
+                position: absolute;
+                padding: 20px;
+                bottom: -5px;
+                width: 100%;
+            }
+
+            img {
+                -webkit-transition: .4s;
+                transition: .4s;
+                bottom: -200px;
+                position: absolute;
+                left: 0;
+                right: 0;
+                margin: auto;
+            }
+
+            &:hover {
+                cursor: pointer;
+
+                img {
+                    bottom: 80px;
+                }
+            }
+
+            .risk-title, .risk-sum, img {
+                z-index: 1;
+            }
+
+            &:before, &:after {
+                content: '';
+                position: absolute;
+                top: -60%;
+                height: 100%;
+                width: 50%;
+                background: rgba(0, 0, 0, 0.08);
+                z-index: 0;
+            }
+
+            &:before {
+                left: 0;
+                -webkit-transform: skew(0deg, 24deg);
+                -moz-transform: skew(0deg, 24deg);
+                -ms-transform: skew(0deg, 24deg);
+                -o-transform: skew(0deg, 24deg);
+                transform: skew(0deg, 24deg);
+            }
+
+            &:after {
+                right: 0;
+                -webkit-transform: skew(0deg, -24deg);
+                -moz-transform: skew(0deg, -24deg);
+                -ms-transform: skew(0deg, -24deg);
+                -o-transform: skew(0deg, -24deg);
+                transform: skew(0deg, -24deg);
+            }
+        }
+
+        &:after {
+            content: '';
+            border-top: 15px solid transparent;
+            border-left: 15px solid transparent;
+            border-bottom: 15px solid #fff;
+            position: absolute;
+            bottom: 0;
+            right: 20px;
+        }
+    }
+}

@@ -1,0 +1,927 @@
+/*#region Tablet*/
+@media (min-width:768px) {
+    header {
+
+        .brand-logo {
+            height: 55px;
+            position: relative !important;
+            top: 15px;
+
+            a {
+
+                img {
+                    margin-top: 20px;
+                    height: 60px;
+                }
+            }
+        }
+
+        .main-nav .collapse.navbar-collapse,
+        .main-nav .dropdown-menu-container .dropdown-menu-columns {
+            width: 750px;
+        }
+
+        .mobile-nav {
+            .navbar-collapse.collapse {
+                display: none !important;
+            }
+        }
+    }
+
+    .page-section {
+        .gap-extra{
+            padding-left: 35px;
+        }
+        .right-bottom-img img {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            max-width: 38%;
+            width:auto;
+        }
+    } 
+    .white-box-single .white-box .white-box-ul li {
+        width: 50%;
+        float:left;
+        padding: 0 30px 0 0;
+    }
+}
+@media (min-width:768px) and (max-width: 1199px) {
+
+    header {
+
+        .navbar {
+
+            &.navbar-default {
+
+                .navbar-nav > li > a {
+                    padding: 0 5px;
+                }
+
+                .navbar-nav > li > a,
+                .navbar-nav > .active > a,
+                .navbar-nav > .active > a:focus,
+                .navbar-nav > .active > a:hover {
+                    font-size: 12px;
+                    font-size: 1.2rem;
+                }
+            }
+        }
+    }
+
+    .thumbnail {
+
+        &.card-rollover-bg .card-description {
+            padding: 15px;
+        }
+    }
+
+    .risk-measurement .risk-wrapper {
+        width: 50%;
+    }
+    .list-featured-articles{
+        font-size: 1.4rem;
+        line-height: 1.4;
+        .featured-article{
+            min-height: 155px;
+            padding: 20px 10px 20px 30px;
+            .btn.btn-more {
+                width: 20px;
+                height: 20px;
+
+                &:after {
+                    font-size: 14px;
+                    font-size: 1.4rem;
+                    line-height: 20px;
+                }
+            }
+        }
+        h3{
+            font-size: 1.6rem;
+            margin-top: 7px;
+            margin-bottom: 7px;
+        }
+    }
+
+}
+
+
+/*#region Small desktop*/
+@media (min-width:992px) {
+    header {
+
+        .brand-logo {
+            height: 78px;
+
+            a {
+                position: absolute;
+                z-index: 10;
+
+            }
+        }
+
+        .main-nav .collapse.navbar-collapse,
+        .main-nav .dropdown-menu-container .dropdown-menu-columns {
+            width: 970px;
+        }
+    }
+
+    .page-wrapper {
+        .login-form .basic-form {
+            margin-top: 20px;
+
+            .login-border {
+                padding: 30px 30px 0 0;
+                margin-bottom: 10px;
+                border-right: 1px solid$global-highlight-color;
+            }
+
+            .registration-link {
+                padding-right: 30px;
+            }
+        }
+    }
+    
+    .page-section {
+
+        .right-bottom-img img {
+            max-width: 43%;
+        }
+
+        .center-bottom-img img {
+            position: absolute;
+            left: 55%;
+            bottom: 0;
+            max-height: 90%;
+        }
+
+        .right-top-above {
+            img {
+                margin-top: -75px;
+                position: relative;
+                max-width: 115%;
+            }
+        }
+
+        .right-bottom-below {
+            img {
+                bottom: -155px;
+                position: absolute;
+                overflow: visible;
+                z-index: 1;
+            }
+        }
+    }
+
+    .process-card-holder.display-table {
+        margin-left: -15px;
+        margin-right: -15px;
+        width: auto;
+        min-width: 100%;
+        margin-top: 20px;
+
+        .display-cell {
+            position: relative;
+            padding: 0 35px 20px 35px;
+
+            &:before {
+                background-color: #fff;
+                position: absolute;
+                content: '';
+                height: 100%;
+                width: 95%;
+                width: calc(100% - 30px);
+                z-index: 0;
+                left: 0;
+                right: 0;
+                margin: auto;
+            }
+        }
+
+        &.process-card-holder-3 .display-cell {
+            width: 33.3333333333%;
+        }
+
+        &.process-card-holder-4 .display-cell {
+            width: 25%;
+        }
+    }
+
+    .consultant-form {
+
+        .col-md-8 {
+            width: 50%;
+        }
+    }
+
+    .contact-consultant .contact-consultant-info {
+        position: relative;
+        min-height: 325px;
+        padding-bottom: 70px;
+
+        .btn {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+    }
+
+    .white-box-single .white-box .white-box-ul  li{
+        width: 33.3333333333%;
+    }
+}
+/*#endregion Small desktop*/
+
+/*#region Large desktop*/
+@media (min-width:1200px) {
+    
+    header {
+
+        .main-nav .collapse.navbar-collapse,
+        .main-nav .dropdown-menu-container .dropdown-menu-columns {
+            width: 1170px;
+        }
+    }
+
+    .page-wrapper {
+
+        .basic-form {
+
+            .form-label {
+                padding-top: 10px;
+            }
+
+            .upload-section .form-label {
+                padding-top: 0px;
+            }
+        }
+    }
+
+    .risk-measurement .risk-wrapper {
+        width: 20%;
+
+        .risk img {
+            left: 15px;
+        }
+    }
+    
+    .contact-consultant .contact-consultant-info {
+        min-height: 400px;
+    }
+
+    .right-bottom-below img {
+        max-width: 115%;
+    }
+    
+}
+/*#endregion Large desktop*/
+
+/*#endregion Tablet*/
+@media (max-width: 1199px){
+    .long-card-basic-list {
+        .thumbnail{
+            .img-wrap{
+                height: 200px;
+            }
+        }
+    }
+    .thumbnail.card-basic{
+        .caption{
+            min-height: 230px;
+        }
+    }
+}
+
+@media (max-width: 991px) {
+    .flex{
+        display: block;
+    }
+    .sm-text-center{
+        text-align: center!important;
+    }
+    .page-wrapper {
+        font-size: 14px;
+        font-size: 1.4rem;
+        line-height: normal;
+
+        .h1, h1 {
+            font-size: 30px;
+            font-size: 3rem;
+        }
+
+        .h2, h2 {
+            font-size: 20px;
+            font-size: 2rem;
+        }
+
+        .h3, h3 {
+            font-size: 16px;
+            font-size: 1.6rem;
+        }
+
+        .btn {
+            font-size: 14px;
+            font-size: 1.4rem;
+        }
+
+        .basic-form .form-label {
+            text-align: left;
+        }
+    }
+
+    header {
+        .navbar.navbar-default .navbar-nav{
+            width: 77%;
+            > li{
+                padding-left: 3px;
+                padding-right: 3px;
+            }
+            > li + li > a:before{
+                left: -6px;
+            }
+        }
+        .main-nav .navbar-nav > li.dropdown:hover {
+
+            .dropdown-menu {
+                padding: 10px;
+                width: 50%;
+
+                &:nth-child(3), &:nth-child(4) {
+                    display: none;
+                }
+
+                & + .dropdown-menu {
+                    padding-left: 10px;
+                }
+            }
+        }
+    }
+
+    footer {
+
+        a img {
+            max-width: 200px;
+        }
+    }
+    .paralax-image{
+        background-position: center!important;
+    }
+    .testimonials-slider {
+        padding: 50px 0;
+
+        .owl-dots {
+            bottom: 25px;
+        }
+
+        .owl-item {
+            padding: 30px 45px;
+            min-height: 240px;
+        }
+
+        .quote {
+            height: 33px;
+            font-size: 123px;
+            font-size: 12.3rem;
+
+            span {
+                top: 10px;
+            }
+        }
+
+        .testimonial {
+            padding-top: 20px;
+            padding-bottom: 10px;
+            font-size: 16px;
+            font-size: 1.6rem;
+        }
+
+        .testimonial-title {
+            font-size: 24px;
+            font-size: 2.4rem;
+            padding: 0 50px;
+        }
+
+        .testimonial-author {
+            font-size: 11px;
+            font-size: 1.1rem;
+        }
+    }
+
+    .thumbnail {
+
+        &.card-basic {
+
+            .caption {
+                // padding: 20px 50px 40px;
+                min-height: 180px;
+            }
+        }
+
+        &.card-rollover .card-description {
+            font-size: 16px;
+            font-size: 1.6rem;
+        }
+    }
+    .long-card-basic-list{
+        .thumbnail{
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            .img-wrap{
+                max-height: none;
+            }
+        }
+    }
+    
+    .process-card-holder .display-cell {
+        display: block;
+        margin-top: 20px;
+
+        .process-card {
+            background-color: #fff;
+            padding: 20px;
+        }
+    }
+
+    .customer-logo {
+        height: 120px;
+    }
+
+    .list-featured-articles {
+        margin-bottom: 45px;
+
+        li + li {
+            margin-top: 55px;
+        }
+
+        .featured-article {
+            margin-right: 35%;
+            min-height: 140px;
+
+            &-image {
+                width: 35%;
+            }
+
+            .btn.btn-more {
+                width: 20px;
+                height: 20px;
+
+                &:after {
+                    font-size: 14px;
+                    font-size: 1.4rem;
+                    line-height: 20px;
+                }
+            }
+        }
+
+        .text-muted {
+            font-size: 10px;
+            font-size: 1rem;
+        }
+
+        .h3, h3 {
+            margin-top: 5px;
+        }
+
+        h3 + div {
+            height: 35px;
+            overflow: hidden;
+            position: relative;
+
+            &:after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                height: 30px;
+                width: 100%;
+                background: -webkit-linear-gradient(#fff, #fff);
+                background: linear-gradient(rgba(0,0,0,0), rgba(255, 255, 255, 1));
+            }
+        }
+    }
+
+    .consultant-images img {
+        margin-bottom: 10px;
+    }
+
+    .testimonials-slider .testimonial-title {
+        margin: 0 auto;
+    }
+
+    .center-bottom-img{
+        text-align: center;
+        [class*="col-sm"]{
+            width: auto;
+            float: none;
+        }
+    }
+}
+
+
+/*#region Phones*/
+@media (max-width: 767px) {
+    
+    header {
+
+        .navbar-fixed-top:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            width: 100%;
+            height: 100%;
+            background: #007077;
+            background: rgba(0,112,119,.8);
+        }
+        .navbar-fixed-top{
+            .brand-logo {
+                height: 40px;
+                display: block;
+                margin: 10px auto;
+                text-align: center;
+
+                img {
+                    height: 60px;
+                }
+            }
+        }
+
+        .main-nav {
+            position: absolute;
+            top: 15px;
+            left: 10px;
+            margin: 0;
+            height: 0;
+
+            .navbar-default .navbar-toggle {
+                float: left;
+                border: 0;
+                margin: 0;
+                padding: 7px 10px;
+
+                .icon-bar {
+                    background-color: $btn-primary-color;
+                }
+
+                &:hover, &:active, &:focus {
+                    background: none;
+
+                    .icon-bar {
+                        background-color: $btn-primary-color;
+                    }
+                }
+            }
+        }
+        
+    }
+
+    .mobile-owl-carousel {
+
+        &.owl-loaded {
+
+            .col-xs-6 {
+                float: none;
+                width: 100%;
+            }
+
+            .customer-logo {
+                height: 140px;
+
+                img {
+                    margin: 0 auto;
+                    width: auto;
+                }
+            }
+        }
+    }
+
+    .paralax-image {
+        background-size: auto !important;
+    }
+
+    .jumbotron-container .jumbotron {
+
+        .h1, h1 {
+            font-size: 30px;
+            font-size: 3rem;
+        }
+
+        p {
+            font-size: 18px;
+            font-size: 1.8rem;
+        }
+    }
+
+    .thumbnail {
+
+        &.card-rollover {
+            margin-top: 20px;
+            margin-bottom: 0;
+            text-align: left;
+
+            .caption {
+                padding: 9px 0;
+
+                .h3, h3 {
+                    font-size: 18px;
+                    font-size: 1.8rem;
+                    color: $global-text-color;
+                }
+            }
+
+            .card-description {
+                position: static;
+                padding: 0;
+                font-size: 14px;
+                font-size: 1.4rem;
+                opacity: 1;
+                filter: alpha(opacity=100);
+                -webkit-transition: none;
+                transition: none;
+                background: none;
+                color: $global-text-color;
+                .card-description-content{
+                    padding: 0;
+                }
+            }
+        }
+    }
+
+    .job-search {
+
+        .filter-job-classification .row {
+
+            & + .row {
+                margin-top: 0;
+            }
+
+            & > div {
+                float: left;
+                margin-top: 5px;
+                margin-bottom: 5px;
+                width: 50%;
+            }
+        }
+    }
+
+    .list-featured-articles {
+        padding: 0;
+        margin: 0 auto 40px;
+        width: 90%;
+
+        li {
+
+            & + li {
+                margin-top: 0 !important;
+
+                &:before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    right: 10%;
+                    display: block;
+                    border-top: 2px solid #ebebeb;
+                    width: 80%;
+                    z-index: 1;
+                }
+            }
+
+            &:first-child {
+                padding-top: 230px;
+
+                .featured-article-image {
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    display: block;
+                    box-shadow: none;
+                    width: 100%;
+                    height: 230px;
+                    overflow: hidden;
+                }
+
+                .featured-article {
+                }
+            }
+
+            .featured-article-image {
+                display: none;
+            }
+
+            .featured-article {
+                margin: 0 auto;
+                width: 90%;
+            }
+        }
+    }
+
+    .risk-measurement .risk-wrapper {
+        width: 100%;
+    }
+
+    .white-box-list .white-box {
+        height: auto !important;
+        min-height: 0;
+        margin-right: 0;
+    }
+
+    .thumbnail.card-rollover .card-rollover-more{
+        position:relative;
+        padding-right:35px;
+        .btn{
+            position: absolute;
+            bottom:7px;
+            right:0;
+        }
+    }
+    
+    .page-wrapper{
+        position: relative;
+        padding-bottom: 50px;
+        .quick-links {
+
+            &-toggle,
+            &-toggle.active {
+                display: none;
+            }
+    
+            &-content {
+                top: auto;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                position: absolute;
+                padding: 15px;
+            }
+    
+            .list-unstyled {
+                display: flex;
+                li {
+                    width: 25%;
+                    text-align: center;
+                    flex-grow: 1;
+                    padding: 0 10px;
+                    margin-bottom: 0;
+                }
+            }
+    
+            .quick-links-close {
+                display: none;
+            }
+    
+            a {
+                font-size: 0;
+    
+                .far, .fas {
+                    position: static;
+                    font-size: 21px;
+                    font-size: 2.1rem;
+                }
+            }
+        }
+        footer{
+            .page-section{
+                padding: 15px 0;
+            }
+            .footer-social{
+                margin-top: 18px;
+            }
+        }
+    }
+
+    .testimonials-slider {
+        .quote{
+            height: 33px;
+            &.text-right{
+                top: 20px;
+            }
+        }
+        .owl-item{
+            padding-bottom: 30px
+        }
+        .owl-dots{
+            bottom: 43px;
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .owl-carousel-jumbotron .owl-nav {
+        display: none;
+    }
+}
+
+@media (min-width: 500px) and (max-width:767px) {
+    .col-xs-6:nth-child(2n+1) {
+        clear: left;
+    }
+}
+
+@media (max-width:499px) {
+
+    $grid-prefix: col-xs !default
+
+    @for $i from 1 through 12 {
+        .#{$grid-prefix}-#{$i} {
+            float: none;
+            width: 100%;
+        }
+    }
+
+    .hide-sub-xs {
+        display: none !important;
+    }
+
+    .thumbnail.card-rollover {
+        margin-top: 5px;
+        padding: 10px;
+        display: tablet;
+        .card-rollover-image{
+            display: table-cell;
+            padding-right: 20px;
+            width: 100px;
+            vertical-align: middle;
+        }
+        .caption{
+            display: table-cell;
+            vertical-align: middle;
+            h3{
+                margin-top: 0;
+                margin-bottom: 5px;
+            }
+        }
+
+    }
+
+    .page-wrapper {
+        footer{
+            .col-xs-3, .col-xs-9{
+                float: left;
+                width: auto;
+            }
+            .brand-logo{
+                height: 45px;
+            }
+            .footer-social{
+                .fab{
+                    margin: 0 3px;
+                }
+            }
+            .postfooter-links a{
+                font-size: 1.3rem;
+            }
+        }
+    }
+
+    header {   
+    }
+
+    .job-search {
+
+        .filter-active a:after {
+            content: none;
+        }
+
+        .filter-job-classification {
+
+            &:before {
+                content: '';
+                position: absolute;
+                left: 48%;
+                top: -18px;
+                display: block;
+                border: 10px solid transparent;
+                border-bottom-color: #ebebeb;
+            }
+
+            .row {
+
+                & > div {
+                    float: none;
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .board-members-item {
+        width: 100%;
+
+        & + .board-members-item {
+            margin-left: 0;
+        }
+    }
+
+    .owl-carousel.owl-drag{
+        .owl-item, .testimonial{
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+    }
+}
+
+/*#endregion Phones*/
+
+

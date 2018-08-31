@@ -78,6 +78,14 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
             }
         }
 
+        protected virtual TextField GoogleTagManagerKey
+        {
+            get
+            {
+                return this.Container.GetControl<TextField>("googleTagManagerKey", true);
+            }
+        }
+
         protected virtual TextField DropboxAppId
         {
             get

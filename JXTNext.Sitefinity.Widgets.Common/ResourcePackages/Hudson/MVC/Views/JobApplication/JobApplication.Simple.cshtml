@@ -1,0 +1,47 @@
+﻿@using JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models.JobApplication;
+
+@model JobApplicationViewModel
+
+@if (ViewBag.ShowFilesUploadMessage != null)
+{
+    <div class="alert alert-success">@ViewBag.ShowFilesUploadMessage</div>
+}
+
+@using (Html.BeginForm("ApplyJob", "JobApplication", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="upload-section">
+        @*<div class="section-header">
+            <h3>Hello @Model.ApplicationTitle</h3>
+        </div>*@
+        
+            @if (Model.ApplicationStatus == JobApplicationStatus.Available)
+            {
+                foreach (JobApplicationAttachmentItem attachment in Model.ApplicationAttachments)
+                {
+                    <div class="form-group row">
+                        <label class="col-xs-12 col-md-4 text-right">@attachment.Title</label>
+                        <div class="col-xs-12 col-md-8">
+                            <div class="box">
+                                <small class="note">MS Word, PDF, HTML and text formats accepted.</small>
+                                <div class="uploadfield-wrap">
+                                    <input type="file" name="@attachment.AttachementFileUploadKey" />
+                                    <small class="lbl">Browse</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <h4>@Model.ApplicationStatus.ToString()</h4>
+                <p>@Model.ApplicationMessage</p>
+            }
+       
+       
+        <div class="form-group button-wrapper row">
+            <label class="col-xs-12 col-md-4"></label>
+            <div class="col-xs-12 col-md-8"><input class="btn btn-primary btn-block" type="submit" value="Apply Now" /></div>
+        </div>
+    </div>
+}  

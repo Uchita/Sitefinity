@@ -311,6 +311,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         private string templateName = "Simple";
         private string templateNamePrefix = "JobApplication.";
         private string _itemType = "Telerik.Sitefinity.DynamicTypes.Model.StandardEmailTemplate.EmailTemplate";
-        private string _emailTemplateProviderName = "dynamicProvider8";
+        private string _emailTemplateProviderName = "OpenAccessProvider";
     }
 }

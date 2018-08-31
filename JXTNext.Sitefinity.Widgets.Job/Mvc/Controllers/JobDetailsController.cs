@@ -12,6 +12,8 @@ using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
 using JXTNext.Sitefinity.Widgets.Job.Mvc.Models;
 using System.ComponentModel;
 using System.Collections.Specialized;
+using Newtonsoft.Json.Linq;
+using System.Text.RegularExpressions;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -36,7 +38,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         IBusinessLogicsConnector _BLConnector;
         IOptionsConnector _OConnector;
 
-         /// <summary>
+        /// <summary>
         /// Gets or sets the name of the template that widget will be displayed.
         /// </summary>
         /// <value></value>
@@ -72,9 +74,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
                 // Getting Consultant Avatar Image Url from Sitefinity 
                 var user = SitefinityHelper.GetUserByEmail(jobListingResponse.Job.CustomData["ApplicationMethod.ApplicationEmail"]);
-                if(user != null && user.Id != Guid.Empty)
+                if (user != null && user.Id != Guid.Empty)
                     viewModel.ApplicationAvatarImageUrl = SitefinityHelper.GetUserAvatarUrlById(user.Id);
-          
+
                 if (this.Model.IsJobApplyAvailable())
                     viewModel.JobApplyAvailable = true;
 
@@ -86,20 +88,41 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 OrderedDictionary classifParentIdsOrdDict = new OrderedDictionary();
                 JobDetailsViewModel.AppendParentIds(classifOrdDict, classifParentIdsOrdDict);
 
+                var bull = jobListingResponse.Job.CustomData["Bulletpoints.BulletPoint1"];
+
                 // Processing Locations
                 OrderedDictionary locOrdDict = new OrderedDictionary();
                 classifOrdDict.Add(jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].ExternalReference"], jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].Value"]);
                 string parentLocKey = "CountryLocationArea[0].Filters[0].SubLevel[0]";
                 JobDetailsViewModel.ProcessCustomData(parentLocKey, jobListingResponse.Job.CustomData, locOrdDict);
                 
+
+                DateTime localTime = TimeZoneInfo.ConvertTimeFromUtc(ConversionHelper.GetDateTimeFromUnix(jobListingResponse.Job.DateCreated), TimeZoneInfo.FindSystemTimeZoneById("AUS Eastern Standard Time"));
+                DateTime utcTime = ConversionHelper.GetDateTimeFromUnix(jobListingResponse.Job.DateCreated);
+
+                TimeSpan offset = localTime - utcTime;
+
                 viewModel.Classifications = classifParentIdsOrdDict;
                 viewModel.Locations = locOrdDict;
                 viewModel.ClassificationsRootName = "Classifications";
-               
+
                 ViewBag.CssClass = this.CssClass;
                 ViewBag.JobApplicationPageUrl = SitefinityHelper.GetPageUrl(this.JobApplicationPageId);
                 ViewBag.JobResultsPageUrl = SitefinityHelper.GetPageUrl(this.JobResultsPageId);
-
+                ViewBag.GoogleForJobs = ReplaceToken(GoogleForJobsTemplate, JsonConvert.SerializeObject(new
+                {
+                    CurrencySymbol = "$",
+                    SalaryLowerBand = jobListingResponse.Job.CustomData.ContainsKey("Salaries[0].Filters[0].Min") ? jobListingResponse.Job.CustomData["Classifications[0].Filters[0].Min"] : null,
+                    SalaryUpperBand = jobListingResponse.Job.CustomData.ContainsKey("Salaries[0].Filters[0].Max") ? jobListingResponse.Job.CustomData["Classifications[0].Filters[0].Max"] : null,
+                    FullDescription = jobListingResponse.Job.Description,
+                    Description = jobListingResponse.Job.ShortDescription,
+                    AdvertiserCompanyName = jobListingResponse.Job.CustomData.ContainsKey("CompanyName") ? jobListingResponse.Job.CustomData["CompanyName"] : null,
+                    ProfessionName = jobListingResponse.Job.CustomData.ContainsKey("Classifications[0].Filters[0].Value") ? jobListingResponse.Job.CustomData["Classifications[0].Filters[0].Value"] : null,
+                    LocationName = jobListingResponse.Job.CustomData.ContainsKey("CountryLocationArea[0].Filters[0].Value") ? jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].Value"] : null,
+                    AreaName = jobListingResponse.Job.CustomData.ContainsKey("CountryLocationArea[0].Filters[0].SubLevel[0].Value") ? jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].SubLevel[0].Value"] : null,
+                    JobName = jobListingResponse.Job.Title,
+                    DatePosted = string.Format("|{0}+{1}|", utcTime.ToString("yyyy-MM-ddThh:mm:ss"), offset.Hours.ToString("00") + ":" + offset.Minutes.ToString("00"))
+                }));
                 var fullTemplateName = this.templateNamePrefix + this.TemplateName;
                 // If it is null make sure that pass empty string , because html attrubutes will not work properly.
                 viewModel.JobDetails.Address = viewModel.JobDetails.Address == null ? "" : viewModel.JobDetails.Address;
@@ -117,12 +140,68 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             this.ActionInvoker.InvokeAction(this.ControllerContext, "Index");
         }
 
+        public string ReplaceToken(string origin, string json)
+        {
+            JObject obj = JsonConvert.DeserializeObject<JObject>(json);
+
+            foreach (var item in obj)
+            {
+                if (JToken.Parse(JsonConvert.ToString(item.Value.ToString())).Type == JTokenType.String)
+                {
+                    origin = origin.Replace("{" + item.Key + "}", JsonConvert.ToString(item.Value.ToString().Trim(new char[] { '|' })));
+                }
+            }
+
+            origin = Regex.Replace(origin, @"{[^{}]+}", "\"\"");
+
+            return origin;
+        }
+
         internal const string WidgetIconCssClass = "sfMvcIcn";
         public string CssClass { get; set; }
         private JobDetailsRolesModel model;
         public string JobApplicationPageId { get; set; }
         public string JobResultsPageId { get; set; }
+        public object GetDateTimeFromUnix { get; private set; }
+
         private string templateName = "Simple";
         private string templateNamePrefix = "JobDetails.";
+        internal const string GoogleForJobsTemplate = @"<script type='application/ld+json'>
+                                                        {
+                                                            ""@context"": ""http://schema.org"",
+                                                            ""@type"": ""JobPosting"",                
+                                                            ""jobBenefits"": """",
+                                                            ""datePosted"": {DatePosted},
+                                                            ""description"": {FullDescription},
+                                                            ""disambiguatingDescription"": {Description},
+                                                            ""image"": {AdvertiserLogo},
+                                                            ""educationRequirements"": """",
+                                                            ""hiringOrganization"":{AdvertiserCompanyName},
+                                                            ""experienceRequirements"": """",
+                                                            ""incentiveCompensation"": """",
+                                                            ""occupationalCategory"": {ProfessionName},
+                                                            ""jobLocation"": {
+                                                                ""@type"": ""Place"",
+                                                                ""address"": {
+                                                                    ""@type"": ""PostalAddress"",
+                                                                    ""addressLocality"": {LocationName},
+                                                                    ""addressRegion"": {AreaName}
+                                                                }
+                                                            },
+                                                            ""baseSalary"": {
+                                                                ""@type"": ""MonetaryAmount"",
+                                                                ""minValue"": {SalaryLowerBand},
+                                                                ""maxValue"": {SalaryUpperBand},
+                                                                ""currency"": {CurrencySymbol}
+                                                            },
+                                                            ""salaryCurrency"": {CurrencySymbol},
+                                                            ""skills"": """",
+                                                            ""specialCommitments"": """",
+                                                            ""title"": {JobName},
+                                                            ""validThrough"": {ExpiryDate},
+                                                            ""workHours"": """",
+                                                            ""url"": {Canonical}
+                                                        }
+                                                        </script>";
     }
 }

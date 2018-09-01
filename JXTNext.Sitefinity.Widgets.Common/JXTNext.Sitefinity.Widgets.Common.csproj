@@ -1426,9 +1426,6 @@
     <Content Include="ResourcePackages\Hudson\MVC\Views\LoginForm\LoginForm.LoginFormJobApply.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ResourcePackages\Hudson\MVC\Views\Profile\Edit.ConsultantProfileEdit.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="ResourcePackages\Hudson\MVC\Views\LoginForm\LoginForm.LoginFormApplywithSocialMedia.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

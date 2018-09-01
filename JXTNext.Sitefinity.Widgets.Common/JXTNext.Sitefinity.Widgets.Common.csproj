@@ -1441,6 +1441,9 @@
     <Content Include="ResourcePackages\Hudson\MVC\Views\Registration\Registration.RegistrationViaSocialMedia.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Consultant\List.ListFilter.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\jn_icons.eot">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

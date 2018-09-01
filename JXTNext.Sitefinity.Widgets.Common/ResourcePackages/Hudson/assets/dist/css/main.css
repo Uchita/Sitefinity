@@ -7363,19 +7363,19 @@ blockquote {
         height: 27px;
         vertical-align: middle;
         background: url("../images/seek.png") 50% 50%/contain no-repeat; }
-    .page-wrapper .btn.btn-gplus, .page-wrapper .btn.btn-facebook {
+    .page-wrapper .btn.btn-google, .page-wrapper .btn.btn-facebook {
       color: #fff; }
-    .page-wrapper .btn.btn-gplus, .page-wrapper .btn.btn-gplus:hover, .page-wrapper .btn.btn-gplus:focus {
+    .page-wrapper .btn.btn-google, .page-wrapper .btn.btn-google:hover, .page-wrapper .btn.btn-google:focus {
       background: #d54634; }
     .page-wrapper .btn.btn-facebook, .page-wrapper .btn.btn-facebook:hover, .page-wrapper .btn.btn-facebook:focus {
       background: #375899; }
-    .page-wrapper .btn.btn-gplus, .page-wrapper .btn.btn-facebook {
+    .page-wrapper .btn.btn-google, .page-wrapper .btn.btn-facebook {
       border: none;
       margin-bottom: 5px;
       font-family: AkzidGroProLig,sans-serif;
       text-transform: none;
       min-width: 220px; }
-      .page-wrapper .btn.btn-gplus:hover, .page-wrapper .btn.btn-gplus:focus, .page-wrapper .btn.btn-facebook:hover, .page-wrapper .btn.btn-facebook:focus {
+      .page-wrapper .btn.btn-google:hover, .page-wrapper .btn.btn-google:focus, .page-wrapper .btn.btn-facebook:hover, .page-wrapper .btn.btn-facebook:focus {
         color: #fff; }
   .page-wrapper .btn-block .btn {
     display: block;
@@ -7676,7 +7676,7 @@ blockquote {
 .btn-facebook::before {
   content: "\f39e"; }
 
-.btn-google-plus::before {
+.btn-google::before {
   content: "\f0d5"; }
 
 img, iframe {

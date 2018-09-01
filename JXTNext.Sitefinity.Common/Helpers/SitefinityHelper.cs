@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Security;
+using Telerik.Sitefinity.Model;
 using Telerik.Sitefinity.Modules.Pages;
 using Telerik.Sitefinity.Modules.UserProfiles;
 using Telerik.Sitefinity.Pages.Model;
@@ -124,7 +126,7 @@ namespace JXTNext.Sitefinity.Common.Helpers
         public static User GetUserByEmail(string Email)
         {
             var userManager = UserManager.GetManager();
-            var user = userManager.GetUsers().FirstOrDefault(u => u.Email == Email);
+            var user = userManager.GetUsers().FirstOrDefault(u => u.Email.ToUpper() == Email.ToUpper());
             return user;
         }
 
@@ -146,6 +148,45 @@ namespace JXTNext.Sitefinity.Common.Helpers
                 firstName = profile.FirstName;
 
             return firstName;
+        }
+
+        public static MembershipCreateStatus CreateUser(string username, string password, string firstName, string lastName, string mail, string phoneNumber, string secretQuestion, string secretAnswer, bool isApproved)
+        {
+            UserManager userManager = UserManager.GetManager();
+            UserProfileManager profileManager = UserProfileManager.GetManager();
+
+            MembershipCreateStatus status;
+
+            User user = userManager.CreateUser(username, password, mail, secretQuestion, secretAnswer, isApproved, null, out status);
+
+            if (status == MembershipCreateStatus.Success)
+            {
+                SitefinityProfile sfProfile = profileManager.CreateProfile(user, Guid.NewGuid(), typeof(SitefinityProfile)) as SitefinityProfile;
+
+                if (sfProfile != null)
+                {
+                    sfProfile.FirstName = firstName;
+                    sfProfile.LastName = lastName;
+                    sfProfile.SetValue("PhoneNumber", phoneNumber);
+                }
+
+                userManager.SaveChanges();
+                profileManager.RecompileItemUrls(sfProfile);
+                profileManager.SaveChanges();
+
+            }
+
+            return status;
+        }
+
+        public static bool IsUserVerified(string email, string password)
+        {
+            bool isVerified = false;
+
+            UserManager userManager = UserManager.GetManager();
+            if (userManager.ValidateUser(email, password))
+                isVerified = true;
+            return isVerified;
         }
     }
 }

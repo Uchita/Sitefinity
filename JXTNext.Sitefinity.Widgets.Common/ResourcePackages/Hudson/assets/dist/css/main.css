@@ -7257,6 +7257,10 @@ blockquote {
   display: flex;
   flex-wrap: wrap; }
 
+.flex-center {
+  align-items: center;
+  justify-content: center; }
+
 .width-limit {
   max-width: 450px; }
 
@@ -9120,7 +9124,7 @@ ul.breadcrumb {
     .page-wrapper .basic-form .checkbox input[type="checkbox"]:hover {
       cursor: pointer; }
   .page-wrapper .basic-form .sf-FileField {
-    margin-top: 5px; }
+    margin-top: 8px; }
   .page-wrapper .basic-form .form-group {
     margin-bottom: 10px; }
   .page-wrapper .basic-form .upload-section {
@@ -10635,7 +10639,9 @@ ul.breadcrumb {
       margin-left: 0; }
   .owl-carousel.owl-drag .owl-item, .owl-carousel.owl-drag .testimonial {
     padding-left: 15px;
-    padding-right: 15px; } }
+    padding-right: 15px; }
+  .owl-consultants .owl-stage .consultant .consultant-photo {
+    height: 300px; } }
 
 /*#endregion Phones*/
 /*#endregion Media*/

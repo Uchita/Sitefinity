@@ -11,6 +11,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
 
         #region Member Calls
         bool MemberRegister(IMemberRegister memberDetails, out string errorMessage);
+        IMemberApplicationResponse MemberCreateJobApplication(IMemberApplication memberApplication, string emailOverride);
         IMemberApplicationResponse MemberCreateJobApplication(IMemberApplication memberApplication);
         IMemberApplicationResponse MemberCreateJobApplication_FileUploadUpdate(IMemberApplication memberApplication);
         #endregion

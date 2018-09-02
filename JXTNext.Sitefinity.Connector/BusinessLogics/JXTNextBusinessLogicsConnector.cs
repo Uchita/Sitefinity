@@ -113,6 +113,12 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
             throw new NotImplementedException();
         }
 
+        public IMemberApplicationResponse MemberCreateJobApplication(IMemberApplication memberApplication, string emailOverride)
+        {
+            base.ProcessHeaderValuesForSessionOverride(emailOverride);
+            return MemberCreateJobApplication(memberApplication);
+        }
+
         public IMemberApplicationResponse MemberCreateJobApplication(IMemberApplication memberApplication)
         {
             JXTNext_MemberApplicationRequest application = memberApplication as JXTNext_MemberApplicationRequest;

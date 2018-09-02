@@ -18,3 +18,4 @@
 <h3>DROPBOX SETTINGS</h3><br />
 <sitefinity:TextField ID="dropboxAppId" runat="server" DataFieldName="DropboxAppId" Title="Please Enter Dropbox Application ID" CssClass="sfSettingsSection" DisplayMode="Write" />
 <sitefinity:TextField ID="dropboxAppSecret" runat="server" DataFieldName="DropboxAppSecret" Title="Please Enter Dropbox Application Secret" CssClass="sfSettingsSection" DisplayMode="Write" />
+<sitefinity:TextField ID="dropboxClientAPIKey" runat="server" DataFieldName="DropboxClientAPIKey" Title="Please Enter Dropbox API Key" CssClass="sfSettingsSection" DisplayMode="Write" />

@@ -155,5 +155,25 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
                 this["dropboxAppSecret"] = value;
             }
         }
+
+        /// <summary>
+        /// Gets or sets the Dropbox Client API Key
+        /// </summary>
+        /// <value>The name of the time zone.</value>
+        [ConfigurationProperty("dropboxClientAPIKey")]
+        [DescriptionResource(typeof(ConfigDescriptions), "DropboxClientAPIKey")]
+
+        [DataMember]
+        public virtual String CurrentDropboxClientAPIKey
+        {
+            get
+            {
+                return (String)this["dropboxClientAPIKey"];
+            }
+            set
+            {
+                this["dropboxClientAPIKey"] = value;
+            }
+        }
     }
 }

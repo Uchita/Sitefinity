@@ -86,6 +86,15 @@ namespace JXTNext.Sitefinity.Common.Helpers
             return dropboxAppSecret;
         }
 
+        public string GetCurrentSiteDropboxClientAPIKey()
+        {
+            string dropboxClientAPIKey = "";
+            if (this._siteSettingsContract != null)
+                dropboxClientAPIKey = this._siteSettingsContract.DropboxClientAPIKey;
+
+            return dropboxClientAPIKey;
+        }
+
         private const string _itemType = "JXTNext.Sitefinity.Common.Models.CustomSiteSettings.CustomSiteSettingsContract";
         private CustomSiteSettingsContract _siteSettingsContract = null;
     }

@@ -102,6 +102,14 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
             }
         }
 
+        protected virtual TextField DropboxClientAPIKey
+        {
+            get
+            {
+                return this.Container.GetControl<TextField>("dropboxClientAPIKey", true);
+            }
+        }
+
         #endregion
 
         #region Methods

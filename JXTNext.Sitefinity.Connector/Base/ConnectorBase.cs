@@ -36,6 +36,17 @@ namespace JXTNext.Sitefinity.Connector
 
         }
 
+        public void ProcessHeaderValuesForSessionOverride(string email)
+        {
+            if( _headerValues != null )
+            {
+                if (_headerValues.Keys.Contains(API_HTTP_HEADER_USER_KEY))
+                    _headerValues[API_HTTP_HEADER_USER_KEY] = email;
+                else
+                    _headerValues.Add(API_HTTP_HEADER_USER_KEY, email);
+            }
+        }
+
         private void ProcessHeaderValuesForSession(IRequestSession session)
         {
             _headerValues = new Dictionary<string, string>();

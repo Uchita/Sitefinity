@@ -13,7 +13,7 @@ namespace JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models.JobApplication
         public static string APPLICATION_RESUME_UPLOAD_LIBRARY = "application-resume";
 
         public static string APPLICATION_COVERLETTER_UPLOAD_KEY = "application-coverletter";
-        public static string APPLICATION_COVERLETTER_UPLOAD_LIBRARY = "application-resume";
+        public static string APPLICATION_COVERLETTER_UPLOAD_LIBRARY = "application-coverletter";
     }
 
     public class JobApplicationAttachmentItem
@@ -48,6 +48,13 @@ namespace JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models.JobApplication
     {
         Resume = 1,
         Coverletter = 2
+    }
+
+    public enum JobApplicationAttachmentSource
+    {
+        Local = 1,
+        GoogleDrive = 2,
+        Dropbox = 3
     }
 
 }

@@ -9,41 +9,74 @@
     <div class="alert alert-success">@ViewBag.ShowFilesUploadMessage</div>
 }
 
-    <form action="ApplyJob" name="JobApplication" method="post" onsubmit="return preventSubmit();">
-        @*@using (Html.BeginForm("ApplyJob", "JobApplication", FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {*@
+    <form id="job-app-form" action="@Url.Action("ApplyJob","JobApplication")" method="post">
         <div class="container">
             <div class="section-header">
 
-                <div id="check-login">E-mail id: <input id="userid" type="text" /> <a href="#" id="userid-check">CHECK</a></div>
-
-                <div id="register" class="hidden">
-                    <div id="firstname-lastname">
-                        Name: <input type="text" name="FirstName" /><input type="text" name="LastName" /><br />
-                        Phone Number: <input type="text" name="PhoneNumber" /><br />
+                <div id="login-register-container">
+                    <div id="check-login">
+                        E-mail id: <input id="userid" type="text" name="Email" />
+                        
                     </div>
-                    <div id="email-login">
-                        Email: <input id="email-reg" type="text" name="Email" required /><br />
-                        Password: <input id="password-reg" type="password" name="Password" required />
+
+                    <div id="register" hidden>
+                        <div id="firstname-lastname">
+                            Name: <input type="text" name="FirstName" /><input type="text" name="LastName" /><br />
+                            Phone Number: <input type="text" name="PhoneNumber" /><br />
+                        </div>
+
+                     Password: <input id="password-reg" type="password" name="Password" />
+
                     </div>
                 </div>
 
-                <h3>@Model.ApplicationTitle</h3>
+                
             </div>
-
-
 
             <div class="row">
 
                 @if (Model.ApplicationStatus == JobApplicationStatus.Available)
                 {
-                    foreach (JobApplicationAttachmentItem attachment in Model.ApplicationAttachments)
+                <p>@ViewBag.UserEmail</p>
+                <div id="upload-files-container">
+                    <h3>@Model.ApplicationTitle</h3>
+                    @foreach (JobApplicationAttachmentItem attachment in Model.ApplicationAttachments)
                     {
                         <div class="form-group col-md-6">
                             <label>@attachment.Title</label>
-                            <input type="file" id="@attachment.AttachementFileUploadKey" name="@attachment.AttachementFileUploadKey" class="test" />
+                            <input type="file" id="@attachment.AttachementFileUploadKey" name="@attachment.AttachementFileUploadKey" />
                         </div>
                     }
+
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <button type="button" id="resume-google-drive-btn">Google Drive Resume</button>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <button type="button" id="coverletter-google-drive-btn">Google Drive CoverLetter</button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <button id="dropbox-resume-btn">Dropbox Resume</button>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <button id="dropbox-coverletter-btn">Dropbox Cover Letter</button>
+                        </div>
+                    </div>
+
+                    <input type="hidden" id="uploadResumeJson" name="UploadFilesResume" />
+                    <input type="hidden" id="uploadCoverLetterJson" name="UploadFilesCoverLetter" />
+                    <input type="hidden" id="resume-selected-type" name="ResumeSelectedType" />
+                    <input type="hidden" id="coverletter-selected-type" name="CoverLetterSelectedType" />
+                    <input type="hidden" id="jobid" name="JobId" value="@Model.JobId" />
+
+                    <div class="form-group button-wrapper">
+                        <input id="apply" type="submit" value="Apply" class="btn" disabled />
+                    </div>
+                </div>
                 }
                 else
                 {
@@ -51,73 +84,29 @@
                     <p>@Model.ApplicationMessage</p>
                 }
             </div>
-            <input type="hidden" id="uploadResumeJson" name="UploadFilesResume" />
-            <input type="hidden" id="uploadCoverLetterJson" name="UploadFilesCoverLetter" />
-            <input type="hidden" id="resume-selected-type" name="ResumeSelectedType" />
-            <input type="hidden" id="coverletter-selected-type" name="CoverLetterSelectedType" />
+           
 
-            <div class="form-group button-wrapper">
-                <input id="apply" type="submit" value="Apply" class="btn" disabled />
-            </div>
+           
         </div>
     </form>
-@*}*@
 
 @{
     string googleClientId = new SiteSettingsHelper().GetCurrentSiteGoogleClientId();
     string googleAPIKey = new SiteSettingsHelper().GetCurrentSiteGoogleClientAPIKey();
-    string dbAPIKey = "zfmtoy06vj2fyk3";
+    string dbAPIKey = new SiteSettingsHelper().GetCurrentSiteDropboxClientAPIKey();
 }
 
+ <script>
 
-<button type="button" id="resume-google-drive-btn">Google Drive Resume</button>
-<button type="button" id="coverletter-google-drive-btn">Google Drive coverLetter</button>
-<div class="hidden">
-    <hr /><br /><span>FileId: </span><div id="fileid"></div>
-    <span>URL: </span><div id="url"></div>
-    <span>NAME: </span><div id="name"></div>
-    <span>MIME: </span><div id="mime"></div>
-    <span>Token: </span><div id="oAuthToken"></div>
-    <br />
-    <br />
-</div>
-<hr />
-
-<div class="hidden">
-    <span>URL: </span><div id="dburl"></div>
-    <span>NAME: </span><div id="dbname"></div>
-    <span>MIME: </span><div id="dbmime"></div>
-    <span id="container"></span>
-</div>
-
-<button id="dropbox-resume-btn">Dropbox Resume</button><button id="dropbox-coverletter-btn">Dropbox Cover Letter</button>
+      var appStatus = '@Model.ApplicationStatus';
+     var isUserLoggedIn = '@ViewBag.IsUserLoggedIn';
+     var registerForm = false;
 
 
-<script>
-
-    function preventSubmit() {
-      
-        var submitForm = false;
-        var parm = { email: $('#email-reg').val(), password: $('#password-reg').val() };
-        var urlPath = $(location).attr('pathname') + "/ValidateUser";
-        $.ajax({
-            type: 'POST',
-            cache: false,
-            url: urlPath,
-            data: parm,
-            dataType: 'Json',
-            success: function (response) {
-                if (response == true) {
-                    submitForm = true;
-                }
-           
-            },
-            error: function (response) {
-                 submitForm = false;
-            }
-        });
-
-        return submitForm;
+   
+     function validateEmail(elementValue) {
+        var emailPattern = /^[a-zA-Z0-9._-]+@@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        return emailPattern.test(elementValue);
     };
 
 
@@ -126,12 +115,49 @@
     var isGoogleResume = false;
     var isDropboxResume = false;
     var resumeSelectedType = 'Local';
-    var coverLetterSelectedType = 'Local';
-
+     var coverLetterSelectedType = 'Local';
+    
     $("#coverletter-selected-type").val(coverLetterSelectedType);
     $("#resume-selected-type").val(resumeSelectedType);
 
-    $(document).ready(function () {
+     $(document).ready(function () {
+
+         $('form').submit(function (e) {
+             e.preventDefault();
+             var self = this;
+             if ((appStatus == 'Available' && isUserLoggedIn == 'True') || registerForm) {
+                 self.submit();
+             }
+             
+             var parm = { email: $('#userid').val(), password: $('#password-reg').val() };
+             var urlPath = $(location).attr('pathname') + "/ValidateUser";
+             $.ajax({
+                 type: 'POST',
+                 cache: false,
+                 url: urlPath,
+                 data: parm,
+                 dataType: 'Json',
+                 success: function (response) {
+                     if (response == true) {
+                         self.submit();
+                     }
+                 },
+                 error: function (response) {               
+                 }
+             });
+         });
+
+
+         if (appStatus == 'Available' && isUserLoggedIn == 'True') {
+             $('#login-register-container').hide();
+             $('#apply').removeAttr('disabled');
+         }
+
+         if (appStatus == 'Available' && isUserLoggedIn != 'True') {
+             $('#upload-files-container').hide();
+             $('#apply').removeAttr('disabled');
+         }
+
         $('#application-resume').change(function () {
             resumeSelectedType = 'Local';
             $("#resume-selected-type").val(resumeSelectedType);
@@ -142,38 +168,49 @@
             $("#coverletter-selected-type").val(coverLetterSelectedType);
         });
 
-        $('#userid-check').click(function () {
-            var emailId = $('#userid').val();
+
+        $('#userid').keyup(function () {
+            var emailId = $(this).val();
+            var valid = validateEmail(emailId);
             var parm = { email: emailId };
             var urlPath = $(location).attr('pathname') + "/CheckUser";
-            $('#check-login').hide();
-            $.ajax({
-                type: 'POST',
-                cache: false,
-                url: urlPath,
-                data: parm,
-                dataType: 'Json',
-                success: function (response) {
-                    if (response == false) {
-                        $('#register').removeClass('hidden');
-                        $('#register').addClass('show');
+            if (valid) {
+                $(this).css('color', '#000');
+                $.ajax({
+                    type: 'POST',
+                    cache: false,
+                    url: urlPath,
+                    data: parm,
+                    dataType: 'Json',
+                    success: function (response) {
+                        if (response == false) {
+                             $('#register').show();
+                            $('#firstname-lastname').removeAttr('hidden');
+                            registerForm = true;
 
+                        }
+                        else {
+                             $('#register').show();
+                            $('#firstname-lastname').attr('hidden', 'true');
+                            registerForm = false; 
+                        }
+                        $('#upload-files-container').show();
+                        $('#apply').removeAttr('disabled');
+                        console.log(response);
+                    },
+                    error: function (response) {
+                        console.log('error response: ' + response);
                     }
-                    else {
-                        $('#register').removeClass('hidden');
-                        $('#register').addClass('show');
-                        $('#firstname-lastname').addClass('hidden');
-                        $('#email-reg').val($('#userid').val());
-                    }
-                    $('#apply').removeAttr('disabled');
-                    console.log(response);
-                },
-                error: function (response) {
-                    console.log('error response: ' + response);
-                }
-            });
+                });
+            } else {
+                console.log("red email");
+                $('#upload-files-container').hide();
+                $('#register').hide();
+                $(this).css('color', 'red');
+            }
         });
 
+        
        dropboxResumeOptions = {
             // Required. Called when a user selects an item in the Chooser.
             success: function (files) {
@@ -255,7 +292,7 @@
 
         var pickerApiLoaded = false;
         var oauthToken;
-        
+
 
         // Use the API Loader script to load google.picker and gapi.auth.
         function onApiLoad() {
@@ -348,7 +385,6 @@
 
             var message = url;
         }
-
 </script>
 
 <script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="@dbAPIKey"></script>

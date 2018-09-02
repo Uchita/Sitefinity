@@ -15,17 +15,17 @@
 
                 <div id="login-register-container">
                     <div id="check-login">
-                        E-mail id: <input id="userid" type="text" name="Email" />
+                        E-mail id: <input id="userid" type="text" name="Email" required/>
                         
                     </div>
 
                     <div id="register" hidden>
                         <div id="firstname-lastname">
-                            Name: <input type="text" name="FirstName" /><input type="text" name="LastName" /><br />
+                            Name: <input id="firstname-reg" type="text" name="FirstName" /><input type="text" name="LastName" /><br />
                             Phone Number: <input type="text" name="PhoneNumber" /><br />
                         </div>
 
-                     Password: <input id="password-reg" type="password" name="Password" />
+                     Password: <input id="password-reg" type="password" name="Password"/>
 
                     </div>
                 </div>
@@ -151,6 +151,7 @@
          if (appStatus == 'Available' && isUserLoggedIn == 'True') {
              $('#login-register-container').hide();
              $('#apply').removeAttr('disabled');
+             $('#userid').removeAttr('required');
          }
 
          if (appStatus == 'Available' && isUserLoggedIn != 'True') {
@@ -187,12 +188,20 @@
                              $('#register').show();
                             $('#firstname-lastname').removeAttr('hidden');
                             registerForm = true;
+                            $('#password-reg').prop('required', true);
+                            $('#firstname-reg').prop('required', true);
+                            $('#password-reg').prop('pattern', "(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}");
+                            $('#password-reg').prop('title', "Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters");
 
                         }
                         else {
                              $('#register').show();
                             $('#firstname-lastname').attr('hidden', 'true');
                             registerForm = false; 
+                            $('#firstname-reg').prop('required', false);
+                            $('#password-reg').removeAttr('pattern');
+                            $('#password-reg').removeAttr('title');
+                            $('#password-reg').prop('required', true);
                         }
                         $('#upload-files-container').show();
                         $('#apply').removeAttr('disabled');
@@ -207,6 +216,10 @@
                 $('#upload-files-container').hide();
                 $('#register').hide();
                 $(this).css('color', 'red');
+                $('#password-reg').prop('required', false);
+                $('#firstname-reg').prop('required', false);
+                $('#password-reg').removeAttr('pattern');
+                $('#password-reg').removeAttr('title');
             }
         });
 

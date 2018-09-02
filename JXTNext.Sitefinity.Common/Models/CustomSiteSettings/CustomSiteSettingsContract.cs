@@ -57,6 +57,13 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
             get;
             set;
         }
+
+        [DataMember]
+        public string DropboxClientAPIKey
+        {
+            get;
+            set;
+        }
         #endregion
 
         #region LoadDefaults
@@ -76,6 +83,7 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
 
             this.DropboxAppId = section.UICustomSiteSettings.CurrentDropboxAppId;
             this.DropboxAppSecret = section.UICustomSiteSettings.CurrentDropboxAppSecret;
+            this.DropboxClientAPIKey = section.UICustomSiteSettings.CurrentDropboxClientAPIKey;
         }
 
         public void SaveDefaults()
@@ -91,6 +99,7 @@ namespace JXTNext.Sitefinity.Common.Models.CustomSiteSettings
 
             section.UICustomSiteSettings.CurrentDropboxAppId = this.DropboxAppId;
             section.UICustomSiteSettings.CurrentDropboxAppSecret = this.DropboxAppSecret;
+            section.UICustomSiteSettings.CurrentDropboxClientAPIKey = this.DropboxClientAPIKey;
 
             manager.SaveSection(section);
         }

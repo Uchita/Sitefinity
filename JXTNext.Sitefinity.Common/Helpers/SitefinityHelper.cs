@@ -150,6 +150,12 @@ namespace JXTNext.Sitefinity.Common.Helpers
             return firstName;
         }
 
+        public static User GetUserById(Guid userId)
+        {
+            var userManager = UserManager.GetManager();
+            return userManager.GetUser(userId);
+        }
+
         public static MembershipCreateStatus CreateUser(string username, string password, string firstName, string lastName, string mail, string phoneNumber, string secretQuestion, string secretAnswer, bool isApproved)
         {
             UserManager userManager = UserManager.GetManager();

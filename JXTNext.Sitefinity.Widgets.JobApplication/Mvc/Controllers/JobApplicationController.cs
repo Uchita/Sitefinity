@@ -62,14 +62,30 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
         // GET: JobApplication
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(int? jobid)
         {
             JobApplicationViewModel jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.Available, "Upload your files to Apply");
             ViewBag.CssClass = this.CssClass;
             var uploadFileInfo = this.SerializedCloudSettingsParams == null ? null : JsonConvert.DeserializeObject<JobApplicationUploadFilesModel>(this.SerializedCloudSettingsParams);
 
             jobApplicationViewModel.UploadFiles = uploadFileInfo;
-        
+            jobApplicationViewModel.JobId = jobid.HasValue ? jobid.Value : 0;
+            bool isUserLoggedIn = false;
+            string userEmail = String.Empty;
+            var currentIdentity = ClaimsManager.GetCurrentIdentity();
+
+            if (currentIdentity.IsAuthenticated)
+            {
+                var user = SitefinityHelper.GetUserById(currentIdentity.UserId);
+                if (user != null)
+                    userEmail = user.Email;
+
+                isUserLoggedIn = true;
+            }
+
+            ViewBag.IsUserLoggedIn = isUserLoggedIn;
+            ViewBag.UserEmail = userEmail;
+
             var fullTemplateName = this.templateNamePrefix + this.TemplateName;
             return View(fullTemplateName, jobApplicationViewModel);
         }
@@ -77,7 +93,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         [HttpPost]
         public ActionResult ApplyJob(ApplyJobModel applyJobModel)
         {
-            int applicationResultID = 17588;
+            int applicationResultID = applyJobModel.JobId;
             int memberID = 2;
             JobApplicationViewModel jobApplicationViewModel;
             var fullTemplateName = this.templateNamePrefix + this.TemplateName;

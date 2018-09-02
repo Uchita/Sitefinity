@@ -14,6 +14,7 @@ namespace JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models.JobApplication
         public JobApplicationStatus ApplicationStatus { get; set; }
         public string ApplicationMessage { get; set; }
         public JobApplicationUploadFilesModel UploadFiles { get; set; }
+        public int JobId { get; set; }
     }
 
     public class JobApplicationUploadFilesModel

@@ -166,7 +166,7 @@
             @*<li><a href="#"><em class="far fa-save"></em>Save this job</a></li>*@
             <li><a href="javascript:window.print();"><em class="fas fa-print"></em>Print this job</a></li>
             <li>
-                <a href="javascript:void(0);" onclick="window.open('mailto:?body=@shareUrl&subject=@pageTitle', 'MailTo', 'toolbar=no,width=550,height=550'); return false" title="Tell a friend">
+                <a href="mailto:?body=@shareUrl&subject=@unencodedPageTitle" title="Tell a friend">
                     <em class="fas fa-envelope"></em>Email this job
                 </a>
             </li>

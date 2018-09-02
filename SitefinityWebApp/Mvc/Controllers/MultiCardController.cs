@@ -95,10 +95,10 @@ namespace SitefinityWebApp.Mvc.Controllers
 
             //var image = LibrariesManager.GetManager().GetImage(contentLink.ChildItemId);
 
-            if (this.IsEmpty)
-            {
-                return new EmptyResult();
-            }
+            //if (this.IsEmpty)
+            //{
+            //    return new EmptyResult();
+            //}
 
             var viewModel = this.Model.GetViewModel();
 

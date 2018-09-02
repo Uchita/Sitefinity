@@ -7,6 +7,10 @@ blockquote{
     display: flex;
     flex-wrap: wrap;
 }
+.flex-center{
+    align-items: center;
+    justify-content: center;
+}
 
 .width-limit{
     max-width: 450px;
@@ -155,10 +159,10 @@ blockquote{
                 background: url('../images/seek.png') 50% 50% / contain no-repeat;
             }
         }
-        &.btn-gplus, &.btn-facebook {
+        &.btn-google, &.btn-facebook {
             color: $brightColor;
         }
-        &.btn-gplus, &.btn-gplus:hover, &.btn-gplus:focus {
+        &.btn-google, &.btn-google:hover, &.btn-google:focus {
             background: #d54634;
         }
 
@@ -166,7 +170,7 @@ blockquote{
             background: #375899;
         }
 
-        &.btn-gplus, &.btn-facebook {
+        &.btn-google, &.btn-facebook {
             border: none;
             margin-bottom: 5px;
             font-family: AkzidGroProLig,sans-serif;
@@ -595,7 +599,7 @@ blockquote{
 
 .btn-linkedin::before{ content: "\f0e1"; }
 .btn-facebook::before{ content: "\f39e"; }
-.btn-google-plus::before{ content: "\f0d5"; }
+.btn-google::before{ content: "\f0d5"; }
 
 img, iframe {
     max-width: 100%;

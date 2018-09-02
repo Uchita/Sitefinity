@@ -134,14 +134,25 @@ $(document).ready(function () {
             0: {
                 items: 1
             },
+            500: {
+                items: 2
+            },
             768: {
                 items: 3
             },
             1200: {
-                items: 4
+                items: 4,
+                
             }
+        },
+        onInitialized: setToCenter
+    });
+    function setToCenter(event) {
+        if( event.page.count == 0 ){
+            $(event.target).addClass('item-centered');
         }
-    })
+    }
+
     $('.owl-contact-gallery').owlCarousel({
         loop: true,
         margin: 15,

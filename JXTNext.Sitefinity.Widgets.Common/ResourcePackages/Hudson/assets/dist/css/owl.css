@@ -410,3 +410,5 @@
     background-position: center; }
 
 /*#endregion Contact us*/
+.item-centered .owl-stage {
+  margin: 0 auto; }

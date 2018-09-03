@@ -118,8 +118,13 @@ $(document).ready(function () {
     }, false);
 
     $("[data-filter-trigger]").on("click", function () {
+        if( $(this).parent().hasClass('filter-active') ){
+            $(this).parent(".filter").removeClass("filter-active");
+        }else{
+            $(this).parent(".filter").addClass("filter-active");
+        }
         $(".filter.filter-active").removeClass("filter-active");
-        $(this).parent(".filter").addClass("filter-active");
+        
         ThemeGlobal.JobsFilterToggle($(this).data("filter-trigger"));
     });
 

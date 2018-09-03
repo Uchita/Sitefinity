@@ -9148,7 +9148,7 @@ ul.breadcrumb {
     min-width: 100px;
     font-size: 1.25rem;
     padding: 2px 5px;
-    top: 2px;
+    top: 0px;
     color: #ccc;
     font-weight: bold; }
 
@@ -9267,6 +9267,14 @@ ul.breadcrumb {
       margin-right: 10px; }
 
 /*#endregion Log in/Sign in/Apply*/
+.form-group .error-message {
+  padding: 5px;
+  margin-top: 2px;
+  display: block;
+  margin-bottom: 0;
+  border-radius: 3px;
+  font-size: 85%; }
+
 /*#endregion Forms*/
 /*#region Customers */
 .customer-logo {

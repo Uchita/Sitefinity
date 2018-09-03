@@ -73,16 +73,16 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             jobApplicationViewModel.JobId = jobid.HasValue ? jobid.Value : 0;
             bool isUserLoggedIn = false;
             string userEmail = String.Empty;
-            User user = null;
+            string userFirstName = String.Empty;
             var currentIdentity = ClaimsManager.GetCurrentIdentity();
 
             if (currentIdentity.IsAuthenticated)
             {
                 var currUser = SitefinityHelper.GetUserById(currentIdentity.UserId);
-                if (user != null)
+                if (currUser != null)
                 {
                     userEmail = currUser.Email;
-                    user = currUser;
+                    userFirstName = SitefinityHelper.GetUserFirstNameById(currUser.Id);
                 }
 
                 isUserLoggedIn = true;
@@ -90,7 +90,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
             ViewBag.IsUserLoggedIn = isUserLoggedIn;
             ViewBag.UserEmail = userEmail;
-            ViewBag.User = user;
+            ViewBag.UserFirstName = userFirstName;
             ViewBag.RegisterPageUrl = SitefinityHelper.GetPageUrl(this.RegisterPageId);
 
             var fullTemplateName = this.templateNamePrefix + this.TemplateName;

@@ -28,6 +28,7 @@ using JXTNext.FileHandler.Models.Dropbox;
 using Telerik.Sitefinity.Security;
 using Telerik.Sitefinity.Security.Claims;
 using System.Web.Security;
+using Telerik.Sitefinity.Security.Model;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -72,19 +73,24 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             jobApplicationViewModel.JobId = jobid.HasValue ? jobid.Value : 0;
             bool isUserLoggedIn = false;
             string userEmail = String.Empty;
+            User user = null;
             var currentIdentity = ClaimsManager.GetCurrentIdentity();
 
             if (currentIdentity.IsAuthenticated)
             {
-                var user = SitefinityHelper.GetUserById(currentIdentity.UserId);
+                var currUser = SitefinityHelper.GetUserById(currentIdentity.UserId);
                 if (user != null)
-                    userEmail = user.Email;
+                {
+                    userEmail = currUser.Email;
+                    user = currUser;
+                }
 
                 isUserLoggedIn = true;
             }
 
             ViewBag.IsUserLoggedIn = isUserLoggedIn;
             ViewBag.UserEmail = userEmail;
+            ViewBag.User = user;
             ViewBag.RegisterPageUrl = SitefinityHelper.GetPageUrl(this.RegisterPageId);
 
             var fullTemplateName = this.templateNamePrefix + this.TemplateName;

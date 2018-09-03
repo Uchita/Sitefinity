@@ -97,11 +97,11 @@
 
 if (node.IsCurrentlyOpened)
 {
-        @Html.Raw("active");
+        //@Html.Raw("active");
     }
-    else if (node.HasChildOpen)
+    if (node.HasChildOpen)
     {
-        @Html.Raw("active");
+        //@Html.Raw("active");
     }
 }
 @Html.Script(Url.WidgetContent("MVC/Scripts/Navigation/leftSidebar.js"), "bottom")

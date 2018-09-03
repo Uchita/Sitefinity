@@ -85,6 +85,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
             ViewBag.IsUserLoggedIn = isUserLoggedIn;
             ViewBag.UserEmail = userEmail;
+            ViewBag.RegisterPageUrl = SitefinityHelper.GetPageUrl(this.RegisterPageId);
 
             var fullTemplateName = this.templateNamePrefix + this.TemplateName;
             return View(fullTemplateName, jobApplicationViewModel);
@@ -106,7 +107,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
                 if (membershipCreateStatus != MembershipCreateStatus.Success)
                 {
-                    jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.NotAvailable, "Unable to create user. Please register from here");
+                    jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.NotAbleToCreateUser, "Unable to create user. Please register from");
                     return View("JobApplication.Simple", jobApplicationViewModel);
                 }
             }
@@ -495,6 +496,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public string EmailTemplateFromName { get; set; }
         public string CssClass { get; set; }
         public string SerializedCloudSettingsParams { get; set; }
+        public string RegisterPageId { get; set; }
 
         internal const string WidgetIconCssClass = "sfMvcIcn";
         private string templateName = "Simple";

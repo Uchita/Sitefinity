@@ -166,6 +166,10 @@
              $('#apply').removeAttr('disabled');
          }
 
+         if (appStatus != 'Available') {
+             $('#check-login').hide();
+         }
+
         $('#application-resume').change(function () {
             resumeSelectedType = 'Local';
             $("#resume-selected-type").val(resumeSelectedType);
@@ -212,14 +216,11 @@
                         }
                         $('#upload-files-container').show();
                         $('#apply').removeAttr('disabled');
-                        console.log(response);
                     },
                     error: function (response) {
-                        console.log('error response: ' + response);
-                    }
+                   }
                 });
             } else {
-                console.log("red email");
                 $('#upload-files-container').hide();
                 $('#register').hide();
                 $(this).css('color', 'red');
@@ -526,7 +527,7 @@
             var fileId = "";
             var mime = "";
 
-            console.log(data);
+  
             if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
                 var doc = data[google.picker.Response.DOCUMENTS][0];
                 fileId = doc[google.picker.Document.ID];

@@ -359,6 +359,7 @@
 
         .basic-form .form-label {
             text-align: left;
+            display: block;
         }
     }
 
@@ -856,6 +857,14 @@
             bottom: 43px;
         }
     }
+
+    .xs-no-bdr-right{
+        border-right: none;
+    }
+    .xs-pad-right-15{
+        padding-right: 15px;
+    }
+
 }
 
 @media screen and (max-width: 767px) {

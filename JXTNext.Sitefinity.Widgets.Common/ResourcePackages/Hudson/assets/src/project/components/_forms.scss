@@ -94,9 +94,24 @@
         }
 
         .upload-section {
-            margin: 5px 0 20px 0;
+            margin: 10px 0 20px 0;
         }
     }
+}
+
+#password-strength {
+    position: relative;
+    height: 24px;
+    margin: 10px 0 0;
+    span {
+        position: absolute;
+        min-width: 100px;
+        font-size: 1.25rem;
+        padding: 2px 5px;
+        top: 2px;
+        color: #ccc;
+        font-weight: bold;
+        }
 }
 
 /*#endregion Form - Contact us*/

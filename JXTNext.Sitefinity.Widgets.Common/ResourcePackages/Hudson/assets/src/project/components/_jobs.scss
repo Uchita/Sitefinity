@@ -337,6 +337,7 @@
     .box{
         border: 1px solid $global-highlight-color;
         padding: 10px;
+        margin: 0;
     }
     .uploadfield-wrap{
         padding: 15px 0 5px;
@@ -344,6 +345,7 @@
         color: $global-highlight-color;
         text-align: center;
         width: 33%;
+        float: left;
         overflow: hidden;
         &::before{
             content: "\f07c";
@@ -357,12 +359,20 @@
             width: 100%;
             left: 0;
         }
+        &.dropbox-upload::before{
+            font-family: 'Font Awesome 5 Brands';
+            content: "\f16b";
+        }
+        &.google-drive-upload::before{
+            font-family: 'Font Awesome 5 Brands';
+            content: "\f3aa";
+        }
         &:hover, &:focus{
             &::before{
                 color: $global-highlight-color;
             }
         }
-        input[type="file"]{
+        input[type="file"], button{
             opacity: 0;
             height: 50px;
             position: relative;

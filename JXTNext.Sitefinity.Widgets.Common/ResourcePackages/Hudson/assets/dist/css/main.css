@@ -8803,9 +8803,15 @@ ul.breadcrumb {
   padding: 0px;
   /*-webkit-clip-path: polygon(100% 0, 100% 90%, 90% 100%, 0 100%, 0 0);
     clip-path: polygon(100% 0, 100% 90%, 90% 100%, 0 100%, 0 0);*/ }
+  .thumbnail.card-basic .img-wrap {
+    display: block;
+    height: 255px; }
   .thumbnail.card-basic img, .thumbnail.card-basic a > img {
     margin: 0;
-    width: 100%; }
+    width: auto;
+    max-width: 150%;
+    min-width: 100%;
+    min-height: 100%; }
   .thumbnail.card-basic .caption {
     position: relative;
     padding: 25px;
@@ -10234,6 +10240,8 @@ ul.breadcrumb {
 @media (max-width: 1199px) {
   .long-card-basic-list .thumbnail .img-wrap {
     height: 200px; }
+  .thumbnail.card-basic .img-wrap {
+    height: 200px; }
   .thumbnail.card-basic .caption {
     min-height: 230px; }
   .press-release-filter ul li a {
@@ -10313,6 +10321,8 @@ ul.breadcrumb {
       font-size: 1.1rem; }
   .thumbnail.card-basic .caption {
     min-height: 180px; }
+  .thumbnail.card-basic .img-wrap {
+    max-height: none; }
   .thumbnail.card-rollover .card-description {
     font-size: 16px;
     font-size: 1.6rem; }

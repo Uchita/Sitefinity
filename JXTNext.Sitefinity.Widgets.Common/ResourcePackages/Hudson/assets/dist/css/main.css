@@ -8806,15 +8806,17 @@ ul.breadcrumb {
   padding: 0px;
   /*-webkit-clip-path: polygon(100% 0, 100% 90%, 90% 100%, 0 100%, 0 0);
     clip-path: polygon(100% 0, 100% 90%, 90% 100%, 0 100%, 0 0);*/ }
+  .thumbnail.card-basic img, .thumbnail.card-basic a > img {
+    margin: 0;
+    width: 100%; }
   .thumbnail.card-basic .img-wrap {
     display: block;
     height: 255px; }
-  .thumbnail.card-basic img, .thumbnail.card-basic a > img {
-    margin: 0;
-    width: auto;
-    max-width: 150%;
-    min-width: 100%;
-    min-height: 100%; }
+    .thumbnail.card-basic .img-wrap img {
+      width: auto;
+      max-width: 150%;
+      min-width: 100%;
+      min-height: 100%; }
   .thumbnail.card-basic .caption {
     position: relative;
     padding: 25px;
@@ -10172,6 +10174,10 @@ ul.breadcrumb {
       margin-top: 7px;
       margin-bottom: 7px; } }
 
+@media (min-width: 768px) and (max-width: 991px) {
+  .main-content {
+    padding-left: 25px; } }
+
 /*#region Small desktop*/
 @media (min-width: 992px) {
   header .brand-logo {
@@ -10666,7 +10672,8 @@ ul.breadcrumb {
   .page-wrapper footer .footer-social .fab {
     margin: 0 3px; }
   .page-wrapper footer .postfooter-links a {
-    font-size: 1.3rem; }
+    font-size: 1.3rem;
+    white-space: nowrap; }
   .job-search .filter-active a:after {
     content: none; }
   .job-search .filter-job-classification:before {
@@ -10687,8 +10694,13 @@ ul.breadcrumb {
   .owl-carousel.owl-drag .owl-item, .owl-carousel.owl-drag .testimonial {
     padding-left: 15px;
     padding-right: 15px; }
+  .owl-carousel-jumbotron.owl-drag .owl-item {
+    padding: 0; }
   .owl-consultants .owl-stage .consultant .consultant-photo {
-    height: 300px; } }
+    height: 300px; }
+  .featured-job-offer .job-offer-sum:after,
+  .list-featured-articles h3 + div:after {
+    display: none; } }
 
 /*#endregion Phones*/
 /*#endregion Media*/

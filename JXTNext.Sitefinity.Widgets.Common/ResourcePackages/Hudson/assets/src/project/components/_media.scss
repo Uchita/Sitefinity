@@ -104,7 +104,11 @@
     }
 
 }
-
+@media (min-width:768px) and (max-width: 991px){
+    .main-content{
+        padding-left: 25px;
+    }
+}
 
 /*#region Small desktop*/
 @media (min-width:992px) {
@@ -931,6 +935,7 @@
             }
             .postfooter-links a{
                 font-size: 1.3rem;
+                white-space: nowrap;
             }
         }
     }
@@ -980,8 +985,17 @@
             padding-right: 15px;
         }
     }
+    .owl-carousel-jumbotron.owl-drag{
+        .owl-item{
+            padding: 0;
+        }
+    }
     .owl-consultants .owl-stage .consultant .consultant-photo{
         height: 300px;
+    }
+    .featured-job-offer .job-offer-sum:after,
+    .list-featured-articles h3+div:after{
+        display: none;
     }
 
 }

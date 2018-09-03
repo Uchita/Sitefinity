@@ -13,7 +13,7 @@ namespace JXTNext.Sitefinity.Widgets.Job
         /// </summary>
         public override void Load()
         {
-            Bind<MemberSavedJobBC>();
+            Bind<MemberSavedJobBC>().To<MemberSavedJobBC>();
         }
     }
 }

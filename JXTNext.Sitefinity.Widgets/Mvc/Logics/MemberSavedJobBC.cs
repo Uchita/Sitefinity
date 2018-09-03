@@ -22,7 +22,7 @@ namespace JXTNext.Sitefinity.Widgets.User.Mvc.Logics
         {
             JXTNext_MemberGetSavedJobResponse savedJobsResponse = _BLConnector.MemberGetSavedJobs() as JXTNext_MemberGetSavedJobResponse;
 
-            if (savedJobsResponse.Success)
+            if (!savedJobsResponse.Success)
             {
                 displayItems = null;
                 return false;

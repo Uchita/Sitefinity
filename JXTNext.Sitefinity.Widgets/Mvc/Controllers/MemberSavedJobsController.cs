@@ -35,7 +35,6 @@ namespace JXTNext.Sitefinity.Widgets.User.Mvc.Controllers
         /// <value></value>
         public string TemplateName { get => this.templateName; set => this.templateName = value; }
 
-
         public MemberSavedJobsController(MemberSavedJobBC memberSavedJobBC)
         {
             _memberSavedJobBC = memberSavedJobBC;

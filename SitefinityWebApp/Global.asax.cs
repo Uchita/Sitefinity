@@ -21,8 +21,8 @@ using Telerik.Sitefinity.Frontend.Identity.Mvc.Models.Registration;
 using Telerik.Sitefinity.Localization;
 using Telerik.Sitefinity.Mvc;
 using Telerik.Sitefinity.Services;
-using JXTNext.Sitefinity.Common.Models.CustomSiteSettings;
 using JXTNext.Sitefinity.Widgets.Content.Mvc.StringResources;
+using Telerik.Sitefinity.Security.Events;
 
 namespace SitefinityWebApp
 {
@@ -33,6 +33,9 @@ namespace SitefinityWebApp
             ViewEngines.Engines.Add(new SFViewEngine());
             Bootstrapper.Bootstrapped += Bootstrapper_Bootstrapped;
             Bootstrapper.Initialized += new EventHandler<ExecutedEventArgs>(Bootstrapper_Initialized);
+
+            //User creating event
+            SystemManager.ApplicationStart += new EventHandler<EventArgs>(ApplicationStartHandler);
         }
 
         void Bootstrapper_Initialized(object sender, ExecutedEventArgs e)
@@ -83,7 +86,7 @@ namespace SitefinityWebApp
 
         protected void Application_End(object sender, EventArgs e)
         {
-
+            EventHub.Unsubscribe<UserCreating>(new JXTNext.Sitefinity.Widgets.User.Mvc.Models.JXTNext_UserEventHandler().UserCreating);
         }
 
         void Bootstrapper_Bootstrapped(object sender, EventArgs e)
@@ -95,8 +98,15 @@ namespace SitefinityWebApp
                 "jxt",
                 "jxt/{controller}/{id}",
                 new { id = RouteParameter.Optional });
-            FrontendModule.Current.DependencyResolver.Rebind<IRegistrationModel>().To<JXTNext_MemberRegistrationModel>();
+            //FrontendModule.Current.DependencyResolver.Rebind<IRegistrationModel>().To<JXTNext_MemberRegistrationModel>();
         }
+
+        private void ApplicationStartHandler(object sender, EventArgs e)
+        {
+            EventHub.Subscribe<UserCreating>(evt => new JXTNext.Sitefinity.Widgets.User.Mvc.Models.JXTNext_UserEventHandler().UserCreating(evt));
+        }
+
+
     }
 
 }

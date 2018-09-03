@@ -1,0 +1,30 @@
+﻿@using JXTNext.Sitefinity.Widgets.User.Mvc.Models.MemberSavedJob
+@model List<MemberSavedJobDisplayItem>
+
+
+<section class="col-xs-12">
+    <table>
+        <thead>
+            <tr>
+                <th>Job ID</th>
+                <th>Job Title</th>
+                <th>Date Added</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(MemberSavedJobDisplayItem item in Model )
+            {
+                <tr>
+                    <td>@item.JobId</td>
+                    <td>@item.DisplayTitle</td>
+                    <td>@String.Format("{0:dd MMM-yyyy}", item.DateAdded)</td>
+                    <td>
+                        <a href="#">Remove</a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</section>

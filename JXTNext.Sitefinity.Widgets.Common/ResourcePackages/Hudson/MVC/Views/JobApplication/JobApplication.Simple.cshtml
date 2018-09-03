@@ -63,12 +63,15 @@
                             </div>
                         </div>
 
-                        <div class="row">
+                        <div class="row form-group">
                             <div class="col-md-4 text-right">
                                 <label class="form-label" for="password-reg">Password*</label>
                             </div>
                             <div class="col-md-8">
-                                <input id="password-reg" type="password" name="Password" class="form-control" />
+                                <input id="password-reg" type="password" name="Password" class="form-control" data-wrongPassTxt="Password is wrong!" />
+                                <span class="hidden alert alert-danger error-message wrongPassword-message">
+                                    Your password is incorrect! Or, <a href="/sign-in/ForgotPassword/">Forgot password?</a>
+                                </span>
                             </div>
                         </div>
                         <div class="row" id="strength-wrap" style="display:none;">
@@ -83,11 +86,11 @@
                     </div>
                         </div>
 
-                        <div class="upload-section hidden">
+                        <div class="upload-section">
 
                             @if (Model.ApplicationStatus == JobApplicationStatus.Available)
                             {
-                                <!-- <p>@ViewBag.UserEmail</p> -->
+                                 <p>@ViewBag.UserEmail</p> 
                                 <div id="upload-files-container">
 
                                     @*@foreach (JobApplicationAttachmentItem attachment in Model.ApplicationAttachments)
@@ -226,6 +229,9 @@
                  success: function (response) {
                      if (response == true) {
                          self.submit();
+                     } else {
+                         //if password wrong
+                         $('#password-reg').parent().find('.error-message.wrongPassword-message').removeClass('hidden');
                      }
                  },
                  error: function (response) {
@@ -238,6 +244,8 @@
              $('#login-register-container').hide();
              $('#apply').removeAttr('disabled');
              $('#userid').removeAttr('required');
+             $('#upload-files-container').show();
+             $('#appFormState').text('Upload your files');
          }
 
          if (appStatus == 'Available' && isUserLoggedIn != 'True') {
@@ -274,7 +282,7 @@
                     data: parm,
                     dataType: 'Json',
                     success: function (response) {
-                        $(".upload-section").removeClass('hidden');
+                        $("#upload-files-container").show();
                         
                         if (response == false) {
                             $('#register').show();

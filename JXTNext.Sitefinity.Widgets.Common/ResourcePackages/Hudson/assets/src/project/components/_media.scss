@@ -295,6 +295,9 @@
         }
     }
     .thumbnail.card-basic{
+        .img-wrap{
+            height: 200px;
+        }
         .caption{
             min-height: 230px;
         }
@@ -356,6 +359,7 @@
 
         .basic-form .form-label {
             text-align: left;
+            display: block;
         }
     }
 
@@ -438,15 +442,17 @@
     }
 
     .thumbnail {
-
         &.card-basic {
 
             .caption {
                 // padding: 20px 50px 40px;
                 min-height: 180px;
             }
+            .img-wrap{
+                max-height: none;
+            }
         }
-
+        
         &.card-rollover .card-description {
             font-size: 16px;
             font-size: 1.6rem;
@@ -851,6 +857,14 @@
             bottom: 43px;
         }
     }
+
+    .xs-no-bdr-right{
+        border-right: none;
+    }
+    .xs-pad-right-15{
+        padding-right: 15px;
+    }
+
 }
 
 @media screen and (max-width: 767px) {

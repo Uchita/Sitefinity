@@ -7300,6 +7300,9 @@ blockquote {
   .page-wrapper .h2, .page-wrapper h2 {
     font-size: 24px;
     font-size: 2.4rem; }
+  .page-wrapper .h3, .page-wrapper h3 {
+    font-size: 20px;
+    font-size: 2.0rem; }
   .page-wrapper .h1, .page-wrapper h1,
   .page-wrapper .h2, .page-wrapper h2,
   .page-wrapper .h3, .page-wrapper h3,
@@ -8803,9 +8806,15 @@ ul.breadcrumb {
   padding: 0px;
   /*-webkit-clip-path: polygon(100% 0, 100% 90%, 90% 100%, 0 100%, 0 0);
     clip-path: polygon(100% 0, 100% 90%, 90% 100%, 0 100%, 0 0);*/ }
+  .thumbnail.card-basic .img-wrap {
+    display: block;
+    height: 255px; }
   .thumbnail.card-basic img, .thumbnail.card-basic a > img {
     margin: 0;
-    width: 100%; }
+    width: auto;
+    max-width: 150%;
+    min-width: 100%;
+    min-height: 100%; }
   .thumbnail.card-basic .caption {
     position: relative;
     padding: 25px;
@@ -9128,7 +9137,20 @@ ul.breadcrumb {
   .page-wrapper .basic-form .form-group {
     margin-bottom: 10px; }
   .page-wrapper .basic-form .upload-section {
-    margin: 5px 0 20px 0; }
+    margin: 10px 0 20px 0; }
+
+#password-strength {
+  position: relative;
+  height: 24px;
+  margin: 10px 0 0; }
+  #password-strength span {
+    position: absolute;
+    min-width: 100px;
+    font-size: 1.25rem;
+    padding: 2px 5px;
+    top: 2px;
+    color: #ccc;
+    font-weight: bold; }
 
 /*#endregion Form - Contact us*/
 /*#region Log in/Sign in/Apply*/
@@ -9470,7 +9492,8 @@ ul.breadcrumb {
 
 .upload-section .box {
   border: 1px solid #01a3a4;
-  padding: 10px; }
+  padding: 10px;
+  margin: 0; }
 
 .upload-section .uploadfield-wrap {
   padding: 15px 0 5px;
@@ -9478,6 +9501,7 @@ ul.breadcrumb {
   color: #01a3a4;
   text-align: center;
   width: 33%;
+  float: left;
   overflow: hidden; }
   .upload-section .uploadfield-wrap::before {
     content: "\f07c";
@@ -9490,9 +9514,15 @@ ul.breadcrumb {
     z-index: 0;
     width: 100%;
     left: 0; }
+  .upload-section .uploadfield-wrap.dropbox-upload::before {
+    font-family: 'Font Awesome 5 Brands';
+    content: "\f16b"; }
+  .upload-section .uploadfield-wrap.google-drive-upload::before {
+    font-family: 'Font Awesome 5 Brands';
+    content: "\f3aa"; }
   .upload-section .uploadfield-wrap:hover::before, .upload-section .uploadfield-wrap:focus::before {
     color: #01a3a4; }
-  .upload-section .uploadfield-wrap input[type="file"] {
+  .upload-section .uploadfield-wrap input[type="file"], .upload-section .uploadfield-wrap button {
     opacity: 0;
     height: 50px;
     position: relative;
@@ -10234,6 +10264,8 @@ ul.breadcrumb {
 @media (max-width: 1199px) {
   .long-card-basic-list .thumbnail .img-wrap {
     height: 200px; }
+  .thumbnail.card-basic .img-wrap {
+    height: 200px; }
   .thumbnail.card-basic .caption {
     min-height: 230px; }
   .press-release-filter ul li a {
@@ -10267,7 +10299,8 @@ ul.breadcrumb {
       font-size: 14px;
       font-size: 1.4rem; }
     .page-wrapper .basic-form .form-label {
-      text-align: left; }
+      text-align: left;
+      display: block; }
   header .navbar.navbar-default .navbar-nav {
     width: 77%; }
     header .navbar.navbar-default .navbar-nav > li {
@@ -10313,6 +10346,8 @@ ul.breadcrumb {
       font-size: 1.1rem; }
   .thumbnail.card-basic .caption {
     min-height: 180px; }
+  .thumbnail.card-basic .img-wrap {
+    max-height: none; }
   .thumbnail.card-rollover .card-description {
     font-size: 16px;
     font-size: 1.6rem; }
@@ -10547,7 +10582,11 @@ ul.breadcrumb {
   .testimonials-slider .owl-item {
     padding-bottom: 30px; }
   .testimonials-slider .owl-dots {
-    bottom: 43px; } }
+    bottom: 43px; }
+  .xs-no-bdr-right {
+    border-right: none; }
+  .xs-pad-right-15 {
+    padding-right: 15px; } }
 
 @media screen and (max-width: 767px) {
   .owl-carousel-jumbotron .owl-nav {

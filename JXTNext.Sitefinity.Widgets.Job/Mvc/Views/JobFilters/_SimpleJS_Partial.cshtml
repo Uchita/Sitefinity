@@ -24,12 +24,15 @@
                 $(this).hide();
             });
             if (this.value != -1) {
-               
+                $(this).addClass('changed');
                 isSlarySelected = true;
                 $('#' + this.value).show();
                 salary.TargetValue = this.value;
-                salary.LowerRange = $(this).parent().find('.leftLabel').text();
-                salary.UpperRange = $(this).parent().find('.rightLabel').text();
+                salary.LowerRange = $(this).parent().find('.leftLabel span').text();
+                salary.UpperRange = $(this).parent().find('.rightLabel span').text();
+                eachClickFilter();
+            } else if ($(this).hasClass('changed') && this.value == -1) {
+                isSlarySelected = false;
                 eachClickFilter();
             }
             
@@ -48,8 +51,8 @@
                 "user_mouseup_callback": function (leftValue, rightValue, isLeftGripMoved) {
                     salary.LowerRange = leftValue;
                     salary.UpperRange = rightValue;
-                    $(this).parent().find('.leftLabel').text(leftValue);
-                    $(this).parent().find('.rightLabel').text(rightValue);
+                    $(this).parent().find('.leftLabel span').text(leftValue);
+                    $(this).parent().find('.rightLabel span').text(rightValue);
                     if (isSlarySelected) {
                         eachClickFilter();
                     }

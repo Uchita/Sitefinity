@@ -10,7 +10,7 @@
 @if (Model != null)
 {
 <div class="filter-outer-wrapper left-sidebar">
-    <div class="form-group">
+    <div class="form-group keywordfilter">
         <label><strong>Keywords:</strong></label>
         <div class="search-wrap"><input id="selectedkeywordsfilter" type="search" value="@ViewBag.Keywords" placeholder="Search keywords"/></div>
     </div>
@@ -40,19 +40,17 @@
                     upper = 200;
                 }
             <div class="salaryrangewrapper" id="@salaryItem.ID" hidden>
-                <div class="demo">
-                    <div class="widget">
-                        <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
-                             data-cur_min="@lower" data-cur_max="@upper">
+                
+                <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
+                        data-cur_min="@lower" data-cur_max="@upper">
 
-                            <div class="bar"></div>
-                            <div class="leftGrip"></div>
-                            <div class="rightGrip"></div>
-                        </div>
-                        <div class="leftLabel">@lower</div>
-                        <div class="rightLabel">@upper</div>
-                    </div>
+                    <div class="bar"></div>
+                    <div class="leftGrip"></div>
+                    <div class="rightGrip"></div>
                 </div>
+                <div class="leftLabel">$<span>@lower</span></div>
+                <div class="rightLabel">$<span>@upper</span></div>
+
             </div>
             }
         }

@@ -9385,6 +9385,9 @@ ul.breadcrumb {
     display: block;
     color: #000; }
 
+.SalaryRangeSelect {
+  width: 100%; }
+
 .featured-job-offer {
   position: relative;
   margin: 12px 0;
@@ -10633,7 +10636,9 @@ ul.breadcrumb {
   .xs-no-bdr-right {
     border-right: none; }
   .xs-pad-right-15 {
-    padding-right: 15px; } }
+    padding-right: 15px; }
+  .left-sidebar {
+    margin-bottom: 50px; } }
 
 @media screen and (max-width: 767px) {
   .owl-carousel-jumbotron .owl-nav {

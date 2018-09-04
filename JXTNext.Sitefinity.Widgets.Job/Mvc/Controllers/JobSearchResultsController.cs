@@ -255,9 +255,24 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 if (filterModel.ConsultantSearch != null && !string.IsNullOrEmpty(filterModel.ConsultantSearch.Email))
                     request.ConsultantSearchCriteria = new ConsultantSearch() { Email = filterModel.ConsultantSearch.Email, FirstName = filterModel.ConsultantSearch.FirstName, LastName = filterModel.ConsultantSearch.LastName };
 
+                List<IClassificationSearch> classificationSearches = new List<IClassificationSearch>();
+                bool isFiltersExists = false;
+                if (filterModel.Salary != null)
+                {
+                    isFiltersExists = true;
+                    Classification_RangeSearch cateRangeSearch = new Classification_RangeSearch()
+                    {
+                        ClassificationRootName = filterModel.Salary.RootName,
+                        TargetValue = filterModel.Salary.TargetValue,
+                        UpperRange = filterModel.Salary.UpperRange,
+                        LowerRange = filterModel.Salary.LowerRange
+                    };
+                    classificationSearches.Add(cateRangeSearch);
+                }
+
                 if (filterModel.Filters != null && filterModel.Filters.Count() > 0)
                 {
-                    List<IClassificationSearch> classificationSearches = new List<IClassificationSearch>();
+                    isFiltersExists = true;
                     for (int i = 0; i < filterModel.Filters.Count(); i++)
                     {
                         var filter = filterModel.Filters[i];
@@ -279,8 +294,10 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                             classificationSearches.Add(cateSearch);
                         }
                     }
-                    request.ClassificationsSearchCriteria = classificationSearches;
                 }
+
+                if (isFiltersExists)
+                    request.ClassificationsSearchCriteria = classificationSearches;
 
                 if (this.PageSize == null || this.PageSize <= 0)
                     this.PageSize = PageSizeDefaultValue;

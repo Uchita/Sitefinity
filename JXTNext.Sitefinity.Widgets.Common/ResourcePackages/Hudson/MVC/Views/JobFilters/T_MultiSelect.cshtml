@@ -4,6 +4,9 @@
 @Html.StyleSheet(Url.EmbeddedResource("JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers.JobSearchController", "JXTNext.Sitefinity.Widgets.Job.Mvc.Scripts.JobSearch.dropdowntree.css"), "bottom")
 @Html.Script(Url.EmbeddedResource("JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers.JobSearchController", "JXTNext.Sitefinity.Widgets.Job.Mvc.Scripts.JobSearch.dropdowntree.js"), "bottom")
 
+@Html.Script(Url.WidgetContent("/Mvc/Scripts/jquery.nstSlider.js"))
+@Html.StyleSheet(Url.WidgetContent("/Mvc/Styles/rangeSlider.css"))
+
 @if (Model != null)
 {
 <div class="filter-outer-wrapper left-sidebar">
@@ -14,7 +17,43 @@
 
     @foreach (var item in Model)
     {
-    <div class="dropdown dropdown-tree navbar-collapse" id=@string.Format("{0}{1}",ViewBag.PrefixIdsText,item.Name)></div>
+        if (item.Name != "Salary")
+        {
+            <div class="dropdown dropdown-tree navbar-collapse" id=@string.Format("{0}{1}", ViewBag.PrefixIdsText, item.Name)></div>
+        }
+        else if (item.Name == "Salary")
+        {
+            <select class="SalaryRangeSelect">
+                <option value="-1" selected>Select Salary</option>
+                @foreach (var salaryItem in item.Filters)
+                {
+                    <option value="@salaryItem.ID">@salaryItem.Label</option>
+                }
+            </select>
+            foreach (var salaryItem in item.Filters)
+            {
+                var lower = 15000;
+                var upper = 200000;
+                if(salaryItem.Label == "Hourly Salary")
+                {
+                    lower = 18;
+                    upper = 200;
+                }
+                <div class="demo" id="@salaryItem.ID" hidden>
+                    <div class="widget">
+                        <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
+                             data-cur_min="@lower" data-cur_max="@upper">
+
+                            <div class="bar"></div>
+                            <div class="leftGrip"></div>
+                            <div class="rightGrip"></div>
+                        </div>
+                        <div class="leftLabel">@lower</div>
+                        <div class="rightLabel">@upper</div>
+                    </div>
+                </div>
+            }
+        }
     }
 </div>
 }

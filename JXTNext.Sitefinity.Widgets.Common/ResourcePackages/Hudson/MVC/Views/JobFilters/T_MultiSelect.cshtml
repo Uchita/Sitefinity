@@ -24,7 +24,7 @@
         else if (item.Name == "Salary")
         {
             <select class="SalaryRangeSelect">
-                <option value="-1" selected>Select Salary</option>
+                <option value="-1" selected>No Salary Preference</option>
                 @foreach (var salaryItem in item.Filters)
                 {
                     <option value="@salaryItem.ID">@salaryItem.Label</option>
@@ -39,7 +39,7 @@
                     lower = 18;
                     upper = 200;
                 }
-            <div class="salaryrangewrapper" id="@salaryItem.ID" hidden>
+            <div class="salaryrangewrapper visible-hidden" id="@salaryItem.ID">
                 
                 <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
                         data-cur_min="@lower" data-cur_max="@upper">

@@ -21,12 +21,12 @@
         $('select').on('change', function () {
             isSlarySelected = false;
             $('.salaryrangewrapper').each(function (i, obj) {
-                $(this).hide();
+                $(this).addClass('visible-hidden');
             });
             if (this.value != -1) {
                 $(this).addClass('changed');
                 isSlarySelected = true;
-                $('#' + this.value).show();
+                $('#' + this.value).removeClass('visible-hidden');
                 salary.TargetValue = this.value;
                 salary.LowerRange = $(this).parent().find('.leftLabel span').text();
                 salary.UpperRange = $(this).parent().find('.rightLabel span').text();

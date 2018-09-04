@@ -66,7 +66,7 @@
                             <label class="form-label" for="password-reg">Password*</label>
                         </div>
                         <div class="col-md-8">
-                            <input id="password-reg" type="password" name="Password" class="form-control" data-wrongPassTxt="Password is wrong!" />
+                            <input id="password-reg" type="password" name="Password" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" />
                             <span class="hidden alert alert-danger error-message wrongPassword-message">
                                 Your password is incorrect!
                             </span>

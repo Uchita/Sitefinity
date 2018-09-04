@@ -278,9 +278,12 @@
         }
     }
     
-    .contact-consultant .contact-consultant-info {
-        min-height: 400px;
+    .contact-consultant {
+        .contact-consultant-info {
+            min-height: 370px;
+        }
     }
+    
 
     .right-bottom-below img {
         max-width: 115%;
@@ -331,7 +334,11 @@
             }
         }
     }
-
+    .contact-consultant {
+        .contact-consultant-image{
+            margin-right: 0;
+        }
+    }
 }
 
 @media (max-width: 991px) {

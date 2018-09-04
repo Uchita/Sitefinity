@@ -7727,6 +7727,10 @@ img, iframe {
   .black-2-bg > * {
     color: #fff !important; }
 
+.bg-lightblue {
+  background-color: #e9f5f2;
+  padding: 15px 35px 15px 35px; }
+
 /*#endregion General */
 /*#region Header */
 .header-top {
@@ -8015,6 +8019,8 @@ main {
   position: relative;
   background: #fff;
   color: inherit; }
+  .page-section .form-container .basic-form {
+    margin-top: 0; }
   .page-section.section-lighter {
     background: #f0f0f0;
     color: inherit; }
@@ -8069,6 +8075,18 @@ main {
     color: #fff; }
   .section-highlight-light .btn {
     border-color: #fff; }
+
+.sf-list-item h3[data-sf-role="toggleLink"] {
+  padding: 13px 20px;
+  background: #eee;
+  position: relative; }
+  .sf-list-item h3[data-sf-role="toggleLink"] > i {
+    position: absolute;
+    right: 8px;
+    top: 17px; }
+
+.sf-list-item .sf-list-content {
+  padding: 10px; }
 
 /*#endregion Page sections */
 /*#region Left sidebar*/
@@ -9167,7 +9185,7 @@ ul.breadcrumb {
   /*#region Social*/
   /*#endregion Social*/ }
   .page-wrapper .login-form .forgot-password {
-    padding-left: 10px; }
+    padding-left: 0px; }
     .page-wrapper .login-form .forgot-password a {
       font-size: 1.4rem;
       font-style: italic;
@@ -9946,6 +9964,7 @@ ul.breadcrumb {
   .contact-consultant .contact-consultant-image {
     position: relative;
     display: block;
+    margin: 0 30px 0 0;
     -webkit-clip-path: polygon(100% 0, 100% 90%, 93% 100%, 0 100%, 0 0);
     clip-path: polygon(100% 0, 100% 90%, 93% 100%, 0 100%, 0 0); }
     .contact-consultant .contact-consultant-image img {
@@ -10278,7 +10297,7 @@ ul.breadcrumb {
     .risk-measurement .risk-wrapper .risk img {
       left: 15px; }
   .contact-consultant .contact-consultant-info {
-    min-height: 400px; }
+    min-height: 370px; }
   .right-bottom-below img {
     max-width: 115%; } }
 
@@ -10300,7 +10319,9 @@ ul.breadcrumb {
     right: -5px; }
   .press-release-filter ul li + li {
     margin-left: 10px;
-    padding-left: 10px; } }
+    padding-left: 10px; }
+  .contact-consultant .contact-consultant-image {
+    margin-right: 0; } }
 
 @media (max-width: 991px) {
   .flex {

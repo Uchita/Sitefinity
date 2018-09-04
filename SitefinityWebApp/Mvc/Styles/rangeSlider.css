@@ -299,32 +299,14 @@ section {
   transition: background-color 150ms ease-in-out;
   background-color: #113344;
 }
-#demo {
-  background: #5b83ad;
-  padding-bottom: 50px;
-  padding-top: 20px;
-}
-.demo {
-  color: #ffffff;
-  margin-bottom: 100px;
-}
-.demo h2 {
-  text-align: center;
-}
-.demo .description {
-  -webkit-border-radius: 4px;
-  border-radius: 4px;
-  color: #113344;
-  background: #ffffff;
-  padding: 1em;
-  margin: 2em 1em;
-}
+
+
 .demo .widget {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  width: 510px;
+  /*width: 510px;*/
   margin: 0 auto;
   position: relative;
 }
@@ -384,7 +366,7 @@ section {
   -webkit-border-radius: 10px;
   border-radius: 10px;
   position: relative;
-  width: 500px;
+  width: 100%;
   height: 21px;
   background: #113344;
 }

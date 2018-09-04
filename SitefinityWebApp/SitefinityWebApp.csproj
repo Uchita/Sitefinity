@@ -964,6 +964,12 @@
     <Content Include="assets\css\bootstrap.min.css" />
     <Content Include="assets\css\mc-styles.css" />
     <Content Include="Content\Pages\login.html" />
+    <Content Include="Mvc\Scripts\jquery.nstSlider.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Mvc\Styles\rangeSlider.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Views\CustomSiteSettings\CustomSiteSettings.ascx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

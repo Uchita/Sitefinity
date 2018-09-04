@@ -13,6 +13,51 @@
         var prefixIdText = '';
         var typingTimer;
         var doneTypingInterval = 500;
+        var isSalaryExists = false;
+        var isSlarySelected = false;
+        var salary = { TargetValue: 'Salary', LowerRange: 15000, UpperRange: 200000 };
+               
+
+        $('select').on('change', function () {
+            isSlarySelected = false;
+            $('.demo').each(function (i, obj) {
+                $(this).hide();
+            });
+            if (this.value != -1) {
+               
+                isSlarySelected = true;
+                $('#' + this.value).show();
+                salary.TargetValue = this.value;
+                salary.LowerRange = $(this).parent().find('.leftLabel').text();
+                salary.UpperRange = $(this).parent().find('.rightLabel').text();
+                eachClickFilter();
+            }
+            
+        });
+
+        $('.nstSlider').each(function (i, obj) {
+            $(this).nstSlider({
+                "rounding": {
+                    "1": "600",
+                    "1000": "200000"
+                },
+                "crossable_handles": false,
+                "left_grip_selector": ".leftGrip",
+                "right_grip_selector": ".rightGrip",
+                "value_bar_selector": ".bar",
+                "value_changed_callback": function (cause, leftValue, rightValue) {
+                    salary.LowerRange = leftValue;
+                    salary.UpperRange = rightValue;
+                    $(this).parent().find('.leftLabel').text(leftValue);
+                    $(this).parent().find('.rightLabel').text(rightValue);
+                    if (isSlarySelected) {
+                        eachClickFilter();
+                    }
+                }
+            });
+        });
+
+               
 
         $('#selectedkeywordsfilter').on('keyup', function (e) {
             clearTimeout(typingTimer);
@@ -76,6 +121,9 @@
             prefixIdText = @Html.Raw(Json.Encode(ViewBag.PrefixIdsText));
             
             for (var item of filterData) {
+                if (item.Name == 'Salary') {
+                    isSalaryExists = true;
+                }
                 optionsArray[prefixIdText+item.Name] = {
                     title: item.Name,
                     data: item.Filters,
@@ -125,6 +173,10 @@
                         filterModel.Filters.push({ rootId: trimmedId, values: $("#" + id).GetSelectedElementIds() });
                     }
                 });
+
+                if (isSalaryExists && isSlarySelected){
+                    filterModel.Salary = salary;
+                }
 
                 filterModel.Keywords = $("#selectedkeywordsfilter").val();
                 var data = { filterModel: filterModel }

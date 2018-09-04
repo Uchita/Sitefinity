@@ -8075,6 +8075,9 @@ main {
 .left-sidebar .form-group {
   margin-bottom: 20px; }
 
+.left-sidebar .keywordfilter label {
+  margin-bottom: 0.9rem; }
+
 .left-sidebar .search-wrap input {
   width: 100%; }
 
@@ -8183,7 +8186,7 @@ main {
       .left-sidebar .container-fluid.dropdown-tree > ul li a, .left-sidebar .navbar-collapse.dropdown-tree > ul li a {
         white-space: normal;
         display: block !important;
-        font-family: AkzidGroProMed,sans-serif;
+        font-family: AkzidGroProReg,sans-serif;
         color: #808080; }
         .left-sidebar .container-fluid.dropdown-tree > ul li a .count, .left-sidebar .navbar-collapse.dropdown-tree > ul li a .count {
           margin-left: 3px; }
@@ -8956,6 +8959,8 @@ ul.breadcrumb {
   .card-basic.small-caption .caption {
     width: 90%;
     margin: 0 auto; }
+    .card-basic.small-caption .caption h2 {
+      margin-top: 0; }
 
 .page-section .card-basic.small-caption .caption {
   background-color: #f0f0f0; }
@@ -9763,6 +9768,8 @@ ul.breadcrumb {
   color: #fff; }
   .contact-box a {
     color: inherit; }
+    .contact-box a:hover, .contact-box a:focus {
+      color: #fff; }
 
 .press-release-filter {
   padding: 30px 0; }

@@ -23,18 +23,24 @@ using Telerik.Sitefinity.Mvc;
 using Telerik.Sitefinity.Services;
 using JXTNext.Sitefinity.Widgets.Content.Mvc.StringResources;
 using Telerik.Sitefinity.Security.Events;
+using JXTNext.Sitefinity.Connector.BusinessLogics;
+using Ninject;
 
 namespace SitefinityWebApp
 {
     public class Global : System.Web.HttpApplication
     {
+        private JXTNext_UserEventHandler _userEventHandler;
+
         protected void Application_Start(object sender, EventArgs e)
         {
             ViewEngines.Engines.Add(new SFViewEngine());
             Bootstrapper.Bootstrapped += Bootstrapper_Bootstrapped;
             Bootstrapper.Initialized += new EventHandler<ExecutedEventArgs>(Bootstrapper_Initialized);
 
-            //User creating event
+            //User creating event             
+            IBusinessLogicsConnector connector = DependencyResolver.Current.GetService<IBusinessLogicsConnector>();
+            _userEventHandler = new JXTNext_UserEventHandler(connector);
             SystemManager.ApplicationStart += new EventHandler<EventArgs>(ApplicationStartHandler);
         }
 
@@ -86,7 +92,7 @@ namespace SitefinityWebApp
 
         protected void Application_End(object sender, EventArgs e)
         {
-            EventHub.Unsubscribe<UserCreating>(new JXTNext.Sitefinity.Widgets.User.Mvc.Models.JXTNext_UserEventHandler().UserCreating);
+            EventHub.Unsubscribe<UserCreating>(_userEventHandler.UserCreating);
         }
 
         void Bootstrapper_Bootstrapped(object sender, EventArgs e)
@@ -103,7 +109,7 @@ namespace SitefinityWebApp
 
         private void ApplicationStartHandler(object sender, EventArgs e)
         {
-            EventHub.Subscribe<UserCreating>(evt => new JXTNext.Sitefinity.Widgets.User.Mvc.Models.JXTNext_UserEventHandler().UserCreating(evt));
+            EventHub.Subscribe<UserCreating>(evt => _userEventHandler.UserCreating(evt));
         }
 
 

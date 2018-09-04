@@ -20,7 +20,7 @@
 
         $('select').on('change', function () {
             isSlarySelected = false;
-            $('.demo').each(function (i, obj) {
+            $('.salaryrangewrapper').each(function (i, obj) {
                 $(this).hide();
             });
             if (this.value != -1) {
@@ -45,7 +45,7 @@
                 "left_grip_selector": ".leftGrip",
                 "right_grip_selector": ".rightGrip",
                 "value_bar_selector": ".bar",
-                "value_changed_callback": function (cause, leftValue, rightValue) {
+                "user_mouseup_callback": function (leftValue, rightValue, isLeftGripMoved) {
                     salary.LowerRange = leftValue;
                     salary.UpperRange = rightValue;
                     $(this).parent().find('.leftLabel').text(leftValue);

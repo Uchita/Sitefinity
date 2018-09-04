@@ -20,7 +20,7 @@
 
         $('select').on('change', function () {
             isSlarySelected = false;
-            $('.demo').each(function (i, obj) {
+            $('.salaryrangewrapper').each(function (i, obj) {
                 $(this).hide();
             });
             if (this.value != -1) {

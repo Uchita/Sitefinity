@@ -8,183 +8,181 @@
 {
     <div class="alert alert-success">@ViewBag.ShowFilesUploadMessage</div>
 }
-    <div class="login-form">
-        <form id="job-app-form" action="@Url.Action("ApplyJob","JobApplication")" method="post">
+<div class="login-form sign-in-with">
+    <form id="job-app-form" action="@Url.Action("ApplyJob","JobApplication")" method="post">
 
-            <div class="row">
-                <div class="col-xs-12 col-md-4 text-right"></div>
-                <div class="col-xs-12 col-md-8"><h3 id="appFormState">Login</h3></div>
-            </div>
+        <div class="row">
+            <div class="col-xs-12 col-md-4 text-right"></div>
+            <div class="col-xs-12 col-md-8"><h2 id="appFormState">Login</h2></div>
+        </div>
 
-            <div class="basic-form">
-                <!-- Login/Register form fields -->
-                <div id="login-register-container">
+        <div class="basic-form">
+            <!-- Login/Register form fields -->
+            <div id="login-register-container">
 
-                    <div id="check-login" class="form-group">
-                        <div class="row">
-                            <div class="col-md-4 text-right">
-                                <label class="form-label" for="userid">Email*</label>
-                            </div>
-                            <div class="col-md-8">
-                                <input id="userid" type="text" name="Email" class="form-control" required />
-                            </div>
+                <div id="check-login" class="form-group">
+                    <div class="row">
+                        <div class="col-md-4 text-right">
+                            <label class="form-label" for="userid">Email*</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input id="userid" type="text" name="Email" class="form-control" required />
                         </div>
                     </div>
+                </div>
 
-                    <div id="register" hidden>
-                        <div id="firstname-lastname">
-                            <div class="row">
-                                <div class="col-md-4 text-right">
-                                    <label class="form-label" for="firstname-reg">
-                                        Name*
-                                    </label>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <input id="firstname-reg" type="text" name="FirstName" class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <input type="text" name="LastName" class="form-control" />
-                                    </div>
+                <div id="register" hidden>
+                    <div id="firstname-lastname">
+                        <div class="row">
+                            <div class="col-md-4 text-right">
+                                <label class="form-label" for="firstname-reg">Name*</label>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input id="firstname-reg" type="text" name="FirstName" class="form-control" />
                                 </div>
                             </div>
-
-                            <div class="row form-group">
-                                <div class="col-md-4 text-right">
-                                    <label class="form-label" for="PhoneNumber">
-                                        Phone Number
-                                    </label>
-                                </div>
-                                <div class="col-md-8">
-                                    <input type="text" name="PhoneNumber" class="form-control" />
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input type="text" name="LastName" class="form-control" />
                                 </div>
                             </div>
                         </div>
 
                         <div class="row form-group">
                             <div class="col-md-4 text-right">
-                                <label class="form-label" for="password-reg">Password*</label>
+                                <label class="form-label" for="PhoneNumber">
+                                    Phone Number
+                                </label>
                             </div>
                             <div class="col-md-8">
-                                <input id="password-reg" type="password" name="Password" class="form-control" data-wrongPassTxt="Password is wrong!" />
-                                <span class="hidden alert alert-danger error-message wrongPassword-message">
-                                    Your password is incorrect!</a>
+                                <input type="text" name="PhoneNumber" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-md-4 text-right">
+                            <label class="form-label" for="password-reg">Password*</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input id="password-reg" type="password" name="Password" class="form-control" data-wrongPassTxt="Password is wrong!" />
+                            <span class="hidden alert alert-danger error-message wrongPassword-message">
+                                Your password is incorrect!
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row" id="strength-wrap" style="display:none;">
+                        <div class="col-md-4 text-right">
+                            <label class="form-label" for="password-reg">Password strength</label>
+                        </div>
+                        <div class="col-md-8">
+                            <div id="password-strength"><span class="strengh-text"></span></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Upload section -->
+            <div class="upload-section">
+
+                @if (Model.ApplicationStatus == JobApplicationStatus.Available)
+                {
+
+                    <div id="upload-files-container">
+
+                        <!-- Resume -->
+                        <div class="form-group row">
+                            <label class="form-label col-xs-12 col-md-4 text-right">@Model.ApplicationAttachments[0].Title</label>
+                            <div class="col-xs-12 col-md-8">
+                                <div class="box clearfix text-center">
+                                    <small class="note">MS Word, PDF, HTML and text formats accepted.</small>
+                                    <div class="uploadfield-wrap">
+                                        <input type="file" id="@Model.ApplicationAttachments[0].AttachementFileUploadKey" name="@Model.ApplicationAttachments[0].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.html,.htm,.xhtml" />
+
+
+                                        <small class="lbl">Browse</small>
+                                    </div>
+                                    <div class="uploadfield-wrap dropbox-upload">
+                                        <button type="button" id="dropbox-resume-btn">Dropbox Resume</button>
+                                        <small class="lbl">Dropbox</small>
+                                    </div>
+                                    <div class="uploadfield-wrap google-drive-upload">
+                                        <button type="button" id="resume-google-drive-btn">Google Drive Resume</button>
+                                        <small class="lbl">Google Drive</small>
+                                    </div>
+                                    <span class="note resume-name"></span>
+                                </div><!-- end box -->
+                                <span class="hidden alert alert-danger error-message resume-message">
+                                    Please upload your resume!
                                 </span>
                             </div>
                         </div>
-                        <div class="row" id="strength-wrap" style="display:none;">
-                            <div class="col-md-4 text-right">
-                                <label class="form-label" for="password-reg">Password strength</label>
-                            </div>
-                            <div class="col-md-8">
-                                <div id="password-strength"><span class="strengh-text"></span></div>
+
+                        <!-- Coverletter -->
+                        <div class="form-group row">
+                            <label class="form-label col-xs-12 col-md-4 text-right">@Model.ApplicationAttachments[1].Title</label>
+                            <div class="col-xs-12 col-md-8">
+                                <div class="box clearfix text-center">
+                                    <small class="note">MS Word, PDF, HTML and text formats accepted.</small>
+                                    <div class="uploadfield-wrap">
+                                        <input type="file" id="@Model.ApplicationAttachments[1].AttachementFileUploadKey" name="@Model.ApplicationAttachments[1].AttachementFileUploadKey" />
+                                        <small class="lbl">Browse</small>
+                                    </div>
+                                    <div class="uploadfield-wrap dropbox-upload">
+                                        <button type="button" id="dropbox-coverletter-btn">Dropbox Cover Letter</button>
+                                        <small class="lbl">Dropbox</small>
+                                    </div>
+                                    <div class="uploadfield-wrap google-drive-upload">
+                                        <button type="button" id="coverletter-google-drive-btn">Google Drive CoverLetter</button>
+                                        <small class="lbl">Google Drive</small>
+                                    </div>
+                                    <span class="note coverletter-name"></span>
+                                </div><!-- end box -->
                             </div>
                         </div>
 
+
+                        <input type="hidden" id="uploadResumeJson" name="UploadFilesResume" />
+                        <input type="hidden" id="uploadCoverLetterJson" name="UploadFilesCoverLetter" />
+                        <input type="hidden" id="resume-selected-type" name="ResumeSelectedType" />
+                        <input type="hidden" id="coverletter-selected-type" name="CoverLetterSelectedType" />
+                        <input type="hidden" id="jobid" name="JobId" value="@Model.JobId" />
+
+                        <div class="form-group button-wrapper row">
+                            <label class="col-xs-12 col-md-4"></label>
+                            <div class="col-xs-12 col-md-8">
+                                <input id="apply" type="submit" value="Apply" class="btn btn-block btn-primary" disabled />
+                            </div>
+                        </div>
                     </div>
-                        </div>
-
-                <div class="upload-section">
-
-                    @if (Model.ApplicationStatus == JobApplicationStatus.Available)
+                }
+                else
+                {
+                    <h4>@Model.ApplicationStatus.ToString()</h4>
+                    <p>@Model.ApplicationMessage</p>
+                    if (Model.ApplicationStatus == JobApplicationStatus.NotAbleToCreateUser)
                     {
-                        
-                            <div class="alert alert-info"><p><strong>Welcome back @ViewBag.UserFirstName</strong></p></div>
-                        
+                        //@ViewBag.RegisterPageUrl
+                        <a href="/register" title="@Model.ApplicationMessage">here</a>
+                    }
+                }
+            </div>
 
-                            <div id="upload-files-container">
+        </div>
 
-                                @*@foreach (JobApplicationAttachmentItem attachment in Model.ApplicationAttachments)
-                    {*@
-                                <!-- Resume -->
-                                <div class="form-group row">
-                                    <label class="form-label col-xs-12 col-md-4 text-right">@Model.ApplicationAttachments[0].Title</label>
-                                    <div class="col-xs-12 col-md-8">
-                                        <div class="box clearfix">
-                                            <small class="note">MS Word, PDF, HTML and text formats accepted.</small>
-                                            <div class="uploadfield-wrap">
-                                                <input type="file" id="@Model.ApplicationAttachments[0].AttachementFileUploadKey" name="@Model.ApplicationAttachments[0].AttachementFileUploadKey" />
-
-
-                                                <small class="lbl">Browse</small>
-                                            </div>
-                                            <div class="uploadfield-wrap dropbox-upload">
-                                                <button id="dropbox-resume-btn">Dropbox Resume</button>
-                                                <small class="lbl">Dropbox</small>
-                                            </div>
-                                            <div class="uploadfield-wrap google-drive-upload">
-                                                <button type="button" id="resume-google-drive-btn">Google Drive Resume</button>
-                                                <small class="lbl">Google Drive</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                @*}*@
-
-                                <!-- Coverletter -->
-                                <div class="form-group row">
-                                    <label class="form-label col-xs-12 col-md-4 text-right">@Model.ApplicationAttachments[1].Title</label>
-                                    <div class="col-xs-12 col-md-8">
-                                        <div class="box clearfix">
-                                            <small class="note">MS Word, PDF, HTML and text formats accepted.</small>
-                                            <div class="uploadfield-wrap">
-                                                <input type="file" id="@Model.ApplicationAttachments[1].AttachementFileUploadKey" name="@Model.ApplicationAttachments[1].AttachementFileUploadKey" />
-                                                <small class="lbl">Browse</small>
-                                            </div>
-                                            <div class="uploadfield-wrap dropbox-upload">
-                                                <button id="dropbox-coverletter-btn">Dropbox Cover Letter</button>
-                                                <small class="lbl">Dropbox</small>
-                                            </div>
-                                            <div class="uploadfield-wrap google-drive-upload">
-                                                <button type="button" id="coverletter-google-drive-btn">Google Drive CoverLetter</button>
-                                                <small class="lbl">Google Drive</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <input type="hidden" id="uploadResumeJson" name="UploadFilesResume" />
-                                <input type="hidden" id="uploadCoverLetterJson" name="UploadFilesCoverLetter" />
-                                <input type="hidden" id="resume-selected-type" name="ResumeSelectedType" />
-                                <input type="hidden" id="coverletter-selected-type" name="CoverLetterSelectedType" />
-                                <input type="hidden" id="jobid" name="JobId" value="@Model.JobId" />
-
-                                <div class="form-group button-wrapper row">
-                                    <label class="col-xs-12 col-md-4"></label>
-                                    <div class="col-xs-12 col-md-8">
-                                        <input id="apply" type="submit" value="Apply" class="btn btn-block btn-primary" disabled />
-                                    </div>
-                                </div>
-                            </div>
-                        }
-                        else
-                        {
-                            <h4>@Model.ApplicationStatus.ToString()</h4>
-                            <p>@Model.ApplicationMessage</p>
-                            if (Model.ApplicationStatus == JobApplicationStatus.NotAbleToCreateUser)
-                            {
-                                //@ViewBag.RegisterPageUrl
-                                <a href="/register" title="@Model.ApplicationMessage">here</a>
-                            }
-                        }
-                </div>
-
-                    </div>
-
-        </form>
-    </div>
+    </form>
+</div>
 @{
     string googleClientId = new SiteSettingsHelper().GetCurrentSiteGoogleClientId();
     string googleAPIKey = new SiteSettingsHelper().GetCurrentSiteGoogleClientAPIKey();
     string dbAPIKey = new SiteSettingsHelper().GetCurrentSiteDropboxClientAPIKey();
 }
 
-    <script>
+<script>
 
-      var appStatus = '@Model.ApplicationStatus';
+     var appStatus = '@Model.ApplicationStatus';
      var isUserLoggedIn = '@ViewBag.IsUserLoggedIn';
      var registerForm = false;
 
@@ -201,10 +199,10 @@
     var isGoogleResume = false;
     var isDropboxResume = false;
     var resumeSelectedType = 'Local';
-     var coverLetterSelectedType = 'Local';
+    var coverLetterSelectedType = 'Local';
 
     $("#coverletter-selected-type").val(coverLetterSelectedType);
-     $("#resume-selected-type").val(resumeSelectedType);
+    $("#resume-selected-type").val(resumeSelectedType);
 
      // Password Strength
      var m_strUpperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -217,7 +215,17 @@
          $('form').submit(function (e) {
              e.preventDefault();
              var self = this;
-             if ((appStatus == 'Available' && isUserLoggedIn == 'True') || registerForm) {
+             var fileUploadFlag = false;
+             //checking the resume file upload
+             if ($("#application-resume").val() == "") {
+                 fileUploadFlag = false;
+                 $(".resume-message").removeClass('hidden');
+                 return false;
+             } else {
+                 fileUploadFlag = true;
+             }
+
+             if ((appStatus == 'Available' && isUserLoggedIn == 'True') && fileUploadFlag || registerForm) {
                  self.submit();
              }
 
@@ -263,11 +271,14 @@
         $('#application-resume').change(function () {
             resumeSelectedType = 'Local';
             $("#resume-selected-type").val(resumeSelectedType);
+            $(".resume-name").text($(this).val());
+            $(".resume-message").addClass('hidden');
         });
 
         $('#application-coverletter').change(function () {
             coverLetterSelectedType = 'Local';
             $("#coverletter-selected-type").val(coverLetterSelectedType);
+            $(".coverletter-name").text($(this).val());
         });
 
 
@@ -286,7 +297,7 @@
                     dataType: 'Json',
                     success: function (response) {
                         $("#upload-files-container").show();
-                        
+
                         if (response == false) {
                             $('#register').show();
                             $('#appFormState').text('Enter your details');
@@ -402,7 +413,7 @@
              return nScore;
          };
 
-         // Runs password through check and then updates GUI 
+         // Runs password through check and then updates GUI
 
 
          function runPassword(strPassword) {
@@ -485,7 +496,7 @@
              }
 
              return nCount;
-         }; 
+         };
 
        dropboxResumeOptions = {
             // Required. Called when a user selects an item in the Chooser.
@@ -629,7 +640,7 @@
             var fileId = "";
             var mime = "";
 
-  
+
             if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
                 var doc = data[google.picker.Response.DOCUMENTS][0];
                 fileId = doc[google.picker.Document.ID];
@@ -661,7 +672,7 @@
 
             var message = url;
         }
-    </script>
+</script>
 
 <script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="@dbAPIKey"></script>
 <script type="text/javascript" src="https://apis.google.com/js/api.js?onload=onApiLoad"></script>

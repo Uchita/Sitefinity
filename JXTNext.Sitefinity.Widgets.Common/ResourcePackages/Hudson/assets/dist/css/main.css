@@ -9230,7 +9230,7 @@ ul.breadcrumb {
       font-size: 3.2rem;
       margin-bottom: 2rem; }
     .page-wrapper .sign-in-with ul {
-      padding-top: 34px; }
+      padding-top: 20px; }
       .page-wrapper .sign-in-with ul li a::before {
         font-family: 'Font Awesome 5 Brands';
         margin-right: 10px; }
@@ -9581,7 +9581,9 @@ ul.breadcrumb {
       right: 0;
       box-shadow: 0 3px 9px 0px #efefef;
       box-shadow: 0 3px 9px 0px rgba(0, 0, 0, 0.14);
-      width: 30%; }
+      width: 30%;
+      max-height: 245px;
+      overflow: hidden; }
       .list-featured-articles .featured-article-image img {
         width: 100%; }
   .list-featured-articles .text-muted {
@@ -10282,6 +10284,8 @@ ul.breadcrumb {
     height: 200px; }
   .thumbnail.card-basic .caption {
     min-height: 230px; }
+  .list-featured-articles .featured-article-image {
+    max-height: 200px; }
   .press-release-filter ul li a {
     font-size: 1.4rem; }
   .press-release-filter ul li.dropdown > a::after {
@@ -10387,7 +10391,8 @@ ul.breadcrumb {
       margin-right: 35%;
       min-height: 140px; }
       .list-featured-articles .featured-article-image {
-        width: 35%; }
+        width: 35%;
+        max-height: 180px; }
       .list-featured-articles .featured-article .btn.btn-more {
         width: 20px;
         height: 20px; }

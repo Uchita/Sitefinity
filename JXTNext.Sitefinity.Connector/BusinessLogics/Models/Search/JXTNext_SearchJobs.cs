@@ -86,6 +86,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Search
     {
         public ClassificationSearchType SearchType => ClassificationSearchType.Range;
         public string ClassificationRootName { get; set; }
+        public string TargetValue { get; set; }
         public int? UpperRange { get; set; }
         public int? LowerRange { get; set; }
     }

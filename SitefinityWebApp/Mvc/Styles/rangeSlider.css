@@ -1,129 +1,3 @@
-/* Pretty printing styles. Used with prettify.js. */
-/* Vim sunburst theme by David Leibovic */
-pre .str,
-code .str {
-  color: #65B042;
-}
-/* string  - green */
-pre .kwd,
-code .kwd {
-  color: #E28964;
-}
-/* keyword - dark pink */
-pre .com,
-code .com {
-  color: #AEAEAE;
-  font-style: italic;
-}
-/* comment - gray */
-pre .typ,
-code .typ {
-  color: #89bdff;
-}
-/* type - light blue */
-pre .lit,
-code .lit {
-  color: #3387CC;
-}
-/* literal - blue */
-pre .pun,
-code .pun {
-  color: #fff;
-}
-/* punctuation - white */
-pre .pln,
-code .pln {
-  color: #fff;
-}
-/* plaintext - white */
-pre .tag,
-code .tag {
-  color: #89bdff;
-}
-/* html/xml tag    - light blue */
-pre .atn,
-code .atn {
-  color: #bdb76b;
-}
-/* html/xml attribute name  - khaki */
-pre .atv,
-code .atv {
-  color: #65B042;
-}
-/* html/xml attribute value - green */
-pre .dec,
-code .dec {
-  color: #3387CC;
-}
-/* decimal - blue */
-pre.prettyprint,
-code.prettyprint {
-  background-color: #000;
-  -moz-border-radius: 8px;
-  -webkit-border-radius: 8px;
-  -o-border-radius: 8px;
-  -ms-border-radius: 8px;
-  -khtml-border-radius: 8px;
-  border-radius: 8px;
-}
-pre.prettyprint {
-  padding: 1em;
-  white-space: pre-wrap;
-}
-/* Specify class=linenums on a pre to get line numbering */
-.linenums {
-  margin-top: 0;
-  margin-bottom: 0;
-  color: #AEAEAE;
-}
-/* IE indents via margin-left */
-/* Alternate shading for lines */
-@media print {
-  pre .str,
-  code .str {
-    color: #060;
-  }
-  pre .kwd,
-  code .kwd {
-    color: #006;
-    font-weight: bold;
-  }
-  pre .com,
-  code .com {
-    color: #600;
-    font-style: italic;
-  }
-  pre .typ,
-  code .typ {
-    color: #404;
-    font-weight: bold;
-  }
-  pre .lit,
-  code .lit {
-    color: #044;
-  }
-  pre .pun,
-  code .pun {
-    color: #440;
-  }
-  pre .pln,
-  code .pln {
-    color: #000;
-  }
-  pre .tag,
-  code .tag {
-    color: #006;
-    font-weight: bold;
-  }
-  pre .atn,
-  code .atn {
-    color: #404;
-  }
-  pre .atv,
-  code .atv {
-    color: #060;
-  }
-}
 .is_clickable {
   cursor: hand;
   cursor: pointer;
@@ -177,162 +51,22 @@ pre.prettyprint {
   border-bottom: none;
   font-family: 'Ubuntu Condensed';
 }
-table pre {
-  white-space: pre-wrap;
-  /* css-3 */
-  white-space: -moz-pre-wrap;
-  /* Mozilla, since 1999 */
-  white-space: -pre-wrap;
-  /* Opera 4-6 */
-  white-space: -o-pre-wrap;
-  /* Opera 7 */
-  word-wrap: break-word;
-  /* Internet Explorer 5.5+ */
-}
-body {
-  padding: 182px 0;
-  margin: 0;
-  font-family: "RaleWay", Helvetica, Arial, sans-serif;
-  background: #ffffff;
-}
-a {
-  color: #e87722;
-  text-decoration: none;
-}
-h1 {
-  text-align: center;
-  padding: 0;
-  margin: 0;
-}
-h2 {
-  text-align: center;
-  font-size: 34px;
-  margin-top: 0;
-}
-#disqus {
-  width: 800px;
-  margin: 0 auto;
-}
-#features {
-  text-align: center;
-  color: #113344;
-  padding-bottom: 60px;
-  margin-top: 98px;
-}
-#features ul {
-  width: 500px;
-  list-style: none;
-  text-align: center;
-  padding: 0;
-  margin: 0 auto;
-  font-size: 21px;
-}
-#features ul li {
-  margin: 1em 0;
-  display: inline;
-  color: #000000;
-}
-#features ul li span {
-  white-space: nowrap;
-}
-#features ul li:first-child:before {
-  content: '';
-}
-#features ul li:before {
-  content: ' • ';
-}
-#header {
-  -webkit-box-shadow: 0 0 17px 0 rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0 0 17px 0 rgba(0, 0, 0, 0.3);
-  box-shadow: 0 0 17px 0 rgba(0, 0, 0, 0.3);
-  border: 0;
-  z-index: 1;
-  text-align: center;
-  background-color: #113344;
-  padding: 12px;
-  color: #ffffff;
-  font-weight: bold;
-  position: fixed;
-  top: 0;
-  width: 100%;
-}
-#header h1 {
-  font-size: 48px;
-  color: #ffffff;
-}
-section {
-  width: 800px;
-  margin: 0 auto;
-}
-#get_it {
-  color: #5b83ad;
-  margin: 0;
-  padding: 75px 0;
-}
-#get_it .buttons {
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-  border: 4px dashed #5b83ad;
-  margin: 15px auto;
-  padding: 1em;
-  width: 300px;
-}
-#get_it a {
-  cursor: hand;
-  cursor: pointer;
-  color: #ffffff;
-  display: block;
-  text-decoration: none;
-  width: 120px;
-  padding: 1em;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  margin: 15px auto;
-  text-align: center;
-  background: #5b83ad;
-}
-#get_it a:hover {
-  -webkit-transition: background-color 150ms ease-in-out;
-  -moz-transition: background-color 150ms ease-in-out;
-  -ms-transition: background-color 150ms ease-in-out;
-  -o-transition: background-color 150ms ease-in-out;
-  transition: background-color 150ms ease-in-out;
-  background-color: #113344;
-}
-#demo {
-  background: #5b83ad;
-  padding-bottom: 50px;
-  padding-top: 20px;
-}
-.demo {
-  color: #ffffff;
-  margin-bottom: 100px;
-}
-.demo h2 {
-  text-align: center;
-}
-.demo .description {
-  -webkit-border-radius: 4px;
-  border-radius: 4px;
-  color: #113344;
-  background: #ffffff;
-  padding: 1em;
-  margin: 2em 1em;
-}
-.demo .widget {
+
+
+.salaryrangewrapper {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  width: 510px;
+  /*width: 510px;*/
   margin: 0 auto;
   position: relative;
 }
-.demo .widget .ariaAttributesAsText {
+.salaryrangewrapper .ariaAttributesAsText {
   text-align: center;
   padding: 1em;
 }
-.demo .widget #highlightRangeButton {
+.salaryrangewrapper #highlightRangeButton {
   cursor: hand;
   cursor: pointer;
   color: #ffffff;
@@ -347,7 +81,7 @@ section {
   background: #113344;
   width: 200px;
 }
-.demo .widget #highlightRangeButton:hover {
+.salaryrangewrapper #highlightRangeButton:hover {
   -webkit-transition: background-color 150ms ease-in-out;
   -moz-transition: background-color 150ms ease-in-out;
   -ms-transition: background-color 150ms ease-in-out;
@@ -355,73 +89,84 @@ section {
   transition: background-color 150ms ease-in-out;
   background-color: #e87722;
 }
-.demo .widget #changeStepIncrement {
-  cursor: hand;
-  cursor: pointer;
-  color: #ffffff;
-  display: block;
-  text-decoration: none;
-  width: 120px;
-  padding: 1em;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  margin: 15px auto;
-  text-align: center;
-  background: #113344;
-  width: 300px;
+.salaryrangewrapper #changeStepIncrement {
+    cursor: hand;
+    cursor: pointer;
+    color: #ffffff;
+    display: block;
+    text-decoration: none;
+    width: 120px;
+    padding: 1em;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    margin: 15px auto;
+    text-align: center;
+    background: #113344;
+    width: 300px;
 }
-.demo .widget #changeStepIncrement:hover {
+.salaryrangewrapper #changeStepIncrement:hover {
   -webkit-transition: background-color 150ms ease-in-out;
   -moz-transition: background-color 150ms ease-in-out;
   -ms-transition: background-color 150ms ease-in-out;
   -o-transition: background-color 150ms ease-in-out;
   transition: background-color 150ms ease-in-out;
-  background-color: #e87722;
+ 
 }
-.demo .widget .nstSlider {
-  cursor: hand;
-  cursor: pointer;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-  position: relative;
-  width: 500px;
-  height: 21px;
+.salaryrangewrapper .nstSlider {
+    cursor: hand;
+    cursor: pointer;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    position: relative;
+    width: 100%;
+    height: 18px;
+    margin-top:10px;
+}
+.nstSlider:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    border-radius: 20px;
+    background: #eee;
+    top: 7px;
+}
+.salaryrangewrapper .nstSlider .leftGrip.gripHighlighted {
   background: #113344;
 }
-.demo .widget .nstSlider .leftGrip.gripHighlighted {
+.salaryrangewrapper .nstSlider .rightGrip.gripHighlighted {
   background: #113344;
 }
-.demo .widget .nstSlider .rightGrip.gripHighlighted {
-  background: #113344;
-}
-.demo .widget .nstSlider .rightGrip,
-.demo .widget .nstSlider .leftGrip {
+.salaryrangewrapper .nstSlider .rightGrip,
+.salaryrangewrapper .nstSlider .leftGrip {
   -webkit-border-radius: 10px;
   border-radius: 10px;
-  width: 21px;
-  height: 21px;
-  background: #ffffff;
+  width: 17px;
+  height: 17px;
+  background:#197e84;
   position: absolute;
 }
-.demo .widget .nstSlider .bar {
+.salaryrangewrapper .nstSlider .bar {
   -webkit-border-radius: 10px;
   border-radius: 10px;
   position: absolute;
-  background: #ffffff;
-  height: 9px;
-  top: 6px;
+  background: #197e84;
+  height: 3px;
+  top: 7px;
 }
-.demo .widget .leftLabel {
-  position: absolute;
-  left: -60px;
-  top: 0;
+.salaryrangewrapper .leftLabel,
+.salaryrangewrapper .rightLabel {
+    position: absolute;
+    top: 18px;
+    font-size:1.2rem;
 }
-.demo .widget .rightLabel {
-  position: absolute;
-  right: -50px;
-  top: 0;
+.salaryrangewrapper .leftLabel {
+   left: 0;
 }
-.demo .widget .highlightPanel {
+.salaryrangewrapper .rightLabel {
+   right: 0;
+}
+.salaryrangewrapper .highlightPanel {
   -webkit-transition: all 500ms ease-in-out;
   -moz-transition: all 500ms ease-in-out;
   -ms-transition: all 500ms ease-in-out;
@@ -434,7 +179,7 @@ section {
   height: 21px;
   top: 0;
 }
-.demo .prettyprint {
+.prettyprint {
   background: #113344;
 }
 #methods {
@@ -497,4 +242,10 @@ section {
 #settings table ol {
   margin: 0;
   padding: 12px;
+}
+
+.visible-hidden{
+    visibility: hidden;
+    opacity: 0;
+    height: 1px;
 }

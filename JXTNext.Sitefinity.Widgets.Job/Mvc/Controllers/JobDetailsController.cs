@@ -96,11 +96,20 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 string parentLocKey = "CountryLocationArea[0].Filters[0].SubLevel[0]";
                 JobDetailsViewModel.ProcessCustomData(parentLocKey, jobListingResponse.Job.CustomData, locOrdDict);
                 
-
                 DateTime localTime = TimeZoneInfo.ConvertTimeFromUtc(ConversionHelper.GetDateTimeFromUnix(jobListingResponse.Job.DateCreated), TimeZoneInfo.FindSystemTimeZoneById("AUS Eastern Standard Time"));
                 DateTime utcTime = ConversionHelper.GetDateTimeFromUnix(jobListingResponse.Job.DateCreated);
-
+                DateTime elocalTime;
+                DateTime eutcTime = new DateTime();
                 TimeSpan offset = localTime - utcTime;
+                TimeSpan eoffset = new TimeSpan();
+
+
+                if (jobListingResponse.Job.ExpiryDate.HasValue)
+                {
+                    elocalTime = TimeZoneInfo.ConvertTimeFromUtc(ConversionHelper.GetDateTimeFromUnix(jobListingResponse.Job.ExpiryDate.Value), TimeZoneInfo.FindSystemTimeZoneById("AUS Eastern Standard Time"));
+                    eutcTime = ConversionHelper.GetDateTimeFromUnix(jobListingResponse.Job.ExpiryDate.Value);
+                    eoffset = elocalTime - eutcTime;
+                }
 
                 viewModel.Classifications = classifParentIdsOrdDict;
                 viewModel.Locations = locOrdDict;
@@ -112,8 +121,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 ViewBag.GoogleForJobs = ReplaceToken(GoogleForJobsTemplate, JsonConvert.SerializeObject(new
                 {
                     CurrencySymbol = "$",
-                    SalaryLowerBand = jobListingResponse.Job.CustomData.ContainsKey("Salaries[0].Filters[0].Min") ? jobListingResponse.Job.CustomData["Classifications[0].Filters[0].Min"] : null,
-                    SalaryUpperBand = jobListingResponse.Job.CustomData.ContainsKey("Salaries[0].Filters[0].Max") ? jobListingResponse.Job.CustomData["Classifications[0].Filters[0].Max"] : null,
+                    SalaryLowerBand = jobListingResponse.Job.CustomData.ContainsKey("Salaries[0].Filters[0].Min") ? jobListingResponse.Job.CustomData["Salaries[0].Filters[0].Min"] : null,
+                    SalaryUpperBand = jobListingResponse.Job.CustomData.ContainsKey("Salaries[0].Filters[0].Max") ? jobListingResponse.Job.CustomData["Salaries[0].Filters[0].Max"] : null,
                     FullDescription = jobListingResponse.Job.Description,
                     Description = jobListingResponse.Job.ShortDescription,
                     AdvertiserCompanyName = jobListingResponse.Job.CustomData.ContainsKey("CompanyName") ? jobListingResponse.Job.CustomData["CompanyName"] : null,
@@ -121,7 +130,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     LocationName = jobListingResponse.Job.CustomData.ContainsKey("CountryLocationArea[0].Filters[0].Value") ? jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].Value"] : null,
                     AreaName = jobListingResponse.Job.CustomData.ContainsKey("CountryLocationArea[0].Filters[0].SubLevel[0].Value") ? jobListingResponse.Job.CustomData["CountryLocationArea[0].Filters[0].SubLevel[0].Value"] : null,
                     JobName = jobListingResponse.Job.Title,
-                    DatePosted = string.Format("|{0}+{1}|", utcTime.ToString("yyyy-MM-ddThh:mm:ss"), offset.Hours.ToString("00") + ":" + offset.Minutes.ToString("00"))
+                    DatePosted = string.Format("|{0}+{1}|", utcTime.ToString("yyyy-MM-ddThh:mm:ss"), offset.Hours.ToString("00") + ":" + offset.Minutes.ToString("00")),
+                    ExpiryDate = (jobListingResponse.Job.ExpiryDate.HasValue) ? string.Format("|{0}+{1}|", eutcTime.ToString("yyyy-MM-ddThh:mm:ss"), eoffset.Hours.ToString("00") + ":" + eoffset.Minutes.ToString("00")) : string.Empty,
+                    Address = jobListingResponse.Job.Address
                 }));
                 var fullTemplateName = this.templateNamePrefix + this.TemplateName;
                 // If it is null make sure that pass empty string , because html attrubutes will not work properly.
@@ -152,7 +163,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 }
             }
 
-            origin = Regex.Replace(origin, @"{[^{}]+}", "\"\"");
+            origin = Regex.Replace(origin, @"{[^{?!\n}]+}", "\"\"");
 
             return origin;
         }
@@ -184,6 +195,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                                                                 ""@type"": ""Place"",
                                                                 ""address"": {
                                                                     ""@type"": ""PostalAddress"",
+                                                                    ""streetAddress"": {Address},
                                                                     ""addressLocality"": {LocationName},
                                                                     ""addressRegion"": {AreaName}
                                                                 }

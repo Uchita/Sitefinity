@@ -39,7 +39,8 @@
                     lower = 18;
                     upper = 200;
                 }
-                <div class="demo" id="@salaryItem.ID" hidden>
+            <div class="salaryrangewrapper" id="@salaryItem.ID" hidden>
+                <div class="demo">
                     <div class="widget">
                         <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
                              data-cur_min="@lower" data-cur_max="@upper">
@@ -52,6 +53,7 @@
                         <div class="rightLabel">@upper</div>
                     </div>
                 </div>
+            </div>
             }
         }
     }

@@ -32,12 +32,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         {
             List<JobAlertViewModel> jobAlertData = _jobAlertsBC.MemberJobAlertsGet();
 
-            //List<JobAlertViewModel> jobAlertData = new List<JobAlertViewModel>();
-
-            //jobAlertData.Add(new JobAlertViewModel() { Id = "1", Name="One", EmailAlerts=true, LastModifiedTime = 1528169738127 });
-            //jobAlertData.Add(new JobAlertViewModel() { Id = "2", Name = "Two", EmailAlerts = false, LastModifiedTime = 1528169753835 });
-            //jobAlertData.Add(new JobAlertViewModel() { Id = "3", Name = "Three", EmailAlerts = true, LastModifiedTime = 1528169753835 });
-
             ViewBag.CssClass = this.CssClass;
             ViewBag.CreateMessage = TempData["CreateMessage"];
             ViewBag.DeleteMessage = TempData["DeleteMessage"];
@@ -76,9 +70,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int id)
         {
-            JobAlertViewModel jobAlertDetails = GetJobAlertDetailsMock(id);
+            JobAlertViewModel jobAlertDetails = _jobAlertsBC.MemberJobAlertGet(id);
             IGetJobFiltersResponse filtersResponse = _OConnector.JobFilters<Test_GetJobFiltersRequest, Test_GetJobFiltersResponse>(new Test_GetJobFiltersRequest());
 
             List<JobFilterRoot> fitersData = null;
@@ -138,9 +132,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         }
 
         [HttpGet]
-        public ActionResult ViewResults(string id)
+        public ActionResult ViewResults(int id)
         {
-            JobAlertViewModel jobAlertDetails = GetJobAlertDetailsMock(id);
+            JobAlertViewModel jobAlertDetails = _jobAlertsBC.MemberJobAlertGet(id);
             string resultsPageUrl = SitefinityHelper.GetPageUrl(this.ResultsPageId);
 
             return Redirect(resultsPageUrl + "?" + ToQueryString(jobAlertDetails));
@@ -165,20 +159,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         protected override void HandleUnknownAction(string actionName)
         {
             this.ActionInvoker.InvokeAction(this.ControllerContext, "Index");
-        }
-
-        private JobAlertViewModel GetJobAlertDetailsMock(string jobAlertId)
-        {
-            JobAlertViewModel model = new JobAlertViewModel() { Filters = new List<JobAlertFilters>() };
-            model.Id = "HD-123";
-            model.Name = "Test";
-            model.EmailAlerts = true;
-            model.LastModifiedTime = 1528169767960;
-            model.Keywords = "Job";
-
-            model.Filters.Add(new JobAlertFilters() { RootId = "AE-1234", Values = new List<string>() { "HD-345", "AF-0f34", "EH-sf355" } });
-
-            return model;
         }
 
         static string ToQueryString(JobAlertViewModel jobAlertDetails)

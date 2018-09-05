@@ -31,14 +31,7 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Logics
                 foreach(dynamic item in jobAlertResponse.MemberJobAlerts)
                 {
                     JObject jItem = JObject.Parse(item.ToString());
-                    alerts.Add(new JobAlertViewModel
-                    {
-                        Id = jItem.Value<string>("Id"),
-                        Name = jItem.Value<string>("Name"),
-                        EmailAlerts = true,
-                        Filters = jItem.Value<string>("Data") == null ? new List<JobAlertFilters>() : JsonConvert.DeserializeObject<List<JobAlertFilters>>(jItem.Value<string>("Data")),
-                        //LastModifiedTime
-                    });
+                    alerts.Add(ConvertJobAlertData(jItem));
                 }
                 return alerts;
             }
@@ -46,11 +39,40 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Logics
             return null;
         }
 
-        private List<JobAlertViewModel> ConvertJobAlertData(dynamic data)
+        public JobAlertViewModel MemberJobAlertGet(int jobAlertId)
         {
-            return new List<JobAlertViewModel>
+            List<JobAlertViewModel> allJobAlerts = MemberJobAlertsGet();
+            if ( allJobAlerts != null)
+                return allJobAlerts.Where(c=>c.Id == jobAlertId).FirstOrDefault();
+
+            return null;
+        }
+
+        public bool MemberJobAlertCreate()
+        {
+            IMemberCreateJobAlertRequest request = new JXTNext_MemberCreateJobAlertRequest
             {
 
+            };
+            IMemberCreateJobAlertResponse response = _BLconnector.MemberCreateJobAlert(request);
+
+            return response.Success;
+        }
+
+        public bool MemberJobAlertDelete(int jobAlertId)
+        {
+            return false;
+        }
+
+        private JobAlertViewModel ConvertJobAlertData(dynamic data)
+        {
+            return new JobAlertViewModel
+            {
+                Id = data.Value<int>("Id"),
+                Name = data.Value<string>("Name"),
+                EmailAlerts = true,
+                Filters = data.Value<string>("Data") == null ? new List<JobAlertFilters>() : JsonConvert.DeserializeObject<List<JobAlertFilters>>(data.Value<string>("Data")),
+                //LastModifiedTime
             };
         }
 

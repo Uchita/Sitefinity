@@ -17,6 +17,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
         IMemberCreateJobAlertResponse MemberCreateJobAlert(IMemberCreateJobAlertRequest jobAlert);
         IMemberJobAlertsResponse MemberJobAlertsGet();
         IMemberJobAlertsResponse MemberJobAlertGet(int jobAlertId);
+        IBaseResponse MemberJobAlertDelete(int jobAlertId);
         #endregion
 
         #region Advertiser User Calls

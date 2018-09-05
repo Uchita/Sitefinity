@@ -10,6 +10,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Telerik.Sitefinity.Mvc;
 using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
+using JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Logics;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -17,23 +18,19 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
     [ControllerToolboxItem(Name = "JobAlert_MVC", Title = "Job Alert", SectionName = "JXTNext.JobAlert", CssClass = JobAlertController.WidgetIconCssClass)]
     public class JobAlertController : Controller
     {
-        IBusinessLogicsConnector _testBLConnector;
-        IOptionsConnector _testOConnector;
+        JobAlertsBC _jobAlertsBC;
+        IOptionsConnector _OConnector;
        
-        public JobAlertController(IEnumerable<IBusinessLogicsConnector> _bConnectors, IEnumerable<IOptionsConnector> _oConnectors)
+        public JobAlertController(IEnumerable<IOptionsConnector> _oConnectors, JobAlertsBC jobAlertsBC)
         {
-            _testBLConnector = _bConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.Test).FirstOrDefault();
-            _testOConnector = _oConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.Test).FirstOrDefault();
+            _jobAlertsBC = jobAlertsBC;
+            _OConnector = _oConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.JXTNext).FirstOrDefault();
         }
 
         // GET: JobAlert
         public ActionResult Index()
         {
-            List<JobAlertViewModel> jobAlertData = new List<JobAlertViewModel>();
-
-            jobAlertData.Add(new JobAlertViewModel() { Id = "1", Name="One", EmailAlerts=true, LastModifiedTime = 1528169738127 });
-            jobAlertData.Add(new JobAlertViewModel() { Id = "2", Name = "Two", EmailAlerts = false, LastModifiedTime = 1528169753835 });
-            jobAlertData.Add(new JobAlertViewModel() { Id = "3", Name = "Three", EmailAlerts = true, LastModifiedTime = 1528169753835 });
+            List<JobAlertViewModel> jobAlertData = _jobAlertsBC.MemberJobAlertsGet();
 
             ViewBag.CssClass = this.CssClass;
             ViewBag.CreateMessage = TempData["CreateMessage"];
@@ -46,7 +43,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public ActionResult Create()
         {
             dynamic dynamicFilterResponse = null;
-            IGetJobFiltersResponse filtersResponse = _testOConnector.JobFilters<Test_GetJobFiltersRequest, Test_GetJobFiltersResponse>(new Test_GetJobFiltersRequest());
+            IGetJobFiltersResponse filtersResponse = _OConnector.JobFilters<Test_GetJobFiltersRequest, Test_GetJobFiltersResponse>(new Test_GetJobFiltersRequest());
             if (filtersResponse != null && filtersResponse.Filters != null
                 && filtersResponse.Filters.Data != null)
                 dynamicFilterResponse = filtersResponse.Filters.Data as dynamic;
@@ -73,10 +70,10 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int id)
         {
-            JobAlertViewModel jobAlertDetails = GetJobAlertDetailsMock(id);
-            IGetJobFiltersResponse filtersResponse = _testOConnector.JobFilters<Test_GetJobFiltersRequest, Test_GetJobFiltersResponse>(new Test_GetJobFiltersRequest());
+            JobAlertViewModel jobAlertDetails = _jobAlertsBC.MemberJobAlertGet(id);
+            IGetJobFiltersResponse filtersResponse = _OConnector.JobFilters<Test_GetJobFiltersRequest, Test_GetJobFiltersResponse>(new Test_GetJobFiltersRequest());
 
             List<JobFilterRoot> fitersData = null;
             if (filtersResponse != null && filtersResponse.Filters != null
@@ -135,9 +132,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         }
 
         [HttpGet]
-        public ActionResult ViewResults(string id)
+        public ActionResult ViewResults(int id)
         {
-            JobAlertViewModel jobAlertDetails = GetJobAlertDetailsMock(id);
+            JobAlertViewModel jobAlertDetails = _jobAlertsBC.MemberJobAlertGet(id);
             string resultsPageUrl = SitefinityHelper.GetPageUrl(this.ResultsPageId);
 
             return Redirect(resultsPageUrl + "?" + ToQueryString(jobAlertDetails));
@@ -162,20 +159,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         protected override void HandleUnknownAction(string actionName)
         {
             this.ActionInvoker.InvokeAction(this.ControllerContext, "Index");
-        }
-
-        private JobAlertViewModel GetJobAlertDetailsMock(string jobAlertId)
-        {
-            JobAlertViewModel model = new JobAlertViewModel() { Filters = new List<JobAlertFilters>() };
-            model.Id = "HD-123";
-            model.Name = "Test";
-            model.EmailAlerts = true;
-            model.LastModifiedTime = 1528169767960;
-            model.Keywords = "Job";
-
-            model.Filters.Add(new JobAlertFilters() { RootId = "AE-1234", Values = new List<string>() { "HD-345", "AF-0f34", "EH-sf355" } });
-
-            return model;
         }
 
         static string ToQueryString(JobAlertViewModel jobAlertDetails)

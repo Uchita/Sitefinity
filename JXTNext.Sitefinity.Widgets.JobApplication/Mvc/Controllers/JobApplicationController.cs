@@ -116,6 +116,23 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.NotAbleToCreateUser, "Unable to create user. Please register from");
                     return View("JobApplication.Simple", jobApplicationViewModel);
                 }
+                else
+                {
+                    //instantiate the Sitefinity user manager
+                    //if you have multiple providers you have to pass the provider name as parameter in GetManager("ProviderName") in your case it will be the asp.net membership provider user
+                    UserManager userManager = UserManager.GetManager();
+                    if (userManager.ValidateUser(applyJobModel.Email, applyJobModel.Password))
+                    {
+                        //if you need to get the user instance use the out parameter
+                        Telerik.Sitefinity.Security.Model.User userToAuthenticate = null;
+                        SecurityManager.AuthenticateUser(userManager.Provider.Name, applyJobModel.Email, applyJobModel.Password, false, out userToAuthenticate);
+                        if(userToAuthenticate == null)
+                        {
+                            jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.NotAbleToLoginCreatedUser, "Unable to process your job application. Please try logging in and re-apply for the job.");
+                            return View("JobApplication.Simple", jobApplicationViewModel);
+                        }
+                    }
+                }
             }
             
             JobApplicationAttachmentSource sourceResume = GetAttachmentSourceType(applyJobModel.ResumeSelectedType);
@@ -134,20 +151,10 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             string htmlEmailContent = this.GetHtmlEmailContent();
             EmailNotificationSettings emailNotificationSettings = new EmailNotificationSettings(this.EmailTemplateFromName, ccEmails, bccEmails, htmlEmailContent);
 
-             //instantiate the Sitefinity user manager
-            //if you have multiple providers you have to pass the provider name as parameter in GetManager("ProviderName") in your case it will be the asp.net membership provider user
-            UserManager userManager = UserManager.GetManager();
-            if (userManager.ValidateUser("DFDFD@JXT.COM", "Password123"))
-            {
-                //if you need to get the user instance use the out parameter
-                Telerik.Sitefinity.Security.Model.User userToAuthenticate = null;
-                SecurityManager.AuthenticateUser(userManager.Provider.Name, "DFDFD@JXT.COM", "Password123", false, out userToAuthenticate);
-            }
-
             //Create Application 
             IMemberApplicationResponse response = _blConnector.MemberCreateJobApplication(
-                new JXTNext_MemberApplicationRequest { ApplyResourceID = applicationResultID, MemberID = memberID, ResumePath = resumeAttachmentPath, CoverletterPath = coverletterAttachmentPath, EmailNotification = emailNotificationSettings }
-                , "DFDFD@JXT.COM");
+                new JXTNext_MemberApplicationRequest { ApplyResourceID = applicationResultID, MemberID = memberID, ResumePath = resumeAttachmentPath, CoverletterPath = coverletterAttachmentPath, EmailNotification = emailNotificationSettings },
+                applyJobModel.Email);
 
             if (response.Success && response.ApplicationID.HasValue)
             {

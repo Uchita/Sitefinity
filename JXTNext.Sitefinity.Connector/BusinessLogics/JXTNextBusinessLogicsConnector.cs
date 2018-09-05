@@ -23,7 +23,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
 
         public JXTNextBusinessLogicsConnector(IEnumerable<IJobListingMapper> jobMappers, IEnumerable<IMemberMapper> memberMapper, IRequestSession session) : base(session)
         {
-            _jobMapper = jobMappers.Where(c=>c.mapperType == IntegrationMapperType.JXTNext).FirstOrDefault();
+            _jobMapper = jobMappers.Where(c => c.mapperType == IntegrationMapperType.JXTNext).FirstOrDefault();
             _memberMapper = memberMapper.Where(c => c.mapperType == IntegrationMapperType.JXTNext).FirstOrDefault();
         }
 
@@ -43,7 +43,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
             bool actionSuccessful = response.Success;
             dynamic data = JObject.Parse(response.Response);
 
-            if( actionSuccessful)
+            if (actionSuccessful)
                 return new JXTNext_CreateJobListingResponse(true, data["JobId"] as int?);
             else
                 return new JXTNext_CreateJobListingResponse(false, (List<string>)data["errors"]);
@@ -67,7 +67,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
             {
                 dynamic responseObj = JObject.Parse(response.Response);
 
-                if( responseObj["status"] == 200)
+                if (responseObj["status"] == 200)
                     return new JXTNext_GetJobListingResponse { Success = true, Job = _jobMapper.ConvertToLocalEntity<JobDetailsFullModel>(JObject.Parse(responseObj["data"].Value)) };
                 else
                     return new JXTNext_GetJobListingResponse { Success = false, Errors = JsonConvert.DeserializeObject<List<string>>(responseObj["errors"].ToString()) };
@@ -136,7 +136,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
             bool actionSuccessful = response.Success;
 
             if (actionSuccessful)
-            { 
+            {
                 dynamic responseObj = JObject.Parse(response.Response);
 
                 if (responseObj["status"] == 200)
@@ -151,6 +151,92 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
         public IMemberApplicationResponse MemberCreateJobApplication_FileUploadUpdate(IMemberApplication memberApplication)
         {
             throw new NotImplementedException();
+        }
+
+        public IMemberCreateJobAlertResponse MemberCreateJobAlert(IMemberCreateJobAlertRequest jobAlert)
+        {
+            JXTNext_MemberCreateJobAlertRequest createJobAlert = jobAlert as JXTNext_MemberCreateJobAlertRequest;
+
+            ConnectorPostRequest connectorRequest = new ConnectorPostRequest(HTTP_Requests_MaxWaitTime)
+            {
+                HeaderValues = base.HTTP_Request_HeaderValues,
+                Data = createJobAlert,
+                TargetUri = new Uri(CONFIG_DataAccessTarget + $"/api/member/jobalert")
+            };
+            ConnectorResponse response = JXTNext.Common.API.Connector.Post(connectorRequest);
+
+            //parse the response
+            bool actionSuccessful = response.Success;
+
+            if (actionSuccessful)
+            {
+                dynamic responseObj = JObject.Parse(response.Response);
+
+                if (responseObj["status"] == 200)
+                    return new JXTNext_MemberCreateJobAlertResponse { Success = true, MemberJobAlertId = (int?)responseObj["id"] };
+                else
+                    return new JXTNext_MemberCreateJobAlertResponse { Success = false, Errors = JsonConvert.DeserializeObject<List<string>>(responseObj["errors"].ToString()) };
+            }
+            else
+                return new JXTNext_MemberCreateJobAlertResponse { Success = false, Errors = new List<string> { response.Response } };
+        }
+
+        public IMemberJobAlertsResponse MemberJobAlertsGet()
+        {
+            ConnectorGetRequest connectorRequest = new ConnectorGetRequest(HTTP_Requests_MaxWaitTime)
+            {
+                HeaderValues = base.HTTP_Request_HeaderValues,
+                TargetUri = new Uri(CONFIG_DataAccessTarget + $"/api/member/jobalert")
+            };
+            ConnectorResponse response = JXTNext.Common.API.Connector.Get(connectorRequest);
+
+            //parse the response
+            bool actionSuccessful = response.Success;
+
+            if (actionSuccessful)
+            {
+                dynamic responseObj = JObject.Parse(response.Response);
+
+                if (responseObj["status"] == 200)
+                {
+                    dynamic jobAlerts = JsonConvert.DeserializeObject<dynamic>(responseObj["data"].ToString());
+                    return new JXTNext_MemberJobAlertsResponse { Success = true, MemberJobAlerts = jobAlerts };
+                }
+                else
+                    return new JXTNext_MemberJobAlertsResponse { Success = false, Errors = JsonConvert.DeserializeObject<List<string>>(responseObj["errors"].ToString()) };
+            }
+            else
+                return new JXTNext_MemberJobAlertsResponse { Success = false, Errors = new List<string> { response.Response } };
+
+        }
+
+        public IMemberJobAlertsResponse MemberJobAlertGet(int jobAlertId)
+        {
+            ConnectorGetRequest connectorRequest = new ConnectorGetRequest(HTTP_Requests_MaxWaitTime)
+            {
+                HeaderValues = base.HTTP_Request_HeaderValues,
+                TargetUri = new Uri(CONFIG_DataAccessTarget + $"/api/member/jobalert/{jobAlertId}")
+            };
+            ConnectorResponse response = JXTNext.Common.API.Connector.Get(connectorRequest);
+
+            //parse the response
+            bool actionSuccessful = response.Success;
+
+            if (actionSuccessful)
+            {
+                dynamic responseObj = JObject.Parse(response.Response);
+
+                if (responseObj["status"] == 200)
+                {
+                    dynamic jobAlert = JsonConvert.DeserializeObject<dynamic>(responseObj["data"].ToString());
+                    return new JXTNext_MemberJobAlertsResponse { Success = true, MemberJobAlerts = jobAlert };
+                }
+                else
+                    return new JXTNext_MemberJobAlertsResponse { Success = false, Errors = JsonConvert.DeserializeObject<List<string>>(responseObj["errors"].ToString()) };
+            }
+            else
+                return new JXTNext_MemberJobAlertsResponse { Success = false, Errors = new List<string> { response.Response } };
+
         }
 
         public bool MemberRegister(IMemberRegister memberDetails, out string errorMessage)
@@ -231,7 +317,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
                 dynamic responseObjDataSearchResults = JsonConvert.DeserializeObject<dynamic>(responseObjData.jobsearchresults.ToString());
 
                 if (responseObj["status"] == 200)
-                    return new JXTNext_SearchJobsResponse { Success = true, Total = responseObjDataSearchResults.total,  SearchResults = _jobMapper.ConvertSearchResultsToLocal<JobDetailsFullModel>(responseObjDataSearchResults.searchResults) };
+                    return new JXTNext_SearchJobsResponse { Success = true, Total = responseObjDataSearchResults.total, SearchResults = _jobMapper.ConvertSearchResultsToLocal<JobDetailsFullModel>(responseObjDataSearchResults.searchResults) };
                 else
                     return new JXTNext_SearchJobsResponse { Success = false, Errors = responseObj.errors };
             }

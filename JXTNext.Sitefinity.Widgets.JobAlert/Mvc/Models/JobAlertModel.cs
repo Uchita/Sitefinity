@@ -7,7 +7,7 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Models
 {
     public class JobAlertViewModel
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public bool EmailAlerts { get; set; }
         public long LastModifiedTime { get; set; }
@@ -23,7 +23,7 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Models
 
     public class JobAlertEditViewModel
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public bool EmailAlerts { get; set; }
         public string Keywords { get; set; }

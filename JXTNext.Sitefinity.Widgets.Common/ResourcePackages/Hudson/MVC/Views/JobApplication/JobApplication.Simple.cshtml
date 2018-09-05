@@ -160,13 +160,20 @@
                 }
                 else
                 {
-                    <h4>@Model.ApplicationStatus.ToString()</h4>
-                    <p>@Model.ApplicationMessage</p>
+                    if (Model.ApplicationStatus == JobApplicationStatus.Applied_Successful)
+                    {
+                        <div class="alert alert-success">@Model.ApplicationTitle</div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-danger">@Model.ApplicationTitle</div>
+                    }
+                   
                     if (Model.ApplicationStatus == JobApplicationStatus.NotAbleToCreateUser)
                     {
                         //@ViewBag.RegisterPageUrl
-                        <a href="/register" title="@Model.ApplicationMessage">here</a>
-                    }
+                        <a href="/register" title="@Model.ApplicationTitle">here</a>
+                }
                 }
             </div>
 
@@ -198,7 +205,7 @@
     var uploadCoverModel = { UrlPath: '', FileName: '', Field: '', MIMEType: '', AuthToken: '' };
     var isGoogleResume = false;
     var isDropboxResume = false;
-    var resumeSelectedType = 'Local';
+    var resumeSelectedType = '';
     var coverLetterSelectedType = 'Local';
 
     $("#coverletter-selected-type").val(coverLetterSelectedType);
@@ -217,7 +224,7 @@
              var self = this;
              var fileUploadFlag = false;
              //checking the resume file upload
-             if ($("#application-resume").val() == "") {
+             if (resumeSelectedType == "" || resumeSelectedType.length == 0) {
                  fileUploadFlag = false;
                  $(".resume-message").removeClass('hidden');
                  return false;
@@ -615,7 +622,6 @@
         function handleAuthResult(authResult) {
             if (authResult && !authResult.error) {
                 oauthToken = authResult.access_token;
-                document.getElementById('oAuthToken').innerHTML = authResult.access_token;
                 createPicker();
             }
         }

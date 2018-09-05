@@ -61,7 +61,9 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Logics
 
         public bool MemberJobAlertDelete(int jobAlertId)
         {
-            return false;
+            IBaseResponse deleteResponse = _BLconnector.MemberJobAlertDelete(jobAlertId);
+
+            return deleteResponse.Success;
         }
 
         private JobAlertViewModel ConvertJobAlertData(dynamic data)

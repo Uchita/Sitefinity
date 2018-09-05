@@ -7727,6 +7727,10 @@ img, iframe {
   .black-2-bg > * {
     color: #fff !important; }
 
+.bg-lightblue {
+  background-color: #e9f5f2;
+  padding: 15px 35px 15px 35px; }
+
 /*#endregion General */
 /*#region Header */
 .header-top {
@@ -8015,6 +8019,8 @@ main {
   position: relative;
   background: #fff;
   color: inherit; }
+  .page-section .form-container .basic-form {
+    margin-top: 0; }
   .page-section.section-lighter {
     background: #f0f0f0;
     color: inherit; }
@@ -8070,10 +8076,25 @@ main {
   .section-highlight-light .btn {
     border-color: #fff; }
 
+.sf-list-item h3[data-sf-role="toggleLink"] {
+  padding: 13px 20px;
+  background: #eee;
+  position: relative; }
+  .sf-list-item h3[data-sf-role="toggleLink"] > i {
+    position: absolute;
+    right: 8px;
+    top: 17px; }
+
+.sf-list-item .sf-list-content {
+  padding: 10px; }
+
 /*#endregion Page sections */
 /*#region Left sidebar*/
 .left-sidebar .form-group {
   margin-bottom: 20px; }
+
+.left-sidebar .keywordfilter label {
+  margin-bottom: 0.9rem; }
 
 .left-sidebar .search-wrap input {
   width: 100%; }
@@ -8183,7 +8204,7 @@ main {
       .left-sidebar .container-fluid.dropdown-tree > ul li a, .left-sidebar .navbar-collapse.dropdown-tree > ul li a {
         white-space: normal;
         display: block !important;
-        font-family: AkzidGroProMed,sans-serif;
+        font-family: AkzidGroProReg,sans-serif;
         color: #808080; }
         .left-sidebar .container-fluid.dropdown-tree > ul li a .count, .left-sidebar .navbar-collapse.dropdown-tree > ul li a .count {
           margin-left: 3px; }
@@ -8956,6 +8977,8 @@ ul.breadcrumb {
   .card-basic.small-caption .caption {
     width: 90%;
     margin: 0 auto; }
+    .card-basic.small-caption .caption h2 {
+      margin-top: 0; }
 
 .page-section .card-basic.small-caption .caption {
   background-color: #f0f0f0; }
@@ -9162,7 +9185,7 @@ ul.breadcrumb {
   /*#region Social*/
   /*#endregion Social*/ }
   .page-wrapper .login-form .forgot-password {
-    padding-left: 10px; }
+    padding-left: 0px; }
     .page-wrapper .login-form .forgot-password a {
       font-size: 1.4rem;
       font-style: italic;
@@ -9361,6 +9384,9 @@ ul.breadcrumb {
   .job-search .filter-job-classification a {
     display: block;
     color: #000; }
+
+.SalaryRangeSelect {
+  width: 100%; }
 
 .featured-job-offer {
   position: relative;
@@ -9763,6 +9789,8 @@ ul.breadcrumb {
   color: #fff; }
   .contact-box a {
     color: inherit; }
+    .contact-box a:hover, .contact-box a:focus {
+      color: #fff; }
 
 .press-release-filter {
   padding: 30px 0; }
@@ -9939,6 +9967,7 @@ ul.breadcrumb {
   .contact-consultant .contact-consultant-image {
     position: relative;
     display: block;
+    margin: 0 30px 0 0;
     -webkit-clip-path: polygon(100% 0, 100% 90%, 93% 100%, 0 100%, 0 0);
     clip-path: polygon(100% 0, 100% 90%, 93% 100%, 0 100%, 0 0); }
     .contact-consultant .contact-consultant-image img {
@@ -10271,7 +10300,7 @@ ul.breadcrumb {
     .risk-measurement .risk-wrapper .risk img {
       left: 15px; }
   .contact-consultant .contact-consultant-info {
-    min-height: 400px; }
+    min-height: 370px; }
   .right-bottom-below img {
     max-width: 115%; } }
 
@@ -10293,7 +10322,9 @@ ul.breadcrumb {
     right: -5px; }
   .press-release-filter ul li + li {
     margin-left: 10px;
-    padding-left: 10px; } }
+    padding-left: 10px; }
+  .contact-consultant .contact-consultant-image {
+    margin-right: 0; } }
 
 @media (max-width: 991px) {
   .flex {
@@ -10605,7 +10636,9 @@ ul.breadcrumb {
   .xs-no-bdr-right {
     border-right: none; }
   .xs-pad-right-15 {
-    padding-right: 15px; } }
+    padding-right: 15px; }
+  .left-sidebar {
+    margin-bottom: 50px; } }
 
 @media screen and (max-width: 767px) {
   .owl-carousel-jumbotron .owl-nav {

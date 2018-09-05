@@ -13,6 +13,7 @@ namespace JXTNext.Sitefinity.Widgets.JobApplication.Mvc.Models.JobApplication
         Applied_Successful = 3,
         Already_Applied = 4,
         Technical_Issue = 5,
-        NotAbleToCreateUser = 6
+        NotAbleToCreateUser = 6,
+        NotAbleToLoginCreatedUser = 7
     }
 }

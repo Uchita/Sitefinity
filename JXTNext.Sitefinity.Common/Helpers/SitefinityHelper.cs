@@ -125,8 +125,12 @@ namespace JXTNext.Sitefinity.Common.Helpers
 
         public static User GetUserByEmail(string Email)
         {
-            var userManager = UserManager.GetManager();
-            var user = userManager.GetUsers().FirstOrDefault(u => u.Email.ToUpper() == Email.ToUpper());
+            User user = null;
+            if (!String.IsNullOrEmpty(Email))
+            {
+                var userManager = UserManager.GetManager();
+                user = userManager.GetUsers().FirstOrDefault(u => u.Email.ToUpper() == Email.ToUpper());
+            }
             return user;
         }
 
@@ -161,6 +165,9 @@ namespace JXTNext.Sitefinity.Common.Helpers
             UserManager userManager = UserManager.GetManager();
             UserProfileManager profileManager = UserProfileManager.GetManager();
 
+            userManager.Provider.SuppressSecurityChecks = true;
+            profileManager.Provider.SuppressSecurityChecks = true;
+
             MembershipCreateStatus status;
 
             User user = userManager.CreateUser(username, password, mail, secretQuestion, secretAnswer, isApproved, null, out status);
@@ -181,6 +188,9 @@ namespace JXTNext.Sitefinity.Common.Helpers
                 profileManager.SaveChanges();
 
             }
+
+            userManager.Provider.SuppressSecurityChecks = false;
+            profileManager.Provider.SuppressSecurityChecks = false;
 
             return status;
         }

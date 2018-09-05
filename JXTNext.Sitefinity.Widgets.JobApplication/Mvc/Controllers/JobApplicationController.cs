@@ -29,6 +29,7 @@ using Telerik.Sitefinity.Security;
 using Telerik.Sitefinity.Security.Claims;
 using System.Web.Security;
 using Telerik.Sitefinity.Security.Model;
+using Telerik.Sitefinity.Services;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -104,6 +105,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             int memberID = 2;
             JobApplicationViewModel jobApplicationViewModel;
             var fullTemplateName = this.templateNamePrefix + this.TemplateName;
+            var ovverideEmail = applyJobModel.Email;
             // Create user if the user does not exists
             MembershipCreateStatus membershipCreateStatus;
             if (SitefinityHelper.GetUserByEmail(applyJobModel.Email) == null)
@@ -131,6 +133,10 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                             jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.NotAbleToLoginCreatedUser, "Unable to process your job application. Please try logging in and re-apply for the job.");
                             return View("JobApplication.Simple", jobApplicationViewModel);
                         }
+                        else
+                        {
+                            ovverideEmail = userToAuthenticate.Email;
+                        }
                     }
                 }
             }
@@ -149,9 +155,24 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                         jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.NotAbleToLoginCreatedUser, "Unable to process your job application. Please try logging in and re-apply for the job.");
                         return View("JobApplication.Simple", jobApplicationViewModel);
                     }
+                    else
+                    {
+                        ovverideEmail = userToAuthenticate.Email;
+                    }
+                }
+                else
+                {
+                    jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.NotAbleToLoginCreatedUser, "Unable to process your job application. Please try logging in and re-apply for the job.");
+                    return View("JobApplication.Simple", jobApplicationViewModel);
                 }
             }
-            
+            else // User already logged in
+            {
+                var currUser = SitefinityHelper.GetUserById(ClaimsManager.GetCurrentIdentity().UserId);
+                if (currUser != null)
+                    ovverideEmail = currUser.Email;
+            }
+
             JobApplicationAttachmentSource sourceResume = GetAttachmentSourceType(applyJobModel.ResumeSelectedType);
             JobApplicationAttachmentSource sourceCoverLetter = GetAttachmentSourceType(applyJobModel.CoverLetterSelectedType);
            
@@ -171,7 +192,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             //Create Application 
             IMemberApplicationResponse response = _blConnector.MemberCreateJobApplication(
                 new JXTNext_MemberApplicationRequest { ApplyResourceID = applicationResultID, MemberID = memberID, ResumePath = resumeAttachmentPath, CoverletterPath = coverletterAttachmentPath, EmailNotification = emailNotificationSettings },
-                applyJobModel.Email);
+                ovverideEmail);
 
             if (response.Success && response.ApplicationID.HasValue)
             {
@@ -262,6 +283,10 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         private void UploadToAmazonS3(Guid masterDocumentId, string providerName, string libName, string fileName, Stream fileStream)
         {
             LibrariesManager librariesManager = LibrariesManager.GetManager(providerName);
+            var libManagerSecurityCheckStatus = librariesManager.Provider.SuppressSecurityChecks;
+
+            // Make sure that supress the security checks so that everyone can upload the files
+            librariesManager.Provider.SuppressSecurityChecks = true;
             Document document = librariesManager.GetDocuments().Where(i => i.Id == masterDocumentId).FirstOrDefault();
 
             if (document == null)
@@ -296,8 +321,13 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 //Publish the DocumentLibraries item. The live version acquires new ID.
                 var bag = new Dictionary<string, string>();
                 bag.Add("ContentType", typeof(Document).FullName);
-                WorkflowManager.MessageWorkflow(masterDocumentId, typeof(Document), null, "Publish", false, bag);
+              
+               // Run with elevatede privilages so that everybody can upload files
+                SystemManager.RunWithElevatedPrivilege(d=> WorkflowManager.MessageWorkflow(masterDocumentId, typeof(Document), null, "Publish", false, bag));
             }
+
+            // Reset the suppress security checks
+            librariesManager.Provider.SuppressSecurityChecks = libManagerSecurityCheckStatus;
         }
 
         private JobApplicationViewModel GetJobApplicationConfigurations(JobApplicationStatus status, string message)

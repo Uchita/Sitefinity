@@ -30,7 +30,7 @@ namespace SitefinityWebApp
 {
     public class Global : System.Web.HttpApplication
     {
-        private JXTNext_UserEventHandler _userEventHandler;
+        private JXTNext_ProfileEventHandler _profileEventHandler;
 
         protected void Application_Start(object sender, EventArgs e)
         {
@@ -38,9 +38,8 @@ namespace SitefinityWebApp
             Bootstrapper.Bootstrapped += Bootstrapper_Bootstrapped;
             Bootstrapper.Initialized += new EventHandler<ExecutedEventArgs>(Bootstrapper_Initialized);
 
-            //User creating event             
-            IBusinessLogicsConnector connector = DependencyResolver.Current.GetService<IBusinessLogicsConnector>();
-            _userEventHandler = new JXTNext_UserEventHandler(connector);
+            //Profile created event             
+            _profileEventHandler = new JXTNext_ProfileEventHandler();
             SystemManager.ApplicationStart += new EventHandler<EventArgs>(ApplicationStartHandler);
         }
 
@@ -92,7 +91,7 @@ namespace SitefinityWebApp
 
         protected void Application_End(object sender, EventArgs e)
         {
-            EventHub.Unsubscribe<UserCreating>(_userEventHandler.UserCreating);
+            EventHub.Unsubscribe<ProfileCreated>(_profileEventHandler.ProfileCreated);
         }
 
         void Bootstrapper_Bootstrapped(object sender, EventArgs e)
@@ -109,7 +108,7 @@ namespace SitefinityWebApp
 
         private void ApplicationStartHandler(object sender, EventArgs e)
         {
-            EventHub.Subscribe<UserCreating>(evt => _userEventHandler.UserCreating(evt));
+            EventHub.Subscribe<ProfileCreated>(evt => _profileEventHandler.ProfileCreated(evt));
         }
 
 

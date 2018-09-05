@@ -149,7 +149,10 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             List<string> ccEmails = (!this.EmailTemplateCC.IsNullOrEmpty()) ? this.EmailTemplateCC.Split(';').ToList() : null;
             List<string> bccEmails = (!this.EmailTemplateBCC.IsNullOrEmpty()) ? this.EmailTemplateBCC.Split(';').ToList() : null;
             string htmlEmailContent = this.GetHtmlEmailContent();
-            EmailNotificationSettings emailNotificationSettings = new EmailNotificationSettings(this.EmailTemplateFromName, ccEmails, bccEmails, htmlEmailContent);
+            EmailNotificationSettings emailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateFromName,""),
+                                                                                                new EmailTarget("To Name","To Address"), 
+                                                                                                "Subject", 
+                                                                                                htmlEmailContent);
 
             //Create Application 
             IMemberApplicationResponse response = _blConnector.MemberCreateJobApplication(

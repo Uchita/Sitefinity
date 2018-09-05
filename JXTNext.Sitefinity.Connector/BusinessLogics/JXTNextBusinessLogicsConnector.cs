@@ -239,6 +239,31 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
 
         }
 
+        public IBaseResponse MemberJobAlertDelete(int jobAlertId)
+        {
+            ConnectorDeleteRequest connectorRequest = new ConnectorDeleteRequest(HTTP_Requests_MaxWaitTime)
+            {
+                HeaderValues = base.HTTP_Request_HeaderValues,
+                TargetUri = new Uri(CONFIG_DataAccessTarget + $"/api/member/jobalert/{jobAlertId}")
+            };
+            ConnectorResponse response = JXTNext.Common.API.Connector.Delete(connectorRequest);
+
+            //parse the response
+            bool actionSuccessful = response.Success;
+
+            if (actionSuccessful)
+            {
+                dynamic responseObj = JObject.Parse(response.Response);
+
+                if (responseObj["status"] == 200)
+                    return new JXTNext_MemberJobAlertDeleteResponse { Success = true };
+                else
+                    return new JXTNext_MemberJobAlertDeleteResponse { Success = false, Errors = JsonConvert.DeserializeObject<List<string>>(responseObj["errors"].ToString()) };
+            }
+            else
+                return new JXTNext_MemberJobAlertDeleteResponse { Success = false, Errors = new List<string> { response.Response } };
+        }
+
         public bool MemberRegister(IMemberRegister memberDetails, out string errorMessage)
         {
             JXTNext_MemberRegister regRequest = memberDetails as JXTNext_MemberRegister;

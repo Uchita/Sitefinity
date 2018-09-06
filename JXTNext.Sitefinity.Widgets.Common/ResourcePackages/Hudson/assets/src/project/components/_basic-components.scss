@@ -93,6 +93,9 @@ blockquote{
             color: $global-links-color;
         }
     }
+    p{
+        margin-bottom: 20px;   
+    }
     /* Buttons */
     .btn {
         border: 1px solid;
@@ -1157,6 +1160,14 @@ main {
             color: inherit;
         }
     }
+    
+    .right-bottom-img img {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        max-width: 40%;
+        width:auto;
+    }
 
     .absolute-bg-img img {
         position: absolute;
@@ -1450,7 +1461,11 @@ main {
 
     & > li {
         float: left;
-        width: 50%;
+        width: 49%;
+        margin-right: 2%;
+        &:nth-child(even) {
+            margin-right: 0;
+        }
 
         a {
             padding: 10px 0 0 0;

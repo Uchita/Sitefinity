@@ -11,7 +11,7 @@
     var fieldName = Model.MetaField.FieldName;
     var requiredAttributes = MvcHtmlString.Create(Model.ValidationAttributes);
 }
-<div class="@Model.CssClass form-group" data-sf-role="checkboxes-field-container">
+<div class="@Model.CssClass form-group hc" data-sf-role="checkboxes-field-container">
     <input type="hidden" data-sf-role="violation-messages" value='{ "required": "@Model.RequiredViolationMessage"}' />
 	<input type="hidden" data-sf-role="required-validator" value='@Model.IsRequired.ToString()' />
    

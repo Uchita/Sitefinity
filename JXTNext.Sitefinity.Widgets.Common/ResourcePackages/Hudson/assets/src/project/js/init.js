@@ -25,6 +25,7 @@ ThemeGlobal.JobsFilterToggle = function (target) {
         targetClose = $('[data-filter-trigger="close"]'),
         activeEl = $("[data-filter-target].active");
 
+    //run if target obj is not active and is present    
     if (!activeEl.length && targetEl.length) {
         targetEl.toggleClass("active").slideToggle();
 
@@ -34,9 +35,11 @@ ThemeGlobal.JobsFilterToggle = function (target) {
             $(".filter.filter-active").removeClass("filter-active");
             $(".filter-job-close").hide();
         });
-
+        //if not target obj is active
     } else if (!targetEl.is(activeEl)) {
         activeEl.toggleClass("active").slideToggle();
+        targetEl.toggleClass("active").slideToggle();
+    } else if( targetEl.is(activeEl) ){
         targetEl.toggleClass("active").slideToggle();
     }
 

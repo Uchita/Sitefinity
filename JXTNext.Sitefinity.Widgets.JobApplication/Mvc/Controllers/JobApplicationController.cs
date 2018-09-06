@@ -285,49 +285,55 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             LibrariesManager librariesManager = LibrariesManager.GetManager(providerName);
             var libManagerSecurityCheckStatus = librariesManager.Provider.SuppressSecurityChecks;
 
-            // Make sure that supress the security checks so that everyone can upload the files
-            librariesManager.Provider.SuppressSecurityChecks = true;
-            Document document = librariesManager.GetDocuments().Where(i => i.Id == masterDocumentId).FirstOrDefault();
-
-            if (document == null)
+            try
             {
-                //The document is created as master. The masterDocumentId is assigned to the master version.
-                document = librariesManager.CreateDocument(masterDocumentId);
+                // Make sure that supress the security checks so that everyone can upload the files
+                librariesManager.Provider.SuppressSecurityChecks = true;
+                Document document = librariesManager.GetDocuments().Where(i => i.Id == masterDocumentId).FirstOrDefault();
 
-                //Set the parent document library.
-                DocumentLibrary documentLibrary = librariesManager.GetDocumentLibraries().Where(d => d.Title == libName).SingleOrDefault();
-                document.Parent = documentLibrary;
+                if (document == null)
+                {
+                    //The document is created as master. The masterDocumentId is assigned to the master version.
+                    document = librariesManager.CreateDocument(masterDocumentId);
 
-                //Set the properties of the document.
-                string documentTitle = masterDocumentId.ToString() + "_" + fileName;
-                document.Title = documentTitle;
-                document.DateCreated = DateTime.UtcNow;
-                document.PublicationDate = DateTime.UtcNow;
-                document.LastModified = DateTime.UtcNow;
-                document.UrlName = Regex.Replace(documentTitle.ToLower(), @"[^\w\-\!\$\'\(\)\=\@\d_]+", "-");
-                document.MediaFileUrlName = Regex.Replace(documentTitle.ToLower(), @"[^\w\-\!\$\'\(\)\=\@\d_]+", "-");
-                document.ApprovalWorkflowState = "Published";
+                    //Set the parent document library.
+                    DocumentLibrary documentLibrary = librariesManager.GetDocumentLibraries().Where(d => d.Title == libName).SingleOrDefault();
+                    document.Parent = documentLibrary;
 
-                //Upload the document file.
-                string fileExtension = fileName.Split(new string[] { "." }, StringSplitOptions.RemoveEmptyEntries).Last();
-                librariesManager.Upload(document, fileStream, fileExtension ?? string.Empty);
+                    //Set the properties of the document.
+                    string documentTitle = masterDocumentId.ToString() + "_" + fileName;
+                    document.Title = documentTitle;
+                    document.DateCreated = DateTime.UtcNow;
+                    document.PublicationDate = DateTime.UtcNow;
+                    document.LastModified = DateTime.UtcNow;
+                    document.UrlName = Regex.Replace(documentTitle.ToLower(), @"[^\w\-\!\$\'\(\)\=\@\d_]+", "-");
+                    document.MediaFileUrlName = Regex.Replace(documentTitle.ToLower(), @"[^\w\-\!\$\'\(\)\=\@\d_]+", "-");
+                    document.ApprovalWorkflowState = "Published";
 
-                //Recompiles and validates the url of the document.
-                librariesManager.RecompileAndValidateUrls(document);
+                    //Upload the document file.
+                    string fileExtension = fileName.Split(new string[] { "." }, StringSplitOptions.RemoveEmptyEntries).Last();
+                    librariesManager.Upload(document, fileStream, fileExtension ?? string.Empty);
 
-                //Save the changes.
-                librariesManager.SaveChanges();
+                    //Recompiles and validates the url of the document.
+                    librariesManager.RecompileAndValidateUrls(document);
 
-                //Publish the DocumentLibraries item. The live version acquires new ID.
-                var bag = new Dictionary<string, string>();
-                bag.Add("ContentType", typeof(Document).FullName);
-              
-               // Run with elevatede privilages so that everybody can upload files
-                SystemManager.RunWithElevatedPrivilege(d=> WorkflowManager.MessageWorkflow(masterDocumentId, typeof(Document), null, "Publish", false, bag));
+                    //Save the changes.
+                    librariesManager.SaveChanges();
+
+                    //Publish the DocumentLibraries item. The live version acquires new ID.
+                    var bag = new Dictionary<string, string>();
+                    bag.Add("ContentType", typeof(Document).FullName);
+
+                    // Run with elevatede privilages so that everybody can upload files
+                    SystemManager.RunWithElevatedPrivilege(d => WorkflowManager.MessageWorkflow(masterDocumentId, typeof(Document), null, "Publish", false, bag));
+                }
             }
 
-            // Reset the suppress security checks
-            librariesManager.Provider.SuppressSecurityChecks = libManagerSecurityCheckStatus;
+            finally
+            {
+                // Reset the suppress security checks
+                librariesManager.Provider.SuppressSecurityChecks = libManagerSecurityCheckStatus;
+            }
         }
 
         private JobApplicationViewModel GetJobApplicationConfigurations(JobApplicationStatus status, string message)

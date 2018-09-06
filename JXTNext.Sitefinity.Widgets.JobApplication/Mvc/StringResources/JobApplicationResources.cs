@@ -72,14 +72,42 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.StringResources
         /// <summary>
         /// Gets phrase: This is the page where you have dropped search results widget
         /// </summary>
-        [ResourceEntry("FromName",
+        [ResourceEntry("SenderName",
             Value = "Enter from name",
-            Description = "phrase : Enter from name")]
-        public string FromName
+            Description = "phrase : Enter from sender name")]
+        public string SenderName
         {
             get
             {
-                return this["FromName"];
+                return this["SenderName"];
+            }
+        }
+
+        /// <summary>
+        /// Gets phrase: This is the page where you have dropped search results widget
+        /// </summary>
+        [ResourceEntry("SenderEmailAddress",
+            Value = "Enter from email address",
+            Description = "phrase : Enter sender email address")]
+        public string SenderEmailAddress
+        {
+            get
+            {
+                return this["SenderEmailAddress"];
+            }
+        }
+
+        /// <summary>
+        /// Gets phrase: This is the page where you have dropped search results widget
+        /// </summary>
+        [ResourceEntry("EmailSubject",
+            Value = "Enter email subject",
+            Description = "phrase : Enter email subject")]
+        public string EmailSubject
+        {
+            get
+            {
+                return this["EmailSubject"];
             }
         }
 

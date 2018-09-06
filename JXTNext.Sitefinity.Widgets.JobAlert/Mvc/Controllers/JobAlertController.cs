@@ -43,7 +43,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public ActionResult Create()
         {
             dynamic dynamicFilterResponse = null;
-            IGetJobFiltersResponse filtersResponse = _OConnector.JobFilters<Test_GetJobFiltersRequest, Test_GetJobFiltersResponse>(new Test_GetJobFiltersRequest());
+            JXTNext_GetJobFiltersRequest request = new JXTNext_GetJobFiltersRequest();
+            IGetJobFiltersResponse filtersResponse = _OConnector.JobFilters<JXTNext_GetJobFiltersRequest, JXTNext_GetJobFiltersResponse>(request);
             if (filtersResponse != null && filtersResponse.Filters != null
                 && filtersResponse.Filters.Data != null)
                 dynamicFilterResponse = filtersResponse.Filters.Data as dynamic;
@@ -56,11 +57,38 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         {
             // TODO: When the Backend API is ready,
             // We need to pass this model to it
-            
+            JobAlertSalaryFilterReceiver salary = null;
+            if (!model.SalaryStringify.IsNullOrEmpty())
+            {
+                salary = JsonConvert.DeserializeObject<JobAlertSalaryFilterReceiver>(model.SalaryStringify);
+            }
+            if (salary != null)
+                model.Salary = salary;
+
             var epochTime = ConversionHelper.GetUnixTimestamp(SitefinityHelper.GetSitefinityApplicationTime(), true);
+            model.LastModifiedTime = (long)epochTime;
+
+            // Remove null value filters
+            List<JobAlertFilters> Filters = new List<JobAlertFilters>();
+            if(model != null && model.Filters != null && model.Filters.Count > 0)
+            {
+                foreach (var item in model.Filters)
+                {
+                    if (item.Values != null && item.Values.Count > 0)
+                        Filters.Add(item);
+                }
+            }
+
+            model.Filters = Filters;
+            
+
+            var stausMessage = "A Job Alert has been created successfully.";
+            var status = _jobAlertsBC.MemberJobAlertCreate(model);
+            if(!status)
+                stausMessage = "A Job Alert has not been created successfully.";
 
             TempData["DeleteMessage"] = null;
-            TempData["CreateMessage"] = "A Job Alert has been created successfully.";
+            TempData["CreateMessage"] = stausMessage;
 
             // Why action name is empty?
             // Here we need to call Index action, if we are providing action name as Index here
@@ -141,14 +169,18 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         }
 
         [HttpGet]
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int id)
         {
             // TODO: When the Backend API is ready,
             // We need to pass this job alert id to it
+            var statusMessage = "A Job Alert has been deleted successfully.";
+            var status = _jobAlertsBC.MemberJobAlertDelete(id);
+            if(!status)
+                statusMessage = "A Job Alert has not been deleted successfully.";
 
             TempData["CreateMessage"] = null;
-            TempData["DeleteMessage"] = "A Job Alert has been deleted successfully.";
-            
+            TempData["DeleteMessage"] = statusMessage;
+
             // Why action name is empty?
             // Here we need to call Index action, if we are providing action name as Index here
             // It is appending in the URL, but we dont want to show that in URL. So, sending it as empty
@@ -177,6 +209,13 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                         queryParamsStringList.Add("Filters[" + i + "].values=" + filterId);
                     }
                 }
+            }
+
+            if(jobAlertDetails.Salary != null && !jobAlertDetails.Salary.TargetValue.IsNullOrEmpty())
+            {
+                queryParamsStringList.Add("Salary.TargetValue=" + jobAlertDetails.Salary.TargetValue);
+                queryParamsStringList.Add("Salary.LowerRange=" + jobAlertDetails.Salary.LowerRange);
+                queryParamsStringList.Add("Salary.UpperRange=" + jobAlertDetails.Salary.UpperRange);
             }
 
            return String.Join("&", queryParamsStringList);

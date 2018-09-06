@@ -124,7 +124,7 @@
                             @: <div class="row">
                         }
 
-                        string hrefLink = string.Format("{0}?Filters[0].rootId={1}&Filters[0].values={2}", @ViewData["JobResultsPageUrl"], list.ID, itemName.Key);
+                        string hrefLink = string.Format("{0}?Filters[0].rootId={1}&Filters[0].values={2}", @ViewData["JobResultsPageUrl"], list.FilterType, itemName.Key);
                         <div class="col-sm-3 col-md-3">
                             <a href=@hrefLink>@itemName.Value.name</a>
                         </div>

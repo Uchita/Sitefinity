@@ -29,6 +29,7 @@ using Telerik.Sitefinity.Security;
 using Telerik.Sitefinity.Security.Claims;
 using System.Web.Security;
 using Telerik.Sitefinity.Security.Model;
+using Telerik.Sitefinity.Services;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -104,40 +105,91 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             int memberID = 2;
             JobApplicationViewModel jobApplicationViewModel;
             var fullTemplateName = this.templateNamePrefix + this.TemplateName;
+            var ovverideEmail = applyJobModel.Email;
             // Create user if the user does not exists
             MembershipCreateStatus membershipCreateStatus;
-            if (SitefinityHelper.GetUserByEmail(applyJobModel.Email) == null)
-            {
-                membershipCreateStatus = SitefinityHelper.CreateUser(applyJobModel.Email, applyJobModel.Password, applyJobModel.FirstName, applyJobModel.LastName, applyJobModel.Email, applyJobModel.PhoneNumber,
-                    null, null, true);
 
-                if (membershipCreateStatus != MembershipCreateStatus.Success)
+            if (SitefinityHelper.IsUserLoggedIn()) // User already logged in
+            {
+                var currUser = SitefinityHelper.GetUserById(ClaimsManager.GetCurrentIdentity().UserId);
+                if (currUser != null)
+                    ovverideEmail = currUser.Email;
+            }
+            else //user not logged in
+            {
+                if(!string.IsNullOrEmpty(applyJobModel.Email))
                 {
-                    jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.NotAbleToCreateUser, "Unable to create user. Please register from");
-                    return View("JobApplication.Simple", jobApplicationViewModel);
-                }
-                else
-                {
-                    //instantiate the Sitefinity user manager
-                    //if you have multiple providers you have to pass the provider name as parameter in GetManager("ProviderName") in your case it will be the asp.net membership provider user
-                    UserManager userManager = UserManager.GetManager();
-                    if (userManager.ValidateUser(applyJobModel.Email, applyJobModel.Password))
+                    Telerik.Sitefinity.Security.Model.User existingUser = SitefinityHelper.GetUserByEmail(applyJobModel.Email);
+
+                    if( existingUser != null)
                     {
-                        //if you need to get the user instance use the out parameter
-                        Telerik.Sitefinity.Security.Model.User userToAuthenticate = null;
-                        SecurityManager.AuthenticateUser(userManager.Provider.Name, applyJobModel.Email, applyJobModel.Password, false, out userToAuthenticate);
-                        if(userToAuthenticate == null)
+                        #region Entered Email exists in Sitefinity User list
+                        //instantiate the Sitefinity user manager
+                        //if you have multiple providers you have to pass the provider name as parameter in GetManager("ProviderName") in your case it will be the asp.net membership provider user
+                        UserManager userManager = UserManager.GetManager();
+                        if (userManager.ValidateUser(applyJobModel.Email, applyJobModel.Password))
+                        {
+                            //if you need to get the user instance use the out parameter
+                            Telerik.Sitefinity.Security.Model.User userToAuthenticate = null;
+                            SecurityManager.AuthenticateUser(userManager.Provider.Name, applyJobModel.Email, applyJobModel.Password, false, out userToAuthenticate);
+                            if (userToAuthenticate == null)
+                            {
+                                jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.NotAbleToLoginCreatedUser, "Unable to process your job application. Please try logging in and re-apply for the job.");
+                                return View("JobApplication.Simple", jobApplicationViewModel);
+                            }
+                            else
+                            {
+                                ovverideEmail = userToAuthenticate.Email;
+                            }
+                        }
+                        else
                         {
                             jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.NotAbleToLoginCreatedUser, "Unable to process your job application. Please try logging in and re-apply for the job.");
                             return View("JobApplication.Simple", jobApplicationViewModel);
                         }
+                        #endregion
                     }
-                }
+                    else
+                    {
+                        #region Entered email does not exists in sitefinity User list
+                        membershipCreateStatus = SitefinityHelper.CreateUser(applyJobModel.Email, applyJobModel.Password, applyJobModel.FirstName, applyJobModel.LastName, applyJobModel.Email, applyJobModel.PhoneNumber,
+                        null, null, true);
+
+                        if (membershipCreateStatus != MembershipCreateStatus.Success)
+                        {
+                            jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.NotAbleToCreateUser, "Unable to create user. Please register from");
+                            return View("JobApplication.Simple", jobApplicationViewModel);
+                        }
+                        else
+                        {
+                            //instantiate the Sitefinity user manager
+                            //if you have multiple providers you have to pass the provider name as parameter in GetManager("ProviderName") in your case it will be the asp.net membership provider user
+                            UserManager userManager = UserManager.GetManager();
+                            if (userManager.ValidateUser(applyJobModel.Email, applyJobModel.Password))
+                            {
+                                //if you need to get the user instance use the out parameter
+                                Telerik.Sitefinity.Security.Model.User userToAuthenticate = null;
+                                SecurityManager.AuthenticateUser(userManager.Provider.Name, applyJobModel.Email, applyJobModel.Password, false, out userToAuthenticate);
+                                if (userToAuthenticate == null)
+                                {
+                                    jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.NotAbleToLoginCreatedUser, "Unable to process your job application. Please try logging in and re-apply for the job.");
+                                    return View("JobApplication.Simple", jobApplicationViewModel);
+                                }
+                                else
+                                {
+                                    ovverideEmail = userToAuthenticate.Email;
+                                }
+                            }
+                        }
+                        #endregion
+                    }
+                }                        
             }
-            
+
+
             JobApplicationAttachmentSource sourceResume = GetAttachmentSourceType(applyJobModel.ResumeSelectedType);
             JobApplicationAttachmentSource sourceCoverLetter = GetAttachmentSourceType(applyJobModel.CoverLetterSelectedType);
-           
+
             List<JobApplicationAttachmentUploadItem> attachments = GatherAttachments(sourceResume, sourceCoverLetter, applyJobModel.UploadFilesResume, applyJobModel.UploadFilesCoverLetter);
 
             string resumeAttachmentPath = GetAttachmentPath(attachments, JobApplicationAttachmentType.Resume);
@@ -145,16 +197,19 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
             // Email Notification Settings
             // In the desinger form those are going to be provided by separator as semicolon(;)
-            
+
             List<string> ccEmails = (!this.EmailTemplateCC.IsNullOrEmpty()) ? this.EmailTemplateCC.Split(';').ToList() : null;
             List<string> bccEmails = (!this.EmailTemplateBCC.IsNullOrEmpty()) ? this.EmailTemplateBCC.Split(';').ToList() : null;
             string htmlEmailContent = this.GetHtmlEmailContent();
-            EmailNotificationSettings emailNotificationSettings = new EmailNotificationSettings(this.EmailTemplateFromName, ccEmails, bccEmails, htmlEmailContent);
+            EmailNotificationSettings emailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateFromName, ""),
+                                                                                                new EmailTarget("To Name", "To Address"),
+                                                                                                "Subject",
+                                                                                                htmlEmailContent);
 
             //Create Application 
             IMemberApplicationResponse response = _blConnector.MemberCreateJobApplication(
                 new JXTNext_MemberApplicationRequest { ApplyResourceID = applicationResultID, MemberID = memberID, ResumePath = resumeAttachmentPath, CoverletterPath = coverletterAttachmentPath, EmailNotification = emailNotificationSettings },
-                applyJobModel.Email);
+                ovverideEmail);
 
             if (response.Success && response.ApplicationID.HasValue)
             {
@@ -172,7 +227,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
             else
             {
-                jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.NotAvailable, response.Errors.First() );
+                jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.NotAvailable, response.Errors.First());
             }
 
             return View("JobApplication.Simple", jobApplicationViewModel);
@@ -205,7 +260,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 return JobApplicationAttachmentSource.GoogleDrive;
 
             return JobApplicationAttachmentSource.Local;
-            
+
         }
 
         protected override void HandleUnknownAction(string actionName)
@@ -245,41 +300,56 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         private void UploadToAmazonS3(Guid masterDocumentId, string providerName, string libName, string fileName, Stream fileStream)
         {
             LibrariesManager librariesManager = LibrariesManager.GetManager(providerName);
-            Document document = librariesManager.GetDocuments().Where(i => i.Id == masterDocumentId).FirstOrDefault();
+            var libManagerSecurityCheckStatus = librariesManager.Provider.SuppressSecurityChecks;
 
-            if (document == null)
+            try
             {
-                //The document is created as master. The masterDocumentId is assigned to the master version.
-                document = librariesManager.CreateDocument(masterDocumentId);
+                // Make sure that supress the security checks so that everyone can upload the files
+                librariesManager.Provider.SuppressSecurityChecks = true;
+                Document document = librariesManager.GetDocuments().Where(i => i.Id == masterDocumentId).FirstOrDefault();
 
-                //Set the parent document library.
-                DocumentLibrary documentLibrary = librariesManager.GetDocumentLibraries().Where(d => d.Title == libName).SingleOrDefault();
-                document.Parent = documentLibrary;
+                if (document == null)
+                {
+                    //The document is created as master. The masterDocumentId is assigned to the master version.
+                    document = librariesManager.CreateDocument(masterDocumentId);
 
-                //Set the properties of the document.
-                string documentTitle = masterDocumentId.ToString() + "_" + fileName;
-                document.Title = documentTitle;
-                document.DateCreated = DateTime.UtcNow;
-                document.PublicationDate = DateTime.UtcNow;
-                document.LastModified = DateTime.UtcNow;
-                document.UrlName = Regex.Replace(documentTitle.ToLower(), @"[^\w\-\!\$\'\(\)\=\@\d_]+", "-");
-                document.MediaFileUrlName = Regex.Replace(documentTitle.ToLower(), @"[^\w\-\!\$\'\(\)\=\@\d_]+", "-");
-                document.ApprovalWorkflowState = "Published";
+                    //Set the parent document library.
+                    DocumentLibrary documentLibrary = librariesManager.GetDocumentLibraries().Where(d => d.Title == libName).SingleOrDefault();
+                    document.Parent = documentLibrary;
 
-                //Upload the document file.
-                string fileExtension = fileName.Split(new string[] { "." }, StringSplitOptions.RemoveEmptyEntries).Last();
-                librariesManager.Upload(document, fileStream, fileExtension ?? string.Empty);
+                    //Set the properties of the document.
+                    string documentTitle = masterDocumentId.ToString() + "_" + fileName;
+                    document.Title = documentTitle;
+                    document.DateCreated = DateTime.UtcNow;
+                    document.PublicationDate = DateTime.UtcNow;
+                    document.LastModified = DateTime.UtcNow;
+                    document.UrlName = Regex.Replace(documentTitle.ToLower(), @"[^\w\-\!\$\'\(\)\=\@\d_]+", "-");
+                    document.MediaFileUrlName = Regex.Replace(documentTitle.ToLower(), @"[^\w\-\!\$\'\(\)\=\@\d_]+", "-");
+                    document.ApprovalWorkflowState = "Published";
 
-                //Recompiles and validates the url of the document.
-                librariesManager.RecompileAndValidateUrls(document);
+                    //Upload the document file.
+                    string fileExtension = fileName.Split(new string[] { "." }, StringSplitOptions.RemoveEmptyEntries).Last();
+                    librariesManager.Upload(document, fileStream, fileExtension ?? string.Empty);
 
-                //Save the changes.
-                librariesManager.SaveChanges();
+                    //Recompiles and validates the url of the document.
+                    librariesManager.RecompileAndValidateUrls(document);
 
-                //Publish the DocumentLibraries item. The live version acquires new ID.
-                var bag = new Dictionary<string, string>();
-                bag.Add("ContentType", typeof(Document).FullName);
-                WorkflowManager.MessageWorkflow(masterDocumentId, typeof(Document), null, "Publish", false, bag);
+                    //Save the changes.
+                    librariesManager.SaveChanges();
+
+                    //Publish the DocumentLibraries item. The live version acquires new ID.
+                    var bag = new Dictionary<string, string>();
+                    bag.Add("ContentType", typeof(Document).FullName);
+
+                    // Run with elevatede privilages so that everybody can upload files
+                    SystemManager.RunWithElevatedPrivilege(d => WorkflowManager.MessageWorkflow(masterDocumentId, typeof(Document), null, "Publish", false, bag));
+                }
+            }
+
+            finally
+            {
+                // Reset the suppress security checks
+                librariesManager.Provider.SuppressSecurityChecks = libManagerSecurityCheckStatus;
             }
         }
 
@@ -341,7 +411,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
 
             // Processing the Resume
-            if(sourceResume == JobApplicationAttachmentSource.GoogleDrive)
+            if (sourceResume == JobApplicationAttachmentSource.GoogleDrive)
             {
                 var googleDriveModel = JsonConvert.DeserializeObject<UploadFilesFormPostModel>(uploadFilesResumeJSON);
                 JobApplicationAttachmentUploadItem item = GetAttachementFromGoogleDrive(googleDriveModel, JobApplicationAttachmentType.Resume);
@@ -379,7 +449,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             SiteSettingsHelper siteSettingsHelper = new SiteSettingsHelper();
             string clientId = siteSettingsHelper.GetCurrentSiteGoogleClientId();
             string clientSecret = siteSettingsHelper.GetCurrentSiteGoogleClientSecret();
-            GoogleDriveFileHandlerRequestModel baseFileHandle = new GoogleDriveFileHandlerRequestModel() {
+            GoogleDriveFileHandlerRequestModel baseFileHandle = new GoogleDriveFileHandlerRequestModel()
+            {
                 ClientId = clientId,
                 ClientSecret = clientSecret,
                 OAuthToken = googleFilesInfo.AuthToken,

@@ -1025,7 +1025,7 @@
     <Content Include="ResourcePackages\Hudson\MVC\Views\CheckboxesField\Write.Default.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ResourcePackages\Hudson\MVC\Views\CheckboxesField\Write.Default_Inline.cshtml">
+    <Content Include="ResourcePackages\Hudson\MVC\Views\CheckboxesField\Write.Default_Inl.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\Hudson\MVC\Views\Comments\Comments.Default.cshtml">
@@ -1454,6 +1454,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ResourcePackages\Hudson\MVC\Views\JobAlert\Simple.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Hudson\MVC\Views\Profile\Read.ProfilePreviewJobApplication.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Hudson\MVC\Views\CheckboxesField\Write.Default_Inlin.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\jn_icons.eot">

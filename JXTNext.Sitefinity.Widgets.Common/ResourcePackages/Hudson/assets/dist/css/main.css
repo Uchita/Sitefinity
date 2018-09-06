@@ -7317,6 +7317,8 @@ blockquote {
     color: #01a3a4; }
     .page-wrapper a:hover, .page-wrapper a:focus, .page-wrapper a:active {
       color: #01a3a4; }
+  .page-wrapper p {
+    margin-bottom: 20px; }
   .page-wrapper .btn {
     border: 1px solid;
     border-radius: 0;
@@ -10214,10 +10216,6 @@ ul.breadcrumb {
       margin-top: 7px;
       margin-bottom: 7px; } }
 
-@media (min-width: 768px) and (max-width: 991px) {
-  .main-content {
-    padding-left: 25px; } }
-
 /*#region Small desktop*/
 @media (min-width: 992px) {
   header .brand-logo {
@@ -10653,6 +10651,8 @@ ul.breadcrumb {
     border-right: none; }
   .xs-pad-right-15 {
     padding-right: 15px; }
+  .xs-marg-btm {
+    margin-bottom: 30px; }
   .left-sidebar {
     margin-bottom: 50px; }
   .page-section .right-bottom-img {
@@ -10660,7 +10660,11 @@ ul.breadcrumb {
     .page-section .right-bottom-img img {
       max-width: 70%; }
   .process-card-holder .display-cell .process-card {
-    min-height: 0 !important; } }
+    min-height: 0 !important; }
+  .board-members-item h4 {
+    line-height: 1.3; }
+  iframe {
+    width: 100%; } }
 
 @media screen and (max-width: 767px) {
   .owl-carousel-jumbotron .owl-nav {
@@ -10671,6 +10675,10 @@ ul.breadcrumb {
     clear: left; } }
 
 @media (max-width: 499px) {
+  main .page-section {
+    padding: 20px 0; }
+  .left-sidebar {
+    margin-bottom: 30px; }
   .col-xs-1 {
     float: none;
     width: 100%; }
@@ -10747,8 +10755,11 @@ ul.breadcrumb {
   .job-search .filter-job-classification .row > div {
     float: none;
     width: 100%; }
+  .board-members-row {
+    padding-bottom: 0; }
   .board-members-item {
-    width: 100%; }
+    width: 100%;
+    margin-bottom: 30px; }
     .board-members-item + .board-members-item {
       margin-left: 0; }
   .owl-carousel.owl-drag .owl-item, .owl-carousel.owl-drag .testimonial {
@@ -10797,8 +10808,6 @@ ul.breadcrumb {
     word-break: break-word; } }
 
 @media (max-width: 400px) {
-  main .page-section {
-    padding: 20px 0; }
   .section-ul ul.nav-stacked li {
     width: auto;
     float: none;

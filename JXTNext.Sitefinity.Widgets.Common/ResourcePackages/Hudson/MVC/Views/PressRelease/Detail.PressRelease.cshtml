@@ -38,8 +38,9 @@
         @if (Model.Item.Fields.IssueDate != null)
         {
             <span @Html.InlineEditingFieldAttributes("IssueDate", "DateTime")>
-                @Model.Item.GetDateTime("IssueDate", "MMM d, yyyy, HH:mm tt")
+                @Model.Item.GetDateTime("IssueDate", "yyyy MMM dd")
             </span>
+
         }
     </div>
     @*End IssueDate field*@

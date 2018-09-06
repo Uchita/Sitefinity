@@ -262,7 +262,7 @@
     -webkit-clip-path: padding-box polygon(100% 0, 100% 90%, 95% 100%, 0 100%, 0 0);
     clip-path: padding-box polygon(100% 0, 100% 90%, 95% 100%, 0 100%, 0 0); }
   .testimonials-slider .owl-item {
-    padding: 55px 60px 0;
+    padding: 55px 60px;
     min-height: 450px; }
   .testimonials-slider .owl-dots {
     position: absolute;

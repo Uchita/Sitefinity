@@ -275,6 +275,22 @@ $(document).ready(function () {
 
 
     ThemeGlobal.DynamicFormConditions();
+
+    
+
+    if( window.location.pathname.indexOf('ApplyJob') > -1 ){
+        var exceptionText = "Exception occured while executing the controller. Check error logs for details.";
+        
+        if( $('.profile-app-wrapper').text().indexOf('Exception occured') > -1 ){
+            $('.profile-app-wrapper').remove();
+        }
+        $('#appFormState').hide();
+    }else{
+        if(  $('.profile-app-wrapper').length ){
+            $('.profile-app-wrapper').fadeIn('fast').removeClass('hide');
+        }
+    }
+
 });
 
 $(window).resize(function () {

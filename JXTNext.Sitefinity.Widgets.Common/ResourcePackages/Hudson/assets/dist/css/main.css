@@ -8046,6 +8046,12 @@ main {
     .page-section.section-highlight .h4, .page-section.section-highlight h4,
     .page-section.section-highlight a {
       color: inherit; }
+  .page-section .right-bottom-img img {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    max-width: 40%;
+    width: auto; }
   .page-section .absolute-bg-img img {
     position: absolute;
     top: 0;
@@ -8238,7 +8244,10 @@ main {
   margin: 0; }
   .section-ul ul.nav-stacked > li {
     float: left;
-    width: 50%; }
+    width: 49%;
+    margin-right: 2%; }
+    .section-ul ul.nav-stacked > li:nth-child(even) {
+      margin-right: 0; }
     .section-ul ul.nav-stacked > li a {
       padding: 10px 0 0 0;
       display: inline-block; }
@@ -8508,7 +8517,7 @@ ul.vertical-ul {
       margin-bottom: 0; }
   @media (max-width: 767px) {
     .hexagon-container {
-      padding: 30px 20px; } }
+      padding: 30px 0; } }
 
 .hexagon-card {
   text-align: center;
@@ -8554,7 +8563,8 @@ ul.vertical-ul {
   @media (max-width: 767px) {
     .hexagon-card {
       width: 100%;
-      height: auto; }
+      height: auto;
+      margin: 0 0 5px; }
       .hexagon-card:nth-child(n+4) {
         left: auto;
         margin-top: 0; }
@@ -8609,7 +8619,8 @@ ul.vertical-ul {
   @media (max-width: 767px) {
     .hexagon-card-lg {
       width: 100%;
-      height: auto; }
+      height: auto;
+      margin: 0 0 5px; }
       .hexagon-card-lg:nth-child(n+4) {
         left: auto;
         margin-top: 0; }
@@ -9631,7 +9642,7 @@ ul.breadcrumb {
     right: 0; }
 
 .article-details {
-  width: 660px;
+  max-width: 660px;
   margin: 0 auto; }
   .article-details .breadcrumb a {
     font-size: 14px;
@@ -10167,12 +10178,6 @@ ul.breadcrumb {
     display: none !important; }
   .page-section .gap-extra {
     padding-left: 35px; }
-  .page-section .right-bottom-img img {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    max-width: 38%;
-    width: auto; }
   .white-box-single .white-box .white-box-ul li {
     width: 50%;
     float: left;
@@ -10354,6 +10359,8 @@ ul.breadcrumb {
     .page-wrapper .basic-form .form-label {
       text-align: left;
       display: block; }
+    .page-wrapper .display-table {
+      width: auto; }
   header .navbar.navbar-default .navbar-nav {
     width: 77%; }
     header .navbar.navbar-default .navbar-nav > li {
@@ -10406,8 +10413,7 @@ ul.breadcrumb {
     font-size: 1.6rem; }
   .long-card-basic-list .thumbnail {
     max-width: 400px;
-    margin-left: auto;
-    margin-right: auto; }
+    margin: 0 auto 30px; }
     .long-card-basic-list .thumbnail .img-wrap {
       max-height: none; }
   .process-card-holder .display-cell {
@@ -10473,6 +10479,8 @@ ul.breadcrumb {
 
 /*#region Phones*/
 @media (max-width: 767px) {
+  main .page-section {
+    padding: 30px 0; }
   header .navbar-fixed-top:before {
     content: '';
     position: absolute;
@@ -10550,8 +10558,8 @@ ul.breadcrumb {
     margin-top: 0; }
   .job-search .filter-job-classification .row > div {
     float: left;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 0;
+    margin-bottom: 10px;
     width: 50%; }
   .list-featured-articles {
     padding: 0;
@@ -10630,6 +10638,9 @@ ul.breadcrumb {
       padding: 15px 0; }
     .page-wrapper footer .footer-social {
       margin-top: 18px; }
+    .page-wrapper .display-table {
+      width: auto;
+      display: block; }
   .testimonials-slider .quote {
     height: 33px; }
     .testimonials-slider .quote.text-right {
@@ -10643,7 +10654,13 @@ ul.breadcrumb {
   .xs-pad-right-15 {
     padding-right: 15px; }
   .left-sidebar {
-    margin-bottom: 50px; } }
+    margin-bottom: 50px; }
+  .page-section .right-bottom-img {
+    padding-bottom: 40vw; }
+    .page-section .right-bottom-img img {
+      max-width: 70%; }
+  .process-card-holder .display-cell .process-card {
+    min-height: 0 !important; } }
 
 @media screen and (max-width: 767px) {
   .owl-carousel-jumbotron .owl-nav {
@@ -10747,7 +10764,45 @@ ul.breadcrumb {
   .list-featured-articles li:first-child {
     padding-top: 200px; }
     .list-featured-articles li:first-child .featured-article-image {
-      max-height: 200px; } }
+      max-height: 200px; }
+  .testimonials-slider.testimonials-simple .testimonial {
+    padding: 50px 0 10px; }
+  .testimonials-slider.testimonials-simple .testimonial-author {
+    padding: 10px; }
+  .testimonials-slider.testimonials-simple .owl-dots {
+    position: absolute;
+    bottom: 0; }
+  .testimonials-slider.testimonials-simple .quote {
+    top: 3px;
+    left: 0; }
+    .testimonials-slider.testimonials-simple .quote.text-right {
+      bottom: -40px; }
+  .testimonials-slider .owl-item {
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 50px; }
+  .testimonials-slider .testimonial {
+    padding-left: 0;
+    padding-right: 0; }
+  .testimonials-slider .owl-dots {
+    bottom: 25px; }
+  .job-offer-contacts table, .job-offer-contacts tbody {
+    display: block; }
+  .job-offer-contacts tr {
+    display: block;
+    margin-bottom: 10px; }
+  .job-offer-contacts td {
+    display: block;
+    margin-bottom: 5px;
+    word-break: break-word; } }
+
+@media (max-width: 400px) {
+  main .page-section {
+    padding: 20px 0; }
+  .section-ul ul.nav-stacked li {
+    width: auto;
+    float: none;
+    margin-right: 0; } }
 
 /*#endregion Phones*/
 /*#endregion Media*/

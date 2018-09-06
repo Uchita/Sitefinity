@@ -33,13 +33,6 @@
         .gap-extra{
             padding-left: 35px;
         }
-        .right-bottom-img img {
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            max-width: 38%;
-            width:auto;
-        }
     } 
     .white-box-single .white-box .white-box-ul li {
         width: 50%;
@@ -378,6 +371,9 @@
             text-align: left;
             display: block;
         }
+        .display-table{
+            width: auto;
+        }
     }
 
     header {
@@ -478,8 +474,7 @@
     .long-card-basic-list{
         .thumbnail{
             max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0 auto 30px;
             .img-wrap{
                 max-height: none;
             }
@@ -591,7 +586,9 @@
 
 /*#region Phones*/
 @media (max-width: 767px) {
-    
+    main .page-section{
+        padding: 30px 0;
+    }
     header {
 
         .navbar-fixed-top:before {
@@ -729,8 +726,8 @@
 
             & > div {
                 float: left;
-                margin-top: 5px;
-                margin-bottom: 5px;
+                margin-top: 0;
+                margin-bottom: 10px;
                 width: 50%;
             }
         }
@@ -860,6 +857,10 @@
                 margin-top: 18px;
             }
         }
+        .display-table{
+            width: auto;
+            display: block;
+        }
     }
 
     .testimonials-slider {
@@ -885,6 +886,19 @@
     }
     .left-sidebar{
         margin-bottom: 50px;
+    }
+    .page-section {
+        .right-bottom-img{
+            padding-bottom: 40vw;
+            img {
+                max-width: 70%;
+            }
+        }
+    } 
+    .process-card-holder .display-cell {
+        .process-card{
+            min-height: 0!important;
+        }
     }
 }
 
@@ -957,9 +971,6 @@
         }
     }
 
-    header {   
-    }
-
     .job-search {
 
         .filter-active a:after {
@@ -1023,7 +1034,68 @@
             }
         }
     }
+    .testimonials-slider.testimonials-simple{
+        .testimonial{
+            padding: 50px 0 10px;
+        }
+        .testimonial-author{
+            padding: 10px;
+        }
+        .owl-dots{
+            position: absolute;
+            bottom: 0;
+        }
+        .quote{
+            top: 3px;
+            left: 0;
+            &.text-right{
+                bottom: -40px;
+            }
+        }
+    }
+    .testimonials-slider{
+        .owl-item{
+            padding-left: 25px;
+            padding-right: 25px;
+            padding-bottom: 50px; 
+        }
+        .testimonial{
+            padding-left: 0;
+            padding-right: 0; 
+        }
+        .owl-dots{
+            bottom: 25px;
+        }
+        
+    }
+    .job-offer-contacts{
+        table, tbody{
+            display: block;
+        }
+        tr{
+            display: block;
+            margin-bottom: 10px;
+        }
+        td{
+            display: block;
+            margin-bottom: 5px;
+            word-break: break-word;
+        }
+    }
 
+}
+
+@media (max-width:400px){
+    main .page-section{
+        padding: 20px 0;
+    }
+    .section-ul ul.nav-stacked{
+        li{
+            width: auto;
+            float: none;
+            margin-right: 0;
+        }
+    }   
 }
 
 /*#endregion Phones*/

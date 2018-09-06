@@ -201,7 +201,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             List<string> ccEmails = (!this.EmailTemplateCC.IsNullOrEmpty()) ? this.EmailTemplateCC.Split(';').ToList() : null;
             List<string> bccEmails = (!this.EmailTemplateBCC.IsNullOrEmpty()) ? this.EmailTemplateBCC.Split(';').ToList() : null;
             string htmlEmailContent = this.GetHtmlEmailContent();
-            EmailNotificationSettings emailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateFromName, ""),
+            EmailNotificationSettings emailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, ""),
                                                                                                 new EmailTarget("To Name", "To Address"),
                                                                                                 "Subject",
                                                                                                 htmlEmailContent);
@@ -577,7 +577,9 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public string EmailTemplateName { get; set; }
         public string EmailTemplateCC { get; set; }
         public string EmailTemplateBCC { get; set; }
-        public string EmailTemplateFromName { get; set; }
+        public string EmailTemplateSenderName { get; set; }
+        public string EmailTemplateSenderEmailAddress { get; set; }
+        public string EmailTemplateEmailSubject { get; set; }
         public string CssClass { get; set; }
         public string SerializedCloudSettingsParams { get; set; }
         public string RegisterPageId { get; set; }

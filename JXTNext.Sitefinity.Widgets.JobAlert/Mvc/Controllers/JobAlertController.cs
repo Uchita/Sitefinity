@@ -211,6 +211,13 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 }
             }
 
+            if(jobAlertDetails.Salary != null && !jobAlertDetails.Salary.TargetValue.IsNullOrEmpty())
+            {
+                queryParamsStringList.Add("Salary.TargetValue=" + jobAlertDetails.Salary.TargetValue);
+                queryParamsStringList.Add("Salary.LowerRange=" + jobAlertDetails.Salary.LowerRange);
+                queryParamsStringList.Add("Salary.UpperRange=" + jobAlertDetails.Salary.UpperRange);
+            }
+
            return String.Join("&", queryParamsStringList);
         }
 

@@ -56,6 +56,10 @@
                     if (isSlarySelected) {
                         eachClickFilter();
                     }
+                },
+                "value_changed_callback": function (cause, leftValue, rightValue) {
+                    $(this).parent().find('.leftLabel span').text(leftValue);
+                    $(this).parent().find('.rightLabel span').text(rightValue);
                 }
             });
         });

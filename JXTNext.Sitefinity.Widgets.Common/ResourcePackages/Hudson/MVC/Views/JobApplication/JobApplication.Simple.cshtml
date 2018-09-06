@@ -9,7 +9,7 @@
     <div class="alert alert-success">@ViewBag.ShowFilesUploadMessage</div>
 }
 <div class="login-form sign-in-with">
-    <form id="job-app-form" action="@Url.Action("ApplyJob","JobApplication")" method="post">
+    <form id="job-app-form" action="@Url.Action("ApplyJob","JobApplication")" method="post" enctype="multipart/form-data">
 
         <div class="row">
             <div class="col-xs-12 col-md-4 text-right"></div>

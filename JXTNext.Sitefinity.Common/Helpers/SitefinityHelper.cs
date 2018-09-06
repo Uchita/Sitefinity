@@ -204,5 +204,16 @@ namespace JXTNext.Sitefinity.Common.Helpers
                 isVerified = true;
             return isVerified;
         }
+
+        public static bool IsUserLoggedIn()
+        {
+            bool isUserLoggedIn = false;
+            var currentIdentity = ClaimsManager.GetCurrentIdentity();
+
+            if (currentIdentity.IsAuthenticated)
+                isUserLoggedIn = true;
+
+            return isUserLoggedIn;
+        }
     }
 }

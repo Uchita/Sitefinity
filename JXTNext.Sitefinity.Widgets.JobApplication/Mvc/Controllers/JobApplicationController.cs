@@ -29,6 +29,7 @@ using Telerik.Sitefinity.Security;
 using Telerik.Sitefinity.Security.Claims;
 using System.Web.Security;
 using Telerik.Sitefinity.Security.Model;
+using Telerik.Sitefinity.Services;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -104,6 +105,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             int memberID = 2;
             JobApplicationViewModel jobApplicationViewModel;
             var fullTemplateName = this.templateNamePrefix + this.TemplateName;
+            var ovverideEmail = applyJobModel.Email;
             // Create user if the user does not exists
             MembershipCreateStatus membershipCreateStatus;
             if (SitefinityHelper.GetUserByEmail(applyJobModel.Email) == null)
@@ -131,10 +133,46 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                             jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.NotAbleToLoginCreatedUser, "Unable to process your job application. Please try logging in and re-apply for the job.");
                             return View("JobApplication.Simple", jobApplicationViewModel);
                         }
+                        else
+                        {
+                            ovverideEmail = userToAuthenticate.Email;
+                        }
                     }
                 }
             }
-            
+            else if(!SitefinityHelper.IsUserLoggedIn())
+            {
+                //instantiate the Sitefinity user manager
+                //if you have multiple providers you have to pass the provider name as parameter in GetManager("ProviderName") in your case it will be the asp.net membership provider user
+                UserManager userManager = UserManager.GetManager();
+                if (userManager.ValidateUser(applyJobModel.Email, applyJobModel.Password))
+                {
+                    //if you need to get the user instance use the out parameter
+                    Telerik.Sitefinity.Security.Model.User userToAuthenticate = null;
+                    SecurityManager.AuthenticateUser(userManager.Provider.Name, applyJobModel.Email, applyJobModel.Password, false, out userToAuthenticate);
+                    if (userToAuthenticate == null)
+                    {
+                        jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.NotAbleToLoginCreatedUser, "Unable to process your job application. Please try logging in and re-apply for the job.");
+                        return View("JobApplication.Simple", jobApplicationViewModel);
+                    }
+                    else
+                    {
+                        ovverideEmail = userToAuthenticate.Email;
+                    }
+                }
+                else
+                {
+                    jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.NotAbleToLoginCreatedUser, "Unable to process your job application. Please try logging in and re-apply for the job.");
+                    return View("JobApplication.Simple", jobApplicationViewModel);
+                }
+            }
+            else // User already logged in
+            {
+                var currUser = SitefinityHelper.GetUserById(ClaimsManager.GetCurrentIdentity().UserId);
+                if (currUser != null)
+                    ovverideEmail = currUser.Email;
+            }
+
             JobApplicationAttachmentSource sourceResume = GetAttachmentSourceType(applyJobModel.ResumeSelectedType);
             JobApplicationAttachmentSource sourceCoverLetter = GetAttachmentSourceType(applyJobModel.CoverLetterSelectedType);
            
@@ -154,7 +192,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             //Create Application 
             IMemberApplicationResponse response = _blConnector.MemberCreateJobApplication(
                 new JXTNext_MemberApplicationRequest { ApplyResourceID = applicationResultID, MemberID = memberID, ResumePath = resumeAttachmentPath, CoverletterPath = coverletterAttachmentPath, EmailNotification = emailNotificationSettings },
-                applyJobModel.Email);
+                ovverideEmail);
 
             if (response.Success && response.ApplicationID.HasValue)
             {
@@ -245,41 +283,56 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         private void UploadToAmazonS3(Guid masterDocumentId, string providerName, string libName, string fileName, Stream fileStream)
         {
             LibrariesManager librariesManager = LibrariesManager.GetManager(providerName);
-            Document document = librariesManager.GetDocuments().Where(i => i.Id == masterDocumentId).FirstOrDefault();
+            var libManagerSecurityCheckStatus = librariesManager.Provider.SuppressSecurityChecks;
 
-            if (document == null)
+            try
             {
-                //The document is created as master. The masterDocumentId is assigned to the master version.
-                document = librariesManager.CreateDocument(masterDocumentId);
+                // Make sure that supress the security checks so that everyone can upload the files
+                librariesManager.Provider.SuppressSecurityChecks = true;
+                Document document = librariesManager.GetDocuments().Where(i => i.Id == masterDocumentId).FirstOrDefault();
 
-                //Set the parent document library.
-                DocumentLibrary documentLibrary = librariesManager.GetDocumentLibraries().Where(d => d.Title == libName).SingleOrDefault();
-                document.Parent = documentLibrary;
+                if (document == null)
+                {
+                    //The document is created as master. The masterDocumentId is assigned to the master version.
+                    document = librariesManager.CreateDocument(masterDocumentId);
 
-                //Set the properties of the document.
-                string documentTitle = masterDocumentId.ToString() + "_" + fileName;
-                document.Title = documentTitle;
-                document.DateCreated = DateTime.UtcNow;
-                document.PublicationDate = DateTime.UtcNow;
-                document.LastModified = DateTime.UtcNow;
-                document.UrlName = Regex.Replace(documentTitle.ToLower(), @"[^\w\-\!\$\'\(\)\=\@\d_]+", "-");
-                document.MediaFileUrlName = Regex.Replace(documentTitle.ToLower(), @"[^\w\-\!\$\'\(\)\=\@\d_]+", "-");
-                document.ApprovalWorkflowState = "Published";
+                    //Set the parent document library.
+                    DocumentLibrary documentLibrary = librariesManager.GetDocumentLibraries().Where(d => d.Title == libName).SingleOrDefault();
+                    document.Parent = documentLibrary;
 
-                //Upload the document file.
-                string fileExtension = fileName.Split(new string[] { "." }, StringSplitOptions.RemoveEmptyEntries).Last();
-                librariesManager.Upload(document, fileStream, fileExtension ?? string.Empty);
+                    //Set the properties of the document.
+                    string documentTitle = masterDocumentId.ToString() + "_" + fileName;
+                    document.Title = documentTitle;
+                    document.DateCreated = DateTime.UtcNow;
+                    document.PublicationDate = DateTime.UtcNow;
+                    document.LastModified = DateTime.UtcNow;
+                    document.UrlName = Regex.Replace(documentTitle.ToLower(), @"[^\w\-\!\$\'\(\)\=\@\d_]+", "-");
+                    document.MediaFileUrlName = Regex.Replace(documentTitle.ToLower(), @"[^\w\-\!\$\'\(\)\=\@\d_]+", "-");
+                    document.ApprovalWorkflowState = "Published";
 
-                //Recompiles and validates the url of the document.
-                librariesManager.RecompileAndValidateUrls(document);
+                    //Upload the document file.
+                    string fileExtension = fileName.Split(new string[] { "." }, StringSplitOptions.RemoveEmptyEntries).Last();
+                    librariesManager.Upload(document, fileStream, fileExtension ?? string.Empty);
 
-                //Save the changes.
-                librariesManager.SaveChanges();
+                    //Recompiles and validates the url of the document.
+                    librariesManager.RecompileAndValidateUrls(document);
 
-                //Publish the DocumentLibraries item. The live version acquires new ID.
-                var bag = new Dictionary<string, string>();
-                bag.Add("ContentType", typeof(Document).FullName);
-                WorkflowManager.MessageWorkflow(masterDocumentId, typeof(Document), null, "Publish", false, bag);
+                    //Save the changes.
+                    librariesManager.SaveChanges();
+
+                    //Publish the DocumentLibraries item. The live version acquires new ID.
+                    var bag = new Dictionary<string, string>();
+                    bag.Add("ContentType", typeof(Document).FullName);
+
+                    // Run with elevatede privilages so that everybody can upload files
+                    SystemManager.RunWithElevatedPrivilege(d => WorkflowManager.MessageWorkflow(masterDocumentId, typeof(Document), null, "Publish", false, bag));
+                }
+            }
+
+            finally
+            {
+                // Reset the suppress security checks
+                librariesManager.Provider.SuppressSecurityChecks = libManagerSecurityCheckStatus;
             }
         }
 

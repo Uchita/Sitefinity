@@ -7887,7 +7887,7 @@ header {
           height: 100px;
           overflow: hidden; }
           header .main-nav .dropdown-menu-container .dropdown-menu-columns .dropdown-menu-featured-image + h5 {
-            color: #2e2e2e; }
+            color: #808080; }
           header .main-nav .dropdown-menu-container .dropdown-menu-columns .dropdown-menu-featured-image img {
             margin: 0;
             width: 100%;
@@ -8660,20 +8660,20 @@ ul.vertical-ul {
     border-top-color: #007077; }
 
 .green-2-bg {
-  background-color: #1ad5a7;
+  background-color: #01a3a4;
   color: #fff; }
   .green-2-bg::before {
-    border-bottom-color: #1ad5a7; }
+    border-bottom-color: #01a3a4; }
   .green-2-bg::after {
-    border-top-color: #1ad5a7; }
+    border-top-color: #01a3a4; }
 
 .grey-1-bg {
-  background-color: #ccc;
+  background-color: #585958;
   color: #fff; }
   .grey-1-bg::before {
-    border-bottom-color: #ccc; }
+    border-bottom-color: #585958; }
   .grey-1-bg::after {
-    border-top-color: #ccc; }
+    border-top-color: #585958; }
 
 .blue-5-bg {
   background-color: #0abde3;
@@ -8761,7 +8761,7 @@ ul.vertical-ul {
   .chevron-list.blue-5-bg li::before, .chevron-list.blue-5-bg li::after {
     background: #0abde3; }
   .chevron-list.grey-1-bg li::before, .chevron-list.grey-1-bg li::after {
-    background: #ccc; }
+    background: #585958; }
   .chevron-list.green-1-bg li::before, .chevron-list.green-1-bg li::after {
     background: #007077; }
 
@@ -9247,6 +9247,9 @@ ul.breadcrumb {
     font-size: 1.4rem; }
   .page-wrapper .login-form h1 {
     margin-bottom: 2rem; }
+  .page-wrapper .sf-profile h2 {
+    font-size: 3.2rem;
+    margin-top: 2.35rem; }
   .page-wrapper .sign-in-with {
     clear: both; }
     .page-wrapper .sign-in-with h2 {
@@ -10152,7 +10155,8 @@ ul.breadcrumb {
   header .brand-logo {
     height: 55px;
     position: relative !important;
-    top: 15px; }
+    top: 15px;
+    z-index: 100; }
     header .brand-logo a img {
       margin-top: 20px;
       height: 60px; }
@@ -10573,7 +10577,8 @@ ul.breadcrumb {
         display: block;
         box-shadow: none;
         width: 100%;
-        height: 230px;
+        height: 240px;
+        max-height: 240px;
         overflow: hidden; }
     .list-featured-articles li .featured-article-image {
       display: none; }
@@ -10738,7 +10743,11 @@ ul.breadcrumb {
     height: 300px; }
   .featured-job-offer .job-offer-sum:after,
   .list-featured-articles h3 + div:after {
-    display: none; } }
+    display: none; }
+  .list-featured-articles li:first-child {
+    padding-top: 200px; }
+    .list-featured-articles li:first-child .featured-article-image {
+      max-height: 200px; } }
 
 /*#endregion Phones*/
 /*#endregion Media*/

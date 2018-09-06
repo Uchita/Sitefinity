@@ -90,7 +90,7 @@
                 @if (Model.ApplicationStatus == JobApplicationStatus.Available)
                 {
 
-                    <div id="upload-files-container">
+                    <div id="upload-files-container" hidden>
 
                         <!-- Resume -->
                         <div class="form-group row">
@@ -166,14 +166,17 @@
                     }
                     else
                     {
-                        <div class="alert alert-danger">@Model.ApplicationTitle</div>
+                        <div class="alert alert-danger">
+                            @Model.ApplicationTitle
+
+                            @if (Model.ApplicationStatus == JobApplicationStatus.NotAbleToCreateUser)
+                            {
+                                //@ViewBag.RegisterPageUrl
+                                <a href="/register" title="@Model.ApplicationTitle"> here</a>
+                            }
+                       </div>
                     }
-                   
-                    if (Model.ApplicationStatus == JobApplicationStatus.NotAbleToCreateUser)
-                    {
-                        //@ViewBag.RegisterPageUrl
-                        <a href="/register" title="@Model.ApplicationTitle">here</a>
-                }
+                    
                 }
             </div>
 
@@ -234,27 +237,28 @@
 
              if ((appStatus == 'Available' && isUserLoggedIn == 'True') && fileUploadFlag || registerForm) {
                  self.submit();
-             }
-
-             var parm = { email: $('#userid').val(), password: $('#password-reg').val() };
-             var urlPath = $(location).attr('pathname') + "/ValidateUser";
-             $.ajax({
-                 type: 'POST',
-                 cache: false,
-                 url: urlPath,
-                 data: parm,
-                 dataType: 'Json',
-                 success: function (response) {
-                     if (response == true) {
-                         self.submit();
-                     } else {
-                         //if password wrong
-                         $('#password-reg').parent().find('.error-message.wrongPassword-message').removeClass('hidden');
+             } else {
+                 //for login email address & password check & submit login form
+                 var parm = { email: $('#userid').val(), password: $('#password-reg').val() };
+                 var urlPath = $(location).attr('pathname') + "/ValidateUser";
+                 $.ajax({
+                     type: 'POST',
+                     cache: false,
+                     url: urlPath,
+                     data: parm,
+                     dataType: 'Json',
+                     success: function (response) {
+                         if (response == true) {
+                             self.submit();
+                         } else {
+                             //if password wrong
+                             $('#password-reg').parent().find('.error-message.wrongPassword-message').removeClass('hidden');
+                         }
+                     },
+                     error: function (response) {
                      }
-                 },
-                 error: function (response) {
-                 }
-             });
+                 });
+             }
          });
 
 
@@ -432,7 +436,7 @@
              var ctlBar = document.getElementById("password-strength");
              console.log(nScore);
              // Set new width
-             var nScoreWth = nScore * 1.25;
+             var nScoreWth = nScore; //*1.25
              var nScoreLen = '0';
              if (nScoreWth >= 100) {
                  nScoreLen = '100%';
@@ -508,10 +512,7 @@
        dropboxResumeOptions = {
             // Required. Called when a user selects an item in the Chooser.
             success: function (files) {
-                $('.test').each(function () {
-                    $(this).val('');
-                });
-
+                
                 uploadResumeModel.UrlPath = files[0].link;
                 uploadResumeModel.FileName = files[0].name;
 
@@ -522,12 +523,14 @@
                     $('#uploadResumeJson').val(stringyModel);
                     $('#application-resume').val('');
                     $("#resume-selected-type").val(resumeSelectedType);
+                    $('.resume-name').text(files[0].name);
                 }
                 else {
                     coverLetterSelectedType = 'Dropbox';
                     $('#uploadCoverLetterJson').val(stringyModel);
                     $('#application-coverletter').val('');
                     $("#coverletter-selected-type").val(coverLetterSelectedType);
+                    $('.coverletter-name').text(files[0].name);
                 }
 
                 $('#dburl').text(files[0].link);
@@ -667,12 +670,14 @@
                     $('#uploadResumeJson').val(stringyModel);
                     $('#application-resume').val('');
                     $("#resume-selected-type").val(resumeSelectedType);
+                    $('.resume-name').text(name);
                 }
                 else {
                     coverLetterSelectedType = 'GoogleDrive';
                     $('#uploadCoverLetterJson').val(stringyModel);
                     $('#application-coverletter').val('');
                     $("#coverletter-selected-type").val(coverLetterSelectedType);
+                    $('.coverletter-name').text(name);
                 }
             }
 

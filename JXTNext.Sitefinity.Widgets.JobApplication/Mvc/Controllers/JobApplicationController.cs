@@ -108,74 +108,88 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             var ovverideEmail = applyJobModel.Email;
             // Create user if the user does not exists
             MembershipCreateStatus membershipCreateStatus;
-            if (SitefinityHelper.GetUserByEmail(applyJobModel.Email) == null)
-            {
-                membershipCreateStatus = SitefinityHelper.CreateUser(applyJobModel.Email, applyJobModel.Password, applyJobModel.FirstName, applyJobModel.LastName, applyJobModel.Email, applyJobModel.PhoneNumber,
-                    null, null, true);
 
-                if (membershipCreateStatus != MembershipCreateStatus.Success)
-                {
-                    jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.NotAbleToCreateUser, "Unable to create user. Please register from");
-                    return View("JobApplication.Simple", jobApplicationViewModel);
-                }
-                else
-                {
-                    //instantiate the Sitefinity user manager
-                    //if you have multiple providers you have to pass the provider name as parameter in GetManager("ProviderName") in your case it will be the asp.net membership provider user
-                    UserManager userManager = UserManager.GetManager();
-                    if (userManager.ValidateUser(applyJobModel.Email, applyJobModel.Password))
-                    {
-                        //if you need to get the user instance use the out parameter
-                        Telerik.Sitefinity.Security.Model.User userToAuthenticate = null;
-                        SecurityManager.AuthenticateUser(userManager.Provider.Name, applyJobModel.Email, applyJobModel.Password, false, out userToAuthenticate);
-                        if(userToAuthenticate == null)
-                        {
-                            jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.NotAbleToLoginCreatedUser, "Unable to process your job application. Please try logging in and re-apply for the job.");
-                            return View("JobApplication.Simple", jobApplicationViewModel);
-                        }
-                        else
-                        {
-                            ovverideEmail = userToAuthenticate.Email;
-                        }
-                    }
-                }
-            }
-            else if(!SitefinityHelper.IsUserLoggedIn())
-            {
-                //instantiate the Sitefinity user manager
-                //if you have multiple providers you have to pass the provider name as parameter in GetManager("ProviderName") in your case it will be the asp.net membership provider user
-                UserManager userManager = UserManager.GetManager();
-                if (userManager.ValidateUser(applyJobModel.Email, applyJobModel.Password))
-                {
-                    //if you need to get the user instance use the out parameter
-                    Telerik.Sitefinity.Security.Model.User userToAuthenticate = null;
-                    SecurityManager.AuthenticateUser(userManager.Provider.Name, applyJobModel.Email, applyJobModel.Password, false, out userToAuthenticate);
-                    if (userToAuthenticate == null)
-                    {
-                        jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.NotAbleToLoginCreatedUser, "Unable to process your job application. Please try logging in and re-apply for the job.");
-                        return View("JobApplication.Simple", jobApplicationViewModel);
-                    }
-                    else
-                    {
-                        ovverideEmail = userToAuthenticate.Email;
-                    }
-                }
-                else
-                {
-                    jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.NotAbleToLoginCreatedUser, "Unable to process your job application. Please try logging in and re-apply for the job.");
-                    return View("JobApplication.Simple", jobApplicationViewModel);
-                }
-            }
-            else // User already logged in
+            if (SitefinityHelper.IsUserLoggedIn()) // User already logged in
             {
                 var currUser = SitefinityHelper.GetUserById(ClaimsManager.GetCurrentIdentity().UserId);
                 if (currUser != null)
                     ovverideEmail = currUser.Email;
             }
+            else //user not logged in
+            {
+                if(!string.IsNullOrEmpty(applyJobModel.Email))
+                {
+                    Telerik.Sitefinity.Security.Model.User existingUser = SitefinityHelper.GetUserByEmail(applyJobModel.Email);
+
+                    if( existingUser != null)
+                    {
+                        #region Entered Email exists in Sitefinity User list
+                        //instantiate the Sitefinity user manager
+                        //if you have multiple providers you have to pass the provider name as parameter in GetManager("ProviderName") in your case it will be the asp.net membership provider user
+                        UserManager userManager = UserManager.GetManager();
+                        if (userManager.ValidateUser(applyJobModel.Email, applyJobModel.Password))
+                        {
+                            //if you need to get the user instance use the out parameter
+                            Telerik.Sitefinity.Security.Model.User userToAuthenticate = null;
+                            SecurityManager.AuthenticateUser(userManager.Provider.Name, applyJobModel.Email, applyJobModel.Password, false, out userToAuthenticate);
+                            if (userToAuthenticate == null)
+                            {
+                                jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.NotAbleToLoginCreatedUser, "Unable to process your job application. Please try logging in and re-apply for the job.");
+                                return View("JobApplication.Simple", jobApplicationViewModel);
+                            }
+                            else
+                            {
+                                ovverideEmail = userToAuthenticate.Email;
+                            }
+                        }
+                        else
+                        {
+                            jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.NotAbleToLoginCreatedUser, "Unable to process your job application. Please try logging in and re-apply for the job.");
+                            return View("JobApplication.Simple", jobApplicationViewModel);
+                        }
+                        #endregion
+                    }
+                    else
+                    {
+                        #region Entered email does not exists in sitefinity User list
+                        membershipCreateStatus = SitefinityHelper.CreateUser(applyJobModel.Email, applyJobModel.Password, applyJobModel.FirstName, applyJobModel.LastName, applyJobModel.Email, applyJobModel.PhoneNumber,
+                        null, null, true);
+
+                        if (membershipCreateStatus != MembershipCreateStatus.Success)
+                        {
+                            jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.NotAbleToCreateUser, "Unable to create user. Please register from");
+                            return View("JobApplication.Simple", jobApplicationViewModel);
+                        }
+                        else
+                        {
+                            //instantiate the Sitefinity user manager
+                            //if you have multiple providers you have to pass the provider name as parameter in GetManager("ProviderName") in your case it will be the asp.net membership provider user
+                            UserManager userManager = UserManager.GetManager();
+                            if (userManager.ValidateUser(applyJobModel.Email, applyJobModel.Password))
+                            {
+                                //if you need to get the user instance use the out parameter
+                                Telerik.Sitefinity.Security.Model.User userToAuthenticate = null;
+                                SecurityManager.AuthenticateUser(userManager.Provider.Name, applyJobModel.Email, applyJobModel.Password, false, out userToAuthenticate);
+                                if (userToAuthenticate == null)
+                                {
+                                    jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.NotAbleToLoginCreatedUser, "Unable to process your job application. Please try logging in and re-apply for the job.");
+                                    return View("JobApplication.Simple", jobApplicationViewModel);
+                                }
+                                else
+                                {
+                                    ovverideEmail = userToAuthenticate.Email;
+                                }
+                            }
+                        }
+                        #endregion
+                    }
+                }                        
+            }
+
 
             JobApplicationAttachmentSource sourceResume = GetAttachmentSourceType(applyJobModel.ResumeSelectedType);
             JobApplicationAttachmentSource sourceCoverLetter = GetAttachmentSourceType(applyJobModel.CoverLetterSelectedType);
-           
+
             List<JobApplicationAttachmentUploadItem> attachments = GatherAttachments(sourceResume, sourceCoverLetter, applyJobModel.UploadFilesResume, applyJobModel.UploadFilesCoverLetter);
 
             string resumeAttachmentPath = GetAttachmentPath(attachments, JobApplicationAttachmentType.Resume);
@@ -183,13 +197,13 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
             // Email Notification Settings
             // In the desinger form those are going to be provided by separator as semicolon(;)
-            
+
             List<string> ccEmails = (!this.EmailTemplateCC.IsNullOrEmpty()) ? this.EmailTemplateCC.Split(';').ToList() : null;
             List<string> bccEmails = (!this.EmailTemplateBCC.IsNullOrEmpty()) ? this.EmailTemplateBCC.Split(';').ToList() : null;
             string htmlEmailContent = this.GetHtmlEmailContent();
-            EmailNotificationSettings emailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateFromName,""),
-                                                                                                new EmailTarget("To Name","To Address"), 
-                                                                                                "Subject", 
+            EmailNotificationSettings emailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateFromName, ""),
+                                                                                                new EmailTarget("To Name", "To Address"),
+                                                                                                "Subject",
                                                                                                 htmlEmailContent);
 
             //Create Application 
@@ -213,7 +227,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
             else
             {
-                jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.NotAvailable, response.Errors.First() );
+                jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.NotAvailable, response.Errors.First());
             }
 
             return View("JobApplication.Simple", jobApplicationViewModel);
@@ -246,7 +260,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 return JobApplicationAttachmentSource.GoogleDrive;
 
             return JobApplicationAttachmentSource.Local;
-            
+
         }
 
         protected override void HandleUnknownAction(string actionName)
@@ -397,7 +411,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
 
             // Processing the Resume
-            if(sourceResume == JobApplicationAttachmentSource.GoogleDrive)
+            if (sourceResume == JobApplicationAttachmentSource.GoogleDrive)
             {
                 var googleDriveModel = JsonConvert.DeserializeObject<UploadFilesFormPostModel>(uploadFilesResumeJSON);
                 JobApplicationAttachmentUploadItem item = GetAttachementFromGoogleDrive(googleDriveModel, JobApplicationAttachmentType.Resume);
@@ -435,7 +449,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             SiteSettingsHelper siteSettingsHelper = new SiteSettingsHelper();
             string clientId = siteSettingsHelper.GetCurrentSiteGoogleClientId();
             string clientSecret = siteSettingsHelper.GetCurrentSiteGoogleClientSecret();
-            GoogleDriveFileHandlerRequestModel baseFileHandle = new GoogleDriveFileHandlerRequestModel() {
+            GoogleDriveFileHandlerRequestModel baseFileHandle = new GoogleDriveFileHandlerRequestModel()
+            {
                 ClientId = clientId,
                 ClientSecret = clientSecret,
                 OAuthToken = googleFilesInfo.AuthToken,

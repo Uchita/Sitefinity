@@ -9,7 +9,6 @@
                 <th>Job ID</th>
                 <th>Job Title</th>
                 <th>Date Added</th>
-                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -19,9 +18,6 @@
                     <td>@item.JobId</td>
                     <td><a href="@ViewBag.JobDetailsPageUrl?JobId=@item.JobId">@item.DisplayTitle</a></td>
                     <td>@String.Format("{0:dd MMM-yyyy}", item.DateAdded)</td>
-                    <td>
-                        <a href="#">Remove</a>
-                    </td>
                 </tr>
             }
 

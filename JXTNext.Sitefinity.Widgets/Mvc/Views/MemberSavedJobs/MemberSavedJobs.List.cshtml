@@ -17,7 +17,7 @@
             {
                 <tr>
                     <td>@item.JobId</td>
-                    <td>@item.DisplayTitle</td>
+                    <td><a href="@ViewBag.JobDetailsPageUrl?JobId=@item.JobId">@item.DisplayTitle</a></td>
                     <td>@String.Format("{0:dd MMM-yyyy}", item.DateAdded)</td>
                     <td>
                         <a href="#">Remove</a>

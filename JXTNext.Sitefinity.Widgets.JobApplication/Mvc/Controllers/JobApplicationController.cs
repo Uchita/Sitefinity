@@ -195,16 +195,32 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             string resumeAttachmentPath = GetAttachmentPath(attachments, JobApplicationAttachmentType.Resume);
             string coverletterAttachmentPath = GetAttachmentPath(attachments, JobApplicationAttachmentType.Coverletter);
 
+            #region Email Notification
             // Email Notification Settings
             // In the desinger form those are going to be provided by separator as semicolon(;)
-
-            List<string> ccEmails = (!this.EmailTemplateCC.IsNullOrEmpty()) ? this.EmailTemplateCC.Split(';').ToList() : null;
-            List<string> bccEmails = (!this.EmailTemplateBCC.IsNullOrEmpty()) ? this.EmailTemplateBCC.Split(';').ToList() : null;
             string htmlEmailContent = this.GetHtmlEmailContent();
-            EmailNotificationSettings emailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, ""),
-                                                                                                new EmailTarget("To Name", "To Address"),
-                                                                                                "Subject",
+            EmailNotificationSettings emailNotificationSettings = new EmailNotificationSettings(new EmailTarget(this.EmailTemplateSenderName, this.EmailTemplateSenderEmailAddress),
+                                                                                                new EmailTarget(SitefinityHelper.GetUserFirstNameById(ClaimsManager.GetCurrentIdentity().UserId), ovverideEmail),
+                                                                                                this.EmailTemplateEmailSubject,
                                                                                                 htmlEmailContent);
+            // CC and BCC emails
+            if (!this.EmailTemplateCC.IsNullOrEmpty())
+            {
+                foreach (var ccEmail in this.EmailTemplateCC.Split(';'))
+                {
+                    emailNotificationSettings.AddCC(String.Empty, ccEmail);
+                }
+            }
+
+            if (!this.EmailTemplateBCC.IsNullOrEmpty())
+            {
+                foreach (var bccEmail in this.EmailTemplateBCC.Split(';'))
+                {
+                    emailNotificationSettings.AddBCC(String.Empty, bccEmail);
+                }
+            }
+
+            #endregion
 
             //Create Application 
             IMemberApplicationResponse response = _blConnector.MemberCreateJobApplication(

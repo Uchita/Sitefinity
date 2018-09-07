@@ -211,3 +211,4 @@ project.lock.json
 SitefinityWebApp/JXTNext.Sitefinity.Widgets.Common.dll
 SitefinityWebApp/ResourcePackages/JXTDemo/
 SitefinityWebApp/ResourcePackages/Hudson/
+SitefinityWebApp/App_Data_JXTNext/Sitefinity/

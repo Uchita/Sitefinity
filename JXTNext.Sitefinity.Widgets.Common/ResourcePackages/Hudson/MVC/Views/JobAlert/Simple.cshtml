@@ -6,12 +6,26 @@
 
 @if (ViewBag.CreateMessage != null)
 {
-    <div class="alert alert-success">@ViewBag.CreateMessage</div>
+    if (ViewBag.Status == JobAlertStatus.SUCCESS)
+    {
+        <div class="alert alert-success">@ViewBag.CreateMessage</div>
+    }
+    else
+    {
+        <div class="alert alert-danger">@ViewBag.CreateMessage</div>
+    }
 }
 
 @if (ViewBag.DeleteMessage != null)
 {
-    <div class="alert alert-danger">@ViewBag.DeleteMessage</div>
+    if (ViewBag.Status == JobAlertStatus.SUCCESS)
+    {
+        <div class="alert alert-success">@ViewBag.DeleteMessage</div>
+    }
+    else
+    {
+        <div class="alert alert-danger">@ViewBag.DeleteMessage</div>
+    }
 }
 
 @Html.ActionLink("Create Job Alert", "Create", "JobAlert")

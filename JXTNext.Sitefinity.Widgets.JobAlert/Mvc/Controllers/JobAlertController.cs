@@ -35,7 +35,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             ViewBag.CssClass = this.CssClass;
             ViewBag.CreateMessage = TempData["CreateMessage"];
             ViewBag.DeleteMessage = TempData["DeleteMessage"];
-
+            ViewBag.Status = TempData["Status"];
+            
             return View("Simple", jobAlertData);
         }
 
@@ -83,12 +84,17 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             
 
             var stausMessage = "A Job Alert has been created successfully.";
+            var alertStatus = JobAlertStatus.SUCCESS;
             var status = _jobAlertsBC.MemberJobAlertCreate(model);
-            if(!status)
-                stausMessage = "A Job Alert has not been created successfully.";
+            if (!status)
+            {
+                stausMessage = "Unable to create job alert record.";
+                alertStatus = JobAlertStatus.CREATE_FAILED;
+            }
 
             TempData["DeleteMessage"] = null;
             TempData["CreateMessage"] = stausMessage;
+            TempData["Status"] = alertStatus;
 
             // Why action name is empty?
             // Here we need to call Index action, if we are providing action name as Index here
@@ -174,12 +180,17 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             // TODO: When the Backend API is ready,
             // We need to pass this job alert id to it
             var statusMessage = "A Job Alert has been deleted successfully.";
+            var alertStatus = JobAlertStatus.SUCCESS;
             var status = _jobAlertsBC.MemberJobAlertDelete(id);
-            if(!status)
-                statusMessage = "A Job Alert has not been deleted successfully.";
+            if (!status)
+            {
+                statusMessage = "Unable to delete job alert record.";
+                alertStatus = JobAlertStatus.DELETE_FAILED;
+            }
 
             TempData["CreateMessage"] = null;
             TempData["DeleteMessage"] = statusMessage;
+            TempData["Status"] = alertStatus;
 
             // Why action name is empty?
             // Here we need to call Index action, if we are providing action name as Index here

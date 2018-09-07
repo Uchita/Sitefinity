@@ -1465,6 +1465,12 @@
     <Content Include="ResourcePackages\Hudson\MVC\Views\CheckboxesField\Write.Default_Inline.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ResourcePackages\Hudson\MVC\Views\MemberSavedJobs\MemberSavedJobs.List.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcePackages\Hudson\MVC\Views\MemberAppliedJobs\MemberAppliedJobs.List.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="ResourcePackages\JXTDemo\assets\dist\fonts\jn_icons.eot">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

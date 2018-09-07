@@ -11,46 +11,52 @@
 @using Telerik.Sitefinity.RelatedData
 @using Telerik.Sitefinity.Web.DataResolving;
 
+@*Needed for custom thumbnail*@
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Modules.Libraries;
+
+
 <div class="@Model.CssClass">
     <ul class="list-unstyled list-featured-articles">
         @foreach (var item in Model.Items)
         {
             var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
-            
-			<li>
-				<div class="featured-article">
-						
-						@if (item.Fields.articles != null)
-						  {
-						  
-							<div class="text-muted">
-								@foreach (var taxon in item.GetHierarchicalTaxons("Articles"))
-								{
-									 @Html.HtmlSanitize(taxon.Title.ToString())
-									 break;
-								}
-								
-						
-							</div>
-						   }
-						
-					<h3>
-						<a href="@navigateUrl">
-							
-							@Html.HtmlSanitize((string)item.Fields.Title)
-						</a>
-					</h3>
-					<div>@Html.HtmlSanitize((string)item.Fields.Summary)</div>
-					
-					<a class="btn btn-more" href="@navigateUrl"></a></div>
-					
-					@if(item.Fields.HeaderImage != null)
-					{
-						<div class="featured-article-image"><img alt="@item.Fields.HeaderImage.Fields.Title" src="@item.Fields.HeaderImage.Fields.ThumbnailUrl" /></div>
-					}
-					
-			</li>
-			
+
+            <li>
+                <div class="featured-article">
+
+                    @if (item.Fields.articles != null)
+                    {
+
+                        <div class="text-muted">
+                            @foreach (var taxon in item.GetHierarchicalTaxons("Articles"))
+                            {
+                                @Html.HtmlSanitize(taxon.Title.ToString())
+                                break;
+                            }
+
+
+                        </div>
+                    }
+
+                    <h3>
+                        <a href="@navigateUrl">
+
+                            @Html.HtmlSanitize((string)item.Fields.Title)
+                        </a>
+                    </h3>
+                    <div>@Html.HtmlSanitize((string)item.Fields.Summary)</div>
+
+                    <a class="btn btn-more" href="@navigateUrl"></a>
+                </div>
+
+                @if (item.Fields.HeaderImage != null)
+                {
+                    <div class="featured-article-image"><img alt="@item.Fields.HeaderImage.Fields.Title" src="@MediaContentExtensions.ResolveThumbnailUrl(item.Fields.HeaderImage.DataItem, "thumbartic")" /></div>
+                }
+
+            </li>
+
         }
     </ul>
 

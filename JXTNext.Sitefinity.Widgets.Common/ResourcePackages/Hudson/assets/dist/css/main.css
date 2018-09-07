@@ -7382,6 +7382,8 @@ blockquote {
       min-width: 220px; }
       .page-wrapper .btn.btn-google:hover, .page-wrapper .btn.btn-google:focus, .page-wrapper .btn.btn-facebook:hover, .page-wrapper .btn.btn-facebook:focus {
         color: #fff; }
+    .page-wrapper .btn.btn-tag {
+      font-size: 1.2rem; }
   .page-wrapper .btn-block .btn {
     display: block;
     width: 100%; }
@@ -8292,6 +8294,9 @@ ul.vertical-ul {
       color: #01a3a4; }
 
 /*#endregion Vertical navigation*/
+.dropdown > a:hover, .dropdown > a:focus {
+  text-decoration: none !important; }
+
 .pagination {
   display: block;
   text-align: center; }
@@ -8845,7 +8850,8 @@ ul.breadcrumb {
     width: 100%; }
   .thumbnail.card-basic .img-wrap {
     display: block;
-    height: 255px; }
+    height: 255px;
+    overflow: hidden; }
     .thumbnail.card-basic .img-wrap img {
       width: auto;
       max-width: 150%;
@@ -9281,7 +9287,22 @@ ul.breadcrumb {
         .page-wrapper .sign-in-with ul li .btn em {
           margin-right: 10px; }
   .page-wrapper .field-wrapper {
-    padding-top: 30px; }
+    padding-top: 16px; }
+  .page-wrapper .dropdown-tree .dropdown-toggle {
+    width: 100%;
+    text-align: left;
+    padding: 12px 10px;
+    color: #999;
+    text-transform: none;
+    font: 1.4rem/1 AkzidGroProRegular,sans-serif;
+    position: relative; }
+    .page-wrapper .dropdown-tree .dropdown-toggle:hover, .page-wrapper .dropdown-tree .dropdown-toggle:focus {
+      background: none;
+      color: #999; }
+    .page-wrapper .dropdown-tree .dropdown-toggle .caret {
+      position: absolute;
+      right: 10px;
+      top: 17px; }
   .page-wrapper .apply-with .btn.btn-indeed {
     background: #f85402 url(../images/indeedBtn.png) no-repeat 50% 50%; }
   .page-wrapper .apply-with .btn.btn-linkedin {
@@ -9542,6 +9563,13 @@ ul.breadcrumb {
 .spt {
   margin: 0 10px; }
 
+.save-job {
+  cursor: pointer;
+  font-size: 1.4rem; }
+
+.saved {
+  cursor: default; }
+
 .upload-section .box {
   border: 1px solid #01a3a4;
   padding: 10px;
@@ -9601,7 +9629,28 @@ ul.breadcrumb {
 
 #pager {
   border: none;
-  background: none; }
+  background: none;
+  text-align: center;
+  margin: 10px auto; }
+  #pager ul {
+    list-style: none; }
+    #pager ul li {
+      float: none;
+      display: inline-block;
+      margin: 0 1px; }
+      #pager ul li a {
+        border-color: #219fa3;
+        color: #219fa3;
+        border-radius: 0 !important; }
+        #pager ul li a:hover, #pager ul li a:focus, #pager ul li a.active {
+          background: #219fa3;
+          color: #fff;
+          border-color: #219fa3; }
+  #pager .pagePrev a, #pager .pageNext a {
+    padding: 0 10px; }
+
+.result-meta p {
+  margin-bottom: 0; }
 
 /*#endregion Job offers */
 /*#region Articles/Insights */
@@ -10479,6 +10528,8 @@ ul.breadcrumb {
 @media (max-width: 767px) {
   main .page-section {
     padding: 30px 0; }
+  .page-wrapper main {
+    padding-top: 60px !important; }
   header .navbar-fixed-top:before {
     content: '';
     position: absolute;
@@ -10664,7 +10715,13 @@ ul.breadcrumb {
   .board-members-item h4 {
     line-height: 1.3; }
   iframe {
-    width: 100%; } }
+    width: 100%; }
+  .testimonials-slider.testimonials-simple .quote {
+    top: 5px; }
+  .testimonials-slider.testimonials-simple .quote.text-right {
+    right: 15px; }
+  .testimonials-slider.testimonials-simple .testimonial {
+    padding: 40px 70px 10px; } }
 
 @media screen and (max-width: 767px) {
   .owl-carousel-jumbotron .owl-nav {
@@ -10776,6 +10833,8 @@ ul.breadcrumb {
     padding-top: 200px; }
     .list-featured-articles li:first-child .featured-article-image {
       max-height: 200px; }
+  .testimonials-slider.testimonials-simple .item, .testimonials-slider.testimonials-simple .owl-item > div {
+    padding-bottom: 50px; }
   .testimonials-slider.testimonials-simple .testimonial {
     padding: 50px 0 10px; }
   .testimonials-slider.testimonials-simple .testimonial-author {
@@ -10787,7 +10846,7 @@ ul.breadcrumb {
     top: 3px;
     left: 0; }
     .testimonials-slider.testimonials-simple .quote.text-right {
-      bottom: -40px; }
+      bottom: 0; }
   .testimonials-slider .owl-item {
     padding-left: 25px;
     padding-right: 25px;

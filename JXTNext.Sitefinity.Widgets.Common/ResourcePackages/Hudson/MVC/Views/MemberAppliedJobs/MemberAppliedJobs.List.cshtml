@@ -1,0 +1,28 @@
+@using JXTNext.Sitefinity.Widgets.User.Mvc.Models.MemberAppliedJob
+@model List<MemberAppliedJobItem>
+
+@if (Model != null && Model.Count > 0)
+{
+
+<div class="tbl-wrapper">
+    <h2>Applied jobs</h2>
+
+    <table class="table table-bordered">
+        <tr>
+            <th>Job ID</th>
+            <th>Job Title</th>
+            <th>Date Added</th>
+        </tr>
+
+        @foreach (MemberAppliedJobItem item in Model)
+        {
+            <tr>
+                <td>@item.JobId</td>
+                <td><a href="@ViewBag.JobDetailsPageUrl?JobId=@item.JobId">@item.DisplayTitle</a></td>
+                <td>@String.Format("{0:dd MMM-yyyy}", item.DateAdded)</td>
+            </tr>
+        }
+
+    </table>
+</div>
+}

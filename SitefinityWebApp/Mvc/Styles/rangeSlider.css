@@ -61,6 +61,7 @@
   /*width: 510px;*/
   margin: 0 auto;
   position: relative;
+  min-height:50px;
 }
 .salaryrangewrapper .ariaAttributesAsText {
   text-align: center;

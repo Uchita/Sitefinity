@@ -304,8 +304,10 @@
     <Compile Include="App_Start\RazorGeneratorMvcStart.cs" />
     <Compile Include="Mvc\Controllers\MemberAppliedJobsController.cs" />
     <Compile Include="Mvc\Controllers\MemberSavedJobsController.cs" />
+    <Compile Include="Mvc\Logics\MemberAppliedJobBC.cs" />
     <Compile Include="Mvc\Logics\MemberSavedJobBC.cs" />
     <Compile Include="Mvc\Models\JXTNext_MemberRegistrationModel.cs" />
+    <Compile Include="Mvc\Models\MemberAppliedJob\MemberAppliedJobItem.cs" />
     <Compile Include="Mvc\Models\MemberSavedJob\MemberSavedJobItem.cs" />
     <Compile Include="Mvc\Models\JXTNext_ProfileEventHandler.cs" />
     <Compile Include="Mvc\Models\JXTNext_UserEventHandler.cs" />

@@ -14,7 +14,8 @@ using System.Collections.Specialized;
 using Newtonsoft.Json.Linq;
 using System.Text.RegularExpressions;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member;
-
+using JXTNext.Sitefinity.Widgets.User.Mvc.Logics;
+using JXTNext.Sitefinity.Widgets.User.Mvc.Models.MemberAppliedJob;
 
 namespace JXTNext.Sitefinity.Widgets.User.Mvc.Controllers
 {
@@ -26,7 +27,7 @@ namespace JXTNext.Sitefinity.Widgets.User.Mvc.Controllers
         string templateNamePrefix = "MemberAppliedJobs.";
         private string templateName = "List";
 
-        //MemberSavedJobBC _memberSavedJobBC;
+        MemberAppliedJobBC _memberAppliedJobBC;
 
         /// <summary>
         /// Gets or sets the name of the template that widget will be displayed.
@@ -34,15 +35,15 @@ namespace JXTNext.Sitefinity.Widgets.User.Mvc.Controllers
         /// <value></value>
         public string TemplateName { get => this.templateName; set => this.templateName = value; }
 
-        //public MemberSavedJobsController(MemberSavedJobBC memberSavedJobBC)
-        //{
-        //    _memberSavedJobBC = memberSavedJobBC;
-        //}
+        public MemberAppliedJobsController(MemberAppliedJobBC memberAppliedJobBC)
+        {
+            _memberAppliedJobBC = memberAppliedJobBC;
+        }
 
         // GET: JobDetails
         public ActionResult Index()
         {
-            //bool GetListSuccess = _memberSavedJobBC.GetList(out List<MemberSavedJobDisplayItem> displayItems);
+            bool GetListSuccess = _memberAppliedJobBC.GetList(out List<MemberAppliedJobItem> displayItems);
 
             //if (GetListSuccess)
             //{

@@ -318,7 +318,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
                 return new JXTNext_MemberJobAlertDeleteResponse { Success = false, Errors = new List<string> { response.Response } };
         }
 
-        public IMemberAppliedJobResponse MemberAppliedJobs()
+        public IMemberAppliedJobResponse MemberAppliedJobsGet()
         {
             ConnectorGetRequest connectorRequest = new ConnectorGetRequest(HTTP_Requests_MaxWaitTime)
             {

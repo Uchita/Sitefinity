@@ -36,7 +36,7 @@
     {
         var title = taxon.Title;
      
-        <li><a href="@SiteMapBase.GetActualCurrentNode().Url.ToString().Substring(1)/-in-article/articles/@taxon.UrlName.ToString()" data-filter="@taxon.Title">@taxon.Title</a></li>
+        <li><a href="/insights/articles/@taxon.UrlName.ToString()" data-filter="@taxon.Title">@taxon.Title</a></li>
 
         if (taxon.Subtaxa != null && taxon.Subtaxa.Count > 0)
         {
@@ -158,7 +158,7 @@
                                 dropCls = "dropdown";
                             }
                             <li class="@dropCls">
-                                <a href="@SiteMapBase.GetActualCurrentNode().Url.ToString().Substring(1)/-in-article/articles/@taxon.UrlName.ToString()" data-filter="@taxon.Title">@taxon.Title</a>
+                                <a href="/insights/articles/@taxon.UrlName.ToString()" data-filter="@taxon.Title">@taxon.Title</a>
 
                                 @if (hierarchicalTaxon != null)
                                 {

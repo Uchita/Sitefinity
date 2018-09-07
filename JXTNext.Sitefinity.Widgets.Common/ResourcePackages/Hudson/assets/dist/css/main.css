@@ -8292,6 +8292,9 @@ ul.vertical-ul {
       color: #01a3a4; }
 
 /*#endregion Vertical navigation*/
+.dropdown > a:hover, .dropdown > a:focus {
+  text-decoration: none !important; }
+
 .pagination {
   display: block;
   text-align: center; }
@@ -9601,7 +9604,28 @@ ul.breadcrumb {
 
 #pager {
   border: none;
-  background: none; }
+  background: none;
+  text-align: center;
+  margin: 10px auto; }
+  #pager ul {
+    list-style: none; }
+    #pager ul li {
+      float: none;
+      display: inline-block;
+      margin: 0 1px; }
+      #pager ul li a {
+        border-color: #219fa3;
+        color: #219fa3;
+        border-radius: 0 !important; }
+        #pager ul li a:hover, #pager ul li a:focus, #pager ul li a.active {
+          background: #219fa3;
+          color: #fff;
+          border-color: #219fa3; }
+  #pager .pagePrev a, #pager .pageNext a {
+    padding: 0 10px; }
+
+.result-meta p {
+  margin-bottom: 0; }
 
 /*#endregion Job offers */
 /*#region Articles/Insights */
@@ -10479,6 +10503,8 @@ ul.breadcrumb {
 @media (max-width: 767px) {
   main .page-section {
     padding: 30px 0; }
+  .page-wrapper main {
+    padding-top: 60px !important; }
   header .navbar-fixed-top:before {
     content: '';
     position: absolute;

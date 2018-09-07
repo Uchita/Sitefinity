@@ -404,5 +404,33 @@
 #pager{
     border: none;
     background:none;
+    text-align: center;
+    margin: 10px auto;
+    ul{
+        list-style: none;
+        li{
+            float: none;
+            display: inline-block;
+            margin: 0 1px;
+            a{
+                border-color: #219fa3;
+                color: #219fa3;
+                border-radius: 0!important;
+                &:hover, &:focus, &.active{
+                    background: #219fa3;
+                    color: #fff;
+                    border-color: #219fa3;
+                }
+            }
+        }
+    }
+    .pagePrev a, .pageNext a{
+        padding: 0 10px;
+    }
+}
+.result-meta{
+    p{
+        margin-bottom: 0;
+    } 
 }
 

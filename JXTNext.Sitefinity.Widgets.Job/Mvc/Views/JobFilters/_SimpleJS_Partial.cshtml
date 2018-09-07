@@ -13,6 +13,58 @@
         var prefixIdText = '';
         var typingTimer;
         var doneTypingInterval = 500;
+        var isSalaryExists = false;
+        var isSlarySelected = false;
+        var salary = { TargetValue: 'Salary', LowerRange: 15000, UpperRange: 200000 };
+               
+
+        $('select').on('change', function () {
+            isSlarySelected = false;
+            $('.salaryrangewrapper').each(function (i, obj) {
+                $(this).addClass('visible-hidden');
+            });
+            if (this.value != -1) {
+                $(this).addClass('changed');
+                isSlarySelected = true;
+                $('#' + this.value).removeClass('visible-hidden');
+                salary.TargetValue = this.value;
+                salary.LowerRange = $(this).parent().find('.leftLabel span').text();
+                salary.UpperRange = $(this).parent().find('.rightLabel span').text();
+                eachClickFilter();
+            } else if ($(this).hasClass('changed') && this.value == -1) {
+                isSlarySelected = false;
+                eachClickFilter();
+            }
+            
+        });
+
+        $('.nstSlider').each(function (i, obj) {
+            $(this).nstSlider({
+                "rounding": {
+                    "1": "600",
+                    "1000": "200000"
+                },
+                "crossable_handles": false,
+                "left_grip_selector": ".leftGrip",
+                "right_grip_selector": ".rightGrip",
+                "value_bar_selector": ".bar",
+                "user_mouseup_callback": function (leftValue, rightValue, isLeftGripMoved) {
+                    salary.LowerRange = leftValue;
+                    salary.UpperRange = rightValue;
+                    $(this).parent().find('.leftLabel span').text(leftValue);
+                    $(this).parent().find('.rightLabel span').text(rightValue);
+                    if (isSlarySelected) {
+                        eachClickFilter();
+                    }
+                },
+                "value_changed_callback": function (cause, leftValue, rightValue) {
+                    $(this).parent().find('.leftLabel span').text(leftValue);
+                    $(this).parent().find('.rightLabel span').text(rightValue);
+                }
+            });
+        });
+
+               
 
         $('#selectedkeywordsfilter').on('keyup', function (e) {
             clearTimeout(typingTimer);
@@ -76,10 +128,13 @@
             prefixIdText = @Html.Raw(Json.Encode(ViewBag.PrefixIdsText));
             
             for (var item of filterData) {
+                if (item.Name == 'Salary') {
+                    isSalaryExists = true;
+                }
                 optionsArray[prefixIdText+item.Name] = {
                     title: item.Name,
                     data: item.Filters,
-                    maxHeight: 500,
+                    maxHeight: 'none',
                     closedArrow: '<i class="fa fa-caret-right" aria-hidden="true"></i>',
                     openedArrow: '<i class="fa fa-caret-down" aria-hidden="true"></i>',
                     multiSelect: true,
@@ -125,6 +180,10 @@
                         filterModel.Filters.push({ rootId: trimmedId, values: $("#" + id).GetSelectedElementIds() });
                     }
                 });
+
+                if (isSalaryExists && isSlarySelected){
+                    filterModel.Salary = salary;
+                }
 
                 filterModel.Keywords = $("#selectedkeywordsfilter").val();
                 var data = { filterModel: filterModel }

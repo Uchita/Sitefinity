@@ -13,6 +13,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
         public string Keywords { get; set; }
         public Consultant ConsultantSearch { get; set; }
         public int Page { get; set; }
+        public JobSearchSalaryFilterReceiver Salary { get; set; }
     }
 
     public class JobSearchFilterReceiver
@@ -27,6 +28,14 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
         public string ItemID { get; set; }
         public List<JobSearchFilterReceiverItem> SubTargets { get; set; }
 
+    }
+
+    public class JobSearchSalaryFilterReceiver
+    {
+        public string RootName { get; set; }
+        public string TargetValue { get; set; }
+        public int UpperRange { get; set; }
+        public int LowerRange { get; set; }
     }
 
     public class Consultant
@@ -50,9 +59,19 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
      
             HttpRequestBase request = controllerContext.HttpContext.Request;
             string keywords = request.Params["Keywords"];
+            
             int page = 1;
             if (request.Params["Page"] != null)
                 page = Int32.Parse(request.Params["Page"]);
+
+            JobSearchSalaryFilterReceiver salray = null;
+            if(request.Params["Salary.TargetValue"] != null && request.Params["Salary.LowerRange"] != null && request.Params["Salary.UpperRange"] != null)
+            {
+                string salaryTargetValue = request.Params["Salary.TargetValue"];
+                int salaryLowerRange = Int32.Parse(request.Params["Salary.LowerRange"]);
+                int salaryUpperRange = Int32.Parse(request.Params["Salary.UpperRange"]);
+                salray = new JobSearchSalaryFilterReceiver() { RootName = "Salary",TargetValue = salaryTargetValue, LowerRange = salaryLowerRange, UpperRange = salaryUpperRange };
+            }
 
             /*
              * Input samples 
@@ -107,7 +126,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Models
              */
 
             //process tracker into target model
-            JobSearchResultsFilterModel targetModel = new JobSearchResultsFilterModel() { Keywords = keywords, Page = page, Filters = new List<JobSearchFilterReceiver>()};
+            JobSearchResultsFilterModel targetModel = new JobSearchResultsFilterModel() { Keywords = keywords, Page = page, Filters = new List<JobSearchFilterReceiver>(), Salary = salray };
 
             foreach(string trackerKey in tracker.Keys)
             {

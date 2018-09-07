@@ -178,12 +178,12 @@
             var urlPath = $(location).attr('pathname') + "/GetSearchResults";
             var searchPath = $(location).attr('search');
             if (searchPath == null || searchPath == "") {
-                searchPath += ("?" + "&Page=" + PageNumber);
+                searchPath += ("?" + "Page=" + PageNumber);
             }
-            else if (searchPath.includes("&Page=")) {
-                let pageIndex = searchPath.indexOf("&Page=");
+            else if (searchPath.includes("Page=")) {
+                let pageIndex = searchPath.indexOf("Page=");
                 searchPath = searchPath.slice(0, pageIndex);
-                searchPath += ("&Page=" + PageNumber);
+                searchPath += ("Page=" + PageNumber);
             }
             else {
                 searchPath += ("&Page=" + PageNumber);

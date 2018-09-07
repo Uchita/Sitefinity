@@ -201,20 +201,23 @@ var globalTreeIdCounter=0;
 
     var triggeringCls = '';
     var targetCls = '';
+    var maxHt = Number(options.maxHeight) > 0 ? options.maxHeight + "px" : options.maxHeight;
+
     if (options.dropdownType == "collapse") {
         if (options.expandElement == true) {
             targetCls = 'show in';
         } else {
             triggeringCls = 'collapsed';
         }
+
         $(options.element).append('<a class="btn btn-default dropdown-toggle ' + triggeringCls + '" href="#' + options.ariaLabelId + '" data-toggle="collapse" aria-haspopup="true" aria-expanded="true" aria-controls="' + options.ariaLabelId + '"><span class="dropdowntree-name">' + options.title + '</span><span class="caret"></span></a>');
-        $(options.element).append('<ul style="max-height: ' + options.maxHeight + 'px" class="collapse ' + targetCls + '" id="' + options.ariaLabelId + '"></ul>');
+        $(options.element).append('<ul style="max-height: ' + maxHt + '" class="collapse ' + targetCls + '" id="' + options.ariaLabelId + '"></ul>');
     } else {
         if (options.expandElement == true) {
             targetCls = 'show';
         }
         $(options.element).append('<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="dropdowntree-name">' + options.title + '</span><span class="caret"></span></button>');
-        $(options.element).append('<ul style="max-height: ' + options.maxHeight + 'px" class="dropdown-menu ' + targetCls + '" aria-labelledby="' + options.ariaLabelId + '"></ul>');
+        $(options.element).append('<ul style="max-height: ' + maxHt + '" class="dropdown-menu ' + targetCls + '" aria-labelledby="' + options.ariaLabelId + '"></ul>');
     }
 
     if (options.enableSearch == true) {

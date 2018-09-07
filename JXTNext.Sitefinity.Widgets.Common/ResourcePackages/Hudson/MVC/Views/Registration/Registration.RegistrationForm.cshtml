@@ -60,68 +60,94 @@
                 @Html.HiddenFor(m => m.RequiresQuestionAndAnswer)
 
 
-                <div class="field-wrapper">
-                    <div class="row">
-                        <div class="col-md-4 text-right">
-                            <p class="form-label">Name *</p>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                @Html.TextBox("Profile[FirstName]", null, new { @class = "form-control", placeholder = "First name", required = "required" })
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                @Html.TextBox("Profile[LastName]", null, new { @class = "form-control", placeholder = "Last name", required = "required" })
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
+                    <div class="field-wrapper">
                         <div class="row">
                             <div class="col-md-4 text-right">
-                                <p class="form-label">
-                                    @Html.Resource("Email") *
-                                </p>
+                                <p class="form-label">Name *</p>
                             </div>
-                            <div class="col-md-8">
-
-                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", type = "email", placeholder = "Enter your email address", required = "required" })
-
-                                @if (Html.ValidationMessageFor(m => m.Email) != null)
-                                {
-                                    <div class="has-error">
-                                        <span class="help-block">@Html.ValidationMessageFor(m => m.Email)</span>
-                                    </div>
-                                }
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    @Html.TextBox("Profile[FirstName]", null, new { @class = "form-control", placeholder = "First name", required = "required" })
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    @Html.TextBox("Profile[LastName]", null, new { @class = "form-control", placeholder = "Last name", required = "required" })
+                                </div>
                             </div>
                         </div>
-                    </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-4 text-right">
+                                    <p class="form-label">
+                                        @Html.Resource("Email") *
+                                    </p>
+                                </div>
+                                <div class="col-md-8">
+
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", type = "email", placeholder = "Enter your email address", required = "required" })
+
+                                    @if (Html.ValidationMessageFor(m => m.Email) != null)
+                                    {
+                                        <div class="has-error">
+                                            <span class="help-block">@Html.ValidationMessageFor(m => m.Email)</span>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
 
 
-                    <div class="form-group">
-                        <div class="row">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-4 text-right">
+                                    <p class="form-label">
+                                        @Html.Resource("Password") *
+                                    </p>
+                                </div>
+                                <div class="col-md-8">
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Create your strong password", required = "required" })
+
+                                    @if (Html.ValidationMessageFor(m => m.Password) != null)
+                                    {
+                                        <div class="has-error">
+                                            <span class="help-block"> @Html.ValidationMessageFor(m => m.Password)</span>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="strength-wrap">
                             <div class="col-md-4 text-right">
-                                <p class="form-label">
-                                    @Html.Resource("Password") *
-                                </p>
+                                <label class="form-label" for="password-reg">Password strength</label>
                             </div>
                             <div class="col-md-8">
-                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Create your strong password", required = "required" })
-
-                                @if (Html.ValidationMessageFor(m => m.Password) != null)
-                                {
-                                    <div class="has-error">
-                                        <span class="help-block"> @Html.ValidationMessageFor(m => m.Password)</span>
-                                    </div>
-                                }
+                                <div id="password-strength"><span class="strengh-text"></span></div>
                             </div>
                         </div>
-                    </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-4 text-right">
+                                    <p class="form-label">
+                                        @Html.Resource("ReTypePassword") *
+                                    </p>
+                                </div>
+                                <div class="col-md-8">
+                                    @Html.PasswordFor(m => m.ReTypePassword, new { @class = "form-control", placeholder = "Retype your password", required = "required" })
+                                    @if (Html.ValidationMessageFor(m => m.ReTypePassword) != null)
+                                    {
+                                        <div class="has-error">
+                                            <span class="help-block">@Html.ValidationMessageFor(m => m.ReTypePassword)</span>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
 
-                    @*TODO - password strength*@
+                        @*TODO - password strength*@
 
-                    @*<div class="form-group">
+                        @*<div class="form-group">
         <div class="row">
             <div class="col-md-4 text-right">
                 <p class="form-label" style="padding-top: 0">
@@ -138,74 +164,74 @@
         </div>*@
 
 
-                    @if (Model.RequiresQuestionAndAnswer)
-                    {
+                        @if (Model.RequiresQuestionAndAnswer)
+                        {
 
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-4 text-right">
-                                    <p class="form-label">
-                                        ]
-                                        @Html.Resource("Question")
-                                    </p>
-                                </div>
-                                <div class="col-md-8">
-                                    @Html.TextBoxFor(m => m.Question, new { @class = "form-control" })
-                                    @if (Html.ValidationMessageFor(m => m.Question) != null)
-                                    {
-                                        <div class="has-error">
-                                            <span class="help-block"> @Html.ValidationMessageFor(m => m.Question)</span>
-                                        </div>
-                                    }
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-4 text-right">
-                                    <p class="form-label">
-                                        @Html.Resource("Answer")
-                                    </p>
-                                </div>
-                                <div class="col-md-8">
-                                    @Html.TextBoxFor(m => m.Answer, new { @class = "form-control" })
-                                    @if (Html.ValidationMessageFor(m => m.Answer) != null)
-                                    {
-                                        <div class="has-error">
-                                            <span class="help-block"> @Html.ValidationMessageFor(m => m.Answer)</span>
-                                        </div>
-                                    }
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-4 text-right">
+                                        <p class="form-label">
+                                            ]
+                                            @Html.Resource("Question")
+                                        </p>
+                                    </div>
+                                    <div class="col-md-8">
+                                        @Html.TextBoxFor(m => m.Question, new { @class = "form-control" })
+                                        @if (Html.ValidationMessageFor(m => m.Question) != null)
+                                        {
+                                            <div class="has-error">
+                                                <span class="help-block"> @Html.ValidationMessageFor(m => m.Question)</span>
+                                            </div>
+                                        }
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    }
 
-                    <div class="row">
-                        <div class="col-md-4"></div>
-                        <div class="col-md-8">
-                            @*TODO - "I agree" - checkbox*@
-                            @*<div class="form-group">
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-4 text-right">
+                                        <p class="form-label">
+                                            @Html.Resource("Answer")
+                                        </p>
+                                    </div>
+                                    <div class="col-md-8">
+                                        @Html.TextBoxFor(m => m.Answer, new { @class = "form-control" })
+                                        @if (Html.ValidationMessageFor(m => m.Answer) != null)
+                                        {
+                                            <div class="has-error">
+                                                <span class="help-block"> @Html.ValidationMessageFor(m => m.Answer)</span>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-8">
+                                @*TODO - "I agree" - checkbox*@
+                                @*<div class="form-group">
                     <div class="checkbox clearfix">
                         <input type="checkbox" value="true" />
                         <span class="checkbox-icon fas fa-check"></span>I agree to Hudson <a class="privacy-policy" href="#">Privacy policy</a>
                     </div>
                 </div>*@
-                            <div class="btn-block">
-                                @if (SystemManager.IsDesignMode && !SystemManager.IsPreviewMode)
-                                {
-                                    <button type="button" class="btn btn-primary">@Html.Resource("Register")</button>
-                                }
-                                else
-                                {
-                                    <button type="submit" class="btn btn-primary">@Html.Resource("Register")</button>
-                                }
+                                <div class="btn-block">
+                                    @if (SystemManager.IsDesignMode && !SystemManager.IsPreviewMode)
+                                    {
+                                        <button type="button" class="btn btn-primary">@Html.Resource("Register")</button>
+                                    }
+                                    else
+                                    {
+                                        <button type="submit" class="btn btn-primary">@Html.Resource("Register")</button>
+                                    }
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                </div>
+                    </div>
 
                 <div class="registration-link">
                     <div class="row">
@@ -223,3 +249,172 @@
     }
 </div>
 @Html.Script(Url.WidgetContent("Mvc/Scripts/Registration/registration-form.js"), "bottom")
+
+<script>
+    jQuery(document).ready(function ($) {
+
+        // Password Strength
+        var m_strUpperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        var m_strLowerCase = "abcdefghijklmnopqrstuvwxyz";
+        var m_strNumber = "0123456789";
+        var m_strCharacters = "!@@#$%^&*?_~";
+
+        $('#Password').keyup(function () {
+            runPassword($(this).val());
+        });
+
+        function checkPassword(strPassword) {
+            // Reset combination count
+            var nScore = 0;
+
+            // Password length
+            // -- Less than 4 characters
+            if (strPassword.length < 5) {
+                nScore += 5;
+            }
+            // -- 5 to 7 characters
+            else if (strPassword.length > 4 && strPassword.length < 8) {
+                nScore += 10;
+            }
+            // -- 8 or more
+            else if (strPassword.length > 7) {
+                nScore += 25;
+            }
+
+            // Letters
+            var nUpperCount = countContain(strPassword, m_strUpperCase);
+            var nLowerCount = countContain(strPassword, m_strLowerCase);
+            var nLowerUpperCount = nUpperCount + nLowerCount;
+            // -- Letters are all lower case
+            if (nUpperCount == 0 && nLowerCount != 0) {
+                nScore += 10;
+            }
+            // -- Letters are upper case and lower case
+            else if (nUpperCount != 0 && nLowerCount != 0) {
+                nScore += 20;
+            }
+
+            // Numbers
+            var nNumberCount = countContain(strPassword, m_strNumber);
+            // -- 1 number
+            if (nNumberCount == 1) {
+                nScore += 10;
+            }
+            // -- 3 or more numbers
+            if (nNumberCount >= 3) {
+                nScore += 20;
+            }
+
+            // Characters
+            var nCharacterCount = countContain(strPassword, m_strCharacters);
+            // -- 1 character
+            if (nCharacterCount == 1) {
+                nScore += 10;
+            }
+            // -- More than 1 character
+            if (nCharacterCount > 1) {
+                nScore += 25;
+            }
+
+            // Bonus
+            // -- Letters and numbers
+            if (nNumberCount != 0 && nLowerUpperCount != 0) {
+                nScore += 2;
+            }
+            // -- Letters, numbers, and characters
+            if (nNumberCount != 0 && nLowerUpperCount != 0 && nCharacterCount != 0) {
+                nScore += 3;
+            }
+            // -- Mixed case letters, numbers, and characters
+            if (nNumberCount != 0 && nUpperCount != 0 && nLowerCount != 0 && nCharacterCount != 0) {
+                nScore += 5;
+            }
+
+
+            return nScore;
+        };
+
+        // Runs password through check and then updates GUI
+
+
+        function runPassword(strPassword) {
+            // Check password
+            var nScore = checkPassword(strPassword);
+
+
+            // Get controls
+            var ctlBar = document.getElementById("password-strength");
+            console.log(nScore);
+            // Set new width
+            var nScoreWth = nScore * 1.25;
+            var nScoreLen = '0';
+            if (nScoreWth >= 100) {
+                nScoreLen = '100%';
+            }
+            else {
+                nScoreLen = nScoreWth + '%';
+            }
+            ctlBar.style.width = nScoreLen;
+
+            // Color and text
+            // -- Very Secure
+            if (nScore == 100) {
+                var strText = "Very Secure";
+                var strColor = "#0ca908";
+            }
+            // -- Secure
+            else if (nScore >= 90) {
+                var strText = "Secure";
+                vstrColor = "#197e84";
+            }
+            // -- Very Strong
+            else if (nScore >= 80) {
+                var strText = "Very Strong";
+                var strColor = "#008000";
+            }
+            // -- Strong
+            else if (nScore >= 60) {
+                var strText = "Strong";
+                var strColor = "#006000";
+            }
+            // -- Average
+            else if (nScore >= 40) {
+                var strText = "Average";
+                var strColor = "#e78300";
+            }
+            // -- Weak
+            else if (nScore >= 20) {
+                var strText = "Weak";
+                var strColor = "#Fe3d1a";
+            }
+            // -- Very Weak
+            else {
+                var strText = "Very Weak";
+                var strColor = "#e71a1a";
+            }
+
+            if (strPassword.length == 0) {
+                ctlBar.style.backgroundColor = "";
+                ctlBar.innerHTML = "";
+            }
+            else {
+                ctlBar.style.backgroundColor = strColor;
+                ctlBar.querySelector('.strengh-text').innerHTML = strText;
+            }
+        };
+
+        // Checks a string for a list of characters
+        function countContain(strPassword, strCheck) {
+            // Declare variables
+            var nCount = 0;
+
+            for (i = 0; i < strPassword.length; i++) {
+                if (strCheck.indexOf(strPassword.charAt(i)) > -1) {
+                    nCount++;
+                }
+            }
+
+            return nCount;
+        };
+    })
+</script>

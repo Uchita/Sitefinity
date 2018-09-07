@@ -1,0 +1,58 @@
+﻿@model Telerik.Sitefinity.Frontend.Mvc.Models.ContentDetailsViewModel
+
+@using System.Collections;
+@using System.Linq;
+@using Telerik.Sitefinity.Frontend.DynamicContent.WidgetTemplates.Fields.Helpers;
+@using Telerik.Sitefinity;
+@using Telerik.Sitefinity.Data.ContentLinks;
+@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Libraries.Model;
+@using Telerik.Sitefinity.Localization;
+@using Telerik.Sitefinity.Model;
+@using Telerik.Sitefinity.Model.ContentLinks;
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Pages.Model;
+@using Telerik.Sitefinity.Web.DataResolving;
+
+<div class="@Model.CssClass article-container" @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)Model.Item.Fields.Id)>
+    <h1 class="article-detail-title text-center" @Html.InlineEditingFieldAttributes("Title", "ShortText")>
+        @Model.Item.Fields.Title
+    </h1>
+
+    <p class="article-detail-author text-center">by @DataResolver.Resolve(@Model.Item.DataItem, "Author", null)</p>
+
+    @*Start Content field*@
+    <div class="article-description" @Html.InlineEditingFieldAttributes("Content", "LongText")>@Html.HtmlSanitize((string)Model.Item.Fields.Content)</div>
+    @*End Content field*@
+
+    @*<div>
+            @Model.Item.GetDateTime("PublicationDate", "MMM d, yyyy, HH:mm tt")
+            @Html.CommentsCount("", @Model.Item.DataItem)
+        </div>*@
+
+
+    @*Start IssueDate field*@
+    <div>
+        <strong> Issue date :</strong>
+
+        @if (Model.Item.Fields.IssueDate != null)
+        {
+            <span @Html.InlineEditingFieldAttributes("IssueDate", "DateTime")>
+                @Model.Item.GetDateTime("IssueDate", "yyyy MMM dd")
+            </span>
+
+        }
+    </div>
+    @*End IssueDate field*@
+
+
+    @{
+        if (Model.EnableSocialSharing)
+        {
+            var item = Model.Item.DataItem as Telerik.Sitefinity.Model.IHasTitle;
+            @Html.SocialShareOptions(item);
+        }
+    }
+
+    @*@Html.CommentsList(@Model.Item.DataItem)*@
+</div>

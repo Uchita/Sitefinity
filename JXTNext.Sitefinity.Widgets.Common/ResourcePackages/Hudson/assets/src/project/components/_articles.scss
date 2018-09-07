@@ -23,6 +23,8 @@
             box-shadow: 0 3px 9px 0px rgb(239,239,239);
             box-shadow: 0 3px 9px 0px rgba(0,0,0,0.14);
             width: 30%;
+            max-height: 245px;
+            overflow: hidden;
 
             img {
                 width: 100%;
@@ -55,7 +57,7 @@
 }
 
 .article-details {
-    width: 660px;
+    max-width: 660px;
     margin: 0 auto;
 
     .breadcrumb a {

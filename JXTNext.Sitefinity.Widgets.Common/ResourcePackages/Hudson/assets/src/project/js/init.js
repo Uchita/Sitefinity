@@ -25,6 +25,7 @@ ThemeGlobal.JobsFilterToggle = function (target) {
         targetClose = $('[data-filter-trigger="close"]'),
         activeEl = $("[data-filter-target].active");
 
+    //run if target obj is not active and is present    
     if (!activeEl.length && targetEl.length) {
         targetEl.toggleClass("active").slideToggle();
 
@@ -34,9 +35,11 @@ ThemeGlobal.JobsFilterToggle = function (target) {
             $(".filter.filter-active").removeClass("filter-active");
             $(".filter-job-close").hide();
         });
-
+        //if not target obj is active
     } else if (!targetEl.is(activeEl)) {
         activeEl.toggleClass("active").slideToggle();
+        targetEl.toggleClass("active").slideToggle();
+    } else if( targetEl.is(activeEl) ){
         targetEl.toggleClass("active").slideToggle();
     }
 
@@ -105,6 +108,57 @@ ThemeGlobal.MobileCarouselInit = function () {
     }    
 }
 
+ThemeGlobal.DynamicFormConditions = function () {
+    if( $('form .dfcondition').length ){
+        $('#Dropdown-5').hide();
+        $('#Dropdown-1').change(function(){
+        var selected = $('#Dropdown-1 option:selected').text();
+        if(selected == "I am a Job Seeker"){
+            $('#C017_Col00, #C017_Col01').hide();
+            $('#C045_Col00, #C045_Col01').hide();
+            $('#C020_Col00, #C020_Col01').show();
+            $('#C019_Col00, #C019_Col01').show();
+            $('#C022_Col00, #C022_Col01').show();
+            $('#C023_Col00, #C023_Col01').show();
+        }
+        if(selected == "I'd like to submit my CV"){
+            $('#C017_Col00, #C017_Col01').hide();
+            $('#C045_Col00, #C045_Col01').hide();
+            $('#C020_Col00, #C020_Col01').show();
+            $('#C019_Col00, #C019_Col01').show();
+            $('#C022_Col00, #C022_Col01').show();
+            $('#C023_Col00, #C023_Col01').show();
+        }
+        if(selected == "Working for Hudson"){
+            $('#C017_Col00, #C017_Col01').hide();
+            $('#C045_Col00, #C045_Col01').hide();
+            $('#C019_Col00, #C019_Col01').hide();
+            $('#Dropdown-4').hide();
+            $('#Dropdown-5').show();
+            $('#C022_Col00, #C022_Col01').show();
+            $('#C023_Col00, #C023_Col01').show();
+
+        }
+        if(selected == "Hiring candidates"){
+            $('#C022_Col00, #C022_Col01').hide();
+            $('#C017_Col00, #C017_Col01').show();
+            $('#C045_Col00, #C045_Col01').show();
+            $('#C020_Col00, #C020_Col01').show();
+            $('#C019_Col00, #C019_Col01').show();
+            $('#C023_Col00, #C023_Col01').show();
+        }
+        if(selected == "Candidate profiling & assessment" || selected ==  "Leadership assessment & development" || selected == "Outplacement & redeployment" || selected == "General inquiry"){
+            $('#C017_Col00, #C017_Col01').show();
+            $('#C045_Col00, #C045_Col01').show();
+            $('#C020_Col00, #C020_Col01').hide();
+            $('#C019_Col00, #C019_Col01').hide();
+            $('#C022_Col00, #C022_Col01').hide();
+            $('#C023_Col00, #C023_Col01').hide();
+        }
+        });
+    }
+}
+
 
 $(document).ready(function () {
 
@@ -118,8 +172,13 @@ $(document).ready(function () {
     }, false);
 
     $("[data-filter-trigger]").on("click", function () {
+        if( $(this).parent().hasClass('filter-active') ){
+            $(this).parent(".filter").removeClass("filter-active");
+        }else{
+            $(this).parent(".filter").addClass("filter-active");
+        }
         $(".filter.filter-active").removeClass("filter-active");
-        $(this).parent(".filter").addClass("filter-active");
+        
         ThemeGlobal.JobsFilterToggle($(this).data("filter-trigger"));
     });
 
@@ -213,6 +272,25 @@ $(document).ready(function () {
     });
     ThemeGlobal.SameHeight();
     ThemeGlobal.MobileCarouselInit();
+
+
+    ThemeGlobal.DynamicFormConditions();
+
+    
+
+    if( window.location.pathname.indexOf('ApplyJob') > -1 ){
+        var exceptionText = "Exception occured while executing the controller. Check error logs for details.";
+        
+        if( $('.profile-app-wrapper').text().indexOf('Exception occured') > -1 ){
+            $('.profile-app-wrapper').remove();
+        }
+        $('#appFormState').hide();
+    }else{
+        if(  $('.profile-app-wrapper').length ){
+            $('.profile-app-wrapper').fadeIn('fast').removeClass('hide');
+        }
+    }
+
 });
 
 $(window).resize(function () {

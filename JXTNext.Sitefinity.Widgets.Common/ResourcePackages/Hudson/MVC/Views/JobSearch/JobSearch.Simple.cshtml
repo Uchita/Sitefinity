@@ -100,7 +100,7 @@
                         <div class="col-xs-5 col-sm-4 col-md-4">
                             <div class="filter">
                                 <a data-filter-trigger="@list.ID">@list.PlaceholderText <em class="fas fa-angle-down"></em></a>
-                                <em class="fas fa-angle-up" data-filter-trigger="close"></em>
+                                
                             </div>
                         </div>
                     }
@@ -124,7 +124,7 @@
                             @: <div class="row">
                         }
 
-                        string hrefLink = string.Format("{0}?Filters[0].rootId={1}&Filters[0].values={2}", @ViewData["JobResultsPageUrl"], list.ID, itemName.Key);
+                        string hrefLink = string.Format("{0}?Filters[0].rootId={1}&Filters[0].values={2}", @ViewData["JobResultsPageUrl"], list.FilterType, itemName.Key);
                         <div class="col-sm-3 col-md-3">
                             <a href=@hrefLink>@itemName.Value.name</a>
                         </div>

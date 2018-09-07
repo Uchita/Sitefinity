@@ -7,12 +7,15 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Models
 {
     public class JobAlertViewModel
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public bool EmailAlerts { get; set; }
         public long LastModifiedTime { get; set; }
         public string Keywords { get; set; }
         public List<JobAlertFilters> Filters { get; set; }
+        public string SalaryStringify { get; set; }
+        public JobAlertSalaryFilterReceiver Salary { get; set; }
+        public JobAlertStatus Status { get; set; }
     }
 
     public class JobAlertFilters
@@ -23,7 +26,7 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Models
 
     public class JobAlertEditViewModel
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public bool EmailAlerts { get; set; }
         public string Keywords { get; set; }
@@ -43,5 +46,22 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Models
         public string Label { get; set; }
         public bool Selected { get; set; }
         public List<JobAlertEditFilterItem> Filters { get; set; }
+    }
+
+    public class JobAlertSalaryFilterReceiver
+    {
+        public string RootName { get; set; }
+        public string TargetValue { get; set; }
+        public int UpperRange { get; set; }
+        public int LowerRange { get; set; }
+    }
+
+    public enum JobAlertStatus
+    {
+        AVAILABLE = 0,
+        SUCCESS = 1,
+        CREATE_FAILED = 2,
+        UPATED_FAILED = 3,
+        DELETE_FAILED = 4
     }
 }

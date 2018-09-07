@@ -53,9 +53,20 @@
     &.card-basic {
         img, a > img {
             margin: 0;
-            width: 100%;
+            width: 100%
         }
-
+        
+        .img-wrap{
+            display: block;
+            height: 255px;
+            img{
+                width: auto;
+                max-width: 150%;
+                min-width: 100%;
+                min-height: 100%;
+            }
+        }
+        
         .caption {
             position: relative;
             padding: 25px;
@@ -273,6 +284,10 @@
     .caption {
         width: 90%;
         margin: 0 auto;
+
+        h2{
+            margin-top: 0;
+        }
     }
 }
 

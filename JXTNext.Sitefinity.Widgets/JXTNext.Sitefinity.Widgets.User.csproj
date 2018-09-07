@@ -306,6 +306,9 @@
     <Compile Include="Mvc\Logics\MemberSavedJobBC.cs" />
     <Compile Include="Mvc\Models\JXTNext_MemberRegistrationModel.cs" />
     <Compile Include="Mvc\Models\MemberSavedJob\MemberSavedJobItem.cs" />
+    <Compile Include="Mvc\Models\JXTNext_ProfileEventHandler.cs" />
+    <Compile Include="Mvc\Models\JXTNext_UserEventHandler.cs" />
+    <Compile Include="Mvc\Models\SFEventRequestSession.cs" />
     <Compile Include="Mvc\Models\SFRequestSession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Widgets_UserModule.cs" />

@@ -45,7 +45,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.StringResources
         /// Gets phrase: This is the page where you have dropped search results widget
         /// </summary>
         [ResourceEntry("EmailCC",
-            Value = "Enter CC E-mail list separated by semicolon",
+            Value = "Enter CC E-mail list separated by semicolon:",
             Description = "phrase : Enter CC E-mail list separated by semicolon")]
         public string EmailCC
         {
@@ -59,7 +59,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.StringResources
         /// Gets phrase: Where to display search results?
         /// </summary>
         [ResourceEntry("EmailBCC",
-            Value = "Enter BCC E-mail list separated by semicolon",
+            Value = "Enter BCC E-mail list separated by semicolon:",
             Description = "phrase : Enter BCC E-mail list separated by semicolon")]
         public string EmailBCC
         {
@@ -72,14 +72,42 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.StringResources
         /// <summary>
         /// Gets phrase: This is the page where you have dropped search results widget
         /// </summary>
-        [ResourceEntry("FromName",
-            Value = "Enter from name",
-            Description = "phrase : Enter from name")]
-        public string FromName
+        [ResourceEntry("SenderName",
+            Value = "Enter sender name:",
+            Description = "phrase : Enter from sender name")]
+        public string SenderName
         {
             get
             {
-                return this["FromName"];
+                return this["SenderName"];
+            }
+        }
+
+        /// <summary>
+        /// Gets phrase: This is the page where you have dropped search results widget
+        /// </summary>
+        [ResourceEntry("SenderEmailAddress",
+            Value = "Enter sender E-mail address:",
+            Description = "phrase : Enter sender email address")]
+        public string SenderEmailAddress
+        {
+            get
+            {
+                return this["SenderEmailAddress"];
+            }
+        }
+
+        /// <summary>
+        /// Gets phrase: This is the page where you have dropped search results widget
+        /// </summary>
+        [ResourceEntry("EmailSubject",
+            Value = "Enter E-mail subject:",
+            Description = "phrase : Enter email subject")]
+        public string EmailSubject
+        {
+            get
+            {
+                return this["EmailSubject"];
             }
         }
 

@@ -125,8 +125,12 @@ namespace JXTNext.Sitefinity.Common.Helpers
 
         public static User GetUserByEmail(string Email)
         {
-            var userManager = UserManager.GetManager();
-            var user = userManager.GetUsers().FirstOrDefault(u => u.Email.ToUpper() == Email.ToUpper());
+            User user = null;
+            if (!String.IsNullOrEmpty(Email))
+            {
+                var userManager = UserManager.GetManager();
+                user = userManager.GetUsers().FirstOrDefault(u => u.Email.ToUpper() == Email.ToUpper());
+            }
             return user;
         }
 
@@ -150,10 +154,19 @@ namespace JXTNext.Sitefinity.Common.Helpers
             return firstName;
         }
 
+        public static User GetUserById(Guid userId)
+        {
+            var userManager = UserManager.GetManager();
+            return userManager.GetUser(userId);
+        }
+
         public static MembershipCreateStatus CreateUser(string username, string password, string firstName, string lastName, string mail, string phoneNumber, string secretQuestion, string secretAnswer, bool isApproved)
         {
             UserManager userManager = UserManager.GetManager();
             UserProfileManager profileManager = UserProfileManager.GetManager();
+
+            userManager.Provider.SuppressSecurityChecks = true;
+            profileManager.Provider.SuppressSecurityChecks = true;
 
             MembershipCreateStatus status;
 
@@ -176,6 +189,9 @@ namespace JXTNext.Sitefinity.Common.Helpers
 
             }
 
+            userManager.Provider.SuppressSecurityChecks = false;
+            profileManager.Provider.SuppressSecurityChecks = false;
+
             return status;
         }
 
@@ -187,6 +203,17 @@ namespace JXTNext.Sitefinity.Common.Helpers
             if (userManager.ValidateUser(email, password))
                 isVerified = true;
             return isVerified;
+        }
+
+        public static bool IsUserLoggedIn()
+        {
+            bool isUserLoggedIn = false;
+            var currentIdentity = ClaimsManager.GetCurrentIdentity();
+
+            if (currentIdentity.IsAuthenticated)
+                isUserLoggedIn = true;
+
+            return isUserLoggedIn;
         }
     }
 }

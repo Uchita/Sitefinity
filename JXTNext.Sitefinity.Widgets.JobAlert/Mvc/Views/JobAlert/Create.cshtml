@@ -22,9 +22,9 @@
 
         @foreach (var item in Model)
         {
-            <input type="hidden" name="Filters[@counter].RootId" value='@item.ID' />
-            <select id=@string.Format("selected-{0}",item.ID) name="Filters[@counter].Values" style="display:none" multiple></select>
-            <div class="dropdown dropdown-tree" id=@item.ID></div> <br />
+            <input type="hidden" name="Filters[@counter].RootId" value='@item.Name' />
+            <select id=@string.Format("selected-{0}",item.Name) name="Filters[@counter].Values" style="display:none" multiple></select>
+            <div class="dropdown dropdown-tree" id=@item.Name></div> <br />
             counter++;
         }
 
@@ -58,7 +58,7 @@
             var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
 
             for (var item of filterData) {
-                optionsArray[item.ID] = {
+                optionsArray[item.Name] = {
                     title: item.Name,
                     data: item.Filters,
                     maxHeight: 500,
@@ -67,8 +67,10 @@
                     multiSelect: true,
                     selectChildren: true,
                     expandChildren: true,
+                    enableSearch: false,
+                    prefixIdText: ''
                 };
-                $("#" + item.ID).DropDownTree(optionsArray[item.ID]);
+                $("#" + item.Name).DropDownTree(optionsArray[item.Name]);
             }
         }
 

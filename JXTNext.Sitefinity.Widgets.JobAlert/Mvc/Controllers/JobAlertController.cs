@@ -10,6 +10,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Telerik.Sitefinity.Mvc;
 using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
+using JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Logics;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -17,28 +18,25 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
     [ControllerToolboxItem(Name = "JobAlert_MVC", Title = "Job Alert", SectionName = "JXTNext.JobAlert", CssClass = JobAlertController.WidgetIconCssClass)]
     public class JobAlertController : Controller
     {
-        IBusinessLogicsConnector _testBLConnector;
-        IOptionsConnector _testOConnector;
+        JobAlertsBC _jobAlertsBC;
+        IOptionsConnector _OConnector;
        
-        public JobAlertController(IEnumerable<IBusinessLogicsConnector> _bConnectors, IEnumerable<IOptionsConnector> _oConnectors)
+        public JobAlertController(IEnumerable<IOptionsConnector> _oConnectors, JobAlertsBC jobAlertsBC)
         {
-            _testBLConnector = _bConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.Test).FirstOrDefault();
-            _testOConnector = _oConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.Test).FirstOrDefault();
+            _jobAlertsBC = jobAlertsBC;
+            _OConnector = _oConnectors.Where(c => c.ConnectorType == JXTNext.Sitefinity.Connector.IntegrationConnectorType.JXTNext).FirstOrDefault();
         }
 
         // GET: JobAlert
         public ActionResult Index()
         {
-            List<JobAlertViewModel> jobAlertData = new List<JobAlertViewModel>();
-
-            jobAlertData.Add(new JobAlertViewModel() { Id = "1", Name="One", EmailAlerts=true, LastModifiedTime = 1528169738127 });
-            jobAlertData.Add(new JobAlertViewModel() { Id = "2", Name = "Two", EmailAlerts = false, LastModifiedTime = 1528169753835 });
-            jobAlertData.Add(new JobAlertViewModel() { Id = "3", Name = "Three", EmailAlerts = true, LastModifiedTime = 1528169753835 });
+            List<JobAlertViewModel> jobAlertData = _jobAlertsBC.MemberJobAlertsGet();
 
             ViewBag.CssClass = this.CssClass;
             ViewBag.CreateMessage = TempData["CreateMessage"];
             ViewBag.DeleteMessage = TempData["DeleteMessage"];
-
+            ViewBag.Status = TempData["Status"];
+            
             return View("Simple", jobAlertData);
         }
 
@@ -46,7 +44,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public ActionResult Create()
         {
             dynamic dynamicFilterResponse = null;
-            IGetJobFiltersResponse filtersResponse = _testOConnector.JobFilters<Test_GetJobFiltersRequest, Test_GetJobFiltersResponse>(new Test_GetJobFiltersRequest());
+            JXTNext_GetJobFiltersRequest request = new JXTNext_GetJobFiltersRequest();
+            IGetJobFiltersResponse filtersResponse = _OConnector.JobFilters<JXTNext_GetJobFiltersRequest, JXTNext_GetJobFiltersResponse>(request);
             if (filtersResponse != null && filtersResponse.Filters != null
                 && filtersResponse.Filters.Data != null)
                 dynamicFilterResponse = filtersResponse.Filters.Data as dynamic;
@@ -59,11 +58,43 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         {
             // TODO: When the Backend API is ready,
             // We need to pass this model to it
-            
+            JobAlertSalaryFilterReceiver salary = null;
+            if (!model.SalaryStringify.IsNullOrEmpty())
+            {
+                salary = JsonConvert.DeserializeObject<JobAlertSalaryFilterReceiver>(model.SalaryStringify);
+            }
+            if (salary != null)
+                model.Salary = salary;
+
             var epochTime = ConversionHelper.GetUnixTimestamp(SitefinityHelper.GetSitefinityApplicationTime(), true);
+            model.LastModifiedTime = (long)epochTime;
+
+            // Remove null value filters
+            List<JobAlertFilters> Filters = new List<JobAlertFilters>();
+            if(model != null && model.Filters != null && model.Filters.Count > 0)
+            {
+                foreach (var item in model.Filters)
+                {
+                    if (item.Values != null && item.Values.Count > 0)
+                        Filters.Add(item);
+                }
+            }
+
+            model.Filters = Filters;
+            
+
+            var stausMessage = "A Job Alert has been created successfully.";
+            var alertStatus = JobAlertStatus.SUCCESS;
+            var status = _jobAlertsBC.MemberJobAlertCreate(model);
+            if (!status)
+            {
+                stausMessage = "Unable to create job alert record.";
+                alertStatus = JobAlertStatus.CREATE_FAILED;
+            }
 
             TempData["DeleteMessage"] = null;
-            TempData["CreateMessage"] = "A Job Alert has been created successfully.";
+            TempData["CreateMessage"] = stausMessage;
+            TempData["Status"] = alertStatus;
 
             // Why action name is empty?
             // Here we need to call Index action, if we are providing action name as Index here
@@ -73,10 +104,10 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int id)
         {
-            JobAlertViewModel jobAlertDetails = GetJobAlertDetailsMock(id);
-            IGetJobFiltersResponse filtersResponse = _testOConnector.JobFilters<Test_GetJobFiltersRequest, Test_GetJobFiltersResponse>(new Test_GetJobFiltersRequest());
+            JobAlertViewModel jobAlertDetails = _jobAlertsBC.MemberJobAlertGet(id);
+            IGetJobFiltersResponse filtersResponse = _OConnector.JobFilters<Test_GetJobFiltersRequest, Test_GetJobFiltersResponse>(new Test_GetJobFiltersRequest());
 
             List<JobFilterRoot> fitersData = null;
             if (filtersResponse != null && filtersResponse.Filters != null
@@ -135,23 +166,32 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         }
 
         [HttpGet]
-        public ActionResult ViewResults(string id)
+        public ActionResult ViewResults(int id)
         {
-            JobAlertViewModel jobAlertDetails = GetJobAlertDetailsMock(id);
+            JobAlertViewModel jobAlertDetails = _jobAlertsBC.MemberJobAlertGet(id);
             string resultsPageUrl = SitefinityHelper.GetPageUrl(this.ResultsPageId);
 
             return Redirect(resultsPageUrl + "?" + ToQueryString(jobAlertDetails));
         }
 
         [HttpGet]
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int id)
         {
             // TODO: When the Backend API is ready,
             // We need to pass this job alert id to it
+            var statusMessage = "A Job Alert has been deleted successfully.";
+            var alertStatus = JobAlertStatus.SUCCESS;
+            var status = _jobAlertsBC.MemberJobAlertDelete(id);
+            if (!status)
+            {
+                statusMessage = "Unable to delete job alert record.";
+                alertStatus = JobAlertStatus.DELETE_FAILED;
+            }
 
             TempData["CreateMessage"] = null;
-            TempData["DeleteMessage"] = "A Job Alert has been deleted successfully.";
-            
+            TempData["DeleteMessage"] = statusMessage;
+            TempData["Status"] = alertStatus;
+
             // Why action name is empty?
             // Here we need to call Index action, if we are providing action name as Index here
             // It is appending in the URL, but we dont want to show that in URL. So, sending it as empty
@@ -162,20 +202,6 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         protected override void HandleUnknownAction(string actionName)
         {
             this.ActionInvoker.InvokeAction(this.ControllerContext, "Index");
-        }
-
-        private JobAlertViewModel GetJobAlertDetailsMock(string jobAlertId)
-        {
-            JobAlertViewModel model = new JobAlertViewModel() { Filters = new List<JobAlertFilters>() };
-            model.Id = "HD-123";
-            model.Name = "Test";
-            model.EmailAlerts = true;
-            model.LastModifiedTime = 1528169767960;
-            model.Keywords = "Job";
-
-            model.Filters.Add(new JobAlertFilters() { RootId = "AE-1234", Values = new List<string>() { "HD-345", "AF-0f34", "EH-sf355" } });
-
-            return model;
         }
 
         static string ToQueryString(JobAlertViewModel jobAlertDetails)
@@ -194,6 +220,13 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                         queryParamsStringList.Add("Filters[" + i + "].values=" + filterId);
                     }
                 }
+            }
+
+            if(jobAlertDetails.Salary != null && !jobAlertDetails.Salary.TargetValue.IsNullOrEmpty())
+            {
+                queryParamsStringList.Add("Salary.TargetValue=" + jobAlertDetails.Salary.TargetValue);
+                queryParamsStringList.Add("Salary.LowerRange=" + jobAlertDetails.Salary.LowerRange);
+                queryParamsStringList.Add("Salary.UpperRange=" + jobAlertDetails.Salary.UpperRange);
             }
 
            return String.Join("&", queryParamsStringList);

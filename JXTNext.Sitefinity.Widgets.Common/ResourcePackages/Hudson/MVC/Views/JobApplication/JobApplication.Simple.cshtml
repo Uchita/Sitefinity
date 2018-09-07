@@ -66,7 +66,7 @@
                             <label class="form-label" for="password-reg">Password*</label>
                         </div>
                         <div class="col-md-8">
-                            <input id="password-reg" type="password" name="Password" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" />
+                            <input id="password-reg" type="password" name="Password" class="form-control" pattern="(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" />
                             <span class="hidden alert alert-danger error-message wrongPassword-message">
                                 Your password is incorrect!
                             </span>
@@ -316,7 +316,7 @@
                             registerForm = true;
                             $('#password-reg').prop('required', true);
                             $('#firstname-reg').prop('required', true);
-                            $('#password-reg').prop('pattern', "(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}");
+                            $('#password-reg').prop('pattern', "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}");
                             $('#password-reg').prop('title', "Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters");
                             $('#strength-wrap').show();
                         }
@@ -434,7 +434,7 @@
 
              // Get controls
              var ctlBar = document.getElementById("password-strength");
-             console.log(nScore);
+            
              // Set new width
              var nScoreWth = nScore; //*1.25
              var nScoreLen = '0';
@@ -487,7 +487,7 @@
 
              if (strPassword.length == 0) {
                  ctlBar.style.backgroundColor = "";
-                 ctlBar.innerHTML = "";
+                 ctlBar.querySelector('.strengh-text').innerHTML = "";
              }
              else {
                  ctlBar.style.backgroundColor = strColor;

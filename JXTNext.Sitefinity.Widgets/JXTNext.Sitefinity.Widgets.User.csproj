@@ -303,19 +303,23 @@
     <Compile Include="App_Start\NinjectFactory.cs" />
     <Compile Include="App_Start\RazorGeneratorMvcStart.cs" />
     <Compile Include="Mvc\Controllers\MemberAppliedJobsController.cs" />
-    <Compile Include="Mvc\Controllers\TestController.cs" />
+    <Compile Include="Mvc\Controllers\MemberSavedJobsController.cs" />
+    <Compile Include="Mvc\Logics\MemberSavedJobBC.cs" />
     <Compile Include="Mvc\Models\JXTNext_MemberRegistrationModel.cs" />
+    <Compile Include="Mvc\Models\MemberSavedJob\MemberSavedJobItem.cs" />
     <Compile Include="Mvc\Models\JXTNext_ProfileEventHandler.cs" />
     <Compile Include="Mvc\Models\JXTNext_UserEventHandler.cs" />
     <Compile Include="Mvc\Models\SFEventRequestSession.cs" />
     <Compile Include="Mvc\Models\SFRequestSession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Widgets_UserModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
     <EmbeddedResource Include="Mvc\Views\MemberAppliedJobs\MemberAppliedJobs.List.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\MemberSavedJobs\MemberSavedJobs.List.cshtml" />
     <None Include="OpenAccessNuGet.targets" />
     <None Include="packages.config" />
     <None Include="web.config" />

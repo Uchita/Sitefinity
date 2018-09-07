@@ -14,6 +14,8 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
         IMemberApplicationResponse MemberCreateJobApplication(IMemberApplication memberApplication, string emailOverride);
         IMemberApplicationResponse MemberCreateJobApplication(IMemberApplication memberApplication);
         IMemberApplicationResponse MemberCreateJobApplication_FileUploadUpdate(IMemberApplication memberApplication);
+        IMemberSaveJobResponse MemberSaveJob(IMemberSaveJob saveJob);
+        IMemberGetSavedJobsResponse MemberGetSavedJobs();
         IMemberCreateJobAlertResponse MemberCreateJobAlert(IMemberCreateJobAlertRequest jobAlert);
         IMemberJobAlertsResponse MemberJobAlertsGet();
         IMemberJobAlertsResponse MemberJobAlertGet(int jobAlertId);

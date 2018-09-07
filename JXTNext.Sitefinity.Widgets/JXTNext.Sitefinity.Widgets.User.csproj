@@ -302,14 +302,18 @@
   <ItemGroup>
     <Compile Include="App_Start\NinjectFactory.cs" />
     <Compile Include="App_Start\RazorGeneratorMvcStart.cs" />
+    <Compile Include="Mvc\Controllers\MemberAppliedJobsController.cs" />
     <Compile Include="Mvc\Controllers\MemberSavedJobsController.cs" />
+    <Compile Include="Mvc\Logics\MemberAppliedJobBC.cs" />
     <Compile Include="Mvc\Logics\MemberSavedJobBC.cs" />
     <Compile Include="Mvc\Models\JXTNext_MemberRegistrationModel.cs" />
+    <Compile Include="Mvc\Models\MemberAppliedJob\MemberAppliedJobItem.cs" />
     <Compile Include="Mvc\Models\MemberSavedJob\MemberSavedJobItem.cs" />
     <Compile Include="Mvc\Models\JXTNext_ProfileEventHandler.cs" />
     <Compile Include="Mvc\Models\JXTNext_UserEventHandler.cs" />
     <Compile Include="Mvc\Models\SFEventRequestSession.cs" />
     <Compile Include="Mvc\Models\SFRequestSession.cs" />
+    <Compile Include="Mvc\StringResources\MemberAppliedJobsResources.cs" />
     <Compile Include="Mvc\StringResources\MemberSavedJobsResources.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Widgets_UserModule.cs" />
@@ -318,9 +322,12 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
+    <EmbeddedResource Include="Mvc\Views\MemberAppliedJobs\MemberAppliedJobs.List.cshtml" />
     <EmbeddedResource Include="Mvc\Views\MemberSavedJobs\MemberSavedJobs.List.cshtml" />
     <EmbeddedResource Include="Mvc\Views\MemberSavedJobs\DesignerView.Simple.cshtml" />
     <EmbeddedResource Include="Mvc\Views\MemberSavedJobs\DesignerView.Simple.json" />
+    <EmbeddedResource Include="Mvc\Views\MemberAppliedJobs\DesignerView.Simple.cshtml" />
+    <EmbeddedResource Include="Mvc\Views\MemberAppliedJobs\DesignerView.Simple.json" />
     <None Include="OpenAccessNuGet.targets" />
     <None Include="packages.config" />
     <None Include="web.config" />
@@ -335,7 +342,9 @@
       <Name>JXTNext.Sitefinity.Connector</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Mvc\Scripts\MemberAppliedJobs\designerview-simple.js" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mvc\Scripts\MemberSavedJobs\designerview-simple.js" />
   </ItemGroup>

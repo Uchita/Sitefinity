@@ -318,6 +318,33 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
                 return new JXTNext_MemberJobAlertDeleteResponse { Success = false, Errors = new List<string> { response.Response } };
         }
 
+        public IMemberAppliedJobResponse MemberAppliedJobsGet()
+        {
+            ConnectorGetRequest connectorRequest = new ConnectorGetRequest(HTTP_Requests_MaxWaitTime)
+            {
+                HeaderValues = base.HTTP_Request_HeaderValues,
+                TargetUri = new Uri(CONFIG_DataAccessTarget + $"/api/member/jobapplications")
+            };
+            ConnectorResponse response = JXTNext.Common.API.Connector.Get(connectorRequest);
+
+            //parse the response
+            bool actionSuccessful = response.Success;
+
+            if (actionSuccessful)
+            {
+                dynamic responseObj = JObject.Parse(response.Response);
+
+                if (responseObj["status"] == 200)
+                {
+                    return new JXTNext_MemberAppliedJobResponse { Success = true, MemberAppliedJobs = _memberMapper.MemberAppliedJob_ConvertToLocalEntity<MemberAppliedJob>(JsonConvert.DeserializeObject<dynamic>(responseObj["data"].ToString())) };
+                }
+                else
+                    return new JXTNext_MemberAppliedJobResponse { Success = false, Errors = JsonConvert.DeserializeObject<List<string>>(responseObj["errors"].ToString()) };
+            }
+            else
+                return new JXTNext_MemberAppliedJobResponse { Success = false, Errors = new List<string> { response.Response } };
+        }
+
         public bool MemberRegister(IMemberRegister memberDetails, out string errorMessage)
         {
             JXTNext_MemberRegister regRequest = memberDetails as JXTNext_MemberRegister;

@@ -145,8 +145,16 @@
             var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
 
             for (var item of filterData) {
+                var displayTitle = item.Name;
+                if (displayTitle == 'CountryLocationArea')
+                    displayTitle = 'Location';
+                else if (displayTitle == 'WorkType')
+                    displayTitle = 'Work Type';
+                else if (displayTitle == 'CompanyName')
+                    displayTitle = 'Company Name';
+
                 optionsArray[item.Name] = {
-                    title: item.Name,
+                    title: displayTitle,
                     data: item.Filters,
                     maxHeight: 500,
                     closedArrow: '<i class="fa fa-caret-right" aria-hidden="true"></i>',

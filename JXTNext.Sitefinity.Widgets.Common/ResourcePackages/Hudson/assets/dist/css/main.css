@@ -7382,6 +7382,8 @@ blockquote {
       min-width: 220px; }
       .page-wrapper .btn.btn-google:hover, .page-wrapper .btn.btn-google:focus, .page-wrapper .btn.btn-facebook:hover, .page-wrapper .btn.btn-facebook:focus {
         color: #fff; }
+    .page-wrapper .btn.btn-tag {
+      font-size: 1.2rem; }
   .page-wrapper .btn-block .btn {
     display: block;
     width: 100%; }
@@ -9560,6 +9562,13 @@ ul.breadcrumb {
 
 .spt {
   margin: 0 10px; }
+
+.save-job {
+  cursor: pointer;
+  font-size: 1.4rem; }
+
+.saved {
+  cursor: default; }
 
 .upload-section .box {
   border: 1px solid #01a3a4;

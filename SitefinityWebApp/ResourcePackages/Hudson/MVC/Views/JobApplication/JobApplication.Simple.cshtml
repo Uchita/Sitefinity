@@ -9,7 +9,7 @@
     <div class="alert alert-success">@ViewBag.ShowFilesUploadMessage</div>
 }
 <div class="login-form sign-in-with">
-    <form id="job-app-form" action="@Url.Action("ApplyJob","JobApplication")" method="post">
+    <form id="job-app-form" action="@Url.Action("ApplyJob","JobApplication")" method="post" enctype="multipart/form-data">
 
         <div class="row">
             <div class="col-xs-12 col-md-4 text-right"></div>
@@ -66,7 +66,7 @@
                             <label class="form-label" for="password-reg">Password*</label>
                         </div>
                         <div class="col-md-8">
-                            <input id="password-reg" type="password" name="Password" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" />
+                            <input id="password-reg" type="password" name="Password" class="form-control" pattern="(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" />
                             <span class="hidden alert alert-danger error-message wrongPassword-message">
                                 Your password is incorrect!
                             </span>
@@ -90,7 +90,7 @@
                 @if (Model.ApplicationStatus == JobApplicationStatus.Available)
                 {
 
-                    <div id="upload-files-container">
+                    <div id="upload-files-container" hidden>
 
                         <!-- Resume -->
                         <div class="form-group row">
@@ -160,13 +160,23 @@
                 }
                 else
                 {
-                    <h4>@Model.ApplicationStatus.ToString()</h4>
-                    <p>@Model.ApplicationMessage</p>
-                    if (Model.ApplicationStatus == JobApplicationStatus.NotAbleToCreateUser)
+                    if (Model.ApplicationStatus == JobApplicationStatus.Applied_Successful)
                     {
-                        //@ViewBag.RegisterPageUrl
-                        <a href="/register" title="@Model.ApplicationMessage">here</a>
+                        <div class="alert alert-success">@Model.ApplicationTitle</div>
                     }
+                    else
+                    {
+                        <div class="alert alert-danger">
+                            @Model.ApplicationTitle
+
+                            @if (Model.ApplicationStatus == JobApplicationStatus.NotAbleToCreateUser)
+                            {
+                                //@ViewBag.RegisterPageUrl
+                                <a href="/register" title="@Model.ApplicationTitle"> here</a>
+                            }
+                       </div>
+                    }
+                    
                 }
             </div>
 
@@ -198,7 +208,7 @@
     var uploadCoverModel = { UrlPath: '', FileName: '', Field: '', MIMEType: '', AuthToken: '' };
     var isGoogleResume = false;
     var isDropboxResume = false;
-    var resumeSelectedType = 'Local';
+    var resumeSelectedType = '';
     var coverLetterSelectedType = 'Local';
 
     $("#coverletter-selected-type").val(coverLetterSelectedType);
@@ -217,7 +227,7 @@
              var self = this;
              var fileUploadFlag = false;
              //checking the resume file upload
-             if ($("#application-resume").val() == "") {
+             if (resumeSelectedType == "" || resumeSelectedType.length == 0) {
                  fileUploadFlag = false;
                  $(".resume-message").removeClass('hidden');
                  return false;
@@ -227,27 +237,28 @@
 
              if ((appStatus == 'Available' && isUserLoggedIn == 'True') && fileUploadFlag || registerForm) {
                  self.submit();
-             }
-
-             var parm = { email: $('#userid').val(), password: $('#password-reg').val() };
-             var urlPath = $(location).attr('pathname') + "/ValidateUser";
-             $.ajax({
-                 type: 'POST',
-                 cache: false,
-                 url: urlPath,
-                 data: parm,
-                 dataType: 'Json',
-                 success: function (response) {
-                     if (response == true) {
-                         self.submit();
-                     } else {
-                         //if password wrong
-                         $('#password-reg').parent().find('.error-message.wrongPassword-message').removeClass('hidden');
+             } else {
+                 //for login email address & password check & submit login form
+                 var parm = { email: $('#userid').val(), password: $('#password-reg').val() };
+                 var urlPath = $(location).attr('pathname') + "/ValidateUser";
+                 $.ajax({
+                     type: 'POST',
+                     cache: false,
+                     url: urlPath,
+                     data: parm,
+                     dataType: 'Json',
+                     success: function (response) {
+                         if (response == true) {
+                             self.submit();
+                         } else {
+                             //if password wrong
+                             $('#password-reg').parent().find('.error-message.wrongPassword-message').removeClass('hidden');
+                         }
+                     },
+                     error: function (response) {
                      }
-                 },
-                 error: function (response) {
-                 }
-             });
+                 });
+             }
          });
 
 
@@ -305,7 +316,7 @@
                             registerForm = true;
                             $('#password-reg').prop('required', true);
                             $('#firstname-reg').prop('required', true);
-                            $('#password-reg').prop('pattern', "(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}");
+                            $('#password-reg').prop('pattern', "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}");
                             $('#password-reg').prop('title', "Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters");
                             $('#strength-wrap').show();
                         }
@@ -423,9 +434,9 @@
 
              // Get controls
              var ctlBar = document.getElementById("password-strength");
-             console.log(nScore);
+            
              // Set new width
-             var nScoreWth = nScore * 1.25;
+             var nScoreWth = nScore; //*1.25
              var nScoreLen = '0';
              if (nScoreWth >= 100) {
                  nScoreLen = '100%';
@@ -476,7 +487,7 @@
 
              if (strPassword.length == 0) {
                  ctlBar.style.backgroundColor = "";
-                 ctlBar.innerHTML = "";
+                 ctlBar.querySelector('.strengh-text').innerHTML = "";
              }
              else {
                  ctlBar.style.backgroundColor = strColor;
@@ -501,10 +512,7 @@
        dropboxResumeOptions = {
             // Required. Called when a user selects an item in the Chooser.
             success: function (files) {
-                $('.test').each(function () {
-                    $(this).val('');
-                });
-
+                
                 uploadResumeModel.UrlPath = files[0].link;
                 uploadResumeModel.FileName = files[0].name;
 
@@ -515,12 +523,14 @@
                     $('#uploadResumeJson').val(stringyModel);
                     $('#application-resume').val('');
                     $("#resume-selected-type").val(resumeSelectedType);
+                    $('.resume-name').text(files[0].name);
                 }
                 else {
                     coverLetterSelectedType = 'Dropbox';
                     $('#uploadCoverLetterJson').val(stringyModel);
                     $('#application-coverletter').val('');
                     $("#coverletter-selected-type").val(coverLetterSelectedType);
+                    $('.coverletter-name').text(files[0].name);
                 }
 
                 $('#dburl').text(files[0].link);
@@ -615,7 +625,6 @@
         function handleAuthResult(authResult) {
             if (authResult && !authResult.error) {
                 oauthToken = authResult.access_token;
-                document.getElementById('oAuthToken').innerHTML = authResult.access_token;
                 createPicker();
             }
         }
@@ -661,12 +670,14 @@
                     $('#uploadResumeJson').val(stringyModel);
                     $('#application-resume').val('');
                     $("#resume-selected-type").val(resumeSelectedType);
+                    $('.resume-name').text(name);
                 }
                 else {
                     coverLetterSelectedType = 'GoogleDrive';
                     $('#uploadCoverLetterJson').val(stringyModel);
                     $('#application-coverletter').val('');
                     $("#coverletter-selected-type").val(coverLetterSelectedType);
+                    $('.coverletter-name').text(name);
                 }
             }
 

@@ -38,6 +38,7 @@
                 <div class="col-sm-4 col-xs-12 text-right">
                     <a href='mailto:#:CustomData["ApplicationMethod.ApplicationEmail"]#'>Send email</a><br />
                                                                                                        <small>#:DateCreated#</small>
+                     <a href="##" class="save-job" data-jobid="#:JobID#">Save job</a>
                 </div>
             </div>
 
@@ -81,6 +82,34 @@
           var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
           var json = serializer.Serialize(Model);
       }
+
+    $(document).ready(function () {
+        $('.save-job').click(function (e) {
+            e.preventDefault();
+            var jobid = $(this).data('jobid');
+            var parm = { JobId: jobid };
+            var urlPath = $(location).attr('pathname') + "/SaveJob";
+            var self = this;
+            $.ajax({
+                type: 'POST',
+                cache: false,
+                url: urlPath,
+                data: parm,
+                dataType: 'Json',
+                success: function (response) {
+                    if (response.Success == true) { // Job Saved
+                        self.addClass("save");
+                    }
+                    else { // Job failed to save
+                        alert(response.Errors[0]);
+                    }
+                },
+                error: function (response) { // Error
+                }
+            });
+        });
+    });
+    
 
     var model = @Html.Raw(json);
     var isDesignMode = @Html.Raw(Json.Encode(@SystemManager.IsDesignMode));

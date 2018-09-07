@@ -48,7 +48,7 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Logics
             return null;
         }
 
-        public bool MemberJobAlertCreate(JobAlertViewModel jobAlertData)
+        public IMemberCreateJobAlertResponse MemberJobAlertCreate(JobAlertViewModel jobAlertData)
         {
 
             IMemberCreateJobAlertRequest request = new JXTNext_MemberCreateJobAlertRequest
@@ -60,14 +60,14 @@ namespace JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Logics
             };
             IMemberCreateJobAlertResponse response = _BLconnector.MemberCreateJobAlert(request);
 
-            return response.Success;
+            return response;
         }
 
-        public bool MemberJobAlertDelete(int jobAlertId)
+        public IBaseResponse MemberJobAlertDelete(int jobAlertId)
         {
             IBaseResponse deleteResponse = _BLconnector.MemberJobAlertDelete(jobAlertId);
 
-            return deleteResponse.Success;
+            return deleteResponse;
         }
 
         private JobAlertViewModel ConvertJobAlertData(dynamic data)

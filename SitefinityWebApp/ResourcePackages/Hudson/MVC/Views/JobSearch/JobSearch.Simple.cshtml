@@ -63,7 +63,6 @@
                             <div class="col-xs-6 col-sm-4 col-md-4">
                                 <div class="form-group">
                                     <div class="select">
-                                       <input type="hidden" name="Filters[@counter].rootId" value='@dropdownControl.FilterType' />
                                         <select class="form-control" name="Filters[@counter].values">
                                             <option value="" disabled selected>@dropdownControl.PlaceholderText</option>
                                             @foreach (dynamic itemName in _idNamesLevelsPair)
@@ -101,7 +100,7 @@
                         <div class="col-xs-5 col-sm-4 col-md-4">
                             <div class="filter">
                                 <a data-filter-trigger="@list.ID">@list.PlaceholderText <em class="fas fa-angle-down"></em></a>
-                                
+                                <em class="fas fa-angle-up" data-filter-trigger="close"></em>
                             </div>
                         </div>
                     }

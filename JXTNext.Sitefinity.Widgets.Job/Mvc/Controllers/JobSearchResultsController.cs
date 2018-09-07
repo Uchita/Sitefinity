@@ -166,7 +166,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         [HttpPost]
         public JsonResult SaveJob(int JobId)
         {
-            JXTNext_MemberSaveJobRequest request = new JXTNext_MemberSaveJobRequest() { JobId = 17589 };
+            JXTNext_MemberSaveJobRequest request = new JXTNext_MemberSaveJobRequest() { JobId = JobId };
             JXTNext_MemberSaveJobResponse response = _BLConnector.MemberSaveJob(request) as JXTNext_MemberSaveJobResponse;
 
             return new JsonResult { Data = response };

@@ -85,10 +85,10 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
             var stausMessage = "A Job Alert has been created successfully.";
             var alertStatus = JobAlertStatus.SUCCESS;
-            var status = _jobAlertsBC.MemberJobAlertCreate(model);
-            if (!status)
+            var response = _jobAlertsBC.MemberJobAlertCreate(model);
+            if (!response.Success)
             {
-                stausMessage = "Unable to create job alert record.";
+                stausMessage = response.Errors.First();
                 alertStatus = JobAlertStatus.CREATE_FAILED;
             }
 
@@ -181,10 +181,10 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             // We need to pass this job alert id to it
             var statusMessage = "A Job Alert has been deleted successfully.";
             var alertStatus = JobAlertStatus.SUCCESS;
-            var status = _jobAlertsBC.MemberJobAlertDelete(id);
-            if (!status)
+            var response = _jobAlertsBC.MemberJobAlertDelete(id);
+            if (!response.Success)
             {
-                statusMessage = "Unable to delete job alert record.";
+                statusMessage = response.Errors.First();
                 alertStatus = JobAlertStatus.DELETE_FAILED;
             }
 

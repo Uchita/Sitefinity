@@ -43,17 +43,17 @@ namespace JXTNext.Sitefinity.Widgets.User.Mvc.Controllers
             _memberAppliedJobBC = memberAppliedJobBC;
         }
 
-        // GET: JobDetails
+        // GET: Applied Jobs
         public ActionResult Index()
         {
             bool GetListSuccess = _memberAppliedJobBC.GetList(out List<MemberAppliedJobItem> displayItems);
             ViewBag.JobDetailsPageUrl = SitefinityHelper.GetPageUrl(this.JobDetailsPageId);
 
-            //if (GetListSuccess)
-            //{
-            //    var fullTemplateName = this.templateNamePrefix + this.TemplateName;
-            //    return View(fullTemplateName, displayItems);
-            //}
+            if (GetListSuccess)
+            {
+                var fullTemplateName = this.templateNamePrefix + this.TemplateName;
+                return View(fullTemplateName, displayItems);
+            }
 
             return null;
         }

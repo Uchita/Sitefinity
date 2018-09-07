@@ -18,6 +18,7 @@ using System.ComponentModel;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Advertisers;
 using Telerik.Sitefinity.Security.Model;
 using System.Collections.Specialized;
+using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -160,6 +161,15 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             }
 
             return PartialView("_JobSearchResults", dynamicJobResultsList);
+        }
+
+        [HttpPost]
+        public JsonResult SaveJob(int JobId)
+        {
+            JXTNext_MemberSaveJobRequest request = new JXTNext_MemberSaveJobRequest() { JobId = JobId };
+            JXTNext_MemberSaveJobResponse response = _BLConnector.MemberSaveJob(request) as JXTNext_MemberSaveJobResponse;
+
+            return new JsonResult { Data = response };
         }
 
         /// <summary>

@@ -23,6 +23,9 @@
 @using Telerik.OpenAccess;
 @using Telerik.Sitefinity.Web;
 
+@*Needed for custom thumbnail*@
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Modules.Libraries;
 
 <div class="@Model.CssClass">
 
@@ -35,7 +38,7 @@
                 <div class="thumbnail card-basic small-caption">
                     @if (item.Fields.HeaderImage != null)
                     {
-                        <a href="@navigateUrl" class="img-wrap" title="@item.Fields.HeaderImage.Fields.Title"><img alt="@item.Fields.HeaderImage.Fields.Title" src="@item.Fields.HeaderImage.Fields.ThumbnailUrl" /></a>
+                        <a href="@navigateUrl" class="img-wrap" title="@item.Fields.HeaderImage.Fields.Title"><img alt="@item.Fields.HeaderImage.Fields.Title" src="@MediaContentExtensions.ResolveThumbnailUrl(item.Fields.HeaderImage.DataItem, "thumbartic")" /></a>
                     }
 
                     <div class="caption">

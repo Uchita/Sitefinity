@@ -9,68 +9,101 @@
 
 @if (Model != null)
 {
-    <h3>Create job Alert</h3> <br />
-    <h4>Alert Details</h4> <br />
+    <h1>Create job Alert</h1>
+    <h2>Alert Details</h2>
     <form method="post" enctype="multipart/form-data" onsubmit="return preventSubmit();">
         @{
             int counter = 0;
         }
+        <div class="field-wrapper">
+            <div class="row form-group">
+                <div class="col-md-4 text-right">
+                    <label>Name*</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" name="Name" required class="form-control" />
+                    <div class="form-fields-group">
+                        <input type="checkbox" name="EmailAlerts" value="true" /> <label class="lbl">Send Email Alerts</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-4 text-right">
+                    <label>Keywords</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" name="Keywords" class="form-control" />
+                </div>
+            </div>
 
-        <label>Name<span style="color:red">*</span></label><br />
-        <input type="text" name="Name" required /><br />
-        <input type="checkbox" name="EmailAlerts" value="true" /> <label>Send Email Alerts</label> <br />
 
-        <label>Keywords</label><br />
-        <input type="text" name="Keywords" /> <br /><br />
-
-        @foreach (var item in Model)
-        {
-            if (item.Name != "Salary")
+            @foreach (var item in Model)
             {
-                <input type="hidden" name="Filters[@counter].RootId" value='@item.Name' />
-                <select id=@string.Format("selected-{0}", item.Name) name="Filters[@counter].Values" style="display:none" multiple></select>
-                <div class="dropdown dropdown-tree" id=@item.Name></div> <br />
-                counter++;
-            }
-            else if (item.Name == "Salary")
-            {
-                <input type="hidden" name="SalaryStringify" id="salary-model-bind-hidden"/>
-                <select class="SalaryRangeSelect">
-                    <option value="-1" selected>Choose Salary</option>
-                    @foreach (var salaryItem in item.Filters)
-                    {
-                        <option value="@salaryItem.ID">@salaryItem.Label</option>
-                    }
-                </select>
-                foreach (var salaryItem in item.Filters)
+                if (item.Name != "Salary")
                 {
-                    var lower = 15000;
-                    var upper = 200000;
-                    if (salaryItem.Label == "Hourly Salary")
-                    {
-                        lower = 18;
-                        upper = 200;
-                    }
-                    <div class="salaryrangewrapper visible-hidden" id="@salaryItem.ID">
-
-                        <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
-                             data-cur_min="@lower" data-cur_max="@upper">
-
-                            <div class="bar"></div>
-                            <div class="leftGrip"></div>
-                            <div class="rightGrip"></div>
+                    <div class="row form-group">
+                        <div class="col-md-4 text-right">
+                            <label>@item.Name</label>
                         </div>
-                        <div class="leftLabel">$<span>@lower</span></div>
-                        <div class="rightLabel">$<span>@upper</span></div>
+                        <div class="col-md-8">
+                            <input type="hidden" name="Filters[@counter].RootId" value='@item.Name' />
+                            <select id=@string.Format("selected-{0}", item.Name) name="Filters[@counter].Values" style="display:none" multiple class="form-control"></select>
+                            <div class="dropdown dropdown-tree" id=@item.Name></div>
+                        </div>
+                    </div>
+                    counter++;
+                }
+                else if (item.Name == "Salary")
+                {
+                    <div class="row form-group">
+                        <div class="col-md-4 text-right">
+                            <label>@item.Name</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="hidden" name="SalaryStringify" id="salary-model-bind-hidden" />
+                            <select class="SalaryRangeSelect form-control">
+                                <option value="-1" selected>Choose Salary</option>
+                                @foreach (var salaryItem in item.Filters)
+                                {
+                                    <option value="@salaryItem.ID">@salaryItem.Label</option>
+                                }
+                            </select>
+                            @foreach (var salaryItem in item.Filters)
+                            {
+                                var lower = 15000;
+                                var upper = 200000;
+                                if (salaryItem.Label == "Hourly Salary")
+                                {
+                                    lower = 18;
+                                    upper = 200;
+                                }
+                                <div class="salaryrangewrapper visible-hidden" id="@salaryItem.ID">
 
+                                    <div class="nstSlider" data-range_min="@lower" data-range_max="@upper"
+                                         data-cur_min="@lower" data-cur_max="@upper">
+
+                                        <div class="bar"></div>
+                                        <div class="leftGrip"></div>
+                                        <div class="rightGrip"></div>
+                                    </div>
+                                    <div class="leftLabel">$<span>@lower</span></div>
+                                    <div class="rightLabel">$<span>@upper</span></div>
+
+                                </div>
+
+                            } @*end of for each*@
+                        </div>
                     </div>
                 }
             }
-        }
-
-        <input type="submit" value="SAVE" class="btn btn-primary" />
-
-    </form>
+        <div class="row form-group">
+            <div class="col-md-4 text-right"></div>
+            <div class="col-md-4">
+                <input type="submit" value="SAVE" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</form>
 }
 
 
@@ -145,8 +178,16 @@
             var filterData = JSON.parse('@Html.Raw(Json.Encode(Model))');
 
             for (var item of filterData) {
+                var displayTitle = item.Name;
+                if (displayTitle == 'CountryLocationArea')
+                    displayTitle = 'Location';
+                else if (displayTitle == 'WorkType')
+                    displayTitle = 'Work Type';
+                else if (displayTitle == 'CompanyName')
+                    displayTitle = 'Company Name';
+
                 optionsArray[item.Name] = {
-                    title: item.Name,
+                    title: displayTitle,
                     data: item.Filters,
                     maxHeight: 500,
                     closedArrow: '<i class="fa fa-caret-right" aria-hidden="true"></i>',

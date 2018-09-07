@@ -188,6 +188,10 @@ blockquote{
                 color: #fff;
             }
         }
+
+        &.btn-tag{
+            font-size: 1.2rem;
+        }
     }
     
 
@@ -1540,6 +1544,12 @@ ul.vertical-ul {
     }
 }
 /*#endregion Vertical navigation*/
+
+.dropdown > a{
+    &:hover, &:focus{
+        text-decoration: none!important;
+    }
+}
 
 // Pagination
 .pagination{

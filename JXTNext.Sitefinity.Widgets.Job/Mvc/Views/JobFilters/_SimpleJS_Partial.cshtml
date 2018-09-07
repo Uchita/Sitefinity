@@ -131,8 +131,17 @@
                 if (item.Name == 'Salary') {
                     isSalaryExists = true;
                 }
+  
+                var displayTitle = item.Name;
+                if (displayTitle == 'CountryLocationArea')
+                    displayTitle = 'Location';
+                else if (displayTitle == 'WorkType')
+                    displayTitle = 'Work Type';
+                else if (displayTitle == 'CompanyName')
+                    displayTitle = 'Company Name';
+
                 optionsArray[prefixIdText+item.Name] = {
-                    title: item.Name,
+                    title: displayTitle,
                     data: item.Filters,
                     maxHeight: 'none',
                     closedArrow: '<i class="fa fa-caret-right" aria-hidden="true"></i>',

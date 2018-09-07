@@ -189,6 +189,10 @@ $(document).ready(function () {
 
     $('.owl-consultants').owlCarousel({
         margin: 25,
+        autoplay: true,
+        autoplayTimeout: 5000,
+        autoplayHoverPause: true,
+        loop: true,
         responsive: {
             0: {
                 items: 1

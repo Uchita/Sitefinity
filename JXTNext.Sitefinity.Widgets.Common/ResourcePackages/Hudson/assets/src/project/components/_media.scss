@@ -589,6 +589,9 @@
     main .page-section{
         padding: 30px 0;
     }
+    .page-wrapper main{
+        padding-top: 60px!important;
+    }
     header {
 
         .navbar-fixed-top:before {
@@ -820,7 +823,7 @@
                 left: 0;
                 bottom: 0;
                 width: 100%;
-                position: absolute;
+                position: fixed;
                 padding: 15px;
             }
     
@@ -910,6 +913,17 @@
     }
     iframe{
         width: 100%;
+    }
+    .testimonials-slider.testimonials-simple{
+        .quote{
+            top: 5px;
+        }
+        .quote.text-right{
+            right: 15px;
+        }
+        .testimonial{
+            padding: 40px 70px 10px;
+        }
     }
     
 }
@@ -1056,6 +1070,10 @@
         }
     }
     .testimonials-slider.testimonials-simple{
+        
+        .item, .owl-item>div{
+            padding-bottom: 50px;
+        }
         .testimonial{
             padding: 50px 0 10px;
         }
@@ -1070,7 +1088,7 @@
             top: 3px;
             left: 0;
             &.text-right{
-                bottom: -40px;
+                bottom: 0;
             }
         }
     }

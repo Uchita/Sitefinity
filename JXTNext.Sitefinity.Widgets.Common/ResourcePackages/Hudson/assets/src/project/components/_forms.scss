@@ -266,8 +266,29 @@
     }
 
     .field-wrapper{
-        padding-top: 30px;
+        padding-top: 16px;
     }
+    .dropdown-tree{
+        .dropdown-toggle{
+            width: 100%;
+            text-align: left;
+            padding: 12px 10px;
+            color: #999;
+            text-transform: none;
+            font: 1.4rem/1 AkzidGroProRegular,sans-serif;
+            position: relative;
+            &:hover, &:focus{
+                background: none;
+                color: #999;
+            }
+            .caret{
+                position: absolute;
+                right: 10px;
+                top: 17px;
+            }
+        }
+    }
+
     .apply-with {
         .btn {
 

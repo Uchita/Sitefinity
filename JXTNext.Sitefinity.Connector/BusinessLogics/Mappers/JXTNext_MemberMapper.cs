@@ -62,5 +62,26 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
             }
             return savedJobs as List<T>;
         }
+
+        public List<T> MemberAppliedJob_ConvertToLocalEntity<T>(dynamic data) where T : class
+        {
+            List<MemberAppliedJob> appliedJobs = new List<MemberAppliedJob>();
+            foreach (var d in data)
+            {
+                MemberAppliedJob local = new MemberAppliedJob
+                {
+                    //{\"Id\":1,\"SiteId\":10,\"MemberId\":3,\"JobId\":17584,\"_JobTitle\":\"Redundant\",\"DateAdded\":153245}
+                    Id = d["Id"],
+                    //= d["MemberId"],
+                    JobId = d["JobId"],
+                    JobName = d["JobName"],
+                    DateCreated = d["DateCreated"]
+                };
+
+                appliedJobs.Add(local);
+            }
+            return appliedJobs as List<T>;
+        }
+
     }
 }

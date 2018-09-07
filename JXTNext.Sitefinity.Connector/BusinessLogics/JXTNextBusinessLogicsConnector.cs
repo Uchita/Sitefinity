@@ -336,8 +336,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics
 
                 if (responseObj["status"] == 200)
                 {
-                    dynamic jobAlerts = JsonConvert.DeserializeObject<dynamic>(responseObj["data"].ToString());
-                    return new JXTNext_MemberAppliedJobResponse { Success = true, MemberAppliedJobs = jobAlerts };
+                    return new JXTNext_MemberAppliedJobResponse { Success = true, MemberAppliedJobs = _memberMapper.MemberAppliedJob_ConvertToLocalEntity<MemberAppliedJob>(JsonConvert.DeserializeObject<dynamic>(responseObj["data"].ToString())) };
                 }
                 else
                     return new JXTNext_MemberAppliedJobResponse { Success = false, Errors = JsonConvert.DeserializeObject<List<string>>(responseObj["errors"].ToString()) };

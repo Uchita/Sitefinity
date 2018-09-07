@@ -153,7 +153,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                     {
                         #region Entered email does not exists in sitefinity User list
                         membershipCreateStatus = SitefinityHelper.CreateUser(applyJobModel.Email, applyJobModel.Password, applyJobModel.FirstName, applyJobModel.LastName, applyJobModel.Email, applyJobModel.PhoneNumber,
-                        null, null, true);
+                        null, null, true, true);
 
                         if (membershipCreateStatus != MembershipCreateStatus.Success)
                         {

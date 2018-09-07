@@ -160,39 +160,71 @@ namespace JXTNext.Sitefinity.Common.Helpers
             return userManager.GetUser(userId);
         }
 
-        public static MembershipCreateStatus CreateUser(string username, string password, string firstName, string lastName, string mail, string phoneNumber, string secretQuestion, string secretAnswer, bool isApproved)
+        public static MembershipCreateStatus CreateUser(string username, string password, string firstName, string lastName, string mail, string phoneNumber, string secretQuestion, string secretAnswer, bool isApproved, bool assignMemberRole = false)
         {
             UserManager userManager = UserManager.GetManager();
             UserProfileManager profileManager = UserProfileManager.GetManager();
-
-            userManager.Provider.SuppressSecurityChecks = true;
-            profileManager.Provider.SuppressSecurityChecks = true;
-
+            var userMangagerSecurityChek = userManager.Provider.SuppressSecurityChecks;
+            var profileMangagerSecurityChek = profileManager.Provider.SuppressSecurityChecks;
             MembershipCreateStatus status;
 
-            User user = userManager.CreateUser(username, password, mail, secretQuestion, secretAnswer, isApproved, null, out status);
-
-            if (status == MembershipCreateStatus.Success)
+            try
             {
-                SitefinityProfile sfProfile = profileManager.CreateProfile(user, Guid.NewGuid(), typeof(SitefinityProfile)) as SitefinityProfile;
+                userManager.Provider.SuppressSecurityChecks = true;
+                profileManager.Provider.SuppressSecurityChecks = true;
+                User user = userManager.CreateUser(username, password, mail, secretQuestion, secretAnswer, isApproved, null, out status);
 
-                if (sfProfile != null)
+                if (status == MembershipCreateStatus.Success)
                 {
-                    sfProfile.FirstName = firstName;
-                    sfProfile.LastName = lastName;
-                    sfProfile.SetValue("PhoneNumber", phoneNumber);
+                    SitefinityProfile sfProfile = profileManager.CreateProfile(user, Guid.NewGuid(), typeof(SitefinityProfile)) as SitefinityProfile;
+
+                    if (sfProfile != null)
+                    {
+                        sfProfile.FirstName = firstName;
+                        sfProfile.LastName = lastName;
+                        sfProfile.SetValue("PhoneNumber", phoneNumber);
+                    }
+
+                    userManager.SaveChanges();
+                    profileManager.RecompileItemUrls(sfProfile);
+                    profileManager.SaveChanges();
+
+                    if (assignMemberRole)
+                        AssisgnUserRole(user, "Member");
                 }
-
-                userManager.SaveChanges();
-                profileManager.RecompileItemUrls(sfProfile);
-                profileManager.SaveChanges();
-
+            }
+            finally // Reset the security check
+            {
+                userManager.Provider.SuppressSecurityChecks = userMangagerSecurityChek;
+                profileManager.Provider.SuppressSecurityChecks = profileMangagerSecurityChek;
             }
 
-            userManager.Provider.SuppressSecurityChecks = false;
-            profileManager.Provider.SuppressSecurityChecks = false;
-
             return status;
+        }
+
+       public static void AssisgnUserRole(User user, string roleName)
+        {
+            if(user != null && !String.IsNullOrEmpty(roleName))
+            {
+                var roleManager = RoleManager.GetManager();
+                var securityCheck = roleManager.Provider.SuppressSecurityChecks;
+                try
+                {
+                    roleManager.Provider.SuppressSecurityChecks = true;
+                    var role = roleManager.GetRole(roleName);
+                    if (role != null)
+                    {
+                        roleManager.AddUserToRole(user, role);
+                        roleManager.SaveChanges();
+                    }
+                    
+                }
+
+                finally // Reset the security check
+                {
+                    roleManager.Provider.SuppressSecurityChecks = securityCheck;
+                }
+            }
         }
 
         public static bool IsUserVerified(string email, string password)

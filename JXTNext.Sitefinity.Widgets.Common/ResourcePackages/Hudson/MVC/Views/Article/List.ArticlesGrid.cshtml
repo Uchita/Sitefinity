@@ -23,11 +23,9 @@
 @using Telerik.OpenAccess;
 @using Telerik.Sitefinity.Web;
 
-@Html.StyleSheet(Url.WidgetContent("/Mvc/Styles/kendo.common.min.css"), "bottom")
-@Html.StyleSheet(Url.WidgetContent("/Mvc/Styles/kendo.default.min.css"), "bottom")
-@Html.StyleSheet(Url.WidgetContent("/Mvc/Styles/kendo.default.mobile.min.css"), "bottom")
+@using Telerik.Sitefinity.Modules.Pages;
+@using Telerik.Sitefinity.Modules.Libraries;
 
-@Html.Script(ScriptRef.KendoAll, "top", false)
 
 @*Recursive function to get the classification "Article" list as a Filter*@
 @helper ProcessCategories(HierarchicalTaxon taxon)
@@ -35,7 +33,7 @@
     if (taxon != null)
     {
         var title = taxon.Title;
-     
+
         <li><a href="/insights/articles/@taxon.UrlName.ToString()" data-filter="@taxon.Title">@taxon.Title</a></li>
 
         if (taxon.Subtaxa != null && taxon.Subtaxa.Count > 0)
@@ -46,82 +44,6 @@
                 ProcessCategories(subTaxon);
             }
         }
-    }
-}
-
-@functions{
-
-    public class ArticlesModel
-    {
-        public string Title { get; set; }
-        public string NavigateUrl { get; set; }
-        public string TaxonTitle { get; set; }
-        public string DatePublished { get; set; }
-        public string Summary { get; set; }
-        public string HeaderImagePath { get; set; }
-        public string HeaderImageTitle { get; set; }
-        public bool IsHeaderImage { get; set; }
-    }
-}
-
-@{
-
-    List<ArticlesModel> articlesModel = new List<ArticlesModel>();
-
-    foreach (var item in Model.Items)
-    {
-        var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
-        var publishedDate = item.GetDateTime("PublicationDate", "MMM d, yyyy, HH:mm tt");
-        string taxonTitle = "";
-        bool isHeaderImage = false;
-
-        //foreach (var taxon in item.GetHierarchicalTaxons("Category"))
-        //{
-        //    taxonTitle = @Html.HtmlSanitize(taxon.Title.ToString()).ToString();
-        //    break;
-        //}
-        List<string> filterValues = new List<string>();
-        var articleIds = item.Fields.articles;
-        foreach (var taxonItem in articleIds)
-        {
-            Guid articleID = new Guid(taxonItem.ToString());
-            var taxonManager = TaxonomyManager.GetManager();
-            var taxon = taxonManager.GetTaxa<HierarchicalTaxon>().Where(t => t.Id == articleID).ToList().FirstOrDefault();
-            filterValues.Add(taxon.Name);
-            taxonTitle = string.Join(", ", filterValues);
-        }
-
-        var summary = Html.HtmlSanitize((string)item.Fields.Summary).ToString();
-        string trimSummary = !String.IsNullOrWhiteSpace(summary) && summary.Length >= 150 ? summary.Substring(0, 120) + "..." : summary;
-        string headerImagePath = "";
-        string headerImageTitle = "";
-        if (item.Fields.HeaderImage != null)
-        {
-            headerImagePath = item.Fields.HeaderImage.Fields.ThumbnailUrl;
-            headerImageTitle = item.Fields.HeaderImage.Fields.Title;
-            isHeaderImage = true;
-        }
-
-        articlesModel.Add(new ArticlesModel()
-        {
-            Title = @Html.HtmlSanitize((string)item.Fields.Title).ToString(),
-            NavigateUrl = navigateUrl,
-            TaxonTitle = taxonTitle,
-            DatePublished = publishedDate,
-            Summary = trimSummary,
-            HeaderImagePath = headerImagePath,
-            HeaderImageTitle = headerImageTitle,
-            IsHeaderImage = isHeaderImage
-        });
-    }
-    string articlesJson = JsonConvert.SerializeObject(articlesModel);
-
-    var manager = DynamicModuleManager.GetManager(Model.ProviderName);
-    var articleTotalItemsCount = manager.GetDataItems(Model.ContentType).Where(x => x.Status == Telerik.Sitefinity.GenericContent.Model.ContentLifecycleStatus.Live).ToList().Count;
-    int articleCurrentItemsCount = 0;
-    if (Model != null && Model.Items != null)
-    {
-        articleCurrentItemsCount = Model.Items.Count();
     }
 }
 
@@ -149,9 +71,9 @@
 
                         foreach (var taxon in topLovelTaxa)
                         {
-                            
+
                             var hierarchicalTaxon = taxon as HierarchicalTaxon;
-                            
+
                             var dropCls = "";
                             if (hierarchicalTaxon.Subtaxa != null && hierarchicalTaxon.Subtaxa.Count > 0)
                             {
@@ -184,22 +106,53 @@
                 <li><a href="@SiteMapBase.GetActualCurrentNode().Url.ToString().Substring(1)/">show all</a></li>
             </ul>
         </div>
-        <div class="text-right hidden">
-            <div id="data-holder" data-model="@articlesJson" style="display:none"></div>
-            @*<span class="articles-top-displaying">@articleCurrentItemsCount of @articleTotalItemsCount articles</span>*@
-            <select id="sortOrder" class="default-select">
-                <option selected="selected" value="">Recently posted</option>
-                <option value="Old">Old</option>
-                <option value="AZ">A-Z</option>
-                <option value="ZA">Z-A</option>
-            </select>
-        </div>
+
     </div>
 
 
-    <div class="demo-section k-content wide">
-        <div id="listView" class="row long-card-basic-list flex"></div>
-        <div id="pager" class="k-pager-wrap"></div>
+    <div class="row long-card-basic-list flex">
+        @foreach (var item in Model.Items)
+        {
+            var navigateUrl = HyperLinkHelpers.GetDetailPageUrl(item, ViewBag.DetailsPageId, ViewBag.OpenInSamePage, Model.UrlKeyPrefix);
+
+            <div class="col-md-4">
+                <div class="thumbnail card-basic small-caption">
+                    @if (item.Fields.HeaderImage.DataItem != null)
+                    {
+                        <a href="@navigateUrl" class="img-wrap" title="@item.Fields.HeaderImage.Fields.Title"><img alt="@item.Fields.HeaderImage.Fields.Title" src="@MediaContentExtensions.ResolveThumbnailUrl(item.Fields.HeaderImage.DataItem, "thumbartic")" /></a>
+                    }
+                    @*@MediaContentExtensions.ResolveThumbnailUrl(item.Fields.Pic.DataItem, "thumbcrop4")*@
+
+                    <div class="caption">
+                        <p class="color-light text-uppercase font-medium ">
+                            @{
+                                List<string> filterValues = new List<string>();
+                                var articleIds = item.Fields.articles;
+                                foreach (var taxonItem in articleIds)
+                                {
+                                    Guid articleID = new Guid(taxonItem.ToString());
+                                    var taxonManager = TaxonomyManager.GetManager();
+                                    var taxon = taxonManager.GetTaxa<HierarchicalTaxon>().Where(t => t.Id == articleID).ToList().FirstOrDefault();
+                                    filterValues.Add(taxon.Title);
+                                }
+                            }
+                            <small>
+                                @(string.Join(", ", filterValues))
+                            </small>
+                        </p>
+                        <h4>@Html.HtmlSanitize((string)item.Fields.Title)</h4>
+                        @{
+                            var summary = Html.HtmlSanitize((string)item.Fields.Summary).ToString();
+                            string trimSummary = !String.IsNullOrWhiteSpace(summary) && summary.Length >= 120 ? summary.Substring(0, 120) + "..." : summary;
+                        }
+                        <p>@trimSummary</p>
+                        <a class="btn btn-more" href="@navigateUrl"></a>
+                    </div>
+
+                </div>
+            </div>
+        }
+
     </div>
 
     @if (Model.ShowPager)
@@ -211,85 +164,3 @@
 
 
 </div>
-
-<script type="text/x-kendo-template" id="template">
-
-    <div class="col-md-4">
-        <div class="thumbnail card-basic small-caption">
-            # if(data.IsHeaderImage == true){#
-            <a href="#:NavigateUrl#" class="img-wrap"><img alt="" src="#:HeaderImagePath#" title="#:HeaderImageTitle#" /></a>
-            #}#
-            <div class="caption">
-                <p class="color-light text-uppercase font-medium ">
-                    <small>#:TaxonTitle#</small>
-                </p>
-                <h4>#:Title#</h4>
-                <p>#:Summary#</p>
-                <a class="btn btn-more" href="#:NavigateUrl#"></a>
-            </div>
-
-        </div>
-    </div>
-
-</script>
-
-<script type="text/javascript">
-
-    $(document).ready(function () {
-        var dataModel = $("#data-holder").data('model');
-        renderData();
-
-        $("#sortOrder").change(function () {
-            renderData();
-        });
-
-        function renderData() {
-            var dataSource = new kendo.data.DataSource({
-                data: dataModel,
-                total: 3
-            });
-
-            var sorttext = getSortOrder();
-            var token = sorttext.split(':');
-
-            dataSource.sort({ field: token[0], dir: token[1] });
-
-            $("#listView").kendoListView({
-                dataSource: dataSource,
-                template: kendo.template($("#template").html())
-            });
-        }
-
-        function getSortOrder() {
-            var sortValue = $("#sortOrder").val();
-            switch (sortValue) {
-                case 'Old':
-                    return 'DatePublished:asc';
-                    break;
-                case 'AZ':
-                    return 'Title:asc';
-                    break;
-                case 'ZA':
-                    return 'Title:desc';
-                    break;
-
-                default:
-                    return 'DatePublished:desc';
-                    break;
-            }
-        };
-    });
-</script>
-
-<style>
-    #listView {
-        border: none;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-    }
-
-        #listView div {
-            -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-        }
-</style>

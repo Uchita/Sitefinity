@@ -8848,7 +8848,8 @@ ul.breadcrumb {
     width: 100%; }
   .thumbnail.card-basic .img-wrap {
     display: block;
-    height: 255px; }
+    height: 255px;
+    overflow: hidden; }
     .thumbnail.card-basic .img-wrap img {
       width: auto;
       max-width: 150%;
@@ -9285,6 +9286,21 @@ ul.breadcrumb {
           margin-right: 10px; }
   .page-wrapper .field-wrapper {
     padding-top: 16px; }
+  .page-wrapper .dropdown-tree .dropdown-toggle {
+    width: 100%;
+    text-align: left;
+    padding: 12px 10px;
+    color: #999;
+    text-transform: none;
+    font: 1.4rem/1 AkzidGroProRegular,sans-serif;
+    position: relative; }
+    .page-wrapper .dropdown-tree .dropdown-toggle:hover, .page-wrapper .dropdown-tree .dropdown-toggle:focus {
+      background: none;
+      color: #999; }
+    .page-wrapper .dropdown-tree .dropdown-toggle .caret {
+      position: absolute;
+      right: 10px;
+      top: 17px; }
   .page-wrapper .apply-with .btn.btn-indeed {
     background: #f85402 url(../images/indeedBtn.png) no-repeat 50% 50%; }
   .page-wrapper .apply-with .btn.btn-linkedin {

@@ -16,10 +16,12 @@ using System.Text.RegularExpressions;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Member;
 using JXTNext.Sitefinity.Widgets.User.Mvc.Logics;
 using JXTNext.Sitefinity.Widgets.User.Mvc.Models.MemberAppliedJob;
+using JXTNext.Sitefinity.Widgets.User.Mvc.StringResources;
 
 namespace JXTNext.Sitefinity.Widgets.User.Mvc.Controllers
 {
     [EnhanceViewEngines]
+    [Localization(typeof(MemberAppliedJobsResources))]
     [ControllerToolboxItem(Name = "Member_AppliedJobs_MVC", Title = "JXT Member Applied Jobs", SectionName = "JXTNext.Member", CssClass = MemberAppliedJobsController.WidgetIconCssClass)]
     public class MemberAppliedJobsController : Controller
     {
@@ -34,6 +36,7 @@ namespace JXTNext.Sitefinity.Widgets.User.Mvc.Controllers
         /// </summary>
         /// <value></value>
         public string TemplateName { get => this.templateName; set => this.templateName = value; }
+        public string JobDetailsPageId { get; set; }
 
         public MemberAppliedJobsController(MemberAppliedJobBC memberAppliedJobBC)
         {
@@ -44,6 +47,7 @@ namespace JXTNext.Sitefinity.Widgets.User.Mvc.Controllers
         public ActionResult Index()
         {
             bool GetListSuccess = _memberAppliedJobBC.GetList(out List<MemberAppliedJobItem> displayItems);
+            ViewBag.JobDetailsPageUrl = SitefinityHelper.GetPageUrl(this.JobDetailsPageId);
 
             //if (GetListSuccess)
             //{

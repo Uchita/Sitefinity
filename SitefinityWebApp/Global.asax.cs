@@ -57,6 +57,7 @@ namespace SitefinityWebApp
             Res.RegisterResource<MapsResources>();
             Res.RegisterResource<JobApplicationResources>();
             Res.RegisterResource<MemberSavedJobsResources>();
+            Res.RegisterResource<MemberAppliedJobsResources>();
 
             if (e.CommandName == "Bootstrapped")
             {

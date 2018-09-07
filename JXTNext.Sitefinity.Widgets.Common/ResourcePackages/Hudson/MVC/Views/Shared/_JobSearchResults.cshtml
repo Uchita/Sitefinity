@@ -89,7 +89,7 @@
             var jobid = $(this).data('jobid');
             var parm = { JobId: jobid };
             var urlPath = $(location).attr('pathname') + "/SaveJob";
-            console.log("dfdf");
+            var self = this;
             $.ajax({
                 type: 'POST',
                 cache: false,
@@ -98,6 +98,7 @@
                 dataType: 'Json',
                 success: function (response) {
                     if (response.Success == true) { // Job Saved
+                        self.addClass("save");
                     }
                     else { // Job failed to save
                         alert(response.Errors[0]);

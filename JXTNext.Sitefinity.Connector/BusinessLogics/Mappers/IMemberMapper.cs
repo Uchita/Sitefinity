@@ -13,5 +13,8 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
 
         dynamic Application_ConvertToAPIEntity<T>(T applyDetails);
 
+        List<T> MemberSavedJob_ConvertToLocalEntity<T>(dynamic data) where T : class;
+        
+
     }
 }

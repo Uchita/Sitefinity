@@ -29,6 +29,7 @@ namespace SitefinityWebApp.App_Start
                 , new ConnectorModule()
                 , new Widgets_AuthenticationModule()
                 , new Widgets_JobModule()
+                , new Widgets_UserModule()
                 );
 
             BindInjectionModels();

@@ -25,6 +25,7 @@ using JXTNext.Sitefinity.Widgets.Content.Mvc.StringResources;
 using Telerik.Sitefinity.Security.Events;
 using JXTNext.Sitefinity.Connector.BusinessLogics;
 using Ninject;
+using JXTNext.Sitefinity.Widgets.User.Mvc.StringResources;
 
 namespace SitefinityWebApp
 {
@@ -55,6 +56,7 @@ namespace SitefinityWebApp
             Res.RegisterResource<UsersListExtendedResources>();
             Res.RegisterResource<MapsResources>();
             Res.RegisterResource<JobApplicationResources>();
+            Res.RegisterResource<MemberSavedJobsResources>();
 
             if (e.CommandName == "Bootstrapped")
             {

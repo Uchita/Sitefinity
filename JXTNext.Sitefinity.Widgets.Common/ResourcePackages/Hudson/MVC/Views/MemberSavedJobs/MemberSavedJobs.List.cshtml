@@ -13,7 +13,6 @@
             <th>Job ID</th>
             <th>Job Title</th>
             <th>Date Added</th>
-            <th>Actions</th>
         </tr>
 
         @foreach (MemberSavedJobDisplayItem item in Model)
@@ -22,12 +21,13 @@
                 <td>@item.JobId</td>
                 <td><a href="@ViewBag.JobDetailsPageUrl?JobId=@item.JobId">@item.DisplayTitle</a></td>
                 <td>@String.Format("{0:dd MMM-yyyy}", item.DateAdded)</td>
-                <td>
-                    <a href="#" class="btn btn-sm btn-tag">Remove</a>
-                </td>
             </tr>
         }
 
     </table>
 </div>
+}
+else 
+{
+    <div class="alert alert-info">You currently don't have any saved jobs</div>
 }

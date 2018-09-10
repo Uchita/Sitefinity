@@ -247,5 +247,17 @@ namespace JXTNext.Sitefinity.Common.Helpers
 
             return isUserLoggedIn;
         }
+
+        public static bool IsUserInRole(User user, string roleName)
+        {
+            bool isUserInRole = false;
+            RoleManager roleManager = RoleManager.GetManager();
+            bool roleExists = roleManager.RoleExists(roleName);
+
+            if (user != null && roleExists)
+                isUserInRole = roleManager.IsUserInRole(user.Id, roleName);
+
+            return isUserInRole;
+        }
     }
 }

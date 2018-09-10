@@ -7,6 +7,11 @@
 @Html.Script(Url.WidgetContent("/Mvc/Scripts/jquery.nstSlider.js"))
 @Html.StyleSheet(Url.WidgetContent("/Mvc/Styles/rangeSlider.css"))
 
+@if (!ViewBag.IsMemberUser)
+{
+    <div class="alert alert-info">Please login as Member to create job alert.</div>
+}
+
 @if (Model != null)
 {
     <h1>Create job Alert</h1>
@@ -99,7 +104,7 @@
         <div class="row form-group">
             <div class="col-md-4 text-right"></div>
             <div class="col-md-4">
-                <input type="submit" value="SAVE" class="btn btn-primary" />
+                <input id="create-job-alert-submit-btn" type="submit" value="SAVE" class="btn btn-primary" />
             </div>
         </div>
     </div>
@@ -172,6 +177,12 @@
         });
 
         var model = @Html.Raw(json);
+        var isUserMember = false;
+        isUserMember = '@ViewBag.IsMemberUser';
+    
+        if (isUserMember == false || isUserMember == 'False' ) {
+           $('#create-job-alert-submit-btn').addClass('disabled');
+        }
         
 
         if (model != null && model != "undefined") {

@@ -18,7 +18,7 @@
         var salary = { TargetValue: 'Salary', LowerRange: 15000, UpperRange: 200000 };
                
 
-        $('select').on('change', function () {
+        $('.SalaryRangeSelect').on('change', function () {
             isSlarySelected = false;
             $('.salaryrangewrapper').each(function (i, obj) {
                 $(this).addClass('visible-hidden');

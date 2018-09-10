@@ -7383,7 +7383,8 @@ blockquote {
       .page-wrapper .btn.btn-google:hover, .page-wrapper .btn.btn-google:focus, .page-wrapper .btn.btn-facebook:hover, .page-wrapper .btn.btn-facebook:focus {
         color: #fff; }
     .page-wrapper .btn.btn-tag {
-      font-size: 1.2rem; }
+      font-size: 1.12rem;
+      padding: 2px 8px; }
   .page-wrapper .btn-block .btn {
     display: block;
     width: 100%; }
@@ -9461,6 +9462,9 @@ ul.breadcrumb {
     width: 100%;
     background: -webkit-linear-gradient(#fff, #fff);
     background: linear-gradient(rgba(0, 0, 0, 0), white); }
+  @media (max-width: 991px) {
+    .featured-job-offer {
+      padding: 30px; } }
 
 .job-offer-details table {
   margin: 30px 0;
@@ -10529,7 +10533,7 @@ ul.breadcrumb {
   main .page-section {
     padding: 30px 0; }
   .page-wrapper main {
-    padding-top: 60px !important; }
+    padding-top: 0 !important; }
   header .navbar-fixed-top:before {
     content: '';
     position: absolute;

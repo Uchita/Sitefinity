@@ -169,6 +169,9 @@
         background: -webkit-linear-gradient(#fff, #fff);
         background: linear-gradient(rgba(0,0,0,0), rgba(255, 255, 255, 1));
     }
+    @media (max-width: 991px){
+        padding: 30px;
+    }
 }
 
 .job-offer {

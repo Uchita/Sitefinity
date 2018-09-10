@@ -342,10 +342,10 @@
                     return 'Title:desc';
                     break;
                 case 'SalaryHighToLow':
-                    return 'SalaryLowerBand:desc';
+                    return 'CustomData["Salary.Filters[0].Min"]:desc';
                     break;
                 case 'SalaryLowToHigh':
-                    return 'SalaryLowerBand:asc';
+                    return 'CustomData["Salary.Filters[0].Max"]:asc';
                     break;
                 default:
                     return 'DatePosted:asc';

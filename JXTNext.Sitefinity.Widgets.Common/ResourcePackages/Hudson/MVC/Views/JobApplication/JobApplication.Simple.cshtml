@@ -66,7 +66,7 @@
                             <label class="form-label" for="password-reg">Password*</label>
                         </div>
                         <div class="col-md-8">
-                            <input id="password-reg" type="password" name="Password" class="form-control" pattern="(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" />
+                            <input id="password-reg" type="password" name="Password" class="form-control" />
                             <span class="hidden alert alert-danger error-message wrongPassword-message">
                                 Your password is incorrect!
                             </span>
@@ -236,10 +236,37 @@
              }
 
              if ((appStatus == 'Available' && isUserLoggedIn == 'True') && fileUploadFlag || registerForm) {
-                 self.submit();
+                 if (registerForm) {
+                     self.submit();
+                 }
+                 else {
+                     //for login email address & password check & submit login form
+                     var parm = { email: '', password: '', isUserLoggedIn:true };
+                     var urlPath = $(location).attr('pathname') + "/ValidateUser";
+                     $.ajax({
+                         type: 'POST',
+                         cache: false,
+                         url: urlPath,
+                         data: parm,
+                         dataType: 'Json',
+                         success: function (response) {
+                             if (response.IsUserVerified == true) { // User exists
+                                 if (response.IsUserMember == true) { // Member user
+                                     self.submit();
+                                 }
+                                 else {
+                                     alert("You should be a Member to apply for the job.")
+                                 }
+                             } 
+                         },
+                         error: function (response) {
+                         }
+                     });
+                 }
              } else {
+     
                  //for login email address & password check & submit login form
-                 var parm = { email: $('#userid').val(), password: $('#password-reg').val() };
+                 var parm = { email: $('#userid').val(), password: $('#password-reg').val(), isUserLoggedIn: false };
                  var urlPath = $(location).attr('pathname') + "/ValidateUser";
                  $.ajax({
                      type: 'POST',
@@ -248,8 +275,13 @@
                      data: parm,
                      dataType: 'Json',
                      success: function (response) {
-                         if (response == true) {
-                             self.submit();
+                         if (response.IsUserVerified == true) { // User exists
+                             if (response.IsUserMember == true) { // Member user
+                                 self.submit();
+                             }
+                             else {
+                                 alert("You should be a Member to apply for the job.")
+                             }
                          } else {
                              //if password wrong
                              $('#password-reg').parent().find('.error-message.wrongPassword-message').removeClass('hidden');

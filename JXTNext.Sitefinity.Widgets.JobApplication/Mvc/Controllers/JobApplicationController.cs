@@ -258,14 +258,41 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
             if (user != null)
                 isUserExists = true;
 
+
             return new JsonResult { Data = isUserExists };
         }
 
         [HttpPost]
-        public JsonResult ValidateUser(string email, string password)
+        public JsonResult ValidateUser(string email, string password, bool isUserLoggedIn)
         {
-            bool isUserVerified = SitefinityHelper.IsUserVerified(email, password);
-            return new JsonResult { Data = isUserVerified };
+            bool isUserVerified = true;
+            bool isMemberUser = false;
+            if (!isUserLoggedIn)
+            {
+                isUserVerified = SitefinityHelper.IsUserVerified(email, password);
+                 if (isUserVerified)
+                {
+                    var user = SitefinityHelper.GetUserByEmail(email);
+                    if (user != null)
+                        isMemberUser = SitefinityHelper.IsUserInRole(user, "Member");
+                }
+              
+            }
+            else
+            {
+                var currUser = SitefinityHelper.GetUserById(ClaimsManager.GetCurrentIdentity().UserId);
+                if (currUser != null)
+                    isMemberUser = SitefinityHelper.IsUserInRole(currUser, "Member");
+            }
+
+            var response = new
+            {
+                IsUserVerified = isUserVerified,
+                IsUserMember = isMemberUser
+
+            };
+
+            return new JsonResult { Data = response };
         }
 
         private JobApplicationAttachmentSource GetAttachmentSourceType(string sourceType)

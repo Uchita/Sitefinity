@@ -1097,6 +1097,20 @@ header {
                     }
                 }
             }
+
+            .combine-mnu{
+                padding: 10px 0;
+                a{
+                    display: inline;
+                }
+            }
+            .extra-mnu{
+                background: #bbb;
+                color: $brightColor;
+                a{
+                    color: $brightColor;
+                }
+            }
         }
     }
 

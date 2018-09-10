@@ -624,6 +624,8 @@
             left: 10px;
             margin: 0;
             height: 0;
+            width: auto;
+            min-width: 50px;
 
             .navbar-default .navbar-toggle {
                 float: left;
@@ -744,10 +746,10 @@
     }
 
     .list-featured-articles {
-        padding: 0;
+        padding: 0!important;
         margin: 0 auto 40px;
-        width: 90%;
-
+        width: 100%;
+        max-width: 400px;
         li {
 
             & + li {
@@ -931,6 +933,10 @@
         .testimonial{
             padding: 40px 70px 10px;
         }
+    }
+    .form-newsletter{
+        max-width: 400px;
+        margin: 0 auto;
     }
     
 }

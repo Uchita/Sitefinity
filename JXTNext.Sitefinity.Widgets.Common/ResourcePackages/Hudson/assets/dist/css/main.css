@@ -8006,6 +8006,15 @@ header {
           padding: 5px 30px 5px 0; }
         header .mobile-nav.left-sidebar .nav.navbar-nav .dropdown-menu .dropdown.open > a, header .mobile-nav.left-sidebar .nav.navbar-nav .dropdown-menu .dropdown.active > a, header .mobile-nav.left-sidebar .nav.navbar-nav .dropdown-menu .dropdown.dropdown-active > a {
           background: none; }
+      header .mobile-nav.left-sidebar .nav.navbar-nav .combine-mnu {
+        padding: 10px 0; }
+        header .mobile-nav.left-sidebar .nav.navbar-nav .combine-mnu a {
+          display: inline; }
+      header .mobile-nav.left-sidebar .nav.navbar-nav .extra-mnu {
+        background: #bbb;
+        color: #fff; }
+        header .mobile-nav.left-sidebar .nav.navbar-nav .extra-mnu a {
+          color: #fff; }
 
 /*#endregion Header */
 /*#region Main */
@@ -9621,6 +9630,9 @@ ul.breadcrumb {
     margin-top: -20px;
     color: #01a3a4; }
 
+.upload-section .note {
+  display: block; }
+
 .note {
   color: #b5b5b5;
   font-size: 1.4rem; }
@@ -10561,7 +10573,9 @@ ul.breadcrumb {
     top: 15px;
     left: 10px;
     margin: 0;
-    height: 0; }
+    height: 0;
+    width: auto;
+    min-width: 50px; }
     header .main-nav .navbar-default .navbar-toggle {
       float: left;
       border: 0;
@@ -10626,9 +10640,10 @@ ul.breadcrumb {
     margin-bottom: 10px;
     width: 50%; }
   .list-featured-articles {
-    padding: 0;
+    padding: 0 !important;
     margin: 0 auto 40px;
-    width: 90%; }
+    width: 100%;
+    max-width: 400px; }
     .list-featured-articles li + li {
       margin-top: 0 !important; }
       .list-featured-articles li + li:before {
@@ -10736,7 +10751,10 @@ ul.breadcrumb {
   .testimonials-slider.testimonials-simple .quote.text-right {
     right: 15px; }
   .testimonials-slider.testimonials-simple .testimonial {
-    padding: 40px 70px 10px; } }
+    padding: 40px 70px 10px; }
+  .form-newsletter {
+    max-width: 400px;
+    margin: 0 auto; } }
 
 @media screen and (max-width: 767px) {
   .owl-carousel-jumbotron .owl-nav {

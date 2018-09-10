@@ -172,6 +172,10 @@
     @media (max-width: 991px){
         padding: 30px;
     }
+    @media (max-width: 767px){
+        margin: 0 auto 15px;
+        max-width: 400px;
+    }
 }
 
 .job-offer {

@@ -127,7 +127,7 @@
                                 <div class="box clearfix text-center">
                                     <small class="note">MS Word, PDF, HTML and text formats accepted.</small>
                                     <div class="uploadfield-wrap">
-                                        <input type="file" id="@Model.ApplicationAttachments[1].AttachementFileUploadKey" name="@Model.ApplicationAttachments[1].AttachementFileUploadKey" />
+                                        <input type="file" id="@Model.ApplicationAttachments[1].AttachementFileUploadKey" name="@Model.ApplicationAttachments[1].AttachementFileUploadKey" accept=".pdf,.doc,.docx,.txt,.html,.htm,.xhtml" />
                                         <small class="lbl">Browse</small>
                                     </div>
                                     <div class="uploadfield-wrap dropbox-upload">
@@ -282,14 +282,16 @@
         $('#application-resume').change(function () {
             resumeSelectedType = 'Local';
             $("#resume-selected-type").val(resumeSelectedType);
-            $(".resume-name").text($(this).val());
+            var resumeBrowseName = document.getElementById("application-resume").files[0].name;
+            $(".resume-name").text(resumeBrowseName);
             $(".resume-message").addClass('hidden');
         });
 
         $('#application-coverletter').change(function () {
             coverLetterSelectedType = 'Local';
             $("#coverletter-selected-type").val(coverLetterSelectedType);
-            $(".coverletter-name").text($(this).val());
+            var coverletterBrowseName = document.getElementById("application-coverletter").files[0].name;
+            $(".coverletter-name").text(coverletterBrowseName);
         });
 
 

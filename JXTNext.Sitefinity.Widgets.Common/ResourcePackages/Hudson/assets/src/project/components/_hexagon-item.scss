@@ -29,7 +29,7 @@
 }
 
 @mixin hexagon($width, $height, $bgColor, $fontColor, $gap ){
-    $tipHt: $width/4;
+    $tipHt: round($width/4);
     text-align: center;
     background-color: $bgColor;
     color: $brightColor;

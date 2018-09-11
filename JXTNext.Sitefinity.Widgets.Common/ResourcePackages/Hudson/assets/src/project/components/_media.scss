@@ -336,6 +336,9 @@
 }
 
 @media (max-width: 991px) {
+    main .page-section{
+        padding: 30px 0;
+    }
     .flex{
         display: block;
     }
@@ -348,18 +351,22 @@
         line-height: normal;
 
         .h1, h1 {
-            font-size: 30px;
-            font-size: 3rem;
+            font-size: 36px;
+            font-size: 3.6rem;
         }
 
         .h2, h2 {
-            font-size: 20px;
-            font-size: 2rem;
+            font-size: 24px;
+            font-size: 2.4rem;
         }
 
         .h3, h3 {
-            font-size: 16px;
-            font-size: 1.6rem;
+            font-size: 20px;
+            font-size: 2.0rem;
+        }
+        .h4, h4 {
+            font-size: 18px;
+            font-size: 1.8rem;
         }
 
         .btn {
@@ -581,16 +588,66 @@
             float: none;
         }
     }
+    .owl-carousel-jumbotron .owl-nav {
+        button span{
+            top: -15px;
+        }
+    }
 }
 
+@media (max-width: 800px) {
+    .page-wrapper{
+        position: relative;
+        padding-bottom: 50px;
+        .quick-links {
+
+            &-toggle,
+            &-toggle.active {
+                display: none;
+            }
+    
+            &-content {
+                top: auto;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                position: fixed;
+                padding: 15px;
+            }
+    
+            .list-unstyled {
+                display: flex;
+                li {
+                    width: 25%;
+                    text-align: center;
+                    flex-grow: 1;
+                    padding: 0 10px;
+                    margin-bottom: 0;
+                }
+            }
+    
+            .quick-links-close {
+                display: none;
+            }
+    
+            a {
+                font-size: 0;
+    
+                .far, .fas {
+                    position: static;
+                    font-size: 21px;
+                    font-size: 2.1rem;
+                }
+            }
+        }
+    }
+}
 
 /*#region Phones*/
 @media (max-width: 767px) {
-    main .page-section{
-        padding: 30px 0;
-    }
+  
     .page-wrapper main{
-        padding-top: 0!important;
+        padding-top: 0;
     }
     header {
 
@@ -624,6 +681,8 @@
             left: 10px;
             margin: 0;
             height: 0;
+            width: auto;
+            min-width: 50px;
 
             .navbar-default .navbar-toggle {
                 float: left;
@@ -744,10 +803,10 @@
     }
 
     .list-featured-articles {
-        padding: 0;
+        padding: 0!important;
         margin: 0 auto 40px;
-        width: 90%;
-
+        width: 100%;
+        max-width: 400px;
         li {
 
             & + li {
@@ -816,49 +875,7 @@
     }
     
     .page-wrapper{
-        position: relative;
-        padding-bottom: 50px;
-        .quick-links {
-
-            &-toggle,
-            &-toggle.active {
-                display: none;
-            }
-    
-            &-content {
-                top: auto;
-                left: 0;
-                bottom: 0;
-                width: 100%;
-                position: fixed;
-                padding: 15px;
-            }
-    
-            .list-unstyled {
-                display: flex;
-                li {
-                    width: 25%;
-                    text-align: center;
-                    flex-grow: 1;
-                    padding: 0 10px;
-                    margin-bottom: 0;
-                }
-            }
-    
-            .quick-links-close {
-                display: none;
-            }
-    
-            a {
-                font-size: 0;
-    
-                .far, .fas {
-                    position: static;
-                    font-size: 21px;
-                    font-size: 2.1rem;
-                }
-            }
-        }
+        
         footer{
             .page-section{
                 padding: 15px 0;
@@ -931,6 +948,10 @@
         .testimonial{
             padding: 40px 70px 10px;
         }
+    }
+    .form-newsletter{
+        max-width: 400px;
+        margin: 0 auto;
     }
     
 }

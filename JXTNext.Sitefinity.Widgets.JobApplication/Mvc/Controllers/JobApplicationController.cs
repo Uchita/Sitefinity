@@ -227,6 +227,8 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 new JXTNext_MemberApplicationRequest { ApplyResourceID = applicationResultID, MemberID = memberID, ResumePath = resumeAttachmentPath, CoverletterPath = coverletterAttachmentPath, EmailNotification = emailNotificationSettings },
                 ovverideEmail);
 
+            var isJobApplicationSuccess = false;
+
             if (response.Success && response.ApplicationID.HasValue)
             {
                 //FileUploads
@@ -235,16 +237,30 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 bool hasFailedUpload = attachments.Where(c => c.Status != "Completed").Any();
 
                 if (hasFailedUpload)
+                {
                     //prompt error message for contact
                     jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.Technical_Issue, "Unable to attach files to application");
+                }
                 else
+                {
+                    isJobApplicationSuccess = true;
                     jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.Applied_Successful, "Your application was successfully processed");
+                }
 
             }
             else
             {
                 jobApplicationViewModel = GetJobApplicationConfigurations(JobApplicationStatus.NotAvailable, response.Errors.First());
             }
+
+            #region Redirect to thank you page on success
+            // When the job appliction is success we need to redirect to thank you page
+            if (isJobApplicationSuccess)
+            {
+                var successPageUrl = SitefinityHelper.GetPageUrl(this.JobApplicationSuccessPageId);
+                return Redirect(successPageUrl);
+            }
+            #endregion
 
             return View("JobApplication.Simple", jobApplicationViewModel);
         }
@@ -626,6 +642,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
         public string CssClass { get; set; }
         public string SerializedCloudSettingsParams { get; set; }
         public string RegisterPageId { get; set; }
+        public string JobApplicationSuccessPageId { get; set; }
 
         internal const string WidgetIconCssClass = "sfMvcIcn";
         private string templateName = "Simple";

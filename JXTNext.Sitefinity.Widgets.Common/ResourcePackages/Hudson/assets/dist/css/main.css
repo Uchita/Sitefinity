@@ -7897,8 +7897,9 @@ header {
         header .main-nav .dropdown-menu-container .dropdown-menu-columns .dropdown-menu-featured-image {
           display: block;
           box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.18);
-          margin: 10px auto;
+          margin: 10px 0;
           height: 100px;
+          width: 150px;
           overflow: hidden; }
           header .main-nav .dropdown-menu-container .dropdown-menu-columns .dropdown-menu-featured-image + h5 {
             color: #808080; }

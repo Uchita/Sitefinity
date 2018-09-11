@@ -18,6 +18,8 @@
 
         <div class="basic-form">
             <!-- Login/Register form fields -->
+            @if (!ViewBag.IsUserLoggedIn)
+            {
             <div id="login-register-container">
 
                 <div id="check-login" class="form-group">
@@ -94,7 +96,7 @@
                 </div>
 
             </div>
-
+            }
             <!-- Upload section -->
             <div class="upload-section">
 

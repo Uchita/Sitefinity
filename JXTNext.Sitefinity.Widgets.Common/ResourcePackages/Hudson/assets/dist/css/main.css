@@ -7294,13 +7294,16 @@ blockquote {
   .page-wrapper ul.list-inline, .page-wrapper ul.list-unstyled, .page-wrapper ol.list-inline, .page-wrapper ol.list-unstyled {
     list-style: none outside none; }
   .page-wrapper .h1, .page-wrapper h1 {
-    font-size: 36px;
-    font-size: 3.6rem;
-    margin-bottom: 3.6rem; }
+    font-size: 48px;
+    font-size: 4.8rem;
+    margin-bottom: 4.8rem; }
   .page-wrapper .h2, .page-wrapper h2 {
+    font-size: 36px;
+    font-size: 3.6rem; }
+  .page-wrapper .h3, .page-wrapper h3 {
     font-size: 24px;
     font-size: 2.4rem; }
-  .page-wrapper .h3, .page-wrapper h3 {
+  .page-wrapper .h4, .page-wrapper h4 {
     font-size: 20px;
     font-size: 2.0rem; }
   .page-wrapper .h1, .page-wrapper h1,
@@ -8424,7 +8427,7 @@ ul.vertical-ul {
       border-left: 1px solid #777;
       padding-left: 10px; }
     .page-wrapper footer .postfooter-links a:hover, .page-wrapper footer .postfooter-links a:focus {
-      color: #2e2e2e; }
+      color: #01a3a4; }
 
 .page-wrapper .quick-links {
   position: fixed;
@@ -8498,6 +8501,11 @@ ul.vertical-ul {
     font-size: 1.5rem; }
     .page-wrapper .quick-links-close .far, .page-wrapper .quick-links-close .fas {
       margin-right: 0; }
+
+.page-wrapper .footer-bar {
+  background: #f0f0f0;
+  color: inherit;
+  padding: 20px 0; }
 
 /*#endregion Footer*/
 .loading {
@@ -8995,9 +9003,7 @@ ul.breadcrumb {
   color: #fff; }
 
 .page-banner .h2, .page-banner h2 {
-  font-size: 36px;
-  font-size: 3.6rem;
-  margin-bottom: 0; }
+  margin-bottom: 10px; }
 
 .page-banner .h3, .page-banner h3 {
   margin-top: 0; }
@@ -9374,6 +9380,9 @@ ul.breadcrumb {
   margin-bottom: 0;
   border-radius: 3px;
   font-size: 85%; }
+
+.minWt100 {
+  min-width: 100px; }
 
 /*#endregion Forms*/
 /*#region Customers */
@@ -10433,14 +10442,17 @@ ul.breadcrumb {
     font-size: 1.4rem;
     line-height: normal; }
     .page-wrapper .h1, .page-wrapper h1 {
-      font-size: 30px;
-      font-size: 3rem; }
+      font-size: 36px;
+      font-size: 3.6rem; }
     .page-wrapper .h2, .page-wrapper h2 {
-      font-size: 20px;
-      font-size: 2rem; }
+      font-size: 24px;
+      font-size: 2.4rem; }
     .page-wrapper .h3, .page-wrapper h3 {
-      font-size: 16px;
-      font-size: 1.6rem; }
+      font-size: 20px;
+      font-size: 2.0rem; }
+    .page-wrapper .h4, .page-wrapper h4 {
+      font-size: 18px;
+      font-size: 1.8rem; }
     .page-wrapper .btn {
       font-size: 14px;
       font-size: 1.4rem; }

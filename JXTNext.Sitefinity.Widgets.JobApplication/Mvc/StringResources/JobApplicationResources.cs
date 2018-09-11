@@ -42,6 +42,34 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.StringResources
         }
 
         /// <summary>
+        /// Gets phrase: Where to display details
+        /// </summary>
+        [ResourceEntry("DisplaySuccess",
+            Value = "Where to redirect to the job application success?",
+            Description = "phrase : Where to redirect to the job application success")]
+        public string DisplaySuccess
+        {
+            get
+            {
+                return this["DisplaySuccess"];
+            }
+        }
+
+        /// <summary>
+        /// Gets phrase: Where to display details
+        /// </summary>
+        [ResourceEntry("SelectSuccessPage",
+            Value = "Select Success Page",
+            Description = "phrase : Select Success Page")]
+        public string SelectSuccessPage
+        {
+            get
+            {
+                return this["SelectSuccessPage"];
+            }
+        }
+
+        /// <summary>
         /// Gets phrase: This is the page where you have dropped search results widget
         /// </summary>
         [ResourceEntry("EmailCC",

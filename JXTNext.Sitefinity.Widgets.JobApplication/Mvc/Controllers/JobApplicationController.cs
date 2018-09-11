@@ -255,7 +255,7 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 
             #region Redirect to thank you page on success
             // When the job appliction is success we need to redirect to thank you page
-            if (isJobApplicationSuccess)
+            if (isJobApplicationSuccess && !this.JobApplicationSuccessPageId.IsNullOrEmpty())
             {
                 var successPageUrl = SitefinityHelper.GetPageUrl(this.JobApplicationSuccessPageId);
                 return Redirect(successPageUrl);

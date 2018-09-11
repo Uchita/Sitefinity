@@ -11,6 +11,7 @@ using System.Web.Mvc;
 using Telerik.Sitefinity.Mvc;
 using Telerik.Sitefinity.Frontend.Mvc.Infrastructure.Controllers.Attributes;
 using JXTNext.Sitefinity.Widgets.JobAlert.Mvc.Logics;
+using Telerik.Sitefinity.Security.Claims;
 
 namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
 {
@@ -50,7 +51,18 @@ namespace JXTNext.Sitefinity.Widgets.Job.Mvc.Controllers
                 && filtersResponse.Filters.Data != null)
                 dynamicFilterResponse = filtersResponse.Filters.Data as dynamic;
 
-             return View("Create", dynamicFilterResponse);
+            var isMembeUser = false;
+            // Only Members can create the job alert
+            if (SitefinityHelper.IsUserLoggedIn())
+            {
+                var currUser = SitefinityHelper.GetUserById(ClaimsManager.GetCurrentIdentity().UserId);
+                if (currUser != null)
+                    isMembeUser = SitefinityHelper.IsUserInRole(currUser, "Member");
+            }
+
+            ViewBag.IsMemberUser = isMembeUser;
+           
+            return View("Create", dynamicFilterResponse);
         }
 
         [HttpPost]

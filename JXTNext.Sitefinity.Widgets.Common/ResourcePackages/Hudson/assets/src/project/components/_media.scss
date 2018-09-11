@@ -336,6 +336,9 @@
 }
 
 @media (max-width: 991px) {
+    main .page-section{
+        padding: 30px 0;
+    }
     .flex{
         display: block;
     }
@@ -581,16 +584,66 @@
             float: none;
         }
     }
+    .owl-carousel-jumbotron .owl-nav {
+        button span{
+            top: -15px;
+        }
+    }
 }
 
+@media (max-width: 800px) {
+    .page-wrapper{
+        position: relative;
+        padding-bottom: 50px;
+        .quick-links {
+
+            &-toggle,
+            &-toggle.active {
+                display: none;
+            }
+    
+            &-content {
+                top: auto;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                position: fixed;
+                padding: 15px;
+            }
+    
+            .list-unstyled {
+                display: flex;
+                li {
+                    width: 25%;
+                    text-align: center;
+                    flex-grow: 1;
+                    padding: 0 10px;
+                    margin-bottom: 0;
+                }
+            }
+    
+            .quick-links-close {
+                display: none;
+            }
+    
+            a {
+                font-size: 0;
+    
+                .far, .fas {
+                    position: static;
+                    font-size: 21px;
+                    font-size: 2.1rem;
+                }
+            }
+        }
+    }
+}
 
 /*#region Phones*/
 @media (max-width: 767px) {
-    main .page-section{
-        padding: 30px 0;
-    }
+  
     .page-wrapper main{
-        padding-top: 0!important;
+        padding-top: 0;
     }
     header {
 
@@ -818,49 +871,7 @@
     }
     
     .page-wrapper{
-        position: relative;
-        padding-bottom: 50px;
-        .quick-links {
-
-            &-toggle,
-            &-toggle.active {
-                display: none;
-            }
-    
-            &-content {
-                top: auto;
-                left: 0;
-                bottom: 0;
-                width: 100%;
-                position: fixed;
-                padding: 15px;
-            }
-    
-            .list-unstyled {
-                display: flex;
-                li {
-                    width: 25%;
-                    text-align: center;
-                    flex-grow: 1;
-                    padding: 0 10px;
-                    margin-bottom: 0;
-                }
-            }
-    
-            .quick-links-close {
-                display: none;
-            }
-    
-            a {
-                font-size: 0;
-    
-                .far, .fas {
-                    position: static;
-                    font-size: 21px;
-                    font-size: 2.1rem;
-                }
-            }
-        }
+        
         footer{
             .page-section{
                 padding: 15px 0;

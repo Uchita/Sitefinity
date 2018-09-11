@@ -110,51 +110,51 @@ ThemeGlobal.MobileCarouselInit = function () {
 
 ThemeGlobal.DynamicFormConditions = function () {
     if( $('form .dfcondition').length ){
-        $('#Dropdown-5').hide();
-        $('#Dropdown-1').change(function(){
-        var selected = $('#Dropdown-1 option:selected').text();
-        if(selected == "I am a Job Seeker"){
-            $('#C017_Col00, #C017_Col01').hide();
-            $('#C045_Col00, #C045_Col01').hide();
-            $('#C020_Col00, #C020_Col01').show();
-            $('#C019_Col00, #C019_Col01').show();
-            $('#C022_Col00, #C022_Col01').show();
-            $('#C023_Col00, #C023_Col01').show();
-        }
-        if(selected == "I'd like to submit my CV"){
-            $('#C017_Col00, #C017_Col01').hide();
-            $('#C045_Col00, #C045_Col01').hide();
-            $('#C020_Col00, #C020_Col01').show();
-            $('#C019_Col00, #C019_Col01').show();
-            $('#C022_Col00, #C022_Col01').show();
-            $('#C023_Col00, #C023_Col01').show();
-        }
-        if(selected == "Working for Hudson"){
-            $('#C017_Col00, #C017_Col01').hide();
-            $('#C045_Col00, #C045_Col01').hide();
-            $('#C019_Col00, #C019_Col01').hide();
-            $('#Dropdown-4').hide();
-            $('#Dropdown-5').show();
-            $('#C022_Col00, #C022_Col01').show();
-            $('#C023_Col00, #C023_Col01').show();
+        $('#C072_Col00, #C072_Col01').hide();
+        $('#Dropdown-1').change(function () {
+            var selected = $('#Dropdown-1 option:selected').text();
+            if (selected == "I am a Job Seeker") {
+                $('#C017_Col00, #C017_Col01').hide();
+                $('#C045_Col00, #C045_Col01').hide();
+                $('#C020_Col00, #C020_Col01').show();
+                $('#C019_Col00, #C019_Col01').show();
+                $('#C022_Col00, #C022_Col01').show();
+                $('#C023_Col00, #C023_Col01').show();
+            }
+            if (selected == "I'd like to submit my CV") {
+                $('#C017_Col00, #C017_Col01').hide();
+                $('#C045_Col00, #C045_Col01').hide();
+                $('#C020_Col00, #C020_Col01').show();
+                $('#C019_Col00, #C019_Col01').show();
+                $('#C022_Col00, #C022_Col01').show();
+                $('#C023_Col00, #C023_Col01').show();
+            }
+            if (selected == "Working for Hudson") {
+                $('#C017_Col00, #C017_Col01').hide();
+                $('#C045_Col00, #C045_Col01').hide();
+                $('#C019_Col00, #C019_Col01').hide();
+                $('#C072_Col00, #C072_Col01').hide();
+                $('#C020_Col00, #C020_Col01').show();
+                $('#C022_Col00, #C022_Col01').show();
+                $('#C023_Col00, #C023_Col01').show();
 
-        }
-        if(selected == "Hiring candidates"){
-            $('#C022_Col00, #C022_Col01').hide();
-            $('#C017_Col00, #C017_Col01').show();
-            $('#C045_Col00, #C045_Col01').show();
-            $('#C020_Col00, #C020_Col01').show();
-            $('#C019_Col00, #C019_Col01').show();
-            $('#C023_Col00, #C023_Col01').show();
-        }
-        if(selected == "Candidate profiling & assessment" || selected ==  "Leadership assessment & development" || selected == "Outplacement & redeployment" || selected == "General inquiry"){
-            $('#C017_Col00, #C017_Col01').show();
-            $('#C045_Col00, #C045_Col01').show();
-            $('#C020_Col00, #C020_Col01').hide();
-            $('#C019_Col00, #C019_Col01').hide();
-            $('#C022_Col00, #C022_Col01').hide();
-            $('#C023_Col00, #C023_Col01').hide();
-        }
+            }
+            if (selected == "Hiring candidates") {
+                $('#C022_Col00, #C022_Col01').hide();
+                $('#C017_Col00, #C017_Col01').show();
+                $('#C045_Col00, #C045_Col01').show();
+                $('#C020_Col00, #C020_Col01').show();
+                $('#C019_Col00, #C019_Col01').show();
+                $('#C023_Col00, #C023_Col01').show();
+            }
+            if (selected == "Candidate profiling & assessment" || selected == "Leadership assessment & development" || selected == "Outplacement & redeployment" || selected == "General inquiry") {
+                $('#C017_Col00, #C017_Col01').show();
+                $('#C045_Col00, #C045_Col01').show();
+                $('#C020_Col00, #C020_Col01').hide();
+                $('#C019_Col00, #C019_Col01').hide();
+                $('#C022_Col00, #C022_Col01').hide();
+                $('#C023_Col00, #C023_Col01').hide();
+            }
         });
     }
 }

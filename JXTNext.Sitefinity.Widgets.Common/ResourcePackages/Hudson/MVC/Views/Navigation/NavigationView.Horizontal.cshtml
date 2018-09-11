@@ -5,6 +5,9 @@
 @using Telerik.Sitefinity.Modules.Pages;
 @using SitefinityWebApp.Helpers;
 
+@*For user login check*@
+@using JXTNext.Sitefinity.Common.Helpers;
+
 @*Add scripts and stylesheets*@
 @Html.Script(ScriptRef.JQuery, "top")
 @Html.Script(Url.WidgetContent("Mvc/Scripts/Bootstrap/js/bootstrap.min.js"), "top", false)
@@ -36,7 +39,7 @@
     </nav>
 </div>
 
-<div class="mobile-nav left-sidebar" >
+<div class="mobile-nav left-sidebar">
     @* @Html.Action("GetView", new { viewName = "Dropdown",  model= Model}) *@
 
     <nav class="">
@@ -48,6 +51,17 @@
                     {
                         @MobileRootLevelNode(node)
                     }
+
+                    @if (JXTNext.Sitefinity.Common.Helpers.SitefinityHelper.IsUserLoggedIn())
+                    {
+                        <li class="extra-mnu"><a href="/home/SignOut">Log out</a></li>
+                    }
+                    else
+                    {
+                        <li class="extra-mnu combine-mnu"><a href="/sign-in">Login</a> | <a href="/register">Register</a></li>
+                    }
+                    <li class="extra-mnu"><a href="/timesheets-and-payroll-process"><em class="far fa-calendar-alt"></em> Timesheets</a></li>
+
                 </ul>
             </div>
         </div><!-- /.container-fluid -->

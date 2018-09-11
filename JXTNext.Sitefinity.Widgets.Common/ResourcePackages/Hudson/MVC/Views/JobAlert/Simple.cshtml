@@ -37,7 +37,7 @@
         <tr>
             <th>Name</th>
             <th>Send Email Alerts</th>
-            <th>Last Modified</th>
+            @*<th>Last Modified</th>*@
             <th>Action</th>
         </tr>
 
@@ -60,11 +60,11 @@
                     }
 
                 </td>
-                <td id="@item.Id"></td>
+                @*<td id="@item.Id"></td>*@
                 <td>
                     @*@Html.ActionLink("Edit", "Edit", "JobAlert", new { id = item.Id }, new { @class="btn btn-sm btn-tag" }, null)*@
                     @Html.ActionLink("Search", "ViewResults", "JobAlert", new { id = item.Id }, new { @class = "btn btn-sm btn-tag" })
-                    @Html.ActionLink("Delete", "Delete", "JobAlert", new { id = item.Id }, new { onclick = "return confirmDelete();" })
+                    @Html.ActionLink("Delete", "Delete", "JobAlert", new { id = item.Id }, new { onclick = "return confirmDelete();", @class = "btn btn-sm btn-tag btn-danger" })
                 </td>
             </tr>
         }

@@ -21,26 +21,27 @@
 
 @helper GetClass(NodeViewModel node)
 {
-    var cssClass = "far ";
+var cssClass = "far ";
 
-    switch (node.Title.ToLower())
-    {
-        case "submit an inquiry":
-            cssClass += "fa-paper-plane";
-            break;
-        case "job seekers":
-            cssClass = "fas fa-search";
-            break;
-        case "submit your cv":
-            cssClass += "fa-edit";
-            break;
-        case "job application":
-            cssClass += "fa-bell";
-            break;
-        default:
-            cssClass = "fas fa-link";
-            break;
-    }
+switch (node.Title.ToLower())
+{
+    case "submit an inquiry":
+        cssClass += "fa-paper-plane";
+        break;
+    case "job seekers":
+        cssClass = "fas fa-search";
+        break;
+    case "submit your cv":
+        cssClass += "fa-edit";
+        break;
+    case "job application":
+    case "job alert":
+        cssClass += "fa-bell";
+        break;
+    default:
+        cssClass = "fas fa-link";
+        break;
+}
 
     @Html.Raw(cssClass);
 }

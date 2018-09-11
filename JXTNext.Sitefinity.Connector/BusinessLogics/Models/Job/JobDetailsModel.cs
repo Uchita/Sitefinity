@@ -1,4 +1,5 @@
-﻿using JXTNext.Sitefinity.Connector.Options.Models.Job;
+﻿using JXTNext.Sitefinity.Common.Helpers;
+using JXTNext.Sitefinity.Connector.Options.Models.Job;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Models.Job
         public int UserId { get; set; }
         public int AdvertiserUserId { get; set; }
         public long DateCreated { get; set; }
+        public string DateCreated_Representation { get => DateCreated == 0 ? string.Empty : ConversionHelper.GetDateTimeFromUnix(DateCreated).ToShortDateString(); }
         public long? ExpiryDate { get; set; }
         public int Status { get; set; }
         public string Address { get; set; }

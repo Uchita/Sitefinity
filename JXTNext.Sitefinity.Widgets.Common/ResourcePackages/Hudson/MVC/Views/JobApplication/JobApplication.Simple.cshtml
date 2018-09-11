@@ -8,6 +8,10 @@
 {
     <div class="alert alert-success">@ViewBag.ShowFilesUploadMessage</div>
 }
+@if (ViewBag.PostBackMessage != null)
+{
+    <br /><div class="alert alert-danger">@ViewBag.PostBackMessage</div>
+}
 <div class="login-form sign-in-with">
     <form id="job-app-form" action="@Url.Action("ApplyJob","JobApplication")" method="post" enctype="multipart/form-data">
 
@@ -20,82 +24,82 @@
             <!-- Login/Register form fields -->
             @if (!ViewBag.IsUserLoggedIn)
             {
-            <div id="login-register-container">
+                <div id="login-register-container">
 
-                <div id="check-login" class="form-group">
-                    <div class="row">
-                        <div class="col-md-4 text-right">
-                            <label class="form-label" for="userid">Email*</label>
-                        </div>
-                        <div class="col-md-8">
-                            <input id="userid" type="text" name="Email" class="form-control" required placeholder="Enter email address to begin" autocomplete="off" />
-                        </div>
-                    </div>
-                </div>
-
-                <div id="register" hidden>
-                    <div id="firstname-lastname">
+                    <div id="check-login" class="form-group">
                         <div class="row">
                             <div class="col-md-4 text-right">
-                                <label class="form-label" for="firstname-reg">Name*</label>
+                                <label class="form-label" for="userid">Email*</label>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <input id="firstname-reg" type="text" name="FirstName" class="form-control" placeholder="First name" />
+                            <div class="col-md-8">
+                                <input id="userid" type="text" name="Email" class="form-control" required placeholder="Enter email address to begin" autocomplete="off" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="register" hidden>
+                        <div id="firstname-lastname">
+                            <div class="row">
+                                <div class="col-md-4 text-right">
+                                    <label class="form-label" for="firstname-reg">Name*</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <input id="firstname-reg" type="text" name="FirstName" class="form-control" placeholder="First name" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <input type="text" name="LastName" class="form-control" placeholder="Last name" />
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <input type="text" name="LastName" class="form-control" placeholder="Last name" />
+
+                            <div class="row form-group">
+                                <div class="col-md-4 text-right">
+                                    <label class="form-label" for="PhoneNumber">
+                                        Phone Number
+                                    </label>
+                                </div>
+                                <div class="col-md-8">
+                                    <input type="text" name="PhoneNumber" class="form-control" placeholder="Phone number" />
                                 </div>
                             </div>
                         </div>
 
                         <div class="row form-group">
                             <div class="col-md-4 text-right">
-                                <label class="form-label" for="PhoneNumber">
-                                    Phone Number
-                                </label>
+                                <label class="form-label" for="password-reg">Password*</label>
                             </div>
                             <div class="col-md-8">
-                                <input type="text" name="PhoneNumber" class="form-control" placeholder="Phone number" />
+                                <input id="password-reg" type="password" name="Password" class="form-control" autocomplete="off" placeholder="Choose your password" />
+                                <span class="hidden alert alert-danger error-message wrongPassword-message">
+                                    Your password is incorrect!
+                                </span>
+                                <span id="password-guide" class="text-muted">
+                                    <em>Password must contain 8 characters or more, 1 uppercase letter, 1 lowercase letter and 1 number</em>
+                                </span>
+                                <div id="forgot-password" class="form-group forgot-password hidden">
+                                    <em>
+                                        <br /><a href="/sign-in/ForgotPassword/">Forgot password?</a>
+                                    </em>
+                                </div>
                             </div>
                         </div>
+
+                        <!-- Password strenght -->
+                        @*<div class="row" id="strength-wrap" style="display:none;">
+                                <div class="col-md-4 text-right">
+                                    <label class="form-label" for="password-reg">Password strength</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <div id="password-strength"><span class="strengh-text"></span></div>
+                                </div>
+                            </div>*@
+                        <!-- Password strenght -->
                     </div>
 
-                    <div class="row form-group">
-                        <div class="col-md-4 text-right">
-                            <label class="form-label" for="password-reg">Password*</label>
-                        </div>
-                        <div class="col-md-8">
-                            <input id="password-reg" type="password" name="Password" class="form-control" autocomplete="off" placeholder="Choose your password" />
-                            <span class="hidden alert alert-danger error-message wrongPassword-message">
-                                Your password is incorrect!
-                            </span>
-                            <span id="password-guide" class="text-muted">
-                                <em>Password must contain 8 characters or more, 1 uppercase letter, 1 lowercase letter and 1 number</em>
-                            </span>
-                            <div id="forgot-password" class="form-group forgot-password hidden">
-                                <em>
-                                    <br /><a href="/sign-in/ForgotPassword/">Forgot password?</a>
-                                </em>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Password strenght -->
-                    @*<div class="row" id="strength-wrap" style="display:none;">
-                        <div class="col-md-4 text-right">
-                            <label class="form-label" for="password-reg">Password strength</label>
-                        </div>
-                        <div class="col-md-8">
-                            <div id="password-strength"><span class="strengh-text"></span></div>
-                        </div>
-                    </div>*@
-                    <!-- Password strenght -->
                 </div>
-
-            </div>
             }
             <!-- Upload section -->
             <div class="upload-section">
@@ -167,7 +171,7 @@
                             <label class="col-xs-12 col-md-4"></label>
                             <div class="col-xs-12 col-md-8">
                                 <div class="checkbox clearfix">
-                                    <input id="privacypolicy" name="privacypolicy" type="checkbox" value="agree" required title="Please agree to our privacy policy" oninvalid="this.setCustomValidity('Please agree to our privacy policy')" oninput="this.setCustomValidity('')" >
+                                    <input id="privacypolicy" name="privacypolicy" type="checkbox" value="agree" required title="Please agree to our privacy policy" oninvalid="this.setCustomValidity('Please agree to our privacy policy')" oninput="this.setCustomValidity('')">
                                     <span class="checkbox-icon fas fa-check"></span>
                                     I aggree to Hudson <a href="/privacy-policy" target="_blank" style="text-decoration:underline; color:#000;">Privacy Policy</a>
                                 </div>
@@ -192,9 +196,9 @@
                                 //@ViewBag.RegisterPageUrl
                                 <a href="/register" title="@Model.ApplicationTitle"> here</a>
                             }
-                       </div>
+                        </div>
                     }
-                    
+
                 }
             </div>
 
@@ -275,14 +279,14 @@
                                  else {
                                      alert("You should be a Member to apply for the job.")
                                  }
-                             } 
+                             }
                          },
                          error: function (response) {
                          }
                      });
                  }
              } else {
-     
+
                  //for login email address & password check & submit login form
                  var parm = { email: $('#userid').val(), password: $('#password-reg').val(), isUserLoggedIn: false };
                  var urlPath = $(location).attr('pathname') + "/ValidateUser";
@@ -370,7 +374,7 @@
                             $('#firstname-reg').prop('required', true);
                             $('#password-reg').prop('pattern', "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}");
                             $('#password-reg').prop('title', "Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters");
-                            $('#strength-wrap').show();   
+                            $('#strength-wrap').show();
                             $('#password-reg').attr('placeholder', "Choose your password");
                         }
                         //this is to show the password field
@@ -490,7 +494,7 @@
 
              // Get controls
              var ctlBar = document.getElementById("password-strength");
-            
+
              // Set new width
              var nScoreWth = nScore; //*1.25
              var nScoreLen = '0';
@@ -568,7 +572,7 @@
        dropboxResumeOptions = {
             // Required. Called when a user selects an item in the Chooser.
             success: function (files) {
-                
+
                 uploadResumeModel.UrlPath = files[0].link;
                 uploadResumeModel.FileName = files[0].name;
 

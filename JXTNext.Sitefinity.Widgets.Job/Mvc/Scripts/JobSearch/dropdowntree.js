@@ -89,6 +89,11 @@ var globalTreeIdCounter=0;
     	options.clickHandler(tree.clickedElement, e);
         e.stopPropagation();
     });
+    $(options.element).on("click", "li a", function (e) {
+        if ($(this).attr('href').indexOf('#') == 0) {
+            e.preventDefault();
+        }
+    });
 	
 	$(options.element).on("keyup","input",function(o){
        	

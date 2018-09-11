@@ -193,6 +193,14 @@ blockquote{
             font-size: 1.12rem;
             padding: 2px 8px;
         }
+        &.btn-danger{
+            color: $brightColor;
+            background: #f55;
+            border-color:red;
+            &:hover, &:focus{
+                background: red;
+            }
+        }
     }
     
 
@@ -790,7 +798,7 @@ header {
     .main-nav {
         position: relative;
         display: block;
-        top: -12px;
+        top: -27px;
         width: 100%;
         z-index: 9;
 
@@ -1009,9 +1017,11 @@ header {
                     padding-bottom: 15px;
                     padding-left: 15px;
                     padding-right: 15px;
+                    margin-bottom: 0;
                     a{
                         padding-left: 0;
                         padding-right: 0;
+                        border-bottom-color: transparent;
                     }
                 }
 
@@ -1270,7 +1280,7 @@ main {
         }
     }
 }
-.left-sidebar .container-fluid, .left-sidebar .navbar-collapse {
+.left-sidebar .container-fluid, .left-sidebar .navbar-collapse, .dropdown {
     font-size: $sidebar-font-size;
     font-size: $sidebar-font-size-px;
     padding: 0;
@@ -1468,6 +1478,24 @@ main {
 
         .sidebar-to {
             padding: 0 10px;
+        }
+    }
+}
+
+//default dropdown
+.field-wrapper{
+    .dropdown-tree{
+        margin-bottom: 0;
+        .dropdown-toggle{
+            margin-top: 0;
+        }
+        .dropdown-menu {
+            padding: 0 10px;
+            li{
+                &:hover{
+                    background: none;
+                }
+            }
         }
     }
 }

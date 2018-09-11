@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JXTNext.Sitefinity.Common.Helpers;
 using JXTNext.Sitefinity.Connector.BusinessLogics.Models.Job;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -56,6 +57,8 @@ namespace JXTNext.Sitefinity.Connector.BusinessLogics.Mappers
                 {
                     JobID = jobItem["Id"],
                     Title = jobItem["Name"],
+                    DateCreated = jobItem["DateCreated"],
+                    ExpiryDate = jobItem["ExpiryDate"],
                     ShortDescription = jobItem["ShortDescription"],
                     Description = jobItem["FullDescription"],
                     ReferenceNo = jobItem["RefNo"],
